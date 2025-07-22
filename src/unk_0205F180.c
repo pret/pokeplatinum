@@ -140,8 +140,7 @@ static const UnkStruct_020EDB04 Unk_020EDB64[4] = {
 const UnkStruct_020EDB84 Unk_020EDB84[];
 static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int);
 
-void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int dir, u16 keyPad, u16 keyPress, BOOL param5)
-{
+void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int dir, u16 keyPad, u16 keyPress, BOOL param5) {
     if (dir == -1) {
         dir = sub_02061348(playerAvatar, keyPad, keyPress);
     }
@@ -176,13 +175,11 @@ void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager 
     PlayerAvatar_PlayWalkSE(playerAvatar);
 }
 
-int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int dir)
-{
+int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int dir) {
     return PlayerAvatar_CheckStartMoveInternal(playerAvatar, dir);
 }
 
-static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int dir)
-{
+static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int dir) {
     int v0;
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
@@ -241,14 +238,12 @@ static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int d
     return 0;
 }
 
-static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int param1, u16 param2, u16 param3)
-{
+static void PlayerAvatar_StartMoveInit(PlayerAvatar *playerAvatar, int param1, u16 param2, u16 param3) {
     sub_0205EBEC(playerAvatar, sub_02061310(param3), sub_0206132C(param3));
     sub_0205F054(playerAvatar);
 }
 
-static void sub_0205F378(PlayerAvatar *playerAvatar)
-{
+static void sub_0205F378(PlayerAvatar *playerAvatar) {
     if ((sub_0205F060(playerAvatar) == 1) && (PlayerAvatar_MoveState(playerAvatar) == 1)) {
         sub_0205EF6C(playerAvatar, 0);
 
@@ -259,8 +254,7 @@ static void sub_0205F378(PlayerAvatar *playerAvatar)
     }
 }
 
-static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
-{
+static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar) {
     if (PlayerAvatar_MoveState(playerAvatar) == 1) {
         MapObject *mapObj = Player_MapObject(playerAvatar);
         u8 v1, v2 = MapObject_GetCurrTileBehavior(mapObj);
@@ -305,8 +299,7 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
     }
 }
 
-void sub_0205F490(PlayerAvatar *playerAvatar)
-{
+void sub_0205F490(PlayerAvatar *playerAvatar) {
     int v0, v1, v2;
     const MapObject *mapObj;
 
@@ -380,15 +373,13 @@ void sub_0205F490(PlayerAvatar *playerAvatar)
     }
 }
 
-void sub_0205F56C(PlayerAvatar *playerAvatar)
-{
+void sub_0205F56C(PlayerAvatar *playerAvatar) {
     sub_0205EB08(playerAvatar, 0);
     sub_0205EB10(playerAvatar, 0);
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
-int sub_0205F588(PlayerAvatar *playerAvatar)
-{
+int sub_0205F588(PlayerAvatar *playerAvatar) {
     int v0, v1, v2;
     const MapObject *mapObj;
 
@@ -424,8 +415,7 @@ int sub_0205F588(PlayerAvatar *playerAvatar)
     return 0;
 }
 
-void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1)
-{
+void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1) {
     MapObject *mapObj;
 
     sub_0205EB08(playerAvatar, 0);
@@ -440,16 +430,14 @@ void sub_0205F5E4(PlayerAvatar *playerAvatar, int param1)
     LocalMapObj_SetAnimationCode(mapObj, MovementAction_TurnActionTowardsDir(param1, MOVEMENT_ACTION_FACE_NORTH));
 }
 
-static int sub_0205F62C(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205F62C(PlayerAvatar *playerAvatar, int param1) {
     u32 v0 = sub_0205F644(playerAvatar, param1);
 
     v0 = sub_0205F6A4(playerAvatar, v0, param1);
     return v0;
 }
 
-static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1)
-{
+static u32 sub_0205F644(PlayerAvatar *playerAvatar, int param1) {
     int v0 = 0;
     u32 v1 = MapObject_GetCurrTileBehavior(Player_MapObject(playerAvatar));
 
@@ -480,8 +468,7 @@ static const UnkStruct_020EDB84 Unk_020EDB84[] = {
     { NULL, 0x6 }
 };
 
-static int sub_0205F6A4(PlayerAvatar *playerAvatar, u32 param1, int param2)
-{
+static int sub_0205F6A4(PlayerAvatar *playerAvatar, u32 param1, int param2) {
     if (Unk_020EDAEC[param1](playerAvatar, param2) == 1) {
         return 1;
     }
@@ -489,14 +476,12 @@ static int sub_0205F6A4(PlayerAvatar *playerAvatar, u32 param1, int param2)
     return 0;
 }
 
-static int sub_0205F6C4(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205F6C4(PlayerAvatar *playerAvatar, int param1) {
     sub_0205FA6C(playerAvatar);
     return 0;
 }
 
-static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1) {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int v1 = MapObject_GetMovingDir(mapObj);
     int v2 = sub_0205FAB0(playerAvatar, v1);
@@ -554,8 +539,7 @@ static int sub_0205F6D0(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205F808(PlayerAvatar *playerAvatar, int param1) {
     u32 v0;
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int v2 = MapObject_GetMovingDir(mapObj);
@@ -611,8 +595,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
     return 0;
 }
 
-static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1) {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int v1 = MapObject_GetMovingDir(mapObj);
 
@@ -629,8 +612,7 @@ static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static int sub_0205F9AC(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205F9AC(PlayerAvatar *playerAvatar, int param1) {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int v1 = MapObject_GetMovingDir(mapObj);
 
@@ -647,8 +629,7 @@ static int sub_0205F9AC(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static int sub_0205F9FC(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205F9FC(PlayerAvatar *playerAvatar, int param1) {
     int v0 = 1;
     MapObject *mapObj = Player_MapObject(playerAvatar);
     u32 v2 = sub_02060B7C(playerAvatar, mapObj, v0);
@@ -678,8 +659,7 @@ static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int) = {
     sub_0205F9FC
 };
 
-static void sub_0205FA6C(PlayerAvatar *playerAvatar)
-{
+static void sub_0205FA6C(PlayerAvatar *playerAvatar) {
     if (sub_0205EF58(playerAvatar) == 1) {
         MapObject *v0 = Player_MapObject(playerAvatar);
 
@@ -695,8 +675,7 @@ static void sub_0205FA6C(PlayerAvatar *playerAvatar)
     }
 }
 
-static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1) {
     int v0;
     VecFx32 v1, v2;
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -719,8 +698,7 @@ static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static int sub_0205FB10(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205FB10(PlayerAvatar *playerAvatar, int param1) {
     int v0 = PlayerAvatar_Speed(playerAvatar);
 
     if (param1 == 1) {
@@ -741,8 +719,7 @@ static int sub_0205FB10(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1)
-{
+static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1) {
     MapObject *v0 = Player_MapObject(playerAvatar);
     int v1 = 0x10;
     int v2 = PlayerAvatar_Speed(playerAvatar);
@@ -767,8 +744,7 @@ static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1)
     sub_02060B64(playerAvatar, v0, v1, v3);
 }
 
-static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4)
-{
+static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4) {
     int v0 = PlayerAvatar_GetPlayerState(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
@@ -786,8 +762,7 @@ static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *p
     }
 }
 
-static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
-{
+static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5) {
     int v0 = sub_0205FC48(playerAvatar, param3);
 
     switch (v0) {
@@ -803,8 +778,7 @@ static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, c
     }
 }
 
-static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1) {
     int v0 = sub_0205FCC0(playerAvatar, param1);
     int v1 = sub_0205FC64(v0);
 
@@ -812,8 +786,7 @@ static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1)
     return v0;
 }
 
-static int sub_0205FC64(int param0)
-{
+static int sub_0205FC64(int param0) {
     switch (param0) {
     case 0:
         return 0;
@@ -827,8 +800,7 @@ static int sub_0205FC64(int param0)
     return 0;
 }
 
-static int sub_0205FC88(MapObject *mapObj, u8 param1, int param2)
-{
+static int sub_0205FC88(MapObject *mapObj, u8 param1, int param2) {
     if (TileBehavior_IsDeepestSnow(param1) == 1) {
         return 0x4;
     }
@@ -844,13 +816,11 @@ static int sub_0205FC88(MapObject *mapObj, u8 param1, int param2)
     return param2;
 }
 
-static int sub_0205FCBC(MapObject *mapObj, u8 param1, int param2)
-{
+static int sub_0205FCBC(MapObject *mapObj, u8 param1, int param2) {
     return param2;
 }
 
-static int sub_0205FCC0(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_0205FCC0(PlayerAvatar *playerAvatar, int param1) {
     int v0;
 
     if (param1 == -1) {
@@ -877,14 +847,12 @@ static int sub_0205FCC0(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static void sub_0205FD20(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4)
-{
+static void sub_0205FD20(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4) {
     int v0 = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(param1), MOVEMENT_ACTION_FACE_NORTH);
     sub_02060B64(playerAvatar, param1, v0, 1);
 }
 
-static void sub_0205FD40(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4)
-{
+static void sub_0205FD40(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4) {
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
     switch (distortionState) {
@@ -905,8 +873,7 @@ static void sub_0205FD40(PlayerAvatar *playerAvatar, MapObject *param1, int para
     }
 }
 
-static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4)
-{
+static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4) {
     u32 v0;
     int v1;
     int v2;
@@ -973,8 +940,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
     sub_02060B64(playerAvatar, param1, v1, v2);
 }
 
-static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4)
-{
+static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4) {
     u32 v0;
     int v1;
     int v2;
@@ -1042,8 +1008,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
     sub_02060B64(playerAvatar, param1, v1, v2);
 }
 
-static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4, const int *param5, const int *param6, const int *param7, const int *param8, const int *param9)
-{
+static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4, const int *param5, const int *param6, const int *param7, const int *param8, const int *param9) {
     u32 v0;
     int v1;
     int v2;
@@ -1089,8 +1054,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_02060B64(playerAvatar, mapObj, v1, v2);
 }
 
-static void sub_020600CC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_020600CC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     int v0[4] = { 0x69, 0x6a, 0x6b, 0x6c };
     int v1[4] = { 0x79, 0x7a, 0x7b, 0x7c };
     int v2[4] = { 0x69, 0x6a, 0x6b, 0x6c };
@@ -1100,8 +1064,7 @@ static void sub_020600CC(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_0206000C(playerAvatar, mapObj, param2, param3, param4, v0, v1, v2, v3, v4);
 }
 
-static void sub_02060150(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_02060150(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     int v0[4] = { 0x6d, 0x6e, 0x6f, 0x70 };
     int v1[4] = { 0x7d, 0x7e, 0x7f, 0x80 };
     int v2[4] = { 0x6d, 0x6e, 0x6f, 0x70 };
@@ -1111,8 +1074,7 @@ static void sub_02060150(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_0206000C(playerAvatar, mapObj, param2, param3, param4, v0, v1, v2, v3, v4);
 }
 
-static void sub_020601D4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_020601D4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     int v0[4] = { 0x71, 0x72, 0x73, 0x74 };
     int v1[4] = { 0x81, 0x82, 0x83, 0x84 };
     int v2[4] = { 0x71, 0x72, 0x73, 0x74 };
@@ -1122,8 +1084,7 @@ static void sub_020601D4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_0206000C(playerAvatar, mapObj, param2, param3, param4, v0, v1, v2, v3, v4);
 }
 
-static void sub_02060258(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_02060258(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     int v0, v1;
     v1 = param2;
 
@@ -1150,8 +1111,7 @@ static void sub_02060258(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     MapObject_Turn(mapObj, param2);
 }
 
-static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
-{
+static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5) {
     int v0;
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
@@ -1161,8 +1121,7 @@ static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const La
     }
 }
 
-static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pad)
-{
+static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pad) {
     if (PlayerAvatar_GetPlayerState(playerAvatar) != PLAYER_STATE_CYCLING) {
         return;
     }
@@ -1192,8 +1151,7 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
     }
 }
 
-int sub_02060390(PlayerAvatar *playerAvatar, int param1)
-{
+int sub_02060390(PlayerAvatar *playerAvatar, int param1) {
     int v0 = 0x4c;
 
     switch (PlayerAvatar_Speed(playerAvatar)) {
@@ -1212,8 +1170,7 @@ int sub_02060390(PlayerAvatar *playerAvatar, int param1)
     return v0;
 }
 
-static int sub_020603BC(PlayerAvatar *playerAvatar)
-{
+static int sub_020603BC(PlayerAvatar *playerAvatar) {
     int v0 = PlayerAvatar_AddMoveSpeed(playerAvatar, 1, 3);
 
     if (sub_0205EFB0(playerAvatar) == 0) {
@@ -1229,8 +1186,7 @@ static int sub_020603BC(PlayerAvatar *playerAvatar)
     return 0;
 }
 
-static int sub_020603EC(PlayerAvatar *playerAvatar)
-{
+static int sub_020603EC(PlayerAvatar *playerAvatar) {
     int v0 = 1;
     int v1 = PlayerAvatar_Speed(playerAvatar);
 
@@ -1252,8 +1208,7 @@ static int sub_020603EC(PlayerAvatar *playerAvatar)
     return v0;
 }
 
-static void sub_02060420(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
-{
+static void sub_02060420(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5) {
     int v0 = sub_02060494(playerAvatar, param3);
 
     switch (v0) {
@@ -1272,8 +1227,7 @@ static void sub_02060420(PlayerAvatar *playerAvatar, MapObject *mapObj, const La
     }
 }
 
-static int sub_02060494(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_02060494(PlayerAvatar *playerAvatar, int param1) {
     int v0 = sub_020604E4(playerAvatar, param1);
     int v1 = sub_020604B0(v0);
 
@@ -1281,8 +1235,7 @@ static int sub_02060494(PlayerAvatar *playerAvatar, int param1)
     return v0;
 }
 
-static int sub_020604B0(int param0)
-{
+static int sub_020604B0(int param0) {
     switch (param0) {
     case 0:
         return 0;
@@ -1298,8 +1251,7 @@ static int sub_020604B0(int param0)
     return 0;
 }
 
-static int sub_020604E4(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_020604E4(PlayerAvatar *playerAvatar, int param1) {
     int dir;
 
     if (param1 == -1) {
@@ -1324,16 +1276,14 @@ static int sub_020604E4(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static void sub_02060548(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_02060548(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     int v0 = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
 
     sub_02060B64(playerAvatar, mapObj, v0, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
-static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     u32 v0;
     int v1;
     int v2;
@@ -1394,8 +1344,7 @@ static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_02060B64(playerAvatar, mapObj, v1, v2);
 }
 
-static void sub_02060688(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_02060688(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     PlayerAvatar_ClearSpeed(playerAvatar);
 
     if (sub_020615E0(playerAvatar, mapObj, param2) != 1) {
@@ -1407,8 +1356,7 @@ static void sub_02060688(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     }
 }
 
-static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir, u16 param3, u16 param4)
-{
+static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir, u16 param3, u16 param4) {
     u32 v0;
     int v1;
     int v2, v3 = sub_020603EC(playerAvatar);
@@ -1449,8 +1397,7 @@ static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir,
     sub_02060B64(playerAvatar, mapObj, v2, v1);
 }
 
-static void sub_0206078C(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
-{
+static void sub_0206078C(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5) {
     int v0 = sub_02060800(playerAvatar, param3);
 
     switch (v0) {
@@ -1469,8 +1416,7 @@ static void sub_0206078C(PlayerAvatar *playerAvatar, MapObject *mapObj, const La
     }
 }
 
-static int sub_02060800(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_02060800(PlayerAvatar *playerAvatar, int param1) {
     int v0 = sub_02060850(playerAvatar, param1);
     int v1 = sub_0206081C(v0);
 
@@ -1478,8 +1424,7 @@ static int sub_02060800(PlayerAvatar *playerAvatar, int param1)
     return v0;
 }
 
-static int sub_0206081C(int param0)
-{
+static int sub_0206081C(int param0) {
     switch (param0) {
     case 0:
         return 0;
@@ -1495,8 +1440,7 @@ static int sub_0206081C(int param0)
     return 0;
 }
 
-static int sub_02060850(PlayerAvatar *playerAvatar, int param1)
-{
+static int sub_02060850(PlayerAvatar *playerAvatar, int param1) {
     int v0, v1;
 
     v1 = PlayerAvatar_Speed(playerAvatar);
@@ -1527,16 +1471,14 @@ static int sub_02060850(PlayerAvatar *playerAvatar, int param1)
     return 1;
 }
 
-static void sub_020608BC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_020608BC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     int v0 = MovementAction_TurnActionTowardsDir(MapObject_GetFacingDir(mapObj), MOVEMENT_ACTION_FACE_NORTH);
 
     sub_02060B64(playerAvatar, mapObj, v0, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
-static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     u32 v0;
     int v1;
     int v2;
@@ -1609,8 +1551,7 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_02060B64(playerAvatar, mapObj, v1, v2);
 }
 
-static void sub_02060A60(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_02060A60(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     PlayerAvatar_ClearSpeed(playerAvatar);
 
     if (sub_020615E0(playerAvatar, mapObj, param2) == 1) {
@@ -1624,8 +1565,7 @@ static void sub_02060A60(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     }
 }
 
-static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
-{
+static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4) {
     u32 v0;
     int v1;
     int v2, v3 = sub_020603EC(playerAvatar);
@@ -1666,14 +1606,12 @@ static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_02060B64(playerAvatar, mapObj, v2, v1);
 }
 
-static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 param2, int param3)
-{
+static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 param2, int param3) {
     sub_0205EC20(playerAvatar, param2, param3);
     LocalMapObj_SetAnimationCode(mapObj, param2);
 }
 
-u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     u32 v0 = 0, v1;
     v1 = sub_02060C24(playerAvatar, mapObj, param2);
 
@@ -1716,8 +1654,7 @@ u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
     return v0;
 }
 
-static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     VecFx32 v0;
     u32 v1, v2;
     int x = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
@@ -1756,8 +1693,7 @@ static u32 sub_02060C24(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return v1;
 }
 
-static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
@@ -1798,8 +1734,7 @@ static int sub_02060CE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     BOOL v0 = 0;
 
     if (param2 != -1) {
@@ -1835,8 +1770,7 @@ static int sub_02060D98(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return v0;
 }
 
-static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj);
@@ -1878,8 +1812,7 @@ static int sub_02060E40(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
@@ -1898,8 +1831,7 @@ static int sub_02060EE4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
@@ -1914,8 +1846,7 @@ static int sub_02060F4C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
@@ -1948,8 +1879,7 @@ static int sub_02060FA8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if ((param2 != -1) && PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
         int v1 = MapObject_GetX(mapObj) + MapObject_GetDxFromDir(param2);
@@ -1980,8 +1910,7 @@ static int sub_02061058(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     u32 v0 = 0;
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
@@ -2006,8 +1935,7 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return v0;
 }
 
-static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if (param2 != -1) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
 
@@ -2031,8 +1959,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-u32 sub_020611FC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+u32 sub_020611FC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     u32 v0, v1 = 0;
 
     v0 = sub_02061100(playerAvatar, mapObj, param2);
@@ -2056,8 +1983,7 @@ u32 sub_020611FC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
     return v1;
 }
 
-static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     BOOL v0 = 0;
     if ((param2 != -1) && PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_FLOOR) {
         FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -2092,13 +2018,11 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return v0;
 }
 
-int sub_02061308(PlayerAvatar *playerAvatar, u16 param1, u16 param2)
-{
+int sub_02061308(PlayerAvatar *playerAvatar, u16 param1, u16 param2) {
     return sub_02061348(playerAvatar, param1, param2);
 }
 
-static int sub_02061310(u16 pad)
-{
+static int sub_02061310(u16 pad) {
     if (pad & PAD_KEY_LEFT) {
         return 2;
     }
@@ -2110,8 +2034,7 @@ static int sub_02061310(u16 pad)
     return -1;
 }
 
-static int sub_0206132C(u16 pad)
-{
+static int sub_0206132C(u16 pad) {
     if (pad & PAD_KEY_UP) {
         return 0;
     }
@@ -2123,8 +2046,7 @@ static int sub_0206132C(u16 pad)
     return -1;
 }
 
-static int sub_02061348(PlayerAvatar *playerAvatar, u16 param1, u16 param2)
-{
+static int sub_02061348(PlayerAvatar *playerAvatar, u16 param1, u16 param2) {
     int v0 = sub_02061310(param2);
     int v1 = sub_0206132C(param2);
 
@@ -2159,8 +2081,7 @@ static int sub_02061348(PlayerAvatar *playerAvatar, u16 param1, u16 param2)
     return -1;
 }
 
-int sub_020613AC(PlayerAvatar *playerAvatar)
-{
+int sub_020613AC(PlayerAvatar *playerAvatar) {
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(mapObj) == 1) {
@@ -2178,8 +2099,7 @@ int sub_020613AC(PlayerAvatar *playerAvatar)
     return 0;
 }
 
-static int sub_020613D8(int param0)
-{
+static int sub_020613D8(int param0) {
     switch (param0) {
     case 0x1c:
     case 0x1d:
@@ -2191,8 +2111,7 @@ static int sub_020613D8(int param0)
     return 0;
 }
 
-int sub_020613FC(PlayerAvatar *playerAvatar, u16 pad)
-{
+int sub_020613FC(PlayerAvatar *playerAvatar, u16 pad) {
     if (pad & PAD_BUTTON_B) {
         return 1;
     }
@@ -2200,8 +2119,7 @@ int sub_020613FC(PlayerAvatar *playerAvatar, u16 pad)
     return 0;
 }
 
-int sub_0206140C(PlayerAvatar *playerAvatar)
-{
+int sub_0206140C(PlayerAvatar *playerAvatar) {
     u32 v0 = sub_0205EC14(playerAvatar);
 
     switch (v0) {
@@ -2215,8 +2133,7 @@ int sub_0206140C(PlayerAvatar *playerAvatar)
     return 0;
 }
 
-int sub_02061434(PlayerAvatar *playerAvatar, int param1)
-{
+int sub_02061434(PlayerAvatar *playerAvatar, int param1) {
     int v0, v1, state = PlayerAvatar_GetPlayerState(playerAvatar);
 
     switch (state) {
@@ -2243,8 +2160,7 @@ int sub_02061434(PlayerAvatar *playerAvatar, int param1)
     return v1;
 }
 
-u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3, int param4, int param5)
-{
+u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3, int param4, int param5) {
     u32 v0;
     int v1 = sub_02061348(playerAvatar, param1, param2);
     int v2 = sub_02061434(playerAvatar, v1);
@@ -2312,38 +2228,32 @@ u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3,
     return 0xff;
 }
 
-int sub_02061544(PlayerAvatar *playerAvatar)
-{
+int sub_02061544(PlayerAvatar *playerAvatar) {
     MapObject *v0 = Player_MapObject(playerAvatar);
     return LocalMapObj_IsAnimationSet(v0);
 }
 
-void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 param1, int param2)
-{
+void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 param1, int param2) {
     MapObject *v0 = Player_MapObject(playerAvatar);
     sub_02060B64(playerAvatar, v0, param1, param2);
 }
 
-u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1)
-{
+u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1) {
     MapObject *v0 = Player_MapObject(playerAvatar);
     return MapObject_GetTileBehaviorFromDir(v0, param1);
 }
 
-void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int facingDirection, int *x, int *z)
-{
+void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int facingDirection, int *x, int *z) {
     *x = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(facingDirection);
     *z = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(facingDirection);
 }
 
-void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z)
-{
+void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z) {
     int facingDirection = PlayerAvatar_GetDir(playerAvatar);
     PlayerAvatar_MoveCoordsInDirection(playerAvatar, facingDirection, x, z);
 }
 
-static void sub_020615C8(PlayerAvatar *playerAvatar)
-{
+static void sub_020615C8(PlayerAvatar *playerAvatar) {
     MapObject *v0 = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(v0);
     GameRecords *v2 = SaveData_GetGameRecords(fieldSystem->saveData);
@@ -2351,8 +2261,7 @@ static void sub_020615C8(PlayerAvatar *playerAvatar)
     GameRecords_IncrementRecordValue(v2, RECORD_UNK_000);
 }
 
-static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
-{
+static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2) {
     if (param2 != -1) {
         u8 v0 = MapObject_GetCurrTileBehavior(mapObj);
 
@@ -2376,8 +2285,7 @@ static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
     return 0;
 }
 
-static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param1, int param2)
-{
+static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param1, int param2) {
     if (param2 != -1) {
         return FALSE;
     }
@@ -2399,8 +2307,7 @@ static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param
     return FALSE;
 }
 
-void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3, int *param4)
-{
+void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3, int *param4) {
     const UnkStruct_020EDB04 *v0;
     enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(playerAvatar);
 
@@ -2428,8 +2335,7 @@ void sub_02061674(PlayerAvatar *playerAvatar, int param1, int *param2, int *para
     (*param4) += v0->unk_04;
 }
 
-u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int param1)
-{
+u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int param1) {
     u32 v0;
 
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
@@ -2448,8 +2354,7 @@ u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int para
     return v0;
 }
 
-u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar)
-{
+u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar) {
     u32 v0;
     MapObject *mapObj = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -2466,8 +2371,7 @@ u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar)
     return v0;
 }
 
-void sub_020617BC(PlayerAvatar *const playerAvatar, int *xOut, int *yOut, int *zOut)
-{
+void sub_020617BC(PlayerAvatar *const playerAvatar, int *xOut, int *yOut, int *zOut) {
     int v0 = PlayerAvatar_GetDistortionDir(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
 

@@ -45,57 +45,48 @@ static const struct {
     { 0x1AB, 0xAC, 0x2C, 0x13, 0xFE, 0x19, 0x14, 0x9, 0x1A }
 };
 
-u32 ov20_021D5044(void)
-{
+u32 ov20_021D5044(void) {
     return NELEMS(Unk_ov20_021D5320);
 }
 
-void ov20_021D5048(u32 param0, Strbuf *param1)
-{
+void ov20_021D5048(u32 param0, Strbuf *param1) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     Strbuf_CopyNumChars(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);
 }
 
-void ov20_021D506C(u32 param0, u32 *param1, u32 *param2)
-{
+void ov20_021D506C(u32 param0, u32 *param1, u32 *param2) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
 
     *param1 = Unk_ov20_021D5320[param0].unk_02;
     *param2 = Unk_ov20_021D5320[param0].unk_03;
 }
 
-int ov20_021D5098(u32 param0)
-{
+int ov20_021D5098(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     return Unk_ov20_021D5320[param0].unk_04;
 }
 
-int ov20_021D50B4(u32 param0)
-{
+int ov20_021D50B4(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     return Unk_ov20_021D5320[param0].unk_05;
 }
 
-int ov20_021D50D0(u32 param0)
-{
+int ov20_021D50D0(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     return Unk_ov20_021D5320[param0].unk_06;
 }
 
-int ov20_021D50EC(u32 param0)
-{
+int ov20_021D50EC(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     return Unk_ov20_021D5320[param0].unk_07;
 }
 
-int ov20_021D5108(u32 param0)
-{
+int ov20_021D5108(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     return Unk_ov20_021D5320[param0].unk_08;
 }
 
-int ov20_021D5124(u32 param0)
-{
+int ov20_021D5124(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     return Unk_ov20_021D5320[param0].unk_09;
 }

@@ -10,8 +10,7 @@
 
 #include "communication_system.h"
 
-void ov17_0224F18C(UnkStruct_ov17_0224F30C *param0, const UnkStruct_ov17_02243C28 *param1)
-{
+void ov17_0224F18C(UnkStruct_ov17_0224F30C *param0, const UnkStruct_ov17_02243C28 *param1) {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov17_0224F30C));
 
     param0->unk_00 = param1->unk_00;
@@ -21,8 +20,7 @@ void ov17_0224F18C(UnkStruct_ov17_0224F30C *param0, const UnkStruct_ov17_02243C2
     param0->unk_08 = param1->unk_08;
 }
 
-static int ov17_0224F1B4(UnkStruct_ov17_0224F30C *param0)
-{
+static int ov17_0224F1B4(UnkStruct_ov17_0224F30C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
@@ -36,13 +34,11 @@ static int ov17_0224F1B4(UnkStruct_ov17_0224F30C *param0)
     return 0;
 }
 
-static void ov17_0224F1E0(UnkStruct_ov17_0224F30C *param0, int param1)
-{
+static void ov17_0224F1E0(UnkStruct_ov17_0224F30C *param0, int param1) {
     param0->unk_0C &= 0xffffffff ^ (1 << param1);
 }
 
-int ov17_0224F1F8(UnkStruct_ov17_0224F30C *param0, u8 param1, u16 param2, void *param3, int param4)
-{
+int ov17_0224F1F8(UnkStruct_ov17_0224F30C *param0, u8 param1, u16 param2, void *param3, int param4) {
     UnkStruct_ov17_02243C80 v0;
 
     GF_ASSERT(sizeof(UnkStruct_ov17_02243C80) + param4 <= 512);
@@ -64,8 +60,7 @@ int ov17_0224F1F8(UnkStruct_ov17_0224F30C *param0, u8 param1, u16 param2, void *
     return v0.unk_05;
 }
 
-void ov17_0224F26C(UnkStruct_ov17_0224F30C *param0, const UnkStruct_ov17_02243C80 *param1, void *param2, int param3)
-{
+void ov17_0224F26C(UnkStruct_ov17_0224F30C *param0, const UnkStruct_ov17_02243C80 *param1, void *param2, int param3) {
     UnkStruct_ov17_02243C80 v0;
 
     GF_ASSERT(sizeof(UnkStruct_ov17_02243C80) + param3 <= 512);
@@ -86,14 +81,12 @@ void ov17_0224F26C(UnkStruct_ov17_0224F30C *param0, const UnkStruct_ov17_02243C8
     param0->unk_A10 = 1;
 }
 
-static void ov17_0224F2DC(UnkStruct_ov17_0224F30C *param0, int param1, UnkStruct_ov17_02243C80 **param2, void **param3)
-{
+static void ov17_0224F2DC(UnkStruct_ov17_0224F30C *param0, int param1, UnkStruct_ov17_02243C80 **param2, void **param3) {
     *param2 = (void *)param0->unk_210[param1];
     *param3 = &param0->unk_210[param1][sizeof(UnkStruct_ov17_02243C80)];
 }
 
-static BOOL ov17_0224F2F8(UnkStruct_ov17_0224F30C *param0)
-{
+static BOOL ov17_0224F2F8(UnkStruct_ov17_0224F30C *param0) {
     if (param0->unk_A10 == 1) {
         return 0;
     }
@@ -105,8 +98,7 @@ static BOOL ov17_0224F2F8(UnkStruct_ov17_0224F30C *param0)
     return 1;
 }
 
-int ov17_0224F30C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3)
-{
+int ov17_0224F30C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3) {
     if (ov17_0224F2F8(param0) == 0) {
         return 0;
     }
@@ -116,8 +108,7 @@ int ov17_0224F30C(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, voi
     return 1;
 }
 
-static BOOL ov17_0224F344(int param0, int param1, int param2)
-{
+static BOOL ov17_0224F344(int param0, int param1, int param2) {
     if ((param0 == param2) || (param2 == 0xff) || ((param2 == 0xfe) && (param1 == param0))) {
         return 1;
     }
@@ -125,8 +116,7 @@ static BOOL ov17_0224F344(int param0, int param1, int param2)
     return 0;
 }
 
-BOOL ov17_0224F35C(UnkStruct_ov17_0224F30C *param0)
-{
+BOOL ov17_0224F35C(UnkStruct_ov17_0224F30C *param0) {
     if (param0->unk_A10 == 0) {
         return 0;
     }
@@ -152,13 +142,11 @@ BOOL ov17_0224F35C(UnkStruct_ov17_0224F30C *param0)
     return 0;
 }
 
-BOOL ov17_0224F3D0(UnkStruct_ov17_0224F30C *param0)
-{
+BOOL ov17_0224F3D0(UnkStruct_ov17_0224F30C *param0) {
     return param0->unk_A10;
 }
 
-int ov17_0224F3D8(UnkStruct_ov17_0224F30C *param0, void *param1)
-{
+int ov17_0224F3D8(UnkStruct_ov17_0224F30C *param0, void *param1) {
     UnkStruct_ov17_02243C80 *v0;
     void *v1;
     UnkStruct_ov17_0224F3D8 v2;
@@ -200,8 +188,7 @@ int ov17_0224F3D8(UnkStruct_ov17_0224F30C *param0, void *param1)
     return 0;
 }
 
-BOOL ov17_0224F4B8(UnkStruct_ov17_0224F30C *param0, int param1, int param2, int param3)
-{
+BOOL ov17_0224F4B8(UnkStruct_ov17_0224F30C *param0, int param1, int param2, int param3) {
     if (param2 != param3) {
         return 1;
     }

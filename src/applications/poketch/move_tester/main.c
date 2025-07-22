@@ -122,13 +122,11 @@ static void ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *a
 static u32 GetExclamationCount(u32 attackType, u32 defenderType1, u32 defenderType2);
 static u32 GetTypeAfterShift(s32 type, s32 shift, BOOL isType2);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(New, Exit);
 }
 
-static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
-{
+static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID) {
     PoketchMoveTester *moveTester = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTester));
 
     if (moveTester != NULL) {
@@ -145,8 +143,7 @@ static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u
     return FALSE;
 }
 
-static BOOL Init(PoketchMoveTester *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
-{
+static BOOL Init(PoketchMoveTester *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID) {
     appData->appID = appID;
 
     if (PoketchMemory_Read32(appID, &(appData->moveTesterData), sizeof(appData->moveTesterData)) == FALSE) {
@@ -167,8 +164,7 @@ static BOOL Init(PoketchMoveTester *appData, PoketchSystem *poketchSys, BgConfig
     return FALSE;
 }
 
-static void InitData(MoveTesterData *moveTesterData)
-{
+static void InitData(MoveTesterData *moveTesterData) {
     moveTesterData->lastButtonPressed = TYPE_NORMAL;
     moveTesterData->attackType = TYPE_NORMAL;
     moveTesterData->defenderType1 = TYPE_NORMAL;
@@ -176,16 +172,14 @@ static void InitData(MoveTesterData *moveTesterData)
     moveTesterData->exclamCount = GetExclamationCount(moveTesterData->attackType, moveTesterData->defenderType1, moveTesterData->defenderType2);
 }
 
-static void Free(PoketchMoveTester *appData)
-{
+static void Free(PoketchMoveTester *appData) {
     PoketchMemory_Write32(appData->appID, &(appData->moveTesterData), sizeof(appData->moveTesterData));
     PoketchButtonManager_Free(appData->buttonManager);
     PoketchMoveTesterGraphics_Free(appData->graphics);
     Heap_Free(appData);
 }
 
-static void Task_Main(SysTask *task, void *appData)
-{
+static void Task_Main(SysTask *task, void *appData) {
     static BOOL (*const stateFuncs[])(PoketchMoveTester *) = {
         Task_LoadApp,
         Task_UpdateApp,
@@ -205,22 +199,19 @@ static void Task_Main(SysTask *task, void *appData)
     }
 }
 
-static void ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *appData)
-{
+static void ButtonChanged(u32 buttonID, u32 buttonState, u32 touchState, void *appData) {
     PoketchMoveTester *moveTester = appData;
 
     moveTester->moveTesterData.lastButtonPressed = buttonID;
     moveTester->buttonState = (enum ButtonManagerState)buttonState;
 }
 
-static void Exit(void *appData)
-{
+static void Exit(void *appData) {
     PoketchMoveTester *moveTester = appData;
     moveTester->shouldExit = TRUE;
 }
 
-static void ChangeActiveTask(PoketchMoveTester *appData, enum MoveTesterTasks taskID)
-{
+static void ChangeActiveTask(PoketchMoveTester *appData, enum MoveTesterTasks taskID) {
     if (appData->shouldExit == FALSE) {
         appData->activeTask = taskID;
     } else {
@@ -230,8 +221,7 @@ static void ChangeActiveTask(PoketchMoveTester *appData, enum MoveTesterTasks ta
     appData->taskFuncState = 0;
 }
 
-static BOOL Task_LoadApp(PoketchMoveTester *appData)
-{
+static BOOL Task_LoadApp(PoketchMoveTester *appData) {
     switch (appData->taskFuncState) {
     case 0:
         PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_DRAW_APP_SCREEN);
@@ -248,8 +238,7 @@ static BOOL Task_LoadApp(PoketchMoveTester *appData)
     return FALSE;
 }
 
-static BOOL Task_UpdateApp(PoketchMoveTester *appData)
-{
+static BOOL Task_UpdateApp(PoketchMoveTester *appData) {
     if (appData->shouldExit) {
         if (PoketchMoveTesterGraphics_NoActiveTasks(appData->graphics)) {
             ChangeActiveTask(appData, TASK_SHUTDOWN);
@@ -311,8 +300,7 @@ static BOOL Task_UpdateApp(PoketchMoveTester *appData)
     return FALSE;
 }
 
-static BOOL Task_UnloadApp(PoketchMoveTester *appData)
-{
+static BOOL Task_UnloadApp(PoketchMoveTester *appData) {
     switch (appData->taskFuncState) {
     case 0:
         PoketchMoveTesterGraphics_StartTask(appData->graphics, TASK_FREE_WINDOWS_AND_BG);
@@ -328,8 +316,7 @@ static BOOL Task_UnloadApp(PoketchMoveTester *appData)
     return FALSE;
 }
 
-static u32 GetExclamationCount(u32 attackType, u32 defenderType1, u32 defenderType2)
-{
+static u32 GetExclamationCount(u32 attackType, u32 defenderType1, u32 defenderType2) {
     if ((sMoveTesterTypeChart[attackType][defenderType1] == MT_0_0_X) || ((defenderType2 != MOVE_TESTER_NONE_SELECTED) && (sMoveTesterTypeChart[attackType][defenderType2] == MT_0_0_X))) {
         return 0;
     } else {
@@ -345,8 +332,7 @@ static u32 GetExclamationCount(u32 attackType, u32 defenderType1, u32 defenderTy
     }
 }
 
-static u32 GetTypeAfterShift(s32 currentType, s32 shift, BOOL isType2)
-{
+static u32 GetTypeAfterShift(s32 currentType, s32 shift, BOOL isType2) {
     int index;
 
     for (index = 0; index < NELEMS(sMoveTesterTypeOrder); index++) {

@@ -26,8 +26,7 @@
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx)
-{
+BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx) {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 setClear = ScriptContext_GetVar(ctx);
 
@@ -44,8 +43,7 @@ BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx) {
     PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
     Pokemon *dummy = Pokemon_New(HEAP_ID_FIELD_TASK);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
@@ -60,8 +58,7 @@ BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
-{
+BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx) {
     PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
     PCBoxes *pcBoxes = SaveData_GetPCBoxes(ctx->fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
@@ -83,8 +80,7 @@ BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CalcCatchingShowPoints(ScriptContext *ctx)
-{
+BOOL ScrCmd_CalcCatchingShowPoints(ScriptContext *ctx) {
     u16 pointsCategory = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 

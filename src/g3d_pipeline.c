@@ -13,8 +13,7 @@
 
 static void SetupDefaultPipelineState(void);
 
-G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
-{
+G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb) {
     G3DPipelineBuffers *buffers = Heap_AllocFromHeap(heapID, sizeof(G3DPipelineBuffers));
     buffers->heapID = heapID;
 
@@ -49,15 +48,13 @@ G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType 
     return buffers;
 }
 
-void G3DPipelineBuffers_Free(G3DPipelineBuffers *state)
-{
+void G3DPipelineBuffers_Free(G3DPipelineBuffers *state) {
     Heap_Free(state->paletteBuffer);
     Heap_Free(state->textureBuffer);
     Heap_Free(state);
 }
 
-static void SetupDefaultPipelineState(void)
-{
+static void SetupDefaultPipelineState(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
     G2_SetBG0Priority(0);

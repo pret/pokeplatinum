@@ -28,8 +28,7 @@ static u16 AddAffineToSubOamManager(const MtxFx22 *affineTransform);
 
 static OamManager *sOamManager;
 
-void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID)
-{
+void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID) {
     int trueMainOamStart;
     int trueMainOamCount;
     int trueMainAffineOamStart;
@@ -74,8 +73,7 @@ void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, 
         heapID);
 }
 
-static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID)
-{
+static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOamStart, int mainAffineOamCount, int subOamStart, int subOamCount, int subAffineOamStart, int subAffineOamCount, enum HeapId heapID) {
     GF_ASSERT(sOamManager == NULL);
     sOamManager = Heap_AllocFromHeap(heapID, sizeof(OamManager));
     GF_ASSERT(sOamManager);
@@ -85,16 +83,14 @@ static void InitOamManager(int mainOamStart, int mainOamCount, int mainAffineOam
     GF_ASSERT(NNS_G2dGetNewOamManagerInstance(&sOamManager->subScreenOam, subOamStart, subOamCount, subAffineOamStart, subAffineOamCount, NNS_G2D_OAMTYPE_SUB));
 }
 
-void RenderOam_Transfer(void)
-{
+void RenderOam_Transfer(void) {
     if (sOamManager) {
         NNS_G2dApplyAndResetOamManagerBuffer(&sOamManager->mainScreenOam);
         NNS_G2dApplyAndResetOamManagerBuffer(&sOamManager->subScreenOam);
     }
 }
 
-void RenderOam_Free(void)
-{
+void RenderOam_Free(void) {
     GF_ASSERT(sOamManager);
     RenderOam_ClearMain(sOamManager->heapID);
     RenderOam_ClearSub(sOamManager->heapID);
@@ -102,8 +98,7 @@ void RenderOam_Free(void)
     sOamManager = NULL;
 }
 
-void RenderOam_InitSurface(NNSG2dRenderSurface *surface, NNSG2dViewRect *viewRect, NNSG2dSurfaceType surfaceType, NNSG2dRendererInstance *renderer)
-{
+void RenderOam_InitSurface(NNSG2dRenderSurface *surface, NNSG2dViewRect *viewRect, NNSG2dSurfaceType surfaceType, NNSG2dRendererInstance *renderer) {
     GF_ASSERT(sOamManager);
     if (surfaceType == NNS_G2D_SURFACETYPE_MAIN2D) {
         InitRenderSurface(surface, viewRect, AddToMainOamManager, AddAffineToMainOamManager, IsObjectInView, surfaceType, renderer);
@@ -112,8 +107,7 @@ void RenderOam_InitSurface(NNSG2dRenderSurface *surface, NNSG2dViewRect *viewRec
     }
 }
 
-NNSG2dOamManagerInstance *RenderOam_GetScreenOam(enum DSScreen screen)
-{
+NNSG2dOamManagerInstance *RenderOam_GetScreenOam(enum DSScreen screen) {
     GF_ASSERT(sOamManager);
 
     NNSG2dOamManagerInstance *manager;
@@ -126,39 +120,33 @@ NNSG2dOamManagerInstance *RenderOam_GetScreenOam(enum DSScreen screen)
     return manager;
 }
 
-void RenderOam_ClearMain(enum HeapId heapID)
-{
+void RenderOam_ClearMain(enum HeapId heapID) {
     Utility_Clear2DMainOAM(heapID);
 }
 
-void RenderOam_ClearSub(enum HeapId heapID)
-{
+void RenderOam_ClearSub(enum HeapId heapID) {
     Utility_Clear2DSubOAM(heapID);
 }
 
-static BOOL AddToMainOamManager(const GXOamAttr *oam, u16 affineIdx, BOOL unused)
-{
+static BOOL AddToMainOamManager(const GXOamAttr *oam, u16 affineIdx, BOOL unused) {
     BOOL result = NNS_G2dEntryOamManagerOamWithAffineIdx(&sOamManager->mainScreenOam, oam, affineIdx);
     GF_ASSERT(result);
     return result;
 }
 
-static BOOL AddToSubOamManager(const GXOamAttr *oam, u16 affineIdx, BOOL unused)
-{
+static BOOL AddToSubOamManager(const GXOamAttr *oam, u16 affineIdx, BOOL unused) {
     BOOL result = NNS_G2dEntryOamManagerOamWithAffineIdx(&sOamManager->subScreenOam, oam, affineIdx);
     GF_ASSERT(result);
     return result;
 }
 
-static u16 AddAffineToMainOamManager(const MtxFx22 *affineTransform)
-{
+static u16 AddAffineToMainOamManager(const MtxFx22 *affineTransform) {
     u16 result = NNS_G2dEntryOamManagerAffine(&sOamManager->mainScreenOam, affineTransform);
     GF_ASSERT(result != NNS_G2D_OAM_AFFINE_IDX_NONE);
     return result;
 }
 
-static u16 AddAffineToSubOamManager(const MtxFx22 *affineTransform)
-{
+static u16 AddAffineToSubOamManager(const MtxFx22 *affineTransform) {
     u16 result = NNS_G2dEntryOamManagerAffine(&sOamManager->subScreenOam, affineTransform);
     GF_ASSERT(result != NNS_G2D_OAM_AFFINE_IDX_NONE);
     return result;

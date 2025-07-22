@@ -127,8 +127,7 @@ static const SpriteTemplate sPokemonPreviewSpriteTemplate = {
     .vramTransfer = FALSE,
 };
 
-void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 standardWindowType, u32 heapID)
-{
+void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 standardWindowType, u32 heapID) {
     if (standardWindowType == STANDARD_WINDOW_SYSTEM) {
         Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME,
             standard_system_NCGR,
@@ -150,13 +149,11 @@ void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 stan
     }
 }
 
-u32 GetStandardWindowPaletteNARCMember()
-{
+u32 GetStandardWindowPaletteNARCMember() {
     return standard_system_NCLR;
 }
 
-void LoadStandardWindowGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 palOffset, u8 standardWindowType, u32 heapID)
-{
+void LoadStandardWindowGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 palOffset, u8 standardWindowType, u32 heapID) {
     u32 narcMemberIdx;
     if (standardWindowType == STANDARD_WINDOW_SYSTEM) {
         narcMemberIdx = standard_system_NCGR;
@@ -196,8 +193,7 @@ void LoadStandardWindowGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, 
     }
 }
 
-static void DrawStandardWindowFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile)
-{
+static void DrawStandardWindowFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile) {
     // clang-format off
     Bg_FillTilemapRect(bgConfig, bgLayer, tile,     x - 1,     y - 1,      1,     1,      palette);
     Bg_FillTilemapRect(bgConfig, bgLayer, tile + 1, x,         y - 1,      width, 1,      palette);
@@ -210,8 +206,7 @@ static void DrawStandardWindowFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, 
     // clang-format on
 }
 
-void Window_DrawStandardFrame(Window *window, u8 skipTransfer, u16 tile, u8 palette)
-{
+void Window_DrawStandardFrame(Window *window, u8 skipTransfer, u16 tile, u8 palette) {
     DrawStandardWindowFrame(window->bgConfig,
         Window_GetBgLayer(window),
         Window_GetXPos(window),
@@ -226,8 +221,7 @@ void Window_DrawStandardFrame(Window *window, u8 skipTransfer, u16 tile, u8 pale
     }
 }
 
-void Window_EraseStandardFrame(Window *window, u8 skipTransfer)
-{
+void Window_EraseStandardFrame(Window *window, u8 skipTransfer) {
     Bg_FillTilemapRect(window->bgConfig,
         Window_GetBgLayer(window),
         0,
@@ -242,18 +236,15 @@ void Window_EraseStandardFrame(Window *window, u8 skipTransfer)
     }
 }
 
-u32 GetMessageBoxTilesNARCMember(u32 messageBoxFrame)
-{
+u32 GetMessageBoxTilesNARCMember(u32 messageBoxFrame) {
     return message_box_00_NCGR + messageBoxFrame;
 }
 
-u32 GetMessageBoxPaletteNARCMember(u32 messageBoxFrame)
-{
+u32 GetMessageBoxPaletteNARCMember(u32 messageBoxFrame) {
     return message_box_00_NCLR + messageBoxFrame;
 }
 
-void LoadMessageBoxGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 palOffset, u8 messageBoxFrame, u32 heapID)
-{
+void LoadMessageBoxGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 palOffset, u8 messageBoxFrame, u32 heapID) {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME,
         GetMessageBoxTilesNARCMember(messageBoxFrame),
         bgConfig,
@@ -280,8 +271,7 @@ void LoadMessageBoxGraphics(BgConfig *bgConfig, u8 bgLayer, u16 tileOffset, u8 p
     }
 }
 
-static void DrawMessageBoxFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile)
-{
+static void DrawMessageBoxFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile) {
     // clang-format off
     Bg_FillTilemapRect(bgConfig, bgLayer, tile,      x - 2,         y - 1,      1,     1,      palette);
     Bg_FillTilemapRect(bgConfig, bgLayer, tile + 1,  x - 1,         y - 1,      1,     1,      palette);
@@ -303,8 +293,7 @@ static void DrawMessageBoxFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 w
     // clang-format on
 }
 
-void Window_DrawMessageBox(Window *window, u32 tile, u32 palette)
-{
+void Window_DrawMessageBox(Window *window, u32 tile, u32 palette) {
     DrawMessageBoxFrame(window->bgConfig,
         Window_GetBgLayer(window),
         Window_GetXPos(window),
@@ -315,8 +304,7 @@ void Window_DrawMessageBox(Window *window, u32 tile, u32 palette)
         tile);
 }
 
-void Window_DrawMessageBoxWithScrollCursor(Window *window, u8 skipTransfer, u16 tile, u8 palette)
-{
+void Window_DrawMessageBoxWithScrollCursor(Window *window, u8 skipTransfer, u16 tile, u8 palette) {
     Window_DrawMessageBox(window, tile, palette);
 
     if (skipTransfer == FALSE) {
@@ -326,8 +314,7 @@ void Window_DrawMessageBoxWithScrollCursor(Window *window, u8 skipTransfer, u16 
     DrawMessageBoxScrollCursor(window, tile);
 }
 
-void Window_EraseMessageBox(Window *window, u8 skipTransfer)
-{
+void Window_EraseMessageBox(Window *window, u8 skipTransfer) {
     Bg_FillTilemapRect(window->bgConfig,
         Window_GetBgLayer(window),
         0,
@@ -342,8 +329,7 @@ void Window_EraseMessageBox(Window *window, u8 skipTransfer)
     }
 }
 
-static void BlitRectToBitmap(void *srcPixels, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, void *destPixels, u16 destWidth, u16 destHeight, u16 destX, u16 destY, u16 blitWidth, u16 blitHeight)
-{
+static void BlitRectToBitmap(void *srcPixels, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, void *destPixels, u16 destWidth, u16 destHeight, u16 destX, u16 destY, u16 blitWidth, u16 blitHeight) {
     Bitmap src, dest;
 
     src.pixels = (u8 *)srcPixels;
@@ -363,8 +349,7 @@ static void BlitRectToBitmap(void *srcPixels, u16 srcX, u16 srcY, u16 srcWidth, 
 #define SCROLL_CURSOR_FRAME_SIZE      (SCROLL_CURSOR_TILE_OFFSET(SCROLL_CURSOR_TILES_PER_FRAME))
 #define SCROLL_CURSOR_GRAPHICS_SIZE   (SCROLL_CURSOR_FRAME_SIZE * SCROLL_CURSOR_FRAME_COUNT)
 
-static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
-{
+static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile) {
     // must forward-declare these to match
     u8 *cursorTiles;
     void *cursorCharPtr;
@@ -411,8 +396,7 @@ static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
     Heap_Free(cursorBlit);
 }
 
-void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 withTile, u8 messageBoxFrame, u32 heapID)
-{
+void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 withTile, u8 messageBoxFrame, u32 heapID) {
     void *tiles;
     NNSG2dCharacterData *chars;
     u8 *src;
@@ -447,8 +431,7 @@ void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 
     Heap_Free(src);
 }
 
-void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u8 palette, u8 signpostType, u16 signpostNARCMemberIdx, u32 heapID)
-{
+void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u8 palette, u8 signpostType, u16 signpostNARCMemberIdx, u32 heapID) {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__FIELD_BOARD,
         signpost_frame_NCGR,
         bgConfig,
@@ -480,8 +463,7 @@ void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u
     }
 }
 
-static void LoadSignpostContentTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 signpostType, u16 narcMemberIdx, u32 heapID)
-{
+static void LoadSignpostContentTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 signpostType, u16 narcMemberIdx, u32 heapID) {
     if (signpostType == SIGNPOST_TYPE_MAP) {
         narcMemberIdx += city_map_empty_NCGR;
     } else {
@@ -498,8 +480,7 @@ static void LoadSignpostContentTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset,
         heapID);
 }
 
-static void DrawSignpostFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile)
-{
+static void DrawSignpostFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette, u16 tile) {
     // clang-format off
     Bg_FillTilemapRect(bgConfig, bgLayer, tile,      x - 9,         y - 1,      1,         1,      palette);
     Bg_FillTilemapRect(bgConfig, bgLayer, tile + 1,  x - 8,         y - 1,      1,         1,      palette);
@@ -522,8 +503,7 @@ static void DrawSignpostFrame(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 wid
     // clang-format on
 }
 
-static void DrawSignpostTiles(Window *window, u16 tile, u8 palette)
-{
+static void DrawSignpostTiles(Window *window, u16 tile, u8 palette) {
     u16 dy, dx; // must forward-declare to match
 
     u8 bgLayer = Window_GetBgLayer(window);
@@ -537,8 +517,7 @@ static void DrawSignpostTiles(Window *window, u16 tile, u8 palette)
     }
 }
 
-void Window_DrawSignpost(Window *window, u8 skipTransfer, u16 baseTile, u8 palette, u8 signpostType)
-{
+void Window_DrawSignpost(Window *window, u8 skipTransfer, u16 baseTile, u8 palette, u8 signpostType) {
     u8 bgLayer = Window_GetBgLayer(window);
 
     if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
@@ -569,8 +548,7 @@ void Window_DrawSignpost(Window *window, u8 skipTransfer, u16 baseTile, u8 palet
     DrawMessageBoxScrollCursor(window, baseTile);
 }
 
-void Window_EraseSignpost(Window *window, u8 signpostType, u8 skipTransfer)
-{
+void Window_EraseSignpost(Window *window, u8 signpostType, u8 skipTransfer) {
     u8 bgLayer = Window_GetBgLayer(window);
 
     if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
@@ -598,8 +576,7 @@ void Window_EraseSignpost(Window *window, u8 signpostType, u8 skipTransfer)
     }
 }
 
-void *Window_AddWaitDial(Window *window, u32 baseTile)
-{
+void *Window_AddWaitDial(Window *window, u32 baseTile) {
     WaitDial *dial;
     u32 heapID;
     u8 *bgCharPtr;
@@ -663,8 +640,7 @@ void *Window_AddWaitDial(Window *window, u32 baseTile)
     return dial;
 }
 
-static void DrawWaitDial(WaitDial *dial, u32 drawMode)
-{
+static void DrawWaitDial(WaitDial *dial, u32 drawMode) {
     u8 bgLayer = Window_GetBgLayer(dial->window);
     u8 x = Window_GetXPos(dial->window);
     u8 y = Window_GetYPos(dial->window);
@@ -694,8 +670,7 @@ static void DrawWaitDial(WaitDial *dial, u32 drawMode)
     Bg_CopyTilemapBufferToVRAM(dial->window->bgConfig, bgLayer);
 }
 
-static void SysTask_TickWaitDial(SysTask *task, void *data)
-{
+static void SysTask_TickWaitDial(SysTask *task, void *data) {
     WaitDial *dial = data;
 
     if (dial->deleteMode != DIAL_DELETE_MODE_NONE) {
@@ -716,30 +691,26 @@ static void SysTask_TickWaitDial(SysTask *task, void *data)
     }
 }
 
-static void SysTask_CleanupWaitDial(SysTask *task, void *data)
-{
+static void SysTask_CleanupWaitDial(SysTask *task, void *data) {
     Heap_Free(data);
     SysTask_Done(task);
 }
 
-void DestroyWaitDial(void *taskData)
-{
+void DestroyWaitDial(void *taskData) {
     WaitDial *dial = taskData;
 
     SysTask_ExecuteAfterVBlank(SysTask_CleanupWaitDial, dial, 0);
     dial->deleteMode = DIAL_DELETE_MODE_CLEAR;
 }
 
-void DestroyWaitDialTaskOnly(void *taskData)
-{
+void DestroyWaitDialTaskOnly(void *taskData) {
     WaitDial *dial = taskData;
 
     SysTask_ExecuteAfterVBlank(SysTask_CleanupWaitDial, dial, 0);
     dial->deleteMode = DIAL_DELETE_MODE_DESTROY;
 }
 
-u8 *DrawPokemonPreview(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, u16 species, u8 gender, enum HeapId heapID)
-{
+u8 *DrawPokemonPreview(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, u16 species, u8 gender, enum HeapId heapID) {
     PokemonPreview *preview = CreatePokemonPreviewTask(bgConfig, bgLayer, x, y, heapID);
 
     sub_0200ED50(preview, heapID);
@@ -752,8 +723,7 @@ u8 *DrawPokemonPreview(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u
     return &preview->state;
 }
 
-u8 *DrawPokemonPreviewFromStruct(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, Pokemon *mon, enum HeapId heapID)
-{
+u8 *DrawPokemonPreviewFromStruct(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, Pokemon *mon, enum HeapId heapID) {
     PokemonPreview *preview = CreatePokemonPreviewTask(bgConfig, bgLayer, x, y, heapID);
 
     sub_0200ED50(preview, heapID);
@@ -766,8 +736,7 @@ u8 *DrawPokemonPreviewFromStruct(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 
     return &preview->state;
 }
 
-static void SysTask_HandlePokemonPreview(SysTask *task, void *data)
-{
+static void SysTask_HandlePokemonPreview(SysTask *task, void *data) {
     PokemonPreview *preview = data;
 
     switch (preview->state) {
@@ -794,8 +763,7 @@ static void SysTask_HandlePokemonPreview(SysTask *task, void *data)
     SpriteList_Update(preview->unk_00.unk_00);
 }
 
-static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u32 heapID)
-{
+static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u32 heapID) {
     PokemonPreview *preview = SysTask_GetParam(SysTask_StartAndAllocateParam(SysTask_HandlePokemonPreview, sizeof(PokemonPreview), 0, heapID));
 
     preview->state = 0;
@@ -807,14 +775,12 @@ static PokemonPreview *CreatePokemonPreviewTask(BgConfig *bgConfig, u8 bgLayer, 
     return preview;
 }
 
-static void sub_0200ED50(PokemonPreview *preview, u32 heapID)
-{
+static void sub_0200ED50(PokemonPreview *preview, u32 heapID) {
     SpriteResourceCapacities v0 = { 1, 1, 1, 1, 0, 0 };
     ov5_021D3190(&preview->unk_00, &v0, 1, heapID);
 }
 
-static void LoadPokemonPreviewResources(PokemonPreview *preview)
-{
+static void LoadPokemonPreviewResources(PokemonPreview *preview) {
     ov5_021D3270(&preview->unk_00,
         NARC_INDEX_GRAPHIC__PL_WINFRAME,
         pokemon_preview_NCLR,
@@ -840,8 +806,7 @@ static void LoadPokemonPreviewResources(PokemonPreview *preview)
         POKEMON_PREVIEW_RESOURCE_ID);
 }
 
-static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y)
-{
+static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y) {
     SpriteTemplate template = sPokemonPreviewSpriteTemplate;
     template.x = (x + 5) * 8;
     template.y = (y + 5) * 8;
@@ -852,8 +817,7 @@ static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender)
-{
+static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender) {
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
     PokemonSpriteTemplate sprite;
@@ -862,8 +826,7 @@ static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 
     PokemonSpriteManager_Free(buf);
 }
 
-static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon)
-{
+static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon) {
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
     PokemonSpriteTemplate sprite;
@@ -878,8 +841,7 @@ static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *pa
 #define POKEMON_SPRITE_FRAME_SIZE_BYTES   (TILE_SIZE_4BPP * POKEMON_SPRITE_FRAME_SIZE_TILES)
 #define POKEMON_SPRITE_WHOLE_SIZE_BYTES   (POKEMON_SPRITE_FRAME_SIZE_BYTES * 2)
 
-static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *spriteTemplate)
-{
+static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *spriteTemplate) {
     u8 *buf;
     u32 offset;
     SpriteResource *charResource, *plttResource;
@@ -916,8 +878,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
     Heap_Free(buf);
 }
 
-static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile)
-{
+static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile) {
     Bg_FillTilemapRect(preview->bgConfig,
         preview->bgLayer,
         tile,
@@ -994,8 +955,7 @@ static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 ti
     Bg_ScheduleTilemapTransfer(preview->bgConfig, preview->bgLayer);
 }
 
-static void ErasePokemonPreviewWindow(PokemonPreview *preview)
-{
+static void ErasePokemonPreviewWindow(PokemonPreview *preview) {
     Bg_FillTilemapRect(preview->bgConfig,
         preview->bgLayer,
         0,

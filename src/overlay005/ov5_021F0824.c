@@ -14,8 +14,7 @@
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
 
-void ov5_021F0824(FieldSystem *fieldSystem)
-{
+void ov5_021F0824(FieldSystem *fieldSystem) {
     int v0;
     int v1;
     UnkStruct_02029894 *v2;

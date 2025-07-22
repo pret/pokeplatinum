@@ -62,30 +62,26 @@ static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int heapID);
 static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID);
 static BOOL sub_0208BE80(int param0);
 
-UnkStruct_0208C06C *sub_0208BA78(ApplicationManager *appMan)
-{
+UnkStruct_0208C06C *sub_0208BA78(ApplicationManager *appMan) {
     UnkStruct_0208C06C *v0;
     UnkStruct_0208BC3C *v1 = ApplicationManager_Args(appMan);
 
     return v1->unk_14;
 }
 
-void sub_0208BA84(UnkStruct_0208BA84 *param0, BOOL param1, int param2)
-{
+void sub_0208BA84(UnkStruct_0208BA84 *param0, BOOL param1, int param2) {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
 }
 
-static void sub_0208BA8C(SaveData *saveData, int param1, u32 param2)
-{
+static void sub_0208BA8C(SaveData *saveData, int param1, u32 param2) {
     JournalEntry *journalEntry = SaveData_GetJournal(saveData);
     void *journalEntryOnlineEvent = JournalEntry_CreateEventMisc(param1, param2);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
 
-static void sub_0208BAAC(ApplicationManager *appMan, int param1)
-{
+static void sub_0208BAAC(ApplicationManager *appMan, int param1) {
     UnkStruct_0208BC3C *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_119, 0x10000);
@@ -129,50 +125,42 @@ static void sub_0208BAAC(ApplicationManager *appMan, int param1)
     sub_0208BA8C(v0->saveData, 119, eventType);
 }
 
-static int sub_0208BB6C(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BB6C(ApplicationManager *appMan, int *param1) {
     sub_0208BAAC(appMan, 0);
     return 1;
 }
 
-static int sub_0208BB78(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BB78(ApplicationManager *appMan, int *param1) {
     sub_0208BAAC(appMan, 1);
     return 1;
 }
 
-static int sub_0208BB84(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BB84(ApplicationManager *appMan, int *param1) {
     sub_0208BAAC(appMan, 2);
     return 1;
 }
 
-static int sub_0208BB90(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BB90(ApplicationManager *appMan, int *param1) {
     sub_0208BAAC(appMan, 3);
     return 1;
 }
 
-static int sub_0208BB9C(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BB9C(ApplicationManager *appMan, int *param1) {
     sub_0208BAAC(appMan, 4);
     return 1;
 }
 
-static int sub_0208BBA8(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BBA8(ApplicationManager *appMan, int *param1) {
     sub_0208BAAC(appMan, 5);
     return 1;
 }
 
-static int sub_0208BBB4(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BBB4(ApplicationManager *appMan, int *param1) {
     sub_0208BAAC(appMan, 6);
     return 1;
 }
 
-static int sub_0208BBC0(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BBC0(ApplicationManager *appMan, int *param1) {
     BOOL v0;
     UnkStruct_0208BC3C *v1 = ApplicationManager_Data(appMan);
 
@@ -202,8 +190,7 @@ static int sub_0208BBC0(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int sub_0208BC08(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BC08(ApplicationManager *appMan, int *param1) {
     UnkStruct_0208BC3C *v0 = ApplicationManager_Data(appMan);
 
     if (sub_0202F250() == 1) {
@@ -218,8 +205,7 @@ static int sub_0208BC08(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int heapID)
-{
+static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int heapID) {
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_14->unk_00 == 0) {
@@ -242,8 +228,7 @@ static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int heapID)
     return 0;
 }
 
-static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
-{
+static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID) {
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_14->unk_00 != 0) {
@@ -398,20 +383,17 @@ static const ApplicationManagerTemplate *Unk_02100CF0[] = {
     &Unk_020F2FDC,
 };
 
-const ApplicationManagerTemplate *sub_0208BE5C(int param0)
-{
+const ApplicationManagerTemplate *sub_0208BE5C(int param0) {
     const ApplicationManagerTemplate *v0 = Unk_02100CF0[param0];
     return v0;
 }
 
-BOOL sub_0208BE68(UnkStruct_0208C06C *param0)
-{
+BOOL sub_0208BE68(UnkStruct_0208C06C *param0) {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->saveData);
     return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
 }
 
-static BOOL sub_0208BE80(int param0)
-{
+static BOOL sub_0208BE80(int param0) {
     int v0;
     const int v1[] = {
         97,

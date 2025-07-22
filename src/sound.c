@@ -37,52 +37,44 @@ static const SNDWaveData *Sound_Impl_GetWaveDataForSpecies(int species);
 static s8 sWaveBuffer[SOUND_WAVE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
 static int sPlaybackMode;
 
-void Sound_SetBGMFixed(u8 fixed)
-{
+void Sound_SetBGMFixed(u8 fixed) {
     u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_BGM_FIXED);
     *param = fixed;
 }
 
-u8 Sound_IsBGMFixed(void)
-{
+u8 Sound_IsBGMFixed(void) {
     u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_BGM_FIXED);
     return *param;
 }
 
-void Sound_SetCurrentBGM(u16 bgmID)
-{
+void Sound_SetCurrentBGM(u16 bgmID) {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BGM);
     *param = bgmID;
 
     Sound_SetNextBGM(SEQ_NONE);
 }
 
-u16 Sound_Impl_GetCurrentBGM(void)
-{
+u16 Sound_Impl_GetCurrentBGM(void) {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BGM);
     return *param;
 }
 
-void Sound_SetNextBGM(u16 bgmID)
-{
+void Sound_SetNextBGM(u16 bgmID) {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_NEXT_BGM);
     *param = bgmID;
 }
 
-u16 Sound_GetNextBGM(void)
-{
+u16 Sound_GetNextBGM(void) {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_NEXT_BGM);
     return *param;
 }
 
-void Sound_SetFieldBGM(u16 bgmID)
-{
+void Sound_SetFieldBGM(u16 bgmID) {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
     *param = bgmID;
 }
 
-void Sound_SetScene(u8 scene)
-{
+void Sound_SetScene(u8 scene) {
     u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE);
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
 
@@ -94,15 +86,13 @@ void Sound_SetScene(u8 scene)
     }
 }
 
-void Sound_SetSubScene(u8 scene)
-{
+void Sound_SetSubScene(u8 scene) {
     u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE); // Required to match
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
     *subScene = scene;
 }
 
-int Sound_LoadSoundEffectsForScene(u8 scene)
-{
+int Sound_LoadSoundEffectsForScene(u8 scene) {
     int result;
 
     switch (scene) {
@@ -244,8 +234,7 @@ int Sound_LoadSoundEffectsForScene(u8 scene)
     return result;
 }
 
-BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
-{
+BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused) {
     u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE);
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
     u16 *fanfareDelay = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
@@ -336,8 +325,7 @@ BOOL Sound_SetSceneAndPlayBGM(u8 scene, u16 bgmID, int unused)
     return TRUE;
 }
 
-static void Sound_LoadSoundEffectsForSceneWithState(u8 scene)
-{
+static void Sound_LoadSoundEffectsForSceneWithState(u8 scene) {
     int *persistentState = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
 
     SoundSystem_LoadHeapState(*persistentState);
@@ -346,8 +334,7 @@ static void Sound_LoadSoundEffectsForSceneWithState(u8 scene)
     SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX));
 }
 
-static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused)
-{
+static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused) {
     u8 *fieldBGMPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED);
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM));
@@ -386,8 +373,7 @@ static void Sound_Impl_PlayFieldBGM(u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 bgmID, u16 unused)
-{
+static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 bgmID, u16 unused) {
     u16 *currentBGM = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
     u16 currentBankID = Sound_GetBankIDFromSequenceID(*currentBGM);
 
@@ -404,8 +390,7 @@ static void Sound_Impl_ResumeAndSwitchFieldBGM(u16 bgmID, u16 unused)
     Sound_SetFieldBGMBankState(FIELD_BGM_BANK_STATE_IDLE);
 }
 
-void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
-{
+void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID) {
     u8 *bankState = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE);
     u16 *newFieldBGM = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
 
@@ -429,8 +414,7 @@ void Sound_LoadSoundDataForFieldBGM(u16 seqID, u16 currentBankID)
     }
 }
 
-static void Sound_Impl_PlayBattleBGM(u16 bgmID, int unused)
-{
+static void Sound_Impl_PlayBattleBGM(u16 bgmID, int unused) {
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_Impl_PauseOrStopFieldBGM();
@@ -441,8 +425,7 @@ static void Sound_Impl_PlayBattleBGM(u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-static void sub_020048AC(u16 param0, int param1)
-{
+static void sub_020048AC(u16 param0, int param1) {
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
@@ -451,8 +434,7 @@ static void sub_020048AC(u16 param0, int param1)
     Sound_PlayBGM(param0);
 }
 
-void Sound_Impl_PlayContestBGM(u16 bgmID, int unused)
-{
+void Sound_Impl_PlayContestBGM(u16 bgmID, int unused) {
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
@@ -461,8 +443,7 @@ void Sound_Impl_PlayContestBGM(u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-void sub_020048F0(u16 bgmID, int unused)
-{
+void sub_020048F0(u16 bgmID, int unused) {
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
@@ -471,15 +452,13 @@ void sub_020048F0(u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-static void Sound_Impl_LoadSubSceneSoundData(u8 scene)
-{
+static void Sound_Impl_LoadSubSceneSoundData(u8 scene) {
     Sound_LoadHeapStateBGM();
     Sound_LoadSoundEffectsForScene(scene);
     SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SUB_SFX));
 }
 
-static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused)
-{
+static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused) {
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT));
 
     Sound_StopWaveOutAndSequences();
@@ -487,8 +466,7 @@ static void Sound_Impl_PlayCutsceneBGM(u8 scene, u16 bgmID, int unused)
     Sound_PlayBGM(bgmID);
 }
 
-void Sound_SwapBGM(u16 bgmID)
-{
+void Sound_SwapBGM(u16 bgmID) {
     BOOL v0;
     SoundSystem *v1 = SoundSystem_Get();
 
@@ -498,13 +476,11 @@ void Sound_SwapBGM(u16 bgmID)
     return;
 }
 
-void Sound_LoadHeapStateBGM(void)
-{
+void Sound_LoadHeapStateBGM(void) {
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM));
 }
 
-int Sound_GetHeapState(enum SoundHeapState state)
-{
+int Sound_GetHeapState(enum SoundHeapState state) {
     int *param;
     SoundSystem *soundSys = SoundSystem_Get();
 
@@ -541,8 +517,7 @@ int Sound_GetHeapState(enum SoundHeapState state)
     return *param;
 }
 
-void Sound_SetBGMPlayerPaused(u8 playerID, BOOL paused)
-{
+void Sound_SetBGMPlayerPaused(u8 playerID, BOOL paused) {
     u8 handleType;
     u8 *playerPaused;
 
@@ -564,8 +539,7 @@ void Sound_SetBGMPlayerPaused(u8 playerID, BOOL paused)
     *playerPaused = paused;
 }
 
-void Sound_ClearBGMPauseFlags(void)
-{
+void Sound_ClearBGMPauseFlags(void) {
     u8 *fieldBGMPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_PAUSED);
     u8 *bgmPaused = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_BGM_PAUSED);
 
@@ -573,13 +547,11 @@ void Sound_ClearBGMPauseFlags(void)
     *bgmPaused = FALSE;
 }
 
-void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume, int frames)
-{
+void Sound_FadeVolumeForHandle(enum SoundHandleType handleType, int targetVolume, int frames) {
     NNS_SndPlayerMoveVolume(SoundSystem_GetSoundHandle(handleType), targetVolume, frames);
 }
 
-void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume)
-{
+void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume) {
     if (volume < SOUND_VOLUME_MIN) {
         volume = SOUND_VOLUME_MIN;
     }
@@ -591,16 +563,14 @@ void Sound_SetInitialVolumeForHandle(enum SoundHandleType handleType, int volume
     NNS_SndPlayerSetInitialVolume(SoundSystem_GetSoundHandle(handleType), volume);
 }
 
-void Sound_AdjustVolumeForVoiceChat(int seqID)
-{
+void Sound_AdjustVolumeForVoiceChat(int seqID) {
     u8 playerID = Sound_GetPlayerForSequence(seqID);
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
     Sound_AdjustVolumeForVoiceChatEx(seqID, handleType);
 }
 
-void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType)
-{
+void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType) {
     u8 volume;
     const NNSSndSeqParam *param = NNS_SndArcGetSeqParam(seqID);
 
@@ -624,21 +594,18 @@ void Sound_AdjustVolumeForVoiceChatEx(int seqID, enum SoundHandleType handleType
     }
 }
 
-void Sound_SetInitialVolumeForSequence(u16 seqID, int volume)
-{
+void Sound_SetInitialVolumeForSequence(u16 seqID, int volume) {
     u8 playerID = Sound_GetPlayerForSequence(seqID);
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
     Sound_SetInitialVolumeForHandle(handleType, volume);
 }
 
-BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType handleType, int playerID, u16 seqID)
-{
+BOOL Sound_PlaySequenceWithPlayer(enum SoundHandleType handleType, int playerID, u16 seqID) {
     return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(handleType), playerID, -1, -1, seqID);
 }
 
-int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID)
-{
+int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID) {
     if (playerID < PLAYER_PV) {
         GF_ASSERT(FALSE);
     }
@@ -646,8 +613,7 @@ int Sound_GetNumberOfPlayingSequencesForPlayer(int playerID)
     return NNS_SndPlayerCountPlayingSeqByPlayerNo(playerID);
 }
 
-u8 Sound_GetPlayerForSequence(u16 seqID)
-{
+u8 Sound_GetPlayerForSequence(u16 seqID) {
     if (seqID == 0) {
         return 0xFF;
     }
@@ -660,18 +626,15 @@ u8 Sound_GetPlayerForSequence(u16 seqID)
     return param->playerNo;
 }
 
-int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *handle)
-{
+int Sound_GetSequenceIDFromSoundHandle(NNSSndHandle *handle) {
     return NNS_SndPlayerGetSeqNo(handle);
 }
 
-const NNSSndArcBankInfo *Sound_GetBankInfoForSequence(int seqID)
-{
+const NNSSndArcBankInfo *Sound_GetBankInfoForSequence(int seqID) {
     return NNS_SndArcGetBankInfo(Sound_GetBankIDFromSequenceID(seqID));
 }
 
-u16 Sound_GetBankIDFromSequenceID(int seqID)
-{
+u16 Sound_GetBankIDFromSequenceID(int seqID) {
     const NNSSndSeqParam *param = NNS_SndArcGetSeqParam(seqID);
     if (param == NULL) {
         return 0;
@@ -680,24 +643,20 @@ u16 Sound_GetBankIDFromSequenceID(int seqID)
     return param->bankNo;
 }
 
-MICResult Sound_StartMicAutoSampling(MICAutoParam *param)
-{
+MICResult Sound_StartMicAutoSampling(MICAutoParam *param) {
     return MIC_StartAutoSampling(param);
 }
 
-MICResult Sound_StopMicAutoSampling(void)
-{
+MICResult Sound_StopMicAutoSampling(void) {
     UNUSED(SoundSystem_Get());
     return MIC_StopAutoSampling();
 }
 
-MICResult Sound_StartMicManualSampling(MICSamplingType type, void *buffer, MICCallback callback, void *param)
-{
+MICResult Sound_StartMicManualSampling(MICSamplingType type, void *buffer, MICCallback callback, void *param) {
     return MIC_DoSamplingAsync(type, buffer, callback, param);
 }
 
-NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel)
-{
+NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel) {
     UNUSED(SoundSystem_Get());
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
@@ -721,8 +680,7 @@ NNSSndWaveOutHandle *Sound_GetWaveOutHandle(enum WaveOutChannel channel)
     }
 }
 
-BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel)
-{
+BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel) {
     NNSSndWaveOutHandle *handle;
 
     UNUSED(SoundSystem_Get());
@@ -764,8 +722,7 @@ BOOL Sound_AllocateWaveOutChannel(enum WaveOutChannel channel)
     return TRUE;
 }
 
-void Sound_FreeWaveOutChannel(enum WaveOutChannel channel)
-{
+void Sound_FreeWaveOutChannel(enum WaveOutChannel channel) {
     UNUSED(SoundSystem_Get());
 
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
@@ -793,8 +750,7 @@ void Sound_FreeWaveOutChannel(enum WaveOutChannel channel)
     }
 }
 
-BOOL Sound_PlayWaveOut(WaveOutParam *param, enum WaveOutChannel channel)
-{
+BOOL Sound_PlayWaveOut(WaveOutParam *param, enum WaveOutChannel channel) {
     BOOL success = NNS_SndWaveOutStart(
         *param->handle,
         param->format,
@@ -814,18 +770,15 @@ BOOL Sound_PlayWaveOut(WaveOutParam *param, enum WaveOutChannel channel)
     return success;
 }
 
-void Sound_StopWaveOut(enum WaveOutChannel channel)
-{
+void Sound_StopWaveOut(enum WaveOutChannel channel) {
     NNS_SndWaveOutStop(*Sound_GetWaveOutHandle(channel));
 }
 
-BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel channel)
-{
+BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel channel) {
     return NNS_SndWaveOutIsPlaying(*Sound_GetWaveOutHandle(channel));
 }
 
-void Sound_SetWaveOutPan(enum WaveOutChannel channel, u8 pan)
-{
+void Sound_SetWaveOutPan(enum WaveOutChannel channel, u8 pan) {
     u8 clampedPan;
     if (pan > 127) {
         clampedPan = 127;
@@ -836,13 +789,11 @@ void Sound_SetWaveOutPan(enum WaveOutChannel channel, u8 pan)
     NNS_SndWaveOutSetPan(*Sound_GetWaveOutHandle(channel), clampedPan);
 }
 
-void Sound_SetWaveOutSpeed(enum WaveOutChannel channel, u32 speed)
-{
+void Sound_SetWaveOutSpeed(enum WaveOutChannel channel, u32 speed) {
     NNS_SndWaveOutSetSpeed(*Sound_GetWaveOutHandle(channel), speed);
 }
 
-void Sound_SetWaveOutVolume(enum WaveOutChannel channel, int volume)
-{
+void Sound_SetWaveOutVolume(enum WaveOutChannel channel, int volume) {
     if (sub_02036314() == 1) {
         NNS_SndWaveOutSetVolume(*Sound_GetWaveOutHandle(channel), volume / 5);
     } else {
@@ -850,8 +801,7 @@ void Sound_SetWaveOutVolume(enum WaveOutChannel channel, int volume)
     }
 }
 
-BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, int heapID)
-{
+BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, int heapID) {
     UNUSED(SoundSystem_Get());
     void **reverseBuffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER);
 
@@ -910,8 +860,7 @@ BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutC
     return result;
 }
 
-static void Sound_Impl_ReverseBuffer(u8 *buffer, u32 size)
-{
+static void Sound_Impl_ReverseBuffer(u8 *buffer, u32 size) {
     for (int i = 0; i < (size / 2); i++) {
         u8 tmp = buffer[i];
         buffer[i] = buffer[size - 1 - i];
@@ -919,8 +868,7 @@ static void Sound_Impl_ReverseBuffer(u8 *buffer, u32 size)
     }
 }
 
-void Sound_StopWaveOutReversed(enum WaveOutChannel channel)
-{
+void Sound_StopWaveOutReversed(enum WaveOutChannel channel) {
     UNUSED(SoundSystem_Get());
     u8 *reversedPlaybackEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK);
     void **reverseBuffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER);
@@ -937,30 +885,25 @@ void Sound_StopWaveOutReversed(enum WaveOutChannel channel)
     }
 }
 
-BOOL Sound_IsCaptureActive(void)
-{
+BOOL Sound_IsCaptureActive(void) {
     return NNS_SndCaptureIsActive();
 }
 
-BOOL Sound_StartReverb(int volume)
-{
+BOOL Sound_StartReverb(int volume) {
     UNUSED(SoundSystem_Get());
     void *buffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CAPTURE_BUFFER);
     return NNS_SndCaptureStartReverb(buffer, 0x1000, (NNS_SND_CAPTURE_FORMAT_PCM16), 16000, volume);
 }
 
-void Sound_StopReverb(int frames)
-{
+void Sound_StopReverb(int frames) {
     NNS_SndCaptureStopReverb(frames);
 }
 
-void Sound_SetReverbVolume(int targetVolume, int frames)
-{
+void Sound_SetReverbVolume(int targetVolume, int frames) {
     NNS_SndCaptureSetReverbVolume(targetVolume, frames);
 }
 
-BOOL Sound_StartFilter(void)
-{
+BOOL Sound_StartFilter(void) {
     UNUSED(SoundSystem_Get());
 
     MI_CpuClear8(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FILTER_CALLBACK_PARAM), sizeof(SoundFilterCallbackParam));
@@ -974,13 +917,11 @@ BOOL Sound_StartFilter(void)
         SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FILTER_CALLBACK_PARAM));
 }
 
-void Sound_StopFilter(void)
-{
+void Sound_StopFilter(void) {
     NNS_SndCaptureStopEffect();
 }
 
-void Sound_SetFilterSize(int size)
-{
+void Sound_SetFilterSize(int size) {
     u8 *filterSize = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FILTER_SIZE);
 
     if (size > SOUND_FILTER_MAX_SIZE) {
@@ -992,49 +933,41 @@ void Sound_SetFilterSize(int size)
     *filterSize = size;
 }
 
-void Sound_SetPitchForHandle(enum SoundHandleType handleType, u16 tracks, int pitch)
-{
+void Sound_SetPitchForHandle(enum SoundHandleType handleType, u16 tracks, int pitch) {
     NNS_SndPlayerSetTrackPitch(SoundSystem_GetSoundHandle(handleType), tracks, pitch);
 }
 
-void Sound_SetPitchForSequence(u16 seqID, u16 tracks, int pitch)
-{
+void Sound_SetPitchForSequence(u16 seqID, u16 tracks, int pitch) {
     u8 playerID = Sound_GetPlayerForSequence(seqID);
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
     Sound_SetPitchForHandle(handleType, tracks, pitch);
 }
 
-void Sound_SetPanForHandle(enum SoundHandleType handleType, u16 tracks, int pan)
-{
+void Sound_SetPanForHandle(enum SoundHandleType handleType, u16 tracks, int pan) {
     NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(handleType), tracks, pan);
 }
 
-void Sound_SetTempoRatioForHandle(enum SoundHandleType handleType, int tempoRatio)
-{
+void Sound_SetTempoRatioForHandle(enum SoundHandleType handleType, int tempoRatio) {
     NNS_SndPlayerSetTempoRatio(SoundSystem_GetSoundHandle(handleType), tempoRatio);
 }
 
-void Sound_SetPlaybackMode(int mode)
-{
+void Sound_SetPlaybackMode(int mode) {
     NNS_SndSetMonoFlag(mode);
     sPlaybackMode = mode;
 }
 
-void Sound_SetFadeCounter(int frames)
-{
+void Sound_SetFadeCounter(int frames) {
     int *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FADE_COUNTER);
     *param = frames;
 }
 
-void Sound_SetFollowUpWaitFrames(int frames)
-{
+void Sound_SetFollowUpWaitFrames(int frames) {
     int *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES);
     *param = frames;
 }
 
-BOOL Sound_UpdateFollowUpWaitFrames()
-{
+BOOL Sound_UpdateFollowUpWaitFrames() {
     u16 *waitFrames = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FOLLOW_UP_WAIT_FRAMES);
     if (*waitFrames <= 0) {
         *waitFrames = 0;
@@ -1045,26 +978,22 @@ BOOL Sound_UpdateFollowUpWaitFrames()
     return *waitFrames;
 }
 
-void Sound_SetMasterVolume(int volume)
-{
+void Sound_SetMasterVolume(int volume) {
     NNS_SndSetMasterVolume(volume);
 }
 
-void *Sound_GetWaveBuffer(void)
-{
+void *Sound_GetWaveBuffer(void) {
     return sWaveBuffer;
 }
 
 // Needs to be set to FIELD_BGM_BANK_STATE_SWITCH before calling
 // Sound_PlayBGM, if the bank needs to be switched
-void Sound_SetFieldBGMBankState(int state)
-{
+void Sound_SetFieldBGMBankState(int state) {
     u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE);
     *param = state;
 }
 
-BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 bankState, void *unused2)
-{
+BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, u8 bankState, void *unused2) {
     u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
 
     Sound_Impl_FadeToBGM(unused1, bgmID, fadeOutFrames, waitFrames, bankState, unused2);
@@ -1074,8 +1003,7 @@ BOOL Sound_FadeOutAndPlayBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitF
     return TRUE;
 }
 
-BOOL Sound_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, int fadeInFrames, u8 bankState, void *unused2)
-{
+BOOL Sound_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, int fadeInFrames, u8 bankState, void *unused2) {
     int *fadeFrames = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FOLLOW_UP_FADE_FRAMES);
 
     Sound_Impl_FadeToBGM(unused1, bgmID, fadeOutFrames, waitFrames, bankState, unused2);
@@ -1085,8 +1013,7 @@ BOOL Sound_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int waitFrames, i
     return TRUE;
 }
 
-static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int fadeInFrames, u8 bankState, void *unused2)
-{
+static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int fadeInFrames, u8 bankState, void *unused2) {
     const NNSSndArcBankInfo **currentBankInfo = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BANK_INFO);
 
     Sound_FadeOutBGM(SOUND_VOLUME_MIN, fadeOutFrames);
@@ -1099,8 +1026,7 @@ static void Sound_Impl_FadeToBGM(u8 unused1, u16 bgmID, int fadeOutFrames, int f
     Sound_SetFieldBGMBankState(bankState);
 }
 
-const u8 *Sound_WaveData_GetSamples(const SNDWaveData *data)
-{
+const u8 *Sound_WaveData_GetSamples(const SNDWaveData *data) {
     if (data == NULL) {
         return NULL;
     }
@@ -1108,8 +1034,7 @@ const u8 *Sound_WaveData_GetSamples(const SNDWaveData *data)
     return &data->samples[0];
 }
 
-const u32 Sound_WaveData_GetLoopLength(const SNDWaveData *data)
-{
+const u32 Sound_WaveData_GetLoopLength(const SNDWaveData *data) {
     if (data == NULL) {
         return 0;
     }
@@ -1117,8 +1042,7 @@ const u32 Sound_WaveData_GetLoopLength(const SNDWaveData *data)
     return data->param.looplen;
 }
 
-const SNDWaveData *Sound_LoadPokedexDataForSpecies(int species)
-{
+const SNDWaveData *Sound_LoadPokedexDataForSpecies(int species) {
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_SUB_SFX));
 
     u16 waveArcID = species;
@@ -1134,8 +1058,7 @@ const SNDWaveData *Sound_LoadPokedexDataForSpecies(int species)
     return Sound_Impl_GetWaveDataForSpecies(waveArcID);
 }
 
-static const SNDWaveData *Sound_Impl_GetWaveDataForSpecies(int species)
-{
+static const SNDWaveData *Sound_Impl_GetWaveDataForSpecies(int species) {
     const SNDWaveData **waveData = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_WAVE_DATA);
 
     u16 waveArcID = species;
@@ -1161,8 +1084,7 @@ static const SNDWaveData *Sound_Impl_GetWaveDataForSpecies(int species)
     return *waveData;
 }
 
-u32 Sound_GetNumberOfPlayedCrySamples(int unused, const SNDWaveData *data, int pitch)
-{
+u32 Sound_GetNumberOfPlayedCrySamples(int unused, const SNDWaveData *data, int pitch) {
     u32 ticks = Sound_GetTicksForHandle(SOUND_HANDLE_TYPE_POKEMON_CRY);
     u32 maxSamples = data->param.looplen;
 
@@ -1186,8 +1108,7 @@ u32 Sound_GetNumberOfPlayedCrySamples(int unused, const SNDWaveData *data, int p
     return samples;
 }
 
-u32 Sound_GetTicksForHandle(enum SoundHandleType handleType)
-{
+u32 Sound_GetTicksForHandle(enum SoundHandleType handleType) {
     return NNS_SndPlayerGetTick(SoundSystem_GetSoundHandle(handleType));
 }
 
@@ -1198,8 +1119,7 @@ static const u8 sCrossingsToAmplitudeMapping[WAVEFORM_MAX_AMPLITUDE] = { 2, 3, 4
 // Stores the most frequent amplitude levels of the given waveform data
 // within the last WAVEFORM_SAMPLE_WINDOW samples in `amplitudes`
 // Used exclusively to generate the bar graphs for pokemon cries in the pokedex
-void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *data, u8 *amplitudes, int numAmplitudes, int pitch)
-{
+void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *data, u8 *amplitudes, int numAmplitudes, int pitch) {
     enum {
         SAMPLE_MIDPOINT = 128,
         ABOVE_MIDPOINT = 1,
@@ -1276,8 +1196,7 @@ void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *data, u8 *amplitudes
     }
 }
 
-static void Sound_Impl_FilterCallback(void *bufferL, void *bufferR, u32 length, NNSSndCaptureFormat format, void *arg)
-{
+static void Sound_Impl_FilterCallback(void *bufferL, void *bufferR, u32 length, NNSSndCaptureFormat format, void *arg) {
     enum Channel {
         L,
         R
@@ -1327,13 +1246,11 @@ static void Sound_Impl_FilterCallback(void *bufferL, void *bufferR, u32 length, 
     DC_FlushRange(bufferR, sampleCount);
 }
 
-static void Sound_SetBGMAllocatableChannels(u16 channels)
-{
+static void Sound_SetBGMAllocatableChannels(u16 channels) {
     NNS_SndPlayerSetAllocatableChannel(PLAYER_BGM, channels);
 }
 
-void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig config)
-{
+void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig config) {
     if (config == SOUND_CHANNEL_CONFIG_DEFAULT) {
         Sound_SetBGMAllocatableChannels(BGM_PLAYER_NORMAL_CHANNELS);
         Sound_StopReverb(0);
@@ -1348,8 +1265,7 @@ void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig config)
     UNUSED(Sound_IsCaptureActive());
 }
 
-static void Sound_Impl_PauseOrStopFieldBGM(void)
-{
+static void Sound_Impl_PauseOrStopFieldBGM(void) {
     if ((Sound_IsFadeActive() == FALSE) && (Sound_GetSequenceIDFromSoundHandle(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FIELD_BGM)) != -1) && (Sound_GetCurrentBGM() != SEQ_POKERADAR)) {
         Sound_StopAll();
         Sound_SetBGMPlayerPaused(PLAYER_FIELD, TRUE);
@@ -1358,19 +1274,16 @@ static void Sound_Impl_PauseOrStopFieldBGM(void)
     }
 }
 
-void Sound_SetPlayerVolume(int playerID, int volume)
-{
+void Sound_SetPlayerVolume(int playerID, int volume) {
     NNS_SndPlayerSetPlayerVolume(playerID, volume);
 }
 
-void Sound_Set2PokemonCriesAllowed(BOOL allowed)
-{
+void Sound_Set2PokemonCriesAllowed(BOOL allowed) {
     u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ALLOW_2_POKEMON_CRIES);
     *param = allowed;
 }
 
-void sub_02005464(BOOL param0)
-{
+void sub_02005464(BOOL param0) {
     u8 *v0 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_54);
 
     *v0 = param0;

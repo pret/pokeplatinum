@@ -225,13 +225,11 @@ void PokemonSprite_DecryptPt(u8 *rawCharData);
 void PokemonSprite_DecryptDP(u8 *rawCharData);
 void PokemonSprite_Decrypt(u8 *rawCharData, enum NarcID narcID);
 
-inline void PokemonSpriteManager_HideShadows(PokemonSpriteManager *monSpriteMan)
-{
+inline void PokemonSpriteManager_HideShadows(PokemonSpriteManager *monSpriteMan) {
     PokemonSpriteManager_SetHideShadows(monSpriteMan, 1);
 }
 
-inline void PokemonSpriteManager_ShowShadows(PokemonSpriteManager *monSpriteMan)
-{
+inline void PokemonSpriteManager_ShowShadows(PokemonSpriteManager *monSpriteMan) {
     PokemonSpriteManager_ClearHideShadows(monSpriteMan, 1);
 }
 

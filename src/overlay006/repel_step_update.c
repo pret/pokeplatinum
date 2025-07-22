@@ -9,8 +9,7 @@
 #include "script_manager.h"
 #include "special_encounter.h"
 
-BOOL Repel_UpdateSteps(SaveData *saveData, FieldSystem *fieldSystem)
-{
+BOOL Repel_UpdateSteps(SaveData *saveData, FieldSystem *fieldSystem) {
     u8 *repelSteps = SpecialEncounter_GetRepelSteps(SaveData_GetSpecialEncounters(saveData));
 
     if (*repelSteps > 0) {

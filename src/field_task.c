@@ -14,8 +14,7 @@ typedef struct FieldTaskEnv {
     void *appArgs;
 } FieldTaskEnv;
 
-static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
-{
+static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv) {
     FieldTask *task = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTask));
     task->prev = NULL;
     task->func = taskFunc;
@@ -29,8 +28,7 @@ static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFun
     return task;
 }
 
-FieldTask *FieldSystem_CreateTask(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
-{
+FieldTask *FieldSystem_CreateTask(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv) {
     GF_ASSERT(fieldSys->task == NULL);
 
     FieldTask *task = CreateTaskManager(fieldSys, taskFunc, taskEnv);
@@ -39,8 +37,7 @@ FieldTask *FieldSystem_CreateTask(FieldSystem *fieldSys, FieldTaskFunc taskFunc,
     return task;
 }
 
-void FieldTask_InitJump(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv)
-{
+void FieldTask_InitJump(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv) {
     task->func = taskFunc;
     task->state = 0;
     task->env = taskEnv;
@@ -52,8 +49,7 @@ void FieldTask_InitJump(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv)
     }
 }
 
-FieldTask *FieldTask_InitCall(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv)
-{
+FieldTask *FieldTask_InitCall(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv) {
     FieldTask *next = CreateTaskManager(task->fieldSys, taskFunc, taskEnv);
     next->prev = task;
     task->fieldSys->task = next;
@@ -61,8 +57,7 @@ FieldTask *FieldTask_InitCall(FieldTask *task, FieldTaskFunc taskFunc, void *tas
     return next;
 }
 
-BOOL FieldTask_Run(FieldSystem *fieldSys)
-{
+BOOL FieldTask_Run(FieldSystem *fieldSys) {
     if (fieldSys->task == NULL) {
         return FALSE;
     }
@@ -87,23 +82,19 @@ BOOL FieldTask_Run(FieldSystem *fieldSys)
     return FALSE;
 }
 
-BOOL FieldSystem_IsRunningTask(FieldSystem *fieldSys)
-{
+BOOL FieldSystem_IsRunningTask(FieldSystem *fieldSys) {
     return fieldSys->task != NULL;
 }
 
-BOOL FieldSystem_IsRunningApplication(FieldSystem *fieldSys)
-{
+BOOL FieldSystem_IsRunningApplication(FieldSystem *fieldSys) {
     return FieldSystem_HasParentProcess(fieldSys) || FieldSystem_HasChildProcess(fieldSys);
 }
 
-void FieldSystem_StartFieldMap(FieldSystem *fieldSys)
-{
+void FieldSystem_StartFieldMap(FieldSystem *fieldSys) {
     FieldSystem_StartFieldMapInner(fieldSys);
 }
 
-BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSys)
-{
+BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSys) {
     // Explicit conditional-branch required to match.
     if (FieldSystem_IsRunningFieldMapInner(fieldSys)) {
         return TRUE;
@@ -112,8 +103,7 @@ BOOL FieldSystem_IsRunningFieldMap(FieldSystem *fieldSys)
     }
 }
 
-static BOOL RunChildApplication(FieldTask *task)
-{
+static BOOL RunChildApplication(FieldTask *task) {
     FieldSystem *fieldSys = FieldTask_GetFieldSystem(task);
     FieldTaskEnv *env = FieldTask_GetEnv(task);
 
@@ -135,8 +125,7 @@ static BOOL RunChildApplication(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *appTemplate, void *appArgs)
-{
+void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *appTemplate, void *appArgs) {
     FieldTaskEnv *env = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTaskEnv));
     env->state = 0;
     env->appTemplate = appTemplate;
@@ -145,22 +134,18 @@ void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate 
     FieldTask_InitCall(task, RunChildApplication, env);
 }
 
-FieldSystem *FieldTask_GetFieldSystem(FieldTask *task)
-{
+FieldSystem *FieldTask_GetFieldSystem(FieldTask *task) {
     return task->fieldSys;
 }
 
-void *FieldTask_GetEnv(FieldTask *task)
-{
+void *FieldTask_GetEnv(FieldTask *task) {
     return task->env;
 }
 
-int *FieldTask_GetState(FieldTask *task)
-{
+int *FieldTask_GetState(FieldTask *task) {
     return &task->state;
 }
 
-u32 FieldTask_GetDummy1CVal(FieldTask *task)
-{
+u32 FieldTask_GetDummy1CVal(FieldTask *task) {
     return *task->dummy1C;
 }

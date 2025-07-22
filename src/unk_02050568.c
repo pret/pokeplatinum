@@ -38,16 +38,14 @@ static BOOL sub_020505A0(FieldTask *taskMan);
 static void sub_0205074C(PlayerAvatar *playerAvatar, BOOL param1);
 static void sub_0205075C(FieldSystem *fieldSystem);
 
-void sub_02050568(FieldSystem *fieldSystem)
-{
+void sub_02050568(FieldSystem *fieldSystem) {
     UnkStruct_02050568 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
     FieldTask_InitCall(fieldSystem->task, sub_020505A0, v0);
 }
 
-static BOOL sub_020505A0(FieldTask *taskMan)
-{
+static BOOL sub_020505A0(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02050568 *v1 = FieldTask_GetEnv(taskMan);
     VarsFlags *v2 = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -129,14 +127,12 @@ static BOOL sub_020505A0(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_0205074C(PlayerAvatar *playerAvatar, BOOL param1)
-{
+static void sub_0205074C(PlayerAvatar *playerAvatar, BOOL param1) {
     MapObject *mapObj = Player_MapObject(playerAvatar);
     MapObject_SetHidden(mapObj, param1);
 }
 
-static void sub_0205075C(FieldSystem *fieldSystem)
-{
+static void sub_0205075C(FieldSystem *fieldSystem) {
     VecFx32 v0;
     CameraAngle v1;
 

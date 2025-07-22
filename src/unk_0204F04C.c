@@ -13,8 +13,7 @@
 
 BOOL ScrCmd_2C5(ScriptContext *param0);
 
-BOOL ScrCmd_2C5(ScriptContext *param0)
-{
+BOOL ScrCmd_2C5(ScriptContext *param0) {
     u32 v0;
     u8 v1[4];
     UnkStruct_020300F4 *v2;

@@ -83,8 +83,7 @@ static void MoveSelectionMenuCursorCallback(ListMenu *moveTutorManager, u32 inde
 static void SysTaskCallback(SysTask *sysTask, void *moveTutorManager);
 static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager);
 
-BOOL ScrCmd_CheckHasSeenSpecies(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckHasSeenSpecies(ScriptContext *ctx) {
     u16 species = FieldSystem_TryGetVar(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
     u16 *seen = FieldSystem_GetVarPointer(ctx->fieldSystem, ScriptContext_ReadHalfWord(ctx));
 
@@ -92,8 +91,7 @@ BOOL ScrCmd_CheckHasSeenSpecies(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckHasLearnableTutorMoves(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckHasLearnableTutorMoves(ScriptContext *ctx) {
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 location = ScriptContext_GetVar(ctx);
     u16 *hasLearnableMoves = ScriptContext_GetVarPointer(ctx);
@@ -104,8 +102,7 @@ BOOL ScrCmd_CheckHasLearnableTutorMoves(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_ResetMoveSlot(ScriptContext *ctx)
-{
+BOOL ScrCmd_ResetMoveSlot(ScriptContext *ctx) {
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 moveID = ScriptContext_GetVar(ctx);
     u16 moveSlot = ScriptContext_GetVar(ctx);
@@ -114,8 +111,7 @@ BOOL ScrCmd_ResetMoveSlot(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckCanAffordMove(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckCanAffordMove(ScriptContext *ctx) {
     int teachableMoveIndex;
     u8 redCost, blueCost, yellowCost, greenCost;
 
@@ -161,8 +157,7 @@ BOOL ScrCmd_CheckCanAffordMove(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_PayShardsCost(ScriptContext *ctx)
-{
+BOOL ScrCmd_PayShardsCost(ScriptContext *ctx) {
     int teachableMovesIndex;
     u8 redCost, blueCost, yellowCost, greenCost;
     u16 toTeach = ScriptContext_GetVar(ctx);
@@ -191,13 +186,11 @@ BOOL ScrCmd_PayShardsCost(ScriptContext *ctx)
     return FALSE;
 }
 
-static u16 GetMoveID(u16 moveIndex)
-{
+static u16 GetMoveID(u16 moveIndex) {
     return sTeachableMoves[moveIndex].moveID;
 }
 
-static u16 GetMoveIndex(u16 moveID)
-{
+static u16 GetMoveIndex(u16 moveID) {
     for (int moveIndex = 0; moveIndex < NELEMS(sTeachableMoves); moveIndex++) {
         if (sTeachableMoves[moveIndex].moveID == moveID) {
             return moveIndex;
@@ -208,8 +201,7 @@ static u16 GetMoveIndex(u16 moveID)
     return 0;
 }
 
-static u8 Pokemon_ReadMovesetMaskByte(Pokemon *pokemon, u8 offset)
-{
+static u8 Pokemon_ReadMovesetMaskByte(Pokemon *pokemon, u8 offset) {
     u32 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     u32 form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
     u16 moveset = species;
@@ -259,8 +251,7 @@ static u8 Pokemon_ReadMovesetMaskByte(Pokemon *pokemon, u8 offset)
     return sSpeciesLearnsetsByTutor[moveset - 1].maskData[offset];
 }
 
-static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation location)
-{
+static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation location) {
     int movesetMaskByteOffset, movesetMaskBitOffset, knownMovesIndex;
     u8 movesetMask, canLearn;
     u32 species;
@@ -295,8 +286,7 @@ static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation loc
     return FALSE;
 }
 
-BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
-{
+BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext) {
     u8 movesetMaskByte, canLearn;
     int i, knownMoveIndex;
     Pokemon *pokemon;
@@ -378,8 +368,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     return TRUE;
 }
 
-static BOOL ScriptContextShouldResume(ScriptContext *ctx)
-{
+static BOOL ScriptContextShouldResume(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *selectedOptionPtr = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
@@ -390,13 +379,11 @@ static BOOL ScriptContextShouldResume(ScriptContext *ctx)
     return TRUE;
 }
 
-static void MoveTutorManager_SetMessageLoader(MoveTutorManager *moveTutorManager, MessageLoader *messageLoader)
-{
+static void MoveTutorManager_SetMessageLoader(MoveTutorManager *moveTutorManager, MessageLoader *messageLoader) {
     moveTutorManager->messageLoader = messageLoader;
 }
 
-static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *moveTutorManager, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader)
-{
+static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *moveTutorManager, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader) {
     int moveIndex;
 
     moveTutorManager->messageLoader = messageLoader;
@@ -426,8 +413,7 @@ static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *mo
     *moveTutorManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
 }
 
-MoveTutorManager *MoveTutorManager_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader)
-{
+MoveTutorManager *MoveTutorManager_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader) {
     MoveTutorManager *moveTutorManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MoveTutorManager));
 
     if (moveTutorManager == NULL) {
@@ -440,13 +426,11 @@ MoveTutorManager *MoveTutorManager_New(FieldSystem *fieldSystem, u8 tilemapLeft,
     return moveTutorManager;
 }
 
-void MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 stringEntryID, u32 param2, u32 index)
-{
+void MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 stringEntryID, u32 param2, u32 index) {
     _MoveTutorManager_AddMenuEntry(moveTutorManager, stringEntryID, param2, index);
 }
 
-static void MoveTutorManager_ShowMoveSelectionMenu(MoveTutorManager *moveTutorManager)
-{
+static void MoveTutorManager_ShowMoveSelectionMenu(MoveTutorManager *moveTutorManager) {
     if (moveTutorManager->menuOptionsCount > 8) {
         Window_Add(moveTutorManager->fieldSystem->bgConfig, &moveTutorManager->moveSelectWindow, 3, moveTutorManager->tilemapLeft, moveTutorManager->tilemapTop, 11, 8 * 2, 13, 1);
     } else {
@@ -461,8 +445,7 @@ static void MoveTutorManager_ShowMoveSelectionMenu(MoveTutorManager *moveTutorMa
     moveTutorManager->sysTask = SysTask_Start(SysTaskCallback, moveTutorManager, 0);
 }
 
-static void _MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 stringEntryID, u32 param2, u32 index)
-{
+static void _MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 stringEntryID, u32 param2, u32 index) {
     {
         Strbuf *strbuf = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
 
@@ -482,8 +465,7 @@ static void _MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u
     moveTutorManager->menuOptionsCount++;
 }
 
-static void MoveTutorManager_InitMenuTemplate(MoveTutorManager *moveTutorManager)
-{
+static void MoveTutorManager_InitMenuTemplate(MoveTutorManager *moveTutorManager) {
     moveTutorManager->menuTemplate.choices = moveTutorManager->movesChoices;
     moveTutorManager->menuTemplate.cursorCallback = MoveSelectionMenuCursorCallback;
     moveTutorManager->menuTemplate.printCallback = NULL;
@@ -505,13 +487,11 @@ static void MoveTutorManager_InitMenuTemplate(MoveTutorManager *moveTutorManager
     moveTutorManager->menuTemplate.parent = (void *)moveTutorManager;
 }
 
-static void MoveSelectionMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
-{
+static void MoveSelectionMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit) {
     MoveTutorManager *moveTutorManager = (MoveTutorManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 }
 
-static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
-{
+static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager) {
     MoveTutorManager *moveTutorManager = (MoveTutorManager *)_moveTutorManager;
 
     if (moveTutorManager->sysTaskDelay != 0) {
@@ -551,8 +531,7 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
     }
 }
 
-static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager)
-{
+static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager) {
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     ListMenu_Free(moveTutorManager->moveSelectionMenu, NULL, NULL);
     Window_EraseStandardFrame(moveTutorManager->menuTemplate.window, FALSE);
@@ -570,8 +549,7 @@ static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager)
     Heap_Free(moveTutorManager);
 }
 
-BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
-{
+BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
@@ -586,8 +564,7 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CloseShardCostWindow(ScriptContext *param0)
-{
+BOOL ScrCmd_CloseShardCostWindow(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 

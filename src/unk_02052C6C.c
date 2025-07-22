@@ -61,8 +61,7 @@ static void sub_0205300C(UnkStruct_0205300C *param0);
 static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1);
 static BOOL sub_02052FFC(UnkStruct_0205300C *param0);
 
-static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
-{
+static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1) {
     HallOfFame *v0;
     Party *v1;
     RTCDate v2;
@@ -82,8 +81,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     Heap_Free(v0);
 }
 
-static BOOL sub_02052CBC(FieldTask *param0)
-{
+static BOOL sub_02052CBC(FieldTask *param0) {
     Location *v0;
     VarsFlags *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -168,8 +166,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     return 0;
 }
 
-void sub_02052E58(FieldTask *param0)
-{
+void sub_02052E58(FieldTask *param0) {
     FieldSystem *fieldSystem;
     Location *v1, *v2;
     VarsFlags *v3;
@@ -212,8 +209,7 @@ void sub_02052E58(FieldTask *param0)
     FieldTask_InitCall(param0, sub_02052CBC, v5);
 }
 
-static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
-{
+static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1) {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -263,8 +259,7 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
     Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
 }
 
-static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
-{
+static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1) {
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
@@ -276,20 +271,17 @@ static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
     param1->unk_30 = Window_AddWaitDial(&param1->unk_1C, 1024 - (18 + 12));
 }
 
-static BOOL sub_02052FFC(UnkStruct_0205300C *param0)
-{
+static BOOL sub_02052FFC(UnkStruct_0205300C *param0) {
     return FieldMessage_FinishedPrinting(param0->unk_34);
 }
 
-static void sub_0205300C(UnkStruct_0205300C *param0)
-{
+static void sub_0205300C(UnkStruct_0205300C *param0) {
     Strbuf_Free(param0->unk_2C);
     DestroyWaitDial(param0->unk_30);
     FieldMessage_ClearWindow(&param0->unk_1C);
 }
 
-static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2)
-{
+static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2) {
     MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
 
     if (param2 == 2) {
@@ -307,8 +299,7 @@ static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, i
     param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, SaveData_GetOptions(fieldSystem->saveData), 1);
 }
 
-static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
-{
+static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1) {
     if (param1->unk_2C) {
         Strbuf_Free(param1->unk_2C);
     }

@@ -2,15 +2,13 @@
 
 #include <nitro.h>
 
-void PlayTime_Init(PlayTime *playTime)
-{
+void PlayTime_Init(PlayTime *playTime) {
     playTime->hours = 0;
     playTime->minutes = 0;
     playTime->seconds = 0;
 }
 
-void PlayTime_Increment(PlayTime *playTime, u32 seconds)
-{
+void PlayTime_Increment(PlayTime *playTime, u32 seconds) {
     if (playTime->hours == PLAYTIME_MAX_HOURS
         && playTime->minutes == PLAYTIME_MAX_MINUTES
         && playTime->seconds == PLAYTIME_MAX_SECONDS) {
@@ -42,17 +40,14 @@ void PlayTime_Increment(PlayTime *playTime, u32 seconds)
     playTime->seconds = newSeconds;
 }
 
-u16 PlayTime_GetHours(const PlayTime *playTime)
-{
+u16 PlayTime_GetHours(const PlayTime *playTime) {
     return playTime->hours;
 }
 
-u8 PlayTime_GetMinutes(const PlayTime *playTime)
-{
+u8 PlayTime_GetMinutes(const PlayTime *playTime) {
     return playTime->minutes;
 }
 
-u8 PlayTime_GetSeconds(const PlayTime *playTime)
-{
+u8 PlayTime_GetSeconds(const PlayTime *playTime) {
     return playTime->seconds;
 }

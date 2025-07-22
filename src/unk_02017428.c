@@ -12,13 +12,11 @@ static u64 Unk_021BF660 = 0;
 static u64 Unk_021BF670 = 0;
 static PlayTime *sPlayTime = NULL;
 
-void PlayTime_FlagNotStarted()
-{
+void PlayTime_FlagNotStarted() {
     sStarted = FALSE;
 }
 
-void PlayTime_Start(PlayTime *playTime)
-{
+void PlayTime_Start(PlayTime *playTime) {
     sStarted = TRUE;
     Unk_021BF668 = 0;
     Unk_021BF660 = 0;
@@ -26,8 +24,7 @@ void PlayTime_Start(PlayTime *playTime)
     Unk_021BF670 = sub_0202293C();
 }
 
-void sub_02017458(void)
-{
+void sub_02017458(void) {
     if (sStarted) {
         u64 v0 = sub_0202295C(sub_0202293C() - Unk_021BF670);
 

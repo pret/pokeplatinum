@@ -70,20 +70,17 @@ static const struct {
     { 0xF3, 0xAC, 0x180, 0x1 }
 };
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-G3DPipelineBuffers *ov17_0223F140(int heapID)
-{
+G3DPipelineBuffers *ov17_0223F140(int heapID) {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov17_0223F15C);
 }
 
-static void ov17_0223F15C(void)
-{
+static void ov17_0223F15C(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
@@ -97,13 +94,11 @@ static void ov17_0223F15C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void ov17_0223F1E0(G3DPipelineBuffers *param0)
-{
+void ov17_0223F1E0(G3DPipelineBuffers *param0) {
     G3DPipelineBuffers_Free(param0);
 }
 
-void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
-{
+void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14) {
     UnkStruct_020127E8 v0;
     Window v1;
     CharTransferAllocation v2;
@@ -163,14 +158,12 @@ void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruc
     param4->unk_10 = v5;
 }
 
-void ov17_0223F2E4(UnkStruct_ov17_0223F2E4 *param0)
-{
+void ov17_0223F2E4(UnkStruct_ov17_0223F2E4 *param0) {
     sub_02012870(param0->unk_00);
     CharTransfer_ClearRange(&param0->unk_04);
 }
 
-void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int param3)
-{
+void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int param3) {
     if (param3 == 1) {
         param1 -= param0->unk_10 / 2;
     }
@@ -179,8 +172,7 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
     sub_020128C4(param0->unk_00, param1, param2);
 }
 
-Strbuf *ov17_0223F310(u32 param0, u32 heapID)
-{
+Strbuf *ov17_0223F310(u32 param0, u32 heapID) {
     MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
     Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
@@ -188,8 +180,7 @@ Strbuf *ov17_0223F310(u32 param0, u32 heapID)
     return v1;
 }
 
-void ov17_0223F334(UnkStruct_02095C48 *param0, int param1)
-{
+void ov17_0223F334(UnkStruct_02095C48 *param0, int param1) {
     u8 *v0;
     int v1;
 
@@ -202,8 +193,7 @@ void ov17_0223F334(UnkStruct_02095C48 *param0, int param1)
     Heap_Free(v0);
 }
 
-void ov17_0223F374(UnkStruct_02095C48 *param0)
-{
+void ov17_0223F374(UnkStruct_02095C48 *param0) {
     int v0, v1, v2, v3, v4;
     u32 v5;
     s32 v6, v7;
@@ -302,8 +292,7 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
     }
 }
 
-void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
-{
+void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6) {
     if (param3 != -1) {
         SpriteSystem_LoadCharResObj(param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 73, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
     }
@@ -321,8 +310,7 @@ void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *par
     }
 }
 
-void ov17_0223F5E8(SpriteManager *param0, int param1, int param2, int param3, int param4)
-{
+void ov17_0223F5E8(SpriteManager *param0, int param1, int param2, int param3, int param4) {
     if (param1 != -1) {
         SpriteManager_UnloadCharObjById(param0, param1);
     }
@@ -340,8 +328,7 @@ void ov17_0223F5E8(SpriteManager *param0, int param1, int param2, int param3, in
     }
 }
 
-void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
-{
+void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10) {
     int v0;
     SpriteTemplate v1;
 
@@ -369,8 +356,7 @@ void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, Sprite
     param0->unk_18 = SysTask_Start(ov17_0223F6E8, param0, param10);
 }
 
-void ov17_0223F6C4(UnkStruct_ov17_0223F6E8 *param0)
-{
+void ov17_0223F6C4(UnkStruct_ov17_0223F6E8 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -381,8 +367,7 @@ void ov17_0223F6C4(UnkStruct_ov17_0223F6E8 *param0)
     param0->unk_18 = NULL;
 }
 
-static void ov17_0223F6E8(SysTask *param0, void *param1)
-{
+static void ov17_0223F6E8(SysTask *param0, void *param1) {
     UnkStruct_ov17_0223F6E8 *v0 = param1;
     int v1;
 
@@ -391,8 +376,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
     }
 }
 
-UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
-{
+UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5) {
     UnkStruct_ov17_0223F744 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));
 
@@ -405,16 +389,14 @@ UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u1
     return v0;
 }
 
-void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
-{
+void ov17_0223F744(UnkStruct_ov17_0223F744 *param0) {
     GF_ASSERT(param0->unk_00 != NULL);
 
     SysTask_Done(param0->unk_00);
     Heap_Free(param0);
 }
 
-BOOL ov17_0223F760(void)
-{
+BOOL ov17_0223F760(void) {
     if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
         return 1;
     }
@@ -422,8 +404,7 @@ BOOL ov17_0223F760(void)
     return 0;
 }
 
-static void ov17_0223F774(SysTask *param0, void *param1)
-{
+static void ov17_0223F774(SysTask *param0, void *param1) {
     UnkStruct_ov17_0223F744 *v0 = param1;
 
     if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {

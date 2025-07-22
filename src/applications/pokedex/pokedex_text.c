@@ -32,18 +32,15 @@ static inline BOOL ValidLanguage(int species, int languageIndex);
 static Strbuf *LoadMessage(int bankID, int entryID, enum HeapId heapID);
 static void GetLanguageIndex(int species, int language, int *dexNum, int *languageIndexUnguarded, int *languageIndex);
 
-void PokedexText_Free(Strbuf *strbuf)
-{
+void PokedexText_Free(Strbuf *strbuf) {
     Strbuf_Free(strbuf);
 }
 
-int PokedexText_ForeignLanguage(int languageIndex)
-{
+int PokedexText_ForeignLanguage(int languageIndex) {
     return PokedexLanguage_IndexToLanguage(messageBankLanguageOrder[languageIndex + 1]);
 }
 
-Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID)
-{
+Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID) {
     int dexNum;
     int languageIndex_unguarded;
     int index;
@@ -69,8 +66,7 @@ Strbuf *PokedexText_NameNumber(int species, int language, enum HeapId heapID)
     return LoadMessage(bankID, index, heapID);
 }
 
-Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID)
-{
+Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID) {
     int dexNum;
     int languageIndex_unguarded;
     int index;
@@ -97,8 +93,7 @@ Strbuf *PokedexText_Category(int species, int language, enum HeapId heapID)
     return LoadMessage(bankID, index, heapID);
 }
 
-Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapId heapID)
-{
+Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapId heapID) {
     int dexNum;
     int languageIndex_unguarded;
     int index;
@@ -127,8 +122,7 @@ Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum He
     return LoadMessage(bankID, index, heapID);
 }
 
-static inline BOOL ValidLanguage(int species, int languageIndex)
-{
+static inline BOOL ValidLanguage(int species, int languageIndex) {
     if ((species > NATIONAL_DEX_COUNT) && (languageIndex != NUM_LANGUAGES)) {
         return FALSE;
     }
@@ -136,8 +130,7 @@ static inline BOOL ValidLanguage(int species, int languageIndex)
     return TRUE;
 }
 
-static Strbuf *LoadMessage(int bankID, int entryID, enum HeapId heapID)
-{
+static Strbuf *LoadMessage(int bankID, int entryID, enum HeapId heapID) {
     MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 
     if (messageLoader) {
@@ -154,8 +147,7 @@ static Strbuf *LoadMessage(int bankID, int entryID, enum HeapId heapID)
     return NULL;
 }
 
-static void GetLanguageIndex(int species, int language, int *dexNum, int *languageIndexUnguarded, int *languageIndex)
-{
+static void GetLanguageIndex(int species, int language, int *dexNum, int *languageIndexUnguarded, int *languageIndex) {
     *languageIndexUnguarded = PokedexLanguage_LanguageToIndex(language);
 
     GF_ASSERT(*languageIndexUnguarded < NUM_LANGUAGES);
@@ -166,8 +158,7 @@ static void GetLanguageIndex(int species, int language, int *dexNum, int *langua
     GF_ASSERT(ValidLanguage(*dexNum, *languageIndex));
 }
 
-static inline int LanguageIndex_Guarded(int languageIndex)
-{
+static inline int LanguageIndex_Guarded(int languageIndex) {
     GF_ASSERT(languageIndex < NUM_LANGUAGES);
     return (languageIndex == LI_ENGLISH) ? NUM_LANGUAGES : languageIndex;
 }

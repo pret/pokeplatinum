@@ -30,8 +30,7 @@
 
 static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1);
 
-BOOL ScrCmd_1DB(ScriptContext *param0)
-{
+BOOL ScrCmd_1DB(ScriptContext *param0) {
     u16 v0 = ScriptContext_ReadHalfWord(param0);
     u16 v1 = ScriptContext_ReadHalfWord(param0);
 
@@ -39,14 +38,12 @@ BOOL ScrCmd_1DB(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1DA(ScriptContext *param0)
-{
+BOOL ScrCmd_1DA(ScriptContext *param0) {
     sub_0204A110(&(param0->fieldSystem->unk_AC));
     return 0;
 }
 
-BOOL ScrCmd_1DC(ScriptContext *param0)
-{
+BOOL ScrCmd_1DC(ScriptContext *param0) {
     UnkStruct_0204AFC4 *v0;
 
     sub_0204A32C(param0->fieldSystem->unk_AC);
@@ -55,8 +52,7 @@ BOOL ScrCmd_1DC(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1DD(ScriptContext *param0)
-{
+BOOL ScrCmd_1DD(ScriptContext *param0) {
     u16 v0, v1, v2;
     u16 *v3, *v4;
     void **v5;
@@ -199,8 +195,7 @@ BOOL ScrCmd_1DD(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1DE(ScriptContext *param0)
-{
+BOOL ScrCmd_1DE(ScriptContext *param0) {
     u16 v0, v1;
     u16 *v2, *v3;
     UnkStruct_0204AFC4 *v4 = param0->fieldSystem->unk_AC;
@@ -216,8 +211,7 @@ BOOL ScrCmd_1DE(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1DF(ScriptContext *param0)
-{
+BOOL ScrCmd_1DF(ScriptContext *param0) {
     u16 v0, v1, v2;
     u16 *v3;
 
@@ -228,8 +222,7 @@ BOOL ScrCmd_1DF(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1E0(ScriptContext *param0)
-{
+BOOL ScrCmd_1E0(ScriptContext *param0) {
     u16 v0, v1, v2;
     u16 *v3;
 
@@ -240,8 +233,7 @@ BOOL ScrCmd_1E0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1E1(ScriptContext *param0)
-{
+BOOL ScrCmd_1E1(ScriptContext *param0) {
     int v0, v1;
     const TrainerInfo *v2;
     u16 v3 = ScriptContext_GetVar(param0);
@@ -287,8 +279,7 @@ BOOL ScrCmd_1E1(ScriptContext *param0)
 
 static BOOL sub_02049A20(ScriptContext *param0);
 
-BOOL ScrCmd_1E2(ScriptContext *param0)
-{
+BOOL ScrCmd_1E2(ScriptContext *param0) {
     u16 v0;
     u16 v1;
     UnkStruct_0204AFC4 *v2 = param0->fieldSystem->unk_AC;
@@ -308,8 +299,7 @@ BOOL ScrCmd_1E2(ScriptContext *param0)
     return 1;
 }
 
-static BOOL sub_02049A20(ScriptContext *param0)
-{
+static BOOL sub_02049A20(ScriptContext *param0) {
     u8 v0;
     UnkStruct_0204AFC4 *v1 = param0->fieldSystem->unk_AC;
     u16 *v2 = FieldSystem_GetVarPointer(param0->fieldSystem, v1->unk_8DA);
@@ -330,8 +320,7 @@ static BOOL sub_02049A20(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1E3(ScriptContext *param0)
-{
+BOOL ScrCmd_1E3(ScriptContext *param0) {
     UnkStruct_02049A68 v0;
     u16 *v1 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
     u16 *v2 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
@@ -344,16 +333,14 @@ BOOL ScrCmd_1E3(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1E4(ScriptContext *param0)
-{
+BOOL ScrCmd_1E4(ScriptContext *param0) {
     u16 *v0 = FieldSystem_GetVarPointer(param0->fieldSystem, ScriptContext_ReadHalfWord(param0));
 
     *v0 = sub_0202D5F0(sub_0202D764(param0->fieldSystem->saveData));
     return 0;
 }
 
-static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1)
-{
+static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1) {
     static const u16 v0[] = {
         0x8d,
         0x91,
@@ -385,8 +372,7 @@ static u16 sub_02049AE0(UnkStruct_0204AFC4 *param0, u8 param1)
     }
 }
 
-BOOL ScrCmd_ShowBattlePoints(ScriptContext *param0)
-{
+BOOL ScrCmd_ShowBattlePoints(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u8 tilemapLeft = ScriptContext_ReadByte(param0);
     u8 tilemapTop = ScriptContext_ReadByte(param0);
@@ -396,8 +382,7 @@ BOOL ScrCmd_ShowBattlePoints(ScriptContext *param0)
     return FALSE;
 }
 
-BOOL ScrCmd_HideBattlePoints(ScriptContext *param0)
-{
+BOOL ScrCmd_HideBattlePoints(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
@@ -405,8 +390,7 @@ BOOL ScrCmd_HideBattlePoints(ScriptContext *param0)
     return FALSE;
 }
 
-BOOL ScrCmd_UpdateBPDisplay(ScriptContext *param0)
-{
+BOOL ScrCmd_UpdateBPDisplay(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     Window **bpWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
@@ -414,8 +398,7 @@ BOOL ScrCmd_UpdateBPDisplay(ScriptContext *param0)
     return FALSE;
 }
 
-BOOL ScrCmd_297(ScriptContext *param0)
-{
+BOOL ScrCmd_297(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
@@ -424,8 +407,7 @@ BOOL ScrCmd_297(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_298(ScriptContext *param0)
-{
+BOOL ScrCmd_298(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
@@ -436,8 +418,7 @@ BOOL ScrCmd_298(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_299(ScriptContext *param0)
-{
+BOOL ScrCmd_299(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(param0);
@@ -448,8 +429,7 @@ BOOL ScrCmd_299(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_29A(ScriptContext *param0)
-{
+BOOL ScrCmd_29A(ScriptContext *param0) {
     u16 v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
@@ -468,8 +448,7 @@ BOOL ScrCmd_29A(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_29B(ScriptContext *param0)
-{
+BOOL ScrCmd_29B(ScriptContext *param0) {
     u8 v0 = 0;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);

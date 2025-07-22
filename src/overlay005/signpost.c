@@ -16,16 +16,14 @@ static void Signpost_Remove(FieldSystem *fieldSystem);
 static BOOL Signpost_ScrollIn(FieldSystem *fieldSystem);
 static BOOL Signpost_ScrollOut(FieldSystem *fieldSystem);
 
-void *Signpost_Init(u32 heapID)
-{
+void *Signpost_Init(u32 heapID) {
     void *signpost = Heap_AllocFromHeap(heapID, sizeof(Signpost));
 
     memset(signpost, 0, sizeof(Signpost));
     return signpost;
 }
 
-void Signpost_Free(Signpost *signpost)
-{
+void Signpost_Free(Signpost *signpost) {
     if (signpost->active != FALSE) {
         Window_Remove(&signpost->window);
     }
@@ -33,29 +31,24 @@ void Signpost_Free(Signpost *signpost)
     Heap_Free(signpost);
 }
 
-void Signpost_SetTypeAndNARCMemberIdx(Signpost *signpost, u16 type, u16 NARCMemberIdx)
-{
+void Signpost_SetTypeAndNARCMemberIdx(Signpost *signpost, u16 type, u16 NARCMemberIdx) {
     signpost->type = type;
     signpost->NARCMemberIdx = NARCMemberIdx;
 }
 
-void Signpost_SetCommand(Signpost *signpost, u8 command)
-{
+void Signpost_SetCommand(Signpost *signpost, u8 command) {
     signpost->command = command;
 }
 
-Window *Signpost_GetWindow(Signpost *signpost)
-{
+Window *Signpost_GetWindow(Signpost *signpost) {
     return &signpost->window;
 }
 
-u8 Signpost_GetType(Signpost *signpost)
-{
+u8 Signpost_GetType(Signpost *signpost) {
     return signpost->type;
 }
 
-BOOL Signpost_IsDone(Signpost *signpost)
-{
+BOOL Signpost_IsDone(Signpost *signpost) {
     if (signpost->command == SIGNPOST_CMD_DO_NOTHING) {
         return TRUE;
     }
@@ -63,8 +56,7 @@ BOOL Signpost_IsDone(Signpost *signpost)
     return FALSE;
 }
 
-void Signpost_DoCurrentCommand(FieldSystem *fieldSystem)
-{
+void Signpost_DoCurrentCommand(FieldSystem *fieldSystem) {
     Signpost *signpost = fieldSystem->signpost;
 
     switch (signpost->command) {
@@ -91,14 +83,12 @@ void Signpost_DoCurrentCommand(FieldSystem *fieldSystem)
     }
 }
 
-void Signpost_DoCommand(FieldSystem *fieldSystem, u8 command)
-{
+void Signpost_DoCommand(FieldSystem *fieldSystem, u8 command) {
     Signpost_SetCommand(fieldSystem->signpost, command);
     Signpost_DoCurrentCommand(fieldSystem);
 }
 
-static void Signpost_Draw(FieldSystem *fieldSystem)
-{
+static void Signpost_Draw(FieldSystem *fieldSystem) {
     Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, -48);
 
     if (fieldSystem->signpost->active == FALSE) {
@@ -109,8 +99,7 @@ static void Signpost_Draw(FieldSystem *fieldSystem)
     FieldMessage_LoadAndDrawSignpost(&fieldSystem->signpost->window, fieldSystem->signpost->type, fieldSystem->signpost->NARCMemberIdx);
 }
 
-static void Signpost_Remove(FieldSystem *fieldSystem)
-{
+static void Signpost_Remove(FieldSystem *fieldSystem) {
     if (fieldSystem->signpost->active == FALSE) {
         return;
     }
@@ -123,8 +112,7 @@ static void Signpost_Remove(FieldSystem *fieldSystem)
     fieldSystem->signpost->active = FALSE;
 }
 
-static BOOL Signpost_ScrollIn(FieldSystem *fieldSystem)
-{
+static BOOL Signpost_ScrollIn(FieldSystem *fieldSystem) {
     int offset = Bg_GetYOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 
     if (offset == 0) {
@@ -140,8 +128,7 @@ static BOOL Signpost_ScrollIn(FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static BOOL Signpost_ScrollOut(FieldSystem *fieldSystem)
-{
+static BOOL Signpost_ScrollOut(FieldSystem *fieldSystem) {
     int offset = Bg_GetYOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 
     if (offset == -48) {

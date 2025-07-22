@@ -42,8 +42,7 @@ const ApplicationManagerTemplate Unk_020F2DBC = {
     0xffffffff,
 };
 
-static int sub_020890F4(ApplicationManager *appMan, int *param1)
-{
+static int sub_020890F4(ApplicationManager *appMan, int *param1) {
     UnkStruct_02089688 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_101, 0x40000);
@@ -92,8 +91,7 @@ static int sub_020890F4(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int sub_0208924C(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208924C(ApplicationManager *appMan, int *param1) {
     BOOL v0;
     UnkStruct_02089688 *v1 = ApplicationManager_Data(appMan);
     v0 = sub_02089BEC(v1);
@@ -105,8 +103,7 @@ static int sub_0208924C(ApplicationManager *appMan, int *param1)
     return v0 ? 1 : 0;
 }
 
-static int sub_0208927C(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208927C(ApplicationManager *appMan, int *param1) {
     UnkStruct_02089688 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_3B8.unk_30 != 0) {
@@ -151,8 +148,7 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
-{
+static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5) {
     int i;
     UnkStruct_02089438 *v1 = NULL;
 
@@ -173,8 +169,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     return v1;
 }
 
-UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
-{
+UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5) {
     UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
     v0->unk_24 = 0;
@@ -182,8 +177,7 @@ UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *
     return v0;
 }
 
-UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7)
-{
+UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7) {
     UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
     v0->unk_24 = param6;
@@ -191,8 +185,7 @@ UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *
     return v0;
 }
 
-void sub_02089438(UnkStruct_02089438 *param0)
-{
+void sub_02089438(UnkStruct_02089438 *param0) {
     GF_ASSERT(param0->unk_1C != NULL);
     GF_ASSERT(param0 != NULL);
 
@@ -200,8 +193,7 @@ void sub_02089438(UnkStruct_02089438 *param0)
     Heap_Free(param0);
 }
 
-static void sub_0208945C(BgConfig *param0)
-{
+static void sub_0208945C(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
 
     {
@@ -339,8 +331,7 @@ static void sub_0208945C(BgConfig *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_020895CC(void *param0)
-{
+static void sub_020895CC(void *param0) {
     UnkStruct_02089688 *v0 = param0;
 
     VramTransfer_Process();

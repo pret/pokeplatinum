@@ -79,8 +79,7 @@ static void ov104_0223EB44(Window *param0, s32 param1, s32 param2, s32 param3, s
 static SysTask *ov104_0223F05C(UnkStruct_ov104_0223F094 *param0);
 static void ov104_0223F070(SysTask *param0, void *param1);
 
-void ov104_0223E894(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4)
-{
+void ov104_0223E894(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4) {
     SysTask *v0;
     UnkStruct_ov104_0223E894 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223E894));
     memset(v1, 0, sizeof(UnkStruct_ov104_0223E894));
@@ -99,8 +98,7 @@ void ov104_0223E894(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4
     v1->unk_04 = param4;
 }
 
-static void ov104_0223E8D8(SysTask *param0, void *param1)
-{
+static void ov104_0223E8D8(SysTask *param0, void *param1) {
     UnkStruct_ov104_0223E894 *v0 = param1;
 
     switch (v0->unk_00) {
@@ -156,8 +154,7 @@ static void ov104_0223E8D8(SysTask *param0, void *param1)
     ov104_0223E9F8(&v0->unk_30);
 }
 
-void ov104_0223E9CC(int param0, int param1)
-{
+void ov104_0223E9CC(int param0, int param1) {
     if (param0 == 1) {
         GX_SetMasterBrightness(param1);
     } else {
@@ -165,30 +162,26 @@ void ov104_0223E9CC(int param0, int param1)
     }
 }
 
-void ov104_0223E9EC(UnkStruct_ov104_0223E9EC *param0, int param1, int param2, int param3, int param4)
-{
+void ov104_0223E9EC(UnkStruct_ov104_0223E9EC *param0, int param1, int param2, int param3, int param4) {
     param0->unk_14 = param3;
     ov104_0223EA28(&param0->unk_00, param1, param2, param4);
 }
 
-BOOL ov104_0223E9F8(UnkStruct_ov104_0223E9EC *param0)
-{
+BOOL ov104_0223E9F8(UnkStruct_ov104_0223E9EC *param0) {
     BOOL v0 = ov104_0223EA38(&param0->unk_00);
     SysTask_ExecuteAfterVBlank(ov104_0223EA14, param0, 10);
 
     return v0;
 }
 
-static void ov104_0223EA14(SysTask *param0, void *param1)
-{
+static void ov104_0223EA14(SysTask *param0, void *param1) {
     UnkStruct_ov104_0223E9EC *v0 = param1;
 
     ov104_0223E9CC(v0->unk_14, v0->unk_00.unk_00);
     SysTask_Done(param0);
 }
 
-void ov104_0223EA28(UnkStruct_ov104_0223EA38 *param0, int param1, int param2, int param3)
-{
+void ov104_0223EA28(UnkStruct_ov104_0223EA38 *param0, int param1, int param2, int param3) {
     param0->unk_00 = param1;
     param0->unk_04 = param1;
     param0->unk_08 = param2 - param1;
@@ -196,8 +189,7 @@ void ov104_0223EA28(UnkStruct_ov104_0223EA38 *param0, int param1, int param2, in
     param0->unk_0C = 0;
 }
 
-BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 *param0)
-{
+BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 *param0) {
     int v0 = param0->unk_08 * param0->unk_0C;
     v0 = v0 / param0->unk_10;
 
@@ -212,21 +204,18 @@ BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 *param0)
     return 1;
 }
 
-UnkStruct_ov104_0223EA84 *ov104_0223EA64(u32 heapID)
-{
+UnkStruct_ov104_0223EA84 *ov104_0223EA64(u32 heapID) {
     UnkStruct_ov104_0223EA84 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223EA84));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223EA84));
 
     return v0;
 }
 
-void ov104_0223EA7C(UnkStruct_ov104_0223EA84 *param0)
-{
+void ov104_0223EA7C(UnkStruct_ov104_0223EA84 *param0) {
     Heap_Free(param0);
 }
 
-void ov104_0223EA84(UnkStruct_ov104_0223EA84 *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9)
-{
+void ov104_0223EA84(UnkStruct_ov104_0223EA84 *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9) {
     GF_ASSERT(param0->unk_2E == 0);
 
     ov104_0223EA28(&param0->unk_00, param1, param2, param5);
@@ -239,8 +228,7 @@ void ov104_0223EA84(UnkStruct_ov104_0223EA84 *param0, int param1, int param2, in
     param0->unk_2E = 1;
 }
 
-BOOL ov104_0223EADC(UnkStruct_ov104_0223EA84 *param0)
-{
+BOOL ov104_0223EADC(UnkStruct_ov104_0223EA84 *param0) {
     BOOL v0;
     s16 v1, v2, v3, v4;
 
@@ -266,8 +254,7 @@ BOOL ov104_0223EADC(UnkStruct_ov104_0223EA84 *param0)
     return v0;
 }
 
-static void ov104_0223EB44(Window *param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5)
-{
+static void ov104_0223EB44(Window *param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5) {
     if ((param4 <= 0) || (param2 <= 0)) {
         return;
     }
@@ -295,8 +282,7 @@ static void ov104_0223EB44(Window *param0, s32 param1, s32 param2, s32 param3, s
     Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
-UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 heapID)
-{
+UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 heapID) {
     UnkStruct_ov104_0223EBD0 *v0;
     int v1;
 
@@ -310,8 +296,7 @@ UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 heapID)
     return v0;
 }
 
-void ov104_0223EBD0(UnkStruct_ov104_0223EBD0 *param0)
-{
+void ov104_0223EBD0(UnkStruct_ov104_0223EBD0 *param0) {
     int v0;
 
     for (v0 = 0; v0 < ((256 / 16) * (192 / 32)); v0++) {
@@ -321,8 +306,7 @@ void ov104_0223EBD0(UnkStruct_ov104_0223EBD0 *param0)
     Heap_Free(param0);
 }
 
-void ov104_0223EBF0(UnkStruct_ov104_0223EBD0 *param0, u8 param1, u8 param2, Window *param3, u8 param4)
-{
+void ov104_0223EBF0(UnkStruct_ov104_0223EBD0 *param0, u8 param1, u8 param2, Window *param3, u8 param4) {
     param0->unk_00 = param3;
     param0->unk_18C = param4;
     param0->unk_189 = param1;
@@ -341,8 +325,7 @@ static const u8 Unk_ov104_02241970[][(256 / 16)] = {
     { 0x7, 0x6, 0x5, 0x4, 0x3, 0x2, 0x1, 0x0 }
 };
 
-BOOL ov104_0223EC34(UnkStruct_ov104_0223EBD0 *param0)
-{
+BOOL ov104_0223EC34(UnkStruct_ov104_0223EBD0 *param0) {
     int v0, v1, v2, v3;
     int v4;
     BOOL v5;
@@ -417,8 +400,7 @@ static const u8 Unk_ov104_02241964[][(192 / 32)] = {
     { 0x5, 0x4, 0x3, 0x2, 0x1, 0x0 }
 };
 
-BOOL ov104_0223EE44(UnkStruct_ov104_0223EBD0 *param0)
-{
+BOOL ov104_0223EE44(UnkStruct_ov104_0223EBD0 *param0) {
     int v0, v1, v2;
     int v3;
     BOOL v4;
@@ -488,13 +470,11 @@ BOOL ov104_0223EE44(UnkStruct_ov104_0223EBD0 *param0)
     return 0;
 }
 
-static SysTask *ov104_0223F05C(UnkStruct_ov104_0223F094 *param0)
-{
+static SysTask *ov104_0223F05C(UnkStruct_ov104_0223F094 *param0) {
     return SysTask_ExecuteOnVBlank(ov104_0223F070, param0, 1024);
 }
 
-static void ov104_0223F070(SysTask *param0, void *param1)
-{
+static void ov104_0223F070(SysTask *param0, void *param1) {
     UnkStruct_ov104_0223F094 *v0 = param1;
 
     if (v0->unk_08 >= 2) {
@@ -506,20 +486,17 @@ static void ov104_0223F070(SysTask *param0, void *param1)
     v0->unk_08++;
 }
 
-void ov104_0223F094(UnkStruct_ov104_0223F094 *param0, u32 heapID)
-{
+void ov104_0223F094(UnkStruct_ov104_0223F094 *param0, u32 heapID) {
     param0->screenScrollMgr = ScreenScrollManager_New(heapID);
     param0->unk_08 = 0;
     param0->unk_04 = ov104_0223F05C(param0);
 }
 
-void ov104_0223F0B0(UnkStruct_ov104_0223F094 *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8)
-{
+void ov104_0223F0B0(UnkStruct_ov104_0223F094 *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8) {
     ScreenScrollManager_ScrollX(param0->screenScrollMgr, param1, param2, param3, param4, param5, param6, param7, param8);
 }
 
-static void ov104_0223F0D8(SysTask *param0, void *param1)
-{
+static void ov104_0223F0D8(SysTask *param0, void *param1) {
     UnkStruct_ov104_0223F0D8 *v0 = param1;
 
     if (v0->unk_08) {
@@ -531,8 +508,7 @@ static void ov104_0223F0D8(SysTask *param0, void *param1)
     }
 }
 
-static void ov104_0223F0F4(SysTask *param0, void *param1)
-{
+static void ov104_0223F0F4(SysTask *param0, void *param1) {
     UnkStruct_ov104_0223F0D8 *v0 = param1;
 
     if (v0->unk_08 && v0->unk_0C) {
@@ -542,8 +518,7 @@ static void ov104_0223F0F4(SysTask *param0, void *param1)
     }
 }
 
-static void ov104_0223F110(UnkStruct_ov104_0223F0D8 *param0, void *param1, UnkFuncPtr_ov104_0223F110 param2, UnkFuncPtr_ov104_0223F110 param3)
-{
+static void ov104_0223F110(UnkStruct_ov104_0223F0D8 *param0, void *param1, UnkFuncPtr_ov104_0223F110 param2, UnkFuncPtr_ov104_0223F110 param3) {
     GF_ASSERT(param0);
 
     param0->unk_08 = 1;
@@ -555,8 +530,7 @@ static void ov104_0223F110(UnkStruct_ov104_0223F0D8 *param0, void *param1, UnkFu
     param0->unk_00 = SysTask_ExecuteOnVBlank(ov104_0223F0F4, param0, 0);
 }
 
-static void ov104_0223F150(UnkStruct_ov104_0223F0D8 *param0)
-{
+static void ov104_0223F150(UnkStruct_ov104_0223F0D8 *param0) {
     GF_ASSERT(param0);
 
     if (param0->unk_04 != NULL) {
@@ -570,30 +544,26 @@ static void ov104_0223F150(UnkStruct_ov104_0223F0D8 *param0)
     BufferManager_StopDMA();
 }
 
-static void ov104_0223F174(UnkStruct_ov104_0223F174 *param0)
-{
+static void ov104_0223F174(UnkStruct_ov104_0223F174 *param0) {
     const void *v0 = BufferManager_GetReadBuffer(param0->bufferManager);
 
     BufferManager_StopDMA();
     BufferManager_StartDMA(v0, (void *)param0->unk_3020, (sizeof(UnkStruct_ov104_0223F1B4)), 1);
 }
 
-static void ov104_0223F198(void *param0)
-{
+static void ov104_0223F198(void *param0) {
     UnkStruct_ov104_0223F174 *v0 = param0;
 
     BufferManager_SwapBuffers(v0->bufferManager);
     ov104_0223F174(v0);
 }
 
-static void ov104_0223F1AC(void *param0)
-{
+static void ov104_0223F1AC(void *param0) {
     UnkStruct_ov104_0223F174 *v0 = param0;
     ov104_0223F174(v0);
 }
 
-UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, int heapID)
-{
+UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, int heapID) {
     UnkStruct_ov104_0223F174 *v0;
     int v1;
 
@@ -615,8 +585,7 @@ UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *p
     return v0;
 }
 
-void ov104_0223F258(UnkStruct_ov104_0223F174 *param0)
-{
+void ov104_0223F258(UnkStruct_ov104_0223F174 *param0) {
     GF_ASSERT(param0);
 
     ov104_0223F150(&param0->unk_00);
@@ -628,8 +597,7 @@ void ov104_0223F258(UnkStruct_ov104_0223F174 *param0)
     Heap_Free(param0);
 }
 
-void *ov104_0223F27C(const UnkStruct_ov104_0223F174 *param0)
-{
+void *ov104_0223F27C(const UnkStruct_ov104_0223F174 *param0) {
     GF_ASSERT(param0);
 
     return BufferManager_GetWriteBuffer(param0->bufferManager);

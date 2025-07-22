@@ -96,8 +96,7 @@ static const BattleAnimPosition sBattleAnimBattlerPositions[][6] = {
     },
 };
 
-void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3)
-{
+void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3) {
     if (param2 != NULL) {
         *param2 = sBattleAnimBattlerPositions[param0][param1].x;
     }
@@ -107,8 +106,7 @@ void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3)
     }
 }
 
-void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3)
-{
+void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3) {
     if (BattleAnimSystem_IsContest(param0) == 1) {
         ov12_02225864(0, param1 + 2, param2, param3);
     } else {
@@ -120,8 +118,7 @@ void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param
     }
 }
 
-s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *system, int battler, enum BattleAnimPositionType posType)
-{
+s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *system, int battler, enum BattleAnimPositionType posType) {
     int isDoubles;
     int battlerType = BattleAnimUtil_GetBattlerType(system, battler);
 
@@ -148,13 +145,11 @@ s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *system, int battler, enum Bat
     return 0;
 }
 
-u8 ov12_02225950(ManagedSprite *param0)
-{
+u8 ov12_02225950(ManagedSprite *param0) {
     return PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-int BattleAnimMath_GetRotationDirection(BattleAnimSystem *system, int battler)
-{
+int BattleAnimMath_GetRotationDirection(BattleAnimSystem *system, int battler) {
     int dir = 1;
 
     enum Battler side = BattleAnimUtil_GetBattlerSide(system, battler);
@@ -172,8 +167,7 @@ int BattleAnimMath_GetRotationDirection(BattleAnimSystem *system, int battler)
     return dir;
 }
 
-int ov12_0222598C(BattleAnimSystem *param0, int param1)
-{
+int ov12_0222598C(BattleAnimSystem *param0, int param1) {
     int v0;
     int v1 = 1;
 
@@ -186,13 +180,11 @@ int ov12_0222598C(BattleAnimSystem *param0, int param1)
     return v1;
 }
 
-fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)
-{
+fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps) {
     return FX_Div(end - start, steps << FX32_SHIFT);
 }
 
-u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
-{
+u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2) {
     fx32 v0;
     fx32 v1;
 
@@ -209,33 +201,28 @@ u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
     return v0 >> FX32_SHIFT;
 }
 
-void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1, s16 param2, s16 param3)
-{
+void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1, s16 param2, s16 param3) {
     ManagedSprite_SetPositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
 }
 
-void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
-{
+void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1) {
     f32 v0, v1;
 
     ov12_02225FA4(param0, &v0, &v1);
     ManagedSprite_SetAffineScale(param1, v0, v1);
 }
 
-void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1, s16 param2, s16 param3)
-{
+void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1, s16 param2, s16 param3) {
     PokemonSprite_SetAttribute(param1, MON_SPRITE_X_CENTER, param2 + param0->unk_00);
     PokemonSprite_SetAttribute(param1, MON_SPRITE_Y_CENTER, param3 + param0->unk_02);
 }
 
-void ov12_02225A3C(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
-{
+void ov12_02225A3C(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1) {
     PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_X, param0->unk_00);
     PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_Y, param0->unk_02);
 }
 
-void ov12_02225A5C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7)
-{
+void ov12_02225A5C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7) {
     param0->unk_04[0] = param7;
     param0->unk_04[1] = param1;
     param0->unk_04[2] = param5;
@@ -245,8 +232,7 @@ void ov12_02225A5C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 
     param0->unk_04[6] = (param4 - param3) / param7;
 }
 
-void ov12_02225A8C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7)
-{
+void ov12_02225A8C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7) {
     s16 v0;
 
     GF_ASSERT(param0);
@@ -266,8 +252,7 @@ void ov12_02225A8C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 
     param0->unk_04[6] = (param4 - param3) / param0->unk_04[0];
 }
 
-BOOL ov12_02225AE0(UnkStruct_ov12_02225F6C *param0)
-{
+BOOL ov12_02225AE0(UnkStruct_ov12_02225F6C *param0) {
     fx32 v0, v1;
 
     GF_ASSERT(param0);
@@ -290,8 +275,7 @@ BOOL ov12_02225AE0(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, ManagedSprite *param3)
-{
+BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, ManagedSprite *param3) {
     if (ov12_02225AE0(param0)) {
         ov12_022259DC(param0, param3, param1, param2);
         return 1;
@@ -300,8 +284,7 @@ BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Mana
     return 0;
 }
 
-BOOL ov12_02225BA0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3)
-{
+BOOL ov12_02225BA0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3) {
     if (ov12_02225AE0(param0)) {
         ov12_02225A18(param0, param3, param1, param2);
         return 1;
@@ -310,8 +293,7 @@ BOOL ov12_02225BA0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Poke
     return 0;
 }
 
-void ov12_02225BC8(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5)
-{
+void ov12_02225BC8(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5) {
     GF_ASSERT(param0);
 
     param0->unk_00 = param1;
@@ -323,8 +305,7 @@ void ov12_02225BC8(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     param0->unk_04[4] = param3 * FX32_ONE;
 }
 
-BOOL ov12_02225C14(UnkStruct_ov12_02225F6C *param0)
-{
+BOOL ov12_02225C14(UnkStruct_ov12_02225F6C *param0) {
     GF_ASSERT(param0);
 
     if (param0->unk_04[0]) {
@@ -340,8 +321,7 @@ BOOL ov12_02225C14(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
-{
+BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1) {
     if (ov12_02225C14(param0)) {
         ov12_022259DC(param0, param1, 0, 0);
         return 1;
@@ -350,8 +330,7 @@ BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
     return 0;
 }
 
-BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
-{
+BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1) {
     if (ov12_02225C14(param0)) {
         ov12_02225A18(param0, param1, 0, 0);
         return 1;
@@ -360,16 +339,14 @@ BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
     return 0;
 }
 
-void ov12_02225C98(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7)
-{
+void ov12_02225C98(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7) {
     ov12_02225BC8(param0, param2, param3, param4, param5, param6);
     param1->unk_00 = 0;
     param1->unk_02 = 0;
     ov12_02225A5C(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
 }
 
-BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1)
-{
+BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1) {
     BOOL v0, v1;
 
     GF_ASSERT(param0);
@@ -388,8 +365,7 @@ BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     return 1;
 }
 
-BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, ManagedSprite *param2)
-{
+BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, ManagedSprite *param2) {
     if (ov12_02225CE4(param0, param1)) {
         ov12_022259DC(param0, param2, 0, 0);
         return 1;
@@ -398,8 +374,7 @@ BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     return 0;
 }
 
-void AngleLerpContext_Init(AngleLerpContext *ctx, s32 start, s32 end, u32 steps)
-{
+void AngleLerpContext_Init(AngleLerpContext *ctx, s32 start, s32 end, u32 steps) {
     GF_ASSERT(ctx);
 
     ctx->angle = start;
@@ -407,8 +382,7 @@ void AngleLerpContext_Init(AngleLerpContext *ctx, s32 start, s32 end, u32 steps)
     ctx->data[1] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps) >> FX32_SHIFT;
 }
 
-void AngleLerpContext_InitFX32(AngleLerpContext *ctx, s16 start, s16 end, u32 steps)
-{
+void AngleLerpContext_InitFX32(AngleLerpContext *ctx, s16 start, s16 end, u32 steps) {
     GF_ASSERT(ctx);
 
     ctx->angle = start;
@@ -417,8 +391,7 @@ void AngleLerpContext_InitFX32(AngleLerpContext *ctx, s16 start, s16 end, u32 st
     ctx->data[2] = start * FX32_ONE;
 }
 
-BOOL AngleLerpContext_Update(AngleLerpContext *ctx)
-{
+BOOL AngleLerpContext_Update(AngleLerpContext *ctx) {
     GF_ASSERT(ctx);
 
     if (ctx->data[0]) {
@@ -431,8 +404,7 @@ BOOL AngleLerpContext_Update(AngleLerpContext *ctx)
     return FALSE;
 }
 
-BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *ctx)
-{
+BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *ctx) {
     GF_ASSERT(ctx);
 
     if (ctx->data[0]) {
@@ -446,16 +418,14 @@ BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *ctx)
     return FALSE;
 }
 
-void AngleLerpContext_InitCos(AngleLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
-{
+void AngleLerpContext_InitCos(AngleLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps) {
     ctx->data[0] = steps;
     ctx->data[1] = start;
     ctx->data[2] = amplitude;
     ctx->data[3] = (end - start) / steps;
 }
 
-BOOL AngleLerpContext_UpdateCos(AngleLerpContext *ctx)
-{
+BOOL AngleLerpContext_UpdateCos(AngleLerpContext *ctx) {
     GF_ASSERT(ctx);
 
     if (ctx->data[0]) {
@@ -471,8 +441,7 @@ BOOL AngleLerpContext_UpdateCos(AngleLerpContext *ctx)
 }
 
 #define SCALE_RATE_PER(p1, p2) (((p1) * 0x100) / p2)
-void ov12_02225E68(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, u32 param4)
-{
+void ov12_02225E68(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, u32 param4) {
     UnkStruct_ov12_02225F6C *v0;
 
     GF_ASSERT(param0);
@@ -487,8 +456,7 @@ void ov12_02225E68(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     v0->unk_04[4] = v0->unk_02 * FX32_ONE;
 }
 
-BOOL ov12_02225EB8(UnkStruct_ov12_02225F6C *param0)
-{
+BOOL ov12_02225EB8(UnkStruct_ov12_02225F6C *param0) {
     UnkStruct_ov12_02225F6C *v0;
 
     GF_ASSERT(param0);
@@ -508,8 +476,7 @@ BOOL ov12_02225EB8(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-void ov12_02225EF0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6)
-{
+void ov12_02225EF0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6) {
     UnkStruct_ov12_02225F6C *v0;
 
     GF_ASSERT(param0);
@@ -525,8 +492,7 @@ void ov12_02225EF0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     v0->unk_04[4] = v0->unk_02 * FX32_ONE;
 }
 
-BOOL ov12_02225F6C(UnkStruct_ov12_02225F6C *param0)
-{
+BOOL ov12_02225F6C(UnkStruct_ov12_02225F6C *param0) {
     UnkStruct_ov12_02225F6C *v0;
 
     GF_ASSERT(param0);
@@ -546,14 +512,12 @@ BOOL ov12_02225F6C(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-void ov12_02225FA4(UnkStruct_ov12_02225F6C *param0, f32 *param1, f32 *param2)
-{
+void ov12_02225FA4(UnkStruct_ov12_02225F6C *param0, f32 *param1, f32 *param2) {
     *param1 = (1.0f * param0->unk_00) / 0x100;
     *param2 = (1.0f * param0->unk_02) / 0x100;
 }
 
-s16 ov12_02225FD4(s16 param0, int param1, fx32 param2)
-{
+s16 ov12_02225FD4(s16 param0, int param1, fx32 param2) {
     fx32 v0 = (80 - (param1 * 2)) * FX32_ONE;
     fx32 v1 = 0x100 * FX32_ONE;
     fx32 v2;
@@ -583,8 +547,7 @@ s16 ov12_02225FD4(s16 param0, int param1, fx32 param2)
     return v5;
 }
 
-void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
-{
+void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4) {
     s16 v0;
     s16 v1 = param1;
     v0 = ov12_02225FD4(param1, param2, param3);
@@ -597,8 +560,7 @@ void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, i
     PokemonSprite_SetAttribute(param0, MON_SPRITE_Y_CENTER, v1 + v0);
 }
 
-void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
-{
+void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4) {
     s16 v0;
     s16 v1;
     s16 v2;
@@ -616,8 +578,7 @@ void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, i
     ManagedSprite_SetPositionXY(param0, v2, v1 + v0);
 }
 
-BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
-{
+BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1) {
     if (ov12_02225EB8(param0)) {
         ov12_022259FC(param0, param1);
         return 1;
@@ -626,8 +587,7 @@ BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
     return 0;
 }
 
-BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
-{
+BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1) {
     if (ov12_02225EB8(param0)) {
         ov12_02225A3C(param0, param1);
         return 1;
@@ -636,8 +596,7 @@ BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
     return 0;
 }
 
-BOOL ov12_022260E8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
-{
+BOOL ov12_022260E8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1) {
     if (ov12_02225F6C(param0)) {
         ov12_02225A3C(param0, param1);
         return 1;
@@ -646,8 +605,7 @@ BOOL ov12_022260E8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
     return 0;
 }
 
-static inline void inline_ov12_02226138(s16 *param0, s32 *param1, s32 param2)
-{
+static inline void inline_ov12_02226138(s16 *param0, s32 *param1, s32 param2) {
     s32 v0 = *param1;
 
     *param1 = *param0;
@@ -659,8 +617,7 @@ static inline void inline_ov12_02226138(s16 *param0, s32 *param1, s32 param2)
     }
 }
 
-void ov12_02226108(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, u32 param3, u32 param4)
-{
+void ov12_02226108(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, u32 param3, u32 param4) {
     UnkStruct_ov12_02225F6C *v0;
 
     GF_ASSERT(param0);
@@ -679,8 +636,7 @@ void ov12_02226108(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, u32 
     v0->unk_02 = 0;
 }
 
-BOOL ov12_02226138(UnkStruct_ov12_02225F6C *param0)
-{
+BOOL ov12_02226138(UnkStruct_ov12_02225F6C *param0) {
     UnkStruct_ov12_02225F6C *v0;
 
     GF_ASSERT(param0);
@@ -708,8 +664,7 @@ BOOL ov12_02226138(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3)
-{
+BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3) {
     if (ov12_02226138(param0)) {
         ov12_02225A18(param0, param3, param1, param2);
         return 1;
@@ -718,8 +673,7 @@ BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Poke
     return 0;
 }
 
-void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, ManagedSprite *param8, ManagedSprite *param9, ManagedSprite *param10, ManagedSprite *param11)
-{
+void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, ManagedSprite *param8, ManagedSprite *param9, ManagedSprite *param10, ManagedSprite *param11) {
     int v0;
 
     param0->unk_00 = param3;
@@ -745,8 +699,7 @@ void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *par
     }
 }
 
-BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
-{
+BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0) {
     int v0;
     BOOL v1[4];
     f32 v2, v3;
@@ -789,16 +742,14 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
     return 0;
 }
 
-void ov12_022263A4(UnkStruct_ov12_02225F6C *param0, int param1, int param2)
-{
+void ov12_022263A4(UnkStruct_ov12_02225F6C *param0, int param1, int param2) {
     int v0;
 
     ov12_02225A5C(param0, 0, (360 * 0xffff) / 360, 0, (360 * 0xffff) / 360, 32 * FX32_ONE, -8 * FX32_ONE, param2);
     param0->unk_04[0] *= param1;
 }
 
-static void ov12_022263DC(SysTask *param0, void *param1)
-{
+static void ov12_022263DC(SysTask *param0, void *param1) {
     BOOL v0;
     UnkStruct_ov12_02226454 *v1 = param1;
 
@@ -820,21 +771,18 @@ static void ov12_022263DC(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02226424(UnkStruct_ov12_02226454 *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5)
-{
+void ov12_02226424(UnkStruct_ov12_02226454 *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5) {
     ov12_02225BC8(&param0->unk_00, param1, param2, param3, param4, param5);
 
     param0->unk_24 = 0;
     SysTask_Start(ov12_022263DC, param0, 0);
 }
 
-BOOL ov12_02226454(const UnkStruct_ov12_02226454 *param0)
-{
+BOOL ov12_02226454(const UnkStruct_ov12_02226454 *param0) {
     return param0->unk_24;
 }
 
-static void ov12_02226458(SysTask *param0, void *param1)
-{
+static void ov12_02226458(SysTask *param0, void *param1) {
     UnkStruct_ov12_02226490 *v0 = param1;
 
     if (v0->unk_08) {
@@ -845,8 +793,7 @@ static void ov12_02226458(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_02226474(SysTask *param0, void *param1)
-{
+static void ov12_02226474(SysTask *param0, void *param1) {
     UnkStruct_ov12_02226490 *v0 = param1;
 
     if (v0->unk_08 && v0->unk_0C) {
@@ -855,8 +802,7 @@ static void ov12_02226474(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_02226490(UnkStruct_ov12_02226490 *param0, void *param1, UnkFuncPtr_ov12_02226490 param2, UnkFuncPtr_ov12_02226490 param3)
-{
+static void ov12_02226490(UnkStruct_ov12_02226490 *param0, void *param1, UnkFuncPtr_ov12_02226490 param2, UnkFuncPtr_ov12_02226490 param3) {
     GF_ASSERT(param0);
 
     param0->unk_08 = 1;
@@ -868,8 +814,7 @@ static void ov12_02226490(UnkStruct_ov12_02226490 *param0, void *param1, UnkFunc
     param0->unk_00 = SysTask_ExecuteOnVBlank(ov12_02226474, param0, 0);
 }
 
-static void ov12_022264D0(UnkStruct_ov12_02226490 *param0)
-{
+static void ov12_022264D0(UnkStruct_ov12_02226490 *param0) {
     GF_ASSERT(param0);
 
     if (param0->unk_04 != NULL) {
@@ -883,36 +828,31 @@ static void ov12_022264D0(UnkStruct_ov12_02226490 *param0)
     BufferManager_StopDMA();
 }
 
-static void ov12_022264F4(UnkStruct_ov12_02226490 *param0)
-{
+static void ov12_022264F4(UnkStruct_ov12_02226490 *param0) {
     GF_ASSERT(param0);
     param0->unk_08 = 0;
 }
 
-static void ov12_02226504(UnkStruct_ov12_02226504 *param0)
-{
+static void ov12_02226504(UnkStruct_ov12_02226504 *param0) {
     const void *v0 = BufferManager_GetReadBuffer(param0->bufferManager);
 
     BufferManager_StopDMA();
     BufferManager_StartDMA(v0, (void *)param0->unk_620, 4, 1);
 }
 
-static void ov12_02226528(void *param0)
-{
+static void ov12_02226528(void *param0) {
     UnkStruct_ov12_02226504 *v0 = param0;
 
     BufferManager_SwapBuffers(v0->bufferManager);
     ov12_02226504(v0);
 }
 
-static void ov12_0222653C(void *param0)
-{
+static void ov12_0222653C(void *param0) {
     UnkStruct_ov12_02226504 *v0 = param0;
     ov12_02226504(v0);
 }
 
-UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID)
-{
+UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID) {
     UnkStruct_ov12_02226504 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02226504));
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
 
@@ -930,8 +870,7 @@ UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapI
     return v0;
 }
 
-void ov12_022265C0(UnkStruct_ov12_02226504 *param0)
-{
+void ov12_022265C0(UnkStruct_ov12_02226504 *param0) {
     GF_ASSERT(param0);
 
     ov12_022264D0(&param0->unk_00);
@@ -943,34 +882,29 @@ void ov12_022265C0(UnkStruct_ov12_02226504 *param0)
     Heap_Free(param0);
 }
 
-void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0)
-{
+void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0) {
     GF_ASSERT(param0);
     return BufferManager_GetWriteBuffer(param0->bufferManager);
 }
 
-void ov12_022265F8(UnkStruct_ov12_02226504 *param0)
-{
+void ov12_022265F8(UnkStruct_ov12_02226504 *param0) {
     GF_ASSERT(param0);
     ov12_022264F4(&param0->unk_00);
 }
 
-static void ov12_0222660C(void *param0)
-{
+static void ov12_0222660C(void *param0) {
     UnkStruct_ov12_0222660C *v0 = param0;
 
     ScreenScrollManager_SwapBuffers(v0->screenScrollMgr);
     ScreenScrollManager_RestartDMA(v0->screenScrollMgr);
 }
 
-static void ov12_02226620(void *param0)
-{
+static void ov12_02226620(void *param0) {
     UnkStruct_ov12_0222660C *v0 = param0;
     ScreenScrollManager_RestartDMA(v0->screenScrollMgr);
 }
 
-UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, int heapID)
-{
+UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, int heapID) {
     UnkStruct_ov12_0222660C *v0;
     u32 v1;
     void *v2;
@@ -990,8 +924,7 @@ UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 pa
     return v0;
 }
 
-void ov12_0222669C(UnkStruct_ov12_0222660C *param0)
-{
+void ov12_0222669C(UnkStruct_ov12_0222660C *param0) {
     GF_ASSERT(param0);
 
     ov12_022264D0(&param0->unk_00);
@@ -1003,25 +936,21 @@ void ov12_0222669C(UnkStruct_ov12_0222660C *param0)
     Heap_Free(param0);
 }
 
-void *ov12_022266C0(const UnkStruct_ov12_0222660C *param0)
-{
+void *ov12_022266C0(const UnkStruct_ov12_0222660C *param0) {
     GF_ASSERT(param0);
     return ScreenScrollManager_GetWriteBuffer(param0->screenScrollMgr);
 }
 
-void ov12_022266D4(UnkStruct_ov12_0222660C *param0)
-{
+void ov12_022266D4(UnkStruct_ov12_0222660C *param0) {
     GF_ASSERT(param0);
     ov12_022264F4(&param0->unk_00);
 }
 
-u32 ov12_022266E8(u16 param0, u16 param1)
-{
+u32 ov12_022266E8(u16 param0, u16 param1) {
     return (param1 << 16) | param0;
 }
 
-u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
-{
+u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID) {
     switch (bgID) {
     case BATTLE_BG_ID_UNUSED:
         return REG_BG0HOFS_ADDR;
@@ -1034,22 +963,19 @@ u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
     }
 }
 
-void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5)
-{
+void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5) {
     *param4 = (param0 + param2) / 2;
     *param5 = (param1 + param3) / 2;
 }
 
-void ov12_02226744(s16 param0, s16 param1, s16 param2, s16 param3, fx32 *param4)
-{
+void ov12_02226744(s16 param0, s16 param1, s16 param2, s16 param3, fx32 *param4) {
     s16 v0 = (param0 - param2);
     s16 v1 = (param1 - param3) * -1;
 
     *param4 = FX_Sqrt(((v1 * v1) + (v0 * v0)) * FX32_ONE);
 }
 
-void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4)
-{
+void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4) {
     s16 v0 = (param0 - param2);
     s16 v1 = (param1 - param3) * -1;
     s16 v2;
@@ -1063,8 +989,7 @@ void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4)
     }
 }
 
-BOOL ov12_022267A8(int *param0, int param1, s32 param2)
-{
+BOOL ov12_022267A8(int *param0, int param1, s32 param2) {
     if (param2 < 0) {
         if (*param0 + param2 > param1) {
             *param0 += param2;
@@ -1086,8 +1011,7 @@ BOOL ov12_022267A8(int *param0, int param1, s32 param2)
     return 1;
 }
 
-static void ov12_022267D4(SysTask *param0, void *param1)
-{
+static void ov12_022267D4(SysTask *param0, void *param1) {
     UnkStruct_ov12_022267D4 *v0 = (UnkStruct_ov12_022267D4 *)param1;
 
     if (v0->unk_00 == 0) {
@@ -1120,22 +1044,19 @@ static void ov12_022267D4(SysTask *param0, void *param1)
     }
 }
 
-BOOL ov12_02226848(UnkStruct_ov12_022267D4 *param0)
-{
+BOOL ov12_02226848(UnkStruct_ov12_022267D4 *param0) {
     GF_ASSERT(param0 != NULL);
     return param0->unk_00;
 }
 
-void ov12_02226858(UnkStruct_ov12_022267D4 *param0)
-{
+void ov12_02226858(UnkStruct_ov12_022267D4 *param0) {
     GF_ASSERT(param0 != NULL);
 
     SysTask_Done(param0->unk_04);
     Heap_Free(param0);
 }
 
-UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
-{
+UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10) {
     UnkStruct_ov12_022267D4 *v0 = NULL;
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_022267D4));
@@ -1165,8 +1086,7 @@ UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int para
     return v0;
 }
 
-static void ov12_022268DC(u16 *param0, u16 param1)
-{
+static void ov12_022268DC(u16 *param0, u16 param1) {
     int v0, v1, v2, v3;
     u32 v4;
 
@@ -1181,8 +1101,7 @@ static void ov12_022268DC(u16 *param0, u16 param1)
     }
 }
 
-void ov12_02226924(BattleAnimSystem *param0)
-{
+void ov12_02226924(BattleAnimSystem *param0) {
     PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
     u16 *v1 = PaletteData_GetFadedBuffer(v0, 0);
 
@@ -1193,8 +1112,7 @@ void ov12_02226924(BattleAnimSystem *param0)
     }
 }
 
-void ov12_02226954(BattleAnimSystem *param0)
-{
+void ov12_02226954(BattleAnimSystem *param0) {
     PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
 
     if (BattleAnimSystem_IsContest(param0) == 1) {

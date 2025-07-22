@@ -276,8 +276,7 @@ static const s16 Unk_ov12_02238660[] = {
     0x20
 };
 
-static void BattleAnimScript_WaitForDelay(BattleAnimSystem *system)
-{
+static void BattleAnimScript_WaitForDelay(BattleAnimSystem *system) {
     if (system->scriptDelay == 0) {
         system->executeAnimScriptFunc = BattleAnimScript_Execute;
     } else {
@@ -285,16 +284,14 @@ static void BattleAnimScript_WaitForDelay(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScript_Execute(BattleAnimSystem *system)
-{
+static void BattleAnimScript_Execute(BattleAnimSystem *system) {
     do {
         BattleAnimScriptCmd cmd = BattleAnimSystem_GetScriptCmd(*system->scriptPtr);
         cmd(system);
     } while (system->scriptDelay == 0 && system->moveActive == TRUE);
 }
 
-static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
-{
+static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority) {
     switch (kind) {
     case MOVE_EFFECT_TASK_KIND_EFFECT:
         system->activeAnimTasks++;
@@ -310,8 +307,7 @@ static SysTask *BattleAnimSystem_StartTask(u8 kind, BattleAnimSystem *system, Sy
     return SysTask_Start(func, param, priority);
 }
 
-static void BattleAnimSystem_EndTask(u8 kind, BattleAnimSystem *system, SysTask *task)
-{
+static void BattleAnimSystem_EndTask(u8 kind, BattleAnimSystem *system, SysTask *task) {
     switch (kind) {
     case MOVE_EFFECT_TASK_KIND_EFFECT:
         system->activeAnimTasks--;
@@ -327,8 +323,7 @@ static void BattleAnimSystem_EndTask(u8 kind, BattleAnimSystem *system, SysTask 
     SysTask_Done(task);
 }
 
-BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
-{
+BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID) {
     int i;
     BattleAnimSystem *system = Heap_AllocFromHeap(heapID, sizeof(BattleAnimSystem));
 
@@ -373,26 +368,22 @@ BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID)
     return system;
 }
 
-void BattleAnimSystem_SetIsContest(BattleAnimSystem *system, BOOL isContest)
-{
+void BattleAnimSystem_SetIsContest(BattleAnimSystem *system, BOOL isContest) {
     GF_ASSERT(system != NULL);
     system->isContest = isContest;
 }
 
-BOOL BattleAnimSystem_IsContest(BattleAnimSystem *system)
-{
+BOOL BattleAnimSystem_IsContest(BattleAnimSystem *system) {
     GF_ASSERT(system != NULL);
     return system->isContest;
 }
 
-enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *system)
-{
+enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *system) {
     GF_ASSERT(system != NULL);
     return system->heapID;
 }
 
-BOOL BattleAnimSystem_Delete(BattleAnimSystem *system)
-{
+BOOL BattleAnimSystem_Delete(BattleAnimSystem *system) {
     if (BattleAnimSystem_IsActive(system) == FALSE) {
         return FALSE;
     }
@@ -407,8 +398,7 @@ BOOL BattleAnimSystem_Delete(BattleAnimSystem *system)
     return TRUE;
 }
 
-BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 move, UnkStruct_ov16_02264408 *param3)
-{
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 move, UnkStruct_ov16_02264408 *param3) {
     int i;
 
     BattleAnimSystem_SetDefaultAlphaBlending();
@@ -537,8 +527,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
     return TRUE;
 }
 
-BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *system)
-{
+BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *system) {
     if (BattleAnimSystem_IsActive(system) == FALSE) {
         return FALSE;
     }
@@ -547,13 +536,11 @@ BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *system)
     return TRUE;
 }
 
-BOOL BattleAnimSystem_IsMoveActive(BattleAnimSystem *system)
-{
+BOOL BattleAnimSystem_IsMoveActive(BattleAnimSystem *system) {
     return system->moveActive == TRUE;
 }
 
-BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *system)
-{
+BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *system) {
     if (system->scriptData == NULL) {
         GF_ASSERT(system->scriptData);
         return FALSE;
@@ -563,8 +550,7 @@ BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *system)
     return TRUE;
 }
 
-BOOL BattleAnimSystem_IsActive(BattleAnimSystem *system)
-{
+BOOL BattleAnimSystem_IsActive(BattleAnimSystem *system) {
     if (system == NULL) {
         return FALSE;
     }
@@ -572,69 +558,56 @@ BOOL BattleAnimSystem_IsActive(BattleAnimSystem *system)
     return system->isActive == TRUE;
 }
 
-SysTask *BattleAnimSystem_StartAnimTaskEx(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
-{
+SysTask *BattleAnimSystem_StartAnimTaskEx(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority) {
     return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, priority);
 }
 
-SysTask *BattleAnimSystem_StartAnimTask(BattleAnimSystem *system, SysTaskFunc func, void *param)
-{
+SysTask *BattleAnimSystem_StartAnimTask(BattleAnimSystem *system, SysTaskFunc func, void *param) {
     return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, func, param, 1100);
 }
 
-SysTask *BattleAnimSystem_StartSoundTask(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority)
-{
+SysTask *BattleAnimSystem_StartSoundTask(BattleAnimSystem *system, SysTaskFunc func, void *param, u32 priority) {
     return BattleAnimSystem_StartTask(MOVE_EFFECT_TASK_KIND_SOUND, system, func, param, priority);
 }
 
-void BattleAnimSystem_EndAnimTask(BattleAnimSystem *system, SysTask *task)
-{
+void BattleAnimSystem_EndAnimTask(BattleAnimSystem *system, SysTask *task) {
     BattleAnimSystem_EndTask(MOVE_EFFECT_TASK_KIND_EFFECT, system, task);
 }
 
-void BattleAnimSystem_EndSoundTask(BattleAnimSystem *system, SysTask *task)
-{
+void BattleAnimSystem_EndSoundTask(BattleAnimSystem *system, SysTask *task) {
     BattleAnimSystem_EndTask(MOVE_EFFECT_TASK_KIND_SOUND, system, task);
 }
 
-u16 BattleAnimSystem_GetAttacker(BattleAnimSystem *system)
-{
+u16 BattleAnimSystem_GetAttacker(BattleAnimSystem *system) {
     return system->context->attacker;
 }
 
-u16 BattleAnimSystem_GetDefender(BattleAnimSystem *system)
-{
+u16 BattleAnimSystem_GetDefender(BattleAnimSystem *system) {
     return system->context->defender;
 }
 
-ParticleSystem *BattleAnimSystem_GetCurrentParticleSystem(BattleAnimSystem *system)
-{
+ParticleSystem *BattleAnimSystem_GetCurrentParticleSystem(BattleAnimSystem *system) {
     return system->context->particleSystems[system->context->currentParticleSystem];
 }
 
-ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *system, int index)
-{
+ParticleSystem *BattleAnimSystem_GetParticleSystem(BattleAnimSystem *system, int index) {
     return system->context->particleSystems[index];
 }
 
-SPLEmitter *BattleAnimSystem_GetEmitter(BattleAnimSystem *system, int index)
-{
+SPLEmitter *BattleAnimSystem_GetEmitter(BattleAnimSystem *system, int index) {
     return system->context->emitters[index];
 }
 
-BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *system)
-{
+BgConfig *BattleAnimSystem_GetBgConfig(BattleAnimSystem *system) {
     return system->bgConfig;
 }
 
-s32 BattleAnimSystem_GetScriptVar(BattleAnimSystem *system, int id)
-{
+s32 BattleAnimSystem_GetScriptVar(BattleAnimSystem *system, int id) {
     GF_ASSERT(id < BATTLE_ANIM_SCRIPT_VAR_COUNT);
     return system->scriptVars[id];
 }
 
-ManagedSprite *BattleAnimSystem_GetSprite(BattleAnimSystem *system, int index)
-{
+ManagedSprite *BattleAnimSystem_GetSprite(BattleAnimSystem *system, int index) {
     GF_ASSERT(index < BATTLE_ANIM_SCRIPT_MAX_SPRITES);
     GF_ASSERT(system != NULL);
     GF_ASSERT(system->sprites[index] != NULL);
@@ -642,8 +615,7 @@ ManagedSprite *BattleAnimSystem_GetSprite(BattleAnimSystem *system, int index)
     return system->sprites[index];
 }
 
-ManagedSprite *BattleAnimSystem_GetPokemonSprite(BattleAnimSystem *system, int index)
-{
+ManagedSprite *BattleAnimSystem_GetPokemonSprite(BattleAnimSystem *system, int index) {
     GF_ASSERT(index < BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES);
     GF_ASSERT(system != NULL);
     GF_ASSERT(system->pokemonSprites[index] != NULL);
@@ -651,19 +623,16 @@ ManagedSprite *BattleAnimSystem_GetPokemonSprite(BattleAnimSystem *system, int i
     return system->pokemonSprites[index];
 }
 
-SpriteManager *BattleAnimSystem_GetPokemonSpriteManager(BattleAnimSystem *system)
-{
+SpriteManager *BattleAnimSystem_GetPokemonSpriteManager(BattleAnimSystem *system) {
     GF_ASSERT(system != NULL);
     return system->pokemonSpriteManager;
 }
 
-SpriteManager *ov12_02220300(BattleAnimSystem *param0)
-{
+SpriteManager *ov12_02220300(BattleAnimSystem *param0) {
     return param0->spriteManagers[0];
 }
 
-SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *system)
-{
+SpriteSystem *BattleAnimSystem_GetSpriteSystem(BattleAnimSystem *system) {
     return system->context->spriteSystem;
 }
 
@@ -676,8 +645,7 @@ static BOOL (*const sBattleAnimSoundFuncs[BATTLE_ANIM_SOUND_TASK_COUNT])(BattleA
     [BATTLE_ANIM_SOUND_TASK_DELAY] = BattleAnimSoundFunc_Delay
 };
 
-static BattleAnimSoundContext *BattleAnimSystem_CreateSoundContext(BattleAnimSystem *system)
-{
+static BattleAnimSoundContext *BattleAnimSystem_CreateSoundContext(BattleAnimSystem *system) {
     BattleAnimSoundContext *ctx = Heap_AllocFromHeap(system->heapID, sizeof(BattleAnimSoundContext));
     if (ctx == NULL) {
         GF_ASSERT(FALSE);
@@ -690,14 +658,12 @@ static BattleAnimSoundContext *BattleAnimSystem_CreateSoundContext(BattleAnimSys
     return ctx;
 }
 
-static void BattleAnimSystem_StartSoundTaskInternal(BattleAnimSystem *system, BattleAnimSoundContext *ctx)
-{
+static void BattleAnimSystem_StartSoundTaskInternal(BattleAnimSystem *system, BattleAnimSoundContext *ctx) {
     ctx->system = system;
     SysTask_Start(BattleAnimSound_Task, ctx, 1100);
 }
 
-static void BattleAnimSound_Task(SysTask *task, void *param)
-{
+static void BattleAnimSound_Task(SysTask *task, void *param) {
     BattleAnimSoundContext *ctx = param;
 
     BOOL result = sBattleAnimSoundFuncs[ctx->type](ctx);
@@ -711,13 +677,11 @@ static void BattleAnimSound_Task(SysTask *task, void *param)
     }
 }
 
-static BOOL BattleAnimSoundFunc_None(BattleAnimSoundContext *ctx)
-{
+static BOOL BattleAnimSoundFunc_None(BattleAnimSoundContext *ctx) {
     return FALSE;
 }
 
-static BOOL BattleAnimSoundFunc_Pan(BattleAnimSoundContext *ctx)
-{
+static BOOL BattleAnimSoundFunc_Pan(BattleAnimSoundContext *ctx) {
     if (ctx->tickCount++ < ctx->applyInterval) {
         return TRUE;
     }
@@ -748,18 +712,15 @@ static BOOL BattleAnimSoundFunc_Pan(BattleAnimSoundContext *ctx)
     return isActive;
 }
 
-static BOOL BattleAnimSoundFunc_Pan2(BattleAnimSoundContext *ctx)
-{
+static BOOL BattleAnimSoundFunc_Pan2(BattleAnimSoundContext *ctx) {
     return BattleAnimSoundFunc_Pan(ctx);
 }
 
-static BOOL BattleAnimSoundFunc_Pan3(BattleAnimSoundContext *ctx)
-{
+static BOOL BattleAnimSoundFunc_Pan3(BattleAnimSoundContext *ctx) {
     return BattleAnimSoundFunc_Pan(ctx);
 }
 
-static BOOL BattleAnimSoundFunc_Repeat(BattleAnimSoundContext *ctx)
-{
+static BOOL BattleAnimSoundFunc_Repeat(BattleAnimSoundContext *ctx) {
     if (ctx->tickCount++ < ctx->applyInterval) {
         return TRUE;
     }
@@ -779,8 +740,7 @@ static BOOL BattleAnimSoundFunc_Repeat(BattleAnimSoundContext *ctx)
     return isActive;
 }
 
-static BOOL BattleAnimSoundFunc_Delay(BattleAnimSoundContext *ctx)
-{
+static BOOL BattleAnimSoundFunc_Delay(BattleAnimSoundContext *ctx) {
     BOOL isActive = TRUE;
 
     if ((ctx->applyInterval--) == 0) {
@@ -881,33 +841,27 @@ static const BattleAnimScriptCmd sBattleAnimScriptCmdTable[] = {
     [84] = BattleAnimScriptCmd_WaitForLRX
 };
 
-void BattleAnimSystem_SetDefaultAlphaBlending(void)
-{
+void BattleAnimSystem_SetDefaultAlphaBlending(void) {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 8, 8);
 }
 
-static inline void BattleAnimScript_Next(BattleAnimSystem *system)
-{
+static inline void BattleAnimScript_Next(BattleAnimSystem *system) {
     system->scriptPtr += 1;
 }
 
-static inline void BattleAnimScript_JumpTo(BattleAnimSystem *system, u32 *dst)
-{
+static inline void BattleAnimScript_JumpTo(BattleAnimSystem *system, u32 *dst) {
     system->scriptPtr = dst;
 }
 
-static inline void BattleAnimScript_JumpBy(BattleAnimSystem *system, u32 offset)
-{
+static inline void BattleAnimScript_JumpBy(BattleAnimSystem *system, u32 offset) {
     system->scriptPtr += offset;
 }
 
-static inline int BattleAnimScript_ReadWord(u32 *scriptPtr)
-{
+static inline int BattleAnimScript_ReadWord(u32 *scriptPtr) {
     return *scriptPtr;
 }
 
-static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *system) {
     system->scriptDelay = 1;
 
     if (gSystem.heldKeys & PAD_BUTTON_L) {
@@ -920,8 +874,7 @@ static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_Delay(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_Delay(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     system->scriptDelay = (u8)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -930,8 +883,7 @@ static void BattleAnimScriptCmd_Delay(BattleAnimSystem *system)
     system->executeAnimScriptFunc = BattleAnimScript_WaitForDelay;
 }
 
-static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *system) {
     if (system->activeAnimTasks == 0) {
         BattleAnimScript_Next(system);
         system->scriptDelay = 0;
@@ -940,8 +892,7 @@ static void BattleAnimScriptCmd_WaitForAnimTasks(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
     u32 id = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
 
@@ -955,8 +906,7 @@ static void BattleAnimScriptCmd_SetVar(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     for (int i = 0; i < BATTLE_ANIM_SCRIPT_VAR_COUNT; i++) {
@@ -964,8 +914,7 @@ static void BattleAnimScriptCmd_ResetVar(BattleAnimSystem *system)
     }
 }
 
-int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveInfoType info)
-{
+int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveInfoType info) {
     switch (info) {
     case BATTLE_ANIM_MOVE_INFO_DAMAGE:
         return system->context->damage;
@@ -984,8 +933,7 @@ int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveIn
     }
 }
 
-void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2)
-{
+void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1022,8 +970,7 @@ void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, in
     }
 }
 
-static void ov12_022206A4(BattleAnimSystem *param0)
-{
+static void ov12_022206A4(BattleAnimSystem *param0) {
     int v0;
     UnkStruct_ov12_022380DC v1;
 
@@ -1042,8 +989,7 @@ static void ov12_022206A4(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_022206E8(BattleAnimSystem *param0)
-{
+static void ov12_022206E8(BattleAnimSystem *param0) {
     int v0;
     UnkStruct_ov12_022380DC v1;
 
@@ -1055,8 +1001,7 @@ static void ov12_022206E8(BattleAnimSystem *param0)
     ov12_022382BC(&v1, param0->heapID);
 }
 
-static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     for (int i = 0; i < BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS; i++) {
@@ -1074,8 +1019,7 @@ static void BattleAnimScriptCmd_BeginLoop(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     for (int i = BATTLE_ANIM_SCRIPT_MAX_NESTED_LOOPS - 1; i >= 0; i--) {
@@ -1095,8 +1039,7 @@ static void BattleAnimScriptCmd_EndLoop(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_End(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_End(BattleAnimSystem *system) {
     int i;
     int totalEmitters = 0;
 
@@ -1191,8 +1134,7 @@ static void BattleAnimScriptCmd_End(BattleAnimSystem *system)
     system->moveActive = FALSE;
 }
 
-static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -1219,8 +1161,7 @@ static void BattleAnimScriptCmd_CreateEmitter(BattleAnimSystem *system)
     system->context->emitters[0] = BattleParticleUtil_CreateEmitter(system->context->particleSystems[psIndex], resourceID, callbackID, system);
 }
 
-static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -1251,8 +1192,7 @@ static void BattleAnimScriptCmd_CreateEmitterEx(BattleAnimSystem *system)
 }
 
 #define _ 0xFF
-static int BattleAnimSystem_GetParticleResIdxForMove(BattleAnimSystem *system)
-{
+static int BattleAnimSystem_GetParticleResIdxForMove(BattleAnimSystem *system) {
     // For the meaning of these values, see enum BattleAnimParticleResource
     int indexTable[6][6] = {
         /* Atk/Def P1 E1 P1 E1 P2 E2 */
@@ -1275,8 +1215,7 @@ static int BattleAnimSystem_GetParticleResIdxForMove(BattleAnimSystem *system)
     return index - 1;
 }
 
-static int BattleAnimSystem_GetParticleResIdxForFriendlyFire(BattleAnimSystem *system)
-{
+static int BattleAnimSystem_GetParticleResIdxForFriendlyFire(BattleAnimSystem *system) {
     int indexTable[6][6] = {
         /* Atk/Def P1 E1 P1 E1 P2 E2 */
         /* P1 */ { _, _, _, _, _, _ },
@@ -1299,8 +1238,7 @@ static int BattleAnimSystem_GetParticleResIdxForFriendlyFire(BattleAnimSystem *s
 }
 #undef _
 
-static void BattleAnimScriptCmd_CreateEmitterForMove(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_CreateEmitterForMove(BattleAnimSystem *system) {
     u32 resourceTable[PARTICLE_RESOURCE_COUNT];
 
     BattleAnimScript_Next(system);
@@ -1333,8 +1271,7 @@ static void BattleAnimScriptCmd_CreateEmitterForMove(BattleAnimSystem *system)
     system->context->emitters[0] = BattleParticleUtil_CreateEmitter(system->context->particleSystems[psIndex], resID, callbackID, system);
 }
 
-static void BattleAnimScriptCmd_CreateEmitterForFriendlyFire(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_CreateEmitterForFriendlyFire(BattleAnimSystem *system) {
     u32 resourceTable[4];
 
     BattleAnimScript_Next(system);
@@ -1366,8 +1303,7 @@ static void BattleAnimScriptCmd_CreateEmitterForFriendlyFire(BattleAnimSystem *s
     system->context->emitters[0] = BattleParticleUtil_CreateEmitter(system->context->particleSystems[psIndex], resID, callbackID, system);
 }
 
-static void BattleAnimScriptCmd_WaitForAllEmitters(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_WaitForAllEmitters(BattleAnimSystem *system) {
     int activeEmitters = 0;
     for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (system->context->particleSystems[i] == NULL) {
@@ -1385,8 +1321,7 @@ static void BattleAnimScriptCmd_WaitForAllEmitters(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -1402,8 +1337,7 @@ static void BattleAnimScriptCmd_LoadParticleSystem(BattleAnimSystem *system)
     system->executeAnimScriptFunc = BattleAnimScript_WaitForDelay;
 }
 
-static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -1423,8 +1357,7 @@ static void BattleAnimScriptCmd_LoadDebugParticleSystem(BattleAnimSystem *system
     system->executeAnimScriptFunc = BattleAnimScript_WaitForDelay;
 }
 
-static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u32 psIndex = (u32)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -1434,8 +1367,7 @@ static void BattleAnimScriptCmd_UnloadParticleSystem(BattleAnimSystem *system)
     system->context->particleSystems[psIndex] = NULL;
 }
 
-static void BattleAnimScriptCmd_Call(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_Call(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     for (int i = 0; i < BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH; i++) {
@@ -1450,8 +1382,7 @@ static void BattleAnimScriptCmd_Call(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_Return(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_Return(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     for (int i = BATTLE_ANIM_SCRIPT_MAX_CALL_STACK_DEPTH - 1; i >= 0; i--) {
@@ -1466,8 +1397,7 @@ static void BattleAnimScriptCmd_Return(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u32 id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -1483,8 +1413,7 @@ static void BattleAnimScriptCmd_JumpIfEqual(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02220EA8(BattleAnimSystem *param0)
-{
+static void ov12_02220EA8(BattleAnimSystem *param0) {
     param0->scriptPtr += 1;
 
     if (ov12_02223178(param0->context)) {
@@ -1494,8 +1423,7 @@ static void ov12_02220EA8(BattleAnimSystem *param0)
     }
 }
 
-static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *system) {
     int i;
 
     BattleAnimScript_Next(system);
@@ -1520,8 +1448,7 @@ static void BattleAnimScriptCmd_CallFunc(BattleAnimSystem *system)
     func(system);
 }
 
-static void ov12_02220F30(BattleAnimSystem *param0)
-{
+static void ov12_02220F30(BattleAnimSystem *param0) {
     int v0;
 
     param0->scriptPtr += 1;
@@ -1533,8 +1460,7 @@ static void ov12_02220F30(BattleAnimSystem *param0)
     param0->scriptPtr += (u32)BattleAnimScript_ReadWord(param0->scriptPtr);
 }
 
-static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *system) {
     int battler;
     enum Battler side;
 
@@ -1556,8 +1482,7 @@ static void BattleAnimScriptCmd_JumpIfBattlerSide(BattleAnimSystem *system)
     BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
-static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *system) {
     int weatherConditions[] = {
         FIELD_CONDITION_RAINING,
         FIELD_CONDITION_SANDSTORM,
@@ -1583,8 +1508,7 @@ static void BattleAnimScriptCmd_JumpIfWeather(BattleAnimSystem *system)
     BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
-static void BattleAnimScriptCmd_JumpIfContest(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_JumpIfContest(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     if (BattleAnimSystem_IsContest(system) == TRUE) {
@@ -1594,8 +1518,7 @@ static void BattleAnimScriptCmd_JumpIfContest(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     enum Battler attackerSide = BattleAnimUtil_GetBattlerSide(system, system->context->attacker);
@@ -1608,8 +1531,7 @@ static void BattleAnimScriptCmd_JumpIfFriendlyFire(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02221064(BattleAnimSystem *param0)
-{
+static void ov12_02221064(BattleAnimSystem *param0) {
     int v0;
 
     param0->scriptPtr += 1;
@@ -1624,14 +1546,12 @@ static void ov12_02221064(BattleAnimSystem *param0)
     }
 }
 
-static void BattleAnimScriptCmd_Jump(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_Jump(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
     BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
-static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum BattleAnimBattlerType type)
-{
+static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum BattleAnimBattlerType type) {
     int result;
 
     switch (type) {
@@ -1713,8 +1633,7 @@ static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum Batt
     return result;
 }
 
-static void BattleAnimSystem_SpriteTrackingTaskFunc(SysTask *task, void *param)
-{
+static void BattleAnimSystem_SpriteTrackingTaskFunc(SysTask *task, void *param) {
     SpriteTrackingTask *trackingTask = param;
 
     if (trackingTask->data.interval != 0) {
@@ -1734,8 +1653,7 @@ static void BattleAnimSystem_SpriteTrackingTaskFunc(SysTask *task, void *param)
     ManagedSprite_SetPositionXY(trackingTask->sprite, x, y);
 }
 
-static void BattleAnimSystem_BgTrackingTaskFunc(SysTask *task, void *param)
-{
+static void BattleAnimSystem_BgTrackingTaskFunc(SysTask *task, void *param) {
     BgTrackingTask *trackingTask = param;
 
     if (trackingTask->data.interval != 0) {
@@ -1756,8 +1674,7 @@ static void BattleAnimSystem_BgTrackingTaskFunc(SysTask *task, void *param)
     Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
 }
 
-void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *system, enum BattleAnimTrackingTask task)
-{
+void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *system, enum BattleAnimTrackingTask task) {
     if (task == BATTLE_ANIM_TRACKING_TASK_BG) {
         if (system->bgTrackingTask != NULL) {
             SysTask_Done(system->bgTrackingTask->task);
@@ -1773,18 +1690,15 @@ void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *system, enum BattleAn
     }
 }
 
-static void BattleAnimScriptCmd_Nop0(BattleAnimSystem *param0)
-{
+static void BattleAnimScriptCmd_Nop0(BattleAnimSystem *param0) {
     return;
 }
 
-static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0)
-{
+static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *param0) {
     return;
 }
 
-static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system) {
     void *charData = NULL;
 
     BattleAnimScript_Next(system);
@@ -1853,8 +1767,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     Bg_SetPriority(BG_LAYER_MAIN_2, BattleAnimSystem_GetPokemonSpritePriority(system));
 }
 
-static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
     BattleAnimScript_Next(system);
 
@@ -1864,8 +1777,7 @@ static void BattleAnimScriptCmd_RemovePokemonSpriteFromBg(BattleAnimSystem *syst
     BattleAnimSystem_CancelTrackingTask(system, BATTLE_ANIM_TRACKING_TASK_BG);
 }
 
-static void BattleAnimScriptCmd_InitPokemonSpriteManager(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_InitPokemonSpriteManager(BattleAnimSystem *system) {
     SpriteResourceCapacities caps = {
         BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES,
         BATTLE_ANIM_SCRIPT_MAX_POKEMON_SPRITES,
@@ -1883,8 +1795,7 @@ static void BattleAnimScriptCmd_InitPokemonSpriteManager(BattleAnimSystem *syste
     SpriteSystem_InitManagerWithCapacities(system->context->spriteSystem, system->pokemonSpriteManager, &caps);
 }
 
-static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
     int resID = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
@@ -1935,8 +1846,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem
         resourceIDs[SPRITE_RESOURCE_ANIM]);
 }
 
-static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system) {
     u8 *charData = NULL;
     ManagedSprite *sprite = NULL;
 
@@ -2050,8 +1960,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_FreePokemonSpriteManager(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_FreePokemonSpriteManager(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     if (system->pokemonSpriteManager != NULL) {
@@ -2061,8 +1970,7 @@ static void BattleAnimScriptCmd_FreePokemonSpriteManager(BattleAnimSystem *syste
     system->pokemonSpriteManager = NULL;
 }
 
-static void BattleAnimScriptCmd_RemovePokemonSprite(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_RemovePokemonSprite(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int spriteID = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -2076,8 +1984,7 @@ static void BattleAnimScriptCmd_RemovePokemonSprite(BattleAnimSystem *system)
     system->pokemonSprites[spriteID] = NULL;
 }
 
-static void ov12_02221810(SysTask *param0, void *param1)
-{
+static void ov12_02221810(SysTask *param0, void *param1) {
     UnkStruct_ov12_02221810 *v0 = param1;
 
     if (v0->unk_0C == 0) {
@@ -2090,8 +1997,7 @@ static void ov12_02221810(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_02221834(BattleAnimSystem *param0)
-{
+static void ov12_02221834(BattleAnimSystem *param0) {
     int v0;
     int v1;
     int v2;
@@ -2196,8 +2102,7 @@ static void ov12_02221834(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_022219E8(BattleAnimSystem *param0)
-{
+static void ov12_022219E8(BattleAnimSystem *param0) {
     int v0;
 
     param0->scriptPtr += 1;
@@ -2207,8 +2112,7 @@ static void ov12_022219E8(BattleAnimSystem *param0)
     param0->unk_48[v0].unk_0C = 0;
 }
 
-static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
     int taskID = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
@@ -2216,8 +2120,7 @@ static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *system)
     BattleAnimSystem_CancelTrackingTask(system, taskID);
 }
 
-static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int psIndex = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -2229,8 +2132,7 @@ static void BattleAnimScriptCmd_SetCameraProjection(BattleAnimSystem *system)
     system->cameraProjections[psIndex] = projection;
 }
 
-void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *system)
-{
+void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int psIndex = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -2241,13 +2143,11 @@ void BattleAnimScriptCmd_SetCameraFlip(BattleAnimSystem *system)
     system->particleSystemCameraFlip[psIndex] = flip;
 }
 
-static void BattleAnimScriptCmd_Nop7(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop7(BattleAnimSystem *) {
     return;
 }
 
-static void BattleAnimScriptCmd_Nop8(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop8(BattleAnimSystem *) {
     return;
 }
 
@@ -2270,8 +2170,7 @@ static BOOL (*const sBattleBgAnimFuncs[])(BattleBgSwitch *) = {
     ov12_022224E4
 };
 
-static BOOL BattleBgSwitch_ShouldBeReversed(BattleBgSwitch *bgSwitch, BattleAnimSystem *system, int var)
-{
+static BOOL BattleBgSwitch_ShouldBeReversed(BattleBgSwitch *bgSwitch, BattleAnimSystem *system, int var) {
     enum Battler attackerSide = BattleAnimUtil_GetBattlerSide(system, system->context->attacker);
     enum Battler defenderSide = BattleAnimUtil_GetBattlerSide(system, system->context->defender);
 
@@ -2294,8 +2193,7 @@ static BOOL BattleBgSwitch_ShouldBeReversed(BattleBgSwitch *bgSwitch, BattleAnim
     return FALSE;
 }
 
-static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *system, enum BgLayer bgLayer, int bgID)
-{
+static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *system, enum BgLayer bgLayer, int bgID) {
     Graphics_LoadTilesToBgLayer(
         NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
         BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCGR),
@@ -2335,13 +2233,11 @@ static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *sys
         system->heapID);
 }
 
-static BOOL BattleBgSwitch_IsFlagSet(int flags, int flag)
-{
+static BOOL BattleBgSwitch_IsFlagSet(int flags, int flag) {
     return ((flags << BATTLE_BG_SWITCH_FLAGS_SHIFT) & flag) == flag;
 }
 
-static void BattleBgSwitch_ApplyFlags(BattleBgSwitch *bgSwitch)
-{
+static void BattleBgSwitch_ApplyFlags(BattleBgSwitch *bgSwitch) {
     const u32 flags[] = {
         BATTLE_BG_SWITCH_FLAG_MOVE,
         BATTLE_BG_SWITCH_FLAG_STOP,
@@ -2366,8 +2262,7 @@ static void BattleBgSwitch_ApplyFlags(BattleBgSwitch *bgSwitch)
     }
 }
 
-static BattleBgSwitch *BattleAnimSystem_CreateBgSwitch(BattleAnimSystem *system)
-{
+static BattleBgSwitch *BattleAnimSystem_CreateBgSwitch(BattleAnimSystem *system) {
     BattleBgSwitch *bgSwitch = Heap_AllocFromHeap(system->heapID, sizeof(BattleBgSwitch));
     if (bgSwitch == NULL) {
         GF_ASSERT(FALSE);
@@ -2414,8 +2309,7 @@ static BattleBgSwitch *BattleAnimSystem_CreateBgSwitch(BattleAnimSystem *system)
     return bgSwitch;
 }
 
-static BOOL BattleBgSwitch_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgSwitch_Blend(SysTask *task, BattleBgSwitch *bgSwitch) {
     switch (bgSwitch->state) {
     case 0:
         // Load normal battle/contest BG BG_BASE
@@ -2486,8 +2380,7 @@ static BOOL BattleBgSwitch_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
     return TRUE;
 }
 
-static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch) {
     switch (bgSwitch->state) {
     case 0:
         // When this is called, BG2 would be at either 0% or 50% blending factor depending
@@ -2582,8 +2475,7 @@ static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
     return TRUE;
 }
 
-static BOOL BattleBgSwitch_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgSwitch_Fade(SysTask *task, BattleBgSwitch *bgSwitch) {
     switch (bgSwitch->state) {
     case 0:
         // Fade normal battle/contest palettes to black/white and
@@ -2634,8 +2526,7 @@ static BOOL BattleBgSwitch_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
     return TRUE;
 }
 
-static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch) {
     switch (bgSwitch->state) {
     case 0:
         BattleBgSwitch_ApplyFlags(bgSwitch);
@@ -2716,14 +2607,12 @@ static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
     return TRUE;
 }
 
-static BOOL BattleBgSwitch_FlagsOnly(SysTask *task, BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgSwitch_FlagsOnly(SysTask *task, BattleBgSwitch *bgSwitch) {
     BattleBgSwitch_ApplyFlags(bgSwitch);
     return FALSE;
 }
 
-static BOOL BattleBgRestore_FlagsOnly(SysTask *task, BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgRestore_FlagsOnly(SysTask *task, BattleBgSwitch *bgSwitch) {
     BattleBgSwitch_ApplyFlags(bgSwitch);
 
     if (bgSwitch->bgMoveAnimActive == TRUE) {
@@ -2733,8 +2622,7 @@ static BOOL BattleBgRestore_FlagsOnly(SysTask *task, BattleBgSwitch *bgSwitch)
     return FALSE;
 }
 
-static void BattleBgAnimTask_Move(SysTask *task, void *param)
-{
+static void BattleBgAnimTask_Move(SysTask *task, void *param) {
     BattleBgAnim *bgAnim = (BattleBgAnim *)param;
 
     if (bgAnim->cancel == TRUE) {
@@ -2755,8 +2643,7 @@ static void BattleBgAnimTask_Move(SysTask *task, void *param)
     }
 }
 
-void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *system)
-{
+void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *system) {
     GF_ASSERT(system);
 
     if (system->bgAnim == NULL) {
@@ -2766,18 +2653,15 @@ void BattleAnimSystem_CancelBgAnim(BattleAnimSystem *system)
     system->bgAnim->cancel = TRUE;
 }
 
-int BattleAnimSystem_GetBaseBgPalettes(BattleAnimSystem *system)
-{
+int BattleAnimSystem_GetBaseBgPalettes(BattleAnimSystem *system) {
     return system->baseBgPalettes;
 }
 
-static BOOL BattleBgSwitch_AnimNone(BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgSwitch_AnimNone(BattleBgSwitch *bgSwitch) {
     return FALSE;
 }
 
-static BOOL BattleBgSwitch_AnimMoveStart(BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgSwitch_AnimMoveStart(BattleBgSwitch *bgSwitch) {
     BattleBgAnim *bgAnim = Heap_AllocFromHeap(bgSwitch->battleAnimSystem->heapID, sizeof(BattleBgAnim));
 
     bgAnim->bgConfig = bgSwitch->battleAnimSystem->bgConfig;
@@ -2806,8 +2690,7 @@ static BOOL BattleBgSwitch_AnimMoveStart(BattleBgSwitch *bgSwitch)
     return FALSE;
 }
 
-static BOOL ov12_0222240C(BattleBgSwitch *param0)
-{
+static BOOL ov12_0222240C(BattleBgSwitch *param0) {
     int v0, v1;
     BattleAnimSystem *system;
     BattleBgAnim *v3;
@@ -2842,8 +2725,7 @@ static BOOL ov12_0222240C(BattleBgSwitch *param0)
     return 0;
 }
 
-static BOOL ov12_022224E4(BattleBgSwitch *param0)
-{
+static BOOL ov12_022224E4(BattleBgSwitch *param0) {
     BattleAnimSystem *v0;
     BattleBgAnim *v1;
 
@@ -2854,8 +2736,7 @@ static BOOL ov12_022224E4(BattleBgSwitch *param0)
     return 0;
 }
 
-static void ov12_022224F8(SysTask *param0, void *param1)
-{
+static void ov12_022224F8(SysTask *param0, void *param1) {
     int v0, v1;
     u32 *v2;
     UnkStruct_ov12_022224F8 *v3 = (UnkStruct_ov12_022224F8 *)(((BattleBgAnim *)param1)->unk_1C);
@@ -2885,8 +2766,7 @@ static void ov12_022224F8(SysTask *param0, void *param1)
     }
 }
 
-void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer)
-{
+void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer) {
     int effectPrio = BattleAnimSystem_GetBgPriority(system, BATTLE_ANIM_BG_EFFECT);
     Bg_SetPriority(bgLayer, effectPrio);
     Bg_ToggleLayer(bgLayer, FALSE);
@@ -2909,8 +2789,7 @@ void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer)
     Graphics_LoadTilemapToBgLayer(system->unk_180.unk_00, system->unk_180.unk_0C, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
 }
 
-void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer)
-{
+void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer) {
     int basePrio = BattleAnimSystem_GetBgPriority(system, BATTLE_ANIM_BG_BASE);
     Bg_SetPriority(bgLayer, basePrio);
 
@@ -2924,20 +2803,17 @@ void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *system, enum BgLayer bgLaye
     Bg_ClearTilemap(system->bgConfig, bgLayer);
 }
 
-static BOOL BattleBgSwitch_AnimStop(BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgSwitch_AnimStop(BattleBgSwitch *bgSwitch) {
     bgSwitch->bgMoveAnimActive = TRUE;
     return FALSE;
 }
 
-static BOOL BattleBgSwitch_AnimCancel(BattleBgSwitch *bgSwitch)
-{
+static BOOL BattleBgSwitch_AnimCancel(BattleBgSwitch *bgSwitch) {
     BattleAnimSystem_CancelBgAnim(bgSwitch->battleAnimSystem);
     return FALSE;
 }
 
-static void BattleBgSwitchTask_Start(SysTask *task, void *param)
-{
+static void BattleBgSwitchTask_Start(SysTask *task, void *param) {
     BattleBgSwitch *bgSwitch = param;
     BOOL active = sBattleBgSwitchFuncs[bgSwitch->mode](task, bgSwitch);
 
@@ -2949,8 +2825,7 @@ static void BattleBgSwitchTask_Start(SysTask *task, void *param)
     }
 }
 
-static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *system) {
     BattleBgSwitch *bgSwitch = BattleAnimSystem_CreateBgSwitch(system);
 
     bgSwitch->fadeType = BattleAnimSystem_GetScriptVar(system, BATTLE_ANIM_VAR_BG_FADE_TYPE);
@@ -2968,8 +2843,7 @@ static void BattleAnimScriptCmd_SwitchBg(BattleAnimSystem *system)
     SysTask_Start(BattleBgSwitchTask_Start, bgSwitch, 1100);
 }
 
-static void BattleAnimScriptCmd_SetBgSwitchVar(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SetBgSwitchVar(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int var = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -2997,8 +2871,7 @@ static void BattleAnimScriptCmd_SetBgSwitchVar(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_RestoreBg(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_RestoreBg(BattleAnimSystem *system) {
     BattleBgSwitch *bgSwitch = BattleAnimSystem_CreateBgSwitch(system);
 
     bgSwitch->fadeType = BattleAnimSystem_GetScriptVar(system, 4);
@@ -3016,8 +2889,7 @@ static void BattleAnimScriptCmd_RestoreBg(BattleAnimSystem *system)
     SysTask_Start(BattleBgSwitchTask_Start, bgSwitch, 1100);
 }
 
-static void BattleAnimScriptCmd_WaitForPartialBgSwitch(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_WaitForPartialBgSwitch(BattleAnimSystem *system) {
     if (system->bgSwitchState == BATTLE_BG_SWITCH_STATE_PARTIAL) {
         BattleAnimScript_Next(system);
         system->scriptDelay = 0;
@@ -3026,8 +2898,7 @@ static void BattleAnimScriptCmd_WaitForPartialBgSwitch(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_WaitForBgSwitch(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_WaitForBgSwitch(BattleAnimSystem *system) {
     if (system->bgSwitchState == BATTLE_BG_SWITCH_STATE_NONE) {
         BattleAnimScript_Next(system);
         system->scriptDelay = 0;
@@ -3036,8 +2907,7 @@ static void BattleAnimScriptCmd_WaitForBgSwitch(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
     int bgID = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
@@ -3071,8 +2941,7 @@ static void BattleAnimScriptCmd_SetBg(BattleAnimSystem *system)
         system->heapID);
 }
 
-static void BattleAnimScriptCmd_SwitchBgEx(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SwitchBgEx(BattleAnimSystem *system) {
     BattleBgSwitch *bgSwitch = BattleAnimSystem_CreateBgSwitch(system);
 
     BattleAnimScript_Next(system);
@@ -3099,33 +2968,27 @@ static void BattleAnimScriptCmd_SwitchBgEx(BattleAnimSystem *system)
     SysTask_Start(BattleBgSwitchTask_Start, bgSwitch, 1100);
 }
 
-static void BattleAnimScriptCmd_Nop4(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop4(BattleAnimSystem *) {
     return;
 }
 
-static void BattleAnimScriptCmd_Nop5(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop5(BattleAnimSystem *) {
     return;
 }
 
-static void BattleAnimScriptCmd_Nop6(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop6(BattleAnimSystem *) {
     return;
 }
 
-static void BattleAnimScriptCmd_Nop9(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop9(BattleAnimSystem *) {
     return;
 }
 
-static void BattleAnimScriptCmd_Nop10(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop10(BattleAnimSystem *) {
     return;
 }
 
-static void BattleAnimScriptCmd_PlaySoundEffect(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlaySoundEffect(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u16 effectID = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3134,8 +2997,7 @@ static void BattleAnimScriptCmd_PlaySoundEffect(BattleAnimSystem *system)
     Sound_PlayEffect(effectID);
 }
 
-static void BattleAnimScriptCmd_StopSoundEffect(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_StopSoundEffect(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u16 effectID = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3144,8 +3006,7 @@ static void BattleAnimScriptCmd_StopSoundEffect(BattleAnimSystem *system)
     Sound_StopEffect(effectID, 0);
 }
 
-static void BattleAnimScriptCmd_PlayPannedSoundEffect(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlayPannedSoundEffect(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u16 effectID = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3160,8 +3021,7 @@ static void BattleAnimScriptCmd_PlayPannedSoundEffect(BattleAnimSystem *system)
     Sound_PanEffect(effectID, SOUND_PLAYBACK_TRACK_ALL, pan);
 }
 
-static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int pan = (int)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3170,8 +3030,7 @@ static void BattleAnimScriptCmd_PanSoundEffects(BattleAnimSystem *system)
     Sound_PanAllEffects(BattleAnimSound_CorrectPanDirection(system, pan));
 }
 
-static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef(BattleAnimSystem *system) {
     BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
     memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
@@ -3204,8 +3063,7 @@ static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef(BattleAnimSystem *sy
     BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSystem *system) {
     BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
     memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
@@ -3233,8 +3091,7 @@ static void BattleAnimScriptCmd_PlayMovingSoundEffectNoCorrection(BattleAnimSyst
     BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *system) {
     BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
     memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
@@ -3266,8 +3123,7 @@ static void BattleAnimScriptCmd_PlayMovingSoundEffectAtkDef2(BattleAnimSystem *s
     BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void BattleAnimScriptCmd_PlayLoopedSoundEffect(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlayLoopedSoundEffect(BattleAnimSystem *system) {
     BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
     memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
@@ -3292,8 +3148,7 @@ static void BattleAnimScriptCmd_PlayLoopedSoundEffect(BattleAnimSystem *system)
     BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void BattleAnimScriptCmd_PlayDelayedSoundEffect(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlayDelayedSoundEffect(BattleAnimSystem *system) {
     BattleAnimSoundContext *ctx = BattleAnimSystem_CreateSoundContext(system);
     memset(ctx, 0, sizeof(BattleAnimSoundContext));
 
@@ -3315,13 +3170,11 @@ static void BattleAnimScriptCmd_PlayDelayedSoundEffect(BattleAnimSystem *system)
     BattleAnimSystem_StartSoundTaskInternal(system, ctx);
 }
 
-static void BattleAnimScriptCmd_Nop3(BattleAnimSystem *param0)
-{
+static void BattleAnimScriptCmd_Nop3(BattleAnimSystem *param0) {
     (void)0;
 }
 
-static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *system) {
     if (system->activeSoundTasks) {
         system->scriptDelay = 1;
         system->soundEffectWaitTimer = 0;
@@ -3344,8 +3197,7 @@ static void BattleAnimScriptCmd_WaitForSoundEffects(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_SetBG0BG1AlphaBlending(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SetBG0BG1AlphaBlending(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     u16 ev1 = (u16)BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3357,18 +3209,15 @@ static void BattleAnimScriptCmd_SetBG0BG1AlphaBlending(BattleAnimSystem *system)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1, ev1, ev2);
 }
 
-static void BattleAnimScriptCmd_SetDefaultAlphaBlending(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SetDefaultAlphaBlending(BattleAnimSystem *system) {
     BattleAnimSystem_SetDefaultAlphaBlending();
 }
 
-static void BattleAnimScriptCmd_Nop2(BattleAnimSystem *param0)
-{
+static void BattleAnimScriptCmd_Nop2(BattleAnimSystem *param0) {
     return;
 }
 
-static void BattleAnimScriptCmd_InitSpriteManager(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_InitSpriteManager(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3394,8 +3243,7 @@ static void BattleAnimScriptCmd_InitSpriteManager(BattleAnimSystem *system)
     SpriteSystem_InitManagerWithCapacities(system->context->spriteSystem, system->spriteManagers[id], &caps);
 }
 
-static void BattleAnimScriptCmd_LoadCharResObj(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadCharResObj(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3414,8 +3262,7 @@ static void BattleAnimScriptCmd_LoadCharResObj(BattleAnimSystem *system)
         BATTLE_ANIM_SCRIPT_RES_ID(memberIndex));
 }
 
-static void BattleAnimScriptCmd_LoadPlttRes(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadPlttRes(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3440,8 +3287,7 @@ static void BattleAnimScriptCmd_LoadPlttRes(BattleAnimSystem *system)
         BATTLE_ANIM_SCRIPT_RES_ID(memberIndex));
 }
 
-static void BattleAnimScriptCmd_LoadCellResObj(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadCellResObj(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3459,8 +3305,7 @@ static void BattleAnimScriptCmd_LoadCellResObj(BattleAnimSystem *system)
         BATTLE_ANIM_SCRIPT_RES_ID(memberIndex));
 }
 
-static void BattleAnimScriptCmd_LoadAnimResObj(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_LoadAnimResObj(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3478,8 +3323,7 @@ static void BattleAnimScriptCmd_LoadAnimResObj(BattleAnimSystem *system)
         BATTLE_ANIM_SCRIPT_RES_ID(memberIndex));
 }
 
-static void BattleAnimScriptCmd_AddSpriteWithFunc(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_AddSpriteWithFunc(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3527,8 +3371,7 @@ static void BattleAnimScriptCmd_AddSpriteWithFunc(BattleAnimSystem *system)
     func(system, system->context->spriteSystem, system->spriteManagers[id], sprite);
 }
 
-static void BattleAnimScriptCmd_AddSprite(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_AddSprite(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3563,8 +3406,7 @@ static void BattleAnimScriptCmd_AddSprite(BattleAnimSystem *system)
     system->sprites[spriteID] = sprite;
 }
 
-static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int id = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3577,8 +3419,7 @@ static void BattleAnimScriptCmd_FreeSpriteManager(BattleAnimSystem *system)
     system->spriteManagers[id] = NULL;
 }
 
-static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     int spriteID = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3590,13 +3431,11 @@ static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *system
     ManagedSprite_SetDrawFlag(system->pokemonSprites[spriteID], flag);
 }
 
-static void ov12_022230CC(BattleAnimSystem *param0)
-{
+static void ov12_022230CC(BattleAnimSystem *param0) {
     GF_ASSERT(FALSE);
 }
 
-static void BattleAnimScriptCmd_PlayPokemonCry(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_PlayPokemonCry(BattleAnimSystem *system) {
     BattleAnimScript_Next(system);
 
     enum PokemonCryMod modulation = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -3622,8 +3461,7 @@ static void BattleAnimScriptCmd_PlayPokemonCry(BattleAnimSystem *system)
         system->heapID);
 }
 
-static void BattleAnimScriptCmd_WaitForPokemonCries(BattleAnimSystem *system)
-{
+static void BattleAnimScriptCmd_WaitForPokemonCries(BattleAnimSystem *system) {
     if (Sound_IsPokemonCryPlaying() == FALSE) {
         BattleAnimScript_Next(system);
 
@@ -3637,13 +3475,11 @@ static void BattleAnimScriptCmd_WaitForPokemonCries(BattleAnimSystem *system)
     }
 }
 
-static void BattleAnimScriptCmd_Nop11(BattleAnimSystem *)
-{
+static void BattleAnimScriptCmd_Nop11(BattleAnimSystem *) {
     return;
 }
 
-BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 id)
-{
+BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 id) {
     if (id > NELEMS(sBattleAnimScriptCmdTable)) {
         return NULL;
     }
@@ -3651,13 +3487,11 @@ BattleAnimScriptCmd BattleAnimSystem_GetScriptCmd(u32 id)
     return sBattleAnimScriptCmdTable[id];
 }
 
-int ov12_02223178(BattleAnimContext *param0)
-{
+int ov12_02223178(BattleAnimContext *param0) {
     return param0->unk_01;
 }
 
-s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *system, s8 pan)
-{
+s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *system, s8 pan) {
     int adjustedPan = pan;
     int attacker = BattleAnimSystem_GetAttacker(system);
     int defender = BattleAnimSystem_GetDefender(system);
@@ -3685,8 +3519,7 @@ s8 BattleAnimSound_CorrectPanDirection(BattleAnimSystem *system, s8 pan)
     return adjustedPan;
 }
 
-s8 BattleAnimSound_CorrectStepDirection(s8 start, s8 end, s8 step)
-{
+s8 BattleAnimSound_CorrectStepDirection(s8 start, s8 end, s8 step) {
     s8 adjustedStep;
 
     if (start < end) {
@@ -3700,8 +3533,7 @@ s8 BattleAnimSound_CorrectStepDirection(s8 start, s8 end, s8 step)
     return adjustedStep;
 }
 
-BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)
-{
+BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2) {
     int v0, v1;
 
     param0->scriptPtr += 1;
@@ -3722,38 +3554,31 @@ BOOL ov12_0222325C(BattleAnimSystem *param0, int param1[], int param2)
     return 1;
 }
 
-SpriteTemplate BattleAnimSystem_GetLastSpriteTemplate(BattleAnimSystem *system)
-{
+SpriteTemplate BattleAnimSystem_GetLastSpriteTemplate(BattleAnimSystem *system) {
     return system->lastSpriteTemplate;
 }
 
-int BattleAnimSystem_GetBattlerType(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerType(BattleAnimSystem *system, int battler) {
     return system->context->battlerTypes[battler];
 }
 
-int BattleAnimSystem_GetBattlerGender(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerGender(BattleAnimSystem *system, int battler) {
     return system->context->battlerGenders[battler];
 }
 
-int BattleAnimSystem_GetBattlerSpecies(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerSpecies(BattleAnimSystem *system, int battler) {
     return system->context->battlerSpecies[battler];
 }
 
-int BattleAnimSystem_GetBattlerForm(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerForm(BattleAnimSystem *system, int battler) {
     return system->context->battlerForms[battler];
 }
 
-int BattleAnimSystem_GetBattlerPersonality(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerPersonality(BattleAnimSystem *system, int battler) {
     return system->context->battlerPersonalities[battler];
 }
 
-PokemonSprite *BattleAnimSystem_GetBattlerSprite(BattleAnimSystem *system, int battler)
-{
+PokemonSprite *BattleAnimSystem_GetBattlerSprite(BattleAnimSystem *system, int battler) {
     if (system->context->battlerSprites[battler] == NULL) {
         return NULL;
     }
@@ -3765,38 +3590,31 @@ PokemonSprite *BattleAnimSystem_GetBattlerSprite(BattleAnimSystem *system, int b
     }
 }
 
-PaletteData *BattleAnimSystem_GetPaletteData(BattleAnimSystem *system)
-{
+PaletteData *BattleAnimSystem_GetPaletteData(BattleAnimSystem *system) {
     return system->paletteData;
 }
 
-int BattleAnimSystem_GetBattlerSpritePaletteIndex(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerSpritePaletteIndex(BattleAnimSystem *system, int battler) {
     return system->context->pokemonSpriteData[battler]->unk_08;
 }
 
-int BattleAnimSystem_GetBattlerSpriteNarcID(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerSpriteNarcID(BattleAnimSystem *system, int battler) {
     return system->context->pokemonSpriteData[battler]->unk_04;
 }
 
-int BattleAnimSystem_GetBattlerSpriteHeight(BattleAnimSystem *system, int battler)
-{
+int BattleAnimSystem_GetBattlerSpriteHeight(BattleAnimSystem *system, int battler) {
     return system->context->pokemonSpriteData[battler]->unk_0C;
 }
 
-BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *system)
-{
+BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *system) {
     return (system->context->battleType & BATTLE_TYPE_DOUBLES) ? TRUE : FALSE;
 }
 
-BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *system, int battler)
-{
+BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *system, int battler) {
     return (system->context->battlerMoveEffects[battler] & MOVE_EFFECT_SEMI_INVULNERABLE) ? TRUE : FALSE;
 }
 
-int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *system)
-{
+int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *system) {
     if (BattleAnimSystem_IsContest(system) == TRUE) {
         return 2;
     } else {
@@ -3804,8 +3622,7 @@ int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *system)
     }
 }
 
-enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAnimBg bg)
-{
+enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAnimBg bg) {
     enum BgLayer bgLayers[][3] = {
         { BATTLE_BG_WINDOW, BATTLE_BG_BASE, BATTLE_BG_EFFECT },
         { BATTLE_BG_WINDOW, BATTLE_BG_BASE, BATTLE_BG_EFFECT }
@@ -3818,8 +3635,7 @@ enum BgLayer BattleAnimSystem_GetBgLayer(BattleAnimSystem *system, enum BattleAn
     }
 }
 
-int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg)
-{
+int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg) {
     int bgIDs[][3] = {
         { BATTLE_BG_ID_WINDOW, BATTLE_BG_ID_BASE, BATTLE_BG_ID_EFFECT },
         { BATTLE_BG_ID_WINDOW, BATTLE_BG_ID_BASE, BATTLE_BG_ID_EFFECT }
@@ -3832,8 +3648,7 @@ int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg)
     }
 }
 
-int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, enum BattleAnimBg bg)
-{
+int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, enum BattleAnimBg bg) {
     switch (bg) {
     case BATTLE_ANIM_BG_WINDOW:
         UNUSED(BattleAnimSystem_IsContest(system));
@@ -3849,18 +3664,15 @@ int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, enum BattleAnimBg b
     }
 }
 
-void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer layer)
-{
+void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer layer) {
     Bg_LoadTiles(system->bgConfig, layer, system->context->bgTiles, 0x10000, 0);
 }
 
-void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system)
-{
+void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system) {
     PaletteData_LoadBuffer(system->paletteData, system->context->bgPaletteBuffer, PLTTBUF_MAIN_BG, 0, 0x200);
 }
 
-BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, enum BattleAnimBattlerType type)
-{
+BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, enum BattleAnimBattlerType type) {
     int battler = BattleAnimSystem_GetBattlerOfType(system, type);
     int form = system->context->battlerForms[battler];
 
@@ -3932,13 +3744,11 @@ static const int sBgNarcIndices[][BG_NARC_MEMBER_COUNT] = {
     { 0x86, 0x142, 0x87, 0x87, 0x87 }
 };
 
-int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type)
-{
+int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type) {
     return sBgNarcIndices[bgID][type];
 }
 
-UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2)
-{
+UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2) {
     int v0;
     int v1[] = { 0, 0, 20, 10, 10, 20 };
     UnkStruct_ov12_02223764 *v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02223764));
@@ -4085,13 +3895,11 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
     return v2;
 }
 
-UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID)
-{
+UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID) {
     return ov12_022234F8(battleSys, heapID, 0xFF);
 }
 
-void ov12_02223770(UnkStruct_ov12_02223764 *battleSys)
-{
+void ov12_02223770(UnkStruct_ov12_02223764 *battleSys) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -4107,8 +3915,7 @@ void ov12_02223770(UnkStruct_ov12_02223764 *battleSys)
     Heap_Free(battleSys);
 }
 
-void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1)
-{
+void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -4124,8 +3931,7 @@ void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1)
     Heap_Free(param0);
 }
 
-int ov12_022237D8(UnkStruct_ov12_02223764 *param0)
-{
+int ov12_022237D8(UnkStruct_ov12_02223764 *param0) {
     GF_ASSERT(param0 != NULL);
     return param0->unk_44[param0->unk_04];
 }

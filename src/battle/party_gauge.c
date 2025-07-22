@@ -197,8 +197,7 @@ __attribute__((aligned(4))) static const u16 sPokeballYPosTheirs[] = {
 #define PARTY_GAUGE_NCER_BIN 341
 #define PARTY_GAUGE_NANR_BIN 342
 
-void PartyGauge_LoadGraphics(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *palette)
-{
+void PartyGauge_LoadGraphics(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *palette) {
     NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, PARTY_GAUGE_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_PLTT_RES_ID);
@@ -209,29 +208,25 @@ void PartyGauge_LoadGraphics(SpriteSystem *spriteSys, SpriteManager *spriteMan, 
     NARC_dtor(narc);
 }
 
-void PartyGauge_FreeGraphics(SpriteManager *spriteMan)
-{
+void PartyGauge_FreeGraphics(SpriteManager *spriteMan) {
     SpriteManager_UnloadCharObjById(spriteMan, PARTY_GAUGE_CHAR_RES_ID);
     SpriteManager_UnloadPlttObjById(spriteMan, PARTY_GAUGE_PLTT_RES_ID);
     SpriteManager_UnloadCellObjById(spriteMan, PARTY_GAUGE_CELL_RES_ID);
     SpriteManager_UnloadAnimObjById(spriteMan, PARTY_GAUGE_ANIM_RES_ID);
 }
 
-static PartyGauge *NewPartyGauge()
-{
+static PartyGauge *NewPartyGauge() {
     PartyGauge *gauge = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PartyGauge));
     MI_CpuClear8(gauge, sizeof(PartyGauge));
     return gauge;
 }
 
-static void FreePartyGauge(PartyGauge *gauge)
-{
+static void FreePartyGauge(PartyGauge *gauge) {
     GF_ASSERT(gauge->arrow.task == NULL);
     Heap_Free(gauge);
 }
 
-PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteSystem *spriteSys, SpriteManager *spriteMan)
-{
+PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteSystem *spriteSys, SpriteManager *spriteMan) {
     PartyGauge *gauge = NewPartyGauge();
     ShowArrow(&gauge->arrow, side, pos, spriteSys, spriteMan);
 
@@ -243,8 +238,7 @@ PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum Show
     return gauge;
 }
 
-BOOL PartyGauge_ShowIsDone(PartyGauge *gauge)
-{
+BOOL PartyGauge_ShowIsDone(PartyGauge *gauge) {
     int i;
     if (gauge->arrow.task == NULL) {
         for (i = 0; i < MAX_PARTY_SIZE; i++) {
@@ -261,8 +255,7 @@ BOOL PartyGauge_ShowIsDone(PartyGauge *gauge)
     return FALSE;
 }
 
-void PartyGauge_Hide(PartyGauge *gauge, enum HideArrowType hideArrowType, enum HidePartyGaugeType hideGaugeType)
-{
+void PartyGauge_Hide(PartyGauge *gauge, enum HideArrowType hideArrowType, enum HidePartyGaugeType hideGaugeType) {
     GF_ASSERT(gauge != NULL);
 
     HideArrow(&gauge->arrow, hideArrowType);
@@ -271,8 +264,7 @@ void PartyGauge_Hide(PartyGauge *gauge, enum HideArrowType hideArrowType, enum H
     }
 }
 
-BOOL PartyGauge_HideIsDone(PartyGauge *gauge)
-{
+BOOL PartyGauge_HideIsDone(PartyGauge *gauge) {
     int i;
     if (gauge->arrow.task == NULL) {
         for (i = 0; i < MAX_PARTY_SIZE; i++) {
@@ -289,8 +281,7 @@ BOOL PartyGauge_HideIsDone(PartyGauge *gauge)
     return FALSE;
 }
 
-void PartyGauge_Free(PartyGauge *gauge)
-{
+void PartyGauge_Free(PartyGauge *gauge) {
     Sprite_DeleteAndFreeResources(gauge->arrow.managedSprite);
 
     for (int i = 0; i < MAX_PARTY_SIZE; i++) {
@@ -306,8 +297,7 @@ enum ShowArrowState {
     SHOW_ARROW_DONE,
 };
 
-static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteSystem *spriteSys, SpriteManager *spriteMan)
-{
+static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteSystem *spriteSys, SpriteManager *spriteMan) {
     GF_ASSERT(arrow->managedSprite == NULL && arrow->task == NULL);
 
     MI_CpuClear8(arrow, sizeof(PartyGaugeArrow));
@@ -331,8 +321,7 @@ static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum Par
     Sound_PlayEffect(SEQ_SE_PARTY_GAUGE_ARROW_IN);
 }
 
-static void ShowArrowTask(SysTask *task, void *data)
-{
+static void ShowArrowTask(SysTask *task, void *data) {
     PartyGaugeArrow *arrow = data;
 
     switch (arrow->state) {
@@ -376,8 +365,7 @@ enum HideArrowState {
     HIDE_ARROW_DONE,
 };
 
-static void HideArrow(PartyGaugeArrow *arrow, enum HideArrowType type)
-{
+static void HideArrow(PartyGaugeArrow *arrow, enum HideArrowType type) {
     GF_ASSERT(arrow->managedSprite != NULL && arrow->task == NULL);
 
     arrow->state = HIDE_ARROW_INIT;
@@ -392,8 +380,7 @@ static void HideArrow(PartyGaugeArrow *arrow, enum HideArrowType type)
     arrow->task = SysTask_Start(HideArrowTask, arrow, ARROW_TASK_PRIORITY);
 }
 
-static void HideArrowTask(SysTask *task, void *data)
-{
+static void HideArrowTask(SysTask *task, void *data) {
     PartyGaugeArrow *arrow = data;
 
     switch (arrow->state) {
@@ -457,8 +444,7 @@ enum ShowPokeballsState {
     SHOW_POKEBALLS_DONE,
 };
 
-static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteSystem *spriteSys, SpriteManager *spriteMan)
-{
+static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteSystem *spriteSys, SpriteManager *spriteMan) {
     GF_ASSERT(pokeballs->managedSprite == NULL && pokeballs->task == NULL);
 
     MI_CpuClear8(pokeballs, sizeof(PartyGaugePokeballs));
@@ -501,8 +487,7 @@ static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum Par
     }
 }
 
-static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
-{
+static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data) {
     PartyGaugePokeballs *pokeballs = data;
 
     switch (pokeballs->state) {
@@ -605,8 +590,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
     }
 }
 
-static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
-{
+static void ShowPokeballsMidBattleTask(SysTask *task, void *data) {
     PartyGaugePokeballs *pokeballs = data;
 
     switch (pokeballs->state) {
@@ -652,8 +636,7 @@ static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
     }
 }
 
-static void HidePokeballs(PartyGaugePokeballs *pokeballs, int slot, enum HidePartyGaugeType type, s16 *arrowAlpha)
-{
+static void HidePokeballs(PartyGaugePokeballs *pokeballs, int slot, enum HidePartyGaugeType type, s16 *arrowAlpha) {
     GF_ASSERT(pokeballs->managedSprite != NULL && pokeballs->task == NULL);
 
     pokeballs->state = 0;
@@ -680,8 +663,7 @@ enum HidePokeballsState {
     HIDE_POKEBALLS_BREAK = 100,
 };
 
-static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
-{
+static void HidePokeballsStartOfBattleTask(SysTask *task, void *data) {
     PartyGaugePokeballs *pokeballs = data;
 
     if (*(pokeballs->arrowAlpha) == 0) {
@@ -734,8 +716,7 @@ static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
     }
 }
 
-static void HidePokeballsMidBattleTask(SysTask *task, void *data)
-{
+static void HidePokeballsMidBattleTask(SysTask *task, void *data) {
     PartyGaugePokeballs *pokeballs = data;
 
     if (*(pokeballs->arrowAlpha) == 0) {
@@ -759,8 +740,7 @@ static void HidePokeballsMidBattleTask(SysTask *task, void *data)
     }
 }
 
-static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyGaugeSide side)
-{
+static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyGaugeSide side) {
     switch (status) {
     case BALL_STATUS_NO_MON:
     default:
@@ -777,8 +757,7 @@ static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyG
     }
 }
 
-static int FlippedAnimationFrame(int frame)
-{
+static int FlippedAnimationFrame(int frame) {
     switch (frame) {
     case PGANM_POKEBALL_EMPTY_SLOT:
     default:

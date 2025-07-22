@@ -106,8 +106,7 @@ static void ov33_022570E8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2);
 static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1);
 
-BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_02256474_1 *param1, BgConfig *param2)
-{
+BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_02256474_1 *param1, BgConfig *param2) {
     UnkStruct_ov33_02256474 *v0 = (UnkStruct_ov33_02256474 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov33_02256474));
 
     if (v0 != NULL) {
@@ -134,8 +133,7 @@ BOOL ov33_02256474(UnkStruct_ov33_02256474 **param0, const UnkStruct_ov33_022564
     return 0;
 }
 
-void ov33_022564F0(UnkStruct_ov33_02256474 *param0)
-{
+void ov33_022564F0(UnkStruct_ov33_02256474 *param0) {
     if (param0 != NULL) {
         int v0;
 
@@ -166,30 +164,25 @@ static const PoketchTask Unk_ov33_02257878[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov33_02256548(UnkStruct_ov33_02256474 *param0, u32 param1)
-{
+void ov33_02256548(UnkStruct_ov33_02256474 *param0, u32 param1) {
     PoketchTask_Start(Unk_ov33_02257878, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov33_0225656C(UnkStruct_ov33_02256474 *param0, u32 param1)
-{
+BOOL ov33_0225656C(UnkStruct_ov33_02256474 *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov33_02256578(UnkStruct_ov33_02256474 *param0)
-{
+BOOL ov33_02256578(UnkStruct_ov33_02256474 *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov33_02256584(PoketchTaskManager *param0)
-{
+static void ov33_02256584(PoketchTaskManager *param0) {
     UnkStruct_ov33_02256474 *v0 = PoketchTask_GetTaskData(param0);
 
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov33_02256598(SysTask *param0, void *param1)
-{
+static void ov33_02256598(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -222,8 +215,7 @@ static void ov33_02256598(SysTask *param0, void *param1)
     ov33_02256584(param1);
 }
 
-static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     static const struct {
         u16 x;
         u16 y;
@@ -292,8 +284,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_022567D4(VecFx32 *param0)
-{
+static void ov33_022567D4(VecFx32 *param0) {
     fx32 v0, v1;
 
     v0 = (-32 + (MTRNG_Next() & 63)) * FX32_ONE;
@@ -306,8 +297,7 @@ static void ov33_022567D4(VecFx32 *param0)
     param0->y /= 16;
 }
 
-static inline void inline_ov33_0225681C(UnkStruct_ov33_02256474_sub1 *param0)
-{
+static inline void inline_ov33_0225681C(UnkStruct_ov33_02256474_sub1 *param0) {
     if (param0->unk_30) {
         PoketchAnimation_UpdateAnimationIdx(param0->unk_00, 6);
     } else {
@@ -315,8 +305,7 @@ static inline void inline_ov33_0225681C(UnkStruct_ov33_02256474_sub1 *param0)
     }
 }
 
-static void ov33_0225681C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_0225681C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     int v0;
 
     for (v0 = 0; v0 < param1->unk_00; v0++) {
@@ -328,16 +317,14 @@ static void ov33_0225681C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     param0->unk_B0 = SysTask_Start(ov33_02256904, param0, 1);
 }
 
-static void ov33_02256898(SysTask *param0, void *param1)
-{
+static void ov33_02256898(SysTask *param0, void *param1) {
     UnkStruct_ov33_02256474 *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov33_02256584(param1);
 }
 
-static void ov33_022568B4(UnkStruct_ov33_02256474 *param0)
-{
+static void ov33_022568B4(UnkStruct_ov33_02256474 *param0) {
     int v0;
 
     param0->unk_E4 = 0;
@@ -351,14 +338,12 @@ static void ov33_022568B4(UnkStruct_ov33_02256474 *param0)
     param0->unk_F0 = param0->unk_EC;
 }
 
-static void ov33_022568F4(UnkStruct_ov33_02256474 *param0, int param1)
-{
+static void ov33_022568F4(UnkStruct_ov33_02256474 *param0, int param1) {
     param0->unk_E4 = param1;
     param0->unk_E8 = 0;
 }
 
-static void ov33_02256904(SysTask *param0, void *param1)
-{
+static void ov33_02256904(SysTask *param0, void *param1) {
     static void (*const v0[])(UnkStruct_ov33_02256474 *, const UnkStruct_ov33_02256474_1 *) = {
         ov33_02256A44,
         ov33_02256A64,
@@ -396,8 +381,7 @@ static void ov33_02256904(SysTask *param0, void *param1)
     }
 }
 
-static u32 ov33_022569C0(UnkStruct_ov33_02256474 *param0)
-{
+static u32 ov33_022569C0(UnkStruct_ov33_02256474 *param0) {
     int v0;
     int v1, v2;
 
@@ -415,8 +399,7 @@ static u32 ov33_022569C0(UnkStruct_ov33_02256474 *param0)
     return param0->unk_00->unk_00;
 }
 
-static BOOL ov33_02256A14(u32 param0, u32 param1, u32 param2, const VecFx32 *param3)
-{
+static BOOL ov33_02256A14(u32 param0, u32 param1, u32 param2, const VecFx32 *param3) {
     int v0, v1;
     int v2;
 
@@ -436,16 +419,14 @@ static BOOL ov33_02256A14(u32 param0, u32 param1, u32 param2, const VecFx32 *par
     return 0;
 }
 
-static void ov33_02256A44(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_02256A44(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     if (param1->unk_4E) {
         param0->unk_FC = param0->unk_F8;
         ov33_022568F4(param0, 1);
     }
 }
 
-static void ov33_02256A64(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_02256A64(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     if (param1->unk_4C) {
         param0->unk_E8++;
 
@@ -461,15 +442,13 @@ static void ov33_02256A64(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_02256AA8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_02256AA8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     if (param1->unk_4C == 0) {
         ov33_022568F4(param0, 0);
     }
 }
 
-static void ov33_02256ABC(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_02256ABC(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     if (param1->unk_4E == 0) {
         param0->unk_E8++;
 
@@ -486,8 +465,7 @@ static void ov33_02256ABC(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_02256B08(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_02256B08(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     if (param0->unk_E8 == 0) {
         ov33_02256C08(param0);
         param0->unk_E8++;
@@ -498,8 +476,7 @@ static void ov33_02256B08(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_02256B3C(const char *param0, ...)
-{
+static void ov33_02256B3C(const char *param0, ...) {
     if (gSystem.heldKeys & PAD_BUTTON_B) {
         va_list v0;
         va_start(v0, param0);
@@ -507,8 +484,7 @@ static void ov33_02256B3C(const char *param0, ...)
     }
 }
 
-static void ov33_02256B44(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_02256B44(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     static void (*const v0[])(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int) = {
         ov33_02256D34,
         ov33_02256E1C,
@@ -532,8 +508,7 @@ static void ov33_02256B44(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     ov33_02256B3C("------------\n");
 }
 
-static void ov33_02256BAC(UnkStruct_ov33_02256474 *param0, int param1, int param2)
-{
+static void ov33_02256BAC(UnkStruct_ov33_02256474 *param0, int param1, int param2) {
     switch (param0->unk_134[param1].unk_2C) {
     case 3:
         ov33_02256CC4(param0, param1);
@@ -552,8 +527,7 @@ static void ov33_02256BAC(UnkStruct_ov33_02256474 *param0, int param1, int param
     }
 }
 
-static void ov33_02256C08(UnkStruct_ov33_02256474 *param0)
-{
+static void ov33_02256C08(UnkStruct_ov33_02256474 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
@@ -564,13 +538,11 @@ static void ov33_02256C08(UnkStruct_ov33_02256474 *param0)
     param0->unk_100 = param0->unk_00->unk_00;
 }
 
-static BOOL ov33_02256C40(UnkStruct_ov33_02256474 *param0)
-{
+static BOOL ov33_02256C40(UnkStruct_ov33_02256474 *param0) {
     return param0->unk_100 == 0;
 }
 
-static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
-{
+static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1) {
     if (param0->unk_00->unk_04[param1].unk_0A == 0) {
         PoketchAnimation_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 0);
         PoketchAnimation_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
@@ -578,20 +550,17 @@ static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
     }
 }
 
-static void ov33_02256C98(UnkStruct_ov33_02256474 *param0, int param1)
-{
+static void ov33_02256C98(UnkStruct_ov33_02256474 *param0, int param1) {
     PoketchAnimation_SetSpritePrority(param0->unk_30, param0->unk_134[param1].unk_04, 2);
     PoketchAnimation_UpdateAnimationIdx(param0->unk_134[param1].unk_04, 3);
     PoketchAnimation_HideSprite(param0->unk_134[param1].unk_04, 0);
 }
 
-static void ov33_02256CC4(UnkStruct_ov33_02256474 *param0, int param1)
-{
+static void ov33_02256CC4(UnkStruct_ov33_02256474 *param0, int param1) {
     PoketchAnimation_HideSprite(param0->unk_134[param1].unk_04, 1);
 }
 
-static void ov33_02256CDC(fx32 param0, u32 param1, VecFx32 *param2)
-{
+static void ov33_02256CDC(fx32 param0, u32 param1, VecFx32 *param2) {
     fx32 v0 = VEC_Mag(param2);
 
     if (v0 > param0) {
@@ -605,13 +574,11 @@ static void ov33_02256CDC(fx32 param0, u32 param1, VecFx32 *param2)
     }
 }
 
-static BOOL ov33_02256D20(const VecFx32 *param0)
-{
+static BOOL ov33_02256D20(const VecFx32 *param0) {
     return (param0->x == 0) && (param0->y == 0);
 }
 
-static void ov33_02256D34(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2)
-{
+static void ov33_02256D34(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2) {
     ov33_02256B3C(" icon[%d] Default\n", param2);
 
     if (param1->unk_4C == 0) {
@@ -639,8 +606,7 @@ static void ov33_02256D34(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_02256E1C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2)
-{
+static void ov33_02256E1C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2) {
     ov33_02256B3C(" icon[%d] ReaLike\n", param2);
 
     if (param1->unk_4C && ov33_02256A14(param0->unk_280, param0->unk_284, 64, &param0->unk_134[param2].unk_14)) {
@@ -671,8 +637,7 @@ static void ov33_02256E1C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_02256F34(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2)
-{
+static void ov33_02256F34(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2) {
     ov33_02256B3C(" icon[%d] ReaHate\n", param2);
 
     if (param1->unk_4C && ov33_02256A14(param0->unk_280, param0->unk_284, 64, &param0->unk_134[param2].unk_14)) {
@@ -695,8 +660,7 @@ static void ov33_02256F34(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_02257010(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2)
-{
+static void ov33_02257010(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2) {
     ov33_02256B3C(" icon[%d] TcgLike\n", param2);
 
     if (param1->unk_4C) {
@@ -728,8 +692,7 @@ static void ov33_02257010(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     ov33_02256BAC(param0, param2, 0);
 }
 
-static void ov33_022570E8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2)
-{
+static void ov33_022570E8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2) {
     ov33_02256B3C(" icon[%d] TchHate\n", param2);
 
     if (param1->unk_4C) {
@@ -753,8 +716,7 @@ static void ov33_022570E8(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     ov33_02256BAC(param0, param2, 0);
 }
 
-static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2)
-{
+static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1, int param2) {
     UnkStruct_ov33_02256474_sub1 *v0 = &param0->unk_134[param2];
 
     ov33_02256B3C(" icon[%d] Reset!!\n", param2);
@@ -795,8 +757,7 @@ static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1)
-{
+static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_02256474_1 *param1) {
     VecFx32 v0;
     fx32 v1, v2;
     fx32 v3;
@@ -986,13 +947,11 @@ static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     }
 }
 
-static inline BOOL inline_ov33_022572A0(const VecFx32 *param0)
-{
+static inline BOOL inline_ov33_022572A0(const VecFx32 *param0) {
     return (param0->x == 0) && (param0->y == 0);
 }
 
-static inline void inline_ov33_022572A0_1(VecFx32 *param0)
-{
+static inline void inline_ov33_022572A0_1(VecFx32 *param0) {
     param0->x *= -1;
     param0->y *= -1;
 }

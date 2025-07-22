@@ -33,8 +33,7 @@ static void SpriteList_InitSprites(SpriteList *list);
 static Sprite *SpriteList_AllocSprite(SpriteList *list);
 static BOOL SpriteList_FreeSprite(SpriteList *list, Sprite *sprite);
 
-SpriteList *SpriteList_New(const SpriteListParams *params)
-{
+SpriteList *SpriteList_New(const SpriteListParams *params) {
     GF_ASSERT(params);
     GF_ASSERT(params->renderer);
 
@@ -64,8 +63,7 @@ SpriteList *SpriteList_New(const SpriteListParams *params)
     return list;
 }
 
-BOOL SpriteList_Delete(SpriteList *list)
-{
+BOOL SpriteList_Delete(SpriteList *list) {
     if (list == NULL) {
         return FALSE;
     }
@@ -88,8 +86,7 @@ BOOL SpriteList_Delete(SpriteList *list)
     return TRUE;
 }
 
-BOOL SpriteList_SetActive(SpriteList *list, u8 active)
-{
+BOOL SpriteList_SetActive(SpriteList *list, u8 active) {
     if (list == NULL) {
         return FALSE;
     }
@@ -103,8 +100,7 @@ BOOL SpriteList_SetActive(SpriteList *list, u8 active)
     return TRUE;
 }
 
-BOOL SpriteList_DeleteAll(SpriteList *list)
-{
+BOOL SpriteList_DeleteAll(SpriteList *list) {
     if (list == NULL) {
         return FALSE;
     }
@@ -123,8 +119,7 @@ BOOL SpriteList_DeleteAll(SpriteList *list)
     return TRUE;
 }
 
-void SpriteList_Update(const SpriteList *list)
-{
+void SpriteList_Update(const SpriteList *list) {
     static const SpriteDrawFunc sDrawFuncs[] = {
         SpriteList_DrawSprite_Stub,
         SpriteList_DrawSprite
@@ -149,8 +144,7 @@ void SpriteList_Update(const SpriteList *list)
     }
 }
 
-static void SpriteList_Reset(SpriteList *list)
-{
+static void SpriteList_Reset(SpriteList *list) {
     list->sprites = NULL;
     list->capacity = 0;
     list->freeSprites = NULL;
@@ -161,8 +155,7 @@ static void SpriteList_Reset(SpriteList *list)
     list->active = FALSE;
 }
 
-void Sprite_Reset(Sprite *sprite)
-{
+void Sprite_Reset(Sprite *sprite) {
     sprite->list = NULL;
     memset(sprite, 0, sizeof(Sprite));
 
@@ -172,8 +165,7 @@ void Sprite_Reset(Sprite *sprite)
     sprite->explicitOamMode = GX_OAM_MODE_NORMAL;
 }
 
-Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template)
-{
+Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template) {
     Sprite *sprite = SpriteList_AllocSprite(template->list);
     if (sprite == NULL) {
         return NULL;
@@ -217,8 +209,7 @@ Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template)
     return sprite;
 }
 
-Sprite *SpriteList_Add(const SpriteListTemplate *template)
-{
+Sprite *SpriteList_Add(const SpriteListTemplate *template) {
     AffineSpriteListTemplate affineTemplate;
 
     affineTemplate.list = template->list;
@@ -235,8 +226,7 @@ Sprite *SpriteList_Add(const SpriteListTemplate *template)
     return SpriteList_AddAffine(&affineTemplate);
 }
 
-void Sprite_Delete(Sprite *sprite)
-{
+void Sprite_Delete(Sprite *sprite) {
     if (sprite->type == CELL_ANIM_TYPE_NONE) {
         return;
     }
@@ -270,100 +260,83 @@ void Sprite_Delete(Sprite *sprite)
     SpriteList_FreeSprite(sprite->list, sprite);
 }
 
-void Sprite_SetPosition(Sprite *sprite, const VecFx32 *position)
-{
+void Sprite_SetPosition(Sprite *sprite, const VecFx32 *position) {
     sprite->position = *position;
 }
 
-void Sprite_SetAffineTranslation(Sprite *sprite, const VecFx32 *translation)
-{
+void Sprite_SetAffineTranslation(Sprite *sprite, const VecFx32 *translation) {
     sprite->affineTranslation = *translation;
 }
 
-void Sprite_SetAffineScale(Sprite *sprite, const VecFx32 *scale)
-{
+void Sprite_SetAffineScale(Sprite *sprite, const VecFx32 *scale) {
     sprite->affineScale = *scale;
 }
 
-void Sprite_SetAffineScaleEx(Sprite *sprite, const VecFx32 *scale, enum AffineOverwriteMode mode)
-{
+void Sprite_SetAffineScaleEx(Sprite *sprite, const VecFx32 *scale, enum AffineOverwriteMode mode) {
     Sprite_SetAffineScale(sprite, scale);
     Sprite_SetAffineOverwriteMode(sprite, mode);
 }
 
-void Sprite_SetAffineZRotation(Sprite *sprite, u16 angle)
-{
+void Sprite_SetAffineZRotation(Sprite *sprite, u16 angle) {
     sprite->affineZRotation = angle;
 }
 
-void Sprite_SetAffineZRotationEx(Sprite *sprite, u16 angle, enum AffineOverwriteMode mode)
-{
+void Sprite_SetAffineZRotationEx(Sprite *sprite, u16 angle, enum AffineOverwriteMode mode) {
     Sprite_SetAffineZRotation(sprite, angle);
     Sprite_SetAffineOverwriteMode(sprite, mode);
 }
 
-void Sprite_SetDrawFlag(Sprite *sprite, BOOL draw)
-{
+void Sprite_SetDrawFlag(Sprite *sprite, BOOL draw) {
     GF_ASSERT(sprite);
     GF_ASSERT(draw < 2); // This value is used as an index into an array of size 2 inside SpriteList_Update
 
     sprite->draw = draw;
 }
 
-void Sprite_SetAnimateFlag(Sprite *sprite, BOOL animate)
-{
+void Sprite_SetAnimateFlag(Sprite *sprite, BOOL animate) {
     GF_ASSERT(sprite);
     GF_ASSERT(animate < 2); // This value is used as an index into an array of size 2 inside SpriteList_Update
 
     sprite->animate = animate;
 }
 
-void Sprite_SetAnimSpeed(Sprite *sprite, fx32 speed)
-{
+void Sprite_SetAnimSpeed(Sprite *sprite, fx32 speed) {
     GF_ASSERT(sprite);
     sprite->animSpeed = speed;
 }
 
-void Sprite_SetAffineOverwriteMode(Sprite *sprite, enum AffineOverwriteMode mode)
-{
+void Sprite_SetAffineOverwriteMode(Sprite *sprite, enum AffineOverwriteMode mode) {
     GF_ASSERT(sprite);
     sprite->affineOverwriteMode = mode;
 }
 
-void Sprite_SetFlipMode(Sprite *sprite, u32 mode)
-{
+void Sprite_SetFlipMode(Sprite *sprite, u32 mode) {
     GF_ASSERT(sprite);
     sprite->flip = mode;
     sprite->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
 }
 
-const VecFx32 *Sprite_GetPosition(const Sprite *sprite)
-{
+const VecFx32 *Sprite_GetPosition(const Sprite *sprite) {
     return &sprite->position;
 }
 
-const VecFx32 *Sprite_GetAffineScale(const Sprite *sprite)
-{
+const VecFx32 *Sprite_GetAffineScale(const Sprite *sprite) {
     return &sprite->affineScale;
 }
 
-u16 Sprite_GetAffineZRotation(const Sprite *sprite)
-{
+u16 Sprite_GetAffineZRotation(const Sprite *sprite) {
     return sprite->affineZRotation;
 }
 
-BOOL Sprite_GetDrawFlag(const Sprite *sprite)
-{
+BOOL Sprite_GetDrawFlag(const Sprite *sprite) {
     return sprite->draw;
 }
 
-BOOL Sprite_GetAnimateFlag(const Sprite *sprite)
-{
+BOOL Sprite_GetAnimateFlag(const Sprite *sprite) {
     return sprite->animate;
 }
 
-u32 Sprite_GetAnimCount(const Sprite *sprite)
-{
+u32 Sprite_GetAnimCount(const Sprite *sprite) {
     GF_ASSERT(sprite);
 
     if (sprite->type == CELL_ANIM_TYPE_CELL || sprite->type == CELL_ANIM_TYPE_VRAM_CELL) {
@@ -375,8 +348,7 @@ u32 Sprite_GetAnimCount(const Sprite *sprite)
     }
 }
 
-void Sprite_SetAnim(Sprite *sprite, u32 animID)
-{
+void Sprite_SetAnim(Sprite *sprite, u32 animID) {
     GF_ASSERT(Sprite_GetAnimCount(sprite) > animID);
     sprite->activeAnimID = animID;
 
@@ -395,15 +367,13 @@ void Sprite_SetAnim(Sprite *sprite, u32 animID)
     }
 }
 
-void Sprite_SetAnimNoRestart(Sprite *sprite, u32 animID)
-{
+void Sprite_SetAnimNoRestart(Sprite *sprite, u32 animID) {
     if (sprite->activeAnimID != animID) {
         Sprite_SetAnim(sprite, animID);
     }
 }
 
-void Sprite_RestartAnim(Sprite *sprite)
-{
+void Sprite_RestartAnim(Sprite *sprite) {
     if (sprite->type == CELL_ANIM_TYPE_CELL || sprite->type == CELL_ANIM_TYPE_VRAM_CELL) {
         CellAnimationData *cellAnim = (CellAnimationData *)&sprite->animData;
 
@@ -419,13 +389,11 @@ void Sprite_RestartAnim(Sprite *sprite)
     }
 }
 
-u32 Sprite_GetActiveAnim(const Sprite *sprite)
-{
+u32 Sprite_GetActiveAnim(const Sprite *sprite) {
     return sprite->activeAnimID;
 }
 
-void Sprite_UpdateAnim(Sprite *sprite, fx32 frames)
-{
+void Sprite_UpdateAnim(Sprite *sprite, fx32 frames) {
     if (sprite->type == CELL_ANIM_TYPE_CELL || sprite->type == CELL_ANIM_TYPE_VRAM_CELL) {
         CellAnimationData *cellAnim = (CellAnimationData *)&sprite->animData;
         NNS_G2dTickCellAnimation(&cellAnim->anim, frames);
@@ -435,8 +403,7 @@ void Sprite_UpdateAnim(Sprite *sprite, fx32 frames)
     }
 }
 
-void Sprite_SetAnimFrame(Sprite *sprite, u16 frame)
-{
+void Sprite_SetAnimFrame(Sprite *sprite, u16 frame) {
     if (sprite->type == CELL_ANIM_TYPE_CELL || sprite->type == CELL_ANIM_TYPE_VRAM_CELL) {
         CellAnimationData *cellAnim = (CellAnimationData *)&sprite->animData;
         NNS_G2dSetCellAnimationCurrentFrame(&cellAnim->anim, frame);
@@ -446,8 +413,7 @@ void Sprite_SetAnimFrame(Sprite *sprite, u16 frame)
     }
 }
 
-u16 Sprite_GetAnimFrame(const Sprite *sprite)
-{
+u16 Sprite_GetAnimFrame(const Sprite *sprite) {
     NNSG2dAnimController *controller;
 
     if (sprite->type == CELL_ANIM_TYPE_CELL || sprite->type == CELL_ANIM_TYPE_VRAM_CELL) {
@@ -461,18 +427,15 @@ u16 Sprite_GetAnimFrame(const Sprite *sprite)
     return NNS_G2dGetAnimCtrlCurrentFrame(controller);
 }
 
-void Sprite_SetExplicitPriority(Sprite *sprite, u8 priority)
-{
+void Sprite_SetExplicitPriority(Sprite *sprite, u8 priority) {
     sprite->explicitPriority = priority;
 }
 
-u8 Sprite_GetExplicitPriority(const Sprite *sprite)
-{
+u8 Sprite_GetExplicitPriority(const Sprite *sprite) {
     return sprite->explicitPriority;
 }
 
-void Sprite_SetExplicitPalette(Sprite *sprite, u32 palette)
-{
+void Sprite_SetExplicitPalette(Sprite *sprite, u32 palette) {
     GF_ASSERT(sprite);
 
     sprite->explicitPalette = palette;
@@ -480,19 +443,16 @@ void Sprite_SetExplicitPalette(Sprite *sprite, u32 palette)
     sprite->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS;
 }
 
-void Sprite_SetExplicitPaletteWithOffset(Sprite *sprite, u32 palette)
-{
+void Sprite_SetExplicitPaletteWithOffset(Sprite *sprite, u32 palette) {
     Sprite_SetExplicitPalette(sprite, palette);
     sprite->explicitPalette += GetPaletteIndexForProxy(&sprite->paletteProxy, sprite->vramType);
 }
 
-u32 Sprite_GetExplicitPalette(const Sprite *sprite)
-{
+u32 Sprite_GetExplicitPalette(const Sprite *sprite) {
     return sprite->explicitPalette;
 }
 
-void Sprite_SetExplicitPaletteOffset(Sprite *sprite, u32 paletteOffset)
-{
+void Sprite_SetExplicitPaletteOffset(Sprite *sprite, u32 paletteOffset) {
     GF_ASSERT(sprite);
 
     sprite->explicitPaletteOffset = paletteOffset;
@@ -500,20 +460,17 @@ void Sprite_SetExplicitPaletteOffset(Sprite *sprite, u32 paletteOffset)
     sprite->overwriteFlags &= ~NNS_G2D_RND_OVERWRITE_PLTTNO;
 }
 
-void Sprite_SetExplicitPaletteOffsetAutoAdjust(Sprite *sprite, u32 paletteOffset)
-{
+void Sprite_SetExplicitPaletteOffsetAutoAdjust(Sprite *sprite, u32 paletteOffset) {
     Sprite_SetExplicitPaletteOffset(sprite, paletteOffset);
     sprite->explicitPaletteOffset += GetPaletteIndexForProxy(&sprite->paletteProxy, sprite->vramType);
 }
 
-u32 Sprite_GetExplicitPaletteOffset(const Sprite *sprite)
-{
+u32 Sprite_GetExplicitPaletteOffset(const Sprite *sprite) {
     GF_ASSERT(sprite);
     return sprite->explicitPaletteOffset;
 }
 
-void Sprite_SetPriority(Sprite *sprite, u32 priority)
-{
+void Sprite_SetPriority(Sprite *sprite, u32 priority) {
     SpriteList *list = sprite->list; // Required to match
     sprite->priority = priority;
 
@@ -521,28 +478,23 @@ void Sprite_SetPriority(Sprite *sprite, u32 priority)
     SpriteList_Insert(list, sprite);
 }
 
-u32 Sprite_GetPriority(const Sprite *sprite)
-{
+u32 Sprite_GetPriority(const Sprite *sprite) {
     return sprite->priority;
 }
 
-void Sprite_SetImageProxy(Sprite *sprite, const NNSG2dImageProxy *imageProxy)
-{
+void Sprite_SetImageProxy(Sprite *sprite, const NNSG2dImageProxy *imageProxy) {
     sprite->imageProxy = *imageProxy;
 }
 
-NNSG2dImageProxy *Sprite_GetImageProxy(Sprite *sprite)
-{
+NNSG2dImageProxy *Sprite_GetImageProxy(Sprite *sprite) {
     return &sprite->imageProxy;
 }
 
-NNSG2dImagePaletteProxy *Sprite_GetPaletteProxy(Sprite *paletteProxy)
-{
+NNSG2dImagePaletteProxy *Sprite_GetPaletteProxy(Sprite *paletteProxy) {
     return &paletteProxy->paletteProxy;
 }
 
-void Sprite_SetMosaicFlag(Sprite *sprite, BOOL mosaic)
-{
+void Sprite_SetMosaicFlag(Sprite *sprite, BOOL mosaic) {
     sprite->explicitMosaic = mosaic;
 
     if (mosaic == TRUE) {
@@ -552,13 +504,11 @@ void Sprite_SetMosaicFlag(Sprite *sprite, BOOL mosaic)
     }
 }
 
-NNS_G2D_VRAM_TYPE Sprite_GetVRamType(const Sprite *sprite)
-{
+NNS_G2D_VRAM_TYPE Sprite_GetVRamType(const Sprite *sprite) {
     return sprite->vramType;
 }
 
-BOOL Sprite_IsAnimated(Sprite *sprite)
-{
+BOOL Sprite_IsAnimated(Sprite *sprite) {
     GF_ASSERT(sprite);
 
     if (sprite->type == CELL_ANIM_TYPE_CELL || sprite->type == CELL_ANIM_TYPE_VRAM_CELL) {
@@ -570,8 +520,7 @@ BOOL Sprite_IsAnimated(Sprite *sprite)
     }
 }
 
-void Sprite_SetExplicitOAMMode(Sprite *sprite, GXOamMode mode)
-{
+void Sprite_SetExplicitOAMMode(Sprite *sprite, GXOamMode mode) {
     GF_ASSERT(sprite);
 
     sprite->explicitOamMode = mode;
@@ -583,8 +532,7 @@ void Sprite_SetExplicitOAMMode(Sprite *sprite, GXOamMode mode)
     }
 }
 
-void Utility_Clear2DMainOAM(enum HeapId heapID)
-{
+void Utility_Clear2DMainOAM(enum HeapId heapID) {
     GXOamAttr *oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * MAX_SPRITES);
 
     MI_CpuFill16(oam, 0x2C0, sizeof(GXOamAttr) * MAX_SPRITES);
@@ -594,8 +542,7 @@ void Utility_Clear2DMainOAM(enum HeapId heapID)
     Heap_Free(oam);
 }
 
-void Utility_Clear2DSubOAM(enum HeapId heapID)
-{
+void Utility_Clear2DSubOAM(enum HeapId heapID) {
     GXOamAttr *oam = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * MAX_SPRITES);
 
     MI_CpuFill16(oam, 0x2C0, sizeof(GXOamAttr) * MAX_SPRITES);
@@ -605,8 +552,7 @@ void Utility_Clear2DSubOAM(enum HeapId heapID)
     Heap_Free(oam);
 }
 
-u32 Sprite_GetUserAttrForAnimFrame(const Sprite *sprite, u32 animID, u32 frame)
-{
+u32 Sprite_GetUserAttrForAnimFrame(const Sprite *sprite, u32 animID, u32 frame) {
     const NNSG2dAnimBankData *animBank;
 
     if (sprite->type == CELL_ANIM_TYPE_CELL || sprite->type == CELL_ANIM_TYPE_VRAM_CELL) {
@@ -635,8 +581,7 @@ u32 Sprite_GetUserAttrForAnimFrame(const Sprite *sprite, u32 animID, u32 frame)
     return 0;
 }
 
-u32 Sprite_GetUserAttrForCurrentAnimFrame(const Sprite *sprite)
-{
+u32 Sprite_GetUserAttrForCurrentAnimFrame(const Sprite *sprite) {
     u32 animID = Sprite_GetActiveAnim(sprite);
     u32 frame = Sprite_GetAnimFrame(sprite);
 
@@ -646,8 +591,7 @@ u32 Sprite_GetUserAttrForCurrentAnimFrame(const Sprite *sprite)
 static BOOL SpriteList_InitSprite(const SpriteList *list,
     const SpriteResourcesHeader *resourceData,
     Sprite *sprite,
-    enum HeapId heapID)
-{
+    enum HeapId heapID) {
     sprite->type = SpriteResourcesHeader_GetCellType(resourceData);
     sprite->imageProxy = *resourceData->imageProxy;
     sprite->paletteProxy = *resourceData->paletteProxy;
@@ -675,8 +619,7 @@ static BOOL SpriteList_InitSprite(const SpriteList *list,
     return TRUE;
 }
 
-static enum CellAnimType SpriteResourcesHeader_GetCellType(const SpriteResourcesHeader *resourceData)
-{
+static enum CellAnimType SpriteResourcesHeader_GetCellType(const SpriteResourcesHeader *resourceData) {
     if (resourceData->multiCellBank != NULL) {
         return CELL_ANIM_TYPE_MULTI_CELL;
     }
@@ -688,32 +631,27 @@ static enum CellAnimType SpriteResourcesHeader_GetCellType(const SpriteResources
     return CELL_ANIM_TYPE_CELL;
 }
 
-static void Sprite_SetCellBank(const NNSG2dCellDataBank *cellBank, Sprite *sprite)
-{
+static void Sprite_SetCellBank(const NNSG2dCellDataBank *cellBank, Sprite *sprite) {
     CellAnimationData *cellAnim = (CellAnimationData *)&sprite->animData;
     cellAnim->cellBank = cellBank;
 }
 
-static void Sprite_SetCellAnimBank(const NNSG2dCellAnimBankData *cellAnimBank, Sprite *sprite)
-{
+static void Sprite_SetCellAnimBank(const NNSG2dCellAnimBankData *cellAnimBank, Sprite *sprite) {
     CellAnimationData *cellAnim = (CellAnimationData *)&sprite->animData;
     cellAnim->animBank = cellAnimBank;
 }
 
-static void Sprite_SetMultiCellBank(const NNSG2dMultiCellDataBank *multiCellBank, Sprite *sprite)
-{
+static void Sprite_SetMultiCellBank(const NNSG2dMultiCellDataBank *multiCellBank, Sprite *sprite) {
     MultiCellAnimationData *multiCell = (MultiCellAnimationData *)&sprite->animData;
     multiCell->cellBank = multiCellBank;
 }
 
-static void Sprite_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData *multiCellAnimBank, Sprite *sprite)
-{
+static void Sprite_SetMultiCellAnimBank(const NNSG2dMultiCellAnimBankData *multiCellAnimBank, Sprite *sprite) {
     MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&sprite->animData;
     multiCellAnim->animBank = multiCellAnimBank;
 }
 
-static void Sprite_CreateCellAnim(Sprite *sprite, enum HeapId heapID)
-{
+static void Sprite_CreateCellAnim(Sprite *sprite, enum HeapId heapID) {
     CellAnimationData *cellAnim = (CellAnimationData *)&sprite->animData;
     NNS_G2dInitCellAnimation(
         &cellAnim->anim,
@@ -721,8 +659,7 @@ static void Sprite_CreateCellAnim(Sprite *sprite, enum HeapId heapID)
         cellAnim->cellBank);
 }
 
-static void Sprite_CreateVRamCellAnim(const SpriteResourcesHeader *resourceData, Sprite *sprite, enum HeapId heapID)
-{
+static void Sprite_CreateVRamCellAnim(const SpriteResourcesHeader *resourceData, Sprite *sprite, enum HeapId heapID) {
     VRamCellAnimationData *vramCellAnim = (VRamCellAnimationData *)&sprite->animData;
     vramCellAnim->transferHandle = NNS_G2dGetNewCellTransferStateHandle();
     const NNSG2dCharacterData *charData = resourceData->charData;
@@ -740,8 +677,7 @@ static void Sprite_CreateVRamCellAnim(const SpriteResourcesHeader *resourceData,
         charData->szByte);
 }
 
-static void Sprite_CreateMultiCellAnim(Sprite *sprite, enum HeapId heapID)
-{
+static void Sprite_CreateMultiCellAnim(Sprite *sprite, enum HeapId heapID) {
     MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&sprite->animData;
     const NNSG2dMultiCellAnimSequence *animSequence = NNS_G2dGetAnimSequenceByIdx(multiCellAnim->animBank, 0);
     u16 maxNodes = NNS_G2dGetMCBankNumNodesRequired(multiCellAnim->cellBank);
@@ -762,8 +698,7 @@ static void Sprite_CreateMultiCellAnim(Sprite *sprite, enum HeapId heapID)
         animSequence);
 }
 
-static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy *paletteProxy, u32 vramType)
-{
+static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy *paletteProxy, u32 vramType) {
     u32 paletteSize;
 
     if (paletteProxy->bExtendedPlt) {
@@ -781,8 +716,7 @@ static u32 GetPaletteIndexForProxy(const NNSG2dImagePaletteProxy *paletteProxy, 
         : 0;
 }
 
-static void SpriteList_DrawSprite(const SpriteList *list, Sprite *sprite)
-{
+static void SpriteList_DrawSprite(const SpriteList *list, Sprite *sprite) {
     VecFx32 pos = sprite->position;
 
     NNS_G2dSetRendererImageProxy(list->renderer, &sprite->imageProxy, &sprite->paletteProxy);
@@ -836,23 +770,19 @@ static void SpriteList_DrawSprite(const SpriteList *list, Sprite *sprite)
     NNS_G2dEndRendering();
 }
 
-static void SpriteList_DrawSprite_Stub(const SpriteList *list, Sprite *sprite)
-{
+static void SpriteList_DrawSprite_Stub(const SpriteList *list, Sprite *sprite) {
     return;
 }
 
-static void Sprite_UpdateAnimInternal(Sprite *sprite)
-{
+static void Sprite_UpdateAnimInternal(Sprite *sprite) {
     Sprite_UpdateAnim(sprite, sprite->animSpeed);
 }
 
-static void Sprite_UpdateAnimInternal_Stub(Sprite *sprite)
-{
+static void Sprite_UpdateAnimInternal_Stub(Sprite *sprite) {
     return;
 }
 
-static void SpriteList_Insert(SpriteList *list, Sprite *sprite)
-{
+static void SpriteList_Insert(SpriteList *list, Sprite *sprite) {
     // If the list is empty, insert the sprite as the only sprite
     if (list->sentinelData.next == &list->sentinelData) {
         list->sentinelData.next = sprite;
@@ -886,14 +816,12 @@ static void SpriteList_Insert(SpriteList *list, Sprite *sprite)
     }
 }
 
-static void SpriteList_Remove(Sprite *sprite)
-{
+static void SpriteList_Remove(Sprite *sprite) {
     sprite->prev->next = sprite->next;
     sprite->next->prev = sprite->prev;
 }
 
-static void SpriteList_InitSprites(SpriteList *list)
-{
+static void SpriteList_InitSprites(SpriteList *list) {
     for (int i = 0; i < list->capacity; i++) {
         Sprite_Reset(&list->sprites[i]);
         list->freeSprites[i] = list->sprites + i;
@@ -902,8 +830,7 @@ static void SpriteList_InitSprites(SpriteList *list)
     list->freeSpriteHead = 0;
 }
 
-static Sprite *SpriteList_AllocSprite(SpriteList *list)
-{
+static Sprite *SpriteList_AllocSprite(SpriteList *list) {
     if (list->freeSpriteHead >= list->capacity) {
         return NULL;
     }
@@ -914,8 +841,7 @@ static Sprite *SpriteList_AllocSprite(SpriteList *list)
     return sprite;
 }
 
-static BOOL SpriteList_FreeSprite(SpriteList *list, Sprite *sprite)
-{
+static BOOL SpriteList_FreeSprite(SpriteList *list, Sprite *sprite) {
     if (list->freeSpriteHead <= 0) {
         return FALSE;
     }

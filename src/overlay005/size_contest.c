@@ -59,8 +59,7 @@ static const NormalApproxIntervalParams sUniformToNormalIntervals[] = {
 
 // Calculates the erf^-1 approximation.
 // Using u64 is required for matching.
-static inline u64 CalcMultFromSizeFactor(u16 sizeFactor)
-{
+static inline u64 CalcMultFromSizeFactor(u16 sizeFactor) {
     u8 approxPieceIdx = GetApproxIntervalIdx(sizeFactor);
     u64 base = sUniformToNormalIntervals[approxPieceIdx].base;
     u64 div = sUniformToNormalIntervals[approxPieceIdx].divisor;
@@ -68,8 +67,7 @@ static inline u64 CalcMultFromSizeFactor(u16 sizeFactor)
     return base + (sizeFactor - start) / div;
 }
 
-static int CalcSizeFactor(Pokemon *mon)
-{
+static int CalcSizeFactor(Pokemon *mon) {
     u16 personnalityLow = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL) & 0xffff;
     u16 hpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL) & 0xf;
     u16 atkIV = Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL) & 0xf;
@@ -83,8 +81,7 @@ static int CalcSizeFactor(Pokemon *mon)
     return high * 256 + low;
 }
 
-static u8 GetApproxIntervalIdx(u16 sizeFactor)
-{
+static u8 GetApproxIntervalIdx(u16 sizeFactor) {
     u8 i;
 
     for (i = 1; i < NELEMS(sUniformToNormalIntervals) - 1; i++) {
@@ -96,8 +93,7 @@ static u8 GetApproxIntervalIdx(u16 sizeFactor)
     return i;
 }
 
-static u32 CalcMillimeterSize(u16 species, u16 sizeFactor)
-{
+static u32 CalcMillimeterSize(u16 species, u16 sizeFactor) {
     HeightWeightData *heightWeightData = Pokedex_HeightWeightData(HEAP_ID_FIELD);
     Pokedex_HeightWeightData_Load(heightWeightData, FALSE, HEAP_ID_FIELD);
 
@@ -110,8 +106,7 @@ static u32 CalcMillimeterSize(u16 species, u16 sizeFactor)
     return height * sizeMult / 10;
 }
 
-u8 SizeContest_CalcResultForPartyMon(FieldSystem *fieldSystem, u16 partySlot)
-{
+u8 SizeContest_CalcResultForPartyMon(FieldSystem *fieldSystem, u16 partySlot) {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     vu16 sizeFactor = CalcSizeFactor(mon);
@@ -134,16 +129,14 @@ u8 SizeContest_CalcResultForPartyMon(FieldSystem *fieldSystem, u16 partySlot)
     }
 }
 
-void SizeContest_UpdateRecordFromPartyMon(FieldSystem *fieldSystem, u16 partySlot)
-{
+void SizeContest_UpdateRecordFromPartyMon(FieldSystem *fieldSystem, u16 partySlot) {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     vu16 sizeFactor = CalcSizeFactor(mon);
 
     SystemVars_SetSizeContestRecord(SaveData_GetVarsFlags(fieldSystem->saveData), sizeFactor);
 }
 
-static void SetStrTemplateMonSizeParams(FieldSystem *fieldSystem, u8 intPartIdx, u8 fracPartIdx, u16 species, vu16 sizeFactor)
-{
+static void SetStrTemplateMonSizeParams(FieldSystem *fieldSystem, u8 intPartIdx, u8 fracPartIdx, u16 species, vu16 sizeFactor) {
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
     u32 size = CalcMillimeterSize(species, sizeFactor);
@@ -153,14 +146,12 @@ static void SetStrTemplateMonSizeParams(FieldSystem *fieldSystem, u8 intPartIdx,
     StringTemplate_SetNumber(*strTemplate, fracPartIdx, size % 10, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
 }
 
-void SizeContest_SetRecordSizeStrParams(FieldSystem *fieldSystem, u8 intPartIdx, u8 fracPartIdx, u16 species)
-{
+void SizeContest_SetRecordSizeStrParams(FieldSystem *fieldSystem, u8 intPartIdx, u8 fracPartIdx, u16 species) {
     vu16 recordSizeFactor = SystemVars_GetSizeContestRecord(SaveData_GetVarsFlags(fieldSystem->saveData));
     SetStrTemplateMonSizeParams(fieldSystem, intPartIdx, fracPartIdx, species, recordSizeFactor);
 }
 
-void SizeContest_SetPartyMonSizeStrParams(FieldSystem *fieldSystem, u8 intPartIdx, u8 fracPartIdx, u16 partySlot)
-{
+void SizeContest_SetPartyMonSizeStrParams(FieldSystem *fieldSystem, u8 intPartIdx, u8 fracPartIdx, u16 partySlot) {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     vu16 sizeFactor = CalcSizeFactor(mon);

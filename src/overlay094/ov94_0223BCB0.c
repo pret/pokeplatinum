@@ -83,8 +83,7 @@ static int (*Unk_ov94_0224674C[][3])(UnkStruct_ov94_0223FD4C *, int) = {
 
 UnkStruct_ov94_0223FD4C *Unk_ov94_02246C08;
 
-int ov94_0223BCB0(ApplicationManager *appMan, int *param1)
-{
+int ov94_0223BCB0(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov94_0223FD4C *v0;
 
     switch (*param1) {
@@ -145,8 +144,7 @@ int ov94_0223BCB0(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov94_0223BE2C(ApplicationManager *appMan, int *param1)
-{
+int ov94_0223BE2C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov94_0223FD4C *v0 = ApplicationManager_Data(appMan);
 
     DWC_UpdateConnection();
@@ -202,8 +200,7 @@ int ov94_0223BE2C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov94_0223BF54(ApplicationManager *appMan, int *param1)
-{
+int ov94_0223BF54(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov94_0223FD4C *v0 = ApplicationManager_Data(appMan);
     int v1;
 
@@ -232,8 +229,7 @@ int ov94_0223BF54(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov94_0223BFE4(void *param0)
-{
+static void ov94_0223BFE4(void *param0) {
     UnkStruct_ov94_0223FD4C *v0 = param0;
 
     if (v0->unk_1118) {
@@ -249,8 +245,7 @@ static void ov94_0223BFE4(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov94_0223C01C(void)
-{
+static void ov94_0223C01C(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -267,8 +262,7 @@ static void ov94_0223C01C(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, ApplicationManager *appMan)
-{
+static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, ApplicationManager *appMan) {
     param0->unk_00 = (UnkStruct_0203E0FC *)ApplicationManager_Args(appMan);
     param0->unk_14 = 0;
 
@@ -289,13 +283,11 @@ static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, ApplicationManager *a
     param0->unk_11B0 = 0;
 }
 
-static void ov94_0223C0A0(UnkStruct_ov94_0223FD4C *param0)
-{
+static void ov94_0223C0A0(UnkStruct_ov94_0223FD4C *param0) {
     return;
 }
 
-static void ov94_0223C0A4(void)
-{
+static void ov94_0223C0A4(void) {
     {
         CharTransferTemplate v0 = {
             20, 2048, 2048, 62
@@ -309,8 +301,7 @@ static void ov94_0223C0A4(void)
     PlttTransfer_Clear();
 }
 
-static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
-{
+static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0) {
     int v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
@@ -371,8 +362,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
     NARC_dtor(v1);
 }
 
-void ov94_0223C300(AffineSpriteListTemplate *param0, UnkStruct_ov94_0223FD4C *param1, SpriteResourcesHeader *param2, int param3)
-{
+void ov94_0223C300(AffineSpriteListTemplate *param0, UnkStruct_ov94_0223FD4C *param1, SpriteResourcesHeader *param2, int param3) {
     param0->list = param1->unk_BE4;
     param0->resourceData = param2;
     param0->position.z = 0;
@@ -385,8 +375,7 @@ void ov94_0223C300(AffineSpriteListTemplate *param0, UnkStruct_ov94_0223FD4C *pa
     param0->heapID = HEAP_ID_62;
 }
 
-static void ov94_0223C32C(UnkStruct_ov94_0223FD4C *param0)
-{
+static void ov94_0223C32C(UnkStruct_ov94_0223FD4C *param0) {
     int v0;
 
     SpriteResourcesHeader_Init(&param0->unk_DB4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D74[0], param0->unk_D74[1], param0->unk_D74[2], param0->unk_D74[3], NULL, NULL);
@@ -405,8 +394,7 @@ static const WindowTemplate Unk_ov94_022459F8 = {
     0x0
 };
 
-Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
-{
+Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2) {
     WindowTemplate v0;
 
     v0 = Unk_ov94_022459F8;
@@ -416,14 +404,12 @@ Menu *ov94_0223C3C0(BgConfig *param0, int param1, int param2)
     return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 62);
 }
 
-void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
-{
+void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2) {
     param0->unk_2C = param1;
     param0->unk_30 = param2;
 }
 
-void ov94_0223C3FC(Sprite *param0, int param1, int param2)
-{
+void ov94_0223C3FC(Sprite *param0, int param1, int param2) {
     VecFx32 v0;
 
     v0.x = FX32_CONST(param1);
@@ -433,8 +419,7 @@ void ov94_0223C3FC(Sprite *param0, int param1, int param2)
     Sprite_SetPosition(param0, &v0);
 }
 
-static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2)
-{
+static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2) {
 #pragma unused(param0)
     void *v0;
     OSIntrMode v1;
@@ -451,8 +436,7 @@ static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2)
     return v0;
 }
 
-static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2)
-{
+static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2) {
 #pragma unused(param0, param2)
     OSIntrMode v0;
 
@@ -466,30 +450,25 @@ static void ov94_0223C490(DWCAllocType param0, void *param1, u32 param2)
     OS_RestoreInterrupts(v0);
 }
 
-int ov94_0223C4B4(void)
-{
+int ov94_0223C4B4(void) {
     return WM_LINK_LEVEL_3 - DWC_GetLinkLevel();
 }
 
-void ov94_0223C4C0(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
-{
+void ov94_0223C4C0(UnkStruct_ov94_0223FD4C *param0, int param1, int param2) {
     param0->unk_18 = param1;
     param0->unk_24 = param2;
 }
 
-void ov94_0223C4C8(UnkStruct_ov94_0223FD4C *param0)
-{
+void ov94_0223C4C8(UnkStruct_ov94_0223FD4C *param0) {
     param0->unk_20 = param0->unk_14;
     param0->unk_14 = param0->unk_18;
 }
 
-int ov94_0223C4D4(UnkStruct_ov94_0223FD4C *param0)
-{
+int ov94_0223C4D4(UnkStruct_ov94_0223FD4C *param0) {
     return Options_TextFrameDelay(param0->unk_00->options);
 }
 
-static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0)
-{
+static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0) {
     ov94_0223C01C();
     ov94_0223C0A4();
     ov94_0223C0D4(param0);
@@ -498,8 +477,7 @@ static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0)
     SetVBlankCallback(ov94_0223BFE4, param0);
 }
 
-static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
-{
+static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0) {
     int v0;
 
     ov94_022443B8(param0);
@@ -521,21 +499,18 @@ static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
     PlttTransfer_Free();
 }
 
-static void ov94_0223C578(UnkStruct_ov94_0223FD4C *param0)
-{
+static void ov94_0223C578(UnkStruct_ov94_0223FD4C *param0) {
     if (param0->unk_3A) {
         param0->unk_3A--;
     }
 }
 
-void ov94_0223C584(UnkStruct_ov94_0223FD4C *param0)
-{
+void ov94_0223C584(UnkStruct_ov94_0223FD4C *param0) {
     param0->unk_110E = 1;
     param0->unk_110C = 0;
 }
 
-static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
-{
+static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0) {
     if (param0->unk_110E) {
         param0->unk_110C += PCBoxes_CountMonsInBox(param0->unk_00->pcBoxes, param0->unk_110E - 1);
         param0->unk_110E++;
@@ -546,13 +521,11 @@ static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
     }
 }
 
-void ov94_0223C5D8(UnkStruct_ov94_0223FD4C *param0)
-{
+void ov94_0223C5D8(UnkStruct_ov94_0223FD4C *param0) {
     param0->unk_10DC = Window_AddWaitDial(&param0->unk_F5C, 1);
 }
 
-void ov94_0223C5F4(UnkStruct_ov94_0223FD4C *param0)
-{
+void ov94_0223C5F4(UnkStruct_ov94_0223FD4C *param0) {
     if (param0->unk_10DC != NULL) {
         DestroyWaitDial(param0->unk_10DC);
         param0->unk_10DC = NULL;

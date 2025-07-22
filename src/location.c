@@ -21,17 +21,14 @@ static const Location sPlayerFirstRespawnLocation = {
     .faceDirection = FACE_DOWN,
 };
 
-void SetPlayerStartLocation(Location *outLocation)
-{
+void SetPlayerStartLocation(Location *outLocation) {
     *outLocation = sPlayerStartLocation;
 }
 
-void SetPlayerFirstRespawnLocation(Location *outLocation)
-{
+void SetPlayerFirstRespawnLocation(Location *outLocation) {
     *outLocation = sPlayerFirstRespawnLocation;
 }
 
-void InitPlayerStartLocation(SaveData *saveData)
-{
+void InitPlayerStartLocation(SaveData *saveData) {
     SetPlayerStartLocation(FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData)));
 }

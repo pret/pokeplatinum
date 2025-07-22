@@ -25,8 +25,7 @@ static SoundSystem sSoundSystem;
 static int sSoundSystemState;
 static NNSSndCaptureOutputEffectType sOutputEffectType;
 
-void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
-{
+void SoundSystem_Init(ChatotCry *chatotCry, Options *options) {
     SoundSystem *soundSys = SoundSystem_Get();
 
     NNS_SndInit();
@@ -48,8 +47,7 @@ void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
     Sound_SetPlaybackMode(options->soundMode);
 }
 
-void SoundSystem_Tick()
-{
+void SoundSystem_Tick() {
     SoundSystem *soundSys = SoundSystem_Get();
 
     if (SoundSystem_IsFanfarePlaying() == FALSE) {
@@ -81,8 +79,7 @@ void SoundSystem_Tick()
     NNS_SndMain();
 }
 
-static void SoundSystem_UpdateState()
-{
+static void SoundSystem_UpdateState() {
     SoundSystem *soundSys = SoundSystem_Get();
 
     switch (sSoundSystemState) {
@@ -123,16 +120,14 @@ static void SoundSystem_UpdateState()
     }
 }
 
-void SoundSystem_SetState(enum SoundSystemState state)
-{
+void SoundSystem_SetState(enum SoundSystemState state) {
     SoundSystem *soundSys = SoundSystem_Get();
 
     soundSys->unused1 = 0;
     sSoundSystemState = state;
 }
 
-static BOOL SoundSystem_IsFanfarePlaying()
-{
+static BOOL SoundSystem_IsFanfarePlaying() {
     SoundSystem *soundSys = SoundSystem_Get();
 
     if (Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_ME) != 0) {
@@ -146,13 +141,11 @@ static BOOL SoundSystem_IsFanfarePlaying()
     return FALSE;
 }
 
-SoundSystem *SoundSystem_Get()
-{
+SoundSystem *SoundSystem_Get() {
     return &sSoundSystem;
 }
 
-void *SoundSystem_GetParam(enum SoundSystemParam param)
-{
+void *SoundSystem_GetParam(enum SoundSystemParam param) {
     SoundSystem *soundSys = SoundSystem_Get();
 
     switch (param) {
@@ -272,8 +265,7 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
     return NULL;
 }
 
-int SoundSystem_SaveHeapState(int *state)
-{
+int SoundSystem_SaveHeapState(int *state) {
     int newState = NNS_SndHeapSaveState(SoundSystem_Get()->heap);
     if (newState == SOUND_HEAP_STATE_INVALID) {
         GF_ASSERT(FALSE);
@@ -286,38 +278,31 @@ int SoundSystem_SaveHeapState(int *state)
     return newState;
 }
 
-void SoundSystem_LoadHeapState(int state)
-{
+void SoundSystem_LoadHeapState(int state) {
     NNS_SndHeapLoadState(SoundSystem_Get()->heap, state);
 }
 
-BOOL SoundSystem_LoadSoundGroup(u16 group)
-{
+BOOL SoundSystem_LoadSoundGroup(u16 group) {
     return NNS_SndArcLoadGroup(group, SoundSystem_Get()->heap);
 }
 
-BOOL SoundSystem_LoadSequence(u16 id)
-{
+BOOL SoundSystem_LoadSequence(u16 id) {
     return NNS_SndArcLoadSeq(id, SoundSystem_Get()->heap);
 }
 
-BOOL SoundSystem_LoadSequenceEx(u16 id, u32 flags)
-{
+BOOL SoundSystem_LoadSequenceEx(u16 id, u32 flags) {
     return NNS_SndArcLoadSeqEx(id, flags, SoundSystem_Get()->heap);
 }
 
-BOOL SoundSystem_LoadWaveArc(u16 id)
-{
+BOOL SoundSystem_LoadWaveArc(u16 id) {
     return NNS_SndArcLoadWaveArc(id, SoundSystem_Get()->heap);
 }
 
-BOOL SoundSystem_LoadBank(u16 id)
-{
+BOOL SoundSystem_LoadBank(u16 id) {
     return NNS_SndArcLoadBank(id, SoundSystem_Get()->heap);
 }
 
-NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type)
-{
+NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type) {
     SoundSystem *soundSys = SoundSystem_Get();
 
     if (type >= SOUND_HANDLE_TYPE_COUNT) {
@@ -328,8 +313,7 @@ NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type)
     return &soundSys->soundHandles[type];
 }
 
-enum SoundHandleType SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID)
-{
+enum SoundHandleType SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID) {
     enum SoundHandleType type;
 
     switch (playerID) {
@@ -366,8 +350,7 @@ enum SoundHandleType SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID)
     return type;
 }
 
-static void SoundSystem_InitHeapStates(SoundSystem *soundSys)
-{
+static void SoundSystem_InitHeapStates(SoundSystem *soundSys) {
     memset(soundSys, 0, sizeof(SoundSystem));
 
     for (int i = 0; i < SOUND_HEAP_STATE_COUNT; i++) {
@@ -375,29 +358,25 @@ static void SoundSystem_InitHeapStates(SoundSystem *soundSys)
     }
 }
 
-static void SoundSystem_InitSoundHandles(SoundSystem *soundSys)
-{
+static void SoundSystem_InitSoundHandles(SoundSystem *soundSys) {
     for (int i = 0; i < SOUND_HANDLE_TYPE_COUNT; i++) {
         NNS_SndHandleInit(&soundSys->soundHandles[i]);
     }
 }
 
-static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys)
-{
+static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys) {
     SoundSystem_SaveHeapState(&soundSys->heapStates[SOUND_HEAP_STATE_EMPTY]);
     SoundSystem_LoadSoundGroup(GROUP_GLOBAL);
     SoundSystem_SaveHeapState(&soundSys->heapStates[SOUND_HEAP_STATE_PERSISTENT]);
 }
 
-static void SoundSystem_InitMic()
-{
+static void SoundSystem_InitMic() {
     MIC_Init();
     PM_SetAmp(PM_AMP_ON);
     PM_SetAmpGain(PM_AMPGAIN_80);
 }
 
-static void SoundSystem_StopBGM()
-{
+static void SoundSystem_StopBGM() {
     NNS_SndPlayerStopSeqByPlayerNo(PLAYER_BGM, 0);
     NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_BGM));
 }

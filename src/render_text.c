@@ -39,8 +39,7 @@ enum RenderState {
     RENDER_STATE_PAUSE,
 };
 
-enum RenderResult RenderText(TextPrinter *printer)
-{
+enum RenderResult RenderText(TextPrinter *printer) {
     TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
     charcode_t currChar;
 
@@ -274,13 +273,11 @@ enum RenderResult RenderText(TextPrinter *printer)
 
 static u16 sScrollArrowBaseTile = 0;
 
-void TextPrinter_SetScrollArrowBaseTile(u16 tile)
-{
+void TextPrinter_SetScrollArrowBaseTile(u16 tile) {
     sScrollArrowBaseTile = tile;
 }
 
-void TextPrinter_InitScrollArrowAnim(TextPrinter *printer)
-{
+void TextPrinter_InitScrollArrowAnim(TextPrinter *printer) {
     TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
 
     if (sRenderControlFlags.autoScroll) {
@@ -293,8 +290,7 @@ void TextPrinter_InitScrollArrowAnim(TextPrinter *printer)
 
 static const u8 sScrollArrowTileOffsets[] = { 0, 1, 2, 1 };
 
-void TextPrinter_DrawScrollArrow(TextPrinter *printer)
-{
+void TextPrinter_DrawScrollArrow(TextPrinter *printer) {
     TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
 
     if (sRenderControlFlags.autoScroll) {
@@ -350,8 +346,7 @@ void TextPrinter_DrawScrollArrow(TextPrinter *printer)
     substruct->scrollArrowYPosIdx++;
 }
 
-void TextPrinter_ClearScrollArrow(TextPrinter *printer)
-{
+void TextPrinter_ClearScrollArrow(TextPrinter *printer) {
     u8 bgID = Window_GetBgLayer(printer->template.window);
     u8 x = Window_GetXPos(printer->template.window);
     u8 y = Window_GetYPos(printer->template.window);
@@ -377,8 +372,7 @@ void TextPrinter_ClearScrollArrow(TextPrinter *printer)
     Bg_CopyTilemapBufferToVRAM(printer->template.window->bgConfig, bgID);
 }
 
-static BOOL TextPrinter_Continue(TextPrinter *printer)
-{
+static BOOL TextPrinter_Continue(TextPrinter *printer) {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)
         || (gSystem.touchPressed && sRenderControlFlags.speedUpOnTouch)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -389,8 +383,7 @@ static BOOL TextPrinter_Continue(TextPrinter *printer)
     return FALSE;
 }
 
-BOOL TextPrinter_WaitAutoMode(TextPrinter *printer)
-{
+BOOL TextPrinter_WaitAutoMode(TextPrinter *printer) {
     TextPrinterSubstruct *substruct = (TextPrinterSubstruct *)printer->substruct;
     if (substruct->autoScrollDelay == 100) {
         return TRUE;
@@ -404,8 +397,7 @@ BOOL TextPrinter_WaitAutoMode(TextPrinter *printer)
     return FALSE;
 }
 
-BOOL TextPrinter_WaitWithScrollArrow(TextPrinter *printer)
-{
+BOOL TextPrinter_WaitWithScrollArrow(TextPrinter *printer) {
     if (sRenderControlFlags.autoScroll) {
         return TextPrinter_WaitAutoMode(printer);
     }
@@ -414,8 +406,7 @@ BOOL TextPrinter_WaitWithScrollArrow(TextPrinter *printer)
     return TextPrinter_Continue(printer);
 }
 
-BOOL TextPrinter_Wait(TextPrinter *printer)
-{
+BOOL TextPrinter_Wait(TextPrinter *printer) {
     // Ugly casts here are necessary to match. GF moment.
     if (sRenderControlFlags.autoScroll) {
         return (u8)TextPrinter_WaitAutoMode(printer);
@@ -424,38 +415,31 @@ BOOL TextPrinter_Wait(TextPrinter *printer)
     return (u8)TextPrinter_Continue(printer);
 }
 
-void RenderControlFlags_SetCanABSpeedUpPrint(BOOL val)
-{
+void RenderControlFlags_SetCanABSpeedUpPrint(BOOL val) {
     sRenderControlFlags.canABSpeedUpPrint = val;
 }
 
-void RenderControlFlags_SetAutoScrollFlags(int flags)
-{
+void RenderControlFlags_SetAutoScrollFlags(int flags) {
     sRenderControlFlags.autoScroll = flags & 1;
     sRenderControlFlags.speedUpAutoScroll = (flags >> 1) & 1;
 }
 
-void RenderControlFlags_SetSpeedUpOnTouch(BOOL val)
-{
+void RenderControlFlags_SetSpeedUpOnTouch(BOOL val) {
     sRenderControlFlags.speedUpOnTouch = val;
 }
 
-u8 RenderControlFlags_GetSpeedUpBattle()
-{
+u8 RenderControlFlags_GetSpeedUpBattle() {
     return sRenderControlFlags.speedUpBattle;
 }
 
-void RenderControlFlags_ZeroSpeedUpBattle()
-{
+void RenderControlFlags_ZeroSpeedUpBattle() {
     sRenderControlFlags.speedUpBattle = FALSE;
 }
 
-u8 RenderControlFlags_GetWaitBattle()
-{
+u8 RenderControlFlags_GetWaitBattle() {
     return sRenderControlFlags.waitBattle;
 }
 
-void RenderControlFlags_ZeroWaitBattle()
-{
+void RenderControlFlags_ZeroWaitBattle() {
     sRenderControlFlags.waitBattle = FALSE;
 }

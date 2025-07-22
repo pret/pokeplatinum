@@ -35,16 +35,14 @@ static const GXRgb sOutdoorsEdgeMarkings[8] = {
     COLOR_DARK_GRAY
 };
 
-static void AreaData_StripTextureData(void *resourceFile, NNSG3dResTex *texture)
-{
+static void AreaData_StripTextureData(void *resourceFile, NNSG3dResTex *texture) {
     u8 *textureData = (u8 *)texture + texture->texInfo.ofsTex;
     u32 strippedTextureDataSize = (u32)(textureData - (u8 *)resourceFile);
 
     Heap_ReallocFromHeap(resourceFile, strippedTextureDataSize);
 }
 
-AreaDataManager *AreaDataManager_Alloc(const int areaDataArchiveID, MapPropAnimationManager *mapPropAnimMan)
-{
+AreaDataManager *AreaDataManager_Alloc(const int areaDataArchiveID, MapPropAnimationManager *mapPropAnimMan) {
     AreaDataManager *areaDataManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaDataManager));
 
     areaDataManager->loadData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(AreaDataManagerLoadData));
@@ -55,8 +53,7 @@ AreaDataManager *AreaDataManager_Alloc(const int areaDataArchiveID, MapPropAnima
     return areaDataManager;
 }
 
-void AreaDataManager_Load(AreaDataManager *areaDataManager)
-{
+void AreaDataManager_Load(AreaDataManager *areaDataManager) {
     AreaDataManagerLoadData *loadData = areaDataManager->loadData;
 
     NARC_ReadWholeMemberByIndexPair(&areaDataManager->areaData, NARC_INDEX_FIELDDATA__AREADATA__AREA_DATA, loadData->areaDataArchiveID);
@@ -148,8 +145,7 @@ void AreaDataManager_Load(AreaDataManager *areaDataManager)
     areaDataManager->loadData = NULL;
 }
 
-NNSG3dResFileHeader **AreaDataManager_GetMapPropModelFile(const int mapPropModelID, AreaDataManager *const areaDataManager)
-{
+NNSG3dResFileHeader **AreaDataManager_GetMapPropModelFile(const int mapPropModelID, AreaDataManager *const areaDataManager) {
     GF_ASSERT(areaDataManager != NULL);
 
     if (areaDataManager->mapPropModelFiles[mapPropModelID] == NULL) {
@@ -161,8 +157,7 @@ NNSG3dResFileHeader **AreaDataManager_GetMapPropModelFile(const int mapPropModel
     return &areaDataManager->mapPropModelFiles[mapPropModelID];
 }
 
-void AreaDataManager_Free(AreaDataManager **areaDataManager)
-{
+void AreaDataManager_Free(AreaDataManager **areaDataManager) {
     if ((*areaDataManager)->mapPropMatShp != NULL) {
         MapPropMaterialShape_Free((*areaDataManager)->mapPropMatShp);
     }
@@ -185,25 +180,21 @@ void AreaDataManager_Free(AreaDataManager **areaDataManager)
     (*areaDataManager) = NULL;
 }
 
-NNSG3dResTex *AreaDataManager_GetMapTexture(const AreaDataManager *areaDataManager)
-{
+NNSG3dResTex *AreaDataManager_GetMapTexture(const AreaDataManager *areaDataManager) {
     GF_ASSERT(areaDataManager != NULL);
     return areaDataManager->mapTexture;
 }
 
-NNSG3dResTex *AreaDataManager_GetMapPropTexture(const AreaDataManager *areaDataManager)
-{
+NNSG3dResTex *AreaDataManager_GetMapPropTexture(const AreaDataManager *areaDataManager) {
     GF_ASSERT(areaDataManager != NULL);
     return areaDataManager->mapPropTexture;
 }
 
-const MapPropMaterialShape *AreaDataManager_GetMapPropMaterialShape(const AreaDataManager *areaDataManager)
-{
+const MapPropMaterialShape *AreaDataManager_GetMapPropMaterialShape(const AreaDataManager *areaDataManager) {
     return areaDataManager->mapPropMatShp;
 }
 
-BOOL AreaDataManager_IsOutdoorsLighting(const AreaDataManager *areaDataManager)
-{
+BOOL AreaDataManager_IsOutdoorsLighting(const AreaDataManager *areaDataManager) {
     if ((areaDataManager->areaData.areaLightArchiveID == 0) || (areaDataManager->areaData.areaLightArchiveID == 3)) {
         return TRUE;
     } else {
@@ -211,17 +202,14 @@ BOOL AreaDataManager_IsOutdoorsLighting(const AreaDataManager *areaDataManager)
     }
 }
 
-u8 AreaDataManager_GetAreaLightArchiveID(const AreaDataManager *areaDataManager)
-{
+u8 AreaDataManager_GetAreaLightArchiveID(const AreaDataManager *areaDataManager) {
     return areaDataManager->areaData.areaLightArchiveID;
 }
 
-int AreaDataManager_GetMapPropModelID(const AreaDataManager *areaDataManager, const int index)
-{
+int AreaDataManager_GetMapPropModelID(const AreaDataManager *areaDataManager, const int index) {
     return areaDataManager->mapPropModelIDs[index];
 }
 
-BOOL AreaDataManager_HasMapPropModelFile(const AreaDataManager *areaDataManager, const int mapPropModelID)
-{
+BOOL AreaDataManager_HasMapPropModelFile(const AreaDataManager *areaDataManager, const int mapPropModelID) {
     return areaDataManager->mapPropModelFiles[mapPropModelID] != NULL;
 }

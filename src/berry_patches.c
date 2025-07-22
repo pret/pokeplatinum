@@ -22,8 +22,7 @@ static int CalcTotalStageCount(BerryPatch *berryPatch);
 static void AdvancePatchGrowth(BerryPatch *berryPatch, const BerryGrowthData *growthData);
 static void DrainPatchMoisture(BerryPatch *berryPatch, const BerryGrowthData *growthData, int minutesPassed);
 
-void BerryPatches_Clear(BerryPatch *patches)
-{
+void BerryPatches_Clear(BerryPatch *patches) {
     MI_CpuClear8(patches, sizeof(BerryPatch) * MAX_BERRY_PATCHES);
     for (int i = 0; i < MAX_BERRY_PATCHES; i++) {
         patches[i].growthStage = BERRY_GROWTH_STAGE_NONE;
@@ -31,8 +30,7 @@ void BerryPatches_Clear(BerryPatch *patches)
     }
 }
 
-void BerryPatches_Init(BerryPatch *patches, enum HeapId heapID, const u16 *initPatches, int initSize)
-{
+void BerryPatches_Init(BerryPatch *patches, enum HeapId heapID, const u16 *initPatches, int initSize) {
     BerryGrowthData *growthData = BerryGrowthData_Init(heapID);
 
     for (int i = 0; i < MAX_BERRY_PATCHES || i < initSize; i++) {
@@ -49,8 +47,7 @@ void BerryPatches_Init(BerryPatch *patches, enum HeapId heapID, const u16 *initP
     Heap_Free(growthData);
 }
 
-BerryGrowthData *BerryGrowthData_Init(enum HeapId heapID)
-{
+BerryGrowthData *BerryGrowthData_Init(enum HeapId heapID) {
     BerryGrowthData *growthData;
     BerryData *berryData;
     NARC *narc = BerryData_NARC_ctor(heapID);
@@ -70,8 +67,7 @@ BerryGrowthData *BerryGrowthData_Init(enum HeapId heapID)
     return growthData;
 }
 
-static void ZeroBerryPatch(BerryPatch *berryPatch)
-{
+static void ZeroBerryPatch(BerryPatch *berryPatch) {
     berryPatch->berryID = 0;
     berryPatch->growthStage = BERRY_GROWTH_STAGE_NONE;
     berryPatch->stageMinutesRemaining = 0;
@@ -84,13 +80,11 @@ static void ZeroBerryPatch(BerryPatch *berryPatch)
     berryPatch->isGrowing = FALSE;
 }
 
-static int CalcBerryYield(BerryPatch *berryPatch, const BerryGrowthData *growthData)
-{
+static int CalcBerryYield(BerryPatch *berryPatch, const BerryGrowthData *growthData) {
     return growthData[berryPatch->berryID - 1].yieldCategory * berryPatch->yieldRating;
 }
 
-static int CalcMinutesRemainingInStage(const BerryGrowthData *growthData, int berryID, enum MulchType mulchType)
-{
+static int CalcMinutesRemainingInStage(const BerryGrowthData *growthData, int berryID, enum MulchType mulchType) {
     int minutesRemaining = growthData[berryID - 1].stageDuration * 60;
 
     if (mulchType == MULCH_TYPE_GROWTH) {
@@ -102,8 +96,7 @@ static int CalcMinutesRemainingInStage(const BerryGrowthData *growthData, int be
     return minutesRemaining;
 }
 
-static int CalcMoistureDrainRate(const BerryGrowthData *growthData, int berryID, enum MulchType mulchType)
-{
+static int CalcMoistureDrainRate(const BerryGrowthData *growthData, int berryID, enum MulchType mulchType) {
     int drainRate = growthData[berryID - 1].moistureDrainRate;
 
     if (mulchType == MULCH_TYPE_DAMP) {
@@ -115,8 +108,7 @@ static int CalcMoistureDrainRate(const BerryGrowthData *growthData, int berryID,
     }
 }
 
-static int GetHarvestTimeWithMulch(const BerryPatch *berryPatch)
-{
+static int GetHarvestTimeWithMulch(const BerryPatch *berryPatch) {
     if (berryPatch->mulchType == MULCH_TYPE_STABLE) {
         return BASE_HARVEST_STAGES + (BASE_HARVEST_STAGES / 2);
     } else {
@@ -124,8 +116,7 @@ static int GetHarvestTimeWithMulch(const BerryPatch *berryPatch)
     }
 }
 
-static int GetTotalReplantCountWithMulch(const BerryPatch *berryPatch)
-{
+static int GetTotalReplantCountWithMulch(const BerryPatch *berryPatch) {
     if (berryPatch->mulchType == MULCH_TYPE_GOOEY) {
         return BASE_MAX_REPLANT_COUNT + (BASE_MAX_REPLANT_COUNT / 2);
     } else {
@@ -133,23 +124,19 @@ static int GetTotalReplantCountWithMulch(const BerryPatch *berryPatch)
     }
 }
 
-static int CalcTotalStageCount(BerryPatch *berryPatch)
-{
+static int CalcTotalStageCount(BerryPatch *berryPatch) {
     return 1 + (3 + GetHarvestTimeWithMulch(berryPatch)) * GetTotalReplantCountWithMulch(berryPatch);
 }
 
-enum BerryGrowthStage BerryPatches_GetPatchGrowthStage(const BerryPatch *patches, int patchID)
-{
+enum BerryGrowthStage BerryPatches_GetPatchGrowthStage(const BerryPatch *patches, int patchID) {
     return patches[patchID].growthStage;
 }
 
-int BerryPatches_GetPatchBerryID(const BerryPatch *patches, int patchID)
-{
+int BerryPatches_GetPatchBerryID(const BerryPatch *patches, int patchID) {
     return patches[patchID].berryID;
 }
 
-enum SoilMoisture BerryPatches_GetPatchMoisture(const BerryPatch *patches, int patchID)
-{
+enum SoilMoisture BerryPatches_GetPatchMoisture(const BerryPatch *patches, int patchID) {
     int moistureRating = patches[patchID].moistureRating;
     if (moistureRating == 0) {
         return SOIL_VERY_DRY;
@@ -160,13 +147,11 @@ enum SoilMoisture BerryPatches_GetPatchMoisture(const BerryPatch *patches, int p
     }
 }
 
-int BerryPatches_GetPatchYieldRating(const BerryPatch *patches, int patchID)
-{
+int BerryPatches_GetPatchYieldRating(const BerryPatch *patches, int patchID) {
     return patches[patchID].yieldRating;
 }
 
-void BerryPatches_PlantInPatch(BerryPatch *patches, int patchID, const BerryGrowthData *growthData, int berryID)
-{
+void BerryPatches_PlantInPatch(BerryPatch *patches, int patchID, const BerryGrowthData *growthData, int berryID) {
     patches[patchID].berryID = berryID;
     patches[patchID].growthStage = BERRY_GROWTH_STAGE_PLANTED;
     patches[patchID].stageMinutesRemaining = CalcMinutesRemainingInStage(growthData, berryID, patches[patchID].mulchType);
@@ -178,45 +163,37 @@ void BerryPatches_PlantInPatch(BerryPatch *patches, int patchID, const BerryGrow
     patches[patchID].isGrowing = TRUE;
 }
 
-void BerryPatches_ResetPatchMoisture(BerryPatch *patches, int patchID)
-{
+void BerryPatches_ResetPatchMoisture(BerryPatch *patches, int patchID) {
     patches[patchID].moistureRating = MAX_MOISTURE_RATING;
 }
 
-BOOL BerryPatches_IsPatchGrowing(const BerryPatch *patches, int patchID)
-{
+BOOL BerryPatches_IsPatchGrowing(const BerryPatch *patches, int patchID) {
     return patches[patchID].isGrowing;
 }
 
-void BerryPatches_SetIsPatchGrowing(BerryPatch *patches, int patchID, BOOL isGrowing)
-{
+void BerryPatches_SetIsPatchGrowing(BerryPatch *patches, int patchID, BOOL isGrowing) {
     patches[patchID].isGrowing = isGrowing;
 }
 
-enum MulchType BerryPatches_GetPatchMulchType(const BerryPatch *patches, int patchID)
-{
+enum MulchType BerryPatches_GetPatchMulchType(const BerryPatch *patches, int patchID) {
     return patches[patchID].mulchType;
 }
 
-void BerryPatches_SetPatchMulchType(BerryPatch *patches, int patchID, enum MulchType mulchType)
-{
+void BerryPatches_SetPatchMulchType(BerryPatch *patches, int patchID, enum MulchType mulchType) {
     patches[patchID].mulchType = mulchType;
 }
 
-int BerryPatches_GetPatchYield(const BerryPatch *patches, int patchID)
-{
+int BerryPatches_GetPatchYield(const BerryPatch *patches, int patchID) {
     return patches[patchID].yield;
 }
 
-int BerryPatches_HarvestPatch(BerryPatch *patches, int patchID)
-{
+int BerryPatches_HarvestPatch(BerryPatch *patches, int patchID) {
     int yield = patches[patchID].yield;
     ZeroBerryPatch(&patches[patchID]);
     return yield;
 }
 
-static void AdvancePatchGrowth(BerryPatch *berryPatch, const BerryGrowthData *growthData)
-{
+static void AdvancePatchGrowth(BerryPatch *berryPatch, const BerryGrowthData *growthData) {
     switch (berryPatch->growthStage) {
     case BERRY_GROWTH_STAGE_NONE:
         GF_ASSERT(FALSE);
@@ -251,8 +228,7 @@ static void AdvancePatchGrowth(BerryPatch *berryPatch, const BerryGrowthData *gr
     }
 }
 
-static void DrainPatchMoisture(BerryPatch *berryPatch, const BerryGrowthData *growthData, int minutesPassed)
-{
+static void DrainPatchMoisture(BerryPatch *berryPatch, const BerryGrowthData *growthData, int minutesPassed) {
     if (berryPatch->growthStage == BERRY_GROWTH_STAGE_FRUIT) {
         return;
     }
@@ -285,8 +261,7 @@ static void DrainPatchMoisture(BerryPatch *berryPatch, const BerryGrowthData *gr
     }
 }
 
-void BerryPatches_ElapseMinutes(BerryPatch *patches, const BerryGrowthData *growthData, int minutesPassed)
-{
+void BerryPatches_ElapseMinutes(BerryPatch *patches, const BerryGrowthData *growthData, int minutesPassed) {
     int i;
     s32 totalMinutes;
     BerryPatch *patch;

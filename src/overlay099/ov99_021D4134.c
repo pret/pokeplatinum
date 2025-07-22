@@ -79,8 +79,7 @@ static const UnkStruct_ov99_021D5394 Unk_ov99_021D52B4[] = {
     { 0x62, 0x56, 0x66, 0x0, 0x0 }
 };
 
-void ov99_021D4134(UnkStruct_ov99_021D2CB0 *param0, int param1)
-{
+void ov99_021D4134(UnkStruct_ov99_021D2CB0 *param0, int param1) {
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -88,8 +87,7 @@ void ov99_021D4134(UnkStruct_ov99_021D2CB0 *param0, int param1)
     }
 }
 
-void ov99_021D4170(UnkStruct_ov99_021D2CB0 *param0)
-{
+void ov99_021D4170(UnkStruct_ov99_021D2CB0 *param0) {
     int v0, v1;
     UnkStruct_ov99_021D5434 *v2;
 
@@ -111,8 +109,7 @@ void ov99_021D4170(UnkStruct_ov99_021D2CB0 *param0)
     }
 }
 
-BOOL ov99_021D425C(UnkStruct_ov99_021D2CB0 *param0, s32 param1)
-{
+BOOL ov99_021D425C(UnkStruct_ov99_021D2CB0 *param0, s32 param1) {
     fx32 v0, v1, v2;
     fx32 v3, v4, v5;
     int v6, v7;
@@ -149,8 +146,7 @@ BOOL ov99_021D425C(UnkStruct_ov99_021D2CB0 *param0, s32 param1)
     return v9;
 }
 
-void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int param3)
-{
+void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int param3) {
     BgConfig *v0 = param0->unk_08;
     NNSG2dPaletteData *v1;
     void *v2;
@@ -202,8 +198,7 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
     Bg_SetOffset(v0, param2, 3, v3->unk_08);
 }
 
-void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1)
-{
+void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1) {
     void *v0;
     u32 v1;
     NNSG2dImageProxy *v2;

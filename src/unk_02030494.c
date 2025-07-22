@@ -18,31 +18,26 @@ void sub_020305AC(UnkStruct_020305B8 *param0);
 void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, const void *param4);
 u32 sub_02030600(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, void *param4);
 
-void sub_02030494(UnkStruct_020304A0 *param0)
-{
+void sub_02030494(UnkStruct_020304A0 *param0) {
     MI_CpuClear8(param0, sizeof(UnkStruct_020304A0));
     return;
 }
 
-UnkStruct_020304A0 *sub_020304A0(SaveData *saveData)
-{
+UnkStruct_020304A0 *sub_020304A0(SaveData *saveData) {
     BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->unk_8E0_val5;
 }
 
-BOOL sub_020304B0(UnkStruct_020304A0 *param0)
-{
+BOOL sub_020304B0(UnkStruct_020304A0 *param0) {
     return param0->unk_00_3;
 }
 
-void sub_020304B8(UnkStruct_020304A0 *param0, BOOL param1)
-{
+void sub_020304B8(UnkStruct_020304A0 *param0, BOOL param1) {
     param0->unk_00_3 = param1;
     return;
 }
 
-void sub_020304CC(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, const void *param4)
-{
+void sub_020304CC(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, const void *param4) {
     u32 *v0 = (u32 *)param4;
     u16 *v1 = (u16 *)param4;
     u8 *v2 = (u8 *)param4;
@@ -80,8 +75,7 @@ void sub_020304CC(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, c
     return;
 }
 
-u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, void *param4)
-{
+u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, void *param4) {
     switch (param1) {
     case 0:
         return (u32)param0->unk_00_0;
@@ -107,20 +101,17 @@ u32 sub_0203054C(UnkStruct_020304A0 *param0, u8 param1, u8 param2, u8 param3, vo
     return 0;
 }
 
-void sub_020305AC(UnkStruct_020305B8 *param0)
-{
+void sub_020305AC(UnkStruct_020305B8 *param0) {
     MI_CpuClear8(param0, sizeof(UnkStruct_020305B8));
     return;
 }
 
-UnkStruct_020305B8 *sub_020305B8(SaveData *saveData)
-{
+UnkStruct_020305B8 *sub_020305B8(SaveData *saveData) {
     BattleFrontier *frontier = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_FRONTIER);
     return &frontier->unk_1620.unk_00;
 }
 
-void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, const void *param4)
-{
+void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, const void *param4) {
     u32 *v0 = (u32 *)param4;
     u16 *v1 = (u16 *)param4;
     u8 *v2 = (u8 *)param4;
@@ -141,8 +132,7 @@ void sub_020305CC(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, c
     return;
 }
 
-u32 sub_02030600(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, void *param4)
-{
+u32 sub_02030600(UnkStruct_020305B8 *param0, u8 param1, u8 param2, u8 param3, void *param4) {
     switch (param1) {
     case 8:
         return (u32)((param0->unk_00 >> param2) & 0x1);

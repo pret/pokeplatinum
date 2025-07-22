@@ -8,22 +8,19 @@
 
 #include "heap.h"
 
-ModelAttributes *ModelAttributes_New(void)
-{
+ModelAttributes *ModelAttributes_New(void) {
     ModelAttributes *modelAttrs = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ModelAttributes));
     MI_CpuClear32(modelAttrs, sizeof(ModelAttributes));
 
     return modelAttrs;
 }
 
-void ModelAttributes_Free(ModelAttributes **modelAttrs)
-{
+void ModelAttributes_Free(ModelAttributes **modelAttrs) {
     Heap_FreeExplicit(HEAP_ID_FIELD, *modelAttrs);
     *modelAttrs = NULL;
 }
 
-void ModelAttributes_ApplyGlobal(ModelAttributes *modelAttrs, int attributes)
-{
+void ModelAttributes_ApplyGlobal(ModelAttributes *modelAttrs, int attributes) {
     for (int i = MODEL_LIGHT_VECTORS_SHIFT; i < MODEL_LIGHT_VECTORS_SHIFT + GX_LIGHTS_COUNT; i++) {
         if (attributes & (1 << i)) {
             NNS_G3dGlbLightVector(i, modelAttrs->lightVectors[i].x, modelAttrs->lightVectors[i].y, modelAttrs->lightVectors[i].z);
@@ -49,8 +46,7 @@ void ModelAttributes_ApplyGlobal(ModelAttributes *modelAttrs, int attributes)
     }
 }
 
-void ModelAttributes_ApplyToModel(ModelAttributes *modelAttrs, NNSG3dResMdl *model, int attributes)
-{
+void ModelAttributes_ApplyToModel(ModelAttributes *modelAttrs, NNSG3dResMdl *model, int attributes) {
     if (attributes & MODEL_DIFFUSE_REFLECT_COLOR) {
         NNS_G3dMdlSetMdlDiffAll(model, modelAttrs->diffuseReflectColor);
     }
@@ -108,8 +104,7 @@ void ModelAttributes_ApplyToModel(ModelAttributes *modelAttrs, NNSG3dResMdl *mod
     }
 }
 
-void ModelAttributes_SetLightVector(ModelAttributes *modelAttrs, int index, fx16 x, fx16 y, fx16 z)
-{
+void ModelAttributes_SetLightVector(ModelAttributes *modelAttrs, int index, fx16 x, fx16 y, fx16 z) {
     modelAttrs->lightVectors[index].x = x;
     modelAttrs->lightVectors[index].y = y;
     modelAttrs->lightVectors[index].z = z;
@@ -117,14 +112,12 @@ void ModelAttributes_SetLightVector(ModelAttributes *modelAttrs, int index, fx16
     NNS_G3dGlbLightVector(index, modelAttrs->lightVectors[index].x, modelAttrs->lightVectors[index].y, modelAttrs->lightVectors[index].z);
 }
 
-void ModelAttributes_SetLightColor(ModelAttributes *modelAttrs, int index, GXRgb lightColor)
-{
+void ModelAttributes_SetLightColor(ModelAttributes *modelAttrs, int index, GXRgb lightColor) {
     modelAttrs->lightColors[index] = lightColor;
     NNS_G3dGlbLightColor(index, modelAttrs->lightColors[index]);
 }
 
-void ModelAttributes_SetDiffuseReflection(ModelAttributes *modelAttrs, GXRgb diffuseReflectColor, BOOL setDiffuseColorAsVertexColor, BOOL applyGlobal)
-{
+void ModelAttributes_SetDiffuseReflection(ModelAttributes *modelAttrs, GXRgb diffuseReflectColor, BOOL setDiffuseColorAsVertexColor, BOOL applyGlobal) {
     modelAttrs->diffuseReflectColor = diffuseReflectColor;
     modelAttrs->setDiffuseColorAsVertexColor = setDiffuseColorAsVertexColor;
 
@@ -133,8 +126,7 @@ void ModelAttributes_SetDiffuseReflection(ModelAttributes *modelAttrs, GXRgb dif
     }
 }
 
-void ModelAttributes_SetAmbientReflection(ModelAttributes *modelAttrs, GXRgb ambientReflectColor, BOOL applyGlobal)
-{
+void ModelAttributes_SetAmbientReflection(ModelAttributes *modelAttrs, GXRgb ambientReflectColor, BOOL applyGlobal) {
     modelAttrs->ambientReflectColor = ambientReflectColor;
 
     if (applyGlobal == TRUE) {
@@ -142,8 +134,7 @@ void ModelAttributes_SetAmbientReflection(ModelAttributes *modelAttrs, GXRgb amb
     }
 }
 
-void ModelAttributes_SetSpecularReflection(ModelAttributes *modelAttrs, GXRgb specularReflectColor, BOOL enableSpecularReflectShininessTable, BOOL applyGlobal)
-{
+void ModelAttributes_SetSpecularReflection(ModelAttributes *modelAttrs, GXRgb specularReflectColor, BOOL enableSpecularReflectShininessTable, BOOL applyGlobal) {
     modelAttrs->specularReflectColor = specularReflectColor;
     modelAttrs->enableSpecularReflectShininessTable = enableSpecularReflectShininessTable;
 
@@ -152,8 +143,7 @@ void ModelAttributes_SetSpecularReflection(ModelAttributes *modelAttrs, GXRgb sp
     }
 }
 
-void ModelAttributes_SetEmissionColor(ModelAttributes *modelAttrs, GXRgb emissionColor, BOOL applyGlobal)
-{
+void ModelAttributes_SetEmissionColor(ModelAttributes *modelAttrs, GXRgb emissionColor, BOOL applyGlobal) {
     modelAttrs->emissionColor = emissionColor;
 
     if (applyGlobal == TRUE) {
@@ -161,8 +151,7 @@ void ModelAttributes_SetEmissionColor(ModelAttributes *modelAttrs, GXRgb emissio
     }
 }
 
-void ModelAttributes_SetPolygonMode(ModelAttributes *modelAttrs, GXPolygonMode polygonMode, BOOL applyGlobal)
-{
+void ModelAttributes_SetPolygonMode(ModelAttributes *modelAttrs, GXPolygonMode polygonMode, BOOL applyGlobal) {
     modelAttrs->polygonMode = polygonMode;
 
     if (applyGlobal == TRUE) {
@@ -170,8 +159,7 @@ void ModelAttributes_SetPolygonMode(ModelAttributes *modelAttrs, GXPolygonMode p
     }
 }
 
-void ModelAttributes_SetCullMode(ModelAttributes *modelAttrs, GXCull cullMode, BOOL applyGlobal)
-{
+void ModelAttributes_SetCullMode(ModelAttributes *modelAttrs, GXCull cullMode, BOOL applyGlobal) {
     modelAttrs->cullMode = cullMode;
 
     if (applyGlobal == TRUE) {
@@ -179,8 +167,7 @@ void ModelAttributes_SetCullMode(ModelAttributes *modelAttrs, GXCull cullMode, B
     }
 }
 
-void ModelAttributes_SetAlpha(ModelAttributes *modelAttrs, int alpha, BOOL applyGlobal)
-{
+void ModelAttributes_SetAlpha(ModelAttributes *modelAttrs, int alpha, BOOL applyGlobal) {
     modelAttrs->alpha = alpha;
 
     if (applyGlobal == TRUE) {
@@ -188,8 +175,7 @@ void ModelAttributes_SetAlpha(ModelAttributes *modelAttrs, int alpha, BOOL apply
     }
 }
 
-void ModelAttributes_SetMiscAttrEnabled(ModelAttributes *modelAttrs, int miscFlagsMask, BOOL enable, BOOL applyGlobal)
-{
+void ModelAttributes_SetMiscAttrEnabled(ModelAttributes *modelAttrs, int miscFlagsMask, BOOL enable, BOOL applyGlobal) {
     if (enable == TRUE) {
         if (modelAttrs->miscFlags & miscFlagsMask) {
             return;

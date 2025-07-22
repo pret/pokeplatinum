@@ -80,8 +80,7 @@ static UnkStruct_ov93_021D15C8 Unk_ov93_021D15C8[4] = {
     },
 };
 
-int ov93_021D111C(ApplicationManager *appMan, int *param1)
-{
+int ov93_021D111C(ApplicationManager *appMan, int *param1) {
     u8 v0;
     UnkStruct_ov93_021D13C0 *v1;
     UnkStruct_0206C8D4 *v2;
@@ -120,8 +119,7 @@ int ov93_021D111C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov93_021D120C(ApplicationManager *appMan, int *param1)
-{
+int ov93_021D120C(ApplicationManager *appMan, int *param1) {
     u8 v0;
     BOOL v1;
     MtxFx33 v2 = {
@@ -179,8 +177,7 @@ int ov93_021D120C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov93_021D12F0(ApplicationManager *appMan, int *param1)
-{
+int ov93_021D12F0(ApplicationManager *appMan, int *param1) {
     u8 v0;
     UnkStruct_ov93_021D13C0 *v1 = ApplicationManager_Data(appMan);
 
@@ -198,8 +195,7 @@ int ov93_021D12F0(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov93_021D133C(void)
-{
+static void ov93_021D133C(void) {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -217,8 +213,7 @@ static void ov93_021D133C(void)
     GXLayers_SwapDisplay();
 }
 
-static void ov93_021D13A0(void)
-{
+static void ov93_021D13A0(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -235,8 +230,7 @@ static void ov93_021D13A0(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov93_021D13C0(UnkStruct_ov93_021D13C0 *param0)
-{
+static void ov93_021D13C0(UnkStruct_ov93_021D13C0 *param0) {
     u8 v0;
     NNSG3dResTex *v1;
     void *v2;

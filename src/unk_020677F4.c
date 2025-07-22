@@ -32,8 +32,7 @@ typedef struct {
 
 static int sub_020679FC(int param0, int param1);
 
-int sub_020677F4(int param0)
-{
+int sub_020677F4(int param0) {
     if (param0 == 0x64) {
         return 1;
     }
@@ -41,8 +40,7 @@ int sub_020677F4(int param0)
     return 0;
 }
 
-int sub_02067800(const MapObject *param0)
-{
+int sub_02067800(const MapObject *param0) {
     {
         UnkStruct_02067800 *v0 = sub_02062A78((MapObject *)param0);
 
@@ -62,31 +60,26 @@ int sub_02067800(const MapObject *param0)
     return 0xffff;
 }
 
-void sub_02067834(MapObject *param0)
-{
+void sub_02067834(MapObject *param0) {
     UnkStruct_02067800 *v0 = sub_02062A78(param0);
     v0->unk_02 = 1;
 }
 
-void sub_02067840(MapObject *param0)
-{
+void sub_02067840(MapObject *param0) {
     UnkStruct_02067800 *v0 = sub_02062A54(param0, (sizeof(UnkStruct_02067800)));
     v0->unk_00 = 0;
 }
 
-void sub_02067850(MapObject *param0)
-{
+void sub_02067850(MapObject *param0) {
     UnkStruct_02067800 *v0 = sub_02062A78(param0);
     v0->unk_00 = sub_02055F00(MapObject_FieldSystem(param0), param0);
 }
 
-void sub_0206786C(MapObject *param0)
-{
+void sub_0206786C(MapObject *param0) {
     return;
 }
 
-void sub_02067870(MapObject *param0)
-{
+void sub_02067870(MapObject *param0) {
     UnkStruct_02067870 *v0 = sub_02062ACC(param0, (sizeof(UnkStruct_02067870)));
 
     v0->unk_00 = 0xffff;
@@ -95,8 +88,7 @@ void sub_02067870(MapObject *param0)
     ov5_021F20D4(param0);
 }
 
-void sub_02067890(MapObject *param0)
-{
+void sub_02067890(MapObject *param0) {
     UnkStruct_02067800 *v0 = sub_02062A78(param0);
     UnkStruct_02067870 *v1 = sub_02062AF0(param0);
     u32 v2 = sub_02055F00(MapObject_FieldSystem(param0), param0);
@@ -143,14 +135,12 @@ void sub_02067890(MapObject *param0)
     }
 }
 
-void sub_02067950(MapObject *param0)
-{
+void sub_02067950(MapObject *param0) {
     UnkStruct_02067870 *v0 = sub_02062AF0(param0);
     ov5_021ECFD8(param0, &v0->unk_08, v0->unk_00);
 }
 
-void sub_02067968(MapObject *param0)
-{
+void sub_02067968(MapObject *param0) {
     UnkStruct_02067870 *v0 = sub_02062AF0(param0);
 
     if (v0->unk_08 != NULL) {
@@ -161,8 +151,7 @@ void sub_02067968(MapObject *param0)
     MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_21);
 }
 
-void sub_02067998(MapObject *param0)
-{
+void sub_02067998(MapObject *param0) {
     UnkStruct_02067870 *v0 = sub_02062AF0(param0);
 
     if (ov5_021EDD94(param0) == 1) {
@@ -186,8 +175,7 @@ void sub_02067998(MapObject *param0)
     }
 }
 
-static int sub_020679FC(int param0, int param1)
-{
+static int sub_020679FC(int param0, int param1) {
     switch (param1) {
     case 0:
         return 0xffff;
@@ -217,8 +205,7 @@ static int sub_020679FC(int param0, int param1)
     return 0xffff;
 }
 
-UnkStruct_020216E0 *sub_02067A58(MapObject *param0)
-{
+UnkStruct_020216E0 *sub_02067A58(MapObject *param0) {
     UnkStruct_020216E0 *v0 = NULL;
 
     GF_ASSERT(sub_020677F4(MapObject_GetGraphicsID(param0)));

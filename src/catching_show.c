@@ -44,8 +44,7 @@ static u32 GetTimePoints(CatchingShow *catchingShow);
 
 static CatchingShow sCatchingShow;
 
-void CatchingShow_Start(FieldSystem *fieldSystem)
-{
+void CatchingShow_Start(FieldSystem *fieldSystem) {
     CatchingShow *catchingShow = &sCatchingShow;
 
     MI_CpuClearFast(catchingShow, sizeof(CatchingShow));
@@ -56,8 +55,7 @@ void CatchingShow_Start(FieldSystem *fieldSystem)
     catchingShow->startTime = GetTimestamp();
 }
 
-void CatchingShow_End(FieldSystem *fieldSystem)
-{
+void CatchingShow_End(FieldSystem *fieldSystem) {
     CatchingShow *catchingShow = &sCatchingShow;
     GameRecords *records = SaveData_GetGameRecords(fieldSystem->saveData);
     s64 endTime = GetTimestamp();
@@ -72,8 +70,7 @@ void CatchingShow_End(FieldSystem *fieldSystem)
     GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_FINISHED_CATCHING_SHOW);
 }
 
-BOOL CatchingShow_CheckWildEncounter(FieldSystem *fieldSystem, int playerX, int playerY)
-{
+BOOL CatchingShow_CheckWildEncounter(FieldSystem *fieldSystem, int playerX, int playerY) {
     if (IsStepCountZero(&sCatchingShow) == TRUE) {
         return TryStartEncounter(fieldSystem, &sCatchingShow, playerX, playerY);
     } else {
@@ -81,38 +78,31 @@ BOOL CatchingShow_CheckWildEncounter(FieldSystem *fieldSystem, int playerX, int 
     }
 }
 
-FieldBattleDTO *CatchingShow_GetBattleDTO(FieldSystem *fieldSystem)
-{
+FieldBattleDTO *CatchingShow_GetBattleDTO(FieldSystem *fieldSystem) {
     return SetupBattleDTO(fieldSystem, &sCatchingShow);
 }
 
-void CatchingShow_UpdateBattleResult(FieldSystem *fieldSystem, FieldBattleDTO *dto)
-{
+void CatchingShow_UpdateBattleResult(FieldSystem *fieldSystem, FieldBattleDTO *dto) {
     UpdateBattleResultInternal(fieldSystem, dto, &sCatchingShow);
 }
 
-int CatchingShow_GetParkBallCount(FieldSystem *fieldSystem)
-{
+int CatchingShow_GetParkBallCount(FieldSystem *fieldSystem) {
     return CATCHING_SHOW_MONS - NumMonsCaptured(&sCatchingShow);
 }
 
-int CatchingShow_CalcCatchingPoints(FieldSystem *fieldSystem)
-{
+int CatchingShow_CalcCatchingPoints(FieldSystem *fieldSystem) {
     return CalcCatchingPoints(&sCatchingShow);
 }
 
-int CatchingShow_GetTimePoints(FieldSystem *fieldSystem)
-{
+int CatchingShow_GetTimePoints(FieldSystem *fieldSystem) {
     return GetTimePoints(&sCatchingShow);
 }
 
-int CatchingShow_GetTypePoints(FieldSystem *fieldSystem)
-{
+int CatchingShow_GetTypePoints(FieldSystem *fieldSystem) {
     return CalculateTypePoints(&sCatchingShow);
 }
 
-static void BufferSpeciesData(u32 species, SpeciesPalPark *speciesData)
-{
+static void BufferSpeciesData(u32 species, SpeciesPalPark *speciesData) {
     GF_ASSERT(0 < species && species <= NATIONAL_DEX_COUNT);
 
     int speciesOffset = (species - 1) * sizeof(SpeciesPalPark);
@@ -120,8 +110,7 @@ static void BufferSpeciesData(u32 species, SpeciesPalPark *speciesData)
     NARC_ReadFromMemberByIndexPair(speciesData, NARC_INDEX_ARC__PPARK, 0, speciesOffset, sizeof(SpeciesPalPark));
 }
 
-static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow)
-{
+static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow) {
     int i;
     SpeciesPalPark speciesData;
     u16 monSpecies;
@@ -152,8 +141,7 @@ static void InitSpeciesData(FieldSystem *fieldSystem, CatchingShow *catchingShow
     Heap_Free(mon);
 }
 
-static int NumMonsCaptured(CatchingShow *catchingShow)
-{
+static int NumMonsCaptured(CatchingShow *catchingShow) {
     int i;
     int numMonsCaptured = 0;
 
@@ -166,13 +154,11 @@ static int NumMonsCaptured(CatchingShow *catchingShow)
     return numMonsCaptured;
 }
 
-static void ResetStepCount(CatchingShow *catchingShow)
-{
+static void ResetStepCount(CatchingShow *catchingShow) {
     catchingShow->steps = LCRNG_RandMod(10) + 5;
 }
 
-static BOOL IsStepCountZero(CatchingShow *catchingShow)
-{
+static BOOL IsStepCountZero(CatchingShow *catchingShow) {
     catchingShow->steps--;
 
     if (catchingShow->steps == 0) {
@@ -183,8 +169,7 @@ static BOOL IsStepCountZero(CatchingShow *catchingShow)
     return FALSE;
 }
 
-static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
-{
+static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY) {
     u16 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, playerX, playerY);
     int area = (playerX < 32) ? 0 : 1;
     area += (playerY < 32) ? 0 : 2;
@@ -198,8 +183,7 @@ static int GetEncounterArea(FieldSystem *fieldSystem, int playerX, int playerY)
     return PAL_PARK_AREA_NONE;
 }
 
-static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY)
-{
+static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingShow, int playerX, int playerY) {
     int i;
     int encounterChance, totalRarity = 0;
     int area = GetEncounterArea(fieldSystem, playerX, playerY);
@@ -241,8 +225,7 @@ static BOOL TryStartEncounter(FieldSystem *fieldSystem, CatchingShow *catchingSh
     return FALSE;
 }
 
-static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow)
-{
+static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO *dto, CatchingShow *catchingShow) {
     switch (dto->resultMask) {
     case BATTLE_RESULT_CAPTURED_MON:
         catchingShow->caughtMonsOrder[catchingShow->currentEncounterIndex] = NumMonsCaptured(catchingShow) + 1;
@@ -254,8 +237,7 @@ static void UpdateBattleResultInternal(FieldSystem *fieldSystem, FieldBattleDTO 
     }
 }
 
-static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *catchingShow)
-{
+static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *catchingShow) {
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     PalParkTransfer *transferData = SaveData_GetPalParkTransfer(fieldSystem->saveData);
     int parkBallCount = CatchingShow_GetParkBallCount(fieldSystem);
@@ -269,8 +251,7 @@ static FieldBattleDTO *SetupBattleDTO(FieldSystem *fieldSystem, CatchingShow *ca
     return dto;
 }
 
-static u32 CalcCatchingPoints(CatchingShow *catchingShow)
-{
+static u32 CalcCatchingPoints(CatchingShow *catchingShow) {
     int i;
     u32 totalCatchingPoints = 0;
 
@@ -281,8 +262,7 @@ static u32 CalcCatchingPoints(CatchingShow *catchingShow)
     return totalCatchingPoints;
 }
 
-static u32 CalculateTypePoints(CatchingShow *catchingShow)
-{
+static u32 CalculateTypePoints(CatchingShow *catchingShow) {
     int i, j;
     int prevMonType1, prevMonType2, currMonType1, currMonType2;
     u32 distinctTypeTracker = 0;
@@ -321,7 +301,6 @@ static u32 CalculateTypePoints(CatchingShow *catchingShow)
     return totalTypePoints;
 }
 
-static u32 GetTimePoints(CatchingShow *catchingShow)
-{
+static u32 GetTimePoints(CatchingShow *catchingShow) {
     return catchingShow->timePoints;
 }

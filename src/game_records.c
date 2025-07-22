@@ -18,32 +18,27 @@ static u32 SetRecordValue(GameRecords *records, int id, u32 val);
 static u32 GetRecordLimit(int id);
 static int GetTrainerScoreIncrement(int records);
 
-int GameRecords_SaveSize(void)
-{
+int GameRecords_SaveSize(void) {
     return sizeof(GameRecords);
 }
 
-void GameRecords_Init(GameRecords *records)
-{
+void GameRecords_Init(GameRecords *records) {
     MI_CpuClear32(records, sizeof(GameRecords));
     records->seed.modifier = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);
 
     EncodeGameRecords(records, START_ENCODED_RECORDS);
 }
 
-GameRecords *SaveData_GetGameRecords(SaveData *saveData)
-{
+GameRecords *SaveData_GetGameRecords(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_GAME_RECORDS);
 }
 
 // this inline does not match when operating on the substruct
-static inline u32 HashEncodingSeed(GameRecords *records)
-{
+static inline u32 HashEncodingSeed(GameRecords *records) {
     return records->seed.byteSum + (records->seed.modifier << 16);
 }
 
-static void EncodeGameRecords(GameRecords *records, int id)
-{
+static void EncodeGameRecords(GameRecords *records, int id) {
     if (id == RECORD_UNK_000) {
         return;
     }
@@ -52,8 +47,7 @@ static void EncodeGameRecords(GameRecords *records, int id)
     EncodeData(&records->recordsU32[START_ENCODED_RECORDS], SIZE_ENCODED_RECORDS, HashEncodingSeed(records));
 }
 
-static void DecodeGameRecords(GameRecords *records, int id)
-{
+static void DecodeGameRecords(GameRecords *records, int id) {
     if (id == RECORD_UNK_000) {
         return;
     }
@@ -61,8 +55,7 @@ static void DecodeGameRecords(GameRecords *records, int id)
     DecodeData(&records->recordsU32[START_ENCODED_RECORDS], SIZE_ENCODED_RECORDS, HashEncodingSeed(records));
 }
 
-static u32 GetRecordValue(const GameRecords *records, int id)
-{
+static u32 GetRecordValue(const GameRecords *records, int id) {
     if (id < NUM_U32_RECORDS) {
         return records->recordsU32[id];
     } else if (id < NUM_U16_RECORDS + NUM_U32_RECORDS) {
@@ -73,8 +66,7 @@ static u32 GetRecordValue(const GameRecords *records, int id)
     return 0;
 }
 
-static u32 SetRecordValue(GameRecords *records, int id, u32 val)
-{
+static u32 SetRecordValue(GameRecords *records, int id, u32 val) {
     if (id < NUM_U32_RECORDS) {
         records->recordsU32[id] = val;
     } else if (id < MAX_RECORDS) {
@@ -237,8 +229,7 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_UNK_147] = FALSE,
 };
 
-static u32 GetRecordLimit(int id)
-{
+static u32 GetRecordLimit(int id) {
     if (id < NUM_U32_RECORDS) {
         if (sUsesHighLimit[id]) {
             return HIGH_LIMIT_U32;
@@ -311,20 +302,17 @@ static const u16 sTrainerScoreIncrements[MAX_TRAINER_SCORE_EVENTS] = {
     [TRAINER_SCORE_EVENT_UNK_50] = 10,
 };
 
-static int GetTrainerScoreIncrement(int records)
-{
+static int GetTrainerScoreIncrement(int records) {
     return sTrainerScoreIncrements[records];
 }
 
-static inline u32 SetRecordValueWithLimit(GameRecords *records, int id, u32 val, u32 limit)
-{
+static inline u32 SetRecordValueWithLimit(GameRecords *records, int id, u32 val, u32 limit) {
     return val < limit
         ? SetRecordValue(records, id, val)
         : SetRecordValue(records, id, limit);
 }
 
-u32 GameRecords_SetRecordValue(GameRecords *records, int id, u32 val)
-{
+u32 GameRecords_SetRecordValue(GameRecords *records, int id, u32 val) {
     u32 limit = GetRecordLimit(id);
 
     DecodeGameRecords(records, id);
@@ -334,8 +322,7 @@ u32 GameRecords_SetRecordValue(GameRecords *records, int id, u32 val)
     return new;
 }
 
-u32 GameRecords_SetAndLimitRecordValue(GameRecords *records, int id, u32 val)
-{
+u32 GameRecords_SetAndLimitRecordValue(GameRecords *records, int id, u32 val) {
     u32 limit = GetRecordLimit(id);
 
     DecodeGameRecords(records, id);
@@ -357,8 +344,7 @@ u32 GameRecords_SetAndLimitRecordValue(GameRecords *records, int id, u32 val)
     return new;
 }
 
-u32 GameRecords_IncrementRecordValue(GameRecords *records, int id)
-{
+u32 GameRecords_IncrementRecordValue(GameRecords *records, int id) {
     u32 limit = GetRecordLimit(id);
 
     DecodeGameRecords(records, id);
@@ -369,8 +355,7 @@ u32 GameRecords_IncrementRecordValue(GameRecords *records, int id)
     return new;
 }
 
-u32 GameRecords_AddToRecordValue(GameRecords *records, int id, u32 toAdd)
-{
+u32 GameRecords_AddToRecordValue(GameRecords *records, int id, u32 toAdd) {
     u32 limit = GetRecordLimit(id);
 
     DecodeGameRecords(records, id);
@@ -381,8 +366,7 @@ u32 GameRecords_AddToRecordValue(GameRecords *records, int id, u32 toAdd)
     return new;
 }
 
-u32 GameRecords_GetRecordValue(GameRecords *records, int id)
-{
+u32 GameRecords_GetRecordValue(GameRecords *records, int id) {
     u32 limit = GetRecordLimit(id);
 
     DecodeGameRecords(records, id);
@@ -392,8 +376,7 @@ u32 GameRecords_GetRecordValue(GameRecords *records, int id)
     return cur > limit ? limit : cur;
 }
 
-void GameRecords_IncrementTrainerScore(GameRecords *records, int scoreID)
-{
+void GameRecords_IncrementTrainerScore(GameRecords *records, int scoreID) {
     GF_ASSERT(scoreID < MAX_TRAINER_SCORE_EVENTS);
 
     u32 cur = GameRecords_GetRecordValue(records, RECORD_TRAINER_SCORE);
@@ -404,13 +387,11 @@ void GameRecords_IncrementTrainerScore(GameRecords *records, int scoreID)
     }
 }
 
-u32 GameRecords_GetTrainerScore(GameRecords *records)
-{
+u32 GameRecords_GetTrainerScore(GameRecords *records) {
     return GameRecords_GetRecordValue(records, RECORD_TRAINER_SCORE);
 }
 
-void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const Pokedex *pokedex, const u16 species)
-{
+void GameRecords_IncrementTrainerScoreOnCatch(GameRecords *records, const Pokedex *pokedex, const u16 species) {
     if (!Pokedex_HasCaughtSpecies(pokedex, species)) {
         GameRecords_IncrementTrainerScore(records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
     }

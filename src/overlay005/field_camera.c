@@ -161,8 +161,7 @@ static const CameraSettings sCameraTypes[] = {
     },
 };
 
-void FieldCamera_Create(const VecFx32 *_target, FieldSystem *fieldSystem, const enum CameraType configID, const BOOL withHistory)
-{
+void FieldCamera_Create(const VecFx32 *_target, FieldSystem *fieldSystem, const enum CameraType configID, const BOOL withHistory) {
     const VecFx32 *target = _target;
     const CameraSettings *config = &sCameraTypes[configID];
 
@@ -179,8 +178,7 @@ void FieldCamera_Create(const VecFx32 *_target, FieldSystem *fieldSystem, const 
     }
 }
 
-void FieldCamera_Delete(FieldSystem *fieldSystem)
-{
+void FieldCamera_Delete(FieldSystem *fieldSystem) {
     Camera_ClearActive();
     Camera_DeleteHistory(fieldSystem->camera);
     Camera_Delete(fieldSystem->camera);

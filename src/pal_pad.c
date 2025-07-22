@@ -10,36 +10,30 @@
 #include "pal_pad.h"
 #include "savedata.h"
 
-int PalPad_SaveSize(void)
-{
+int PalPad_SaveSize(void) {
     return sizeof(PalPad) * PAL_PAD_ENTRIES;
 }
 
-PalPad *SaveData_GetPalPad(SaveData *saveData)
-{
+PalPad *SaveData_GetPalPad(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PAL_PAD);
 }
 
-void PalPad_Init(PalPad *palPad)
-{
+void PalPad_Init(PalPad *palPad) {
     for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
         memset(&palPad[i], 0, sizeof(PalPad));
         palPad[i].trainerName[0] = CHAR_EOS;
     }
 }
 
-const u16 *PalPad_GetTrainerNamePointer(const PalPad *palPad, int trainerIndex)
-{
+const u16 *PalPad_GetTrainerNamePointer(const PalPad *palPad, int trainerIndex) {
     return palPad[trainerIndex].trainerName;
 }
 
-u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex)
-{
+u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex) {
     return palPad->associatedTrainerRegionCodes[trainerIndex];
 }
 
-BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second)
-{
+BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second) {
     if (0 == CharCode_Compare(first->trainerName, second->trainerName)) {
         if (first->trainerId == second->trainerId) {
             return TRUE;
@@ -49,8 +43,7 @@ BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second)
     return FALSE;
 }
 
-void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID)
-{
+void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID) {
     int i;
     int diffs[5];
     PalPad *newPad = Heap_AllocFromHeap(heapID, sizeof(PalPad) * PAL_PAD_ENTRIES);
@@ -95,8 +88,7 @@ void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, i
     Heap_Free(newPad);
 }
 
-int PalPad_TrainerIsFriend(PalPad *palPad, u32 trainerId)
-{
+int PalPad_TrainerIsFriend(PalPad *palPad, u32 trainerId) {
     int i, j;
 
     for (i = 0; i < PAL_PAD_ENTRIES; i++) {

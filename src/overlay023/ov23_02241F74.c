@@ -123,8 +123,7 @@ static void ov23_02243310(SysTask *param0, void *param1);
 
 static CommManUnderground *sCommManUnderground = NULL;
 
-static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fieldSystem)
-{
+static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fieldSystem) {
     u8 v0 = Options_TextFrameDelay(SaveData_GetOptions(fieldSystem->saveData));
     int i;
 
@@ -158,8 +157,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sub_02032110(ov23_022433F4);
 }
 
-static void ov23_02242108(void)
-{
+static void ov23_02242108(void) {
     int i;
 
     for (i = 0; i < (7 + 1); i++) {
@@ -182,33 +180,27 @@ static void ov23_02242108(void)
     sCommManUnderground = NULL;
 }
 
-UnkStruct_ov23_02253E2C *ov23_0224219C(void)
-{
+UnkStruct_ov23_02253E2C *ov23_0224219C(void) {
     return sCommManUnderground->unk_118;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421AC(void)
-{
+UnkStruct_ov23_02253E2C *ov23_022421AC(void) {
     return sCommManUnderground->unk_11C;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421BC(void)
-{
+UnkStruct_ov23_02253E2C *ov23_022421BC(void) {
     return sCommManUnderground->unk_120;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421CC(void)
-{
+UnkStruct_ov23_02253E2C *ov23_022421CC(void) {
     return sCommManUnderground->unk_124;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421DC(void)
-{
+UnkStruct_ov23_02253E2C *ov23_022421DC(void) {
     return sCommManUnderground->unk_128;
 }
 
-void ov23_022421EC(void)
-{
+void ov23_022421EC(void) {
     ov23_02254210(sCommManUnderground->unk_118);
     ov23_02254210(sCommManUnderground->unk_11C);
     ov23_02254210(sCommManUnderground->unk_120);
@@ -216,8 +208,7 @@ void ov23_022421EC(void)
     ov23_02254210(sCommManUnderground->unk_128);
 }
 
-BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3)
-{
+BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3) {
     StringTemplate *v0;
     Strbuf *v1;
 
@@ -238,8 +229,7 @@ BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf 
     return 0;
 }
 
-BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
-{
+BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3) {
     StringTemplate *v0;
     Strbuf *v1;
 
@@ -259,8 +249,7 @@ BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
     return 0;
 }
 
-static BOOL ov23_02242308(Strbuf *param0)
-{
+static BOOL ov23_02242308(Strbuf *param0) {
     int i;
     StringTemplate *v1;
     Strbuf *v2;
@@ -316,8 +305,7 @@ static BOOL ov23_02242308(Strbuf *param0)
     return 0;
 }
 
-BOOL ov23_0224240C(int param0, int param1)
-{
+BOOL ov23_0224240C(int param0, int param1) {
     UnkStruct_ov23_0224271C v0;
 
     v0.unk_00 = param0;
@@ -338,8 +326,7 @@ BOOL ov23_0224240C(int param0, int param1)
     return 0;
 }
 
-BOOL ov23_02242458(void)
-{
+BOOL ov23_02242458(void) {
     VecFx32 v0;
     MapObject *v1;
     int v2, v3;
@@ -386,8 +373,7 @@ BOOL ov23_02242458(void)
     return 0;
 }
 
-static int ov23_02242540(u8 *param0, UnkFuncPtr_ov23_02242540 param1, UnkStruct_ov23_0224271C *param2)
-{
+static int ov23_02242540(u8 *param0, UnkFuncPtr_ov23_02242540 param1, UnkStruct_ov23_0224271C *param2) {
     UnkStruct_ov23_02241A80 v0;
     UnkStruct_ov23_02241A88 v1;
     int v2 = 1;
@@ -417,8 +403,7 @@ static int ov23_02242540(u8 *param0, UnkFuncPtr_ov23_02242540 param1, UnkStruct_
     return v2;
 }
 
-static void ov23_022425B8(int param0, UnkStruct_ov23_0224271C *param1)
-{
+static void ov23_022425B8(int param0, UnkStruct_ov23_0224271C *param1) {
     u8 v0[8 + 1];
     UnkStruct_ov23_02241A80 v1;
     UnkStruct_ov23_02241A88 v2;
@@ -434,8 +419,7 @@ static void ov23_022425B8(int param0, UnkStruct_ov23_0224271C *param1)
     CommSys_SendDataServer(50, v0, v3);
 }
 
-void ov23_022425F8(int param0, int param1, void *param2, void *param3)
-{
+void ov23_022425F8(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_0224271C *v0 = param2;
 
     if (!sub_02059094(param0)) {
@@ -450,8 +434,7 @@ void ov23_022425F8(int param0, int param1, void *param2, void *param3)
     ov23_022425B8(param0, v0);
 }
 
-void ov23_02242624(int param0, int param1, void *param2, void *param3)
-{
+void ov23_02242624(int param0, int param1, void *param2, void *param3) {
     int v0;
     u8 *v1 = param2;
     UnkStruct_ov23_0224271C v2;
@@ -464,8 +447,7 @@ void ov23_02242624(int param0, int param1, void *param2, void *param3)
     sCommManUnderground->unk_148 = param1 - 1;
 }
 
-void ov23_02242654(int param0, int param1, void *param2, void *param3)
-{
+void ov23_02242654(int param0, int param1, void *param2, void *param3) {
     int v0;
     u8 *v1 = param2;
     UnkStruct_ov23_0224271C v2;
@@ -485,8 +467,7 @@ void ov23_02242654(int param0, int param1, void *param2, void *param3)
     ov23_022489F8(sCommManUnderground->fieldSystem, sCommManUnderground->unk_1C.unk_00, sCommManUnderground->unk_1C.unk_02, sCommManUnderground->unk_18.unk_00, sCommManUnderground->unk_18.unk_02, sCommManUnderground->unk_FC, sCommManUnderground->unk_148, sCommManUnderground->unk_104, sCommManUnderground->unk_149, sCommManUnderground->unk_10C, sCommManUnderground->unk_14A);
 }
 
-static int ov23_02242704(UnkStruct_ov23_0224271C *param0)
-{
+static int ov23_02242704(UnkStruct_ov23_0224271C *param0) {
     int v0 = 0, v1 = 0;
 
     if (param0 == NULL) {
@@ -499,8 +480,7 @@ static int ov23_02242704(UnkStruct_ov23_0224271C *param0)
     return (v1 * 30 * 32) + v0;
 }
 
-int ov23_0224271C(UnkStruct_ov23_0224271C *param0)
-{
+int ov23_0224271C(UnkStruct_ov23_0224271C *param0) {
     int v0;
     int v1 = 0;
     int v2 = sCommManUnderground->unk_12C - 1;
@@ -525,8 +505,7 @@ int ov23_0224271C(UnkStruct_ov23_0224271C *param0)
     return -1;
 }
 
-int ov23_02242788(UnkStruct_ov23_0224271C *param0)
-{
+int ov23_02242788(UnkStruct_ov23_0224271C *param0) {
     int v0;
     int v1 = 0;
     int v2 = sCommManUnderground->unk_12C - 2;
@@ -549,29 +528,25 @@ int ov23_02242788(UnkStruct_ov23_0224271C *param0)
     return v1;
 }
 
-void ov23_022427DC(int param0, UnkFuncPtr_ov23_022427DC param1)
-{
+void ov23_022427DC(int param0, UnkFuncPtr_ov23_022427DC param1) {
     sCommManUnderground->unk_114 = param1;
     sCommManUnderground->unk_12C = param0;
 }
 
-void ov23_022427F8(void)
-{
+void ov23_022427F8(void) {
     if (0 == CommPlayer_GetMovementTimer(CommSys_CurNetId())) {
         Link_Message(27);
         sub_0203572C();
     }
 }
 
-void ov23_02242814(void)
-{
+void ov23_02242814(void) {
     if (sCommManUnderground->unk_146 != 0) {
         sCommManUnderground->unk_146--;
     }
 }
 
-void ov23_02242830(u8 param0)
-{
+void ov23_02242830(u8 param0) {
     u8 v0 = param0;
     UnkStruct_ov23_02242830 v1;
     int v2, v3;
@@ -605,13 +580,11 @@ void ov23_02242830(u8 param0)
     sCommManUnderground->unk_146 = 8;
 }
 
-int ov23_022428D4(void)
-{
+int ov23_022428D4(void) {
     return sizeof(UnkStruct_ov23_02242830);
 }
 
-void ov23_022428D8(int param0, int param1, void *param2, void *param3)
-{
+void ov23_022428D8(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_022428D8 v0;
     UnkStruct_ov23_02242830 *v1 = param2;
     UnkStruct_ov23_0224271C v2;
@@ -726,8 +699,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov23_02242B14(void)
-{
+void ov23_02242B14(void) {
     int i;
 
     if (CommSys_CurNetId() == 0) {
@@ -763,8 +735,7 @@ void ov23_02242B14(void)
     }
 }
 
-void ov23_02242BC0(FieldSystem *fieldSystem)
-{
+void ov23_02242BC0(FieldSystem *fieldSystem) {
     void *v0;
 
     if (sCommManUnderground == NULL) {
@@ -792,8 +763,7 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
     }
 }
 
-void ov23_02242C78(void)
-{
+void ov23_02242C78(void) {
     if (sCommManUnderground) {
         ov23_022535EC();
         ov23_022417CC();
@@ -807,8 +777,7 @@ void ov23_02242C78(void)
     }
 }
 
-void ov23_02242CB4(void)
-{
+void ov23_02242CB4(void) {
     if (sCommManUnderground) {
         CommPlayerMan_Restart();
         ov23_02253604();
@@ -821,8 +790,7 @@ void ov23_02242CB4(void)
     }
 }
 
-void ov23_02242D08(void)
-{
+void ov23_02242D08(void) {
     if (sCommManUnderground != NULL) {
         sub_020287F8(sCommManUnderground->fieldSystem->saveData);
         ov23_0224B4E4();
@@ -836,8 +804,7 @@ void ov23_02242D08(void)
     }
 }
 
-void ov23_02242D44(FieldSystem *fieldSystem)
-{
+void ov23_02242D44(FieldSystem *fieldSystem) {
     void *v0;
 
     if (sCommManUnderground != NULL) {
@@ -847,8 +814,7 @@ void ov23_02242D44(FieldSystem *fieldSystem)
     }
 }
 
-BOOL ov23_02242D60(Strbuf *param0)
-{
+BOOL ov23_02242D60(Strbuf *param0) {
     if (sCommManUnderground->unk_14C) {
         sCommManUnderground->unk_14C = 0;
         return 0;
@@ -877,8 +843,7 @@ BOOL ov23_02242D60(Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 *ov23_02242E10(SaveData *saveData)
-{
+UnkStruct_02029894 *ov23_02242E10(SaveData *saveData) {
     if (!sCommManUnderground) {
         return NULL;
     }
@@ -886,8 +851,7 @@ UnkStruct_02029894 *ov23_02242E10(SaveData *saveData)
     return ov23_0224D130(saveData);
 }
 
-int ov23_02242E28(void)
-{
+int ov23_02242E28(void) {
     if (!sCommManUnderground) {
         return 0;
     }
@@ -895,8 +859,7 @@ int ov23_02242E28(void)
     return ov23_0224D150();
 }
 
-int ov23_02242E40(void)
-{
+int ov23_02242E40(void) {
     if (!sCommManUnderground) {
         return 0;
     }
@@ -904,8 +867,7 @@ int ov23_02242E40(void)
     return ov23_0224D178();
 }
 
-BOOL ov23_02242E58(int param0, int param1)
-{
+BOOL ov23_02242E58(int param0, int param1) {
     if ((32 < param0) && (64 < param1) && (479 > param0) && (479 > param1)) {
         return 0;
     }
@@ -913,8 +875,7 @@ BOOL ov23_02242E58(int param0, int param1)
     return 1;
 }
 
-int ov23_02242E78(int param0)
-{
+int ov23_02242E78(int param0) {
     int v0, v1;
 
     if (sCommManUnderground) {
@@ -944,8 +905,7 @@ int ov23_02242E78(int param0)
     return 0;
 }
 
-int ov23_02242EE0(int param0)
-{
+int ov23_02242EE0(int param0) {
     int v0, v1, v2;
 
     if (sCommManUnderground) {
@@ -976,8 +936,7 @@ int ov23_02242EE0(int param0)
     return 0;
 }
 
-int ov23_02242F48(int param0)
-{
+int ov23_02242F48(int param0) {
     if (sCommManUnderground) {
         if (param0 < 16) {
             switch (sCommManUnderground->unk_147) {
@@ -1004,47 +963,39 @@ int ov23_02242F48(int param0)
     return 0;
 }
 
-void ov23_02242FA8(void)
-{
+void ov23_02242FA8(void) {
     sCommManUnderground->unk_147 = 0;
 }
 
-void ov23_02242FBC(void)
-{
+void ov23_02242FBC(void) {
     sCommManUnderground->unk_147 = 1;
 }
 
-void ov23_02242FD0(void)
-{
+void ov23_02242FD0(void) {
     sCommManUnderground->unk_147 = 2;
 }
 
-void ov23_02242FE4(void)
-{
+void ov23_02242FE4(void) {
     sCommManUnderground->unk_147 = 4;
 }
 
-void ov23_02242FF8(void)
-{
+void ov23_02242FF8(void) {
     sCommManUnderground->unk_147 = 3;
 }
 
-void ov23_0224300C(int param0, int param1)
-{
+void ov23_0224300C(int param0, int param1) {
     if (sCommManUnderground) {
         sCommManUnderground->unk_C2[param0] = param1;
     }
 }
 
-void ov23_02243020(int param0)
-{
+void ov23_02243020(int param0) {
     if (sCommManUnderground) {
         sCommManUnderground->unk_D2[param0] = 1;
     }
 }
 
-void UndergroundMan_SetReturnLog(int param0)
-{
+void UndergroundMan_SetReturnLog(int param0) {
     StringTemplate *v0;
     Strbuf *v1;
 
@@ -1064,18 +1015,15 @@ void UndergroundMan_SetReturnLog(int param0)
     }
 }
 
-void ov23_022430B8(int param0)
-{
+void ov23_022430B8(int param0) {
     sCommManUnderground->unk_13D[param0] = 1;
 }
 
-void ov23_022430D0(u16 param0)
-{
+void ov23_022430D0(u16 param0) {
     sCommManUnderground->unk_C0 = param0;
 }
 
-void ov23_022430E0(u16 param0, u16 param1, u16 param2)
-{
+void ov23_022430E0(u16 param0, u16 param1, u16 param2) {
     int i;
 
     if (sCommManUnderground->unk_C0 == 0) {
@@ -1105,8 +1053,7 @@ void ov23_022430E0(u16 param0, u16 param1, u16 param2)
     GF_ASSERT(0);
 }
 
-u16 ov23_02243154(u16 param0)
-{
+u16 ov23_02243154(u16 param0) {
     int i;
 
     for (i = 0; i < 20; i++) {
@@ -1120,8 +1067,7 @@ u16 ov23_02243154(u16 param0)
     return 0;
 }
 
-u16 ov23_0224318C(u16 param0)
-{
+u16 ov23_0224318C(u16 param0) {
     int i;
 
     for (i = 0; i < 20; i++) {
@@ -1135,8 +1081,7 @@ u16 ov23_0224318C(u16 param0)
     return 0;
 }
 
-void ov23_022431C4(int param0, int param1, void *param2, void *param3)
-{
+void ov23_022431C4(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
     int v1 = v0[0];
 
@@ -1147,22 +1092,19 @@ void ov23_022431C4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov23_022431EC(void *param0, SysTask *param1, UnkFuncPtr_ov23_022431EC param2)
-{
+void ov23_022431EC(void *param0, SysTask *param1, UnkFuncPtr_ov23_022431EC param2) {
     sCommManUnderground->unk_00 = param0;
     sCommManUnderground->unk_04 = param1;
     sCommManUnderground->unk_08 = param2;
 }
 
-void ov23_02243204(void)
-{
+void ov23_02243204(void) {
     sCommManUnderground->unk_00 = NULL;
     sCommManUnderground->unk_04 = NULL;
     sCommManUnderground->unk_08 = NULL;
 }
 
-BOOL ov23_0224321C(void)
-{
+BOOL ov23_0224321C(void) {
     BOOL v0 = 0;
 
     if (sCommManUnderground->unk_04) {
@@ -1182,8 +1124,7 @@ BOOL ov23_0224321C(void)
     return v0;
 }
 
-BOOL ov23_02243298(int param0)
-{
+BOOL ov23_02243298(int param0) {
     int v0, v1;
 
     if (sCommManUnderground->unk_04) {
@@ -1216,8 +1157,7 @@ BOOL ov23_02243298(int param0)
     return 1;
 }
 
-static void ov23_02243310(SysTask *param0, void *param1)
-{
+static void ov23_02243310(SysTask *param0, void *param1) {
     ov23_02254250(sCommManUnderground->unk_118);
     ov23_02254250(sCommManUnderground->unk_11C);
     ov23_02254250(sCommManUnderground->unk_120);
@@ -1225,8 +1165,7 @@ static void ov23_02243310(SysTask *param0, void *param1)
     ov23_02254250(sCommManUnderground->unk_128);
 }
 
-void ov23_02243360(void)
-{
+void ov23_02243360(void) {
     UnkStruct_ov23_02243360 v0;
 
     v0.unk_00 = ov23_0224DB48();
@@ -1237,8 +1176,7 @@ void ov23_02243360(void)
     CommSys_SendDataFixedSize(70, &v0);
 }
 
-void ov23_02243390(int param0, int param1, void *param2, void *param3)
-{
+void ov23_02243390(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_02243360 *v0 = param2;
 
     ov23_0224DBA0(param0, v0->unk_00);
@@ -1247,18 +1185,15 @@ void ov23_02243390(int param0, int param1, void *param2, void *param3)
     ov23_02241690(param0, v0->unk_05);
 }
 
-int ov23_022433B8(void)
-{
+int ov23_022433B8(void) {
     return sizeof(UnkStruct_ov23_02243360);
 }
 
-void ov23_022433BC(int param0, int param1, void *param2, void *param3)
-{
+void ov23_022433BC(int param0, int param1, void *param2, void *param3) {
     sCommManUnderground->unk_CA[param0] = 1;
 }
 
-int ov23_022433D0(void)
-{
+int ov23_022433D0(void) {
     int i, v1 = 0;
 
     for (i = 0; i < (7 + 1); i++) {
@@ -1270,8 +1205,7 @@ int ov23_022433D0(void)
     return v1;
 }
 
-static void ov23_022433F4(int param0)
-{
+static void ov23_022433F4(int param0) {
     sCommManUnderground->unk_CA[param0] = 0;
     ov23_0224B5CC(param0);
 }

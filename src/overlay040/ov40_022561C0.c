@@ -43,13 +43,11 @@ static BOOL ov40_02256354(UnkStruct_ov40_0225621C *param0);
 static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0);
 static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(ov40_022561D4, ov40_022562A4);
 }
 
-static BOOL ov40_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov40_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     UnkStruct_ov40_0225621C *v0 = (UnkStruct_ov40_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov40_0225621C));
 
     if (v0 != NULL) {
@@ -66,8 +64,7 @@ static BOOL ov40_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
     return 0;
 }
 
-static BOOL ov40_0225621C(UnkStruct_ov40_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov40_0225621C(UnkStruct_ov40_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     param0->unk_30 = SaveData_GetDaycare(PoketchSystem_GetSaveData(poketchSys));
 
     ov40_022563D0(&param0->unk_04, param0->unk_30);
@@ -84,14 +81,12 @@ static BOOL ov40_0225621C(UnkStruct_ov40_0225621C *param0, PoketchSystem *poketc
     return 0;
 }
 
-static void ov40_0225625C(UnkStruct_ov40_0225621C *param0)
-{
+static void ov40_0225625C(UnkStruct_ov40_0225621C *param0) {
     ov40_022564B8(param0->unk_28);
     Heap_Free(param0);
 }
 
-static void ov40_02256270(SysTask *param0, void *param1)
-{
+static void ov40_02256270(SysTask *param0, void *param1) {
     static BOOL (*const v0[])(UnkStruct_ov40_0225621C *) = {
         ov40_022562C0,
         ov40_02256300,
@@ -110,13 +105,11 @@ static void ov40_02256270(SysTask *param0, void *param1)
     }
 }
 
-static void ov40_022562A4(void *param0)
-{
+static void ov40_022562A4(void *param0) {
     ((UnkStruct_ov40_0225621C *)param0)->unk_02 = 1;
 }
 
-static void ov40_022562AC(UnkStruct_ov40_0225621C *param0, u32 param1)
-{
+static void ov40_022562AC(UnkStruct_ov40_0225621C *param0, u32 param1) {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
     } else {
@@ -126,8 +119,7 @@ static void ov40_022562AC(UnkStruct_ov40_0225621C *param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov40_022562C0(UnkStruct_ov40_0225621C *param0)
-{
+static BOOL ov40_022562C0(UnkStruct_ov40_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov40_022565C8(param0->unk_28, 0);
@@ -144,8 +136,7 @@ static BOOL ov40_022562C0(UnkStruct_ov40_0225621C *param0)
     return 0;
 }
 
-static BOOL ov40_02256300(UnkStruct_ov40_0225621C *param0)
-{
+static BOOL ov40_02256300(UnkStruct_ov40_0225621C *param0) {
     if (param0->unk_02) {
         ov40_022562AC(param0, 2);
         return 0;
@@ -169,8 +160,7 @@ static BOOL ov40_02256300(UnkStruct_ov40_0225621C *param0)
     return 0;
 }
 
-static BOOL ov40_02256354(UnkStruct_ov40_0225621C *param0)
-{
+static BOOL ov40_02256354(UnkStruct_ov40_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov40_022565C8(param0->unk_28, 1);
@@ -186,8 +176,7 @@ static BOOL ov40_02256354(UnkStruct_ov40_0225621C *param0)
     return 0;
 }
 
-static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0)
-{
+static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0) {
     if (PoketechSystem_IsRunningTask(param0->poketchSys) == 0) {
         u32 v0, v1;
 
@@ -201,8 +190,7 @@ static BOOL ov40_02256388(UnkStruct_ov40_0225621C *param0)
     return 0;
 }
 
-static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare)
-{
+static void ov40_022563D0(UnkStruct_ov40_0225645C_1 *param0, Daycare *daycare) {
     DaycareMon *daycareMon;
     BoxPokemon *boxMon;
     int slot;

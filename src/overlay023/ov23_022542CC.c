@@ -90,15 +90,13 @@ static const ListMenuTemplate Unk_ov23_02256B3C = {
     NULL
 };
 
-UnkStruct_ov23_022542D8 *ov23_022542CC(void)
-{
+UnkStruct_ov23_022542D8 *ov23_022542CC(void) {
     UnkStruct_ov23_022542D8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
 
     return v0;
 }
 
-void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u16 *param2, u16 *param3)
-{
+void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u16 *param2, u16 *param3) {
     param0->fieldSystem = fieldSystem;
     param0->unk_38 = 0;
     param0->unk_30 = param2;
@@ -108,18 +106,15 @@ void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u1
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
-void ov23_0225430C(UnkStruct_ov23_022542D8 *param0)
-{
+void ov23_0225430C(UnkStruct_ov23_022542D8 *param0) {
     Heap_Free(param0);
 }
 
-const u32 ov23_02254314(UnkStruct_ov23_022542D8 *param0)
-{
+const u32 ov23_02254314(UnkStruct_ov23_022542D8 *param0) {
     return param0->unk_3C;
 }
 
-BOOL ov23_02254318(UnkStruct_ov23_022542D8 *param0)
-{
+BOOL ov23_02254318(UnkStruct_ov23_022542D8 *param0) {
     switch (param0->unk_38) {
     case 0:
         ov23_0225437C(param0);
@@ -136,8 +131,7 @@ BOOL ov23_02254318(UnkStruct_ov23_022542D8 *param0)
     return 0;
 }
 
-static void ov23_02254350(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov23_02254350(ListMenu *param0, u32 param1, u8 param2) {
     const int v0[4] = {
         5,
         6,
@@ -148,8 +142,7 @@ static void ov23_02254350(ListMenu *param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421CC(), v0[param1], 0, NULL);
 }
 
-static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
-{
+static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0) {
     ListMenuTemplate v0;
     int v1, v2;
     int v3 = 3;
@@ -207,8 +200,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     param0->unk_38 = 1;
 }
 
-static void ov23_022544C0(UnkStruct_ov23_022542D8 *param0)
-{
+static void ov23_022544C0(UnkStruct_ov23_022542D8 *param0) {
     u32 v0 = ListMenu_ProcessInput(param0->unk_28);
 
     ov23_022549EC(param0);
@@ -237,8 +229,7 @@ static void ov23_022544C0(UnkStruct_ov23_022542D8 *param0)
     return;
 }
 
-static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
-{
+static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0) {
     ov23_02254044(ov23_022421CC());
 
     Window_EraseStandardFrame(&param0->unk_14, 1);
@@ -250,8 +241,7 @@ static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
     StringList_Free(param0->unk_24);
 }
 
-static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2) {
     u8 v0 = param1 & 0x1;
 
     if (v0) {
@@ -261,14 +251,12 @@ static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-UnkStruct_ov23_02254594 *ov23_02254588(void)
-{
+UnkStruct_ov23_02254594 *ov23_02254588(void) {
     UnkStruct_ov23_02254594 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
     return v0;
 }
 
-void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u16 *param2, u16 *param3)
-{
+void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u16 *param2, u16 *param3) {
     param0->fieldSystem = fieldSystem;
     param0->unk_42 = 0;
     param0->unk_04 = NULL;
@@ -278,24 +266,20 @@ void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u1
     LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
-void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 param2)
-{
+void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 param2) {
     param0->unk_40 = param1;
     param0->unk_41 = param2;
 }
 
-void ov23_022545D0(UnkStruct_ov23_02254594 *param0)
-{
+void ov23_022545D0(UnkStruct_ov23_02254594 *param0) {
     Heap_Free(param0);
 }
 
-const u32 ov23_022545D8(UnkStruct_ov23_02254594 *param0)
-{
+const u32 ov23_022545D8(UnkStruct_ov23_02254594 *param0) {
     return param0->unk_44;
 }
 
-BOOL ov23_022545DC(UnkStruct_ov23_02254594 *param0)
-{
+BOOL ov23_022545DC(UnkStruct_ov23_02254594 *param0) {
     switch (param0->unk_42) {
     case 0:
         ov23_022546E0(param0);
@@ -316,8 +300,7 @@ BOOL ov23_022545DC(UnkStruct_ov23_02254594 *param0)
     return 0;
 }
 
-static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
-{
+static void ov23_0225461C(UnkStruct_ov23_02254594 *param0) {
     u32 v0;
     u32 v1;
     u16 v2, v3;
@@ -352,8 +335,7 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
     return;
 }
 
-static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2) {
     int v0;
     Underground *v1;
     u32 v2;
@@ -373,8 +355,7 @@ static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
     ov23_02253F60(ov23_022421DC(), v0, 0, NULL);
 }
 
-static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
-{
+static void ov23_022546E0(UnkStruct_ov23_02254594 *param0) {
     Underground *v0;
     ListMenuTemplate v1;
     int v2, v3;
@@ -486,8 +467,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     param0->unk_42 = 1;
 }
 
-static void ov23_02254958(UnkStruct_ov23_02254594 *param0)
-{
+static void ov23_02254958(UnkStruct_ov23_02254594 *param0) {
     ov23_02254044(ov23_022421DC());
     Window_EraseStandardFrame(&param0->unk_18, 1);
     ov23_02248EF8(param0->unk_2C, param0->unk_38, param0->unk_3C);
@@ -500,8 +480,7 @@ static void ov23_02254958(UnkStruct_ov23_02254594 *param0)
     sub_0206A844(param0->unk_04);
 }
 
-static void ov23_022549A8(UnkStruct_0206A844 *param0, const u16 param1, const u16 param2, const u16 param3)
-{
+static void ov23_022549A8(UnkStruct_0206A844 *param0, const u16 param1, const u16 param2, const u16 param3) {
     if (param2 <= param3) {
         return;
     }
@@ -519,8 +498,7 @@ static void ov23_022549A8(UnkStruct_0206A844 *param0, const u16 param1, const u1
     }
 }
 
-static void ov23_022549EC(UnkStruct_ov23_022542D8 *param0)
-{
+static void ov23_022549EC(UnkStruct_ov23_022542D8 *param0) {
     u16 v0 = param0->unk_40;
     ListMenu_CalcTrueCursorPos(param0->unk_28, &param0->unk_40);
 

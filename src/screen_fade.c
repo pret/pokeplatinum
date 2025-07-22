@@ -124,8 +124,7 @@ static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
 
 static ScreenFadeManager sScreenFadeManager;
 
-void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID)
-{
+void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType typeSub, u16 color, int steps, int framesPerStep, enum HeapId heapID) {
     GF_ASSERT(steps);
     GF_ASSERT(framesPerStep);
     GF_ASSERT(sScreenFadeManager.active == FALSE);
@@ -154,21 +153,18 @@ void StartScreenFade(enum FadeMode mode, enum FadeType typeMain, enum FadeType t
     }
 }
 
-void ExecScreenFade(void)
-{
+void ExecScreenFade(void) {
     ScreenFadeManager *manager = &sScreenFadeManager;
     if (manager->active && TryScreenFade(&manager->screen, &manager->mainScreenFade, &manager->subScreenFade) == TRUE) {
         ResetScreenFadeManager(manager);
     }
 }
 
-BOOL IsScreenFadeDone(void)
-{
+BOOL IsScreenFadeDone(void) {
     return !sScreenFadeManager.active;
 }
 
-void FinishScreenFade(void)
-{
+void FinishScreenFade(void) {
     DisableScreenHBlank(&sScreenFadeManager.hblanks, DS_SCREEN_MAIN);
     DisableScreenHBlank(&sScreenFadeManager.hblanks, DS_SCREEN_SUB);
 
@@ -190,18 +186,15 @@ void FinishScreenFade(void)
     ZeroScreenFadeManager(&sScreenFadeManager);
 }
 
-void ResetVisibleHardwareWindows(enum DSScreen screen)
-{
+void ResetVisibleHardwareWindows(enum DSScreen screen) {
     SetVisibleHardwareWindows(GX_WNDMASK_NONE, screen);
 }
 
-void ResetScreenMasterBrightness(enum DSScreen screen)
-{
+void ResetScreenMasterBrightness(enum DSScreen screen) {
     SetScreenMasterBrightness(screen, 0);
 }
 
-void SetScreenColorBrightness(enum DSScreen screen, u16 color)
-{
+void SetScreenColorBrightness(enum DSScreen screen, u16 color) {
     if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
@@ -216,8 +209,7 @@ void SetScreenColorBrightness(enum DSScreen screen, u16 color)
     SetScreenMasterBrightness(screen, brightness);
 }
 
-void SetColorBrightness(u16 color)
-{
+void SetColorBrightness(u16 color) {
     if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
@@ -234,8 +226,7 @@ void SetColorBrightness(u16 color)
     sScreenFadeManager.savedColor = color;
 }
 
-void SetupScreenFadeRegisters(enum DSScreen screen, u16 color)
-{
+void SetupScreenFadeRegisters(enum DSScreen screen, u16 color) {
     if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
@@ -252,14 +243,12 @@ void SetupScreenFadeRegisters(enum DSScreen screen, u16 color)
     RequestHardwareWindowMaskOutsidePlane(&sScreenFadeManager.hwSettings, GX_BLEND_PLANEMASK_BD, 0, screen);
 }
 
-void SetScreenBackgroundColor(u16 color)
-{
+void SetScreenBackgroundColor(u16 color) {
     GX_LoadBGPltt((void *)&color, 0, sizeof(u16));
     GXS_LoadBGPltt((void *)&color, 0, sizeof(u16));
 }
 
-void SetScreenMasterBrightness(enum DSScreen screen, int brightness)
-{
+void SetScreenMasterBrightness(enum DSScreen screen, int brightness) {
     if (screen == DS_SCREEN_MAIN) {
         GX_SetMasterBrightness(brightness);
     } else {
@@ -267,8 +256,7 @@ void SetScreenMasterBrightness(enum DSScreen screen, int brightness)
     }
 }
 
-static void ResetScreenFadeManager(ScreenFadeManager *manager)
-{
+static void ResetScreenFadeManager(ScreenFadeManager *manager) {
     manager->active = FALSE;
     manager->savedColor = GetSavedFadeColor(manager);
 
@@ -289,8 +277,7 @@ static void ResetScreenFadeManager(ScreenFadeManager *manager)
     ZeroScreenFadeManager(manager);
 }
 
-static BOOL TryScreenFade(ScreenFadeParams *screen, ScreenFade *fadeMain, ScreenFade *fadeSub)
-{
+static BOOL TryScreenFade(ScreenFadeParams *screen, ScreenFade *fadeMain, ScreenFade *fadeSub) {
     switch (screen->order) {
     case ORDER_SIMULTANEOUS:
         TryScreenFadeFunc(&screen->activeMain, fadeMain);
@@ -321,20 +308,17 @@ static BOOL TryScreenFade(ScreenFadeParams *screen, ScreenFade *fadeMain, Screen
     return FALSE;
 }
 
-static void TryScreenFadeFunc(BOOL *running, ScreenFade *fade)
-{
+static void TryScreenFadeFunc(BOOL *running, ScreenFade *fade) {
     if (*running && CallScreenFadeFunc(fade) == TRUE) {
         *running = FALSE;
     }
 }
 
-static BOOL CallScreenFadeFunc(ScreenFade *fade)
-{
+static BOOL CallScreenFadeFunc(ScreenFade *fade) {
     return sScreenFadeFuncs[fade->type](fade);
 }
 
-static void SetupScreenFadeParams(enum FadeMode mode, ScreenFadeParams *params)
-{
+static void SetupScreenFadeParams(enum FadeMode mode, ScreenFadeParams *params) {
     switch (mode) {
     case FADE_BOTH_SCREENS:
         InitScreenFadeParams(params, ORDER_SIMULTANEOUS, TRUE, TRUE);
@@ -358,8 +342,7 @@ static void SetupScreenFadeParams(enum FadeMode mode, ScreenFadeParams *params)
     }
 }
 
-static void InitScreenFadeParams(ScreenFadeParams *params, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub)
-{
+static void InitScreenFadeParams(ScreenFadeParams *params, enum ScreenFadeOrder order, BOOL fadeMain, BOOL fadeSub) {
     params->order = order;
     params->activeMain = fadeMain;
     params->activeSub = fadeSub;
@@ -367,8 +350,7 @@ static void InitScreenFadeParams(ScreenFadeParams *params, enum ScreenFadeOrder 
     params->existsSub = fadeSub;
 }
 
-static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapId heapID, u16 color)
-{
+static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int framesPerStep, enum FadeState state, void *data, enum DSScreen screen, HardwareWindowSettings *hwSettings, ScreenFadeHBlanks *hblanks, enum HeapId heapID, u16 color) {
     fade->type = type;
     fade->steps = steps;
     fade->framesPerStep = framesPerStep;
@@ -381,8 +363,7 @@ static void InitScreenFade(ScreenFade *fade, enum FadeType type, int steps, int 
     fade->color = color;
 }
 
-static void ClearHBlanks(ScreenFadeHBlanks *hblanks)
-{
+static void ClearHBlanks(ScreenFadeHBlanks *hblanks) {
     for (int screen = 0; screen < DS_SCREEN_MAX; screen++) {
         hblanks->data[screen] = NULL;
         hblanks->callback[screen] = DummyHBlankCallback;
@@ -390,16 +371,14 @@ static void ClearHBlanks(ScreenFadeHBlanks *hblanks)
     }
 }
 
-static void RunHBlankCallbacks(void *data)
-{
+static void RunHBlankCallbacks(void *data) {
     ScreenFadeHBlanks *hblanks = data;
     for (int screen = 0; screen < DS_SCREEN_MAX; screen++) {
         hblanks->callback[screen](hblanks->data[screen]);
     }
 }
 
-static void EnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen)
-{
+static void EnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen) {
     u8 validCallback = TRUE;
     GF_ASSERT(hblanks->running[screen] == FALSE);
     GF_ASSERT(hblanks->callback[screen] != NULL);
@@ -421,8 +400,7 @@ static void EnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback 
     hblanks->running[screen] = TRUE;
 }
 
-static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen)
-{
+static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen) {
     hblanks->running[screen] = FALSE;
 
     if (hblanks->running[DS_SCREEN_MAIN] == FALSE && hblanks->running[DS_SCREEN_SUB] == FALSE) {
@@ -433,8 +411,7 @@ static void DisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen
     hblanks->data[screen] = NULL;
 }
 
-void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID)
-{
+void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback callback, enum DSScreen screen, enum HeapId heapID) {
     EnableHBlankTemplate *template = Heap_AllocFromHeapAtEnd(heapID, sizeof(EnableHBlankTemplate));
     template->hblanks = hblanks;
     template->data = data;
@@ -444,8 +421,7 @@ void RequestEnableScreenHBlank(ScreenFadeHBlanks *hblanks, void *data, Callback 
     SysTask_ExecuteAfterVBlank(Task_EnableScreenHBlank, template, LOCAL_TASK_PRIORIITY);
 }
 
-void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID)
-{
+void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen, enum HeapId heapID) {
     DisableHBlankTemplate *template = Heap_AllocFromHeapAtEnd(heapID, sizeof(DisableHBlankTemplate));
     template->hblanks = hblanks;
     template->screen = screen;
@@ -453,29 +429,25 @@ void RequestDisableScreenHBlank(ScreenFadeHBlanks *hblanks, enum DSScreen screen
     SysTask_ExecuteAfterVBlank(Task_DisableScreenHBlank, template, LOCAL_TASK_PRIORIITY);
 }
 
-static void Task_EnableScreenHBlank(SysTask *task, void *data)
-{
+static void Task_EnableScreenHBlank(SysTask *task, void *data) {
     EnableHBlankTemplate *template = data;
     EnableScreenHBlank(template->hblanks, template->data, template->callback, template->screen);
     SysTask_Done(task);
     Heap_Free(data);
 }
 
-static void Task_DisableScreenHBlank(SysTask *task, void *data)
-{
+static void Task_DisableScreenHBlank(SysTask *task, void *data) {
     DisableHBlankTemplate *template = data;
     DisableScreenHBlank(template->hblanks, template->screen);
     SysTask_Done(task);
     Heap_Free(data);
 }
 
-static void DummyHBlankCallback(void *data)
-{
+static void DummyHBlankCallback(void *data) {
     return;
 }
 
-static u16 GetFadeColor(ScreenFadeManager *manager, u16 color)
-{
+static u16 GetFadeColor(ScreenFadeManager *manager, u16 color) {
     if (color == COLOR_SAVED) {
         return manager->savedColor;
     }
@@ -483,8 +455,7 @@ static u16 GetFadeColor(ScreenFadeManager *manager, u16 color)
     return color;
 }
 
-static u16 GetSavedFadeColor(const ScreenFadeManager *manager)
-{
+static u16 GetSavedFadeColor(const ScreenFadeManager *manager) {
     const ScreenFade *fade;
     if (manager->screen.existsMain == TRUE) {
         fade = &manager->mainScreenFade;
@@ -499,15 +470,13 @@ static u16 GetSavedFadeColor(const ScreenFadeManager *manager)
     return manager->savedColor;
 }
 
-static void Task_ResetScreenMasterBrightness(SysTask *task, void *data)
-{
+static void Task_ResetScreenMasterBrightness(SysTask *task, void *data) {
     ScreenFade *fade = data;
     SetScreenMasterBrightness(fade->screen, 0);
     SysTask_Done(task);
 }
 
-static void RequestResetScreenMasterBrightness(ScreenFade *fade)
-{
+static void RequestResetScreenMasterBrightness(ScreenFade *fade) {
     if (fade->direction == FADE_IN
         && (fade->color == COLOR_WHITE || fade->color == COLOR_BLACK)
         && fade->method == FADE_BY_WINDOW) {
@@ -515,8 +484,7 @@ static void RequestResetScreenMasterBrightness(ScreenFade *fade)
     }
 }
 
-static void ResetWindowScreenFade(ScreenFade *fade)
-{
+static void ResetWindowScreenFade(ScreenFade *fade) {
     if (fade->direction == FADE_OUT
         && (fade->color == COLOR_WHITE || fade->color == COLOR_BLACK)
         && fade->method == FADE_BY_WINDOW) {
@@ -525,8 +493,7 @@ static void ResetWindowScreenFade(ScreenFade *fade)
     }
 }
 
-static void ZeroScreenFadeManager(ScreenFadeManager *manager)
-{
+static void ZeroScreenFadeManager(ScreenFadeManager *manager) {
     memset(&manager->screen, 0, sizeof(ScreenFadeParams));
     memset(&manager->mainScreenFade, 0, sizeof(ScreenFade));
     memset(&manager->subScreenFade, 0, sizeof(ScreenFade));

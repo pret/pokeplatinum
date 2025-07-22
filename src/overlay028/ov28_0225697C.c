@@ -455,8 +455,7 @@ static const struct {
     { 0x10, 0x6, 0x8, 0x4 }
 };
 
-BOOL ov28_0225697C(UnkStruct_ov28_0225697C **param0, const UnkStruct_ov28_0225697C_1 *param1, BgConfig *param2)
-{
+BOOL ov28_0225697C(UnkStruct_ov28_0225697C **param0, const UnkStruct_ov28_0225697C_1 *param1, BgConfig *param2) {
     UnkStruct_ov28_0225697C *v0 = (UnkStruct_ov28_0225697C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov28_0225697C));
 
     if (v0 != NULL) {
@@ -471,8 +470,7 @@ BOOL ov28_0225697C(UnkStruct_ov28_0225697C **param0, const UnkStruct_ov28_022569
     return 0;
 }
 
-void ov28_022569AC(UnkStruct_ov28_0225697C *param0)
-{
+void ov28_022569AC(UnkStruct_ov28_0225697C *param0) {
     if (param0) {
         Heap_Free(param0);
     }
@@ -493,29 +491,24 @@ static const PoketchTask Unk_ov28_022579C0[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov28_022569B8(UnkStruct_ov28_0225697C *param0, u32 param1)
-{
+void ov28_022569B8(UnkStruct_ov28_0225697C *param0, u32 param1) {
     PoketchTask_Start(Unk_ov28_022579C0, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov28_022569DC(UnkStruct_ov28_0225697C *param0, u32 param1)
-{
+BOOL ov28_022569DC(UnkStruct_ov28_0225697C *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov28_022569E8(UnkStruct_ov28_0225697C *param0)
-{
+BOOL ov28_022569E8(UnkStruct_ov28_0225697C *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov28_022569F4(PoketchTaskManager *param0)
-{
+static void ov28_022569F4(PoketchTaskManager *param0) {
     UnkStruct_ov28_0225697C *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov28_02256A08(SysTask *param0, void *param1)
-{
+static void ov28_02256A08(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -553,8 +546,7 @@ static void ov28_02256A08(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256AA4(UnkStruct_ov28_0225697C *param0)
-{
+static void ov28_02256AA4(UnkStruct_ov28_0225697C *param0) {
     u16 *v0;
     u32 v1, v2, v3, v4;
 
@@ -571,8 +563,7 @@ static void ov28_02256AA4(UnkStruct_ov28_0225697C *param0)
     }
 }
 
-static void ov28_02256B24(SysTask *param0, void *param1)
-{
+static void ov28_02256B24(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0;
     UnkStruct_ov28_0225697C *v1;
     u32 v2;
@@ -589,8 +580,7 @@ static void ov28_02256B24(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256B90(SysTask *param0, void *param1)
-{
+static void ov28_02256B90(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0;
     UnkStruct_ov28_0225697C *v1;
     u32 v2;
@@ -605,8 +595,7 @@ static void ov28_02256B90(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256BF0(SysTask *param0, void *param1)
-{
+static void ov28_02256BF0(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
     UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
@@ -616,8 +605,7 @@ static void ov28_02256BF0(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256C28(SysTask *param0, void *param1)
-{
+static void ov28_02256C28(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
     UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
@@ -628,8 +616,7 @@ static void ov28_02256C28(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256C68(SysTask *param0, void *param1)
-{
+static void ov28_02256C68(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
     UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
@@ -639,8 +626,7 @@ static void ov28_02256C68(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256CA0(SysTask *param0, void *param1)
-{
+static void ov28_02256CA0(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
     UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
@@ -651,8 +637,7 @@ static void ov28_02256CA0(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256CE0(SysTask *param0, void *param1)
-{
+static void ov28_02256CE0(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0 = PoketchTask_GetConstTaskData(param1);
     UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
 
@@ -663,8 +648,7 @@ static void ov28_02256CE0(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256D20(SysTask *param0, void *param1)
-{
+static void ov28_02256D20(SysTask *param0, void *param1) {
     UnkStruct_ov28_0225697C *v0;
     u32 v1;
 
@@ -682,8 +666,7 @@ static void ov28_02256D20(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256D64(SysTask *param0, void *param1)
-{
+static void ov28_02256D64(SysTask *param0, void *param1) {
     const UnkStruct_ov28_0225697C_1 *v0;
     UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
     v0 = PoketchTask_GetConstTaskData(param1);
@@ -693,8 +676,7 @@ static void ov28_02256D64(SysTask *param0, void *param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256D90(BgConfig *param0, const UnkStruct_ov28_0225697C_1 *param1)
-{
+static void ov28_02256D90(BgConfig *param0, const UnkStruct_ov28_0225697C_1 *param1) {
     u16 *v0 = Bg_GetTilemapBuffer(param0, 6);
 
     if (param1->unk_02 == 17) {
@@ -705,21 +687,18 @@ static void ov28_02256D90(BgConfig *param0, const UnkStruct_ov28_0225697C_1 *par
     }
 }
 
-static void ov28_02256DCC(BgConfig *param0)
-{
+static void ov28_02256DCC(BgConfig *param0) {
     u16 *v0 = Bg_GetTilemapBuffer(param0, 6);
     ov25_02255258(v0, 3, 3, 32, 41, 40, 0);
 }
 
-static void ov28_02256DF0(SysTask *param0, void *param1)
-{
+static void ov28_02256DF0(SysTask *param0, void *param1) {
     UnkStruct_ov28_0225697C *v0 = PoketchTask_GetTaskData(param1);
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov28_022569F4(param1);
 }
 
-static void ov28_02256E0C(BgConfig *param0, const u16 *param1)
-{
+static void ov28_02256E0C(BgConfig *param0, const u16 *param1) {
     u32 v0, v1, v2;
     u16 *v3 = Bg_GetTilemapBuffer(param0, 6);
 

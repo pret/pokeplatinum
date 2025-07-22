@@ -17,8 +17,7 @@
 #define CHATOT_CRY_WAVE_BUFFER_SIZE SOUND_WAVE_BUFFER_SIZE
 #define CHATOT_CRY_SAMPLING_RATE    2000
 
-BOOL Sound_UpdateChatotCry(void)
-{
+BOOL Sound_UpdateChatotCry(void) {
     u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
 
@@ -37,8 +36,7 @@ BOOL Sound_UpdateChatotCry(void)
     return FALSE;
 }
 
-BOOL Sound_IsRecordedChatotCryPlayable(const ChatotCry *cry)
-{
+BOOL Sound_IsRecordedChatotCryPlayable(const ChatotCry *cry) {
     u8 *usingDefaultCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY);
     u8 *v1 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_54);
 
@@ -57,8 +55,7 @@ BOOL Sound_IsRecordedChatotCryPlayable(const ChatotCry *cry)
     return TRUE;
 }
 
-BOOL Sound_Impl_PlayChatotCry(const ChatotCry *cry, u32 unused, int volume, int pan)
-{
+BOOL Sound_Impl_PlayChatotCry(const ChatotCry *cry, u32 unused, int volume, int pan) {
     s8 *waveBuffer = Sound_GetWaveBuffer();
     u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
 
@@ -101,8 +98,7 @@ BOOL Sound_Impl_PlayChatotCry(const ChatotCry *cry, u32 unused, int volume, int 
     return success;
 }
 
-void Sound_StopChatotCry(void)
-{
+void Sound_StopChatotCry(void) {
     u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *chatotCryPlaying = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY_PLAYING);
 
@@ -114,8 +110,7 @@ void Sound_StopChatotCry(void)
     *chatotCryPlaying = FALSE;
 }
 
-MICResult Sound_StartRecordingChatotCry(void)
-{
+MICResult Sound_StartRecordingChatotCry(void) {
     MICAutoParam param;
 
     param.type = MIC_SAMPLING_TYPE_SIGNED_8BIT;
@@ -135,24 +130,20 @@ MICResult Sound_StartRecordingChatotCry(void)
     return Sound_StartMicAutoSampling(&param);
 }
 
-MICResult Sound_StopRecordingChatotCry(void)
-{
+MICResult Sound_StopRecordingChatotCry(void) {
     return Sound_StopMicAutoSampling();
 }
 
-void Sound_StoreRecordedChatotCry(ChatotCry *cry)
-{
+void Sound_StoreRecordedChatotCry(ChatotCry *cry) {
     StoreProcessedAudioInChatotCryData(cry, (const s8 *)Sound_GetWaveBuffer());
 }
 
-void Sound_SetUsingDefaultChatotCry(u8 value)
-{
+void Sound_SetUsingDefaultChatotCry(u8 value) {
     u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY);
     *param = value;
 }
 
-BOOL Sound_PlayChatotCry(ChatotCry *cry, u32 unused, int volume, int pan)
-{
+BOOL Sound_PlayChatotCry(ChatotCry *cry, u32 unused, int volume, int pan) {
     BOOL success;
     ChatotCry **storedCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
 
@@ -170,8 +161,7 @@ BOOL Sound_PlayChatotCry(ChatotCry *cry, u32 unused, int volume, int pan)
     return success;
 }
 
-BOOL Sound_PlayDelayedChatotCry(ChatotCry *cry, u32 unused, int volume, int pan, u8 delay)
-{
+BOOL Sound_PlayDelayedChatotCry(ChatotCry *cry, u32 unused, int volume, int pan, u8 delay) {
     BOOL success;
     ChatotCry **storedCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
 
@@ -190,8 +180,7 @@ BOOL Sound_PlayDelayedChatotCry(ChatotCry *cry, u32 unused, int volume, int pan,
     return success;
 }
 
-int Sound_GetChatterActivationParameter(ChatotCry *chatotCry)
-{
+int Sound_GetChatterActivationParameter(ChatotCry *chatotCry) {
     const s8 *buffer;
     s8 val;
 
@@ -213,8 +202,7 @@ int Sound_GetChatterActivationParameter(ChatotCry *chatotCry)
     return 0;
 }
 
-BOOL Sound_CanPlayChatotCry(enum PokemonCryMod cryMod)
-{
+BOOL Sound_CanPlayChatotCry(enum PokemonCryMod cryMod) {
     switch (cryMod) {
     case POKECRY_NORMAL:
     case POKECRY_HALF_DURATION:

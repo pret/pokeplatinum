@@ -54,8 +54,7 @@ const ApplicationManagerTemplate Unk_020F64B0 = {
     0xFFFFFFFF
 };
 
-UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, int heapID)
-{
+UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, int heapID) {
     UnkStruct_02097728 *v0;
     int v2;
 
@@ -79,8 +78,7 @@ UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 p
     return v0;
 }
 
-UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int heapID)
-{
+UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int heapID) {
     UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
@@ -97,8 +95,7 @@ UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int
     return v0;
 }
 
-UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID)
-{
+UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID) {
     UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
@@ -110,8 +107,7 @@ UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID
     return v0;
 }
 
-UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int heapID)
-{
+UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int heapID) {
     UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
@@ -123,13 +119,11 @@ UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int heapID)
     return v0;
 }
 
-BOOL sub_02097728(UnkStruct_02097728 *param0)
-{
+BOOL sub_02097728(UnkStruct_02097728 *param0) {
     return param0->unk_04;
 }
 
-int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2)
-{
+int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2) {
     if (!sub_02097728(param0)) {
         return 0;
     }
@@ -138,8 +132,7 @@ int sub_0209772C(UnkStruct_02097728 *param0, int param1, u8 param2)
     return 1;
 }
 
-int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1)
-{
+int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1) {
     if (!sub_02097728(param0)) {
         return 0;
     }
@@ -148,8 +141,7 @@ int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1)
     return 1;
 }
 
-void sub_02097770(UnkStruct_02097728 *param0)
-{
+void sub_02097770(UnkStruct_02097728 *param0) {
     if (param0->unk_14 != NULL) {
         Heap_Free(param0->unk_14);
     }
@@ -157,8 +149,7 @@ void sub_02097770(UnkStruct_02097728 *param0)
     Heap_Free(param0);
 }
 
-int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
-{
+int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID) {
     int item = ITEM_NONE;
     int slot = Mail_GetEmptySlotInArray(mailbox, 0);
 
@@ -178,8 +169,7 @@ int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
     return slot;
 }
 
-int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID)
-{
+int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID) {
     int item = 0;
     Mail *mail = sub_020284A8(mailbox, 0, param1, heapID);
 
@@ -197,8 +187,7 @@ int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID)
     return param1;
 }
 
-UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID)
-{
+UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID) {
     u16 i;
     UnkStruct_020978D8 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020978D8));
     MI_CpuClear8(v1, sizeof(UnkStruct_020978D8));
@@ -224,8 +213,7 @@ UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID)
     return v1;
 }
 
-void sub_020978D8(UnkStruct_020978D8 *param0)
-{
+void sub_020978D8(UnkStruct_020978D8 *param0) {
     if (param0->unk_10 != NULL) {
         Strbuf_Free(param0->unk_10);
     }
@@ -233,8 +221,7 @@ void sub_020978D8(UnkStruct_020978D8 *param0)
     Heap_Free(param0);
 }
 
-void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1)
-{
+void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1) {
     u16 v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -244,8 +231,7 @@ void sub_020978F0(Mail *param0, UnkStruct_020978D8 *param1)
     Mail_SetMailType(param0, param1->mailType);
 }
 
-static BOOL sub_02097920(ApplicationManager **appManPtr)
-{
+static BOOL sub_02097920(ApplicationManager **appManPtr) {
     if (*appManPtr) {
         if (ApplicationManager_Exec(*appManPtr)) {
             ApplicationManager_Free(*appManPtr);
@@ -257,8 +243,7 @@ static BOOL sub_02097920(ApplicationManager **appManPtr)
     return 0;
 }
 
-static int sub_02097944(ApplicationManager *appMan, int *param1)
-{
+static int sub_02097944(ApplicationManager *appMan, int *param1) {
     UnkStruct_02097944 *v0 = NULL;
     UnkStruct_02097728 *v1 = (UnkStruct_02097728 *)ApplicationManager_Args(appMan);
 
@@ -283,8 +268,7 @@ static int sub_02097944(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int sub_020979A8(ApplicationManager *appMan, int *param1)
-{
+static int sub_020979A8(ApplicationManager *appMan, int *param1) {
     UnkStruct_02097944 *v0 = ApplicationManager_Data(appMan);
     UnkStruct_02097728 *v1 = (UnkStruct_02097728 *)ApplicationManager_Args(appMan);
 
@@ -371,8 +355,7 @@ static int sub_020979A8(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int sub_02097AF8(ApplicationManager *appMan, int *param1)
-{
+static int sub_02097AF8(ApplicationManager *appMan, int *param1) {
     UnkStruct_02097944 *v0 = ApplicationManager_Data(appMan);
 
     sub_020978D8(v0->unk_10);

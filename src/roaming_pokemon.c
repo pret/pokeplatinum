@@ -212,15 +212,13 @@ static const int RoamingPokemonRoutes[RI_MAX] = {
     [RI_FUEGO_IRONWORKS_OUTSIDE] = MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
 };
 
-void RoamingPokemon_MoveToRandomMap(SpecialEncounter *speEnc, const u8 roamerSlot)
-{
+void RoamingPokemon_MoveToRandomMap(SpecialEncounter *speEnc, const u8 roamerSlot) {
     int previousMap = SpecialEncounter_GetPlayerPreviousMap(speEnc);
     MoveRoamerRandom(speEnc, roamerSlot, previousMap);
 }
 
 // Used when Teleporting/Flying
-void RoamingPokemon_RandomizeAllLocations(SpecialEncounter *speEnc)
-{
+void RoamingPokemon_RandomizeAllLocations(SpecialEncounter *speEnc) {
     for (u8 i = 0; i < ROAMING_SLOT_MAX; i++) {
         if (SpecialEncounter_IsRoamerActive(speEnc, i)) {
             RoamingPokemon_MoveToRandomMap(speEnc, i);
@@ -229,8 +227,7 @@ void RoamingPokemon_RandomizeAllLocations(SpecialEncounter *speEnc)
 }
 
 // Moves all Roamers. For each, it has a 1/16 chance to randomize its location. Otherwise, it will move to a nearby route.
-void RoamingPokemon_MoveAllLocations(SpecialEncounter *specialEncounter)
-{
+void RoamingPokemon_MoveAllLocations(SpecialEncounter *specialEncounter) {
     for (u8 i = 0; i < ROAMING_SLOT_MAX; i++) {
         if (SpecialEncounter_IsRoamerActive(specialEncounter, i)) {
             if (LCRNG_RandMod(16) == 0) {
@@ -245,14 +242,12 @@ void RoamingPokemon_MoveAllLocations(SpecialEncounter *specialEncounter)
     }
 }
 
-int RoamingPokemon_GetRouteFromId(const u8 routeId)
-{
+int RoamingPokemon_GetRouteFromId(const u8 routeId) {
     GF_ASSERT(routeId < RI_MAX);
     return RoamingPokemonRoutes[routeId];
 }
 
-BOOL RoamingPokemon_AnyRoamersActive(SpecialEncounter *speEnc)
-{
+BOOL RoamingPokemon_AnyRoamersActive(SpecialEncounter *speEnc) {
 
     for (u8 i = 0; i < ROAMING_SLOT_MAX; i++) {
         if (SpecialEncounter_IsRoamerActive(speEnc, i)) {
@@ -264,15 +259,13 @@ BOOL RoamingPokemon_AnyRoamersActive(SpecialEncounter *speEnc)
 }
 
 // Runs when the player changes maps. Roamers cannot move to the map the player just left.
-void RoamingPokemon_UpdatePlayerRecentRoutes(SpecialEncounter *speEnc, const int newMap)
-{
+void RoamingPokemon_UpdatePlayerRecentRoutes(SpecialEncounter *speEnc, const int newMap) {
     if (RoamingPokemon_AnyRoamersActive(speEnc)) {
         SpecialEncounter_UpdateRecentRoutes(speEnc, newMap);
     }
 }
 
-void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
-{
+void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot) {
     Pokemon *roamerMonData;
     Roamer *newRoamer;
     SpecialEncounter *speEnc;
@@ -333,8 +326,7 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     MoveRoamerRandom(speEnc, slot, previouslyVisitedMap);
 }
 
-static void MoveRoamerRandom(SpecialEncounter *specialEncounter, const u8 roamerSlot, const int playerPreviousMap)
-{
+static void MoveRoamerRandom(SpecialEncounter *specialEncounter, const u8 roamerSlot, const int playerPreviousMap) {
     u8 newIndex;
     int currentRoute;
     int newRoute;
@@ -352,8 +344,7 @@ static void MoveRoamerRandom(SpecialEncounter *specialEncounter, const u8 roamer
     }
 }
 
-static void MoveRoamerNearby(SpecialEncounter *specialEncounter, const u8 roamerSlot, const int playerPreviousMap)
-{
+static void MoveRoamerNearby(SpecialEncounter *specialEncounter, const u8 roamerSlot, const int playerPreviousMap) {
     const NearbyRoutes *possibleNewRoutes;
     u8 newMapIndex;
     int newMapId;
@@ -385,8 +376,7 @@ static void MoveRoamerNearby(SpecialEncounter *specialEncounter, const u8 roamer
     }
 }
 
-static void SetNewMapLocation(SpecialEncounter *specialEncounter, const u8 roamerSlot, const u8 newMapIndex, const int newMapId)
-{
+static void SetNewMapLocation(SpecialEncounter *specialEncounter, const u8 roamerSlot, const u8 newMapIndex, const int newMapId) {
     Roamer *roamer = SpecialEncounter_GetRoamer(specialEncounter, roamerSlot);
 
     SpecialEncounter_SetRoamerRouteIndex(specialEncounter, roamerSlot, newMapIndex);

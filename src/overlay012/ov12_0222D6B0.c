@@ -112,8 +112,7 @@ static const u8 Unk_ov12_0223A144[][2] = {
     { 0x12, 0x3 }
 };
 
-static void ov12_0222D6B0(SysTask *param0, void *param1)
-{
+static void ov12_0222D6B0(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222D6B0 *v1 = (UnkStruct_ov12_0222D6B0 *)param1;
 
@@ -182,8 +181,7 @@ static void ov12_0222D6B0(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_10);
 }
 
-void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     int v0;
     UnkStruct_ov12_0222D6B0 *v1;
     SpriteTemplate v2;
@@ -280,8 +278,7 @@ static const u8 Unk_ov12_0223A140[] = {
     0x3
 };
 
-static void ov12_0222D934(SysTask *param0, void *param1)
-{
+static void ov12_0222D934(SysTask *param0, void *param1) {
     int v0;
     int v1 = 0;
     UnkStruct_ov12_0222D934 *v2 = (UnkStruct_ov12_0222D934 *)param1;
@@ -401,8 +398,7 @@ static void ov12_0222D934(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v2->unk_14);
 }
 
-void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     int v0;
     UnkStruct_ov12_0222D934 *v1;
     SpriteTemplate v2;
@@ -467,8 +463,7 @@ static const UnkStruct_ov12_02235350 Unk_ov12_0223A14A[] = {
     { 0x100, 0xAA }
 };
 
-static void ov12_0222DC98(SysTask *param0, void *param1)
-{
+static void ov12_0222DC98(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222DC98 *v0 = (UnkStruct_ov12_0222DC98 *)param1;
 
     switch (v0->unk_0C) {
@@ -551,8 +546,7 @@ static void ov12_0222DC98(SysTask *param0, void *param1)
     ManagedSprite_TickFrame(v0->unk_10);
 }
 
-static void ov12_0222DE24(SysTask *param0, void *param1)
-{
+static void ov12_0222DE24(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222DE24 *v1 = (UnkStruct_ov12_0222DE24 *)param1;
 
@@ -617,8 +611,7 @@ static const s16 Unk_ov12_0223A19A[][4] = {
     { 0x50, 0x92, 0x32, 0x35 }
 };
 
-void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     int v0;
     int v1;
     UnkStruct_ov12_0222DE24 *v2;
@@ -681,8 +674,7 @@ void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222DE24, v2, 1100 + 1);
 }
 
-static void ov12_0222E080(SysTask *param0, void *param1)
-{
+static void ov12_0222E080(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222E080 *v0 = (UnkStruct_ov12_0222E080 *)param1;
 
     switch (v0->unk_04.unk_00) {
@@ -740,8 +732,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_04.unk_0C);
 }
 
-void ov12_0222E1A8(BattleAnimSystem *param0)
-{
+void ov12_0222E1A8(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222E080 *v0 = NULL;
 
     v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E080));
@@ -764,15 +755,13 @@ void ov12_0222E1A8(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_04.unk_04, ov12_0222E080, v0);
 }
 
-void ov12_0222E248(ManagedSprite *param0)
-{
+void ov12_0222E248(ManagedSprite *param0) {
     if (ManagedSprite_GetDrawFlag(param0) == 1) {
         ManagedSprite_TickFrame(param0);
     }
 }
 
-static void ov12_0222E25C(SysTask *param0, void *param1)
-{
+static void ov12_0222E25C(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222E25C *v0 = (UnkStruct_ov12_0222E25C *)param1;
 
     if (v0->unk_1C <= 0) {
@@ -812,8 +801,7 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     UnkStruct_ov12_0222E25C *v0 = NULL;
 
     v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E25C));
@@ -851,8 +839,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222E25C, v0);
 }
 
-static void ov12_0222E390(SysTask *param0, void *param1)
-{
+static void ov12_0222E390(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222E390 *v0 = (UnkStruct_ov12_0222E390 *)param1;
 
     {
@@ -951,8 +938,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     UnkStruct_ov12_0222E390 *v0 = NULL;
 
     v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E390));

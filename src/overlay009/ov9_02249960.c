@@ -1187,8 +1187,7 @@ const UnkStruct_ov9_02251438 Unk_ov9_022513D8[];
 const UnkStruct_ov9_02252548 Unk_ov9_02252548[];
 const UnkStruct_ov9_02252EB4 Unk_ov9_02252EB4[];
 
-void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     DistWorldPersistedData *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
     DistWorldSystem *dwSystem = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(DistWorldSystem));
@@ -1235,8 +1234,7 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     data->valid = TRUE;
 }
 
-void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
-{
+void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     ov9_02249F18(v0);
@@ -1268,8 +1266,7 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-static void ov9_02249B04(DistWorldSystem *param0)
-{
+static void ov9_02249B04(DistWorldSystem *param0) {
     u32 v0 = DistWorldSystem_GetMapHeaderID(param0);
     const UnkStruct_ov9_022530A4 *v1 = ov9_0224D720(v0);
 
@@ -1286,8 +1283,7 @@ static void ov9_02249B04(DistWorldSystem *param0)
     ov9_0224F078(param0, v1->unk_08);
 }
 
-static void ov9_02249B68(DistWorldSystem *param0)
-{
+static void ov9_02249B68(DistWorldSystem *param0) {
     u32 v0 = DistWorldSystem_GetMapHeaderID(param0);
     const UnkStruct_ov9_022530A4 *v1 = ov9_0224D720(v0);
 
@@ -1306,8 +1302,7 @@ static void ov9_02249B68(DistWorldSystem *param0)
     ov9_0224F078(param0, v0);
 }
 
-static void ov9_02249BD4(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249BD4(DistWorldSystem *param0, u32 param1) {
     ov9_0224B570(param0);
     ov9_02249D44(param0, 0);
     ov9_0224EC94(param0, param1);
@@ -1316,16 +1311,14 @@ static void ov9_02249BD4(DistWorldSystem *param0, u32 param1)
     ov9_0224DB1C(param0);
 }
 
-static void ov9_02249C08(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249C08(DistWorldSystem *param0, u32 param1) {
     ov9_0224B4CC(param0);
     ov9_0224EC48(param0, param1);
     ov9_0224DD24(param0, param1);
     ov9_0224F078(param0, param1);
 }
 
-static void ov9_02249C2C(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249C2C(DistWorldSystem *param0, u32 param1) {
     ov9_0224B580(param0);
     ov9_02249D44(param0, 0);
     ov9_0224EC94(param0, param1);
@@ -1334,30 +1327,26 @@ static void ov9_02249C2C(DistWorldSystem *param0, u32 param1)
     ov9_0224DB1C(param0);
 }
 
-static void ov9_02249C60(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249C60(DistWorldSystem *param0, u32 param1) {
     ov9_0224B45C(param0, 1);
     ov9_0224EC48(param0, param1);
     ov9_0224DD24(param0, param1);
     ov9_0224F078(param0, param1);
 }
 
-static void OpenArchives(DistWorldSystem *system)
-{
+static void OpenArchives(DistWorldSystem *system) {
     system->distortionWorldNARC = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, HEAP_ID_FIELD);
     system->unk_0C = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC_ATTR, HEAP_ID_FIELD);
     system->unk_10 = NARC_ctor(NARC_INDEX_DATA__TW_ARC_ETC, HEAP_ID_FIELD);
 }
 
-static void CloseArchives(DistWorldSystem *system)
-{
+static void CloseArchives(DistWorldSystem *system) {
     NARC_dtor(system->distortionWorldNARC);
     NARC_dtor(system->unk_0C);
     NARC_dtor(system->unk_10);
 }
 
-static void ov9_02249CC4(DistWorldSystem *param0)
-{
+static void ov9_02249CC4(DistWorldSystem *param0) {
     DistWorldPersistedData *v0 = param0->persistedData;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
@@ -1380,8 +1369,7 @@ static void ov9_02249CC4(DistWorldSystem *param0)
     }
 }
 
-static void SetPersistedCameraAngles(DistWorldSystem *system, u16 angleX, u16 angleY, u16 angleZ)
-{
+static void SetPersistedCameraAngles(DistWorldSystem *system, u16 angleX, u16 angleY, u16 angleZ) {
     DistWorldPersistedData *persistedData = system->persistedData;
 
     persistedData->cameraAngleX = angleX;
@@ -1389,8 +1377,7 @@ static void SetPersistedCameraAngles(DistWorldSystem *system, u16 angleX, u16 an
     persistedData->cameraAngleZ = angleZ;
 }
 
-static void GetPersistedCameraAngles(DistWorldSystem *system, u16 *angleX, u16 *angleY, u16 *angleZ)
-{
+static void GetPersistedCameraAngles(DistWorldSystem *system, u16 *angleX, u16 *angleY, u16 *angleZ) {
     DistWorldPersistedData *persistedData = system->persistedData;
 
     *angleX = persistedData->cameraAngleX;
@@ -1398,48 +1385,41 @@ static void GetPersistedCameraAngles(DistWorldSystem *system, u16 *angleX, u16 *
     *angleZ = persistedData->cameraAngleZ;
 }
 
-static BOOL IsPersistedDataValid(DistWorldSystem *system)
-{
+static BOOL IsPersistedDataValid(DistWorldSystem *system) {
     DistWorldPersistedData *persistedData = system->persistedData;
     return persistedData->valid;
 }
 
-static void ov9_02249D44(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249D44(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
     v0->unk_00_1 = param1;
 }
 
-static u32 ov9_02249D5C(DistWorldSystem *param0)
-{
+static u32 ov9_02249D5C(DistWorldSystem *param0) {
     DistWorldPersistedData *v0 = param0->persistedData;
     return v0->unk_00_1;
 }
 
-static void ov9_02249D68(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249D68(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
     v0->unk_0A = param1;
 }
 
-static void ov9_02249D70(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249D70(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
 
     GF_ASSERT(param1 < 11);
     v0->unk_0A |= (1 << param1);
 }
 
-static void ov9_02249D8C(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249D8C(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
 
     GF_ASSERT(param1 < 11);
     v0->unk_0A &= ~(1 << param1);
 }
 
-static BOOL ov9_02249DA8(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_02249DA8(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
 
     GF_ASSERT(param1 < 11);
@@ -1451,24 +1431,21 @@ static BOOL ov9_02249DA8(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static void ov9_02249DC8(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249DC8(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
 
     GF_ASSERT(param1 < 17);
     v0->unk_0C |= (1 << param1);
 }
 
-static void ov9_02249DE4(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249DE4(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
 
     GF_ASSERT(param1 < 17);
     v0->unk_0C &= ~(1 << param1);
 }
 
-static BOOL ov9_02249E00(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_02249E00(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
 
     GF_ASSERT(param1 < 17);
@@ -1480,22 +1457,19 @@ static BOOL ov9_02249E00(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static void ov9_02249E20(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_02249E20(DistWorldSystem *param0, u32 param1) {
     DistWorldPersistedData *v0 = param0->persistedData;
 
     GF_ASSERT(param1 < (1 << 4));
     v0->unk_00_25 = param1;
 }
 
-static u32 ov9_02249E44(DistWorldSystem *param0)
-{
+static u32 ov9_02249E44(DistWorldSystem *param0) {
     DistWorldPersistedData *v0 = param0->persistedData;
     return v0->unk_00_25;
 }
 
-BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
-{
+BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding) {
     DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(dwSystem);
 
@@ -1515,8 +1489,7 @@ BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
     return FALSE;
 }
 
-static void ov9_02249E94(DistWorldSystem *param0)
-{
+static void ov9_02249E94(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_02249E94 *v1 = &param0->unk_184;
 
@@ -1528,8 +1501,7 @@ static void ov9_02249E94(DistWorldSystem *param0)
     v1->unk_00 = SysTask_Start(ov9_02249EDC, param0, v0);
 }
 
-static void ov9_02249EC8(DistWorldSystem *param0)
-{
+static void ov9_02249EC8(DistWorldSystem *param0) {
     UnkStruct_ov9_02249E94 *v0 = &param0->unk_184;
 
     if (v0->unk_00 != NULL) {
@@ -1537,8 +1509,7 @@ static void ov9_02249EC8(DistWorldSystem *param0)
     }
 }
 
-static void ov9_02249EDC(SysTask *param0, void *param1)
-{
+static void ov9_02249EDC(SysTask *param0, void *param1) {
     DistWorldSystem *v0 = param1;
     UnkStruct_ov9_02249E94 *v1 = &v0->unk_184;
 
@@ -1551,29 +1522,25 @@ static void ov9_02249EDC(SysTask *param0, void *param1)
     }
 }
 
-static void ov9_02249EF0(DistWorldSystem *param0)
-{
+static void ov9_02249EF0(DistWorldSystem *param0) {
     GF_ASSERT(param0->unk_1EC4 == NULL);
     param0->unk_1EC4 = SysTask_ExecuteOnVBlank(ov9_02249F3C, param0, 0x80);
 }
 
-static void ov9_02249F18(DistWorldSystem *param0)
-{
+static void ov9_02249F18(DistWorldSystem *param0) {
     GF_ASSERT(param0->unk_1EC4 != NULL);
     SysTask_Done(param0->unk_1EC4);
     param0->unk_1EC4 = NULL;
 }
 
-static void ov9_02249F3C(SysTask *param0, void *param1)
-{
+static void ov9_02249F3C(SysTask *param0, void *param1) {
     DistWorldSystem *v0 = param1;
 
     ov9_0224CC4C(v0);
     ov9_0224F804(v0);
 }
 
-static void ov9_02249F50(DistWorldSystem *param0)
-{
+static void ov9_02249F50(DistWorldSystem *param0) {
     {
         int v0;
 
@@ -1586,23 +1553,19 @@ static void ov9_02249F50(DistWorldSystem *param0)
     }
 }
 
-static void ov9_02249F84(DistWorldSystem *param0)
-{
+static void ov9_02249F84(DistWorldSystem *param0) {
     return;
 }
 
-static void ov9_02249F88(DistWorldSystem *param0)
-{
+static void ov9_02249F88(DistWorldSystem *param0) {
     MapObjectMan_SetEndMovement(param0->fieldSystem->mapObjMan, 0);
 }
 
-static void ov9_02249F98(DistWorldSystem *param0)
-{
+static void ov9_02249F98(DistWorldSystem *param0) {
     return;
 }
 
-void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem)
-{
+void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem) {
     CameraAngle cameraAngle;
     DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
     DistWorldCameraManager *cameraMan = &dwSystem->cameraMan;
@@ -1614,8 +1577,7 @@ void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem)
     Camera_SetAngleAroundTarget(&cameraAngle, cameraMan->camera);
 }
 
-void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem)
-{
+void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem) {
     GF_ASSERT(fieldSystem != NULL);
 
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
@@ -1626,8 +1588,7 @@ void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem)
     data->cameraAngleZ = 0;
 }
 
-static void CameraInit(DistWorldSystem *system)
-{
+static void CameraInit(DistWorldSystem *system) {
     DistWorldCameraManager *cameraMan = &system->cameraMan;
 
     system->fieldSystem->unk_20 = 1;
@@ -1671,8 +1632,7 @@ static void CameraInit(DistWorldSystem *system)
     cameraMan->transitionTask = SysTask_Start(CameraTransitionTask, system, 0);
 }
 
-static void CameraFree(DistWorldSystem *system)
-{
+static void CameraFree(DistWorldSystem *system) {
     DistWorldCameraManager *cameraMan = &system->cameraMan;
 
     system->fieldSystem->unk_20 = 0;
@@ -1682,8 +1642,7 @@ static void CameraFree(DistWorldSystem *system)
     }
 }
 
-static void CameraTransitionTask(SysTask *sysTask, void *sysTaskParam)
-{
+static void CameraTransitionTask(SysTask *sysTask, void *sysTaskParam) {
     DistWorldSystem *system = sysTaskParam;
     DistWorldCameraManager *cameraMan = &system->cameraMan;
     DistWorldCameraTransition *transition = &cameraMan->transition;
@@ -1709,8 +1668,7 @@ static void CameraTransitionTask(SysTask *sysTask, void *sysTaskParam)
     cameraMan->currentAngle.z = transition->currentAngle.z / FX32_ONE;
 }
 
-static BOOL DoCameraTransition(DistWorldSystem *system, const DistWorldCameraAngleTemplate *cameraAngleTemplate)
-{
+static BOOL DoCameraTransition(DistWorldSystem *system, const DistWorldCameraAngleTemplate *cameraAngleTemplate) {
     DistWorldCameraManager *cameraMan = &system->cameraMan;
     DistWorldCameraTransition *transition = &cameraMan->transition;
 
@@ -1744,8 +1702,7 @@ static BOOL DoCameraTransition(DistWorldSystem *system, const DistWorldCameraAng
     return TRUE;
 }
 
-static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
-{
+static void ov9_0224A1E4(DistWorldSystem *param0, int param1) {
     UnkStruct_ov9_0224A228 *v0 = &param0->unk_188;
 
     v0->unk_00 = param1;
@@ -1759,8 +1716,7 @@ static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
 }
 
-static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, UnkStruct_020216E0 *param2)
-{
+static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, UnkStruct_020216E0 *param2) {
     NNSG3dResMdl *v0 = sub_02021430(param2);
     NNSG3dResTex *v1 = sub_02021438(param2);
     NNSG3dRenderObj *v2 = sub_02021440(param2);
@@ -1780,22 +1736,19 @@ static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 
     }
 }
 
-static void ov9_0224A294(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1)
-{
+static void ov9_0224A294(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1) {
     if (param1->unk_10 != NULL) {
         NNS_G3dFreeAnmObj(&param0->unk_10, param1->unk_10);
         param1->unk_10 = NULL;
     }
 }
 
-static void ov9_0224A2AC(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1)
-{
+static void ov9_0224A2AC(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1) {
     ov9_0224A294(param0, param1);
     memset(param1, 0, sizeof(UnkStruct_ov9_0224A294));
 }
 
-static void ov9_0224A2C0(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1)
-{
+static void ov9_0224A2C0(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1) {
     if (param1->unk_18 != NULL) {
         if (param1->unk_10 == NULL) {
             UnkStruct_020216E0 *v0 = ov5_021EB1A0(param1->unk_18);
@@ -1809,8 +1762,7 @@ static void ov9_0224A2C0(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 
     }
 }
 
-static int ov9_0224A2E4(UnkStruct_ov9_0224A294 *param0)
-{
+static int ov9_0224A2E4(UnkStruct_ov9_0224A294 *param0) {
     if (param0->unk_18 != NULL) {
         if (sub_02062CF8(param0->unk_18) == 0) {
             return 1;
@@ -1832,8 +1784,7 @@ static int ov9_0224A2E4(UnkStruct_ov9_0224A294 *param0)
     return 0;
 }
 
-static void ov9_0224A334(DistWorldSystem *param0)
-{
+static void ov9_0224A334(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
     UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
@@ -1851,8 +1802,7 @@ static void ov9_0224A334(DistWorldSystem *param0)
     v1->unk_04 = NULL;
 }
 
-static void ov9_0224A374(UnkStruct_ov9_0224A294 *param0, MapObject *param1, int param2)
-{
+static void ov9_0224A374(UnkStruct_ov9_0224A294 *param0, MapObject *param1, int param2) {
     param0->unk_00 = param2;
     param0->unk_04 = (FX32_ONE * (param2));
     param0->unk_0C = param0->unk_04;
@@ -1863,8 +1813,7 @@ static void ov9_0224A374(UnkStruct_ov9_0224A294 *param0, MapObject *param1, int 
     }
 }
 
-static void ov9_0224A390(DistWorldSystem *param0, MapObject *param1, int param2)
-{
+static void ov9_0224A390(DistWorldSystem *param0, MapObject *param1, int param2) {
     int v0 = 0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
     UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
@@ -1882,8 +1831,7 @@ static void ov9_0224A390(DistWorldSystem *param0, MapObject *param1, int param2)
     GF_ASSERT(0);
 }
 
-static void ov9_0224A3C4(DistWorldSystem *param0, UnkStruct_020216E0 *param1, int param2)
-{
+static void ov9_0224A3C4(DistWorldSystem *param0, UnkStruct_020216E0 *param1, int param2) {
     int v0 = 0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
     UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
@@ -1902,8 +1850,7 @@ static void ov9_0224A3C4(DistWorldSystem *param0, UnkStruct_020216E0 *param1, in
     GF_ASSERT(0);
 }
 
-static void ov9_0224A408(DistWorldSystem *param0, const UnkStruct_020216E0 *param1)
-{
+static void ov9_0224A408(DistWorldSystem *param0, const UnkStruct_020216E0 *param1) {
     int v0 = 0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
     UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
@@ -1921,8 +1868,7 @@ static void ov9_0224A408(DistWorldSystem *param0, const UnkStruct_020216E0 *para
     GF_ASSERT(0);
 }
 
-static void ov9_0224A438(DistWorldSystem *param0, UnkStruct_ov9_0224A228 *param1, UnkStruct_ov9_0224A294 *param2)
-{
+static void ov9_0224A438(DistWorldSystem *param0, UnkStruct_ov9_0224A228 *param1, UnkStruct_ov9_0224A294 *param2) {
     int v0;
 
     if ((param2->unk_18 == NULL) && (param2->unk_1C == NULL)) {
@@ -1954,8 +1900,7 @@ static void ov9_0224A438(DistWorldSystem *param0, UnkStruct_ov9_0224A228 *param1
     }
 }
 
-static void ov9_0224A49C(DistWorldSystem *param0)
-{
+static void ov9_0224A49C(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
     UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
@@ -1965,14 +1910,12 @@ static void ov9_0224A49C(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224A4C8(UnkStruct_020216E0 *param0, void *param1)
-{
+static void ov9_0224A4C8(UnkStruct_020216E0 *param0, void *param1) {
     UnkStruct_ov9_0224A294 *v0 = param1;
     NNS_G3dAnmObjSetFrame(v0->unk_10, v0->unk_0C);
 }
 
-static void ov9_0224A4D0(DistWorldSystem *param0, MapObject *param1, int param2, int param3)
-{
+static void ov9_0224A4D0(DistWorldSystem *param0, MapObject *param1, int param2, int param3) {
     int v0 = 0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
     UnkStruct_ov9_0224A294 *v2 = v1->unk_04;
@@ -1993,8 +1936,7 @@ static void ov9_0224A4D0(DistWorldSystem *param0, MapObject *param1, int param2,
     GF_ASSERT(0);
 }
 
-int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1)
-{
+int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1) {
     int v0 = 0;
     DistWorldSystem *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
     UnkStruct_ov9_0224A228 *v2 = &v1->unk_188;
@@ -2014,30 +1956,25 @@ int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1)
     return 0;
 }
 
-void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2)
-{
+void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224A3C4(v0, param1, param2);
 }
 
-void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1)
-{
+void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224A408(v0, param1);
 }
 
-static void ov9_0224A570(DistWorldSystem *param0)
-{
+static void ov9_0224A570(DistWorldSystem *param0) {
     UnkStruct_ov9_0224A570 *v0 = &param0->unk_54;
 }
 
-static void ov9_0224A574(DistWorldSystem *param0)
-{
+static void ov9_0224A574(DistWorldSystem *param0) {
     UnkStruct_ov9_0224A570 *v0 = &param0->unk_54;
 }
 
-static void *ov9_0224A578(DistWorldSystem *param0, int param1)
-{
+static void *ov9_0224A578(DistWorldSystem *param0, int param1) {
     GF_ASSERT(param1 <= 128);
     {
         UnkStruct_ov9_0224A570 *v0 = &param0->unk_54;
@@ -2048,16 +1985,14 @@ static void *ov9_0224A578(DistWorldSystem *param0, int param1)
     }
 }
 
-static void *ov9_0224A598(DistWorldSystem *param0)
-{
+static void *ov9_0224A598(DistWorldSystem *param0) {
     UnkStruct_ov9_0224A570 *v0 = &param0->unk_54;
     void *v1 = v0->unk_04;
 
     return v1;
 }
 
-BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
-{
+BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
     if (PersistedMapFeatures_GetID(v0) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
@@ -2099,8 +2034,7 @@ BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
     return 0;
 }
 
-BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
-{
+BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 v1 = DistWorldSystem_GetMapHeaderID(v0);
 
@@ -2138,8 +2072,7 @@ BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
     return 0;
 }
 
-BOOL ov9_0224A71C(FieldSystem *fieldSystem)
-{
+BOOL ov9_0224A71C(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
     if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
@@ -2184,8 +2117,7 @@ BOOL ov9_0224A71C(FieldSystem *fieldSystem)
     return 0;
 }
 
-BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1)
-{
+BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     u32 v1 = DistWorldSystem_GetMapHeaderID(v0);
 
@@ -2223,8 +2155,7 @@ BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1)
     return 0;
 }
 
-static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
-{
+static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir) {
     const DistWorldCameraAngleTemplate *cameraAngleTemplate = FindCameraAngleForPlayerPosition(system, playerX, playerY, playerZ, playerDir);
 
     if (cameraAngleTemplate == NULL) {
@@ -2235,8 +2166,7 @@ static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playe
     return TRUE;
 }
 
-static void ov9_0224A8C0(DistWorldSystem *param0)
-{
+static void ov9_0224A8C0(DistWorldSystem *param0) {
     u32 v0, v1;
     int v2, v3, v4, v5;
     int v6[6] = { 0, 0, 0, 90, 270, 180 };
@@ -2300,16 +2230,14 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
     ov9_0224A390(param0, v8, v6[v0]);
 }
 
-static void ov9_0224A9E8(DistWorldSystem *param0)
-{
+static void ov9_0224A9E8(DistWorldSystem *param0) {
     PlayerAvatar *v0 = param0->fieldSystem->playerAvatar;
 
     PlayerAvatar_SetDistortionState(v0, AVATAR_DISTORTION_STATE_NONE);
     PlayerAvatar_ClearSpeed(v0);
 }
 
-static BOOL ov9_0224AA00(DistWorldSystem *param0, int param1, int param2, int param3, int param4)
-{
+static BOOL ov9_0224AA00(DistWorldSystem *param0, int param1, int param2, int param3, int param4) {
     {
         const UnkStruct_ov9_0224AA00 *v0;
 
@@ -2326,8 +2254,7 @@ static BOOL ov9_0224AA00(DistWorldSystem *param0, int param1, int param2, int pa
     return 0;
 }
 
-static void ov9_0224AA34(DistWorldSystem *param0, const UnkStruct_ov9_0224AA00 *param1)
-{
+static void ov9_0224AA34(DistWorldSystem *param0, const UnkStruct_ov9_0224AA00 *param1) {
     UnkStruct_ov9_0224AC58 *v0 = ov9_0224A578(param0, sizeof(UnkStruct_ov9_0224AC58));
 
     v0->unk_34 = *param1;
@@ -2353,8 +2280,7 @@ static void ov9_0224AA34(DistWorldSystem *param0, const UnkStruct_ov9_0224AA00 *
     FieldSystem_CreateTask(param0->fieldSystem, ov9_0224AAD4, param0);
 }
 
-static BOOL ov9_0224AAD4(FieldTask *param0)
-{
+static BOOL ov9_0224AAD4(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     DistWorldSystem *v1 = FieldTask_GetEnv(param0);
     UnkStruct_ov9_0224AC58 *v2 = ov9_0224A598(v1);
@@ -2458,8 +2384,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
     return 0;
 }
 
-static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 *param0, MapObject *param1)
-{
+static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 *param0, MapObject *param1) {
     const UnkStruct_ov9_0224AA00 *v0 = &param0->unk_34;
 
     {
@@ -2571,8 +2496,7 @@ static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 *param0, MapObject *param1)
     return 0;
 }
 
-static void ov9_0224ADC0(DistWorldSystem *param0)
-{
+static void ov9_0224ADC0(DistWorldSystem *param0) {
     char *v0;
 
     GXLayers_EngineAToggleLayers(2, 0);
@@ -2640,13 +2564,11 @@ static void ov9_0224ADC0(DistWorldSystem *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov9_0224AED8(DistWorldSystem *param0)
-{
+static void ov9_0224AED8(DistWorldSystem *param0) {
     G2_BlendNone();
 }
 
-static void ov9_0224AEE4(DistWorldSystem *param0, UnkStruct_ov9_0224B064 *param1, NARC *param2)
-{
+static void ov9_0224AEE4(DistWorldSystem *param0, UnkStruct_ov9_0224B064 *param1, NARC *param2) {
     param1->unk_00 = SpriteList_InitRendering(16, &param1->unk_04, HEAP_ID_FIELD);
     SetMainScreenViewRect(&param1->unk_04, (FX32_ONE * 0), (FX32_ONE * -512));
     param1->unk_190 = SpriteResourceCollection_New(7, 0, HEAP_ID_FIELD);
@@ -2698,8 +2620,7 @@ static void ov9_0224AEE4(DistWorldSystem *param0, UnkStruct_ov9_0224B064 *param1
     }
 }
 
-static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
-{
+static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0) {
     int v0;
 
     SysTask_Done(param0->unk_1F8);
@@ -2741,14 +2662,12 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
     SpriteList_Delete(param0->unk_00);
 }
 
-static void ov9_0224B124(SysTask *param0, void *param1)
-{
+static void ov9_0224B124(SysTask *param0, void *param1) {
     UnkStruct_ov9_0224B064 *v0 = param1;
     SpriteList_Update(v0->unk_00);
 }
 
-static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
-{
+static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     Sprite *v2;
@@ -2768,8 +2687,7 @@ static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param
     return v2;
 }
 
-static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2)
-{
+static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2) {
     int v0;
     UnkStruct_ov9_0224B1B4 v1;
     UnkStruct_ov101_021D5D90 *v2;
@@ -2798,8 +2716,7 @@ static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1
     }
 }
 
-static int ov9_0224B23C(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov9_0224B23C(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     VecFx32 v0 = { 0, 0, 0 };
     const UnkStruct_ov9_02251EC8 *v1;
     const UnkStruct_ov9_0224B1B4 *v2 = sub_020715BC(param0);
@@ -2816,14 +2733,12 @@ static int ov9_0224B23C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov9_0224B2C0(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224B2C0(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224B2C0 *v0 = param1;
     Sprite_Delete(v0->unk_40);
 }
 
-static void ov9_0224B2CC(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224B2CC(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     fx32 v0, v1, v2;
     VecFx32 v3;
     UnkStruct_ov9_0224B2C0 *v4 = param1;
@@ -2860,8 +2775,7 @@ static void ov9_0224B2CC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     Sprite_SetAffineZRotation(v4->unk_40, CalcAngleRotationIdx_Wraparound((v0) / FX32_ONE));
 }
 
-static void ov9_0224B3A4(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224B3A4(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     return;
 }
 
@@ -2873,8 +2787,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov9_02251508 = {
     ov9_0224B3A4
 };
 
-static void ov9_0224B3A8(DistWorldSystem *param0)
-{
+static void ov9_0224B3A8(DistWorldSystem *param0) {
     UnkStruct_ov5_021D57D8 *v0 = param0->fieldSystem->unk_48;
 
     ov5_021D57FC(v0, 0xffffffff, 1, GX_FOGBLEND_COLOR_ALPHA, 6, 0x7600);
@@ -2893,13 +2806,11 @@ static void ov9_0224B3A8(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224B3F4(DistWorldSystem *param0)
-{
+static void ov9_0224B3F4(DistWorldSystem *param0) {
     return;
 }
 
-static void ov9_0224B3F8(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B3F8 *param2, const UnkStruct_ov9_0224B6CC *param3, int param4, u32 param5)
-{
+static void ov9_0224B3F8(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B3F8 *param2, const UnkStruct_ov9_0224B6CC *param3, int param4, u32 param5) {
     {
         GF_ASSERT(param1->unk_08 == NULL);
     }
@@ -2922,8 +2833,7 @@ static void ov9_0224B3F8(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1
     }
 }
 
-static void ov9_0224B45C(DistWorldSystem *param0, int param1)
-{
+static void ov9_0224B45C(DistWorldSystem *param0, int param1) {
     int v0;
     const UnkStruct_ov9_022530A4 *v1;
 
@@ -2946,8 +2856,7 @@ static void ov9_0224B45C(DistWorldSystem *param0, int param1)
     }
 }
 
-static void ov9_0224B4CC(DistWorldSystem *param0)
-{
+static void ov9_0224B4CC(DistWorldSystem *param0) {
     int v0;
     const UnkStruct_ov9_022530A4 *v1;
 
@@ -2964,14 +2873,12 @@ static void ov9_0224B4CC(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224B514(DistWorldSystem *param0)
-{
+static void ov9_0224B514(DistWorldSystem *param0) {
     ov9_0224B45C(param0, 0);
     ov9_0224B4CC(param0);
 }
 
-static void ov9_0224B528(UnkStruct_ov9_0224B528 *param0)
-{
+static void ov9_0224B528(UnkStruct_ov9_0224B528 *param0) {
     int v0;
 
     if (param0->unk_04) {
@@ -2988,52 +2895,44 @@ static void ov9_0224B528(UnkStruct_ov9_0224B528 *param0)
     }
 }
 
-static void ov9_0224B560(DistWorldSystem *param0)
-{
+static void ov9_0224B560(DistWorldSystem *param0) {
     ov9_0224B570(param0);
     ov9_0224B580(param0);
 }
 
-static void ov9_0224B570(DistWorldSystem *param0)
-{
+static void ov9_0224B570(DistWorldSystem *param0) {
     ov9_0224B528(&param0->unk_171C);
 }
 
-static void ov9_0224B580(DistWorldSystem *param0)
-{
+static void ov9_0224B580(DistWorldSystem *param0) {
     ov9_0224B528(&param0->unk_1728);
 }
 
-static void ov9_0224B590(DistWorldSystem *param0)
-{
+static void ov9_0224B590(DistWorldSystem *param0) {
     param0->unk_171C.unk_08 = NULL;
     param0->unk_171C.unk_04 = 0;
 }
 
-static void ov9_0224B5A0(DistWorldSystem *param0)
-{
+static void ov9_0224B5A0(DistWorldSystem *param0) {
     param0->unk_1728.unk_08 = NULL;
     param0->unk_1728.unk_04 = 0;
 }
 
-static void ov9_0224B5B0(DistWorldSystem *param0)
-{
+static void ov9_0224B5B0(DistWorldSystem *param0) {
     GF_ASSERT(param0->unk_1728.unk_08 == NULL);
     GF_ASSERT(param0->unk_1728.unk_04 == 0);
 
     param0->unk_1728 = param0->unk_171C;
 }
 
-static void ov9_0224B5EC(DistWorldSystem *param0)
-{
+static void ov9_0224B5EC(DistWorldSystem *param0) {
     GF_ASSERT(param0->unk_171C.unk_08 == NULL);
     GF_ASSERT(param0->unk_171C.unk_04 == 0);
 
     param0->unk_171C = param0->unk_1728;
 }
 
-static void ov9_0224B624(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224B624(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224B528 *v0 = &param0->unk_171C;
 
     GF_ASSERT(param1 < 24);
@@ -3042,8 +2941,7 @@ static void ov9_0224B624(DistWorldSystem *param0, u32 param1)
     ov9_02249D44(param0, v0->unk_00);
 }
 
-static void ov9_0224B64C(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224B64C(DistWorldSystem *param0, u32 param1) {
     u32 v0 = ~(1 << param1);
     UnkStruct_ov9_0224B528 *v1 = &param0->unk_171C;
 
@@ -3053,8 +2951,7 @@ static void ov9_0224B64C(DistWorldSystem *param0, u32 param1)
     ov9_02249D44(param0, v1->unk_00);
 }
 
-static BOOL ov9_0224B674(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224B674(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224B528 *v0 = &param0->unk_171C;
 
     GF_ASSERT(param1 < 24);
@@ -3066,8 +2963,7 @@ static BOOL ov9_0224B674(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224B698(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224B698(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224B528 *v0 = &param0->unk_1728;
 
     GF_ASSERT(param1 < 24);
@@ -3079,14 +2975,12 @@ static BOOL ov9_0224B698(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static void ov9_0224B6BC(DistWorldSystem *param0)
-{
+static void ov9_0224B6BC(DistWorldSystem *param0) {
     UnkStruct_ov9_0224B528 *v0 = &param0->unk_171C;
     ov9_02249D44(param0, v0->unk_00);
 }
 
-static void ov9_0224B6CC(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B6CC *param2, int param3)
-{
+static void ov9_0224B6CC(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1, const UnkStruct_ov9_0224B6CC *param2, int param3) {
     if (param1->unk_04) {
         int v0;
 
@@ -3096,8 +2990,7 @@ static void ov9_0224B6CC(DistWorldSystem *param0, UnkStruct_ov9_0224B528 *param1
     }
 }
 
-static UnkStruct_ov101_021D5D90 *ov9_0224B708(DistWorldSystem *param0, int param1, int param2, const UnkStruct_ov9_0224B6CC *param3)
-{
+static UnkStruct_ov101_021D5D90 *ov9_0224B708(DistWorldSystem *param0, int param1, int param2, const UnkStruct_ov9_0224B6CC *param3) {
     UnkStruct_ov101_021D5D90 *v0;
     UnkStruct_ov9_0224B708 v1;
     UnkStruct_ov9_0224B528 *v2 = &param0->unk_171C;
@@ -3113,8 +3006,7 @@ static UnkStruct_ov101_021D5D90 *ov9_0224B708(DistWorldSystem *param0, int param
     return v0;
 }
 
-static void ov9_0224B748(DistWorldSystem *param0, int param1, int param2, int param3, int param4)
-{
+static void ov9_0224B748(DistWorldSystem *param0, int param1, int param2, int param3, int param4) {
     if (ov9_0224C27C(param0)) {
         const UnkStruct_ov9_0224B3F8 *v0 = ov9_0224C8AC(param0);
 
@@ -3141,8 +3033,7 @@ static void ov9_0224B748(DistWorldSystem *param0, int param1, int param2, int pa
     }
 }
 
-static BOOL ov9_0224B7B0(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224B7B0(DistWorldSystem *param0, u32 param1) {
     int v0;
     u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
@@ -3177,8 +3068,7 @@ static BOOL ov9_0224B7B0(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1) {
     int v0;
     u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
@@ -3213,8 +3103,7 @@ static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1)
-{
+static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1) {
     int v0;
     u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
@@ -3245,13 +3134,11 @@ static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1)
     return 0;
 }
 
-static u16 ov9_0224B958(UnkStruct_ov101_021D5D90 *param0)
-{
+static u16 ov9_0224B958(UnkStruct_ov101_021D5D90 *param0) {
     return (u16)sub_020715C4(param0);
 }
 
-static int ov9_0224B964(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov9_0224B964(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     int v0;
     UnkStruct_ov9_0224B6CC *v1;
     UnkStruct_ov9_0224BA48 *v2 = param1;
@@ -3306,8 +3193,7 @@ static int ov9_0224B964(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov9_0224BA48(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224BA48(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224BA48 *v0 = param1;
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_28;
 
@@ -3329,8 +3215,7 @@ static const fx32 Unk_ov9_022521E4[8] = {
     -0x6000
 };
 
-static void ov9_0224BA6C(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224BA6C(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     const fx32 *v0;
     UnkStruct_ov9_0224BA48 *v1 = param1;
     UnkStruct_ov9_0224B708 *v2 = &v1->unk_28;
@@ -3409,8 +3294,7 @@ static void ov9_0224BA6C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov9_0224BBDC(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224BBDC(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224BA48 *v0 = param1;
 
     if (v0->unk_02 == 0) {
@@ -3425,8 +3309,7 @@ static void ov9_0224BBDC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static int ov9_0224BC08(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov9_0224BC08(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     int v0;
     UnkStruct_ov9_0224B6CC *v1;
     UnkStruct_ov9_0224BC08 *v2 = param1;
@@ -3483,8 +3366,7 @@ static int ov9_0224BC08(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov9_0224BCF4(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224BCF4(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224BC08 *v0 = param1;
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_20;
 
@@ -3495,8 +3377,7 @@ static void ov9_0224BCF4(UnkStruct_ov101_021D5D90 *param0, void *param1)
     ov9_0224D938(v1->unk_14, v0->unk_38);
 }
 
-static void ov9_0224BD18(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224BD18(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224BC08 *v0 = param1;
     UnkStruct_ov9_0224B708 *v1 = &v0->unk_20;
     UnkStruct_ov9_0224B6CC *v2 = &v1->unk_08;
@@ -3558,8 +3439,7 @@ static void ov9_0224BD18(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov9_0224BDE8(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224BDE8(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224BC08 *v0 = param1;
 
     if (v0->unk_02 == 0) {
@@ -3574,8 +3454,7 @@ static void ov9_0224BDE8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov9_0224BE14(DistWorldSystem *param0)
-{
+static void ov9_0224BE14(DistWorldSystem *param0) {
     enum MapHeader mapHeaderID;
     const UnkStruct_ov9_022530A4 *v1;
 
@@ -3601,8 +3480,7 @@ static void ov9_0224BE14(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224BE8C(DistWorldSystem *param0)
-{
+static void ov9_0224BE8C(DistWorldSystem *param0) {
     ResetCameraAngleTemplates(param0);
     ov9_0224C680(param0);
     ov9_0224C300(param0);
@@ -3611,8 +3489,7 @@ static void ov9_0224BE8C(DistWorldSystem *param0)
     ov9_0224BFFC(param0);
 }
 
-static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1) {
     ov9_0224C844(param0);
     ov9_0224C184(param0);
     ResetCameraAngleTemplates(param0);
@@ -3630,8 +3507,7 @@ static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1)
     ov9_0224C7C8(param0);
 }
 
-static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224BF18(DistWorldSystem *param0, u32 param1) {
     ResetCameraAngleTemplates(param0);
     ov9_0224C680(param0);
     ov9_0224C300(param0);
@@ -3653,8 +3529,7 @@ static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void ov9_0224BF8C(NARC *distortionWorldNARC, UnkStruct_ov9_0224BFE0 *param1)
-{
+static void ov9_0224BF8C(NARC *distortionWorldNARC, UnkStruct_ov9_0224BFE0 *param1) {
     u32 v0 = NARC_GetMemberSize(distortionWorldNARC, 0);
 
     param1->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0);
@@ -3666,27 +3541,23 @@ static void ov9_0224BF8C(NARC *distortionWorldNARC, UnkStruct_ov9_0224BFE0 *para
     (u8 *)param1->unk_04 += 4;
 }
 
-static void ov9_0224BFBC(DistWorldSystem *param0)
-{
+static void ov9_0224BFBC(DistWorldSystem *param0) {
     GF_ASSERT(param0->unk_169C.unk_00.unk_08 == NULL);
     ov9_0224BF8C(param0->distortionWorldNARC, &param0->unk_169C.unk_00);
 }
 
-static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 *param0)
-{
+static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 *param0) {
     GF_ASSERT(param0->unk_08 != NULL);
 
     Heap_Free(param0->unk_08);
     param0->unk_08 = NULL;
 }
 
-static void ov9_0224BFFC(DistWorldSystem *param0)
-{
+static void ov9_0224BFFC(DistWorldSystem *param0) {
     ov9_0224BFE0(&param0->unk_169C.unk_00);
 }
 
-static const UnkStruct_ov9_0224C034 *ov9_0224C00C(const UnkStruct_ov9_0224BFE0 *param0, enum MapHeader mapHeaderID)
-{
+static const UnkStruct_ov9_0224C034 *ov9_0224C00C(const UnkStruct_ov9_0224BFE0 *param0, enum MapHeader mapHeaderID) {
     int v0 = 0;
     const UnkStruct_ov9_0224C034 *v1 = param0->unk_04;
 
@@ -3704,19 +3575,16 @@ static const UnkStruct_ov9_0224C034 *ov9_0224C00C(const UnkStruct_ov9_0224BFE0 *
     return NULL;
 }
 
-static const UnkStruct_ov9_0224C034 *ov9_0224C034(DistWorldSystem *system, enum MapHeader mapHeaderID)
-{
+static const UnkStruct_ov9_0224C034 *ov9_0224C034(DistWorldSystem *system, enum MapHeader mapHeaderID) {
     return ov9_0224C00C(&system->unk_169C.unk_00, mapHeaderID);
 }
 
-static u32 FindNARCIndex(DistWorldSystem *system, enum MapHeader mapHeaderID)
-{
+static u32 FindNARCIndex(DistWorldSystem *system, enum MapHeader mapHeaderID) {
     const UnkStruct_ov9_0224C034 *v0 = ov9_0224C034(system, mapHeaderID);
     return v0->unk_04 + 1;
 }
 
-static void ov9_0224C050(const UnkStruct_ov9_0224BFE0 *param0, int param1, int *param2, int *param3, int *param4)
-{
+static void ov9_0224C050(const UnkStruct_ov9_0224BFE0 *param0, int param1, int *param2, int *param3, int *param4) {
     const UnkStruct_ov9_0224C034 *v0 = ov9_0224C00C(param0, param1);
 
     *param2 = v0->unk_06;
@@ -3724,13 +3592,11 @@ static void ov9_0224C050(const UnkStruct_ov9_0224BFE0 *param0, int param1, int *
     *param4 = v0->unk_0A;
 }
 
-static void ov9_0224C070(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4)
-{
+static void ov9_0224C070(DistWorldSystem *param0, int param1, int *param2, int *param3, int *param4) {
     ov9_0224C050(&param0->unk_169C.unk_00, param1, param2, param3, param4);
 }
 
-static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID)
-{
+static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enum MapHeader mapHeaderID) {
     GF_ASSERT(file->buffer == NULL);
 
     memset(file, 0, sizeof(DistWorldFile));
@@ -3760,30 +3626,25 @@ static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enu
     }
 }
 
-static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, int param2)
-{
+static void ov9_0224C0F8(DistWorldSystem *param0, enum MapHeader mapHeaderID, int param2) {
     ov9_0224C10C(param0, mapHeaderID);
     ov9_0224C120(param0, param2);
 }
 
-static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID)
-{
+static void ov9_0224C10C(DistWorldSystem *param0, enum MapHeader mapHeaderID) {
     DistWorldFile_Load(param0, &param0->unk_169C.distortionWorldFile, mapHeaderID);
 }
 
-static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID)
-{
+static void ov9_0224C120(DistWorldSystem *param0, enum MapHeader mapHeaderID) {
     DistWorldFile_Load(param0, &param0->unk_169C.unk_58, mapHeaderID);
 }
 
-static void DistWorldFile_Invalidate(DistWorldFile *file)
-{
+static void DistWorldFile_Invalidate(DistWorldFile *file) {
     memset(file, 0, sizeof(DistWorldFile));
     file->mapHeaderID = MAP_HEADER_COUNT;
 }
 
-static void DistWorldFile_Free(DistWorldFile *file)
-{
+static void DistWorldFile_Free(DistWorldFile *file) {
     if (file->buffer != NULL) {
         Heap_Free(file->buffer);
     }
@@ -3791,24 +3652,20 @@ static void DistWorldFile_Free(DistWorldFile *file)
     DistWorldFile_Invalidate(file);
 }
 
-static void ov9_0224C164(DistWorldSystem *param0)
-{
+static void ov9_0224C164(DistWorldSystem *param0) {
     ov9_0224C174(param0);
     ov9_0224C184(param0);
 }
 
-static void ov9_0224C174(DistWorldSystem *param0)
-{
+static void ov9_0224C174(DistWorldSystem *param0) {
     DistWorldFile_Free(&param0->unk_169C.distortionWorldFile);
 }
 
-static void ov9_0224C184(DistWorldSystem *param0)
-{
+static void ov9_0224C184(DistWorldSystem *param0) {
     DistWorldFile_Free(&param0->unk_169C.unk_58);
 }
 
-static void ov9_0224C194(DistWorldSystem *param0)
-{
+static void ov9_0224C194(DistWorldSystem *param0) {
     GF_ASSERT(param0->unk_169C.unk_58.mapHeaderID == MAP_HEADER_COUNT);
     GF_ASSERT(param0->unk_169C.unk_58.buffer == NULL);
 
@@ -3817,8 +3674,7 @@ static void ov9_0224C194(DistWorldSystem *param0)
     DistWorldFile_Invalidate(&param0->unk_169C.distortionWorldFile);
 }
 
-static void ov9_0224C1E4(DistWorldSystem *param0)
-{
+static void ov9_0224C1E4(DistWorldSystem *param0) {
     GF_ASSERT(param0->unk_169C.distortionWorldFile.mapHeaderID == MAP_HEADER_COUNT);
     GF_ASSERT(param0->unk_169C.distortionWorldFile.buffer == NULL);
 
@@ -3826,75 +3682,64 @@ static void ov9_0224C1E4(DistWorldSystem *param0)
     DistWorldFile_Invalidate(&param0->unk_169C.unk_58);
 }
 
-static int ov9_0224C234(DistWorldFile *param0)
-{
+static int ov9_0224C234(DistWorldFile *param0) {
     DistWorldFileHeader *v0 = param0->header;
     return v0->unk_04;
 }
 
-static int ov9_0224C23C(DistWorldFile *param0)
-{
+static int ov9_0224C23C(DistWorldFile *param0) {
     int *v0 = param0->unk_04;
     return *v0;
 }
 
-static UnkStruct_ov9_0224C324 *ov9_0224C244(DistWorldFile *param0)
-{
+static UnkStruct_ov9_0224C324 *ov9_0224C244(DistWorldFile *param0) {
     u8 *v0 = param0->unk_04;
 
     v0 += 4;
     return (UnkStruct_ov9_0224C324 *)v0;
 }
 
-static int ov9_0224C24C(DistWorldFile *param0)
-{
+static int ov9_0224C24C(DistWorldFile *param0) {
     DistWorldFileHeader *v0 = param0->header;
     return v0->unk_08;
 }
 
-static int ov9_0224C254(DistWorldFile *param0)
-{
+static int ov9_0224C254(DistWorldFile *param0) {
     int *v0 = param0->unk_08;
     return *v0;
 }
 
-static UnkStruct_ov9_0224AA00 *ov9_0224C25C(DistWorldFile *param0)
-{
+static UnkStruct_ov9_0224AA00 *ov9_0224C25C(DistWorldFile *param0) {
     u8 *v0 = param0->unk_08;
 
     v0 += 4;
     return (UnkStruct_ov9_0224AA00 *)v0;
 }
 
-static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file)
-{
+static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file) {
     DistWorldFileHeader *header = file->header;
     return header->cameraAngleSectionSize;
 }
 
-static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file)
-{
+static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file) {
     return file->cameraAngleSection->count;
 }
 
-static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistWorldFile *file)
-{
+static DistWorldCameraAngleTemplate *DistWorldFile_GetCameraAngleTemplates(DistWorldFile *file) {
     u8 *templates = (u8 *)file->cameraAngleSection;
     templates += sizeof(int);
 
     return (DistWorldCameraAngleTemplate *)templates;
 }
 
-static int ov9_0224C27C(DistWorldSystem *param0)
-{
+static int ov9_0224C27C(DistWorldSystem *param0) {
     DistWorldFile *v0 = &param0->unk_169C.distortionWorldFile;
     DistWorldFileHeader *v1 = v0->header;
 
     return v1->unk_10;
 }
 
-static int ov9_0224C288(DistWorldSystem *param0)
-{
+static int ov9_0224C288(DistWorldSystem *param0) {
     int v0 = 0;
     DistWorldFile *v1 = &param0->unk_169C.unk_58;
 
@@ -3906,22 +3751,19 @@ static int ov9_0224C288(DistWorldSystem *param0)
     return v0;
 }
 
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C2A8(DistWorldFile *param0)
-{
+static const UnkStruct_ov9_0224B3F8 *ov9_0224C2A8(DistWorldFile *param0) {
     UnkStruct_ov9_0224B3F8 *v0 = param0->unk_10;
     return v0;
 }
 
-static const UnkStruct_ov9_0224B6CC *ov9_0224C2AC(DistWorldFile *param0)
-{
+static const UnkStruct_ov9_0224B6CC *ov9_0224C2AC(DistWorldFile *param0) {
     const u8 *v0 = param0->unk_10;
     v0 += sizeof(UnkStruct_ov9_0224B3F8);
 
     return (UnkStruct_ov9_0224B6CC *)v0;
 }
 
-static const UnkStruct_ov9_0224B748 *ov9_0224C2B4(DistWorldFile *param0)
-{
+static const UnkStruct_ov9_0224B748 *ov9_0224C2B4(DistWorldFile *param0) {
     const UnkStruct_ov9_0224B3F8 *v0 = param0->unk_10;
     const u8 *v1 = param0->unk_10;
 
@@ -3929,8 +3771,7 @@ static const UnkStruct_ov9_0224B748 *ov9_0224C2B4(DistWorldFile *param0)
     return (UnkStruct_ov9_0224B748 *)v1;
 }
 
-static void ov9_0224C2C4(DistWorldSystem *param0)
-{
+static void ov9_0224C2C4(DistWorldSystem *param0) {
     DistWorldFile *v0 = &param0->unk_169C.distortionWorldFile;
 
     GF_ASSERT(param0->unk_169C.unk_28.unk_08 == NULL);
@@ -3943,8 +3784,7 @@ static void ov9_0224C2C4(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224C300(DistWorldSystem *param0)
-{
+static void ov9_0224C300(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
 
     if (v0->unk_10 != NULL) {
@@ -3954,8 +3794,7 @@ static void ov9_0224C300(DistWorldSystem *param0)
     memset(v0, 0, sizeof(UnkStruct_ov9_0224C2C4));
 }
 
-static BOOL ov9_0224C324(DistWorldSystem *param0, int param1, int param2, int param3, s16 param4)
-{
+static BOOL ov9_0224C324(DistWorldSystem *param0, int param1, int param2, int param3, s16 param4) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
     const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
     int v2 = 0, v3 = v0->unk_04;
@@ -3978,8 +3817,7 @@ static BOOL ov9_0224C324(DistWorldSystem *param0, int param1, int param2, int pa
     return 0;
 }
 
-static void ov9_0224C378(DistWorldSystem *param0, int param1, int param2, int param3, s16 param4)
-{
+static void ov9_0224C378(DistWorldSystem *param0, int param1, int param2, int param3, s16 param4) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
     const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
     int v2 = 0, v3 = v0->unk_04;
@@ -4011,8 +3849,7 @@ static void ov9_0224C378(DistWorldSystem *param0, int param1, int param2, int pa
     } while (v2 < v3);
 }
 
-static void ov9_0224C3F8(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224C3F8(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
     const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
     int v2 = 0, v3 = v0->unk_04;
@@ -4035,8 +3872,7 @@ static void ov9_0224C3F8(DistWorldSystem *param0, u32 param1)
     ov9_0224C4F4(param0, v1[param1].unk_02);
 }
 
-static void ov9_0224C44C(DistWorldSystem *param0)
-{
+static void ov9_0224C44C(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
 
     v0->unk_00 = v0->unk_04;
@@ -4048,8 +3884,7 @@ static void ov9_0224C44C(DistWorldSystem *param0)
     }
 }
 
-static u32 ov9_0224C470(DistWorldSystem *param0)
-{
+static u32 ov9_0224C470(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
     const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
     int v2 = 0, v3 = v0->unk_04;
@@ -4064,8 +3899,7 @@ static u32 ov9_0224C470(DistWorldSystem *param0)
     }
 }
 
-static u32 ov9_0224C494(DistWorldSystem *param0)
-{
+static u32 ov9_0224C494(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
     int v1 = v0->unk_04;
 
@@ -4079,8 +3913,7 @@ static u32 ov9_0224C494(DistWorldSystem *param0)
     }
 }
 
-static u32 ov9_0224C4B8(DistWorldSystem *param0, int param1, int param2, int param3)
-{
+static u32 ov9_0224C4B8(DistWorldSystem *param0, int param1, int param2, int param3) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
     int v1 = v0->unk_04;
 
@@ -4099,8 +3932,7 @@ static u32 ov9_0224C4B8(DistWorldSystem *param0, int param1, int param2, int par
     }
 }
 
-static void ov9_0224C4F4(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224C4F4(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
 
     if (v0->unk_10 != NULL) {
@@ -4113,8 +3945,7 @@ static void ov9_0224C4F4(DistWorldSystem *param0, u32 param1)
     NARC_ReadWholeMember(param0->unk_0C, param1, v0->unk_10);
 }
 
-static u16 ov9_0224C52C(DistWorldSystem *param0, int param1, int param2)
-{
+static u16 ov9_0224C52C(DistWorldSystem *param0, int param1, int param2) {
     u16 v0;
     UnkStruct_ov9_0224C2C4 *v1 = &param0->unk_169C.unk_28;
     const UnkStruct_ov9_0224C324 *v2 = &v1->unk_08[v1->unk_00];
@@ -4125,8 +3956,7 @@ static u16 ov9_0224C52C(DistWorldSystem *param0, int param1, int param2)
     return v0;
 }
 
-static u16 ov9_0224C55C(DistWorldSystem *param0, int param1, int param2, int param3)
-{
+static u16 ov9_0224C55C(DistWorldSystem *param0, int param1, int param2, int param3) {
     u16 v0;
     int v1 = 0, v2 = 0;
     UnkStruct_ov9_0224C2C4 *v3 = &param0->unk_169C.unk_28;
@@ -4171,8 +4001,7 @@ static u16 ov9_0224C55C(DistWorldSystem *param0, int param1, int param2, int par
     }
 }
 
-static void ov9_0224C640(DistWorldSystem *param0)
-{
+static void ov9_0224C640(DistWorldSystem *param0) {
     DistWorldFile *v0 = &param0->unk_169C.distortionWorldFile;
 
     GF_ASSERT(param0->unk_169C.unk_3C.unk_04 == NULL);
@@ -4185,14 +4014,12 @@ static void ov9_0224C640(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224C680(DistWorldSystem *param0)
-{
+static void ov9_0224C680(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C640 *v0 = &param0->unk_169C.unk_3C;
     memset(v0, 0, sizeof(UnkStruct_ov9_0224C640));
 }
 
-static const UnkStruct_ov9_0224AA00 *ov9_0224C69C(DistWorldSystem *param0, int param1, int param2, int param3, int param4)
-{
+static const UnkStruct_ov9_0224AA00 *ov9_0224C69C(DistWorldSystem *param0, int param1, int param2, int param3, int param4) {
     UnkStruct_ov9_0224C640 *v0 = &param0->unk_169C.unk_3C;
     UnkStruct_ov9_0224AA00 *v1 = v0->unk_04;
     int v2 = v0->unk_00;
@@ -4211,8 +4038,7 @@ static const UnkStruct_ov9_0224AA00 *ov9_0224C69C(DistWorldSystem *param0, int p
     return NULL;
 }
 
-static void InitCameraAngleTemplates(DistWorldSystem *system)
-{
+static void InitCameraAngleTemplates(DistWorldSystem *system) {
     DistWorldFile *file = &system->unk_169C.distortionWorldFile;
 
     GF_ASSERT(system->unk_169C.cameraAngleTemplates.templates == NULL);
@@ -4225,14 +4051,12 @@ static void InitCameraAngleTemplates(DistWorldSystem *system)
     }
 }
 
-static void ResetCameraAngleTemplates(DistWorldSystem *system)
-{
+static void ResetCameraAngleTemplates(DistWorldSystem *system) {
     DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
     memset(cameraAngleTemplates, 0, sizeof(DistWorldCameraAngleTemplates));
 }
 
-static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
-{
+static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir) {
     DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
     DistWorldCameraAngleTemplate *cameraAngleTemplateIter = cameraAngleTemplates->templates;
     int i = cameraAngleTemplates->count;
@@ -4251,8 +4075,7 @@ static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(Dist
     return NULL;
 }
 
-static void ov9_0224C788(DistWorldFile *param0, UnkStruct_ov9_0224C788 *param1)
-{
+static void ov9_0224C788(DistWorldFile *param0, UnkStruct_ov9_0224C788 *param1) {
     GF_ASSERT(param1->unk_00 == NULL);
     GF_ASSERT(param1->unk_04 == NULL);
     GF_ASSERT(param1->unk_08 == NULL);
@@ -4262,8 +4085,7 @@ static void ov9_0224C788(DistWorldFile *param0, UnkStruct_ov9_0224C788 *param1)
     param1->unk_08 = ov9_0224C2B4(param0);
 }
 
-static void ov9_0224C7C8(DistWorldSystem *param0)
-{
+static void ov9_0224C7C8(DistWorldSystem *param0) {
     if (ov9_0224C27C(param0)) {
         DistWorldFile *v0 = &param0->unk_169C.distortionWorldFile;
         UnkStruct_ov9_0224C788 *v1 = &param0->unk_169C.unk_4C;
@@ -4272,8 +4094,7 @@ static void ov9_0224C7C8(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224C7E8(DistWorldSystem *param0)
-{
+static void ov9_0224C7E8(DistWorldSystem *param0) {
     if (ov9_0224C288(param0)) {
         DistWorldFile *v0 = &param0->unk_169C.unk_58;
         UnkStruct_ov9_0224C788 *v1 = &param0->unk_169C.unk_74;
@@ -4282,79 +4103,66 @@ static void ov9_0224C7E8(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224C808(DistWorldSystem *param0)
-{
+static void ov9_0224C808(DistWorldSystem *param0) {
     ov9_0224C7C8(param0);
     ov9_0224C7E8(param0);
 }
 
-static void ov9_0224C818(UnkStruct_ov9_0224C788 *param0)
-{
+static void ov9_0224C818(UnkStruct_ov9_0224C788 *param0) {
     memset(param0, 0, sizeof(UnkStruct_ov9_0224C788));
 }
 
-static void ov9_0224C834(DistWorldSystem *param0)
-{
+static void ov9_0224C834(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
     ov9_0224C818(v0);
 }
 
-static void ov9_0224C844(DistWorldSystem *param0)
-{
+static void ov9_0224C844(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_74;
     ov9_0224C818(v0);
 }
 
-static void ov9_0224C854(DistWorldSystem *param0)
-{
+static void ov9_0224C854(DistWorldSystem *param0) {
     ov9_0224C834(param0);
     ov9_0224C844(param0);
 }
 
-static void ov9_0224C864(DistWorldSystem *param0)
-{
+static void ov9_0224C864(DistWorldSystem *param0) {
     param0->unk_169C.unk_74 = param0->unk_169C.unk_4C;
     ov9_0224C818(&param0->unk_169C.unk_4C);
 }
 
-static void ov9_0224C888(DistWorldSystem *param0)
-{
+static void ov9_0224C888(DistWorldSystem *param0) {
     param0->unk_169C.unk_4C = param0->unk_169C.unk_74;
     ov9_0224C818(&param0->unk_169C.unk_74);
 }
 
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C8AC(DistWorldSystem *param0)
-{
+static const UnkStruct_ov9_0224B3F8 *ov9_0224C8AC(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
     return v0->unk_00;
 }
 
-static const UnkStruct_ov9_0224B3F8 *ov9_0224C8B8(DistWorldSystem *param0)
-{
+static const UnkStruct_ov9_0224B3F8 *ov9_0224C8B8(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_74;
     return v0->unk_00;
 }
 
-static const UnkStruct_ov9_0224B6CC *ov9_0224C8C4(DistWorldSystem *param0)
-{
+static const UnkStruct_ov9_0224B6CC *ov9_0224C8C4(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
     return v0->unk_04;
 }
 
-static const UnkStruct_ov9_0224B6CC *ov9_0224C8D0(DistWorldSystem *param0)
-{
+static const UnkStruct_ov9_0224B6CC *ov9_0224C8D0(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_74;
     return v0->unk_04;
 }
 
-static const UnkStruct_ov9_0224B748 *ov9_0224C8DC(DistWorldSystem *param0)
-{
+static const UnkStruct_ov9_0224B748 *ov9_0224C8DC(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C788 *v0 = &param0->unk_169C.unk_4C;
     return v0->unk_08;
 }
 
-static void ov9_0224C8E8(DistWorldSystem *param0)
-{
+static void ov9_0224C8E8(DistWorldSystem *param0) {
     enum MapHeader mapHeaderID, v1;
     UnkStruct_ov9_0224C8E8 *v2 = &param0->unk_1E88;
     FieldSystem *fieldSystem = param0->fieldSystem;
@@ -4424,8 +4232,7 @@ static void ov9_0224C8E8(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224C9E8(DistWorldSystem *param0)
-{
+static void ov9_0224C9E8(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
     if (v0->unk_04) {
@@ -4450,8 +4257,7 @@ static void ov9_0224C9E8(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224CA30(DistWorldSystem *param0)
-{
+static void ov9_0224CA30(DistWorldSystem *param0) {
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
     if (v0->unk_08) {
@@ -4459,14 +4265,12 @@ static void ov9_0224CA30(DistWorldSystem *param0)
     }
 }
 
-void ov9_0224CA50(FieldSystem *fieldSystem)
-{
+void ov9_0224CA50(FieldSystem *fieldSystem) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224CA30(v0);
 }
 
-void ov9_0224CA5C(FieldSystem *fieldSystem)
-{
+void ov9_0224CA5C(FieldSystem *fieldSystem) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     UnkStruct_ov9_0224C8E8 *v1 = &v0->unk_1E88;
 
@@ -4485,8 +4289,7 @@ void ov9_0224CA5C(FieldSystem *fieldSystem)
     }
 }
 
-static void ov9_0224CA98(DistWorldSystem *param0)
-{
+static void ov9_0224CA98(DistWorldSystem *param0) {
     UnkStruct_ov9_0224CA5C *v0 = &param0->unk_1CB0;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
 
@@ -4526,8 +4329,7 @@ static void ov9_0224CA98(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224CB30(DistWorldSystem *param0)
-{
+static void ov9_0224CB30(DistWorldSystem *param0) {
     UnkStruct_ov9_0224CA5C *v0 = &param0->unk_1CB0;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
     FieldSystem *fieldSystem = param0->fieldSystem;
@@ -4570,8 +4372,7 @@ static void ov9_0224CB30(DistWorldSystem *param0)
 static int (*const Unk_ov9_022514E0[5])(DistWorldSystem *, UnkStruct_ov9_0224CBD8 *);
 static int (*const Unk_ov9_02251428[4])(DistWorldSystem *, UnkStruct_ov9_0224CBD8 *);
 
-static void ov9_0224CBBC(LandDataManager *param0, BOOL param1)
-{
+static void ov9_0224CBBC(LandDataManager *param0, BOOL param1) {
     int v0 = 0;
 
     do {
@@ -4579,23 +4380,20 @@ static void ov9_0224CBBC(LandDataManager *param0, BOOL param1)
     } while (v0 < 4);
 }
 
-static void ov9_0224CBD8(DistWorldSystem *param0)
-{
+static void ov9_0224CBD8(DistWorldSystem *param0) {
     UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
 
     v0->unk_00 = 0;
     v0->unk_2C = SysTask_Start(ov9_0224CC08, param0, 1);
 }
 
-static void ov9_0224CBF8(DistWorldSystem *param0)
-{
+static void ov9_0224CBF8(DistWorldSystem *param0) {
     UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
 
     SysTask_Done(v0->unk_2C);
 }
 
-static void ov9_0224CC08(SysTask *param0, void *param1)
-{
+static void ov9_0224CC08(SysTask *param0, void *param1) {
     DistWorldSystem *v0 = param1;
     UnkStruct_ov9_0224CBD8 *v1 = &v0->unk_1CD0;
 
@@ -4620,13 +4418,11 @@ static void ov9_0224CC08(SysTask *param0, void *param1)
     }
 }
 
-static void ov9_0224CC4C(DistWorldSystem *param0)
-{
+static void ov9_0224CC4C(DistWorldSystem *param0) {
     UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
 }
 
-static void ov9_0224CC50(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, u32 param2)
-{
+static void ov9_0224CC50(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, u32 param2) {
     UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
 
     GF_ASSERT(v0->unk_00 == 0);
@@ -4638,8 +4434,7 @@ static void ov9_0224CC50(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1
     v0->unk_28 = param1;
 }
 
-static BOOL ov9_0224CC7C(DistWorldSystem *param0)
-{
+static BOOL ov9_0224CC7C(DistWorldSystem *param0) {
     UnkStruct_ov9_0224CBD8 *v0 = &param0->unk_1CD0;
 
     if (v0->unk_00 != 0) {
@@ -4649,8 +4444,7 @@ static BOOL ov9_0224CC7C(DistWorldSystem *param0)
     return 0;
 }
 
-static int ov9_0224CC90(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CC90(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     ov9_0224CBBC(param0->fieldSystem->landDataMan, 0);
     ov9_02249BD4(param0, DistWorldSystem_GetMapHeaderID(param0));
 
@@ -4658,8 +4452,7 @@ static int ov9_0224CC90(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     return 0;
 }
 
-static int ov9_0224CCB8(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CCB8(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
     const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(DistWorldSystem_GetMapHeaderID(param0));
@@ -4697,8 +4490,7 @@ static int ov9_0224CCB8(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     return 0;
 }
 
-static int ov9_0224CD84(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CD84(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     if (param1->unk_20 == 0) {
         int v0, v1, v2;
         NARC *v3;
@@ -4720,8 +4512,7 @@ static int ov9_0224CD84(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     return 0;
 }
 
-static int ov9_0224CE00(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CE00(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
     LandDataManager_DistortionWorldLoadAndInvalidate(v0->unk_18, param1->unk_06, param1->unk_10[param1->unk_06]);
@@ -4735,8 +4526,7 @@ static int ov9_0224CE00(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     return 0;
 }
 
-static int ov9_0224CE2C(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CE2C(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     const UnkStruct_ov9_022530A4 *v0;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
 
@@ -4764,8 +4554,7 @@ static int (*const Unk_ov9_022514E0[5])(DistWorldSystem *, UnkStruct_ov9_0224CBD
     ov9_0224CE2C
 };
 
-static int ov9_0224CE80(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CE80(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     const UnkStruct_ov9_022530A4 *v0;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
 
@@ -4782,8 +4571,7 @@ static int ov9_0224CE80(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     return 0;
 }
 
-static int ov9_0224CEBC(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CEBC(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     UnkStruct_ov9_0224C8E8 *v1 = &param0->unk_1E88;
     const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(DistWorldSystem_GetMapHeaderID(param0));
@@ -4844,8 +4632,7 @@ static int ov9_0224CEBC(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     return 0;
 }
 
-static int ov9_0224CFE0(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224CFE0(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     FieldSystem *fieldSystem = param0->fieldSystem;
 
     LandDataManager_DistortionWorldLoadEntire(fieldSystem->landDataMan, param1->unk_06, param1->unk_10[param1->unk_06]);
@@ -4859,8 +4646,7 @@ static int ov9_0224CFE0(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
     return 0;
 }
 
-static int ov9_0224D008(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1)
-{
+static int ov9_0224D008(DistWorldSystem *param0, UnkStruct_ov9_0224CBD8 *param1) {
     FieldSystem *fieldSystem = param0->fieldSystem;
 
     LandDataManager_DistortionWorldUpdateTrackedTargetValues(fieldSystem->landDataMan, param1->unk_08, param1->unk_0A);
@@ -4882,8 +4668,7 @@ static int (*const Unk_ov9_02251428[4])(DistWorldSystem *, UnkStruct_ov9_0224CBD
     ov9_0224D008
 };
 
-static BOOL ov9_0224D040(DistWorldSystem *param0, int param1, int param2, int param3)
-{
+static BOOL ov9_0224D040(DistWorldSystem *param0, int param1, int param2, int param3) {
     UnkStruct_ov9_0224E0DC *v0 = ov9_0224E188(param0, param1, param2, param3, DistWorldSystem_GetMapHeaderID(param0));
 
     if (v0 == NULL) {
@@ -4900,16 +4685,14 @@ static BOOL ov9_0224D040(DistWorldSystem *param0, int param1, int param2, int pa
 
 static int (*const Unk_ov9_02252224[8])(DistWorldSystem *, UnkStruct_ov9_0224D078 *);
 
-static void ov9_0224D078(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1)
-{
+static void ov9_0224D078(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1) {
     UnkStruct_ov9_0224D078 *v0 = ov9_0224A578(param0, sizeof(UnkStruct_ov9_0224D078));
     v0->unk_64 = param1;
 
     FieldSystem_CreateTask(param0->fieldSystem, ov9_0224D098, param0);
 }
 
-static BOOL ov9_0224D098(FieldTask *param0)
-{
+static BOOL ov9_0224D098(FieldTask *param0) {
     int v0;
     DistWorldSystem *v1 = FieldTask_GetEnv(param0);
     UnkStruct_ov9_0224D078 *v2 = ov9_0224A598(v1);
@@ -4925,8 +4708,7 @@ static BOOL ov9_0224D098(FieldTask *param0)
     return 0;
 }
 
-static int ov9_0224D0C8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D0C8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     u32 v0;
     MapObject *v1;
     const UnkStruct_ov9_022530A4 *v2;
@@ -5025,8 +4807,7 @@ static int ov9_0224D0C8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     return 0;
 }
 
-static int ov9_0224D288(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D288(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     VecFx32 v0;
     PlayerAvatar *playerAvatar = param0->fieldSystem->playerAvatar;
     MapObject *v2 = Player_MapObject(playerAvatar);
@@ -5086,8 +4867,7 @@ static int ov9_0224D288(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     return 0;
 }
 
-static int ov9_0224D374(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D374(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     int v0;
     PlayerAvatar *playerAvatar = param0->fieldSystem->playerAvatar;
     MapObject *v2 = Player_MapObject(playerAvatar);
@@ -5129,8 +4909,7 @@ static int ov9_0224D374(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     return 0;
 }
 
-static int ov9_0224D430(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D430(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     ov9_0224E0DC(param1->unk_64, 1);
 
     if (param1->unk_08 == 22) {
@@ -5168,8 +4947,7 @@ static int ov9_0224D430(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     return 0;
 }
 
-static int ov9_0224D4C4(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D4C4(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     int v0;
     PlayerAvatar *playerAvatar = param0->fieldSystem->playerAvatar;
     MapObject *v2 = Player_MapObject(playerAvatar);
@@ -5236,8 +5014,7 @@ static int ov9_0224D4C4(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     return 0;
 }
 
-static int ov9_0224D5E8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D5E8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     if (ov9_0224CC7C(param0) == 0) {
         MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
@@ -5299,8 +5076,7 @@ static const MapObjectAnimCmd *const Unk_ov9_02251384[3] = {
     Unk_ov9_02251350
 };
 
-static int ov9_0224D69C(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D69C(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     int v0;
     MapObject *v1;
     const MapObjectAnimCmd *v2;
@@ -5318,8 +5094,7 @@ static int ov9_0224D69C(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     return 0;
 }
 
-static int ov9_0224D6E0(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
-{
+static int ov9_0224D6E0(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1) {
     if (MapObject_HasAnimationEnded(param1->unk_6C) == 1) {
         VarsFlags *v0;
         MapObject *v1;
@@ -5348,8 +5123,7 @@ static int (*const Unk_ov9_02252224[8])(DistWorldSystem *, UnkStruct_ov9_0224D07
     ov9_0224D6E0
 };
 
-static const UnkStruct_ov9_022530A4 *ov9_0224D720(int param0)
-{
+static const UnkStruct_ov9_022530A4 *ov9_0224D720(int param0) {
     int v0 = 0;
     const UnkStruct_ov9_022530A4 *v1 = Unk_ov9_022530A4;
 
@@ -5366,8 +5140,7 @@ static const UnkStruct_ov9_022530A4 *ov9_0224D720(int param0)
     return NULL;
 }
 
-static void ov9_0224D744(DistWorldSystem *param0)
-{
+static void ov9_0224D744(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224D744 *v1 = &param0->unk_3A4;
 
@@ -5382,8 +5155,7 @@ static void ov9_0224D744(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224D780(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224D780(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
     GF_ASSERT(param1 < 25);
@@ -5394,8 +5166,7 @@ static void ov9_0224D780(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void ov9_0224D7C0(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224D7C0(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
     GF_ASSERT(param1 < 25);
@@ -5406,8 +5177,7 @@ static void ov9_0224D7C0(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static UnkStruct_02073838 *ov9_0224D7EC(DistWorldSystem *param0, u32 param1)
-{
+static UnkStruct_02073838 *ov9_0224D7EC(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
     GF_ASSERT(param1 < 25);
@@ -5416,8 +5186,7 @@ static UnkStruct_02073838 *ov9_0224D7EC(DistWorldSystem *param0, u32 param1)
     return &v0->unk_00[param1].unk_04;
 }
 
-static void ov9_0224D814(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224D814(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
     GF_ASSERT(param1 < 5);
@@ -5432,8 +5201,7 @@ static void ov9_0224D814(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void ov9_0224D874(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224D874(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
     GF_ASSERT(param1 < 5);
@@ -5444,8 +5212,7 @@ static void ov9_0224D874(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static UnkStruct_ov9_0224D928 *ov9_0224D8A4(DistWorldSystem *param0, u32 param1, int *param2)
-{
+static UnkStruct_ov9_0224D928 *ov9_0224D8A4(DistWorldSystem *param0, u32 param1, int *param2) {
     int v0;
     BOOL v1;
     UnkStruct_ov9_0224D744 *v2 = &param0->unk_3A4;
@@ -5476,14 +5243,12 @@ static UnkStruct_ov9_0224D928 *ov9_0224D8A4(DistWorldSystem *param0, u32 param1,
     return NULL;
 }
 
-static void ov9_0224D928(DistWorldSystem *param0, UnkStruct_ov9_0224D928 *param1)
-{
+static void ov9_0224D928(DistWorldSystem *param0, UnkStruct_ov9_0224D928 *param1) {
     GF_ASSERT(param1 != NULL);
     param1->unk_00 = 0;
 }
 
-static void ov9_0224D938(DistWorldSystem *param0, UnkStruct_ov9_0224D928 *param1)
-{
+static void ov9_0224D938(DistWorldSystem *param0, UnkStruct_ov9_0224D928 *param1) {
     BOOL v0 = ov9_0224DB04(param1->unk_02);
 
     if (v0 == 0) {
@@ -5491,8 +5256,7 @@ static void ov9_0224D938(DistWorldSystem *param0, UnkStruct_ov9_0224D928 *param1
     }
 }
 
-static void ov9_0224D954(DistWorldSystem *param0, int param1)
-{
+static void ov9_0224D954(DistWorldSystem *param0, int param1) {
     int v0;
     UnkStruct_ov9_0224D744 *v1 = &param0->unk_3A4;
 
@@ -5503,8 +5267,7 @@ static void ov9_0224D954(DistWorldSystem *param0, int param1)
     }
 }
 
-static void ov9_0224D994(DistWorldSystem *param0)
-{
+static void ov9_0224D994(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224D744 *v1 = &param0->unk_3A4;
 
@@ -5517,8 +5280,7 @@ static void ov9_0224D994(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, UnkStruct_02073B50 *param3, UnkStruct_02073974 *param4)
-{
+static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, UnkStruct_02073B50 *param3, UnkStruct_02073974 *param4) {
     UnkStruct_ov9_0224D744 *v0 = &param0->unk_3A4;
 
     if (param1 != 25) {
@@ -5541,14 +5303,12 @@ static void ov9_0224D9BC(DistWorldSystem *param0, u32 param1, u32 param2, UnkStr
     }
 }
 
-static void ov9_0224DA48(DistWorldSystem *param0, int param1, UnkStruct_02073B50 *param2, UnkStruct_02073974 *param3)
-{
+static void ov9_0224DA48(DistWorldSystem *param0, int param1, UnkStruct_02073B50 *param2, UnkStruct_02073974 *param3) {
     const UnkStruct_ov9_022531D0 *v0 = &Unk_ov9_022531D0[param1];
     ov9_0224D9BC(param0, v0->unk_00, v0->unk_02, param2, param3);
 }
 
-static void ov9_0224DA64(DistWorldSystem *param0, int param1, int param2, int param3)
-{
+static void ov9_0224DA64(DistWorldSystem *param0, int param1, int param2, int param3) {
     const UnkStruct_ov9_022531D0 *v0 = &Unk_ov9_022531D0[param1];
     int v1 = v0->unk_00;
     UnkStruct_ov9_0224D744 *v2 = &param0->unk_3A4;
@@ -5562,13 +5322,11 @@ static void ov9_0224DA64(DistWorldSystem *param0, int param1, int param2, int pa
     }
 }
 
-static void ov9_0224DAAC(DistWorldSystem *param0, int param1, int param2)
-{
+static void ov9_0224DAAC(DistWorldSystem *param0, int param1, int param2) {
     ov9_0224DA64(param0, param1, param2, -1);
 }
 
-static void ov9_0224DAB8(DistWorldSystem *param0, int param1, int param2)
-{
+static void ov9_0224DAB8(DistWorldSystem *param0, int param1, int param2) {
     const UnkStruct_ov9_022531D0 *v0 = &Unk_ov9_022531D0[param1];
     int v1 = v0->unk_00;
     UnkStruct_ov9_0224D744 *v2 = &param0->unk_3A4;
@@ -5579,8 +5337,7 @@ static void ov9_0224DAB8(DistWorldSystem *param0, int param1, int param2)
     NNS_G3dMdlSetMdlPolygonIDAll(v2->unk_00[v1].unk_04.unk_0C, param2);
 }
 
-static BOOL ov9_0224DAEC(int param0)
-{
+static BOOL ov9_0224DAEC(int param0) {
     const UnkStruct_ov9_022531D0 *v0 = &Unk_ov9_022531D0[param0];
 
     if (v0->unk_02 != 5) {
@@ -5590,8 +5347,7 @@ static BOOL ov9_0224DAEC(int param0)
     return 0;
 }
 
-static BOOL ov9_0224DB04(int param0)
-{
+static BOOL ov9_0224DB04(int param0) {
     const UnkStruct_ov9_022531D0 *v0 = &Unk_ov9_022531D0[param0];
 
     if (v0->unk_04 == 1) {
@@ -5601,8 +5357,7 @@ static BOOL ov9_0224DB04(int param0)
     return 0;
 }
 
-static void ov9_0224DB1C(DistWorldSystem *param0)
-{
+static void ov9_0224DB1C(DistWorldSystem *param0) {
     int v0;
 
     for (v0 = 0; v0 < 25; v0++) {
@@ -5624,8 +5379,7 @@ static void ov9_0224DB1C(DistWorldSystem *param0)
     }
 }
 
-static BOOL ov9_0224DBE4(DistWorldSystem *param0, int param1, VecFx32 *param2)
-{
+static BOOL ov9_0224DBE4(DistWorldSystem *param0, int param1, VecFx32 *param2) {
     const VecFx32 *v0 = &Unk_ov9_022533C4[param1];
 
     if (v0->x == 0) {
@@ -5647,14 +5401,12 @@ static BOOL ov9_0224DBE4(DistWorldSystem *param0, int param1, VecFx32 *param2)
     return 0;
 }
 
-static void ov9_0224DC34(DistWorldSystem *param0)
-{
+static void ov9_0224DC34(DistWorldSystem *param0) {
     UnkStruct_ov9_0224DC34 *v0 = &param0->unk_1734;
     memset(v0, 0, sizeof(UnkStruct_ov9_0224DC34));
 }
 
-static void ov9_0224DC4C(DistWorldSystem *param0)
-{
+static void ov9_0224DC4C(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224DC34 *v1 = &param0->unk_1734;
 
@@ -5665,8 +5417,7 @@ static void ov9_0224DC4C(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224DC74(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224DC74(DistWorldSystem *param0, u32 param1) {
     int v0;
     UnkStruct_ov9_0224DC34 *v1 = &param0->unk_1734;
 
@@ -5683,8 +5434,7 @@ static void ov9_0224DC74(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void ov9_0224DCA8(DistWorldSystem *param0)
-{
+static void ov9_0224DCA8(DistWorldSystem *param0) {
     if (IsPersistedDataValid(param0) == 1) {
         int v0 = 0;
         UnkStruct_ov9_0224E0DC *v1;
@@ -5706,8 +5456,7 @@ static void ov9_0224DCA8(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224DD24(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224DD24(DistWorldSystem *param0, u32 param1) {
     const UnkStruct_ov9_02252C38 *v0 = ov9_0224DE40(param1);
 
     if (v0 != NULL) {
@@ -5715,8 +5464,7 @@ static void ov9_0224DD24(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void ov9_0224DD40(DistWorldSystem *param0, const UnkStruct_ov9_02252C38 *param1, u32 param2)
-{
+static void ov9_0224DD40(DistWorldSystem *param0, const UnkStruct_ov9_02252C38 *param1, u32 param2) {
     u32 v0;
     int v1 = 0;
     UnkStruct_ov9_0224E0DC *v2;
@@ -5739,8 +5487,7 @@ static void ov9_0224DD40(DistWorldSystem *param0, const UnkStruct_ov9_02252C38 *
     }
 }
 
-static void ov9_0224DDA0(DistWorldSystem *param0, u32 param1, int param2)
-{
+static void ov9_0224DDA0(DistWorldSystem *param0, u32 param1, int param2) {
     const UnkStruct_ov9_02252C38 *v0 = ov9_0224DE40(param1);
 
     if (ov9_0224DE08(param0, v0->unk_04[param2]->unk_00, param1) == NULL) {
@@ -5751,8 +5498,7 @@ static void ov9_0224DDA0(DistWorldSystem *param0, u32 param1, int param2)
     }
 }
 
-static UnkStruct_ov9_0224E0DC *ov9_0224DDDC(DistWorldSystem *param0)
-{
+static UnkStruct_ov9_0224E0DC *ov9_0224DDDC(DistWorldSystem *param0) {
     int v0 = 0;
     UnkStruct_ov9_0224DC34 *v1 = &param0->unk_1734;
 
@@ -5768,8 +5514,7 @@ static UnkStruct_ov9_0224E0DC *ov9_0224DDDC(DistWorldSystem *param0)
     return NULL;
 }
 
-static UnkStruct_ov9_0224E0DC *ov9_0224DE08(DistWorldSystem *param0, u32 param1, u32 param2)
-{
+static UnkStruct_ov9_0224E0DC *ov9_0224DE08(DistWorldSystem *param0, u32 param1, u32 param2) {
     int v0 = 0;
     UnkStruct_ov9_0224DC34 *v1 = &param0->unk_1734;
 
@@ -5784,8 +5529,7 @@ static UnkStruct_ov9_0224E0DC *ov9_0224DE08(DistWorldSystem *param0, u32 param1,
     return NULL;
 }
 
-static const UnkStruct_ov9_02252C38 *ov9_0224DE40(u32 param0)
-{
+static const UnkStruct_ov9_02252C38 *ov9_0224DE40(u32 param0) {
     int v0 = 0;
     const UnkStruct_ov9_02252C38 *v1 = Unk_ov9_02252C38;
 
@@ -5801,14 +5545,12 @@ static const UnkStruct_ov9_02252C38 *ov9_0224DE40(u32 param0)
     return NULL;
 }
 
-static const UnkStruct_ov9_0224DF10 *ov9_0224DE60(u32 param0, u32 param1)
-{
+static const UnkStruct_ov9_0224DF10 *ov9_0224DE60(u32 param0, u32 param1) {
     const UnkStruct_ov9_02252C38 *v0 = ov9_0224DE40(param0);
     return v0->unk_04[param1];
 }
 
-static const UnkStruct_ov9_02253830 *ov9_0224DE70(u32 param0)
-{
+static const UnkStruct_ov9_02253830 *ov9_0224DE70(u32 param0) {
     u32 v0 = 0;
     const UnkStruct_ov9_02253830 *v1 = Unk_ov9_02253830;
 
@@ -5825,8 +5567,7 @@ static const UnkStruct_ov9_02253830 *ov9_0224DE70(u32 param0)
     return NULL;
 }
 
-static MapObject *ov9_0224DE94(DistWorldSystem *param0, int param1, int param2, int param3, int param4, int param5, u32 param6)
-{
+static MapObject *ov9_0224DE94(DistWorldSystem *param0, int param1, int param2, int param3, int param4, int param5, u32 param6) {
     MapObject *v0 = MapObjectMan_AddMapObject(param0->fieldSystem->mapObjMan, param1, param3, 0, 0x2000, 0x0, DistWorldSystem_GetMapHeaderID(param0));
 
     MapObject_SetY(v0, param2);
@@ -5842,8 +5583,7 @@ static MapObject *ov9_0224DE94(DistWorldSystem *param0, int param1, int param2, 
     return v0;
 }
 
-static void ov9_0224DF10(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, MapObject *param2)
-{
+static void ov9_0224DF10(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, MapObject *param2) {
     u32 v0, v1, v2, v3;
     const UnkStruct_ov9_0224DF10 *v4;
 
@@ -5868,8 +5608,7 @@ static void ov9_0224DF10(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1
     sub_02062FC4(param2, 1);
 }
 
-static UnkStruct_ov101_021D5D90 *ov9_0224DFA0(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1)
-{
+static UnkStruct_ov101_021D5D90 *ov9_0224DFA0(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1) {
     UnkStruct_ov101_021D5D90 *v0;
     UnkStruct_ov9_0224DFA0 v1;
 
@@ -5888,8 +5627,7 @@ static UnkStruct_ov101_021D5D90 *ov9_0224DFA0(DistWorldSystem *param0, UnkStruct
     return v0;
 }
 
-static void ov9_0224DFF4(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, const UnkStruct_ov9_0224DF10 *param2, u32 param3)
-{
+static void ov9_0224DFF4(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, const UnkStruct_ov9_0224DF10 *param2, u32 param3) {
     param1->unk_00 = 1;
     param1->unk_02 = param3;
     param1->unk_04 = *param2;
@@ -5897,8 +5635,7 @@ static void ov9_0224DFF4(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1
     param1->unk_20 = ov9_0224DFA0(param0, param1);
 }
 
-static void ov9_0224E044(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1)
-{
+static void ov9_0224E044(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1) {
     if (param1->unk_20 != NULL) {
         sub_0207136C(param1->unk_20);
     }
@@ -5906,8 +5643,7 @@ static void ov9_0224E044(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1
     memset(param1, 0, sizeof(UnkStruct_ov9_0224E0DC));
 }
 
-static void ov9_0224E060(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1)
-{
+static void ov9_0224E060(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1) {
     if (param1->unk_1C != NULL) {
         MapObject_Delete(param1->unk_1C);
     }
@@ -5915,8 +5651,7 @@ static void ov9_0224E060(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1
     ov9_0224E044(param0, param1);
 }
 
-static void ov9_0224E07C(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, u32 param2)
-{
+static void ov9_0224E07C(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1, u32 param2) {
     param1->unk_02 = param2;
 
     {
@@ -5938,13 +5673,11 @@ static void ov9_0224E07C(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1
     }
 }
 
-static void ov9_0224E0DC(UnkStruct_ov9_0224E0DC *param0, u32 param1)
-{
+static void ov9_0224E0DC(UnkStruct_ov9_0224E0DC *param0, u32 param1) {
     param0->unk_01 = param1;
 }
 
-static BOOL ov9_0224E0E0(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224E0E0(DistWorldSystem *param0, u32 param1) {
     int v0;
     u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
@@ -5966,8 +5699,7 @@ static BOOL ov9_0224E0E0(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224E120(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224E120(DistWorldSystem *param0, u32 param1) {
     int v0;
     u16 v1;
     const UnkStruct_ov9_022531D0 *v2;
@@ -5989,8 +5721,7 @@ static BOOL ov9_0224E120(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224E160(DistWorldSystem *param0, int param1)
-{
+static BOOL ov9_0224E160(DistWorldSystem *param0, int param1) {
     int v0;
     const UnkStruct_ov9_022531D0 *v1;
     UnkStruct_ov9_0224DC34 *v2 = &param0->unk_1734;
@@ -6006,8 +5737,7 @@ static BOOL ov9_0224E160(DistWorldSystem *param0, int param1)
     return 0;
 }
 
-static UnkStruct_ov9_0224E0DC *ov9_0224E188(DistWorldSystem *param0, int param1, int param2, int param3, u32 param4)
-{
+static UnkStruct_ov9_0224E0DC *ov9_0224E188(DistWorldSystem *param0, int param1, int param2, int param3, u32 param4) {
     int v0 = 32;
     UnkStruct_ov9_0224E0DC *v1 = param0->unk_1734.unk_00;
     const UnkStruct_ov9_0224DF10 *v2;
@@ -6027,8 +5757,7 @@ static UnkStruct_ov9_0224E0DC *ov9_0224E188(DistWorldSystem *param0, int param1,
     return NULL;
 }
 
-static int ov9_0224E1CC(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov9_0224E1CC(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     int v0;
     UnkStruct_ov9_0224E1CC *v1 = param1;
     const UnkStruct_ov9_0224DFA0 *v2 = sub_020715BC(param0);
@@ -6068,8 +5797,7 @@ static int ov9_0224E1CC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov9_0224E274(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224E274(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224E1CC *v0 = param1;
 
     if (ov9_0224DAEC(v0->unk_10.unk_06) == 1) {
@@ -6079,8 +5807,7 @@ static void ov9_0224E274(UnkStruct_ov101_021D5D90 *param0, void *param1)
     ov9_0224D938(v0->unk_10.unk_0C, v0->unk_20);
 }
 
-static void ov9_0224E294(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224E294(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224E1CC *v0 = param1;
 
     if (v0->unk_00 == 1) {
@@ -6108,8 +5835,7 @@ static void ov9_0224E294(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov9_0224E2E4(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224E2E4(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224E1CC *v0 = param1;
 
     if (v0->unk_01 == 0) {
@@ -6135,25 +5861,21 @@ static const UnkStruct_ov101_021D86B0 Unk_ov9_02251468 = {
     ov9_0224E2E4
 };
 
-static VecFx32 *ov9_0224E330(UnkStruct_ov101_021D5D90 *param0)
-{
+static VecFx32 *ov9_0224E330(UnkStruct_ov101_021D5D90 *param0) {
     UnkStruct_ov9_0224E1CC *v0 = sub_02071598(param0);
     return &v0->unk_04;
 }
 
-static void ov9_0224E33C(DistWorldSystem *param0)
-{
+static void ov9_0224E33C(DistWorldSystem *param0) {
     UnkFuncPtr_ov9_0224E33C *v0 = &param0->unk_D8;
     memset(v0, 0, sizeof(UnkFuncPtr_ov9_0224E33C));
 }
 
-static void ov9_0224E34C(DistWorldSystem *param0)
-{
+static void ov9_0224E34C(DistWorldSystem *param0) {
     return;
 }
 
-static void ov9_0224E350(DistWorldSystem *param0, const UnkStruct_ov9_02251438 *param1)
-{
+static void ov9_0224E350(DistWorldSystem *param0, const UnkStruct_ov9_02251438 *param1) {
     UnkFuncPtr_ov9_0224E33C *v0 = &param0->unk_D8;
 
     GF_ASSERT(v0->unk_00 == 0);
@@ -6165,8 +5887,7 @@ static void ov9_0224E350(DistWorldSystem *param0, const UnkStruct_ov9_02251438 *
     v0->unk_08 = param1;
 }
 
-static void *ov9_0224E37C(DistWorldSystem *param0, u32 param1)
-{
+static void *ov9_0224E37C(DistWorldSystem *param0, u32 param1) {
     GF_ASSERT(param1 < 160);
 
     {
@@ -6177,14 +5898,12 @@ static void *ov9_0224E37C(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void *ov9_0224E39C(DistWorldSystem *param0)
-{
+static void *ov9_0224E39C(DistWorldSystem *param0) {
     u8 *v0 = param0->unk_D8.unk_0C;
     return v0;
 }
 
-static BOOL ov9_0224E3A0(DistWorldSystem *param0, FieldTask *param1)
-{
+static BOOL ov9_0224E3A0(DistWorldSystem *param0, FieldTask *param1) {
     int v0;
     int v1;
     UnkFuncPtr_ov9_0224E33C *v2;
@@ -6218,8 +5937,7 @@ static BOOL ov9_0224E3A0(DistWorldSystem *param0, FieldTask *param1)
     return 1;
 }
 
-static const UnkStruct_ov9_02252044 *ov9_0224E410(u32 param0)
-{
+static const UnkStruct_ov9_02252044 *ov9_0224E410(u32 param0) {
     const UnkStruct_ov9_02252D38 *v0 = Unk_ov9_02252D38;
 
     while (v0->unk_00 != 593) {
@@ -6233,8 +5951,7 @@ static const UnkStruct_ov9_02252044 *ov9_0224E410(u32 param0)
     return NULL;
 }
 
-static BOOL ov9_0224E434(DistWorldSystem *param0, int param1, int param2, int param3)
-{
+static BOOL ov9_0224E434(DistWorldSystem *param0, int param1, int param2, int param3) {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
     const UnkStruct_ov9_02252044 *v1 = ov9_0224E410(DistWorldSystem_GetMapHeaderID(param0));
 
@@ -6259,19 +5976,16 @@ static BOOL ov9_0224E434(DistWorldSystem *param0, int param1, int param2, int pa
     return 0;
 }
 
-static void ov9_0224E498(DistWorldSystem *param0, const UnkStruct_ov9_02251438 *param1)
-{
+static void ov9_0224E498(DistWorldSystem *param0, const UnkStruct_ov9_02251438 *param1) {
     ov9_0224E350(param0, param1);
     FieldSystem_CreateTask(param0->fieldSystem, ov9_0224E4BC, param0);
 }
 
-static void ov9_0224E4B0(DistWorldSystem *param0, const UnkStruct_ov9_02252044 *param1)
-{
+static void ov9_0224E4B0(DistWorldSystem *param0, const UnkStruct_ov9_02252044 *param1) {
     ov9_0224E498(param0, param1->unk_0C);
 }
 
-static BOOL ov9_0224E4BC(FieldTask *param0)
-{
+static BOOL ov9_0224E4BC(FieldTask *param0) {
     DistWorldSystem *v0 = FieldTask_GetEnv(param0);
 
     if (ov9_0224E3A0(v0, param0) == 1) {
@@ -6281,16 +5995,14 @@ static BOOL ov9_0224E4BC(FieldTask *param0)
     return 0;
 }
 
-static int ov9_0224E4D8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E4D8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_0224E4D8 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0224E4D8));
 
     *param2 = 1;
     return 1;
 }
 
-static int ov9_0224E4E8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E4E8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     MapObject *v0;
     const UnkStruct_ov9_0224E4E8 *v1 = param3;
     UnkStruct_ov9_0224E4D8 *v2 = ov9_0224E39C(param0);
@@ -6306,8 +6018,7 @@ static int ov9_0224E4E8(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0224E520(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E520(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     MapObject *v0;
     const UnkStruct_ov9_0224E4E8 *v1 = param3;
     UnkStruct_ov9_0224E4D8 *v2 = ov9_0224E39C(param0);
@@ -6328,8 +6039,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251360[3] = {
     ov9_0224E520
 };
 
-static int ov9_0224E550(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E550(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_0224E550 *v0 = param3;
     UnkStruct_ov9_0224E5EC *v1 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0224E5EC));
 
@@ -6365,8 +6075,7 @@ static int ov9_0224E550(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0224E5EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E5EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     MapObject *v0 = NULL;
     const UnkStruct_ov9_0224E550 *v1 = param3;
     UnkStruct_ov9_0224E5EC *v2 = ov9_0224E39C(param0);
@@ -6423,8 +6132,7 @@ static int ov9_0224E5EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0224E6B0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E6B0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     VecFx32 v0 = { 0, 0, 0 };
     const UnkStruct_ov9_0224E550 *v1 = param3;
     UnkStruct_ov9_0224E5EC *v2 = ov9_0224E39C(param0);
@@ -6477,8 +6185,7 @@ static int ov9_0224E6B0(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0224E798(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E798(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_0224E550 *v0 = param3;
 
     if (v0->unk_02 == 1) {
@@ -6521,8 +6228,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_022513E8[4] = {
     ov9_0224E798
 };
 
-static int ov9_0224E860(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E860(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_0224E860 *v0 = param3;
 
     ov9_0224F0D4(param0, v0->unk_00, v0->unk_02);
@@ -6533,8 +6239,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251258[1] = {
     ov9_0224E860
 };
 
-static int ov9_0224E870(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224E870(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_0224E870 *v0 = param3;
 
     ov9_0224F16C(param0->fieldSystem, v0->unk_00);
@@ -6558,8 +6263,7 @@ static const UnkStruct_ov9_02252414 Unk_ov9_02252414[1] = {
     },
 };
 
-void ov9_0224E884(FieldSystem *fieldSystem, u16 param1)
-{
+void ov9_0224E884(FieldSystem *fieldSystem, u16 param1) {
     DistWorldSystem *v0;
 
     GF_ASSERT(param1 < 1);
@@ -6567,14 +6271,12 @@ void ov9_0224E884(FieldSystem *fieldSystem, u16 param1)
     ov9_0224E91C(v0, &Unk_ov9_02252414[param1]);
 }
 
-void ov9_0224E8A8(FieldSystem *fieldSystem)
-{
+void ov9_0224E8A8(FieldSystem *fieldSystem) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224E988(v0);
 }
 
-static void ov9_0224E8B4(DistWorldSystem *param0)
-{
+static void ov9_0224E8B4(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
 
@@ -6589,8 +6291,7 @@ static void ov9_0224E8B4(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224E8EC(DistWorldSystem *param0)
-{
+static void ov9_0224E8EC(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
 
@@ -6602,8 +6303,7 @@ static void ov9_0224E8EC(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *param1)
-{
+static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *param1) {
     UnkStruct_ov9_0224E91C v0;
     UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
 
@@ -6616,8 +6316,7 @@ static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *
     v1->unk_08 = ov5_021DF72C(param0->fieldSystem->unk_40, &Unk_ov9_022514B8, NULL, 0, &v0, 0);
 }
 
-static BOOL ov9_0224E964(DistWorldSystem *param0)
-{
+static BOOL ov9_0224E964(DistWorldSystem *param0) {
     UnkStruct_ov9_0224E964 *v0;
     UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
 
@@ -6627,13 +6326,11 @@ static BOOL ov9_0224E964(DistWorldSystem *param0)
     return v0->unk_34;
 }
 
-static void ov9_0224E984(DistWorldSystem *param0)
-{
+static void ov9_0224E984(DistWorldSystem *param0) {
     UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
 }
 
-static void ov9_0224E988(DistWorldSystem *param0)
-{
+static void ov9_0224E988(DistWorldSystem *param0) {
     UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
 
     if (v0->unk_08 != NULL) {
@@ -6643,8 +6340,7 @@ static void ov9_0224E988(DistWorldSystem *param0)
     ov9_0224E8EC(param0);
 }
 
-static BOOL ov9_0224E9A4(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224E9A4(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
 
     GF_ASSERT(param1 != 25);
@@ -6658,8 +6354,7 @@ static BOOL ov9_0224E9A4(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224E9CC(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224E9CC(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
 
     GF_ASSERT(param1 != 5);
@@ -6673,8 +6368,7 @@ static BOOL ov9_0224E9CC(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224E9F4(DistWorldSystem *param0, int param1)
-{
+static BOOL ov9_0224E9F4(DistWorldSystem *param0, int param1) {
     UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
 
     if (v0->unk_00 == 1) {
@@ -6694,8 +6388,7 @@ static const UnkStruct_ov5_02201C58 Unk_ov9_022529F8[5] = {
     { 0x5A, 0x0, 0x0 }
 };
 
-static int ov9_0224EA0C(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov9_0224EA0C(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     VecFx32 v0;
     UnkStruct_ov9_0224E964 *v1 = param1;
     const UnkStruct_ov9_0224E91C *v2 = sub_020715BC(param0);
@@ -6721,14 +6414,12 @@ static int ov9_0224EA0C(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov9_0224EA88(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224EA88(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224E964 *v0 = param1;
     sub_02073A90(&v0->unk_00.unk_04->unk_58);
 }
 
-static void ov9_0224EA94(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224EA94(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     VecFx32 v0;
     UnkStruct_ov9_0224E964 *v1 = param1;
     const UnkStruct_ov9_02252414 *v2 = &v1->unk_00.unk_08;
@@ -6771,8 +6462,7 @@ static void ov9_0224EA94(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov9_0224EB34(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224EB34(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224E964 *v0 = param1;
 
     if (v0->unk_2E == 0) {
@@ -6795,8 +6485,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov9_022514B8 = {
     ov9_0224EB34
 };
 
-static void ov9_0224EB68(DistWorldSystem *param0)
-{
+static void ov9_0224EB68(DistWorldSystem *param0) {
     UnkStruct_ov9_0224EB68 *v0 = &param0->unk_1BB4;
     u32 v1 = DistWorldSystem_GetMapHeaderID(param0);
     const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(v1);
@@ -6808,8 +6497,7 @@ static void ov9_0224EB68(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224EB94(DistWorldSystem *param0)
-{
+static void ov9_0224EB94(DistWorldSystem *param0) {
     int v0 = 0;
     UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
     UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
@@ -6824,8 +6512,7 @@ static void ov9_0224EB94(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224EBB8(UnkStruct_ov9_0224EBB8 *param0)
-{
+static void ov9_0224EBB8(UnkStruct_ov9_0224EBB8 *param0) {
     if (param0->unk_04 != NULL) {
         sub_0207136C(param0->unk_04);
     }
@@ -6833,8 +6520,7 @@ static void ov9_0224EBB8(UnkStruct_ov9_0224EBB8 *param0)
     param0->unk_04 = NULL;
 }
 
-static void ov9_0224EBCC(DistWorldSystem *param0, UnkStruct_ov9_0224EBB8 *param1, const UnkStruct_ov9_0224EC10 *param2, u32 param3)
-{
+static void ov9_0224EBCC(DistWorldSystem *param0, UnkStruct_ov9_0224EBB8 *param1, const UnkStruct_ov9_0224EC10 *param2, u32 param3) {
     param1->unk_00 = param3;
     param1->unk_08 = *param2;
 
@@ -6850,8 +6536,7 @@ static void ov9_0224EBCC(DistWorldSystem *param0, UnkStruct_ov9_0224EBB8 *param1
     }
 }
 
-static void ov9_0224EC10(DistWorldSystem *param0, const UnkStruct_ov9_02252548 *param1)
-{
+static void ov9_0224EC10(DistWorldSystem *param0, const UnkStruct_ov9_02252548 *param1) {
     u16 v0, v1;
     const UnkStruct_ov9_0224EC10 *v2 = param1->unk_04;
     UnkStruct_ov9_0224EBB8 *v3;
@@ -6869,8 +6554,7 @@ static void ov9_0224EC10(DistWorldSystem *param0, const UnkStruct_ov9_02252548 *
     }
 }
 
-static void ov9_0224EC48(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224EC48(DistWorldSystem *param0, u32 param1) {
     const UnkStruct_ov9_02252548 *v0 = Unk_ov9_02252548;
 
     while (v0->unk_00 != 593) {
@@ -6884,8 +6568,7 @@ static void ov9_0224EC48(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static UnkStruct_ov9_0224EBB8 *ov9_0224EC70(DistWorldSystem *param0)
-{
+static UnkStruct_ov9_0224EBB8 *ov9_0224EC70(DistWorldSystem *param0) {
     int v0 = 0;
     UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
     UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
@@ -6903,8 +6586,7 @@ static UnkStruct_ov9_0224EBB8 *ov9_0224EC70(DistWorldSystem *param0)
     return NULL;
 }
 
-static void ov9_0224EC94(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224EC94(DistWorldSystem *param0, u32 param1) {
     int v0 = 0;
     UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
     UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
@@ -6919,8 +6601,7 @@ static void ov9_0224EC94(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static BOOL ov9_0224ECC0(DistWorldSystem *param0, int param1)
-{
+static BOOL ov9_0224ECC0(DistWorldSystem *param0, int param1) {
     int v0 = 0;
     UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
     UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
@@ -6939,8 +6620,7 @@ static BOOL ov9_0224ECC0(DistWorldSystem *param0, int param1)
     return 0;
 }
 
-static BOOL ov9_0224ECE8(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224ECE8(DistWorldSystem *param0, u32 param1) {
     int v0 = 0;
     const UnkStruct_ov9_022531D0 *v1;
     UnkStruct_ov9_0224EB68 *v2 = &param0->unk_1BB4;
@@ -6962,8 +6642,7 @@ static BOOL ov9_0224ECE8(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static BOOL ov9_0224ED20(DistWorldSystem *param0, u32 param1)
-{
+static BOOL ov9_0224ED20(DistWorldSystem *param0, u32 param1) {
     int v0 = 0;
     const UnkStruct_ov9_022531D0 *v1;
     UnkStruct_ov9_0224EB68 *v2 = &param0->unk_1BB4;
@@ -6985,8 +6664,7 @@ static BOOL ov9_0224ED20(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static int ov9_0224ED58(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov9_0224ED58(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     int v0;
     UnkStruct_ov9_0224ED58 *v1 = param1;
     const UnkStruct_ov9_0224EBCC *v2 = sub_020715BC(param0);
@@ -7014,8 +6692,7 @@ static int ov9_0224ED58(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov9_0224EDD8(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224EDD8(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     int v0;
     UnkStruct_ov9_0224ED58 *v1 = param1;
     const UnkStruct_ov9_0224EC10 *v2 = &v1->unk_1C.unk_04->unk_08;
@@ -7027,8 +6704,7 @@ static void ov9_0224EDD8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     ov9_0224D938(v1->unk_1C.unk_00, v1->unk_24);
 }
 
-static void ov9_0224EDFC(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224EDFC(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224ED58 *v0 = param1;
     int v1 = v0->unk_1C.unk_04->unk_08.unk_04;
 
@@ -7039,8 +6715,7 @@ static void ov9_0224EDFC(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v0->unk_02 = ov9_0224DBE4(v0->unk_1C.unk_00, v1, &v0->unk_04);
 }
 
-static void ov9_0224EE2C(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov9_0224EE2C(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov9_0224ED58 *v0 = param1;
 
     if (v0->unk_02 == 1) {
@@ -7056,8 +6731,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov9_02251530 = {
     ov9_0224EE2C
 };
 
-static void ov9_0224EE40(DistWorldSystem *param0)
-{
+static void ov9_0224EE40(DistWorldSystem *param0) {
     UnkStruct_ov9_0224EE40 *v0 = &param0->unk_1C64;
     u32 v1 = DistWorldSystem_GetMapHeaderID(param0);
     const UnkStruct_ov9_022530A4 *v2 = ov9_0224D720(v1);
@@ -7069,13 +6743,11 @@ static void ov9_0224EE40(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224EE6C(DistWorldSystem *param0)
-{
+static void ov9_0224EE6C(DistWorldSystem *param0) {
     return;
 }
 
-static void ov9_0224EE70(DistWorldSystem *param0, MapObject *param1)
-{
+static void ov9_0224EE70(DistWorldSystem *param0, MapObject *param1) {
     int v0 = 0;
     UnkStruct_ov9_0224EE40 *v1 = &param0->unk_1C64;
     MapObject **v2 = v1->unk_00;
@@ -7091,8 +6763,7 @@ static void ov9_0224EE70(DistWorldSystem *param0, MapObject *param1)
     GF_ASSERT(0);
 }
 
-static MapObject **ov9_0224EEA0(DistWorldSystem *param0)
-{
+static MapObject **ov9_0224EEA0(DistWorldSystem *param0) {
     int v0;
     UnkStruct_ov9_0224EE40 *v1 = &param0->unk_1C64;
 
@@ -7106,8 +6777,7 @@ static MapObject **ov9_0224EEA0(DistWorldSystem *param0)
     return NULL;
 }
 
-static MapObject *ov9_0224EECC(DistWorldSystem *param0, const ObjectEvent *param1, u32 param2)
-{
+static MapObject *ov9_0224EECC(DistWorldSystem *param0, const ObjectEvent *param1, u32 param2) {
     int v0 = 0;
     MapObject *v1;
     const MapObjectManager *v2 = param0->fieldSystem->mapObjMan;
@@ -7124,8 +6794,7 @@ static MapObject *ov9_0224EECC(DistWorldSystem *param0, const ObjectEvent *param
     return NULL;
 }
 
-static BOOL ov9_0224EF30(DistWorldSystem *param0, const UnkStruct_ov9_0224EF30 *param1, u16 param2)
-{
+static BOOL ov9_0224EF30(DistWorldSystem *param0, const UnkStruct_ov9_0224EF30 *param1, u16 param2) {
     u16 v0 = param1->unk_00;
     u16 v1 = param1->unk_02;
     VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
@@ -7141,8 +6810,7 @@ static BOOL ov9_0224EF30(DistWorldSystem *param0, const UnkStruct_ov9_0224EF30 *
     return 1;
 }
 
-static BOOL ov9_0224EF64(DistWorldSystem *param0, MapObject **param1, const UnkStruct_ov9_0224EF30 *param2, u32 param3, u16 param4)
-{
+static BOOL ov9_0224EF64(DistWorldSystem *param0, MapObject **param1, const UnkStruct_ov9_0224EF30 *param2, u32 param3, u16 param4) {
     MapObject *v0 = ov9_0224EECC(param0, &param2->unk_08, param3);
 
     if (v0 != NULL) {
@@ -7190,8 +6858,7 @@ static BOOL ov9_0224EF64(DistWorldSystem *param0, MapObject **param1, const UnkS
     return 1;
 }
 
-static BOOL ov9_0224F048(DistWorldSystem *param0, const UnkStruct_ov9_0224EF30 **param1, u32 param2)
-{
+static BOOL ov9_0224F048(DistWorldSystem *param0, const UnkStruct_ov9_0224EF30 **param1, u32 param2) {
     MapObject **v0;
 
     while ((*param1) != NULL) {
@@ -7203,8 +6870,7 @@ static BOOL ov9_0224F048(DistWorldSystem *param0, const UnkStruct_ov9_0224EF30 *
     return 0;
 }
 
-static void ov9_0224F078(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224F078(DistWorldSystem *param0, u32 param1) {
     const UnkStruct_ov9_02252EB4 *v0 = Unk_ov9_02252EB4;
 
     while (v0->unk_00 != 593) {
@@ -7217,8 +6883,7 @@ static void ov9_0224F078(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static void ov9_0224F0A4(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224F0A4(DistWorldSystem *param0, u32 param1) {
     int v0 = 0;
     UnkStruct_ov9_0224EE40 *v1 = &param0->unk_1C64;
     MapObject **v2 = v1->unk_00;
@@ -7233,8 +6898,7 @@ static void ov9_0224F0A4(DistWorldSystem *param0, u32 param1)
     }
 }
 
-static MapObject *ov9_0224F0D4(DistWorldSystem *param0, u32 param1, u16 param2)
-{
+static MapObject *ov9_0224F0D4(DistWorldSystem *param0, u32 param1, u16 param2) {
     MapObject **v0 = NULL;
     const UnkStruct_ov9_02252EB4 *v1 = Unk_ov9_02252EB4;
 
@@ -7270,16 +6934,14 @@ static MapObject *ov9_0224F0D4(DistWorldSystem *param0, u32 param1, u16 param2)
     return NULL;
 }
 
-void ov9_0224F158(FieldSystem *fieldSystem, u16 param1)
-{
+void ov9_0224F158(FieldSystem *fieldSystem, u16 param1) {
     u32 v0 = fieldSystem->location->mapId;
     DistWorldSystem *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     ov9_0224F0D4(v1, v0, param1);
 }
 
-void ov9_0224F16C(FieldSystem *fieldSystem, u16 param1)
-{
+void ov9_0224F16C(FieldSystem *fieldSystem, u16 param1) {
     int v0 = 0;
     MapObject *v1;
     u32 v2 = fieldSystem->location->mapId;
@@ -7298,8 +6960,7 @@ void ov9_0224F16C(FieldSystem *fieldSystem, u16 param1)
     GF_ASSERT(0);
 }
 
-static BOOL ov9_0224F1CC(DistWorldSystem *param0, MapObject *param1)
-{
+static BOOL ov9_0224F1CC(DistWorldSystem *param0, MapObject *param1) {
     int v0 = 0;
     UnkStruct_ov9_0224EE40 *v1 = &param0->unk_1C64;
     MapObject **v2 = v1->unk_00;
@@ -7336,8 +6997,7 @@ static const UnkStruct_ov9_0225311C Unk_ov9_0225311C[] = {
     { 0x251, 0x0, 0x0, 0x0 }
 };
 
-static BOOL ov9_0224F1F8(u32 param0, int param1, int param2, u32 *param3)
-{
+static BOOL ov9_0224F1F8(u32 param0, int param1, int param2, u32 *param3) {
     const UnkStruct_ov9_0225311C *v0 = Unk_ov9_0225311C;
 
     while (v0->unk_00 != 593) {
@@ -7352,8 +7012,7 @@ static BOOL ov9_0224F1F8(u32 param0, int param1, int param2, u32 *param3)
     return 0;
 }
 
-BOOL ov9_0224F240(const MapObject *param0, int param1)
-{
+BOOL ov9_0224F240(const MapObject *param0, int param1) {
     int v0, v1;
     u32 v2, v3;
     FieldSystem *fieldSystem = MapObject_FieldSystem(param0);
@@ -7366,8 +7025,7 @@ BOOL ov9_0224F240(const MapObject *param0, int param1)
     return ov9_0224F1F8(v3, v0, v1, &v2);
 }
 
-static BOOL ov9_0224F284(const MapObject *param0, u32 *param1)
-{
+static BOOL ov9_0224F284(const MapObject *param0, u32 *param1) {
     int v0, v1;
     u32 v2;
     FieldSystem *fieldSystem = MapObject_FieldSystem(param0);
@@ -7378,14 +7036,12 @@ static BOOL ov9_0224F284(const MapObject *param0, u32 *param1)
     return ov9_0224F1F8(v2, v0, v1, param1);
 }
 
-BOOL ov9_0224F2B0(const MapObject *param0)
-{
+BOOL ov9_0224F2B0(const MapObject *param0) {
     u32 v0;
     return ov9_0224F284(param0, &v0);
 }
 
-UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2)
-{
+UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1, MapObject *param2) {
     UnkStruct_ov9_0224F6EC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov9_0224F6EC));
     memset(v0, 0, sizeof(UnkStruct_ov9_0224F6EC));
 
@@ -7416,8 +7072,7 @@ UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1
     return v0;
 }
 
-static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
-{
+static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0) {
     int v0;
     VecFx32 v1;
     MapObject *v2 = param0->unk_0C;
@@ -7460,8 +7115,7 @@ static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
     return 1;
 }
 
-static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
-{
+static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0) {
     switch (param0->unk_10) {
     case 0: {
         VecFx32 v0;
@@ -7625,8 +7279,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
     return 0;
 }
 
-static BOOL ov9_0224F5D8(UnkStruct_ov9_0224F6EC *param0)
-{
+static BOOL ov9_0224F5D8(UnkStruct_ov9_0224F6EC *param0) {
     switch (param0->unk_10) {
     case 0: {
         VecFx32 v0;
@@ -7712,8 +7365,7 @@ static BOOL ov9_0224F5D8(UnkStruct_ov9_0224F6EC *param0)
     return 0;
 }
 
-BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0)
-{
+BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0) {
     BOOL v0;
 
     switch (param0->unk_12) {
@@ -7735,8 +7387,7 @@ BOOL ov9_0224F6EC(UnkStruct_ov9_0224F6EC *param0)
     return v0;
 }
 
-static void ov9_0224F724(DistWorldSystem *param0)
-{
+static void ov9_0224F724(DistWorldSystem *param0) {
     UnkStruct_ov9_0224ADC0 *v0 = &param0->unk_1D00;
     u32 v1 = DistWorldSystem_GetMapHeaderID(param0);
 
@@ -7752,13 +7403,11 @@ static void ov9_0224F724(DistWorldSystem *param0)
     v0->unk_02 = -1;
 }
 
-static void ov9_0224F760(DistWorldSystem *param0)
-{
+static void ov9_0224F760(DistWorldSystem *param0) {
     return;
 }
 
-static void ov9_0224F764(DistWorldSystem *param0)
-{
+static void ov9_0224F764(DistWorldSystem *param0) {
     UnkStruct_ov9_0224ADC0 *v0 = &param0->unk_1D00;
     PlayerAvatar *playerAvatar = param0->fieldSystem->playerAvatar;
     const VecFx32 *v2 = PlayerAvatar_PosVector(playerAvatar);
@@ -7795,8 +7444,7 @@ static void ov9_0224F764(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224F804(DistWorldSystem *param0)
-{
+static void ov9_0224F804(DistWorldSystem *param0) {
     UnkStruct_ov9_0224ADC0 *v0 = &param0->unk_1D00;
 
     if (v0->unk_04 == 1) {
@@ -7824,20 +7472,17 @@ static void ov9_0224F804(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224F854(DistWorldSystem *param0, u32 param1)
-{
+static void ov9_0224F854(DistWorldSystem *param0, u32 param1) {
     UnkStruct_ov9_0224ADC0 *v0 = &param0->unk_1D00;
     v0->unk_06 = param1;
 }
 
-static void ov9_0224F860(DistWorldSystem *param0, s16 param1)
-{
+static void ov9_0224F860(DistWorldSystem *param0, s16 param1) {
     UnkStruct_ov9_0224ADC0 *v0 = &param0->unk_1D00;
     v0->unk_00 = param1;
 }
 
-static void ov9_0224F86C(u16 param0, u16 param1, u16 param2, u16 *param3)
-{
+static void ov9_0224F86C(u16 param0, u16 param1, u16 param2, u16 *param3) {
     const UnkStruct_ov9_0224F86C *v0 = (UnkStruct_ov9_0224F86C *)&param0;
     const UnkStruct_ov9_0224F86C *v1 = (UnkStruct_ov9_0224F86C *)&param1;
 
@@ -7848,8 +7493,7 @@ static void ov9_0224F86C(u16 param0, u16 param1, u16 param2, u16 *param3)
     (*param3) = (v0->unk_00_0 + ((v1->unk_00_0 - v0->unk_00_0) * param2 >> 4)) | ((v0->unk_00_5 + ((v1->unk_00_5 - v0->unk_00_5) * param2 >> 4)) << 5) | ((v0->unk_00_10 + ((v1->unk_00_10 - v0->unk_00_10) * param2 >> 4)) << 10);
 }
 
-static void ov9_0224F8C4(DistWorldSystem *param0, UnkStruct_ov9_0224F930 *param1, const UnkStruct_ov9_0224F8C4 *param2, const VecFx32 *param3)
-{
+static void ov9_0224F8C4(DistWorldSystem *param0, UnkStruct_ov9_0224F930 *param1, const UnkStruct_ov9_0224F8C4 *param2, const VecFx32 *param3) {
     param1->unk_00_3 = param2->unk_00;
     param1->unk_00_1 = param2->unk_04;
     param1->unk_1C.x = (FX32_ONE * (param2->unk_0C));
@@ -7862,8 +7506,7 @@ static void ov9_0224F8C4(DistWorldSystem *param0, UnkStruct_ov9_0224F930 *param1
     param1->unk_34 = *param3;
 }
 
-static void ov9_0224F930(UnkStruct_ov9_0224F930 *param0, int param1, fx32 param2, fx32 param3)
-{
+static void ov9_0224F930(UnkStruct_ov9_0224F930 *param0, int param1, fx32 param2, fx32 param3) {
     switch (param1) {
     case 0:
         param0->unk_4C = &param0->unk_40.x;
@@ -7883,8 +7526,7 @@ static void ov9_0224F930(UnkStruct_ov9_0224F930 *param0, int param1, fx32 param2
     param0->unk_00_2 = 1;
 }
 
-static BOOL ov9_0224F970(DistWorldSystem *param0, UnkStruct_ov9_0224F930 *param1)
-{
+static BOOL ov9_0224F970(DistWorldSystem *param0, UnkStruct_ov9_0224F930 *param1) {
     if (param1->unk_10.x != param1->unk_1C.x) {
         param1->unk_10.x += param1->unk_04.x;
         param1->unk_34.x += param1->unk_04.x;
@@ -7975,8 +7617,7 @@ static const DistWorldCameraAngleTemplate Unk_ov9_02251888 = {
     0x20
 };
 
-static void ov9_0224FA94(DistWorldSystem *param0, UnkStruct_ov9_0224FA94 *param1)
-{
+static void ov9_0224FA94(DistWorldSystem *param0, UnkStruct_ov9_0224FA94 *param1) {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
     int v1 = (((param1->unk_40.unk_10.y) >> 4) / FX32_ONE);
 
@@ -8001,8 +7642,7 @@ static void ov9_0224FA94(DistWorldSystem *param0, UnkStruct_ov9_0224FA94 *param1
     }
 }
 
-static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     VecFx32 v0;
     UnkStruct_ov9_0224F930 *v1;
     MapObject *v2;
@@ -8062,8 +7702,7 @@ static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_0224FA94 *v1 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v2 = &v1->unk_40;
@@ -8133,8 +7772,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
@@ -8209,8 +7847,7 @@ static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
@@ -8296,8 +7933,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_022500E0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022500E0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     u32 v0[2] = { 0xa, 0x6 };
     UnkStruct_ov9_0224FA94 *v1 = ov9_0224E39C(param0);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
@@ -8332,8 +7968,7 @@ static const DistWorldCameraAngleTemplate Unk_ov9_02251C48 = {
     0x10
 };
 
-static void ov9_02250138(DistWorldSystem *param0, UnkStruct_ov9_02250138 *param1)
-{
+static void ov9_02250138(DistWorldSystem *param0, UnkStruct_ov9_02250138 *param1) {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
     int v1 = (((param1->unk_34.unk_10.y) >> 4) / FX32_ONE);
 
@@ -8343,8 +7978,7 @@ static void ov9_02250138(DistWorldSystem *param0, UnkStruct_ov9_02250138 *param1
     }
 }
 
-static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     VecFx32 v0;
     UnkStruct_ov9_0224F930 *v1;
     MapObject *v2;
@@ -8404,8 +8038,7 @@ static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     MapObject *v0 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_02250138 *v1 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v2 = &v1->unk_34;
@@ -8472,8 +8105,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
@@ -8525,8 +8157,7 @@ static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     int v0;
     UnkStruct_ov101_021D5D90 *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
@@ -8607,8 +8238,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250650(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250650(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     u32 v0[3] = { 0x97, 0x93, 0x73 };
     UnkStruct_ov9_02250138 *v1 = ov9_0224E39C(param0);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
@@ -8634,8 +8264,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_0225151C[5] = {
     ov9_02250650
 };
 
-static int ov9_022506AC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022506AC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_022506AC *v0 = param3;
 
     ScriptManager_Start(param1, v0->unk_00, NULL, NULL);
@@ -8643,8 +8272,7 @@ static int ov9_022506AC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_022506CC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022506CC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     return 2;
 }
 
@@ -8653,8 +8281,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_022512C0[2] = {
     ov9_022506CC
 };
 
-static int ov9_022506D0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022506D0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_022506D0 *v0 = param3;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
@@ -8666,8 +8293,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251238[1] = {
     ov9_022506D0
 };
 
-static int ov9_022506EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022506EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_022506EC *v0 = param3;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
@@ -8679,8 +8305,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_0225121C[1] = {
     ov9_022506EC
 };
 
-static int ov9_02250704(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250704(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_02250704 *v0 = param3;
 
     ov9_02249DC8(param0, v0->unk_00);
@@ -8691,8 +8316,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251270[1] = {
     ov9_02250704
 };
 
-static int ov9_02250710(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250710(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_02250704 *v0 = param3;
 
     ov9_02249DE4(param0, v0->unk_00);
@@ -8703,8 +8327,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251254[1] = {
     ov9_02250710
 };
 
-static int ov9_0225071C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0225071C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     const UnkStruct_ov9_02252414 *v0 = param3;
 
     ov9_0224E91C(param0, v0);
@@ -8712,8 +8335,7 @@ static int ov9_0225071C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250730(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250730(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     if (ov9_0224E964(param0) == 1) {
         ov9_0224E988(param0);
         return 2;
@@ -8746,8 +8368,7 @@ static const u16 Unk_ov9_02252284[16] = {
     0x7fff
 };
 
-static void ov9_0225074C(UnkStruct_ov9_0225074C *param0)
-{
+static void ov9_0225074C(UnkStruct_ov9_0225074C *param0) {
     u32 v0, v1 = ((param0->unk_00) / FX32_ONE);
 
     for (v0 = 0; v0 < 16; v0++) {
@@ -8755,8 +8376,7 @@ static void ov9_0225074C(UnkStruct_ov9_0225074C *param0)
     }
 }
 
-void ov9_02250780(FieldSystem *fieldSystem)
-{
+void ov9_02250780(FieldSystem *fieldSystem) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     if (v0->unk_1EC0 == 1) {
@@ -8771,8 +8391,7 @@ void ov9_02250780(FieldSystem *fieldSystem)
     }
 }
 
-static int ov9_022507C4(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022507C4(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_0225074C *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_0225074C));
     v0->unk_18 = ov9_0224F0D4(param0, 582, (0x80 + 0));
     v0->unk_08.y = ((10 << 4) * FX32_ONE);
@@ -8783,8 +8402,7 @@ static int ov9_022507C4(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_022507FC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022507FC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_0225074C *v1 = ov9_0224E39C(param0);
     UnkStruct_020216E0 *v0 = ov5_021EB1A0(v1->unk_18);
 
@@ -8805,8 +8423,7 @@ static int ov9_022507FC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250854(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250854(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_0225074C *v0 = ov9_0224E39C(param0);
     v0->unk_04 += (FX32_ONE * 8) / (3 * 30);
 
@@ -8831,8 +8448,7 @@ static int ov9_02250854(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_022508C0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022508C0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_020216E0 *v0;
     NNSG3dResMdl *v1;
     UnkStruct_ov9_0225074C *v2 = ov9_0224E39C(param0);
@@ -8850,8 +8466,7 @@ static int ov9_022508C0(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_022508F4(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022508F4(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_0225074C *v0 = ov9_0224E39C(param0);
     v0->unk_14++;
 
@@ -8871,8 +8486,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251490[5] = {
     ov9_022508F4
 };
 
-static int ov9_02250918(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250918(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250918 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250918));
     v0->unk_20 = ov9_0224F0D4(param0, 579, (0x80 + 3));
 
@@ -8883,8 +8497,7 @@ static int ov9_02250918(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_0225094C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_0225094C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250918 *v0;
     fx32 v1 = (FX32_ONE * 2);
 
@@ -8904,8 +8517,7 @@ static int ov9_0225094C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250994(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250994(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250918 *v0 = ov9_0224E39C(param0);
     v0->unk_14.z -= (FX32_ONE * 1);
     sub_020630AC(v0->unk_20, &v0->unk_14);
@@ -8918,8 +8530,7 @@ static int ov9_02250994(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_022509D4(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_022509D4(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250918 *v0;
     fx32 v1[8] = { 0x0, 0x800, 0x1000, 0x2000, 0x4000, 0x6000, 0x7000, 0x8000 };
 
@@ -8945,8 +8556,7 @@ static int ov9_022509D4(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250A58(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250A58(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250918 *v0 = ov9_0224E39C(param0);
     v0->unk_14.z += (FX32_ONE * 1);
 
@@ -8959,8 +8569,7 @@ static int ov9_02250A58(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250A90(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250A90(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250918 *v0 = ov9_0224E39C(param0);
 
     if (v0->unk_10 < (FX32_ONE * 2)) {
@@ -9000,8 +8609,7 @@ static const MapObjectAnimCmd Unk_ov9_02251E74[] = {
     { 0xfe, 0x0 }
 };
 
-static int ov9_02250AFC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250AFC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250AFC *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250AFC));
     v0->unk_14 = ov9_0224F0D4(param0, 579, (0x80 + 4));
 
@@ -9011,8 +8619,7 @@ static int ov9_02250AFC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250B30(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250B30(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250AFC *v0;
     fx32 v1 = (FX32_ONE * 2);
 
@@ -9034,8 +8641,7 @@ static int ov9_02250B30(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250B84(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250B84(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250AFC *v0 = ov9_0224E39C(param0);
 
     if (MapObject_HasAnimationEnded(v0->unk_10) == 1) {
@@ -9047,8 +8653,7 @@ static int ov9_02250B84(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250BAC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250BAC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250AFC *v0 = ov9_0224E39C(param0);
 
     if (v0->unk_00 < (FX32_ONE * 2)) {
@@ -9165,8 +8770,7 @@ static const MapObjectAnimCmd Unk_ov9_02252E64[] = {
     { 0xfe, 0x0 }
 };
 
-static int ov9_02250C14(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250C14(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250C14 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250AFC));
     v0->unk_18 = ov9_0224F0D4(param0, 579, (0x80 + 5));
 
@@ -9175,8 +8779,7 @@ static int ov9_02250C14(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250C48(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250C48(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250C14 *v0;
     fx32 v1 = (FX32_ONE * 2);
 
@@ -9211,8 +8814,7 @@ static int ov9_02250C48(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250CD8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250CD8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250C14 *v0 = ov9_0224E39C(param0);
 
     if ((MapObject_HasAnimationEnded(v0->unk_10) == 1) && (MapObject_HasAnimationEnded(v0->unk_14) == 1)) {
@@ -9225,8 +8827,7 @@ static int ov9_02250CD8(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250D10(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250D10(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250C14 *v0 = ov9_0224E39C(param0);
 
     if (v0->unk_00 < (FX32_ONE * 2)) {
@@ -9264,8 +8865,7 @@ const DistWorldCameraAngleTemplate Unk_ov9_02251D68 = {
     0x14
 };
 
-static int ov9_02250D78(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250D78(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250D78 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250D78));
 
     DoCameraTransition(param0, &Unk_ov9_02251D68);
@@ -9277,8 +8877,7 @@ static int ov9_02250D78(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 1;
 }
 
-static int ov9_02250DA0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250DA0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250D78 *v0 = ov9_0224E39C(param0);
 
     v0->unk_02--;
@@ -9302,8 +8901,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251340[2] = {
     ov9_02250DA0
 };
 
-static int ov9_02250DE8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250DE8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250DE8 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250DE8));
     v0->unk_02 = 16;
     v0->unk_00 = 3;
@@ -9312,8 +8910,7 @@ static int ov9_02250DE8(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 1;
 }
 
-static int ov9_02250E00(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250E00(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250DE8 *v0 = ov9_0224E39C(param0);
 
     v0->unk_02--;
@@ -9333,8 +8930,7 @@ static int ov9_02250E00(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     return 0;
 }
 
-static int ov9_02250E50(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
-{
+static int ov9_02250E50(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3) {
     UnkStruct_ov9_02250DE8 *v0 = ov9_0224E39C(param0);
 
     v0->unk_02--;
@@ -9352,8 +8948,7 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_0225139C[3] = {
     ov9_02250E50
 };
 
-static BOOL DistWorldBounds_AreCoordinatesInBounds(int tileX, int tileY, int tileZ, const DistWorldBounds *bounds)
-{
+static BOOL DistWorldBounds_AreCoordinatesInBounds(int tileX, int tileY, int tileZ, const DistWorldBounds *bounds) {
     if (
         tileY >= bounds->startTileY
         && tileY <= bounds->startTileY + bounds->sizeY
@@ -9367,8 +8962,7 @@ static BOOL DistWorldBounds_AreCoordinatesInBounds(int tileX, int tileY, int til
     return FALSE;
 }
 
-static int CalculateCameraAngleDelta(u16 currentAngleComponent, u16 targetAngleComponent)
-{
+static int CalculateCameraAngleDelta(u16 currentAngleComponent, u16 targetAngleComponent) {
     int angleComponentDelta = (s16)targetAngleComponent - (s16)currentAngleComponent;
     int fixedAngleComponentDelta = angleComponentDelta;
 
@@ -9389,8 +8983,7 @@ static int CalculateCameraAngleDelta(u16 currentAngleComponent, u16 targetAngleC
     return angleComponentDelta;
 }
 
-static void ov9_02250EE8(s16 *param0, s16 param1)
-{
+static void ov9_02250EE8(s16 *param0, s16 param1) {
     (*param0) += param1;
 
     if ((*param0) < 0) {
@@ -9402,8 +8995,7 @@ static void ov9_02250EE8(s16 *param0, s16 param1)
     }
 }
 
-static void ov9_02250F1C(fx32 *param0, fx32 param1)
-{
+static void ov9_02250F1C(fx32 *param0, fx32 param1) {
     (*param0) += param1;
 
     if ((*param0) < 0) {
@@ -9415,8 +9007,7 @@ static void ov9_02250F1C(fx32 *param0, fx32 param1)
     }
 }
 
-static void GetPlayerPos(DistWorldSystem *system, int *playerX, int *playerY, int *playerZ)
-{
+static void GetPlayerPos(DistWorldSystem *system, int *playerX, int *playerY, int *playerZ) {
     MapObject *mapObj = Player_MapObject(system->fieldSystem->playerAvatar);
 
     *playerX = MapObject_GetX(mapObj);
@@ -9424,8 +9015,7 @@ static void GetPlayerPos(DistWorldSystem *system, int *playerX, int *playerY, in
     *playerZ = MapObject_GetZ(mapObj);
 }
 
-BOOL ov9_02250F74(FieldSystem *fieldSystem)
-{
+BOOL ov9_02250F74(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
     if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
@@ -9435,8 +9025,7 @@ BOOL ov9_02250F74(FieldSystem *fieldSystem)
     return 1;
 }
 
-BOOL ov9_02250F90(FieldSystem *fieldSystem, int param1, int param2, int param3)
-{
+BOOL ov9_02250F90(FieldSystem *fieldSystem, int param1, int param2, int param3) {
     u16 v0;
     DistWorldSystem *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
@@ -9455,8 +9044,7 @@ BOOL ov9_02250F90(FieldSystem *fieldSystem, int param1, int param2, int param3)
     return 0;
 }
 
-BOOL ov9_02250FBC(FieldSystem *fieldSystem, int param1, int param2, int param3)
-{
+BOOL ov9_02250FBC(FieldSystem *fieldSystem, int param1, int param2, int param3) {
     u16 v0;
     DistWorldSystem *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
@@ -9469,16 +9057,14 @@ BOOL ov9_02250FBC(FieldSystem *fieldSystem, int param1, int param2, int param3)
     return 1;
 }
 
-BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3)
-{
+BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     s16 v1 = ov9_0224C494(v0);
 
     return ov9_0224C324(v0, param1, param2, param3, v1);
 }
 
-void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3)
-{
+void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     s16 v1 = ov9_0224C494(v0);
 
@@ -9490,8 +9076,7 @@ void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3)
     GF_ASSERT(0);
 }
 
-BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, u32 *param4)
-{
+BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, u32 *param4) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
     if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
@@ -9515,8 +9100,7 @@ BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, 
     }
 }
 
-void ov9_02251094(int param0, int *param1, int *param2, int *param3)
-{
+void ov9_02251094(int param0, int *param1, int *param2, int *param3) {
     UnkStruct_ov9_0224BFE0 v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, HEAP_ID_FIELD);
 
@@ -9526,13 +9110,11 @@ void ov9_02251094(int param0, int *param1, int *param2, int *param3)
     NARC_dtor(v1);
 }
 
-static u32 DistWorldSystem_GetMapHeaderID(DistWorldSystem *system)
-{
+static u32 DistWorldSystem_GetMapHeaderID(DistWorldSystem *system) {
     return system->fieldSystem->location->mapId;
 }
 
-static int ov9_022510D8(u32 param0)
-{
+static int ov9_022510D8(u32 param0) {
     switch (param0) {
     case 0:
         return AVATAR_DISTORTION_STATE_FLOOR;
@@ -9547,8 +9129,7 @@ static int ov9_022510D8(u32 param0)
     return AVATAR_DISTORTION_STATE_ACTIVE;
 }
 
-static BOOL ov9_02251104(DistWorldSystem *param0, u32 param1, u32 param2)
-{
+static BOOL ov9_02251104(DistWorldSystem *param0, u32 param1, u32 param2) {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     switch (param1) {
@@ -9594,8 +9175,7 @@ static BOOL ov9_02251104(DistWorldSystem *param0, u32 param1, u32 param2)
     return 0;
 }
 
-BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3)
-{
+BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3) {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     if (DistWorldSystem_GetMapHeaderID(v0) == 582) {
@@ -9612,15 +9192,13 @@ BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3)
     return 0;
 }
 
-static void ov9_022511E0(u16 param0)
-{
+static void ov9_022511E0(u16 param0) {
     if (Sound_IsEffectPlaying(param0) == 0) {
         Sound_PlayEffect(param0);
     }
 }
 
-static void ov9_022511F4(MapObject *param0, const VecFx32 *param1)
-{
+static void ov9_022511F4(MapObject *param0, const VecFx32 *param1) {
     UnkStruct_020216E0 *v0;
 
     MapObject_SetPos(param0, param1);

@@ -23,21 +23,18 @@
 #include "unk_0205C980.h"
 #include "unk_020996D0.h"
 
-UnkStruct_02030A80 *sub_02030A80(int heapID)
-{
+UnkStruct_02030A80 *sub_02030A80(int heapID) {
     UnkStruct_02030A80 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02030A80));
     MI_CpuClear8(v0, sizeof(UnkStruct_02030A80));
 
     return v0;
 }
 
-void sub_02030A98(UnkStruct_02030A80 *param0)
-{
+void sub_02030A98(UnkStruct_02030A80 *param0) {
     Heap_Free(param0);
 }
 
-void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
-{
+void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData) {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(saveData);
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
     SystemData *v2 = SaveData_GetSystemData(saveData);
@@ -73,16 +70,14 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
     param0->unk_7C.unk_00 = SaveData_CalculateChecksum(saveData, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
 }
 
-Strbuf *sub_02030B94(const UnkStruct_02030A80 *param0, int heapID)
-{
+Strbuf *sub_02030B94(const UnkStruct_02030A80 *param0, int heapID) {
     Strbuf *v0 = Strbuf_Init((7 * 2) + 1, heapID);
 
     Strbuf_CopyNumChars(v0, param0->unk_00, (7 * 2) + 1);
     return v0;
 }
 
-u32 sub_02030BAC(const UnkStruct_02030A80 *param0)
-{
+u32 sub_02030BAC(const UnkStruct_02030A80 *param0) {
     if ((param0->unk_14 != 0) && (param0->unk_14 != 1)) {
         return 0;
     }
@@ -90,8 +85,7 @@ u32 sub_02030BAC(const UnkStruct_02030A80 *param0)
     return param0->unk_14;
 }
 
-int sub_02030BBC(const UnkStruct_02030A80 *param0)
-{
+int sub_02030BBC(const UnkStruct_02030A80 *param0) {
     if (param0->unk_1C >= 495) {
         return 0;
     }
@@ -99,8 +93,7 @@ int sub_02030BBC(const UnkStruct_02030A80 *param0)
     return param0->unk_1C;
 }
 
-int sub_02030BCC(const UnkStruct_02030A80 *param0)
-{
+int sub_02030BCC(const UnkStruct_02030A80 *param0) {
     if (param0->unk_1C >= 495) {
         return 0;
     }
@@ -108,8 +101,7 @@ int sub_02030BCC(const UnkStruct_02030A80 *param0)
     return Pokemon_SanitizeFormId(param0->unk_1C, param0->unk_1B_1);
 }
 
-int sub_02030BEC(const UnkStruct_02030A80 *param0)
-{
+int sub_02030BEC(const UnkStruct_02030A80 *param0) {
     if (param0->unk_1B_0 > 1) {
         return 1;
     }
@@ -117,8 +109,7 @@ int sub_02030BEC(const UnkStruct_02030A80 *param0)
     return param0->unk_1B_0;
 }
 
-int sub_02030BFC(const UnkStruct_02030A80 *param0)
-{
+int sub_02030BFC(const UnkStruct_02030A80 *param0) {
     if (param0->unk_17 >= 234) {
         return 0;
     }
@@ -126,8 +117,7 @@ int sub_02030BFC(const UnkStruct_02030A80 *param0)
     return param0->unk_17;
 }
 
-int sub_02030C08(const UnkStruct_02030A80 *param0)
-{
+int sub_02030C08(const UnkStruct_02030A80 *param0) {
     if (param0->unk_17 >= 234) {
         return 0;
     }
@@ -139,8 +129,7 @@ int sub_02030C08(const UnkStruct_02030A80 *param0)
     return param0->unk_18;
 }
 
-Strbuf *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int heapID)
-{
+Strbuf *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int heapID) {
     int v0 = 0;
 
     if (param0->unk_1E == 0) {
@@ -174,8 +163,7 @@ Strbuf *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int hea
     }
 }
 
-int sub_02030CCC(const UnkStruct_02030A80 *param0)
-{
+int sub_02030CCC(const UnkStruct_02030A80 *param0) {
     if ((param0->unk_15 >= 1) && (param0->unk_15 <= 12)) {
         return param0->unk_15;
     }
@@ -183,8 +171,7 @@ int sub_02030CCC(const UnkStruct_02030A80 *param0)
     return 1;
 }
 
-int sub_02030CDC(const UnkStruct_02030A80 *param0)
-{
+int sub_02030CDC(const UnkStruct_02030A80 *param0) {
     if (param0->unk_16 > 15) {
         return 0;
     }

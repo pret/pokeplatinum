@@ -46,8 +46,7 @@ static const int sSaveInfoValues[] = {
     SAVE_INFO_PLAY_TIME
 };
 
-static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSystem)
-{
+static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSystem) {
     SaveData *saveData = fieldSystem->saveData;
     Location *curLocation = FieldOverworldState_GetPlayerLocation(SaveData_GetFieldOverworldState(saveData));
     Pokedex *pokedex = SaveData_GetPokedex(saveData);
@@ -64,8 +63,7 @@ static void SaveInfo_SetValues(SaveInfo *saveInfo, const FieldSystem *fieldSyste
     saveInfo->playTime = SaveData_GetPlayTime(saveData);
 }
 
-static void SaveInfoWindow_SetStrings(StringTemplate *strTemplate, const SaveInfo *saveInfo)
-{
+static void SaveInfoWindow_SetStrings(StringTemplate *strTemplate, const SaveInfo *saveInfo) {
     StringTemplate_SetLocationName(strTemplate, 0, saveInfo->mapLabelTextID);
     StringTemplate_SetPlayerName(strTemplate, 1, saveInfo->trainerInfo);
     StringTemplate_SetNumber(strTemplate, 2, TrainerInfo_BadgeCount(saveInfo->trainerInfo), 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -102,8 +100,7 @@ static void SaveInfoWindow_SetStrings(StringTemplate *strTemplate, const SaveInf
     StringTemplate_SetNumber(strTemplate, 5, PlayTime_GetMinutes(saveInfo->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 }
 
-static int SaveInfoWindow_Height(const SaveInfo *saveInfo)
-{
+static int SaveInfoWindow_Height(const SaveInfo *saveInfo) {
     if (saveInfo->pokedexCount != 0) {
         return SAVE_INFO_WINDOW_HEIGHT;
     } else {
@@ -111,8 +108,7 @@ static int SaveInfoWindow_Height(const SaveInfo *saveInfo)
     }
 }
 
-static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
-{
+static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin) {
     int fontSpacing = Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT) + Font_GetAttribute(FONT_SYSTEM, FONTATTR_LINE_SPACING);
     int yOffset = 0;
     Strbuf *buf = MessageUtil_ExpandedStrbuf(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoLabels[0], saveInfoWin->heapID);
@@ -141,8 +137,7 @@ static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
     }
 }
 
-void SaveInfoWindow_Draw(SaveInfoWindow *saveInfoWin)
-{
+void SaveInfoWindow_Draw(SaveInfoWindow *saveInfoWin) {
     saveInfoWin->window = Heap_AllocFromHeap(saveInfoWin->heapID, sizeof(Window));
 
     Window_Add(saveInfoWin->bgConfig, saveInfoWin->window, saveInfoWin->bgLayer, 1, 1, saveInfoWin->width, saveInfoWin->height, FIELD_MESSAGE_PALETTE_INDEX, SAVE_INFO_MESSAGE_BASE_TILE);
@@ -153,15 +148,13 @@ void SaveInfoWindow_Draw(SaveInfoWindow *saveInfoWin)
     Window_DrawStandardFrame(saveInfoWin->window, FALSE, SAVE_INFO_WINDOW_BASE_TILE, FIELD_WINDOW_PALETTE_INDEX);
 }
 
-void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin)
-{
+void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin) {
     Window_EraseStandardFrame(saveInfoWin->window, FALSE);
     Window_Remove(saveInfoWin->window);
     Heap_Free(saveInfoWin->window);
 }
 
-SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer)
-{
+SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer) {
     SaveInfoWindow *saveInfoWin = Heap_AllocFromHeap(heapID, sizeof(SaveInfoWindow));
 
     saveInfoWin->fieldSystem = fieldSystem;
@@ -180,21 +173,18 @@ SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID,
     return saveInfoWin;
 }
 
-void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin)
-{
+void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin) {
     MessageLoader_Free(saveInfoWin->msgLoader);
     StringTemplate_Free(saveInfoWin->strTemplate);
     Heap_Free(saveInfoWin);
 }
 
-BOOL FieldSystem_Save(FieldSystem *fieldSystem)
-{
+BOOL FieldSystem_Save(FieldSystem *fieldSystem) {
     FieldSystem_SaveObjectsAndLocation(fieldSystem);
     return SaveData_Save(fieldSystem->saveData) == SAVE_RESULT_OK;
 }
 
-static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
-{
+static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem) {
     FieldSystem_SaveObjects(fieldSystem);
     ov5_021EA714(fieldSystem, POKETCH_EVENT_SAVE, 0);
 
@@ -204,8 +194,7 @@ static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
     fieldSystem->location->faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 }
 
-void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem)
-{
+void FieldSystem_SaveStateIfCommunicationOff(FieldSystem *fieldSystem) {
     if (fieldSystem == NULL) {
         GF_ASSERT(0);
         return;

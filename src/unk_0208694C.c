@@ -868,8 +868,7 @@ const ApplicationManagerTemplate Unk_020F2DAC = {
 
 static UnkStruct_02087A10 *Unk_021C0A30;
 
-static int sub_0208694C(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208694C(ApplicationManager *appMan, int *param1) {
     UnkStruct_02087A10 *v0;
     NARC *v1;
 
@@ -939,8 +938,7 @@ static int sub_0208694C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3)
-{
+static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3) {
     u8 *v0;
 
     GX_LoadOBJ(param0->pRawData, (21 * 32 + 31) * 0x20, 0x20 * 4 * 4);
@@ -948,8 +946,7 @@ static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1,
     GX_LoadOBJPltt((void *)(v0 + PokeIconPaletteIndex(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
 }
 
-static int sub_02086B64(ApplicationManager *appMan, int *param1)
-{
+static int sub_02086B64(ApplicationManager *appMan, int *param1) {
     UnkStruct_02087A10 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -1018,8 +1015,7 @@ static int sub_02086B64(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
-{
+static int sub_02086D38(UnkStruct_02087A10 *param0, int param1) {
     sub_02088350(param0);
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
@@ -1063,8 +1059,7 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
     return param1;
 }
 
-static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
-{
+static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1) {
     if (param0->unk_00 == 0) {
         Strbuf *v0;
 
@@ -1090,8 +1085,7 @@ static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
     }
 }
 
-static int sub_02086F14(u16 *param0)
-{
+static int sub_02086F14(u16 *param0) {
     int v0 = 1;
     int v1;
 
@@ -1108,8 +1102,7 @@ static int sub_02086F14(u16 *param0)
     return v0;
 }
 
-static int sub_02086F3C(ApplicationManager *appMan, int *param1)
-{
+static int sub_02086F3C(ApplicationManager *appMan, int *param1) {
     UnkStruct_02087A10 *v0 = ApplicationManager_Data(appMan);
     UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
     int v2;
@@ -1189,8 +1182,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3, Options *options)
-{
+UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3, Options *options) {
     UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0208737C));
 
     v0->unk_00 = param1;
@@ -1208,8 +1200,7 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
     return v0;
 }
 
-void sub_0208716C(UnkStruct_0208737C *param0)
-{
+void sub_0208716C(UnkStruct_0208737C *param0) {
     GF_ASSERT((param0->textInputStr) != NULL);
     GF_ASSERT((param0) != NULL);
 
@@ -1217,16 +1208,14 @@ void sub_0208716C(UnkStruct_0208737C *param0)
     Heap_Free(param0);
 }
 
-static void sub_02087190(void *param0)
-{
+static void sub_02087190(void *param0) {
     VramTransfer_Process();
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
-{
+static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1) {
     param0->unk_00 = param1->unk_00;
     param0->unk_04 = param1->unk_04;
     param0->unk_08 = param1->unk_08;
@@ -1235,8 +1224,7 @@ static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
     param0->options = param1->options;
 }
 
-static void sub_020871CC(void)
-{
+static void sub_020871CC(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -1253,8 +1241,7 @@ static void sub_020871CC(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_020871EC(BgConfig *param0)
-{
+static void sub_020871EC(BgConfig *param0) {
     {
         GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
@@ -1357,8 +1344,7 @@ static void sub_020871EC(BgConfig *param0)
     G2S_BlendNone();
 }
 
-static void sub_0208732C(int param0)
-{
+static void sub_0208732C(int param0) {
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, param0);
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG2, param0);
@@ -1369,8 +1355,7 @@ static void sub_0208732C(int param0)
     GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
 }
 
-static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
-{
+static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan) {
     UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
 
     param0->unk_4C0 = 4;
@@ -1435,8 +1420,7 @@ static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
     }
 }
 
-static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
-{
+static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan) {
     Strbuf *v0 = NULL;
     UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
 
@@ -1476,8 +1460,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
     }
 }
 
-static void sub_0208765C(BgConfig *param0, Window *param1)
-{
+static void sub_0208765C(BgConfig *param0, Window *param1) {
     int v0;
 
     for (v0 = 0; v0 < 10; v0++) {
@@ -1491,8 +1474,7 @@ static void sub_0208765C(BgConfig *param0, Window *param1)
     Heap_FreeExplicit(HEAP_ID_18, param0);
 }
 
-static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
-{
+static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1) {
     BgConfig *v0 = param0->unk_160;
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, HEAP_ID_18);
@@ -1510,8 +1492,7 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
     param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, HEAP_ID_18);
 }
 
-void sub_020877C4(void)
-{
+void sub_020877C4(void) {
     {
         CharTransferTemplate v0 = {
             20, 2048, 2048, 18
@@ -1525,8 +1506,7 @@ void sub_020877C4(void)
     PlttTransfer_Clear();
 }
 
-static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
-{
+static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1) {
     int v0;
 
     NNS_G2dInitOamManagerModule();
@@ -1564,8 +1544,7 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     SpriteTransfer_RequestPlttWholeRange(param0->unk_328[1][1]);
 }
 
-static void sub_020879DC(SysTask *param0, void *param1)
-{
+static void sub_020879DC(SysTask *param0, void *param1) {
     const VecFx32 *v0;
     VecFx32 v1;
     UnkStruct_020879DC *v2 = (UnkStruct_020879DC *)param1;
@@ -1578,8 +1557,7 @@ static void sub_020879DC(SysTask *param0, void *param1)
     Sprite_SetPosition(v2->unk_04, &v1);
 }
 
-static void sub_02087A10(UnkStruct_02087A10 *param0)
-{
+static void sub_02087A10(UnkStruct_02087A10 *param0) {
     int v0;
 
     SpriteResourcesHeader_Init(&param0->unk_348, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 1, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
@@ -1644,8 +1622,7 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *param1)
-{
+static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *param1) {
     param1->position.x = FX32_ONE * 24;
     param1->position.y = FX32_ONE * (16 - 8);
     param0->unk_3F8[0] = SpriteList_AddAffine(param1);
@@ -1694,8 +1671,7 @@ static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *p
     }
 }
 
-static void sub_02087CDC(SysTask *param0, void *param1)
-{
+static void sub_02087CDC(SysTask *param0, void *param1) {
     UnkStruct_02087CDC *v0 = (UnkStruct_02087CDC *)param1;
     VecFx32 v1;
 
@@ -1725,8 +1701,7 @@ static void sub_02087CDC(SysTask *param0, void *param1)
     v0->unk_04++;
 }
 
-static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], Sprite **param6, void *param7)
-{
+static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], Sprite **param6, void *param7) {
     int v0 = *param4;
     int v1 = v0 ^ 1;
     int v2;
@@ -1794,15 +1769,13 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
     }
 }
 
-static void sub_02087F48(Window *param0, int param1, Strbuf *param2)
-{
+static void sub_02087F48(Window *param0, int param1, Strbuf *param2) {
     Window_DrawMessageBoxWithScrollCursor(param0, 0, 32 * 8, 10);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, param2, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(param0);
 }
 
-static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
-{
+static void sub_02087F78(Window *param0, int param1, Strbuf *param2) {
     int v0 = 16;
     int v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param2, 0);
 
@@ -1815,8 +1788,7 @@ static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
     Window_CopyToVRAM(param0);
 }
 
-static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan, NARC *param2)
-{
+static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan, NARC *param2) {
     Window_Add(param0->unk_160, &param0->unk_41C[0], 0, 2, 1, 26, 12, 1, 32 * 8);
     Window_Add(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, (32 * 8) + (26 * 12));
 
@@ -1873,14 +1845,12 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan,
     }
 }
 
-static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[])
-{
+static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[]) {
     Bg_SetPriority(BG_LAYER_MAIN_0 + param1, 1);
     Bg_SetPriority(BG_LAYER_MAIN_0 + param1 ^ 1, 2);
 }
 
-static void sub_02088260(VecFx32 param0[], int param1)
-{
+static void sub_02088260(VecFx32 param0[], int param1) {
     param0[param1].x = 238;
     param0[param1].y = -80;
     param0[param1 ^ 1].x = -11;
@@ -1895,8 +1865,7 @@ static const int Unk_020F2904[][2] = {
     { 0x1, 0x0 }
 };
 
-static int sub_02088288(int param0, int param1, int param2)
-{
+static int sub_02088288(int param0, int param1, int param2) {
     if (param0 >= param2) {
         param0 = param1;
     }
@@ -1908,8 +1877,7 @@ static int sub_02088288(int param0, int param1, int param2)
     return param0;
 }
 
-static void sub_02088298(UnkStruct_02087A10 *param0, int param1)
-{
+static void sub_02088298(UnkStruct_02087A10 *param0, int param1) {
     int v0, v1;
     u16 v2;
 
@@ -1937,8 +1905,7 @@ static void sub_02088298(UnkStruct_02087A10 *param0, int param1)
     param0->unk_1C.unk_04 = v1;
 }
 
-static void sub_02088350(UnkStruct_02087A10 *param0)
-{
+static void sub_02088350(UnkStruct_02087A10 *param0) {
     int v0 = 0;
     int v1 = 0;
     BOOL v2 = 0;
@@ -2001,8 +1968,7 @@ static void sub_02088350(UnkStruct_02087A10 *param0)
     }
 }
 
-static void sub_02088454(UnkStruct_02087A10 *param0, int param1)
-{
+static void sub_02088454(UnkStruct_02087A10 *param0, int param1) {
     if (param0->unk_1C.unk_04 != 0) {
         VecFx32 v0;
 
@@ -2036,8 +2002,7 @@ static void sub_02088454(UnkStruct_02087A10 *param0, int param1)
     }
 }
 
-static void sub_02088514(u16 *param0)
-{
+static void sub_02088514(u16 *param0) {
     fx32 v0;
     GXRgb v1;
     int v2, v3, v4;
@@ -2055,8 +2020,7 @@ static void sub_02088514(u16 *param0)
     GX_LoadOBJPltt((u16 *)&v1, (16 + 13) * 2, 2);
 }
 
-static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7)
-{
+static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7) {
     int v0 = 0, v1, v2;
     u16 v3[2];
     Strbuf *v4 = Strbuf_Init(2, HEAP_ID_18);
@@ -2094,14 +2058,12 @@ static const u8 Unk_020F24D8[] = {
     0x58
 };
 
-static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const TextColor param3)
-{
+static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, const TextColor param3) {
     Text_AddPrinterWithParamsAndColor(param0, param2, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     return param0->pixels;
 }
 
-static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3)
-{
+static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3) {
     u16 v0[20 + 1], v1, v2;
     void *v3;
     Strbuf *v4;
@@ -2134,8 +2096,7 @@ static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *
     Strbuf_Free(v4);
 }
 
-static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5)
-{
+static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5) {
     int v0, v1;
     const u16 *v2 = NULL;
     u16 v3;
@@ -2189,8 +2150,7 @@ static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u
     sub_02088678(param0, param3, param4, param5);
 }
 
-static void sub_02088844(u16 param0[][13], const int param1)
-{
+static void sub_02088844(u16 param0[][13], const int param1) {
     int v0, v1;
 
     for (v0 = 0; v0 < 13; v0++) {
@@ -2204,8 +2164,7 @@ static void sub_02088844(u16 param0[][13], const int param1)
     }
 }
 
-static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
-{
+static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2) {
     if ((param1 == (0xd001 + 2)) || (param1 == (0xd001 + 3))) {
         param1 = 0x1;
     }
@@ -2322,8 +2281,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
     return 2;
 }
 
-static u16 sub_02088C7C(const u16 *param0, int param1)
-{
+static u16 sub_02088C7C(const u16 *param0, int param1) {
     do {
         param1 = sub_02088288(++param1, 0, 3);
     } while (param0[param1] == 0x1);
@@ -2331,8 +2289,7 @@ static u16 sub_02088C7C(const u16 *param0, int param1)
     return param0[param1];
 }
 
-static int sub_02088C9C(int param0, int param1, u16 *param2, int param3)
-{
+static int sub_02088C9C(int param0, int param1, u16 *param2, int param3) {
     int v0, v1;
     u16 v2, v3;
 
@@ -2354,8 +2311,7 @@ static int sub_02088C9C(int param0, int param1, u16 *param2, int param3)
     return 0;
 }
 
-static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *param4, int param5)
-{
+static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *param4, int param5) {
     int v0;
     u16 v1;
 
@@ -2412,8 +2368,7 @@ static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *par
     return 0;
 }
 
-static void sub_02088E1C(Sprite **param0, int param1, int param2)
-{
+static void sub_02088E1C(Sprite **param0, int param1, int param2) {
     int v0;
 
     for (v0 = 0; v0 < param2; v0++) {
@@ -2433,8 +2388,7 @@ static const u8 Unk_020F24E0[] = {
     0x9
 };
 
-static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param3, u8 *param4)
-{
+static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param3, u8 *param4) {
     int v0, v1, v2;
 
     Window_FillTilemap(param0, param1);
@@ -2457,8 +2411,7 @@ static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param
     Window_CopyToVRAM(param0);
 }
 
-static void sub_02088F40(int param0[], Sprite **param1, int param2)
-{
+static void sub_02088F40(int param0[], Sprite **param1, int param2) {
     int v0, v1;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -2483,8 +2436,7 @@ static void sub_02088F40(int param0[], Sprite **param1, int param2)
     }
 }
 
-static void sub_02088FD0(UnkStruct_02087A10 *param0)
-{
+static void sub_02088FD0(UnkStruct_02087A10 *param0) {
     if (!Sprite_IsAnimated(param0->unk_390[8])) {
         if (param0->unk_158 == param0->unk_0C) {
             param0->unk_1C.unk_00 = 12;
@@ -2580,8 +2532,7 @@ static const UnkStruct_020F2A14 Unk_020F2A14[] = {
     { 0xDC, 0xA4, 0x2, 0xC, 0x5 }
 };
 
-static BOOL sub_0208903C(UnkStruct_02087A10 *param0)
-{
+static BOOL sub_0208903C(UnkStruct_02087A10 *param0) {
     int v0, v1 = 0;
     u8 v2, v3, v4, v5, v6, v7;
 

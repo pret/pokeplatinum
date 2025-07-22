@@ -56,8 +56,7 @@ static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1);
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0);
 static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2);
 
-static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0) {
     int v0, v1 = 0;
     DWCFriendData *v2 = sub_0202AED8(SaveData_GetWiFiList(param0->saveData), 0);
     DWCFriendData *v3;
@@ -75,8 +74,7 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EA8F0(UnkStruct_ov5_021EAE78 *param0) {
     int v0;
     TrainerInfo *v1;
 
@@ -126,8 +124,7 @@ static const WindowTemplate Unk_ov5_021FAF00 = {
     0x21F
 };
 
-static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0) {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 3;
@@ -136,8 +133,7 @@ static BOOL ov5_021EA9BC(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0) {
     DWCFriendData *v0;
     Strbuf *v1;
     int v2;
@@ -166,8 +162,7 @@ static BOOL ov5_021EA9F8(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EAA6C(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EAA6C(UnkStruct_ov5_021EAE78 *param0) {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 5;
@@ -176,8 +171,7 @@ static BOOL ov5_021EAA6C(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0) {
     TrainerInfo *v0;
     DWCFriendData *v1;
     Strbuf *v2;
@@ -198,8 +192,7 @@ static BOOL ov5_021EAAA8(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EAAEC(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EAAEC(UnkStruct_ov5_021EAE78 *param0) {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 7;
@@ -208,8 +201,7 @@ static BOOL ov5_021EAAEC(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EAB28(UnkStruct_ov5_021EAE78 *param0) {
     TrainerInfo *v0;
     DWCFriendData *v1;
     Strbuf *v2;
@@ -250,8 +242,7 @@ static const ListMenuTemplate Unk_ov5_021FAF08 = {
     NULL
 };
 
-static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0) {
     WiFiList *v0 = SaveData_GetWiFiList(param0->saveData);
     ListMenuTemplate v1;
     int v2 = sub_0202AF94(v0);
@@ -292,8 +283,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0) {
     TrainerInfo *v0;
     int v1 = ListMenu_ProcessInput(param0->unk_04);
 
@@ -331,8 +321,7 @@ static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EACFC(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EACFC(UnkStruct_ov5_021EAE78 *param0) {
     if (Text_IsPrinterActive(param0->unk_40) == 0) {
         param0->unk_44 = Menu_MakeYesNoChoice(param0->fieldSystem->bgConfig, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 11;
@@ -341,8 +330,7 @@ static BOOL ov5_021EACFC(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
-{
+static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0) {
     WiFiList *v0 = SaveData_GetWiFiList(param0->saveData);
     TrainerInfo *v1;
     DWCFriendData *v2;
@@ -366,8 +354,7 @@ static BOOL ov5_021EAD38(UnkStruct_ov5_021EAE78 *param0)
     return 0;
 }
 
-static BOOL ov5_021EADB4(FieldTask *param0)
-{
+static BOOL ov5_021EADB4(FieldTask *param0) {
     UnkStruct_ov5_021EAE78 *v0 = FieldTask_GetEnv(param0);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
@@ -422,8 +409,7 @@ static BOOL ov5_021EADB4(FieldTask *param0)
     return 0;
 }
 
-static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
-{
+static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1) {
     if (Window_IsInUse(&param0->unk_10)) {
         Window_Remove(&param0->unk_10);
     }
@@ -436,8 +422,7 @@ static void ov5_021EAE78(UnkStruct_ov5_021EAE78 *param0, int param1)
     param0->unk_40 = FieldMessage_Print(&param0->unk_10, param0->unk_0C, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
-static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)
-{
+static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0) {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov5_021EAE78));
 
     param0->unk_38 = StringTemplate_Default(HEAP_ID_FIELD);
@@ -446,8 +431,7 @@ static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)
     param0->unk_08 = Strbuf_Init(110, HEAP_ID_FIELD);
 }
 
-static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
-{
+static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0) {
     MessageLoader_Free(param0->unk_3C);
     StringTemplate_Free(param0->unk_38);
     Strbuf_Free(param0->unk_0C);
@@ -458,8 +442,7 @@ static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)
     }
 }
 
-void ov5_021EAF50(FieldSystem *fieldSystem)
-{
+void ov5_021EAF50(FieldSystem *fieldSystem) {
     UnkStruct_ov5_021EAE78 *v0;
     FieldTask *v1 = fieldSystem->task;
 
@@ -477,8 +460,7 @@ void ov5_021EAF50(FieldSystem *fieldSystem)
     }
 }
 
-static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov5_021EAF90(ListMenu *param0, u32 param1, u8 param2) {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }

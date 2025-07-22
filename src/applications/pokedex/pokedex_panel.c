@@ -13,21 +13,18 @@ static void WalkCols(PokedexPanelData *pokedexPanelData, int distance);
 static void WalkRows(PokedexPanelData *pokedexPanelData, int distance);
 static void JumpToButton(PokedexPanelData *pokedexPanelData, int button);
 
-PokedexPanelData *PokedexPanel_Alloc(enum HeapId heapID)
-{
+PokedexPanelData *PokedexPanel_Alloc(enum HeapId heapID) {
     PokedexPanelData *pokedexPanelData = Heap_AllocFromHeap(heapID, sizeof(PokedexPanelData));
     memset(pokedexPanelData, 0, sizeof(PokedexPanelData));
 
     return pokedexPanelData;
 }
 
-void PokedexPanel_Free(PokedexPanelData *pokedexPanelData)
-{
+void PokedexPanel_Free(PokedexPanelData *pokedexPanelData) {
     Heap_Free(pokedexPanelData);
 }
 
-void PokedexPanel_New(PokedexPanelData *pokedexPanelData, const PokedexCursorData *pokedexCursorData, int numCols, int numRows)
-{
+void PokedexPanel_New(PokedexPanelData *pokedexPanelData, const PokedexCursorData *pokedexCursorData, int numCols, int numRows) {
     memset(pokedexPanelData, 0, sizeof(PokedexPanelData));
 
     pokedexPanelData->pokedexCursorData = pokedexCursorData;
@@ -35,8 +32,7 @@ void PokedexPanel_New(PokedexPanelData *pokedexPanelData, const PokedexCursorDat
     pokedexPanelData->numRows = numRows;
 }
 
-void PokedexPanel_Move(PokedexPanelData *pokedexPanelData, enum PanelMovementType movementType, int val)
-{
+void PokedexPanel_Move(PokedexPanelData *pokedexPanelData, enum PanelMovementType movementType, int val) {
     switch (movementType) {
     case PANEL_MOVEMENT_MULTICOL:
         WalkCols(pokedexPanelData, val);
@@ -56,29 +52,25 @@ void PokedexPanel_Move(PokedexPanelData *pokedexPanelData, enum PanelMovementTyp
     }
 }
 
-int PokedexPanel_GetCurrentButton(const PokedexPanelData *pokedexPanelData)
-{
+int PokedexPanel_GetCurrentButton(const PokedexPanelData *pokedexPanelData) {
     return pokedexPanelData->pokedexCursorData[CurrentButtonIndex(pokedexPanelData)].button;
 }
 
-void PokedexPanel_GetCurrentButtonXY(const PokedexPanelData *pokedexPanelData, int *x, int *y)
-{
+void PokedexPanel_GetCurrentButtonXY(const PokedexPanelData *pokedexPanelData, int *x, int *y) {
     int buttonIndex = CurrentButtonIndex(pokedexPanelData);
 
     *x = pokedexPanelData->pokedexCursorData[buttonIndex].x;
     *y = pokedexPanelData->pokedexCursorData[buttonIndex].y;
 }
 
-void PokedexPanel_GetCurrentButtonWidthHeight(const PokedexPanelData *pokedexPanelData, int *width, int *height)
-{
+void PokedexPanel_GetCurrentButtonWidthHeight(const PokedexPanelData *pokedexPanelData, int *width, int *height) {
     int buttonIndex = CurrentButtonIndex(pokedexPanelData);
 
     *width = pokedexPanelData->pokedexCursorData[buttonIndex].width;
     *height = pokedexPanelData->pokedexCursorData[buttonIndex].height;
 }
 
-void PokedexPanel_InitCursorData(PokedexCursorData *pokedexCursorData, int x, int y, int width, int height, enum CursorMovementType cursorColMovementType, enum CursorMovementType cursorRowMovementType, int button)
-{
+void PokedexPanel_InitCursorData(PokedexCursorData *pokedexCursorData, int x, int y, int width, int height, enum CursorMovementType cursorColMovementType, enum CursorMovementType cursorRowMovementType, int button) {
     pokedexCursorData->x = x;
     pokedexCursorData->y = y;
     pokedexCursorData->width = width;
@@ -88,8 +80,7 @@ void PokedexPanel_InitCursorData(PokedexCursorData *pokedexCursorData, int x, in
     pokedexCursorData->button = button;
 }
 
-void PokedexPanel_GetCursorCornerPos(enum CornerType cornerType, int *cornerX, int *cornerY, int x, int y, int width, int height)
-{
+void PokedexPanel_GetCursorCornerPos(enum CornerType cornerType, int *cornerX, int *cornerY, int x, int y, int width, int height) {
     if (cornerType == CORNER_TYPE_TOP_LEFT || cornerType == CORNER_TYPE_BOTTOM_LEFT) {
         x -= width / 2;
     } else {
@@ -106,24 +97,21 @@ void PokedexPanel_GetCursorCornerPos(enum CornerType cornerType, int *cornerX, i
     *cornerY = y;
 }
 
-static int inline CurrentButtonIndex(const PokedexPanelData *pokedexPanelData)
-{
+static int inline CurrentButtonIndex(const PokedexPanelData *pokedexPanelData) {
     int buttonIndex = pokedexPanelData->row * pokedexPanelData->numCols;
     buttonIndex += pokedexPanelData->col;
 
     return buttonIndex;
 }
 
-static int inline CalcButtonIndex(const PokedexPanelData *pokedexPanelData, int col, int row)
-{
+static int inline CalcButtonIndex(const PokedexPanelData *pokedexPanelData, int col, int row) {
     int buttonIndex = row * pokedexPanelData->numCols;
     buttonIndex += col;
 
     return buttonIndex;
 }
 
-static void StepCols(PokedexPanelData *pokedexPanelData, int direction)
-{
+static void StepCols(PokedexPanelData *pokedexPanelData, int direction) {
     int newCol;
     const PokedexCursorData *pokedexCursorData;
     int stepSum = 0;
@@ -146,8 +134,7 @@ static void StepCols(PokedexPanelData *pokedexPanelData, int direction)
     }
 }
 
-static void StepRows(PokedexPanelData *pokedexPanelData, int direction)
-{
+static void StepRows(PokedexPanelData *pokedexPanelData, int direction) {
     int newRow;
     const PokedexCursorData *pokedexCursorData;
     int stepSum = 0;
@@ -172,8 +159,7 @@ static void StepRows(PokedexPanelData *pokedexPanelData, int direction)
     }
 }
 
-static void WalkCols(PokedexPanelData *pokedexPanelData, int distance)
-{
+static void WalkCols(PokedexPanelData *pokedexPanelData, int distance) {
     int absDistance = MATH_ABS(distance);
     int direction = distance / absDistance;
 
@@ -182,8 +168,7 @@ static void WalkCols(PokedexPanelData *pokedexPanelData, int distance)
     }
 }
 
-static void WalkRows(PokedexPanelData *pokedexPanelData, int distance)
-{
+static void WalkRows(PokedexPanelData *pokedexPanelData, int distance) {
     int absDistance = MATH_ABS(distance);
     int direction = distance / absDistance;
 
@@ -192,20 +177,17 @@ static void WalkRows(PokedexPanelData *pokedexPanelData, int distance)
     }
 }
 
-static void inline SetCol(PokedexPanelData *pokedexPanelData, int col)
-{
+static void inline SetCol(PokedexPanelData *pokedexPanelData, int col) {
     GF_ASSERT(col >= 0 && col < pokedexPanelData->numCols);
     pokedexPanelData->col = col;
 }
 
-static void inline SetRow(PokedexPanelData *pokedexPanelData, int row)
-{
+static void inline SetRow(PokedexPanelData *pokedexPanelData, int row) {
     GF_ASSERT(row >= 0 && row < pokedexPanelData->numRows);
     pokedexPanelData->row = row;
 }
 
-static void JumpToButton(PokedexPanelData *pokedexPanelData, int button)
-{
+static void JumpToButton(PokedexPanelData *pokedexPanelData, int button) {
     int numButtons = pokedexPanelData->numCols * pokedexPanelData->numRows;
 
     for (int buttonIndex = 0; buttonIndex < numButtons; buttonIndex++) {

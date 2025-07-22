@@ -70,8 +70,7 @@ static void ov20_021D34F4(Window *param0, const UnkStruct_ov20_021D34CC *param1)
 static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const UnkStruct_ov20_021D34CC *param2, u16 param3);
 static void ov20_021D375C(UnkStruct_ov20_021D30F8 *param0, BOOL param1);
 
-UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
-{
+UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2) {
     UnkStruct_ov20_021D30F8 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D30F8));
 
     v0->unk_00 = param0;
@@ -87,8 +86,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     return v0;
 }
 
-void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
-{
+void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0) {
     if (param0->unk_50) {
         ColoredArrow_Free(param0->unk_50);
     }
@@ -119,8 +117,7 @@ void ov20_021D2EF0(UnkStruct_ov20_021D30F8 *param0)
     Heap_Free(param0);
 }
 
-void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
-{
+void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1) {
     BgConfig *v0;
     u32 v1;
 
@@ -159,8 +156,7 @@ void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     Bg_CopyTilemapBufferToVRAM(v0, 0);
 }
 
-static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
-{
+static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1) {
     NNSG2dPaletteData *v0;
     void *v1;
 
@@ -174,8 +170,7 @@ static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     Heap_Free(v1);
 }
 
-static void ov20_021D30F8(UnkStruct_ov20_021D30F8 *param0)
-{
+static void ov20_021D30F8(UnkStruct_ov20_021D30F8 *param0) {
     if (ov20_021D1F84(param0->unk_04) == 2) {
         int v0 = 1 + ov20_021D1F9C(param0->unk_04);
         GX_LoadBGPltt(param0->unk_70[v0], 0 * 0x20, 0x20);
@@ -184,8 +179,7 @@ static void ov20_021D30F8(UnkStruct_ov20_021D30F8 *param0)
     }
 }
 
-static void ov20_021D312C(UnkStruct_ov20_021D30F8 *param0)
-{
+static void ov20_021D312C(UnkStruct_ov20_021D30F8 *param0) {
     switch (ov20_021D1F84(param0->unk_04)) {
     case 0:
         param0->unk_54[0].unk_00 = 104;
@@ -205,8 +199,7 @@ static void ov20_021D312C(UnkStruct_ov20_021D30F8 *param0)
     }
 }
 
-static void ov20_021D3184(UnkStruct_ov20_021D30F8 *param0)
-{
+static void ov20_021D3184(UnkStruct_ov20_021D30F8 *param0) {
     SpriteResourcesHeader v0;
     UnkStruct_ov20_021D34CC v1;
 
@@ -234,8 +227,7 @@ static void ov20_021D3184(UnkStruct_ov20_021D30F8 *param0)
     }
 }
 
-void ov20_021D3228(UnkStruct_ov20_021D30F8 *param0)
-{
+void ov20_021D3228(UnkStruct_ov20_021D30F8 *param0) {
     ov20_021D30F8(param0);
     Window_FillTilemap(&param0->unk_0C, 13);
 
@@ -258,8 +250,7 @@ void ov20_021D3228(UnkStruct_ov20_021D30F8 *param0)
     Window_LoadTiles(&param0->unk_0C);
 }
 
-static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
-{
+static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0) {
     Strbuf *v0 = ov20_021D1FC0(param0->unk_04, 35);
     int v1, v2, v3;
     BOOL v4;
@@ -306,8 +297,7 @@ static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
     return v3;
 }
 
-static void ov20_021D33C8(UnkStruct_ov20_021D33C8 *param0, UnkStruct_ov20_021D30F8 *param1)
-{
+static void ov20_021D33C8(UnkStruct_ov20_021D33C8 *param0, UnkStruct_ov20_021D30F8 *param1) {
     param0->unk_00 = ov20_021D1FC0(param1->unk_04, 35);
     param0->unk_04 = Strbuf_GetData(param0->unk_00);
 
@@ -318,13 +308,11 @@ static void ov20_021D33C8(UnkStruct_ov20_021D33C8 *param0, UnkStruct_ov20_021D30
     }
 }
 
-static void ov20_021D33F4(UnkStruct_ov20_021D33C8 *param0)
-{
+static void ov20_021D33F4(UnkStruct_ov20_021D33C8 *param0) {
     Strbuf_Free(param0->unk_00);
 }
 
-static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, Strbuf *param1)
-{
+static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, Strbuf *param1) {
     const u16 *v0 = param0->unk_04;
     int v1;
 
@@ -380,28 +368,24 @@ static int ov20_021D3400(UnkStruct_ov20_021D33C8 *param0, Strbuf *param1)
     return v1;
 }
 
-static void ov20_021D34CC(const UnkStruct_ov20_021D34CC *param0, UnkStruct_ov20_021D34CC *param1)
-{
+static void ov20_021D34CC(const UnkStruct_ov20_021D34CC *param0, UnkStruct_ov20_021D34CC *param1) {
     param1->unk_00 = param0->unk_00 - (96 / 2);
     param1->unk_02 = param0->unk_02 - (16 / 2);
 }
 
-static void ov20_021D34E0(const UnkStruct_ov20_021D34CC *param0, UnkStruct_ov20_021D34CC *param1)
-{
+static void ov20_021D34E0(const UnkStruct_ov20_021D34CC *param0, UnkStruct_ov20_021D34CC *param1) {
     param1->unk_00 = param0->unk_00 + 3 * 8;
     param1->unk_02 = param0->unk_02 + 1 * 8;
 }
 
-static void ov20_021D34F4(Window *param0, const UnkStruct_ov20_021D34CC *param1)
-{
+static void ov20_021D34F4(Window *param0, const UnkStruct_ov20_021D34CC *param1) {
     UnkStruct_ov20_021D34CC v0;
 
     ov20_021D34CC(param1, &v0);
     Window_FillRectWithColor(param0, 14, v0.unk_00, v0.unk_02, 96, 16);
 }
 
-static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const UnkStruct_ov20_021D34CC *param2, u16 param3)
-{
+static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const UnkStruct_ov20_021D34CC *param2, u16 param3) {
     if (param3 != 0xffff) {
         UnkStruct_ov20_021D34CC v0;
         u32 v1;
@@ -415,13 +399,11 @@ static void ov20_021D351C(UnkStruct_ov20_021D30F8 *param0, Window *param1, const
     }
 }
 
-u32 ov20_021D3574(const UnkStruct_ov20_021D30F8 *param0)
-{
+u32 ov20_021D3574(const UnkStruct_ov20_021D30F8 *param0) {
     return param0->unk_5C;
 }
 
-void ov20_021D3578(UnkStruct_ov20_021D30F8 *param0, u32 param1)
-{
+void ov20_021D3578(UnkStruct_ov20_021D30F8 *param0, u32 param1) {
     Window_FillTilemap(&param0->unk_1C, 9);
 
     switch (param1) {
@@ -456,32 +438,27 @@ void ov20_021D3578(UnkStruct_ov20_021D30F8 *param0, u32 param1)
     Window_LoadTiles(&param0->unk_1C);
 }
 
-void ov20_021D3684(UnkStruct_ov20_021D30F8 *param0)
-{
+void ov20_021D3684(UnkStruct_ov20_021D30F8 *param0) {
     ov20_021D375C(param0, 0);
 }
 
-void ov20_021D3690(UnkStruct_ov20_021D30F8 *param0)
-{
+void ov20_021D3690(UnkStruct_ov20_021D30F8 *param0) {
     ov20_021D375C(param0, 1);
 }
 
-void ov20_021D369C(UnkStruct_ov20_021D30F8 *param0, BOOL param1)
-{
+void ov20_021D369C(UnkStruct_ov20_021D30F8 *param0, BOOL param1) {
     Sprite_SetDrawFlag(param0->unk_3C, param1);
     ov20_021D375C(param0, 1);
 }
 
-void ov20_021D36B0(UnkStruct_ov20_021D30F8 *param0)
-{
+void ov20_021D36B0(UnkStruct_ov20_021D30F8 *param0) {
     if (ov20_021D1F84(param0->unk_04) == 2) {
         Sprite_SetDrawFlag(param0->unk_40, FALSE);
         Sprite_SetDrawFlag(param0->unk_44, FALSE);
     }
 }
 
-void ov20_021D36D0(UnkStruct_ov20_021D30F8 *param0)
-{
+void ov20_021D36D0(UnkStruct_ov20_021D30F8 *param0) {
     if (ov20_021D1F84(param0->unk_04) == 2) {
         Sprite_SetDrawFlag(param0->unk_40, TRUE);
         Sprite_SetDrawFlag(param0->unk_44, TRUE);
@@ -491,8 +468,7 @@ void ov20_021D36D0(UnkStruct_ov20_021D30F8 *param0)
     }
 }
 
-void ov20_021D3700(UnkStruct_ov20_021D30F8 *param0, int param1)
-{
+void ov20_021D3700(UnkStruct_ov20_021D30F8 *param0, int param1) {
     VecFx32 v0;
 
     if (param0->unk_5C) {
@@ -514,8 +490,7 @@ void ov20_021D3700(UnkStruct_ov20_021D30F8 *param0, int param1)
     ov20_021D375C(param0, 1);
 }
 
-static void ov20_021D375C(UnkStruct_ov20_021D30F8 *param0, BOOL param1)
-{
+static void ov20_021D375C(UnkStruct_ov20_021D30F8 *param0, BOOL param1) {
     if (param0->unk_5C != 0) {
         if (param1) {
             Sprite_SetAnim(param0->unk_3C, 0);
@@ -531,8 +506,7 @@ static void ov20_021D375C(UnkStruct_ov20_021D30F8 *param0, BOOL param1)
     }
 }
 
-void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
-{
+void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1) {
     Window_FillTilemap(&param0->unk_2C, 9);
 
     MessageLoader_GetStrbuf(param0->unk_48, 9, param0->unk_4C);
@@ -547,14 +521,12 @@ void ov20_021D3790(UnkStruct_ov20_021D30F8 *param0, int param1)
     Window_CopyToVRAM(&param0->unk_2C);
 }
 
-void ov20_021D381C(UnkStruct_ov20_021D30F8 *param0, int param1)
-{
+void ov20_021D381C(UnkStruct_ov20_021D30F8 *param0, int param1) {
     Window_FillRectWithColor(&param0->unk_2C, 9, 0, 0, 14, 4 * 8);
     ColoredArrow_Print(param0->unk_50, &param0->unk_2C, 0, 0 + (param1 * 16));
 }
 
-void ov20_021D384C(UnkStruct_ov20_021D30F8 *param0)
-{
+void ov20_021D384C(UnkStruct_ov20_021D30F8 *param0) {
     Window_EraseStandardFrame(&param0->unk_2C, 0);
     Window_ClearAndCopyToVRAM(&param0->unk_2C);
 }

@@ -81,8 +81,7 @@ static const TouchScreenRect Unk_ov62_02248C1C[] = {
     { 0x98, 0xB8, 0x50, 0xB0 }
 };
 
-static BOOL ov62_02235E64(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02235E64(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02235E64));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02235E64));
@@ -99,8 +98,7 @@ static BOOL ov62_02235E64(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -160,8 +158,7 @@ static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_0223604C(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_0223604C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -208,16 +205,14 @@ static BOOL ov62_0223604C(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02236174(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02236174(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     TouchScreenActions_HandleAction(v0->unk_174[0]);
     return 0;
 }
 
-static BOOL ov62_0223618C(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_0223618C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -280,8 +275,7 @@ static const TouchScreenRect Unk_ov62_02248C14[] = {
     { 0x28, 0x48, 0x90, 0xE8 }
 };
 
-static void ov62_022362B8(UnkStruct_0208C06C *param0)
-{
+static void ov62_022362B8(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
     Window *v1;
     Strbuf *v2;
@@ -315,8 +309,7 @@ static void ov62_022362B8(UnkStruct_0208C06C *param0)
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov62_02236398(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236398(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     Window_ClearAndCopyToVRAM(&v0->unk_178[0]);
@@ -325,8 +318,7 @@ static void ov62_02236398(UnkStruct_0208C06C *param0)
     Window_Remove(&v0->unk_178[1]);
 }
 
-static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022363CC(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -430,8 +422,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02236624(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02236624(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -472,8 +463,7 @@ static BOOL ov62_02236624(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_022366D4(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022366D4(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -517,8 +507,7 @@ static BOOL ov62_022366D4(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022367B4(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -580,8 +569,7 @@ static BOOL ov62_022367B4(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02236920(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02236920(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -648,8 +636,7 @@ static BOOL ov62_02236920(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static void ov62_02236AB0(u32 param0, enum TouchScreenButtonState param1, void *param2)
-{
+static void ov62_02236AB0(u32 param0, enum TouchScreenButtonState param1, void *param2) {
     UnkStruct_0208C06C *v0 = param2;
     UnkStruct_ov62_02235E64 *v1 = v0->unk_860;
 
@@ -678,8 +665,7 @@ static void ov62_02236AB0(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-static void ov62_02236B2C(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236B2C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     v0->unk_10.unk_00 = param0->unk_88C[param0->unk_86C];
@@ -687,8 +673,7 @@ static void ov62_02236B2C(UnkStruct_0208C06C *param0)
     v0->unk_9C.unk_04 = param0->unk_87C[param0->unk_86C];
 }
 
-static void ov62_02236B64(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236B64(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
     Window *v1;
     int v2 = 1;
@@ -699,16 +684,14 @@ static void ov62_02236B64(UnkStruct_0208C06C *param0)
     ov62_02236BC8(param0, 121);
 }
 
-static void ov62_02236BA8(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236BA8(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     Window_ClearAndCopyToVRAM(&v0->unk_178[0]);
     Window_Remove(&v0->unk_178[0]);
 }
 
-static void ov62_02236BC8(UnkStruct_0208C06C *param0, int param1)
-{
+static void ov62_02236BC8(UnkStruct_0208C06C *param0, int param1) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
     Window *v1;
     Strbuf *v2;
@@ -726,8 +709,7 @@ static void ov62_02236BC8(UnkStruct_0208C06C *param0, int param1)
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov62_02236C20(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236C20(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     ov62_022312CC(param0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -743,8 +725,7 @@ static void ov62_02236C20(UnkStruct_0208C06C *param0)
     sub_020129D0(v0->unk_158[0].unk_0C, 1);
 }
 
-static void ov62_02236C94(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236C94(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
 
     ov62_022312B0(&v0->unk_158[0]);

@@ -2,27 +2,22 @@
 
 #include "res/pokemon/pokefoot.naix.h"
 
-enum NarcID GetPokedexFootprintsNarcID(void)
-{
+enum NarcID GetPokedexFootprintsNarcID(void) {
     return NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT;
 }
 
-int GetSpeciesFootprintTiles(enum Species species)
-{
+int GetSpeciesFootprintTiles(enum Species species) {
     return footprint_none_NCGR_lz + species;
 }
 
-int GetSharedFootprintPalette(void)
-{
+int GetSharedFootprintPalette(void) {
     return footprint_NCLR;
 }
 
-int GetSharedFootprintCells(void)
-{
+int GetSharedFootprintCells(void) {
     return footprint_NCER_lz;
 }
 
-int GetSharedFootprintAnims(void)
-{
+int GetSharedFootprintAnims(void) {
     return footprint_NANR_lz;
 }

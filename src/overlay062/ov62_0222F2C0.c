@@ -42,8 +42,7 @@
 static void ov62_0222F670(BgConfig *param0);
 static void ov62_0222F848(UnkStruct_0208C06C *param0);
 
-void ov62_0222F2C0(UnkStruct_0208C06C *param0)
-{
+void ov62_0222F2C0(UnkStruct_0208C06C *param0) {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -135,8 +134,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     ov62_022337D4(param0);
 }
 
-void ov62_0222F514(UnkStruct_0208C06C *param0)
-{
+void ov62_0222F514(UnkStruct_0208C06C *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -326,8 +324,7 @@ static const BgTemplate Unk_ov62_02248820[] = {
     }
 };
 
-static void ov62_0222F670(BgConfig *param0)
-{
+static void ov62_0222F670(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
 
     {
@@ -402,19 +399,16 @@ static void ov62_0222F670(BgConfig *param0)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
 }
 
-void ov62_0222F824(int param0)
-{
+void ov62_0222F824(int param0) {
     gSystem.whichScreenIs3D = param0;
     GXLayers_SwapDisplay();
 }
 
-void ov62_0222F834(UnkStruct_0208C06C *param0)
-{
+void ov62_0222F834(UnkStruct_0208C06C *param0) {
     Bg_InitFromTemplate(param0->unk_14.unk_10, 2, &Unk_ov62_022487B0[2], 0);
 }
 
-static void ov62_0222F848(UnkStruct_0208C06C *param0)
-{
+static void ov62_0222F848(UnkStruct_0208C06C *param0) {
     param0->unk_14.unk_04 = SpriteSystem_Alloc(102);
     {
         const RenderOamTemplate v0 = {
@@ -458,8 +452,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
     SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_14.unk_04), 0, 256 * FX32_ONE);
 }
 
-void ov62_0222F8E4(void *param0)
-{
+void ov62_0222F8E4(void *param0) {
     UnkStruct_0208C06C *v0 = param0;
 
     VramTransfer_Process();
@@ -469,8 +462,7 @@ void ov62_0222F8E4(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-BOOL ov62_0222F910(UnkStruct_0208C06C *param0, int *param1)
-{
+BOOL ov62_0222F910(UnkStruct_0208C06C *param0, int *param1) {
     BOOL v0 = 0;
 
     switch (*param1) {
@@ -563,8 +555,7 @@ BOOL ov62_0222F910(UnkStruct_0208C06C *param0, int *param1)
     return 0;
 }
 
-void ov62_0222FB44(UnkStruct_0208C06C *param0, int param1, BOOL param2, int *param3)
-{
+void ov62_0222FB44(UnkStruct_0208C06C *param0, int param1, BOOL param2, int *param3) {
     if (param2) {
         (*param3) = param1;
         ov62_0222FB60(param0, 0);
@@ -572,29 +563,25 @@ void ov62_0222FB44(UnkStruct_0208C06C *param0, int param1, BOOL param2, int *par
     }
 }
 
-void ov62_0222FB60(UnkStruct_0208C06C *param0, int param1)
-{
+void ov62_0222FB60(UnkStruct_0208C06C *param0, int param1) {
     param0->unk_04 = param1;
     param0->unk_08 = 0;
     param0->unk_0C = 0;
 }
 
-void ov62_0222FB6C(UnkStruct_0208C06C *param0, int param1)
-{
+void ov62_0222FB6C(UnkStruct_0208C06C *param0, int param1) {
     param0->unk_08 = param1;
     param0->unk_0C = 0;
 }
 
-void ov62_0222FB74(UnkStruct_0208C06C *param0)
-{
+void ov62_0222FB74(UnkStruct_0208C06C *param0) {
     sub_0208C06C(param0);
     ov62_02230A5C(param0);
 
     param0->unk_534.unk_1B0 = 0;
 }
 
-BOOL ov62_0222FB90(UnkStruct_0208C06C *param0)
-{
+BOOL ov62_0222FB90(UnkStruct_0208C06C *param0) {
     param0->unk_81C[param0->unk_534.unk_1A4] = param0->unk_818;
     param0->unk_534.unk_190[param0->unk_534.unk_1A4] = &param0->unk_818[param0->unk_534.unk_1B0];
     param0->unk_818 = param0->unk_818[param0->unk_534.unk_1B0].unk_20;
@@ -610,8 +597,7 @@ BOOL ov62_0222FB90(UnkStruct_0208C06C *param0)
     return 1;
 }
 
-BOOL ov62_0222FBF8(UnkStruct_0208C06C *param0)
-{
+BOOL ov62_0222FBF8(UnkStruct_0208C06C *param0) {
     param0->unk_818 = param0->unk_81C[param0->unk_534.unk_1A4];
 
     ov62_0222FB74(param0);
@@ -619,8 +605,7 @@ BOOL ov62_0222FBF8(UnkStruct_0208C06C *param0)
     return 1;
 }
 
-void ov62_0222FC1C(UnkStruct_0208C06C *param0)
-{
+void ov62_0222FC1C(UnkStruct_0208C06C *param0) {
     int v0 = param0->unk_818[param0->unk_534.unk_1B0].unk_10;
 
     switch (v0) {
@@ -681,8 +666,7 @@ void ov62_0222FC1C(UnkStruct_0208C06C *param0)
     }
 }
 
-BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
-{
+BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0) {
     int v0 = param0->unk_818[param0->unk_534.unk_1B0].unk_18;
     BOOL v1 = 1;
 
@@ -735,8 +719,7 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
     return v1;
 }
 
-static void ov62_0222FE1C(u32 param0, enum TouchScreenButtonState param1, void *param2)
-{
+static void ov62_0222FE1C(u32 param0, enum TouchScreenButtonState param1, void *param2) {
     UnkStruct_0208C06C *v0 = param2;
 
     if (param1 != TOUCH_BUTTON_PRESSED) {
@@ -783,8 +766,7 @@ static void ov62_0222FE1C(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-void ov62_0222FF40(UnkStruct_0208C06C *param0)
-{
+void ov62_0222FF40(UnkStruct_0208C06C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -794,8 +776,7 @@ void ov62_0222FF40(UnkStruct_0208C06C *param0)
     param0->unk_14.unk_18 = TouchScreenActions_RegisterHandler(param0->unk_14.unk_1C, 5, ov62_0222FE1C, param0, HEAP_ID_102);
 }
 
-void ov62_0222FF7C(UnkStruct_0208C06C *param0)
-{
+void ov62_0222FF7C(UnkStruct_0208C06C *param0) {
     int v0;
     s16 v1, v2;
 
@@ -821,8 +802,7 @@ void ov62_0222FF7C(UnkStruct_0208C06C *param0)
     }
 }
 
-void ov62_02230014(UnkStruct_0208C06C *param0)
-{
+void ov62_02230014(UnkStruct_0208C06C *param0) {
     int v0;
     s16 v1, v2;
 
@@ -835,13 +815,11 @@ void ov62_02230014(UnkStruct_0208C06C *param0)
     }
 }
 
-void ov62_02230054(UnkStruct_0208C06C *param0)
-{
+void ov62_02230054(UnkStruct_0208C06C *param0) {
     TouchScreenActions_HandleAction(param0->unk_14.unk_18);
 }
 
-void ov62_02230060(UnkStruct_0208C06C *param0)
-{
+void ov62_02230060(UnkStruct_0208C06C *param0) {
     if (param0->unk_534.unk_1A4 > 0) {
         param0->unk_534.unk_1A4--;
     } else {
@@ -854,8 +832,7 @@ void ov62_02230060(UnkStruct_0208C06C *param0)
     param0->unk_818 = param0->unk_81C[param0->unk_534.unk_1A4];
 }
 
-void ov62_02230098(UnkStruct_0208C06C *param0)
-{
+void ov62_02230098(UnkStruct_0208C06C *param0) {
     param0->unk_838.unk_00 = 0;
     param0->unk_838.unk_04 = 0xFF;
 
@@ -868,13 +845,11 @@ void ov62_02230098(UnkStruct_0208C06C *param0)
     }
 }
 
-BOOL ov62_022300BC(UnkStruct_0208C06C *param0)
-{
+BOOL ov62_022300BC(UnkStruct_0208C06C *param0) {
     return param0->unk_838.unk_00;
 }
 
-void ov62_022300C8(UnkStruct_0208C06C *param0, int param1)
-{
+void ov62_022300C8(UnkStruct_0208C06C *param0, int param1) {
     param0->unk_838.unk_00 = 1;
     param0->unk_838.unk_04 = param1;
 }

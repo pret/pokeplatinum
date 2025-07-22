@@ -46,8 +46,7 @@ static const u16 Unk_ov88_0223F170[][2] = {
     { 0x14, 0xA }
 };
 
-void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options)
-{
+void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options) {
     int v0;
 
     Window_Add(param0, &param1[0], 1, 2, 1, 10, 2, 8, 1);
@@ -85,8 +84,7 @@ void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options)
     }
 }
 
-void ov88_0223EC04(Window *param0)
-{
+void ov88_0223EC04(Window *param0) {
     int v0;
 
     for (v0 = 0; v0 < 14; v0++) {
@@ -108,8 +106,7 @@ void ov88_0223EC04(Window *param0)
     Window_Remove(&param0[25]);
 }
 
-void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int param4, int param5)
-{
+void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int param4, int param5) {
     int v0 = 0;
 
     if (param4 == 1) {
@@ -124,8 +121,7 @@ void ov88_0223EC78(Window *param0, Strbuf *param1, int param2, u32 param3, int p
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param1, v0, param5, param3, TEXT_COLOR(11, 12, 0), NULL);
 }
 
-int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4)
-{
+int ov88_0223ECBC(Window *param0, int param1, int param2, MessageLoader *param3, StringTemplate *param4) {
     Strbuf *v0;
     int v1;
 
@@ -154,8 +150,7 @@ static const WindowTemplate Unk_ov88_0223F148 = {
     0x112
 };
 
-u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
-{
+u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2) {
     u32 v0 = 0xffffffff;
 
     switch (*param2) {
@@ -174,8 +169,7 @@ u32 ov88_0223ED2C(BgConfig *param0, Menu **param1, int *param2)
     return v0;
 }
 
-void ov88_0223ED80(Window *param0)
-{
+void ov88_0223ED80(Window *param0) {
     Window_DrawStandardFrame(param0, 0, (512 - 9), 11);
 }
 
@@ -201,8 +195,7 @@ static const ListMenuTemplate Unk_ov88_0223F150 = {
     NULL
 };
 
-ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3)
-{
+ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig *param3) {
     ListMenu *v0;
     ListMenuTemplate v1;
     int v2 = 5;
@@ -221,8 +214,7 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
     return v0;
 }
 
-static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2) {
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }

@@ -256,13 +256,11 @@ static const u16 sGBACharToDSChars[][2] = {
     { CHAR_u_DIERESIS, CHAR_u_DIERESIS }
 };
 
-static u16 GetSpaceChar(u32 language)
-{
+static u16 GetSpaceChar(u32 language) {
     return (language == JAPANESE) ? CHAR_WIDE_SPACE : CHAR_SPACE;
 }
 
-static u16 GetDoubleQuoteOpenChar(u32 language)
-{
+static u16 GetDoubleQuoteOpenChar(u32 language) {
     switch (language) {
     case JAPANESE:
     default:
@@ -278,8 +276,7 @@ static u16 GetDoubleQuoteOpenChar(u32 language)
     }
 }
 
-static u16 GetDoubleQuoteCloseChar(u32 language)
-{
+static u16 GetDoubleQuoteCloseChar(u32 language) {
     switch (language) {
     case JAPANESE:
     default:
@@ -295,8 +292,7 @@ static u16 GetDoubleQuoteCloseChar(u32 language)
     }
 }
 
-BOOL GBAStringToDSString(const u8 *src, u16 *dst, u32 length, u32 language)
-{
+BOOL GBAStringToDSString(const u8 *src, u16 *dst, u32 length, u32 language) {
     u32 i, nonJap;
 
     nonJap = (language != JAPANESE);

@@ -39,8 +39,7 @@ static const SpriteTemplate Unk_020EFA04[] = {
     },
 };
 
-UnkStruct_0206A844 *sub_0206A780(int heapID)
-{
+UnkStruct_0206A844 *sub_0206A780(int heapID) {
     SpriteResourceCapacities v0 = {
         1, 1, 1, 1, 0, 0
     };
@@ -68,8 +67,7 @@ UnkStruct_0206A844 *sub_0206A780(int heapID)
     return v2;
 }
 
-void sub_0206A844(UnkStruct_0206A844 *param0)
-{
+void sub_0206A844(UnkStruct_0206A844 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -82,8 +80,7 @@ void sub_0206A844(UnkStruct_0206A844 *param0)
     Heap_Free(param0);
 }
 
-void sub_0206A870(UnkStruct_0206A844 *param0)
-{
+void sub_0206A870(UnkStruct_0206A844 *param0) {
     int v0 = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -95,14 +92,12 @@ void sub_0206A870(UnkStruct_0206A844 *param0)
     SpriteList_Update(param0->unk_00.unk_00);
 }
 
-void sub_0206A8A0(UnkStruct_0206A844 *param0, s16 param1, s16 param2, s16 param3)
-{
+void sub_0206A8A0(UnkStruct_0206A844 *param0, s16 param1, s16 param2, s16 param3) {
     ManagedSprite_SetPositionXY(param0->unk_1C8[0], param1, param2);
     ManagedSprite_SetPositionXY(param0->unk_1C8[1], param1, param3);
 }
 
-void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2)
-{
+void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2) {
     if (param1 >= 2) {
         return;
     }

@@ -60,8 +60,7 @@ typedef struct UnkStruct_ov23_02253598_t {
 static UnkStruct_ov23_02253598 *Unk_ov23_022577BC = NULL;
 static void ov23_022537D4(SysTask *param0, void *param1);
 
-void ov23_02253598(UnkStruct_ov23_02253598 *param0, UndergroundRecord *param1, SaveData *saveData)
-{
+void ov23_02253598(UnkStruct_ov23_02253598 *param0, UndergroundRecord *param1, SaveData *saveData) {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_ov23_02253598));
 
     Unk_ov23_022577BC = param0;
@@ -72,28 +71,24 @@ void ov23_02253598(UnkStruct_ov23_02253598 *param0, UndergroundRecord *param1, S
     CommSys_Seed(&Unk_ov23_022577BC->unk_14);
 }
 
-void ov23_022535CC(void)
-{
+void ov23_022535CC(void) {
     Heap_Free(Unk_ov23_022577BC->unk_10);
     Heap_Free(Unk_ov23_022577BC);
 
     Unk_ov23_022577BC = NULL;
 }
 
-void ov23_022535EC(void)
-{
+void ov23_022535EC(void) {
     if (Unk_ov23_022577BC->unk_04) {
         ov23_022537D4(Unk_ov23_022577BC->unk_04, Unk_ov23_022577BC->unk_00);
     }
 }
 
-void ov23_02253604(void)
-{
+void ov23_02253604(void) {
     return;
 }
 
-int ov23_02253608(void)
-{
+int ov23_02253608(void) {
     return sizeof(UnkStruct_ov23_02253598);
 }
 
@@ -114,8 +109,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     UndergroundRecord_GetCapturedFlagCount
 };
 
-static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3)
-{
+static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3) {
     StringTemplate *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -176,8 +170,7 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-static void ov23_022537D4(SysTask *param0, void *param1)
-{
+static void ov23_022537D4(SysTask *param0, void *param1) {
     UnkStruct_ov23_022537D4 *v0 = param1;
 
     Window_EraseStandardFrame(&v0->unk_08, 0);
@@ -199,8 +192,7 @@ static void ov23_022537D4(SysTask *param0, void *param1)
     Unk_ov23_022577BC->unk_00 = NULL;
 }
 
-static void ov23_0225381C(SysTask *param0, void *param1)
-{
+static void ov23_0225381C(SysTask *param0, void *param1) {
     UnkStruct_ov23_022537D4 *v0 = param1;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
@@ -208,8 +200,7 @@ static void ov23_0225381C(SysTask *param0, void *param1)
     }
 }
 
-void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
-{
+void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4) {
     UndergroundRecord *v0;
     MessageLoader *v1;
     ListMenuTemplate v2;
@@ -244,8 +235,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     MessageLoader_Free(v1);
 }
 
-void ov23_022538FC(int param0)
-{
+void ov23_022538FC(int param0) {
     int undergroundRecordSize = UndergroundRecord_Size();
     int trainerScore = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->saveData));
     u8 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, undergroundRecordSize + 1);
@@ -265,8 +255,7 @@ void ov23_022538FC(int param0)
     Heap_Free(v2);
 }
 
-void ov23_02253968(void)
-{
+void ov23_02253968(void) {
     int trainerScore = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->saveData));
 
     if (trainerScore >= 999999) {
@@ -276,13 +265,11 @@ void ov23_02253968(void)
     UndergroundRecord_SetTrainerScore(Unk_ov23_022577BC->unk_0C, trainerScore);
 }
 
-void ov23_02253998(int param0, int param1, void *param2, void *param3)
-{
+void ov23_02253998(int param0, int param1, void *param2, void *param3) {
     CommSys_SendDataServer(82, param2, param1);
 }
 
-void ov23_022539A8(int param0, int param1, void *param2, void *param3)
-{
+void ov23_022539A8(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
 
     if (v0[0] == CommSys_CurNetId()) {
@@ -291,23 +278,19 @@ void ov23_022539A8(int param0, int param1, void *param2, void *param3)
     }
 }
 
-BOOL ov23_022539D8(void)
-{
+BOOL ov23_022539D8(void) {
     return Unk_ov23_022577BC->unk_2C;
 }
 
-void ov23_022539E8(void)
-{
+void ov23_022539E8(void) {
     Unk_ov23_022577BC->unk_2C = 0;
 }
 
-static void ov23_022539F8(int param0)
-{
+static void ov23_022539F8(int param0) {
     sub_02059514();
 }
 
-void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
-{
+void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1) {
     s32 v0;
     UndergroundRecord *undergroundRecordBuffer;
     UnkFuncPtr_ov23_022576EC v2 = Unk_ov23_022576EC[param1 - 32];
@@ -328,8 +311,7 @@ void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const Underground *param4)
-{
+static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const Underground *param4) {
     StringTemplate *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -391,8 +373,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *underground, UnkFuncPtr_ov23_02253834 param3, void *param4)
-{
+void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *underground, UnkFuncPtr_ov23_02253834 param3, void *param4) {
     UndergroundRecord *v0;
     MessageLoader *v1;
     ListMenuTemplate v2;
@@ -420,8 +401,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *undergro
     return v4;
 }
 
-void ov23_02253D10(void *param0)
-{
+void ov23_02253D10(void *param0) {
     UnkStruct_ov23_022537D4 *v0 = param0;
 
     Window_EraseStandardFrame(&v0->unk_08, 0);

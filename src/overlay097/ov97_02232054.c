@@ -13,8 +13,7 @@
 #include "mystery_gift.h"
 #include "savedata.h"
 
-void ov97_02232054(void)
-{
+void ov97_02232054(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -31,8 +30,7 @@ void ov97_02232054(void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov97_02232074(BgConfig *param0)
-{
+void ov97_02232074(BgConfig *param0) {
     {
         GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
@@ -125,8 +123,7 @@ void ov97_02232074(BgConfig *param0)
     }
 }
 
-int ov97_02232148(SaveData *saveData, MysteryGiftEventData *param1)
-{
+int ov97_02232148(SaveData *saveData, MysteryGiftEventData *param1) {
     u32 v0;
     MysteryGift *v1 = SaveData_GetMysteryGift(saveData);
 

@@ -137,13 +137,11 @@ typedef struct UnkStruct_02014FB0_t {
 void include_unk_020E5538(void);
 BOOL sub_02014E4C(u16 param0, u32 *param1, u32 *param2);
 
-void include_unk_020E5538(void)
-{
+void include_unk_020E5538(void) {
     Unk_020E5538[0];
 }
 
-UnkStruct_02014D38 *sub_02014D38(u32 heapID)
-{
+UnkStruct_02014D38 *sub_02014D38(u32 heapID) {
     int v0;
     UnkStruct_02014D38 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014D38));
 
@@ -155,8 +153,7 @@ UnkStruct_02014D38 *sub_02014D38(u32 heapID)
     return v1;
 }
 
-void sub_02014D70(UnkStruct_02014D38 *param0)
-{
+void sub_02014D70(UnkStruct_02014D38 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 11; v0++) {
@@ -166,16 +163,14 @@ void sub_02014D70(UnkStruct_02014D38 *param0)
     Heap_Free(param0);
 }
 
-void sub_02014D90(UnkStruct_02014D38 *param0, u16 param1, Strbuf *param2)
-{
+void sub_02014D90(UnkStruct_02014D38 *param0, u16 param1, Strbuf *param2) {
     u32 v0, v1;
 
     sub_02014E4C(param1, &v0, &v1);
     MessageLoader_GetStrbuf(param0->unk_04[v0], v1, param2);
 }
 
-void sub_02014DB8(u16 param0, Strbuf *param1)
-{
+void sub_02014DB8(u16 param0, Strbuf *param1) {
     if (param0 != 0xffff) {
         u32 v0, v1;
 
@@ -187,8 +182,7 @@ void sub_02014DB8(u16 param0, Strbuf *param1)
     }
 }
 
-u16 sub_02014DFC(u32 param0, u32 param1)
-{
+u16 sub_02014DFC(u32 param0, u32 param1) {
     u32 v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020E550C); v0++) {
@@ -206,8 +200,7 @@ u16 sub_02014DFC(u32 param0, u32 param1)
     return 0xffff;
 }
 
-BOOL sub_02014E4C(u16 param0, u32 *param1, u32 *param2)
-{
+BOOL sub_02014E4C(u16 param0, u32 *param1, u32 *param2) {
     u32 v0, v1, v2;
 
     v2 = param0 & 0xfff;
@@ -226,13 +219,11 @@ BOOL sub_02014E4C(u16 param0, u32 *param1, u32 *param2)
     return 0;
 }
 
-u32 Sentence_SaveSize(void)
-{
+u32 Sentence_SaveSize(void) {
     return sizeof(UnkStruct_02014EC4);
 }
 
-void Sentence_Init(void *param0)
-{
+void Sentence_Init(void *param0) {
     static const struct {
         u8 unk_00;
         u8 unk_01;
@@ -260,19 +251,16 @@ void Sentence_Init(void *param0)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
-UnkStruct_02014EC4 *sub_02014EC4(SaveData *saveData)
-{
+UnkStruct_02014EC4 *sub_02014EC4(SaveData *saveData) {
     SaveData_Checksum(SAVE_TABLE_ENTRY_SENTENCE);
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_SENTENCE);
 }
 
-BOOL sub_02014ED8(const UnkStruct_02014EC4 *param0, u32 param1)
-{
+BOOL sub_02014ED8(const UnkStruct_02014EC4 *param0, u32 param1) {
     return (param0->unk_04 >> param1) & 1;
 }
 
-u32 sub_02014EE4(UnkStruct_02014EC4 *param0)
-{
+u32 sub_02014EE4(UnkStruct_02014EC4 *param0) {
     u32 v0, v1;
 
     for (v0 = 0, v1 = 0; v0 < 32; v0++) {
@@ -304,8 +292,7 @@ u32 sub_02014EE4(UnkStruct_02014EC4 *param0)
     return 32;
 }
 
-BOOL sub_02014F48(UnkStruct_02014EC4 *param0)
-{
+BOOL sub_02014F48(UnkStruct_02014EC4 *param0) {
     u32 v0;
 
     for (v0 = 0; v0 < 32; v0++) {
@@ -317,8 +304,7 @@ BOOL sub_02014F48(UnkStruct_02014EC4 *param0)
     return 1;
 }
 
-u16 sub_02014F64(u32 param0)
-{
+u16 sub_02014F64(u32 param0) {
     int v0;
     u16 v1 = 0;
 
@@ -329,20 +315,17 @@ u16 sub_02014F64(u32 param0)
     return v1 + param0;
 }
 
-BOOL sub_02014F8C(const UnkStruct_02014EC4 *param0, int param1)
-{
+BOOL sub_02014F8C(const UnkStruct_02014EC4 *param0, int param1) {
     return (param0->unk_00 >> param1) & 1;
 }
 
-void sub_02014F98(UnkStruct_02014EC4 *param0, int param1)
-{
+void sub_02014F98(UnkStruct_02014EC4 *param0, int param1) {
     param0->unk_00 |= (1 << param1);
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
-UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
-{
+UnkStruct_02014FB0 *sub_02014FB0(u32 heapID) {
     UnkStruct_02014FB0 *v0;
     u32 fileSize;
 
@@ -355,20 +338,17 @@ UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
     return v0;
 }
 
-void sub_02014FF0(UnkStruct_02014FB0 *param0)
-{
+void sub_02014FF0(UnkStruct_02014FB0 *param0) {
     Heap_Free(param0->unk_04);
 
     Heap_Free(param0);
 }
 
-u32 sub_02015004(const UnkStruct_02014FB0 *param0)
-{
+u32 sub_02015004(const UnkStruct_02014FB0 *param0) {
     return param0->unk_00;
 }
 
-u16 sub_02015008(const UnkStruct_02014FB0 *param0, u32 param1)
-{
+u16 sub_02015008(const UnkStruct_02014FB0 *param0, u32 param1) {
     GF_ASSERT(param0);
 
     if (param0->unk_00 <= param1) {
@@ -378,8 +358,7 @@ u16 sub_02015008(const UnkStruct_02014FB0 *param0, u32 param1)
     return param0->unk_04[param1];
 }
 
-s16 sub_02015030(const UnkStruct_02014FB0 *param0, u16 param1)
-{
+s16 sub_02015030(const UnkStruct_02014FB0 *param0, u16 param1) {
     int v0;
 
     GF_ASSERT(param0);

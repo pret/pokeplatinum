@@ -43,8 +43,7 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0);
 static void ov100_021D1208(BgConfig *param0);
 static void ov100_021D13B4(void *param0);
 
-int ov100_021D0D80(ApplicationManager *appMan, int *param1)
-{
+int ov100_021D0D80(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov100_021D4DD8 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_111, 0xC0000);
@@ -94,8 +93,7 @@ static const struct {
     { ov100_021D2340, ov100_021D2428, ov100_021D2C8C },
 };
 
-int ov100_021D0EA8(ApplicationManager *appMan, int *param1)
-{
+int ov100_021D0EA8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov100_021D4DD8 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -134,8 +132,7 @@ int ov100_021D0EA8(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov100_021D0F44(ApplicationManager *appMan, int *param1)
-{
+int ov100_021D0F44(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov100_021D4DD8 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
@@ -155,8 +152,7 @@ int ov100_021D0F44(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
-{
+static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0) {
     param0->unk_04 = SpriteSystem_Alloc(111);
 
     {
@@ -203,8 +199,7 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
     }
 }
 
-static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
-{
+static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0) {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -232,8 +227,7 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
     Heap_FndInitAllocatorForExpHeap(&param0->unk_1C, HEAP_ID_111, 32);
 }
 
-static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
-{
+static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -268,8 +262,7 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov100_021D1208(BgConfig *param0)
-{
+static void ov100_021D1208(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
 
     {
@@ -432,8 +425,7 @@ static void ov100_021D1208(BgConfig *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov100_021D13B4(void *param0)
-{
+static void ov100_021D13B4(void *param0) {
     UnkStruct_ov100_021D4DD8 *v0 = param0;
 
     VramTransfer_Process();

@@ -400,8 +400,7 @@ static void PokemonSprite_TickAnim(PokemonSprite *monSprite);
 static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
 
-void *PokemonSpriteManager_New(enum HeapId heapID)
-{
+void *PokemonSpriteManager_New(enum HeapId heapID) {
     PokemonSpriteManager *monSpriteMan = Heap_AllocFromHeap(heapID, sizeof(PokemonSpriteManager));
 
     monSpriteMan->heapID = heapID;
@@ -453,8 +452,7 @@ void *PokemonSpriteManager_New(enum HeapId heapID)
     return monSpriteMan;
 }
 
-void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
-{
+void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan) {
     int width, height;
     int u0, v0, u1, v1;
 
@@ -568,16 +566,14 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
     G3_PopMtx(1);
 }
 
-void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan)
-{
+void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan) {
     Heap_Free(monSpriteMan->charRawData);
     Heap_Free(monSpriteMan->plttRawData);
     Heap_Free(monSpriteMan->plttRawDataUnfaded);
     Heap_Free(monSpriteMan);
 }
 
-void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy)
-{
+void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy) {
     monSprite->currAnimFrame = 0;
 
     for (int i = 0; i < MAX_ANIMATION_FRAMES; i++) {
@@ -594,19 +590,16 @@ void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy)
     }
 }
 
-void PokemonSprite_SetAnim(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames)
-{
+void PokemonSprite_SetAnim(PokemonSprite *monSprite, SpriteAnimationFrame *animFrames) {
     MI_CpuCopy8(animFrames, &monSprite->animFrames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
 }
 
-BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite)
-{
+BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite) {
     // Doesn't match when simplified.
     return monSprite->animActive != FALSE;
 }
 
-PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
-{
+PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback) {
     int i;
     for (i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active == FALSE) {
@@ -619,8 +612,7 @@ PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSprite
     return PokemonSpriteManager_CreateSpriteAtIndex(monSpriteMan, spriteTemplate, x, y, z, polygonID, i, animFrames, callback);
 }
 
-PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
-{
+PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback) {
     GF_ASSERT(monSpriteMan->sprites[index].active == FALSE);
 
     MI_CpuClearFast(&monSpriteMan->sprites[index], sizeof(PokemonSprite));
@@ -657,20 +649,17 @@ PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *mo
     return &monSpriteMan->sprites[index];
 }
 
-void PokemonSprite_Delete(PokemonSprite *monSprite)
-{
+void PokemonSprite_Delete(PokemonSprite *monSprite) {
     monSprite->active = FALSE;
 }
 
-void PokemonSpriteManager_DeleteAll(PokemonSpriteManager *monSpriteMan)
-{
+void PokemonSpriteManager_DeleteAll(PokemonSpriteManager *monSpriteMan) {
     for (int i = 0; i < MAX_MON_SPRITES; i++) {
         PokemonSprite_Delete(&monSpriteMan->sprites[i]);
     }
 }
 
-void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int value)
-{
+void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int value) {
     switch (attribute) {
     case MON_SPRITE_X_CENTER:
         monSprite->transforms.xCenter = value;
@@ -823,8 +812,7 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     }
 }
 
-int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute)
-{
+int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute) {
     switch (attribute) {
     case MON_SPRITE_X_CENTER:
         return monSprite->transforms.xCenter;
@@ -926,8 +914,7 @@ int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttri
     return 0;
 }
 
-void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int delta)
-{
+void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int delta) {
     switch (attribute) {
     case MON_SPRITE_X_CENTER:
         monSprite->transforms.xCenter += delta;
@@ -1080,8 +1067,7 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     }
 }
 
-void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOffset, int width, int height)
-{
+void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOffset, int width, int height) {
     monSprite->transforms.partialDraw = TRUE;
     monSprite->transforms.drawXOffset = xOffset;
     monSprite->transforms.drawYOffset = yOffset;
@@ -1089,8 +1075,7 @@ void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOf
     monSprite->transforms.drawHeight = height;
 }
 
-void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color)
-{
+void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color) {
     monSprite->transforms.fadeActive = TRUE;
     monSprite->transforms.fadeInitAlpha = initAlpha;
     monSprite->transforms.fadeTargetAlpha = targetAlpha;
@@ -1099,8 +1084,7 @@ void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int target
     monSprite->transforms.fadeTargetColor = color;
 }
 
-void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int initAlpha, int targetAlpha, int delay, int color)
-{
+void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int initAlpha, int targetAlpha, int delay, int color) {
     for (int i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active) {
             monSpriteMan->sprites[i].transforms.fadeActive = TRUE;
@@ -1113,8 +1097,7 @@ void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int i
     }
 }
 
-void PokemonSprite_ClearFade(PokemonSprite *monSprite)
-{
+void PokemonSprite_ClearFade(PokemonSprite *monSprite) {
     monSprite->transforms.fadeActive = FALSE;
     monSprite->transforms.fadeInitAlpha = 0;
     monSprite->transforms.fadeTargetAlpha = 0;
@@ -1124,18 +1107,15 @@ void PokemonSprite_ClearFade(PokemonSprite *monSprite)
     monSprite->needReloadPltt = TRUE;
 }
 
-BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite)
-{
+BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite) {
     return monSprite->transforms.fadeActive == TRUE;
 }
 
-void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height)
-{
+void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height) {
     monSprite->transforms.yOffset = ((MON_SPRITE_HEIGHT / 2) - height) - ((((MON_SPRITE_HEIGHT / 2) - height) * monSprite->transforms.scaleY) >> 8);
 }
 
-static inline void TickPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames)
-{
+static inline void TickPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames) {
     if (*active) {
         if (*frameDelay == 0) {
             (*currAnimFrame)++;
@@ -1165,8 +1145,7 @@ static inline void TickPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8
     }
 }
 
-static void TickPokemonSpriteAnim(PokemonSprite *monSprite)
-{
+static void TickPokemonSpriteAnim(PokemonSprite *monSprite) {
     if (monSprite->animActive) {
         if (monSprite->animFrameDelay == 0) {
             monSprite->currAnimFrame++;
@@ -1200,13 +1179,11 @@ static void TickPokemonSpriteAnim(PokemonSprite *monSprite)
     }
 }
 
-static void PokemonSprite_TickAnim(PokemonSprite *monSprite)
-{
+static void PokemonSprite_TickAnim(PokemonSprite *monSprite) {
     TickPokemonSpriteAnim(monSprite);
 }
 
-void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames)
-{
+void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames) {
     anim->active = TRUE;
     anim->currAnimFrame = 0;
     anim->currSpriteFrame = animFrames[0].spriteFrame;
@@ -1218,8 +1195,7 @@ void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimati
     }
 }
 
-int PokemonSpriteTaskAnim_Tick(PokemonSpriteTaskAnim *anim)
-{
+int PokemonSpriteTaskAnim_Tick(PokemonSpriteTaskAnim *anim) {
     if (anim->active) {
         TickPokemonSpriteTaskAnim(&anim->active, &anim->currSpriteFrame, &anim->currAnimFrame, &anim->frameDelay, anim->loopTimers, anim->animFrames);
         return anim->currSpriteFrame;
@@ -1228,45 +1204,38 @@ int PokemonSpriteTaskAnim_Tick(PokemonSpriteTaskAnim *anim)
     return -1;
 }
 
-void PokemonSprite_ScheduleReloadFromNARC(PokemonSprite *monSprite)
-{
+void PokemonSprite_ScheduleReloadFromNARC(PokemonSprite *monSprite) {
     monSprite->needReloadChar = TRUE;
     monSprite->needReloadPltt = TRUE;
 }
 
-void PokemonSprite_Push(PokemonSprite *monSprite)
-{
+void PokemonSprite_Push(PokemonSprite *monSprite) {
     monSprite->templateBackup = monSprite->template;
     monSprite->shadowBackup = monSprite->shadow;
 }
 
-void PokemonSprite_Pop(PokemonSprite *monSprite)
-{
+void PokemonSprite_Pop(PokemonSprite *monSprite) {
     monSprite->template = monSprite->templateBackup;
     monSprite->shadow = monSprite->shadowBackup;
     monSprite->needReloadChar = TRUE;
     monSprite->needReloadPltt = TRUE;
 }
 
-void PokemonSpriteManager_SetCharBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size)
-{
+void PokemonSpriteManager_SetCharBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size) {
     monSpriteMan->charBaseAddr = addr;
     monSpriteMan->charSize = size;
 }
 
-void PokemonSpriteManager_SetPlttBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size)
-{
+void PokemonSpriteManager_SetPlttBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size) {
     monSpriteMan->plttBaseAddr = addr;
     monSpriteMan->plttSize = size;
 }
 
-PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite)
-{
+PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite) {
     return &monSprite->template;
 }
 
-void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan)
-{
+void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan) {
     if (monSpriteMan->needLoadChar) {
         monSpriteMan->needLoadChar = FALSE;
 
@@ -1292,29 +1261,24 @@ void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan)
     }
 }
 
-void PokemonSpriteManager_SetExcludeIdentity(PokemonSpriteManager *monSpriteMan, int value)
-{
+void PokemonSpriteManager_SetExcludeIdentity(PokemonSpriteManager *monSpriteMan, int value) {
     monSpriteMan->excludeIdentity = value;
 }
 
-BOOL PokemonSprite_IsActive(PokemonSprite *monSprite)
-{
+BOOL PokemonSprite_IsActive(PokemonSprite *monSprite) {
     GF_ASSERT(monSprite != NULL);
     return monSprite->active != FALSE;
 }
 
-void PokemonSpriteManager_SetHideShadows(PokemonSpriteManager *monSpriteMan, u32 value)
-{
+void PokemonSpriteManager_SetHideShadows(PokemonSpriteManager *monSpriteMan, u32 value) {
     monSpriteMan->hideShadows |= value;
 }
 
-void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u32 value)
-{
+void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u32 value) {
     monSpriteMan->hideShadows &= (value ^ -1);
 }
 
-static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
-{
+static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan) {
     NNSG2dCharacterData *charData;
     int i, y, x;
     u8 *rawCharData;
@@ -1426,8 +1390,7 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
     monSpriteMan->needLoadChar = needLoadChar;
 }
 
-static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
-{
+static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan) {
     NNSG2dPaletteData *plttData;
     int i, j;
     u16 *rawPlttData;
@@ -1504,21 +1467,18 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
     monSpriteMan->needLoadPltt = needReloadPltt;
 }
 
-static u8 SwapNybbles(u8 value)
-{
+static u8 SwapNybbles(u8 value) {
     u8 ret = (value & 0xF0) >> 4;
     return ret |= (value & 0x0F) << 4;
 }
 
-static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData)
-{
+static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData) {
     if (monSprite->template.spindaSpots != 0) {
         PokemonSprite_DrawSpindaSpots(rawCharData, monSprite->template.personality, TRUE);
     }
 }
 
-void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnimated)
-{
+void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnimated) {
     const SpindaSpotCoords *currSpotCoords;
     int i, destOffset;
     u8 x, y, j;
@@ -1579,14 +1539,12 @@ void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnim
     }
 }
 
-static u16 PokemonSprite_LCRNGNext(u32 *seed)
-{
+static u16 PokemonSprite_LCRNGNext(u32 *seed) {
     *seed = *seed * LCRNG_MULTIPLIER + LCRNG_INCREMENT;
     return (u16)(*seed / 65536L);
 }
 
-void PokemonSprite_DecryptPt(u8 *rawCharData)
-{
+void PokemonSprite_DecryptPt(u8 *rawCharData) {
     u16 *charData = (u16 *)rawCharData;
     u32 seed = *charData;
 
@@ -1596,8 +1554,7 @@ void PokemonSprite_DecryptPt(u8 *rawCharData)
     }
 }
 
-void PokemonSprite_DecryptDP(u8 *rawCharData)
-{
+void PokemonSprite_DecryptDP(u8 *rawCharData) {
     u16 *charData = (u16 *)rawCharData;
     u32 seed = charData[(20 * 10 * 32) / 2 - 1];
 
@@ -1607,8 +1564,7 @@ void PokemonSprite_DecryptDP(u8 *rawCharData)
     }
 }
 
-void PokemonSprite_Decrypt(u8 *rawCharData, enum NarcID narcID)
-{
+void PokemonSprite_Decrypt(u8 *rawCharData, enum NarcID narcID) {
     if (narcID == NARC_INDEX_POKETOOL__POKEGRA__POKEGRA || narcID == NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE) {
         PokemonSprite_DecryptDP(rawCharData);
     } else {

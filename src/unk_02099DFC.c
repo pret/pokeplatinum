@@ -77,8 +77,7 @@ static const WindowTemplate Unk_020F89EC = {
     0x155
 };
 
-int sub_02099DFC(ApplicationManager *appMan, int *param1)
-{
+int sub_02099DFC(ApplicationManager *appMan, int *param1) {
     UnkStruct_02099DFC *v0;
     int heapID = HEAP_ID_88;
 
@@ -94,8 +93,7 @@ int sub_02099DFC(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int sub_02099E38(ApplicationManager *appMan, int *param1)
-{
+int sub_02099E38(ApplicationManager *appMan, int *param1) {
     UnkStruct_02099DFC *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
@@ -146,8 +144,7 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
     return v1;
 }
 
-int sub_02099F54(ApplicationManager *appMan, int *param1)
-{
+int sub_02099F54(ApplicationManager *appMan, int *param1) {
     UnkStruct_02099DFC *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
@@ -158,14 +155,12 @@ int sub_02099F54(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void sub_02099F74(void *param0)
-{
+static void sub_02099F74(void *param0) {
     UnkStruct_02099DFC *v0 = param0;
     Bg_RunScheduledUpdates(v0->unk_14);
 }
 
-static void sub_02099F80(UnkStruct_02099DFC *param0)
-{
+static void sub_02099F80(UnkStruct_02099DFC *param0) {
     {
         UnkStruct_02099F80 v0 = {
             GX_VRAM_BG_256_AB,
@@ -220,8 +215,7 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 }
 
-static void sub_0209A044(UnkStruct_02099DFC *param0)
-{
+static void sub_0209A044(UnkStruct_02099DFC *param0) {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
@@ -234,8 +228,7 @@ static void sub_0209A044(UnkStruct_02099DFC *param0)
     Heap_Free(param0->unk_14);
 }
 
-static void sub_0209A098(UnkStruct_02099DFC *param0)
-{
+static void sub_0209A098(UnkStruct_02099DFC *param0) {
     param0->unk_18 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0004, param0->heapID);
     Text_ResetAllPrinters();
     param0->unk_08 = 0;
@@ -243,14 +236,12 @@ static void sub_0209A098(UnkStruct_02099DFC *param0)
     Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
 }
 
-static void sub_0209A0E0(UnkStruct_02099DFC *param0)
-{
+static void sub_0209A0E0(UnkStruct_02099DFC *param0) {
     Window_Remove(&param0->unk_1C);
     MessageLoader_Free(param0->unk_18);
 }
 
-static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
-{
+static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0) {
     BOOL v0 = 0;
 
     switch (param0->unk_04) {
@@ -310,8 +301,7 @@ static BOOL sub_0209A0F4(UnkStruct_02099DFC *param0)
     return v0;
 }
 
-static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int param3)
-{
+static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int param3) {
     BOOL v0 = 0;
 
     switch (param0->unk_08) {

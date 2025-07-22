@@ -107,8 +107,7 @@ static void PoketchGraphics_UnusedTask_3(SysTask *task, void *taskMan);
 static void PoketchGraphics_UnusedTask_4(SysTask *task, void *taskMan);
 static void PoketchGraphics_FreeTilemapBufferTask(SysTask *task, void *taskMan);
 
-BOOL PoketchGraphics_Main(PoketchGraphics_TaskData **taskDataPtr, const PoketchGraphics_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMan, PoketchSystem *poketchSys)
-{
+BOOL PoketchGraphics_Main(PoketchGraphics_TaskData **taskDataPtr, const PoketchGraphics_ConstTaskData *constTaskData, NNSG2dOamManagerInstance *oamMan, PoketchSystem *poketchSys) {
     *taskDataPtr = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(PoketchGraphics_TaskData));
 
     if (*taskDataPtr != NULL) {
@@ -148,26 +147,22 @@ BOOL PoketchGraphics_Main(PoketchGraphics_TaskData **taskDataPtr, const PoketchG
     return FALSE;
 }
 
-static void PoketchGraphics_TaskCallback(SysTask *task, void *data)
-{
+static void PoketchGraphics_TaskCallback(SysTask *task, void *data) {
     PoketchGraphics_TaskData *taskData = data;
     PoketchAnimation_UpdateAnimations(taskData->animMan);
 }
 
-PoketchAnimation_AnimationManager *PoketchGraphics_GetAnimationManager(void)
-{
+PoketchAnimation_AnimationManager *PoketchGraphics_GetAnimationManager(void) {
     PoketchGraphics_TaskData *taskData = PoketchSystem_GetTaskData();
     return taskData->animMan;
 }
 
-BgConfig *PoketchGraphics_GetBgConfig(void)
-{
+BgConfig *PoketchGraphics_GetBgConfig(void) {
     PoketchGraphics_TaskData *taskData = PoketchSystem_GetTaskData();
     return taskData->bgConfig;
 }
 
-static void PoketchGraphics_InitPaletteData(PoketchGraphics_TaskData *taskData)
-{
+static void PoketchGraphics_InitPaletteData(PoketchGraphics_TaskData *taskData) {
     NNSG2dPaletteData *paletteData;
 
     void *poketchPalettes = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_PALETTE_NARC_IDX, &paletteData, HEAP_ID_POKETCH_MAIN);
@@ -179,8 +174,7 @@ static void PoketchGraphics_InitPaletteData(PoketchGraphics_TaskData *taskData)
     }
 }
 
-void PoketchGraphics_LoadActivePalette(u32 bgOffset, u32 objOffset)
-{
+void PoketchGraphics_LoadActivePalette(u32 bgOffset, u32 objOffset) {
     PoketchGraphics_TaskData *taskData = PoketchSystem_GetTaskData();
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
@@ -189,8 +183,7 @@ void PoketchGraphics_LoadActivePalette(u32 bgOffset, u32 objOffset)
     GXS_LoadOBJPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME], objOffset, PALETTE_SIZE_BYTES);
 }
 
-void PoketchGraphics_LoadActiveBacklightPalette(u32, u32)
-{
+void PoketchGraphics_LoadActiveBacklightPalette(u32, u32) {
     PoketchGraphics_TaskData *taskData = PoketchSystem_GetTaskData();
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
@@ -199,8 +192,7 @@ void PoketchGraphics_LoadActiveBacklightPalette(u32, u32)
     GXS_LoadOBJPltt(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME + BACKLIGHT_PALETTE_SLOT_OFFSET], 0, PALETTE_SIZE_BYTES);
 }
 
-void PoketchGraphics_CopyActivePalette(u16 *dest)
-{
+void PoketchGraphics_CopyActivePalette(u16 *dest) {
     PoketchGraphics_TaskData *taskData = PoketchSystem_GetTaskData();
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
@@ -208,8 +200,7 @@ void PoketchGraphics_CopyActivePalette(u16 *dest)
     MI_CpuCopy16(&taskData->poketchPalettes[screenColour * SLOTS_PER_POKETCH_THEME], dest, PALETTE_SIZE_BYTES);
 }
 
-void PoketchGraphics_Close(PoketchGraphics_TaskData *taskData)
-{
+void PoketchGraphics_Close(PoketchGraphics_TaskData *taskData) {
     if (taskData) {
         PoketchGraphics_UnloadAppCounterAnim(&(taskData->appCounterAnim));
 
@@ -229,8 +220,7 @@ void PoketchGraphics_Close(PoketchGraphics_TaskData *taskData)
     }
 }
 
-static void PoketchGraphics_GeneratePoketchButtonSprite(u16 *dst, u32 param1, int param2, int param3)
-{
+static void PoketchGraphics_GeneratePoketchButtonSprite(u16 *dst, u32 param1, int param2, int param3) {
     int x, y, pixleIdx;
     int v3;
 
@@ -275,29 +265,24 @@ static const PoketchTask poketchTasks[] = {
 };
 // clang-format on
 
-void PoketchGraphics_StartTask(PoketchGraphics_TaskData *taskData, u32 taskId)
-{
+void PoketchGraphics_StartTask(PoketchGraphics_TaskData *taskData, u32 taskId) {
     PoketchTask_Start(poketchTasks, taskId, taskData, taskData->constTaskData, taskData->activeTasks, 2, HEAP_ID_POKETCH_MAIN);
 }
 
-BOOL PoketchGraphics_TaskIsNotActive(PoketchGraphics_TaskData *taskData, u32 taskId)
-{
+BOOL PoketchGraphics_TaskIsNotActive(PoketchGraphics_TaskData *taskData, u32 taskId) {
     return PoketchTask_TaskIsNotActive(taskData->activeTasks, taskId);
 }
 
-BOOL PoketchGraphics_NoActiveTasks(PoketchGraphics_TaskData *taskData)
-{
+BOOL PoketchGraphics_NoActiveTasks(PoketchGraphics_TaskData *taskData) {
     return PoketchTask_NoActiveTasks(taskData->activeTasks);
 }
 
-static void PoketchGraphics_EndTask(PoketchTaskManager *taskMan)
-{
+static void PoketchGraphics_EndTask(PoketchTaskManager *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     PoketchTask_EndTask(taskData->activeTasks, taskMan);
 }
 
-static void PoketchGraphics_SetupBackgroundTask(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_SetupBackgroundTask(SysTask *task, void *taskMan) {
     static const BgTemplate bgTemplateLayer4 = {
         .x = 0,
         .y = 0,
@@ -353,8 +338,7 @@ static void PoketchGraphics_SetupBackgroundTask(SysTask *task, void *taskMan)
     PoketchGraphics_EndTask(taskMan);
 }
 
-static void PoketchGraphics_screenRevealAnimationTask(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_screenRevealAnimationTask(SysTask *task, void *taskMan) {
     PoketchGraphics_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     u32 state = PoketchTask_GetState(taskMan);
@@ -398,8 +382,7 @@ static void PoketchGraphics_screenRevealAnimationTask(SysTask *task, void *taskM
     }
 }
 
-static void PoketchGraphics_screenConcealAnimationTask(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_screenConcealAnimationTask(SysTask *task, void *taskMan) {
     PoketchGraphics_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     u32 state = PoketchTask_GetState(taskMan);
@@ -446,8 +429,7 @@ static void PoketchGraphics_screenConcealAnimationTask(SysTask *task, void *task
     }
 }
 
-static void PoketchGraphics_UnusedTask_1(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UnusedTask_1(SysTask *task, void *taskMan) {
     PoketchGraphics_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     u32 state = PoketchTask_GetState(taskMan);
@@ -461,8 +443,7 @@ static void PoketchGraphics_UnusedTask_1(SysTask *task, void *taskMan)
     }
 }
 
-static void PoketchGraphics_UnusedTask_2(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UnusedTask_2(SysTask *task, void *taskMan) {
     PoketchGraphics_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     u32 state = PoketchTask_GetState(taskMan);
@@ -476,8 +457,7 @@ static void PoketchGraphics_UnusedTask_2(SysTask *task, void *taskMan)
     }
 }
 
-static void PoketchGraphics_LoadBtnTilemap(void *taskMan, u16 *src, enum ButtonDir btnLocation)
-{
+static void PoketchGraphics_LoadBtnTilemap(void *taskMan, u16 *src, enum ButtonDir btnLocation) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     int x, y;
 
@@ -495,54 +475,47 @@ static void PoketchGraphics_LoadBtnTilemap(void *taskMan, u16 *src, enum ButtonD
     PoketchGraphics_EndTask(taskMan);
 }
 
-static void PoketchGraphics_UpBtnHalfPressed_Task(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UpBtnHalfPressed_Task(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapUpBtnHalfPressed, BUTTON_UP);
     Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
-static void PoketchGraphics_DownBtnHalfPressed_Task(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_DownBtnHalfPressed_Task(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapDownBtnHalfPressed, BUTTON_DOWN);
     Sound_PlayEffect(SEQ_SE_DP_DENSI04);
 }
 
-static void PoketchGraphics_UpBtnPressed_Task(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UpBtnPressed_Task(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapUpBtnPressed, BUTTON_UP);
 }
 
-static void PoketchGraphics_DownBtnPressed_Task(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_DownBtnPressed_Task(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapDownBtnPressed, BUTTON_DOWN);
 }
 
-static void PoketchGraphics_UpBtnReleased_Task(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UpBtnReleased_Task(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapUpBtn, BUTTON_UP);
     Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
-static void PoketchGraphics_DownBtnReleased_Task(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_DownBtnReleased_Task(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadBtnTilemap(taskMan, taskData->tilemapDownBtn, BUTTON_DOWN);
     Sound_PlayEffect(SEQ_SE_DP_DENSI01);
 }
 
-static void PoketchGraphics_LoadAppCounterTask(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_LoadAppCounterTask(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_LoadAppCounter(taskData, &taskData->appCounterAnim);
@@ -550,30 +523,26 @@ static void PoketchGraphics_LoadAppCounterTask(SysTask *task, void *taskMan)
     PoketchGraphics_EndTask(taskMan);
 }
 
-static void PoketchGraphics_UpdateAppCounterDigitsTask(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UpdateAppCounterDigitsTask(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_SetAppCounterDigits(&taskData->appCounterAnim, taskData->constTaskData);
     PoketchGraphics_EndTask(taskMan);
 }
 
-static void PoketchGraphics_UnloadAppCounterAnimTask(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UnloadAppCounterAnimTask(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     PoketchGraphics_UnloadAppCounterAnim(&taskData->appCounterAnim);
     PoketchGraphics_EndTask(taskMan);
 }
 
-static void PoketchGraphics_SetupAppCounterData(PoketchGraphics_AppCounterAnimationData *appCounterAnim, PoketchAnimation_AnimationManager *animMan)
-{
+static void PoketchGraphics_SetupAppCounterData(PoketchGraphics_AppCounterAnimationData *appCounterAnim, PoketchAnimation_AnimationManager *animMan) {
     appCounterAnim->animationLoaded = FALSE;
     appCounterAnim->animMan = animMan;
 }
 
-static void PoketchGraphics_LoadAppCounter(PoketchGraphics_TaskData *taskData, PoketchGraphics_AppCounterAnimationData *appCounterAnim)
-{
+static void PoketchGraphics_LoadAppCounter(PoketchGraphics_TaskData *taskData, PoketchGraphics_AppCounterAnimationData *appCounterAnim) {
     if (PoketchAnimation_LoadSpriteFromNARC(&appCounterAnim->spriteData, NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGIT_SPRITE_NARC_IDX, POKETCH_DIGIT_SPRITE_ANIMATION_NARC_IDX, HEAP_ID_POKETCH_MAIN)) {
         static const PoketchAnimation_AnimationData animData = {
             .translation = { (176 << FX32_SHIFT), (40 << FX32_SHIFT) },
@@ -610,8 +579,7 @@ static void PoketchGraphics_LoadAppCounter(PoketchGraphics_TaskData *taskData, P
     }
 }
 
-static void PoketchGraphics_LoadAppCounterPalette(PoketchGraphics_TaskData *taskData, u32 offset)
-{
+static void PoketchGraphics_LoadAppCounterPalette(PoketchGraphics_TaskData *taskData, u32 offset) {
     Poketch *poketch = PoketchSystem_GetPoketchData(taskData->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
@@ -633,8 +601,7 @@ static void PoketchGraphics_LoadAppCounterPalette(PoketchGraphics_TaskData *task
     GXS_LoadOBJPltt(taskData->palette, PLTT_OFFSET(offset), sizeof(taskData->palette));
 }
 
-static void PoketchGraphics_SetAppCounterDigits(PoketchGraphics_AppCounterAnimationData *appCounterAnim, const PoketchGraphics_ConstTaskData *constTaskData)
-{
+static void PoketchGraphics_SetAppCounterDigits(PoketchGraphics_AppCounterAnimationData *appCounterAnim, const PoketchGraphics_ConstTaskData *constTaskData) {
     if (appCounterAnim->animationLoaded) {
         u32 tensDigit, onesDigit;
 
@@ -648,8 +615,7 @@ static void PoketchGraphics_SetAppCounterDigits(PoketchGraphics_AppCounterAnimat
     }
 }
 
-static void PoketchGraphics_UnloadAppCounterAnim(PoketchGraphics_AppCounterAnimationData *appCounterAnim)
-{
+static void PoketchGraphics_UnloadAppCounterAnim(PoketchGraphics_AppCounterAnimationData *appCounterAnim) {
     if (appCounterAnim->animationLoaded) {
         PoketchAnimation_RemoveAnimatedSprite(appCounterAnim->animMan, appCounterAnim->animatedDigits[TENS_DIGIT_IDX]);
         PoketchAnimation_RemoveAnimatedSprite(appCounterAnim->animMan, appCounterAnim->animatedDigits[ONES_DIGIT_IDX]);
@@ -659,8 +625,7 @@ static void PoketchGraphics_UnloadAppCounterAnim(PoketchGraphics_AppCounterAnima
     }
 }
 
-static void PoketchGraphics_UnusedTask_3(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UnusedTask_3(SysTask *task, void *taskMan) {
     u32 state;
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
     PoketchGraphics_ExtraTaskData *extraTaskData = PoketchTask_GetExtraData(taskMan);
@@ -685,8 +650,7 @@ static void PoketchGraphics_UnusedTask_3(SysTask *task, void *taskMan)
     }
 }
 
-static void PoketchGraphics_UnusedTask_4(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_UnusedTask_4(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     Bg_FillTilemapRect(taskData->bgConfig, BG_LAYER_SUB_1, 64, 2, 2, 24, 20, PLTT_15);
@@ -697,8 +661,7 @@ static void PoketchGraphics_UnusedTask_4(SysTask *task, void *taskMan)
     PoketchGraphics_EndTask(taskMan);
 }
 
-static void PoketchGraphics_FreeTilemapBufferTask(SysTask *task, void *taskMan)
-{
+static void PoketchGraphics_FreeTilemapBufferTask(SysTask *task, void *taskMan) {
     PoketchGraphics_TaskData *taskData = PoketchTask_GetTaskData(taskMan);
 
     Bg_FreeTilemapBuffer(taskData->bgConfig, BG_LAYER_SUB_0);

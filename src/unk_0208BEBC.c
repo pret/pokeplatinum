@@ -43,8 +43,7 @@ const ApplicationManagerTemplate Unk_020F3060 = {
     FS_OVERLAY_ID(overlay62)
 };
 
-static int sub_0208BEBC(ApplicationManager *appMan, int *param1, int param2)
-{
+static int sub_0208BEBC(ApplicationManager *appMan, int *param1, int param2) {
     UnkStruct_0208C06C *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_102, 0x55000);
@@ -77,18 +76,15 @@ static int sub_0208BEBC(ApplicationManager *appMan, int *param1, int param2)
     return 1;
 }
 
-static int sub_0208BF38(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BF38(ApplicationManager *appMan, int *param1) {
     return sub_0208BEBC(appMan, param1, 0);
 }
 
-static int sub_0208BF44(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BF44(ApplicationManager *appMan, int *param1) {
     return sub_0208BEBC(appMan, param1, 1);
 }
 
-static int sub_0208BF50(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BF50(ApplicationManager *appMan, int *param1) {
     BOOL v0 = 0;
     UnkStruct_0208C06C *v1 = sub_0208BA78(appMan);
 
@@ -98,8 +94,7 @@ static int sub_0208BF50(ApplicationManager *appMan, int *param1)
     return (v0) ? 1 : 0;
 }
 
-static int sub_0208BF6C(ApplicationManager *appMan, int *param1)
-{
+static int sub_0208BF6C(ApplicationManager *appMan, int *param1) {
     UnkStruct_0208C06C *v0 = sub_0208BA78(appMan);
 
     switch (*param1) {

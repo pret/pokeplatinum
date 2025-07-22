@@ -59,8 +59,7 @@ static const SpriteTemplate Unk_ov104_022417D8[] = {
     },
 };
 
-void ov104_0223D768(SpriteSystem *param0, SpriteManager *param1, NARC *param2, PaletteData *param3, u16 param4)
-{
+void ov104_0223D768(SpriteSystem *param0, SpriteManager *param1, NARC *param2, PaletteData *param3, u16 param4) {
     const SpriteTemplate *v0;
 
     GF_ASSERT(param4 < NELEMS(Unk_ov104_022417D8));
@@ -72,8 +71,7 @@ void ov104_0223D768(SpriteSystem *param0, SpriteManager *param1, NARC *param2, P
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_ANIM], TRUE, v0->resources[SPRITE_RESOURCE_ANIM]);
 }
 
-void ov104_0223D7EC(SpriteManager *param0, u16 param1)
-{
+void ov104_0223D7EC(SpriteManager *param0, u16 param1) {
     const SpriteTemplate *v0;
 
     GF_ASSERT(param1 < NELEMS(Unk_ov104_022417D8));
@@ -85,8 +83,7 @@ void ov104_0223D7EC(SpriteManager *param0, u16 param1)
     SpriteManager_UnloadAnimObjById(param0, v0->resources[3]);
 }
 
-ManagedSprite *ov104_0223D828(SpriteSystem *param0, SpriteManager *param1, u16 param2)
-{
+ManagedSprite *ov104_0223D828(SpriteSystem *param0, SpriteManager *param1, u16 param2) {
     ManagedSprite *v0;
 
     GF_ASSERT(param2 < NELEMS(Unk_ov104_022417D8));
@@ -96,7 +93,6 @@ ManagedSprite *ov104_0223D828(SpriteSystem *param0, SpriteManager *param1, u16 p
     return v0;
 }
 
-void ov104_0223D858(ManagedSprite *param0)
-{
+void ov104_0223D858(ManagedSprite *param0) {
     Sprite_DeleteAndFreeResources(param0);
 }

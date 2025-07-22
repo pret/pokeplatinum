@@ -75,8 +75,7 @@ static const int sEncounterTableIndexes_P_Unused[] = {
     0x7
 };
 
-HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
-{
+HoneyTreeShakeList *HoneyTree_ShakeDataInit(void) {
     HoneyTreeShakeList *data = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(HoneyTreeShakeList));
 
     for (u8 i = 0; i < NUM_HONEY_TREES; i++) {
@@ -87,14 +86,12 @@ HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
     return data;
 }
 
-void HoneyTree_FreeShakeData(HoneyTreeShakeList **data)
-{
+void HoneyTree_FreeShakeData(HoneyTreeShakeList **data) {
     Heap_Free(*data);
     *data = NULL;
 }
 
-BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
-{
+BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId) {
     TerrainCollisionHitbox v0;
     int x, z;
     BOOL isFacingHoneyTree;
@@ -114,8 +111,7 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
     return isFacingHoneyTree;
 }
 
-u16 HoneyTree_GetTreeSlatherStatus(FieldSystem *fieldSystem)
-{
+u16 HoneyTree_GetTreeSlatherStatus(FieldSystem *fieldSystem) {
     u8 treeId;
     PlayerHoneyTreeStates *treeDat;
     HoneyTree *tree;
@@ -135,8 +131,7 @@ u16 HoneyTree_GetTreeSlatherStatus(FieldSystem *fieldSystem)
     }
 }
 
-void HoneyTree_SlatherTree(FieldSystem *fieldSystem)
-{
+void HoneyTree_SlatherTree(FieldSystem *fieldSystem) {
     u8 treeId;
     PlayerHoneyTreeStates *treeDat;
     HoneyTree *tree;
@@ -179,8 +174,7 @@ void HoneyTree_SlatherTree(FieldSystem *fieldSystem)
     SpecialEncounter_SetLastSlatheredTreeId(treeId, treeDat);
 }
 
-void HoneyTree_StopShaking(FieldSystem *fieldSystem)
-{
+void HoneyTree_StopShaking(FieldSystem *fieldSystem) {
     u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
@@ -208,8 +202,7 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
 // Group 0 is no encounter. Group 3 is Munchlax.
 // For munchlax trees the rates are 9/20/70/1.
 // For normal trees the rates are 10/70/20/0.
-static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *group)
-{
+static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *group) {
     int roll = LCRNG_RandMod(100);
 
     if (isMunchlaxTree) {
@@ -234,8 +227,7 @@ static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *group)
 }
 
 // Rates per slot are 40, 20, 20, 10, 5, 5
-static void GetTreeEncounterSlot(u8 *slot)
-{
+static void GetTreeEncounterSlot(u8 *slot) {
     int roll = LCRNG_RandMod(100);
 
     if (roll < 5) {
@@ -254,8 +246,7 @@ static void GetTreeEncounterSlot(u8 *slot)
 }
 
 // Return value is used to read from the encounter table NARC. This is effectively group - 1.
-static const int GetEncounterTableFromGroup(const u8 group)
-{
+static const int GetEncounterTableFromGroup(const u8 group) {
     int table;
 
     if (group == TREE_GROUP_C) {
@@ -269,8 +260,7 @@ static const int GetEncounterTableFromGroup(const u8 group)
     return table;
 }
 
-static const int GetShakesFromGroup(const u8 group)
-{
+static const int GetShakesFromGroup(const u8 group) {
     int numShakes;
     int roll = LCRNG_RandMod(100);
 
@@ -320,8 +310,7 @@ static const int GetShakesFromGroup(const u8 group)
 }
 
 // Related to the Honey Tree shaking animation. Not sure what exactly this value represents. Number of times the anim repeats, maybe?
-static const BOOL GetShakingValue(const int numShakes, u8 *value)
-{
+static const BOOL GetShakingValue(const int numShakes, u8 *value) {
     u8 unused;
     BOOL isShaking = TRUE;
 
@@ -338,8 +327,7 @@ static const BOOL GetShakingValue(const int numShakes, u8 *value)
     return isShaking;
 }
 
-static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *param1, const int param2)
-{
+static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *param1, const int param2) {
     u16 mapId;
     u8 treeId;
 
@@ -383,8 +371,7 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *par
 }
 
 // Returns NUM_HONEY_TREES if map does not have a Honey Tree.
-static u8 GetTreeIdFromMapId(const int mapId)
-{
+static u8 GetTreeIdFromMapId(const int mapId) {
     u8 i;
     for (i = 0; i < NUM_HONEY_TREES; i++) {
         if (mapId == sHoneyTreeMapIds[i]) {
@@ -395,8 +382,7 @@ static u8 GetTreeIdFromMapId(const int mapId)
     return i;
 }
 
-static const BOOL SixHoursSinceSlathered(const int minutesLeft)
-{
+static const BOOL SixHoursSinceSlathered(const int minutesLeft) {
     if ((0 < minutesLeft) && (minutesLeft <= (18 * 60))) {
         return TRUE;
     } else {
@@ -404,8 +390,7 @@ static const BOOL SixHoursSinceSlathered(const int minutesLeft)
     }
 }
 
-static BOOL IsMunchlaxTree(const u32 trainerId, const u8 treeId)
-{
+static BOOL IsMunchlaxTree(const u32 trainerId, const u8 treeId) {
     u8 i, j;
     u8 munchlaxTreeIds[4];
 
@@ -441,8 +426,7 @@ static BOOL IsMunchlaxTree(const u32 trainerId, const u8 treeId)
     return FALSE;
 }
 
-int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
-{
+int HoneyTree_GetSpecies(FieldSystem *fieldSystem) {
     u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
@@ -463,8 +447,7 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     return species;
 }
 
-void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropManager)
-{
+void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropManager) {
     FieldSystem *fieldSystem;
 
     if (param1 < 0) {
@@ -475,8 +458,7 @@ void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropM
     DoTreeShakingAnimation(fieldSystem, mapPropManager, param1);
 }
 
-void HoneyTree_Unslather(FieldSystem *fieldSystem)
-{
+void HoneyTree_Unslather(FieldSystem *fieldSystem) {
     PlayerHoneyTreeStates *treeDat;
     HoneyTree *tree;
     u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);

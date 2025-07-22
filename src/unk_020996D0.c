@@ -721,13 +721,11 @@ static const UnkStruct_020F6FB0 Unk_020F6FB0[] = {
     { 0xDC, 0x11, 0x2B5, Unk_020F6F7C, 0x33 }
 };
 
-u32 sub_020996D0(void)
-{
+u32 sub_020996D0(void) {
     return NELEMS(Unk_020F6FB0);
 }
 
-u32 sub_020996D4(u32 param0)
-{
+u32 sub_020996D4(u32 param0) {
     u32 v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020F6FB0); v0++) {
@@ -739,8 +737,7 @@ u32 sub_020996D4(u32 param0)
     return 0;
 }
 
-u32 sub_020996F4(u32 param0)
-{
+u32 sub_020996F4(u32 param0) {
     u32 v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020F6FB0); v0++) {
@@ -752,38 +749,32 @@ u32 sub_020996F4(u32 param0)
     return 0;
 }
 
-u32 sub_02099720(u32 param0)
-{
+u32 sub_02099720(u32 param0) {
     u32 v0 = sub_020996D4(param0);
     return sub_0209972C(v0);
 }
 
-u32 sub_0209972C(u32 param0)
-{
+u32 sub_0209972C(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_020F6FB0));
     return Unk_020F6FB0[param0].unk_02;
 }
 
-u32 sub_02099748(u32 param0)
-{
+u32 sub_02099748(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_020F6FB0));
     return Unk_020F6FB0[param0].unk_00;
 }
 
-u32 sub_02099764(u32 param0)
-{
+u32 sub_02099764(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_020F6FB0));
     return Unk_020F6FB0[param0].unk_01;
 }
 
-const u8 *sub_02099780(u32 param0)
-{
+const u8 *sub_02099780(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_020F6FB0));
     return Unk_020F6FB0[param0].unk_04;
 }
 
-u32 sub_0209979C(u32 param0)
-{
+u32 sub_0209979C(u32 param0) {
     GF_ASSERT(param0 < NELEMS(Unk_020F6FB0));
     return Unk_020F6FB0[param0].unk_08;
 }

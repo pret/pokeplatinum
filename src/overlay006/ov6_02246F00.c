@@ -24,8 +24,7 @@ typedef struct {
 
 static BOOL ov6_02246F40(FieldTask *param0);
 
-void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
-{
+void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2) {
     BOOL v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_ELEVATOR_LIGHTS, NULL, NULL);
 
     if (v0) {
@@ -41,8 +40,7 @@ void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
     }
 }
 
-static BOOL ov6_02246F40(FieldTask *param0)
-{
+static BOOL ov6_02246F40(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov6_02246F00 *v1 = (UnkStruct_ov6_02246F00 *)FieldTask_GetEnv(param0);
 

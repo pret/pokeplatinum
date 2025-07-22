@@ -14,23 +14,19 @@ static void ClearFlag(VarsFlags *varsFlags, u16 flagID);
 static BOOL CheckFlag(VarsFlags *varsFlags, u16 flagID);
 static BOOL HandleFlag(VarsFlags *varsFlags, enum HandleFlagOp op, u32 flagID);
 
-static void SetFlag(VarsFlags *varsFlags, u16 flagID)
-{
+static void SetFlag(VarsFlags *varsFlags, u16 flagID) {
     VarsFlags_SetFlag(varsFlags, flagID);
 }
 
-static void ClearFlag(VarsFlags *varsFlags, u16 flagID)
-{
+static void ClearFlag(VarsFlags *varsFlags, u16 flagID) {
     VarsFlags_ClearFlag(varsFlags, flagID);
 }
 
-static BOOL CheckFlag(VarsFlags *varsFlags, u16 flagID)
-{
+static BOOL CheckFlag(VarsFlags *varsFlags, u16 flagID) {
     return VarsFlags_CheckFlag(varsFlags, flagID);
 }
 
-static BOOL HandleFlag(VarsFlags *varsFlags, enum HandleFlagOp op, u32 flagID)
-{
+static BOOL HandleFlag(VarsFlags *varsFlags, enum HandleFlagOp op, u32 flagID) {
     switch (op) {
     case HANDLE_FLAG_SET:
         SetFlag(varsFlags, flagID);
@@ -50,103 +46,83 @@ static BOOL HandleFlag(VarsFlags *varsFlags, enum HandleFlagOp op, u32 flagID)
     return FALSE;
 }
 
-void SystemFlag_SetBagAcquired(VarsFlags *varsFlags)
-{
+void SystemFlag_SetBagAcquired(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_BAG_ACQUIRED);
 }
 
-BOOL SystemFlag_CheckBagAcquired(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckBagAcquired(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_BAG_ACQUIRED);
 }
 
-void SystemFlag_SetGameCompleted(VarsFlags *varsFlags)
-{
+void SystemFlag_SetGameCompleted(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_GAME_COMPLETED);
 }
 
-BOOL SystemFlag_CheckGameCompleted(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckGameCompleted(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_GAME_COMPLETED);
 }
 
-void SystemFlag_SetHasPartner(VarsFlags *varsFlags)
-{
+void SystemFlag_SetHasPartner(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_HAS_PARTNER);
 }
 
-void SystemFlag_ClearHasPartner(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearHasPartner(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_HAS_PARTNER);
 }
 
-BOOL SystemFlag_CheckHasPartner(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckHasPartner(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_HAS_PARTNER);
 }
 
-void SystemFlag_SetStep(VarsFlags *varsFlags)
-{
+void SystemFlag_SetStep(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_STEP);
 }
 
-void SystemFlag_ClearStep(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearStep(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_STEP);
 }
 
-BOOL SystemFlag_CheckStep(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckStep(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_STEP);
 }
 
-void SystemFlag_SetVsSeekerUsed(VarsFlags *varsFlags)
-{
+void SystemFlag_SetVsSeekerUsed(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_VS_SEEKER_USED);
 }
 
-void SystemFlag_ClearVsSeekerUsed(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearVsSeekerUsed(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_VS_SEEKER_USED);
 }
 
-BOOL SystemFlag_CheckVsSeekerUsed(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckVsSeekerUsed(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_VS_SEEKER_USED);
 }
 
-void SystemFlag_SetEnteredUnderground(VarsFlags *varsFlags)
-{
+void SystemFlag_SetEnteredUnderground(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_ENTERED_UNDERGROUND);
 }
 
-void SystemFlag_SetDiggingForFossils(VarsFlags *varsFlags)
-{
+void SystemFlag_SetDiggingForFossils(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_DIGGING_FOR_FOSSILS);
 }
 
-void SystemFlag_SetSphereAcquired(VarsFlags *varsFlags)
-{
+void SystemFlag_SetSphereAcquired(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_SPHERE_ACQUIRED);
 }
 
-void SystemFlag_SetCreatedSecretBase(VarsFlags *varsFlags)
-{
+void SystemFlag_SetCreatedSecretBase(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_CREATED_SECRET_BASE);
 }
 
-void SystemFlag_SetDecoratedSecretBase(VarsFlags *varsFlags)
-{
+void SystemFlag_SetDecoratedSecretBase(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_DECORATED_SECRET_BASE);
 }
 
-void SystemFlag_SetDeliveredStolenFlag(VarsFlags *varsFlags)
-{
+void SystemFlag_SetDeliveredStolenFlag(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_DELIVERED_STOLEN_FLAG);
 }
 
-void SystemFlag_SetContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType)
-{
+void SystemFlag_SetContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType) {
     switch (contestType) {
     case CONTEST_TYPE_COOL:
         SetFlag(varsFlags, FLAG_CONTEST_MASTER_COOL);
@@ -170,8 +146,7 @@ void SystemFlag_SetContestMaster(VarsFlags *varsFlags, enum PokemonContestType c
     }
 }
 
-BOOL SystemFlag_CheckContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType)
-{
+BOOL SystemFlag_CheckContestMaster(VarsFlags *varsFlags, enum PokemonContestType contestType) {
     BOOL result;
     switch (contestType) {
     case CONTEST_TYPE_COOL:
@@ -198,8 +173,7 @@ BOOL SystemFlag_CheckContestMaster(VarsFlags *varsFlags, enum PokemonContestType
     return result;
 }
 
-BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level)
-{
+BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level) {
     BOOL result = FALSE;
 
     switch (level) {
@@ -227,8 +201,7 @@ BOOL SystemFlag_CheckUnlockedVsSeekerLevel(VarsFlags *varsFlags, int level)
     return result;
 }
 
-u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHeader)
-{
+u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHeader) {
     u16 sdatID = 0;
     switch (mapHeader) {
     case MAP_HEADER_LAKE_VALOR_DRAINED:
@@ -347,176 +320,142 @@ u16 SystemFlag_GetAltMusicForHeader(VarsFlags *varsFlags, enum MapHeader mapHead
     return sdatID;
 }
 
-void SystemFlag_SetCommunicationClubAccessible(VarsFlags *varsFlags)
-{
+void SystemFlag_SetCommunicationClubAccessible(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_COMMUNICATION_CLUB_ACCESSIBLE);
     return;
 }
 
-void SystemFlag_ClearCommunicationClubAccessible(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearCommunicationClubAccessible(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_COMMUNICATION_CLUB_ACCESSIBLE);
     return;
 }
 
-BOOL SystemFlag_CheckCommunicationClubAccessible(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckCommunicationClubAccessible(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_COMMUNICATION_CLUB_ACCESSIBLE);
 }
 
-BOOL SystemFlag_CheckContestHallVisited(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckContestHallVisited(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_CONTEST_HALL_VISITED);
 }
 
-BOOL SystemFlag_CheckUndergroundFirstEntered(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckUndergroundFirstEntered(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_UNDERGROUND_FIRST_ENTERED);
 }
 
-BOOL SystemFlag_CheckFreedGalacticHQPokemon(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckFreedGalacticHQPokemon(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_FREED_GALACTIC_HQ_POKEMON);
 }
 
-BOOL SystemFlag_CheckMetBebe(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckMetBebe(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_MET_BEBE);
 }
 
-void SystemFlag_SetPoketchHidden(VarsFlags *varsFlags)
-{
+void SystemFlag_SetPoketchHidden(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_POKETCH_HIDDEN);
 }
 
-void SystemFlag_ClearPoketchHidden(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearPoketchHidden(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_POKETCH_HIDDEN);
 }
 
-BOOL SystemFlag_CheckPoketchHidden(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckPoketchHidden(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_POKETCH_HIDDEN);
 }
 
-void SystemFlag_SetSafariGameActive(VarsFlags *varsFlags)
-{
+void SystemFlag_SetSafariGameActive(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_SAFARI_GAME_ACTIVE);
 }
 
-void SystemFlag_ClearSafariGameActive(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearSafariGameActive(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_SAFARI_GAME_ACTIVE);
 }
 
-BOOL SystemFlag_CheckSafariGameActive(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckSafariGameActive(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_SAFARI_GAME_ACTIVE);
 }
 
-void SystemFlag_SetInPalPark(VarsFlags *varsFlags)
-{
+void SystemFlag_SetInPalPark(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_IN_PAL_PARK);
 }
 
-void SystemFlag_ClearInPalPark(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearInPalPark(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_IN_PAL_PARK);
 }
 
-BOOL SystemFlag_CheckInPalPark(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckInPalPark(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_IN_PAL_PARK);
 }
 
-void SystemFlag_CheckOnCyclingRoad(VarsFlags *varsFlags)
-{
+void SystemFlag_CheckOnCyclingRoad(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_ON_CYCLING_ROAD);
 }
 
-BOOL SystemFlag_HandleStrengthActive(VarsFlags *varsFlags, enum HandleFlagOp op)
-{
+BOOL SystemFlag_HandleStrengthActive(VarsFlags *varsFlags, enum HandleFlagOp op) {
     return HandleFlag(varsFlags, op, FLAG_STRENGTH_ACTIVE);
 }
 
-void SystemFlag_SetFlashActive(VarsFlags *varsFlags)
-{
+void SystemFlag_SetFlashActive(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_FLASH_ACTIVE);
 }
 
-void SystemFlag_ClearFlashActive(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearFlashActive(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_FLASH_ACTIVE);
 }
 
-BOOL SystemFlag_CheckFlashActive(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckFlashActive(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_FLASH_ACTIVE);
 }
 
-void SystemFlag_SetDefogActive(VarsFlags *varsFlags)
-{
+void SystemFlag_SetDefogActive(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_DEFOG_ACTIVE);
 }
 
-void SystemFlag_ClearDefogActive(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearDefogActive(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_DEFOG_ACTIVE);
 }
 
-BOOL SystemFlag_CheckDefogActive(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckDefogActive(VarsFlags *varsFlags) {
     return CheckFlag(varsFlags, FLAG_DEFOG_ACTIVE);
 }
 
-BOOL SystemFlag_HandleForceBikingInGate(VarsFlags *varsFlags, enum HandleFlagOp op)
-{
+BOOL SystemFlag_HandleForceBikingInGate(VarsFlags *varsFlags, enum HandleFlagOp op) {
     return HandleFlag(varsFlags, op, FLAG_FORCE_BIKING_IN_GATE);
 }
 
-BOOL SystemFlag_HandleJournalAcquired(VarsFlags *varsFlags, enum HandleFlagOp op)
-{
+BOOL SystemFlag_HandleJournalAcquired(VarsFlags *varsFlags, enum HandleFlagOp op) {
     return HandleFlag(varsFlags, op, FLAG_JOURNAL_ACQUIRED);
 }
 
-BOOL SystemFlag_HandleFirstArrivalToZone(VarsFlags *varsFlags, enum HandleFlagOp op, u32 firstArrival)
-{
+BOOL SystemFlag_HandleFirstArrivalToZone(VarsFlags *varsFlags, enum HandleFlagOp op, u32 firstArrival) {
     GF_ASSERT(firstArrival < FIRST_ARRIVAL_MAX);
     return HandleFlag(varsFlags, op, SYSTEM_FLAGS_FIRST_ARRIVAL_TO_ZONE + firstArrival);
 }
 
-void SystemFlag_SetConnectedToWiFi(VarsFlags *varsFlags)
-{
+void SystemFlag_SetConnectedToWiFi(VarsFlags *varsFlags) {
     SetFlag(varsFlags, FLAG_CONNECTED_TO_WIFI);
 }
 
-BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurniture furniture)
-{
+BOOL SystemFlag_HandleOwnsVillaFurniture(VarsFlags *varsFlags, enum HandleFlagOp op, enum VillaFurniture furniture) {
     GF_ASSERT(furniture < VILLA_FURNITURE_MAX);
     return HandleFlag(varsFlags, op, FLAG_VILLA_FURNITURE_START + furniture);
 }
 
-void SystemFlag_ClearVillaVisitorInside(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearVillaVisitorInside(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_VILLA_VISITOR_INSIDE);
 }
 
-void SystemFlag_ClearVillaVisitorOutside(VarsFlags *varsFlags)
-{
+void SystemFlag_ClearVillaVisitorOutside(VarsFlags *varsFlags) {
     ClearFlag(varsFlags, FLAG_VILLA_VISITOR_OUTSIDE);
 }
 
-BOOL SystemFlag_HandleGiratinaAnimation(VarsFlags *varsFlags, enum HandleFlagOp op, enum GiratinaShadowAnimation anim)
-{
+BOOL SystemFlag_HandleGiratinaAnimation(VarsFlags *varsFlags, enum HandleFlagOp op, enum GiratinaShadowAnimation anim) {
     return HandleFlag(varsFlags, op, FLAG_DISTORTION_WORLD_GIRATINA_SHADOW_1 + anim);
 }
 
-BOOL SystemFlag_HandleDistortionWorldPuzzleFinished(VarsFlags *varsFlags, enum HandleFlagOp op)
-{
+BOOL SystemFlag_HandleDistortionWorldPuzzleFinished(VarsFlags *varsFlags, enum HandleFlagOp op) {
     return HandleFlag(varsFlags, op, FLAG_DISTORTION_WORLD_PUZZLE_FINISHED);
 }
 
-BOOL SystemFlag_CheckDistortionWorldSteppingStones(VarsFlags *varsFlags)
-{
+BOOL SystemFlag_CheckDistortionWorldSteppingStones(VarsFlags *varsFlags) {
     return HandleFlag(varsFlags, HANDLE_FLAG_CHECK, FLAG_DISTORTION_WORLD_STEPPING_STONES);
 }

@@ -1357,8 +1357,7 @@ static const UnkStruct_ov104_0224033C Unk_ov104_0224033C[10] = {
     { 0x0, 0x1A, 0x0 }
 };
 
-void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[])
-{
+void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[]) {
     int v0;
     u16 v1;
     u8 v2, v3;
@@ -1382,8 +1381,7 @@ void ov104_0223AF58(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[])
     return;
 }
 
-void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[])
-{
+void ov104_0223AFB4(u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16 param5[]) {
     int v0, v1, v2, v3, v4;
     u16 v5, v6;
     u8 v7, v8;
@@ -1467,8 +1465,7 @@ static const UnkStruct_ov104_02240364 Unk_ov104_0224032C[] = {
     { 0x178, 0x1DD }
 };
 
-void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6)
-{
+void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 param5[], u8 param6) {
     const UnkStruct_ov104_02240364 *v0;
     u8 v1, v2, v3;
     u16 v4, v5, v6, v7, v8, v9;
@@ -1561,8 +1558,7 @@ void ov104_0223B0C8(u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16 
     return;
 }
 
-FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1)
-{
+FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104_02230BE4 *param1) {
     int v1;
     u8 v7;
     Pokemon *v9;
@@ -1658,8 +1654,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     return v8;
 }
 
-static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
-{
+static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1) {
     if (param0->unk_290[param1].personality > ((24 + 1) * 10001)) {
         param0->unk_290[param1].personality -= ((24 + 1) * 10001);
     } else {
@@ -1669,8 +1664,7 @@ static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     return Pokemon_IsPersonalityShiny(param0->unk_290[param1].otID, param0->unk_290[param1].personality);
 }
 
-static u32 ov104_0223B4D4(u8 param0)
-{
+static u32 ov104_0223B4D4(u8 param0) {
     switch (param0) {
     case 0:
         return (0x0 | 0x1) | 0x80;
@@ -1685,8 +1679,7 @@ static u32 ov104_0223B4D4(u8 param0)
     return (0x0 | 0x1) | 0x80;
 }
 
-u8 ov104_0223B500(u8 param0)
-{
+u8 ov104_0223B500(u8 param0) {
     switch (param0) {
     case 1:
         return 2;
@@ -1695,8 +1688,7 @@ u8 ov104_0223B500(u8 param0)
     return 1;
 }
 
-u8 ov104_0223B50C(u8 param0)
-{
+u8 ov104_0223B50C(u8 param0) {
     switch (param0) {
     case 1:
         return 2;
@@ -1705,8 +1697,7 @@ u8 ov104_0223B50C(u8 param0)
     return 1;
 }
 
-static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6)
-{
+static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6) {
     int v0;
     u32 v1;
     u8 v2;
@@ -1727,8 +1718,7 @@ static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2
     return;
 }
 
-static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
-{
+static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1) {
     u8 v0;
     u32 v1;
 
@@ -1766,13 +1756,11 @@ static const u8 Unk_ov104_02241244[20] = {
     0x9
 };
 
-u8 ov104_0223B5A4(u8 param0)
-{
+u8 ov104_0223B5A4(u8 param0) {
     return Unk_ov104_02241244[param0];
 }
 
-BOOL ov104_0223B5B0(u8 param0)
-{
+BOOL ov104_0223B5B0(u8 param0) {
     switch (param0) {
     case 2:
     case 3:
@@ -1782,8 +1770,7 @@ BOOL ov104_0223B5B0(u8 param0)
     return 0;
 }
 
-u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
-{
+u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0) {
     u32 v0;
     int v1;
     Party *v2 = SaveData_GetParty(param0->saveData);
@@ -1793,13 +1780,11 @@ u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
     return v1 / 10;
 }
 
-static u8 ov104_0223B5F0(u8 param0)
-{
+static u8 ov104_0223B5F0(u8 param0) {
     return Unk_ov104_0224033C[ov104_0223B644(param0)].unk_01;
 }
 
-static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2)
-{
+static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2) {
     u8 v0;
     u16 v1;
 
@@ -1826,8 +1811,7 @@ static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2
     return v1;
 }
 
-static u16 ov104_0223B644(u8 param0)
-{
+static u16 ov104_0223B644(u8 param0) {
     u8 v0 = param0;
 
     if (v0 >= 10) {
@@ -1837,8 +1821,7 @@ static u16 ov104_0223B644(u8 param0)
     return v0;
 }
 
-u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
-{
+u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0) {
     Party *v0;
     Pokemon *v1;
     u16 v2, v3;
@@ -1869,7 +1852,6 @@ u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
     return v2;
 }
 
-fx32 ov104_0223B6C4(u32 param0)
-{
+fx32 ov104_0223B6C4(u32 param0) {
     return FX_Sqrt(FX32_CONST(param0));
 }

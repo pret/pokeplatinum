@@ -30,8 +30,7 @@ typedef struct {
 
 static void ov66_0222DDDC(SysTask *param0, void *param1);
 
-int ov66_0222DCE0(ApplicationManager *appMan, int *param1)
-{
+int ov66_0222DCE0(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov66_0222DD90 *v0;
     UnkStruct_ov66_0222DCE0 *v1;
 
@@ -63,8 +62,7 @@ int ov66_0222DCE0(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov66_0222DD6C(ApplicationManager *appMan, int *param1)
-{
+int ov66_0222DD6C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov66_0222DD90 *v0;
     int v1;
 
@@ -80,8 +78,7 @@ int ov66_0222DD6C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov66_0222DD90(ApplicationManager *appMan, int *param1)
-{
+int ov66_0222DD90(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov66_0222DD90 *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_0C);
@@ -104,8 +101,7 @@ int ov66_0222DD90(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov66_0222DDDC(SysTask *param0, void *param1)
-{
+static void ov66_0222DDDC(SysTask *param0, void *param1) {
     UnkStruct_ov66_0222DD90 *v0 = param1;
 
     ov66_02230CE8(v0->unk_08);

@@ -12,16 +12,14 @@ static void HBlankSystem_HBlankCallback(void *param);
 static void HBlankTask_DummyCallback(HBlankTask *task, void *param);
 static HBlankTask *HBlankSystem_GetAvailableTask(HBlankSystem *hBlankSystem);
 
-HBlankSystem *HBlankSystem_New(enum HeapId heapID)
-{
+HBlankSystem *HBlankSystem_New(enum HeapId heapID) {
     HBlankSystem *hBlankSystem = Heap_AllocFromHeap(heapID, sizeof(HBlankSystem));
     HBlankSystem_Init(hBlankSystem);
 
     return hBlankSystem;
 }
 
-void HBlankSystem_Delete(HBlankSystem *hBlankSystem)
-{
+void HBlankSystem_Delete(HBlankSystem *hBlankSystem) {
     if (hBlankSystem == NULL) {
         return;
     }
@@ -34,24 +32,21 @@ void HBlankSystem_Delete(HBlankSystem *hBlankSystem)
     Heap_Free(hBlankSystem);
 }
 
-void HBlankSystem_Start(HBlankSystem *hBlankSystem)
-{
+void HBlankSystem_Start(HBlankSystem *hBlankSystem) {
     BOOL result = SetHBlankCallback(HBlankSystem_HBlankCallback, hBlankSystem);
     GF_ASSERT(result == TRUE);
 
     hBlankSystem->active = TRUE;
 }
 
-void HBlankSystem_Stop(HBlankSystem *hBlankSystem)
-{
+void HBlankSystem_Stop(HBlankSystem *hBlankSystem) {
     BOOL result = SetHBlankCallback(NULL, NULL);
     GF_ASSERT(result == TRUE);
 
     hBlankSystem->active = FALSE;
 }
 
-HBlankTask *HBlankSystem_StartTask(HBlankSystem *hBlankSystem, HBlankCallback callback, void *param)
-{
+HBlankTask *HBlankSystem_StartTask(HBlankSystem *hBlankSystem, HBlankCallback callback, void *param) {
     HBlankTask *task = HBlankSystem_GetAvailableTask(hBlankSystem);
     GF_ASSERT(task);
 
@@ -64,13 +59,11 @@ HBlankTask *HBlankSystem_StartTask(HBlankSystem *hBlankSystem, HBlankCallback ca
     return task;
 }
 
-void HBlankTask_Delete(HBlankTask *task)
-{
+void HBlankTask_Delete(HBlankTask *task) {
     HBlankTask_Init(task);
 }
 
-static void HBlankSystem_Init(HBlankSystem *hBlankSystem)
-{
+static void HBlankSystem_Init(HBlankSystem *hBlankSystem) {
     memset(hBlankSystem, 0, sizeof(HBlankSystem));
     hBlankSystem->active = FALSE;
 
@@ -79,15 +72,13 @@ static void HBlankSystem_Init(HBlankSystem *hBlankSystem)
     }
 }
 
-static void HBlankTask_Init(HBlankTask *task)
-{
+static void HBlankTask_Init(HBlankTask *task) {
     task->used = FALSE;
     task->callback = HBlankTask_DummyCallback;
     task->param = NULL;
 }
 
-static void HBlankSystem_HBlankCallback(void *param)
-{
+static void HBlankSystem_HBlankCallback(void *param) {
     HBlankSystem *hBlankSystem = param;
 
     for (int i = 0; i < MAX_HBLANK_TASKS; i++) {
@@ -95,12 +86,10 @@ static void HBlankSystem_HBlankCallback(void *param)
     }
 }
 
-static void HBlankTask_DummyCallback(HBlankTask *task, void *param)
-{
+static void HBlankTask_DummyCallback(HBlankTask *task, void *param) {
 }
 
-static HBlankTask *HBlankSystem_GetAvailableTask(HBlankSystem *hBlankSystem)
-{
+static HBlankTask *HBlankSystem_GetAvailableTask(HBlankSystem *hBlankSystem) {
     for (int i = 0; i < MAX_HBLANK_TASKS; i++) {
         if (hBlankSystem->tasks[i].used == FALSE) {
             return &hBlankSystem->tasks[i];

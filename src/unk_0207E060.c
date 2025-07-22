@@ -10,8 +10,7 @@
 #include "heap.h"
 #include "trainer_info.h"
 
-UnkStruct_0207E060 *sub_0207E060(const TrainerInfo *info, u32 heapID)
-{
+UnkStruct_0207E060 *sub_0207E060(const TrainerInfo *info, u32 heapID) {
     UnkStruct_0207E060 *v0;
     BOOL v1;
 
@@ -30,7 +29,6 @@ UnkStruct_0207E060 *sub_0207E060(const TrainerInfo *info, u32 heapID)
     return v0;
 }
 
-void sub_0207E0B0(UnkStruct_0207E060 *param0)
-{
+void sub_0207E0B0(UnkStruct_0207E060 *param0) {
     Heap_Free(param0);
 }

@@ -25,8 +25,7 @@ typedef struct {
     SysTask *unk_14;
 } UnkStruct_0207064C;
 
-void *sub_0207064C(u32 heapID, FieldSystem *fieldSystem, Pokemon *param2, u16 param3, s16 param4, s16 param5)
-{
+void *sub_0207064C(u32 heapID, FieldSystem *fieldSystem, Pokemon *param2, u16 param3, s16 param4, s16 param5) {
     UnkStruct_0207064C *v0 = Heap_AllocFromHeapAtEnd(heapID, (sizeof(UnkStruct_0207064C)));
 
     memset(v0, 0, (sizeof(UnkStruct_0207064C)));
@@ -40,8 +39,7 @@ void *sub_0207064C(u32 heapID, FieldSystem *fieldSystem, Pokemon *param2, u16 pa
     return v0;
 }
 
-BOOL sub_02070680(FieldTask *param0)
-{
+BOOL sub_02070680(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0207064C *v1 = FieldTask_GetEnv(param0);
 

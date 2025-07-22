@@ -23,8 +23,7 @@ static int XYToValue(u8 *pokedexFieldMap, int y, int x, int mapHeight, int mapWi
 static void FindNeighboringFields(u8 *pokedexFieldMap, int *neighbors, int y, int x, int mapHeight, int mapWidth);
 static int GetNeighborType(int neighbors);
 
-void PokedexFieldMap_DisplayFields(Window *window, u8 *src, u16 fieldWidth, u16 fieldHeight, u8 mapSize, u8 *pokedexFieldMap, u8 mapHeight, u8 mapWidth, u16 yOffset, u16 xOffset)
-{
+void PokedexFieldMap_DisplayFields(Window *window, u8 *src, u16 fieldWidth, u16 fieldHeight, u8 mapSize, u8 *pokedexFieldMap, u8 mapHeight, u8 mapWidth, u16 yOffset, u16 xOffset) {
     for (int x = 0; x < mapWidth; x++) {
         for (int y = 0; y < mapHeight; y++) {
             DisplayOnWindow(window, src, fieldWidth, fieldHeight, mapSize, pokedexFieldMap[(x * mapWidth) + y], yOffset + (y * mapSize), xOffset + (x * mapSize));
@@ -32,8 +31,7 @@ void PokedexFieldMap_DisplayFields(Window *window, u8 *src, u16 fieldWidth, u16 
     }
 }
 
-void PokedexFieldMap_SmoothFields(u8 *pokedexFieldMap, u8 mapHeight, u8 mapWidth)
-{
+void PokedexFieldMap_SmoothFields(u8 *pokedexFieldMap, u8 mapHeight, u8 mapWidth) {
     for (int x = 0; x < mapWidth; x++) {
         for (int y = 0; y < mapHeight; y++) {
             PopulateMapAtXY(pokedexFieldMap, y, x, mapHeight, mapWidth);
@@ -41,8 +39,7 @@ void PokedexFieldMap_SmoothFields(u8 *pokedexFieldMap, u8 mapHeight, u8 mapWidth
     }
 }
 
-static void DisplayOnWindow(Window *window, u8 *src, u16 fieldWidth, u16 fieldHeight, int mapSize, int fieldType, u8 y, u8 x)
-{
+static void DisplayOnWindow(Window *window, u8 *src, u16 fieldWidth, u16 fieldHeight, int mapSize, int fieldType, u8 y, u8 x) {
     if (fieldType != 0) {
         int srcX = fieldType * mapSize;
         int srcY = srcX / fieldWidth;
@@ -52,8 +49,7 @@ static void DisplayOnWindow(Window *window, u8 *src, u16 fieldWidth, u16 fieldHe
     }
 }
 
-static void PopulateMapAtXY(u8 *pokedexFieldMap, int y, int x, int mapHeight, int mapWidth)
-{
+static void PopulateMapAtXY(u8 *pokedexFieldMap, int y, int x, int mapHeight, int mapWidth) {
     int neighbors;
     int fieldType;
 
@@ -65,8 +61,7 @@ static void PopulateMapAtXY(u8 *pokedexFieldMap, int y, int x, int mapHeight, in
     }
 }
 
-static int XYToValue(u8 *pokedexFieldMap, int y, int x, int mapHeight, int mapWidth)
-{
+static int XYToValue(u8 *pokedexFieldMap, int y, int x, int mapHeight, int mapWidth) {
     if ((y < 0) || (y >= mapHeight)) {
         return -1;
     }
@@ -78,8 +73,7 @@ static int XYToValue(u8 *pokedexFieldMap, int y, int x, int mapHeight, int mapWi
     return pokedexFieldMap[(x * mapHeight) + y];
 }
 
-static void FindNeighboringFields(u8 *pokedexFieldMap, int *neighbors, int y, int x, int mapHeight, int mapWidth)
-{
+static void FindNeighboringFields(u8 *pokedexFieldMap, int *neighbors, int y, int x, int mapHeight, int mapWidth) {
     *neighbors = FN_ALONE; // binary storage of fields (NE)(SE)(NW)(SW)(N)(S)(E)(W)
     // only records intercardinal directions if adjacent cardinals are both empty
 
@@ -124,8 +118,7 @@ static void FindNeighboringFields(u8 *pokedexFieldMap, int *neighbors, int y, in
     }
 }
 
-static int GetNeighborType(int neighbors)
-{
+static int GetNeighborType(int neighbors) {
     int fieldType;
 
     switch (neighbors) {

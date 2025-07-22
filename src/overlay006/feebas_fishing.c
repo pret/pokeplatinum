@@ -14,8 +14,7 @@
 
 // Calculates if the player is facing a Feebas tile, but exits early 50% of the time
 // to simulate Feebas having a 50% encounter rate.
-BOOL PlayerAvatar_IsFacingFeebasTile(FieldSystem *fieldSystem)
-{
+BOOL PlayerAvatar_IsFacingFeebasTile(FieldSystem *fieldSystem) {
     u8 i;
     int numFishingtiles;
     int groupSize;
@@ -96,15 +95,13 @@ BOOL PlayerAvatar_IsFacingFeebasTile(FieldSystem *fieldSystem)
     return isFeebasTile;
 }
 
-void LoadFeebasLevelRange(u8 *maxLevel, u8 *minLevel)
-{
+void LoadFeebasLevelRange(u8 *maxLevel, u8 *minLevel) {
     (*maxLevel) = 20;
     (*minLevel) = 10;
 }
 
 // I guess they didn't want to hardcode this...for some reason...
-void LoadFeebasFromNARC(int *species)
-{
+void LoadFeebasFromNARC(int *species) {
     int *narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, HEAP_ID_FIELD);
     (*species) = (*narcData);
 

@@ -219,8 +219,7 @@ static const int Unk_ov13_0222925C[2] = {
     0x48
 };
 
-void ov13_02224500(BattleParty *param0)
-{
+void ov13_02224500(BattleParty *param0) {
     ov13_0222453C(param0);
     ov13_02224588(param0);
     ov13_02224670(param0);
@@ -232,8 +231,7 @@ void ov13_02224500(BattleParty *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov13_0222453C(BattleParty *param0)
-{
+static void ov13_0222453C(BattleParty *param0) {
     SpriteResourceCapacities v0 = { 18, 6, 6, 6, 0, 0 };
     SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
@@ -243,8 +241,7 @@ static void ov13_0222453C(BattleParty *param0)
     SpriteSystem_InitManagerWithCapacities(v1, param0->spriteMan, &v0);
 }
 
-static void ov13_02224588(BattleParty *param0)
-{
+static void ov13_02224588(BattleParty *param0) {
     SpriteSystem *v0;
     u32 v1;
     NARC *v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->context->heapID);
@@ -265,8 +262,7 @@ static void ov13_02224588(BattleParty *param0)
     NARC_dtor(v2);
 }
 
-static void ov13_02224670(BattleParty *param0)
-{
+static void ov13_02224670(BattleParty *param0) {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->context->heapID);
 
@@ -277,8 +273,7 @@ static void ov13_02224670(BattleParty *param0)
     NARC_dtor(v1);
 }
 
-static void ov13_02224720(BattleParty *param0)
-{
+static void ov13_02224720(BattleParty *param0) {
     SpriteSystem *spriteSys;
     u32 v1;
     spriteSys = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
@@ -293,8 +288,7 @@ static void ov13_02224720(BattleParty *param0)
     CategoryIcon_LoadChar(spriteSys, param0->spriteMan, NNS_G2D_VRAM_TYPE_2DSUB, CLASS_PHYSICAL, 45077);
 }
 
-static void ov13_02224798(BattleParty *param0)
-{
+static void ov13_02224798(BattleParty *param0) {
     SpriteSystem *v0;
     u32 v1;
     NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->context->heapID);
@@ -307,8 +301,7 @@ static void ov13_02224798(BattleParty *param0)
     NARC_dtor(v2);
 }
 
-static void ov13_02224848(BattleParty *param0)
-{
+static void ov13_02224848(BattleParty *param0) {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     SpriteSystem_LoadPaletteBuffer(param0->palette, PLTTBUF_SUB_OBJ, v0, param0->spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 27, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
@@ -317,8 +310,7 @@ static void ov13_02224848(BattleParty *param0)
     SpriteSystem_LoadCharResObj(v0, param0->spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 26, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45079);
 }
 
-static ManagedSprite *ov13_022248D8(BattleParty *param0, u32 param1)
-{
+static ManagedSprite *ov13_022248D8(BattleParty *param0, u32 param1) {
     SpriteTemplate v0;
     SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
@@ -339,8 +331,7 @@ static ManagedSprite *ov13_022248D8(BattleParty *param0, u32 param1)
     return SpriteSystem_NewSprite(v1, param0->spriteMan, &v0);
 }
 
-static void ov13_02224948(BattleParty *param0)
-{
+static void ov13_02224948(BattleParty *param0) {
     u32 v0;
 
     for (v0 = 0; v0 < 38; v0++) {
@@ -350,8 +341,7 @@ static void ov13_02224948(BattleParty *param0)
     ov13_022249CC(param0);
 }
 
-void ov13_02224970(BattleParty *param0)
-{
+void ov13_02224970(BattleParty *param0) {
     SpriteSystem *v0;
     u32 v1;
 
@@ -365,14 +355,12 @@ void ov13_02224970(BattleParty *param0)
     SpriteSystem_FreeResourcesAndManager(v0, param0->spriteMan);
 }
 
-static void ov13_022249AC(ManagedSprite *param0, const int param1, const int param2)
-{
+static void ov13_022249AC(ManagedSprite *param0, const int param1, const int param2) {
     ManagedSprite_SetDrawFlag(param0, 1);
     ManagedSprite_SetPositionXY(param0, param1, param2);
 }
 
-static void ov13_022249CC(BattleParty *param0)
-{
+static void ov13_022249CC(BattleParty *param0) {
     s32 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -384,24 +372,21 @@ static void ov13_022249CC(BattleParty *param0)
     }
 }
 
-static void ov13_02224A0C(BattleParty *param0, ManagedSprite *param1, u32 param2, u8 moveType)
-{
+static void ov13_02224A0C(BattleParty *param0, ManagedSprite *param1, u32 param2, u8 moveType) {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     SpriteSystem_ReplaceCharResObj(v0, param0->spriteMan, TypeIcon_GetNARC(), TypeIcon_GetChar(moveType), 1, param2);
     ManagedSprite_SetExplicitPalette(param1, TypeIcon_GetPltt(moveType) + 4);
 }
 
-static void ov13_02224A5C(BattleParty *param0, ManagedSprite *param1, u32 param2)
-{
+static void ov13_02224A5C(BattleParty *param0, ManagedSprite *param1, u32 param2) {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(param0->context->battleSystem);
 
     SpriteSystem_ReplaceCharResObj(v0, param0->spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(param2), 1, 45077);
     ManagedSprite_SetExplicitPalette(param1, CategoryIcon_GetPltt(param2) + 4);
 }
 
-static void ov13_02224AB0(u16 param0, ManagedSprite *param1, const int param2, const int param3)
-{
+static void ov13_02224AB0(u16 param0, ManagedSprite *param1, const int param2, const int param3) {
     if (param0 == 7) {
         return;
     }
@@ -410,8 +395,7 @@ static void ov13_02224AB0(u16 param0, ManagedSprite *param1, const int param2, c
     ov13_022249AC(param1, param2, param3);
 }
 
-static void ov13_02224AD4(BattleParty *param0, BattlePartyPokemon *param1, const int *param2)
-{
+static void ov13_02224AD4(BattleParty *param0, BattlePartyPokemon *param1, const int *param2) {
     ov13_02224A0C(param0, param0->unk_1FB4[19], 45070, param1->type_1);
     ov13_022249AC(param0->unk_1FB4[19], param2[0], param2[1]);
 
@@ -421,8 +405,7 @@ static void ov13_02224AD4(BattleParty *param0, BattlePartyPokemon *param1, const
     }
 }
 
-static void ov13_02224B28(u16 param0, ManagedSprite *param1, const int param2, const int param3)
-{
+static void ov13_02224B28(u16 param0, ManagedSprite *param1, const int param2, const int param3) {
     if (param0 == 0) {
         return;
     }
@@ -436,8 +419,7 @@ static void ov13_02224B28(u16 param0, ManagedSprite *param1, const int param2, c
     ov13_022249AC(param1, param2, param3);
 }
 
-static void ov13_02224B5C(u8 param0, ManagedSprite *param1, const int param2, const int param3)
-{
+static void ov13_02224B5C(u8 param0, ManagedSprite *param1, const int param2, const int param3) {
     if (param0 == 0) {
         return;
     }
@@ -446,8 +428,7 @@ static void ov13_02224B5C(u8 param0, ManagedSprite *param1, const int param2, co
     ov13_022249AC(param1, param2, param3);
 }
 
-void ov13_02224B7C(BattleParty *param0, u32 param1)
-{
+void ov13_02224B7C(BattleParty *param0, u32 param1) {
     u32 v0;
 
     for (v0 = 0; v0 < 38; v0++) {
@@ -488,8 +469,7 @@ void ov13_02224B7C(BattleParty *param0, u32 param1)
     }
 }
 
-static void ov13_02224C14(BattleParty *param0)
-{
+static void ov13_02224C14(BattleParty *param0) {
     s32 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -504,8 +484,7 @@ static void ov13_02224C14(BattleParty *param0)
     }
 }
 
-static void ov13_02224CB0(BattleParty *param0)
-{
+static void ov13_02224CB0(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u16 v1;
 
@@ -516,8 +495,7 @@ static void ov13_02224CB0(BattleParty *param0)
     ov13_02224B5C(v0->mail, param0->unk_1FB4[32 + param0->context->selectedPartyIndex], Unk_ov13_0222921C[0] + 16, Unk_ov13_0222921C[1] + 8);
 }
 
-static void ov13_02224D08(BattleParty *param0)
-{
+static void ov13_02224D08(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u16 v1;
 
@@ -531,8 +509,7 @@ static void ov13_02224D08(BattleParty *param0)
     ov13_02224B28(v0->heldItem, param0->unk_1FB4[6], 20, 132);
 }
 
-static void ov13_02224DA0(BattleParty *param0)
-{
+static void ov13_02224DA0(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u32 v1;
 
@@ -554,8 +531,7 @@ static void ov13_02224DA0(BattleParty *param0)
     }
 }
 
-static void ov13_02224E78(BattleParty *param0)
-{
+static void ov13_02224E78(BattleParty *param0) {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param0->context->selectedPartyIndex];
 
     ov13_022249AC(param0->unk_1FB4[7 + param0->context->selectedPartyIndex], Unk_ov13_02229264[0], Unk_ov13_02229264[1]);
@@ -568,8 +544,7 @@ static void ov13_02224E78(BattleParty *param0)
     ov13_022249AC(param0->unk_1FB4[26], Unk_ov13_02229214[0], Unk_ov13_02229214[1]);
 }
 
-static void ov13_02224F3C(BattleParty *param0)
-{
+static void ov13_02224F3C(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u16 v1;
 
@@ -582,8 +557,7 @@ static void ov13_02224F3C(BattleParty *param0)
     ov13_022252E8(param0);
 }
 
-static void ov13_02224FA8(BattleParty *param0)
-{
+static void ov13_02224FA8(BattleParty *param0) {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param0->context->selectedPartyIndex];
 
     ov13_022249AC(param0->unk_1FB4[7 + param0->context->selectedPartyIndex], Unk_ov13_0222927C[0], Unk_ov13_0222927C[1]);
@@ -601,8 +575,7 @@ static void ov13_02224FA8(BattleParty *param0)
     ov13_022249AC(param0->unk_1FB4[26], Unk_ov13_02229274[0], Unk_ov13_02229274[1]);
 }
 
-static void ov13_0222506C(BattleParty *param0)
-{
+static void ov13_0222506C(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u16 v1;
 
@@ -615,8 +588,7 @@ static void ov13_0222506C(BattleParty *param0)
     ov13_022252E8(param0);
 }
 
-static void ov13_022250D8(BattleParty *param0)
-{
+static void ov13_022250D8(BattleParty *param0) {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param0->context->selectedPartyIndex];
 
     ov13_022249AC(param0->unk_1FB4[7 + param0->context->selectedPartyIndex], Unk_ov13_0222927C[0], Unk_ov13_0222927C[1]);
@@ -626,8 +598,7 @@ static void ov13_022250D8(BattleParty *param0)
     ov13_02225420(param0);
 }
 
-static void ov13_02225150(BattleParty *param0)
-{
+static void ov13_02225150(BattleParty *param0) {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param0->context->selectedPartyIndex];
 
     ov13_022249AC(param0->unk_1FB4[7 + param0->context->selectedPartyIndex], Unk_ov13_0222927C[0], Unk_ov13_0222927C[1]);
@@ -637,8 +608,7 @@ static void ov13_02225150(BattleParty *param0)
     ov13_02225420(param0);
 }
 
-static void ov13_022251B4(BattleParty *param0)
-{
+static void ov13_022251B4(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u16 v1;
 
@@ -659,8 +629,7 @@ static void ov13_022251B4(BattleParty *param0)
     }
 }
 
-static void ov13_02225248(BattleParty *param0)
-{
+static void ov13_02225248(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u16 v1;
 
@@ -681,8 +650,7 @@ static void ov13_02225248(BattleParty *param0)
     }
 }
 
-void ov13_022252E8(BattleParty *param0)
-{
+void ov13_022252E8(BattleParty *param0) {
     if (param0->displayingContestStats == 0) {
         ov13_022251B4(param0);
     } else {
@@ -690,8 +658,7 @@ void ov13_022252E8(BattleParty *param0)
     }
 }
 
-static void ov13_02225304(ManagedSprite *param0, u8 param1)
-{
+static void ov13_02225304(ManagedSprite *param0, u8 param1) {
     if (ManagedSprite_GetActiveAnim(param0) == param1) {
         return;
     }
@@ -700,8 +667,7 @@ static void ov13_02225304(ManagedSprite *param0, u8 param1)
     ManagedSprite_SetAnim(param0, param1);
 }
 
-static u8 PartyScreen_GetHealthBarColor(BattlePartyPokemon *param0)
-{
+static u8 PartyScreen_GetHealthBarColor(BattlePartyPokemon *param0) {
     if (param0->curHP == 0) {
         return BARCOLOR_EMPTY;
     }
@@ -724,8 +690,7 @@ static u8 PartyScreen_GetHealthBarColor(BattlePartyPokemon *param0)
     return BARCOLOR_EMPTY;
 }
 
-void ov13_0222537C(BattleParty *param0)
-{
+void ov13_0222537C(BattleParty *param0) {
     u16 v0;
     u16 v1;
 
@@ -741,8 +706,7 @@ void ov13_0222537C(BattleParty *param0)
     }
 }
 
-static s16 ov13_022253DC(u32 param0, s16 param1, s16 param2)
-{
+static s16 ov13_022253DC(u32 param0, s16 param1, s16 param2) {
     u32 v0;
 
     param0 += 44;
@@ -760,8 +724,7 @@ static s16 ov13_022253DC(u32 param0, s16 param1, s16 param2)
     return param2 + (s16)v0;
 }
 
-static void ov13_02225420(BattleParty *param0)
-{
+static void ov13_02225420(BattleParty *param0) {
     BattlePartyPokemon *v0;
     u16 v1;
 
@@ -780,8 +743,7 @@ static void ov13_02225420(BattleParty *param0)
     ov13_022249AC(param0->unk_1FB4[31], ov13_022253DC(v0->tough, 123, 143), ov13_022253DC(v0->tough, 16, 24));
 }
 
-static void ov13_0222554C(BattleParty *param0)
-{
+static void ov13_0222554C(BattleParty *param0) {
     SpriteSystem *v0;
     UnkStruct_ov16_0226DC24 *v1;
 
@@ -792,8 +754,7 @@ static void ov13_0222554C(BattleParty *param0)
     SetBattleSubMenuCursorSprites(param0->cursor, v1);
 }
 
-static void ov13_022255B8(BattleParty *param0)
-{
+static void ov13_022255B8(BattleParty *param0) {
     ov16_0226DCA8(GetBattleSubMenuCursorSprites(param0->cursor));
     ov16_0226DBFC(param0->spriteMan, 45080, 45068, 45068, 45068);
 }
@@ -878,8 +839,7 @@ static const GridMenuCursorPosition *const Unk_ov13_0222938C[] = {
     Unk_ov13_022292D4
 };
 
-static void ov13_022255EC(BattleParty *param0)
-{
+static void ov13_022255EC(BattleParty *param0) {
     if (param0->hasVisitedContestHall == FALSE) {
         SetBattleSubMenuCursorEnabledPositionsMask(param0->cursor, 0x5f);
     } else {
@@ -887,8 +847,7 @@ static void ov13_022255EC(BattleParty *param0)
     }
 }
 
-static void ov13_02225614(BattleParty *param0)
-{
+static void ov13_02225614(BattleParty *param0) {
     if (param0->hasVisitedContestHall == FALSE) {
         SetBattleSubMenuCursorEnabledPositionsMask(param0->cursor, 5);
     } else {
@@ -896,8 +855,7 @@ static void ov13_02225614(BattleParty *param0)
     }
 }
 
-void ov13_0222563C(BattleParty *param0, u8 param1)
-{
+void ov13_0222563C(BattleParty *param0, u8 param1) {
     SetBattleSubMenuCursorPositions(param0->cursor, Unk_ov13_0222938C[param1]);
 
     switch (param1) {
@@ -927,8 +885,7 @@ void ov13_0222563C(BattleParty *param0, u8 param1)
     }
 }
 
-void DisableBattlePartyCursor(BattleParty *battleParty)
-{
+void DisableBattlePartyCursor(BattleParty *battleParty) {
     SetBattleSubMenuCursorVisibility(battleParty->cursor, FALSE);
     ResetBattleSubMenuCursorCurrentPosition(battleParty->cursor);
     ov16_0226DDE8(GetBattleSubMenuCursorSprites(battleParty->cursor));

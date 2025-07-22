@@ -19,8 +19,7 @@
 #include "unk_02017038.h"
 #include "unk_0202F180.h"
 
-BOOL Pokemon_CanBattle(Pokemon *mon)
-{
+BOOL Pokemon_CanBattle(Pokemon *mon) {
     // this can be simplified further, but it won't match
     if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 0) {
         return FALSE;
@@ -29,8 +28,7 @@ BOOL Pokemon_CanBattle(Pokemon *mon)
     return !Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 }
 
-BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 species, u8 level, u16 heldItem, int metLocation, int metTerrain)
-{
+BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 species, u8 level, u16 heldItem, int metLocation, int metTerrain) {
     BOOL result;
     Pokemon *mon;
     u32 item;
@@ -57,8 +55,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 speci
     return result;
 }
 
-BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int param4, int param5)
-{
+BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int param4, int param5) {
     int v0;
     BOOL result;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
@@ -76,15 +73,13 @@ BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int par
     return result;
 }
 
-void sub_02054988(Party *party, int param1, int param2, u16 param3)
-{
+void sub_02054988(Party *party, int param1, int param2, u16 param3) {
     Pokemon_ResetMoveSlot(Party_GetPokemonBySlotIndex(party, param1), param3, param2);
 }
 
 // In many of the functions below, C99-style iterator declaration doesn't match
 
-int Party_HasMonWithMove(Party *party, u16 moveID)
-{
+int Party_HasMonWithMove(Party *party, u16 moveID) {
     int i;
     int partyCount = Party_GetCurrentCount(party);
 
@@ -106,8 +101,7 @@ int Party_HasMonWithMove(Party *party, u16 moveID)
     return PARTY_SLOT_NONE;
 }
 
-int Party_AliveMonsCount(const Party *party)
-{
+int Party_AliveMonsCount(const Party *party) {
     int i;
     int partyCount = Party_GetCurrentCount(party);
     int count = 0;
@@ -121,8 +115,7 @@ int Party_AliveMonsCount(const Party *party)
     return count;
 }
 
-Pokemon *Party_FindFirstEligibleBattler(const Party *party)
-{
+Pokemon *Party_FindFirstEligibleBattler(const Party *party) {
     int i;
     int partyCount = Party_GetCurrentCount(party);
 
@@ -138,8 +131,7 @@ Pokemon *Party_FindFirstEligibleBattler(const Party *party)
     return NULL;
 }
 
-Pokemon *Party_FindFirstHatchedMon(const Party *party)
-{
+Pokemon *Party_FindFirstHatchedMon(const Party *party) {
     u16 i;
     u16 partyCount = Party_GetCurrentCount(party);
 
@@ -154,13 +146,11 @@ Pokemon *Party_FindFirstHatchedMon(const Party *party)
     return NULL;
 }
 
-BOOL Party_HasTwoAliveMons(const Party *party)
-{
+BOOL Party_HasTwoAliveMons(const Party *party) {
     return Party_AliveMonsCount(party) >= 2;
 }
 
-void Party_GiveChampionRibbons(Party *party)
-{
+void Party_GiveChampionRibbons(Party *party) {
     int i;
     u8 championRibbon = TRUE;
     int partyCount = Party_GetCurrentCount(party);
@@ -174,8 +164,7 @@ void Party_GiveChampionRibbons(Party *party)
     }
 }
 
-int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
-{
+int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID) {
     int numPoisoned = 0;
     int numFainted = 0;
     int i, partyCount = Party_GetCurrentCount(party);
@@ -212,8 +201,7 @@ int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
     }
 }
 
-BOOL Pokemon_TrySurvivePoison(Pokemon *mon)
-{
+BOOL Pokemon_TrySurvivePoison(Pokemon *mon) {
     if (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) & (MON_CONDITION_TOXIC | MON_CONDITION_POISON)
         && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) == 1) {
         u32 condition = MON_CONDITION_NONE;

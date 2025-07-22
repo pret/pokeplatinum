@@ -7,8 +7,7 @@
 
 #include "unk_020366A0.h"
 
-BOOL sub_0207DFAC(int param0)
-{
+BOOL sub_0207DFAC(int param0) {
     int v0;
     int v1;
     UnkStruct_0207DFAC *v2 = sub_020388E8();

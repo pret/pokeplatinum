@@ -277,8 +277,7 @@ struct UnkStruct_ov99_021D3E78_t {
 
 static void ov99_021D4104(SysTask *param0, void *param1);
 
-UnkStruct_ov99_021D3E78 *ov99_021D3E78(BgConfig *param0, int param1, int param2, int param3, MessageLoader *param4)
-{
+UnkStruct_ov99_021D3E78 *ov99_021D3E78(BgConfig *param0, int param1, int param2, int param3, MessageLoader *param4) {
     UnkStruct_ov99_021D3E78 *v0 = Heap_AllocFromHeap(HEAP_ID_75, sizeof(UnkStruct_ov99_021D3E78));
 
     if (v0) {
@@ -308,8 +307,7 @@ UnkStruct_ov99_021D3E78 *ov99_021D3E78(BgConfig *param0, int param1, int param2,
     return v0;
 }
 
-void ov99_021D3F38(UnkStruct_ov99_021D3E78 *param0)
-{
+void ov99_021D3F38(UnkStruct_ov99_021D3E78 *param0) {
     if (param0->unk_34) {
         SysTask_Done(param0->unk_34);
     }
@@ -322,8 +320,7 @@ void ov99_021D3F38(UnkStruct_ov99_021D3E78 *param0)
     Heap_Free(param0);
 }
 
-BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
-{
+BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1) {
     if (param0->unk_1C == 2) {
         return 1;
     } else {
@@ -390,8 +387,7 @@ BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
     }
 }
 
-static void ov99_021D4104(SysTask *param0, void *param1)
-{
+static void ov99_021D4104(SysTask *param0, void *param1) {
     UnkStruct_ov99_021D3E78 *v0 = param1;
 
     if (v0->unk_18) {
@@ -405,7 +401,6 @@ static void ov99_021D4104(SysTask *param0, void *param1)
     }
 }
 
-int ov99_021D4130(void)
-{
+int ov99_021D4130(void) {
     return Unk_ov99_021D4CE4[NELEMS(Unk_ov99_021D4CE4) - 1].unk_00;
 }

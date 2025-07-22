@@ -189,8 +189,7 @@ static const UnkStruct_020F0524 Unk_020F0524[] = {
     { 0x4, 0x3 }
 };
 
-void sub_020722AC(void *param0, int *param1)
-{
+void sub_020722AC(void *param0, int *param1) {
     UnkStruct_02072334 *v0 = NULL;
     SaveData *saveData;
 
@@ -216,8 +215,7 @@ void sub_020722AC(void *param0, int *param1)
     v0->unk_08 = SysTask_Start(sub_02072370, v0, 0);
 }
 
-void sub_02072334(UnkStruct_02072334 *param0)
-{
+void sub_02072334(UnkStruct_02072334 *param0) {
     SysTask_Done(param0->unk_08);
     *(param0->unk_04) = 1;
     sub_020731A4(param0);
@@ -226,14 +224,12 @@ void sub_02072334(UnkStruct_02072334 *param0)
     Heap_Destroy(param0->heapID);
 }
 
-static void sub_02072364(SysTask *param0, void *param1)
-{
+static void sub_02072364(SysTask *param0, void *param1) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
     sub_02072334(v0);
 }
 
-static void sub_02072370(SysTask *param0, void *param1)
-{
+static void sub_02072370(SysTask *param0, void *param1) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
 
     sub_020731F4(v0);
@@ -241,8 +237,7 @@ static void sub_02072370(SysTask *param0, void *param1)
     SysTask_SetCallback(param0, sub_02072390);
 }
 
-static void sub_02072390(SysTask *param0, void *param1)
-{
+static void sub_02072390(SysTask *param0, void *param1) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
     s32 v1 = ListMenu_ProcessInput(v0->unk_160);
 
@@ -275,8 +270,7 @@ static void sub_02072390(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_02072418(SysTask *param0, void *param1)
-{
+static void sub_02072418(SysTask *param0, void *param1) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
 
     switch (v0->unk_10) {
@@ -299,8 +293,7 @@ static void sub_02072418(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_02072470(SysTask *param0, void *param1)
-{
+static void sub_02072470(SysTask *param0, void *param1) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
     s32 v1 = ListMenu_ProcessInput(v0->unk_160);
 
@@ -335,8 +328,7 @@ static void sub_02072470(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_02072518(SysTask *param0, void *param1)
-{
+static void sub_02072518(SysTask *param0, void *param1) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
 
     sub_02072DB8(v0);
@@ -344,8 +336,7 @@ static void sub_02072518(SysTask *param0, void *param1)
     SysTask_SetCallback(param0, v0->unk_0C);
 }
 
-static void sub_02072534(SysTask *param0, void *param1)
-{
+static void sub_02072534(SysTask *param0, void *param1) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
 
     sub_02072E4C(v0);
@@ -353,8 +344,7 @@ static void sub_02072534(SysTask *param0, void *param1)
     SysTask_SetCallback(param0, v0->unk_0C);
 }
 
-static void sub_02072550(SysTask *param0, void *param1)
-{
+static void sub_02072550(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_02072334 *v1 = (UnkStruct_02072334 *)param1;
 
@@ -394,8 +384,7 @@ static void sub_02072550(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_020725D0(SysTask *param0, void *param1)
-{
+static void sub_020725D0(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_02072334 *v1 = (UnkStruct_02072334 *)param1;
 
@@ -458,8 +447,7 @@ static void sub_020725D0(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_020726B4(SysTask *param0, void *param1)
-{
+static void sub_020726B4(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_02072334 *v1 = (UnkStruct_02072334 *)param1;
 
@@ -497,8 +485,7 @@ static void sub_020726B4(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_02072754(SysTask *param0, void *param1)
-{
+static void sub_02072754(SysTask *param0, void *param1) {
     u8 v0;
     PartyManagementData *partyMan;
     UnkStruct_02072334 *v2 = (UnkStruct_02072334 *)param1;
@@ -545,8 +532,7 @@ static void sub_02072754(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_020727F8(SysTask *param0, void *param1)
-{
+static void sub_020727F8(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_02072334 *v1 = (UnkStruct_02072334 *)param1;
 
@@ -576,8 +562,7 @@ static void sub_020727F8(SysTask *param0, void *param1)
     return;
 }
 
-static void sub_02072878(SysTask *param0, void *param1)
-{
+static void sub_02072878(SysTask *param0, void *param1) {
     int v0;
     u8 v1, v2;
     PartyManagementData *partyMan;
@@ -658,8 +643,7 @@ static void sub_02072878(SysTask *param0, void *param1)
     ++v4->unk_10;
 }
 
-static void sub_020729B4(UnkStruct_02072334 *param0)
-{
+static void sub_020729B4(UnkStruct_02072334 *param0) {
     u8 v0 = 0, v1 = 0;
     UnkStruct_02072EB8 *v2;
     static const WindowTemplate v3[2] = {
@@ -727,8 +711,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     param0->unk_13B_0 = 0;
 }
 
-static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
-{
+static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2) {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 == 0xFFFF) {
@@ -742,8 +725,7 @@ static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
-{
+static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2) {
     u16 v0, v1, v2;
     UnkStruct_02072334 *v3 = (UnkStruct_02072334 *)ListMenu_GetAttribute(param0, 19);
 
@@ -767,8 +749,7 @@ static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
-{
+static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2) {
     u8 v0 = 0, v1 = 0;
     static const WindowTemplate v2 = {
         0x3,
@@ -807,15 +788,13 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_13B_0 = 1;
 }
 
-static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2)
-{
+static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2) {
     if (!param2) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
-static void sub_02072DB8(UnkStruct_02072334 *param0)
-{
+static void sub_02072DB8(UnkStruct_02072334 *param0) {
     u16 v0, v1;
 
     ListMenu_Free(param0->unk_160, &v0, &v1);
@@ -840,8 +819,7 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 }
 
-static void sub_02072E4C(UnkStruct_02072334 *param0)
-{
+static void sub_02072E4C(UnkStruct_02072334 *param0) {
     u16 v0, v1;
 
     Window_ClearAndCopyToVRAM(&(param0->unk_174));
@@ -853,16 +831,14 @@ static void sub_02072E4C(UnkStruct_02072334 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
 }
 
-static void sub_02072EA4(UnkStruct_02072334 *param0, SysTaskFunc param1, SysTaskFunc param2)
-{
+static void sub_02072EA4(UnkStruct_02072334 *param0, SysTaskFunc param1, SysTaskFunc param2) {
     SysTask_SetCallback(param0->unk_08, param1);
 
     param0->unk_10 = 0;
     param0->unk_0C = param2;
 }
 
-static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1)
-{
+static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1) {
     param0->unk_00 = param1;
     param0->unk_01 = 0;
     param0->unk_02 = 0;
@@ -873,8 +849,7 @@ static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID)
-{
+static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID) {
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
@@ -883,8 +858,7 @@ static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID)
     }
 }
 
-static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
-{
+static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1) {
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
@@ -894,8 +868,7 @@ static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID)
-{
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID) {
     u8 i = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
     Mailbox *mailbox;
@@ -947,8 +920,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int hea
     Heap_Free(mail);
 }
 
-static void sub_02073020(UnkStruct_02072334 *param0, u8 param1)
-{
+static void sub_02073020(UnkStruct_02072334 *param0, u8 param1) {
     UnkStruct_02072EB8 *v0 = &(param0->unk_1C[param1]);
 
     param0->unk_1C[v0->unk_02].unk_03 = v0->unk_03;
@@ -957,8 +929,7 @@ static void sub_02073020(UnkStruct_02072334 *param0, u8 param1)
     param0->unk_13B_4 = 1;
 }
 
-static BOOL sub_02073060(UnkStruct_02072334 *param0)
-{
+static BOOL sub_02073060(UnkStruct_02072334 *param0) {
     UnkStruct_02072EB8 *v0;
     BOOL canFitItem;
 
@@ -976,8 +947,7 @@ static BOOL sub_02073060(UnkStruct_02072334 *param0)
     return canFitItem;
 }
 
-static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
-{
+static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2) {
     UnkStruct_02072EB8 *v0;
     Party *v1;
     Pokemon *v2;
@@ -1003,8 +973,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
     sub_02072EB8(v0, param0->unk_18);
 }
 
-static void sub_02073130(UnkStruct_02072334 *param0)
-{
+static void sub_02073130(UnkStruct_02072334 *param0) {
     MessageLoader *v0;
     int v1;
     Strbuf *v2;
@@ -1020,8 +989,7 @@ static void sub_02073130(UnkStruct_02072334 *param0)
     }
 }
 
-static void sub_020731A4(UnkStruct_02072334 *param0)
-{
+static void sub_020731A4(UnkStruct_02072334 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -1035,8 +1003,7 @@ static void sub_020731A4(UnkStruct_02072334 *param0)
     MessageLoader_Free(param0->unk_10C);
 }
 
-static void sub_020731F4(UnkStruct_02072334 *param0)
-{
+static void sub_020731F4(UnkStruct_02072334 *param0) {
     param0->unk_170 = FieldSystem_GetBgConfig(param0->fieldSystem);
 
     LoadMessageBoxGraphics(param0->unk_170, BG_LAYER_MAIN_3, (1024 - (18 + 12)), 10, param0->unk_14, param0->heapID);
@@ -1049,8 +1016,7 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
     Window_FillTilemap(&param0->unk_184, 0);
 }
 
-static void sub_02073294(UnkStruct_02072334 *param0)
-{
+static void sub_02073294(UnkStruct_02072334 *param0) {
     Window_ClearAndCopyToVRAM(&param0->unk_184);
     Window_Remove(&param0->unk_184);
 
@@ -1058,8 +1024,7 @@ static void sub_02073294(UnkStruct_02072334 *param0)
     param0->unk_170 = NULL;
 }
 
-static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 param3, int param4)
-{
+static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 param3, int param4) {
     Strbuf *v0;
 
     if (param4) {
@@ -1085,14 +1050,12 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     param0->unk_139 = param3;
 }
 
-static void sub_02073398(UnkStruct_02072334 *param0)
-{
+static void sub_02073398(UnkStruct_02072334 *param0) {
     Window_EraseMessageBox(&param0->unk_184, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_184);
 }
 
-static BOOL sub_020733B4(UnkStruct_02072334 *param0)
-{
+static BOOL sub_020733B4(UnkStruct_02072334 *param0) {
     if (Text_IsPrinterActive(param0->unk_138)) {
         return 0;
     }
@@ -1104,8 +1067,7 @@ static BOOL sub_020733B4(UnkStruct_02072334 *param0)
     return 1;
 }
 
-static void sub_020733E0(UnkStruct_02072334 *param0)
-{
+static void sub_020733E0(UnkStruct_02072334 *param0) {
     static const WindowTemplate v0 = {
         0x3,
         0x19,
@@ -1119,8 +1081,7 @@ static void sub_020733E0(UnkStruct_02072334 *param0)
     param0->unk_168 = Menu_MakeYesNoChoice(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->heapID);
 }
 
-static int sub_0207340C(UnkStruct_02072334 *param0)
-{
+static int sub_0207340C(UnkStruct_02072334 *param0) {
     switch (Menu_ProcessInputAndHandleExit(param0->unk_168, param0->heapID)) {
     case 0:
         return 1;
@@ -1131,8 +1092,7 @@ static int sub_0207340C(UnkStruct_02072334 *param0)
     return -1;
 }
 
-static int sub_02073438(UnkStruct_02072334 *param0, int param1)
-{
+static int sub_02073438(UnkStruct_02072334 *param0, int param1) {
     switch (param0->unk_12) {
     case 0:
         StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, param0->heapID);
@@ -1150,8 +1110,7 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
     return 0;
 }
 
-static int sub_02073480(UnkStruct_02072334 *param0)
-{
+static int sub_02073480(UnkStruct_02072334 *param0) {
     switch (param0->unk_12) {
     case 0:
         FieldSystem_StartFieldMap(param0->fieldSystem);
@@ -1178,8 +1137,7 @@ static int sub_02073480(UnkStruct_02072334 *param0)
     return 0;
 }
 
-static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
-{
+static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1) {
     ov5_021D4D68(param0->fieldSystem, 90);
 
     if (param1 == 0) {
@@ -1192,8 +1150,7 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
     return 1;
 }
 
-static int sub_02073524(UnkStruct_02072334 *param0, int param1)
-{
+static int sub_02073524(UnkStruct_02072334 *param0, int param1) {
     PartyManagementData *partyMan;
 
     switch (param0->unk_12) {
@@ -1229,8 +1186,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
     return 0;
 }
 
-static int sub_020735E8(UnkStruct_02072334 *param0)
-{
+static int sub_020735E8(UnkStruct_02072334 *param0) {
     int v0 = 0;
 
     switch (param0->unk_12) {
@@ -1265,8 +1221,7 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
     return 0;
 }
 
-static BOOL sub_02073694(FieldTask *param0)
-{
+static BOOL sub_02073694(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_020736D8 *v1 = FieldTask_GetEnv(param0);
 
@@ -1287,8 +1242,7 @@ static BOOL sub_02073694(FieldTask *param0)
     return 0;
 }
 
-void sub_020736D8(FieldTask *param0)
-{
+void sub_020736D8(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020736D8));
 

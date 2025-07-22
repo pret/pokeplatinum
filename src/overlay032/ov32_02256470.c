@@ -43,8 +43,7 @@ static const struct MonIconCoords {
     { 160, 132 }
 };
 
-BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPartyStatus *playerParty, BgConfig *bgConfig)
-{
+BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPartyStatus *playerParty, BgConfig *bgConfig) {
     PoketchPartyStatusGraphics *graphicsData = (PoketchPartyStatusGraphics *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatusGraphics));
 
     if (graphicsData != NULL) {
@@ -71,8 +70,7 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
     return FALSE;
 }
 
-void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData)
-{
+void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData) {
     if (graphicsData != NULL) {
         ov32_02256BD4(graphicsData);
         PoketchAnimation_FreeSpriteData(&graphicsData->unk_CC);
@@ -93,29 +91,24 @@ static const PoketchTask sPartyStatusTasks[] = {
     { 0, NULL, 0 }
 };
 
-void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, enum PartyStatusTask taskId)
-{
+void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, enum PartyStatusTask taskId) {
     PoketchTask_Start(sPartyStatusTasks, taskId, appData, appData->playerParty, appData->activeTaskIds, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PartyStatus_TaskIsNotActive(PoketchPartyStatusGraphics *appData, u32 animID)
-{
+BOOL PartyStatus_TaskIsNotActive(PoketchPartyStatusGraphics *appData, u32 animID) {
     return PoketchTask_TaskIsNotActive(appData->activeTaskIds, animID);
 }
 
-BOOL PartyStatus_AllTasksDone(PoketchPartyStatusGraphics *graphicsData)
-{
+BOOL PartyStatus_AllTasksDone(PoketchPartyStatusGraphics *graphicsData) {
     return PoketchTask_NoActiveTasks(graphicsData->activeTaskIds);
 }
 
-static void EndPoketchTask(PoketchTaskManager *poketchTaskMan)
-{
+static void EndPoketchTask(PoketchTaskManager *poketchTaskMan) {
     PoketchPartyStatusGraphics *taskData = PoketchTask_GetTaskData(poketchTaskMan);
     PoketchTask_EndTask(taskData->activeTaskIds, poketchTaskMan);
 }
 
-static void DrawAppScreen(SysTask *param0, void *param1)
-{
+static void DrawAppScreen(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -158,8 +151,7 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     EndPoketchTask(param1);
 }
 
-static void CreateHpBars(PoketchPartyStatusGraphics *graphicsData, const PlayerPartyStatus *playerData, u32 baseTile)
-{
+static void CreateHpBars(PoketchPartyStatusGraphics *graphicsData, const PlayerPartyStatus *playerData, u32 baseTile) {
     static const struct {
         u16 x;
         u16 y;
@@ -185,8 +177,7 @@ static void CreateHpBars(PoketchPartyStatusGraphics *graphicsData, const PlayerP
     graphicsData->partyCount = playerData->partyCount;
 }
 
-static void DrawHpBarOutline(Window *param0, PoketchPartyStatusGraphics *param1)
-{
+static void DrawHpBarOutline(Window *param0, PoketchPartyStatusGraphics *param1) {
     Bg_FillTilemapRect(param1->bgConfig, 6, 1, param0->tilemapLeft - 1, param0->tilemapTop - 1, 1, 1, 0);
     Bg_FillTilemapRect(param1->bgConfig, 6, 2, param0->tilemapLeft, param0->tilemapTop - 1, param0->width, 1, 0);
     Bg_FillTilemapRect(param1->bgConfig, 6, 1025, param0->tilemapLeft + param0->width, param0->tilemapTop - 1, 1, 1, 0);
@@ -199,8 +190,7 @@ static void DrawHpBarOutline(Window *param0, PoketchPartyStatusGraphics *param1)
     Bg_FillTilemapRect(param1->bgConfig, 6, 3073, param0->tilemapLeft + param0->width, param0->tilemapTop + param0->height, 1, 1, 0);
 }
 
-static void FillHpBar(Window *hpBar, u32 hpBarFill)
-{
+static void FillHpBar(Window *hpBar, u32 hpBarFill) {
     Window_FillRectWithColor(hpBar, 4, 0, 0, 64, 8); // light green (empty)
 
     if (hpBarFill) {
@@ -210,8 +200,7 @@ static void FillHpBar(Window *hpBar, u32 hpBarFill)
     Window_LoadTiles(hpBar);
 }
 
-static u32 GetHpBarWidth(u32 currentHp, u32 maxHp)
-{
+static u32 GetHpBarWidth(u32 currentHp, u32 maxHp) {
     u32 width;
 
     if (currentHp == 0) {
@@ -233,8 +222,7 @@ static u32 GetHpBarWidth(u32 currentHp, u32 maxHp)
     return width * 2;
 }
 
-static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyStatus *param1)
-{
+static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyStatus *param1) {
     int v0;
     PoketchAnimation_AnimationData v1;
 
@@ -256,8 +244,7 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
     }
 }
 
-static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyStatus *param1)
-{
+static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyStatus *param1) {
     NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 
     if (v0) {
@@ -298,8 +285,7 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
     }
 }
 
-static void StartMonIconBounceTask(PoketchPartyStatusGraphics *param0)
-{
+static void StartMonIconBounceTask(PoketchPartyStatusGraphics *param0) {
     param0->bounceAnimData.taskState = 0;
     param0->bounceAnimData.graphicsDataPtr = param0;
     param0->bounceAnimData.partyDataPtr = param0->playerParty;
@@ -307,8 +293,7 @@ static void StartMonIconBounceTask(PoketchPartyStatusGraphics *param0)
 }
 
 // handles tap input as well as the bounce anim itself.
-static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
-{
+static void Task_HandleMonIconBounce(SysTask *task, void *taskData) {
     MonIconBounceAnim *data = taskData;
     const PlayerPartyStatus *playerData = data->partyDataPtr;
     PoketchPartyStatusGraphics *graphicsData = data->graphicsDataPtr;
@@ -369,8 +354,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
     }
 }
 
-u32 PoketchPartyStatus_CheckTouchingPartySlot(u32 touchX, u32 touchY, u32 partyCount)
-{
+u32 PoketchPartyStatus_CheckTouchingPartySlot(u32 touchX, u32 touchY, u32 partyCount) {
     u32 i, upperBoundY, lowerBoundY, upperBoundX, lowerBoundX;
 
     for (i = 0; i < partyCount; i++) {
@@ -389,8 +373,7 @@ u32 PoketchPartyStatus_CheckTouchingPartySlot(u32 touchX, u32 touchY, u32 partyC
     return partyCount;
 }
 
-static void ov32_02256BD4(PoketchPartyStatusGraphics *param0)
-{
+static void ov32_02256BD4(PoketchPartyStatusGraphics *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -412,16 +395,14 @@ static void ov32_02256BD4(PoketchPartyStatusGraphics *param0)
     param0->partyCount = 0;
 }
 
-static void FreeAppScreen(SysTask *param0, void *param1)
-{
+static void FreeAppScreen(SysTask *param0, void *param1) {
     PoketchPartyStatusGraphics *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->bgConfig, BG_LAYER_SUB_2);
     EndPoketchTask(param1);
 }
 
-static void RedrawAppScreen(SysTask *param0, void *param1)
-{
+static void RedrawAppScreen(SysTask *param0, void *param1) {
     PoketchPartyStatusGraphics *v0 = PoketchTask_GetTaskData(param1);
     const PlayerPartyStatus *v1 = PoketchTask_GetConstTaskData(param1);
 

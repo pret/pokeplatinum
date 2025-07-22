@@ -17,8 +17,7 @@ typedef struct UnkStruct_ov5_021EB0E0_t {
     VecFx32 unk_54;
 } UnkStruct_ov5_021EB0E0;
 
-VecFx32 ov5_021EAFA4(const u16 param0, const u16 param1, const UnkStruct_ov5_021EB0E0 *param2)
-{
+VecFx32 ov5_021EAFA4(const u16 param0, const u16 param1, const UnkStruct_ov5_021EB0E0 *param2) {
     s8 v0, v1;
     VecFx32 v2;
     VecFx32 v3;
@@ -77,16 +76,14 @@ VecFx32 ov5_021EAFA4(const u16 param0, const u16 param1, const UnkStruct_ov5_021
     }
 }
 
-UnkStruct_ov5_021EB0E0 *ov5_021EB0C8(Camera *const param0)
-{
+UnkStruct_ov5_021EB0E0 *ov5_021EB0C8(Camera *const param0) {
     UnkStruct_ov5_021EB0E0 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EB0E0));
     ov5_021EB0E0(v0, param0);
 
     return v0;
 }
 
-void ov5_021EB0E0(UnkStruct_ov5_021EB0E0 *param0, Camera *const param1)
-{
+void ov5_021EB0E0(UnkStruct_ov5_021EB0E0 *param0, Camera *const param1) {
     CameraAngle v0;
 
     v0 = Camera_GetAngle(param1);
@@ -117,8 +114,7 @@ void ov5_021EB0E0(UnkStruct_ov5_021EB0E0 *param0, Camera *const param1)
     param0->camera = param1;
 }
 
-void ov5_021EB184(UnkStruct_ov5_021EB0E0 **param0)
-{
+void ov5_021EB184(UnkStruct_ov5_021EB0E0 **param0) {
     if ((*param0) == NULL) {
         return;
     }

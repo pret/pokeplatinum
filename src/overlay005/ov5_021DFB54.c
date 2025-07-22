@@ -222,13 +222,11 @@ static const WaterfallTaskFunc sWaterfallTasksDescend[] = {
     SubTask_Waterfall_FinishDescent
 };
 
-void PlayerAvatar_SetRequestStateBit(PlayerAvatar *playerAvatar, u32 bit)
-{
+void PlayerAvatar_SetRequestStateBit(PlayerAvatar *playerAvatar, u32 bit) {
     PlayerAvatar_TurnOnRequestStateBit(playerAvatar, bit);
 }
 
-void PlayerAvatar_RequestChangeState(PlayerAvatar *playerAvatar)
-{
+void PlayerAvatar_RequestChangeState(PlayerAvatar *playerAvatar) {
     u32 state = 0;
     u32 flag = PlayerAvatar_RequestStateFlag(playerAvatar);
 
@@ -243,8 +241,7 @@ void PlayerAvatar_RequestChangeState(PlayerAvatar *playerAvatar)
     PlayerAvatar_SetRequestStateFlag(playerAvatar, 0);
 }
 
-static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar)
-{
+static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar) {
     int v0;
     int v1 = 0x0;
 
@@ -276,8 +273,7 @@ static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar)
     }
 }
 
-static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar)
-{
+static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar) {
     int v0 = Player_MoveStateFromGender(PLAYER_STATE_CYCLING, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 
@@ -297,8 +293,7 @@ static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar)
     Sound_PlayEffect(SEQ_SE_DP_JITENSYA);
 }
 
-static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
-{
+static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar) {
     int v0, v1;
     MapObject *mapObj = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
@@ -334,25 +329,21 @@ static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
     PlayerAvatar_ClearSpeed(playerAvatar);
 }
 
-static void ov5_021DFCE4(PlayerAvatar *playerAvatar)
-{
+static void ov5_021DFCE4(PlayerAvatar *playerAvatar) {
     sub_0205EF6C(playerAvatar, 1);
 }
 
-static void ov5_021DFCF0(PlayerAvatar *playerAvatar)
-{
+static void ov5_021DFCF0(PlayerAvatar *playerAvatar) {
     int v0 = Player_MoveStateFromGender(0x11, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFD0C(PlayerAvatar *playerAvatar)
-{
+static void ov5_021DFD0C(PlayerAvatar *playerAvatar) {
     int v0 = Player_MoveStateFromGender(0x13, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void PlayerAvatar_RequestStatePoketch(PlayerAvatar *playerAvatar)
-{
+static void PlayerAvatar_RequestStatePoketch(PlayerAvatar *playerAvatar) {
     int v0;
     int v1 = 0x14;
 
@@ -371,8 +362,7 @@ static void PlayerAvatar_RequestStatePoketch(PlayerAvatar *playerAvatar)
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
-{
+static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar) {
     int v0;
     int v1 = 0x15;
 
@@ -391,14 +381,12 @@ static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFDA8(PlayerAvatar *playerAvatar)
-{
+static void ov5_021DFDA8(PlayerAvatar *playerAvatar) {
     int v0 = Player_MoveStateFromGender(0x16, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFDC4(PlayerAvatar *playerAvatar)
-{
+static void ov5_021DFDC4(PlayerAvatar *playerAvatar) {
     int v0 = Player_MoveStateFromGender(0x17, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
@@ -416,8 +404,7 @@ static void (*const sPlayerAvatarRequestStateTbl[10])(PlayerAvatar *) = {
     ov5_021DFDC4
 };
 
-int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int dir, int param3)
-{
+int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int dir, int param3) {
     {
         MapObject *v0;
 
@@ -453,8 +440,7 @@ int ov5_021DFDE0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int dir, 
     return 0;
 }
 
-static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
-{
+static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3) {
     int v0 = sub_02061434(playerAvatar, param2);
 
     if (param3 & 1 << 2) {
@@ -486,8 +472,7 @@ static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     return 0;
 }
 
-static int ov5_021DFEF4(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
-{
+static int ov5_021DFEF4(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3) {
     int v0 = sub_02061434(playerAvatar, param2);
 
     if (ov5_021E04EC(fieldSystem, playerAvatar, param2, v0) == 1) {
@@ -497,8 +482,7 @@ static int ov5_021DFEF4(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     return 0;
 }
 
-static int ov5_021DFF1C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
-{
+static int ov5_021DFF1C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3) {
     if (param3 != 1) {
         return 0;
     }
@@ -539,8 +523,7 @@ static int ov5_021DFF1C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     }
 }
 
-static void ov5_021DFF88(int param0, FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, MapObject *param3)
-{
+static void ov5_021DFF88(int param0, FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, MapObject *param3) {
     UnkStruct_ov5_021DFF88 *v0 = MonRideTaskEnv_New(sizeof(UnkStruct_ov5_021DFF88));
 
     v0->unk_04 = param0;
@@ -552,8 +535,7 @@ static void ov5_021DFF88(int param0, FieldSystem *fieldSystem, PlayerAvatar *pla
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_UNK_055);
 }
 
-static BOOL ov5_021DFFBC(FieldTask *param0)
-{
+static BOOL ov5_021DFFBC(FieldTask *param0) {
     UnkStruct_ov5_021DFF88 *v0 = FieldTask_GetEnv(param0);
     MapObject *v1 = Player_MapObject(v0->playerAvatar);
     MapObject *v2 = v0->unk_10;
@@ -617,8 +599,7 @@ static BOOL ov5_021DFFBC(FieldTask *param0)
     return 0;
 }
 
-static void SurfTask_Start(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask)
-{
+static void SurfTask_Start(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask) {
     SurfTaskEnv *taskEnv = MonRideTaskEnv_New(sizeof(SurfTaskEnv));
 
     taskEnv->direction = direction;
@@ -630,8 +611,7 @@ static void SurfTask_Start(FieldSystem *fieldSystem, int direction, const MonRid
     FieldTask_InitCall(fieldSystem->task, FieldTask_UseSurf, taskEnv);
 }
 
-void FieldTask_StartUseSurf(FieldTask *task, int direction, int partySlot)
-{
+void FieldTask_StartUseSurf(FieldTask *task, int direction, int partySlot) {
     MonRideTask monRideTask;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Pokemon *partyMon = GetPokemonByIndex(fieldSystem, partySlot);
@@ -640,8 +620,7 @@ void FieldTask_StartUseSurf(FieldTask *task, int direction, int partySlot)
     SurfTask_Start(fieldSystem, direction, &monRideTask);
 }
 
-int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior)
-{
+int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u32 nextTileBehavior) {
     MapObject *v0 = Player_MapObject(playerAvatar);
 
     if (TileBehavior_IsSurfable(nextTileBehavior) == TRUE) {
@@ -657,8 +636,7 @@ int PlayerAvatar_CanUseSurf(PlayerAvatar *playerAvatar, u32 currTileBehavior, u3
     return 0;
 }
 
-static BOOL FieldTask_UseSurf(FieldTask *task)
-{
+static BOOL FieldTask_UseSurf(FieldTask *task) {
     SurfTaskEnv *taskEnv = FieldTask_GetEnv(task);
 
     switch (taskEnv->state) {
@@ -749,8 +727,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
     return FALSE;
 }
 
-static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
-{
+static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3) {
     if ((param3 != 1) || (PlayerAvatar_GetPlayerState(playerAvatar) != 0x2)) {
         return 0;
     }
@@ -780,8 +757,7 @@ static int ov5_021E032C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     return 1;
 }
 
-static void ov5_021E0390(int param0, FieldSystem *fieldSystem, PlayerAvatar *param2)
-{
+static void ov5_021E0390(int param0, FieldSystem *fieldSystem, PlayerAvatar *param2) {
     UnkStruct_ov5_021E0390 *v0 = MonRideTaskEnv_New(sizeof(UnkStruct_ov5_021E0390));
 
     v0->unk_04 = param0;
@@ -793,8 +769,7 @@ static void ov5_021E0390(int param0, FieldSystem *fieldSystem, PlayerAvatar *par
     FieldSystem_CreateTask(fieldSystem, ov5_021E03C8, v0);
 }
 
-static BOOL ov5_021E03C8(FieldTask *param0)
-{
+static BOOL ov5_021E03C8(FieldTask *param0) {
     UnkStruct_ov5_021E0390 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
@@ -843,8 +818,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
     return 0;
 }
 
-static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
-{
+static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3) {
     if ((param2 != 1) || (param3 != 1) || (PlayerAvatar_GetPlayerState(playerAvatar) != 0x2)) {
         return 0;
     }
@@ -861,8 +835,7 @@ static int ov5_021E04A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     return 1;
 }
 
-static int ov5_021E04EC(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3)
-{
+static int ov5_021E04EC(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2, int param3) {
     if (PlayerAvatar_IsNotInDeepSwamp(playerAvatar) == 1) {
         return 0;
     }
@@ -880,8 +853,7 @@ static int ov5_021E04EC(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     return 1;
 }
 
-static void ov5_021E0534(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
-{
+static void ov5_021E0534(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar) {
     UnkStruct_ov5_021E0534 *v0 = MonRideTaskEnv_New(sizeof(UnkStruct_ov5_021E0534));
 
     v0->fieldSystem = fieldSystem;
@@ -891,8 +863,7 @@ static void ov5_021E0534(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_UNK_056);
 }
 
-static BOOL ov5_021E0560(FieldTask *param0)
-{
+static BOOL ov5_021E0560(FieldTask *param0) {
     UnkStruct_ov5_021E0534 *v0 = FieldTask_GetEnv(param0);
     MapObject *v1 = Player_MapObject(v0->playerAvatar);
 
@@ -958,8 +929,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
     return 0;
 }
 
-static int ov5_021E067C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)
-{
+static int ov5_021E067C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2) {
     MapObject *v0 = Player_MapObject(playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(v0) == 0) {
@@ -973,8 +943,7 @@ static int ov5_021E067C(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     return 0;
 }
 
-static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
-{
+static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar) {
     if (PlayerAvatar_Speed(playerAvatar) < 1) {
         return 0;
     }
@@ -1003,8 +972,7 @@ static int ov5_021E06A8(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar)
     return 0;
 }
 
-static void RockClimbTask_Start(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask)
-{
+static void RockClimbTask_Start(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask) {
     RockClimbTaskEnv *taskEnv = MonRideTaskEnv_New(sizeof(RockClimbTaskEnv));
 
     taskEnv->direction = direction;
@@ -1016,8 +984,7 @@ static void RockClimbTask_Start(FieldSystem *fieldSystem, int direction, const M
     FieldTask_InitCall(fieldSystem->task, FieldTask_UseRockClimb, taskEnv);
 }
 
-void FieldTask_StartUseRockClimb(FieldTask *task, int direction, int partySlot)
-{
+void FieldTask_StartUseRockClimb(FieldTask *task, int direction, int partySlot) {
     MonRideTask monRideTask;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Pokemon *partyMon = GetPokemonByIndex(fieldSystem, partySlot);
@@ -1026,8 +993,7 @@ void FieldTask_StartUseRockClimb(FieldTask *task, int direction, int partySlot)
     RockClimbTask_Start(fieldSystem, direction, &monRideTask);
 }
 
-BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir)
-{
+BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir) {
     switch (facingDir) {
     case DIR_NORTH:
     case DIR_SOUTH:
@@ -1046,8 +1012,7 @@ BOOL PlayerAvatar_CanUseRockClimb(u32 metatileBehavior, int facingDir)
     return FALSE;
 }
 
-static BOOL FieldTask_UseRockClimb(FieldTask *task)
-{
+static BOOL FieldTask_UseRockClimb(FieldTask *task) {
     int ret;
     RockClimbTaskEnv *taskEnv = FieldTask_GetEnv(task);
 
@@ -1062,16 +1027,14 @@ static BOOL FieldTask_UseRockClimb(FieldTask *task)
     return ret;
 }
 
-static int SubTask_RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv) {
     NewMonRideCutIn(taskEnv->fieldSystem, &taskEnv->monRideTask);
 
     taskEnv->state++;
     return 0;
 }
 
-static int SubTask_RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv) {
     if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
         taskEnv->state++;
     }
@@ -1079,8 +1042,7 @@ static int SubTask_RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv) {
     int xPos = Player_GetXPos(taskEnv->playerAvatar) + MapObject_GetDxFromDir(taskEnv->direction);
     int zPos = Player_GetZPos(taskEnv->playerAvatar) + MapObject_GetDzFromDir(taskEnv->direction);
 
@@ -1093,8 +1055,7 @@ static int SubTask_RockClimb_CreateBlob(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_RockClimb_HopOn(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_HopOn(RockClimbTaskEnv *taskEnv) {
     if (LocalMapObj_IsAnimationSet(taskEnv->surfBlob) == TRUE) {
         int movementAction = MovementAction_TurnActionTowardsDir(taskEnv->direction, MOVEMENT_ACTION_JUMP_NEAR_FAST_NORTH);
 
@@ -1105,8 +1066,7 @@ static int SubTask_RockClimb_HopOn(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_RockClimb_WaitHop(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_WaitHop(RockClimbTaskEnv *taskEnv) {
     if (LocalMapObj_CheckAnimationFinished(taskEnv->surfBlob) == TRUE) {
         taskEnv->state++;
         ov5_021F2974(taskEnv->unk_18, 1);
@@ -1115,8 +1075,7 @@ static int SubTask_RockClimb_WaitHop(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_RockClimb_Move(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_Move(RockClimbTaskEnv *taskEnv) {
     if (LocalMapObj_IsAnimationSet(taskEnv->surfBlob) == TRUE) {
         int movementAction = MovementAction_TurnActionTowardsDir(taskEnv->direction, MOVEMENT_ACTION_WALK_FAST_NORTH);
 
@@ -1127,8 +1086,7 @@ static int SubTask_RockClimb_Move(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv) {
     if (LocalMapObj_CheckAnimationFinished(taskEnv->surfBlob) == FALSE) {
         return 0;
     }
@@ -1154,8 +1112,7 @@ static int SubTask_RockClimb_LoopOrHopOff(RockClimbTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv)
-{
+static int SubTask_RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv) {
     if (LocalMapObj_CheckAnimationFinished(taskEnv->surfBlob) == FALSE) {
         return 0;
     }
@@ -1165,8 +1122,7 @@ static int SubTask_RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv)
     return 1;
 }
 
-static WaterfallTaskEnv *WaterfallTaskEnv_New(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask)
-{
+static WaterfallTaskEnv *WaterfallTaskEnv_New(FieldSystem *fieldSystem, int direction, const MonRideTask *monRideTask) {
     WaterfallTaskEnv *taskEnv = MonRideTaskEnv_New(sizeof(WaterfallTaskEnv));
 
     taskEnv->direction = direction;
@@ -1181,14 +1137,12 @@ static WaterfallTaskEnv *WaterfallTaskEnv_New(FieldSystem *fieldSystem, int dire
     return taskEnv;
 }
 
-void ov5_021E097C(FieldSystem *fieldSystem, int param1)
-{
+void ov5_021E097C(FieldSystem *fieldSystem, int param1) {
     WaterfallTaskEnv *taskEnv = WaterfallTaskEnv_New(fieldSystem, param1, NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_UseWaterfall, taskEnv);
 }
 
-void FieldTask_StartUseWaterfall(FieldTask *task, int direction, int partySlot)
-{
+void FieldTask_StartUseWaterfall(FieldTask *task, int direction, int partySlot) {
     MonRideTask monRideTask;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Pokemon *partyMon = GetPokemonByIndex(fieldSystem, partySlot);
@@ -1201,8 +1155,7 @@ void FieldTask_StartUseWaterfall(FieldTask *task, int direction, int partySlot)
     }
 }
 
-static BOOL FieldTask_UseWaterfall(FieldTask *param0)
-{
+static BOOL FieldTask_UseWaterfall(FieldTask *param0) {
     int v0;
     WaterfallTaskEnv *taskEnv = FieldTask_GetEnv(param0);
 
@@ -1222,8 +1175,7 @@ static BOOL FieldTask_UseWaterfall(FieldTask *param0)
     return FALSE;
 }
 
-static int SubTask_Waterfall_PlayAscentCutIn(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_PlayAscentCutIn(WaterfallTaskEnv *taskEnv) {
     if (taskEnv->monRideTask.playCutIn == TRUE) {
         NewMonRideCutIn(taskEnv->fieldSystem, &taskEnv->monRideTask);
         taskEnv->state++;
@@ -1234,8 +1186,7 @@ static int SubTask_Waterfall_PlayAscentCutIn(WaterfallTaskEnv *taskEnv)
     return 1; // WARN: This prematurely terminates the parent task. If modifying the code to skip the cut-in, this must be changed to 2.
 }
 
-static int SubTask_Waterfall_WaitForAscentCutIn(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_WaitForAscentCutIn(WaterfallTaskEnv *taskEnv) {
     if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_FW463);
         taskEnv->state++;
@@ -1244,8 +1195,7 @@ static int SubTask_Waterfall_WaitForAscentCutIn(WaterfallTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_Waterfall_InitAscent(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_InitAscent(WaterfallTaskEnv *taskEnv) {
     int targetX, targetZ;
     VecFx32 surfBlobPos, deltaPos;
 
@@ -1277,8 +1227,7 @@ static int SubTask_Waterfall_InitAscent(WaterfallTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_Waterfall_Ascend(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_Ascend(WaterfallTaskEnv *taskEnv) {
     VecFx32 newPos;
 
     MapObject_GetPosPtr(taskEnv->surfBlob, &newPos);
@@ -1301,8 +1250,7 @@ static int SubTask_Waterfall_Ascend(WaterfallTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_Waterfall_FinishAscent(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_FinishAscent(WaterfallTaskEnv *taskEnv) {
     VecFx32 newPos;
 
     MapObject_GetPosPtr(taskEnv->surfBlob, &newPos);
@@ -1339,8 +1287,7 @@ static int SubTask_Waterfall_FinishAscent(WaterfallTaskEnv *taskEnv)
     return 1;
 }
 
-static int SubTask_Waterfall_PlayDescentCutIn(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_PlayDescentCutIn(WaterfallTaskEnv *taskEnv) {
     if (taskEnv->monRideTask.playCutIn == TRUE) {
         NewMonRideCutIn(taskEnv->fieldSystem, &taskEnv->monRideTask);
         taskEnv->state++;
@@ -1351,8 +1298,7 @@ static int SubTask_Waterfall_PlayDescentCutIn(WaterfallTaskEnv *taskEnv)
     return 2;
 }
 
-static int SubTask_Waterfall_WaitForDescentCutIn(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_WaitForDescentCutIn(WaterfallTaskEnv *taskEnv) {
     if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_FW463);
         taskEnv->state++;
@@ -1361,8 +1307,7 @@ static int SubTask_Waterfall_WaitForDescentCutIn(WaterfallTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_Waterfall_InitDescent(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_InitDescent(WaterfallTaskEnv *taskEnv) {
     int targetX, targetZ;
     VecFx32 surfBlobPos, deltaPos;
 
@@ -1395,8 +1340,7 @@ static int SubTask_Waterfall_InitDescent(WaterfallTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_Waterfall_Descend(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_Descend(WaterfallTaskEnv *taskEnv) {
     VecFx32 newPos;
 
     MapObject_GetPosPtr(taskEnv->surfBlob, &newPos);
@@ -1421,8 +1365,7 @@ static int SubTask_Waterfall_Descend(WaterfallTaskEnv *taskEnv)
     return 0;
 }
 
-static int SubTask_Waterfall_FinishDescent(WaterfallTaskEnv *taskEnv)
-{
+static int SubTask_Waterfall_FinishDescent(WaterfallTaskEnv *taskEnv) {
     VecFx32 newPos;
 
     MapObject_GetPosPtr(taskEnv->surfBlob, &newPos);
@@ -1519,14 +1462,12 @@ static const MapObjectAnimCmd Unk_ov5_021F9C00[] = {
     { 0xfe, 0x0 }
 };
 
-void ov5_021E0DD4(FieldTask *param0)
-{
+void ov5_021E0DD4(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     ov5_021E0DE0(fieldSystem);
 }
 
-static void ov5_021E0DE0(FieldSystem *fieldSystem)
-{
+static void ov5_021E0DE0(FieldSystem *fieldSystem) {
     UnkStruct_ov5_021E0DE0 *v0 = MonRideTaskEnv_New(sizeof(UnkStruct_ov5_021E0DE0));
 
     v0->fieldSystem = fieldSystem;
@@ -1537,8 +1478,7 @@ static void ov5_021E0DE0(FieldSystem *fieldSystem)
     FieldTask_InitCall(fieldSystem->task, ov5_021E0E10, v0);
 }
 
-static BOOL ov5_021E0E10(FieldTask *param0)
-{
+static BOOL ov5_021E0E10(FieldTask *param0) {
     UnkStruct_ov5_021E0DE0 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_0C) {
@@ -1569,8 +1509,7 @@ static BOOL ov5_021E0E10(FieldTask *param0)
     return 0;
 }
 
-void ov5_021E0E94(PlayerAvatar *playerAvatar)
-{
+void ov5_021E0E94(PlayerAvatar *playerAvatar) {
     MapObject *v0 = Player_MapObject(playerAvatar);
 
     if (sub_02062DFC(v0) == 0) {
@@ -1602,8 +1541,7 @@ void ov5_021E0E94(PlayerAvatar *playerAvatar)
     }
 }
 
-void ov5_021E0EEC(PlayerAvatar *playerAvatar)
-{
+void ov5_021E0EEC(PlayerAvatar *playerAvatar) {
     MapObject *v0 = Player_MapObject(playerAvatar);
 
     if (sub_02062DFC(v0) == 0) {
@@ -1635,8 +1573,7 @@ void ov5_021E0EEC(PlayerAvatar *playerAvatar)
     }
 }
 
-static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1)
-{
+static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1) {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int v1 = PlayerAvatar_GetPlayerState(playerAvatar);
 
@@ -1665,8 +1602,7 @@ static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1)
     }
 }
 
-static void ov5_021E0FC0(SysTask *param0)
-{
+static void ov5_021E0FC0(SysTask *param0) {
     if (param0 == NULL) {
         return;
     }
@@ -1682,48 +1618,40 @@ static void ov5_021E0FC0(SysTask *param0)
     }
 }
 
-static void ov5_021E0FF0(SysTask *param0, void *param1)
-{
+static void ov5_021E0FF0(SysTask *param0, void *param1) {
     UnkStruct_ov5_021E0FF0 *v0 = param1;
     MapObject *v1 = Player_MapObject(v0->playerAvatar);
 
     sub_02062B68(v1);
 }
 
-SysTask *ov5_021E1000(FieldSystem *fieldSystem)
-{
+SysTask *ov5_021E1000(FieldSystem *fieldSystem) {
     return ov5_021E0F54(fieldSystem, (1 << 7));
 }
 
-void ov5_021E100C(SysTask *param0)
-{
+void ov5_021E100C(SysTask *param0) {
     ov5_021E0FC0(param0);
 }
 
-SysTask *FieldSystem_StartVsSeekerTask(FieldSystem *fieldSystem)
-{
+SysTask *FieldSystem_StartVsSeekerTask(FieldSystem *fieldSystem) {
     return ov5_021E0F54(fieldSystem, (1 << 9));
 }
 
-void FieldSystem_EndVsSeekerTask(SysTask *param0)
-{
+void FieldSystem_EndVsSeekerTask(SysTask *param0) {
     ov5_021E0FC0(param0);
 }
 
-static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRideTask *monRideTask)
-{
+static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRideTask *monRideTask) {
     monRideTask->playCutIn = TRUE;
     monRideTask->partyMon = partyMon;
     monRideTask->playerGender = PlayerAvatar_Gender(fieldSystem->playerAvatar);
 }
 
-static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask)
-{
+static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask) {
     monRideTask->HMCutInTask = ov6_02243F88(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
 }
 
-static BOOL CheckCutInFinished(MonRideTask *monRideTask)
-{
+static BOOL CheckCutInFinished(MonRideTask *monRideTask) {
     if (ov6_02243FBC(monRideTask->HMCutInTask) == TRUE) {
         ov6_02243FC8(monRideTask->HMCutInTask);
         return TRUE;
@@ -1732,8 +1660,7 @@ static BOOL CheckCutInFinished(MonRideTask *monRideTask)
     return FALSE;
 }
 
-static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1)
-{
+static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1) {
     MapObject *v0 = Player_MapObject(playerAvatar);
     if (PlayerAvatar_MapDistortionState(playerAvatar) == AVATAR_DISTORTION_STATE_NONE) {
         ov5_021EE3FC(v0, param1, NULL, NULL);
@@ -1752,8 +1679,7 @@ static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1)
     }
 }
 
-static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1)
-{
+static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1) {
     PlayerAvatar *playerAvatar = param0;
     MapObject *v1 = Player_MapObject(playerAvatar);
     FieldSystem *fieldSystem = MapObject_FieldSystem(v1);
@@ -1761,8 +1687,7 @@ static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1)
     ov9_0224A564(fieldSystem, param1);
 }
 
-static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1)
-{
+static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1) {
     int v0 = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(param1);
     int v1 = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(param1);
     const MapObjectManager *v2 = MapObject_MapObjectManager(Player_MapObject(playerAvatar));
@@ -1771,8 +1696,7 @@ static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1)
     return v3;
 }
 
-static void *MonRideTaskEnv_New(int size)
-{
+static void *MonRideTaskEnv_New(int size) {
     void *monRideTaskEnv = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, size);
 
     GF_ASSERT(monRideTaskEnv != NULL);
@@ -1781,13 +1705,11 @@ static void *MonRideTaskEnv_New(int size)
     return monRideTaskEnv;
 }
 
-static void MonRideTaskEnv_Free(void *taskEnv)
-{
+static void MonRideTaskEnv_Free(void *taskEnv) {
     Heap_FreeExplicit(HEAP_ID_FIELD, taskEnv);
 }
 
-static Pokemon *GetPokemonByIndex(FieldSystem *fieldSystem, int partySlot)
-{
+static Pokemon *GetPokemonByIndex(FieldSystem *fieldSystem, int partySlot) {
     Pokemon *partyMon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
     return partyMon;
 }

@@ -396,8 +396,7 @@ static const u8 sYearlyWeather[DAY_OF_YEAR_COUNT][OVERWORLD_WEATHER_YEARLY_COUNT
 };
 // clang-format on
 
-int FieldSystem_GetWeather(FieldSystem *fieldSystem, int mapHeaderID)
-{
+int FieldSystem_GetWeather(FieldSystem *fieldSystem, int mapHeaderID) {
     int weather = MapHeader_GetWeatherType(mapHeaderID);
 
     if (weather < OVERWORLD_WEATHER_YEARLY_START) {

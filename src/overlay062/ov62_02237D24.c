@@ -201,8 +201,7 @@ static const UnkStruct_ov62_02248CDC Unk_ov62_02248CDC = {
     Unk_ov62_02248CC4
 };
 
-static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02237D24(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02237D24));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02237D24));
@@ -232,8 +231,7 @@ static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02237DB8(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02237DB8(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -282,8 +280,7 @@ static BOOL ov62_02237DB8(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02237F08(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -337,8 +334,7 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02238048(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02238048(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     if (TouchScreen_LocationPressed(&Unk_ov62_02248CB0[0])) {
@@ -360,8 +356,7 @@ static BOOL ov62_02238048(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022380B0(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
     UnkStruct_ov62_0223CAA4 *v1;
 
@@ -489,8 +484,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022383E4(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -577,8 +571,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_022385EC(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022385EC(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -594,8 +587,7 @@ static BOOL ov62_022385EC(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02238610(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02238610(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -661,8 +653,7 @@ static BOOL ov62_02238610(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02238794(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02238794(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -740,8 +731,7 @@ static BOOL ov62_02238794(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_0223896C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -828,8 +818,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02238B70(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
     UnkStruct_ov62_0223CAA4 *v1;
 
@@ -898,8 +887,7 @@ static BOOL ov62_02238B70(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02238D04(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02238D04(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -954,8 +942,7 @@ static BOOL ov62_02238D04(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02238E54(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02238E54(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     if (TouchScreen_LocationPressed(&Unk_ov62_02248CAC[0])) {
@@ -995,8 +982,7 @@ static BOOL ov62_02238E54(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02238F24(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02238F24(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -1043,8 +1029,7 @@ static BOOL ov62_02238F24(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_0223900C(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_0223900C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -1135,8 +1120,7 @@ static BOOL ov62_0223900C(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_0223921C(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_0223921C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -1227,16 +1211,14 @@ static BOOL ov62_0223921C(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static void ov62_02239424(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239424(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     Window_ClearAndCopyToVRAM(&v0->unk_D0[0]);
     Window_Remove(&v0->unk_D0[0]);
 }
 
-static void ov62_02239440(UnkStruct_0208C06C *param0, int param1)
-{
+static void ov62_02239440(UnkStruct_0208C06C *param0, int param1) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
     Window *v1;
     Strbuf *v2;
@@ -1254,8 +1236,7 @@ static void ov62_02239440(UnkStruct_0208C06C *param0, int param1)
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov62_02239498(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239498(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
     Window *v1;
     int v2 = 1;
@@ -1267,8 +1248,7 @@ static void ov62_02239498(UnkStruct_0208C06C *param0)
     ov62_02239440(param0, 121);
 }
 
-static void ov62_022394D8(void *param0)
-{
+static void ov62_022394D8(void *param0) {
     UnkStruct_0208C06C *v0 = param0;
     UnkStruct_ov62_02237D24 *v1 = v0->unk_860;
 
@@ -1283,22 +1263,19 @@ static void ov62_022394D8(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov62_02239518(void)
-{
+static void ov62_02239518(void) {
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
     G2_SetWnd0Position(9 * 8, 2 * 8, 9 * 8 + 14 * 8, 2 * 8 + 16 * 8);
 }
 
-static void ov62_0223956C(void)
-{
+static void ov62_0223956C(void) {
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 }
 
-static void ov62_0223958C(UnkStruct_0208C06C *param0, int param1)
-{
+static void ov62_0223958C(UnkStruct_0208C06C *param0, int param1) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     if (param1 == 0) {
@@ -1315,8 +1292,7 @@ static void ov62_0223958C(UnkStruct_0208C06C *param0, int param1)
     sub_020128C4(v0->unk_198[1].unk_0C, 36, -8);
 }
 
-static void ov62_02239608(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239608(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     ov62_022312CC(param0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -1341,8 +1317,7 @@ static void ov62_02239608(UnkStruct_0208C06C *param0)
     ov62_0223958C(param0, 0);
 }
 
-static void ov62_022396E8(UnkStruct_0208C06C *param0)
-{
+static void ov62_022396E8(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     ov62_022312B0(&v0->unk_198[0]);
@@ -1354,8 +1329,7 @@ static void ov62_022396E8(UnkStruct_0208C06C *param0)
     ov62_022313BC(param0);
 }
 
-static void ov62_02239724(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239724(UnkStruct_0208C06C *param0) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -1403,8 +1377,7 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     StringTemplate_Free(v4);
 }
 
-static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
-{
+static void ov62_02239854(UnkStruct_0208C06C *param0, int param1) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -1452,8 +1425,7 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     StringTemplate_Free(v4);
 }
 
-static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1)
-{
+static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1) {
     BOOL v0 = 0;
     u16 *v1;
     int v2;
@@ -1496,8 +1468,7 @@ static BOOL ov62_02239984(UnkStruct_0208C06C *param0, int param1)
     return v0;
 }
 
-static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
-{
+static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1) {
     u16 *v0;
     int v1;
     int v2;
@@ -1558,8 +1529,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
     v4->unk_1D4.unk_10 = 1;
 }
 
-static void ov62_02239B7C(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239B7C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     MessageLoader_Free(v0->unk_1D4.unk_0C);
@@ -1569,8 +1539,7 @@ static void ov62_02239B7C(UnkStruct_0208C06C *param0)
     v0->unk_1D4.unk_10 = 0;
 }
 
-static void ov62_02239BAC(u32 param0, enum TouchScreenButtonState param1, void *param2)
-{
+static void ov62_02239BAC(u32 param0, enum TouchScreenButtonState param1, void *param2) {
     UnkStruct_0208C06C *v0 = param2;
     UnkStruct_ov62_02237D24 *v1 = v0->unk_860;
 
@@ -1585,8 +1554,7 @@ static void ov62_02239BAC(u32 param0, enum TouchScreenButtonState param1, void *
     ov62_02239A0C(v0, param0);
 }
 
-static void ov62_02239BD8(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239BD8(UnkStruct_0208C06C *param0) {
     Strbuf *v0;
     Window *v1;
     UnkStruct_ov62_02237D24 *v2 = param0->unk_860;
@@ -1620,8 +1588,7 @@ static void ov62_02239BD8(UnkStruct_0208C06C *param0)
     }
 }
 
-static void ov62_02239CE8(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239CE8(UnkStruct_0208C06C *param0) {
     u32 v0;
     Window *v1;
     UnkStruct_ov62_02237D24 *v2 = param0->unk_860;
@@ -1633,8 +1600,7 @@ static void ov62_02239CE8(UnkStruct_0208C06C *param0)
     }
 }
 
-static void ov62_02239D0C(UnkStruct_0208C06C *param0)
-{
+static void ov62_02239D0C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     if (Window_IsInUse(&v0->unk_10[0]) == 1) {
@@ -1643,8 +1609,7 @@ static void ov62_02239D0C(UnkStruct_0208C06C *param0)
     }
 }
 
-void ov62_02239D34(void *param0, const UnkStruct_ov62_0223CAA4 *param1)
-{
+void ov62_02239D34(void *param0, const UnkStruct_ov62_0223CAA4 *param1) {
     UnkStruct_0208C06C *v0 = param0;
     UnkStruct_ov62_02237D24 *v1 = v0->unk_860;
 
@@ -1655,8 +1620,7 @@ void ov62_02239D34(void *param0, const UnkStruct_ov62_0223CAA4 *param1)
     }
 }
 
-void ov62_02239D38(void *param0, const UnkStruct_ov62_0223CAA4 *param1)
-{
+void ov62_02239D38(void *param0, const UnkStruct_ov62_0223CAA4 *param1) {
     UnkStruct_0208C06C *v0 = param0;
     UnkStruct_ov62_02237D24 *v1 = v0->unk_860;
 

@@ -41,8 +41,7 @@ static void ov83_0223CF20(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223D068(UnkStruct_ov83_0223B784 *param0);
 
-void ov83_0223C958(UnkStruct_ov83_0223B784 *param0)
-{
+void ov83_0223C958(UnkStruct_ov83_0223B784 *param0) {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, param0->heapID);
 
     ov83_0223CE9C(param0);
@@ -72,8 +71,7 @@ void ov83_0223C958(UnkStruct_ov83_0223B784 *param0)
     GXLayers_SwapDisplay();
 }
 
-void ov83_0223CAA4(UnkStruct_ov83_0223B784 *param0)
-{
+void ov83_0223CAA4(UnkStruct_ov83_0223B784 *param0) {
     ov83_0223E760(&param0->unk_6A0);
     ov83_0223DF10(&param0->unk_5B0);
     ov83_0223E438(&param0->unk_608);
@@ -97,20 +95,17 @@ void ov83_0223CAA4(UnkStruct_ov83_0223B784 *param0)
     GXLayers_SwapDisplay();
 }
 
-int ov83_0223CB5C(UnkStruct_ov83_0223B784 *param0, int *param1)
-{
+int ov83_0223CB5C(UnkStruct_ov83_0223B784 *param0, int *param1) {
     ov83_0223DB4C(&param0->unk_3C0, &param0->unk_1494.unk_6C, &param0->unk_2C, param0->unk_1CC, param0->heapID);
     return param0->unk_0C + 1;
 }
 
-int ov83_0223CB8C(UnkStruct_ov83_0223B784 *param0, int *param1)
-{
+int ov83_0223CB8C(UnkStruct_ov83_0223B784 *param0, int *param1) {
     ov83_0223DC1C(&param0->unk_3C0, &param0->unk_2C);
     return param0->unk_0C + 1;
 }
 
-void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0)
-{
+void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0) {
     sub_020241B4();
 
     NNS_G3dGePushMtx();
@@ -134,8 +129,7 @@ void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0)
     }
 }
 
-void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0)
-{
+void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0) {
     RenderOam_Transfer();
 
     if (param0->unk_20) {
@@ -143,8 +137,7 @@ void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0)
     }
 }
 
-static void ov83_0223CC10(void)
-{
+static void ov83_0223CC10(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_64_E,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -161,8 +154,7 @@ static void ov83_0223CC10(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30(BgConfig **param0, int heapID)
-{
+static void ov83_0223CC30(BgConfig **param0, int heapID) {
     int v0 = 0, v1;
 
     ov83_0223CC10();
@@ -253,8 +245,7 @@ static void ov83_0223CC30(BgConfig **param0, int heapID)
     }
 }
 
-static void ov83_0223CCCC(BgConfig **param0)
-{
+static void ov83_0223CCCC(BgConfig **param0) {
     Bg_FreeTilemapBuffer(*param0, 5);
     Bg_FreeTilemapBuffer(*param0, 4);
     Bg_FreeTilemapBuffer(*param0, 2);
@@ -262,20 +253,17 @@ static void ov83_0223CCCC(BgConfig **param0)
     Heap_Free(*param0);
 }
 
-static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0) {
     ov83_0223D754(&param0->unk_2C, 72, 16, param0->heapID);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0) {
     ov83_0223D784(&param0->unk_2C);
 }
 
-static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0) {
     UnkStruct_ov22_022550D4 v0 = {
         .unk_00 = 48,
         .unk_04 = 32,
@@ -287,13 +275,11 @@ static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0)
     param0->unk_320 = sub_02015064(&v0);
 }
 
-static void ov83_0223CD54(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CD54(UnkStruct_ov83_0223B784 *param0) {
     sub_020150A8(param0->unk_320);
 }
 
-static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0) {
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, param0->heapID);
 
@@ -314,15 +300,13 @@ static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
     PlttTransfer_Clear();
 }
 
-static void ov83_0223CDC0(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CDC0(UnkStruct_ov83_0223B784 *param0) {
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }
 
-static void ov83_0223CDD0(UnkStruct_ov83_0223B784 *param0, NARC *param1)
-{
+static void ov83_0223CDD0(UnkStruct_ov83_0223B784 *param0, NARC *param1) {
     int v0;
     static const u8 v1[6] = {
         8,
@@ -342,8 +326,7 @@ static void ov83_0223CDD0(UnkStruct_ov83_0223B784 *param0, NARC *param1)
     }
 }
 
-static void ov83_0223CE7C(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CE7C(UnkStruct_ov83_0223B784 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -351,8 +334,7 @@ static void ov83_0223CE7C(UnkStruct_ov83_0223B784 *param0)
     }
 }
 
-static void ov83_0223CE9C(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CE9C(UnkStruct_ov83_0223B784 *param0) {
     NNS_G3dInit();
 
     G3X_InitMtxStack();
@@ -369,14 +351,12 @@ static void ov83_0223CE9C(UnkStruct_ov83_0223B784 *param0)
     NNS_GfdInitFrmPlttVramManager(0x8000, 1);
 }
 
-static void ov83_0223CF20(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CF20(UnkStruct_ov83_0223B784 *param0) {
     NNS_GfdResetFrmTexVramState();
     NNS_GfdResetFrmPlttVramState();
 }
 
-static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0) {
     int v0;
 
     param0->unk_15E0.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_MAKING, param0->heapID);
@@ -403,8 +383,7 @@ static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0)
     }
 }
 
-static void ov83_0223D068(UnkStruct_ov83_0223B784 *param0)
-{
+static void ov83_0223D068(UnkStruct_ov83_0223B784 *param0) {
     int v0;
 
     Strbuf_Free(param0->unk_15E0.unk_34);

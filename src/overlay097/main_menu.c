@@ -327,13 +327,11 @@ MainMenuAlertTemplate sMainMenuAlerts[] = {
 };
 // clang-format on
 
-static BOOL CheckWFCUserInfoErased(MainMenuAppData *appData)
-{
+static BOOL CheckWFCUserInfoErased(MainMenuAppData *appData) {
     return FALSE;
 }
 
-static BOOL ShowWFCUserInfoErasedMsg(MainMenuAppData *appData)
-{
+static BOOL ShowWFCUserInfoErasedMsg(MainMenuAppData *appData) {
     if (Window_IsInUse(&appData->wfcUserInfoErasedWindow) == FALSE) {
         for (int i = 0; i < 1; i++) {
             if (appData->wfcUserInfoErasedMsgPending[i] == TRUE) {
@@ -360,8 +358,7 @@ static BOOL ShowWFCUserInfoErasedMsg(MainMenuAppData *appData)
     return FALSE;
 }
 
-static void DetectGBAGame(MainMenuAppData *appData)
-{
+static void DetectGBAGame(MainMenuAppData *appData) {
     int gbaCartInfoLoadError = ov97_02235D2C(NULL);
 
     appData->agbGameType = 0;
@@ -409,8 +406,7 @@ static void DetectGBAGame(MainMenuAppData *appData)
  * Detects if wireless connection to a Ranger game, a Wii
  * or a Mystery gift distribution is possible.
  */
-static void DetectWirelessConnections(MainMenuAppData *appData)
-{
+static void DetectWirelessConnections(MainMenuAppData *appData) {
     switch (appData->wirelessCheckState) {
     case MAIN_MENU_WIRELESS_CHECK_IDLE:
         break;
@@ -471,8 +467,7 @@ static void DetectWirelessConnections(MainMenuAppData *appData)
     }
 }
 
-static BOOL ShowAlerts(MainMenuAppData *appData)
-{
+static BOOL ShowAlerts(MainMenuAppData *appData) {
     switch (appData->alertsState) {
     case MAIN_MANU_ALERTS_STATE_WAIT:
         if (appData->alertsPending == FALSE) {
@@ -555,8 +550,7 @@ static BOOL ShowAlerts(MainMenuAppData *appData)
 // Absolute value macro for 2's-complement 32-bit integers/fixed-point.
 // No idea why the original developer didn't use the SDK's MATH_ABS
 #define ABS_S32(x) (((x) ^ ((x) >> 31)) - ((x) >> 31))
-static void DoScrollStep(MainMenuAppData *appData)
-{
+static void DoScrollStep(MainMenuAppData *appData) {
     if (appData->scrollPos != appData->scrollTarget) {
         fx32 scrollSpeed = (appData->scrollTarget - appData->scrollPos) / 4;
 
@@ -579,8 +573,7 @@ static void DoScrollStep(MainMenuAppData *appData)
     }
 }
 
-static void InitMainMenuGraphics(MainMenuAppData *appData)
-{
+static void InitMainMenuGraphics(MainMenuAppData *appData) {
     UnkStruct_02099F80 vramBanks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -628,8 +621,7 @@ static void InitMainMenuGraphics(MainMenuAppData *appData)
     *HW_BG_A_PLTT_COLOR(PLTT_2, 1) = UNFOCUSED_OPTION_BG_COLOR;
 }
 
-static void LoadScrollArrowsSprites(MainMenuAppData *appData)
-{
+static void LoadScrollArrowsSprites(MainMenuAppData *appData) {
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
     MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 43, 40, 42, 41, 0);
@@ -641,14 +633,12 @@ static void LoadScrollArrowsSprites(MainMenuAppData *appData)
     Sprite_SetDrawFlag(appData->scrollDownArrowSprite, FALSE);
 }
 
-static void LoadWirelessIconsGraphics(MainMenuAppData *appData)
-{
+static void LoadWirelessIconsGraphics(MainMenuAppData *appData) {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 45, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 44, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
 }
 
-static void DrawWirelessIcon(MainMenuAppData *appData, int column, int row, int type)
-{
+static void DrawWirelessIcon(MainMenuAppData *appData, int column, int row, int type) {
     u16 *tilemapBuffer = (u16 *)Bg_GetTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
     // Local wireless icon
     int tilesIDStart = WIRELESS_ICONS_TILES_ID_START;
@@ -671,8 +661,7 @@ static void DrawWirelessIcon(MainMenuAppData *appData, int column, int row, int 
     Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void ClearWirelessIcon(MainMenuAppData *appData, int column, int row)
-{
+static void ClearWirelessIcon(MainMenuAppData *appData, int column, int row) {
     u16 *tilemapBuffer = (u16 *)Bg_GetTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_2);
 
     // Empty tile
@@ -689,8 +678,7 @@ static void ClearWirelessIcon(MainMenuAppData *appData, int column, int row)
     Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_2);
 }
 
-static void PrintRightAlignedWithMargin(Window *window, MessageLoader *msgLoader, StringTemplate *strTemplate, TextColor textColor, u32 entryID, u32 yOffset)
-{
+static void PrintRightAlignedWithMargin(Window *window, MessageLoader *msgLoader, StringTemplate *strTemplate, TextColor textColor, u32 entryID, u32 yOffset) {
     Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, entryID, HEAP_ID_MAIN_MENU);
     u32 textWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strBuf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     u32 xOffset = Window_GetWidth(window) * 8 - (textWidth + CONTINUE_WINDOW_MARGIN);
@@ -699,8 +687,7 @@ static void PrintRightAlignedWithMargin(Window *window, MessageLoader *msgLoader
     Strbuf_Free(strBuf);
 }
 
-static void SetTemplateNumberCustomFormatting(StringTemplate *strTemplate, int number)
-{
+static void SetTemplateNumberCustomFormatting(StringTemplate *strTemplate, int number) {
     int maxDigits;
     enum PaddingMode paddingMode;
 
@@ -718,8 +705,7 @@ static void SetTemplateNumberCustomFormatting(StringTemplate *strTemplate, int n
     StringTemplate_SetNumber(strTemplate, 0, number, maxDigits, paddingMode, CHARSET_MODE_EN);
 }
 
-static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos)
-{
+static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos) {
     StringTemplate *strTemplate; // Forward-declaration required to match.
 
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
@@ -770,8 +756,7 @@ static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption o
     return TRUE;
 }
 
-static BOOL RenderGBAMigrationOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos)
-{
+static BOOL RenderGBAMigrationOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos) {
     if (appData->agbGameType == 0) {
         return FALSE;
     }
@@ -803,8 +788,7 @@ static BOOL RenderGBAMigrationOption(MainMenuAppData *appData, enum MainMenuOpti
     return TRUE;
 }
 
-static BOOL RenderMysteryGiftOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos)
-{
+static BOOL RenderMysteryGiftOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos) {
     if (appData->mysteryGiftUnlocked == FALSE) {
         if (MysteryGift_GetMysteryGiftUnlockedFlag(appData->mysteryGift) == TRUE) {
             appData->mysteryGiftUnlocked = TRUE;
@@ -842,8 +826,7 @@ static BOOL RenderMysteryGiftOption(MainMenuAppData *appData, enum MainMenuOptio
     return FALSE;
 }
 
-static BOOL RenderRangerLinkOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos)
-{
+static BOOL RenderRangerLinkOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos) {
     if ((appData->rangerLinkAvailable == TRUE) && (appData->pokedexObtained == TRUE)) {
         MainMenuUtil_ShowWindowAtPos(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
         DrawWirelessIcon(appData, OPTION_WINDOW_WIDTH, yPos, WIRELESS_ICON_LOCAL);
@@ -858,8 +841,7 @@ static BOOL RenderRangerLinkOption(MainMenuAppData *appData, enum MainMenuOption
     return FALSE;
 }
 
-static BOOL RenderWiiConnectionOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos)
-{
+static BOOL RenderWiiConnectionOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos) {
     if (appData->wiiConnectionAvailable == TRUE) {
         MainMenuUtil_ShowWindowAtPos(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
         appData->optionWirelessIconTypes[option] = WIRELESS_ICON_LOCAL;
@@ -872,8 +854,7 @@ static BOOL RenderWiiConnectionOption(MainMenuAppData *appData, enum MainMenuOpt
     return FALSE;
 }
 
-static BOOL RenderWFCSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos)
-{
+static BOOL RenderWFCSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos) {
     MainMenuUtil_ShowWindowAtPos(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
     appData->optionWirelessIconTypes[option] = WIRELESS_ICON_WIFI;
 
@@ -883,8 +864,7 @@ static BOOL RenderWFCSettingsOption(MainMenuAppData *appData, enum MainMenuOptio
     return TRUE;
 }
 
-static BOOL RenderWiiMsgSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos)
-{
+static BOOL RenderWiiMsgSettingsOption(MainMenuAppData *appData, enum MainMenuOption option, MainMenuWindow *param2, int yPos) {
     MainMenuUtil_ShowWindowAtPos(appData->bgConfig, param2, 3, yPos, sOptions[option].textEntryID);
     appData->optionWirelessIconTypes[option] = WIRELESS_ICON_NONE;
 
@@ -894,8 +874,7 @@ static BOOL RenderWiiMsgSettingsOption(MainMenuAppData *appData, enum MainMenuOp
     return 1;
 }
 
-static BOOL RenderOptions(MainMenuAppData *appData)
-{
+static BOOL RenderOptions(MainMenuAppData *appData) {
     int i; // Forward declaration required to match.
 
     int renderedCustomRenderedOption = FALSE;
@@ -940,8 +919,7 @@ static BOOL RenderOptions(MainMenuAppData *appData)
     return renderedCustomRenderedOption;
 }
 
-static void RenderOptionsFrames(MainMenuAppData *appData, enum MainMenuOption focusedOption)
-{
+static void RenderOptionsFrames(MainMenuAppData *appData, enum MainMenuOption focusedOption) {
     for (int i = 0; i < sizeof(sOptions) / sizeof(MainMenuOptionTemplate); i++) {
         if (Window_IsInUse(&appData->optionWindows[i]) == FALSE) {
             continue;
@@ -959,8 +937,7 @@ static void RenderOptionsFrames(MainMenuAppData *appData, enum MainMenuOption fo
     Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void FocusNextOption(MainMenuAppData *appData, int direction)
-{
+static void FocusNextOption(MainMenuAppData *appData, int direction) {
     int nextFocused = appData->focusedOption;
 
     while (TRUE) {
@@ -991,8 +968,7 @@ static void FocusNextOption(MainMenuAppData *appData, int direction)
     appData->focusedOption = nextFocused;
 }
 
-static void TargetFocusedOptionForScroll(MainMenuAppData *appData)
-{
+static void TargetFocusedOptionForScroll(MainMenuAppData *appData) {
     int targetWindowY = (Window_GetYPos(&appData->optionWindows[appData->focusedOption]) - 1) * 8;
     int targetWindowHeight = (Window_GetHeight(&appData->optionWindows[appData->focusedOption]) + 2) * 8;
     int scrollTarget = appData->scrollTarget / FX32_ONE;
@@ -1006,8 +982,7 @@ static void TargetFocusedOptionForScroll(MainMenuAppData *appData)
     }
 }
 
-static void DrawScrollArrows(MainMenuAppData *appData)
-{
+static void DrawScrollArrows(MainMenuAppData *appData) {
     BOOL canScrollUp, canScrollDown;
     canScrollUp = canScrollDown = FALSE;
 
@@ -1035,8 +1010,7 @@ static void DrawScrollArrows(MainMenuAppData *appData)
     Sprite_SetDrawFlag(appData->scrollDownArrowSprite, canScrollDown);
 }
 
-static void FreeApplicationResources(ApplicationManager *appMan)
-{
+static void FreeApplicationResources(ApplicationManager *appMan) {
     MainMenuAppData *appData = ApplicationManager_Data(appMan);
 
     if (appData->scrollUpArrowSprite || appData->scrollDownArrowSprite) {
@@ -1095,8 +1069,7 @@ static GXRgb sFocusedOptionBorderColors[] = {
 };
 // clang-format on
 
-static void DoColorCycleStep(MainMenuAppData *appData)
-{
+static void DoColorCycleStep(MainMenuAppData *appData) {
     GXRgb *focusedOptionBorderColor = HW_BG_A_PLTT_COLOR(PLTT_3, 6);
 
     if (sFocusedOptionBorderColors[appData->focusedBorderCycleIndex] == COLORS_LIST_END) {
@@ -1106,8 +1079,7 @@ static void DoColorCycleStep(MainMenuAppData *appData)
     *focusedOptionBorderColor = sFocusedOptionBorderColors[appData->focusedBorderCycleIndex++];
 }
 
-static void MainMenuVBlankCallback(void *data)
-{
+static void MainMenuVBlankCallback(void *data) {
     VramTransfer_Process();
     RenderOam_Transfer();
     Bg_RunScheduledUpdates((BgConfig *)data);
@@ -1115,8 +1087,7 @@ static void MainMenuVBlankCallback(void *data)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int MainMenu_Init(ApplicationManager *appMan, int *unused)
-{
+static int MainMenu_Init(ApplicationManager *appMan, int *unused) {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MAIN_MENU, HEAP_SIZE_MAIN_MENU);
 
     MainMenuAppData *appData = ApplicationManager_NewData(appMan, sizeof(MainMenuAppData), HEAP_ID_MAIN_MENU);
@@ -1149,8 +1120,7 @@ static int MainMenu_Init(ApplicationManager *appMan, int *unused)
     return 1;
 }
 
-static int MainMenu_Main(ApplicationManager *appMan, int *state)
-{
+static int MainMenu_Main(ApplicationManager *appMan, int *state) {
     MainMenuAppData *appData = ApplicationManager_Data(appMan);
 
     appData->framesCounter++;
@@ -1302,8 +1272,7 @@ extern const ApplicationManagerTemplate gRangerLinkAppTemplate;
 extern const ApplicationManagerTemplate gRebootIntoWFCSettingsAppTemplate;
 extern const ApplicationManagerTemplate gWiiMessageAppTemplate;
 
-static void EnqueueNextApplication(MainMenuAppData *appData)
-{
+static void EnqueueNextApplication(MainMenuAppData *appData) {
     switch (appData->nextApplication) {
     case NEXT_APP_LOAD_SAVE:
         EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
@@ -1337,8 +1306,7 @@ static void EnqueueNextApplication(MainMenuAppData *appData)
     }
 }
 
-static BOOL MainMenu_Exit(ApplicationManager *appMan, int *unused)
-{
+static BOOL MainMenu_Exit(ApplicationManager *appMan, int *unused) {
     MainMenuAppData *appData = ApplicationManager_Data(appMan);
 
     EnqueueNextApplication(appData);

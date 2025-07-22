@@ -12,8 +12,7 @@
 
 static void Easy3D_SetupEngine(void);
 
-void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource)
-{
+void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource) {
     *outResource = ReadFileToHeap(heapID, path);
     NNS_G3D_NULL_ASSERT(*outResource);
 
@@ -26,8 +25,7 @@ void Easy3D_LoadModelFromPath(const u8 heapID, const char *path, NNSG3dResMdl **
     *outModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*outResource), 0);
 }
 
-void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader **resource)
-{
+void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader **resource) {
     NNSG3dResTex *texture = NNS_G3dGetTex(*resource);
 
     if (texture != NULL && Easy3D_IsTextureUploadedToVRAM(texture) == FALSE) {
@@ -38,27 +36,23 @@ void Easy3D_LoadModelFromResource(NNSG3dResMdl **outModel, NNSG3dResFileHeader *
     *outModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*resource), 0);
 }
 
-void Easy3D_InitRenderObjFromPath(const u8 heapID, const char *path, NNSG3dRenderObj *obj, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource)
-{
+void Easy3D_InitRenderObjFromPath(const u8 heapID, const char *path, NNSG3dRenderObj *obj, NNSG3dResMdl **outModel, NNSG3dResFileHeader **outResource) {
     Easy3D_LoadModelFromPath(heapID, path, outModel, outResource);
     NNS_G3dRenderObjInit(obj, *outModel);
 }
 
-void Easy3D_InitRenderObjFromResource(NNSG3dRenderObj *renderObj, NNSG3dResMdl **model, NNSG3dResFileHeader **resource)
-{
+void Easy3D_InitRenderObjFromResource(NNSG3dRenderObj *renderObj, NNSG3dResMdl **model, NNSG3dResFileHeader **resource) {
     Easy3D_LoadModelFromResource(model, resource);
     GF_ASSERT(model);
     NNS_G3dRenderObjInit(renderObj, *model);
 }
 
-BOOL Easy3D_IsTextureUploadedToVRAM(NNSG3dResTex *texture)
-{
+BOOL Easy3D_IsTextureUploadedToVRAM(NNSG3dResTex *texture) {
     return (texture->texInfo.flag & NNS_G3D_RESTEX_LOADED)
         || (texture->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED);
 }
 
-void Easy3D_DrawRenderObj(NNSG3dRenderObj *renderObj, const VecFx32 *pos, const MtxFx33 *rot, const VecFx32 *scale)
-{
+void Easy3D_DrawRenderObj(NNSG3dRenderObj *renderObj, const VecFx32 *pos, const MtxFx33 *rot, const VecFx32 *scale) {
     NNS_G3dGlbSetBaseTrans(pos);
     NNS_G3dGlbSetBaseRot(rot);
     NNS_G3dGlbSetBaseScale(scale);
@@ -66,8 +60,7 @@ void Easy3D_DrawRenderObj(NNSG3dRenderObj *renderObj, const VecFx32 *pos, const 
     NNS_G3dDraw(renderObj);
 }
 
-void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, const MtxFx33 *rot, const VecFx32 *scale)
-{
+void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, const MtxFx33 *rot, const VecFx32 *scale) {
     NNS_G3dGlbSetBaseTrans(pos);
     NNS_G3dGlbSetBaseRot(rot);
     NNS_G3dGlbSetBaseScale(scale);
@@ -78,13 +71,11 @@ void Easy3D_DrawRenderObjSimple(NNSG3dRenderObj *renderObj, const VecFx32 *pos, 
 
 static G3DPipelineBuffers *sPipelineBuffers = NULL;
 
-void Easy3D_Init(const u8 heapID)
-{
+void Easy3D_Init(const u8 heapID) {
     sPipelineBuffers = G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_64K, Easy3D_SetupEngine);
 }
 
-static void Easy3D_SetupEngine(void)
-{
+static void Easy3D_SetupEngine(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
     G2_SetBG0Priority(1);
@@ -98,13 +89,11 @@ static void Easy3D_SetupEngine(void)
     G3_ViewPort(0, 0, HW_LCD_WIDTH - 1, HW_LCD_HEIGHT - 1);
 }
 
-void Easy3D_Shutdown(void)
-{
+void Easy3D_Shutdown(void) {
     G3DPipelineBuffers_Free(sPipelineBuffers);
 }
 
-BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture)
-{
+BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture) {
     NNSG3dResMdlSet *modelSet = NNS_G3dGetMdlSet((NNSG3dResFileHeader *)resource);
     NNS_G3D_NULL_ASSERT(modelSet);
 
@@ -116,8 +105,7 @@ BOOL Easy3D_BindTextureToResource(void *resource, NNSG3dResTex *texture)
     return FALSE;
 }
 
-BOOL Easy3D_UploadTextureToVRAM(NNSG3dResTex *texture)
-{
+BOOL Easy3D_UploadTextureToVRAM(NNSG3dResTex *texture) {
     if (texture == NULL) {
         return FALSE;
     }

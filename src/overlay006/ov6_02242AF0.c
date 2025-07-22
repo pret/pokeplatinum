@@ -82,8 +82,7 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE / 2
 };
 
-void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0;
     UnkStruct_ov6_02242AF0 *v1;
     VecFx32 v2;
@@ -109,8 +108,7 @@ void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 475, &v2, NULL, fieldSystem->mapPropAnimMan);
 }
 
-void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
-{
+void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_ov6_02242AF0 *v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
     UnkStruct_ov6_02242B58 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02242B58));
@@ -175,8 +173,7 @@ void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
     FieldTask_InitCall(fieldSystem->task, ov6_02242C5C, v2);
 }
 
-u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
-{
+u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_ov6_02242AF0 *v1 = (UnkStruct_ov6_02242AF0 *)PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_GREAT_MARSH);
 
@@ -187,8 +184,7 @@ u32 ov6_02242C3C(FieldSystem *fieldSystem, const u16 param1)
     }
 }
 
-static BOOL ov6_02242C5C(FieldTask *taskMan)
-{
+static BOOL ov6_02242C5C(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov6_02242B58 *v1 = FieldTask_GetEnv(taskMan);
 
@@ -249,8 +245,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3)
-{
+static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3) {
     if (param1->unk_04 == 0) {
         param3->z -= Unk_ov6_02249074[param1->unk_06];
 
@@ -286,8 +281,7 @@ static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
     }
 }
 
-static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3)
-{
+static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param1, const fx32 *param2, VecFx32 *param3) {
     MapObject *v0;
     VecFx32 v1;
 

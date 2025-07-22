@@ -9,8 +9,7 @@
 
 void sub_0205001C(int param0, int param1, void *param2, void *param3);
 
-void sub_0205001C(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205001C(int param0, int param1, void *param2, void *param3) {
     int v0, v1;
     UnkStruct_0204FCF8 *v2 = param3;
     const UnkStruct_0204FCF8 *v3 = param2;

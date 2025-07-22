@@ -84,8 +84,7 @@ static const u8 Unk_020F1B64[4] = {
     0x4
 };
 
-static BOOL sub_0207DA28(FieldTask *task)
-{
+static BOOL sub_0207DA28(FieldTask *task) {
     int v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_0207DE40 *v2 = FieldTask_GetEnv(task);
@@ -297,8 +296,7 @@ static BOOL sub_0207DA28(FieldTask *task)
     return 0;
 }
 
-static UnkStruct_0207DE40 *sub_0207DD94(void)
-{
+static UnkStruct_0207DE40 *sub_0207DD94(void) {
     UnkStruct_0207DE40 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0207DE40));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_0207DE40));
@@ -307,16 +305,14 @@ static UnkStruct_0207DE40 *sub_0207DD94(void)
     return v0;
 }
 
-void sub_0207DDC0(FieldTask *param0)
-{
+void sub_0207DDC0(FieldTask *param0) {
     UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 2;
     FieldTask_InitCall(param0, sub_0207DA28, v0);
 }
 
-void sub_0207DDE0(FieldTask *param0, u16 *param1)
-{
+void sub_0207DDE0(FieldTask *param0, u16 *param1) {
     UnkStruct_0207DE40 *v0 = sub_0207DD94();
 
     v0->unk_00->unk_04 = 1;
@@ -325,8 +321,7 @@ void sub_0207DDE0(FieldTask *param0, u16 *param1)
     FieldTask_InitCall(param0, sub_0207DA28, v0);
 }
 
-static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 heapID, u32 param3)
-{
+static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 heapID, u32 param3) {
     UnkStruct_0207DE04 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207DE04));
 
     v0->unk_00 = param3;
@@ -341,8 +336,7 @@ static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1B88, v0);
 }
 
-static u32 sub_0207DE40(UnkStruct_0207DE40 *param0)
-{
+static u32 sub_0207DE40(UnkStruct_0207DE40 *param0) {
     UnkStruct_0207DE04 *v0 = param0->unk_10;
 
     if (v0->unk_03 == 1) {
@@ -370,8 +364,7 @@ static u32 sub_0207DE40(UnkStruct_0207DE40 *param0)
     return param0->unk_04;
 }
 
-static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 heapID, u32 param2)
-{
+static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 heapID, u32 param2) {
     UnkStruct_ov115_02260440 *v0;
 
     FS_EXTERN_OVERLAY(overlay115);
@@ -398,16 +391,14 @@ static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 heap
     return v0;
 }
 
-static void sub_0207DED8(UnkStruct_ov115_02260440 *param0)
-{
+static void sub_0207DED8(UnkStruct_ov115_02260440 *param0) {
     FS_EXTERN_OVERLAY(overlay114);
 
     Heap_Free(param0);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 heapID, u32 param2)
-{
+static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 heapID, u32 param2) {
     UnkStruct_ov66_02231134 *v0;
 
     FS_EXTERN_OVERLAY(overlay116);
@@ -432,16 +423,14 @@ static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 heapI
     return v0;
 }
 
-static void sub_0207DF2C(UnkStruct_ov66_02231134 *param0)
-{
+static void sub_0207DF2C(UnkStruct_ov66_02231134 *param0) {
     FS_EXTERN_OVERLAY(overlay114);
 
     Heap_Free(param0);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 heapID, u32 param2)
-{
+static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 heapID, u32 param2) {
     UnkStruct_ov117_02260440 *v0;
 
     FS_EXTERN_OVERLAY(overlay117);
@@ -469,16 +458,14 @@ static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 heap
     return v0;
 }
 
-static void sub_0207DF88(UnkStruct_ov115_02260440 *param0)
-{
+static void sub_0207DF88(UnkStruct_ov115_02260440 *param0) {
     FS_EXTERN_OVERLAY(overlay114);
 
     Heap_Free(param0);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static void sub_0207DF9C(FieldSystem *fieldSystem)
-{
+static void sub_0207DF9C(FieldSystem *fieldSystem) {
     GameRecords *v0 = SaveData_GetGameRecords(fieldSystem->saveData);
     GameRecords_IncrementTrainerScore(v0, TRAINER_SCORE_EVENT_UNK_50);
 }

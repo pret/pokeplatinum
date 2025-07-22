@@ -383,8 +383,7 @@ static const TouchScreenHitTable Unk_ov84_02240EB4[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0x0, 0x0, 0x0 }
 };
 
-int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
-{
+int ov84_0223B5A0(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov84_0223B5A0 *v0;
 
     SetVBlankCallback(NULL, NULL);
@@ -449,8 +448,7 @@ int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov84_0223B76C(ApplicationManager *appMan, int *param1)
-{
+int ov84_0223B76C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov84_0223B5A0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -562,8 +560,7 @@ int ov84_0223B76C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov84_0223B900(ApplicationManager *appMan, int *param1)
-{
+int ov84_0223B900(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov84_0223B5A0 *v0 = ApplicationManager_Data(appMan);
 
     ov84_02240A88(v0);
@@ -595,31 +592,26 @@ int ov84_0223B900(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223B9AC(UnkStruct_ov84_0223B5A0 *param0) {
     param0->unk_C8 = SaveData_GetBag(param0->unk_C4->saveData);
     param0->unk_CC = SaveData_GetTrainerInfo(param0->unk_C4->saveData);
     param0->options = SaveData_GetOptions(param0->unk_C4->saveData);
 }
 
-static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
-{
+static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0) {
     return SaveData_GetSpecialEncounters(param0->unk_C4->saveData);
 }
 
-static void SetRepelSteps(UnkStruct_ov84_0223B5A0 *param0, u8 stepCount)
-{
+static void SetRepelSteps(UnkStruct_ov84_0223B5A0 *param0, u8 stepCount) {
     u8 *repelSteps = SpecialEncounter_GetRepelSteps(ov84_0223B9E4(param0));
     *repelSteps = stepCount;
 }
 
-static void SetBlackWhiteFluteActive(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
-{
+static void SetBlackWhiteFluteActive(UnkStruct_ov84_0223B5A0 *param0, u8 param1) {
     SpecialEncounter_SetFluteFactor(ov84_0223B9E4(param0), param1);
 }
 
-static void ov84_0223BA14(void *param0)
-{
+static void ov84_0223BA14(void *param0) {
     UnkStruct_ov84_0223B5A0 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_00);
@@ -628,8 +620,7 @@ static void ov84_0223BA14(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov84_0223BA3C(void)
-{
+static void ov84_0223BA3C(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -646,8 +637,7 @@ static void ov84_0223BA3C(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov84_0223BA5C(BgConfig *param0)
-{
+static void ov84_0223BA5C(BgConfig *param0) {
     {
         GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
@@ -787,8 +777,7 @@ static void ov84_0223BA5C(BgConfig *param0)
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_6);
 }
 
-static void ov84_0223BBC4(BgConfig *param0)
-{
+static void ov84_0223BBC4(BgConfig *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
@@ -801,8 +790,7 @@ static void ov84_0223BBC4(BgConfig *param0)
     Heap_FreeExplicit(HEAP_ID_6, param0);
 }
 
-static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0) {
     param0->unk_D4 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, HEAP_ID_6);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 11, param0->unk_00, 1, 0, 0, 0, HEAP_ID_6);
@@ -822,8 +810,7 @@ static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
     Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 18, 4, 16 * 2 * 2, 0x20 * 2, HEAP_ID_6);
 }
 
-static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0) {
     param0->unk_114 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, HEAP_ID_6);
     param0->unk_110 = sub_0200C440(1, 2, 0, HEAP_ID_6);
     param0->unk_118 = StringTemplate_Default(HEAP_ID_6);
@@ -832,8 +819,7 @@ static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)
     param0->unk_3F8 = Strbuf_Init(256, HEAP_ID_6);
 }
 
-static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 *param0) {
     u8 v0;
 
     param0->unk_424 = 0;
@@ -845,8 +831,7 @@ static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 *param0)
     }
 }
 
-u16 ov84_0223BE5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2)
-{
+u16 ov84_0223BE5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2) {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     if (param2 == 0) {
@@ -856,18 +841,15 @@ u16 ov84_0223BE5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2)
     return v0->unk_00[param1].quantity;
 }
 
-static void ov84_0223BE84(MessageLoader *param0, Strbuf *param1, u16 param2, u32 param3)
-{
+static void ov84_0223BE84(MessageLoader *param0, Strbuf *param1, u16 param2, u32 param3) {
     MessageLoader_GetStrbuf(param0, param2, param1);
 }
 
-static void ov84_0223BE94(MessageLoader *param0, Strbuf *param1, u16 param2, u32 param3)
-{
+static void ov84_0223BE94(MessageLoader *param0, Strbuf *param1, u16 param2, u32 param3) {
     MessageLoader_GetStrbuf(param0, Item_MoveForTMHM(param2), param1);
 }
 
-static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0;
     u16 v1, v2;
 
@@ -917,8 +899,7 @@ static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
     }
 }
 
-static void ov84_0223BF68(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223BF68(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0;
     u32 v1;
 
@@ -939,8 +920,7 @@ static void ov84_0223BF68(UnkStruct_ov84_0223B5A0 *param0)
     BagCursor_SetFieldPocket(param0->unk_C4->unk_6C, v0[param0->unk_C4->unk_64].unk_08);
 }
 
-static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0;
     u32 v1;
 
@@ -989,8 +969,7 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
     }
 }
 
-static void ov84_0223C158(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223C158(UnkStruct_ov84_0223B5A0 *param0) {
     u32 v0;
 
     for (v0 = 0; v0 < 165; v0++) {
@@ -998,8 +977,7 @@ static void ov84_0223C158(UnkStruct_ov84_0223B5A0 *param0)
     }
 }
 
-static void ov84_0223C178(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223C178(UnkStruct_ov84_0223B5A0 *param0) {
     u32 v0;
 
     for (v0 = 0; v0 < 165; v0++) {
@@ -1007,8 +985,7 @@ static void ov84_0223C178(UnkStruct_ov84_0223B5A0 *param0)
     }
 }
 
-static void ov84_0223C194(u16 *param0, u16 *param1, u8 param2)
-{
+static void ov84_0223C194(u16 *param0, u16 *param1, u8 param2) {
     u8 v0;
 
     param2 -= 1;
@@ -1030,8 +1007,7 @@ static void ov84_0223C194(u16 *param0, u16 *param1, u8 param2)
     }
 }
 
-static void ov84_0223C1D0(u16 *param0, u16 *param1, u8 param2, u8 param3)
-{
+static void ov84_0223C1D0(u16 *param0, u16 *param1, u8 param2, u8 param3) {
     u8 v0;
     u8 v1;
 
@@ -1056,8 +1032,7 @@ static void ov84_0223C1D0(u16 *param0, u16 *param1, u8 param2, u8 param3)
     }
 }
 
-static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2)
-{
+static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2) {
     ListMenuTemplate v0;
 
     v0 = Unk_ov84_02240FA8;
@@ -1076,8 +1051,7 @@ static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param
     Window_ScheduleCopyToVRAM(&param0->unk_04[0]);
 }
 
-static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2) {
     UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
@@ -1123,8 +1097,7 @@ static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2) {
     UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)ListMenu_GetAttribute(param0, 19);
     UnkStruct_ov84_0223BE5C *v1 = &v0->unk_C4->unk_04[v0->unk_C4->unk_64];
 
@@ -1163,15 +1136,13 @@ static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov84_0223C4E0(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223C4E0(UnkStruct_ov84_0223B5A0 *param0) {
     ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
     StringList_Free(param0->unk_160);
     param0->unk_15C = NULL;
 }
 
-static int ov84_0223C51C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223C51C(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223D0FC(param0);
 
     if (ov84_0223ED14(param0) == 1) {
@@ -1211,8 +1182,7 @@ static int ov84_0223C51C(UnkStruct_ov84_0223B5A0 *param0)
     return 1;
 }
 
-static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0;
     u32 v1;
     u16 v2, v3;
@@ -1275,14 +1245,12 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static void ov84_0223C720(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223C720(UnkStruct_ov84_0223B5A0 *param0) {
     param0->unk_427 = 6 + (90 - (10 * param0->unk_424)) / (param0->unk_424 + 1);
     param0->unk_428 = 10 + param0->unk_427 - 6;
 }
 
-static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0) {
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         if (param0->unk_424 == 1) {
             return 0;
@@ -1331,15 +1299,13 @@ static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static void ov84_0223C848(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223C848(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223C89C(param0);
     param0->unk_429.unk_04 = 3;
     param0->unk_429.unk_07_7 = 0;
 }
 
-static void ov84_0223C868(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223C868(UnkStruct_ov84_0223B5A0 *param0) {
     if (param0->unk_429.unk_01 != 2) {
         ov84_0223C89C(param0);
     } else {
@@ -1350,8 +1316,7 @@ static void ov84_0223C868(UnkStruct_ov84_0223B5A0 *param0)
     param0->unk_429.unk_07_7 = 1;
 }
 
-static void ov84_0223C89C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223C89C(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223C920 *v0 = &param0->unk_429;
 
     v0->unk_02 = 0;
@@ -1371,8 +1336,7 @@ static void ov84_0223C89C(UnkStruct_ov84_0223B5A0 *param0)
     ov84_0223CF20(param0, param0->unk_C4->unk_64, 0);
 }
 
-static u8 ov84_0223C920(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223C920(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223C920 *v0;
     int v1;
     u8 v2;
@@ -1436,8 +1400,7 @@ static u8 ov84_0223C920(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static u8 ov84_0223CA5C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223CA5C(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223C920 *v0 = &param0->unk_429;
 
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
@@ -1510,8 +1473,7 @@ static u8 ov84_0223CA5C(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static u8 ov84_0223CBD8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223CBD8(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223C920 *v0 = &param0->unk_429;
 
     switch (v0->unk_02) {
@@ -1553,8 +1515,7 @@ static u8 ov84_0223CBD8(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static u8 ov84_0223CD40(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223CD40(UnkStruct_ov84_0223B5A0 *param0) {
     int v0 = ov84_0223CDB0(param0);
 
     if (v0 == 0xffffffff) {
@@ -1582,8 +1543,7 @@ static u8 ov84_0223CD40(UnkStruct_ov84_0223B5A0 *param0)
     return 1;
 }
 
-static int ov84_0223CDB0(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223CDB0(UnkStruct_ov84_0223B5A0 *param0) {
     int v0 = TouchScreen_CheckRectanglePressed(Unk_ov84_022410C8[param0->unk_424].unk_04);
 
     if (v0 != 0xffffffff) {
@@ -1597,8 +1557,7 @@ static int ov84_0223CDB0(UnkStruct_ov84_0223B5A0 *param0)
     return v0;
 }
 
-static int ov84_0223CE08(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223CE08(UnkStruct_ov84_0223B5A0 *param0) {
     int v0 = TouchScreen_CheckRectangleHeld(Unk_ov84_022410C8[param0->unk_424].unk_04);
 
     if (v0 != 0xffffffff) {
@@ -1612,8 +1571,7 @@ static int ov84_0223CE08(UnkStruct_ov84_0223B5A0 *param0)
     return v0;
 }
 
-static u8 ov84_0223CE60(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223CE60(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223C920 *v0 = &param0->unk_429;
 
     switch (v0->unk_04) {
@@ -1653,8 +1611,7 @@ static u8 ov84_0223CE60(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static void ov84_0223CF20(UnkStruct_ov84_0223B5A0 *param0, u8 param1, u8 param2)
-{
+static void ov84_0223CF20(UnkStruct_ov84_0223B5A0 *param0, u8 param1, u8 param2) {
     u16 *v0;
     const u8 *v1;
     u16 v2;
@@ -1673,8 +1630,7 @@ static void ov84_0223CF20(UnkStruct_ov84_0223B5A0 *param0, u8 param1, u8 param2)
     }
 }
 
-static void ov84_0223CFB0(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
-{
+static void ov84_0223CFB0(UnkStruct_ov84_0223B5A0 *param0, u8 param1) {
     u16 *v0;
     const u8 *v1;
     u16 v2;
@@ -1693,8 +1649,7 @@ static void ov84_0223CFB0(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
     Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
 }
 
-static void ov84_0223D014(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D014(UnkStruct_ov84_0223B5A0 *param0) {
     switch (param0->unk_490) {
     case 0:
         break;
@@ -1729,8 +1684,7 @@ static void ov84_0223D014(UnkStruct_ov84_0223B5A0 *param0)
     }
 }
 
-static void ov84_0223D0BC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D0BC(UnkStruct_ov84_0223B5A0 *param0) {
     u8 v0;
 
     ov84_0223CFB0(param0, 0);
@@ -1743,8 +1697,7 @@ static void ov84_0223D0BC(UnkStruct_ov84_0223B5A0 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
 }
 
-static void ov84_0223D0FC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D0FC(UnkStruct_ov84_0223B5A0 *param0) {
     if (param0->unk_481 == 0) {
         s16 v0, v1;
 
@@ -1779,8 +1732,7 @@ static void ov84_0223D0FC(UnkStruct_ov84_0223B5A0 *param0)
     param0->unk_481 = (param0->unk_481 + 1) & 3;
 }
 
-static BOOL ov84_0223D1F4(UnkStruct_ov84_0223B5A0 *param0)
-{
+static BOOL ov84_0223D1F4(UnkStruct_ov84_0223B5A0 *param0) {
     int v0 = TouchScreen_CheckRectanglePressed(Unk_ov84_02240E98);
 
     if (v0 != 0xffffffff) {
@@ -1796,8 +1748,7 @@ static BOOL ov84_0223D1F4(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     if (ListMenu_GetIndexOfChoice(param0->unk_15C, v0->unk_06 + v0->unk_04) == 0xfffffffe) {
@@ -1815,8 +1766,7 @@ static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0)
     return 1;
 }
 
-static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     param0->unk_47A = 1;
@@ -1828,8 +1778,7 @@ static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0)
     ov84_0223D4E8(param0);
 }
 
-static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0;
     u32 v1;
     u16 v2, v3;
@@ -1894,8 +1843,7 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
     return 0;
 }
 
-static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
     u16 v1 = v0->unk_06 + v0->unk_04;
 
@@ -1908,8 +1856,7 @@ static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0)
     ov84_0223D484(param0);
 }
 
-static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     ListMenu_Free(param0->unk_15C, &v0->unk_06, &v0->unk_04);
@@ -1927,8 +1874,7 @@ static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0)
     ov84_0223D4E8(param0);
 }
 
-static void ov84_0223D4E8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D4E8(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     if (param0->unk_47A == 0) {
@@ -1952,8 +1898,7 @@ static void ov84_0223D4E8(UnkStruct_ov84_0223B5A0 *param0)
     }
 }
 
-static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0) {
     void *v0;
     u32 v1;
     u8 v2;
@@ -2022,8 +1967,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
     Heap_Free(v0);
 }
 
-static int ov84_0223D730(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223D730(UnkStruct_ov84_0223B5A0 *param0) {
     u32 v0;
 
     if (ov84_0223EF4C(param0) == 1) {
@@ -2067,8 +2011,7 @@ static int ov84_0223D730(UnkStruct_ov84_0223B5A0 *param0)
     return 4;
 }
 
-static void ov84_0223D7E8(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
-{
+static void ov84_0223D7E8(UnkStruct_ov84_0223B5A0 *param0, u8 param1) {
     if (param1 == 0) {
         Bg_LoadToTilemapRect(param0->unk_00, 1, Unk_ov84_02241064, 0, 18, 5, 5);
         ManagedSprite_SetDrawFlag(param0->unk_E0[7], 1);
@@ -2080,13 +2023,11 @@ static void ov84_0223D7E8(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
     Bg_ScheduleTilemapTransfer(param0->unk_00, 1);
 }
 
-const u32 ov84_0223D84C(u32 param0)
-{
+const u32 ov84_0223D84C(u32 param0) {
     return Unk_ov84_02241034[param0];
 }
 
-static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0) {
     UnkFuncPtr_02069238 v0;
     s32 v1;
 
@@ -2111,8 +2052,7 @@ static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
     return ov84_0223D94C(param0);
 }
 
-static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->unk_04[6], 0);
@@ -2130,8 +2070,7 @@ static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0)
     return 12;
 }
 
-static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0) {
     UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     param0->unk_483 = 0;
@@ -2159,14 +2098,12 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
     return 24;
 }
 
-static int ov84_0223DA04(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DA04(UnkStruct_ov84_0223B5A0 *param0) {
     UnkFuncPtr_ov84_0223DA04 v0 = (UnkFuncPtr_ov84_0223DA04)param0->unk_484;
     return v0(param0);
 }
 
-static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0) {
     switch (param0->unk_483) {
     case 0: {
         u16 v0 = Item_MoveForTMHM(param0->unk_C4->unk_66);
@@ -2251,8 +2188,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
     return 13;
 }
 
-static BOOL ov84_0223DBF4(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
-{
+static BOOL ov84_0223DBF4(UnkStruct_ov84_0223B5A0 *param0, u16 param1) {
     Strbuf *v0;
 
     StringTemplate_SetPlayerName(param0->unk_118, 0, param0->unk_CC);
@@ -2277,8 +2213,7 @@ static BOOL ov84_0223DBF4(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     return 1;
 }
 
-static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
-{
+static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1) {
     s32 stepCount;
     u8 *v1;
 
@@ -2296,8 +2231,7 @@ static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     return MessageLoader_GetNewStrbuf(param0->unk_114, 61);
 }
 
-static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0) {
     Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, param0->unk_488, HEAP_ID_6);
     ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
     StringList_Free(param0->unk_160);
@@ -2308,8 +2242,7 @@ static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0)
     ov84_0223C224(param0, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
 }
 
-static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0) {
     switch (param0->unk_483) {
     case 0:
         Window_FillTilemap(&param0->unk_04[6], 15);
@@ -2342,8 +2275,7 @@ static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
     return 13;
 }
 
-static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223FD84(param0);
     sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 1;
@@ -2351,8 +2283,7 @@ static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0)
     return 24;
 }
 
-static int ov84_0223DE98(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DE98(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223FD84(param0);
     sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 3;
@@ -2360,8 +2291,7 @@ static int ov84_0223DE98(UnkStruct_ov84_0223B5A0 *param0)
     return 24;
 }
 
-static int ov84_0223DEB8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DEB8(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223FD84(param0);
     param0->unk_488 = 1;
     if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, HEAP_ID_6) == 1) {
@@ -2375,8 +2305,7 @@ static int ov84_0223DEB8(UnkStruct_ov84_0223B5A0 *param0)
     return 7;
 }
 
-static int ov84_0223DF0C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DF0C(UnkStruct_ov84_0223B5A0 *param0) {
     if (ov84_0223EFD0(param0, &param0->unk_488, param0->unk_48A) == 1) {
         ov84_0223FF44(param0);
         return 7;
@@ -2421,8 +2350,7 @@ static int ov84_0223DF0C(UnkStruct_ov84_0223B5A0 *param0)
     return 7;
 }
 
-static int ov84_0223DFF8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223DFF8(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         ov84_02240120(param0);
         return 9;
@@ -2431,8 +2359,7 @@ static int ov84_0223DFF8(UnkStruct_ov84_0223B5A0 *param0)
     return 8;
 }
 
-static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0) {
     u32 v0;
 
     if (ov84_0223EF4C(param0) == 1) {
@@ -2483,8 +2410,7 @@ static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
     return 9;
 }
 
-static int ov84_0223E158(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E158(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) != 0) {
         return 10;
     }
@@ -2496,8 +2422,7 @@ static int ov84_0223E158(UnkStruct_ov84_0223B5A0 *param0)
     return 11;
 }
 
-static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             param0->unk_479 = 0;
@@ -2512,8 +2437,7 @@ static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0)
     return 11;
 }
 
-static int ov84_0223E1E4(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E1E4(UnkStruct_ov84_0223B5A0 *param0) {
     Bag_RegisterItem(param0->unk_C8, param0->unk_C4->unk_66);
     ListMenu_Draw(param0->unk_15C);
     ov84_0223FD84(param0);
@@ -2523,8 +2447,7 @@ static int ov84_0223E1E4(UnkStruct_ov84_0223B5A0 *param0)
     return 1;
 }
 
-static int ov84_0223E220(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E220(UnkStruct_ov84_0223B5A0 *param0) {
     Bag_RegisterItem(param0->unk_C8, 0);
     ListMenu_Draw(param0->unk_15C);
     ov84_0223FD84(param0);
@@ -2534,8 +2457,7 @@ static int ov84_0223E220(UnkStruct_ov84_0223B5A0 *param0)
     return 1;
 }
 
-static int ov84_0223E254(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E254(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223FD84(param0);
     sub_0208C120(1, HEAP_ID_6);
     ov84_0223D7E8(param0, 0);
@@ -2544,8 +2466,7 @@ static int ov84_0223E254(UnkStruct_ov84_0223B5A0 *param0)
     return 24;
 }
 
-static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223D0FC(param0);
     if (ov84_0223ED14(param0) == 1) {
         return 14;
@@ -2592,8 +2513,7 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
     return 14;
 }
 
-static int ov84_0223E36C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E36C(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->unk_04[6], 0);
@@ -2607,8 +2527,7 @@ static int ov84_0223E36C(UnkStruct_ov84_0223B5A0 *param0)
     return 15;
 }
 
-static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223D0FC(param0);
     if (ov84_0223ED14(param0) == 1) {
         return 16;
@@ -2672,8 +2591,7 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
     return 16;
 }
 
-static int ov84_0223E588(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E588(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if (param0->unk_48A > 99) {
             param0->unk_48A = 99;
@@ -2687,8 +2605,7 @@ static int ov84_0223E588(UnkStruct_ov84_0223B5A0 *param0)
     return 17;
 }
 
-static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0) {
     if (ov84_0223EFD0(param0, &param0->unk_488, param0->unk_48A) == 1) {
         ov84_02240148(param0, 1);
         return 18;
@@ -2757,8 +2674,7 @@ static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0)
     return 18;
 }
 
-static int ov84_0223E7A8(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E7A8(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         ov84_02240120(param0);
 
@@ -2768,8 +2684,7 @@ static int ov84_0223E7A8(UnkStruct_ov84_0223B5A0 *param0)
     return 19;
 }
 
-static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0) {
     u32 v0;
 
     if (ov84_0223EF4C(param0) == 1) {
@@ -2822,8 +2737,7 @@ static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
     return 20;
 }
 
-static int ov84_0223E920(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E920(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) != 0) {
         return 21;
     }
@@ -2847,8 +2761,7 @@ static int ov84_0223E920(UnkStruct_ov84_0223B5A0 *param0)
     return 22;
 }
 
-static int ov84_0223E9B0(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223E9B0(UnkStruct_ov84_0223B5A0 *param0) {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             param0->unk_479 = 0;
@@ -2866,8 +2779,7 @@ static int ov84_0223E9B0(UnkStruct_ov84_0223B5A0 *param0)
     return 22;
 }
 
-static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
-{
+static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0) {
     ov84_0223D0FC(param0);
 
     if (ov84_0223ED14(param0) == 1) {
@@ -2908,8 +2820,7 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
     return 23;
 }
 
-static void ov84_0223EB08(UnkStruct_ov84_0223B5A0 *param0, s8 param1)
-{
+static void ov84_0223EB08(UnkStruct_ov84_0223B5A0 *param0, s8 param1) {
     s16 v0 = Bg_GetRotation(param0->unk_00, 7);
 
     v0 += param1;
@@ -2924,8 +2835,7 @@ static void ov84_0223EB08(UnkStruct_ov84_0223B5A0 *param0, s8 param1)
     param0->unk_49A = v0;
 }
 
-static BOOL ov84_0223EB54(void)
-{
+static BOOL ov84_0223EB54(void) {
     int v0 = TouchScreen_CheckPressedHitTableID(Unk_ov84_02240EA8);
 
     if (v0 == 1) {
@@ -2935,8 +2845,7 @@ static BOOL ov84_0223EB54(void)
     return 0;
 }
 
-static BOOL ov84_0223EB6C(void)
-{
+static BOOL ov84_0223EB6C(void) {
     int v0 = TouchScreen_CheckHeldHitTableID(Unk_ov84_02240EB4);
 
     if (v0 == 1) {
@@ -2946,8 +2855,7 @@ static BOOL ov84_0223EB6C(void)
     return 0;
 }
 
-static BOOL ov84_0223EB84(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
-{
+static BOOL ov84_0223EB84(UnkStruct_ov84_0223B5A0 *param0, u16 param1) {
     if (ov84_0223EB54() == 1) {
         param0->unk_492 = 1;
         param0->unk_498 = 0;
@@ -3009,8 +2917,7 @@ static BOOL ov84_0223EB84(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     return 0;
 }
 
-static BOOL ov84_0223ED14(UnkStruct_ov84_0223B5A0 *param0)
-{
+static BOOL ov84_0223ED14(UnkStruct_ov84_0223B5A0 *param0) {
     BOOL v0 = ov84_0223EB84(param0, 36);
 
     if (param0->unk_498 > 0) {
@@ -3034,8 +2941,7 @@ static BOOL ov84_0223ED14(UnkStruct_ov84_0223B5A0 *param0)
     return v0;
 }
 
-static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
-{
+static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1) {
     u16 v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
     u16 v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
 
@@ -3053,8 +2959,7 @@ static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     return 1;
 }
 
-static BOOL ov84_0223EE30(UnkStruct_ov84_0223B5A0 *param0)
-{
+static BOOL ov84_0223EE30(UnkStruct_ov84_0223B5A0 *param0) {
     BOOL v0 = ov84_0223EB84(param0, 36);
 
     if (param0->unk_498 > 0) {
@@ -3078,8 +2983,7 @@ static BOOL ov84_0223EE30(UnkStruct_ov84_0223B5A0 *param0)
     return v0;
 }
 
-static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
-{
+static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1) {
     u16 v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
     u16 v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
 
@@ -3097,8 +3001,7 @@ static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
     return 1;
 }
 
-static BOOL ov84_0223EF4C(UnkStruct_ov84_0223B5A0 *param0)
-{
+static BOOL ov84_0223EF4C(UnkStruct_ov84_0223B5A0 *param0) {
     BOOL v0 = ov84_0223EB84(param0, 18);
 
     if (param0->unk_498 > 0) {
@@ -3122,8 +3025,7 @@ static BOOL ov84_0223EF4C(UnkStruct_ov84_0223B5A0 *param0)
     return v0;
 }
 
-static BOOL ov84_0223EF9C(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
-{
+static BOOL ov84_0223EF9C(UnkStruct_ov84_0223B5A0 *param0, u8 param1) {
     u8 v0 = Menu_GetCursorPos(param0->unk_158);
 
     Menu_ProcessExternalInput(param0->unk_158, param1);
@@ -3135,8 +3037,7 @@ static BOOL ov84_0223EF9C(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
     return 1;
 }
 
-static BOOL ov84_0223EFD0(UnkStruct_ov84_0223B5A0 *param0, s16 *param1, u16 param2)
-{
+static BOOL ov84_0223EFD0(UnkStruct_ov84_0223B5A0 *param0, s16 *param1, u16 param2) {
     BOOL v0;
     s16 v1;
 

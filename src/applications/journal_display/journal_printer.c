@@ -105,8 +105,7 @@ static const WindowTemplate Unk_ov81_021D3508[] = {
     { 0x1, 0x4, 0x4, 0x1B, 0x12, 0xF, 0x31 }
 };
 
-void JournalPrinter_AddWindows(JournalManager *journalManager)
-{
+void JournalPrinter_AddWindows(JournalManager *journalManager) {
     u32 i;
 
     for (i = 0; i < 4; i++) {
@@ -114,8 +113,7 @@ void JournalPrinter_AddWindows(JournalManager *journalManager)
     }
 }
 
-void JournalPrinter_RemoveWindows(JournalManager *journalManager)
-{
+void JournalPrinter_RemoveWindows(JournalManager *journalManager) {
     u32 i;
 
     for (i = 0; i < 4; i++) {
@@ -123,8 +121,7 @@ void JournalPrinter_RemoveWindows(JournalManager *journalManager)
     }
 }
 
-void JournalPrinter_PrintEntry(JournalManager *journalManager, u32 param1)
-{
+void JournalPrinter_PrintEntry(JournalManager *journalManager, u32 param1) {
     Window *titleWindow;
     Window *eventsWindow;
 
@@ -150,8 +147,7 @@ void JournalPrinter_PrintEntry(JournalManager *journalManager, u32 param1)
     Window_ScheduleCopyToVRAM(eventsWindow);
 }
 
-static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *titleWindow, Window *eventsWindow)
-{
+static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *titleWindow, Window *eventsWindow) {
     JournalEntryTitle journalEntryTitle;
     Strbuf *strbuf;
     u32 xOffset;
@@ -185,8 +181,7 @@ static u8 JournalPrinter_PrintTitle(JournalManager *journalManager, Window *titl
     return 1;
 }
 
-static void JournalPrinter_PrintLocationEvents(JournalManager *journalManager, Window *window)
-{
+static void JournalPrinter_PrintLocationEvents(JournalManager *journalManager, Window *window) {
     JournalEntryLocationEvent journalEntryLocationEvent[MAX_JOURNAL_LOCATION_EVENTS];
     u32 i;
 
@@ -309,8 +304,7 @@ static void JournalPrinter_PrintLocationEvents(JournalManager *journalManager, W
     }
 }
 
-static void JournalPrinter_PrintPokemonEvent(JournalManager *journalManager, Window *window)
-{
+static void JournalPrinter_PrintPokemonEvent(JournalManager *journalManager, Window *window) {
     JournalEntryMon journalEntryMon;
 
     JournalEntry_GetData(journalManager->journalEntry, &journalEntryMon, JOURNAL_MON, journalManager->page);
@@ -329,8 +323,7 @@ static void JournalPrinter_PrintPokemonEvent(JournalManager *journalManager, Win
     }
 }
 
-static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Window *window)
-{
+static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Window *window) {
     JournalEntryTrainer journalEntryTrainer;
     Strbuf *strbuf;
     u32 strLength;
@@ -374,8 +367,7 @@ static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Win
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintOnlineEvents(JournalManager *journalManager, Window *window)
-{
+static void JournalPrinter_PrintOnlineEvents(JournalManager *journalManager, Window *window) {
     JournalEntryOnlineEvent journalEntryOnlineEvent[MAX_JOURNAL_ONLINE_EVENTS];
     u32 i;
 
@@ -464,72 +456,63 @@ static void JournalPrinter_PrintOnlineEvents(JournalManager *journalManager, Win
     }
 }
 
-static void JournalPrinter_PrintRestedAtHome(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintRestedAtHome(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_RestedAtHome);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintLeftResearchLab(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintLeftResearchLab(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_LeftResearchLab);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedPCBox(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedPCBox(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedPcBox);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintShoppedAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintShoppedAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_ShoppedAtPokeMart);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintLotsOfShoppingAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintLotsOfShoppingAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_LotsOfShoppingAtPokeMart);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintSoldALittleAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintSoldALittleAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_Sold_a_little_at_poke_mart);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintSoldALotAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintSoldALotAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_Sold_a_lot_at_poke_mart);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintDidBusinessAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintDidBusinessAtMart(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_DidBusinessAtPokeMart);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintGymWasTooTough(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintGymWasTooTough(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_GymWasTooTough);
 
     StringTemplate_SetGymName(journalManager->template, 0, journalEntryLocationEvent->locationID);
@@ -538,8 +521,7 @@ static void JournalPrinter_PrintGymWasTooTough(JournalManager *journalManager, W
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintBeatGymLeader(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintBeatGymLeader(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_BeatLocationsGymLeader);
 
     StringTemplate_SetGymName(journalManager->template, 0, journalEntryLocationEvent->locationID);
@@ -549,8 +531,7 @@ static void JournalPrinter_PrintBeatGymLeader(JournalManager *journalManager, Wi
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintBeatEliteFourMember(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintBeatEliteFourMember(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_BeatEliteFourMember);
 
     StringTemplate_SetTrainerName(journalManager->template, 0, journalEntryLocationEvent->trainerID);
@@ -559,8 +540,7 @@ static void JournalPrinter_PrintBeatEliteFourMember(JournalManager *journalManag
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintBeatChampion(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintBeatChampion(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_BeatChampion);
 
     StringTemplate_SetTrainerName(journalManager->template, 0, journalEntryLocationEvent->trainerID);
@@ -569,8 +549,7 @@ static void JournalPrinter_PrintBeatChampion(JournalManager *journalManager, Win
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintArrivedInLocation(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintArrivedInLocation(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_ArrivedInLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -579,8 +558,7 @@ static void JournalPrinter_PrintArrivedInLocation(JournalManager *journalManager
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintLeftCave(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintLeftCave(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf;
     u32 mapLabelTextID = journalEntryLocationEvent->locationID;
 
@@ -596,8 +574,7 @@ static void JournalPrinter_PrintLeftCave(JournalManager *journalManager, Window 
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintLeftBuilding(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintLeftBuilding(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf;
     u32 mapLabelTextID = journalEntryLocationEvent->locationID;
 
@@ -613,24 +590,21 @@ static void JournalPrinter_PrintLeftBuilding(JournalManager *journalManager, Win
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintGameCorner(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintGameCorner(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_PlayedAtGameCorner);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintSafariGame(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintSafariGame(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_PlayedSafariGame);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintItemWasObtained(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintItemWasObtained(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_ItemWasObtained);
 
     StringTemplate_SetItemName(journalManager->template, 0, journalEntryLocationEvent->item);
@@ -639,8 +613,7 @@ static void JournalPrinter_PrintItemWasObtained(JournalManager *journalManager, 
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedRockSmash(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedRockSmash(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedRockSmashAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -649,8 +622,7 @@ static void JournalPrinter_PrintUsedRockSmash(JournalManager *journalManager, Wi
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedCut(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedCut(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedCutAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -659,8 +631,7 @@ static void JournalPrinter_PrintUsedCut(JournalManager *journalManager, Window *
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintFlewToLocation(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintFlewToLocation(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_FlewToLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -669,8 +640,7 @@ static void JournalPrinter_PrintFlewToLocation(JournalManager *journalManager, W
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedDefog(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedDefog(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedDefogAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -679,8 +649,7 @@ static void JournalPrinter_PrintUsedDefog(JournalManager *journalManager, Window
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedStrength(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedStrength(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedStrengthAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -689,8 +658,7 @@ static void JournalPrinter_PrintUsedStrength(JournalManager *journalManager, Win
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedSurf(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedSurf(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedSurfAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -699,8 +667,7 @@ static void JournalPrinter_PrintUsedSurf(JournalManager *journalManager, Window 
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedRockClimb(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedRockClimb(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedRockClimbAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -709,8 +676,7 @@ static void JournalPrinter_PrintUsedRockClimb(JournalManager *journalManager, Wi
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedWaterfall(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedWaterfall(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedWaterfallAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -719,8 +685,7 @@ static void JournalPrinter_PrintUsedWaterfall(JournalManager *journalManager, Wi
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedFlash(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedFlash(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedFlashAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -729,8 +694,7 @@ static void JournalPrinter_PrintUsedFlash(JournalManager *journalManager, Window
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintWarpedToLocation(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintWarpedToLocation(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_WarpedToLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -739,8 +703,7 @@ static void JournalPrinter_PrintWarpedToLocation(JournalManager *journalManager,
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedDig(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedDig(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedDigAtLocation);
 
     StringTemplate_SetLocationName(journalManager->template, 0, MapHeader_GetMapLabelTextID(journalEntryLocationEvent->locationID));
@@ -749,48 +712,42 @@ static void JournalPrinter_PrintUsedDig(JournalManager *journalManager, Window *
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintLuredPokemon(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintLuredPokemon(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_LuredPokemon);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedSoftboiled(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedSoftboiled(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedSoftboiled);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUsedMilkDrink(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintUsedMilkDrink(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_UsedMilkDrink);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintDugUnderground(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintDugUnderground(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_DugUnderground);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintBuiltSecretBase(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row)
-{
+static void JournalPrinter_PrintBuiltSecretBase(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_BuiltSecretBase);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, LOCATION_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintPlayedAtBattleFacility(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row, int eventType)
-{
+static void JournalPrinter_PrintPlayedAtBattleFacility(JournalManager *journalManager, Window *window, JournalEntryLocationEvent *journalEntryLocationEvent, u8 row, int eventType) {
     u32 message;
     Strbuf *strbuf;
 
@@ -818,8 +775,7 @@ static void JournalPrinter_PrintPlayedAtBattleFacility(JournalManager *journalMa
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_SetSpeciesName(JournalManager *journalManager, u16 species, u8 gender, u8 idx)
-{
+static void JournalPrinter_SetSpeciesName(JournalManager *journalManager, u16 species, u8 gender, u8 idx) {
     Pokemon *mon = Pokemon_New(HEAP_ID_JOURNAL);
 
     sub_02074088(mon, species, 1, 32, gender, 0, 0);
@@ -827,8 +783,7 @@ static void JournalPrinter_SetSpeciesName(JournalManager *journalManager, u16 sp
     Heap_Free(mon);
 }
 
-static void JournalPrinter_PrintPokemonCaught(JournalManager *journalManager, Window *window, JournalEntryMon *journalEntryMon)
-{
+static void JournalPrinter_PrintPokemonCaught(JournalManager *journalManager, Window *window, JournalEntryMon *journalEntryMon) {
     Strbuf *strbuf;
 
     switch (journalEntryMon->stringVariant) {
@@ -856,8 +811,7 @@ static void JournalPrinter_PrintPokemonCaught(JournalManager *journalManager, Wi
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintPokemonDefeated(JournalManager *journalManager, Window *window, JournalEntryMon *journalEntryMon)
-{
+static void JournalPrinter_PrintPokemonDefeated(JournalManager *journalManager, Window *window, JournalEntryMon *journalEntryMon) {
     Strbuf *strbuf;
 
     switch (journalEntryMon->stringVariant) {
@@ -885,8 +839,7 @@ static void JournalPrinter_PrintPokemonDefeated(JournalManager *journalManager, 
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_SetPlayerOrPokemonName(JournalManager *journalManager, u16 *name, u8 unused, u8 idx)
-{
+static void JournalPrinter_SetPlayerOrPokemonName(JournalManager *journalManager, u16 *name, u8 unused, u8 idx) {
     Strbuf *strbuf = Strbuf_Init(32, HEAP_ID_JOURNAL);
 
     Strbuf_CopyChars(strbuf, name);
@@ -894,8 +847,7 @@ static void JournalPrinter_SetPlayerOrPokemonName(JournalManager *journalManager
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintSingleBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintSingleBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf;
 
     switch (journalEntryOnlineEvent->result) {
@@ -917,8 +869,7 @@ static void JournalPrinter_PrintSingleBattleEvent(JournalManager *journalManager
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintDoubleBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintDoubleBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf;
 
     switch (journalEntryOnlineEvent->result) {
@@ -940,8 +891,7 @@ static void JournalPrinter_PrintDoubleBattleEvent(JournalManager *journalManager
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintMultiBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintMultiBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf;
 
     switch (journalEntryOnlineEvent->result) {
@@ -964,8 +914,7 @@ static void JournalPrinter_PrintMultiBattleEvent(JournalManager *journalManager,
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintMixSingleBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintMixSingleBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf;
 
     switch (journalEntryOnlineEvent->result) {
@@ -987,8 +936,7 @@ static void JournalPrinter_PrintMixSingleBattleEvent(JournalManager *journalMana
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintMixMultiBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintMixMultiBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf;
 
     switch (journalEntryOnlineEvent->result) {
@@ -1011,8 +959,7 @@ static void JournalPrinter_PrintMixMultiBattleEvent(JournalManager *journalManag
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintGreetedInUnionRoom(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintGreetedInUnionRoom(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_GreetedPlayerInUnionRoom);
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
@@ -1021,8 +968,7 @@ static void JournalPrinter_PrintGreetedInUnionRoom(JournalManager *journalManage
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintGotPokemonFromTrade(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintGotPokemonFromTrade(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_GotPokemonFromPlayer);
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
@@ -1032,16 +978,14 @@ static void JournalPrinter_PrintGotPokemonFromTrade(JournalManager *journalManag
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintDrewPictures(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintDrewPictures(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_DrewPicturesWithOthers);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintGotPokemonInFriendTrade(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintGotPokemonInFriendTrade(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_GotPokemonInFriendTrade);
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->pokemonName, journalEntryOnlineEvent->unused3, 0);
@@ -1050,16 +994,14 @@ static void JournalPrinter_PrintGotPokemonInFriendTrade(JournalManager *journalM
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintChattedWithOthers(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintChattedWithOthers(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_ChattedWithOthers);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintUnionBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintUnionBattleEvent(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf;
 
     switch (journalEntryOnlineEvent->result) {
@@ -1081,16 +1023,14 @@ static void JournalPrinter_PrintUnionBattleEvent(JournalManager *journalManager,
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintMixedRecords(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintMixedRecords(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_MixedRecords);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintPlacedInContest(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintPlacedInContest(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_PlacedNumberInContest);
 
     StringTemplate_SetNumber(journalManager->template, 0, journalEntryOnlineEvent->result, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -1099,16 +1039,14 @@ static void JournalPrinter_PrintPlacedInContest(JournalManager *journalManager, 
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintMadePoffins(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintMadePoffins(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_MadePoffinsInGroup);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintGotPokemonGTS(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintGotPokemonGTS(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_GotPlayersPokemonGts);
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
@@ -1118,24 +1056,21 @@ static void JournalPrinter_PrintGotPokemonGTS(JournalManager *journalManager, Wi
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintBattleRoom(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintBattleRoom(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_WonInBattleRoom);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintSpinTrade(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintSpinTrade(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_DidSpinTrade);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintMiscEvent1(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType)
-{
+static void JournalPrinter_PrintMiscEvent1(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType) {
     Strbuf *strbuf;
     u32 message;
 
@@ -1160,8 +1095,7 @@ static void JournalPrinter_PrintMiscEvent1(JournalManager *journalManager, Windo
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintChattedInPlaza(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintChattedInPlaza(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_ChattedWithPlayerInPlaza);
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
@@ -1170,8 +1104,7 @@ static void JournalPrinter_PrintChattedInPlaza(JournalManager *journalManager, W
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintGotTapToy(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintGotTapToy(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_GotTapToyFromPlayer);
 
     JournalPrinter_SetPlayerOrPokemonName(journalManager, journalEntryOnlineEvent->playerName1, journalEntryOnlineEvent->unused1, 0);
@@ -1180,8 +1113,7 @@ static void JournalPrinter_PrintGotTapToy(JournalManager *journalManager, Window
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintPlazaMinigame(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintPlazaMinigame(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_PlayedPlazaMiniGame);
 
     StringTemplate_SetPlazaMinigameName(journalManager->template, 0, journalEntryOnlineEvent->result);
@@ -1190,8 +1122,7 @@ static void JournalPrinter_PrintPlazaMinigame(JournalManager *journalManager, Wi
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintMiscEvent2(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType)
-{
+static void JournalPrinter_PrintMiscEvent2(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row, int eventType) {
     Strbuf *strbuf;
     u32 message;
 
@@ -1216,8 +1147,7 @@ static void JournalPrinter_PrintMiscEvent2(JournalManager *journalManager, Windo
     Strbuf_Free(strbuf);
 }
 
-static void JournalPrinter_PrintWiFiClub(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row)
-{
+static void JournalPrinter_PrintWiFiClub(JournalManager *journalManager, Window *window, JournalEntryOnlineEvent *journalEntryOnlineEvent, u8 row) {
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(journalManager->loader, JournalEntries_Text_PlayedAtWiFiClub);
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 0, ONLINE_EVENT_Y_OFFSET + row * ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

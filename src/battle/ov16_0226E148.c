@@ -23,8 +23,7 @@ typedef struct {
 
 static void ov16_0226E188(SysTask *param0, void *param1);
 
-SysTask *ov16_0226E148(BattleSystem *battleSys)
-{
+SysTask *ov16_0226E148(BattleSystem *battleSys) {
     UnkStruct_ov16_0226E148 *v0;
     SysTask *v1;
 
@@ -37,16 +36,14 @@ SysTask *ov16_0226E148(BattleSystem *battleSys)
     return v1;
 }
 
-void ov16_0226E174(SysTask *param0)
-{
+void ov16_0226E174(SysTask *param0) {
     UnkStruct_ov16_0226E148 *v0 = SysTask_GetParam(param0);
 
     Heap_Free(v0);
     SysTask_Done(param0);
 }
 
-static void ov16_0226E188(SysTask *param0, void *param1)
-{
+static void ov16_0226E188(SysTask *param0, void *param1) {
     UnkStruct_ov16_0226E148 *v0 = param1;
     UnkStruct_ov16_02268A14 *v1 = ov16_0223E02C(v0->unk_00);
 

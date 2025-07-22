@@ -55,8 +55,7 @@ static void ov116_022610FC(UnkStruct_ov116_0226139C *param0);
 static void ov116_02261244(UnkStruct_ov116_0226139C *param0);
 static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0);
 
-static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
-{
+static void ov116_022604C4(UnkStruct_ov116_0226139C *param0) {
     param0->unk_78 = LCRNG_GetSeed();
 
     ov116_022612CC(param0);
@@ -232,8 +231,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     }
 }
 
-int ov116_022609B4(ApplicationManager *appMan, int *param1)
-{
+int ov116_022609B4(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov116_0226139C *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_106, 0x65000);
@@ -260,8 +258,7 @@ int ov116_022609B4(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov116_02260A2C(UnkStruct_ov116_02262A8C *param0, u32 param1, u32 param2)
-{
+static void ov116_02260A2C(UnkStruct_ov116_02262A8C *param0, u32 param1, u32 param2) {
     s16 v0, v1;
     BOOL v2;
 
@@ -313,8 +310,7 @@ static void ov116_02260A2C(UnkStruct_ov116_02262A8C *param0, u32 param1, u32 par
     }
 }
 
-static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0)
-{
+static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0) {
     int v0;
     int v1;
     int v2, v3;
@@ -425,8 +421,7 @@ static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0)
     return 0;
 }
 
-int ov116_02260CF4(ApplicationManager *appMan, int *param1)
-{
+int ov116_02260CF4(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov116_0226139C *v0 = ApplicationManager_Data(appMan);
     BOOL v1 = 0;
     u32 v2 = ov116_022617E4(v0);
@@ -661,8 +656,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
-{
+static void ov116_022610FC(UnkStruct_ov116_0226139C *param0) {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
@@ -714,8 +708,7 @@ static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
     param0->unk_04 = NULL;
 }
 
-static void ov116_02261244(UnkStruct_ov116_0226139C *param0)
-{
+static void ov116_02261244(UnkStruct_ov116_0226139C *param0) {
     param0->unk_0C = 0;
     param0->unk_08 = 0;
     param0->unk_10 = 0;
@@ -724,8 +717,7 @@ static void ov116_02261244(UnkStruct_ov116_0226139C *param0)
     memset(&param0->unk_24, 0, sizeof(UnkStruct_ov116_02260498));
 }
 
-int ov116_0226126C(ApplicationManager *appMan, int *param1)
-{
+int ov116_0226126C(ApplicationManager *appMan, int *param1) {
     switch (*param1) {
     case 0: {
         u32 v0;
@@ -754,8 +746,7 @@ int ov116_0226126C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
-{
+static void ov116_022612CC(UnkStruct_ov116_0226139C *param0) {
     param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, HEAP_ID_106);
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, HEAP_ID_106);
     param0->unk_48.unk_10 = BgConfig_New(HEAP_ID_106);
@@ -795,8 +786,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
     Heap_FndInitAllocatorForExpHeap(&param0->unk_48.unk_24, HEAP_ID_106, 32);
 }
 
-void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
-{
+void ov116_0226139C(UnkStruct_ov116_0226139C *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -832,8 +822,7 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov116_02261494(BgConfig *param0)
-{
+static void ov116_02261494(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
     {
         GraphicsModes v0 = {
@@ -1031,8 +1020,7 @@ static void ov116_02261494(BgConfig *param0)
     G2S_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, 7, 10);
 }
 
-static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
-{
+static void ov116_022616CC(UnkStruct_ov116_0226139C *param0) {
     param0->unk_48.unk_08 = SpriteSystem_Alloc(106);
     {
         const RenderOamTemplate v0 = {
@@ -1078,21 +1066,18 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
     SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_48.unk_08), 0, (192 + 64) << FX32_SHIFT);
 }
 
-static BOOL ov116_02261768(int param0)
-{
+static BOOL ov116_02261768(int param0) {
     StartScreenFade(FADE_BOTH_SCREENS, param0, param0, 0, 6, 1, HEAP_ID_106);
     return 1;
 }
 
-static void ov116_0226178C(UnkStruct_ov116_0226139C *param0, BOOL param1, int param2, int *param3)
-{
+static void ov116_0226178C(UnkStruct_ov116_0226139C *param0, BOOL param1, int param2, int *param3) {
     if (param1) {
         *param3 = param2;
     }
 }
 
-static void ov116_02261794(void *param0)
-{
+static void ov116_02261794(void *param0) {
     UnkStruct_ov116_0226139C *v0 = param0;
 
     VramTransfer_Process();
@@ -1103,23 +1088,19 @@ static void ov116_02261794(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-BOOL ov116_022617C4(UnkStruct_ov116_0226139C *param0)
-{
+BOOL ov116_022617C4(UnkStruct_ov116_0226139C *param0) {
     return (param0->unk_44 == 0) ? 1 : 0;
 }
 
-void ov116_022617D4(UnkStruct_ov116_0226139C *param0)
-{
+void ov116_022617D4(UnkStruct_ov116_0226139C *param0) {
     param0->unk_08 = 1;
 }
 
-void ov116_022617DC(UnkStruct_ov116_0226139C *param0)
-{
+void ov116_022617DC(UnkStruct_ov116_0226139C *param0) {
     param0->unk_0C = 1;
 }
 
-static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0)
-{
+static u32 ov116_022617E4(UnkStruct_ov116_0226139C *param0) {
     if (ov114_0225CA54(&param0->unk_84) == 1) {
         if (param0->unk_48.unk_2C.unk_00 == 0) {
             if (IsScreenFadeDone() == TRUE) {

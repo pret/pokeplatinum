@@ -251,43 +251,35 @@ const ApplicationManagerTemplate gTitleScreenAppTemplate = {
     .overlayID = FS_OVERLAY_ID_NONE
 };
 
-static inline void ToggleGiratinaLayer(BOOL enable)
-{
+static inline void ToggleGiratinaLayer(BOOL enable) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, enable);
 }
 
-static inline void ToggleGiratinaBgLayer(BOOL enable)
-{
+static inline void ToggleGiratinaBgLayer(BOOL enable) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, enable);
 }
 
-static inline void ToggleCopyrightLayer(BOOL enable)
-{
+static inline void ToggleCopyrightLayer(BOOL enable) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, enable);
 }
 
-static inline void ToggleLogoBgLayer(BOOL enable)
-{
+static inline void ToggleLogoBgLayer(BOOL enable) {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, enable);
 }
 
-static inline void ToggleLogoLayer(BOOL enable)
-{
+static inline void ToggleLogoLayer(BOOL enable) {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, enable);
 }
 
-static inline void TogglePressStartLayer(BOOL enable)
-{
+static inline void TogglePressStartLayer(BOOL enable) {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, enable);
 }
 
-static inline void ToggleLogoBg2Layer(BOOL enable)
-{
+static inline void ToggleLogoBg2Layer(BOOL enable) {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, enable);
 }
 
-static inline void DisableAllLayers(void)
-{
+static inline void DisableAllLayers(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
@@ -298,8 +290,7 @@ static inline void DisableAllLayers(void)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, FALSE);
 }
 
-static BOOL TitleScreen_Init(ApplicationManager *appMan, int *unused)
-{
+static BOOL TitleScreen_Init(ApplicationManager *appMan, int *unused) {
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
@@ -336,8 +327,7 @@ static BOOL TitleScreen_Init(ApplicationManager *appMan, int *unused)
     return TRUE;
 }
 
-static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
-{
+static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state) {
     TitleScreenAppData *appData = ApplicationManager_Data(appMan);
 
     switch (*state) {
@@ -448,8 +438,7 @@ static BOOL TitleScreen_Main(ApplicationManager *appMan, int *state)
     return FALSE;
 }
 
-static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *state)
-{
+static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *state) {
     TitleScreenAppData *appData = ApplicationManager_Data(appMan);
     enum HeapId heapID = appData->heapID;
     enum TitleScreenNextApp nextApp = appData->nextApp;
@@ -479,14 +468,12 @@ static BOOL TitleScreen_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static void TitleScreen_VBlank(void *param)
-{
+static void TitleScreen_VBlank(void *param) {
     TitleScreenAppData *appData = param;
     Bg_RunScheduledUpdates(appData->bgConfig);
 }
 
-static void TitleScreen_SetVRAMBanks(void)
-{
+static void TitleScreen_SetVRAMBanks(void) {
     UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -503,8 +490,7 @@ static void TitleScreen_SetVRAMBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static BOOL TitleScreen_ShouldSkipIntro(void)
-{
+static BOOL TitleScreen_ShouldSkipIntro(void) {
     if (JOY_NEW_ONLY(PAD_BUTTON_A) || JOY_NEW_ONLY(PAD_BUTTON_START) || JOY_NEW_ONLY(PAD_BUTTON_SELECT)) {
         return TRUE;
     }
@@ -512,19 +498,16 @@ static BOOL TitleScreen_ShouldSkipIntro(void)
     return FALSE;
 }
 
-static void TitleScreen_Init3DPipeline(TitleScreenAppData *appData)
-{
+static void TitleScreen_Init3DPipeline(TitleScreenAppData *appData) {
     appData->buffers = G3DPipeline_Init(appData->heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, NULL);
     G2_SetBG0Priority(1);
 }
 
-static void TitleScreen_Free3DPipelineBuffers(TitleScreenAppData *appData)
-{
+static void TitleScreen_Free3DPipelineBuffers(TitleScreenAppData *appData) {
     G3DPipelineBuffers_Free(appData->buffers);
 }
 
-static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, int giratinaTexAnim, enum HeapId heapID)
-{
+static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, int giratinaTexAnim, enum HeapId heapID) {
     Heap_FndInitAllocatorForExpHeap(&gfx->allocator, heapID, 4);
 
     gfx->giratinaModelRes = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, giratinaModel, heapID);
@@ -559,8 +542,7 @@ static void TitleScreen_Load3DGfx(TitleScreenGraphics *gfx, int giratinaModel, i
     TitleScreen_LoadCutscene3DGfx(gfx, heapID);
 }
 
-static void TitleScreen_LoadCutscene3DGfx(TitleScreenGraphics *gfx, enum HeapId heapID)
-{
+static void TitleScreen_LoadCutscene3DGfx(TitleScreenGraphics *gfx, enum HeapId heapID) {
     NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, heapID);
 
     Easy3DModel_LoadFrom(&gfx->giratinaFaceModel, narc, giratina_face_nsbmd, heapID);
@@ -610,8 +592,7 @@ static void TitleScreen_LoadCutscene3DGfx(TitleScreenGraphics *gfx, enum HeapId 
     gfx->introCamFovStep = INTRO_CAM_FOV_STEP_START;
 }
 
-static void TitleScreen_Release3DGfx(TitleScreenGraphics *gfx)
-{
+static void TitleScreen_Release3DGfx(TitleScreenGraphics *gfx) {
     TitleScreen_ReleaseIntro3DGfx(gfx);
 
     NNS_G3dFreeAnmObj(&gfx->allocator, gfx->giratinaTexAnim);
@@ -622,8 +603,7 @@ static void TitleScreen_Release3DGfx(TitleScreenGraphics *gfx)
     Heap_Free(gfx->giratinaModelRes);
 }
 
-static void TitleScreen_ReleaseIntro3DGfx(TitleScreenGraphics *gfx)
-{
+static void TitleScreen_ReleaseIntro3DGfx(TitleScreenGraphics *gfx) {
     Easy3DModel_Release(&gfx->giratinaFaceModel);
     Easy3DAnim_Release(&gfx->giratinaFaceAnim, &gfx->allocator);
     Easy3DAnim_Release(&gfx->giratinaFaceMatAnim, &gfx->allocator);
@@ -633,8 +613,7 @@ static void TitleScreen_ReleaseIntro3DGfx(TitleScreenGraphics *gfx)
     Easy3DAnim_Release(&gfx->portalTexAnim, &gfx->allocator);
 }
 
-static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gfx)
-{
+static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gfx) {
     // Identity matrix
     MtxFx33 rotationMatrix = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
 
@@ -707,8 +686,7 @@ static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gf
     }
 }
 
-static void TitleScreen_RenderIntroGraphics(TitleScreenGraphics *gfx)
-{
+static void TitleScreen_RenderIntroGraphics(TitleScreenGraphics *gfx) {
     if (gfx->giratinaFaceAnimState == GIRATINA_FACE_STATE_SHOWN) {
         if (Easy3DAnim_Update(&gfx->giratinaFaceAnim, FX32_ONE) == TRUE) {
             gfx->giratinaFaceAnimState = GIRATINA_FACE_STATE_DONE;
@@ -737,8 +715,7 @@ static void TitleScreen_RenderIntroGraphics(TitleScreenGraphics *gfx)
     NNS_G3dGePopMtx(1);
 }
 
-static void TitleScreen_InitBgs(TitleScreenAppData *appData)
-{
+static void TitleScreen_InitBgs(TitleScreenAppData *appData) {
     appData->bgConfig = BgConfig_New(appData->heapID);
 
     GraphicsModes gfxModes = {
@@ -851,8 +828,7 @@ static void TitleScreen_InitBgs(TitleScreenAppData *appData)
     Bg_MaskPalette(TITLE_SCREEN_LAYER_PRESS_START, COLOR_BLACK);
 }
 
-static void TitleScreen_ReleaseBgs(TitleScreenAppData *appData)
-{
+static void TitleScreen_ReleaseBgs(TitleScreenAppData *appData) {
     DisableAllLayers();
 
     Bg_FreeTilemapBuffer(appData->bgConfig, TITLE_SCREEN_LAYER_PRESS_START);
@@ -865,8 +841,7 @@ static void TitleScreen_ReleaseBgs(TitleScreenAppData *appData)
     Heap_Free(appData->bgConfig);
 }
 
-static void TitleScreen_UpdateIntroCamera(TitleScreen *titleScreen, TitleScreenGraphics *gfx)
-{
+static void TitleScreen_UpdateIntroCamera(TitleScreen *titleScreen, TitleScreenGraphics *gfx) {
     VecFx32 offset = { 0, 0, 0 };
     CameraAngle angle = { 0, 0, 0, 0 };
 
@@ -919,8 +894,7 @@ static const WindowTemplate sPressStartWindowTemplate = {
     .baseTile = 1
 };
 
-static BOOL TitleScreen_LoadGfx(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
-{
+static BOOL TitleScreen_LoadGfx(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID) {
     TitleScreen_InitCoordinates(titleScreen);
     TitleScreen_Load2DGfx(bgConfig, heapID, titleScreen);
     TitleScreen_Load3DGfx(&titleScreen->graphics, giratina_nsbmd, giratina_nsbta, heapID);
@@ -982,8 +956,7 @@ static BOOL TitleScreen_LoadGfx(TitleScreen *titleScreen, BgConfig *bgConfig, en
     return TRUE;
 }
 
-static void TitleScreen_UpdateTitleCam(TitleScreen *titleScreen)
-{
+static void TitleScreen_UpdateTitleCam(TitleScreen *titleScreen) {
     fx32 steps = TITLE_CAM_MOVE_IN_FRAMES;
 
     titleScreen->titleCamTarget.x += (titleScreen->titleCamEndTarget.x - titleScreen->titleCamStartTarget.x) / steps;
@@ -995,8 +968,7 @@ static void TitleScreen_UpdateTitleCam(TitleScreen *titleScreen)
     titleScreen->titleCamPos.z += (titleScreen->titleCamEndPos.z - titleScreen->titleCamStartPos.z) / steps;
 }
 
-static void TitleScreen_LoadTopScreenBg(BgConfig *bgConfig, enum HeapId heapID)
-{
+static void TitleScreen_LoadTopScreenBg(BgConfig *bgConfig, enum HeapId heapID) {
     Bg_FreeTilemapBuffer(bgConfig, TITLE_SCREEN_LAYER_LOGO_BG_2);
 
     BgTemplate template = {
@@ -1025,8 +997,7 @@ static void TitleScreen_LoadTopScreenBg(BgConfig *bgConfig, enum HeapId heapID)
     ToggleLogoBg2Layer(TRUE);
 }
 
-static void TitleScreen_ShowBlurEffect(BgConfig *bgConfig, enum HeapId heapID)
-{
+static void TitleScreen_ShowBlurEffect(BgConfig *bgConfig, enum HeapId heapID) {
     // This function loads the logo tilemap a second time into a different layer,
     // offsets that layer slightly, and applies alpha blending to both layers.
 
@@ -1064,8 +1035,7 @@ static void TitleScreen_ShowBlurEffect(BgConfig *bgConfig, enum HeapId heapID)
     TogglePressStartLayer(TRUE);
 }
 
-static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
-{
+static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID) {
     BOOL done = FALSE;
 
     if (TitleScreen_ShouldSkipIntro() == TRUE) {
@@ -1224,8 +1194,7 @@ static BOOL TitleScreen_ShowIntro(TitleScreen *titleScreen, BgConfig *bgConfig, 
     return done;
 }
 
-static BOOL TitleScreen_RenderMain(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
-{
+static BOOL TitleScreen_RenderMain(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID) {
     BOOL result = FALSE;
 
     switch (titleScreen->state) {
@@ -1270,8 +1239,7 @@ static BOOL TitleScreen_RenderMain(TitleScreen *titleScreen, BgConfig *bgConfig,
     return result;
 }
 
-static BOOL TitleScreen_ReleaseGfx(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID)
-{
+static BOOL TitleScreen_ReleaseGfx(TitleScreen *titleScreen, BgConfig *bgConfig, enum HeapId heapID) {
     Camera_Delete(titleScreen->graphics.titleCamera);
     Camera_Delete(titleScreen->graphics.introCamera);
 
@@ -1287,8 +1255,7 @@ static BOOL TitleScreen_ReleaseGfx(TitleScreen *titleScreen, BgConfig *bgConfig,
     return TRUE;
 }
 
-static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *titleScreen)
-{
+static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *titleScreen) {
     // Borders
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, top_screen_border_NCGR, bgConfig, TITLE_SCREEN_LAYER_LOGO_BG, 0, 0, FALSE, heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__TITLE__TITLEDEMO, bottom_screen_border_NCGR, bgConfig, TITLE_SCREEN_LAYER_GIRATINA_BG, 0, 0, FALSE, heapID);
@@ -1352,13 +1319,11 @@ static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleS
     Bg_LoadPalette(TITLE_SCREEN_LAYER_PRESS_START, &shadowColor, sizeof(u16), PLTT_OFFSET(2) + 2 * sizeof(u16));
 }
 
-static void TitleScreen_Release2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *titleScreen)
-{
+static void TitleScreen_Release2DGfx(BgConfig *bgConfig, enum HeapId heapID, TitleScreen *titleScreen) {
     Window_Remove(&titleScreen->pressStartWindow);
 }
 
-static void TitleScreen_UpdateLight1(TitleScreen *titleScreen)
-{
+static void TitleScreen_UpdateLight1(TitleScreen *titleScreen) {
     switch (titleScreen->light1State) {
     case LIGHT1_STATE_DEFAULT:
         titleScreen->light1Brightness = LIGHT1_BRIGHTNESS_MIN;
@@ -1387,8 +1352,7 @@ static void TitleScreen_UpdateLight1(TitleScreen *titleScreen)
     NNS_G3dGlbLightColor(GX_LIGHTID_1, LIGHT_COLOR(titleScreen->light1Brightness, titleScreen->light1Brightness, titleScreen->light1Brightness));
 }
 
-static void TitleScreen_InitCoordinates(TitleScreen *titleScreen)
-{
+static void TitleScreen_InitCoordinates(TitleScreen *titleScreen) {
     titleScreen->titleCamStartPos.x = FX32_CONST(0);
     titleScreen->titleCamStartPos.y = FX32_CONST(192);
     titleScreen->titleCamStartPos.z = FX32_CONST(600);
@@ -1424,7 +1388,6 @@ static void TitleScreen_InitCoordinates(TitleScreen *titleScreen)
     titleScreen->light0Dir.z = normalized.z;
 }
 
-static void EmptyCameraFunction(Camera *camera)
-{
+static void EmptyCameraFunction(Camera *camera) {
     return;
 }

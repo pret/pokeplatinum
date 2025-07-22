@@ -637,8 +637,7 @@ static u32 ov104_0223A700(u8 param0);
 static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *param1, int param2, int param3, int param4);
 static int ov104_0223A7AC(u8 param0);
 
-BOOL ov104_0223A0C4(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID)
-{
+BOOL ov104_0223A0C4(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID) {
     BOOL v0 = 0;
     BattleFrontierTrainerData *v1 = ov104_0222DD04(&param1->unk_00, param2, heapID, ov104_0223A77C(param0->unk_0F));
     v0 = ov104_0223A118(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, heapID);
@@ -648,8 +647,7 @@ BOOL ov104_0223A0C4(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1
     return v0;
 }
 
-static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8)
-{
+static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8) {
     int v0;
     u8 v2;
     u8 v3;
@@ -755,8 +753,7 @@ static BOOL ov104_0223A118(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData
     return v10;
 }
 
-void ov104_0223A30C(SaveData *saveData, UnkStruct_ov104_0223A348 *param1, const u8 param2)
-{
+void ov104_0223A30C(SaveData *saveData, UnkStruct_ov104_0223A348 *param1, const u8 param2) {
     MI_CpuClear8(param1, sizeof(UnkStruct_ov104_0223A348));
 
     UnkStruct_0202D764 *v1 = sub_0202D764(saveData);
@@ -769,8 +766,7 @@ void ov104_0223A30C(SaveData *saveData, UnkStruct_ov104_0223A348 *param1, const 
     sub_0202D63C(v1, param1, param2);
 }
 
-static void ov104_0223A348(UnkStruct_ov104_0223A348 *param0, const u8 param1)
-{
+static void ov104_0223A348(UnkStruct_ov104_0223A348 *param0, const u8 param1) {
     int v0;
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));
 
@@ -793,8 +789,7 @@ static const u16 Unk_ov104_0223FCAC[] = {
     ITEM_QUICK_CLAW,
 };
 
-static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8)
-{
+static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8) {
     int v0;
     int v1;
     u32 v2;
@@ -883,8 +878,7 @@ static u32 ov104_0223A3A8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *pa
     return v2;
 }
 
-FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230BE4 *param1)
-{
+FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230BE4 *param1) {
     int v0;
 
     FieldBattleDTO *v3 = FieldBattleDTO_New(param0->heapID, ov104_0223A700(param0->unk_0F));
@@ -938,8 +932,7 @@ FieldBattleDTO *ov104_0223A580(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_02230
     return v3;
 }
 
-static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *param1, int param2, int battlerId, int heapID)
-{
+static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *param1, int param2, int battlerId, int heapID) {
     ov104_0222E284(param0, &param1->unk_00, param2, battlerId, heapID);
     Pokemon *mon = Pokemon_New(heapID);
 
@@ -951,8 +944,7 @@ static void ov104_0223A6AC(FieldBattleDTO *param0, UnkStruct_ov104_0223A348 *par
     Heap_Free(mon);
 }
 
-static u32 ov104_0223A700(u8 param0)
-{
+static u32 ov104_0223A700(u8 param0) {
     switch (param0) {
     case 0:
     case 4:
@@ -969,14 +961,12 @@ static u32 ov104_0223A700(u8 param0)
     return (BATTLE_TYPE_SINGLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER;
 }
 
-void ov104_0223A734(UnkStruct_0204AFC4 *param0, u16 param1)
-{
+void ov104_0223A734(UnkStruct_0204AFC4 *param0, u16 param1) {
     param0->unk_10_3 = param1;
     param0->unk_83E[0] = param1;
 }
 
-u16 ov104_0223A750(UnkStruct_0204AFC4 *param0, const u16 *param1)
-{
+u16 ov104_0223A750(UnkStruct_0204AFC4 *param0, const u16 *param1) {
     int v0;
 
     if (param0->unk_10_3 || param1[0]) {
@@ -986,8 +976,7 @@ u16 ov104_0223A750(UnkStruct_0204AFC4 *param0, const u16 *param1)
     return 0;
 }
 
-int ov104_0223A768(u8 param0)
-{
+int ov104_0223A768(u8 param0) {
     if (ov104_0223A7AC(param0) == FALSE) {
         return NARC_INDEX_BATTLE__B_TOWER__BTDPM;
     }
@@ -995,8 +984,7 @@ int ov104_0223A768(u8 param0)
     return NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM;
 }
 
-int ov104_0223A77C(u8 param0)
-{
+int ov104_0223A77C(u8 param0) {
     if (ov104_0223A7AC(param0) == FALSE) {
         return NARC_INDEX_BATTLE__B_TOWER__BTDTR;
     }
@@ -1004,8 +992,7 @@ int ov104_0223A77C(u8 param0)
     return NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR;
 }
 
-int ov104_0223A790(u8 param0)
-{
+int ov104_0223A790(u8 param0) {
     if (ov104_0223A7AC(param0) == FALSE) {
         return TEXT_BANK_UNK_0613;
     }
@@ -1013,8 +1000,7 @@ int ov104_0223A790(u8 param0)
     return TEXT_BANK_UNK_0614;
 }
 
-static int ov104_0223A7AC(u8 param0)
-{
+static int ov104_0223A7AC(u8 param0) {
     switch (param0) {
     case 3:
     case 6:

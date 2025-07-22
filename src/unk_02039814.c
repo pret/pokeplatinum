@@ -65,14 +65,12 @@ static const WindowTemplate Unk_020E5EC8 = {
     0x23
 };
 
-static void sub_02039814(void)
-{
+static void sub_02039814(void) {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void sub_02039834(int heapID, int param1, int param2)
-{
+void sub_02039834(int heapID, int param1, int param2) {
     BgConfig *v0;
     Window v1;
     MessageLoader *v2;

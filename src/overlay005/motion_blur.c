@@ -14,8 +14,7 @@ static void MotionBlur_VBlankInit(SysTask *task, void *param);
 static void MotionBlur_SetCapture(SysTask *task, void *param);
 static void MotionBlur_Init(MotionBlurParams *params);
 
-MotionBlur *MotionBlur_New(MotionBlurParams *params)
-{
+MotionBlur *MotionBlur_New(MotionBlurParams *params) {
     SysTask *task = SysTask_StartAndAllocateParam(MotionBlur_SetCapture, sizeof(MotionBlur), 5, params->heapID);
     MotionBlur *motionBlur = SysTask_GetParam(task);
 
@@ -30,8 +29,7 @@ MotionBlur *MotionBlur_New(MotionBlurParams *params)
     return motionBlur;
 }
 
-void MotionBlur_Delete(MotionBlur **motionBlur, GXDispMode displayMode, GXBGMode bgMode, GXBG0As bg0Mode)
-{
+void MotionBlur_Delete(MotionBlur **motionBlur, GXDispMode displayMode, GXBGMode bgMode, GXBG0As bg0Mode) {
     GX_SetGraphicsMode(displayMode, bgMode, bg0Mode);
     GX_SetBankForLCDC((*motionBlur)->lcdcVRamBank);
 
@@ -57,8 +55,7 @@ void MotionBlur_Delete(MotionBlur **motionBlur, GXDispMode displayMode, GXBGMode
     *motionBlur = NULL;
 }
 
-static void MotionBlur_SetCapture(SysTask *task, void *param)
-{
+static void MotionBlur_SetCapture(SysTask *task, void *param) {
     MotionBlur *motionBlur = param;
 
     if (motionBlur->initialized) {
@@ -73,8 +70,7 @@ static void MotionBlur_SetCapture(SysTask *task, void *param)
     }
 }
 
-static void MotionBlur_VBlankInit(SysTask *task, void *param)
-{
+static void MotionBlur_VBlankInit(SysTask *task, void *param) {
     MotionBlur *motionBlur = (MotionBlur *)param;
 
     switch (motionBlur->params.displayMode) {
@@ -100,8 +96,7 @@ static void MotionBlur_VBlankInit(SysTask *task, void *param)
     SysTask_Done(task);
 }
 
-static void MotionBlur_Init(MotionBlurParams *params)
-{
+static void MotionBlur_Init(MotionBlurParams *params) {
     switch (params->displayMode) {
     case GX_DISPMODE_VRAM_A:
         MI_CpuClearFast((void *)HW_LCDC_VRAM_A, HW_VRAM_A_SIZE);

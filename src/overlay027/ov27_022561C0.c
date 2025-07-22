@@ -65,13 +65,11 @@ static void ov27_02256680(UnkStruct_ov27_0225621C *param0);
 static void ov27_022566C4(UnkStruct_ov27_0225621C *param0);
 static void ov27_022566D8(UnkStruct_ov27_0225621C *param0, UnkStruct_ov27_0225680C_1 *param1);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(ov27_022561D4, ov27_02256358);
 }
 
-static BOOL ov27_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov27_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     UnkStruct_ov27_0225621C *v0 = (UnkStruct_ov27_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov27_0225621C));
 
     if (v0 != NULL) {
@@ -91,8 +89,7 @@ static BOOL ov27_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
     return 0;
 }
 
-static BOOL ov27_0225621C(UnkStruct_ov27_0225621C *param0, BgConfig *param1, u32 param2)
-{
+static BOOL ov27_0225621C(UnkStruct_ov27_0225621C *param0, BgConfig *param1, u32 param2) {
     param0->unk_08 = param2;
 
     if (PoketchMemory_Read32(param2, &(param0->unk_38), sizeof(param0->unk_38))) {
@@ -128,8 +125,7 @@ static BOOL ov27_0225621C(UnkStruct_ov27_0225621C *param0, BgConfig *param1, u32
     return 0;
 }
 
-static void ov27_022562AC(UnkStruct_ov27_0225621C *param0)
-{
+static void ov27_022562AC(UnkStruct_ov27_0225621C *param0) {
     param0->unk_38.unk_14 = param0->unk_0C;
     param0->unk_38.unk_1C = param0->unk_14;
     param0->unk_38.unk_04 = param0->unk_1C.unk_14;
@@ -146,8 +142,7 @@ static void ov27_022562AC(UnkStruct_ov27_0225621C *param0)
     Heap_Free(param0);
 }
 
-static void ov27_022562FC(SysTask *param0, void *param1)
-{
+static void ov27_022562FC(SysTask *param0, void *param1) {
     static BOOL (*const v0[])(UnkStruct_ov27_0225621C *) = {
         ov27_0225637C,
         ov27_022563CC,
@@ -177,13 +172,11 @@ static void ov27_022562FC(SysTask *param0, void *param1)
     }
 }
 
-static void ov27_02256358(void *param0)
-{
+static void ov27_02256358(void *param0) {
     ((UnkStruct_ov27_0225621C *)param0)->unk_02 = 1;
 }
 
-static void ov27_02256360(UnkStruct_ov27_0225621C *param0, u32 param1)
-{
+static void ov27_02256360(UnkStruct_ov27_0225621C *param0, u32 param1) {
     param0->unk_03 = param0->unk_00;
 
     if (param0->unk_02 == 0) {
@@ -196,8 +189,7 @@ static void ov27_02256360(UnkStruct_ov27_0225621C *param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov27_0225637C(UnkStruct_ov27_0225621C *param0)
-{
+static BOOL ov27_0225637C(UnkStruct_ov27_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov27_022569C8(param0->unk_60, 0);
@@ -219,8 +211,7 @@ static BOOL ov27_0225637C(UnkStruct_ov27_0225621C *param0)
     return 0;
 }
 
-static BOOL ov27_022563CC(UnkStruct_ov27_0225621C *param0)
-{
+static BOOL ov27_022563CC(UnkStruct_ov27_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         if (param0->unk_04 == 1) {
@@ -254,8 +245,7 @@ static BOOL ov27_022563CC(UnkStruct_ov27_0225621C *param0)
     return 0;
 }
 
-static BOOL ov27_0225644C(UnkStruct_ov27_0225621C *param0)
-{
+static BOOL ov27_0225644C(UnkStruct_ov27_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         if (param0->unk_04 == 1) {
@@ -289,8 +279,7 @@ static BOOL ov27_0225644C(UnkStruct_ov27_0225621C *param0)
     return 0;
 }
 
-static BOOL ov27_022564D0(UnkStruct_ov27_0225621C *param0)
-{
+static BOOL ov27_022564D0(UnkStruct_ov27_0225621C *param0) {
     switch (param0->unk_04) {
     case 3:
         if (param0->unk_03 == 1) {
@@ -315,8 +304,7 @@ static BOOL ov27_022564D0(UnkStruct_ov27_0225621C *param0)
     return 0;
 }
 
-static BOOL ov27_02256534(UnkStruct_ov27_0225621C *param0)
-{
+static BOOL ov27_02256534(UnkStruct_ov27_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         param0->unk_06 = 0;
@@ -350,8 +338,7 @@ static BOOL ov27_02256534(UnkStruct_ov27_0225621C *param0)
     return 0;
 }
 
-static BOOL ov27_022565D0(UnkStruct_ov27_0225621C *param0)
-{
+static BOOL ov27_022565D0(UnkStruct_ov27_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         param0->unk_1C.unk_18 = 7;
@@ -368,8 +355,7 @@ static BOOL ov27_022565D0(UnkStruct_ov27_0225621C *param0)
     return 0;
 }
 
-static BOOL ov27_02256608(UnkStruct_ov27_0225621C *param0)
-{
+static BOOL ov27_02256608(UnkStruct_ov27_0225621C *param0) {
     static const TouchScreenHitTable v0[] = {
         { TOUCHSCREEN_USE_CIRCLE, 112, 112, 39 },
     };
@@ -386,19 +372,16 @@ static BOOL ov27_02256608(UnkStruct_ov27_0225621C *param0)
     return 0;
 }
 
-static void ov27_02256654(UnkStruct_ov27_0225621C *param0)
-{
+static void ov27_02256654(UnkStruct_ov27_0225621C *param0) {
     PoketchButtonManager_Free(param0->buttonManager);
 }
 
-static void ov27_02256660(u32 param0, u32 param1, u32 param2, void *param3)
-{
+static void ov27_02256660(u32 param0, u32 param1, u32 param2, void *param3) {
     UnkStruct_ov27_0225621C *v0 = (UnkStruct_ov27_0225621C *)param3;
     v0->unk_04 = param1;
 }
 
-static void ov27_02256664(UnkStruct_ov27_0225621C *param0)
-{
+static void ov27_02256664(UnkStruct_ov27_0225621C *param0) {
     param0->unk_1C.unk_00 = 0;
     param0->unk_1C.unk_04 = 1;
     param0->unk_1C.unk_08 = 0;
@@ -409,8 +392,7 @@ static void ov27_02256664(UnkStruct_ov27_0225621C *param0)
     param0->unk_14 = 0;
 }
 
-static void ov27_02256680(UnkStruct_ov27_0225621C *param0)
-{
+static void ov27_02256680(UnkStruct_ov27_0225621C *param0) {
     if (param0->unk_0C) {
         param0->unk_0C += (sub_0202293C() - param0->unk_14);
     } else {
@@ -421,14 +403,12 @@ static void ov27_02256680(UnkStruct_ov27_0225621C *param0)
     param0->unk_1C.unk_04 = 0;
 }
 
-static void ov27_022566C4(UnkStruct_ov27_0225621C *param0)
-{
+static void ov27_022566C4(UnkStruct_ov27_0225621C *param0) {
     param0->unk_14 = sub_0202293C();
     param0->unk_1C.unk_00 = 0;
 }
 
-static void ov27_022566D8(UnkStruct_ov27_0225621C *param0, UnkStruct_ov27_0225680C_1 *param1)
-{
+static void ov27_022566D8(UnkStruct_ov27_0225621C *param0, UnkStruct_ov27_0225680C_1 *param1) {
     if (param1->unk_00) {
         u64 v0, v1, v2;
 

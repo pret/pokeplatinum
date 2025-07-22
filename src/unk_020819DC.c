@@ -99,8 +99,7 @@ static const WindowTemplate Unk_020F1E98 = {
     0x240
 };
 
-static void sub_020819DC(BgConfig *param0, Window *param1, const WindowTemplate *param2)
-{
+static void sub_020819DC(BgConfig *param0, Window *param1, const WindowTemplate *param2) {
     Window_AddFromTemplate(param0, &param1[0], &param2[0]);
     Window_AddFromTemplate(param0, &param1[1], &param2[1]);
     Window_AddFromTemplate(param0, &param1[2], &param2[2]);
@@ -108,8 +107,7 @@ static void sub_020819DC(BgConfig *param0, Window *param1, const WindowTemplate 
     Window_AddFromTemplate(param0, &param1[4], &param2[4]);
 }
 
-void sub_02081A24(GameWindowLayout *param0)
-{
+void sub_02081A24(GameWindowLayout *param0) {
     const WindowTemplate *v0 = Unk_020F1F08;
     u16 v1;
 
@@ -145,8 +143,7 @@ void sub_02081A24(GameWindowLayout *param0)
     Window_AddFromTemplate(param0->unk_00, &param0->unk_04[36], &Unk_020F1ED0[6]);
 }
 
-void sub_02081B90(GameWindowLayout *param0)
-{
+void sub_02081B90(GameWindowLayout *param0) {
     u16 v0;
 
     for (v0 = 0; v0 < 37; v0++) {
@@ -160,8 +157,7 @@ void sub_02081B90(GameWindowLayout *param0)
     }
 }
 
-void sub_02081BC0(GameWindowLayout *param0)
-{
+void sub_02081BC0(GameWindowLayout *param0) {
     MessageLoader_GetStrbuf(param0->messageLoader, 145, param0->unk_6AC[0]);
     MessageLoader_GetStrbuf(param0->messageLoader, 146, param0->unk_6AC[1]);
     MessageLoader_GetStrbuf(param0->messageLoader, 147, param0->unk_6AC[2]);
@@ -180,8 +176,7 @@ void sub_02081BC0(GameWindowLayout *param0)
     MessageLoader_GetStrbuf(param0->messageLoader, 200, param0->unk_6AC[15]);
 }
 
-void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2)
-{
+void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2) {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, 156 + param2);
 
     StringTemplate_SetMoveName(param0->template, 0, param1);
@@ -190,8 +185,7 @@ void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2)
     Strbuf_Free(v0);
 }
 
-void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
-{
+void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2) {
     MenuTemplate v0;
     u16 v1, v2;
 
@@ -227,8 +221,7 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
     param0->unk_700 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
-void sub_02081E08(GameWindowLayout *param0)
-{
+void sub_02081E08(GameWindowLayout *param0) {
     Pokemon *v0;
     Strbuf *v1;
 
@@ -255,13 +248,11 @@ static const u16 Unk_020F1EA0[6][4] = {
     { 0xD, 0x7, 0x19, 0x13 }
 };
 
-static void sub_02081EAC(GameWindowLayout *param0, u8 param1)
-{
+static void sub_02081EAC(GameWindowLayout *param0, u8 param1) {
     sub_0200C578(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
 }
 
-void sub_02081ED8(GameWindowLayout *param0, Pokemon *param1, u32 param2)
-{
+void sub_02081ED8(GameWindowLayout *param0, Pokemon *param1, u32 param2) {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_020F1EA0[param2][0]);
 
     StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(param1));
@@ -269,8 +260,7 @@ void sub_02081ED8(GameWindowLayout *param0, Pokemon *param1, u32 param2)
     Strbuf_Free(v0);
 }
 
-void sub_02081F2C(GameWindowLayout *param0, u8 param1)
-{
+void sub_02081F2C(GameWindowLayout *param0, u8 param1) {
     Window *v0;
     Pokemon *v1;
 
@@ -298,8 +288,7 @@ void sub_02081F2C(GameWindowLayout *param0, u8 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-void sub_02081FFC(GameWindowLayout *param0, u8 param1)
-{
+void sub_02081FFC(GameWindowLayout *param0, u8 param1) {
     Window *v0;
     Strbuf *v1;
 
@@ -314,8 +303,7 @@ void sub_02081FFC(GameWindowLayout *param0, u8 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-void sub_02082058(GameWindowLayout *param0, u8 param1)
-{
+void sub_02082058(GameWindowLayout *param0, u8 param1) {
     Window *v0;
     Strbuf *v1;
     u32 v2;
@@ -326,8 +314,7 @@ void sub_02082058(GameWindowLayout *param0, u8 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-void sub_02082098(GameWindowLayout *param0, u8 param1)
-{
+void sub_02082098(GameWindowLayout *param0, u8 param1) {
     Window *v0;
     Strbuf *v1;
     u32 v2;
@@ -338,8 +325,7 @@ void sub_02082098(GameWindowLayout *param0, u8 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void sub_020820C4(GameWindowLayout *param0, u8 param1)
-{
+static void sub_020820C4(GameWindowLayout *param0, u8 param1) {
     Window *v0;
     Strbuf *v1;
 
@@ -349,8 +335,7 @@ static void sub_020820C4(GameWindowLayout *param0, u8 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-void sub_02082104(GameWindowLayout *param0, u8 param1)
-{
+void sub_02082104(GameWindowLayout *param0, u8 param1) {
     Window *v0;
     u8 v1;
 
@@ -380,8 +365,7 @@ void sub_02082104(GameWindowLayout *param0, u8 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-void sub_020821F8(GameWindowLayout *param0, u8 param1)
-{
+void sub_020821F8(GameWindowLayout *param0, u8 param1) {
     Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
     Window_FillTilemap(&param0->unk_04[1 + param1 * 5], 0);
     Window_FillTilemap(&param0->unk_04[2 + param1 * 5], 0);
@@ -403,24 +387,21 @@ void sub_020821F8(GameWindowLayout *param0, u8 param1)
     sub_02082104(param0, param1);
 }
 
-void sub_020822BC(GameWindowLayout *param0, u8 param1)
-{
+void sub_020822BC(GameWindowLayout *param0, u8 param1) {
     Window_LoadTiles(&param0->unk_04[0 + param1 * 5]);
     Window_LoadTiles(&param0->unk_04[1 + param1 * 5]);
     Window_LoadTiles(&param0->unk_04[2 + param1 * 5]);
     Window_LoadTiles(&param0->unk_04[3 + param1 * 5]);
 }
 
-void sub_020822F4(GameWindowLayout *param0, u8 param1)
-{
+void sub_020822F4(GameWindowLayout *param0, u8 param1) {
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[0 + param1 * 5]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[1 + param1 * 5]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[2 + param1 * 5]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[3 + param1 * 5]);
 }
 
-void sub_0208232C(GameWindowLayout *param0, u8 param1)
-{
+void sub_0208232C(GameWindowLayout *param0, u8 param1) {
     Pokemon *v0;
 
     Window_FillTilemap(&param0->unk_04[0 + param1 * 5], 0);
@@ -443,8 +424,7 @@ void sub_0208232C(GameWindowLayout *param0, u8 param1)
     }
 }
 
-void sub_020823C4(GameWindowLayout *param0, u8 param1)
-{
+void sub_020823C4(GameWindowLayout *param0, u8 param1) {
     Pokemon *v0;
     u8 v1;
 
@@ -471,8 +451,7 @@ void sub_020823C4(GameWindowLayout *param0, u8 param1)
     }
 }
 
-void sub_0208245C(GameWindowLayout *param0, u8 param1)
-{
+void sub_0208245C(GameWindowLayout *param0, u8 param1) {
     Pokemon *v0;
     u8 v1;
 
@@ -487,8 +466,7 @@ void sub_0208245C(GameWindowLayout *param0, u8 param1)
     sub_02082900(param0, param1, (u8)param0->unk_704[param1].unk_0E_15);
 }
 
-void sub_020824C0(GameWindowLayout *param0, u8 param1)
-{
+void sub_020824C0(GameWindowLayout *param0, u8 param1) {
     Pokemon *v0;
     u8 v1;
 
@@ -501,8 +479,7 @@ void sub_020824C0(GameWindowLayout *param0, u8 param1)
     }
 }
 
-void sub_02082508(GameWindowLayout *param0, u8 param1)
-{
+void sub_02082508(GameWindowLayout *param0, u8 param1) {
     u8 v0;
 
     for (v0 = 0; v0 < param0->partyManagementData->unk_32_4; v0++) {
@@ -532,15 +509,13 @@ void sub_02082508(GameWindowLayout *param0, u8 param1)
     sub_02082964(param0, param1, 7);
 }
 
-static u32 sub_020825A4(int param0, const Strbuf *param1, u32 param2)
-{
+static u32 sub_020825A4(int param0, const Strbuf *param1, u32 param2) {
     u32 v0 = Font_CalcStrbufWidth(param0, param1, 0);
 
     return (param2 - v0) >> 1;
 }
 
-void sub_020825B4(GameWindowLayout *param0, u8 param1)
-{
+void sub_020825B4(GameWindowLayout *param0, u8 param1) {
     u32 v0;
 
     Window_FillTilemap(&param0->unk_04[30], 0);
@@ -561,8 +536,7 @@ void sub_020825B4(GameWindowLayout *param0, u8 param1)
     }
 }
 
-static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u8 param3)
-{
+static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u8 param3) {
     if (param3 == 1) {
         Window_DrawMessageBoxWithScrollCursor(param1, 1, (1 + 9), 15);
     }
@@ -577,18 +551,15 @@ static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u
     Window_ScheduleCopyToVRAM(param1);
 }
 
-void sub_020826E0(GameWindowLayout *param0, u32 param1, u8 param2)
-{
+void sub_020826E0(GameWindowLayout *param0, u32 param1, u8 param2) {
     sub_02082680(param0, &param0->unk_04[32], param1, param2);
 }
 
-void sub_020826F4(GameWindowLayout *param0, u32 param1, u8 param2)
-{
+void sub_020826F4(GameWindowLayout *param0, u32 param1, u8 param2) {
     sub_02082680(param0, &param0->unk_04[33], param1, param2);
 }
 
-void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
-{
+void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2) {
     Window *v0 = &param0->unk_04[34];
 
     if (param2 == 1) {
@@ -604,16 +575,14 @@ void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
     sub_0208274C(param0);
 }
 
-void sub_0208274C(GameWindowLayout *param0)
-{
+void sub_0208274C(GameWindowLayout *param0) {
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
     param0->textPrinterID = Text_AddPrinterWithParams(
         &param0->unk_04[34], FONT_MESSAGE, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->partyManagementData->options), sub_0208279C);
 }
 
-static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
-{
+static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1) {
     switch (param1) {
     case 1:
         return Sound_IsAnyEffectPlaying();
@@ -632,14 +601,12 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
     return 0;
 }
 
-void sub_020827EC(GameWindowLayout *param0)
-{
+void sub_020827EC(GameWindowLayout *param0) {
     param0->unk_700 = Menu_MakeYesNoChoice(
         param0->unk_00, &Unk_020F1E98, 1, 14, 12);
 }
 
-static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2)
-{
+static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2) {
     Window *v0;
     Strbuf *v1;
 
@@ -661,8 +628,7 @@ static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
-{
+static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2) {
     Window *v0;
     Strbuf *v1;
 
@@ -687,8 +653,7 @@ static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
-{
+static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2) {
     Window *v0;
     Strbuf *v1;
 
@@ -707,8 +672,7 @@ static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
-{
+static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2) {
     Window *v0;
     Strbuf *v1;
 
@@ -729,8 +693,7 @@ static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-void sub_020829DC(GameWindowLayout *param0)
-{
+void sub_020829DC(GameWindowLayout *param0) {
     Pokemon *v0;
     Strbuf *v1;
     u32 v2;
@@ -771,8 +734,7 @@ void sub_020829DC(GameWindowLayout *param0)
     Window_ScheduleCopyToVRAM(&param0->unk_254[0]);
 }
 
-void sub_02082B58(GameWindowLayout *param0)
-{
+void sub_02082B58(GameWindowLayout *param0) {
     Strbuf *v0;
     u32 v1;
     u32 v2;
@@ -793,8 +755,7 @@ void sub_02082B58(GameWindowLayout *param0)
     Window_ScheduleCopyToVRAM(&param0->unk_254[0]);
 }
 
-void sub_02082C10(GameWindowLayout *param0)
-{
+void sub_02082C10(GameWindowLayout *param0) {
     Window_EraseStandardFrame(&param0->unk_254[0], 0);
     Window_Remove(&param0->unk_254[0]);
 }

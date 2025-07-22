@@ -11,8 +11,7 @@
 #include "unk_020366A0.h"
 #include "unk_020996D0.h"
 
-void ov66_02231428(UnkStruct_ov66_02231428 *param0, const s64 *param1)
-{
+void ov66_02231428(UnkStruct_ov66_02231428 *param0, const s64 *param1) {
     RTCDate v0;
     RTCTime v1;
 
@@ -23,8 +22,7 @@ void ov66_02231428(UnkStruct_ov66_02231428 *param0, const s64 *param1)
     param0->unk_00_val2_unk_02 = v1.second;
 }
 
-void ov66_0223144C(const UnkStruct_ov66_02231428 *param0, const UnkStruct_ov66_02231428 *param1, UnkStruct_ov66_02231428 *param2)
-{
+void ov66_0223144C(const UnkStruct_ov66_02231428 *param0, const UnkStruct_ov66_02231428 *param1, UnkStruct_ov66_02231428 *param2) {
     u32 v0;
     UnkStruct_ov66_02231428 v1;
     UnkStruct_ov66_02231428 v2;
@@ -48,8 +46,7 @@ void ov66_0223144C(const UnkStruct_ov66_02231428 *param0, const UnkStruct_ov66_0
     param2->unk_00_val2_unk_00 = v1.unk_00_val2_unk_00 % 24;
 }
 
-void ov66_022314BC(const UnkStruct_ov66_02231428 *param0, const UnkStruct_ov66_02231428 *param1, UnkStruct_ov66_02231428 *param2)
-{
+void ov66_022314BC(const UnkStruct_ov66_02231428 *param0, const UnkStruct_ov66_02231428 *param1, UnkStruct_ov66_02231428 *param2) {
     u32 v0;
     s32 v1;
     UnkStruct_ov66_02231428 v2;
@@ -87,8 +84,7 @@ void ov66_022314BC(const UnkStruct_ov66_02231428 *param0, const UnkStruct_ov66_0
     param2->unk_00_val2_unk_00 = v2.unk_00_val2_unk_00 - v3.unk_00_val2_unk_00;
 }
 
-void ov66_02231560(UnkStruct_ov66_02231560 *param0, u16 param1, u8 param2, BOOL param3)
-{
+void ov66_02231560(UnkStruct_ov66_02231560 *param0, u16 param1, u8 param2, BOOL param3) {
     int v0;
     BOOL v1;
     u32 v2;
@@ -128,39 +124,34 @@ void ov66_02231560(UnkStruct_ov66_02231560 *param0, u16 param1, u8 param2, BOOL 
     }
 }
 
-u16 ov66_022315D8(const UnkStruct_ov66_02231560 *param0, u8 param1)
-{
+u16 ov66_022315D8(const UnkStruct_ov66_02231560 *param0, u8 param1) {
     GF_ASSERT(param1 < 50);
     GF_ASSERT(param0->unk_00[param1].unk_03_4 == 1);
 
     return param0->unk_00[param1].unk_00;
 }
 
-u8 ov66_022315FC(const UnkStruct_ov66_02231560 *param0, u8 param1)
-{
+u8 ov66_022315FC(const UnkStruct_ov66_02231560 *param0, u8 param1) {
     GF_ASSERT(param1 < 50);
     GF_ASSERT(param0->unk_00[param1].unk_03_4 == 1);
 
     return param0->unk_00[param1].unk_02;
 }
 
-BOOL ov66_02231624(const UnkStruct_ov66_02231560 *param0, u8 param1)
-{
+BOOL ov66_02231624(const UnkStruct_ov66_02231560 *param0, u8 param1) {
     GF_ASSERT(param1 < 50);
     GF_ASSERT(param0->unk_00[param1].unk_03_4 == 1);
 
     return param0->unk_00[param1].unk_03_0;
 }
 
-BOOL ov66_0223164C(const UnkStruct_ov66_02231560 *param0, u8 param1)
-{
+BOOL ov66_0223164C(const UnkStruct_ov66_02231560 *param0, u8 param1) {
     GF_ASSERT(param1 < 50);
 
     return param0->unk_00[param1].unk_03_4;
 }
 
-void ov66_02231668(void *param0)
-{
+void ov66_02231668(void *param0) {
     NNSG3dResMdlSet *v0 = NNS_G3dGetMdlSet(param0);
     NNSG3dResMdl *v1 = NNS_G3dGetMdlByIdx(v0, 0);
 
@@ -170,8 +161,7 @@ void ov66_02231668(void *param0)
     NNS_G3dMdlUseGlbEmi(v1);
 }
 
-BOOL ov66_022316C4(u16 param0, u16 param1)
-{
+BOOL ov66_022316C4(u16 param0, u16 param1) {
     u32 v0 = sub_020996F4(param0);
 
     if (v0 == 0) {
@@ -187,8 +177,7 @@ BOOL ov66_022316C4(u16 param0, u16 param1)
     return 0;
 }
 
-u32 ov66_022316E8(int param0)
-{
+u32 ov66_022316E8(int param0) {
     static const u8 v0[18] = {
         9,
         0,
@@ -213,8 +202,7 @@ u32 ov66_022316E8(int param0)
     return v0[param0];
 }
 
-int ov66_022316F4(int param0, int param1)
-{
+int ov66_022316F4(int param0, int param1) {
     int v0;
     int v1;
 
@@ -235,8 +223,7 @@ int ov66_022316F4(int param0, int param1)
     return v1;
 }
 
-int ov66_02231718(int param0, int param1)
-{
+int ov66_02231718(int param0, int param1) {
     int v0;
     int v1;
 
@@ -271,8 +258,7 @@ int ov66_02231718(int param0, int param1)
     return v1;
 }
 
-BOOL ov66_02231760(void)
-{
+BOOL ov66_02231760(void) {
     if (sub_020383E8() || sub_0203881C()) {
         return 1;
     }

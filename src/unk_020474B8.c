@@ -35,8 +35,7 @@
 
 static Strbuf *GetSpeciesNameStrbuf(u16 param0, u32 param1);
 
-BOOL ScrCmd_2EF(ScriptContext *param0)
-{
+BOOL ScrCmd_2EF(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -46,8 +45,7 @@ BOOL ScrCmd_2EF(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_BufferPlayerName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPlayerName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -56,8 +54,7 @@ BOOL ScrCmd_BufferPlayerName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferRivalName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferRivalName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -66,8 +63,7 @@ BOOL ScrCmd_BufferRivalName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferCounterpartName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferCounterpartName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -76,8 +72,7 @@ BOOL ScrCmd_BufferCounterpartName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -88,8 +83,7 @@ BOOL ScrCmd_BufferPartyMonSpecies(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_2FD(ScriptContext *param0)
-{
+BOOL ScrCmd_2FD(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -99,8 +93,7 @@ BOOL ScrCmd_2FD(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_BufferItemName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferItemName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -110,8 +103,7 @@ BOOL ScrCmd_BufferItemName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferPocketName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPocketName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -121,8 +113,7 @@ BOOL ScrCmd_BufferPocketName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferTMHMMoveName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferTMHMMoveName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -133,8 +124,7 @@ BOOL ScrCmd_BufferTMHMMoveName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferMoveName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferMoveName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -144,8 +134,7 @@ BOOL ScrCmd_BufferMoveName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferNumber(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferNumber(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -155,8 +144,7 @@ BOOL ScrCmd_BufferNumber(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_280(ScriptContext *param0)
-{
+BOOL ScrCmd_280(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -172,8 +160,7 @@ BOOL ScrCmd_280(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_BufferNumberPaddingDigits(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferNumberPaddingDigits(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -189,8 +176,7 @@ BOOL ScrCmd_BufferNumberPaddingDigits(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -202,8 +188,7 @@ BOOL ScrCmd_BufferPartyMonNickname(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferMonNicknameFromPC(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferMonNicknameFromPC(ScriptContext *ctx) {
     BoxPokemon *boxMon;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
@@ -218,8 +203,7 @@ BOOL ScrCmd_BufferMonNicknameFromPC(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -229,8 +213,7 @@ BOOL ScrCmd_BufferPoketchAppName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferTrainerClassName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferTrainerClassName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -240,8 +223,7 @@ BOOL ScrCmd_BufferTrainerClassName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_0D9(ScriptContext *param0)
-{
+BOOL ScrCmd_0D9(ScriptContext *param0) {
     int v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
     TrainerInfo *v2 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
@@ -254,8 +236,7 @@ BOOL ScrCmd_0D9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **template = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 bufferId = ScriptContext_ReadByte(ctx);
@@ -270,8 +251,7 @@ BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
     return 0;
 }
 
-static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapID)
-{
+static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapID) {
     MessageLoader *speciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     Strbuf *buffer = MessageLoader_GetNewStrbuf(speciesNames, speciesId);
 
@@ -279,8 +259,7 @@ static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapID)
     return buffer;
 }
 
-BOOL ScrCmd_BufferPlayerStarterSpeciesName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPlayerStarterSpeciesName(ScriptContext *ctx) {
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 species = SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
@@ -292,8 +271,7 @@ BOOL ScrCmd_BufferPlayerStarterSpeciesName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferRivalStarterSpeciesName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferRivalStarterSpeciesName(ScriptContext *ctx) {
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 species = SystemVars_GetRivalStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
@@ -305,8 +283,7 @@ BOOL ScrCmd_BufferRivalStarterSpeciesName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferPlayerCounterpartStarterSpeciesName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPlayerCounterpartStarterSpeciesName(ScriptContext *ctx) {
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 species = SystemVars_GetPlayerCounterpartStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
@@ -318,8 +295,7 @@ BOOL ScrCmd_BufferPlayerCounterpartStarterSpeciesName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferUndergroundGoodsName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferUndergroundGoodsName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -329,8 +305,7 @@ BOOL ScrCmd_BufferUndergroundGoodsName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferUndergroundTrapName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferUndergroundTrapName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -340,8 +315,7 @@ BOOL ScrCmd_BufferUndergroundTrapName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferUndergroundItemName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferUndergroundItemName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -351,8 +325,7 @@ BOOL ScrCmd_BufferUndergroundItemName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_0E2(ScriptContext *param0)
-{
+BOOL ScrCmd_0E2(ScriptContext *param0) {
     Strbuf *v0 = Strbuf_Init(22, HEAP_ID_FIELD);
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -365,8 +338,7 @@ BOOL ScrCmd_0E2(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_17B(ScriptContext *param0)
-{
+BOOL ScrCmd_17B(ScriptContext *param0) {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -379,8 +351,7 @@ BOOL ScrCmd_17B(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_17C(ScriptContext *param0)
-{
+BOOL ScrCmd_17C(ScriptContext *param0) {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -389,8 +360,7 @@ BOOL ScrCmd_17C(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_BufferAccessoryName(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferAccessoryName(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -400,8 +370,7 @@ BOOL ScrCmd_BufferAccessoryName(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_272(ScriptContext *param0)
-{
+BOOL ScrCmd_272(ScriptContext *param0) {
     Strbuf *v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -416,8 +385,7 @@ BOOL ScrCmd_272(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1CB(ScriptContext *param0)
-{
+BOOL ScrCmd_1CB(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     Pokemon *v1;
     StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -433,8 +401,7 @@ BOOL ScrCmd_1CB(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_232(ScriptContext *param0)
-{
+BOOL ScrCmd_232(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -445,8 +412,7 @@ BOOL ScrCmd_232(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_2B3(ScriptContext *param0)
-{
+BOOL ScrCmd_2B3(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -458,8 +424,7 @@ BOOL ScrCmd_2B3(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_2F3(ScriptContext *param0)
-{
+BOOL ScrCmd_2F3(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -469,8 +434,7 @@ BOOL ScrCmd_2F3(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_33C(ScriptContext *param0)
-{
+BOOL ScrCmd_33C(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -480,8 +444,7 @@ BOOL ScrCmd_33C(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
@@ -491,8 +454,7 @@ BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_33E(ScriptContext *param0)
-{
+BOOL ScrCmd_33E(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -502,8 +464,7 @@ BOOL ScrCmd_33E(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_33F(ScriptContext *param0)
-{
+BOOL ScrCmd_33F(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -513,8 +474,7 @@ BOOL ScrCmd_33F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_340(ScriptContext *param0)
-{
+BOOL ScrCmd_340(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -524,8 +484,7 @@ BOOL ScrCmd_340(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_341(ScriptContext *param0)
-{
+BOOL ScrCmd_341(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -537,8 +496,7 @@ BOOL ScrCmd_341(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_BufferPlayerCounterpartStarterSpeciesNameWithArticle(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPlayerCounterpartStarterSpeciesNameWithArticle(ScriptContext *ctx) {
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 species = SystemVars_GetPlayerCounterpartStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
@@ -547,8 +505,7 @@ BOOL ScrCmd_BufferPlayerCounterpartStarterSpeciesNameWithArticle(ScriptContext *
     return FALSE;
 }
 
-BOOL ScrCmd_343(ScriptContext *param0)
-{
+BOOL ScrCmd_343(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -558,8 +515,7 @@ BOOL ScrCmd_343(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_344(ScriptContext *param0)
-{
+BOOL ScrCmd_344(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -569,8 +525,7 @@ BOOL ScrCmd_344(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_345(ScriptContext *param0)
-{
+BOOL ScrCmd_345(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -582,8 +537,7 @@ BOOL ScrCmd_345(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_346(ScriptContext *param0)
-{
+BOOL ScrCmd_346(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
@@ -592,8 +546,7 @@ BOOL ScrCmd_346(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_347(ScriptContext *param0)
-{
+BOOL ScrCmd_347(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);

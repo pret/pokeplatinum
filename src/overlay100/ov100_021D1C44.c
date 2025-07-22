@@ -57,8 +57,7 @@ static UnkStruct_ov100_021D54D0 Unk_ov100_021D54A0[] = {
     { 0x0, 0x1 }
 };
 
-static void ov100_021D1C44(Camera *camera, VecFx32 *param1)
-{
+static void ov100_021D1C44(Camera *camera, VecFx32 *param1) {
     CameraAngle v0 = { -0x29fe, 0, 0 };
 
     Camera_InitWithTarget(param1, 0x13c805, &v0, 0xc01, 0, 1, camera);
@@ -66,8 +65,7 @@ static void ov100_021D1C44(Camera *camera, VecFx32 *param1)
     Camera_SetClipping(FX32_ONE * 10, FX32_ONE * 1008, camera);
 }
 
-static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
-{
+static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0) {
     NARC *v0 = param0->unk_1EBC->unk_00;
     BgConfig *v1 = param0->unk_1EBC->unk_0C;
     SpriteSystem *v2 = param0->unk_1EBC->unk_04;
@@ -189,8 +187,7 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
     param0->unk_1A0.unk_13EC[1].unk_158 = 2;
 }
 
-static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0)
-{
+static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0) {
     int v0;
     NARC *v1 = param0->unk_1EBC->unk_00;
     BgConfig *v2 = param0->unk_1EBC->unk_0C;
@@ -240,8 +237,7 @@ static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0)
     }
 }
 
-static void ov100_021D2324(UnkStruct_ov100_021D1C98 *param0)
-{
+static void ov100_021D2324(UnkStruct_ov100_021D1C98 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -250,8 +246,7 @@ static void ov100_021D2324(UnkStruct_ov100_021D1C98 *param0)
     }
 }
 
-void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
-{
+void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0) {
     UnkStruct_ov100_021D1C98 *v0 = Heap_AllocFromHeap(HEAP_ID_111, sizeof(UnkStruct_ov100_021D1C98));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D1C98));
@@ -297,8 +292,7 @@ void *ov100_021D2340(UnkStruct_ov100_021D4DD8 *param0)
     return v0;
 }
 
-BOOL ov100_021D2428(void *param0)
-{
+BOOL ov100_021D2428(void *param0) {
     UnkStruct_ov100_021D1C98 *v0 = (UnkStruct_ov100_021D1C98 *)param0;
 
     switch (v0->unk_00) {
@@ -680,8 +674,7 @@ BOOL ov100_021D2428(void *param0)
     return 1;
 }
 
-BOOL ov100_021D2C8C(void *param0)
-{
+BOOL ov100_021D2C8C(void *param0) {
     UnkStruct_ov100_021D1C98 *v0 = (UnkStruct_ov100_021D1C98 *)param0;
 
     switch (v0->unk_00) {
@@ -730,8 +723,7 @@ BOOL ov100_021D2C8C(void *param0)
     return 1;
 }
 
-static void ov100_021D2E0C(UnkStruct_ov100_021D1C98 *param0)
-{
+static void ov100_021D2E0C(UnkStruct_ov100_021D1C98 *param0) {
     sub_020241B4();
     Camera_ComputeViewMatrix();
 

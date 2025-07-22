@@ -26,8 +26,7 @@
 #include "text.h"
 #include "trainer_info.h"
 
-int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2)
-{
+int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1, int param2) {
     int v0;
     MessageLoader *v1;
     Strbuf *v2;
@@ -64,14 +63,12 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
     return v0;
 }
 
-void ov100_021D4788(UnkStruct_ov100_021D46C8 *param0)
-{
+void ov100_021D4788(UnkStruct_ov100_021D46C8 *param0) {
     Window_EraseMessageBox(&param0->unk_30, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_30);
 }
 
-void ov100_021D47A0(UnkStruct_ov100_021D46C8 *param0)
-{
+void ov100_021D47A0(UnkStruct_ov100_021D46C8 *param0) {
     VecFx32 v0 = { 0, -FX32_ONE, -FX32_ONE };
     VecFx32 v1 = { -2043, -3548, 110 };
 
@@ -87,8 +84,7 @@ void ov100_021D47A0(UnkStruct_ov100_021D46C8 *param0)
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(20, 20, 20), GX_RGB(16, 16, 16), 0);
 }
 
-void ov100_021D4844(UnkStruct_ov100_021D46C8 *param0)
-{
+void ov100_021D4844(UnkStruct_ov100_021D46C8 *param0) {
     CameraAngle v0 = Camera_GetAngle(param0->camera);
     VecFx32 v1 = Camera_GetPosition(param0->camera);
 
@@ -96,8 +92,7 @@ void ov100_021D4844(UnkStruct_ov100_021D46C8 *param0)
     Camera_SetAngleAroundTarget(&v0, param0->camera);
 }
 
-void ov100_021D4890(UnkStruct_ov100_021D4890 *param0)
-{
+void ov100_021D4890(UnkStruct_ov100_021D4890 *param0) {
     CameraAngle v0;
 
     param0->unk_24[0] = param0->unk_08;
@@ -116,8 +111,7 @@ void ov100_021D4890(UnkStruct_ov100_021D4890 *param0)
     param0->cameraAngle.z = v0.z + ((65535 / 360) * param0->unk_14);
 }
 
-BOOL ov100_021D4920(UnkStruct_ov100_021D4890 *param0)
-{
+BOOL ov100_021D4920(UnkStruct_ov100_021D4890 *param0) {
     BOOL v0 = 0;
     CameraAngle v1 = Camera_GetAngle(param0->camera);
 
@@ -145,8 +139,7 @@ BOOL ov100_021D4920(UnkStruct_ov100_021D4890 *param0)
     return v0;
 }
 
-void ov100_021D49B4(UnkStruct_ov100_021D49B4 *param0)
-{
+void ov100_021D49B4(UnkStruct_ov100_021D49B4 *param0) {
     if (param0->unk_174 == 0) {
         return;
     }
@@ -191,18 +184,15 @@ void ov100_021D49B4(UnkStruct_ov100_021D49B4 *param0)
     NNS_G3dGePopMtx(1);
 }
 
-void ov100_021D4A84(UnkStruct_ov100_021D49B4 *param0)
-{
+void ov100_021D4A84(UnkStruct_ov100_021D49B4 *param0) {
     Easy3DModel_Release(&param0->unk_78);
 }
 
-void ov100_021D4A90(int param0, UnkStruct_ov100_021D49B4 *param1, NNSFndAllocator *param2)
-{
+void ov100_021D4A90(int param0, UnkStruct_ov100_021D49B4 *param1, NNSFndAllocator *param2) {
     Easy3DAnim_Release(&param1->unk_88[param0], param2);
 }
 
-void ov100_021D4AA4(UnkStruct_ov100_021D49B4 *param0, NNSFndAllocator *param1, int param2)
-{
+void ov100_021D4AA4(UnkStruct_ov100_021D49B4 *param0, NNSFndAllocator *param1, int param2) {
     int v0;
 
     ov100_021D4A84(param0);
@@ -212,8 +202,7 @@ void ov100_021D4AA4(UnkStruct_ov100_021D49B4 *param0, NNSFndAllocator *param1, i
     }
 }
 
-void ov100_021D4AC8(UnkStruct_ov100_021D49B4 *param0, int param1, NARC *param2)
-{
+void ov100_021D4AC8(UnkStruct_ov100_021D49B4 *param0, int param1, NARC *param2) {
     Easy3DModel_LoadFrom(&param0->unk_78, param2, param1, HEAP_ID_111);
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
     Easy3DObject_SetPosition(&param0->unk_00, 0, 0, 0);
@@ -223,8 +212,7 @@ void ov100_021D4AC8(UnkStruct_ov100_021D49B4 *param0, int param1, NARC *param2)
     param0->unk_174 = 1;
 }
 
-void ov100_021D4B10(UnkStruct_ov100_021D49B4 *param0, UnkStruct_ov100_021D49B4 *param1, int param2, NARC *param3)
-{
+void ov100_021D4B10(UnkStruct_ov100_021D49B4 *param0, UnkStruct_ov100_021D49B4 *param1, int param2, NARC *param3) {
     Easy3DObject_Init(&param1->unk_00, &param0->unk_78);
     Easy3DObject_SetPosition(&param1->unk_00, 0, 0, 0);
     Easy3DObject_SetScale(&param1->unk_00, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
@@ -233,8 +221,7 @@ void ov100_021D4B10(UnkStruct_ov100_021D49B4 *param0, UnkStruct_ov100_021D49B4 *
     param1->unk_174 = 1;
 }
 
-void ov100_021D4B4C(int param0, UnkStruct_ov100_021D49B4 *param1, int param2, NARC *param3, NNSFndAllocator *param4)
-{
+void ov100_021D4B4C(int param0, UnkStruct_ov100_021D49B4 *param1, int param2, NARC *param3, NNSFndAllocator *param4) {
     Easy3DAnim_LoadFrom(&param1->unk_88[param0], &param1->unk_78, param3, param2, 111, param4);
     Easy3DAnim_SetFrame(&param1->unk_88[param0], 0);
     Easy3DObject_AddAnim(&param1->unk_00, &param1->unk_88[param0]);
@@ -244,8 +231,7 @@ void ov100_021D4B4C(int param0, UnkStruct_ov100_021D49B4 *param1, int param2, NA
     param1->unk_178 = 0xFF;
 }
 
-void ov100_021D4BA0(int param0, UnkStruct_ov100_021D49B4 *param1, UnkStruct_ov100_021D49B4 *param2, int param3, NARC *param4, NNSFndAllocator *param5)
-{
+void ov100_021D4BA0(int param0, UnkStruct_ov100_021D49B4 *param1, UnkStruct_ov100_021D49B4 *param2, int param3, NARC *param4, NNSFndAllocator *param5) {
     Easy3DAnim_LoadFrom(&param2->unk_88[param0], &param1->unk_78, param4, param3, 111, param5);
     Easy3DAnim_SetFrame(&param2->unk_88[param0], 0);
     Easy3DObject_AddAnim(&param2->unk_00, &param2->unk_88[param0]);
@@ -255,8 +241,7 @@ void ov100_021D4BA0(int param0, UnkStruct_ov100_021D49B4 *param1, UnkStruct_ov10
     param2->unk_178 = 0xFF;
 }
 
-void ov100_021D4BF0(UnkStruct_ov100_021D46C8 *param0)
-{
+void ov100_021D4BF0(UnkStruct_ov100_021D46C8 *param0) {
     if (param0->unk_C0 == 0) {
         if (param0->unk_C1 < 31) {
             param0->unk_C1++;
@@ -275,8 +260,7 @@ void ov100_021D4BF0(UnkStruct_ov100_021D46C8 *param0)
     PaletteData_Blend(param0->unk_10, 1, 4, 6, param0->unk_C1 / 8, 0xCCCC);
 }
 
-void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
-{
+void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1) {
     int v0;
     const u8 v1[] = {
         4,
@@ -333,14 +317,12 @@ void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
     PaletteData_Blend(param0->unk_10, 1, v3[v0][0], v3[v0][1], param0->unk_C1 / v1[v0], v4[v0]);
 }
 
-void ov100_021D4DC8(int param0)
-{
+void ov100_021D4DC8(int param0) {
     gSystem.whichScreenIs3D = param0;
     GXLayers_SwapDisplay();
 }
 
-void ov100_021D4DD8(UnkStruct_ov100_021D4DD8 *param0, int param1)
-{
+void ov100_021D4DD8(UnkStruct_ov100_021D4DD8 *param0, int param1) {
     param0->unk_0C.unk_50.unk_03 = param1;
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), param0->unk_0C.unk_50.unk_03);
     G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), param0->unk_0C.unk_50.unk_03);

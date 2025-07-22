@@ -315,8 +315,7 @@ static const AICommandFunc sAICommandTable[] = {
     AICmd_LoadAbility,
 };
 
-void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u8 initScore)
-{
+void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u8 initScore) {
     // must declare these up here to match
     int i;
     u8 invalidMoves;
@@ -362,8 +361,7 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
     }
 }
 
-u8 TrainerAI_Main(BattleSystem *battleSys, u8 battler)
-{
+u8 TrainerAI_Main(BattleSystem *battleSys, u8 battler) {
     u8 result;
     BattleContext *battleCtx = battleSys->battleCtx;
 
@@ -390,8 +388,7 @@ u8 TrainerAI_Main(BattleSystem *battleSys, u8 battler)
  * @param battleCtx
  * @return The action that the AI picked for its turn. See enum AIActionChoice.
  */
-static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx) {
     int i;
     u8 maxScoreMoves[4];
     u8 maxScoreMoveSlots[4];
@@ -456,8 +453,7 @@ static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleCtx
  * @return The action that the AI picked for its turn. See enum AIActionChoice.
  */
-static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx) {
     int battler, battlerCount, thinkingMask;
     s16 maxScoreForBattler[MAX_BATTLERS];
     u8 battlerTemp[MAX_BATTLERS];
@@ -587,8 +583,7 @@ static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCt
  * @param battleSys
  * @param battleCtx
  */
-static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCtx) {
     while (AI_CONTEXT.evalStep != AI_EVAL_STEP_END) {
         switch (AI_CONTEXT.evalStep) {
         case AI_EVAL_STEP_INIT:
@@ -632,8 +627,7 @@ static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCt
     }
 }
 
-static void AICmd_IfRandomLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfRandomLessThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -644,8 +638,7 @@ static void AICmd_IfRandomLessThan(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_IfRandomGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfRandomGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -656,8 +649,7 @@ static void AICmd_IfRandomGreaterThan(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_IfRandomEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfRandomEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -668,8 +660,7 @@ static void AICmd_IfRandomEqualTo(BattleSystem *battleSys, BattleContext *battle
     }
 }
 
-static void AICmd_IfRandomNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfRandomNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -680,8 +671,7 @@ static void AICmd_IfRandomNotEqualTo(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_AddToMoveScore(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_AddToMoveScore(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -692,8 +682,7 @@ static void AICmd_AddToMoveScore(BattleSystem *battleSys, BattleContext *battleC
     }
 }
 
-static void AICmd_IfHPPercentLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfHPPercentLessThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -707,8 +696,7 @@ static void AICmd_IfHPPercentLessThan(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_IfHPPercentGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfHPPercentGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -722,8 +710,7 @@ static void AICmd_IfHPPercentGreaterThan(BattleSystem *battleSys, BattleContext 
     }
 }
 
-static void AICmd_IfHPPercentEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfHPPercentEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -737,8 +724,7 @@ static void AICmd_IfHPPercentEqualTo(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_IfHPPercentNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfHPPercentNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -752,8 +738,7 @@ static void AICmd_IfHPPercentNotEqualTo(BattleSystem *battleSys, BattleContext *
     }
 }
 
-static void AICmd_IfStatus(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfStatus(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -766,8 +751,7 @@ static void AICmd_IfStatus(BattleSystem *battleSys, BattleContext *battleCtx)
     }
 }
 
-static void AICmd_IfNotStatus(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfNotStatus(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -780,8 +764,7 @@ static void AICmd_IfNotStatus(BattleSystem *battleSys, BattleContext *battleCtx)
     }
 }
 
-static void AICmd_IfVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -794,8 +777,7 @@ static void AICmd_IfVolatileStatus(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_IfNotVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfNotVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -808,8 +790,7 @@ static void AICmd_IfNotVolatileStatus(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_IfMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -822,8 +803,7 @@ static void AICmd_IfMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx
     }
 }
 
-static void AICmd_IfNotMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfNotMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -836,8 +816,7 @@ static void AICmd_IfNotMoveEffect(BattleSystem *battleSys, BattleContext *battle
     }
 }
 
-static void AICmd_IfSideCondition(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfSideCondition(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -851,8 +830,7 @@ static void AICmd_IfSideCondition(BattleSystem *battleSys, BattleContext *battle
     }
 }
 
-static void AICmd_IfNotSideCondition(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfNotSideCondition(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -866,8 +844,7 @@ static void AICmd_IfNotSideCondition(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_IfLoadedLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedLessThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -878,8 +855,7 @@ static void AICmd_IfLoadedLessThan(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_IfLoadedGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -890,8 +866,7 @@ static void AICmd_IfLoadedGreaterThan(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_IfLoadedEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -902,8 +877,7 @@ static void AICmd_IfLoadedEqualTo(BattleSystem *battleSys, BattleContext *battle
     }
 }
 
-static void AICmd_IfLoadedNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -914,8 +888,7 @@ static void AICmd_IfLoadedNotEqualTo(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_IfLoadedMask(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedMask(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int mask = AIScript_Read(battleCtx);
@@ -926,8 +899,7 @@ static void AICmd_IfLoadedMask(BattleSystem *battleSys, BattleContext *battleCtx
     }
 }
 
-static void AICmd_IfLoadedNotMask(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedNotMask(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int mask = AIScript_Read(battleCtx);
@@ -938,8 +910,7 @@ static void AICmd_IfLoadedNotMask(BattleSystem *battleSys, BattleContext *battle
     }
 }
 
-static void AICmd_IfMoveEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -950,8 +921,7 @@ static void AICmd_IfMoveEqualTo(BattleSystem *battleSys, BattleContext *battleCt
     }
 }
 
-static void AICmd_IfMoveNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -962,8 +932,7 @@ static void AICmd_IfMoveNotEqualTo(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_IfLoadedInTable(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedInTable(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int ofs = AIScript_Read(battleCtx);
@@ -980,8 +949,7 @@ static void AICmd_IfLoadedInTable(BattleSystem *battleSys, BattleContext *battle
     }
 }
 
-static void AICmd_IfLoadedNotInTable(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLoadedNotInTable(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int ofs = AIScript_Read(battleCtx);
@@ -999,8 +967,7 @@ static void AICmd_IfLoadedNotInTable(BattleSystem *battleSys, BattleContext *bat
     AIScript_Iter(battleCtx, jump);
 }
 
-static void AICmd_IfAttackerHasDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfAttackerHasDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     int jump = AIScript_Read(battleCtx);
 
@@ -1017,8 +984,7 @@ static void AICmd_IfAttackerHasDamagingMoves(BattleSystem *battleSys, BattleCont
     }
 }
 
-static void AICmd_IfAttackerHasNoDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfAttackerHasNoDamagingMoves(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     int jump = AIScript_Read(battleCtx);
 
@@ -1035,14 +1001,12 @@ static void AICmd_IfAttackerHasNoDamagingMoves(BattleSystem *battleSys, BattleCo
     }
 }
 
-static void AICmd_LoadTurnCount(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadTurnCount(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = battleCtx->totalTurns;
 }
 
-static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int param = AIScript_Read(battleCtx);
@@ -1095,8 +1059,7 @@ static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx
     }
 }
 
-static void AICmd_FlagBattlerIsType(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_FlagBattlerIsType(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1110,14 +1073,12 @@ static void AICmd_FlagBattlerIsType(BattleSystem *battleSys, BattleContext *batt
     }
 }
 
-static void AICmd_LoadMovePower(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadMovePower(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).power;
 }
 
-static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *battleCtx) {
     int i = 0, riskyIdx, altPowerIdx;
     s32 moveDamage[LEARNED_MOVES_MAX];
     BOOL varyDamage;
@@ -1172,8 +1133,7 @@ static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_LoadBattlerPreviousMove(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadBattlerPreviousMove(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1182,8 +1142,7 @@ static void AICmd_LoadBattlerPreviousMove(BattleSystem *battleSys, BattleContext
     AI_CONTEXT.calcTemp = battleCtx->movePrevByBattler[battler];
 }
 
-static void AICmd_IfTempEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfTempEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -1194,8 +1153,7 @@ static void AICmd_IfTempEqualTo(BattleSystem *battleSys, BattleContext *battleCt
     }
 }
 
-static void AICmd_IfTempNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfTempNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -1206,8 +1164,7 @@ static void AICmd_IfTempNotEqualTo(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_IfSpeedCompareEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfSpeedCompareEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -1218,8 +1175,7 @@ static void AICmd_IfSpeedCompareEqualTo(BattleSystem *battleSys, BattleContext *
     }
 }
 
-static void AICmd_IfSpeedCompareNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfSpeedCompareNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int val = AIScript_Read(battleCtx);
@@ -1230,8 +1186,7 @@ static void AICmd_IfSpeedCompareNotEqualTo(BattleSystem *battleSys, BattleContex
     }
 }
 
-static void AICmd_CountAlivePartyBattlers(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_CountAlivePartyBattlers(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1262,20 +1217,17 @@ static void AICmd_CountAlivePartyBattlers(BattleSystem *battleSys, BattleContext
     }
 }
 
-static void AICmd_LoadCurrentMove(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadCurrentMove(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = AI_CONTEXT.move;
 }
 
-static void AICmd_LoadCurrentMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadCurrentMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).effect;
 }
 
-static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1316,8 +1268,7 @@ static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1372,8 +1323,7 @@ static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_CalcMaxEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_CalcMaxEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     AI_CONTEXT.calcTemp = TYPE_MULTI_IMMUNE;
@@ -1415,8 +1365,7 @@ static void AICmd_CalcMaxEffectiveness(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-static void AICmd_IfMoveEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int expected = AIScript_Read(battleCtx);
@@ -1452,8 +1401,7 @@ static void AICmd_IfMoveEffectivenessEquals(BattleSystem *battleSys, BattleConte
     }
 }
 
-static void AICmd_IfPartyMemberStatus(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfPartyMemberStatus(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     Party *party; // this must be declared first to match
@@ -1485,8 +1433,7 @@ static void AICmd_IfPartyMemberStatus(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_IfPartyMemberNotStatus(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfPartyMemberNotStatus(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     Party *party; // this must be declared first to match
@@ -1518,8 +1465,7 @@ static void AICmd_IfPartyMemberNotStatus(BattleSystem *battleSys, BattleContext 
     }
 }
 
-static void AICmd_LoadCurrentWeather(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadCurrentWeather(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     AI_CONTEXT.calcTemp = AI_WEATHER_CLEAR;
@@ -1545,8 +1491,7 @@ static void AICmd_LoadCurrentWeather(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_IfCurrentMoveEffectEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfCurrentMoveEffectEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int expected = AIScript_Read(battleCtx);
@@ -1557,8 +1502,7 @@ static void AICmd_IfCurrentMoveEffectEqualTo(BattleSystem *battleSys, BattleCont
     }
 }
 
-static void AICmd_IfCurrentMoveEffectNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfCurrentMoveEffectNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int expected = AIScript_Read(battleCtx);
@@ -1569,8 +1513,7 @@ static void AICmd_IfCurrentMoveEffectNotEqualTo(BattleSystem *battleSys, BattleC
     }
 }
 
-static void AICmd_IfStatStageLessThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfStatStageLessThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1584,8 +1527,7 @@ static void AICmd_IfStatStageLessThan(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_IfStatStageGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfStatStageGreaterThan(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1599,8 +1541,7 @@ static void AICmd_IfStatStageGreaterThan(BattleSystem *battleSys, BattleContext 
     }
 }
 
-static void AICmd_IfStatStageEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfStatStageEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1614,8 +1555,7 @@ static void AICmd_IfStatStageEqualTo(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_IfStatStageNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfStatStageNotEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1629,8 +1569,7 @@ static void AICmd_IfStatStageNotEqualTo(BattleSystem *battleSys, BattleContext *
     }
 }
 
-static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     BOOL useDamageRoll = AIScript_Read(battleCtx);
@@ -1680,8 +1619,7 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     BOOL useDamageRoll = AIScript_Read(battleCtx);
@@ -1731,8 +1669,7 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
     }
 }
 
-static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1787,8 +1724,7 @@ static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx)
     }
 }
 
-static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1843,8 +1779,7 @@ static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleC
     }
 }
 
-static void AICmd_IfMoveEffectKnown(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveEffectKnown(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1885,8 +1820,7 @@ static void AICmd_IfMoveEffectKnown(BattleSystem *battleSys, BattleContext *batt
     }
 }
 
-static void AICmd_IfMoveEffectNotKnown(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfMoveEffectNotKnown(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1927,8 +1861,7 @@ static void AICmd_IfMoveEffectNotKnown(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-static void AICmd_IfBattlerUnderEffect(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfBattlerUnderEffect(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -1954,8 +1887,7 @@ static void AICmd_IfBattlerUnderEffect(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-static void AICmd_IfCurrentMoveMatchesEffect(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfCurrentMoveMatchesEffect(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int check = AIScript_Read(battleCtx);
@@ -1979,24 +1911,20 @@ static void AICmd_IfCurrentMoveMatchesEffect(BattleSystem *battleSys, BattleCont
     }
 }
 
-static void AICmd_Escape(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_Escape(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.stateFlags |= (AI_STATUS_FLAG_DONE | AI_STATUS_FLAG_ESCAPE | AI_STATUS_FLAG_BREAK);
 }
 
-static void AICmd_Dummy3E(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_Dummy3E(BattleSystem *battleSys, BattleContext *battleCtx) {
     return;
 }
 
-static void AICmd_Dummy3F(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_Dummy3F(BattleSystem *battleSys, BattleContext *battleCtx) {
     return;
 }
 
-static void AICmd_LoadHeldItem(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadHeldItem(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2005,8 +1933,7 @@ static void AICmd_LoadHeldItem(BattleSystem *battleSys, BattleContext *battleCtx
     AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].heldItem;
 }
 
-static void AICmd_LoadHeldItemEffect(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadHeldItemEffect(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2019,8 +1946,7 @@ static void AICmd_LoadHeldItemEffect(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_IfHeldItemEqualTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfHeldItemEqualTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2040,8 +1966,7 @@ static void AICmd_IfHeldItemEqualTo(BattleSystem *battleSys, BattleContext *batt
     }
 }
 
-static void AICmd_IfFieldConditionsMask(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfFieldConditionsMask(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     u32 mask = AIScript_Read(battleCtx);
@@ -2052,8 +1977,7 @@ static void AICmd_IfFieldConditionsMask(BattleSystem *battleSys, BattleContext *
     }
 }
 
-static void AICmd_LoadSpikesLayers(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadSpikesLayers(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2072,8 +1996,7 @@ static void AICmd_LoadSpikesLayers(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_IfAnyPartyMemberIsWounded(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfAnyPartyMemberIsWounded(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2091,8 +2014,7 @@ static void AICmd_IfAnyPartyMemberIsWounded(BattleSystem *battleSys, BattleConte
     }
 }
 
-static void AICmd_IfAnyPartyMemberUsedPP(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfAnyPartyMemberUsedPP(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2118,8 +2040,7 @@ static void AICmd_IfAnyPartyMemberUsedPP(BattleSystem *battleSys, BattleContext 
     }
 }
 
-static void AICmd_LoadFlingPower(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadFlingPower(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2128,14 +2049,12 @@ static void AICmd_LoadFlingPower(BattleSystem *battleSys, BattleContext *battleC
     AI_CONTEXT.calcTemp = Battler_ItemFlingPower(battleCtx, battler);
 }
 
-static void AICmd_LoadCurrentMovePP(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadCurrentMovePP(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = battleCtx->battleMons[AI_CONTEXT.attacker].ppCur[AI_CONTEXT.moveSlot];
 }
 
-static void AICmd_IfCanUseLastResort(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfCanUseLastResort(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2148,20 +2067,17 @@ static void AICmd_IfCanUseLastResort(BattleSystem *battleSys, BattleContext *bat
     }
 }
 
-static void AICmd_LoadCurrentMoveClass(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadCurrentMoveClass(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).class;
 }
 
-static void AICmd_LoadDefenderLastUsedMoveClass(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadDefenderLastUsedMoveClass(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = MOVE_DATA(battleCtx->movePrevByBattler[AI_CONTEXT.defender]).class;
 }
 
-static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *battleCtx) {
     // Must declare C89-style to match
     int i, j;
     int speedOrder[4];
@@ -2200,8 +2116,7 @@ static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-static void AICmd_LoadBattlerTurnCount(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadBattlerTurnCount(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2210,8 +2125,7 @@ static void AICmd_LoadBattlerTurnCount(BattleSystem *battleSys, BattleContext *b
     AI_CONTEXT.calcTemp = battleCtx->totalTurns - battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber;
 }
 
-static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx) {
     // Declare C89-style to match
     int i, j;
     BOOL varyDamage;
@@ -2280,8 +2194,7 @@ static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleCo
     }
 }
 
-static void AICmd_IfHasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfHasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int jump = AIScript_Read(battleCtx);
@@ -2291,8 +2204,7 @@ static void AICmd_IfHasSuperEffectiveMove(BattleSystem *battleSys, BattleContext
     }
 }
 
-static void AICmd_IfBattlerDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfBattlerDealsMoreDamage(BattleSystem *battleSys, BattleContext *battleCtx) {
     int i;
     int inBattler;
     BOOL varyDamage;
@@ -2347,8 +2259,7 @@ static void AICmd_IfBattlerDealsMoreDamage(BattleSystem *battleSys, BattleContex
     }
 }
 
-static void AICmd_SumPositiveStatStages(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_SumPositiveStatStages(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2363,8 +2274,7 @@ static void AICmd_SumPositiveStatStages(BattleSystem *battleSys, BattleContext *
     }
 }
 
-static void AICmd_DiffStatStages(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_DiffStatStages(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2374,8 +2284,7 @@ static void AICmd_DiffStatStages(BattleSystem *battleSys, BattleContext *battleC
     AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].statBoosts[stat] - battleCtx->battleMons[AI_CONTEXT.attacker].statBoosts[stat];
 }
 
-static void AICmd_IfBattlerHasHigherStat(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfBattlerHasHigherStat(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2391,8 +2300,7 @@ static void AICmd_IfBattlerHasHigherStat(BattleSystem *battleSys, BattleContext 
     }
 }
 
-static void AICmd_IfBattlerHasLowerStat(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfBattlerHasLowerStat(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2408,8 +2316,7 @@ static void AICmd_IfBattlerHasLowerStat(BattleSystem *battleSys, BattleContext *
     }
 }
 
-static void AICmd_IfBattlerHasEqualStat(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfBattlerHasEqualStat(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2434,8 +2341,7 @@ static void AICmd_IfBattlerHasEqualStat(BattleSystem *battleSys, BattleContext *
  * @param buf2      Buffer to hold the stat-value for the given other battler.
  * @param stat      Which stat value to load.
  */
-static void TrainerAI_GetStats(BattleContext *battleCtx, int battler, int *buf1, int *buf2, int stat)
-{
+static void TrainerAI_GetStats(BattleContext *battleCtx, int battler, int *buf1, int *buf2, int stat) {
     switch (stat) {
     case BATTLE_STAT_HP:
         *buf1 = battleCtx->battleMons[AI_CONTEXT.attacker].curHP;
@@ -2473,8 +2379,7 @@ static void TrainerAI_GetStats(BattleContext *battleCtx, int battler, int *buf1,
     }
 }
 
-static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, BattleContext *battleCtx) {
     int i = 0, j, k;
     s32 moveDamage;
     s32 damageVals[LEARNED_MOVES_MAX];
@@ -2542,8 +2447,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
     }
 }
 
-static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2558,8 +2462,7 @@ static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2574,8 +2477,7 @@ static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void AICmd_LoadGender(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadGender(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2584,8 +2486,7 @@ static void AICmd_LoadGender(BattleSystem *battleSys, BattleContext *battleCtx)
     AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].gender;
 }
 
-static void AICmd_LoadIsFirstTurnInBattle(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadIsFirstTurnInBattle(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2598,8 +2499,7 @@ static void AICmd_LoadIsFirstTurnInBattle(BattleSystem *battleSys, BattleContext
     }
 }
 
-static void AICmd_LoadStockpileCount(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadStockpileCount(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2608,14 +2508,12 @@ static void AICmd_LoadStockpileCount(BattleSystem *battleSys, BattleContext *bat
     AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].moveEffectsData.stockpileCount;
 }
 
-static void AICmd_LoadBattleType(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadBattleType(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = battleSys->battleType;
 }
 
-static void AICmd_LoadRecycleItem(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadRecycleItem(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2624,26 +2522,22 @@ static void AICmd_LoadRecycleItem(BattleSystem *battleSys, BattleContext *battle
     AI_CONTEXT.calcTemp = battleCtx->recycleItem[battler];
 }
 
-static void AICmd_LoadTypeOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadTypeOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.calcTemp).type;
 }
 
-static void AICmd_LoadPowerOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadPowerOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.calcTemp).power;
 }
 
-static void AICmd_LoadEffectOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadEffectOfLoadedMove(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.calcTemp).effect;
 }
 
-static void AICmd_LoadProtectChain(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadProtectChain(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2658,22 +2552,19 @@ static void AICmd_LoadProtectChain(BattleSystem *battleSys, BattleContext *battl
     }
 }
 
-static void AICmd_PushAndGoTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_PushAndGoTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     int jump = AIScript_Read(battleCtx);
     AIScript_PushCursor(battleSys, battleCtx, jump);
 }
 
-static void AICmd_GoTo(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_GoTo(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     int jump = AIScript_Read(battleCtx);
     AIScript_Iter(battleCtx, jump);
 }
 
-static void AICmd_PopOrEnd(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_PopOrEnd(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     if (AIScript_PopCursor(battleSys, battleCtx) == TRUE) {
@@ -2683,8 +2574,7 @@ static void AICmd_PopOrEnd(BattleSystem *battleSys, BattleContext *battleCtx)
     AI_CONTEXT.stateFlags |= AI_STATUS_FLAG_DONE;
 }
 
-static void AICmd_IfLevel(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfLevel(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int op = AIScript_Read(battleCtx);
@@ -2714,8 +2604,7 @@ static void AICmd_IfLevel(BattleSystem *battleSys, BattleContext *battleCtx)
     }
 }
 
-static void AICmd_IfTargetIsTaunted(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfTargetIsTaunted(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     int jump = AIScript_Read(battleCtx);
 
@@ -2724,8 +2613,7 @@ static void AICmd_IfTargetIsTaunted(BattleSystem *battleSys, BattleContext *batt
     }
 }
 
-static void AICmd_IfTargetIsNotTaunted(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfTargetIsNotTaunted(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
     int jump = AIScript_Read(battleCtx);
 
@@ -2734,8 +2622,7 @@ static void AICmd_IfTargetIsNotTaunted(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-static void AICmd_IfTargetIsPartner(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfTargetIsPartner(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int jump = AIScript_Read(battleCtx);
@@ -2745,8 +2632,7 @@ static void AICmd_IfTargetIsPartner(BattleSystem *battleSys, BattleContext *batt
     }
 }
 
-static void AICmd_IfActivatedFlashFire(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_IfActivatedFlashFire(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2758,8 +2644,7 @@ static void AICmd_IfActivatedFlashFire(BattleSystem *battleSys, BattleContext *b
     }
 }
 
-static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx) {
     AIScript_Iter(battleCtx, 1);
 
     int inBattler = AIScript_Read(battleCtx);
@@ -2775,8 +2660,7 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
  * @param battleCtx
  * @param offset    Distance to jump ahead after pushing the cursor.
  */
-static void AIScript_PushCursor(BattleSystem *battleSys, BattleContext *battleCtx, int offset)
-{
+static void AIScript_PushCursor(BattleSystem *battleSys, BattleContext *battleCtx, int offset) {
     AI_CONTEXT.scriptStackPointer[AI_CONTEXT.scriptStackSize++] = battleCtx->aiScriptCursor;
     AIScript_Iter(battleCtx, offset);
 
@@ -2791,8 +2675,7 @@ static void AIScript_PushCursor(BattleSystem *battleSys, BattleContext *battleCt
  * @return TRUE if the cursor stack had an element to be popped; FALSE
  * if it was empty.
  */
-static BOOL AIScript_PopCursor(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static BOOL AIScript_PopCursor(BattleSystem *battleSys, BattleContext *battleCtx) {
     if (AI_CONTEXT.scriptStackSize) {
         AI_CONTEXT.scriptStackSize--;
         battleCtx->aiScriptCursor = AI_CONTEXT.scriptStackPointer[AI_CONTEXT.scriptStackSize];
@@ -2809,8 +2692,7 @@ static BOOL AIScript_PopCursor(BattleSystem *battleSys, BattleContext *battleCtx
  * @param battleSys
  * @param battleCtx
  */
-static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx)
-{
+static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx) {
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (AI_CONTEXT.battlerMoves[AI_CONTEXT.defender][i] == battleCtx->movePrevByBattler[AI_CONTEXT.defender]) {
             break;
@@ -2830,8 +2712,7 @@ static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx
  * @return Current word for the AI script under the cursor.
  */
-static int AIScript_Read(BattleContext *battleCtx)
-{
+static int AIScript_Read(BattleContext *battleCtx) {
     int word = battleCtx->aiScriptTemp[battleCtx->aiScriptCursor];
     battleCtx->aiScriptCursor++;
 
@@ -2845,8 +2726,7 @@ static int AIScript_Read(BattleContext *battleCtx)
  * @param battleCtx
  * @return Current word for the AI script under the cursor + an offset.
  */
-static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs)
-{
+static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs) {
     return battleCtx->aiScriptTemp[battleCtx->aiScriptCursor + ofs];
 }
 
@@ -2856,8 +2736,7 @@ static int AIScript_ReadOffset(BattleContext *battleCtx, int ofs)
  * @param battleCtx
  * @param i         Amount by which to increment the script cursor.
  */
-static void AIScript_Iter(BattleContext *battleCtx, int i)
-{
+static void AIScript_Iter(BattleContext *battleCtx, int i) {
     battleCtx->aiScriptCursor += i;
 }
 
@@ -2869,8 +2748,7 @@ static void AIScript_Iter(BattleContext *battleCtx, int i)
  * @param inBattler The input battler value.
  * @return True battler ID for the input battler value.
  */
-static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler)
-{
+static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler) {
     // the order of this switch statement must be maintained to match
     switch (inBattler) {
     case AI_BATTLER_ATTACKER:
@@ -2903,8 +2781,7 @@ static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler)
  * @param varyDamage    If TRUE, apply random damage variance to each calculation.
  * @return              The highest damage value among all considered moves.
  */
-static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 *moves, s32 *damageVals, u16 heldItem, u8 *ivs, int ability, int embargoTurns, BOOL varyDamage)
-{
+static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 *moves, s32 *damageVals, u16 heldItem, u8 *ivs, int ability, int embargoTurns, BOOL varyDamage) {
     int i, riskyScanIdx, altPowerScanIdx;
     s32 maxDamage;
     u8 damageRoll;
@@ -2972,8 +2849,7 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
  *                      to be a value in the range [85..100].
  * @return Calculated damage value.
  */
-static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, int embargoTurns, u8 variance)
-{
+static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, int embargoTurns, u8 variance) {
     // must declare C89-style to match
     int defendingSide;
     int power;
@@ -3231,8 +3107,7 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
  * @param move      The move being used.
  * @return The type of the move.
  */
-static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
-{
+static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move) {
     int result;
 
     switch (move) {
@@ -3367,8 +3242,7 @@ static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx,
  * @param battler   The AI's battler.
  * @return TRUE if the AI has a switch to make, FALSE otherwise.
  */
-static BOOL AI_PerishSongKO(BattleContext *battleCtx, int battler)
-{
+static BOOL AI_PerishSongKO(BattleContext *battleCtx, int battler) {
     if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_PERISH_SONG)
         && battleCtx->battleMons[battler].moveEffectsData.perishSongTurns == 0) {
         battleCtx->aiSwitchedPartySlot[battler] = 6;
@@ -3390,8 +3264,7 @@ static BOOL AI_PerishSongKO(BattleContext *battleCtx, int battler)
  * @param battler   The AI's battler.
  * @return TRUE if the AI has a switch to make, FALSE otherwise.
  */
-static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
-{
+static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *battleCtx, int battler) {
     int i, j;
     u16 move;
     int moveType;
@@ -3465,8 +3338,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
  * @param battler   The AI's battler.
  * @return TRUE if the AI has a switch to make, FALSE otherwise.
  */
-static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
-{
+static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler) {
     int i, j;
     u8 defender1, defender2;
     u8 aiSlot1, aiSlot2;
@@ -3664,8 +3536,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
  *                  target against which the battler has a super-effective move.
  * @return TRUE if the AI's battler has a super-effective move.
  */
-static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL flag)
-{
+static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL flag) {
     int i;
     u32 effectiveness;
     u8 defender;
@@ -3744,8 +3615,7 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
  * @param battler   The AI's battler.
  * @return BOOL
  */
-static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
-{
+static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *battleCtx, int battler) {
     int i;
     u8 aiSlot1, aiSlot2;
     u8 moveType;
@@ -3831,8 +3701,7 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
  * @param rand                  Random odds to switch, if conditions are met.
  * @return TRUE if the AI should switch, FALSE if not.
  */
-static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u32 checkEffectiveness, u8 rand)
-{
+static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u32 checkEffectiveness, u8 rand) {
     int i, j;
     u8 aiSlot1, aiSlot2;
     u16 move;
@@ -3921,8 +3790,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
  * @param battler   The AI's battler.
  * @return TRUE if the AI should switch, FALSE otherwise.
  */
-static BOOL AI_IsAsleepWithNaturalCure(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
-{
+static BOOL AI_IsAsleepWithNaturalCure(BattleSystem *battleSys, BattleContext *battleCtx, int battler) {
     // Don't switch if we aren't asleep, don't have Natural Cure, or are below 50% HP.
     if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) == FALSE
         || Battler_Ability(battleCtx, battler) != ABILITY_NATURAL_CURE
@@ -3976,8 +3844,7 @@ static BOOL AI_IsAsleepWithNaturalCure(BattleSystem *battleSys, BattleContext *b
  * @return          TRUE if the AI has a high number of positive stat stages;
  *                  FALSE otherwise.
  */
-static BOOL AI_IsHeavilyStatBoosted(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
-{
+static BOOL AI_IsHeavilyStatBoosted(BattleSystem *battleSys, BattleContext *battleCtx, int battler) {
     int stat;
     u8 numBoosts = 0;
 
@@ -3998,8 +3865,7 @@ static BOOL AI_IsHeavilyStatBoosted(BattleSystem *battleSys, BattleContext *batt
  * @param battler   TRUE if the battler
  * @return BOOL
  */
-static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
-{
+static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler) {
     int i;
     int alivePartyMons;
     u8 aiSlot1, aiSlot2;
@@ -4093,8 +3959,7 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
     return FALSE;
 }
 
-int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
-{
+int TrainerAI_PickCommand(BattleSystem *battleSys, int battler) {
     // must declare C89-style to match
     int i;
     u8 battler1, battler2;
@@ -4160,8 +4025,7 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
  * @param battler   The AI's battler.
  * @return          TRUE if an item should be used, FALSE if not.
  */
-static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
-{
+static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler) {
     int i;
     u8 aliveMons = 0;
     u16 item;

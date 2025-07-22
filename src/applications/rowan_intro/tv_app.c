@@ -40,8 +40,7 @@ static void ov73_021D368C(UnkStruct_ov73_021D342C *param0);
 static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *param0, int param1, int param2, int param3);
 static void ov73_021D37AC(UnkStruct_ov73_021D342C *param0);
 
-int RowanIntroTv_Init(ApplicationManager *appMan, int *param1)
-{
+int RowanIntroTv_Init(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov73_021D342C *v0;
     int heapID = HEAP_ID_83;
 
@@ -56,8 +55,7 @@ int RowanIntroTv_Init(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int RowanIntroTv_Main(ApplicationManager *appMan, int *param1)
-{
+int RowanIntroTv_Main(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov73_021D342C *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
@@ -142,8 +140,7 @@ int RowanIntroTv_Main(ApplicationManager *appMan, int *param1)
     return v1;
 }
 
-int RowanIntroTv_Exit(ApplicationManager *appMan, int *param1)
-{
+int RowanIntroTv_Exit(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov73_021D342C *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
@@ -153,14 +150,12 @@ int RowanIntroTv_Exit(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov73_021D3420(void *param0)
-{
+static void ov73_021D3420(void *param0) {
     UnkStruct_ov73_021D342C *v0 = param0;
     Bg_RunScheduledUpdates(v0->unk_04);
 }
 
-static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
-{
+static void ov73_021D342C(UnkStruct_ov73_021D342C *param0) {
     {
         UnkStruct_02099F80 v0 = {
             GX_VRAM_BG_256_AB,
@@ -297,8 +292,7 @@ static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 0x4, 0xc);
 }
 
-static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0)
-{
+static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0) {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
@@ -317,16 +311,14 @@ static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0)
     Heap_Free(param0->unk_04);
 }
 
-static void ov73_021D366C(UnkStruct_ov73_021D342C *param0)
-{
+static void ov73_021D366C(UnkStruct_ov73_021D342C *param0) {
     param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0607, param0->heapID);
 
     Text_ResetAllPrinters();
     param0->unk_0C = 0;
 }
 
-static void ov73_021D368C(UnkStruct_ov73_021D342C *param0)
-{
+static void ov73_021D368C(UnkStruct_ov73_021D342C *param0) {
     MessageLoader_Free(param0->unk_08);
 }
 
@@ -340,8 +332,7 @@ static const WindowTemplate Unk_ov72_021D3A38 = {
     0x1
 };
 
-static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *a0, int a1, int a2, int a3)
-{
+static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *a0, int a1, int a2, int a3) {
     BOOL r6 = FALSE;
     switch (a0->unk_0C) {
     case 0:
@@ -382,8 +373,7 @@ static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *a0, int a1, int a2, int a3)
     return r6;
 }
 
-static void ov73_021D37AC(UnkStruct_ov73_021D342C *param0)
-{
+static void ov73_021D37AC(UnkStruct_ov73_021D342C *param0) {
     param0->unk_20 += 0x4;
     Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, param0->unk_20 >> 4);
 }

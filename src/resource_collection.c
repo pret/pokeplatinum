@@ -23,8 +23,7 @@ static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes);
 static void *CreateStrippedTexture(void *resFile, enum HeapId heapID);
 static u32 GetStrippedTextureResourceSize(const void *resFile);
 
-ResourceCollection *ResourceCollection_New(s32 capacity, enum HeapId heapID)
-{
+ResourceCollection *ResourceCollection_New(s32 capacity, enum HeapId heapID) {
     ResourceCollection *resMgr = Heap_AllocFromHeap(heapID, sizeof(ResourceCollection));
     GF_ASSERT(resMgr);
 
@@ -41,8 +40,7 @@ ResourceCollection *ResourceCollection_New(s32 capacity, enum HeapId heapID)
     return resMgr;
 }
 
-void ResourceCollection_Delete(ResourceCollection *collection)
-{
+void ResourceCollection_Delete(ResourceCollection *collection) {
     GF_ASSERT(collection);
 
     ResourceCollection_Clear(collection);
@@ -50,14 +48,12 @@ void ResourceCollection_Delete(ResourceCollection *collection)
     Heap_Free(collection);
 }
 
-BOOL ResourceCollection_IsIDUnused(ResourceCollection *collection, int id)
-{
+BOOL ResourceCollection_IsIDUnused(ResourceCollection *collection, int id) {
     GF_ASSERT(collection);
     return ResourceCollection_FindResource(collection, id) == NULL;
 }
 
-Resource *ResourceCollection_Add(ResourceCollection *collection, void *data, int id)
-{
+Resource *ResourceCollection_Add(ResourceCollection *collection, void *data, int id) {
     GF_ASSERT(collection);
 
     Resource *resource = ResourceCollection_AllocResource(collection);
@@ -72,8 +68,7 @@ Resource *ResourceCollection_Add(ResourceCollection *collection, void *data, int
     return resource;
 }
 
-Resource *ResourceCollection_AddFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapId heapID)
-{
+Resource *ResourceCollection_AddFromFile(ResourceCollection *collection, const char *filename, int id, enum HeapId heapID) {
     GF_ASSERT(collection);
     GF_ASSERT(filename);
 
@@ -91,8 +86,7 @@ Resource *ResourceCollection_AddFromFile(ResourceCollection *collection, const c
     return resource;
 }
 
-void ResourceCollection_Remove(ResourceCollection *collection, Resource *resource)
-{
+void ResourceCollection_Remove(ResourceCollection *collection, Resource *resource) {
     GF_ASSERT(collection);
     GF_ASSERT(resource);
 
@@ -105,8 +99,7 @@ void ResourceCollection_Remove(ResourceCollection *collection, Resource *resourc
     collection->count--;
 }
 
-void ResourceCollection_Clear(ResourceCollection *resMgr)
-{
+void ResourceCollection_Clear(ResourceCollection *resMgr) {
     GF_ASSERT(resMgr);
     GF_ASSERT(resMgr->resources);
 
@@ -117,8 +110,7 @@ void ResourceCollection_Clear(ResourceCollection *resMgr)
     }
 }
 
-Resource *ResourceCollection_FindResource(ResourceCollection *collection, int id)
-{
+Resource *ResourceCollection_FindResource(ResourceCollection *collection, int id) {
     GF_ASSERT(collection);
 
     for (int i = 0; i < collection->capacity; i++) {
@@ -130,14 +122,12 @@ Resource *ResourceCollection_FindResource(ResourceCollection *collection, int id
     return NULL;
 }
 
-void *Resource_GetData(Resource *resource)
-{
+void *Resource_GetData(Resource *resource) {
     GF_ASSERT(resource);
     return resource->data;
 }
 
-void Resource_SetData(Resource *resource, void *data)
-{
+void Resource_SetData(Resource *resource, void *data) {
     GF_ASSERT(resource);
 
     if (resource->data) {
@@ -147,14 +137,12 @@ void Resource_SetData(Resource *resource, void *data)
     resource->data = data;
 }
 
-int Resource_GetID(Resource *resource)
-{
+int Resource_GetID(Resource *resource) {
     GF_ASSERT(resource);
     return resource->id;
 }
 
-static Resource *ResourceCollection_AllocResource(ResourceCollection *collection)
-{
+static Resource *ResourceCollection_AllocResource(ResourceCollection *collection) {
     GF_ASSERT(collection);
 
     for (int i = 0; i < collection->capacity; i++) {
@@ -166,16 +154,14 @@ static Resource *ResourceCollection_AllocResource(ResourceCollection *collection
     return NULL;
 }
 
-static void Resource_Init(Resource *resource)
-{
+static void Resource_Init(Resource *resource) {
     GF_ASSERT(resource);
 
     resource->id = RESOURCE_ID_INVALID;
     resource->data = NULL;
 }
 
-TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID)
-{
+TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId heapID) {
     TextureResourceManager *texMgr = Heap_AllocFromHeap(heapID, sizeof(TextureResourceManager));
 
     texMgr->resources = ResourceCollection_New(maxTextures, heapID);
@@ -188,8 +174,7 @@ TextureResourceManager *TextureResourceManager_New(s32 maxTextures, enum HeapId 
     return texMgr;
 }
 
-void TextureResourceManager_Delete(TextureResourceManager *texMgr)
-{
+void TextureResourceManager_Delete(TextureResourceManager *texMgr) {
     GF_ASSERT(texMgr);
 
     TextureResourceManager_Clear(texMgr);
@@ -198,14 +183,12 @@ void TextureResourceManager_Delete(TextureResourceManager *texMgr)
     Heap_Free(texMgr);
 }
 
-BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id)
-{
+BOOL TextureResourceManager_IsIDUnused(const TextureResourceManager *texMgr, int id) {
     GF_ASSERT(texMgr);
     return ResourceCollection_IsIDUnused(texMgr->resources, id);
 }
 
-TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID)
-{
+TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID) {
     TextureResource *texResource;
     void *resourceData;
 
@@ -227,16 +210,14 @@ TextureResource *TextureResourceManager_AddTexture(const TextureResourceManager 
     return texResource;
 }
 
-TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID)
-{
+TextureResource *TextureResourceManager_AddTextureAndAllocVRam(TextureResourceManager *texMgr, void *data, int id, enum TextureResourceMode mode, enum HeapId heapID) {
     TextureResource *texResource = TextureResourceManager_AddTexture(texMgr, data, id, mode, heapID);
     TextureResource_AllocVRam(texResource);
 
     return texResource;
 }
 
-void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, TextureResource *texResource)
-{
+void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, TextureResource *texResource) {
     GF_ASSERT(texMgr);
     GF_ASSERT(texResource);
 
@@ -264,14 +245,12 @@ void TextureResourceManager_RemoveTexture(TextureResourceManager *texMgr, Textur
     TextureResource_Init(texResource);
 }
 
-void TextureResourceManager_RemoveTextureWithID(TextureResourceManager *texMgr, int id)
-{
+void TextureResourceManager_RemoveTextureWithID(TextureResourceManager *texMgr, int id) {
     GF_ASSERT(texMgr);
     TextureResourceManager_RemoveTexture(texMgr, TextureResourceManager_FindTextureResource(texMgr, id));
 }
 
-void TextureResourceManager_Clear(TextureResourceManager *texMgr)
-{
+void TextureResourceManager_Clear(TextureResourceManager *texMgr) {
     GF_ASSERT(texMgr);
     GF_ASSERT(texMgr->textures);
 
@@ -282,8 +261,7 @@ void TextureResourceManager_Clear(TextureResourceManager *texMgr)
     }
 }
 
-TextureResource *TextureResourceManager_FindTextureResource(const TextureResourceManager *texMgr, int id)
-{
+TextureResource *TextureResourceManager_FindTextureResource(const TextureResourceManager *texMgr, int id) {
     GF_ASSERT(texMgr);
 
     for (int i = 0; i < texMgr->resources->capacity; i++) {
@@ -299,20 +277,17 @@ TextureResource *TextureResourceManager_FindTextureResource(const TextureResourc
     return NULL;
 }
 
-int TextureResource_GetID(const TextureResource *texResource)
-{
+int TextureResource_GetID(const TextureResource *texResource) {
     GF_ASSERT(texResource);
     return Resource_GetID(texResource->resource);
 }
 
-NNSG3dResTex *TextureResource_GetUnderlyingResource(const TextureResource *texResource)
-{
+NNSG3dResTex *TextureResource_GetUnderlyingResource(const TextureResource *texResource) {
     GF_ASSERT(texResource);
     return TextureResource_GetTexRes(texResource);
 }
 
-void TextureResource_UploadToVRam(TextureResource *texResource)
-{
+void TextureResource_UploadToVRam(TextureResource *texResource) {
     GF_ASSERT(texResource);
     GF_ASSERT(texResource->texDataDiscarded == FALSE);
 
@@ -325,16 +300,14 @@ void TextureResource_UploadToVRam(TextureResource *texResource)
     TexRes_UploadToVRam(texRes, texResource);
 }
 
-void TextureResourceManager_UploadResourceToVRam(TextureResourceManager *texMgr, int id)
-{
+void TextureResourceManager_UploadResourceToVRam(TextureResourceManager *texMgr, int id) {
     GF_ASSERT(texMgr);
     TextureResource_UploadToVRam(TextureResourceManager_FindTextureResource(texMgr, id));
 }
 
 // Discards the texture data of a texture resource. Only do this after the texture has been uploaded to VRAM.
 // Only allowed for TEX_RESOURCE_MODE_SEPARATED resources.
-void TextureResource_DiscardTextureData(TextureResource *texResource)
-{
+void TextureResource_DiscardTextureData(TextureResource *texResource) {
     GF_ASSERT(texResource);
 
     // Discarding texture data is not allowed for normal texture resources
@@ -360,14 +333,12 @@ void TextureResource_DiscardTextureData(TextureResource *texResource)
     texResource->texDataDiscarded = TRUE;
 }
 
-void TextureResourceManager_DiscardTextureData(TextureResourceManager *texMgr, int id)
-{
+void TextureResourceManager_DiscardTextureData(TextureResourceManager *texMgr, int id) {
     GF_ASSERT(texMgr);
     TextureResource_DiscardTextureData(TextureResourceManager_FindTextureResource(texMgr, id));
 }
 
-void TextureResource_AllocVRam(TextureResource *texResource)
-{
+void TextureResource_AllocVRam(TextureResource *texResource) {
     GF_ASSERT(texResource);
     GF_ASSERT(texResource->texDataDiscarded == FALSE);
 
@@ -380,31 +351,26 @@ void TextureResource_AllocVRam(TextureResource *texResource)
     TexRes_AllocVRam(texRes, &texResource->texKey, &texResource->tex4x4Key, &texResource->paletteKey);
 }
 
-NNSGfdTexKey TextureResource_GetTexKey(const TextureResource *texResource)
-{
+NNSGfdTexKey TextureResource_GetTexKey(const TextureResource *texResource) {
     GF_ASSERT(texResource);
     return texResource->texKey;
 }
 
-NNSGfdTexKey TextureResource_GetTex4x4Key(const TextureResource *texResource)
-{
+NNSGfdTexKey TextureResource_GetTex4x4Key(const TextureResource *texResource) {
     GF_ASSERT(texResource);
     return texResource->tex4x4Key;
 }
 
-NNSGfdPlttKey TextureResource_GetPaletteKey(const TextureResource *texResource)
-{
+NNSGfdPlttKey TextureResource_GetPaletteKey(const TextureResource *texResource) {
     GF_ASSERT(texResource);
     return texResource->paletteKey;
 }
 
-u32 Utility_GetStrippedTextureResourceSize(NNSG3dResFileHeader *resFile)
-{
+u32 Utility_GetStrippedTextureResourceSize(NNSG3dResFileHeader *resFile) {
     return GetStrippedTextureResourceSize(resFile);
 }
 
-static TextureResource *TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr)
-{
+static TextureResource *TextureResourceManager_AllocTexture(const TextureResourceManager *texMgr) {
     for (int i = 0; i < texMgr->resources->capacity; i++) {
         if (texMgr->textures[i].resource == NULL) {
             return texMgr->textures + i;
@@ -414,8 +380,7 @@ static TextureResource *TextureResourceManager_AllocTexture(const TextureResourc
     return NULL;
 }
 
-static void TextureResource_Init(TextureResource *texResource)
-{
+static void TextureResource_Init(TextureResource *texResource) {
     texResource->resource = NULL;
     texResource->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
     texResource->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
@@ -425,13 +390,11 @@ static void TextureResource_Init(TextureResource *texResource)
     texResource->texDataDiscarded = 0;
 }
 
-static NNSG3dResTex *TextureResource_GetTexRes(const TextureResource *texResource)
-{
+static NNSG3dResTex *TextureResource_GetTexRes(const TextureResource *texResource) {
     return NNS_G3dGetTex(Resource_GetData(texResource->resource));
 }
 
-static NNSG3dResTex *TextureResource_GetTexResWithData(const TextureResource *texResource)
-{
+static NNSG3dResTex *TextureResource_GetTexResWithData(const TextureResource *texResource) {
     void *texData = texResource->mode == TEX_RESOURCE_MODE_NORMAL
         ? Resource_GetData(texResource->resource)
         : texResource->textureData;
@@ -439,8 +402,7 @@ static NNSG3dResTex *TextureResource_GetTexResWithData(const TextureResource *te
     return NNS_G3dGetTex(texData);
 }
 
-static void TexRes_AllocVRam(const NNSG3dResTex *texRes, NNSGfdTexKey *texKey, NNSGfdTexKey *tex4x4Key, NNSGfdPlttKey *paletteKey)
-{
+static void TexRes_AllocVRam(const NNSG3dResTex *texRes, NNSGfdTexKey *texKey, NNSGfdTexKey *tex4x4Key, NNSGfdPlttKey *paletteKey) {
     u32 texSize = NNS_G3dTexGetRequiredSize(texRes);
     u32 tex4x4Size = NNS_G3dTex4x4GetRequiredSize(texRes);
     u32 paletteSize = NNS_G3dPlttGetRequiredSize(texRes);
@@ -458,8 +420,7 @@ static void TexRes_AllocVRam(const NNSG3dResTex *texRes, NNSGfdTexKey *texKey, N
     }
 }
 
-static void TexRes_UploadToVRam(NNSG3dResTex *texRes, TextureResource *texResource)
-{
+static void TexRes_UploadToVRam(NNSG3dResTex *texRes, TextureResource *texResource) {
     TexRes_AssignVRamKeys(texRes, texResource->texKey, texResource->tex4x4Key, texResource->paletteKey);
 
     DC_FlushRange(texRes, texRes->header.size);
@@ -468,14 +429,12 @@ static void TexRes_UploadToVRam(NNSG3dResTex *texRes, TextureResource *texResour
     NNS_G3dPlttLoad(texRes, TRUE);
 }
 
-static void TexRes_AssignVRamKeys(NNSG3dResTex *texRes, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey paletteKey)
-{
+static void TexRes_AssignVRamKeys(NNSG3dResTex *texRes, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey paletteKey) {
     NNS_G3dTexSetTexKey(texRes, texKey, tex4x4Key);
     NNS_G3dPlttSetPlttKey(texRes, paletteKey);
 }
 
-static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes)
-{
+static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes) {
     NNSGfdTexKey texKey;
     NNSGfdTexKey tex4x4Key;
 
@@ -484,8 +443,7 @@ static void TexRes_ReleaseVRamKeys(NNSG3dResTex *texRes)
 }
 
 // Duplicates a texture resource without the actual texture data
-static void *CreateStrippedTexture(void *resFile, enum HeapId heapID)
-{
+static void *CreateStrippedTexture(void *resFile, enum HeapId heapID) {
     u32 size = GetStrippedTextureResourceSize(resFile);
     void *stripped = Heap_AllocFromHeap(heapID, size);
     memcpy(stripped, resFile, size);
@@ -494,8 +452,7 @@ static void *CreateStrippedTexture(void *resFile, enum HeapId heapID)
 }
 
 // Calculates the size of a texture resource without the actual texture data
-static u32 GetStrippedTextureResourceSize(const void *resFile)
-{
+static u32 GetStrippedTextureResourceSize(const void *resFile) {
     NNSG3dResTex *texture = NNS_G3dGetTex(resFile);
     GF_ASSERT(texture);
 

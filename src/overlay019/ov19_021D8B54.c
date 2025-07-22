@@ -64,8 +64,7 @@ static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 *param0);
 static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0);
 static Sprite *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0);
 
-BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, SpriteList *param3, NARC *param4)
-{
+BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, SpriteList *param3, NARC *param4) {
     param0->unk_794 = param1;
     param0->unk_790 = param2;
     param0->unk_00 = param3;
@@ -92,8 +91,7 @@ BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *par
     return 1;
 }
 
-void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
-{
+void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1) {
     SpriteResourcesHeader v0;
     u32 cursorLocation, pcMode;
 
@@ -172,8 +170,7 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
     ov19_021D9AEC(param0);
 }
 
-static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
-{
+static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0) {
     VecFx32 v0;
     s32 v1, v2;
 
@@ -190,8 +187,7 @@ static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
     param0->unk_78C = 1;
 }
 
-void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0) {
     if (param0->unk_14) {
         Heap_Free(param0->unk_14);
         param0->unk_14 = NULL;
@@ -223,8 +219,7 @@ void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, BOOL *param2)
-{
+static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, BOOL *param2) {
     *param1 = *param2 = 0;
 
     switch (param0->unk_785) {
@@ -251,8 +246,7 @@ static void ov19_021D8EE0(const UnkStruct_ov19_021D8E00 *param0, BOOL *param1, B
     }
 }
 
-void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0) {
     BOOL v0, v1;
     s32 v2, v3;
     s32 v4, v5;
@@ -308,13 +302,11 @@ void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0)
     ov19_021D77C8(ov19_021D9088, param0, 0);
 }
 
-BOOL ov19_021D9074(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9074(UnkStruct_ov19_021D8E00 *param0) {
     return param0->unk_787 == 0;
 }
 
-static void ov19_021D9088(SysTask *param0, void *param1)
-{
+static void ov19_021D9088(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
     VecFx32 v1;
 
@@ -379,8 +371,7 @@ static void ov19_021D9088(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-void ov19_021D9230(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9230(UnkStruct_ov19_021D8E00 *param0) {
     Sprite_SetAnim(param0->unk_04, 1);
 
     param0->unk_780 = (12 << FX32_SHIFT) / 6;
@@ -392,13 +383,11 @@ void ov19_021D9230(UnkStruct_ov19_021D8E00 *param0)
     ov19_021D77C8(ov19_021D928C, param0, 0);
 }
 
-BOOL ov19_021D9278(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9278(UnkStruct_ov19_021D8E00 *param0) {
     return param0->unk_784 == 255;
 }
 
-static void ov19_021D928C(SysTask *param0, void *param1)
-{
+static void ov19_021D928C(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
     VecFx32 v1 = *(Sprite_GetPosition(v0->unk_04));
 
@@ -437,8 +426,7 @@ static void ov19_021D928C(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D9368(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9368(UnkStruct_ov19_021D8E00 *param0) {
     param0->unk_780 = (12 << FX32_SHIFT) / 6;
     param0->unk_770 = (param0->unk_768 + 12);
     param0->unk_787 = 6;
@@ -447,8 +435,7 @@ void ov19_021D9368(UnkStruct_ov19_021D8E00 *param0)
     ov19_021D77C8(ov19_021D93D0, param0, 0);
 }
 
-BOOL ov19_021D939C(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D939C(UnkStruct_ov19_021D8E00 *param0) {
     if (param0->unk_784 == 255) {
         ov19_021DA06C(param0);
         ov19_021DA3CC(param0->unk_48, param0->unk_4C, param0->unk_754);
@@ -459,8 +446,7 @@ BOOL ov19_021D939C(UnkStruct_ov19_021D8E00 *param0)
     return 0;
 }
 
-static void ov19_021D93D0(SysTask *param0, void *param1)
-{
+static void ov19_021D93D0(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
     VecFx32 v1 = *(Sprite_GetPosition(v0->unk_04));
 
@@ -503,8 +489,7 @@ static void ov19_021D93D0(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D94B4(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D94B4(UnkStruct_ov19_021D8E00 *param0) {
     VecFx32 v0;
     Sprite *v1;
 
@@ -522,8 +507,7 @@ void ov19_021D94B4(UnkStruct_ov19_021D8E00 *param0)
     param0->unk_784 = 0;
 }
 
-BOOL ov19_021D9530(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9530(UnkStruct_ov19_021D8E00 *param0) {
     if (ov19_021D95E0(param0)) {
         Sprite_SetAnim(param0->unk_04, 2);
         ov19_021DA110(param0);
@@ -533,8 +517,7 @@ BOOL ov19_021D9530(UnkStruct_ov19_021D8E00 *param0)
     return 0;
 }
 
-static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 param2, s32 param3, u32 param4)
-{
+static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 param2, s32 param3, u32 param4) {
     UnkStruct_ov19_021D9554 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D9554));
 
     if (v0) {
@@ -564,19 +547,16 @@ static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 
     }
 }
 
-static BOOL ov19_021D95E0(UnkStruct_ov19_021D8E00 *param0)
-{
+static BOOL ov19_021D95E0(UnkStruct_ov19_021D8E00 *param0) {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D95F4(void *param0)
-{
+static void ov19_021D95F4(void *param0) {
     UnkStruct_ov19_021D8E00 *v0 = param0;
     v0->unk_788 = 0;
 }
 
-static void ov19_021D9600(SysTask *param0, void *param1)
-{
+static void ov19_021D9600(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D9554 *v0 = (UnkStruct_ov19_021D9554 *)param1;
     VecFx32 v1;
 
@@ -608,8 +588,7 @@ static void ov19_021D9600(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D9690(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9690(UnkStruct_ov19_021D8E00 *param0) {
     VecFx32 v0;
 
     if ((param0->unk_78C == 0) && (param0->unk_78D == 0)) {
@@ -629,13 +608,11 @@ void ov19_021D9690(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-BOOL ov19_021D9704(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9704(UnkStruct_ov19_021D8E00 *param0) {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9718(SysTask *param0, void *param1)
-{
+static void ov19_021D9718(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0 = (UnkStruct_ov19_021D8E00 *)param1;
 
     switch (v0->unk_784) {
@@ -671,8 +648,7 @@ static void ov19_021D9718(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D97FC(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D97FC(UnkStruct_ov19_021D8E00 *param0) {
     VecFx32 v0 = *Sprite_GetPosition(param0->unk_04);
 
     param0->unk_770 = (v0.y >> FX32_SHIFT) + -4;
@@ -685,8 +661,7 @@ void ov19_021D97FC(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-BOOL ov19_021D9858(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9858(UnkStruct_ov19_021D8E00 *param0) {
     if (param0->unk_788 == 0) {
         if ((param0->unk_78C == 0) && (param0->unk_78D == 0)) {
             if (Sprite_GetActiveAnim(param0->unk_04) != 0) {
@@ -700,8 +675,7 @@ BOOL ov19_021D9858(UnkStruct_ov19_021D8E00 *param0)
     return 0;
 }
 
-static void ov19_021D9894(SysTask *param0, void *param1)
-{
+static void ov19_021D9894(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0;
     VecFx32 v1;
 
@@ -720,8 +694,7 @@ static void ov19_021D9894(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D9900(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9900(UnkStruct_ov19_021D8E00 *param0) {
     if (param0->unk_790->unk_110 == ov19_GetCurrentBox(param0->unk_790)) {
         ov19_021D84E0(param0->unk_758);
     }
@@ -730,16 +703,14 @@ void ov19_021D9900(UnkStruct_ov19_021D8E00 *param0)
     Sprite_SetAnim(param0->unk_04, 0);
 }
 
-void ov19_021D9938(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9938(UnkStruct_ov19_021D8E00 *param0) {
     Sprite_SetAnim(param0->unk_04, 1);
     ov19_021DA7B8(param0->unk_48, param0->unk_4C, 1);
 
     param0->unk_784 = 0;
 }
 
-BOOL ov19_021D995C(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D995C(UnkStruct_ov19_021D8E00 *param0) {
     const UnkStruct_ov19_021D5DF8 *v0 = ov19_021D7964(param0->unk_794);
 
     switch (param0->unk_784) {
@@ -772,8 +743,7 @@ BOOL ov19_021D995C(UnkStruct_ov19_021D8E00 *param0)
     return 0;
 }
 
-void ov19_021D99F4(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D99F4(UnkStruct_ov19_021D8E00 *param0) {
     Sprite_SetExplicitPriority(param0->unk_04, 1);
 
     if (param0->unk_78C) {
@@ -785,8 +755,7 @@ void ov19_021D99F4(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-void ov19_021D9A2C(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9A2C(UnkStruct_ov19_021D8E00 *param0) {
     Sprite_SetExplicitPriority(param0->unk_04, 2);
 
     if (param0->unk_78C) {
@@ -798,16 +767,14 @@ void ov19_021D9A2C(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-void ov19_021D9A64(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9A64(UnkStruct_ov19_021D8E00 *param0) {
     if (param0->unk_78C) {
         u32 v0 = ov19_GetPreviewedMonMarkings(param0->unk_790);
         ov19_021DA68C(param0->unk_48, param0->unk_4C, v0);
     }
 }
 
-void ov19_021D9A8C(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9A8C(UnkStruct_ov19_021D8E00 *param0) {
     u32 v0 = ov19_GetMonSpriteTransparencyMask(param0->unk_790);
 
     if (param0->unk_4C->unk_00 != NULL) {
@@ -815,8 +782,7 @@ void ov19_021D9A8C(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-void ov19_021D9AB0(UnkStruct_ov19_021D8E00 *param0, u32 param1)
-{
+void ov19_021D9AB0(UnkStruct_ov19_021D8E00 *param0, u32 param1) {
     if (param0->unk_4C->unk_00 != NULL) {
         ov19_021DA690(param0->unk_48, param0->unk_4C, param1);
         ov19_021DA63C(param0->unk_48, param0->unk_4C, ov19_GetMonSpriteTransparencyMask(param0->unk_790));
@@ -824,8 +790,7 @@ void ov19_021D9AB0(UnkStruct_ov19_021D8E00 *param0, u32 param1)
     }
 }
 
-void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0) {
     if (ov19_IsCursorFastMode(param0->unk_790)) {
         Sprite_SetExplicitPalette(param0->unk_04, 1);
     } else {
@@ -833,18 +798,15 @@ void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-void BoxGraphics_OpenMultiSelectCursor(UnkStruct_ov19_021D8E00 *param0)
-{
+void BoxGraphics_OpenMultiSelectCursor(UnkStruct_ov19_021D8E00 *param0) {
     Sprite_SetAnim(param0->unk_04, 1);
 }
 
-void ov19_021D9B1C(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
-{
+void ov19_021D9B1C(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1) {
     *param1 = *(Sprite_GetPosition(param0->unk_04));
 }
 
-void ov19_021D9B34(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9B34(UnkStruct_ov19_021D8E00 *param0) {
     param0->unk_784 = 0;
 
     if (SysTask_Start(ov19_021D9B78, param0, 0)) {
@@ -853,13 +815,11 @@ void ov19_021D9B34(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-BOOL ov19_021D9B64(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9B64(UnkStruct_ov19_021D8E00 *param0) {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9B78(SysTask *param0, void *param1)
-{
+static void ov19_021D9B78(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0 = param1;
 
     switch (v0->unk_784) {
@@ -877,8 +837,7 @@ static void ov19_021D9B78(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D9BD4(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9BD4(UnkStruct_ov19_021D8E00 *param0) {
     param0->unk_784 = 0;
 
     if (SysTask_Start(ov19_021D9C18, param0, 0)) {
@@ -887,13 +846,11 @@ void ov19_021D9BD4(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-BOOL ov19_021D9C04(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9C04(UnkStruct_ov19_021D8E00 *param0) {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9C18(SysTask *param0, void *param1)
-{
+static void ov19_021D9C18(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0 = param1;
 
     switch (v0->unk_784) {
@@ -911,8 +868,7 @@ static void ov19_021D9C18(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D9C74(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9C74(UnkStruct_ov19_021D8E00 *param0) {
     param0->unk_784 = 0;
 
     if (SysTask_Start(ov19_021D9CB4, param0, 0)) {
@@ -920,13 +876,11 @@ void ov19_021D9C74(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-BOOL ov19_021D9CA0(UnkStruct_ov19_021D8E00 *param0)
-{
+BOOL ov19_021D9CA0(UnkStruct_ov19_021D8E00 *param0) {
     return param0->unk_788 == 0;
 }
 
-static void ov19_021D9CB4(SysTask *param0, void *param1)
-{
+static void ov19_021D9CB4(SysTask *param0, void *param1) {
     UnkStruct_ov19_021D8E00 *v0 = param1;
 
     switch (v0->unk_784) {
@@ -944,23 +898,20 @@ static void ov19_021D9CB4(SysTask *param0, void *param1)
     }
 }
 
-void ov19_021D9D10(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9D10(UnkStruct_ov19_021D8E00 *param0) {
     if (param0->unk_78D) {
         Sprite_SetAnim(param0->unk_04, 1);
     }
 }
 
-void ov19_021D9D28(UnkStruct_ov19_021D8E00 *param0)
-{
+void ov19_021D9D28(UnkStruct_ov19_021D8E00 *param0) {
     if (param0->unk_78D) {
         Sprite_SetAnim(param0->unk_04, 0);
         param0->unk_78D = 0;
     }
 }
 
-static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *cursorLocation, UnkStruct_ov19_021D8E00 *param3)
-{
+static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *cursorLocation, UnkStruct_ov19_021D8E00 *param3) {
     const UnkStruct_ov19_021D4DF0 *v0 = param3->unk_790;
 
     *cursorLocation = ov19_GetCursorLocation(v0);
@@ -992,8 +943,7 @@ static void ov19_021D9D48(s32 *param0, s32 *param1, u8 *cursorLocation, UnkStruc
     }
 }
 
-static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
-{
+static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1) {
     Sprite_SetPosition(param0->unk_04, param1);
 
     if (param0->unk_78C) {
@@ -1021,8 +971,7 @@ static void ov19_021D9E04(UnkStruct_ov19_021D8E00 *param0, VecFx32 *param1)
     }
 }
 
-static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
-{
+static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0) {
     if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
         if (ov19_IsMultiSelectSingleSelect(param0->unk_790)) {
             u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
@@ -1064,8 +1013,7 @@ static void ov19_021D9EB0(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
-{
+static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_754; v0++) {
@@ -1075,8 +1023,7 @@ static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
     param0->unk_78C = 1;
 }
 
-static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0)
-{
+static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0) {
     if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
         if (ov19_IsMultiSelectSingleSelect(param0->unk_790)) {
             u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
@@ -1097,8 +1044,7 @@ static void ov19_021DA06C(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0)
-{
+static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0) {
     if (ov19_GetCursorLocation(param0->unk_790) == CURSOR_IN_BOX) {
         u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_790);
 
@@ -1132,20 +1078,17 @@ static void ov19_021DA110(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 *param0)
-{
+static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 *param0) {
     param0->unk_78C = 0;
 }
 
-static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0)
-{
+static void ov19_021DA204(UnkStruct_ov19_021D8E00 *param0) {
     ov19_021DA3F0(param0->unk_48, param0->unk_4C, 1);
     param0->unk_78C = 0;
     param0->unk_754 = 0;
 }
 
-static Sprite *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0)
-{
+static Sprite *ov19_021DA224(UnkStruct_ov19_021D8E00 *param0) {
     UnkStruct_ov19_021DCD18 *v0;
     u32 cursorPosition;
 

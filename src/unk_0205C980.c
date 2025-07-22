@@ -40,8 +40,7 @@ static const int APPEARANCE_SHUFFLE_TABLE[][4] = {
     { 0x7, 0x4, 0x5, 0x6 }
 };
 
-void TrainerInfo_LoadAppearanceVariants(u32 trainerId, int trainerGender, StringTemplate *stringTemplate)
-{
+void TrainerInfo_LoadAppearanceVariants(u32 trainerId, int trainerGender, StringTemplate *stringTemplate) {
     int v0 = trainerId % 8;
     int variant;
 
@@ -51,16 +50,14 @@ void TrainerInfo_LoadAppearanceVariants(u32 trainerId, int trainerGender, String
     }
 }
 
-int TrainerInfo_GetAppearanceIndex(u32 trainerId, int trainerGender, u32 variant)
-{
+int TrainerInfo_GetAppearanceIndex(u32 trainerId, int trainerGender, u32 variant) {
     int v0 = trainerId % 8;
     int v1 = APPEARANCE_SHUFFLE_TABLE[v0][variant] + 8 * trainerGender;
 
     return TRAINER_APPEARANCES[v1][0];
 }
 
-static int sub_0205C9E0(int param0, int param1)
-{
+static int sub_0205C9E0(int param0, int param1) {
     int v0;
 
     for (v0 = 0; v0 < 16 / 2; v0++) {
@@ -72,13 +69,11 @@ static int sub_0205C9E0(int param0, int param1)
     return 0;
 }
 
-int sub_0205CA0C(int param0, int param1)
-{
+int sub_0205CA0C(int param0, int param1) {
     return sub_0205C9E0(param0, param1);
 }
 
-int sub_0205CA14(int param0, int param1, int param2)
-{
+int sub_0205CA14(int param0, int param1, int param2) {
     int v0 = sub_0205C9E0(param0, param1);
 
     switch (param2) {
@@ -98,8 +93,7 @@ int sub_0205CA14(int param0, int param1, int param2)
     return 0;
 }
 
-u16 *sub_0205CA4C(int heapID)
-{
+u16 *sub_0205CA4C(int heapID) {
     u8 *v0, *v1;
     NNSG2dPaletteData *v2, *v3;
     u16 *v4, *v5;

@@ -17,8 +17,7 @@
 #include "system.h"
 #include "unk_0202854C.h"
 
-UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, Underground *underground, BOOL param6)
-{
+UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, Underground *underground, BOOL param6) {
     UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02248D20));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02248D20));
@@ -53,8 +52,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
     return v0;
 }
 
-static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param2)
-{
+static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param2) {
     u16 v0 = param2->unk_14 + param2->unk_16;
     u16 v1 = ListMenu_GetAttribute(param2->unk_0C, 3);
 
@@ -79,8 +77,7 @@ static void ov23_02248CA4(u16 param0, u16 param1, UnkStruct_ov23_02248D20 *param
     }
 }
 
-u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
-{
+u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0) {
     ListMenu *v0 = param0->unk_0C;
     u16 v1, v2, v3;
     int v4, v5;
@@ -200,8 +197,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
     return v6;
 }
 
-void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
-{
+void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2) {
     ListMenu *v0 = param0->unk_0C;
 
     ListMenu_Free(v0, param1, param2);

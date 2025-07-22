@@ -33,8 +33,7 @@ struct UnkStruct_0209747C_t {
     u16 unk_20[2];
 };
 
-UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, u32 heapID)
-{
+UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, u32 heapID) {
     UnkStruct_0209747C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209747C));
 
     v0->unk_00 = param0;
@@ -60,101 +59,82 @@ UnkStruct_0209747C *sub_0209747C(u32 param0, u32 param1, SaveData *saveData, u32
     return v0;
 }
 
-void sub_020974EC(UnkStruct_0209747C *param0)
-{
+void sub_020974EC(UnkStruct_0209747C *param0) {
     Heap_Free(param0);
 }
 
-void sub_020974F4(UnkStruct_0209747C *param0, u16 param1)
-{
+void sub_020974F4(UnkStruct_0209747C *param0, u16 param1) {
     param0->unk_1C[0] = param1;
 }
 
-void sub_020974F8(UnkStruct_0209747C *param0, u16 param1, u16 param2)
-{
+void sub_020974F8(UnkStruct_0209747C *param0, u16 param1, u16 param2) {
     param0->unk_1C[0] = param1;
     param0->unk_1C[1] = param2;
 }
 
-void sub_02097500(UnkStruct_0209747C *param0, const Sentence *param1)
-{
+void sub_02097500(UnkStruct_0209747C *param0, const Sentence *param1) {
     param0->unk_14 = *param1;
 }
 
-void sub_02097514(UnkStruct_0209747C *param0)
-{
+void sub_02097514(UnkStruct_0209747C *param0) {
     param0->unk_02 = 1;
     param0->unk_03 = 0;
 }
 
-void sub_02097520(UnkStruct_0209747C *param0)
-{
+void sub_02097520(UnkStruct_0209747C *param0) {
     param0->unk_05 = 1;
 }
 
-BOOL sub_02097528(const UnkStruct_0209747C *param0)
-{
+BOOL sub_02097528(const UnkStruct_0209747C *param0) {
     return param0->unk_02;
 }
 
-BOOL sub_0209752C(const UnkStruct_0209747C *param0)
-{
+BOOL sub_0209752C(const UnkStruct_0209747C *param0) {
     return param0->unk_03;
 }
 
-u16 sub_02097530(const UnkStruct_0209747C *param0)
-{
+u16 sub_02097530(const UnkStruct_0209747C *param0) {
     return param0->unk_1C[0];
 }
 
-void sub_02097534(const UnkStruct_0209747C *param0, u16 *param1)
-{
+void sub_02097534(const UnkStruct_0209747C *param0, u16 *param1) {
     param1[0] = param0->unk_1C[0];
     param1[1] = param0->unk_1C[1];
 }
 
-void sub_02097540(const UnkStruct_0209747C *param0, Sentence *param1)
-{
+void sub_02097540(const UnkStruct_0209747C *param0, Sentence *param1) {
     sub_02014CC0(param1, &(param0->unk_14));
 }
 
-u32 sub_02097550(const UnkStruct_0209747C *param0)
-{
+u32 sub_02097550(const UnkStruct_0209747C *param0) {
     return param0->unk_00;
 }
 
-u32 sub_02097554(const UnkStruct_0209747C *param0)
-{
+u32 sub_02097554(const UnkStruct_0209747C *param0) {
     return param0->unk_01;
 }
 
-int sub_02097558(const UnkStruct_0209747C *param0)
-{
+int sub_02097558(const UnkStruct_0209747C *param0) {
     return param0->unk_08;
 }
 
-const Pokedex *sub_0209755C(const UnkStruct_0209747C *param0)
-{
+const Pokedex *sub_0209755C(const UnkStruct_0209747C *param0) {
     return param0->unk_0C;
 }
 
-const UnkStruct_02014EC4 *sub_02097560(const UnkStruct_0209747C *param0)
-{
+const UnkStruct_02014EC4 *sub_02097560(const UnkStruct_0209747C *param0) {
     return param0->unk_10;
 }
 
-BOOL sub_02097564(const UnkStruct_0209747C *param0)
-{
+BOOL sub_02097564(const UnkStruct_0209747C *param0) {
     return param0->unk_04;
 }
 
-BOOL sub_02097568(const UnkStruct_0209747C *param0)
-{
+BOOL sub_02097568(const UnkStruct_0209747C *param0) {
     return param0->unk_05;
 }
 
-void sub_0209756C(const UnkStruct_0209747C *param0, u16 *param1, Sentence *param2)
-{
+void sub_0209756C(const UnkStruct_0209747C *param0, u16 *param1, Sentence *param2) {
     switch (param0->unk_00) {
     case 0:
         param1[0] = param0->unk_1C[0];
@@ -169,8 +149,7 @@ void sub_0209756C(const UnkStruct_0209747C *param0, u16 *param1, Sentence *param
     }
 }
 
-BOOL sub_020975A0(const UnkStruct_0209747C *param0, const u16 *param1, const Sentence *param2)
-{
+BOOL sub_020975A0(const UnkStruct_0209747C *param0, const u16 *param1, const Sentence *param2) {
     switch (param0->unk_00) {
     case 0:
         return param1[0] == param0->unk_1C[0];
@@ -182,8 +161,7 @@ BOOL sub_020975A0(const UnkStruct_0209747C *param0, const u16 *param1, const Sen
     }
 }
 
-void sub_020975E4(UnkStruct_0209747C *param0, const u16 *param1, const Sentence *param2)
-{
+void sub_020975E4(UnkStruct_0209747C *param0, const u16 *param1, const Sentence *param2) {
     int v0;
 
     param0->unk_03 = (sub_020975A0(param0, param1, param2) == 0);

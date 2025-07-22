@@ -46,8 +46,7 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0);
 static void ov48_02256984(UnkStruct_ov48_0225650C *param0);
 static void ov48_022569FC(SysTask *param0, void *param1);
 
-BOOL ov48_0225650C(UnkStruct_ov48_0225650C **param0, const UnkStruct_ov48_0225650C_1 *param1, BgConfig *param2)
-{
+BOOL ov48_0225650C(UnkStruct_ov48_0225650C **param0, const UnkStruct_ov48_0225650C_1 *param1, BgConfig *param2) {
     UnkStruct_ov48_0225650C *v0 = (UnkStruct_ov48_0225650C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov48_0225650C));
 
     if (v0 != NULL) {
@@ -63,8 +62,7 @@ BOOL ov48_0225650C(UnkStruct_ov48_0225650C **param0, const UnkStruct_ov48_022565
     return 0;
 }
 
-void ov48_0225654C(UnkStruct_ov48_0225650C *param0)
-{
+void ov48_0225654C(UnkStruct_ov48_0225650C *param0) {
     if (param0 != NULL) {
         Heap_Free(param0);
     }
@@ -77,29 +75,24 @@ static const PoketchTask Unk_ov48_02256B40[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov48_02256558(UnkStruct_ov48_0225650C *param0, u32 param1)
-{
+void ov48_02256558(UnkStruct_ov48_0225650C *param0, u32 param1) {
     PoketchTask_Start(Unk_ov48_02256B40, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov48_0225657C(UnkStruct_ov48_0225650C *param0, u32 param1)
-{
+BOOL ov48_0225657C(UnkStruct_ov48_0225650C *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov48_02256588(UnkStruct_ov48_0225650C *param0)
-{
+BOOL ov48_02256588(UnkStruct_ov48_0225650C *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov48_02256594(PoketchTaskManager *param0)
-{
+static void ov48_02256594(PoketchTaskManager *param0) {
     UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov48_022565A8(SysTask *param0, void *param1)
-{
+static void ov48_022565A8(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -143,8 +136,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
     ov48_02256594(param1);
 }
 
-static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1)
-{
+static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1) {
     Window v0;
     Strbuf *v1 = MessageBank_GetNewStrbufFromNARC(26, 459, 0, 8);
 
@@ -159,8 +151,7 @@ static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1)
     }
 }
 
-static void ov48_022566D0(SysTask *param0, void *param1)
-{
+static void ov48_022566D0(SysTask *param0, void *param1) {
     UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param1);
 
     switch (PoketchTask_GetState(param1)) {
@@ -180,8 +171,7 @@ static void ov48_022566D0(SysTask *param0, void *param1)
     }
 }
 
-static void ov48_0225672C(SysTask *param0, void *param1)
-{
+static void ov48_0225672C(SysTask *param0, void *param1) {
     UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov48_0225650C_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -221,8 +211,7 @@ static void ov48_0225672C(SysTask *param0, void *param1)
     }
 }
 
-static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
-{
+static void ov48_022567FC(UnkStruct_ov48_0225650C *param0) {
     const UnkStruct_ov48_0225650C_1 *v0;
     PoketchAnimation_AnimationData v1;
     u32 v2, v3;
@@ -278,8 +267,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
     param0->unk_14C = SysTask_Start(ov48_022569FC, param0, 3);
 }
 
-static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
-{
+static void ov48_02256920(UnkStruct_ov48_0225650C *param0) {
     u32 v0, v1;
     int v2;
 
@@ -294,8 +282,7 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
     }
 }
 
-static void ov48_02256984(UnkStruct_ov48_0225650C *param0)
-{
+static void ov48_02256984(UnkStruct_ov48_0225650C *param0) {
     int v0;
 
     if (param0->unk_14C) {
@@ -325,8 +312,7 @@ static void ov48_02256984(UnkStruct_ov48_0225650C *param0)
     PoketchAnimation_FreeSpriteData(&param0->unk_138);
 }
 
-static void ov48_022569FC(SysTask *param0, void *param1)
-{
+static void ov48_022569FC(SysTask *param0, void *param1) {
     UnkStruct_ov48_0225650C *v0 = param1;
     const UnkStruct_ov48_0225650C_1 *v1 = v0->unk_00;
 

@@ -24,8 +24,7 @@ typedef struct {
     UnkStruct_ov12_02225F6C unk_60;
 } UnkStruct_ov12_0222E784;
 
-static void ov12_0222E784(SysTask *param0, void *param1)
-{
+static void ov12_0222E784(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222E784 *v0 = (UnkStruct_ov12_0222E784 *)param1;
 
     switch (v0->unk_00.unk_00) {
@@ -60,8 +59,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_0C);
 }
 
-void ov12_0222E810(BattleAnimSystem *param0)
-{
+void ov12_0222E810(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222E784 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E784));
 
     ov12_0223595C(param0, &v0->unk_00);

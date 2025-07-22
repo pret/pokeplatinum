@@ -12,8 +12,7 @@
 #include "savedata.h"
 #include "unk_0202854C.h"
 
-BOOL ScrCmd_083(ScriptContext *param0)
-{
+BOOL ScrCmd_083(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Underground *v2;
@@ -27,8 +26,7 @@ BOOL ScrCmd_083(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_084(ScriptContext *param0)
-{
+BOOL ScrCmd_084(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -37,8 +35,7 @@ BOOL ScrCmd_084(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_085(ScriptContext *param0)
-{
+BOOL ScrCmd_085(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Underground *v2;
@@ -52,8 +49,7 @@ BOOL ScrCmd_085(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_086(ScriptContext *param0)
-{
+BOOL ScrCmd_086(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -62,8 +58,7 @@ BOOL ScrCmd_086(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_087(ScriptContext *param0)
-{
+BOOL ScrCmd_087(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Underground *v2;
@@ -77,8 +72,7 @@ BOOL ScrCmd_087(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_088(ScriptContext *param0)
-{
+BOOL ScrCmd_088(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -87,8 +81,7 @@ BOOL ScrCmd_088(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_089(ScriptContext *param0)
-{
+BOOL ScrCmd_089(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -97,8 +90,7 @@ BOOL ScrCmd_089(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_08A(ScriptContext *param0)
-{
+BOOL ScrCmd_08A(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -107,8 +99,7 @@ BOOL ScrCmd_08A(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_08B(ScriptContext *param0)
-{
+BOOL ScrCmd_08B(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Underground *v2;
@@ -121,8 +112,7 @@ BOOL ScrCmd_08B(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_08C(ScriptContext *param0)
-{
+BOOL ScrCmd_08C(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -131,8 +121,7 @@ BOOL ScrCmd_08C(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_08D(ScriptContext *param0)
-{
+BOOL ScrCmd_08D(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -141,8 +130,7 @@ BOOL ScrCmd_08D(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_08E(ScriptContext *param0)
-{
+BOOL ScrCmd_08E(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -151,8 +139,7 @@ BOOL ScrCmd_08E(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_08F(ScriptContext *param0)
-{
+BOOL ScrCmd_08F(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Underground *v2;
@@ -165,8 +152,7 @@ BOOL ScrCmd_08F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_090(ScriptContext *param0)
-{
+BOOL ScrCmd_090(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -175,8 +161,7 @@ BOOL ScrCmd_090(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_091(ScriptContext *param0)
-{
+BOOL ScrCmd_091(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -185,8 +170,7 @@ BOOL ScrCmd_091(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_092(ScriptContext *param0)
-{
+BOOL ScrCmd_092(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);

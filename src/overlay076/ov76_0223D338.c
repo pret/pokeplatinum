@@ -60,18 +60,15 @@ static BOOL ov76_0223E950(UnkStruct_ov76_0223DE00 *param0);
 static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0);
 static BOOL ov76_0223EB1C(UnkStruct_ov76_0223DE00 *param0);
 
-void ov76_0223D338(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223D338(UnkStruct_ov76_0223DE00 *param0) {
     BallCapsule_Copy(param0->unk_04[param0->unk_3C4[0]].unk_04, &param0->unk_68);
 }
 
-void ov76_0223D350(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223D350(UnkStruct_ov76_0223DE00 *param0) {
     BallCapsule_Copy(&param0->unk_68, param0->unk_04[param0->unk_3C4[0]].unk_04);
 }
 
-void ov76_0223D368(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223D368(UnkStruct_ov76_0223DE00 *param0) {
     int v0;
 
     for (v0 = 0; v0 < (80 + 1); v0++) {
@@ -79,8 +76,7 @@ void ov76_0223D368(UnkStruct_ov76_0223DE00 *param0)
     }
 }
 
-void ov76_0223D384(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223D384(UnkStruct_ov76_0223DE00 *param0) {
     int i;
 
     for (i = 0; i < (80 + 1); i++) {
@@ -88,14 +84,12 @@ void ov76_0223D384(UnkStruct_ov76_0223DE00 *param0)
     }
 }
 
-void ov76_0223D3A0(void)
-{
+void ov76_0223D3A0(void) {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 11, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-void ov76_0223D3CC(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223D3CC(UnkStruct_ov76_0223DE00 *param0) {
     int v0;
     int v1;
     Pokemon *v2;
@@ -120,8 +114,7 @@ void ov76_0223D3CC(UnkStruct_ov76_0223DE00 *param0)
     }
 }
 
-int ov76_0223D430(BallCapsule *param0)
-{
+int ov76_0223D430(BallCapsule *param0) {
     int v0;
     int v1 = 0;
     int v2;
@@ -144,8 +137,7 @@ int ov76_0223D430(BallCapsule *param0)
     return v1;
 }
 
-int ov76_0223D45C(UnkStruct_ov76_0223DE00 *param0, int param1)
-{
+int ov76_0223D45C(UnkStruct_ov76_0223DE00 *param0, int param1) {
     int v0;
     int v1;
     int v2;
@@ -166,8 +158,7 @@ int ov76_0223D45C(UnkStruct_ov76_0223DE00 *param0, int param1)
     return v2;
 }
 
-static void ov76_0223D494(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int param3)
-{
+static void ov76_0223D494(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int param3) {
     if (param2 == 0xff) {
         param0->unk_3D4 = param0->unk_3D8;
     } else {
@@ -179,8 +170,7 @@ static void ov76_0223D494(UnkStruct_ov76_0223DE00 *param0, int param1, int param
     param0->unk_3DC = 0;
 }
 
-static int ov76_0223D4C4(UnkStruct_ov76_0223DE00 *param0)
-{
+static int ov76_0223D4C4(UnkStruct_ov76_0223DE00 *param0) {
     Window_EraseStandardFrame(&param0->unk_D4.unk_18[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_D4.unk_18[1]);
     Menu_Free(param0->unk_D4.unk_CC, NULL);
@@ -190,14 +180,12 @@ static int ov76_0223D4C4(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-static int ov76_0223D4FC(UnkStruct_ov76_0223DE00 *param0)
-{
+static int ov76_0223D4FC(UnkStruct_ov76_0223DE00 *param0) {
     ov76_0223D494(param0, 1, 0, 3);
     return 0;
 }
 
-static int ov76_0223D50C(UnkStruct_ov76_0223DE00 *param0)
-{
+static int ov76_0223D50C(UnkStruct_ov76_0223DE00 *param0) {
     ov76_0223B400(param0);
     ov76_0223B808(param0);
     ov76_0223C7E0(param0);
@@ -206,14 +194,12 @@ static int ov76_0223D50C(UnkStruct_ov76_0223DE00 *param0)
     return 0;
 }
 
-static int ov76_0223D530(UnkStruct_ov76_0223DE00 *param0)
-{
+static int ov76_0223D530(UnkStruct_ov76_0223DE00 *param0) {
     ov76_0223D494(param0, 3, 0, 3);
     return 0;
 }
 
-static int ov76_0223D540(UnkStruct_ov76_0223DE00 *param0)
-{
+static int ov76_0223D540(UnkStruct_ov76_0223DE00 *param0) {
     ov76_0223D494(param0, 4, 0, 3);
     return 0;
 }
@@ -235,16 +221,14 @@ static BOOL (*const Unk_ov76_0223EE04[])(UnkStruct_ov76_0223DE00 *cbmw) = {
     ov76_0223EB1C,
 };
 
-BOOL ov76_0223D550(UnkStruct_ov76_0223DE00 *param0)
-{
+BOOL ov76_0223D550(UnkStruct_ov76_0223DE00 *param0) {
     BOOL v0 = Unk_ov76_0223EE04[param0->unk_3CC](param0);
     SpriteSystem_DrawSprites(param0->unk_D4.unk_0C);
 
     return v0;
 }
 
-static BOOL ov76_0223D574(int *param0)
-{
+static BOOL ov76_0223D574(int *param0) {
     int *v0 = param0;
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
@@ -277,8 +261,7 @@ static BOOL ov76_0223D574(int *param0)
     return 1;
 }
 
-static void ov76_0223D600(UnkStruct_ov76_0223DE00 *param0, int param1, BOOL param2)
-{
+static void ov76_0223D600(UnkStruct_ov76_0223DE00 *param0, int param1, BOOL param2) {
     s16 v0, v1;
     int v2 = 0;
 
@@ -296,8 +279,7 @@ static void ov76_0223D600(UnkStruct_ov76_0223DE00 *param0, int param1, BOOL para
     }
 }
 
-static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0) {
     switch (param0->unk_3D4) {
     case 0: {
         NARC *v0;
@@ -442,8 +424,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-void ov76_0223D94C(ManagedSprite *param0, int param1)
-{
+void ov76_0223D94C(ManagedSprite *param0, int param1) {
     switch (param1) {
     case 0:
         ManagedSprite_SetAnimationFrame(param0, 1);
@@ -461,8 +442,7 @@ void ov76_0223D94C(ManagedSprite *param0, int param1)
     }
 }
 
-static void ov76_0223D984(FontOAM *param0, int param1, int param2)
-{
+static void ov76_0223D984(FontOAM *param0, int param1, int param2) {
     int v0;
     int v1;
 
@@ -472,8 +452,7 @@ static void ov76_0223D984(FontOAM *param0, int param1, int param2)
     }
 }
 
-static void ov76_0223D9AC(SysTask *param0, void *param1)
-{
+static void ov76_0223D9AC(SysTask *param0, void *param1) {
     UnkStruct_ov76_0223D9AC *v0 = param1;
 
     switch (v0->unk_00) {
@@ -494,8 +473,7 @@ static void ov76_0223D9AC(SysTask *param0, void *param1)
     }
 }
 
-static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1)
-{
+static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1) {
     UnkStruct_ov76_0223D9AC *v0 = Heap_AllocFromHeap(HEAP_ID_53, sizeof(UnkStruct_ov76_0223D9AC));
 
     v0->unk_00 = 1;
@@ -506,8 +484,7 @@ static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1)
     SysTask_Start(ov76_0223D9AC, v0, 1000);
 }
 
-void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
-{
+void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2) {
     UnkStruct_ov76_0223DE00 *v0 = (UnkStruct_ov76_0223DE00 *)param2;
 
     if (v0->unk_D4.unk_04 == 0) {
@@ -643,13 +620,11 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
     }
 }
 
-BOOL ov76_0223DCB0(UnkStruct_ov76_0223DE00 *param0)
-{
+BOOL ov76_0223DCB0(UnkStruct_ov76_0223DE00 *param0) {
     return param0->unk_D4.unk_184;
 }
 
-void ov76_0223DCB8(UnkStruct_ov76_0223DE00 *param0, BOOL param1)
-{
+void ov76_0223DCB8(UnkStruct_ov76_0223DE00 *param0, BOOL param1) {
     param0->unk_D4.unk_04 = param1;
 }
 
@@ -669,8 +644,7 @@ static const TouchScreenRect Unk_ov76_0223EE44[] = {
     { 168, 188, 178, 237 },
 };
 
-void ov76_0223DCC0(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223DCC0(UnkStruct_ov76_0223DE00 *param0) {
     int v0;
     const TouchScreenRect v1 = { 0, 0, 0, 0 };
 
@@ -686,8 +660,7 @@ void ov76_0223DCC0(UnkStruct_ov76_0223DE00 *param0)
     param0->unk_D4.unk_F8 = TouchScreenActions_RegisterHandler(param0->unk_D4.unk_FC, 21, ov76_0223DA34, param0, HEAP_ID_53);
 }
 
-void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0) {
     PokemonSpriteTemplate v0;
     SpriteAnimationFrame v1[10];
     int v2;
@@ -703,8 +676,7 @@ void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
     param0->unk_D4.unk_D4 = PokemonSpriteManager_CreateSprite(param0->unk_D4.unk_D0, &v0, 256 - 64, 48 + v3, -0x280, 0, &v1[0], NULL);
 }
 
-static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
-{
+static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0) {
     int v0;
     int v1;
 
@@ -715,14 +687,12 @@ static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
     PokeSprite_LoadAnimation(param0->unk_42C, param0->unk_D4.unk_188, param0->unk_D4.unk_D4, v0, 2, 0, 0);
 }
 
-static void ov76_0223DE54(UnkStruct_ov76_0223DE00 *param0)
-{
+static void ov76_0223DE54(UnkStruct_ov76_0223DE00 *param0) {
     PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X, 0x0);
     PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_Y, 0x0);
 }
 
-static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0) {
     if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) == 0x100) {
         return 0;
     } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) >= 0x100) {
@@ -738,8 +708,7 @@ static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0) {
     if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) == 0x0) {
         return 0;
     } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) <= 0x0) {
@@ -755,18 +724,15 @@ static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-void ov76_0223DF70(UnkStruct_ov76_0223DE00 *param0, int param1)
-{
+void ov76_0223DF70(UnkStruct_ov76_0223DE00 *param0, int param1) {
     PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_HIDE, param1);
 }
 
-void ov76_0223DF84(UnkStruct_ov76_0223DE00 *param0)
-{
+void ov76_0223DF84(UnkStruct_ov76_0223DE00 *param0) {
     PokemonSprite_Delete(param0->unk_D4.unk_D4);
 }
 
-static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0) {
     switch (param0->unk_3D4) {
     case 0:
         ov76_0223DCB8(param0, 0);
@@ -1169,8 +1135,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0) {
     switch (param0->unk_3D4) {
     case 0:
         param0->unk_3D4++;
@@ -1200,8 +1165,7 @@ static BOOL ov76_0223E8A4(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1)
-{
+void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1) {
     int v0;
     int v1;
     int v2 = 0;
@@ -1217,8 +1181,7 @@ void ov76_0223E91C(UnkStruct_ov76_0223DE00 *param0, int param1)
     ov76_0223C7E0(param0);
 }
 
-static BOOL ov76_0223E950(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223E950(UnkStruct_ov76_0223DE00 *param0) {
     switch (param0->unk_3D4) {
     case 0:
         ov76_0223E91C(param0, param0->unk_3C4[0]);
@@ -1242,8 +1205,7 @@ static BOOL ov76_0223E950(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0) {
     switch (param0->unk_3D4) {
     case 0:
         ManagedSprite_SetPriority(param0->unk_2F4[0], 25);
@@ -1294,13 +1256,11 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-static BOOL ov76_0223EB1C(UnkStruct_ov76_0223DE00 *param0)
-{
+static BOOL ov76_0223EB1C(UnkStruct_ov76_0223DE00 *param0) {
     return 0;
 }
 
-void ov76_0223EB20(int param0)
-{
+void ov76_0223EB20(int param0) {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -1310,14 +1270,12 @@ void ov76_0223EB20(int param0)
     GXS_SetVisiblePlane(0);
 }
 
-void ov76_0223EB54(int param0)
-{
+void ov76_0223EB54(int param0) {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 }
 
-void ov76_0223EB64(BgConfig *param0)
-{
+void ov76_0223EB64(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
 
     {
@@ -1482,8 +1440,7 @@ void ov76_0223EB64(BgConfig *param0)
     }
 }
 
-void ov76_0223ECB0(void *param0)
-{
+void ov76_0223ECB0(void *param0) {
     UnkStruct_ov76_0223DE00 *v0 = param0;
 
     PokemonSpriteManager_UpdateCharAndPltt(v0->unk_D4.unk_D0);

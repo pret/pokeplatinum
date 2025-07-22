@@ -920,8 +920,7 @@ static const UnkUnion_ov63_0222BDAC Unk_ov65_02239550[308] = {
     0x3
 };
 
-UnkStruct_ov63_0222CC3C ov65_02236474(u32 param0)
-{
+UnkStruct_ov63_0222CC3C ov65_02236474(u32 param0) {
     static const UnkStruct_ov63_0222CC3C v0[4] = {
         { 16, 11 },
         { 16, 11 },
@@ -932,8 +931,7 @@ UnkStruct_ov63_0222CC3C ov65_02236474(u32 param0)
     return v0[param0];
 }
 
-const UnkUnion_ov63_0222BDAC *ov65_02236480(u32 param0)
-{
+const UnkUnion_ov63_0222BDAC *ov65_02236480(u32 param0) {
     static const UnkUnion_ov63_0222BDAC *v0[4] = {
         Unk_ov65_02238C08,
         Unk_ov65_02238EC8,

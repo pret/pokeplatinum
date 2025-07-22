@@ -20,8 +20,7 @@ typedef struct Location {
     int faceDirection;
 } Location;
 
-static inline void Location_Set(Location *location, int mapId, int warpId, int x, int z, int faceDirection)
-{
+static inline void Location_Set(Location *location, int mapId, int warpId, int x, int z, int faceDirection) {
     location->mapId = mapId;
     location->warpId = warpId;
     location->x = x;

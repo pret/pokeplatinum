@@ -68,8 +68,7 @@ static void sub_0206806C(SysTask *param0, void *param1);
 int (*const Unk_020EF6C0[])(const MapObject *, int, int, int, int);
 int (*const Unk_020EF6D0[])(UnkStruct_020EF6D0 *);
 
-int sub_02067A84(FieldSystem *fieldSystem, BOOL param1)
-{
+int sub_02067A84(FieldSystem *fieldSystem, BOOL param1) {
     UnkStruct_02067C28 v0;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
@@ -117,8 +116,7 @@ int sub_02067A84(FieldSystem *fieldSystem, BOOL param1)
     return 0;
 }
 
-static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, PlayerAvatar *playerAvatar, const MapObject *param3, UnkStruct_02067C28 *param4)
-{
+static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, PlayerAvatar *playerAvatar, const MapObject *param3, UnkStruct_02067C28 *param4) {
     int v0, v1, v2;
     MapObject *v3;
 
@@ -142,8 +140,7 @@ static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, Play
     return 0;
 }
 
-static void sub_02067C28(UnkStruct_02067C28 *param0, MapObject *param1, int param2, int param3)
-{
+static void sub_02067C28(UnkStruct_02067C28 *param0, MapObject *param1, int param2, int param3) {
     param0->unk_00 = param2;
     param0->unk_04 = param3;
     param0->unk_08 = MapObject_GetScript(param1);
@@ -152,8 +149,7 @@ static void sub_02067C28(UnkStruct_02067C28 *param0, MapObject *param1, int para
     param0->unk_14 = param1;
 }
 
-static int sub_02067C54(const MapObject *param0)
-{
+static int sub_02067C54(const MapObject *param0) {
     int v0 = MapObject_GetTrainerType(param0);
 
     switch (v0) {
@@ -169,8 +165,7 @@ static int sub_02067C54(const MapObject *param0)
     return v0;
 }
 
-static int sub_02067C80(const MapObject *param0, PlayerAvatar *playerAvatar, int *param2)
-{
+static int sub_02067C80(const MapObject *param0, PlayerAvatar *playerAvatar, int *param2) {
     int v0, v1, v2, v3, v4, v5;
 
     v0 = sub_02067C54(param0);
@@ -217,8 +212,7 @@ static int sub_02067C80(const MapObject *param0, PlayerAvatar *playerAvatar, int
     return -1;
 }
 
-int sub_02067D58(const MapObject *mapObj, PlayerAvatar *playerAvatar, int param2, int param3)
-{
+int sub_02067D58(const MapObject *mapObj, PlayerAvatar *playerAvatar, int param2, int param3) {
     int v0 = Player_GetXPos(playerAvatar);
     int v1 = Player_GetZPos(playerAvatar);
     int v2 = sub_02067DA8(mapObj, param2, param3, v0, v1, 0);
@@ -232,13 +226,11 @@ int sub_02067D58(const MapObject *mapObj, PlayerAvatar *playerAvatar, int param2
     return v2;
 }
 
-static int sub_02067DA8(const MapObject *mapObj, int param1, int param2, int param3, int param4, int param5)
-{
+static int sub_02067DA8(const MapObject *mapObj, int param1, int param2, int param3, int param4, int param5) {
     return Unk_020EF6C0[param1](mapObj, param2, param3, param4, param5);
 }
 
-static int sub_02067DC4(const MapObject *mapObj, int param1, int param2, int param3, int param4)
-{
+static int sub_02067DC4(const MapObject *mapObj, int param1, int param2, int param3, int param4) {
     int v0, v1;
 
     v0 = MapObject_GetX(mapObj);
@@ -254,8 +246,7 @@ static int sub_02067DC4(const MapObject *mapObj, int param1, int param2, int par
     return -1;
 }
 
-static int sub_02067DF0(const MapObject *mapObj, int param1, int param2, int param3, int param4)
-{
+static int sub_02067DF0(const MapObject *mapObj, int param1, int param2, int param3, int param4) {
     int v0, v1;
 
     v0 = MapObject_GetX(mapObj);
@@ -271,8 +262,7 @@ static int sub_02067DF0(const MapObject *mapObj, int param1, int param2, int par
     return -1;
 }
 
-static int sub_02067E1C(const MapObject *mapObj, int param1, int param2, int param3, int param4)
-{
+static int sub_02067E1C(const MapObject *mapObj, int param1, int param2, int param3, int param4) {
     int v0, v1;
 
     v1 = MapObject_GetZ(mapObj);
@@ -288,8 +278,7 @@ static int sub_02067E1C(const MapObject *mapObj, int param1, int param2, int par
     return -1;
 }
 
-static int sub_02067E48(const MapObject *mapObj, int param1, int param2, int param3, int param4)
-{
+static int sub_02067E48(const MapObject *mapObj, int param1, int param2, int param3, int param4) {
     int v0, v1;
 
     v1 = MapObject_GetZ(mapObj);
@@ -312,8 +301,7 @@ static int (*const Unk_020EF6C0[])(const MapObject *, int, int, int, int) = {
     sub_02067E48
 };
 
-static int sub_02067E74(const MapObject *mapObj, int param1, int param2)
-{
+static int sub_02067E74(const MapObject *mapObj, int param1, int param2) {
     int v0, v1, v2, v3;
     u32 v4;
 
@@ -349,18 +337,15 @@ static int sub_02067E74(const MapObject *mapObj, int param1, int param2)
     return 1;
 }
 
-static int sub_02067F14(MapObject *mapObj)
-{
+static int sub_02067F14(MapObject *mapObj) {
     return Script_GetTrainerID(MapObject_GetScript(mapObj));
 }
 
-int sub_02067F24(MapObject *mapObj)
-{
+int sub_02067F24(MapObject *mapObj) {
     return sub_02067F14(mapObj);
 }
 
-static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param1, MapObject *param2, int param3)
-{
+static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param1, MapObject *param2, int param3) {
     int v0;
     MapObject *v1;
 
@@ -382,8 +367,7 @@ static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param
     return NULL;
 }
 
-int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1)
-{
+int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1) {
     int v0 = sub_02067C54(param1);
 
     if ((v0 == 0x1) || (v0 == 0x2)) {
@@ -395,24 +379,20 @@ int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1)
     return 0;
 }
 
-SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7)
-{
+SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7) {
     return sub_02067FF0(fieldSystem, param1, playerAvatar, param3, param4, param5, param6, param7);
 }
 
-int sub_02067FD4(SysTask *task)
-{
+int sub_02067FD4(SysTask *task) {
     GF_ASSERT(task != NULL);
     return sub_02068048(task);
 }
 
-void sub_02067FE8(SysTask *task)
-{
+void sub_02067FE8(SysTask *task) {
     sub_02068054(task);
 }
 
-static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7)
-{
+static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7) {
     SysTask *v0;
     UnkStruct_020EF6D0 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_020EF6D0)));
     GF_ASSERT(v1 != NULL);
@@ -434,22 +414,19 @@ static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, Player
     return v0;
 }
 
-static int sub_02068048(SysTask *task)
-{
+static int sub_02068048(SysTask *task) {
     UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
-static void sub_02068054(SysTask *task)
-{
+static void sub_02068054(SysTask *task) {
     UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
 
     Heap_FreeExplicit(HEAP_ID_FIELD, v0);
     SysTask_Done(task);
 }
 
-static void sub_0206806C(SysTask *task, void *param1)
-{
+static void sub_0206806C(SysTask *task, void *param1) {
     UnkStruct_020EF6D0 *v0 = param1;
 
     while (Unk_020EF6D0[v0->unk_00](v0) == 1) {
@@ -457,8 +434,7 @@ static void sub_0206806C(SysTask *task, void *param1)
     }
 }
 
-static int sub_02068088(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068088(UnkStruct_020EF6D0 *param0) {
     MapObject *v0 = param0->unk_24;
 
     if (MapObject_IsMoving(v0) == 1) {
@@ -469,8 +445,7 @@ static int sub_02068088(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_020680A4(UnkStruct_020EF6D0 *param0)
-{
+static int sub_020680A4(UnkStruct_020EF6D0 *param0) {
     MapObject *v0 = param0->unk_24;
 
     if (MapObject_IsMoving(v0) == 1) {
@@ -484,8 +459,7 @@ static int sub_020680A4(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_020680D0(UnkStruct_020EF6D0 *param0)
-{
+static int sub_020680D0(UnkStruct_020EF6D0 *param0) {
     MapObject *v0 = Player_MapObject(param0->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
@@ -509,8 +483,7 @@ static int sub_020680D0(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_02068118(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068118(UnkStruct_020EF6D0 *param0) {
     int v0;
 
     if (LocalMapObj_IsAnimationSet(param0->unk_24) == 0) {
@@ -526,8 +499,7 @@ static int sub_02068118(UnkStruct_020EF6D0 *param0)
     return 0;
 }
 
-static int sub_02068150(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068150(UnkStruct_020EF6D0 *param0) {
     if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 0) {
         return 0;
     }
@@ -536,16 +508,14 @@ static int sub_02068150(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_0206816C(UnkStruct_020EF6D0 *param0)
-{
+static int sub_0206816C(UnkStruct_020EF6D0 *param0) {
     param0->unk_20 = ov5_021F5D8C(param0->unk_24, 0, 0, 0);
     param0->unk_00 = 6;
 
     return 0;
 }
 
-static int sub_02068188(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068188(UnkStruct_020EF6D0 *param0) {
     if (ov5_021F5C4C(param0->unk_20) == 1) {
         sub_0207136C(param0->unk_20);
         param0->unk_00 = 9;
@@ -554,16 +524,14 @@ static int sub_02068188(UnkStruct_020EF6D0 *param0)
     return 0;
 }
 
-static int sub_020681A4(UnkStruct_020EF6D0 *param0)
-{
+static int sub_020681A4(UnkStruct_020EF6D0 *param0) {
     LocalMapObj_SetAnimationCode(param0->unk_24, MOVEMENT_ACTION_REVEAL_TRAINER);
     param0->unk_00 = 8;
 
     return 0;
 }
 
-static int sub_020681B8(UnkStruct_020EF6D0 *param0)
-{
+static int sub_020681B8(UnkStruct_020EF6D0 *param0) {
     if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 1) {
         param0->unk_00 = 9;
     }
@@ -571,8 +539,7 @@ static int sub_020681B8(UnkStruct_020EF6D0 *param0)
     return 0;
 }
 
-static int sub_020681D0(UnkStruct_020EF6D0 *param0)
-{
+static int sub_020681D0(UnkStruct_020EF6D0 *param0) {
     param0->unk_1C++;
 
     if (param0->unk_1C >= 30) {
@@ -583,8 +550,7 @@ static int sub_020681D0(UnkStruct_020EF6D0 *param0)
     return 0;
 }
 
-static int sub_020681E8(UnkStruct_020EF6D0 *param0)
-{
+static int sub_020681E8(UnkStruct_020EF6D0 *param0) {
     if (param0->unk_0C <= 1) {
         param0->unk_00 = 13;
         return 1;
@@ -594,8 +560,7 @@ static int sub_020681E8(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_02068200(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068200(UnkStruct_020EF6D0 *param0) {
     int v0;
 
     if (LocalMapObj_IsAnimationSet(param0->unk_24) == 1) {
@@ -607,8 +572,7 @@ static int sub_02068200(UnkStruct_020EF6D0 *param0)
     return 0;
 }
 
-static int sub_02068228(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068228(UnkStruct_020EF6D0 *param0) {
     if (LocalMapObj_CheckAnimationFinished(param0->unk_24) == 0) {
         return 0;
     }
@@ -619,8 +583,7 @@ static int sub_02068228(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_02068248(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068248(UnkStruct_020EF6D0 *param0) {
     param0->unk_1C++;
 
     if (param0->unk_1C < 8) {
@@ -633,8 +596,7 @@ static int sub_02068248(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_02068264(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068264(UnkStruct_020EF6D0 *param0) {
     int v0, v1;
     MapObject *v2 = Player_MapObject(param0->playerAvatar);
     v1 = sub_02064488(MapObject_GetX(v2), MapObject_GetZ(v2), MapObject_GetX(param0->unk_24), MapObject_GetZ(param0->unk_24));
@@ -653,8 +615,7 @@ static int sub_02068264(UnkStruct_020EF6D0 *param0)
     return 0;
 }
 
-static int sub_020682E0(UnkStruct_020EF6D0 *param0)
-{
+static int sub_020682E0(UnkStruct_020EF6D0 *param0) {
     MapObject *v0 = Player_MapObject(param0->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
@@ -667,8 +628,7 @@ static int sub_020682E0(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_02068308(UnkStruct_020EF6D0 *param0)
-{
+static int sub_02068308(UnkStruct_020EF6D0 *param0) {
     sub_020656AC(param0->unk_24);
 
     if ((PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->unk_24) == 0)) {
@@ -679,8 +639,7 @@ static int sub_02068308(UnkStruct_020EF6D0 *param0)
     return 1;
 }
 
-static int sub_0206833C(UnkStruct_020EF6D0 *param0)
-{
+static int sub_0206833C(UnkStruct_020EF6D0 *param0) {
     param0->unk_04 = 1;
     return 0;
 }

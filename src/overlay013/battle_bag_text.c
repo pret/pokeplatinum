@@ -369,14 +369,12 @@ static const struct {
     { .name = BattleBag_Text_PocketSlot6ItemName, .amount = BattleBag_Text_PocketSlot6ItemAmount }
 };
 
-void BattleBagText_InitializeWindows(BattleBag *battleBag)
-{
+void BattleBagText_InitializeWindows(BattleBag *battleBag) {
     Window_AddFromTemplate(battleBag->background, &battleBag->messageBoxWindow, &sMessageBoxWindowTemplate);
     BattleBagText_InitializeScreenWindows(battleBag, battleBag->currentScreen);
 }
 
-void BattleBagText_InitializeScreenWindows(BattleBag *battleBag, enum BattleBagScreen screen)
-{
+void BattleBagText_InitializeScreenWindows(BattleBag *battleBag, enum BattleBagScreen screen) {
     const WindowTemplate *windowTemplates;
 
     switch (screen) {
@@ -401,19 +399,16 @@ void BattleBagText_InitializeScreenWindows(BattleBag *battleBag, enum BattleBagS
     }
 }
 
-void BattleBagText_ClearScreenWindows(BattleBag *battleBag)
-{
+void BattleBagText_ClearScreenWindows(BattleBag *battleBag) {
     Windows_Delete(battleBag->windows, battleBag->numWindows);
 }
 
-void BattleBagText_ClearWindows(BattleBag *battleBag)
-{
+void BattleBagText_ClearWindows(BattleBag *battleBag) {
     Windows_Delete(battleBag->windows, battleBag->numWindows);
     Window_Remove(&battleBag->messageBoxWindow);
 }
 
-void BattleBagText_ChangeScreen(BattleBag *battleBag, enum BattleBagScreen screen)
-{
+void BattleBagText_ChangeScreen(BattleBag *battleBag, enum BattleBagScreen screen) {
     switch (screen) {
     case BATTLE_BAG_SCREEN_MENU:
         RenderMenuScreen(battleBag);
@@ -427,8 +422,7 @@ void BattleBagText_ChangeScreen(BattleBag *battleBag, enum BattleBagScreen scree
     }
 }
 
-static void PrintTextToWindow(BattleBag *battleBag, u8 windowIndex, u32 textID, enum Font font, u32 yOffset, TextColor color)
-{
+static void PrintTextToWindow(BattleBag *battleBag, u8 windowIndex, u32 textID, enum Font font, u32 yOffset, TextColor color) {
     Window *window = &battleBag->windows[windowIndex];
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, textID);
     u32 stringWidth = Font_CalcStrbufWidth(font, strbuf, 0);
@@ -439,8 +433,7 @@ static void PrintTextToWindow(BattleBag *battleBag, u8 windowIndex, u32 textID, 
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void RenderMenuScreen(BattleBag *battleBag)
-{
+static void RenderMenuScreen(BattleBag *battleBag) {
     for (u32 i = 0; i < BATTLE_POCKET_MAX; i++) {
         Window_FillTilemap(&battleBag->windows[i], 0);
     }
@@ -461,8 +454,7 @@ static void RenderMenuScreen(BattleBag *battleBag)
     }
 }
 
-static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, TextColor color)
-{
+static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, TextColor color) {
     Strbuf *strbuf;
     u32 width;
     u32 xOffset;
@@ -486,8 +478,7 @@ static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void PrintPocketItemAmountToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, u32 yOffset, TextColor color)
-{
+static void PrintPocketItemAmountToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, u32 yOffset, TextColor color) {
     Strbuf *strbuf;
     Window *window = &battleBag->windows[windowIndex];
 
@@ -505,8 +496,7 @@ static void PrintPocketItemAmountToWindow(BattleBag *battleBag, u32 itemIndex, u
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void PrintPocketItemInfo(BattleBag *battleBag, u32 slot_index)
-{
+static void PrintPocketItemInfo(BattleBag *battleBag, u32 slot_index) {
     u32 first_window_index;
     u32 itemIndex = battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + slot_index;
 
@@ -520,8 +510,7 @@ static void PrintPocketItemInfo(BattleBag *battleBag, u32 slot_index)
     PrintPocketItemAmountToWindow(battleBag, itemIndex, slot_index, first_window_index + 1 + slot_index * 2, FONT_SYSTEM, 4, TEXT_COLOR(1, 2, 0));
 }
 
-void BattleBagText_PrintAllPocketItemInfo(BattleBag *battleBag)
-{
+void BattleBagText_PrintAllPocketItemInfo(BattleBag *battleBag) {
     Bg_FillTilemapRect(battleBag->background, BG_LAYER_SUB_1, 0, 0, 0, 32, 19, 17);
 
     for (u16 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
@@ -531,8 +520,7 @@ void BattleBagText_PrintAllPocketItemInfo(BattleBag *battleBag)
     battleBag->useAltPocketMenuWindows ^= TRUE;
 }
 
-void BattleBagText_PrintPocketPageNums(BattleBag *battleBag)
-{
+void BattleBagText_PrintPocketPageNums(BattleBag *battleBag) {
     Window_FillTilemap(&battleBag->windows[BATTLE_BAG_POCKET_MENU_WINDOW_PAGE_NUMS], 0);
 
     Window *window = &battleBag->windows[BATTLE_BAG_POCKET_MENU_WINDOW_PAGE_NUMS];
@@ -559,8 +547,7 @@ void BattleBagText_PrintPocketPageNums(BattleBag *battleBag)
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void PrintPocketName(BattleBag *battleBag)
-{
+static void PrintPocketName(BattleBag *battleBag) {
     Window_FillTilemap(&battleBag->windows[BATTLE_BAG_POCKET_MENU_WINDOW_POCKET_NAME], 0);
 
     switch (battleBag->currentBattlePocket) {
@@ -581,15 +568,13 @@ static void PrintPocketName(BattleBag *battleBag)
     }
 }
 
-static void RenderPocketMenuScreen(BattleBag *battleBag)
-{
+static void RenderPocketMenuScreen(BattleBag *battleBag) {
     BattleBagText_PrintAllPocketItemInfo(battleBag);
     PrintPocketName(battleBag);
     BattleBagText_PrintPocketPageNums(battleBag);
 }
 
-static void PrintUseItemName(BattleBag *battleBag, u32 slot)
-{
+static void PrintUseItemName(BattleBag *battleBag, u32 slot) {
     Window *window = &battleBag->windows[BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_NAME];
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleBag->messageLoader, sPocketSlotTextIDs[0].name);
 
@@ -601,8 +586,7 @@ static void PrintUseItemName(BattleBag *battleBag, u32 slot)
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void PrintUseItemDesc(BattleBag *battleBag, u32 slot)
-{
+static void PrintUseItemDesc(BattleBag *battleBag, u32 slot) {
     Window *window = &battleBag->windows[BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_DESC];
     Strbuf *strbuf = Strbuf_Init(130, battleBag->context->heapID);
 
@@ -612,8 +596,7 @@ static void PrintUseItemDesc(BattleBag *battleBag, u32 slot)
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void RenderUseItemScreen(BattleBag *battleBag)
-{
+static void RenderUseItemScreen(BattleBag *battleBag) {
     u32 slot;
 
     for (u32 i = 0; i < BATTLE_BAG_USE_ITEM_SCREEN_WINDOW_NUM; i++) {
@@ -628,15 +611,13 @@ static void RenderUseItemScreen(BattleBag *battleBag)
     PrintTextToWindow(battleBag, BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_USE, BattleBag_Text_Use, FONT_SUBSCREEN, 6, TEXT_COLOR(3, 2, 1));
 }
 
-void BattleBagText_DisplayMessage(BattleBag *battleBag)
-{
+void BattleBagText_DisplayMessage(BattleBag *battleBag) {
     Window_DrawMessageBoxWithScrollCursor(&battleBag->messageBoxWindow, TRUE, 994, 14);
     Window_FillTilemap(&battleBag->messageBoxWindow, 15);
     BattleBagText_PrintToMessageBox(battleBag);
 }
 
-void BattleBagText_PrintToMessageBox(BattleBag *battleBag)
-{
+void BattleBagText_PrintToMessageBox(BattleBag *battleBag) {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     battleBag->textPrinterID = Text_AddPrinterWithParams(&battleBag->messageBoxWindow, FONT_MESSAGE, battleBag->strbuf, 0, 0, BattleSystem_TextSpeed(battleBag->context->battleSystem), NULL);
 }

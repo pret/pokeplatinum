@@ -295,8 +295,7 @@ static const TouchScreenRect sRestoreMovePPScreenTouchRects[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
-void BattlePartyTask_Start(BattlePartyContext *context)
-{
+void BattlePartyTask_Start(BattlePartyContext *context) {
     BattleParty *battleParty;
 
     if (context->selectedPartyIndex > 5) {
@@ -315,8 +314,7 @@ void BattlePartyTask_Start(BattlePartyContext *context)
     battleParty->battlerSlot = BattleSystem_BattlerSlot(context->battleSystem, context->battler);
 }
 
-static void BattlePartyTask_Tick(SysTask *task, void *taskParam)
-{
+static void BattlePartyTask_Tick(SysTask *task, void *taskParam) {
     BattleParty *battleParty = (BattleParty *)taskParam;
 
     switch (battleParty->currentState) {
@@ -410,8 +408,7 @@ static void BattlePartyTask_Tick(SysTask *task, void *taskParam)
     ov13_0222601C(battleParty);
 }
 
-static u8 BattlePartyTask_Initialize(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_Initialize(BattleParty *battleParty) {
     u8 nextState;
 
     G2S_BlendNone();
@@ -457,8 +454,7 @@ static u8 BattlePartyTask_Initialize(BattleParty *battleParty)
     return nextState;
 }
 
-static u8 BattlePartyTask_PartyPokemonScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_PartyPokemonScreen(BattleParty *battleParty) {
     if (PaletteData_GetSelectedBuffersMask(battleParty->palette) != 0) {
         return TASK_STATE_PARTY_POKEMON_SCREEN;
     }
@@ -487,8 +483,7 @@ static u8 BattlePartyTask_PartyPokemonScreen(BattleParty *battleParty)
     return TASK_STATE_PARTY_POKEMON_SCREEN;
 }
 
-static u8 PartyUseItemScreen(BattleParty *battleParty)
-{
+static u8 PartyUseItemScreen(BattleParty *battleParty) {
     BattlePartyContext *context = battleParty->context;
 
     if (context->selectedPartyIndex == 0 && context->embargoRemainingTurns[0] != 0 || context->selectedPartyIndex == 1 && context->embargoRemainingTurns[1] != 0) {
@@ -534,8 +529,7 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
     return TASK_STATE_AWAITING_TEXT_FINISH;
 }
 
-static u8 BattlePartyTask_SelectPokemonScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SelectPokemonScreen(BattleParty *battleParty) {
     enum SelectPokemonScreenButton selectPokemonScreenButtonPressed = CheckSelectPokemonScreenButtonsPressed(battleParty);
 
     switch (selectPokemonScreenButtonPressed) {
@@ -577,8 +571,7 @@ static u8 BattlePartyTask_SelectPokemonScreen(BattleParty *battleParty)
     return TASK_STATE_SELECT_POKEMON_SCREEN;
 }
 
-static u8 BattlePartyTask_PokemonSummaryScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_PokemonSummaryScreen(BattleParty *battleParty) {
     enum PokemonSummaryScreenButton pokemonSummaryScreenButtonPressed = CheckPokemonSummaryScreenButtonsPressed(battleParty);
 
     switch (pokemonSummaryScreenButtonPressed) {
@@ -624,8 +617,7 @@ static u8 BattlePartyTask_PokemonSummaryScreen(BattleParty *battleParty)
     return TASK_STATE_POKEMON_SUMMARY_SCREEN;
 }
 
-static u8 BattlePartyTask_PokemonMovesScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_PokemonMovesScreen(BattleParty *battleParty) {
     enum PokemonMovesScreenButton pokemonMovesScreenButtonPressed = CheckPokemonMovesScreenButtonsPressed(battleParty);
 
     switch (pokemonMovesScreenButtonPressed) {
@@ -685,8 +677,7 @@ static u8 BattlePartyTask_PokemonMovesScreen(BattleParty *battleParty)
     return TASK_STATE_POKEMON_MOVES_SCREEN;
 }
 
-static u8 BattlePartyTask_MoveSummaryScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_MoveSummaryScreen(BattleParty *battleParty) {
     enum MoveSummaryScreenButton moveSummaryScreenButtonPressed = CheckMoveSummaryScreenButtonsPressed(battleParty);
 
     switch (moveSummaryScreenButtonPressed) {
@@ -711,8 +702,7 @@ static u8 BattlePartyTask_MoveSummaryScreen(BattleParty *battleParty)
     return TASK_STATE_MOVE_SUMMARY_SCREEN;
 }
 
-static u8 BattlePartyTask_LearnMoveScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_LearnMoveScreen(BattleParty *battleParty) {
     int learnMoveScreenButtonPressed = CheckTouchRectIsPressed(battleParty, sLearnMoveScreenTouchRects);
 
     if (learnMoveScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -759,8 +749,7 @@ static u8 BattlePartyTask_LearnMoveScreen(BattleParty *battleParty)
     return TASK_STATE_LEARN_MOVE_SCREEN;
 }
 
-static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty) {
     int confirmLearnMovesScreenButtonPressed = CheckTouchRectIsPressed(battleParty, sConfirmLearnMoveScreenTouchRects);
 
     if (confirmLearnMovesScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -820,8 +809,7 @@ static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty)
     return TASK_STATE_CONFIRM_LEARN_MOVE_SCREEN;
 }
 
-static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty) {
     BattlePartyContext *context = battleParty->context;
     int restoreMovePPScreenButtonPressed = CheckTouchRectIsPressed(battleParty, sRestoreMovePPScreenTouchRects);
 
@@ -870,38 +858,32 @@ static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
     return TASK_STATE_RESTORE_MOVE_PP_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupPartyPokemonScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupPartyPokemonScreen(BattleParty *battleParty) {
     ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_PARTY_POKEMON);
     return TASK_STATE_PARTY_POKEMON_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupSelectPokemonScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupSelectPokemonScreen(BattleParty *battleParty) {
     ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_SELECT_POKEMON);
     return TASK_STATE_SELECT_POKEMON_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupPokemonSummaryScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupPokemonSummaryScreen(BattleParty *battleParty) {
     ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_POKEMON_SUMMARY);
     return TASK_STATE_POKEMON_SUMMARY_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupPokemonMovesScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupPokemonMovesScreen(BattleParty *battleParty) {
     ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_POKEMON_MOVES);
     return TASK_STATE_POKEMON_MOVES_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupMoveSummaryScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupMoveSummaryScreen(BattleParty *battleParty) {
     ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_MOVE_SUMMARY);
     return TASK_STATE_MOVE_SUMMARY_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupLearnMoveScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupLearnMoveScreen(BattleParty *battleParty) {
     if (battleParty->displayingContestStats == FALSE) {
         ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_LEARN_MOVE);
     } else {
@@ -911,8 +893,7 @@ static u8 BattlePartyTask_SetupLearnMoveScreen(BattleParty *battleParty)
     return TASK_STATE_LEARN_MOVE_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupConfirmLearnMoveScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupConfirmLearnMoveScreen(BattleParty *battleParty) {
     ov13_022252E8(battleParty);
 
     if (battleParty->displayingContestStats == FALSE) {
@@ -924,8 +905,7 @@ static u8 BattlePartyTask_SetupConfirmLearnMoveScreen(BattleParty *battleParty)
     return TASK_STATE_CONFIRM_LEARN_MOVE_SCREEN;
 }
 
-static u8 BattlePartyTask_SetupRestoreMovePPScreen(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_SetupRestoreMovePPScreen(BattleParty *battleParty) {
     ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_RESTORE_MOVE_PP);
 
     if (Item_LoadParam(battleParty->context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE_ALL, battleParty->context->heapID) != FALSE) {
@@ -935,8 +915,7 @@ static u8 BattlePartyTask_SetupRestoreMovePPScreen(BattleParty *battleParty)
     return TASK_STATE_RESTORE_MOVE_PP_SCREEN;
 }
 
-static u8 BattlePartyTask_RefreshPokemonDetailsScreens(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_RefreshPokemonDetailsScreens(BattleParty *battleParty) {
     ov13_02224B7C(battleParty, battleParty->currentScreen);
     ov13_02221BF8(battleParty, battleParty->currentScreen);
     ov13_022260EC(battleParty, battleParty->currentScreen);
@@ -949,21 +928,18 @@ static u8 BattlePartyTask_RefreshPokemonDetailsScreens(BattleParty *battleParty)
     return TASK_STATE_POKEMON_MOVES_SCREEN;
 }
 
-static u8 BattlePartyTask_DisplayCantSwitchMessage(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_DisplayCantSwitchMessage(BattleParty *battleParty) {
     BattlePartyText_DisplayMessage(battleParty);
     battleParty->queuedState = TASK_STATE_CLEAR_ERROR_MESSAGE;
     return TASK_STATE_AWAITING_TEXT_FINISH;
 }
 
-static u8 BattlePartyTask_ClearErrorMessage(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_ClearErrorMessage(BattleParty *battleParty) {
     Window_EraseMessageBox(&battleParty->messageBoxWindows[1], FALSE);
     return TASK_STATE_SELECT_POKEMON_SCREEN;
 }
 
-static u8 BattlePartyTask_AwaitingTextFinish(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_AwaitingTextFinish(BattleParty *battleParty) {
     if (Text_IsPrinterActive(battleParty->textPrinterID) == FALSE) {
         return TASK_STATE_AWAITING_INPUT;
     }
@@ -971,8 +947,7 @@ static u8 BattlePartyTask_AwaitingTextFinish(BattleParty *battleParty)
     return TASK_STATE_AWAITING_TEXT_FINISH;
 }
 
-static u8 BattlePartyTask_AwaitingInput(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_AwaitingInput(BattleParty *battleParty) {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || TouchScreen_Tapped() == TRUE) {
         return battleParty->queuedState;
     }
@@ -980,8 +955,7 @@ static u8 BattlePartyTask_AwaitingInput(BattleParty *battleParty)
     return TASK_STATE_AWAITING_INPUT;
 }
 
-static u8 BattlePartyTask_ScreenTransition(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_ScreenTransition(BattleParty *battleParty) {
     if (battleParty->unk_1F9F_7 == 0) {
         return battleParty->queuedState;
     }
@@ -989,8 +963,7 @@ static u8 BattlePartyTask_ScreenTransition(BattleParty *battleParty)
     return TASK_STATE_SCREEN_TRANSITION;
 }
 
-static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty) {
     BattlePartyContext *context = battleParty->context;
 
     switch (battleParty->useItemState) {
@@ -1052,8 +1025,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
     return TASK_STATE_USE_RESTORATION_ITEM;
 }
 
-static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty) {
     BattlePartyContext *context = battleParty->context;
     u32 i;
 
@@ -1104,14 +1076,12 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
     return TASK_STATE_USE_ALL_MOVES_PP_RESTORATION_ITEM;
 }
 
-static u8 BattlePartyTask_Exit(BattleParty *battleParty)
-{
+static u8 BattlePartyTask_Exit(BattleParty *battleParty) {
     PaletteData_StartFade(battleParty->palette, (0x2 | 0x8), 0xffff, -8, 0, 16, 0);
     return TASK_STATE_FINISH_TASK;
 }
 
-static BOOL BattlePartyTask_FinishTask(SysTask *task, BattleParty *battleParty)
-{
+static BOOL BattlePartyTask_FinishTask(SysTask *task, BattleParty *battleParty) {
     if (PaletteData_GetSelectedBuffersMask(battleParty->palette) != 0) {
         return FALSE;
     }
@@ -1132,8 +1102,7 @@ static BOOL BattlePartyTask_FinishTask(SysTask *task, BattleParty *battleParty)
     return TRUE;
 }
 
-static void InitializeBackground(BattleParty *battleParty)
-{
+static void InitializeBackground(BattleParty *battleParty) {
     {
         GraphicsModes graphicsMode = {
             GX_DISPMODE_GRAPHICS,
@@ -1229,8 +1198,7 @@ static void InitializeBackground(BattleParty *battleParty)
     Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_0);
 }
 
-static void CleanupBackground(BgConfig *battleParty)
-{
+static void CleanupBackground(BgConfig *battleParty) {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, FALSE);
     Bg_FreeTilemapBuffer(battleParty, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(battleParty, BG_LAYER_SUB_1);
@@ -1238,8 +1206,7 @@ static void CleanupBackground(BgConfig *battleParty)
     Bg_FreeTilemapBuffer(battleParty, BG_LAYER_SUB_3);
 }
 
-static void LoadGraphicsData(BattleParty *battleParty)
-{
+static void LoadGraphicsData(BattleParty *battleParty) {
     NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, battleParty->context->heapID);
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 22, battleParty->background, BG_LAYER_SUB_3, 0, 0, FALSE, battleParty->context->heapID);
 
@@ -1280,24 +1247,21 @@ static void LoadGraphicsData(BattleParty *battleParty)
     Heap_Free(paletteData);
 }
 
-static void InitializeMessageLoader(BattleParty *battleParty)
-{
+static void InitializeMessageLoader(BattleParty *battleParty) {
     battleParty->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_PARTY, battleParty->context->heapID);
     battleParty->unk_1FA0 = sub_0200C440(15, 14, 0, battleParty->context->heapID);
     battleParty->stringTemplate = StringTemplate_Default(battleParty->context->heapID);
     battleParty->strbuf = Strbuf_Init(512, battleParty->context->heapID);
 }
 
-static void CleanupMessageLoader(BattleParty *battleParty)
-{
+static void CleanupMessageLoader(BattleParty *battleParty) {
     MessageLoader_Free(battleParty->messageLoader);
     sub_0200C560(battleParty->unk_1FA0);
     StringTemplate_Free(battleParty->stringTemplate);
     Strbuf_Free(battleParty->strbuf);
 }
 
-static void InitialisePartyPokemon(BattleParty *battleParty)
-{
+static void InitialisePartyPokemon(BattleParty *battleParty) {
     u16 i, l;
 
     for (i = 0; i < Party_GetCurrentCount(battleParty->context->party); i++) {
@@ -1367,8 +1331,7 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
     }
 }
 
-static BOOL CheckPartyPokemonScreenButtonPressed(BattleParty *battleParty)
-{
+static BOOL CheckPartyPokemonScreenButtonPressed(BattleParty *battleParty) {
     enum PartyPokemonScreenButton buttonPressed = CheckTouchRectIsPressed(battleParty, sPartyPokemonScreenTouchRects);
 
     if (buttonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -1396,8 +1359,7 @@ static BOOL CheckPartyPokemonScreenButtonPressed(BattleParty *battleParty)
     return FALSE;
 }
 
-static enum SelectPokemonScreenButton CheckSelectPokemonScreenButtonsPressed(BattleParty *battleParty)
-{
+static enum SelectPokemonScreenButton CheckSelectPokemonScreenButtonsPressed(BattleParty *battleParty) {
     int buttonPressed = CheckTouchRectIsPressed(battleParty, sSelectPokemonScreenTouchRects);
 
     if (buttonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -1415,8 +1377,7 @@ static enum SelectPokemonScreenButton CheckSelectPokemonScreenButtonsPressed(Bat
     return (u8)buttonPressed;
 }
 
-static enum PokemonSummaryScreenButton CheckPokemonSummaryScreenButtonsPressed(BattleParty *battleParty)
-{
+static enum PokemonSummaryScreenButton CheckPokemonSummaryScreenButtonsPressed(BattleParty *battleParty) {
     int buttonPressed = CheckTouchRectIsPressed(battleParty, sPokemonSummaryScreenTouchRects);
 
     if (buttonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -1434,8 +1395,7 @@ static enum PokemonSummaryScreenButton CheckPokemonSummaryScreenButtonsPressed(B
     return (u8)buttonPressed;
 }
 
-static enum PokemonMovesScreenButton CheckPokemonMovesScreenButtonsPressed(BattleParty *battleParty)
-{
+static enum PokemonMovesScreenButton CheckPokemonMovesScreenButtonsPressed(BattleParty *battleParty) {
     int buttonPressed = CheckTouchRectIsPressed(battleParty, sPokemonMovesScreenTouchRects);
 
     if (buttonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -1453,8 +1413,7 @@ static enum PokemonMovesScreenButton CheckPokemonMovesScreenButtonsPressed(Battl
     return (u8)buttonPressed;
 }
 
-static enum MoveSummaryScreenButton CheckMoveSummaryScreenButtonsPressed(BattleParty *battleParty)
-{
+static enum MoveSummaryScreenButton CheckMoveSummaryScreenButtonsPressed(BattleParty *battleParty) {
     int buttonPressed = CheckTouchRectIsPressed(battleParty, sMoveSummaryScreenTouchRects);
 
     if (buttonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -1472,13 +1431,11 @@ static enum MoveSummaryScreenButton CheckMoveSummaryScreenButtonsPressed(BattleP
     return (u8)buttonPressed;
 }
 
-static int CheckTouchRectIsPressed(BattleParty *battleParty, const TouchScreenRect *rect)
-{
+static int CheckTouchRectIsPressed(BattleParty *battleParty, const TouchScreenRect *rect) {
     return TouchScreen_CheckRectanglePressed(rect);
 }
 
-u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 partySlot)
-{
+u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 partySlot) {
     if (battleParty->partyPokemon[partySlot].species == SPECIES_NONE) {
         return FALSE;
     }
@@ -1490,8 +1447,7 @@ u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 par
     return PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE;
 }
 
-static u8 UpdateSelectedPartyIndex(BattleParty *battleParty, s32 selectedPartyIndex, s32 indexChange)
-{
+static u8 UpdateSelectedPartyIndex(BattleParty *battleParty, s32 selectedPartyIndex, s32 indexChange) {
     s32 prevPartyIndex = selectedPartyIndex;
 
     if (BattlePartyTask_CheckIf2V2Battle(battleParty) == TRUE) {
@@ -1547,8 +1503,7 @@ static u8 UpdateSelectedPartyIndex(BattleParty *battleParty, s32 selectedPartyIn
     return NO_PARTY_INDEX_CHANGE;
 }
 
-static void DrawXPBar(BattleParty *battleParty, u8 screen)
-{
+static void DrawXPBar(BattleParty *battleParty, u8 screen) {
     BattlePartyPokemon *pokemon;
     u32 expFromCurrentToNextLevel;
     u32 expTowardsNextLevel;
@@ -1591,28 +1546,24 @@ static void DrawXPBar(BattleParty *battleParty, u8 screen)
     Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_3);
 }
 
-static void DrawXPBarSegment(BattleParty *battleParty, u16 fillVal, u16 x, u16 y)
-{
+static void DrawXPBarSegment(BattleParty *battleParty, u16 fillVal, u16 x, u16 y) {
     Bg_FillTilemapRect(battleParty->background, BG_LAYER_SUB_3, fillVal, x, y, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
 }
 
-static void DrawAppealPt(BattleParty *battleParty, u16 fillVal, u8 pointSlot)
-{
+static void DrawAppealPt(BattleParty *battleParty, u16 fillVal, u8 pointSlot) {
     Bg_FillTilemapRect(battleParty->background, BG_LAYER_SUB_3, fillVal, 2 + pointSlot * 2, 14, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
     Bg_FillTilemapRect(battleParty->background, BG_LAYER_SUB_3, fillVal + 1, 3 + pointSlot * 2, 14, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
     Bg_FillTilemapRect(battleParty->background, BG_LAYER_SUB_3, fillVal + TILE_SIZE_4BPP, 2 + pointSlot * 2, 15, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
     Bg_FillTilemapRect(battleParty->background, BG_LAYER_SUB_3, fillVal + TILE_SIZE_4BPP + 1, 3 + pointSlot * 2, 15, 1, 1, TILEMAP_FILL_VAL_KEEP_PALETTE);
 }
 
-static void DrawEmptyAppealPts(BattleParty *battleParty)
-{
+static void DrawEmptyAppealPts(BattleParty *battleParty) {
     for (u16 i = 0; i < MAX_APPEAL_PTS; i++) {
         DrawAppealPt(battleParty, 293, i);
     }
 }
 
-static void DrawMoveContestStats(BattleParty *battleParty, u8 screen)
-{
+static void DrawMoveContestStats(BattleParty *battleParty, u8 screen) {
     u32 contestEffect;
     u16 i;
     u16 selectedMove;
@@ -1642,8 +1593,7 @@ static void DrawMoveContestStats(BattleParty *battleParty, u8 screen)
     Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_3);
 }
 
-static void ChangeBattlePartyScreen(BattleParty *battleParty, u8 screen)
-{
+static void ChangeBattlePartyScreen(BattleParty *battleParty, u8 screen) {
     DrawScreenBackground(battleParty, screen);
 
     Bg_ScheduleFillTilemap(battleParty->background, BG_LAYER_SUB_0, 0);
@@ -1675,8 +1625,7 @@ static const u32 ScreenBackgroundDataMemberIndexes[][2] = {
     [BATTLE_PARTY_SCREEN_CONFIRM_LEARN_MOVE_CONTEST_STATS] = { 17, 16 }
 };
 
-static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScreen screen)
-{
+static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScreen screen) {
     NNSG2dScreenData *screenData;
     void *buffer;
 
@@ -1689,8 +1638,7 @@ static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScree
     }
 }
 
-static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
-{
+static BOOL CheckCanSwitchPokemon(BattleParty *battleParty) {
     Strbuf *strbuf;
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex];
 
@@ -1748,13 +1696,11 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
     return TRUE;
 }
 
-static u8 CheckSelectedPokemonIsEgg(BattleParty *battleParty)
-{
+static u8 CheckSelectedPokemonIsEgg(BattleParty *battleParty) {
     return battleParty->partyPokemon[battleParty->context->selectedPartyIndex].isEgg != FALSE;
 }
 
-BOOL BattlePartyTask_CheckIfPartnerBattle(BattleParty *battleParty)
-{
+BOOL BattlePartyTask_CheckIfPartnerBattle(BattleParty *battleParty) {
     u32 battleType = BattleSystem_BattleType(battleParty->context->battleSystem);
 
     if (battleType != BATTLE_TYPE_AI_PARTNER
@@ -1766,8 +1712,7 @@ BOOL BattlePartyTask_CheckIfPartnerBattle(BattleParty *battleParty)
     return FALSE;
 }
 
-BOOL BattlePartyTask_CheckIf2V2Battle(BattleParty *battleParty)
-{
+BOOL BattlePartyTask_CheckIf2V2Battle(BattleParty *battleParty) {
     u32 battleType = BattleSystem_BattleType(battleParty->context->battleSystem);
 
     if (battleType != BATTLE_TYPE_AI_PARTNER
@@ -1779,8 +1724,7 @@ BOOL BattlePartyTask_CheckIf2V2Battle(BattleParty *battleParty)
     return FALSE;
 }
 
-BOOL BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(BattleParty *battleParty, u8 partySlot)
-{
+BOOL BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(BattleParty *battleParty, u8 partySlot) {
     if (BattlePartyTask_CheckIf2V2Battle(battleParty) == TRUE) {
         if (battleParty->battlerSlot == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
             if ((partySlot & 1) != 0) {
@@ -1796,8 +1740,7 @@ BOOL BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(BattleParty *battlePart
     return FALSE;
 }
 
-static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty)
-{
+static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty) {
     u16 move;
 
     if (battleParty->context->selectedMoveSlot == MOVE_TO_LEARN_SLOT) {
@@ -1809,22 +1752,19 @@ static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty)
     return Item_IsHMMove(move);
 }
 
-static void ClearMoveStats(BattleParty *battleParty)
-{
+static void ClearMoveStats(BattleParty *battleParty) {
     ManagedSprite_SetDrawFlag(battleParty->unk_1FB4[26], FALSE);
     Window_ClearAndScheduleCopyToVRAM(&battleParty->unk_206C[10]);
     Window_ClearAndScheduleCopyToVRAM(&battleParty->unk_206C[6]);
     Window_ClearAndScheduleCopyToVRAM(&battleParty->unk_206C[7]);
 }
 
-static void ClearMoveContestStats(BattleParty *battleParty)
-{
+static void ClearMoveContestStats(BattleParty *battleParty) {
     DrawEmptyAppealPts(battleParty);
     Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_3);
 }
 
-static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID)
-{
+static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID) {
     if (item != ITEM_BLUE_FLUTE && item != ITEM_RED_FLUTE && item != ITEM_YELLOW_FLUTE) {
         Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
     }

@@ -37,20 +37,17 @@ static UnkStruct_021BF370 Unk_021BF370;
 unsigned long _novlys = MAX_OVERLAYS;
 struct_overlayTable _ovly_table[MAX_OVERLAYS] = {};
 // this does nothing, but needs to be defined for GDB to refresh overlay state automatically.
-static void _ovly_debug_event(void)
-{
+static void _ovly_debug_event(void) {
 }
 
 // helper function to mark a specific overlay as unmapped.
-void UnloadOverlayGDB(const FSOverlayID overlayID)
-{
+void UnloadOverlayGDB(const FSOverlayID overlayID) {
     GF_ASSERT(overlayID < _novlys);
     _ovly_table[overlayID].mapped--;
     _ovly_debug_event();
 }
 // helper function to mark a specific overlay as mapped, and provide its RAM address and size to GDB.
-void LoadOverlayGDB(const FSOverlayID overlayID)
-{
+void LoadOverlayGDB(const FSOverlayID overlayID) {
     FSOverlayInfo overlayInfo;
 
     GF_ASSERT(overlayID < _novlys);
@@ -72,16 +69,14 @@ void LoadOverlayGDB(const FSOverlayID overlayID)
 }
 #endif // GDB_DEBUGGING
 
-static void FreeOverlayAllocation(PMiLoadedOverlay *loadedOverlays)
-{
+static void FreeOverlayAllocation(PMiLoadedOverlay *loadedOverlays) {
     GF_ASSERT(loadedOverlays->isActive == TRUE);
     GF_ASSERT(FS_UnloadOverlay(MI_PROCESSOR_ARM9, loadedOverlays->id) == TRUE);
 
     loadedOverlays->isActive = FALSE;
 }
 
-void Overlay_UnloadByID(const FSOverlayID overlayID)
-{
+void Overlay_UnloadByID(const FSOverlayID overlayID) {
     PMiLoadedOverlay *loadedOverlays = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(overlayID));
     int i;
 
@@ -96,8 +91,7 @@ void Overlay_UnloadByID(const FSOverlayID overlayID)
     }
 }
 
-int Overlay_GetLoadDestination(const FSOverlayID overlayID)
-{
+int Overlay_GetLoadDestination(const FSOverlayID overlayID) {
     FSOverlayInfo info;
     u32 v2;
 
@@ -113,8 +107,7 @@ int Overlay_GetLoadDestination(const FSOverlayID overlayID)
     return OVERLAY_REGION_MAIN;
 }
 
-BOOL Overlay_LoadByID(const FSOverlayID overlayID, enum OverlayLoadType loadType)
-{
+BOOL Overlay_LoadByID(const FSOverlayID overlayID, enum OverlayLoadType loadType) {
     BOOL result;
     u32 dmaBak = FS_DMA_NOT_USE;
     int overlayRegion;
@@ -173,8 +166,7 @@ BOOL Overlay_LoadByID(const FSOverlayID overlayID, enum OverlayLoadType loadType
     return TRUE;
 }
 
-static BOOL CanOverlayBeLoaded(const FSOverlayID overlayID)
-{
+static BOOL CanOverlayBeLoaded(const FSOverlayID overlayID) {
     u32 myStart, myEnd, theirStart, theirEnd;
     PMiLoadedOverlay *loadedOverlays;
     int i;
@@ -197,8 +189,7 @@ static BOOL CanOverlayBeLoaded(const FSOverlayID overlayID)
     return TRUE;
 }
 
-static PMiLoadedOverlay *GetLoadedOverlaysInRegion(int region)
-{
+static PMiLoadedOverlay *GetLoadedOverlaysInRegion(int region) {
     PMiLoadedOverlay *ret;
 
     switch (region) {
@@ -217,8 +208,7 @@ static PMiLoadedOverlay *GetLoadedOverlaysInRegion(int region)
     return ret;
 }
 
-static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *start, u32 *end)
-{
+static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *start, u32 *end) {
     FSOverlayInfo info;
 
     if (!FS_LoadOverlayInfo(&info, MI_PROCESSOR_ARM9, overlayID)) {
@@ -232,16 +222,14 @@ static BOOL GetOverlayRamBounds(const FSOverlayID overlayID, u32 *start, u32 *en
     return TRUE;
 }
 
-static BOOL LoadOverlayNormal(MIProcessor proc, FSOverlayID overlayID)
-{
+static BOOL LoadOverlayNormal(MIProcessor proc, FSOverlayID overlayID) {
 #ifdef GDB_DEBUGGING
     LoadOverlayGDB(overlayID);
 #endif
     return FS_LoadOverlay(proc, overlayID);
 }
 
-static BOOL LoadOverlayNoInit(MIProcessor proc, FSOverlayID overlayID)
-{
+static BOOL LoadOverlayNoInit(MIProcessor proc, FSOverlayID overlayID) {
     FSOverlayInfo info;
 
     if (!FS_LoadOverlayInfo(&info, proc, overlayID)) {
@@ -260,8 +248,7 @@ static BOOL LoadOverlayNoInit(MIProcessor proc, FSOverlayID overlayID)
     return TRUE;
 }
 
-static BOOL LoadOverlayNoInitAsync(MIProcessor proc, FSOverlayID overlayID)
-{
+static BOOL LoadOverlayNoInitAsync(MIProcessor proc, FSOverlayID overlayID) {
     FSFile file;
     FSOverlayInfo info;
 

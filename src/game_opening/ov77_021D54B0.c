@@ -89,8 +89,7 @@ static fx32 Unk_ov77_021D79A4[2] = {
     (FX32_ONE / 2) * 11
 };
 
-static void ov77_021D54B0()
-{
+static void ov77_021D54B0() {
     const int heapID = HEAP_ID_76;
 
     {
@@ -107,8 +106,7 @@ static void ov77_021D54B0()
     VramTransfer_New((3 * 2), heapID);
 }
 
-static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, const int param2, AffineSpriteListTemplate *param3, SpriteResourcesHeader *param4, int param5, int param6)
-{
+static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, const int param2, AffineSpriteListTemplate *param3, SpriteResourcesHeader *param4, int param5, int param6) {
     SpriteResourcesHeader_Init(param4, param0, param0, param0, param0, 0xffffffff, 0xffffffff, param5, param2, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
 
     {
@@ -127,13 +125,11 @@ static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, con
     }
 }
 
-const int ov77_021D555C(void)
-{
+const int ov77_021D555C(void) {
     return sizeof(UnkStruct_ov77_021D5564);
 }
 
-void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
-{
+void ov77_021D5564(UnkStruct_ov77_021D5564 *param0) {
     int i;
     const int heapID = HEAP_ID_76;
 
@@ -204,8 +200,7 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
-{
+void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0) {
     u8 v0;
 
     for (v0 = 0; v0 < 11; v0++) {
@@ -234,8 +229,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     VramTransfer_Free();
 }
 
-void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
-{
+void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0) {
     int v0;
     SpriteResourcesHeader v1;
     AffineSpriteListTemplate v2;
@@ -371,8 +365,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
     }
 }
 
-void ov77_021D5FB4(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *param1)
-{
+void ov77_021D5FB4(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *param1) {
     int v0;
     SpriteResourcesHeader v1;
     AffineSpriteListTemplate v2;
@@ -390,8 +383,7 @@ void ov77_021D5FB4(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *par
     }
 }
 
-void ov77_021D6000(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *param1)
-{
+void ov77_021D6000(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *param1) {
     int v0;
     Sprite **v1;
 
@@ -401,8 +393,7 @@ void ov77_021D6000(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *par
     }
 }
 
-void ov77_021D6020(UnkStruct_ov77_021D5564 *param0)
-{
+void ov77_021D6020(UnkStruct_ov77_021D5564 *param0) {
     SpriteList_Update(param0->unk_00);
 
     if (param0->unk_300 != NULL) {
@@ -410,20 +401,17 @@ void ov77_021D6020(UnkStruct_ov77_021D5564 *param0)
     }
 }
 
-void ov77_021D603C(UnkStruct_ov77_021D5564 *param0, const u8 param1, const u8 param2)
-{
+void ov77_021D603C(UnkStruct_ov77_021D5564 *param0, const u8 param1, const u8 param2) {
     Sprite_SetDrawFlag(param0->unk_250[param1], param2);
 }
 
-void ov77_021D6050(UnkStruct_ov77_021D5564 *param0, const u8 param1)
-{
+void ov77_021D6050(UnkStruct_ov77_021D5564 *param0, const u8 param1) {
     Sprite_SetAnimateFlag(param0->unk_250[0], param1);
     Sprite_SetAnimateFlag(param0->unk_250[2], param1);
     Sprite_SetAnimateFlag(param0->unk_250[1], param1);
 }
 
-void ov77_021D607C(UnkStruct_ov77_021D5564 *param0)
-{
+void ov77_021D607C(UnkStruct_ov77_021D5564 *param0) {
     VecFx32 v0;
 
     v0 = *Sprite_GetPosition(param0->unk_250[1]);
@@ -437,8 +425,7 @@ void ov77_021D607C(UnkStruct_ov77_021D5564 *param0)
     Sprite_SetPosition(param0->unk_250[2], &v0);
 }
 
-BOOL ov77_021D60E0(UnkStruct_ov77_021D5564 *param0, int param1)
-{
+BOOL ov77_021D60E0(UnkStruct_ov77_021D5564 *param0, int param1) {
     VecFx32 v0;
 
     if (param1 < ((47 * 30 - 15) + 15)) {
@@ -477,8 +464,7 @@ BOOL ov77_021D60E0(UnkStruct_ov77_021D5564 *param0, int param1)
     }
 }
 
-BOOL ov77_021D61B8(UnkStruct_ov77_021D5564 *param0, int param1)
-{
+BOOL ov77_021D61B8(UnkStruct_ov77_021D5564 *param0, int param1) {
     VecFx32 v0;
 
     if (param1 < (((47 * 30 - 15) + 15) + 3 * 30)) {
@@ -517,8 +503,7 @@ BOOL ov77_021D61B8(UnkStruct_ov77_021D5564 *param0, int param1)
     }
 }
 
-void ov77_021D6290(UnkStruct_ov77_021D5564 *param0, fx32 param1)
-{
+void ov77_021D6290(UnkStruct_ov77_021D5564 *param0, fx32 param1) {
     const VecFx32 *v0;
     VecFx32 v1;
     int v2, v3;
@@ -556,8 +541,7 @@ void ov77_021D6290(UnkStruct_ov77_021D5564 *param0, fx32 param1)
     Sprite_SetPosition(param0->unk_250[v3 + 1], &v1);
 }
 
-void ov77_021D636C(UnkStruct_ov77_021D5564 *param0, int param1)
-{
+void ov77_021D636C(UnkStruct_ov77_021D5564 *param0, int param1) {
     const VecFx32 *v0;
     VecFx32 v1;
 
@@ -593,8 +577,7 @@ void ov77_021D636C(UnkStruct_ov77_021D5564 *param0, int param1)
     Sprite_SetPosition(param0->unk_250[15], &v1);
 }
 
-void ov77_021D6470(UnkStruct_ov77_021D5564 *param0, int param1)
-{
+void ov77_021D6470(UnkStruct_ov77_021D5564 *param0, int param1) {
     u16 v0;
     const VecFx32 *v1;
     VecFx32 v2;
@@ -627,14 +610,12 @@ void ov77_021D6470(UnkStruct_ov77_021D5564 *param0, int param1)
     }
 }
 
-void include_data_ov77_021D79B8(void)
-{
+void include_data_ov77_021D79B8(void) {
     dummy[0];
     Unk_ov77_021D79B8[0];
 }
 
-void ov77_021D6530(UnkStruct_ov77_021D5564 *param0, const int param1)
-{
+void ov77_021D6530(UnkStruct_ov77_021D5564 *param0, const int param1) {
     u8 v0;
     VecFx32 v1;
     const int v2[3] = {

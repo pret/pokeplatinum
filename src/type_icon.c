@@ -75,77 +75,63 @@ ALIGN_4 static const u8 sMoveCategoryIconPaletteIndex[] = {
     0x0
 };
 
-u32 TypeIcon_GetChar(enum PokemonType moveType)
-{
+u32 TypeIcon_GetChar(enum PokemonType moveType) {
     GF_ASSERT(moveType < NELEMS(sMoveTypeIconIndex));
     return sMoveTypeIconIndex[moveType];
 }
 
-u32 TypeIcon_GetPlttSrc(void)
-{
+u32 TypeIcon_GetPlttSrc(void) {
     return 74;
 }
 
-u32 TypeIcon_GetCell(void)
-{
+u32 TypeIcon_GetCell(void) {
     return 242;
 }
 
-u32 TypeIcon_GetAnim(void)
-{
+u32 TypeIcon_GetAnim(void) {
     return 243;
 }
 
-u8 TypeIcon_GetPltt(enum PokemonType moveType)
-{
+u8 TypeIcon_GetPltt(enum PokemonType moveType) {
     GF_ASSERT(moveType < NELEMS(sMoveTypeIconPaletteIndex));
     return sMoveTypeIconPaletteIndex[moveType];
 }
 
-enum NarcID TypeIcon_GetNARC(void)
-{
+enum NarcID TypeIcon_GetNARC(void) {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
-void TypeIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, enum PokemonType moveType, u32 resourceID)
-{
+void TypeIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, enum PokemonType moveType, u32 resourceID) {
     SpriteSystem_LoadCharResObj(spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetChar(moveType), TRUE, vramType, resourceID);
 }
 
-void TypeIcon_LoadPlttSrc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, u32 resourceID)
-{
+void TypeIcon_LoadPlttSrc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, u32 resourceID) {
     SpriteSystem_LoadPlttResObj(spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), FALSE, PLTT_3, vramType, resourceID);
 }
 
-void TypeIcon_LoadPltt(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, u32 resourceID)
-{
+void TypeIcon_LoadPltt(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, u32 resourceID) {
     SpriteSystem_LoadPaletteBuffer(paletteData, bufferID, spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetPlttSrc(), FALSE, PLTT_3, vramType, resourceID);
 }
 
-void TypeIcon_LoadAnim(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 cellResourceID, u32 animResourceID)
-{
+void TypeIcon_LoadAnim(SpriteSystem *spriteSys, SpriteManager *spriteMan, u32 cellResourceID, u32 animResourceID) {
     SpriteSystem_LoadCellResObj(spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetCell(), TRUE, cellResourceID);
     SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, TypeIcon_GetNARC(), TypeIcon_GetAnim(), TRUE, animResourceID);
 }
 
-void TypeIcon_UnloadChar(SpriteManager *spriteMan, u32 resourceID)
-{
+void TypeIcon_UnloadChar(SpriteManager *spriteMan, u32 resourceID) {
     SpriteManager_UnloadCharObjById(spriteMan, resourceID);
 }
 
-void TypeIcon_UnloadPlttSrc(SpriteManager *spriteMan, u32 resourceID)
-{
+void TypeIcon_UnloadPlttSrc(SpriteManager *spriteMan, u32 resourceID) {
     SpriteManager_UnloadPlttObjById(spriteMan, resourceID);
 }
 
-void TypeIcon_UnloadAnim(SpriteManager *spriteMan, u32 cellResourceID, u32 animResourceID)
-{
+void TypeIcon_UnloadAnim(SpriteManager *spriteMan, u32 cellResourceID, u32 animResourceID) {
     SpriteManager_UnloadCellObjById(spriteMan, cellResourceID);
     SpriteManager_UnloadAnimObjById(spriteMan, animResourceID);
 }
 
-ManagedSprite *TypeIcon_NewTypeIconSprite(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum PokemonType moveType, const SpriteTemplate *spriteTemplate)
-{
+ManagedSprite *TypeIcon_NewTypeIconSprite(SpriteSystem *spriteSys, SpriteManager *spriteMan, enum PokemonType moveType, const SpriteTemplate *spriteTemplate) {
     ManagedSprite *managedSprite;
     SpriteTemplate template;
 
@@ -156,39 +142,32 @@ ManagedSprite *TypeIcon_NewTypeIconSprite(SpriteSystem *spriteSys, SpriteManager
     return managedSprite;
 }
 
-void TypeIcon_DeleteSprite(ManagedSprite *managedSprite)
-{
+void TypeIcon_DeleteSprite(ManagedSprite *managedSprite) {
     Sprite_DeleteAndFreeResources(managedSprite);
 }
 
-u32 CategoryIcon_GetChar(enum MoveClass moveCat)
-{
+u32 CategoryIcon_GetChar(enum MoveClass moveCat) {
     GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconIndex));
     return sMoveCategoryIconIndex[moveCat];
 }
 
-u8 CategoryIcon_GetPltt(enum MoveClass moveCat)
-{
+u8 CategoryIcon_GetPltt(enum MoveClass moveCat) {
     GF_ASSERT(moveCat < NELEMS(sMoveCategoryIconPaletteIndex));
     return sMoveCategoryIconPaletteIndex[moveCat];
 }
 
-enum NarcID CategoryIcon_GetNARC(void)
-{
+enum NarcID CategoryIcon_GetNARC(void) {
     return NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ;
 }
 
-void CategoryIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, enum MoveClass moveCat, u32 resourceID)
-{
+void CategoryIcon_LoadChar(SpriteSystem *spriteSys, SpriteManager *spriteMan, NNS_G2D_VRAM_TYPE vramType, enum MoveClass moveCat, u32 resourceID) {
     SpriteSystem_LoadCharResObj(spriteSys, spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(moveCat), TRUE, vramType, resourceID);
 }
 
-void CategoryIcon_UnloadChar(SpriteManager *spriteMan, u32 resourceID)
-{
+void CategoryIcon_UnloadChar(SpriteManager *spriteMan, u32 resourceID) {
     SpriteManager_UnloadCharObjById(spriteMan, resourceID);
 }
 
-void CategoryIcon_DeleteSprite(ManagedSprite *managedSprite)
-{
+void CategoryIcon_DeleteSprite(ManagedSprite *managedSprite) {
     Sprite_DeleteAndFreeResources(managedSprite);
 }

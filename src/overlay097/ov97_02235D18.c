@@ -136,8 +136,7 @@ GBASaveSlot *sGBASaveSlot;
 static int Unk_ov97_0223F43C = 0;
 static int Unk_ov97_0223F444;
 
-static BOOL ov97_02235D18()
-{
+static BOOL ov97_02235D18() {
     if (CTRDG_IdentifyAgbBackup(CTRDG_BACKUP_TYPE_FLASH_1M) != 0) {
         return FALSE;
     }
@@ -145,8 +144,7 @@ static BOOL ov97_02235D18()
     return TRUE;
 }
 
-int ov97_02235D2C(void *param0)
-{
+int ov97_02235D2C(void *param0) {
     sGBASaveSlot = (GBASaveSlot *)param0;
 
     if (sLoadedGBACartInfo != NULL) {
@@ -179,23 +177,19 @@ int ov97_02235D2C(void *param0)
     return 0;
 }
 
-void ResetLoadedGBACartInfo(void)
-{
+void ResetLoadedGBACartInfo(void) {
     sLoadedGBACartInfo = NULL;
 }
 
-int GBACart_GetAGBGameType()
-{
+int GBACart_GetAGBGameType() {
     return sLoadedGBACartInfo->gameType;
 }
 
-int GBACart_GetLanguage()
-{
+int GBACart_GetLanguage() {
     return sLoadedGBACartInfo->language;
 }
 
-static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1)
-{
+static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1) {
     u32 agbGameCode;
 
     sLoadedGBACartInfo = NULL;
@@ -257,8 +251,7 @@ static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1)
     return 0;
 }
 
-static u16 ov97_02235E7C(u32 *param0, u16 param1)
-{
+static u16 ov97_02235E7C(u32 *param0, u16 param1) {
     u16 v0;
     u32 v1 = 0;
 
@@ -270,13 +263,11 @@ static u16 ov97_02235E7C(u32 *param0, u16 param1)
     return (u16)(((v1 >> 16) & 0xffff) + (v1 & 0xffff));
 }
 
-static void ov97_02235EAC(int param0, void *param1)
-{
+static void ov97_02235EAC(int param0, void *param1) {
     CTRDG_ReadAgbFlash((u16)param0, 0, param1, 0x1000);
 }
 
-static u16 ov97_02235EC0(int param0)
-{
+static u16 ov97_02235EC0(int param0) {
     if (param0 == 0) {
         return (u16)(Unk_ov97_0223F450.saveBlock2Size);
     }
@@ -292,8 +283,7 @@ static u16 ov97_02235EC0(int param0)
     return 0xf80;
 }
 
-static void *GetGBASaveSectorById(int gbaSectorId)
-{
+static void *GetGBASaveSectorById(int gbaSectorId) {
     if (gbaSectorId == GBA_SECTOR_ID_SAVEBLOCK2) {
         return &(sGBASaveSlot->saveBlock2[0]);
     }
@@ -309,8 +299,7 @@ static void *GetGBASaveSectorById(int gbaSectorId)
     return NULL;
 }
 
-static u16 ov97_02235F4C(int param0, void *param1, u32 *param2)
-{
+static u16 ov97_02235F4C(int param0, void *param1, u32 *param2) {
     u32 v0 = 0;
     u16 v1 = 0;
     u16 v2;
@@ -346,8 +335,7 @@ static u16 ov97_02235F4C(int param0, void *param1, u32 *param2)
     }
 }
 
-static u16 ov97_02235FFC(void *param0, int *param1, u32 *param2)
-{
+static u16 ov97_02235FFC(void *param0, int *param1, u32 *param2) {
     u16 v0, v1;
     u32 v2, v3;
 
@@ -416,8 +404,7 @@ static u16 ov97_02235FFC(void *param0, int *param1, u32 *param2)
 static int Unk_ov97_0223F438;
 static u32 Unk_ov97_0223F448;
 
-int ov97_022360D8()
-{
+int ov97_022360D8() {
     u16 v0 = ov97_02235FFC((void *)sGBASaveSlot->unk_00, &Unk_ov97_0223F438, &Unk_ov97_0223F448);
 
     if (v0 != 0x1) {
@@ -468,8 +455,7 @@ int ov97_022360D8()
 int Unk_ov97_0223EC00 = -1;
 static int Unk_ov97_0223F44C = 0;
 
-static void ov97_022361B0(int param0)
-{
+static void ov97_022361B0(int param0) {
     UnkStruct_ov97_02235F4C *v0 = (UnkStruct_ov97_02235F4C *)sGBASaveSlot->unk_00;
 
     Unk_ov97_0223F44C = 1;
@@ -488,8 +474,7 @@ static void ov97_022361B0(int param0)
     }
 }
 
-static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0)
-{
+static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0) {
     if (param0->result == 0) {
         Unk_ov97_0223F43C++;
 
@@ -512,8 +497,7 @@ static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0)
     return 0;
 }
 
-BOOL ov97_02236280()
-{
+BOOL ov97_02236280() {
     if (Unk_ov97_0223F43C == 0) {
         if (Unk_ov97_0223F438 == 1) {
             Unk_ov97_0223EC00 = 0;
@@ -534,8 +518,7 @@ BOOL ov97_02236280()
     return 1;
 }
 
-int ov97_022362C8()
-{
+int ov97_022362C8() {
     switch (Unk_ov97_0223F44C) {
     case 2:
         ov97_022361B0(Unk_ov97_0223F43C);
@@ -552,8 +535,7 @@ int ov97_022362C8()
     }
 }
 
-int ov97_02236308(void)
-{
+int ov97_02236308(void) {
     switch (Unk_ov97_0223F44C) {
     case 2:
         return 11;
@@ -569,13 +551,11 @@ int ov97_02236308(void)
     }
 }
 
-GBAPokemonStorage *GetGBAPokemonStorage(void)
-{
+GBAPokemonStorage *GetGBAPokemonStorage(void) {
     return &(sGBASaveSlot->pokemonStorage);
 }
 
-void *GetGBASaveBlock2(void)
-{
+void *GetGBASaveBlock2(void) {
     return GetGBASaveSectorById(GBA_SECTOR_ID_SAVEBLOCK2);
 }
 

@@ -29,8 +29,7 @@
 static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId);
 static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId);
 
-void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots)
-{
+void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots) {
     activeList[NUM_SLOTS_IDX] = numTaskSlots;
     activeList[VALIDATOR_IDX] = POKETCH_TASK_LIST_VALIDATOR;
 
@@ -39,8 +38,7 @@ void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots)
     }
 }
 
-static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId)
-{
+static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId) {
     GF_ASSERT(activeList[VALIDATOR_IDX] == POKETCH_TASK_LIST_VALIDATOR);
 
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
@@ -53,8 +51,7 @@ static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId)
     return FALSE;
 }
 
-static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
-{
+static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId) {
     GF_ASSERT(activeList[VALIDATOR_IDX] == POKETCH_TASK_LIST_VALIDATOR);
 
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
@@ -67,8 +64,7 @@ static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
     GF_ASSERT(FALSE);
 }
 
-BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
-{
+BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId) {
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
         if (activeList[BASE_IDX + slot] == taskId) {
             return FALSE;
@@ -78,8 +74,7 @@ BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
     return TRUE;
 }
 
-BOOL PoketchTask_NoActiveTasks(u32 *activeList)
-{
+BOOL PoketchTask_NoActiveTasks(u32 *activeList) {
     for (u32 slot = 0; slot < activeList[NUM_SLOTS_IDX]; slot++) {
         if (activeList[BASE_IDX + slot] != POKETCH_EMPTY_TASK) {
             return FALSE;
@@ -89,8 +84,7 @@ BOOL PoketchTask_NoActiveTasks(u32 *activeList)
     return TRUE;
 }
 
-void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapID)
-{
+void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapID) {
     for (u32 slot = 0; appTasks[slot].taskId != POKETCH_EMPTY_TASK; slot++) {
         if (appTasks[slot].taskId == taskId) {
             u32 size = sizeof(PoketchTaskManager) + appTasks[slot].extraDataSize;
@@ -128,47 +122,39 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
     GF_ASSERT(FALSE);
 }
 
-void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *taskData)
-{
+void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *taskData) {
     RemoveTaskFromActiveList(activeList, taskData->taskId);
 
     SysTask_Done(taskData->task);
     Heap_Free(taskData);
 }
 
-void *PoketchTask_GetTaskData(PoketchTaskManager *taskMan)
-{
+void *PoketchTask_GetTaskData(PoketchTaskManager *taskMan) {
     return taskMan->taskData;
 }
 
-const void *PoketchTask_GetConstTaskData(PoketchTaskManager *taskMan)
-{
+const void *PoketchTask_GetConstTaskData(PoketchTaskManager *taskMan) {
     return taskMan->constTaskData;
 }
 
-void *PoketchTask_GetExtraData(PoketchTaskManager *taskMan)
-{
+void *PoketchTask_GetExtraData(PoketchTaskManager *taskMan) {
     return taskMan->extraData;
 }
 
-u32 PoketchTask_GetState(PoketchTaskManager *taskMan)
-{
+u32 PoketchTask_GetState(PoketchTaskManager *taskMan) {
     return taskMan->poketchTaskState;
 }
 
-void PoketchTask_IncrementState(PoketchTaskManager *taskMan)
-{
+void PoketchTask_IncrementState(PoketchTaskManager *taskMan) {
     taskMan->poketchTaskState++;
 }
 
-void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state)
-{
+void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state) {
     taskMan->poketchTaskState = state;
 }
 
 // Used by OV28
-void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
-{
+void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6) {
     param6 <<= FX32_SHIFT;
     tileBuffer += ((param3 * param2) + param1);
     tileBuffer[0] = param6 | param4;
@@ -177,8 +163,7 @@ void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 para
     tileBuffer[param3 + 1] = param6 | (param4 + param5 + 1);
 }
 
-void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEntries)
-{
+void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEntries) {
     u16 *activePalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
     if (activePalette) {
@@ -207,8 +192,7 @@ void PoketchTask_MapToActivePaletteFromLuminance(u16 *rawData, u32 numPaletteEnt
     }
 }
 
-void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
-{
+void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset) {
     u16 *activePalette = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, PALETTE_SIZE_BYTES);
 
     if (activePalette) {
@@ -232,8 +216,7 @@ void PoketchTask_FillPaletteFromActivePaletteSlot(u32 slot, u32 offset)
     }
 }
 
-void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset)
-{
+void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset) {
     void *nclrBuffer;
     NNSG2dPaletteData *palette;
 
@@ -247,8 +230,7 @@ void PoketchTask_LoadPokemonIconLuminancePalette(u32 offset)
     }
 }
 
-void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIcons, BOOL isLarge)
-{
+void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIcons, BOOL isLarge) {
     static const u16 iconSize[2] = { 512, 1024 };
     static const u16 readSize[2] = { 640, 1152 };
     u8 *ncgrFile = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, readSize[isLarge]);
@@ -274,8 +256,7 @@ void PoketchTask_LoadPokemonIcons(u32 offset, const u32 *iconIdxList, u32 numIco
 }
 
 // Only ever used by unused poketch apps OV38, OV51, OV55
-void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer)
-{
+void ov25_02255440(BgConfig *bgConfig, u32 digit, u32 bgLayer) {
     u16 bgSrc[4];
     u32 tensDigit;
 

@@ -36,8 +36,7 @@ const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
     { 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
 };
 
-UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *param1, u8 *param2, short param3, int heapID)
-{
+UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *param1, u8 *param2, short param3, int heapID) {
     UnkStruct_ov80_021D2C1C *v0;
     UnkStruct_ov80_021D2C5C *v1;
     const UnkStruct_ov80_021D2C5C_sub1 *v2;
@@ -83,8 +82,7 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *para
     return v0;
 }
 
-void ov80_021D2C1C(UnkStruct_ov80_021D2C1C *param0)
-{
+void ov80_021D2C1C(UnkStruct_ov80_021D2C1C *param0) {
     UnkStruct_ov80_021D2C5C *v0;
     short v1;
 
@@ -98,8 +96,7 @@ void ov80_021D2C1C(UnkStruct_ov80_021D2C1C *param0)
     Heap_Free(param0);
 }
 
-UnkStruct_ov80_021D2C5C *ov80_021D2C5C(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3)
-{
+UnkStruct_ov80_021D2C5C *ov80_021D2C5C(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3) {
     UnkStruct_ov80_021D2C5C *v0;
     short v1, v2;
 
@@ -134,8 +131,7 @@ UnkStruct_ov80_021D2C5C *ov80_021D2C5C(UnkStruct_ov80_021D2C1C *param0, int para
     return NULL;
 }
 
-int ov80_021D2CC0(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3)
-{
+int ov80_021D2CC0(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3) {
     UnkStruct_ov80_021D2C5C *v0;
     short v1, v2 = 0;
 
@@ -167,8 +163,7 @@ int ov80_021D2CC0(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int p
     return 1;
 }
 
-void ov80_021D2D28(UnkStruct_ov80_021D2C1C *param0, int param1)
-{
+void ov80_021D2D28(UnkStruct_ov80_021D2C1C *param0, int param1) {
     short v0;
     UnkStruct_ov80_021D2C5C *v1;
 
@@ -190,8 +185,7 @@ void ov80_021D2D28(UnkStruct_ov80_021D2C1C *param0, int param1)
     }
 }
 
-UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int heapID)
-{
+UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int heapID) {
     FSFile v0;
     int v1, v2;
     int v3;
@@ -227,14 +221,12 @@ UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int heapID)
     return v4;
 }
 
-void ov80_021D2E10(UnkStruct_ov80_021D2E10 *param0)
-{
+void ov80_021D2E10(UnkStruct_ov80_021D2E10 *param0) {
     Heap_Free(param0->unk_04);
     Heap_Free(param0);
 }
 
-UnkStruct_ov80_021D2AF4 *ov80_021D2E24(UnkStruct_ov80_021D2E10 *param0, int param1, int param2, u16 param3)
-{
+UnkStruct_ov80_021D2AF4 *ov80_021D2E24(UnkStruct_ov80_021D2E10 *param0, int param1, int param2, u16 param3) {
     int v0;
     UnkStruct_ov80_021D2AF4 *v1;
 

@@ -8,18 +8,15 @@
 static void ov59_021D2A78(RecordMixedRNG *param0, int param1);
 static void ov59_021D2A34(RecordMixedRNG *param0, const RecordMixedRNG *param1);
 
-u32 ov59_021D2A2C(RecordMixedRNG *param0)
-{
+u32 ov59_021D2A2C(RecordMixedRNG *param0) {
     return sizeof(RecordMixedRNG);
 }
 
-void *ov59_021D2A30(RecordMixedRNG *param0)
-{
+void *ov59_021D2A30(RecordMixedRNG *param0) {
     return &param0[1];
 }
 
-static void ov59_021D2A34(RecordMixedRNG *param0, const RecordMixedRNG *param1)
-{
+static void ov59_021D2A34(RecordMixedRNG *param0, const RecordMixedRNG *param1) {
     int v0;
 
     for (v0 = 5; v0 > 2; v0--) {
@@ -29,8 +26,7 @@ static void ov59_021D2A34(RecordMixedRNG *param0, const RecordMixedRNG *param1)
     param0[2] = *param1;
 }
 
-static void ov59_021D2A78(RecordMixedRNG *param0, int param1)
-{
+static void ov59_021D2A78(RecordMixedRNG *param0, int param1) {
     int v0;
     RecordMixedRNG *v1;
 
@@ -46,8 +42,7 @@ static void ov59_021D2A78(RecordMixedRNG *param0, int param1)
     v1->playerName[0] = 0xffff;
 }
 
-void ov59_021D2AC4(int param0, int param1, RecordMixedRNG *param2, const void **param3)
-{
+void ov59_021D2AC4(int param0, int param1, RecordMixedRNG *param2, const void **param3) {
     int v0, v1;
     RecordMixedRNG *v2;
 

@@ -5,8 +5,7 @@
 
 #include "constants/species.h"
 
-BOOL IsFormSymmetrical(u32 species, u32 formId)
-{
+BOOL IsFormSymmetrical(u32 species, u32 formId) {
     switch (species) {
     case SPECIES_STARYU:
     case SPECIES_ELECTABUZZ:

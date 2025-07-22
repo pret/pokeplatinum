@@ -21,8 +21,7 @@ static const CameraAngle Unk_ov70_0226D904 = {
     0x0
 };
 
-UnkStruct_ov70_02260AD4 *ov70_02260A70(u32 heapID)
-{
+UnkStruct_ov70_02260AD4 *ov70_02260A70(u32 heapID) {
     UnkStruct_ov70_02260AD4 *v0;
     VecFx32 v1;
 
@@ -37,15 +36,13 @@ UnkStruct_ov70_02260AD4 *ov70_02260A70(u32 heapID)
     return v0;
 }
 
-void ov70_02260AD4(UnkStruct_ov70_02260AD4 *param0)
-{
+void ov70_02260AD4(UnkStruct_ov70_02260AD4 *param0) {
     Camera_ClearActive();
     Camera_Delete(param0->camera);
     Heap_Free(param0);
 }
 
-void ov70_02260AEC(UnkStruct_ov70_02260AD4 *param0)
-{
+void ov70_02260AEC(UnkStruct_ov70_02260AD4 *param0) {
     if (param0->unk_04) {
         ov70_0225D054(param0->unk_04, &param0->unk_08);
 
@@ -56,26 +53,22 @@ void ov70_02260AEC(UnkStruct_ov70_02260AD4 *param0)
     Camera_ComputeViewMatrix();
 }
 
-void ov70_02260B18(UnkStruct_ov70_02260AD4 *param0, fx32 param1, fx32 param2, fx32 param3)
-{
+void ov70_02260B18(UnkStruct_ov70_02260AD4 *param0, fx32 param1, fx32 param2, fx32 param3) {
     param0->unk_08.x = param1;
     param0->unk_08.y = param2;
     param0->unk_08.z = param3;
 }
 
-void ov70_02260B20(UnkStruct_ov70_02260AD4 *param0, fx32 param1, fx32 param2, fx32 param3)
-{
+void ov70_02260B20(UnkStruct_ov70_02260AD4 *param0, fx32 param1, fx32 param2, fx32 param3) {
     param0->unk_08.x = param1 + (FX32_CONST(8));
     param0->unk_08.y = param2;
     param0->unk_08.z = param3 + (-FX32_CONST(32));
 }
 
-void ov70_02260B38(UnkStruct_ov70_02260AD4 *param0, const UnkStruct_ov70_0225CC54 *param1)
-{
+void ov70_02260B38(UnkStruct_ov70_02260AD4 *param0, const UnkStruct_ov70_0225CC54 *param1) {
     param0->unk_04 = param1;
 }
 
-void ov70_02260B3C(UnkStruct_ov70_02260AD4 *param0)
-{
+void ov70_02260B3C(UnkStruct_ov70_02260AD4 *param0) {
     param0->unk_04 = NULL;
 }

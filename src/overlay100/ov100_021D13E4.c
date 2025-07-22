@@ -32,8 +32,7 @@ static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0);
 static void ov100_021D17B4(UnkStruct_ov100_021D1808 *param0);
 static void ov100_021D1758(Camera *camera, VecFx32 *param1);
 
-void *ov100_021D13E4(UnkStruct_ov100_021D4DD8 *param0)
-{
+void *ov100_021D13E4(UnkStruct_ov100_021D4DD8 *param0) {
     UnkStruct_ov100_021D1808 *v0 = Heap_AllocFromHeap(HEAP_ID_111, sizeof(UnkStruct_ov100_021D1808));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D1808));
@@ -76,8 +75,7 @@ void *ov100_021D13E4(UnkStruct_ov100_021D4DD8 *param0)
     return v0;
 }
 
-BOOL ov100_021D14A8(void *param0)
-{
+BOOL ov100_021D14A8(void *param0) {
     UnkStruct_ov100_021D1808 *v0 = param0;
     static const u16 v1[] = {
         210,
@@ -178,8 +176,7 @@ BOOL ov100_021D14A8(void *param0)
     return 1;
 }
 
-BOOL ov100_021D16C4(void *param0)
-{
+BOOL ov100_021D16C4(void *param0) {
     UnkStruct_ov100_021D1808 *v0 = param0;
 
     switch (v0->unk_00) {
@@ -205,8 +202,7 @@ BOOL ov100_021D16C4(void *param0)
     return 1;
 }
 
-static void ov100_021D1758(Camera *camera, VecFx32 *param1)
-{
+static void ov100_021D1758(Camera *camera, VecFx32 *param1) {
     CameraAngle v0 = { 1274, 0, 0 };
 
     Camera_InitWithTarget(param1, FX32_CONST(200), &v0, 0xa66, 0, 1, camera);
@@ -215,8 +211,7 @@ static void ov100_021D1758(Camera *camera, VecFx32 *param1)
     Camera_SetClipping(FX32_CONST(0.1), FX32_CONST(2048), camera);
 }
 
-static void ov100_021D17B4(UnkStruct_ov100_021D1808 *param0)
-{
+static void ov100_021D17B4(UnkStruct_ov100_021D1808 *param0) {
     sub_020241B4();
     Camera_ComputeViewMatrix();
 
@@ -231,8 +226,7 @@ static void ov100_021D17B4(UnkStruct_ov100_021D1808 *param0)
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 }
 
-static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
-{
+static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0) {
     NARC *v0 = param0->unk_7C4->unk_00;
     BgConfig *v1 = param0->unk_7C4->unk_0C;
     SpriteSystem *v2 = param0->unk_7C4->unk_04;
@@ -274,8 +268,7 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
     Easy3DObject_SetVisible(&param0->unk_1A4.unk_00[2].unk_00, 0);
 }
 
-static void ov100_021D1A24(UnkStruct_ov100_021D1808 *param0)
-{
+static void ov100_021D1A24(UnkStruct_ov100_021D1808 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -286,8 +279,7 @@ static void ov100_021D1A24(UnkStruct_ov100_021D1808 *param0)
     }
 }
 
-static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0)
-{
+static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0) {
     int v0;
     NARC *v1 = param0->unk_7C4->unk_00;
     BgConfig *v2 = param0->unk_7C4->unk_0C;

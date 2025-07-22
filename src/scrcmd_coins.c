@@ -16,8 +16,7 @@
 #include "script_manager.h"
 #include "trainer_info.h"
 
-BOOL ScrCmd_ShowCoins(ScriptContext *ctx)
-{
+BOOL ScrCmd_ShowCoins(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 tilemapLeft = ScriptContext_GetVar(ctx);
     u16 tilemapTop = ScriptContext_GetVar(ctx);
@@ -27,8 +26,7 @@ BOOL ScrCmd_ShowCoins(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_HideCoins(ScriptContext *ctx)
-{
+BOOL ScrCmd_HideCoins(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Window **coinWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
@@ -36,8 +34,7 @@ BOOL ScrCmd_HideCoins(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_UpdateCoinDisplay(ScriptContext *ctx)
-{
+BOOL ScrCmd_UpdateCoinDisplay(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Window **coinWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SPECIAL_CURRENCY_WINDOW);
 
@@ -45,8 +42,7 @@ BOOL ScrCmd_UpdateCoinDisplay(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetCoinsAmount(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetCoinsAmount(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 *coins = SaveData_GetCoins(saveData);
@@ -56,8 +52,7 @@ BOOL ScrCmd_GetCoinsAmount(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_AddCoins(ScriptContext *ctx)
-{
+BOOL ScrCmd_AddCoins(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 *coins = SaveData_GetCoins(saveData);
@@ -67,8 +62,7 @@ BOOL ScrCmd_AddCoins(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_SubstractCoinsFromValue(ScriptContext *ctx)
-{
+BOOL ScrCmd_SubstractCoinsFromValue(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 *coins = SaveData_GetCoins(saveData);
@@ -79,8 +73,7 @@ BOOL ScrCmd_SubstractCoinsFromValue(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_SubstractCoinsFromVar(ScriptContext *ctx)
-{
+BOOL ScrCmd_SubstractCoinsFromVar(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 *coins = SaveData_GetCoins(saveData);
@@ -92,8 +85,7 @@ BOOL ScrCmd_SubstractCoinsFromVar(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_HasCoinsFromValue(ScriptContext *ctx)
-{
+BOOL ScrCmd_HasCoinsFromValue(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     SaveData *saveData = fieldSystem->saveData;
@@ -111,8 +103,7 @@ BOOL ScrCmd_HasCoinsFromValue(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_HasCoinsFromVar(ScriptContext *ctx)
-{
+BOOL ScrCmd_HasCoinsFromVar(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     SaveData *saveData = fieldSystem->saveData;
@@ -131,8 +122,7 @@ BOOL ScrCmd_HasCoinsFromVar(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CanAddCoins(ScriptContext *ctx)
-{
+BOOL ScrCmd_CanAddCoins(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     u16 *coins = SaveData_GetCoins(saveData);

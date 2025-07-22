@@ -86,8 +86,7 @@ typedef struct {
     UnkStruct_ov12_02235998 unk_3C;
 } UnkStruct_ov12_0222F464;
 
-static void ov12_0222E91C(SysTask *param0, void *param1)
-{
+static void ov12_0222E91C(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222E91C *v0 = (UnkStruct_ov12_0222E91C *)param1;
 
     switch (v0->unk_00.unk_00) {
@@ -139,8 +138,7 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_0C);
 }
 
-void ov12_0222EAA0(BattleAnimSystem *param0)
-{
+void ov12_0222EAA0(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222E91C *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222E91C));
 
     ov12_0223595C(param0, &v0->unk_00);
@@ -183,8 +181,7 @@ void ov12_0222EAA0(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222E91C, v0);
 }
 
-static void ov12_0222EC18(SysTask *param0, void *param1)
-{
+static void ov12_0222EC18(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222EC18 *v0 = (UnkStruct_ov12_0222EC18 *)param1;
 
     {
@@ -220,8 +217,7 @@ static void ov12_0222EC18(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_10);
 }
 
-void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     UnkStruct_ov12_0222EC18 *v0 = NULL;
 
     v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222EC18));
@@ -324,8 +320,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222EC18, v0);
 }
 
-static void ov12_0222EE50(SysTask *param0, void *param1)
-{
+static void ov12_0222EE50(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222EE50 *v0 = param1;
 
     switch (v0->unk_00.unk_00) {
@@ -378,8 +373,7 @@ static void ov12_0222EE50(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_00.unk_0C);
 }
 
-void ov12_0222EFB0(BattleAnimSystem *param0)
-{
+void ov12_0222EFB0(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222EE50 *v0;
     int v1;
     s16 v2, v3;
@@ -474,8 +468,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_0222F208(SysTask *param0, void *param1)
-{
+static void ov12_0222F208(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222F208 *v0 = (UnkStruct_ov12_0222F208 *)param1;
 
     switch (v0->unk_00.unk_00) {
@@ -522,8 +515,7 @@ static void ov12_0222F208(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222F2F8(BattleAnimSystem *param0)
-{
+void ov12_0222F2F8(BattleAnimSystem *param0) {
     int v0;
     UnkStruct_ov12_0222F208 *v1 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222F208));
     ov12_0223595C(param0, &v1->unk_00);
@@ -586,13 +578,11 @@ void ov12_0222F2F8(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v1->unk_00.unk_04, ov12_0222F208, v1);
 }
 
-static void ov12_0222F44C(PokemonSprite *param0, int param1, int param2, int param3, int param4)
-{
+static void ov12_0222F44C(PokemonSprite *param0, int param1, int param2, int param3, int param4) {
     PokemonSprite_SetPartialDraw(param0, param1, 80 - param3, param2, param4);
 }
 
-static void ov12_0222F464(SysTask *param0, void *param1)
-{
+static void ov12_0222F464(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222F464 *v0 = param1;
 
     switch (v0->unk_20.unk_00) {
@@ -645,8 +635,7 @@ static void ov12_0222F464(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222F5EC(BattleAnimSystem *param0)
-{
+void ov12_0222F5EC(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222F464 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222F464));
     ov12_0223595C(param0, &v0->unk_20);
 

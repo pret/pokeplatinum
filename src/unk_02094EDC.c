@@ -377,8 +377,7 @@ const UnkStruct_020F568C Unk_020F568C[] = {
     },
 };
 
-int sub_02094EDC(UnkStruct_02095C48 *param0)
-{
+int sub_02094EDC(UnkStruct_02095C48 *param0) {
     if ((param0->unk_155 == 0) || ((param0->unk_155 == 1) && (param0->unk_00.unk_10C == param0->unk_00.unk_113))) {
         return 1;
     }
@@ -386,8 +385,7 @@ int sub_02094EDC(UnkStruct_02095C48 *param0)
     return 0;
 }
 
-void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4, int param5, int param6, int param7)
-{
+void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4, int param5, int param6, int param7) {
     int v0, v1;
     u8 *v2;
     u8 v3 = 0;
@@ -519,8 +517,7 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
     Heap_Free(v9);
 }
 
-void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
-{
+void sub_020951B0(UnkStruct_02095C48 *param0, int param1) {
     int v0, v1;
     UnkStruct_020951B0 *v2;
     UnkStruct_020951B0 *v3;
@@ -600,8 +597,7 @@ void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
     Heap_Free(v2);
 }
 
-void sub_02095338(UnkStruct_02095C48 *param0)
-{
+void sub_02095338(UnkStruct_02095C48 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -612,8 +608,7 @@ void sub_02095338(UnkStruct_02095C48 *param0)
     }
 }
 
-void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int heapID)
-{
+void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int heapID) {
     int v0;
     u16 v1;
     u32 v2 = sub_02074128(param0->unk_14, param0->unk_20_12, 0);
@@ -659,8 +654,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     }
 }
 
-PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
-{
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8) {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;
     int v2, v3, v4;
@@ -680,8 +674,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
     return v1;
 }
 
-void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4)
-{
+void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4) {
     int v0, v1;
     u8 v2 = 0, v3 = 0;
     u16 v4;
@@ -759,28 +752,24 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
     Heap_Free(v6);
 }
 
-s8 sub_02095734(int param0)
-{
+s8 sub_02095734(int param0) {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
     return Unk_020F568C[param0].unk_04;
 }
 
-void sub_02095750(int param0, u32 *param1, u32 *param2)
-{
+void sub_02095750(int param0, u32 *param1, u32 *param2) {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
 
     *param1 = Unk_020F568C[param0].unk_00;
     *param2 = Unk_020F568C[param0].unk_02;
 }
 
-u32 sub_0209577C(int param0)
-{
+u32 sub_0209577C(int param0) {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
     return 46 + (param0 - 1);
 }
 
-void sub_02095790(int param0, int param1, u32 *param2, u32 *param3)
-{
+void sub_02095790(int param0, int param1, u32 *param2, u32 *param3) {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
 
     switch (param1) {
@@ -808,8 +797,7 @@ void sub_02095790(int param0, int param1, u32 *param2, u32 *param3)
     }
 }
 
-u32 sub_02095848(int param0, int param1, int param2)
-{
+u32 sub_02095848(int param0, int param1, int param2) {
     u32 v0;
 
     if (param2 == 1) {
@@ -842,8 +830,7 @@ u32 sub_02095848(int param0, int param1, int param2)
     return v0;
 }
 
-u32 sub_02095888(int param0)
-{
+u32 sub_02095888(int param0) {
     u32 v0;
 
     switch (param0) {
@@ -868,13 +855,11 @@ u32 sub_02095888(int param0)
     return v0;
 }
 
-u32 sub_020958B8(int param0)
-{
+u32 sub_020958B8(int param0) {
     return sub_020958C4(param0, 2);
 }
 
-u32 sub_020958C4(int param0, int param1)
-{
+u32 sub_020958C4(int param0, int param1) {
     u32 v0;
 
     if (param1 == 5) {
@@ -903,18 +888,15 @@ u32 sub_020958C4(int param0, int param1)
     return v0;
 }
 
-int sub_020958FC(int param0)
-{
+int sub_020958FC(int param0) {
     return 4 - param0 - 1;
 }
 
-int sub_02095904(int param0)
-{
+int sub_02095904(int param0) {
     return 4 - param0 - 1;
 }
 
-BOOL sub_0209590C(UnkStruct_02095C48 *param0)
-{
+BOOL sub_0209590C(UnkStruct_02095C48 *param0) {
     switch (param0->unk_00.unk_111) {
     case 3:
     case 5:
@@ -925,8 +907,7 @@ BOOL sub_0209590C(UnkStruct_02095C48 *param0)
     return 0;
 }
 
-int sub_02095928(UnkStruct_02095C48 *param0, int param1)
-{
+int sub_02095928(UnkStruct_02095C48 *param0, int param1) {
     int v0, v1, v2;
     const u16 *v3;
     const u16 v4[][8] = {
@@ -957,8 +938,7 @@ int sub_02095928(UnkStruct_02095C48 *param0, int param1)
     return v0;
 }
 
-int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
-{
+int sub_0209598C(UnkStruct_02095C48 *param0, int param1) {
     int v0, v1, v2;
     const u8 *v3;
     const u8 v4[][3] = {
@@ -995,8 +975,7 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
     return v0;
 }
 
-void sub_020959F4(int param0)
-{
+void sub_020959F4(int param0) {
     if (param0 == 0) {
         RenderControlFlags_SetCanABSpeedUpPrint(1);
         RenderControlFlags_SetAutoScrollFlags(3);
@@ -1008,15 +987,13 @@ void sub_020959F4(int param0)
     }
 }
 
-void sub_02095A24(void)
-{
+void sub_02095A24(void) {
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 }
 
-u32 sub_02095A3C(int param0, int param1)
-{
+u32 sub_02095A3C(int param0, int param1) {
     u32 v0;
 
     switch (param1) {
@@ -1043,8 +1020,7 @@ u32 sub_02095A3C(int param0, int param1)
     return v0;
 }
 
-u32 sub_02095A74(int param0, int param1)
-{
+u32 sub_02095A74(int param0, int param1) {
     u8 v0[12];
     int v1 = 0;
     u32 v2;

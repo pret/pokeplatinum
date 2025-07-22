@@ -31,8 +31,7 @@ static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1);
 static void ov87_021D1000(UnkStruct_ov87_021D12C0 *param0);
 static void ov87_021D101C(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1, int param2);
 
-int ov87_021D0D80(ApplicationManager *appMan, int *param1)
-{
+int ov87_021D0D80(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov87_021D0D80 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_60, 16384);
@@ -54,8 +53,7 @@ int ov87_021D0D80(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov87_021D0DFC(ApplicationManager *appMan, int *param1)
-{
+int ov87_021D0DFC(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov87_021D0D80 *v0 = ApplicationManager_Data(appMan);
 
     ov87_021D1140(v0->unk_C8);
@@ -67,8 +65,7 @@ int ov87_021D0DFC(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov87_021D0E2C(ApplicationManager *appMan, int *param1)
-{
+int ov87_021D0E2C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov87_021D0D80 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_D8) {
@@ -137,13 +134,11 @@ int ov87_021D0E2C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static void ov87_021D0F38(UnkStruct_ov87_021D0D80 *param0, int param1)
-{
+static void ov87_021D0F38(UnkStruct_ov87_021D0D80 *param0, int param1) {
     param0->unk_D8 = ov87_021D11D0(param0->unk_C8, param1);
 }
 
-static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 *param0)
-{
+static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 *param0) {
     if (++(param0->unk_D4) >= param0->unk_D0) {
         param0->unk_D4 = 0;
     }
@@ -153,8 +148,7 @@ static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 *param0)
     return 1;
 }
 
-static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 *param0)
-{
+static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 *param0) {
     if (--(param0->unk_D4) < 0) {
         param0->unk_D4 = param0->unk_D0 - 1;
     }
@@ -164,8 +158,7 @@ static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 *param0)
     return 1;
 }
 
-static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1)
-{
+static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -178,8 +171,7 @@ static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1)
     ov87_021D101C(param0, param1, 0);
 }
 
-static void ov87_021D1000(UnkStruct_ov87_021D12C0 *param0)
-{
+static void ov87_021D1000(UnkStruct_ov87_021D12C0 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -188,8 +180,7 @@ static void ov87_021D1000(UnkStruct_ov87_021D12C0 *param0)
     }
 }
 
-static void ov87_021D101C(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1, int param2)
-{
+static void ov87_021D101C(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1, int param2) {
     int v0;
 
     param0->unk_00 = sub_0202E174(param1, param2);

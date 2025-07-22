@@ -20,21 +20,18 @@ static int ov22_0225936C(char *param0, int param1);
 static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4);
 static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_022596B0 *param3);
 
-void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokemonSpriteTemplate *param1)
-{
+void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokemonSpriteTemplate *param1) {
     void *v0 = LoadMemberFromNARC(param1->narcID, param1->character, 0, 14, 0);
     NNSG2dCharacterData *v1 = ov22_02255340(param0, v0, (100 + 18));
 
     PokemonSprite_Decrypt((u8 *)v1->pRawData, param1->narcID);
 }
 
-void ov22_022590C0(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4)
-{
+void ov22_022590C0(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4) {
     ov22_022590D4(param0, param1, param2, param3, param4, 0);
 }
 
-void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4, BOOL param5)
-{
+void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4, BOOL param5) {
     int v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
 
     Pokemon_BuildSpriteTemplateDP(param3, param2, 2);
@@ -81,24 +78,20 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
     param0->unk_0C = param2;
 }
 
-void ov22_022591B8(UnkStruct_020298D8 *param0)
-{
+void ov22_022591B8(UnkStruct_020298D8 *param0) {
     PokemonSprite_Delete(param0->unk_00);
     memset(param0, 0, sizeof(UnkStruct_020298D8));
 }
 
-void ov22_022591D0(UnkStruct_020298D8 *param0, int param1)
-{
+void ov22_022591D0(UnkStruct_020298D8 *param0, int param1) {
     PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_Z_CENTER, param1);
 }
 
-int ov22_022591E0(UnkStruct_020298D8 *param0)
-{
+int ov22_022591E0(UnkStruct_020298D8 *param0) {
     return PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_Z_CENTER);
 }
 
-void ov22_022591EC(UnkStruct_020298D8 *param0, int param1, int param2)
-{
+void ov22_022591EC(UnkStruct_020298D8 *param0, int param1, int param2) {
     int v0, v1;
 
     ov22_02259270(param0, &v0, &v1);
@@ -111,30 +104,25 @@ void ov22_022591EC(UnkStruct_020298D8 *param0, int param1, int param2)
     ov22_02259448(&param0->unk_04, param1, param2, v0, v1);
 }
 
-BOOL ov22_02259238(UnkStruct_020298D8 *param0)
-{
+BOOL ov22_02259238(UnkStruct_020298D8 *param0) {
     return TouchScreen_LocationHeld(&param0->unk_04);
 }
 
-BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2)
-{
+BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2) {
     return TouchScreen_IsTouchInHitTable(&param0->unk_04, param1, param2);
 }
 
-void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2)
-{
+void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2) {
     *param1 = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_X_CENTER);
     *param2 = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_Y_CENTER);
 }
 
-void ov22_02259270(UnkStruct_020298D8 *param0, int *param1, int *param2)
-{
+void ov22_02259270(UnkStruct_020298D8 *param0, int *param1, int *param2) {
     *param1 = 80;
     *param2 = 80;
 }
 
-BOOL ov22_02259278(UnkStruct_020298D8 *param0, int *param1, int *param2, NNSG2dCharacterData *param3)
-{
+BOOL ov22_02259278(UnkStruct_020298D8 *param0, int *param1, int *param2, NNSG2dCharacterData *param3) {
     int v0;
     int v1, v2;
     int v3, v4;
@@ -163,8 +151,7 @@ BOOL ov22_02259278(UnkStruct_020298D8 *param0, int *param1, int *param2, NNSG2dC
     return 0;
 }
 
-BOOL ov22_022592F0(UnkStruct_020298D8 *param0, int param1, int param2, NNSG2dCharacterData *param3)
-{
+BOOL ov22_022592F0(UnkStruct_020298D8 *param0, int param1, int param2, NNSG2dCharacterData *param3) {
     int v0;
     int v1, v2;
     int v3, v4;
@@ -193,13 +180,11 @@ BOOL ov22_022592F0(UnkStruct_020298D8 *param0, int param1, int param2, NNSG2dCha
     return 0;
 }
 
-void ov22_02259358(UnkStruct_020298D8 *param0, UnkStruct_ov22_022596B0 *param1)
-{
+void ov22_02259358(UnkStruct_020298D8 *param0, UnkStruct_ov22_022596B0 *param1) {
     *param1 = param0->unk_08;
 }
 
-static int ov22_0225936C(char *param0, int param1)
-{
+static int ov22_0225936C(char *param0, int param1) {
     int v0, v1;
     int v2;
     int v3;
@@ -220,8 +205,7 @@ static int ov22_0225936C(char *param0, int param1)
     return 80;
 }
 
-static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_022596B0 *param3)
-{
+static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_022596B0 *param3) {
     int v0, v1;
     int v2;
     int v3;
@@ -259,8 +243,7 @@ static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_0
     }
 }
 
-static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4)
-{
+static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4) {
     if ((param2 - param4) >= 0) {
         rect->rect.top = param2 - param4;
     } else {

@@ -11,8 +11,7 @@
 #include "overlay022/struct_ov22_02259560.h"
 #include "overlay022/struct_ov22_022596B0.h"
 
-void ov22_02259560(UnkStruct_ov22_02259560 *param0, int param1)
-{
+void ov22_02259560(UnkStruct_ov22_02259560 *param0, int param1) {
     if (param0->unk_04 < 3) {
         UnkStruct_ov22_02255040 *v0 = param0->unk_00;
         ov22_02254F6C(v0, param1);
@@ -22,8 +21,7 @@ void ov22_02259560(UnkStruct_ov22_02259560 *param0, int param1)
     }
 }
 
-BOOL ov22_02259578(UnkStruct_ov22_02259560 *param0, int param1, int param2)
-{
+BOOL ov22_02259578(UnkStruct_ov22_02259560 *param0, int param1, int param2) {
     if (param0->unk_04 < 3) {
         UnkStruct_ov22_02255040 *v0 = param0->unk_00;
 
@@ -45,8 +43,7 @@ BOOL ov22_02259578(UnkStruct_ov22_02259560 *param0, int param1, int param2)
     }
 }
 
-BOOL ov22_022595AC(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, NNSG2dCharacterData **param3)
-{
+BOOL ov22_022595AC(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, NNSG2dCharacterData **param3) {
     NNSG2dCharacterData *v0;
 
     if (param0->unk_04 == 0) {
@@ -80,8 +77,7 @@ BOOL ov22_022595AC(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, NN
     }
 }
 
-void ov22_022595F8(UnkStruct_ov22_02259560 *param0, int param1, int param2)
-{
+void ov22_022595F8(UnkStruct_ov22_02259560 *param0, int param1, int param2) {
     if (param0->unk_04 < 3) {
         UnkStruct_ov22_02255040 *v0 = param0->unk_00;
 
@@ -99,8 +95,7 @@ void ov22_022595F8(UnkStruct_ov22_02259560 *param0, int param1, int param2)
     }
 }
 
-void ov22_02259648(UnkStruct_ov22_02259560 *param0, int *param1, int *param2)
-{
+void ov22_02259648(UnkStruct_ov22_02259560 *param0, int *param1, int *param2) {
     if (param0->unk_04 < 3) {
         UnkStruct_ov22_02255040 *v0 = param0->unk_00;
         ov22_02254F00(v0, param1, param2);
@@ -118,8 +113,7 @@ void ov22_02259648(UnkStruct_ov22_02259560 *param0, int *param1, int *param2)
     }
 }
 
-void ov22_02259698(UnkStruct_ov22_02259560 *param0, int *param1, int *param2)
-{
+void ov22_02259698(UnkStruct_ov22_02259560 *param0, int *param1, int *param2) {
     if (param0->unk_04 < 3) {
         UnkStruct_ov22_02255040 *v0 = param0->unk_00;
         ov22_02254F30(v0, param1, param2);
@@ -129,8 +123,7 @@ void ov22_02259698(UnkStruct_ov22_02259560 *param0, int *param1, int *param2)
     }
 }
 
-void ov22_022596B0(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, int *param3, int *param4)
-{
+void ov22_022596B0(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, int *param3, int *param4) {
     if (param0->unk_04 < 3) {
         UnkStruct_ov22_02255040 *v0 = param0->unk_00;
         ov22_02254F84(v0, param1, param3);
@@ -149,8 +142,7 @@ void ov22_022596B0(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, in
     }
 }
 
-void ov22_022596EC(UnkStruct_ov22_02259560 *param0, int param1, int param2)
-{
+void ov22_022596EC(UnkStruct_ov22_02259560 *param0, int param1, int param2) {
     UnkStruct_ov22_02259560 *v0;
     int v1, v2;
 
@@ -168,8 +160,7 @@ void ov22_022596EC(UnkStruct_ov22_02259560 *param0, int param1, int param2)
     }
 }
 
-void ov22_02259724(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, int *param3, int *param4)
-{
+void ov22_02259724(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, int *param3, int *param4) {
     int v0, v1;
     int v2, v3;
     int v4, v5;
@@ -185,8 +176,7 @@ void ov22_02259724(UnkStruct_ov22_02259560 *param0, int *param1, int *param2, in
     *param4 = v2 + v0 - v6;
 }
 
-void ov22_02259780(UnkStruct_ov22_02259560 *param0, int *param1, int *param2)
-{
+void ov22_02259780(UnkStruct_ov22_02259560 *param0, int *param1, int *param2) {
     int v0, v1;
     int v2, v3;
 

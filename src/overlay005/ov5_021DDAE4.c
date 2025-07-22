@@ -22,8 +22,7 @@ typedef struct {
     int unk_00;
 } UnkStruct_ov5_021DDBC8;
 
-static BOOL ov5_021DDAE4(FieldTask *param0)
-{
+static BOOL ov5_021DDAE4(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov5_021DDBC8 *v1 = FieldTask_GetEnv(param0);
 
@@ -64,8 +63,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
     return 0;
 }
 
-void ov5_021DDBC8(FieldTask *param0)
-{
+void ov5_021DDBC8(FieldTask *param0) {
     UnkStruct_ov5_021DDBC8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov5_021DDBC8));
 
     v0->unk_00 = 0;

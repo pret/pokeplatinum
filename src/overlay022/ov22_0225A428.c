@@ -58,8 +58,7 @@ static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **pa
 static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 param2, int param3);
 static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 *param0);
 
-void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *param1, int param2)
-{
+void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *param1, int param2) {
     if (param2 & 1) {
         memset(param0, 0, sizeof(UnkStruct_ov22_0225A428));
     }
@@ -98,8 +97,7 @@ void ov22_0225A428(UnkStruct_ov22_0225A428 *param0, UnkStruct_ov22_02256BAC *par
     param0->unk_138 |= param2;
 }
 
-void ov22_0225A560(UnkStruct_ov22_0225A428 *param0)
-{
+void ov22_0225A560(UnkStruct_ov22_0225A428 *param0) {
     if (param0->unk_138 & 2) {
         ov22_0225A7B8(&param0->unk_00);
         param0->unk_138 &= ~2;
@@ -128,53 +126,44 @@ void ov22_0225A560(UnkStruct_ov22_0225A428 *param0)
     memset(param0, 0, sizeof(UnkStruct_ov22_0225A428));
 }
 
-void ov22_0225A610(UnkStruct_ov22_0225A428 *param0)
-{
+void ov22_0225A610(UnkStruct_ov22_0225A428 *param0) {
     if (param0->unk_138 & 16) {
         ov22_0225AC8C(&param0->unk_A0);
     }
 }
 
-void ov22_0225A628(UnkStruct_ov22_0225A428 *param0, int param1, int param2, int param3)
-{
+void ov22_0225A628(UnkStruct_ov22_0225A428 *param0, int param1, int param2, int param3) {
     GF_ASSERT(param0->unk_138 & 4);
     ov22_0225A7CC(param0->unk_2C, param1, param2, param3, 0, 0, TEXT_SPEED_NO_TRANSFER);
 }
 
-s32 ov22_0225A660(UnkStruct_ov22_0225A428 *param0, int param1, int param2, int param3)
-{
+s32 ov22_0225A660(UnkStruct_ov22_0225A428 *param0, int param1, int param2, int param3) {
     GF_ASSERT(param0->unk_138 & 4);
     return ov22_0225A814(param0->unk_2C, param1, param2, param3, 0, 0, param0->unk_140, &param0->unk_144);
 }
 
-void ov22_0225A6A0(UnkStruct_ov22_0225A428 *param0)
-{
+void ov22_0225A6A0(UnkStruct_ov22_0225A428 *param0) {
     Strbuf_Free(param0->unk_144);
     param0->unk_144 = NULL;
 }
 
-void ov22_0225A6B8(UnkStruct_ov22_0225A428 *param0, int param1)
-{
+void ov22_0225A6B8(UnkStruct_ov22_0225A428 *param0, int param1) {
     ov22_0225A9C8(&param0->unk_38, param1);
 }
 
-int ov22_0225A6C4(const UnkStruct_ov22_0225A428 *param0)
-{
+int ov22_0225A6C4(const UnkStruct_ov22_0225A428 *param0) {
     return param0->unk_A0.unk_1C;
 }
 
-void ov22_0225A6CC(UnkStruct_ov22_0225A428 *param0, int param1)
-{
+void ov22_0225A6CC(UnkStruct_ov22_0225A428 *param0, int param1) {
     param0->unk_A0.unk_20 = param1;
 }
 
-BOOL ov22_0225A6D4(const UnkStruct_ov22_0225A428 *param0)
-{
+BOOL ov22_0225A6D4(const UnkStruct_ov22_0225A428 *param0) {
     return ov22_0225AF34(&param0->unk_A0.unk_30);
 }
 
-static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1)
-{
+static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1) {
     UnkStruct_ov22_022599A0 v0;
 
     v0.unk_00 = param1;
@@ -193,16 +182,14 @@ static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1)
     ov22_022597BC(param0, &v0);
 }
 
-static void ov22_0225A718(BgConfig *param0, const Options *options)
-{
+static void ov22_0225A718(BgConfig *param0, const Options *options) {
     int frame = Options_Frame(options);
 
     LoadMessageBoxGraphics(param0, BG_LAYER_SUB_1, 1, 1, frame, HEAP_ID_14);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_14);
 }
 
-static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
-{
+static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7) {
     *param0 = Window_New(HEAP_ID_14, 1);
 
     Window_Init(*param0);
@@ -216,18 +203,15 @@ static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int par
     Window_CopyToVRAM(*param0);
 }
 
-static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0)
-{
+static void ov22_0225A7B8(UnkStruct_ov22_022597BC *param0) {
     ov22_02259804(param0);
 }
 
-static void ov22_0225A7C0(Window *param0)
-{
+static void ov22_0225A7C0(Window *param0) {
     Windows_Delete(param0, 1);
 }
 
-static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6)
-{
+static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6) {
     s32 v0;
 
     Window_FillTilemap(param0, 15);
@@ -237,8 +221,7 @@ static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int
     return v0;
 }
 
-static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7)
-{
+static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7) {
     s32 v0;
 
     Window_FillTilemap(param0, 15);
@@ -248,8 +231,7 @@ static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int
     return v0;
 }
 
-static s32 ov22_0225A860(Window *window, enum NarcID narcID, int bankID, int param3, int param4, int param5, TextColor param6, u32 param7)
-{
+static s32 ov22_0225A860(Window *window, enum NarcID narcID, int bankID, int param3, int param4, int param5, TextColor param6, u32 param7) {
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
     GF_ASSERT(msgLoader);
 
@@ -262,8 +244,7 @@ static s32 ov22_0225A860(Window *window, enum NarcID narcID, int bankID, int par
     return v2;
 }
 
-static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int bankID, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
-{
+static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int bankID, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8) {
     GF_ASSERT(*param8 == NULL);
 
     MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, narcID, bankID, HEAP_ID_13);
@@ -276,8 +257,7 @@ static s32 ov22_0225A8B4(Window *param0, enum NarcID narcID, int bankID, int par
     return v1;
 }
 
-static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, NARC *param4)
-{
+static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, NARC *param4) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     int v2, v3;
@@ -310,8 +290,7 @@ static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, S
     }
 }
 
-static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1)
-{
+static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1) {
     int v0;
 
     if (param0->unk_60 < param1) {
@@ -327,8 +306,7 @@ static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1)
     param0->unk_60 = param1;
 }
 
-static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1)
-{
+static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1) {
     int v0;
 
     for (v0 = 0; v0 < 20; v0++) {
@@ -338,8 +316,7 @@ static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollect
     ov22_0225AAC0(param0->unk_00, param1);
 }
 
-static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9)
-{
+static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9) {
     param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     SpriteTransfer_RequestCharAtEnd(param0[0]);
@@ -354,8 +331,7 @@ static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **pa
     param0[3] = SpriteResourceCollection_AddFrom(param1[3], param3, param7, 0, param9 + param7, 3, param2);
 }
 
-static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1)
-{
+static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1) {
     SpriteTransfer_ResetCharTransfer(param0[0]);
     SpriteTransfer_ResetPlttTransfer(param0[1]);
     SpriteResourceCollection_Remove(param1[0], param0[0]);
@@ -364,13 +340,11 @@ static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **pa
     SpriteResourceCollection_Remove(param1[3], param0[3]);
 }
 
-static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, SpriteResourcesHeader *param2, int param3)
-{
+static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, SpriteResourcesHeader *param2, int param3) {
     SpriteResourcesHeader_Init(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6)
-{
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     int v2;
@@ -410,8 +384,7 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, S
     Window_CopyToVRAM(param0->unk_18);
 }
 
-static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1)
-{
+static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1) {
     if (param0->unk_24) {
         SysTask_Done(param0->unk_24);
     }
@@ -426,8 +399,7 @@ static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollect
     memset(param0, 0, sizeof(UnkStruct_ov22_0225AB54));
 }
 
-static void ov22_0225AC8C(UnkStruct_ov22_0225AB54 *param0)
-{
+static void ov22_0225AC8C(UnkStruct_ov22_0225AB54 *param0) {
     u32 v0;
 
     ov22_0225AD5C(param0);
@@ -439,8 +411,7 @@ static void ov22_0225AC8C(UnkStruct_ov22_0225AB54 *param0)
     ov22_0225AE9C(&param0->unk_30);
 }
 
-static void ov22_0225ACBC(UnkStruct_ov22_0225AB54 *param0)
-{
+static void ov22_0225ACBC(UnkStruct_ov22_0225AB54 *param0) {
     if (param0->unk_1C != param0->unk_2C->unk_00.unk_00) {
         param0->unk_1C = param0->unk_2C->unk_00.unk_00;
 
@@ -451,8 +422,7 @@ static void ov22_0225ACBC(UnkStruct_ov22_0225AB54 *param0)
     }
 }
 
-static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0)
-{
+static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0) {
     int v0;
     int v1;
     int v2 = param0->unk_1C;
@@ -483,15 +453,13 @@ static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0)
     }
 }
 
-static void ov22_0225AD5C(UnkStruct_ov22_0225AB54 *param0)
-{
+static void ov22_0225AD5C(UnkStruct_ov22_0225AB54 *param0) {
     if ((param0->unk_20 - 1) >= 0) {
         param0->unk_20--;
     }
 }
 
-static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 param2, int param3)
-{
+static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 param2, int param3) {
     param0->unk_00 = param1;
     param0->unk_04 = param1;
     param0->unk_08 = param2 - param1;
@@ -499,8 +467,7 @@ static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 par
     param0->unk_0C = 0;
 }
 
-static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 *param0)
-{
+static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 *param0) {
     fx32 v0;
 
     v0 = FX_Mul(param0->unk_08, param0->unk_0C << FX32_SHIFT);
@@ -518,8 +485,7 @@ static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 *param0)
     return 1;
 }
 
-static void ov22_0225ADC0(UnkStruct_ov22_0225AB54 *param0, UnkStruct_ov22_0225AE9C *param1)
-{
+static void ov22_0225ADC0(UnkStruct_ov22_0225AB54 *param0, UnkStruct_ov22_0225AE9C *param1) {
     int v0;
     fx32 v1;
     fx32 v2, v3;
@@ -558,8 +524,7 @@ static void ov22_0225ADC0(UnkStruct_ov22_0225AB54 *param0, UnkStruct_ov22_0225AE
     param1->unk_00 = 1;
 }
 
-static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0)
-{
+static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0) {
     VecFx32 v0;
     VecFx32 v1;
     BOOL v2;
@@ -596,8 +561,7 @@ static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0)
     }
 }
 
-static BOOL ov22_0225AF34(const UnkStruct_ov22_0225AE9C *param0)
-{
+static BOOL ov22_0225AF34(const UnkStruct_ov22_0225AE9C *param0) {
     if (param0->unk_00 == 1) {
         return 0;
     }

@@ -51,8 +51,7 @@ static int sub_02086008(void *windowLayoutPtr);
 static int sub_02086060(void *windowLayoutPtr);
 static int sub_020860AC(void *windowLayoutPtr);
 
-static u8 sub_02084B70(u16 itemID)
-{
+static u8 sub_02084B70(u16 itemID) {
     ItemData *itemData;
     s32 itemParam;
 
@@ -220,8 +219,7 @@ static u8 sub_02084B70(u16 itemID)
     return 28;
 }
 
-static void BufferUsedItemMessage(GameWindowLayout *windowLayout, u16 param1, u32 param2)
-{
+static void BufferUsedItemMessage(GameWindowLayout *windowLayout, u16 param1, u32 param2) {
     Pokemon *mon;
     Strbuf *strBuf;
 
@@ -356,8 +354,7 @@ static void BufferUsedItemMessage(GameWindowLayout *windowLayout, u16 param1, u3
     }
 }
 
-void sub_020852B8(GameWindowLayout *windowLayout)
-{
+void sub_020852B8(GameWindowLayout *windowLayout) {
     switch (sub_02084B70(windowLayout->partyManagementData->usedItemID)) {
     case 0:
     case 28:
@@ -400,8 +397,7 @@ void sub_020852B8(GameWindowLayout *windowLayout)
     }
 }
 
-int sub_02085348(void *param0)
-{
+int sub_02085348(void *param0) {
     GameWindowLayout *windowLayout = (GameWindowLayout *)param0;
 
     if (Text_IsPrinterActive(windowLayout->textPrinterID) != 0) {
@@ -416,8 +412,7 @@ int sub_02085348(void *param0)
     return 5;
 }
 
-static int sub_02085384(void *param0)
-{
+static int sub_02085384(void *param0) {
     GameWindowLayout *windowLayout = (GameWindowLayout *)param0;
 
     Party_ApplyItemEffectsToMember(windowLayout->partyManagementData->party, windowLayout->partyManagementData->usedItemID, windowLayout->partySlot, 0, GetCurrentMapLabel(windowLayout), HEAP_ID_12);
@@ -434,8 +429,7 @@ static int sub_02085384(void *param0)
     return 5;
 }
 
-static int sub_02085424(void *windowLayoutPtr)
-{
+static int sub_02085424(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout;
     Pokemon *mon;
     u8 EVs[7];
@@ -473,8 +467,7 @@ static int sub_02085424(void *windowLayoutPtr)
     return 5;
 }
 
-static int sub_020855C4(void *windowLayoutPtr)
-{
+static int sub_020855C4(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout;
     Pokemon *mon;
     Strbuf *strBuf;
@@ -516,8 +509,7 @@ static int sub_020855C4(void *windowLayoutPtr)
     return 5;
 }
 
-static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *param0)
-{
+static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *param0) {
     GameWindowLayout *gameWindowLayout = (GameWindowLayout *)param0;
     Pokemon *mon;
     u32 curHP;
@@ -542,8 +534,7 @@ static int PokemonSummaryScreen_UpdateHPBar(GameWindowLayout *param0)
     return 5;
 }
 
-BOOL CheckItemSacredAsh(u16 itemID)
-{
+BOOL CheckItemSacredAsh(u16 itemID) {
     if (Item_LoadParam(itemID, ITEM_PARAM_REVIVE_ALL, HEAP_ID_12) != 0) {
         return TRUE;
     }
@@ -551,8 +542,7 @@ BOOL CheckItemSacredAsh(u16 itemID)
     return FALSE;
 }
 
-static u8 GetFirstFaintedMon(GameWindowLayout *windowLayout, u8 startIndex)
-{
+static u8 GetFirstFaintedMon(GameWindowLayout *windowLayout, u8 startIndex) {
     u8 partySlot;
 
     if (startIndex >= 6) {
@@ -568,8 +558,7 @@ static u8 GetFirstFaintedMon(GameWindowLayout *windowLayout, u8 startIndex)
     return 0xff;
 }
 
-int sub_02085804(GameWindowLayout *windowLayout)
-{
+int sub_02085804(GameWindowLayout *windowLayout) {
     Pokemon *mon;
     Strbuf *strBuf;
     u32 curHP;
@@ -657,8 +646,7 @@ int sub_02085804(GameWindowLayout *windowLayout)
     return 7;
 }
 
-static int sub_02085A70(void *windowLayoutPtr)
-{
+static int sub_02085A70(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout;
     Pokemon *mon;
     Strbuf *strBuf;
@@ -710,8 +698,7 @@ static int sub_02085A70(void *windowLayoutPtr)
     return 5;
 }
 
-static int sub_02085C50(void *windowLayoutPtr)
-{
+static int sub_02085C50(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout;
     Pokemon *mon;
     Strbuf *strBuf;
@@ -824,8 +811,7 @@ static int sub_02085C50(void *windowLayoutPtr)
     return 5;
 }
 
-int sub_02085EF4(GameWindowLayout *windowLayout)
-{
+int sub_02085EF4(GameWindowLayout *windowLayout) {
     Pokemon *mon;
     Strbuf *strBuf;
 
@@ -852,8 +838,7 @@ int sub_02085EF4(GameWindowLayout *windowLayout)
     return 24;
 }
 
-static int sub_02085FB4(void *windowLayoutPtr)
-{
+static int sub_02085FB4(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
 
@@ -867,8 +852,7 @@ static int sub_02085FB4(void *windowLayoutPtr)
     return 24;
 }
 
-static int sub_02086008(void *windowLayoutPtr)
-{
+static int sub_02086008(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
 
@@ -883,8 +867,7 @@ static int sub_02086008(void *windowLayoutPtr)
     return 24;
 }
 
-static int sub_02086060(void *windowLayoutPtr)
-{
+static int sub_02086060(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
 
@@ -898,8 +881,7 @@ static int sub_02086060(void *windowLayoutPtr)
     return 24;
 }
 
-static int sub_020860AC(void *windowLayoutPtr)
-{
+static int sub_020860AC(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
 
@@ -914,8 +896,7 @@ static int sub_020860AC(void *windowLayoutPtr)
     return 24;
 }
 
-u8 sub_02086104(GameWindowLayout *windowLayout, Pokemon *mon)
-{
+u8 sub_02086104(GameWindowLayout *windowLayout, Pokemon *mon) {
     u16 moveID;
     u8 moveSlot;
 
@@ -942,8 +923,7 @@ u8 sub_02086104(GameWindowLayout *windowLayout, Pokemon *mon)
     return moveSlot;
 }
 
-int sub_0208615C(GameWindowLayout *windowLayout)
-{
+int sub_0208615C(GameWindowLayout *windowLayout) {
     Pokemon *mon;
     Strbuf *strBuf;
     u32 v2;
@@ -999,8 +979,7 @@ int sub_0208615C(GameWindowLayout *windowLayout)
     return 24;
 }
 
-int sub_020862F8(GameWindowLayout *windowLayout)
-{
+int sub_020862F8(GameWindowLayout *windowLayout) {
     Pokemon *mon;
     Strbuf *strBuf;
 
@@ -1022,8 +1001,7 @@ int sub_020862F8(GameWindowLayout *windowLayout)
     return 24;
 }
 
-int sub_020863A0(GameWindowLayout *windowLayout)
-{
+int sub_020863A0(GameWindowLayout *windowLayout) {
     Pokemon *mon;
     Strbuf *strBuf;
 
@@ -1046,8 +1024,7 @@ int sub_020863A0(GameWindowLayout *windowLayout)
     return 22;
 }
 
-static int sub_02086438(void *windowLayoutPtr)
-{
+static int sub_02086438(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 59);
 
@@ -1061,8 +1038,7 @@ static int sub_02086438(void *windowLayoutPtr)
     return 24;
 }
 
-static int sub_0208648C(void *windowLayoutPtr)
-{
+static int sub_0208648C(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 55);
 
@@ -1077,8 +1053,7 @@ static int sub_0208648C(void *windowLayoutPtr)
     return 24;
 }
 
-static int sub_020864E4(void *windowLayoutPtr)
-{
+static int sub_020864E4(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 58);
 
@@ -1092,8 +1067,7 @@ static int sub_020864E4(void *windowLayoutPtr)
     return 24;
 }
 
-static int sub_02086538(void *windowLayoutPtr)
-{
+static int sub_02086538(void *windowLayoutPtr) {
     GameWindowLayout *windowLayout = windowLayoutPtr;
     Strbuf *strBuf = MessageLoader_GetNewStrbuf(windowLayout->messageLoader, 52);
 
@@ -1108,8 +1082,7 @@ static int sub_02086538(void *windowLayoutPtr)
     return 24;
 }
 
-static void TeachMove(GameWindowLayout *windowLayout, Pokemon *mon, u32 moveSlot)
-{
+static void TeachMove(GameWindowLayout *windowLayout, Pokemon *mon, u32 moveSlot) {
     u32 tempVar = windowLayout->partyManagementData->learnedMove;
     Pokemon_SetValue(mon, MON_DATA_MOVE1 + moveSlot, &tempVar);
 
@@ -1128,8 +1101,7 @@ static void TeachMove(GameWindowLayout *windowLayout, Pokemon *mon, u32 moveSlot
     }
 }
 
-static u8 BufferLearnedMoveInSlot(GameWindowLayout *windowLayout, u8 moveSlot)
-{
+static u8 BufferLearnedMoveInSlot(GameWindowLayout *windowLayout, u8 moveSlot) {
     Pokemon *mon;
     Strbuf *strBuf;
     u16 moveID;
@@ -1151,8 +1123,7 @@ static u8 BufferLearnedMoveInSlot(GameWindowLayout *windowLayout, u8 moveSlot)
     return 1;
 }
 
-void sub_020866A0(GameWindowLayout *windowLayout, u8 param1)
-{
+void sub_020866A0(GameWindowLayout *windowLayout, u8 param1) {
     MenuTemplate menuTemplate;
     u8 moveCount;
 
@@ -1187,8 +1158,7 @@ void sub_020866A0(GameWindowLayout *windowLayout, u8 param1)
     windowLayout->unk_700 = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
-int sub_02086774(GameWindowLayout *windowLayout)
-{
+int sub_02086774(GameWindowLayout *windowLayout) {
     u32 menuAction = Menu_ProcessInput(windowLayout->unk_700);
 
     switch (menuAction) {
@@ -1227,8 +1197,7 @@ int sub_02086774(GameWindowLayout *windowLayout)
     return 6;
 }
 
-void sub_020868B0(GameWindowLayout *windowLayout)
-{
+void sub_020868B0(GameWindowLayout *windowLayout) {
     Window_EraseMessageBox(&windowLayout->unk_04[32], 1);
 
     if (windowLayout->unk_704[windowLayout->partySlot].unk_0C == 0) {
@@ -1245,8 +1214,7 @@ void sub_020868B0(GameWindowLayout *windowLayout)
     windowLayout->unk_B0E = 25;
 }
 
-static u16 GetCurrentMapLabel(GameWindowLayout *windowLayout)
-{
+static u16 GetCurrentMapLabel(GameWindowLayout *windowLayout) {
     FieldSystem *fieldSystem = windowLayout->partyManagementData->fieldSystem;
     return (u16)MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
 }

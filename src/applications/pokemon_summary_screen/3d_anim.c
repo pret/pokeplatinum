@@ -134,8 +134,7 @@ static const ConditionVtxBounds sConditionRectBounds[][MAX_CONDITION_RECT_VTX] =
     },
 };
 
-void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen) {
     NNS_G3dInit();
 
     G3X_Init();
@@ -155,8 +154,7 @@ void PokemonSummaryScreen_Setup3DGfx(PokemonSummaryScreen *summaryScreen)
     G2_SetBG0Priority(2);
 }
 
-void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen) {
     if (summaryScreen->page == SUMMARY_PAGE_CONDITION) {
         sub_020241B4();
         Camera_ComputeViewMatrix();
@@ -178,16 +176,14 @@ void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void PokemonSummaryScreen_FreeCameraAndMonSprite(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_FreeCameraAndMonSprite(PokemonSummaryScreen *summaryScreen) {
     Camera_Delete(summaryScreen->monSprite.camera);
     sub_02016114(summaryScreen->monSprite.animationSys, 0);
     sub_02015FB8(summaryScreen->monSprite.animationSys);
     PokemonSpriteManager_Free(summaryScreen->monSprite.spriteManager);
 }
 
-void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen) {
     VecFx32 pos = { 0, 0, 0x10000 };
     CameraAngle angle = { 0, 0, 0 };
     fx32 distance = 0x10000;
@@ -201,8 +197,7 @@ void PokemonSummaryScreen_SetupCamera(PokemonSummaryScreen *summaryScreen)
     Camera_SetAsActive(summaryScreen->monSprite.camera);
 }
 
-static void DrawConditionRects(ConditionRectangle *rects)
-{
+static void DrawConditionRects(ConditionRectangle *rects) {
     G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 18, 20, 0);
     G3_Begin(GX_BEGIN_QUADS);
 
@@ -220,15 +215,13 @@ static void DrawConditionRects(ConditionRectangle *rects)
     G3_End();
 }
 
-static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec)
-{
+static void UpdateConditionVec(VecFx16 *currVec, VecFx16 *deltaVec) {
     currVec->x += deltaVec->x;
     currVec->y += deltaVec->y;
     currVec->z += deltaVec->z;
 }
 
-static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen)
-{
+static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen) {
     if (summaryScreen->conditionState == CONDITION_STATE_FLASH) {
         PokemonSummaryScreen_UpdateConditionFlashAnim(summaryScreen);
         return;
@@ -258,8 +251,7 @@ static void UpdateConditionRectsOrFlash(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen) {
     if (summaryScreen->page != SUMMARY_PAGE_CONDITION) {
         return;
     }
@@ -287,8 +279,7 @@ void PokemonSummaryScreen_InitConditionRects(PokemonSummaryScreen *summaryScreen
     PokemonSummaryScreen_InitMaxAndDeltaConditionRects(summaryScreen);
 }
 
-static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *outVec, u8 statValue)
-{
+static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *outVec, u8 statValue) {
     if (statValue == MAX_CONTEST_STAT) {
         *outVec = bounds->max;
     } else if (statValue == 0) {
@@ -300,15 +291,13 @@ static void SetConditionVecFromStat(const ConditionVtxBounds *bounds, VecFx16 *o
     }
 }
 
-static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx16 *outVec)
-{
+static void SetConditionVecDifference(VecFx16 *startVec, VecFx16 *endVec, VecFx16 *outVec) {
     outVec->x = FX_F32_TO_FX16(FX_FX16_TO_F32(endVec->x - startVec->x) / 4);
     outVec->y = FX_F32_TO_FX16(FX_FX16_TO_F32(endVec->y - startVec->y) / 4);
     outVec->z = FX_F32_TO_FX16(FX_FX16_TO_F32(endVec->z - startVec->z) / 4);
 }
 
-void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *summaryScreen) {
     SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_TOP_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q1].topLeft, summaryScreen->monData.cool);
     SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_TOP_RIGHT], &summaryScreen->maxRects[CONDITION_RECT_Q1].topRight, summaryScreen->monData.beauty);
     SetConditionVecFromStat(&sConditionRectBounds[CONDITION_RECT_Q1][VTX_BOTTOM_LEFT], &summaryScreen->maxRects[CONDITION_RECT_Q1].bottomRight, summaryScreen->monData.cute);
@@ -339,8 +328,7 @@ void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *su
     summaryScreen->conditionState = CONDITION_STATE_INITIAL;
 }
 
-void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen) {
     summaryScreen->monSprite.spriteManager = PokemonSpriteManager_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     void *monData = PokemonSummaryScreen_MonData(summaryScreen);
@@ -361,8 +349,7 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
     PokemonSprite_SetAttribute(summaryScreen->monSprite.sprite, MON_SPRITE_FLIP_H, summaryScreen->monSprite.flip);
 }
 
-void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen) {
     if (summaryScreen->monData.isEgg != FALSE) {
         PokeSprite_LoadAnimation(summaryScreen->narcPlPokeData, summaryScreen->monSprite.animationSys, summaryScreen->monSprite.sprite, 0, 2, summaryScreen->monSprite.flip, 0);
     } else {
@@ -371,8 +358,7 @@ void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void PokemonSummaryScreen_ChangeMonSprite(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_ChangeMonSprite(PokemonSummaryScreen *summaryScreen) {
     sub_02016114(summaryScreen->monSprite.animationSys, 0);
     PokemonSpriteManager_Free(summaryScreen->monSprite.spriteManager);
     PokemonSummaryScreen_LoadMonSprite(summaryScreen);

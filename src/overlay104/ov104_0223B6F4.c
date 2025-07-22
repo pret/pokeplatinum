@@ -59,8 +59,7 @@ static const struct {
     { 0xC8, 0x12B, 0xC8, 0x12B }
 };
 
-static int ov104_0223B6F4(u8 param0, int param1, int param2)
-{
+static int ov104_0223B6F4(u8 param0, int param1, int param2) {
     int v0, v1, v2, v3, v4;
 
     if (param0 == 0) {
@@ -91,8 +90,7 @@ static int ov104_0223B6F4(u8 param0, int param1, int param2)
     return v0;
 }
 
-void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3)
-{
+void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3) {
     int v0 = 0;
     int v1;
 
@@ -113,8 +111,7 @@ void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3)
     } while (v0 < param3);
 }
 
-u8 ov104_0223B7A8(u8 param0, BOOL param1)
-{
+u8 ov104_0223B7A8(u8 param0, BOOL param1) {
     switch (param0) {
     case 0:
     case 1:
@@ -132,8 +129,7 @@ u8 ov104_0223B7A8(u8 param0, BOOL param1)
     return 3;
 }
 
-u8 ov104_0223B7DC(u8 param0, BOOL param1)
-{
+u8 ov104_0223B7DC(u8 param0, BOOL param1) {
     switch (param0) {
     case 0:
     case 1:
@@ -151,8 +147,7 @@ u8 ov104_0223B7DC(u8 param0, BOOL param1)
     return 3;
 }
 
-FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1)
-{
+FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1) {
     int v0;
     u32 v1;
     u8 v4;
@@ -231,8 +226,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
     return v5;
 }
 
-static u32 ov104_0223B9E4(u8 param0)
-{
+static u32 ov104_0223B9E4(u8 param0) {
     switch (param0) {
     case 0:
         return (0x0 | 0x1) | 0x80;
@@ -247,13 +241,11 @@ static u32 ov104_0223B9E4(u8 param0)
     return (0x0 | 0x1) | 0x80;
 }
 
-u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 *param0)
-{
+u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 *param0) {
     return 50;
 }
 
-BOOL ov104_0223BA14(u8 param0)
-{
+BOOL ov104_0223BA14(u8 param0) {
     switch (param0) {
     case 2:
     case 3:
@@ -263,8 +255,7 @@ BOOL ov104_0223BA14(u8 param0)
     return 0;
 }
 
-void ov104_0223BA24(Party *param0)
-{
+void ov104_0223BA24(Party *param0) {
     int v0, v1, v2;
     u32 v3;
     Pokemon *mon;
@@ -290,21 +281,18 @@ void ov104_0223BA24(Party *param0)
     return;
 }
 
-void ov104_0223BA7C(UnkStruct_ov104_0223BA10 *param0, Pokemon *param1)
-{
+void ov104_0223BA7C(UnkStruct_ov104_0223BA10 *param0, Pokemon *param1) {
     Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0->saveData), 4, 0, 0, 11);
     return;
 }
 
-void ov104_0223BAA0(UnkStruct_ov104_0223BA10 *param0, Party *param1, Pokemon *param2)
-{
+void ov104_0223BAA0(UnkStruct_ov104_0223BA10 *param0, Party *param1, Pokemon *param2) {
     ov104_0223BA7C(param0, param2);
     Party_AddPokemon(param1, param2);
     return;
 }
 
-void ov104_0223BAB8(UnkStruct_ov104_0223BA10 *param0)
-{
+void ov104_0223BAB8(UnkStruct_ov104_0223BA10 *param0) {
     int v0, v1;
     u8 v2;
     Pokemon *v3;
@@ -324,8 +312,7 @@ void ov104_0223BAB8(UnkStruct_ov104_0223BA10 *param0)
     return;
 }
 
-static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 *param0)
-{
+static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 *param0) {
     u16 v0, v1;
 
     if (param0->unk_10 == 0) {
@@ -351,8 +338,7 @@ static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 *param0)
     return v0;
 }
 
-u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0)
-{
+u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0) {
     u16 v0 = param0->unk_16;
 
     if (ov104_0223BA14(param0->unk_10) == 1) {
@@ -364,8 +350,7 @@ u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0)
     return v0;
 }
 
-void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2)
-{
+void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 param2) {
     int v0;
     u16 v1[30];
 
@@ -377,8 +362,7 @@ void ov104_0223BB84(BgConfig *param0, UnkStruct_ov104_0223BA10 *param1, u32 para
     return;
 }
 
-static void ov104_0223BBC4(u16 *param0, u16 param1)
-{
+static void ov104_0223BBC4(u16 *param0, u16 param1) {
     u8 v0[10];
     u16 v1;
     u32 v2, v3, v4, v5;
@@ -406,8 +390,7 @@ static void ov104_0223BBC4(u16 *param0, u16 param1)
     return;
 }
 
-u16 ov104_0223BC24(u16 param0)
-{
+u16 ov104_0223BC24(u16 param0) {
     if (param0 >= 8) {
         return 8 - 1;
     }
@@ -415,8 +398,7 @@ u16 ov104_0223BC24(u16 param0)
     return param0;
 }
 
-void ov104_0223BC2C(BattleFrontier *frontier, u8 param1, int param2)
-{
+void ov104_0223BC2C(BattleFrontier *frontier, u8 param1, int param2) {
     u16 v0;
 
     sub_02030824(frontier, sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);

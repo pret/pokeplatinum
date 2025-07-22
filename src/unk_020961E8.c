@@ -141,8 +141,7 @@ static const CommCmdTable Unk_020F5F68[] = {
     { sub_02099510, sub_02096400, NULL }
 };
 
-void sub_020961E8(void *param0)
-{
+void sub_020961E8(void *param0) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param0;
     int v1;
     int v2 = sizeof(Unk_020F5F68) / sizeof(CommCmdTable);
@@ -154,14 +153,12 @@ void sub_020961E8(void *param0)
     }
 }
 
-void sub_020961FC(int param0, int param1, void *param2, void *param3)
-{
+void sub_020961FC(int param0, int param1, void *param2, void *param3) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     v0->unk_4A98++;
 }
 
-void sub_0209620C(int param0, int param1, void *param2, void *param3)
-{
+void sub_0209620C(int param0, int param1, void *param2, void *param3) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     u8 *v1 = (u8 *)param2;
 
@@ -174,8 +171,7 @@ void sub_0209620C(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0209621C(int param0, int param1, void *param2, void *param3)
-{
+void sub_0209621C(int param0, int param1, void *param2, void *param3) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
 
     v0->unk_4A98 = 0;
@@ -190,14 +186,12 @@ void sub_0209621C(int param0, int param1, void *param2, void *param3)
     Sound_PlayEffect(SEQ_SE_DP_F209);
 }
 
-void sub_02096264(int param0, int param1, void *param2, void *param3)
-{
+void sub_02096264(int param0, int param1, void *param2, void *param3) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     ov59_021D2204(v0, 2, 0);
 }
 
-void sub_02096274(int param0, int param1, void *param2, void *param3)
-{
+void sub_02096274(int param0, int param1, void *param2, void *param3) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     UnkStruct_02096274 v1;
     UnkStruct_02096274 *v2 = param2;
@@ -244,8 +238,7 @@ void sub_02096274(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02096360(int param0, int param1, void *param2, void *param3)
-{
+void sub_02096360(int param0, int param1, void *param2, void *param3) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     u8 v1 = *(u8 *)param2;
 
@@ -256,18 +249,15 @@ void sub_02096360(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_02096380(int param0, int param1, void *param2, void *param3)
-{
+void sub_02096380(int param0, int param1, void *param2, void *param3) {
     return;
 }
 
-void sub_02096384(int param0, int param1, void *param2, void *param3)
-{
+void sub_02096384(int param0, int param1, void *param2, void *param3) {
     return;
 }
 
-void sub_02096388(int param0, int param1, void *param2, void *param3)
-{
+void sub_02096388(int param0, int param1, void *param2, void *param3) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
 
     if (CommSys_CurNetId() != 0) {
@@ -275,8 +265,7 @@ void sub_02096388(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_020963A0(int param0, int param1, void *param2, void *param3)
-{
+void sub_020963A0(int param0, int param1, void *param2, void *param3) {
     u8 v0;
 
     if (CommSys_CurNetId() == 0) {
@@ -285,8 +274,7 @@ void sub_020963A0(int param0, int param1, void *param2, void *param3)
     }
 }
 
-static void sub_020963C0(UnkStruct_020961E8 *param0, int param1)
-{
+static void sub_020963C0(UnkStruct_020961E8 *param0, int param1) {
     {
         int v0;
         u32 *v1, v2;
@@ -304,23 +292,19 @@ static void sub_020963C0(UnkStruct_020961E8 *param0, int param1)
     CommSys_SendDataHuge(116, &param0->unk_418, sizeof(UnkStruct_ov59_021D30E0));
 }
 
-static int sub_02096400(void)
-{
+static int sub_02096400(void) {
     return 0;
 }
 
-static int sub_02096404(void)
-{
+static int sub_02096404(void) {
     return 1;
 }
 
-static int sub_02096408(void)
-{
+static int sub_02096408(void) {
     return sizeof(UnkStruct_02096274);
 }
 
-static u8 *sub_0209640C(int param0, void *param1, int param2)
-{
+static u8 *sub_0209640C(int param0, void *param1, int param2) {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param1;
     return (u8 *)&v0->unk_FD8[param0];
 }

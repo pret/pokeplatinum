@@ -102,8 +102,7 @@ static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_POKE_KID, OBJ_EVENT_GFX_PIKACHU }
 };
 
-StringTemplate *sub_0204AEE8(SaveData *saveData, u16 param1, u16 param2, u8 param3, u8 *param4)
-{
+StringTemplate *sub_0204AEE8(SaveData *saveData, u16 param1, u16 param2, u8 param3, u8 *param4) {
     u8 v0;
     u16 v1;
     Strbuf *v2, *v3;
@@ -136,8 +135,7 @@ StringTemplate *sub_0204AEE8(SaveData *saveData, u16 param1, u16 param2, u8 para
     return v5;
 }
 
-u16 sub_0204AF9C(u8 trainerClass)
-{
+u16 sub_0204AF9C(u8 trainerClass) {
     for (int v0 = 0; v0 < (NELEMS(sTrainerClassToObjectID)); v0++) {
         if (sTrainerClassToObjectID[v0][0] == trainerClass) {
             return sTrainerClassToObjectID[v0][1];
@@ -147,8 +145,7 @@ u16 sub_0204AF9C(u8 trainerClass)
     return OBJ_EVENT_GFX_SCHOOL_KID_M;
 }
 
-u16 sub_0204AFC4(FieldSystem *fieldSystem, const u16 *param1)
-{
+u16 sub_0204AFC4(FieldSystem *fieldSystem, const u16 *param1) {
     u16 v0 = 0;
     UnkStruct_0204AFC4 *v1 = fieldSystem->unk_AC;
 
@@ -169,8 +166,7 @@ u16 sub_0204AFC4(FieldSystem *fieldSystem, const u16 *param1)
     return v0;
 }
 
-u16 sub_0204B020(FieldSystem *fieldSystem, const u16 *param1)
-{
+u16 sub_0204B020(FieldSystem *fieldSystem, const u16 *param1) {
     int v0;
     UnkStruct_0204AFC4 *v1 = fieldSystem->unk_AC;
 
@@ -182,8 +178,7 @@ u16 sub_0204B020(FieldSystem *fieldSystem, const u16 *param1)
     return 1;
 }
 
-u16 sub_0204B044(FieldSystem *fieldSystem, const u16 *param1)
-{
+u16 sub_0204B044(FieldSystem *fieldSystem, const u16 *param1) {
     int v0;
     UnkStruct_0204AFC4 *v1 = fieldSystem->unk_AC;
 
@@ -194,8 +189,7 @@ u16 sub_0204B044(FieldSystem *fieldSystem, const u16 *param1)
     return 0;
 }
 
-void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *saveData)
-{
+void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *saveData) {
     int v0;
     Party *v1;
     Pokemon *v2;
@@ -211,13 +205,11 @@ void sub_0204B060(UnkStruct_0204AFC4 *param0, SaveData *saveData)
     param0->unk_83E[3] = sub_0202D3B4(param0->unk_74, 3, 0);
 }
 
-void sub_0204B0BC(UnkStruct_0204AFC4 *param0)
-{
+void sub_0204B0BC(UnkStruct_0204AFC4 *param0) {
     MI_CpuCopy8(param0->unk_3E, param0->unk_83E, 14 * 2);
 }
 
-void sub_0204B0D4(UnkStruct_0204AFC4 *param0, u16 param1)
-{
+void sub_0204B0D4(UnkStruct_0204AFC4 *param0, u16 param1) {
     param0->unk_10_3 = param1;
     param0->unk_83E[0] = param1;
 }
@@ -244,8 +236,7 @@ static const u16 Unk_020EBD78[][2] = {
     { 0xC8, 0x12B }
 };
 
-u16 sub_0204B0F0(UnkStruct_0204AFC4 *param0, u8 param1, u8 param2, int param3)
-{
+u16 sub_0204B0F0(UnkStruct_0204AFC4 *param0, u8 param1, u8 param2, int param3) {
     u16 v0;
 
     if (param3 == 0) {
@@ -274,8 +265,7 @@ u16 sub_0204B0F0(UnkStruct_0204AFC4 *param0, u8 param1, u8 param2, int param3)
     return v0;
 }
 
-static BattleFrontierTrainerData *sub_0204B184(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID)
-{
+static BattleFrontierTrainerData *sub_0204B184(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID) {
     MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));
@@ -303,8 +293,7 @@ static const u16 Unk_020EBD50[] = {
     ITEM_QUICK_CLAW
 };
 
-static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8)
-{
+static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8) {
     int v0;
     u32 v2;
     BattleFrontierPokemonData v4;
@@ -392,8 +381,7 @@ static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, FrontierPokemonDataDTO *para
     return v2;
 }
 
-BOOL sub_0204B3B8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID)
-{
+BOOL sub_0204B3B8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID) {
     BOOL v0 = 0;
     BattleFrontierTrainerData *v1 = sub_0204B184(param1, param2, heapID);
     v0 = sub_0204B470(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, heapID);
@@ -403,8 +391,7 @@ BOOL sub_0204B3B8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, 
     return v0;
 }
 
-void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, BOOL param3, const UnkStruct_0204B404 *param4, int heapID)
-{
+void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, BOOL param3, const UnkStruct_0204B404 *param4, int heapID) {
     u8 v1 = 0;
     BattleFrontierTrainerData *v2 = sub_0204B184(param1, param2, heapID);
     v1 = sub_0204AE84(param2);
@@ -416,8 +403,7 @@ void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, 
     Heap_Free(v2);
 }
 
-static BOOL sub_0204B470(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8)
-{
+static BOOL sub_0204B470(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8) {
     int v0, v1;
     u8 v2;
     u8 v3;
@@ -523,12 +509,10 @@ static BOOL sub_0204B470(UnkStruct_0204AFC4 *param0, BattleFrontierTrainerData *
     return v10;
 }
 
-static void *sub_0204B630(u16 param0, int param1)
-{
+static void *sub_0204B630(u16 param0, int param1) {
     return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR, param0, param1);
 }
 
-static void sub_0204B640(BattleFrontierPokemonData *param0, int param1)
-{
+static void sub_0204B640(BattleFrontierPokemonData *param0, int param1) {
     NARC_ReadWholeMemberByIndexPair(param0, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM, param1);
 }

@@ -65,8 +65,7 @@ const ApplicationManagerTemplate Unk_020F8BE0 = {
     0xffffffff
 };
 
-int sub_0209B6F8(ApplicationManager *appMan, int *param1)
-{
+int sub_0209B6F8(ApplicationManager *appMan, int *param1) {
     UnkStruct_0209B75C *v0;
     int v1;
 
@@ -89,8 +88,7 @@ int sub_0209B6F8(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int sub_0209B75C(ApplicationManager *appMan, int *param1)
-{
+int sub_0209B75C(ApplicationManager *appMan, int *param1) {
     UnkStruct_0209B75C *v0 = ApplicationManager_Data(appMan);
     int v1;
 
@@ -182,8 +180,7 @@ int sub_0209B75C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int sub_0209B8A4(ApplicationManager *appMan, int *param1)
-{
+int sub_0209B8A4(ApplicationManager *appMan, int *param1) {
     UnkStruct_0209B75C *v0 = ApplicationManager_Data(appMan);
 
     ov104_0222E710(v0->unk_14);
@@ -195,20 +192,17 @@ int sub_0209B8A4(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void sub_0209B8C8(UnkStruct_0209B75C *param0)
-{
+static void sub_0209B8C8(UnkStruct_0209B75C *param0) {
     param0->unk_18 = ov104_0223C2D4(param0);
     param0->unk_1D = 1;
 }
 
-static void sub_0209B8D8(UnkStruct_0209B75C *param0)
-{
+static void sub_0209B8D8(UnkStruct_0209B75C *param0) {
     ov104_0223C4CC(param0->unk_18);
     param0->unk_1D = 0;
 }
 
-static void sub_0209B8E8(UnkStruct_0209B75C *param0)
-{
+static void sub_0209B8E8(UnkStruct_0209B75C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 24; v0++) {
@@ -222,42 +216,35 @@ static void sub_0209B8E8(UnkStruct_0209B75C *param0)
     }
 }
 
-static void sub_0209B924(void)
-{
+static void sub_0209B924(void) {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay105), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
 }
 
-static void sub_0209B94C(void)
-{
+static void sub_0209B94C(void) {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay105));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
 
-UnkStruct_ov104_02230BE4 *sub_0209B970(UnkStruct_0209B75C *param0)
-{
+UnkStruct_ov104_02230BE4 *sub_0209B970(UnkStruct_0209B75C *param0) {
     return param0->unk_00;
 }
 
-UnkStruct_ov104_0223C4CC *sub_0209B974(UnkStruct_0209B75C *param0)
-{
+UnkStruct_ov104_0223C4CC *sub_0209B974(UnkStruct_0209B75C *param0) {
     return param0->unk_18;
 }
 
-void *sub_0209B978(UnkStruct_0209B75C *param0)
-{
+void *sub_0209B978(UnkStruct_0209B75C *param0) {
     return param0->unk_00->unk_00;
 }
 
-void sub_0209B980(UnkStruct_0209B75C *param0, void *param1)
-{
+void sub_0209B980(UnkStruct_0209B75C *param0, void *param1) {
     param0->unk_00->unk_00 = param1;
 }
 
-void sub_0209B988(UnkStruct_0209B75C *param0, const ApplicationManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4)
-{
+void sub_0209B988(UnkStruct_0209B75C *param0, const ApplicationManagerTemplate *param1, void *param2, int param3, UnkFuncPtr_0209B988 param4) {
     GF_ASSERT(param0->appMan == NULL);
     param0->appMan = ApplicationManager_New(param1, param2, HEAP_ID_FIELDMAP);
     param0->unk_08 = param2;
@@ -265,40 +252,33 @@ void sub_0209B988(UnkStruct_0209B75C *param0, const ApplicationManagerTemplate *
     param0->unk_0C = param4;
 }
 
-void sub_0209B9B4(UnkStruct_0209B75C *param0)
-{
+void sub_0209B9B4(UnkStruct_0209B75C *param0) {
     param0->unk_22 = 1;
 }
 
-void sub_0209B9BC(UnkStruct_0209B75C *param0, u16 param1, u16 param2)
-{
+void sub_0209B9BC(UnkStruct_0209B75C *param0, u16 param1, u16 param2) {
     param0->unk_00->unk_24 = param1;
     param0->unk_1E = 1;
     param0->unk_20 = param2;
 }
 
-UnkStruct_ov104_0223C688 *sub_0209B9CC(UnkStruct_0209B75C *param0)
-{
+UnkStruct_ov104_0223C688 *sub_0209B9CC(UnkStruct_0209B75C *param0) {
     return param0->unk_24;
 }
 
-UnkStruct_ov104_0223C634 *sub_0209B9D0(UnkStruct_0209B75C *param0)
-{
+UnkStruct_ov104_0223C634 *sub_0209B9D0(UnkStruct_0209B75C *param0) {
     return param0->unk_6C;
 }
 
-UnkStruct_ov104_0223C634 *sub_0209B9D4(UnkStruct_0209B75C *param0, int param1)
-{
+UnkStruct_ov104_0223C634 *sub_0209B9D4(UnkStruct_0209B75C *param0, int param1) {
     return &param0->unk_6C[param1];
 }
 
-UnkStruct_ov104_0223D3B0 *sub_0209B9E0(UnkStruct_0209B75C *param0)
-{
+UnkStruct_ov104_0223D3B0 *sub_0209B9E0(UnkStruct_0209B75C *param0) {
     return &param0->unk_98C;
 }
 
-void sub_0209B9EC(UnkStruct_0209B75C *param0)
-{
+void sub_0209B9EC(UnkStruct_0209B75C *param0) {
     int v0;
 
     MI_CpuClear8(&param0->unk_98C, sizeof(UnkStruct_ov104_0223D3B0_sub1));

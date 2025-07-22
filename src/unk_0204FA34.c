@@ -15,8 +15,7 @@
 void sub_0204FA34(int param0, int param1, void *param2, void *param3);
 void sub_0204FA50(SaveData *saveData, UnkStruct_0203026C *param1, u8 param2);
 
-void sub_0204FA34(int param0, int param1, void *param2, void *param3)
-{
+void sub_0204FA34(int param0, int param1, void *param2, void *param3) {
     int v0, v1;
     UnkStruct_0204F3D0 *v2 = param3;
     const UnkStruct_0204F3D0 *v3 = param2;
@@ -32,8 +31,7 @@ void sub_0204FA34(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-void sub_0204FA50(SaveData *saveData, UnkStruct_0203026C *param1, u8 param2)
-{
+void sub_0204FA50(SaveData *saveData, UnkStruct_0203026C *param1, u8 param2) {
     int v0;
     u8 v1[4];
     u16 v2, v3;

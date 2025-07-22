@@ -64,8 +64,7 @@ typedef struct CommunicationInformation {
 
 static CommunicationInformation *sCommInfo;
 
-void CommInfo_Init(SaveData *saveData, const BattleRegulation *regulation)
-{
+void CommInfo_Init(SaveData *saveData, const BattleRegulation *regulation) {
     int netId;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
@@ -90,8 +89,7 @@ void CommInfo_Init(SaveData *saveData, const BattleRegulation *regulation)
     TrainerInfo_Copy(trainerInfo, sCommInfo->trainerInfo[0]);
 }
 
-void CommInfo_Delete(void)
-{
+void CommInfo_Delete(void) {
     int netId;
 
     if (sCommInfo) {
@@ -107,13 +105,11 @@ void CommInfo_Delete(void)
     }
 }
 
-BOOL CommInfo_IsInitialized(void)
-{
+BOOL CommInfo_IsInitialized(void) {
     return sCommInfo != NULL;
 }
 
-void CommInfo_SendBattleRegulation(void)
-{
+void CommInfo_SendBattleRegulation(void) {
     u16 netId = CommSys_CurNetId();
     TrainerInfo *trainerInfo;
     const u16 *v2;
@@ -149,13 +145,11 @@ void CommInfo_SendBattleRegulation(void)
     CommSys_SendData(3, &sCommInfo->playerInfo[netId], sizeof(CommPlayerInfo));
 }
 
-int CommPlayerInfo_Size(void)
-{
+int CommPlayerInfo_Size(void) {
     return sizeof(CommPlayerInfo);
 }
 
-void CommunicatitonInformaion_FinishReading(int unused0, int unused1, void *unused2, void *unused3)
-{
+void CommunicatitonInformaion_FinishReading(int unused0, int unused1, void *unused2, void *unused3) {
     if (sCommInfo) {
         sCommInfo->dataFinishedReading = TRUE;
     } else {
@@ -163,13 +157,11 @@ void CommunicatitonInformaion_FinishReading(int unused0, int unused1, void *unus
     }
 }
 
-BOOL CommInfo_IsDataFinishedReading(void)
-{
+BOOL CommInfo_IsDataFinishedReading(void) {
     return sCommInfo->dataFinishedReading;
 }
 
-void CommInfo_RecvPlayerDataArray(int netId, int param1, void *src, void *unused)
-{
+void CommInfo_RecvPlayerDataArray(int netId, int param1, void *src, void *unused) {
     CommPlayerInfo *playerInfo = (CommPlayerInfo *)src;
 
     if (!sCommInfo) {
@@ -196,8 +188,7 @@ void CommInfo_RecvPlayerDataArray(int netId, int param1, void *src, void *unused
     }
 }
 
-void CommInfo_RecvPlayerData(int netId, int param1, void *src, void *param3)
-{
+void CommInfo_RecvPlayerData(int netId, int param1, void *src, void *param3) {
     if (!sCommInfo) {
         return;
     }
@@ -214,8 +205,7 @@ void CommInfo_RecvPlayerData(int netId, int param1, void *src, void *param3)
     }
 }
 
-BOOL CommInfo_ServerSendArray(void)
-{
+BOOL CommInfo_ServerSendArray(void) {
     int netId;
 
     if (!sCommInfo->dataRecvFlag) {
@@ -243,44 +233,36 @@ BOOL CommInfo_ServerSendArray(void)
     return FALSE;
 }
 
-BOOL CommInfo_IsReceivingData(void)
-{
+BOOL CommInfo_IsReceivingData(void) {
     return sCommInfo->dataRecvFlag;
 }
 
-void CommInfo_InitPlayer(int netId)
-{
+void CommInfo_InitPlayer(int netId) {
     TrainerInfo_Init(sCommInfo->trainerInfo[netId]);
     sCommInfo->infoState[netId] = INFO_STATE_EMPTY;
 }
 
-BOOL sub_02032DC4(int netId)
-{
+BOOL sub_02032DC4(int netId) {
     return sCommInfo->infoState[netId] == INFO_STATE_BEGIN_RECIEVE;
 }
 
-BOOL sub_02032DE0(int netId)
-{
+BOOL sub_02032DE0(int netId) {
     return sCommInfo->infoState[netId] == INFO_STATE_RECIEVE || sCommInfo->infoState[netId] == INFO_STATE_BEGIN_RECIEVE;
 }
 
-BOOL sub_02032E00(int netId)
-{
+BOOL sub_02032E00(int netId) {
     return sCommInfo->infoState[netId] == INFO_STATE_RECIEVE;
 }
 
-void sub_02032E1C(int netId)
-{
+void sub_02032E1C(int netId) {
     sCommInfo->infoState[netId] = INFO_STATE_RECIEVE;
 }
 
-void CommInfo_SetReceiveEnd(int netId)
-{
+void CommInfo_SetReceiveEnd(int netId) {
     sCommInfo->infoState[netId] = INFO_STATE_END_RECIEVE;
 }
 
-int CommInfo_NewNetworkId(void)
-{
+int CommInfo_NewNetworkId(void) {
     int netId;
 
     for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
@@ -292,8 +274,7 @@ int CommInfo_NewNetworkId(void)
     return 0xff;
 }
 
-int CommInfo_CountReceived(void)
-{
+int CommInfo_CountReceived(void) {
     int netId;
     int cnt = 0;
 
@@ -309,8 +290,7 @@ int CommInfo_CountReceived(void)
     return cnt;
 }
 
-BOOL sub_02032E90(void)
-{
+BOOL sub_02032E90(void) {
     int netId;
     BOOL ret = FALSE;
 
@@ -332,8 +312,7 @@ BOOL sub_02032E90(void)
     return ret;
 }
 
-TrainerInfo *CommInfo_TrainerInfo(int netId)
-{
+TrainerInfo *CommInfo_TrainerInfo(int netId) {
     if (!sCommInfo) {
         return NULL;
     }
@@ -348,8 +327,7 @@ TrainerInfo *CommInfo_TrainerInfo(int netId)
     return NULL;
 }
 
-DWCFriendData *CommInfo_DWCFriendData(int netId)
-{
+DWCFriendData *CommInfo_DWCFriendData(int netId) {
     if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
         return &sCommInfo->playerInfo[netId].friendData;
     }
@@ -357,13 +335,11 @@ DWCFriendData *CommInfo_DWCFriendData(int netId)
     return NULL;
 }
 
-int sub_02032F40(int param0)
-{
+int sub_02032F40(int param0) {
     return sub_02039390(sCommInfo->saveData, param0);
 }
 
-u16 *sub_02032F54(int netId)
-{
+u16 *sub_02032F54(int netId) {
     if (sCommInfo->infoState[netId] != 0) {
         return sCommInfo->playerInfo[netId].unk_4C;
     }
@@ -371,8 +347,7 @@ u16 *sub_02032F54(int netId)
     return NULL;
 }
 
-int CommInfo_PlayerCountry(int netId)
-{
+int CommInfo_PlayerCountry(int netId) {
     if (sCommInfo->infoState[netId] != 0) {
         return sCommInfo->playerInfo[netId].country;
     }
@@ -380,8 +355,7 @@ int CommInfo_PlayerCountry(int netId)
     return 0;
 }
 
-int CommInfo_PlayerRegion(int netId)
-{
+int CommInfo_PlayerRegion(int netId) {
     if (sCommInfo->infoState[netId] != 0) {
         return sCommInfo->playerInfo[netId].region;
     }
@@ -389,8 +363,7 @@ int CommInfo_PlayerRegion(int netId)
     return 0;
 }
 
-int sub_02032FC0(int param0)
-{
+int sub_02032FC0(int param0) {
     if (sCommInfo->infoState[param0] != 0) {
         return sCommInfo->playerInfo[param0].unk_65;
     }
@@ -398,8 +371,7 @@ int sub_02032FC0(int param0)
     return 0;
 }
 
-BOOL CommInfo_CheckBattleRegulation(void)
-{
+BOOL CommInfo_CheckBattleRegulation(void) {
     int netId, i;
 
     for (netId = 0; netId < MAX_CONNECTED_PLAYERS - 1; netId++) {
@@ -417,8 +389,7 @@ BOOL CommInfo_CheckBattleRegulation(void)
     return TRUE;
 }
 
-static void CommInfo_UpdatePlayerRecord(int param0, int val)
-{
+static void CommInfo_UpdatePlayerRecord(int param0, int val) {
     int netId;
     int v1, v2;
 
@@ -451,8 +422,7 @@ static void CommInfo_UpdatePlayerRecord(int param0, int val)
     }
 }
 
-void CommInfo_SavePlayerRecord(SaveData *saveData)
-{
+void CommInfo_SavePlayerRecord(SaveData *saveData) {
     WiFiList *v0 = SaveData_GetWiFiList(saveData);
     int netId, v2, v3;
 
@@ -482,8 +452,7 @@ void CommInfo_SavePlayerRecord(SaveData *saveData)
     }
 }
 
-void sub_020331B4(SaveData *saveData, int param1)
-{
+void sub_020331B4(SaveData *saveData, int param1) {
     if (param1 == 1) {
         CommInfo_UpdatePlayerRecord(0, 1);
     } else if (param1 == -1) {
@@ -493,13 +462,11 @@ void sub_020331B4(SaveData *saveData, int param1)
     CommInfo_SavePlayerRecord(saveData);
 }
 
-void CommInfo_SetTradeResult(SaveData *saveData, int val)
-{
+void CommInfo_SetTradeResult(SaveData *saveData, int val) {
     CommInfo_UpdatePlayerRecord(2, val);
     CommInfo_SavePlayerRecord(saveData);
 }
 
-void CommInfo_SetPersonalTrainerInfo(TrainerInfo *trainerInfo)
-{
+void CommInfo_SetPersonalTrainerInfo(TrainerInfo *trainerInfo) {
     sCommInfo->personalTrainerInfo = trainerInfo;
 }

@@ -20,8 +20,7 @@
 static void BoxMenu_ClearMenuItems(BoxMenu *menu);
 static void BoxMenu_AddMenuItem(BoxMenu *menu, enum BoxMenuItem menuItem);
 
-void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex)
-{
+void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex) {
     BoxMenu *menu = &param0->boxMenu;
 
     BoxMenu_ClearMenuItems(menu);
@@ -32,8 +31,7 @@ void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex)
     menu->unused = 0;
 }
 
-void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0)
-{
+void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0) {
     BoxMenu *menu = &(param0->boxMenu);
 
     BoxMenu_ClearMenuItems(menu);
@@ -83,8 +81,7 @@ void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0)
     }
 }
 
-void BoxMenu_FillItemsMenu(UnkStruct_ov19_021D4DF0 *param0)
-{
+void BoxMenu_FillItemsMenu(UnkStruct_ov19_021D4DF0 *param0) {
     BoxMenu *menu;
     u32 cursorItem, monItem;
 
@@ -117,8 +114,7 @@ void BoxMenu_FillItemsMenu(UnkStruct_ov19_021D4DF0 *param0)
     BoxMenu_AddMenuItem(menu, BOX_MENU_ITEMS_CANCEL);
 }
 
-void BoxMenu_FillHeaderMenu(UnkStruct_ov19_021D4DF0 *param0)
-{
+void BoxMenu_FillHeaderMenu(UnkStruct_ov19_021D4DF0 *param0) {
     BoxMenu *menu = &(param0->boxMenu);
     const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
 
@@ -135,8 +131,7 @@ void BoxMenu_FillHeaderMenu(UnkStruct_ov19_021D4DF0 *param0)
     menu->unused = 2;
 }
 
-void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem)
-{
+void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem) {
     BoxMenu *menu = &(param0->boxMenu);
     const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
     u32 numUnlockedWallpapers;
@@ -166,8 +161,7 @@ void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem
     }
 }
 
-void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem)
-{
+void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem) {
     static const u16 sWallpaperPages[][MAX_WALLPAPERS_PER_PAGE] = {
         { BOX_MENU_FOREST, BOX_MENU_CITY, BOX_MENU_DESERT, BOX_MENU_SAVANNA },
         { BOX_MENU_CRAG, BOX_MENU_VOLCANO, BOX_MENU_SNOW, BOX_MENU_CAVE },
@@ -212,8 +206,7 @@ void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, enum Bo
     menu->unused = 3;
 }
 
-void BoxMenu_FillMarkingsMenu(UnkStruct_ov19_021D4DF0 *param0)
-{
+void BoxMenu_FillMarkingsMenu(UnkStruct_ov19_021D4DF0 *param0) {
     BoxMenu *menu = &(param0->boxMenu);
     BoxMenu_ClearMenuItems(menu);
 
@@ -230,27 +223,23 @@ void BoxMenu_FillMarkingsMenu(UnkStruct_ov19_021D4DF0 *param0)
     BoxMenu_AddMenuItem(menu, BOX_MENU_MARK_CANCEL);
 }
 
-void BoxMenu_ToggleMarking(UnkStruct_ov19_021D4DF0 *param0, u32 marking)
-{
+void BoxMenu_ToggleMarking(UnkStruct_ov19_021D4DF0 *param0, u32 marking) {
     BoxMenu *menu = &(param0->boxMenu);
     menu->markings ^= (1 << marking);
 }
 
-static void BoxMenu_ClearMenuItems(BoxMenu *menu)
-{
+static void BoxMenu_ClearMenuItems(BoxMenu *menu) {
     menu->totalMenuItems = 0;
     menu->selectedMenuItemIndex = 0;
 }
 
-static void BoxMenu_AddMenuItem(BoxMenu *menu, enum BoxMenuItem menuItem)
-{
+static void BoxMenu_AddMenuItem(BoxMenu *menu, enum BoxMenuItem menuItem) {
     if (menu->totalMenuItems < MAX_MENU_ITEMS) {
         menu->menuItems[menu->totalMenuItems++] = menuItem;
     }
 }
 
-enum BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0)
-{
+enum BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0) {
     BoxMenu *menu = &(param0->boxMenu);
 
     if (JOY_NEW(PAD_KEY_UP)) {
@@ -286,14 +275,12 @@ enum BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0)
     return BOX_MENU_NAVIGATION_NONE;
 }
 
-enum BoxMenuItem BoxMenu_GetSelectedMenuItem(UnkStruct_ov19_021D4DF0 *param0)
-{
+enum BoxMenuItem BoxMenu_GetSelectedMenuItem(UnkStruct_ov19_021D4DF0 *param0) {
     BoxMenu *menu = &(param0->boxMenu);
     return menu->menuItems[menu->selectedMenuItemIndex];
 }
 
-enum BoxMenuItem BoxMenu_GetDefaultMenuItem(UnkStruct_ov19_021D4DF0 *param0)
-{
+enum BoxMenuItem BoxMenu_GetDefaultMenuItem(UnkStruct_ov19_021D4DF0 *param0) {
     BoxMenu *menu = &(param0->boxMenu);
     return menu->menuItems[0];
 }

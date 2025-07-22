@@ -11,8 +11,7 @@ void ov105_02245D50(PokemonSpriteManager *param0);
 PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
 void ov105_02245DB8(PokemonSprite *param0, int param1);
 
-void ov105_02245CD0(void)
-{
+void ov105_02245CD0(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(0);
 
@@ -28,8 +27,7 @@ void ov105_02245CD0(void)
     return;
 }
 
-void ov105_02245D50(PokemonSpriteManager *param0)
-{
+void ov105_02245D50(PokemonSpriteManager *param0) {
     sub_020241B4();
 
     G3_MtxMode(GX_MTXMODE_PROJECTION);
@@ -46,8 +44,7 @@ void ov105_02245D50(PokemonSpriteManager *param0)
     return;
 }
 
-PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
-{
+PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5) {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;
     int v2;
@@ -61,8 +58,7 @@ PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon 
     return v1;
 }
 
-void ov105_02245DB8(PokemonSprite *param0, int param1)
-{
+void ov105_02245DB8(PokemonSprite *param0, int param1) {
     PokemonSprite_SetAttribute(param0, MON_SPRITE_FLIP_H, param1);
     return;
 }

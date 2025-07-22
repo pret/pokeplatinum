@@ -15,8 +15,7 @@
 static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1);
 static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapIDs);
 
-void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
-{
+void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID) {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov79_021D3820));
 
     NNS_G3dInit();
@@ -39,8 +38,7 @@ void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *par
     G2_SetBG0Priority(1);
 }
 
-void ov79_021D3820(UnkStruct_ov79_021D3820 *param0)
-{
+void ov79_021D3820(UnkStruct_ov79_021D3820 *param0) {
     sub_020241B4();
     Camera_ComputeViewMatrix();
 
@@ -56,14 +54,12 @@ void ov79_021D3820(UnkStruct_ov79_021D3820 *param0)
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void ov79_021D385C(UnkStruct_ov79_021D3820 *param0)
-{
+void ov79_021D385C(UnkStruct_ov79_021D3820 *param0) {
     Camera_Delete(param0->camera);
     PokemonSpriteManager_Free(param0->unk_04);
 }
 
-static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
-{
+static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1) {
     VecFx32 v0 = { 0, 0, 0x10000 };
     CameraAngle v1 = { 0, 0, 0 };
     fx32 v2 = 0x10000;
@@ -77,8 +73,7 @@ static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
     Camera_SetAsActive(param0->camera);
 }
 
-static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
-{
+static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID) {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;
 

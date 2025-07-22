@@ -100,16 +100,14 @@ static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *p
 static void sub_02015F34(const NNSG2dScreenData *param0, int param1);
 static void sub_02015F54(const NNSG2dScreenData *param0, int param1);
 
-UnkStruct_02015920 *sub_02015920(u32 heapID)
-{
+UnkStruct_02015920 *sub_02015920(u32 heapID) {
     UnkStruct_02015920 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015920));
     sub_02015A80(v0, heapID);
 
     return v0;
 }
 
-void sub_02015938(UnkStruct_02015920 *param0)
-{
+void sub_02015938(UnkStruct_02015920 *param0) {
     if (param0->unk_9B_0 == 1) {
         sub_02015A54(param0);
     }
@@ -117,8 +115,7 @@ void sub_02015938(UnkStruct_02015920 *param0)
     Heap_Free(param0);
 }
 
-void sub_02015958(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
-{
+void sub_02015958(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1) {
     param0->unk_7C = param1->unk_00;
     param0->unk_80 = param1->unk_04;
     param0->unk_98 = param1->unk_10;
@@ -133,8 +130,7 @@ void sub_02015958(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
     param0->unk_9B_4 = 0x8;
 }
 
-u32 sub_020159C0(UnkStruct_02015920 *param0)
-{
+u32 sub_020159C0(UnkStruct_02015920 *param0) {
     u32 v0;
 
     param0->unk_9B_4 = 0x8;
@@ -154,8 +150,7 @@ u32 sub_020159C0(UnkStruct_02015920 *param0)
     return v0;
 }
 
-u32 sub_020159FC(UnkStruct_02015920 *param0)
-{
+u32 sub_020159FC(UnkStruct_02015920 *param0) {
     BOOL v0;
 
     GF_ASSERT(param0->unk_9B_0 == 1);
@@ -181,8 +176,7 @@ u32 sub_020159FC(UnkStruct_02015920 *param0)
     return 0;
 }
 
-void sub_02015A54(UnkStruct_02015920 *param0)
-{
+void sub_02015A54(UnkStruct_02015920 *param0) {
     int v0;
 
     TouchScreenActions_Free(param0->unk_00);
@@ -194,8 +188,7 @@ void sub_02015A54(UnkStruct_02015920 *param0)
     sub_02015A80(param0, param0->heapID);
 }
 
-static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID)
-{
+static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID) {
     memset(param0, 0, sizeof(UnkStruct_02015920));
 
     param0->unk_9B_0 = 0;
@@ -204,13 +197,11 @@ static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID)
     param0->unk_9B_4 = 0x8;
 }
 
-static void sub_02015AC0(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
-{
+static void sub_02015AC0(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1) {
     sub_02015DCC(NARC_INDEX_GRAPHIC__TOUCH_SUBWINDOW, 1, param0->unk_7C, param0->unk_80, param1->unk_08, param0->heapID);
 }
 
-static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
-{
+static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1) {
     u32 v0;
 
     if (param0->unk_80 < 4) {
@@ -222,8 +213,7 @@ static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
     sub_02015E1C(NARC_INDEX_GRAPHIC__TOUCH_SUBWINDOW, 0, v0, param1->unk_0C * 32, 2 * 32, param0->heapID);
 }
 
-static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
-{
+static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1) {
     int v0, v1;
     UnkStruct_02015B14 v2;
 
@@ -252,8 +242,7 @@ static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
     }
 }
 
-static void sub_02015BA4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
-{
+static void sub_02015BA4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1) {
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -266,8 +255,7 @@ static void sub_02015BA4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
     param0->unk_00 = TouchScreenActions_RegisterHandler(param0->unk_04, 2, sub_02015C08, param0, param0->heapID);
 }
 
-static void sub_02015C08(u32 param0, enum TouchScreenButtonState param1, void *param2)
-{
+static void sub_02015C08(u32 param0, enum TouchScreenButtonState param1, void *param2) {
     UnkStruct_02015920 *v0 = param2;
 
     v0->unk_9B_4 = param1;
@@ -279,8 +267,7 @@ static void sub_02015C08(u32 param0, enum TouchScreenButtonState param1, void *p
     }
 }
 
-static void sub_02015C38(UnkStruct_02015C38 *param0, const UnkStruct_02015B14 *param1, u32 param2)
-{
+static void sub_02015C38(UnkStruct_02015C38 *param0, const UnkStruct_02015B14 *param1, u32 param2) {
     int v0;
 
     sub_02015D8C(&param0->unk_28, param1->unk_24, param1->unk_28);
@@ -301,8 +288,7 @@ static void sub_02015C38(UnkStruct_02015C38 *param0, const UnkStruct_02015B14 *p
     param0->unk_36 = 0;
 }
 
-static BOOL sub_02015CC0(UnkStruct_02015C38 *param0)
-{
+static BOOL sub_02015CC0(UnkStruct_02015C38 *param0) {
     u32 v0 = sub_02015DA0(&param0->unk_28);
 
     if (param0->unk_36 != v0) {
@@ -319,8 +305,7 @@ static BOOL sub_02015CC0(UnkStruct_02015C38 *param0)
     return 0;
 }
 
-static void sub_02015D00(UnkStruct_02015C38 *param0)
-{
+static void sub_02015D00(UnkStruct_02015C38 *param0) {
     int v0;
 
     Bg_FillTilemapRect(param0->unk_00, param0->unk_04, 0, param0->unk_34, param0->unk_35, param0->unk_18[0]->screenWidth / 8, param0->unk_18[0]->screenHeight / 8, 0);
@@ -333,26 +318,22 @@ static void sub_02015D00(UnkStruct_02015C38 *param0)
     memset(param0, 0, sizeof(UnkStruct_02015C38));
 }
 
-static void sub_02015D60(UnkStruct_02015C38 *param0)
-{
+static void sub_02015D60(UnkStruct_02015C38 *param0) {
     u32 v0 = sub_02015DA0(&param0->unk_28);
     sub_02015EE8(param0->unk_00, param0->unk_04, param0->unk_18[v0], param0->unk_34, param0->unk_35);
 }
 
-static void sub_02015D8C(UnkStruct_02015D8C *param0, const fx32 *param1, u32 param2)
-{
+static void sub_02015D8C(UnkStruct_02015D8C *param0, const fx32 *param1, u32 param2) {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
     param0->unk_08 = 0;
 }
 
-static void sub_02015D98(UnkStruct_02015D8C *param0, fx32 param1)
-{
+static void sub_02015D98(UnkStruct_02015D8C *param0, fx32 param1) {
     param0->unk_08 += param1;
 }
 
-static u32 sub_02015DA0(const UnkStruct_02015D8C *param0)
-{
+static u32 sub_02015DA0(const UnkStruct_02015D8C *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
@@ -364,8 +345,7 @@ static u32 sub_02015DA0(const UnkStruct_02015D8C *param0)
     return param0->unk_04 - 1;
 }
 
-static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID)
-{
+static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID) {
     UnkStruct_02015DCC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015DCC));
     memset(v0, 0, sizeof(UnkStruct_02015DCC));
 
@@ -377,8 +357,7 @@ static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 p
     SysTask_ExecuteAfterVBlank(sub_02015E64, v0, 128);
 }
 
-static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
-{
+static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID) {
     UnkStruct_02015E1C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));
 
@@ -390,8 +369,7 @@ static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3,
     SysTask_ExecuteAfterVBlank(sub_02015EA0, v0, 128);
 }
 
-static void sub_02015E64(SysTask *param0, void *param1)
-{
+static void sub_02015E64(SysTask *param0, void *param1) {
     UnkStruct_02015DCC *v0 = param1;
 
     DC_FlushRange(v0->unk_04->pRawData, v0->unk_04->szByte);
@@ -402,8 +380,7 @@ static void sub_02015E64(SysTask *param0, void *param1)
     Heap_Free(v0);
 }
 
-static void sub_02015EA0(SysTask *param0, void *param1)
-{
+static void sub_02015EA0(SysTask *param0, void *param1) {
     UnkStruct_02015E1C *v0 = param1;
 
     DC_FlushRange(v0->unk_00->pRawData, v0->unk_10);
@@ -419,14 +396,12 @@ static void sub_02015EA0(SysTask *param0, void *param1)
     Heap_Free(v0);
 }
 
-static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4)
-{
+static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4) {
     Bg_CopyToTilemapRect(param0, param1, param3, param4, param2->screenWidth / 8, param2->screenHeight / 8, param2->rawData, 0, 0, param2->screenWidth / 8, param2->screenHeight / 8);
     Bg_ScheduleTilemapTransfer(param0, param1);
 }
 
-static void sub_02015F34(const NNSG2dScreenData *param0, int param1)
-{
+static void sub_02015F34(const NNSG2dScreenData *param0, int param1) {
     int v0;
     u16 *v1;
     int v2 = param0->szByte / 2;
@@ -438,8 +413,7 @@ static void sub_02015F34(const NNSG2dScreenData *param0, int param1)
     }
 }
 
-static void sub_02015F54(const NNSG2dScreenData *param0, int param1)
-{
+static void sub_02015F54(const NNSG2dScreenData *param0, int param1) {
     int v0;
     u16 *v1;
     int v2 = param0->szByte / 2;

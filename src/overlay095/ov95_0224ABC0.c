@@ -120,8 +120,7 @@ static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param
 static void ov95_0224B388(SysTask *param0, void *param1);
 static void ov95_0224B3BC(SysTask *param0);
 
-void *ov95_0224ABC0(UnkStruct_ov95_02247628 *param0)
-{
+void *ov95_0224ABC0(UnkStruct_ov95_02247628 *param0) {
     UnkStruct_ov95_0224AC64 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224AC64));
 
     if (v0) {
@@ -142,8 +141,7 @@ void *ov95_0224ABC0(UnkStruct_ov95_02247628 *param0)
     return v0;
 }
 
-void ov95_0224ABF4(void *param0)
-{
+void ov95_0224ABF4(void *param0) {
     UnkStruct_ov95_0224AC64 *v0 = param0;
 
     if (v0) {
@@ -168,8 +166,7 @@ void ov95_0224ABF4(void *param0)
     }
 }
 
-BOOL ov95_0224AC2C(void *param0, int *param1)
-{
+BOOL ov95_0224AC2C(void *param0, int *param1) {
     static int (*const v0[])(UnkStruct_ov95_0224AC64 *, int *) = {
         ov95_0224AC98,
         ov95_0224ACC8,
@@ -192,8 +189,7 @@ BOOL ov95_0224AC2C(void *param0, int *param1)
     return 1;
 }
 
-static void ov95_0224AC64(UnkStruct_ov95_0224AC64 *param0)
-{
+static void ov95_0224AC64(UnkStruct_ov95_0224AC64 *param0) {
     if (param0->unk_20) {
         param0->unk_28.y += 0x1000;
 
@@ -204,8 +200,7 @@ static void ov95_0224AC64(UnkStruct_ov95_0224AC64 *param0)
     }
 }
 
-static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1)
-{
+static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1) {
     ov95_0224AE1C(param0);
     ov95_0224B084(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
@@ -213,8 +208,7 @@ static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1)
     return 1;
 }
 
-static int ov95_0224ACC8(UnkStruct_ov95_0224AC64 *param0, int *param1)
-{
+static int ov95_0224ACC8(UnkStruct_ov95_0224AC64 *param0, int *param1) {
     switch (*param1) {
     case 0:
         if (IsScreenFadeDone()) {
@@ -261,8 +255,7 @@ static int ov95_0224ACC8(UnkStruct_ov95_0224AC64 *param0, int *param1)
     return 0;
 }
 
-static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1)
-{
+static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1) {
     switch (*param1) {
     case 0:
         param0->unk_18 = ov95_022472C4(param0->unk_0C, 0x1000, UnkEnum_ov95_0224AD98_00, UnkEnum_ov95_0224AD98_01, UnkEnum_ov95_0224AD98_02, 1, &(param0->unk_1C));
@@ -285,8 +278,7 @@ static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1)
     return 0;
 }
 
-static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
-{
+static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0) {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
@@ -401,8 +393,7 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov95_0224B050(UnkStruct_ov95_0224AC64 *param0)
-{
+static void ov95_0224B050(UnkStruct_ov95_0224AC64 *param0) {
     if (param0->unk_14) {
         ov95_02247018(param0->unk_10);
     }
@@ -413,8 +404,7 @@ static void ov95_0224B050(UnkStruct_ov95_0224AC64 *param0)
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
 }
 
-static void ov95_0224B084(UnkStruct_ov95_0224AC64 *param0)
-{
+static void ov95_0224B084(UnkStruct_ov95_0224AC64 *param0) {
     static const GXRgb v0[8] = {
         GX_RGB(4, 4, 4),
         GX_RGB(4, 4, 4),
@@ -464,16 +454,14 @@ static void ov95_0224B084(UnkStruct_ov95_0224AC64 *param0)
     ov95_02247978(param0->unk_24, &param0->unk_28);
 }
 
-static void ov95_0224B194(UnkStruct_ov95_0224AC64 *param0)
-{
+static void ov95_0224B194(UnkStruct_ov95_0224AC64 *param0) {
     if (param0->unk_20) {
         ov95_0224773C(param0->unk_20);
         param0->unk_20 = NULL;
     }
 }
 
-static void ov95_0224B1A8(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
-{
+static void ov95_0224B1A8(UnkStruct_ov95_0224AC64 *param0, SysTask **param1) {
     UnkStruct_ov95_0224B1A8 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B1A8));
 
     if (v0) {
@@ -492,8 +480,7 @@ static void ov95_0224B1A8(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
     }
 }
 
-static void ov95_0224B1F8(SysTask *param0, void *param1)
-{
+static void ov95_0224B1F8(SysTask *param0, void *param1) {
     UnkStruct_ov95_0224B1A8 *v0 = param1;
 
     if (v0->unk_08) {
@@ -509,8 +496,7 @@ static void ov95_0224B1F8(SysTask *param0, void *param1)
     }
 }
 
-static void ov95_0224B258(SysTask *param0)
-{
+static void ov95_0224B258(SysTask *param0) {
     if (param0) {
         UnkStruct_ov95_0224B1A8 *v0 = SysTask_GetParam(param0);
 
@@ -520,8 +506,7 @@ static void ov95_0224B258(SysTask *param0)
     }
 }
 
-static void ov95_0224B274(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
-{
+static void ov95_0224B274(UnkStruct_ov95_0224AC64 *param0, SysTask **param1) {
     UnkStruct_ov95_0224B274 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B274));
 
     if (v0) {
@@ -540,8 +525,7 @@ static void ov95_0224B274(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
     }
 }
 
-static void ov95_0224B2C8(SysTask *param0, void *param1)
-{
+static void ov95_0224B2C8(SysTask *param0, void *param1) {
     UnkStruct_ov95_0224B274 *v0 = param1;
 
     if (v0->unk_04) {
@@ -555,8 +539,7 @@ static void ov95_0224B2C8(SysTask *param0, void *param1)
     }
 }
 
-static void ov95_0224B308(SysTask *param0)
-{
+static void ov95_0224B308(SysTask *param0) {
     if (param0) {
         UnkStruct_ov95_0224B274 *v0 = SysTask_GetParam(param0);
 
@@ -567,8 +550,7 @@ static void ov95_0224B308(SysTask *param0)
     }
 }
 
-static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param2, int param3, SysTask **param4)
-{
+static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param2, int param3, SysTask **param4) {
     UnkStruct_ov95_0224B324 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224B324));
 
     if (v0) {
@@ -589,8 +571,7 @@ static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param
     }
 }
 
-static void ov95_0224B388(SysTask *param0, void *param1)
-{
+static void ov95_0224B388(SysTask *param0, void *param1) {
     UnkStruct_ov95_0224B324 *v0 = param1;
 
     if (--(v0->unk_10) > 0) {
@@ -602,8 +583,7 @@ static void ov95_0224B388(SysTask *param0, void *param1)
     }
 }
 
-static void ov95_0224B3BC(SysTask *param0)
-{
+static void ov95_0224B3BC(SysTask *param0) {
     if (param0) {
         UnkStruct_ov95_0224B324 *v0 = SysTask_GetParam(param0);
 

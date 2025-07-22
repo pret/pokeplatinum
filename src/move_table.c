@@ -9,21 +9,18 @@
 
 static void LoadMoveEntry(int move, MoveTable *entry);
 
-void MoveTable_Load(void *buf)
-{
+void MoveTable_Load(void *buf) {
     NARC_ReadFromMemberByIndexPair(buf, NARC_INDEX_POKETOOL__WAZA__PL_WAZA_TBL, 0, 0, sizeof(MoveTable) * MAX_MOVES);
 }
 
-u32 MoveTable_LoadParam(int move, enum MoveAttribute param)
-{
+u32 MoveTable_LoadParam(int move, enum MoveAttribute param) {
     MoveTable moveData;
 
     LoadMoveEntry(move, &moveData);
     return MoveTable_Get(&moveData, param);
 }
 
-u8 MoveTable_CalcMaxPP(u16 move, u8 ppUps)
-{
+u8 MoveTable_CalcMaxPP(u16 move, u8 ppUps) {
     if (ppUps > 3) {
         ppUps = 3;
     }
@@ -34,8 +31,7 @@ u8 MoveTable_CalcMaxPP(u16 move, u8 ppUps)
     return pp;
 }
 
-u32 MoveTable_Get(MoveTable *entry, enum MoveAttribute param)
-{
+u32 MoveTable_Get(MoveTable *entry, enum MoveAttribute param) {
     u32 result;
 
     switch (param) {
@@ -80,7 +76,6 @@ u32 MoveTable_Get(MoveTable *entry, enum MoveAttribute param)
     return result;
 }
 
-static void LoadMoveEntry(int move, MoveTable *entry)
-{
+static void LoadMoveEntry(int move, MoveTable *entry) {
     NARC_ReadWholeMemberByIndexPair(entry, NARC_INDEX_POKETOOL__WAZA__PL_WAZA_TBL, move);
 }

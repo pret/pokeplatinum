@@ -127,8 +127,7 @@ static const WindowTemplate sTrainerCardWindowTemplates[] = {
     }
 };
 
-void TrainerCard_AddWindows(BgConfig *bgConfig, Window *windows)
-{
+void TrainerCard_AddWindows(BgConfig *bgConfig, Window *windows) {
     u8 i;
     const WindowTemplate *templates = sTrainerCardWindowTemplates;
 
@@ -139,8 +138,7 @@ void TrainerCard_AddWindows(BgConfig *bgConfig, Window *windows)
     Bg_FillTilesRange(bgConfig, BG_LAYER_SUB_3, 0, 1, 0);
 }
 
-void TrainerCard_RemoveWindows(Window *windows)
-{
+void TrainerCard_RemoveWindows(Window *windows) {
     u16 i;
 
     for (i = 0; i < TRAINER_CARD_WINDOW_COUNT; i++) {
@@ -162,8 +160,7 @@ static const int sTrainerCardTextFields[] = {
     TrainerCard_Text_LinkTrades
 };
 
-void TrainerCard_DrawFrontText(Window *windows, const TrainerCard *trainerCard)
-{
+void TrainerCard_DrawFrontText(Window *windows, const TrainerCard *trainerCard) {
     u8 i;
 
     Window_FillRectWithColor(&windows[TRAINER_CARD_WINDOW_ID], 0, 0, 0, TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, TRAINER_CARD_WINDOW_HEIGHT * TILE_HEIGHT_PIXELS);
@@ -242,8 +239,7 @@ void TrainerCard_DrawFrontText(Window *windows, const TrainerCard *trainerCard)
     MessageLoader_Free(messageLoader);
 }
 
-void TrainerCard_DrawBackText(Window *windows, const TrainerCard *trainerCard)
-{
+void TrainerCard_DrawBackText(Window *windows, const TrainerCard *trainerCard) {
     u8 i;
 
     Window_FillRectWithColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], 0, 0, 0, TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, (TRAINER_CARD_WINDOW_HEIGHT * 2) * TILE_HEIGHT_PIXELS);
@@ -309,8 +305,7 @@ void TrainerCard_DrawBackText(Window *windows, const TrainerCard *trainerCard)
     MessageLoader_Free(messageLoader);
 }
 
-void TrainerCard_ClearWindows(Window *windows, const u8 start, const u8 end)
-{
+void TrainerCard_ClearWindows(Window *windows, const u8 start, const u8 end) {
     u8 i;
 
     for (i = start; i <= end; i++) {
@@ -318,21 +313,18 @@ void TrainerCard_ClearWindows(Window *windows, const u8 start, const u8 end)
     }
 }
 
-static void TrainerCard_DrawNumber(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, Strbuf *strbuf, const u32 num, const u8 maxDigits, enum PaddingMode paddingMode)
-{
+static void TrainerCard_DrawNumber(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, Strbuf *strbuf, const u32 num, const u8 maxDigits, enum PaddingMode paddingMode) {
     Strbuf_FormatInt(strbuf, num, maxDigits, paddingMode, CHARSET_MODE_EN);
     u32 width = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
-static void TrainerCard_DrawString(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, const Strbuf *strbuf)
-{
+static void TrainerCard_DrawString(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, const Strbuf *strbuf) {
     u32 width = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
-void TrainerCard_DrawUpdatedTime(Window *windows, const TrainerCard *trainerCard, Strbuf *unused)
-{
+void TrainerCard_DrawUpdatedTime(Window *windows, const TrainerCard *trainerCard, Strbuf *unused) {
     GF_ASSERT(trainerCard->playTime != NULL);
 
     int hoursUnused = PlayTime_GetHours(trainerCard->playTime);
@@ -361,8 +353,7 @@ void TrainerCard_DrawUpdatedTime(Window *windows, const TrainerCard *trainerCard
     StringTemplate_Free(template);
 }
 
-void TrainerCard_BlinkPlaytimeColon(Window *window, const BOOL showColon, Strbuf *strbuf)
-{
+void TrainerCard_BlinkPlaytimeColon(Window *window, const BOOL showColon, Strbuf *strbuf) {
     if (showColon) {
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 205, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     } else {

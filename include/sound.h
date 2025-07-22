@@ -200,12 +200,10 @@ void Sound_SetPlayerVolume(int playerID, int volume);
 void Sound_Set2PokemonCriesAllowed(BOOL allowed);
 void sub_02005464(BOOL param0);
 
-static inline u16 Sound_GetCurrentBGM1(void *p)
-{
+static inline u16 Sound_GetCurrentBGM1(void *p) {
     return Sound_Impl_GetCurrentBGM(p);
 }
-static inline u16 Sound_GetCurrentBGM(void)
-{
+static inline u16 Sound_GetCurrentBGM(void) {
     return Sound_Impl_GetCurrentBGM();
 }
 

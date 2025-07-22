@@ -22,13 +22,11 @@ enum PokeIconSharedResourceIndex {
     POKEICON_ICON_TILES_START,
 };
 
-static inline u32 IconTilesIndex(u32 icon)
-{
+static inline u32 IconTilesIndex(u32 icon) {
     return icon + POKEICON_ICON_TILES_START;
 }
 
-u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon)
-{
+u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon) {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext((BoxPokemon *)boxMon);
 
     u32 species = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
@@ -40,13 +38,11 @@ u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon)
     return index;
 }
 
-u32 Pokemon_IconSpriteIndex(Pokemon *mon)
-{
+u32 Pokemon_IconSpriteIndex(Pokemon *mon) {
     return BoxPokemon_IconSpriteIndex((const BoxPokemon *)Pokemon_GetBoxPokemon(mon));
 }
 
-u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
-{
+u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form) {
     if (isEgg == TRUE) {
         if (species == SPECIES_MANAPHY) {
             return IconTilesIndex(ICON_MANAPHY_EGG);
@@ -102,8 +98,7 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
     return IconTilesIndex(species);
 }
 
-u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
-{
+u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon) {
     u32 speciesOrEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES_EGG, NULL);
 
     switch (speciesOrEgg) {
@@ -123,8 +118,7 @@ u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
     return 0;
 }
 
-const u8 PokeIconPaletteIndex(u32 species, u32 form, u32 isEgg)
-{
+const u8 PokeIconPaletteIndex(u32 species, u32 form, u32 isEgg) {
     if (isEgg == TRUE) {
         if (species == SPECIES_MANAPHY) {
             species = ICON_MANAPHY_EGG;
@@ -158,8 +152,7 @@ const u8 PokeIconPaletteIndex(u32 species, u32 form, u32 isEgg)
     return sPokemonIconPaletteIndex[species];
 }
 
-const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *boxMon)
-{
+const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *boxMon) {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext((BoxPokemon *)boxMon);
 
     u32 form = BoxPokemon_IconFormOffset(boxMon);
@@ -171,42 +164,34 @@ const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *boxMon)
     return PokeIconPaletteIndex(species, form, isEgg);
 }
 
-const u8 Pokemon_IconPaletteIndex(Pokemon *mon)
-{
+const u8 Pokemon_IconPaletteIndex(Pokemon *mon) {
     return BoxPokemon_IconPaletteIndex((const BoxPokemon *)Pokemon_GetBoxPokemon(mon));
 }
 
-u32 PokeIconPalettesFileIndex(void)
-{
+u32 PokeIconPalettesFileIndex(void) {
     return POKEICON_SHARED_PALETTES;
 }
 
-u32 PokeIconCellsFileIndex(void)
-{
+u32 PokeIconCellsFileIndex(void) {
     return POKEICON_SHARED_CELLS;
 }
 
-u32 PokeIcon32KCellsFileIndex(void)
-{
+u32 PokeIcon32KCellsFileIndex(void) {
     return POKEICON_SHARED_32K_CELLS;
 }
 
-u32 PokeIcon64KCellsFileIndex(void)
-{
+u32 PokeIcon64KCellsFileIndex(void) {
     return POKEICON_SHARED_64K_CELLS;
 }
 
-u32 PokeIconAnimationFileIndex(void)
-{
+u32 PokeIconAnimationFileIndex(void) {
     return POKEICON_SHARED_ANIMATION;
 }
 
-u32 PokeIcon32KAnimationFileIndex(void)
-{
+u32 PokeIcon32KAnimationFileIndex(void) {
     return POKEICON_SHARED_32K_ANIMATION;
 }
 
-u32 PokeIcon64KAnimationFileIndex(void)
-{
+u32 PokeIcon64KAnimationFileIndex(void) {
     return POKEICON_SHARED_64K_ANIMATION;
 }

@@ -56,8 +56,7 @@ static int (*Unk_ov96_0223DCD4[][3])(UnkStruct_ov96_0223BF40 *, int) = {
 
 UnkStruct_ov96_0223BF40 *Unk_ov96_0223DEEC;
 
-int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
-{
+int ov96_0223B6A0(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov96_0223BF40 *v0;
 
     switch (*param1) {
@@ -117,8 +116,7 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
-{
+int ov96_0223B7F8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov96_0223BF40 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
@@ -162,8 +160,7 @@ int ov96_0223B7F8(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
-{
+int ov96_0223B8CC(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov96_0223BF40 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
@@ -189,8 +186,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov96_0223B940(void *param0)
-{
+static void ov96_0223B940(void *param0) {
     UnkStruct_ov96_0223BF40 *v0 = param0;
 
     VramTransfer_Process();
@@ -201,8 +197,7 @@ static void ov96_0223B940(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov96_0223B960(void)
-{
+static void ov96_0223B960(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -219,21 +214,18 @@ static void ov96_0223B960(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, ApplicationManager *appMan)
-{
+static void ov96_0223B980(UnkStruct_ov96_0223BF40 *param0, ApplicationManager *appMan) {
     param0->unk_00 = (UnkStruct_0206BC70 *)ApplicationManager_Args(appMan);
     param0->unk_10 = 0;
 
     ov96_0223BC5C(param0, 0, 0);
 }
 
-static void ov96_0223B99C(UnkStruct_ov96_0223BF40 *param0)
-{
+static void ov96_0223B99C(UnkStruct_ov96_0223BF40 *param0) {
     return;
 }
 
-static void ov96_0223B9A0(void)
-{
+static void ov96_0223B9A0(void) {
     {
         CharTransferTemplate v0 = {
             20, 2048, 2048, 68
@@ -247,8 +239,7 @@ static void ov96_0223B9A0(void)
     PlttTransfer_Clear();
 }
 
-static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
-{
+static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0) {
     int v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_68);
 
@@ -278,8 +269,7 @@ static const u16 Unk_ov96_0223DA80[][2] = {
     { 0xE0, 0x81 }
 };
 
-void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *param1, SpriteResourcesHeader *param2, int param3)
-{
+void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *param1, SpriteResourcesHeader *param2, int param3) {
     param0->list = param1->unk_BF4;
     param0->resourceData = param2;
     param0->position.z = 0;
@@ -292,8 +282,7 @@ void ov96_0223BAE0(AffineSpriteListTemplate *param0, UnkStruct_ov96_0223BF40 *pa
     param0->heapID = HEAP_ID_68;
 }
 
-static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)
-{
+static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0) {
     int v0;
 
     SpriteResourcesHeader_Init(&param0->unk_DC4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D84[0], param0->unk_D84[1], param0->unk_D84[2], param0->unk_D84[3], NULL, NULL);
@@ -327,8 +316,7 @@ static const WindowTemplate Unk_ov96_0223DA78 = {
     0x0
 };
 
-Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
-{
+Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2) {
     WindowTemplate v0;
 
     v0 = Unk_ov96_0223DA78;
@@ -338,14 +326,12 @@ Menu *ov96_0223BBC8(BgConfig *param0, int param1, int param2)
     return Menu_MakeYesNoChoice(param0, &v0, (1 + (18 + 12)), 11, 68);
 }
 
-void ov96_0223BBFC(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
-{
+void ov96_0223BBFC(UnkStruct_ov96_0223BF40 *param0, int param1, int param2) {
     param0->unk_1C = param1;
     param0->unk_20 = param2;
 }
 
-static void *ov96_0223BC04(DWCAllocType param0, u32 param1, int param2)
-{
+static void *ov96_0223BC04(DWCAllocType param0, u32 param1, int param2) {
 #pragma unused(param0)
     void *v0;
     OSIntrMode v1;
@@ -362,8 +348,7 @@ static void *ov96_0223BC04(DWCAllocType param0, u32 param1, int param2)
     return v0;
 }
 
-static void ov96_0223BC2C(DWCAllocType param0, void *param1, u32 param2)
-{
+static void ov96_0223BC2C(DWCAllocType param0, void *param1, u32 param2) {
 #pragma unused(param0, param2)
     OSIntrMode v0;
 
@@ -377,19 +362,16 @@ static void ov96_0223BC2C(DWCAllocType param0, void *param1, u32 param2)
     OS_RestoreInterrupts(v0);
 }
 
-int ov96_0223BC50(void)
-{
+int ov96_0223BC50(void) {
     return WM_LINK_LEVEL_3 - DWC_GetLinkLevel();
 }
 
-void ov96_0223BC5C(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
-{
+void ov96_0223BC5C(UnkStruct_ov96_0223BF40 *param0, int param1, int param2) {
     param0->unk_14 = param1;
     param0->unk_18 = param2;
 }
 
-static void ov96_0223BC64(UnkStruct_ov96_0223BF40 *param0)
-{
+static void ov96_0223BC64(UnkStruct_ov96_0223BF40 *param0) {
     ov96_0223B960();
     ov96_0223B9A0();
     ov96_0223B9D0(param0);
@@ -398,8 +380,7 @@ static void ov96_0223BC64(UnkStruct_ov96_0223BF40 *param0)
     SetVBlankCallback(ov96_0223B940, param0);
 }
 
-static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0)
-{
+static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0) {
     int v0;
 
     SpriteTransfer_ResetCharTransfer(param0->unk_D94[0][0]);

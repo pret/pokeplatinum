@@ -36,8 +36,7 @@ static void EndCursorTransform(PokedexGraphicData *pokedexGraphicData);
 static void InsitigateCursorTransformation(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height);
 static void TransformCursor(SysTask *sysTask, void *data);
 
-void PokedexGraphics_Init(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
-{
+void PokedexGraphics_Init(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID) {
     GraphicsModes graphicsModes;
     PokedexTextManagerTemplate textManTemplate;
 
@@ -79,8 +78,7 @@ void PokedexGraphics_Init(PokedexGraphicData *pokedexGraphicData, enum HeapId he
     InitCursor(pokedexGraphicData, heapID);
 }
 
-void PokedexGraphics_Free(PokedexGraphicData *pokedexGraphicData)
-{
+void PokedexGraphics_Free(PokedexGraphicData *pokedexGraphicData) {
     FreeSpeciesLabel(pokedexGraphicData);
     FreeSpeciesLabelGraphics(pokedexGraphicData);
     FreeCursor(pokedexGraphicData);
@@ -103,8 +101,7 @@ void PokedexGraphics_Free(PokedexGraphicData *pokedexGraphicData)
     memset(pokedexGraphicData, 0, sizeof(PokedexGraphicData));
 }
 
-void PokemonGraphics_UpdateSprites(PokedexGraphicData *pokedexGraphicData)
-{
+void PokemonGraphics_UpdateSprites(PokedexGraphicData *pokedexGraphicData) {
     SpriteList_Update(pokedexGraphicData->spriteList);
 
     NNS_G2dSetupSoftwareSpriteCamera();
@@ -113,29 +110,24 @@ void PokemonGraphics_UpdateSprites(PokedexGraphicData *pokedexGraphicData)
     sub_020150EC(pokedexGraphicData->unk_164);
 }
 
-void PokemonGraphics_UpdateCharAndPltt(PokedexGraphicData *pokedexGraphicData)
-{
+void PokemonGraphics_UpdateCharAndPltt(PokedexGraphicData *pokedexGraphicData) {
     Bg_RunScheduledUpdates(pokedexGraphicData->bgConfig);
     PokemonSpriteManager_UpdateCharAndPltt(pokedexGraphicData->spriteMan);
 }
 
-void PokemonGraphics_SetCharCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y)
-{
+void PokemonGraphics_SetCharCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y) {
     PokemonGraphics_SetSpriteCenterXY(pokedexGraphicData, x, y, SPRITE_RESOURCE_CHAR);
 }
 
-PokemonSprite *PokemonGraphics_GetPokemonChar(const PokedexGraphicData *pokedexGraphicData)
-{
+PokemonSprite *PokemonGraphics_GetPokemonChar(const PokedexGraphicData *pokedexGraphicData) {
     return PokedexGraphics_GetPokemonSprite(pokedexGraphicData, SPRITE_RESOURCE_CHAR);
 }
 
-void PokedexGraphics_SetPokemonCharHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden)
-{
+void PokedexGraphics_SetPokemonCharHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden) {
     PokedexGraphics_SetPokemonSpriteHide(pokedexGraphicData, unhidden, SPRITE_RESOURCE_CHAR);
 }
 
-void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, enum SpriteResourceType spriteResourceType)
-{
+void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, enum SpriteResourceType spriteResourceType) {
     PokemonSpriteTemplate spriteTemplate;
     s16 yOffset;
 
@@ -159,25 +151,21 @@ void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, e
     pokedexGraphicData->pokemonSprite[spriteResourceType] = PokemonSpriteManager_CreateSprite(pokedexGraphicData->spriteMan, &spriteTemplate, x, y + yOffset, 0, 0, NULL, NULL);
 }
 
-void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, enum SpriteResourceType spriteResourceType)
-{
+void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, enum SpriteResourceType spriteResourceType) {
     PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_X_CENTER, x);
     PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_Y_CENTER, y);
 }
 
-void PokemonGraphics_GetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int *x, int *y, enum SpriteResourceType spriteResourceType)
-{
+void PokemonGraphics_GetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int *x, int *y, enum SpriteResourceType spriteResourceType) {
     *x = PokemonSprite_GetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_X_CENTER);
     *y = PokemonSprite_GetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_Y_CENTER);
 }
 
-PokemonSprite *PokedexGraphics_GetPokemonSprite(const PokedexGraphicData *pokedexGraphicData, enum SpriteResourceType spriteResourceType)
-{
+PokemonSprite *PokedexGraphics_GetPokemonSprite(const PokedexGraphicData *pokedexGraphicData, enum SpriteResourceType spriteResourceType) {
     return pokedexGraphicData->pokemonSprite[spriteResourceType];
 }
 
-void PokedexGraphics_SetPokemonSpriteHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden, enum SpriteResourceType spriteResourceType)
-{
+void PokedexGraphics_SetPokemonSpriteHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden, enum SpriteResourceType spriteResourceType) {
     if (pokedexGraphicData->pokemonSprite[spriteResourceType] == NULL) {
         return;
     }
@@ -189,25 +177,21 @@ void PokedexGraphics_SetPokemonSpriteHide(const PokedexGraphicData *pokedexGraph
     }
 }
 
-Sprite *PokedexGraphics_GetNameTag(const PokedexGraphicData *pokedexGraphicData)
-{
+Sprite *PokedexGraphics_GetNameTag(const PokedexGraphicData *pokedexGraphicData) {
     GF_ASSERT(pokedexGraphicData->pokedexSpeciesLabel.nameTag);
     return pokedexGraphicData->pokedexSpeciesLabel.nameTag;
 }
 
-Sprite *PokedexGraphics_GetCaughtIcon(const PokedexGraphicData *pokedexGraphicData)
-{
+Sprite *PokedexGraphics_GetCaughtIcon(const PokedexGraphicData *pokedexGraphicData) {
     GF_ASSERT(pokedexGraphicData->pokedexSpeciesLabel.caughtIcon);
     return pokedexGraphicData->pokedexSpeciesLabel.caughtIcon;
 }
 
-void PokedexGraphics_UpdatePokedexSpeciesLabel(PokedexGraphicData *pokedexGraphicData, PokedexDisplayBox *displayBox, int size, enum Species species, BOOL isNationalDex)
-{
+void PokedexGraphics_UpdatePokedexSpeciesLabel(PokedexGraphicData *pokedexGraphicData, PokedexDisplayBox *displayBox, int size, enum Species species, BOOL isNationalDex) {
     PokedexGraphics_UpdateSpeciesLabel(&pokedexGraphicData->pokedexSpeciesLabel, displayBox, size, species, isNationalDex);
 }
 
-void PokedexGraphics_UpdateSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexDisplayBox *displayBox, int size, enum Species species, BOOL isNationalDex)
-{
+void PokedexGraphics_UpdateSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexDisplayBox *displayBox, int size, enum Species species, BOOL isNationalDex) {
     if (species == pokedexSpeciesLabel->species && isNationalDex == pokedexSpeciesLabel->isNationalDex) {
         sub_020129D0(pokedexSpeciesLabel->textData->fontOAM, TRUE);
         return;
@@ -227,28 +211,24 @@ void PokedexGraphics_UpdateSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel
     }
 }
 
-SpriteResource *PokedexGraphics_GetSpeciesLabelSpriteResource(const PokedexGraphicData *pokedexGraphicData, enum SpriteResourceType spriteResourceType)
-{
+SpriteResource *PokedexGraphics_GetSpeciesLabelSpriteResource(const PokedexGraphicData *pokedexGraphicData, enum SpriteResourceType spriteResourceType) {
     GF_ASSERT(spriteResourceType <= 3);
     return pokedexGraphicData->pokedexSpeciesLabel.spriteResource[spriteResourceType];
 }
 
-void PokedexGraphics_SetSpeciesLabelGXOamMode(const PokedexGraphicData *pokedexGraphicData, GXOamMode mode)
-{
+void PokedexGraphics_SetSpeciesLabelGXOamMode(const PokedexGraphicData *pokedexGraphicData, GXOamMode mode) {
     Sprite_SetExplicitOAMMode(pokedexGraphicData->pokedexSpeciesLabel.nameTag, mode);
     Sprite_SetExplicitOAMMode(pokedexGraphicData->pokedexSpeciesLabel.caughtIcon, mode);
     sub_02012AF0(pokedexGraphicData->pokedexSpeciesLabel.textData->fontOAM, mode);
 }
 
-void PokedexGraphics_SetSpeciesLabelPriority(const PokedexGraphicData *pokedexGraphicData, int priority)
-{
+void PokedexGraphics_SetSpeciesLabelPriority(const PokedexGraphicData *pokedexGraphicData, int priority) {
     Sprite_SetExplicitPriority(pokedexGraphicData->pokedexSpeciesLabel.nameTag, priority);
     Sprite_SetExplicitPriority(pokedexGraphicData->pokedexSpeciesLabel.caughtIcon, priority);
     sub_02012A00(pokedexGraphicData->pokedexSpeciesLabel.textData->fontOAM, priority);
 }
 
-void PokedexGraphics_SetPokedexSpeciesLabelDraw(const PokedexGraphicData *pokedexGraphicData, BOOL draw)
-{
+void PokedexGraphics_SetPokedexSpeciesLabelDraw(const PokedexGraphicData *pokedexGraphicData, BOOL draw) {
     if (pokedexGraphicData->pokedexSpeciesLabel.nameTag) {
         Sprite_SetDrawFlag(pokedexGraphicData->pokedexSpeciesLabel.nameTag, draw);
     }
@@ -262,8 +242,7 @@ void PokedexGraphics_SetPokedexSpeciesLabelDraw(const PokedexGraphicData *pokede
     }
 }
 
-void PokedexGraphics_InitBlendTransition(PokedexBlendTransition *blendTransition, u8 numSteps, int startBackgroundBrightness, int endBackgroundBrightness, int startSpriteBrightness, int endSpriteBrightness, GXBlendPlaneMask plane1, GXBlendPlaneMask plane2, BOOL isSubscreen)
-{
+void PokedexGraphics_InitBlendTransition(PokedexBlendTransition *blendTransition, u8 numSteps, int startBackgroundBrightness, int endBackgroundBrightness, int startSpriteBrightness, int endSpriteBrightness, GXBlendPlaneMask plane1, GXBlendPlaneMask plane2, BOOL isSubscreen) {
     blendTransition->isSubscreen = isSubscreen;
     blendTransition->plane1 = plane1;
     blendTransition->plane2 = plane2 | GX_BLEND_PLANEMASK_BD;
@@ -275,8 +254,7 @@ void PokedexGraphics_InitBlendTransition(PokedexBlendTransition *blendTransition
     blendTransition->step = 0;
 }
 
-BOOL PokedexGraphics_TakeBlendTransitionStep(PokedexBlendTransition *blendTransition)
-{
+BOOL PokedexGraphics_TakeBlendTransitionStep(PokedexBlendTransition *blendTransition) {
     if (PokedexGraphics_BlendTransitionComplete(blendTransition) == FALSE) {
         int ev1 = PokedexGraphics_BlendSprites(blendTransition);
         int brightness = PokedexGraphics_BlendScreen(blendTransition);
@@ -293,45 +271,39 @@ BOOL PokedexGraphics_TakeBlendTransitionStep(PokedexBlendTransition *blendTransi
     return PokedexGraphics_BlendTransitionComplete(blendTransition);
 }
 
-int PokedexGraphics_BlendSprites(PokedexBlendTransition *blendTransition)
-{
+int PokedexGraphics_BlendSprites(PokedexBlendTransition *blendTransition) {
     fx32 spriteBrightness = FX_Mul(blendTransition->deltaSpriteBrightness << FX32_SHIFT, blendTransition->step << FX32_SHIFT);
     spriteBrightness = FX_Div(spriteBrightness, blendTransition->numSteps << FX32_SHIFT);
 
     return (spriteBrightness >> FX32_SHIFT) + blendTransition->startSpriteBrightness;
 }
 
-int PokedexGraphics_BlendScreen(PokedexBlendTransition *blendTransition)
-{
+int PokedexGraphics_BlendScreen(PokedexBlendTransition *blendTransition) {
     fx32 backgroundBrightness = FX_Mul(blendTransition->deltaBackgroundBrightness << FX32_SHIFT, blendTransition->step << FX32_SHIFT);
     backgroundBrightness = FX_Div(backgroundBrightness, blendTransition->numSteps << FX32_SHIFT);
 
     return (backgroundBrightness >> FX32_SHIFT) + blendTransition->startBackgroundBrightness;
 }
 
-BOOL PokedexGraphics_BlendTransitionComplete(PokedexBlendTransition *blendTransition)
-{
+BOOL PokedexGraphics_BlendTransitionComplete(PokedexBlendTransition *blendTransition) {
     return blendTransition->step > blendTransition->numSteps;
 }
 
-void PokedexGraphics_BlendPokemonChar(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition)
-{
+void PokedexGraphics_BlendPokemonChar(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition) {
     int oppBackgroundBrightness = -PokedexGraphics_BlendScreen(blendTransition);
     PokemonSprite *pokemonSprite = PokemonGraphics_GetPokemonChar(pokedexGraphicData);
 
     PokemonSprite_StartFade(pokemonSprite, oppBackgroundBrightness, oppBackgroundBrightness, 0, 0);
 }
 
-void PokedexGraphics_BlendPokemonSprite(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition, enum SpriteResourceType spriteResourceType)
-{
+void PokedexGraphics_BlendPokemonSprite(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition, enum SpriteResourceType spriteResourceType) {
     int oppBackgroundBrightness = -PokedexGraphics_BlendScreen(blendTransition);
     PokemonSprite *pokemonSprite = PokedexGraphics_GetPokemonSprite(pokedexGraphicData, spriteResourceType);
 
     PokemonSprite_StartFade(pokemonSprite, oppBackgroundBrightness, oppBackgroundBrightness, 0, 0);
 }
 
-void PokedexGraphics_CurrentButtonTransformation(const PokedexPanelData *pokedexPanelData, PokedexGraphicData *pokedexGraphicData)
-{
+void PokedexGraphics_CurrentButtonTransformation(const PokedexPanelData *pokedexPanelData, PokedexGraphicData *pokedexGraphicData) {
     int x, y, width, height;
 
     PokedexPanel_GetCurrentButtonXY(pokedexPanelData, &x, &y);
@@ -339,25 +311,21 @@ void PokedexGraphics_CurrentButtonTransformation(const PokedexPanelData *pokedex
     PokedexGraphics_TransformCursor(pokedexGraphicData, x, y, width, height);
 }
 
-void PokedexGraphics_TransformCursor(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height)
-{
+void PokedexGraphics_TransformCursor(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height) {
     InsitigateCursorTransformation(pokedexGraphicData, x, y, width, height);
 }
 
-void PokedexGraphics_SetDrawCursor(PokedexCursorGraphics *pokedexCursorGraphics, BOOL draw)
-{
+void PokedexGraphics_SetDrawCursor(PokedexCursorGraphics *pokedexCursorGraphics, BOOL draw) {
     for (int cornerType = 0; cornerType < MAX_CORNER_TYPE; cornerType++) {
         Sprite_SetDrawFlag(pokedexCursorGraphics->sprite[cornerType], draw);
     }
 }
 
-BOOL PokedexGraphics_GetDrawCursor(PokedexCursorGraphics *pokedexCursorGraphics)
-{
+BOOL PokedexGraphics_GetDrawCursor(PokedexCursorGraphics *pokedexCursorGraphics) {
     return Sprite_GetDrawFlag(pokedexCursorGraphics->sprite[CORNER_TYPE_TOP_LEFT]);
 }
 
-void PokedexGraphics_SetStaticCursorSize(PokedexCursorGraphics *pokedexCursorGraphics, BOOL isStaticSize)
-{
+void PokedexGraphics_SetStaticCursorSize(PokedexCursorGraphics *pokedexCursorGraphics, BOOL isStaticSize) {
     pokedexCursorGraphics->isStaticSize = isStaticSize;
 
     if (isStaticSize == FALSE) {
@@ -365,8 +333,7 @@ void PokedexGraphics_SetStaticCursorSize(PokedexCursorGraphics *pokedexCursorGra
     }
 }
 
-void PokedexGraphics_GoToCurrentButton(const PokedexPanelData *pokedexPanelData, PokedexGraphicData *pokedexGraphicData)
-{
+void PokedexGraphics_GoToCurrentButton(const PokedexPanelData *pokedexPanelData, PokedexGraphicData *pokedexGraphicData) {
     int x, y, width, height;
 
     PokedexPanel_GetCurrentButtonXY(pokedexPanelData, &x, &y);
@@ -374,8 +341,7 @@ void PokedexGraphics_GoToCurrentButton(const PokedexPanelData *pokedexPanelData,
     PokedexGraphics_SetCursorPosAndSize(pokedexGraphicData, x, y, width, height);
 }
 
-void PokedexGraphics_SetCursorPosAndSize(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height)
-{
+void PokedexGraphics_SetCursorPosAndSize(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height) {
     pokedexGraphicData->cursorGraphics.x = x;
     pokedexGraphicData->cursorGraphics.y = y;
     pokedexGraphicData->cursorGraphics.width = width;
@@ -390,8 +356,7 @@ void PokedexGraphics_SetCursorPosAndSize(PokedexGraphicData *pokedexGraphicData,
     pokedexGraphicData->cursorMan.isMoving = FALSE;
 }
 
-void PokedexGraphics_InitTransformation(CursorTransformation *cursorTransformation, int startX, int endX, int startY, int endY, int numSteps)
-{
+void PokedexGraphics_InitTransformation(CursorTransformation *cursorTransformation, int startX, int endX, int startY, int endY, int numSteps) {
     cursorTransformation->currentX = startX;
     cursorTransformation->currentY = startY;
     cursorTransformation->startX = startX;
@@ -402,8 +367,7 @@ void PokedexGraphics_InitTransformation(CursorTransformation *cursorTransformati
     cursorTransformation->step = 0;
 }
 
-BOOL PokedexGraphics_TakeCursorTransformStep(CursorTransformation *cursorTransformation)
-{
+BOOL PokedexGraphics_TakeCursorTransformStep(CursorTransformation *cursorTransformation) {
     fx32 x = FX_Mul(cursorTransformation->deltaX << FX32_SHIFT, cursorTransformation->step << FX32_SHIFT);
     x = FX_Div(x, cursorTransformation->numSteps << FX32_SHIFT);
     fx32 y = FX_Mul(cursorTransformation->deltaY << FX32_SHIFT, cursorTransformation->step << FX32_SHIFT);
@@ -421,13 +385,11 @@ BOOL PokedexGraphics_TakeCursorTransformStep(CursorTransformation *cursorTransfo
     return TRUE;
 }
 
-NARC *PokedexGraphics_GetNARC(PokedexGraphicData *pokedexGraphicData)
-{
+NARC *PokedexGraphics_GetNARC(PokedexGraphicData *pokedexGraphicData) {
     return pokedexGraphicData->pokedexGraphics;
 }
 
-static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, enum HeapId heapID)
-{
+static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, enum HeapId heapID) {
     void *graphicFile = NARC_AllocAndReadWholeMember(pokedexGraphicData->pokedexGraphics, memberIndex, heapID);
 
     if (graphicFile != NULL) {
@@ -446,8 +408,7 @@ static void *LoadGraphicsFile(PokedexGraphicData *pokedexGraphicData, u32 member
     return graphicFile;
 }
 
-u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BgConfig *bgConfig, u32 bgLayer, u32 tileStart, u32 size, BOOL isCompressed, enum HeapId heapID)
-{
+u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BgConfig *bgConfig, u32 bgLayer, u32 tileStart, u32 size, BOOL isCompressed, enum HeapId heapID) {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
     if (graphicFile != NULL) {
@@ -467,8 +428,7 @@ u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGrap
     return size;
 }
 
-void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, enum PaletteLoadLocation loadLocation, u32 offset, u32 szByte, enum HeapId heapID)
-{
+void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, enum PaletteLoadLocation loadLocation, u32 offset, u32 szByte, enum HeapId heapID) {
     static void (*const sPaletteLoadFuncs[])(const void *, u32, u32) = {
         GX_LoadBGPltt,
         GX_LoadOBJPltt,
@@ -498,8 +458,7 @@ void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
     }
 }
 
-void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapId heapID)
-{
+void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dScreenData **screenData, enum HeapId heapID) {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
     if (graphicFile != NULL) {
@@ -512,8 +471,7 @@ void *PokedexGraphics_GetGraphicNarcScreenData(PokedexGraphicData *pokedexGraphi
     return graphicFile;
 }
 
-void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, NNSG2dPaletteData **paletteData, enum HeapId heapID)
-{
+void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, NNSG2dPaletteData **paletteData, enum HeapId heapID) {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, FALSE, heapID);
 
     if (graphicFile != NULL) {
@@ -526,8 +484,7 @@ void *PokedexGraphics_GetGraphicNarcPaletteData(PokedexGraphicData *pokedexGraph
     return graphicFile;
 }
 
-void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dCharacterData **characterData, enum HeapId heapID)
-{
+void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BOOL isCompressed, NNSG2dCharacterData **characterData, enum HeapId heapID) {
     void *graphicFile = LoadGraphicsFile(pokedexGraphicData, memberIndex, isCompressed, heapID);
 
     if (graphicFile != NULL) {
@@ -540,8 +497,7 @@ void *PokedexGraphics_GetGraphicNarcCharacterData(PokedexGraphicData *pokedexGra
     return graphicFile;
 }
 
-static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
-{
+static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID) {
     BgTemplate bgT0 = {
         .x = 0,
         .y = 0,
@@ -660,8 +616,7 @@ static void InitBackgrounds(BgConfig *bgConfig, enum HeapId heapID)
     Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_3);
 }
 
-static void FreeBackgrounds(BgConfig *bgConfig)
-{
+static void FreeBackgrounds(BgConfig *bgConfig) {
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
@@ -670,20 +625,17 @@ static void FreeBackgrounds(BgConfig *bgConfig)
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_2);
 }
 
-static void InitWindow(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
-{
+static void InitWindow(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID) {
     Window_Add(pokedexGraphicData->bgConfig, &pokedexGraphicData->window, 1, 0, 0, 32, 32, 0, 0);
     Window_FillTilemap(&pokedexGraphicData->window, 0);
     Window_CopyToVRAM(&pokedexGraphicData->window);
 }
 
-static void FreeWindow(PokedexGraphicData *pokedexGraphicData)
-{
+static void FreeWindow(PokedexGraphicData *pokedexGraphicData) {
     Window_Remove(&pokedexGraphicData->window);
 }
 
-static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
-{
+static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID) {
     pokedexGraphicData->spriteMan = PokemonSpriteManager_New(heapID);
 
     NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x8000, 0, 0);
@@ -709,8 +661,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapId
     }
 }
 
-static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
-{
+static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData) {
     for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_GEN4; spriteResourceType++) {
         if (pokedexGraphicData->pokemonSprite[spriteResourceType]) {
             PokemonSprite_Delete(pokedexGraphicData->pokemonSprite[spriteResourceType]);
@@ -721,8 +672,7 @@ static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
     sub_020150A8(pokedexGraphicData->unk_164);
 }
 
-static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
-{
+static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID) {
     PokedexSpeciesLabel *pokedexSpeciesLabel = &pokedexGraphicData->pokedexSpeciesLabel;
     NARC *pokedexGraphicsNARC = PokedexGraphics_GetNARC(pokedexGraphicData);
 
@@ -740,8 +690,7 @@ static void InitSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData, enu
     pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexGraphicsNARC, 77, 1, 3000, 3, heapID);
 }
 
-void PokedexGraphics_InitSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteResourceCollection **spriteResourceCollection, enum HeapId heapID, NARC *narc)
-{
+void PokedexGraphics_InitSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteResourceCollection **spriteResourceCollection, enum HeapId heapID, NARC *narc) {
     pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(spriteResourceCollection[SPRITE_RESOURCE_CHAR], narc, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_CHAR]);
@@ -756,8 +705,7 @@ void PokedexGraphics_InitSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpecie
     pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(spriteResourceCollection[SPRITE_RESOURCE_ANIM], narc, 77, 1, 3000, 3, heapID);
 }
 
-static void FreeSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData)
-{
+static void FreeSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData) {
     PokedexSpeciesLabel *pokedexSpeciesLabel = &pokedexGraphicData->pokedexSpeciesLabel;
 
     SpriteTransfer_ResetCharTransfer(pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_CHAR]);
@@ -769,8 +717,7 @@ static void FreeSpeciesLabelGraphics(PokedexGraphicData *pokedexGraphicData)
     SpriteResourceCollection_Remove(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_ANIM]);
 }
 
-void PokedexGraphics_FreeSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteResourceCollection **spriteResourceCollection)
-{
+void PokedexGraphics_FreeSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteResourceCollection **spriteResourceCollection) {
     SpriteTransfer_ResetCharTransfer(pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_ResetPlttTransfer(pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_PLTT]);
 
@@ -780,8 +727,7 @@ void PokedexGraphics_FreeSpeciesLabelGraphics(PokedexSpeciesLabel *pokedexSpecie
     SpriteResourceCollection_Remove(spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexSpeciesLabel->spriteResource[SPRITE_RESOURCE_ANIM]);
 }
 
-static void InitSpeciesLabel(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
-{
+static void InitSpeciesLabel(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID) {
     SpriteResourcesHeader spriteResourcesHeader;
     SpriteListTemplate spriteListTemplate;
 
@@ -813,8 +759,7 @@ static void InitSpeciesLabel(PokedexGraphicData *pokedexGraphicData, enum HeapId
     pokedexGraphicData->pokedexSpeciesLabel.isNationalDex = FALSE;
 }
 
-static void FreeSpeciesLabel(PokedexGraphicData *pokedexGraphicData)
-{
+static void FreeSpeciesLabel(PokedexGraphicData *pokedexGraphicData) {
     Sprite_Delete(pokedexGraphicData->pokedexSpeciesLabel.nameTag);
     pokedexGraphicData->pokedexSpeciesLabel.nameTag = NULL;
 
@@ -827,8 +772,7 @@ static void FreeSpeciesLabel(PokedexGraphicData *pokedexGraphicData)
     }
 }
 
-void PokedexGraphics_NewSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteList *spriteList, SpriteResourceCollection **spriteResourceCollection, enum HeapId heapID, int headerPriority)
-{
+void PokedexGraphics_NewSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, SpriteList *spriteList, SpriteResourceCollection **spriteResourceCollection, enum HeapId heapID, int headerPriority) {
     SpriteResourcesHeader spriteResourcesHeader;
     SpriteListTemplate spriteListTemplate;
 
@@ -860,8 +804,7 @@ void PokedexGraphics_NewSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel, S
     pokedexSpeciesLabel->isNationalDex = FALSE;
 }
 
-void PokedexGraphics_FreeSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel)
-{
+void PokedexGraphics_FreeSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel) {
     Sprite_Delete(pokedexSpeciesLabel->nameTag);
     pokedexSpeciesLabel->nameTag = NULL;
 
@@ -874,8 +817,7 @@ void PokedexGraphics_FreeSpeciesLabel(PokedexSpeciesLabel *pokedexSpeciesLabel)
     }
 }
 
-void PokedexGraphics_SetSpeciesLabelDraw(PokedexSpeciesLabel *pokedexSpeciesLabel, BOOL draw)
-{
+void PokedexGraphics_SetSpeciesLabelDraw(PokedexSpeciesLabel *pokedexSpeciesLabel, BOOL draw) {
     if (pokedexSpeciesLabel->nameTag) {
         Sprite_SetDrawFlag(pokedexSpeciesLabel->nameTag, draw);
     }
@@ -889,8 +831,7 @@ void PokedexGraphics_SetSpeciesLabelDraw(PokedexSpeciesLabel *pokedexSpeciesLabe
     }
 }
 
-static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
-{
+static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID) {
     PokedexCursorGraphics *pokedexCursorGraphics = &pokedexGraphicData->cursorGraphics;
     NARC *pokedexGraphicsNARC = PokedexGraphics_GetNARC(pokedexGraphicData);
 
@@ -908,8 +849,7 @@ static void InitCursorGraphics(PokedexGraphicData *pokedexGraphicData, enum Heap
     pokedexCursorGraphics->spriteResource[SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexGraphicsNARC, 118, 1, 12000, 3, heapID);
 }
 
-static void FreeCursorGraphics(PokedexGraphicData *pokedexGraphicData)
-{
+static void FreeCursorGraphics(PokedexGraphicData *pokedexGraphicData) {
     PokedexCursorGraphics *pokedexCursorGraphics = &pokedexGraphicData->cursorGraphics;
 
     SpriteTransfer_ResetCharTransfer(pokedexCursorGraphics->spriteResource[SPRITE_RESOURCE_CHAR]);
@@ -921,8 +861,7 @@ static void FreeCursorGraphics(PokedexGraphicData *pokedexGraphicData)
     SpriteResourceCollection_Remove(pokedexGraphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], pokedexCursorGraphics->spriteResource[SPRITE_RESOURCE_ANIM]);
 }
 
-static void InitCursor(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID)
-{
+static void InitCursor(PokedexGraphicData *pokedexGraphicData, enum HeapId heapID) {
     SpriteResourcesHeader resourceData;
     SpriteListTemplate spriteListTemplate;
     PokedexCursorGraphics *pokedexCursorGraphics = &pokedexGraphicData->cursorGraphics;
@@ -947,8 +886,7 @@ static void InitCursor(PokedexGraphicData *pokedexGraphicData, enum HeapId heapI
     StartCursorTransform(pokedexGraphicData);
 }
 
-static void FreeCursor(PokedexGraphicData *pokedexGraphicData)
-{
+static void FreeCursor(PokedexGraphicData *pokedexGraphicData) {
     PokedexCursorGraphics *pokedexCursorGraphics = &pokedexGraphicData->cursorGraphics;
 
     EndCursorTransform(pokedexGraphicData);
@@ -959,18 +897,15 @@ static void FreeCursor(PokedexGraphicData *pokedexGraphicData)
     }
 }
 
-static void StartCursorPulse(PokedexGraphicData *pokedexGraphicData)
-{
+static void StartCursorPulse(PokedexGraphicData *pokedexGraphicData) {
     pokedexGraphicData->cursorPulse = SysTask_Start(PulseCursor, &pokedexGraphicData->cursorGraphics, 1);
 }
 
-static void EndCursorPulse(PokedexGraphicData *pokedexGraphicData)
-{
+static void EndCursorPulse(PokedexGraphicData *pokedexGraphicData) {
     SysTask_Done(pokedexGraphicData->cursorPulse);
 }
 
-static void PulseCursor(SysTask *sysTask, void *data)
-{
+static void PulseCursor(SysTask *sysTask, void *data) {
     PokedexCursorGraphics *pokedexCursorGraphics = data;
     int scale;
 
@@ -996,8 +931,7 @@ static void PulseCursor(SysTask *sysTask, void *data)
     SetCursorSpritePos(pokedexCursorGraphics, pokedexCursorGraphics->x, pokedexCursorGraphics->y, width, height);
 }
 
-static void SetCursorSpritePos(PokedexCursorGraphics *pokedexCursorGraphics, int x, int y, int width, int height)
-{
+static void SetCursorSpritePos(PokedexCursorGraphics *pokedexCursorGraphics, int x, int y, int width, int height) {
     VecFx32 position;
     int cornerX, cornerY;
 
@@ -1010,8 +944,7 @@ static void SetCursorSpritePos(PokedexCursorGraphics *pokedexCursorGraphics, int
     }
 }
 
-static void InsitigateCursorTransformation(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height)
-{
+static void InsitigateCursorTransformation(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height) {
     PokedexCursorManager *cursorMan = &pokedexGraphicData->cursorMan;
 
     if ((cursorMan->x == x) && (cursorMan->y == y) && (cursorMan->width == width) && (cursorMan->height == height)) {
@@ -1030,8 +963,7 @@ static void InsitigateCursorTransformation(PokedexGraphicData *pokedexGraphicDat
     cursorMan->isMoving = TRUE;
 }
 
-static void TransformCursor(SysTask *sysTask, void *data)
-{
+static void TransformCursor(SysTask *sysTask, void *data) {
     PokedexCursorManager *cursorMan = data;
 
     if (cursorMan->isMoving == FALSE) {
@@ -1051,13 +983,11 @@ static void TransformCursor(SysTask *sysTask, void *data)
     }
 }
 
-static void StartCursorTransform(PokedexGraphicData *pokedexGraphicData)
-{
+static void StartCursorTransform(PokedexGraphicData *pokedexGraphicData) {
     pokedexGraphicData->cursorTransorm = SysTask_Start(TransformCursor, &pokedexGraphicData->cursorMan, 0);
 }
 
-static void EndCursorTransform(PokedexGraphicData *pokedexGraphicData)
-{
+static void EndCursorTransform(PokedexGraphicData *pokedexGraphicData) {
     SysTask_Done(pokedexGraphicData->cursorTransorm);
     pokedexGraphicData->cursorTransorm = NULL;
 }

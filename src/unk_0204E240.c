@@ -19,8 +19,7 @@ const u16 Unk_020EBFFC[7][2] = {
     { 0x69, 0x198 }
 };
 
-BOOL ScrCmd_1F1(ScriptContext *param0)
-{
+BOOL ScrCmd_1F1(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u8 v1;
     u16 v2, v3;
@@ -35,8 +34,7 @@ BOOL ScrCmd_1F1(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1F4(ScriptContext *param0)
-{
+BOOL ScrCmd_1F4(ScriptContext *param0) {
     u16 v0;
     u16 *v1 = ScriptContext_GetVarPointer(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -53,8 +51,7 @@ BOOL ScrCmd_1F4(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1F5(ScriptContext *param0)
-{
+BOOL ScrCmd_1F5(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u8 v1;
     u16 v2, v3;
@@ -78,12 +75,10 @@ BOOL ScrCmd_1F5(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1F2(ScriptContext *param0)
-{
+BOOL ScrCmd_1F2(ScriptContext *param0) {
     return 0;
 }
 
-BOOL ScrCmd_1F3(ScriptContext *param0)
-{
+BOOL ScrCmd_1F3(ScriptContext *param0) {
     return 0;
 }

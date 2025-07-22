@@ -42,8 +42,7 @@ BOOL ScrCmd_0F0(ScriptContext *param0);
 BOOL ScrCmd_0F1(ScriptContext *param0);
 BOOL ScrCmd_314(ScriptContext *param0);
 
-BOOL ScrCmd_0B6(ScriptContext *param0)
-{
+BOOL ScrCmd_0B6(ScriptContext *param0) {
     int *v0;
     int *v1;
     int *v2;
@@ -79,8 +78,7 @@ BOOL ScrCmd_0B6(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0B7(ScriptContext *param0)
-{
+BOOL ScrCmd_0B7(ScriptContext *param0) {
     SysTask **v0;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2 = ScriptContext_GetVarPointer(param0);
@@ -107,8 +105,7 @@ BOOL ScrCmd_0B7(ScriptContext *param0)
     return 1;
 }
 
-BOOL ScrCmd_0B8(ScriptContext *param0)
-{
+BOOL ScrCmd_0B8(ScriptContext *param0) {
     u16 *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
@@ -116,8 +113,7 @@ BOOL ScrCmd_0B8(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0B9(ScriptContext *param0)
-{
+BOOL ScrCmd_0B9(ScriptContext *param0) {
     u16 *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_TRAINER_0_ID);
     u16 *v1 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_TRAINER_1_ID);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -127,8 +123,7 @@ BOOL ScrCmd_0B9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0E4(ScriptContext *param0)
-{
+BOOL ScrCmd_0E4(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
     u16 *v2 = ScriptContext_GetVarPointer(param0);
@@ -137,8 +132,7 @@ BOOL ScrCmd_0E4(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx)
-{
+BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *scriptIDPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
     int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
@@ -159,8 +153,7 @@ BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_StartTagBattle(ScriptContext *ctx)
-{
+BOOL ScrCmd_StartTagBattle(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 partnerTrainer = ScriptContext_GetVar(ctx);
@@ -176,8 +169,7 @@ BOOL ScrCmd_StartTagBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_0E7(ScriptContext *param0)
-{
+BOOL ScrCmd_0E7(ScriptContext *param0) {
     u16 v0, v1, v2, v3, v4;
     u16 *v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
     u16 *v6 = ScriptContext_GetVarPointer(param0);
@@ -211,8 +203,7 @@ BOOL ScrCmd_0E7(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0E8(ScriptContext *param0)
-{
+BOOL ScrCmd_0E8(ScriptContext *param0) {
     u16 v0, v1, v2, v3, v4;
     u16 *v5 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
     u16 *v6 = ScriptContext_GetVarPointer(param0);
@@ -246,8 +237,7 @@ BOOL ScrCmd_0E8(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0E9(ScriptContext *param0)
-{
+BOOL ScrCmd_0E9(ScriptContext *param0) {
     u16 *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
@@ -255,22 +245,19 @@ BOOL ScrCmd_0E9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx)
-{
+BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx) {
     u16 trainerID = ScriptContext_GetVar(ctx);
 
     Sound_SwapBGM(Trainer_GetEncounterBGM(trainerID));
     return TRUE;
 }
 
-BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0)
-{
+BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0) {
     sub_02052C5C(param0->task);
     return 1;
 }
 
-BOOL ScrCmd_CheckWonBattle(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckWonBattle(ScriptContext *ctx) {
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -278,8 +265,7 @@ BOOL ScrCmd_CheckWonBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_CheckLostBattle(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckLostBattle(ScriptContext *ctx) {
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -287,8 +273,7 @@ BOOL ScrCmd_CheckLostBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx) {
     BOOL *battleResult = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -296,24 +281,21 @@ BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *ctx) {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     *destVar = Party_HasTwoAliveMons(SaveData_GetParty(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
-BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *param0)
-{
+BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *param0) {
     FieldSystem *fieldSystem = param0->fieldSystem;
     int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     Encounter_NewVsTrainer(param0->task, 1, 0, 0, HEAP_ID_FIELDMAP, battleResultMaskPtr);
     return TRUE;
 }
 
-BOOL ScrCmd_0F0(ScriptContext *param0)
-{
+BOOL ScrCmd_0F0(ScriptContext *param0) {
     MapObject **v0;
     FieldSystem *fieldSystem = param0->fieldSystem;
 
@@ -323,8 +305,7 @@ BOOL ScrCmd_0F0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0F1(ScriptContext *param0)
-{
+BOOL ScrCmd_0F1(ScriptContext *param0) {
     int v0;
     s32 v1;
     MapObject **v2;
@@ -342,8 +323,7 @@ BOOL ScrCmd_0F1(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_314(ScriptContext *param0)
-{
+BOOL ScrCmd_314(ScriptContext *param0) {
     BOOL *v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 

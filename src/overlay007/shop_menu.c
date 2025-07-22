@@ -208,8 +208,7 @@ static const WindowTemplate sShop_FrontierCurrMoneyWindowTemplate = {
     .baseTile = 0x28
 };
 
-static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
-{
+static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr) {
     u16 i;
 
     for (i = 0; i < MAX_SHOP_ITEMS; i++) {
@@ -226,16 +225,14 @@ static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
     }
 }
 
-static ShopMenu *Shop_Alloc(void)
-{
+static ShopMenu *Shop_Alloc(void) {
     ShopMenu *shopMenu = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ShopMenu));
 
     memset(shopMenu, 0, sizeof(ShopMenu));
     return shopMenu;
 }
 
-void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount)
-{
+void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount) {
     ShopMenu *shopMenu = Shop_Alloc();
 
     shopMenu->bgConfig = fieldSystem->bgConfig;
@@ -266,8 +263,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     FieldTask_InitCall(task, FieldTask_InitShop, shopMenu);
 }
 
-static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
-{
+static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem) {
     int dir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     if ((dir == DIR_NORTH) || (dir == DIR_SOUTH) || (dir == DIR_EAST)) {
@@ -277,8 +273,7 @@ static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
     return 8;
 }
 
-BOOL FieldTask_InitShop(FieldTask *task)
-{
+BOOL FieldTask_InitShop(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     ShopMenu *shopMenu = FieldTask_GetEnv(task);
 
@@ -356,20 +351,17 @@ BOOL FieldTask_InitShop(FieldTask *task)
     return FALSE;
 }
 
-static void Shop_ShowContextMenu(ShopMenu *shopMenu)
-{
+static void Shop_ShowContextMenu(ShopMenu *shopMenu) {
     Shop_InitStringUtil(shopMenu);
     Shop_InitContextMenu(shopMenu);
 }
 
-static void Shop_InitStringUtil(ShopMenu *shopMenu)
-{
+static void Shop_InitStringUtil(ShopMenu *shopMenu) {
     shopMenu->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELDMAP);
     shopMenu->strTemplate = StringTemplate_Default(HEAP_ID_FIELDMAP);
 }
 
-static void Shop_InitContextMenu(ShopMenu *shopMenu)
-{
+static void Shop_InitContextMenu(ShopMenu *shopMenu) {
     MenuTemplate menuTemplate;
     u8 maxOptions;
 
@@ -412,8 +404,7 @@ static void Shop_InitContextMenu(ShopMenu *shopMenu)
     shopMenu->choiceMenu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, HEAP_ID_FIELDMAP, PAD_BUTTON_B);
 }
 
-static u8 Shop_SelectContextMenu(ShopMenu *shopMenu)
-{
+static u8 Shop_SelectContextMenu(ShopMenu *shopMenu) {
     u32 input = Menu_ProcessInput(shopMenu->choiceMenu);
 
     switch (input) {
@@ -429,8 +420,7 @@ static u8 Shop_SelectContextMenu(ShopMenu *shopMenu)
     return TRUE;
 }
 
-static void Shop_CloseContextMenu(ShopMenu *shopMenu)
-{
+static void Shop_CloseContextMenu(ShopMenu *shopMenu) {
     Window_EraseStandardFrame(&shopMenu->windows[0], TRUE);
     Window_ClearAndCopyToVRAM(&shopMenu->windows[0]);
     Menu_Free(shopMenu->choiceMenu, NULL);
@@ -438,8 +428,7 @@ static void Shop_CloseContextMenu(ShopMenu *shopMenu)
     Window_Remove(&shopMenu->windows[0]);
 }
 
-static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
-{
+static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu) {
     if (FieldMessage_FinishedPrinting(shopMenu->fieldMsgPrinterId) == FALSE) {
         return FALSE;
     }
@@ -484,8 +473,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
     return FALSE;
 }
 
-static void Shop_InitCamera(FieldSystem *fieldSystem, ShopMenu *shopMenu)
-{
+static void Shop_InitCamera(FieldSystem *fieldSystem, ShopMenu *shopMenu) {
     Bg_FillTilemapRect(shopMenu->bgConfig, BG_LAYER_MAIN_3, 0, 0, 18, 32, 6, 0);
 
     Shop_CloseContextMenu(shopMenu);
@@ -499,8 +487,7 @@ static void Shop_InitCamera(FieldSystem *fieldSystem, ShopMenu *shopMenu)
     shopMenu->cameraPosCurr = 0;
 }
 
-static void Shop_LoadWindows(ShopMenu *shopMenu)
-{
+static void Shop_LoadWindows(ShopMenu *shopMenu) {
     for (u32 i = 0; i < SHOP_WINDOW_MAX; i++) {
         if ((shopMenu->martType != MART_TYPE_NORMAL) && (shopMenu->martType != MART_TYPE_FRONTIER) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
             Window_AddFromTemplate(shopMenu->bgConfig, &shopMenu->windows[i], &sShop_NormalItemDescWindowTemplate);
@@ -512,8 +499,7 @@ static void Shop_LoadWindows(ShopMenu *shopMenu)
     }
 }
 
-static void Shop_DestroyStaticWindows(ShopMenu *shopMenu)
-{
+static void Shop_DestroyStaticWindows(ShopMenu *shopMenu) {
     Window_EraseStandardFrame(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], TRUE);
 
     for (u32 i = 0; i < SHOP_WINDOW_MAX; i++) {
@@ -522,8 +508,7 @@ static void Shop_DestroyStaticWindows(ShopMenu *shopMenu)
     }
 }
 
-static void Shop_LoadGraphics(ShopMenu *shopMenu)
-{
+static void Shop_LoadGraphics(ShopMenu *shopMenu) {
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, HEAP_ID_FIELDMAP);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, tiles_NCGR, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
@@ -545,8 +530,7 @@ static void Shop_LoadGraphics(ShopMenu *shopMenu)
     NARC_dtor(narc);
 }
 
-static void Shop_SetBgPriorities(ShopMenu *shopMenu)
-{
+static void Shop_SetBgPriorities(ShopMenu *shopMenu) {
     shopMenu->engineALayers = GXLayers_EngineAGetLayers();
     shopMenu->bgPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(shopMenu->bgConfig, BG_LAYER_MAIN_0);
     shopMenu->bgPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(shopMenu->bgConfig, BG_LAYER_MAIN_1);
@@ -564,8 +548,7 @@ static void Shop_SetBgPriorities(ShopMenu *shopMenu)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, TRUE);
 }
 
-static void Shop_RestoreBgPriorities(ShopMenu *shopMenu)
-{
+static void Shop_RestoreBgPriorities(ShopMenu *shopMenu) {
     Bg_SetPriority(BG_LAYER_MAIN_0, shopMenu->bgPriorities[BG_LAYER_MAIN_0]);
     Bg_SetPriority(BG_LAYER_MAIN_1, shopMenu->bgPriorities[BG_LAYER_MAIN_1]);
     Bg_SetPriority(BG_LAYER_MAIN_2, shopMenu->bgPriorities[BG_LAYER_MAIN_2]);
@@ -573,8 +556,7 @@ static void Shop_RestoreBgPriorities(ShopMenu *shopMenu)
     GXLayers_EngineASetLayers(shopMenu->engineALayers);
 }
 
-static u8 Shop_MoveCamera(ShopMenu *shopMenu)
-{
+static u8 Shop_MoveCamera(ShopMenu *shopMenu) {
     if (shopMenu->cameraPosCurr != shopMenu->cameraPosDest) {
         VecFx32 targetPosDelta = { 8 * FX32_ONE, 0, 0 };
 
@@ -617,8 +599,7 @@ static const ListMenuTemplate sShop_ItemListMenuTemplate = {
     .parent = NULL,
 };
 
-static u32 Shop_GetItemId(ShopMenu *shopMenu, u16 itemId)
-{
+static u32 Shop_GetItemId(ShopMenu *shopMenu, u16 itemId) {
     if (shopMenu->martType == MART_TYPE_DECOR) {
         return itemId;
     } else if (shopMenu->martType == MART_TYPE_SEAL) {
@@ -628,8 +609,7 @@ static u32 Shop_GetItemId(ShopMenu *shopMenu, u16 itemId)
     return itemId;
 }
 
-static void Shop_InitItemsList(ShopMenu *shopMenu)
-{
+static void Shop_InitItemsList(ShopMenu *shopMenu) {
     MessageLoader *itemNames;
     Strbuf *strbuf;
     ListMenuTemplate listTemplate;
@@ -692,8 +672,7 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
     shopMenu->listMenu = ListMenu_New(&listTemplate, 0, 0, HEAP_ID_FIELDMAP);
 }
 
-static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
-{
+static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit) {
     ShopMenu *shopMenu = (ShopMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (onInit != TRUE) {
@@ -756,8 +735,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION]);
 }
 
-static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
-{
+static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset) {
     ShopMenu *shopMenu = (ShopMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (index != MENU_CANCELED) {
@@ -799,8 +777,7 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
     }
 }
 
-static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney)
-{
+static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney) {
     Strbuf *strbuf, *fmtString;
     u32 currMoney, strWidth;
 
@@ -853,8 +830,7 @@ static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney)
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY]);
 }
 
-static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
-{
+static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu) {
     u32 input;
     u16 prevPos, currPos;
 
@@ -947,8 +923,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
     return SHOP_STATE_SELECT_BUY_MENU;
 }
 
-static u8 Shop_ShowPurchaseMenu(ShopMenu *shopMenu)
-{
+static u8 Shop_ShowPurchaseMenu(ShopMenu *shopMenu) {
     if (FieldMessage_FinishedPrinting(shopMenu->fieldMsgPrinterId) == FALSE) {
         return SHOP_STATE_SHOW_PURCHASE_MENU;
     }
@@ -962,8 +937,7 @@ static u8 Shop_ShowPurchaseMenu(ShopMenu *shopMenu)
     return SHOP_STATE_SELECT_PURCHASE_MENU;
 }
 
-static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
-{
+static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu) {
     Strbuf *strbuf, *fmtString;
     u16 inventoryQty;
 
@@ -991,8 +965,7 @@ static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG]);
 }
 
-static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
-{
+static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu) {
     if (sub_0208C15C(&shopMenu->itemAmount, shopMenu->itemAmountMax) != FALSE) {
         Sound_PlayEffect(SEQ_SE_DP_BAG_004);
         Shop_ShowQtyTotalItemPurchase(shopMenu, TRUE);
@@ -1031,8 +1004,7 @@ static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
     return SHOP_STATE_SELECT_PURCHASE_MENU;
 }
 
-static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
-{
+static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu) {
     Strbuf *strbuf;
     BOOL canFitItem;
 
@@ -1100,8 +1072,7 @@ static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
     return SHOP_STATE_SHOW_CONFIRM_PURCHASE;
 }
 
-static void Shop_ShowQtyTotalItemPurchase(ShopMenu *shopMenu, u8 dontDrawFrame)
-{
+static void Shop_ShowQtyTotalItemPurchase(ShopMenu *shopMenu, u8 dontDrawFrame) {
     Strbuf *strbuf, *fmtString;
     u32 strbufWidth;
 
@@ -1136,8 +1107,7 @@ static void Shop_ShowQtyTotalItemPurchase(ShopMenu *shopMenu, u8 dontDrawFrame)
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE]);
 }
 
-static u8 Shop_ShowConfirmPurchase(ShopMenu *shopMenu)
-{
+static u8 Shop_ShowConfirmPurchase(ShopMenu *shopMenu) {
     if (FieldMessage_FinishedPrinting(shopMenu->fieldMsgPrinterId) == FALSE) {
         return SHOP_STATE_SHOW_CONFIRM_PURCHASE;
     }
@@ -1146,8 +1116,7 @@ static u8 Shop_ShowConfirmPurchase(ShopMenu *shopMenu)
     return SHOP_STATE_SELECT_CONFIRM_PURCHASE;
 }
 
-static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
-{
+static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu) {
     switch (Menu_ProcessInputAndHandleExit(shopMenu->choiceMenu, HEAP_ID_FIELDMAP)) {
     case 0: {
         Strbuf *strbuf;
@@ -1206,8 +1175,7 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
     return SHOP_STATE_SELECT_CONFIRM_PURCHASE;
 }
 
-static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
-{
+static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu) {
     if (FieldMessage_FinishedPrinting(shopMenu->fieldMsgPrinterId) == FALSE) {
         return SHOP_STATE_CONFIRM_PURCHASE;
     }
@@ -1244,8 +1212,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     return SHOP_STATE_FINISH_PURCHASE;
 }
 
-static u8 Shop_FinishPurchase(ShopMenu *shopMenu)
-{
+static u8 Shop_FinishPurchase(ShopMenu *shopMenu) {
     if (FieldMessage_FinishedPrinting(shopMenu->fieldMsgPrinterId) == FALSE) {
         return SHOP_STATE_FINISH_PURCHASE;
     }
@@ -1285,8 +1252,7 @@ static u8 Shop_FinishPurchase(ShopMenu *shopMenu)
     return SHOP_STATE_FINISH_PURCHASE;
 }
 
-static u8 Shop_FinishFreePremierBall(ShopMenu *shopMenu)
-{
+static u8 Shop_FinishFreePremierBall(ShopMenu *shopMenu) {
     if (FieldMessage_FinishedPrinting(shopMenu->fieldMsgPrinterId) == FALSE) {
         return SHOP_STATE_FINISH_FREE_PREMIER;
     }
@@ -1306,8 +1272,7 @@ static u8 Shop_FinishFreePremierBall(ShopMenu *shopMenu)
 }
 
 // idx is "unused" as it is always provided as 0
-static void Shop_SetItemNameToIndex(ShopMenu *shopMenu, u16 itemId, u16 idx)
-{
+static void Shop_SetItemNameToIndex(ShopMenu *shopMenu, u16 itemId, u16 idx) {
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         StringTemplate_SetItemName(shopMenu->strTemplate, idx, itemId);
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
@@ -1319,8 +1284,7 @@ static void Shop_SetItemNameToIndex(ShopMenu *shopMenu, u16 itemId, u16 idx)
     }
 }
 
-static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId)
-{
+static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId) {
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         return Item_LoadParam(itemId, ITEM_PARAM_PRICE, HEAP_ID_FIELDMAP);
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
@@ -1332,8 +1296,7 @@ static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId)
     return sub_020981D0(itemId);
 }
 
-static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId)
-{
+static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId) {
     static const u16 itemToBpPrice[][2] = {
         { ITEM_PROTEIN, 1 },
         { ITEM_CALCIUM, 1 },
@@ -1387,8 +1350,7 @@ static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId)
     return 0;
 }
 
-static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu)
-{
+static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu) {
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
         return sub_0202D230(sub_0202D750(shopMenu->saveData), 0, 0);
     } else {
@@ -1396,8 +1358,7 @@ static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu)
     }
 }
 
-static void Shop_TakeMoney(ShopMenu *shopMenu, u32 amount)
-{
+static void Shop_TakeMoney(ShopMenu *shopMenu, u32 amount) {
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
         sub_0202D230(sub_0202D750(shopMenu->saveData), amount, 6);
     } else {
@@ -1405,8 +1366,7 @@ static void Shop_TakeMoney(ShopMenu *shopMenu, u32 amount)
     }
 }
 
-static u8 Shop_MoveCameraBack(FieldSystem *fieldSystem, ShopMenu *shopMenu)
-{
+static u8 Shop_MoveCameraBack(FieldSystem *fieldSystem, ShopMenu *shopMenu) {
     if (shopMenu->cameraPosCurr != shopMenu->cameraPosDest) {
         VecFx32 targetPosDelta = { -8 * FX32_ONE, 0, 0 };
 
@@ -1439,8 +1399,7 @@ static u8 Shop_MoveCameraBack(FieldSystem *fieldSystem, ShopMenu *shopMenu)
     return SHOP_STATE_REINIT_CONTEXT_MENU;
 }
 
-static u8 Shop_ReinitContextMenu(ShopMenu *shopMenu)
-{
+static u8 Shop_ReinitContextMenu(ShopMenu *shopMenu) {
     if (FieldMessage_FinishedPrinting(shopMenu->fieldMsgPrinterId) == FALSE) {
         return SHOP_STATE_REINIT_CONTEXT_MENU;
     }
@@ -1451,8 +1410,7 @@ static u8 Shop_ReinitContextMenu(ShopMenu *shopMenu)
     return SHOP_STATE_SELECT_CONTEXT_MENU;
 }
 
-static void Shop_PrintExit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
-{
+static void Shop_PrintExit(FieldSystem *fieldSystem, ShopMenu *shopMenu) {
     Strbuf *strbuf;
 
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
@@ -1538,8 +1496,7 @@ static const SpriteTemplateFromResourceHeader sShop_SpriteTemplates[] = {
     },
 };
 
-static void Shop_DrawSprites(ShopMenu *shopMenu)
-{
+static void Shop_DrawSprites(ShopMenu *shopMenu) {
     ov5_021D2F14(&shopMenu->unk_94, &sShop_SpriteResourcePaths, 4, HEAP_ID_FIELDMAP);
 
     for (u32 i = 0; i < SHOP_SPRITE_MAX; i++) {
@@ -1549,8 +1506,7 @@ static void Shop_DrawSprites(ShopMenu *shopMenu)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void Shop_DestroySprites(ShopMenu *shopMenu)
-{
+static void Shop_DestroySprites(ShopMenu *shopMenu) {
     for (u32 i = 0; i < SHOP_SPRITE_MAX; i++) {
         Sprite_Delete(shopMenu->sprites[i]);
     }
@@ -1558,8 +1514,7 @@ static void Shop_DestroySprites(ShopMenu *shopMenu)
     ov5_021D30A8(&shopMenu->unk_94);
 }
 
-static void Shop_SetScrollSpritesPositionXY(ShopMenu *shopMenu, u8 isBuyingItem)
-{
+static void Shop_SetScrollSpritesPositionXY(ShopMenu *shopMenu, u8 isBuyingItem) {
     if (isBuyingItem == FALSE) {
         Sprite_SetPositionXY(shopMenu->sprites[SHOP_SPRITE_SCROLL_ARROW_UP], 177, 8);
         Sprite_SetPositionXY(shopMenu->sprites[SHOP_SPRITE_SCROLL_ARROW_DOWN], 177, 132);
@@ -1569,8 +1524,7 @@ static void Shop_SetScrollSpritesPositionXY(ShopMenu *shopMenu, u8 isBuyingItem)
     }
 }
 
-static void Shop_ChangeItemIconGfx(ShopMenu *shopMenu, u16 itemId)
-{
+static void Shop_ChangeItemIconGfx(ShopMenu *shopMenu, u16 itemId) {
     SpriteResource *spriteRes;
 
     if ((shopMenu->martType != MART_TYPE_NORMAL) && (shopMenu->martType != MART_TYPE_FRONTIER)) {
@@ -1589,19 +1543,16 @@ static void Shop_ChangeItemIconGfx(ShopMenu *shopMenu, u16 itemId)
     SpriteTransfer_ReplacePlttData(spriteRes);
 }
 
-static void Shop_SetCursorSpritePalette(ShopMenu *shopMenu, u8 selected)
-{
+static void Shop_SetCursorSpritePalette(ShopMenu *shopMenu, u8 selected) {
     Sprite_SetExplicitPalette2(shopMenu->sprites[SHOP_SPRITE_CURSOR], selected);
 }
 
-static void Shop_StartScreenFade(FieldSystem *fieldSystem, ShopMenu *shopMenu)
-{
+static void Shop_StartScreenFade(FieldSystem *fieldSystem, ShopMenu *shopMenu) {
     ov5_021D1744(0);
     shopMenu->state = SHOP_STATE_WAIT_SCREEN_TRANSITION;
 }
 
-static void Shop_FinishScreenTransition(FieldTask *task)
-{
+static void Shop_FinishScreenTransition(FieldTask *task) {
     FieldSystem *fieldSystem;
     ShopMenu *shopMenu;
 
@@ -1624,8 +1575,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     shopMenu->state = SHOP_STATE_REINIT_FIELD_MAP;
 }
 
-static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu)
-{
+static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu) {
     if (IsScreenFadeDone() == FALSE) {
         return SHOP_STATE_REINIT_MERCHANT_MESSAGE;
     }

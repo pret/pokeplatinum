@@ -50,8 +50,7 @@ const MapObjectAnimCmd Unk_ov6_02249608[];
 const MapObjectAnimCmd Unk_ov6_022495DC[];
 const MapObjectAnimCmd Unk_ov6_0224966C[];
 
-void *ov6_02247100(FieldSystem *fieldSystem, u32 heapID)
-{
+void *ov6_02247100(FieldSystem *fieldSystem, u32 heapID) {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 0;
@@ -61,8 +60,7 @@ void *ov6_02247100(FieldSystem *fieldSystem, u32 heapID)
     return v0;
 }
 
-BOOL ov6_02247120(FieldTask *task)
-{
+BOOL ov6_02247120(FieldTask *task) {
     int v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_ov6_02247100 *v2 = FieldTask_GetEnv(task);
@@ -78,8 +76,7 @@ BOOL ov6_02247120(FieldTask *task)
     return 0;
 }
 
-static int ov6_0224715C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_0224715C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD);
     ov5_021F0F10(param2->unk_14, 1, (FX32_ONE * -150), 15);
     param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_02249608);
@@ -100,8 +97,7 @@ static int ov6_0224715C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     return 0;
 }
 
-static int ov6_022471C0(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_022471C0(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     if (MapObject_HasAnimationEnded(param2->unk_0C) == 0) {
         return 0;
     }
@@ -125,8 +121,7 @@ static int ov6_022471C0(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     return 0;
 }
 
-static int ov6_02247244(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_02247244(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     if (MapObject_HasAnimationEnded(param2->unk_0C) == 1) {
         MapObject_FinishAnimation(param2->unk_0C);
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
@@ -144,8 +139,7 @@ static int ov6_02247244(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     return 1;
 }
 
-static int ov6_02247288(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_02247288(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
 
     if (param2->unk_08 == 2) {
@@ -170,8 +164,7 @@ static int (*const Unk_ov6_022495CC[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247288
 };
 
-void *ov6_022472C8(FieldSystem *fieldSystem, u32 heapID, int param2)
-{
+void *ov6_022472C8(FieldSystem *fieldSystem, u32 heapID, int param2) {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = param2;
@@ -181,8 +174,7 @@ void *ov6_022472C8(FieldSystem *fieldSystem, u32 heapID, int param2)
     return v0;
 }
 
-BOOL ov6_022472E8(FieldTask *task)
-{
+BOOL ov6_022472E8(FieldTask *task) {
     int v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_ov6_02247100 *v2 = FieldTask_GetEnv(task);
@@ -200,8 +192,7 @@ BOOL ov6_022472E8(FieldTask *task)
     return 0;
 }
 
-static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param1)
-{
+static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param1) {
     void *journalEntryLocationEvent;
 
     if (param1->unk_08 == 2) {
@@ -213,8 +204,7 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 }
 
-static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     if (param2->unk_08 == 2) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
@@ -229,8 +219,7 @@ static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     return 0;
 }
 
-static int ov6_022473C8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_022473C8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     if (MapObject_HasAnimationEnded(param2->unk_0C) == 1) {
         MapObject_FinishAnimation(param2->unk_0C);
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
@@ -246,8 +235,7 @@ static int ov6_022473C8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     return 1;
 }
 
-static int ov6_0224740C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_0224740C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     if (MapObject_HasAnimationEnded(param2->unk_0C) == 0) {
         return 0;
     }
@@ -266,8 +254,7 @@ static int ov6_0224740C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     return 0;
 }
 
-static int ov6_02247458(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_02247458(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     if (MapObject_HasAnimationEnded(param2->unk_0C) == 0) {
         return 0;
     }
@@ -289,8 +276,7 @@ static int (*const Unk_ov6_022495BC[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247458
 };
 
-void *ov6_02247488(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
-{
+void *ov6_02247488(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID) {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 1;
@@ -301,8 +287,7 @@ void *ov6_02247488(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
     return v0;
 }
 
-BOOL ov6_022474AC(FieldTask *task)
-{
+BOOL ov6_022474AC(FieldTask *task) {
     int v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_ov6_02247100 *v2 = FieldTask_GetEnv(task);
@@ -318,8 +303,7 @@ BOOL ov6_022474AC(FieldTask *task)
     return 0;
 }
 
-static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     int v0 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
 
     param2->unk_10 = ov6_02243F88(fieldSystem, 0, param2->unk_20, v0);
@@ -328,8 +312,7 @@ static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     return 0;
 }
 
-static int ov6_0224750C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
-{
+static int ov6_0224750C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2) {
     if (ov6_02243FBC(param2->unk_10) == 0) {
         return 0;
     }
@@ -348,8 +331,7 @@ static int (*const Unk_ov6_022495F0[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247288
 };
 
-void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
-{
+void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID) {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 2;
@@ -360,8 +342,7 @@ void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
     return v0;
 }
 
-BOOL ov6_02247554(FieldTask *task)
-{
+BOOL ov6_02247554(FieldTask *task) {
     int v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_ov6_02247100 *v2 = FieldTask_GetEnv(task);
@@ -377,8 +358,7 @@ BOOL ov6_02247554(FieldTask *task)
     return 0;
 }
 
-static void *ov6_02247590(u32 heapID, u32 param1)
-{
+static void *ov6_02247590(u32 heapID, u32 param1) {
     void *v0 = Heap_AllocFromHeapAtEnd(heapID, param1);
 
     GF_ASSERT(v0 != NULL);

@@ -16,8 +16,7 @@ typedef struct VramTransferTaskManager {
 
 static VramTransferTaskManager *sTransferTaskManager;
 
-void VramTransfer_New(u32 capacity, enum HeapId heapID)
-{
+void VramTransfer_New(u32 capacity, enum HeapId heapID) {
     GF_ASSERT(sTransferTaskManager == NULL);
     sTransferTaskManager = Heap_AllocFromHeap(heapID, sizeof(VramTransferTaskManager));
     GF_ASSERT(sTransferTaskManager);
@@ -29,8 +28,7 @@ void VramTransfer_New(u32 capacity, enum HeapId heapID)
     NNS_GfdInitVramTransferManager(sTransferTaskManager->tasks, sTransferTaskManager->max);
 }
 
-void VramTransfer_Free(void)
-{
+void VramTransfer_Free(void) {
     GF_ASSERT(sTransferTaskManager != NULL);
 
     Heap_Free(sTransferTaskManager->tasks);
@@ -39,8 +37,7 @@ void VramTransfer_Free(void)
     sTransferTaskManager = NULL;
 }
 
-BOOL VramTransfer_Request(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size)
-{
+BOOL VramTransfer_Request(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 size) {
     GF_ASSERT(sTransferTaskManager);
     sTransferTaskManager->cur++;
 
@@ -52,8 +49,7 @@ BOOL VramTransfer_Request(NNS_GFD_DST_TYPE type, u32 destAddr, void *buf, u32 si
     return NNS_GfdRegisterNewVramTransferTask(type, destAddr, buf, size);
 }
 
-void VramTransfer_Process(void)
-{
+void VramTransfer_Process(void) {
     if (sTransferTaskManager) {
         NNS_GfdDoVramTransfer();
         sTransferTaskManager->cur = 0;

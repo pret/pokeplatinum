@@ -16,24 +16,20 @@
 #include "overlay097/struct_ov97_02233674.h"
 #include "overlay097/struct_ov97_022339EC.h"
 
-static void ov97_02232200(void)
-{
+static void ov97_02232200(void) {
     ov97_02233424(4);
     (void)ov97_02233AD8();
 }
 
-static UnkStruct_ov97_022335A8 ov97_02232210(u8 *param0)
-{
+static UnkStruct_ov97_022335A8 ov97_02232210(u8 *param0) {
     return ov97_022335A8(param0);
 }
 
-static UnkStruct_ov97_022335C8 ov97_0223221C(u8 *param0)
-{
+static UnkStruct_ov97_022335C8 ov97_0223221C(u8 *param0) {
     return ov97_022335C8(param0);
 }
 
-static BOOL ov97_0223222C(void)
-{
+static BOOL ov97_0223222C(void) {
     if (ov97_02233430() == 12) {
         UnkStruct_ov97_0223222C *v0 = ov97_02233410();
 
@@ -48,8 +44,7 @@ static BOOL ov97_0223222C(void)
     }
 }
 
-static void ov97_02232254(u32 param0)
-{
+static void ov97_02232254(u32 param0) {
     UnkStruct_ov97_02232254 *v0 = ov97_02233510();
     int v1;
 
@@ -61,8 +56,7 @@ static void ov97_02232254(u32 param0)
     }
 }
 
-static u32 ov97_0223227C(void)
-{
+static u32 ov97_0223227C(void) {
     UnkStruct_ov97_02232254 *v0 = ov97_02233510();
 
     if (v0->unk_62 & 1) {
@@ -79,8 +73,7 @@ static u32 ov97_0223227C(void)
     }
 }
 
-static BOOL ov97_022322DC(void)
-{
+static BOOL ov97_022322DC(void) {
     UnkStruct_ov97_02232254 *v0 = ov97_02233510();
 
     v0->unk_60 = 1;
@@ -95,16 +88,14 @@ static BOOL ov97_022322DC(void)
     }
 }
 
-static void ov97_0223231C(void)
-{
+static void ov97_0223231C(void) {
     WMParentParam *v0 = ov97_02233408();
 
     v0->beaconPeriod = WM_GetDispersionBeaconPeriod();
     v0->tgid = WM_GetNextTgid();
 }
 
-static void ov97_02232334(void)
-{
+static void ov97_02232334(void) {
     WMScanParam *v0 = ov97_02233478();
 
     v0->scanBuf = ov97_022334B4();
@@ -118,8 +109,7 @@ static void ov97_02232334(void)
     v0->bssid[5] = 0xff;
 }
 
-static void ov97_02232360(void)
-{
+static void ov97_02232360(void) {
     WMScanParam *v0 = ov97_02233478();
     u16 v1;
     s32 v2;
@@ -138,8 +128,7 @@ static void ov97_02232360(void)
     }
 }
 
-void ov97_022323B0(void *param0)
-{
+void ov97_022323B0(void *param0) {
     WMindCallback *v0 = (WMindCallback *)param0;
     ov97_02233800((WMStateCode)v0->state);
 
@@ -149,8 +138,7 @@ void ov97_022323B0(void *param0)
     }
 }
 
-void ov97_022323CC(void *param0)
-{
+void ov97_022323CC(void *param0) {
     WMPortSendCallback *v0 = (WMPortSendCallback *)param0;
 
     ov97_02233800((WMStateCode)v0->state);
@@ -163,8 +151,7 @@ void ov97_022323CC(void *param0)
     }
 }
 
-void ov97_022323E4(void *param0)
-{
+void ov97_022323E4(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -187,8 +174,7 @@ void ov97_022323E4(void *param0)
     }
 }
 
-void ov97_02232424(void *param0)
-{
+void ov97_02232424(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -206,8 +192,7 @@ void ov97_02232424(void *param0)
     }
 }
 
-void ov97_0223245C(void *param0)
-{
+void ov97_0223245C(void *param0) {
     WMMeasureChannelCallback *v0 = (WMMeasureChannelCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -243,8 +228,7 @@ void ov97_0223245C(void *param0)
     }
 }
 
-void ov97_022324C4(void *param0)
-{
+void ov97_022324C4(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -261,8 +245,7 @@ void ov97_022324C4(void *param0)
     }
 }
 
-void ov97_022324EC(void *param0)
-{
+void ov97_022324EC(void *param0) {
     WMstartParentCallback *v0 = (WMstartParentCallback *)param0;
 
     ov97_02233800((WMStateCode)v0->state);
@@ -332,8 +315,7 @@ void ov97_022324EC(void *param0)
     }
 }
 
-static BOOL ov97_02232620(WMstartScanCallback *param0, WMBssDesc *param1)
-{
+static BOOL ov97_02232620(WMstartScanCallback *param0, WMBssDesc *param1) {
     int v0;
     UnkStruct_ov97_02232620 *v1 = ov97_02233508();
     UnkStruct_ov97_022335A8 v2 = ov97_02232210(param1->bssid);
@@ -360,8 +342,7 @@ static BOOL ov97_02232620(WMstartScanCallback *param0, WMBssDesc *param1)
     return 0;
 }
 
-static void ov97_022326C0(void)
-{
+static void ov97_022326C0(void) {
     ov97_02232360();
 
     if (ov97_02233914() == 0) {
@@ -369,8 +350,7 @@ static void ov97_022326C0(void)
     }
 }
 
-static BOOL ov97_022326D4(WMstartScanCallback *param0)
-{
+static BOOL ov97_022326D4(WMstartScanCallback *param0) {
     WMBssDesc *v0 = ov97_022334B4();
     UnkStruct_ov97_02232620 *v1 = ov97_02233508();
 
@@ -429,8 +409,7 @@ static BOOL ov97_022326D4(WMstartScanCallback *param0)
     return 0;
 }
 
-void ov97_022327B8(void *param0)
-{
+void ov97_022327B8(void *param0) {
     WMstartScanCallback *v0 = (WMstartScanCallback *)param0;
     ov97_02233800((WMStateCode)v0->state);
 
@@ -472,8 +451,7 @@ void ov97_022327B8(void *param0)
     }
 }
 
-static BOOL ov97_0223282C(void)
-{
+static BOOL ov97_0223282C(void) {
     WMBssDesc *v0 = ov97_022334B4();
     UnkStruct_ov97_02232620 *v1 = ov97_02233508();
     WMParentParam *v2 = ov97_02233408();
@@ -505,8 +483,7 @@ static BOOL ov97_0223282C(void)
     return 0;
 }
 
-void ov97_022328D4(void *param0)
-{
+void ov97_022328D4(void *param0) {
     WMstartScanCallback *v0 = (WMstartScanCallback *)param0;
 
     ov97_02233800((WMStateCode)v0->state);
@@ -544,8 +521,7 @@ void ov97_022328D4(void *param0)
     }
 }
 
-void ov97_02232944(void *param0)
-{
+void ov97_02232944(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -572,8 +548,7 @@ void ov97_02232944(void *param0)
     }
 }
 
-void ov97_02232998(void *param0)
-{
+void ov97_02232998(void *param0) {
     WMstartConnectCallback *v0 = (WMstartConnectCallback *)param0;
 
     ov97_02233800((WMStateCode)v0->state);
@@ -624,8 +599,7 @@ void ov97_02232998(void *param0)
     }
 }
 
-static void ov97_02232A28(void)
-{
+static void ov97_02232A28(void) {
     switch (ov97_02233448()) {
     case 2:
         if ((ov97_022322DC() != 0) && (ov97_02233890(ov97_0223227C()) != 0)) {
@@ -648,8 +622,7 @@ static void ov97_02232A28(void)
     }
 }
 
-void ov97_02232A7C(void *param0)
-{
+void ov97_02232A7C(void *param0) {
     WMstartMPCallback *v0 = (WMstartMPCallback *)param0;
 
     ov97_02233800((WMStateCode)v0->state);
@@ -691,8 +664,7 @@ void ov97_02232A7C(void *param0)
     }
 }
 
-static void ov97_02232AC8(WMPortRecvCallback *param0)
-{
+static void ov97_02232AC8(WMPortRecvCallback *param0) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
 
     if (v0->unk_19 == 1) {
@@ -719,8 +691,7 @@ static void ov97_02232AC8(WMPortRecvCallback *param0)
     }
 }
 
-static void ov97_02232B40(WMPortRecvCallback *param0)
-{
+static void ov97_02232B40(WMPortRecvCallback *param0) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
 
     if ((ov97_02233448() == 2) && (v0->unk_19 != 2)) {
@@ -752,8 +723,7 @@ static void ov97_02232B40(WMPortRecvCallback *param0)
     }
 }
 
-static void ov97_02232BCC(WMPortRecvCallback *param0)
-{
+static void ov97_02232BCC(WMPortRecvCallback *param0) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
 
     if (v0->unk_1C == 0xFD) {
@@ -793,8 +763,7 @@ static void ov97_02232BCC(WMPortRecvCallback *param0)
     }
 }
 
-void ov97_02232C94(void *param0)
-{
+void ov97_02232C94(void *param0) {
     WMPortRecvCallback *v0 = (WMPortRecvCallback *)param0;
 
     ov97_02233800((WMStateCode)v0->state);
@@ -842,8 +811,7 @@ void ov97_02232C94(void *param0)
     }
 }
 
-void ov97_02232D18(void *param0)
-{
+void ov97_02232D18(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -858,8 +826,7 @@ void ov97_02232D18(void *param0)
     }
 }
 
-void ov97_02232D3C(void *param0)
-{
+void ov97_02232D3C(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -874,8 +841,7 @@ void ov97_02232D3C(void *param0)
     }
 }
 
-void ov97_02232D60(void *param0)
-{
+void ov97_02232D60(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {
@@ -900,8 +866,7 @@ void ov97_02232D60(void *param0)
     }
 }
 
-void ov97_02232DA4(void *param0)
-{
+void ov97_02232DA4(void *param0) {
     WMCallback *v0 = (WMCallback *)param0;
 
     if (v0->errcode == WM_ERRCODE_SUCCESS) {

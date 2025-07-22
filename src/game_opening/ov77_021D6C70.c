@@ -50,8 +50,7 @@ static const UnkStruct_ov77_021D7958 Unk_ov77_021D7958[3] = {
     { 0x50, 0xC0 }
 };
 
-static u32 ov77_021D6C70(u32 param0, BOOL param1)
-{
+static u32 ov77_021D6C70(u32 param0, BOOL param1) {
     u32 v0;
     NNSGfdTexKey v1;
 
@@ -65,8 +64,7 @@ static u32 ov77_021D6C70(u32 param0, BOOL param1)
     return v0;
 }
 
-static u32 ov77_021D6C94(u32 param0, BOOL param1)
-{
+static u32 ov77_021D6C94(u32 param0, BOOL param1) {
     NNSGfdPlttKey v0;
     u32 v1;
 
@@ -83,27 +81,23 @@ static u32 ov77_021D6C94(u32 param0, BOOL param1)
     return v1;
 }
 
-const int ov77_021D6CB8(void)
-{
+const int ov77_021D6CB8(void) {
     return sizeof(UnkStruct_ov77_021D6CFC);
 }
 
-ParticleSystem *ov77_021D6CBC(UnkStruct_ov77_021D6CFC *param0)
-{
+ParticleSystem *ov77_021D6CBC(UnkStruct_ov77_021D6CFC *param0) {
     GF_ASSERT(param0 != NULL && param0->unk_18 != NULL);
     return param0->unk_18;
 }
 
-SPLEmitter *ov77_021D6CD0(UnkStruct_ov77_021D6CFC *param0, int param1)
-{
+SPLEmitter *ov77_021D6CD0(UnkStruct_ov77_021D6CFC *param0, int param1) {
     GF_ASSERT(param0 != NULL && param0->unk_18 != NULL);
 
     ParticleSystem_SetCameraProjection(param0->unk_18, 1);
     return ParticleSystem_CreateEmitterWithCallback(param0->unk_18, param1, NULL, NULL);
 }
 
-void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
-{
+void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0) {
     u8 v0;
     PokemonSpriteTemplate v1;
     Camera *camera;
@@ -157,22 +151,19 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
     ParticleSystem_SetResource(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);
 }
 
-void ov77_021D6E28(UnkStruct_ov77_021D6CFC *param0)
-{
+void ov77_021D6E28(UnkStruct_ov77_021D6CFC *param0) {
     ParticleSystem_Free(param0->unk_18);
     Heap_Free(param0->unk_14);
     PokemonSpriteManager_Free(param0->unk_00);
 }
 
-void ov77_021D6E40(UnkStruct_ov77_021D6CFC *param0)
-{
+void ov77_021D6E40(UnkStruct_ov77_021D6CFC *param0) {
     if (param0 != NULL) {
         PokemonSpriteManager_UpdateCharAndPltt(param0->unk_00);
     }
 }
 
-void ov77_021D6E50(UnkStruct_ov77_021D6CFC *param0)
-{
+void ov77_021D6E50(UnkStruct_ov77_021D6CFC *param0) {
     if (param0 != NULL) {
         NNS_G3dGeFlushBuffer();
         sub_020241B4();
@@ -195,8 +186,7 @@ static const int Unk_ov77_021D7970[3][3] = {
     { 0x0, 0x1, 0x2 }
 };
 
-BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int param2)
-{
+BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int param2) {
     u8 *v0 = &param0->unk_28;
 
     switch (*v0) {
@@ -245,8 +235,7 @@ BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int p
     return 0;
 }
 
-static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
-{
+static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1) {
     PokemonSprite *v0 = param0->unk_04[param1];
 
     PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, 6);
@@ -266,8 +255,7 @@ static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
-{
+static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1) {
     PokemonSprite *v0 = param0->unk_04[param1];
 
     PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, -3);
@@ -284,8 +272,7 @@ static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
-{
+static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1) {
     PokemonSprite *v0 = param0->unk_04[param1];
 
     PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, -16);
@@ -305,8 +292,7 @@ static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
-{
+static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1) {
     PokemonSprite *v0 = param0->unk_04[param1];
 
     PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, -6);
@@ -323,8 +309,7 @@ static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
-{
+static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1) {
     PokemonSprite *v0 = param0->unk_04[param1];
 
     PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, 8);
@@ -344,8 +329,7 @@ static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
     return 0;
 }
 
-static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
-{
+static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1) {
     PokemonSprite *v0 = param0->unk_04[param1];
 
     PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, 6);
@@ -362,15 +346,13 @@ static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
     return 0;
 }
 
-static void ov77_021D725C(void)
-{
+static void ov77_021D725C(void) {
     int v0 = ParticleSystem_DrawAll();
 
     ParticleSystem_UpdateAll();
 }
 
-static void ov77_021D7268(SPLEmitter *param0)
-{
+static void ov77_021D7268(SPLEmitter *param0) {
     PokemonSprite *v0 = ParticleSystem_GetEmitterCallbackParam();
     VecFx32 v1 = { 0, 0, 0 };
 

@@ -5,8 +5,7 @@
 
 #include "constants/field/map.h"
 
-void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory)
-{
+void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory) {
     for (u8 i = 0; i < 6; i++) {
         mapHistory->items[i].mapX = 0;
         mapHistory->items[i].mapZ = 0;
@@ -19,8 +18,7 @@ void OverworldMapHistory_Clear(OverworldMapHistory *mapHistory)
     mapHistory->currentMapZ = 0;
 }
 
-void OverworldMapHistory_PushViaWarp(OverworldMapHistory *mapHistory, int x, int z)
-{
+void OverworldMapHistory_PushViaWarp(OverworldMapHistory *mapHistory, int x, int z) {
     u8 mapX = x / MAP_TILES_COUNT_X;
     u8 mapZ = z / MAP_TILES_COUNT_Z;
 
@@ -33,8 +31,7 @@ void OverworldMapHistory_PushViaWarp(OverworldMapHistory *mapHistory, int x, int
     }
 }
 
-void OverworldMapHistory_Push(OverworldMapHistory *mapHistory, int x, int z, int faceDirection)
-{
+void OverworldMapHistory_Push(OverworldMapHistory *mapHistory, int x, int z, int faceDirection) {
     u8 mapX = x;
     u8 mapZ = z;
 

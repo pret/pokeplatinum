@@ -52,8 +52,7 @@ static void PoketchAnimation_MarkAnimatedSpriteUnused(PoketchAnimation_Animation
 static void PoketchAnimation_SortAnimIntoList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite);
 static void PoketchAnimation_RemoveAnimatedSpriteFromList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite);
 
-PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID)
-{
+PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID) {
     PoketchAnimation_AnimationManager *animMan;
     BOOL success = FALSE;
 
@@ -119,8 +118,7 @@ PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2d
     return animMan;
 }
 
-void PoketchAnimation_FreeAnimationManager(PoketchAnimation_AnimationManager *animMan)
-{
+void PoketchAnimation_FreeAnimationManager(PoketchAnimation_AnimationManager *animMan) {
     if (animMan) {
         if (animMan->oam) {
             Heap_Free(animMan->oam);
@@ -138,8 +136,7 @@ void PoketchAnimation_FreeAnimationManager(PoketchAnimation_AnimationManager *an
     }
 }
 
-void PoketchAnimation_UpdateAnimations(PoketchAnimation_AnimationManager *animMan)
-{
+void PoketchAnimation_UpdateAnimations(PoketchAnimation_AnimationManager *animMan) {
     if (animMan->nextUnusedSlotIdx) {
         PoketchAnimation_AnimatedSpriteData *animatedSprite = animMan->lastAnimatedSprite;
         GXOamAttr *oam = animMan->oam;
@@ -202,8 +199,7 @@ void PoketchAnimation_UpdateAnimations(PoketchAnimation_AnimationManager *animMa
     }
 }
 
-PoketchAnimation_AnimatedSpriteData *PoketchAnimation_SetupNewAnimatedSprite(PoketchAnimation_AnimationManager *animMan, const PoketchAnimation_AnimationData *animData, const PoketchAnimation_SpriteData *spriteData)
-{
+PoketchAnimation_AnimatedSpriteData *PoketchAnimation_SetupNewAnimatedSprite(PoketchAnimation_AnimationManager *animMan, const PoketchAnimation_AnimationData *animData, const PoketchAnimation_SpriteData *spriteData) {
     PoketchAnimation_AnimatedSpriteData *animatedSprite = PoketchAnimation_GetNextUnusedAnimSlot(animMan);
 
     if (animatedSprite != NULL) {
@@ -232,75 +228,62 @@ PoketchAnimation_AnimatedSpriteData *PoketchAnimation_SetupNewAnimatedSprite(Pok
     return animatedSprite;
 }
 
-void PoketchAnimation_RemoveAnimatedSprite(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
-{
+void PoketchAnimation_RemoveAnimatedSprite(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite) {
     PoketchAnimation_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
     PoketchAnimation_MarkAnimatedSpriteUnused(animMan, animatedSprite);
 }
 
-void PoketchAnimation_UpdateAnimationIdx(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 animIdx)
-{
+void PoketchAnimation_UpdateAnimationIdx(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 animIdx) {
     NNS_G2dInitCellAnimation(&(animatedSprite->spriteAnimation), NNS_G2dGetAnimSequenceByIdx(animatedSprite->anim, animIdx), animatedSprite->cell);
 }
 
-BOOL PoketchAnimation_AnimationInactive(PoketchAnimation_AnimatedSpriteData *animatedSprite)
-{
+BOOL PoketchAnimation_AnimationInactive(PoketchAnimation_AnimatedSpriteData *animatedSprite) {
     NNSG2dAnimController *animCtrl = NNS_G2dGetCellAnimationAnimCtrl(&(animatedSprite->spriteAnimation));
     return NNS_G2dIsAnimCtrlActive(animCtrl) == FALSE;
 }
 
-void PoketchAnimation_TranslateSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
-{
+void PoketchAnimation_TranslateSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y) {
     animatedSprite->position.x += x;
     animatedSprite->position.y += y;
 }
 
-void PoketchAnimation_SetSpritePosition(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y)
-{
+void PoketchAnimation_SetSpritePosition(PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 x, fx32 y) {
     animatedSprite->position.x = x;
     animatedSprite->position.y = y;
 }
 
-void PoketchAnimation_GetSpritePosition(const PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 *x, fx32 *y)
-{
+void PoketchAnimation_GetSpritePosition(const PoketchAnimation_AnimatedSpriteData *animatedSprite, fx32 *x, fx32 *y) {
     *x = animatedSprite->position.x;
     *y = animatedSprite->position.y;
 }
 
-void PoketchAnimation_HideSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isHidden)
-{
+void PoketchAnimation_HideSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isHidden) {
     animatedSprite->isHidden = isHidden;
 }
 
-void PoketchAnimation_SetSpritePrority(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 priority)
-{
+void PoketchAnimation_SetSpritePrority(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 priority) {
     PoketchAnimation_RemoveAnimatedSpriteFromList(animMan, animatedSprite);
     animatedSprite->priority = priority;
     PoketchAnimation_SortAnimIntoList(animMan, animatedSprite);
 }
 
-void PoketchAnimation_SetCParam(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value)
-{
+void PoketchAnimation_SetCParam(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value) {
     animatedSprite->cParam = value;
 }
 
-void PoketchAnimation_SetSpriteCharNo(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value)
-{
+void PoketchAnimation_SetSpriteCharNo(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value) {
     animatedSprite->charNo = value;
 }
 
-void PoketchAnimation_SetMosaic(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isMosaic)
-{
+void PoketchAnimation_SetMosaic(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isMosaic) {
     animatedSprite->mosaic = isMosaic;
 }
 
-void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *animatedSprite, u16 rotation)
-{
+void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *animatedSprite, u16 rotation) {
     animatedSprite->rotZ = rotation;
 }
 
-BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapId heapID)
-{
+BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapId heapID) {
     spriteData->heapID = heapID;
     spriteData->compressedSprite = LoadCompressedMemberFromNARC(narcID, spriteID, heapID);
     spriteData->compressedAnim = LoadCompressedMemberFromNARC(narcID, animID, heapID);
@@ -318,8 +301,7 @@ BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData
     return TRUE;
 }
 
-void PoketchAnimation_FreeSpriteData(PoketchAnimation_SpriteData *spriteData)
-{
+void PoketchAnimation_FreeSpriteData(PoketchAnimation_SpriteData *spriteData) {
     if (spriteData->compressedSprite != NULL) {
         Heap_FreeExplicit(spriteData->heapID, spriteData->compressedSprite);
         spriteData->compressedSprite = NULL;
@@ -331,8 +313,7 @@ void PoketchAnimation_FreeSpriteData(PoketchAnimation_SpriteData *spriteData)
     }
 }
 
-static void PoketchAnimation_PopulateAnimatedSpritePtrArray(PoketchAnimation_AnimatedSpriteData **animatedSpritePtrArray, PoketchAnimation_AnimatedSpriteData *animatedSpritePool, u32 numSlots)
-{
+static void PoketchAnimation_PopulateAnimatedSpritePtrArray(PoketchAnimation_AnimatedSpriteData **animatedSpritePtrArray, PoketchAnimation_AnimatedSpriteData *animatedSpritePool, u32 numSlots) {
     while (numSlots--) {
         *animatedSpritePtrArray = animatedSpritePool;
         PoketchAnimation_UnlinkAnimatedSprite(animatedSpritePool);
@@ -341,14 +322,12 @@ static void PoketchAnimation_PopulateAnimatedSpritePtrArray(PoketchAnimation_Ani
     }
 }
 
-static void PoketchAnimation_UnlinkAnimatedSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite)
-{
+static void PoketchAnimation_UnlinkAnimatedSprite(PoketchAnimation_AnimatedSpriteData *animatedSprite) {
     animatedSprite->previousAnimatedSprite = NULL;
     animatedSprite->nextAnimatedSprite = NULL;
 }
 
-static PoketchAnimation_AnimatedSpriteData *PoketchAnimation_GetNextUnusedAnimSlot(PoketchAnimation_AnimationManager *animMan)
-{
+static PoketchAnimation_AnimatedSpriteData *PoketchAnimation_GetNextUnusedAnimSlot(PoketchAnimation_AnimationManager *animMan) {
     if (animMan->nextUnusedSlotIdx < animMan->numSlots) {
         return animMan->animatedSpritePtrArray[animMan->nextUnusedSlotIdx++];
     }
@@ -356,8 +335,7 @@ static PoketchAnimation_AnimatedSpriteData *PoketchAnimation_GetNextUnusedAnimSl
     return NULL;
 }
 
-static void PoketchAnimation_MarkAnimatedSpriteUnused(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
-{
+static void PoketchAnimation_MarkAnimatedSpriteUnused(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite) {
     if (animMan->nextUnusedSlotIdx == 0) {
         return;
     }
@@ -368,8 +346,7 @@ static void PoketchAnimation_MarkAnimatedSpriteUnused(PoketchAnimation_Animation
     animMan->animatedSpritePtrArray[animMan->nextUnusedSlotIdx] = animatedSprite;
 }
 
-static void PoketchAnimation_SortAnimIntoList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
-{
+static void PoketchAnimation_SortAnimIntoList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite) {
     if (animMan->lastAnimatedSprite == NULL) {
         animMan->lastAnimatedSprite = animatedSprite;
         animatedSprite->previousAnimatedSprite = NULL;
@@ -408,8 +385,7 @@ static void PoketchAnimation_SortAnimIntoList(PoketchAnimation_AnimationManager 
     }
 }
 
-static void PoketchAnimation_RemoveAnimatedSpriteFromList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite)
-{
+static void PoketchAnimation_RemoveAnimatedSpriteFromList(PoketchAnimation_AnimationManager *animMan, PoketchAnimation_AnimatedSpriteData *animatedSprite) {
     if (animatedSprite->nextAnimatedSprite != NULL) {
         if (animatedSprite->previousAnimatedSprite != NULL) {
             animatedSprite->nextAnimatedSprite->previousAnimatedSprite = animatedSprite->previousAnimatedSprite;

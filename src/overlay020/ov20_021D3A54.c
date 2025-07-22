@@ -45,8 +45,7 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
 static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2);
 static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0);
 
-UnkStruct_ov20_021D3E0C *ov20_021D3A54(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
-{
+UnkStruct_ov20_021D3E0C *ov20_021D3A54(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2) {
     UnkStruct_ov20_021D3E0C *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D3E0C));
 
     v0->unk_00 = param0;
@@ -60,8 +59,7 @@ UnkStruct_ov20_021D3E0C *ov20_021D3A54(UnkStruct_ov20_021D2128 *param0, const Un
     return v0;
 }
 
-void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0) {
     if (param0->unk_5C) {
         Sprite_Delete(param0->unk_5C);
     }
@@ -69,8 +67,7 @@ void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0)
     Heap_Free(param0);
 }
 
-void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
-{
+void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1) {
     BgConfig *v0;
     u32 v1;
 
@@ -97,8 +94,7 @@ void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
     Bg_CopyTilemapBufferToVRAM(v0, 1);
 }
 
-static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
-{
+static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2) {
     int v0, v1, v2;
     Window v3;
     MessageLoader *v4;
@@ -146,8 +142,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     return param2;
 }
 
-static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
-{
+static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2) {
     Window v0;
     Strbuf *v1;
     u32 v2, v3, v4, v5, v6;
@@ -185,8 +180,7 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     return param2;
 }
 
-static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
-{
+static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2) {
     static const struct {
         u16 unk_00;
         u16 unk_02;
@@ -222,8 +216,7 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     return param2;
 }
 
-static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0)
-{
+static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0) {
     SpriteResourcesHeader v0;
 
     ov20_021D2E0C(param0->unk_00, &v0, 0, 1);
@@ -232,8 +225,7 @@ static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0)
     Sprite_SetDrawFlag(param0->unk_5C, FALSE);
 }
 
-void ov20_021D3E48(UnkStruct_ov20_021D3E0C *param0, BOOL param1)
-{
+void ov20_021D3E48(UnkStruct_ov20_021D3E0C *param0, BOOL param1) {
     Sprite_SetDrawFlag(param0->unk_5C, param1);
 
     if (param1) {
@@ -245,8 +237,7 @@ void ov20_021D3E48(UnkStruct_ov20_021D3E0C *param0, BOOL param1)
     }
 }
 
-void ov20_021D3E74(UnkStruct_ov20_021D3E0C *param0, u32 param1)
-{
+void ov20_021D3E74(UnkStruct_ov20_021D3E0C *param0, u32 param1) {
     VecFx32 v0;
     u32 v1;
     u32 v2;
@@ -280,14 +271,12 @@ void ov20_021D3E74(UnkStruct_ov20_021D3E0C *param0, u32 param1)
     Sprite_SetAnim(param0->unk_5C, v2);
 }
 
-void ov20_021D3EF8(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D3EF8(UnkStruct_ov20_021D3E0C *param0) {
     param0->unk_14 = 0;
     ov20_021D4FB0(&(param0->unk_1C), GX_BLEND_PLANEMASK_BG1, -10, 0, 16);
 }
 
-BOOL ov20_021D3F10(UnkStruct_ov20_021D3E0C *param0)
-{
+BOOL ov20_021D3F10(UnkStruct_ov20_021D3E0C *param0) {
     switch (param0->unk_14) {
     case 0:
         if (ov20_021D4FF0(&param0->unk_1C)) {
@@ -302,14 +291,12 @@ BOOL ov20_021D3F10(UnkStruct_ov20_021D3E0C *param0)
     return 0;
 }
 
-void ov20_021D3F60(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D3F60(UnkStruct_ov20_021D3E0C *param0) {
     param0->unk_14 = 0;
     ov20_021D4E38(&(param0->unk_3C), param0->unk_0C, 1, 1, -24, 6);
 }
 
-BOOL ov20_021D3F84(UnkStruct_ov20_021D3E0C *param0)
-{
+BOOL ov20_021D3F84(UnkStruct_ov20_021D3E0C *param0) {
     switch (param0->unk_14) {
     case 0:
         if (ov20_021D4E8C(&(param0->unk_3C))) {
@@ -324,28 +311,23 @@ BOOL ov20_021D3F84(UnkStruct_ov20_021D3E0C *param0)
     return 0;
 }
 
-void ov20_021D3FD0(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D3FD0(UnkStruct_ov20_021D3E0C *param0) {
     Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_1, 3, 2);
 }
 
-void ov20_021D3FE0(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D3FE0(UnkStruct_ov20_021D3E0C *param0) {
     ov20_021D4FB0(&(param0->unk_1C), GX_BLEND_PLANEMASK_BG1, 0, -10, 16);
 }
 
-BOOL ov20_021D3FF8(UnkStruct_ov20_021D3E0C *param0)
-{
+BOOL ov20_021D3FF8(UnkStruct_ov20_021D3E0C *param0) {
     return ov20_021D4FF0(&(param0->unk_1C));
 }
 
-void ov20_021D4004(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D4004(UnkStruct_ov20_021D3E0C *param0) {
     ov20_021D4F1C(&param0->unk_1C, GX_BLEND_PLANEMASK_BG1, GX_BLEND_ALL, 124, 0, (6 * 2));
 }
 
-BOOL ov20_021D4020(UnkStruct_ov20_021D3E0C *param0)
-{
+BOOL ov20_021D4020(UnkStruct_ov20_021D3E0C *param0) {
     if (ov20_021D4F4C(&param0->unk_1C)) {
         Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
         return 1;
@@ -354,20 +336,17 @@ BOOL ov20_021D4020(UnkStruct_ov20_021D3E0C *param0)
     return 0;
 }
 
-void ov20_021D403C(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D403C(UnkStruct_ov20_021D3E0C *param0) {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_ALL, 0, 16);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
     ov20_021D4F1C(&param0->unk_1C, GX_BLEND_PLANEMASK_BG1, GX_BLEND_ALL, 0, 124, (6 * 2));
 }
 
-BOOL ov20_021D4078(UnkStruct_ov20_021D3E0C *param0)
-{
+BOOL ov20_021D4078(UnkStruct_ov20_021D3E0C *param0) {
     return ov20_021D4F4C(&param0->unk_1C);
 }
 
-void ov20_021D4084(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D4084(UnkStruct_ov20_021D3E0C *param0) {
     int v0;
 
     if (ov20_021D1F94(param0->unk_04) == 0) {
@@ -379,8 +358,7 @@ void ov20_021D4084(UnkStruct_ov20_021D3E0C *param0)
     Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_1, 0, v0);
 }
 
-void ov20_021D40A8(UnkStruct_ov20_021D3E0C *param0)
-{
+void ov20_021D40A8(UnkStruct_ov20_021D3E0C *param0) {
     int v0;
 
     if (ov20_021D1F94(param0->unk_04) == 0) {
@@ -392,7 +370,6 @@ void ov20_021D40A8(UnkStruct_ov20_021D3E0C *param0)
     ov20_021D4E38(&(param0->unk_3C), param0->unk_0C, 1, 0, v0, 16);
 }
 
-BOOL ov20_021D40DC(UnkStruct_ov20_021D3E0C *param0)
-{
+BOOL ov20_021D40DC(UnkStruct_ov20_021D3E0C *param0) {
     return ov20_021D4E8C(&(param0->unk_3C));
 }

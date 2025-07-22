@@ -22,8 +22,7 @@ static const u16 Unk_020E5498[] = {
     0x1C1
 };
 
-void sub_02014A84(Sentence *sentence)
-{
+void sub_02014A84(Sentence *sentence) {
     int v0;
 
     sentence->type = 0xffff;
@@ -33,8 +32,7 @@ void sub_02014A84(Sentence *sentence)
     }
 }
 
-void sub_02014A9C(Sentence *sentence, u32 param1)
-{
+void sub_02014A9C(Sentence *sentence, u32 param1) {
     int v0;
 
     sentence->type = param1;
@@ -45,14 +43,12 @@ void sub_02014A9C(Sentence *sentence, u32 param1)
     }
 }
 
-void sub_02014AB4(Sentence *sentence)
-{
+void sub_02014AB4(Sentence *sentence) {
     sub_02014A9C(sentence, 4);
     sentence->id = 5;
 }
 
-void sub_02014AC4(Sentence *sentence, int param1)
-{
+void sub_02014AC4(Sentence *sentence, int param1) {
     static const struct {
         u8 unk_00;
         u8 unk_01;
@@ -85,8 +81,7 @@ void sub_02014AC4(Sentence *sentence, int param1)
     }
 }
 
-Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID)
-{
+Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID) {
     Strbuf *v0;
     StringTemplate *v1;
     MessageLoader *v2;
@@ -111,18 +106,15 @@ Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID)
     return v0;
 }
 
-Strbuf *sub_02014BA0(const Sentence *sentence, u32 param1)
-{
+Strbuf *sub_02014BA0(const Sentence *sentence, u32 param1) {
     return MessageBank_GetNewStrbufFromNARC(26, Unk_020E5498[sentence->type], sentence->id, param1);
 }
 
-BOOL sub_02014BBC(const Sentence *sentence)
-{
+BOOL sub_02014BBC(const Sentence *sentence) {
     return sentence->type != 0xffff;
 }
 
-BOOL sub_02014BD0(const Sentence *sentence)
-{
+BOOL sub_02014BD0(const Sentence *sentence) {
     u32 v0, v1;
 
     v0 = sub_02014C00(sentence->type, sentence->id);
@@ -136,8 +128,7 @@ BOOL sub_02014BD0(const Sentence *sentence)
     return 1;
 }
 
-static u32 sub_02014C00(u32 param0, u32 param1)
-{
+static u32 sub_02014C00(u32 param0, u32 param1) {
     Strbuf *v0;
     const u16 *v1;
     u32 v2;
@@ -165,23 +156,19 @@ static u32 sub_02014C00(u32 param0, u32 param1)
     return v2;
 }
 
-u16 sub_02014C78(const Sentence *sentence, int param1)
-{
+u16 sub_02014C78(const Sentence *sentence, int param1) {
     return sentence->words[param1];
 }
 
-u32 sub_02014C80(const Sentence *sentence)
-{
+u32 sub_02014C80(const Sentence *sentence) {
     return sentence->type;
 }
 
-u32 sub_02014C84(const Sentence *sentence)
-{
+u32 sub_02014C84(const Sentence *sentence) {
     return sentence->id;
 }
 
-BOOL sub_02014C88(const Sentence *param0, const Sentence *param1)
-{
+BOOL sub_02014C88(const Sentence *param0, const Sentence *param1) {
     int v0;
 
     if ((param0->type != param1->type) || (param0->id != param1->id)) {
@@ -197,13 +184,11 @@ BOOL sub_02014C88(const Sentence *param0, const Sentence *param1)
     return 1;
 }
 
-void sub_02014CC0(Sentence *param0, const Sentence *param1)
-{
+void sub_02014CC0(Sentence *param0, const Sentence *param1) {
     *param0 = *param1;
 }
 
-u32 sub_02014CD4(u32 param0)
-{
+u32 sub_02014CD4(u32 param0) {
     if (param0 < NELEMS(Unk_020E5498)) {
         return 20;
     }
@@ -211,22 +196,19 @@ u32 sub_02014CD4(u32 param0)
     return 0;
 }
 
-void sub_02014CE0(Sentence *sentence, u32 param1, u32 param2)
-{
+void sub_02014CE0(Sentence *sentence, u32 param1, u32 param2) {
     GF_ASSERT(param1 < 5);
 
     sentence->type = param1;
     sentence->id = param2;
 }
 
-void sub_02014CF8(Sentence *sentence, u32 index, u16 word)
-{
+void sub_02014CF8(Sentence *sentence, u32 index, u16 word) {
     GF_ASSERT(index < 2);
     sentence->words[index] = word;
 }
 
-void sub_02014D10(Sentence *sentence)
-{
+void sub_02014D10(Sentence *sentence) {
     u32 v0, v1;
 
     v0 = sub_02014C00(sentence->type, sentence->id);

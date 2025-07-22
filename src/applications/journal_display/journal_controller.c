@@ -62,8 +62,7 @@ static const u8 Unk_ov81_021D33E8[9][32] = {
     { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
 };
 
-int JournalController_Init(ApplicationManager *appMan, int *state)
-{
+int JournalController_Init(ApplicationManager *appMan, int *state) {
     JournalManager *journalManager;
     SaveData *saveData;
 
@@ -109,8 +108,7 @@ int JournalController_Init(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-int JournalController_Main(ApplicationManager *appMan, int *state)
-{
+int JournalController_Main(ApplicationManager *appMan, int *state) {
     JournalManager *journalManager = ApplicationManager_Data(appMan);
 
     switch (*state) {
@@ -135,8 +133,7 @@ int JournalController_Main(ApplicationManager *appMan, int *state)
     return FALSE;
 }
 
-int JournalController_Exit(ApplicationManager *appMan, int *state)
-{
+int JournalController_Exit(ApplicationManager *appMan, int *state) {
     JournalManager *journalManager = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
@@ -152,16 +149,14 @@ int JournalController_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static void JournalController_MainCallback(void *data)
-{
+static void JournalController_MainCallback(void *data) {
     JournalManager *journalManager = data;
 
     Bg_RunScheduledUpdates(journalManager->bgConfig);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void JournalController_SetVRAMBanks(void)
-{
+static void JournalController_SetVRAMBanks(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_256_AB,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -178,8 +173,7 @@ static void JournalController_SetVRAMBanks(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void JournalController_SetupBgs(BgConfig *bgConfig)
-{
+static void JournalController_SetupBgs(BgConfig *bgConfig) {
     GraphicsModes graphicsModes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
@@ -263,8 +257,7 @@ static void JournalController_SetupBgs(BgConfig *bgConfig)
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_JOURNAL);
 }
 
-static void JournalController_TeardownBgs(BgConfig *bgConfig)
-{
+static void JournalController_TeardownBgs(BgConfig *bgConfig) {
     GXLayers_DisableEngineALayers();
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
@@ -273,8 +266,7 @@ static void JournalController_TeardownBgs(BgConfig *bgConfig)
     Heap_FreeExplicit(HEAP_ID_JOURNAL, bgConfig);
 }
 
-static void JournalController_LoadGraphics(JournalManager *journalManager)
-{
+static void JournalController_LoadGraphics(JournalManager *journalManager) {
     u16 *tilemapBuffer;
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, HEAP_ID_JOURNAL);
 
@@ -298,22 +290,19 @@ static void JournalController_LoadGraphics(JournalManager *journalManager)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 }
 
-static void JournalController_InitStringUtil(JournalManager *journalManager)
-{
+static void JournalController_InitStringUtil(JournalManager *journalManager) {
     journalManager->loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_JOURNAL_ENTRIES, HEAP_ID_JOURNAL);
     journalManager->template = StringTemplate_Default(HEAP_ID_JOURNAL);
     journalManager->strbuf = Strbuf_Init(128, HEAP_ID_JOURNAL);
 }
 
-static void JournalController_FreeStringUtil(JournalManager *journalManager)
-{
+static void JournalController_FreeStringUtil(JournalManager *journalManager) {
     MessageLoader_Free(journalManager->loader);
     StringTemplate_Free(journalManager->template);
     Strbuf_Free(journalManager->strbuf);
 }
 
-static int JournalController_IsOpeningTransitionDone(JournalManager *journalManager)
-{
+static int JournalController_IsOpeningTransitionDone(JournalManager *journalManager) {
     if (IsScreenFadeDone() == TRUE) {
         return JOURNAL_STATE_HANDLE_INPUT;
     }
@@ -321,8 +310,7 @@ static int JournalController_IsOpeningTransitionDone(JournalManager *journalMana
     return JOURNAL_STATE_OPEN;
 }
 
-static int JournalController_HandleInput(JournalManager *journalManager)
-{
+static int JournalController_HandleInput(JournalManager *journalManager) {
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (JournalController_NewDirectionPageExists(journalManager, -1) == TRUE) {
             return JOURNAL_STATE_TURN_LEFT;
@@ -358,8 +346,7 @@ static int JournalController_HandleInput(JournalManager *journalManager)
     return JOURNAL_STATE_HANDLE_INPUT;
 }
 
-static int JournalController_TurnPageLeft(JournalManager *journalManager)
-{
+static int JournalController_TurnPageLeft(JournalManager *journalManager) {
     switch (journalManager->state) {
     case 0:
         ov81_021D1360(journalManager);
@@ -387,8 +374,7 @@ static int JournalController_TurnPageLeft(JournalManager *journalManager)
     return JOURNAL_STATE_TURN_LEFT;
 }
 
-static int JournalController_TurnPageRight(JournalManager *journalManager)
-{
+static int JournalController_TurnPageRight(JournalManager *journalManager) {
     switch (journalManager->state) {
     case 0:
         ov81_021D1360(journalManager);
@@ -410,13 +396,11 @@ static int JournalController_TurnPageRight(JournalManager *journalManager)
     return JOURNAL_STATE_TURN_RIGHT;
 }
 
-static int JournalController_IsClosingTransitionDone(JournalManager *journalManager)
-{
+static int JournalController_IsClosingTransitionDone(JournalManager *journalManager) {
     return IsScreenFadeDone();
 }
 
-static void ov81_021D1360(JournalManager *journalManager)
-{
+static void ov81_021D1360(JournalManager *journalManager) {
     if (journalManager->unk_1060 == 0) {
         journalManager->bgLayer2 = 0;
         journalManager->bgLayer1 = 2;
@@ -430,8 +414,7 @@ static void ov81_021D1360(JournalManager *journalManager)
     }
 }
 
-static u8 JournalController_PageExists(JournalManager *journalManager, u8 page)
-{
+static u8 JournalController_PageExists(JournalManager *journalManager, u8 page) {
     JournalEntryTitle journalEntryTitle;
 
     JournalEntry_GetData(journalManager->journalEntry, &journalEntryTitle, JOURNAL_TITLE, page);
@@ -443,8 +426,7 @@ static u8 JournalController_PageExists(JournalManager *journalManager, u8 page)
     return TRUE;
 }
 
-static u8 JournalController_NewDirectionPageExists(JournalManager *journalManager, s8 pageChange)
-{
+static u8 JournalController_NewDirectionPageExists(JournalManager *journalManager, s8 pageChange) {
     if (pageChange == 1) {
         if (journalManager->page != (MAX_JOURNAL_ENTRIES - 1) && JournalController_PageExists(journalManager, journalManager->page + 1) == TRUE) {
             return TRUE;
@@ -456,20 +438,17 @@ static u8 JournalController_NewDirectionPageExists(JournalManager *journalManage
     return FALSE;
 }
 
-static void JournalController_LoadNewPagePalette(JournalManager *journalManager, u8 bgLayer, u8 palette)
-{
+static void JournalController_LoadNewPagePalette(JournalManager *journalManager, u8 bgLayer, u8 palette) {
     Bg_ChangeTilemapRectPalette(journalManager->bgConfig, bgLayer, 0, 0, 32, 32, palette);
     Bg_ScheduleTilemapTransfer(journalManager->bgConfig, bgLayer);
 }
 
-static void ov81_021D1434(JournalManager *journalManager)
-{
+static void ov81_021D1434(JournalManager *journalManager) {
     u16 *tilemapBuffer = Bg_GetTilemapBuffer(journalManager->bgConfig, 0);
     MI_CpuCopy16(tilemapBuffer, journalManager->tilemapBuffer_85C, 0x800);
 }
 
-static void ov81_021D1450(JournalManager *journalManager, u16 *tilemapBufferSrc, u16 bgLayer, u16 param3)
-{
+static void ov81_021D1450(JournalManager *journalManager, u16 *tilemapBufferSrc, u16 bgLayer, u16 param3) {
     u16 *tilemapBuffer = Bg_GetTilemapBuffer(journalManager->bgConfig, bgLayer);
     u16 j, i;
 
@@ -487,8 +466,7 @@ static void ov81_021D1450(JournalManager *journalManager, u16 *tilemapBufferSrc,
     Bg_ScheduleTilemapTransfer(journalManager->bgConfig, bgLayer);
 }
 
-static u8 ov81_021D14E0(JournalManager *journalManager)
-{
+static u8 ov81_021D14E0(JournalManager *journalManager) {
     ov81_021D1450(journalManager, journalManager->tilemapBuffer_85C, journalManager->bgLayer2, journalManager->unk_105F);
     ov81_021D1450(journalManager, journalManager->tilemapBuffer_5C, journalManager->bgLayer1, journalManager->unk_105F);
     JournalController_LoadNewPagePalette(journalManager, journalManager->bgLayer1, journalManager->page + 1);
@@ -506,8 +484,7 @@ static u8 ov81_021D14E0(JournalManager *journalManager)
     return FALSE;
 }
 
-static u8 ov81_021D156C(JournalManager *journalManager)
-{
+static u8 ov81_021D156C(JournalManager *journalManager) {
     ov81_021D1450(journalManager, journalManager->tilemapBuffer_85C, journalManager->bgLayer4, 8 - journalManager->unk_105F);
     ov81_021D1450(journalManager, journalManager->tilemapBuffer_5C, journalManager->bgLayer3, 8 - journalManager->unk_105F);
     JournalController_LoadNewPagePalette(journalManager, journalManager->bgLayer3, journalManager->page);

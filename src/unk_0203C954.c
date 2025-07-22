@@ -18,8 +18,7 @@
 static u8 sub_0203CB18(FieldSystem *fieldSystem, const BgEvent *param1);
 static u8 sub_0203CAEC(FieldSystem *fieldSystem, const BgEvent *param1);
 
-static int sub_0203C954(FieldSystem *fieldSystem, int *param1, int *param2)
-{
+static int sub_0203C954(FieldSystem *fieldSystem, int *param1, int *param2) {
     int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
     *param1 = Player_GetXPos(fieldSystem->playerAvatar);
@@ -43,8 +42,7 @@ static int sub_0203C954(FieldSystem *fieldSystem, int *param1, int *param2)
     return v0;
 }
 
-static u8 sub_0203C9B0(PlayerAvatar *playerAvatar, MapObject *param1)
-{
+static u8 sub_0203C9B0(PlayerAvatar *playerAvatar, MapObject *param1) {
     MapObject *v0 = Player_MapObject(playerAvatar);
 
     if (sub_020630DC(v0) == sub_020630DC(param1)) {
@@ -54,8 +52,7 @@ static u8 sub_0203C9B0(PlayerAvatar *playerAvatar, MapObject *param1)
     return 0;
 }
 
-void sub_0203C9D4(FieldSystem *fieldSystem, MapObject **param1)
-{
+void sub_0203C9D4(FieldSystem *fieldSystem, MapObject **param1) {
     int v0, v1;
     int v2;
     u8 v3;
@@ -83,8 +80,7 @@ void sub_0203C9D4(FieldSystem *fieldSystem, MapObject **param1)
     *param1 = sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0);
 }
 
-u8 sub_0203CA40(FieldSystem *fieldSystem, MapObject **param1)
-{
+u8 sub_0203CA40(FieldSystem *fieldSystem, MapObject **param1) {
     sub_0203C9D4(fieldSystem, param1);
 
     if (*param1 != NULL) {
@@ -96,8 +92,7 @@ u8 sub_0203CA40(FieldSystem *fieldSystem, MapObject **param1)
     return 0;
 }
 
-u16 sub_0203CA6C(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
-{
+u16 sub_0203CA6C(FieldSystem *fieldSystem, const BgEvent *param1, int param2) {
     const BgEvent *v0 = param1;
     int v1, v2;
     int v3;
@@ -121,8 +116,7 @@ u16 sub_0203CA6C(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
     return 0xffff;
 }
 
-static u8 sub_0203CAEC(FieldSystem *fieldSystem, const BgEvent *param1)
-{
+static u8 sub_0203CAEC(FieldSystem *fieldSystem, const BgEvent *param1) {
     if (param1->type != 2) {
         return 0;
     }
@@ -134,8 +128,7 @@ static u8 sub_0203CAEC(FieldSystem *fieldSystem, const BgEvent *param1)
     return 1;
 }
 
-static u8 sub_0203CB18(FieldSystem *fieldSystem, const BgEvent *param1)
-{
+static u8 sub_0203CB18(FieldSystem *fieldSystem, const BgEvent *param1) {
     if (param1->playerFacingDir == 4) {
         return 1;
     }
@@ -166,8 +159,7 @@ static u8 sub_0203CB18(FieldSystem *fieldSystem, const BgEvent *param1)
     return 0;
 }
 
-u16 sub_0203CB80(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
-{
+u16 sub_0203CB80(FieldSystem *fieldSystem, const BgEvent *param1, int param2) {
     int v1, v2;
     int v3;
 
@@ -187,8 +179,7 @@ u16 sub_0203CB80(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
     return 0xffff;
 }
 
-u8 sub_0203CBE0(FieldSystem *fieldSystem, MapObject **param1)
-{
+u8 sub_0203CBE0(FieldSystem *fieldSystem, MapObject **param1) {
     if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != 0) {
         return 0;
     }
@@ -204,8 +195,7 @@ u8 sub_0203CBE0(FieldSystem *fieldSystem, MapObject **param1)
     return 0;
 }
 
-u16 sub_0203CC14(FieldSystem *fieldSystem, void *param1, int param2)
-{
+u16 sub_0203CC14(FieldSystem *fieldSystem, void *param1, int param2) {
     int v3;
 
     const CoordEvent *v0 = param1;

@@ -36,8 +36,7 @@ static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
 static void ov50_0225683C(BgConfig *param0, u32 param1);
 static void ov50_02256894(BgConfig *param0, u32 param1, u32 param2);
 
-BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_02256510_1 *param1, BgConfig *param2)
-{
+BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_02256510_1 *param1, BgConfig *param2) {
     UnkStruct_ov50_02256510 *v0 = (UnkStruct_ov50_02256510 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov50_02256510));
 
     if (v0 != NULL) {
@@ -54,16 +53,14 @@ BOOL ov50_02256510(UnkStruct_ov50_02256510 **param0, const UnkStruct_ov50_022565
     return 0;
 }
 
-void ov50_0225654C(UnkStruct_ov50_02256510 *param0)
-{
+void ov50_0225654C(UnkStruct_ov50_02256510 *param0) {
     if (param0 != NULL) {
         ov50_022565E4(param0);
         Heap_Free(param0);
     }
 }
 
-static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1)
-{
+static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1) {
     static const PoketchAnimation_AnimationData v0 = {
         { (0 << FX32_SHIFT), (0 << FX32_SHIFT) },
         0,
@@ -80,8 +77,7 @@ static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
     ov50_022565B0(param0->unk_24, param1->unk_0C[param1->unk_08 - 1].unk_02);
 }
 
-static void ov50_022565B0(PoketchAnimation_AnimatedSpriteData *param0, u32 param1)
-{
+static void ov50_022565B0(PoketchAnimation_AnimatedSpriteData *param0, u32 param1) {
     fx32 v0, v1;
 
     v0 = (((4 + 3 * (param1 % 7)) + 1) * 8) << FX32_SHIFT;
@@ -90,8 +86,7 @@ static void ov50_022565B0(PoketchAnimation_AnimatedSpriteData *param0, u32 param
     PoketchAnimation_SetSpritePosition(param0, v0, v1);
 }
 
-static void ov50_022565E4(UnkStruct_ov50_02256510 *param0)
-{
+static void ov50_022565E4(UnkStruct_ov50_02256510 *param0) {
     PoketchAnimation_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
     PoketchAnimation_FreeSpriteData(&(param0->unk_28));
 }
@@ -103,29 +98,24 @@ static const PoketchTask Unk_ov50_02256AC0[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov50_022565FC(UnkStruct_ov50_02256510 *param0, u32 param1)
-{
+void ov50_022565FC(UnkStruct_ov50_02256510 *param0, u32 param1) {
     PoketchTask_Start(Unk_ov50_02256AC0, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov50_02256620(UnkStruct_ov50_02256510 *param0, u32 param1)
-{
+BOOL ov50_02256620(UnkStruct_ov50_02256510 *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov50_0225662C(UnkStruct_ov50_02256510 *param0)
-{
+BOOL ov50_0225662C(UnkStruct_ov50_02256510 *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov50_02256638(PoketchTaskManager *param0)
-{
+static void ov50_02256638(PoketchTaskManager *param0) {
     UnkStruct_ov50_02256510 *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov50_0225664C(SysTask *param0, void *param1)
-{
+static void ov50_0225664C(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -178,8 +168,7 @@ static void ov50_0225664C(SysTask *param0, void *param1)
     ov50_02256638(param1);
 }
 
-static void ov50_022566F0(SysTask *param0, void *param1)
-{
+static void ov50_022566F0(SysTask *param0, void *param1) {
     UnkStruct_ov50_02256510 *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
@@ -188,8 +177,7 @@ static void ov50_022566F0(SysTask *param0, void *param1)
     ov50_02256638(param1);
 }
 
-static void ov50_02256714(SysTask *param0, void *param1)
-{
+static void ov50_02256714(SysTask *param0, void *param1) {
     UnkStruct_ov50_02256510 *v0;
     const UnkStruct_ov50_02256510_1 *v1;
     u32 v2;
@@ -203,8 +191,7 @@ static void ov50_02256714(SysTask *param0, void *param1)
     ov50_02256638(param1);
 }
 
-static void ov50_0225675C(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1)
-{
+static void ov50_0225675C(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1) {
     u32 v0;
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 110, param0->unk_04, 7, 0, 0, 1, HEAP_ID_POKETCH_APP);
@@ -216,16 +203,14 @@ static void ov50_0225675C(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
     }
 }
 
-static void ov50_022567A8(BgConfig *param0, u16 param1, u32 param2)
-{
+static void ov50_022567A8(BgConfig *param0, u16 param1, u32 param2) {
     u32 v0 = 4 + 3 * (param2 % 7);
     u32 v1 = 5 + 3 * (param2 / 7);
 
     Bg_FillTilemapRect(param0, 7, param1, v0, v1, 2, 2, 0);
 }
 
-static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1)
-{
+static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_02256510_1 *param1) {
     u32 v0;
 
     Bg_FillTilemapRect(param0->unk_04, 6, 130, 0, 0, 32, 32, 0);
@@ -236,8 +221,7 @@ static void ov50_022567F4(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
     }
 }
 
-static void ov50_0225683C(BgConfig *param0, u32 param1)
-{
+static void ov50_0225683C(BgConfig *param0, u32 param1) {
     static const u16 v0[12] = {
         0x0, 0x4, 0x8, 0x18, 0x1c, 0x20, 0x30, 0x34, 0x38, 0x48, 0x4c, 0x50
     };
@@ -253,8 +237,7 @@ static void ov50_0225683C(BgConfig *param0, u32 param1)
     }
 }
 
-static void ov50_02256894(BgConfig *param0, u32 param1, u32 param2)
-{
+static void ov50_02256894(BgConfig *param0, u32 param1, u32 param2) {
     static const u16 v0[2][10] = {
         { 0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69 },
         { 0x78, 0x79, 0x7a, 0x7b, 0x7c, 0x7d, 0x7e, 0x7f, 0x80, 0x81 }

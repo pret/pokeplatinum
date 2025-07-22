@@ -207,8 +207,7 @@ static const char *sNarcPaths[] = {
 static void ReadFromNarcMemberByPathAndIndex(void *dest, const char *path, int memberIndex, int offset, int bytesToRead);
 static void *AllocAndReadFromNarcMemberByPathAndIndex(const char *path, int memberIndex, int heapID, int offset, int bytesToRead, BOOL allocAtEnd);
 
-static void ReadFromNarcMemberByPathAndIndex(void *dest, const char *path, int memberIndex, int offset, int bytesToRead)
-{
+static void ReadFromNarcMemberByPathAndIndex(void *dest, const char *path, int memberIndex, int offset, int bytesToRead) {
     FSFile file;
     u32 btafStart = 0;
     u32 btnfStart = 0;
@@ -255,8 +254,7 @@ static void ReadFromNarcMemberByPathAndIndex(void *dest, const char *path, int m
     FS_CloseFile(&file);
 }
 
-static void *AllocAndReadFromNarcMemberByPathAndIndex(const char *path, int memberIndex, int heapID, int offset, int bytesToRead, BOOL allocAtEnd)
-{
+static void *AllocAndReadFromNarcMemberByPathAndIndex(const char *path, int memberIndex, int heapID, int offset, int bytesToRead, BOOL allocAtEnd) {
     FSFile file;
     u32 btafStart = 0;
     u32 btnfStart = 0;
@@ -312,38 +310,31 @@ static void *AllocAndReadFromNarcMemberByPathAndIndex(const char *path, int memb
     return dest;
 }
 
-void NARC_ReadWholeMemberByIndexPair(void *dest, enum NarcID narcID, int memberIndex)
-{
+void NARC_ReadWholeMemberByIndexPair(void *dest, enum NarcID narcID, int memberIndex) {
     ReadFromNarcMemberByPathAndIndex(dest, sNarcPaths[narcID], memberIndex, 0, 0);
 }
 
-void *NARC_AllocAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID)
-{
+void *NARC_AllocAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID) {
     return AllocAndReadFromNarcMemberByPathAndIndex(sNarcPaths[narcID], memberIndex, heapID, 0, 0, FALSE);
 }
 
-void *NARC_AllocAtEndAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID)
-{
+void *NARC_AllocAtEndAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID) {
     return AllocAndReadFromNarcMemberByPathAndIndex(sNarcPaths[narcID], memberIndex, heapID, 0, 0, TRUE);
 }
 
-void NARC_ReadFromMemberByIndexPair(void *dest, enum NarcID narcID, int memberIndex, int offset, int bytesToRead)
-{
+void NARC_ReadFromMemberByIndexPair(void *dest, enum NarcID narcID, int memberIndex, int offset, int bytesToRead) {
     ReadFromNarcMemberByPathAndIndex(dest, sNarcPaths[narcID], memberIndex, offset, bytesToRead);
 }
 
-void *NARC_AllocAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead)
-{
+void *NARC_AllocAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead) {
     return AllocAndReadFromNarcMemberByPathAndIndex(sNarcPaths[narcID], memberIndex, heapID, offset, bytesToRead, FALSE);
 }
 
-void *NARC_AllocAtEndAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead)
-{
+void *NARC_AllocAtEndAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead) {
     return AllocAndReadFromNarcMemberByPathAndIndex(sNarcPaths[narcID], memberIndex, heapID, offset, bytesToRead, TRUE);
 }
 
-u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex)
-{
+u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex) {
     FSFile file;
     u32 chunkSize = 0;
     u32 btafStart = 0;
@@ -386,8 +377,7 @@ u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex)
     return chunkSize;
 }
 
-NARC *NARC_ctor(enum NarcID narcID, u32 heapID)
-{
+NARC *NARC_ctor(enum NarcID narcID, u32 heapID) {
     NARC *narc = Heap_AllocFromHeap(heapID, sizeof(NARC));
 
     if (narc) {
@@ -415,14 +405,12 @@ NARC *NARC_ctor(enum NarcID narcID, u32 heapID)
     return narc;
 }
 
-void NARC_dtor(NARC *param0)
-{
+void NARC_dtor(NARC *param0) {
     FS_CloseFile(&(param0->file));
     Heap_Free(param0);
 }
 
-void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID)
-{
+void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID) {
     u32 fileStart;
     u32 fileEnd;
     void *dest;
@@ -443,8 +431,7 @@ void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID)
     return dest;
 }
 
-void NARC_ReadWholeMember(NARC *narc, u32 memberIndex, void *dest)
-{
+void NARC_ReadWholeMember(NARC *narc, u32 memberIndex, void *dest) {
     u32 fileStart;
     u32 fileEnd;
 
@@ -457,8 +444,7 @@ void NARC_ReadWholeMember(NARC *narc, u32 memberIndex, void *dest)
     FS_ReadFile(&narc->file, dest, fileEnd - fileStart);
 }
 
-u32 NARC_GetMemberSize(NARC *narc, u32 memberIndex)
-{
+u32 NARC_GetMemberSize(NARC *narc, u32 memberIndex) {
     u32 fileStart;
     u32 fileEnd;
 
@@ -471,8 +457,7 @@ u32 NARC_GetMemberSize(NARC *narc, u32 memberIndex)
     return fileEnd - fileStart;
 }
 
-void NARC_ReadFromMember(NARC *narc, u32 memberIndex, u32 offset, u32 bytesToRead, void *dest)
-{
+void NARC_ReadFromMember(NARC *narc, u32 memberIndex, u32 offset, u32 bytesToRead, void *dest) {
     u32 fileStart;
 
     GF_ASSERT(narc->numFiles > memberIndex);
@@ -483,17 +468,14 @@ void NARC_ReadFromMember(NARC *narc, u32 memberIndex, u32 offset, u32 bytesToRea
     FS_ReadFile(&narc->file, dest, bytesToRead);
 }
 
-void NARC_ReadFile(NARC *narc, u32 bytesToRead, void *dest)
-{
+void NARC_ReadFile(NARC *narc, u32 bytesToRead, void *dest) {
     FS_ReadFile(&narc->file, dest, bytesToRead);
 }
 
-void NARC_Seek(NARC *narc, u32 offset)
-{
+void NARC_Seek(NARC *narc, u32 offset) {
     FS_SeekFile(&narc->file, offset, FS_SEEK_CUR);
 }
 
-u16 NARC_GetFileCount(NARC *narc)
-{
+u16 NARC_GetFileCount(NARC *narc) {
     return narc->numFiles;
 }

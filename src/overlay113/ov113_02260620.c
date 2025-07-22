@@ -47,8 +47,7 @@ static const TouchScreenRect Unk_ov113_02260D4C[] = {
     { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2[], UnkStruct_ov66_0222DFF8 *param3, s32 param4)
-{
+void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2[], UnkStruct_ov66_0222DFF8 *param3, s32 param4) {
     const UnkStruct_ov66_0222E71C *v0;
     TrainerInfo *v1;
     Strbuf *v2;
@@ -110,8 +109,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     Heap_Free(v1);
 }
 
-void ov113_02260714(Window param0[], u32 param1)
-{
+void ov113_02260714(Window param0[], u32 param1) {
     if (param1 >= 8) {
         GF_ASSERT(0);
         return;
@@ -120,13 +118,11 @@ void ov113_02260714(Window param0[], u32 param1)
     Window_ClearAndCopyToVRAM(&param0[param1]);
 }
 
-u16 ov113_0226072C(int param0, u32 param1)
-{
+u16 ov113_0226072C(int param0, u32 param1) {
     return Unk_ov113_02260D6C[param1 % NELEMS(Unk_ov113_02260D6C)][param0];
 }
 
-int ov113_02260748(UnkStruct_ov113_02260818 *param0, int param1)
-{
+int ov113_02260748(UnkStruct_ov113_02260818 *param0, int param1) {
     int v0;
     int v1 = 0xff;
 
@@ -148,8 +144,7 @@ int ov113_02260748(UnkStruct_ov113_02260818 *param0, int param1)
 // canShowArceus is a flag pulled from wifi room data that dictates whether or not Arceus is allowed to be seen.
 // The contexts where Arceus is allowed to be seen is unclear. I haven't seen any case where this could be true
 // Seems to be from a cut feature where you could have pokemon out walking around while being in a wifi room. Amity square?
-BOOL PokemonHasOverworldFootprint(int species, int form, BOOL canShowArceus)
-{
+BOOL PokemonHasOverworldFootprint(int species, int form, BOOL canShowArceus) {
     if (species == SPECIES_GIRATINA && form > 0) {
         return FALSE;
     }
@@ -161,8 +156,7 @@ BOOL PokemonHasOverworldFootprint(int species, int form, BOOL canShowArceus)
     return sSpeciesFootprints[species].has;
 }
 
-int PokemonOverworldFootprintSize(int species, int form)
-{
+int PokemonOverworldFootprintSize(int species, int form) {
     if (species == SPECIES_GIRATINA && form > 0) {
         return FOOTPRINT_LARGE;
     }

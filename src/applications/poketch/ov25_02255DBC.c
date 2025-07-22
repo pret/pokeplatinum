@@ -73,8 +73,7 @@ static const u16 Unk_ov25_022560EC[] = {
 };
 
 // Get array values from two idxs
-void ov25_02255DBC(u32 param0, u32 param1, u32 *param2, u32 *param3)
-{
+void ov25_02255DBC(u32 param0, u32 param1, u32 *param2, u32 *param3) {
     GF_ASSERT(param0 < NELEMS(Unk_ov25_022560B0));
     GF_ASSERT(param1 < NELEMS(Unk_ov25_022560EC));
 
@@ -91,8 +90,7 @@ void ov25_02255DBC(u32 param0, u32 param1, u32 *param2, u32 *param3)
 }
 
 // get touple values from idx
-void ov25_02255DFC(int param0, u32 *param1, u32 *param2)
-{
+void ov25_02255DFC(int param0, u32 *param1, u32 *param2) {
     static const struct {
         u32 unk_00;
         u32 unk_04;
@@ -110,8 +108,7 @@ void ov25_02255DFC(int param0, u32 *param1, u32 *param2)
 }
 
 // get two values where first param matches
-BOOL ov25_02255E24(int param0, u32 *param1, u32 *param2)
-{
+BOOL ov25_02255E24(int param0, u32 *param1, u32 *param2) {
     static const struct {
         u16 unk_00;
         u8 unk_02;

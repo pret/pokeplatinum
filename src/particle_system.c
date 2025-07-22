@@ -78,15 +78,13 @@ static const SPLAllocFunc sParticleSystemAllocFuncs[] = {
     ParticleSystem15_AllocMemory,
 };
 
-void ParticleSystem_ZeroAll(void)
-{
+void ParticleSystem_ZeroAll(void) {
     for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         sParticleSystems[i] = NULL;
     }
 }
 
-ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMAllocFunc palAllocFunc, void *heap, int heapSize, BOOL hasCamera, enum HeapId heapID)
-{
+ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMAllocFunc palAllocFunc, void *heap, int heapSize, BOOL hasCamera, enum HeapId heapID) {
     ParticleSystem *particleSystem;
     int id;
 
@@ -152,8 +150,7 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
     return particleSystem;
 }
 
-void ParticleSystem_Free(ParticleSystem *particleSystem)
-{
+void ParticleSystem_Free(ParticleSystem *particleSystem) {
     ParticleSystem_DeleteAllEmitters(particleSystem);
 
     if (particleSystem->vramAutoRelease & VRAM_AUTO_RELEASE_TEXTURE_FRM) {
@@ -200,8 +197,7 @@ void ParticleSystem_Free(ParticleSystem *particleSystem)
     Heap_Free(particleSystem);
 }
 
-void ParticleSystem_FreeAll(void)
-{
+void ParticleSystem_FreeAll(void) {
     for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
             ParticleSystem_Free(sParticleSystems[i]);
@@ -209,8 +205,7 @@ void ParticleSystem_FreeAll(void)
     }
 }
 
-static inline void *ParticleSystem_AllocMemory(ParticleSystem *particleSystem, u32 size)
-{
+static inline void *ParticleSystem_AllocMemory(ParticleSystem *particleSystem, u32 size) {
     void *allocated = particleSystem->heap;
 
     u32 newHeapPos = (u32)particleSystem->heap + size;
@@ -227,93 +222,75 @@ static inline void *ParticleSystem_AllocMemory(ParticleSystem *particleSystem, u
     return allocated;
 }
 
-static void *ParticleSystem00_AllocMemory(u32 size)
-{
+static void *ParticleSystem00_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[0], size);
 }
 
-static void *ParticleSystem01_AllocMemory(u32 size)
-{
+static void *ParticleSystem01_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[1], size);
 }
 
-static void *ParticleSystem02_AllocMemory(u32 size)
-{
+static void *ParticleSystem02_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[2], size);
 }
 
-static void *ParticleSystem03_AllocMemory(u32 size)
-{
+static void *ParticleSystem03_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[3], size);
 }
 
-static void *ParticleSystem04_AllocMemory(u32 size)
-{
+static void *ParticleSystem04_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[4], size);
 }
 
-static void *ParticleSystem05_AllocMemory(u32 size)
-{
+static void *ParticleSystem05_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[5], size);
 }
 
-static void *ParticleSystem06_AllocMemory(u32 size)
-{
+static void *ParticleSystem06_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[6], size);
 }
 
-static void *ParticleSystem07_AllocMemory(u32 size)
-{
+static void *ParticleSystem07_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[7], size);
 }
 
-static void *ParticleSystem08_AllocMemory(u32 size)
-{
+static void *ParticleSystem08_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[8], size);
 }
 
-static void *ParticleSystem09_AllocMemory(u32 size)
-{
+static void *ParticleSystem09_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[9], size);
 }
 
-static void *ParticleSystem10_AllocMemory(u32 size)
-{
+static void *ParticleSystem10_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[10], size);
 }
 
-static void *ParticleSystem11_AllocMemory(u32 size)
-{
+static void *ParticleSystem11_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[11], size);
 }
 
-static void *ParticleSystem12_AllocMemory(u32 size)
-{
+static void *ParticleSystem12_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[12], size);
 }
 
-static void *ParticleSystem13_AllocMemory(u32 size)
-{
+static void *ParticleSystem13_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[13], size);
 }
 
-static void *ParticleSystem14_AllocMemory(u32 size)
-{
+static void *ParticleSystem14_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[14], size);
 }
 
-static void *ParticleSystem15_AllocMemory(u32 size)
-{
+static void *ParticleSystem15_AllocMemory(u32 size) {
     return ParticleSystem_AllocMemory(sParticleSystems[15], size);
 }
 
-void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapId heapID)
-{
+void *ParticleSystem_LoadResourceFromNARC(enum NarcID narcID, int memberIndex, enum HeapId heapID) {
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, memberIndex, heapID);
 }
 
-void ParticleSystem_SetResource(ParticleSystem *particleSystem, void *resource, enum VRAMAutoRelease autoRelease, BOOL uploadImmediately)
-{
+void ParticleSystem_SetResource(ParticleSystem *particleSystem, void *resource, enum VRAMAutoRelease autoRelease, BOOL uploadImmediately) {
     GF_ASSERT(particleSystem->manager != NULL);
     GF_ASSERT(particleSystem->resource == NULL);
 
@@ -344,8 +321,7 @@ void ParticleSystem_SetResource(ParticleSystem *particleSystem, void *resource, 
     }
 }
 
-static void ParticleSystem_UploadResourcesInternal(ParticleSystem *particleSystem)
-{
+static void ParticleSystem_UploadResourcesInternal(ParticleSystem *particleSystem) {
     SPLManager_LoadResources(particleSystem->manager, particleSystem->resource);
 
     sUploadingParticleSystem = particleSystem;
@@ -365,16 +341,14 @@ static void ParticleSystem_UploadResourcesInternal(ParticleSystem *particleSyste
     sUploadingParticleSystem = NULL;
 }
 
-static void ParticleSystem_VBlankResourceUploadInternal(SysTask *task, void *param)
-{
+static void ParticleSystem_VBlankResourceUploadInternal(SysTask *task, void *param) {
     ParticleSystem *particleSystem = param;
 
     ParticleSystem_UploadResourcesInternal(particleSystem);
     SysTask_Done(task);
 }
 
-void ParticleSystem_RegisterTextureKey(NNSGfdTexKey key)
-{
+void ParticleSystem_RegisterTextureKey(NNSGfdTexKey key) {
     GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
     GF_ASSERT(sUploadingParticleSystem != NULL);
 
@@ -390,8 +364,7 @@ void ParticleSystem_RegisterTextureKey(NNSGfdTexKey key)
     GF_ASSERT(FALSE);
 }
 
-void ParticleSystem_RegisterPaletteKey(NNSGfdPlttKey key)
-{
+void ParticleSystem_RegisterPaletteKey(NNSGfdPlttKey key) {
     GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
     GF_ASSERT(sUploadingParticleSystem != NULL);
 
@@ -407,8 +380,7 @@ void ParticleSystem_RegisterPaletteKey(NNSGfdPlttKey key)
     GF_ASSERT(FALSE);
 }
 
-void ParticleSystem_Draw(ParticleSystem *particleSystem)
-{
+void ParticleSystem_Draw(ParticleSystem *particleSystem) {
     if (particleSystem->camera != NULL) {
         Camera_ComputeProjectionMatrix(particleSystem->cameraProjection, particleSystem->camera);
         Camera_SetAsActive(particleSystem->camera);
@@ -427,13 +399,11 @@ void ParticleSystem_Draw(ParticleSystem *particleSystem)
     NNS_G3dGlbFlush();
 }
 
-void ParticleSystem_Update(ParticleSystem *particleSystem)
-{
+void ParticleSystem_Update(ParticleSystem *particleSystem) {
     SPLManager_Update(particleSystem->manager);
 }
 
-int ParticleSystem_GetActiveAmount(void)
-{
+int ParticleSystem_GetActiveAmount(void) {
     int count = 0;
     for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
@@ -444,8 +414,7 @@ int ParticleSystem_GetActiveAmount(void)
     return count;
 }
 
-int ParticleSystem_DrawAll(void)
-{
+int ParticleSystem_DrawAll(void) {
     int count = 0;
     for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
@@ -457,8 +426,7 @@ int ParticleSystem_DrawAll(void)
     return count;
 }
 
-int ParticleSystem_UpdateAll(void)
-{
+int ParticleSystem_UpdateAll(void) {
     int count = 0;
     for (int i = 0; i < MAX_PARTICLE_SYSTEMS; i++) {
         if (sParticleSystems[i] != NULL) {
@@ -470,16 +438,14 @@ int ParticleSystem_UpdateAll(void)
     return count;
 }
 
-SPLEmitter *ParticleSystem_CreateEmitter(ParticleSystem *particleSystem, int resourceID, const VecFx32 *position)
-{
+SPLEmitter *ParticleSystem_CreateEmitter(ParticleSystem *particleSystem, int resourceID, const VecFx32 *position) {
     SPLEmitter *emitter = SPLManager_CreateEmitter(particleSystem->manager, resourceID, position);
     particleSystem->lastAddedEmitter = emitter;
 
     return emitter;
 }
 
-SPLEmitter *ParticleSystem_CreateEmitterWithCallback(ParticleSystem *particleSystem, int resourceID, SPLEmitterCallback callback, void *param)
-{
+SPLEmitter *ParticleSystem_CreateEmitterWithCallback(ParticleSystem *particleSystem, int resourceID, SPLEmitterCallback callback, void *param) {
     sEmitterCallbackParam = param;
     SPLEmitter *emitter = SPLManager_CreateEmitterWithCallback(particleSystem->manager, resourceID, callback);
     sEmitterCallbackParam = NULL;
@@ -488,74 +454,60 @@ SPLEmitter *ParticleSystem_CreateEmitterWithCallback(ParticleSystem *particleSys
     return emitter;
 }
 
-s32 ParticleSystem_GetActiveEmitterCount(ParticleSystem *particleSystem)
-{
+s32 ParticleSystem_GetActiveEmitterCount(ParticleSystem *particleSystem) {
     return particleSystem->manager->activeEmitters.count;
 }
 
-void ParticleSystem_DeleteAllEmitters(ParticleSystem *particleSystem)
-{
+void ParticleSystem_DeleteAllEmitters(ParticleSystem *particleSystem) {
     SPLManager_DeleteAllEmitters(particleSystem->manager);
 }
 
-void ParticleSystem_DeleteEmitter(ParticleSystem *particleSystem, SPLEmitter *emitter)
-{
+void ParticleSystem_DeleteEmitter(ParticleSystem *particleSystem, SPLEmitter *emitter) {
     SPLManager_DeleteEmitter(particleSystem->manager, emitter);
 }
 
-void *ParticleSystem_GetHeapStart(ParticleSystem *particleSystem)
-{
+void *ParticleSystem_GetHeapStart(ParticleSystem *particleSystem) {
     return particleSystem->heapStart;
 }
 
-void ParticleSystem_GetCameraUp(ParticleSystem *particleSystem, VecFx32 *up)
-{
+void ParticleSystem_GetCameraUp(ParticleSystem *particleSystem, VecFx32 *up) {
     *up = particleSystem->cameraUp;
 }
 
-void ParticleSystem_SetCameraUp(ParticleSystem *particleSystem, const VecFx32 *up)
-{
+void ParticleSystem_SetCameraUp(ParticleSystem *particleSystem, const VecFx32 *up) {
     particleSystem->cameraUp = *up;
     Camera_SetUp(up, particleSystem->camera);
 }
 
-void *ParticleSystem_GetEmitterCallbackParam(void)
-{
+void *ParticleSystem_GetEmitterCallbackParam(void) {
     return sEmitterCallbackParam;
 }
 
-void ParticleSystem_GetDefaultCameraUp(VecFx32 *up)
-{
+void ParticleSystem_GetDefaultCameraUp(VecFx32 *up) {
     *up = sParticleSystemDefaultCameraUp;
 }
 
-Camera *ParticleSystem_GetCamera(ParticleSystem *particleSystem)
-{
+Camera *ParticleSystem_GetCamera(ParticleSystem *particleSystem) {
     return particleSystem->camera;
 }
 
-void ParticleSystem_SetCameraProjection(ParticleSystem *particleSystem, enum CameraProjection projection)
-{
+void ParticleSystem_SetCameraProjection(ParticleSystem *particleSystem, enum CameraProjection projection) {
     particleSystem->cameraProjection = projection;
 }
 
-u8 ParticleSystem_GetCameraProjection(ParticleSystem *particleSystem)
-{
+u8 ParticleSystem_GetCameraProjection(ParticleSystem *particleSystem) {
     return particleSystem->cameraProjection;
 }
 
-void ParticleSystem_GetEmitterAxis(SPLEmitter *emitter, VecFx16 *axis)
-{
+void ParticleSystem_GetEmitterAxis(SPLEmitter *emitter, VecFx16 *axis) {
     *axis = emitter->axis;
 }
 
-void ParticleSystem_SetEmitterEmissionCount(SPLEmitter *emitter, fx32 count)
-{
+void ParticleSystem_SetEmitterEmissionCount(SPLEmitter *emitter, fx32 count) {
     emitter->resource->header->emissionCount = count;
 }
 
-static const void *ParticleSystem_GetEmitterBehaviorInternal(SPLEmitter *emitter, int behaviorType)
-{
+static const void *ParticleSystem_GetEmitterBehaviorInternal(SPLEmitter *emitter, int behaviorType) {
     int i; // Required to match
 
     int behaviorCount = emitter->resource->behaviorCount;
@@ -609,8 +561,7 @@ static const void *ParticleSystem_GetEmitterBehaviorInternal(SPLEmitter *emitter
     return NULL;
 }
 
-void ParticleSystem_SetEmitterGravityMagnitude(SPLEmitter *emitter, VecFx16 *magnitude)
-{
+void ParticleSystem_SetEmitterGravityMagnitude(SPLEmitter *emitter, VecFx16 *magnitude) {
     SPLGravityBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_GRAVITY);
     if (behavior == NULL) {
         return;
@@ -619,8 +570,7 @@ void ParticleSystem_SetEmitterGravityMagnitude(SPLEmitter *emitter, VecFx16 *mag
     behavior->magnitude = *magnitude;
 }
 
-void ParticleSystem_SetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target)
-{
+void ParticleSystem_SetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target) {
     SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
     if (behavior == NULL) {
         return;
@@ -629,8 +579,7 @@ void ParticleSystem_SetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target)
     behavior->target = *target;
 }
 
-void ParticleSystem_GetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target)
-{
+void ParticleSystem_GetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target) {
     SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
     if (behavior == NULL) {
         *target = (VecFx32) { 0, 0, 0 };
@@ -640,8 +589,7 @@ void ParticleSystem_GetEmitterMagnetTarget(SPLEmitter *emitter, VecFx32 *target)
     *target = behavior->target;
 }
 
-void ParticleSystem_SetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force)
-{
+void ParticleSystem_SetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force) {
     SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
     if (behavior == NULL) {
         return;
@@ -650,8 +598,7 @@ void ParticleSystem_SetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force)
     behavior->force = *force;
 }
 
-void ParticleSystem_GetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force)
-{
+void ParticleSystem_GetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force) {
     SPLMagnetBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_MAGNET);
     if (behavior == NULL) {
         *force = 0;
@@ -661,8 +608,7 @@ void ParticleSystem_GetEmitterMagnetForce(SPLEmitter *emitter, fx16 *force)
     *force = behavior->force;
 }
 
-void ParticleSystem_SetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle)
-{
+void ParticleSystem_SetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle) {
     SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
     if (behavior == NULL) {
         return;
@@ -671,8 +617,7 @@ void ParticleSystem_SetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle)
     behavior->angle = *angle;
 }
 
-void ParticleSystem_GetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle)
-{
+void ParticleSystem_GetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle) {
     SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
     if (behavior == NULL) {
         *angle = 0;
@@ -682,8 +627,7 @@ void ParticleSystem_GetEmitterSpinAngle(SPLEmitter *emitter, u16 *angle)
     *angle = behavior->angle;
 }
 
-void ParticleSystem_SetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis)
-{
+void ParticleSystem_SetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis) {
     SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
     if (behavior == NULL) {
         return;
@@ -692,8 +636,7 @@ void ParticleSystem_SetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis)
     behavior->axis = *axis;
 }
 
-void ParticleSystem_GetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis)
-{
+void ParticleSystem_GetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis) {
     SPLSpinBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_SPIN);
     if (behavior == NULL) {
         *axis = 0;
@@ -703,8 +646,7 @@ void ParticleSystem_GetEmitterSpinAxis(SPLEmitter *emitter, u16 *axis)
     *axis = behavior->axis;
 }
 
-void ParticleSystem_SetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *target)
-{
+void ParticleSystem_SetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *target) {
     SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
     if (behavior == NULL) {
         return;
@@ -713,8 +655,7 @@ void ParticleSystem_SetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *ta
     behavior->target = *target;
 }
 
-void ParticleSystem_GetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *target)
-{
+void ParticleSystem_GetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *target) {
     SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
     if (behavior == NULL) {
         *target = (VecFx32) { 0, 0, 0 };
@@ -724,8 +665,7 @@ void ParticleSystem_GetEmitterConvergenceTarget(SPLEmitter *emitter, VecFx32 *ta
     *target = behavior->target;
 }
 
-void ParticleSystem_SetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force)
-{
+void ParticleSystem_SetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force) {
     SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
     if (behavior == NULL) {
         return;
@@ -734,8 +674,7 @@ void ParticleSystem_SetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force)
     behavior->force = *force;
 }
 
-void ParticleSystem_GetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force)
-{
+void ParticleSystem_GetEmitterConvergenceForce(SPLEmitter *emitter, fx16 *force) {
     SPLConvergenceBehavior *behavior = ParticleSystem_GetEmitterBehaviorInternal(emitter, SPL_BEHAVIOR_CONVERGENCE);
     if (behavior == NULL) {
         *force = 0;

@@ -47,8 +47,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1);
 
-BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, const MessageLoader *param5, NARC *param6)
-{
+BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, const MessageLoader *param5, NARC *param6) {
     int v0;
 
     if (ov19_GetBoxMode(param2) == PC_MODE_COMPARE) {
@@ -81,8 +80,7 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     return 1;
 }
 
-void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0) {
     int v0;
 
     if (param0->unk_00 == 0) {
@@ -140,23 +138,20 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     ov19_021DAC90(param0);
 }
 
-void ov19_021DAA80(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DAA80(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_00) {
         PokemonSpriteManager_UpdateCharAndPltt(param0->unk_20);
     }
 }
 
-void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0) {
     PokemonSpriteTemplate v0;
 
     BuildPokemonSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
     param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
 }
 
-BOOL ov19_021DAAC4(UnkStruct_ov19_021DA9E0 *param0)
-{
+BOOL ov19_021DAAC4(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_24) {
         PokemonSprite_Delete(param0->unk_24);
         param0->unk_24 = NULL;
@@ -166,8 +161,7 @@ BOOL ov19_021DAAC4(UnkStruct_ov19_021DA9E0 *param0)
     return 1;
 }
 
-void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0) {
     static const WindowTemplate v0[] = {
         { 2, 0, 1, 10, 2, 1, 288 },
         { 2, 5, 3, 5, 1, 1, 308 },
@@ -201,8 +195,7 @@ void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
     ov19_021DAC4C(param0);
 }
 
-static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
-{
+static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0) {
     NNSG2dImageProxy v0;
     SpriteResourcesHeader v1;
     enum NarcID narcID;
@@ -232,8 +225,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
     param0->unk_30 = ov19_021D785C(param0->unk_0C, &v1, 56, 176, 47, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
-{
+static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_4C == NULL) {
         UnkStruct_ov19_021DAE2C *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DAE2C));
 
@@ -249,8 +241,7 @@ static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
     }
 }
 
-static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0)
-{
+static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_4C) {
         Heap_Free(SysTask_GetParam(param0->unk_4C));
         SysTask_Done(param0->unk_4C);
@@ -258,8 +249,7 @@ static void ov19_021DAC90(UnkStruct_ov19_021DA9E0 *param0)
     }
 }
 
-static void ov19_021DACB0(UnkStruct_ov19_021DA9E0 *param0)
-{
+static void ov19_021DACB0(UnkStruct_ov19_021DA9E0 *param0) {
     UnkStruct_ov19_021DAE2C *v0 = SysTask_GetParam(param0->unk_4C);
 
     if (v0) {
@@ -270,8 +260,7 @@ static void ov19_021DACB0(UnkStruct_ov19_021DA9E0 *param0)
     }
 }
 
-static void ov19_021DACDC(UnkStruct_ov19_021DA9E0 *param0)
-{
+static void ov19_021DACDC(UnkStruct_ov19_021DA9E0 *param0) {
     UnkStruct_ov19_021DAE2C *v0 = SysTask_GetParam(param0->unk_4C);
 
     if (v0) {
@@ -280,8 +269,7 @@ static void ov19_021DACDC(UnkStruct_ov19_021DA9E0 *param0)
     }
 }
 
-static void ov19_021DACF8(SysTask *param0, void *param1)
-{
+static void ov19_021DACF8(SysTask *param0, void *param1) {
     UnkStruct_ov19_021DAE2C *v0 = (UnkStruct_ov19_021DAE2C *)param1;
     UnkStruct_ov19_021DA9E0 *v1 = v0->unk_08;
     const PCMonPreview *preview;
@@ -336,8 +324,7 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
     }
 }
 
-static void ov19_021DADCC(UnkStruct_ov19_021DA9E0 *param0, fx32 param1)
-{
+static void ov19_021DADCC(UnkStruct_ov19_021DA9E0 *param0, fx32 param1) {
     int v0;
     VecFx32 v1;
 
@@ -356,8 +343,7 @@ static void ov19_021DADCC(UnkStruct_ov19_021DA9E0 *param0, fx32 param1)
     }
 }
 
-static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0)
-{
+static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -365,8 +351,7 @@ static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0)
     }
 }
 
-static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0)
-{
+static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0) {
     u32 v0;
     Window *v1 = &(param0->unk_08->unk_04[3]);
 
@@ -382,8 +367,7 @@ static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0)
     ov19_021DAE60(v1, param0->unk_08, v0, 1);
 }
 
-static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 param2, u32 param3)
-{
+static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 param2, u32 param3) {
     const Strbuf *v0;
     u32 v1 = (param3 * 16) + 0;
 
@@ -434,8 +418,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 0, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 }
 
-void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_00 == 0) {
         return;
     }
@@ -455,8 +438,7 @@ void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
     Window_LoadTiles(&param0->unk_04[3]);
 }
 
-void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_00 == 0) {
         return;
     }
@@ -485,8 +467,7 @@ void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
     ov19_021DACB0(param0);
 }
 
-void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_00 == 0) {
         return;
     }
@@ -511,8 +492,7 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
     ov19_021DACDC(param0);
 }
 
-static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
-{
+static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0) {
     PokemonSpriteTemplate v0;
     const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);
 
@@ -544,8 +524,7 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
     ov19_021DB24C(param0, preview->markings);
 }
 
-BOOL ov19_021DB220(UnkStruct_ov19_021DA9E0 *param0)
-{
+BOOL ov19_021DB220(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_00 == 0) {
         return 1;
     }
@@ -553,8 +532,7 @@ BOOL ov19_021DB220(UnkStruct_ov19_021DA9E0 *param0)
     return 1;
 }
 
-void ov19_021DB224(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DB224(UnkStruct_ov19_021DA9E0 *param0) {
     if (param0->unk_00 == 0) {
         return;
     }
@@ -567,8 +545,7 @@ void ov19_021DB224(UnkStruct_ov19_021DA9E0 *param0)
     }
 }
 
-static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1)
-{
+static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1) {
     u16 *v0;
     u32 v1;
     int v2;
@@ -588,8 +565,7 @@ static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1)
     Bg_CopyTilemapBufferRangeToVRAM(param0->unk_08, 2, v0, 6 * sizeof(u16), v1);
 }
 
-void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
-{
+void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0) {
     const PCMonPreview *preview;
 
     if (param0->unk_00 == 0) {

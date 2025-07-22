@@ -265,8 +265,7 @@ static const UnkStruct_ov17_02254630 Unk_ov17_02254630[][4] = {
     },
 };
 
-static void *ov17_022492DC(void)
-{
+static void *ov17_022492DC(void) {
     UnkStruct_ov17_022492DC *v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_022492DC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022492DC));
     v0->unk_8A = -1;
@@ -274,8 +273,7 @@ static void *ov17_022492DC(void)
     return v0;
 }
 
-void ov17_02249300(BgConfig *param0)
-{
+void ov17_02249300(BgConfig *param0) {
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_022545C0); v0++) {
@@ -286,8 +284,7 @@ void ov17_02249300(BgConfig *param0)
     }
 }
 
-void ov17_02249358(BgConfig *param0)
-{
+void ov17_02249358(BgConfig *param0) {
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_022545C0); v0++) {
@@ -296,8 +293,7 @@ void ov17_02249358(BgConfig *param0)
     }
 }
 
-void *ov17_02249380(UnkStruct_02095C48 *param0, UnkStruct_ov17_0224A1EC *param1)
-{
+void *ov17_02249380(UnkStruct_02095C48 *param0, UnkStruct_ov17_0224A1EC *param1) {
     UnkStruct_ov17_022492DC *v0 = ov17_022492DC();
 
     v0->unk_00 = param0;
@@ -309,8 +305,7 @@ void *ov17_02249380(UnkStruct_02095C48 *param0, UnkStruct_ov17_0224A1EC *param1)
     return v0;
 }
 
-void ov17_022493A4(UnkStruct_ov17_022492DC *param0)
-{
+void ov17_022493A4(UnkStruct_ov17_022492DC *param0) {
     ov17_022495F8(param0);
     ov17_02249D3C(param0, 1);
 
@@ -318,15 +313,13 @@ void ov17_022493A4(UnkStruct_ov17_022492DC *param0)
     Heap_Free(param0);
 }
 
-void ov17_022493C4(UnkStruct_ov17_022492DC *param0)
-{
+void ov17_022493C4(UnkStruct_ov17_022492DC *param0) {
     ov17_02249828(param0);
     ov17_022498F4(param0);
     ov17_02249CFC(param0, 0);
 }
 
-static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
-{
+static void ov17_022493DC(UnkStruct_ov17_022492DC *param0) {
     NNSG2dCharacterData *v0;
     NNSG2dScreenData *v1;
     void *v2;
@@ -376,8 +369,7 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 33, HEAP_ID_23, 0x200, 0, param0->unk_E0[1]);
 }
 
-static void ov17_022495F8(UnkStruct_ov17_022492DC *param0)
-{
+static void ov17_022495F8(UnkStruct_ov17_022492DC *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -393,8 +385,7 @@ static void ov17_022495F8(UnkStruct_ov17_022492DC *param0)
     }
 }
 
-void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void *param3)
-{
+void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void *param3) {
     const UnkStruct_ov17_02254578 *v0, *v1;
     int v2;
     BgConfig *v3;
@@ -449,8 +440,7 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
     SysTask_ExecuteAfterVBlank(ov17_0224A038, param0, 10);
 }
 
-int ov17_02249760(UnkStruct_ov17_022492DC *param0)
-{
+int ov17_02249760(UnkStruct_ov17_022492DC *param0) {
     int v0, v1, v2;
     const UnkStruct_ov17_02254578 *v3;
 
@@ -491,8 +481,7 @@ int ov17_02249760(UnkStruct_ov17_022492DC *param0)
     return v0;
 }
 
-BOOL ov17_02249804(UnkStruct_ov17_022492DC *param0)
-{
+BOOL ov17_02249804(UnkStruct_ov17_022492DC *param0) {
     if (param0->unk_0C == NULL) {
         return 1;
     }
@@ -500,18 +489,15 @@ BOOL ov17_02249804(UnkStruct_ov17_022492DC *param0)
     return 0;
 }
 
-int ov17_02249814(UnkStruct_ov17_022492DC *param0)
-{
+int ov17_02249814(UnkStruct_ov17_022492DC *param0) {
     return param0->unk_8A;
 }
 
-static void ov17_0224981C(UnkStruct_ov17_022492DC *param0, int param1, int param2)
-{
+static void ov17_0224981C(UnkStruct_ov17_022492DC *param0, int param1, int param2) {
     ov17_02249CFC(param0, 1);
 }
 
-static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
-{
+static void ov17_02249828(UnkStruct_ov17_022492DC *param0) {
     Strbuf *v0, *v1;
     u32 v2, v3;
     MessageLoader *v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_23);
@@ -528,13 +514,11 @@ static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
     MessageLoader_Free(v4);
 }
 
-static void ov17_022498E8(UnkStruct_ov17_022492DC *param0, int param1, int param2)
-{
+static void ov17_022498E8(UnkStruct_ov17_022492DC *param0, int param1, int param2) {
     ov17_02249CFC(param0, 1);
 }
 
-static void ov17_022498F4(UnkStruct_ov17_022492DC *param0)
-{
+static void ov17_022498F4(UnkStruct_ov17_022492DC *param0) {
     Strbuf *v0, *v1, *v2, *v3;
     MessageLoader *v4 = param0->unk_04->unk_84;
 
@@ -559,8 +543,7 @@ static void ov17_022498F4(UnkStruct_ov17_022492DC *param0)
     Strbuf_Free(v3);
 }
 
-static int ov17_02249A0C(UnkStruct_ov17_022492DC *param0, int param1)
-{
+static int ov17_02249A0C(UnkStruct_ov17_022492DC *param0, int param1) {
     int v0;
 
     switch (param1) {
@@ -597,8 +580,7 @@ static int ov17_02249A0C(UnkStruct_ov17_022492DC *param0, int param1)
     return param1;
 }
 
-static UnkStruct_ov17_02249B30 *ov17_02249AAC(UnkStruct_ov17_022492DC *param0, int param1, u16 param2, u32 param3, const UnkStruct_ov17_02254630 *param4, int param5)
-{
+static UnkStruct_ov17_02249B30 *ov17_02249AAC(UnkStruct_ov17_022492DC *param0, int param1, u16 param2, u32 param3, const UnkStruct_ov17_02254630 *param4, int param5) {
     UnkStruct_ov17_02249B30 *v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_02249B30));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02249B30));
 
@@ -613,16 +595,14 @@ static UnkStruct_ov17_02249B30 *ov17_02249AAC(UnkStruct_ov17_022492DC *param0, i
     return v0;
 }
 
-static UnkStruct_ov17_02249B30 *ov17_02249B08(UnkStruct_ov17_022492DC *param0, int param1, u16 param2, u32 param3, const UnkStruct_ov17_02254630 *param4, int param5)
-{
+static UnkStruct_ov17_02249B30 *ov17_02249B08(UnkStruct_ov17_022492DC *param0, int param1, u16 param2, u32 param3, const UnkStruct_ov17_02254630 *param4, int param5) {
     UnkStruct_ov17_02249B30 *v0 = ov17_02249AAC(param0, param1, param2, param3, param4, param5);
     v0->unk_00 = SysTask_ExecuteAfterVBlank(ov17_0224A0C8, v0, 20);
 
     return v0;
 }
 
-static BOOL ov17_02249B30(UnkStruct_ov17_02249B30 *param0)
-{
+static BOOL ov17_02249B30(UnkStruct_ov17_02249B30 *param0) {
     if (param0->unk_00 == NULL) {
         if (param0->unk_08 != NULL) {
             Heap_Free(param0->unk_08);
@@ -635,8 +615,7 @@ static BOOL ov17_02249B30(UnkStruct_ov17_02249B30 *param0)
     return 0;
 }
 
-static void ov17_02249B54(UnkStruct_ov17_02249B30 *param0)
-{
+static void ov17_02249B54(UnkStruct_ov17_02249B30 *param0) {
     int v0, v1, v2;
     u32 v3, v4;
 
@@ -653,8 +632,7 @@ static void ov17_02249B54(UnkStruct_ov17_02249B30 *param0)
     }
 }
 
-static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249BC4 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
-{
+static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249BC4 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9) {
     UnkStruct_020127E8 v0;
     Window v1;
     CharTransferAllocation v2;
@@ -717,8 +695,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     param1->unk_10 = v7;
 }
 
-static void ov17_02249CD0(UnkStruct_ov17_022492DC *param0)
-{
+static void ov17_02249CD0(UnkStruct_ov17_022492DC *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -730,8 +707,7 @@ static void ov17_02249CD0(UnkStruct_ov17_022492DC *param0)
     }
 }
 
-static void ov17_02249CFC(UnkStruct_ov17_022492DC *param0, int param1)
-{
+static void ov17_02249CFC(UnkStruct_ov17_022492DC *param0, int param1) {
     SpriteManager *v0;
     int v1;
     int v2, v3;
@@ -758,8 +734,7 @@ static void ov17_02249CFC(UnkStruct_ov17_022492DC *param0, int param1)
     }
 }
 
-static void ov17_02249D3C(UnkStruct_ov17_022492DC *param0, int param1)
-{
+static void ov17_02249D3C(UnkStruct_ov17_022492DC *param0, int param1) {
     if (param1 == 1) {
         ov17_02249CD0(param0);
     } else {
@@ -767,16 +742,14 @@ static void ov17_02249D3C(UnkStruct_ov17_022492DC *param0, int param1)
     }
 }
 
-static void ov17_02249D50(SysTaskFunc param0, UnkStruct_ov17_022492DC *param1)
-{
+static void ov17_02249D50(SysTaskFunc param0, UnkStruct_ov17_022492DC *param1) {
     GF_ASSERT(param1->unk_0C == NULL);
 
     MI_CpuClear8(&param1->unk_8C, sizeof(UnkStruct_ov17_022492DC_sub2));
     param1->unk_0C = SysTask_Start(param0, param1, 1300);
 }
 
-static void ov17_02249D80(UnkStruct_ov17_022492DC *param0)
-{
+static void ov17_02249D80(UnkStruct_ov17_022492DC *param0) {
     if (param0->unk_0C != NULL) {
         SysTask_Done(param0->unk_0C);
         param0->unk_0C = NULL;
@@ -784,8 +757,7 @@ static void ov17_02249D80(UnkStruct_ov17_022492DC *param0)
     }
 }
 
-static void ov17_02249DA0(SysTask *param0, void *param1)
-{
+static void ov17_02249DA0(SysTask *param0, void *param1) {
     UnkStruct_ov17_022492DC *v0 = param1;
     BgConfig *v1;
     int v2, v3;
@@ -887,8 +859,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
     }
 }
 
-static void ov17_0224A038(SysTask *param0, void *param1)
-{
+static void ov17_0224A038(SysTask *param0, void *param1) {
     UnkStruct_ov17_022492DC *v0 = param1;
     const UnkStruct_ov17_02254578 *v1;
     int v2;
@@ -906,8 +877,7 @@ static void ov17_0224A038(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void ov17_0224A088(SysTask *param0, void *param1)
-{
+static void ov17_0224A088(SysTask *param0, void *param1) {
     UnkStruct_ov17_022492DC *v0 = param1;
 
     if (v0->unk_88 != 0xffff) {
@@ -918,8 +888,7 @@ static void ov17_0224A088(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void ov17_0224A0C8(SysTask *param0, void *param1)
-{
+static void ov17_0224A0C8(SysTask *param0, void *param1) {
     UnkStruct_ov17_02249B30 *v0 = param1;
 
     ov17_02249B54(v0);
@@ -927,7 +896,6 @@ static void ov17_0224A0C8(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-void ov17_0224A0E0(UnkStruct_ov17_022492DC *param0, u16 param1, u8 param2)
-{
+void ov17_0224A0E0(UnkStruct_ov17_022492DC *param0, u16 param1, u8 param2) {
     PaletteData_Blend(param0->unk_04->unk_90, 1, 0 * 16, 16 * 4, param2, param1);
 }

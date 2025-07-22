@@ -115,8 +115,7 @@ static void AddTypeText(PoketchMoveTesterGraphics *graphics, Window *window, enu
 static void AddEffectivenessText(PoketchMoveTesterGraphics *graphics, Window *window, u32 exclamCount);
 static void DisplayExclamation(PoketchMoveTesterGraphics *graphics, u32 exclamCount);
 
-BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const MoveTesterData *moveTesterData, BgConfig *bgConfig)
-{
+BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const MoveTesterData *moveTesterData, BgConfig *bgConfig) {
     PoketchMoveTesterGraphics *moveTesterGraphics = (PoketchMoveTesterGraphics *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchMoveTesterGraphics));
 
     if (moveTesterGraphics != NULL) {
@@ -136,8 +135,7 @@ BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **graphics, const M
     return FALSE;
 }
 
-static void SetupSprites(PoketchMoveTesterGraphics *graphics)
-{
+static void SetupSprites(PoketchMoveTesterGraphics *graphics) {
     int index;
 
     Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 64, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
@@ -153,8 +151,7 @@ static void SetupSprites(PoketchMoveTesterGraphics *graphics)
     }
 }
 
-static void UnloadSprites(PoketchMoveTesterGraphics *graphics)
-{
+static void UnloadSprites(PoketchMoveTesterGraphics *graphics) {
     int index;
 
     for (index = 0; index < 6; index++) {
@@ -172,8 +169,7 @@ static void UnloadSprites(PoketchMoveTesterGraphics *graphics)
     PoketchAnimation_FreeSpriteData(&graphics->spriteData);
 }
 
-void PoketchMoveTesterGraphics_Free(PoketchMoveTesterGraphics *graphics)
-{
+void PoketchMoveTesterGraphics_Free(PoketchMoveTesterGraphics *graphics) {
     if (graphics != NULL) {
         Strbuf_Free(graphics->strBuf);
         MessageLoader_Free(graphics->msgLoaderTypes);
@@ -192,29 +188,24 @@ static const PoketchTask sMoveTesterTasks[] = {
     { 0 }
 };
 
-void PoketchMoveTesterGraphics_StartTask(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID)
-{
+void PoketchMoveTesterGraphics_StartTask(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID) {
     PoketchTask_Start(sMoveTesterTasks, taskID, graphics, graphics->moveTesterData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchMoveTesterGraphics_TaskIsNotActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID)
-{
+BOOL PoketchMoveTesterGraphics_TaskIsNotActive(PoketchMoveTesterGraphics *graphics, enum MoveTesterGraphicsTasks taskID) {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
 
-BOOL PoketchMoveTesterGraphics_NoActiveTasks(PoketchMoveTesterGraphics *graphics)
-{
+BOOL PoketchMoveTesterGraphics_NoActiveTasks(PoketchMoveTesterGraphics *graphics) {
     return PoketchTask_NoActiveTasks(graphics->activeTasks);
 }
 
-static void EndTask(PoketchTaskManager *taskMan)
-{
+static void EndTask(PoketchTaskManager *taskMan) {
     PoketchMoveTesterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     PoketchTask_EndTask(graphics->activeTasks, taskMan);
 }
 
-static void Task_DrawAppScreen(SysTask *task, void *taskMan)
-{
+static void Task_DrawAppScreen(SysTask *task, void *taskMan) {
     GXSDispCnt dispCnt;
     PoketchMoveTesterGraphics *graphics;
     const MoveTesterData *moveTesterData;
@@ -241,8 +232,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     EndTask(taskMan);
 }
 
-static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile)
-{
+static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData, u32 baseTile) {
     Window_Add(graphics->bgConfig, &(graphics->windowAttackType), BG_LAYER_SUB_2, 6, 15, 6, 2, PLTT_0, baseTile);
     baseTile += 12;
 
@@ -262,16 +252,14 @@ static void AddWindows(PoketchMoveTesterGraphics *graphics, const MoveTesterData
     UpdateGraphics(graphics, moveTesterData);
 }
 
-static void RemoveWindows(PoketchMoveTesterGraphics *graphics)
-{
+static void RemoveWindows(PoketchMoveTesterGraphics *graphics) {
     Window_Remove(&(graphics->windowAttackType));
     Window_Remove(&(graphics->windowDefenderType1));
     Window_Remove(&(graphics->windowDefenderType2));
     Window_Remove(&(graphics->windowExclamations));
 }
 
-static void Task_FreeWindowsAndBG(SysTask *task, void *taskMan)
-{
+static void Task_FreeWindowsAndBG(SysTask *task, void *taskMan) {
     PoketchMoveTesterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     RemoveWindows(graphics);
@@ -279,8 +267,7 @@ static void Task_FreeWindowsAndBG(SysTask *task, void *taskMan)
     EndTask(taskMan);
 }
 
-static void Task_ButtonPressed(SysTask *task, void *taskMan)
-{
+static void Task_ButtonPressed(SysTask *task, void *taskMan) {
     PoketchMoveTesterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     const MoveTesterData *moveTesterData = PoketchTask_GetConstTaskData(taskMan);
     u32 animIdx = (moveTesterData->lastButtonPressed & 1) ? 3 : 1;
@@ -290,8 +277,7 @@ static void Task_ButtonPressed(SysTask *task, void *taskMan)
     EndTask(taskMan);
 }
 
-static void Task_ButtonReleased(SysTask *task, void *taskMan)
-{
+static void Task_ButtonReleased(SysTask *task, void *taskMan) {
     PoketchMoveTesterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     const MoveTesterData *moveTesterData = PoketchTask_GetConstTaskData(taskMan);
     u32 animIdx = (moveTesterData->lastButtonPressed & 1) ? 2 : 0;
@@ -300,8 +286,7 @@ static void Task_ButtonReleased(SysTask *task, void *taskMan)
     EndTask(taskMan);
 }
 
-static void Task_UpdateGraphics(SysTask *task, void *taskMan)
-{
+static void Task_UpdateGraphics(SysTask *task, void *taskMan) {
     PoketchMoveTesterGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     const MoveTesterData *moveTesterData = PoketchTask_GetConstTaskData(taskMan);
 
@@ -309,8 +294,7 @@ static void Task_UpdateGraphics(SysTask *task, void *taskMan)
     EndTask(taskMan);
 }
 
-static void UpdateGraphics(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData)
-{
+static void UpdateGraphics(PoketchMoveTesterGraphics *graphics, const MoveTesterData *moveTesterData) {
     AddTypeText(graphics, &(graphics->windowAttackType), moveTesterData->attackType);
     AddTypeText(graphics, &(graphics->windowDefenderType1), moveTesterData->defenderType1);
     AddTypeText(graphics, &(graphics->windowDefenderType2), moveTesterData->defenderType2);
@@ -318,8 +302,7 @@ static void UpdateGraphics(PoketchMoveTesterGraphics *graphics, const MoveTester
     DisplayExclamation(graphics, moveTesterData->exclamCount);
 }
 
-static void AddTypeText(PoketchMoveTesterGraphics *graphics, Window *window, enum PokemonType type)
-{
+static void AddTypeText(PoketchMoveTesterGraphics *graphics, Window *window, enum PokemonType type) {
     u32 stringWidth;
 
     Window_FillTilemap(window, 4);
@@ -336,16 +319,14 @@ static void AddTypeText(PoketchMoveTesterGraphics *graphics, Window *window, enu
     Window_LoadTiles(window);
 }
 
-static void AddEffectivenessText(PoketchMoveTesterGraphics *graphics, Window *window, u32 exclamCount)
-{
+static void AddEffectivenessText(PoketchMoveTesterGraphics *graphics, Window *window, u32 exclamCount) {
     Window_FillTilemap(window, 4);
     MessageLoader_GetStrbuf(graphics->msgLoaderEffectiveness, exclamCount, graphics->strBuf);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, graphics->strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
     Window_LoadTiles(window);
 }
 
-static void DisplayExclamation(PoketchMoveTesterGraphics *graphics, u32 exclamCount)
-{
+static void DisplayExclamation(PoketchMoveTesterGraphics *graphics, u32 exclamCount) {
     u32 index;
 
     for (index = 0; index < exclamCount; index++) {

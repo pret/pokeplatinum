@@ -13,8 +13,7 @@ typedef struct GameCornerPrize {
     u16 price;
 } GameCornerPrize;
 
-BOOL ScrCmd_GetGameCornerPrizeData(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetGameCornerPrizeData(ScriptContext *ctx) {
     u16 index = ScriptContext_GetVar(ctx);
     u16 *item = ScriptContext_GetVarPointer(ctx);
     u16 *price = ScriptContext_GetVarPointer(ctx);

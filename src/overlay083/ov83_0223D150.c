@@ -19,8 +19,7 @@
 #include "communication_system.h"
 #include "trainer_info.h"
 
-void ov83_0223D150(UnkStruct_ov83_0223B784 *param0, TrainerInfo *param1)
-{
+void ov83_0223D150(UnkStruct_ov83_0223B784 *param0, TrainerInfo *param1) {
     int v0;
     int v1;
 
@@ -50,26 +49,22 @@ void ov83_0223D150(UnkStruct_ov83_0223B784 *param0, TrainerInfo *param1)
     }
 }
 
-void ov83_0223D1EC(UnkStruct_ov83_0223B784 *param0)
-{
+void ov83_0223D1EC(UnkStruct_ov83_0223B784 *param0) {
     ov83_0223D558(param0->unk_148C);
     param0->unk_148C = NULL;
 }
 
-void ov83_0223D204(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D204(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
     ov83_0223B774(v0, 3);
 }
 
-void ov83_0223D210(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D210(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
     ov83_0223B77C(v0, 8);
 }
 
-void ov83_0223D21C(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D21C(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
     memcpy(&v0->unk_1494.unk_6C, param2, param1);
@@ -77,8 +72,7 @@ void ov83_0223D21C(int param0, int param1, void *param2, void *param3)
     ov83_0223B774(v0, 5);
 }
 
-void ov83_0223D258(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D258(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
     int v1;
     int v2;
@@ -102,8 +96,7 @@ void ov83_0223D258(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov83_0223D2E8(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D2E8(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
     UnkStruct_ov83_0223D2E8 *v1;
     UnkStruct_ov83_0223FCE8 *v2;
@@ -130,8 +123,7 @@ void ov83_0223D2E8(int param0, int param1, void *param2, void *param3)
     v0->unk_1666++;
 }
 
-void ov83_0223D354(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D354(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
     UnkStruct_ov83_0223FCE8 *v1;
     BOOL v2;
@@ -154,38 +146,33 @@ void ov83_0223D354(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov83_0223D3A8(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D3A8(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
     memcpy(&v0->unk_1494.unk_90[param0].unk_00, param2, param1);
     v0->unk_165C[param0]++;
 }
 
-void ov83_0223D3D8(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D3D8(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
     memcpy(&v0->unk_1494.unk_58, param2, param1);
     ov83_0223B774(v0, 10);
 }
 
-void ov83_0223D3F8(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D3F8(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
     memcpy(v0->unk_1494.unk_100, param2, param1);
 }
 
-void ov83_0223D410(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D410(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
 
     memcpy(&v0->unk_1494.unk_145, param2, param1);
     ov83_0223B774(v0, 12);
 }
 
-void ov83_0223D430(int param0, int param1, void *param2, void *param3)
-{
+void ov83_0223D430(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov83_0223B784 *v0 = param3;
     int v1;
     int v2;
@@ -211,42 +198,34 @@ void ov83_0223D430(int param0, int param1, void *param2, void *param3)
     }
 }
 
-int ov83_0223D4AC(void)
-{
+int ov83_0223D4AC(void) {
     return 0;
 }
 
-int ov83_0223D4B0(void)
-{
+int ov83_0223D4B0(void) {
     return 1;
 }
 
-int ov83_0223D4B4(void)
-{
+int ov83_0223D4B4(void) {
     return sizeof(UnkStruct_ov83_0223DB4C);
 }
 
-int ov83_0223D4B8(void)
-{
+int ov83_0223D4B8(void) {
     return sizeof(UnkStruct_ov83_0223DB4C_sub1);
 }
 
-int ov83_0223D4BC(void)
-{
+int ov83_0223D4BC(void) {
     return sizeof(UnkStruct_ov83_0223D2E8);
 }
 
-int ov83_0223D4C0(void)
-{
+int ov83_0223D4C0(void) {
     return sizeof(UnkStruct_ov83_022401AC);
 }
 
-int ov83_0223D4C4(void)
-{
+int ov83_0223D4C4(void) {
     return sizeof(UnkStruct_ov83_0223FCE8);
 }
 
-int ov83_0223D4C8(void)
-{
+int ov83_0223D4C8(void) {
     return sizeof(UnkStruct_ov83_0223F88C);
 }

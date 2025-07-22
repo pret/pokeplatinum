@@ -115,8 +115,7 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1);
 static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2, u8 param3);
 
-int ov90_021D0D80(ApplicationManager *appMan, int *param1)
-{
+int ov90_021D0D80(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov90_021D0ECC *v0 = NULL;
     UnkStruct_ov90_021D0D80 *v1 = (UnkStruct_ov90_021D0D80 *)ApplicationManager_Args(appMan);
 
@@ -137,8 +136,7 @@ int ov90_021D0D80(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov90_021D0DE8(ApplicationManager *appMan, int *param1)
-{
+int ov90_021D0DE8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov90_021D0ECC *v0 = ApplicationManager_Data(appMan);
 
     ApplicationManager_FreeData(appMan);
@@ -147,8 +145,7 @@ int ov90_021D0DE8(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov90_021D0E04(ApplicationManager *appMan, int *param1)
-{
+int ov90_021D0E04(ApplicationManager *appMan, int *param1) {
     int v0 = 0;
     UnkStruct_ov90_021D0ECC *v1 = ApplicationManager_Data(appMan);
 
@@ -204,8 +201,7 @@ int ov90_021D0E04(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
-{
+static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0) {
     switch (param0->unk_04) {
     case 0:
         SetVBlankCallback(NULL, NULL);
@@ -251,8 +247,7 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
     return 0;
 }
 
-static int ov90_021D0F98(UnkStruct_ov90_021D0ECC *param0)
-{
+static int ov90_021D0F98(UnkStruct_ov90_021D0ECC *param0) {
     switch (param0->unk_04) {
     case 0:
         if (param0->unk_08) {
@@ -281,8 +276,7 @@ static int ov90_021D0F98(UnkStruct_ov90_021D0ECC *param0)
     return 0;
 }
 
-static void ov90_021D1014(void)
-{
+static void ov90_021D1014(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -299,8 +293,7 @@ static void ov90_021D1014(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov90_021D1034(void *param0)
-{
+static void ov90_021D1034(void *param0) {
     UnkStruct_ov90_021D0ECC *v0 = param0;
 
     ov90_021D1BA4();
@@ -309,8 +302,7 @@ static void ov90_021D1034(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int ov90_021D105C(UnkStruct_ov90_021D0ECC *param0)
-{
+static int ov90_021D105C(UnkStruct_ov90_021D0ECC *param0) {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         return 1;
@@ -319,8 +311,7 @@ static int ov90_021D105C(UnkStruct_ov90_021D0ECC *param0)
     return 0;
 }
 
-static inline u8 inline_ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
-{
+static inline u8 inline_ov90_021D1080(UnkStruct_ov90_021D0ECC *param0) {
     if (param0->unk_0B == 0) {
         return 0;
     }
@@ -336,8 +327,7 @@ static inline u8 inline_ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
     return 1;
 }
 
-static inline u8 inline_ov90_021D1080_1(UnkStruct_ov90_021D0ECC *wk)
-{
+static inline u8 inline_ov90_021D1080_1(UnkStruct_ov90_021D0ECC *wk) {
     if (wk->unk_0B >= 10) {
         return 0;
     }
@@ -353,8 +343,7 @@ static inline u8 inline_ov90_021D1080_1(UnkStruct_ov90_021D0ECC *wk)
     return 1;
 }
 
-static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
-{
+static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0) {
     int v0 = 0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -431,8 +420,7 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
     return 0;
 }
 
-static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0) {
     int v0, v1;
 
     param0->unk_10 = BgConfig_New(param0->heapID);
@@ -509,8 +497,7 @@ static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0)
     }
 }
 
-static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0) {
     int v0, v1 = 0;
 
     for (v0 = 0; v0 < 2 + param0->unk_08; v0++) {
@@ -520,8 +507,7 @@ static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0)
     Heap_Free(param0->unk_10);
 }
 
-static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0) {
     int v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__BTOWER, param0->heapID);
 
@@ -543,8 +529,7 @@ static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 }
 
-static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0) {
     int v0;
     static const WindowTemplate v1[] = {
         { 0, 4, 1, 24, 5, 2, 192 },
@@ -575,8 +560,7 @@ static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
     Font_LoadTextPalette(0, 2 * 32, param0->heapID);
 }
 
-static void ov90_021D13A8(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D13A8(UnkStruct_ov90_021D0ECC *param0) {
     int v0, v1;
 
     if (param0->unk_08 == 0) {
@@ -591,8 +575,7 @@ static void ov90_021D13A8(UnkStruct_ov90_021D0ECC *param0)
     }
 }
 
-static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0) {
     int v0 = 0;
 
     param0->unk_28.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, param0->heapID);
@@ -613,8 +596,7 @@ static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
     param0->unk_28.unk_3C[1] = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 23);
 }
 
-static void ov90_021D146C(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D146C(UnkStruct_ov90_021D0ECC *param0) {
     int v0 = 0;
 
     Strbuf_Free(param0->unk_28.unk_3C[1]);
@@ -635,8 +617,7 @@ static void ov90_021D146C(UnkStruct_ov90_021D0ECC *param0)
     MessageLoader_Free(param0->unk_28.unk_00);
 }
 
-static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 param2, u8 param3, u8 param4)
-{
+static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 param2, u8 param3, u8 param4) {
     u16 v0, v1, v2;
     int v3;
 
@@ -661,8 +642,7 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     Window_CopyToVRAM(param1);
 }
 
-static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0) {
     int v0;
     u16 v1, v2;
 
@@ -701,8 +681,7 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
     }
 }
 
-static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0) {
     int v0;
     UnkStruct_ov90_021D1750 *v1;
     UnkStruct_ov90_021D17F8 *v2;
@@ -730,8 +709,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
     Heap_Free(v1);
 }
 
-static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0) {
     int v0 = 0;
 
     for (v0 = 0; v0 < 30; v0++) {
@@ -739,8 +717,7 @@ static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0)
     }
 }
 
-static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbuf *param2, u8 param3, u8 param4, u8 param5)
-{
+static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbuf *param2, u8 param3, u8 param4, u8 param5) {
     UnkStruct_ov90_021D17F8 *v0;
     int v1, v2, v3, v4, v5;
     u32 v6;
@@ -774,8 +751,7 @@ static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbu
     Window_CopyToVRAM(param1);
 }
 
-static void ov90_021D18BC(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D18BC(UnkStruct_ov90_021D0ECC *param0) {
     UnkStruct_02049A68 v0;
     int v1;
 
@@ -794,8 +770,7 @@ static void ov90_021D18BC(UnkStruct_ov90_021D0ECC *param0)
     ov90_021D17F8(param0->unk_BC, &param0->unk_6C[1], param0->unk_28.unk_0C, 0, 0, 0);
 }
 
-static void ov90_021D1984(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1984(UnkStruct_ov90_021D0ECC *param0) {
     UnkStruct_ov90_021D17F8 *v0 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
     Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
@@ -817,8 +792,7 @@ static void ov90_021D1984(UnkStruct_ov90_021D0ECC *param0)
     ov90_021D1C44(param0, 0);
 }
 
-static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0) {
     Strbuf *v0;
     UnkStruct_ov90_021D17F8 *v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
@@ -829,15 +803,13 @@ static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
     Strbuf_Free(v0);
 }
 
-static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0) {
     Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Window_ClearAndCopyToVRAM(&param0->unk_6C[2]);
     ov90_021D1C44(param0, 1);
 }
 
-static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0) {
     VramTransfer_New(32, param0->heapID);
 
     param0->unk_29C = SpriteSystem_Alloc(param0->heapID);
@@ -885,15 +857,13 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0) {
     SpriteSystem_DestroySpriteManager(param0->unk_29C, param0->unk_2A0);
     SpriteSystem_Free(param0->unk_29C);
     VramTransfer_Free();
 }
 
-static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0) {
     if (param0->unk_2A0 == NULL) {
         return;
     }
@@ -901,13 +871,11 @@ static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)
     SpriteSystem_DrawSprites(param0->unk_2A0);
 }
 
-static void ov90_021D1BA4(void)
-{
+static void ov90_021D1BA4(void) {
     SpriteSystem_TransferOam();
 }
 
-static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0) {
     int v0;
     static const SpriteTemplateFromResourceHeader v1[] = {
         { 0, 54, 68, 0, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
@@ -928,8 +896,7 @@ static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
     Sprite_SetExplicitPriority(param0->unk_2A4[1], 3);
 }
 
-static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
-{
+static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -937,8 +904,7 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
     }
 }
 
-static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1)
-{
+static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1) {
     BOOL v0;
 
     if (param1 == 0) {
@@ -954,8 +920,7 @@ static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1)
     Sprite_SetAnimateFlag(param0->unk_2A4[3], v0);
 }
 
-static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2, u8 param3)
-{
+static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2, u8 param3) {
     u16 v0, v1;
 
     if (param0->unk_0E == 10 - 2) {

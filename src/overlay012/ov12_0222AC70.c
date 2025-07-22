@@ -279,8 +279,7 @@ static const u8 Unk_ov12_0223A09E[][2] = {
     { 0x12, 0x3 }
 };
 
-static void ov12_0222AC70(SysTask *param0, void *param1)
-{
+static void ov12_0222AC70(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222AC70 *v1 = (UnkStruct_ov12_0222AC70 *)param1;
 
@@ -370,8 +369,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_10);
 }
 
-void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     int v0;
     UnkStruct_ov12_0222AC70 *v1;
     SpriteTemplate v2;
@@ -424,8 +422,7 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222AC70, v1, 0x1000);
 }
 
-static void ov12_0222AFA0(SysTask *param0, void *param1)
-{
+static void ov12_0222AFA0(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222AFA0 *v0 = (UnkStruct_ov12_0222AFA0 *)param1;
 
     switch (v0->unk_00) {
@@ -502,8 +499,7 @@ static void ov12_0222AFA0(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222B194(BattleAnimSystem *param0)
-{
+void ov12_0222B194(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222AFA0 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AFA0));
 
     v0->unk_08 = 0;
@@ -518,8 +514,7 @@ void ov12_0222B194(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_0C, ov12_0222AFA0, v0);
 }
 
-static void ov12_0222B220(SysTask *param0, void *param1)
-{
+static void ov12_0222B220(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222B220 *v0 = (UnkStruct_ov12_0222B220 *)param1;
 
     switch (v0->unk_00) {
@@ -597,8 +592,7 @@ static void ov12_0222B220(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222B45C(BattleAnimSystem *param0)
-{
+void ov12_0222B45C(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222B220 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B220));
 
     v0->unk_00 = 0;
@@ -618,8 +612,7 @@ static const s16 Unk_ov12_0223A0FE[][3] = {
     { 0x20, 0x0, 0xA }
 };
 
-static void ov12_0222B4C8(SysTask *param0, void *param1)
-{
+static void ov12_0222B4C8(SysTask *param0, void *param1) {
     int v0;
     u8 v1;
     UnkStruct_ov12_0222B4C8 *v2 = (UnkStruct_ov12_0222B4C8 *)param1;
@@ -681,8 +674,7 @@ static void ov12_0222B4C8(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v2->unk_14);
 }
 
-void ov12_0222B68C(BattleAnimSystem *param0)
-{
+void ov12_0222B68C(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222B4C8 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222B4C8));
 
     v0->unk_01 = 0;
@@ -756,8 +748,7 @@ static const u8 Unk_ov12_0223A098[][3] = {
     { 0x73, 0x64, 0x6 }
 };
 
-static void ov12_0222B914(SysTask *param0, void *param1)
-{
+static void ov12_0222B914(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222B914 *v0 = (UnkStruct_ov12_0222B914 *)param1;
 
     switch (v0->unk_00) {
@@ -793,8 +784,7 @@ static void ov12_0222B914(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222B9E0(BattleAnimSystem *param0)
-{
+void ov12_0222B9E0(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222B914 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222B914));
 
     v0->unk_00 = 0;
@@ -812,8 +802,7 @@ static const u8 Unk_ov12_0223A0DF[][5] = {
     { 0x32, 0x64, 0x96, 0x64, 0x8 }
 };
 
-static void ov12_0222BA18(SysTask *param0, void *param1)
-{
+static void ov12_0222BA18(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222BA18 *v0 = (UnkStruct_ov12_0222BA18 *)param1;
 
     switch (v0->unk_00) {
@@ -846,8 +835,7 @@ static void ov12_0222BA18(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222BAE4(BattleAnimSystem *param0)
-{
+void ov12_0222BAE4(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222BA18 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BA18));
 
     v0->unk_00 = 0;
@@ -865,8 +853,7 @@ static const u8 Unk_ov12_0223A0B7[][5] = {
     { 0xA, 0xA, 0xB4, 0x0, 0x5 }
 };
 
-static void ov12_0222BB30(SysTask *param0, void *param1)
-{
+static void ov12_0222BB30(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222BB30 *v0 = (UnkStruct_ov12_0222BB30 *)param1;
 
     switch (v0->unk_00) {
@@ -920,8 +907,7 @@ static void ov12_0222BB30(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222BCF4(BattleAnimSystem *param0)
-{
+void ov12_0222BCF4(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222BB30 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BB30));
 
     v0->unk_00 = 0;
@@ -935,8 +921,7 @@ void ov12_0222BCF4(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_08, ov12_0222BB30, v0);
 }
 
-static void ov12_0222BD48(SysTask *param0, void *param1)
-{
+static void ov12_0222BD48(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222BD48 *v0 = (UnkStruct_ov12_0222BD48 *)param1;
 
     switch (v0->unk_00) {
@@ -972,8 +957,7 @@ static void ov12_0222BD48(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222BE48(BattleAnimSystem *param0)
-{
+void ov12_0222BE48(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222BD48 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BD48));
 
     v0->unk_08 = param0;
@@ -995,8 +979,7 @@ static const u8 Unk_ov12_0223A0A4[][3] = {
     { 0x0, 0x0, 0x5 }
 };
 
-static void ov12_0222BE80(SysTask *param0, void *param1)
-{
+static void ov12_0222BE80(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222BE80 *v0 = (UnkStruct_ov12_0222BE80 *)param1;
 
     switch (v0->unk_00) {
@@ -1041,8 +1024,7 @@ static void ov12_0222BE80(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222BFA8(BattleAnimSystem *param0)
-{
+void ov12_0222BFA8(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222BE80 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BE80));
 
     v0->unk_00 = 0;
@@ -1055,8 +1037,7 @@ void ov12_0222BFA8(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_08, ov12_0222BE80, v0);
 }
 
-static void ov12_0222BFF4(SysTask *param0, void *param1)
-{
+static void ov12_0222BFF4(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222BFF4 *v0 = (UnkStruct_ov12_0222BFF4 *)param1;
 
     switch (v0->unk_00) {
@@ -1094,8 +1075,7 @@ static void ov12_0222BFF4(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_08);
 }
 
-void ov12_0222C0C0(BattleAnimSystem *param0)
-{
+void ov12_0222C0C0(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222BFF4 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222BFF4));
 
     v0->unk_04 = param0;
@@ -1128,8 +1108,7 @@ static const u8 Unk_ov12_0223A094[] = {
     0x12
 };
 
-static void ov12_0222C1A4(SysTask *param0, void *param1)
-{
+static void ov12_0222C1A4(SysTask *param0, void *param1) {
     int v0;
     int v1;
     UnkStruct_ov12_0222C1A4 *v2 = (UnkStruct_ov12_0222C1A4 *)param1;
@@ -1229,8 +1208,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v2->unk_14);
 }
 
-void ov12_0222C3C0(BattleAnimSystem *param0)
-{
+void ov12_0222C3C0(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222C1A4 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C1A4));
 
     v0->unk_00 = 0;
@@ -1287,8 +1265,7 @@ static const s16 Unk_ov12_0223A0EE[] = {
     0x0
 };
 
-static void ov12_0222C4A8(SysTask *param0, void *param1)
-{
+static void ov12_0222C4A8(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222C4A8 *v1 = (UnkStruct_ov12_0222C4A8 *)param1;
 
@@ -1350,8 +1327,7 @@ static void ov12_0222C4A8(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222C5FC(BattleAnimSystem *param0)
-{
+void ov12_0222C5FC(BattleAnimSystem *param0) {
     int v0;
     UnkStruct_ov12_0222C4A8 *v1 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C4A8));
 
@@ -1384,8 +1360,7 @@ void ov12_0222C5FC(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v1->unk_0C, ov12_0222C4A8, v1);
 }
 
-static void ov12_0222C678(SysTask *param0, void *param1)
-{
+static void ov12_0222C678(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222C678 *v0 = (UnkStruct_ov12_0222C678 *)param1;
 
     switch (v0->unk_00) {
@@ -1408,8 +1383,7 @@ static void ov12_0222C678(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222C6D4(BattleAnimSystem *param0)
-{
+void ov12_0222C6D4(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222C678 *v0;
     int v1;
 
@@ -1454,8 +1428,7 @@ static const int Unk_ov12_0223A118[][2] = {
     { ((0 * 0xffff) / 360), 0x1 }
 };
 
-static void ov12_0222C7E0(SysTask *param0, void *param1)
-{
+static void ov12_0222C7E0(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222C7E0 *v0 = (UnkStruct_ov12_0222C7E0 *)param1;
 
     switch (v0->unk_00.unk_00) {
@@ -1499,8 +1472,7 @@ static void ov12_0222C7E0(SysTask *param0, void *param1)
     }
 }
 
-static void ov12_0222C884(SysTask *param0, void *param1)
-{
+static void ov12_0222C884(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222C7E0 *v0 = (UnkStruct_ov12_0222C7E0 *)param1;
 
     switch (v0->unk_00.unk_00) {
@@ -1524,8 +1496,7 @@ static void ov12_0222C884(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222C8F8(BattleAnimSystem *param0)
-{
+void ov12_0222C8F8(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222C7E0 *v0;
     int v1 = 0;
 
@@ -1552,8 +1523,7 @@ void ov12_0222C8F8(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_0222C994(SysTask *param0, void *param1)
-{
+static void ov12_0222C994(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222C994 *v1 = (UnkStruct_ov12_0222C994 *)param1;
 
@@ -1585,8 +1555,7 @@ static void ov12_0222C994(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222CA2C(BattleAnimSystem *param0)
-{
+void ov12_0222CA2C(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222C994 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222C994));
     int v1;
 
@@ -1633,8 +1602,7 @@ void ov12_0222CA2C(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222C994, v0);
 }
 
-static void ov12_0222CACC(SysTask *param0, void *param1)
-{
+static void ov12_0222CACC(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222CACC *v1 = (UnkStruct_ov12_0222CACC *)param1;
 
@@ -1663,8 +1631,7 @@ static void ov12_0222CACC(SysTask *param0, void *param1)
     }
 }
 
-void ov12_0222CB90(BattleAnimSystem *param0)
-{
+void ov12_0222CB90(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222CACC *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222CACC));
     int v1;
 
@@ -1680,8 +1647,7 @@ void ov12_0222CB90(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_00.unk_04, ov12_0222CACC, v0);
 }
 
-static void ov12_0222CBFC(SysTask *param0, void *param1)
-{
+static void ov12_0222CBFC(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222CBFC *v1 = (UnkStruct_ov12_0222CBFC *)param1;
 
@@ -1701,8 +1667,7 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_10.unk_10);
 }
 
-void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     int v0;
     int v1;
     UnkStruct_ov12_0222CBFC *v2 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222CBFC));
@@ -1746,8 +1711,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v2->unk_10.unk_04, ov12_0222CBFC, v2);
 }
 
-static void ov12_0222CDF0(SysTask *param0, void *param1)
-{
+static void ov12_0222CDF0(SysTask *param0, void *param1) {
     UnkStruct_ov12_0222CDF0 *v0 = (UnkStruct_ov12_0222CDF0 *)param1;
 
     switch (v0->unk_18.unk_00) {
@@ -1820,8 +1784,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_18.unk_10);
 }
 
-void ov12_0222CFA0(BattleAnimSystem *param0)
-{
+void ov12_0222CFA0(BattleAnimSystem *param0) {
     UnkStruct_ov12_0222CDF0 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_0222CDF0));
 
     ov12_0223595C(param0, &v0->unk_18);
@@ -1901,8 +1864,7 @@ static const u8 Unk_ov12_0223A0D0[][5] = {
     { 0x64, 0x64, 0x78, 0x64, 0x3 }
 };
 
-static void ov12_0222D128(SysTask *param0, void *param1)
-{
+static void ov12_0222D128(SysTask *param0, void *param1) {
     int v0;
     UnkStruct_ov12_0222D128 *v1 = (UnkStruct_ov12_0222D128 *)param1;
 
@@ -2091,8 +2053,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v1->unk_18);
 }
 
-void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     int v0;
     UnkStruct_ov12_0222D128 *v1;
     SpriteTemplate v2;

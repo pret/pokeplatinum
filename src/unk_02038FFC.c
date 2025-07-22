@@ -11,8 +11,7 @@
 #include "unk_0202ACE0.h"
 #include "unk_02099550.h"
 
-int sub_02038FFC(int heapID)
-{
+int sub_02038FFC(int heapID) {
     int v0;
     u8 *v1;
     u8 *v2;
@@ -31,8 +30,7 @@ int sub_02038FFC(int heapID)
     return v0;
 }
 
-void sub_02039034(WiFiList *param0)
-{
+void sub_02039034(WiFiList *param0) {
     DWCUserData *v0 = WiFiList_GetUserData(param0);
 
     if (!DWC_CheckUserData(v0)) {
@@ -41,8 +39,7 @@ void sub_02039034(WiFiList *param0)
     }
 }
 
-int WiFiList_GetUserGsProfileId(WiFiList *wifiList)
-{
+int WiFiList_GetUserGsProfileId(WiFiList *wifiList) {
     DWCUserData *v0 = WiFiList_GetUserData(wifiList);
     DWCFriendData v1;
 
@@ -50,8 +47,7 @@ int WiFiList_GetUserGsProfileId(WiFiList *wifiList)
     return DWC_GetGsProfileId(v0, &v1);
 }
 
-BOOL sub_02039074(SaveData *saveData)
-{
+BOOL sub_02039074(SaveData *saveData) {
     WiFiList *v0 = SaveData_GetWiFiList(saveData);
     DWCUserData *v1 = WiFiList_GetUserData(v0);
 

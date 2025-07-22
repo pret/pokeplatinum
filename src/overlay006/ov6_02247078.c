@@ -12,8 +12,7 @@
 
 #include "terrain_collision_manager.h"
 
-void ov6_02247078(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov6_02247078(FieldSystem *fieldSystem, const u8 param1) {
     BOOL v0;
     MapProp *v1;
     TerrainCollisionHitbox v2;
@@ -37,12 +36,10 @@ void ov6_02247078(FieldSystem *fieldSystem, const u8 param1)
     }
 }
 
-void ov6_022470E8(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov6_022470E8(FieldSystem *fieldSystem, const u8 param1) {
     MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, param1, 0);
 }
 
-void ov6_022470F4(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov6_022470F4(FieldSystem *fieldSystem, const u8 param1) {
     MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, param1, 1);
 }

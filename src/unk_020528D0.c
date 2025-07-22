@@ -59,8 +59,7 @@ static const WindowTemplate Unk_020EC2F0 = {
     0x1
 };
 
-static void sub_020528D0(BgConfig *param0)
-{
+static void sub_020528D0(BgConfig *param0) {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -100,8 +99,7 @@ static void sub_020528D0(BgConfig *param0)
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELDMAP);
 }
 
-static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
-{
+static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task) {
     UnkStruct_02052AA4 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02052AA4));
 
     if (v0 == NULL) {
@@ -134,8 +132,7 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
     return;
 }
 
-static BOOL sub_020529C4(FieldTask *task)
-{
+static BOOL sub_020529C4(FieldTask *task) {
     UnkStruct_02052AA4 *v0 = FieldTask_GetEnv(task);
 
     switch (v0->unk_00) {
@@ -175,8 +172,7 @@ static BOOL sub_020529C4(FieldTask *task)
     return 0;
 }
 
-static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3)
-{
+static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3) {
     Strbuf *v0 = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
     Strbuf *v1 = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
 
@@ -196,8 +192,7 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
     return;
 }
 
-BOOL sub_02052B2C(FieldTask *task)
-{
+BOOL sub_02052B2C(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     int *state = FieldTask_GetState(task);
 
@@ -259,7 +254,6 @@ BOOL sub_02052B2C(FieldTask *task)
     return 0;
 }
 
-void sub_02052C5C(FieldTask *task)
-{
+void sub_02052C5C(FieldTask *task) {
     FieldTask_InitCall(task, sub_02052B2C, NULL);
 }

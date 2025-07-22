@@ -41,13 +41,11 @@ static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param
 static void ov34_022564F0(int param0, int param1, int *param2, int *param3);
 static BOOL ov34_0225650C(UnkStruct_ov34_0225621C *param0);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(ov34_022561D4, ov34_02256294);
 }
 
-static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     UnkStruct_ov34_0225621C *v0 = (UnkStruct_ov34_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov34_0225621C));
 
     if (v0 != NULL) {
@@ -64,8 +62,7 @@ static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
     return 0;
 }
 
-static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     if (ov34_02256540(&(param0->unk_48), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
         param0->unk_01 = 0;
@@ -79,8 +76,7 @@ static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketc
     return 0;
 }
 
-static void ov34_02256244(UnkStruct_ov34_0225621C *param0)
-{
+static void ov34_02256244(UnkStruct_ov34_0225621C *param0) {
     if (param0->unk_50) {
         Heap_Free(param0->unk_50);
     }
@@ -89,8 +85,7 @@ static void ov34_02256244(UnkStruct_ov34_0225621C *param0)
     Heap_Free(param0);
 }
 
-static void ov34_02256260(SysTask *param0, void *param1)
-{
+static void ov34_02256260(SysTask *param0, void *param1) {
     static BOOL (*const v0[])(UnkStruct_ov34_0225621C *) = {
         ov34_022562B0,
         ov34_022562F0,
@@ -109,13 +104,11 @@ static void ov34_02256260(SysTask *param0, void *param1)
     }
 }
 
-static void ov34_02256294(void *param0)
-{
+static void ov34_02256294(void *param0) {
     ((UnkStruct_ov34_0225621C *)param0)->unk_02 = 1;
 }
 
-static void ov34_0225629C(UnkStruct_ov34_0225621C *param0, u32 param1)
-{
+static void ov34_0225629C(UnkStruct_ov34_0225621C *param0, u32 param1) {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
     } else {
@@ -125,8 +118,7 @@ static void ov34_0225629C(UnkStruct_ov34_0225621C *param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov34_022562B0(UnkStruct_ov34_0225621C *param0)
-{
+static BOOL ov34_022562B0(UnkStruct_ov34_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov34_02256640(param0->unk_48, 0);
@@ -143,8 +135,7 @@ static BOOL ov34_022562B0(UnkStruct_ov34_0225621C *param0)
     return 0;
 }
 
-static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
-{
+static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0) {
     u32 v0, v1;
 
     if (param0->unk_02) {
@@ -198,8 +189,7 @@ static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
     return 0;
 }
 
-static BOOL ov34_022563E4(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *param2)
-{
+static BOOL ov34_022563E4(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *param2) {
     if (PoketechSystem_IsRunningTask(param0->poketchSys) == 0) {
         if (TouchScreen_GetTapState(param1, param2)) {
             if (((u32)((*param1) - 24) < (u32)(200 - 24)) & ((u32)((*param2) - 24) < (u32)(168 - 24))) {
@@ -211,8 +201,7 @@ static BOOL ov34_022563E4(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *par
     return 0;
 }
 
-static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param2)
-{
+static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param2) {
     static const fx32 v0[] = {
         8 << FX32_SHIFT,
         24 << FX32_SHIFT,
@@ -254,8 +243,7 @@ static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param
     }
 }
 
-static void ov34_022564F0(int param0, int param1, int *param2, int *param3)
-{
+static void ov34_022564F0(int param0, int param1, int *param2, int *param3) {
     fx32 v0, v1;
     fx32 v2, v3;
 
@@ -266,8 +254,7 @@ static void ov34_022564F0(int param0, int param1, int *param2, int *param3)
     *param3 = 101 + (param1 * 11);
 }
 
-static BOOL ov34_0225650C(UnkStruct_ov34_0225621C *param0)
-{
+static BOOL ov34_0225650C(UnkStruct_ov34_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov34_02256640(param0->unk_48, 1);

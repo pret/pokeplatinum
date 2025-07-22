@@ -44,8 +44,7 @@ static void UpdateBgAffineRotationCenterWithVal(Background *bg, enum BgAffineUpd
 static void RunScheduledScrolls(BgConfig *bgConfig);
 static void RunScheduledTilemapTransfers(BgConfig *bgConfig);
 
-BgConfig *BgConfig_New(u32 heapID)
-{
+BgConfig *BgConfig_New(u32 heapID) {
     BgConfig *bgConfig = Heap_AllocFromHeap(heapID, sizeof(BgConfig));
 
     memset(bgConfig, 0, sizeof(BgConfig));
@@ -57,13 +56,11 @@ BgConfig *BgConfig_New(u32 heapID)
     return bgConfig;
 }
 
-u32 BgConfig_GetHeapID(BgConfig *bgConfig)
-{
+u32 BgConfig_GetHeapID(BgConfig *bgConfig) {
     return bgConfig->heapID;
 }
 
-void SetAllGraphicsModes(const GraphicsModes *graphicsModes)
-{
+void SetAllGraphicsModes(const GraphicsModes *graphicsModes) {
     GX_SetGraphicsMode(graphicsModes->displayMode, graphicsModes->mainBgMode, graphicsModes->bg0As2DOr3D);
     GXS_SetGraphicsMode(graphicsModes->subBgMode);
 
@@ -74,8 +71,7 @@ void SetAllGraphicsModes(const GraphicsModes *graphicsModes)
     GXLayers_DisableEngineBLayers();
 }
 
-void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen)
-{
+void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen) {
     if (screen == DS_SCREEN_MAIN) {
         GX_SetGraphicsMode(graphicsModes->displayMode, graphicsModes->mainBgMode, graphicsModes->bg0As2DOr3D);
         GXLayers_DisableEngineALayers();
@@ -85,8 +81,7 @@ void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen)
     }
 }
 
-void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTemplate, u8 bgType)
-{
+void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTemplate, u8 bgType) {
     u8 screenSize = ConvertToGxBgScreenSize(bgTemplate->screenSize, bgType);
 
     switch (bgLayer) {
@@ -232,8 +227,7 @@ void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTem
     Bg_SetOffset(bgConfig, bgLayer, 3, bgTemplate->y);
 }
 
-void Bg_SetControlParam(BgConfig *bgConfig, u8 bgLayer, enum BgControlParam bgControlParam, u8 val)
-{
+void Bg_SetControlParam(BgConfig *bgConfig, u8 bgLayer, enum BgControlParam bgControlParam, u8 val) {
     if (bgControlParam == BG_CONTROL_PARAM_COLOR_MODE) {
         bgConfig->bgs[bgLayer].colorMode = val;
     }
@@ -448,8 +442,7 @@ void Bg_SetControlParam(BgConfig *bgConfig, u8 bgLayer, enum BgControlParam bgCo
     }
 }
 
-static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType)
-{
+static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType) {
     switch (bgType) {
     case BG_TYPE_STATIC:
         if (bgScreenSize == BG_SCREEN_SIZE_256x256) {
@@ -509,8 +502,7 @@ static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType)
     return BG_SCREEN_SIZE_128x128;
 }
 
-static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTiles)
-{
+static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTiles) {
     switch (bgScreenSize) {
     case BG_SCREEN_SIZE_128x128:
         *outXTiles = 16;
@@ -544,8 +536,7 @@ static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTi
     }
 }
 
-void Bg_FreeTilemapBuffer(BgConfig *bgConfig, u8 bgLayer)
-{
+void Bg_FreeTilemapBuffer(BgConfig *bgConfig, u8 bgLayer) {
     if (bgConfig->bgs[bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -554,8 +545,7 @@ void Bg_FreeTilemapBuffer(BgConfig *bgConfig, u8 bgLayer)
     bgConfig->bgs[bgLayer].tilemapBuffer = NULL;
 }
 
-void Bg_SetPriority(u8 bgLayer, u8 priority)
-{
+void Bg_SetPriority(u8 bgLayer, u8 priority) {
     switch (bgLayer) {
     case BG_LAYER_MAIN_0:
         G2_SetBG0Priority(priority);
@@ -591,8 +581,7 @@ void Bg_SetPriority(u8 bgLayer, u8 priority)
     }
 }
 
-void Bg_ToggleLayer(u8 bgLayer, u8 enable)
-{
+void Bg_ToggleLayer(u8 bgLayer, u8 enable) {
     switch (bgLayer) {
     case BG_LAYER_MAIN_0:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, enable);
@@ -628,8 +617,7 @@ void Bg_ToggleLayer(u8 bgLayer, u8 enable)
     }
 }
 
-void Bg_SetOffset(BgConfig *bgConfig, u8 bgLayer, u8 bgUpdateOffsetOp, int val)
-{
+void Bg_SetOffset(BgConfig *bgConfig, u8 bgLayer, u8 bgUpdateOffsetOp, int val) {
     UpdateBgOffsetWithVal(&bgConfig->bgs[bgLayer], bgUpdateOffsetOp, val);
 
     int hOffset = bgConfig->bgs[bgLayer].xOffset;
@@ -686,18 +674,15 @@ void Bg_SetOffset(BgConfig *bgConfig, u8 bgLayer, u8 bgUpdateOffsetOp, int val)
     }
 }
 
-int Bg_GetXOffset(BgConfig *bgConfig, enum BgLayer bgLayer)
-{
+int Bg_GetXOffset(BgConfig *bgConfig, enum BgLayer bgLayer) {
     return bgConfig->bgs[bgLayer].xOffset;
 }
 
-int Bg_GetYOffset(BgConfig *bgConfig, enum BgLayer bgLayer)
-{
+int Bg_GetYOffset(BgConfig *bgConfig, enum BgLayer bgLayer) {
     return bgConfig->bgs[bgLayer].yOffset;
 }
 
-static void UpdateBgOffsetWithVal(Background *bg, enum BgOffsetUpdateOp op, int val)
-{
+static void UpdateBgOffsetWithVal(Background *bg, enum BgOffsetUpdateOp op, int val) {
     switch (op) {
     case BG_OFFSET_UPDATE_SET_X:
         bg->xOffset = val;
@@ -725,8 +710,7 @@ static void UpdateBgOffsetWithVal(Background *bg, enum BgOffsetUpdateOp op, int 
     }
 }
 
-void Bg_SetAffineParams(BgConfig *bgConfig, u8 bgLayer, const MtxFx22 *mtx, int centerX, int centerY)
-{
+void Bg_SetAffineParams(BgConfig *bgConfig, u8 bgLayer, const MtxFx22 *mtx, int centerX, int centerY) {
     switch (bgLayer) {
     case BG_LAYER_MAIN_2:
         G2_SetBG2Affine(mtx, centerX, centerY, bgConfig->bgs[bgLayer].xOffset, bgConfig->bgs[bgLayer].yOffset);
@@ -746,15 +730,13 @@ void Bg_SetAffineParams(BgConfig *bgConfig, u8 bgLayer, const MtxFx22 *mtx, int 
     }
 }
 
-static void ResetBgAffineTransforms(BgConfig *bgConfig, u8 bgLayer)
-{
+static void ResetBgAffineTransforms(BgConfig *bgConfig, u8 bgLayer) {
     MtxFx22 mtx;
     CreateAffineTransformationMatrix(&mtx, 0, FX32_ONE, FX32_ONE, AFFINE_MODE_NORMAL);
     Bg_SetAffineParams(bgConfig, bgLayer, &mtx, 0, 0);
 }
 
-static void CopyOrDecompressData(const void *src, void *dest, u32 size)
-{
+static void CopyOrDecompressData(const void *src, void *dest, u32 size) {
     if (size == 0) {
         MI_UncompressLZ8(src, dest);
         return;
@@ -768,8 +750,7 @@ static void CopyOrDecompressData(const void *src, void *dest, u32 size)
     MI_CpuCopy16(src, dest, size);
 }
 
-void Bg_CopyTilemapBufferToVRAM(BgConfig *bgConfig, u8 bgLayer)
-{
+void Bg_CopyTilemapBufferToVRAM(BgConfig *bgConfig, u8 bgLayer) {
     Bg_CopyTilemapBufferRangeToVRAM(bgConfig,
         bgLayer,
         bgConfig->bgs[bgLayer].tilemapBuffer,
@@ -777,8 +758,7 @@ void Bg_CopyTilemapBufferToVRAM(BgConfig *bgConfig, u8 bgLayer)
         bgConfig->bgs[bgLayer].baseTile);
 }
 
-void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 offset)
-{
+void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 offset) {
     if (size == 0) {
         void *buf = bgConfig->bgs[bgLayer].tilemapBuffer;
         if (buf != NULL) {
@@ -804,8 +784,7 @@ void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, 
     LoadBgVRAMScr(bgLayer, src, offset * 2, size);
 }
 
-static void LoadBgVRAMScr(u8 bgLayer, void *src, u32 offset, u32 size)
-{
+static void LoadBgVRAMScr(u8 bgLayer, void *src, u32 offset, u32 size) {
     DC_FlushRange(src, size);
 
     switch (bgLayer) {
@@ -843,13 +822,11 @@ static void LoadBgVRAMScr(u8 bgLayer, void *src, u32 offset, u32 size)
     }
 }
 
-void Bg_LoadTilemapBuffer(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size)
-{
+void Bg_LoadTilemapBuffer(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size) {
     CopyOrDecompressData(src, bgConfig->bgs[bgLayer].tilemapBuffer, size);
 }
 
-void Bg_LoadTiles(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 tileStart)
-{
+void Bg_LoadTiles(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 tileStart) {
     if (bgConfig->bgs[bgLayer].colorMode == GX_BG_COLORMODE_16) {
         Bg_LoadTilesToVRAM(bgConfig, bgLayer, src, size, tileStart * TILE_SIZE_4BPP);
     } else {
@@ -857,8 +834,7 @@ void Bg_LoadTiles(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 tileS
     }
 }
 
-void Bg_LoadTilesToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 offset)
-{
+void Bg_LoadTilesToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 offset) {
     if (size == 0) {
         u32 decompressedSize = MI_GetUncompressedSize(src);
         void *tmp = Heap_AllocFromHeapAtEnd(bgConfig->heapID, decompressedSize);
@@ -873,8 +849,7 @@ void Bg_LoadTilesToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32
     LoadBgVRAMChar(bgLayer, (void *)src, offset, size);
 }
 
-static void LoadBgVRAMChar(u8 bgLayer, void *src, u32 offset, u32 size)
-{
+static void LoadBgVRAMChar(u8 bgLayer, void *src, u32 offset, u32 size) {
     DC_FlushRange(src, size);
 
     switch (bgLayer) {
@@ -912,8 +887,7 @@ static void LoadBgVRAMChar(u8 bgLayer, void *src, u32 offset, u32 size)
     }
 }
 
-void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID)
-{
+void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID) {
     u32 *buf = (u32 *)Heap_AllocFromHeapAtEnd(heapID, size);
 
     memset(buf, 0, size);
@@ -922,8 +896,7 @@ void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID)
     Heap_FreeExplicit(heapID, buf);
 }
 
-void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTiles, u32 offset)
-{
+void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTiles, u32 offset) {
     u32 *buf;
     u32 size = numTiles * bgConfig->bgs[bgLayer].tileSize;
     buf = Heap_AllocFromHeapAtEnd(bgConfig->heapID, size);
@@ -940,8 +913,7 @@ void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTile
     Heap_Free(buf);
 }
 
-void Bg_LoadPalette(u8 bgLayer, void *src, u16 size, u16 offset)
-{
+void Bg_LoadPalette(u8 bgLayer, void *src, u16 size, u16 offset) {
     DC_FlushRange(src, size);
 
     if (bgLayer < BG_LAYER_SUB_0) {
@@ -951,13 +923,11 @@ void Bg_LoadPalette(u8 bgLayer, void *src, u16 size, u16 offset)
     }
 }
 
-void Bg_MaskPalette(u8 bgLayer, u16 mask)
-{
+void Bg_MaskPalette(u8 bgLayer, u16 mask) {
     Bg_LoadPalette(bgLayer, &mask, sizeof(u16), 0);
 }
 
-static u16 CalcTilemapIndexFromCoords(u8 x, u8 y, u8 bgScreenSize)
-{
+static u16 CalcTilemapIndexFromCoords(u8 x, u8 y, u8 bgScreenSize) {
     u16 ret;
 
     switch (bgScreenSize) {
@@ -987,8 +957,7 @@ static u16 CalcTilemapIndexFromCoords(u8 x, u8 y, u8 bgScreenSize)
     return ret;
 }
 
-static u16 CalcTilemapIndexFromCoordsWidthHeight(u8 x, u8 y, u8 width, u8 height)
-{
+static u16 CalcTilemapIndexFromCoordsWidthHeight(u8 x, u8 y, u8 width, u8 height) {
     u8 coordType = 0;
     u16 tilemapIndex = 0;
     s16 adjustedWidth = width - 32;
@@ -1040,13 +1009,11 @@ static u16 CalcTilemapIndexFromCoordsWidthHeight(u8 x, u8 y, u8 width, u8 height
     return tilemapIndex;
 }
 
-void Bg_LoadToTilemapRect(BgConfig *bgConfig, u8 bgLayer, const void *src, u8 destX, u8 destY, u8 destWidth, u8 destHeight)
-{
+void Bg_LoadToTilemapRect(BgConfig *bgConfig, u8 bgLayer, const void *src, u8 destX, u8 destY, u8 destWidth, u8 destHeight) {
     Bg_CopyToTilemapRect(bgConfig, bgLayer, destX, destY, destWidth, destHeight, src, 0, 0, destWidth, destHeight);
 }
 
-void Bg_CopyToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY, u8 destWidth, u8 destHeight, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight)
-{
+void Bg_CopyToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY, u8 destWidth, u8 destHeight, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight) {
     if (bgConfig->bgs[bgLayer].type != BG_TYPE_AFFINE) {
         CopyToBgTilemapRectText(&bgConfig->bgs[bgLayer], destX, destY, destWidth, destHeight, (u16 *)src, srcX, srcY, srcWidth, srcHeight, TILEMAP_COPY_SRC_FLAT);
     } else {
@@ -1054,8 +1021,7 @@ void Bg_CopyToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY, u8
     }
 }
 
-void Bg_CopyRectToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY, u8 destWidth, u8 destHeight, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight)
-{
+void Bg_CopyRectToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY, u8 destWidth, u8 destHeight, const void *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight) {
     if (bgConfig->bgs[bgLayer].type != BG_TYPE_AFFINE) {
         CopyToBgTilemapRectText(&bgConfig->bgs[bgLayer], destX, destY, destWidth, destHeight, (u16 *)src, srcX, srcY, srcWidth, srcHeight, TILEMAP_COPY_SRC_RECT);
     } else {
@@ -1063,8 +1029,7 @@ void Bg_CopyRectToTilemapRect(BgConfig *bgConfig, u8 bgLayer, u8 destX, u8 destY
     }
 }
 
-static void CopyToBgTilemapRectText(Background *bg, u8 destX, u8 destY, u8 destWidth, u8 destHeight, u16 *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight, u8 mode)
-{
+static void CopyToBgTilemapRectText(Background *bg, u8 destX, u8 destY, u8 destWidth, u8 destHeight, u16 *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight, u8 mode) {
     u16 *dest = bg->tilemapBuffer;
     if (dest == NULL) {
         return;
@@ -1105,8 +1070,7 @@ static void CopyToBgTilemapRectText(Background *bg, u8 destX, u8 destY, u8 destW
     }
 }
 
-static void CopyToBgTilemapRectAffine(Background *bg, u8 destX, u8 destY, u8 destWidth, u8 destHeight, u8 *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight, u8 mode)
-{
+static void CopyToBgTilemapRectAffine(Background *bg, u8 destX, u8 destY, u8 destWidth, u8 destHeight, u8 *src, u8 srcX, u8 srcY, u8 srcWidth, u8 srcHeight, u8 mode) {
     u8 *dest = bg->tilemapBuffer;
     if (dest == NULL) {
         return;
@@ -1147,8 +1111,7 @@ static void CopyToBgTilemapRectAffine(Background *bg, u8 destX, u8 destY, u8 des
     }
 }
 
-void Bg_FillTilemapRect(BgConfig *bgConfig, u8 bgLayer, u16 fillVal, u8 x, u8 y, u8 width, u8 height, u8 palette)
-{
+void Bg_FillTilemapRect(BgConfig *bgConfig, u8 bgLayer, u16 fillVal, u8 x, u8 y, u8 width, u8 height, u8 palette) {
     if (bgConfig->bgs[bgLayer].type != BG_TYPE_AFFINE) {
         FillBgTilemapRectText(&bgConfig->bgs[bgLayer], fillVal, x, y, width, height, palette);
     } else {
@@ -1156,8 +1119,7 @@ void Bg_FillTilemapRect(BgConfig *bgConfig, u8 bgLayer, u16 fillVal, u8 x, u8 y,
     }
 }
 
-static void FillBgTilemapRectText(Background *bg, u16 fillVal, u8 x, u8 y, u8 width, u8 height, u8 palette)
-{
+static void FillBgTilemapRectText(Background *bg, u16 fillVal, u8 x, u8 y, u8 width, u8 height, u8 palette) {
     u16 *dest = bg->tilemapBuffer;
     if (dest == NULL) {
         return;
@@ -1189,8 +1151,7 @@ static void FillBgTilemapRectText(Background *bg, u16 fillVal, u8 x, u8 y, u8 wi
     }
 }
 
-static void FillBgTilemapRectAffine(Background *bg, u8 fillVal, u8 x, u8 y, u8 width, u8 height)
-{
+static void FillBgTilemapRectAffine(Background *bg, u8 fillVal, u8 x, u8 y, u8 width, u8 height) {
     u8 *dest = bg->tilemapBuffer;
     if (dest == NULL) {
         return;
@@ -1215,8 +1176,7 @@ static void FillBgTilemapRectAffine(Background *bg, u8 fillVal, u8 x, u8 y, u8 w
     }
 }
 
-void Bg_ChangeTilemapRectPalette(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette)
-{
+void Bg_ChangeTilemapRectPalette(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 width, u8 height, u8 palette) {
     u16 *dest = bgConfig->bgs[bgLayer].tilemapBuffer;
     if (dest == NULL) {
         return;
@@ -1242,8 +1202,7 @@ void Bg_ChangeTilemapRectPalette(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 
     }
 }
 
-void Bg_ClearTilemap(BgConfig *bgConfig, u8 bgLayer)
-{
+void Bg_ClearTilemap(BgConfig *bgConfig, u8 bgLayer) {
     if (bgConfig->bgs[bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -1252,8 +1211,7 @@ void Bg_ClearTilemap(BgConfig *bgConfig, u8 bgLayer)
     Bg_CopyTilemapBufferToVRAM(bgConfig, bgLayer);
 }
 
-void Bg_FillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal)
-{
+void Bg_FillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal) {
     if (bgConfig->bgs[bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -1262,8 +1220,7 @@ void Bg_FillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal)
     Bg_CopyTilemapBufferToVRAM(bgConfig, bgLayer);
 }
 
-void Bg_ScheduleFillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal)
-{
+void Bg_ScheduleFillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal) {
     if (bgConfig->bgs[bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -1272,8 +1229,7 @@ void Bg_ScheduleFillTilemap(BgConfig *bgConfig, u8 bgLayer, u16 fillVal)
     Bg_ScheduleTilemapTransfer(bgConfig, bgLayer);
 }
 
-void *Bg_GetCharPtr(u8 bgLayer)
-{
+void *Bg_GetCharPtr(u8 bgLayer) {
     switch (bgLayer) {
     case BG_LAYER_MAIN_0:
         return G2_GetBG0CharPtr();
@@ -1303,8 +1259,7 @@ void *Bg_GetCharPtr(u8 bgLayer)
     return NULL;
 }
 
-static void Copy4bppTo8bpp(const u8 *src, u32 size, u8 *dest, u8 palette)
-{
+static void Copy4bppTo8bpp(const u8 *src, u32 size, u8 *dest, u8 palette) {
     palette <<= 4;
 
     for (u32 i = 0; i < size; i++) {
@@ -1320,31 +1275,26 @@ static void Copy4bppTo8bpp(const u8 *src, u32 size, u8 *dest, u8 palette)
     }
 }
 
-static void *Convert4bppTo8bpp(const u8 *src, u32 size, u8 palette, u32 heapID)
-{
+static void *Convert4bppTo8bpp(const u8 *src, u32 size, u8 palette, u32 heapID) {
     void *dest = Heap_AllocFromHeap(heapID, size * 2);
     Copy4bppTo8bpp(src, size, dest, palette);
 
     return dest;
 }
 
-void *Bg_GetTilemapBuffer(BgConfig *bgConfig, u8 bgLayer)
-{
+void *Bg_GetTilemapBuffer(BgConfig *bgConfig, u8 bgLayer) {
     return bgConfig->bgs[bgLayer].tilemapBuffer;
 }
 
-int Bg_GetXOffset2(BgConfig *bgConfig, u8 bgLayer)
-{
+int Bg_GetXOffset2(BgConfig *bgConfig, u8 bgLayer) {
     return bgConfig->bgs[bgLayer].xOffset;
 }
 
-u16 Bg_GetRotation(BgConfig *bgConfig, u8 bgLayer)
-{
+u16 Bg_GetRotation(BgConfig *bgConfig, u8 bgLayer) {
     return bgConfig->bgs[bgLayer].rotation;
 }
 
-u8 Bg_GetPriority(BgConfig *bgConfig, u8 bgLayer)
-{
+u8 Bg_GetPriority(BgConfig *bgConfig, u8 bgLayer) {
     switch (bgLayer) {
     case BG_LAYER_MAIN_0: {
         GXBg01Control control = G2_GetBG0Control();
@@ -1442,8 +1392,7 @@ u8 Bg_GetPriority(BgConfig *bgConfig, u8 bgLayer)
 #define CalcPixelAddressFromBlit8bpp(ptr, x, y, width) ((u8 *)((ptr) + ((x) & 7) + (((x) << 3) & 0x7FC0) + ((((y) << 3) & 0x7FC0) * (width)) + (((u32)(((y) << 3) & 0x38)))))
 #define ConvertPixelsToTiles(x)                        (((x) + ((x) & 7)) >> 3)
 
-void Bitmap_BlitRect4bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent)
-{
+void Bitmap_BlitRect4bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent) {
     int loopSrcX, loopDestX, loopSrcY, loopDestY, toOrr, shift, xEnd, yEnd, multiplierSrcY, multiplierDestY;
     u8 *srcPixels, *destPixels;
 
@@ -1489,8 +1438,7 @@ void Bitmap_BlitRect4bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 sr
     }
 }
 
-void Bitmap_BlitRect8bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent)
-{
+void Bitmap_BlitRect8bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 srcY, u16 destX, u16 destY, u16 width, u16 height, u16 transparent) {
     int loopSrcX, loopDestX, loopSrcY, loopDestY, xEnd, yEnd, multiplierSrcY, multiplierDestY;
     u8 *srcPixels, *destPixels;
 
@@ -1531,8 +1479,7 @@ void Bitmap_BlitRect8bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 sr
     }
 }
 
-void Bitmap_FillRect4bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal)
-{
+void Bitmap_FillRect4bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal) {
     int xEnd = x + width;
     if (xEnd > bitmap->width) {
         xEnd = bitmap->width;
@@ -1560,8 +1507,7 @@ void Bitmap_FillRect4bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 heig
     }
 }
 
-void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal)
-{
+void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal) {
     int xEnd = x + width;
     if (xEnd > bitmap->width) {
         xEnd = bitmap->width;
@@ -1582,8 +1528,7 @@ void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 heig
     }
 }
 
-Window *Window_New(u32 heapID, u8 winCount)
-{
+Window *Window_New(u32 heapID, u8 winCount) {
     Window *windows = (Window *)Heap_AllocFromHeap(heapID, sizeof(Window) * winCount);
 
     for (u16 i = 0; i < winCount; i++) {
@@ -1593,8 +1538,7 @@ Window *Window_New(u32 heapID, u8 winCount)
     return windows;
 }
 
-void Window_Init(Window *window)
-{
+void Window_Init(Window *window) {
     window->bgConfig = NULL;
     window->bgLayer = 0xFF;
     window->tilemapLeft = 0;
@@ -1607,8 +1551,7 @@ void Window_Init(Window *window)
     window->colorMode = BG_COLOR_MODE_4BPP;
 }
 
-u8 Window_IsInUse(Window *window)
-{
+u8 Window_IsInUse(Window *window) {
     if (window->bgConfig == NULL || window->bgLayer == 0xFF || window->pixels == NULL) {
         return FALSE;
     }
@@ -1616,8 +1559,7 @@ u8 Window_IsInUse(Window *window)
     return TRUE;
 }
 
-void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 palette, u16 baseTile)
-{
+void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 palette, u16 baseTile) {
     if (bgConfig->bgs[bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -1641,8 +1583,7 @@ void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, 
     window->colorMode = (bgConfig->bgs[bgLayer].colorMode == GX_BG_COLORMODE_16) ? BG_COLOR_MODE_4BPP : BG_COLOR_MODE_8BPP;
 }
 
-void Window_AddToTopLeftCorner(BgConfig *bgConfig, Window *window, u8 width, u8 height, u16 baseTile, u8 fillVal)
-{
+void Window_AddToTopLeftCorner(BgConfig *bgConfig, Window *window, u8 width, u8 height, u16 baseTile, u8 fillVal) {
     u32 size = width * height * TILE_SIZE_4BPP;
     void *pixels = Heap_AllocFromHeap(bgConfig->heapID, size);
 
@@ -1661,8 +1602,7 @@ void Window_AddToTopLeftCorner(BgConfig *bgConfig, Window *window, u8 width, u8 
     window->colorMode = BG_COLOR_MODE_4BPP;
 }
 
-void Window_AddFromTemplate(BgConfig *bgConfig, Window *window, const WindowTemplate *template)
-{
+void Window_AddFromTemplate(BgConfig *bgConfig, Window *window, const WindowTemplate *template) {
     Window_Add(bgConfig,
         window,
         template->bgLayer,
@@ -1674,8 +1614,7 @@ void Window_AddFromTemplate(BgConfig *bgConfig, Window *window, const WindowTemp
         template->baseTile);
 }
 
-void Window_Remove(Window *window)
-{
+void Window_Remove(Window *window) {
     Heap_Free(window->pixels);
 
     window->bgConfig = NULL;
@@ -1689,8 +1628,7 @@ void Window_Remove(Window *window)
     window->pixels = NULL;
 }
 
-void Windows_Delete(Window *window, u8 winCount)
-{
+void Windows_Delete(Window *window, u8 winCount) {
     for (u16 i = 0; i < winCount; i++) {
         if (window[i].pixels != NULL) {
             Heap_Free(window[i].pixels);
@@ -1747,8 +1685,7 @@ static const u8 sScreenSizeToTilemapWidth[] = {
     [BG_SCREEN_SIZE_1024x1024] = 0x20,
 };
 
-void Window_CopyToVRAM(Window *window)
-{
+void Window_CopyToVRAM(Window *window) {
     GF_ASSERT(window != NULL);
     GF_ASSERT(window->bgConfig != NULL);
     GF_ASSERT(window->bgLayer < BG_LAYER_MAX);
@@ -1757,8 +1694,7 @@ void Window_CopyToVRAM(Window *window)
     sCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-void Window_ScheduleCopyToVRAM(Window *window)
-{
+void Window_ScheduleCopyToVRAM(Window *window) {
     GF_ASSERT(window != NULL);
     GF_ASSERT(window->bgConfig != NULL);
     GF_ASSERT(window->bgLayer < BG_LAYER_MAX);
@@ -1767,13 +1703,11 @@ void Window_ScheduleCopyToVRAM(Window *window)
     sScheduleCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-void Window_PutToTilemap(Window *window)
-{
+void Window_PutToTilemap(Window *window) {
     sPutWindowToTilemapFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-void Window_PutRectToTilemap(Window *window, u32 width, u32 height)
-{
+void Window_PutRectToTilemap(Window *window, u32 width, u32 height) {
     u32 oldWidth = window->width;
     u32 oldHeight = window->height;
 
@@ -1786,13 +1720,11 @@ void Window_PutRectToTilemap(Window *window, u32 width, u32 height)
     window->height = oldHeight;
 }
 
-void Window_ClearTilemap(Window *window)
-{
+void Window_ClearTilemap(Window *window) {
     sClearWindowTilemapFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-static void PutWindowToTilemapText(Window *window)
-{
+static void PutWindowToTilemapText(Window *window) {
     u32 x, y, tilemapRight, tilemapBottom, tile, idx, tilemapWidth;
     u16 *tilemap = window->bgConfig->bgs[window->bgLayer].tilemapBuffer;
 
@@ -1814,8 +1746,7 @@ static void PutWindowToTilemapText(Window *window)
     }
 }
 
-static void PutWindowToTilemapAffine(Window *window)
-{
+static void PutWindowToTilemapAffine(Window *window) {
     if (window->bgConfig->bgs[window->bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -1836,8 +1767,7 @@ static void PutWindowToTilemapAffine(Window *window)
     }
 }
 
-static void ClearWindowTilemapText(Window *window)
-{
+static void ClearWindowTilemapText(Window *window) {
     if (window->bgConfig->bgs[window->bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -1857,8 +1787,7 @@ static void ClearWindowTilemapText(Window *window)
     }
 }
 
-static void ClearWindowTilemapAffine(Window *window)
-{
+static void ClearWindowTilemapAffine(Window *window) {
     if (window->bgConfig->bgs[window->bgLayer].tilemapBuffer == NULL) {
         return;
     }
@@ -1875,8 +1804,7 @@ static void ClearWindowTilemapAffine(Window *window)
     }
 }
 
-static void CopyWindowToVramText(Window *window)
-{
+static void CopyWindowToVramText(Window *window) {
     PutWindowToTilemapText(window);
     Window_LoadTiles(window);
     Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
@@ -1886,15 +1814,13 @@ static void CopyWindowToVramText(Window *window)
         window->bgConfig->bgs[window->bgLayer].baseTile);
 }
 
-static void ScheduleCopyWindowToVramText(Window *window)
-{
+static void ScheduleCopyWindowToVramText(Window *window) {
     PutWindowToTilemapText(window);
     Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
     Window_LoadTiles(window);
 }
 
-static void CopyWindowToVramAffine(Window *window)
-{
+static void CopyWindowToVramAffine(Window *window) {
     PutWindowToTilemapAffine(window);
 
     Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
@@ -1909,8 +1835,7 @@ static void CopyWindowToVramAffine(Window *window)
         window->baseTile);
 }
 
-static void ScheduleCopyWindowToVramAffine(Window *window)
-{
+static void ScheduleCopyWindowToVramAffine(Window *window) {
     PutWindowToTilemapAffine(window);
 
     Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
@@ -1921,24 +1846,20 @@ static void ScheduleCopyWindowToVramAffine(Window *window)
         window->baseTile);
 }
 
-void Window_LoadTiles(Window *window)
-{
+void Window_LoadTiles(Window *window) {
     u32 size = window->width * window->height * window->bgConfig->bgs[window->bgLayer].tileSize;
     Bg_LoadTiles(window->bgConfig, window->bgLayer, window->pixels, size, window->baseTile);
 }
 
-void Window_ClearAndCopyToVRAM(Window *window)
-{
+void Window_ClearAndCopyToVRAM(Window *window) {
     sClearAndCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-void Window_ClearAndScheduleCopyToVRAM(Window *window)
-{
+void Window_ClearAndScheduleCopyToVRAM(Window *window) {
     sClearAndScheduleCopyWindowToVramFuncs[window->bgConfig->bgs[window->bgLayer].type](window);
 }
 
-static void ClearAndCopyWindowToVramText(Window *window)
-{
+static void ClearAndCopyWindowToVramText(Window *window) {
     ClearWindowTilemapText(window);
     Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
         window->bgLayer,
@@ -1947,14 +1868,12 @@ static void ClearAndCopyWindowToVramText(Window *window)
         window->bgConfig->bgs[window->bgLayer].baseTile);
 }
 
-static void ClearAndScheduleCopyWindowToVramText(Window *window)
-{
+static void ClearAndScheduleCopyWindowToVramText(Window *window) {
     ClearWindowTilemapText(window);
     Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
 }
 
-static void ClearAndCopyWindowToVramAffine(Window *window)
-{
+static void ClearAndCopyWindowToVramAffine(Window *window) {
     ClearWindowTilemapAffine(window);
     Bg_CopyTilemapBufferRangeToVRAM(window->bgConfig,
         window->bgLayer,
@@ -1963,14 +1882,12 @@ static void ClearAndCopyWindowToVramAffine(Window *window)
         window->bgConfig->bgs[window->bgLayer].baseTile);
 }
 
-static void ClearAndScheduleCopyWindowToVramAffine(Window *window)
-{
+static void ClearAndScheduleCopyWindowToVramAffine(Window *window) {
     ClearWindowTilemapAffine(window);
     Bg_ScheduleTilemapTransfer(window->bgConfig, window->bgLayer);
 }
 
-void Window_FillTilemap(Window *window, u8 val)
-{
+void Window_FillTilemap(Window *window, u8 val) {
     if (window->bgConfig->bgs[window->bgLayer].tileSize == TILE_SIZE_4BPP) {
         val = (val << 4) | val;
     }
@@ -1981,13 +1898,11 @@ void Window_FillTilemap(Window *window, u8 val)
     MI_CpuFillFast(window->pixels, fill, size);
 }
 
-void Window_BlitBitmapRect(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight)
-{
+void Window_BlitBitmapRect(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight) {
     Window_BlitBitmapRectWithTransparency(window, src, srcX, srcY, srcWidth, srcHeight, destX, destY, destWidth, destHeight, 0);
 }
 
-void Window_BlitBitmapRectWithTransparency(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight, u16 transparent)
-{
+void Window_BlitBitmapRectWithTransparency(Window *window, void *src, u16 srcX, u16 srcY, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 destWidth, u16 destHeight, u16 transparent) {
     Bitmap bmpSrc, bmpDest;
 
     bmpSrc.pixels = src;
@@ -2005,8 +1920,7 @@ void Window_BlitBitmapRectWithTransparency(Window *window, void *src, u16 srcX, 
     }
 }
 
-void Window_FillRectWithColor(Window *window, u8 color, u16 x, u16 y, u16 width, u16 height)
-{
+void Window_FillRectWithColor(Window *window, u8 color, u16 x, u16 y, u16 width, u16 height) {
     Bitmap bmp;
 
     bmp.pixels = window->pixels;
@@ -2114,8 +2028,7 @@ void Window_FillRectWithColor(Window *window, u8 color, u16 x, u16 y, u16 width,
         }                                                                                                         \
     }
 
-void Window_CopyGlyph(Window *window, const u8 *glyphPixels, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 table)
-{
+void Window_CopyGlyph(Window *window, const u8 *glyphPixels, u16 srcWidth, u16 srcHeight, u16 destX, u16 destY, u16 table) {
     u8 *windowPixels = window->pixels;
     u16 destWidth = window->width * 8, destHeight = window->height * 8;
     int srcRight, srcBottom;
@@ -2191,8 +2104,7 @@ void Window_CopyGlyph(Window *window, const u8 *glyphPixels, u16 srcWidth, u16 s
     }
 }
 
-void Window_Scroll(Window *window, u8 direction, u8 distance, u8 fillVal)
-{
+void Window_Scroll(Window *window, u8 direction, u8 distance, u8 fillVal) {
     if (window->bgConfig->bgs[window->bgLayer].colorMode == GX_BG_COLORMODE_16) {
         ScrollWindow4bpp(window, direction, distance, fillVal);
     } else {
@@ -2200,8 +2112,7 @@ void Window_Scroll(Window *window, u8 direction, u8 distance, u8 fillVal)
     }
 }
 
-static void ScrollWindow4bpp(Window *window, u8 direction, u8 distance, u8 fillVal)
-{
+static void ScrollWindow4bpp(Window *window, u8 direction, u8 distance, u8 fillVal) {
     u8 *pixels = window->pixels;
     int y0, y1, y2;
     int fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | (fillVal << 0);
@@ -2257,8 +2168,7 @@ static void ScrollWindow4bpp(Window *window, u8 direction, u8 distance, u8 fillV
     }
 }
 
-static void ScrollWindow8bpp(Window *window, u8 direction, u8 distance, u8 fillVal)
-{
+static void ScrollWindow8bpp(Window *window, u8 direction, u8 distance, u8 fillVal) {
     u8 *pixels = window->pixels;
     int y0, y1, y2;
     int fill = (fillVal << 24) | (fillVal << 16) | (fillVal << 8) | fillVal;
@@ -2332,58 +2242,47 @@ static void ScrollWindow8bpp(Window *window, u8 direction, u8 distance, u8 fillV
     }
 }
 
-BgConfig *Window_GetBgConfig(Window *window)
-{
+BgConfig *Window_GetBgConfig(Window *window) {
     return window->bgConfig;
 }
 
-u8 Window_GetBgLayer(Window *window)
-{
+u8 Window_GetBgLayer(Window *window) {
     return window->bgLayer;
 }
 
-u8 Window_GetWidth(Window *window)
-{
+u8 Window_GetWidth(Window *window) {
     return window->width;
 }
 
-u8 Window_GetHeight(Window *window)
-{
+u8 Window_GetHeight(Window *window) {
     return window->height;
 }
 
-u8 Window_GetXPos(Window *window)
-{
+u8 Window_GetXPos(Window *window) {
     return window->tilemapLeft;
 }
 
-u8 Window_GetYPos(Window *window)
-{
+u8 Window_GetYPos(Window *window) {
     return window->tilemapTop;
 }
 
-u16 Window_GetBaseTile(Window *window)
-{
+u16 Window_GetBaseTile(Window *window) {
     return window->baseTile;
 }
 
-void Window_SetXPos(Window *window, u8 x)
-{
+void Window_SetXPos(Window *window, u8 x) {
     window->tilemapLeft = x;
 }
 
-void Window_SetYPos(Window *window, u8 y)
-{
+void Window_SetYPos(Window *window, u8 y) {
     window->tilemapTop = y;
 }
 
-void Window_SetPalette(Window *window, u8 palette)
-{
+void Window_SetPalette(Window *window, u8 palette) {
     window->palette = palette;
 }
 
-void Bg_RunScheduledUpdates(BgConfig *bgConfig)
-{
+void Bg_RunScheduledUpdates(BgConfig *bgConfig) {
     RunScheduledScrolls(bgConfig);
     RunScheduledTilemapTransfers(bgConfig);
 
@@ -2391,8 +2290,7 @@ void Bg_RunScheduledUpdates(BgConfig *bgConfig)
     bgConfig->bufferTransferScheduled = FALSE;
 }
 
-static void RunScheduledTilemapTransfers(BgConfig *bgConfig)
-{
+static void RunScheduledTilemapTransfers(BgConfig *bgConfig) {
     if ((bgConfig->bufferTransferScheduled & (1 << BG_LAYER_MAIN_0)) != 0) {
         LoadBgVRAMScr(BG_LAYER_MAIN_0, bgConfig->bgs[BG_LAYER_MAIN_0].tilemapBuffer, bgConfig->bgs[BG_LAYER_MAIN_0].baseTile * 0x2, bgConfig->bgs[BG_LAYER_MAIN_0].bufferSize);
     }
@@ -2426,13 +2324,11 @@ static void RunScheduledTilemapTransfers(BgConfig *bgConfig)
     }
 }
 
-void Bg_ScheduleTilemapTransfer(BgConfig *bgConfig, u8 bgLayer)
-{
+void Bg_ScheduleTilemapTransfer(BgConfig *bgConfig, u8 bgLayer) {
     bgConfig->bufferTransferScheduled |= (1 << bgLayer);
 }
 
-static void RunScheduledScrolls(BgConfig *bgConfig)
-{
+static void RunScheduledScrolls(BgConfig *bgConfig) {
     if ((bgConfig->scrollScheduled & (1 << BG_LAYER_MAIN_0)) != 0) {
         G2_SetBG0Offset(bgConfig->bgs[BG_LAYER_MAIN_0].xOffset, bgConfig->bgs[BG_LAYER_MAIN_0].yOffset);
     }
@@ -2490,20 +2386,17 @@ static void RunScheduledScrolls(BgConfig *bgConfig)
     }
 }
 
-void Bg_ScheduleScroll(BgConfig *bgConfig, u8 bgLayer, u8 bgUpdateOffsetOp, int val)
-{
+void Bg_ScheduleScroll(BgConfig *bgConfig, u8 bgLayer, u8 bgUpdateOffsetOp, int val) {
     UpdateBgOffsetWithVal(&bgConfig->bgs[bgLayer], bgUpdateOffsetOp, val);
     bgConfig->scrollScheduled |= (1 << bgLayer);
 }
 
-void Bg_ScheduleAffineRotation(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, u16 val)
-{
+void Bg_ScheduleAffineRotation(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, u16 val) {
     UpdateBgRotationWithVal(&bgConfig->bgs[bgLayer], bgAffineUpdateOp, val);
     bgConfig->scrollScheduled |= (1 << bgLayer);
 }
 
-static void UpdateBgRotationWithVal(Background *bg, enum BgAffineUpdateOp op, u16 val)
-{
+static void UpdateBgRotationWithVal(Background *bg, enum BgAffineUpdateOp op, u16 val) {
     switch (op) {
     case BG_AFFINE_UPDATE_SET_ROTATION:
         bg->rotation = val;
@@ -2522,14 +2415,12 @@ static void UpdateBgRotationWithVal(Background *bg, enum BgAffineUpdateOp op, u1
     }
 }
 
-void Bg_ScheduleAffineScale(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, fx32 val)
-{
+void Bg_ScheduleAffineScale(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, fx32 val) {
     UpdateBgAffineScaleWithVal(&bgConfig->bgs[bgLayer], bgAffineUpdateOp, val);
     bgConfig->scrollScheduled |= (1 << bgLayer);
 }
 
-static void UpdateBgAffineScaleWithVal(Background *bg, enum BgAffineUpdateOp op, fx32 val)
-{
+static void UpdateBgAffineScaleWithVal(Background *bg, enum BgAffineUpdateOp op, fx32 val) {
     switch (op) {
     case BG_AFFINE_UPDATE_SET_X_SCALE:
         bg->xScale = val;
@@ -2560,14 +2451,12 @@ static void UpdateBgAffineScaleWithVal(Background *bg, enum BgAffineUpdateOp op,
     }
 }
 
-void Bg_ScheduleAffineRotationCenter(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, int val)
-{
+void Bg_ScheduleAffineRotationCenter(BgConfig *bgConfig, u8 bgLayer, u8 bgAffineUpdateOp, int val) {
     UpdateBgAffineRotationCenterWithVal(&bgConfig->bgs[bgLayer], bgAffineUpdateOp, val);
     bgConfig->scrollScheduled |= (1 << bgLayer);
 }
 
-static void UpdateBgAffineRotationCenterWithVal(Background *bg, enum BgAffineUpdateOp op, int val)
-{
+static void UpdateBgAffineRotationCenterWithVal(Background *bg, enum BgAffineUpdateOp op, int val) {
     switch (op) {
     case BG_AFFINE_UPDATE_SET_X_CENTER:
         bg->xCenter = val;
@@ -2598,8 +2487,7 @@ static void UpdateBgAffineRotationCenterWithVal(Background *bg, enum BgAffineUpd
     }
 }
 
-u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *src)
-{
+u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *src) {
     u8 *charPtr;
     u16 tilemapIndex;
     u8 xPixelOffset, yPixelOffset;
@@ -2663,8 +2551,7 @@ u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *s
     return FALSE;
 }
 
-static void ApplyFlipFlagsToTile(BgConfig *bgConfig, u8 flags, u8 *tile)
-{
+static void ApplyFlipFlagsToTile(BgConfig *bgConfig, u8 flags, u8 *tile) {
     if (flags == 0) {
         return;
     }

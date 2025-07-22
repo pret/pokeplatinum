@@ -13,13 +13,11 @@
 #include "strbuf.h"
 #include "unk_02038FFC.h"
 
-int WiFiList_SaveSize(void)
-{
+int WiFiList_SaveSize(void) {
     return sizeof(WiFiList);
 }
 
-void WiFiList_Init(WiFiList *param0)
-{
+void WiFiList_Init(WiFiList *param0) {
     int v0;
 
     MI_CpuClearFast(param0, sizeof(WiFiList));
@@ -33,13 +31,11 @@ void WiFiList_Init(WiFiList *param0)
     sub_02039034(param0);
 }
 
-DWCUserData *WiFiList_GetUserData(WiFiList *param0)
-{
+DWCUserData *WiFiList_GetUserData(WiFiList *param0) {
     return &(param0->unk_00);
 }
 
-u32 sub_0202AD2C(WiFiList *param0, int param1, int param2)
-{
+u32 sub_0202AD2C(WiFiList *param0, int param1, int param2) {
     u32 v0;
 
     GF_ASSERT(param1 < 32);
@@ -89,8 +85,7 @@ u32 sub_0202AD2C(WiFiList *param0, int param1, int param2)
     return v0;
 }
 
-void sub_0202AE2C(WiFiList *param0, int param1, int param2, u32 param3)
-{
+void sub_0202AE2C(WiFiList *param0, int param1, int param2, u32 param3) {
     GF_ASSERT(param1 < 32);
 
     switch (param2) {
@@ -127,44 +122,37 @@ void sub_0202AE2C(WiFiList *param0, int param1, int param2, u32 param3)
     }
 }
 
-DWCFriendData *sub_0202AED8(WiFiList *param0, int param1)
-{
+DWCFriendData *sub_0202AED8(WiFiList *param0, int param1) {
     GF_ASSERT(param1 < 32);
     return &(param0->unk_40[param1]);
 }
 
-u16 *sub_0202AEF0(WiFiList *param0, int param1)
-{
+u16 *sub_0202AEF0(WiFiList *param0, int param1) {
     GF_ASSERT(param1 < 32);
     return param0->unk_1C0[param1].unk_10;
 }
 
-void sub_0202AF0C(WiFiList *param0, int param1, Strbuf *param2)
-{
+void sub_0202AF0C(WiFiList *param0, int param1, Strbuf *param2) {
     GF_ASSERT(param1 < 32);
     Strbuf_ToChars(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
 }
 
-u16 *sub_0202AF34(WiFiList *param0, int param1)
-{
+u16 *sub_0202AF34(WiFiList *param0, int param1) {
     GF_ASSERT(param1 < 32);
     return param0->unk_1C0[param1].unk_00;
 }
 
-void sub_0202AF50(WiFiList *param0, int param1, Strbuf *param2)
-{
+void sub_0202AF50(WiFiList *param0, int param1, Strbuf *param2) {
     GF_ASSERT(param1 < 32);
     Strbuf_ToChars(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));
 }
 
-BOOL sub_0202AF78(WiFiList *param0, int param1)
-{
+BOOL sub_0202AF78(WiFiList *param0, int param1) {
     GF_ASSERT(param1 < 32);
     return DWC_IsValidFriendData(&param0->unk_40[param1]);
 }
 
-int sub_0202AF94(WiFiList *param0)
-{
+int sub_0202AF94(WiFiList *param0) {
     int v0, v1 = 0;
 
     for (v0 = 0; v0 < 32; v0++) {
@@ -176,8 +164,7 @@ int sub_0202AF94(WiFiList *param0)
     return v1;
 }
 
-int sub_0202AFB4(WiFiList *param0)
-{
+int sub_0202AFB4(WiFiList *param0) {
     int v0, v1 = 0;
 
     for (v0 = 0; v0 < 32; v0++) {
@@ -189,8 +176,7 @@ int sub_0202AFB4(WiFiList *param0)
     return v1;
 }
 
-void sub_0202AFD4(WiFiList *param0, int param1)
-{
+void sub_0202AFD4(WiFiList *param0, int param1) {
     int v0;
 
     GF_ASSERT(param1 < 32);
@@ -210,8 +196,7 @@ void sub_0202AFD4(WiFiList *param0, int param1)
     param0->unk_1C0[v0].unk_2E = 2;
 }
 
-static void sub_0202B088(WiFiList *param0, int param1, int param2)
-{
+static void sub_0202B088(WiFiList *param0, int param1, int param2) {
     int v0;
 
     MI_CpuCopy8(&param0->unk_1C0[param2], &param0->unk_1C0[param1], sizeof(UnkStruct_0202B370_sub1));
@@ -224,8 +209,7 @@ static void sub_0202B088(WiFiList *param0, int param1, int param2)
     param0->unk_1C0[param2].unk_2E = 2;
 }
 
-void sub_0202B0F8(WiFiList *param0)
-{
+void sub_0202B0F8(WiFiList *param0) {
     int v0, v1 = -1;
 
     for (v0 = 0; v0 < 32; v0++) {
@@ -244,8 +228,7 @@ void sub_0202B0F8(WiFiList *param0)
     }
 }
 
-void sub_0202B13C(WiFiList *param0, int param1)
-{
+void sub_0202B13C(WiFiList *param0, int param1) {
     RTCDate v0;
 
     GetCurrentDate(&v0);
@@ -255,8 +238,7 @@ void sub_0202B13C(WiFiList *param0, int param1)
     param0->unk_1C0[param1].unk_2D = v0.day;
 }
 
-void sub_0202B174(WiFiList *param0, int param1, int param2, int param3, int param4)
-{
+void sub_0202B174(WiFiList *param0, int param1, int param2, int param3, int param4) {
     param0->unk_1C0[param1].unk_24 += param2;
 
     if (param0->unk_1C0[param1].unk_24 > 9999) {
@@ -278,8 +260,7 @@ void sub_0202B174(WiFiList *param0, int param1, int param2, int param3, int para
     sub_0202B13C(param0, param1);
 }
 
-void sub_0202B1D0(WiFiList *param0, int param1, int param2)
-{
+void sub_0202B1D0(WiFiList *param0, int param1, int param2) {
     param0->unk_1C0[param1].unk_30 += param2;
 
     if (param0->unk_1C0[param1].unk_30 > 9999) {
@@ -289,8 +270,7 @@ void sub_0202B1D0(WiFiList *param0, int param1, int param2)
     sub_0202B13C(param0, param1);
 }
 
-void sub_0202B1F8(WiFiList *param0, int param1, int param2)
-{
+void sub_0202B1F8(WiFiList *param0, int param1, int param2) {
     param0->unk_1C0[param1].unk_32 += param2;
 
     if (param0->unk_1C0[param1].unk_32 > 9999) {
@@ -300,8 +280,7 @@ void sub_0202B1F8(WiFiList *param0, int param1, int param2)
     sub_0202B13C(param0, param1);
 }
 
-void sub_0202B220(WiFiList *param0, int param1, int param2)
-{
+void sub_0202B220(WiFiList *param0, int param1, int param2) {
     param0->unk_1C0[param1].unk_34 += param2;
 
     if (param0->unk_1C0[param1].unk_34 > 9999) {
@@ -311,8 +290,7 @@ void sub_0202B220(WiFiList *param0, int param1, int param2)
     sub_0202B13C(param0, param1);
 }
 
-void sub_0202B248(WiFiList *param0, int param1, int param2)
-{
+void sub_0202B248(WiFiList *param0, int param1, int param2) {
     param0->unk_1C0[param1].unk_36 += param2;
 
     if (param0->unk_1C0[param1].unk_36 > 9999) {
@@ -322,8 +300,7 @@ void sub_0202B248(WiFiList *param0, int param1, int param2)
     sub_0202B13C(param0, param1);
 }
 
-void sub_0202B270(WiFiList *param0, int param1, int param2)
-{
+void sub_0202B270(WiFiList *param0, int param1, int param2) {
     param0->unk_1C0[param2].unk_24 += param0->unk_1C0[param1].unk_24;
 
     if (param0->unk_1C0[param2].unk_24 > 9999) {
@@ -374,7 +351,6 @@ void sub_0202B270(WiFiList *param0, int param1, int param2)
     param0->unk_1C0[param1].unk_2E = 2;
 }
 
-WiFiList *SaveData_GetWiFiList(SaveData *saveData)
-{
+WiFiList *SaveData_GetWiFiList(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_LIST);
 }

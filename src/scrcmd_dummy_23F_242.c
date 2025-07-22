@@ -5,24 +5,20 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_Dummy23F(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy23F(ScriptContext *ctx) {
     GF_ASSERT(0);
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy240(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy240(ScriptContext *ctx) {
     GF_ASSERT(0);
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy241(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy241(ScriptContext *ctx) {
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy242(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy242(ScriptContext *ctx) {
     return FALSE;
 }

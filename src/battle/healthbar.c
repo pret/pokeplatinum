@@ -511,8 +511,7 @@ static const SpriteTemplate sHealthbarTemplate_NoPlayerMon = {
 
 #include "battle/rodata_ov16_0226F6AC.h"
 
-void Healthbar_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType)
-{
+void Healthbar_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType) {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbarType);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
@@ -526,8 +525,7 @@ void Healthbar_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, 
     }
 }
 
-static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *handler, NARC *narc, PaletteData *palette, int type)
-{
+static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *handler, NARC *narc, PaletteData *palette, int type) {
     const SpriteTemplate *template = ov16_02268314(type);
 
     if (template != NULL) {
@@ -538,8 +536,7 @@ static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *ha
     }
 }
 
-ManagedSprite *Healthbar_DrawSprite(SpriteSystem *spriteSys, SpriteManager *handler, int type)
-{
+ManagedSprite *Healthbar_DrawSprite(SpriteSystem *spriteSys, SpriteManager *handler, int type) {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(type);
     ManagedSprite *managedSprite = SpriteSystem_NewSprite(spriteSys, handler, template);
 
@@ -547,8 +544,7 @@ ManagedSprite *Healthbar_DrawSprite(SpriteSystem *spriteSys, SpriteManager *hand
     return managedSprite;
 }
 
-void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
-{
+void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags) {
     BOOL caughtSpecies = FALSE;
 
     GF_ASSERT(healthbar->mainSprite != NULL);
@@ -667,8 +663,7 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
     }
 }
 
-void ov16_02267220(Healthbar *param0)
-{
+void ov16_02267220(Healthbar *param0) {
     if (param0->unk_50 != NULL) {
         SysTask_Done(param0->unk_50);
         param0->unk_50 = NULL;
@@ -682,8 +677,7 @@ void ov16_02267220(Healthbar *param0)
     param0->mainSprite = NULL;
 }
 
-static void ov16_02267244(Healthbar *param0)
-{
+static void ov16_02267244(Healthbar *param0) {
     if (param0->arrowSprite == NULL) {
         return;
     }
@@ -692,8 +686,7 @@ static void ov16_02267244(Healthbar *param0)
     param0->arrowSprite = NULL;
 }
 
-void ov16_02267258(Healthbar *param0)
-{
+void ov16_02267258(Healthbar *param0) {
     SpriteSystem *v0;
     SpriteManager *v1;
     const SpriteTemplate *v2 = Healthbar_SpriteTemplate(param0->type);
@@ -705,8 +698,7 @@ void ov16_02267258(Healthbar *param0)
     SpriteManager_UnloadAnimObjById(v1, v2->resources[3]);
 }
 
-static void ov16_0226728C(Healthbar *param0)
-{
+static void ov16_0226728C(Healthbar *param0) {
     SpriteSystem *v0;
     SpriteManager *v1;
     const SpriteTemplate *v2 = ov16_02268314(param0->type);
@@ -723,8 +715,7 @@ static void ov16_0226728C(Healthbar *param0)
     SpriteManager_UnloadAnimObjById(v1, v2->resources[3]);
 }
 
-void ov16_022672C4(Healthbar *param0)
-{
+void ov16_022672C4(Healthbar *param0) {
     const SpriteTemplate *v0;
     SpriteSystem *v1;
     SpriteManager *v2;
@@ -747,16 +738,14 @@ void ov16_022672C4(Healthbar *param0)
     NARC_dtor(v4);
 }
 
-void ov16_02267360(Healthbar *param0)
-{
+void ov16_02267360(Healthbar *param0) {
     ov16_02267220(param0);
     ov16_02267258(param0);
     ov16_02267244(param0);
     ov16_0226728C(param0);
 }
 
-void ov16_0226737C(Healthbar *param0)
-{
+void ov16_0226737C(Healthbar *param0) {
     const u8 *v0;
     NNSG2dImageProxy *v1;
     void *v2;
@@ -798,8 +787,7 @@ void ov16_0226737C(Healthbar *param0)
     }
 }
 
-void Healthbar_CalcHP(Healthbar *healthbar, int damage)
-{
+void Healthbar_CalcHP(Healthbar *healthbar, int damage) {
     healthbar->hpTemp = S32_MIN;
 
     // bound the damage input to [0, maxHP]
@@ -822,8 +810,7 @@ void Healthbar_CalcHP(Healthbar *healthbar, int damage)
     }
 }
 
-s32 ov16_022674F8(Healthbar *param0)
-{
+s32 ov16_022674F8(Healthbar *param0) {
     s32 v0 = Healthbar_DrawGauge(param0, 0);
 
     if (v0 == -1) {
@@ -836,8 +823,7 @@ s32 ov16_022674F8(Healthbar *param0)
     return v0;
 }
 
-void Healthbar_CalcExp(Healthbar *param0, int param1)
-{
+void Healthbar_CalcExp(Healthbar *param0, int param1) {
     param0->expTemp = -2147483648;
 
     if (param0->curExp + param1 < 0) {
@@ -859,8 +845,7 @@ void Healthbar_CalcExp(Healthbar *param0, int param1)
     }
 }
 
-s32 ov16_02267560(Healthbar *param0)
-{
+s32 ov16_02267560(Healthbar *param0) {
     s32 v0 = Healthbar_DrawGauge(param0, 1);
 
     if (v0 == -1) {
@@ -870,8 +855,7 @@ s32 ov16_02267560(Healthbar *param0)
     return v0;
 }
 
-void ov16_0226757C(Healthbar *param0)
-{
+void ov16_0226757C(Healthbar *param0) {
     if (param0->arrowSprite != NULL) {
         Sprite_SetAnimateFlag(param0->arrowSprite->sprite, 1);
         Healthbar_EnableArrow(param0, 1);
@@ -882,8 +866,7 @@ void ov16_0226757C(Healthbar *param0)
     }
 }
 
-void ov16_022675AC(Healthbar *param0)
-{
+void ov16_022675AC(Healthbar *param0) {
     if (param0->arrowSprite != NULL) {
         Sprite_SetAnimateFlag(param0->arrowSprite->sprite, 0);
         Sprite_SetAnimFrame(param0->arrowSprite->sprite, 0);
@@ -893,8 +876,7 @@ void ov16_022675AC(Healthbar *param0)
     ov16_02268498(param0);
 }
 
-void ov16_022675D8(Healthbar *param0, int param1)
-{
+void ov16_022675D8(Healthbar *param0, int param1) {
     if (param0->mainSprite == NULL) {
         return;
     }
@@ -912,8 +894,7 @@ void ov16_022675D8(Healthbar *param0, int param1)
  * @param battleSys
  * @param enable
  */
-static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
-{
+static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable) {
     if (battleSys->arrowSprite == NULL) {
         return;
     }
@@ -927,8 +908,7 @@ static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
     ManagedSprite_SetDrawFlag(battleSys->arrowSprite, enable);
 }
 
-void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
-{
+void Healthbar_Enable(Healthbar *battleSys, BOOL enable) {
     if (battleSys->mainSprite == NULL) {
         return;
     }
@@ -937,8 +917,7 @@ void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
     Healthbar_EnableArrow(battleSys, enable);
 }
 
-void Healthbar_OffsetPositionXY(Healthbar *healthbar, int x, int y)
-{
+void Healthbar_OffsetPositionXY(Healthbar *healthbar, int x, int y) {
     GF_ASSERT(healthbar->mainSprite != NULL);
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
 
@@ -950,8 +929,7 @@ void Healthbar_OffsetPositionXY(Healthbar *healthbar, int x, int y)
     }
 }
 
-void Healthbar_Scroll(Healthbar *healthbar, enum HealthbarScrollDirection direction)
-{
+void Healthbar_Scroll(Healthbar *healthbar, enum HealthbarScrollDirection direction) {
     GF_ASSERT(healthbar != NULL);
     GF_ASSERT(healthbar->mainSprite != NULL);
 
@@ -987,8 +965,7 @@ void Healthbar_Scroll(Healthbar *healthbar, enum HealthbarScrollDirection direct
  * @param task
  * @param data
  */
-static void ScrollHealthbarTask(SysTask *task, void *data)
-{
+static void ScrollHealthbarTask(SysTask *task, void *data) {
     Healthbar *healthbar = data;
     int done = 0;
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
@@ -1059,8 +1036,7 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
  *
  * @param healthbar
  */
-static void Healthbar_DrawBattlerName(Healthbar *healthbar)
-{
+static void Healthbar_DrawBattlerName(Healthbar *healthbar) {
     BgConfig *bgl;
     u8 *buf;
     NNSG2dImageProxy *imgProxy;
@@ -1114,8 +1090,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     Strbuf_Free(template);
 }
 
-static void Healthbar_DrawLevelText(Healthbar *param0)
-{
+static void Healthbar_DrawLevelText(Healthbar *param0) {
     NNSG2dImageProxy *v0;
     const u8 *v1;
     const u8 *v2;
@@ -1146,8 +1121,7 @@ static void Healthbar_DrawLevelText(Healthbar *param0)
     }
 }
 
-static void Healthbar_DrawLevelNumber(Healthbar *param0)
-{
+static void Healthbar_DrawLevelNumber(Healthbar *param0) {
     u8 *v0, *v1;
     NNSG2dImageProxy *v2;
     int v3, v4, v5, v6;
@@ -1192,8 +1166,7 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
     Heap_Free(v1);
 }
 
-static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
-{
+static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1) {
     u8 *v0;
     NNSG2dImageProxy *v1;
 
@@ -1217,8 +1190,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
     Heap_Free(v0);
 }
 
-static void Healthbar_DrawMaxHP(Healthbar *param0)
-{
+static void Healthbar_DrawMaxHP(Healthbar *param0) {
     u8 *v0;
     NNSG2dImageProxy *v1;
 
@@ -1241,8 +1213,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
     Heap_Free(v0);
 }
 
-static void Healthbar_DrawCaughtIcon(Healthbar *param0)
-{
+static void Healthbar_DrawCaughtIcon(Healthbar *param0) {
     NNSG2dImageProxy *v0;
     const u8 *v1;
 
@@ -1262,8 +1233,7 @@ static void Healthbar_DrawCaughtIcon(Healthbar *param0)
     }
 }
 
-static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
-{
+static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1) {
     NNSG2dImageProxy *v0;
     const u8 *v1 = ov16_02268250(param1);
 
@@ -1277,8 +1247,7 @@ static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
     }
 }
 
-static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
-{
+static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1) {
     BgConfig *v0;
     u8 *v1;
     NNSG2dImageProxy *v2;
@@ -1320,8 +1289,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     Strbuf_Free(v5);
 }
 
-static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
-{
+static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1) {
     BgConfig *v0;
     u8 *v1;
     NNSG2dImageProxy *v2;
@@ -1368,8 +1336,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     Strbuf_Free(v6);
 }
 
-static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType)
-{
+static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType) {
     s32 result;
     s32 fillOffset;
 
@@ -1401,8 +1368,7 @@ static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gau
     return result;
 }
 
-static void DrawGauge(Healthbar *param0, u8 param1)
-{
+static void DrawGauge(Healthbar *param0, u8 param1) {
     u8 v0;
     u8 v1[12];
     u8 v2, v3;
@@ -1484,8 +1450,7 @@ static void DrawGauge(Healthbar *param0, u8 param1)
  * @param temp      Temporary value stored in the gauge
  * @return          Number of pixels to be filled
  */
-static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillOffset)
-{
+static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillOffset) {
     s32 updated, final, ratio;
 
     u8 corrected = size * 8;
@@ -1561,8 +1526,7 @@ static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillO
     return final;
 }
 
-static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum)
-{
+static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum) {
     int cell;
     u32 offset, pixels, final;
     s32 updated = cur - diff;
@@ -1615,8 +1579,7 @@ static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum
  * @param gaugeSize Size of the gauge, in squares of fill
  * @return          Number of pixels to be filled
  */
-static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize)
-{
+static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize) {
     u8 gaugeSizePixels = gaugeSize * 8; // gauges have 8 pixels per "square" of fill
     s32 newVal = curVal - diff;
 
@@ -1632,13 +1595,11 @@ static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize)
     return abs(curPixels - newPixels);
 }
 
-static const u8 *ov16_02268250(int param0)
-{
+static const u8 *ov16_02268250(int param0) {
     return &Unk_ov16_0226F6AC[param0 * 0x20];
 }
 
-u8 Healthbar_Type(int battlerType, u32 battleType)
-{
+u8 Healthbar_Type(int battlerType, u32 battleType) {
     switch (battlerType) {
     case BATTLER_TYPE_SOLO_PLAYER:
         if (battleType & BATTLE_TYPE_PAL_PARK) {
@@ -1679,8 +1640,7 @@ u8 Healthbar_Type(int battlerType, u32 battleType)
  * @return      Address of the SpriteTemplate struct which applies to this
  *              healthbar type.
  */
-static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type)
-{
+static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type) {
     switch (type) {
     case HEALTHBAR_TYPE_PLAYER_SOLO:
         return &sHealthbarTemplate_SoloPlayer;
@@ -1710,8 +1670,7 @@ static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type)
     }
 }
 
-static const SpriteTemplate *ov16_02268314(u8 param0)
-{
+static const SpriteTemplate *ov16_02268314(u8 param0) {
     const SpriteTemplate *v0;
 
     switch (param0) {
@@ -1734,8 +1693,7 @@ static const SpriteTemplate *ov16_02268314(u8 param0)
     return v0;
 }
 
-void ov16_0226834C(Healthbar *param0, u8 *param1)
-{
+void ov16_0226834C(Healthbar *param0, u8 *param1) {
     UnkStruct_ov16_0226834C *v0;
 
     *param1 = 0;
@@ -1749,8 +1707,7 @@ void ov16_0226834C(Healthbar *param0, u8 *param1)
     SysTask_Start(ov16_02268380, v0, 1000);
 }
 
-static void ov16_02268380(SysTask *param0, void *param1)
-{
+static void ov16_02268380(SysTask *param0, void *param1) {
     UnkStruct_ov16_0226834C *v0 = param1;
     SpriteManager *v1;
     int v2;
@@ -1798,18 +1755,15 @@ static void ov16_02268380(SysTask *param0, void *param1)
     }
 }
 
-void ov16_02268468(Healthbar *param0)
-{
+void ov16_02268468(Healthbar *param0) {
     return;
 }
 
-void ov16_0226846C(Healthbar *param0)
-{
+void ov16_0226846C(Healthbar *param0) {
     return;
 }
 
-void ov16_02268470(Healthbar *param0)
-{
+void ov16_02268470(Healthbar *param0) {
     if (param0->unk_50 != NULL) {
         return;
     }
@@ -1818,8 +1772,7 @@ void ov16_02268470(Healthbar *param0)
     param0->unk_50 = SysTask_Start(ov16_022684BC, param0, 1010);
 }
 
-void ov16_02268498(Healthbar *param0)
-{
+void ov16_02268498(Healthbar *param0) {
     if (param0->unk_50 != NULL) {
         SysTask_Done(param0->unk_50);
         param0->unk_50 = NULL;
@@ -1829,8 +1782,7 @@ void ov16_02268498(Healthbar *param0)
     Healthbar_OffsetPositionXY(param0, 0, 0);
 }
 
-static void ov16_022684BC(SysTask *param0, void *param1)
-{
+static void ov16_022684BC(SysTask *param0, void *param1) {
     Healthbar *v0 = param1;
     int v1;
 

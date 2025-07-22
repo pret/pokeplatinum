@@ -41,8 +41,7 @@ static void TrainerCard_SetLinkDataAndSignature(u32 param0, u32 param1, u32 para
 static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *trainerCard);
 static BOOL sub_02072230(FieldTask *param0);
 
-void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *fieldSystem, TrainerCard *trainerCard)
-{
+void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *fieldSystem, TrainerCard *trainerCard) {
     SaveData *saveData = FieldSystem_GetSaveData(fieldSystem);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
     GameRecords *gameRecords = SaveData_GetGameRecords(saveData);
@@ -84,21 +83,18 @@ void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *f
     trainerCard->unk_66A = 0;
 }
 
-TrainerCard *TrainerCard_New(u16 heapID)
-{
+TrainerCard *TrainerCard_New(u16 heapID) {
     TrainerCard *trainerCard = Heap_AllocFromHeap(heapID, sizeof(TrainerCard));
 
     memset(trainerCard, 0, sizeof(TrainerCard));
     return trainerCard;
 }
 
-void TrainerCard_Free(TrainerCard *trainerCard)
-{
+void TrainerCard_Free(TrainerCard *trainerCard) {
     Heap_Free(trainerCard);
 }
 
-u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem)
-{
+u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem) {
     u8 trainerCardStars;
 
     SaveData *saveData = FieldSystem_GetSaveData(fieldSystem);
@@ -131,8 +127,7 @@ u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem)
     return trainerCardStars;
 }
 
-static void sub_02072014(u8 param0, u8 gameVersion, u8 stars, u8 param3, u8 regionCode, TrainerCard *trainerCard)
-{
+static void sub_02072014(u8 param0, u8 gameVersion, u8 stars, u8 param3, u8 regionCode, TrainerCard *trainerCard) {
     trainerCard->unk_04_0 = param0;
     trainerCard->gameVersion = gameVersion;
     trainerCard->stars = stars;
@@ -140,8 +135,7 @@ static void sub_02072014(u8 param0, u8 gameVersion, u8 stars, u8 param3, u8 regi
     trainerCard->unk_02 = param3;
 }
 
-static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard)
-{
+static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard) {
     trainerCard->id = id;
     trainerCard->gender = gender;
 
@@ -153,8 +147,7 @@ static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 m
     trainerCard->score = score;
 }
 
-static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *firstCompletionDate, const RTCTime *firstCompletionTime, const u8 param5, TrainerCard *trainerCard)
-{
+static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *firstCompletionDate, const RTCTime *firstCompletionTime, const u8 param5, TrainerCard *trainerCard) {
     trainerCard->playTimeHours = PlayTime_GetHours(playTime);
     trainerCard->playTimeMinutes = PlayTime_GetMinutes(playTime);
     trainerCard->adventureStartedYear = adventureStartedDate->year;
@@ -184,8 +177,7 @@ static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, con
     }
 }
 
-static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleWins, u32 linkBattleLosses, u32 linkTrades, const u8 *signature, TrainerCard *trainerCard)
-{
+static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleWins, u32 linkBattleLosses, u32 linkTrades, const u8 *signature, TrainerCard *trainerCard) {
     trainerCard->timesLinked = timesLinked;
 
     if (trainerCard->timesLinked > 999999) {
@@ -212,8 +204,7 @@ static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleW
     MI_CpuCopy8(signature, trainerCard->signature, 24 * 8 * 8);
 }
 
-static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *trainerCard)
-{
+static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *trainerCard) {
     u8 v0;
     TrainerCardSaveData *v1 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
     TrainerCardBadge *v2 = TrainerCardSaveData_GetTrainerCardBadges(v1);
@@ -229,8 +220,7 @@ static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerC
     }
 }
 
-void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *trainerCard)
-{
+void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *trainerCard) {
     u8 v0;
     TrainerCardSaveData *v1 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
     TrainerCardBadge *v2 = TrainerCardSaveData_GetTrainerCardBadges(v1);
@@ -240,8 +230,7 @@ void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *trainerCard)
     }
 }
 
-void sub_02072204(FieldSystem *fieldSystem)
-{
+void sub_02072204(FieldSystem *fieldSystem) {
     UnkStruct_02072204 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02072204));
 
     v0->unk_00 = 0;
@@ -250,8 +239,7 @@ void sub_02072204(FieldSystem *fieldSystem)
     FieldTask_InitCall(fieldSystem->task, sub_02072230, v0);
 }
 
-static BOOL sub_02072230(FieldTask *param0)
-{
+static BOOL sub_02072230(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_02072204 *v1 = FieldTask_GetEnv(param0);
 

@@ -29,18 +29,15 @@ static const VecFx32 Unk_ov12_0223A224 = {
     0x0
 };
 
-void include_unk_ov12_0223A218(VecFx32 *dummy)
-{
+void include_unk_ov12_0223A218(VecFx32 *dummy) {
     *dummy = Unk_ov12_0223A218;
 }
 
-int BattleAnimUtil_GetBattlerType(BattleAnimSystem *system, int battler)
-{
+int BattleAnimUtil_GetBattlerType(BattleAnimSystem *system, int battler) {
     return BattleAnimSystem_GetBattlerType(system, battler);
 }
 
-enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *system, int battler)
-{
+enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *system, int battler) {
     int battlerType;
     int type = BattleAnimSystem_GetBattlerType(system, battler);
 
@@ -60,8 +57,7 @@ enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *system, int battler
     return battlerType;
 }
 
-int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *system, int type)
-{
+int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *system, int type) {
     for (int battler = 0; battler < MAX_BATTLERS; battler++) {
         int battlerType = BattleAnimSystem_GetBattlerType(system, battler);
         if (battlerType == type) {
@@ -72,8 +68,7 @@ int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *system, int type)
     return 0;
 }
 
-int BattleAnimUtil_GetAlliedBattlerType(BattleAnimSystem *system, int battler)
-{
+int BattleAnimUtil_GetAlliedBattlerType(BattleAnimSystem *system, int battler) {
     int type = BattleAnimSystem_GetBattlerType(system, battler);
     if (type == BATTLER_TYPE_SOLO_PLAYER || type == BATTLER_TYPE_SOLO_ENEMY) {
         return type;
@@ -111,8 +106,7 @@ int BattleAnimUtil_GetAlliedBattlerType(BattleAnimSystem *system, int battler)
     return type;
 }
 
-int BattleAnimUtil_GetOpposingBattlerType(int battlerType)
-{
+int BattleAnimUtil_GetOpposingBattlerType(int battlerType) {
     switch (battlerType) {
     case BATTLER_TYPE_SOLO_PLAYER:
         return BATTLER_TYPE_SOLO_ENEMY;
@@ -132,8 +126,7 @@ int BattleAnimUtil_GetOpposingBattlerType(int battlerType)
     return BATTLER_TYPE_SOLO_PLAYER;
 }
 
-void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
-{
+void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2) {
     const UnkStruct_ov12_02235350 v0[] = {
         { 0x40, 0x70 },
         { 0xC0, 0x30 },
@@ -159,16 +152,14 @@ void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
     *param2 = v0[param0];
 }
 
-void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2)
-{
+void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2) {
     int v0 = BattleAnimUtil_GetBattlerType(param0, param1);
     int v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235350(v0, v1, param2);
 }
 
-static void ov12_022353CC(int param0, VecFx32 *param1, int param2, int param3, int param4)
-{
+static void ov12_022353CC(int param0, VecFx32 *param1, int param2, int param3, int param4) {
     int v0;
     const VecFx32 *v1;
     const VecFx32 v2[][24] = {
@@ -402,68 +393,55 @@ static void ov12_022353CC(int param0, VecFx32 *param1, int param2, int param3, i
     VEC_Set(param1, v1->x, v1->y, v1->z);
 }
 
-void ov12_02235448(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_02235448(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 0);
 }
 
-void ov12_02235458(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_02235458(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 1);
 }
 
-void ov12_02235468(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_02235468(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 2);
 }
 
-void ov12_02235478(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_02235478(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 3);
 }
 
-void ov12_02235488(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_02235488(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 4);
 }
 
-void ov12_02235498(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_02235498(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 5);
 }
 
-void ov12_022354A8(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_022354A8(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 6);
 }
 
-void ov12_022354B8(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_022354B8(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 7);
 }
 
-void ov12_022354C8(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_022354C8(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 8);
 }
 
-void ov12_022354D8(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_022354D8(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 9);
 }
 
-void ov12_022354E8(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_022354E8(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 10);
 }
 
-void ov12_022354F8(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_022354F8(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_022353CC(param0, param1, param2, param3, 11);
 }
 
-void ov12_02235508(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235508(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -474,8 +452,7 @@ void ov12_02235508(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_02235448(v0, param2, v1, v2);
 }
 
-void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -486,8 +463,7 @@ void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_02235458(v0, param2, v1, v2);
 }
 
-void ov12_02235568(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235568(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -498,8 +474,7 @@ void ov12_02235568(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_02235468(v0, param2, v1, v2);
 }
 
-void ov12_02235598(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235598(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -510,8 +485,7 @@ void ov12_02235598(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_02235478(v0, param2, v1, v2);
 }
 
-void ov12_022355C8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_022355C8(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -522,8 +496,7 @@ void ov12_022355C8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_02235488(v0, param2, v1, v2);
 }
 
-void ov12_022355F8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_022355F8(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -534,8 +507,7 @@ void ov12_022355F8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_02235498(v0, param2, v1, v2);
 }
 
-void ov12_02235628(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235628(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -546,8 +518,7 @@ void ov12_02235628(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_022354A8(v0, param2, v1, v2);
 }
 
-void ov12_02235658(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235658(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -558,8 +529,7 @@ void ov12_02235658(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_022354B8(v0, param2, v1, v2);
 }
 
-void ov12_02235688(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235688(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -570,8 +540,7 @@ void ov12_02235688(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_022354C8(v0, param2, v1, v2);
 }
 
-void ov12_022356B8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_022356B8(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -582,8 +551,7 @@ void ov12_022356B8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_022354D8(v0, param2, v1, v2);
 }
 
-void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -594,8 +562,7 @@ void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_022354E8(v0, param2, v1, v2);
 }
 
-void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2)
-{
+void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2) {
     int v0, v1;
     int v2;
     ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
@@ -606,20 +573,17 @@ void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_022354F8(v0, param2, v1, v2);
 }
 
-void ov12_02235748(VecFx32 *param0)
-{
+void ov12_02235748(VecFx32 *param0) {
     param0->x = 0;
     param0->y = (+16512) + (60 * 172);
     param0->z = 0;
 }
 
-void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3)
-{
+void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3) {
     ov12_02235448(param0, param1, param2, param3);
 }
 
-void ov12_02235760(int param0, VecFx32 *param1)
-{
+void ov12_02235760(int param0, VecFx32 *param1) {
     if (param0 == 0) {
         ParticleSystem_GetDefaultCameraUp(param1);
     } else {
@@ -627,8 +591,7 @@ void ov12_02235760(int param0, VecFx32 *param1)
     }
 }
 
-void ov12_02235780(BattleAnimSystem *param0, int param1, int param2)
-{
+void ov12_02235780(BattleAnimSystem *param0, int param1, int param2) {
     int v0 = param1;
     int v1 = param2;
 
@@ -643,8 +606,7 @@ void ov12_02235780(BattleAnimSystem *param0, int param1, int param2)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BG0, v0, v1);
 }
 
-void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
-{
+void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3) {
     int v0 = param2;
     int v1 = param3;
 
@@ -659,8 +621,7 @@ void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, param1, v0, v1);
 }
 
-void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2)
-{
+void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2) {
     int v0 = param1;
     int v1 = param2;
 
@@ -675,8 +636,7 @@ void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2)
     G2_SetBlendAlpha(1 << BattleAnimSystem_GetBgID(param0, 1), (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
 }
 
-void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)
-{
+void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2) {
     if (param1 == 0) {
         G2_SetWnd0InsidePlane((1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
     } else {
@@ -686,8 +646,7 @@ void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)
     G2_SetWndOutsidePlane((1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
 }
 
-void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
-{
+void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1) {
     if (param0 == NULL) {
         param1->unk_00 = 0;
         param1->unk_02 = 0;
@@ -702,13 +661,11 @@ void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
     param1->unk_02 = PokemonSprite_GetAttribute(param0, MON_SPRITE_Y_CENTER);
 }
 
-void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)
-{
+void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1) {
     ManagedSprite_GetPositionXY(param0, &(param1->unk_00), &(param1->unk_02));
 }
 
-void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
-{
+void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1) {
     param1->unk_00 = 0;
     param1->unk_01 = 0;
     param1->unk_02 = 0;
@@ -721,8 +678,7 @@ void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
     param1->unk_18 = BattleAnimSystem_GetPaletteData(param0);
 }
 
-void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
-{
+void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3) {
     *param3 = 0;
 
     if (inline_ov12_02235998(param1, 0x40) == 1) {
@@ -862,8 +818,7 @@ void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 }
 
-void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
-{
+void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3) {
     *param3 = 0;
 
     if (inline_ov12_02235998(param1, 0x2) == 1) {
@@ -891,8 +846,7 @@ void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998
     }
 }
 
-void *ov12_02235E50(BattleAnimSystem *param0, int param1)
-{
+void *ov12_02235E50(BattleAnimSystem *param0, int param1) {
     int heapID;
     void *v1 = NULL;
 
@@ -907,8 +861,7 @@ void *ov12_02235E50(BattleAnimSystem *param0, int param1)
     return v1;
 }
 
-void ov12_02235E80(void *param0)
-{
+void ov12_02235E80(void *param0) {
     GF_ASSERT(param0 != NULL);
     Heap_Free(param0);
 }

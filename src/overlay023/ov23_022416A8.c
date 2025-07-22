@@ -69,13 +69,11 @@ static void ov23_022418C0(UnkStruct_ov23_02241974 *param0);
 
 static UnkStruct_ov23_02257744 *Unk_ov23_02257744 = NULL;
 
-static void ov23_022416A8(int param0)
-{
+static void ov23_022416A8(int param0) {
     sub_02059514();
 }
 
-static void ov23_022416B0(int param0)
-{
+static void ov23_022416B0(int param0) {
     if (param0 > 0) {
         ov23_02254154(ov23_0224219C(), 0, param0);
         ov23_02253F40(ov23_0224219C(), 75, 1, ov23_022416A8);
@@ -84,8 +82,7 @@ static void ov23_022416B0(int param0)
     }
 }
 
-void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
-{
+void ov23_022416E0(void *param0, FieldSystem *fieldSystem) {
     int v0;
     Underground *v1;
 
@@ -112,8 +109,7 @@ void ov23_022416E0(void *param0, FieldSystem *fieldSystem)
     }
 }
 
-static void ov23_02241778(void)
-{
+static void ov23_02241778(void) {
     Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1;
 
@@ -122,31 +118,26 @@ static void ov23_02241778(void)
     }
 }
 
-int ov23_022417C4(void)
-{
+int ov23_022417C4(void) {
     return sizeof(UnkStruct_ov23_02257744);
 }
 
-void ov23_022417CC(void)
-{
+void ov23_022417CC(void) {
     Unk_ov23_02257744->unk_476 = 1;
 }
 
-void ov23_022417E0(void)
-{
+void ov23_022417E0(void) {
     Unk_ov23_02257744->unk_476 = 0;
 }
 
-void ov23_022417F4(void)
-{
+void ov23_022417F4(void) {
     if (Unk_ov23_02257744) {
         Heap_Free(Unk_ov23_02257744);
         Unk_ov23_02257744 = NULL;
     }
 }
 
-void ov23_02241810(void)
-{
+void ov23_02241810(void) {
     if (Unk_ov23_02257744->unk_476) {
         return;
     }
@@ -168,8 +159,7 @@ void ov23_02241810(void)
     }
 }
 
-static UnkStruct_ov23_0224271C *ov23_02241890(UnkStruct_ov23_0224271C *param0, int param1)
-{
+static UnkStruct_ov23_0224271C *ov23_02241890(UnkStruct_ov23_0224271C *param0, int param1) {
     if (Unk_ov23_02257744->unk_2BC[param1] == NULL) {
         return NULL;
     }
@@ -180,8 +170,7 @@ static UnkStruct_ov23_0224271C *ov23_02241890(UnkStruct_ov23_0224271C *param0, i
     return param0;
 }
 
-static void ov23_022418C0(UnkStruct_ov23_02241974 *param0)
-{
+static void ov23_022418C0(UnkStruct_ov23_02241974 *param0) {
     int v0, v1;
     UnkStruct_ov23_0224271C v2;
 
@@ -201,8 +190,7 @@ static void ov23_022418C0(UnkStruct_ov23_02241974 *param0)
     Unk_ov23_02257744->unk_2BC[v0] = param0;
 }
 
-static void ov23_02241928(UnkStruct_ov23_02241974 *param0)
-{
+static void ov23_02241928(UnkStruct_ov23_02241974 *param0) {
     int v0 = -1;
     UnkStruct_ov23_0224271C v1;
     int v2;
@@ -216,8 +204,7 @@ static void ov23_02241928(UnkStruct_ov23_02241974 *param0)
     }
 }
 
-static UnkStruct_ov23_02241974 *ov23_02241960(UnkStruct_ov23_02241974 *param0)
-{
+static UnkStruct_ov23_02241974 *ov23_02241960(UnkStruct_ov23_02241974 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 100; v0++) {
@@ -231,13 +218,11 @@ static UnkStruct_ov23_02241974 *ov23_02241960(UnkStruct_ov23_02241974 *param0)
     return NULL;
 }
 
-static UnkStruct_ov23_02241974 *ov23_02241974(UnkStruct_ov23_02241974 *param0)
-{
+static UnkStruct_ov23_02241974 *ov23_02241974(UnkStruct_ov23_02241974 *param0) {
     return param0;
 }
 
-static UnkStruct_ov23_02241974 *ov23_02241978(int param0, int param1)
-{
+static UnkStruct_ov23_02241974 *ov23_02241978(int param0, int param1) {
     UnkStruct_ov23_0224271C v0;
     int v1;
 
@@ -255,8 +240,7 @@ static UnkStruct_ov23_02241974 *ov23_02241978(int param0, int param1)
     return Unk_ov23_02257744->unk_2BC[v1];
 }
 
-void ov23_022419B4(int param0, int param1, void *param2, void *param3)
-{
+void ov23_022419B4(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
     int v1 = CommSys_CurNetId();
     int v2, v3, v4;
@@ -299,14 +283,12 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov23_02241A80(UnkStruct_ov23_02241A80 *param0, int param1)
-{
+void ov23_02241A80(UnkStruct_ov23_02241A80 *param0, int param1) {
     param0->unk_02 = param1;
     param0->unk_00 = 0;
 }
 
-BOOL ov23_02241A88(UnkStruct_ov23_02241A80 *param0, UnkStruct_ov23_02241A88 *param1)
-{
+BOOL ov23_02241A88(UnkStruct_ov23_02241A80 *param0, UnkStruct_ov23_02241A88 *param1) {
     int v0, v1, v2, v3;
 
     v1 = param0->unk_00;
@@ -344,8 +326,7 @@ BOOL ov23_02241A88(UnkStruct_ov23_02241A80 *param0, UnkStruct_ov23_02241A88 *par
     return 0;
 }
 
-void ov23_02241AE8(int param0, int param1, int param2, int param3)
-{
+void ov23_02241AE8(int param0, int param1, int param2, int param3) {
     UnkStruct_ov23_02241974 v0;
     UnkStruct_ov23_02241974 *v1;
     BOOL v2 = 0;
@@ -408,8 +389,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
     }
 }
 
-static void ov23_02241C48(UnkStruct_ov23_02241974 *param0)
-{
+static void ov23_02241C48(UnkStruct_ov23_02241974 *param0) {
     UnkStruct_ov23_02241974 *v0;
     int v1 = -1, v2;
 
@@ -432,8 +412,7 @@ static void ov23_02241C48(UnkStruct_ov23_02241974 *param0)
     ov23_02241928(param0);
 }
 
-static void ov23_02241CAC(UnkStruct_ov23_02241974 *param0)
-{
+static void ov23_02241CAC(UnkStruct_ov23_02241974 *param0) {
     UnkStruct_ov23_02241974 *v0 = ov23_02241960(Unk_ov23_02257744->unk_00);
     int v1;
 
@@ -451,8 +430,7 @@ static void ov23_02241CAC(UnkStruct_ov23_02241974 *param0)
     ov23_02241778();
 }
 
-BOOL IsMiningItemSphere(int miningItemID)
-{
+BOOL IsMiningItemSphere(int miningItemID) {
     if ((miningItemID != 0) && (miningItemID < MINING_TREASURE_OVAL_STONE)) {
         return TRUE;
     }
@@ -460,8 +438,7 @@ BOOL IsMiningItemSphere(int miningItemID)
     return FALSE;
 }
 
-BOOL ov23_02241D04(int param0, int param1)
-{
+BOOL ov23_02241D04(int param0, int param1) {
     if (ov23_02241978(param0, param1)) {
         return 1;
     }
@@ -469,8 +446,7 @@ BOOL ov23_02241D04(int param0, int param1)
     return 0;
 }
 
-int ov23_02241D18(int param0)
-{
+int ov23_02241D18(int param0) {
     if (Unk_ov23_02257744 && (Unk_ov23_02257744->unk_00[param0].unk_06 != 0)) {
         return Unk_ov23_02257744->unk_00[param0].unk_00;
     }
@@ -478,8 +454,7 @@ int ov23_02241D18(int param0)
     return 0;
 }
 
-int ov23_02241D38(int param0)
-{
+int ov23_02241D38(int param0) {
     if (Unk_ov23_02257744 && (Unk_ov23_02257744->unk_00[param0].unk_06 != 0)) {
         return Unk_ov23_02257744->unk_00[param0].unk_02;
     }
@@ -487,8 +462,7 @@ int ov23_02241D38(int param0)
     return 0;
 }
 
-BOOL ov23_02241D58(Strbuf *param0)
-{
+BOOL ov23_02241D58(Strbuf *param0) {
     int v0;
     StringTemplate *v1 = NULL;
     Strbuf *v2 = NULL;
@@ -525,8 +499,7 @@ BOOL ov23_02241D58(Strbuf *param0)
     return v3;
 }
 
-int ov23_02241DF8(MATHRandContext16 *param0)
-{
+int ov23_02241DF8(MATHRandContext16 *param0) {
     Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257744->fieldSystem));
     int v1, v2, v3;
 
@@ -541,8 +514,7 @@ int ov23_02241DF8(MATHRandContext16 *param0)
     return v3;
 }
 
-static void ov23_02241E4C(SysTask *param0, void *param1)
-{
+static void ov23_02241E4C(SysTask *param0, void *param1) {
     UnkStruct_ov23_02241E4C *v0 = param1;
 
     v0->unk_02++;
@@ -553,8 +525,7 @@ static void ov23_02241E4C(SysTask *param0, void *param1)
     }
 }
 
-void ov23_02241E6C(void)
-{
+void ov23_02241E6C(void) {
     UnkStruct_ov23_02241E4C *v0;
 
     GF_ASSERT(!Unk_ov23_02257744->unk_460);
@@ -568,8 +539,7 @@ void ov23_02241E6C(void)
     Unk_ov23_02257744->unk_45C = SysTask_Start(ov23_02241E4C, v0, 100);
 }
 
-void ov23_02241ED0(void)
-{
+void ov23_02241ED0(void) {
     if (Unk_ov23_02257744->unk_45C) {
         SysTask_Done(Unk_ov23_02257744->unk_45C);
         Heap_Free(Unk_ov23_02257744->unk_460);
@@ -579,8 +549,7 @@ void ov23_02241ED0(void)
     }
 }
 
-int ov23_02241F0C(int param0)
-{
+int ov23_02241F0C(int param0) {
     if (Unk_ov23_02257744 && Unk_ov23_02257744->unk_460) {
         int v0 = Unk_ov23_02257744->unk_460->unk_02 / 2;
         v0 = (v0 + param0) % 100;
@@ -591,8 +560,7 @@ int ov23_02241F0C(int param0)
     return 0;
 }
 
-int ov23_02241F40(int param0)
-{
+int ov23_02241F40(int param0) {
     if (Unk_ov23_02257744 && Unk_ov23_02257744->unk_460) {
         int v0 = Unk_ov23_02257744->unk_460->unk_02 / 2;
 

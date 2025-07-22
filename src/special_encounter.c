@@ -10,13 +10,11 @@
 #include "roaming_pokemon.h"
 #include "savedata.h"
 
-int SpecialEncounter_SaveSize(void)
-{
+int SpecialEncounter_SaveSize(void) {
     return sizeof(SpecialEncounter);
 }
 
-void SpecialEncounter_Init(SpecialEncounter *specialEncounter)
-{
+void SpecialEncounter_Init(SpecialEncounter *specialEncounter) {
     memset(specialEncounter, 0, sizeof(SpecialEncounter));
 
     specialEncounter->marshDaily = MTRNG_Next();
@@ -44,14 +42,12 @@ void SpecialEncounter_Init(SpecialEncounter *specialEncounter)
     specialEncounter->fluteFactor = FLUTE_FACTOR_NONE;
 }
 
-void SpecialEncounter_SetMixedRecordDailies(SpecialEncounter *speEnc, const u32 mixedRecord)
-{
+void SpecialEncounter_SetMixedRecordDailies(SpecialEncounter *speEnc, const u32 mixedRecord) {
     speEnc->marshDaily = mixedRecord;
     speEnc->swarmDaily = mixedRecord;
 }
 
-u32 SpecialEncounter_GetDailyMon(SpecialEncounter *speEnc, const u8 dailyType)
-{
+u32 SpecialEncounter_GetDailyMon(SpecialEncounter *speEnc, const u8 dailyType) {
     switch (dailyType) {
     case DAILY_MARSH:
         return speEnc->marshDaily;
@@ -63,42 +59,35 @@ u32 SpecialEncounter_GetDailyMon(SpecialEncounter *speEnc, const u8 dailyType)
     }
 }
 
-RadarChainRecords *SpecialEncounter_GetRadarChainRecords(SpecialEncounter *speEnc)
-{
+RadarChainRecords *SpecialEncounter_GetRadarChainRecords(SpecialEncounter *speEnc) {
     return &(speEnc->chainRecords);
 }
 
-SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *saveData)
-{
+SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_ENCOUNTERS);
 }
 
 // This is exclusively used in combination with SpecialEncounter_GetHoneyTree, so they could've just been one function...
-PlayerHoneyTreeStates *SpecialEncounter_GetPlayerHoneyTreeStates(SpecialEncounter *speEnc)
-{
+PlayerHoneyTreeStates *SpecialEncounter_GetPlayerHoneyTreeStates(SpecialEncounter *speEnc) {
     return &(speEnc->treeStates);
 }
 
-const int SpecialEncounter_GetLastSlatheredTreeId(PlayerHoneyTreeStates *treeDat)
-{
+const int SpecialEncounter_GetLastSlatheredTreeId(PlayerHoneyTreeStates *treeDat) {
     return treeDat->lastSlatheredTree;
 }
 
-void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, PlayerHoneyTreeStates *treeDat)
-{
+void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, PlayerHoneyTreeStates *treeDat) {
     treeDat->lastSlatheredTree = treeId;
 }
 
 // Inconsistency: Roamers have bounds checking on the IDs used, but Honey Trees don't
-HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, PlayerHoneyTreeStates *treeDat)
-{
+HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, PlayerHoneyTreeStates *treeDat) {
     HoneyTree *tree = &treeDat->honeyTrees[treeId];
     return tree;
 }
 
 // These are minute timers. They start at 24 hours'worth of minutes
-void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *saveData, const int decrement)
-{
+void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *saveData, const int decrement) {
     int i;
     PlayerHoneyTreeStates *treeDat;
     SpecialEncounter *speEnc;
@@ -120,61 +109,51 @@ void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *saveData, const int dec
     }
 }
 
-void SpecialEncounter_EnableSwarms(SaveData *saveData)
-{
+void SpecialEncounter_EnableSwarms(SaveData *saveData) {
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(saveData);
     speEnc->swarmEnabled = 1;
 }
 
-u8 SpecialEncounter_IsSwarmEnabled(SpecialEncounter *speEnc)
-{
+u8 SpecialEncounter_IsSwarmEnabled(SpecialEncounter *speEnc) {
     return speEnc->swarmEnabled;
 }
 
-void SpecialEncounter_UpdateRecentRoutes(SpecialEncounter *speEnc, const int newMap)
-{
+void SpecialEncounter_UpdateRecentRoutes(SpecialEncounter *speEnc, const int newMap) {
     if (speEnc->recentRoutes.currentMapId != newMap) {
         speEnc->recentRoutes.previousMapId = speEnc->recentRoutes.currentMapId;
         speEnc->recentRoutes.currentMapId = newMap;
     }
 }
 
-int SpecialEncounter_GetPlayerPreviousMap(SpecialEncounter *speEnc)
-{
+int SpecialEncounter_GetPlayerPreviousMap(SpecialEncounter *speEnc) {
     return speEnc->recentRoutes.previousMapId;
 }
 
-u8 SpecialEncounter_GetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId)
-{
+u8 SpecialEncounter_GetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId) {
     GF_ASSERT(roamerId < ROAMING_SLOT_MAX);
     return speEnc->roamerRouteIndexes[roamerId];
 }
 
-void SpecialEncounter_SetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId, const u8 routeIndex)
-{
+void SpecialEncounter_SetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId, const u8 routeIndex) {
     GF_ASSERT(roamerId < ROAMING_SLOT_MAX);
     speEnc->roamerRouteIndexes[roamerId] = routeIndex;
 }
 
-u8 SpecialEncounter_IsRoamerActive(SpecialEncounter *speEnc, const u8 slot)
-{
+u8 SpecialEncounter_IsRoamerActive(SpecialEncounter *speEnc, const u8 slot) {
     GF_ASSERT(slot < ROAMING_SLOT_MAX);
     return speEnc->roamers[slot].active;
 }
 
-void SpecialEncounter_ZeroRoamerData(Roamer **roamer)
-{
+void SpecialEncounter_ZeroRoamerData(Roamer **roamer) {
     memset((*roamer), 0, sizeof(Roamer));
 }
 
-Roamer *SpecialEncounter_GetRoamer(SpecialEncounter *speEnc, const u8 slot)
-{
+Roamer *SpecialEncounter_GetRoamer(SpecialEncounter *speEnc, const u8 slot) {
     GF_ASSERT(slot < ROAMING_SLOT_MAX);
     return &(speEnc->roamers[slot]);
 }
 
-u32 Roamer_GetData(const Roamer *roamer, const u8 dataType)
-{
+u32 Roamer_GetData(const Roamer *roamer, const u8 dataType) {
     u32 data; // awesome uninitialized variable with no default case
 
     switch (dataType) {
@@ -207,8 +186,7 @@ u32 Roamer_GetData(const Roamer *roamer, const u8 dataType)
     return data;
 }
 
-void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data)
-{
+void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data) {
     switch (dataType) {
     case ROAMER_DATA_MAP_ID:
         roamer->currentMapId = data;
@@ -237,18 +215,15 @@ void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data)
     }
 }
 
-u8 *SpecialEncounter_GetRadarCharge(SpecialEncounter *speEnc)
-{
+u8 *SpecialEncounter_GetRadarCharge(SpecialEncounter *speEnc) {
     return &(speEnc->radarCharge);
 }
 
-u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *speEnc)
-{
+u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *speEnc) {
     return &(speEnc->repelSteps);
 }
 
-BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *speEnc)
-{
+BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *speEnc) {
     if (!speEnc->repelSteps) {
         return TRUE;
     } else {
@@ -256,19 +231,16 @@ BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *speEnc)
     }
 }
 
-void SpecialEncounter_SetFluteFactor(SpecialEncounter *speEnc, const u8 flute)
-{
+void SpecialEncounter_SetFluteFactor(SpecialEncounter *speEnc, const u8 flute) {
     GF_ASSERT((flute == FLUTE_FACTOR_USED_BLACK) || (flute == FLUTE_FACTOR_USED_WHITE) || (flute == FLUTE_FACTOR_NONE));
     speEnc->fluteFactor = flute;
 }
 
-u8 SpecialEncounter_GetFluteFactor(SpecialEncounter *speEnc)
-{
+u8 SpecialEncounter_GetFluteFactor(SpecialEncounter *speEnc) {
     return speEnc->fluteFactor;
 }
 
-void SpecialEncounter_GetTrophyGardenMons(SaveData *saveData, u16 *slot1, u16 *slot2)
-{
+void SpecialEncounter_GetTrophyGardenMons(SaveData *saveData, u16 *slot1, u16 *slot2) {
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(saveData);
 
     (*slot1) = speEnc->trophyGarden.slot1;
@@ -276,8 +248,7 @@ void SpecialEncounter_GetTrophyGardenMons(SaveData *saveData, u16 *slot1, u16 *s
 }
 
 // Assigns slot1 mon to slot2 and newMon to slot1
-void TrophyGarden_ShiftSlotsForNewMon(SaveData *saveData, const u16 newMon)
-{
+void TrophyGarden_ShiftSlotsForNewMon(SaveData *saveData, const u16 newMon) {
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(saveData);
 
     GF_ASSERT(newMon < NUM_TROPHY_GARDEN_SPECIAL_MONS);

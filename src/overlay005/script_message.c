@@ -35,15 +35,13 @@ static void GetStrBufFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 
 static void PrintFieldMessage(ScriptMessage *msgData, int fontID, int renderDelay, int canSkipDelay, BOOL autoScroll);
 static void PrintTextMessage(ScriptMessage *msgData, int fontID);
 
-void ScriptMessageOptions_Init(ScriptMessageOptions *msgOptions, ScriptContext *ctx)
-{
+void ScriptMessageOptions_Init(ScriptMessageOptions *msgOptions, ScriptContext *ctx) {
     msgOptions->renderDelay = GetTextFrameDelay(ctx);
     msgOptions->autoScroll = FALSE;
     msgOptions->fontID = FONT_MESSAGE;
 }
 
-void ScriptMessage_Show(ScriptContext *ctx, const MessageLoader *msgLoader, u16 messageID, u8 canSkipDelay, ScriptMessageOptions *msgOptions)
-{
+void ScriptMessage_Show(ScriptContext *ctx, const MessageLoader *msgLoader, u16 messageID, u8 canSkipDelay, ScriptMessageOptions *msgOptions) {
     ScriptMessage msgData;
     u8 renderDelay;
     u8 autoScroll;
@@ -66,8 +64,7 @@ void ScriptMessage_Show(ScriptContext *ctx, const MessageLoader *msgLoader, u16 
     PrintFieldMessage(&msgData, fontID, renderDelay, canSkipDelay, autoScroll);
 }
 
-void ScriptMessage_ShowInstant(ScriptContext *ctx, const MessageLoader *msgLoader, int messageID)
-{
+void ScriptMessage_ShowInstant(ScriptContext *ctx, const MessageLoader *msgLoader, int messageID) {
     ScriptMessage msgData;
 
     InitScriptMessage(ctx->fieldSystem, &msgData);
@@ -76,8 +73,7 @@ void ScriptMessage_ShowInstant(ScriptContext *ctx, const MessageLoader *msgLoade
     PrintTextMessage(&msgData, FONT_MESSAGE);
 }
 
-void ScriptMessage_ShowSentence(ScriptContext *ctx, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSkipDelay)
-{
+void ScriptMessage_ShowSentence(ScriptContext *ctx, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSkipDelay) {
     ScriptMessage msgData;
     Sentence unused;
 
@@ -92,8 +88,7 @@ void ScriptMessage_ShowSentence(ScriptContext *ctx, u16 sentenceType, u16 senten
     }
 }
 
-void ScriptMessage_ShowTemplate(ScriptContext *fieldSystem, StringTemplate *template, u8 bufferEntryID, u8 canSkipDelay)
-{
+void ScriptMessage_ShowTemplate(ScriptContext *fieldSystem, StringTemplate *template, u8 bufferEntryID, u8 canSkipDelay) {
     ScriptMessage msgData;
 
     Init_ScriptMessageTemplate(fieldSystem->fieldSystem, template, &msgData);
@@ -102,13 +97,11 @@ void ScriptMessage_ShowTemplate(ScriptContext *fieldSystem, StringTemplate *temp
     PrintFieldMessage(&msgData, FONT_MESSAGE, GetTextFrameDelay(fieldSystem), canSkipDelay, FALSE);
 }
 
-static u8 GetTextFrameDelay(ScriptContext *ctx)
-{
+static u8 GetTextFrameDelay(ScriptContext *ctx) {
     return Options_TextFrameDelay(SaveData_GetOptions(ctx->fieldSystem->saveData));
 }
 
-static void InitScriptMessage(FieldSystem *fieldSystem, ScriptMessage *msgData)
-{
+static void InitScriptMessage(FieldSystem *fieldSystem, ScriptMessage *msgData) {
     msgData->msgBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     msgData->tempBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
     msgData->template = *(StringTemplate **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -117,8 +110,7 @@ static void InitScriptMessage(FieldSystem *fieldSystem, ScriptMessage *msgData)
     msgData->messageID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 }
 
-static void Init_ScriptMessageTemplate(FieldSystem *fieldSystem, StringTemplate *template, ScriptMessage *msgData)
-{
+static void Init_ScriptMessageTemplate(FieldSystem *fieldSystem, StringTemplate *template, ScriptMessage *msgData) {
     msgData->msgBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     msgData->tempBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
     msgData->template = template;
@@ -127,8 +119,7 @@ static void Init_ScriptMessageTemplate(FieldSystem *fieldSystem, StringTemplate 
     msgData->messageID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 }
 
-static void OpenMessageBox(FieldSystem *fieldSystem, ScriptMessage *msgData)
-{
+static void OpenMessageBox(FieldSystem *fieldSystem, ScriptMessage *msgData) {
     if (*(msgData->isOpen) == FALSE) {
         FieldMessage_AddWindow(fieldSystem->bgConfig, msgData->window, BG_LAYER_MAIN_3);
         FieldMessage_DrawWindow(msgData->window, SaveData_GetOptions(fieldSystem->saveData));
@@ -138,14 +129,12 @@ static void OpenMessageBox(FieldSystem *fieldSystem, ScriptMessage *msgData)
     Window_FillTilemap(msgData->window, 15);
 }
 
-static void LoadAndFormatMessage(ScriptMessage *msgData, const MessageLoader *msgLoader, u32 bufferEntryID)
-{
+static void LoadAndFormatMessage(ScriptMessage *msgData, const MessageLoader *msgLoader, u32 bufferEntryID) {
     MessageLoader_GetStrbuf(msgLoader, bufferEntryID, msgData->tempBuf);
     StringTemplate_Format(msgData->template, msgData->msgBuf, msgData->tempBuf);
 }
 
-static void GetStrBufFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2)
-{
+static void GetStrBufFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2) {
     Sentence sentence;
     Strbuf *strBuf;
 
@@ -160,12 +149,10 @@ static void GetStrBufFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 
     Strbuf_Free(strBuf);
 }
 
-static void PrintFieldMessage(ScriptMessage *msgData, int fontID, int renderDelay, int canSkipDelay, BOOL autoScroll)
-{
+static void PrintFieldMessage(ScriptMessage *msgData, int fontID, int renderDelay, int canSkipDelay, BOOL autoScroll) {
     *(msgData->messageID) = FieldMessage_PrintWithParams(msgData->window, msgData->msgBuf, fontID, renderDelay, canSkipDelay, autoScroll);
 }
 
-static void PrintTextMessage(ScriptMessage *msgData, int fontID)
-{
+static void PrintTextMessage(ScriptMessage *msgData, int fontID) {
     *(msgData->messageID) = Text_AddPrinterWithParams(msgData->window, fontID, msgData->msgBuf, 0, 0, TEXT_SPEED_INSTANT, NULL);
 }

@@ -20,8 +20,7 @@
 #include "pokedex.h"
 #include "special_encounter.h"
 
-int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
-{
+int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem) {
     int encounterTable[MAX_GRASS_ENCOUNTERS];
 
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
@@ -39,8 +38,7 @@ int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
     return encounterTable[LCRNG_RandMod(MAX_GRASS_ENCOUNTERS)];
 }
 
-GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSystem *fieldSystem)
-{
+GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSystem *fieldSystem) {
     u8 i;
     GreatMarshBinoculars *binocularsData = Heap_AllocFromHeapAtEnd(heapID, sizeof(GreatMarshBinoculars));
     binocularsData->fieldSystem = fieldSystem;
@@ -62,13 +60,11 @@ GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSyste
     return binocularsData;
 }
 
-void GreatMarshBinoculars_FreeData(GreatMarshBinoculars *data)
-{
+void GreatMarshBinoculars_FreeData(GreatMarshBinoculars *data) {
     Heap_Free(data);
 }
 
-void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMarshBinoculars *binocularsData)
-{
+void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMarshBinoculars *binocularsData) {
     int nextMapId;
     int nextX, nextZ;
 
@@ -88,7 +84,6 @@ void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMars
     Location_Set(&binocularsData->viewLocation, nextMapId, -1, binocularsData->coordsList[cycleNum].x, binocularsData->coordsList[cycleNum].z, 0);
 }
 
-Location *GreatMarshBinoculars_GetLocation(GreatMarshBinoculars *binocData)
-{
+Location *GreatMarshBinoculars_GetLocation(GreatMarshBinoculars *binocData) {
     return &binocData->viewLocation;
 }

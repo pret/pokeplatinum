@@ -55,8 +55,7 @@ static const CommCmdTable Unk_020E5D64[] = {
 
 static CommCmdManager *sCommCmdManager = NULL;
 
-void CommCmd_Init(const CommCmdTable *cmdTable, int param1, void *param2)
-{
+void CommCmd_Init(const CommCmdTable *cmdTable, int param1, void *param2) {
     int v0;
 
     if (!sCommCmdManager) {
@@ -74,16 +73,14 @@ void CommCmd_Init(const CommCmdTable *cmdTable, int param1, void *param2)
     sCommCmdManager->unk_14 = 0;
 }
 
-void sub_020327E0(void)
-{
+void sub_020327E0(void) {
     if (sCommCmdManager) {
         Heap_Free(sCommCmdManager);
         sCommCmdManager = NULL;
     }
 }
 
-void CommCmd_Callback(int param0, int cmd, int param2, void *param3)
-{
+void CommCmd_Callback(int param0, int cmd, int param2, void *param3) {
     UnkFuncPtr_020F8E60 v0;
 
     if (cmd < 22) {
@@ -108,8 +105,7 @@ void CommCmd_Callback(int param0, int cmd, int param2, void *param3)
     }
 }
 
-int CommCmd_PacketSizeOf(int cmd)
-{
+int CommCmd_PacketSizeOf(int cmd) {
     int v0 = 0;
     UnkFuncPtr_02032868 v1;
 
@@ -139,8 +135,7 @@ int CommCmd_PacketSizeOf(int cmd)
     return v0;
 }
 
-BOOL sub_020328D0(int cmd)
-{
+BOOL sub_020328D0(int cmd) {
     if (cmd < 22) {
         return Unk_020E5D64[cmd].unk_08 != NULL;
     }
@@ -148,8 +143,7 @@ BOOL sub_020328D0(int cmd)
     return sCommCmdManager->cmdTable[cmd - 22].unk_08 != NULL;
 }
 
-void *sub_0203290C(int cmd, int netId, int param2)
-{
+void *sub_0203290C(int cmd, int netId, int param2) {
     UnkFuncPtr_0203290C v0;
 
     if (cmd < 22) {
@@ -163,28 +157,23 @@ void *sub_0203290C(int cmd, int netId, int param2)
     return NULL;
 }
 
-int sub_02032944(void)
-{
+int sub_02032944(void) {
     return 0xffff;
 }
 
-int sub_0203294C(void)
-{
+int sub_0203294C(void) {
     return 0;
 }
 
-int CommPacketSizeOf_NetId(void)
-{
+int CommPacketSizeOf_NetId(void) {
     return 1;
 }
 
-static int sub_02032954(void)
-{
+static int sub_02032954(void) {
     return 2;
 }
 
-static void sub_02032958(int param0, int param1, void *param2, void *param3)
-{
+static void sub_02032958(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
     int v1;
 
@@ -207,8 +196,7 @@ static void sub_02032958(int param0, int param1, void *param2, void *param3)
     CommSys_SendDataServer(14, NULL, 0);
 }
 
-static void sub_0203299C(int param0, int param1, void *param2, void *param3)
-{
+static void sub_0203299C(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
     int v1;
 
@@ -220,8 +208,7 @@ static void sub_0203299C(int param0, int param1, void *param2, void *param3)
     CommSys_SendDataFixedSize(15, param2);
 }
 
-static void sub_020329C4(int param0, int param1, void *param2, void *param3)
-{
+static void sub_020329C4(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
     int v1;
 

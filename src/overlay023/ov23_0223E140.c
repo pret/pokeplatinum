@@ -580,8 +580,7 @@ static const WindowTemplate Unk_ov23_0225630E = {
     0x21F
 };
 
-static void Mining_InitGameState(void)
-{
+static void Mining_InitGameState(void) {
     int i;
 
     for (i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
@@ -604,8 +603,7 @@ static void Mining_InitGameState(void)
     }
 }
 
-void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
-{
+void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem) {
     int v0, v1;
     Underground *underground;
 
@@ -658,23 +656,19 @@ void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem)
     }
 }
 
-int ov23_0223E2E8(void)
-{
+int ov23_0223E2E8(void) {
     return sizeof(UnkStruct_ov23_02257740);
 }
 
-void ov23_0223E2F0(void)
-{
+void ov23_0223E2F0(void) {
     return;
 }
 
-void ov23_0223E2F4(void)
-{
+void ov23_0223E2F4(void) {
     return;
 }
 
-void ov23_0223E2F8(void)
-{
+void ov23_0223E2F8(void) {
     if (Unk_ov23_02257740) {
         if (Unk_ov23_02257740->unk_8C8) {
             SysTask_Done(Unk_ov23_02257740->unk_8C8);
@@ -693,8 +687,7 @@ void ov23_0223E2F8(void)
     }
 }
 
-BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1)
-{
+BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1) {
     UnkStruct_ov23_0223E6F8 *v0 = ov23_0223E88C(param1->unk_00, param1->unk_02);
     u8 v1 = param0;
 
@@ -713,8 +706,7 @@ BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1)
     return 0;
 }
 
-static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2)
-{
+static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2) {
     if (ov23_02242E58(param1, param2)) {
         return 0;
     }
@@ -748,8 +740,7 @@ static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2)
     return 0;
 }
 
-static void ov23_0223E434(MATHRandContext16 *param0, int param1)
-{
+static void ov23_0223E434(MATHRandContext16 *param0, int param1) {
     int v0, v1, v2, v3;
     u16 v4, v5, v6;
     u16 v7, v8, v9;
@@ -810,8 +801,7 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
     }
 }
 
-void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
-{
+void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2) {
     int v2, v3;
     u16 v4, v5;
     UnkStruct_ov23_0223E6F8 *v6;
@@ -839,8 +829,7 @@ void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
     }
 }
 
-static UnkStruct_ov23_0223E6F8 *ov23_0223E6F8(void)
-{
+static UnkStruct_ov23_0223E6F8 *ov23_0223E6F8(void) {
     int v0;
 
     for (v0 = 0; v0 < 250; v0++) {
@@ -852,8 +841,7 @@ static UnkStruct_ov23_0223E6F8 *ov23_0223E6F8(void)
     return NULL;
 }
 
-static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1)
-{
+static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1) {
     int v0 = -1, v1, v2 = param1 * 30 * 32 + param0;
     int v3;
 
@@ -886,8 +874,7 @@ static UnkStruct_ov23_0223E6F8 *ov23_0223E740(int param0, int param1)
     return &Unk_ov23_02257740->unk_26C[v0];
 }
 
-static void ov23_0223E834(void)
-{
+static void ov23_0223E834(void) {
     Underground *v0 = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
     int v1;
     int v2, v3;
@@ -904,16 +891,14 @@ static void ov23_0223E834(void)
     }
 }
 
-void ov23_0223E878(void)
-{
+void ov23_0223E878(void) {
     if (CommSys_CurNetId() == 0) {
         ov23_022414D4();
         ov23_022413B4();
     }
 }
 
-static UnkStruct_ov23_0223E6F8 *ov23_0223E88C(u16 param0, u16 param1)
-{
+static UnkStruct_ov23_0223E6F8 *ov23_0223E88C(u16 param0, u16 param1) {
     int v0;
 
     for (v0 = 0; v0 < 250; v0++) {
@@ -925,8 +910,7 @@ static UnkStruct_ov23_0223E6F8 *ov23_0223E88C(u16 param0, u16 param1)
     return NULL;
 }
 
-static int ov23_0223E8CC(u16 param0, u16 param1)
-{
+static int ov23_0223E8CC(u16 param0, u16 param1) {
     int v0, v1 = param1 - 80, v2 = param1 + 80, v3 = param0 - 80, v4 = param0 + 80;
     int v5 = 0, v6;
 
@@ -984,8 +968,7 @@ static int ov23_0223E8CC(u16 param0, u16 param1)
     return -1;
 }
 
-static void ov23_0223E99C(SysTask *param0, void *param1)
-{
+static void ov23_0223E99C(SysTask *param0, void *param1) {
     if (Unk_ov23_02257740->unk_848) {
         Menu_DestroyForExit(Unk_ov23_02257740->unk_848, 4);
     }
@@ -996,8 +979,7 @@ static void ov23_0223E99C(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0223E9D4(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
 
     if ((v0[0] == CommSys_CurNetId()) && CommSys_IsSendingMovementData()) {
@@ -1009,8 +991,7 @@ void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-static void ov23_0223EA38(SysTask *param0, void *param1)
-{
+static void ov23_0223EA38(SysTask *param0, void *param1) {
     u8 v0;
 
     if (Unk_ov23_02257740->unk_A24 != -1) {
@@ -1041,8 +1022,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
     }
 }
 
-void ov23_0223EAF8(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0223EAF8(int param0, int param1, void *param2, void *param3) {
     Underground *v0 = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
     UnkStruct_ov23_0223E6F8 *v1 = Unk_ov23_02257740->unk_84C[param0];
     u8 v2 = param0;
@@ -1067,8 +1047,7 @@ void ov23_0223EAF8(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov23_0223EB8C(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0223EB8C(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
 
     if (v0[0] == CommSys_CurNetId()) {
@@ -1079,15 +1058,13 @@ void ov23_0223EB8C(int param0, int param1, void *param2, void *param3)
     Unk_ov23_02257740->unk_908[v0[0]] = 1;
 }
 
-void ov23_0223EBC0(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0223EBC0(int param0, int param1, void *param2, void *param3) {
     Unk_ov23_02257740->unk_86C[param0] = 0;
 
     Unk_ov23_02257740->unk_8FC[param0] = 0;
 }
 
-void ov23_0223EBE4(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0223EBE4(int param0, int param1, void *param2, void *param3) {
     u8 *v0 = param2;
     u8 v1[3];
 
@@ -1098,13 +1075,11 @@ void ov23_0223EBE4(int param0, int param1, void *param2, void *param3)
     sub_02035B48(69, v1);
 }
 
-int ov23_0223EBFC(void)
-{
+int ov23_0223EBFC(void) {
     return 2;
 }
 
-void Mining_TakeLinkInput(int param0, int param1, void *src, void *param3)
-{
+void Mining_TakeLinkInput(int param0, int param1, void *src, void *param3) {
     u8 *buffer = src;
 
     if (buffer[0] == CommSys_CurNetId()) {
@@ -1115,13 +1090,11 @@ void Mining_TakeLinkInput(int param0, int param1, void *src, void *param3)
     Unk_ov23_02257740->linkTouchY[buffer[0]] = buffer[2];
 }
 
-int ov23_0223EC30(void)
-{
+int ov23_0223EC30(void) {
     return 3;
 }
 
-static void ov23_0223EC34(BgConfig *bgConfig)
-{
+static void ov23_0223EC34(BgConfig *bgConfig) {
     {
         UnkStruct_02099F80 v0 = {
             GX_VRAM_BG_128_A,
@@ -1235,8 +1208,7 @@ static void ov23_0223EC34(BgConfig *bgConfig)
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_MINING);
 }
 
-static void ov23_0223ED68(int x, int y, BOOL pickaxeSelected, BOOL hitRock, BOOL foundItem)
-{
+static void ov23_0223ED68(int x, int y, BOOL pickaxeSelected, BOOL hitRock, BOOL foundItem) {
     VecFx32 v3;
 
     if (pickaxeSelected) {
@@ -1272,8 +1244,7 @@ static void ov23_0223ED68(int x, int y, BOOL pickaxeSelected, BOOL hitRock, BOOL
     }
 }
 
-static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0)
-{
+static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0) {
     int v0;
     BgConfig *bgConfig;
 
@@ -1314,8 +1285,7 @@ static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0)
     Mining_GenerateGameLayout(bgConfig, v0, param0);
 }
 
-static void ov23_0223EF98(void)
-{
+static void ov23_0223EF98(void) {
     ov23_022404C8(Unk_ov23_02257740->bgConfig);
     Bg_CopyTilemapBufferToVRAM(Unk_ov23_02257740->bgConfig, BG_LAYER_MAIN_1);
 
@@ -1334,8 +1304,7 @@ static void ov23_0223EF98(void)
     Mining_DrawWallCrack(Unk_ov23_02257740->bgConfig);
 }
 
-static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
-{
+static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0) {
     void *v0;
     int v1;
 
@@ -1374,8 +1343,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->bgConfig, 1024 - (18 + 12), ((1024 - (18 + 12)) - 73) - (27 * 4));
 }
 
-static void ov23_0223F118(SysTask *param0, void *param1)
-{
+static void ov23_0223F118(SysTask *param0, void *param1) {
     UnkStruct_ov23_0223EE80 *v0 = param1;
     FieldSystem *fieldSystem = v0->fieldSystem;
 
@@ -1636,8 +1604,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     }
 }
 
-static void ov23_0223F70C(FieldSystem *fieldSystem)
-{
+static void ov23_0223F70C(FieldSystem *fieldSystem) {
     UnkStruct_ov23_0223EE80 *v0;
     void *journalEntryLocationEvent = JournalEntry_CreateEventDugUnderground(HEAP_ID_FIELDMAP);
 
@@ -1653,8 +1620,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
 
-static BOOL Mining_IsBuriedObjectSlotAvailable(void)
-{
+static BOOL Mining_IsBuriedObjectSlotAvailable(void) {
     int i;
 
     for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
@@ -1666,8 +1632,7 @@ static BOOL Mining_IsBuriedObjectSlotAvailable(void)
     return FALSE;
 }
 
-static int Mining_AddBuriedObject(int index, int x, int y)
-{
+static int Mining_AddBuriedObject(int index, int x, int y) {
     int i;
 
     for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
@@ -1686,8 +1651,7 @@ static int Mining_AddBuriedObject(int index, int x, int y)
     return 0;
 }
 
-static BOOL Mining_AreCoordinatesWithinObjectShape(MiningObject *param0, int x, int y)
-{
+static BOOL Mining_AreCoordinatesWithinObjectShape(MiningObject *param0, int x, int y) {
     u8 *shape = param0->shape;
     int column, row, entriesPerRow;
 
@@ -1706,8 +1670,7 @@ static BOOL Mining_AreCoordinatesWithinObjectShape(MiningObject *param0, int x, 
     return TRUE;
 }
 
-static BOOL Mining_TryPlaceObject(int index, int x, int y)
-{
+static BOOL Mining_TryPlaceObject(int index, int x, int y) {
     int i, j, endX, endY, buriedIndex;
 
     if (!Mining_IsBuriedObjectSlotAvailable()) {
@@ -1748,8 +1711,7 @@ static BOOL Mining_TryPlaceObject(int index, int x, int y)
     return TRUE;
 }
 
-static int Mining_GetWeightOfItem(MiningObject *item)
-{
+static int Mining_GetWeightOfItem(MiningObject *item) {
     SaveData *saveData = FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem);
     Underground *underground = SaveData_GetUnderground(saveData);
     BOOL isTrainerIDOdd = TrainerInfo_ID(SaveData_GetTrainerInfo(saveData)) % 2;
@@ -1773,8 +1735,7 @@ static int Mining_GetWeightOfItem(MiningObject *item)
     return weight;
 }
 
-static int Mining_GetTotalItemWeight(void)
-{
+static int Mining_GetTotalItemWeight(void) {
     int i, totalWeight = 0;
 
     for (i = 0; i < NELEMS(sMiningObjects); i++) {
@@ -1788,8 +1749,7 @@ static int Mining_GetTotalItemWeight(void)
     return totalWeight;
 }
 
-static int Mining_PickItem(int randNum)
-{
+static int Mining_PickItem(int randNum) {
     int i, counter = randNum;
 
     for (i = 0; i < NELEMS(sMiningObjects); i++) {
@@ -1808,8 +1768,7 @@ static int Mining_PickItem(int randNum)
     return 0;
 }
 
-static int Mining_GetTotalTypesOfRocks(void)
-{
+static int Mining_GetTotalTypesOfRocks(void) {
     int i, total = 0;
 
     for (i = 0; i < NELEMS(sMiningObjects); i++) {
@@ -1821,8 +1780,7 @@ static int Mining_GetTotalTypesOfRocks(void)
     return total;
 }
 
-static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_ov23_0223EE80 *param2)
-{
+static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_ov23_0223EE80 *param2) {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     int objectsPlaced, i, totalWeight = Mining_GetTotalItemWeight();
     int randNum, x, y, j = 0, index, itemID;
@@ -1891,8 +1849,7 @@ static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_
     ov23_0223FF60(objectsPlaced, bgConfig, param1, param2);
 }
 
-static int ov23_0223FC9C(int index, BgConfig *bgConfig, int param2, UnkStruct_ov23_0223EE80 *param3)
-{
+static int ov23_0223FC9C(int index, BgConfig *bgConfig, int param2, UnkStruct_ov23_0223EE80 *param3) {
     BuriedObject *buriedObject = &Unk_ov23_02257740->buriedObjects[index];
     u16 *v1 = Bg_GetTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
     int x = buriedObject->x * 2;
@@ -1954,8 +1911,7 @@ static u8 Unk_ov23_02257570[] = {
     0xff
 };
 
-static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
-{
+static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0) {
     int v0, v1, v2, v3;
     VecFx32 v4;
 
@@ -2000,8 +1956,7 @@ static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
     }
 }
 
-static void ov23_0223FF60(int buriedObjectCount, BgConfig *bgConfig, int param2, UnkStruct_ov23_0223EE80 *param3)
-{
+static void ov23_0223FF60(int buriedObjectCount, BgConfig *bgConfig, int param2, UnkStruct_ov23_0223EE80 *param3) {
     int i, v1 = 512 + 24 * 3 + 32 + 1;
     u32 v2;
 
@@ -2011,8 +1966,7 @@ static void ov23_0223FF60(int buriedObjectCount, BgConfig *bgConfig, int param2,
     }
 }
 
-static void Mining_RandomizeDirtCover(BgConfig *bgConfig)
-{
+static void Mining_RandomizeDirtCover(BgConfig *bgConfig) {
     static const u8 v0 = 8;
     static const u8 v1 = 5;
     static u8 v2[v0][v0] = {
@@ -2118,8 +2072,7 @@ static void Mining_RandomizeDirtCover(BgConfig *bgConfig)
     }
 }
 
-static void Mining_DrawDirt(BgConfig *bgConfig)
-{
+static void Mining_DrawDirt(BgConfig *bgConfig) {
     static u8 v0[] = { 0xe, 0xf, 0x1e, 0x1f };
     static u8 v1[] = { 0xa, 0xb, 0x1a, 0x1b };
     static u8 v2[] = { 0x8, 0x9, 0x18, 0x19 };
@@ -2146,8 +2099,7 @@ static void Mining_DrawDirt(BgConfig *bgConfig)
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_2);
 }
 
-static BOOL Mining_IsItemAtCoordinates(int x, int y)
-{
+static BOOL Mining_IsItemAtCoordinates(int x, int y) {
     int itemID;
     int index = Unk_ov23_02257740->buriedObjectGrid[y][x];
 
@@ -2164,8 +2116,7 @@ static BOOL Mining_IsItemAtCoordinates(int x, int y)
     return FALSE;
 }
 
-static BOOL Mining_IsRockAtCoordinates(int x, int y)
-{
+static BOOL Mining_IsRockAtCoordinates(int x, int y) {
     int index = Unk_ov23_02257740->buriedObjectGrid[y][x];
 
     if (index == 0) {
@@ -2179,8 +2130,7 @@ static BOOL Mining_IsRockAtCoordinates(int x, int y)
     return FALSE;
 }
 
-static void Mining_RemoveDirt(int touchX, int touchY, BOOL pickaxeSelected, UnkStruct_ov23_0223EE80 *param3)
-{
+static void Mining_RemoveDirt(int touchX, int touchY, BOOL pickaxeSelected, UnkStruct_ov23_0223EE80 *param3) {
     static s8 diagonalXModifiers[] = { 1, -1, -1, 1 };
     static s8 diagonalYModifiers[] = { 1, -1, 1, -1 };
     static s8 adjacentXModifiers[] = { 0, 0, -1, 1 };
@@ -2253,8 +2203,7 @@ static void Mining_RemoveDirt(int touchX, int touchY, BOOL pickaxeSelected, UnkS
     }
 }
 
-static void ov23_02240454(u16 *param0, UnkStruct_ov23_02256BF8 *param1, int param2, int param3)
-{
+static void ov23_02240454(u16 *param0, UnkStruct_ov23_02256BF8 *param1, int param2, int param3) {
     int v0, v1, v2, v3, v4;
 
     for (v1 = param1->unk_01, v4 = 0; v1 < param1->unk_03; v1++, v4++) {
@@ -2289,8 +2238,7 @@ static UnkStruct_ov23_02256BF8 endPos[] = {
     0x4
 };
 
-static void ov23_022404C8(BgConfig *bgConfig)
-{
+static void ov23_022404C8(BgConfig *bgConfig) {
     u16 *v0;
 
     Unk_ov23_02257740->unk_A2A = 1;
@@ -2300,8 +2248,7 @@ static void ov23_022404C8(BgConfig *bgConfig)
     ov23_02240454(v0, Unk_ov23_02256BF4, 0x30, 54);
 }
 
-static void ov23_022404F8(BgConfig *bgConfig, int touchX, int touchY, int param3)
-{
+static void ov23_022404F8(BgConfig *bgConfig, int touchX, int touchY, int param3) {
     VecFx32 v0;
     u8 *v1;
     u16 *v2;
@@ -2372,8 +2319,7 @@ static void ov23_022404F8(BgConfig *bgConfig, int touchX, int touchY, int param3
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 }
 
-static void ov23_02240660(VecFx32 *param0)
-{
+static void ov23_02240660(VecFx32 *param0) {
     int v0;
     int v1 = Unk_ov23_02257740->wallIntegrity;
 
@@ -2384,8 +2330,7 @@ static void ov23_02240660(VecFx32 *param0)
     param0->y = FX32_ONE * 16;
 }
 
-static void Mining_DrawWallCrack(BgConfig *bgConfig)
-{
+static void Mining_DrawWallCrack(BgConfig *bgConfig) {
     VecFx32 v0;
     int wallIntegrity = Unk_ov23_02257740->wallIntegrity;
     int v2, v3, v4;
@@ -2410,8 +2355,7 @@ static void Mining_DrawWallCrack(BgConfig *bgConfig)
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_0);
 }
 
-static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
-{
+static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0) {
     BOOL dirtRemoved = FALSE;
     int netID;
 
@@ -2439,8 +2383,7 @@ static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
     }
 }
 
-static int Mining_GenerateSizeOfMinedSphere(int itemID)
-{
+static int Mining_GenerateSizeOfMinedSphere(int itemID) {
     int sphereSize = 0;
     int id = itemID;
 
@@ -2466,8 +2409,7 @@ static int Mining_GenerateSizeOfMinedSphere(int itemID)
     return sphereSize;
 }
 
-static void Mining_AddItem(int itemID, int sphereSize)
-{
+static void Mining_AddItem(int itemID, int sphereSize) {
     int id = itemID;
     UndergroundRecord *unused = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
@@ -2480,8 +2422,7 @@ static void Mining_AddItem(int itemID, int sphereSize)
     }
 }
 
-static BOOL Mining_IsRoomInBag(int itemID)
-{
+static BOOL Mining_IsRoomInBag(int itemID) {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (IsMiningItemSphere(itemID)) {
@@ -2499,8 +2440,7 @@ static BOOL Mining_IsRoomInBag(int itemID)
     }
 }
 
-static BOOL Mining_AreAllItemsDugUp(UnkStruct_ov23_0223EE80 *param0)
-{
+static BOOL Mining_AreAllItemsDugUp(UnkStruct_ov23_0223EE80 *param0) {
     int y, x, i;
     BOOL itemsDugUp[MAX_BURIED_ITEMS];
     BOOL everythingDugUp = TRUE;
@@ -2533,8 +2473,7 @@ static BOOL Mining_AreAllItemsDugUp(UnkStruct_ov23_0223EE80 *param0)
     return everythingDugUp;
 }
 
-static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
-{
+static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0) {
     int i, entryID;
 
     for (i = 0; i < param0->itemCount; i++) {
@@ -2559,8 +2498,7 @@ static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
     return FALSE;
 }
 
-static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
-{
+static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0) {
     int i, itemID;
     UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
     Underground *unused = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
@@ -2602,8 +2540,7 @@ static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
     return FALSE;
 }
 
-static void ov23_02240B84(BgConfig *bgConfig)
-{
+static void ov23_02240B84(BgConfig *bgConfig) {
     int v0, v1, v2;
     VecFx32 v3;
 
@@ -2631,8 +2568,7 @@ static void ov23_02240B84(BgConfig *bgConfig)
     Sprite_SetPosition(Unk_ov23_02257740->sprites[1], &v3);
 }
 
-static void ov23_02240C94(BgConfig *bgConfig)
-{
+static void ov23_02240C94(BgConfig *bgConfig) {
     int bgLayer, v1, v2;
 
     if (Unk_ov23_02257740->unk_A2C == 0) {
@@ -2651,8 +2587,7 @@ static void ov23_02240C94(BgConfig *bgConfig)
     }
 }
 
-static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0)
-{
+static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0) {
     u8 v0[2];
     int damageToWall;
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
@@ -2726,14 +2661,12 @@ static BOOL Mining_MainGameLoop(UnkStruct_ov23_0223EE80 *param0)
     return FALSE;
 }
 
-static void ov23_02240E60(SpriteResource *param0)
-{
+static void ov23_02240E60(SpriteResource *param0) {
     Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F] = param0;
     Unk_ov23_02257740->unk_A2F++;
 }
 
-static void ov23_02240E88(void)
-{
+static void ov23_02240E88(void) {
     int v0;
     NARC *v1;
 
@@ -2773,8 +2706,7 @@ static void ov23_02240E88(void)
     NARC_dtor(v1);
 }
 
-static void ov23_0224108C(void)
-{
+static void ov23_0224108C(void) {
     int v0, v1;
     AffineSpriteListTemplate v2;
 
@@ -2811,8 +2743,7 @@ static void ov23_0224108C(void)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov23_0224119C(void)
-{
+static void ov23_0224119C(void) {
     {
         CharTransferTemplate v0 = {
             20, 2048 * 2, 2048 * 2, 29
@@ -2828,8 +2759,7 @@ static void ov23_0224119C(void)
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-static void ov23_022411E8(void *param0)
-{
+static void ov23_022411E8(void *param0) {
     BgConfig *bgConfig = param0;
 
     ov23_02240C94(bgConfig);
@@ -2839,8 +2769,7 @@ static void ov23_022411E8(void *param0)
     RenderOam_Transfer();
 }
 
-BOOL ov23_02241200(int param0, int param1)
-{
+BOOL ov23_02241200(int param0, int param1) {
     if (ov23_0223E88C(param0, param1)) {
         return 1;
     }
@@ -2848,8 +2777,7 @@ BOOL ov23_02241200(int param0, int param1)
     return 0;
 }
 
-int ov23_0224121C(int param0)
-{
+int ov23_0224121C(int param0) {
     if (Unk_ov23_02257740) {
         return Unk_ov23_02257740->unk_8D4[param0].unk_00;
     }
@@ -2857,8 +2785,7 @@ int ov23_0224121C(int param0)
     return 0;
 }
 
-int ov23_0224123C(int param0)
-{
+int ov23_0224123C(int param0) {
     if (Unk_ov23_02257740) {
         return Unk_ov23_02257740->unk_8D4[param0].unk_02;
     }
@@ -2866,8 +2793,7 @@ int ov23_0224123C(int param0)
     return 0;
 }
 
-int ov23_0224125C(int param0)
-{
+int ov23_0224125C(int param0) {
     if (Unk_ov23_02257740 && Unk_ov23_02257740->unk_8D0) {
         int v0 = Unk_ov23_02257740->unk_8D0->unk_4E4;
 
@@ -2878,8 +2804,7 @@ int ov23_0224125C(int param0)
     return 0;
 }
 
-int ov23_02241294(int param0)
-{
+int ov23_02241294(int param0) {
     if (Unk_ov23_02257740 && Unk_ov23_02257740->unk_8D0) {
         int v0 = Unk_ov23_02257740->unk_8D0->unk_4E4;
 
@@ -2890,8 +2815,7 @@ int ov23_02241294(int param0)
     return 0;
 }
 
-static void ov23_022412CC(SysTask *param0, void *param1)
-{
+static void ov23_022412CC(SysTask *param0, void *param1) {
     UnkStruct_ov23_022412CC *v0 = param1;
 
     v0->unk_4E4++;
@@ -2902,8 +2826,7 @@ static void ov23_022412CC(SysTask *param0, void *param1)
     }
 }
 
-void ov23_022412F0(void)
-{
+void ov23_022412F0(void) {
     UnkStruct_ov23_022412CC *v0;
 
     GF_ASSERT(!Unk_ov23_02257740->unk_8D0);
@@ -2920,8 +2843,7 @@ void ov23_022412F0(void)
     Unk_ov23_02257740->unk_8C4 = SysTask_Start(ov23_022412CC, v0, 100);
 }
 
-void ov23_02241364(void)
-{
+void ov23_02241364(void) {
     if (Unk_ov23_02257740->unk_8C4) {
         SysTask_Done(Unk_ov23_02257740->unk_8C4);
         Heap_Free(Unk_ov23_02257740->unk_8D0);
@@ -2930,13 +2852,11 @@ void ov23_02241364(void)
     }
 }
 
-void ov23_022413A0(int param0, int param1, void *param2, void *param3)
-{
+void ov23_022413A0(int param0, int param1, void *param2, void *param3) {
     Unk_ov23_02257740->unk_8BC[param0] = 1;
 }
 
-static void ov23_022413B4(void)
-{
+static void ov23_022413B4(void) {
     int v0, v1 = 0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
@@ -2970,8 +2890,7 @@ static void ov23_022413B4(void)
     }
 }
 
-void ov23_0224142C(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224142C(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_0224142C *v0 = param2;
     int v1, v2;
 
@@ -3001,13 +2920,11 @@ void ov23_0224142C(int param0, int param1, void *param2, void *param3)
     }
 }
 
-int ov23_022414D0(void)
-{
+int ov23_022414D0(void) {
     return sizeof(UnkStruct_ov23_0224142C);
 }
 
-static void ov23_022414D4(void)
-{
+static void ov23_022414D4(void) {
     UnkStruct_ov23_0223E6F8 *v0;
     int v1, v2;
 
@@ -3057,8 +2974,7 @@ static void ov23_022414D4(void)
     }
 }
 
-BOOL ov23_022415B8(Strbuf *param0)
-{
+BOOL ov23_022415B8(Strbuf *param0) {
     int v0;
     TrainerInfo *v1;
     TrainerInfo *v2;
@@ -3081,15 +2997,13 @@ BOOL ov23_022415B8(Strbuf *param0)
     return 0;
 }
 
-void ov23_0224160C(void)
-{
+void ov23_0224160C(void) {
     if (Unk_ov23_02257740) {
         MI_CpuClear8(Unk_ov23_02257740->unk_908, 7 + 1);
     }
 }
 
-BOOL ov23_0224162C(int param0)
-{
+BOOL ov23_0224162C(int param0) {
     if (Unk_ov23_02257740) {
         return Unk_ov23_02257740->unk_86C[param0];
     }
@@ -3097,16 +3011,14 @@ BOOL ov23_0224162C(int param0)
     return 0;
 }
 
-void ov23_02241648(int param0)
-{
+void ov23_02241648(int param0) {
     if (Unk_ov23_02257740) {
         Unk_ov23_02257740->unk_86C[param0] = 0;
         Unk_ov23_02257740->unk_8FC[param0] = 0;
     }
 }
 
-BOOL ov23_02241670(void)
-{
+BOOL ov23_02241670(void) {
     if (Unk_ov23_02257740) {
         if (Unk_ov23_02257740->unk_8CC) {
             return 1;
@@ -3116,8 +3028,7 @@ BOOL ov23_02241670(void)
     return 0;
 }
 
-void ov23_02241690(int param0, int param1)
-{
+void ov23_02241690(int param0, int param1) {
     if (Unk_ov23_02257740) {
         Unk_ov23_02257740->unk_86C[param0] = param1;
     }

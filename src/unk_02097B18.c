@@ -74,8 +74,7 @@ const ApplicationManagerTemplate Unk_020F64C0 = {
     FS_OVERLAY_ID(overlay76),
 };
 
-static int sub_02097B18(ApplicationManager *appMan, int *param1)
-{
+static int sub_02097B18(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov76_0223DE00 *v0;
     UnkStruct_02097F18 *v1;
 
@@ -180,8 +179,7 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int sub_02097D30(ApplicationManager *appMan, int *param1)
-{
+static int sub_02097D30(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -211,8 +209,7 @@ static int sub_02097D30(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int sub_02097D88(ApplicationManager *appMan, int *param1)
-{
+static int sub_02097D88(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -267,8 +264,7 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-Pokemon *sub_02097F00(UnkStruct_02097F18 *param0, int param1)
-{
+Pokemon *sub_02097F00(UnkStruct_02097F18 *param0, int param1) {
     int v0 = param1;
 
     if (param0->unk_00 < v0) {
@@ -279,28 +275,23 @@ Pokemon *sub_02097F00(UnkStruct_02097F18 *param0, int param1)
     return param0->unk_04[v0];
 }
 
-u8 sub_02097F18(UnkStruct_02097F18 *param0)
-{
+u8 sub_02097F18(UnkStruct_02097F18 *param0) {
     return param0->unk_2C;
 }
 
-void sub_02097F20(UnkStruct_02097F18 *param0, u8 param1)
-{
+void sub_02097F20(UnkStruct_02097F18 *param0, u8 param1) {
     param0->unk_2C = param1;
 }
 
-u8 sub_02097F28(UnkStruct_02097F18 *param0)
-{
+u8 sub_02097F28(UnkStruct_02097F18 *param0) {
     return param0->unk_2D;
 }
 
-void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1)
-{
+void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1) {
     param0->unk_2D = param1;
 }
 
-static BOOL sub_02097F38(FieldTask *param0)
-{
+static BOOL sub_02097F38(FieldTask *param0) {
     UnkStruct_02097F38 *v0 = FieldTask_GetEnv(param0);
     UnkStruct_02097F18 *v1 = v0->unk_08;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -407,8 +398,7 @@ static BOOL sub_02097F38(FieldTask *param0)
     return 0;
 }
 
-void sub_020980DC(FieldTask *param0, SaveData *saveData)
-{
+void sub_020980DC(FieldTask *param0, SaveData *saveData) {
     UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F38));
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
@@ -517,38 +507,32 @@ static const UnkStruct_020F64D0 Unk_020F64D0[SEAL_ID_MAX] = {
     { 0x108, 0x50, 0x125, 0x74, 0x0, 0x0, 0x33 }
 };
 
-int sub_02098140(u8 param0)
-{
+int sub_02098140(u8 param0) {
     GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
     return Unk_020F64D0[param0].unk_00;
 }
 
-int sub_02098164(u8 param0)
-{
+int sub_02098164(u8 param0) {
     GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
     return Unk_020F64D0[param0].unk_02;
 }
 
-int sub_02098188(u8 param0)
-{
+int sub_02098188(u8 param0) {
     GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
     return Unk_020F64D0[param0].unk_04;
 }
 
-int sub_020981AC(u8 param0)
-{
+int sub_020981AC(u8 param0) {
     GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
     return Unk_020F64D0[param0].unk_05;
 }
 
-int sub_020981D0(u8 param0)
-{
+int sub_020981D0(u8 param0) {
     GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
     return Unk_020F64D0[param0].unk_06;
 }
 
-int sub_020981F4(u8 param0)
-{
+int sub_020981F4(u8 param0) {
     GF_ASSERT(param0 < (sizeof(Unk_020F64D0)));
     return Unk_020F64D0[param0].unk_08;
 }

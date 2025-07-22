@@ -39,8 +39,7 @@ static BOOL ov62_02247FFC(UnkStruct_0208C06C *param0);
 static BOOL ov62_02248114(UnkStruct_0208C06C *param0);
 static BOOL ov62_02248324(UnkStruct_0208C06C *param0);
 
-static void ov62_02247D74(UnkStruct_0208C06C *param0, BOOL param1)
-{
+static void ov62_02247D74(UnkStruct_0208C06C *param0, BOOL param1) {
     Window *v0 = &param0->unk_8A4;
 
     ov62_022302A8(param0, 2, param1);
@@ -48,15 +47,13 @@ static void ov62_02247D74(UnkStruct_0208C06C *param0, BOOL param1)
     Window_Add(param0->unk_14.unk_10, v0, 2, 1, 19, 30, 4, 14, 300);
 }
 
-static void ov62_02247DB4(UnkStruct_0208C06C *param0)
-{
+static void ov62_02247DB4(UnkStruct_0208C06C *param0) {
     Window_ClearAndCopyToVRAM(&param0->unk_8A4);
     Window_Remove(&param0->unk_8A4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
-static void ov62_02247DD8(UnkStruct_0208C06C *param0, int param1, int param2)
-{
+static void ov62_02247DD8(UnkStruct_0208C06C *param0, int param1, int param2) {
     Strbuf *v0;
     Window *v1 = &param0->unk_8A4;
 
@@ -88,8 +85,7 @@ static void ov62_02247DD8(UnkStruct_0208C06C *param0, int param1, int param2)
     Strbuf_Free(v0);
 }
 
-static void ov62_02247E9C(UnkStruct_0208C06C *param0)
-{
+static void ov62_02247E9C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02247F7C *v0 = param0->unk_860;
     Window *v1;
     Strbuf *v2;
@@ -124,8 +120,7 @@ static void ov62_02247E9C(UnkStruct_0208C06C *param0)
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov62_02247F7C(UnkStruct_0208C06C *param0)
-{
+static void ov62_02247F7C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02247F7C *v0 = param0->unk_860;
 
     Window_ClearAndCopyToVRAM(&v0->unk_10[0]);
@@ -134,8 +129,7 @@ static void ov62_02247F7C(UnkStruct_0208C06C *param0)
     Window_Remove(&v0->unk_10[1]);
 }
 
-static BOOL ov62_02247FA8(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02247FA8(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02247F7C *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02247F7C));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02247F7C));
@@ -151,8 +145,7 @@ static BOOL ov62_02247FA8(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02247FFC(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02247FFC(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02247F7C *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -195,8 +188,7 @@ static const TouchScreenRect Unk_ov62_02249788[] = {
     { 0x28, 0x48, 0x90, 0xE8 }
 };
 
-static BOOL ov62_02248114(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02248114(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02247F7C *v0 = param0->unk_860;
 
     switch (param0->unk_08) {
@@ -288,8 +280,7 @@ static BOOL ov62_02248114(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02248324(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02248324(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02247F7C *v0 = param0->unk_860;
 
     switch (param0->unk_08) {

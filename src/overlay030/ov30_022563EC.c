@@ -35,8 +35,7 @@ static void ov30_022565B0(UnkStruct_ov30_022563EC *param0);
 static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0);
 static void ov30_02256658(UnkStruct_ov30_022563EC *param0);
 
-BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563EC_1 *param1, BgConfig *param2)
-{
+BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563EC_1 *param1, BgConfig *param2) {
     UnkStruct_ov30_022563EC *v0 = (UnkStruct_ov30_022563EC *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov30_022563EC));
 
     if (v0 != NULL) {
@@ -63,8 +62,7 @@ BOOL ov30_022563EC(UnkStruct_ov30_022563EC **param0, const UnkStruct_ov30_022563
     return 0;
 }
 
-void ov30_02256444(UnkStruct_ov30_022563EC *param0)
-{
+void ov30_02256444(UnkStruct_ov30_022563EC *param0) {
     if (param0 != NULL) {
         ov30_02256658(param0);
 
@@ -76,8 +74,7 @@ void ov30_02256444(UnkStruct_ov30_022563EC *param0)
     }
 }
 
-static void ov30_02256460(SysTask *param0, void *param1)
-{
+static void ov30_02256460(SysTask *param0, void *param1) {
     return;
 }
 
@@ -89,30 +86,25 @@ static const PoketchTask Unk_ov30_022566C4[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov30_02256464(UnkStruct_ov30_022563EC *param0, u32 param1)
-{
+void ov30_02256464(UnkStruct_ov30_022563EC *param0, u32 param1) {
     PoketchTask_Start(Unk_ov30_022566C4, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov30_02256488(UnkStruct_ov30_022563EC *param0, u32 param1)
-{
+BOOL ov30_02256488(UnkStruct_ov30_022563EC *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov30_02256494(UnkStruct_ov30_022563EC *param0)
-{
+BOOL ov30_02256494(UnkStruct_ov30_022563EC *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov30_022564A0(PoketchTaskManager *param0)
-{
+static void ov30_022564A0(PoketchTaskManager *param0) {
     UnkStruct_ov30_022563EC *v0 = PoketchTask_GetTaskData(param0);
 
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov30_022564B4(SysTask *param0, void *param1)
-{
+static void ov30_022564B4(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -144,8 +136,7 @@ static void ov30_022564B4(SysTask *param0, void *param1)
     ov30_022564A0(param1);
 }
 
-static void ov30_02256548(SysTask *param0, void *param1)
-{
+static void ov30_02256548(SysTask *param0, void *param1) {
     UnkStruct_ov30_022563EC *v0 = PoketchTask_GetTaskData(param1);
 
     ov30_022565B0(v0);
@@ -153,8 +144,7 @@ static void ov30_02256548(SysTask *param0, void *param1)
     ov30_022564A0(param1);
 }
 
-static void ov30_02256568(SysTask *param0, void *param1)
-{
+static void ov30_02256568(SysTask *param0, void *param1) {
     UnkStruct_ov30_022563EC *v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_0C) {
@@ -166,16 +156,14 @@ static void ov30_02256568(SysTask *param0, void *param1)
     ov30_022564A0(param1);
 }
 
-static void ov30_02256594(SysTask *param0, void *param1)
-{
+static void ov30_02256594(SysTask *param0, void *param1) {
     UnkStruct_ov30_022563EC *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov30_022564A0(param1);
 }
 
-static void ov30_022565B0(UnkStruct_ov30_022563EC *param0)
-{
+static void ov30_022565B0(UnkStruct_ov30_022563EC *param0) {
     u32 v0;
 
     CP_SetDiv32_32(param0->unk_00->unk_00.hour, 10);
@@ -187,8 +175,7 @@ static void ov30_022565B0(UnkStruct_ov30_022563EC *param0)
     PoketchAnimation_UpdateAnimationIdx(param0->unk_4C[1], v0);
 }
 
-static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)
-{
+static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0) {
     static const PoketchAnimation_AnimationData v0[] = {
         {
             { 116 << FX32_SHIFT, 100 << FX32_SHIFT },
@@ -223,8 +210,7 @@ static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)
     return 0;
 }
 
-static void ov30_02256658(UnkStruct_ov30_022563EC *param0)
-{
+static void ov30_02256658(UnkStruct_ov30_022563EC *param0) {
     int v0;
 
     PoketchAnimation_FreeSpriteData(&(param0->unk_34));

@@ -47,8 +47,7 @@ typedef struct {
 static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1);
 static void sub_02055D48(UnkStruct_02055CBC *param0);
 
-static u16 sub_02055C50(int param0)
-{
+static u16 sub_02055C50(int param0) {
     if (param0 == 0) {
         return 0;
     }
@@ -56,8 +55,7 @@ static u16 sub_02055C50(int param0)
     return param0 + 149 - 1;
 }
 
-static u16 sub_02055C60(int param0)
-{
+static u16 sub_02055C60(int param0) {
     if (param0 == 0) {
         return 0;
     }
@@ -65,8 +63,7 @@ static u16 sub_02055C60(int param0)
     return param0 - 149 + 1;
 }
 
-static u16 sub_02055C70(int param0)
-{
+static u16 sub_02055C70(int param0) {
     if (param0 == 0) {
         return 0;
     }
@@ -74,8 +71,7 @@ static u16 sub_02055C70(int param0)
     return param0 + 95 - 1;
 }
 
-static int sub_02055C80(int param0)
-{
+static int sub_02055C80(int param0) {
     if (param0 == 0) {
         return 0;
     }
@@ -83,8 +79,7 @@ static int sub_02055C80(int param0)
     return param0 - 95 + 1;
 }
 
-UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
-{
+UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID) {
     UnkStruct_02055CBC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
@@ -95,15 +90,13 @@ UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
     return v0;
 }
 
-void sub_02055CBC(UnkStruct_02055CBC *param0)
-{
+void sub_02055CBC(UnkStruct_02055CBC *param0) {
     sub_02055D48(param0);
     Heap_Free(param0->unk_04);
     Heap_Free(param0);
 }
 
-void sub_02055CD4(FieldSystem *fieldSystem, int param1)
-{
+void sub_02055CD4(FieldSystem *fieldSystem, int param1) {
     BerryPatch *v0;
     BerryGrowthData *v1;
 
@@ -119,8 +112,7 @@ void sub_02055CD4(FieldSystem *fieldSystem, int param1)
     }
 }
 
-static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
-{
+static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1) {
     UnkStruct_ov5_021DF47C *v0 = fieldSystem->unk_40;
     u32 v1 = ov5_021DF5A8(v0, 17);
 
@@ -130,13 +122,11 @@ static void sub_02055D14(FieldSystem *fieldSystem, UnkStruct_02055CBC *param1)
     Easy3D_InitRenderObjFromResource(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
 }
 
-static void sub_02055D48(UnkStruct_02055CBC *param0)
-{
+static void sub_02055D48(UnkStruct_02055CBC *param0) {
     ov5_021DF554(param0->unk_60);
 }
 
-static BOOL sub_02055D54(FieldSystem *fieldSystem, const VecFx32 *param1)
-{
+static BOOL sub_02055D54(FieldSystem *fieldSystem, const VecFx32 *param1) {
     const VecFx32 v0 = { FX32_ONE, FX32_ONE, FX32_ONE };
     MtxFx33 v1;
 
@@ -149,8 +139,7 @@ static BOOL sub_02055D54(FieldSystem *fieldSystem, const VecFx32 *param1)
     }
 }
 
-void sub_02055D94(FieldSystem *fieldSystem)
-{
+void sub_02055D94(FieldSystem *fieldSystem) {
     int v0 = 0;
     MapObject *v1;
     BerryPatch *v2 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
@@ -165,8 +154,7 @@ void sub_02055D94(FieldSystem *fieldSystem)
     }
 }
 
-BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
-{
+BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1) {
     int v0, v1, v2;
     BerryPatch *v3 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -181,8 +169,7 @@ BOOL sub_02055E00(FieldSystem *fieldSystem, MapObject *param1)
     return Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), sub_02055C50(v2), v1, HEAP_ID_FIELD);
 }
 
-void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
-{
+void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -190,8 +177,7 @@ void sub_02055E80(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
     BerryPatches_SetPatchMulchType(v1, v0, sub_02055C80(param2));
 }
 
-void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
-{
+void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -199,8 +185,7 @@ void sub_02055EAC(FieldSystem *fieldSystem, MapObject *param1, u16 param2)
     BerryPatches_PlantInPatch(v1, v0, fieldSystem->unk_04->unk_18->unk_04, sub_02055C60(param2));
 }
 
-void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1)
-{
+void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -208,8 +193,7 @@ void sub_02055EE0(FieldSystem *fieldSystem, MapObject *param1)
     BerryPatches_ResetPatchMoisture(v1, v0);
 }
 
-int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1)
-{
+int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -217,8 +201,7 @@ int sub_02055F00(const FieldSystem *fieldSystem, const MapObject *param1)
     return BerryPatches_GetPatchGrowthStage(v1, v0);
 }
 
-int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1)
-{
+int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -226,8 +209,7 @@ int sub_02055F20(const FieldSystem *fieldSystem, const MapObject *param1)
     return BerryPatches_GetPatchBerryID(v1, v0);
 }
 
-u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1)
-{
+u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -235,8 +217,7 @@ u16 sub_02055F40(const FieldSystem *fieldSystem, const MapObject *param1)
     return sub_02055C50(BerryPatches_GetPatchBerryID(v1, v0));
 }
 
-u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1)
-{
+u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -244,8 +225,7 @@ u16 sub_02055F64(const FieldSystem *fieldSystem, const MapObject *param1)
     return sub_02055C70(BerryPatches_GetPatchMulchType(v1, v0));
 }
 
-int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1)
-{
+int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -253,8 +233,7 @@ int sub_02055F88(const FieldSystem *fieldSystem, const MapObject *param1)
     return BerryPatches_GetPatchMoisture(v1, v0);
 }
 
-int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1)
-{
+int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1) {
     int v0;
     BerryPatch *v1 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
@@ -262,8 +241,7 @@ int sub_02055FA8(const FieldSystem *fieldSystem, const MapObject *param1)
     return BerryPatches_GetPatchYield(v1, v0);
 }
 
-u32 sub_02055FC8(const FieldSystem *fieldSystem, const MapObject *param1)
-{
+u32 sub_02055FC8(const FieldSystem *fieldSystem, const MapObject *param1) {
     u32 v0 = 0;
 
     if ((param1 == NULL) || (MapObject_GetGraphicsID(param1) != 0x64)) {
@@ -296,8 +274,7 @@ static const MapObjectAnimCmd Unk_020EC524[] = {
     { 0xfe, 0x0 }
 };
 
-static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, int param2)
-{
+static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, int param2) {
     int v0 = Player_GetXPos(fieldSystem->playerAvatar);
     int v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
@@ -320,8 +297,7 @@ static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, i
     return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0) != NULL;
 }
 
-static MapObject *sub_02056074(FieldSystem *fieldSystem, int param1)
-{
+static MapObject *sub_02056074(FieldSystem *fieldSystem, int param1) {
     int v0 = Player_GetXPos(fieldSystem->playerAvatar);
     int v1 = Player_GetZPos(fieldSystem->playerAvatar);
     v1 -= 1;
@@ -335,8 +311,7 @@ static MapObject *sub_02056074(FieldSystem *fieldSystem, int param1)
     return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0);
 }
 
-static MapObject *sub_020560A8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
-{
+static MapObject *sub_020560A8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1) {
     int v0 = Player_GetXPos(fieldSystem->playerAvatar);
     int v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
@@ -351,13 +326,11 @@ static MapObject *sub_020560A8(FieldSystem *fieldSystem, UnkStruct_020562AC *par
     return sub_0206326C(fieldSystem->mapObjMan, v0, v1, 0);
 }
 
-static BOOL sub_020560E4(MapObject *mapObj)
-{
+static BOOL sub_020560E4(MapObject *mapObj) {
     return MapObject_GetGraphicsID(mapObj) == 0x64;
 }
 
-static void sub_020560F8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
-{
+static void sub_020560F8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1) {
     MapObject *v0 = sub_020560A8(fieldSystem, param1);
 
     if (v0 != NULL) {
@@ -365,14 +338,12 @@ static void sub_020560F8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
     }
 }
 
-static void sub_0205610C(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, const MapObjectAnimCmd *param2)
-{
+static void sub_0205610C(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, const MapObjectAnimCmd *param2) {
     MapObject *v0 = Player_MapObject(fieldSystem->playerAvatar);
     param1->unk_0C = MapObject_StartAnimation(v0, param2);
 }
 
-static BOOL sub_02056124(FieldTask *taskMan)
-{
+static BOOL sub_02056124(FieldTask *taskMan) {
     FieldSystem *v0 = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_020562AC *v1 = FieldTask_GetEnv(taskMan);
 
@@ -451,8 +422,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
     return 0;
 }
 
-void sub_020562AC(FieldSystem *fieldSystem)
-{
+void sub_020562AC(FieldSystem *fieldSystem) {
     UnkStruct_020562AC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
 
     v0->unk_00 = 0;
@@ -462,8 +432,7 @@ void sub_020562AC(FieldSystem *fieldSystem)
     FieldTask_InitCall(fieldSystem->task, sub_02056124, v0);
 }
 
-void sub_020562D8(FieldSystem *fieldSystem)
-{
+void sub_020562D8(FieldSystem *fieldSystem) {
     int v0 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
     u32 v1 = sub_0205EED8(v0);
 

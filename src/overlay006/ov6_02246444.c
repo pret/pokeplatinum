@@ -27,71 +27,58 @@ struct UnkStruct_ov6_022465F4_t {
     UnkStruct_0202E4D4 *unk_14;
 };
 
-static void ov6_02246444(UnkStruct_ov6_022465F4 *param0)
-{
+static void ov6_02246444(UnkStruct_ov6_022465F4 *param0) {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov6_022465F4));
 }
 
-static void ov6_02246450(UnkStruct_ov6_022465F4 *param0, int param1)
-{
+static void ov6_02246450(UnkStruct_ov6_022465F4 *param0, int param1) {
     param0->unk_03 = param1;
 }
 
-static void ov6_02246454(UnkStruct_ov6_022465F4 *param0, int param1)
-{
+static void ov6_02246454(UnkStruct_ov6_022465F4 *param0, int param1) {
     param0->unk_02 = param1;
 }
 
-static void ov6_02246458(UnkStruct_ov6_022465F4 *param0, int param1)
-{
+static void ov6_02246458(UnkStruct_ov6_022465F4 *param0, int param1) {
     param0->unk_01 = param1;
 }
 
-static void ov6_0224645C(UnkStruct_ov6_022465F4 *param0, const u16 *param1)
-{
+static void ov6_0224645C(UnkStruct_ov6_022465F4 *param0, const u16 *param1) {
     CharCode_CopyNumChars(param0->unk_04, param1, 7 + 1);
 }
 
-static void ov6_02246468(UnkStruct_ov6_022465F4 *param0, UnkStruct_0202E4D4 *param1)
-{
+static void ov6_02246468(UnkStruct_ov6_022465F4 *param0, UnkStruct_0202E4D4 *param1) {
     param0->unk_00 = sub_0202E55C(param1);
     param0->unk_14 = param1;
 }
 
-void ov6_0224647C(UnkStruct_ov6_022465F4 *param0)
-{
+void ov6_0224647C(UnkStruct_ov6_022465F4 *param0) {
     if (param0->unk_14 != NULL) {
         sub_0202E560(param0->unk_14);
     }
 }
 
-int ov6_0224648C(const UnkStruct_ov6_022465F4 *param0)
-{
+int ov6_0224648C(const UnkStruct_ov6_022465F4 *param0) {
     return param0->unk_03;
 }
 
-int ov6_02246490(const UnkStruct_ov6_022465F4 *param0)
-{
+int ov6_02246490(const UnkStruct_ov6_022465F4 *param0) {
     return param0->unk_02;
 }
 
-const u16 *ov6_02246494(const UnkStruct_ov6_022465F4 *param0)
-{
+const u16 *ov6_02246494(const UnkStruct_ov6_022465F4 *param0) {
     return param0->unk_04;
 }
 
-void *ov6_02246498(UnkStruct_ov6_022465F4 *param0)
-{
+void *ov6_02246498(UnkStruct_ov6_022465F4 *param0) {
     return sub_0202E574(param0->unk_14);
 }
 
-int ov6_022464A4(const UnkStruct_ov6_022465F4 *param0)
-{
+int ov6_022464A4(const UnkStruct_ov6_022465F4 *param0) {
     return param0->unk_00;
 }
 
-static UnkStruct_ov6_022465F4 *ov6_022464A8(FieldSystem *fieldSystem, UnkStruct_0202E794 *param1)
-{
+static UnkStruct_ov6_022465F4 *ov6_022464A8(FieldSystem *fieldSystem, UnkStruct_0202E794 *param1) {
     UnkStruct_ov6_022465F4 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v0);
@@ -103,8 +90,7 @@ static UnkStruct_ov6_022465F4 *ov6_022464A8(FieldSystem *fieldSystem, UnkStruct_
     return v0;
 }
 
-static UnkStruct_ov6_022465F4 *ov6_022464F8(FieldSystem *fieldSystem, UnkStruct_0202E768 *param1)
-{
+static UnkStruct_ov6_022465F4 *ov6_022464F8(FieldSystem *fieldSystem, UnkStruct_0202E768 *param1) {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     UnkStruct_ov6_022465F4 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022465F4));
 
@@ -118,8 +104,7 @@ static UnkStruct_ov6_022465F4 *ov6_022464F8(FieldSystem *fieldSystem, UnkStruct_
     return v1;
 }
 
-static UnkStruct_ov6_022465F4 *ov6_02246550(FieldSystem *fieldSystem, int param1)
-{
+static UnkStruct_ov6_022465F4 *ov6_02246550(FieldSystem *fieldSystem, int param1) {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     UnkStruct_ov6_022465F4 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022465F4));
 
@@ -134,8 +119,7 @@ static UnkStruct_ov6_022465F4 *ov6_02246550(FieldSystem *fieldSystem, int param1
     return v1;
 }
 
-UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int param1, int param2)
-{
+UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int param1, int param2) {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
     if ((param1 == 4) || (param1 == 5)) {
@@ -151,7 +135,6 @@ UnkStruct_ov6_022465F4 *ov6_022465A0(FieldSystem *fieldSystem, int param1, int p
     }
 }
 
-void ov6_022465F4(UnkStruct_ov6_022465F4 *param0)
-{
+void ov6_022465F4(UnkStruct_ov6_022465F4 *param0) {
     Heap_Free(param0);
 }

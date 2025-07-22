@@ -14,8 +14,7 @@
 static void TerrainAttributes_Load(MapMatrix *mapMatrix, TerrainAttributes *terrainAttributes, const u8 blockCount);
 static const u8 TerrainAttributes_GetOrPushLandDataID(const u16 landDataID, u16 *blockIndexToLandDataID, u8 *blockCount);
 
-void TerrainAttributes_New(FieldSystem *fieldSystem, const u8 blockCount)
-{
+void TerrainAttributes_New(FieldSystem *fieldSystem, const u8 blockCount) {
     if (fieldSystem->terrainAttributes == NULL) {
         fieldSystem->terrainAttributes = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(TerrainAttributes));
 
@@ -23,22 +22,19 @@ void TerrainAttributes_New(FieldSystem *fieldSystem, const u8 blockCount)
     }
 }
 
-void TerrainAttributes_Free(FieldSystem *fieldSystem)
-{
+void TerrainAttributes_Free(FieldSystem *fieldSystem) {
     if (fieldSystem->terrainAttributes != NULL) {
         Heap_Free(fieldSystem->terrainAttributes);
         fieldSystem->terrainAttributes = NULL;
     }
 }
 
-const u16 *TerrainAttributes_Get(const u32 mapMatrixIndex, const TerrainAttributes *terrainAttributes)
-{
+const u16 *TerrainAttributes_Get(const u32 mapMatrixIndex, const TerrainAttributes *terrainAttributes) {
     u8 blockIndex = terrainAttributes->mapMatrixIndexToBlockIndex[mapMatrixIndex];
     return &terrainAttributes->terrainAttributes[MAP_TILES_COUNT_X * MAP_TILES_COUNT_Z * blockIndex];
 }
 
-static void TerrainAttributes_Load(MapMatrix *mapMatrix, TerrainAttributes *terrainAttributes, const u8 blockCount)
-{
+static void TerrainAttributes_Load(MapMatrix *mapMatrix, TerrainAttributes *terrainAttributes, const u8 blockCount) {
     u16 mapMatrixIndex;
     u16 landDataID;
     int i, j;
@@ -70,8 +66,7 @@ static void TerrainAttributes_Load(MapMatrix *mapMatrix, TerrainAttributes *terr
     NARC_dtor(landDataNARC);
 }
 
-static const u8 TerrainAttributes_GetOrPushLandDataID(const u16 landDataID, u16 *blockIndexToLandDataID, u8 *blockCount)
-{
+static const u8 TerrainAttributes_GetOrPushLandDataID(const u16 landDataID, u16 *blockIndexToLandDataID, u8 *blockCount) {
     u8 i;
 
     for (i = 0; i < *blockCount; i++) {

@@ -65,8 +65,7 @@ static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
 extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
 
-void NitroMain(void)
-{
+void NitroMain(void) {
     InitSystem();
     InitVRAM();
     InitKeypadAndTouchpad();
@@ -165,16 +164,14 @@ void NitroMain(void)
     }
 }
 
-static void InitApplication()
-{
+static void InitApplication() {
     sApplication.currOverlayID = FS_OVERLAY_ID_NONE;
     sApplication.currApplication = NULL;
     sApplication.nextOverlayID = FS_OVERLAY_ID_NONE;
     sApplication.nextApplication = NULL;
 }
 
-static void RunApplication(void)
-{
+static void RunApplication(void) {
     if (sApplication.currApplication == NULL) {
         if (sApplication.nextApplication == NULL) {
             return;
@@ -200,16 +197,14 @@ static void RunApplication(void)
     }
 }
 
-void EnqueueApplication(FSOverlayID overlayID, const ApplicationManagerTemplate *template)
-{
+void EnqueueApplication(FSOverlayID overlayID, const ApplicationManagerTemplate *template) {
     GF_ASSERT(sApplication.nextApplication == NULL);
 
     sApplication.nextOverlayID = overlayID;
     sApplication.nextApplication = template;
 }
 
-static void WaitFrame(void)
-{
+static void WaitFrame(void) {
     CommSys_Update();
 
     OS_WaitIrq(TRUE, OS_IE_V_BLANK);
@@ -222,8 +217,7 @@ static void WaitFrame(void)
     }
 }
 
-static void TrySystemReset(enum OSResetParameter resetParam)
-{
+static void TrySystemReset(enum OSResetParameter resetParam) {
     if (sub_02038AB8() && CARD_TryWaitBackupAsync() == TRUE) {
         OS_ResetSystem(resetParam);
     }
@@ -231,8 +225,7 @@ static void TrySystemReset(enum OSResetParameter resetParam)
     WaitFrame();
 }
 
-static void CheckHeapCanary(void)
-{
+static void CheckHeapCanary(void) {
     int v0 = sub_020389D8();
 
     switch (v0) {
@@ -248,8 +241,7 @@ static void CheckHeapCanary(void)
     }
 }
 
-static void SoftReset(enum OSResetParameter resetParam)
-{
+static void SoftReset(enum OSResetParameter resetParam) {
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_WHITE);
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_WHITE);
 
@@ -263,8 +255,7 @@ static void SoftReset(enum OSResetParameter resetParam)
     }
 }
 
-static void HeapCanaryFailed(int resetParam, int param1)
-{
+static void HeapCanaryFailed(int resetParam, int param1) {
     int elapsed;
 
     if (param1 == 3) {
@@ -307,8 +298,7 @@ static void HeapCanaryFailed(int resetParam, int param1)
     SoftReset(resetParam);
 }
 
-void InitRNG(void)
-{
+void InitRNG(void) {
     RTCDate date;
     RTCTime time;
     GetCurrentDateTime(&date, &time);
@@ -319,8 +309,7 @@ void InitRNG(void)
     LCRNG_SetSeed(seed);
 }
 
-void HandleConsoleFold(void)
-{
+void HandleConsoleFold(void) {
     PMBackLightSwitch top, bottom;
     PMWakeUpTrigger trigger;
 

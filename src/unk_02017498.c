@@ -32,8 +32,7 @@ static const ApplicationManagerTemplate Unk_020E5664 = {
     0xffffffff,
 };
 
-int sub_02017498(ApplicationManager *appMan, int *param1)
-{
+int sub_02017498(ApplicationManager *appMan, int *param1) {
     UnkStruct_02017498 *v0;
 
     SetVBlankCallback(NULL, NULL);
@@ -59,8 +58,7 @@ int sub_02017498(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int sub_02017524(ApplicationManager *appMan, int *param1)
-{
+int sub_02017524(ApplicationManager *appMan, int *param1) {
     UnkStruct_02017498 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -130,8 +128,7 @@ int sub_02017524(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int sub_02017658(ApplicationManager *appMan, int *param1)
-{
+int sub_02017658(ApplicationManager *appMan, int *param1) {
     UnkStruct_02017498 *v0 = ApplicationManager_Data(appMan);
 
     sub_020176B4(v0);
@@ -142,8 +139,7 @@ int sub_02017658(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void sub_0201767C(UnkStruct_02017498 *param0)
-{
+static void sub_0201767C(UnkStruct_02017498 *param0) {
     if (param0->unk_88 == 0) {
         param0->unk_18 = Heap_AllocFromHeap(HEAP_ID_116, 0x20000 + 32);
         param0->unk_1C = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_18 + 31) / 32 * 32), 0x20000);
@@ -154,8 +150,7 @@ static void sub_0201767C(UnkStruct_02017498 *param0)
     }
 }
 
-static void sub_020176B4(UnkStruct_02017498 *param0)
-{
+static void sub_020176B4(UnkStruct_02017498 *param0) {
     if (param0->unk_88 == 1) {
         NNS_FndDestroyExpHeap(param0->unk_1C);
 
@@ -168,8 +163,7 @@ static void sub_020176B4(UnkStruct_02017498 *param0)
     }
 }
 
-static void *sub_020176DC(DWCAllocType param0, u32 param1, int param2)
-{
+static void *sub_020176DC(DWCAllocType param0, u32 param1, int param2) {
 #pragma unused(param0)
     void *v0;
     OSIntrMode v1;
@@ -186,8 +180,7 @@ static void *sub_020176DC(DWCAllocType param0, u32 param1, int param2)
     return v0;
 }
 
-static void sub_02017704(DWCAllocType param0, void *param1, u32 param2)
-{
+static void sub_02017704(DWCAllocType param0, void *param1, u32 param2) {
 #pragma unused(param0, param2)
     OSIntrMode v0;
 

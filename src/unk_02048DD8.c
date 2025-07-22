@@ -54,8 +54,7 @@ static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1);
 BOOL ScrCmd_31B(ScriptContext *param0);
 BOOL ScrCmd_329(ScriptContext *param0);
 
-BOOL ScrCmd_235(ScriptContext *param0)
-{
+BOOL ScrCmd_235(ScriptContext *param0) {
     switch (ScriptContext_ReadHalfWord(param0)) {
     case 0: {
         u16 *v0 = ScriptContext_GetVarPointer(param0);
@@ -104,14 +103,12 @@ BOOL ScrCmd_235(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_236(ScriptContext *param0)
-{
+BOOL ScrCmd_236(ScriptContext *param0) {
     sub_0206D4AC(param0->fieldSystem, ScriptContext_GetVar(param0));
     return 0;
 }
 
-BOOL ScrCmd_2B8(ScriptContext *param0)
-{
+BOOL ScrCmd_2B8(ScriptContext *param0) {
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
@@ -119,20 +116,17 @@ BOOL ScrCmd_2B8(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_30B(ScriptContext *param0)
-{
+BOOL ScrCmd_30B(ScriptContext *param0) {
     sub_0206D7C4(param0->fieldSystem);
     return 0;
 }
 
-BOOL ScrCmd_30C(ScriptContext *param0)
-{
+BOOL ScrCmd_30C(ScriptContext *param0) {
     sub_0206DB20(param0->fieldSystem);
     return 0;
 }
 
-BOOL ScrCmd_30D(ScriptContext *param0)
-{
+BOOL ScrCmd_30D(ScriptContext *param0) {
     u16 v0 = ScriptContext_GetVar(param0);
 
     sub_0206DB5C(param0->fieldSystem, v0);
@@ -141,8 +135,7 @@ BOOL ScrCmd_30D(ScriptContext *param0)
 
 static const UnkStruct_020EBB48 Unk_020EBB48[19];
 
-BOOL ScrCmd_237(ScriptContext *param0)
-{
+BOOL ScrCmd_237(ScriptContext *param0) {
     StringTemplate **v0;
 
     v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -176,8 +169,7 @@ BOOL ScrCmd_237(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_238(ScriptContext *param0)
-{
+BOOL ScrCmd_238(ScriptContext *param0) {
     u16 v0;
     u16 *v1;
 
@@ -188,8 +180,7 @@ BOOL ScrCmd_238(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_27C(ScriptContext *param0)
-{
+BOOL ScrCmd_27C(ScriptContext *param0) {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
 
     switch (ScriptContext_ReadHalfWord(param0)) {
@@ -210,8 +201,7 @@ BOOL ScrCmd_27C(ScriptContext *param0)
     return 0;
 }
 
-static void sub_020491B8(FieldSystem *fieldSystem, int param1, u16 param2, u16 param3)
-{
+static void sub_020491B8(FieldSystem *fieldSystem, int param1, u16 param2, u16 param3) {
     UnkFuncPtr_020EBB48 v0;
 
     v0 = Unk_020EBB48[param1 - 1].unk_00;
@@ -221,8 +211,7 @@ static void sub_020491B8(FieldSystem *fieldSystem, int param1, u16 param2, u16 p
     }
 }
 
-static int sub_020491D0(int param0, FieldSystem *fieldSystem, StringTemplate *param2)
-{
+static int sub_020491D0(int param0, FieldSystem *fieldSystem, StringTemplate *param2) {
     UnkFuncPtr_020EBB48_1 v0;
 
     v0 = Unk_020EBB48[param0 - 1].unk_04;
@@ -234,8 +223,7 @@ static int sub_020491D0(int param0, FieldSystem *fieldSystem, StringTemplate *pa
     return Unk_020EBB48[param0 - 1].unk_0C;
 }
 
-static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1)
-{
+static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1) {
     UnkFuncPtr_020EBB48_2 v0;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
@@ -252,8 +240,7 @@ static BOOL sub_020491F4(FieldSystem *fieldSystem, int param1)
     return v0(fieldSystem);
 }
 
-static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
-{
+static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5) {
     Strbuf *v0 = Strbuf_Init(64, HEAP_ID_FIELD);
 
     Strbuf_CopyChars(v0, param2);
@@ -261,22 +248,19 @@ static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, 
     Strbuf_Free(v0);
 }
 
-static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
-{
+static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1) {
     Party *v0 = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *v1 = Party_FindFirstHatchedMon(v0);
 
     StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxPokemon(v1));
 }
 
-static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
-{
+static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1) {
     int v0 = PoketchSystem_CurrentAppID(fieldSystem->unk_04->poketchSys);
     StringTemplate_SetPoketchAppName(param1, 0, v0);
 }
 
-static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
-{
+static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1) {
     u16 v0[10 + 1];
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E7E4 *v2 = sub_0202E7E4(broadcast);
@@ -285,8 +269,7 @@ static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 
-static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
-{
+static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1) {
     u16 v0[10 + 1];
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E810 *v2 = sub_0202E810(broadcast);
@@ -295,8 +278,7 @@ static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 
-static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
-{
+static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1) {
     Strbuf *v0;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E81C *v2 = sub_0202E81C(broadcast);
@@ -308,50 +290,42 @@ static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
     Strbuf_Free(v0);
 }
 
-static BOOL sub_02049348(FieldSystem *fieldSystem)
-{
+static BOOL sub_02049348(FieldSystem *fieldSystem) {
     UnkStruct_0202E7FC *v0 = sub_0202E7FC(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
-static BOOL sub_02049358(FieldSystem *fieldSystem)
-{
+static BOOL sub_02049358(FieldSystem *fieldSystem) {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     return Poketch_IsEnabled(poketch);
 }
 
-static BOOL sub_02049368(FieldSystem *fieldSystem)
-{
+static BOOL sub_02049368(FieldSystem *fieldSystem) {
     UnkStruct_0202E7D8 *v0 = sub_0202E7D8(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
-static BOOL sub_02049378(FieldSystem *fieldSystem)
-{
+static BOOL sub_02049378(FieldSystem *fieldSystem) {
     UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
     return sub_02029D10(v0, 0);
 }
 
-static BOOL sub_02049388(FieldSystem *fieldSystem)
-{
+static BOOL sub_02049388(FieldSystem *fieldSystem) {
     UnkStruct_0202E7F0 *v0 = sub_0202E7F0(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
-static BOOL sub_02049398(FieldSystem *fieldSystem)
-{
+static BOOL sub_02049398(FieldSystem *fieldSystem) {
     UnkStruct_0202E7E4 *v0 = sub_0202E7E4(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
-static BOOL sub_020493A8(FieldSystem *fieldSystem)
-{
+static BOOL sub_020493A8(FieldSystem *fieldSystem) {
     UnkStruct_0202E810 *v0 = sub_0202E810(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 
-static BOOL sub_020493B8(FieldSystem *fieldSystem)
-{
+static BOOL sub_020493B8(FieldSystem *fieldSystem) {
     UnkStruct_0202E81C *v0 = sub_0202E81C(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
@@ -378,8 +352,7 @@ static const UnkStruct_020EBB48 Unk_020EBB48[19] = {
     { sub_0206E768, sub_02049308, sub_020493B8, 0x15 }
 };
 
-BOOL ScrCmd_31B(ScriptContext *param0)
-{
+BOOL ScrCmd_31B(ScriptContext *param0) {
     TVBroadcast *broadcast;
     UnkStruct_0202E808 *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
@@ -391,8 +364,7 @@ BOOL ScrCmd_31B(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_329(ScriptContext *param0)
-{
+BOOL ScrCmd_329(ScriptContext *param0) {
     TVBroadcast *broadcast;
     UnkStruct_0202E81C *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);

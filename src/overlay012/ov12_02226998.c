@@ -143,13 +143,11 @@ static const BattleAnimScriptSpriteFunc sUnusedSpriteFuncs[] = {
     NULL
 };
 
-void UnusedSpriteFunc()
-{
+void UnusedSpriteFunc() {
     UNUSED(sUnusedSpriteFuncs[0]);
 }
 
-BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
-{
+BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id) {
     if (id >= (NELEMS(sBattleAnimScriptFuncs))) {
         return NULL;
     }
@@ -157,8 +155,7 @@ BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
     return sBattleAnimScriptFuncs[id];
 }
 
-BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id)
-{
+BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id) {
     if (id >= (NELEMS(sBattleAnimScriptSpriteFuncs))) {
         return NULL;
     }

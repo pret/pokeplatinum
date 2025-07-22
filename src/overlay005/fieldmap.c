@@ -125,16 +125,14 @@ static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0);
 static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0);
 static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0);
 
-static inline void inline_fieldmap(FieldSystem *fieldSystem)
-{
+static inline void inline_fieldmap(FieldSystem *fieldSystem) {
     UnkStruct_ov5_021ED0A4 *v0 = sub_0206285C(fieldSystem->mapObjMan);
     UnkStruct_02020C44 *v1 = ov5_021EDC8C(v0);
 
     sub_02020D68(v1);
 }
 
-static void fieldmap(void *param0)
-{
+static void fieldmap(void *param0) {
     FieldSystem *fieldSystem = param0;
 
     Bg_RunScheduledUpdates(fieldSystem->bgConfig);
@@ -144,8 +142,7 @@ static void fieldmap(void *param0)
     inline_fieldmap(fieldSystem);
 }
 
-static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
-{
+static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1) {
     FieldSystem *fieldSystem;
     BOOL ret = FALSE;
 
@@ -240,8 +237,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
     return ret;
 }
 
-static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1)
-{
+static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1) {
     FieldSystem *fieldSystem = ApplicationManager_Args(appMan);
 
     if (ov5_021D119C(fieldSystem)) {
@@ -261,8 +257,7 @@ static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1)
     }
 }
 
-static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
-{
+static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1) {
     FieldSystem *fieldSystem = ApplicationManager_Args(appMan);
     LandDataManager_Tick(fieldSystem, fieldSystem->landDataMan);
 
@@ -364,8 +359,7 @@ const ApplicationManagerTemplate gFieldMapTemplate = {
     0xffffffff
 };
 
-static int ov5_021D1178(FieldSystem *fieldSystem)
-{
+static int ov5_021D1178(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int v1 = PersistedMapFeatures_GetID(v0);
 
@@ -380,8 +374,7 @@ static int ov5_021D1178(FieldSystem *fieldSystem)
     return 0;
 }
 
-static BOOL ov5_021D119C(FieldSystem *fieldSystem)
-{
+static BOOL ov5_021D119C(FieldSystem *fieldSystem) {
     int x = Player_GetXPos(fieldSystem->playerAvatar);
     int y = Player_GetZPos(fieldSystem->playerAvatar);
 
@@ -394,8 +387,7 @@ static BOOL ov5_021D119C(FieldSystem *fieldSystem)
     }
 }
 
-static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
-{
+static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem) {
     u32 v0;
     u32 mapId;
     int x, y;
@@ -453,8 +445,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     return TRUE;
 }
 
-void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
-{
+void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1) {
     u32 mapId;
     FieldOverworldState *fieldState;
 
@@ -479,8 +470,7 @@ void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
     }
 }
 
-static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
-{
+static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1) {
     if (FieldSystem_IsRunningTask(fieldSystem) == 0) {
         sub_020559DC(fieldSystem);
     }
@@ -509,8 +499,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
     }
 }
 
-static void ov5_021D13B4(FieldSystem *fieldSystem)
-{
+static void ov5_021D13B4(FieldSystem *fieldSystem) {
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 0) {
         return;
     }
@@ -523,8 +512,7 @@ static void ov5_021D13B4(FieldSystem *fieldSystem)
     OverworldMapHistory_Push(mapHistory, mapX, mapZ, faceDirection);
 }
 
-static void ov5_021D1414(void)
-{
+static void ov5_021D1414(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -541,18 +529,15 @@ static void ov5_021D1414(void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov5_021D1434(BgConfig *bgl)
-{
+void ov5_021D1434(BgConfig *bgl) {
     ov5_021D1444(bgl);
 }
 
-void ov5_021D143C(BgConfig *bgl)
-{
+void ov5_021D143C(BgConfig *bgl) {
     ov5_021D1524(bgl);
 }
 
-static void ov5_021D1444(BgConfig *bgl)
-{
+static void ov5_021D1444(BgConfig *bgl) {
     {
         GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
@@ -634,27 +619,23 @@ static void ov5_021D1444(BgConfig *bgl)
     }
 }
 
-static void ov5_021D1524(BgConfig *bgl)
-{
+static void ov5_021D1524(BgConfig *bgl) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_3);
 }
 
-static void ov5_021D154C(void)
-{
+static void ov5_021D154C(void) {
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 4);
 }
 
-static void ov5_021D1570(void)
-{
+static void ov5_021D1570(void) {
     RenderOam_Free();
 }
 
-static void FieldMap_InitModelAttributes(ModelAttributes *modelAttrs)
-{
+static void FieldMap_InitModelAttributes(ModelAttributes *modelAttrs) {
     ModelAttributes_SetPolygonMode(modelAttrs, GX_POLYGONMODE_MODULATE, FALSE);
     ModelAttributes_SetCullMode(modelAttrs, GX_CULL_BACK, FALSE);
     ModelAttributes_SetAlpha(modelAttrs, 31, FALSE);
@@ -662,8 +643,7 @@ static void FieldMap_InitModelAttributes(ModelAttributes *modelAttrs)
     ModelAttributes_ApplyGlobal(modelAttrs, MODEL_ATTRIBUTES_LAST_BIT);
 }
 
-void ov5_021D15B4(void)
-{
+void ov5_021D15B4(void) {
     {
         CharTransferTemplate v0 = {
             20, 0x8000, 0x4000, 4
@@ -677,14 +657,12 @@ void ov5_021D15B4(void)
     PlttTransfer_Clear();
 }
 
-void ov5_021D15E8(void)
-{
+void ov5_021D15E8(void) {
     CharTransfer_Free();
     PlttTransfer_Free();
 }
 
-static void ov5_021D15F4(FieldSystem *fieldSystem)
-{
+static void ov5_021D15F4(FieldSystem *fieldSystem) {
     MtxFx44 v0, v1;
 
     sub_020241B4();
@@ -736,8 +714,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
 }
 
-void ov5_021D16F4(FieldSystem *fieldSystem, BOOL param1)
-{
+void ov5_021D16F4(FieldSystem *fieldSystem, BOOL param1) {
     if (param1 == 1) {
         fieldSystem->unk_C0 |= 4;
     } else {
@@ -745,8 +722,7 @@ void ov5_021D16F4(FieldSystem *fieldSystem, BOOL param1)
     }
 }
 
-void ov5_021D1718(FieldSystem *fieldSystem, BOOL param1)
-{
+void ov5_021D1718(FieldSystem *fieldSystem, BOOL param1) {
     if (param1 == 1) {
         fieldSystem->unk_C0 |= 1;
     } else {
@@ -754,13 +730,11 @@ void ov5_021D1718(FieldSystem *fieldSystem, BOOL param1)
     }
 }
 
-static void ov5_021D173C(FieldSystem *fieldSystem)
-{
+static void ov5_021D173C(FieldSystem *fieldSystem) {
     fieldSystem->unk_C0 = (8 | 1 | 2 | 4);
 }
 
-void ov5_021D1744(const u8 param0)
-{
+void ov5_021D1744(const u8 param0) {
     if (param0 == 1) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
     } else if (param0 == 0) {
@@ -770,8 +744,7 @@ void ov5_021D1744(const u8 param0)
     }
 }
 
-static void ov5_021D1790(FieldSystem *fieldSystem)
-{
+static void ov5_021D1790(FieldSystem *fieldSystem) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
 
@@ -791,8 +764,7 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
     }
 }
 
-static void ov5_021D17EC(FieldSystem *fieldSystem)
-{
+static void ov5_021D17EC(FieldSystem *fieldSystem) {
     fieldSystem->landDataMan = LandDataManager_New(fieldSystem->mapMatrix, fieldSystem->areaDataManager, fieldSystem->mapPropAnimMan, fieldSystem->skipMapAttributes);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
@@ -814,8 +786,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
     LandDataManager_InitialLoad(fieldSystem->landDataMan, fieldSystem->location->x, fieldSystem->location->z);
 }
 
-static void ov5_021D1878(FieldSystem *fieldSystem)
-{
+static void ov5_021D1878(FieldSystem *fieldSystem) {
     fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, HEAP_ID_FIELD);
 
     {
@@ -877,8 +848,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
     fieldSystem->unk_04->unk_18 = sub_02055C8C(fieldSystem, 4);
 }
 
-static void ov5_021D1968(FieldSystem *fieldSystem)
-{
+static void ov5_021D1968(FieldSystem *fieldSystem) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_TurnBothDispOn();
     fieldSystem->areaModelAttrs = ModelAttributes_New();
@@ -908,8 +878,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     SetVBlankCallback(fieldmap, fieldSystem);
 }
 
-static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
-{
+static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1) {
     int v0;
     u16 *v1;
     UnkStruct_ov5_021D1A68 *v2 = Heap_AllocFromHeap(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
@@ -932,23 +901,19 @@ static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
     return v2;
 }
 
-static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0)
-{
+static const int *ov5_021D1A68(const UnkStruct_ov5_021D1A68 *param0) {
     return param0->unk_02;
 }
 
-static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0)
-{
+static const int ov5_021D1A6C(const UnkStruct_ov5_021D1A68 *param0) {
     return param0->unk_00;
 }
 
-static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0)
-{
+static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0) {
     Heap_Free(param0);
 }
 
-static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem)
-{
+static BOOL FieldMap_InDistortionWorld(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int v1 = PersistedMapFeatures_GetID(v0);
 

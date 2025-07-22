@@ -14,8 +14,7 @@
 #include "unk_0202ACE0.h"
 #include "unk_020366A0.h"
 
-int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2)
-{
+int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2) {
     int v0;
     DWCUserData *v1 = WiFiList_GetUserData(SaveData_GetWiFiList(saveData));
     DWCFriendData *v2 = sub_0202AED8(SaveData_GetWiFiList(saveData), 0);
@@ -41,8 +40,7 @@ int sub_0203909C(SaveData *saveData, DWCFriendData *param1, int *param2)
     return 2;
 }
 
-int sub_02039140(SaveData *saveData, u64 param1, int *param2)
-{
+int sub_02039140(SaveData *saveData, u64 param1, int *param2) {
     int v0;
     DWCUserData *v1 = WiFiList_GetUserData(SaveData_GetWiFiList(saveData));
     DWCFriendData *v2 = sub_0202AED8(SaveData_GetWiFiList(saveData), 0);
@@ -72,8 +70,7 @@ int sub_02039140(SaveData *saveData, u64 param1, int *param2)
     return 2;
 }
 
-BOOL sub_020391DC(SaveData *saveData, int *param1, int heapID)
-{
+BOOL sub_020391DC(SaveData *saveData, int *param1, int heapID) {
     int v0, v1 = 0, v2;
     DWCFriendData *v3 = sub_0202AED8(SaveData_GetWiFiList(saveData), 0);
     DWCFriendData *v4;
@@ -111,8 +108,7 @@ BOOL sub_020391DC(SaveData *saveData, int *param1, int heapID)
     return v1;
 }
 
-void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int param4)
-{
+void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int param4) {
     WiFiList *v0 = SaveData_GetWiFiList(saveData);
     DWCFriendData *v1 = sub_0202AED8(v0, param2);
     TrainerInfo *v2 = CommInfo_TrainerInfo(param1);
@@ -146,8 +142,7 @@ void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int pa
     CommInfo_SavePlayerRecord(saveData);
 }
 
-int sub_02039390(SaveData *saveData, int param1)
-{
+int sub_02039390(SaveData *saveData, int param1) {
     int v0, v1;
     DWCFriendData *v2 = CommInfo_DWCFriendData(param1);
     WiFiList *v3 = SaveData_GetWiFiList(saveData);

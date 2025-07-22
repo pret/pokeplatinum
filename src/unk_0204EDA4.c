@@ -21,8 +21,7 @@
 
 static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3);
 
-BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx)
-{
+BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx) {
     u16 partySlot = ScriptContext_GetVar(ctx);
     void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     *partyData = FieldSystem_OpenSummaryScreenSelectMove(HEAP_ID_FIELD_TASK, ctx->fieldSystem, partySlot);
@@ -31,8 +30,7 @@ BOOL ScrCmd_SelectPartyMonMove(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_GetSelectedPartyMonMove(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetSelectedPartyMonMove(ScriptContext *ctx) {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     GF_ASSERT(*partyData != 0);
@@ -48,13 +46,11 @@ BOOL ScrCmd_GetSelectedPartyMonMove(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy21E(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy21E(ScriptContext *ctx) {
     return FALSE;
 }
 
-BOOL ScrCmd_21F(ScriptContext *param0)
-{
+BOOL ScrCmd_21F(ScriptContext *param0) {
     Pokemon *mon;
     u16 *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
@@ -68,8 +64,7 @@ BOOL ScrCmd_21F(ScriptContext *param0)
     return 0;
 }
 
-static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3)
-{
+static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3) {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
     UnkStruct_020997B8 *v1 = sub_020997B8(HEAP_ID_FIELD_TASK);
     *v0 = v1;
@@ -85,13 +80,11 @@ static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16
     Heap_Free(param3);
 }
 
-BOOL ScrCmd_220(ScriptContext *param0)
-{
+BOOL ScrCmd_220(ScriptContext *param0) {
     return 1;
 }
 
-BOOL ScrCmd_221(ScriptContext *param0)
-{
+BOOL ScrCmd_221(ScriptContext *param0) {
     Pokemon *mon;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2;
@@ -104,8 +97,7 @@ BOOL ScrCmd_221(ScriptContext *param0)
     return 1;
 }
 
-BOOL ScrCmd_224(ScriptContext *param0)
-{
+BOOL ScrCmd_224(ScriptContext *param0) {
     Pokemon *v0;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 v2 = ScriptContext_GetVar(param0);
@@ -122,13 +114,11 @@ BOOL ScrCmd_224(ScriptContext *param0)
     return 1;
 }
 
-BOOL ScrCmd_222(ScriptContext *param0)
-{
+BOOL ScrCmd_222(ScriptContext *param0) {
     return 0;
 }
 
-BOOL ScrCmd_223(ScriptContext *param0)
-{
+BOOL ScrCmd_223(ScriptContext *param0) {
     UnkStruct_020997B8 *v0;
     u16 *v1 = ScriptContext_GetVarPointer(param0);
     void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
@@ -148,8 +138,7 @@ BOOL ScrCmd_223(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_225(ScriptContext *param0)
-{
+BOOL ScrCmd_225(ScriptContext *param0) {
     UnkStruct_020997B8 *v0;
     u16 *v1 = ScriptContext_GetVarPointer(param0);
     void **v2 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);

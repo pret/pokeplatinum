@@ -34,8 +34,7 @@ static const CommCmdTable Unk_ov116_02267740[] = {
     { ov116_02260484, ov116_02260498, NULL }
 };
 
-static void ov116_02260440(int param0, int param1, void *param2, void *param3)
-{
+static void ov116_02260440(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov116_0226139C *v0 = param3;
 
     v0->unk_14 = *((UnkStruct_ov116_0226048C *)param2);
@@ -44,67 +43,55 @@ static void ov116_02260440(int param0, int param1, void *param2, void *param3)
     ov116_022617D4(v0);
 }
 
-static void ov116_02260458(int param0, int param1, void *param2, void *param3)
-{
+static void ov116_02260458(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov116_0226139C *v0 = param3;
     ov116_022617DC(v0);
 }
 
-static void ov116_02260464(int param0, int param1, void *param2, void *param3)
-{
+static void ov116_02260464(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov116_0226139C *v0 = param3;
     UnkStruct_ov116_02260490 *v1 = ((UnkStruct_ov116_02260490 *)param2);
     v0->unk_04->unk_2858[param0].unk_00 = v1->unk_00;
 }
 
-static void ov116_02260478(int param0, int param1, void *param2, void *param3)
-{
+static void ov116_02260478(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov116_0226139C *v0 = param3;
     UnkStruct_ov116_02260494 *v1 = ((UnkStruct_ov116_02260494 *)param2);
     v0->unk_24.unk_00[param0].unk_00 = v1->unk_00;
 }
 
-static void ov116_02260484(int param0, int param1, void *param2, void *param3)
-{
+static void ov116_02260484(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov116_0226139C *v0 = param3;
 }
 
-static int ov116_02260488(void)
-{
+static int ov116_02260488(void) {
     return 0;
 }
 
-static int ov116_0226048C(void)
-{
+static int ov116_0226048C(void) {
     return sizeof(UnkStruct_ov116_0226048C);
 }
 
-static int ov116_02260490(void)
-{
+static int ov116_02260490(void) {
     return sizeof(UnkStruct_ov116_02260490);
 }
 
-static int ov116_02260494(void)
-{
+static int ov116_02260494(void) {
     return sizeof(UnkStruct_ov116_02260494);
 }
 
-static int ov116_02260498(void)
-{
+static int ov116_02260498(void) {
     return sizeof(UnkStruct_ov116_02260498);
 }
 
-const CommCmdTable *ov116_0226049C(void)
-{
+const CommCmdTable *ov116_0226049C(void) {
     return Unk_ov116_02267740;
 }
 
-int ov116_022604A4(void)
-{
+int ov116_022604A4(void) {
     return sizeof(Unk_ov116_02267740) / sizeof(CommCmdTable);
 }
 
-void ov116_022604A8(UnkStruct_ov116_0226139C *param0)
-{
+void ov116_022604A8(UnkStruct_ov116_0226139C *param0) {
     CommCmd_Init(ov116_0226049C(), ov116_022604A4(), param0);
 }

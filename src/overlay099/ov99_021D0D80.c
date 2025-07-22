@@ -83,8 +83,7 @@ static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1580(BgConfig *param0);
 
-int ov99_021D0D80(ApplicationManager *appMan, int *param1)
-{
+int ov99_021D0D80(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov99_021D2CB0 *v0;
 
     SetVBlankCallback(NULL, NULL);
@@ -177,8 +176,7 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov99_021D1028(ApplicationManager *appMan, int *param1)
-{
+int ov99_021D1028(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov99_021D2CB0 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_1108 != NULL) {
@@ -252,8 +250,7 @@ int ov99_021D1028(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov99_021D11A8(ApplicationManager *appMan, int *param1)
-{
+int ov99_021D11A8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov99_021D2CB0 *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_14);
@@ -286,8 +283,7 @@ int ov99_021D11A8(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov99_021D1244(SysTask *param0, void *param1)
-{
+static void ov99_021D1244(SysTask *param0, void *param1) {
     UnkStruct_ov99_021D2CB0 *v0 = param1;
 
     if (v0->unk_1103 == 1) {
@@ -299,8 +295,7 @@ static void ov99_021D1244(SysTask *param0, void *param1)
     SpriteSystem_UpdateTransfer();
 }
 
-static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
-{
+static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0) {
     GF_ASSERT(param0->unk_1108 != NULL);
 
     ov99_021D3F38(param0->unk_110C);
@@ -322,8 +317,7 @@ static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D1A4C(param0->unk_10);
 }
 
-void ov99_021D12F0(UnkStruct_ov99_021D2CB0 *param0)
-{
+void ov99_021D12F0(UnkStruct_ov99_021D2CB0 *param0) {
     if (param0->unk_1108 == NULL) {
         return;
     }
@@ -334,8 +328,7 @@ void ov99_021D12F0(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D1580(param0->unk_08);
 }
 
-static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0)
-{
+static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0) {
     GF_ASSERT(param0->unk_1108 == NULL);
 
     Bg_FreeTilemapBuffer(param0->unk_08, BG_LAYER_MAIN_1);
@@ -345,8 +338,7 @@ static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0)
     Heap_Free(param0->unk_08);
 }
 
-static void ov99_021D1350(void *param0)
-{
+static void ov99_021D1350(void *param0) {
     UnkStruct_ov99_021D2CB0 *v0 = param0;
 
     VramTransfer_Process();
@@ -357,8 +349,7 @@ static void ov99_021D1350(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov99_021D1380(BgConfig *param0)
-{
+static void ov99_021D1380(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -530,8 +521,7 @@ static void ov99_021D1380(BgConfig *param0)
     Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
 }
 
-static void ov99_021D1580(BgConfig *param0)
-{
+static void ov99_021D1580(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -657,14 +647,12 @@ static void ov99_021D1580(BgConfig *param0)
     Bg_ClearTilesRange(7, 32, 0, HEAP_ID_75);
 }
 
-static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0)
-{
+static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0) {
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
 }
 
-static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0)
-{
+static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0) {
     VecFx32 v0, v1;
     MtxFx33 v2;
 
@@ -736,8 +724,7 @@ static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0)
     NNS_G3dGePopMtx(1);
 }
 
-static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0)
-{
+static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0) {
     VecFx32 v0 = { 0, -FX32_ONE * 8, 0 };
     VecFx32 v1 = { -31712, -142304, 496744 };
     VecFx32 v2 = { -31712, -67780, -5704 };
@@ -751,18 +738,15 @@ static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0)
     Camera_SetAsActive(param0->camera);
 }
 
-static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0)
-{
+static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0) {
     Camera_Delete(param0->camera);
 }
 
-static G3DPipelineBuffers *ov99_021D19AC(int heapID)
-{
+static G3DPipelineBuffers *ov99_021D19AC(int heapID) {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov99_021D19C8);
 }
 
-static void ov99_021D19C8(void)
-{
+static void ov99_021D19C8(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
@@ -776,7 +760,6 @@ static void ov99_021D19C8(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov99_021D1A4C(G3DPipelineBuffers *param0)
-{
+static void ov99_021D1A4C(G3DPipelineBuffers *param0) {
     G3DPipelineBuffers_Free(param0);
 }

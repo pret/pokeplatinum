@@ -17,13 +17,11 @@
 
 static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1);
 
-int Email_SaveSize(void)
-{
+int Email_SaveSize(void) {
     return sizeof(UnkStruct_02030CEC);
 }
 
-void Email_Init(UnkStruct_02030CEC *param0)
-{
+void Email_Init(UnkStruct_02030CEC *param0) {
     MI_CpuClear8(param0, sizeof(UnkStruct_02030CEC));
 
     memset(param0->unk_00, '\0', (50 + 1));
@@ -32,13 +30,11 @@ void Email_Init(UnkStruct_02030CEC *param0)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-void sub_02030D10(SaveData *saveData)
-{
+void sub_02030D10(SaveData *saveData) {
     Email_Init(SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL));
 }
 
-BOOL sub_02030D20(SaveData *saveData)
-{
+BOOL sub_02030D20(SaveData *saveData) {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     if (v0->unk_00[0] == '\0') {
@@ -48,22 +44,19 @@ BOOL sub_02030D20(SaveData *saveData)
     return 1;
 }
 
-void sub_02030D38(SaveData *saveData, const char *param1)
-{
+void sub_02030D38(SaveData *saveData, const char *param1) {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     strcpy(v0->unk_00, param1);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-char *sub_02030D50(SaveData *saveData)
-{
+char *sub_02030D50(SaveData *saveData) {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
     return v0->unk_00;
 }
 
-void sub_02030D5C(SaveData *saveData, int param1, u32 param2)
-{
+void sub_02030D5C(SaveData *saveData, int param1, u32 param2) {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     switch (param1) {
@@ -84,8 +77,7 @@ void sub_02030D5C(SaveData *saveData, int param1, u32 param2)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-u32 sub_02030D98(SaveData *saveData, int param1)
-{
+u32 sub_02030D98(SaveData *saveData, int param1) {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     switch (param1) {
@@ -102,8 +94,7 @@ u32 sub_02030D98(SaveData *saveData, int param1)
     return 0;
 }
 
-static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
-{
+static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1) {
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
     TrainerInfo *v1 = SaveData_GetTrainerInfo(saveData);
     char *v2 = sub_02030D50(saveData);
@@ -125,8 +116,7 @@ static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-u32 sub_02030E48(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
-{
+u32 sub_02030E48(SaveData *saveData, UnkStruct_ov96_0223B574 *param1) {
     u32 v0;
 
     sub_02030DD0(saveData, param1);
@@ -141,8 +131,7 @@ u32 sub_02030E48(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
     return v0;
 }
 
-void sub_02030E78(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
-{
+void sub_02030E78(SaveData *saveData, UnkStruct_ov96_0223B574 *param1) {
     UnkStruct_02030CEC *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_EMAIL);
 
     sub_02030DD0(saveData, param1);

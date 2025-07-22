@@ -11,8 +11,7 @@
 #include "poketch.h"
 #include "savedata.h"
 
-void SaveData_UpdateCatchRecords(SaveData *saveData, const Pokemon *mon)
-{
+void SaveData_UpdateCatchRecords(SaveData *saveData, const Pokemon *mon) {
     if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
         Pokedex *pokedex = SaveData_GetPokedex(saveData);
 

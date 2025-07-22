@@ -8,8 +8,7 @@
 #include "trainer_card_save_data.h"
 #include "trainer_info.h"
 
-void sub_0206C2D0(SaveData *saveData, const s32 param1)
-{
+void sub_0206C2D0(SaveData *saveData, const s32 param1) {
     u8 v0;
     int v1;
     TrainerCardSaveData *v2;

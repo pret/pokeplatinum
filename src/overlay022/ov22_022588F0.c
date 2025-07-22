@@ -9,8 +9,7 @@
 
 static void ov22_02258948(UnkStruct_ov22_02258A48 *param0);
 
-void ov22_022588F0(UnkStruct_ov22_02258A48 *param0)
-{
+void ov22_022588F0(UnkStruct_ov22_02258A48 *param0) {
     memset(param0, 0, sizeof(UnkStruct_ov22_02258A48));
 
     param0->unk_04 = ov22_02258948;
@@ -18,8 +17,7 @@ void ov22_022588F0(UnkStruct_ov22_02258A48 *param0)
     param0->unk_0C = ov22_02258948;
 }
 
-void ov22_0225890C(UnkStruct_ov22_02258A48 *param0)
-{
+void ov22_0225890C(UnkStruct_ov22_02258A48 *param0) {
     if (gSystem.touchPressed) {
         param0->unk_04(param0);
     } else {
@@ -37,7 +35,6 @@ void ov22_0225890C(UnkStruct_ov22_02258A48 *param0)
     param0->unk_18 = gSystem.touchHeld;
 }
 
-static void ov22_02258948(UnkStruct_ov22_02258A48 *param0)
-{
+static void ov22_02258948(UnkStruct_ov22_02258A48 *param0) {
     return;
 }

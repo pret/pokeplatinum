@@ -12,8 +12,7 @@ void ov80_021D2AC0(UnkStruct_ov80_021D2A08 *param0);
 void ov80_021D2AE0(UnkStruct_ov80_021D2A08 *param0);
 void ov80_021D2AEC(UnkStruct_ov80_021D2A08 *param0);
 
-void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
-{
+void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     VramTransfer_New(32, param0->heapID);
@@ -59,19 +58,16 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
     }
 }
 
-void ov80_021D2AC0(UnkStruct_ov80_021D2A08 *param0)
-{
+void ov80_021D2AC0(UnkStruct_ov80_021D2A08 *param0) {
     SpriteSystem_DestroySpriteManager(param0->unk_D8, param0->unk_DC);
     SpriteSystem_Free(param0->unk_D8);
     VramTransfer_Free();
 }
 
-void ov80_021D2AE0(UnkStruct_ov80_021D2A08 *param0)
-{
+void ov80_021D2AE0(UnkStruct_ov80_021D2A08 *param0) {
     SpriteSystem_DrawSprites(param0->unk_DC);
 }
 
-void ov80_021D2AEC(UnkStruct_ov80_021D2A08 *param0)
-{
+void ov80_021D2AEC(UnkStruct_ov80_021D2A08 *param0) {
     SpriteSystem_TransferOam();
 }

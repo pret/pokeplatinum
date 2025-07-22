@@ -11,8 +11,7 @@
 #include "strbuf.h"
 #include "text.h"
 
-ColoredArrow *ColoredArrow_New(u32 heapID)
-{
+ColoredArrow *ColoredArrow_New(u32 heapID) {
     static const charcode_t chars[] = {
         CHAR_ARROW_MENU,
         CHAR_EOS,
@@ -28,8 +27,7 @@ ColoredArrow *ColoredArrow_New(u32 heapID)
     return arrow;
 }
 
-void ColoredArrow_Free(ColoredArrow *arrow)
-{
+void ColoredArrow_Free(ColoredArrow *arrow) {
     GF_ASSERT(arrow != NULL);
 
     if (arrow) {
@@ -41,8 +39,7 @@ void ColoredArrow_Free(ColoredArrow *arrow)
     }
 }
 
-void ColoredArrow_SetColor(ColoredArrow *arrow, TextColor color)
-{
+void ColoredArrow_SetColor(ColoredArrow *arrow, TextColor color) {
     GF_ASSERT(arrow != NULL);
 
     if (arrow) {
@@ -50,8 +47,7 @@ void ColoredArrow_SetColor(ColoredArrow *arrow, TextColor color)
     }
 }
 
-void ColoredArrow_Print(const ColoredArrow *arrow, Window *window, u32 xOffset, u32 yOffset)
-{
+void ColoredArrow_Print(const ColoredArrow *arrow, Window *window, u32 xOffset, u32 yOffset) {
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, arrow->strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, arrow->color, NULL);
     Window_LoadTiles(window);
 }

@@ -14,8 +14,7 @@
 #include "script_manager.h"
 #include "trainer_info.h"
 
-BOOL ScrCmd_GiveMoney(ScriptContext *ctx)
-{
+BOOL ScrCmd_GiveMoney(ScriptContext *ctx) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u32 value = ScriptContext_ReadWord(ctx);
     TrainerInfo_GiveMoney(trainerInfo, value);
@@ -23,8 +22,7 @@ BOOL ScrCmd_GiveMoney(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_RemoveMoney(ScriptContext *ctx)
-{
+BOOL ScrCmd_RemoveMoney(ScriptContext *ctx) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u32 value = ScriptContext_ReadWord(ctx);
     TrainerInfo_TakeMoney(trainerInfo, value);
@@ -32,8 +30,7 @@ BOOL ScrCmd_RemoveMoney(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_RemoveMoney2(ScriptContext *ctx)
-{
+BOOL ScrCmd_RemoveMoney2(ScriptContext *ctx) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u32 var = ScriptContext_GetVar(ctx);
     TrainerInfo_TakeMoney(trainerInfo, var);
@@ -41,8 +38,7 @@ BOOL ScrCmd_RemoveMoney2(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckMoney(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckMoney(ScriptContext *ctx) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 *destVar;
     u32 value, currentMoney;
@@ -60,8 +56,7 @@ BOOL ScrCmd_CheckMoney(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckMoney2(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckMoney2(ScriptContext *ctx) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 *destVar;
     u32 value, currentMoney;
@@ -79,8 +74,7 @@ BOOL ScrCmd_CheckMoney2(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_ShowMoney(ScriptContext *ctx)
-{
+BOOL ScrCmd_ShowMoney(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 tilemapLeft = ScriptContext_GetVar(ctx);
     u16 tilemapTop = ScriptContext_GetVar(ctx);
@@ -90,8 +84,7 @@ BOOL ScrCmd_ShowMoney(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_HideMoney(ScriptContext *ctx)
-{
+BOOL ScrCmd_HideMoney(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Window **moneyWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
@@ -99,8 +92,7 @@ BOOL ScrCmd_HideMoney(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_UpdateMoneyDisplay(ScriptContext *ctx)
-{
+BOOL ScrCmd_UpdateMoneyDisplay(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Window **moneyWindow = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 

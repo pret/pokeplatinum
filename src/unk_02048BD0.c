@@ -16,8 +16,7 @@
 #include "unk_0203D1B8.h"
 #include "unk_0206CCB0.h"
 
-BOOL ScrCmd_21D(ScriptContext *param0)
-{
+BOOL ScrCmd_21D(ScriptContext *param0) {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     RecordMixedRNG *v1 = SaveData_GetRecordMixedRNG(param0->fieldSystem->saveData);
     SaveData *saveData = param0->fieldSystem->saveData;

@@ -64,58 +64,50 @@ const ApplicationManagerTemplate gGameStartLoadSaveAppTemplate = {
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-static BOOL GameStartRowanIntro_Init(ApplicationManager *appMan, int *state)
-{
+static BOOL GameStartRowanIntro_Init(ApplicationManager *appMan, int *state) {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
     return TRUE;
 }
 
-static BOOL GameStartRowanIntro_Main(ApplicationManager *appMan, int *state)
-{
+static BOOL GameStartRowanIntro_Main(ApplicationManager *appMan, int *state) {
     SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     StartNewSave(HEAP_ID_GAME_START, saveData);
     return TRUE;
 }
 
-static int GameStartRowanIntro_Exit(ApplicationManager *appMan, int *state)
-{
+static int GameStartRowanIntro_Exit(ApplicationManager *appMan, int *state) {
     Heap_Destroy(HEAP_ID_GAME_START);
     EnqueueApplication(FS_OVERLAY_ID_NONE, &gRowanIntroAppTemplate);
     return TRUE;
 }
 
-static int GameStartNewSave_Init(ApplicationManager *appMan, int *state)
-{
+static int GameStartNewSave_Init(ApplicationManager *appMan, int *state) {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
     return TRUE;
 }
 
-static int GameStartNewSave_Main(ApplicationManager *appMan, int *state)
-{
+static int GameStartNewSave_Main(ApplicationManager *appMan, int *state) {
     SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     InitializeNewSave(HEAP_ID_GAME_START, saveData, 1);
     PlayTime_Start(SaveData_GetPlayTime(saveData));
     return TRUE;
 }
 
-static int GameStartNewSave_Exit(ApplicationManager *appMan, int *state)
-{
+static int GameStartNewSave_Exit(ApplicationManager *appMan, int *state) {
     Heap_Destroy(HEAP_ID_GAME_START);
     EnqueueApplication(FS_OVERLAY_ID_NONE, &gFieldSystemNewGameTemplate);
     return TRUE;
 }
 
-static int GameStartLoadSave_Init(ApplicationManager *appMan, int *state)
-{
+static int GameStartLoadSave_Init(ApplicationManager *appMan, int *state) {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_GAME_START, HEAP_SIZE_GAME_START);
     InitRNG();
     return TRUE;
 }
 
-static int GameStartLoadSave_Main(ApplicationManager *appMan, int *state)
-{
+static int GameStartLoadSave_Main(ApplicationManager *appMan, int *state) {
     SaveData *saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     SystemData *systemData = SaveData_GetSystemData(saveData);
 
@@ -132,8 +124,7 @@ static int GameStartLoadSave_Main(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state)
-{
+static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state) {
     Heap_Destroy(HEAP_ID_GAME_START);
     EnqueueApplication(FS_OVERLAY_ID_NONE, &gFieldSystemContinueTemplate);
     return TRUE;
@@ -141,8 +132,7 @@ static int GameStartLoadSave_Exit(ApplicationManager *appMan, int *state)
 
 #include "data/berry_init.h"
 
-static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID)
-{
+static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTrainerID) {
     u32 rnd;
     BerryPatch *berryPatches;
     TrainerInfo *trainerInfo;
@@ -171,15 +161,13 @@ static void InitializeNewSave(enum HeapId heapID, SaveData *saveData, BOOL setTr
     BerryPatches_Init(berryPatches, heapID, (const u16 *)sBerryInitTable, NELEMS(sBerryInitTable));
 }
 
-static void TryLoadingSave(int unused, SaveData *saveData)
-{
+static void TryLoadingSave(int unused, SaveData *saveData) {
     if (!SaveData_Load(saveData)) {
         OS_ResetSystem(RESET_CLEAN);
     }
 }
 
-static void StartNewSave(int unused, SaveData *saveData)
-{
+static void StartNewSave(int unused, SaveData *saveData) {
     SaveData_Clear(saveData);
     InitPlayerStartLocation(saveData);
     TrainerInfo_SetMoney(SaveData_GetTrainerInfo(saveData), 3000);

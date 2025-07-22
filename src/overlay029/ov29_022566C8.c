@@ -37,8 +37,7 @@ static void ov29_02256A94(SysTask *param0, void *param1);
 static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0);
 static void ov29_02256B18(UnkStruct_ov29_022566C8 *param0);
 
-BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566C8_1 *param1, BgConfig *param2)
-{
+BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566C8_1 *param1, BgConfig *param2) {
     UnkStruct_ov29_022566C8 *v0 = (UnkStruct_ov29_022566C8 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov29_022566C8));
 
     if (v0 != NULL) {
@@ -58,8 +57,7 @@ BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566
     return 0;
 }
 
-static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
-{
+static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0) {
     static const WindowTemplate v0 = {
         7, 2, 2, 20, 19, 0, 12
     };
@@ -79,8 +77,7 @@ static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
     return 0;
 }
 
-void ov29_02256770(UnkStruct_ov29_022566C8 *param0)
-{
+void ov29_02256770(UnkStruct_ov29_022566C8 *param0) {
     if (param0 != NULL) {
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));
 
@@ -104,29 +101,24 @@ static const PoketchTask Unk_ov29_02256BB0[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov29_022567B4(UnkStruct_ov29_022566C8 *param0, u32 param1)
-{
+void ov29_022567B4(UnkStruct_ov29_022566C8 *param0, u32 param1) {
     PoketchTask_Start(Unk_ov29_02256BB0, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov29_022567D8(UnkStruct_ov29_022566C8 *param0, u32 param1)
-{
+BOOL ov29_022567D8(UnkStruct_ov29_022566C8 *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov29_022567E4(UnkStruct_ov29_022566C8 *param0)
-{
+BOOL ov29_022567E4(UnkStruct_ov29_022566C8 *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov29_022567F0(PoketchTaskManager *param0)
-{
+static void ov29_022567F0(PoketchTaskManager *param0) {
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov29_02256804(SysTask *param0, void *param1)
-{
+static void ov29_02256804(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -191,8 +183,7 @@ static void ov29_02256804(SysTask *param0, void *param1)
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 }
 
-static void ov29_02256908(SysTask *param0, void *param1)
-{
+static void ov29_02256908(SysTask *param0, void *param1) {
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_00 == 1) {
@@ -207,15 +198,13 @@ static void ov29_02256908(SysTask *param0, void *param1)
     ov29_022567F0(param1);
 }
 
-static void ov29_02256950(SysTask *param0, void *param1)
-{
+static void ov29_02256950(SysTask *param0, void *param1) {
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
     Window_LoadTiles(v0->unk_70);
     ov29_022567F0(param1);
 }
 
-static void ov29_02256968(u8 *param0, int param1, int param2, int param3, int param4)
-{
+static void ov29_02256968(u8 *param0, int param1, int param2, int param3, int param4) {
     int v0, v1, v2, v3, v4;
 
     param3--;
@@ -234,8 +223,7 @@ static void ov29_02256968(u8 *param0, int param1, int param2, int param3, int pa
     }
 }
 
-static void ov29_022569DC(SysTask *param0, void *param1)
-{
+static void ov29_022569DC(SysTask *param0, void *param1) {
     s32 v0, v1;
     UnkStruct_ov29_022566C8 *v2 = PoketchTask_GetTaskData(param1);
 
@@ -269,16 +257,14 @@ static void ov29_022569DC(SysTask *param0, void *param1)
     ov29_022567F0(param1);
 }
 
-static void ov29_02256A7C(SysTask *param0, void *param1)
-{
+static void ov29_02256A7C(SysTask *param0, void *param1) {
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     Window_LoadTiles(v0->unk_70);
     ov29_022567F0(param1);
 }
 
-static void ov29_02256A94(SysTask *param0, void *param1)
-{
+static void ov29_02256A94(SysTask *param0, void *param1) {
     UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     ov29_02256B18(v0);
@@ -287,8 +273,7 @@ static void ov29_02256A94(SysTask *param0, void *param1)
     ov29_022567F0(param1);
 }
 
-static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0)
-{
+static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0) {
     static const PoketchAnimation_AnimationData v0[] = {
         {
             { 192 << FX32_SHIFT, 56 << FX32_SHIFT },
@@ -319,8 +304,7 @@ static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0)
     }
 }
 
-static void ov29_02256B18(UnkStruct_ov29_022566C8 *param0)
-{
+static void ov29_02256B18(UnkStruct_ov29_022566C8 *param0) {
     u32 v0;
 
     for (v0 = 0; v0 < 2; v0++) {

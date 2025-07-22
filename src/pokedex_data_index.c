@@ -11,8 +11,7 @@ static enum NarcID sPokedexDataNarcID = NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_D
 static u32 sWeightMessageBankIndex = TEXT_BANK_SPECIES_WEIGHT;
 static u32 sHeightMessageBankIndex = TEXT_BANK_SPECIES_HEIGHT;
 
-void Pokedex_SetupGiratina(u32 formNun)
-{
+void Pokedex_SetupGiratina(u32 formNun) {
     if (formNun == 0) {
         sPokedexDataNarcID = NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA_GIRA;
         sWeightMessageBankIndex = TEXT_BANK_SPECIES_WEIGHT_GIRA;
@@ -24,17 +23,14 @@ void Pokedex_SetupGiratina(u32 formNun)
     }
 }
 
-enum NarcID Pokedex_Data_NARC_Index(void)
-{
+enum NarcID Pokedex_Data_NARC_Index(void) {
     return sPokedexDataNarcID;
 }
 
-u32 Weight_Message_Bank_Index(void)
-{
+u32 Weight_Message_Bank_Index(void) {
     return sWeightMessageBankIndex;
 }
 
-u32 Height_Message_Bank_Index(void)
-{
+u32 Height_Message_Bank_Index(void) {
     return sHeightMessageBankIndex;
 }

@@ -51,8 +51,7 @@ static ParticleSystem *ov119_021D13EC(int heapID);
 static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2);
 static void ov119_021D1474(SPLEmitter *param0);
 
-void ov119_021D0D80(void)
-{
+void ov119_021D0D80(void) {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -60,19 +59,16 @@ void ov119_021D0D80(void)
     GXS_SetVisiblePlane(0);
 }
 
-void ov119_021D0DA8(void)
-{
+void ov119_021D0DA8(void) {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 11, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-G3DPipelineBuffers *ov119_021D0DD4(void)
-{
+G3DPipelineBuffers *ov119_021D0DD4(void) {
     return G3DPipeline_Init(HEAP_ID_71, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov119_021D0DF4);
 }
 
-void ov119_021D0DF4(void)
-{
+void ov119_021D0DF4(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
@@ -86,8 +82,7 @@ void ov119_021D0DF4(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void ov119_021D0E78(void)
-{
+void ov119_021D0E78(void) {
     NNSGfdTexKey v0;
     NNSGfdPlttKey v1;
     u32 v2, v3;
@@ -104,8 +99,7 @@ void ov119_021D0E78(void)
     ParticleSystem_ZeroAll();
 }
 
-void ov119_021D0EB8(BgConfig *param0)
-{
+void ov119_021D0EB8(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
 
     {
@@ -224,8 +218,7 @@ void ov119_021D0EB8(BgConfig *param0)
     }
 }
 
-void ov119_021D0FD0(void *param0)
-{
+void ov119_021D0FD0(void *param0) {
     UnkStruct_ov119_021D0FD0 *v0 = (UnkStruct_ov119_021D0FD0 *)param0;
 
     PokemonSpriteManager_UpdateCharAndPltt(v0->unk_04.unk_38);
@@ -237,8 +230,7 @@ void ov119_021D0FD0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-void ov119_021D1004(void)
-{
+void ov119_021D1004(void) {
     int v0;
     const MtxFx43 *v1;
 
@@ -255,18 +247,15 @@ void ov119_021D1004(void)
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void ov119_021D1028(void)
-{
+void ov119_021D1028(void) {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_71);
 }
 
-void ov119_021D1048(void)
-{
+void ov119_021D1048(void) {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_71);
 }
 
-void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
-{
+void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2) {
     int v0 = 71;
 
     LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 20, 15, param2, v0);
@@ -276,8 +265,7 @@ void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
 
-void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
-{
+void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8) {
     Window_Init(param1);
     Window_Add(param0, param1, param2, param3, param4, param5, param6, param8, param7);
     Window_DrawMessageBoxWithScrollCursor(param1, 1, 20, 12);
@@ -285,8 +273,7 @@ void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, in
     Window_CopyToVRAM(param1);
 }
 
-int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
-{
+int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3) {
     int v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -315,8 +302,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     return v0;
 }
 
-void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
-{
+void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9) {
     MenuTemplate v0;
 
     Window_Init(param2);
@@ -351,8 +337,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     param0->unk_04.unk_48 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
 }
 
-void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
-{
+void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0) {
     Window_EraseStandardFrame(&param0->unk_04.unk_14[1], 1);
     Window_ClearAndCopyToVRAM(&param0->unk_04.unk_14[1]);
     Window_Remove(&param0->unk_04.unk_14[1]);
@@ -360,28 +345,24 @@ void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
     StringList_Free(param0->unk_04.unk_44);
 }
 
-void ov119_021D12F8(Window *param0)
-{
+void ov119_021D12F8(Window *param0) {
     Window_ClearAndCopyToVRAM(param0);
     Window_Remove(param0);
 }
 
-void ov119_021D1308(BgConfig *param0, PaletteData *param1)
-{
+void ov119_021D1308(BgConfig *param0, PaletteData *param1) {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 0, param0, 3, 0, 0, 1, HEAP_ID_71);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 1, param0, 3, 0, 0, 1, HEAP_ID_71);
     PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 8, HEAP_ID_71, 0, 0x20 * 2, 0);
 }
 
-void ov119_021D135C(BgConfig *param0, PaletteData *param1)
-{
+void ov119_021D135C(BgConfig *param0, PaletteData *param1) {
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0, 4, 0, 0, 1, HEAP_ID_71);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0, 4, 0, 0, 1, HEAP_ID_71);
     PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_71, 1, 0x20 * 1, 0);
 }
 
-static u32 ov119_021D13B4(u32 param0, BOOL param1)
-{
+static u32 ov119_021D13B4(u32 param0, BOOL param1) {
     NNSGfdTexKey v0;
     u32 v1;
 
@@ -392,8 +373,7 @@ static u32 ov119_021D13B4(u32 param0, BOOL param1)
     return v1;
 }
 
-static u32 ov119_021D13D0(u32 param0, BOOL param1)
-{
+static u32 ov119_021D13D0(u32 param0, BOOL param1) {
     NNSGfdPlttKey v0;
     u32 v1;
 
@@ -404,8 +384,7 @@ static u32 ov119_021D13D0(u32 param0, BOOL param1)
     return v1;
 }
 
-static ParticleSystem *ov119_021D13EC(int heapID)
-{
+static ParticleSystem *ov119_021D13EC(int heapID) {
     ParticleSystem *v0;
     void *v1;
     Camera *camera;
@@ -421,8 +400,7 @@ static ParticleSystem *ov119_021D13EC(int heapID)
     return v0;
 }
 
-static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2)
-{
+static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2) {
     ParticleSystem *v0 = ov119_021D13EC(heapID);
     void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
 
@@ -431,22 +409,19 @@ static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2)
     return v0;
 }
 
-void ov119_021D145C(ParticleSystem *param0)
-{
+void ov119_021D145C(ParticleSystem *param0) {
     void *v0 = ParticleSystem_GetHeapStart(param0);
     ParticleSystem_Free(param0);
     Heap_Free(v0);
 }
 
-static void ov119_021D1474(SPLEmitter *param0)
-{
+static void ov119_021D1474(SPLEmitter *param0) {
     VecFx32 v0 = { 0, 0, 0 };
 
     SPLEmitter_SetPos(param0, &v0);
 }
 
-UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
-{
+UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0) {
     int v0;
     int v1;
     int v2;
@@ -463,8 +438,7 @@ UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
     return v4;
 }
 
-void ov119_021D14DC(UnkStruct_ov119_021D14DC *param0, int param1)
-{
+void ov119_021D14DC(UnkStruct_ov119_021D14DC *param0, int param1) {
     int v0;
     int v1;
     int v2;
@@ -475,8 +449,7 @@ void ov119_021D14DC(UnkStruct_ov119_021D14DC *param0, int param1)
     ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
 }
 
-BOOL ov119_021D14F8(UnkStruct_ov119_021D14DC *param0)
-{
+BOOL ov119_021D14F8(UnkStruct_ov119_021D14DC *param0) {
     UnkStruct_ov119_021D14DC *v0 = param0;
 
     if (ParticleSystem_GetActiveEmitterCount(v0->unk_0C) == 0) {
@@ -486,13 +459,11 @@ BOOL ov119_021D14F8(UnkStruct_ov119_021D14DC *param0)
     return 1;
 }
 
-void ov119_021D150C(UnkStruct_ov119_021D14DC *param0)
-{
+void ov119_021D150C(UnkStruct_ov119_021D14DC *param0) {
     Heap_Free(param0);
 }
 
-void ov119_021D1514(UnkStruct_ov119_021D0FD0 *param0)
-{
+void ov119_021D1514(UnkStruct_ov119_021D0FD0 *param0) {
     SpriteSystem *v0;
     SpriteManager *v1;
     PaletteData *v2;
@@ -519,8 +490,7 @@ void ov119_021D1514(UnkStruct_ov119_021D0FD0 *param0)
     SpriteSystem_LoadAnimResObj(v0, v1, v4, 5, TRUE, 25003);
 }
 
-void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)
-{
+void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0) {
     SpriteTemplate v0;
 
     v0.x = 128;
@@ -587,8 +557,7 @@ static const f32 Unk_ov119_021D260C[][10] = {
     { 1.0f, 1.0f, 0.9f, 0.8f, 0.7f, 0.7f, 0.8f, 0.9f, 1.0f, 1.0f }
 };
 
-BOOL ov119_021D16C0(UnkStruct_ov119_021D0FD0 *param0, int param1)
-{
+BOOL ov119_021D16C0(UnkStruct_ov119_021D0FD0 *param0, int param1) {
     UnkStruct_ov119_021D16C0 *v0 = &param0->unk_80;
 
     switch (v0->unk_00) {
@@ -642,8 +611,7 @@ BOOL ov119_021D16C0(UnkStruct_ov119_021D0FD0 *param0, int param1)
     return 1;
 }
 
-int ov119_021D176C(UnkStruct_ov119_021D0FD0 *param0, int param1)
-{
+int ov119_021D176C(UnkStruct_ov119_021D0FD0 *param0, int param1) {
     if (ov119_021D16C0(param0, param1) == 0) {
         return 2;
     }
@@ -661,15 +629,13 @@ int ov119_021D176C(UnkStruct_ov119_021D0FD0 *param0, int param1)
     return 0;
 }
 
-void ov119_021D17A0(UnkStruct_ov119_021D0FD0 *param0)
-{
+void ov119_021D17A0(UnkStruct_ov119_021D0FD0 *param0) {
     Sprite_DeleteAndFreeResources(param0->unk_74);
     Sprite_DeleteAndFreeResources(param0->unk_78);
     Sprite_DeleteAndFreeResources(param0->unk_7C);
 }
 
-void ov119_021D17B8(UnkStruct_ov119_021D17B8 *param0)
-{
+void ov119_021D17B8(UnkStruct_ov119_021D17B8 *param0) {
     param0->unk_50 = SpriteSystem_Alloc(71);
     {
         const RenderOamTemplate v0 = {
@@ -710,14 +676,12 @@ void ov119_021D17B8(UnkStruct_ov119_021D17B8 *param0)
     }
 }
 
-void ov119_021D1844(UnkStruct_ov119_021D17B8 *param0)
-{
+void ov119_021D1844(UnkStruct_ov119_021D17B8 *param0) {
     SpriteSystem_FreeResourcesAndManager(param0->unk_50, param0->unk_4C);
     SpriteSystem_Free(param0->unk_50);
 }
 
-void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
-{
+void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0) {
     PokemonSpriteTemplate v0;
     SpriteAnimationFrame v1[10];
     Pokemon *v2;
@@ -740,8 +704,7 @@ void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
     param0->unk_70 = PokemonSpriteManager_CreateSprite(param0->unk_04.unk_38, &v0, 128, 96 + v4, 0, 0, &v1[0], NULL);
 }
 
-void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0)
-{
+void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0) {
     int v0;
     int v1;
 
@@ -752,12 +715,10 @@ void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0)
     PokeSprite_LoadAnimation(param0->unk_04.unk_3C, param0->unk_04.unk_54, param0->unk_70, v0, 2, 0, 0);
 }
 
-void ov119_021D1900(UnkStruct_ov119_021D0FD0 *param0)
-{
+void ov119_021D1900(UnkStruct_ov119_021D0FD0 *param0) {
     PokemonSprite_Delete(param0->unk_70);
 }
 
-void ov119_021D190C(UnkStruct_ov119_021D0FD0 *param0, int param1)
-{
+void ov119_021D190C(UnkStruct_ov119_021D0FD0 *param0, int param1) {
     PokemonSprite_SetAttribute(param0->unk_70, MON_SPRITE_HIDE, param1);
 }

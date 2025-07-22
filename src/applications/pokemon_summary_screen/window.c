@@ -726,8 +726,7 @@ static const WindowTemplate sExtraWindowTemplates_Condition[] = {
     },
 };
 
-void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen) {
     for (u16 window = 0; window < SUMMARY_STATIC_WINDOW_MAX; window++) {
         Window_AddFromTemplate(summaryScreen->bgConfig, &summaryScreen->staticWindows[window], &sStaticWindowTemplates[window]);
         Window_FillTilemap(&summaryScreen->staticWindows[window], 0);
@@ -739,8 +738,7 @@ void PokemonSummaryScreen_DrawStaticWindows(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_PrintItemName(summaryScreen);
 }
 
-void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen) {
     const WindowTemplate *extraWindows;
 
     switch (summaryScreen->page) {
@@ -789,8 +787,7 @@ void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen) {
     switch (summaryScreen->page) {
     case SUMMARY_PAGE_INFO:
     case SUMMARY_PAGE_MEMO:
@@ -813,8 +810,7 @@ void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen
     Windows_Delete(summaryScreen->extraWindows, summaryScreen->numExtraWindows);
 }
 
-void PokemonSummaryScreen_RemoveWindows(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_RemoveWindows(PokemonSummaryScreen *summaryScreen) {
     PokemonSummaryScreen_RemoveExtraWindows(summaryScreen);
 
     for (u32 i = 0; i < SUMMARY_STATIC_WINDOW_MAX; i++) {
@@ -822,8 +818,7 @@ void PokemonSummaryScreen_RemoveWindows(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void PokemonSummaryScreen_PrintNicknameAndGender(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_PrintNicknameAndGender(PokemonSummaryScreen *summaryScreen) {
     Window *window = &summaryScreen->staticWindows[SUMMARY_WINDOW_MON_NICKNAME_GENDER];
 
     Window_FillTilemap(window, 0);
@@ -842,8 +837,7 @@ void PokemonSummaryScreen_PrintNicknameAndGender(PokemonSummaryScreen *summarySc
     Window_ScheduleCopyToVRAM(window);
 }
 
-void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen) {
     Window *window = &summaryScreen->staticWindows[SUMMARY_WINDOW_MON_LEVEL];
     Window_FillTilemap(window, 0);
 
@@ -862,8 +856,7 @@ void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(window);
 }
 
-void PokemonSummaryScreen_PrintItemName(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_PrintItemName(PokemonSummaryScreen *summaryScreen) {
     Strbuf *buf;
 
     Window_FillTilemap(&summaryScreen->staticWindows[SUMMARY_WINDOW_ITEM_NAME], 0);
@@ -882,15 +875,13 @@ void PokemonSummaryScreen_PrintItemName(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_ITEM_NAME]);
 }
 
-void PokemonSummaryScreen_ClearAndPrintButtonPrompt(PokemonSummaryScreen *summaryScreen, u32 entryID)
-{
+void PokemonSummaryScreen_ClearAndPrintButtonPrompt(PokemonSummaryScreen *summaryScreen, u32 entryID) {
     Window_FillTilemap(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT], 0);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_BUTTON_PROMPT, entryID, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
 }
 
-static BOOL DoesMonOTMatchPlayer(PokemonSummaryScreen *summaryScreen)
-{
+static BOOL DoesMonOTMatchPlayer(PokemonSummaryScreen *summaryScreen) {
     if (summaryScreen->monData.OTID == summaryScreen->data->OTID
         && summaryScreen->monData.OTGender == summaryScreen->data->OTGender
         && Strbuf_Compare(summaryScreen->monData.OTName, summaryScreen->playerName) == 0) {
@@ -900,8 +891,7 @@ static BOOL DoesMonOTMatchPlayer(PokemonSummaryScreen *summaryScreen)
     return FALSE;
 }
 
-static void PrintStrbufToWindow(PokemonSummaryScreen *summaryScreen, Window *window, TextColor color, enum SummaryTextAlignment alignment)
-{
+static void PrintStrbufToWindow(PokemonSummaryScreen *summaryScreen, Window *window, TextColor color, enum SummaryTextAlignment alignment) {
     u8 strWidth, windowWidth, xOffset;
 
     switch (alignment) {
@@ -923,22 +913,19 @@ static void PrintStrbufToWindow(PokemonSummaryScreen *summaryScreen, Window *win
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
 }
 
-static void PrintTextToStaticWindow(PokemonSummaryScreen *summaryScreen, enum SummaryStaticWindow windowIndex, u32 entryID, TextColor color, enum SummaryTextAlignment alignment)
-{
+static void PrintTextToStaticWindow(PokemonSummaryScreen *summaryScreen, enum SummaryStaticWindow windowIndex, u32 entryID, TextColor color, enum SummaryTextAlignment alignment) {
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, entryID, summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->staticWindows[windowIndex], color, alignment);
 }
 
-static void SetAndFormatNumberBuf(PokemonSummaryScreen *summaryScreen, u32 entryID, u32 number, u8 digits, u8 paddingMode)
-{
+static void SetAndFormatNumberBuf(PokemonSummaryScreen *summaryScreen, u32 entryID, u32 number, u8 digits, u8 paddingMode) {
     Strbuf *buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, entryID);
     StringTemplate_SetNumber(summaryScreen->strFormatter, 0, number, digits, paddingMode, CHARSET_MODE_EN);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->strbuf, buf);
     Strbuf_Free(buf);
 }
 
-static void PrintCurrentAndMaxInfo(PokemonSummaryScreen *summaryScreen, u32 moveIndex, u32 slashEntryID, u32 curEntryID, u32 maxEntryID, u16 curValue, u16 maxValue, u8 digits, u8 xOffset, u8 yOffset)
-{
+static void PrintCurrentAndMaxInfo(PokemonSummaryScreen *summaryScreen, u32 moveIndex, u32 slashEntryID, u32 curEntryID, u32 maxEntryID, u16 curValue, u16 maxValue, u8 digits, u8 xOffset, u8 yOffset) {
     Window *window = &summaryScreen->extraWindows[moveIndex];
 
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, slashEntryID, summaryScreen->strbuf);
@@ -956,8 +943,7 @@ static void PrintCurrentAndMaxInfo(PokemonSummaryScreen *summaryScreen, u32 move
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->strbuf, maxXOffset, yOffset, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
 }
 
-static void PrintStaticWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void PrintStaticWindows(PokemonSummaryScreen *summaryScreen) {
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_INFO, PokemonSummary_Text_PageTitleInfo, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_MEMO, PokemonSummary_Text_PageTitleMemo, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_SKILLS, PokemonSummary_Text_PageTitleSkills, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
@@ -993,8 +979,7 @@ static void PrintStaticWindows(PokemonSummaryScreen *summaryScreen)
     PrintTextToStaticWindow(summaryScreen, SUMMARY_WINDOW_LABEL_RIBBONS, PokemonSummary_Text_PageTitleRibbons, SUMMARY_TEXT_WHITE, ALIGN_LEFT);
 }
 
-void PokemonSummaryScreen_DrawExtraWindows(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_DrawExtraWindows(PokemonSummaryScreen *summaryScreen) {
     Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, 32, 2, 16);
     Bg_FillTilemapRect(summaryScreen->bgConfig, BG_LAYER_MAIN_1, 0, 14, 2, 18, 22, 16);
 
@@ -1026,8 +1011,7 @@ void PokemonSummaryScreen_DrawExtraWindows(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_INFO]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_DEX_NUM]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_SPECIES_NAME]);
@@ -1094,8 +1078,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_EXP_NEXT_LV]);
 }
 
-static void PrintTrainerMemo(Window *window, Pokemon *mon, BOOL monOTMatches)
-{
+static void PrintTrainerMemo(Window *window, Pokemon *mon, BOOL monOTMatches) {
     PokemonInfoDisplayStruct *infoDisplay = sub_02092494(mon, monOTMatches, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     if (infoDisplay->unk_14.unk_04 != NULL) {
@@ -1121,8 +1104,7 @@ static void PrintTrainerMemo(Window *window, Pokemon *mon, BOOL monOTMatches)
     sub_0209282C(infoDisplay);
 }
 
-static void DrawMemoPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawMemoPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MEMO]);
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_MEMO], 0);
 
@@ -1142,8 +1124,7 @@ static void DrawMemoPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_MEMO]);
 }
 
-static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_SKILLS]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_HP]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_ATTACK]);
@@ -1197,8 +1178,7 @@ static void DrawSkillsPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_ABILITY_DESCRIPTION]);
 }
 
-static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_CONDITION]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_SHEEN]);
 
@@ -1222,8 +1202,7 @@ static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-static void DrawBattleMovesPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawBattleMovesPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_BATTLE_MOVES]);
 
     if (summaryScreen->data->mode == SUMMARY_MODE_SELECT_MOVE) {
@@ -1250,8 +1229,7 @@ static void DrawBattleMovesPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_4]);
 }
 
-static void DrawContestMovesPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawContestMovesPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_CONTEST_MOVES]);
 
     if (summaryScreen->data->mode == SUMMARY_MODE_SELECT_MOVE) {
@@ -1278,8 +1256,7 @@ static void DrawContestMovesPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_4]);
 }
 
-static void DrawRibbonsPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawRibbonsPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_RIBBONS]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_RIBBON_COUNT]);
 
@@ -1294,8 +1271,7 @@ static void DrawRibbonsPageWindows(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen)
-{
+static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_CLOSE_WINDOW]);
     PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, PokemonSummary_Text_PromptExit);
     PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
@@ -1316,8 +1292,7 @@ static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
 }
 
-void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summaryScreen) {
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], 0);
 
     Strbuf *buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_RibbonMaxNumber);
@@ -1351,8 +1326,7 @@ void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summarySc
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX]);
 }
 
-void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summaryScreen) {
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_NAME], 0);
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION], 0);
 
@@ -1366,8 +1340,7 @@ void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summarySc
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_DESCRIPTION]);
 }
 
-static void PrintMoveNameAndPP(PokemonSummaryScreen *summaryScreen, u32 moveIndex)
-{
+static void PrintMoveNameAndPP(PokemonSummaryScreen *summaryScreen, u32 moveIndex) {
     u16 moveName;
     u8 curPP, maxPP;
 
@@ -1397,8 +1370,7 @@ static void PrintMoveNameAndPP(PokemonSummaryScreen *summaryScreen, u32 moveInde
     }
 }
 
-void PokemonSummaryScreen_PrintBattleMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 move)
-{
+void PokemonSummaryScreen_PrintBattleMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 move) {
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_CATEGORY]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_POWER]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_ACCURACY]);
@@ -1438,8 +1410,7 @@ void PokemonSummaryScreen_PrintBattleMoveAttributes(PokemonSummaryScreen *summar
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_DESCRIPTION]);
 }
 
-void PokemonSummaryScreen_ClearBattleAttributeWindows(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_ClearBattleAttributeWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_CATEGORY]);
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_POWER]);
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_ACCURACY]);
@@ -1448,8 +1419,7 @@ void PokemonSummaryScreen_ClearBattleAttributeWindows(PokemonSummaryScreen *summ
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_DESCRIPTION]);
 }
 
-void PokemonSummaryScreen_ShowMove5OrCancel(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_ShowMove5OrCancel(PokemonSummaryScreen *summaryScreen) {
     if (summaryScreen->data->move != MOVE_NONE) {
         Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_5], 0);
         PrintMoveNameAndPP(summaryScreen, LEARNED_MOVES_MAX);
@@ -1459,14 +1429,12 @@ void PokemonSummaryScreen_ShowMove5OrCancel(PokemonSummaryScreen *summaryScreen)
     }
 }
 
-void PokemonSummaryScreen_HideMoveCancelText(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_HideMoveCancelText(PokemonSummaryScreen *summaryScreen) {
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_CANCEL]);
     Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_MAIN_1);
 }
 
-void PokemonSummaryScreen_SwapMoveNameAndPP(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_SwapMoveNameAndPP(PokemonSummaryScreen *summaryScreen) {
     Window_FillTilemap(&summaryScreen->extraWindows[summaryScreen->cursor], 0);
     Window_FillTilemap(&summaryScreen->extraWindows[summaryScreen->cursorTmp], 0);
 
@@ -1477,8 +1445,7 @@ void PokemonSummaryScreen_SwapMoveNameAndPP(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[summaryScreen->cursorTmp]);
 }
 
-void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summaryScreen) {
     Window *window;
 
     if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
@@ -1496,8 +1463,7 @@ void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summ
     Window_ScheduleCopyToVRAM(window);
 }
 
-void PokemonSummaryScreen_PrintContestMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 move)
-{
+void PokemonSummaryScreen_PrintContestMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 move) {
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_DESCRIPTION], 0);
 
     u32 contestEffect = MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT);
@@ -1513,14 +1479,12 @@ void PokemonSummaryScreen_PrintContestMoveAttributes(PokemonSummaryScreen *summa
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_DESCRIPTION]);
 }
 
-void PokemonSummaryScreen_ClearContestAttributeWindows(PokemonSummaryScreen *summaryScreen)
-{
+void PokemonSummaryScreen_ClearContestAttributeWindows(PokemonSummaryScreen *summaryScreen) {
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_APPEAL_POINTS]);
     Window_ClearAndScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_CONTEST_MOVE_DESCRIPTION]);
 }
 
-void PokemonSummaryScreen_PrintPoffinFeedMsg(PokemonSummaryScreen *summaryScreen, enum SummaryPoffinFeedMsg msg)
-{
+void PokemonSummaryScreen_PrintPoffinFeedMsg(PokemonSummaryScreen *summaryScreen, enum SummaryPoffinFeedMsg msg) {
     u32 entryID;
 
     switch (msg) {

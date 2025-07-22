@@ -32,8 +32,7 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *pa
 static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2);
 static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2, const RTCTime *param3);
 
-void sub_020559DC(FieldSystem *fieldSystem)
-{
+void sub_020559DC(FieldSystem *fieldSystem) {
     RTCDate v0;
     RTCTime v1;
     GameTime *v2 = SaveData_GetGameTime(fieldSystem->saveData);
@@ -48,8 +47,7 @@ void sub_020559DC(FieldSystem *fieldSystem)
     inline_020559DC(fieldSystem, v2, &v0, &v1);
 }
 
-static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2)
-{
+static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2) {
     s32 v0 = RTC_ConvertDateToDay(param2);
 
     if (v0 < param1->day) {
@@ -60,8 +58,7 @@ static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDa
     }
 }
 
-static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2, const RTCTime *param3)
-{
+static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2, const RTCTime *param3) {
     s64 v0, v1;
     s32 v2;
 
@@ -84,8 +81,7 @@ static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RT
     }
 }
 
-static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
-{
+static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1) {
     sub_02028658(FieldSystem_GetSaveData(fieldSystem), param1);
     sub_0203F1FC(fieldSystem);
     sub_0206C2D0(fieldSystem->saveData, param1);
@@ -127,8 +123,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     sub_0206F2F0(fieldSystem->saveData);
 }
 
-static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rtcTime)
-{
+static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rtcTime) {
     sub_02055CD4(fieldSystem, param1);
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
     sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
@@ -140,63 +135,53 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rt
     Party_SetShayminForm(party, param1, rtcTime);
 }
 
-enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem)
-{
+enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return TimeOfDayForHour(gameTime->time.hour);
 }
 
-int FieldSystem_GetMonth(const FieldSystem *fieldSystem)
-{
+int FieldSystem_GetMonth(const FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return gameTime->date.month;
 }
 
-int FieldSystem_GetDayOfMonth(const FieldSystem *fieldSystem)
-{
+int FieldSystem_GetDayOfMonth(const FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return gameTime->date.day;
 }
 
-int FieldSystem_GetWeek(const FieldSystem *fieldSystem)
-{
+int FieldSystem_GetWeek(const FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return gameTime->date.week;
 }
 
-int FieldSystem_GetHour(const FieldSystem *fieldSystem)
-{
+int FieldSystem_GetHour(const FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return gameTime->time.hour;
 }
 
-int FieldSystem_GetMinute(const FieldSystem *fieldSystem)
-{
+int FieldSystem_GetMinute(const FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return gameTime->time.minute;
 }
 
-void FieldSystem_GetStartTimestamp(const FieldSystem *fieldSystem, RTCDate *destDate, RTCTime *destTime)
-{
+void FieldSystem_GetStartTimestamp(const FieldSystem *fieldSystem, RTCDate *destDate, RTCTime *destTime) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     RTC_ConvertSecondToDateTime(destDate, destTime, gameTime->startTimestamp);
 }
 
-void FieldSystem_GetFirstCompletionTimestamp(const FieldSystem *fieldSystem, RTCDate *destDate, RTCTime *destTime)
-{
+void FieldSystem_GetFirstCompletionTimestamp(const FieldSystem *fieldSystem, RTCDate *destDate, RTCTime *destTime) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     RTC_ConvertSecondToDateTime(destDate, destTime, gameTime->firstCompletionTimestamp);
 }
 
-void FieldSystem_RecordFirstCompletion(const FieldSystem *fieldSystem)
-{
+void FieldSystem_RecordFirstCompletion(const FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
 
     gameTime->firstCompletionTimestamp = GetTimestamp();
 }
 
-BOOL FieldSystem_HasPenalty(FieldSystem *fieldSystem)
-{
+BOOL FieldSystem_HasPenalty(FieldSystem *fieldSystem) {
     GameTime *gameTime = SaveData_GetGameTime(fieldSystem->saveData);
     return GameTime_HasPenalty(gameTime);
 }

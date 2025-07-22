@@ -109,35 +109,30 @@ void sub_020553DC(void);
 static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID);
 static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames);
 
-void sub_020553DC()
-{
+void sub_020553DC() {
     Sound_StopWaveOutAndSequences();
     Sound_ClearBGMPauseFlags();
     Sound_SetScene(SOUND_SCENE_NONE);
 }
 
-void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 bgmID)
-{
+void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 bgmID) {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *bgm = bgmID;
 }
 
-u16 Sound_GetSpecialBGM(FieldSystem *fieldSystem)
-{
+u16 Sound_GetSpecialBGM(FieldSystem *fieldSystem) {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     return *bgm;
 }
 
-void Sound_ClearSpecialBGM(FieldSystem *fieldSystem)
-{
+void Sound_ClearSpecialBGM(FieldSystem *fieldSystem) {
     u16 *bgm = FieldOverworldState_GetSpecialBGM(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     *bgm = 0;
 }
 
-u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID)
-{
+u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID) {
     PlayerAvatar *playerAvatar = fieldSystem->playerAvatar;
     int playerState = PlayerAvatar_GetPlayerState(playerAvatar);
 
@@ -172,8 +167,7 @@ u16 Sound_GetOverrideBGM(FieldSystem *fieldSystem, enum MapHeader mapID)
     return bgmID;
 }
 
-u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID)
-{
+u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID) {
     u16 sdatID;
 
     if (IsNight() == FALSE) {
@@ -197,8 +191,7 @@ u16 Sound_GetBGMByMapID(FieldSystem *fieldSystem, int mapID)
     return sdatID;
 }
 
-static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID)
-{
+static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int headerID) {
     int x, y;
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
     Location *location = FieldOverworldState_GetPrevLocation(fieldState);
@@ -227,8 +220,7 @@ static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int h
     return 0;
 }
 
-BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode)
-{
+BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode) {
     PlayerAvatar *playerAvatar;
     int fadeOutFrames, waitFrames, playerState;
 
@@ -256,8 +248,7 @@ BOOL Sound_TryFadeOutToBGM(FieldSystem *fieldSystem, u16 bgmID, int mode)
     return TRUE;
 }
 
-static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames)
-{
+static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode, int *fadeOutFrames, int *waitFrames) {
     switch (mode) {
     case 0:
         *fadeOutFrames = 30;
@@ -278,8 +269,7 @@ static void Sound_GetBGMFadeOutAndWaitFrames(FieldSystem *fieldSystem, int mode,
     }
 }
 
-u16 Trainer_GetEncounterBGM(enum TrainerID trainerID)
-{
+u16 Trainer_GetEncounterBGM(enum TrainerID trainerID) {
     u8 class = (u8)Trainer_LoadParam(trainerID, TRDATA_CLASS);
     u16 i, bgmID = SEQ_EYE_KID;
 
@@ -293,8 +283,7 @@ u16 Trainer_GetEncounterBGM(enum TrainerID trainerID)
     return bgmID;
 }
 
-void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int mapID)
-{
+void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int mapID) {
     if (Sound_IsBGMFixed() == 1) {
         return;
     }
@@ -304,8 +293,7 @@ void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int mapID)
     }
 }
 
-void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID)
-{
+void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID) {
     u16 bgmID;
 
     if (Sound_IsBGMFixed() == 1) {
@@ -320,8 +308,7 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int mapID)
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, bgmID, 1);
 }
 
-void sub_020556A0(FieldSystem *fieldSystem, int mapID)
-{
+void sub_020556A0(FieldSystem *fieldSystem, int mapID) {
     u16 bgmID = Sound_GetOverrideBGM(fieldSystem, mapID);
 
     Sound_SetFieldBGM(Sound_GetBGMByMapID(fieldSystem, mapID));

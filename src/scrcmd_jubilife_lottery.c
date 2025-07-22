@@ -20,8 +20,7 @@ static u8 CheckTrainerIdForMatch(u16 winningLotteryId, u16 pokemonOtId);
 
 static const u16 TRAINER_ID_MAX_LENGTH = 5;
 
-BOOL ScrCmd_GetJubilifeLotteryTrainerID(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetJubilifeLotteryTrainerID(ScriptContext *ctx) {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u32 trainerID = SystemVars_GetJubilifeLotteryTrainerID(varsFlags);
@@ -29,8 +28,7 @@ BOOL ScrCmd_GetJubilifeLotteryTrainerID(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
-{
+BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context) {
     FieldSystem *fieldSystem = context->fieldSystem;
     PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
     u16 *winningPokemonIndex = ScriptContext_GetVarPointer(context);
@@ -98,16 +96,14 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
     return FALSE;
 }
 
-BOOL ScrCmd_RandomizeJubilifeLottery(ScriptContext *ctx)
-{
+BOOL ScrCmd_RandomizeJubilifeLottery(ScriptContext *ctx) {
     SystemVars_RandomizeJubilifeLotteryTrainerID(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
 static u16 unused1 = 0, unused2 = 0;
 
-static u8 CheckTrainerIdForMatch(u16 winningLotteryId, u16 pokemonOtId)
-{
+static u8 CheckTrainerIdForMatch(u16 winningLotteryId, u16 pokemonOtId) {
     u8 matchedDigits = 0;
 
     for (u8 i = 0; i < TRAINER_ID_MAX_LENGTH; i++) {

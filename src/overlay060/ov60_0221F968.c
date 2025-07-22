@@ -20,8 +20,7 @@ struct {
     int unk_30;
 } Unk_ov60_02228E40 = { 1, 0, 0, 0 };
 
-static void ov60_0221F968(int param0)
-{
+static void ov60_0221F968(int param0) {
     switch (param0) {
     case DWC_GHTTP_IN_ERROR:
         Unk_ov60_02228E40.unk_08 = 0;
@@ -49,8 +48,7 @@ static void ov60_0221F968(int param0)
     }
 }
 
-static void ov60_0221F9D0(const char *param0, int param1, DWCGHTTPResult param2, void *param3)
-{
+static void ov60_0221F9D0(const char *param0, int param1, DWCGHTTPResult param2, void *param3) {
 #pragma unused(param3)
 
     Unk_ov60_02228E40.unk_04 = -1;
@@ -195,8 +193,7 @@ static void ov60_0221F9D0(const char *param0, int param1, DWCGHTTPResult param2,
     }
 }
 
-void ov60_0221FC84(void)
-{
+void ov60_0221FC84(void) {
     Unk_ov60_02228E40.unk_00 = 2;
     Unk_ov60_02228E40.unk_04 = -1;
 
@@ -207,8 +204,7 @@ void ov60_0221FC84(void)
     return;
 }
 
-int ov60_0221FCA8(const u8 *param0, int param1, const void *param2, int param3, u8 *param4, int param5)
-{
+int ov60_0221FCA8(const u8 *param0, int param1, const void *param2, int param3, u8 *param4, int param5) {
     if (Unk_ov60_02228E40.unk_00 != 2) {
         return 1;
     }
@@ -234,8 +230,7 @@ int ov60_0221FCA8(const u8 *param0, int param1, const void *param2, int param3, 
     return 0;
 }
 
-int ov60_0221FD48(void)
-{
+int ov60_0221FD48(void) {
     BOOL v0;
 
     switch (Unk_ov60_02228E40.unk_00) {
@@ -288,8 +283,7 @@ int ov60_0221FD48(void)
     return Unk_ov60_02228E40.unk_00;
 }
 
-void ov60_0221FDEC(void)
-{
+void ov60_0221FDEC(void) {
     if (Unk_ov60_02228E40.unk_24 != NULL) {
         DWC_Free((DWCAllocType)10, Unk_ov60_02228E40.unk_24, (u32)0);
         Unk_ov60_02228E40.unk_24 = NULL;
@@ -301,12 +295,10 @@ void ov60_0221FDEC(void)
     return;
 }
 
-int ov60_0221FE14(void)
-{
+int ov60_0221FE14(void) {
     return (int)Unk_ov60_02228E40.unk_08;
 }
 
-int ov60_0221FE20(void)
-{
+int ov60_0221FE20(void) {
     return Unk_ov60_02228E40.unk_0C;
 }

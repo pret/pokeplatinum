@@ -4,8 +4,7 @@
 #include <nnsys.h>
 #include <string.h>
 
-u32 CalcDistance2D(s32 x0, s32 y0, s32 x1, s32 y1)
-{
+u32 CalcDistance2D(s32 x0, s32 y0, s32 x1, s32 y1) {
 
     s32 dx = x0 - x1;
     s32 dy = y0 - y1;

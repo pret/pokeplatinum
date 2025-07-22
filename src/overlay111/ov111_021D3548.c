@@ -30,8 +30,7 @@ void ov111_021D3578(Window *param0);
 void ov111_021D3594(BgConfig *param0, Window *param1);
 void ov111_021D35C0(Window *param0, int param1);
 
-void ov111_021D3548(BgConfig *param0, Window *param1)
-{
+void ov111_021D3548(BgConfig *param0, Window *param1) {
     u8 v0;
     const WindowTemplate *v1 = Unk_ov111_021D38B8;
 
@@ -43,8 +42,7 @@ void ov111_021D3548(BgConfig *param0, Window *param1)
     return;
 }
 
-void ov111_021D3578(Window *param0)
-{
+void ov111_021D3578(Window *param0) {
     u16 v0;
 
     for (v0 = 0; v0 < 16; v0++) {
@@ -54,16 +52,14 @@ void ov111_021D3578(Window *param0)
     return;
 }
 
-void ov111_021D3594(BgConfig *param0, Window *param1)
-{
+void ov111_021D3594(BgConfig *param0, Window *param1) {
     LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_2, (1024 - 9), 11, 0, HEAP_ID_115);
     Window_DrawStandardFrame(param1, 1, (1024 - 9), 11);
 
     return;
 }
 
-void ov111_021D35C0(Window *param0, int param1)
-{
+void ov111_021D35C0(Window *param0, int param1) {
     LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, HEAP_ID_115);
     Window_FillTilemap(param0, 15);
     Window_DrawMessageBoxWithScrollCursor(param0, 0, ((1024 - 9) - (18 + 12)), 10);

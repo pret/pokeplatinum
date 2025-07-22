@@ -83,8 +83,7 @@ static const ListMenuTemplate Unk_ov7_0224F188 = {
     NULL
 };
 
-static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
-{
+static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1) {
     if (Window_IsInUse(&param0->unk_54) == 0) {
         Window_Init(&param0->unk_54);
         FieldMessage_AddWindow(param0->fieldSystem->bgConfig, &param0->unk_54, 3);
@@ -99,8 +98,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
     param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
-static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
-{
+static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1) {
     if (param1) {
         Window_EraseMessageBox(&param0->unk_54, 0);
         Window_ClearAndCopyToVRAM(&param0->unk_54);
@@ -109,14 +107,12 @@ static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
     Window_Remove(&param0->unk_54);
 }
 
-static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
-{
+static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1) {
     sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD);
     StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 
-static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
-{
+static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0) {
     ListMenuTemplate v0;
     Window *v1 = &(param0->unk_34);
     BattleRegulation *v2 = sub_0202610C(param0->fieldSystem->saveData, 0);
@@ -157,8 +153,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     Window_CopyToVRAM(&param0->unk_34);
 }
 
-static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
-{
+static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0) {
     if (param0->unk_00) {
         ListMenu_Free(param0->unk_00, NULL, NULL);
         Window_EraseStandardFrame(&param0->unk_34, 1);
@@ -170,8 +165,7 @@ static void ov7_0224B6AC(UnkStruct_ov7_0224B4E8 *param0)
     }
 }
 
-static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
-{
+static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0) {
     int v0;
     u16 v1;
 
@@ -213,8 +207,7 @@ static UnkStruct_ov7_0224F4D8 Unk_ov7_0224F4D8[] = {
     { 0x72, (u32)0xfffffffe }
 };
 
-static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
-{
+static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0) {
     ListMenuTemplate v0;
     int v1 = 3, v2;
     int v3 = 10;
@@ -247,8 +240,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     Window_CopyToVRAM(&param0->unk_44);
 }
 
-static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
-{
+static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0) {
     int v0;
     u16 v1;
 
@@ -312,8 +304,7 @@ static u8 Unk_ov7_0224F4CC[] = {
     0x5D
 };
 
-static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
-{
+static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0) {
     MessageLoader *v0;
     StringTemplate *v1 = param0->unk_64;
     Strbuf *v2;
@@ -414,15 +405,13 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     Window_CopyToVRAM(v4);
 }
 
-static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
-{
+static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0) {
     Window_EraseStandardFrame(&param0->unk_24, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_24.bgConfig, param0->unk_24.bgLayer);
     Window_Remove(&param0->unk_24);
 }
 
-static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
-{
+static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0) {
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     int v1 = sub_0207A594(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
     int v2;
@@ -450,8 +439,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     return 0;
 }
 
-static BOOL ov7_0224BC74(FieldTask *param0)
-{
+static BOOL ov7_0224BC74(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov7_0224B4E8 *v1 = FieldTask_GetEnv(param0);
     int v2;
@@ -549,8 +537,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
     return 0;
 }
 
-static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
-{
+static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem) {
     UnkStruct_ov7_0224B4E8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224B4E8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov7_0224B4E8));
@@ -569,8 +556,7 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     return v0;
 }
 
-void ov7_0224BE7C(FieldTask *param0, u16 *param1)
-{
+void ov7_0224BE7C(FieldTask *param0, u16 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov7_0224B4E8 *v1 = ov7_0224BE10(fieldSystem);
 

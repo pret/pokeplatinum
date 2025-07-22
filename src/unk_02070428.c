@@ -26,13 +26,11 @@
 static BOOL sub_020705DC(FieldSystem *fieldSystem);
 static BOOL sub_02070610(FieldSystem *fieldSystem);
 
-void sub_02070428(FieldSystem *fieldSystem, BOOL param1)
-{
+void sub_02070428(FieldSystem *fieldSystem, BOOL param1) {
     fieldSystem->unk_B8 = param1;
 }
 
-void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
-{
+void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem) {
     sub_020705DC(fieldSystem);
     SystemFlag_HandleForceBikingInGate(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
@@ -52,8 +50,7 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
     }
 }
 
-void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
-{
+void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem) {
     if (fieldSystem->unk_B8 == 1) {
         return;
     }
@@ -102,37 +99,31 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     }
 }
 
-void sub_0207056C(FieldSystem *fieldSystem)
-{
+void sub_0207056C(FieldSystem *fieldSystem) {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
     RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
-void FieldSystem_SetTeleportFlags(FieldSystem *fieldSystem)
-{
+void FieldSystem_SetTeleportFlags(FieldSystem *fieldSystem) {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
     RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
-void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem)
-{
+void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem) {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
-void FieldSystem_ClearPartnerTrainer(FieldSystem *fieldSystem)
-{
+void FieldSystem_ClearPartnerTrainer(FieldSystem *fieldSystem) {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     SystemFlag_ClearHasPartner(varsFlags);
     SystemVars_SetPartnerTrainerID(varsFlags, 0);
 }
 
-void sub_020705CC(FieldSystem *fieldSystem)
-{
+void sub_020705CC(FieldSystem *fieldSystem) {
     RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
-static BOOL sub_020705DC(FieldSystem *fieldSystem)
-{
+static BOOL sub_020705DC(FieldSystem *fieldSystem) {
     int v0 = sub_0203A87C(fieldSystem->location->mapId);
 
     if (v0 != 0 && sub_0203A920(fieldSystem, v0) == 0) {
@@ -143,8 +134,7 @@ static BOOL sub_020705DC(FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static BOOL sub_02070610(FieldSystem *fieldSystem)
-{
+static BOOL sub_02070610(FieldSystem *fieldSystem) {
     Location *location = FieldOverworldState_GetPrevLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
 
     if (location->mapId != fieldSystem->location->mapId) {

@@ -7,8 +7,7 @@
 
 #include "system.h"
 
-void WildEncounters_ReplaceDualSlotEncounters(const WildEncounters *encounterData, const BOOL nationalDexObtained, int *param2, int *param3)
-{
+void WildEncounters_ReplaceDualSlotEncounters(const WildEncounters *encounterData, const BOOL nationalDexObtained, int *param2, int *param3) {
     if (!nationalDexObtained) {
         return;
     }

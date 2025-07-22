@@ -26,8 +26,7 @@ static const u16 Unk_ov71_0223D77C[8] = {
     0x300
 };
 
-void ov71_0223D324(UnkStruct_ov71_0223D324 *param0)
-{
+void ov71_0223D324(UnkStruct_ov71_0223D324 *param0) {
     int v0, v1;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -38,8 +37,7 @@ void ov71_0223D324(UnkStruct_ov71_0223D324 *param0)
     return;
 }
 
-void ov71_0223D338(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
-{
+void ov71_0223D338(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2) {
     int v0;
 
     ov71_0223D370(param0);
@@ -59,8 +57,7 @@ void ov71_0223D338(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 p
     return;
 }
 
-static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0)
-{
+static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -75,8 +72,7 @@ static void ov71_0223D370(UnkStruct_ov71_0223D324 *param0)
     return;
 }
 
-static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
-{
+static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -90,8 +86,7 @@ static BOOL ov71_0223D3A0(UnkStruct_ov71_0223D324 *param0, const int param1, con
     return 0;
 }
 
-static BOOL ov71_0223D3D8(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
-{
+static BOOL ov71_0223D3D8(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2) {
     int v0, v1;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -106,8 +101,7 @@ static BOOL ov71_0223D3D8(UnkStruct_ov71_0223D324 *param0, const int param1, con
     return 0;
 }
 
-static BOOL ov71_0223D410(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
-{
+static BOOL ov71_0223D410(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2) {
     int v0 = (4 - 1);
 
     ov71_0223D470(param0->unk_00[v0][0], param1, param2);
@@ -116,8 +110,7 @@ static BOOL ov71_0223D410(UnkStruct_ov71_0223D324 *param0, const int param1, con
     return 1;
 }
 
-static void ov71_0223D42C(UnkStruct_ov71_0223D324 *param0, int param1, int param2, int param3)
-{
+static void ov71_0223D42C(UnkStruct_ov71_0223D324 *param0, int param1, int param2, int param3) {
     int v0;
 
     for (v0 = param1; v0 > 0; v0--) {
@@ -131,8 +124,7 @@ static void ov71_0223D42C(UnkStruct_ov71_0223D324 *param0, int param1, int param
     return;
 }
 
-static void ov71_0223D454(UnkStruct_ov71_0223D324 *param0)
-{
+static void ov71_0223D454(UnkStruct_ov71_0223D324 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -145,8 +137,7 @@ static void ov71_0223D454(UnkStruct_ov71_0223D324 *param0)
     return;
 }
 
-static void ov71_0223D470(int param0, const int param1, const u8 param2)
-{
+static void ov71_0223D470(int param0, const int param1, const u8 param2) {
     int v0 = 152 * (4 - param2);
 
     Sound_PlaySequenceWithPlayer((3 + param0), (3 + param0), 1684);

@@ -92,8 +92,7 @@ static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0);
 static void ov95_02248490(UnkStruct_ov95_02247C6C *param0);
 static void ov95_022484B0(SysTask *param0, void *param1);
 
-void *ov95_02247B6C(UnkStruct_ov95_02247628 *param0)
-{
+void *ov95_02247B6C(UnkStruct_ov95_02247628 *param0) {
     UnkStruct_ov95_02247C6C *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02247C6C));
 
     if (v0) {
@@ -114,8 +113,7 @@ void *ov95_02247B6C(UnkStruct_ov95_02247628 *param0)
     return v0;
 }
 
-void ov95_02247BC8(void *param0)
-{
+void ov95_02247BC8(void *param0) {
     UnkStruct_ov95_02247C6C *v0 = param0;
 
     if (v0) {
@@ -145,8 +143,7 @@ void ov95_02247BC8(void *param0)
     }
 }
 
-BOOL ov95_02247C34(void *param0, int *param1)
-{
+BOOL ov95_02247C34(void *param0, int *param1) {
     static int (*const v0[])(UnkStruct_ov95_02247C6C *, int *) = {
         ov95_02247CB4,
         ov95_02247ED8,
@@ -170,8 +167,7 @@ BOOL ov95_02247C34(void *param0, int *param1)
     return 1;
 }
 
-static void ov95_02247C6C(UnkStruct_ov95_02247C6C *param0)
-{
+static void ov95_02247C6C(UnkStruct_ov95_02247C6C *param0) {
     G3X_Reset();
     NNS_G3dGePushMtx();
 
@@ -189,8 +185,7 @@ static void ov95_02247C6C(UnkStruct_ov95_02247C6C *param0)
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
-static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
-{
+static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1) {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
@@ -288,8 +283,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 1;
 }
 
-static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
-{
+static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1) {
     switch (*param1) {
     case 0:
         if (IsScreenFadeDone()) {
@@ -303,8 +297,7 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 0;
 }
 
-static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
-{
+static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1) {
     switch (*param1) {
     case 0:
         param0->unk_08 = 0;
@@ -377,8 +370,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 0;
 }
 
-static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
-{
+static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1) {
     switch (*param1) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_KOUKAN01);
@@ -419,8 +411,7 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
     return 0;
 }
 
-static void ov95_02248174(UnkStruct_ov95_02247C6C *param0)
-{
+static void ov95_02248174(UnkStruct_ov95_02247C6C *param0) {
     NNSGfdTexKey v0;
     NNSGfdPlttKey v1;
 
@@ -446,8 +437,7 @@ static void ov95_02248174(UnkStruct_ov95_02247C6C *param0)
     PokemonSpriteManager_SetPlttBaseAddrAndSize(param0->unk_0C, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
 }
 
-static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0)
-{
+static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0) {
     PokemonSpriteTemplate v0;
     BoxPokemon *v1;
     int v2;
@@ -462,8 +452,7 @@ static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0)
     return PokemonSpriteManager_CreateSprite(param0->unk_0C, &v0, 128, v2, 0, 0, param0->unk_14, NULL);
 }
 
-static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
-{
+static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0) {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
     SpriteResourcesHeader v2;
@@ -486,8 +475,7 @@ static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
     Sprite_SetDrawFlag(param0->unk_3C[1], FALSE);
 }
 
-static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)
-{
+static void ov95_02248340(UnkStruct_ov95_02247C6C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -499,8 +487,7 @@ static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)
     ov95_022475A0(&param0->unk_44);
 }
 
-static void ov95_02248364(UnkStruct_ov95_02247C6C *param0, int param1, int param2, int param3)
-{
+static void ov95_02248364(UnkStruct_ov95_02247C6C *param0, int param1, int param2, int param3) {
     UnkStruct_ov95_02248364 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02248364));
 
     if (v0) {
@@ -515,13 +502,11 @@ static void ov95_02248364(UnkStruct_ov95_02247C6C *param0, int param1, int param
     }
 }
 
-static BOOL ov95_022483B4(UnkStruct_ov95_02247C6C *param0)
-{
+static BOOL ov95_022483B4(UnkStruct_ov95_02247C6C *param0) {
     return param0->unk_78 == NULL;
 }
 
-static void ov95_022483C4(UnkStruct_ov95_02247C6C *param0)
-{
+static void ov95_022483C4(UnkStruct_ov95_02247C6C *param0) {
     if (param0->unk_78) {
         ov95_022476C8(SysTask_GetParam(param0->unk_78));
         SysTask_Done(param0->unk_78);
@@ -529,8 +514,7 @@ static void ov95_022483C4(UnkStruct_ov95_02247C6C *param0)
     }
 }
 
-static void ov95_022483E4(SysTask *param0, void *param1)
-{
+static void ov95_022483E4(SysTask *param0, void *param1) {
     UnkStruct_ov95_02248364 *v0 = param1;
     int v1;
 
@@ -545,8 +529,7 @@ static void ov95_022483E4(SysTask *param0, void *param1)
     }
 }
 
-static void ov95_02248420(UnkStruct_ov95_02247C6C *param0)
-{
+static void ov95_02248420(UnkStruct_ov95_02247C6C *param0) {
     UnkStruct_ov95_02248420 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02248420));
 
     if (v0) {
@@ -566,13 +549,11 @@ static void ov95_02248420(UnkStruct_ov95_02247C6C *param0)
     }
 }
 
-static BOOL ov95_0224846C(UnkStruct_ov95_02247C6C *param0)
-{
+static BOOL ov95_0224846C(UnkStruct_ov95_02247C6C *param0) {
     return param0->unk_7C == NULL;
 }
 
-static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0)
-{
+static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0) {
     if (param0->unk_7C) {
         UnkStruct_ov95_02248420 *v0 = SysTask_GetParam(param0->unk_7C);
         return v0->unk_20;
@@ -581,8 +562,7 @@ static int ov95_0224847C(UnkStruct_ov95_02247C6C *param0)
     return 0;
 }
 
-static void ov95_02248490(UnkStruct_ov95_02247C6C *param0)
-{
+static void ov95_02248490(UnkStruct_ov95_02247C6C *param0) {
     if (param0->unk_7C) {
         Heap_Free(SysTask_GetParam(param0->unk_7C));
         SysTask_Done(param0->unk_7C);
@@ -590,8 +570,7 @@ static void ov95_02248490(UnkStruct_ov95_02247C6C *param0)
     }
 }
 
-static void ov95_022484B0(SysTask *param0, void *param1)
-{
+static void ov95_022484B0(SysTask *param0, void *param1) {
     UnkStruct_ov95_02248420 *v0 = param1;
     BOOL v1 = 0;
 

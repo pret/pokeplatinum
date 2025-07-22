@@ -68,8 +68,7 @@ static const UnkStruct_ov17_0225442C Unk_ov17_0225442C[] = {
 void include_ov17_022476F8(void);
 static void ov17_02247840(SysTask *param0, void *param1);
 
-void ov17_022476F8(UnkStruct_ov17_022476F8 *param0, int param1)
-{
+void ov17_022476F8(UnkStruct_ov17_022476F8 *param0, int param1) {
     if (param0->unk_08[param1] == NULL) {
         GF_ASSERT(param0->unk_48[param1].unk_00 == NULL);
         return;
@@ -82,8 +81,7 @@ void ov17_022476F8(UnkStruct_ov17_022476F8 *param0, int param1)
     param0->unk_48[param1].unk_00 = NULL;
 }
 
-void ov17_02247734(UnkStruct_ov17_022476F8 *param0)
-{
+void ov17_02247734(UnkStruct_ov17_022476F8 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -91,22 +89,19 @@ void ov17_02247734(UnkStruct_ov17_022476F8 *param0)
     }
 }
 
-void ov17_0224774C(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
-{
+void ov17_0224774C(SpriteSystem *param0, SpriteManager *param1, NARC *param2) {
     SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, 67, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, 68, TRUE, 33002);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 69, TRUE, 33002);
 }
 
-void ov17_02247798(SpriteManager *param0)
-{
+void ov17_02247798(SpriteManager *param0) {
     SpriteManager_UnloadCharObjById(param0, 33002);
     SpriteManager_UnloadCellObjById(param0, 33002);
     SpriteManager_UnloadAnimObjById(param0, 33002);
 }
 
-void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32 param3, int param4)
-{
+void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32 param3, int param4) {
     UnkStruct_ov17_022477B8 *v0 = Heap_AllocFromHeap(HEAP_ID_22, sizeof(UnkStruct_ov17_022477B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
@@ -128,8 +123,7 @@ void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32
     Sound_PlayEffect(SEQ_SE_DP_CON_003);
 }
 
-static void ov17_02247840(SysTask *param0, void *param1)
-{
+static void ov17_02247840(SysTask *param0, void *param1) {
     UnkStruct_ov17_022477B8 *v0 = param1;
     s32 v1;
 
@@ -156,8 +150,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
     }
 }
 
-void ov17_022478D0(UnkStruct_ov17_02247A48 *param0, int param1)
-{
+void ov17_022478D0(UnkStruct_ov17_02247A48 *param0, int param1) {
     PokemonSpriteTemplate v0;
 
     GF_ASSERT(param0->unk_0C.unk_18 == NULL);
@@ -166,8 +159,7 @@ void ov17_022478D0(UnkStruct_ov17_02247A48 *param0, int param1)
     param0->unk_0C.unk_18 = PokemonSpriteManager_CreateSprite(param0->unk_0C.unk_04, &v0, 320, 32, (-0x200 - 0x40), 3, NULL, NULL);
 }
 
-void ov17_02247918(UnkStruct_ov17_02247A48 *param0)
-{
+void ov17_02247918(UnkStruct_ov17_02247A48 *param0) {
     if (param0->unk_0C.unk_18 == NULL) {
         return;
     }
@@ -176,8 +168,7 @@ void ov17_02247918(UnkStruct_ov17_02247A48 *param0)
     param0->unk_0C.unk_18 = NULL;
 }
 
-static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const UnkStruct_ov17_0224792C *param2)
-{
+static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const UnkStruct_ov17_0224792C *param2) {
     if (param1 != 0) {
         GF_ASSERT(param2 != NULL);
     }
@@ -195,8 +186,7 @@ static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const Unk
     }
 }
 
-static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_0224792C *param4)
-{
+static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_0224792C *param4) {
     Strbuf *v0;
     int v1;
 
@@ -216,8 +206,7 @@ static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1
     Strbuf_Free(v0);
 }
 
-void ov17_02247A08(UnkStruct_ov17_02247A48 *param0, u32 param1, const UnkStruct_ov17_0224792C *param2)
-{
+void ov17_02247A08(UnkStruct_ov17_02247A48 *param0, u32 param1, const UnkStruct_ov17_0224792C *param2) {
     u32 v0, v1;
 
     GF_ASSERT(param1 < NELEMS(Unk_ov17_0225442C));
@@ -228,13 +217,11 @@ void ov17_02247A08(UnkStruct_ov17_02247A48 *param0, u32 param1, const UnkStruct_
     ov17_02247990(param0, param0->unk_0C.unk_38, v0, v1, param2);
 }
 
-int ov17_02247A3C(UnkStruct_ov17_02247A48 *param0)
-{
+int ov17_02247A3C(UnkStruct_ov17_02247A48 *param0) {
     return Text_IsPrinterActive(param0->unk_0C.unk_C4);
 }
 
-void include_ov17_022476F8(void)
-{
+void include_ov17_022476F8(void) {
     const u16 dummy[5] = {
         9, 10, 11, 12, 13
     };

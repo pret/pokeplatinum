@@ -14,8 +14,7 @@
 #include "strbuf.h"
 #include "text.h"
 
-void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 resetPrinters)
-{
+void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 resetPrinters) {
     if (resetPrinters == TRUE) {
         Text_ResetAllPrinters();
     }
@@ -24,8 +23,7 @@ void FieldMessage_LoadTextPalettes(enum PaletteLoadLocation palLocation, u32 res
     Font_LoadScreenIndicatorsPalette(palLocation, PLTT_OFFSET(12), HEAP_ID_FIELD);
 }
 
-void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)
-{
+void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer) {
     if (bgLayer == BG_LAYER_MAIN_3) {
         Window_Add(bgConfig, window, BG_LAYER_MAIN_3, 2, 19, 27, 4, 12, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)));
     } else {
@@ -33,20 +31,17 @@ void FieldMessage_AddWindow(BgConfig *bgConfig, Window *window, u32 bgLayer)
     }
 }
 
-void FieldMessage_DrawWindow(Window *window, const Options *options)
-{
+void FieldMessage_DrawWindow(Window *window, const Options *options) {
     LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), 1024 - (18 + 12), 10, Options_Frame(options), HEAP_ID_FIELD);
     FieldMessage_ClearWindow(window);
     Window_DrawMessageBoxWithScrollCursor(window, FALSE, 1024 - (18 + 12), 10);
 }
 
-void FieldMessage_ClearWindow(Window *window)
-{
+void FieldMessage_ClearWindow(Window *window) {
     Window_FillTilemap(window, 15);
 }
 
-u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8 canSkipDelay)
-{
+u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8 canSkipDelay) {
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
     RenderControlFlags_SetAutoScrollFlags(FALSE);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
@@ -55,8 +50,7 @@ u8 FieldMessage_Print(Window *window, Strbuf *strBuf, const Options *options, u8
 }
 
 // used only in one instance
-u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int renderDelay, u8 canSkipDelay, BOOL autoScroll)
-{
+u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int renderDelay, u8 canSkipDelay, BOOL autoScroll) {
     RenderControlFlags_SetCanABSpeedUpPrint(canSkipDelay);
     RenderControlFlags_SetAutoScrollFlags(autoScroll);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
@@ -64,8 +58,7 @@ u8 FieldMessage_PrintWithParams(Window *window, Strbuf *strBuf, int fontID, int 
     return Text_AddPrinterWithParams(window, fontID, strBuf, 0, 0, renderDelay, NULL);
 }
 
-u8 FieldMessage_FinishedPrinting(u8 printerID)
-{
+u8 FieldMessage_FinishedPrinting(u8 printerID) {
     if (Text_IsPrinterActive(printerID) == FALSE) {
         return TRUE;
     }
@@ -74,8 +67,7 @@ u8 FieldMessage_FinishedPrinting(u8 printerID)
 }
 
 // used only in one instance
-void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 signpostType, u16 bgLayer)
-{
+void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 signpostType, u16 bgLayer) {
     u16 tilemapLeft, width;
 
     if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
@@ -94,8 +86,7 @@ void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 sign
 }
 
 // used only in one instance, together with FieldMessage_AddSignpostWindow
-void FieldMessage_LoadAndDrawSignpost(Window *window, u16 signpostType, u16 signpostNARCMemberIdx)
-{
+void FieldMessage_LoadAndDrawSignpost(Window *window, u16 signpostType, u16 signpostNARCMemberIdx) {
     LoadSignpostContentGraphics(window->bgConfig, Window_GetBgLayer(window), ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType, signpostNARCMemberIdx, HEAP_ID_FIELD);
     Window_FillTilemap(window, 15);
     Window_DrawSignpost(window, FALSE, ((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)), 9, signpostType);

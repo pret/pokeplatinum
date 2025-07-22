@@ -13,8 +13,7 @@
 static BOOL FontExists(PokedexTextData *textData);
 static PokedexTextData *NextEmptyText(PokedexTextManager *textMan);
 
-PokedexTextManager *PokedexTextManager_New(const PokedexTextManagerTemplate *textManTemplate)
-{
+PokedexTextManager *PokedexTextManager_New(const PokedexTextManagerTemplate *textManTemplate) {
     PokedexTextManager *textMan = Heap_AllocFromHeap(textManTemplate->heapID, sizeof(PokedexTextManager));
 
     GF_ASSERT(textMan);
@@ -34,8 +33,7 @@ PokedexTextManager *PokedexTextManager_New(const PokedexTextManagerTemplate *tex
     return textMan;
 }
 
-void PokedexTextManager_Free(PokedexTextManager *textMan)
-{
+void PokedexTextManager_Free(PokedexTextManager *textMan) {
     GF_ASSERT(textMan);
 
     PokedexTextManager_FreeAllTextData(textMan);
@@ -47,14 +45,12 @@ void PokedexTextManager_Free(PokedexTextManager *textMan)
     Heap_Free(textMan);
 }
 
-PokedexTextData *PokedexTextManager_NextTextData(const PokedexDisplayBox *displayBox)
-{
+PokedexTextData *PokedexTextManager_NextTextData(const PokedexDisplayBox *displayBox) {
     int size = sub_02012898(displayBox->window, displayBox->vramType, displayBox->heapID);
     return PokedexTextManager_NextTextDataNew(displayBox, size);
 }
 
-PokedexTextData *PokedexTextManager_NextTextDataNew(const PokedexDisplayBox *displayBox, int size)
-{
+PokedexTextData *PokedexTextManager_NextTextDataNew(const PokedexDisplayBox *displayBox, int size) {
     UnkStruct_020127E8 v0;
     PokedexTextData *textData = NextEmptyText(displayBox->textMan);
 
@@ -79,16 +75,14 @@ PokedexTextData *PokedexTextManager_NextTextDataNew(const PokedexDisplayBox *dis
     return textData;
 }
 
-void PokedexTextManager_FreeTextData(PokedexTextData *textData)
-{
+void PokedexTextManager_FreeTextData(PokedexTextData *textData) {
     sub_02012870(textData->fontOAM);
     CharTransfer_ClearRange(&textData->allocation);
 
     memset(textData, 0, sizeof(PokedexTextData));
 }
 
-void PokedexTextManager_FreeAllTextData(PokedexTextManager *textMan)
-{
+void PokedexTextManager_FreeAllTextData(PokedexTextManager *textMan) {
     for (int textIndex = 0; textIndex < textMan->numTextData; textIndex++) {
         if (FontExists(&textMan->textData[textIndex])) {
             PokedexTextManager_FreeTextData(&textMan->textData[textIndex]);
@@ -96,8 +90,7 @@ void PokedexTextManager_FreeAllTextData(PokedexTextManager *textMan)
     }
 }
 
-Window *PokedexTextManager_NewWindow(PokedexTextManager *textMan, int width, int height)
-{
+Window *PokedexTextManager_NewWindow(PokedexTextManager *textMan, int width, int height) {
     Window *window = Window_New(textMan->heapID, 1);
 
     Window_Init(window);
@@ -106,13 +99,11 @@ Window *PokedexTextManager_NewWindow(PokedexTextManager *textMan, int width, int
     return window;
 }
 
-void PokedexTextManager_FreeWindow(Window *window)
-{
+void PokedexTextManager_FreeWindow(Window *window) {
     Windows_Delete(window, 1);
 }
 
-u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset)
-{
+u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset) {
     MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
     GF_ASSERT(messageLoader);
 
@@ -126,8 +117,7 @@ u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *windo
     return strWidth;
 }
 
-void PokedexTextManager_DisplayMessageTopRight(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID)
-{
+void PokedexTextManager_DisplayMessageTopRight(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID) {
     MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
     GF_ASSERT(messageLoader);
 
@@ -142,18 +132,15 @@ void PokedexTextManager_DisplayMessageTopRight(PokedexTextManager *textMan, Wind
     MessageLoader_Free(messageLoader);
 }
 
-void PokedexTextManager_DisplayStrbuf(PokedexTextManager *textMan, Window *window, Strbuf *strbuf, int xOffset, int yOffset)
-{
+void PokedexTextManager_DisplayStrbuf(PokedexTextManager *textMan, Window *window, Strbuf *strbuf, int xOffset, int yOffset) {
     Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
 }
 
-static BOOL FontExists(PokedexTextData *textData)
-{
+static BOOL FontExists(PokedexTextData *textData) {
     return textData->fontOAM != NULL;
 }
 
-static PokedexTextData *NextEmptyText(PokedexTextManager *textMan)
-{
+static PokedexTextData *NextEmptyText(PokedexTextManager *textMan) {
     for (int textIndex = 0; textIndex < textMan->numTextData; textIndex++) {
         if (FontExists(&textMan->textData[textIndex]) == FALSE) {
             return &textMan->textData[textIndex];

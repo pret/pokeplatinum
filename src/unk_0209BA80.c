@@ -92,14 +92,12 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { ov108_02242B84, sub_02032944, NULL }
 };
 
-void sub_0209BA80(void *param0)
-{
+void sub_0209BA80(void *param0) {
     int v0 = sizeof(Unk_020F8BF0) / sizeof(CommCmdTable);
     CommCmd_Init(Unk_020F8BF0, v0, param0);
 }
 
-static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
-{
+static void sub_0209BA94(int param0, int param1, void *param2, void *param3) {
     u16 v0;
     int v1;
     UnkStruct_0204AFC4 *v2 = param3;
@@ -131,8 +129,7 @@ static void sub_0209BA94(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0)
-{
+BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0) {
     int v0, v1;
 
     v1 = (14 * 2);
@@ -148,8 +145,7 @@ BOOL sub_0209BB08(UnkStruct_0204AFC4 *param0)
     return v0;
 }
 
-static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
-{
+static void sub_0209BB34(int param0, int param1, void *param2, void *param3) {
     int v0;
     UnkStruct_0204AFC4 *v1 = param3;
     const u16 *v2 = param2;
@@ -169,8 +165,7 @@ static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
-{
+static void sub_0209BB68(int param0, int param1, void *param2, void *param3) {
     int v0;
     UnkStruct_0204AFC4 *v1 = param3;
     const u16 *v2 = param2;
@@ -191,8 +186,7 @@ static void sub_0209BB68(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
-{
+BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0) {
     int v0, v1, v2;
 
     v1 = 40;
@@ -210,8 +204,7 @@ BOOL sub_0209BBA4(UnkStruct_0209BBA4 *param0)
     return v0;
 }
 
-void sub_0209BBEC(int param0, int param1, void *param2, void *param3)
-{
+void sub_0209BBEC(int param0, int param1, void *param2, void *param3) {
     u16 v0;
     UnkStruct_0209BBA4 *v1 = param3;
     const u16 *v2 = param2;
@@ -228,8 +221,7 @@ void sub_0209BBEC(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1)
-{
+BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1) {
     int v0, v1 = 40;
     param0->unk_08[0] = param1;
 
@@ -242,8 +234,7 @@ BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1)
     return v0;
 }
 
-void sub_0209BC3C(int param0, int param1, void *param2, void *param3)
-{
+void sub_0209BC3C(int param0, int param1, void *param2, void *param3) {
     int v0;
     UnkStruct_0209BBA4 *v1 = param3;
     const u16 *v2 = param2;
@@ -259,8 +250,7 @@ void sub_0209BC3C(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2)
-{
+BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2) {
     int v0, v1;
     Pokemon *v2;
     Party *v3;
@@ -302,8 +292,7 @@ BOOL sub_0209BC64(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2)
     return v0;
 }
 
-void sub_0209BD28(int param0, int param1, void *param2, void *param3)
-{
+void sub_0209BD28(int param0, int param1, void *param2, void *param3) {
     UnkStruct_0209BBA4 *v0 = param3;
     const u16 *v1 = param2;
 
@@ -321,8 +310,7 @@ void sub_0209BD28(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1)
-{
+BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1) {
     int v0, v1 = 40;
 
     param0->unk_08[0] = param1;
@@ -336,8 +324,7 @@ BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1)
     return v0;
 }
 
-void sub_0209BD88(int param0, int param1, void *param2, void *param3)
-{
+void sub_0209BD88(int param0, int param1, void *param2, void *param3) {
     int v0;
     UnkStruct_0209BBA4 *v1 = param3;
     const u16 *v2 = param2;
@@ -353,8 +340,7 @@ void sub_0209BD88(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1)
-{
+BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1) {
     int v0, v1 = 40;
     param0->unk_08[0] = param1;
 
@@ -367,8 +353,7 @@ BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1)
     return v0;
 }
 
-void sub_0209BDD0(int param0, int param1, void *param2, void *param3)
-{
+void sub_0209BDD0(int param0, int param1, void *param2, void *param3) {
     int v0;
     UnkStruct_0209BBA4 *v1 = param3;
     const u16 *v2 = param2;

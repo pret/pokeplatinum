@@ -59,8 +59,7 @@ const static DynamicMapFeaturesCheckCollisionFunc sCheckCollisionFuncs[DYNAMIC_M
     Villa_DynamicMapFeaturesCheckCollision
 };
 
-void DynamicMapFeatures_Init(FieldSystem *fieldSystem)
-{
+void DynamicMapFeatures_Init(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
@@ -71,8 +70,7 @@ void DynamicMapFeatures_Init(FieldSystem *fieldSystem)
     sInitFuncs[id](fieldSystem);
 }
 
-void DynamicMapFeatures_Free(FieldSystem *fieldSystem)
-{
+void DynamicMapFeatures_Free(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
@@ -85,8 +83,7 @@ void DynamicMapFeatures_Free(FieldSystem *fieldSystem)
     }
 }
 
-BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
-{
+BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int id = PersistedMapFeatures_GetID(persistedMapFeatures);
 
@@ -102,8 +99,7 @@ BOOL DynamicMapFeatures_CheckCollision(FieldSystem *fieldSystem, const int tileX
     return FALSE;
 }
 
-BOOL DynamicMapFeatures_WillPlayerJumpEternaGymClock(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 unused3, int direction)
-{
+BOOL DynamicMapFeatures_WillPlayerJumpEternaGymClock(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 unused3, int direction) {
     return fieldSystem->location->mapId == MAP_HEADER_ETERNA_CITY_GYM
         && EternaGym_IsHourHandJumpTile(fieldSystem, tileX, tileZ, direction);
 }

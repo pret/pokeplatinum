@@ -26,8 +26,7 @@ static const u8 Unk_ov105_02246444[4] = {
     0x1
 };
 
-void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
-{
+void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0) {
     int v0;
 
     ov105_02245C98();
@@ -56,8 +55,7 @@ void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
     return;
 }
 
-Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
-{
+Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5) {
     int v0;
     SpriteResourcesHeader v1;
     Sprite *v2;
@@ -99,8 +97,7 @@ Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2,
     return v2;
 }
 
-void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
-{
+void ov105_02245C50(UnkStruct_ov105_02245AAC *param0) {
     u8 v0;
 
     for (v0 = 0; v0 < 1; v0++) {
@@ -120,8 +117,7 @@ void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
     return;
 }
 
-static void ov105_02245C98(void)
-{
+static void ov105_02245C98(void) {
     {
         CharTransferTemplate v0 = {
             32, 2048, 2048, 93

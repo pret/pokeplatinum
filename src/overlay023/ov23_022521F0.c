@@ -82,8 +82,7 @@ static const WindowTemplate Unk_ov23_022569D8 = {
     0x21F
 };
 
-static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1)
-{
+static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1) {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
     Underground *v6 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
@@ -127,8 +126,7 @@ static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     }
 }
 
-static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
-{
+static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1) {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
     SaveData *saveData = FieldSystem_GetSaveData(param0->fieldSystem);
@@ -173,8 +171,7 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     }
 }
 
-static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2)
-{
+static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2) {
     BOOL v0 = 0;
     Underground *v1 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
@@ -203,8 +200,7 @@ static int ov23_02252404(UnkStruct_ov23_02250CD4 *param0, int param1, int param2
     return param0->unk_274[param1];
 }
 
-static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
-{
+static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0) {
     ListMenuTemplate v0;
     int v1 = 3;
 
@@ -261,8 +257,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
     return param0;
 }
 
-static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2) {
     UnkStruct_ov23_02250CD4 *v0 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     u32 v1 = param1;
 
@@ -295,8 +290,7 @@ static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2) {
     MATHRandContext16 v0;
     UnkStruct_ov23_02250CD4 *v1 = (UnkStruct_ov23_02250CD4 *)ListMenu_GetAttribute(param0, 19);
     Underground *v2 = SaveData_GetUnderground(FieldSystem_GetSaveData(v1->fieldSystem));
@@ -379,8 +373,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
     }
 }
 
-static int ov23_02252A04(int param0, void *param1)
-{
+static int ov23_02252A04(int param0, void *param1) {
     UnkStruct_ov23_02250CD4 *v0 = param1;
 
     if (param0 >= 5) {
@@ -390,8 +383,7 @@ static int ov23_02252A04(int param0, void *param1)
     return v0->unk_274[param0];
 }
 
-static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
-{
+static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0) {
     ListMenuTemplate v0;
     const int v1 = 5 + 1;
 
@@ -443,8 +435,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     Window_CopyToVRAM(&param0->unk_10);
 }
 
-static void ov23_02252B90(UnkStruct_ov23_02250CD4 *param0, BOOL param1)
-{
+static void ov23_02252B90(UnkStruct_ov23_02250CD4 *param0, BOOL param1) {
     if (Window_IsInUse(&param0->unk_20)) {
         Window_EraseStandardFrame(&param0->unk_20, 1);
         Window_Remove(&param0->unk_20);
@@ -453,8 +444,7 @@ static void ov23_02252B90(UnkStruct_ov23_02250CD4 *param0, BOOL param1)
     ov23_0224FB7C(param0);
 }
 
-static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1)
-{
+static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1) {
     int v0;
 
     if (param1->unk_2AC == 1) {
@@ -472,8 +462,7 @@ static void ov23_02252BB8(int param0, UnkStruct_ov23_02250CD4 *param1)
     ov23_02252C9C(10);
 }
 
-static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
-{
+static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0) {
     Underground *v0 = SaveData_GetUnderground(FieldSystem_GetSaveData(param0->fieldSystem));
 
     if (Underground_TryAddSphere2(param0->unk_279[0], param0->unk_27E[0])) {
@@ -491,8 +480,7 @@ static u32 ov23_02252C08(UnkStruct_ov23_02250CD4 *param0)
     return 0xfffc;
 }
 
-int ov23_02252C70(void *param0)
-{
+int ov23_02252C70(void *param0) {
     UnkStruct_ov23_02250CD4 *v0 = param0;
     u32 v1 = 0xfffe;
     u32 v2 = 0xfffe;
@@ -501,50 +489,42 @@ int ov23_02252C70(void *param0)
     return v2;
 }
 
-static void ov23_02252C78(UnkStruct_ov23_02250CD4 *param0)
-{
+static void ov23_02252C78(UnkStruct_ov23_02250CD4 *param0) {
     Strbuf_Free(param0->unk_68);
     Strbuf_Free(param0->unk_6C);
     StringTemplate_Free(param0->unk_70);
     Heap_Free(param0);
 }
 
-void *ov23_02252C98(int param0, FieldSystem *fieldSystem, int param2)
-{
+void *ov23_02252C98(int param0, FieldSystem *fieldSystem, int param2) {
     UnkStruct_ov23_02250CD4 *v0 = NULL;
     return v0;
 }
 
-int ov23_02252C9C(int param0)
-{
+int ov23_02252C9C(int param0) {
     ov23_02253DFC(ov23_022421BC(), 636, 1);
     ov23_02254068(ov23_022421BC(), CommInfo_TrainerInfo(CommSys_CurNetId()));
 
     return ov23_02253F40(ov23_022421BC(), param0, 0, NULL);
 }
 
-void ov23_02252CD4(void)
-{
+void ov23_02252CD4(void) {
     ov23_02254044(ov23_022421BC());
 }
 
-void ov23_02252CE0(int param0, int param1)
-{
+void ov23_02252CE0(int param0, int param1) {
     ov23_022541A0(ov23_022421BC(), param0, param1);
 }
 
-void ov23_02252CF4(int param0, int param1)
-{
+void ov23_02252CF4(int param0, int param1) {
     ov23_022541B4(ov23_022421BC(), param0, param1);
 }
 
-void ov23_02252D08(int param0, int param1)
-{
+void ov23_02252D08(int param0, int param1) {
     ov23_022541C8(ov23_022421BC(), param0, param1);
 }
 
-static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0)
-{
+static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0) {
     if (!Window_IsInUse(&param0->unk_20)) {
         Window_Add(param0->fieldSystem->bgConfig, &param0->unk_20, 3, 1, 12, 12, 4, 13, 1);
         Window_DrawStandardFrame(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
@@ -554,8 +534,7 @@ static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0)
     Window_CopyToVRAM(&param0->unk_20);
 }
 
-void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
-{
+void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1) {
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_30, 3, 1, 1, 7, 4, 13, 51);
     Window_DrawStandardFrame(&param0->unk_30, 1, 1024 - (18 + 12) - 9, 11);
 
@@ -567,24 +546,21 @@ void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
     Window_ScheduleCopyToVRAM(&param0->unk_30);
 }
 
-void ov23_02252DF4(UnkStruct_ov23_02250CD4 *param0)
-{
+void ov23_02252DF4(UnkStruct_ov23_02250CD4 *param0) {
     if (Window_IsInUse(&param0->unk_30)) {
         Window_EraseStandardFrame(&param0->unk_30, 1);
         Window_Remove(&param0->unk_30);
     }
 }
 
-void ov23_02252E18(UnkStruct_ov23_02250CD4 *param0)
-{
+void ov23_02252E18(UnkStruct_ov23_02250CD4 *param0) {
     if (Window_IsInUse(&param0->unk_30)) {
         Window_EraseStandardFrame(&param0->unk_30, 0);
         Window_Remove(&param0->unk_30);
     }
 }
 
-static int ov23_02252E3C(int param0, int param1, int *param2)
-{
+static int ov23_02252E3C(int param0, int param1, int *param2) {
     int v0, v1 = NELEMS(Unk_ov23_02257674);
 
     for (v0 = 0; v0 < v1; v0++) {
@@ -598,8 +574,7 @@ static int ov23_02252E3C(int param0, int param1, int *param2)
     return 0;
 }
 
-static void ov23_02252E70(SysTask *param0, void *param1)
-{
+static void ov23_02252E70(SysTask *param0, void *param1) {
     UnkStruct_ov23_02250CD4 *v0 = param1;
     u32 v1 = 0xfffe;
     u32 v2 = 0xfffe;
@@ -908,8 +883,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
     }
 }
 
-void ov23_022534A0(FieldSystem *fieldSystem)
-{
+void ov23_022534A0(FieldSystem *fieldSystem) {
     ListMenuTemplate v0;
     int v1 = sub_02058D88(CommSys_CurNetId());
     int v2 = sub_02058DC0(CommSys_CurNetId());

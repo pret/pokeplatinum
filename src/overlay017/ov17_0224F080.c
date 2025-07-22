@@ -21,57 +21,47 @@ __attribute__((aligned(4))) static const u8 Unk_ov17_02254A88[] = {
     0x1
 };
 
-u32 ov17_0224F080(int param0)
-{
+u32 ov17_0224F080(int param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov17_02254A90));
     return Unk_ov17_02254A90[param0];
 }
 
-u32 ov17_0224F098(void)
-{
+u32 ov17_0224F098(void) {
     return 49;
 }
 
-u32 ov17_0224F09C(void)
-{
+u32 ov17_0224F09C(void) {
     return 50;
 }
 
-u8 ov17_0224F0A0(int param0)
-{
+u8 ov17_0224F0A0(int param0) {
     GF_ASSERT(param0 < NELEMS(Unk_ov17_02254A88));
     return Unk_ov17_02254A88[param0];
 }
 
-enum NarcID ov17_0224F0B8(void)
-{
+enum NarcID ov17_0224F0B8(void) {
     return NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ;
 }
 
-void ov17_0224F0BC(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
-{
+void ov17_0224F0BC(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4) {
     SpriteSystem_LoadCharResObj(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), TRUE, param2, param4);
 }
 
-void ov17_0224F0F0(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3)
-{
+void ov17_0224F0F0(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3) {
     SpriteSystem_LoadCellResObj(param0, param1, ov17_0224F0B8(), ov17_0224F098(), TRUE, param2);
     SpriteSystem_LoadAnimResObj(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), TRUE, param3);
 }
 
-void ov17_0224F138(SpriteManager *param0, u32 param1)
-{
+void ov17_0224F138(SpriteManager *param0, u32 param1) {
     SpriteManager_UnloadCharObjById(param0, param1);
 }
 
-void ov17_0224F140(SpriteManager *param0, u32 param1, u32 param2)
-{
+void ov17_0224F140(SpriteManager *param0, u32 param1, u32 param2) {
     SpriteManager_UnloadCellObjById(param0, param1);
     SpriteManager_UnloadAnimObjById(param0, param2);
 }
 
-ManagedSprite *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3)
-{
+ManagedSprite *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3) {
     ManagedSprite *v0;
     SpriteTemplate v1;
 
@@ -82,7 +72,6 @@ ManagedSprite *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int pa
     return v0;
 }
 
-void ov17_0224F184(ManagedSprite *param0)
-{
+void ov17_0224F184(ManagedSprite *param0) {
     Sprite_DeleteAndFreeResources(param0);
 }

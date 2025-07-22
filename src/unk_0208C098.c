@@ -24,22 +24,19 @@ __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {
     0x400
 };
 
-int sub_0208C098(int param0)
-{
+int sub_0208C098(int param0) {
     param0 -= 0;
     return Unk_020F4030[param0];
 }
 
-u32 sub_0208C0A4(u32 param0, u32 param1)
-{
+u32 sub_0208C0A4(u32 param0, u32 param1) {
     u32 v0 = (param0 * param0) + (param1 * param1);
     v0 = SVC_Sqrt(v0 << 4);
 
     return v0 >> 2;
 }
 
-u8 App_PixelCount(u32 cur, u32 max, u8 maxPixels)
-{
+u8 App_PixelCount(u32 cur, u32 max, u8 maxPixels) {
     u8 pixels = cur * maxPixels / max;
     if (pixels == 0 && cur > 0) {
         pixels = 1;
@@ -48,8 +45,7 @@ u8 App_PixelCount(u32 cur, u32 max, u8 maxPixels)
     return pixels;
 }
 
-u8 App_BarColor(u32 cur, u32 max)
-{
+u8 App_BarColor(u32 cur, u32 max) {
     cur <<= 8;
     max <<= 8;
 
@@ -68,8 +64,7 @@ u8 App_BarColor(u32 cur, u32 max)
     return BARCOLOR_EMPTY;
 }
 
-u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
-{
+u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize) {
     if (curHP == maxHP) {
         return BARCOLOR_MAX;
     }
@@ -77,8 +72,7 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
     return App_BarColor(App_PixelCount(curHP, maxHP, barSize), barSize);
 }
 
-void sub_0208C120(u8 param0, u32 heapID)
-{
+void sub_0208C120(u8 param0, u32 heapID) {
     if (param0 == 0) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, heapID);
     } else {
@@ -86,8 +80,7 @@ void sub_0208C120(u8 param0, u32 heapID)
     }
 }
 
-u8 sub_0208C15C(s16 *param0, u16 param1)
-{
+u8 sub_0208C15C(s16 *param0, u16 param1) {
     s16 v0 = *param0;
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
@@ -149,8 +142,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
     return 0;
 }
 
-void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
-{
+void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8) {
     u32 v0;
     void *v1;
     NNSG2dCharacterData *v2;
@@ -198,8 +190,7 @@ void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int pa
     Heap_Free(v1);
 }
 
-void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID)
-{
+void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID) {
     int v0;
     void *v1;
 

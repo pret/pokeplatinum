@@ -308,8 +308,7 @@ static void StartCursorMovement(ChooseStarterCursor *param0);
 static void ov78_021D23E8(SysTask *param0, void *param1);
 static void ov78_021D241C(ChooseStarterCursor *param0);
 
-BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1)
-{
+BOOL ChooseStarter_Init(ApplicationManager *appMan, int *param1) {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_CHOOSE_STARTER_APP, HEAP_SIZE_CHOOSE_STARTER_APP);
 
     ChooseStarterApp *app = ApplicationManager_NewData(appMan, sizeof(ChooseStarterApp), HEAP_ID_CHOOSE_STARTER_APP);
@@ -376,8 +375,7 @@ enum ChooseStarterAppState {
     CHOOSE_STARTER_MAIN_WAIT_FADE_OUT,
 };
 
-BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
-{
+BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state) {
     ChooseStarterApp *app = ApplicationManager_Data(appMan);
     BOOL selectionMade;
     u16 palette = 0x08C3;
@@ -425,8 +423,7 @@ BOOL ChooseStarter_Main(ApplicationManager *appMan, int *state)
     return FALSE;
 }
 
-BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
-{
+BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1) {
     ChooseStarterApp *v0 = ApplicationManager_Data(appMan);
     ChooseStarterData *v1 = ApplicationManager_Args(appMan);
     BOOL v2;
@@ -462,8 +459,7 @@ BOOL ChooseStarter_Exit(ApplicationManager *appMan, int *param1)
     return TRUE;
 }
 
-static void ChooseStarterAppMainCallback(void *data)
-{
+static void ChooseStarterAppMainCallback(void *data) {
     ChooseStarterApp *app = data;
 
     RenderOam_Transfer();
@@ -472,30 +468,25 @@ static void ChooseStarterAppMainCallback(void *data)
     VramTransfer_Process();
 }
 
-static void StartFadeIn(ChooseStarterApp *param0)
-{
+static void StartFadeIn(ChooseStarterApp *param0) {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
-static void StartFadeOut(ChooseStarterApp *param0)
-{
+static void StartFadeOut(ChooseStarterApp *param0) {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
-static BOOL IsFadeDone(ChooseStarterApp *param0)
-{
+static BOOL IsFadeDone(ChooseStarterApp *param0) {
     return IsScreenFadeDone();
 }
 
-static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)
-{
+static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap) {
     SetupVRAMBank();
     SetupOAM(heap);
     Setup3D(app);
 }
 
-static void ov78_021D10DC(void)
-{
+static void ov78_021D10DC(void) {
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
@@ -503,8 +494,7 @@ static void ov78_021D10DC(void)
     ov78_021D1218();
 }
 
-static void SetupVRAMBank(void)
-{
+static void SetupVRAMBank(void) {
     UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -521,8 +511,7 @@ static void SetupVRAMBank(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void SetupOAM(enum HeapId heapID)
-{
+static void SetupOAM(enum HeapId heapID) {
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(OAM_MAIN_START, OAM_MAIN_END, OAM_AFFINE_MAIN_START, OAM_AFFINE_MAIN_END, OAM_SUB_START, OAM_SUB_END, OAM_AFFINE_SUB_START, OAM_AFFINE_SUB_END, heapID);
@@ -541,8 +530,7 @@ static void SetupOAM(enum HeapId heapID)
     PlttTransfer_Clear();
 }
 
-static void Setup3D(ChooseStarterApp *app)
-{
+static void Setup3D(ChooseStarterApp *app) {
     NNS_G3dInit();
 
     G3X_InitMtxStack();
@@ -566,14 +554,12 @@ static void Setup3D(ChooseStarterApp *app)
     NNS_GfdInitFrmPlttVramManager(0x4000, TRUE);
 }
 
-static void ov78_021D1218(void)
-{
+static void ov78_021D1218(void) {
     NNS_GfdResetFrmTexVramState();
     NNS_GfdResetFrmPlttVramState();
 }
 
-static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
-{
+static void SetupBGL(BgConfig *bgl, enum HeapId heapID) {
     G2_SetBG0Priority(1);
 
     {
@@ -640,15 +626,13 @@ static void SetupBGL(BgConfig *bgl, enum HeapId heapID)
     }
 }
 
-static void ov78_021D12EC(BgConfig *param0)
-{
+static void ov78_021D12EC(BgConfig *param0) {
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
 }
 
-static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
-{
+static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID) {
     app->messageWindow = Window_New(heapID, 1);
     Window_Init(app->messageWindow);
 
@@ -660,14 +644,12 @@ static void MakeMessageWindow(ChooseStarterApp *app, enum HeapId heapID)
     Window_DrawMessageBoxWithScrollCursor(app->messageWindow, 0, FRAME_TEXT_START, FRAME_TEXT_PALETTE_INDEX);
 }
 
-static void ov78_021D13A0(ChooseStarterApp *param0)
-{
+static void ov78_021D13A0(ChooseStarterApp *param0) {
     Window_Remove(param0->messageWindow);
     Heap_Free(param0->messageWindow);
 }
 
-static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID)
-{
+static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID) {
     app->spriteManager = PokemonSpriteManager_New(heapID);
 
     NNSGfdTexKey texture = NNS_GfdAllocTexVram(POKEMON_SPRITE_CHAR_SIZE, FALSE, 0);
@@ -684,8 +666,7 @@ static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID)
     }
 }
 
-static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species)
-{
+static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species) {
     int gender = Pokemon_GetGenderOf(species, 0);
 
     PokemonSpriteTemplate spriteTemplate;
@@ -701,8 +682,7 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
         NULL);
 }
 
-static void ov78_021D14BC(ChooseStarterApp *param0)
-{
+static void ov78_021D14BC(ChooseStarterApp *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -714,8 +694,7 @@ static void ov78_021D14BC(ChooseStarterApp *param0)
     PokemonSpriteManager_Free(param0->spriteManager);
 }
 
-static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapId heapID)
-{
+static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapId heapID) {
     UnkStruct_ov22_022550D4 v0 = {
         .unk_00 = 1,
         .unk_04 = 1,
@@ -727,13 +706,11 @@ static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapId heapID)
     param0->spriteDisplay = sub_02015064(&v0);
 }
 
-static void ov78_021D1518(ChooseStarterApp *param0)
-{
+static void ov78_021D1518(ChooseStarterApp *param0) {
     sub_020150A8(param0->spriteDisplay);
 }
 
-static void MakeCellActors(ChooseStarterApp *param0, int heapID)
-{
+static void MakeCellActors(ChooseStarterApp *param0, int heapID) {
     param0->unk_248 = SpriteList_InitRendering(2, &param0->unk_BC, heapID);
     param0->unk_24C[0] = SpriteResourceCollection_New(2, 0, heapID);
     param0->unk_24C[1] = SpriteResourceCollection_New(2, 1, heapID);
@@ -744,8 +721,7 @@ static void MakeCellActors(ChooseStarterApp *param0, int heapID)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov78_021D1594(ChooseStarterApp *param0)
-{
+static void ov78_021D1594(ChooseStarterApp *param0) {
     SpriteList_Delete(param0->unk_248);
     SpriteResourceCollection_Delete(param0->unk_24C[0]);
     SpriteResourceCollection_Delete(param0->unk_24C[1]);
@@ -753,8 +729,7 @@ static void ov78_021D1594(ChooseStarterApp *param0)
     SpriteResourceCollection_Delete(param0->unk_24C[3]);
 }
 
-static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapId heapID, NNSFndAllocator *param4)
-{
+static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, enum HeapId heapID, NNSFndAllocator *param4) {
     memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 
     ov78_021D1630(param0, param1, heapID);
@@ -762,16 +737,14 @@ static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID)
-{
+static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID) {
     memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 
     ov78_021D1630(param0, param1, heapID);
     ov78_021D17B4(param0, FX32_ONE, FX32_ONE, FX32_ONE);
 }
 
-static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID)
-{
+static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID) {
     param0->unk_54 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
     param0->unk_58 = NNS_G3dGetMdlSet(param0->unk_54);
     param0->unk_5C = NNS_G3dGetMdlByIdx(param0->unk_58, 0);
@@ -783,8 +756,7 @@ static void ov78_021D1630(ChooseStarter3DGraphics *param0, int param1, enum Heap
     NNS_G3dRenderObjInit(&param0->unk_00, param0->unk_5C);
 }
 
-static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID, NNSFndAllocator *param3)
-{
+static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum HeapId heapID, NNSFndAllocator *param3) {
     param0->unk_64 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__EV_POKESELECT, param1, 0, heapID, 0);
     param0->unk_68 = NNS_G3dGetAnmByIdx(param0->unk_64, 0);
     param0->unk_6C = NNS_G3dAllocAnmObj(param3, param0->unk_68, param0->unk_5C);
@@ -793,8 +765,7 @@ static void ov78_021D1694(ChooseStarter3DGraphics *param0, int param1, enum Heap
     NNS_G3dRenderObjAddAnmObj(&param0->unk_00, param0->unk_6C);
 }
 
-static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1)
-{
+static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1) {
     if (param0->unk_54) {
         Heap_Free(param0->unk_54);
     }
@@ -807,8 +778,7 @@ static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *para
     memset(param0, 0, sizeof(ChooseStarter3DGraphics));
 }
 
-static void ov78_021D1708(ChooseStarter3DGraphics *param0)
-{
+static void ov78_021D1708(ChooseStarter3DGraphics *param0) {
     MtxFx33 v0;
     MtxFx33 v1;
 
@@ -825,34 +795,29 @@ static void ov78_021D1708(ChooseStarter3DGraphics *param0)
     }
 }
 
-static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1)
-{
+static void ov78_021D17A4(ChooseStarter3DGraphics *param0, BOOL param1) {
     param0->unk_74 = param1;
 }
 
-static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3)
-{
+static void ov78_021D17A8(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3) {
     param0->unk_78.x = param1;
     param0->unk_78.y = param2;
     param0->unk_78.z = param3;
 }
 
-static void ov78_021D17B4(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3)
-{
+static void ov78_021D17B4(ChooseStarter3DGraphics *param0, fx32 param1, fx32 param2, fx32 param3) {
     param0->unk_84.x = param1;
     param0->unk_84.y = param2;
     param0->unk_84.z = param3;
 }
 
-static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3)
-{
+static void ov78_021D17CC(ChooseStarter3DGraphics *param0, u16 param1, u16 param2, u16 param3) {
     param0->unk_90 = param1;
     param0->unk_92 = param2;
     param0->unk_94 = param3;
 }
 
-static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
-{
+static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0) {
     fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_6C);
     BOOL v1;
 
@@ -869,22 +834,19 @@ static BOOL ov78_021D17E4(ChooseStarter3DGraphics *param0)
     return v1;
 }
 
-static void ov78_021D180C(ChooseStarter3DGraphics *param0)
-{
+static void ov78_021D180C(ChooseStarter3DGraphics *param0) {
     fx32 v0 = NNS_G3dAnmObjGetNumFrame(param0->unk_6C);
 
     param0->unk_70 = (param0->unk_70 + FX32_ONE) % v0;
     NNS_G3dAnmObjSetFrame(param0->unk_6C, param0->unk_70);
 }
 
-static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1)
-{
+static void ov78_021D182C(ChooseStarter3DGraphics *param0, fx32 param1) {
     param0->unk_70 = param1;
     NNS_G3dAnmObjSetFrame(param0->unk_6C, param1);
 }
 
-static void Make3DObjects(ChooseStarterApp *param0, enum HeapId heapID)
-{
+static void Make3DObjects(ChooseStarterApp *param0, enum HeapId heapID) {
     int v0;
 
     ov78_021D15CC(&param0->unk_2C4[0], 1, 0, heapID, &param0->unk_2B4);
@@ -906,8 +868,7 @@ static void Make3DObjects(ChooseStarterApp *param0, enum HeapId heapID)
     ov78_021D17CC(&param0->unk_2C4[5], (0 * 0xffff) / 360, (180 * 0xffff) / 360, (0 * 0xffff) / 360);
 }
 
-static void ov78_021D1908(ChooseStarterApp *param0)
-{
+static void ov78_021D1908(ChooseStarterApp *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -915,8 +876,7 @@ static void ov78_021D1908(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D192C(ChooseStarterApp *param0)
-{
+static void ov78_021D192C(ChooseStarterApp *param0) {
     int v0;
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
@@ -929,8 +889,7 @@ static void ov78_021D192C(ChooseStarterApp *param0)
     }
 }
 
-static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
-{
+static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1) {
     if (param0->unk_08 == 1) {
         return 0;
     }
@@ -962,8 +921,7 @@ static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
     return 0;
 }
 
-static void UpdateGraphics(ChooseStarterApp *param0, int heapID)
-{
+static void UpdateGraphics(ChooseStarterApp *param0, int heapID) {
     switch (ov78_021D1CA4(param0)) {
     case 0:
 
@@ -1004,8 +962,7 @@ static void UpdateGraphics(ChooseStarterApp *param0, int heapID)
     }
 }
 
-static void DrawScene(ChooseStarterApp *param0)
-{
+static void DrawScene(ChooseStarterApp *param0) {
     sub_020241B4();
 
     NNS_G3dGePushMtx();
@@ -1032,14 +989,12 @@ static void DrawScene(ChooseStarterApp *param0)
     SpriteList_Update(param0->unk_248);
 }
 
-static void MakeCamera(ChooseStarterApp *param0, int param1)
-{
+static void MakeCamera(ChooseStarterApp *param0, int param1) {
     param0->camera = Camera_Alloc(param1);
     ov78_021D1B3C(param0->camera, &param0->unk_64C);
 }
 
-static void ov78_021D1B3C(Camera *camera, VecFx32 *param1)
-{
+static void ov78_021D1B3C(Camera *camera, VecFx32 *param1) {
     CameraAngle v0;
     VecFx32 v1;
 
@@ -1061,13 +1016,11 @@ static void ov78_021D1B3C(Camera *camera, VecFx32 *param1)
     Camera_SetAsActive(camera);
 }
 
-static void ov78_021D1B90(ChooseStarterApp *param0)
-{
+static void ov78_021D1B90(ChooseStarterApp *param0) {
     Camera_Delete(param0->camera);
 }
 
-static void MakeSelectionMatrix(ChooseStarterApp *param0)
-{
+static void MakeSelectionMatrix(ChooseStarterApp *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -1108,8 +1061,7 @@ static void MakeSelectionMatrix(ChooseStarterApp *param0)
     }
 }
 
-static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
-{
+static void SetSelectionMatrixObjects(ChooseStarterApp *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -1117,8 +1069,7 @@ static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D1C58(ChooseStarterApp *param0)
-{
+static void ov78_021D1C58(ChooseStarterApp *param0) {
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->cursorPosition - 1 >= 0) {
             param0->cursorPosition -= 1;
@@ -1134,19 +1085,16 @@ static void ov78_021D1C58(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D1C98(ChooseStarterApp *param0, int param1)
-{
+static void ov78_021D1C98(ChooseStarterApp *param0, int param1) {
     param0->unk_00 += param1;
     param0->unk_04 = 0;
 }
 
-static int ov78_021D1CA4(ChooseStarterApp *param0)
-{
+static int ov78_021D1CA4(ChooseStarterApp *param0) {
     return param0->unk_00;
 }
 
-static void ov78_021D1CA8(ChooseStarterApp *param0, int heapID)
-{
+static void ov78_021D1CA8(ChooseStarterApp *param0, int heapID) {
     switch (param0->unk_04) {
     case 0:
         ov78_021D213C(&param0->unk_10, param0->camera, &param0->unk_64C);
@@ -1199,8 +1147,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int heapID)
     }
 }
 
-static void ov78_021D1DF0(ChooseStarterApp *param0)
-{
+static void ov78_021D1DF0(ChooseStarterApp *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -1212,13 +1159,11 @@ static void ov78_021D1DF0(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D1E28(ChooseStarterApp *param0)
-{
+static void ov78_021D1E28(ChooseStarterApp *param0) {
     ov78_021D243C(&param0->unk_658, param0->unk_7C[param0->cursorPosition][0], param0->unk_7C[param0->cursorPosition][1]);
 }
 
-static void ov78_021D1E44(ChooseStarterApp *param0, int heapID)
-{
+static void ov78_021D1E44(ChooseStarterApp *param0, int heapID) {
     u32 v0;
 
     switch (param0->unk_04) {
@@ -1273,8 +1218,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int heapID)
     }
 }
 
-static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, TextColor param4, u32 param5)
-{
+static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, TextColor param4, u32 param5) {
     MessageLoader *v0;
     Strbuf *v1;
     u8 v2;
@@ -1293,8 +1237,7 @@ static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, Text
     return v2;
 }
 
-static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, Strbuf **param6)
-{
+static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, Strbuf **param6) {
     MessageLoader *v0;
     u8 v1;
 
@@ -1313,14 +1256,12 @@ static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 
     return v1;
 }
 
-static void ov78_021D2090(ChooseStarterApp *param0)
-{
+static void ov78_021D2090(ChooseStarterApp *param0) {
     Strbuf_Free(param0->unk_AC);
     param0->unk_AC = NULL;
 }
 
-static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
-{
+static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1) {
     param0->unk_B0.bgLayer = 1;
     param0->unk_B0.tilemapLeft = 23;
     param0->unk_B0.tilemapTop = 12;
@@ -1333,16 +1274,14 @@ static void MakeConfirmationWindow(ChooseStarterApp *param0, int param1)
     Font_LoadTextPalette(0, 3 * 32, param1);
 }
 
-static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3)
-{
+static void ov78_021D2108(ChooseStarterMovement *param0, s32 param1, s32 param2, s32 param3) {
     param0->unk_00 = param1;
     param0->unk_04 = param1;
     param0->unk_08 = param2 - param1;
     param0->unk_0C = param3;
 }
 
-static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1)
-{
+static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1) {
     s32 v0;
     BOOL v1;
     s32 v2;
@@ -1364,8 +1303,7 @@ static BOOL ov78_021D2114(ChooseStarterMovement *param0, s32 param1)
     return v1;
 }
 
-static void ov78_021D213C(ChooseStarterCameraMovement *param0, Camera *camera, VecFx32 *param2)
-{
+static void ov78_021D213C(ChooseStarterCameraMovement *param0, Camera *camera, VecFx32 *param2) {
     GF_ASSERT(param0->unk_40 == NULL);
 
     ov78_021D2108(&param0->unk_00, (-30 * 0xffff) / 360, (-50 * 0xffff) / 360, 6);
@@ -1380,8 +1318,7 @@ static void ov78_021D213C(ChooseStarterCameraMovement *param0, Camera *camera, V
     SysTask_Start(ov78_021D219C, param0, 0);
 }
 
-static void ov78_021D219C(SysTask *param0, void *param1)
-{
+static void ov78_021D219C(SysTask *param0, void *param1) {
     ChooseStarterCameraMovement *v0 = param1;
     BOOL v1;
     CameraAngle v2;
@@ -1407,13 +1344,11 @@ static void ov78_021D219C(SysTask *param0, void *param1)
     }
 }
 
-static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0)
-{
+static BOOL ov78_021D2200(ChooseStarterCameraMovement *param0) {
     return param0->unk_3C;
 }
 
-static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
-{
+static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2) {
     param1->unk_04[0] = SpriteResourceCollection_AddTiles(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
     SpriteTransfer_RequestCharAtEnd(param1->unk_04[0]);
@@ -1428,8 +1363,7 @@ static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1,
     param1->unk_04[3] = SpriteResourceCollection_Add(param0->unk_24C[3], 82, 13, 0, 13, 3, param2);
 }
 
-static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
-{
+static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1) {
     SpriteTransfer_ResetCharTransfer(param1->unk_04[0]);
     SpriteTransfer_ResetPlttTransfer(param1->unk_04[1]);
 
@@ -1439,8 +1373,7 @@ static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
     SpriteResourceCollection_Remove(param0->unk_24C[3], param1->unk_04[3]);
 }
 
-static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
-{
+static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
 
@@ -1462,21 +1395,18 @@ static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor 
     param1->unk_1C.y = 0;
 }
 
-static void ov78_021D2350(ChooseStarterCursor *param0)
-{
+static void ov78_021D2350(ChooseStarterCursor *param0) {
     Sprite_Delete(param0->unk_00);
 }
 
-static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2)
-{
+static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2) {
     param0->unk_00 = 0;
     param0->unk_04 = param1;
     param0->unk_08 = param2;
     param0->unk_0C = 0;
 }
 
-static void ov78_021D2368(ChooseStarterRotation *param0)
-{
+static void ov78_021D2368(ChooseStarterRotation *param0) {
     u16 v0;
     int v1 = ((360 * 0xffff) / 360) * param0->unk_0C;
     v1 = v1 / param0->unk_08;
@@ -1486,16 +1416,14 @@ static void ov78_021D2368(ChooseStarterRotation *param0)
     param0->unk_0C = (param0->unk_0C + 1) % param0->unk_08;
 }
 
-static void StartCursorMovement(ChooseStarterCursor *param0)
-{
+static void StartCursorMovement(ChooseStarterCursor *param0) {
     GF_ASSERT(param0->unk_28 == NULL);
 
     ov78_021D235C(&param0->unk_2C, 8 * FX32_ONE, 32);
     param0->unk_28 = SysTask_Start(ov78_021D23E8, param0, 0);
 }
 
-static void ov78_021D23E8(SysTask *param0, void *param1)
-{
+static void ov78_021D23E8(SysTask *param0, void *param1) {
     ChooseStarterCursor *v0 = param1;
     VecFx32 v1;
 
@@ -1507,27 +1435,23 @@ static void ov78_021D23E8(SysTask *param0, void *param1)
     Sprite_SetPosition(v0->unk_00, &v1);
 }
 
-static void ov78_021D241C(ChooseStarterCursor *param0)
-{
+static void ov78_021D241C(ChooseStarterCursor *param0) {
     if (param0->unk_28) {
         SysTask_Done(param0->unk_28);
         param0->unk_28 = NULL;
     }
 }
 
-static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1)
-{
+static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1) {
     Sprite_SetDrawFlag(param0->unk_00, param1);
 }
 
-static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2)
-{
+static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2) {
     param0->unk_1C.x = param1 << FX32_SHIFT;
     param0->unk_1C.y = param2 << FX32_SHIFT;
 }
 
-static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2)
-{
+static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *param1, int param2) {
     UnkStruct_ov22_022557A0 v0;
     UnkStruct_ov22_02255800 v1;
     UnkStruct_ov21_021E7F40 v2;
@@ -1562,8 +1486,7 @@ static void MakePreviewWindow(StarterPreviewWindow *param0, ChooseStarterApp *pa
     sub_02015268(param0->unk_08, 128 / 2, 128 / 2);
 }
 
-static void ov78_021D24E4(StarterPreviewWindow *param0)
-{
+static void ov78_021D24E4(StarterPreviewWindow *param0) {
     sub_02015238(param0->unk_08);
     sub_02015164(param0->unk_00);
     sub_020151D4(param0->unk_04);
@@ -1571,13 +1494,11 @@ static void ov78_021D24E4(StarterPreviewWindow *param0)
     Heap_Free(param0->unk_10);
 }
 
-static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1)
-{
+static void ov78_021D2508(StarterPreviewWindow *param0, BOOL param1) {
     sub_02015240(param0->unk_08, param1);
 }
 
-static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7)
-{
+static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7) {
     GF_ASSERT(param0->unk_54 == NULL);
 
     ov78_021D2108(&param0->unk_1C.unk_00, param1, param2, param7);
@@ -1589,8 +1510,7 @@ static void ov78_021D2514(StarterPreviewWindow *param0, fx32 param1, fx32 param2
     param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
 }
 
-static void ov78_021D256C(StarterPreviewWindow *param0)
-{
+static void ov78_021D256C(StarterPreviewWindow *param0) {
     GF_ASSERT(param0->unk_54 == NULL);
 
     param0->unk_1C.unk_34 = -2;
@@ -1602,8 +1522,7 @@ static void ov78_021D256C(StarterPreviewWindow *param0)
     param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
 }
 
-static void ov78_021D25A0(SysTask *param0, void *param1)
-{
+static void ov78_021D25A0(SysTask *param0, void *param1) {
     StarterPreviewWindow *v0 = param1;
     BOOL v1;
     fx32 v2, v3;
@@ -1627,8 +1546,7 @@ static void ov78_021D25A0(SysTask *param0, void *param1)
     v0->unk_1C.unk_30 += v0->unk_1C.unk_34;
 }
 
-static BOOL ov78_021D2608(StarterPreviewWindow *param0)
-{
+static BOOL ov78_021D2608(StarterPreviewWindow *param0) {
     if (param0->unk_54) {
         return 0;
     }
@@ -1636,8 +1554,7 @@ static BOOL ov78_021D2608(StarterPreviewWindow *param0)
     return 1;
 }
 
-static void ov78_021D2618(ChooseStarterApp *param0)
-{
+static void ov78_021D2618(ChooseStarterApp *param0) {
     fx32 v0, v1;
 
     v0 = param0->unk_7C[param0->cursorPosition][0] << FX32_SHIFT;
@@ -1647,19 +1564,16 @@ static void ov78_021D2618(ChooseStarterApp *param0)
     ov78_021D26B4(&param0->unk_274, param0->sprites[param0->cursorPosition], v0, 128 << FX32_SHIFT, v1, 96 << FX32_SHIFT, FX32_CONST(0.40f), FX32_CONST(1.0f), 6);
 }
 
-static void ov78_021D2688(ChooseStarterApp *param0)
-{
+static void ov78_021D2688(ChooseStarterApp *param0) {
     ov78_021D256C(&param0->unk_6A8);
     ov78_021D270C(&param0->unk_274);
 }
 
-static BOOL ov78_021D26A4(ChooseStarterApp *param0)
-{
+static BOOL ov78_021D26A4(ChooseStarterApp *param0) {
     return ov78_021D2608(&param0->unk_6A8);
 }
 
-static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
-{
+static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8) {
     GF_ASSERT(param0->unk_3C == NULL);
 
     ov78_021D2108(&param0->unk_04.unk_00, param2, param3, param8);
@@ -1672,8 +1586,7 @@ static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1,
     param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
 }
 
-static void ov78_021D270C(StarterPreviewGraphics *param0)
-{
+static void ov78_021D270C(StarterPreviewGraphics *param0) {
     GF_ASSERT(param0->unk_3C == NULL);
 
     param0->unk_04.unk_34 = -2;
@@ -1685,8 +1598,7 @@ static void ov78_021D270C(StarterPreviewGraphics *param0)
     param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
 }
 
-static void ov78_021D2740(SysTask *param0, void *param1)
-{
+static void ov78_021D2740(SysTask *param0, void *param1) {
     StarterPreviewGraphics *v0 = param1;
     BOOL v1;
     u32 v2;
@@ -1711,8 +1623,7 @@ static void ov78_021D2740(SysTask *param0, void *param1)
     v0->unk_04.unk_30 += v0->unk_04.unk_34;
 }
 
-static void MakeSubplaneWindow(ChooseStarterApp *param0, int heapID)
-{
+static void MakeSubplaneWindow(ChooseStarterApp *param0, int heapID) {
     int v0;
     int v1, v2;
 
@@ -1742,8 +1653,7 @@ static void MakeSubplaneWindow(ChooseStarterApp *param0, int heapID)
     }
 }
 
-static void ov78_021D2884(ChooseStarterApp *param0)
-{
+static void ov78_021D2884(ChooseStarterApp *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -1752,8 +1662,7 @@ static void ov78_021D2884(ChooseStarterApp *param0)
     }
 }
 
-static void ov78_021D28A8(Window *param0, int heapID, int param2, int param3, TextColor param4)
-{
+static void ov78_021D28A8(Window *param0, int heapID, int param2, int param3, TextColor param4) {
     MessageLoader *v0;
     Strbuf *v1;
 
@@ -1767,13 +1676,11 @@ static void ov78_021D28A8(Window *param0, int heapID, int param2, int param3, Te
     MessageLoader_Free(v0);
 }
 
-static void ov78_021D2904(ChooseStarterApp *param0)
-{
+static void ov78_021D2904(ChooseStarterApp *param0) {
     Window_ClearAndCopyToVRAM(param0->unk_9C[param0->unk_A8]);
 }
 
-static u16 GetSelectedSpecies(u16 cursorPosition)
-{
+static u16 GetSelectedSpecies(u16 cursorPosition) {
     switch (cursorPosition) {
     case CURSOR_POSITION_LEFT:
         return STARTER_OPTION_0;

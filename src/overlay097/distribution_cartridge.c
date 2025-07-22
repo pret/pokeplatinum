@@ -64,23 +64,19 @@ static const u8 sSignaturePubKey[] = {
 
 static u32 sHeapID;
 
-void DistributionCartridge_UseHeap(enum HeapId heapID)
-{
+void DistributionCartridge_UseHeap(enum HeapId heapID) {
     sHeapID = heapID;
 }
 
-static void *DistributionCartridge_Alloc(u32 size)
-{
+static void *DistributionCartridge_Alloc(u32 size) {
     return Heap_AllocFromHeap(sHeapID, size);
 }
 
-inline u32 FlipEndianness(u32 val)
-{
+inline u32 FlipEndianness(u32 val) {
     return ((val >> 0) & 255) << 24 | ((val >> 8) & 255) << 16 | ((val >> 16) & 255) << 8 | ((val >> 24) & 255) << 0;
 }
 
-static BOOL CheckDistCartridgeGameCodeAndSignature(void)
-{
+static BOOL CheckDistCartridgeGameCodeAndSignature(void) {
     u32 gameCode = CTRDG_GetAgbGameCode();
 
     gameCode = FlipEndianness(gameCode);
@@ -106,8 +102,7 @@ static BOOL CheckDistCartridgeGameCodeAndSignature(void)
     return FALSE;
 }
 
-static BOOL CheckGBASlotHasDistributionCartridge(void)
-{
+static BOOL CheckGBASlotHasDistributionCartridge(void) {
     CTRDG_Init();
 
     if (CTRDG_IsAgbCartridge() == FALSE) {
@@ -125,8 +120,7 @@ static BOOL CheckGBASlotHasDistributionCartridge(void)
     return TRUE;
 }
 
-int DistributionCartridge_ReadLength(void)
-{
+int DistributionCartridge_ReadLength(void) {
     u32 length;
 
     if (CheckGBASlotHasDistributionCartridge() == FALSE) {
@@ -140,8 +134,7 @@ int DistributionCartridge_ReadLength(void)
     return length;
 }
 
-BOOL DistributionCartridge_ReadData(void *dest, int size)
-{
+BOOL DistributionCartridge_ReadData(void *dest, int size) {
     BOOL success;
 
     if (CheckGBASlotHasDistributionCartridge() == FALSE) {

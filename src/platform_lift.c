@@ -162,8 +162,7 @@ static const PlatformLiftConfiguration sPerMapPlatformLiftConfiguration[PLATFORM
     }
 };
 
-void PlatformLift_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void PlatformLift_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PlatformLiftPersistedData *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
     const PlatformLiftConfiguration *platformLiftConfiguration = &sPerMapPlatformLiftConfiguration[data->id];
@@ -199,8 +198,7 @@ void PlatformLift_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     DynamicTerrainHeightManager_SetPlate(PLATFORM_LIFT_DYNAMIC_HEIGHT_PLATE_ID, platformLiftConfiguration->startTileX, platformLiftConfiguration->startTileZ, PLATFORM_LIFT_SIZE_X, PLATFORM_LIFT_SIZE_Y, currentHeight, fieldSystem->dynamicTerrainHeightMan);
 }
 
-void PersistedMapFeatures_InitForPlatformLift(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForPlatformLift(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
@@ -316,16 +314,14 @@ void PersistedMapFeatures_InitForPlatformLift(FieldSystem *fieldSystem)
     }
 }
 
-u8 PlatformLift_WasNotUsedWhenEnteredMap(FieldSystem *fieldSystem)
-{
+u8 PlatformLift_WasNotUsedWhenEnteredMap(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PlatformLiftPersistedData *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
     return data->notUsedWhenEnteredMap != FALSE;
 }
 
-void PlatformLift_Trigger(FieldSystem *fieldSystem)
-{
+void PlatformLift_Trigger(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PlatformLiftPersistedData *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PLATFORM_LIFT_ROOM);
 
@@ -349,8 +345,7 @@ void PlatformLift_Trigger(FieldSystem *fieldSystem)
     }
 }
 
-static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
-{
+static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     PlatformLiftFieldTaskEnv *taskEnv = FieldTask_GetEnv(taskMan);
 
@@ -418,8 +413,7 @@ static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
     return FALSE;
 }
 
-static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
-{
+static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     PlatformLiftFieldTaskEnv *taskEnv = FieldTask_GetEnv(taskMan);
 
@@ -480,8 +474,7 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
     return FALSE;
 }
 
-static void PlatformLift_PlaySoundEffect(const int platformLiftKind)
-{
+static void PlatformLift_PlaySoundEffect(const int platformLiftKind) {
     if (platformLiftKind == PLATFORM_LIFT_KIND_IRON_ISLAND) {
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
     } else {
@@ -489,8 +482,7 @@ static void PlatformLift_PlaySoundEffect(const int platformLiftKind)
     }
 }
 
-static void PlatformLift_StopSoundEffect(const int platformLiftKind)
-{
+static void PlatformLift_StopSoundEffect(const int platformLiftKind) {
     if (platformLiftKind == PLATFORM_LIFT_KIND_IRON_ISLAND) {
         Sound_StopEffect(SEQ_SE_DP_ELEBETA, 0);
     } else {

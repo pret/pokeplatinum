@@ -282,8 +282,7 @@ static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 *param0);
 static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const TrainerInfo *param2);
 static SysTask *ov86_0223CAE4(UnkStruct_ov86_0223C9B0 *param0, fx16 param1, fx32 param2, int param3);
 
-int ov86_0223B140(ApplicationManager *appMan, int *param1)
-{
+int ov86_0223B140(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov86_0223B3C8 *v0;
 
     SetVBlankCallback(NULL, NULL);
@@ -338,8 +337,7 @@ int ov86_0223B140(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov86_0223B2E4(ApplicationManager *appMan, int *param1)
-{
+int ov86_0223B2E4(ApplicationManager *appMan, int *param1) {
     switch (*param1) {
     case 0: {
         UnkStruct_ov86_0223B3C8 *v0 = ApplicationManager_Data(appMan);
@@ -371,8 +369,7 @@ int ov86_0223B2E4(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov86_0223B394(ApplicationManager *appMan, int *param1)
-{
+int ov86_0223B394(ApplicationManager *appMan, int *param1) {
     static BOOL (*const v0[])(UnkStruct_ov86_0223B3C8 *) = {
         ov86_0223B3C8,
         ov86_0223B464,
@@ -396,8 +393,7 @@ int ov86_0223B394(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static BOOL ov86_0223B3C8(UnkStruct_ov86_0223B3C8 *param0)
-{
+static BOOL ov86_0223B3C8(UnkStruct_ov86_0223B3C8 *param0) {
     switch (param0->unk_00) {
     case 0:
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_63);
@@ -412,8 +408,7 @@ static BOOL ov86_0223B3C8(UnkStruct_ov86_0223B3C8 *param0)
     return 0;
 }
 
-static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0)
-{
+static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0) {
     switch (param0->unk_00) {
     case 0:
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 2, 1, HEAP_ID_63);
@@ -429,8 +424,7 @@ static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0)
     return 0;
 }
 
-static BOOL ov86_0223B464(UnkStruct_ov86_0223B3C8 *param0)
-{
+static BOOL ov86_0223B464(UnkStruct_ov86_0223B3C8 *param0) {
     static int v0 = 0;
 
     if (param0->unk_08) {
@@ -486,8 +480,7 @@ static BOOL ov86_0223B464(UnkStruct_ov86_0223B3C8 *param0)
     return 0;
 }
 
-static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0)
-{
+static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0) {
     if (param0->unk_08) {
         param0->unk_08--;
         return 0;
@@ -545,8 +538,7 @@ static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0)
     return 0;
 }
 
-static BOOL ov86_0223B684(UnkStruct_ov86_0223B3C8 *param0)
-{
+static BOOL ov86_0223B684(UnkStruct_ov86_0223B3C8 *param0) {
     switch (param0->unk_00) {
     case 0:
         ov86_0223C26C(param0, 0);
@@ -561,13 +553,11 @@ static BOOL ov86_0223B684(UnkStruct_ov86_0223B3C8 *param0)
     return 0;
 }
 
-static BOOL ov86_0223B6B4(UnkStruct_ov86_0223B3C8 *param0, int param1)
-{
+static BOOL ov86_0223B6B4(UnkStruct_ov86_0223B3C8 *param0, int param1) {
     return param0->unk_1C34[param1] == NULL;
 }
 
-static void ov86_0223B6CC(SysTask *param0, void *param1)
-{
+static void ov86_0223B6CC(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223B3C8 *v0 = param1;
 
     if (G3X_IsGeometryBusy()) {
@@ -595,13 +585,11 @@ static void ov86_0223B6CC(SysTask *param0, void *param1)
     RenderOam_Transfer();
 }
 
-static SysTask *ov86_0223B744(SysTaskFunc param0, void *param1, int param2)
-{
+static SysTask *ov86_0223B744(SysTaskFunc param0, void *param1, int param2) {
     return SysTask_ExecuteOnVBlank(param0, param1, param2);
 }
 
-static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0) {
     NARC *v0;
     static const UnkStruct_02099F80 v1 = {
         GX_VRAM_BG_128_B,
@@ -696,8 +684,7 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
     NARC_dtor(v0);
 }
 
-static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0) {
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
     Window_Remove(&(param0->unk_14));
@@ -707,8 +694,7 @@ static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0)
     Heap_Free(param0->unk_10);
 }
 
-static void ov86_0223B900(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223B900(UnkStruct_ov86_0223B3C8 *param0) {
     NNS_G3dInit();
 
     G3X_InitMtxStack();
@@ -732,8 +718,7 @@ static void ov86_0223B900(UnkStruct_ov86_0223B3C8 *param0)
     ov86_0223B9A8(param0);
 }
 
-static void ov86_0223B9A8(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223B9A8(UnkStruct_ov86_0223B3C8 *param0) {
     VecFx32 v0;
 
     param0->camera = Camera_Alloc(63);
@@ -755,13 +740,11 @@ static void ov86_0223B9A8(UnkStruct_ov86_0223B3C8 *param0)
     Camera_SetClipping(1 << FX32_SHIFT, 500 << FX32_SHIFT, param0->camera);
 }
 
-static void ov86_0223BA34(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223BA34(UnkStruct_ov86_0223B3C8 *param0) {
     Camera_Delete(param0->camera);
 }
 
-static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0) {
     NNSG2dCellDataBank *v0;
     NNSG2dAnimBankData *v1;
     NARC *v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_63);
@@ -779,8 +762,7 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *param1, NNSG2dAnimBankData *param2, NARC *param3)
-{
+static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *param1, NNSG2dAnimBankData *param2, NARC *param3) {
     static const UnkStruct_02013610 v0[2] = {
         { 0, 0, 10, 10 },
         { 0 + 10, 0, 10, 10 }
@@ -870,8 +852,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     Heap_Free(v9);
 }
 
-static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
@@ -884,8 +865,7 @@ static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
     RenderOam_Free();
 }
 
-static void ov86_0223BDAC(SysTask *param0, void *param1)
-{
+static void ov86_0223BDAC(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223BDAC *v0 = param1;
 
     *(v0->unk_04) = NULL;
@@ -894,19 +874,16 @@ static void ov86_0223BDAC(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void ov86_0223BDC4(UnkStruct_ov86_0223BDAC *param0, void *param1, SysTask **param2)
-{
+static void ov86_0223BDC4(UnkStruct_ov86_0223BDAC *param0, void *param1, SysTask **param2) {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
 }
 
-static void ov86_0223BDCC(UnkStruct_ov86_0223BDAC *param0)
-{
+static void ov86_0223BDCC(UnkStruct_ov86_0223BDAC *param0) {
     SysTask_ExecuteAfterVBlank(ov86_0223BDAC, param0, 0);
 }
 
-static void ov86_0223BDE0(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2)
-{
+static void ov86_0223BDE0(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2) {
     static const struct {
         fx32 unk_00;
         fx32 unk_04;
@@ -932,8 +909,7 @@ static void ov86_0223BDE0(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     param0->unk_1C34[param2] = ov86_0223B744(ov86_0223BE6C, v1, 0);
 }
 
-static void ov86_0223BE6C(SysTask *param0, void *param1)
-{
+static void ov86_0223BE6C(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223BDE0 *v0 = param1;
 
     v0->unk_0C.x = ov86_0223D284(&v0->unk_18);
@@ -945,8 +921,7 @@ static void ov86_0223BE6C(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223BEA0(UnkStruct_ov86_0223B3C8 *param0, int param1)
-{
+static void ov86_0223BEA0(UnkStruct_ov86_0223B3C8 *param0, int param1) {
     UnkStruct_ov86_0223BEA0 *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BEA0));
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
 
@@ -961,8 +936,7 @@ static void ov86_0223BEA0(UnkStruct_ov86_0223B3C8 *param0, int param1)
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223BF10, v0, 0);
 }
 
-static void ov86_0223BF10(SysTask *param0, void *param1)
-{
+static void ov86_0223BF10(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223BEA0 *v0 = param1;
 
     v0->unk_0C.y = ov86_0223D284(&v0->unk_18);
@@ -974,8 +948,7 @@ static void ov86_0223BF10(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223BF44(SysTask *param0, void *param1)
-{
+static void ov86_0223BF44(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223BF44 *v0 = param1;
     int v1 = (ov86_0223D284(&(v0->unk_08)) >> FX32_SHIFT);
     int v2 = v1 + 96;
@@ -1004,8 +977,7 @@ static void ov86_0223BF44(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223BFAC(SysTask *param0, void *param1)
-{
+static void ov86_0223BFAC(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223BFAC *v0 = param1;
     int v1 = (ov86_0223D284(&(v0->unk_08)) >> FX32_SHIFT);
     int v2 = v1 + v0->unk_24;
@@ -1034,8 +1006,7 @@ static void ov86_0223BFAC(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223C01C(SysTask *param0, void *param1)
-{
+static void ov86_0223C01C(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223C01C *v0 = param1;
     int v1 = ov86_0223D284(&v0->unk_08) >> FX32_SHIFT;
     int v2 = ov86_0223D284(&v0->unk_1C) >> FX32_SHIFT;
@@ -1064,8 +1035,7 @@ static void ov86_0223C01C(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223C090(SysTask *param0, void *param1)
-{
+static void ov86_0223C090(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223C090 *v0 = param1;
     int v1 = ov86_0223D284(&v0->unk_08) >> FX32_SHIFT;
     int v2 = ov86_0223D284(&v0->unk_1C) >> FX32_SHIFT;
@@ -1094,8 +1064,7 @@ static void ov86_0223C090(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223C104(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2)
-{
+static void ov86_0223C104(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2) {
     static const struct {
         fx32 unk_00;
         fx32 unk_04;
@@ -1113,8 +1082,7 @@ static void ov86_0223C104(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     param0->unk_1C34[param2] = ov86_0223B744(ov86_0223BF44, v1, 1);
 }
 
-static void ov86_0223C158(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2)
-{
+static void ov86_0223C158(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2) {
     static const int v0[] = {
         24,
         136,
@@ -1133,8 +1101,7 @@ static void ov86_0223C158(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     param0->unk_1C34[param2] = ov86_0223B744(ov86_0223BFAC, v1, 1);
 }
 
-static void ov86_0223C1B8(UnkStruct_ov86_0223B3C8 *param0, int param1)
-{
+static void ov86_0223C1B8(UnkStruct_ov86_0223B3C8 *param0, int param1) {
     UnkStruct_ov86_0223BFAC *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
@@ -1147,8 +1114,7 @@ static void ov86_0223C1B8(UnkStruct_ov86_0223B3C8 *param0, int param1)
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223BFAC, v0, 1);
 }
 
-static void ov86_0223C20C(UnkStruct_ov86_0223B3C8 *param0, int param1)
-{
+static void ov86_0223C20C(UnkStruct_ov86_0223B3C8 *param0, int param1) {
     UnkStruct_ov86_0223C01C *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C01C));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
@@ -1161,8 +1127,7 @@ static void ov86_0223C20C(UnkStruct_ov86_0223B3C8 *param0, int param1)
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223C01C, v0, 1);
 }
 
-static void ov86_0223C26C(UnkStruct_ov86_0223B3C8 *param0, int param1)
-{
+static void ov86_0223C26C(UnkStruct_ov86_0223B3C8 *param0, int param1) {
     UnkStruct_ov86_0223C090 *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C090));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
@@ -1175,8 +1140,7 @@ static void ov86_0223C26C(UnkStruct_ov86_0223B3C8 *param0, int param1)
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223C090, v0, 1);
 }
 
-static void ov86_0223C2CC(UnkStruct_ov86_0223B3C8 *param0, int param1, BOOL param2, int param3)
-{
+static void ov86_0223C2CC(UnkStruct_ov86_0223B3C8 *param0, int param1, BOOL param2, int param3) {
     UnkStruct_ov86_0223C2CC *v0;
     int v1;
 
@@ -1200,8 +1164,7 @@ static void ov86_0223C2CC(UnkStruct_ov86_0223B3C8 *param0, int param1, BOOL para
     param0->unk_1C34[param3] = SysTask_Start(ov86_0223C398, v0, 0);
 }
 
-static void ov86_0223C398(SysTask *param0, void *param1)
-{
+static void ov86_0223C398(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223C2CC *v0 = param1;
     int v1;
 
@@ -1220,8 +1183,7 @@ static void ov86_0223C398(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223C3E4(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2)
-{
+static void ov86_0223C3E4(UnkStruct_ov86_0223B3C8 *param0, int param1, int param2) {
     UnkStruct_ov86_0223C3E4 *v0;
     int v1;
 
@@ -1244,8 +1206,7 @@ static void ov86_0223C3E4(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
     param0->unk_1C34[param2] = SysTask_Start(ov86_0223C58C, v0, 0);
 }
 
-static void ov86_0223C47C(UnkStruct_ov86_0223C3E4 *param0, int param1)
-{
+static void ov86_0223C47C(UnkStruct_ov86_0223C3E4 *param0, int param1) {
     int v0, v1, v2;
 
     v1 = Strbuf_NumLines(param0->unk_1C);
@@ -1257,8 +1218,7 @@ static void ov86_0223C47C(UnkStruct_ov86_0223C3E4 *param0, int param1)
     }
 }
 
-static void ov86_0223C4DC(UnkStruct_ov86_0223C3E4 *param0)
-{
+static void ov86_0223C4DC(UnkStruct_ov86_0223C3E4 *param0) {
     StringTemplate_SetSpeciesName(param0->unk_14, 0, Pokemon_GetBoxPokemon(param0->unk_24));
     StringTemplate_SetNumber(param0->unk_14, 1, Pokemon_GetLevel(param0->unk_24), 3, 0, 1);
 
@@ -1278,8 +1238,7 @@ static void ov86_0223C4DC(UnkStruct_ov86_0223C3E4 *param0)
     StringTemplate_Format(param0->unk_14, param0->unk_1C, param0->unk_18);
 }
 
-static void ov86_0223C54C(UnkStruct_ov86_0223C3E4 *param0)
-{
+static void ov86_0223C54C(UnkStruct_ov86_0223C3E4 *param0) {
     int v0 = ov86_0223D2A8(param0->unk_08, param0->unk_24, param0->unk_28);
 
     switch (v0) {
@@ -1293,8 +1252,7 @@ static void ov86_0223C54C(UnkStruct_ov86_0223C3E4 *param0)
     StringTemplate_Format(param0->unk_14, param0->unk_1C, param0->unk_18);
 }
 
-static void ov86_0223C58C(SysTask *param0, void *param1)
-{
+static void ov86_0223C58C(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223C3E4 *v0 = param1;
 
     if (v0->unk_30) {
@@ -1336,8 +1294,7 @@ static void ov86_0223C58C(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223C664(UnkStruct_ov86_0223B3C8 *param0, int param1)
-{
+static void ov86_0223C664(UnkStruct_ov86_0223B3C8 *param0, int param1) {
     UnkStruct_ov86_0223C664 *v0;
     int v1;
 
@@ -1355,8 +1312,7 @@ static void ov86_0223C664(UnkStruct_ov86_0223B3C8 *param0, int param1)
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223C6B4, v0, 0);
 }
 
-static void ov86_0223C6B4(SysTask *param0, void *param1)
-{
+static void ov86_0223C6B4(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223C664 *v0 = param1;
 
     switch (v0->unk_28) {
@@ -1382,8 +1338,7 @@ static void ov86_0223C6B4(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
-{
+static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0) {
     int v0;
 
     MessageLoader_GetStrbuf(param0->unk_1C50, 12, param0->unk_1C48);
@@ -1403,8 +1358,7 @@ static void ov86_0223C72C(UnkStruct_ov86_0223B3C8 *param0)
     Window_LoadTiles(&param0->unk_14);
 }
 
-static void ov86_0223C840(UnkStruct_ov86_0223B3C8 *param0, int param1)
-{
+static void ov86_0223C840(UnkStruct_ov86_0223B3C8 *param0, int param1) {
     static const VecFx32 v0[] = {
         { FX32_CONST(-40), FX32_CONST(104 - 8), 0 },
         { FX32_CONST(296), FX32_CONST(104 - 8), 0 },
@@ -1447,8 +1401,7 @@ static void ov86_0223C840(UnkStruct_ov86_0223B3C8 *param0, int param1)
     param0->unk_1C34[param1] = SysTask_Start(ov86_0223C914, v2, 0);
 }
 
-static void ov86_0223C914(SysTask *param0, void *param1)
-{
+static void ov86_0223C914(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223C840 *v0 = param1;
     int v1;
 
@@ -1478,8 +1431,7 @@ static void ov86_0223C914(SysTask *param0, void *param1)
 static u32 Unk_ov86_0223D564 = 0;
 static BOOL Unk_ov86_0223D540 = 1;
 
-static SysTask *ov86_0223C9B0(UnkStruct_ov86_0223B3C8 *param0)
-{
+static SysTask *ov86_0223C9B0(UnkStruct_ov86_0223B3C8 *param0) {
     UnkStruct_ov86_0223C9B0 *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223C9B0));
 
     if (v0) {
@@ -1498,8 +1450,7 @@ static SysTask *ov86_0223C9B0(UnkStruct_ov86_0223B3C8 *param0)
     return NULL;
 }
 
-static void ov86_0223CA10(SysTask *param0, void *param1)
-{
+static void ov86_0223CA10(SysTask *param0, void *param1) {
     if (Unk_ov86_0223D540) {
         UnkStruct_ov86_0223C9B0 *v0 = param1;
 
@@ -1512,8 +1463,7 @@ static void ov86_0223CA10(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223CA64(SysTask *param0, void *param1)
-{
+static void ov86_0223CA64(SysTask *param0, void *param1) {
     if (Unk_ov86_0223D540) {
         UnkStruct_ov86_0223C9B0 *v0 = param1;
         v0->unk_814 = G3_EndMakeDL(&v0->unk_00);
@@ -1524,8 +1474,7 @@ static void ov86_0223CA64(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223CAA0(SysTask *param0, fx16 param1, fx32 param2)
-{
+static void ov86_0223CAA0(SysTask *param0, fx16 param1, fx32 param2) {
     UnkStruct_ov86_0223C9B0 *v0 = SysTask_GetParam(param0);
 
     if (v0->unk_83C < 8) {
@@ -1535,8 +1484,7 @@ static void ov86_0223CAA0(SysTask *param0, fx16 param1, fx32 param2)
     }
 }
 
-static SysTask *ov86_0223CAE4(UnkStruct_ov86_0223C9B0 *param0, fx16 param1, fx32 param2, int param3)
-{
+static SysTask *ov86_0223CAE4(UnkStruct_ov86_0223C9B0 *param0, fx16 param1, fx32 param2, int param3) {
     static const int v0[] = {
         GX_RGB(31, 31, 12),
         GX_RGB(31, 31, 16),
@@ -1575,8 +1523,7 @@ static SysTask *ov86_0223CAE4(UnkStruct_ov86_0223C9B0 *param0, fx16 param1, fx32
     return NULL;
 }
 
-static void inline inline_ov86_0223CB74(UnkStruct_ov86_0223CAE4 *param0)
-{
+static void inline inline_ov86_0223CB74(UnkStruct_ov86_0223CAE4 *param0) {
     {
         int v0 = param0->unk_808 >> FX32_SHIFT;
         fx32 v1, v2;
@@ -1589,8 +1536,7 @@ static void inline inline_ov86_0223CB74(UnkStruct_ov86_0223CAE4 *param0)
     }
 }
 
-static void ov86_0223CB74(SysTask *param0, void *param1)
-{
+static void ov86_0223CB74(SysTask *param0, void *param1) {
     if (Unk_ov86_0223D540) {
         UnkStruct_ov86_0223CAE4 *v0 = param1;
 
@@ -1626,8 +1572,7 @@ static void ov86_0223CB74(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223CD00(SysTask *param0)
-{
+static void ov86_0223CD00(SysTask *param0) {
     if (param0 != NULL) {
         UnkStruct_ov86_0223C9B0 *v0 = SysTask_GetParam(param0);
 
@@ -1637,8 +1582,7 @@ static void ov86_0223CD00(SysTask *param0)
     }
 }
 
-static void ov86_0223CD34(SysTask *param0)
-{
+static void ov86_0223CD34(SysTask *param0) {
     Unk_ov86_0223D540 = 0;
 
     if (param0 != NULL) {
@@ -1655,13 +1599,11 @@ static void ov86_0223CD34(SysTask *param0)
     }
 }
 
-static BOOL ov86_0223CD80(void)
-{
+static BOOL ov86_0223CD80(void) {
     return Unk_ov86_0223D564 == 0;
 }
 
-static SysTask *ov86_0223CD94(UnkStruct_ov86_0223B3C8 *param0)
-{
+static SysTask *ov86_0223CD94(UnkStruct_ov86_0223B3C8 *param0) {
     static const int v0[] = {
         GX_RGB(16, 28, 21),
         GX_RGB(31, 16, 29),
@@ -1730,24 +1672,21 @@ static SysTask *ov86_0223CD94(UnkStruct_ov86_0223B3C8 *param0)
     return SysTask_Start(ov86_0223CF6C, v2, 2);
 }
 
-static void ov86_0223CF44(SysTask *param0)
-{
+static void ov86_0223CF44(SysTask *param0) {
     if (param0) {
         Heap_Free(SysTask_GetParam(param0));
         SysTask_Done(param0);
     }
 }
 
-static void ov86_0223CF5C(SysTask *param0)
-{
+static void ov86_0223CF5C(SysTask *param0) {
     if (param0) {
         UnkStruct_ov86_0223CD94 *v0 = SysTask_GetParam(param0);
         v0->unk_00 = 1;
     }
 }
 
-static void ov86_0223CF6C(SysTask *param0, void *param1)
-{
+static void ov86_0223CF6C(SysTask *param0, void *param1) {
     UnkStruct_ov86_0223CD94 *v0 = param1;
 
     if (v0->unk_00) {
@@ -1828,8 +1767,7 @@ static void ov86_0223CF6C(SysTask *param0, void *param1)
     }
 }
 
-static void ov86_0223D220(SysTask *param0)
-{
+static void ov86_0223D220(SysTask *param0) {
     if (param0) {
         UnkStruct_ov86_0223CD94 *v0 = SysTask_GetParam(param0);
 
@@ -1844,8 +1782,7 @@ static void ov86_0223D220(SysTask *param0)
     }
 }
 
-static void ov86_0223D264(UnkStruct_ov86_0223D264 *param0, fx32 param1, fx32 param2, int param3)
-{
+static void ov86_0223D264(UnkStruct_ov86_0223D264 *param0, fx32 param1, fx32 param2, int param3) {
     param0->unk_00 = param1;
     param0->unk_08 = param2;
     param0->unk_04 = (param2 - param1) / param3;
@@ -1853,8 +1790,7 @@ static void ov86_0223D264(UnkStruct_ov86_0223D264 *param0, fx32 param1, fx32 par
     param0->unk_10 = 0;
 }
 
-static fx32 ov86_0223D284(UnkStruct_ov86_0223D264 *param0)
-{
+static fx32 ov86_0223D284(UnkStruct_ov86_0223D264 *param0) {
     if (param0->unk_0C) {
         param0->unk_0C--;
         param0->unk_00 += param0->unk_04;
@@ -1865,13 +1801,11 @@ static fx32 ov86_0223D284(UnkStruct_ov86_0223D264 *param0)
     }
 }
 
-static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 *param0)
-{
+static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 *param0) {
     return param0->unk_10;
 }
 
-static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const TrainerInfo *param2)
-{
+static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const TrainerInfo *param2) {
     BOOL v0;
     int v1 = 6;
 

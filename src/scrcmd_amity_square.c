@@ -12,14 +12,12 @@
 #include "system_vars.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx)
-{
+BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx) {
     SystemVars_ClearAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
-BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx) {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     *destVar = SystemVars_GetAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return FALSE;
@@ -72,8 +70,7 @@ static const u16 sMonFindableAccessories[NUM_FINDABLE_ACCESSORY_POOLS][NUM_ACCES
 };
 // clang-format on
 
-BOOL ScrCmd_CalcAmitySquareFoundAccessory(ScriptContext *ctx)
-{
+BOOL ScrCmd_CalcAmitySquareFoundAccessory(ScriptContext *ctx) {
     u8 findableAccessoryPool, findableAccessoryIndex;
     u16 *destFoundAccessoryID = ScriptContext_GetVarPointer(ctx);
     u16 followerSpecies = ScriptContext_GetVar(ctx);
@@ -164,16 +161,14 @@ static const u16 sBerryAndAccesoryManOptions[] = {
     ACCESSORY_STUMP
 };
 
-BOOL ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID(ScriptContext *ctx)
-{
+BOOL ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID(ScriptContext *ctx) {
     u16 *destBerryAndAccessoryManOptionID = ScriptContext_GetVarPointer(ctx);
 
     *destBerryAndAccessoryManOptionID = LCRNG_Next() % (NELEMS(sBerryAndAccesoryManOptions));
     return FALSE;
 }
 
-BOOL ScrCmd_CheckAmitySquareManGiftIsAccesory(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckAmitySquareManGiftIsAccesory(ScriptContext *ctx) {
     u16 giftID = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
@@ -186,8 +181,7 @@ BOOL ScrCmd_CheckAmitySquareManGiftIsAccesory(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan(ScriptContext *ctx) {
     u16 berryAndAccessoryManOptionID = ScriptContext_GetVar(ctx);
     u16 *destBerryOrAccessoryID = ScriptContext_GetVarPointer(ctx);
 

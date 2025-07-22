@@ -119,23 +119,19 @@ static const u8 *const Unk_ov59_021D33E4[] = {
     Unk_ov59_021D3390
 };
 
-u32 ov59_021D2B44(const SaveData *saveData)
-{
+u32 ov59_021D2B44(const SaveData *saveData) {
     return sizeof(UnkStruct_0202E794) * 4;
 }
 
-u32 ov59_021D2B4C(const SaveData *saveData)
-{
+u32 ov59_021D2B4C(const SaveData *saveData) {
     return sizeof(UnkStruct_0202E794) * 4;
 }
 
-u32 ov59_021D2B54(const SaveData *saveData)
-{
+u32 ov59_021D2B54(const SaveData *saveData) {
     return sizeof(UnkStruct_0202E794) * 4;
 }
 
-static BOOL ov59_021D2B5C(int param0, int param1)
-{
+static BOOL ov59_021D2B5C(int param0, int param1) {
     int v0;
 
     for (v0 = 0; Unk_ov59_021D33E4[param0][v0] != 0xff; v0++) {
@@ -147,8 +143,7 @@ static BOOL ov59_021D2B5C(int param0, int param1)
     return 0;
 }
 
-static void ov59_021D2B90(SaveData *saveData, UnkStruct_0202E794 *param1, UnkStruct_0202E768 *param2, int param3, int param4, int param5)
-{
+static void ov59_021D2B90(SaveData *saveData, UnkStruct_0202E794 *param1, UnkStruct_0202E768 *param2, int param3, int param4, int param5) {
     int v0;
     TrainerInfo *v1 = SaveData_GetTrainerInfo(saveData);
 
@@ -171,8 +166,7 @@ static void ov59_021D2B90(SaveData *saveData, UnkStruct_0202E794 *param1, UnkStr
     }
 }
 
-UnkStruct_0202E794 *ov59_021D2C28(SaveData *saveData, int heapID, u32 param2)
-{
+UnkStruct_0202E794 *ov59_021D2C28(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
@@ -182,8 +176,7 @@ UnkStruct_0202E794 *ov59_021D2C28(SaveData *saveData, int heapID, u32 param2)
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2C70(SaveData *saveData, int heapID, u32 param2)
-{
+UnkStruct_0202E794 *ov59_021D2C70(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
@@ -193,8 +186,7 @@ UnkStruct_0202E794 *ov59_021D2C70(SaveData *saveData, int heapID, u32 param2)
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2CB4(SaveData *saveData, int heapID, u32 param2)
-{
+UnkStruct_0202E794 *ov59_021D2CB4(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
@@ -204,8 +196,7 @@ UnkStruct_0202E794 *ov59_021D2CB4(SaveData *saveData, int heapID, u32 param2)
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2CF8(SaveData *saveData, int heapID, u32 param2)
-{
+UnkStruct_0202E794 *ov59_021D2CF8(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
@@ -215,8 +206,7 @@ UnkStruct_0202E794 *ov59_021D2CF8(SaveData *saveData, int heapID, u32 param2)
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2D3C(SaveData *saveData, int heapID, u32 param2)
-{
+UnkStruct_0202E794 *ov59_021D2D3C(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
@@ -226,8 +216,7 @@ UnkStruct_0202E794 *ov59_021D2D3C(SaveData *saveData, int heapID, u32 param2)
     return v0;
 }
 
-UnkStruct_0202E794 *ov59_021D2D80(SaveData *saveData, int heapID, u32 param2)
-{
+UnkStruct_0202E794 *ov59_021D2D80(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_0202E794 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
@@ -237,8 +226,7 @@ UnkStruct_0202E794 *ov59_021D2D80(SaveData *saveData, int heapID, u32 param2)
     return v0;
 }
 
-static BOOL ov59_021D2DC4(UnkStruct_0202E794 *param0, int param1, const UnkStruct_0202E794 *param2, int param3)
-{
+static BOOL ov59_021D2DC4(UnkStruct_0202E794 *param0, int param1, const UnkStruct_0202E794 *param2, int param3) {
     int v0;
 
     if (param2->unk_18.unk_00 == 0) {
@@ -266,8 +254,7 @@ static BOOL ov59_021D2DC4(UnkStruct_0202E794 *param0, int param1, const UnkStruc
     return 0;
 }
 
-static const void **ov59_021D2E40(int param0, const void **param1, const void **param2)
-{
+static const void **ov59_021D2E40(int param0, const void **param1, const void **param2) {
     TrainerInfo *v0 = CommInfo_TrainerInfo(param0);
 
     if (v0 == NULL) {
@@ -281,8 +268,7 @@ static const void **ov59_021D2E40(int param0, const void **param1, const void **
     return param1;
 }
 
-static void ov59_021D2E60(UnkStruct_0202E794 *param0, int param1, int param2, int param3, const void **param4, const void **param5, int param6)
-{
+static void ov59_021D2E60(UnkStruct_0202E794 *param0, int param1, int param2, int param3, const void **param4, const void **param5, int param6) {
     u8 v0[16];
     int v1, v2, v3;
     const void **v4;
@@ -321,17 +307,14 @@ static void ov59_021D2E60(UnkStruct_0202E794 *param0, int param1, int param2, in
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void ov59_021D2F10(TVBroadcast *broadcast, int param1, int param2, const void **param3, const void **param4)
-{
+void ov59_021D2F10(TVBroadcast *broadcast, int param1, int param2, const void **param3, const void **param4) {
     ov59_021D2E60(broadcast->unk_234, 16, param1, param2, param3, param4, 1);
 }
 
-void ov59_021D2F38(TVBroadcast *broadcast, int param1, int param2, const void **param3, const void **param4)
-{
+void ov59_021D2F38(TVBroadcast *broadcast, int param1, int param2, const void **param3, const void **param4) {
     ov59_021D2E60(broadcast->unk_684, 8, param1, param2, param3, param4, 2);
 }
 
-void ov59_021D2F60(TVBroadcast *broadcast, int param1, int param2, const void **param3, const void **param4)
-{
+void ov59_021D2F60(TVBroadcast *broadcast, int param1, int param2, const void **param3, const void **param4) {
     ov59_021D2E60(broadcast->unk_8AC, 8, param1, param2, param3, param4, 0);
 }

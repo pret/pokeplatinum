@@ -57,8 +57,7 @@ static void DWWarp_Setup3D(void);
 static void DWWarp_Exit3D(G3DPipelineBuffers *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
-BOOL DWWarp_Init(ApplicationManager *appMan, int *state)
-{
+BOOL DWWarp_Init(ApplicationManager *appMan, int *state) {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
@@ -107,8 +106,7 @@ enum DWWarpState {
     DWARP_SEQ_WAIT
 };
 
-BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
-{
+BOOL DWWarp_Main(ApplicationManager *appMan, int *state) {
     DistortionWorldWarp *warp = ApplicationManager_Data(appMan);
 
     switch (*state) {
@@ -145,8 +143,7 @@ BOOL DWWarp_Main(ApplicationManager *appMan, int *state)
     return FALSE;
 }
 
-BOOL DWWarp_Exit(ApplicationManager *appMan, int *state)
-{
+BOOL DWWarp_Exit(ApplicationManager *appMan, int *state) {
     DistortionWorldWarp *warp = ApplicationManager_Data(appMan);
 
     SysTask_Done(warp->task);
@@ -167,22 +164,19 @@ BOOL DWWarp_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static void DWWarp_Update(SysTask *task, void *data)
-{
+static void DWWarp_Update(SysTask *task, void *data) {
     DistortionWorldWarp *dw = data;
 
     Model3D_Update(dw);
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 }
 
-static void DWWarp_VBlankIntr(void *data)
-{
+static void DWWarp_VBlankIntr(void *data) {
     DistortionWorldWarp *dw = data;
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void DWWarp_VramSetBank(void)
-{
+static void DWWarp_VramSetBank(void) {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -207,8 +201,7 @@ static void DWWarp_VramSetBank(void)
     MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 }
 
-static void DWWarp_InitCamera(DistortionWorldWarp *warp)
-{
+static void DWWarp_InitCamera(DistortionWorldWarp *warp) {
     static const CameraAngle DWW_CameraAngle = {
         0x10000 - 0x1c7d,
         0,
@@ -231,13 +224,11 @@ static void DWWarp_InitCamera(DistortionWorldWarp *warp)
     Camera_SetAsActive(warp->camera);
 }
 
-static void DWWarp_DeleteCamera(DistortionWorldWarp *warp)
-{
+static void DWWarp_DeleteCamera(DistortionWorldWarp *warp) {
     Camera_Delete(warp->camera);
 }
 
-static void DWWarp_InitModel(DistortionWorldWarp *warp)
-{
+static void DWWarp_InitModel(DistortionWorldWarp *warp) {
     Heap_FndInitAllocatorForExpHeap(&warp->allocator, HEAP_ID_DISTORTION_WORLD_WARP, 4);
 
     NARC *narc = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, HEAP_ID_DISTORTION_WORLD_WARP);
@@ -269,15 +260,13 @@ static void DWWarp_InitModel(DistortionWorldWarp *warp)
     warp->cameraPerspective = 60 << 8;
 }
 
-static void DWWarp_DeleteModel(DistortionWorldWarp *warp)
-{
+static void DWWarp_DeleteModel(DistortionWorldWarp *warp) {
     Easy3DModel_Release(&warp->animationModel);
     Easy3DAnim_Release(&warp->animationAnimation, &warp->allocator);
     Easy3DAnim_Release(&warp->animationAnimation2, &warp->allocator);
 }
 
-static void Model3D_Update(DistortionWorldWarp *warp)
-{
+static void Model3D_Update(DistortionWorldWarp *warp) {
     VecFx32 scaleVec, transVec;
     MtxFx33 rot33;
 
@@ -313,13 +302,11 @@ static void Model3D_Update(DistortionWorldWarp *warp)
     NNS_G3dGePopMtx(1);
 }
 
-static G3DPipelineBuffers *DWWarp_Init3D(int heapID)
-{
+static G3DPipelineBuffers *DWWarp_Init3D(int heapID) {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, DWWarp_Setup3D);
 }
 
-static void DWWarp_Setup3D(void)
-{
+static void DWWarp_Setup3D(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
@@ -334,13 +321,11 @@ static void DWWarp_Setup3D(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void DWWarp_Exit3D(G3DPipelineBuffers *param0)
-{
+static void DWWarp_Exit3D(G3DPipelineBuffers *param0) {
     G3DPipelineBuffers_Free(param0);
 }
 
-static void DWWarp_CameraMove(DistortionWorldWarp *warp)
-{
+static void DWWarp_CameraMove(DistortionWorldWarp *warp) {
     VecFx32 v0 = { 0, 0, 0 };
     CameraAngle v1 = { 0, 0, 0, 0 };
     int v2;

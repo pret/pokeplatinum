@@ -49,8 +49,7 @@ void ov104_02234474(UnkStruct_ov104_0223ADA0 *param0);
 void ov104_02234480(UnkStruct_ov104_0223ADA0 *param0);
 u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 *param0);
 
-UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 param3)
-{
+UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 param2, u8 param3) {
     UnkStruct_0202FF58 *v0;
     UnkStruct_020300F4 *v1;
     const UnkStruct_ov104_0224028C *v2;
@@ -116,8 +115,7 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
     return v7;
 }
 
-void ov104_02233B98(UnkStruct_ov104_0223ADA0 *param0, u16 param1)
-{
+void ov104_02233B98(UnkStruct_ov104_0223ADA0 *param0, u16 param1) {
     if (param1 == 0) {
         ov104_02233BAC(param0);
     } else {
@@ -127,8 +125,7 @@ void ov104_02233B98(UnkStruct_ov104_0223ADA0 *param0, u16 param1)
     return;
 }
 
-static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
-{
+static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0) {
     int v0, v1;
     FrontierPokemonDataDTO v2[6 * 2];
     Pokemon *v4;
@@ -182,8 +179,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-static void ov104_02233D80(UnkStruct_ov104_0223ADA0 *param0, u8 param1, u8 param2)
-{
+static void ov104_02233D80(UnkStruct_ov104_0223ADA0 *param0, u8 param1, u8 param2) {
     u16 v0;
     u16 v1;
     u8 v2;
@@ -227,8 +223,7 @@ static void ov104_02233D80(UnkStruct_ov104_0223ADA0 *param0, u8 param1, u8 param
     return;
 }
 
-static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
-{
+static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0) {
     int v0;
     FrontierPokemonDataDTO v4[6];
     u8 v5[6];
@@ -282,8 +277,7 @@ static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0) {
     int v0;
 
     if (param0 == NULL) {
@@ -306,8 +300,7 @@ void ov104_022340D0(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223410C(UnkStruct_ov104_0223ADA0 *param0, void *param1)
-{
+void ov104_0223410C(UnkStruct_ov104_0223ADA0 *param0, void *param1) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -317,8 +310,7 @@ void ov104_0223410C(UnkStruct_ov104_0223ADA0 *param0, void *param1)
     return;
 }
 
-u16 ov104_02234130(void *param0, u8 param1)
-{
+u16 ov104_02234130(void *param0, u8 param1) {
     UnkStruct_ov104_02234130 *v0 = param0;
 
     if (param1 >= 6) {
@@ -329,8 +321,7 @@ u16 ov104_02234130(void *param0, u8 param1)
     return v0->unk_10[param1];
 }
 
-void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
-{
+void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1) {
     u16 v0, v1, v2;
     u8 v3, v4;
     u8 v5[4];
@@ -421,19 +412,16 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     return;
 }
 
-u16 ov104_02234430(UnkStruct_ov104_0223ADA0 *param0)
-{
+u16 ov104_02234430(UnkStruct_ov104_0223ADA0 *param0) {
     param0->unk_06++;
     return param0->unk_06;
 }
 
-u16 ov104_0223443C(UnkStruct_ov104_0223ADA0 *param0)
-{
+u16 ov104_0223443C(UnkStruct_ov104_0223ADA0 *param0) {
     return param0->unk_06;
 }
 
-u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
-{
+u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1) {
     FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_06 + (param1 * 7);
 
@@ -442,14 +430,12 @@ u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
     return ov104_0222E10C(v0.trainerType);
 }
 
-void ov104_02234474(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_02234474(UnkStruct_ov104_0223ADA0 *param0) {
     ov104_02234148(param0, 1);
     return;
 }
 
-void ov104_02234480(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_02234480(UnkStruct_ov104_0223ADA0 *param0) {
     param0->unk_0A = 1;
 
     if (param0->unk_0E < 8) {
@@ -462,8 +448,7 @@ void ov104_02234480(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0) {
     int v0;
     u8 v1, v2;
     Pokemon *v3;
@@ -492,8 +477,7 @@ void ov104_0223449C(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0) {
     int v0, v1, v2;
     u8 v3;
     u16 v4[8];
@@ -534,8 +518,7 @@ void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0) {
     Pokemon *v0;
 
     if (param0->unk_4DC[0] == 0xff) {
@@ -553,8 +536,7 @@ void ov104_022346A4(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0) {
     int v0;
     u8 v1, v2;
     Pokemon *v3;
@@ -581,8 +563,7 @@ void ov104_0223470C(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_02234790(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_02234790(UnkStruct_ov104_0223ADA0 *param0) {
     if (param0->unk_08 < 9999) {
         param0->unk_08++;
     }
@@ -590,8 +571,7 @@ void ov104_02234790(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-BOOL ov104_022347A4(UnkStruct_ov104_0223ADA0 *param0, u16 param1, u16 param2)
-{
+BOOL ov104_022347A4(UnkStruct_ov104_0223ADA0 *param0, u16 param1, u16 param2) {
     int v0;
 
     switch (param1) {
@@ -621,8 +601,7 @@ BOOL ov104_022347A4(UnkStruct_ov104_0223ADA0 *param0, u16 param1, u16 param2)
     return v0;
 }
 
-u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 *param0)
-{
+u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 *param0) {
     u8 v0;
     u16 v1;
     static const u8 v2[8 + 1] = { 0, 5, 5, 5, 5, 7, 7, 8, 9 };

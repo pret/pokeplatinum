@@ -46,13 +46,11 @@ static BOOL ov31_02256420(UnkStruct_ov31_02256228 *param0);
 static BOOL ov31_0225646C(UnkStruct_ov31_02256228 *param0);
 static BOOL ov31_02256518(UnkStruct_ov31_02256228 *param0);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(ov31_022561D4, ov31_02256404);
 }
 
-static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     UnkStruct_ov31_02256228 *v0 = (UnkStruct_ov31_02256228 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov31_02256228));
 
     if (v0 != NULL) {
@@ -70,8 +68,7 @@ static BOOL ov31_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
     return 0;
 }
 
-static BOOL ov31_02256228(UnkStruct_ov31_02256228 *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov31_02256228(UnkStruct_ov31_02256228 *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     param0->poketchSys = poketchSys;
     ov31_02256268(param0, &(param0->unk_0C));
 
@@ -88,8 +85,7 @@ static BOOL ov31_02256228(UnkStruct_ov31_02256228 *param0, PoketchSystem *poketc
     return 0;
 }
 
-static void ov31_02256268(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_02256554_1 *param1)
-{
+static void ov31_02256268(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_02256554_1 *param1) {
     Poketch *poketch = PoketchSystem_GetPoketchData(param0->poketchSys);
 
     if (Poketch_DotArtModified(poketch)) {
@@ -99,18 +95,15 @@ static void ov31_02256268(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_022565
     }
 }
 
-static inline u8 inline_ov31_02256298(const u8 *param0, int param1)
-{
+static inline u8 inline_ov31_02256298(const u8 *param0, int param1) {
     return (param0[(param1 / 4)] >> ((param1 & 3) * 2)) & 3;
 }
 
-static inline void inline_ov31_022562EC(u8 *param0, int param1, int param2)
-{
+static inline void inline_ov31_022562EC(u8 *param0, int param1, int param2) {
     param0[(param1 / 4)] |= ((param2 & 3) << ((param1 & 3) * 2));
 }
 
-static void ov31_02256298(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_02256554_1 *param1, Poketch *poketch)
-{
+static void ov31_02256298(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_02256554_1 *param1, Poketch *poketch) {
     int v0, v1, v2;
 
     Poketch_CopyDotArtData(poketch, param0->unk_1F4);
@@ -124,8 +117,7 @@ static void ov31_02256298(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_022565
     }
 }
 
-static void ov31_022562EC(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_02256554_1 *param1, Poketch *poketch)
-{
+static void ov31_022562EC(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_02256554_1 *param1, Poketch *poketch) {
     int v0, v1, v2;
 
     MI_CpuClear8(param0->unk_1F4, 120);
@@ -141,8 +133,7 @@ static void ov31_022562EC(UnkStruct_ov31_02256228 *param0, UnkStruct_ov31_022565
     Poketch_ModifyDotArtData(poketch, param0->unk_1F4);
 }
 
-static void ov31_0225635C(UnkStruct_ov31_02256554_1 *param0)
-{
+static void ov31_0225635C(UnkStruct_ov31_02256554_1 *param0) {
     static const u8 v0[20][24] = {
         { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
         { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
@@ -174,22 +165,19 @@ static void ov31_0225635C(UnkStruct_ov31_02256554_1 *param0)
     }
 }
 
-static void ov31_02256384(UnkStruct_ov31_02256228 *param0)
-{
+static void ov31_02256384(UnkStruct_ov31_02256228 *param0) {
     ov31_022562EC(param0, &param0->unk_0C, PoketchSystem_GetPoketchData(param0->poketchSys));
     ov31_02256584(param0->unk_1EC);
 
     Heap_Free(param0);
 }
 
-static void ov31_022563B0(void *param0)
-{
+static void ov31_022563B0(void *param0) {
     UnkStruct_ov31_02256228 *v0 = param0;
     ov31_022562EC(v0, &v0->unk_0C, PoketchSystem_GetPoketchData(v0->poketchSys));
 }
 
-static void ov31_022563CC(SysTask *param0, void *param1)
-{
+static void ov31_022563CC(SysTask *param0, void *param1) {
     static BOOL (*const v0[])(UnkStruct_ov31_02256228 *) = {
         ov31_02256420,
         ov31_0225646C,
@@ -208,13 +196,11 @@ static void ov31_022563CC(SysTask *param0, void *param1)
     }
 }
 
-static void ov31_02256404(void *param0)
-{
+static void ov31_02256404(void *param0) {
     ((UnkStruct_ov31_02256228 *)param0)->unk_02 = 1;
 }
 
-static void ov31_0225640C(UnkStruct_ov31_02256228 *param0, u32 param1)
-{
+static void ov31_0225640C(UnkStruct_ov31_02256228 *param0, u32 param1) {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
     } else {
@@ -224,8 +210,7 @@ static void ov31_0225640C(UnkStruct_ov31_02256228 *param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov31_02256420(UnkStruct_ov31_02256228 *param0)
-{
+static BOOL ov31_02256420(UnkStruct_ov31_02256228 *param0) {
     switch (param0->unk_01) {
     case 0:
         ov31_02256590(param0->unk_1EC, 0);
@@ -242,8 +227,7 @@ static BOOL ov31_02256420(UnkStruct_ov31_02256228 *param0)
     return 0;
 }
 
-static BOOL ov31_0225646C(UnkStruct_ov31_02256228 *param0)
-{
+static BOOL ov31_0225646C(UnkStruct_ov31_02256228 *param0) {
     if (param0->unk_02) {
         ov31_0225640C(param0, 2);
         return 0;
@@ -278,8 +262,7 @@ static BOOL ov31_0225646C(UnkStruct_ov31_02256228 *param0)
     return 0;
 }
 
-static BOOL ov31_02256518(UnkStruct_ov31_02256228 *param0)
-{
+static BOOL ov31_02256518(UnkStruct_ov31_02256228 *param0) {
     switch (param0->unk_01) {
     case 0:
         ov31_02256590(param0->unk_1EC, 2);

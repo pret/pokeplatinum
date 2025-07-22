@@ -30,8 +30,7 @@ int ov83_0223B5B0(ApplicationManager *appMan, int *param1);
 int ov83_0223B65C(ApplicationManager *appMan, int *param1);
 int ov83_0223B710(ApplicationManager *appMan, int *param1);
 
-int ov82_0223B2E0(UnkStruct_ov83_0223C344 *param0, int *param1)
-{
+int ov82_0223B2E0(UnkStruct_ov83_0223C344 *param0, int *param1) {
     switch (*param1) {
     case 0:
         *param1 = ov82_0223B380(param0);
@@ -54,8 +53,7 @@ int ov82_0223B2E0(UnkStruct_ov83_0223C344 *param0, int *param1)
     return 0;
 }
 
-int ov82_0223B330(UnkStruct_ov83_0223C344 *param0, int *param1)
-{
+int ov82_0223B330(UnkStruct_ov83_0223C344 *param0, int *param1) {
     FS_EXTERN_OVERLAY(overlay83);
 
     const ApplicationManagerTemplate v0 = {
@@ -69,8 +67,7 @@ int ov82_0223B330(UnkStruct_ov83_0223C344 *param0, int *param1)
     return 2;
 }
 
-int ov82_0223B35C(UnkStruct_ov83_0223C344 *param0, int *param1)
-{
+int ov82_0223B35C(UnkStruct_ov83_0223C344 *param0, int *param1) {
     if (ov82_0223B140(&param0->appMan) == 0) {
         return 2;
     }
@@ -82,13 +79,11 @@ int ov82_0223B35C(UnkStruct_ov83_0223C344 *param0, int *param1)
     }
 }
 
-int ov82_0223B37C(UnkStruct_ov83_0223C344 *param0, int *param1)
-{
+int ov82_0223B37C(UnkStruct_ov83_0223C344 *param0, int *param1) {
     return 4;
 }
 
-static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
-{
+static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0) {
     void *v0;
     u32 v1;
 
@@ -117,8 +112,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
     return 1;
 }
 
-static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
-{
+static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0) {
     UnkStruct_0207CB08 *v0 = NULL;
     BOOL v1;
 
@@ -157,8 +151,7 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
     return 4;
 }
 
-static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
-{
+static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0) {
     u8 i;
     u8 v1, v2, v3, item;
     Bag *bag = param0->unk_10->bag;
@@ -190,8 +183,7 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
     return 3;
 }
 
-static int ov82_0223B510(UnkStruct_ov83_0223C344 *param0)
-{
+static int ov82_0223B510(UnkStruct_ov83_0223C344 *param0) {
     u8 v0, v1;
 
     if (!ov82_0223B140(&param0->appMan)) {

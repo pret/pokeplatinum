@@ -161,8 +161,7 @@ const SpriteResourceCapacities Unk_ov16_0226E2B0 = {
     0x8
 };
 
-BOOL Battle_Main(ApplicationManager *appMan, int *param1)
-{
+BOOL Battle_Main(ApplicationManager *appMan, int *param1) {
     FieldBattleDTO *v0 = ApplicationManager_Args(appMan);
 
     switch (*param1) {
@@ -286,8 +285,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-void ov16_0223B384(BattleSystem *battleSys)
-{
+void ov16_0223B384(BattleSystem *battleSys) {
     ov16_02268A14(battleSys->unk_198);
     ov16_022687A0(battleSys->unk_04);
 
@@ -305,8 +303,7 @@ void ov16_0223B384(BattleSystem *battleSys)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay13), 2);
 }
 
-void ov16_0223B3E4(BattleSystem *battleSys)
-{
+void ov16_0223B3E4(BattleSystem *battleSys) {
     SetVBlankCallback(NULL, NULL);
     ov16_02268A14(battleSys->unk_198);
     Window_Remove(&battleSys->windows[0]);
@@ -320,8 +317,7 @@ void ov16_0223B3E4(BattleSystem *battleSys)
     Font_Free(FONT_SUBSCREEN);
 }
 
-void ov16_0223B430(BattleSystem *battleSys)
-{
+void ov16_0223B430(BattleSystem *battleSys) {
     NARC *v0;
     NARC *v1;
 
@@ -359,8 +355,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSys->spriteSys), 0, (192 + 80) << FX32_SHIFT);
 }
 
-void ov16_0223B53C(BattleSystem *battleSys)
-{
+void ov16_0223B53C(BattleSystem *battleSys) {
     Window_Remove(&battleSys->windows[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -370,8 +365,7 @@ void ov16_0223B53C(BattleSystem *battleSys)
     ov16_0223F3EC(battleSys);
 }
 
-void ov16_0223B578(BattleSystem *battleSys)
-{
+void ov16_0223B578(BattleSystem *battleSys) {
     {
         battleSys->unk_23FB_0 = 1;
     }
@@ -468,8 +462,7 @@ void ov16_0223B578(BattleSystem *battleSys)
     ov16_0223DD4C(battleSys);
 }
 
-void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags)
-{
+void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags) {
     GF_ASSERT(battleSys->overlayFlags != flags);
 
     battleSys->overlayFlags = flags;
@@ -511,8 +504,7 @@ static const int Unk_ov16_0226E44C[][3] = {
 };
 // clang-format on
 
-static void ov16_0223B790(ApplicationManager *appMan)
-{
+static void ov16_0223B790(ApplicationManager *appMan) {
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     PokemonSpriteTemplate v2;
@@ -651,8 +643,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     }
 }
 
-static int ov16_0223BBD0(ApplicationManager *appMan)
-{
+static int ov16_0223BBD0(ApplicationManager *appMan) {
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     int v1;
 
@@ -691,8 +682,7 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
     return battleSys->unk_23FA;
 }
 
-static void ov16_0223BCB4(ApplicationManager *appMan)
-{
+static void ov16_0223BCB4(ApplicationManager *appMan) {
     BattleSystem *battleSystem = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     int battlerId;
@@ -812,8 +802,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     }
 }
 
-static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
-{
+static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1) {
     GXLayers_DisableEngineALayers();
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
@@ -942,8 +931,7 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
     SetVBlankCallback(ov16_0223CE68, battleSys);
 }
 
-static void ov16_0223C210(BattleSystem *battleSys)
-{
+static void ov16_0223C210(BattleSystem *battleSys) {
     int v0;
     int v1;
     int v2;
@@ -966,8 +954,7 @@ static void ov16_0223C210(BattleSystem *battleSys)
     ov16_0223DECC();
 }
 
-static void ov16_0223C288(BgConfig *param0)
-{
+static void ov16_0223C288(BgConfig *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
@@ -977,8 +964,7 @@ static void ov16_0223C288(BgConfig *param0)
     ov16_022687A0(param0);
 }
 
-static void ov16_0223C2BC(BattleSystem *battleSys)
-{
+static void ov16_0223C2BC(BattleSystem *battleSys) {
     int v0;
 }
 
@@ -1047,8 +1033,7 @@ static const u8 Unk_ov16_0226E28C[][4] = {
     },
 };
 
-static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
-{
+static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto) {
     int i, v1;
     UnkStruct_ov16_0223C2C0 v2;
     Pokemon *v3;
@@ -1392,8 +1377,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     }
 }
 
-static BOOL ov16_0223CD3C(u16 param0)
-{
+static BOOL ov16_0223CD3C(u16 param0) {
     switch (param0) {
     case 62:
     case 74:
@@ -1415,8 +1399,7 @@ static BOOL ov16_0223CD3C(u16 param0)
     return 0;
 }
 
-static G3DPipelineBuffers *ov16_0223CD7C(void)
-{
+static G3DPipelineBuffers *ov16_0223CD7C(void) {
     return G3DPipeline_Init(
         HEAP_ID_BATTLE,
         TEXTURE_VRAM_SIZE_256K,
@@ -1424,8 +1407,7 @@ static G3DPipelineBuffers *ov16_0223CD7C(void)
         ov16_0223CD9C);
 }
 
-static void ov16_0223CD9C(void)
-{
+static void ov16_0223CD9C(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
@@ -1439,13 +1421,11 @@ static void ov16_0223CD9C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov16_0223CE20(G3DPipelineBuffers *param0)
-{
+static void ov16_0223CE20(G3DPipelineBuffers *param0) {
     G3DPipelineBuffers_Free(param0);
 }
 
-static void ov16_0223CE28(void)
-{
+static void ov16_0223CE28(void) {
     NNSGfdTexKey v0;
     NNSGfdPlttKey v1;
     u32 v2, v3;
@@ -1462,8 +1442,7 @@ static void ov16_0223CE28(void)
     ParticleSystem_ZeroAll();
 }
 
-static void ov16_0223CE68(void *param0)
-{
+static void ov16_0223CE68(void *param0) {
     BattleSystem *v0 = param0;
 
     if (v0->unk_23FB_0) {
@@ -1521,8 +1500,7 @@ static void ov16_0223CE68(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov16_0223CF1C(void *param0)
-{
+static void ov16_0223CF1C(void *param0) {
     UnkStruct_0207A778 *v0 = param0;
 
     PaletteData_CommitFadedBuffers(v0->unk_0C);
@@ -1532,8 +1510,7 @@ static void ov16_0223CF1C(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov16_0223CF48(SysTask *param0, void *param1)
-{
+static void ov16_0223CF48(SysTask *param0, void *param1) {
     BattleSystem *v0 = param1;
 
     sub_02038A1C(5, v0->unk_04);
@@ -1550,8 +1527,7 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
     }
 }
 
-static void ov16_0223CF8C(SysTask *param0, void *param1)
-{
+static void ov16_0223CF8C(SysTask *param0, void *param1) {
     BattleSystem *v0 = param1;
     BattlerData *v1;
     Healthbar *v2;
@@ -1615,8 +1591,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
     }
 }
 
-static void ov16_0223D0C4(SysTask *param0, void *param1)
-{
+static void ov16_0223D0C4(SysTask *param0, void *param1) {
     BattleSystem *v0 = param1;
 
     v0->unk_2434 += 3;
@@ -1627,15 +1602,13 @@ static void ov16_0223D0C4(SysTask *param0, void *param1)
     }
 }
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     if (!sub_020389B8()) {
         Overlay_LoadByID(FS_OVERLAY_ID(pokedex), 2);
     }
 }
 
-static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
-{
+static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1) {
     UnkStruct_0207A778 *v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0207A778), HEAP_ID_BATTLE);
 
     v0->unk_00 = param1;
@@ -1747,8 +1720,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
     ov16_0223DECC();
 }
 
-static BOOL ov16_0223D354(ApplicationManager *appMan)
-{
+static BOOL ov16_0223D354(ApplicationManager *appMan) {
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
     BOOL v1;
 
@@ -1974,8 +1946,7 @@ static BOOL ov16_0223D354(ApplicationManager *appMan)
     return v1;
 }
 
-static void ov16_0223D7B4(ApplicationManager *appMan)
-{
+static void ov16_0223D7B4(ApplicationManager *appMan) {
     UnkStruct_0207A778 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
@@ -1989,8 +1960,7 @@ static void ov16_0223D7B4(ApplicationManager *appMan)
     Heap_Free(v0);
 }
 
-static BOOL ov16_0223D800(ApplicationManager *appMan)
-{
+static BOOL ov16_0223D800(ApplicationManager *appMan) {
     BattleSystem *battleSys = ApplicationManager_NewData(appMan, sizeof(BattleSystem), HEAP_ID_BATTLE);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     u8 v2;
@@ -2045,8 +2015,7 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
     return 1;
 }
 
-static BOOL ov16_0223D944(ApplicationManager *appMan)
-{
+static BOOL ov16_0223D944(ApplicationManager *appMan) {
     int v0;
     BattleSystem *v1 = ApplicationManager_Data(appMan);
 
@@ -2064,8 +2033,7 @@ static BOOL ov16_0223D944(ApplicationManager *appMan)
     return 0;
 }
 
-static BOOL ov16_0223D98C(ApplicationManager *appMan)
-{
+static BOOL ov16_0223D98C(ApplicationManager *appMan) {
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     u8 v2;
@@ -2105,8 +2073,7 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     return 1;
 }
 
-static BOOL ov16_0223DAD4(ApplicationManager *appMan)
-{
+static BOOL ov16_0223DAD4(ApplicationManager *appMan) {
     int v0;
     BattleSystem *v1 = ApplicationManager_Data(appMan);
 
@@ -2124,8 +2091,7 @@ static BOOL ov16_0223DAD4(ApplicationManager *appMan)
     return 0;
 }
 
-static BOOL ov16_0223DB1C(ApplicationManager *appMan)
-{
+static BOOL ov16_0223DB1C(ApplicationManager *appMan) {
     FieldBattleDTO *v0 = ApplicationManager_Args(appMan);
     UnkStruct_ov10_0221F800 *v1;
     u8 v2;
@@ -2208,8 +2174,7 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
     return 1;
 }
 
-static BOOL ov16_0223DD10(ApplicationManager *appMan)
-{
+static BOOL ov16_0223DD10(ApplicationManager *appMan) {
     int v0;
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     UnkStruct_ov10_0221F800 *v2 = v1->unk_170;
@@ -2228,8 +2193,7 @@ static BOOL ov16_0223DD10(ApplicationManager *appMan)
     return 0;
 }
 
-static void ov16_0223DD4C(BattleSystem *battleSys)
-{
+static void ov16_0223DD4C(BattleSystem *battleSys) {
     if ((battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_CATCH_TUTORIAL)) || (battleSys->battleStatusMask & 0x10)) {
         RenderControlFlags_SetAutoScrollFlags(1);
         RenderControlFlags_SetCanABSpeedUpPrint(1);
@@ -2241,8 +2205,7 @@ static void ov16_0223DD4C(BattleSystem *battleSys)
     }
 }
 
-static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *param1)
-{
+static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *param1) {
     int v0, v1, v2;
     int v3, v4;
     int v5[4];
@@ -2302,8 +2265,7 @@ static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *param1)
     }
 }
 
-static void ov16_0223DECC(void)
-{
+static void ov16_0223DECC(void) {
     sub_02039734();
 
     if (sub_020389B8()) {

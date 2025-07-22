@@ -60,8 +60,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0);
 static void sub_0209B27C(UnkStruct_0209AD84 *param0);
 static int sub_0209B288(UnkStruct_0209AD84 *param0);
 
-void sub_0209ACF4(FieldTask *param0)
-{
+void sub_0209ACF4(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209AD84));
 
@@ -83,8 +82,7 @@ void sub_0209ACF4(FieldTask *param0)
     FieldTask_InitCall(param0, sub_0209AE14, v1);
 }
 
-static void sub_0209AD84(UnkStruct_0209AD84 *param0)
-{
+static void sub_0209AD84(UnkStruct_0209AD84 *param0) {
     sub_020974EC(param0->unk_50);
     ColoredArrow_Free(param0->unk_14);
     Strbuf_Free(param0->unk_04);
@@ -95,8 +93,7 @@ static void sub_0209AD84(UnkStruct_0209AD84 *param0)
     Heap_Free(param0);
 }
 
-static void sub_0209ADBC(UnkStruct_0209AD84 *param0)
-{
+static void sub_0209ADBC(UnkStruct_0209AD84 *param0) {
     if (Window_IsInUse(&(param0->unk_18))) {
         Window_Remove(&param0->unk_18);
         Window_Init(&(param0->unk_18));
@@ -113,8 +110,7 @@ static void sub_0209ADBC(UnkStruct_0209AD84 *param0)
     }
 }
 
-static BOOL sub_0209AE14(FieldTask *param0)
-{
+static BOOL sub_0209AE14(FieldTask *param0) {
     UnkStruct_0209AD84 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_54) {
@@ -253,8 +249,7 @@ static BOOL sub_0209AE14(FieldTask *param0)
     return 0;
 }
 
-static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
-{
+static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2) {
     Window *v0 = &(param0->unk_18);
 
     if (param2) {
@@ -275,13 +270,11 @@ static void sub_0209B084(UnkStruct_0209AD84 *param0, int param1, BOOL param2)
     param0->unk_58 = FieldMessage_Print(v0, param0->unk_08, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
 }
 
-static BOOL sub_0209B100(UnkStruct_0209AD84 *param0)
-{
+static BOOL sub_0209B100(UnkStruct_0209AD84 *param0) {
     return FieldMessage_FinishedPrinting(param0->unk_58);
 }
 
-static void sub_0209B110(UnkStruct_0209AD84 *param0)
-{
+static void sub_0209B110(UnkStruct_0209AD84 *param0) {
     Window *v0 = &(param0->unk_18);
 
     if (Window_IsInUse(v0)) {
@@ -289,8 +282,7 @@ static void sub_0209B110(UnkStruct_0209AD84 *param0)
     }
 }
 
-static void sub_0209B12C(UnkStruct_0209AD84 *param0)
-{
+static void sub_0209B12C(UnkStruct_0209AD84 *param0) {
     Window *v0 = &(param0->unk_28);
 
     if (Window_IsInUse(v0) == 0) {
@@ -315,14 +307,12 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
     Window_DrawStandardFrame(v0, 0, 155, 11);
 }
 
-static void sub_0209B1CC(UnkStruct_0209AD84 *param0)
-{
+static void sub_0209B1CC(UnkStruct_0209AD84 *param0) {
     Window *v0 = &(param0->unk_28);
     Window_EraseStandardFrame(v0, 1);
 }
 
-static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
-{
+static void sub_0209B1D8(UnkStruct_0209AD84 *param0) {
     Window *v0 = &(param0->unk_38);
 
     if (Window_IsInUse(v0) == 0) {
@@ -347,14 +337,12 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
     Window_DrawStandardFrame(v0, 0, 155, 11);
 }
 
-static void sub_0209B27C(UnkStruct_0209AD84 *param0)
-{
+static void sub_0209B27C(UnkStruct_0209AD84 *param0) {
     Window *v0 = &(param0->unk_38);
     Window_EraseStandardFrame(v0, 1);
 }
 
-static int sub_0209B288(UnkStruct_0209AD84 *param0)
-{
+static int sub_0209B288(UnkStruct_0209AD84 *param0) {
     do {
         if (gSystem.pressedKeys & PAD_KEY_UP) {
             param0->unk_5C--;

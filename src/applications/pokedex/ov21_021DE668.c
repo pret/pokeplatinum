@@ -95,8 +95,7 @@ static void ov21_021DEF3C(PokedexGraphicData **param0);
 static void ov21_021DEF54(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1);
 static void ov21_021DEF8C(PokedexGraphicData **param0);
 
-void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
-{
+void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID) {
     UnkStruct_ov21_021DE6D4 *v0;
     PokedexGraphicData **v1;
 
@@ -115,19 +114,16 @@ void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum Hea
     param0->graphicsFunc[2] = ov21_021DE8E8;
 }
 
-void ov21_021DE6C0(UnkStruct_ov21_021E68F4 *param0)
-{
+void ov21_021DE6C0(UnkStruct_ov21_021E68F4 *param0) {
     ov21_021DE74C(param0->pageData);
     ov21_021DE760(param0->pageGraphics);
 }
 
-BOOL ov21_021DE6D4(UnkStruct_ov21_021DE6D4 *param0, int param1)
-{
+BOOL ov21_021DE6D4(UnkStruct_ov21_021DE6D4 *param0, int param1) {
     return 0;
 }
 
-BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 *param0, int param1)
-{
+BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 *param0, int param1) {
     BOOL v0 = 1;
 
     if (param1 == 1) {
@@ -139,8 +135,7 @@ BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 *param0, int param1)
     return v0;
 }
 
-static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *param1)
-{
+static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *param1) {
     UnkStruct_ov21_021DE6D4 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
@@ -157,8 +152,7 @@ static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static PokedexGraphicData **ov21_021DE724(enum HeapId heapID, PokedexApp *param1)
-{
+static PokedexGraphicData **ov21_021DE724(enum HeapId heapID, PokedexApp *param1) {
     PokedexGraphicData **v0;
     UnkStruct_ov21_021E68F4 *v1;
 
@@ -172,25 +166,21 @@ static PokedexGraphicData **ov21_021DE724(enum HeapId heapID, PokedexApp *param1
     return v0;
 }
 
-static void ov21_021DE74C(UnkStruct_ov21_021DE6D4 *param0)
-{
+static void ov21_021DE74C(UnkStruct_ov21_021DE6D4 *param0) {
     GF_ASSERT(param0);
     Heap_Free(param0);
 }
 
-static void ov21_021DE760(PokedexGraphicData **param0)
-{
+static void ov21_021DE760(PokedexGraphicData **param0) {
     GF_ASSERT(param0);
     Heap_Free(param0);
 }
 
-static int ov21_021DE774(void)
-{
+static int ov21_021DE774(void) {
     return 0;
 }
 
-static int ov21_021DE778(PokedexDataManager *dataMan, void *data)
-{
+static int ov21_021DE778(PokedexDataManager *dataMan, void *data) {
     UnkStruct_ov21_021DE6D4 *v0 = data;
 
     PokedexSort_SetCurrentSpecies(v0->unk_04, PokedexSort_CurrentSpecies(v0->unk_04));
@@ -199,8 +189,7 @@ static int ov21_021DE778(PokedexDataManager *dataMan, void *data)
     return 1;
 }
 
-static int ov21_021DE79C(PokedexDataManager *dataMan, void *data)
-{
+static int ov21_021DE79C(PokedexDataManager *dataMan, void *data) {
     UnkStruct_ov21_021DE6D4 *v0 = data;
 
     if (dataMan->exit == 1) {
@@ -227,14 +216,12 @@ static int ov21_021DE79C(PokedexDataManager *dataMan, void *data)
     return 0;
 }
 
-static int ov21_021DE7F8(PokedexDataManager *dataMan, void *data)
-{
+static int ov21_021DE7F8(PokedexDataManager *dataMan, void *data) {
     Sound_StopPokemonCries(0);
     return 1;
 }
 
-static int ov21_021DE804(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
-{
+static int ov21_021DE804(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan) {
     const UnkStruct_ov21_021DE6D4 *v0 = data;
     PokedexGraphicData **v1 = graphics;
     UnkStruct_ov21_021DF374 *v2 = graphicsMan->pageGraphics;
@@ -290,13 +277,11 @@ static int ov21_021DE804(void *graphics, PokedexGraphicsManager *graphicsMan, co
     return 0;
 }
 
-static int ov21_021DE8E4(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
-{
+static int ov21_021DE8E4(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan) {
     return 0;
 }
 
-static int ov21_021DE8E8(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
-{
+static int ov21_021DE8E8(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan) {
     const UnkStruct_ov21_021DE6D4 *v0 = data;
     PokedexGraphicData **v1 = graphics;
     UnkStruct_ov21_021DF374 *v2 = graphicsMan->pageGraphics;
@@ -352,8 +337,7 @@ static int ov21_021DE8E8(void *graphics, PokedexGraphicsManager *graphicsMan, co
     return 0;
 }
 
-static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int heapID)
-{
+static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int heapID) {
     ov21_021DEF08(param1, param2, heapID);
     ov21_021DEF54(param1, param2);
     ov21_021DEFA8(param0, param1, heapID);
@@ -367,8 +351,7 @@ static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     }
 }
 
-static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
-{
+static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1) {
     ov21_021DF35C(param0);
 
     Window_FillTilemap(&(*param1)->window, 0);
@@ -380,8 +363,7 @@ static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     Bg_ClearTilemap((*param1)->bgConfig, 1);
 }
 
-static void ov21_021DEA44(PokedexGraphicData **param0, int heapID)
-{
+static void ov21_021DEA44(PokedexGraphicData **param0, int heapID) {
     void *v0;
     NNSG2dScreenData *v1;
 
@@ -405,8 +387,7 @@ static void ov21_021DEA44(PokedexGraphicData **param0, int heapID)
     Bg_ScheduleTilemapTransfer((*param0)->bgConfig, 3);
 }
 
-static void ov21_021DEB58(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1, int param2)
-{
+static void ov21_021DEB58(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1, int param2) {
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     if (PokedexSort_CurrentCaughtStatus(param1->unk_04) != 2) {
@@ -416,8 +397,7 @@ static void ov21_021DEB58(PokedexGraphicData **param0, const UnkStruct_ov21_021D
     ov21_021DEB8C(&(*param0)->window, species, param2, param1->unk_18, TEXT_COLOR(2, 1, 0));
 }
 
-void ov21_021DEB8C(Window *param0, int param1, enum HeapId heapID, int param3, u32 param4)
-{
+void ov21_021DEB8C(Window *param0, int param1, enum HeapId heapID, int param3, u32 param4) {
     Strbuf *v0 = Strbuf_Init(64, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
@@ -434,8 +414,7 @@ void ov21_021DEB8C(Window *param0, int param1, enum HeapId heapID, int param3, u
     ov21_021DECD4(param0, heapID, param1, param3, param4);
 }
 
-static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3)
-{
+static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3) {
     Strbuf *v0 = Strbuf_Init(64, heapID);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
@@ -447,8 +426,7 @@ static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3)
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3)
-{
+static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3) {
     Strbuf *v0 = Strbuf_Init(64, heapID);
 
     int weightMessageBankIndex = Weight_Message_Bank_Index();
@@ -460,8 +438,7 @@ static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3)
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4)
-{
+static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4) {
     Strbuf *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, heapID);
     u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
@@ -470,8 +447,7 @@ static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u3
     PokedexText_Free(v0);
 }
 
-static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
-{
+static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int param3) {
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
     int form = PokedexSort_DefaultForm(param2->unk_04, species);
 
@@ -483,14 +459,12 @@ static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     ov21_021DEE80(param0, param1, param3);
 }
 
-static void ov21_021DED68(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
-{
+static void ov21_021DED68(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1) {
     ov21_021DEEF8(param0);
     ov21_021DEE38(param0, param1);
 }
 
-static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2, int param3)
-{
+static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2, int param3) {
     PokedexGraphicData *v0 = *param1;
     int v1 = GetPokedexFootprintsNarcID();
     int v2 = GetSpeciesFootprintTiles(param3);
@@ -512,8 +486,7 @@ static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     param0->unk_24[3] = SpriteResourceCollection_Add(v0->spriteResourceCollection[3], v1, v5, 1, 4000, 3, param2);
 }
 
-static void ov21_021DEE38(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
-{
+static void ov21_021DEE38(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1) {
     PokedexGraphicData *v0 = *param1;
 
     if (param0->unk_24[0] == NULL) {
@@ -528,8 +501,7 @@ static void ov21_021DEE38(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], param0->unk_24[3]);
 }
 
-static void ov21_021DEE80(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2)
-{
+static void ov21_021DEE80(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = *param1;
@@ -547,27 +519,23 @@ static void ov21_021DEE80(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     param0->unk_00[0] = SpriteList_Add(&v1);
 }
 
-static void ov21_021DEEF8(UnkStruct_ov21_021DF374 *param0)
-{
+static void ov21_021DEEF8(UnkStruct_ov21_021DF374 *param0) {
     if (param0->unk_00[0]) {
         Sprite_Delete(param0->unk_00[0]);
     }
 }
 
-static void ov21_021DEF08(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1, int param2)
-{
+static void ov21_021DEF08(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1, int param2) {
     PokedexMain_EntryNameNumber(*param0, param1->unk_04, param2, PokedexSort_CurrentStatusIndex(param1->unk_04), (172 * FX32_ONE), (32 * FX32_ONE));
     PokedexGraphics_SetSpeciesLabelPriority(*param0, 0);
 }
 
-static void ov21_021DEF3C(PokedexGraphicData **param0)
-{
+static void ov21_021DEF3C(PokedexGraphicData **param0) {
     PokedexGraphics_SetPokedexSpeciesLabelDraw(*param0, 0);
     PokedexGraphics_SetSpeciesLabelGXOamMode(*param0, GX_OAM_MODE_NORMAL);
 }
 
-static void ov21_021DEF54(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1)
-{
+static void ov21_021DEF54(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1) {
     PokemonSprite *v0 = PokemonGraphics_GetPokemonChar(*param0);
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
@@ -575,16 +543,14 @@ static void ov21_021DEF54(PokedexGraphicData **param0, const UnkStruct_ov21_021D
     PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 0);
 }
 
-static void ov21_021DEF8C(PokedexGraphicData **param0)
-{
+static void ov21_021DEF8C(PokedexGraphicData **param0) {
     PokemonSprite *v0 = PokemonGraphics_GetPokemonChar(*param0);
 
     PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
     PokemonSprite_ClearFade(v0);
 }
 
-static void ov21_021DEFA8(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2)
-{
+static void ov21_021DEFA8(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2) {
     PokedexGraphicData *v0 = *param1;
     NARC *v1 = PokedexGraphics_GetNARC(*param1);
 
@@ -602,8 +568,7 @@ static void ov21_021DEFA8(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     param0->unk_14[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 89, 1, 89 + 4000, 3, param2);
 }
 
-static void ov21_021DF054(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
-{
+static void ov21_021DF054(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1) {
     PokedexGraphicData *v0 = *param1;
 
     SpriteTransfer_ResetCharTransfer(param0->unk_14[0]);
@@ -614,8 +579,7 @@ static void ov21_021DF054(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], param0->unk_14[3]);
 }
 
-static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
-{
+static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int param3) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = *param1;
@@ -653,8 +617,7 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
 }
 
 // This maps the type to an animation ID used in the Pokedex graphics. See zukan.narc -> files 88 (NCER), 89 (NANR), 90 (NCGR)
-int PokedexGraphics_GetAnimIDfromType(int monType)
-{
+int PokedexGraphics_GetAnimIDfromType(int monType) {
     int animID;
 
     switch (monType) {
@@ -715,8 +678,7 @@ int PokedexGraphics_GetAnimIDfromType(int monType)
     return animID;
 }
 
-static void ov21_021DF1F8(UnkStruct_ov21_021DF374 *param0)
-{
+static void ov21_021DF1F8(UnkStruct_ov21_021DF374 *param0) {
     if (param0->unk_00[1]) {
         Sprite_Delete(param0->unk_00[1]);
     }
@@ -726,8 +688,7 @@ static void ov21_021DF1F8(UnkStruct_ov21_021DF374 *param0)
     }
 }
 
-static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
-{
+static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int param3) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = *param1;
@@ -773,8 +734,7 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     PokedexTextManager_FreeWindow(v4);
 }
 
-Window *ov21_021DF30C(PokedexTextManager *textMan, int param1, int param2)
-{
+Window *ov21_021DF30C(PokedexTextManager *textMan, int param1, int param2) {
     Window *v0 = PokedexTextManager_NewWindow(textMan, 18, 2);
     Strbuf *v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
 
@@ -790,15 +750,13 @@ Window *ov21_021DF30C(PokedexTextManager *textMan, int param1, int param2)
     return v0;
 }
 
-static void ov21_021DF35C(UnkStruct_ov21_021DF374 *param0)
-{
+static void ov21_021DF35C(UnkStruct_ov21_021DF374 *param0) {
     Sprite_Delete(param0->unk_0C);
     param0->unk_0C = NULL;
     PokedexTextManager_FreeTextData(param0->unk_10);
 }
 
-static void ov21_021DF374(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3)
-{
+static void ov21_021DF374(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3) {
     PokedexGraphics_SetSpeciesLabelGXOamMode(*param1, GX_OAM_MODE_XLU);
     ov21_021DF64C(param0);
 
@@ -813,8 +771,7 @@ static void ov21_021DF374(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     ov21_021DF6B4(param1);
 }
 
-static BOOL ov21_021DF3F0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3)
-{
+static BOOL ov21_021DF3F0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3) {
     BOOL v0;
 
     if (ov21_021E2A54(param2->unk_10)) {
@@ -838,8 +795,7 @@ static BOOL ov21_021DF3F0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     return v0;
 }
 
-static void ov21_021DF44C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3)
-{
+static void ov21_021DF44C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3) {
     ov21_021DF64C(param0);
 
     if (param3 == 0) {
@@ -856,8 +812,7 @@ static void ov21_021DF44C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     }
 }
 
-static BOOL ov21_021DF4D0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3)
-{
+static BOOL ov21_021DF4D0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3) {
     BOOL v0[3];
     int v1;
 
@@ -892,8 +847,7 @@ static BOOL ov21_021DF4D0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     return 0;
 }
 
-static void ov21_021DF548(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3)
-{
+static void ov21_021DF548(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3) {
     ov21_021DF64C(param0);
     PokedexGraphics_SetSpeciesLabelGXOamMode(*param1, GX_OAM_MODE_XLU);
 
@@ -910,8 +864,7 @@ static void ov21_021DF548(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     }
 }
 
-static BOOL ov21_021DF5D0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3)
-{
+static BOOL ov21_021DF5D0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, BOOL param3) {
     BOOL v0[2];
     int v1;
 
@@ -947,8 +900,7 @@ static BOOL ov21_021DF5D0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     return 0;
 }
 
-static void ov21_021DF64C(UnkStruct_ov21_021DF374 *param0)
-{
+static void ov21_021DF64C(UnkStruct_ov21_021DF374 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -961,8 +913,7 @@ static void ov21_021DF64C(UnkStruct_ov21_021DF374 *param0)
     sub_02012AF0(param0->unk_10->fontOAM, GX_OAM_MODE_XLU);
 }
 
-static void ov21_021DF680(UnkStruct_ov21_021DF374 *param0)
-{
+static void ov21_021DF680(UnkStruct_ov21_021DF374 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -975,31 +926,26 @@ static void ov21_021DF680(UnkStruct_ov21_021DF374 *param0)
     sub_02012AF0(param0->unk_10->fontOAM, GX_OAM_MODE_NORMAL);
 }
 
-static void ov21_021DF6B4(PokedexGraphicData **param0)
-{
+static void ov21_021DF6B4(PokedexGraphicData **param0) {
     PokedexGraphics_BlendPokemonChar(*param0, &(*param0)->blendMain);
 }
 
-static void ov21_021DF6C4(UnkStruct_ov21_021DF374 *param0, int param1, int param2, int param3)
-{
+static void ov21_021DF6C4(UnkStruct_ov21_021DF374 *param0, int param1, int param2, int param3) {
     PokedexGraphics_InitTransformation(&param0->unk_34, 48, param1, 72, param2, param3);
 }
 
-static BOOL ov21_021DF6E0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
-{
+static BOOL ov21_021DF6E0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1) {
     BOOL v0 = PokedexGraphics_TakeCursorTransformStep(&param0->unk_34);
     PokemonGraphics_SetCharCenterXY(*param1, param0->unk_34.currentX, param0->unk_34.currentY);
 
     return v0;
 }
 
-static void ov21_021DF6FC(UnkStruct_ov21_021DF374 *param0)
-{
+static void ov21_021DF6FC(UnkStruct_ov21_021DF374 *param0) {
     PokedexGraphics_InitTransformation(&param0->unk_54, 172, 170, 32, 82, 4);
 }
 
-static BOOL ov21_021DF718(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
-{
+static BOOL ov21_021DF718(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1) {
     BOOL v0 = PokedexGraphics_TakeCursorTransformStep(&param0->unk_54);
     ov21_021D1848(*param1, param0->unk_54.currentX, param0->unk_54.currentY);
 

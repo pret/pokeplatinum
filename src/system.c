@@ -32,42 +32,36 @@ static void ApplyButtonModeToInput(void);
 
 System gSystem;
 
-static void VBlankIntr(void)
-{
+static void VBlankIntr(void) {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
     SysTaskManager_ExecuteTasks(gSystem.vBlankTaskMgr);
     gSystem.frameCounter++;
 }
 
-static void DummyVBlankIntr(void)
-{
+static void DummyVBlankIntr(void) {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void SetDummyVBlankIntr(void)
-{
+void SetDummyVBlankIntr(void) {
     OS_DisableIrqMask(OS_IE_V_BLANK);
     OS_SetIrqFunction(OS_IE_V_BLANK, DummyVBlankIntr);
     OS_EnableIrqMask(OS_IE_V_BLANK);
 }
 
-void SetVBlankCallback(Callback cb, void *data)
-{
+void SetVBlankCallback(Callback cb, void *data) {
     gSystem.vblankCallback = cb;
     gSystem.vblankCallbackData = data;
 }
 
-void DisableHBlank(void)
-{
+void DisableHBlank(void) {
     SetHBlankEnabled(FALSE);
     gSystem.hblankCallback = NULL;
     gSystem.hblankCallbackData = NULL;
 }
 
-BOOL SetHBlankCallback(Callback cb, void *data)
-{
+BOOL SetHBlankCallback(Callback cb, void *data) {
     if (cb == NULL) {
         SetHBlankEnabled(FALSE);
         gSystem.hblankCallback = NULL;
@@ -85,15 +79,13 @@ BOOL SetHBlankCallback(Callback cb, void *data)
     }
 }
 
-static void HBlankIntr(void)
-{
+static void HBlankIntr(void) {
     if (gSystem.hblankCallback) {
         gSystem.hblankCallback(gSystem.hblankCallbackData);
     }
 }
 
-static void SetHBlankEnabled(BOOL enabled)
-{
+static void SetHBlankEnabled(BOOL enabled) {
     OS_DisableIrq();
     if (!enabled) {
         OSIrqMask savedMask = OS_GetIrqMask();
@@ -115,8 +107,7 @@ static const HeapParam sHeapInitParams[] = {
     { HEAP_SIZE_APPLICATION, OS_ARENA_MAIN }
 };
 
-static void InitHeapSystem(void)
-{
+static void InitHeapSystem(void) {
     u32 lowEntropyData[8];
     u8 md5[MATH_MD5_DIGEST_SIZE];
 
@@ -136,8 +127,7 @@ static void InitHeapSystem(void)
     Heap_InitSystem(sHeapInitParams, NELEMS(sHeapInitParams), HEAP_ID_MAX, offset);
 }
 
-void InitSystem(void)
-{
+void InitSystem(void) {
     OS_Init();
     FX_Init();
     GX_SetPower(GX_POWER_ALL);
@@ -180,8 +170,7 @@ void InitSystem(void)
     InitCRC16Table(HEAP_ID_SYSTEM);
 }
 
-void InitVRAM(void)
-{
+void InitVRAM(void) {
     GX_SetBankForLCDC(GX_VRAM_LCDC_ALL);
     MI_CpuClearFast((void *)HW_LCDC_VRAM, HW_LCDC_VRAM_SIZE);
     GX_DisableBankForLCDC();
@@ -191,8 +180,7 @@ void InitVRAM(void)
     MI_CpuClearFast((void *)HW_DB_PLTT, HW_DB_PLTT_SIZE);
 }
 
-void *ReadFileToHeap(int heapID, const char *filename)
-{
+void *ReadFileToHeap(int heapID, const char *filename) {
     FSFile file;
     FS_InitFile(&file);
 
@@ -215,8 +203,7 @@ void *ReadFileToHeap(int heapID, const char *filename)
     return buf;
 }
 
-void ReadFileToBuffer(const char *filename, void **buf)
-{
+void ReadFileToBuffer(const char *filename, void **buf) {
     FSFile file;
     FS_InitFile(&file);
 
@@ -234,8 +221,7 @@ void ReadFileToBuffer(const char *filename, void **buf)
 
 CacheEntry sCache[CACHE_ENTRY_MAX];
 
-void ClearUnusedSystemCache(void)
-{
+void ClearUnusedSystemCache(void) {
     for (int i = CACHE_ENTRY_MAX - 1; i > -1; i--) {
         if (sCache[i].data != NULL) {
             Heap_Free(sCache[i].data);
@@ -245,8 +231,7 @@ void ClearUnusedSystemCache(void)
     }
 }
 
-void InitKeypadAndTouchpad(void)
-{
+void InitKeypadAndTouchpad(void) {
     gSystem.buttonMode = 0;
     gSystem.heldKeysRaw = 0;
     gSystem.pressedKeysRaw = 0;
@@ -277,23 +262,19 @@ void InitKeypadAndTouchpad(void)
     }
 }
 
-void SetGBACartridgeVersion(int version)
-{
+void SetGBACartridgeVersion(int version) {
     gSystem.gbaCartridgeVersion = version;
 }
 
-void SleepLock(u8 mask)
-{
+void SleepLock(u8 mask) {
     gSystem.inhibitSleep |= mask;
 }
 
-void SleepUnlock(u8 mask)
-{
+void SleepUnlock(u8 mask) {
     gSystem.inhibitSleep &= ~(mask);
 }
 
-void ReadKeypadAndTouchpad(void)
-{
+void ReadKeypadAndTouchpad(void) {
     TPData tpRaw;
     TPData tp;
     u32 padRead;
@@ -388,8 +369,7 @@ void ReadKeypadAndTouchpad(void)
         member &= (key ^ 0xFFFF); \
     }
 
-static void ApplyButtonModeToInput(void)
-{
+static void ApplyButtonModeToInput(void) {
     switch (gSystem.buttonMode) {
     default:
     case BUTTON_MODE_NORMAL:
@@ -418,34 +398,29 @@ static void ApplyButtonModeToInput(void)
     }
 }
 
-void SetAutorepeat(int rate, int delay)
-{
+void SetAutorepeat(int rate, int delay) {
     gSystem.autorepeatRate = rate;
     gSystem.autorepeatDelay = delay;
 }
 
-void ResetLock(u8 mask)
-{
+void ResetLock(u8 mask) {
     gSystem.inhibitReset |= mask;
 }
 
-void ResetUnlock(u8 mask)
-{
+void ResetUnlock(u8 mask) {
     gSystem.inhibitReset &= ~(mask);
 }
 
 #define HEAP_CANARY 0x2F93A1BC
 
-void InitHeapCanary(enum HeapId heapID)
-{
+void InitHeapCanary(enum HeapId heapID) {
     GF_ASSERT(gSystem.heapCanary == NULL);
 
     gSystem.heapCanary = Heap_AllocFromHeapAtEnd(heapID, sizeof(u32));
     *(gSystem.heapCanary) = HEAP_CANARY;
 }
 
-void FreeHeapCanary(void)
-{
+void FreeHeapCanary(void) {
     GF_ASSERT(gSystem.heapCanary != NULL);
 
     *(gSystem.heapCanary) = 0;
@@ -453,8 +428,7 @@ void FreeHeapCanary(void)
     gSystem.heapCanary = NULL;
 }
 
-BOOL HeapCanaryOK(void)
-{
+BOOL HeapCanaryOK(void) {
     // Explicit if required to match.
     if (gSystem.heapCanary && *gSystem.heapCanary == HEAP_CANARY) {
         return TRUE;

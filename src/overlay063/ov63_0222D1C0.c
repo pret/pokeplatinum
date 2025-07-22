@@ -31,8 +31,7 @@ static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 
 static u8 ov63_0222D688(u8 param0, u8 param1);
 static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, UnkStruct_ov63_0222CC3C *param6);
 
-UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 heapID)
-{
+UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 heapID) {
     UnkStruct_ov63_0222D1C0 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222D1C0));
     memset(v0, 0, sizeof(UnkStruct_ov63_0222D1C0));
 
@@ -48,14 +47,12 @@ UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, co
     return v0;
 }
 
-void ov63_0222D214(UnkStruct_ov63_0222D1C0 *param0)
-{
+void ov63_0222D214(UnkStruct_ov63_0222D1C0 *param0) {
     Heap_Free(param0->unk_08);
     Heap_Free(param0);
 }
 
-void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D160 *param1)
-{
+void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D160 *param1) {
     s16 v0;
     s16 v1 = ov63_0222D1B0(param1);
     v0 = ov63_0222D1B8(param1);
@@ -69,8 +66,7 @@ void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D16
     ov63_0222D378(param0, v0, v1);
 }
 
-static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_0223582C *param2)
-{
+static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_0223582C *param2) {
     BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -91,8 +87,7 @@ static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_022
     Bg_InitFromTemplate(param0, param1, &v0, 0);
 }
 
-static void ov63_0222D378(UnkStruct_ov63_0222D1C0 *param0, s16 param1, s16 param2)
-{
+static void ov63_0222D378(UnkStruct_ov63_0222D1C0 *param0, s16 param1, s16 param2) {
     s16 v0;
     s16 v1;
     s16 v2;
@@ -115,8 +110,7 @@ static void ov63_0222D378(UnkStruct_ov63_0222D1C0 *param0, s16 param1, s16 param
     Bg_ScheduleScroll(param0->unk_04, param0->unk_14, 3, v3);
 }
 
-static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *param2, s16 param3, s16 param4)
-{
+static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *param2, s16 param3, s16 param4) {
     s16 v0, v1;
     s16 v2, v3;
     s16 v4, v5;
@@ -162,8 +156,7 @@ static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *
     ov63_0222D4F8(param0, param1, v4, v5, v0, v1, param2->rawData, v2, v3, v6, v7);
 }
 
-static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10)
-{
+static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, const void *param6, u8 param7, u8 param8, u8 param9, u8 param10) {
     s8 v0, v1;
     s8 v2, v3;
     const u16 *v4;
@@ -218,8 +211,7 @@ static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 
     }
 }
 
-static u8 ov63_0222D688(u8 param0, u8 param1)
-{
+static u8 ov63_0222D688(u8 param0, u8 param1) {
     GF_ASSERT(param0 <= 64);
     GF_ASSERT(param1 <= 64);
 
@@ -241,8 +233,7 @@ static u8 ov63_0222D688(u8 param0, u8 param1)
     return 0;
 }
 
-static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, UnkStruct_ov63_0222CC3C *param6)
-{
+static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, UnkStruct_ov63_0222CC3C *param6) {
     s16 v0;
     u16 v1;
 

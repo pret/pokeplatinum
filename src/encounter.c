@@ -93,8 +93,7 @@ static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task);
 static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task);
 static BOOL FieldTask_WildEncounter(FieldTask *task);
 
-static BOOL FieldTask_RunBattle(FieldTask *task)
-{
+static BOOL FieldTask_RunBattle(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     FieldBattleDTO *dto = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
@@ -116,13 +115,11 @@ static BOOL FieldTask_RunBattle(FieldTask *task)
     return FALSE;
 }
 
-static void CallBattleTask(FieldTask *task, FieldBattleDTO *dto)
-{
+static void CallBattleTask(FieldTask *task, FieldBattleDTO *dto) {
     FieldTask_InitCall(task, FieldTask_RunBattle, dto);
 }
 
-static Encounter *NewEncounter(FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr)
-{
+static Encounter *NewEncounter(FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr) {
     Encounter *encounter = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(Encounter));
     encounter->resultMaskPtr = resultMaskPtr;
     if (resultMaskPtr != NULL) {
@@ -136,14 +133,12 @@ static Encounter *NewEncounter(FieldBattleDTO *dto, int introEffectID, int battl
     return encounter;
 }
 
-static void FreeEncounter(Encounter *encounter)
-{
+static void FreeEncounter(Encounter *encounter) {
     FieldBattleDTO_Free(encounter->dto);
     Heap_Free(encounter);
 }
 
-static BOOL CheckPlayerWonEncounter(Encounter *encounter)
-{
+static BOOL CheckPlayerWonEncounter(Encounter *encounter) {
     if (encounter->resultMaskPtr != NULL) {
         *(encounter->resultMaskPtr) = encounter->dto->resultMask;
     }
@@ -151,8 +146,7 @@ static BOOL CheckPlayerWonEncounter(Encounter *encounter)
     return CheckPlayerWonBattle(encounter->dto->resultMask);
 }
 
-static void UpdateFieldSystemFromDTO(const FieldBattleDTO *dto, FieldSystem *fieldSystem)
-{
+static void UpdateFieldSystemFromDTO(const FieldBattleDTO *dto, FieldSystem *fieldSystem) {
     if (dto->battleType & BATTLE_TYPE_DEBUG) {
         return;
     }
@@ -160,8 +154,7 @@ static void UpdateFieldSystemFromDTO(const FieldBattleDTO *dto, FieldSystem *fie
     FieldBattleDTO_UpdateFieldSystem(dto, fieldSystem);
 }
 
-static BOOL FieldTask_Encounter(FieldTask *task)
-{
+static BOOL FieldTask_Encounter(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
@@ -223,14 +216,12 @@ static BOOL FieldTask_Encounter(FieldTask *task)
     return FALSE;
 }
 
-static void StartEncounter(FieldTask *task, FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr)
-{
+static void StartEncounter(FieldTask *task, FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr) {
     Encounter *encounter = NewEncounter(dto, introEffectID, battleBGM, resultMaskPtr);
     FieldTask_InitCall(task, FieldTask_Encounter, encounter);
 }
 
-static void SetLinkBattleResult(int resultMask, FieldSystem *fieldSystem)
-{
+static void SetLinkBattleResult(int resultMask, FieldSystem *fieldSystem) {
     switch (resultMask & 0xF) {
     case BATTLE_RESULT_WIN:
     case BATTLE_RESULT_ENEMY_FLED:
@@ -244,8 +235,7 @@ static void SetLinkBattleResult(int resultMask, FieldSystem *fieldSystem)
     }
 }
 
-static BOOL FieldTask_LinkEncounter(FieldTask *task)
-{
+static BOOL FieldTask_LinkEncounter(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
@@ -286,8 +276,7 @@ static BOOL FieldTask_LinkEncounter(FieldTask *task)
     return FALSE;
 }
 
-static BOOL FieldTask_WiFiEncounter(FieldTask *task)
-{
+static BOOL FieldTask_WiFiEncounter(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
@@ -319,8 +308,7 @@ static BOOL FieldTask_WiFiEncounter(FieldTask *task)
     return FALSE;
 }
 
-static WildEncounter *NewWildEncounter(FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr)
-{
+static WildEncounter *NewWildEncounter(FieldBattleDTO *dto, int introEffectID, int battleBGM, int *resultMaskPtr) {
     WildEncounter *encounter = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(WildEncounter));
     encounter->resultMaskPtr = resultMaskPtr;
 
@@ -336,14 +324,12 @@ static WildEncounter *NewWildEncounter(FieldBattleDTO *dto, int introEffectID, i
     return encounter;
 }
 
-static void FreeWildEncounter(WildEncounter *encounter)
-{
+static void FreeWildEncounter(WildEncounter *encounter) {
     FieldBattleDTO_Free(encounter->dto);
     Heap_Free(encounter);
 }
 
-void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
-{
+void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto) {
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldSystem_CreateTask(fieldSystem, FieldTask_SafariEncounter, encounter);
@@ -353,8 +339,7 @@ void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
     }
 }
 
-void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattleDTO *dto)
-{
+void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattleDTO *dto) {
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldTask_InitJump(task, FieldTask_SafariEncounter, encounter);
@@ -364,8 +349,7 @@ void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattl
     }
 }
 
-static BOOL FieldTask_WildEncounter(FieldTask *task)
-{
+static BOOL FieldTask_WildEncounter(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     WildEncounter *encounter = FieldTask_GetEnv(task);
 
@@ -447,8 +431,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
     return FALSE;
 }
 
-static BOOL FieldTask_SafariEncounter(FieldTask *task)
-{
+static BOOL FieldTask_SafariEncounter(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
@@ -531,8 +514,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
     return FALSE;
 }
 
-void Encounter_NewVsHoneyTree(FieldTask *task, int *resultMaskPtr)
-{
+void Encounter_NewVsHoneyTree(FieldTask *task, int *resultMaskPtr) {
     FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     RadarChain_Clear(fieldSystem->chain);
@@ -549,8 +531,7 @@ void Encounter_NewVsHoneyTree(FieldTask *task, int *resultMaskPtr)
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 
-void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary)
-{
+void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary) {
     FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     RadarChain_Clear(fieldSystem->chain);
@@ -568,8 +549,7 @@ void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 
-void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary)
-{
+void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary) {
     FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     RadarChain_Clear(fieldSystem->chain);
@@ -591,8 +571,7 @@ void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 le
     StartEncounter(taskMan, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 
-static BOOL FieldTask_PalParkEncounter(FieldTask *task)
-{
+static BOOL FieldTask_PalParkEncounter(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
@@ -647,14 +626,12 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task)
     return FALSE;
 }
 
-void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dto)
-{
+void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dto) {
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_PalParkEncounter, encounter);
 }
 
-void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, int heapID, int *resultMaskPtr)
-{
+void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, int heapID, int *resultMaskPtr) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_TRAINER);
     FieldBattleDTO_Init(dto, fieldSystem);
@@ -669,8 +646,7 @@ void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, int heapID, int 
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 
-static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task)
-{
+static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task) {
     Encounter *encounter = FieldTask_GetEnv(task);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     int *state = FieldTask_GetState(task);
@@ -715,8 +691,7 @@ static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task)
     return FALSE;
 }
 
-void Encounter_NewCatchingTutorial(FieldTask *task)
-{
+void Encounter_NewCatchingTutorial(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     FieldBattleDTO *dto = FieldBattleDTO_NewCatchingTutorial(HEAP_ID_FIELDMAP, fieldSystem);
     Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
@@ -724,8 +699,7 @@ void Encounter_NewCatchingTutorial(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_CatchingTutorialEncounter, encounter);
 }
 
-void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTrainer2ID, int partnerTrainerID, int heapID, int *resultMaskPtr)
-{
+void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTrainer2ID, int partnerTrainerID, int heapID, int *resultMaskPtr) {
     u32 battleType;
     FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -760,8 +734,7 @@ void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTr
     StartEncounter(taskMan, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 
-void Encounter_NewVsLink(FieldTask *task, const u8 *partyOrder, int battleType)
-{
+void Encounter_NewVsLink(FieldTask *task, const u8 *partyOrder, int battleType) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter;
     FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, battleType);
@@ -771,8 +744,7 @@ void Encounter_NewVsLink(FieldTask *task, const u8 *partyOrder, int battleType)
     FieldTask_InitCall(task, FieldTask_LinkEncounter, encounter);
 }
 
-static int sub_020516C8(const BattleRegulation *regulation, int battleType)
-{
+static int sub_020516C8(const BattleRegulation *regulation, int battleType) {
     int v0;
     int v1 = sub_020261B0(regulation);
 
@@ -791,8 +763,7 @@ static int sub_020516C8(const BattleRegulation *regulation, int battleType)
     return v0;
 }
 
-void Encounter_NewVsWiFi(FieldTask *task, int param1, int normalizedLevel, int wifiBattleType)
-{
+void Encounter_NewVsWiFi(FieldTask *task, int param1, int normalizedLevel, int wifiBattleType) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter;
     FieldBattleDTO *dto;
@@ -827,8 +798,7 @@ void Encounter_NewVsWiFi(FieldTask *task, int param1, int normalizedLevel, int w
     FieldTask_InitCall(task, FieldTask_WiFiEncounter, encounter);
 }
 
-static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task)
-{
+static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     Encounter *encounter = FieldTask_GetEnv(task);
     int *state = FieldTask_GetState(task);
@@ -851,8 +821,7 @@ static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task)
     return FALSE;
 }
 
-void Encounter_NewVsLinkWithRecording(FieldSystem *fieldSystem, const u8 *partyOrder, int battleType)
-{
+void Encounter_NewVsLinkWithRecording(FieldSystem *fieldSystem, const u8 *partyOrder, int battleType) {
     FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, battleType);
     FieldBattleDTO_InitWithPartyOrderFromSave(dto, fieldSystem, partyOrder);
 
@@ -864,8 +833,7 @@ void Encounter_NewVsLinkWithRecording(FieldSystem *fieldSystem, const u8 *partyO
     FieldSystem_CreateTask(fieldSystem, FieldTask_LinkEncounterWithRecording, encounter);
 }
 
-void Encounter_NewVsLinkWithRecordingAndParty(FieldSystem *fieldSystem, const Party *party, int battleType)
-{
+void Encounter_NewVsLinkWithRecordingAndParty(FieldSystem *fieldSystem, const Party *party, int battleType) {
     FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, battleType);
     FieldBattleDTO_InitWithPartyOrder(dto, fieldSystem, party, NULL);
 
@@ -877,8 +845,7 @@ void Encounter_NewVsLinkWithRecordingAndParty(FieldSystem *fieldSystem, const Pa
     FieldSystem_CreateTask(fieldSystem, FieldTask_LinkEncounterWithRecording, encounter);
 }
 
-static void UpdateGameRecords(FieldSystem *fieldSystem, FieldBattleDTO *dto)
-{
+static void UpdateGameRecords(FieldSystem *fieldSystem, FieldBattleDTO *dto) {
     Pokemon *caughtMon;
     u32 battleType = dto->battleType;
     int resultMask = dto->resultMask;
@@ -924,8 +891,7 @@ static void UpdateGameRecords(FieldSystem *fieldSystem, FieldBattleDTO *dto)
     }
 }
 
-static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
-{
+static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto) {
     Pokemon *caughtMon;
     u32 battleType = dto->battleType;
     int resultMask = dto->resultMask;
@@ -970,8 +936,7 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
     }
 }
 
-void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary)
-{
+void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary) {
     FieldBattleDTO *dto;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     RadarChain_Clear(fieldSystem->chain);

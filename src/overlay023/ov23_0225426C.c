@@ -70,17 +70,14 @@ static const UnkStruct_ov23_02256A00 Unk_ov23_02256A00[] = {
     { 0x1, 0x46, 0x50 }
 };
 
-const u8 ov23_0225426C(const int param0)
-{
+const u8 ov23_0225426C(const int param0) {
     return Unk_ov23_02256A00[param0].unk_00[0];
 }
 
-const u8 ov23_0225427C(const int param0)
-{
+const u8 ov23_0225427C(const int param0) {
     return Unk_ov23_02256A00[param0].unk_00[1];
 }
 
-const u8 ov23_0225428C(const int param0)
-{
+const u8 ov23_0225428C(const int param0) {
     return Unk_ov23_02256A00[param0].unk_00[2];
 }

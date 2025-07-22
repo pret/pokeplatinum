@@ -56,8 +56,7 @@ static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2);
 static void sub_0206CBA0(FieldSystem *fieldSystem);
 static void sub_0206CC64(UnkStruct_0206CAD0 *param0);
 
-void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, const int param3, const int param4, const int param5)
-{
+void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, const int param3, const int param4, const int param5) {
     UnkStruct_0206CAD0 *v0;
     BOOL v1;
     BOOL v2;
@@ -129,8 +128,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     FieldTask_InitCall(fieldSystem->task, sub_0206C964, v0);
 }
 
-static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2)
-{
+static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2) {
     UnkStruct_0206C8D4 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206C8D4));
 
     v0->unk_04 = param2;
@@ -139,8 +137,7 @@ static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttribu
     FieldTask_InitCall(fieldSystem->task, sub_0206C8F8, v0);
 }
 
-static BOOL sub_0206C8F8(FieldTask *taskMan)
-{
+static BOOL sub_0206C8F8(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_0206C8D4 *v1 = FieldTask_GetEnv(taskMan);
     int *v2 = FieldTask_GetState(taskMan);
@@ -167,8 +164,7 @@ static BOOL sub_0206C8F8(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_0206C964(FieldTask *taskMan)
-{
+static BOOL sub_0206C964(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_0206CAD0 *v1 = FieldTask_GetEnv(taskMan);
 
@@ -237,8 +233,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0)
-{
+static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0) {
     VecFx32 v0;
 
     v0 = MapProp_GetPosition(param0->unk_30);
@@ -284,8 +279,7 @@ static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0)
     }
 }
 
-static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2)
-{
+static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2) {
     if ((*param0) <= (*param1)) {
         (*param2) = 1;
         return 1;
@@ -294,8 +288,7 @@ static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2)
     }
 }
 
-static void sub_0206CBA0(FieldSystem *fieldSystem)
-{
+static void sub_0206CBA0(FieldSystem *fieldSystem) {
     u8 v0;
     BOOL v1;
     int v2[2] = {
@@ -327,8 +320,7 @@ static void sub_0206CBA0(FieldSystem *fieldSystem)
     }
 }
 
-static void sub_0206CC64(UnkStruct_0206CAD0 *param0)
-{
+static void sub_0206CC64(UnkStruct_0206CAD0 *param0) {
     switch (param0->unk_01) {
     case 3:
         if (param0->unk_08 < (FX32_ONE * 16 * 2)) {

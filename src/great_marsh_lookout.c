@@ -36,8 +36,7 @@ typedef struct LookoutData {
 
 static BOOL Task_GreatMarshLookout(FieldTask *taskMan);
 
-void GreatMarshLookout_Init(FieldSystem *fieldSystem)
-{
+void GreatMarshLookout_Init(FieldSystem *fieldSystem) {
     LookoutData *lookout = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(LookoutData));
 
     lookout->spriteResources = GreatMarshLookout_AllocSpriteResources(HEAP_ID_FIELDMAP);
@@ -48,8 +47,7 @@ void GreatMarshLookout_Init(FieldSystem *fieldSystem)
     FieldTask_InitCall(fieldSystem->task, Task_GreatMarshLookout, lookout);
 }
 
-static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
-{
+static BOOL Task_GreatMarshLookout(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     LookoutData *lookout = FieldTask_GetEnv(taskMan);
 

@@ -65,30 +65,25 @@ typedef struct {
 
 static const GiftHandler giftHandlers[MYST_GIFT_TYPE_MAX - 1];
 
-static void MystGiftGiveMsgFormatter_Init(MystGiftGiveMsgFormatter *formatter, FieldSystem *fieldSystem, StringTemplate *strTemplate, GiftData *giftData)
-{
+static void MystGiftGiveMsgFormatter_Init(MystGiftGiveMsgFormatter *formatter, FieldSystem *fieldSystem, StringTemplate *strTemplate, GiftData *giftData) {
     formatter->fieldSystem = fieldSystem;
     formatter->stringTemplate = strTemplate;
     formatter->giftData = giftData;
 }
 
-static int GetCurrentPgtType(FieldSystem *fieldSystem)
-{
+static int GetCurrentPgtType(FieldSystem *fieldSystem) {
     return MysteryGift_TryGetPgtType(MysteryGift_TryGetFirstValidPgtSlot());
 }
 
-static GiftData *GetCurrentPgtData(FieldSystem *fieldSystem)
-{
+static GiftData *GetCurrentPgtData(FieldSystem *fieldSystem) {
     return MysteryGift_TryGetPgtData(MysteryGift_TryGetFirstValidPgtSlot());
 }
 
-static void FreeCurrentPgt(FieldSystem *fieldSystem)
-{
+static void FreeCurrentPgt(FieldSystem *fieldSystem) {
     MysteryGift_FreePgtSlot(MysteryGift_TryGetFirstValidPgtSlot());
 }
 
-BOOL ScrCmd_MysteryGiftGive(ScriptContext *ctx)
-{
+BOOL ScrCmd_MysteryGiftGive(ScriptContext *ctx) {
     switch (ScriptContext_ReadHalfWord(ctx)) {
     case MYSTERY_GIFT_LOAD:
         MysteryGift_Load(ctx->fieldSystem->saveData, 32);
@@ -155,28 +150,24 @@ BOOL ScrCmd_MysteryGiftGive(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL CanReceivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceivePokemon(FieldSystem *fieldSystem, GiftData *dummy) {
     Party *party = SaveData_GetParty(fieldSystem->saveData);
 
     return Party_GetCurrentCount(party) < MAX_PARTY_SIZE;
 }
 
-static void GenerateManaphyEgg(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void GenerateManaphyEgg(FieldSystem *fieldSystem, GiftData *dummy) {
     sub_02054930(HEAP_ID_FIELD_TASK, fieldSystem->saveData, SPECIES_MANAPHY, 1, 2, 1);
 }
 
-static void PrepReceivedManaphyEggMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedManaphyEggMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
     *outStringID = MysteryGiftDeliveryman_Text_ReceivedManaphyEgg;
 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
 }
 
-static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy) {
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -312,8 +303,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     }
 }
 
-static void PrepReceivedPokemonMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedPokemonMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
 
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
@@ -325,19 +315,16 @@ static void PrepReceivedPokemonMsg(MystGiftGiveMsgFormatter *formatter, u16 *out
     StringTemplate_SetSpeciesNameWithArticle(formatter->stringTemplate, 1, Pokemon_GetBoxPokemon(pokemon));
 }
 
-static void PrepCannotReceivePokemonMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceivePokemonMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
     *outStringID = MysteryGiftDeliveryman_Text_CannotGivePokemon_PartyFull;
 }
 
-static void GiveEgg(FieldSystem *fieldSystem, GiftData *giftData)
-{
+static void GiveEgg(FieldSystem *fieldSystem, GiftData *giftData) {
     GivePokemon(fieldSystem, giftData);
 }
 
-static void PrepReceivedEggMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedEggMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
 
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
@@ -349,16 +336,14 @@ static void PrepReceivedEggMsg(MystGiftGiveMsgFormatter *formatter, u16 *outText
     StringTemplate_SetSpeciesName(formatter->stringTemplate, 1, Pokemon_GetBoxPokemon(pokemon));
 }
 
-static BOOL CanReceiveItem(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveItem(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
 
     return Bag_CanFitItem(bag, giftData->itemGiftData.item, 1, HEAP_ID_FIELD_TASK);
 }
 
-static void GiveItem(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void GiveItem(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     u16 itemID = giftData->itemGiftData.item;
@@ -366,8 +351,7 @@ static void GiveItem(FieldSystem *fieldSystem, GiftData *dummy)
     Bag_TryAddItem(bag, itemID, 1, HEAP_ID_FIELD_TASK);
 }
 
-static void PrepReceivedItemMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedItemMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = giftData->itemGiftData.item;
 
@@ -378,8 +362,7 @@ static void PrepReceivedItemMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTex
     StringTemplate_SetItemName(formatter->stringTemplate, 1, itemID);
 }
 
-static void PrepCannotReceiveItemMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceiveItemMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     Bag *bag = SaveData_GetBag(formatter->fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = giftData->itemGiftData.item;
@@ -390,21 +373,18 @@ static void PrepCannotReceiveItemMsg(MystGiftGiveMsgFormatter *formatter, u16 *o
     StringTemplate_SetItemName(formatter->stringTemplate, 0, itemID);
 }
 
-static BOOL CanReceiveBattleReg(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveBattleReg(FieldSystem *fieldSystem, GiftData *dummy) {
     return TRUE;
 }
 
-static void GiveBattleReg(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void GiveBattleReg(FieldSystem *fieldSystem, GiftData *dummy) {
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     const BattleRegulation *battleReg = &giftData->battleReg;
 
     sub_0202613C(fieldSystem->saveData, battleReg);
 }
 
-static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     const BattleRegulation *battleReg = &giftData->battleReg;
 
@@ -418,29 +398,25 @@ static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTe
     Strbuf_Free(battleRegName);
 }
 
-static void PrepCannotReceiveRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceiveRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
     *outStringID = MysteryGiftDeliveryman_Text_MakeRoomForDecorationGoods;
 }
 
-static BOOL CanReceiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy) {
     int ownedCount = sub_020289A0(SaveData_GetUnderground(fieldSystem->saveData));
 
     return ownedCount < NUM_MAX_DECORATION_GOODS;
 }
 
-static void GiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void GiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy) {
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     int id = giftData->decorationGoodID;
 
     sub_0202895C(SaveData_GetUnderground(fieldSystem->saveData), id);
 }
 
-static void PrepReceivedDecoGoodMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedDecoGoodMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     int id = giftData->decorationGoodID;
 
@@ -451,14 +427,12 @@ static void PrepReceivedDecoGoodMsg(MystGiftGiveMsgFormatter *formatter, u16 *ou
     StringTemplate_SetUndergroundGoodsName(formatter->stringTemplate, 1, id);
 }
 
-static void PrepCannotReceiveDecoGood(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceiveDecoGood(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
     *outStringID = MysteryGiftDeliveryman_Text_MakeRoomForDecorationGoods;
 }
 
-static BOOL CanReceiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy) {
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     int type = giftData->cosmeticGiftData.type;
     int id = giftData->cosmeticGiftData.id;
@@ -475,8 +449,7 @@ static BOOL CanReceiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
     return FALSE;
 }
 
-static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy) {
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     int type = giftData->cosmeticGiftData.type;
     int id = giftData->cosmeticGiftData.id;
@@ -494,8 +467,7 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
     }
 }
 
-static void PrepReceivedCosmeticMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedCosmeticMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     int type = giftData->cosmeticGiftData.type;
     int id = giftData->cosmeticGiftData.id;
@@ -518,22 +490,19 @@ static void PrepReceivedCosmeticMsg(MystGiftGiveMsgFormatter *formatter, u16 *ou
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
 }
 
-static void PrepCannotReceiveCosmeticMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceiveCosmeticMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
     *outStringID = MysteryGiftDeliveryman_Text_MakeRoomForDecorationGoods;
 }
 
-static BOOL CanReceiveMemberCard(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveMemberCard(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_MEMBER_CARD, 1, HEAP_ID_FIELD_TASK);
 }
 
-static void InitDarkraiEvent(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void InitDarkraiEvent(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -542,8 +511,7 @@ static void InitDarkraiEvent(FieldSystem *fieldSystem, GiftData *dummy)
     SystemVars_SetDistributionEventMagic(varsFlags, DISTRIBUTION_EVENT_DARKRAI);
 }
 
-static void PrepReceivedMemberCardMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedMemberCardMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_MEMBER_CARD;
 
@@ -554,8 +522,7 @@ static void PrepReceivedMemberCardMsg(MystGiftGiveMsgFormatter *formatter, u16 *
     StringTemplate_SetItemName(formatter->stringTemplate, 1, itemID);
 }
 
-static void PrepCannotReceiveMemberCardMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceiveMemberCardMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     Bag *bag = SaveData_GetBag(formatter->fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_MEMBER_CARD;
@@ -566,16 +533,14 @@ static void PrepCannotReceiveMemberCardMsg(MystGiftGiveMsgFormatter *formatter, 
     StringTemplate_SetItemName(formatter->stringTemplate, 0, itemID);
 }
 
-static BOOL CanReceiveOaksLetter(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveOaksLetter(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_OAKS_LETTER, 1, HEAP_ID_FIELD_TASK);
 }
 
-static void InitShayminEvent(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void InitShayminEvent(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -588,8 +553,7 @@ static void InitShayminEvent(FieldSystem *fieldSystem, GiftData *dummy)
     }
 }
 
-static void PrepReceivedOaksLetterMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedOaksLetterMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_OAKS_LETTER;
 
@@ -600,8 +564,7 @@ static void PrepReceivedOaksLetterMsg(MystGiftGiveMsgFormatter *formatter, u16 *
     StringTemplate_SetItemName(formatter->stringTemplate, 1, itemID);
 }
 
-static void PrepCannotReceivedOaksLetterMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceivedOaksLetterMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     Bag *bag = SaveData_GetBag(formatter->fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_OAKS_LETTER;
@@ -612,16 +575,14 @@ static void PrepCannotReceivedOaksLetterMsg(MystGiftGiveMsgFormatter *formatter,
     StringTemplate_SetItemName(formatter->stringTemplate, 0, itemID);
 }
 
-static BOOL CanReceiveSecretKey(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveSecretKey(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_SECRET_KEY, 1, HEAP_ID_FIELD_TASK);
 }
 
-static void InitRotomEvent(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void InitRotomEvent(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -630,8 +591,7 @@ static void InitRotomEvent(FieldSystem *fieldSystem, GiftData *dummy)
     SystemVars_SetDistributionEventMagic(varsFlags, DISTRIBUTION_EVENT_ROTOM);
 }
 
-static void PrepReceivedSecretKeyMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedSecretKeyMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_SECRET_KEY;
 
@@ -642,8 +602,7 @@ static void PrepReceivedSecretKeyMsg(MystGiftGiveMsgFormatter *formatter, u16 *o
     StringTemplate_SetItemName(formatter->stringTemplate, 1, itemID);
 }
 
-static void PrepCannotReceiveSecretKeyMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceiveSecretKeyMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     Bag *bag = SaveData_GetBag(formatter->fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_SECRET_KEY;
@@ -654,16 +613,14 @@ static void PrepCannotReceiveSecretKeyMsg(MystGiftGiveMsgFormatter *formatter, u
     StringTemplate_SetItemName(formatter->stringTemplate, 0, itemID);
 }
 
-static BOOL CanReceiveAzureFlute(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceiveAzureFlute(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
 
     return Bag_CanFitItem(bag, ITEM_AZURE_FLUTE, 1, HEAP_ID_FIELD_TASK);
 }
 
-static void InitArceusEvent(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void InitArceusEvent(FieldSystem *fieldSystem, GiftData *dummy) {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     GiftData *unused = GetCurrentPgtData(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
@@ -672,8 +629,7 @@ static void InitArceusEvent(FieldSystem *fieldSystem, GiftData *dummy)
     SystemVars_SetDistributionEventMagic(varsFlags, DISTRIBUTION_EVENT_ARCEUS);
 }
 
-static void PrepReceivedAzureFluteMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedAzureFluteMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_AZURE_FLUTE;
 
@@ -684,8 +640,7 @@ static void PrepReceivedAzureFluteMsg(MystGiftGiveMsgFormatter *formatter, u16 *
     StringTemplate_SetItemName(formatter->stringTemplate, 1, itemID);
 }
 
-static void PrepCannotReceiveAzureFluteMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceiveAzureFluteMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     Bag *bag = SaveData_GetBag(formatter->fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
     u16 itemID = ITEM_AZURE_FLUTE;
@@ -696,24 +651,21 @@ static void PrepCannotReceiveAzureFluteMsg(MystGiftGiveMsgFormatter *formatter, 
     StringTemplate_SetItemName(formatter->stringTemplate, 0, itemID);
 }
 
-static BOOL CanReceivePoketchApp(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static BOOL CanReceivePoketchApp(FieldSystem *fieldSystem, GiftData *dummy) {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
 
     return Poketch_IsEnabled(poketch);
 }
 
-static void GivePoketchApp(FieldSystem *fieldSystem, GiftData *dummy)
-{
+static void GivePoketchApp(FieldSystem *fieldSystem, GiftData *dummy) {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
 
     Poketch_RegisterApp(poketch, giftData->poketchAppID);
 }
 
-static void PrepReceivedPoketchAppMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepReceivedPoketchAppMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
 
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;
@@ -723,8 +675,7 @@ static void PrepReceivedPoketchAppMsg(MystGiftGiveMsgFormatter *formatter, u16 *
     StringTemplate_SetPoketchAppName(formatter->stringTemplate, 1, giftData->poketchAppID);
 }
 
-static void PrepCannotReceivePoketchAppMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
-{
+static void PrepCannotReceivePoketchAppMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID) {
     GiftData *giftData = GetCurrentPgtData(formatter->fieldSystem);
 
     *outTextBank = TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN;

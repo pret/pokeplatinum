@@ -51,8 +51,7 @@ static const u8 Unk_020F04CC[24] = {
     0x1
 };
 
-void PersistedMapFeatures_InitForPastoriaGym(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForPastoriaGym(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
@@ -60,8 +59,7 @@ void PersistedMapFeatures_InitForPastoriaGym(FieldSystem *fieldSystem)
     data->unk_00 = 1;
 }
 
-void PersistedMapFeatures_InitForCanalaveGym(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForCanalaveGym(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
 
@@ -72,8 +70,7 @@ void PersistedMapFeatures_InitForCanalaveGym(FieldSystem *fieldSystem)
     }
 }
 
-void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8 floorID)
-{
+void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8 floorID) {
     GF_ASSERT(floorID < 3);
 
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
@@ -106,8 +103,7 @@ void PersistedMapFeatures_InitForSunyshoreGym(FieldSystem *fieldSystem, const u8
     }
 }
 
-void PersistedMapFeatures_InitForEternaGym(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForEternaGym(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
 
@@ -115,8 +111,7 @@ void PersistedMapFeatures_InitForEternaGym(FieldSystem *fieldSystem)
     memset(data, 0, sizeof(UnkStruct_02071BD0));
 }
 
-void PersistedMapFeatures_InitForVeilstoneGym(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForVeilstoneGym(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
 
@@ -124,16 +119,14 @@ void PersistedMapFeatures_InitForVeilstoneGym(FieldSystem *fieldSystem)
     data->unk_00 = 0;
 }
 
-void PersistedMapFeatures_InitForHearthomeGym(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForHearthomeGym(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 
     UnkStruct_02071C18 *data = PersistedMapFeatures_GetBuffer(persistedMapFeatures, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
 }
 
-void PersistedMapFeatures_InitForVilla(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForVilla(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_VILLA);
 
@@ -141,8 +134,7 @@ void PersistedMapFeatures_InitForVilla(FieldSystem *fieldSystem)
     memset(data, 0, sizeof(UnkStruct_02071C34));
 }
 
-void PersistedMapFeatures_InitForDistortionWorld(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForDistortionWorld(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     PersistedMapFeatures_InitWithID(persistedMapFeatures, DYNAMIC_MAP_FEATURES_DISTORTION_WORLD);
 
@@ -150,8 +142,7 @@ void PersistedMapFeatures_InitForDistortionWorld(FieldSystem *fieldSystem)
     memset(data, 0, sizeof(DistWorldPersistedData));
 }
 
-static void sub_02071C80(const u8 param0, const u8 param1, int *param2)
-{
+static void sub_02071C80(const u8 param0, const u8 param1, int *param2) {
     GF_ASSERT(param1 <= 1);
 
     int v0 = (*param2) & (0xffffffff << (param0 + 1));
@@ -161,14 +152,12 @@ static void sub_02071C80(const u8 param0, const u8 param1, int *param2)
     (*param2) = (v0 | v1 | v2);
 }
 
-BOOL PersistedMapFeatures_IsCurrentDynamicMap(FieldSystem *fieldSystem, int dynamicMapFeaturesID)
-{
+BOOL PersistedMapFeatures_IsCurrentDynamicMap(FieldSystem *fieldSystem, int dynamicMapFeaturesID) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     return dynamicMapFeaturesID == PersistedMapFeatures_GetID(persistedMapFeatures);
 }
 
-void PersistedMapFeatures_InitForGreatMarsh(FieldSystem *fieldSystem)
-{
+void PersistedMapFeatures_InitForGreatMarsh(FieldSystem *fieldSystem) {
     PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     int dynamicMapFeaturesID = PersistedMapFeatures_GetID(persistedMapFeatures);
 

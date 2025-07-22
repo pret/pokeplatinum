@@ -61,20 +61,17 @@ static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult);
 static BOOL CheckPatchShiny(const int param0);
 static void IncWithCap(int *param0);
 
-RadarChain *RadarChain_Init(const int heapID)
-{
+RadarChain *RadarChain_Init(const int heapID) {
     RadarChain *chain = Heap_AllocFromHeap(heapID, sizeof(RadarChain));
     GFXBoxTest_MakeBox(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &chain->grassPatchVolume);
     return chain;
 }
 
-void RadarChain_Free(RadarChain *chain)
-{
+void RadarChain_Free(RadarChain *chain) {
     Heap_Free(chain);
 }
 
-void RadarChain_Clear(RadarChain *chain)
-{
+void RadarChain_Clear(RadarChain *chain) {
     chain->count = 0;
     chain->shakeType = PATCH_SHAKE_SOFT;
     chain->species = 0;
@@ -89,8 +86,7 @@ void RadarChain_Clear(RadarChain *chain)
     }
 }
 
-BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int param2, RadarChain *chain)
-{
+BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int param2, RadarChain *chain) {
     u8 v1, v2;
     u8 v3;
     u8 v4;
@@ -145,8 +141,7 @@ BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int par
     return chain->active;
 }
 
-void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *chain)
-{
+void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *chain) {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
             chain->patch[patchRing].continueChain = CheckPatchContinueChain(patchRing, param1);
@@ -165,8 +160,7 @@ void SetupGrassPatches(FieldSystem *fieldSystem, const int param1, RadarChain *c
     }
 }
 
-void FieldSystem_CreateShakingRadarPatches(FieldSystem *fieldSystem, RadarChain *chain)
-{
+void FieldSystem_CreateShakingRadarPatches(FieldSystem *fieldSystem, RadarChain *chain) {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
             int v1 = chain->patch[patchRing].x;
@@ -186,8 +180,7 @@ void FieldSystem_CreateShakingRadarPatches(FieldSystem *fieldSystem, RadarChain 
     }
 }
 
-BOOL sub_02069690(RadarChain *chain)
-{
+BOOL sub_02069690(RadarChain *chain) {
     u8 v0 = 0;
 
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
@@ -209,8 +202,7 @@ BOOL sub_02069690(RadarChain *chain)
     return FALSE;
 }
 
-BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, FieldSystem *fieldSystem, RadarChain *chain, int *shake, BOOL *preserveChain, BOOL *isShiny)
-{
+BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, FieldSystem *fieldSystem, RadarChain *chain, int *shake, BOOL *preserveChain, BOOL *isShiny) {
     u8 patchRing;
     *preserveChain = 0;
     *isShiny = 0;
@@ -244,26 +236,22 @@ BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, Fiel
     return TRUE;
 }
 
-void SetRadarMon(RadarChain *chain, const int species, const int level)
-{
+void SetRadarMon(RadarChain *chain, const int species, const int level) {
     GF_ASSERT(species != 0);
     chain->species = species;
     chain->level = level;
 }
 
-void GetRadarMon(RadarChain *chain, int *species, int *level)
-{
+void GetRadarMon(RadarChain *chain, int *species, int *level) {
     *species = chain->species;
     *level = chain->level;
 }
 
-const BOOL sub_02069798(const RadarChain *chain)
-{
+const BOOL sub_02069798(const RadarChain *chain) {
     return chain->unk_18;
 }
 
-void PokeRadar_ClearIfAllOutOfView(FieldSystem *fieldSystem)
-{
+void PokeRadar_ClearIfAllOutOfView(FieldSystem *fieldSystem) {
     BOOL patchInView;
     GrassPatch *patch;
     int patchRing;
@@ -294,13 +282,11 @@ void PokeRadar_ClearIfAllOutOfView(FieldSystem *fieldSystem)
     }
 }
 
-BOOL GetRadarChainActive(const RadarChain *chain)
-{
+BOOL GetRadarChainActive(const RadarChain *chain) {
     return chain->active;
 }
 
-static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch)
-{
+static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch) {
     int v0 = (param2 - (9 / 2)) + param4;
     int v1 = (param3 - (9 / 2)) + param5;
     patch->x = v0;
@@ -334,8 +320,7 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
 }
 
 // Checks if the player is standing in any of the shaking patches.
-static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const int z, u8 *patchMatch)
-{
+static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const int z, u8 *patchMatch) {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
             if ((chain->patch[patchRing].x == x) && (chain->patch[patchRing].z == z)) {
@@ -347,8 +332,7 @@ static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const in
     return FALSE;
 }
 
-static void TryReplaceLowestChainRecord(FieldSystem *fieldSystem, RadarChain *chain)
-{
+static void TryReplaceLowestChainRecord(FieldSystem *fieldSystem, RadarChain *chain) {
     RadarChainRecords *chainRecordData = SpecialEncounter_GetRadarChainRecords(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     int lowestRecord = chainRecordData->records[chain->unk_D0].chainCount;
 
@@ -369,8 +353,7 @@ static void TryReplaceLowestChainRecord(FieldSystem *fieldSystem, RadarChain *ch
 }
 
 // Returns the index of the record with the lowest chain, or the first empty slot if there is one.
-static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem)
-{
+static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem) {
     u8 slotToReplace;
     BOOL lowerChain;
     RadarChainRecords *recordsData = SpecialEncounter_GetRadarChainRecords(SaveData_GetSpecialEncounters(fieldSystem->saveData));
@@ -396,8 +379,7 @@ static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem)
     return slotToReplace;
 }
 
-static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult)
-{
+static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult) {
     u8 *rates;
     u8 ratesNormal[4] = { 88, 68, 48, 28 };
     u8 ratesBoosted[4] = { 98, 78, 58, 38 };
@@ -415,8 +397,7 @@ static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult)
     }
 }
 
-BOOL RefreshRadarChain(FieldTask *taskMan)
-{
+BOOL RefreshRadarChain(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     int *v1 = FieldTask_GetEnv(taskMan);
 
@@ -466,8 +447,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
     return FALSE;
 }
 
-static BOOL CheckPatchShiny(const int chainCount)
-{
+static BOOL CheckPatchShiny(const int chainCount) {
     if (!chainCount) {
         return FALSE;
     }
@@ -484,19 +464,16 @@ static BOOL CheckPatchShiny(const int chainCount)
     }
 }
 
-void RadarChain_Increment(FieldSystem *fieldSystem)
-{
+void RadarChain_Increment(FieldSystem *fieldSystem) {
     IncWithCap(&(fieldSystem->chain->count));
     TryReplaceLowestChainRecord(fieldSystem, fieldSystem->chain);
 }
 
-int GetChainCount(FieldSystem *fieldSystem)
-{
+int GetChainCount(FieldSystem *fieldSystem) {
     return fieldSystem->chain->count;
 }
 
-void RadarChargeStep(FieldSystem *fieldSystem)
-{
+void RadarChargeStep(FieldSystem *fieldSystem) {
     u8 *v0;
 
     if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_POKE_RADAR, 1, HEAP_ID_FIELD) == TRUE) {
@@ -507,8 +484,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
     }
 }
 
-static void IncWithCap(int *param0)
-{
+static void IncWithCap(int *param0) {
     (*param0)++;
     if ((*param0) > 999) {
         (*param0) = 999;

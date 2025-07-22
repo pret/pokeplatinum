@@ -111,13 +111,11 @@ static const struct {
     { POKETCH_APPID_POKEMONHISTORY, FS_OVERLAY_ID(overlay54) }
 };
 
-static PoketchSystem *PoketchSystem_GetFromFieldSystem(void)
-{
+static PoketchSystem *PoketchSystem_GetFromFieldSystem(void) {
     return FieldSystem_GetPoketchSystem();
 }
 
-void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BgConfig *bgl, NNSG2dOamManagerInstance *oamManager)
-{
+void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, SaveData *saveData, BgConfig *bgl, NNSG2dOamManagerInstance *oamManager) {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_MAIN, HEAP_SIZE_POKETCH_MAIN);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, HEAP_SIZE_POKETCH_APP);
 
@@ -144,20 +142,17 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
     }
 }
 
-void PoketchSystem_StartShutdown(PoketchSystem *poketchSys)
-{
+void PoketchSystem_StartShutdown(PoketchSystem *poketchSys) {
     if (poketchSys->systemState != POKETCH_SYSTEM_SHUTDOWN && poketchSys->systemState != POKETCH_SYSTEM_UNLOAD) {
         PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_SHUTDOWN);
     }
 }
 
-BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys)
-{
+BOOL PoketchSystem_IsSystemShutdown(PoketchSystem *poketchSys) {
     return poketchSys == NULL;
 }
 
-void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID eventID, u32)
-{
+void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID eventID, u32) {
     switch (eventID) {
     case POKETCH_EVENT_SLEEP:
         break;
@@ -182,18 +177,15 @@ void PoketchSystem_SendEvent(PoketchSystem *poketchSys, enum PoketchEventID even
     }
 }
 
-BOOL PoketchSystem_IsTapped(PoketchSystem *poketchSys)
-{
+BOOL PoketchSystem_IsTapped(PoketchSystem *poketchSys) {
     return poketchSys->touchingScreen;
 }
 
-enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys)
-{
+enum PoketchAppID PoketchSystem_CurrentAppID(PoketchSystem *poketchSys) {
     return poketchSys->loadedAppID;
 }
 
-static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
-{
+static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys) {
     if (PoketchGraphics_Main(&(poketchSys->taskData), &(poketchSys->constTaskData), poketchSys->oamManager, poketchSys)) {
         poketchSys->systemState = POKETCH_SYSTEM_INIT;
         poketchSys->subState = 0;
@@ -215,8 +207,7 @@ static BOOL PoketchSystem_InitInternal(PoketchSystem *poketchSys)
     return FALSE;
 }
 
-static void PoketchSystem_Shutdown(PoketchSystem *poketchSys)
-{
+static void PoketchSystem_Shutdown(PoketchSystem *poketchSys) {
     SysTask_Done(poketchSys->postRenderTask);
 
     PoketchSystem_ButtonShutdown(poketchSys);
@@ -232,8 +223,7 @@ static PoketchEvent sPoketchEvents[] = {
     PoketchEvent_OnShutdown
 };
 
-static void PoketchSystem_MainTask(SysTask *task, void *system)
-{
+static void PoketchSystem_MainTask(SysTask *task, void *system) {
     PoketchSystem *poketchSys = (PoketchSystem *)system;
 
     if (poketchSys->systemState < NELEMS(sPoketchEvents)) {
@@ -254,22 +244,19 @@ static void PoketchSystem_MainTask(SysTask *task, void *system)
     }
 }
 
-static void PoketchSystem_PostRender(SysTask *, void *system)
-{
+static void PoketchSystem_PostRender(SysTask *, void *system) {
     PoketchSystem *poketchSys = system;
 
     poketchSys->playerMoving = FALSE;
     poketchSys->pedometerUpdated = FALSE;
 }
 
-static void PoketchSystem_SetState(PoketchSystem *poketchSys, u32 state)
-{
+static void PoketchSystem_SetState(PoketchSystem *poketchSys, u32 state) {
     poketchSys->systemState = state;
     poketchSys->subState = 0;
 }
 
-static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
-{
+static void PoketchEvent_InitApp(PoketchSystem *poketchSys) {
     switch (poketchSys->subState) {
     case 0:
         PoketchGraphics_StartTask(poketchSys->taskData, TASK_SETUP_BACKGROUND);
@@ -299,8 +286,7 @@ static void PoketchEvent_InitApp(PoketchSystem *poketchSys)
     }
 }
 
-static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
-{
+static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys) {
     switch (poketchSys->subState) {
     case 0:
         if (PoketechSystem_IsRunningTask(poketchSys)) {
@@ -387,8 +373,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
     }
 }
 
-static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
-{
+static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys) {
     switch (poketchSys->subState) {
     case 0: {
         poketchSys->appStarting = TRUE;
@@ -415,8 +400,7 @@ static void PoketchEvent_OnAppChange(PoketchSystem *poketchSys)
     }
 }
 
-static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
-{
+static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys) {
     switch (poketchSys->subState) {
     case 0:
         switch (poketchSys->appState) {
@@ -455,8 +439,7 @@ static void PoketchEvent_OnShutdown(PoketchSystem *poketchSys)
     }
 }
 
-static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int appID)
-{
+static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int appID) {
     GF_ASSERT(appID >= 0 && appID < NELEMS(sAppOverlayIDs));
 
     if (poketchSys->loadedAppID == POKETCH_APPID_NONE) {
@@ -472,42 +455,36 @@ static void PoketchSystem_LoadApp(PoketchSystem *poketchSys, int appID)
     }
 }
 
-static void PoketchSystem_UnloadApp(PoketchSystem *poketchSys)
-{
+static void PoketchSystem_UnloadApp(PoketchSystem *poketchSys) {
     if (poketchSys->loadedAppID != POKETCH_APPID_NONE) {
         Overlay_UnloadByID(poketchSys->loadedAppOverlayID);
         poketchSys->loadedAppID = POKETCH_APPID_NONE;
     }
 }
 
-static void PoketchSystem_InitApp(PoketchSystem *poketchSys, u32)
-{
+static void PoketchSystem_InitApp(PoketchSystem *poketchSys, u32) {
     GF_ASSERT(poketchSys->appState == POKETCH_APP_STATE_NONE);
 
     poketchSys->currAppInit(&(poketchSys->appData), poketchSys, poketchSys->bgl, poketchSys->loadedAppID);
     poketchSys->appState = POKETCH_APP_STATE_INIT;
 }
 
-static BOOL PoketchSystem_IsAppInitialized(PoketchSystem *poketchSys)
-{
+static BOOL PoketchSystem_IsAppInitialized(PoketchSystem *poketchSys) {
     return poketchSys->appState == POKETCH_APP_STATE_UPDATE;
 }
 
-static void PoketchSystem_ShutdownApp(PoketchSystem *poketchSys)
-{
+static void PoketchSystem_ShutdownApp(PoketchSystem *poketchSys) {
     GF_ASSERT(poketchSys->appState == POKETCH_APP_STATE_UPDATE);
 
     poketchSys->currAppShutdown(poketchSys->appData);
     poketchSys->appState = POKETCH_APP_STATE_SHUTDOWN;
 }
 
-static BOOL PoketchSystem_IsAppShutdown(PoketchSystem *poketchSys)
-{
+static BOOL PoketchSystem_IsAppShutdown(PoketchSystem *poketchSys) {
     return poketchSys->appState == POKETCH_APP_STATE_NONE;
 }
 
-void PoketchSystem_SetAppFunctions(PoketchAppInitFunction appInit, PoketchAppShutdownFunction appShutdown)
-{
+void PoketchSystem_SetAppFunctions(PoketchAppInitFunction appInit, PoketchAppShutdownFunction appShutdown) {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     poketchSys->currAppInit = appInit;
@@ -515,20 +492,17 @@ void PoketchSystem_SetAppFunctions(PoketchAppInitFunction appInit, PoketchAppShu
     poketchSys->currAppSave = NULL;
 }
 
-void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys)
-{
+void PoketchSystem_NotifyAppLoaded(PoketchSystem *poketchSys) {
     GF_ASSERT(poketchSys->appState == POKETCH_APP_STATE_INIT);
     poketchSys->appState = POKETCH_APP_STATE_UPDATE;
 }
 
-void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys)
-{
+void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys) {
     GF_ASSERT(poketchSys->appState == POKETCH_APP_STATE_SHUTDOWN);
     poketchSys->appState = POKETCH_APP_STATE_NONE;
 }
 
-void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData)
-{
+void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData) {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     poketchSys->currAppSave = saveFunction;
@@ -541,8 +515,7 @@ static const TouchScreenHitTable sMainPoketchButtons[] = {
     [POKETCH_SYSTEM_MAIN_BUTTON_SCREEN] = { POKETCH_SCREEN_MIN_Y, POKETCH_SCREEN_MAX_Y, POKETCH_SCREEN_MIN_X, POKETCH_SCREEN_MAX_X } // Screen
 };
 
-static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
-{
+static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys) {
     poketchSys->buttonManager = PoketchButtonManager_New(sMainPoketchButtons, NELEMS(sMainPoketchButtons), PoketchSystem_OnButtonEvent, poketchSys, HEAP_ID_POKETCH_MAIN);
 
     if (poketchSys->buttonManager != NULL) {
@@ -555,19 +528,16 @@ static BOOL PoketchSystem_ButtonInit(PoketchSystem *poketchSys)
     return FALSE;
 }
 
-static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys)
-{
+static void PoketchSystem_ButtonShutdown(PoketchSystem *poketchSys) {
     PoketchButtonManager_Free(poketchSys->buttonManager);
 }
 
-static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys)
-{
+static void PoketchSystem_ButtonUpdate(PoketchSystem *poketchSys) {
     poketchSys->buttonState = BUTTON_MANAGER_STATE_NULL;
     PoketchButtonManager_Update(poketchSys->buttonManager);
 }
 
-static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system)
-{
+static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touchEvent, void *system) {
     PoketchSystem *poketchSys = (PoketchSystem *)system;
 
     if (PoketechSystem_IsRunningTask(poketchSys) == FALSE) {
@@ -640,8 +610,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 }
 
-static BOOL PoketchSystem_StartTaskIfNotActive(PoketchGraphics_TaskData *taskData, u32 taskId)
-{
+static BOOL PoketchSystem_StartTaskIfNotActive(PoketchGraphics_TaskData *taskData, u32 taskId) {
     for (u32 i = 0; i < 6; i++) {
         if (PoketchGraphics_TaskIsNotActive(taskData, taskId) == FALSE) {
             return FALSE;
@@ -652,14 +621,12 @@ static BOOL PoketchSystem_StartTaskIfNotActive(PoketchGraphics_TaskData *taskDat
     return TRUE;
 }
 
-PoketchGraphics_TaskData *PoketchSystem_GetTaskData(void)
-{
+PoketchGraphics_TaskData *PoketchSystem_GetTaskData(void) {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
     return poketchSys->taskData;
 }
 
-void PoketchSystem_PlaySoundEffect(u32 soundID)
-{
+void PoketchSystem_PlaySoundEffect(u32 soundID) {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if ((poketchSys->appChanging == FALSE) && (PoketechSystem_IsRunningTask(poketchSys) == FALSE)) {
@@ -667,8 +634,7 @@ void PoketchSystem_PlaySoundEffect(u32 soundID)
     }
 }
 
-void PoketchSystem_PlayCry(u32 species, u32 form)
-{
+void PoketchSystem_PlayCry(u32 species, u32 form) {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (poketchSys->appChanging == FALSE && PoketechSystem_IsRunningTask(poketchSys) == FALSE) {
@@ -676,8 +642,7 @@ void PoketchSystem_PlayCry(u32 species, u32 form)
     }
 }
 
-static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y)
-{
+static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y) {
     if ((u32)(x - POKETCH_SCREEN_MIN_X) < (u32)(POKETCH_SCREEN_MAX_X - POKETCH_SCREEN_MIN_X) & (u32)(y - POKETCH_SCREEN_MIN_Y) < (u32)(POKETCH_SCREEN_MAX_Y - POKETCH_SCREEN_MIN_Y)) {
         return TRUE;
     }
@@ -685,8 +650,7 @@ static inline BOOL PoketchSystem_InsideScreenBounds(u32 x, u32 y)
     return FALSE;
 }
 
-BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y)
-{
+BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y) {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (!poketchSys->appChanging
@@ -698,8 +662,7 @@ BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y)
     return FALSE;
 }
 
-BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
-{
+BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y) {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (!poketchSys->appChanging
@@ -711,45 +674,37 @@ BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
     return FALSE;
 }
 
-BOOL PoketechSystem_IsRunningTask(const PoketchSystem *poketchSys)
-{
+BOOL PoketechSystem_IsRunningTask(const PoketchSystem *poketchSys) {
     return FieldSystem_IsRunningTask(poketchSys->fieldSystem);
 }
 
-void PoketechSystem_UpdateButtonManager(const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager)
-{
+void PoketechSystem_UpdateButtonManager(const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager) {
     if (PoketechSystem_IsRunningTask(poketchSys) == FALSE && poketchSys->appChanging == FALSE) {
         PoketchButtonManager_Update(buttonManager);
     }
 }
 
-BOOL PoketchSystem_IsPlayerMoving(const PoketchSystem *poketchSys)
-{
+BOOL PoketchSystem_IsPlayerMoving(const PoketchSystem *poketchSys) {
     return poketchSys->playerMoving;
 }
 
-BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys)
-{
+BOOL PoketchSystem_PedometerUpdated(const PoketchSystem *poketchSys) {
     return poketchSys->pedometerUpdated;
 }
 
-FieldSystem *PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys)
-{
+FieldSystem *PoketchSystem_GetFieldSystem(const PoketchSystem *poketchSys) {
     return poketchSys->fieldSystem;
 }
 
-Poketch *PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys)
-{
+Poketch *PoketchSystem_GetPoketchData(const PoketchSystem *poketchSys) {
     return poketchSys->poketch;
 }
 
-SaveData *PoketchSystem_GetSaveData(const PoketchSystem *poketchSys)
-{
+SaveData *PoketchSystem_GetSaveData(const PoketchSystem *poketchSys) {
     return poketchSys->saveData;
 }
 
-int PoketchSystem_GetBorderColor(const PoketchSystem *poketchSys)
-{
+int PoketchSystem_GetBorderColor(const PoketchSystem *poketchSys) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(poketchSys->saveData);
 
     if (TrainerInfo_Gender(trainerInfo) == GENDER_FEMALE) {

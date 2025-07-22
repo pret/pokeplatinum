@@ -9,8 +9,7 @@
 #include "message.h"
 #include "strbuf.h"
 
-UnkStruct_020158A8 *sub_020158A8(int heapID)
-{
+UnkStruct_020158A8 *sub_020158A8(int heapID) {
     UnkStruct_020158A8 *v0;
     int v1;
 
@@ -27,8 +26,7 @@ UnkStruct_020158A8 *sub_020158A8(int heapID)
     return v0;
 }
 
-void sub_020158F4(UnkStruct_020158A8 *param0)
-{
+void sub_020158F4(UnkStruct_020158A8 *param0) {
     int v0;
 
     for (v0 = (29 - 1); v0 >= 0; v0--) {
@@ -39,7 +37,6 @@ void sub_020158F4(UnkStruct_020158A8 *param0)
     Heap_Free(param0);
 }
 
-const Strbuf *sub_02015918(UnkStruct_020158A8 *param0, int param1)
-{
+const Strbuf *sub_02015918(UnkStruct_020158A8 *param0, int param1) {
     return (const Strbuf *)param0->unk_04[param1];
 }

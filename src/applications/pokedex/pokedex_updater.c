@@ -17,8 +17,7 @@ static void ResetGraphicsMan(PokedexGraphicsManager *graphicsMan);
 static BOOL RunDataFunction(PokedexDataFunction dataFunc, PokedexDataManager *dataMan, void *data);
 static BOOL RunGraphicsFunction(PokedexGraphicsFunction graphicsFunc, void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
 
-PokedexUpdater *PokedexUpdater_New(enum HeapId heapID)
-{
+PokedexUpdater *PokedexUpdater_New(enum HeapId heapID) {
     PokedexUpdater *pokedexUpdater = Heap_AllocFromHeap(heapID, sizeof(PokedexUpdater));
 
     GF_ASSERT(pokedexUpdater);
@@ -30,8 +29,7 @@ PokedexUpdater *PokedexUpdater_New(enum HeapId heapID)
     return pokedexUpdater;
 }
 
-void PokedexUpdater_PopulateUpdater(PokedexUpdater *pokedexUpdater, const PokedexUpdaterTemplate *pokedexUpdaterTemplate)
-{
+void PokedexUpdater_PopulateUpdater(PokedexUpdater *pokedexUpdater, const PokedexUpdaterTemplate *pokedexUpdaterTemplate) {
     GF_ASSERT(pokedexUpdater);
     GF_ASSERT(pokedexUpdaterTemplate);
     GF_ASSERT(PokedexUpdater_IsPageExited(pokedexUpdater));
@@ -54,8 +52,7 @@ void PokedexUpdater_PopulateUpdater(PokedexUpdater *pokedexUpdater, const Pokede
     pokedexUpdater->graphicsFunc[2] = pokedexUpdaterTemplate->graphicsFunc[2];
 }
 
-BOOL PokedexUpdater_UpdateData(PokedexUpdater *pokedexUpdater)
-{
+BOOL PokedexUpdater_UpdateData(PokedexUpdater *pokedexUpdater) {
     BOOL processDone;
 
     GF_ASSERT(pokedexUpdater);
@@ -99,8 +96,7 @@ BOOL PokedexUpdater_UpdateData(PokedexUpdater *pokedexUpdater)
     return FALSE;
 }
 
-BOOL PokedexUpdater_UpdateGraphics(PokedexUpdater *pokedexUpdater)
-{
+BOOL PokedexUpdater_UpdateGraphics(PokedexUpdater *pokedexUpdater) {
     BOOL processDone;
 
     GF_ASSERT(pokedexUpdater);
@@ -138,54 +134,46 @@ BOOL PokedexUpdater_UpdateGraphics(PokedexUpdater *pokedexUpdater)
     return FALSE;
 }
 
-void PokedexUpdater_SetDataUnchanged(PokedexUpdater *pokedexUpdater, BOOL unchanged)
-{
+void PokedexUpdater_SetDataUnchanged(PokedexUpdater *pokedexUpdater, BOOL unchanged) {
     pokedexUpdater->dataMan.unchanged = unchanged;
 }
 
-void PokedexUpdater_DataExit(PokedexUpdater *pokedexUpdater)
-{
+void PokedexUpdater_DataExit(PokedexUpdater *pokedexUpdater) {
     GF_ASSERT(pokedexUpdater);
     pokedexUpdater->dataMan.exit = TRUE;
 }
 
-BOOL PokedexUpdater_IsPageExited(PokedexUpdater *pokedexUpdater)
-{
+BOOL PokedexUpdater_IsPageExited(PokedexUpdater *pokedexUpdater) {
     GF_ASSERT(pokedexUpdater);
 
     return pokedexUpdater->state == PAGE_STATE_EXIT;
 }
 
-BOOL PokedexUpdater_IsPageDataActive(PokedexUpdater *pokedexUpdater)
-{
+BOOL PokedexUpdater_IsPageDataActive(PokedexUpdater *pokedexUpdater) {
     GF_ASSERT(pokedexUpdater);
 
     return pokedexUpdater->state == PAGE_STATE_PAGE_DATA;
 }
 
-static void ResetDataMan(PokedexDataManager *dataMan)
-{
+static void ResetDataMan(PokedexDataManager *dataMan) {
     dataMan->state = PAGE_STATE_ENTER;
     dataMan->pageData = NULL;
     dataMan->exit = FALSE;
 }
 
-static void ResetGraphicsMan(PokedexGraphicsManager *graphicsMan)
-{
+static void ResetGraphicsMan(PokedexGraphicsManager *graphicsMan) {
     graphicsMan->state = PAGE_STATE_ENTER;
     graphicsMan->pageGraphics = NULL;
 }
 
-static BOOL RunDataFunction(PokedexDataFunction dataFunc, PokedexDataManager *dataMan, void *data)
-{
+static BOOL RunDataFunction(PokedexDataFunction dataFunc, PokedexDataManager *dataMan, void *data) {
     GF_ASSERT(dataFunc);
     GF_ASSERT(dataMan);
 
     return dataFunc(dataMan, data);
 }
 
-static BOOL RunGraphicsFunction(PokedexGraphicsFunction graphicsFunc, void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
-{
+static BOOL RunGraphicsFunction(PokedexGraphicsFunction graphicsFunc, void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan) {
     GF_ASSERT(graphicsFunc);
     GF_ASSERT(graphicsMan);
     GF_ASSERT(dataMan);

@@ -57,8 +57,7 @@ const ApplicationManagerTemplate Unk_020F67FC = {
     FS_OVERLAY_ID(overlay119)
 };
 
-static int sub_02098218(ApplicationManager *appMan, int *param1)
-{
+static int sub_02098218(ApplicationManager *appMan, int *param1) {
     UnkStruct_0209843C *v0;
     UnkStruct_ov119_021D0FD0 *v1;
 
@@ -103,8 +102,7 @@ static int sub_02098218(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int sub_02098304(ApplicationManager *appMan, int *param1)
-{
+static int sub_02098304(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -151,8 +149,7 @@ static int sub_02098304(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int sub_02098388(ApplicationManager *appMan, int *param1)
-{
+static int sub_02098388(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
     G3DPipelineBuffers_Free(v0->unk_04.unk_34);
@@ -190,8 +187,7 @@ static int sub_02098388(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static BOOL sub_0209843C(FieldTask *param0)
-{
+static BOOL sub_0209843C(FieldTask *param0) {
     UnkStruct_0209843C *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
@@ -269,8 +265,7 @@ static BOOL sub_0209843C(FieldTask *param0)
     return 0;
 }
 
-void sub_020985AC(FieldTask *param0, void *param1)
-{
+void sub_020985AC(FieldTask *param0, void *param1) {
     UnkStruct_0209843C *v0;
     UnkStruct_0203E2FC *v1;
 

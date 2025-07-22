@@ -4,8 +4,7 @@
 
 #define FORMAT_ARG_TYPE_MASK 0xFF00
 
-charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr)
-{
+charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr) {
     GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
 
     if (*cstr == CHAR_FORMAT_ARG) {
@@ -17,14 +16,12 @@ charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr)
     return cstr;
 }
 
-u32 CharCode_FormatArgType(const charcode_t *cstr)
-{
+u32 CharCode_FormatArgType(const charcode_t *cstr) {
     GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
     return *(cstr + 1);
 }
 
-BOOL CharCode_IsFormatArg(const charcode_t *cstr)
-{
+BOOL CharCode_IsFormatArg(const charcode_t *cstr) {
     u32 type = CharCode_FormatArgType(cstr);
 
     if ((type & FORMAT_ARG_TYPE_MASK) == 0x100
@@ -36,8 +33,7 @@ BOOL CharCode_IsFormatArg(const charcode_t *cstr)
     return FALSE;
 }
 
-u32 CharCode_FormatArgParam(const charcode_t *cstr, u32 paramIdx)
-{
+u32 CharCode_FormatArgParam(const charcode_t *cstr, u32 paramIdx) {
     GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
 
     cstr += 2;

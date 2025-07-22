@@ -408,13 +408,11 @@ ALIGN_4 static const u16 *const sMovePaletteTable[] = {
 
 void include_unk_ov11_0221FBAC();
 
-void include_unk_ov11_0221FBAC()
-{
+void include_unk_ov11_0221FBAC() {
     Unk_ov11_0221FBAC[0];
 }
 
-const u16 *GetMoveTypePalette(int moveType)
-{
+const u16 *GetMoveTypePalette(int moveType) {
     const u16 *paletteSourceAdr;
 
     if (moveType != -1) {
@@ -426,8 +424,7 @@ const u16 *GetMoveTypePalette(int moveType)
     return paletteSourceAdr;
 }
 
-void LoadMoveSelectPltt(PaletteData *paletteSys, enum PokemonType moveType, int unused, enum PaletteBufferID bufferID, enum Palette paletteDest)
-{
+void LoadMoveSelectPltt(PaletteData *paletteSys, enum PokemonType moveType, int unused, enum PaletteBufferID bufferID, enum Palette paletteDest) {
     const u16 *paletteSource = GetMoveTypePalette(moveType);
     PaletteData_LoadBuffer(paletteSys, paletteSource, bufferID, PLTT_DEST(paletteDest), PALETTE_SIZE_BYTES);
 }

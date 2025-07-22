@@ -63,8 +63,7 @@ static void ResetBothTransferRanges(PlttTransferTaskManager *task);
 
 static PlttTransferTaskManager *sTaskManager = NULL;
 
-void PlttTransfer_Init(int capacity, enum HeapId heapID)
-{
+void PlttTransfer_Init(int capacity, enum HeapId heapID) {
     if (sTaskManager == NULL) {
         sTaskManager = Heap_AllocFromHeap(heapID, sizeof(PlttTransferTaskManager));
         MI_CpuClear32(sTaskManager, sizeof(PlttTransferTaskManager));
@@ -78,8 +77,7 @@ void PlttTransfer_Init(int capacity, enum HeapId heapID)
     }
 }
 
-void PlttTransfer_MarkReservedSlots(u16 reservedMask, NNS_G2D_VRAM_TYPE vramType)
-{
+void PlttTransfer_MarkReservedSlots(u16 reservedMask, NNS_G2D_VRAM_TYPE vramType) {
     if (vramType == NNS_G2D_VRAM_TYPE_2DMAIN) {
         sTaskManager->vramTransferMain |= reservedMask;
     } else if (vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
@@ -87,8 +85,7 @@ void PlttTransfer_MarkReservedSlots(u16 reservedMask, NNS_G2D_VRAM_TYPE vramType
     }
 }
 
-void PlttTransfer_Free(void)
-{
+void PlttTransfer_Free(void) {
     if (sTaskManager != NULL) {
         PlttTransfer_ResetAllTasks();
         Heap_Free(sTaskManager->tasks);
@@ -97,13 +94,11 @@ void PlttTransfer_Free(void)
     }
 }
 
-static void DummyFunc(void)
-{
+static void DummyFunc(void) {
     return;
 }
 
-void PlttTransfer_Clear(void)
-{
+void PlttTransfer_Clear(void) {
     sTaskManager->offsetMain = 0;
     sTaskManager->offsetSub = 0;
     sTaskManager->extPlttOffsetMain = 0;
@@ -113,8 +108,7 @@ void PlttTransfer_Clear(void)
     ResetBothTransferRanges(sTaskManager);
 }
 
-BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *template)
-{
+BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *template) {
     PlttTransferTask *task = FindNextFreeTask();
     if (task == NULL) {
         GF_ASSERT(FALSE);
@@ -135,8 +129,7 @@ BOOL PlttTransfer_RequestWholeRange(const PlttTransferTaskTemplate *template)
     return TRUE;
 }
 
-BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *template)
-{
+BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *template) {
     PlttTransferTask *task = FindNextFreeTask();
     if (task == NULL) {
         GF_ASSERT(FALSE);
@@ -155,8 +148,7 @@ BOOL PlttTransfer_RequestFreeSpace(const PlttTransferTaskTemplate *template)
     return TRUE;
 }
 
-void PlttTransfer_ReplacePlttData(int resourceID, NNSG2dPaletteData *data)
-{
+void PlttTransfer_ReplacePlttData(int resourceID, NNSG2dPaletteData *data) {
     GF_ASSERT(data);
 
     PlttTransferTask *task = FindTransferTask(resourceID);
@@ -172,13 +164,11 @@ void PlttTransfer_ReplacePlttData(int resourceID, NNSG2dPaletteData *data)
     }
 }
 
-BOOL PlttTransfer_HasTask(int resourceID)
-{
+BOOL PlttTransfer_HasTask(int resourceID) {
     return FindTransferTask(resourceID) != NULL;
 }
 
-void PlttTransfer_ResetTask(int resourceID)
-{
+void PlttTransfer_ResetTask(int resourceID) {
     PlttTransferTask *task = FindTransferTask(resourceID);
     GF_ASSERT(task);
 
@@ -188,8 +178,7 @@ void PlttTransfer_ResetTask(int resourceID)
     }
 }
 
-void PlttTransfer_ResetAllTasks(void)
-{
+void PlttTransfer_ResetAllTasks(void) {
     for (int i = 0; i < sTaskManager->capacity; i++) {
         if (sTaskManager->tasks[i].initialized == TRUE) {
             ClearTaskTransferRanges(&sTaskManager->tasks[i]);
@@ -198,8 +187,7 @@ void PlttTransfer_ResetAllTasks(void)
     }
 }
 
-NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int resourceID)
-{
+NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int resourceID) {
     PlttTransferTask *task = FindTransferTask(resourceID);
     if (task == NULL) {
         GF_ASSERT(task);
@@ -213,8 +201,7 @@ NNSG2dImagePaletteProxy *PlttTransfer_GetPaletteProxy(int resourceID)
     return NULL;
 }
 
-NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int resourceID, NNSG2dImageProxy *imageProxy)
-{
+NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int resourceID, NNSG2dImageProxy *imageProxy) {
     PlttTransferTask *task = FindTransferTask(resourceID);
     if (task == NULL) {
         GF_ASSERT(task);
@@ -232,8 +219,7 @@ NNSG2dImagePaletteProxy *PlttTransfer_ToggleExtPalette(int resourceID, NNSG2dIma
     return &task->paletteProxy;
 }
 
-u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *paletteProxy, NNS_G2D_VRAM_TYPE vramType)
-{
+u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *paletteProxy, NNS_G2D_VRAM_TYPE vramType) {
     u32 size;
     if (paletteProxy->bExtendedPlt) {
         size = PALETTE_SIZE_EXT_BYTES;
@@ -246,13 +232,11 @@ u32 PlttTransfer_GetPlttOffset(const NNSG2dImagePaletteProxy *paletteProxy, NNS_
     return size != 0 ? NNS_G2dGetImagePaletteLocation(paletteProxy, vramType) / size : 0;
 }
 
-static void ResetTransferTask(PlttTransferTask *task)
-{
+static void ResetTransferTask(PlttTransferTask *task) {
     InitTransferTask(task);
 }
 
-static BOOL InitTransferTaskFromTemplate(const PlttTransferTaskTemplate *template, PlttTransferTask *task)
-{
+static BOOL InitTransferTaskFromTemplate(const PlttTransferTaskTemplate *template, PlttTransferTask *task) {
     task->data = template->data;
 
     if (PlttTransfer_HasTask(template->resourceID) == TRUE) {
@@ -267,15 +251,13 @@ static BOOL InitTransferTaskFromTemplate(const PlttTransferTaskTemplate *templat
     return TRUE;
 }
 
-static void InitTransferTask(PlttTransferTask *task)
-{
+static void InitTransferTask(PlttTransferTask *task) {
     memset(task, 0, sizeof(PlttTransferTask));
     task->resourceID = PLTT_RESOURCE_ID_NONE;
     NNS_G2dInitImagePaletteProxy(&task->paletteProxy);
 }
 
-static BOOL ReserveAndTransferWholeRange(const PlttTransferTaskTemplate *unused, PlttTransferTask *task)
-{
+static BOOL ReserveAndTransferWholeRange(const PlttTransferTaskTemplate *unused, PlttTransferTask *task) {
     u32 *targetOffsetMain;
     u32 *targetOffsetSub;
     u32 plttSizeMain;
@@ -299,8 +281,7 @@ static BOOL ReserveAndTransferWholeRange(const PlttTransferTaskTemplate *unused,
     return TRUE;
 }
 
-static BOOL ReserveAndTransferFreeSpace(const PlttTransferTaskTemplate *unused, PlttTransferTask *task)
-{
+static BOOL ReserveAndTransferFreeSpace(const PlttTransferTaskTemplate *unused, PlttTransferTask *task) {
     if (task->data->bExtendedPlt) {
         GF_ASSERT(FALSE);
     }
@@ -335,8 +316,7 @@ static BOOL ReserveAndTransferFreeSpace(const PlttTransferTaskTemplate *unused, 
     return TRUE;
 }
 
-static PlttTransferTask *FindTransferTask(int resourceID)
-{
+static PlttTransferTask *FindTransferTask(int resourceID) {
     for (int i = 0; i < sTaskManager->capacity; i++) {
         if (sTaskManager->tasks[i].resourceID == resourceID) {
             return sTaskManager->tasks + i;
@@ -346,8 +326,7 @@ static PlttTransferTask *FindTransferTask(int resourceID)
     return NULL;
 }
 
-static PlttTransferTask *FindNextFreeTask(void)
-{
+static PlttTransferTask *FindNextFreeTask(void) {
     for (int i = 0; i < sTaskManager->capacity; i++) {
         if (sTaskManager->tasks[i].initialized == FALSE) {
             return sTaskManager->tasks + i;
@@ -357,8 +336,7 @@ static PlttTransferTask *FindNextFreeTask(void)
     return NULL;
 }
 
-static void UpdateVramCapacities(void)
-{
+static void UpdateVramCapacities(void) {
     switch (GX_GetBankForOBJExtPltt()) {
     case GX_VRAM_OBJEXTPLTT_0_F:
     case GX_VRAM_OBJEXTPLTT_0_G:
@@ -379,14 +357,12 @@ static void UpdateVramCapacities(void)
     }
 }
 
-static void UpdateTransferSize(PlttTransferTask *task)
-{
+static void UpdateTransferSize(PlttTransferTask *task) {
     task->data->szByte = task->numPalettes * PALETTE_SIZE_BYTES;
     LoadImagePalette(task);
 }
 
-static void LoadImagePalette(PlttTransferTask *task)
-{
+static void LoadImagePalette(PlttTransferTask *task) {
     NNS_G2dInitImagePaletteProxy(&task->paletteProxy);
     if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
         NNS_G2dLoadPalette(task->data, task->baseAddrMain, NNS_G2D_VRAM_TYPE_2DMAIN, &task->paletteProxy);
@@ -397,22 +373,19 @@ static void LoadImagePalette(PlttTransferTask *task)
     }
 }
 
-static void ReserveTransferRange(u16 *range, int count, int start)
-{
+static void ReserveTransferRange(u16 *range, int count, int start) {
     for (int i = 0; i < count; i++) {
         *range |= 1 << (start + i);
     }
 }
 
-static void ClearTransferRange(u16 *range, int count, int start)
-{
+static void ClearTransferRange(u16 *range, int count, int start) {
     for (int i = 0; i < count; i++) {
         *range &= ~(1 << (start + i));
     }
 }
 
-static int FindAvailableTransferSlot(u16 palette, int size)
-{
+static int FindAvailableTransferSlot(u16 palette, int size) {
     int slot;
     for (slot = 0; slot < NUM_VRAM_PALETTES; slot++) {
         int colorIdx = 0;
@@ -437,14 +410,12 @@ static int FindAvailableTransferSlot(u16 palette, int size)
     return PLTT_OFFSET(slot);
 }
 
-static void ResetBothTransferRanges(PlttTransferTaskManager *manager)
-{
+static void ResetBothTransferRanges(PlttTransferTaskManager *manager) {
     manager->vramTransferMain = 0;
     manager->vramTransferSub = 0;
 }
 
-static void ReserveTaskTransferRanges(PlttTransferTask *task)
-{
+static void ReserveTaskTransferRanges(PlttTransferTask *task) {
     if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
         ReserveTransferRange(&sTaskManager->vramTransferMain, task->numPalettes, task->baseAddrMain / PALETTE_SIZE_BYTES);
     }
@@ -454,8 +425,7 @@ static void ReserveTaskTransferRanges(PlttTransferTask *task)
     }
 }
 
-static void ClearTaskTransferRanges(PlttTransferTask *task)
-{
+static void ClearTaskTransferRanges(PlttTransferTask *task) {
     if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
         ClearTransferRange(&sTaskManager->vramTransferMain, task->numPalettes, task->baseAddrMain / PALETTE_SIZE_BYTES);
     }
@@ -465,8 +435,7 @@ static void ClearTaskTransferRanges(PlttTransferTask *task)
     }
 }
 
-static BOOL TryGetDestOffsets(PlttTransferTask *task, u32 offsetMain, u32 offsetSub, u32 sizeMain, u32 sizeSub)
-{
+static BOOL TryGetDestOffsets(PlttTransferTask *task, u32 offsetMain, u32 offsetSub, u32 sizeMain, u32 sizeSub) {
     BOOL result = TRUE;
 
     if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
@@ -492,8 +461,7 @@ static BOOL TryGetDestOffsets(PlttTransferTask *task, u32 offsetMain, u32 offset
     return result;
 }
 
-static void ReserveVramSpace(PlttTransferTask *task, u32 *offsetMain, u32 *offsetSub)
-{
+static void ReserveVramSpace(PlttTransferTask *task, u32 *offsetMain, u32 *offsetSub) {
     if (task->vramType & NNS_G2D_VRAM_TYPE_2DMAIN) {
         *offsetMain += task->numPalettes * PALETTE_SIZE_BYTES;
     }

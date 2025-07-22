@@ -15,12 +15,10 @@ static const CommCmdTable Unk_ov114_022603E4[] = {
     { ov114_02260084, ov114_02260080, NULL },
 };
 
-const CommCmdTable *ov114_02260038(void)
-{
+const CommCmdTable *ov114_02260038(void) {
     return Unk_ov114_022603E4;
 }
 
-int ov114_02260040(void)
-{
+int ov114_02260040(void) {
     return sizeof(Unk_ov114_022603E4) / sizeof(CommCmdTable);
 }

@@ -35,8 +35,7 @@ static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID);
 static void sub_02039530(int param0, BOOL param1, u32 heapID);
 static void sub_02039614(UnkStruct_020393C8 *param0);
 
-UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 heapID, int param2, int param3, BOOL param4, const UnkStruct_020E5EB4 *param5[], int param6)
-{
+UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 heapID, int param2, int param3, BOOL param4, const UnkStruct_020E5EB4 *param5[], int param6) {
     UnkStruct_020393C8 *v0;
 
     sub_020394D0(param6, param4, (16 * 2 * 14), heapID);
@@ -59,14 +58,12 @@ UnkStruct_020393C8 *sub_020393C8(u32 param0, u32 heapID, int param2, int param3,
     return v0;
 }
 
-static void sub_02039428(SysTask *param0, void *param1)
-{
+static void sub_02039428(SysTask *param0, void *param1) {
     UnkStruct_020393C8 *v0 = (UnkStruct_020393C8 *)param1;
     sub_02039614(v0);
 }
 
-static int inline inline_02039614(UnkStruct_020393C8 *param0)
-{
+static int inline inline_02039614(UnkStruct_020393C8 *param0) {
     switch (param0->unk_11) {
     case 1:
         return (GX_GetDispSelect() == GX_DISP_SELECT_MAIN_SUB) ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
@@ -77,8 +74,7 @@ static int inline inline_02039614(UnkStruct_020393C8 *param0)
     }
 }
 
-static int inline inline_02039614_1(int param0, int param1)
-{
+static int inline inline_02039614_1(int param0, int param1) {
     int v0, v1;
 
     if (param0 == NNS_G2D_VRAM_TYPE_2DMAIN) {
@@ -109,21 +105,18 @@ static int inline inline_02039614_1(int param0, int param1)
     }
 }
 
-static inline void inline_02039440(GXOamAttr *param0)
-{
+static inline void inline_02039440(GXOamAttr *param0) {
     G2_SetOBJAttr(param0, 0, 0, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NODISPLAY, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0, 0, 0);
 }
 
-void sub_02039434(UnkStruct_020393C8 *param0, int param1)
-{
+void sub_02039434(UnkStruct_020393C8 *param0, int param1) {
     if (param1 < 4) {
         param0->unk_04 = param1;
         param0->unk_08 = 0;
     }
 }
 
-void sub_02039440(UnkStruct_020393C8 *param0)
-{
+void sub_02039440(UnkStruct_020393C8 *param0) {
     SysTask_Done(param0->unk_18);
     inline_02039440((GXOamAttr *)(HW_OAM));
 
@@ -134,8 +127,7 @@ void sub_02039440(UnkStruct_020393C8 *param0)
     Heap_Free(param0);
 }
 
-void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 heapID)
-{
+void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 heapID) {
     sub_020394D0(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, (16 * 2 * 14), heapID);
     sub_02039530(NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_10, heapID);
 
@@ -143,8 +135,7 @@ void sub_02039474(UnkStruct_020393C8 *param0, BOOL param1, u32 heapID)
     param0->unk_12 = 1;
 }
 
-void *sub_020394A8(u32 heapID)
-{
+void *sub_020394A8(u32 heapID) {
     void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     ReadFileToBuffer("data/pl_wm.NCLR", &v0);
@@ -153,8 +144,7 @@ void *sub_020394A8(u32 heapID)
     return v0;
 }
 
-static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID)
-{
+static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID) {
     void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     if (v0) {
@@ -174,8 +164,7 @@ static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 heapID)
     }
 }
 
-static void sub_02039530(int param0, BOOL param1, u32 heapID)
-{
+static void sub_02039530(int param0, BOOL param1, u32 heapID) {
     void *v0 = Heap_AllocFromHeapAtEnd(heapID, 600);
 
     if (v0) {
@@ -269,8 +258,7 @@ static const UnkStruct_020E5EB4 *Unk_02100A38[] = {
 
 static UnkStruct_020393C8 *Unk_021C07D8 = NULL;
 
-static void sub_02039614(UnkStruct_020393C8 *param0)
-{
+static void sub_02039614(UnkStruct_020393C8 *param0) {
     UnkStruct_020393C8 *v0 = param0;
     int v1, v2;
     GXOamAttr *v3;
@@ -287,8 +275,7 @@ static void sub_02039614(UnkStruct_020393C8 *param0)
     }
 }
 
-void sub_02039720(void)
-{
+void sub_02039720(void) {
     UnkStruct_020393C8 *v0 = Unk_021C07D8;
 
     if (v0 == NULL) {
@@ -298,8 +285,7 @@ void sub_02039720(void)
     sub_02039614(v0);
 }
 
-void sub_02039734(void)
-{
+void sub_02039734(void) {
     BOOL v0 = 0;
 
     if (sub_020389B8()) {
@@ -309,8 +295,7 @@ void sub_02039734(void)
     sub_02039750(240, 0, v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-void sub_02039750(int param0, int param1, BOOL param2, int param3)
-{
+void sub_02039750(int param0, int param1, BOOL param2, int param3) {
     if (!sub_020334B8()) {
         return;
     }
@@ -322,30 +307,26 @@ void sub_02039750(int param0, int param1, BOOL param2, int param3)
     Unk_021C07D8 = sub_020393C8(0, HEAP_ID_91, param0, param1, param2, Unk_02100A38, param3);
 }
 
-void sub_02039794(void)
-{
+void sub_02039794(void) {
     if (Unk_021C07D8) {
         sub_02039440(Unk_021C07D8);
         Unk_021C07D8 = NULL;
     }
 }
 
-void sub_020397B0(int param0)
-{
+void sub_020397B0(int param0) {
     if (Unk_021C07D8) {
         sub_02039434(Unk_021C07D8, param0);
     }
 }
 
-void sub_020397C8(BOOL param0, u32 heapID)
-{
+void sub_020397C8(BOOL param0, u32 heapID) {
     if (Unk_021C07D8) {
         sub_02039474(Unk_021C07D8, param0, heapID);
     }
 }
 
-void DrawWifiConnectionIcon(void)
-{
+void DrawWifiConnectionIcon(void) {
     if (CommSys_IsInitialized()) {
         if ((CommSys_ConnectedCount() > 1) || sub_020389B8()) {
             sub_02039734();

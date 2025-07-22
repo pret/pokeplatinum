@@ -38,13 +38,11 @@ static BOOL ov49_022562FC(UnkStruct_ov49_0225621C *param0);
 static BOOL ov49_02256348(UnkStruct_ov49_0225621C *param0);
 static BOOL ov49_022563A0(UnkStruct_ov49_0225621C *param0);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(ov49_022561D4, ov49_022562A0);
 }
 
-static BOOL ov49_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov49_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     UnkStruct_ov49_0225621C *v0 = (UnkStruct_ov49_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov49_0225621C));
 
     if (v0 != NULL) {
@@ -61,8 +59,7 @@ static BOOL ov49_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
     return 0;
 }
 
-static BOOL ov49_0225621C(UnkStruct_ov49_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov49_0225621C(UnkStruct_ov49_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     param0->poketch = PoketchSystem_GetPoketchData(poketchSys);
     param0->unk_04.unk_00 = Poketch_CurrentScreenColor(param0->poketch);
     param0->unk_03 = param0->unk_04.unk_00;
@@ -78,14 +75,12 @@ static BOOL ov49_0225621C(UnkStruct_ov49_0225621C *param0, PoketchSystem *poketc
     return 0;
 }
 
-static void ov49_02256258(UnkStruct_ov49_0225621C *param0)
-{
+static void ov49_02256258(UnkStruct_ov49_0225621C *param0) {
     ov49_02256480(param0->unk_08);
     Heap_Free(param0);
 }
 
-static void ov49_0225626C(SysTask *param0, void *param1)
-{
+static void ov49_0225626C(SysTask *param0, void *param1) {
     static BOOL (*const v0[])(UnkStruct_ov49_0225621C *) = {
         ov49_022562BC,
         ov49_022562FC,
@@ -104,13 +99,11 @@ static void ov49_0225626C(SysTask *param0, void *param1)
     }
 }
 
-static void ov49_022562A0(void *param0)
-{
+static void ov49_022562A0(void *param0) {
     ((UnkStruct_ov49_0225621C *)param0)->unk_02 = 1;
 }
 
-static void ov49_022562A8(UnkStruct_ov49_0225621C *param0, u32 param1)
-{
+static void ov49_022562A8(UnkStruct_ov49_0225621C *param0, u32 param1) {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
     } else {
@@ -120,8 +113,7 @@ static void ov49_022562A8(UnkStruct_ov49_0225621C *param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov49_022562BC(UnkStruct_ov49_0225621C *param0)
-{
+static BOOL ov49_022562BC(UnkStruct_ov49_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov49_02256494(param0->unk_08, 0);
@@ -138,8 +130,7 @@ static BOOL ov49_022562BC(UnkStruct_ov49_0225621C *param0)
     return 0;
 }
 
-static BOOL ov49_022562FC(UnkStruct_ov49_0225621C *param0)
-{
+static BOOL ov49_022562FC(UnkStruct_ov49_0225621C *param0) {
     if (param0->unk_02) {
         ov49_022562A8(param0, 2);
         return 0;
@@ -162,8 +153,7 @@ static BOOL ov49_022562FC(UnkStruct_ov49_0225621C *param0)
     return 0;
 }
 
-static BOOL ov49_02256348(UnkStruct_ov49_0225621C *param0)
-{
+static BOOL ov49_02256348(UnkStruct_ov49_0225621C *param0) {
     if (PoketechSystem_IsRunningTask(param0->poketchSys) == 0) {
         u32 v0, v1;
 
@@ -188,8 +178,7 @@ static BOOL ov49_02256348(UnkStruct_ov49_0225621C *param0)
     return 0;
 }
 
-static BOOL ov49_022563A0(UnkStruct_ov49_0225621C *param0)
-{
+static BOOL ov49_022563A0(UnkStruct_ov49_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov49_02256494(param0->unk_08, 1);

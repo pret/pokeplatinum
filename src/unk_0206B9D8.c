@@ -66,8 +66,7 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_0206BD88;
 
-static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
-{
+static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID) {
     u8 v0;
     SaveData *saveData;
     PartyManagementData *partyMan = Heap_AllocFromHeapAtEnd(heapID, sizeof(PartyManagementData));
@@ -95,8 +94,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     return 1;
 }
 
-static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
-{
+static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem) {
     int v0;
     PartyManagementData *partyMan;
 
@@ -125,8 +123,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
-{
+static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID) {
     PokemonSummary *v0;
     SaveData *saveData;
     static const u8 v2[] = {
@@ -156,8 +153,7 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     return 3;
 }
 
-static int sub_0206BB6C(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
-{
+static int sub_0206BB6C(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem) {
     PokemonSummary *v0;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
@@ -172,8 +168,7 @@ static int sub_0206BB6C(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
     return 0;
 }
 
-static BOOL sub_0206BB94(FieldTask *param0)
-{
+static BOOL sub_0206BB94(FieldTask *param0) {
     FieldSystem *v0 = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206B9D8 *v1 = FieldTask_GetEnv(param0);
 
@@ -198,8 +193,7 @@ static BOOL sub_0206BB94(FieldTask *param0)
     return 0;
 }
 
-void sub_0206BBFC(FieldTask *param0, void **param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
-{
+void sub_0206BBFC(FieldTask *param0, void **param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206B9D8 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206B9D8));
 
@@ -216,8 +210,7 @@ void sub_0206BBFC(FieldTask *param0, void **param1, u8 param2, u8 param3, u8 par
     FieldTask_InitCall(fieldSystem->task, sub_0206BB94, v1);
 }
 
-static int sub_0206BC48(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
-{
+static int sub_0206BC48(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem) {
     SaveData *saveData;
 
     if (sub_02039074(fieldSystem->saveData)) {
@@ -229,8 +222,7 @@ static int sub_0206BC48(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
     }
 }
 
-static int sub_0206BC70(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
-{
+static int sub_0206BC70(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem) {
     u8 v0;
     UnkStruct_0206BC70 *v1;
 
@@ -244,8 +236,7 @@ static int sub_0206BC70(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static BOOL sub_0206BC94(FieldTask *param0)
-{
+static BOOL sub_0206BC94(FieldTask *param0) {
     u16 *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206BC48 *v2 = FieldTask_GetEnv(param0);
@@ -267,8 +258,7 @@ static BOOL sub_0206BC94(FieldTask *param0)
     return 0;
 }
 
-void sub_0206BCE4(FieldTask *param0, u16 param1, u16 param2, u16 param3)
-{
+void sub_0206BCE4(FieldTask *param0, u16 param1, u16 param2, u16 param3) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206BC48 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BC48));
 
@@ -281,8 +271,7 @@ void sub_0206BCE4(FieldTask *param0, u16 param1, u16 param2, u16 param3)
     FieldTask_InitCall(fieldSystem->task, sub_0206BC94, v1);
 }
 
-static BOOL sub_0206BD1C(FieldTask *param0)
-{
+static BOOL sub_0206BD1C(FieldTask *param0) {
     u16 *v0;
     const void *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -311,8 +300,7 @@ static BOOL sub_0206BD1C(FieldTask *param0)
     return 1;
 }
 
-void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
-{
+void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206BD88 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BD88));
 
@@ -324,8 +312,7 @@ void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
     FieldTask_InitCall(fieldSystem->task, sub_0206BD1C, v1);
 }
 
-u16 sub_0206BDBC(SaveData *saveData)
-{
+u16 sub_0206BDBC(SaveData *saveData) {
     BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
     Underground *v2;
@@ -399,8 +386,7 @@ u16 sub_0206BDBC(SaveData *saveData)
     }
 }
 
-u16 sub_0206BF04(SaveData *saveData)
-{
+u16 sub_0206BF04(SaveData *saveData) {
     BattleFrontier *frontier;
     UnkStruct_0202D750 *v1;
     u16 v2;
@@ -460,18 +446,15 @@ u16 sub_0206BF04(SaveData *saveData)
     return 3;
 }
 
-u32 sub_0206BFF0(u32 param0)
-{
+u32 sub_0206BFF0(u32 param0) {
     return param0 * 48828125L + 1;
 }
 
-u32 sub_0206BFFC(u32 param0)
-{
+u32 sub_0206BFFC(u32 param0) {
     return param0 * 1566083941 + 1;
 }
 
-u32 sub_0206C008(SaveData *saveData)
-{
+u32 sub_0206C008(SaveData *saveData) {
     u32 v0 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(saveData));
     v0 = sub_0206BFFC(v0);
 
@@ -480,8 +463,7 @@ u32 sub_0206C008(SaveData *saveData)
     return v0;
 }
 
-u32 sub_0206C02C(SaveData *saveData)
-{
+u32 sub_0206C02C(SaveData *saveData) {
     u32 v0, v1;
     UnkStruct_0202D750 *v2 = sub_0202D750(saveData);
 
@@ -495,8 +477,7 @@ u32 sub_0206C02C(SaveData *saveData)
     return v0;
 }
 
-u32 sub_0206C068(SaveData *saveData)
-{
+u32 sub_0206C068(SaveData *saveData) {
     int v0, v1;
     u32 v2, v3;
     UnkStruct_0202D750 *v4 = sub_0202D750(saveData);
@@ -516,8 +497,7 @@ u32 sub_0206C068(SaveData *saveData)
     return v2;
 }
 
-BOOL FieldSystem_IsInBattleTowerSalon(FieldSystem *fieldSystem)
-{
+BOOL FieldSystem_IsInBattleTowerSalon(FieldSystem *fieldSystem) {
     if (fieldSystem->location->mapId == MAP_HEADER_BATTLE_TOWER_BATTLE_SALON) {
         return TRUE;
     }

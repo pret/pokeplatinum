@@ -152,8 +152,7 @@ static const WindowTemplate Unk_ov23_0225688C = {
     0x21F
 };
 
-static void ov23_0224DC40(UnkStruct_ov23_022577B0 *param0, int param1)
-{
+static void ov23_0224DC40(UnkStruct_ov23_022577B0 *param0, int param1) {
     UnkStruct_ov23_0224DC40 v0;
 
     v0.unk_00 = param0->unk_2C;
@@ -162,8 +161,7 @@ static void ov23_0224DC40(UnkStruct_ov23_022577B0 *param0, int param1)
     CommSys_SendDataFixedSize(74, &v0);
 }
 
-static void ov23_0224DC54(UnkStruct_ov23_0224E280 *param0, int param1)
-{
+static void ov23_0224DC54(UnkStruct_ov23_0224E280 *param0, int param1) {
     UnkStruct_ov23_0224DC40 v0;
 
     v0.unk_00 = param0->unk_30;
@@ -172,8 +170,7 @@ static void ov23_0224DC54(UnkStruct_ov23_0224E280 *param0, int param1)
     CommSys_SendDataFixedSize(73, &v0);
 }
 
-static void ov23_0224DC68(UnkStruct_ov23_0224E280 *param0, int param1)
-{
+static void ov23_0224DC68(UnkStruct_ov23_0224E280 *param0, int param1) {
     int v0 = param1;
 
     if (param1 >= 136) {
@@ -187,8 +184,7 @@ static void ov23_0224DC68(UnkStruct_ov23_0224E280 *param0, int param1)
     ov23_02253F40(ov23_0224219C(), v0, 0, NULL);
 }
 
-static void ov23_0224DC90(UnkStruct_ov23_022577B0 *param0, int param1)
-{
+static void ov23_0224DC90(UnkStruct_ov23_022577B0 *param0, int param1) {
     int v0 = param1;
 
     if (param1 >= 136) {
@@ -202,8 +198,7 @@ static void ov23_0224DC90(UnkStruct_ov23_022577B0 *param0, int param1)
     ov23_02253F40(ov23_0224219C(), v0, 0, NULL);
 }
 
-void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fieldSystem)
-{
+void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fieldSystem) {
     UnkStruct_ov23_0224E280 *v0;
     ListMenuTemplate v1;
 
@@ -227,8 +222,7 @@ void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fie
     v0->unk_00 = SysTask_Start(ov23_0224E2D8, v0, 10000);
 }
 
-static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0) {
     ListMenuTemplate v0;
 
     param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), HEAP_ID_FIELD);
@@ -263,8 +257,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
     sub_020594FC();
 }
 
-static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
-{
+static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1) {
     if (param1->unk_24) {
         Menu_DestroyForExit(param1->unk_24, 4);
         param1->unk_24 = NULL;
@@ -288,8 +281,7 @@ static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
     Unk_ov23_022577B4 = NULL;
 }
 
-static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0) {
     ListMenuTemplate v0;
 
     param0->unk_1C = StringList_New(4, HEAP_ID_FIELD);
@@ -334,8 +326,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
     Window_CopyToVRAM(&param0->unk_0C);
 }
 
-static BOOL ov23_0224DF1C(SysTask *param0, void *param1)
-{
+static BOOL ov23_0224DF1C(SysTask *param0, void *param1) {
     UnkStruct_ov23_0224E280 *v0 = param1;
     u32 v1;
     u16 v2;
@@ -376,8 +367,7 @@ static BOOL ov23_0224DF1C(SysTask *param0, void *param1)
     return 1;
 }
 
-static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0) {
     ListMenuTemplate v0;
 
     param0->unk_1C = StringList_New(4, HEAP_ID_FIELD);
@@ -410,8 +400,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
     Window_CopyToVRAM(&param0->unk_0C);
 }
 
-static BOOL ov23_0224E05C(SysTask *param0, void *param1)
-{
+static BOOL ov23_0224E05C(SysTask *param0, void *param1) {
     UnkStruct_ov23_0224E280 *v0 = param1;
     u32 v1;
     UnkStruct_ov23_0224DF1C v2;
@@ -453,8 +442,7 @@ static BOOL ov23_0224E05C(SysTask *param0, void *param1)
     return 1;
 }
 
-static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0) {
     ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param0->unk_30));
     ov23_022540F4(ov23_0224219C(), param0->unk_28.unk_02);
     ov23_02253F40(ov23_0224219C(), 14, 0, NULL);
@@ -464,14 +452,12 @@ static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
 
-static void ov23_0224E17C(UnkStruct_ov23_0224E280 *param0, int param1)
-{
+static void ov23_0224E17C(UnkStruct_ov23_0224E280 *param0, int param1) {
     ov23_022540F4(ov23_0224219C(), param1);
     ov23_02253F40(ov23_0224219C(), 12, 0, NULL);
 }
 
-static void ov23_0224E19C(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
-{
+static void ov23_0224E19C(SysTask *param0, UnkStruct_ov23_0224E280 *param1) {
     u32 v0 = Menu_ProcessInputAndHandleExit(param1->unk_24, 4);
 
     if (v0 == 0xffffffff) {
@@ -490,8 +476,7 @@ static void ov23_0224E19C(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
     param1->unk_24 = NULL;
 }
 
-static BOOL ov23_0224E1E0(SysTask *param0, void *param1)
-{
+static BOOL ov23_0224E1E0(SysTask *param0, void *param1) {
     UnkStruct_ov23_0224E280 *v0 = param1;
     u32 v1 = ListMenu_ProcessInput(v0->unk_20);
     ov23_0224F270(v0);
@@ -522,8 +507,7 @@ static BOOL ov23_0224E1E0(SysTask *param0, void *param1)
     return 1;
 }
 
-static void ov23_0224E244(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
-{
+static void ov23_0224E244(SysTask *param0, UnkStruct_ov23_0224E280 *param1) {
     if (param1->unk_1C) {
         Window_EraseStandardFrame(&param1->unk_0C, 1);
         ListMenu_Free(param1->unk_20, NULL, NULL);
@@ -534,40 +518,34 @@ static void ov23_0224E244(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
     }
 }
 
-static void ov23_0224E280(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224E280(UnkStruct_ov23_0224E280 *param0) {
     ov23_0224DC54(param0, 5);
     ov23_0224DC68(param0, 7);
 
     param0->unk_37 = 5;
 }
 
-static void ov23_0224E29C(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224E29C(UnkStruct_ov23_0224E280 *param0) {
     ov23_0224DC54(param0, 22);
     param0->unk_37 = 27;
 }
 
-static void ov23_0224E2B0(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224E2B0(UnkStruct_ov23_0224E280 *param0) {
     param0->unk_37 = 16;
 }
 
-static void ov23_0224E2B8(int param0)
-{
+static void ov23_0224E2B8(int param0) {
     Unk_ov23_022577B4->unk_28.unk_02 = param0;
     Unk_ov23_022577B4->unk_37 = 18;
 }
 
-static void ov23_0224E2D0(void *param0)
-{
+static void ov23_0224E2D0(void *param0) {
     UnkStruct_ov23_0224E280 *v0 = param0;
 
     v0->unk_37 = 11;
 }
 
-static void ov23_0224E2D8(SysTask *param0, void *param1)
-{
+static void ov23_0224E2D8(SysTask *param0, void *param1) {
     UnkStruct_ov23_0224E280 *v0 = param1;
     u32 v1;
 
@@ -856,16 +834,14 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
     }
 }
 
-static void ov23_0224E8E0(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224E8E0(UnkStruct_ov23_0224E280 *param0) {
     ov23_0224DC68(param0, 15);
     ov23_0224DC54(param0, 8);
 
     param0->unk_37 = 7;
 }
 
-static void ov23_0224E8FC(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
-{
+static void ov23_0224E8FC(SysTask *param0, UnkStruct_ov23_022577B0 *param1) {
     u32 v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
 
     if (v0 == 0xffffffff) {
@@ -884,8 +860,7 @@ static void ov23_0224E8FC(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     param1->unk_20 = NULL;
 }
 
-static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
-{
+static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1) {
     u32 v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
 
     if (v0 == 0xffffffff) {
@@ -915,8 +890,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     param1->unk_20 = NULL;
 }
 
-static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
-{
+static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1) {
     if (param1->unk_20) {
         Menu_DestroyForExit(param1->unk_20, 4);
         param1->unk_20 = NULL;
@@ -935,8 +909,7 @@ static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     Unk_ov23_022577B0 = NULL;
 }
 
-static void ov23_0224EA08(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
-{
+static void ov23_0224EA08(SysTask *param0, UnkStruct_ov23_022577B0 *param1) {
     if (param1->unk_18) {
         Window_EraseStandardFrame(&param1->unk_08, 1);
         ListMenu_Free(param1->unk_1C, NULL, NULL);
@@ -948,21 +921,18 @@ static void ov23_0224EA08(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     }
 }
 
-static void ov23_0224EA44(UnkStruct_ov23_022577B0 *param0, int param1, int param2)
-{
+static void ov23_0224EA44(UnkStruct_ov23_022577B0 *param0, int param1, int param2) {
     ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param1));
     ov23_02253F40(ov23_0224219C(), param2, 0, NULL);
 }
 
-static void ov23_0224EA70(UnkStruct_ov23_022577B0 *param0)
-{
+static void ov23_0224EA70(UnkStruct_ov23_022577B0 *param0) {
     ov23_02254068(ov23_0224219C(), CommInfo_TrainerInfo(param0->unk_2C));
     ov23_022540F4(ov23_0224219C(), param0->unk_24.unk_02);
     ov23_02253F40(ov23_0224219C(), 31, 0, NULL);
 }
 
-static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
-{
+static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0) {
     ListMenuTemplate v0;
     const int v1 = 4 + 1;
 
@@ -998,8 +968,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     Window_CopyToVRAM(&param0->unk_08);
 }
 
-static BOOL ov23_0224EB74(SysTask *param0, void *param1)
-{
+static BOOL ov23_0224EB74(SysTask *param0, void *param1) {
     UnkStruct_ov23_022577B0 *v0 = param1;
     u32 v1;
     UnkStruct_ov23_0224DF1C v2;
@@ -1053,14 +1022,12 @@ static BOOL ov23_0224EB74(SysTask *param0, void *param1)
     return 1;
 }
 
-static void ov23_0224EC48(void *param0)
-{
+static void ov23_0224EC48(void *param0) {
     UnkStruct_ov23_022577B0 *v0 = param0;
     v0->unk_34 = 12;
 }
 
-static void ov23_0224EC50(SysTask *param0, void *param1)
-{
+static void ov23_0224EC50(SysTask *param0, void *param1) {
     UnkStruct_ov23_022577B0 *v0 = param1;
 
     if (!CommSys_IsPlayerConnected(v0->unk_2C)) {
@@ -1258,8 +1225,7 @@ static void ov23_0224EC50(SysTask *param0, void *param1)
     }
 }
 
-void ov23_0224F07C(int param0, int param1, FieldSystem *fieldSystem)
-{
+void ov23_0224F07C(int param0, int param1, FieldSystem *fieldSystem) {
     UnkStruct_ov23_022577B0 *v0;
 
     if (Unk_ov23_022577B0) {
@@ -1284,18 +1250,15 @@ void ov23_0224F07C(int param0, int param1, FieldSystem *fieldSystem)
     v0->unk_00 = SysTask_Start(ov23_0224EC50, v0, 10000);
 }
 
-void ov23_0224F0F0(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F0F0(int param0, int param1, void *param2, void *param3) {
     sub_02035B48(75, param2);
 }
 
-void ov23_0224F0FC(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F0FC(int param0, int param1, void *param2, void *param3) {
     sub_02035B48(76, param2);
 }
 
-void ov23_0224F108(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F108(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_0224DC40 *v0 = param2;
 
     if ((CommSys_CurNetId() == v0->unk_00) && (Unk_ov23_022577B0)) {
@@ -1304,8 +1267,7 @@ void ov23_0224F108(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov23_0224F138(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F138(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_0224DC40 *v0 = param2;
 
     if ((CommSys_CurNetId() == v0->unk_00) && (Unk_ov23_022577B4)) {
@@ -1316,18 +1278,15 @@ void ov23_0224F138(int param0, int param1, void *param2, void *param3)
     }
 }
 
-int ov23_0224F174(void)
-{
+int ov23_0224F174(void) {
     return sizeof(UnkStruct_ov23_0224DC40);
 }
 
-void ov23_0224F178(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F178(int param0, int param1, void *param2, void *param3) {
     sub_02035B48(78, param2);
 }
 
-void ov23_0224F184(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F184(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_022577B0 *v0 = Unk_ov23_022577B0;
     UnkStruct_ov23_0224F184 *v1 = param2;
 
@@ -1352,18 +1311,15 @@ void ov23_0224F184(int param0, int param1, void *param2, void *param3)
     ov23_02253F40(ov23_0224219C(), 28, 0, NULL);
 }
 
-int ov23_0224F1F8(void)
-{
+int ov23_0224F1F8(void) {
     return sizeof(UnkStruct_ov23_0224F184);
 }
 
-void ov23_0224F1FC(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F1FC(int param0, int param1, void *param2, void *param3) {
     sub_02035B48(80, param2);
 }
 
-void ov23_0224F208(int param0, int param1, void *param2, void *param3)
-{
+void ov23_0224F208(int param0, int param1, void *param2, void *param3) {
     UnkStruct_ov23_022577B0 *v0 = Unk_ov23_022577B0;
     UnkStruct_ov23_0224E280 *v1 = Unk_ov23_022577B4;
     UnkStruct_ov23_0224DF1C *v2 = param2;
@@ -1383,13 +1339,11 @@ void ov23_0224F208(int param0, int param1, void *param2, void *param3)
     }
 }
 
-int ov23_0224F248(void)
-{
+int ov23_0224F248(void) {
     return sizeof(UnkStruct_ov23_0224DF1C);
 }
 
-void ov23_0224F24C(void)
-{
+void ov23_0224F24C(void) {
     if (Unk_ov23_022577B4) {
         ov23_0224DDE4(Unk_ov23_022577B4->unk_00, Unk_ov23_022577B4);
     }
@@ -1399,8 +1353,7 @@ void ov23_0224F24C(void)
     }
 }
 
-static void ov23_0224F270(UnkStruct_ov23_0224E280 *param0)
-{
+static void ov23_0224F270(UnkStruct_ov23_0224E280 *param0) {
     u16 v0 = param0->unk_3A;
     ListMenu_CalcTrueCursorPos(param0->unk_20, &param0->unk_3A);
 

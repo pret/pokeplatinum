@@ -5,13 +5,11 @@
 
 #include "savedata.h"
 
-int TrainerCardSaveData_Size(void)
-{
+int TrainerCardSaveData_Size(void) {
     return sizeof(TrainerCardSaveData);
 }
 
-void TrainerCardSaveData_Init(TrainerCardSaveData *tcSaveData)
-{
+void TrainerCardSaveData_Init(TrainerCardSaveData *tcSaveData) {
     memset(tcSaveData, 0, sizeof(TrainerCardSaveData));
 
     int badgeID;
@@ -24,27 +22,22 @@ void TrainerCardSaveData_Init(TrainerCardSaveData *tcSaveData)
     }
 }
 
-TrainerCardSaveData *SaveData_GetTrainerCardSaveData(SaveData *saveData)
-{
+TrainerCardSaveData *SaveData_GetTrainerCardSaveData(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_TRAINER_CARD);
 }
 
-u8 *TrainerCardSaveData_GetSignature(TrainerCardSaveData *tcSaveData)
-{
+u8 *TrainerCardSaveData_GetSignature(TrainerCardSaveData *tcSaveData) {
     return tcSaveData->signature;
 }
 
-TrainerCardBadge *TrainerCardSaveData_GetTrainerCardBadges(TrainerCardSaveData *tcSaveData)
-{
+TrainerCardBadge *TrainerCardSaveData_GetTrainerCardBadges(TrainerCardSaveData *tcSaveData) {
     return tcSaveData->badges;
 }
 
-int TrainerCardBadge_GetCleanliness(const u8 badgeID, TrainerCardBadge *badges)
-{
+int TrainerCardBadge_GetCleanliness(const u8 badgeID, TrainerCardBadge *badges) {
     return badges[badgeID].cleanliness;
 }
 
-void TrainerCardBadge_SetCleanliness(const u8 badgeID, const int cleanliness, TrainerCardBadge *badges)
-{
+void TrainerCardBadge_SetCleanliness(const u8 badgeID, const int cleanliness, TrainerCardBadge *badges) {
     badges[badgeID].cleanliness = cleanliness;
 }

@@ -30,8 +30,7 @@ static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch);
 static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon);
 static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 
-PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
-{
+PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID) {
     PokemonInfoDisplayStruct *v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
     v0->heapID = heapID;
     v0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, v0->heapID);
@@ -287,8 +286,7 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
     return v0;
 }
 
-void sub_0209282C(PokemonInfoDisplayStruct *param0)
-{
+void sub_0209282C(PokemonInfoDisplayStruct *param0) {
     if (param0->unk_14.unk_04 != NULL) {
         Heap_Free(param0->unk_14.unk_04);
     }
@@ -314,8 +312,7 @@ void sub_0209282C(PokemonInfoDisplayStruct *param0)
     Heap_Free(param0);
 }
 
-static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)
-{
+static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0) {
     int v0 = Pokemon_GetNature(param0->unk_0C);
 
     if (v0 > 24) {
@@ -326,8 +323,7 @@ static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)
     MessageLoader_GetStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
-static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
-{
+static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1) {
     Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
@@ -346,8 +342,7 @@ static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int
     Strbuf_Free(v0);
 }
 
-static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
-{
+static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1) {
     Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
@@ -389,8 +384,7 @@ static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, i
     Strbuf_Free(v0);
 }
 
-static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2)
-{
+static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2) {
     Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
@@ -422,8 +416,7 @@ static const u16 Unk_020F5578[6][5] = {
     { 0x60, 0x61, 0x62, 0x63, 0x64 }
 };
 
-static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0)
-{
+static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0) {
     int v0[6], v1, v2;
     int v3, v4;
 
@@ -627,8 +620,7 @@ static const u16 Unk_020F556C[6] = {
     0x45
 };
 
-static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0)
-{
+static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0) {
     int v0, v1, v2;
 
     param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
@@ -644,8 +636,7 @@ static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0)
     MessageLoader_GetStrbuf(param0->unk_04, v2, param0->unk_2C.unk_04);
 }
 
-static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0)
-{
+static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0) {
     int v0 = Pokemon_GetValue(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
 
@@ -664,8 +655,7 @@ static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0)
     MessageLoader_GetStrbuf(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
-static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
-{
+static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2) {
     int v0 = 0;
 
     if (Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
@@ -747,13 +737,11 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
     return v0;
 }
 
-void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)
-{
+void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID) {
     UpdateBoxMonStatusAndTrainerInfo(&mon->box, trainerInfo, sel, metLocation, heapID);
 }
 
-void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)
-{
+void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID) {
     switch (sel) {
     case 0:
         if (metLocation > (SpecialMetLoc_GetId(1, 0))) {
@@ -850,8 +838,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
     }
 }
 
-static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int heapID)
-{
+static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int heapID) {
     int v0 = TrainerInfo_ID(trainerInfo);
     int v1 = TrainerInfo_Gender(trainerInfo);
     Strbuf *v2 = TrainerInfo_NameNewStrbuf(trainerInfo, heapID);
@@ -862,8 +849,7 @@ static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *train
     Strbuf_Free(v2);
 }
 
-static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch)
-{
+static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch) {
     RTCDate date;
 
     GetCurrentDate(&date);
@@ -881,8 +867,7 @@ static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation
     }
 }
 
-static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch)
-{
+static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch) {
     int value = 0;
 
     if (isHatch == FALSE) {
@@ -898,14 +883,12 @@ static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch)
     }
 }
 
-static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon)
-{
+static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon) {
     int level = BoxPokemon_GetValue(boxMon, MON_DATA_LEVEL, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &level);
 }
 
-static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon)
-{
+static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon) {
     int fatefulEncounter = TRUE;
     BoxPokemon_SetValue(boxMon, MON_DATA_FATEFUL_ENCOUNTER, &fatefulEncounter);
 }

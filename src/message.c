@@ -12,13 +12,11 @@
 
 static void MemCopyEntry(charcode_t *dst, const charcode_t *src, const MessageBankEntry *entry);
 
-static inline int EntryOffset(u32 bankIndex)
-{
+static inline int EntryOffset(u32 bankIndex) {
     return sizeof(MessageBank) + sizeof(MessageBankEntry) * bankIndex;
 }
 
-static inline void DecodeEntry(MessageBankEntry *entry, u32 entryID, u32 seed)
-{
+static inline void DecodeEntry(MessageBankEntry *entry, u32 entryID, u32 seed) {
     seed = (seed * 765 * (entryID + 1)) & 0xFFFF;
     seed |= seed << 16;
 
@@ -26,8 +24,7 @@ static inline void DecodeEntry(MessageBankEntry *entry, u32 entryID, u32 seed)
     entry->length ^= seed;
 }
 
-static inline void DecodeString(charcode_t *str, u32 len, u32 entryID, u16 seed)
-{
+static inline void DecodeString(charcode_t *str, u32 len, u32 entryID, u16 seed) {
     seed = (entryID + 1) * KEY_START;
 
     while (len--) {
@@ -37,23 +34,19 @@ static inline void DecodeString(charcode_t *str, u32 len, u32 entryID, u16 seed)
     }
 }
 
-static inline u8 *EntryOffsetAddress(const MessageBank *bank, u32 bankIndex)
-{
+static inline u8 *EntryOffsetAddress(const MessageBank *bank, u32 bankIndex) {
     return (u8 *)bank + bankIndex;
 }
 
-MessageBank *MessageBank_Load(enum NarcID narcID, u32 bankID, u32 heapID)
-{
+MessageBank *MessageBank_Load(enum NarcID narcID, u32 bankID, u32 heapID) {
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, bankID, heapID);
 }
 
-void MessageBank_Free(MessageBank *bank)
-{
+void MessageBank_Free(MessageBank *bank) {
     Heap_Free(bank);
 }
 
-void MessageBank_Get(const MessageBank *bank, u32 entryID, charcode_t *dst)
-{
+void MessageBank_Get(const MessageBank *bank, u32 entryID, charcode_t *dst) {
     if (entryID < bank->count) {
         MessageBankEntry entry = bank->entries[entryID];
         DecodeEntry(&entry, entryID, bank->seed);
@@ -68,8 +61,7 @@ void MessageBank_Get(const MessageBank *bank, u32 entryID, charcode_t *dst)
     GF_ASSERT(FALSE);
 }
 
-void MessageBank_GetFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, charcode_t *dst)
-{
+void MessageBank_GetFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, charcode_t *dst) {
     NARC *narc = NARC_ctor(narcID, heapID);
 
     if (narc) {
@@ -89,13 +81,11 @@ void MessageBank_GetFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 he
     }
 }
 
-static void MemCopyEntry(charcode_t *dst, const charcode_t *src, const MessageBankEntry *entry)
-{
+static void MemCopyEntry(charcode_t *dst, const charcode_t *src, const MessageBankEntry *entry) {
     MI_CpuCopy16(src, dst, entry->length * sizeof(charcode_t));
 }
 
-void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf)
-{
+void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf) {
     if (entryID < bank->count) {
         MessageBankEntry entry = bank->entries[entryID];
         DecodeEntry(&entry, entryID, bank->seed);
@@ -118,8 +108,7 @@ void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf)
     Strbuf_Clear(strbuf);
 }
 
-Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapID)
-{
+Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapID) {
     if (entryID < bank->count) {
         MessageBankEntry entry = bank->entries[entryID];
         DecodeEntry(&entry, entryID, bank->seed);
@@ -146,8 +135,7 @@ Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapI
     return Strbuf_Init(4, heapID);
 }
 
-void MessageBank_GetStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf)
-{
+void MessageBank_GetStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf) {
     NARC *narc = NARC_ctor(narcID, heapID);
 
     if (narc) {
@@ -156,8 +144,7 @@ void MessageBank_GetStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, 
     }
 }
 
-void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf)
-{
+void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf) {
     MessageBank bank;
     NARC_ReadFromMember(narc, bankID, 0, sizeof(MessageBank), &bank);
 
@@ -184,8 +171,7 @@ void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 he
     Strbuf_Clear(strbuf);
 }
 
-Strbuf *MessageBank_GetNewStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID)
-{
+Strbuf *MessageBank_GetNewStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID) {
     NARC *narc = NARC_ctor(narcID, heapID);
 
     Strbuf *strbuf;
@@ -199,8 +185,7 @@ Strbuf *MessageBank_GetNewStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 ent
     return strbuf;
 }
 
-Strbuf *MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID)
-{
+Strbuf *MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID) {
     MessageBank bank;
     NARC_ReadFromMember(narc, bankID, 0, sizeof(MessageBank), &bank);
 
@@ -231,21 +216,18 @@ Strbuf *MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, 
     return Strbuf_Init(4, heapID);
 }
 
-u32 MessageBank_EntryCount(const MessageBank *bank)
-{
+u32 MessageBank_EntryCount(const MessageBank *bank) {
     return bank->count;
 }
 
-u32 MessageBank_NARCEntryCount(enum NarcID narcID, u32 bankID)
-{
+u32 MessageBank_NARCEntryCount(enum NarcID narcID, u32 bankID) {
     MessageBank bank;
     NARC_ReadFromMemberByIndexPair(&bank, narcID, bankID, 0, sizeof(MessageBank));
 
     return bank.count;
 }
 
-MessageLoader *MessageLoader_Init(enum MessageLoaderType type, enum NarcID narcID, u32 bankID, u32 heapID)
-{
+MessageLoader *MessageLoader_Init(enum MessageLoaderType type, enum NarcID narcID, u32 bankID, u32 heapID) {
     MessageLoader *loader = Heap_AllocFromHeapAtEnd(heapID, sizeof(MessageLoader));
 
     if (loader) {
@@ -269,8 +251,7 @@ MessageLoader *MessageLoader_Init(enum MessageLoaderType type, enum NarcID narcI
     return loader;
 }
 
-void MessageLoader_Free(MessageLoader *loader)
-{
+void MessageLoader_Free(MessageLoader *loader) {
     if (loader) {
         switch (loader->type) {
         case MESSAGE_LOADER_BANK_HANDLE:
@@ -285,8 +266,7 @@ void MessageLoader_Free(MessageLoader *loader)
     }
 }
 
-void MessageLoader_GetStrbuf(const MessageLoader *loader, u32 entryID, Strbuf *strbuf)
-{
+void MessageLoader_GetStrbuf(const MessageLoader *loader, u32 entryID, Strbuf *strbuf) {
     switch (loader->type) {
     case MESSAGE_LOADER_BANK_HANDLE:
         MessageBank_GetStrbuf(loader->bank, entryID, strbuf);
@@ -297,8 +277,7 @@ void MessageLoader_GetStrbuf(const MessageLoader *loader, u32 entryID, Strbuf *s
     }
 }
 
-Strbuf *MessageLoader_GetNewStrbuf(const MessageLoader *loader, u32 entryID)
-{
+Strbuf *MessageLoader_GetNewStrbuf(const MessageLoader *loader, u32 entryID) {
     switch (loader->type) {
     case MESSAGE_LOADER_BANK_HANDLE:
         return MessageBank_GetNewStrbuf(loader->bank, entryID, loader->heapID);
@@ -309,8 +288,7 @@ Strbuf *MessageLoader_GetNewStrbuf(const MessageLoader *loader, u32 entryID)
     return NULL;
 }
 
-u32 MessageLoader_MessageCount(const MessageLoader *loader)
-{
+u32 MessageLoader_MessageCount(const MessageLoader *loader) {
     switch (loader->type) {
     case MESSAGE_LOADER_BANK_HANDLE:
         return MessageBank_EntryCount(loader->bank);
@@ -321,8 +299,7 @@ u32 MessageLoader_MessageCount(const MessageLoader *loader)
     return 0;
 }
 
-void MessageLoader_Get(const MessageLoader *loader, u32 entryID, charcode_t *dst)
-{
+void MessageLoader_Get(const MessageLoader *loader, u32 entryID, charcode_t *dst) {
     switch (loader->type) {
     case MESSAGE_LOADER_BANK_HANDLE:
         MessageBank_Get(loader->bank, entryID, dst);
@@ -333,8 +310,7 @@ void MessageLoader_Get(const MessageLoader *loader, u32 entryID, charcode_t *dst
     }
 }
 
-void MessageLoader_GetSpeciesName(u32 species, u32 heapID, charcode_t *dst)
-{
+void MessageLoader_GetSpeciesName(u32 species, u32 heapID, charcode_t *dst) {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
 
     MessageLoader_Get(loader, species, dst);

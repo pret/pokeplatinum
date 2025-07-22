@@ -1407,52 +1407,42 @@ static const UnkStruct_020EC598 Unk_020EC598[] = {
     },
 };
 
-const u8 sub_020573FC(const int param0)
-{
+const u8 sub_020573FC(const int param0) {
     return Unk_020EC598[param0].unk_00;
 }
 
-const u8 sub_0205740C(const int param0)
-{
+const u8 sub_0205740C(const int param0) {
     return Unk_020EC598[param0].unk_01;
 }
 
-const u8 *sub_0205741C(const int param0)
-{
+const u8 *sub_0205741C(const int param0) {
     return Unk_020EC598[param0].unk_02;
 }
 
-const u8 sub_0205742C(const int param0)
-{
+const u8 sub_0205742C(const int param0) {
     return Unk_020EC598[param0].unk_0B[0];
 }
 
-const u8 sub_0205743C(const int param0)
-{
+const u8 sub_0205743C(const int param0) {
     return Unk_020EC598[param0].unk_0B[1];
 }
 
-const u8 sub_0205744C(const int param0)
-{
+const u8 sub_0205744C(const int param0) {
     return Unk_020EC598[param0].unk_0B[2];
 }
 
-const int sub_0205745C(const int param0)
-{
+const int sub_0205745C(const int param0) {
     return Unk_020EC598[param0].unk_10;
 }
 
-const int sub_0205746C(const int param0)
-{
+const int sub_0205746C(const int param0) {
     return Unk_020EC598[param0].unk_14;
 }
 
-const int sub_0205747C(const int param0)
-{
+const int sub_0205747C(const int param0) {
     return Unk_020EC598[param0].unk_18;
 }
 
-const int sub_0205748C(const int param0)
-{
+const int sub_0205748C(const int param0) {
     return Unk_020EC598[param0].unk_19;
 }

@@ -17,8 +17,7 @@ static u32 DetermineButtonInputStateInitial(TouchScreenHitTableActionStateIntern
 static u32 DetermineButtonInputState(TouchScreenHitTableActionStateInternal *buttonActionState, BOOL touched, BOOL tapped);
 static void SetButtonTouchStateFunctionID(TouchScreenHitTableActionStateInternal *buttonActionState, u32 touchStateFunction);
 
-TouchScreenActions *TouchScreenActions_RegisterHandler(const TouchScreenHitTable *hitTable, u32 hitTableLength, TouchScreenHitTableAction action, void *context, u32 heapID)
-{
+TouchScreenActions *TouchScreenActions_RegisterHandler(const TouchScreenHitTable *hitTable, u32 hitTableLength, TouchScreenHitTableAction action, void *context, u32 heapID) {
     GF_ASSERT(hitTableLength > 0);
 
     TouchScreenActions *buttonAction = Heap_AllocFromHeap(heapID, sizeof(TouchScreenActions));
@@ -43,23 +42,20 @@ TouchScreenActions *TouchScreenActions_RegisterHandler(const TouchScreenHitTable
     return buttonAction;
 }
 
-static void ButtonActionState_InternalInit(TouchScreenHitTableActionStateInternal *buttonActionState)
-{
+static void ButtonActionState_InternalInit(TouchScreenHitTableActionStateInternal *buttonActionState) {
     buttonActionState->touchStateFunction = 0;
     buttonActionState->activated = FALSE;
     buttonActionState->unused = 0;
 }
 
-void TouchScreenActions_Free(TouchScreenActions *buttonAction)
-{
+void TouchScreenActions_Free(TouchScreenActions *buttonAction) {
     GF_ASSERT(buttonAction);
 
     Heap_Free(buttonAction->actionStates);
     Heap_Free(buttonAction);
 }
 
-void TouchScreenActions_HandleAction(TouchScreenActions *buttonAction)
-{
+void TouchScreenActions_HandleAction(TouchScreenActions *buttonAction) {
     BOOL tapped;
     u32 i;
 
@@ -97,8 +93,7 @@ void TouchScreenActions_HandleAction(TouchScreenActions *buttonAction)
     }
 }
 
-static u32 DetermineButtonInputStateInitial(TouchScreenHitTableActionStateInternal *buttonActionState, BOOL touched, BOOL tapped)
-{
+static u32 DetermineButtonInputStateInitial(TouchScreenHitTableActionStateInternal *buttonActionState, BOOL touched, BOOL tapped) {
     if (buttonActionState->activated) {
         if (tapped) {
             SetButtonTouchStateFunctionID(buttonActionState, 1);
@@ -109,8 +104,7 @@ static u32 DetermineButtonInputStateInitial(TouchScreenHitTableActionStateIntern
     return TOUCH_BUTTON_NOT_PRESSED;
 }
 
-static u32 DetermineButtonInputState(TouchScreenHitTableActionStateInternal *buttonActionState, BOOL touched, BOOL tapped)
-{
+static u32 DetermineButtonInputState(TouchScreenHitTableActionStateInternal *buttonActionState, BOOL touched, BOOL tapped) {
     if (buttonActionState->activated) {
         if (buttonActionState->unused < (u16)-1) {
             buttonActionState->unused++;
@@ -126,8 +120,7 @@ static u32 DetermineButtonInputState(TouchScreenHitTableActionStateInternal *but
     }
 }
 
-static void SetButtonTouchStateFunctionID(TouchScreenHitTableActionStateInternal *buttonActionState, u32 touchStateFunction)
-{
+static void SetButtonTouchStateFunctionID(TouchScreenHitTableActionStateInternal *buttonActionState, u32 touchStateFunction) {
     buttonActionState->touchStateFunction = touchStateFunction;
     buttonActionState->unused = 0;
 }

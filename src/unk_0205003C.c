@@ -57,8 +57,7 @@ BOOL ScrCmd_2DA(ScriptContext *param0);
 void sub_02050224(FieldTask *param0, u16 param1, u16 param2, u16 *param3);
 static BOOL sub_02050264(FieldTask *param0);
 
-BOOL ScrCmd_2D9(ScriptContext *param0)
-{
+BOOL ScrCmd_2D9(ScriptContext *param0) {
     u8 v0;
     u8 v1[4];
     u16 v2[4];
@@ -113,8 +112,7 @@ BOOL ScrCmd_2D9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_2DC(ScriptContext *param0)
-{
+BOOL ScrCmd_2DC(ScriptContext *param0) {
     UnkStruct_020305B8 *v0;
     u16 v1 = ScriptContext_GetVar(param0);
 
@@ -124,8 +122,7 @@ BOOL ScrCmd_2DC(ScriptContext *param0)
     return 0;
 }
 
-static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 param2)
-{
+static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 param2) {
     int v0;
     u16 v1[4];
     u8 v2[4];
@@ -141,8 +138,7 @@ static void sub_02050174(SaveData *saveData, UnkStruct_020305B8 *param1, u8 para
     return;
 }
 
-BOOL ScrCmd_2DA(ScriptContext *param0)
-{
+BOOL ScrCmd_2DA(ScriptContext *param0) {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2 = ScriptContext_GetVarPointer(param0);
@@ -151,8 +147,7 @@ BOOL ScrCmd_2DA(ScriptContext *param0)
     return 1;
 }
 
-void sub_02050224(FieldTask *param0, u16 param1, u16 param2, u16 *param3)
-{
+void sub_02050224(FieldTask *param0, u16 param1, u16 param2, u16 *param3) {
     UnkStruct_02050224 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02050224));
     memset(v0, 0, sizeof(UnkStruct_02050224));
 
@@ -164,8 +159,7 @@ void sub_02050224(FieldTask *param0, u16 param1, u16 param2, u16 *param3)
     FieldTask_InitCall(param0, sub_02050264, v0);
 }
 
-static BOOL sub_02050264(FieldTask *param0)
-{
+static BOOL sub_02050264(FieldTask *param0) {
     UnkStruct_02050224 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
@@ -197,8 +191,7 @@ static BOOL sub_02050264(FieldTask *param0)
     return 0;
 }
 
-void sub_020502E0(FieldTask *param0, void **param1, u8 param2)
-{
+void sub_020502E0(FieldTask *param0, void **param1, u8 param2) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205037C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205037C));
 
@@ -211,8 +204,7 @@ void sub_020502E0(FieldTask *param0, void **param1, u8 param2)
     return;
 }
 
-static BOOL sub_02050314(FieldTask *param0)
-{
+static BOOL sub_02050314(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205037C *v1 = FieldTask_GetEnv(param0);
 
@@ -237,8 +229,7 @@ static BOOL sub_02050314(FieldTask *param0)
     return 0;
 }
 
-static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int param2)
-{
+static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int param2) {
     u8 v0;
     PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
@@ -272,8 +263,7 @@ static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     return 1;
 }
 
-static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
-{
+static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem) {
     int v0;
     PartyManagementData *partyMan;
 
@@ -300,8 +290,7 @@ static int sub_02050448(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int heapID)
-{
+static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int heapID) {
     PokemonSummary *v0;
     SaveData *saveData;
     static const u8 v2[] = {
@@ -332,8 +321,7 @@ static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
     return 3;
 }
 
-static int sub_02050520(UnkStruct_0205037C *param0, FieldSystem *fieldSystem)
-{
+static int sub_02050520(UnkStruct_0205037C *param0, FieldSystem *fieldSystem) {
     PokemonSummary *v0;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {

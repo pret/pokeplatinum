@@ -40,8 +40,7 @@ static void ov5_021F5620(UnkStruct_ov5_021F55F8 *param0);
 
 static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B1C;
 
-void *ov5_021F55CC(UnkStruct_ov5_021DF47C *param0)
-{
+void *ov5_021F55CC(UnkStruct_ov5_021DF47C *param0) {
     UnkStruct_ov5_021F55F8 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F55F8)), 0, 0);
     v0->unk_00 = param0;
 
@@ -49,28 +48,24 @@ void *ov5_021F55CC(UnkStruct_ov5_021DF47C *param0)
     return v0;
 }
 
-void ov5_021F55E8(void *param0)
-{
+void ov5_021F55E8(void *param0) {
     UnkStruct_ov5_021F55F8 *v0 = param0;
 
     ov5_021F5620(v0);
     ov5_021DF554(v0);
 }
 
-static void ov5_021F55F8(UnkStruct_ov5_021F55F8 *param0)
-{
+static void ov5_021F55F8(UnkStruct_ov5_021F55F8 *param0) {
     ov5_021DFB00(param0->unk_00, &param0->unk_04, 0, 58, 0);
     ov5_021DFB24(param0->unk_00, &param0->unk_18, 0, 162, 0);
 }
 
-static void ov5_021F5620(UnkStruct_ov5_021F55F8 *param0)
-{
+static void ov5_021F5620(UnkStruct_ov5_021F55F8 *param0) {
     sub_0207395C(&param0->unk_04);
     sub_02073AA8(&param0->unk_18);
 }
 
-void ov5_021F5634(FieldSystem *fieldSystem, int param1, int param2, int param3)
-{
+void ov5_021F5634(FieldSystem *fieldSystem, int param1, int param2, int param3) {
     int v0, v1;
     UnkStruct_ov5_021F5634 v2;
     VecFx32 v3;
@@ -88,8 +83,7 @@ void ov5_021F5634(FieldSystem *fieldSystem, int param1, int param2, int param3)
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 }
 
-static int ov5_021F5684(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov5_021F5684(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F5684 *v0 = param1;
     const UnkStruct_ov5_021F5634 *v1 = sub_020715BC(param0);
 
@@ -101,14 +95,12 @@ static int ov5_021F5684(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov5_021F56BC(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov5_021F56BC(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F5684 *v0 = param1;
     sub_02073AA8(&v0->unk_00);
 }
 
-static void ov5_021F56C8(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov5_021F56C8(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F5684 *v0 = param1;
 
     if (sub_02073B40(&v0->unk_00) == 1) {
@@ -119,8 +111,7 @@ static void ov5_021F56C8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     sub_02073AC0(&v0->unk_00, FX32_ONE, 0);
 }
 
-static void ov5_021F56F0(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov5_021F56F0(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F5684 *v0 = param1;
 
     {

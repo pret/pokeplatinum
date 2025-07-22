@@ -160,8 +160,7 @@ static const WindowTemplate Unk_ov67_0225D3EC = {
     0x204
 };
 
-int ov67_0225C700(ApplicationManager *appMan, int *param1)
-{
+int ov67_0225C700(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231024 *v1;
 
@@ -188,8 +187,7 @@ int ov67_0225C700(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov67_0225C820(ApplicationManager *appMan, int *param1)
-{
+int ov67_0225C820(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov66_02231024 *v1 = ApplicationManager_Args(appMan);
 
@@ -372,8 +370,7 @@ int ov67_0225C820(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov67_0225CB1C(ApplicationManager *appMan, int *param1)
-{
+int ov67_0225CB1C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
@@ -395,8 +392,7 @@ int ov67_0225CB1C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov67_0225CB8C(ApplicationManager *appMan, int *param1)
-{
+int ov67_0225CB8C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov67_0225D154 *v0;
     UnkStruct_ov66_02231300 *v1;
 
@@ -421,8 +417,7 @@ int ov67_0225CB8C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
-{
+int ov67_0225CC6C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov66_02231300 *v1 = ApplicationManager_Args(appMan);
 
@@ -504,8 +499,7 @@ int ov67_0225CC6C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov67_0225CDC0(ApplicationManager *appMan, int *param1)
-{
+int ov67_0225CDC0(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov67_0225D154 *v0 = ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
@@ -526,16 +520,14 @@ int ov67_0225CDC0(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov67_0225CE28(void *param0)
-{
+static void ov67_0225CE28(void *param0) {
     UnkStruct_ov67_0225D154 *v0 = param0;
 
     ov67_0225D17C(v0);
     inline_ov61_0222C1FC(&v0->unk_D4);
 }
 
-static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
-{
+static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID) {
     G2_BlendNone();
     G2S_BlendNone();
 
@@ -590,8 +582,7 @@ static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
     }
 }
 
-static void ov67_0225D154(UnkStruct_ov67_0225D154 *param0)
-{
+static void ov67_0225D154(UnkStruct_ov67_0225D154 *param0) {
     {
         int v0;
 
@@ -603,13 +594,11 @@ static void ov67_0225D154(UnkStruct_ov67_0225D154 *param0)
     }
 }
 
-static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0)
-{
+static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0) {
     Bg_RunScheduledUpdates(param0->unk_0C);
 }
 
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 heapID)
-{
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 heapID) {
     param0->unk_00 = StringTemplate_Default(heapID);
     param0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
     param0->unk_18 = Strbuf_Init(256, heapID);
@@ -621,8 +610,7 @@ static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32
     Window_Add(param1, &param0->unk_08, Unk_ov67_0225D3F4[1], param4, param5, param6, param7, 11, param8);
 }
 
-static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
-{
+static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1) {
     if (Text_IsPrinterActive(param0->unk_2C)) {
         Text_RemovePrinter(param0->unk_2C);
     }
@@ -641,8 +629,7 @@ static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_08);
 }
 
-static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0)
-{
+static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0) {
     if (Text_IsPrinterActive(param0->unk_2C)) {
         Text_RemovePrinter(param0->unk_2C);
     }
@@ -660,16 +647,14 @@ static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0)
     }
 }
 
-static void ov67_0225D2EC(UnkStruct_ov67_0225D210 *param0)
-{
+static void ov67_0225D2EC(UnkStruct_ov67_0225D210 *param0) {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 == NULL);
         param0->unk_24 = Window_AddWaitDial(&param0->unk_08, 1);
     }
 }
 
-static void ov67_0225D310(UnkStruct_ov67_0225D210 *param0)
-{
+static void ov67_0225D310(UnkStruct_ov67_0225D210 *param0) {
     if (param0->unk_20 == 1) {
         GF_ASSERT(param0->unk_24 != NULL);
         DestroyWaitDial(param0->unk_24);
@@ -677,8 +662,7 @@ static void ov67_0225D310(UnkStruct_ov67_0225D210 *param0)
     }
 }
 
-static void ov67_0225D330(UnkStruct_ov67_0225D210 *param0)
-{
+static void ov67_0225D330(UnkStruct_ov67_0225D210 *param0) {
     if (Text_IsPrinterActive(param0->unk_2C)) {
         Text_RemovePrinter(param0->unk_2C);
     }
@@ -694,15 +678,13 @@ static void ov67_0225D330(UnkStruct_ov67_0225D210 *param0)
     StringTemplate_Free(param0->unk_00);
 }
 
-static void ov67_0225D37C(UnkStruct_ov67_0225D210 *param0, u32 param1)
-{
+static void ov67_0225D37C(UnkStruct_ov67_0225D210 *param0, u32 param1) {
     Window_FillTilemap(&param0->unk_08, 0);
     MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
     Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_18, 0, 0xB0), 0, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 14, 0), 0);
 }
 
-static void ov67_0225D3D0(UnkStruct_ov67_0225D210 *param0, u32 param1)
-{
+static void ov67_0225D3D0(UnkStruct_ov67_0225D210 *param0, u32 param1) {
     StringTemplate_SetNumber(param0->unk_00, 0, param1, 5, 2, 1);
 }

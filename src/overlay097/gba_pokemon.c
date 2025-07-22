@@ -308,8 +308,7 @@ static u16 sSpeciesWithNewAbilities[] = {
         break;                                                                  \
     }
 
-static union GBAPokemonSubstruct *GetGBASubstruct(GBABoxPokemon *gbaBoxMon, u32 personality, u8 substructType)
-{
+static union GBAPokemonSubstruct *GetGBASubstruct(GBABoxPokemon *gbaBoxMon, u32 personality, u8 substructType) {
     union GBAPokemonSubstruct *substruct = NULL;
 
     switch (personality % 24) {
@@ -342,8 +341,7 @@ static union GBAPokemonSubstruct *GetGBASubstruct(GBABoxPokemon *gbaBoxMon, u32 
     return substruct;
 }
 
-static void GBADecryptBoxMon(GBABoxPokemon *gbaBoxMon)
-{
+static void GBADecryptBoxMon(GBABoxPokemon *gbaBoxMon) {
     int v0;
     u32 *v1 = (u32 *)&gbaBoxMon->secure;
 
@@ -353,8 +351,7 @@ static void GBADecryptBoxMon(GBABoxPokemon *gbaBoxMon)
     }
 }
 
-static void GBAEncryptBoxMon(GBABoxPokemon *gbaBoxMon)
-{
+static void GBAEncryptBoxMon(GBABoxPokemon *gbaBoxMon) {
     int v0;
     u32 *v1 = (u32 *)&gbaBoxMon->secure;
 
@@ -364,8 +361,7 @@ static void GBAEncryptBoxMon(GBABoxPokemon *gbaBoxMon)
     }
 }
 
-static u16 CalculateGBABoxMonChecksum(GBABoxPokemon *gbaBoxMon)
-{
+static u16 CalculateGBABoxMonChecksum(GBABoxPokemon *gbaBoxMon) {
     u16 checksum = 0;
     union GBAPokemonSubstruct *substruct0 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 0);
     union GBAPokemonSubstruct *substruct1 = GetGBASubstruct(gbaBoxMon, gbaBoxMon->personality, 1);
@@ -392,8 +388,7 @@ static u16 CalculateGBABoxMonChecksum(GBABoxPokemon *gbaBoxMon)
     return checksum;
 }
 
-u32 GBABoxPokemon_GetData(GBABoxPokemon *gbaBoxMon, int field, u8 *param2)
-{
+u32 GBABoxPokemon_GetData(GBABoxPokemon *gbaBoxMon, int field, u8 *param2) {
     u32 retVal = 0;
     GBAPokemonSubstruct0 *substruct0 = 0;
     GBAPokemonSubstruct1 *substruct1 = 0;
@@ -662,8 +657,7 @@ u32 GBABoxPokemon_GetData(GBABoxPokemon *gbaBoxMon, int field, u8 *param2)
 #define SET16(lhs) (lhs) = dataArg[0] + (dataArg[1] << 8)
 #define SET32(lhs) (lhs) = dataArg[0] + (dataArg[1] << 8) + (dataArg[2] << 16) + (dataArg[3] << 24)
 
-void GBABoxPokemon_SetData(GBABoxPokemon *gbaBoxMon, int field, const u8 *dataArg)
-{
+void GBABoxPokemon_SetData(GBABoxPokemon *gbaBoxMon, int field, const u8 *dataArg) {
     GBAPokemonSubstruct0 *substruct0 = 0;
     GBAPokemonSubstruct1 *substruct1 = 0;
     GBAPokemonSubstruct2 *substruct2 = 0;
@@ -732,8 +726,7 @@ void GBABoxPokemon_SetData(GBABoxPokemon *gbaBoxMon, int field, const u8 *dataAr
     }
 }
 
-int GBAPokemon_ConvertSpeciesToDS(int species)
-{
+int GBAPokemon_ConvertSpeciesToDS(int species) {
     int i;
 
     if (species < GBA_SPECIES_TREECKO) {
@@ -749,16 +742,14 @@ int GBAPokemon_ConvertSpeciesToDS(int species)
     return species;
 }
 
-u32 GBABoxPokemon_GetLevel(GBABoxPokemon *gbaBoxMon)
-{
+u32 GBABoxPokemon_GetLevel(GBABoxPokemon *gbaBoxMon) {
     int species = GBAPokemon_ConvertSpeciesToDS(GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPECIES, NULL));
     u32 exp = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_EXP, NULL);
 
     return Pokemon_GetSpeciesLevelAt(species, exp);
 }
 
-static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
-{
+static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon) {
     int i;
     int ability;
     u16 species;
@@ -786,8 +777,7 @@ static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *box
     return ability;
 }
 
-void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
-{
+void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon) {
     BOOL reencrypt;
     u32 value;
     int i, v3;

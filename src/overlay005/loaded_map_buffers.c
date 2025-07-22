@@ -19,8 +19,7 @@ static void LoadedMapBuffers_InitFileBuffers(const u8 index, const int mapModelF
 
 static u8 sGlobalMapModelFiles[LOADED_MAP_BUFFERS_FILE_COUNT][MAP_MODEL_FILE_SIZE];
 
-LoadedMapBuffers *LoadedMapBuffers_New(const BOOL allocBDHCFiles)
-{
+LoadedMapBuffers *LoadedMapBuffers_New(const BOOL allocBDHCFiles) {
     LoadedMapBuffers *buffers = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMapBuffers));
 
     memset(buffers, 0, sizeof(LoadedMapBuffers));
@@ -58,8 +57,7 @@ LoadedMapBuffers *LoadedMapBuffers_New(const BOOL allocBDHCFiles)
     return buffers;
 }
 
-void LoadedMapBuffers_Free(LoadedMapBuffers *buffers)
-{
+void LoadedMapBuffers_Free(LoadedMapBuffers *buffers) {
     for (int i = 0; i < LOADED_MAP_BUFFERS_FILE_COUNT; i++) {
         if (buffers->mapModelAllocType == LOADED_MAP_BUFFERS_ALLOC_HEAP) {
             Heap_Free(buffers->mapModelFiles[i]);
@@ -80,24 +78,20 @@ void LoadedMapBuffers_Free(LoadedMapBuffers *buffers)
     buffers = NULL;
 }
 
-void LoadedMapBuffers_GetMapModelFileBufPtr(const u8 index, const LoadedMapBuffers *buffers, void **mapModelFile)
-{
+void LoadedMapBuffers_GetMapModelFileBufPtr(const u8 index, const LoadedMapBuffers *buffers, void **mapModelFile) {
     *mapModelFile = buffers->mapModelFiles[index];
 }
 
-void LoadedMapBuffers_GetBDHCFileBufPtr(const u8 index, const LoadedMapBuffers *buffers, void **bdhcFile)
-{
+void LoadedMapBuffers_GetBDHCFileBufPtr(const u8 index, const LoadedMapBuffers *buffers, void **bdhcFile) {
     *bdhcFile = buffers->bdhcFiles[index];
 }
 
-static void LoadedMapBuffers_InitFileBuffers(const u8 index, const int mapModelFileSize, const int bdhcFileSize, LoadedMapBuffers *buffers)
-{
+static void LoadedMapBuffers_InitFileBuffers(const u8 index, const int mapModelFileSize, const int bdhcFileSize, LoadedMapBuffers *buffers) {
     MI_CpuClear8(buffers->mapModelFiles[index], mapModelFileSize);
     MI_CpuClear8(buffers->bdhcFiles[index], bdhcFileSize);
 }
 
-LoadedMapBuffers *LoadedMapBuffers_NewWithHeapMapModelFiles(const BOOL allocBDHCFiles)
-{
+LoadedMapBuffers *LoadedMapBuffers_NewWithHeapMapModelFiles(const BOOL allocBDHCFiles) {
     LoadedMapBuffers *buffers = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(LoadedMapBuffers));
 
     memset(buffers, 0, sizeof(LoadedMapBuffers));
@@ -120,8 +114,7 @@ LoadedMapBuffers *LoadedMapBuffers_NewWithHeapMapModelFiles(const BOOL allocBDHC
     return buffers;
 }
 
-void LoadedMapBuffers_SwapMapModelData(LoadedMapBuffers *a, LoadedMapBuffers *b)
-{
+void LoadedMapBuffers_SwapMapModelData(LoadedMapBuffers *a, LoadedMapBuffers *b) {
     LoadedMapBuffers tmp = *a;
 
     a->mapModelAllocType = b->mapModelAllocType;

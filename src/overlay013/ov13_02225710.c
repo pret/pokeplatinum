@@ -255,8 +255,7 @@ static const u8 Unk_ov13_0222987C[] = {
     0x2
 };
 
-void ov13_02225710(BattleParty *param0, u16 *param1)
-{
+void ov13_02225710(BattleParty *param0, u16 *param1) {
     ov13_02225AF0(param0->unk_1E8[0], param1, 0, 0, 16, 6);
     ov13_02225AF0(param0->unk_1E8[1], param1, 0, (0 + 6), 16, 6);
     ov13_02225AF0(param0->unk_1E8[2], param1, 0, ((0 + 6) + 6), 16, 6);
@@ -300,8 +299,7 @@ void ov13_02225710(BattleParty *param0, u16 *param1)
     ov13_02225AF0(param0->unk_1F20[2], param1, 10, 59, 5, 2);
 }
 
-void ov13_02225A3C(BattleParty *param0, u16 *param1)
-{
+void ov13_02225A3C(BattleParty *param0, u16 *param1) {
     ov13_02225AF0(param0->unk_C48[0], param1, 0, 0, 30, 17);
     ov13_02225AF0(param0->unk_C48[1], param1, 0, (0 + 17), 30, 17);
     ov13_02225AF0(param0->unk_C48[2], param1, 0, ((0 + 17) + 17), 30, 17);
@@ -312,8 +310,7 @@ void ov13_02225A3C(BattleParty *param0, u16 *param1)
     ov13_02225AF0(param0->unk_183C[3], param1, (0 + 16), (51 + 6), 16, 6);
 }
 
-static void ov13_02225AF0(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u8 param5)
-{
+static void ov13_02225AF0(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u8 param5) {
     u16 v0, v1;
 
     for (v0 = 0; v0 < param5; v0++) {
@@ -323,8 +320,7 @@ static void ov13_02225AF0(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 par
     }
 }
 
-static u16 *ov13_02225B40(BattleParty *param0, u8 param1, u8 param2, u8 param3)
-{
+static u16 *ov13_02225B40(BattleParty *param0, u8 param1, u8 param2, u8 param3) {
     switch (param1) {
     case 0:
     case 1:
@@ -379,8 +375,7 @@ static u16 *ov13_02225B40(BattleParty *param0, u8 param1, u8 param2, u8 param3)
     return NULL;
 }
 
-static void ov13_02225C4C(BattleParty *param0, u16 *param1, u8 param2, u8 param3, u8 param4)
-{
+static void ov13_02225C4C(BattleParty *param0, u16 *param1, u8 param2, u8 param3, u8 param4) {
     u16 *v0;
     u8 v1, v2;
     u8 v3, v4;
@@ -433,8 +428,7 @@ static void ov13_02225C4C(BattleParty *param0, u16 *param1, u8 param2, u8 param3
     }
 }
 
-static void ov13_02225D8C(BattleParty *param0, u8 param1, u8 param2, u8 param3)
-{
+static void ov13_02225D8C(BattleParty *param0, u8 param1, u8 param2, u8 param3) {
     u16 *v0 = Heap_AllocFromHeap(param0->context->heapID, Unk_ov13_02229924[param1].unk_02 * Unk_ov13_02229924[param1].unk_03 * 2);
 
     ov13_02225C4C(param0, v0, param1, param2, param3);
@@ -444,8 +438,7 @@ static void ov13_02225D8C(BattleParty *param0, u8 param1, u8 param2, u8 param3)
     Heap_Free(v0);
 }
 
-static void ov13_02225E08(BattleParty *param0, u8 param1, u8 param2)
-{
+static void ov13_02225E08(BattleParty *param0, u8 param1, u8 param2) {
     const u8 *v0;
     u16 v1;
     u8 v2, v3;
@@ -489,8 +482,7 @@ static void ov13_02225E08(BattleParty *param0, u8 param1, u8 param2)
     }
 }
 
-static void ov13_02225EB8(BattleParty *param0, u8 param1, u8 param2)
-{
+static void ov13_02225EB8(BattleParty *param0, u8 param1, u8 param2) {
     switch (param1) {
     case 0:
     case 1:
@@ -528,8 +520,7 @@ static void ov13_02225EB8(BattleParty *param0, u8 param1, u8 param2)
     }
 }
 
-void ov13_02225FCC(BattleParty *param0, u8 param1)
-{
+void ov13_02225FCC(BattleParty *param0, u8 param1) {
     param0->unk_1F9F_4 = 0;
 
     if ((param1 >= 0) && (param1 <= 5)) {
@@ -544,8 +535,7 @@ void ov13_02225FCC(BattleParty *param0, u8 param1)
     param0->unk_1F9F_7 = 1;
 }
 
-void ov13_0222601C(BattleParty *param0)
-{
+void ov13_0222601C(BattleParty *param0) {
     if (param0->unk_1F9F_7 == 0) {
         return;
     }
@@ -575,8 +565,7 @@ void ov13_0222601C(BattleParty *param0)
     }
 }
 
-void ov13_022260EC(BattleParty *param0, u8 param1)
-{
+void ov13_022260EC(BattleParty *param0, u8 param1) {
     u16 v0, v1;
 
     switch (param1) {
@@ -697,8 +686,7 @@ void ov13_022260EC(BattleParty *param0, u8 param1)
     }
 }
 
-void ov13_02226444(BattleParty *param0, u8 param1)
-{
+void ov13_02226444(BattleParty *param0, u8 param1) {
     if (param1 == 3) {
         PaletteData_LoadBuffer(param0->palette, &param0->unk_1F5C[16], 1, 12 * 16, 0x20);
     } else {
@@ -706,8 +694,7 @@ void ov13_02226444(BattleParty *param0, u8 param1)
     }
 }
 
-static u8 ov13_02226484(BattleParty *param0)
-{
+static u8 ov13_02226484(BattleParty *param0) {
     u16 v0, v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -723,8 +710,7 @@ static u8 ov13_02226484(BattleParty *param0)
     return 0;
 }
 
-void ov13_022264C4(BattleParty *param0)
-{
+void ov13_022264C4(BattleParty *param0) {
     if (BattlePartyTask_CheckCanPartySlotBeSelected(param0, param0->context->selectedPartyIndex) == PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE) {
         ov13_02225D8C(param0, 0 + param0->context->selectedPartyIndex, 0, 1);
     } else {

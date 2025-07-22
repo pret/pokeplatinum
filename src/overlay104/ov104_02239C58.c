@@ -32,8 +32,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID);
 static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
 
-UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
-{
+UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData) {
     static UnkStruct_0209BBA4 *v0;
 
     v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209BBA4));
@@ -43,8 +42,7 @@ UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
     return v0;
 }
 
-void ov104_02239C7C(UnkStruct_0209BBA4 *param0)
-{
+void ov104_02239C7C(UnkStruct_0209BBA4 *param0) {
     if (param0 == NULL) {
         return;
     }
@@ -55,8 +53,7 @@ void ov104_02239C7C(UnkStruct_0209BBA4 *param0)
     return;
 }
 
-BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 param3)
-{
+BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 param3) {
     int v0;
 
     switch (param1) {
@@ -80,8 +77,7 @@ BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 para
     return v0;
 }
 
-void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2)
-{
+void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2) {
     FieldSystem *fieldSystem = param1->fieldSystem;
 
     switch (param2) {
@@ -104,8 +100,7 @@ void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 
     return;
 }
 
-static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
-{
+static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3) {
     u8 v0;
 
     param1->unk_A8 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
@@ -160,8 +155,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     return;
 }
 
-static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
-{
+static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3) {
     int v0;
 
     switch (param1->unk_A8->selectedMonSlot) {
@@ -188,8 +182,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     return;
 }
 
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID)
-{
+static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID) {
     static const u8 v0[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
@@ -215,8 +208,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     return;
 }
 
-static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
-{
+static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3) {
     param1->unk_9F = param1->unk_AC->monIndex;
     Heap_Free(param1->unk_AC);
     param1->unk_AC = NULL;

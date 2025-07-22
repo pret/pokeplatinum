@@ -3,8 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-u16 CommLocal_MaxMachines(u16 param0)
-{
+u16 CommLocal_MaxMachines(u16 param0) {
     u8 v0[] = {
         0x1,
         0x1,
@@ -49,8 +48,7 @@ u16 CommLocal_MaxMachines(u16 param0)
     return v0[param0];
 }
 
-u16 sub_02032698(u16 param0)
-{
+u16 sub_02032698(u16 param0) {
     u8 v0[] = {
         0x1,
         0x1,
@@ -95,8 +93,7 @@ u16 sub_02032698(u16 param0)
     return v0[param0];
 }
 
-BOOL sub_020326C4(int param0)
-{
+BOOL sub_020326C4(int param0) {
     switch (param0) {
     case 18:
     case 9:
@@ -109,8 +106,7 @@ BOOL sub_020326C4(int param0)
     return 0;
 }
 
-BOOL CommLocal_IsWifiGroup(int param0)
-{
+BOOL CommLocal_IsWifiGroup(int param0) {
     switch (param0) {
     case 19:
     case 20:
@@ -130,8 +126,7 @@ BOOL CommLocal_IsWifiGroup(int param0)
     return 0;
 }
 
-BOOL sub_0203272C(int param0)
-{
+BOOL sub_0203272C(int param0) {
     switch (param0) {
     case 29:
     case 33:
@@ -142,8 +137,7 @@ BOOL sub_0203272C(int param0)
     return 0;
 }
 
-BOOL sub_02032740(int param0)
-{
+BOOL sub_02032740(int param0) {
     switch (param0) {
     case 19:
     case 20:
@@ -157,8 +151,7 @@ BOOL sub_02032740(int param0)
     return 0;
 }
 
-BOOL sub_0203276C(int param0)
-{
+BOOL sub_0203276C(int param0) {
     switch (param0) {
     case 1:
     case 2:

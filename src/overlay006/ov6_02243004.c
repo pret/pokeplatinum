@@ -11,8 +11,7 @@
 
 static UnkStruct_ov5_021D1BEC *Unk_ov6_02249940;
 
-BOOL ov6_02243004(FieldSystem *fieldSystem, int param1)
-{
+BOOL ov6_02243004(FieldSystem *fieldSystem, int param1) {
     VecFx32 v0;
     CameraAngle v1;
 

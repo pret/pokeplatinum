@@ -23,8 +23,7 @@
 #include "text.h"
 #include "unk_02012744.h"
 
-void sub_0208A3F4(UnkStruct_02089688 *param0)
-{
+void sub_0208A3F4(UnkStruct_02089688 *param0) {
     param0->unk_2EC.unk_04 = SpriteSystem_Alloc(101);
     {
         const RenderOamTemplate v0 = {
@@ -65,8 +64,7 @@ void sub_0208A3F4(UnkStruct_02089688 *param0)
     }
 }
 
-void sub_0208A490(UnkStruct_02089688 *param0)
-{
+void sub_0208A490(UnkStruct_02089688 *param0) {
     NARC *v0;
     BgConfig *v1;
     SpriteSystem *v2 = param0->unk_2EC.unk_04;
@@ -107,8 +105,7 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     }
 }
 
-void sub_0208A6CC(UnkStruct_02089688 *param0)
-{
+void sub_0208A6CC(UnkStruct_02089688 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_2D0; v0++) {
@@ -131,8 +128,7 @@ void sub_0208A6CC(UnkStruct_02089688 *param0)
     Window_Remove(&param0->unk_2EC.unk_B0);
 }
 
-void sub_0208A758(UnkStruct_02089688 *param0)
-{
+void sub_0208A758(UnkStruct_02089688 *param0) {
     int i;
     int v0 = 0, v1 = 0;
 
@@ -180,8 +176,7 @@ void sub_0208A758(UnkStruct_02089688 *param0)
     }
 }
 
-void sub_0208A8A0(UnkStruct_02089688 *param0)
-{
+void sub_0208A8A0(UnkStruct_02089688 *param0) {
     SpriteTemplate v0;
     SpriteSystem *v1 = param0->unk_2EC.unk_04;
     SpriteManager *v2 = param0->unk_2EC.unk_08;
@@ -232,8 +227,7 @@ void sub_0208A8A0(UnkStruct_02089688 *param0)
     sub_0208AAB4(param0, 2, 0);
 }
 
-void sub_0208A9BC(UnkStruct_02089688 *param0)
-{
+void sub_0208A9BC(UnkStruct_02089688 *param0) {
     SpriteTemplate v0;
     SpriteSystem *v1 = param0->unk_2EC.unk_04;
     SpriteManager *v2 = param0->unk_2EC.unk_08;
@@ -278,8 +272,7 @@ void sub_0208A9BC(UnkStruct_02089688 *param0)
     }
 }
 
-void sub_0208AAB4(UnkStruct_02089688 *param0, int param1, BOOL param2)
-{
+void sub_0208AAB4(UnkStruct_02089688 *param0, int param1, BOOL param2) {
     if (param2 == 1) {
         ManagedSprite_SetDrawFlag(param0->unk_214[param1].unk_0C, 1);
     } else {
@@ -287,8 +280,7 @@ void sub_0208AAB4(UnkStruct_02089688 *param0, int param1, BOOL param2)
     }
 }
 
-void sub_0208AAE4(UnkStruct_02089688 *param0, int param1)
-{
+void sub_0208AAE4(UnkStruct_02089688 *param0, int param1) {
     s16 v0, v1;
     ManagedSprite *v2;
 
@@ -303,24 +295,21 @@ void sub_0208AAE4(UnkStruct_02089688 *param0, int param1)
     ManagedSprite_SetPositionXY(param0->unk_214[0].unk_0C, v0, v1 + 16);
 }
 
-void sub_0208AB2C(UnkStruct_02089688 *param0, int param1)
-{
+void sub_0208AB2C(UnkStruct_02089688 *param0, int param1) {
     s16 v0 = (param0->unk_2EC.unk_18[param1 + 16].rect.left + param0->unk_2EC.unk_18[param1 + 16].rect.right) / 2;
     s16 v1 = (param0->unk_2EC.unk_18[param1 + 16].rect.top + param0->unk_2EC.unk_18[param1 + 16].rect.bottom) / 2;
 
     ManagedSprite_SetPositionXY(param0->unk_214[1].unk_0C, v0, v1);
 }
 
-void sub_0208AB6C(UnkStruct_02089688 *param0, int param1, int param2)
-{
+void sub_0208AB6C(UnkStruct_02089688 *param0, int param1, int param2) {
     s16 v0 = (param0->unk_2EC.unk_18[param1 + 16].rect.left + param0->unk_2EC.unk_18[param1 + 16].rect.right) / 2;
     s16 v1 = (param0->unk_2EC.unk_18[param1 + 16].rect.top + param0->unk_2EC.unk_18[param1 + 16].rect.bottom) / 2;
 
     ManagedSprite_SetPositionXY(param0->unk_214[param2].unk_0C, v0, v1);
 }
 
-void sub_0208ABB4(UnkStruct_02089688 *param0)
-{
+void sub_0208ABB4(UnkStruct_02089688 *param0) {
     ManagedSprite_TickFrame(param0->unk_214[0].unk_0C);
     ManagedSprite_TickFrame(param0->unk_214[1].unk_0C);
     ManagedSprite_TickFrame(param0->unk_214[2].unk_0C);
@@ -368,8 +357,7 @@ void sub_0208ABB4(UnkStruct_02089688 *param0)
     }
 }
 
-static void sub_0208AC80(FontOAM *param0, int param1, int param2)
-{
+static void sub_0208AC80(FontOAM *param0, int param1, int param2) {
     int v0;
     int v1;
 
@@ -378,8 +366,7 @@ static void sub_0208AC80(FontOAM *param0, int param1, int param2)
     }
 }
 
-void sub_0208AC8C(UnkStruct_02089688 *param0)
-{
+void sub_0208AC8C(UnkStruct_02089688 *param0) {
     int v0;
     s16 v1, v2;
 
@@ -417,8 +404,7 @@ void sub_0208AC8C(UnkStruct_02089688 *param0)
     }
 }
 
-int sub_0208AD98(int param0, BOOL param1)
-{
+int sub_0208AD98(int param0, BOOL param1) {
     int v0 = 0;
 
     if (param1 == 0) {
@@ -430,8 +416,7 @@ int sub_0208AD98(int param0, BOOL param1)
     return v0;
 }
 
-void sub_0208ADA4(UnkStruct_02089688 *param0)
-{
+void sub_0208ADA4(UnkStruct_02089688 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_2D0; v0++) {
@@ -443,8 +428,7 @@ void sub_0208ADA4(UnkStruct_02089688 *param0)
     }
 }
 
-void sub_0208ADE4(UnkStruct_02089688 *param0, int param1)
-{
+void sub_0208ADE4(UnkStruct_02089688 *param0, int param1) {
     int v0;
     int v1;
     s16 v2;
@@ -505,8 +489,7 @@ void sub_0208ADE4(UnkStruct_02089688 *param0, int param1)
     }
 }
 
-static inline void inline_0208AF44(UnkStruct_02089688 *param0, int param1, s16 param2, s16 param3)
-{
+static inline void inline_0208AF44(UnkStruct_02089688 *param0, int param1, s16 param2, s16 param3) {
     s16 v0, v1;
     UnkStruct_0208AF44 *v2 = &param0->unk_00[param1];
 
@@ -518,8 +501,7 @@ static inline void inline_0208AF44(UnkStruct_02089688 *param0, int param1, s16 p
     v2->unk_10->rect.right = v0 + param2;
 }
 
-void sub_0208AF44(UnkStruct_02089688 *param0)
-{
+void sub_0208AF44(UnkStruct_02089688 *param0) {
     int v0;
     s16 v1;
     s16 v2;
@@ -537,14 +519,12 @@ void sub_0208AF44(UnkStruct_02089688 *param0)
     }
 }
 
-void sub_0208AFCC(UnkStruct_02089688 *param0)
-{
+void sub_0208AFCC(UnkStruct_02089688 *param0) {
     param0->unk_2EC.unk_8C = sub_02012744(2, HEAP_ID_101);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_101);
 }
 
-void sub_0208AFE8(UnkStruct_02089688 *param0)
-{
+void sub_0208AFE8(UnkStruct_02089688 *param0) {
     Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_2EC.unk_90[0]);
     CharTransfer_ClearRange(&param0->unk_2EC.unk_98[0]);
@@ -553,20 +533,17 @@ void sub_0208AFE8(UnkStruct_02089688 *param0)
     sub_020127BC(param0->unk_2EC.unk_8C);
 }
 
-void sub_0208B028(UnkStruct_02089688 *param0)
-{
+void sub_0208B028(UnkStruct_02089688 *param0) {
     SpriteSystem_LoadPaletteBuffer(param0->unk_2EC.unk_10, 2, param0->unk_2EC.unk_04, param0->unk_2EC.unk_08, 14, 7, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1003);
 }
 
-void sub_0208B064(UnkStruct_02089688 *param0)
-{
+void sub_0208B064(UnkStruct_02089688 *param0) {
     sub_0208B028(param0);
     sub_0208B090(param0, 0, 78, 165, 0);
     sub_0208B090(param0, 1, 172, 165, 0);
 }
 
-void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3, int param4)
-{
+void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3, int param4) {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
     Strbuf *v3;
@@ -615,8 +592,7 @@ void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3
     Window_Remove(&v7);
 }
 
-void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
-{
+void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8) {
     Window_Init(param1);
     Window_Add(param0, param1, param2, param3, param4, param5, param6, 12, param7);
     Window_DrawMessageBoxWithScrollCursor(param1, 1, 1, 11);
@@ -625,8 +601,7 @@ void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int 
     sub_0208B230(param1, param8);
 }
 
-void sub_0208B230(Window *param0, int param1)
-{
+void sub_0208B230(Window *param0, int param1) {
     MessageLoader *v0;
     Strbuf *v1;
 

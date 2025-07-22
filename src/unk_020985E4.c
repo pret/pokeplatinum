@@ -20,8 +20,7 @@
 
 FS_EXTERN_OVERLAY(overlay100);
 
-void sub_020985E4(FieldTask *param0, SaveData *saveData)
-{
+void sub_020985E4(FieldTask *param0, SaveData *saveData) {
     UnkStruct_0209862C *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209862C));
     UnkStruct_020985E4 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020985E4));
 
@@ -35,8 +34,7 @@ void sub_020985E4(FieldTask *param0, SaveData *saveData)
     FieldTask_InitCall(param0, sub_0209862C, v0);
 }
 
-BOOL sub_0209862C(FieldTask *param0)
-{
+BOOL sub_0209862C(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0209862C *v1 = FieldTask_GetEnv(param0);
 

@@ -14,8 +14,7 @@ static const CommCmdTable Unk_ov97_0223D704[] = {
     { ov97_0222D2C4, sub_0203294C, NULL }
 };
 
-void ov97_0222D2F8(void *param0)
-{
+void ov97_0222D2F8(void *param0) {
     int v0 = sizeof(Unk_ov97_0223D704) / sizeof(CommCmdTable);
     CommCmd_Init(Unk_ov97_0223D704, v0, param0);
 }

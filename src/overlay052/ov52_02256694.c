@@ -48,8 +48,7 @@ static void ov52_02256B64(UnkStruct_ov52_02256694 *param0);
 static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0);
 static void ov52_02256C64(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_02256694_1 *param1);
 
-BOOL ov52_02256694(UnkStruct_ov52_02256694 **param0, const UnkStruct_ov52_02256694_1 *param1, BgConfig *param2)
-{
+BOOL ov52_02256694(UnkStruct_ov52_02256694 **param0, const UnkStruct_ov52_02256694_1 *param1, BgConfig *param2) {
     UnkStruct_ov52_02256694 *v0 = (UnkStruct_ov52_02256694 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov52_02256694));
 
     if (v0 != NULL) {
@@ -68,8 +67,7 @@ BOOL ov52_02256694(UnkStruct_ov52_02256694 **param0, const UnkStruct_ov52_022566
     return 0;
 }
 
-void ov52_022566EC(UnkStruct_ov52_02256694 *param0)
-{
+void ov52_022566EC(UnkStruct_ov52_02256694 *param0) {
     if (param0 != NULL) {
         Strbuf_Free(param0->unk_5C);
         MessageLoader_Free(param0->unk_58);
@@ -78,8 +76,7 @@ void ov52_022566EC(UnkStruct_ov52_02256694 *param0)
     }
 }
 
-static void ov52_0225670C(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_02256694_1 *param1)
-{
+static void ov52_0225670C(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_02256694_1 *param1) {
     static const PoketchAnimation_AnimationData v0[] = {
         {
             { (112 << FX32_SHIFT), (150 << FX32_SHIFT) },
@@ -128,8 +125,7 @@ static void ov52_0225670C(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_
     PoketchAnimation_HideSprite(param0->unk_34[3], 1);
 }
 
-static void ov52_0225677C(UnkStruct_ov52_02256694 *param0)
-{
+static void ov52_0225677C(UnkStruct_ov52_02256694 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -153,29 +149,24 @@ static const PoketchTask Unk_ov52_02256DE4[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov52_022567A4(UnkStruct_ov52_02256694 *param0, u32 param1)
-{
+void ov52_022567A4(UnkStruct_ov52_02256694 *param0, u32 param1) {
     PoketchTask_Start(Unk_ov52_02256DE4, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov52_022567C8(UnkStruct_ov52_02256694 *param0, u32 param1)
-{
+BOOL ov52_022567C8(UnkStruct_ov52_02256694 *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov52_022567D4(UnkStruct_ov52_02256694 *param0)
-{
+BOOL ov52_022567D4(UnkStruct_ov52_02256694 *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov52_022567E0(PoketchTaskManager *param0)
-{
+static void ov52_022567E0(PoketchTaskManager *param0) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov52_022567F4(SysTask *param0, void *param1)
-{
+static void ov52_022567F4(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -218,8 +209,7 @@ static void ov52_022567F4(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_022568B4(SysTask *param0, void *param1)
-{
+static void ov52_022568B4(SysTask *param0, void *param1) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
     Window_Remove(&v0->unk_20);
@@ -228,8 +218,7 @@ static void ov52_022568B4(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_022568D8(SysTask *param0, void *param1)
-{
+static void ov52_022568D8(SysTask *param0, void *param1) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
     PoketchAnimation_HideSprite(v0->unk_34[0], 0);
@@ -242,8 +231,7 @@ static void ov52_022568D8(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_0225691C(SysTask *param0, void *param1)
-{
+static void ov52_0225691C(SysTask *param0, void *param1) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
     PoketchAnimation_HideSprite(v0->unk_34[0], 0);
@@ -257,8 +245,7 @@ static void ov52_0225691C(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_02256968(SysTask *param0, void *param1)
-{
+static void ov52_02256968(SysTask *param0, void *param1) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
     PoketchAnimation_HideSprite(v0->unk_34[0], 0);
@@ -271,8 +258,7 @@ static void ov52_02256968(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_022569B4(SysTask *param0, void *param1)
-{
+static void ov52_022569B4(SysTask *param0, void *param1) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
     PoketchAnimation_HideSprite(v0->unk_34[0], 0);
@@ -285,8 +271,7 @@ static void ov52_022569B4(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_02256A00(SysTask *param0, void *param1)
-{
+static void ov52_02256A00(SysTask *param0, void *param1) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov52_02256694_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -301,8 +286,7 @@ static void ov52_02256A00(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_02256A58(SysTask *param0, void *param1)
-{
+static void ov52_02256A58(SysTask *param0, void *param1) {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov52_02256694_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -310,8 +294,7 @@ static void ov52_02256A58(SysTask *param0, void *param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_02256A7C(UnkStruct_ov52_02256694 *param0)
-{
+static void ov52_02256A7C(UnkStruct_ov52_02256694 *param0) {
     u32 v0;
 
     Window_FillTilemap(&param0->unk_20, 4);
@@ -334,8 +317,7 @@ static void ov52_02256A7C(UnkStruct_ov52_02256694 *param0)
     Window_LoadTiles(&param0->unk_20);
 }
 
-static void ov52_02256B10(UnkStruct_ov52_02256694 *param0)
-{
+static void ov52_02256B10(UnkStruct_ov52_02256694 *param0) {
     Window_FillTilemap(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 1, param0->unk_5C);
 
@@ -347,8 +329,7 @@ static void ov52_02256B10(UnkStruct_ov52_02256694 *param0)
     Window_LoadTiles(&param0->unk_20);
 }
 
-static void ov52_02256B64(UnkStruct_ov52_02256694 *param0)
-{
+static void ov52_02256B64(UnkStruct_ov52_02256694 *param0) {
     u32 v0;
 
     Window_FillTilemap(&param0->unk_20, 4);
@@ -362,8 +343,7 @@ static void ov52_02256B64(UnkStruct_ov52_02256694 *param0)
     Window_LoadTiles(&param0->unk_20);
 }
 
-static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0)
-{
+static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0) {
     u32 v0;
     u32 v1;
 
@@ -380,8 +360,7 @@ static void ov52_02256BDC(UnkStruct_ov52_02256694 *param0)
     Window_LoadTiles(&param0->unk_20);
 }
 
-static void ov52_02256C64(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_02256694_1 *param1)
-{
+static void ov52_02256C64(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_02256694_1 *param1) {
     static const u8 v0[] = {
         6,
         7,

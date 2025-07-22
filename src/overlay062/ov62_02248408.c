@@ -25,8 +25,7 @@ static void ov62_0224856C(Strbuf *param0, int param1);
 
 extern BattleRecording *Unk_021C07A4;
 
-void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
-{
+void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID) {
     UnkStruct_0202F298 *v0 = &param0->unk_E8;
     UnkStruct_0202F41C *v1 = &param0->unk_84;
     int v2, v3, v4, v5;
@@ -92,8 +91,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
     Heap_Free(v8);
 }
 
-static void ov62_0224856C(Strbuf *param0, int heapID)
-{
+static void ov62_0224856C(Strbuf *param0, int heapID) {
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
@@ -104,8 +102,7 @@ static void ov62_0224856C(Strbuf *param0, int heapID)
     MessageLoader_Free(v0);
 }
 
-int ov62_02248598(SaveData *saveData, int param1, u8 param2, u16 *param3, u16 *param4)
-{
+int ov62_02248598(SaveData *saveData, int param1, u8 param2, u16 *param3, u16 *param4) {
     int v0;
 
     switch (*param3) {
@@ -130,14 +127,12 @@ int ov62_02248598(SaveData *saveData, int param1, u8 param2, u16 *param3, u16 *p
     return 0;
 }
 
-void ov62_02248624(SaveData *saveData)
-{
+void ov62_02248624(SaveData *saveData) {
     GF_ASSERT(Unk_021C07A4);
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
 }
 
-int ov62_02248658(SaveData *saveData, u64 param1, u16 *param2, u16 *param3)
-{
+int ov62_02248658(SaveData *saveData, u64 param1, u16 *param2, u16 *param3) {
     int v0;
 
     switch (*param2) {
@@ -155,8 +150,7 @@ int ov62_02248658(SaveData *saveData, u64 param1, u16 *param2, u16 *param3)
     return 0;
 }
 
-int ov62_022486A4(SaveData *saveData, int param1)
-{
+int ov62_022486A4(SaveData *saveData, int param1) {
     int v0;
 
     GF_ASSERT(Unk_021C07A4 != NULL);

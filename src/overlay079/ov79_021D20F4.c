@@ -18,8 +18,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0);
 void ov79_021D21CC(UnkStruct_ov79_021D0E1C *param0);
 void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0);
 
-void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0) {
     VramTransfer_New(32, param0->heapID);
 
     param0->unk_1B8 = SpriteSystem_Alloc(param0->heapID);
@@ -75,22 +74,19 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-void ov79_021D21CC(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D21CC(UnkStruct_ov79_021D0E1C *param0) {
     sub_0209903C(param0->unk_1F8);
     SpriteSystem_DestroySpriteManager(param0->unk_1B8, param0->unk_1BC);
     SpriteSystem_Free(param0->unk_1B8);
     VramTransfer_Free();
 }
 
-void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0) {
     SpriteSystem_DrawSprites(param0->unk_1BC);
     sub_02099160(param0->unk_1F8);
 }
 
-void ov79_021D2214(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
-{
+void ov79_021D2214(UnkStruct_ov79_021D0E1C *param0, BOOL param1) {
     if (param1 == 0) {
         Sprite_SetExplicitPalette(param0->unk_1C0[0], 0);
         Sprite_SetAnimateFlag(param0->unk_1C0[1], 1);

@@ -31,8 +31,7 @@ void ov108_022435F4(UnkStruct_ov108_02243594 *param0, u32 param1);
 void ov108_02243610(UnkStruct_ov108_02243594 *param0, Pokemon *param1);
 void ov108_02243624(UnkStruct_ov108_02243594 *param0, u8 param1);
 
-UnkStruct_ov108_02243594 *ov108_0224351C(UnkStruct_ov108_02243030 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u16 param5, u16 param6, u32 param7, int param8, u8 param9)
-{
+UnkStruct_ov108_02243594 *ov108_0224351C(UnkStruct_ov108_02243030 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u16 param5, u16 param6, u32 param7, int param8, u8 param9) {
     UnkStruct_ov108_02243594 *v0;
     VecFx32 v1;
 
@@ -56,22 +55,19 @@ UnkStruct_ov108_02243594 *ov108_0224351C(UnkStruct_ov108_02243030 *param0, u32 p
     return v0;
 }
 
-void *ov108_02243594(UnkStruct_ov108_02243594 *param0)
-{
+void *ov108_02243594(UnkStruct_ov108_02243594 *param0) {
     Sprite_Delete(param0->unk_10);
     Heap_Free(param0);
 
     return NULL;
 }
 
-void ov108_022435A8(UnkStruct_ov108_02243594 *param0, int param1)
-{
+void ov108_022435A8(UnkStruct_ov108_02243594 *param0, int param1) {
     Sprite_SetDrawFlag(param0->unk_10, param1);
     return;
 }
 
-void ov108_022435B4(UnkStruct_ov108_02243594 *param0, u16 param1, u16 param2)
-{
+void ov108_022435B4(UnkStruct_ov108_02243594 *param0, u16 param1, u16 param2) {
     VecFx32 v0;
 
     v0 = *(Sprite_GetPosition(param0->unk_10));
@@ -87,16 +83,14 @@ void ov108_022435B4(UnkStruct_ov108_02243594 *param0, u16 param1, u16 param2)
     return;
 }
 
-void ov108_022435F4(UnkStruct_ov108_02243594 *param0, u32 param1)
-{
+void ov108_022435F4(UnkStruct_ov108_02243594 *param0, u32 param1) {
     Sprite_SetAnimSpeed(param0->unk_10, FX32_ONE);
     Sprite_SetAnimNoRestart(param0->unk_10, param1);
 
     return;
 }
 
-void ov108_02243610(UnkStruct_ov108_02243594 *param0, Pokemon *param1)
-{
+void ov108_02243610(UnkStruct_ov108_02243594 *param0, Pokemon *param1) {
     Sprite_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10, Pokemon_IconPaletteIndex(param1));
     return;
 }
@@ -113,8 +107,7 @@ static const VecFx32 Unk_ov111_021D3834[] = {
     { FX32_ONE - (FX32_ONE / 7), FX32_ONE - (FX32_ONE / 7), FX32_ONE - (FX32_ONE / 7) }
 };
 
-void ov108_02243624(UnkStruct_ov108_02243594 *param0, u8 param1)
-{
+void ov108_02243624(UnkStruct_ov108_02243594 *param0, u8 param1) {
     Sprite_SetAnimateFlag(param0->unk_10, param1);
     return;
 }

@@ -15,8 +15,7 @@ __attribute__((aligned(4))) static const s8 Unk_ov17_022539C8[][5] = {
     { 0x0, 0xFFFFFFFFFFFFFFF6, 0xFFFFFFFFFFFFFFF6, 0x0, 0xA }
 };
 
-int ov17_02243AC4(UnkStruct_ov17_022472F8 *param0, int param1)
-{
+int ov17_02243AC4(UnkStruct_ov17_022472F8 *param0, int param1) {
     int v0, v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -29,8 +28,7 @@ int ov17_02243AC4(UnkStruct_ov17_022472F8 *param0, int param1)
     return v1;
 }
 
-int ov17_02243AE4(int param0)
-{
+int ov17_02243AE4(int param0) {
     static const u8 v0[] = {
         3 * 10,
         2 * 10,
@@ -41,8 +39,7 @@ int ov17_02243AE4(int param0)
     return v0[param0];
 }
 
-int ov17_02243AF0(int param0, int param1, int param2, int param3)
-{
+int ov17_02243AF0(int param0, int param1, int param2, int param3) {
     int v0;
     int v1;
 
@@ -73,8 +70,7 @@ __attribute__((aligned(4))) static const s16 Unk_ov17_022539B8[] = {
     0x2710
 };
 
-void ov17_02243B0C(UnkStruct_ov17_022472F8 *param0)
-{
+void ov17_02243B0C(UnkStruct_ov17_022472F8 *param0) {
     int v0, v1, v2;
     s16 v3[4];
     u8 v4[4];

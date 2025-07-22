@@ -18,8 +18,7 @@
 #include "script_manager.h"
 #include "trainer_info.h"
 
-BOOL ScrCmd_BufferDaycareMonNicknames(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferDaycareMonNicknames(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -29,8 +28,7 @@ BOOL ScrCmd_BufferDaycareMonNicknames(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetDaycareState(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetDaycareState(ScriptContext *ctx) {
     u16 *destVar;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
@@ -43,8 +41,7 @@ BOOL ScrCmd_GetDaycareState(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_ResetDaycarePersonalityAndStepCounter(ScriptContext *ctx)
-{
+BOOL ScrCmd_ResetDaycarePersonalityAndStepCounter(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Daycare *daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
@@ -53,8 +50,7 @@ BOOL ScrCmd_ResetDaycarePersonalityAndStepCounter(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GiveEggFromDaycare(ScriptContext *ctx)
-{
+BOOL ScrCmd_GiveEggFromDaycare(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Daycare *daycare = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_DAYCARE);
@@ -65,8 +61,7 @@ BOOL ScrCmd_GiveEggFromDaycare(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_MoveMonToPartyFromDaycareSlot(ScriptContext *ctx)
-{
+BOOL ScrCmd_MoveMonToPartyFromDaycareSlot(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Daycare *daycare;
     Party *party;
@@ -82,8 +77,7 @@ BOOL ScrCmd_MoveMonToPartyFromDaycareSlot(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferDaycarePriceBySlot(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferDaycarePriceBySlot(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Daycare *daycare;
     StringTemplate **template = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -97,8 +91,7 @@ BOOL ScrCmd_BufferDaycarePriceBySlot(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferDaycareGainedLevelsBySlot(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferDaycareGainedLevelsBySlot(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Daycare *daycare;
@@ -112,8 +105,7 @@ BOOL ScrCmd_BufferDaycareGainedLevelsBySlot(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferPartyMonNicknameReturnSpecies(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferPartyMonNicknameReturnSpecies(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Party *party;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -127,8 +119,7 @@ BOOL ScrCmd_BufferPartyMonNicknameReturnSpecies(ScriptContext *ctx)
     return 0;
 }
 
-BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx)
-{
+BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Daycare *daycare;
@@ -143,8 +134,7 @@ BOOL ScrCmd_StorePartyMonIntoDaycare(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_BufferDaycareNicknameLevelGender(ScriptContext *ctx)
-{
+BOOL ScrCmd_BufferDaycareNicknameLevelGender(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -157,8 +147,7 @@ BOOL ScrCmd_BufferDaycareNicknameLevelGender(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetDaycareCompatibilityLevel(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetDaycareCompatibilityLevel(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Daycare *daycare;
@@ -170,8 +159,7 @@ BOOL ScrCmd_GetDaycareCompatibilityLevel(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckDaycareHasEgg(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckDaycareHasEgg(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
     Daycare *daycare;
@@ -183,28 +171,24 @@ BOOL ScrCmd_CheckDaycareHasEgg(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy1A5(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy1A5(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *dummy = ScriptContext_GetVarPointer(ctx);
 
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy1A6(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy1A6(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy1A7(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy1A7(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy1AD(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy1AD(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *dummy = ScriptContext_GetVarPointer(ctx);
     return FALSE;

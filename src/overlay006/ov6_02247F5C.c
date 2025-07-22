@@ -12,8 +12,7 @@
 
 static BOOL ov6_02247FD0(FieldTask *param0);
 
-void ov6_02247F5C(FieldSystem *fieldSystem)
-{
+void ov6_02247F5C(FieldSystem *fieldSystem) {
     MapPropAnimation *v0;
 
     if (!SystemFlag_CheckFreedGalacticHQPokemon(SaveData_GetVarsFlags(fieldSystem->saveData))) {
@@ -30,13 +29,11 @@ void ov6_02247F5C(FieldSystem *fieldSystem)
     }
 }
 
-void ov6_02247FBC(FieldSystem *fieldSystem)
-{
+void ov6_02247FBC(FieldSystem *fieldSystem) {
     FieldTask_InitCall(fieldSystem->task, ov6_02247FD0, NULL);
 }
 
-static BOOL ov6_02247FD0(FieldTask *param0)
-{
+static BOOL ov6_02247FD0(FieldTask *param0) {
     int *v0;
     MapPropAnimation *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);

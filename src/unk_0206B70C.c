@@ -72,8 +72,7 @@ static const u8 Unk_020EFA84[20] = {
     FIRST_ARRIVAL_POKEMON_LEAGUE,
 };
 
-void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int param2)
-{
+void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int param2) {
     TrainerInfo *v0;
     int v1 = 0, v2 = 0, v3 = 0;
     int x, z, v6;
@@ -150,8 +149,7 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
     param1->unk_139 = param2;
 }
 
-static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, const char *param2)
-{
+static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, const char *param2) {
     FSFile v0;
     int v1, i;
     int v3;

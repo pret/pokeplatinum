@@ -12,8 +12,7 @@
 
 static void SortChainRecords(RadarChainRecords *param0, ChainRecord **param1);
 
-int RadarChainRecords_GetNumFilledSlots(FieldSystem *fieldSystem)
-{
+int RadarChainRecords_GetNumFilledSlots(FieldSystem *fieldSystem) {
     int i;
     int filledSlots;
     RadarChainRecords *recordsData = SpecialEncounter_GetRadarChainRecords(SaveData_GetSpecialEncounters(fieldSystem->saveData));
@@ -29,8 +28,7 @@ int RadarChainRecords_GetNumFilledSlots(FieldSystem *fieldSystem)
     return filledSlots;
 }
 
-int RadarChainRecords_GetSpecies(FieldSystem *fieldSystem, const u8 slot)
-{
+int RadarChainRecords_GetSpecies(FieldSystem *fieldSystem, const u8 slot) {
     RadarChainRecords *recordsData;
     ChainRecord *records[NUM_RADAR_RECORDS];
 
@@ -42,8 +40,7 @@ int RadarChainRecords_GetSpecies(FieldSystem *fieldSystem, const u8 slot)
     return records[slot]->species;
 }
 
-int RadarChainRecords_GetChainCount(FieldSystem *fieldSystem, const u8 slot)
-{
+int RadarChainRecords_GetChainCount(FieldSystem *fieldSystem, const u8 slot) {
     RadarChainRecords *recordsData;
     ChainRecord *records[NUM_RADAR_RECORDS];
 
@@ -54,21 +51,18 @@ int RadarChainRecords_GetChainCount(FieldSystem *fieldSystem, const u8 slot)
     return records[slot]->chainCount;
 }
 
-int RadarChainRecords_GetActiveChain(FieldSystem *fieldSystem)
-{
+int RadarChainRecords_GetActiveChain(FieldSystem *fieldSystem) {
     return GetChainCount(fieldSystem);
 }
 
-int GetRadarSpecies(FieldSystem *fieldSystem)
-{
+int GetRadarSpecies(FieldSystem *fieldSystem) {
     int species, level;
 
     GetRadarMon(fieldSystem->chain, &species, &level);
     return species;
 }
 
-void RadarChainRecords_SortSavedRecords(RadarChainRecords *recordsData)
-{
+void RadarChainRecords_SortSavedRecords(RadarChainRecords *recordsData) {
     int i;
     ChainRecord recordsCopy[NUM_RADAR_RECORDS];
     ChainRecord *sortedRecords[NUM_RADAR_RECORDS];
@@ -85,8 +79,7 @@ void RadarChainRecords_SortSavedRecords(RadarChainRecords *recordsData)
 }
 
 // Sorts RadarChainRecords data in descending order.
-static void SortChainRecords(RadarChainRecords *data, ChainRecord **sorted)
-{
+static void SortChainRecords(RadarChainRecords *data, ChainRecord **sorted) {
     if (data->records[0].chainCount < data->records[1].chainCount) {
         if (data->records[1].chainCount < data->records[2].chainCount) { // 2 > 1 > 0
             sorted[0] = &data->records[2];

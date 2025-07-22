@@ -13,8 +13,7 @@
 #include "item.h"
 #include "unk_0205DFC4.h"
 
-BOOL ScrCmd_AddItem(ScriptContext *ctx)
-{
+BOOL ScrCmd_AddItem(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 item = ScriptContext_GetVar(ctx);
     u16 count = ScriptContext_GetVar(ctx);
@@ -24,8 +23,7 @@ BOOL ScrCmd_AddItem(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_RemoveItem(ScriptContext *ctx)
-{
+BOOL ScrCmd_RemoveItem(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 item = ScriptContext_GetVar(ctx);
     u16 count = ScriptContext_GetVar(ctx);
@@ -35,8 +33,7 @@ BOOL ScrCmd_RemoveItem(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CanFitItem(ScriptContext *ctx)
-{
+BOOL ScrCmd_CanFitItem(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 item = ScriptContext_GetVar(ctx);
     u16 count = ScriptContext_GetVar(ctx);
@@ -46,8 +43,7 @@ BOOL ScrCmd_CanFitItem(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckItem(ScriptContext *ctx)
-{
+BOOL ScrCmd_CheckItem(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 item = ScriptContext_GetVar(ctx);
     u16 count = ScriptContext_GetVar(ctx);
@@ -57,8 +53,7 @@ BOOL ScrCmd_CheckItem(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetItemQuantity(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetItemQuantity(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 item = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
@@ -67,8 +62,7 @@ BOOL ScrCmd_GetItemQuantity(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_IsItemTMHM(ScriptContext *ctx)
-{
+BOOL ScrCmd_IsItemTMHM(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 item = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
@@ -77,8 +71,7 @@ BOOL ScrCmd_IsItemTMHM(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GetItemPocket(ScriptContext *ctx)
-{
+BOOL ScrCmd_GetItemPocket(ScriptContext *ctx) {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 item = ScriptContext_GetVar(ctx);
     u16 *pocket = ScriptContext_GetVarPointer(ctx);
@@ -87,12 +80,10 @@ BOOL ScrCmd_GetItemPocket(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy081(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy081(ScriptContext *ctx) {
     return FALSE;
 }
 
-BOOL ScrCmd_Dummy082(ScriptContext *ctx)
-{
+BOOL ScrCmd_Dummy082(ScriptContext *ctx) {
     return FALSE;
 }

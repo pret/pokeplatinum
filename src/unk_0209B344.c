@@ -32,8 +32,7 @@ typedef struct {
 static void sub_0209B3AC(UnkStruct_0209B3AC *param0);
 static BOOL sub_0209B3C4(FieldTask *param0);
 
-void sub_0209B344(FieldTask *param0, u16 *param1)
-{
+void sub_0209B344(FieldTask *param0, u16 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0209B3AC *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209B3AC));
 
@@ -53,15 +52,13 @@ void sub_0209B344(FieldTask *param0, u16 *param1)
     return;
 }
 
-static void sub_0209B3AC(UnkStruct_0209B3AC *param0)
-{
+static void sub_0209B3AC(UnkStruct_0209B3AC *param0) {
     sub_020974EC(param0->unk_10);
     StringTemplate_Free(param0->unk_04);
     Heap_Free(param0);
 }
 
-static BOOL sub_0209B3C4(FieldTask *param0)
-{
+static BOOL sub_0209B3C4(FieldTask *param0) {
     UnkStruct_0209B3AC *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_18) {

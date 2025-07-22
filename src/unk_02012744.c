@@ -90,8 +90,7 @@ static const u8 Unk_020E52E4[12][2] = {
     { 0x1, 0x1 }
 };
 
-UnkStruct_02012744 *sub_02012744(int param0, int heapID)
-{
+UnkStruct_02012744 *sub_02012744(int param0, int heapID) {
     UnkStruct_02012744 *v0;
     int v1;
 
@@ -113,8 +112,7 @@ UnkStruct_02012744 *sub_02012744(int param0, int heapID)
     return v0;
 }
 
-void sub_020127BC(UnkStruct_02012744 *param0)
-{
+void sub_020127BC(UnkStruct_02012744 *param0) {
     int v0;
 
     GF_ASSERT(param0);
@@ -127,8 +125,7 @@ void sub_020127BC(UnkStruct_02012744 *param0)
     Heap_Free(param0);
 }
 
-FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0)
-{
+FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0) {
     FontOAM *v0;
     UnkStruct_02013034 v1;
     int v2;
@@ -160,8 +157,7 @@ FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0)
     return v0;
 }
 
-void sub_02012870(FontOAM *param0)
-{
+void sub_02012870(FontOAM *param0) {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_00);
 
@@ -170,8 +166,7 @@ void sub_02012870(FontOAM *param0)
     sub_02012CD0(param0);
 }
 
-int sub_02012898(const Window *param0, int param1, int heapID)
-{
+int sub_02012898(const Window *param0, int param1, int heapID) {
     UnkStruct_02013034 v0;
     int v1;
 
@@ -185,8 +180,7 @@ int sub_02012898(const Window *param0, int param1, int heapID)
     return v1;
 }
 
-void sub_020128C4(FontOAM *param0, int param1, int param2)
-{
+void sub_020128C4(FontOAM *param0, int param1, int param2) {
     int v0;
     VecFx32 v1;
     const VecFx32 *v2;
@@ -216,8 +210,7 @@ void sub_020128C4(FontOAM *param0, int param1, int param2)
     }
 }
 
-void sub_02012938(FontOAM *param0)
-{
+void sub_02012938(FontOAM *param0) {
     int v0;
     VecFx32 v1;
     const VecFx32 *v2;
@@ -244,8 +237,7 @@ void sub_02012938(FontOAM *param0)
     }
 }
 
-void sub_020129A4(const FontOAM *param0, int *param1, int *param2)
-{
+void sub_020129A4(const FontOAM *param0, int *param1, int *param2) {
     GF_ASSERT(param0);
     GF_ASSERT(param1);
     GF_ASSERT(param2);
@@ -254,8 +246,7 @@ void sub_020129A4(const FontOAM *param0, int *param1, int *param2)
     *param2 = param0->unk_10;
 }
 
-void sub_020129D0(FontOAM *param0, BOOL param1)
-{
+void sub_020129D0(FontOAM *param0, BOOL param1) {
     int v0;
 
     GF_ASSERT(param0);
@@ -265,8 +256,7 @@ void sub_020129D0(FontOAM *param0, BOOL param1)
     }
 }
 
-void sub_02012A00(FontOAM *param0, u8 param1)
-{
+void sub_02012A00(FontOAM *param0, u8 param1) {
     int v0;
 
     GF_ASSERT(param0);
@@ -276,8 +266,7 @@ void sub_02012A00(FontOAM *param0, u8 param1)
     }
 }
 
-void sub_02012A30(FontOAM *param0, u32 param1)
-{
+void sub_02012A30(FontOAM *param0, u32 param1) {
     int v0;
 
     GF_ASSERT(param0);
@@ -287,8 +276,7 @@ void sub_02012A30(FontOAM *param0, u32 param1)
     }
 }
 
-void sub_02012A60(FontOAM *param0, u32 param1)
-{
+void sub_02012A60(FontOAM *param0, u32 param1) {
     int v0;
 
     GF_ASSERT(param0);
@@ -298,8 +286,7 @@ void sub_02012A60(FontOAM *param0, u32 param1)
     }
 }
 
-void sub_02012A90(FontOAM *param0, u32 param1)
-{
+void sub_02012A90(FontOAM *param0, u32 param1) {
     int v0;
 
     GF_ASSERT(param0);
@@ -309,8 +296,7 @@ void sub_02012A90(FontOAM *param0, u32 param1)
     }
 }
 
-void sub_02012AC0(FontOAM *param0, u32 param1)
-{
+void sub_02012AC0(FontOAM *param0, u32 param1) {
     int v0;
 
     GF_ASSERT(param0);
@@ -320,8 +306,7 @@ void sub_02012AC0(FontOAM *param0, u32 param1)
     }
 }
 
-void sub_02012AF0(FontOAM *param0, GXOamMode param1)
-{
+void sub_02012AF0(FontOAM *param0, GXOamMode param1) {
     int v0;
 
     GF_ASSERT(param0);
@@ -331,8 +316,7 @@ void sub_02012AF0(FontOAM *param0, GXOamMode param1)
     }
 }
 
-UnkStruct_02012B20 *sub_02012B20(const Window *param0, int heapID)
-{
+UnkStruct_02012B20 *sub_02012B20(const Window *param0, int heapID) {
     UnkStruct_02012B20 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02012B20));
 
     v0->unk_00.unk_0C = &v0->unk_00;
@@ -342,19 +326,16 @@ UnkStruct_02012B20 *sub_02012B20(const Window *param0, int heapID)
     return v0;
 }
 
-void sub_02012B48(UnkStruct_02012B20 *param0)
-{
+void sub_02012B48(UnkStruct_02012B20 *param0) {
     sub_020131B8(&param0->unk_00);
     Heap_Free(param0);
 }
 
-int sub_02012B58(const UnkStruct_02012B20 *param0, int param1)
-{
+int sub_02012B58(const UnkStruct_02012B20 *param0, int param1) {
     return sub_02013034(&param0->unk_00, param1);
 }
 
-FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20 *param1)
-{
+FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20 *param1) {
     FontOAM *v0;
     NNSG2dImageProxy *v1;
 
@@ -379,13 +360,11 @@ FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20
     return v0;
 }
 
-void sub_02012BD8(FontOAM *param0)
-{
+void sub_02012BD8(FontOAM *param0) {
     sub_02012870(param0);
 }
 
-void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Window *param2, int heapID)
-{
+void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Window *param2, int heapID) {
     int v0;
     char *v1;
     NNSG2dImageProxy *v2;
@@ -410,8 +389,7 @@ void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Windo
     Heap_Free(v1);
 }
 
-void sub_02012C60(const Window *param0, int param1, int param2, int param3, int param4, char *param5)
-{
+void sub_02012C60(const Window *param0, int param1, int param2, int param3, int param4, char *param5) {
     int v0;
     int v1;
     int v2;
@@ -430,13 +408,11 @@ void sub_02012C60(const Window *param0, int param1, int param2, int param3, int 
     }
 }
 
-static void sub_02012CD0(FontOAM *param0)
-{
+static void sub_02012CD0(FontOAM *param0) {
     memset(param0, 0, sizeof(FontOAM));
 }
 
-static FontOAM *sub_02012CE0(const UnkStruct_02012744 *param0)
-{
+static FontOAM *sub_02012CE0(const UnkStruct_02012744 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_64; v0++) {
@@ -448,8 +424,7 @@ static FontOAM *sub_02012CE0(const UnkStruct_02012744 *param0)
     return NULL;
 }
 
-static int sub_02012D08(int param0, int param1)
-{
+static int sub_02012D08(int param0, int param1) {
     int v0;
 
     for (v0 = 0; v0 < 12; v0++) {
@@ -461,8 +436,7 @@ static int sub_02012D08(int param0, int param1)
     return 12;
 }
 
-static BOOL sub_02012D34(UnkStruct_02012D34 *param0, UnkStruct_02013034 *param1, int heapID)
-{
+static BOOL sub_02012D34(UnkStruct_02012D34 *param0, UnkStruct_02013034 *param1, int heapID) {
     UnkStruct_02013034 *v0;
     int v1;
     int v2;
@@ -502,8 +476,7 @@ static BOOL sub_02012D34(UnkStruct_02012D34 *param0, UnkStruct_02013034 *param1,
     return 0;
 }
 
-static int sub_02012DE4(int param0, int param1, int heapID, UnkStruct_02013034 *param3)
-{
+static int sub_02012DE4(int param0, int param1, int heapID, UnkStruct_02013034 *param3) {
     UnkStruct_02012DE4 v0;
     UnkStruct_02012D34 v1;
     int v2;
@@ -540,8 +513,7 @@ static int sub_02012DE4(int param0, int param1, int heapID, UnkStruct_02013034 *
     return v3;
 }
 
-static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int heapID)
-{
+static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int heapID) {
     UnkStruct_02013034 *v0;
     int v1;
     int v2;
@@ -565,8 +537,7 @@ static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1,
     }
 }
 
-static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5, int param6, int heapID)
-{
+static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5, int param6, int heapID) {
     char *v0;
     int v1;
     int v2 = Unk_020E52E4[param1->unk_08][0];
@@ -606,8 +577,7 @@ static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, 
     return param5 + v1;
 }
 
-static void sub_02012F98(const Window *param0, char *param1, const UnkStruct_02013034 *param2, int param3, int param4)
-{
+static void sub_02012F98(const Window *param0, char *param1, const UnkStruct_02013034 *param2, int param3, int param4) {
     UnkStruct_02013034 *v0;
     int v1;
     int v2;
@@ -630,8 +600,7 @@ static void sub_02012F98(const Window *param0, char *param1, const UnkStruct_020
     }
 }
 
-static int sub_02012FF0(const Window *param0, const UnkStruct_02013034 *param1, char *param2, int param3, int param4, int param5, int param6)
-{
+static int sub_02012FF0(const Window *param0, const UnkStruct_02013034 *param1, char *param2, int param3, int param4, int param5, int param6) {
     int v0;
     int v1 = Unk_020E52E4[param1->unk_08][0];
     int v2 = Unk_020E52E4[param1->unk_08][1];
@@ -648,8 +617,7 @@ static int sub_02012FF0(const Window *param0, const UnkStruct_02013034 *param1, 
     return param3 + v0;
 }
 
-static int sub_02013034(const UnkStruct_02013034 *param0, int param1)
-{
+static int sub_02013034(const UnkStruct_02013034 *param0, int param1) {
     UnkStruct_02013034 *v0;
     int v1;
     GXOBJVRamModeChar v2;
@@ -683,8 +651,7 @@ static int sub_02013034(const UnkStruct_02013034 *param0, int param1)
     return v3;
 }
 
-static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3)
-{
+static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3) {
     UnkStruct_02013034 *v0;
     int v1 = 0;
     v0 = param1->unk_0C;
@@ -701,8 +668,7 @@ static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013
     }
 }
 
-static void sub_020130DC(FontOAM *param0)
-{
+static void sub_020130DC(FontOAM *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
@@ -710,8 +676,7 @@ static void sub_020130DC(FontOAM *param0)
     }
 }
 
-static Sprite *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2)
-{
+static Sprite *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2) {
     SpriteListTemplate v0;
     SpriteResourcesHeader v1;
 
@@ -747,8 +712,7 @@ static Sprite *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02
     return SpriteList_Add(&v0);
 }
 
-static UnkStruct_02013034 *sub_02013188(int heapID)
-{
+static UnkStruct_02013034 *sub_02013188(int heapID) {
     UnkStruct_02013034 *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_02013034));
     GF_ASSERT(v0);
 
@@ -758,14 +722,12 @@ static UnkStruct_02013034 *sub_02013188(int heapID)
     return v0;
 }
 
-static void sub_020131A4(UnkStruct_02013034 *param0)
-{
+static void sub_020131A4(UnkStruct_02013034 *param0) {
     GF_ASSERT(param0);
     Heap_Free(param0);
 }
 
-static void sub_020131B8(UnkStruct_02013034 *param0)
-{
+static void sub_020131B8(UnkStruct_02013034 *param0) {
     UnkStruct_02013034 *v0;
     UnkStruct_02013034 *v1;
 
@@ -778,16 +740,14 @@ static void sub_020131B8(UnkStruct_02013034 *param0)
     }
 }
 
-static void sub_020131D0(UnkStruct_02013034 *param0, UnkStruct_02013034 *param1)
-{
+static void sub_020131D0(UnkStruct_02013034 *param0, UnkStruct_02013034 *param1) {
     param0->unk_0C = param1->unk_0C;
     param0->unk_10 = param1;
     param1->unk_0C->unk_10 = param0;
     param1->unk_0C = param0;
 }
 
-void sub_020131E0(FontOAM *param0, const Sprite *param1)
-{
+void sub_020131E0(FontOAM *param0, const Sprite *param1) {
     param0->unk_08 = param1;
     sub_02012938(param0);
 }

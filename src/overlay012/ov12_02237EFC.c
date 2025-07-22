@@ -36,8 +36,7 @@ static void ov12_02238054(UnkStruct_ov12_02238004 *param0, SPLEmitterCallback pa
 static void ov12_02238080(SPLEmitter *param0);
 static int ov12_02238088(int param0);
 
-UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *param1)
-{
+UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *param1) {
     UnkStruct_ov12_02237F98 *v0 = NULL;
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02237F98));
 
@@ -65,8 +64,7 @@ UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *para
     return v0;
 }
 
-UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruct_ov12_02237F38 *param1)
-{
+UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruct_ov12_02237F38 *param1) {
     int v0;
     UnkStruct_ov12_02238004 *v1 = NULL;
 
@@ -91,8 +89,7 @@ UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruc
     return v1;
 }
 
-void ov12_02237F74(UnkStruct_ov12_02237F98 *param0)
-{
+void ov12_02237F74(UnkStruct_ov12_02237F98 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 16; v0++) {
@@ -106,8 +103,7 @@ void ov12_02237F74(UnkStruct_ov12_02237F98 *param0)
     Heap_Free(param0);
 }
 
-void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
-{
+void ov12_02237F98(UnkStruct_ov12_02237F98 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 16; v0++) {
@@ -129,8 +125,7 @@ void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
     }
 }
 
-UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *param1)
-{
+UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *param1) {
     UnkStruct_ov12_02238004 *v0;
 
     v0 == NULL;
@@ -150,20 +145,17 @@ UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *para
     return v0;
 }
 
-void ov12_02238004(UnkStruct_ov12_02238004 *param0)
-{
+void ov12_02238004(UnkStruct_ov12_02238004 *param0) {
     param0->unk_20 = 1;
     ov12_02238054(param0, ov12_02238080);
     param0->unk_18 = SysTask_Start(ov12_02238030, param0, 1000);
 }
 
-BOOL ov12_0223802C(UnkStruct_ov12_02238004 *param0)
-{
+BOOL ov12_0223802C(UnkStruct_ov12_02238004 *param0) {
     return param0->unk_20;
 }
 
-static void ov12_02238030(SysTask *param0, void *param1)
-{
+static void ov12_02238030(SysTask *param0, void *param1) {
     UnkStruct_ov12_02238004 *v0 = (UnkStruct_ov12_02238004 *)param1;
     int v1 = 0;
 
@@ -179,8 +171,7 @@ static void ov12_02238030(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void ov12_02238054(UnkStruct_ov12_02238004 *param0, SPLEmitterCallback param1)
-{
+static void ov12_02238054(UnkStruct_ov12_02238004 *param0, SPLEmitterCallback param1) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_1C; v0++) {
@@ -190,13 +181,11 @@ static void ov12_02238054(UnkStruct_ov12_02238004 *param0, SPLEmitterCallback pa
     ParticleSystem_SetCameraProjection(param0->unk_10, param0->unk_08.unk_04);
 }
 
-static void ov12_02238080(SPLEmitter *param0)
-{
+static void ov12_02238080(SPLEmitter *param0) {
     UnkStruct_ov12_02238004 *v0 = ParticleSystem_GetEmitterCallbackParam();
 }
 
-static int ov12_02238088(int param0)
-{
+static int ov12_02238088(int param0) {
     const int v0[] = {
         0x5,
         0xB,

@@ -7,8 +7,7 @@
 #include "heap.h"
 #include "unk_02033200.h"
 
-void ov18_0221F800(int heapID)
-{
+void ov18_0221F800(int heapID) {
     OSIntrMode v0;
     void *v1;
 

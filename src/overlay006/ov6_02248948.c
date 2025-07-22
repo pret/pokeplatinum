@@ -41,8 +41,7 @@ static const UnkFuncPtr_ov6_0224984C Unk_ov6_0224984C[3] = {
     ov6_02248480
 };
 
-static void ov6_02248948(SysTask *param0, void *param1)
-{
+static void ov6_02248948(SysTask *param0, void *param1) {
     UnkStruct_ov6_02248948 *v0 = param1;
 
     switch (v0->unk_08) {
@@ -60,8 +59,7 @@ static void ov6_02248948(SysTask *param0, void *param1)
     }
 }
 
-void ov6_0224899C(FieldSystem *fieldSystem, u16 *param1, u32 param2, u32 heapID)
-{
+void ov6_0224899C(FieldSystem *fieldSystem, u16 *param1, u32 param2, u32 heapID) {
     UnkStruct_ov6_02248948 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov6_02248948));
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248948));

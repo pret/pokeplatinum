@@ -23,8 +23,7 @@ static DWCNdFileInfo Unk_ov97_02240414[10];
 
 static void ov97_02238E88(void);
 
-static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2)
-{
+static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2) {
 #pragma unused(param0, param2)
     void *v0;
     u32 *v1;
@@ -41,8 +40,7 @@ static void *ov97_02238D74(DWCAllocType param0, u32 param1, int param2)
     return v1;
 }
 
-static void ov97_02238D94(DWCAllocType param0, void *param1, u32 param2)
-{
+static void ov97_02238D94(DWCAllocType param0, void *param1, u32 param2) {
 #pragma unused(param0, param2)
     u32 *v0;
 
@@ -56,8 +54,7 @@ static void ov97_02238D94(DWCAllocType param0, void *param1, u32 param2)
 
 static volatile BOOL Unk_ov97_02240410;
 
-static int ov97_02238DA4(MysteryGiftAppData *param0)
-{
+static int ov97_02238DA4(MysteryGiftAppData *param0) {
     DWCError v0;
     DWCErrorType v1;
     int v2;
@@ -76,8 +73,7 @@ static int ov97_02238DA4(MysteryGiftAppData *param0)
     return 4111;
 }
 
-static BOOL ov97_02238DF8(MysteryGiftAppData *param0)
-{
+static BOOL ov97_02238DF8(MysteryGiftAppData *param0) {
     DWCApInfo v0;
     DWCError v1;
     int v2, v3;
@@ -102,16 +98,14 @@ static BOOL ov97_02238DF8(MysteryGiftAppData *param0)
     return 0;
 }
 
-static void ov97_02238E20(MysteryGiftAppData *param0, int *param1, int param2)
-{
+static void ov97_02238E20(MysteryGiftAppData *param0, int *param1, int param2) {
     Unk_ov97_02240400 = 0;
     Unk_ov97_0224040C = DWC_ND_ERROR_NONE;
     param0->unk_16B0 = param2;
     *param1 = 4114;
 }
 
-static void ov97_02238E44(MysteryGiftAppData *param0, int param1, int *param2, int param3, int param4)
-{
+static void ov97_02238E44(MysteryGiftAppData *param0, int param1, int *param2, int param3, int param4) {
     Unk_ov97_02240404 = 0;
     Unk_ov97_02240408 = param1;
     param0->unk_16B0 = param3;
@@ -122,8 +116,7 @@ static void ov97_02238E44(MysteryGiftAppData *param0, int param1, int *param2, i
     }
 }
 
-static void ov97_02238E78(DWCNdCallbackReason param0, DWCNdError param1, int param2)
-{
+static void ov97_02238E78(DWCNdCallbackReason param0, DWCNdError param1, int param2) {
     switch (param0) {
     case DWC_ND_CBREASON_GETFILELISTNUM:
         break;
@@ -159,8 +152,7 @@ static void ov97_02238E78(DWCNdCallbackReason param0, DWCNdError param1, int par
     Unk_ov97_0224040C = param1;
 }
 
-static void ov97_02238E88(void)
-{
+static void ov97_02238E88(void) {
     switch (Unk_ov97_02240408) {
     case 1:
         break;
@@ -173,8 +165,7 @@ static void ov97_02238E88(void)
     Unk_ov97_02240404 = 1;
 }
 
-static void ov97_02238E94(void)
-{
+static void ov97_02238E94(void) {
     sub_02039794();
     sub_02038514();
     sub_020995C4();
@@ -182,8 +173,7 @@ static void ov97_02238E94(void)
     sub_020334CC();
 }
 
-int ov97_02238EAC(ApplicationManager *appMan, int *param1)
-{
+int ov97_02238EAC(ApplicationManager *appMan, int *param1) {
     int v0;
     DWCNasLoginState v1;
     MysteryGiftAppData *v2 = ApplicationManager_Data(appMan);

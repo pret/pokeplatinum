@@ -148,8 +148,7 @@ static void TeardownBgs(OptionsMenuData *menuData);
 static void TeardownTilemaps(OptionsMenuData *menuData);
 static void TeardownWindows(OptionsMenuData *menuData);
 
-BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
-{
+BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state) {
     OptionsMenuData *menuData = NULL;
     Options *options = ApplicationManager_Args(appMan);
 
@@ -172,8 +171,7 @@ BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state)
-{
+BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state) {
     OptionsMenuData *menuData = ApplicationManager_Data(appMan);
 
     if (menuData->saveSelections == 1) {
@@ -214,8 +212,7 @@ enum OptonsMenuState {
     STATE_TEARDOWN,
 };
 
-BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
-{
+BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state) {
     OptionsMenuData *menuData = ApplicationManager_Data(appMan);
     u32 choiceYesNo;
 
@@ -307,8 +304,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
     return FALSE;
 }
 
-static void SetVRAMBanks()
-{
+static void SetVRAMBanks() {
     UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -325,8 +321,7 @@ static void SetVRAMBanks()
     GXLayers_SetBanks(&banks);
 }
 
-static void OptionsMenuVBlank(void *data)
-{
+static void OptionsMenuVBlank(void *data) {
     OptionsMenuData *menuData = data;
 
     if (menuData->redrawMessageBox) {
@@ -345,8 +340,7 @@ static void OptionsMenuVBlank(void *data)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int SetupMenuVisuals(OptionsMenuData *menuData)
-{
+static int SetupMenuVisuals(OptionsMenuData *menuData) {
     switch (menuData->subState) {
     case 0:
         SetVBlankCallback(NULL, NULL);
@@ -387,8 +381,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
     return FALSE;
 }
 
-static int TeardownMenuData(OptionsMenuData *menuData)
-{
+static int TeardownMenuData(OptionsMenuData *menuData) {
     int v0 = 0, v1 = 0;
 
     switch (menuData->subState) {
@@ -423,8 +416,7 @@ static int TeardownMenuData(OptionsMenuData *menuData)
     return FALSE;
 }
 
-static void SetupBgs(OptionsMenuData *menuData)
-{
+static void SetupBgs(OptionsMenuData *menuData) {
     menuData->bgConfig = BgConfig_New(menuData->heapID);
 
     GraphicsModes graphicsModes = {
@@ -527,8 +519,7 @@ static void SetupBgs(OptionsMenuData *menuData)
     Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, menuData->heapID);
 }
 
-static void TeardownBgs(OptionsMenuData *menuData)
-{
+static void TeardownBgs(OptionsMenuData *menuData) {
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_2);
@@ -537,8 +528,7 @@ static void TeardownBgs(OptionsMenuData *menuData)
     Heap_Free(menuData->bgConfig);
 }
 
-static void LoadBgTiles(OptionsMenuData *menuData)
-{
+static void LoadBgTiles(OptionsMenuData *menuData) {
     NNSG2dCharacterData *cursorTiles;
     NNSG2dPaletteData *cursorPalette;
 
@@ -602,13 +592,11 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     Bg_ScheduleTilemapTransfer(menuData->bgConfig, BG_LAYER_SUB_0);
 }
 
-static void TeardownTilemaps(OptionsMenuData *menuData)
-{
+static void TeardownTilemaps(OptionsMenuData *menuData) {
     Heap_Free(menuData->nscrBuffer);
 }
 
-static void SetupWindows(OptionsMenuData *menuData)
-{
+static void SetupWindows(OptionsMenuData *menuData) {
     Window_Add(menuData->bgConfig,
         &menuData->windows.title,
         BG_LAYER_MAIN_1,
@@ -665,8 +653,7 @@ static void SetupWindows(OptionsMenuData *menuData)
     Window_DrawMessageBoxWithScrollCursor(&menuData->windows.description, TRUE, MESSAGE_BOX_BASE_TILE, 15);
 }
 
-static void TeardownWindows(OptionsMenuData *menuData)
-{
+static void TeardownWindows(OptionsMenuData *menuData) {
     Window_EraseStandardFrame(&menuData->windows.entries, FALSE);
     Window_EraseMessageBox(&menuData->windows.description, FALSE);
 
@@ -688,8 +675,7 @@ static const u8 sEntryLabels[MAX_ENTRIES] = {
     OptionsMenu_Text_CloseLabel,
 };
 
-static void PrintTitleAndEntries(OptionsMenuData *menuData)
-{
+static void PrintTitleAndEntries(OptionsMenuData *menuData) {
     u16 i; // Must forward-declare to match
     TextColor transparentBg = TEXT_COLOR(1, 2, 0);
     TextColor whiteBg = TEXT_COLOR(1, 2, 15);
@@ -748,8 +734,7 @@ static const u8 sFirstChoicePerEntry[MAX_ENTRIES] = {
     NULL,
 };
 
-static void LoadAllEntryChoices(OptionsMenuData *menuData)
-{
+static void LoadAllEntryChoices(OptionsMenuData *menuData) {
     u16 i, j;
     for (i = 0; i < MAX_ENTRIES; i++) {
         menuData->entries.asArray[i].numChoices = sNumChoicesPerEntry[i];
@@ -768,8 +753,7 @@ static void LoadAllEntryChoices(OptionsMenuData *menuData)
 
 static const s8 sEntryXOffsets[] = { 0, 0, 0, 0, 0, 0, 0 };
 
-static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
-{
+static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry) {
     TextColor darkGray, red, color;
     u16 i;
     u8 textSpeed;
@@ -841,8 +825,7 @@ static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
     Window_CopyToVRAM(&menuData->windows.asArray[1]);
 }
 
-static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy)
-{
+static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy) {
     // Kill any active printer
     if (IsTextPrinterDone(menuData) == FALSE) {
         Text_RemovePrinter(menuData->textPrinter);
@@ -880,13 +863,11 @@ static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BO
     Strbuf_Free(strbuf);
 }
 
-static BOOL IsTextPrinterDone(const OptionsMenuData *menuData)
-{
+static BOOL IsTextPrinterDone(const OptionsMenuData *menuData) {
     return Text_IsPrinterActive(menuData->textPrinter) == FALSE;
 }
 
-static void ProcessMainInput(OptionsMenuData *menuData)
-{
+static void ProcessMainInput(OptionsMenuData *menuData) {
     OptionsMenuEntry *entry = &menuData->entries.asArray[menuData->cursor];
 
     if (menuData->cursor != ENTRY_CLOSE) {
@@ -922,8 +903,7 @@ static void ProcessMainInput(OptionsMenuData *menuData)
     }
 }
 
-static BOOL ChangesWereMade(OptionsMenuData *menuData)
-{
+static BOOL ChangesWereMade(OptionsMenuData *menuData) {
     return menuData->options.textSpeed != menuData->entries.textSpeed.selected
         || menuData->options.battleScene != menuData->entries.battleScene.selected
         || menuData->options.battleStyle != menuData->entries.battleStyle.selected
@@ -942,8 +922,7 @@ static const WindowTemplate sConfirmationWindowTemplate = {
     .baseTile = CONFIRMATION_BASE_TILE,
 };
 
-static void DrawConfirmationPrompt(OptionsMenuData *menuData)
-{
+static void DrawConfirmationPrompt(OptionsMenuData *menuData) {
     menuData->yesNoChoice = Menu_MakeYesNoChoice(menuData->bgConfig,
         &sConfirmationWindowTemplate,
         STANDARD_WINDOW_BASE_TILE,
@@ -951,8 +930,7 @@ static void DrawConfirmationPrompt(OptionsMenuData *menuData)
         menuData->heapID);
 }
 
-static u32 ProcessConfirmationInput(OptionsMenuData *menuData)
-{
+static u32 ProcessConfirmationInput(OptionsMenuData *menuData) {
     return Menu_ProcessInputAndHandleExit(menuData->yesNoChoice, menuData->heapID);
 }
 
@@ -966,7 +944,6 @@ static const u8 sEntryDescriptions[MAX_ENTRIES] = {
     OptionsMenu_Text_CloseDescription,
 };
 
-static void PrintEntryDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy)
-{
+static void PrintEntryDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy) {
     PrintBankEntryAsDescription(menuData, sEntryDescriptions[entry], scheduleVRAMCopy);
 }

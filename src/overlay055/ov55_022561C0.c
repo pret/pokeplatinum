@@ -33,13 +33,11 @@ static BOOL ov55_022562A4(UnkStruct_ov55_0225621C *param0);
 static BOOL ov55_022562E4(UnkStruct_ov55_0225621C *param0);
 static BOOL ov55_022562F8(UnkStruct_ov55_0225621C *param0);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(ov55_022561D4, ov55_02256288);
 }
 
-static BOOL ov55_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov55_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     UnkStruct_ov55_0225621C *v0 = (UnkStruct_ov55_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov55_0225621C));
 
     if (v0 != NULL) {
@@ -57,8 +55,7 @@ static BOOL ov55_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
     return 0;
 }
 
-static BOOL ov55_0225621C(UnkStruct_ov55_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov55_0225621C(UnkStruct_ov55_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     if (ov55_0225632C(&(param0->unk_08), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
         param0->unk_01 = 0;
@@ -71,14 +68,12 @@ static BOOL ov55_0225621C(UnkStruct_ov55_0225621C *param0, PoketchSystem *poketc
     return 0;
 }
 
-static void ov55_02256240(UnkStruct_ov55_0225621C *param0)
-{
+static void ov55_02256240(UnkStruct_ov55_0225621C *param0) {
     ov55_02256360(param0->unk_08);
     Heap_Free(param0);
 }
 
-static void ov55_02256254(SysTask *param0, void *param1)
-{
+static void ov55_02256254(SysTask *param0, void *param1) {
     static BOOL (*const v0[])(UnkStruct_ov55_0225621C *) = {
         ov55_022562A4,
         ov55_022562E4,
@@ -97,13 +92,11 @@ static void ov55_02256254(SysTask *param0, void *param1)
     }
 }
 
-static void ov55_02256288(void *param0)
-{
+static void ov55_02256288(void *param0) {
     ((UnkStruct_ov55_0225621C *)param0)->unk_02 = 1;
 }
 
-static void ov55_02256290(UnkStruct_ov55_0225621C *param0, u32 param1)
-{
+static void ov55_02256290(UnkStruct_ov55_0225621C *param0, u32 param1) {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
     } else {
@@ -113,8 +106,7 @@ static void ov55_02256290(UnkStruct_ov55_0225621C *param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov55_022562A4(UnkStruct_ov55_0225621C *param0)
-{
+static BOOL ov55_022562A4(UnkStruct_ov55_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov55_02256378(param0->unk_08, 0);
@@ -131,8 +123,7 @@ static BOOL ov55_022562A4(UnkStruct_ov55_0225621C *param0)
     return 0;
 }
 
-static BOOL ov55_022562E4(UnkStruct_ov55_0225621C *param0)
-{
+static BOOL ov55_022562E4(UnkStruct_ov55_0225621C *param0) {
     if (param0->unk_02) {
         ov55_02256290(param0, 2);
     }
@@ -140,8 +131,7 @@ static BOOL ov55_022562E4(UnkStruct_ov55_0225621C *param0)
     return 0;
 }
 
-static BOOL ov55_022562F8(UnkStruct_ov55_0225621C *param0)
-{
+static BOOL ov55_022562F8(UnkStruct_ov55_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov55_02256378(param0->unk_08, 1);

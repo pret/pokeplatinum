@@ -74,8 +74,7 @@ static void TransferGraphicsOnVBlank(void *unused);
 
 static MainMenuUtilManager sMainMenuUtilManager;
 
-void MainMenuUtil_Init(enum HeapId heapID)
-{
+void MainMenuUtil_Init(enum HeapId heapID) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     memset(utilMan, 0, sizeof(MainMenuUtilManager));
@@ -84,8 +83,7 @@ void MainMenuUtil_Init(enum HeapId heapID)
     utilMan->heapID = heapID;
 }
 
-void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId heapID, int appDataSize, enum HeapSize heapSize)
-{
+void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId heapID, int appDataSize, enum HeapSize heapSize) {
     void *newAppData;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, heapSize);
@@ -99,8 +97,7 @@ void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId
     return newAppData;
 }
 
-void MainMenuUtil_InitBG(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize, u32 screenBase, u32 charBase)
-{
+void MainMenuUtil_InitBG(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize, u32 screenBase, u32 charBase) {
     BgTemplate bgTemplate = {
         .x = 0,
         .y = 0,
@@ -140,14 +137,12 @@ void MainMenuUtil_InitBG(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize
     Bg_ClearTilemap(bgConfig, bgLayer);
 }
 
-void MainMenuUtil_SetFadeToWhite(BOOL enable)
-{
+void MainMenuUtil_SetFadeToWhite(BOOL enable) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
     utilMan->fadeToWhite = enable;
 }
 
-void MainMenuUtil_StartScreenFadeToState(enum FadeType fadeType, int destState, int *state, int waitState)
-{
+void MainMenuUtil_StartScreenFadeToState(enum FadeType fadeType, int destState, int *state, int waitState) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     if (utilMan->fadeToWhite == FALSE) {
@@ -163,8 +158,7 @@ void MainMenuUtil_StartScreenFadeToState(enum FadeType fadeType, int destState, 
     utilMan->screenFadeQueuedState = destState;
 }
 
-void MainMenuUtil_CheckScreenFadeDone(int *state)
-{
+void MainMenuUtil_CheckScreenFadeDone(int *state) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     if (IsScreenFadeDone()) {
@@ -172,8 +166,7 @@ void MainMenuUtil_CheckScreenFadeDone(int *state)
     }
 }
 
-void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, enum Palette textPalette, enum TextBank textBank, int baseTile, enum Palette framePalette)
-{
+void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, enum Palette textPalette, enum TextBank textBank, int baseTile, enum Palette framePalette) {
     memset(mainMenuWindow, 0, sizeof(MainMenuWindow));
 
     mainMenuWindow->drawFrame = TRUE;
@@ -194,27 +187,23 @@ void MainMenuUtil_InitWindow(MainMenuWindow *mainMenuWindow, Window *window, enu
     mainMenuWindow->renderDelay = 0xff;
 }
 
-void MainMenuWindow_SetDimensionsAndBasetile(MainMenuWindow *window, int width, int height, int baseTile)
-{
+void MainMenuWindow_SetDimensionsAndBasetile(MainMenuWindow *window, int width, int height, int baseTile) {
     window->width = width;
     window->height = height;
     window->baseTile = baseTile;
 }
 
-void MainMenuWindow_SetScrollableAndFont(MainMenuWindow *window, BOOL scrollable, enum Font font)
-{
+void MainMenuWindow_SetScrollableAndFont(MainMenuWindow *window, BOOL scrollable, enum Font font) {
     window->scrollable = scrollable;
     window->font = font;
 }
 
-void MainMenuWindow_SetTextOffsets(MainMenuWindow *window, int xOffset, int yOffset)
-{
+void MainMenuWindow_SetTextOffsets(MainMenuWindow *window, int xOffset, int yOffset) {
     window->textXOffset = xOffset;
     window->textYOffset = yOffset;
 }
 
-static int MainMenuWindow_PrintText(MainMenuWindow *window, int textEntryID)
-{
+static int MainMenuWindow_PrintText(MainMenuWindow *window, int textEntryID) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
     int printerID;
 
@@ -261,8 +250,7 @@ static int MainMenuWindow_PrintText(MainMenuWindow *window, int textEntryID)
     return printerID;
 }
 
-int MainMenuUtil_ShowWindowAtPos(BgConfig *param0, MainMenuWindow *window, int xPos, int yPos, int textEntryID)
-{
+int MainMenuUtil_ShowWindowAtPos(BgConfig *param0, MainMenuWindow *window, int xPos, int yPos, int textEntryID) {
     int printerID;
 
     if (window->window->bgConfig == NULL) {
@@ -291,13 +279,11 @@ int MainMenuUtil_ShowWindowAtPos(BgConfig *param0, MainMenuWindow *window, int x
     return printerID;
 }
 
-int MainMenuWindow_GetSize(MainMenuWindow *window)
-{
+int MainMenuWindow_GetSize(MainMenuWindow *window) {
     return window->width * window->height;
 }
 
-void MainMenuUtil_InitCharPlttTransferBuffers(void)
-{
+void MainMenuUtil_InitCharPlttTransferBuffers(void) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
     CharTransferTemplate charTransTemplte = {
         40,
@@ -315,15 +301,13 @@ void MainMenuUtil_InitCharPlttTransferBuffers(void)
     PlttTransfer_Clear();
 }
 
-BOOL MainMenuUtil_CheckSpriteLoaderInit(void)
-{
+BOOL MainMenuUtil_CheckSpriteLoaderInit(void) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     return !!utilMan->spriteManager.spriteList;
 }
 
-void MainMenuUtil_InitSpriteLoader(void)
-{
+void MainMenuUtil_InitSpriteLoader(void) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     NNS_G2dInitOamManagerModule();
@@ -339,8 +323,7 @@ void MainMenuUtil_InitSpriteLoader(void)
     }
 }
 
-MainMenuSpriteManager *MainMenuUtil_GetSpriteManager(void)
-{
+MainMenuSpriteManager *MainMenuUtil_GetSpriteManager(void) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     GF_ASSERT(utilMan != NULL);
@@ -349,8 +332,7 @@ MainMenuSpriteManager *MainMenuUtil_GetSpriteManager(void)
     return &utilMan->spriteManager;
 }
 
-void MainMenuUtil_LoadSprite(enum NarcID narcID, int tilesID, int plttID, int cellID, int animID, enum DSScreen screen)
-{
+void MainMenuUtil_LoadSprite(enum NarcID narcID, int tilesID, int plttID, int cellID, int animID, enum DSScreen screen) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
     int vramType = screen == DS_SCREEN_MAIN ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
     int compressed = TRUE;
@@ -388,21 +370,18 @@ void MainMenuUtil_LoadSprite(enum NarcID narcID, int tilesID, int plttID, int ce
     SetVBlankCallback(TransferGraphicsOnVBlank, NULL);
 }
 
-void MainMenuUtil_SetSubScreenViewRect(fx32 x, fx32 y)
-{
+void MainMenuUtil_SetSubScreenViewRect(fx32 x, fx32 y) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     SetSubScreenViewRect(&utilMan->spriteManager.renderer, x, y);
     utilMan->bottomScreenTopY = y;
 }
 
-void MainMenuUtil_UpdateSpritesSkipGift(void)
-{
+void MainMenuUtil_UpdateSpritesSkipGift(void) {
     MainMenuUtil_UpdateSprites(FALSE);
 }
 
-void MainMenuUtil_UpdateSprites(BOOL skipDrawGift)
-{
+void MainMenuUtil_UpdateSprites(BOOL skipDrawGift) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     if (utilMan->mysteryGiftSprite) {
@@ -428,8 +407,7 @@ void MainMenuUtil_UpdateSprites(BOOL skipDrawGift)
     }
 }
 
-Sprite *MainMenuUtil_InitSprite(enum DSScreen screen, Sprite *sprite, int x, int y, int animationIdx)
-{
+Sprite *MainMenuUtil_InitSprite(enum DSScreen screen, Sprite *sprite, int x, int y, int animationIdx) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     if (sprite == NULL) {
@@ -463,8 +441,7 @@ Sprite *MainMenuUtil_InitSprite(enum DSScreen screen, Sprite *sprite, int x, int
     return sprite;
 }
 
-void MainMenuUtil_FreeSprites(void)
-{
+void MainMenuUtil_FreeSprites(void) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
     MainMenuSpriteManager *spriteMan = &utilMan->spriteManager;
 
@@ -510,13 +487,11 @@ void MainMenuUtil_FreeSprites(void)
  * This is however only ever used to set the bitmask for the Ranger Manaphy egg,
  * and since the wonder card is never saved (only the PGT), it doesn't matter.
  */
-u32 MainMenuUtil_CalcMysteryGiftVersionBit(enum Version version)
-{
+u32 MainMenuUtil_CalcMysteryGiftVersionBit(enum Version version) {
     return 1 << (version - VERSION_DIAMOND);
 }
 
-static void TransferGraphicsOnVBlank(void *unused)
-{
+static void TransferGraphicsOnVBlank(void *unused) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     if (utilMan->onVBlank) {
@@ -534,8 +509,7 @@ static void TransferGraphicsOnVBlank(void *unused)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static int CalcPlttOffsetForGiftType(enum MysteryGiftType giftType)
-{
+static int CalcPlttOffsetForGiftType(enum MysteryGiftType giftType) {
     struct {
         u8 giftType;
         u8 paletteOffset;
@@ -566,8 +540,7 @@ static int CalcPlttOffsetForGiftType(enum MysteryGiftType giftType)
     return 0;
 }
 
-static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species, int form, u8 *buffer, PokemonSpriteTemplate *monSpriteTemplate)
-{
+static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species, int form, u8 *buffer, PokemonSpriteTemplate *monSpriteTemplate) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     enum Gender monGender = Pokemon_GetGender(mon);
@@ -590,16 +563,14 @@ static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species
     Graphics_LoadPalette(monSpriteTemplate->narcID, monSpriteTemplate->palette, PAL_LOAD_SUB_OBJ, PLTT_OFFSET(3) + plttLocation, PALETTE_SIZE_BYTES, utilMan->heapID);
 }
 
-static void LoadGiftBoxSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType giftType, WonderCard *wonderCard)
-{
+static void LoadGiftBoxSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType giftType, WonderCard *wonderCard) {
     MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 35, 32, 34, 33, DS_SCREEN_SUB);
     MainMenuUtil_SetSubScreenViewRect(0 * FX32_ONE, 256 * FX32_ONE);
 
     utilMan->mysteryGiftSprite = MainMenuUtil_InitSprite(DS_SCREEN_SUB, utilMan->mysteryGiftSprite, HW_LCD_WIDTH / 2, 0, 0);
 }
 
-static void LoadSpriteForMonGift(MainMenuUtilManager *param0, enum MysteryGiftType giftType, WonderCard *wonderCard)
-{
+static void LoadSpriteForMonGift(MainMenuUtilManager *param0, enum MysteryGiftType giftType, WonderCard *wonderCard) {
     MainMenuUtil_LoadSprite(NARC_INDEX_DATA__TRADELIST, 10, 0, 11, 12, DS_SCREEN_SUB);
     MainMenuUtil_SetSubScreenViewRect(0 * FX32_ONE, 256 * FX32_ONE);
 
@@ -620,8 +591,7 @@ static void LoadSpriteForMonGift(MainMenuUtilManager *param0, enum MysteryGiftTy
     }
 }
 
-static void LoadItemSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType giftType, WonderCard *wonderCard)
-{
+static void LoadItemSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType giftType, WonderCard *wonderCard) {
     int item;
 
     switch (giftType) {
@@ -648,13 +618,11 @@ static void LoadItemSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType gi
     utilMan->mysteryGiftSprite = MainMenuUtil_InitSprite(DS_SCREEN_SUB, utilMan->mysteryGiftSprite, HW_LCD_WIDTH / 2, 0, 0);
 }
 
-static void LoadMysteryGiftPalettes(MainMenuUtilManager *utilMan)
-{
+static void LoadMysteryGiftPalettes(MainMenuUtilManager *utilMan) {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 29, PAL_LOAD_SUB_BG, PLTT_OFFSET(8), 6 * PALETTE_SIZE_BYTES, utilMan->heapID);
 }
 
-void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
-{
+void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     enum MysteryGiftType giftType = wonderCard->pgt.type;
@@ -702,8 +670,7 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     Sprite_SetDrawFlag(utilMan->mysteryGiftSprite, FALSE);
 }
 
-void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
-{
+void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID) {
 
     MATHCRC16Table *crcTable = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(crcTable);
@@ -731,8 +698,7 @@ void MainMenuUtil_EncryptWonderCard(MysteryGiftEventData *eventData, WonderCard 
     Heap_Free(cryptoCtx);
 }
 
-void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID)
-{
+void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, WonderCard *wonderCard, enum HeapId heapID) {
     MATHCRC16Table *crcTable = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(crcTable);
 
@@ -760,8 +726,7 @@ void MainMenuUtil_DecryptReceivedWonderCard(MysteryGiftEventData *eventData, Won
     Heap_Free(cryptoCtx);
 }
 
-void MainMenuUtil_ListMenuCursorCB(ListMenu *listMenu, u32 index, u8 onInit)
-{
+void MainMenuUtil_ListMenuCursorCB(ListMenu *listMenu, u32 index, u8 onInit) {
     switch (onInit) {
     case FALSE:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -771,15 +736,13 @@ void MainMenuUtil_ListMenuCursorCB(ListMenu *listMenu, u32 index, u8 onInit)
     }
 }
 
-static void TerminateOnGBACartRemoved(void)
-{
+static void TerminateOnGBACartRemoved(void) {
     if (PAD_DetectFold() == FALSE && CTRDG_IsAgbCartridge() == FALSE) {
         CTRDG_TerminateForPulledOut();
     }
 }
 
-void MainMenuUtil_ToggleTerminateOnGBACartRemoved(BOOL enable)
-{
+void MainMenuUtil_ToggleTerminateOnGBACartRemoved(BOOL enable) {
     if (enable == TRUE) {
         OS_DisableIrq();
         OS_SetIrqFunction(OS_IE_CARTRIDGE, TerminateOnGBACartRemoved);
@@ -790,29 +753,25 @@ void MainMenuUtil_ToggleTerminateOnGBACartRemoved(BOOL enable)
     }
 }
 
-static void GBACartRemovedIrqStub(void)
-{
+static void GBACartRemovedIrqStub(void) {
     return;
 }
 
-void MainMenuUtil_UnsetGBACartIRQFunc(void)
-{
+void MainMenuUtil_UnsetGBACartIRQFunc(void) {
     OS_DisableIrq();
     OS_SetIrqFunction(OS_IE_CARTRIDGE, GBACartRemovedIrqStub);
     OS_EnableIrqMask(OS_IE_CARTRIDGE);
     OS_EnableIrq();
 }
 
-void MainMenuUtil_InitSaving(SaveData *saveData)
-{
+void MainMenuUtil_InitSaving(SaveData *saveData) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     utilMan->saveData = saveData;
     utilMan->savingStatus = MAIN_MENU_UTIL_INIT_SAVING;
 }
 
-enum SaveResult MainMenuUtil_SaveState(void)
-{
+enum SaveResult MainMenuUtil_SaveState(void) {
     enum SaveResult saveResult;
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
@@ -849,8 +808,7 @@ enum SaveResult MainMenuUtil_SaveState(void)
     return SAVE_RESULT_PROCEED;
 }
 
-void MainMenuUtil_ContinueSaving(void)
-{
+void MainMenuUtil_ContinueSaving(void) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     if (utilMan->savingStatus == MAIN_MENU_UTIL_SAVING_IDLE) {
@@ -858,8 +816,7 @@ void MainMenuUtil_ContinueSaving(void)
     }
 }
 
-void MainMenuUtil_CancelSave(void)
-{
+void MainMenuUtil_CancelSave(void) {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
     SaveData_SaveStateCancel(utilMan->saveData);
@@ -867,7 +824,6 @@ void MainMenuUtil_CancelSave(void)
     ResetUnlock(RESET_LOCK_SOFT_RESET);
 }
 
-int MainMenuUtil_GetSavingStatus(void)
-{
+int MainMenuUtil_GetSavingStatus(void) {
     return sMainMenuUtilManager.savingStatus;
 }

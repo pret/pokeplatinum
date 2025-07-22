@@ -54,8 +54,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem);
 
 static FieldSystem *sFieldSystem;
 
-static BOOL InitFieldSystemContinue(ApplicationManager *appMan, int *state)
-{
+static BOOL InitFieldSystemContinue(ApplicationManager *appMan, int *state) {
     ApplicationArgs *argv = ApplicationManager_Args(appMan);
     sFieldSystem = InitFieldSystem(appMan);
 
@@ -69,15 +68,13 @@ static BOOL InitFieldSystemContinue(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static BOOL InitFieldSystemNewGame(ApplicationManager *appMan, int *state)
-{
+static BOOL InitFieldSystemNewGame(ApplicationManager *appMan, int *state) {
     sFieldSystem = InitFieldSystem(appMan);
     FieldSystem_SetLoadNewGameSpawnTask(sFieldSystem);
     return TRUE;
 }
 
-static BOOL ExecuteFieldProcesses(ApplicationManager *appMan, int *state)
-{
+static BOOL ExecuteFieldProcesses(ApplicationManager *appMan, int *state) {
     if (HandleInputsEventsAndProcesses(ApplicationManager_Data(appMan))) {
         return TRUE;
     } else {
@@ -85,8 +82,7 @@ static BOOL ExecuteFieldProcesses(ApplicationManager *appMan, int *state)
     }
 }
 
-static BOOL ReturnToTitleScreen(ApplicationManager *appMan, int *state)
-{
+static BOOL ReturnToTitleScreen(ApplicationManager *appMan, int *state) {
     TeardownFieldSystem(appMan);
     EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     return TRUE;
@@ -106,8 +102,7 @@ const ApplicationManagerTemplate gFieldSystemContinueTemplate = {
     .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-void FieldSystem_StartFieldMapInner(FieldSystem *fieldSystem)
-{
+void FieldSystem_StartFieldMapInner(FieldSystem *fieldSystem) {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
     GF_ASSERT(fieldSystem->processManager->parent == NULL);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay5), OVERLAY_LOAD_ASYNC);
@@ -117,35 +112,29 @@ void FieldSystem_StartFieldMapInner(FieldSystem *fieldSystem)
     fieldSystem->processManager->parent = ApplicationManager_New(&gFieldMapTemplate, fieldSystem, HEAP_ID_FIELDMAP);
 }
 
-void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem)
-{
+void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem) {
     fieldSystem->runningFieldMap = FALSE;
 }
 
-BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem)
-{
+BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem) {
     return fieldSystem->processManager->parent != NULL;
 }
 
-BOOL FieldSystem_IsRunningFieldMapInner(FieldSystem *fieldSystem)
-{
+BOOL FieldSystem_IsRunningFieldMapInner(FieldSystem *fieldSystem) {
     return fieldSystem->processManager->parent != NULL && fieldSystem->runningFieldMap;
 }
 
-BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem)
-{
+BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem) {
     return fieldSystem->processManager->child != NULL;
 }
 
-void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationManagerTemplate *appTemplate, void *appArgs)
-{
+void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationManagerTemplate *appTemplate, void *appArgs) {
     GF_ASSERT(fieldSystem->processManager->child == NULL);
     FieldSystem_FlagNotRunningFieldMap(fieldSystem);
     fieldSystem->processManager->child = ApplicationManager_New(appTemplate, appArgs, HEAP_ID_FIELDMAP);
 }
 
-static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
-{
+static FieldSystem *InitFieldSystem(ApplicationManager *appMan) {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELDMAP, HEAP_SIZE_FIELDMAP);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD_TASK, HEAP_SIZE_FIELD_TASK);
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
@@ -176,8 +165,7 @@ static FieldSystem *InitFieldSystem(ApplicationManager *appMan)
     return fieldSystem;
 }
 
-static void TeardownFieldSystem(ApplicationManager *appMan)
-{
+static void TeardownFieldSystem(ApplicationManager *appMan) {
     FieldSystem *fieldSystem = ApplicationManager_Data(appMan);
 
     MapMatrix_Free(fieldSystem->mapMatrix);
@@ -194,16 +182,14 @@ static void TeardownFieldSystem(ApplicationManager *appMan)
     Heap_Destroy(HEAP_ID_FIELD_TASK);
 }
 
-static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr)
-{
+static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr) {
     if (*appManPtr && ApplicationManager_Exec(*appManPtr)) {
         ApplicationManager_Free(*appManPtr);
         *appManPtr = NULL;
     }
 }
 
-static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
-{
+static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem) {
     HandleFieldInput(fieldSystem);
     if (FieldTask_Run(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
         ov5_021EA714(fieldSystem, POKETCH_EVENT_SLEEP, 0);
@@ -230,8 +216,7 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
     return FALSE;
 }
 
-static void HandleFieldInput(FieldSystem *fieldSystem)
-{
+static void HandleFieldInput(FieldSystem *fieldSystem) {
     BOOL processInput = FALSE;
     if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && FieldSystem_IsRunningTask(fieldSystem) == FALSE) {
         processInput = TRUE;
@@ -328,20 +313,17 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     }
 }
 
-void FieldSystem_PauseProcessing(void)
-{
+void FieldSystem_PauseProcessing(void) {
     sFieldSystem->processManager->pause = TRUE;
     CommSys_DisableSendMovementData();
 }
 
-void FieldSystem_ResumeProcessing(void)
-{
+void FieldSystem_ResumeProcessing(void) {
     sFieldSystem->processManager->pause = FALSE;
     CommSys_EnableSendMovementData();
 }
 
-struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
-{
+struct PoketchSystem *FieldSystem_GetPoketchSystem(void) {
     if (sFieldSystem->unk_04 == NULL) {
         return NULL;
     }
@@ -349,12 +331,10 @@ struct PoketchSystem *FieldSystem_GetPoketchSystem(void)
     return sFieldSystem->unk_04->poketchSys;
 }
 
-BgConfig *FieldSystem_GetBgConfig(void *fieldSystem)
-{
+BgConfig *FieldSystem_GetBgConfig(void *fieldSystem) {
     return ((FieldSystem *)fieldSystem)->bgConfig;
 }
 
-SaveData *FieldSystem_GetSaveData(void *fieldSystem)
-{
+SaveData *FieldSystem_GetSaveData(void *fieldSystem) {
     return ((FieldSystem *)fieldSystem)->saveData;
 }

@@ -52,8 +52,7 @@ static const UnkStruct_ov71_0223D73C Unk_ov71_0223D6FC[] = {
 
 static void ov71_0223D2F4(void);
 
-void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
-{
+void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1) {
     int v0;
 
     ov71_0223D2F4();
@@ -97,8 +96,7 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
-{
+void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1) {
     int v0;
     SpriteResourcesHeader v1;
 
@@ -173,8 +171,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
     }
 }
 
-void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
-{
+void ov71_0223D238(UnkStruct_ov71_0223D238 *param0) {
     u8 v0;
 
     for (v0 = 0; v0 < 8; v0++) {
@@ -194,8 +191,7 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
     PlttTransfer_Free();
 }
 
-void ov71_0223D298(UnkStruct_ov71_0223D238 *param0, const u8 param1, const u8 param2)
-{
+void ov71_0223D298(UnkStruct_ov71_0223D238 *param0, const u8 param1, const u8 param2) {
     NNSG2dImagePaletteProxy *v0;
     u32 v1;
     u32 v2;
@@ -213,8 +209,7 @@ void ov71_0223D298(UnkStruct_ov71_0223D238 *param0, const u8 param1, const u8 pa
     GX_LoadOBJPltt(&v3[param2 * 16 * 2], v1, 16 * 2);
 }
 
-static void ov71_0223D2F4(void)
-{
+static void ov71_0223D2F4(void) {
     {
         CharTransferTemplate v0 = {
             1, 2048, 0, 25

@@ -50,8 +50,7 @@ static void ov102_021D1230(UnkStruct_ov102_021D0F8C *param0);
 static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0);
 static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0);
 
-int ov102_021D0D80(ApplicationManager *appMan, int *param1)
-{
+int ov102_021D0D80(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov102_021D0F8C *v0;
     int heapID = HEAP_ID_84;
 
@@ -90,8 +89,7 @@ int ov102_021D0D80(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
-{
+int ov102_021D0E2C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov102_021D0F8C *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
@@ -155,8 +153,7 @@ int ov102_021D0E2C(ApplicationManager *appMan, int *param1)
     return v1;
 }
 
-int ov102_021D0F50(ApplicationManager *appMan, int *param1)
-{
+int ov102_021D0F50(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov102_021D0F8C *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
@@ -170,8 +167,7 @@ int ov102_021D0F50(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov102_021D0F80(void *param0)
-{
+static void ov102_021D0F80(void *param0) {
     UnkStruct_ov102_021D0F8C *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_10);
@@ -187,8 +183,7 @@ static void ov102_021D0F80(void *param0)
         Bg_ClearTilemap(param0->unk_10, frame);             \
     }
 
-static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0) {
     {
         UnkStruct_02099F80 v0 = {
             GX_VRAM_BG_128_B, GX_VRAM_BGEXTPLTT_NONE, GX_VRAM_SUB_BG_128_C, GX_VRAM_SUB_BGEXTPLTT_NONE, GX_VRAM_OBJ_NONE, GX_VRAM_OBJEXTPLTT_NONE, GX_VRAM_SUB_OBJ_NONE, GX_VRAM_SUB_OBJEXTPLTT_NONE, GX_VRAM_TEX_NONE, GX_VRAM_TEXPLTT_NONE
@@ -283,8 +278,7 @@ static void ov102_021D0F8C(UnkStruct_ov102_021D0F8C *param0)
     Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 }
 
-static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0) {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
@@ -303,8 +297,7 @@ static void ov102_021D10F8(UnkStruct_ov102_021D0F8C *param0)
     Heap_Free(param0->unk_10);
 }
 
-static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0) {
     WindowTemplate v0 = { 0, 0, 0, 32, 24, 2, 1 };
 
     Text_ResetAllPrinters();
@@ -323,30 +316,26 @@ static void ov102_021D1174(UnkStruct_ov102_021D0F8C *param0)
     Window_FillRectWithColor(&param0->unk_24, 0, 0, 0, 32 * 8, 24 * 8);
 }
 
-static void ov102_021D1204(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D1204(UnkStruct_ov102_021D0F8C *param0) {
     Window_Remove(&param0->unk_24);
     Window_Remove(&param0->unk_14);
     StringTemplate_Free(param0->unk_38);
     MessageLoader_Free(param0->unk_34);
 }
 
-static void ov102_021D1224(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D1224(UnkStruct_ov102_021D0F8C *param0) {
     param0->unk_3C = 0;
     ov102_021D1230(param0);
 }
 
-static void ov102_021D1230(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D1230(UnkStruct_ov102_021D0F8C *param0) {
     Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_1, 3, param0->unk_3C);
     Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_1, 3, param0->unk_3C + (8 * 24));
     Bg_SetOffset(param0->unk_10, BG_LAYER_MAIN_0, 3, param0->unk_3C);
     Bg_SetOffset(param0->unk_10, BG_LAYER_SUB_0, 3, param0->unk_3C + (8 * 24));
 }
 
-static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0) {
     int v0, v1, v2;
     int v3, v4, v5;
 
@@ -390,8 +379,7 @@ static void ov102_021D1274(UnkStruct_ov102_021D0F8C *param0)
     Font_LoadTextPalette(4, 2 * (2 * 16), param0->heapID);
 }
 
-static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0)
-{
+static void ov102_021D1420(UnkStruct_ov102_021D0F8C *param0) {
     Strbuf *v0 = Strbuf_Init(0x200, param0->heapID);
 
     {

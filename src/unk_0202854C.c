@@ -80,30 +80,25 @@ static u16 sMiningItems[] = {
     [48] = ITEM_IRON_PLATE
 };
 
-int Underground_SaveSize(void)
-{
+int Underground_SaveSize(void) {
     return sizeof(Underground);
 }
 
-int sub_02028554(void)
-{
+int sub_02028554(void) {
     return sizeof(UnkStruct_02029894);
 }
 
-int UndergroundRecord_Size(void)
-{
+int UndergroundRecord_Size(void) {
     return sizeof(UndergroundRecord);
 }
 
-UndergroundRecord *UndergroundRecord_Init(u32 heapID)
-{
+UndergroundRecord *UndergroundRecord_Init(u32 heapID) {
     UndergroundRecord *undergroundRecord = Heap_AllocFromHeap(heapID, sizeof(UndergroundRecord));
     MI_CpuFill8(undergroundRecord, 0, sizeof(UndergroundRecord));
     return undergroundRecord;
 }
 
-void Underground_Init(Underground *underground)
-{
+void Underground_Init(Underground *underground) {
     u32 seed = 0;
     RTCDate date;
     RTCTime time;
@@ -117,8 +112,7 @@ void Underground_Init(Underground *underground)
     underground->unk_9AC_0 = 1;
 }
 
-static int sub_020285D8(Underground *underground)
-{
+static int sub_020285D8(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -130,8 +124,7 @@ static int sub_020285D8(Underground *underground)
     return -1;
 }
 
-static int Underground_FindEmptySphereSlot(Underground *underground)
-{
+static int Underground_FindEmptySphereSlot(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -143,8 +136,7 @@ static int Underground_FindEmptySphereSlot(Underground *underground)
     return -1;
 }
 
-static int Underground_FindEmptyTreasureSlot(Underground *underground)
-{
+static int Underground_FindEmptyTreasureSlot(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -156,8 +148,7 @@ static int Underground_FindEmptyTreasureSlot(Underground *underground)
     return -1;
 }
 
-static int sub_02028638(Underground *underground)
-{
+static int sub_02028638(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -169,8 +160,7 @@ static int sub_02028638(Underground *underground)
     return -1;
 }
 
-void sub_02028658(SaveData *saveData, int param1)
-{
+void sub_02028658(SaveData *saveData, int param1) {
     Underground *v0 = SaveData_GetUnderground(saveData);
     MATHRandContext16 v1;
     u8 v2[] = { 0, 2, 2, 4, 4, 5 };
@@ -208,8 +198,7 @@ void sub_02028658(SaveData *saveData, int param1)
     v0->unk_9AC_0 = 1;
 }
 
-void sub_02028758(SaveData *saveData, s32 param1, BOOL param2)
-{
+void sub_02028758(SaveData *saveData, s32 param1, BOOL param2) {
     Underground *v0 = SaveData_GetUnderground(saveData);
 
     if ((param1 < 0) || (param2)) {
@@ -223,8 +212,7 @@ void sub_02028758(SaveData *saveData, s32 param1, BOOL param2)
     }
 }
 
-void SaveData_LoadAndUpdateUnderground(SaveData *saveData)
-{
+void SaveData_LoadAndUpdateUnderground(SaveData *saveData) {
     Underground *v0 = SaveData_GetUnderground(saveData);
 
     if ((v0->unk_94 == 0) && (v0->unk_98 == 2)) {
@@ -240,8 +228,7 @@ void SaveData_LoadAndUpdateUnderground(SaveData *saveData)
     }
 }
 
-void sub_020287E0(SaveData *saveData)
-{
+void sub_020287E0(SaveData *saveData) {
     Underground *v0 = SaveData_GetUnderground(saveData);
 
     if (v0->unk_98 == 0) {
@@ -249,8 +236,7 @@ void sub_020287E0(SaveData *saveData)
     }
 }
 
-void sub_020287F8(SaveData *saveData)
-{
+void sub_020287F8(SaveData *saveData) {
     Underground *v0 = SaveData_GetUnderground(saveData);
 
     if (v0->unk_98 == 1) {
@@ -258,8 +244,7 @@ void sub_020287F8(SaveData *saveData)
     }
 }
 
-BOOL sub_02028810(SaveData *saveData)
-{
+BOOL sub_02028810(SaveData *saveData) {
     Underground *v0 = SaveData_GetUnderground(saveData);
 
     if (v0->unk_98 == 2) {
@@ -269,13 +254,11 @@ BOOL sub_02028810(SaveData *saveData)
     return 1;
 }
 
-void Underground_SetUnusedField(Underground *underground)
-{
+void Underground_SetUnusedField(Underground *underground) {
     underground->unused = 1;
 }
 
-void sub_02028830(Underground *underground, const TrainerInfo *info)
-{
+void sub_02028830(Underground *underground, const TrainerInfo *info) {
     int v0 = underground->unk_10A;
     int v1;
 
@@ -298,8 +281,7 @@ void sub_02028830(Underground *underground, const TrainerInfo *info)
     }
 }
 
-TrainerInfo *sub_020288C8(const Underground *underground, int heapID, int param2)
-{
+TrainerInfo *sub_020288C8(const Underground *underground, int heapID, int param2) {
     int v0 = (sizeof(u16) * (7 + 1));
     int v1;
     TrainerInfo *v2;
@@ -323,13 +305,11 @@ TrainerInfo *sub_020288C8(const Underground *underground, int heapID, int param2
     return NULL;
 }
 
-u32 Underground_GetRandomSeed(Underground *underground)
-{
+u32 Underground_GetRandomSeed(Underground *underground) {
     return underground->randomSeed;
 }
 
-int Underground_ConvertTreasureToBagItem(int treasureID)
-{
+int Underground_ConvertTreasureToBagItem(int treasureID) {
     GF_ASSERT(MINING_TREASURE_OVAL_STONE <= treasureID);
     GF_ASSERT(treasureID < MINING_ROCK_1);
 
@@ -337,8 +317,7 @@ int Underground_ConvertTreasureToBagItem(int treasureID)
     return sMiningItems[treasureID];
 }
 
-BOOL sub_0202895C(Underground *underground, int param1)
-{
+BOOL sub_0202895C(Underground *underground, int param1) {
     int i;
     BOOL v1 = FALSE;
 
@@ -353,8 +332,7 @@ BOOL sub_0202895C(Underground *underground, int param1)
     return v1;
 }
 
-BOOL sub_02028984(Underground *underground, int param1)
-{
+BOOL sub_02028984(Underground *underground, int param1) {
     int i;
 
     for (i = 0; i < 200; i++) {
@@ -366,8 +344,7 @@ BOOL sub_02028984(Underground *underground, int param1)
     return FALSE;
 }
 
-int sub_020289A0(Underground *underground)
-{
+int sub_020289A0(Underground *underground) {
     int i;
 
     for (i = 0; i < 200; i++) {
@@ -379,13 +356,11 @@ int sub_020289A0(Underground *underground)
     return i;
 }
 
-int sub_020289B8(Underground *underground, int param1)
-{
+int sub_020289B8(Underground *underground, int param1) {
     return underground->unk_80C[param1];
 }
 
-int sub_020289C4(Underground *underground, int param1)
-{
+int sub_020289C4(Underground *underground, int param1) {
     int v0, v1, v2;
 
     GF_ASSERT(!sub_02028AFC(underground, param1));
@@ -403,8 +378,7 @@ int sub_020289C4(Underground *underground, int param1)
     return v2;
 }
 
-void sub_02028A10(Underground *underground, int param1, int param2)
-{
+void sub_02028A10(Underground *underground, int param1, int param2) {
     int i, v1 = 0, v2 = 0, v3 = -1;
     u8 v4[200];
 
@@ -441,8 +415,7 @@ void sub_02028A10(Underground *underground, int param1, int param2)
     }
 }
 
-int sub_02028ACC(Underground *underground, int param1, int param2)
-{
+int sub_02028ACC(Underground *underground, int param1, int param2) {
     int v0, v1;
 
     GF_ASSERT(param2 >= 1);
@@ -452,8 +425,7 @@ int sub_02028ACC(Underground *underground, int param1, int param2)
     return underground->unk_80C[param1];
 }
 
-BOOL sub_02028AFC(Underground *underground, int param1)
-{
+BOOL sub_02028AFC(Underground *underground, int param1) {
     int i;
 
     for (i = 0; i < 15; i++) {
@@ -465,8 +437,7 @@ BOOL sub_02028AFC(Underground *underground, int param1)
     return 0;
 }
 
-void sub_02028B20(Underground *underground, int param1)
-{
+void sub_02028B20(Underground *underground, int param1) {
     if ((param1 - 1) >= 15) {
         return;
     }
@@ -474,13 +445,11 @@ void sub_02028B20(Underground *underground, int param1)
     underground->unk_99C[param1 - 1] = 0;
 }
 
-void sub_02028B34(Underground *underground)
-{
+void sub_02028B34(Underground *underground) {
     MI_CpuFill8(underground->unk_99C, 0, 15);
 }
 
-static void sub_02028B48(Underground *underground, int param1, int param2)
-{
+static void sub_02028B48(Underground *underground, int param1, int param2) {
     int i;
 
     for (i = 0; i < 15; i++) {
@@ -490,8 +459,7 @@ static void sub_02028B48(Underground *underground, int param1, int param2)
     }
 }
 
-int sub_02028B70(Underground *underground)
-{
+int sub_02028B70(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -503,13 +471,11 @@ int sub_02028B70(Underground *underground)
     return i;
 }
 
-int sub_02028B88(Underground *underground, int param1)
-{
+int sub_02028B88(Underground *underground, int param1) {
     return underground->unk_8FC[param1];
 }
 
-int sub_02028B94(Underground *underground, int param1)
-{
+int sub_02028B94(Underground *underground, int param1) {
     int i, v1, v2;
 
     v1 = param1;
@@ -523,8 +489,7 @@ int sub_02028B94(Underground *underground, int param1)
     return v2;
 }
 
-BOOL sub_02028BC8(Underground *underground, int param1)
-{
+BOOL sub_02028BC8(Underground *underground, int param1) {
     int v0;
     BOOL v1 = 0;
 
@@ -538,8 +503,7 @@ BOOL sub_02028BC8(Underground *underground, int param1)
     return v1;
 }
 
-void sub_02028BE8(Underground *underground, int param1, int param2)
-{
+void sub_02028BE8(Underground *underground, int param1, int param2) {
     int i, v1 = 0, v2 = 0;
     u8 v3[40];
 
@@ -558,8 +522,7 @@ void sub_02028BE8(Underground *underground, int param1, int param2)
     }
 }
 
-int Underground_GetSphereCount(Underground *underground)
-{
+int Underground_GetSphereCount(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -571,18 +534,15 @@ int Underground_GetSphereCount(Underground *underground)
     return i;
 }
 
-int sub_02028C54(Underground *underground, int param1)
-{
+int sub_02028C54(Underground *underground, int param1) {
     return underground->spheres[param1];
 }
 
-int sub_02028C60(Underground *underground, int param1)
-{
+int sub_02028C60(Underground *underground, int param1) {
     return underground->sphereSizes[param1];
 }
 
-int sub_02028C6C(Underground *underground, int param1)
-{
+int sub_02028C6C(Underground *underground, int param1) {
     int v0, v1, v2;
 
     v1 = param1;
@@ -598,8 +558,7 @@ int sub_02028C6C(Underground *underground, int param1)
     return v2;
 }
 
-BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphereSize)
-{
+BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphereSize) {
     int slot;
     BOOL added = FALSE;
 
@@ -614,8 +573,7 @@ BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphe
     return added;
 }
 
-void sub_02028CD8(Underground *underground, int param1, int param2)
-{
+void sub_02028CD8(Underground *underground, int param1, int param2) {
     int i, v1 = 0, v2 = 0;
     u8 v3[40];
     u8 v4[40];
@@ -638,8 +596,7 @@ void sub_02028CD8(Underground *underground, int param1, int param2)
     }
 }
 
-int Underground_GetTreasureCount(Underground *underground)
-{
+int Underground_GetTreasureCount(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -651,13 +608,11 @@ int Underground_GetTreasureCount(Underground *underground)
     return i;
 }
 
-int sub_02028D74(Underground *underground, int param1)
-{
+int sub_02028D74(Underground *underground, int param1) {
     return underground->treasure[param1];
 }
 
-int sub_02028D80(Underground *underground, int param1)
-{
+int sub_02028D80(Underground *underground, int param1) {
     int i, v1, v2;
 
     v1 = param1;
@@ -672,8 +627,7 @@ int sub_02028D80(Underground *underground, int param1)
     return v2;
 }
 
-BOOL Underground_TryAddTreasure(Underground *underground, int treasureID)
-{
+BOOL Underground_TryAddTreasure(Underground *underground, int treasureID) {
     int slot;
     BOOL added = FALSE;
 
@@ -687,8 +641,7 @@ BOOL Underground_TryAddTreasure(Underground *underground, int treasureID)
     return added;
 }
 
-void sub_02028DD8(Underground *underground, int param1, int param2)
-{
+void sub_02028DD8(Underground *underground, int param1, int param2) {
     int i, v1 = 0, v2 = 0;
     u8 v3[40];
 
@@ -707,8 +660,7 @@ void sub_02028DD8(Underground *underground, int param1, int param2)
     }
 }
 
-int sub_02028E28(Underground *underground)
-{
+int sub_02028E28(Underground *underground) {
     int i;
 
     for (i = 0; i < 40; i++) {
@@ -720,15 +672,13 @@ int sub_02028E28(Underground *underground)
     return i;
 }
 
-int sub_02028E44(Underground *underground, int param1)
-{
+int sub_02028E44(Underground *underground, int param1) {
     int v0;
 
     return underground->unk_8D4[param1];
 }
 
-int sub_02028E50(Underground *underground, int param1)
-{
+int sub_02028E50(Underground *underground, int param1) {
     int i, v1, v2;
 
     v1 = param1;
@@ -743,8 +693,7 @@ int sub_02028E50(Underground *underground, int param1)
     return v2;
 }
 
-BOOL sub_02028E84(Underground *underground, int param1)
-{
+BOOL sub_02028E84(Underground *underground, int param1) {
     int v0;
     BOOL v1 = 0;
 
@@ -758,8 +707,7 @@ BOOL sub_02028E84(Underground *underground, int param1)
     return v1;
 }
 
-void sub_02028EA8(Underground *underground, int param1, int param2)
-{
+void sub_02028EA8(Underground *underground, int param1, int param2) {
     int i, v1 = 0, v2 = 0;
     u8 v3[40];
 
@@ -778,8 +726,7 @@ void sub_02028EA8(Underground *underground, int param1, int param2)
     }
 }
 
-void sub_02028EF8(Underground *underground, int param1, int param2, int param3, int param4)
-{
+void sub_02028EF8(Underground *underground, int param1, int param2, int param3, int param4) {
     GF_ASSERT(param2 < (16 * 4));
 
     underground->unk_10B[param2] = param1;
@@ -788,14 +735,12 @@ void sub_02028EF8(Underground *underground, int param1, int param2, int param3, 
     underground->unk_14B[param2][2] = param4;
 }
 
-int sub_02028F40(Underground *underground, int param1)
-{
+int sub_02028F40(Underground *underground, int param1) {
     GF_ASSERT(param1 < (16 * 4));
     return underground->unk_10B[param1];
 }
 
-int sub_02028F5C(Underground *underground, int param1)
-{
+int sub_02028F5C(Underground *underground, int param1) {
     int v0;
 
     GF_ASSERT(param1 < (16 * 4));
@@ -806,8 +751,7 @@ int sub_02028F5C(Underground *underground, int param1)
     return v0;
 }
 
-int sub_02028F88(Underground *underground, int param1)
-{
+int sub_02028F88(Underground *underground, int param1) {
     int v0;
 
     GF_ASSERT(param1 < (16 * 4));
@@ -818,16 +762,14 @@ int sub_02028F88(Underground *underground, int param1)
     return v0;
 }
 
-void sub_02028FB4(Underground *underground, int param1)
-{
+void sub_02028FB4(Underground *underground, int param1) {
     GF_ASSERT(param1 < (16 * 4));
 
     underground->unk_10B[param1] = 0;
     MI_CpuClear8(underground->unk_14B[param1], 3);
 }
 
-void sub_02028FE0(Underground *underground, int param1, int param2, int param3, int param4, int param5)
-{
+void sub_02028FE0(Underground *underground, int param1, int param2, int param3, int param4, int param5) {
     GF_ASSERT(param2 < 16);
 
     underground->unk_508[param2] = param1;
@@ -837,34 +779,29 @@ void sub_02028FE0(Underground *underground, int param1, int param2, int param3, 
     underground->unk_548[param2] = param5;
 }
 
-int sub_02029030(Underground *underground, int param1)
-{
+int sub_02029030(Underground *underground, int param1) {
     return underground->unk_508[param1];
 }
 
-int sub_0202903C(Underground *underground, int param1)
-{
+int sub_0202903C(Underground *underground, int param1) {
     int v0 = underground->unk_518[param1][0];
 
     v0 += (underground->unk_518[param1][1] << 8) & 0xf00;
     return v0;
 }
 
-int sub_0202905C(Underground *underground, int param1)
-{
+int sub_0202905C(Underground *underground, int param1) {
     int v0 = underground->unk_518[param1][2];
 
     v0 += (underground->unk_518[param1][1] << 4) & 0xf00;
     return v0;
 }
 
-int sub_0202907C(Underground *underground, int param1)
-{
+int sub_0202907C(Underground *underground, int param1) {
     return underground->unk_548[param1];
 }
 
-void sub_02029088(Underground *underground, int param1, int param2, int param3, int param4, int param5, int param6)
-{
+void sub_02029088(Underground *underground, int param1, int param2, int param3, int param4, int param5, int param6) {
     GF_ASSERT(param2 < 100);
 
     underground->unk_558[param2] = param1;
@@ -875,39 +812,33 @@ void sub_02029088(Underground *underground, int param1, int param2, int param3, 
     underground->unk_5BC[param2] = param6;
 }
 
-int sub_020290DC(Underground *underground, int param1)
-{
+int sub_020290DC(Underground *underground, int param1) {
     return underground->unk_558[param1];
 }
 
-int sub_020290E8(Underground *underground, int param1)
-{
+int sub_020290E8(Underground *underground, int param1) {
     int v0 = underground->unk_684[param1][0];
 
     v0 += (underground->unk_684[param1][1] << 8) & 0xf00;
     return v0;
 }
 
-int sub_02029108(Underground *underground, int param1)
-{
+int sub_02029108(Underground *underground, int param1) {
     int v0 = underground->unk_684[param1][2];
 
     v0 += (underground->unk_684[param1][1] << 4) & 0xf00;
     return v0;
 }
 
-int sub_02029128(Underground *underground, int param1)
-{
+int sub_02029128(Underground *underground, int param1) {
     return underground->unk_620[param1];
 }
 
-int sub_02029134(Underground *underground, int param1)
-{
+int sub_02029134(Underground *underground, int param1) {
     return underground->unk_5BC[param1];
 }
 
-int sub_02029140(Underground *underground, int param1, int param2)
-{
+int sub_02029140(Underground *underground, int param1, int param2) {
     int i;
 
     for (i = 0; i < 255; i++) {
@@ -926,50 +857,42 @@ int sub_02029140(Underground *underground, int param1, int param2)
     return i;
 }
 
-void sub_020291A4(Underground *underground, int param1)
-{
+void sub_020291A4(Underground *underground, int param1) {
     GF_ASSERT(param1 < 255);
     MI_CpuFill8(underground->unk_20B[param1], 0, 3);
 }
 
-int sub_020291CC(Underground *underground, int param1)
-{
+int sub_020291CC(Underground *underground, int param1) {
     int v0 = underground->unk_20B[param1][0];
 
     v0 += (underground->unk_20B[param1][1] << 8) & 0xf00;
     return v0;
 }
 
-int sub_020291EC(Underground *underground, int param1)
-{
+int sub_020291EC(Underground *underground, int param1) {
     int v0 = underground->unk_20B[param1][2];
 
     v0 += (underground->unk_20B[param1][1] << 4) & 0xf00;
     return v0;
 }
 
-BOOL Underground_HasNeverMined(Underground *underground)
-{
+BOOL Underground_HasNeverMined(Underground *underground) {
     return underground->hasMined == FALSE;
 }
 
-void Underground_SetHasMined(Underground *underground)
-{
+void Underground_SetHasMined(Underground *underground) {
     underground->hasMined = TRUE;
 }
 
-BOOL sub_02029234(Underground *underground)
-{
+BOOL sub_02029234(Underground *underground) {
     return underground->unk_9AC_0;
 }
 
-void sub_02029240(Underground *underground)
-{
+void sub_02029240(Underground *underground) {
     underground->unk_9AC_0 = 0;
 }
 
-void Underground_SetPlateMined(Underground *underground, int miningItemID)
-{
+void Underground_SetPlateMined(Underground *underground, int miningItemID) {
     if ((MINING_TREASURE_FLAME_PLATE > miningItemID) || (miningItemID > MINING_TREASURE_IRON_PLATE)) {
         return;
     }
@@ -977,8 +900,7 @@ void Underground_SetPlateMined(Underground *underground, int miningItemID)
     underground->minedPlates |= (0x1 << (miningItemID - MINING_TREASURE_FLAME_PLATE));
 }
 
-BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItemID)
-{
+BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItemID) {
     if ((MINING_TREASURE_FLAME_PLATE > miningItemID) || (miningItemID > MINING_TREASURE_IRON_PLATE)) {
         return TRUE;
     }
@@ -990,8 +912,7 @@ BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItem
     return TRUE;
 }
 
-void Underground_IncrementStepCount(Underground *underground)
-{
+void Underground_IncrementStepCount(Underground *underground) {
     if (underground->stepCount >= (100 - 1)) {
         underground->stepCount = 0;
     } else {
@@ -999,18 +920,15 @@ void Underground_IncrementStepCount(Underground *underground)
     }
 }
 
-int Underground_GetStepCount(Underground *underground)
-{
+int Underground_GetStepCount(Underground *underground) {
     return underground->stepCount;
 }
 
-void sub_020292C0(UnkStruct_02029894 *param0)
-{
+void sub_020292C0(UnkStruct_02029894 *param0) {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_02029894));
 }
 
-void sub_020292CC(UnkStruct_02029894 *param0)
-{
+void sub_020292CC(UnkStruct_02029894 *param0) {
     MI_CpuClear8(param0->unk_00, 15 * sizeof(UnkStruct_02029894_sub1));
     MI_CpuClear8(param0->unk_2D, 16 * sizeof(UnkStruct_02029894_sub2));
 
@@ -1020,13 +938,11 @@ void sub_020292CC(UnkStruct_02029894 *param0)
     param0->unk_91 = 0;
 }
 
-void sub_02029300(UnkStruct_02029894 *param0)
-{
+void sub_02029300(UnkStruct_02029894 *param0) {
     param0->unk_91 = 0;
 }
 
-void sub_02029308(UnkStruct_02029894 *param0, int param1, int param2, int param3, int param4)
-{
+void sub_02029308(UnkStruct_02029894 *param0, int param1, int param2, int param3, int param4) {
     GF_ASSERT(param1 < (15 + 16 + 1));
     GF_ASSERT(param3 < 32);
     GF_ASSERT(param4 < 32);
@@ -1044,15 +960,13 @@ void sub_02029308(UnkStruct_02029894 *param0, int param1, int param2, int param3
     }
 }
 
-void sub_02029364(UnkStruct_02029894 *param0, int param1, int param2, int param3)
-{
+void sub_02029364(UnkStruct_02029894 *param0, int param1, int param2, int param3) {
     int v0 = sub_020293B0(param0, param1);
     sub_02029308(param0, param1, v0, param2, param3);
 }
 
 // this is off-by-one compared to the actual flag type
-static int sub_02029384(const UnkStruct_02029894 *param0)
-{
+static int sub_02029384(const UnkStruct_02029894 *param0) {
     int numFlags = param0->unk_50.capturedFlagCount;
 
     if (FLAG_CAPTURED_COUNT_PLATINUM <= numFlags) {
@@ -1068,8 +982,7 @@ static int sub_02029384(const UnkStruct_02029894 *param0)
     return 1;
 }
 
-int sub_020293B0(const UnkStruct_02029894 *param0, int param1)
-{
+int sub_020293B0(const UnkStruct_02029894 *param0, int param1) {
     GF_ASSERT(param1 < (15 + 16 + 1));
 
     if (0 == param1) {
@@ -1083,8 +996,7 @@ int sub_020293B0(const UnkStruct_02029894 *param0, int param1)
     return 0;
 }
 
-int sub_020293FC(const UnkStruct_02029894 *param0, int param1)
-{
+int sub_020293FC(const UnkStruct_02029894 *param0, int param1) {
     GF_ASSERT(param1 < (15 + 16 + 1));
 
     if (0 == param1) {
@@ -1096,8 +1008,7 @@ int sub_020293FC(const UnkStruct_02029894 *param0, int param1)
     return param0->unk_2D[param1 - 1 - 15].unk_00;
 }
 
-int sub_0202942C(const UnkStruct_02029894 *param0, int param1)
-{
+int sub_0202942C(const UnkStruct_02029894 *param0, int param1) {
     GF_ASSERT(param1 < (15 + 16 + 1));
 
     if (0 == param1) {
@@ -1109,8 +1020,7 @@ int sub_0202942C(const UnkStruct_02029894 *param0, int param1)
     return param0->unk_2D[param1 - 1 - 15].unk_01;
 }
 
-int sub_GetMaxRemovableRocks(const UnkStruct_02029894 *param0)
-{
+int sub_GetMaxRemovableRocks(const UnkStruct_02029894 *param0) {
     if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_PLATINUM) {
         return 0;
     } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_GOLD) {
@@ -1124,8 +1034,7 @@ int sub_GetMaxRemovableRocks(const UnkStruct_02029894 *param0)
     return 16;
 }
 
-int sub_GetMaxDisplayItemsCount(const UnkStruct_02029894 *param0)
-{
+int sub_GetMaxDisplayItemsCount(const UnkStruct_02029894 *param0) {
     if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_PLATINUM) {
         return 15;
     } else if (param0->unk_50.capturedFlagCount >= FLAG_CAPTURED_COUNT_GOLD) {
@@ -1139,54 +1048,45 @@ int sub_GetMaxDisplayItemsCount(const UnkStruct_02029894 *param0)
     return 10;
 }
 
-int UndergroundRecord_GetTrainerScore(const UndergroundRecord *undergroundRecord)
-{
+int UndergroundRecord_GetTrainerScore(const UndergroundRecord *undergroundRecord) {
     return undergroundRecord->trainerScore;
 }
 
-BOOL UndergroundRecord_HasPlatBaseFlag(const UndergroundRecord *undergroundRecord)
-{
+BOOL UndergroundRecord_HasPlatBaseFlag(const UndergroundRecord *undergroundRecord) {
     return BASE_FLAG_PLATINUM == UndergroundRecord_GetFlagRank(undergroundRecord);
 }
 
-void UndergroundRecord_SetTrainerScore(UndergroundRecord *undergroundRecord, int trainerScore)
-{
+void UndergroundRecord_SetTrainerScore(UndergroundRecord *undergroundRecord, int trainerScore) {
     undergroundRecord->trainerScore = trainerScore;
 }
 
-int UndergroundRecord_GetPeopleMet(const UndergroundRecord *undergroundRecord)
-{
+int UndergroundRecord_GetPeopleMet(const UndergroundRecord *undergroundRecord) {
     return undergroundRecord->peopleMet;
 }
 
-void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int param1)
-{
+void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int param1) {
     if (undergroundRecord->peopleMet < 999999) {
         undergroundRecord->peopleMet++;
     }
 }
 
-int UndergroundRecord_GetNumGiftsGiven(const UndergroundRecord *undergroundRecord)
-{
+int UndergroundRecord_GetNumGiftsGiven(const UndergroundRecord *undergroundRecord) {
     return undergroundRecord->numGiftsGiven;
 }
 
-void UndergroundRecord_IncrementGiftsGiven(UndergroundRecord *undergroundRecord)
-{
+void UndergroundRecord_IncrementGiftsGiven(UndergroundRecord *undergroundRecord) {
     if (undergroundRecord->numGiftsGiven < 999999) {
         undergroundRecord->numGiftsGiven++;
     }
 }
 
-void sub_0202955C(UndergroundRecord *undergroundRecord)
-{
+void sub_0202955C(UndergroundRecord *undergroundRecord) {
     if (undergroundRecord->unk_0C_0 < 999999) {
         undergroundRecord->unk_0C_0++;
     }
 }
 
-enum BaseFlagType UndergroundRecord_GetFlagRank(const UndergroundRecord *undergroundRecord)
-{
+enum BaseFlagType UndergroundRecord_GetFlagRank(const UndergroundRecord *undergroundRecord) {
     int capturedFlagCount = undergroundRecord->capturedFlagCount;
 
     if (FLAG_CAPTURED_COUNT_PLATINUM <= capturedFlagCount) {
@@ -1202,25 +1102,21 @@ enum BaseFlagType UndergroundRecord_GetFlagRank(const UndergroundRecord *undergr
     return BASE_FLAG_NORMAL;
 }
 
-int UndergroundRecord_GetCapturedFlagCount(const UndergroundRecord *undergroundRecord)
-{
+int UndergroundRecord_GetCapturedFlagCount(const UndergroundRecord *undergroundRecord) {
     return undergroundRecord->capturedFlagCount;
 }
 
-void UndergroundRecord_IncrementCapturedFlagCount(UndergroundRecord *undergroundRecord)
-{
+void UndergroundRecord_IncrementCapturedFlagCount(UndergroundRecord *undergroundRecord) {
     if (undergroundRecord->capturedFlagCount < 999999) {
         undergroundRecord->capturedFlagCount++;
     }
 }
 
-int UndergroundRecord_GetNumSpheresDug(const UndergroundRecord *undergroundRecord)
-{
+int UndergroundRecord_GetNumSpheresDug(const UndergroundRecord *undergroundRecord) {
     return undergroundRecord->numSpheresDug;
 }
 
-void UndergroundRecord_AddNumSpheresDug(UndergroundRecord *undergroundRecord, int amount)
-{
+void UndergroundRecord_AddNumSpheresDug(UndergroundRecord *undergroundRecord, int amount) {
     if ((amount > 0) && (undergroundRecord->numSpheresDug > (999999 - amount))) {
         undergroundRecord->numSpheresDug = 999999;
     } else {
@@ -1228,13 +1124,11 @@ void UndergroundRecord_AddNumSpheresDug(UndergroundRecord *undergroundRecord, in
     }
 }
 
-int UndergroundRecord_GetNumFossilsDug(const UndergroundRecord *undergroundRecord)
-{
+int UndergroundRecord_GetNumFossilsDug(const UndergroundRecord *undergroundRecord) {
     return undergroundRecord->numFossilsDug;
 }
 
-void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, int amount)
-{
+void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, int amount) {
     if ((amount > 0) && (undergroundRecord->numFossilsDug > (999999 - amount))) {
         undergroundRecord->numFossilsDug = 999999;
     } else {
@@ -1242,8 +1136,7 @@ void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, in
     }
 }
 
-void sub_02029688(UndergroundRecord *param0, int param1)
-{
+void sub_02029688(UndergroundRecord *param0, int param1) {
     if ((param1 > 0) && (param0->unk_18_0 > (999999 - param1))) {
         param0->unk_18_0 = 999999;
     } else {
@@ -1251,136 +1144,113 @@ void sub_02029688(UndergroundRecord *param0, int param1)
     }
 }
 
-int UndergroundRecord_GetNumTrapsHit(const UndergroundRecord *undergroundRecord)
-{
+int UndergroundRecord_GetNumTrapsHit(const UndergroundRecord *undergroundRecord) {
     return undergroundRecord->numTrapsHit;
 }
 
-void UndergroundRecord_IncrementNumTrapsHit(UndergroundRecord *undergroundRecord)
-{
+void UndergroundRecord_IncrementNumTrapsHit(UndergroundRecord *undergroundRecord) {
     if (undergroundRecord->numTrapsHit < 999999) {
         undergroundRecord->numTrapsHit++;
     }
 }
 
-int sub_02029704(const UndergroundRecord *param0)
-{
+int sub_02029704(const UndergroundRecord *param0) {
     return param0->unk_20_0;
 }
 
-void sub_0202970C(UndergroundRecord *param0)
-{
+void sub_0202970C(UndergroundRecord *param0) {
     if (param0->unk_20_0 < 999999) {
         param0->unk_20_0++;
     }
 }
 
-int sub_0202973C(const UndergroundRecord *param0)
-{
+int sub_0202973C(const UndergroundRecord *param0) {
     return param0->unk_24_0;
 }
 
-void sub_02029744(UndergroundRecord *param0)
-{
+void sub_02029744(UndergroundRecord *param0) {
     if (param0->unk_24_0 < 999999) {
         param0->unk_24_0++;
     }
 }
 
-int sub_02029774(const UndergroundRecord *param0)
-{
+int sub_02029774(const UndergroundRecord *param0) {
     return param0->unk_28_0;
 }
 
-void sub_0202977C(UndergroundRecord *param0)
-{
+void sub_0202977C(UndergroundRecord *param0) {
     if (param0->unk_28_0 < 999999) {
         param0->unk_28_0++;
     }
 }
 
-int sub_020297AC(const UndergroundRecord *param0)
-{
+int sub_020297AC(const UndergroundRecord *param0) {
     return param0->unk_2C_0;
 }
 
-void sub_020297B4(UndergroundRecord *param0)
-{
+void sub_020297B4(UndergroundRecord *param0) {
     if (param0->unk_2C_0 < 999999) {
         param0->unk_2C_0++;
     }
 }
 
-int sub_020297E4(const UndergroundRecord *param0)
-{
+int sub_020297E4(const UndergroundRecord *param0) {
     return param0->unk_30_0;
 }
 
-void sub_020297EC(UndergroundRecord *param0)
-{
+void sub_020297EC(UndergroundRecord *param0) {
     if (param0->unk_30_0 < 999999) {
         param0->unk_30_0++;
     }
 }
 
-int sub_0202981C(const UndergroundRecord *param0)
-{
+int sub_0202981C(const UndergroundRecord *param0) {
     return param0->unk_34_0;
 }
 
-void sub_02029824(UndergroundRecord *param0)
-{
+void sub_02029824(UndergroundRecord *param0) {
     if (param0->unk_34_0 < 999999) {
         param0->unk_34_0++;
     }
 }
 
-void sub_02029854(UnkStruct_02029894 *param0, int param1, int param2, int param3)
-{
+void sub_02029854(UnkStruct_02029894 *param0, int param1, int param2, int param3) {
     param0->unk_8C = param1;
     param0->unk_8E = param2;
     param0->unk_90 = param3;
     param0->unk_91 = 1;
 }
 
-int sub_02029874(const UnkStruct_02029894 *param0)
-{
+int sub_02029874(const UnkStruct_02029894 *param0) {
     return param0->unk_8C;
 }
 
-int sub_0202987C(const UnkStruct_02029894 *param0)
-{
+int sub_0202987C(const UnkStruct_02029894 *param0) {
     return param0->unk_8E;
 }
 
-int sub_02029884(const UnkStruct_02029894 *param0)
-{
+int sub_02029884(const UnkStruct_02029894 *param0) {
     return param0->unk_90;
 }
 
-BOOL sub_0202988C(const UnkStruct_02029894 *param0)
-{
+BOOL sub_0202988C(const UnkStruct_02029894 *param0) {
     return param0->unk_91;
 }
 
-UnkStruct_02029894 *sub_02029894(SaveData *saveData)
-{
+UnkStruct_02029894 *sub_02029894(SaveData *saveData) {
     Underground *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNDERGROUND);
     return &v0->unk_00;
 }
 
-UndergroundRecord *SaveData_UndergroundRecord(SaveData *saveData)
-{
+UndergroundRecord *SaveData_UndergroundRecord(SaveData *saveData) {
     Underground *v0 = SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNDERGROUND);
     return &v0->unk_00.unk_50;
 }
 
-UndergroundRecord *sub_020298AC(UnkStruct_02029894 *param0)
-{
+UndergroundRecord *sub_020298AC(UnkStruct_02029894 *param0) {
     return &param0->unk_50;
 }
 
-Underground *SaveData_GetUnderground(SaveData *saveData)
-{
+Underground *SaveData_GetUnderground(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_UNDERGROUND);
 }

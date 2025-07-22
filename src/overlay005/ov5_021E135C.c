@@ -25,8 +25,7 @@ typedef struct {
     int unk_10;
 } UnkStruct_ov5_021E135C;
 
-static void ov5_021E135C(UnkStruct_ov5_021E135C *param0)
-{
+static void ov5_021E135C(UnkStruct_ov5_021E135C *param0) {
     switch (param0->unk_10) {
     case 0:
         param0->unk_10 = 2;
@@ -45,8 +44,7 @@ static void ov5_021E135C(UnkStruct_ov5_021E135C *param0)
     Player_SetDir(param0->fieldSystem->playerAvatar, param0->unk_10);
 }
 
-static void ov5_021E139C(SysTask *param0, void *param1)
-{
+static void ov5_021E139C(SysTask *param0, void *param1) {
     UnkStruct_ov5_021E135C *v0 = param1;
     MapObject *v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
     VecFx32 v2;
@@ -78,8 +76,7 @@ static void ov5_021E139C(SysTask *param0, void *param1)
     }
 }
 
-static void ov5_021E1470(SysTask *param0, void *param1)
-{
+static void ov5_021E1470(SysTask *param0, void *param1) {
     UnkStruct_ov5_021E135C *v0 = param1;
     MapObject *v1 = Player_MapObject(v0->fieldSystem->playerAvatar);
     VecFx32 v2;
@@ -127,8 +124,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
     }
 }
 
-void FieldSystem_StartWarpAnimation(FieldSystem *fieldSystem, BOOL param1, BOOL *param2)
-{
+void FieldSystem_StartWarpAnimation(FieldSystem *fieldSystem, BOOL param1, BOOL *param2) {
     UnkStruct_ov5_021E135C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E135C));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov5_021E135C));

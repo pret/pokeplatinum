@@ -45,8 +45,7 @@ static void (*const sFreeGlyphFuncs[])(FontManager *fontManager) = {
     [GLYPH_ACCESS_MODE_LAZY] = FontManager_FreeGlyphLazy
 };
 
-FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID)
-{
+FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID) {
     FontManager *fontManager = Heap_AllocFromHeap(heapID, sizeof(FontManager));
 
     if (fontManager) {
@@ -57,23 +56,20 @@ FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAcces
     return fontManager;
 }
 
-void FontManager_Delete(FontManager *fontManager)
-{
+void FontManager_Delete(FontManager *fontManager) {
     FontManager_FreeGlyphs(fontManager);
     FontManager_FreeWidthsAndNARC(fontManager);
     Heap_Free(fontManager);
 }
 
-void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID)
-{
+void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID) {
     if (fontManager->glyphAccessMode != glyphAccessMode) {
         FontManager_FreeGlyphs(fontManager);
         FontManager_LoadGlyphs(fontManager, glyphAccessMode, heapID);
     }
 }
 
-static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID)
-{
+static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID) {
     fontManager->narc = NARC_ctor(narcID, heapID);
 
     if (!fontManager->narc) {
@@ -104,8 +100,7 @@ static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 a
     fontManager->arcFileIdx = arcFileIdx;
 }
 
-static void FontManager_FreeWidthsAndNARC(FontManager *fontManager)
-{
+static void FontManager_FreeWidthsAndNARC(FontManager *fontManager) {
     if (fontManager->glyphWidths) {
         Heap_Free(fontManager->glyphWidths);
     }
@@ -115,14 +110,12 @@ static void FontManager_FreeWidthsAndNARC(FontManager *fontManager)
     }
 }
 
-static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID)
-{
+static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID) {
     fontManager->glyphAccessMode = glyphAccessMode;
     sLoadGlyphFuncs[glyphAccessMode](fontManager, heapID);
 }
 
-static void FontManager_LoadGlyphImmediate(FontManager *fontManager, u32 heapID)
-{
+static void FontManager_LoadGlyphImmediate(FontManager *fontManager, u32 heapID) {
     u32 size = fontManager->glyphSize * fontManager->header.numGlyphs;
 
     fontManager->narcBuf = Heap_AllocFromHeap(heapID, size);
@@ -131,28 +124,23 @@ static void FontManager_LoadGlyphImmediate(FontManager *fontManager, u32 heapID)
     NARC_ReadFromMember(fontManager->narc, fontManager->arcFileIdx, fontManager->header.size, size, fontManager->narcBuf);
 }
 
-static void FontManager_LoadGlyphLazy(FontManager *fontManager, u32 heapID)
-{
+static void FontManager_LoadGlyphLazy(FontManager *fontManager, u32 heapID) {
     fontManager->glyphBitmapFunc = DecompressGlyph_FromNARC;
 }
 
-static void FontManager_FreeGlyphs(FontManager *fontManager)
-{
+static void FontManager_FreeGlyphs(FontManager *fontManager) {
     sFreeGlyphFuncs[fontManager->glyphAccessMode](fontManager);
 }
 
-static void FontManager_FreeGlyphImmediate(FontManager *fontManager)
-{
+static void FontManager_FreeGlyphImmediate(FontManager *fontManager) {
     Heap_Free(fontManager->narcBuf);
     fontManager->narcBuf = NULL;
 }
 
-static void FontManager_FreeGlyphLazy(FontManager *fontManager)
-{
+static void FontManager_FreeGlyphLazy(FontManager *fontManager) {
 }
 
-void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph)
-{
+void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph) {
     if (c <= fontManager->header.numGlyphs) {
         c--;
     } else {
@@ -162,8 +150,7 @@ void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, Text
     fontManager->glyphBitmapFunc(fontManager, c, outGlyph);
 }
 
-static void DecompressGlyph_FromRAM(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph)
-{
+static void DecompressGlyph_FromRAM(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph) {
     u8 *tiles = fontManager->narcBuf + (c * fontManager->glyphSize);
 
     switch (fontManager->glyphShape) {
@@ -193,8 +180,7 @@ static void DecompressGlyph_FromRAM(const FontManager *fontManager, charcode_t c
     outGlyph->height = fontManager->header.maxHeight;
 }
 
-static void DecompressGlyph_FromNARC(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph)
-{
+static void DecompressGlyph_FromNARC(const FontManager *fontManager, charcode_t c, TextGlyph *outGlyph) {
     NARC_ReadFromMember(fontManager->narc, fontManager->arcFileIdx, fontManager->header.size + c * fontManager->glyphSize, fontManager->glyphSize, fontManager->glyphBuf);
 
     switch (fontManager->glyphShape) {
@@ -224,8 +210,7 @@ static void DecompressGlyph_FromNARC(const FontManager *fontManager, charcode_t 
     outGlyph->height = fontManager->header.maxHeight;
 }
 
-u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing)
-{
+u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing) {
     u32 len = 0;
 
     while (*str != CHAR_EOS) {
@@ -243,8 +228,7 @@ u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t
     return len - letterSpacing;
 }
 
-BOOL FontManager_AreAllCharsValid(const FontManager *fontManager, const charcode_t *str)
-{
+BOOL FontManager_AreAllCharsValid(const FontManager *fontManager, const charcode_t *str) {
     while (*str != CHAR_EOS) {
         if (*str == CHAR_FORMAT_ARG) {
             str = CharCode_SkipFormatArg(str);
@@ -263,8 +247,7 @@ BOOL FontManager_AreAllCharsValid(const FontManager *fontManager, const charcode
     return TRUE;
 }
 
-static u8 GlyphWidthFunc_VariableWidth(const FontManager *fontManager, u32 glyphIdx)
-{
+static u8 GlyphWidthFunc_VariableWidth(const FontManager *fontManager, u32 glyphIdx) {
     if (glyphIdx < fontManager->header.numGlyphs) {
         return fontManager->glyphWidths[glyphIdx];
     } else {
@@ -272,13 +255,11 @@ static u8 GlyphWidthFunc_VariableWidth(const FontManager *fontManager, u32 glyph
     }
 }
 
-static u8 GlyphWidthFunc_FixedWidth(const FontManager *fontManager, u32 glyphIdx)
-{
+static u8 GlyphWidthFunc_FixedWidth(const FontManager *fontManager, u32 glyphIdx) {
     return fontManager->header.maxWidth;
 }
 
-u32 FontManager_CalcMaxLineWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing)
-{
+u32 FontManager_CalcMaxLineWidth(const FontManager *fontManager, const charcode_t *str, u32 letterSpacing) {
     u32 maxLen = 0, lineLen = 0;
 
     while (*str != CHAR_EOS) {
@@ -304,8 +285,7 @@ u32 FontManager_CalcMaxLineWidth(const FontManager *fontManager, const charcode_
     return maxLen;
 }
 
-u32 FontManager_CalcStringWidthWithCursorControl(const FontManager *fontManager, const charcode_t *str)
-{
+u32 FontManager_CalcStringWidthWithCursorControl(const FontManager *fontManager, const charcode_t *str) {
     u32 len = 0;
 
     while (*str != CHAR_EOS) {

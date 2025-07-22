@@ -22,8 +22,7 @@ static void StartRTCRead(RTCState *param0);
 
 static RTCState sRTCState;
 
-void InitRTC(void)
-{
+void InitRTC(void) {
     RTC_Init();
     memset(&sRTCState, 0, sizeof(sRTCState));
     sRTCState.valid = 0;
@@ -32,8 +31,7 @@ void InitRTC(void)
     StartRTCRead(&sRTCState);
 }
 
-void UpdateRTC(void)
-{
+void UpdateRTC(void) {
     if (sRTCState.readInProgress) {
         return;
     }
@@ -46,8 +44,7 @@ void UpdateRTC(void)
     }
 }
 
-static void GetTimeCallback(RTCResult result, void *data)
-{
+static void GetTimeCallback(RTCResult result, void *data) {
     RTCState *state = data;
 
     state->status = result;
@@ -60,47 +57,40 @@ static void GetTimeCallback(RTCResult result, void *data)
     state->readInProgress = 0;
 }
 
-static void StartRTCRead(RTCState *param0)
-{
+static void StartRTCRead(RTCState *param0) {
     param0->readInProgress = 1;
     param0->status = RTC_GetDateTimeAsync(&param0->tempDate, &param0->tempTime, GetTimeCallback, param0);
     GF_ASSERT(param0->status == RTC_RESULT_SUCCESS);
 }
 
-void GetCurrentDateTime(RTCDate *date, RTCTime *time)
-{
+void GetCurrentDateTime(RTCDate *date, RTCTime *time) {
     GF_ASSERT(sRTCState.valid == 1);
 
     *date = sRTCState.date;
     *time = sRTCState.time;
 }
 
-void GetCurrentTime(RTCTime *time)
-{
+void GetCurrentTime(RTCTime *time) {
     GF_ASSERT(sRTCState.valid == 1);
     *time = sRTCState.time;
 }
 
-void GetCurrentDate(RTCDate *date)
-{
+void GetCurrentDate(RTCDate *date) {
     GF_ASSERT(sRTCState.valid == 1);
     *date = sRTCState.date;
 }
 
-int GetSecondsSinceMidnight(void)
-{
+int GetSecondsSinceMidnight(void) {
     RTCTime *time = &sRTCState.time;
 
     return time->hour * 60 * 60 + time->minute * 60 + time->second;
 }
 
-s64 GetTimestamp(void)
-{
+s64 GetTimestamp(void) {
     return RTC_ConvertDateTimeToSecond(&sRTCState.date, &sRTCState.time);
 }
 
-int DayNumberForDate(const RTCDate *date)
-{
+int DayNumberForDate(const RTCDate *date) {
     int year, days;
     static const u16 monthStart[MONTH_COUNT] = {
         [MONTH_JAN - 1] = DAY_OF_YEAR_JAN_01 - 1,
@@ -131,8 +121,7 @@ int DayNumberForDate(const RTCDate *date)
     return days;
 }
 
-BOOL IsNight(void)
-{
+BOOL IsNight(void) {
     switch (GetTimeOfDay()) {
     case TIMEOFDAY_LATE_NIGHT:
     case TIMEOFDAY_NIGHT:
@@ -142,16 +131,14 @@ BOOL IsNight(void)
     return FALSE;
 }
 
-enum TimeOfDay GetTimeOfDay(void)
-{
+enum TimeOfDay GetTimeOfDay(void) {
     RTCTime time;
 
     GetCurrentTime(&time);
     return TimeOfDayForHour(time.hour);
 }
 
-enum TimeOfDay TimeOfDayForHour(int hour)
-{
+enum TimeOfDay TimeOfDayForHour(int hour) {
     static const u8 lookup[24] = {
         TIMEOFDAY_LATE_NIGHT,
         TIMEOFDAY_LATE_NIGHT,
@@ -185,8 +172,7 @@ enum TimeOfDay TimeOfDayForHour(int hour)
 
 #define MAX_TIMESTAMP 3155759999
 
-s64 TimeElapsed(s64 since, s64 until)
-{
+s64 TimeElapsed(s64 since, s64 until) {
     RTCDate maxDate = { 99, 12, 31, 0 };
     RTCTime maxTime = { 23, 59, 59 };
     s64 maxTimestamp = RTC_ConvertDateTimeToSecond(&maxDate, &maxTime);

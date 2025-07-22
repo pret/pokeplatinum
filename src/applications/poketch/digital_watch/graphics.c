@@ -19,8 +19,7 @@ static void Task_ToggleBacklightPalette(SysTask *sysTask, void *taskMan);
 static void Task_FreeGraphics(SysTask *sysTask, void *taskMan);
 static void DrawClockDigits(PoketchDigitalWatchGraphics *graphics);
 
-BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, const WatchData *watchData, BgConfig *bgConfig)
-{
+BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, const WatchData *watchData, BgConfig *bgConfig) {
     PoketchDigitalWatchGraphics *digitalWatchGraphics = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchDigitalWatchGraphics));
 
     if (digitalWatchGraphics != NULL) {
@@ -48,8 +47,7 @@ BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, con
     return FALSE;
 }
 
-static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
-{
+static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst) {
     int offset = 9 * 32;
     int row;
 
@@ -63,8 +61,7 @@ static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
     }
 }
 
-void PoketchDigitalWatchGraphics_Free(PoketchDigitalWatchGraphics *graphics)
-{
+void PoketchDigitalWatchGraphics_Free(PoketchDigitalWatchGraphics *graphics) {
     if (graphics != NULL) {
         Heap_Free(graphics);
     }
@@ -78,29 +75,24 @@ static const PoketchTask sDisplayTasks[] = {
     { 0 }
 };
 
-void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID)
-{
+void PoketchDigitalWatchGraphics_StartTask(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID) {
     PoketchTask_Start(sDisplayTasks, taskID, graphics, graphics->watchData, graphics->activeTasks, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID)
-{
+BOOL PoketchDigitalWatchGraphics_TaskIsNotActive(PoketchDigitalWatchGraphics *graphics, enum DigitalWatchGraphicsTasks taskID) {
     return PoketchTask_TaskIsNotActive(graphics->activeTasks, taskID);
 }
 
-BOOL PoketchDigitalWatchGraphics_NoActiveTasks(PoketchDigitalWatchGraphics *graphics)
-{
+BOOL PoketchDigitalWatchGraphics_NoActiveTasks(PoketchDigitalWatchGraphics *graphics) {
     return PoketchTask_NoActiveTasks(graphics->activeTasks);
 }
 
-static void EndTask(PoketchTaskManager *taskMan)
-{
+static void EndTask(PoketchTaskManager *taskMan) {
     PoketchDigitalWatchGraphics *graphics = PoketchTask_GetTaskData(taskMan);
     PoketchTask_EndTask(graphics->activeTasks, taskMan);
 }
 
-static void Task_DrawAppScreen(SysTask *sysTask, void *taskMan)
-{
+static void Task_DrawAppScreen(SysTask *sysTask, void *taskMan) {
     static const BgTemplate template = {
         .x = 0,
         .y = 0,
@@ -132,8 +124,7 @@ static void Task_DrawAppScreen(SysTask *sysTask, void *taskMan)
     EndTask(taskMan);
 }
 
-static void Task_UpdateClockDigits(SysTask *sysTask, void *taskMan)
-{
+static void Task_UpdateClockDigits(SysTask *sysTask, void *taskMan) {
     PoketchDigitalWatchGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     DrawClockDigits(graphics);
@@ -141,8 +132,7 @@ static void Task_UpdateClockDigits(SysTask *sysTask, void *taskMan)
     EndTask(taskMan);
 }
 
-static void Task_ToggleBacklightPalette(SysTask *sysTask, void *taskMan)
-{
+static void Task_ToggleBacklightPalette(SysTask *sysTask, void *taskMan) {
     PoketchDigitalWatchGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     if (graphics->watchData->backlightActive) {
@@ -154,16 +144,14 @@ static void Task_ToggleBacklightPalette(SysTask *sysTask, void *taskMan)
     EndTask(taskMan);
 }
 
-static void Task_FreeGraphics(SysTask *sysTask, void *taskMan)
-{
+static void Task_FreeGraphics(SysTask *sysTask, void *taskMan) {
     PoketchDigitalWatchGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_FreeTilemapBuffer(graphics->bgConfig, BG_LAYER_SUB_2);
     EndTask(taskMan);
 }
 
-static void DrawClockDigits(PoketchDigitalWatchGraphics *graphics)
-{
+static void DrawClockDigits(PoketchDigitalWatchGraphics *graphics) {
     CP_SetDiv32_32(graphics->watchData->time.hour, POKETCH_NUM_CLOCK_DIGITS);
 
     u32 tensDigitOffset = CP_GetDivResult32();

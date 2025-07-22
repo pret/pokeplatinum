@@ -432,8 +432,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
 MysteryGift *SaveData_GetMysteryGift(SaveData *saveData);
 void WonderCardsApp_ShowWondercard(BgConfig *bgConfig, WonderCard *wonderCard, enum HeapId heapID);
 
-static u16 ov97_0222C174(u16 param0)
-{
+static u16 ov97_0222C174(u16 param0) {
     int v0;
 
     for (v0 = 0; v0 < sizeof(Unk_ov97_0223E0B0) / sizeof(UnkStruct_ov97_0223E0B0); v0++) {
@@ -445,8 +444,7 @@ static u16 ov97_0222C174(u16 param0)
     return 63;
 }
 
-static void ov97_0222C1A4(u16 *param0, int param1)
-{
+static void ov97_0222C1A4(u16 *param0, int param1) {
     param0[0] = param1 / 10000 + 48;
     param1 = param1 % 10000;
     param0[1] = param1 / 1000 + 48;
@@ -488,8 +486,7 @@ static UnkStruct_ov97_02232E38 Unk_ov97_0223E0A4 = {
     Unk_ov97_0223F180
 };
 
-static void ov97_0222C210(UnkStruct_ov97_0222C388 *param0)
-{
+static void ov97_0222C210(UnkStruct_ov97_0222C388 *param0) {
     int v0;
     u32 v1;
     const u16 *v2 = TrainerInfo_Name(param0->unk_10);
@@ -503,8 +500,7 @@ static void ov97_0222C210(UnkStruct_ov97_0222C388 *param0)
     Unk_ov97_0223F190[5] = 0;
 }
 
-static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
-{
+static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0) {
     int v0;
     UnkStruct_02099F80 v1 = {
         GX_VRAM_BG_128_A,
@@ -549,8 +545,7 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     ov97_0222C388(param0);
 }
 
-static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
-{
+static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0) {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, 4, 16 * 2 * 8, 16 * 2, param0->heapID);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->heapID);
@@ -558,8 +553,7 @@ static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 4);
 }
 
-static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0)
-{
+static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0) {
     MainMenuWindow v0;
 
     if (Window_IsInUse(&param0->unk_18) == 0) {
@@ -580,8 +574,7 @@ static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0)
 
 static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0);
 
-static void ov97_0222C47C(UnkStruct_ov97_0222C388 *param0)
-{
+static void ov97_0222C47C(UnkStruct_ov97_0222C388 *param0) {
     MainMenuUtil_InitWindow(&param0->unk_48, &param0->unk_28, 0, 421, (1 + 9), 2);
     MainMenuWindow_SetDimensionsAndBasetile(&param0->unk_48, 27, 4, param0->unk_144);
     MainMenuWindow_SetScrollableAndFont(&param0->unk_48, 1, 1);
@@ -605,8 +598,7 @@ static void ov97_0222C47C(UnkStruct_ov97_0222C388 *param0)
     ov97_0222C578(param0);
 }
 
-static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
-{
+static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0) {
     u32 v0, v1, v2, v3;
     u8 v4[6];
     UnkStruct_ov97_022335A8 v5;
@@ -640,8 +632,7 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
     StringTemplate_Free(v6);
 }
 
-static void ov97_0222C688(ApplicationManager *appMan)
-{
+static void ov97_0222C688(ApplicationManager *appMan) {
     int v0;
     UnkStruct_ov97_0222C388 *v1 = ApplicationManager_Data(appMan);
 
@@ -663,8 +654,7 @@ static void ov97_0222C688(ApplicationManager *appMan)
     Heap_Free(v1->unk_04);
 }
 
-static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
-{
+static int ov97_0222C6F8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov97_0222C388 *v0 = MainMenuUtil_InitAppAndFadeToBlack(appMan, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
     v0->heapID = HEAP_ID_85;
@@ -689,8 +679,7 @@ static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
-{
+static int ov97_0222C78C(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov97_0222C388 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -770,8 +759,7 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int ov97_0222C948(ApplicationManager *appMan, int *param1)
-{
+static int ov97_0222C948(ApplicationManager *appMan, int *param1) {
     Heap_Destroy(HEAP_ID_91);
     EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);
@@ -780,8 +768,7 @@ static int ov97_0222C948(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
-{
+static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0) {
     RTCDate v0;
     Strbuf *v1;
     StringTemplate *v2;
@@ -828,13 +815,11 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     MainMenuUtil_LoadGiftSprite(param0->unk_04, v4);
 }
 
-static void ov97_0222CAAC(UnkStruct_ov97_0222C388 *param0, int param1)
-{
+static void ov97_0222CAAC(UnkStruct_ov97_0222C388 *param0, int param1) {
     param0->unk_160 = param1;
 }
 
-static int ov97_0222CAB4(UnkStruct_ov97_0222C388 *param0, int *param1, int param2, u32 param3)
-{
+static int ov97_0222CAB4(UnkStruct_ov97_0222C388 *param0, int *param1, int param2, u32 param3) {
     if (--param0->unk_160 == 0) {
         ov97_022333BC();
         *param1 = UnkEnum_ov97_0222C6F8_23;
@@ -858,8 +843,7 @@ static int ov97_0222CAB4(UnkStruct_ov97_0222C388 *param0, int *param1, int param
     return 0;
 }
 
-int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
-{
+int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0) {
     int v0, v1;
     u16 *v2;
     int *v3 = &param0->unk_15C;

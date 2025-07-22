@@ -14,8 +14,7 @@ static const u8 languageArray[NUM_LANGUAGES] = {
     SPANISH
 };
 
-int PokedexLanguage_LanguageToIndex(int language)
-{
+int PokedexLanguage_LanguageToIndex(int language) {
     int languageIndex;
 
     for (languageIndex = 0; languageIndex < NUM_LANGUAGES; languageIndex++) {
@@ -27,8 +26,7 @@ int PokedexLanguage_LanguageToIndex(int language)
     return languageIndex;
 }
 
-int PokedexLanguage_IndexToLanguage(int languageIndex)
-{
+int PokedexLanguage_IndexToLanguage(int languageIndex) {
     GF_ASSERT(languageIndex < NUM_LANGUAGES);
     return languageArray[languageIndex];
 }

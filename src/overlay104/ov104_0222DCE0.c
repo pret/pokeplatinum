@@ -100,18 +100,15 @@ static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_POKE_KID, OBJ_EVENT_GFX_PIKACHU }
 };
 
-BattleFrontierTrainerData *ov104_0222DCE0(u16 param0, int param1, enum NarcID narcID)
-{
+BattleFrontierTrainerData *ov104_0222DCE0(u16 param0, int param1, enum NarcID narcID) {
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, param0, param1);
 }
 
-void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, enum NarcID narcID)
-{
+void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, enum NarcID narcID) {
     NARC_ReadWholeMemberByIndexPair(param0, narcID, param1);
 }
 
-BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int heapID, int param3)
-{
+BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int heapID, int param3) {
     MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
     MI_CpuClear8(param0, sizeof(FrontierTrainerDataDTO));
@@ -139,8 +136,7 @@ static const u16 Unk_ov104_0223F290[] = {
     ITEM_QUICK_CLAW
 };
 
-u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, enum NarcID narcID)
-{
+u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, enum NarcID narcID) {
     int v0;
     int v1;
     u32 v2;
@@ -233,8 +229,7 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
     return v2;
 }
 
-void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 param2)
-{
+void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 param2) {
     int v0;
     u32 v1;
     u8 v2, v3, v4;
@@ -312,8 +307,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
     Pokemon_CalcLevelAndStats(param1);
 }
 
-u16 ov104_0222E10C(u8 trainerClass)
-{
+u16 ov104_0222E10C(u8 trainerClass) {
     for (int i = 0; i < (NELEMS(sTrainerClassToObjectID)); i++) {
         if (sTrainerClassToObjectID[i][0] == trainerClass) {
             return sTrainerClassToObjectID[i][1];
@@ -323,8 +317,7 @@ u16 ov104_0222E10C(u8 trainerClass)
     return OBJ_EVENT_GFX_SCHOOL_KID_M;
 }
 
-void ov104_0222E134(SaveData *saveData, Pokemon *param1)
-{
+void ov104_0222E134(SaveData *saveData, Pokemon *param1) {
     u32 v0;
     Strbuf *v1;
     MessageLoader *v2;
@@ -350,15 +343,13 @@ void ov104_0222E134(SaveData *saveData, Pokemon *param1)
     return;
 }
 
-void ov104_0222E1C0(SaveData *saveData, Party *party, Pokemon *param2)
-{
+void ov104_0222E1C0(SaveData *saveData, Party *party, Pokemon *param2) {
     ov104_0222E134(saveData, param2);
     Party_AddPokemon(party, param2);
     return;
 }
 
-void ov104_0222E1D8(Sprite *param0, u8 param1)
-{
+void ov104_0222E1D8(Sprite *param0, u8 param1) {
     if (Sprite_GetActiveAnim(param0) == param1) {
         return;
     }
@@ -369,8 +360,7 @@ void ov104_0222E1D8(Sprite *param0, u8 param1)
     return;
 }
 
-void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3)
-{
+void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3) {
     VecFx32 v0;
 
     v0.x = param1 * FX32_ONE;
@@ -389,8 +379,7 @@ void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3)
     return;
 }
 
-u8 ov104_0222E240(u16 param0, u16 param1)
-{
+u8 ov104_0222E240(u16 param0, u16 param1) {
     switch (HealthBar_Color(param0, param1, 48)) {
     case 4:
         return 1;
@@ -405,15 +394,13 @@ u8 ov104_0222E240(u16 param0, u16 param1)
     return 1;
 }
 
-void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID, int param3)
-{
+void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID, int param3) {
     Heap_Free(ov104_0222DD04(&param0->unk_00, param1, heapID, param3));
 
     return;
 }
 
-void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapID)
-{
+void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapID) {
     Sentence *v0;
 
     param0->trainerIDs[battlerId] = param1->trainerID;
@@ -430,8 +417,7 @@ void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int 
     return;
 }
 
-u32 ov104_0222E2F0(FrontierPokemonDataDTO *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6)
-{
+u32 ov104_0222E2F0(FrontierPokemonDataDTO *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6) {
     u32 v0, v1, v2;
 
     v0 = LCRNG_Next() | (LCRNG_Next() << 16);
@@ -440,8 +426,7 @@ u32 ov104_0222E2F0(FrontierPokemonDataDTO *param0, u16 param1, int param2, u8 pa
     return v2;
 }
 
-void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u32 param3[], u32 param4[], int param5, int param6, int param7)
-{
+void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u32 param3[], u32 param4[], int param5, int param6, int param7) {
     int v0;
     u32 v1;
     u8 v2;
@@ -463,8 +448,7 @@ void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u
     return;
 }
 
-u8 ov104_0222E3A8(u16 param0)
-{
+u8 ov104_0222E3A8(u16 param0) {
     u8 v0;
 
     if (param0 < 100) {
@@ -488,8 +472,7 @@ u8 ov104_0222E3A8(u16 param0)
     return v0;
 }
 
-BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6)
-{
+BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6) {
     int v0, v1, v2;
     BattleFrontierPokemonData v3[6];
     int v4, v5;
@@ -539,8 +522,7 @@ BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const
     return 0;
 }
 
-void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPokemonDataDTO *param4, u8 *param5, u32 *param6, u8 param7)
-{
+void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPokemonDataDTO *param4, u8 *param5, u32 *param6, u8 param7) {
     int v0;
     u16 v2[4];
     u16 v3[4];
@@ -579,14 +561,12 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
     return;
 }
 
-void ov104_0222E5D0(StringTemplate *param0, u32 param1)
-{
+void ov104_0222E5D0(StringTemplate *param0, u32 param1) {
     StringTemplate_SetPlayerName(param0, param1, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     return;
 }
 
-int ov104_0222E5F0(const TrainerInfo *param0)
-{
+int ov104_0222E5F0(const TrainerInfo *param0) {
     u32 v0;
     int v1, v2;
 
@@ -608,8 +588,7 @@ int ov104_0222E5F0(const TrainerInfo *param0)
     return v1;
 }
 
-void ov104_0222E630(SaveData *saveData)
-{
+void ov104_0222E630(SaveData *saveData) {
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
 
     sub_02038F8C(wiFiHistory);

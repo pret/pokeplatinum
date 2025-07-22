@@ -10,8 +10,7 @@
 #include "map_header.h"
 #include "narc.h"
 
-static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrixID, int mapHeaderID)
-{
+static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrixID, int mapHeaderID) {
     int i;
 
     mapMatrixData->width = 0;
@@ -57,13 +56,11 @@ static void MapMatrixData_Load(MapMatrixData *mapMatrixData, const u16 mapMatrix
     Heap_Free(buffer);
 }
 
-MapMatrix *MapMatrix_New(void)
-{
+MapMatrix *MapMatrix_New(void) {
     return MapMatrix_NewWithHeapID(HEAP_ID_FIELDMAP);
 }
 
-MapMatrix *MapMatrix_NewWithHeapID(u32 heapID)
-{
+MapMatrix *MapMatrix_NewWithHeapID(u32 heapID) {
     MapMatrix *mapMatrix = Heap_AllocFromHeap(heapID, sizeof(MapMatrix));
     mapMatrix->width = 0;
     mapMatrix->height = 0;
@@ -72,8 +69,7 @@ MapMatrix *MapMatrix_NewWithHeapID(u32 heapID)
     return mapMatrix;
 }
 
-void MapMatrix_Copy(MapMatrix *src, MapMatrix *dest)
-{
+void MapMatrix_Copy(MapMatrix *src, MapMatrix *dest) {
     GF_ASSERT(dest != NULL);
     GF_ASSERT(src != NULL);
     GF_ASSERT(src != dest);
@@ -81,8 +77,7 @@ void MapMatrix_Copy(MapMatrix *src, MapMatrix *dest)
     *dest = *src;
 }
 
-void MapMatrix_Load(const int mapHeaderID, MapMatrix *mapMatrix)
-{
+void MapMatrix_Load(const int mapHeaderID, MapMatrix *mapMatrix) {
     u16 mapMatrixID = MapHeader_GetMapMatrixID(mapHeaderID);
     MapMatrixData_Load(&mapMatrix->data, mapMatrixID, mapHeaderID);
 
@@ -91,31 +86,26 @@ void MapMatrix_Load(const int mapHeaderID, MapMatrix *mapMatrix)
     mapMatrix->width = mapMatrix->data.width;
 }
 
-void MapMatrix_Free(MapMatrix *const mapMatrix)
-{
+void MapMatrix_Free(MapMatrix *const mapMatrix) {
     Heap_Free(mapMatrix);
 }
 
-u16 MapMatrix_GetLandDataIDByIndex2(int index, const MapMatrix *mapMatrix)
-{
+u16 MapMatrix_GetLandDataIDByIndex2(int index, const MapMatrix *mapMatrix) {
     GF_ASSERT(index < (mapMatrix->width * mapMatrix->height));
     return mapMatrix->data.landDataIDs[index];
 }
 
-int MapMatrix_GetWidth(const MapMatrix *mapMatrix)
-{
+int MapMatrix_GetWidth(const MapMatrix *mapMatrix) {
     GF_ASSERT(mapMatrix != NULL);
     return mapMatrix->width;
 }
 
-int MapMatrix_GetHeight(const MapMatrix *mapMatrix)
-{
+int MapMatrix_GetHeight(const MapMatrix *mapMatrix) {
     GF_ASSERT(mapMatrix != NULL);
     return mapMatrix->height;
 }
 
-u16 MapMatrix_GetMapHeaderIDAtCoords(const MapMatrix *mapMatrix, int x, int y)
-{
+u16 MapMatrix_GetMapHeaderIDAtCoords(const MapMatrix *mapMatrix, int x, int y) {
     int mapMatrixWidth = mapMatrix->width;
     int mapMatrixHeight = mapMatrix->height;
 
@@ -125,29 +115,25 @@ u16 MapMatrix_GetMapHeaderIDAtCoords(const MapMatrix *mapMatrix, int x, int y)
     return mapMatrix->data.mapHeaderIDs[x + y * mapMatrixWidth];
 }
 
-u16 MapMatrix_GetMapHeaderIDAtIndex(const MapMatrix *mapMatrix, const int index)
-{
+u16 MapMatrix_GetMapHeaderIDAtIndex(const MapMatrix *mapMatrix, const int index) {
     int mapSize = mapMatrix->width * mapMatrix->height;
 
     GF_ASSERT(0 <= index && index < mapSize);
     return mapMatrix->data.mapHeaderIDs[index];
 }
 
-u8 MapMatrix_GetMatrixID(const MapMatrix *mapMatrix)
-{
+u8 MapMatrix_GetMatrixID(const MapMatrix *mapMatrix) {
     return mapMatrix->matrixID;
 }
 
-int MapMatrix_GetAltitudeAtCoords(const MapMatrix *mapMatrix, const int param1, const int x, const int y, const int width)
-{
+int MapMatrix_GetAltitudeAtCoords(const MapMatrix *mapMatrix, const int param1, const int x, const int y, const int width) {
     GF_ASSERT(x < width);
     GF_ASSERT((x + y * width) < MAP_MATRIX_MAX_SIZE);
 
     return mapMatrix->data.altitudes[x + y * width];
 }
 
-MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID)
-{
+MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID) {
     MainMapMatrixData *mainMapMatrixData = Heap_AllocFromHeap(heapID, sizeof(MainMapMatrixData));
     void *buffer = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX, 0, heapID);
     u8 *iter = (u8 *)buffer;
@@ -164,19 +150,16 @@ MainMapMatrixData *MainMapMatrixData_Load(const u32 heapID)
     return mainMapMatrixData;
 }
 
-void MainMapMatrixData_Free(MainMapMatrixData *mainMapMatrixData)
-{
+void MainMapMatrixData_Free(MainMapMatrixData *mainMapMatrixData) {
     GF_ASSERT(mainMapMatrixData != NULL);
     Heap_Free(mainMapMatrixData);
 }
 
-int MainMapMatrixData_GetMapHeaderIDAtCoords(const MainMapMatrixData *mainMapMatrixData, const u32 x, const u32 y)
-{
+int MainMapMatrixData_GetMapHeaderIDAtCoords(const MainMapMatrixData *mainMapMatrixData, const u32 x, const u32 y) {
     return mainMapMatrixData->mapHeaderIDs[x + y * MAP_MATRIX_MAX_WIDTH];
 }
 
-int MapMatrixData_GetMapHeaderIDAtCoords(const int mapMatrixID, const u16 x, const u16 y)
-{
+int MapMatrixData_GetMapHeaderIDAtCoords(const int mapMatrixID, const u16 x, const u16 y) {
     MapMatrixData mapMatrixData;
     MapMatrixData_Load(&mapMatrixData, mapMatrixID, 0);
 
@@ -186,14 +169,12 @@ int MapMatrixData_GetMapHeaderIDAtCoords(const int mapMatrixID, const u16 x, con
     return mapMatrixData.mapHeaderIDs[y * mapMatrixData.width + x];
 }
 
-const u16 MapMatrix_GetLandDataIDByIndex(const int index, const MapMatrix *mapMatrix)
-{
+const u16 MapMatrix_GetLandDataIDByIndex(const int index, const MapMatrix *mapMatrix) {
     GF_ASSERT(mapMatrix != NULL);
     return MapMatrix_GetLandDataIDByIndex2(index, mapMatrix);
 }
 
-void MapMatrix_RevealSpringPath(MapMatrix *mapMatrix)
-{
+void MapMatrix_RevealSpringPath(MapMatrix *mapMatrix) {
     u16 *mapMatrixLandDataIDs = mapMatrix->data.landDataIDs;
     u8 *mapMatrixAltitudes = mapMatrix->data.altitudes;
     int mapMatrixHeight = mapMatrix->height;
@@ -214,8 +195,7 @@ void MapMatrix_RevealSpringPath(MapMatrix *mapMatrix)
     mapMatrixAltitudes[24 + mapMatrixWidth * 22] = 2;
 }
 
-void MapMatrix_RevealSeabreakPath(MapMatrix *mapMatrix)
-{
+void MapMatrix_RevealSeabreakPath(MapMatrix *mapMatrix) {
     u16 *mapMatrixLandDataIDs = mapMatrix->data.landDataIDs;
     int mapMatrixHeight = mapMatrix->height;
     int mapMatrixWidth = mapMatrix->width;

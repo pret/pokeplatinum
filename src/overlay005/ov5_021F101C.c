@@ -20,8 +20,7 @@ typedef struct {
     UnkStruct_ov5_021F0468 *unk_04;
 } UnkStruct_ov5_021F101C;
 
-BOOL ov5_021F101C(FieldTask *param0)
-{
+BOOL ov5_021F101C(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
     int *v2 = FieldTask_GetState(param0);

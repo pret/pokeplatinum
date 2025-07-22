@@ -36,13 +36,11 @@ static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData);
 static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData);
 static void InitPlayerPartyMons(PlayerPartyStatus *data, Party *playerParty);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(PoketchPartyStatus_New, PoketchPartyStatus_Exit);
 }
 
-static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused)
-{
+static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused) {
     PoketchPartyStatus *partyStatusData = (PoketchPartyStatus *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatus));
 
     if (partyStatusData != NULL) {
@@ -58,8 +56,7 @@ static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, Bg
     return FALSE;
 }
 
-static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused)
-{
+static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused) {
     if (PartyStatusGraphics_New(&(partyStatus->graphicsData), &(partyStatus->playerParty), bgConfig)) {
         partyStatus->sysTaskState = 0;
         partyStatus->taskFuncState = 0;
@@ -79,14 +76,12 @@ static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSyst
     return FALSE;
 }
 
-static void FreeAppResources(PoketchPartyStatus *appData)
-{
+static void FreeAppResources(PoketchPartyStatus *appData) {
     PartyStatusGraphics_UnloadAndFree(appData->graphicsData);
     Heap_Free(appData);
 }
 
-static void Task_PartyStatusMain(SysTask *task, void *appData)
-{
+static void Task_PartyStatusMain(SysTask *task, void *appData) {
     static BOOL (*const stateFuncs[])(PoketchPartyStatus *) = {
         Task_PartyStatusLoadAndWait,
         Task_PartyStatusTryUpdateOnTap,
@@ -104,13 +99,11 @@ static void Task_PartyStatusMain(SysTask *task, void *appData)
     }
 }
 
-static void PoketchPartyStatus_Exit(void *appData)
-{
+static void PoketchPartyStatus_Exit(void *appData) {
     ((PoketchPartyStatus *)appData)->shouldExit = TRUE;
 }
 
-static void SetTaskState(PoketchPartyStatus *appData, u32 state)
-{
+static void SetTaskState(PoketchPartyStatus *appData, u32 state) {
     if (appData->shouldExit == 0) {
         appData->sysTaskState = state;
     } else {
@@ -120,8 +113,7 @@ static void SetTaskState(PoketchPartyStatus *appData, u32 state)
     appData->taskFuncState = 0;
 }
 
-static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *appData)
-{
+static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *appData) {
     switch (appData->taskFuncState) {
     case 0:
         PartyStatus_StartTaskById(appData->graphicsData, TASK_DRAW_SCREEN);
@@ -138,8 +130,7 @@ static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *appData)
     return FALSE;
 }
 
-static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
-{
+static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData) {
     if (appData->shouldExit) {
         SetTaskState(appData, 2);
         return FALSE;
@@ -171,8 +162,7 @@ static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
     return FALSE;
 }
 
-static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData)
-{
+static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData) {
     switch (appData->taskFuncState) {
     case 0:
         PartyStatus_StartTaskById(appData->graphicsData, TASK_UNLOAD_AND_FREE);
@@ -188,8 +178,7 @@ static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData)
     return FALSE;
 }
 
-static void InitPlayerPartyMons(PlayerPartyStatus *data, Party *party)
-{
+static void InitPlayerPartyMons(PlayerPartyStatus *data, Party *party) {
     Pokemon *mon;
     int i;
     BOOL decrypted;

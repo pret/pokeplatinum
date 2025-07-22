@@ -82,8 +82,7 @@ static void InitG3(void);
 static void ResetFrm(void);
 static void ov21_021D1EEC(PokedexApp *pokedexApp);
 
-int PokedexMain_Init(ApplicationManager *appMan, int *state)
-{
+int PokedexMain_Init(ApplicationManager *appMan, int *state) {
     PokedexOverlayArgs pokedexOverlayArgs;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_54, SEQ_NONE, 0);
@@ -124,8 +123,7 @@ int PokedexMain_Init(ApplicationManager *appMan, int *state)
     return 1;
 }
 
-int PokedexMain_Main(ApplicationManager *appMan, int *state)
-{
+int PokedexMain_Main(ApplicationManager *appMan, int *state) {
     PokedexApp **appPtr = ApplicationManager_Data(appMan);
 
     switch (*state) {
@@ -158,8 +156,7 @@ int PokedexMain_Main(ApplicationManager *appMan, int *state)
     return 0;
 }
 
-int PokedexMain_Exit(ApplicationManager *appMan, int *state)
-{
+int PokedexMain_Exit(ApplicationManager *appMan, int *state) {
     ApplicationManager_Data(appMan);
 
     SetVBlankCallback(NULL, NULL);
@@ -175,8 +172,7 @@ int PokedexMain_Exit(ApplicationManager *appMan, int *state)
     return 1;
 }
 
-static void VBlankCallBack(void *data)
-{
+static void VBlankCallBack(void *data) {
     PokedexApp **appPtr = data;
 
     if (*appPtr) {
@@ -186,18 +182,15 @@ static void VBlankCallBack(void *data)
     VramTransfer_Process();
 }
 
-static void EntranceTransition(PokedexApp **appPtr)
-{
+static void EntranceTransition(PokedexApp **appPtr) {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_POKEDEX);
 }
 
-static void ExitTransition(PokedexApp **appPtr)
-{
+static void ExitTransition(PokedexApp **appPtr) {
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_POKEDEX);
 }
 
-static BOOL TransitionComplete(PokedexApp **appPtr)
-{
+static BOOL TransitionComplete(PokedexApp **appPtr) {
     return IsScreenFadeDone();
 }
 
@@ -249,8 +242,7 @@ const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B54[8] = {
     ov21_021E84E4
 };
 
-PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayArgs *pokedexOverlayArgs)
-{
+PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayArgs *pokedexOverlayArgs) {
     int i;
     PokedexDefaultSortParams sortParams;
 
@@ -301,8 +293,7 @@ PokedexApp *PokedexMain_NewPokedexApp(enum HeapId heapID, const PokedexOverlayAr
     return pokedexApp;
 }
 
-BOOL ov21_021D10B8(PokedexApp *pokedexApp)
-{
+BOOL ov21_021D10B8(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
 
     ov21_021D3960(&pokedexApp->sortData);
@@ -363,131 +354,110 @@ BOOL ov21_021D10B8(PokedexApp *pokedexApp)
     return 0;
 }
 
-void PokedexMain_InitGX(enum HeapId heapID)
-{
+void PokedexMain_InitGX(enum HeapId heapID) {
     SetGXBanks();
     InitG2(heapID);
     InitG3();
 }
 
-void PokedexMain_FreeGraphics(void)
-{
+void PokedexMain_FreeGraphics(void) {
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
     ResetFrm();
 }
 
-void ov21_021D12D8(PokedexApp *pokedexApp)
-{
+void ov21_021D12D8(PokedexApp *pokedexApp) {
     PokemonGraphics_UpdateCharAndPltt(&pokedexApp->graphicData);
     RenderOam_Transfer();
 }
 
-PokedexUpdater *ov21_021D12EC(PokedexApp *pokedexApp)
-{
+PokedexUpdater *ov21_021D12EC(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1D64;
 }
 
-PokedexUpdater *ov21_021D1300(PokedexApp *pokedexApp)
-{
+PokedexUpdater *ov21_021D1300(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1D68;
 }
 
-PokedexUpdater *ov21_021D1314(PokedexApp *pokedexApp)
-{
+PokedexUpdater *ov21_021D1314(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1D6C;
 }
 
-PokedexUpdater *ov21_021D1328(PokedexApp *pokedexApp)
-{
+PokedexUpdater *ov21_021D1328(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1D70;
 }
 
-UnkStruct_ov21_021D423C *ov21_021D133C(PokedexApp *pokedexApp)
-{
+UnkStruct_ov21_021D423C *ov21_021D133C(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1A70;
 }
 
-UnkStruct_ov21_021D423C *ov21_021D1350(PokedexApp *pokedexApp)
-{
+UnkStruct_ov21_021D423C *ov21_021D1350(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1A74;
 }
 
-UnkStruct_ov21_021D423C *ov21_021D1364(PokedexApp *pokedexApp)
-{
+UnkStruct_ov21_021D423C *ov21_021D1364(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1A78;
 }
 
-UnkStruct_ov21_021D423C *ov21_021D1378(PokedexApp *pokedexApp)
-{
+UnkStruct_ov21_021D423C *ov21_021D1378(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return pokedexApp->unk_1A7C;
 }
 
-int *ov21_021D138C(PokedexApp *pokedexApp)
-{
+int *ov21_021D138C(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->unk_1A60;
 }
 
-int *ov21_021D13A0(PokedexApp *pokedexApp)
-{
+int *ov21_021D13A0(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->unk_1A64;
 }
 
-int *ov21_021D13B4(PokedexApp *pokedexApp)
-{
+int *ov21_021D13B4(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->unk_1A68;
 }
 
-int *ov21_021D13C8(PokedexApp *pokedexApp)
-{
+int *ov21_021D13C8(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->unk_1A6C;
 }
 
-BOOL *ov21_021D13DC(PokedexApp *pokedexApp)
-{
+BOOL *ov21_021D13DC(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->unk_00;
 }
 
-PokedexSortData *ov21_021D13EC(PokedexApp *pokedexApp)
-{
+PokedexSortData *ov21_021D13EC(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->sortData;
 }
 
-PokedexGraphicData *ov21_021D13FC(PokedexApp *pokedexApp)
-{
+PokedexGraphicData *ov21_021D13FC(PokedexApp *pokedexApp) {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->graphicData;
 }
 
-UnkStruct_ov21_021E68F4 *ov21_021D1410(PokedexApp *pokedexApp, int param1)
-{
+UnkStruct_ov21_021E68F4 *ov21_021D1410(PokedexApp *pokedexApp, int param1) {
     GF_ASSERT(param1 < 10);
     return &pokedexApp->unk_1A94[param1];
 }
 
-UnkStruct_ov21_021E68F4 *ov21_021D1430(PokedexApp *pokedexApp, int param1)
-{
+UnkStruct_ov21_021E68F4 *ov21_021D1430(PokedexApp *pokedexApp, int param1) {
     GF_ASSERT(param1 < 8);
     return &pokedexApp->unk_1C24[param1];
 }
 
-void ov21_021D144C(Sprite *param0, int param1)
-{
+void ov21_021D144C(Sprite *param0, int param1) {
     switch (param1) {
     case 0:
         Sprite_SetAnimFrame(param0, 1);
@@ -509,8 +479,7 @@ void ov21_021D144C(Sprite *param0, int param1)
     }
 }
 
-void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2)
-{
+void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2) {
     int v0 = Sprite_GetAnimFrame(param0);
     int v1, v2;
 
@@ -538,8 +507,7 @@ void ov21_021D1498(Sprite *param0, PokedexTextData *textData, int param2)
     }
 }
 
-void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4)
-{
+void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int param3, int param4) {
     int v0;
 
     ov21_021D1498(param0, textData, param2);
@@ -552,16 +520,14 @@ void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int pa
     }
 }
 
-void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4)
-{
+void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4) {
     hitTable->rect.top = param1;
     hitTable->rect.bottom = param2;
     hitTable->rect.left = param3;
     hitTable->rect.right = param4;
 }
 
-void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration)
-{
+void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration) {
     pokedexLoadingScreen->bgConfig = bgConfig;
     pokedexLoadingScreen->layer = layer;
     pokedexLoadingScreen->screenData = screenData;
@@ -573,8 +539,7 @@ void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScre
     pokedexLoadingScreen->counter = 0;
 }
 
-BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
-{
+BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *loadingScreen) {
     int topPos;
     int bottomPos;
 
@@ -603,8 +568,7 @@ BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
     return TRUE;
 }
 
-void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID)
-{
+void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID) {
     Strbuf *numStr;
     Strbuf *nameNumber;
 
@@ -624,8 +588,7 @@ void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int specie
     PokedexText_Free(nameNumber);
 }
 
-Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, int heapID, int species)
-{
+Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, int heapID, int species) {
     Window *window;
 
     if (PokedexSort_IsNationalDex(pokedexSortData) == FALSE) {
@@ -637,16 +600,14 @@ Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, co
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int heapID, int species)
-{
+Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int heapID, int species) {
     Window *window = PokedexTextManager_NewWindow(textMan, 15, 2);
     PokedexMain_DisplayNameNumberText(window, species, species, heapID);
 
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species)
-{
+Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species) {
     int dexNumber = Pokemon_SinnohDexNumber(species);
 
     if ((species != SPECIES_REGIROCK) && (species != SPECIES_REGICE) && (species != SPECIES_REGISTEEL)) {
@@ -659,8 +620,7 @@ Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heap
     return window;
 }
 
-void PokedexMain_EntryNameNumber(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y)
-{
+void PokedexMain_EntryNameNumber(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y) {
     PokedexDisplayBox displayBox;
     VecFx32 position;
     u32 isNationalDex = PokedexSort_IsNationalDex(pokedexSortData);
@@ -704,13 +664,11 @@ void PokedexMain_EntryNameNumber(PokedexGraphicData *pokedexGraphicData, const P
     PokedexTextManager_FreeWindow(window);
 }
 
-void ov21_021D1848(PokedexGraphicData *param0, int param1, int param2)
-{
+void ov21_021D1848(PokedexGraphicData *param0, int param1, int param2) {
     ov21_021D1858(&param0->pokedexSpeciesLabel, param1, param2);
 }
 
-void ov21_021D1858(PokedexSpeciesLabel *pokedexSpeciesLabel, int param1, int param2)
-{
+void ov21_021D1858(PokedexSpeciesLabel *pokedexSpeciesLabel, int param1, int param2) {
     VecFx32 v0;
 
     v0.x = param1 << FX32_SHIFT;
@@ -725,8 +683,7 @@ void ov21_021D1858(PokedexSpeciesLabel *pokedexSpeciesLabel, int param1, int par
     }
 }
 
-void PokedexMain_DisplayPokemonSprite(PokedexGraphicData *pokedexGraphicData, PokedexSortData *pokedexSortData, int species, int face, int param4, int param5)
-{
+void PokedexMain_DisplayPokemonSprite(PokedexGraphicData *pokedexGraphicData, PokedexSortData *pokedexSortData, int species, int face, int param4, int param5) {
     switch (species) {
     case SPECIES_UNOWN:
         PokedexMain_DisplayUnownSprite(pokedexGraphicData, pokedexSortData, face, param4, param5, 0, 0);
@@ -761,8 +718,7 @@ void PokedexMain_DisplayPokemonSprite(PokedexGraphicData *pokedexGraphicData, Po
     }
 }
 
-u32 PokedexMain_DisplaySpeciesSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int species, int face, int param4, int param5, int formIndex, int param7)
-{
+u32 PokedexMain_DisplaySpeciesSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int species, int face, int param4, int param5, int formIndex, int param7) {
     u32 personality = 0;
 
     if (species == SPECIES_SPINDA) {
@@ -778,8 +734,7 @@ u32 PokedexMain_DisplaySpeciesSprite(PokedexGraphicData *pokedexGraphicData, con
     return gender;
 }
 
-u32 PokedexMain_DisplayUnownSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayUnownSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form = PokedexSort_UnownForm(pokedexSortData, formIndex);
 
     if (form != -1) {
@@ -789,8 +744,7 @@ u32 PokedexMain_DisplayUnownSprite(PokedexGraphicData *pokedexGraphicData, const
     return form;
 }
 
-u32 PokedexMain_DisplayShellosSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayShellosSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form = PokedexSort_ShellosForm(pokedexSortData, formIndex);
 
     if (form != -1) {
@@ -800,8 +754,7 @@ u32 PokedexMain_DisplayShellosSprite(PokedexGraphicData *pokedexGraphicData, con
     return form;
 }
 
-u32 PokedexMain_DisplayGastrodonSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayGastrodonSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form = PokedexSort_GastrodonForm(pokedexSortData, formIndex);
 
     if (form != -1) {
@@ -811,8 +764,7 @@ u32 PokedexMain_DisplayGastrodonSprite(PokedexGraphicData *pokedexGraphicData, c
     return form;
 }
 
-u32 PokedexMain_DisplayBurmySprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayBurmySprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form = PokedexSort_BurmyForm(pokedexSortData, formIndex);
 
     if (form != -1) {
@@ -822,8 +774,7 @@ u32 PokedexMain_DisplayBurmySprite(PokedexGraphicData *pokedexGraphicData, const
     return form;
 }
 
-u32 PokedexMain_DisplayWormadamSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayWormadamSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form = PokedexSort_WormadamForm(pokedexSortData, formIndex);
 
     if (form != -1) {
@@ -833,8 +784,7 @@ u32 PokedexMain_DisplayWormadamSprite(PokedexGraphicData *pokedexGraphicData, co
     return form;
 }
 
-u32 PokedexMain_DisplayDeoxysSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayDeoxysSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form = PokedexSort_DeoxysForm(pokedexSortData, formIndex);
 
     if (form != 15) {
@@ -844,8 +794,7 @@ u32 PokedexMain_DisplayDeoxysSprite(PokedexGraphicData *pokedexGraphicData, cons
     return form;
 }
 
-u32 PokedexMain_DisplayShayminSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayShayminSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form;
     int numFormsSeen = PokedexSort_NumFormsSeen(pokedexSortData, SPECIES_SHAYMIN);
 
@@ -859,8 +808,7 @@ u32 PokedexMain_DisplayShayminSprite(PokedexGraphicData *pokedexGraphicData, con
     return form;
 }
 
-u32 PokedexMain_DisplayGiratinaSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayGiratinaSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form;
     int numFormsSeen = PokedexSort_NumFormsSeen(pokedexSortData, SPECIES_GIRATINA);
 
@@ -874,8 +822,7 @@ u32 PokedexMain_DisplayGiratinaSprite(PokedexGraphicData *pokedexGraphicData, co
     return form;
 }
 
-u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6)
-{
+u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6) {
     int form;
     int numFormsSeen = PokedexSort_NumFormsSeen(pokedexSortData, SPECIES_ROTOM);
 
@@ -890,8 +837,7 @@ u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const
     return form;
 }
 
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapId heapID)
-{
+Strbuf *PokedexMain_GetMessage(int entryID, enum HeapId heapID) {
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     Strbuf *pokedexMessage = MessageLoader_GetNewStrbuf(pokedexMessageBank, entryID);
@@ -900,8 +846,7 @@ Strbuf *PokedexMain_GetMessage(int entryID, enum HeapId heapID)
     return pokedexMessage;
 }
 
-static void FreePokedexApp(PokedexApp *pokedexApp)
-{
+static void FreePokedexApp(PokedexApp *pokedexApp) {
     int i;
 
     ov21_021D4660(&pokedexApp->unk_1A80);
@@ -955,8 +900,7 @@ static void FreePokedexApp(PokedexApp *pokedexApp)
     Heap_Free(pokedexApp);
 }
 
-static void SetGXBanks(void)
-{
+static void SetGXBanks(void) {
     UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -973,8 +917,7 @@ static void SetGXBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void InitG2(enum HeapId heapID)
-{
+static void InitG2(enum HeapId heapID) {
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, heapID);
 
@@ -994,14 +937,12 @@ static void InitG2(enum HeapId heapID)
     PlttTransfer_Clear();
 }
 
-static void ov21_021D1EEC(PokedexApp *pokedexApp)
-{
+static void ov21_021D1EEC(PokedexApp *pokedexApp) {
     ov21_021D426C(pokedexApp->unk_1A70, &pokedexApp->unk_1A80, 1);
     pokedexApp->unk_1A60 = 1;
 }
 
-static void InitG3(void)
-{
+static void InitG3(void) {
     NNS_G3dInit();
 
     G3X_InitMtxStack();
@@ -1017,8 +958,7 @@ static void InitG3(void)
     NNS_GfdInitFrmPlttVramManager(0x4000, 1);
 }
 
-static void ResetFrm(void)
-{
+static void ResetFrm(void) {
     NNS_GfdResetFrmTexVramState();
     NNS_GfdResetFrmPlttVramState();
 }

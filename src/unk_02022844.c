@@ -9,8 +9,7 @@ static u64 sub_020228C8(void);
 static vu64 Unk_021C0780 = 0;
 static BOOL Unk_021C077C = 0;
 
-void sub_02022844(void)
-{
+void sub_02022844(void) {
     Unk_021C0780 = 0;
     Unk_021C077C = 0;
 
@@ -21,8 +20,7 @@ void sub_02022844(void)
     OS_EnableIrqMask(OS_IE_TIMER3);
 }
 
-static void sub_02022878(void)
-{
+static void sub_02022878(void) {
     Unk_021C0780++;
 
     if (Unk_021C077C) {
@@ -37,8 +35,7 @@ static void sub_02022878(void)
     OS_SetIrqFunction((OS_IE_TIMER3), sub_02022878);
 }
 
-static u64 sub_020228C8(void)
-{
+static u64 sub_020228C8(void) {
     vu16 v0;
     vu64 v1;
     OSIntrMode v2 = OS_DisableInterrupts();
@@ -55,17 +52,14 @@ static u64 sub_020228C8(void)
     return (v1 << 16) | v0;
 }
 
-u64 sub_0202293C(void)
-{
+u64 sub_0202293C(void) {
     return sub_020228C8();
 }
 
-u64 sub_02022944(u64 param0)
-{
+u64 sub_02022944(u64 param0) {
     return ((param0) * 64) / (OS_SYSTEM_CLOCK / 1000);
 }
 
-u64 sub_0202295C(u64 param0)
-{
+u64 sub_0202295C(u64 param0) {
     return ((param0) * 64) / OS_SYSTEM_CLOCK;
 }

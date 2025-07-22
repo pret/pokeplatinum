@@ -51,8 +51,7 @@ static void ov44_022569E4(SysTask *param0, void *param1);
 static void ov44_02256A50(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1);
 static BOOL ov44_02256AC8(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1);
 
-BOOL ov44_022565BC(UnkStruct_ov44_022565BC **param0, const UnkStruct_ov44_022565BC_1 *param1, BgConfig *param2)
-{
+BOOL ov44_022565BC(UnkStruct_ov44_022565BC **param0, const UnkStruct_ov44_022565BC_1 *param1, BgConfig *param2) {
     UnkStruct_ov44_022565BC *v0 = (UnkStruct_ov44_022565BC *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov44_022565BC));
 
     if (v0 != NULL) {
@@ -69,16 +68,14 @@ BOOL ov44_022565BC(UnkStruct_ov44_022565BC **param0, const UnkStruct_ov44_022565
     return 0;
 }
 
-void ov44_022565F8(UnkStruct_ov44_022565BC *param0)
-{
+void ov44_022565F8(UnkStruct_ov44_022565BC *param0) {
     if (param0 != NULL) {
         ov44_02256718(param0);
         Heap_Free(param0);
     }
 }
 
-static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1)
-{
+static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1) {
     static const PoketchAnimation_AnimationData v0[] = {
         {
             { (112 << FX32_SHIFT), (148 << FX32_SHIFT) },
@@ -160,8 +157,7 @@ static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
     }
 }
 
-static void ov44_02256718(UnkStruct_ov44_022565BC *param0)
-{
+static void ov44_02256718(UnkStruct_ov44_022565BC *param0) {
     int v0;
 
     PoketchAnimation_FreeSpriteData(&param0->unk_50);
@@ -185,29 +181,24 @@ static const PoketchTask Unk_ov44_02256D5C[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov44_02256744(UnkStruct_ov44_022565BC *param0, u32 param1)
-{
+void ov44_02256744(UnkStruct_ov44_022565BC *param0, u32 param1) {
     PoketchTask_Start(Unk_ov44_02256D5C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov44_02256768(UnkStruct_ov44_022565BC *param0, u32 param1)
-{
+BOOL ov44_02256768(UnkStruct_ov44_022565BC *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov44_02256774(UnkStruct_ov44_022565BC *param0)
-{
+BOOL ov44_02256774(UnkStruct_ov44_022565BC *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov44_02256780(PoketchTaskManager *param0)
-{
+static void ov44_02256780(PoketchTaskManager *param0) {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov44_02256794(SysTask *param0, void *param1)
-{
+static void ov44_02256794(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -244,8 +235,7 @@ static void ov44_02256794(SysTask *param0, void *param1)
     ov44_02256780(param1);
 }
 
-static void ov44_02256828(SysTask *param0, void *param1)
-{
+static void ov44_02256828(SysTask *param0, void *param1) {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param1);
 
     switch (PoketchTask_GetState(param1)) {
@@ -262,8 +252,7 @@ static void ov44_02256828(SysTask *param0, void *param1)
     }
 }
 
-static void ov44_0225686C(SysTask *param0, void *param1)
-{
+static void ov44_0225686C(SysTask *param0, void *param1) {
     UnkStruct_ov44_022565BC *v0;
     const UnkStruct_ov44_022565BC_1 *v1;
 
@@ -275,8 +264,7 @@ static void ov44_0225686C(SysTask *param0, void *param1)
     ov44_02256780(param1);
 }
 
-static void ov44_02256898(SysTask *param0, void *param1)
-{
+static void ov44_02256898(SysTask *param0, void *param1) {
     UnkStruct_ov44_022565BC *v0;
     const UnkStruct_ov44_022565BC_1 *v1;
 
@@ -287,8 +275,7 @@ static void ov44_02256898(SysTask *param0, void *param1)
     ov44_02256780(param1);
 }
 
-static void ov44_022568BC(SysTask *param0, void *param1)
-{
+static void ov44_022568BC(SysTask *param0, void *param1) {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov44_022565BC_1 *v1 = PoketchTask_GetConstTaskData(param1);
     int v2 = v1->unk_32;
@@ -299,8 +286,7 @@ static void ov44_022568BC(SysTask *param0, void *param1)
     ov44_02256780(param1);
 }
 
-static void ov44_02256908(SysTask *param0, void *param1)
-{
+static void ov44_02256908(SysTask *param0, void *param1) {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov44_022565BC_1 *v1 = PoketchTask_GetConstTaskData(param1);
     int v2 = v1->unk_33;
@@ -311,8 +297,7 @@ static void ov44_02256908(SysTask *param0, void *param1)
     ov44_02256780(param1);
 }
 
-static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param2, u16 param3, u16 param4)
-{
+static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param2, u16 param3, u16 param4) {
     PoketchAnimation_AnimatedSpriteData *v0 = param0->unk_24[param1];
     u32 v1;
 
@@ -331,8 +316,7 @@ static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param
     PoketchAnimation_SetCParam(v0, 1 + PokeIconPaletteIndex(param3, param4, 0));
 }
 
-static void ov44_022569AC(UnkStruct_ov44_022565BC *param0)
-{
+static void ov44_022569AC(UnkStruct_ov44_022565BC *param0) {
     PoketchAnimation_SetSpritePosition(param0->unk_24[2], 48 << FX32_SHIFT, 88 << FX32_SHIFT);
     PoketchAnimation_SetSpritePosition(param0->unk_24[3], 176 << FX32_SHIFT, 88 << FX32_SHIFT);
     PoketchAnimation_UpdateAnimationIdx(param0->unk_24[2], 5);
@@ -340,8 +324,7 @@ static void ov44_022569AC(UnkStruct_ov44_022565BC *param0)
     PoketchAnimation_UpdateAnimationIdx(param0->unk_24[1], 0);
 }
 
-static void ov44_022569E4(SysTask *param0, void *param1)
-{
+static void ov44_022569E4(SysTask *param0, void *param1) {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov44_022565BC_1 *v1 = PoketchTask_GetConstTaskData(param1);
     u32 v2 = PoketchTask_GetState(param1);
@@ -438,8 +421,7 @@ static const int Unk_ov44_02256E1C[] = {
     -1
 };
 
-static void ov44_02256A50(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1)
-{
+static void ov44_02256A50(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1) {
     param0->unk_70 = 0;
     param0->unk_74 = 0;
     param0->unk_78 = 0;
@@ -466,8 +448,7 @@ static void ov44_02256A50(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
     ov44_02256AC8(param0, param1);
 }
 
-static BOOL ov44_02256AC8(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1)
-{
+static BOOL ov44_02256AC8(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_022565BC_1 *param1) {
 func_start:
     switch (param0->unk_70) {
     case 0:

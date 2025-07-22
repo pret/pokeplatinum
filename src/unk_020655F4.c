@@ -112,8 +112,7 @@ static const fx32 sStepSizes_WalkEverSoSlightlyFast[7];
 static const fx32 sStepSizes_WalkSlightlyFast[6];
 static const fx32 sStepSizes_WalkSlightlyFaster[3];
 
-BOOL LocalMapObj_IsAnimationSet(const MapObject *mapObj)
-{
+BOOL LocalMapObj_IsAnimationSet(const MapObject *mapObj) {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
         return FALSE;
     }
@@ -129,8 +128,7 @@ BOOL LocalMapObj_IsAnimationSet(const MapObject *mapObj)
     return TRUE;
 }
 
-void LocalMapObj_SetAnimationCode(MapObject *mapObj, enum MovementAction movementAction)
-{
+void LocalMapObj_SetAnimationCode(MapObject *mapObj, enum MovementAction movementAction) {
     GF_ASSERT(movementAction < MAX_MOVEMENT_ACTION);
 
     MapObject_SetMovementAction(mapObj, movementAction);
@@ -139,15 +137,13 @@ void LocalMapObj_SetAnimationCode(MapObject *mapObj, enum MovementAction movemen
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_5);
 }
 
-void sub_02065668(MapObject *mapObj, enum MovementAction movementAction)
-{
+void sub_02065668(MapObject *mapObj, enum MovementAction movementAction) {
     MapObject_SetMovementAction(mapObj, movementAction);
     MapObject_SetMovementStep(mapObj, 0);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_5);
 }
 
-BOOL LocalMapObj_CheckAnimationFinished(const MapObject *mapObj)
-{
+BOOL LocalMapObj_CheckAnimationFinished(const MapObject *mapObj) {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_4)) {
         return TRUE;
     }
@@ -159,8 +155,7 @@ BOOL LocalMapObj_CheckAnimationFinished(const MapObject *mapObj)
     return TRUE;
 }
 
-BOOL sub_020656AC(MapObject *mapObj)
-{
+BOOL sub_020656AC(MapObject *mapObj) {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_4)) {
         return TRUE;
     }
@@ -174,16 +169,14 @@ BOOL sub_020656AC(MapObject *mapObj)
     return TRUE;
 }
 
-void sub_020656DC(MapObject *mapObj)
-{
+void sub_020656DC(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_4);
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_5);
     MapObject_SetMovementAction(mapObj, MOVEMENT_ACTION_NONE);
     MapObject_SetMovementStep(mapObj, 0);
 }
 
-SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *animCmd)
-{
+SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *animCmd) {
     MoveAnimData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(MoveAnimData));
     GF_ASSERT(data != NULL);
     memset(data, 0, sizeof(MoveAnimData));
@@ -198,14 +191,12 @@ SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *ani
     return task;
 }
 
-BOOL MapObject_HasAnimationEnded(SysTask *task)
-{
+BOOL MapObject_HasAnimationEnded(SysTask *task) {
     MoveAnimData *data = SysTask_GetParam(task);
     return data->ended;
 }
 
-void MapObject_FinishAnimation(SysTask *task)
-{
+void MapObject_FinishAnimation(SysTask *task) {
     MoveAnimData *data = SysTask_GetParam(task);
 
     GF_ASSERT(LocalMapObj_CheckAnimationFinished(data->mapObj) == TRUE);
@@ -240,21 +231,18 @@ static BOOL (*const sMovementAnimationFuncs[])(MoveAnimData *) = {
     [MOVEMENT_ANIM_STATE_END] = MovementAnimation_End,
 };
 
-static void MapObject_DoAnimation(SysTask *task, void *data)
-{
+static void MapObject_DoAnimation(SysTask *task, void *data) {
     MoveAnimData *animData = data;
     while (sMovementAnimationFuncs[animData->state](animData) == TRUE) {}
 }
 
-static BOOL MovementAnimation_Init(MoveAnimData *data)
-{
+static BOOL MovementAnimation_Init(MoveAnimData *data) {
     data->count = 0;
     data->state = MOVEMENT_ANIM_STATE_CHECK_SET;
     return TRUE;
 }
 
-static BOOL MovementAnimation_CheckSet(MoveAnimData *data)
-{
+static BOOL MovementAnimation_CheckSet(MoveAnimData *data) {
     if (LocalMapObj_IsAnimationSet(data->mapObj) == FALSE) {
         return FALSE;
     }
@@ -263,16 +251,14 @@ static BOOL MovementAnimation_CheckSet(MoveAnimData *data)
     return TRUE;
 }
 
-static BOOL MovementAnimation_Set(MoveAnimData *data)
-{
+static BOOL MovementAnimation_Set(MoveAnimData *data) {
     LocalMapObj_SetAnimationCode(data->mapObj, data->animCmd->movementAction);
 
     data->state = MOVEMENT_ANIM_STATE_CHECK_FINISHED;
     return FALSE;
 }
 
-static BOOL MovementAnimation_CheckFinished(MoveAnimData *data)
-{
+static BOOL MovementAnimation_CheckFinished(MoveAnimData *data) {
     if (LocalMapObj_CheckAnimationFinished(data->mapObj) == FALSE) {
         return FALSE;
     }
@@ -281,8 +267,7 @@ static BOOL MovementAnimation_CheckFinished(MoveAnimData *data)
     return TRUE;
 }
 
-static BOOL MovementAnimation_Increment(MoveAnimData *data)
-{
+static BOOL MovementAnimation_Increment(MoveAnimData *data) {
     const MapObjectAnimCmd *animCmd = data->animCmd;
     data->count++;
 
@@ -303,13 +288,11 @@ static BOOL MovementAnimation_Increment(MoveAnimData *data)
     return FALSE;
 }
 
-static BOOL MovementAnimation_End(MoveAnimData *data)
-{
+static BOOL MovementAnimation_End(MoveAnimData *data) {
     return FALSE;
 }
 
-enum MovementAction MovementAction_TurnActionTowardsDir(int targetDir, enum MovementAction movementAction)
-{
+enum MovementAction MovementAction_TurnActionTowardsDir(int targetDir, enum MovementAction movementAction) {
     int dir;
     GF_ASSERT(targetDir < MAX_DIR);
     const int *const *movementActionCodes = gMovementActionCodes;
@@ -333,8 +316,7 @@ enum MovementAction MovementAction_TurnActionTowardsDir(int targetDir, enum Move
     return movementAction;
 }
 
-int MovementAction_GetDirFromAction(enum MovementAction movementAction)
-{
+int MovementAction_GetDirFromAction(enum MovementAction movementAction) {
     int dir;
     const int *const *movementActionCodes = gMovementActionCodes;
 
@@ -356,8 +338,7 @@ int MovementAction_GetDirFromAction(enum MovementAction movementAction)
     return DIR_NONE;
 }
 
-void MapObject_DoMovementAction(MapObject *mapObj)
-{
+void MapObject_DoMovementAction(MapObject *mapObj) {
     enum MovementAction movementAction, movementStep;
 
     do {
@@ -371,8 +352,7 @@ void MapObject_DoMovementAction(MapObject *mapObj)
     } while (MapObject_DoMovementActionStep(mapObj, movementAction, movementStep));
 }
 
-BOOL sub_020658DC(MapObject *mapObj)
-{
+BOOL sub_020658DC(MapObject *mapObj) {
     MapObject_DoMovementAction(mapObj);
 
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_5)) {
@@ -386,51 +366,43 @@ BOOL sub_020658DC(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MapObject_DoMovementActionStep(MapObject *mapObj, enum MovementAction movementAction, int movementStep)
-{
+static BOOL MapObject_DoMovementActionStep(MapObject *mapObj, enum MovementAction movementAction, int movementStep) {
     return gMovementActionFuncs[movementAction][movementStep](mapObj);
 }
 
-static BOOL MovementAction_End(MapObject *mapObj)
-{
+static BOOL MovementAction_End(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_5);
     return FALSE;
 }
 
-static void MovementAction_InitFace(MapObject *mapObj, int dir)
-{
+static void MovementAction_InitFace(MapObject *mapObj, int dir) {
     MapObject_TryFace(mapObj, dir);
     sub_02062A0C(mapObj, MAP_OBJ_UNK_A0_00);
     MapObject_UpdateCoords(mapObj);
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL MovementAction_FaceNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_FaceNorth_Step0(MapObject *mapObj) {
     MovementAction_InitFace(mapObj, DIR_NORTH);
     return TRUE;
 }
 
-static BOOL MovementAction_FaceSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_FaceSouth_Step0(MapObject *mapObj) {
     MovementAction_InitFace(mapObj, DIR_SOUTH);
     return TRUE;
 }
 
-static BOOL MovementAction_FaceWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_FaceWest_Step0(MapObject *mapObj) {
     MovementAction_InitFace(mapObj, DIR_WEST);
     return TRUE;
 }
 
-static BOOL MovementAction_FaceEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_FaceEast_Step0(MapObject *mapObj) {
     MovementAction_InitFace(mapObj, DIR_EAST);
     return TRUE;
 }
 
-static void MovementAction_InitWalk(MapObject *mapObj, int dir, fx32 distance, s16 duration, u16 param4)
-{
+static void MovementAction_InitWalk(MapObject *mapObj, int dir, fx32 distance, s16 duration, u16 param4) {
     WalkMovementData *data = MapObject_InitMovementData(mapObj, sizeof(WalkMovementData));
 
     data->unused = param4;
@@ -445,8 +417,7 @@ static void MovementAction_InitWalk(MapObject *mapObj, int dir, fx32 distance, s
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL MovementAction_Walk_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_Walk_Step1(MapObject *mapObj) {
     WalkMovementData *data = MapObject_GetMovementData(mapObj);
 
     MapObject_MovePosInDir(mapObj, data->dir, data->distance);
@@ -465,176 +436,147 @@ static BOOL MovementAction_Walk_Step1(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowerNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowerNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_NORTH, FX32_CONST(0.5), 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowerSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowerSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_SOUTH, FX32_CONST(0.5), 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowerWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowerWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_WEST, FX32_CONST(0.5), 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowerEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowerEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_EAST, FX32_CONST(0.5), 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_NORTH, FX32_CONST(1), 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_SOUTH, FX32_CONST(1), 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_WEST, FX32_CONST(1), 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlowEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlowEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_EAST, FX32_CONST(1), 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkNormalNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkNormalNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_NORTH, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkNormalSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkNormalSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_SOUTH, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkNormalWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkNormalWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_WEST, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkNormalEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkNormalEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_EAST, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_NORTH, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_SOUTH, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_WEST, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_EAST, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFasterNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFasterNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_NORTH, FX32_CONST(8), 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFasterSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFasterSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_SOUTH, FX32_CONST(8), 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFasterWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFasterWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_WEST, FX32_CONST(8), 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFasterEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFasterEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_EAST, FX32_CONST(8), 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastestNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastestNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_NORTH, FX32_CONST(16), 1, MAP_OBJ_UNK_A0_00);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastestSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastestSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_SOUTH, FX32_CONST(16), 1, MAP_OBJ_UNK_A0_00);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastestWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastestWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_WEST, FX32_CONST(16), 1, MAP_OBJ_UNK_A0_00);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkFastestEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkFastestEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_EAST, FX32_CONST(16), 1, MAP_OBJ_UNK_A0_00);
     return TRUE;
 }
 
-static BOOL MovementAction_RunNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_RunNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_NORTH, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL MovementAction_RunSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_RunSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_SOUTH, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL MovementAction_RunWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_RunWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_WEST, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL MovementAction_RunEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_RunEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalk(mapObj, DIR_EAST, FX32_CONST(4), 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static void MovementAction_InitWalkOnSpot(MapObject *mapObj, int dir, s16 duration, u16 param3)
-{
+static void MovementAction_InitWalkOnSpot(MapObject *mapObj, int dir, s16 duration, u16 param3) {
     // the extra 8 bytes are needed only for matching
     WalkOnSpotMovementData *data = MapObject_InitMovementData(mapObj, sizeof(WalkOnSpotMovementData) + 8);
 
@@ -647,8 +589,7 @@ static void MovementAction_InitWalkOnSpot(MapObject *mapObj, int dir, s16 durati
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL MovementAction_WalkOnSpot_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpot_Step1(MapObject *mapObj) {
     WalkOnSpotMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (--(data->duration) > 0) {
@@ -662,128 +603,107 @@ static BOOL MovementAction_WalkOnSpot_Step1(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowerNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowerNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_NORTH, 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowerSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowerSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_SOUTH, 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowerWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowerWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_WEST, 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowerEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowerEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_EAST, 32, MAP_OBJ_UNK_A0_01);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_NORTH, 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_SOUTH, 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_WEST, 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotSlowEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotSlowEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_EAST, 16, MAP_OBJ_UNK_A0_02);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotNormalNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotNormalNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_NORTH, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotNormalSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotNormalSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_SOUTH, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotNormalWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotNormalWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_WEST, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotNormalEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotNormalEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_EAST, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFastNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFastNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_NORTH, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFastSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFastSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_SOUTH, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFastWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFastWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_WEST, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFastEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFastEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_EAST, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFasterNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFasterNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_NORTH, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFasterSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFasterSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_SOUTH, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFasterWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFasterWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_WEST, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkOnSpotFasterEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkOnSpotFasterEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkOnSpot(mapObj, DIR_EAST, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static void MovementAction_InitJumpCustomSound(MapObject *mapObj, int dir, fx32 distance, s16 duration, u16 param4, s16 param5, u16 param6, u32 param7)
-{
+static void MovementAction_InitJumpCustomSound(MapObject *mapObj, int dir, fx32 distance, s16 duration, u16 param4, s16 param5, u16 param6, u32 param7) {
     JumpMovementData *data = MapObject_InitMovementData(mapObj, sizeof(JumpMovementData));
 
     data->dir = dir;
@@ -809,13 +729,11 @@ static void MovementAction_InitJumpCustomSound(MapObject *mapObj, int dir, fx32 
     }
 }
 
-static void MovementAction_InitJump(MapObject *mapObj, int dir, fx32 distance, s16 duration, u16 param4, s16 param5, u16 param6)
-{
+static void MovementAction_InitJump(MapObject *mapObj, int dir, fx32 distance, s16 duration, u16 param4, s16 param5, u16 param6) {
     MovementAction_InitJumpCustomSound(mapObj, dir, distance, duration, param4, param5, param6, 1547);
 }
 
-static BOOL MovementAction_Jump_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_Jump_Step1(MapObject *mapObj) {
     JumpMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (data->distance) {
@@ -876,161 +794,135 @@ enum {
     JUMP_HEIGHT_NORMAL, // unused
 };
 
-static BOOL MovementAction_JumpOnSpotSlowNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotSlowNorth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_NORTH, 0, 16, MAP_OBJ_UNK_A0_02, JUMP_HEIGHT_HIGH, 0x100);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpOnSpotSlowSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotSlowSouth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_SOUTH, 0, 16, MAP_OBJ_UNK_A0_02, JUMP_HEIGHT_HIGH, 0x100);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpOnSpotSlowWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotSlowWest_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_WEST, 0, 16, MAP_OBJ_UNK_A0_02, JUMP_HEIGHT_HIGH, 0x100);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpOnSpotSlowEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotSlowEast_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_EAST, 0, 16, MAP_OBJ_UNK_A0_02, JUMP_HEIGHT_HIGH, 0x100);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpOnSpotFastNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotFastNorth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_NORTH, 0, 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpOnSpotFastSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotFastSouth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_SOUTH, 0, 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpOnSpotFastWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotFastWest_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_WEST, 0, 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpOnSpotFastEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpOnSpotFastEast_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_EAST, 0, 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpNearFastNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpNearFastNorth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_NORTH, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpNearFastSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpNearFastSouth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_SOUTH, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpNearFastWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpNearFastWest_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_WEST, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpNearFastEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpNearFastEast_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_EAST, FX32_CONST(2), 8, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x200);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpFarNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpFarNorth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_NORTH, FX32_CONST(2), 8 * 2, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x100);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpFarSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpFarSouth_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_SOUTH, FX32_CONST(2), 16, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x100);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpFarWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpFarWest_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_WEST, FX32_CONST(2), 16, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x100);
 
     return TRUE;
 }
 
-static BOOL MovementAction_JumpFarEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpFarEast_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_EAST, FX32_CONST(2), 16, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0x100);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpNearSlowWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpNearSlowWest_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_WEST, FX32_CONST(1), 16, MAP_OBJ_UNK_A0_09, JUMP_HEIGHT_HIGH, 0xF0);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpNearSlowEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpNearSlowEast_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_EAST, FX32_CONST(1), 16, MAP_OBJ_UNK_A0_09, JUMP_HEIGHT_HIGH, 0xF0);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpFartherWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpFartherWest_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_WEST, FX32_CONST(4), 12, MAP_OBJ_UNK_A0_10, JUMP_HEIGHT_HIGH, 0x140);
     return TRUE;
 }
 
-static BOOL MovementAction_JumpFartherEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_JumpFartherEast_Step0(MapObject *mapObj) {
     MovementAction_InitJump(mapObj, DIR_EAST, FX32_CONST(4), 12, MAP_OBJ_UNK_A0_10, JUMP_HEIGHT_HIGH, 0x140);
     return TRUE;
 }
 
-static BOOL sub_0206621C(MapObject *mapObj)
-{
+static BOOL sub_0206621C(MapObject *mapObj) {
     MovementAction_InitJumpCustomSound(mapObj, DIR_NORTH, FX32_CONST(2), 8 * 3, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0xA0, 0);
     return TRUE;
 }
 
-static BOOL sub_02066240(MapObject *mapObj)
-{
+static BOOL sub_02066240(MapObject *mapObj) {
     MovementAction_InitJumpCustomSound(mapObj, DIR_SOUTH, FX32_CONST(2), 8 * 3, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0xA0, 0);
     return TRUE;
 }
 
-static BOOL sub_02066264(MapObject *mapObj)
-{
+static BOOL sub_02066264(MapObject *mapObj) {
     MovementAction_InitJumpCustomSound(mapObj, DIR_WEST, FX32_CONST(2), 8 * 3, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0xA0, 0);
     return TRUE;
 }
 
-static BOOL sub_02066288(MapObject *mapObj)
-{
+static BOOL sub_02066288(MapObject *mapObj) {
     MovementAction_InitJumpCustomSound(mapObj, DIR_EAST, FX32_CONST(2), 8 * 3, MAP_OBJ_UNK_A0_03, JUMP_HEIGHT_HIGH, 0xA0, 0);
     return TRUE;
 }
 
-static void MovementAction_InitDelay(MapObject *mapObj, int delay)
-{
+static void MovementAction_InitDelay(MapObject *mapObj, int delay) {
     DelayMovementData *data = MapObject_InitMovementData(mapObj, sizeof(DelayMovementData));
     data->delay = delay;
 
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL MovementAction_Delay_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay_Step1(MapObject *mapObj) {
     DelayMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (data->delay) {
@@ -1042,50 +934,42 @@ static BOOL MovementAction_Delay_Step1(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_Delay1_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay1_Step0(MapObject *mapObj) {
     MovementAction_InitDelay(mapObj, 1);
     return TRUE;
 }
 
-static BOOL MovementAction_Delay2_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay2_Step0(MapObject *mapObj) {
     MovementAction_InitDelay(mapObj, 2);
     return TRUE;
 }
 
-static BOOL MovementAction_Delay4_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay4_Step0(MapObject *mapObj) {
     MovementAction_InitDelay(mapObj, 4);
     return TRUE;
 }
 
-static BOOL MovementAction_Delay8_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay8_Step0(MapObject *mapObj) {
     MovementAction_InitDelay(mapObj, 8);
     return TRUE;
 }
 
-static BOOL MovementAction_Delay15_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay15_Step0(MapObject *mapObj) {
     MovementAction_InitDelay(mapObj, 15);
     return TRUE;
 }
 
-static BOOL MovementAction_Delay16_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay16_Step0(MapObject *mapObj) {
     MovementAction_InitDelay(mapObj, 16);
     return TRUE;
 }
 
-static BOOL MovementAction_Delay32_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_Delay32_Step0(MapObject *mapObj) {
     MovementAction_InitDelay(mapObj, 32);
     return TRUE;
 }
 
-static BOOL MovementAction_WarpOut_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WarpOut_Step0(MapObject *mapObj) {
     WarpMovementData *data = MapObject_InitMovementData(mapObj, sizeof(WarpMovementData));
     data->dy = FX32_CONST(16);
 
@@ -1095,8 +979,7 @@ static BOOL MovementAction_WarpOut_Step0(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_WarpOut_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_WarpOut_Step1(MapObject *mapObj) {
     WarpMovementData *data = MapObject_GetMovementData(mapObj);
     data->y += data->dy;
 
@@ -1113,8 +996,7 @@ static BOOL MovementAction_WarpOut_Step1(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_WarpIn_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WarpIn_Step0(MapObject *mapObj) {
     WarpMovementData *data = MapObject_InitMovementData(mapObj, sizeof(WarpMovementData));
 
     data->y = FX32_CONST(8) * 40;
@@ -1126,8 +1008,7 @@ static BOOL MovementAction_WarpIn_Step0(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_WarpIn_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_WarpIn_Step1(MapObject *mapObj) {
     WarpMovementData *data = MapObject_GetMovementData(mapObj);
     data->y += data->dy;
 
@@ -1148,56 +1029,49 @@ static BOOL MovementAction_WarpIn_Step1(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_SetInvisible_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_SetInvisible_Step0(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE);
     MapObject_AdvanceMovementStep(mapObj);
 
     return TRUE;
 }
 
-static BOOL MovementAction_SetVisible_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_SetVisible_Step0(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_HIDE);
     MapObject_AdvanceMovementStep(mapObj);
 
     return TRUE;
 }
 
-static BOOL MovementAction_LockDir_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_LockDir_Step0(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_LOCK_DIR);
     MapObject_AdvanceMovementStep(mapObj);
 
     return TRUE;
 }
 
-static BOOL MovementAction_UnlockDir_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_UnlockDir_Step0(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR);
     MapObject_AdvanceMovementStep(mapObj);
 
     return TRUE;
 }
 
-static BOOL MovementAction_PauseAnimation_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_PauseAnimation_Step0(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_PAUSE_ANIMATION);
     MapObject_AdvanceMovementStep(mapObj);
 
     return TRUE;
 }
 
-static BOOL MovementAction_ResumeAnimation_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_ResumeAnimation_Step0(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_PAUSE_ANIMATION);
     MapObject_AdvanceMovementStep(mapObj);
 
     return TRUE;
 }
 
-static void sub_020664A0(MapObject *mapObj, int param1, int param2)
-{
+static void sub_020664A0(MapObject *mapObj, int param1, int param2) {
     EmoteMovementData *data = MapObject_InitMovementData(mapObj, sizeof(EmoteMovementData));
 
     data->unk_00 = param1;
@@ -1206,8 +1080,7 @@ static void sub_020664A0(MapObject *mapObj, int param1, int param2)
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL MovementAction_Emote_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_Emote_Step1(MapObject *mapObj) {
     EmoteMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (ov5_021F5C4C(data->unk_04) == 1) {
@@ -1219,26 +1092,22 @@ static BOOL MovementAction_Emote_Step1(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_EmoteExclamationMark_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_EmoteExclamationMark_Step0(MapObject *mapObj) {
     sub_020664A0(mapObj, 0, 0);
     return FALSE;
 }
 
-static BOOL MovementAction_EmoteQuestionMark_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_EmoteQuestionMark_Step0(MapObject *mapObj) {
     sub_020664A0(mapObj, 1, 0);
     return FALSE;
 }
 
-static BOOL MovementAction_153_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_153_Step0(MapObject *mapObj) {
     sub_020664A0(mapObj, 0, 1);
     return FALSE;
 }
 
-static void MovementAction_InitWalkUneven(MapObject *mapObj, int dir, s16 duration, u16 param3)
-{
+static void MovementAction_InitWalkUneven(MapObject *mapObj, int dir, s16 duration, u16 param3) {
     WalkUnevenMovementData *data = MapObject_InitMovementData(mapObj, sizeof(WalkUnevenMovementData));
 
     data->dir = dir;
@@ -1252,8 +1121,7 @@ static void MovementAction_InitWalkUneven(MapObject *mapObj, int dir, s16 durati
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL MovementAction_WalkUneven(MapObject *mapObj, const fx32 *stepSizes)
-{
+static BOOL MovementAction_WalkUneven(MapObject *mapObj, const fx32 *stepSizes) {
     WalkUnevenMovementData *data = MapObject_GetMovementData(mapObj);
 
     MapObject_MovePosInDir(mapObj, data->dir, stepSizes[data->timer]);
@@ -1272,95 +1140,79 @@ static BOOL MovementAction_WalkUneven(MapObject *mapObj, const fx32 *stepSizes)
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFastNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFastNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_NORTH, 6, MAP_OBJ_UNK_A0_06);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFastSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFastSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_SOUTH, 6, MAP_OBJ_UNK_A0_06);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFastWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFastWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_WEST, 6, MAP_OBJ_UNK_A0_06);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFastEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFastEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_EAST, 6, MAP_OBJ_UNK_A0_06);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFast_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFast_Step1(MapObject *mapObj) {
     return MovementAction_WalkUneven(mapObj, sStepSizes_WalkSlightlyFast) == TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFasterNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFasterNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_NORTH, 3, MAP_OBJ_UNK_A0_07);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFasterSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFasterSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_SOUTH, 3, MAP_OBJ_UNK_A0_07);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFasterWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFasterWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_WEST, 3, MAP_OBJ_UNK_A0_07);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFasterEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFasterEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_EAST, 3, MAP_OBJ_UNK_A0_07);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkSlightlyFaster_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkSlightlyFaster_Step1(MapObject *mapObj) {
     return MovementAction_WalkUneven(mapObj, sStepSizes_WalkSlightlyFaster) == TRUE;
 }
 
-static BOOL MovementAction_WalkEverSoSlightlyFastNorth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkEverSoSlightlyFastNorth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_NORTH, 7, MAP_OBJ_UNK_A0_08);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkEverSoSlightlyFastSouth_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkEverSoSlightlyFastSouth_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_SOUTH, 7, MAP_OBJ_UNK_A0_08);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkEverSoSlightlyFastWest_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkEverSoSlightlyFastWest_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_WEST, 7, MAP_OBJ_UNK_A0_08);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkEverSoSlightlyFastEast_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkEverSoSlightlyFastEast_Step0(MapObject *mapObj) {
     MovementAction_InitWalkUneven(mapObj, DIR_EAST, 7, MAP_OBJ_UNK_A0_08);
     return TRUE;
 }
 
-static BOOL MovementAction_WalkEverSoSlightlyFast_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_WalkEverSoSlightlyFast_Step1(MapObject *mapObj) {
     return MovementAction_WalkUneven(mapObj, sStepSizes_WalkEverSoSlightlyFast) == TRUE;
 }
 
-static BOOL MovementAction_NurseJoyBow_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_NurseJoyBow_Step0(MapObject *mapObj) {
     NurseJoyBowMovementData *data = MapObject_InitMovementData(mapObj, sizeof(NurseJoyBowMovementData));
 
     sub_02062A0C(mapObj, MAP_OBJ_UNK_A0_09);
@@ -1369,8 +1221,7 @@ static BOOL MovementAction_NurseJoyBow_Step0(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_NurseJoyBow_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_NurseJoyBow_Step1(MapObject *mapObj) {
     NurseJoyBowMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (++(data->timer) >= 8) {
@@ -1382,8 +1233,7 @@ static BOOL MovementAction_NurseJoyBow_Step1(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_RevealTrainer_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_RevealTrainer_Step0(MapObject *mapObj) {
     RevealTrainerMovementData *data = MapObject_InitMovementData(mapObj, sizeof(RevealTrainerMovementData));
 
     UnkStruct_ov101_021D5D90 *v1 = sub_0206A224(mapObj);
@@ -1404,8 +1254,7 @@ static BOOL MovementAction_RevealTrainer_Step0(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_RevealTrainer_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_RevealTrainer_Step1(MapObject *mapObj) {
     RevealTrainerMovementData *data = MapObject_GetMovementData(mapObj);
     const fx32 *jumpHeightsTable = sJumpHeightsTable[JUMP_HEIGHT_HIGH];
     VecFx32 v2 = { 0, 0, 0 };
@@ -1429,8 +1278,7 @@ static BOOL MovementAction_RevealTrainer_Step1(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL MovementAction_PlayerGive_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_PlayerGive_Step0(MapObject *mapObj) {
     PlayerGiveReceiveMovementData *data = MapObject_InitMovementData(mapObj, sizeof(PlayerGiveReceiveMovementData));
 
     sub_02062A0C(mapObj, MAP_OBJ_UNK_A0_00);
@@ -1439,8 +1287,7 @@ static BOOL MovementAction_PlayerGive_Step0(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_PlayerReceive_Step0(MapObject *mapObj)
-{
+static BOOL MovementAction_PlayerReceive_Step0(MapObject *mapObj) {
     PlayerGiveReceiveMovementData *data = MapObject_InitMovementData(mapObj, sizeof(PlayerGiveReceiveMovementData));
 
     sub_02062A0C(mapObj, MAP_OBJ_UNK_A0_01);
@@ -1449,8 +1296,7 @@ static BOOL MovementAction_PlayerReceive_Step0(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_PlayerGiveReceive_Step1(MapObject *mapObj)
-{
+static BOOL MovementAction_PlayerGiveReceive_Step1(MapObject *mapObj) {
     PlayerGiveReceiveMovementData *data = MapObject_GetMovementData(mapObj);
 
     if (++(data->timer) < 21) {
@@ -1461,8 +1307,7 @@ static BOOL MovementAction_PlayerGiveReceive_Step1(MapObject *mapObj)
     return TRUE;
 }
 
-static void sub_02066824(MapObject *mapObj, const VecFx32 *param1, int param2, int param3, int param4, u8 param5)
-{
+static void sub_02066824(MapObject *mapObj, const VecFx32 *param1, int param2, int param3, int param4, u8 param5) {
     UnkStruct_02066824 *data = MapObject_InitMovementData(mapObj, sizeof(UnkStruct_02066824));
     data->duration = param4;
     data->unk_04 = *param1;
@@ -1497,8 +1342,7 @@ static void sub_02066824(MapObject *mapObj, const VecFx32 *param1, int param2, i
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL sub_020668EC(MapObject *mapObj)
-{
+static BOOL sub_020668EC(MapObject *mapObj) {
     UnkStruct_02066824 *data = MapObject_GetMovementData(mapObj);
     MapObject_AddVecToPos(mapObj, &data->unk_04);
 
@@ -1516,264 +1360,231 @@ static BOOL sub_020668EC(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL sub_02066934(MapObject *mapObj)
-{
+static BOOL sub_02066934(MapObject *mapObj) {
     VecFx32 v0 = { 0, FX32_CONST(2), 0 };
 
     sub_02066824(mapObj, &v0, 2, 0, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066968(MapObject *mapObj)
-{
+static BOOL sub_02066968(MapObject *mapObj) {
     VecFx32 v0 = { 0, -FX32_CONST(2), 0 };
 
     sub_02066824(mapObj, &v0, 3, 1, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066998(MapObject *mapObj)
-{
+static BOOL sub_02066998(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(2) };
 
     sub_02066824(mapObj, &v0, 1, 2, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_020669CC(MapObject *mapObj)
-{
+static BOOL sub_020669CC(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(2) };
 
     sub_02066824(mapObj, &v0, 0, 3, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_020669FC(MapObject *mapObj)
-{
+static BOOL sub_020669FC(MapObject *mapObj) {
     VecFx32 v0 = { 0, FX32_CONST(2), 0 };
 
     sub_02066824(mapObj, &v0, 3, 0, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066A2C(MapObject *mapObj)
-{
+static BOOL sub_02066A2C(MapObject *mapObj) {
     VecFx32 v0 = { 0, -FX32_CONST(2), 0 };
 
     sub_02066824(mapObj, &v0, 2, 1, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066A60(MapObject *mapObj)
-{
+static BOOL sub_02066A60(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(2) };
 
     sub_02066824(mapObj, &v0, 0, 2, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066A94(MapObject *mapObj)
-{
+static BOOL sub_02066A94(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(2) };
 
     sub_02066824(mapObj, &v0, 1, 2, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066AC8(MapObject *mapObj)
-{
+static BOOL sub_02066AC8(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(2) };
 
     sub_02066824(mapObj, &v0, 1, 0, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066AFC(MapObject *mapObj)
-{
+static BOOL sub_02066AFC(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(2) };
 
     sub_02066824(mapObj, &v0, 0, 1, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066B30(MapObject *mapObj)
-{
+static BOOL sub_02066B30(MapObject *mapObj) {
     VecFx32 v0 = { -FX32_CONST(2), 0, 0 };
 
     sub_02066824(mapObj, &v0, 3, 2, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066B60(MapObject *mapObj)
-{
+static BOOL sub_02066B60(MapObject *mapObj) {
     VecFx32 v0 = { FX32_CONST(2), 0, 0 };
 
     sub_02066824(mapObj, &v0, 2, 3, 8, MAP_OBJ_UNK_A0_03);
     return TRUE;
 }
 
-static BOOL sub_02066B90(MapObject *mapObj)
-{
+static BOOL sub_02066B90(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 1, 0, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL sub_02066BC0(MapObject *mapObj)
-{
+static BOOL sub_02066BC0(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 0, 1, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL sub_02066BF0(MapObject *mapObj)
-{
+static BOOL sub_02066BF0(MapObject *mapObj) {
     VecFx32 v0 = { -FX32_CONST(4), 0, 0 };
 
     sub_02066824(mapObj, &v0, 3, 2, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL sub_02066C20(MapObject *mapObj)
-{
+static BOOL sub_02066C20(MapObject *mapObj) {
     VecFx32 v0 = { FX32_CONST(4), 0, 0 };
 
     sub_02066824(mapObj, &v0, 2, 3, 4, MAP_OBJ_UNK_A0_04);
     return TRUE;
 }
 
-static BOOL sub_02066C50(MapObject *mapObj)
-{
+static BOOL sub_02066C50(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(8) };
 
     sub_02066824(mapObj, &v0, 1, 0, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL sub_02066C84(MapObject *mapObj)
-{
+static BOOL sub_02066C84(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(8) };
 
     sub_02066824(mapObj, &v0, 0, 1, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL sub_02066CB8(MapObject *mapObj)
-{
+static BOOL sub_02066CB8(MapObject *mapObj) {
     VecFx32 v0 = { -FX32_CONST(8), 0, 0 };
 
     sub_02066824(mapObj, &v0, 3, 2, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL sub_02066CE8(MapObject *mapObj)
-{
+static BOOL sub_02066CE8(MapObject *mapObj) {
     VecFx32 v0 = { FX32_CONST(8), 0, 0 };
 
     sub_02066824(mapObj, &v0, 2, 3, 2, MAP_OBJ_UNK_A0_05);
     return TRUE;
 }
 
-static BOOL sub_02066D18(MapObject *mapObj)
-{
+static BOOL sub_02066D18(MapObject *mapObj) {
     VecFx32 v0 = { 0, FX32_CONST(4), 0 };
 
     sub_02066824(mapObj, &v0, 2, 0, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066D4C(MapObject *mapObj)
-{
+static BOOL sub_02066D4C(MapObject *mapObj) {
     VecFx32 v0 = { 0, -FX32_CONST(4), 0 };
 
     sub_02066824(mapObj, &v0, 3, 1, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066D80(MapObject *mapObj)
-{
+static BOOL sub_02066D80(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 1, 2, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066DB4(MapObject *mapObj)
-{
+static BOOL sub_02066DB4(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 0, 3, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066DE8(MapObject *mapObj)
-{
+static BOOL sub_02066DE8(MapObject *mapObj) {
     VecFx32 v0 = { 0, FX32_CONST(4), 0 };
 
     sub_02066824(mapObj, &v0, 3, 0, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066E1C(MapObject *mapObj)
-{
+static BOOL sub_02066E1C(MapObject *mapObj) {
     VecFx32 v0 = { 0, -FX32_CONST(4), 0 };
 
     sub_02066824(mapObj, &v0, 2, 1, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066E50(MapObject *mapObj)
-{
+static BOOL sub_02066E50(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 0, 2, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066E84(MapObject *mapObj)
-{
+static BOOL sub_02066E84(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 1, 2, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066EB8(MapObject *mapObj)
-{
+static BOOL sub_02066EB8(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 1, 0, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066EEC(MapObject *mapObj)
-{
+static BOOL sub_02066EEC(MapObject *mapObj) {
     VecFx32 v0 = { 0, 0, -FX32_CONST(4) };
 
     sub_02066824(mapObj, &v0, 0, 1, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066F20(MapObject *mapObj)
-{
+static BOOL sub_02066F20(MapObject *mapObj) {
     VecFx32 v0 = { -FX32_CONST(4), 0, 0 };
 
     sub_02066824(mapObj, &v0, 3, 2, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static BOOL sub_02066F54(MapObject *mapObj)
-{
+static BOOL sub_02066F54(MapObject *mapObj) {
     VecFx32 v0 = { FX32_CONST(4), 0, 0 };
 
     sub_02066824(mapObj, &v0, 2, 3, 4, MAP_OBJ_UNK_A0_09);
     return TRUE;
 }
 
-static void sub_02066F88(MapObject *mapObj, fx32 distance, int facingDir, int movingDir, u8 duration, u8 param5, u8 param6, u8 param7, u8 param8)
-{
+static void sub_02066F88(MapObject *mapObj, fx32 distance, int facingDir, int movingDir, u8 duration, u8 param5, u8 param6, u8 param7, u8 param8) {
     int v0 = 1;
     UnkStruct_02066F88 *v1 = MapObject_InitMovementData(mapObj, sizeof(UnkStruct_02066F88));
 
@@ -1824,8 +1635,7 @@ static void sub_02066F88(MapObject *mapObj, fx32 distance, int facingDir, int mo
     MapObject_AdvanceMovementStep(mapObj);
 }
 
-static BOOL sub_02067068(MapObject *mapObj)
-{
+static BOOL sub_02067068(MapObject *mapObj) {
     VecFx32 v1;
     UnkStruct_02066F88 *v2 = MapObject_GetMovementData(mapObj);
     MapObject_GetPosPtr(mapObj, &v1);
@@ -1935,74 +1745,62 @@ static BOOL sub_02067068(MapObject *mapObj)
     return TRUE;
 }
 
-static BOOL sub_020671F0(MapObject *mapObj)
-{
+static BOOL sub_020671F0(MapObject *mapObj) {
     sub_02066F88(mapObj, FX32_CONST(2), 2, 0, 8, MAP_OBJ_UNK_A0_03, 1, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_02067214(MapObject *mapObj)
-{
+static BOOL sub_02067214(MapObject *mapObj) {
     sub_02066F88(mapObj, -FX32_CONST(2), 3, 1, 8, MAP_OBJ_UNK_A0_03, 1, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_0206723C(MapObject *mapObj)
-{
+static BOOL sub_0206723C(MapObject *mapObj) {
     sub_02066F88(mapObj, FX32_CONST(2), 1, 2, 8, MAP_OBJ_UNK_A0_03, 2, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_02067260(MapObject *mapObj)
-{
+static BOOL sub_02067260(MapObject *mapObj) {
     sub_02066F88(mapObj, -FX32_CONST(2), 0, 3, 8, MAP_OBJ_UNK_A0_03, 2, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_02067288(MapObject *mapObj)
-{
+static BOOL sub_02067288(MapObject *mapObj) {
     sub_02066F88(mapObj, FX32_CONST(2), 3, 0, 8, MAP_OBJ_UNK_A0_03, 1, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_020672AC(MapObject *mapObj)
-{
+static BOOL sub_020672AC(MapObject *mapObj) {
     sub_02066F88(mapObj, -FX32_CONST(2), 2, 1, 8, MAP_OBJ_UNK_A0_03, 1, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_020672D4(MapObject *mapObj)
-{
+static BOOL sub_020672D4(MapObject *mapObj) {
     sub_02066F88(mapObj, -FX32_CONST(2), 0, 2, 8, MAP_OBJ_UNK_A0_03, 2, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_020672FC(MapObject *mapObj)
-{
+static BOOL sub_020672FC(MapObject *mapObj) {
     sub_02066F88(mapObj, FX32_CONST(2), 1, 2, 8, MAP_OBJ_UNK_A0_03, 2, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_02067320(MapObject *mapObj)
-{
+static BOOL sub_02067320(MapObject *mapObj) {
     sub_02066F88(mapObj, FX32_CONST(2), 1, 0, 8, MAP_OBJ_UNK_A0_03, 2, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_02067344(MapObject *mapObj)
-{
+static BOOL sub_02067344(MapObject *mapObj) {
     sub_02066F88(mapObj, -FX32_CONST(2), 0, 1, 8, MAP_OBJ_UNK_A0_03, 2, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_0206736C(MapObject *mapObj)
-{
+static BOOL sub_0206736C(MapObject *mapObj) {
     sub_02066F88(mapObj, -FX32_CONST(2), 3, 2, 8, MAP_OBJ_UNK_A0_03, 0, 1, 0);
     return TRUE;
 }
 
-static BOOL sub_02067394(MapObject *mapObj)
-{
+static BOOL sub_02067394(MapObject *mapObj) {
     sub_02066F88(mapObj, FX32_CONST(2), 2, 3, 8, MAP_OBJ_UNK_A0_03, 0, 1, 0);
     return TRUE;
 }

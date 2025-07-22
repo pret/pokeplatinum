@@ -33,13 +33,11 @@ static SysTask *sTextPrinterTasks[MAX_TEXT_PRINTERS] = { 0 };
 static u16 sFontHalfRowLookupTable[4 * 4 * 4 * 4];
 static u16 sBgColor, sFgColor, sShadowColor;
 
-void Text_SetFontAttributesPtr(const FontAttributes *fontAttributes)
-{
+void Text_SetFontAttributesPtr(const FontAttributes *fontAttributes) {
     sFontAttributesPtr = fontAttributes;
 }
 
-static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority)
-{
+static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32 priority) {
     int i;
     for (i = 0; i < MAX_TEXT_PRINTERS; i++) {
         if (sTextPrinterTasks[i] == NULL) {
@@ -56,8 +54,7 @@ static u8 Text_CreatePrinterTask(SysTaskFunc taskFunc, TextPrinter *printer, u32
     return i;
 }
 
-static void Text_DestroyPrinterTask(u8 printerID)
-{
+static void Text_DestroyPrinterTask(u8 printerID) {
     GF_ASSERT(printerID < MAX_TEXT_PRINTERS);
     GF_ASSERT(sTextPrinterTasks[printerID] != NULL);
 
@@ -74,30 +71,25 @@ static void Text_DestroyPrinterTask(u8 printerID)
     }
 }
 
-static BOOL Text_IsPrinterTaskActive(u8 printerID)
-{
+static BOOL Text_IsPrinterTaskActive(u8 printerID) {
     return sTextPrinterTasks[printerID] != NULL;
 }
 
-void Text_ResetAllPrinters()
-{
+void Text_ResetAllPrinters() {
     for (int i = 0; i < MAX_TEXT_PRINTERS; i++) {
         sTextPrinterTasks[i] = NULL;
     }
 }
 
-u8 Text_IsPrinterActive(u8 printerID)
-{
+u8 Text_IsPrinterActive(u8 printerID) {
     return Text_IsPrinterTaskActive(printerID);
 }
 
-void Text_RemovePrinter(u8 printerID)
-{
+void Text_RemovePrinter(u8 printerID) {
     Text_DestroyPrinterTask(printerID);
 }
 
-u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback)
-{
+u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback) {
     TextPrinterTemplate template;
 
     template.toPrint.strbuf = strbuf;
@@ -120,8 +112,7 @@ u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u
     return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, TextPrinterCallback callback)
-{
+u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, TextPrinterCallback callback) {
     TextPrinterTemplate template;
 
     template.toPrint.strbuf = strbuf;
@@ -144,8 +135,7 @@ u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *s
     return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback)
-{
+u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback) {
     TextPrinterTemplate template;
 
     template.toPrint.strbuf = strbuf;
@@ -168,8 +158,7 @@ u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const St
     return Text_AddPrinter(&template, renderDelay, callback);
 }
 
-u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPrinterCallback callback)
-{
+u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPrinterCallback callback) {
     if (sFontAttributesPtr == NULL) {
         return 0xFF;
     }
@@ -225,8 +214,7 @@ u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPri
     return MAX_TEXT_PRINTERS;
 }
 
-static void SysTask_RunTextPrinter(SysTask *task, void *data)
-{
+static void SysTask_RunTextPrinter(SysTask *task, void *data) {
     if (sPausePrinter) {
         return;
     }
@@ -257,8 +245,7 @@ static void SysTask_RunTextPrinter(SysTask *task, void *data)
     }
 }
 
-static enum RenderResult TextPrinter_Render(TextPrinter *printer)
-{
+static enum RenderResult TextPrinter_Render(TextPrinter *printer) {
     enum RenderResult result;
 
     do {
@@ -268,8 +255,7 @@ static enum RenderResult TextPrinter_Render(TextPrinter *printer)
     return result;
 }
 
-void Text_GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor)
-{
+void Text_GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor) {
     u32 colors[4];
 
     colors[0] = 0;
@@ -293,8 +279,7 @@ void Text_GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor)
     }
 }
 
-void Text_DecompressGlyph(u8 *src, u8 *dst)
-{
+void Text_DecompressGlyph(u8 *src, u8 *dst) {
     u16 *src16 = (u16 *)src;
     u16 *dst16 = (u16 *)dst;
 
@@ -316,13 +301,11 @@ void Text_DecompressGlyph(u8 *src, u8 *dst)
     dst16[15] = sFontHalfRowLookupTable[(u32)src16[7] & 0xFF];
 }
 
-static void Text_ZeroPrinterIconGfx(TextPrinter *printer)
-{
+static void Text_ZeroPrinterIconGfx(TextPrinter *printer) {
     printer->iconGfx = NULL;
 }
 
-static u8 *Text_LoadScreenIndicatorGfx(void)
-{
+static u8 *Text_LoadScreenIndicatorGfx(void) {
     NNSG2dCharacterData *g2dCharData;
 
     u8 *gfx = Heap_AllocFromHeap(HEAP_ID_SYSTEM, 24 * 64); // These numbers are file dimensions. Curiously, this only loads the bottom-screen indicators.
@@ -334,8 +317,7 @@ static u8 *Text_LoadScreenIndicatorGfx(void)
     return gfx;
 }
 
-void Text_RenderScreenIndicator(TextPrinter *printer, u16 unusedX, u16 unusedY, u16 indicator)
-{
+void Text_RenderScreenIndicator(TextPrinter *printer, u16 unusedX, u16 unusedY, u16 indicator) {
     Window *window = printer->template.window;
 
     if (printer->iconGfx == NULL) {
@@ -349,8 +331,7 @@ void Text_RenderScreenIndicator(TextPrinter *printer, u16 unusedX, u16 unusedY, 
     Window_BlitBitmapRect(window, tiles, 0, 0, 24, 32, unusedX, 0, 24, 32);
 }
 
-static void Text_FreePrinterIconGfx(TextPrinter *printer)
-{
+static void Text_FreePrinterIconGfx(TextPrinter *printer) {
     if (printer->iconGfx) {
         Heap_Free(printer->iconGfx);
         printer->iconGfx = NULL;

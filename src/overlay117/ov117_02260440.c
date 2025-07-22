@@ -35,8 +35,7 @@ static const ApplicationManagerTemplate Unk_ov117_02266908 = {
 static void ov117_022605D8(UnkStruct_ov117_022605C0 *param0, UnkStruct_ov117_02260440 *param1);
 static BOOL ov117_02260630(UnkStruct_ov117_022605C0 *param0);
 
-int ov117_02260440(ApplicationManager *appMan, int *param1)
-{
+int ov117_02260440(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov117_02260440 *v0 = ApplicationManager_Args(appMan);
     UnkStruct_ov117_022605C0 *v1;
 
@@ -49,8 +48,7 @@ int ov117_02260440(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov117_02260474(ApplicationManager *appMan, int *param1)
-{
+int ov117_02260474(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov117_022605C0 *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov117_02260440 *v1 = ApplicationManager_Args(appMan);
 
@@ -123,8 +121,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov117_022605C0(ApplicationManager *appMan, int *param1)
-{
+int ov117_022605C0(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov117_022605C0 *v0 = ApplicationManager_Data(appMan);
 
     ApplicationManager_FreeData(appMan);
@@ -133,8 +130,7 @@ int ov117_022605C0(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov117_022605D8(UnkStruct_ov117_022605C0 *param0, UnkStruct_ov117_02260440 *param1)
-{
+static void ov117_022605D8(UnkStruct_ov117_022605C0 *param0, UnkStruct_ov117_02260440 *param1) {
     int v0, v1, v2, v3;
 
     v3 = CommSys_CurNetId();
@@ -161,8 +157,7 @@ static void ov117_022605D8(UnkStruct_ov117_022605C0 *param0, UnkStruct_ov117_022
     ov114_0225C700(&param0->unk_00, param1->unk_39, param1->saveData, param1->unk_38, &param1->unk_00);
 }
 
-static BOOL ov117_02260630(UnkStruct_ov117_022605C0 *param0)
-{
+static BOOL ov117_02260630(UnkStruct_ov117_022605C0 *param0) {
     if (param0->unk_3D == 0) {
         if (ov114_0225CA54(&param0->unk_00) == 1) {
             param0->unk_3D = 1;

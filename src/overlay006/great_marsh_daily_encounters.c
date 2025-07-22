@@ -8,8 +8,7 @@
 
 static u8 GreatMarsh_GetAreaNumFromMapId(const int mapId);
 
-void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDexObtained, const int mapId, int *encounterSlot1, int *encounterSlot2)
-{
+void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDexObtained, const int mapId, int *encounterSlot1, int *encounterSlot2) {
     int *narc;
     int encDataGroup;
     u8 encounterIndex;
@@ -31,8 +30,7 @@ void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDex
     Heap_Free(narc);
 }
 
-static u8 GreatMarsh_GetAreaNumFromMapId(const int mapId)
-{
+static u8 GreatMarsh_GetAreaNumFromMapId(const int mapId) {
     u8 areaNum = 0;
 
     switch (mapId) {

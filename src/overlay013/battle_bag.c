@@ -118,8 +118,7 @@ static const TouchScreenRect sUseItemMenuTouchRects[] = {
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
-void BattleBagTask_Start(BattleBagContext *context)
-{
+void BattleBagTask_Start(BattleBagContext *context) {
     BattleBag *battleBagTask = SysTask_GetParam(SysTask_StartAndAllocateParam(BattleBagTask_Tick, sizeof(BattleBag), 100, context->heapID));
     memset(battleBagTask, 0, sizeof(BattleBag));
 
@@ -145,8 +144,7 @@ void BattleBagTask_Start(BattleBagContext *context)
     }
 }
 
-static void BattleBagTask_Tick(SysTask *task, void *taskParam)
-{
+static void BattleBagTask_Tick(SysTask *task, void *taskParam) {
     BattleBag *battleBag = taskParam;
 
     switch (battleBag->currentState) {
@@ -202,8 +200,7 @@ static void BattleBagTask_Tick(SysTask *task, void *taskParam)
     SpriteSystem_DrawSprites(battleBag->spriteManager);
 }
 
-static u8 BattleBagTask_Initialize(BattleBag *battleBag)
-{
+static u8 BattleBagTask_Initialize(BattleBag *battleBag) {
     G2S_BlendNone();
 
     battleBag->cursor = MakeBattleSubMenuCursor(battleBag->context->heapID);
@@ -238,8 +235,7 @@ static u8 BattleBagTask_Initialize(BattleBag *battleBag)
     return TASK_STATE_MENU_SCREEN;
 }
 
-static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
-{
+static u8 BattleBagTask_MenuScreen(BattleBag *battleBag) {
     if (PaletteData_GetSelectedBuffersMask(battleBag->palette) != 0) {
         return TASK_STATE_MENU_SCREEN;
     }
@@ -287,8 +283,7 @@ static u8 BattleBagTask_MenuScreen(BattleBag *battleBag)
     return TASK_STATE_MENU_SCREEN;
 }
 
-static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
-{
+static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag) {
     enum BattleBagPocketMenuScreenButton pocketMenuScreenButtonPressed = CheckTouchRectIsPressed(battleBag, sPocketMenuTouchRects);
 
     if (pocketMenuScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -344,8 +339,7 @@ static u8 BattleBagTask_PocketMenuScreen(BattleBag *battleBag)
     return TASK_STATE_POCKET_MENU_SCREEN;
 }
 
-static u8 BattleBagTask_ChangePocketPage(BattleBag *battleBag)
-{
+static u8 BattleBagTask_ChangePocketPage(BattleBag *battleBag) {
     s8 currentPage = battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket];
 
     battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket] = 0;
@@ -367,8 +361,7 @@ static u8 BattleBagTask_ChangePocketPage(BattleBag *battleBag)
     return TASK_STATE_POCKET_MENU_SCREEN;
 }
 
-static u8 BattleBagTask_UseItemScreen(BattleBag *battleBag)
-{
+static u8 BattleBagTask_UseItemScreen(BattleBag *battleBag) {
     enum BattleBagUseItemScreenButton useItemScreenButtonPressed = CheckTouchRectIsPressed(battleBag, sUseItemMenuTouchRects);
 
     if (useItemScreenButtonPressed == TOUCHSCREEN_INPUT_NONE) {
@@ -398,8 +391,7 @@ static u8 BattleBagTask_UseItemScreen(BattleBag *battleBag)
     return TASK_STATE_USE_ITEM_SCREEN;
 }
 
-static u8 TryUseItem(BattleBag *battleBag)
-{
+static u8 TryUseItem(BattleBag *battleBag) {
     BattleBagContext *context = battleBag->context;
 
     if (battleBag->currentBattlePocket == ITEM_BATTLE_CATEGORY_BATTLE_ITEMS) {
@@ -481,32 +473,27 @@ static u8 TryUseItem(BattleBag *battleBag)
     return TASK_STATE_EXIT;
 }
 
-static u8 BattleBagTask_SetupMenuScreen(BattleBag *battleBag)
-{
+static u8 BattleBagTask_SetupMenuScreen(BattleBag *battleBag) {
     ChangeBattleBagScreen(battleBag, BATTLE_BAG_SCREEN_MENU);
     return TASK_STATE_MENU_SCREEN;
 }
 
-static u8 BattleBagTask_SetupPocketMenuScreen(BattleBag *battleBag)
-{
+static u8 BattleBagTask_SetupPocketMenuScreen(BattleBag *battleBag) {
     ChangeBattleBagScreen(battleBag, BATTLE_BAG_SCREEN_POCKET_MENU);
     return TASK_STATE_POCKET_MENU_SCREEN;
 }
 
-static u8 BattleBagTask_SetupUseItemScreen(BattleBag *battleBag)
-{
+static u8 BattleBagTask_SetupUseItemScreen(BattleBag *battleBag) {
     ChangeBattleBagScreen(battleBag, BATTLE_BAG_SCREEN_USE_ITEM);
     return TASK_STATE_USE_ITEM_SCREEN;
 }
 
-static u8 BattleBagTask_ClearErrorMessage(BattleBag *battleBag)
-{
+static u8 BattleBagTask_ClearErrorMessage(BattleBag *battleBag) {
     Window_EraseMessageBox(&battleBag->messageBoxWindow, FALSE);
     return TASK_STATE_USE_ITEM_SCREEN;
 }
 
-static u8 BattleBagTask_AwaitingTextFinish(BattleBag *battleBag)
-{
+static u8 BattleBagTask_AwaitingTextFinish(BattleBag *battleBag) {
     if (Text_IsPrinterActive(battleBag->textPrinterID) == FALSE) {
         return TASK_STATE_AWAITING_INPUT;
     }
@@ -514,8 +501,7 @@ static u8 BattleBagTask_AwaitingTextFinish(BattleBag *battleBag)
     return TASK_STATE_AWAITING_TEXT_FINISH;
 }
 
-static u8 BattleBagTask_AwaitingInput(BattleBag *battleBag)
-{
+static u8 BattleBagTask_AwaitingInput(BattleBag *battleBag) {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || TouchScreen_Tapped() == TRUE) {
         return battleBag->queuedState;
     }
@@ -523,8 +509,7 @@ static u8 BattleBagTask_AwaitingInput(BattleBag *battleBag)
     return TASK_STATE_AWAITING_INPUT;
 }
 
-static u8 BattleBagTask_ScreenTransition(BattleBag *battleBag)
-{
+static u8 BattleBagTask_ScreenTransition(BattleBag *battleBag) {
     if (battleBag->pressedButtonState == BUTTON_STATE_PRESSED) {
         return battleBag->queuedState;
     }
@@ -532,14 +517,12 @@ static u8 BattleBagTask_ScreenTransition(BattleBag *battleBag)
     return TASK_STATE_SCREEN_TRANSITION;
 }
 
-static u8 BattleBagTask_Exit(BattleBag *battleBag)
-{
+static u8 BattleBagTask_Exit(BattleBag *battleBag) {
     PaletteData_StartFade(battleBag->palette, PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F, 0xffff, -8, 0, 16, 0);
     return TASK_STATE_FINISH_TASK;
 }
 
-static BOOL BattleBagTask_FinishTask(SysTask *task, BattleBag *battleBag)
-{
+static BOOL BattleBagTask_FinishTask(SysTask *task, BattleBag *battleBag) {
     if (PaletteData_GetSelectedBuffersMask(battleBag->palette) != 0) {
         return FALSE;
     }
@@ -571,8 +554,7 @@ static BOOL BattleBagTask_FinishTask(SysTask *task, BattleBag *battleBag)
     return TRUE;
 }
 
-static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
-{
+static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag) {
     if (PaletteData_GetSelectedBuffersMask(battleBag->palette) != 0) {
         return TASK_STATE_CATCH_TUTORIAL;
     }
@@ -628,8 +610,7 @@ static u8 BattleBagTask_CatchTutorial(BattleBag *battleBag)
     return TASK_STATE_CATCH_TUTORIAL;
 }
 
-static void InitializeBackground(BattleBag *battleBag)
-{
+static void InitializeBackground(BattleBag *battleBag) {
     {
         GraphicsModes graphicsMode = {
             .displayMode = GX_DISPMODE_GRAPHICS,
@@ -706,16 +687,14 @@ static void InitializeBackground(BattleBag *battleBag)
     Bg_ScheduleTilemapTransfer(battleBag->background, BG_LAYER_SUB_0);
 }
 
-static void CleanupBackground(BgConfig *background)
-{
+static void CleanupBackground(BgConfig *background) {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, FALSE);
     Bg_FreeTilemapBuffer(background, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(background, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(background, BG_LAYER_SUB_2);
 }
 
-static void LoadGraphicsData(BattleBag *battleBag)
-{
+static void LoadGraphicsData(BattleBag *battleBag) {
     NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, battleBag->context->heapID);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, battleBag->background, BG_LAYER_SUB_2, 0, 0, FALSE, battleBag->context->heapID);
@@ -737,24 +716,21 @@ static void LoadGraphicsData(BattleBag *battleBag)
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
 }
 
-static void InitializeMessageLoader(BattleBag *battleBagTask)
-{
+static void InitializeMessageLoader(BattleBag *battleBagTask) {
     battleBagTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_BAG, battleBagTask->context->heapID);
     battleBagTask->unk_0C = sub_0200C440(15, 14, 0, battleBagTask->context->heapID);
     battleBagTask->stringTemplate = StringTemplate_Default(battleBagTask->context->heapID);
     battleBagTask->strbuf = Strbuf_Init(512, battleBagTask->context->heapID);
 }
 
-static void CleanupMessageLoader(BattleBag *battleBag)
-{
+static void CleanupMessageLoader(BattleBag *battleBag) {
     MessageLoader_Free(battleBag->messageLoader);
     sub_0200C560(battleBag->unk_0C);
     StringTemplate_Free(battleBag->stringTemplate);
     Strbuf_Free(battleBag->strbuf);
 }
 
-static void SetupBackgroundScroll(BattleBag *battleBag, enum BattleBagScreen screen)
-{
+static void SetupBackgroundScroll(BattleBag *battleBag, enum BattleBagScreen screen) {
     switch (screen) {
     case BATTLE_BAG_SCREEN_MENU:
         Bg_ScheduleScroll(battleBag->background, BG_LAYER_SUB_2, 0, 0);
@@ -771,8 +747,7 @@ static void SetupBackgroundScroll(BattleBag *battleBag, enum BattleBagScreen scr
     }
 }
 
-static void SetupBackgroundTilemap(BattleBag *battleBag, enum BattleBagScreen screen)
-{
+static void SetupBackgroundTilemap(BattleBag *battleBag, enum BattleBagScreen screen) {
     if (screen != BATTLE_BAG_SCREEN_USE_ITEM) {
         return;
     }
@@ -781,8 +756,7 @@ static void SetupBackgroundTilemap(BattleBag *battleBag, enum BattleBagScreen sc
     Bg_ChangeTilemapRectPalette(battleBag->background, BG_LAYER_SUB_2, 2, 40, 28, 8, 8 + battleBag->currentBattlePocket);
 }
 
-static void ChangeBattleBagScreen(BattleBag *battleBag, u8 screen)
-{
+static void ChangeBattleBagScreen(BattleBag *battleBag, u8 screen) {
     SetupBackgroundTilemap(battleBag, screen);
     SetupBackgroundScroll(battleBag, screen);
 
@@ -801,18 +775,15 @@ static void ChangeBattleBagScreen(BattleBag *battleBag, u8 screen)
     BattleBagSprites_SetupScreen(battleBag, battleBag->currentScreen);
 }
 
-static int CheckTouchRectIsPressed(BattleBag *battleBag, const TouchScreenRect *rect)
-{
+static int CheckTouchRectIsPressed(BattleBag *battleBag, const TouchScreenRect *rect) {
     return TouchScreen_CheckRectanglePressed(rect);
 }
 
-int BattleBagTask_GetSelectedPartySlot(BattleBag *battleBag)
-{
+int BattleBagTask_GetSelectedPartySlot(BattleBag *battleBag) {
     return BattleContext_Get(battleBag->context->battleSystem, BattleSystem_Context(battleBag->context->battleSystem), BATTLECTX_SELECTED_PARTY_SLOT, battleBag->context->battler);
 }
 
-static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID)
-{
+static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID) {
     Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
     Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), item, category);
 }

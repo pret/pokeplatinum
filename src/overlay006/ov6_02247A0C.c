@@ -88,16 +88,14 @@ static const UnkStruct_ov6_022496F4 Unk_ov6_0224971C[][4] = {
     },
 };
 
-void ov6_02247A0C(FieldTask *param0)
-{
+void ov6_02247A0C(FieldTask *param0) {
     UnkStruct_ov6_02247A0C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
     FieldTask_InitCall(param0, ov6_02247A34, v0);
 }
 
-static BOOL ov6_02247A34(FieldTask *param0)
-{
+static BOOL ov6_02247A34(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov6_02247A0C *v1 = FieldTask_GetEnv(param0);
 
@@ -120,8 +118,7 @@ static BOOL ov6_02247A34(FieldTask *param0)
     return 0;
 }
 
-void *ov6_02247A90(void *param0)
-{
+void *ov6_02247A90(void *param0) {
     UnkStruct_ov6_02247A90 *v0;
     BgConfig *v1;
     Strbuf *v2, *v3;
@@ -191,8 +188,7 @@ void *ov6_02247A90(void *param0)
     return v0;
 }
 
-void ov6_02247CC8(void *param0)
-{
+void ov6_02247CC8(void *param0) {
     UnkStruct_ov6_02247A90 *v0 = param0;
 
     Window_EraseStandardFrame(&v0->unk_00, 1);
@@ -203,8 +199,7 @@ void ov6_02247CC8(void *param0)
     Heap_Free(v0);
 }
 
-static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3)
-{
+static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3) {
     int v0, v1;
 
     if (param2 == 0) {

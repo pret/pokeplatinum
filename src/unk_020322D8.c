@@ -12,8 +12,7 @@
 #include "heap.h"
 #include "unk_02032798.h"
 
-static UnkStruct_020322D8 *sub_020322D8(CommQueueMan *param0)
-{
+static UnkStruct_020322D8 *sub_020322D8(CommQueueMan *param0) {
     UnkStruct_020322D8 *v0 = param0->unk_18;
     int v1;
 
@@ -28,8 +27,7 @@ static UnkStruct_020322D8 *sub_020322D8(CommQueueMan *param0)
     return NULL;
 }
 
-BOOL CommQueue_IsEmpty(CommQueueMan *param0)
-{
+BOOL CommQueue_IsEmpty(CommQueueMan *param0) {
     UnkStruct_020322D8 *v0 = param0->unk_18;
     int v1;
 
@@ -44,8 +42,7 @@ BOOL CommQueue_IsEmpty(CommQueueMan *param0)
     return 1;
 }
 
-static BOOL sub_02032318(UnkStruct_02032318 *param0)
-{
+static BOOL sub_02032318(UnkStruct_02032318 *param0) {
     if (param0->unk_00 != NULL) {
         if (param0->unk_00->unk_08 != NULL) {
             param0->unk_00 = param0->unk_00->unk_08;
@@ -61,8 +58,7 @@ static BOOL sub_02032318(UnkStruct_02032318 *param0)
     return 0;
 }
 
-static BOOL sub_0203233C(UnkStruct_0203233C *param0, u8 param1)
-{
+static BOOL sub_0203233C(UnkStruct_0203233C *param0, u8 param1) {
     *param0->unk_00 = param1;
     param0->unk_00++;
     param0->unk_04--;
@@ -74,8 +70,7 @@ static BOOL sub_0203233C(UnkStruct_0203233C *param0, u8 param1)
     return 0;
 }
 
-static BOOL sub_02032358(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1)
-{
+static BOOL sub_02032358(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1) {
     int v0 = CommCmd_PacketSizeOf(param0->unk_0E);
 
     if (v0 == 0xffff) {
@@ -103,8 +98,7 @@ static BOOL sub_02032358(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1)
     return 0;
 }
 
-static BOOL sub_020323D0(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1, CommRing *param2, BOOL param3)
-{
+static BOOL sub_020323D0(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1, CommRing *param2, BOOL param3) {
     int v0;
     int v1;
     int v2 = CommCmd_PacketSizeOf(param0->unk_0E);
@@ -153,8 +147,7 @@ static BOOL sub_020323D0(UnkStruct_020322D8 *param0, UnkStruct_0203233C *param1,
     return 1;
 }
 
-BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL param4, BOOL param5)
-{
+BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL param4, BOOL param5) {
     UnkStruct_020322D8 *v0;
     UnkStruct_020322D8 *v1 = sub_020322D8(param0);
     UnkStruct_02032318 *v2;
@@ -208,8 +201,7 @@ BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *param2, int param3, BOOL
     return 1;
 }
 
-static UnkStruct_020322D8 *sub_02032530(CommQueueMan *param0)
-{
+static UnkStruct_020322D8 *sub_02032530(CommQueueMan *param0) {
     UnkStruct_02032318 *v0;
 
     if (param0->unk_10 != NULL) {
@@ -227,8 +219,7 @@ static UnkStruct_020322D8 *sub_02032530(CommQueueMan *param0)
     return NULL;
 }
 
-static void sub_02032550(CommQueueMan *param0)
-{
+static void sub_02032550(CommQueueMan *param0) {
     UnkStruct_02032318 *v0;
 
     if (param0->unk_10 != NULL) {
@@ -240,8 +231,7 @@ static void sub_02032550(CommQueueMan *param0)
     }
 }
 
-BOOL sub_02032574(CommQueueMan *param0, UnkStruct_0203233C *param1, BOOL param2)
-{
+BOOL sub_02032574(CommQueueMan *param0, UnkStruct_0203233C *param1, BOOL param2) {
     int v0;
     int v1;
     int v2 = 1;
@@ -278,8 +268,7 @@ BOOL sub_02032574(CommQueueMan *param0, UnkStruct_0203233C *param1, BOOL param2)
     return 1;
 }
 
-void CommQueueMan_Init(CommQueueMan *param0, int param1, CommRing *param2)
-{
+void CommQueueMan_Init(CommQueueMan *param0, int param1, CommRing *param2) {
     MI_CpuFill8(param0, 0, sizeof(CommQueueMan));
     param0->unk_18 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_020322D8) * param1);
 
@@ -288,8 +277,7 @@ void CommQueueMan_Init(CommQueueMan *param0, int param1, CommRing *param2)
     param0->unk_14 = param2;
 }
 
-void CommQueueMan_Reset(CommQueueMan *param0)
-{
+void CommQueueMan_Reset(CommQueueMan *param0) {
     MI_CpuFill8(param0->unk_18, 0, sizeof(UnkStruct_020322D8) * param0->unk_1C);
 
     param0->unk_00.unk_00 = NULL;
@@ -299,13 +287,11 @@ void CommQueueMan_Reset(CommQueueMan *param0)
     param0->unk_10 = NULL;
 }
 
-void CommQueueMan_Delete(CommQueueMan *param0)
-{
+void CommQueueMan_Delete(CommQueueMan *param0) {
     Heap_Free(param0->unk_18);
 }
 
-BOOL CommQueue_CompareCmd(CommQueueMan *param0, int param1)
-{
+BOOL CommQueue_CompareCmd(CommQueueMan *param0, int param1) {
     int v0;
     UnkStruct_020322D8 *v1 = param0->unk_18;
 

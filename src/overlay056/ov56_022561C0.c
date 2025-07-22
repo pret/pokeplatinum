@@ -125,8 +125,7 @@ static BOOL ov56_02257184(const UnkStruct_ov56_02256468 *param0);
 static void ov56_0225718C(UnkStruct_ov56_02256468 *param0, int param1);
 static void ov56_022571D0(UnkStruct_ov56_02256468 *param0);
 
-static void ov56_022561C0(SysTask *param0, void *param1)
-{
+static void ov56_022561C0(SysTask *param0, void *param1) {
     UnkStruct_ov56_02256468 *v0 = param1;
     BgConfig *v1 = v0->unk_14;
     int v2;
@@ -171,8 +170,7 @@ static void ov56_022561C0(SysTask *param0, void *param1)
     }
 }
 
-static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_02256294(UnkStruct_ov56_02256468 *param0) {
     int v0;
 
     param0->unk_2E8 = 0;
@@ -185,8 +183,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_20 = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__UNIONROOM, 3, 1, &(param0->unk_24), 4);
 }
 
-static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)
-{
+static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -205,8 +202,7 @@ static void ov56_022562EC(BgConfig *param0, UnkStruct_ov56_022562EC *param1)
     }
 }
 
-static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
-{
+static void ov56_022563E8(UnkStruct_ov56_022562EC *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -216,8 +212,7 @@ static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
     }
 }
 
-UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
-{
+UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem) {
     SysTask *v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
     UnkStruct_ov56_02256468 *v0 = SysTask_GetParam(v1);
 
@@ -233,8 +228,7 @@ UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
     return v0;
 }
 
-void ov56_02256468(UnkStruct_ov56_02256468 *param0)
-{
+void ov56_02256468(UnkStruct_ov56_02256468 *param0) {
     if (param0->unk_00 == 2) {
         BgConfig *v0 = param0->unk_14;
         int v1;
@@ -263,16 +257,14 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
     }
 }
 
-static void ov56_022564E4(BgConfig *param0)
-{
+static void ov56_022564E4(BgConfig *param0) {
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
 }
 
-static void ov56_02256508(BgConfig *param0)
-{
+static void ov56_02256508(BgConfig *param0) {
     ov56_022564E4(param0);
 
     {
@@ -364,8 +356,7 @@ static void ov56_02256508(BgConfig *param0)
     FieldMessage_LoadTextPalettes(4, FALSE);
 }
 
-static void ov56_02256634(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_02256634(UnkStruct_ov56_02256468 *param0) {
     int v0;
 
     param0->unk_28 = SpriteList_InitRendering(10, &param0->unk_2C, HEAP_ID_FIELD);
@@ -389,8 +380,7 @@ static const int Unk_ov56_02257238[] = {
     0x60
 };
 
-static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_02256704(UnkStruct_ov56_02256468 *param0) {
     int v0;
 
     SpriteResourcesHeader_Init(&param0->unk_1D8, 999, 999, 999, 999, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
@@ -421,8 +411,7 @@ static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
     }
 }
 
-static int ov56_022567E4(UnkStruct_0205C95C *param0, int param1)
-{
+static int ov56_022567E4(UnkStruct_0205C95C *param0, int param1) {
     param1++;
 
     if (param1 == 30) {
@@ -432,8 +421,7 @@ static int ov56_022567E4(UnkStruct_0205C95C *param0, int param1)
     return param1;
 }
 
-static int ov56_022567F0(int param0, int param1)
-{
+static int ov56_022567F0(int param0, int param1) {
     int v0 = param0 + param1;
 
     if (v0 >= 30) {
@@ -443,8 +431,7 @@ static int ov56_022567F0(int param0, int param1)
     return v0;
 }
 
-static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct_0205C924 *param2)
-{
+static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct_0205C924 *param2) {
     param0->unk_22C[param1].unk_30 = param2->unk_10;
 
     Bg_CopyToTilemapRect(param0->unk_14, 7, 0, param1 * 8, 32, 8, param0->unk_24->rawData, 0, 24 * param0->unk_22C[param1].unk_30, 32, 48);
@@ -463,8 +450,7 @@ static void ov56_022567FC(UnkStruct_ov56_02256468 *param0, int param1, UnkStruct
     Window_ScheduleCopyToVRAM(&param0->unk_22C[param1].unk_20);
 }
 
-static void ov56_022568E0(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_022568E0(UnkStruct_ov56_02256468 *param0) {
     int v0, v1;
     int v2 = ov56_022567F0(param0->unk_2D4->unk_34C, param0->unk_2D8.unk_04);
     int v3 = param0->unk_2D4->unk_348;
@@ -509,8 +495,7 @@ static const TouchScreenRect Unk_ov56_02257250[] = {
     { 0xff, 0x0, 0x0, 0x0 }
 };
 
-static void ov56_02256994(Sprite *param0, int param1)
-{
+static void ov56_02256994(Sprite *param0, int param1) {
     VecFx32 v0;
 
     v0.x = FX32_CONST(256 - 24);
@@ -520,8 +505,7 @@ static void ov56_02256994(Sprite *param0, int param1)
     Sprite_SetPosition(param0, &v0);
 }
 
-static void ov56_022569E0(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_022569E0(UnkStruct_ov56_02256468 *param0) {
     param0->unk_2D8.unk_00 = param0->unk_2D4->unk_348;
 
     if ((param0->unk_2D8.unk_00 > 3) && (param0->unk_2D8.unk_02 <= 3)) {
@@ -543,8 +527,7 @@ static void ov56_022569E0(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_02 = param0->unk_2D8.unk_00;
 }
 
-static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
-{
+static int ov56_02256A68(UnkStruct_ov56_02256468 *param0) {
     int v0, v1, v2, v3;
     WMBssDesc *v4;
     UnkStruct_0203330C *v5;
@@ -621,8 +604,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
     return v0;
 }
 
-static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0)
-{
+static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0) {
     int v0 = TouchScreen_CheckRectangleHeld(Unk_ov56_02257250);
 
     if (v0 != 0xffffffff) {
@@ -664,8 +646,7 @@ static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0)
     return v0;
 }
 
-static void ov56_02256C84(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_02256C84(UnkStruct_ov56_02256468 *param0) {
     if (gSystem.heldKeys & PAD_BUTTON_L) {
         ov56_0225718C(param0, 0);
 
@@ -687,8 +668,7 @@ static void ov56_02256C84(UnkStruct_ov56_02256468 *param0)
     }
 }
 
-static void ov56_02256D04(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_02256D04(UnkStruct_ov56_02256468 *param0) {
     int v0 = 0xffffffff;
 
     if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
@@ -711,8 +691,7 @@ static const int Unk_ov56_02257244[] = {
     0x5
 };
 
-static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5)
-{
+static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_ov56_022562EC *param2, int param3, int param4, int *param5) {
     int v0, v1 = 0;
 
     if (param4 > 3) {
@@ -747,8 +726,7 @@ static void ov56_02256D64(BgConfig *param0, NNSG2dScreenData *param1, UnkStruct_
     Bg_CopyTilemapBufferRangeToVRAM(param0, 7, Bg_GetTilemapBuffer(param0, 7), 32 * 24 * 2, 0);
 }
 
-static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4)
-{
+static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2, MessageLoader *param3, TrainerInfo *param4) {
     Strbuf *v0 = NULL;
     Strbuf *v1;
     int v2 = 0;
@@ -776,8 +754,7 @@ static Strbuf *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
     return v0;
 }
 
-static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence *param2, TrainerInfo *param3)
-{
+static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence *param2, TrainerInfo *param3) {
     UnkStruct_0205C95C *v0 = param0->unk_2D4;
     PalPad *v1 = param0->unk_04->unk_474;
     int *v2;
@@ -811,8 +788,7 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
     }
 }
 
-static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int param2)
-{
+static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int param2) {
     int v0, v1;
 
     if (!sub_02014BBC(param1)) {
@@ -840,8 +816,7 @@ static int ov56_02256FC8(UnkStruct_ov56_02256468 *param0, Sentence *param1, int 
     return 1;
 }
 
-static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3)
-{
+static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, Sentence *param2, u32 param3) {
     int v0 = 0;
 
     if (param0->unk_2D8.unk_04 == param0->unk_2D8.unk_00 - 3) {
@@ -859,8 +834,7 @@ static void ov56_02257048(UnkStruct_ov56_02256468 *param0, TrainerInfo *param1, 
     ov56_02257100(param0);
 }
 
-static void ov56_02257098(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_02257098(UnkStruct_ov56_02256468 *param0) {
     int v0, v1;
     WMBssDesc *v2;
     UnkStruct_0203330C *v3;
@@ -891,21 +865,18 @@ static void ov56_02257098(UnkStruct_ov56_02256468 *param0)
     }
 }
 
-static void ov56_02257100(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_02257100(UnkStruct_ov56_02256468 *param0) {
     param0->unk_2E8 = 1;
 }
 
-static void ov56_0225710C(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_0225710C(UnkStruct_ov56_02256468 *param0) {
     param0->unk_2EC = 0;
     param0->unk_2EE = 8;
     param0->unk_2EF = 4;
     param0->unk_2ED = param0->unk_2EE;
 }
 
-static void ov56_0225712C(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_0225712C(UnkStruct_ov56_02256468 *param0) {
     param0->unk_2EC = 0;
 
     if (gSystem.touchPressed) {
@@ -924,23 +895,19 @@ static void ov56_0225712C(UnkStruct_ov56_02256468 *param0)
     }
 }
 
-static BOOL ov56_02257174(const UnkStruct_ov56_02256468 *param0)
-{
+static BOOL ov56_02257174(const UnkStruct_ov56_02256468 *param0) {
     return param0->unk_2EC;
 }
 
-static void ov56_0225717C(UnkStruct_ov56_02256468 *param0, BOOL param1)
-{
+static void ov56_0225717C(UnkStruct_ov56_02256468 *param0, BOOL param1) {
     param0->unk_2F0 = param1;
 }
 
-static BOOL ov56_02257184(const UnkStruct_ov56_02256468 *param0)
-{
+static BOOL ov56_02257184(const UnkStruct_ov56_02256468 *param0) {
     return param0->unk_2F0;
 }
 
-static void ov56_0225718C(UnkStruct_ov56_02256468 *param0, int param1)
-{
+static void ov56_0225718C(UnkStruct_ov56_02256468 *param0, int param1) {
     u16 v0;
     u16 v1;
 
@@ -954,8 +921,7 @@ static void ov56_0225718C(UnkStruct_ov56_02256468 *param0, int param1)
     param0->unk_2F4[param1] = 1;
 }
 
-static void ov56_022571D0(UnkStruct_ov56_02256468 *param0)
-{
+static void ov56_022571D0(UnkStruct_ov56_02256468 *param0) {
     int v0;
     u16 v1;
 

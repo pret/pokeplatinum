@@ -44,14 +44,12 @@ typedef struct {
     UnkFuncPtr_ov59_021D33FC_2 unk_08;
 } UnkStruct_ov59_021D33FC;
 
-static u32 ov59_021D2F88(SaveData *saveData)
-{
+static u32 ov59_021D2F88(SaveData *saveData) {
     RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(saveData);
     return ov59_021D2A2C(v0);
 }
 
-static void *ov59_021D2F94(SaveData *saveData, int heapID, u32 param2)
-{
+static void *ov59_021D2F94(SaveData *saveData, int heapID, u32 param2) {
     RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(saveData);
     void *v1 = Heap_AllocFromHeapAtEnd(heapID, param2);
 
@@ -60,20 +58,17 @@ static void *ov59_021D2F94(SaveData *saveData, int heapID, u32 param2)
     return v1;
 }
 
-static void ov59_021D2FBC(const UnkStruct_ov59_021D2FBC *param0)
-{
+static void ov59_021D2FBC(const UnkStruct_ov59_021D2FBC *param0) {
     RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(param0->saveData);
     ov59_021D2AC4(param0->unk_08, param0->unk_0C, v0, param0->unk_10);
 }
 
-static u32 ov59_021D2FD4(SaveData *saveData)
-{
+static u32 ov59_021D2FD4(SaveData *saveData) {
     UnkStruct_0202A750 *v0 = sub_0202A750(saveData);
     return sub_02029C60();
 }
 
-static void *ov59_021D2FE0(SaveData *saveData, int heapID, u32 param2)
-{
+static void *ov59_021D2FE0(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_02029C68 *v0;
     UnkStruct_0202A750 *v1 = sub_0202A750(saveData);
     void *v2 = Heap_AllocFromHeapAtEnd(heapID, param2);
@@ -84,44 +79,37 @@ static void *ov59_021D2FE0(SaveData *saveData, int heapID, u32 param2)
     return v2;
 }
 
-static void ov59_021D300C(const UnkStruct_ov59_021D2FBC *param0)
-{
+static void ov59_021D300C(const UnkStruct_ov59_021D2FBC *param0) {
     UnkStruct_0202A750 *v0 = sub_0202A750(param0->saveData);
     sub_0202A6A8(param0->unk_08, param0->unk_0C, v0, param0->unk_10);
 }
 
-static void ov59_021D3028(const UnkStruct_ov59_021D2FBC *param0)
-{
+static void ov59_021D3028(const UnkStruct_ov59_021D2FBC *param0) {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
     ov59_021D2F10(broadcast, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
-static void ov59_021D3048(const UnkStruct_ov59_021D2FBC *param0)
-{
+static void ov59_021D3048(const UnkStruct_ov59_021D2FBC *param0) {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
     ov59_021D2F38(broadcast, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
-static void ov59_021D3068(const UnkStruct_ov59_021D2FBC *param0)
-{
+static void ov59_021D3068(const UnkStruct_ov59_021D2FBC *param0) {
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
     ov59_021D2F60(broadcast, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
-static void *ov59_021D3088(SaveData *saveData, int heapID, u32 param2)
-{
+static void *ov59_021D3088(SaveData *saveData, int heapID, u32 param2) {
     return sub_0202E9FC(saveData, heapID);
 }
 
-static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
-{
+static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0) {
     UnkStruct_0202E8C0 *v0 = sub_0202E8C0(param0->saveData);
 
     sub_0202ED0C(param0->saveData, param0->unk_0C, param0->unk_08, param0->unk_10, param0->heapID);
 }
 
-static void *ov59_021D30B4(SaveData *saveData, int heapID, u32 param2)
-{
+static void *ov59_021D30B4(SaveData *saveData, int heapID, u32 param2) {
     UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocFromHeapAtEnd(heapID, param2);
     MI_CpuClear8(v0, param2);
     sub_02073700(saveData, 0, v0);
@@ -129,8 +117,7 @@ static void *ov59_021D30B4(SaveData *saveData, int heapID, u32 param2)
     return v0;
 }
 
-static void ov59_021D30DC(const UnkStruct_ov59_021D2FBC *param0)
-{
+static void ov59_021D30DC(const UnkStruct_ov59_021D2FBC *param0) {
     return;
 }
 
@@ -147,8 +134,7 @@ static const UnkStruct_ov59_021D33FC Unk_ov59_021D33FC[] = {
     { (UnkFuncPtr_ov59_021D33FC)ov59_021D2B44, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2CF8, ov59_021D3068 }
 };
 
-void ov59_021D30E0(SaveData *saveData, UnkStruct_ov59_021D30E0 *param1)
-{
+void ov59_021D30E0(SaveData *saveData, UnkStruct_ov59_021D30E0 *param1) {
     u32 v0;
     void *v1;
     int v2, v3;
@@ -172,8 +158,7 @@ void ov59_021D30E0(SaveData *saveData, UnkStruct_ov59_021D30E0 *param1)
     }
 }
 
-void ov59_021D313C(SaveData *saveData, const UnkStruct_ov59_021D30E0 *param1)
-{
+void ov59_021D313C(SaveData *saveData, const UnkStruct_ov59_021D30E0 *param1) {
     UnkStruct_ov59_021D2FBC v0;
     u32 v1;
     u32 v2 = 0;

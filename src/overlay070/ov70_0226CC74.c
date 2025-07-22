@@ -21,8 +21,7 @@ typedef struct {
     u32 unk_00;
 } UnkStruct_ov70_0226CC74;
 
-BOOL ov70_0226CC74(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2)
-{
+BOOL ov70_0226CC74(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2) {
     UnkStruct_ov70_0226CC74 *v0;
     UnkStruct_ov66_0222DFF8 *v1;
     UnkStruct_ov70_0225CA20 *v2;

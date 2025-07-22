@@ -69,8 +69,7 @@ BOOL(*const Unk_ov62_02248C50[])(UnkStruct_0208C06C *) = {
 };
 // clang-format on
 
-static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1)
-{
+static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     if (param1 == 0) {
@@ -82,8 +81,7 @@ static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1)
     sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
 }
 
-static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1)
-{
+static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1) {
     NARC *v0 = param0->unk_14.unk_00;
     BgConfig *v1 = param0->unk_14.unk_10;
     SpriteSystem *v2 = param0->unk_14.unk_04;
@@ -95,8 +93,7 @@ static void ov62_02236CF8(UnkStruct_0208C06C *param0, int param1)
     SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 29, FALSE, 11924);
 }
 
-static void ov62_02236D48(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236D48(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     ov62_02236CF8(param0, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -119,8 +116,7 @@ static void ov62_02236D48(UnkStruct_0208C06C *param0)
     ov62_02236CBC(param0, 1);
 }
 
-static void ov62_02236DE8(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236DE8(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     ov62_022312B0(&v0->unk_9C[1]);
@@ -129,8 +125,7 @@ static void ov62_02236DE8(UnkStruct_0208C06C *param0)
     ov62_022313BC(param0);
 }
 
-static void ov62_02236E14(UnkStruct_0208C06C *param0)
-{
+static void ov62_02236E14(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     NARC *v1 = param0->unk_14.unk_00;
     BgConfig *v2 = param0->unk_14.unk_10;
@@ -195,8 +190,7 @@ static void ov62_02236E14(UnkStruct_0208C06C *param0)
     }
 }
 
-static void ov62_022370D4(u16 *param0, u16 param1, u16 param2)
-{
+static void ov62_022370D4(u16 *param0, u16 param1, u16 param2) {
     int v0, v1, v2, v3;
     u32 v4;
 
@@ -216,8 +210,7 @@ static void ov62_022370D4(u16 *param0, u16 param1, u16 param2)
     }
 }
 
-static void ov62_0223712C(UnkStruct_0208C06C *param0)
-{
+static void ov62_0223712C(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     BgConfig *v1 = param0->unk_14.unk_10;
     SpriteSystem *v2 = param0->unk_14.unk_04;
@@ -253,8 +246,7 @@ static void ov62_0223712C(UnkStruct_0208C06C *param0)
     PaletteData_SetAutoTransparent(v4, 1);
 }
 
-static void ov62_022371CC(UnkStruct_0208C06C *param0)
-{
+static void ov62_022371CC(UnkStruct_0208C06C *param0) {
     int v0;
     int v1 = 0;
     int v2[4 + 1];
@@ -404,8 +396,7 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
     }
 }
 
-static void ov62_022374A8(UnkStruct_0208C06C *param0)
-{
+static void ov62_022374A8(UnkStruct_0208C06C *param0) {
     int v0;
     UnkStruct_ov62_02236CBC *v1 = param0->unk_860;
 
@@ -448,8 +439,7 @@ static void ov62_022374A8(UnkStruct_0208C06C *param0)
     SpriteManager_UnloadAnimObjById(param0->unk_14.unk_08, 29292);
 }
 
-static BOOL ov62_022375A4(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022375A4(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     int v1;
     s16 v2, v3;
@@ -491,8 +481,7 @@ static BOOL ov62_022375A4(UnkStruct_0208C06C *param0)
     return 1;
 }
 
-static BOOL ov62_022376C4(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_022376C4(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     int v1;
     s16 v2, v3;
@@ -541,8 +530,7 @@ static BOOL ov62_022376C4(UnkStruct_0208C06C *param0)
     return 1;
 }
 
-static void ov62_02237814(UnkStruct_0208C06C *param0)
-{
+static void ov62_02237814(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
     int v1;
     int v2 = 0;
@@ -567,8 +555,7 @@ static void ov62_02237814(UnkStruct_0208C06C *param0)
     }
 }
 
-static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02237884(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0;
 
     if (param0->unk_08 == 0) {
@@ -664,8 +651,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02237AC0(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02237AC0(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     {
@@ -685,8 +671,7 @@ static BOOL ov62_02237AC0(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02237B00(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     switch (param0->unk_08) {

@@ -15,8 +15,7 @@
 
 FS_EXTERN_OVERLAY(overlay82);
 
-static UnkStruct_ov82_0223B164 *sub_02099604(int param0, SaveData *saveData, int heapID, JournalEntry *journalEntry)
-{
+static UnkStruct_ov82_0223B164 *sub_02099604(int param0, SaveData *saveData, int heapID, JournalEntry *journalEntry) {
     UnkStruct_ov82_0223B164 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov82_0223B164));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov82_0223B164));
 
@@ -32,8 +31,7 @@ static UnkStruct_ov82_0223B164 *sub_02099604(int param0, SaveData *saveData, int
     return v0;
 }
 
-static void sub_0209964C(FieldSystem *fieldSystem, UnkStruct_ov82_0223B164 *param1)
-{
+static void sub_0209964C(FieldSystem *fieldSystem, UnkStruct_ov82_0223B164 *param1) {
     FS_EXTERN_OVERLAY(overlay82);
 
     {
@@ -48,16 +46,14 @@ static void sub_0209964C(FieldSystem *fieldSystem, UnkStruct_ov82_0223B164 *para
     }
 }
 
-UnkStruct_ov82_0223B164 *sub_02099674(FieldSystem *fieldSystem, int param1, int heapID)
-{
+UnkStruct_ov82_0223B164 *sub_02099674(FieldSystem *fieldSystem, int param1, int heapID) {
     UnkStruct_ov82_0223B164 *v0 = sub_02099604(param1, FieldSystem_GetSaveData(fieldSystem), heapID, fieldSystem->journalEntry);
     sub_0209964C(fieldSystem, v0);
 
     return v0;
 }
 
-UnkStruct_ov82_0223B164 *sub_020996A0(FieldSystem *fieldSystem, int heapID, BOOL param2)
-{
+UnkStruct_ov82_0223B164 *sub_020996A0(FieldSystem *fieldSystem, int heapID, BOOL param2) {
     UnkStruct_ov82_0223B164 *v0 = sub_02099604(1, FieldSystem_GetSaveData(fieldSystem), heapID, fieldSystem->journalEntry);
     v0->unk_20 = 1;
     v0->unk_24 = param2;

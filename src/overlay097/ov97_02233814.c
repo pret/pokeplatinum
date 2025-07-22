@@ -11,8 +11,7 @@
 #include "overlay097/struct_ov97_02233268.h"
 #include "overlay097/struct_ov97_022339EC.h"
 
-BOOL ov97_02233814(const void *param0, u32 param1, u16 param2)
-{
+BOOL ov97_02233814(const void *param0, u32 param1, u16 param2) {
     WMErrCode v0;
 
     v0 = WM_SetMPDataToPort(ov97_022323CC, param0, (u16)param1, param2, (u16)ov97_02233460(), 2);
@@ -25,8 +24,7 @@ BOOL ov97_02233814(const void *param0, u32 param1, u16 param2)
     }
 }
 
-BOOL ov97_02233854(void)
-{
+BOOL ov97_02233854(void) {
     WMErrCode v0;
 
     v0 = WM_Enable(ov97_022323E4);
@@ -39,8 +37,7 @@ BOOL ov97_02233854(void)
     }
 }
 
-BOOL ov97_02233870(void)
-{
+BOOL ov97_02233870(void) {
     WMErrCode v0;
 
     v0 = WM_Disable(ov97_02232424);
@@ -54,8 +51,7 @@ BOOL ov97_02233870(void)
     }
 }
 
-BOOL ov97_02233890(u32 param0)
-{
+BOOL ov97_02233890(u32 param0) {
     WMErrCode v0;
 
     v0 = WM_MeasureChannel(ov97_0223245C, 3, 17, (u16)param0, 30);
@@ -68,8 +64,7 @@ BOOL ov97_02233890(u32 param0)
     }
 }
 
-BOOL ov97_022338BC(void)
-{
+BOOL ov97_022338BC(void) {
     WMErrCode v0;
     WMParentParam *v1 = ov97_02233408();
     UnkStruct_ov97_02233268 *v2 = ov97_02233590();
@@ -89,8 +84,7 @@ BOOL ov97_022338BC(void)
     }
 }
 
-BOOL ov97_022338F8(void)
-{
+BOOL ov97_022338F8(void) {
     WMErrCode v0;
 
     v0 = WM_StartParent(ov97_022324EC);
@@ -103,8 +97,7 @@ BOOL ov97_022338F8(void)
     }
 }
 
-BOOL ov97_02233914(void)
-{
+BOOL ov97_02233914(void) {
     WMErrCode v0;
 
     v0 = WM_StartScan(ov97_022327B8, ov97_02233478());
@@ -117,8 +110,7 @@ BOOL ov97_02233914(void)
     }
 }
 
-BOOL ov97_02233938(void)
-{
+BOOL ov97_02233938(void) {
     WMErrCode v0;
 
     {
@@ -143,8 +135,7 @@ BOOL ov97_02233938(void)
     }
 }
 
-BOOL ov97_022339D0(void)
-{
+BOOL ov97_022339D0(void) {
     WMErrCode v0;
 
     v0 = WM_EndScan(ov97_02232944);
@@ -157,8 +148,7 @@ BOOL ov97_022339D0(void)
     }
 }
 
-BOOL ov97_022339EC(void)
-{
+BOOL ov97_022339EC(void) {
     WMErrCode v0;
     UnkStruct_ov97_022339EC *v1 = ov97_0223359C();
 
@@ -172,8 +162,7 @@ BOOL ov97_022339EC(void)
     }
 }
 
-BOOL ov97_02233A24(void)
-{
+BOOL ov97_02233A24(void) {
     WMErrCode v0;
 
     v0 = WM_SetPortCallback(4, ov97_02232C94, NULL);
@@ -195,8 +184,7 @@ BOOL ov97_02233A24(void)
     }
 }
 
-BOOL ov97_02233A9C(void)
-{
+BOOL ov97_02233A9C(void) {
     WMErrCode v0;
 
     v0 = WM_PowerOn(ov97_02232D18);
@@ -209,8 +197,7 @@ BOOL ov97_02233A9C(void)
     }
 }
 
-BOOL ov97_02233AB8(void)
-{
+BOOL ov97_02233AB8(void) {
     WMErrCode v0;
 
     v0 = WM_PowerOff(ov97_02232D3C);
@@ -224,8 +211,7 @@ BOOL ov97_02233AB8(void)
     }
 }
 
-BOOL ov97_02233AD8(void)
-{
+BOOL ov97_02233AD8(void) {
     WMErrCode v0;
 
     v0 = WM_Reset(ov97_02232D60);
@@ -239,8 +225,7 @@ BOOL ov97_02233AD8(void)
     }
 }
 
-BOOL ov97_02233AF8(void)
-{
+BOOL ov97_02233AF8(void) {
     WMErrCode v0;
 
     v0 = WM_End(ov97_02232DA4);

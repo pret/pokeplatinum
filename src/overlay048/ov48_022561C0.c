@@ -165,13 +165,11 @@ static int ov48_02256408(UnkStruct_ov48_0225621C *param0);
 static BOOL ov48_02256478(UnkStruct_ov48_0225621C *param0);
 static void ov48_022564E0(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketchSys);
 
-static void NitroStaticInit(void)
-{
+static void NitroStaticInit(void) {
     PoketchSystem_SetAppFunctions(ov48_022561D4, ov48_022562F0);
 }
 
-static BOOL ov48_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov48_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     UnkStruct_ov48_0225621C *v0 = (UnkStruct_ov48_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov48_0225621C));
 
     if (v0 != NULL) {
@@ -188,8 +186,7 @@ static BOOL ov48_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
     return 0;
 }
 
-static BOOL ov48_0225621C(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
-{
+static BOOL ov48_0225621C(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3) {
     param0->poketchSys = poketchSys;
     param0->unk_04.unk_08 = ov48_02256408(param0);
 
@@ -207,14 +204,12 @@ static BOOL ov48_0225621C(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketc
     return 0;
 }
 
-static void ov48_022562A8(UnkStruct_ov48_0225621C *param0)
-{
+static void ov48_022562A8(UnkStruct_ov48_0225621C *param0) {
     ov48_0225654C(param0->unk_A8);
     Heap_Free(param0);
 }
 
-static void ov48_022562BC(SysTask *param0, void *param1)
-{
+static void ov48_022562BC(SysTask *param0, void *param1) {
     static BOOL (*const v0[])(UnkStruct_ov48_0225621C *) = {
         ov48_0225630C,
         ov48_02256358,
@@ -233,13 +228,11 @@ static void ov48_022562BC(SysTask *param0, void *param1)
     }
 }
 
-static void ov48_022562F0(void *param0)
-{
+static void ov48_022562F0(void *param0) {
     ((UnkStruct_ov48_0225621C *)param0)->unk_02 = 1;
 }
 
-static void ov48_022562F8(UnkStruct_ov48_0225621C *param0, u32 param1)
-{
+static void ov48_022562F8(UnkStruct_ov48_0225621C *param0, u32 param1) {
     if (param0->unk_02 == 0) {
         param0->unk_00 = param1;
     } else {
@@ -249,8 +242,7 @@ static void ov48_022562F8(UnkStruct_ov48_0225621C *param0, u32 param1)
     param0->unk_01 = 0;
 }
 
-static BOOL ov48_0225630C(UnkStruct_ov48_0225621C *param0)
-{
+static BOOL ov48_0225630C(UnkStruct_ov48_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov48_02256558(param0->unk_A8, 0);
@@ -267,8 +259,7 @@ static BOOL ov48_0225630C(UnkStruct_ov48_0225621C *param0)
     return 0;
 }
 
-static BOOL ov48_02256358(UnkStruct_ov48_0225621C *param0)
-{
+static BOOL ov48_02256358(UnkStruct_ov48_0225621C *param0) {
     if (param0->unk_02) {
         ov48_022562F8(param0, 2);
         return 0;
@@ -290,8 +281,7 @@ static BOOL ov48_02256358(UnkStruct_ov48_0225621C *param0)
     return 0;
 }
 
-static BOOL ov48_022563D0(UnkStruct_ov48_0225621C *param0)
-{
+static BOOL ov48_022563D0(UnkStruct_ov48_0225621C *param0) {
     switch (param0->unk_01) {
     case 0:
         ov48_02256558(param0->unk_A8, 1);
@@ -307,8 +297,7 @@ static BOOL ov48_022563D0(UnkStruct_ov48_0225621C *param0)
     return 0;
 }
 
-static int ov48_02256408(UnkStruct_ov48_0225621C *param0)
-{
+static int ov48_02256408(UnkStruct_ov48_0225621C *param0) {
     BerryPatch *v0 = MiscSaveBlock_GetBerryPatches(PoketchSystem_GetSaveData(param0->poketchSys));
     int v1, v2;
 
@@ -330,8 +319,7 @@ static int ov48_02256408(UnkStruct_ov48_0225621C *param0)
     return v2;
 }
 
-static BOOL ov48_02256478(UnkStruct_ov48_0225621C *param0)
-{
+static BOOL ov48_02256478(UnkStruct_ov48_0225621C *param0) {
     BOOL v0 = 0;
 
     if (PoketchSystem_IsPlayerMoving(param0->poketchSys)) {
@@ -349,8 +337,7 @@ static BOOL ov48_02256478(UnkStruct_ov48_0225621C *param0)
     return v0;
 }
 
-static void ov48_022564E0(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketchSys)
-{
+static void ov48_022564E0(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketchSys) {
     VarsFlags *v0 = SaveData_GetVarsFlags(PoketchSystem_GetSaveData(poketchSys));
     int v1;
 

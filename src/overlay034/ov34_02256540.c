@@ -39,8 +39,7 @@ static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
 static BOOL ov34_022569DC(UnkStruct_ov34_02256540 *param0);
 static void ov34_022569E8(UnkStruct_ov34_02256540 *param0);
 
-BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const UnkStruct_ov34_02256540_1 *param1, BgConfig *param2)
-{
+BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const UnkStruct_ov34_02256540_1 *param1, BgConfig *param2) {
     UnkStruct_ov34_02256540 *v0 = (UnkStruct_ov34_02256540 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov34_02256540));
 
     if (v0 != NULL) {
@@ -65,8 +64,7 @@ BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const UnkStruct_ov34_022565
     return 0;
 }
 
-static BOOL ov34_02256588(UnkStruct_ov34_02256540 *param0)
-{
+static BOOL ov34_02256588(UnkStruct_ov34_02256540 *param0) {
     static const PoketchAnimation_AnimationData v0 = {
         { 0, 0 },
         0,
@@ -102,8 +100,7 @@ static BOOL ov34_02256588(UnkStruct_ov34_02256540 *param0)
     return 0;
 }
 
-void ov34_02256604(UnkStruct_ov34_02256540 *param0)
-{
+void ov34_02256604(UnkStruct_ov34_02256540 *param0) {
     if (param0 != NULL) {
         int v0;
 
@@ -129,29 +126,24 @@ static const PoketchTask Unk_ov34_02256A7C[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov34_02256640(UnkStruct_ov34_02256540 *param0, u32 param1)
-{
+void ov34_02256640(UnkStruct_ov34_02256540 *param0, u32 param1) {
     PoketchTask_Start(Unk_ov34_02256A7C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov34_02256664(UnkStruct_ov34_02256540 *param0, u32 param1)
-{
+BOOL ov34_02256664(UnkStruct_ov34_02256540 *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov34_02256670(UnkStruct_ov34_02256540 *param0)
-{
+BOOL ov34_02256670(UnkStruct_ov34_02256540 *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov34_0225667C(PoketchTaskManager *param0)
-{
+static void ov34_0225667C(PoketchTaskManager *param0) {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov34_02256690(SysTask *param0, void *param1)
-{
+static void ov34_02256690(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -200,16 +192,14 @@ static void ov34_02256690(SysTask *param0, void *param1)
     ov34_0225667C(param1);
 }
 
-static void ov34_02256774(SysTask *param0, void *param1)
-{
+static void ov34_02256774(SysTask *param0, void *param1) {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov34_0225667C(param1);
 }
 
-static void ov34_02256790(SysTask *param0, void *param1)
-{
+static void ov34_02256790(SysTask *param0, void *param1) {
     static const SysTaskFunc v0[] = {
         ov34_022567D4,
         ov34_0225684C,
@@ -227,8 +217,7 @@ static void ov34_02256790(SysTask *param0, void *param1)
     v0[*v3](param0, param1);
 }
 
-static void ov34_022567D4(SysTask *param0, void *param1)
-{
+static void ov34_022567D4(SysTask *param0, void *param1) {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -254,8 +243,7 @@ static void ov34_022567D4(SysTask *param0, void *param1)
     }
 }
 
-static void ov34_0225684C(SysTask *param0, void *param1)
-{
+static void ov34_0225684C(SysTask *param0, void *param1) {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -280,8 +268,7 @@ static void ov34_0225684C(SysTask *param0, void *param1)
     }
 }
 
-static void ov34_022568C0(SysTask *param0, void *param1)
-{
+static void ov34_022568C0(SysTask *param0, void *param1) {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -320,8 +307,7 @@ static void ov34_022568C0(SysTask *param0, void *param1)
     }
 }
 
-static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1)
-{
+static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1) {
     u32 v0;
 
     for (v0 = 0; v0 < param1->unk_0C; v0++) {
@@ -329,8 +315,7 @@ static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
     }
 }
 
-static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1)
-{
+static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1) {
     u32 v0, v1;
 
     for (v0 = 0; v0 < param1->unk_0C; v0++) {
@@ -345,13 +330,11 @@ static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
     }
 }
 
-static BOOL ov34_022569DC(UnkStruct_ov34_02256540 *param0)
-{
+static BOOL ov34_022569DC(UnkStruct_ov34_02256540 *param0) {
     return PoketchAnimation_AnimationInactive(param0->unk_38[0]);
 }
 
-static void ov34_022569E8(UnkStruct_ov34_02256540 *param0)
-{
+static void ov34_022569E8(UnkStruct_ov34_02256540 *param0) {
     int v0;
 
     PoketchAnimation_HideSprite(param0->unk_34, 1);
@@ -361,8 +344,7 @@ static void ov34_022569E8(UnkStruct_ov34_02256540 *param0)
     }
 }
 
-void ov34_02256A0C(UnkStruct_ov34_02256540 *param0)
-{
+void ov34_02256A0C(UnkStruct_ov34_02256540 *param0) {
     ov34_022569E8(param0);
     param0->unk_6C = 0;
 }

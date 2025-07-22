@@ -113,8 +113,7 @@ const static u8 Unk_020ED8B0[4] = {
     NNS_G2D_VRAM_TYPE_2DMAIN
 };
 
-void sub_0205CA94(SysTask *param0, void *param1)
-{
+void sub_0205CA94(SysTask *param0, void *param1) {
     UnkStruct_0205D274 *v0 = (UnkStruct_0205D274 *)param1;
     int v1[2];
     int v2;
@@ -174,8 +173,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
     }
 }
 
-void sub_0205CBFC(SysTask *param0, void *param1)
-{
+void sub_0205CBFC(SysTask *param0, void *param1) {
     UnkStruct_0205D274 *v0 = (UnkStruct_0205D274 *)param1;
     int v1;
     int v2;
@@ -230,8 +228,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
     }
 }
 
-void sub_0205CD3C(SysTask *param0, void *param1)
-{
+void sub_0205CD3C(SysTask *param0, void *param1) {
     UnkStruct_0205D274 *v0 = (UnkStruct_0205D274 *)param1;
     int v1;
     int v2 = v0->unk_1E4;
@@ -290,8 +287,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
     }
 }
 
-void sub_0205CE7C(SysTask *param0, void *param1)
-{
+void sub_0205CE7C(SysTask *param0, void *param1) {
     UnkStruct_0205D274 *v0 = (UnkStruct_0205D274 *)param1;
     int v1[2];
     int v2;
@@ -355,8 +351,7 @@ void sub_0205CE7C(SysTask *param0, void *param1)
     }
 }
 
-void sub_0205CFDC(FieldSystem *fieldSystem, int param1, BOOL *param2)
-{
+void sub_0205CFDC(FieldSystem *fieldSystem, int param1, BOOL *param2) {
     UnkStruct_0205D274 *v0;
 
     switch (param1) {
@@ -378,8 +373,7 @@ void sub_0205CFDC(FieldSystem *fieldSystem, int param1, BOOL *param2)
     v0->fieldSystem = fieldSystem;
 }
 
-UnkStruct_0205D274 *sub_0205D050(SysTaskFunc func, FieldSystem *fieldSystem, u32 param2)
-{
+UnkStruct_0205D274 *sub_0205D050(SysTaskFunc func, FieldSystem *fieldSystem, u32 param2) {
     UnkStruct_0205D274 *v0;
     SysTask *v1;
     int v2;
@@ -395,33 +389,28 @@ UnkStruct_0205D274 *sub_0205D050(SysTaskFunc func, FieldSystem *fieldSystem, u32
     return v0;
 }
 
-void sub_0205D080(SysTask *param0, UnkStruct_0205D274 *param1)
-{
+void sub_0205D080(SysTask *param0, UnkStruct_0205D274 *param1) {
     sub_0205D0AC(&param1->unk_04);
     SysTask_FinishAndFreeParam(param0);
 }
 
-void sub_0205D094(UnkStruct_0205D094 *param0, int param1, u32 param2)
-{
+void sub_0205D094(UnkStruct_0205D094 *param0, int param1, u32 param2) {
     sub_0205D0B4(param0);
     sub_0205D0D8(param0, param1, param2);
 }
 
-void sub_0205D0AC(UnkStruct_0205D094 *param0)
-{
+void sub_0205D0AC(UnkStruct_0205D094 *param0) {
     sub_0205D22C(param0);
 }
 
-static void sub_0205D0B4(UnkStruct_0205D094 *param0)
-{
+static void sub_0205D0B4(UnkStruct_0205D094 *param0) {
     param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_30, HEAP_ID_FIELD);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
-{
+static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2) {
     int v0;
     void *v1;
 
@@ -453,8 +442,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     Heap_Free(v1);
 }
 
-static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **param1, u32 param2)
-{
+static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **param1, u32 param2) {
     SpriteResourceTable *v0;
     SpriteResourceList *v1;
     int v2;
@@ -482,8 +470,7 @@ static int sub_0205D1C4(SpriteResourceCollection *param0, SpriteResourceList **p
     return v2;
 }
 
-static void sub_0205D22C(UnkStruct_0205D094 *param0)
-{
+static void sub_0205D22C(UnkStruct_0205D094 *param0) {
     int v0;
 
     SpriteList_Delete(param0->unk_00);
@@ -504,8 +491,7 @@ static void sub_0205D22C(UnkStruct_0205D094 *param0)
     }
 }
 
-void sub_0205D274(UnkStruct_0205D274 *param0, UnkStruct_0205D3AC *param1, int param2)
-{
+void sub_0205D274(UnkStruct_0205D274 *param0, UnkStruct_0205D3AC *param1, int param2) {
     memset(param1, 0, sizeof(UnkStruct_0205D3AC));
 
     switch (param2) {
@@ -544,8 +530,7 @@ void sub_0205D274(UnkStruct_0205D274 *param0, UnkStruct_0205D3AC *param1, int pa
     param1->unk_04(&param0->unk_04, param1);
 }
 
-static Sprite *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *param2, int param3, int param4)
-{
+static Sprite *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *param2, int param3, int param4) {
     AffineSpriteListTemplate v0;
     Sprite *v1;
     VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
@@ -566,14 +551,12 @@ static Sprite *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *par
     return v1;
 }
 
-void sub_0205D3AC(UnkStruct_0205D3AC *param0)
-{
+void sub_0205D3AC(UnkStruct_0205D3AC *param0) {
     param0->unk_08(param0);
     memset(param0, 0, sizeof(UnkStruct_0205D3AC));
 }
 
-void sub_0205D3C4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1)
-{
+void sub_0205D3C4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1) {
     UnkStruct_0205D3C4 *v0;
 
     param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D3C4));
@@ -586,8 +569,7 @@ void sub_0205D3C4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
     v0->unk_0C = sub_0205D344(param0, 0, &v0->unk_00, 0, 1);
 }
 
-void sub_0205D404(struct UnkStruct_0205D3AC_t *param0)
-{
+void sub_0205D404(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D3C4 *v0 = (UnkStruct_0205D3C4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
@@ -598,8 +580,7 @@ void sub_0205D404(struct UnkStruct_0205D3AC_t *param0)
     }
 }
 
-int sub_0205D424(struct UnkStruct_0205D3AC_t *param0)
-{
+int sub_0205D424(struct UnkStruct_0205D3AC_t *param0) {
     VecFx32 v0;
     UnkStruct_0205D3C4 *v1 = (UnkStruct_0205D3C4 *)param0->unk_00;
 
@@ -621,8 +602,7 @@ int sub_0205D424(struct UnkStruct_0205D3AC_t *param0)
     return 0;
 }
 
-void sub_0205D4A4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1)
-{
+void sub_0205D4A4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1) {
     UnkStruct_0205D4A4 *v0;
 
     param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D4A4));
@@ -635,8 +615,7 @@ void sub_0205D4A4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
     v0->unk_0C = sub_0205D344(param0, 1, &v0->unk_00, 1, 1);
 }
 
-void sub_0205D4E0(struct UnkStruct_0205D3AC_t *param0)
-{
+void sub_0205D4E0(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D4A4 *v0 = (UnkStruct_0205D4A4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
@@ -647,8 +626,7 @@ void sub_0205D4E0(struct UnkStruct_0205D3AC_t *param0)
     }
 }
 
-int sub_0205D500(struct UnkStruct_0205D3AC_t *param0)
-{
+int sub_0205D500(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D4A4 *v0 = (UnkStruct_0205D4A4 *)param0->unk_00;
 
     if (v0->unk_10 < 7) {
@@ -660,8 +638,7 @@ int sub_0205D500(struct UnkStruct_0205D3AC_t *param0)
     return 0;
 }
 
-void sub_0205D524(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1)
-{
+void sub_0205D524(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1) {
     UnkStruct_0205D3C4 *v0;
 
     param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D3C4));
@@ -674,8 +651,7 @@ void sub_0205D524(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
     v0->unk_0C = sub_0205D344(param0, 0, &v0->unk_00, 0, 1);
 }
 
-void sub_0205D564(struct UnkStruct_0205D3AC_t *param0)
-{
+void sub_0205D564(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D3C4 *v0 = (UnkStruct_0205D3C4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
@@ -685,8 +661,7 @@ void sub_0205D564(struct UnkStruct_0205D3AC_t *param0)
     }
 }
 
-int sub_0205D584(struct UnkStruct_0205D3AC_t *param0)
-{
+int sub_0205D584(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D3C4 *v0 = (UnkStruct_0205D3C4 *)param0->unk_00;
 
     v0->unk_00.y += (FX32_ONE * 8);
@@ -710,8 +685,7 @@ int sub_0205D584(struct UnkStruct_0205D3AC_t *param0)
     return 1;
 }
 
-void sub_0205D5E0(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1)
-{
+void sub_0205D5E0(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1) {
     UnkStruct_0205D5E0 *v0;
 
     param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D5E0));
@@ -726,8 +700,7 @@ void sub_0205D5E0(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
     Sprite_SetAnim(v0->unk_0C, 1);
 }
 
-void sub_0205D624(struct UnkStruct_0205D3AC_t *param0)
-{
+void sub_0205D624(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D5E0 *v0 = (UnkStruct_0205D5E0 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
@@ -738,8 +711,7 @@ void sub_0205D624(struct UnkStruct_0205D3AC_t *param0)
     }
 }
 
-int sub_0205D644(struct UnkStruct_0205D3AC_t *param0)
-{
+int sub_0205D644(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D5E0 *v0 = (UnkStruct_0205D5E0 *)param0->unk_00;
     int v1 = 1;
 
@@ -790,8 +762,7 @@ int sub_0205D644(struct UnkStruct_0205D3AC_t *param0)
     return v1;
 }
 
-void sub_0205D714(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1)
-{
+void sub_0205D714(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1) {
     UnkStruct_0205D5E0 *v0;
 
     param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D5E0));
@@ -808,8 +779,7 @@ void sub_0205D714(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
     Sprite_SetDrawFlag(v0->unk_0C, FALSE);
 }
 
-void sub_0205D768(struct UnkStruct_0205D3AC_t *param0)
-{
+void sub_0205D768(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D5E0 *v0 = (UnkStruct_0205D5E0 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
@@ -819,8 +789,7 @@ void sub_0205D768(struct UnkStruct_0205D3AC_t *param0)
     }
 }
 
-int sub_0205D788(struct UnkStruct_0205D3AC_t *param0)
-{
+int sub_0205D788(struct UnkStruct_0205D3AC_t *param0) {
     VecFx32 v0;
     UnkStruct_0205D5E0 *v1 = (UnkStruct_0205D5E0 *)param0->unk_00;
     int v2 = 1;
@@ -858,8 +827,7 @@ int sub_0205D788(struct UnkStruct_0205D3AC_t *param0)
     return v2;
 }
 
-void sub_0205D844(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1)
-{
+void sub_0205D844(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param1) {
     UnkStruct_0205D4A4 *v0;
 
     param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D4A4));
@@ -874,8 +842,7 @@ void sub_0205D844(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
     Sprite_SetAnim(v0->unk_0C, 1);
 }
 
-void sub_0205D888(struct UnkStruct_0205D3AC_t *param0)
-{
+void sub_0205D888(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D4A4 *v0 = (UnkStruct_0205D4A4 *)param0->unk_00;
 
     if (param0->unk_00 != NULL) {
@@ -885,8 +852,7 @@ void sub_0205D888(struct UnkStruct_0205D3AC_t *param0)
     }
 }
 
-int sub_0205D8A8(struct UnkStruct_0205D3AC_t *param0)
-{
+int sub_0205D8A8(struct UnkStruct_0205D3AC_t *param0) {
     UnkStruct_0205D4A4 *v0 = (UnkStruct_0205D4A4 *)param0->unk_00;
 
     if (v0->unk_10 < 8) {

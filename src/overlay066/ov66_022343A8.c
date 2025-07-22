@@ -141,8 +141,7 @@ static const UnkStruct_ov66_02258B38 Unk_ov66_02258B38[20] = {
     { 0xEA, 0x18D, 0x0 }
 };
 
-UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 heapID2)
-{
+UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 heapID2) {
     UnkStruct_ov66_02234548 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02234548));
     memset(v0, 0, sizeof(UnkStruct_ov66_02234548));
 
@@ -243,8 +242,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 h
     return v0;
 }
 
-void ov66_02234548(UnkStruct_ov66_02234548 *param0)
-{
+void ov66_02234548(UnkStruct_ov66_02234548 *param0) {
     {
         ov66_02234958(&param0->unk_18);
         TextureResourceManager_Clear(param0->unk_08);
@@ -264,8 +262,7 @@ void ov66_02234548(UnkStruct_ov66_02234548 *param0)
     Heap_Free(param0);
 }
 
-void ov66_02234590(UnkStruct_ov66_02234548 *param0)
-{
+void ov66_02234590(UnkStruct_ov66_02234548 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_14; v0++) {
@@ -275,8 +272,7 @@ void ov66_02234590(UnkStruct_ov66_02234548 *param0)
     }
 }
 
-void ov66_022345C4(UnkStruct_ov66_02234548 *param0)
-{
+void ov66_022345C4(UnkStruct_ov66_02234548 *param0) {
     int v0;
 
     sub_02020C08();
@@ -290,18 +286,15 @@ void ov66_022345C4(UnkStruct_ov66_02234548 *param0)
     }
 }
 
-void ov66_02234604(UnkStruct_ov66_02234548 *param0)
-{
+void ov66_02234604(UnkStruct_ov66_02234548 *param0) {
     sub_02020D68(param0->unk_0C);
 }
 
-void ov66_02234610(UnkStruct_ov66_02234548 *param0, u32 param1)
-{
+void ov66_02234610(UnkStruct_ov66_02234548 *param0, u32 param1) {
     ov66_02234960(&param0->unk_18, param1);
 }
 
-UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const UnkStruct_ov63_0222BEC0 *param1)
-{
+UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const UnkStruct_ov63_0222BEC0 *param1) {
     UnkStruct_ov66_02234798 *v0 = ov66_02234980(param0);
     v0->unk_04 = param1;
 
@@ -387,29 +380,24 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
     return v0;
 }
 
-void ov66_02234798(UnkStruct_ov66_02234798 *param0)
-{
+void ov66_02234798(UnkStruct_ov66_02234798 *param0) {
     sub_020211FC(param0->unk_08);
     memset(param0, 0, sizeof(UnkStruct_ov66_02234798));
 }
 
-void ov66_022347B0(UnkStruct_ov66_02234798 *param0, BOOL param1)
-{
+void ov66_022347B0(UnkStruct_ov66_02234798 *param0, BOOL param1) {
     param0->unk_00_0 = param1;
 }
 
-void ov66_022347C4(UnkStruct_ov66_02234798 *param0, u32 param1)
-{
+void ov66_022347C4(UnkStruct_ov66_02234798 *param0, u32 param1) {
     param0->unk_8C = param1;
 }
 
-BOOL ov66_022347CC(const UnkStruct_ov66_02234798 *param0)
-{
+BOOL ov66_022347CC(const UnkStruct_ov66_02234798 *param0) {
     return param0->unk_00_4;
 }
 
-void ov66_022347D4(UnkStruct_ov66_02234798 *param0, const UnkStruct_ov63_0222CC3C *param1)
-{
+void ov66_022347D4(UnkStruct_ov66_02234798 *param0, const UnkStruct_ov63_0222CC3C *param1) {
     VecFx32 v0;
 
     ov70_0225C700(param1, &v0);
@@ -417,57 +405,48 @@ void ov66_022347D4(UnkStruct_ov66_02234798 *param0, const UnkStruct_ov63_0222CC3
     ov66_022347F8(param0, &v0);
 }
 
-void ov66_022347F8(UnkStruct_ov66_02234798 *param0, const VecFx32 *param1)
-{
+void ov66_022347F8(UnkStruct_ov66_02234798 *param0, const VecFx32 *param1) {
     sub_020212A8(param0->unk_08, param1);
     Easy3DObject_SetPosition(&param0->unk_0C, param1->x + 0, ((FX32_CONST(0)) + FX32_CONST(2)), param1->z + (FX32_CONST(-8)));
 }
 
-void ov66_0223481C(const UnkStruct_ov66_02234798 *param0, VecFx32 *param1)
-{
+void ov66_0223481C(const UnkStruct_ov66_02234798 *param0, VecFx32 *param1) {
     const VecFx32 *v0 = sub_020212C0(param0->unk_08);
     *param1 = *v0;
 }
 
-void ov66_02234834(UnkStruct_ov66_02234798 *param0, int param1)
-{
+void ov66_02234834(UnkStruct_ov66_02234798 *param0, int param1) {
     u32 v0 = ov66_022348D8(1, param1);
 
     sub_02021344(param0->unk_08, v0);
     sub_020213A4(param0->unk_08, 0);
 }
 
-void ov66_02234850(UnkStruct_ov66_02234798 *param0, int param1)
-{
+void ov66_02234850(UnkStruct_ov66_02234798 *param0, int param1) {
     param0->unk_01_0 = 1;
     param0->unk_01_1 = param1;
     param0->unk_02 = 0;
     param0->unk_03 = 1;
 }
 
-void ov66_0223487C(UnkStruct_ov66_02234798 *param0)
-{
+void ov66_0223487C(UnkStruct_ov66_02234798 *param0) {
     param0->unk_01_0 = 0;
 }
 
-void ov66_02234888(UnkStruct_ov66_02234798 *param0, u8 param1)
-{
+void ov66_02234888(UnkStruct_ov66_02234798 *param0, u8 param1) {
     param0->unk_03 = param1;
 }
 
-void ov66_0223488C(UnkStruct_ov66_02234798 *param0, BOOL param1)
-{
+void ov66_0223488C(UnkStruct_ov66_02234798 *param0, BOOL param1) {
     param0->unk_00_6 = param1;
     ov66_02234D3C(param0);
 }
 
-BOOL ov66_022348A8(const UnkStruct_ov66_02234798 *param0)
-{
+BOOL ov66_022348A8(const UnkStruct_ov66_02234798 *param0) {
     return param0->unk_00_6;
 }
 
-static const UnkStruct_ov66_02258B38 *ov66_022348B0(u32 param0)
-{
+static const UnkStruct_ov66_02258B38 *ov66_022348B0(u32 param0) {
     int v0;
 
     for (v0 = 0; v0 < 20; v0++) {
@@ -480,8 +459,7 @@ static const UnkStruct_ov66_02258B38 *ov66_022348B0(u32 param0)
     return NULL;
 }
 
-static u32 ov66_022348D8(BOOL param0, u32 param1)
-{
+static u32 ov66_022348D8(BOOL param0, u32 param1) {
     if (param0) {
         return 0 + param1;
     }
@@ -489,8 +467,7 @@ static u32 ov66_022348D8(BOOL param0, u32 param1)
     return 4 + param1;
 }
 
-static fx32 ov66_022348E4(u16 param0, u16 param1, u32 param2)
-{
+static fx32 ov66_022348E4(u16 param0, u16 param1, u32 param2) {
     fx32 v0;
 
     param1++;
@@ -501,8 +478,7 @@ static fx32 ov66_022348E4(u16 param0, u16 param1, u32 param2)
     return v0;
 }
 
-static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 heapID)
-{
+static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 heapID) {
     void *v0;
 
     ov70_0225C730(&v0, param1, param2, heapID);
@@ -517,29 +493,24 @@ static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 par
     NNS_G3dMdlSetMdlPolygonIDAll(param0->unk_00.model, 20);
 }
 
-static void ov66_02234958(UnkStruct_ov66_02234958 *param0)
-{
+static void ov66_02234958(UnkStruct_ov66_02234958 *param0) {
     Easy3DModel_Release(&param0->unk_00);
 }
 
-static void ov66_02234960(UnkStruct_ov66_02234958 *param0, u32 param1)
-{
+static void ov66_02234960(UnkStruct_ov66_02234958 *param0, u32 param1) {
     param0->unk_10 = param1;
     NNS_G3dMdlSetMdlAlphaAll(param0->unk_00.model, param0->unk_10);
 }
 
-static u32 ov66_0223496C(const UnkStruct_ov66_02234958 *param0)
-{
+static u32 ov66_0223496C(const UnkStruct_ov66_02234958 *param0) {
     return param0->unk_10;
 }
 
-static void ov66_02234970(UnkStruct_ov66_02234958 *param0, Easy3DObject *param1)
-{
+static void ov66_02234970(UnkStruct_ov66_02234958 *param0, Easy3DObject *param1) {
     Easy3DObject_Init(param1, &param0->unk_00);
 }
 
-static UnkStruct_ov66_02234798 *ov66_02234980(UnkStruct_ov66_02234548 *param0)
-{
+static UnkStruct_ov66_02234798 *ov66_02234980(UnkStruct_ov66_02234548 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_14; v0++) {
@@ -552,8 +523,7 @@ static UnkStruct_ov66_02234798 *ov66_02234980(UnkStruct_ov66_02234548 *param0)
     return NULL;
 }
 
-static BOOL ov66_022349B8(const UnkStruct_ov66_02234798 *param0)
-{
+static BOOL ov66_022349B8(const UnkStruct_ov66_02234798 *param0) {
     if (param0->unk_04 == NULL) {
         return 0;
     }
@@ -561,18 +531,15 @@ static BOOL ov66_022349B8(const UnkStruct_ov66_02234798 *param0)
     return 1;
 }
 
-static void ov66_022349C8(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_022349C8(UnkStruct_ov66_02234798 *param0) {
     memset(param0, 0, sizeof(UnkStruct_ov66_02234798));
 }
 
-static void ov66_022349D4(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_022349D4(UnkStruct_ov66_02234798 *param0) {
     Easy3DObject_Draw(&param0->unk_0C);
 }
 
-static void ov66_022349E0(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_022349E0(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
     UnkStruct_ov63_0222CC3C v2;
@@ -614,8 +581,7 @@ static void ov66_022349E0(UnkStruct_ov66_02234798 *param0)
     ov66_022347D4(param0, &v2);
 }
 
-static void ov66_02234A78(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234A78(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
 
@@ -626,8 +592,7 @@ static void ov66_02234A78(UnkStruct_ov66_02234798 *param0)
     sub_020213A4(param0->unk_08, 0);
 }
 
-static void ov66_02234AA0(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234AA0(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
     fx32 v2;
@@ -651,8 +616,7 @@ static void ov66_02234AA0(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234B10(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234B10(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
     u16 v2 = ov63_0222BF90(param0->unk_04, 8);
@@ -668,8 +632,7 @@ static void ov66_02234B10(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234B54(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234B54(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
     fx32 v2;
@@ -693,8 +656,7 @@ static void ov66_02234B54(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234BC4(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234BC4(UnkStruct_ov66_02234798 *param0) {
     static void (*v0[3])(UnkStruct_ov66_02234798 *) = {
         ov66_02234BEC,
         ov66_02234C34,
@@ -706,8 +668,7 @@ static void ov66_02234BC4(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234BEC(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234BEC(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
 
@@ -726,8 +687,7 @@ static void ov66_02234BEC(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234C34(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234C34(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
 
@@ -743,8 +703,7 @@ static void ov66_02234C34(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234C70(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234C70(UnkStruct_ov66_02234798 *param0) {
     u32 v0;
     u32 v1;
 
@@ -765,8 +724,7 @@ static void ov66_02234C70(UnkStruct_ov66_02234798 *param0)
     param0->unk_02 = (param0->unk_02 + 1) % (4 * 2);
 }
 
-static BOOL ov66_02234CD8(u32 param0)
-{
+static BOOL ov66_02234CD8(u32 param0) {
     switch (param0) {
     case 2:
     case 3:
@@ -782,8 +740,7 @@ static BOOL ov66_02234CD8(u32 param0)
     return 0;
 }
 
-static void ov66_02234D08(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234D08(UnkStruct_ov66_02234798 *param0) {
     BOOL v0;
 
     if (ov66_022349B8(param0)) {
@@ -799,8 +756,7 @@ static void ov66_02234D08(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0)
-{
+static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0) {
     if ((param0->unk_00_4 == 0) && (param0->unk_00_6 == 1)) {
         sub_02021320(param0->unk_08, 1);
         Easy3DObject_SetVisible(&param0->unk_0C, 1);
@@ -810,15 +766,13 @@ static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234D78(UnkStruct_020216E0 *param0, void *param1)
-{
+static void ov66_02234D78(UnkStruct_020216E0 *param0, void *param1) {
     UnkStruct_ov66_02234798 *v0 = param1;
     NNSG3dResMdl *v1 = sub_02021430(param0);
     NNS_G3dMdlSetMdlLightEnableFlagAll(v1, v0->unk_8C);
 }
 
-static BOOL ov66_02234D8C(UnkStruct_020216E0 *param0)
-{
+static BOOL ov66_02234D8C(UnkStruct_020216E0 *param0) {
     BOOL v0;
     VecFx32 v1;
     NNSG3dResMdlInfo *v2;

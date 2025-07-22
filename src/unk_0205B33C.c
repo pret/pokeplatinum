@@ -103,8 +103,7 @@ static int sub_0205BCD4(int param0, int param1, StringTemplate *param2);
 static void sub_0205B408(UnkStruct_0205B43C *param0);
 static void sub_0205BFF0(UnkStruct_0205B4F8 *param0);
 
-UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
-{
+UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem) {
     UnkStruct_0205B43C *v0 = NULL;
 
     GF_ASSERT(fieldSystem != NULL);
@@ -130,8 +129,7 @@ UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
     return v0;
 }
 
-void sub_0205B388(FieldSystem *fieldSystem)
-{
+void sub_0205B388(FieldSystem *fieldSystem) {
     if (fieldSystem->unk_7C == NULL) {
         return;
     }
@@ -139,8 +137,7 @@ void sub_0205B388(FieldSystem *fieldSystem)
     sub_0205B5B4(fieldSystem->unk_7C, sub_0205B5FC, 5);
 }
 
-static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
-{
+static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem) {
     void *v0;
     SaveData *saveData;
     UnkStruct_0205B43C *v2 = NULL;
@@ -168,8 +165,7 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     return v2;
 }
 
-static void sub_0205B408(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B408(UnkStruct_0205B43C *param0) {
     Sentence v0;
 
     if (CommServerClient_IsInitialized()) {
@@ -182,8 +178,7 @@ static void sub_0205B408(UnkStruct_0205B43C *param0)
 
 static int Unk_021C0850;
 
-static void sub_0205B43C(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B43C(UnkStruct_0205B43C *param0) {
     if (sub_02036AA0()) {
         Unk_021C0850 = 0;
         sub_0205B5B4(param0, sub_0205B4F8, 0);
@@ -211,16 +206,14 @@ static void sub_0205B43C(UnkStruct_0205B43C *param0)
     }
 }
 
-static void sub_0205B4B0(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B4B0(UnkStruct_0205B43C *param0) {
     if (sub_02036B44() == 1) {
         CommFieldCmd_Init((void *)param0->fieldSystem);
         sub_0205B5B4(param0, sub_0205B43C, 2);
     }
 }
 
-static int sub_0205B4D4(void)
-{
+static int sub_0205B4D4(void) {
     int v0, v1;
     TrainerInfo *v2;
 
@@ -237,8 +230,7 @@ static int sub_0205B4D4(void)
     return v1 >= 1;
 }
 
-static void sub_0205B4F8(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B4F8(UnkStruct_0205B43C *param0) {
     UnkStruct_0205B4F8 *v0;
 
     if (param0->unk_14 > 0) {
@@ -264,8 +256,7 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
     }
 }
 
-static void sub_0205B578(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B578(UnkStruct_0205B43C *param0) {
     if (sub_02038938() && (0 == sub_020360E8())) {
         return;
     }
@@ -278,16 +269,14 @@ static void sub_0205B578(UnkStruct_0205B43C *param0)
     }
 }
 
-static void sub_0205B5B4(UnkStruct_0205B43C *param0, UnkFuncPtr_0205B43C param1, int param2)
-{
+static void sub_0205B5B4(UnkStruct_0205B43C *param0, UnkFuncPtr_0205B43C param1, int param2) {
     param0->unk_10 = param1;
     param0->unk_14 = param2;
 }
 
 static WMBssDesc *Unk_021C085C[16];
 
-void sub_0205B5BC(SysTask *param0, void *param1)
-{
+void sub_0205B5BC(SysTask *param0, void *param1) {
     UnkStruct_0205B43C *v0 = (UnkStruct_0205B43C *)param1;
 
     if (v0 == NULL) {
@@ -307,8 +296,7 @@ void sub_0205B5BC(SysTask *param0, void *param1)
     }
 }
 
-static void sub_0205B5FC(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B5FC(UnkStruct_0205B43C *param0) {
     if (param0->unk_14 != 0) {
         param0->unk_14--;
         return;
@@ -318,8 +306,7 @@ static void sub_0205B5FC(UnkStruct_0205B43C *param0)
     sub_0205B5B4(param0, sub_0205B620, 0);
 }
 
-static void sub_0205B620(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B620(UnkStruct_0205B43C *param0) {
     if (CommSys_IsInitialized()) {
         return;
     }
@@ -327,8 +314,7 @@ static void sub_0205B620(UnkStruct_0205B43C *param0)
     sub_0205B754(param0);
 }
 
-static void sub_0205B634(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B634(UnkStruct_0205B43C *param0) {
     if (1 == sub_02036A68()) {
         CommInfo_SendBattleRegulation();
         sub_0205B5B4(param0, sub_0205B6C4, 3);
@@ -352,8 +338,7 @@ static void sub_0205B634(UnkStruct_0205B43C *param0)
     param0->unk_44 = 0;
 }
 
-static void sub_0205B694(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B694(UnkStruct_0205B43C *param0) {
     if (!FieldSystem_IsRunningTask(param0->fieldSystem)) {
         sub_02036AC4();
         sub_0205C160(param0);
@@ -362,8 +347,7 @@ static void sub_0205B694(UnkStruct_0205B43C *param0)
     }
 }
 
-static void sub_0205B6C4(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B6C4(UnkStruct_0205B43C *param0) {
     if (1 == sub_02036A68()) {
         if (CommInfo_TrainerInfo(CommSys_CurNetId()) != NULL) {
             param0->unk_20 = 0;
@@ -385,8 +369,7 @@ static void sub_0205B6C4(UnkStruct_0205B43C *param0)
     }
 }
 
-static void sub_0205B72C(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B72C(UnkStruct_0205B43C *param0) {
     if (0 == sub_02036A68()) {
         sub_02036AC4();
         sub_0205C160(param0);
@@ -396,8 +379,7 @@ static void sub_0205B72C(UnkStruct_0205B43C *param0)
     }
 }
 
-static void sub_0205B754(UnkStruct_0205B43C *param0)
-{
+static void sub_0205B754(UnkStruct_0205B43C *param0) {
     void *v0;
 
     if (param0 == NULL) {
@@ -409,20 +391,17 @@ static void sub_0205B754(UnkStruct_0205B43C *param0)
     Heap_Destroy(HEAP_ID_31);
 }
 
-FieldSystem *sub_0205B770(UnkStruct_0205B43C *param0)
-{
+FieldSystem *sub_0205B770(UnkStruct_0205B43C *param0) {
     return param0->fieldSystem;
 }
 
-WMBssDesc *sub_0205B774(UnkStruct_0205B43C *param0, int param1)
-{
+WMBssDesc *sub_0205B774(UnkStruct_0205B43C *param0, int param1) {
     return param0->unk_110[param1];
 }
 
 static UnkStruct_0205B4F8 *Unk_021C0854;
 
-int sub_0205B780(UnkStruct_0205B43C *param0, int param1)
-{
+int sub_0205B780(UnkStruct_0205B43C *param0, int param1) {
     TrainerInfo *v0;
     UnkStruct_0203330C *v1;
     UnkStruct_0205B4F8 *v2;
@@ -472,8 +451,7 @@ int sub_0205B780(UnkStruct_0205B43C *param0, int param1)
     return 5;
 }
 
-int sub_0205B804(UnkStruct_0205B43C *param0, int param1, u16 param2)
-{
+int sub_0205B804(UnkStruct_0205B43C *param0, int param1, u16 param2) {
     TrainerInfo *v0;
     UnkStruct_0203330C *v1;
     UnkStruct_0205B4F8 *v2;
@@ -554,13 +532,11 @@ int sub_0205B804(UnkStruct_0205B43C *param0, int param1, u16 param2)
     return 0;
 }
 
-u32 sub_0205B8D8(UnkStruct_0205B43C *param0)
-{
+u32 sub_0205B8D8(UnkStruct_0205B43C *param0) {
     return param0->unk_1C;
 }
 
-u32 sub_0205B8DC(UnkStruct_0205B43C *param0)
-{
+u32 sub_0205B8DC(UnkStruct_0205B43C *param0) {
     if (param0->unk_44) {
         return 7;
     }
@@ -582,8 +558,7 @@ u32 sub_0205B8DC(UnkStruct_0205B43C *param0)
     return 7;
 }
 
-u32 sub_0205B91C(UnkStruct_0205B43C *param0)
-{
+u32 sub_0205B91C(UnkStruct_0205B43C *param0) {
     if (sub_02036AA0() == 1) {
         return param0->unk_30;
     }
@@ -591,8 +566,7 @@ u32 sub_0205B91C(UnkStruct_0205B43C *param0)
     return 7;
 }
 
-void sub_0205B930(UnkStruct_0205B43C *param0, int param1, u32 param2)
-{
+void sub_0205B930(UnkStruct_0205B43C *param0, int param1, u32 param2) {
     u8 v0 = (u8)param2;
 
     switch (param1) {
@@ -618,18 +592,15 @@ void sub_0205B930(UnkStruct_0205B43C *param0, int param1, u32 param2)
     }
 }
 
-void sub_0205B988(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205B988(int param0, int param1, void *param2, void *param3) {
     return;
 }
 
-void sub_0205B98C(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205B98C(int param0, int param1, void *param2, void *param3) {
     return;
 }
 
-void sub_0205B990(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205B990(int param0, int param1, void *param2, void *param3) {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
 
     sub_0205B5B4(fieldSystem->unk_7C, sub_0205B43C, 2);
@@ -638,8 +609,7 @@ void sub_0205B990(int param0, int param1, void *param2, void *param3)
 
 static int Unk_021C0858;
 
-void sub_0205B9AC(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205B9AC(int param0, int param1, void *param2, void *param3) {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     u8 *v1 = (u8 *)param2;
 
@@ -649,8 +619,7 @@ void sub_0205B9AC(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205B9C4(int param0, int param1, void *param2, void *param3) {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     u8 *v1 = (u8 *)param2;
 
@@ -662,20 +631,17 @@ void sub_0205B9C4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void sub_0205B9E0(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205B9E0(int param0, int param1, void *param2, void *param3) {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
 
     fieldSystem->unk_7C->unk_44 = 1;
 }
 
-int sub_0205B9E8(UnkStruct_0205B43C *param0)
-{
+int sub_0205B9E8(UnkStruct_0205B43C *param0) {
     return param0->unk_44;
 }
 
-int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
-{
+int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1) {
     if (param0->unk_30 == 0) {
         CommSys_SendData(104, NULL, 0);
         return param1;
@@ -684,8 +650,7 @@ int sub_0205B9EC(UnkStruct_0205B43C *param0, int param1)
     return 0;
 }
 
-void sub_0205BA08(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205BA08(int param0, int param1, void *param2, void *param3) {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     TrainerCard *trainerCard = (TrainerCard *)param2;
     TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
@@ -706,16 +671,14 @@ void sub_0205BA08(int param0, int param1, void *param2, void *param3)
     }
 }
 
-u8 *sub_0205BA5C(int param0, void *param1, int param2)
-{
+u8 *sub_0205BA5C(int param0, void *param1, int param2) {
     FieldSystem *fieldSystem = (FieldSystem *)param1;
     UnkStruct_0205B43C *v1 = fieldSystem->unk_7C;
 
     return (u8 *)v1->unk_188[param0];
 }
 
-void sub_0205BA6C(int param0, int param1, void *param2, void *param3)
-{
+void sub_0205BA6C(int param0, int param1, void *param2, void *param3) {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     UnkStruct_0205B43C *v1 = fieldSystem->unk_7C;
     u8 *v2 = (u8 *)param2;
@@ -723,8 +686,7 @@ void sub_0205BA6C(int param0, int param1, void *param2, void *param3)
     v1->unk_176[param0] = *v2;
 }
 
-u16 sub_0205BA7C(UnkStruct_0205B43C *param0)
-{
+u16 sub_0205BA7C(UnkStruct_0205B43C *param0) {
     int v0 = CommSys_CurNetId();
 
     if (param0->unk_176[v0] == 2) {
@@ -738,8 +700,7 @@ u16 sub_0205BA7C(UnkStruct_0205B43C *param0)
     return 0;
 }
 
-void sub_0205BAAC(int param0)
-{
+void sub_0205BAAC(int param0) {
     u8 v0 = param0;
     CommSys_SendData(101, &v0, 1);
 }
@@ -878,8 +839,7 @@ const u16 Unk_020ED570[] = {
     0x2E
 };
 
-static int sub_0205BAC0(int param0)
-{
+static int sub_0205BAC0(int param0) {
     int v0, v1, v2;
 
     for (v0 = 0; v0 < 10; v0++) {
@@ -891,8 +851,7 @@ static int sub_0205BAC0(int param0)
     return -1;
 }
 
-static int sub_0205BAE8(UnkStruct_0205B43C *param0, int param1)
-{
+static int sub_0205BAE8(UnkStruct_0205B43C *param0, int param1) {
     int v0, v1;
     TrainerInfo *v2;
     UnkStruct_0203330C *v3;
@@ -957,8 +916,7 @@ static int sub_0205BAE8(UnkStruct_0205B43C *param0, int param1)
     return 40;
 }
 
-int sub_0205BC50(StringTemplate *param0)
-{
+int sub_0205BC50(StringTemplate *param0) {
     u8 v0, v1;
     u8 v2, v3;
 
@@ -998,8 +956,7 @@ int sub_0205BC50(StringTemplate *param0)
     return 15;
 }
 
-static int sub_0205BCD4(int param0, int param1, StringTemplate *param2)
-{
+static int sub_0205BCD4(int param0, int param1, StringTemplate *param2) {
     if (param0 != (1 - 1)) {
         return Unk_020ED6E8[param0][param1];
     }
@@ -1007,8 +964,7 @@ static int sub_0205BCD4(int param0, int param1, StringTemplate *param2)
     return sub_0205BC50(param2);
 }
 
-int sub_0205BCF4(UnkStruct_0205B43C *param0, int param1, int param2, StringTemplate *param3)
-{
+int sub_0205BCF4(UnkStruct_0205B43C *param0, int param1, int param2, StringTemplate *param3) {
     int v0;
     TrainerInfo *v1;
 
@@ -1090,8 +1046,7 @@ int sub_0205BCF4(UnkStruct_0205B43C *param0, int param1, int param2, StringTempl
     return 40;
 }
 
-u8 sub_0205BE38(void)
-{
+u8 sub_0205BE38(void) {
     u8 v0;
     TrainerInfo *v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v1 != NULL);
@@ -1100,8 +1055,7 @@ u8 sub_0205BE38(void)
     return v0;
 }
 
-static void sub_0205BE58(UnkStruct_0205B4F8 *param0, int param1)
-{
+static void sub_0205BE58(UnkStruct_0205B4F8 *param0, int param1) {
     TrainerInfo *v0;
     int v1, v2 = 0;
 
@@ -1122,8 +1076,7 @@ static void sub_0205BE58(UnkStruct_0205B4F8 *param0, int param1)
     }
 }
 
-void sub_0205BEA8(int param0)
-{
+void sub_0205BEA8(int param0) {
     UnkStruct_0205B4F8 v0;
 
     MI_CpuClear8(&v0, sizeof(UnkStruct_0205B4F8));
@@ -1192,8 +1145,7 @@ static const int Unk_020ED720[] = {
     0xBC
 };
 
-int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1)
-{
+int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1) {
     int v0, v1 = 0, v2;
     u16 v3;
 
@@ -1233,8 +1185,7 @@ int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1)
     return Unk_020ED720[v2];
 }
 
-static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
-{
+static void sub_0205BFF0(UnkStruct_0205B4F8 *param0) {
     int v0;
 
     param0->unk_1C = 0;
@@ -1247,14 +1198,12 @@ static void sub_0205BFF0(UnkStruct_0205B4F8 *param0)
     }
 }
 
-void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1)
-{
+void sub_0205C010(UnkStruct_0205B43C *param0, Sentence *param1) {
     sub_02014CC0(&param0->unk_178, param1);
     param0->unk_180 = 1;
 }
 
-Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
-{
+Sentence *sub_0205C028(UnkStruct_0205B43C *param0) {
     if (param0->unk_180 == 0) {
         return NULL;
     }
@@ -1263,8 +1212,7 @@ Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
     return &param0->unk_178;
 }
 
-void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *param3, UnkStruct_02014EC4 *param4)
-{
+void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *param3, UnkStruct_02014EC4 *param4) {
     TrainerInfo *v0;
     Strbuf *v1;
     MessageLoader *v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD);
@@ -1335,8 +1283,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
     MessageLoader_Free(v2);
 }
 
-void sub_0205C12C(Sentence *param0)
-{
+void sub_0205C12C(Sentence *param0) {
     UnkStruct_0205B4F8 v0;
 
     sub_0205BFF0(&v0);
@@ -1347,15 +1294,13 @@ void sub_0205C12C(Sentence *param0)
     sub_020340FC();
 }
 
-void sub_0205C154(UnkStruct_0205B43C *param0)
-{
+void sub_0205C154(UnkStruct_0205B43C *param0) {
     param0->unk_30 = 0;
     param0->unk_40 = 0;
     param0->unk_44 = 0;
 }
 
-static void sub_0205C160(UnkStruct_0205B43C *param0)
-{
+static void sub_0205C160(UnkStruct_0205B43C *param0) {
     param0->unk_20 = 0;
     param0->unk_24 = 0;
     param0->unk_2C = 0;
@@ -1366,8 +1311,7 @@ static void sub_0205C160(UnkStruct_0205B43C *param0)
     param0->unk_44 = 0;
 }
 
-void *sub_0205C17C(UnkStruct_0205B43C *param0)
-{
+void *sub_0205C17C(UnkStruct_0205B43C *param0) {
     param0->unk_184 = TrainerCard_New(HEAP_ID_SYSTEM);
     param0->unk_188[0] = TrainerCard_New(HEAP_ID_SYSTEM);
     param0->unk_188[1] = TrainerCard_New(HEAP_ID_SYSTEM);
@@ -1377,14 +1321,12 @@ void *sub_0205C17C(UnkStruct_0205B43C *param0)
     return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }
 
-void sub_0205C1F0(UnkStruct_0205B43C *param0)
-{
+void sub_0205C1F0(UnkStruct_0205B43C *param0) {
     Heap_Free(param0->unk_188[0]);
     Heap_Free(param0->unk_188[1]);
     Heap_Free(param0->unk_184);
 }
 
-void sub_0205C214(UnkStruct_0205B43C *param0)
-{
+void sub_0205C214(UnkStruct_0205B43C *param0) {
     CommSys_SendDataHuge(105, param0->unk_184, sizeof(TrainerCard));
 }

@@ -15,8 +15,7 @@
 
 #define RESDAT_TABLE_TERMINATOR 0xFFFFFFFE
 
-void SpriteResourcesHeader_Init(SpriteResourcesHeader *resourceHeader, int charResourceID, int plttResourceID, int cellResourceID, int animResourceID, int mcellResourceID, int manimResourceID, BOOL vramTransfer, int priority, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
-{
+void SpriteResourcesHeader_Init(SpriteResourcesHeader *resourceHeader, int charResourceID, int plttResourceID, int cellResourceID, int animResourceID, int mcellResourceID, int manimResourceID, BOOL vramTransfer, int priority, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources) {
     SpriteResource *charResource;
     SpriteResource *plttResource;
     SpriteResource *cellResource;
@@ -84,14 +83,12 @@ void SpriteResourcesHeader_Init(SpriteResourcesHeader *resourceHeader, int charR
     resourceHeader->priority = priority;
 }
 
-void SpriteResourcesHeader_Clear(SpriteResourcesHeader *resourceHeader)
-{
+void SpriteResourcesHeader_Clear(SpriteResourcesHeader *resourceHeader) {
     SpriteTransfer_DeleteCharTransfer(resourceHeader->imageProxy);
     memset(resourceHeader, 0, sizeof(SpriteResourcesHeader));
 }
 
-SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries, enum HeapId heapID, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
-{
+SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries, enum HeapId heapID, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources) {
     int resdatLength = 0;
     while (resdatEntries[resdatLength].charResourceID != RESDAT_TABLE_TERMINATOR) {
         resdatLength++;
@@ -122,8 +119,7 @@ SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatT
     return headerList;
 }
 
-void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *headerList)
-{
+void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *headerList) {
     GF_ASSERT(headerList);
     if (headerList->headers) {
         Heap_Free(headerList->headers);
@@ -132,8 +128,7 @@ void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *headerList)
     Heap_Free(headerList);
 }
 
-SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID)
-{
+SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID) {
     SpriteListParams template;
     NNSG2dViewRect viewRect;
 
@@ -157,8 +152,7 @@ SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, 
     return SpriteList_New(&template);
 }
 
-void SetMainScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y)
-{
+void SetMainScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y) {
     NNSG2dViewRect viewRect;
     viewRect.posTopLeft.x = x;
     viewRect.posTopLeft.y = y;
@@ -167,8 +161,7 @@ void SetMainScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y)
     SetRenderSurfaceViewRect(&g2dRenderer->mainScreen, &viewRect);
 }
 
-void SetSubScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y)
-{
+void SetSubScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y) {
     NNSG2dViewRect viewRect;
     viewRect.posTopLeft.x = x;
     viewRect.posTopLeft.y = y;
@@ -177,8 +170,7 @@ void SetSubScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y)
     SetRenderSurfaceViewRect(&g2dRenderer->subScreen, &viewRect);
 }
 
-void ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar vramMode)
-{
+void ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar vramMode) {
     switch (vramMode) {
     case GX_OBJVRAMMODE_CHAR_1D_32K:
         if (GX_GetBankForOBJ() == GX_VRAM_OBJ_16_G || GX_GetBankForOBJ() == GX_VRAM_OBJ_16_F) {
@@ -206,7 +198,6 @@ void ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeCh
     }
 }
 
-void ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE vramType)
-{
+void ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE vramType) {
     PlttTransfer_MarkReservedSlots((1 << 14 | 1 << 15), vramType);
 }

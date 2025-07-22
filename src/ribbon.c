@@ -584,8 +584,7 @@ static const RibbonData sRibbonDataTable[] = {
     },
 };
 
-u32 Ribbon_GetData(u8 ribbonID, enum RibbonDataField field)
-{
+u32 Ribbon_GetData(u8 ribbonID, enum RibbonDataField field) {
     switch (field) {
     case RIBBON_DATA_MON_DATA_PARAM:
         return sRibbonDataTable[ribbonID].monDataParam;
@@ -602,8 +601,7 @@ u32 Ribbon_GetData(u8 ribbonID, enum RibbonDataField field)
     return 0;
 }
 
-u32 PokemonSummaryScreen_GetRibbonDescriptionID(u8 *specialRibbons, u8 ribbonID)
-{
+u32 PokemonSummaryScreen_GetRibbonDescriptionID(u8 *specialRibbons, u8 ribbonID) {
     if (sRibbonDataTable[ribbonID].descriptionID & SPECIAL_DESCRIPTION_MASK) {
         return SPECIAL_DESCRIPTIONS_START + specialRibbons[sRibbonDataTable[ribbonID].descriptionID & 0xFF];
     }
@@ -611,8 +609,7 @@ u32 PokemonSummaryScreen_GetRibbonDescriptionID(u8 *specialRibbons, u8 ribbonID)
     return sRibbonDataTable[ribbonID].descriptionID;
 }
 
-u8 Ribbon_TryGetSpecialDescriptionID(u8 ribbonID)
-{
+u8 Ribbon_TryGetSpecialDescriptionID(u8 ribbonID) {
     if (sRibbonDataTable[ribbonID].descriptionID & SPECIAL_DESCRIPTION_MASK) {
         return sRibbonDataTable[ribbonID].descriptionID & 0xFF;
     }
@@ -620,8 +617,7 @@ u8 Ribbon_TryGetSpecialDescriptionID(u8 ribbonID)
     return 0xFF;
 }
 
-u16 Ribbon_MonDataParamToNameID(enum PokemonDataParam monDataParam)
-{
+u16 Ribbon_MonDataParamToNameID(enum PokemonDataParam monDataParam) {
     for (int i = 0; i < NELEMS(sRibbonDataTable); i++) {
         if (sRibbonDataTable[i].monDataParam == monDataParam) {
             return sRibbonDataTable[i].nameID;

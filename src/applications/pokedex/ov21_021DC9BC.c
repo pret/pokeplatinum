@@ -173,8 +173,7 @@ static void ov21_021DDC14(PokedexMapDisplay *mapDisplay);
 static void PokedexSort_PopulateDexStatus(EncounterCollection *encounterCollection, UnkStruct_ov21_021DCACC *param1, enum HeapId heapID);
 static void ov21_021DDB68(EncounterCollection *encounterCollection);
 
-void ov21_021DC9BC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
-{
+void ov21_021DC9BC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID) {
     UnkStruct_ov21_021DCACC *v0 = ov21_021DCA5C(heapID, param1);
     UnkStruct_ov21_021DCAE0 *v1 = ov21_021DCAA0(heapID, param1);
 
@@ -190,48 +189,41 @@ void ov21_021DC9BC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum Hea
     param0->graphicsFunc[2] = ov21_021DCD04;
 }
 
-void ov21_021DCA14(UnkStruct_ov21_021E68F4 *param0)
-{
+void ov21_021DCA14(UnkStruct_ov21_021E68F4 *param0) {
     ov21_021DCACC(param0->pageData);
     ov21_021DCAE0(param0->pageGraphics);
 }
 
-int ov21_021DCA28(const UnkStruct_ov21_021E68F4 *param0)
-{
+int ov21_021DCA28(const UnkStruct_ov21_021E68F4 *param0) {
     const UnkStruct_ov21_021DCACC *v0 = param0->pageData;
     return v0->encounterTime;
 }
 
-void ov21_021DCA30(UnkStruct_ov21_021E68F4 *param0, int encounterTime)
-{
+void ov21_021DCA30(UnkStruct_ov21_021E68F4 *param0, int encounterTime) {
     UnkStruct_ov21_021DCACC *v0 = param0->pageData;
 
     GF_ASSERT(encounterTime < 3);
     v0->encounterTime = encounterTime;
 }
 
-void ov21_021DCA44(UnkStruct_ov21_021E68F4 *param0, int param1, int param2)
-{
+void ov21_021DCA44(UnkStruct_ov21_021E68F4 *param0, int param1, int param2) {
     UnkStruct_ov21_021DCAE0 *v0 = param0->pageGraphics;
 
     v0->unk_04 = param1;
     v0->unk_08 = param2;
 }
 
-void ov21_021DCA4C(UnkStruct_ov21_021E68F4 *param0, int param1)
-{
+void ov21_021DCA4C(UnkStruct_ov21_021E68F4 *param0, int param1) {
     UnkStruct_ov21_021DCAE0 *v0 = param0->pageGraphics;
     v0->unk_0C = param1;
 }
 
-void ov21_021DCA54(UnkStruct_ov21_021E68F4 *param0, int param1)
-{
+void ov21_021DCA54(UnkStruct_ov21_021E68F4 *param0, int param1) {
     UnkStruct_ov21_021DCAE0 *v0 = param0->pageGraphics;
     v0->unk_10 = param1;
 }
 
-static UnkStruct_ov21_021DCACC *ov21_021DCA5C(enum HeapId heapID, PokedexApp *param1)
-{
+static UnkStruct_ov21_021DCACC *ov21_021DCA5C(enum HeapId heapID, PokedexApp *param1) {
     UnkStruct_ov21_021DCACC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DCACC));
 
     GF_ASSERT(v0);
@@ -243,8 +235,7 @@ static UnkStruct_ov21_021DCACC *ov21_021DCA5C(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static UnkStruct_ov21_021DCAE0 *ov21_021DCAA0(enum HeapId heapID, PokedexApp *param1)
-{
+static UnkStruct_ov21_021DCAE0 *ov21_021DCAA0(enum HeapId heapID, PokedexApp *param1) {
     UnkStruct_ov21_021DCAE0 *v0;
     UnkStruct_ov21_021E68F4 *v1;
 
@@ -258,25 +249,21 @@ static UnkStruct_ov21_021DCAE0 *ov21_021DCAA0(enum HeapId heapID, PokedexApp *pa
     return v0;
 }
 
-static void ov21_021DCACC(UnkStruct_ov21_021DCACC *param0)
-{
+static void ov21_021DCACC(UnkStruct_ov21_021DCACC *param0) {
     GF_ASSERT(param0);
     Heap_Free(param0);
 }
 
-static void ov21_021DCAE0(UnkStruct_ov21_021DCAE0 *param0)
-{
+static void ov21_021DCAE0(UnkStruct_ov21_021DCAE0 *param0) {
     GF_ASSERT(param0);
     Heap_Free(param0);
 }
 
-static int ov21_021DCAF4(void)
-{
+static int ov21_021DCAF4(void) {
     return 0;
 }
 
-static int PokedexEncounters_PopulateEncounterCollection(PokedexDataManager *dataMan, void *data)
-{
+static int PokedexEncounters_PopulateEncounterCollection(PokedexDataManager *dataMan, void *data) {
     UnkStruct_ov21_021DCACC *v0 = data;
     EncounterCollection *encounterCollection;
 
@@ -307,8 +294,7 @@ static int PokedexEncounters_PopulateEncounterCollection(PokedexDataManager *dat
     return 1;
 }
 
-static int ov21_021DCB6C(PokedexDataManager *dataMan, void *data)
-{
+static int ov21_021DCB6C(PokedexDataManager *dataMan, void *data) {
     UnkStruct_ov21_021DCACC *v0 = data;
     EncounterCollection *encounterCollection = dataMan->pageData;
 
@@ -329,8 +315,7 @@ static int ov21_021DCB6C(PokedexDataManager *dataMan, void *data)
     return 0;
 }
 
-static int ov21_021DCBA8(PokedexDataManager *dataMan, void *data)
-{
+static int ov21_021DCBA8(PokedexDataManager *dataMan, void *data) {
     EncounterCollection *encounterCollection = dataMan->pageData;
 
     if (encounterCollection->invisibleFields) {
@@ -349,8 +334,7 @@ static int ov21_021DCBA8(PokedexDataManager *dataMan, void *data)
     return 1;
 }
 
-static int ov21_021DCBD8(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
-{
+static int ov21_021DCBD8(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan) {
     const UnkStruct_ov21_021DCACC *v0 = data;
     const EncounterCollection *encounterCollection = dataMan->pageData;
     UnkStruct_ov21_021DCAE0 *v2 = graphics;
@@ -403,8 +387,7 @@ static int ov21_021DCBD8(void *graphics, PokedexGraphicsManager *graphicsMan, co
     return 0;
 }
 
-static int ov21_021DCCD8(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
-{
+static int ov21_021DCCD8(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan) {
     const UnkStruct_ov21_021DCACC *v0 = data;
     const EncounterCollection *encounterCollection = dataMan->pageData;
     UnkStruct_ov21_021DCAE0 *v2 = graphics;
@@ -416,8 +399,7 @@ static int ov21_021DCCD8(void *graphics, PokedexGraphicsManager *graphicsMan, co
     return 0;
 }
 
-static int ov21_021DCD04(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
-{
+static int ov21_021DCD04(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan) {
     const UnkStruct_ov21_021DCACC *v0 = data;
     const EncounterCollection *encounterCollection = dataMan->pageData;
     UnkStruct_ov21_021DCAE0 *v2 = graphics;
@@ -467,8 +449,7 @@ static int ov21_021DCD04(void *graphics, PokedexGraphicsManager *graphicsMan, co
     return 0;
 }
 
-static void ov21_021DCDD0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, const EncounterCollection *encounterCollection, enum HeapId heapID)
-{
+static void ov21_021DCDD0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, const EncounterCollection *encounterCollection, enum HeapId heapID) {
     ov21_021DCE40(param1, param2, heapID);
     ov21_021DD668(mapDisplay, param1, heapID);
     ov21_021DCFC8(mapDisplay, param1, heapID);
@@ -478,16 +459,14 @@ static void ov21_021DCDD0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     ov21_021DDCF4(param1, param2);
 }
 
-static void ov21_021DCE20(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
-{
+static void ov21_021DCE20(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1) {
     ov21_021DD6C0(mapDisplay, param1);
     ov21_021DD3FC(mapDisplay);
     PokedexMapDisplay_DeleteCellActors(mapDisplay);
     ov21_021DD114(mapDisplay, param1);
 }
 
-static void ov21_021DCE40(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_021DCACC *param1, enum HeapId heapID)
-{
+static void ov21_021DCE40(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_021DCACC *param1, enum HeapId heapID) {
     void *v0;
     NNSG2dScreenData *v1;
 
@@ -529,8 +508,7 @@ static void ov21_021DCE40(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_
     Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 3);
 }
 
-static void ov21_021DCFC8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID)
-{
+static void ov21_021DCFC8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID) {
     PokedexGraphicData *v0 = param1->unk_00;
     NARC *v1 = PokedexGraphics_GetNARC(param1->unk_00);
 
@@ -555,8 +533,7 @@ static void ov21_021DCFC8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     mapDisplay->unk_D0[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 92, 1, 92 + 6000, 3, heapID);
 }
 
-static void ov21_021DD114(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
-{
+static void ov21_021DD114(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1) {
     PokedexGraphicData *v0 = param1->unk_00;
 
     SpriteTransfer_ResetCharTransfer(mapDisplay->unk_B4[0]);
@@ -571,8 +548,7 @@ static void ov21_021DD114(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], mapDisplay->unk_D0[3]);
 }
 
-static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID)
-{
+static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = param1->unk_00;
@@ -608,8 +584,7 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     }
 }
 
-static void PokedexMapDisplay_DeleteCellActors(PokedexMapDisplay *mapDisplay)
-{
+static void PokedexMapDisplay_DeleteCellActors(PokedexMapDisplay *mapDisplay) {
     int cellActorIndex;
 
     Sprite_Delete(mapDisplay->AreaUnknownCellActor);
@@ -621,8 +596,7 @@ static void PokedexMapDisplay_DeleteCellActors(PokedexMapDisplay *mapDisplay)
     }
 }
 
-static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, enum HeapId heapID)
-{
+static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, enum HeapId heapID) {
     Window *v0;
     PokedexDisplayBox displayBox;
     SpriteResource *v2;
@@ -672,8 +646,7 @@ static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     }
 }
 
-static void ov21_021DD3FC(PokedexMapDisplay *mapDisplay)
-{
+static void ov21_021DD3FC(PokedexMapDisplay *mapDisplay) {
     int v0;
 
     PokedexTextManager_FreeTextData(mapDisplay->AreaUnknownSpriteManager);
@@ -683,8 +656,7 @@ static void ov21_021DD3FC(PokedexMapDisplay *mapDisplay)
     }
 }
 
-static void PokedexMapDisplay_OAMMode_XLU(PokedexMapDisplay *mapDisplay)
-{
+static void PokedexMapDisplay_OAMMode_XLU(PokedexMapDisplay *mapDisplay) {
     int v0;
 
     Sprite_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_XLU);
@@ -695,8 +667,7 @@ static void PokedexMapDisplay_OAMMode_XLU(PokedexMapDisplay *mapDisplay)
     }
 }
 
-static void PokedexMapDisplay_OAMMode_Normal(PokedexMapDisplay *mapDisplay)
-{
+static void PokedexMapDisplay_OAMMode_Normal(PokedexMapDisplay *mapDisplay) {
     int v0;
 
     Sprite_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_NORMAL);
@@ -707,8 +678,7 @@ static void PokedexMapDisplay_OAMMode_Normal(PokedexMapDisplay *mapDisplay)
     }
 }
 
-static void ov21_021DD490(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3)
-{
+static void ov21_021DD490(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3) {
     PokedexMapDisplay_OAMMode_XLU(mapDisplay);
 
     if (ov21_021E2A54(param2->unk_08)) {
@@ -722,8 +692,7 @@ static void ov21_021DD490(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     PokedexGraphics_BlendPokemonChar(param1->unk_00, &param1->unk_00->blendMain);
 }
 
-static BOOL ov21_021DD508(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3)
-{
+static BOOL ov21_021DD508(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3) {
     BOOL v0;
 
     if (ov21_021E2A54(param2->unk_08)) {
@@ -745,8 +714,7 @@ static BOOL ov21_021DD508(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     return 0;
 }
 
-static void ov21_021DD554(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3)
-{
+static void ov21_021DD554(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3) {
     PokedexMapDisplay_OAMMode_XLU(mapDisplay);
 
     if (param3 == 0) {
@@ -762,8 +730,7 @@ static void ov21_021DD554(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     }
 }
 
-static BOOL ov21_021DD5E4(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3)
-{
+static BOOL ov21_021DD5E4(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, BOOL param3) {
     BOOL v0[2];
     int v1;
 
@@ -797,8 +764,7 @@ static BOOL ov21_021DD5E4(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     return 0;
 }
 
-static void ov21_021DD668(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID)
-{
+static void ov21_021DD668(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID) {
     Window_FillTilemap(&param1->unk_00->window, 0);
 
     mapDisplay->unk_7F4 = PokedexGraphics_GetGraphicNarcCharacterData(param1->unk_00, 30, 1, &mapDisplay->unk_7F8, heapID);
@@ -807,8 +773,7 @@ static void ov21_021DD668(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     Window_SetPalette(&param1->unk_00->window, 8);
 }
 
-static void ov21_021DD6C0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
-{
+static void ov21_021DD6C0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1) {
     Window_FillTilemap(&param1->unk_00->window, 0);
     Bg_ClearTilemap(param1->unk_00->bgConfig, 1);
     Heap_Free(mapDisplay->unk_7F4);
@@ -824,8 +789,7 @@ static void ov21_021DD6C0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     Window_SetPalette(&param1->unk_00->window, 0);
 }
 
-static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_021DCACC *param1, const EncounterCollection *encounterCollection, enum HeapId heapID)
-{
+static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_021DCACC *param1, const EncounterCollection *encounterCollection, enum HeapId heapID) {
     int index, v1;
     int v2, v3;
     int xOffset, yOffset;
@@ -886,8 +850,7 @@ static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_02
     Heap_Free(combinedMapArray);
 }
 
-static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay)
-{
+static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay) {
     int v0;
 
     memset(mapDisplay->pokedexFieldMap_1, 0, sizeof(u8) * (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH));
@@ -900,8 +863,7 @@ static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay)
     mapDisplay->numDungeons = 0;
 }
 
-static u8 *PokedexEncounters_InvisibleFields(u32 heapID, const UnkStruct_ov21_021DCACC *param1, u32 *numInvisibleFields)
-{
+static u8 *PokedexEncounters_InvisibleFields(u32 heapID, const UnkStruct_ov21_021DCACC *param1, u32 *numInvisibleFields) {
     u32 fieldCount;
     int index;
     u8 *invisibleFields;
@@ -997,8 +959,7 @@ static u8 *PokedexEncounters_InvisibleFields(u32 heapID, const UnkStruct_ov21_02
     return invisibleFields;
 }
 
-static u8 *PokedexEncounters_InvisibleDungeons(u32 heapID, const UnkStruct_ov21_021DCACC *param1, u32 *numInvisibleDungeons)
-{
+static u8 *PokedexEncounters_InvisibleDungeons(u32 heapID, const UnkStruct_ov21_021DCACC *param1, u32 *numInvisibleDungeons) {
     u32 dungeonCount;
     int index;
     u8 *invisibleDungeons;
@@ -1094,8 +1055,7 @@ static u8 *PokedexEncounters_InvisibleDungeons(u32 heapID, const UnkStruct_ov21_
     return invisibleDungeons;
 }
 
-static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
-{
+static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1) {
     Window_FillTilemap(&param1->unk_00->window, 0);
 
     PokedexFieldMap_DisplayFields(&param1->unk_00->window, mapDisplay->unk_800->pRawData, mapDisplay->unk_800->W * 8, mapDisplay->unk_800->H * 8, POKEDEXMAPXSCALE, mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
@@ -1104,8 +1064,7 @@ static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     Window_CopyToVRAM(&param1->unk_00->window);
 }
 
-static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollection *encounterCollection)
-{
+static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollection *encounterCollection) {
     if ((mapDisplay->numVisibleDungeons <= 0) && (mapDisplay->numVisibleFields <= 0) && (mapDisplay->dungeonsZero <= 0) && (mapDisplay->fieldsZero <= 0)) {
         Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, TRUE);
         sub_020129D0(mapDisplay->AreaUnknownSpriteManager->fontOAM, 1);
@@ -1115,8 +1074,7 @@ static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollecti
     }
 }
 
-static void ov21_021DDA48(PokedexMapDisplay *mapDisplay, int param1)
-{
+static void ov21_021DDA48(PokedexMapDisplay *mapDisplay, int param1) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -1128,8 +1086,7 @@ static void ov21_021DDA48(PokedexMapDisplay *mapDisplay, int param1)
     }
 }
 
-static void ov21_021DDA80(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, const EncounterCollection *encounterCollection, int param4)
-{
+static void ov21_021DDA80(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, const UnkStruct_ov21_021DCACC *param2, const EncounterCollection *encounterCollection, int param4) {
     if (mapDisplay->encounterTime != encounterCollection->encounterTime) {
         ov21_021DD710(mapDisplay, param2, encounterCollection, param4);
         ov21_021DD964(mapDisplay, param1);
@@ -1139,8 +1096,7 @@ static void ov21_021DDA80(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     }
 }
 
-static void PokedexSort_PopulateDexStatus(EncounterCollection *encounterCollection, UnkStruct_ov21_021DCACC *param1, enum HeapId heapID)
-{
+static void PokedexSort_PopulateDexStatus(EncounterCollection *encounterCollection, UnkStruct_ov21_021DCACC *param1, enum HeapId heapID) {
     int dungeonCategory;
     int fieldCategory;
     int species = PokedexSort_CurrentSpecies(param1->unk_00);
@@ -1175,16 +1131,14 @@ static void PokedexSort_PopulateDexStatus(EncounterCollection *encounterCollecti
     }
 }
 
-static void ov21_021DDB68(EncounterCollection *encounterCollection)
-{
+static void ov21_021DDB68(EncounterCollection *encounterCollection) {
     PokedexEncData_FreeEncounterLocations(&encounterCollection->dungeonsEncounteredOn);
     PokedexEncData_FreeEncounterLocations(&encounterCollection->fieldsEncounteredOn);
     PokedexEncData_FreeEncounterLocations(&encounterCollection->dungeonSpecialEncounters);
     PokedexEncData_FreeEncounterLocations(&encounterCollection->fieldSpecialEncounters);
 }
 
-static void ov21_021DDB8C(PokedexMapDisplay *mapDisplay)
-{
+static void ov21_021DDB8C(PokedexMapDisplay *mapDisplay) {
     int dungeonIndex;
 
     mapDisplay->unk_80C = 0;
@@ -1197,8 +1151,7 @@ static void ov21_021DDB8C(PokedexMapDisplay *mapDisplay)
     }
 }
 
-static void ov21_021DDBCC(PokedexMapDisplay *mapDisplay)
-{
+static void ov21_021DDBCC(PokedexMapDisplay *mapDisplay) {
     int dungeonIndex;
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG3, 0, 16);
@@ -1209,8 +1162,7 @@ static void ov21_021DDBCC(PokedexMapDisplay *mapDisplay)
     }
 }
 
-static void ov21_021DDC14(PokedexMapDisplay *mapDisplay)
-{
+static void ov21_021DDC14(PokedexMapDisplay *mapDisplay) {
     fx32 v0;
     int v1;
     int dungeonIndex;
@@ -1254,8 +1206,7 @@ static void ov21_021DDC14(PokedexMapDisplay *mapDisplay)
     }
 }
 
-static void ov21_021DDCF4(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_021DCACC *param1)
-{
+static void ov21_021DDCF4(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_021DCACC *param1) {
     PokemonSprite *v0 = PokemonGraphics_GetPokemonChar(param0->unk_00);
     int species = PokedexSort_CurrentSpecies(param1->unk_00);
 

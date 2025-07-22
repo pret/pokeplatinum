@@ -65,13 +65,11 @@ static const ListMenuTemplate Unk_ov23_022569E0 = {
     NULL
 };
 
-const ListMenuTemplate *ov23_02253D40(void)
-{
+const ListMenuTemplate *ov23_02253D40(void) {
     return &Unk_ov23_022569E0;
 }
 
-UnkStruct_ov23_02253E2C *ov23_02253D48(int bankID, int heapID, BgConfig *param2, int param3, int param4)
-{
+UnkStruct_ov23_02253E2C *ov23_02253D48(int bankID, int heapID, BgConfig *param2, int param3, int param4) {
     int v0 = param4;
     UnkStruct_ov23_02253E2C *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02253E2C));
 
@@ -101,8 +99,7 @@ UnkStruct_ov23_02253E2C *ov23_02253D48(int bankID, int heapID, BgConfig *param2,
     return v1;
 }
 
-void ov23_02253DD8(UnkStruct_ov23_02253E2C *param0)
-{
+void ov23_02253DD8(UnkStruct_ov23_02253E2C *param0) {
     Strbuf_Free(param0->unk_00);
     Strbuf_Free(param0->unk_04);
     StringTemplate_Free(param0->unk_28);
@@ -110,8 +107,7 @@ void ov23_02253DD8(UnkStruct_ov23_02253E2C *param0)
     Heap_Free(param0);
 }
 
-void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int bankID, int param2)
-{
+void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int bankID, int param2) {
     if (param0->bankID != bankID) {
         param0->bankID = bankID;
         MessageLoader_Free(param0->unk_24);
@@ -121,20 +117,17 @@ void ov23_02253DFC(UnkStruct_ov23_02253E2C *param0, int bankID, int param2)
     }
 }
 
-void ov23_02253E2C(UnkStruct_ov23_02253E2C *param0, BgConfig *param1, u16 param2, u16 param3)
-{
+void ov23_02253E2C(UnkStruct_ov23_02253E2C *param0, BgConfig *param1, u16 param2, u16 param3) {
     param0->unk_18 = param1;
     param0->unk_42 = param2;
     param0->unk_40 = param3;
 }
 
-MessageLoader *ov23_02253E3C(UnkStruct_ov23_02253E2C *param0)
-{
+MessageLoader *ov23_02253E3C(UnkStruct_ov23_02253E2C *param0) {
     return param0->unk_24;
 }
 
-static void ov23_02253E40(SysTask *param0, void *param1)
-{
+static void ov23_02253E40(SysTask *param0, void *param1) {
     UnkStruct_ov23_02253E2C *v0 = param1;
 
     if (v0->unk_30 < 8) {
@@ -148,8 +141,7 @@ static void ov23_02253E40(SysTask *param0, void *param1)
     }
 }
 
-static Strbuf *ov23_02253E6C(UnkStruct_ov23_02253E2C *param0)
-{
+static Strbuf *ov23_02253E6C(UnkStruct_ov23_02253E2C *param0) {
     Strbuf *v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
@@ -161,8 +153,7 @@ static Strbuf *ov23_02253E6C(UnkStruct_ov23_02253E2C *param0)
     return v0;
 }
 
-static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct_ov23_02253F60 param2, int param3)
-{
+static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct_ov23_02253F60 param2, int param3) {
     Strbuf *v0;
 
     ov23_02253FA4(param0, 0);
@@ -191,14 +182,12 @@ static int ov23_02253E90(UnkStruct_ov23_02253E2C *param0, BOOL param1, UnkStruct
     return param0->unk_30;
 }
 
-int ov23_02253F40(UnkStruct_ov23_02253E2C *param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3)
-{
+int ov23_02253F40(UnkStruct_ov23_02253E2C *param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3) {
     MessageLoader_GetStrbuf(param0->unk_24, param1, param0->unk_00);
     return ov23_02253E90(param0, param2, param3, 0);
 }
 
-int ov23_02253F60(UnkStruct_ov23_02253E2C *param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3)
-{
+int ov23_02253F60(UnkStruct_ov23_02253E2C *param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3) {
     int v0, v1;
 
     v1 = param0->unk_38;
@@ -211,19 +200,16 @@ int ov23_02253F60(UnkStruct_ov23_02253E2C *param0, int param1, BOOL param2, UnkS
     return v0;
 }
 
-int ov23_02253F78(UnkStruct_ov23_02253E2C *param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3, int param4)
-{
+int ov23_02253F78(UnkStruct_ov23_02253E2C *param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3, int param4) {
     MessageLoader_GetStrbuf(param0->unk_24, param1, param0->unk_00);
     return ov23_02253E90(param0, param2, param3, param4);
 }
 
-void ov23_02253F98(UnkStruct_ov23_02253E2C *param0)
-{
+void ov23_02253F98(UnkStruct_ov23_02253E2C *param0) {
     param0->unk_44_2 = 1;
 }
 
-static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, int param1) {
     if (param0->unk_44_0) {
         param0->unk_44_0 = 0;
 
@@ -261,120 +247,100 @@ static void ov23_02253FA4(UnkStruct_ov23_02253E2C *param0, int param1)
     }
 }
 
-void ov23_02254044(UnkStruct_ov23_02253E2C *param0)
-{
+void ov23_02254044(UnkStruct_ov23_02253E2C *param0) {
     ov23_02253FA4(param0, 2);
 }
 
-void ov23_02254050(UnkStruct_ov23_02253E2C *param0, TrainerInfo *param1)
-{
+void ov23_02254050(UnkStruct_ov23_02253E2C *param0, TrainerInfo *param1) {
     StringTemplate_SetPlayerName(param0->unk_28, 1, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_02254068(UnkStruct_ov23_02253E2C *param0, TrainerInfo *param1)
-{
+void ov23_02254068(UnkStruct_ov23_02253E2C *param0, TrainerInfo *param1) {
     StringTemplate_SetPlayerName(param0->unk_28, 0, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_02254080(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_02254080(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_SetUndergroundItemNameWithArticle(param0->unk_28, 2, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_02254098(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_02254098(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_SetUndergroundTrapName(param0->unk_28, 3, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022540B0(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_022540B0(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_SetUndergroundQuestion(param0->unk_28, 5, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022540C8(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_022540C8(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_SetUndergroundAnswer(param0->unk_28, 5, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022540E0(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_022540E0(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetUndergroundAnswer(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022540F4(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_022540F4(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_SetUndergroundGoodsName(param0->unk_28, 2, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_0225410C(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_0225410C(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetNumber(param0->unk_28, param1, param2, 1, 0, 1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_0225412C(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_0225412C(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_SetNumber(param0->unk_28, 6, param1, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_02254154(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_02254154(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetNumber(param0->unk_28, param1, param2, 2, 0, 1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_02254178(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_02254178(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_SetNumber(param0->unk_28, 6, param1, 6, 0, 1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022541A0(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_022541A0(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetUndergroundItemName(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022541B4(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_022541B4(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetUndergroundTrapName(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022541C8(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_022541C8(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetUndergroundGoodsName(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022541DC(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_022541DC(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetUndergroundItemNameWithArticle(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
-void ov23_022541F0(UnkStruct_ov23_02253E2C *param0, int param1, int param2)
-{
+void ov23_022541F0(UnkStruct_ov23_02253E2C *param0, int param1, int param2) {
     StringTemplate_SetUndergroundTrapNameWithArticle(param0->unk_28, param1, param2);
     param0->unk_44_1 = 1;
 }
 
-void ov23_02254204(UnkStruct_ov23_02253E2C *param0, int param1)
-{
+void ov23_02254204(UnkStruct_ov23_02253E2C *param0, int param1) {
     StringTemplate_CapitalizeArgAtIndex(param0->unk_28, param1);
 }
 
-void ov23_02254210(UnkStruct_ov23_02253E2C *param0)
-{
+void ov23_02254210(UnkStruct_ov23_02253E2C *param0) {
     if (param0->unk_30 < 8) {
         if (Text_IsPrinterActive(param0->unk_30)) {
             Text_RemovePrinter(param0->unk_30);
@@ -383,8 +349,7 @@ void ov23_02254210(UnkStruct_ov23_02253E2C *param0)
     }
 }
 
-BOOL ov23_02254238(UnkStruct_ov23_02253E2C *param0)
-{
+BOOL ov23_02254238(UnkStruct_ov23_02253E2C *param0) {
     if (param0->unk_30 == 8) {
         return 0;
     }
@@ -392,8 +357,7 @@ BOOL ov23_02254238(UnkStruct_ov23_02253E2C *param0)
     return Text_IsPrinterActive(param0->unk_30);
 }
 
-void ov23_02254250(UnkStruct_ov23_02253E2C *param0)
-{
+void ov23_02254250(UnkStruct_ov23_02253E2C *param0) {
     if ((param0->unk_30 < 8) && (!Text_IsPrinterActive(param0->unk_30))) {
         param0->unk_30 = 8;
     }

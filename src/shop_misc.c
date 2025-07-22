@@ -14,8 +14,7 @@
 static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void ShopMisc_ReinitShop(FieldTask *task);
 
-BOOL FieldTask_ShopMisc(FieldTask *task)
-{
+BOOL FieldTask_ShopMisc(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     ShopMenu *shopMenu = FieldTask_GetEnv(task);
 
@@ -31,8 +30,7 @@ BOOL FieldTask_ShopMisc(FieldTask *task)
     return FALSE;
 }
 
-static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu *shopMenu)
-{
+static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu *shopMenu) {
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return SHOP_STATE_REINIT_FIELD_MAP;
     }
@@ -45,8 +43,7 @@ static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu
     return SHOP_STATE_REINIT_SHOP;
 }
 
-static void ShopMisc_ReinitShop(FieldTask *task)
-{
+static void ShopMisc_ReinitShop(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     ShopMenu *shopMenu = FieldTask_GetEnv(task);
 

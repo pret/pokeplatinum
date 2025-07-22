@@ -76,8 +76,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem);
 static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID);
 static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem);
 
-BOOL ScrCmd_2CC(ScriptContext *param0)
-{
+BOOL ScrCmd_2CC(ScriptContext *param0) {
     u8 v0;
     u8 v1[4];
     u16 v2[4];
@@ -148,8 +147,7 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
     return 0;
 }
 
-static BOOL sub_0204F268(u16 param0, SaveData *saveData)
-{
+static BOOL sub_0204F268(u16 param0, SaveData *saveData) {
     u8 v0, v1, v2, v3;
     u16 v4, v5;
     Party *v6;
@@ -211,8 +209,7 @@ static BOOL sub_0204F268(u16 param0, SaveData *saveData)
     return 1;
 }
 
-BOOL ScrCmd_2D1(ScriptContext *param0)
-{
+BOOL ScrCmd_2D1(ScriptContext *param0) {
     UnkStruct_0203026C *v0;
     u16 v1 = ScriptContext_GetVar(param0);
 
@@ -222,8 +219,7 @@ BOOL ScrCmd_2D1(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_2CF(ScriptContext *param0)
-{
+BOOL ScrCmd_2CF(ScriptContext *param0) {
     u16 v0 = ScriptContext_GetVar(param0);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
 
@@ -234,8 +230,7 @@ BOOL ScrCmd_2CF(ScriptContext *param0)
     return 1;
 }
 
-void sub_0204F3D0(FieldTask *param0, u16 param1, u16 *param2)
-{
+void sub_0204F3D0(FieldTask *param0, u16 param1, u16 *param2) {
     UnkStruct_0204F3D0 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204F3D0));
     memset(v0, 0, sizeof(UnkStruct_0204F3D0));
 
@@ -248,8 +243,7 @@ void sub_0204F3D0(FieldTask *param0, u16 param1, u16 *param2)
     return;
 }
 
-static BOOL sub_0204F414(FieldTask *param0)
-{
+static BOOL sub_0204F414(FieldTask *param0) {
     UnkStruct_0204F3D0 *v0 = FieldTask_GetEnv(param0);
 
     switch (v0->unk_00) {
@@ -282,8 +276,7 @@ static BOOL sub_0204F414(FieldTask *param0)
     return 0;
 }
 
-void sub_0204F470(FieldTask *param0, void **param1, u8 param2)
-{
+void sub_0204F470(FieldTask *param0, void **param1, u8 param2) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0204F470 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204F470));
     MI_CpuClear8(v1, sizeof(UnkStruct_0204F470));
@@ -295,8 +288,7 @@ void sub_0204F470(FieldTask *param0, void **param1, u8 param2)
     return;
 }
 
-static BOOL sub_0204F4A4(FieldTask *param0)
-{
+static BOOL sub_0204F4A4(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0204F470 *v1 = FieldTask_GetEnv(param0);
 
@@ -325,8 +317,7 @@ static BOOL sub_0204F4A4(FieldTask *param0)
     return 0;
 }
 
-static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2)
-{
+static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2) {
     u8 v0;
 
     PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
@@ -365,8 +356,7 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     return UnkEnum_0204F13C_2;
 }
 
-static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
-{
+static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem) {
     int v0;
     PartyManagementData *partyMan;
 
@@ -396,8 +386,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
     return UnkEnum_0204F13C_3;
 }
 
-static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID)
-{
+static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID) {
     PokemonSummary *v0;
     SaveData *saveData;
 
@@ -438,8 +427,7 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     return UnkEnum_0204F13C_4;
 }
 
-static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
-{
+static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem) {
     PokemonSummary *v0;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
@@ -513,8 +501,7 @@ static const UnkStruct_020EC078 Unk_020EC078[] = {
     { 100000, 1000 },
 };
 
-BOOL ScrCmd_324(ScriptContext *param0)
-{
+BOOL ScrCmd_324(ScriptContext *param0) {
     int v0;
     int v1;
     BattleFrontierStage *v2;
@@ -602,8 +589,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
 }
 
 BOOL ScrCmd_325(ScriptContext *param0);
-BOOL ScrCmd_325(ScriptContext *param0)
-{
+BOOL ScrCmd_325(ScriptContext *param0) {
     int v0;
     BattleFrontierStage *v1;
     u32 v2, v3, v4;
@@ -648,8 +634,7 @@ BOOL ScrCmd_325(ScriptContext *param0)
 }
 
 BOOL ScrCmd_326(ScriptContext *param0);
-BOOL ScrCmd_326(ScriptContext *param0)
-{
+BOOL ScrCmd_326(ScriptContext *param0) {
     int v0;
     int v1;
     BattleFrontierStage *v2;
@@ -692,8 +677,7 @@ BOOL ScrCmd_326(ScriptContext *param0)
 }
 
 BOOL ScrCmd_32A(ScriptContext *param0);
-BOOL ScrCmd_32A(ScriptContext *param0)
-{
+BOOL ScrCmd_32A(ScriptContext *param0) {
     u16 v0, v1;
 
     u16 *v2 = ScriptContext_GetVarPointer(param0);

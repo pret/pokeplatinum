@@ -13,8 +13,7 @@ static const WindowTemplate Unk_ov108_02243774[] = {
     { 0x1, 0x18, 0xD, 0x7, 0x4, 0xD, 0x6D }
 };
 
-void ov108_02243630(BgConfig *param0, Window *param1)
-{
+void ov108_02243630(BgConfig *param0, Window *param1) {
     u8 v0;
     const WindowTemplate *v1 = Unk_ov108_02243774;
 
@@ -26,8 +25,7 @@ void ov108_02243630(BgConfig *param0, Window *param1)
     return;
 }
 
-void ov108_02243660(Window *param0)
-{
+void ov108_02243660(Window *param0) {
     u16 v0;
 
     for (v0 = 0; v0 < 2; v0++) {

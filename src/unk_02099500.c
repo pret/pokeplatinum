@@ -30,18 +30,15 @@ static int CommPacketSizeOf_TrainerCard(void);
 static int sub_02099548(void);
 static int sub_0209954C(void);
 
-static int sub_02099500(void)
-{
+static int sub_02099500(void) {
     return 3;
 }
 
-static int sub_02099504(void)
-{
+static int sub_02099504(void) {
     return 24;
 }
 
-static int sub_02099508(void)
-{
+static int sub_02099508(void) {
     return 236 * 6 + 4 * 2;
 }
 
@@ -161,48 +158,39 @@ static const CommCmdTable Unk_020F68A4[] = {
     { sub_02050548, sub_02032944, NULL }
 };
 
-void sub_02099510(int param0, int param1, void *param2, void *param3)
-{
+void sub_02099510(int param0, int param1, void *param2, void *param3) {
     return;
 }
 
-void CommFieldCmd_Init(void *param0)
-{
+void CommFieldCmd_Init(void *param0) {
     int v0 = sizeof(Unk_020F68A4) / sizeof(CommCmdTable);
     CommCmd_Init(Unk_020F68A4, v0, param0);
 }
 
-static int CommPacketSizeOf_TrainerCard(void)
-{
+static int CommPacketSizeOf_TrainerCard(void) {
     return sizeof(TrainerCard);
 }
 
-int sub_02099530(void)
-{
+int sub_02099530(void) {
     return 3000 + 8;
 }
 
-int sub_02099538(void)
-{
+int sub_02099538(void) {
     return 1008;
 }
 
-int sub_02099540(void)
-{
+int sub_02099540(void) {
     return 10;
 }
 
-int sub_02099544(void)
-{
+int sub_02099544(void) {
     return 10 * 5;
 }
 
-static int sub_02099548(void)
-{
+static int sub_02099548(void) {
     return 4;
 }
 
-static int sub_0209954C(void)
-{
+static int sub_0209954C(void) {
     return 4;
 }

@@ -79,8 +79,7 @@ static void ov23_02249334(int param0[][4]);
 
 static UnkStruct_ov23_0224942C *Unk_ov23_02257768;
 
-static void ov23_02248F1C(SysTask *param0, void *param1)
-{
+static void ov23_02248F1C(SysTask *param0, void *param1) {
     UnkStruct_ov23_0224942C *v0 = param1;
     BgConfig *v1 = v0->unk_1B8;
     int v2;
@@ -187,8 +186,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
     }
 }
 
-static void ov23_022491CC(int param0[][2], int param1[][3])
-{
+static void ov23_022491CC(int param0[][2], int param1[][3]) {
     int v0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
@@ -203,8 +201,7 @@ static void ov23_022491CC(int param0[][2], int param1[][3])
     }
 }
 
-static void ov23_02249214(PlayerAvatar *const playerAvatar, int param1[][2], int param2[][3])
-{
+static void ov23_02249214(PlayerAvatar *const playerAvatar, int param1[][2], int param2[][3]) {
     int v0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
@@ -242,8 +239,7 @@ static void ov23_02249214(PlayerAvatar *const playerAvatar, int param1[][2], int
     }
 }
 
-static void ov23_022492C8(int param0[][3], Sprite *param1[])
-{
+static void ov23_022492C8(int param0[][3], Sprite *param1[]) {
     int v0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
@@ -262,8 +258,7 @@ static void ov23_022492C8(int param0[][3], Sprite *param1[])
     }
 }
 
-static void ov23_02249334(int param0[][4])
-{
+static void ov23_02249334(int param0[][4]) {
     int v0, v1, v2, v3;
 
     for (v0 = 0; v0 < 16 + 1; v0++) {
@@ -283,8 +278,7 @@ static void ov23_02249334(int param0[][4])
     }
 }
 
-static void ov23_0224937C(int param0[][4], Sprite *param1[])
-{
+static void ov23_0224937C(int param0[][4], Sprite *param1[]) {
     int v0;
 
     for (v0 = 0; v0 < 16 + 1; v0++) {
@@ -313,8 +307,7 @@ static void ov23_0224937C(int param0[][4], Sprite *param1[])
     }
 }
 
-UnkStruct_ov23_0224942C *ov23_02249404(FieldSystem *fieldSystem)
-{
+UnkStruct_ov23_0224942C *ov23_02249404(FieldSystem *fieldSystem) {
     SysTask *v1 = SysTask_StartAndAllocateParam(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
     UnkStruct_ov23_0224942C *v0 = SysTask_GetParam(v1);
 
@@ -324,8 +317,7 @@ UnkStruct_ov23_0224942C *ov23_02249404(FieldSystem *fieldSystem)
     return v0;
 }
 
-void ov23_0224942C(UnkStruct_ov23_0224942C *param0)
-{
+void ov23_0224942C(UnkStruct_ov23_0224942C *param0) {
     if (param0->unk_00 == 5) {
         param0->unk_00 = 6;
     } else {
@@ -333,14 +325,12 @@ void ov23_0224942C(UnkStruct_ov23_0224942C *param0)
     }
 }
 
-static void ov23_02249438(BgConfig *param0)
-{
+static void ov23_02249438(BgConfig *param0) {
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
 }
 
-static void ov23_0224944C(BgConfig *param0, Window *param1)
-{
+static void ov23_0224944C(BgConfig *param0, Window *param1) {
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     ov23_02249438(param0);
 
@@ -422,8 +412,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 }
 
-static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
-{
+static void ov23_02249584(UnkStruct_ov23_0224942C *param0) {
     int v0;
 
     param0->unk_1BC = SpriteList_InitRendering((7 + 1) + 16 + 1, &param0->unk_1C0, HEAP_ID_FIELD);
@@ -449,8 +438,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
     SpriteTransfer_RequestPlttFreeSpace(param0->unk_35C[1]);
 }
 
-static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)
-{
+static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5) {
     Strbuf *v0;
 
     while (ov23_02242D60(param5->unk_80)) {
@@ -485,8 +473,7 @@ static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *pa
     }
 }
 
-static void ov23_02249724(UnkStruct_ov23_02249724 *param0)
-{
+static void ov23_02249724(UnkStruct_ov23_02249724 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
@@ -502,8 +489,7 @@ static void ov23_02249724(UnkStruct_ov23_02249724 *param0)
     }
 }
 
-static void ov23_02249778(UnkStruct_ov23_02249724 *param0)
-{
+static void ov23_02249778(UnkStruct_ov23_02249724 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
@@ -517,8 +503,7 @@ static void ov23_02249778(UnkStruct_ov23_02249724 *param0)
     }
 }
 
-static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
-{
+static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, Strbuf *param1) {
     int v0, v1, v2;
 
     Strbuf_ToChars(param1, param0->unk_94, 20 * 2 * 2);
@@ -549,8 +534,7 @@ static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
     return 2;
 }
 
-static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
-{
+static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1) {
     int v0, v1, v2;
 
     v2 = ov23_022497B0(param0, param1);
@@ -578,8 +562,7 @@ static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
     return 1;
 }
 
-static Strbuf *ov23_022498C4(UnkStruct_ov23_02249724 *param0)
-{
+static Strbuf *ov23_022498C4(UnkStruct_ov23_02249724 *param0) {
     int v0;
 
     if (param0->unk_8C != param0->unk_90) {
@@ -595,8 +578,7 @@ static Strbuf *ov23_022498C4(UnkStruct_ov23_02249724 *param0)
     return NULL;
 }
 
-static int ov23_02249900(UnkStruct_ov23_02249724 *param0)
-{
+static int ov23_02249900(UnkStruct_ov23_02249724 *param0) {
     if (param0->unk_8C != param0->unk_90) {
         return 0;
     }

@@ -9,8 +9,7 @@
 #include "pokemon_icon.h"
 #include "savedata.h"
 
-int Poketch_SaveSize(void)
-{
+int Poketch_SaveSize(void) {
     return sizeof(Poketch);
 }
 
@@ -26,8 +25,7 @@ static const struct {
     { 184, 152 }
 };
 
-void Poketch_Init(Poketch *poketch)
-{
+void Poketch_Init(Poketch *poketch) {
     int i;
 
     for (i = 0; i < POKETCH_REGISTRY_SIZE; i++) {
@@ -61,23 +59,19 @@ void Poketch_Init(Poketch *poketch)
     Poketch_RegisterApp(poketch, POKETCH_APPID_DIGITALWATCH);
 }
 
-void Poketch_Enable(Poketch *poketch)
-{
+void Poketch_Enable(Poketch *poketch) {
     poketch->poketchEnabled = 1;
 }
 
-BOOL Poketch_IsEnabled(Poketch *poketch)
-{
+BOOL Poketch_IsEnabled(Poketch *poketch) {
     return poketch->poketchEnabled;
 }
 
-BOOL Poketch_IsAppRegistered(Poketch *poketch, enum PoketchAppID appID)
-{
+BOOL Poketch_IsAppRegistered(Poketch *poketch, enum PoketchAppID appID) {
     return poketch->appRegistry[appID];
 }
 
-BOOL Poketch_RegisterApp(Poketch *poketch, enum PoketchAppID appID)
-{
+BOOL Poketch_RegisterApp(Poketch *poketch, enum PoketchAppID appID) {
     BOOL appRegistered = FALSE;
 
     GF_ASSERT(appID >= 0 && appID < POKETCH_APPID_MAX);
@@ -96,13 +90,11 @@ BOOL Poketch_RegisterApp(Poketch *poketch, enum PoketchAppID appID)
     return appRegistered;
 }
 
-enum PoketchAppID Poketch_CurrentAppID(const Poketch *poketch)
-{
+enum PoketchAppID Poketch_CurrentAppID(const Poketch *poketch) {
     return poketch->appIndex;
 }
 
-int Poketch_IncrementAppID(Poketch *poketch)
-{
+int Poketch_IncrementAppID(Poketch *poketch) {
     int nextIndex = poketch->appIndex;
 
     while (TRUE) {
@@ -124,8 +116,7 @@ int Poketch_IncrementAppID(Poketch *poketch)
     return poketch->appIndex;
 }
 
-int Poketch_DecrementAppID(Poketch *poketch)
-{
+int Poketch_DecrementAppID(Poketch *poketch) {
     int prevIndex = poketch->appIndex;
 
     while (TRUE) {
@@ -147,52 +138,44 @@ int Poketch_DecrementAppID(Poketch *poketch)
     return poketch->appIndex;
 }
 
-u32 Poketch_CurrentScreenColor(const Poketch *poketch)
-{
+u32 Poketch_CurrentScreenColor(const Poketch *poketch) {
     GF_ASSERT(poketch);
     return poketch->screenColor;
 }
 
-void Poketch_SetScreenColor(Poketch *poketch, u32 screenColor)
-{
+void Poketch_SetScreenColor(Poketch *poketch, u32 screenColor) {
     GF_ASSERT(poketch);
     GF_ASSERT(screenColor < POKETCH_SCREEN_COLOR_MAX);
 
     poketch->screenColor = screenColor;
 }
 
-u32 Poketch_StepCount(const Poketch *poketch)
-{
+u32 Poketch_StepCount(const Poketch *poketch) {
     return poketch->stepCount;
 }
 
-void Poketch_SetStepCount(Poketch *poketch, u32 value)
-{
+void Poketch_SetStepCount(Poketch *poketch, u32 value) {
     if (poketch->pedometerEnabled) {
         poketch->stepCount = value;
     }
 }
 
-BOOL Poketch_IsAlarmSet(const Poketch *poketch)
-{
+BOOL Poketch_IsAlarmSet(const Poketch *poketch) {
     return poketch->alarmSet;
 }
 
-void Poketch_AlarmTime(const Poketch *poketch, u32 *hour, u32 *minute)
-{
+void Poketch_AlarmTime(const Poketch *poketch, u32 *hour, u32 *minute) {
     *hour = poketch->alarmHour;
     *minute = poketch->alarmMinute;
 }
 
-void Poketch_SetAlarm(Poketch *poketch, BOOL enable, u32 hour, u32 minute)
-{
+void Poketch_SetAlarm(Poketch *poketch, BOOL enable, u32 hour, u32 minute) {
     poketch->alarmSet = enable;
     poketch->alarmHour = hour;
     poketch->alarmMinute = minute;
 }
 
-void Poketch_SetCalendarMark(Poketch *poketch, u32 month, u32 day)
-{
+void Poketch_SetCalendarMark(Poketch *poketch, u32 month, u32 day) {
     if (poketch->calendarMonth == month) {
         poketch->calendarMarkBitmap |= (1 << (day - 1));
     } else {
@@ -201,8 +184,7 @@ void Poketch_SetCalendarMark(Poketch *poketch, u32 month, u32 day)
     }
 }
 
-void Poketch_ClearCalendarMark(Poketch *poketch, u32 month, u32 day)
-{
+void Poketch_ClearCalendarMark(Poketch *poketch, u32 month, u32 day) {
     if (poketch->calendarMonth == month) {
         poketch->calendarMarkBitmap &= ~(1 << (day - 1));
     } else {
@@ -211,8 +193,7 @@ void Poketch_ClearCalendarMark(Poketch *poketch, u32 month, u32 day)
     }
 }
 
-BOOL Poketch_CalendarMarked(const Poketch *poketch, u32 month, u32 day)
-{
+BOOL Poketch_CalendarMarked(const Poketch *poketch, u32 month, u32 day) {
     if (poketch->calendarMonth == month) {
         return (poketch->calendarMarkBitmap >> (day - 1)) & 1;
     }
@@ -220,42 +201,36 @@ BOOL Poketch_CalendarMarked(const Poketch *poketch, u32 month, u32 day)
     return FALSE;
 }
 
-void Poketch_SetMapMarker(Poketch *poketch, int index, u8 x, u8 y)
-{
+void Poketch_SetMapMarker(Poketch *poketch, int index, u8 x, u8 y) {
     GF_ASSERT(index < POKETCH_MAPMARKER_COUNT);
 
     poketch->markMapPositions[index].x = x;
     poketch->markMapPositions[index].y = y;
 }
 
-void Poketch_MapMarkerPos(const Poketch *poketch, int index, u8 *x, u8 *y)
-{
+void Poketch_MapMarkerPos(const Poketch *poketch, int index, u8 *x, u8 *y) {
     GF_ASSERT(index < POKETCH_MAPMARKER_COUNT);
 
     *x = poketch->markMapPositions[index].x;
     *y = poketch->markMapPositions[index].y;
 }
 
-BOOL Poketch_DotArtModified(const Poketch *poketch)
-{
+BOOL Poketch_DotArtModified(const Poketch *poketch) {
     return poketch->dotArtModifiedByPlayer;
 }
 
-void Poketch_CopyDotArtData(const Poketch *poketch, u8 *dst)
-{
+void Poketch_CopyDotArtData(const Poketch *poketch, u8 *dst) {
     if (poketch->dotArtModifiedByPlayer) {
         MI_CpuCopy8(poketch->dotArtData, dst, POKETCH_DOTART_SIZE_BYTES);
     }
 }
 
-void Poketch_ModifyDotArtData(Poketch *poketch, const u8 *src)
-{
+void Poketch_ModifyDotArtData(Poketch *poketch, const u8 *src) {
     MI_CpuCopy8(src, poketch->dotArtData, POKETCH_DOTART_SIZE_BYTES);
     poketch->dotArtModifiedByPlayer = TRUE;
 }
 
-void Poketch_PokemonHistoryEnqueue(Poketch *poketch, const BoxPokemon *boxPokemon)
-{
+void Poketch_PokemonHistoryEnqueue(Poketch *poketch, const BoxPokemon *boxPokemon) {
     int index = Poketch_PokemonHistorySize(poketch);
 
     // Shift all entries one index up
@@ -274,8 +249,7 @@ void Poketch_PokemonHistoryEnqueue(Poketch *poketch, const BoxPokemon *boxPokemo
     poketch->pokemonHistoryQueue[index].form = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_FORM, NULL);
 }
 
-int Poketch_PokemonHistorySize(const Poketch *poketch)
-{
+int Poketch_PokemonHistorySize(const Poketch *poketch) {
     int size;
 
     for (size = 0; size < POKETCH_POKEMONHISTORY_MAX; size++) {
@@ -287,8 +261,7 @@ int Poketch_PokemonHistorySize(const Poketch *poketch)
     return size;
 }
 
-void Poketch_PokemonHistorySpeciesAndIcon(const Poketch *poketch, int index, int *species, int *icon)
-{
+void Poketch_PokemonHistorySpeciesAndIcon(const Poketch *poketch, int index, int *species, int *icon) {
     GF_ASSERT(index < POKETCH_POKEMONHISTORY_MAX);
     GF_ASSERT(poketch->pokemonHistoryQueue[index].species);
 
@@ -296,15 +269,13 @@ void Poketch_PokemonHistorySpeciesAndIcon(const Poketch *poketch, int index, int
     *icon = poketch->pokemonHistoryQueue[index].icon;
 }
 
-u32 Poketch_PokemonHistoryForm(const Poketch *poketch, int index)
-{
+u32 Poketch_PokemonHistoryForm(const Poketch *poketch, int index) {
     GF_ASSERT(index < POKETCH_POKEMONHISTORY_MAX);
     GF_ASSERT(poketch->pokemonHistoryQueue[index].species);
 
     return poketch->pokemonHistoryQueue[index].form;
 }
 
-Poketch *SaveData_GetPoketch(SaveData *saveData)
-{
+Poketch *SaveData_GetPoketch(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POKETCH);
 }

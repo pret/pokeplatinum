@@ -62,8 +62,7 @@ int sub_0205E728(u8 param0);
 int sub_0205E750(u8 param0);
 int sub_0205E790(u8 param0);
 
-u16 GetNumberDigitCount(u32 number)
-{
+u16 GetNumberDigitCount(u32 number) {
     if (number / 10 == 0) {
         return 1;
     } else if (number / 100 == 0) {
@@ -85,8 +84,7 @@ u16 GetNumberDigitCount(u32 number)
     return 1;
 }
 
-u16 Item_IsTMHM(u16 item)
-{
+u16 Item_IsTMHM(u16 item) {
     if (item >= ITEM_TM01 && item <= ITEM_HM08) {
         return TRUE;
     }
@@ -94,8 +92,7 @@ u16 Item_IsTMHM(u16 item)
     return FALSE;
 }
 
-u16 sub_0205E078(u16 param0, u16 param1)
-{
+u16 sub_0205E078(u16 param0, u16 param1) {
     if (param0 <= 15) {
         return 6;
     }
@@ -151,8 +148,7 @@ u16 sub_0205E078(u16 param0, u16 param1)
     }
 }
 
-u16 sub_0205E0E4(u16 param0, u16 param1)
-{
+u16 sub_0205E0E4(u16 param0, u16 param1) {
     if (param0 <= 39) {
         return 22;
     }
@@ -236,8 +232,7 @@ u16 sub_0205E0E4(u16 param0, u16 param1)
     }
 }
 
-u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
-{
+u16 SaveData_GetFirstNonEggInParty(SaveData *saveData) {
     u16 i, partyCount = Party_GetCurrentCount(SaveData_GetParty(saveData));
 
     for (i = 0; i < partyCount; i++) {
@@ -251,8 +246,7 @@ u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
     return 0;
 }
 
-BOOL HasAllLegendaryTitansInParty(SaveData *saveData)
-{
+BOOL HasAllLegendaryTitansInParty(SaveData *saveData) {
     int i, j, titansInParty = 0;
     static const u16 titans[] = { SPECIES_REGIROCK, SPECIES_REGICE, SPECIES_REGISTEEL };
     u16 partySpecies[MAX_PARTY_SIZE];
@@ -280,8 +274,7 @@ BOOL HasAllLegendaryTitansInParty(SaveData *saveData)
     return FALSE;
 }
 
-static BOOL sub_0205E268(FieldTask *param0)
-{
+static BOOL sub_0205E268(FieldTask *param0) {
     VecFx32 v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205E268 *v2 = FieldTask_GetEnv(param0);
@@ -311,8 +304,7 @@ static BOOL sub_0205E268(FieldTask *param0)
     return 0;
 }
 
-void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5)
-{
+void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, u16 param4, u16 param5) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205E268 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205E268));
 
@@ -327,8 +319,7 @@ void sub_0205E318(FieldTask *param0, MapObject *param1, u16 param2, u16 param3, 
     FieldTask_InitCall(fieldSystem->task, sub_0205E268, v1);
 }
 
-static BOOL sub_0205E3AC(FieldTask *param0)
-{
+static BOOL sub_0205E3AC(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205E3AC *v1 = FieldTask_GetEnv(param0);
 
@@ -347,8 +338,7 @@ static BOOL sub_0205E3AC(FieldTask *param0)
     return 0;
 }
 
-void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
-{
+void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0205E3AC *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205E3AC));
 
@@ -362,8 +352,7 @@ void sub_0205E3F4(FieldTask *param0, MapObject *param1, u16 param2, u16 param3)
     FieldTask_InitCall(fieldSystem->task, sub_0205E3AC, v1);
 }
 
-int sub_0205E430(u8 param0, u8 param1)
-{
+int sub_0205E430(u8 param0, u8 param1) {
     int v0;
 
     switch (param1) {
@@ -384,8 +373,7 @@ int sub_0205E430(u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E45C(u8 param0, u8 param1)
-{
+int sub_0205E45C(u8 param0, u8 param1) {
     int v0;
 
     switch (param1) {
@@ -406,8 +394,7 @@ int sub_0205E45C(u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E488(u8 param0, u8 param1)
-{
+int sub_0205E488(u8 param0, u8 param1) {
     int v0;
 
     switch (param1) {
@@ -428,8 +415,7 @@ int sub_0205E488(u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E4B4(u8 param0, u8 param1)
-{
+int sub_0205E4B4(u8 param0, u8 param1) {
     int v0;
 
     switch (param1) {
@@ -450,8 +436,7 @@ int sub_0205E4B4(u8 param0, u8 param1)
     return v0 + (param0 * 4);
 }
 
-int sub_0205E4E0(u8 param0, u8 param1)
-{
+int sub_0205E4E0(u8 param0, u8 param1) {
     int v0;
 
     switch (param0) {
@@ -473,8 +458,7 @@ int sub_0205E4E0(u8 param0, u8 param1)
     return v0;
 }
 
-int sub_0205E50C(u8 param0)
-{
+int sub_0205E50C(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -495,8 +479,7 @@ int sub_0205E50C(u8 param0)
     return v0;
 }
 
-int sub_0205E534(u8 param0)
-{
+int sub_0205E534(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -517,8 +500,7 @@ int sub_0205E534(u8 param0)
     return v0;
 }
 
-int sub_0205E55C(u8 param0)
-{
+int sub_0205E55C(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -539,8 +521,7 @@ int sub_0205E55C(u8 param0)
     return v0;
 }
 
-int sub_0205E584(u8 param0)
-{
+int sub_0205E584(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -562,8 +543,7 @@ int sub_0205E584(u8 param0)
     return v0;
 }
 
-int sub_0205E5B4(u8 param0, u8 param1)
-{
+int sub_0205E5B4(u8 param0, u8 param1) {
     int v0;
 
     switch (param0) {
@@ -585,8 +565,7 @@ int sub_0205E5B4(u8 param0, u8 param1)
     return v0;
 }
 
-int sub_0205E5E0(u8 param0)
-{
+int sub_0205E5E0(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -607,8 +586,7 @@ int sub_0205E5E0(u8 param0)
     return v0;
 }
 
-int sub_0205E608(u8 param0)
-{
+int sub_0205E608(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -629,8 +607,7 @@ int sub_0205E608(u8 param0)
     return v0;
 }
 
-int sub_0205E630(u8 param0)
-{
+int sub_0205E630(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -651,8 +628,7 @@ int sub_0205E630(u8 param0)
     return v0;
 }
 
-int sub_0205E658(u8 param0)
-{
+int sub_0205E658(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -673,8 +649,7 @@ int sub_0205E658(u8 param0)
     return v0;
 }
 
-int sub_0205E680(u8 param0)
-{
+int sub_0205E680(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -695,8 +670,7 @@ int sub_0205E680(u8 param0)
     return v0;
 }
 
-int sub_0205E6A8(u32 param0)
-{
+int sub_0205E6A8(u32 param0) {
     if (param0 < 100) {
         return 0xff;
     }
@@ -704,16 +678,14 @@ int sub_0205E6A8(u32 param0)
     return ov4_021D2388();
 }
 
-u8 sub_0205E6B8(void)
-{
+u8 sub_0205E6B8(void) {
     TrainerInfo *v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v0 != NULL);
 
     return TrainerInfo_GameCode(v0);
 }
 
-u8 sub_0205E6D8(SaveData *saveData)
-{
+u8 sub_0205E6D8(SaveData *saveData) {
     if (TrainerInfo_GameCode(SaveData_GetTrainerInfo(saveData)) == 0) {
         return 1;
     }
@@ -725,8 +697,7 @@ u8 sub_0205E6D8(SaveData *saveData)
     return 0;
 }
 
-int sub_0205E700(u8 param0)
-{
+int sub_0205E700(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -747,8 +718,7 @@ int sub_0205E700(u8 param0)
     return v0;
 }
 
-int sub_0205E728(u8 param0)
-{
+int sub_0205E728(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -769,8 +739,7 @@ int sub_0205E728(u8 param0)
     return v0;
 }
 
-int sub_0205E750(u8 param0)
-{
+int sub_0205E750(u8 param0) {
     int v0;
 
     switch (param0) {
@@ -800,8 +769,7 @@ int sub_0205E750(u8 param0)
     return v0;
 }
 
-int sub_0205E790(u8 param0)
-{
+int sub_0205E790(u8 param0) {
     int v0;
 
     switch (param0) {

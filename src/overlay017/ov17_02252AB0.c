@@ -33,24 +33,21 @@ static const SpriteTemplate Unk_ov17_02254D9C = {
     0x0
 };
 
-void ov17_02252AB0(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6)
-{
+void ov17_02252AB0(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6) {
     SpriteSystem_LoadPaletteBuffer(param2, PLTTBUF_SUB_OBJ, param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 80, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     SpriteSystem_LoadCharResObj(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 250, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, param3);
     SpriteSystem_LoadCellResObj(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 251, TRUE, param5);
     SpriteSystem_LoadAnimResObj(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 252, TRUE, param6);
 }
 
-void ov17_02252B20(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4)
-{
+void ov17_02252B20(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4) {
     SpriteManager_UnloadCharObjById(param0, param1);
     SpriteManager_UnloadPlttObjById(param0, param2);
     SpriteManager_UnloadCellObjById(param0, param3);
     SpriteManager_UnloadAnimObjById(param0, param4);
 }
 
-UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *param1, int heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
-{
+UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *param1, int heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8) {
     UnkStruct_ov17_02252B48 *v0;
     SpriteTemplate v1;
     int v2;
@@ -75,8 +72,7 @@ UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *para
     return v0;
 }
 
-void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0)
-{
+void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -87,8 +83,7 @@ void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0)
     Heap_Free(param0);
 }
 
-void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
-{
+void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9) {
     int v0;
 
     ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[0], param1, param2, param9);
@@ -106,13 +101,11 @@ void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int 
     }
 }
 
-void ov17_02252C78(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, fx32 param5)
-{
+void ov17_02252C78(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, fx32 param5) {
     ov17_02252BF0(param0, param1, param3, param2, param3, param1, param4, param2, param4, param5);
 }
 
-void ov17_02252C9C(UnkStruct_ov17_02252B48 *param0)
-{
+void ov17_02252C9C(UnkStruct_ov17_02252B48 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -120,8 +113,7 @@ void ov17_02252C9C(UnkStruct_ov17_02252B48 *param0)
     }
 }
 
-static void ov17_02252CB8(SysTask *param0, void *param1)
-{
+static void ov17_02252CB8(SysTask *param0, void *param1) {
     UnkStruct_ov17_02252B48 *v0 = param1;
     int v1;
 

@@ -39,8 +39,7 @@ static const int sPowersOfTen[] = {
     1000000000,
 };
 
-charcode_t *CharCode_Copy(charcode_t *dst, const charcode_t *src)
-{
+charcode_t *CharCode_Copy(charcode_t *dst, const charcode_t *src) {
     while (*src != CHAR_EOS) {
         *dst = *src;
         dst++;
@@ -51,8 +50,7 @@ charcode_t *CharCode_Copy(charcode_t *dst, const charcode_t *src)
     return dst;
 }
 
-charcode_t *CharCode_CopyNumChars(charcode_t *dst, const charcode_t *src, u32 num)
-{
+charcode_t *CharCode_CopyNumChars(charcode_t *dst, const charcode_t *src, u32 num) {
     for (int i = 0; i < num; i++) {
         dst[i] = src[i];
     }
@@ -60,8 +58,7 @@ charcode_t *CharCode_CopyNumChars(charcode_t *dst, const charcode_t *src, u32 nu
     return &dst[num];
 }
 
-u32 CharCode_Length(const charcode_t *str)
-{
+u32 CharCode_Length(const charcode_t *str) {
     u32 i = 0;
     while (str[i] != CHAR_EOS) {
         i++;
@@ -70,8 +67,7 @@ u32 CharCode_Length(const charcode_t *str)
     return i;
 }
 
-int CharCode_Compare(const charcode_t *str1, const charcode_t *str2)
-{
+int CharCode_Compare(const charcode_t *str1, const charcode_t *str2) {
     while (*str1 == *str2) {
         if (*str1 == CHAR_EOS) {
             return 0;
@@ -84,8 +80,7 @@ int CharCode_Compare(const charcode_t *str1, const charcode_t *str2)
     return 1;
 }
 
-int CharCode_CompareNumChars(const charcode_t *str1, const charcode_t *str2, u32 num)
-{
+int CharCode_CompareNumChars(const charcode_t *str1, const charcode_t *str2, u32 num) {
     while (*str1 == *str2) {
         if (num == 0) {
             return 0;
@@ -103,8 +98,7 @@ int CharCode_CompareNumChars(const charcode_t *str1, const charcode_t *str2, u32
     return 1;
 }
 
-charcode_t *CharCode_FillWith(charcode_t *str, charcode_t fill, u32 num)
-{
+charcode_t *CharCode_FillWith(charcode_t *str, charcode_t fill, u32 num) {
     int i;
     for (i = 0; i < num; i++) {
         str[i] = fill;
@@ -113,13 +107,11 @@ charcode_t *CharCode_FillWith(charcode_t *str, charcode_t fill, u32 num)
     return &str[i];
 }
 
-charcode_t *CharCode_FillWithEOS(charcode_t *str, u32 num)
-{
+charcode_t *CharCode_FillWithEOS(charcode_t *str, u32 num) {
     return CharCode_FillWith(str, CHAR_EOS, num);
 }
 
-charcode_t *CharCode_FromInt(charcode_t *str, s32 i, enum PaddingMode paddingMode, u32 digits)
-{
+charcode_t *CharCode_FromInt(charcode_t *str, s32 i, enum PaddingMode paddingMode, u32 digits) {
     u32 j;
     u32 diff;
     u16 digit;

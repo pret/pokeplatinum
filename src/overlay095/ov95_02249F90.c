@@ -45,8 +45,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0);
 static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0);
 static void ov95_0224A358(BgConfig *param0, int param1, int param2);
 
-void *ov95_02249F90(UnkStruct_ov95_02247628 *param0)
-{
+void *ov95_02249F90(UnkStruct_ov95_02247628 *param0) {
     UnkStruct_ov95_02249FF8 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02249FF8));
 
     if (v0) {
@@ -60,8 +59,7 @@ void *ov95_02249F90(UnkStruct_ov95_02247628 *param0)
     return v0;
 }
 
-void ov95_02249FB4(void *param0)
-{
+void ov95_02249FB4(void *param0) {
     UnkStruct_ov95_02249FF8 *v0 = param0;
 
     if (v0) {
@@ -72,8 +70,7 @@ void ov95_02249FB4(void *param0)
     }
 }
 
-BOOL ov95_02249FC8(void *param0, int *param1)
-{
+BOOL ov95_02249FC8(void *param0, int *param1) {
     static int (*const v0[])(UnkStruct_ov95_02249FF8 *, int *) = {
         ov95_02249FF8,
         ov95_0224A020
@@ -93,16 +90,14 @@ BOOL ov95_02249FC8(void *param0, int *param1)
     return 1;
 }
 
-static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1)
-{
+static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1) {
     ov95_0224A10C(param0);
     StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
 
-static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
-{
+static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1) {
     switch (*param1) {
     case 0:
         if (IsScreenFadeDone()) {
@@ -133,8 +128,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
     return 0;
 }
 
-static void ov95_0224A0C4(SysTask *param0, void *param1)
-{
+static void ov95_0224A0C4(SysTask *param0, void *param1) {
     UnkStruct_ov95_02249FF8 *v0 = param1;
 
     if (v0->unk_08) {
@@ -150,8 +144,7 @@ static void ov95_0224A0C4(SysTask *param0, void *param1)
     }
 }
 
-static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
-{
+static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0) {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
@@ -257,8 +250,7 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0)
-{
+static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0) {
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
@@ -267,8 +259,7 @@ static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0)
     Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
 }
 
-static void ov95_0224A358(BgConfig *param0, int param1, int param2)
-{
+static void ov95_0224A358(BgConfig *param0, int param1, int param2) {
     param2 &= 0x1ff;
     param1 &= 0x1ff;
 

@@ -14,8 +14,7 @@
 #include "unk_0202D05C.h"
 #include "unk_0205C980.h"
 
-void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *param2)
-{
+void sub_02073700(SaveData *saveData, int param1, UnkStruct_ov96_0223B450_sub1 *param2) {
     int v0;
     TrainerInfo *v1 = SaveData_GetTrainerInfo(saveData);
     WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);

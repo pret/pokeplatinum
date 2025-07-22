@@ -81,8 +81,7 @@ static BOOL (*Unk_ov87_021D1BA0[])(UnkStruct_ov87_021D106C *, int *) = {
     ov87_021D1384,
 };
 
-UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const UnkStruct_ov87_021D12C0 *param1)
-{
+UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const UnkStruct_ov87_021D12C0 *param1) {
     UnkStruct_ov87_021D106C *v0 = Heap_AllocFromHeap(HEAP_ID_61, sizeof(UnkStruct_ov87_021D106C));
 
     if (v0) {
@@ -108,8 +107,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
     return v0;
 }
 
-void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
-{
+void ov87_021D1140(UnkStruct_ov87_021D106C *param0) {
     if (param0) {
         SetVBlankCallback(NULL, NULL);
         Heap_Free(param0->unk_1FC);
@@ -126,8 +124,7 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
     }
 }
 
-static void ov87_021D11AC(void *param0)
-{
+static void ov87_021D11AC(void *param0) {
     UnkStruct_ov87_021D106C *v0 = param0;
 
     SpriteList_Update(v0->unk_34);
@@ -136,20 +133,17 @@ static void ov87_021D11AC(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-BOOL ov87_021D11D0(UnkStruct_ov87_021D106C *param0, int param1)
-{
+BOOL ov87_021D11D0(UnkStruct_ov87_021D106C *param0, int param1) {
     param0->unk_0C = param1;
     param0->unk_08 = 0;
     return Unk_ov87_021D1BA0[param1](param0, &(param0->unk_08)) == 0;
 }
 
-BOOL ov87_021D11F8(UnkStruct_ov87_021D106C *param0)
-{
+BOOL ov87_021D11F8(UnkStruct_ov87_021D106C *param0) {
     return Unk_ov87_021D1BA0[param0->unk_0C](param0, &(param0->unk_08));
 }
 
-static BOOL ov87_021D1210(UnkStruct_ov87_021D106C *param0, int *param1)
-{
+static BOOL ov87_021D1210(UnkStruct_ov87_021D106C *param0, int *param1) {
     switch (*param1) {
     case 0:
         ov87_021D139C(param0);
@@ -168,8 +162,7 @@ static BOOL ov87_021D1210(UnkStruct_ov87_021D106C *param0, int *param1)
     return 0;
 }
 
-static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
-{
+static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1) {
     switch (*param1) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
@@ -188,8 +181,7 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
     return 0;
 }
 
-static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1)
-{
+static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1) {
     const UnkStruct_ov87_021D12C0 *v0;
     int v1;
 
@@ -213,8 +205,7 @@ static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1)
     return 1;
 }
 
-static BOOL ov87_021D1334(UnkStruct_ov87_021D106C *param0, int *param1)
-{
+static BOOL ov87_021D1334(UnkStruct_ov87_021D106C *param0, int *param1) {
     switch (*param1) {
     case 0:
         ov87_021D1568(param0);
@@ -236,15 +227,13 @@ static BOOL ov87_021D1334(UnkStruct_ov87_021D106C *param0, int *param1)
     return 0;
 }
 
-static BOOL ov87_021D1384(UnkStruct_ov87_021D106C *param0, int *param1)
-{
+static BOOL ov87_021D1384(UnkStruct_ov87_021D106C *param0, int *param1) {
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     ov87_021D1640(param0);
     return 1;
 }
 
-static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D139C(UnkStruct_ov87_021D106C *param0) {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -317,15 +306,13 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov87_021D14B8(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D14B8(UnkStruct_ov87_021D106C *param0) {
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_2);
     ov87_021D1540(param0);
 }
 
-static u32 ov87_021D14D4(UnkStruct_ov87_021D106C *param0, u32 param1)
-{
+static u32 ov87_021D14D4(UnkStruct_ov87_021D106C *param0, u32 param1) {
     Window_Add(param0->unk_10, &(param0->unk_14[0]), 1, 1, 1, 30, 2, 0, param1);
 
     param1 += (30 * 2);
@@ -340,8 +327,7 @@ static u32 ov87_021D14D4(UnkStruct_ov87_021D106C *param0, u32 param1)
     return param1;
 }
 
-static void ov87_021D1540(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1540(UnkStruct_ov87_021D106C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -349,22 +335,19 @@ static void ov87_021D1540(UnkStruct_ov87_021D106C *param0)
     }
 }
 
-static void ov87_021D1558(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1558(UnkStruct_ov87_021D106C *param0) {
     ov87_021D1590(param0);
     ov87_021D1640(param0);
 }
 
-static void ov87_021D1568(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1568(UnkStruct_ov87_021D106C *param0) {
     Window_FillTilemap(&(param0->unk_14[0]), 15);
     Window_FillTilemap(&(param0->unk_14[1]), 15);
     Window_LoadTiles(&(param0->unk_14[0]));
     Window_LoadTiles(&(param0->unk_14[1]));
 }
 
-static void ov87_021D1590(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1590(UnkStruct_ov87_021D106C *param0) {
     const UnkStruct_ov87_021D12C0 *v0 = param0->unk_04;
     Window *v1 = &(param0->unk_14[0]);
 
@@ -379,8 +362,7 @@ static void ov87_021D1590(UnkStruct_ov87_021D106C *param0)
     Window_LoadTiles(v1);
 }
 
-static void ov87_021D1640(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1640(UnkStruct_ov87_021D106C *param0) {
     const UnkStruct_ov87_021D12C0 *v0 = param0->unk_04;
     const UnkStruct_ov87_021D1640 *v1 = &(v0->unk_20[v0->unk_18]);
     Window *v2 = &(param0->unk_14[1]);
@@ -433,8 +415,7 @@ static void ov87_021D1640(UnkStruct_ov87_021D106C *param0)
     Window_LoadTiles(v2);
 }
 
-static void ov87_021D1818(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1818(UnkStruct_ov87_021D106C *param0) {
     NNSG2dCellDataBank *v0;
     NNSG2dAnimBankData *v1;
     int v2;
@@ -448,8 +429,7 @@ static void ov87_021D1818(UnkStruct_ov87_021D106C *param0)
     ov87_021D1970(param0);
 }
 
-static void ov87_021D186C(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D186C(UnkStruct_ov87_021D106C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -462,8 +442,7 @@ static void ov87_021D186C(UnkStruct_ov87_021D106C *param0)
     Heap_Free(param0->unk_1E0);
 }
 
-static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *param1, NNSG2dAnimBankData *param2)
-{
+static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *param1, NNSG2dAnimBankData *param2) {
     static const struct {
         int x;
         int y;
@@ -521,8 +500,7 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
     Heap_Free(v7);
 }
 
-static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1970(UnkStruct_ov87_021D106C *param0) {
     static const UnkStruct_02013610 v0 = {
         0,
         0,
@@ -562,8 +540,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
     }
 }
 
-static void ov87_021D1AB8(UnkStruct_ov87_021D106C *param0)
-{
+static void ov87_021D1AB8(UnkStruct_ov87_021D106C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {

@@ -29,8 +29,7 @@ static const u8 Unk_ov106_0224384C[4] = {
     0x2
 };
 
-void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1)
-{
+void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1) {
     int v0;
     NARC *v1;
 
@@ -68,8 +67,7 @@ void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1)
     return;
 }
 
-Sprite *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4)
-{
+Sprite *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4) {
     int v0;
     SpriteResourcesHeader v1;
     Sprite *v2;
@@ -113,8 +111,7 @@ Sprite *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2,
     return v2;
 }
 
-void ov106_02243570(UnkStruct_ov106_02243310 *param0)
-{
+void ov106_02243570(UnkStruct_ov106_02243310 *param0) {
     u8 v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -134,8 +131,7 @@ void ov106_02243570(UnkStruct_ov106_02243310 *param0)
     return;
 }
 
-static void ov106_022435C8(void)
-{
+static void ov106_022435C8(void) {
     {
         CharTransferTemplate v0 = {
             3, 2048, 2048, 98

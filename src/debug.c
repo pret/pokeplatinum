@@ -12,15 +12,13 @@
 
 volatile const char **noCashPrint = (volatile const char **)NOCASHGBAPRINTADDR1;
 
-static void EmulatorRawPrint(const char *fmt)
-{
+static void EmulatorRawPrint(const char *fmt) {
     *noCashPrint = fmt;
 }
 
 char formattingBuffer[LOG_MESSAGE_MAX_LENGTH];
 
-void EmulatorVPrintf(const char *text, va_list ap)
-{
+void EmulatorVPrintf(const char *text, va_list ap) {
 
     const int res = vsnprintf(formattingBuffer, LOG_MESSAGE_MAX_LENGTH, text, ap);
 
@@ -35,16 +33,14 @@ void EmulatorVPrintf(const char *text, va_list ap)
         EmulatorRawPrint("\nlog truncated\n");
     }
 }
-void EmulatorPrintf(const char *text, ...)
-{
+void EmulatorPrintf(const char *text, ...) {
     va_list args;
     va_start(args, text);
     EmulatorVPrintf(text, args);
     va_end(args);
 }
 
-void EmulatorLog(const char *text, ...)
-{
+void EmulatorLog(const char *text, ...) {
     EmulatorPrintf("[GAME_LOG] ");
     va_list args;
     va_start(args, text);

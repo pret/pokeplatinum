@@ -85,48 +85,39 @@ static u8 Unk_ov6_02249878[] = {
     0x3
 };
 
-static BOOL ov6_02246A30(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A30(FieldSystem *fieldSystem) {
     return 1;
 }
 
-static BOOL ov6_02246A34(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A34(FieldSystem *fieldSystem) {
     return 0;
 }
 
-static BOOL ov6_02246A38(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A38(FieldSystem *fieldSystem) {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_JUBILIFE_CITY);
 }
 
-static BOOL ov6_02246A4C(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A4C(FieldSystem *fieldSystem) {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FLOAROMA_TOWN);
 }
 
-static BOOL ov6_02246A60(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A60(FieldSystem *fieldSystem) {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
-static BOOL ov6_02246A74(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A74(FieldSystem *fieldSystem) {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_ETERNA_CITY);
 }
 
-static BOOL ov6_02246A88(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A88(FieldSystem *fieldSystem) {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_HEARTHOME_CITY);
 }
 
-static BOOL ov6_02246A9C(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246A9C(FieldSystem *fieldSystem) {
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
-static BOOL ov6_02246AB0(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246AB0(FieldSystem *fieldSystem) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
 
     if (TrainerInfo_BadgeCount(trainerInfo) >= 5) {
@@ -136,23 +127,19 @@ static BOOL ov6_02246AB0(FieldSystem *fieldSystem)
     }
 }
 
-static BOOL ov6_02246AC8(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246AC8(FieldSystem *fieldSystem) {
     return Pokedex_LocalDexCompleted(SaveData_GetPokedex(fieldSystem->saveData));
 }
 
-static BOOL ov6_02246AD8(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246AD8(FieldSystem *fieldSystem) {
     return Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData));
 }
 
-static BOOL ov6_02246AE8(FieldSystem *fieldSystem)
-{
+static BOOL ov6_02246AE8(FieldSystem *fieldSystem) {
     return SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
-static int ov6_02246AF8(FieldSystem *fieldSystem, u8 *param1)
-{
+static int ov6_02246AF8(FieldSystem *fieldSystem, u8 *param1) {
     int v0, v1;
     BOOL v2[NELEMS(Unk_ov6_022494B0)];
 
@@ -172,8 +159,7 @@ static int ov6_02246AF8(FieldSystem *fieldSystem, u8 *param1)
     return v1;
 }
 
-int ov6_02246B40(FieldSystem *fieldSystem)
-{
+int ov6_02246B40(FieldSystem *fieldSystem) {
     u8 v0[36];
     int v1;
 

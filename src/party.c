@@ -14,26 +14,22 @@
         GF_ASSERT(slot < (party)->capacity);     \
     }
 
-int Party_SaveSize(void)
-{
+int Party_SaveSize(void) {
     return sizeof(Party);
 }
 
-Party *Party_New(enum HeapId heapID)
-{
+Party *Party_New(enum HeapId heapID) {
     Party *party = Heap_AllocFromHeap(heapID, sizeof(Party));
     Party_Init(party);
 
     return party;
 }
 
-void Party_Init(Party *party)
-{
+void Party_Init(Party *party) {
     Party_InitWithCapacity(party, MAX_PARTY_SIZE);
 }
 
-void Party_InitWithCapacity(Party *party, int capacity)
-{
+void Party_InitWithCapacity(Party *party, int capacity) {
     int i;
 
     GF_ASSERT(capacity <= MAX_PARTY_SIZE);
@@ -47,8 +43,7 @@ void Party_InitWithCapacity(Party *party, int capacity)
     }
 }
 
-BOOL Party_AddPokemon(Party *party, Pokemon *pokemon)
-{
+BOOL Party_AddPokemon(Party *party, Pokemon *pokemon) {
     if (party->currentCount >= party->capacity) {
         return FALSE;
     }
@@ -59,8 +54,7 @@ BOOL Party_AddPokemon(Party *party, Pokemon *pokemon)
     return TRUE;
 }
 
-BOOL Party_RemovePokemonBySlotIndex(Party *party, int slot)
-{
+BOOL Party_RemovePokemonBySlotIndex(Party *party, int slot) {
     int i;
 
     PARTY_ASSERT_SLOT(party, slot);
@@ -76,24 +70,20 @@ BOOL Party_RemovePokemonBySlotIndex(Party *party, int slot)
     return TRUE;
 }
 
-int Party_GetCapacity(const Party *party)
-{
+int Party_GetCapacity(const Party *party) {
     return party->capacity;
 }
 
-int Party_GetCurrentCount(const Party *party)
-{
+int Party_GetCurrentCount(const Party *party) {
     return party->currentCount;
 }
 
-Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot)
-{
+Pokemon *Party_GetPokemonBySlotIndex(const Party *party, int slot) {
     PARTY_ASSERT_SLOT(party, slot);
     return (Pokemon *)&party->pokemon[slot];
 }
 
-void Party_AddPokemonBySlotIndex(Party *party, int slot, Pokemon *pokemon)
-{
+void Party_AddPokemonBySlotIndex(Party *party, int slot, Pokemon *pokemon) {
 
     PARTY_ASSERT_SLOT(party, slot);
 
@@ -102,8 +92,7 @@ void Party_AddPokemonBySlotIndex(Party *party, int slot, Pokemon *pokemon)
     party->currentCount += addOrRemoveSlots;
 }
 
-BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
-{
+BOOL Party_SwapSlots(Party *party, int slotA, int slotB) {
     Pokemon *tempPokemon;
 
     PARTY_ASSERT_SLOT(party, slotA);
@@ -120,13 +109,11 @@ BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
     return FALSE;
 }
 
-void Party_Copy(const Party *src, Party *dest)
-{
+void Party_Copy(const Party *src, Party *dest) {
     *dest = *src;
 }
 
-BOOL Party_HasSpecies(const Party *party, int species)
-{
+BOOL Party_HasSpecies(const Party *party, int species) {
     int i;
 
     for (i = 0; i < party->currentCount; i++) {
@@ -138,7 +125,6 @@ BOOL Party_HasSpecies(const Party *party, int species)
     return i != party->currentCount;
 }
 
-Party *SaveData_GetParty(SaveData *saveData)
-{
+Party *SaveData_GetParty(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_PARTY);
 }

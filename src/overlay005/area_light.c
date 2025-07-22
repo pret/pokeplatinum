@@ -24,8 +24,7 @@ static void AreaLightTemplate_Free(AreaLightTemplate **template);
 static char *AreaLightTemplate_ParseLightAttrs(char *fileIter, GXRgb *lightColor, VecFx16 *lightVector);
 static char *AreaLightTemplate_ParseColor(char *fileIter, GXRgb *color);
 
-AreaLightManager *AreaLightManager_New(ModelAttributes *areaModelAttrs, const u8 archiveID)
-{
+AreaLightManager *AreaLightManager_New(ModelAttributes *areaModelAttrs, const u8 archiveID) {
     GF_ASSERT(archiveID < AREA_LIGHT_FILE_COUNT);
 
     AreaLightManager *areaLightMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaLightManager));
@@ -49,8 +48,7 @@ AreaLightManager *AreaLightManager_New(ModelAttributes *areaModelAttrs, const u8
     return areaLightMan;
 }
 
-void AreaLightManager_Free(AreaLightManager **areaLightMan)
-{
+void AreaLightManager_Free(AreaLightManager **areaLightMan) {
     GF_ASSERT(areaLightMan);
 
     AreaLightTemplate_Free(&(*areaLightMan)->templates);
@@ -59,8 +57,7 @@ void AreaLightManager_Free(AreaLightManager **areaLightMan)
     *areaLightMan = NULL;
 }
 
-void AreaLightManager_UpdateActiveTemplate(AreaLightManager *areaLightMan)
-{
+void AreaLightManager_UpdateActiveTemplate(AreaLightManager *areaLightMan) {
     GF_ASSERT(areaLightMan);
 
     int currentTime = GetSecondsSinceMidnight() / 2;
@@ -86,8 +83,7 @@ void AreaLightManager_UpdateActiveTemplate(AreaLightManager *areaLightMan)
     }
 }
 
-void AreaLightTemplate_ApplyToModelAttributes(const AreaLightTemplate *template, ModelAttributes *modelAttrs)
-{
+void AreaLightTemplate_ApplyToModelAttributes(const AreaLightTemplate *template, ModelAttributes *modelAttrs) {
     for (int i = 0; i < GX_LIGHTS_COUNT; i++) {
         int currentLightMask = (1 << i);
 
@@ -106,22 +102,19 @@ void AreaLightTemplate_ApplyToModelAttributes(const AreaLightTemplate *template,
     ModelAttributes_SetEmissionColor(modelAttrs, template->emissionColor, TRUE);
 }
 
-static void AreaLightManager_ApplyActiveTemplateToAreaModelAttrs(AreaLightManager *areaLightMan)
-{
+static void AreaLightManager_ApplyActiveTemplateToAreaModelAttrs(AreaLightManager *areaLightMan) {
     AreaLightTemplate *activeTemplate = &areaLightMan->templates[areaLightMan->activeTemplateIndex];
     AreaLightTemplate_ApplyToModelAttributes(activeTemplate, areaLightMan->areaModelAttrs);
 }
 
-void AreaLight_UseGlobalModelAttributes(NNSG3dResMdl *model)
-{
+void AreaLight_UseGlobalModelAttributes(NNSG3dResMdl *model) {
     NNS_G3dMdlUseGlbDiff(model);
     NNS_G3dMdlUseGlbAmb(model);
     NNS_G3dMdlUseGlbSpec(model);
     NNS_G3dMdlUseGlbEmi(model);
 }
 
-static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
-{
+static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates) {
     int i, j;
     char lineBuffer[SCRATCH_BUFFER_SIZE];
     char endTimeBuffer[SCRATCH_BUFFER_SIZE];
@@ -180,14 +173,12 @@ static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
     return templateCount;
 }
 
-static void AreaLightTemplate_Free(AreaLightTemplate **template)
-{
+static void AreaLightTemplate_Free(AreaLightTemplate **template) {
     Heap_FreeExplicit(HEAP_ID_FIELD, *template);
     *template = NULL;
 }
 
-static char *AreaLightTemplate_ParseLightAttrs(char *fileIter, GXRgb *lightColor, VecFx16 *lightVector)
-{
+static char *AreaLightTemplate_ParseLightAttrs(char *fileIter, GXRgb *lightColor, VecFx16 *lightVector) {
     char lineBuffer[SCRATCH_BUFFER_SIZE];
     char partBuffer[SCRATCH_BUFFER_SIZE];
 
@@ -248,8 +239,7 @@ static char *AreaLightTemplate_ParseLightAttrs(char *fileIter, GXRgb *lightColor
     return fileIter;
 }
 
-static char *AreaLightTemplate_ParseColor(char *fileIter, GXRgb *color)
-{
+static char *AreaLightTemplate_ParseColor(char *fileIter, GXRgb *color) {
     char lineBuffer[SCRATCH_BUFFER_SIZE];
     char partBuffer[SCRATCH_BUFFER_SIZE];
     u16 colorParts[GX_COLOR_DIMS];

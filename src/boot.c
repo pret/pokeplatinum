@@ -8,8 +8,7 @@
 static const char sLoadName[] = "rom";
 static const int sLoadNameLen = sizeof(sLoadName) - 1;
 
-void CheckForMemoryTampering()
-{
+void CheckForMemoryTampering() {
     if (!FS_IsAvailable()) {
         OS_Terminate();
     } else {
@@ -45,8 +44,7 @@ void CheckForMemoryTampering()
     }
 }
 
-void RebootAndLoadROM(const char *filesystemPath)
-{
+void RebootAndLoadROM(const char *filesystemPath) {
     FSFile file;
     FS_InitFile(&file);
     if (!FS_OpenFile(&file, filesystemPath)) {

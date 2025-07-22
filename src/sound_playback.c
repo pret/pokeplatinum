@@ -47,8 +47,7 @@ BOOL Sound_IsBGMPausedByFanfare(void);
 static void Sound_Impl_SetFanfareDelay(u16 param0);
 
 // "Basic" BGM refers to BGM stored in BANK_BASIC
-BOOL Sound_PlayBasicBGM(u16 seqID)
-{
+BOOL Sound_PlayBasicBGM(u16 seqID) {
     u8 playerID = Sound_GetPlayerForSequence(seqID);
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
 
@@ -58,8 +57,7 @@ BOOL Sound_PlayBasicBGM(u16 seqID)
     return result;
 }
 
-BOOL Sound_PlayBGM(u16 bgmID)
-{
+BOOL Sound_PlayBGM(u16 bgmID) {
     BOOL result;
     u8 player = Sound_GetPlayerForSequence(bgmID);
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(player);
@@ -80,15 +78,13 @@ BOOL Sound_PlayBGM(u16 bgmID)
     return result;
 }
 
-static void Sound_Impl_HandleBGMChange(u16 seqID, enum SoundHandleType handleType)
-{
+static void Sound_Impl_HandleBGMChange(u16 seqID, enum SoundHandleType handleType) {
     Sound_SetCurrentBGM(seqID);
     Sound_AdjustVolumeForVoiceChatEx(seqID, handleType);
     SoundSystem_SetState(SOUND_SYSTEM_STATE_PLAY);
 }
 
-static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
-{
+static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType) {
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_SFX));
     SoundSystem_LoadSequence(seqID);
     SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM));
@@ -96,8 +92,7 @@ static BOOL Sound_Impl_PlayBGM(u16 seqID, u8 playerID, enum SoundHandleType hand
     return NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(handleType), seqID);
 }
 
-static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType)
-{
+static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType handleType) {
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM_BANK_STATE));
     u16 *newFieldBGM = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FIELD_BGM);
 
@@ -112,8 +107,7 @@ static BOOL Sound_Impl_PlayFieldBGM(u16 seqID, u8 playerID, enum SoundHandleType
         seqID);
 }
 
-BOOL sub_02005588(u8 scene, u16 seqID)
-{
+BOOL sub_02005588(u8 scene, u16 seqID) {
     if (scene != SOUND_SCENE_FIELD) {
         GF_ASSERT(FALSE);
         return FALSE;
@@ -133,8 +127,7 @@ BOOL sub_02005588(u8 scene, u16 seqID)
     return success;
 }
 
-void Sound_StopBGM(u16 bgmID, int fadeOutFrames)
-{
+void Sound_StopBGM(u16 bgmID, int fadeOutFrames) {
     NNS_SndPlayerStopSeqBySeqNo(bgmID, fadeOutFrames);
 
     u8 playerID = Sound_GetPlayerForSequence(bgmID);
@@ -147,15 +140,13 @@ void Sound_StopBGM(u16 bgmID, int fadeOutFrames)
     Sound_Impl_ResetBGM();
 }
 
-static void Sound_Impl_ResetBGM(void)
-{
+static void Sound_Impl_ResetBGM(void) {
     Sound_SetCurrentBGM(SEQ_NONE);
     Sound_SetNextBGM(SEQ_NONE);
     SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
 }
 
-void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType)
-{
+void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType) {
     u16 currentBGM = Sound_GetCurrentBGM();
     u8 playerID = Sound_GetPlayerForSequence(currentBGM);
     if (playerID == SOUND_PLAYER_INVALID) {
@@ -173,8 +164,7 @@ void Sound_FadeInBGM(int targetVolume, int frames, enum BGMFadeInType fadeInType
     SoundSystem_SetState(SOUND_SYSTEM_STATE_FADE_IN);
 }
 
-void Sound_FadeOutBGM(int targetVolume, int frames)
-{
+void Sound_FadeOutBGM(int targetVolume, int frames) {
     u16 currentBGM = Sound_GetCurrentBGM();
     u8 playerID = Sound_GetPlayerForSequence(currentBGM);
     if (playerID == SOUND_PLAYER_INVALID) {
@@ -190,8 +180,7 @@ void Sound_FadeOutBGM(int targetVolume, int frames)
     SoundSystem_SetState(SOUND_SYSTEM_STATE_FADE_OUT);
 }
 
-BOOL Sound_IsFadeActive()
-{
+BOOL Sound_IsFadeActive() {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FADE_COUNTER);
     return *param;
 }
@@ -199,14 +188,12 @@ BOOL Sound_IsFadeActive()
 // Only "kind of" actually does what the function name says
 // Because it also returns >0 if a different sequence is playing
 // on the same player.
-BOOL Sound_IsSequencePlaying(u16 seqID)
-{
+BOOL Sound_IsSequencePlaying(u16 seqID) {
     u8 playerID = Sound_GetPlayerForSequence(seqID);
     return Sound_GetNumberOfPlayingSequencesForPlayer(playerID);
 }
 
-void Sound_StopWaveOutAndSequences(void)
-{
+void Sound_StopWaveOutAndSequences(void) {
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
@@ -223,8 +210,7 @@ void Sound_StopWaveOutAndSequences(void)
     SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
 }
 
-void Sound_StopAll(void)
-{
+void Sound_StopAll(void) {
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
 
@@ -246,16 +232,14 @@ void Sound_StopAll(void)
     }
 }
 
-BOOL Sound_PlayPannedEffect(u16 seqID, int pan)
-{
+BOOL Sound_PlayPannedEffect(u16 seqID, int pan) {
     int result = Sound_PlayEffect(seqID);
     Sound_PanEffect(seqID, SOUND_PLAYBACK_TRACK_ALL, pan);
 
     return result;
 }
 
-BOOL Sound_PlayEffect(u16 seqID)
-{
+BOOL Sound_PlayEffect(u16 seqID) {
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(seqID));
     BOOL result = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(handleType), seqID);
 
@@ -264,8 +248,7 @@ BOOL Sound_PlayEffect(u16 seqID)
     return result;
 }
 
-BOOL Sound_PlayEffectOnPlayer(u16 seqID, int playerID)
-{
+BOOL Sound_PlayEffectOnPlayer(u16 seqID, int playerID) {
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(playerID);
     BOOL result = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(handleType), playerID, -1, -1, seqID);
 
@@ -274,30 +257,25 @@ BOOL Sound_PlayEffectOnPlayer(u16 seqID, int playerID)
     return result;
 }
 
-void Sound_StopEffect(u16 seqID, int fadeOutFrames)
-{
+void Sound_StopEffect(u16 seqID, int fadeOutFrames) {
     NNS_SndPlayerStopSeqBySeqNo(seqID, fadeOutFrames);
 }
 
-void Sound_StopEffectFromHandle(enum SoundHandleType handleType, int fadeOutFrames)
-{
+void Sound_StopEffectFromHandle(enum SoundHandleType handleType, int fadeOutFrames) {
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(handleType), fadeOutFrames);
 }
 
-void Sound_StopAllEffects(int fadeOutFrames)
-{
+void Sound_StopAllEffects(int fadeOutFrames) {
     for (int i = 0; i < NUM_SFX_HANDLES; i++) {
         Sound_StopEffectFromHandle(SOUND_HANDLE_TYPE_SFX_1 + i, 0);
     }
 }
 
-BOOL Sound_IsEffectPlaying(u16 seqID)
-{
+BOOL Sound_IsEffectPlaying(u16 seqID) {
     return Sound_GetNumberOfPlayingSequencesForPlayer(Sound_GetPlayerForSequence(seqID));
 }
 
-BOOL Sound_IsAnyEffectPlaying()
-{
+BOOL Sound_IsAnyEffectPlaying() {
     for (int i = 0; i < NUM_SFX_HANDLES; i++) {
         if (Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_SE_1 + i) == 1) {
             return TRUE;
@@ -307,14 +285,12 @@ BOOL Sound_IsAnyEffectPlaying()
     return FALSE;
 }
 
-void Sound_PanEffect(u16 seqID, u16 tracks, int pan)
-{
+void Sound_PanEffect(u16 seqID, u16 tracks, int pan) {
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(Sound_GetPlayerForSequence(seqID));
     NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(handleType), tracks, pan);
 }
 
-void Sound_PanAllEffects(int pan)
-{
+void Sound_PanAllEffects(int pan) {
     enum SoundHandleType handleType = SoundSystem_GetSoundHandleTypeFromPlayerID(PLAYER_SE_1);
 
     for (int i = 0; i < NUM_SFX_HANDLES; i++) {
@@ -322,8 +298,7 @@ void Sound_PanAllEffects(int pan)
     }
 }
 
-BOOL Sound_PlayPokemonCry(u16 species, u8 form)
-{
+BOOL Sound_PlayPokemonCry(u16 species, u8 form) {
     BOOL success;
     u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
     ChatotCry **chatotCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CHATOT_CRY);
@@ -364,14 +339,12 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
     return success;
 }
 
-BOOL Sound_PlayDelayedPokemonCry(u16 species, u8 delay, u8 form)
-{
+BOOL Sound_PlayDelayedPokemonCry(u16 species, u8 delay, u8 form) {
     Sound_PlayDelayedPokemonCryEx(POKECRY_NORMAL, species, 0, SOUND_VOLUME_MAX, HEAP_ID_FIELDMAP, delay, form);
     return TRUE;
 }
 
-void Sound_StopPokemonCries(int fadeOutFrames)
-{
+void Sound_StopPokemonCries(int fadeOutFrames) {
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK));
@@ -393,8 +366,7 @@ void Sound_StopPokemonCries(int fadeOutFrames)
     Sound_ClearPokemonCryParams();
 }
 
-BOOL Sound_IsPokemonCryPlaying(void)
-{
+BOOL Sound_IsPokemonCryPlaying(void) {
     u8 *primaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *secondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSED_PLAYBACK));
@@ -411,8 +383,7 @@ BOOL Sound_IsPokemonCryPlaying(void)
     return Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_PV);
 }
 
-BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 form)
-{
+BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 form) {
     int waveOutPan, echoVolume; // Need to be declared up here to match
     u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *waveSecondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
@@ -593,14 +564,12 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
     return TRUE;
 }
 
-static void Sound_Impl_SetPokemonCryVolume(u16 species, enum SoundHandleType handleType, int volume)
-{
+static void Sound_Impl_SetPokemonCryVolume(u16 species, enum SoundHandleType handleType, int volume) {
     Sound_SetInitialVolumeForHandle(handleType, volume);
     Sound_AdjustVolumeForVoiceChatEx(species, handleType);
 }
 
-void Sound_SetPokemonCryDuration(int duration, int heapID)
-{
+void Sound_SetPokemonCryDuration(int duration, int heapID) {
     PokemonCryDurationParam *param = NULL;
     SysTask **task = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_DURATION_TASK);
 
@@ -619,8 +588,7 @@ void Sound_SetPokemonCryDuration(int duration, int heapID)
     *task = param->task;
 }
 
-static void Sound_Impl_CryDurationTask(SysTask *task, void *arg)
-{
+static void Sound_Impl_CryDurationTask(SysTask *task, void *arg) {
     u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
     u8 *waveSecondaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_SECONDARY_ALLOCATED);
     PokemonCryDurationParam *param = (PokemonCryDurationParam *)arg;
@@ -653,8 +621,7 @@ static void Sound_Impl_CryDurationTask(SysTask *task, void *arg)
     }
 }
 
-void Sound_Impl_DestroyCryDurationTask()
-{
+void Sound_Impl_DestroyCryDurationTask() {
     SysTask **task = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_DURATION_TASK);
 
     if (*task != NULL) {
@@ -666,8 +633,7 @@ void Sound_Impl_DestroyCryDurationTask()
     *task = NULL;
 }
 
-void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 delay, u8 form)
-{
+void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 delay, u8 form) {
     int *paramMod;
     u16 *paramWaveID;
     int *paramPan;
@@ -719,8 +685,7 @@ void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int p
     *paramDelay = delay;
 }
 
-static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form)
-{
+static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form) {
     if (species == SPECIES_SHAYMIN) {
         if (form == 1) {
             return TRUE;
@@ -734,8 +699,7 @@ static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form)
     return FALSE;
 }
 
-void Sound_ClearPokemonCryParams(void)
-{
+void Sound_ClearPokemonCryParams(void) {
     int *modA = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_A_MOD);
     u16 *waveIDA = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_A_WAVE_ID);
     int *panA = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_A_PAN);
@@ -765,8 +729,7 @@ void Sound_ClearPokemonCryParams(void)
     *delayB = 0;
 }
 
-static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form)
-{
+static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form) {
     u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
     *echoEnabled = TRUE;
 
@@ -777,8 +740,7 @@ static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form)
     return success;
 }
 
-static BOOL Sound_PlayPokemonCryReversedEcho(u16 species, s8 unused, int volume, int pan, int heapID)
-{
+static BOOL Sound_PlayPokemonCryReversedEcho(u16 species, s8 unused, int volume, int pan, int heapID) {
     u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
     *echoEnabled = TRUE;
 
@@ -788,8 +750,7 @@ static BOOL Sound_PlayPokemonCryReversedEcho(u16 species, s8 unused, int volume,
     return success;
 }
 
-BOOL Sound_PlayFanfare(u16 seqID)
-{
+BOOL Sound_PlayFanfare(u16 seqID) {
     const NNSSndArcBankInfo *bankInfo = Sound_GetBankInfoForSequence(seqID);
 
     Sound_Impl_SetFanfareDelay(seqID);
@@ -809,8 +770,7 @@ BOOL Sound_PlayFanfare(u16 seqID)
     return success;
 }
 
-BOOL Sound_UpdateFanfareDelay(void)
-{
+BOOL Sound_UpdateFanfareDelay(void) {
     u16 *fanfareDelay = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
 
     if (Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_ME) != 0) {
@@ -825,14 +785,12 @@ BOOL Sound_UpdateFanfareDelay(void)
     return FALSE;
 }
 
-static void Sound_Impl_StopFanfare(int frames)
-{
+static void Sound_Impl_StopFanfare(int frames) {
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(SOUND_HANDLE_TYPE_FANFARE), frames);
     SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_FANFARE));
 }
 
-BOOL Sound_IsBGMPausedByFanfare(void)
-{
+BOOL Sound_IsBGMPausedByFanfare(void) {
     UNUSED(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY));
 
     if (Sound_UpdateFanfareDelay() == TRUE) {
@@ -850,8 +808,7 @@ BOOL Sound_IsBGMPausedByFanfare(void)
     return FALSE;
 }
 
-static void Sound_Impl_SetFanfareDelay(u16 unused)
-{
+static void Sound_Impl_SetFanfareDelay(u16 unused) {
     u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_FANFARE_DELAY);
     *param = DEFAULT_FANFARE_DELAY;
 }

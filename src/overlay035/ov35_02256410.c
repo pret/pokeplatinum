@@ -35,8 +35,7 @@ static void ov35_02256644(SysTask *param0, void *param1);
 static void ov35_02256684(SysTask *param0, void *param1);
 static void ov35_022566A8(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_02256410_1 *param1);
 
-BOOL ov35_02256410(UnkStruct_ov35_02256410 **param0, const UnkStruct_ov35_02256410_1 *param1, BgConfig *param2)
-{
+BOOL ov35_02256410(UnkStruct_ov35_02256410 **param0, const UnkStruct_ov35_02256410_1 *param1, BgConfig *param2) {
     UnkStruct_ov35_02256410 *v0 = (UnkStruct_ov35_02256410 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov35_02256410));
 
     if (v0 != NULL) {
@@ -55,16 +54,14 @@ BOOL ov35_02256410(UnkStruct_ov35_02256410 **param0, const UnkStruct_ov35_022564
     return 0;
 }
 
-void ov35_0225644C(UnkStruct_ov35_02256410 *param0)
-{
+void ov35_0225644C(UnkStruct_ov35_02256410 *param0) {
     if (param0 != NULL) {
         ov35_02256514(param0);
         Heap_Free(param0);
     }
 }
 
-static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_02256410_1 *param1)
-{
+static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_02256410_1 *param1) {
     static const PoketchAnimation_AnimationData v0 = {
         { (114 << FX32_SHIFT), (128 << FX32_SHIFT) },
         0,
@@ -101,8 +98,7 @@ static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_
     ov35_022566A8(param0, param1);
 }
 
-static void ov35_02256514(UnkStruct_ov35_02256410 *param0)
-{
+static void ov35_02256514(UnkStruct_ov35_02256410 *param0) {
     int v0;
 
     PoketchAnimation_RemoveAnimatedSprite(param0->unk_20, param0->unk_24);
@@ -123,30 +119,25 @@ static const PoketchTask Unk_ov35_0225676C[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov35_02256548(UnkStruct_ov35_02256410 *param0, u32 param1)
-{
+void ov35_02256548(UnkStruct_ov35_02256410 *param0, u32 param1) {
     PoketchTask_Start(Unk_ov35_0225676C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov35_0225656C(UnkStruct_ov35_02256410 *param0, u32 param1)
-{
+BOOL ov35_0225656C(UnkStruct_ov35_02256410 *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov35_02256578(UnkStruct_ov35_02256410 *param0)
-{
+BOOL ov35_02256578(UnkStruct_ov35_02256410 *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov35_02256584(PoketchTaskManager *param0)
-{
+static void ov35_02256584(PoketchTaskManager *param0) {
     UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param0);
 
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov35_02256598(SysTask *param0, void *param1)
-{
+static void ov35_02256598(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -181,16 +172,14 @@ static void ov35_02256598(SysTask *param0, void *param1)
     ov35_02256584(param1);
 }
 
-static void ov35_02256628(SysTask *param0, void *param1)
-{
+static void ov35_02256628(SysTask *param0, void *param1) {
     UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov35_02256584(param1);
 }
 
-static void ov35_02256644(SysTask *param0, void *param1)
-{
+static void ov35_02256644(SysTask *param0, void *param1) {
     UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param1);
 
     switch (v0->unk_00->unk_04) {
@@ -206,8 +195,7 @@ static void ov35_02256644(SysTask *param0, void *param1)
     ov35_02256584(param1);
 }
 
-static void ov35_02256684(SysTask *param0, void *param1)
-{
+static void ov35_02256684(SysTask *param0, void *param1) {
     UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov35_02256410_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -215,8 +203,7 @@ static void ov35_02256684(SysTask *param0, void *param1)
     ov35_02256584(param1);
 }
 
-static void ov35_022566A8(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_02256410_1 *param1)
-{
+static void ov35_022566A8(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_02256410_1 *param1) {
     int v0;
     u32 v1 = param1->unk_00;
     u32 v2 = 1000;

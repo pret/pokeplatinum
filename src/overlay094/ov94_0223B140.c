@@ -56,16 +56,14 @@ static int ov94_0223BC18(int param0);
 
 static UnkStruct_ov94_02246AC0 Unk_ov94_02246AC0;
 
-void ov94_0223B140(s32 param0, u64 param1)
-{
+void ov94_0223B140(s32 param0, u64 param1) {
     Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_01;
     Unk_ov94_02246AC0.unk_04 = 0;
     Unk_ov94_02246AC0.unk_08 = param0;
     Unk_ov94_02246AC0.unk_0C = param1;
 }
 
-void ov94_0223B15C(void)
-{
+void ov94_0223B15C(void) {
     switch (Unk_ov94_02246AC0.unk_00) {
     case UnkEnum_ov94_0223B15C_00:
         break;
@@ -509,13 +507,11 @@ void ov94_0223B15C(void)
     }
 }
 
-void ov94_0223B7AC(void)
-{
+void ov94_0223B7AC(void) {
     Unk_ov94_02246AC0.unk_00 = UnkEnum_ov94_0223B15C_00;
 }
 
-BOOL ov94_0223B7B8(void)
-{
+BOOL ov94_0223B7B8(void) {
     switch (Unk_ov94_02246AC0.unk_00) {
     case UnkEnum_ov94_0223B15C_01:
         return 1;
@@ -531,13 +527,11 @@ BOOL ov94_0223B7B8(void)
     return 0;
 }
 
-s32 ov94_0223B7D8(void)
-{
+s32 ov94_0223B7D8(void) {
     return Unk_ov94_02246AC0.unk_04;
 }
 
-void ov94_0223B7E4(const UnkStruct_ov94_0223BA88 *param0)
-{
+void ov94_0223B7E4(const UnkStruct_ov94_0223BA88 *param0) {
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(UnkStruct_ov94_0223BA88));
 
     ov60_0221FC84();
@@ -556,8 +550,7 @@ void ov94_0223B7E4(const UnkStruct_ov94_0223BA88 *param0)
     }
 }
 
-void ov94_0223B834(void)
-{
+void ov94_0223B834(void) {
     memcpy(&Unk_ov94_02246AC0.unk_14[0], &Unk_ov94_02246AC0.unk_0C, 8);
 
     ov60_0221FC84();
@@ -576,8 +569,7 @@ void ov94_0223B834(void)
     }
 }
 
-void ov94_0223B888(UnkStruct_ov94_0223BA88 *param0)
-{
+void ov94_0223B888(UnkStruct_ov94_0223BA88 *param0) {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
 
     ov60_0221FC84();
@@ -596,8 +588,7 @@ void ov94_0223B888(UnkStruct_ov94_0223BA88 *param0)
     }
 }
 
-void ov94_0223B8D8(UnkStruct_ov94_0223BA88 *param0)
-{
+void ov94_0223B8D8(UnkStruct_ov94_0223BA88 *param0) {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param0;
 
     ov60_0221FC84();
@@ -616,8 +607,7 @@ void ov94_0223B8D8(UnkStruct_ov94_0223BA88 *param0)
     }
 }
 
-void ov94_0223B928(void)
-{
+void ov94_0223B928(void) {
     ov60_0221FC84();
 
     if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
@@ -634,8 +624,7 @@ void ov94_0223B928(void)
     }
 }
 
-void ov94_0223B96C(void)
-{
+void ov94_0223B96C(void) {
     ov60_0221FC84();
 
     if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
@@ -652,8 +641,7 @@ void ov94_0223B96C(void)
     }
 }
 
-void ov94_0223B9B0(const UnkStruct_ov94_0223BA88_sub3 *param0, s32 param1, UnkStruct_ov94_0223BA88 *param2)
-{
+void ov94_0223B9B0(const UnkStruct_ov94_0223BA88_sub3 *param0, s32 param1, UnkStruct_ov94_0223BA88 *param2) {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param2;
 
     ov60_0221FC84();
@@ -675,8 +663,7 @@ void ov94_0223B9B0(const UnkStruct_ov94_0223BA88_sub3 *param0, s32 param1, UnkSt
     }
 }
 
-void ov94_0223BA24(const UnkStruct_ov94_0223BA24 *param0, UnkStruct_ov94_0223BA88 *param1)
-{
+void ov94_0223BA24(const UnkStruct_ov94_0223BA24 *param0, UnkStruct_ov94_0223BA88 *param1) {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param1;
 
     ov60_0221FC84();
@@ -697,8 +684,7 @@ void ov94_0223BA24(const UnkStruct_ov94_0223BA24 *param0, UnkStruct_ov94_0223BA8
     }
 }
 
-void ov94_0223BA88(s32 param0, const UnkStruct_ov94_0223BA88 *param1, UnkStruct_ov94_0223BA88 *param2)
-{
+void ov94_0223BA88(s32 param0, const UnkStruct_ov94_0223BA88 *param1, UnkStruct_ov94_0223BA88 *param2) {
     Unk_ov94_02246AC0.unk_140 = (u8 *)param2;
 
     ov60_0221FC84();
@@ -721,8 +707,7 @@ void ov94_0223BA88(s32 param0, const UnkStruct_ov94_0223BA88 *param1, UnkStruct_
     }
 }
 
-void ov94_0223BAEC(void)
-{
+void ov94_0223BAEC(void) {
     memcpy(&Unk_ov94_02246AC0.unk_14[0], &Unk_ov94_02246AC0.unk_0C, 8);
 
     ov60_0221FC84();
@@ -741,8 +726,7 @@ void ov94_0223BAEC(void)
     }
 }
 
-void ov94_0223BB40(void)
-{
+void ov94_0223BB40(void) {
     ov60_0221FC84();
 
     if (ov94_0223BBE0(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
@@ -759,8 +743,7 @@ void ov94_0223BB40(void)
     }
 }
 
-void ov94_0223BB84(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1)
-{
+void ov94_0223BB84(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1) {
     OS_GetMacAddress((u8 *)param0->unk_14);
 
     memcpy(Unk_ov94_02246AC0.unk_14, param0, sizeof(UnkStruct_ov96_0223B574));
@@ -782,8 +765,7 @@ void ov94_0223BB84(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B57
     }
 }
 
-static BOOL ov94_0223BBE0(const u8 *param0, const void *param1, int param2, void *param3, int param4)
-{
+static BOOL ov94_0223BBE0(const u8 *param0, const void *param1, int param2, void *param3, int param4) {
     switch (ov60_0221FCA8(param0, Unk_ov94_02246AC0.unk_08, param1, param2, (u8 *)param3, param4)) {
     case 0:
         return 1;
@@ -797,8 +779,7 @@ static BOOL ov94_0223BBE0(const u8 *param0, const void *param1, int param2, void
     return 0;
 }
 
-static int ov94_0223BC18(int param0)
-{
+static int ov94_0223BC18(int param0) {
     int v0;
 
     switch (param0) {

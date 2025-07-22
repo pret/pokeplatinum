@@ -105,8 +105,7 @@ static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake);
 static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority);
 static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval);
 
-void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
-{
+void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     GrassEncounterEffect *grassEffect = encEffect->param;
     fx32 distance;
@@ -198,8 +197,7 @@ void EncounterEffect_Grass_HigherLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
-{
+void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     GrassEncounterEffect *grassEffect = encEffect->param;
     fx32 distance;
@@ -291,8 +289,7 @@ void EncounterEffect_Grass_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
-{
+void EncounterEffect_Water_LowerLevel(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     WaterEncounterEffect *waterEffect = encEffect->param;
 
@@ -349,8 +346,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
-{
+void EncounterEffect_Water_HigherLevel(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     WaterEncounterEffect *waterEffect = encEffect->param;
 
@@ -407,13 +403,11 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
     }
 }
 
-static SysTask *ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShakeEfx)
-{
+static SysTask *ScreenShakeEffect_CreateDMATransferTask(ScreenShakeEffect *screenShakeEfx) {
     return SysTask_ExecuteOnVBlank(ScreenShakeEffect_DMATransfer, screenShakeEfx, 1024);
 }
 
-static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param)
-{
+static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param) {
     ScreenShakeEffect *screenShakeEfx = param;
 
     if (screenShakeEfx->dmaCounter >= 2) {
@@ -425,27 +419,23 @@ static void ScreenShakeEffect_DMATransfer(SysTask *task, void *param)
     screenShakeEfx->dmaCounter++;
 }
 
-static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapId heapID)
-{
+static void ScreenShakeEffect_Init(ScreenShakeEffect *screenShake, enum HeapId heapID) {
     screenShake->screenScrollMgr = ScreenScrollManager_New(heapID);
     screenShake->dmaCounter = 0;
     screenShake->dmaTransferTask = ScreenShakeEffect_CreateDMATransferTask(screenShake);
 }
 
-static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake)
-{
+static void ScreenShakeEffect_Finish(ScreenShakeEffect *screenShake) {
     SysTask_Done(screenShake->dmaTransferTask);
     ScreenScrollManager_Stop(screenShake->screenScrollMgr);
     ScreenScrollManager_Delete(screenShake->screenScrollMgr);
 }
 
-static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority)
-{
+static void ScreenShakeEffect_Start(ScreenShakeEffect *screenShake, u8 startX, u8 endX, u16 angleIncrement, fx32 amplitude, s16 shakeSpeed, u32 bg, u32 defaultValue, u32 priority) {
     ScreenScrollManager_ScrollX(screenShake->screenScrollMgr, startX, endX, angleIncrement, amplitude, shakeSpeed, bg, defaultValue, priority);
 }
 
-static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval)
-{
+static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 interval) {
     u32 *writeBuffer = ScreenScrollManager_GetWriteBuffer(screenShake->screenScrollMgr);
 
     for (int i = 0; i < SCREEN_SCROLL_MANAGER_BUFFER_SIZE; i++) {
@@ -459,8 +449,7 @@ static void ScreenShakeEffect_InvertBuffer(ScreenShakeEffect *screenShake, u32 i
     }
 }
 
-void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
-{
+void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     CaveEncounterEffect *caveEffect = encEffect->param;
     fx32 distance;
@@ -517,8 +506,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
-{
+void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     CaveEncounterEffect *caveEffect = encEffect->param;
     fx32 distance;
@@ -657,8 +645,7 @@ typedef struct {
     s16 unk_288;
 } UnkStruct_ov5_021E3D8C;
 
-void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
-{
+void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     TrainerGrassEncounterEffect *trainerEffect = encEffect->param;
     BOOL done;
@@ -821,8 +808,7 @@ void EncounterEffect_Trainer_Grass_LowerLevel(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
-{
+void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1) {
     EncounterEffect *encEffect = param1;
     UnkStruct_ov5_021E2EB0 *v1 = encEffect->param;
     BOOL v2;
@@ -965,8 +951,7 @@ void EncounterEffect_Trainer_Grass_HigherLevel(SysTask *param0, void *param1)
     }
 }
 
-void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
-{
+void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E31A4 *v1 = v0->param;
     BOOL v2;
@@ -1137,8 +1122,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
     }
 }
 
-void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
-{
+void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E3560 *v1 = v0->param;
     BOOL v2;
@@ -1350,8 +1334,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
     }
 }
 
-void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
-{
+void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E3AD0 *v1 = v0->param;
     BOOL v2;
@@ -1475,8 +1458,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
     }
 }
 
-void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
-{
+void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E3D8C *v1 = v0->param;
     VecFx32 v2;
@@ -1704,8 +1686,7 @@ typedef struct {
     QuadraticInterpolationTaskFX32 unk_1E4[2];
 } UnkStruct_ov5_021E44C0;
 
-void EncounterEffect_Frontier(SysTask *param0, void *param1)
-{
+void EncounterEffect_Frontier(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E4260 *v1 = v0->param;
     BOOL v2;
@@ -1817,8 +1798,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
     }
 }
 
-void EncounterEffect_Double(SysTask *param0, void *param1)
-{
+void EncounterEffect_Double(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E44C0 *v1 = v0->param;
     BOOL v2;
@@ -1970,8 +1950,7 @@ typedef struct {
     s32 unk_21C;
 } UnkStruct_ov5_021E4B3C;
 
-void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
-{
+void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E4738 *v1 = v0->param;
     BOOL v2;
@@ -2119,8 +2098,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
     }
 }
 
-void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
-{
+void EncounterEffect_GalacticBoss(SysTask *param0, void *param1) {
     EncounterEffect *v0 = param1;
     UnkStruct_ov5_021E4B3C *v1 = v0->param;
     BOOL v2;
@@ -2385,8 +2363,7 @@ typedef struct LegendaryEncounterEffect {
     s32 frameDelay;
 } LegendaryEncounterEffect;
 
-static void EncounterEffect_SetLegendaryEncounterCamera(FieldSystem *fieldSystem, const LegendaryEncounterCameraParam *param)
-{
+static void EncounterEffect_SetLegendaryEncounterCamera(FieldSystem *fieldSystem, const LegendaryEncounterCameraParam *param) {
     Camera_SetFOV(param->fov, fieldSystem->camera);
     Camera_SetDistance(param->distance, fieldSystem->camera);
 
@@ -2398,8 +2375,7 @@ static void EncounterEffect_SetLegendaryEncounterCamera(FieldSystem *fieldSystem
     Camera_SetAngleAroundTarget(&angle, fieldSystem->camera);
 }
 
-void EncounterEffect_Mythical(SysTask *task, void *param)
-{
+void EncounterEffect_Mythical(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     MythicalEncounterEffect *mythicalEffect = encEffect->param;
 
@@ -2480,8 +2456,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_Legendary(SysTask *task, void *param)
-{
+void EncounterEffect_Legendary(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     LegendaryEncounterEffect *legendaryEffect = encEffect->param;
     BOOL done;
@@ -2793,8 +2768,7 @@ typedef struct {
     s32 unk_370;
 } UnkStruct_ov5_021E5890;
 
-static void ov5_021E5128(UnkStruct_ov5_021E5128 *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_021DE5A4 *param2, fx32 param3, fx32 param4, u32 param5)
-{
+static void ov5_021E5128(UnkStruct_ov5_021E5128 *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_021DE5A4 *param2, fx32 param3, fx32 param4, u32 param5) {
     int v0;
 
     param0->unk_00 = 0;
@@ -2816,8 +2790,7 @@ static void ov5_021E5128(UnkStruct_ov5_021E5128 *param0, UnkStruct_ov5_021DE47C 
     }
 }
 
-static void ov5_021E519C(UnkStruct_ov5_021E5128 *param0)
-{
+static void ov5_021E519C(UnkStruct_ov5_021E5128 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -2825,8 +2798,7 @@ static void ov5_021E519C(UnkStruct_ov5_021E5128 *param0)
     }
 }
 
-static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
-{
+static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0) {
     int v0;
     BOOL v1;
     BOOL v2 = 1;
@@ -2858,8 +2830,7 @@ static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
     return v2;
 }
 
-static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
-{
+static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID) {
     StringTemplate *template;
     MessageLoader *messageLoader;
     Strbuf *result;
@@ -2879,8 +2850,7 @@ static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
     return result;
 }
 
-static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId heapID, const GymLeaderEncounterParam *param)
-{
+static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId heapID, const GymLeaderEncounterParam *param) {
     UnkStruct_ov5_021E52A8 *v0 = encEffect->param;
     BOOL v1;
     const VecFx32 *v2;
@@ -3112,8 +3082,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
     return 0;
 }
 
-void EncounterEffect_LeaderRoark(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderRoark(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[0]);
 
@@ -3122,8 +3091,7 @@ void EncounterEffect_LeaderRoark(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_LeaderGardenia(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderGardenia(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[1]);
 
@@ -3132,8 +3100,7 @@ void EncounterEffect_LeaderGardenia(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_LeaderWake(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderWake(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[2]);
 
@@ -3142,8 +3109,7 @@ void EncounterEffect_LeaderWake(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_LeaderMaylene(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderMaylene(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[3]);
 
@@ -3152,8 +3118,7 @@ void EncounterEffect_LeaderMaylene(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_LeaderFantina(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderFantina(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[4]);
 
@@ -3162,8 +3127,7 @@ void EncounterEffect_LeaderFantina(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_LeaderCandice(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderCandice(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[5]);
 
@@ -3172,8 +3136,7 @@ void EncounterEffect_LeaderCandice(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_LeaderByron(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderByron(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[6]);
 
@@ -3182,8 +3145,7 @@ void EncounterEffect_LeaderByron(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_LeaderVolkner(SysTask *task, void *param)
-{
+void EncounterEffect_LeaderVolkner(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_GymLeader(encEffect, HEAP_ID_FIELD, &sGymLeaderEncounterParams[7]);
 
@@ -3192,13 +3154,11 @@ void EncounterEffect_LeaderVolkner(SysTask *task, void *param)
     }
 }
 
-static u32 FieldSystem_GetTrainerGender(FieldSystem *fieldSystem)
-{
+static u32 FieldSystem_GetTrainerGender(FieldSystem *fieldSystem) {
     return TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
 }
 
-static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum HeapId heapID, const EliterFourChampionEncounterParam *param)
-{
+static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum HeapId heapID, const EliterFourChampionEncounterParam *param) {
     UnkStruct_ov5_021E5890 *v0 = encEffect->param;
     BOOL v1, v2;
     VecFx32 v3;
@@ -3579,8 +3539,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
     return 0;
 }
 
-void EncounterEffect_EliteFourAaron(SysTask *task, void *param)
-{
+void EncounterEffect_EliteFourAaron(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[0]);
 
@@ -3589,8 +3548,7 @@ void EncounterEffect_EliteFourAaron(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_EliteFourBertha(SysTask *task, void *param)
-{
+void EncounterEffect_EliteFourBertha(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[1]);
 
@@ -3599,8 +3557,7 @@ void EncounterEffect_EliteFourBertha(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_EliteFourFlint(SysTask *task, void *param)
-{
+void EncounterEffect_EliteFourFlint(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[2]);
 
@@ -3609,8 +3566,7 @@ void EncounterEffect_EliteFourFlint(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_EliteFourLucian(SysTask *task, void *param)
-{
+void EncounterEffect_EliteFourLucian(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[3]);
 
@@ -3619,8 +3575,7 @@ void EncounterEffect_EliteFourLucian(SysTask *task, void *param)
     }
 }
 
-void EncounterEffect_ChampionCynthia(SysTask *task, void *param)
-{
+void EncounterEffect_ChampionCynthia(SysTask *task, void *param) {
     EncounterEffect *encEffect = param;
     BOOL done = EncounterEffect_EliteFourChampion(encEffect, HEAP_ID_FIELD, &sEliteFourChampionEncounterParams[4]);
 

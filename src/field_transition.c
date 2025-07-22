@@ -22,8 +22,7 @@ typedef struct EncounterEffectTaskData {
     int battleBGM;
 } EncounterEffectTaskData;
 
-static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
-{
+static BOOL FieldTask_RunEncounterEffect(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     EncounterEffectTaskData *data = FieldTask_GetEnv(task);
 
@@ -45,8 +44,7 @@ static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
     return FALSE;
 }
 
-void FieldTransition_StartEncounterEffect(FieldTask *task, int encEffectID, int battleBGM)
-{
+void FieldTransition_StartEncounterEffect(FieldTask *task, int encEffectID, int battleBGM) {
     EncounterEffectTaskData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(EncounterEffectTaskData));
 
     data->taskState = 0;
@@ -57,8 +55,7 @@ void FieldTransition_StartEncounterEffect(FieldTask *task, int encEffectID, int 
     FieldTask_InitCall(task, FieldTask_RunEncounterEffect, data);
 }
 
-static BOOL FieldTask_WaitUntilMapFinished(FieldTask *task)
-{
+static BOOL FieldTask_WaitUntilMapFinished(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         return TRUE;
@@ -67,8 +64,7 @@ static BOOL FieldTask_WaitUntilMapFinished(FieldTask *task)
     return FALSE;
 }
 
-void FieldTransition_FinishMap(FieldTask *task)
-{
+void FieldTransition_FinishMap(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -79,8 +75,7 @@ void FieldTransition_FinishMap(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_WaitUntilMapFinished, NULL);
 }
 
-static BOOL FieldTask_WaitUntilMapStarted(FieldTask *task)
-{
+static BOOL FieldTask_WaitUntilMapStarted(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
         return TRUE;
@@ -89,8 +84,7 @@ static BOOL FieldTask_WaitUntilMapStarted(FieldTask *task)
     return FALSE;
 }
 
-void FieldTransition_StartMap(FieldTask *task)
-{
+void FieldTransition_StartMap(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -101,8 +95,7 @@ void FieldTransition_StartMap(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_WaitUntilMapStarted, NULL);
 }
 
-static BOOL FieldTask_WaitUntilScreenTransitionDone(FieldTask *task)
-{
+static BOOL FieldTask_WaitUntilScreenTransitionDone(FieldTask *task) {
     if (IsScreenFadeDone()) {
         return TRUE;
     }
@@ -110,8 +103,7 @@ static BOOL FieldTask_WaitUntilScreenTransitionDone(FieldTask *task)
     return FALSE;
 }
 
-void FieldTransition_FadeOut(FieldTask *task)
-{
+void FieldTransition_FadeOut(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -122,8 +114,7 @@ void FieldTransition_FadeOut(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
-void FieldTransition_FadeIn(FieldTask *task)
-{
+void FieldTransition_FadeIn(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
@@ -134,8 +125,7 @@ void FieldTransition_FadeIn(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
-static BOOL FieldTask_FadeOutAndFinishMap(FieldTask *task)
-{
+static BOOL FieldTask_FadeOutAndFinishMap(FieldTask *task) {
     int *state = FieldTask_GetState(task);
 
     switch (*state) {
@@ -156,13 +146,11 @@ static BOOL FieldTask_FadeOutAndFinishMap(FieldTask *task)
     return FALSE;
 }
 
-void FieldTransition_FadeOutAndFinishMap(FieldTask *task)
-{
+void FieldTransition_FadeOutAndFinishMap(FieldTask *task) {
     FieldTask_InitCall(task, FieldTask_FadeOutAndFinishMap, NULL);
 }
 
-static BOOL FieldTask_StartMapAndFadeIn(FieldTask *task)
-{
+static BOOL FieldTask_StartMapAndFadeIn(FieldTask *task) {
     int *state = FieldTask_GetState(task);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
 
@@ -185,7 +173,6 @@ static BOOL FieldTask_StartMapAndFadeIn(FieldTask *task)
     return FALSE;
 }
 
-void FieldTransition_StartMapAndFadeIn(FieldTask *task)
-{
+void FieldTransition_StartMapAndFadeIn(FieldTask *task) {
     FieldTask_InitCall(task, FieldTask_StartMapAndFadeIn, NULL);
 }

@@ -10,14 +10,12 @@
 #define SIZEOF_STRBUF_HEADER (sizeof(Strbuf) - sizeof(charcode_t))
 #define STRBUF_MAGIC_NUMBER  (0xB6F8D2EC)
 
-static inline void Strbuf_Check(const Strbuf *strbuf)
-{
+static inline void Strbuf_Check(const Strbuf *strbuf) {
     GF_ASSERT(strbuf != NULL);
     GF_ASSERT(strbuf->integrity == STRBUF_MAGIC_NUMBER);
 }
 
-Strbuf *Strbuf_Init(u32 size, u32 heapID)
-{
+Strbuf *Strbuf_Init(u32 size, u32 heapID) {
     Strbuf *strbuf = Heap_AllocFromHeap(heapID, SIZEOF_STRBUF_HEADER + (size * sizeof(charcode_t)));
 
     if (strbuf) {
@@ -30,24 +28,21 @@ Strbuf *Strbuf_Init(u32 size, u32 heapID)
     return strbuf;
 }
 
-void Strbuf_Free(Strbuf *strbuf)
-{
+void Strbuf_Free(Strbuf *strbuf) {
     Strbuf_Check(strbuf);
 
     strbuf->integrity = STRBUF_MAGIC_NUMBER + 1;
     Heap_Free(strbuf);
 }
 
-void Strbuf_Clear(Strbuf *strbuf)
-{
+void Strbuf_Clear(Strbuf *strbuf) {
     Strbuf_Check(strbuf);
 
     strbuf->size = 0;
     strbuf->data[0] = CHAR_EOS;
 }
 
-void Strbuf_Copy(Strbuf *dst, const Strbuf *src)
-{
+void Strbuf_Copy(Strbuf *dst, const Strbuf *src) {
     Strbuf_Check(dst);
     Strbuf_Check(src);
 
@@ -60,8 +55,7 @@ void Strbuf_Copy(Strbuf *dst, const Strbuf *src)
     GF_ASSERT(FALSE);
 }
 
-Strbuf *Strbuf_Clone(const Strbuf *src, u32 heapID)
-{
+Strbuf *Strbuf_Clone(const Strbuf *src, u32 heapID) {
     Strbuf_Check(src);
 
     Strbuf *strbuf = Strbuf_Init(src->size + 1, heapID);
@@ -73,8 +67,7 @@ Strbuf *Strbuf_Clone(const Strbuf *src, u32 heapID)
     return strbuf;
 }
 
-void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
-{
+void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode) {
     static const u32 sPowersOfTen[] = {
         1,
         10,
@@ -151,8 +144,7 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
     GF_ASSERT(FALSE);
 }
 
-void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
-{
+void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode) {
     static const u64 sPowersOfTen[] = {
         1,
         10,
@@ -238,8 +230,7 @@ void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode padd
     GF_ASSERT(FALSE);
 }
 
-u64 Strbuf_AtoI(const Strbuf *src, BOOL *success)
-{
+u64 Strbuf_AtoI(const Strbuf *src, BOOL *success) {
     u64 result = 0, pow = 1;
     if (src->size > 18) {
         return 0;
@@ -265,8 +256,7 @@ u64 Strbuf_AtoI(const Strbuf *src, BOOL *success)
     return result;
 }
 
-int Strbuf_Compare(const Strbuf *str1, const Strbuf *str2)
-{
+int Strbuf_Compare(const Strbuf *str1, const Strbuf *str2) {
     Strbuf_Check(str1);
     Strbuf_Check(str2);
 
@@ -279,14 +269,12 @@ int Strbuf_Compare(const Strbuf *str1, const Strbuf *str2)
     return 1;
 }
 
-u32 Strbuf_Length(const Strbuf *strbuf)
-{
+u32 Strbuf_Length(const Strbuf *strbuf) {
     Strbuf_Check(strbuf);
     return strbuf->size;
 }
 
-u32 Strbuf_NumLines(const Strbuf *strbuf)
-{
+u32 Strbuf_NumLines(const Strbuf *strbuf) {
     Strbuf_Check(strbuf);
 
     int i, count;
@@ -299,8 +287,7 @@ u32 Strbuf_NumLines(const Strbuf *strbuf)
     return count;
 }
 
-void Strbuf_CopyLineNum(Strbuf *dst, const Strbuf *src, u32 lineNum)
-{
+void Strbuf_CopyLineNum(Strbuf *dst, const Strbuf *src, u32 lineNum) {
     Strbuf_Check(src);
     Strbuf_Check(dst);
 
@@ -326,8 +313,7 @@ void Strbuf_CopyLineNum(Strbuf *dst, const Strbuf *src, u32 lineNum)
     }
 }
 
-void Strbuf_CopyChars(Strbuf *dst, const charcode_t *src)
-{
+void Strbuf_CopyChars(Strbuf *dst, const charcode_t *src) {
     Strbuf_Check(dst);
 
     dst->size = 0;
@@ -344,8 +330,7 @@ void Strbuf_CopyChars(Strbuf *dst, const charcode_t *src)
     dst->data[dst->size] = CHAR_EOS;
 }
 
-void Strbuf_CopyNumChars(Strbuf *dst, const charcode_t *src, u32 num)
-{
+void Strbuf_CopyNumChars(Strbuf *dst, const charcode_t *src, u32 num) {
     Strbuf_Check(dst);
 
     if (num <= dst->maxSize) {
@@ -369,8 +354,7 @@ void Strbuf_CopyNumChars(Strbuf *dst, const charcode_t *src, u32 num)
     GF_ASSERT(FALSE);
 }
 
-void Strbuf_ToChars(const Strbuf *src, charcode_t *dst, u32 dstSize)
-{
+void Strbuf_ToChars(const Strbuf *src, charcode_t *dst, u32 dstSize) {
     Strbuf_Check(src);
 
     if ((src->size + 1) <= dstSize) {
@@ -381,15 +365,13 @@ void Strbuf_ToChars(const Strbuf *src, charcode_t *dst, u32 dstSize)
     GF_ASSERT(FALSE);
 }
 
-const charcode_t *Strbuf_GetData(const Strbuf *src)
-{
+const charcode_t *Strbuf_GetData(const Strbuf *src) {
     Strbuf_Check(src);
 
     return src->data;
 }
 
-void Strbuf_Concat(Strbuf *dst, const Strbuf *src)
-{
+void Strbuf_Concat(Strbuf *dst, const Strbuf *src) {
     Strbuf_Check(dst);
     Strbuf_Check(src);
 
@@ -402,8 +384,7 @@ void Strbuf_Concat(Strbuf *dst, const Strbuf *src)
     GF_ASSERT(FALSE);
 }
 
-void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
-{
+void Strbuf_AppendChar(Strbuf *dst, charcode_t c) {
     Strbuf_Check(dst);
 
     if ((dst->size + 1) < dst->maxSize) {
@@ -418,13 +399,11 @@ void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
 #define COMPRESSED_MASK (0x01FF)
 #define COMPRESSED_EOS  (0x01FF) // 0xFFFF & 0x01FF
 
-BOOL Strbuf_IsTrainerName(Strbuf *strbuf)
-{
+BOOL Strbuf_IsTrainerName(Strbuf *strbuf) {
     return strbuf->size > 0 && strbuf->data[0] == CHAR_COMPRESSED_MARK;
 }
 
-void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src)
-{
+void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src) {
     // Trainer names are expressed using a format with a designating leader
     // code followed by compression algorithm that trims individual characters
     // from 16 bits to 10 bits.
@@ -466,8 +445,7 @@ void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src)
     }
 }
 
-void Strbuf_UpperChar(Strbuf *strbuf, int i)
-{
+void Strbuf_UpperChar(Strbuf *strbuf, int i) {
     Strbuf_Check(strbuf);
 
     if (strbuf->size > i) {

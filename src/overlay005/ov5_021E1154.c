@@ -31,8 +31,7 @@ static BOOL ov5_021E120C(FieldTask *param0);
 static void *ov5_021E132C(int param0);
 static void ov5_021E1350(void *param0);
 
-int ov5_021E1154(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)
-{
+int ov5_021E1154(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2) {
     MapObject *v0 = Player_MapObject(playerAvatar);
     u8 v1 = MapObject_GetCurrTileBehavior(v0);
     int v2;
@@ -53,8 +52,7 @@ int ov5_021E1154(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param
     return 1;
 }
 
-static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2)
-{
+static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, int param2) {
     UnkStruct_ov5_021E11B0 *v0 = ov5_021E132C(sizeof(UnkStruct_ov5_021E11B0));
 
     v0->fieldSystem = fieldSystem;
@@ -65,8 +63,7 @@ static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, i
     FieldSystem_CreateTask(fieldSystem, ov5_021E120C, v0);
 }
 
-static int ov5_021E11E0(int param0)
-{
+static int ov5_021E11E0(int param0) {
     switch (param0) {
     case 0:
         return 2;
@@ -81,8 +78,7 @@ static int ov5_021E11E0(int param0)
     return 0;
 }
 
-static BOOL ov5_021E120C(FieldTask *param0)
-{
+static BOOL ov5_021E120C(FieldTask *param0) {
     UnkStruct_ov5_021E11B0 *v0 = FieldTask_GetEnv(param0);
     MapObject *v1 = Player_MapObject(v0->playerAvatar);
     u8 v2 = MapObject_GetCurrTileBehavior(v1);
@@ -151,8 +147,7 @@ static BOOL ov5_021E120C(FieldTask *param0)
     return 0;
 }
 
-static void *ov5_021E132C(int param0)
-{
+static void *ov5_021E132C(int param0) {
     void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, param0);
 
     GF_ASSERT(v0 != NULL);
@@ -161,7 +156,6 @@ static void *ov5_021E132C(int param0)
     return v0;
 }
 
-static void ov5_021E1350(void *param0)
-{
+static void ov5_021E1350(void *param0) {
     Heap_FreeExplicit(HEAP_ID_FIELD, param0);
 }

@@ -81,8 +81,7 @@ __attribute__((aligned(4))) const u16 Unk_ov99_021D4CAC[] = {
     0x1
 };
 
-BOOL ov99_021D340C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1)
-{
+BOOL ov99_021D340C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1) {
     UnkStruct_ov99_021D340C *v0 = &param1->unk_08_val3;
     s32 v1;
 
@@ -150,8 +149,7 @@ BOOL ov99_021D340C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
     return 0;
 }
 
-static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1)
-{
+static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1) {
     int v0, v1 = 0;
 
     GF_ASSERT(NELEMS(Unk_ov99_021D4C90) == 2 - 2 + 1);
@@ -164,8 +162,7 @@ static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     }
 }
 
-static void ov99_021D35C8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1)
-{
+static void ov99_021D35C8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1) {
     int v0, v1 = 0;
 
     if (param0->unk_10FC < 7440) {
@@ -177,8 +174,7 @@ static void ov99_021D35C8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     }
 }
 
-static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, ManagedSprite *param2, int param3)
-{
+static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, ManagedSprite *param2, int param3) {
     UnkStruct_ov99_021D35E8 *v0 = &param1->unk_124[param3];
     const UnkStruct_ov99_021D4C90 *v1 = &Unk_ov99_021D4C90[param3];
     fx32 v2;
@@ -214,14 +210,12 @@ static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     }
 }
 
-static void ov99_021D36B0(UnkStruct_ov99_021D2CB0 *param0)
-{
+static void ov99_021D36B0(UnkStruct_ov99_021D2CB0 *param0) {
     ManagedSprite_SetExplicitOamMode(param0->unk_10E0[3], GX_OAM_MODE_XLU);
     ManagedSprite_SetExplicitOamMode(param0->unk_10E0[4], GX_OAM_MODE_XLU);
 }
 
-static void ov99_021D36D4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1)
-{
+static void ov99_021D36D4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1) {
     if (param0->unk_10FC == 7200) {
         ov99_021D372C(param0, param1, 0);
     }
@@ -237,8 +231,7 @@ static void ov99_021D36D4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     ov99_021D37E0(param0, param1);
 }
 
-static void ov99_021D372C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, int param2)
-{
+static void ov99_021D372C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, int param2) {
     GF_ASSERT(param1->unk_11C == 0);
     GF_ASSERT(NELEMS(Unk_ov99_021D4C84) > param2);
 
@@ -255,8 +248,7 @@ static void ov99_021D372C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11F, param1->unk_11E);
 }
 
-static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1)
-{
+static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1) {
     s16 v0, v1;
 
     if (param1->unk_11C == 0) {
@@ -311,8 +303,7 @@ static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     }
 }
 
-static void ov99_021D3930(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1)
-{
+static void ov99_021D3930(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1) {
     int v0, v1;
     int v2, v3, v4;
     u16 *v5, *v6;

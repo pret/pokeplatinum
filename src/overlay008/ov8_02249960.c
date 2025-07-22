@@ -327,19 +327,16 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0);
 static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0);
 static void ov8_0224C518(SysTask *param0, void *param1);
 
-static u8 ov8_02249960(const u8 param0, const int param1)
-{
+static u8 ov8_02249960(const u8 param0, const int param1) {
     u8 v0 = (param1 >> param0) & 0x1;
     return v0;
 }
 
-static void ov8_0224996C(const u8 param0, int *param1)
-{
+static void ov8_0224996C(const u8 param0, int *param1) {
     (*param1) ^= (0x1 << param0);
 }
 
-void ov8_0224997C(FieldSystem *fieldSystem)
-{
+void ov8_0224997C(FieldSystem *fieldSystem) {
     TerrainCollisionHitbox v0;
     int v1, v2;
     BOOL v3;
@@ -383,8 +380,7 @@ void ov8_0224997C(FieldSystem *fieldSystem)
     }
 }
 
-BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
-{
+BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding) {
     u8 tileBehavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, tileX, tileZ);
 
     if (TileBehavior_IsPastoriaGymHighGround(tileBehavior)) {
@@ -408,8 +404,7 @@ BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, cons
     return FALSE;
 }
 
-static BOOL ov8_02249A94(FieldTask *taskMan)
-{
+static BOOL ov8_02249A94(FieldTask *taskMan) {
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
@@ -460,8 +455,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL ov8_02249B74(FieldTask *taskMan)
-{
+static BOOL ov8_02249B74(FieldTask *taskMan) {
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
@@ -547,8 +541,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL ov8_02249CD8(FieldTask *taskMan)
-{
+static BOOL ov8_02249CD8(FieldTask *taskMan) {
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
@@ -598,8 +591,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
     return 0;
 }
 
-void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     u8 v0;
     MapProp *v1;
     fx32 v2;
@@ -690,8 +682,7 @@ void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     }
 }
 
-static void ov8_02249F14(const u8 param0, MapPropAnimationManager *param1)
-{
+static void ov8_02249F14(const u8 param0, MapPropAnimationManager *param1) {
     MapPropAnimation *v0;
     int v1, v2, v3;
 
@@ -735,14 +726,12 @@ static void ov8_02249F14(const u8 param0, MapPropAnimationManager *param1)
     Sound_PlayEffect(SEQ_SE_DP_FW056);
 }
 
-void include_ov8_02249960(void)
-{
+void include_ov8_02249960(void) {
     VecFx32 dummy = { FX32_ONE * (16 * 9 + 8), 0, FX32_ONE * (16 * 13 + 8) };
     VecFx32 *dummy2 = &dummy;
 }
 
-void ov8_02249FB8(FieldSystem *fieldSystem)
-{
+void ov8_02249FB8(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224997C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224997C));
     v0->unk_00 = 0;
 
@@ -766,8 +755,7 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
     }
 }
 
-static BOOL ov8_0224A018(FieldTask *taskMan)
-{
+static BOOL ov8_0224A018(FieldTask *taskMan) {
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
@@ -812,8 +800,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A0E8(FieldTask *taskMan)
-{
+static BOOL ov8_0224A0E8(FieldTask *taskMan) {
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
@@ -1193,8 +1180,7 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
     },
 };
 
-static void ov8_0224A1B4(const UnkStruct_ov8_0224A1E4 *param0, const BOOL param1, const int param2)
-{
+static void ov8_0224A1B4(const UnkStruct_ov8_0224A1E4 *param0, const BOOL param1, const int param2) {
     MapProp *v0;
     int v1;
 
@@ -1206,8 +1192,7 @@ static void ov8_0224A1B4(const UnkStruct_ov8_0224A1E4 *param0, const BOOL param1
     }
 }
 
-static u8 ov8_0224A1E4(UnkStruct_ov8_0224A1E4 *param0)
-{
+static u8 ov8_0224A1E4(UnkStruct_ov8_0224A1E4 *param0) {
     u8 v0;
     u8 v1;
     u8 v2;
@@ -1231,8 +1216,7 @@ static u8 ov8_0224A1E4(UnkStruct_ov8_0224A1E4 *param0)
     return 24;
 }
 
-static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
-{
+static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1) {
     int v0;
     u8 v1;
     UnkStruct_ov8_0224997C *v2;
@@ -1288,8 +1272,7 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
     }
 }
 
-static void ov8_0224A434(UnkStruct_ov8_0224A1E4 *param0, const fx32 param1)
-{
+static void ov8_0224A434(UnkStruct_ov8_0224A1E4 *param0, const fx32 param1) {
     MapProp *v0 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_04);
     MapProp *v1 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_08);
     MapProp *v2 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_0C);
@@ -1319,8 +1302,7 @@ static void ov8_0224A434(UnkStruct_ov8_0224A1E4 *param0, const fx32 param1)
     }
 }
 
-static BOOL ov8_0224A4FC(FieldTask *taskMan)
-{
+static BOOL ov8_0224A4FC(FieldTask *taskMan) {
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
@@ -1383,8 +1365,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A620(FieldTask *taskMan)
-{
+static BOOL ov8_0224A620(FieldTask *taskMan) {
     MapProp *v0;
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -1463,8 +1444,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224A770(FieldTask *taskMan)
-{
+static BOOL ov8_0224A770(FieldTask *taskMan) {
     MapProp *v0;
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
@@ -1548,8 +1528,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
     return 0;
 }
 
-void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224A1E4 *v0;
     PersistedMapFeatures *v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071B30 *v2 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
@@ -1625,8 +1604,7 @@ void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     }
 }
 
-BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
-{
+BOOL ov8_0224AAA8(FieldSystem *fieldSystem) {
     u8 v0;
     UnkStruct_ov8_0224A1E4 *v1;
 
@@ -1658,15 +1636,13 @@ BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
     return 0;
 }
 
-void CanalaveGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
-{
+void CanalaveGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224A1E4 *v0 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
-{
+BOOL CanalaveGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding) {
     u8 v0;
     const u8 *v1;
     int v2;
@@ -1995,8 +1971,7 @@ UnkStruct_ov8_0224E740 Unk_ov8_0224E740[3] = {
     },
 };
 
-static u8 ov8_0224AB40(const u8 param0)
-{
+static u8 ov8_0224AB40(const u8 param0) {
     u8 v0;
 
     switch (param0) {
@@ -2017,8 +1992,7 @@ static u8 ov8_0224AB40(const u8 param0)
     return v0;
 }
 
-static void ov8_0224AB64(const UnkStruct_ov8_0224C788 *param0, const u8 param1, VecFx32 *param2)
-{
+static void ov8_0224AB64(const UnkStruct_ov8_0224C788 *param0, const u8 param1, VecFx32 *param2) {
     fx32 *v0 = NULL;
     fx16 v1, v2;
 
@@ -2052,8 +2026,7 @@ static void ov8_0224AB64(const UnkStruct_ov8_0224C788 *param0, const u8 param1, 
     (*v0) = v1;
 }
 
-void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224ABD4 *v0;
     PersistedMapFeatures *v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071B6C *v2 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
@@ -2102,15 +2075,13 @@ void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     }
 }
 
-void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
-{
+void SunyshoreGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224ABD4 *v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
-{
+BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding) {
     int v0, v1, v2;
     u8 const *v3;
     u8 v4;
@@ -2133,8 +2104,7 @@ BOOL SunyshoreGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, con
     return 0;
 }
 
-void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1) {
     UnkStruct_ov8_0224997C *v0;
     UnkStruct_ov8_0224ABD4 *v1;
     PersistedMapFeatures *v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
@@ -2178,8 +2148,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
     }
 }
 
-static BOOL ov8_0224ADE8(FieldTask *param0)
-{
+static BOOL ov8_0224ADE8(FieldTask *param0) {
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(param0);
@@ -2319,18 +2288,15 @@ static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 
-static void SetEternaGymFlowerClockState(FieldSystem *fieldSystem, u16 state)
-{
+static void SetEternaGymFlowerClockState(FieldSystem *fieldSystem, u16 state) {
     SystemVars_SetEternaGymFlowerClockState(SaveData_GetVarsFlags(fieldSystem->saveData), state);
 }
 
-static u32 GetEternaGymFlowerClockState(FieldSystem *fieldSystem)
-{
+static u32 GetEternaGymFlowerClockState(FieldSystem *fieldSystem) {
     return SystemVars_GetEternaGymFlowerClockState(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
-static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1)
-{
+static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1) {
     param0->unk_04 += param1;
 
     while (param0->unk_04 >= (FX32_ONE * 60)) {
@@ -2346,8 +2312,7 @@ static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1)
     param0->unk_00 %= (FX32_ONE * 12);
 }
 
-static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
-{
+static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0) {
     VecFx32 v0 = param0->unk_00;
     VecFx32 *v1 = MapProp_GetRotation(param0->unk_14);
 
@@ -2356,8 +2321,7 @@ static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
     v1->z = param0->unk_00.z;
 }
 
-static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
-{
+static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0) {
     int v0, v1;
     UnkStruct_ov8_0224AF58 *v2 = &param0->unk_0C[1];
     v1 = ((param0->unk_04) / FX32_ONE);
@@ -2387,8 +2351,7 @@ static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
     ov8_0224AF58(v2);
 }
 
-void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
     UnkStruct_ov8_0224AF00 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224AF00));
@@ -2437,16 +2400,14 @@ void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     }
 }
 
-void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
-{
+void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224AF00 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
-{
+BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding) {
     BOOL v0;
     int v1, v2, v3;
     PersistedMapFeatures *v4 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
@@ -2473,8 +2434,7 @@ BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
     return v0;
 }
 
-static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1, int param2, int param3)
-{
+static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1, int param2, int param3) {
     int v0, v1, v2, v3;
     const VecFx32 *v4;
 
@@ -2527,8 +2487,7 @@ static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
     Camera_TrackTarget(v4, fieldSystem->camera);
 }
 
-static void ov8_0224B240(UnkStruct_ov8_0224B28C *param0, int param1, int param2)
-{
+static void ov8_0224B240(UnkStruct_ov8_0224B28C *param0, int param1, int param2) {
     int v0, v1, v2, v3;
     const VecFx32 *v4;
 
@@ -2566,8 +2525,7 @@ static void ov8_0224B240(UnkStruct_ov8_0224B28C *param0, int param1, int param2)
     }
 }
 
-static void ov8_0224B28C(UnkStruct_ov8_0224B28C *param0)
-{
+static void ov8_0224B28C(UnkStruct_ov8_0224B28C *param0) {
     param0->unk_04 ^= 1;
     param0->unk_08 = param0->unk_10;
     param0->unk_0C = param0->unk_14;
@@ -2575,8 +2533,7 @@ static void ov8_0224B28C(UnkStruct_ov8_0224B28C *param0)
     param0->unk_1C = Direction_GetOpposite(param0->unk_1C);
 }
 
-static void ov8_0224B2B4(UnkStruct_ov8_0224B28C *param0, int param1, int param2, int param3, int param4, int param5)
-{
+static void ov8_0224B2B4(UnkStruct_ov8_0224B28C *param0, int param1, int param2, int param3, int param4, int param5) {
     param0->unk_04 = param1;
     param0->unk_08 = param2;
     param0->unk_0C = param3;
@@ -2584,8 +2541,7 @@ static void ov8_0224B2B4(UnkStruct_ov8_0224B28C *param0, int param1, int param2,
     param0->unk_1C = param5;
 }
 
-static void ov8_0224B2C4(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1)
-{
+static void ov8_0224B2C4(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param1) {
     const VecFx32 *v0 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
 
     LandDataManager_TrackTarget(v0, fieldSystem->landDataMan);
@@ -2593,8 +2549,7 @@ static void ov8_0224B2C4(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
     MapObject_Delete(param1->unk_20);
 }
 
-static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
-{
+static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0) {
     MapObject *v0 = param0->unk_20;
 
     if (LocalMapObj_IsAnimationSet(param0->unk_20) == 1) {
@@ -2628,8 +2583,7 @@ static BOOL ov8_0224B2E8(UnkStruct_ov8_0224B28C *param0)
     return 0;
 }
 
-static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, const fx32 param2)
-{
+static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, const fx32 param2) {
     BOOL v0 = 1;
     fx32 v1 = param0->unk_00;
     fx32 v2 = param0->unk_04;
@@ -2666,8 +2620,7 @@ static BOOL ov8_0224B370(UnkStruct_ov8_0224AF00 *param0, const fx32 param1, cons
     return v0;
 }
 
-static BOOL ov8_0224B3D4(FieldTask *param0)
-{
+static BOOL ov8_0224B3D4(FieldTask *param0) {
     BOOL v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov8_0224B67C *v2 = FieldTask_GetEnv(param0);
@@ -2828,8 +2781,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
     return 0;
 }
 
-BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3)
-{
+BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
 
@@ -2863,8 +2815,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
     return 1;
 }
 
-BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ, int direction)
-{
+BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ, int direction) {
     PersistedMapFeatures *v0;
     UnkStruct_02071BD0 *v1;
     const UnkStruct_ov8_0224C7F0 *v2;
@@ -2921,8 +2872,7 @@ static const int Unk_ov8_0224C764[4] = {
 
 static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *);
 
-void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071BF8 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
     UnkStruct_ov8_0224B8D0 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224B8D0));
@@ -2944,21 +2894,18 @@ void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     v1->unk_00 = 1;
 }
 
-void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
-{
+void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224B8D0 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
-{
+BOOL VeilstoneGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding) {
     return FALSE;
 }
 
-static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2, int param3)
-{
+static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2, int param3) {
     MapObject *v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     MapObject_SetLocalID(v0, 0xfd);
@@ -2967,8 +2914,7 @@ static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2,
     return v0;
 }
 
-static void ov8_0224B80C(UnkStruct_ov8_0224B80C *param0, MapObject *param1, FieldSystem *fieldSystem)
-{
+static void ov8_0224B80C(UnkStruct_ov8_0224B80C *param0, MapObject *param1, FieldSystem *fieldSystem) {
     param0->unk_08 = param1;
     param0->unk_00 = MapObject_GetX(param1);
     param0->unk_04 = MapObject_GetZ(param1);
@@ -2980,8 +2926,7 @@ static void ov8_0224B80C(UnkStruct_ov8_0224B80C *param0, MapObject *param1, Fiel
     }
 }
 
-static UnkStruct_ov8_0224BCA8 *ov8_0224B854(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2)
-{
+static UnkStruct_ov8_0224BCA8 *ov8_0224B854(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2) {
     int v0 = 0;
     UnkStruct_ov8_0224BCA8 *v1 = param0->unk_10C;
 
@@ -2997,8 +2942,7 @@ static UnkStruct_ov8_0224BCA8 *ov8_0224B854(UnkStruct_ov8_0224B8D0 *param0, int 
     return NULL;
 }
 
-static UnkStruct_ov8_0224B8A0 *ov8_0224B878(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2)
-{
+static UnkStruct_ov8_0224B8A0 *ov8_0224B878(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2) {
     int v0 = 0;
     UnkStruct_ov8_0224B8A0 *v1 = param0->unk_04;
 
@@ -3016,8 +2960,7 @@ static UnkStruct_ov8_0224B8A0 *ov8_0224B878(UnkStruct_ov8_0224B8D0 *param0, int 
     return NULL;
 }
 
-static void ov8_0224B8A0(UnkStruct_ov8_0224B8A0 *param0)
-{
+static void ov8_0224B8A0(UnkStruct_ov8_0224B8A0 *param0) {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_08.unk_0C);
     GF_ASSERT(param0->unk_08.unk_08);
@@ -3028,8 +2971,7 @@ static void ov8_0224B8A0(UnkStruct_ov8_0224B8A0 *param0)
     param0->unk_00 = 0;
 }
 
-static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0)
-{
+static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0) {
     int v0;
     MapObject *v1;
     const UnkStruct_ov8_0224C90C *v2;
@@ -3053,8 +2995,7 @@ static void ov8_0224B8D0(UnkStruct_ov8_0224B8D0 *param0)
     }
 }
 
-static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
-{
+static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0) {
     int v0 = 0, v1 = 0;
     MapObject *v2;
     FieldSystem *fieldSystem = param0->fieldSystem;
@@ -3080,8 +3021,7 @@ static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
     }
 }
 
-static int ov8_0224B9D8(int param0, int param1)
-{
+static int ov8_0224B9D8(int param0, int param1) {
     GF_ASSERT(param0 >= 0);
     GF_ASSERT(param0 < 32);
     GF_ASSERT(param1 >= 0);
@@ -3093,8 +3033,7 @@ static int ov8_0224B9D8(int param0, int param1)
     }
 }
 
-static u32 ov8_0224BA0C(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3)
-{
+static u32 ov8_0224BA0C(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3) {
     u32 v0 = 0;
     int v1, v2;
 
@@ -3137,8 +3076,7 @@ static u32 ov8_0224BA0C(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, 
     return v0;
 }
 
-static u32 ov8_0224BAA0(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3, int *param4)
-{
+static u32 ov8_0224BAA0(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, int param3, int *param4) {
     u32 v0;
 
     *param4 = 0;
@@ -3158,8 +3096,7 @@ static u32 ov8_0224BAA0(UnkStruct_ov8_0224B8D0 *param0, int param1, int param2, 
     return v0;
 }
 
-static BOOL ov8_0224BAF4(FieldTask *taskMan)
-{
+static BOOL ov8_0224BAF4(FieldTask *taskMan) {
     MapObject *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224C098 *v2 = FieldTask_GetEnv(taskMan);
@@ -3187,8 +3124,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL ov8_0224BB78(FieldTask *taskMan)
-{
+static BOOL ov8_0224BB78(FieldTask *taskMan) {
     int v0;
     UnkStruct_ov8_0224C098 *v1 = FieldTask_GetEnv(taskMan);
 
@@ -3203,8 +3139,7 @@ static BOOL ov8_0224BB78(FieldTask *taskMan)
     return 0;
 }
 
-static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0) {
     u32 v0;
     UnkStruct_ov8_0224B80C *v1 = &param0->unk_34->unk_08;
     int v2 = v1->unk_00;
@@ -3219,8 +3154,7 @@ static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0) {
     MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(v0) == 0) {
@@ -3248,8 +3182,7 @@ static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
     return 1;
 }
 
-static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0) {
     VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
     sub_020715D4(param0->unk_34->unk_08.unk_0C, &param0->unk_20);
 
@@ -3269,8 +3202,7 @@ static int ov8_0224BC48(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0) {
     UnkStruct_ov8_0224BCA8 *v0 = param0->unk_34;
 
     VecFx32_StepDirection(param0->unk_08, &param0->unk_20, param0->unk_2C);
@@ -3331,8 +3263,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BDD0(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BDD0(UnkStruct_ov8_0224C098 *param0) {
     ov8_0224C170(param0, param0->unk_2C);
     param0->unk_04++;
 
@@ -3346,8 +3277,7 @@ static int ov8_0224BDD0(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BE04(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BE04(UnkStruct_ov8_0224C098 *param0) {
     ov8_0224C170(param0, param0->unk_2C);
 
     if (ov5_021F453C(param0->unk_38->unk_08.unk_0C)) {
@@ -3364,8 +3294,7 @@ static int ov8_0224BE04(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BE38(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BE38(UnkStruct_ov8_0224C098 *param0) {
     ov8_0224C170(param0, param0->unk_2C);
 
     if ((ov8_0224C0C4(param0) == 1) && (ov5_021F4720(param0->unk_34->unk_08.unk_0C) == 1)) {
@@ -3376,8 +3305,7 @@ static int ov8_0224BE38(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BE68(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BE68(UnkStruct_ov8_0224C098 *param0) {
     ov8_0224C11C(param0, 0x10);
 
     if (ov8_0224C0C4(param0) == 1) {
@@ -3388,8 +3316,7 @@ static int ov8_0224BE68(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BE8C(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BE8C(UnkStruct_ov8_0224C098 *param0) {
     if (ov5_021F4720(param0->unk_34->unk_08.unk_0C) == 1) {
         param0->unk_00 = 9;
     }
@@ -3397,8 +3324,7 @@ static int ov8_0224BE8C(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0) {
     MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
@@ -3409,8 +3335,7 @@ static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0)
     return 0;
 }
 
-static int ov8_0224BECC(UnkStruct_ov8_0224C098 *param0)
-{
+static int ov8_0224BECC(UnkStruct_ov8_0224C098 *param0) {
     Heap_Free(param0);
     return 2;
 }
@@ -3429,8 +3354,7 @@ static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *) = {
     ov8_0224BECC
 };
 
-static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkStruct_ov8_0224BCA8 *param1, int param2)
-{
+static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkStruct_ov8_0224BCA8 *param1, int param2) {
     UnkStruct_ov8_0224C098 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224C098));
     GF_ASSERT(v0 != NULL);
 
@@ -3445,20 +3369,17 @@ static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkS
     return v0;
 }
 
-static void ov8_0224BF0C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
-{
+static void ov8_0224BF0C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3) {
     UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
     FieldSystem_CreateTask(fieldSystem, ov8_0224BAF4, v0);
 }
 
-static void ov8_0224BF2C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3)
-{
+static void ov8_0224BF2C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param1, UnkStruct_ov8_0224BCA8 *param2, int param3) {
     UnkStruct_ov8_0224C098 *v0 = ov8_0224BED8(param1, param2, param3);
     FieldSystem_CreateTask(fieldSystem, ov8_0224BB78, v0);
 }
 
-BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
-{
+BOOL ov8_0224BF4C(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
     if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_VEILSTONE_GYM) {
@@ -3490,8 +3411,7 @@ BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
     return 1;
 }
 
-static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3)
-{
+static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param1, UnkStruct_ov8_0224B80C *param2, int param3) {
     int v0, v1;
     const VecFx32 *v2;
     UnkStruct_ov8_0224C0C4 *v3 = &param1->unk_40;
@@ -3529,8 +3449,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
     Camera_TrackTarget(v2, fieldSystem->camera);
 }
 
-static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0)
-{
+static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0) {
     UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
     const VecFx32 *v1 = PlayerAvatar_PosVector(v0->fieldSystem->playerAvatar);
 
@@ -3539,14 +3458,12 @@ static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0)
     MapObject_Delete(v0->unk_30);
 }
 
-static BOOL ov8_0224C0C4(UnkStruct_ov8_0224C098 *param0)
-{
+static BOOL ov8_0224C0C4(UnkStruct_ov8_0224C098 *param0) {
     UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
     return v0->unk_2C;
 }
 
-static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C *param1, int param2)
-{
+static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C *param1, int param2) {
     int v0;
     int v1 = param1->unk_00;
     int v2 = param1->unk_04;
@@ -3560,8 +3477,7 @@ static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 *param0, UnkStruct_ov8_0224B80C 
     return 0;
 }
 
-static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1)
-{
+static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1) {
     UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
 
     v0->unk_28 = 0;
@@ -3573,8 +3489,7 @@ static void ov8_0224C0FC(UnkStruct_ov8_0224C098 *param0, int param1)
     }
 }
 
-static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1)
-{
+static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1) {
     UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
 
     switch (v0->unk_00) {
@@ -3598,8 +3513,7 @@ static void ov8_0224C11C(UnkStruct_ov8_0224C098 *param0, int param1)
     }
 }
 
-static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1)
-{
+static void ov8_0224C170(UnkStruct_ov8_0224C098 *param0, fx32 param1) {
     if (param0->unk_18 == 1) {
         int v0 = ((param1) / FX32_ONE);
 
@@ -3656,8 +3570,7 @@ static const UnkStruct_ov8_0224C7D0 *const Unk_ov8_0224C708[2] = {
     Unk_ov8_0224C844
 };
 
-void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
-{
+void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071C18 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
     UnkStruct_ov8_0224C444 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224C444));
@@ -3748,8 +3661,7 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     v2->unk_1F4 = SysTask_Start(ov8_0224C3B0, v2, 0);
 }
 
-void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
-{
+void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem) {
     UnkStruct_ov8_0224C444 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     SysTask_Done(v0->unk_1F4);
@@ -3759,13 +3671,11 @@ void HearthomeGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 
-static void ov8_0224C3B0(SysTask *task, void *param1)
-{
+static void ov8_0224C3B0(SysTask *task, void *param1) {
     return;
 }
 
-static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0)
-{
+static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0) {
     UnkStruct_ov8_0224C3B4 *v0 = &param0->unk_1C4;
     UnkStruct_ov5_021D57D8 *v1 = param0->fieldSystem->unk_48;
 
@@ -3794,8 +3704,7 @@ static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0)
     ov5_021D585C(v1, v0->unk_0C);
 }
 
-static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
-{
+static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0) {
     int v0, v1, v2, v3, v4;
     MapObject *v5;
     UnkStruct_ov8_0224C4F8 *v6 = param0->unk_04;
@@ -3830,8 +3739,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
     }
 }
 
-static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0)
-{
+static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0) {
     int v0;
     UnkStruct_ov8_0224C4F8 *v1 = param0->unk_04;
 
@@ -3843,13 +3751,11 @@ static void ov8_0224C4F8(UnkStruct_ov8_0224C444 *param0)
     }
 }
 
-static void ov8_0224C518(SysTask *param0, void *param1)
-{
+static void ov8_0224C518(SysTask *param0, void *param1) {
     return;
 }
 
-BOOL ov8_0224C51C(FieldSystem *fieldSystem)
-{
+BOOL ov8_0224C51C(FieldSystem *fieldSystem) {
     int v0, v1, v2, v3;
     PersistedMapFeatures *v4;
     PlayerAvatar *playerAvatar;
@@ -3888,8 +3794,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     return 0;
 }
 
-BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
-{
+BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1) {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
     if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) {
@@ -3911,8 +3816,7 @@ BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
     return 0;
 }
 
-BOOL ov8_0224C62C(FieldSystem *fieldSystem, int param1, int param2, int *param3)
-{
+BOOL ov8_0224C62C(FieldSystem *fieldSystem, int param1, int param2, int *param3) {
     if ((*param3) != 0) {
         return 0;
     }

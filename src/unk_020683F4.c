@@ -195,8 +195,7 @@ static const UnkStruct_020EF79C Unk_020EF79C[] = {
     { sub_020691E0, sub_02069218, NULL }
 };
 
-u32 sub_020683F4(u16 param0, u16 param1)
-{
+u32 sub_020683F4(u16 param0, u16 param1) {
     if (param0 == 0) {
         return (u32)Unk_020EF79C[param1].unk_00;
     } else if (param0 == 1) {
@@ -206,8 +205,7 @@ u32 sub_020683F4(u16 param0, u16 param1)
     return (u32)Unk_020EF79C[param1].unk_08;
 }
 
-void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
-{
+void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1) {
     int v0, v1, v2;
     MapObject *v3;
 
@@ -250,8 +248,7 @@ void sub_0206842C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     param1->playerAvatar = fieldSystem->playerAvatar;
 }
 
-static void sub_020684D0(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
-{
+static void sub_020684D0(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1) {
     param1->fieldSystem = fieldSystem;
     param1->unk_00 = fieldSystem->location->mapId;
     param1->unk_04 = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
@@ -267,8 +264,7 @@ static void sub_020684D0(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     param1->playerAvatar = fieldSystem->playerAvatar;
 }
 
-static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 param3, u16 param4)
-{
+static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 param3, u16 param4) {
     UnkStruct_0206851C *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0206851C));
 
     v0->unk_00 = param0;
@@ -280,8 +276,7 @@ static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 
     return v0;
 }
 
-static void sub_02068540(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1, u32 param2)
-{
+static void sub_02068540(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1, u32 param2) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -292,14 +287,12 @@ static void sub_02068540(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->state = START_MENU_STATE_10;
 }
 
-static void sub_02068584(UnkStruct_02068870 *param0, u32 param1)
-{
+static void sub_02068584(UnkStruct_02068870 *param0, u32 param1) {
     void *v0 = sub_0206851C(param1, param0->unk_28, 0, 0, 0);
     FieldSystem_CreateTask(param0->fieldSystem, sub_020685AC, v0);
 }
 
-static BOOL sub_020685AC(FieldTask *task)
-{
+static BOOL sub_020685AC(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_0206851C *v1 = FieldTask_GetEnv(task);
     int *v2 = FieldTask_GetState(task);
@@ -325,8 +318,7 @@ static BOOL sub_020685AC(FieldTask *task)
     return 0;
 }
 
-static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
     PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
@@ -350,8 +342,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203B7C0);
 }
 
-static void sub_020686C8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_020686C8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -359,19 +350,16 @@ static void sub_020686C8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203C3F4);
 }
 
-static BOOL sub_020686F8(UnkStruct_02068870 *param0)
-{
+static BOOL sub_020686F8(UnkStruct_02068870 *param0) {
     sub_020693F8(param0, sub_02068708);
     return 1;
 }
 
-static void *sub_02068708(void *param0)
-{
+static void *sub_02068708(void *param0) {
     return sub_0203D8AC(param0);
 }
 
-static void sub_02068710(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068710(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -384,8 +372,7 @@ static void sub_02068710(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     fieldSystem->unk_90 = 0;
 }
 
-static BOOL sub_02068750(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068750(UnkStruct_02068870 *param0) {
     void *v0 = sub_02053FAC(param0->fieldSystem);
 
     MapObjectMan_PauseAllMovement(param0->fieldSystem->mapObjMan);
@@ -395,8 +382,7 @@ static BOOL sub_02068750(UnkStruct_02068870 *param0)
     return 0;
 }
 
-static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_0206877C(const UnkStruct_020684D0 *param0) {
     if (MapHeader_GetMapLabelTextID(param0->unk_00) == LocationNames_Text_MysteryZone) {
         return -1;
     }
@@ -440,8 +426,7 @@ static u32 sub_0206877C(const UnkStruct_020684D0 *param0)
     return 0;
 }
 
-static void sub_0206883C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_0206883C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -452,14 +437,12 @@ static void sub_0206883C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL sub_02068870(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068870(UnkStruct_02068870 *param0) {
     FieldSystem_CreateTask(param0->fieldSystem, sub_02068884, NULL);
     return 0;
 }
 
-static BOOL sub_02068884(FieldTask *task)
-{
+static BOOL sub_02068884(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     int *state = FieldTask_GetState(task);
 
@@ -499,8 +482,7 @@ static BOOL sub_02068884(FieldTask *task)
     return 0;
 }
 
-static u32 sub_02068948(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02068948(const UnkStruct_020684D0 *param0) {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     if (param0->unk_04 == 1) {
@@ -538,8 +520,7 @@ static u32 sub_02068948(const UnkStruct_020684D0 *param0)
     return 0;
 }
 
-static void sub_020689EC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_020689EC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *v1 = FieldTask_GetEnv(param0->unk_00);
 
@@ -547,20 +528,17 @@ static void sub_020689EC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(v1, sub_0203C50C);
 }
 
-static BOOL sub_02068A18(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068A18(UnkStruct_02068870 *param0) {
     sub_020693F8(param0, sub_02068A28);
     return 1;
 }
 
-static void *sub_02068A28(void *param0)
-{
+static void *sub_02068A28(void *param0) {
     sub_0203D30C(param0, NULL);
     return NULL;
 }
 
-static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
     PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
@@ -584,8 +562,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203B7C0);
 }
 
-static void sub_02068ACC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068ACC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
     UnkStruct_02097728 *v2 = sub_0203D94C(fieldSystem, 3, Item_MailNumber(param0->unk_04), HEAP_ID_FIELDMAP);
@@ -596,13 +573,11 @@ static void sub_02068ACC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203C558);
 }
 
-static u32 sub_02068B18(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02068B18(const UnkStruct_020684D0 *param0) {
     return 0;
 }
 
-static void sub_02068B1C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068B1C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem;
     StartMenu *v1;
     MapObject *v2;
@@ -617,8 +592,7 @@ static void sub_02068B1C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     }
 }
 
-BOOL sub_02068B50(const UnkStruct_020684D0 *param0)
-{
+BOOL sub_02068B50(const UnkStruct_020684D0 *param0) {
     if (param0->unk_10 & 0x1) {
         return 1;
     }
@@ -626,8 +600,7 @@ BOOL sub_02068B50(const UnkStruct_020684D0 *param0)
     return 0;
 }
 
-static void sub_02068B5C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068B5C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
     UnkStruct_0203D9B8 *v2 = sub_0203D9B8(fieldSystem, HEAP_ID_FIELDMAP);
@@ -636,19 +609,16 @@ static void sub_02068B5C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203C710);
 }
 
-static BOOL sub_02068B8C(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068B8C(UnkStruct_02068870 *param0) {
     sub_020693F8(param0, sub_02068B9C);
     return 1;
 }
 
-static void *sub_02068B9C(void *param0)
-{
+static void *sub_02068B9C(void *param0) {
     return sub_0203D9B8(param0, HEAP_ID_FIELDMAP);
 }
 
-static void sub_02068BA8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068BA8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -657,20 +627,17 @@ static void sub_02068BA8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203C750);
 }
 
-static BOOL sub_02068BDC(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068BDC(UnkStruct_02068870 *param0) {
     sub_020693F8(param0, sub_02068BEC);
     return 1;
 }
 
-static void *sub_02068BEC(void *param0)
-{
+static void *sub_02068BEC(void *param0) {
     sub_0203DE78(param0, ((FieldSystem *)param0)->saveData);
     return NULL;
 }
 
-static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
     int *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
@@ -683,8 +650,7 @@ static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL sub_02068C38(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068C38(UnkStruct_02068870 *param0) {
     int *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(int));
 
     *v0 = 0;
@@ -693,8 +659,7 @@ static BOOL sub_02068C38(UnkStruct_02068870 *param0)
     return 0;
 }
 
-static u32 sub_02068C5C(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02068C5C(const UnkStruct_020684D0 *param0) {
     if (param0->unk_04 == 1) {
         return 2;
     }
@@ -710,19 +675,16 @@ static u32 sub_02068C5C(const UnkStruct_020684D0 *param0)
     return 0;
 }
 
-static void sub_02068C94(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068C94(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     sub_02068540(param0, param1, 2802);
 }
 
-static BOOL sub_02068CA4(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068CA4(UnkStruct_02068870 *param0) {
     sub_02068584(param0, 2802);
     return 0;
 }
 
-static u32 sub_02068CB4(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02068CB4(const UnkStruct_020684D0 *param0) {
     if (param0->unk_04 == 1) {
         return 2;
     }
@@ -734,13 +696,11 @@ static u32 sub_02068CB4(const UnkStruct_020684D0 *param0)
     }
 }
 
-static void sub_02068CD0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068CD0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     sub_02068540(param0, param1, 2803);
 }
 
-static u32 sub_02068CE0(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02068CE0(const UnkStruct_020684D0 *param0) {
     if (param0->unk_10 & 0x2) {
         return 0;
     } else {
@@ -748,8 +708,7 @@ static u32 sub_02068CE0(const UnkStruct_020684D0 *param0)
     }
 }
 
-static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem;
     StartMenu *menu;
     UnkStruct_ov5_021F0468 *v2;
@@ -772,19 +731,16 @@ static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
 }
 
-static void sub_02068D48(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068D48(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     sub_02068540(param0, param1, 8950);
 }
 
-static BOOL sub_02068D58(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068D58(UnkStruct_02068870 *param0) {
     sub_02068584(param0, 8950);
     return 0;
 }
 
-static u32 sub_02068D68(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02068D68(const UnkStruct_020684D0 *param0) {
     if (MapHeader_IsOnMainMatrix(param0->unk_00)) {
         return 0;
     }
@@ -792,8 +748,7 @@ static u32 sub_02068D68(const UnkStruct_020684D0 *param0)
     return -1;
 }
 
-static void sub_02068D80(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068D80(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -804,16 +759,14 @@ static void sub_02068D80(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL sub_02068DBC(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068DBC(UnkStruct_02068870 *param0) {
     void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 0);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
-static void sub_02068DDC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068DDC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -824,16 +777,14 @@ static void sub_02068DDC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL sub_02068E18(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068E18(UnkStruct_02068870 *param0) {
     void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 1);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
-static void sub_02068E38(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068E38(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -844,16 +795,14 @@ static void sub_02068E38(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL sub_02068E74(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068E74(UnkStruct_02068870 *param0) {
     void *v0 = ov5_021F08CC(param0->fieldSystem, HEAP_ID_FIELD, 2);
 
     FieldSystem_CreateTask(param0->fieldSystem, ov5_021F08F8, v0);
     return 0;
 }
 
-static u32 sub_02068E94(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02068E94(const UnkStruct_020684D0 *param0) {
     if (param0->unk_04 == 1) {
         return 2;
     }
@@ -877,8 +826,7 @@ static u32 sub_02068E94(const UnkStruct_020684D0 *param0)
     return -1;
 }
 
-static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02068EFC(UnkStruct_02068870 *param0) {
     UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
@@ -890,8 +838,7 @@ static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
     return 0;
 }
 
-static BOOL sub_02068F48(FieldTask *task)
-{
+static BOOL sub_02068F48(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_02068EFC *v1 = FieldTask_GetEnv(task);
 
@@ -926,8 +873,7 @@ static BOOL sub_02068F48(FieldTask *task)
     return 0;
 }
 
-static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
     PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
@@ -950,8 +896,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203B7C0);
 }
 
-static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -964,8 +909,7 @@ static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->unk_04, 1, HEAP_ID_FIELDMAP);
 }
 
-static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_020690C4(const UnkStruct_020684D0 *param0) {
     if (param0->unk_04 == 1) {
         return 2;
     }
@@ -977,8 +921,7 @@ static u32 sub_020690C4(const UnkStruct_020684D0 *param0)
     return -1;
 }
 
-static BOOL sub_020690F0(FieldTask *task)
-{
+static BOOL sub_020690F0(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     void *v1 = ov6_02247100(fieldSystem, HEAP_ID_FIELDMAP);
 
@@ -986,19 +929,16 @@ static BOOL sub_020690F0(FieldTask *task)
     return 0;
 }
 
-static void sub_02069110(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02069110(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     sub_02068540(param0, param1, 2039);
 }
 
-static BOOL sub_02069120(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02069120(UnkStruct_02068870 *param0) {
     sub_02068584(param0, 2039);
     return 0;
 }
 
-static u32 sub_02069130(const UnkStruct_020684D0 *param0)
-{
+static u32 sub_02069130(const UnkStruct_020684D0 *param0) {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
     if (SystemFlag_CheckGameCompleted(v0) == 0) {
@@ -1020,8 +960,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
     return 0;
 }
 
-static void sub_02069188(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_02069188(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     StartMenu *menu = FieldTask_GetEnv(param0->unk_00);
 
@@ -1030,22 +969,19 @@ static void sub_02069188(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203C784);
 }
 
-static BOOL sub_020691BC(UnkStruct_02068870 *param0)
-{
+static BOOL sub_020691BC(UnkStruct_02068870 *param0) {
     sub_020693F8(param0, sub_020691CC);
     return 1;
 }
 
-static void *sub_020691CC(void *param0)
-{
+static void *sub_020691CC(void *param0) {
     FieldSystem_SaveStateIfCommunicationOff(param0);
     sub_0203DE88(param0, ((FieldSystem *)param0)->saveData);
 
     return NULL;
 }
 
-static void sub_020691E0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)
-{
+static void sub_020691E0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1) {
     FieldSystem *fieldSystem;
     StartMenu *menu;
     PartyManagementData *partyMan; // unused
@@ -1058,19 +994,16 @@ static void sub_020691E0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     sub_0203B674(menu, sub_0203B7C0);
 }
 
-static BOOL sub_02069218(UnkStruct_02068870 *param0)
-{
+static BOOL sub_02069218(UnkStruct_02068870 *param0) {
     sub_020693F8(param0, sub_02069228);
     return 1;
 }
 
-static void *sub_02069228(void *param0)
-{
+static void *sub_02069228(void *param0) {
     return sub_0203E598(param0, HEAP_ID_FIELDMAP, 466);
 }
 
-BOOL sub_02069238(FieldSystem *fieldSystem)
-{
+BOOL sub_02069238(FieldSystem *fieldSystem) {
     UnkStruct_02068870 *v0;
     UnkFuncPtr_020EF79C v1;
     UnkFuncPtr_02069238 v2;
@@ -1124,8 +1057,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
     return 1;
 }
 
-static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
-{
+static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1) {
     UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
@@ -1135,8 +1067,7 @@ static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
     FieldSystem_CreateTask(param0->fieldSystem, sub_02068F48, v0);
 }
 
-static BOOL sub_0206932C(FieldTask *task)
-{
+static BOOL sub_0206932C(FieldTask *task) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     UnkStruct_02068870 *v1 = FieldTask_GetEnv(task);
 
@@ -1187,8 +1118,7 @@ static BOOL sub_0206932C(FieldTask *task)
     return 0;
 }
 
-static void sub_020693F8(UnkStruct_02068870 *param0, UnkFuncPtr_02068870 param1)
-{
+static void sub_020693F8(UnkStruct_02068870 *param0, UnkFuncPtr_02068870 param1) {
     param0->unk_20 = param1;
     FieldSystem_CreateTask(param0->fieldSystem, sub_0206932C, param0);
 }

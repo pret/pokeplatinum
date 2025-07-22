@@ -65,8 +65,7 @@ const ApplicationManagerTemplate Unk_020F8AB4 = {
     0xFFFFFFFF
 };
 
-int sub_0209A2C4(ApplicationManager *appMan, int *param1)
-{
+int sub_0209A2C4(ApplicationManager *appMan, int *param1) {
     UnkStruct_0209A3D0 *v0;
     int heapID = HEAP_ID_88;
 
@@ -82,8 +81,7 @@ int sub_0209A2C4(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int sub_0209A300(ApplicationManager *appMan, int *param1)
-{
+int sub_0209A300(ApplicationManager *appMan, int *param1) {
     UnkStruct_0209A3D0 *v0 = ApplicationManager_Data(appMan);
     int v1 = 0;
 
@@ -119,8 +117,7 @@ int sub_0209A300(ApplicationManager *appMan, int *param1)
     return v1;
 }
 
-int sub_0209A3A4(ApplicationManager *appMan, int *param1)
-{
+int sub_0209A3A4(ApplicationManager *appMan, int *param1) {
     UnkStruct_0209A3D0 *v0 = ApplicationManager_Data(appMan);
     int heapID = v0->heapID;
 
@@ -131,8 +128,7 @@ int sub_0209A3A4(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
-{
+static void sub_0209A3D0(UnkStruct_0209A3D0 *param0) {
     {
         UnkStruct_02099F80 v0 = {
             GX_VRAM_BG_256_AB,
@@ -186,8 +182,7 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 }
 
-static void sub_0209A490(UnkStruct_0209A3D0 *param0)
-{
+static void sub_0209A490(UnkStruct_0209A3D0 *param0) {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
@@ -200,8 +195,7 @@ static void sub_0209A490(UnkStruct_0209A3D0 *param0)
     Heap_Free(param0->unk_18);
 }
 
-static void sub_0209A4E4(UnkStruct_0209A3D0 *param0)
-{
+static void sub_0209A4E4(UnkStruct_0209A3D0 *param0) {
     param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_CORRUPTED, param0->heapID);
     Text_ResetAllPrinters();
     param0->unk_0C = 0;
@@ -210,14 +204,12 @@ static void sub_0209A4E4(UnkStruct_0209A3D0 *param0)
     Window_FillRectWithColor(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
 }
 
-static void sub_0209A530(UnkStruct_0209A3D0 *param0)
-{
+static void sub_0209A530(UnkStruct_0209A3D0 *param0) {
     Window_Remove(&param0->unk_20);
     MessageLoader_Free(param0->unk_1C);
 }
 
-static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
-{
+static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0) {
     BOOL v0 = 0;
 
     switch (param0->unk_04) {
@@ -287,8 +279,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
     return v0;
 }
 
-static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int param3)
-{
+static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int param3) {
     BOOL v0 = 0;
 
     switch (param0->unk_0C) {

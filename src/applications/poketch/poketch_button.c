@@ -16,8 +16,7 @@ static u32 Button_OnCheckDoubleTap(PoketchButton *button, BOOL touched, BOOL tap
 static u32 Button_OnDoubleTap(PoketchButton *button, BOOL touched, BOOL tapped);
 static u32 Button_OnReset(PoketchButton *button, BOOL touched, BOOL tapped);
 
-PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID)
-{
+PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTable, u32 numButtons, PoketchButtonCallback callback, void *callbackData, u32 heapID) {
     GF_ASSERT(numButtons > 0);
 
     PoketchButtonManager *buttonManager = Heap_AllocFromHeap(heapID, sizeof(PoketchButtonManager));
@@ -43,8 +42,7 @@ PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTab
     return buttonManager;
 }
 
-void PoketchButtonManager_Free(PoketchButtonManager *buttonManager)
-{
+void PoketchButtonManager_Free(PoketchButtonManager *buttonManager) {
     GF_ASSERT(buttonManager);
     Heap_FreeExplicit(buttonManager->heapID, buttonManager->buttons);
     Heap_FreeExplicit(buttonManager->heapID, buttonManager);
@@ -60,8 +58,7 @@ static ButtonEvent sButtonEvents = {
     Button_OnReset
 };
 
-void PoketchButtonManager_Update(PoketchButtonManager *buttonManager)
-{
+void PoketchButtonManager_Update(PoketchButtonManager *buttonManager) {
     BOOL touched, tapped;
     u32 i, buttonState, touchState;
 
@@ -113,24 +110,20 @@ void PoketchButtonManager_Update(PoketchButtonManager *buttonManager)
     }
 }
 
-void PoketchButtonManager_SetButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time)
-{
+void PoketchButtonManager_SetButtonTimer(PoketchButtonManager *buttonManager, u32 buttonIndex, u32 timerIndex, u16 time) {
     buttonManager->buttons[buttonIndex].timerDurations[timerIndex] = time;
 }
 
-void PoketchButtonManager_SetRepeatTime(PoketchButtonManager *buttonManager, u32 index, u16 repeatTime)
-{
+void PoketchButtonManager_SetRepeatTime(PoketchButtonManager *buttonManager, u32 index, u16 repeatTime) {
     buttonManager->buttons[index].repeatTime = repeatTime;
 }
 
-void PoketchButtonManager_ResetButtonState(PoketchButtonManager *buttonManager, u32 index)
-{
+void PoketchButtonManager_ResetButtonState(PoketchButtonManager *buttonManager, u32 index) {
     buttonManager->buttons[index].timer = 0;
     buttonManager->buttons[index].state = BUTTON_STATE_RESET;
 }
 
-static void PoketchButton_Init(PoketchButton *button)
-{
+static void PoketchButton_Init(PoketchButton *button) {
     button->state = BUTTON_STATE_IDLE;
     button->screenTouched = FALSE;
     button->prevScreenTouched = FALSE;
@@ -145,27 +138,23 @@ static void PoketchButton_Init(PoketchButton *button)
 }
 
 /** Use enum ButtonEventState for state input. */
-static void PoketchButton_ChangeState(PoketchButton *button, enum ButtonEventState state)
-{
+static void PoketchButton_ChangeState(PoketchButton *button, enum ButtonEventState state) {
     button->state = state;
     button->timer = 0;
 }
 
 /** Use enum ButtonEventState for state input. */
-static void PoketchButton_ChangeState_NoReset(PoketchButton *button, enum ButtonEventState state)
-{
+static void PoketchButton_ChangeState_NoReset(PoketchButton *button, enum ButtonEventState state) {
     button->state = state;
 }
 
-static void PoketchButton_IncrementTimer(PoketchButton *button)
-{
+static void PoketchButton_IncrementTimer(PoketchButton *button) {
     if (button->timer < BUTTON_TIMER_MAX) {
         button->timer++;
     }
 }
 
-static u32 PoketchButton_CheckTimers(PoketchButton *button)
-{
+static u32 PoketchButton_CheckTimers(PoketchButton *button) {
     for (u32 i = 0; i < BUTTON_MANAGER_NUM_TIMERS_PER_BUTTON; i++) {
         if (button->timerDurations[i] == button->timer) {
             return BUTTON_MANAGER_STATE_TIMER0 + i;
@@ -175,8 +164,7 @@ static u32 PoketchButton_CheckTimers(PoketchButton *button)
     return BUTTON_MANAGER_STATE_NULL;
 }
 
-static u32 Button_OnIdle(PoketchButton *button, BOOL touched, BOOL tapped)
-{
+static u32 Button_OnIdle(PoketchButton *button, BOOL touched, BOOL tapped) {
     if (button->screenTouched) {
         if (tapped) {
             PoketchButton_ChangeState(button, BUTTON_STATE_TAP);
@@ -187,8 +175,7 @@ static u32 Button_OnIdle(PoketchButton *button, BOOL touched, BOOL tapped)
     return BUTTON_MANAGER_STATE_NULL;
 }
 
-static u32 Button_OnPressed(PoketchButton *button, BOOL touched, BOOL tapped)
-{
+static u32 Button_OnPressed(PoketchButton *button, BOOL touched, BOOL tapped) {
     PoketchButton_IncrementTimer(button);
 
     if (button->screenTouched) {
@@ -218,8 +205,7 @@ static u32 Button_OnPressed(PoketchButton *button, BOOL touched, BOOL tapped)
     return BUTTON_MANAGER_STATE_NULL;
 }
 
-static u32 Button_OnCheckDoubleTap(PoketchButton *button, BOOL touched, BOOL tapped)
-{
+static u32 Button_OnCheckDoubleTap(PoketchButton *button, BOOL touched, BOOL tapped) {
     PoketchButton_IncrementTimer(button);
 
     // Missed the double tap window
@@ -236,8 +222,7 @@ static u32 Button_OnCheckDoubleTap(PoketchButton *button, BOOL touched, BOOL tap
     return BUTTON_MANAGER_STATE_NULL;
 }
 
-static u32 Button_OnDoubleTap(PoketchButton *button, BOOL touched, BOOL tapped)
-{
+static u32 Button_OnDoubleTap(PoketchButton *button, BOOL touched, BOOL tapped) {
     if (button->screenTouched) {
         PoketchButton_IncrementTimer(button);
     } else {
@@ -247,8 +232,7 @@ static u32 Button_OnDoubleTap(PoketchButton *button, BOOL touched, BOOL tapped)
     return BUTTON_MANAGER_STATE_NULL;
 }
 
-static u32 Button_OnReset(PoketchButton *button, BOOL touched, BOOL tapped)
-{
+static u32 Button_OnReset(PoketchButton *button, BOOL touched, BOOL tapped) {
     if (button->screenTouched == FALSE) {
         PoketchButton_ChangeState(button, BUTTON_STATE_IDLE);
     }

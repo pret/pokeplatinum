@@ -14,8 +14,7 @@ void ov104_022395A0(UnkStruct_0204AFC4 *param0, u16 param1);
 u16 ov104_022395B4(UnkStruct_0204AFC4 *param0);
 u16 ov104_022395D8(UnkStruct_0204AFC4 *param0);
 
-void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *saveData)
-{
+void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *saveData) {
     switch (param0->unk_0F) {
     case 4:
     case 5:
@@ -44,18 +43,15 @@ void ov104_022394A4(UnkStruct_0204AFC4 *param0, SaveData *saveData)
     }
 }
 
-u16 ov104_02239588(UnkStruct_0204AFC4 *param0, u16 param1)
-{
+u16 ov104_02239588(UnkStruct_0204AFC4 *param0, u16 param1) {
     return ov104_0222E10C(param0->unk_78[param1].unk_00.trainerType);
 }
 
-void ov104_022395A0(UnkStruct_0204AFC4 *param0, u16 param1)
-{
+void ov104_022395A0(UnkStruct_0204AFC4 *param0, u16 param1) {
     param0->unk_10_1 = param1;
 }
 
-u16 ov104_022395B4(UnkStruct_0204AFC4 *param0)
-{
+u16 ov104_022395B4(UnkStruct_0204AFC4 *param0) {
     ++param0->unk_0D;
 
     if (param0->unk_0F != 6) {
@@ -65,8 +61,7 @@ u16 ov104_022395B4(UnkStruct_0204AFC4 *param0)
     return ++param0->unk_0C;
 }
 
-u16 ov104_022395D8(UnkStruct_0204AFC4 *param0)
-{
+u16 ov104_022395D8(UnkStruct_0204AFC4 *param0) {
     if ((u32)param0->unk_1A + param0->unk_0D > 0xFFFF) {
         return 0xFFFF;
     } else {

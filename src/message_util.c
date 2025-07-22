@@ -10,8 +10,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 
-Strbuf *MessageUtil_ExpandedStrbuf(StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
-{
+Strbuf *MessageUtil_ExpandedStrbuf(StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID) {
     Strbuf *ret = NULL;
     Strbuf *buf = Strbuf_Init(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
 
@@ -30,8 +29,7 @@ Strbuf *MessageUtil_ExpandedStrbuf(StringTemplate *template, MessageLoader *load
     return ret;
 }
 
-Strbuf *MessageUtil_MoveName(u32 moveID, u32 heapID)
-{
+Strbuf *MessageUtil_MoveName(u32 moveID, u32 heapID) {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, heapID);
 
     if (loader) {
@@ -48,8 +46,7 @@ Strbuf *MessageUtil_MoveName(u32 moveID, u32 heapID)
     return NULL;
 }
 
-Strbuf *MessageUtil_SpeciesName(u32 species, u32 heapID)
-{
+Strbuf *MessageUtil_SpeciesName(u32 species, u32 heapID) {
     MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
 
     if (loader) {

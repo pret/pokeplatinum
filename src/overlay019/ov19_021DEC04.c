@@ -85,8 +85,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1);
 static void ov19_021DF930(SysTask *param0, void *param1);
 
-BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, NARC *param6)
-{
+BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, NARC *param6) {
     if (ov19_GetBoxMode(param2) != PC_MODE_COMPARE) {
         *param0 = NULL;
         return 1;
@@ -113,8 +112,7 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
     }
 }
 
-void ov19_021DECAC(UnkStruct_ov19_021DEC04 *param0)
-{
+void ov19_021DECAC(UnkStruct_ov19_021DEC04 *param0) {
     if (param0) {
         Heap_Free(param0->unk_370);
         Heap_Free(param0->unk_374);
@@ -126,8 +124,7 @@ void ov19_021DECAC(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
-{
+void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1) {
     if (param0) {
         ov19_021DEEFC(param0);
 
@@ -150,8 +147,7 @@ void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
     }
 }
 
-void ov19_021DEDDC(UnkStruct_ov19_021DEC04 *param0, BOOL param1)
-{
+void ov19_021DEDDC(UnkStruct_ov19_021DEC04 *param0, BOOL param1) {
     if (param0) {
         int v0 = ov19_GetCompareMonSlot(param0->unk_08);
 
@@ -167,8 +163,7 @@ void ov19_021DEDDC(UnkStruct_ov19_021DEC04 *param0, BOOL param1)
     }
 }
 
-void ov19_021DEE34(UnkStruct_ov19_021DEC04 *param0)
-{
+void ov19_021DEE34(UnkStruct_ov19_021DEC04 *param0) {
     ov19_021DF834(param0);
 
     if (param0) {
@@ -190,13 +185,11 @@ void ov19_021DEE34(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-BOOL ov19_021DEE84(UnkStruct_ov19_021DEC04 *param0)
-{
+BOOL ov19_021DEE84(UnkStruct_ov19_021DEC04 *param0) {
     return 1;
 }
 
-void ov19_021DEE88(UnkStruct_ov19_021DEC04 *param0)
-{
+void ov19_021DEE88(UnkStruct_ov19_021DEC04 *param0) {
     if (param0) {
         param0->unk_37C = 0;
         ov19_021DF0CC(param0, param0->unk_378);
@@ -204,8 +197,7 @@ void ov19_021DEE88(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-BOOL ov19_021DEEA8(UnkStruct_ov19_021DEC04 *param0)
-{
+BOOL ov19_021DEEA8(UnkStruct_ov19_021DEC04 *param0) {
     if (param0) {
         switch (param0->unk_37C) {
         case 0:
@@ -227,8 +219,7 @@ BOOL ov19_021DEEA8(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0) {
     NNSG2dScreenData *v0 = (ov19_GetCompareMonSlot(param0->unk_08) == 0) ? param0->unk_368 : param0->unk_36C;
 
     Bg_CopyToTilemapRect(param0->unk_0C, 2, 0, 0, 6, 32, v0->rawData, 0, 0, 32, 32);
@@ -236,8 +227,7 @@ static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 2);
 }
 
-static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0) {
     switch (ov19_021D5FA4(param0->unk_08)) {
     case 0:
         Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
@@ -257,8 +247,7 @@ static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DEFC8(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DEFC8(UnkStruct_ov19_021DEC04 *param0) {
     static const WindowTemplate v0[] = {
         { 4, 3, 1, 9, 2, 0, 1 },
         { 4, 20, 1, 9, 2, 1, 19 },
@@ -286,8 +275,7 @@ static void ov19_021DEFC8(UnkStruct_ov19_021DEC04 *param0)
     ov19_021DF064(param0);
 }
 
-static void ov19_021DF03C(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF03C(UnkStruct_ov19_021DEC04 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 7; v0++) {
@@ -297,8 +285,7 @@ static void ov19_021DF03C(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DF064(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF064(UnkStruct_ov19_021DEC04 *param0) {
     int v0 = ov19_021D5FA4(param0->unk_08);
 
     switch (ov19_021D5FA4(param0->unk_08)) {
@@ -321,8 +308,7 @@ static void ov19_021DF064(UnkStruct_ov19_021DEC04 *param0)
     param0->unk_378 = v0;
 }
 
-static void ov19_021DF0CC(UnkStruct_ov19_021DEC04 *param0, int param1)
-{
+static void ov19_021DF0CC(UnkStruct_ov19_021DEC04 *param0, int param1) {
     switch (param1) {
     case 0:
         ov19_021DF140(param0);
@@ -339,8 +325,7 @@ static void ov19_021DF0CC(UnkStruct_ov19_021DEC04 *param0, int param1)
     }
 }
 
-static void ov19_021DF108(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF108(UnkStruct_ov19_021DEC04 *param0) {
     static const WindowTemplate v0[] = {
         { 4, 3, 4, 9, 16, 0, 133 },
         { 4, 20, 4, 9, 16, 1, 277 }
@@ -354,8 +339,7 @@ static void ov19_021DF108(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DF140(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF140(UnkStruct_ov19_021DEC04 *param0) {
     int v0;
 
     for (v0 = 3; v0 <= 4; v0++) {
@@ -367,8 +351,7 @@ static void ov19_021DF140(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
-{
+static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot) {
 #define DEFINE_00(tx) ((128 << FX32_SHIFT) + (((((tx) - 128) << FX32_SHIFT) * 10) / 100))
 #define DEFINE_01(ty) ((484 << FX32_SHIFT) + (((((ty) - 484) << FX32_SHIFT) * 10) / 100))
 
@@ -417,8 +400,7 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 #undef DEFINE_01
 }
 
-static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
-{
+static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot) {
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -426,8 +408,7 @@ static void ov19_021DF250(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     }
 }
 
-static void ov19_021DF270(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF270(UnkStruct_ov19_021DEC04 *param0) {
     static const WindowTemplate v0[] = {
         { 4, 1, 4, 11, 12, 0, 133 },
         { 4, 20, 4, 11, 12, 1, 265 }
@@ -441,8 +422,7 @@ static void ov19_021DF270(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 *param0) {
     int v0;
 
     for (v0 = 5; v0 <= 6; v0++) {
@@ -454,13 +434,11 @@ static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static inline u32 inline_ov19_021DF3AC(Window *param0, u32 param1, const Strbuf *param2)
-{
+static inline u32 inline_ov19_021DF3AC(Window *param0, u32 param1, const Strbuf *param2) {
     return ((param0->width * 8) - Font_CalcStrbufWidth(param1, param2, 0)) / 2;
 }
 
-static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0) {
     static const u16 compareMessages[] = {
         BoxText_Nature,
         BoxText_Level,
@@ -492,16 +470,14 @@ static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
     Window_LoadTiles(v1);
 }
 
-static void ov19_021DF394(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF394(UnkStruct_ov19_021DEC04 *param0) {
     Window *v0 = &param0->unk_78[2];
 
     Window_FillTilemap(v0, 0);
     Window_LoadTiles(v0);
 }
 
-static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
-{
+static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot) {
     Window *window;
     const PCCompareMon *compareMon;
     BOOL isMonUnderCursor, compareSlot, v4;
@@ -538,8 +514,7 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     Window_LoadTiles(window);
 }
 
-static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
-{
+static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot) {
     Window *v0;
     const PCCompareMon *compareMon;
     BOOL isMonUnderCursor, v3, v4;
@@ -574,8 +549,7 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     Window_LoadTiles(v0);
 }
 
-static void ov19_021DF5D0(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
-{
+static void ov19_021DF5D0(UnkStruct_ov19_021DEC04 *param0, NARC *param1) {
     static const struct {
         s16 unk_00;
         s16 unk_02;
@@ -618,8 +592,7 @@ static void ov19_021DF5D0(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
     ov19_021DF730(param0, v3);
 }
 
-static void ov19_021DF730(UnkStruct_ov19_021DEC04 *param0, u32 param1)
-{
+static void ov19_021DF730(UnkStruct_ov19_021DEC04 *param0, u32 param1) {
     static const struct {
         s16 unk_00;
         s16 unk_02;
@@ -642,8 +615,7 @@ static void ov19_021DF730(UnkStruct_ov19_021DEC04 *param0, u32 param1)
     }
 }
 
-static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0) {
     int v0, v1;
 
     if (param0->unk_380) {
@@ -664,8 +636,7 @@ static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
     Heap_Free(param0->unk_64);
 }
 
-static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
-{
+static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0) {
     int compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
     const PCCompareMon *compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     Sprite *v2 = param0->unk_20[compareMonSlot];
@@ -688,8 +659,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
     }
 }
 
-static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
-{
+static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot) {
     Window *window;
 
     compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
@@ -705,8 +675,7 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     Window_LoadTiles(window);
 }
 
-static void ov19_021DF930(SysTask *param0, void *param1)
-{
+static void ov19_021DF930(SysTask *param0, void *param1) {
     UnkStruct_ov19_021DEC04 *v0 = param1;
     BOOL pressedAnimation = ov19_IsCompareButtonPressed(v0->unk_08);
 

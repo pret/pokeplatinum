@@ -18,8 +18,7 @@ static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1);
 static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5);
 static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5);
 
-void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths *param1, u32 param2, u32 heapID)
-{
+void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths *param1, u32 param2, u32 heapID) {
     SpriteResourceTable *v0;
     SpriteResourceTable *v1;
     void *v2;
@@ -73,8 +72,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths 
     Heap_Free(v2);
 }
 
-void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
-{
+void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0) {
     u32 v0;
 
     SpriteList_Delete(param0->unk_00);
@@ -88,8 +86,7 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
     }
 }
 
-Sprite *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromResourceHeader *param1)
-{
+Sprite *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromResourceHeader *param1) {
     AffineSpriteListTemplate v0;
     Sprite *v1;
     VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
@@ -117,8 +114,7 @@ Sprite *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromRes
     return v1;
 }
 
-void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *param1, u32 param2, u32 heapID)
-{
+void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *param1, u32 param2, u32 heapID) {
     SpriteResourceTable *v0;
     SpriteResourceTable *v1;
     void *v2;
@@ -153,8 +149,7 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *para
     }
 }
 
-void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5, int param6)
-{
+void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5, int param6) {
     SpriteResource *v0;
     int v1;
 
@@ -177,8 +172,7 @@ void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
     GF_ASSERT(0);
 }
 
-void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5, int param6)
-{
+void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5, int param6) {
     SpriteResource *v0;
     int v1;
 
@@ -201,28 +195,23 @@ void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int 
     GF_ASSERT(0);
 }
 
-void ov5_021D3360(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4)
-{
+void ov5_021D3360(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4) {
     ov5_021D34AC(param0, param1, param2, param3, 2, param4);
 }
 
-void ov5_021D3374(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4)
-{
+void ov5_021D3374(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4) {
     ov5_021D3518(param0, param1, param2, param3, 2, param4);
 }
 
-void ov5_021D3388(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4)
-{
+void ov5_021D3388(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4) {
     ov5_021D34AC(param0, param1, param2, param3, 3, param4);
 }
 
-void ov5_021D339C(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4)
-{
+void ov5_021D339C(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4) {
     ov5_021D3518(param0, param1, param2, param3, 3, param4);
 }
 
-void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL param3, int param4, int param5)
-{
+void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL param3, int param4, int param5) {
     SpriteResource *v0;
 
     if (SpriteResourceCollection_IsIDUnused(param0->unk_194[0], param5) == 0) {
@@ -241,8 +230,7 @@ void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL p
     GF_ASSERT(0);
 }
 
-void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5)
-{
+void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5) {
     SpriteResource *v0;
 
     if (SpriteResourceCollection_IsIDUnused(param0->unk_194[0], param5) == 0) {
@@ -262,8 +250,7 @@ void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL
     GF_ASSERT(0);
 }
 
-static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1)
-{
+static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1) {
     int v0;
 
     for (v0 = 0; v0 < param0->capacity; v0++) {
@@ -280,8 +267,7 @@ static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1)
     return 0;
 }
 
-static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5)
-{
+static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5) {
     SpriteResource *v0;
     int v1;
 
@@ -301,8 +287,7 @@ static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2,
     GF_ASSERT(0);
 }
 
-static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5)
-{
+static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5) {
     SpriteResource *v0;
     int v1;
 
@@ -323,8 +308,7 @@ static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param
     GF_ASSERT(0);
 }
 
-ManagedSprite *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate *param1)
-{
+ManagedSprite *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate *param1) {
     int v0;
     int v1;
     ManagedSprite *v2 = NULL;
@@ -387,8 +371,7 @@ ManagedSprite *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
     return v2;
 }
 
-void ov5_021D375C(UnkStruct_ov5_021D30A8 *param0)
-{
+void ov5_021D375C(UnkStruct_ov5_021D30A8 *param0) {
     u32 v0;
 
     SpriteList_Delete(param0->unk_00);

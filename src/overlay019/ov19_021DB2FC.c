@@ -28,8 +28,7 @@ static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
 static void ov19_021DB84C(BgConfig *param0, Window *param1);
 static void ov19_021DB898(BgConfig *param0, Window *param1);
 
-BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *boxMessagesLoader, const StringTemplate *messageVariableBuffer, int optionsFrame, NARC *param8)
-{
+BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *boxMessagesLoader, const StringTemplate *messageVariableBuffer, int optionsFrame, NARC *param8) {
     param0->unk_0C = param1;
     param0->unk_00 = param3;
     param0->unk_08 = param2;
@@ -51,8 +50,7 @@ BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *par
     return 1;
 }
 
-void ov19_021DB370(UnkStruct_ov19_021DB6F0 *param0)
-{
+void ov19_021DB370(UnkStruct_ov19_021DB6F0 *param0) {
     if (param0->unk_18) {
         int v0;
 
@@ -81,8 +79,7 @@ void ov19_021DB370(UnkStruct_ov19_021DB6F0 *param0)
     }
 }
 
-void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
-{
+void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0) {
     static const WindowTemplate v0[] = {
         { 1, 2, 21, 27, 2, 4, 539 },
         { 1, 19, 3, 12, 16, 4, 593 }
@@ -103,8 +100,7 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
     LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_1, 521, 8, param0->unk_20, HEAP_ID_BOX_GRAPHICS);
 }
 
-void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID)
-{
+void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID) {
     Window_PutToTilemap(&param0->unk_18[0]);
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].bgLayer, param0->unk_18[0].tilemapLeft, param0->unk_18[0].tilemapTop, param0->unk_18[0].width, param0->unk_18[0].height);
     Window_FillTilemap(&param0->unk_18[0], 15);
@@ -117,8 +113,7 @@ void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID)
     param0->unk_1C = 1;
 }
 
-static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
-{
+static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5) {
     u16 *v0;
     u32 v1, v2;
 
@@ -159,8 +154,7 @@ static void ov19_021DB4B4(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
     v0[4 + param4] = (8 << 12) | (521 + 17);
 }
 
-void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
-{
+void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu) {
     Window *v0;
     u32 v1, i;
 
@@ -192,13 +186,11 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
     param0->unk_1E = 1;
 }
 
-static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 markings, u32 markingID)
-{
+static void ov19_021DB638(UnkStruct_ov19_021DB6F0 *param0, Window *param1, u8 markings, u32 markingID) {
     Window_BlitBitmapRectWithTransparency(param1, param0->unk_28->pRawData, markingID * 8, ((markings & (1 << markingID)) ? 0 : 8), 48, 16, 44, markingID * 16 + 4, 8, 8, 0xff);
 }
 
-static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
-{
+static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1) {
     u16 *v0;
     u32 v1, v2, v3, v4;
 
@@ -221,8 +213,7 @@ static void ov19_021DB684(UnkStruct_ov19_021DB6F0 *param0, u32 param1)
     ov19_021DB7BC(param0->unk_00, 1, 19, 3 + v4 * 2, 12, param1 * 2);
 }
 
-void ov19_021DB6F0(UnkStruct_ov19_021DB6F0 *param0)
-{
+void ov19_021DB6F0(UnkStruct_ov19_021DB6F0 *param0) {
     if (param0->unk_1C) {
         ov19_021DB898(param0->unk_00, &param0->unk_18[0]);
         param0->unk_1C = 0;
@@ -236,8 +227,7 @@ void ov19_021DB6F0(UnkStruct_ov19_021DB6F0 *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 }
 
-void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0)
-{
+void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0) {
     if (param0->unk_1E) {
         ov19_021DB84C(param0->unk_00, &param0->unk_18[1]);
         param0->unk_1E = 0;
@@ -246,8 +236,7 @@ void ov19_021DB724(UnkStruct_ov19_021DB6F0 *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
 }
 
-void BoxGraphics_DrawMenuCursorBox(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
-{
+void BoxGraphics_DrawMenuCursorBox(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu) {
     Window *menuWindow;
     u32 v1;
 
@@ -259,8 +248,7 @@ void BoxGraphics_DrawMenuCursorBox(UnkStruct_ov19_021DB6F0 *param0, const BoxMen
     Window_LoadTiles(menuWindow);
 }
 
-void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
-{
+void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu) {
     Window *v0;
     int v1;
 
@@ -273,8 +261,7 @@ void ov19_021DB790(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
     Window_LoadTiles(v0);
 }
 
-static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
-{
+static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5) {
     u16 *v0;
     u32 v1;
 
@@ -304,8 +291,7 @@ static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
     v0[param4 + 1] = (7 << 12) | (512 + 8);
 }
 
-static void ov19_021DB84C(BgConfig *param0, Window *param1)
-{
+static void ov19_021DB84C(BgConfig *param0, Window *param1) {
     u16 *v0;
     u32 v1, v2, v3, v4;
 
@@ -321,8 +307,7 @@ static void ov19_021DB84C(BgConfig *param0, Window *param1)
     }
 }
 
-static void ov19_021DB898(BgConfig *param0, Window *param1)
-{
+static void ov19_021DB898(BgConfig *param0, Window *param1) {
     u16 *v0;
     u32 v1, v2, v3, v4;
 

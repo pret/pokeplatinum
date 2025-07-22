@@ -680,8 +680,7 @@ const u16 sBerryItemIDs[] = {
 };
 // clang-format on
 
-void Item_MoveInPocket(void *pocket, u16 srcSlot, u16 dstSlot)
-{
+void Item_MoveInPocket(void *pocket, u16 srcSlot, u16 dstSlot) {
     if (srcSlot == dstSlot) {
         return;
     }
@@ -708,8 +707,7 @@ void Item_MoveInPocket(void *pocket, u16 srcSlot, u16 dstSlot)
     items[dstSlot] = item;
 }
 
-u16 Item_FileID(u16 item, enum ItemFileType type)
-{
+u16 Item_FileID(u16 item, enum ItemFileType type) {
     switch (type) {
     case ITEM_FILE_TYPE_DATA:
         if (item == ITEM_NONE || item == ITEM_RETURN_ID) {
@@ -748,8 +746,7 @@ u16 Item_FileID(u16 item, enum ItemFileType type)
     return 0;
 }
 
-u16 Item_FromGBAID(u16 gbaID)
-{
+u16 Item_FromGBAID(u16 gbaID) {
     for (u16 i = ITEM_NONE + 1; i <= NUM_ITEMS; i++) {
         if (gbaID == sItemArchiveIDs[i].gen3ID) {
             return i;
@@ -759,18 +756,15 @@ u16 Item_FromGBAID(u16 gbaID)
     return ITEM_NONE;
 }
 
-u16 Item_IconNCERFile(void)
-{
+u16 Item_IconNCERFile(void) {
     return 1; // TODO: Use NAIX generated from item_icon.narc
 }
 
-u16 Item_IconNANRFile(void)
-{
+u16 Item_IconNANRFile(void) {
     return 0; // TODO: Use NAIX generated from item_icon.narc
 }
 
-void *Item_Load(u16 item, enum ItemFileType type, u32 heapID)
-{
+void *Item_Load(u16 item, enum ItemFileType type, u32 heapID) {
     if (item > NUM_ITEMS) {
         item = ITEM_NONE;
     }
@@ -787,24 +781,21 @@ void *Item_Load(u16 item, enum ItemFileType type, u32 heapID)
     return NULL;
 }
 
-void Item_LoadName(Strbuf *dst, u16 item, u32 heapID)
-{
+void Item_LoadName(Strbuf *dst, u16 item, u32 heapID) {
     MessageLoader *msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, heapID);
 
     MessageLoader_GetStrbuf(msgData, item, dst);
     MessageLoader_Free(msgData);
 }
 
-void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID)
-{
+void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID) {
     MessageLoader *msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, heapID);
 
     MessageLoader_GetStrbuf(msgData, item, dst);
     MessageLoader_Free(msgData);
 }
 
-s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID)
-{
+s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID) {
     ItemData *itemData = (ItemData *)Item_Load(item, 0, heapID);
     s32 val = Item_Get(itemData, param);
     Heap_FreeExplicit(heapID, itemData);
@@ -812,8 +803,7 @@ s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID)
     return val;
 }
 
-s32 Item_Get(ItemData *itemData, enum ItemDataParam param)
-{
+s32 Item_Get(ItemData *itemData, enum ItemDataParam param) {
     switch (param) {
     case ITEM_PARAM_PRICE:
         return (s32)itemData->price;
@@ -859,8 +849,7 @@ s32 Item_Get(ItemData *itemData, enum ItemDataParam param)
     return 0;
 }
 
-static s32 ItemPartyParam_Get(ItemPartyParam *partyParam, enum ItemDataParam attributeID)
-{
+static s32 ItemPartyParam_Get(ItemPartyParam *partyParam, enum ItemDataParam attributeID) {
     switch (attributeID) {
     case ITEM_PARAM_HEAL_SLEEP:
         return (s32)partyParam->healSleep;
@@ -955,8 +944,7 @@ static s32 ItemPartyParam_Get(ItemPartyParam *partyParam, enum ItemDataParam att
     return 0;
 }
 
-const u16 Item_MoveForTMHM(u16 item)
-{
+const u16 Item_MoveForTMHM(u16 item) {
     if (item < ITEM_TM01 || item > ITEM_HM08) {
         return MOVE_NONE;
     }
@@ -965,8 +953,7 @@ const u16 Item_MoveForTMHM(u16 item)
     return sTMHMMoves[item];
 }
 
-u8 Item_IsHMMove(u16 move)
-{
+u8 Item_IsHMMove(u16 move) {
     for (u8 i = 0; i < NUM_HMS; i++) {
         if (sTMHMMoves[NUM_TMS + i] == move) {
             return TRUE;
@@ -976,8 +963,7 @@ u8 Item_IsHMMove(u16 move)
     return FALSE;
 }
 
-u8 Item_TMHMNumber(u16 item)
-{
+u8 Item_TMHMNumber(u16 item) {
     if (item < ITEM_TM01 || item > ITEM_HM08) {
         return ITEM_NONE;
     }
@@ -985,8 +971,7 @@ u8 Item_TMHMNumber(u16 item)
     return item - ITEM_TM01;
 }
 
-u8 Item_IsMail(u16 item)
-{
+u8 Item_IsMail(u16 item) {
     for (u32 i = 0; i < NUM_MAILS; i++) {
         if (sMailItemIDs[i] == item) {
             return TRUE;
@@ -996,8 +981,7 @@ u8 Item_IsMail(u16 item)
     return FALSE;
 }
 
-u8 Item_MailNumber(u16 item)
-{
+u8 Item_MailNumber(u16 item) {
     for (u32 i = 0; i < NUM_MAILS; i++) {
         if (sMailItemIDs[i] == item) {
             return i;
@@ -1007,8 +991,7 @@ u8 Item_MailNumber(u16 item)
     return ITEM_NONE;
 }
 
-u16 Item_ForMailNumber(u8 mail)
-{
+u16 Item_ForMailNumber(u8 mail) {
     if (mail >= NUM_MAILS) {
         return ITEM_NONE;
     }
@@ -1016,8 +999,7 @@ u16 Item_ForMailNumber(u8 mail)
     return sMailItemIDs[mail];
 }
 
-u8 Item_IsBerry(u16 item)
-{
+u8 Item_IsBerry(u16 item) {
     for (u32 i = 0; i < NUM_BERRIES; i++) {
         if (sBerryItemIDs[i] == item) {
             return TRUE;
@@ -1027,8 +1009,7 @@ u8 Item_IsBerry(u16 item)
     return FALSE;
 }
 
-u8 Item_BerryNumber(u16 item)
-{
+u8 Item_BerryNumber(u16 item) {
     if (item < ITEM_CHERI_BERRY) {
         return BERRY_ID_NONE;
     }
@@ -1036,8 +1017,7 @@ u8 Item_BerryNumber(u16 item)
     return item - ITEM_CHERI_BERRY;
 }
 
-u16 Item_ForBerryNumber(u8 berry)
-{
+u16 Item_ForBerryNumber(u8 berry) {
     if (berry >= NUM_BERRIES) {
         return ITEM_RETURN_ID;
     }
@@ -1045,21 +1025,18 @@ u16 Item_ForBerryNumber(u8 berry)
     return sBerryItemIDs[berry];
 }
 
-u8 Item_IsHerbalMedicine(u16 item)
-{
+u8 Item_IsHerbalMedicine(u16 item) {
     return item == ITEM_ENERGYPOWDER
         || item == ITEM_ENERGY_ROOT
         || item == ITEM_HEAL_POWDER
         || item == ITEM_REVIVAL_HERB;
 }
 
-void *ItemTable_Load(enum HeapId heapID)
-{
+void *ItemTable_Load(enum HeapId heapID) {
     int maxItem = Item_FileID(NUM_ITEMS, ITEM_FILE_TYPE_DATA);
     return NARC_AllocAndReadFromMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, 0, heapID, 0, sizeof(ItemData) * maxItem);
 }
 
-ItemData *ItemTable_Index(ItemData *itemTable, u16 index)
-{
+ItemData *ItemTable_Index(ItemData *itemTable, u16 index) {
     return (ItemData *)((u8 *)itemTable + index * sizeof(ItemData));
 }

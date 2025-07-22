@@ -29,18 +29,15 @@ static const u8 Unk_ov6_02249030[] = {
     0x1
 };
 
-GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const int heapID)
-{
+GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const int heapID) {
     return Heap_AllocFromHeapAtEnd(heapID, sizeof(GreatMarshLookout_SpriteResources));
 }
 
-void GreatMarshLookout_FreeSpriteResources(GreatMarshLookout_SpriteResources *resources)
-{
+void GreatMarshLookout_FreeSpriteResources(GreatMarshLookout_SpriteResources *resources) {
     Heap_Free(resources);
 }
 
-void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources *resources, const int species)
-{
+void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources *resources, const int species) {
     int i;
     NARC *v1;
 
@@ -89,26 +86,22 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
     ov6_022428F8(resources);
 }
 
-void ov6_022427F4(GreatMarshLookout_SpriteResources *param0)
-{
+void ov6_022427F4(GreatMarshLookout_SpriteResources *param0) {
     param0->unk_1CC = 1;
     param0->unk_1D0 = 0;
 
     SysTask_Start(ov6_02242860, param0, 0);
 }
 
-void ov6_02242814(GreatMarshLookout_SpriteResources *param0)
-{
+void ov6_02242814(GreatMarshLookout_SpriteResources *param0) {
     param0->unk_1CC = 0;
 }
 
-BOOL ov6_02242820(GreatMarshLookout_SpriteResources *param0)
-{
+BOOL ov6_02242820(GreatMarshLookout_SpriteResources *param0) {
     return param0->unk_1D0;
 }
 
-void ov6_02242828(GreatMarshLookout_SpriteResources *param0)
-{
+void ov6_02242828(GreatMarshLookout_SpriteResources *param0) {
     u8 v0;
 
     SpriteTransfer_ResetCharTransfer(param0->unk_10[0]);
@@ -123,8 +116,7 @@ void ov6_02242828(GreatMarshLookout_SpriteResources *param0)
     Heap_Free(param0->unk_24);
 }
 
-static void ov6_02242860(SysTask *param0, void *param1)
-{
+static void ov6_02242860(SysTask *param0, void *param1) {
     GreatMarshLookout_SpriteResources *v0 = param1;
 
     if (v0->unk_1CC) {
@@ -135,8 +127,7 @@ static void ov6_02242860(SysTask *param0, void *param1)
     }
 }
 
-static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollection *param1, void *param2, void *param3)
-{
+static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollection *param1, void *param2, void *param3) {
     int v0;
     u32 v1, v2;
     SpriteResource *v3;
@@ -165,8 +156,7 @@ static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollect
     GX_LoadOBJPltt(param3, v2, v0);
 }
 
-static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0)
-{
+static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0) {
     int v0;
     SpriteResourcesHeader v1;
 

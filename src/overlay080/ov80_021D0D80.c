@@ -93,8 +93,7 @@ const UnkStruct_ov80_021D2E94 Unk_ov80_021D2E94[3] = {
     },
 };
 
-int ov80_021D0D80(ApplicationManager *appMan, int *param1)
-{
+int ov80_021D0D80(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov80_021D2A08 *v0 = NULL;
     UnkStruct_0203D8AC *v1 = (UnkStruct_0203D8AC *)ApplicationManager_Args(appMan);
 
@@ -118,8 +117,7 @@ int ov80_021D0D80(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov80_021D0DD8(ApplicationManager *appMan, int *param1)
-{
+int ov80_021D0DD8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov80_021D2A08 *v0 = ApplicationManager_Data(appMan);
 
     switch (v0->unk_08) {
@@ -151,8 +149,7 @@ int ov80_021D0DD8(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov80_021D0E50(ApplicationManager *appMan, int *param1)
-{
+int ov80_021D0E50(ApplicationManager *appMan, int *param1) {
     int v0 = 0;
     UnkStruct_ov80_021D2A08 *v1 = ApplicationManager_Data(appMan);
 
@@ -162,8 +159,7 @@ int ov80_021D0E50(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov80_021D0E68(void *param0)
-{
+static void ov80_021D0E68(void *param0) {
     UnkStruct_ov80_021D2A08 *v0 = param0;
 
     if (Unk_ov80_021D2E94[v0->unk_00].unk_20 != NULL) {
@@ -178,8 +174,7 @@ static void ov80_021D0E68(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov80_021D0EA8(void)
-{
+static void ov80_021D0EA8(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -196,8 +191,7 @@ static void ov80_021D0EA8(void)
     GXLayers_SetBanks(&v0);
 }
 
-static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
-{
+static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0) {
     switch (param0->unk_0C) {
     case 0:
         SetVBlankCallback(NULL, NULL);
@@ -244,8 +238,7 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
     return 0;
 }
 
-static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
-{
+static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0) {
     int v0;
 
     DisableTouchPad();
@@ -269,14 +262,12 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
     MessageLoader_Free(param0->unk_80);
 }
 
-static void ov80_021D1068(UnkStruct_ov80_021D2A08 *param0)
-{
+static void ov80_021D1068(UnkStruct_ov80_021D2A08 *param0) {
     (Unk_ov80_021D2E94[param0->unk_00].unk_18)(param0);
     ov80_021D2AE0(param0);
 }
 
-static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1)
-{
+static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1) {
     int v0, v1;
 
     {
@@ -424,8 +415,7 @@ static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1)
     Bg_ClearTilesRange(7, 32, 0, param0->heapID);
 }
 
-static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
-{
+static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0) {
     void *v0;
     u32 v1, v2;
     NARC *v3;
@@ -454,8 +444,7 @@ static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
     Font_LoadTextPalette(4, 15 * 32, param0->heapID);
 }
 
-static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0)
-{
+static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0) {
     Heap_Free(param0->unk_B4);
     Heap_Free(param0->unk_B0);
     Heap_Free(param0->unk_AC);
@@ -466,8 +455,7 @@ static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0)
     Heap_Free(param0->unk_98);
 }
 
-static int ov80_021D132C(UnkStruct_ov80_021D2A08 *param0)
-{
+static int ov80_021D132C(UnkStruct_ov80_021D2A08 *param0) {
     if (ov80_021D0EC8(param0) != 1) {
         return 0;
     }
@@ -476,8 +464,7 @@ static int ov80_021D132C(UnkStruct_ov80_021D2A08 *param0)
     return 1;
 }
 
-static int ov80_021D1354(UnkStruct_ov80_021D2A08 *param0)
-{
+static int ov80_021D1354(UnkStruct_ov80_021D2A08 *param0) {
     if ((Unk_ov80_021D2E94[param0->unk_00].unk_04)(param0) != 1) {
         return 1;
     }
@@ -486,8 +473,7 @@ static int ov80_021D1354(UnkStruct_ov80_021D2A08 *param0)
     return 3;
 }
 
-static int ov80_021D138C(UnkStruct_ov80_021D2A08 *param0)
-{
+static int ov80_021D138C(UnkStruct_ov80_021D2A08 *param0) {
     if (!IsScreenFadeDone()) {
         return 3;
     }
@@ -495,8 +481,7 @@ static int ov80_021D138C(UnkStruct_ov80_021D2A08 *param0)
     return 4;
 }
 
-static int ov80_021D13A0(UnkStruct_ov80_021D2A08 *param0)
-{
+static int ov80_021D13A0(UnkStruct_ov80_021D2A08 *param0) {
     if ((param0->unk_38)(param0) != 1) {
         Unk_ov80_021D2E94[param0->unk_00].unk_14(param0);
         return 4;
@@ -506,8 +491,7 @@ static int ov80_021D13A0(UnkStruct_ov80_021D2A08 *param0)
     return 6;
 }
 
-static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0)
-{
+static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0) {
     if (IsScreenFadeDone()) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
@@ -521,8 +505,7 @@ static int ov80_021D13DC(UnkStruct_ov80_021D2A08 *param0)
     return 6;
 }
 
-static int ov80_021D1438(UnkStruct_ov80_021D2A08 *param0)
-{
+static int ov80_021D1438(UnkStruct_ov80_021D2A08 *param0) {
     (Unk_ov80_021D2E94[param0->unk_00].unk_1C)(param0);
 
     ov80_021D0FF4(param0);

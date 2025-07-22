@@ -38,8 +38,7 @@ static void LibraryTV_SetMsgLdr(LibraryTV *ltv);
 static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv);
 static void LibraryTV_UpdateScanLines(LibraryTV *ltv);
 
-BOOL LibraryTV_Init(ApplicationManager *appMan, int *state)
-{
+BOOL LibraryTV_Init(ApplicationManager *appMan, int *state) {
     int heapID = HEAP_ID_LIBRARY_TV;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, HEAP_SIZE_LIBRARY_TV);
@@ -62,8 +61,7 @@ enum LibraryTVAppState {
     STATE_EXIT
 };
 
-BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
-{
+BOOL LibraryTV_Main(ApplicationManager *appMan, int *state) {
     LibraryTV *ltv = ApplicationManager_Data(appMan);
     BOOL result = FALSE;
 
@@ -145,8 +143,7 @@ BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
     return result;
 }
 
-BOOL LibraryTV_Exit(ApplicationManager *appMan, int *state)
-{
+BOOL LibraryTV_Exit(ApplicationManager *appMan, int *state) {
     LibraryTV *ltv = ApplicationManager_Data(appMan);
     int heapID = ltv->heapID;
 
@@ -156,15 +153,13 @@ BOOL LibraryTV_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static void LibraryTV_VBlank(void *data)
-{
+static void LibraryTV_VBlank(void *data) {
     LibraryTV *ltv = data;
 
     Bg_RunScheduledUpdates(ltv->bgl);
 }
 
-static void LibraryTV_SetVramBank(LibraryTV *ltv)
-{
+static void LibraryTV_SetVramBank(LibraryTV *ltv) {
     UnkStruct_02099F80 vramBank = {
         GX_VRAM_BG_256_AB,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -282,8 +277,7 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 0x4, 0xc);
 }
 
-static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
-{
+static void LibraryTV_ReleaseVramBank(LibraryTV *ltv) {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
     Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
@@ -303,20 +297,17 @@ static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
     Heap_Free(ltv->bgl);
 }
 
-static void LibraryTV_SetMsgLdr(LibraryTV *ltv)
-{
+static void LibraryTV_SetMsgLdr(LibraryTV *ltv) {
     ltv->msgLdr = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0607, ltv->heapID);
     Text_ResetAllPrinters();
     ltv->tvState = 0;
 }
 
-static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv)
-{
+static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv) {
     MessageLoader_Free(ltv->msgLdr);
 }
 
-static void LibraryTV_UpdateScanLines(LibraryTV *ltv)
-{
+static void LibraryTV_UpdateScanLines(LibraryTV *ltv) {
     ltv->scanLinePos += 0x4;
     Bg_SetOffset(ltv->bgl, BG_LAYER_MAIN_1, 3, ltv->scanLinePos >> 4);
 }

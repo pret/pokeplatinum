@@ -11,8 +11,7 @@
 #include "savedata.h"
 #include "special_encounter.h"
 
-void TrophyGarden_AddNewMon(SaveData *saveData)
-{
+void TrophyGarden_AddNewMon(SaveData *saveData) {
     u16 newMonIndex;
     u16 index1, index2;
     int currentMons[2];
@@ -44,8 +43,7 @@ void TrophyGarden_AddNewMon(SaveData *saveData)
     Heap_Free(encData);
 }
 
-int TrophyGarden_GetSlot1Species(SaveData *saveData)
-{
+int TrophyGarden_GetSlot1Species(SaveData *saveData) {
     int species;
     int *encData;
     u16 slot1, slot2;

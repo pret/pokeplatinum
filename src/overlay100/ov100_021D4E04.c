@@ -55,13 +55,11 @@ static const u8 Unk_ov104_02241964[][6] = {
     { 0x5, 0x4, 0x3, 0x2, 0x1, 0x0 }
 };
 
-static SysTask *ov100_021D4E04(UnkStruct_ov100_021D4E3C *param0)
-{
+static SysTask *ov100_021D4E04(UnkStruct_ov100_021D4E3C *param0) {
     return SysTask_ExecuteOnVBlank(ov100_021D4E18, param0, 1024);
 }
 
-static void ov100_021D4E18(SysTask *param0, void *param1)
-{
+static void ov100_021D4E18(SysTask *param0, void *param1) {
     UnkStruct_ov100_021D4E3C *v0 = param1;
 
     if (v0->unk_08 >= 2) {
@@ -73,22 +71,19 @@ static void ov100_021D4E18(SysTask *param0, void *param1)
     v0->unk_08++;
 }
 
-void ov100_021D4E3C(UnkStruct_ov100_021D4E3C *param0, u32 heapID)
-{
+void ov100_021D4E3C(UnkStruct_ov100_021D4E3C *param0, u32 heapID) {
     param0->screenScrollMgr = ScreenScrollManager_New(heapID);
     param0->unk_08 = 0;
     param0->unk_04 = ov100_021D4E04(param0);
 }
 
-void ov100_021D4E58(UnkStruct_ov100_021D4E3C *param0)
-{
+void ov100_021D4E58(UnkStruct_ov100_021D4E3C *param0) {
     SysTask_Done(param0->unk_04);
     ScreenScrollManager_Stop(param0->screenScrollMgr);
     ScreenScrollManager_Delete(param0->screenScrollMgr);
 }
 
-void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8, int param9)
-{
+void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 param3, fx32 param4, s16 param5, u32 param6, u32 param7, u32 param8, int param9) {
     if (param9 == 0) {
         ScreenScrollManager_ScrollX(param0->screenScrollMgr, param1, param2, param3, param4, param5, param6, param7, param8);
     } else {
@@ -96,8 +91,7 @@ void ov100_021D4E70(UnkStruct_ov100_021D4E3C *param0, u8 param1, u8 param2, u16 
     }
 }
 
-UnkStruct_ov100_021D4F9C *ov100_021D4EBC(UnkStruct_ov100_021D4EBC *param0)
-{
+UnkStruct_ov100_021D4F9C *ov100_021D4EBC(UnkStruct_ov100_021D4EBC *param0) {
     SysTask *v0 = SysTask_StartAndAllocateParam(ov100_021D4F9C, sizeof(UnkStruct_ov100_021D4F9C), 5, param0->unk_28);
     UnkStruct_ov100_021D4F9C *v1 = SysTask_GetParam(v0);
 
@@ -112,8 +106,7 @@ UnkStruct_ov100_021D4F9C *ov100_021D4EBC(UnkStruct_ov100_021D4EBC *param0)
     return v1;
 }
 
-void ov100_021D4F0C(UnkStruct_ov100_021D4F9C **param0, GXDispMode param1, GXBGMode param2, GXBG0As param3)
-{
+void ov100_021D4F0C(UnkStruct_ov100_021D4F9C **param0, GXDispMode param1, GXBGMode param2, GXBG0As param3) {
     GX_SetGraphicsMode(param1, param2, param3);
     GX_SetBankForLCDC((*param0)->unk_00);
 
@@ -139,8 +132,7 @@ void ov100_021D4F0C(UnkStruct_ov100_021D4F9C **param0, GXDispMode param1, GXBGMo
     *param0 = NULL;
 }
 
-static void ov100_021D4F9C(SysTask *param0, void *param1)
-{
+static void ov100_021D4F9C(SysTask *param0, void *param1) {
     UnkStruct_ov100_021D4F9C *v0 = param1;
 
     if (v0->unk_30) {
@@ -148,8 +140,7 @@ static void ov100_021D4F9C(SysTask *param0, void *param1)
     }
 }
 
-static void ov100_021D4FDC(SysTask *param0, void *param1)
-{
+static void ov100_021D4FDC(SysTask *param0, void *param1) {
     UnkStruct_ov100_021D4F9C *v0 = (UnkStruct_ov100_021D4F9C *)param1;
 
     switch (v0->unk_04.unk_00) {
@@ -176,8 +167,7 @@ static void ov100_021D4FDC(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void ov100_021D503C(UnkStruct_ov100_021D4EBC *param0)
-{
+static void ov100_021D503C(UnkStruct_ov100_021D4EBC *param0) {
     switch (param0->unk_00) {
     case GX_DISPMODE_VRAM_A:
         MI_CpuClearFast((void *)HW_LCDC_VRAM_A, HW_VRAM_A_SIZE);

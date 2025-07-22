@@ -36,8 +36,7 @@ static const u8 Unk_ov107_0224A204[4] = {
     0x7
 };
 
-void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
-{
+void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2) {
     int v0;
     NARC *v1;
     Pokemon *v2;
@@ -105,8 +104,7 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
     return;
 }
 
-Sprite *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
-{
+Sprite *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7) {
     int v0;
     SpriteResourcesHeader v1;
     Sprite *v2;
@@ -149,8 +147,7 @@ Sprite *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2,
     return v2;
 }
 
-void ov107_02249954(UnkStruct_ov107_02249954 *param0)
-{
+void ov107_02249954(UnkStruct_ov107_02249954 *param0) {
     u8 v0;
 
     for (v0 = 0; v0 < 7; v0++) {
@@ -173,8 +170,7 @@ void ov107_02249954(UnkStruct_ov107_02249954 *param0)
     return;
 }
 
-void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1)
-{
+void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1) {
     SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_190[0], 1);
 
     SpriteResourceCollection_ModifyTiles(param0->unk_190[0], v0, 16, Item_FileID(param1, 1), 0, HEAP_ID_100);
@@ -183,8 +179,7 @@ void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1)
     return;
 }
 
-void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
-{
+void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1) {
     SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_190[1], 1);
 
     SpriteResourceCollection_ModifyPalette(param0->unk_190[1], v0, 16, Item_FileID(param1, 2), 0, HEAP_ID_100);
@@ -193,8 +188,7 @@ void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
     return;
 }
 
-static void ov107_02249A3C(void)
-{
+static void ov107_02249A3C(void) {
     {
         CharTransferTemplate v0 = {
             32, 1024, 1024, 100
@@ -210,8 +204,7 @@ static void ov107_02249A3C(void)
     return;
 }
 
-static void ov107_02249A70(UnkStruct_ov107_02249954 *param0)
-{
+static void ov107_02249A70(UnkStruct_ov107_02249954 *param0) {
     NARC *v0;
     u32 v1;
 

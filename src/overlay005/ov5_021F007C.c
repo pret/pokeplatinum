@@ -56,8 +56,7 @@ static void ov5_021F0260(BgConfig *param0);
 static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2, int param3);
 static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0);
 
-static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     UnkStruct_ov5_021F007C *v0 = param2;
 
     v0->unk_00 = Graphics_GetPlttData(NARC_INDEX_DATA__WEATHER_SYS, 55, &v0->unk_04, HEAP_ID_FIELD);
@@ -70,8 +69,7 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
 
-static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     UnkStruct_ov5_021F007C *v0 = param2;
 
     v0->unk_00 = Graphics_GetPlttData(NARC_INDEX_DATA__WEATHER_SYS, 55, &v0->unk_04, HEAP_ID_FIELD);
@@ -82,14 +80,12 @@ static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     v0->unk_3C = 0;
 }
 
-static void ov5_021F00E4(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F00E4(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     UnkStruct_ov5_021F007C *v0 = param2;
     Heap_Free(v0->unk_00);
 }
 
-static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     BOOL v0;
     UnkStruct_ov5_021F007C *v1 = param2;
 
@@ -107,8 +103,7 @@ static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Bg_LoadPalette(2, v1->unk_08, 32, 6 * 32);
 }
 
-static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     UnkStruct_ov5_021F013C *v0 = param2;
 
     ov5_021F0260(fieldSystem->bgConfig);
@@ -123,8 +118,7 @@ static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
 
-static void ov5_021F0188(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F0188(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     UnkStruct_ov5_021F013C *v0 = param2;
 
     ov5_021F0260(fieldSystem->bgConfig);
@@ -135,13 +129,11 @@ static void ov5_021F0188(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     G2_SetBlendAlpha((GX_PLANEMASK_BG2), GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 10, 16 - 10);
 }
 
-static void ov5_021F01BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F01BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     return;
 }
 
-static void ov5_021F01C0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F01C0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     BOOL v0;
     UnkStruct_ov5_021F013C *v1 = param2;
 
@@ -158,13 +150,11 @@ static void ov5_021F01C0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     G2_ChangeBlendAlpha(v1->unk_00.unk_00, 16 - v1->unk_00.unk_00);
 }
 
-static void ov5_021F01EC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
-{
+static void ov5_021F01EC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2) {
     return;
 }
 
-UnkStruct_ov5_021D1BEC *ov5_021F01F0(FieldSystem *fieldSystem)
-{
+UnkStruct_ov5_021D1BEC *ov5_021F01F0(FieldSystem *fieldSystem) {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
         sizeof(UnkStruct_ov5_021F013C),
@@ -177,8 +167,7 @@ UnkStruct_ov5_021D1BEC *ov5_021F01F0(FieldSystem *fieldSystem)
     return v1;
 }
 
-UnkStruct_ov5_021D1BEC *ov5_021F0204(FieldSystem *fieldSystem)
-{
+UnkStruct_ov5_021D1BEC *ov5_021F0204(FieldSystem *fieldSystem) {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
         sizeof(UnkStruct_ov5_021F013C),
@@ -191,19 +180,16 @@ UnkStruct_ov5_021D1BEC *ov5_021F0204(FieldSystem *fieldSystem)
     return v1;
 }
 
-void ov5_021F0218(UnkStruct_ov5_021D1BEC *param0)
-{
+void ov5_021F0218(UnkStruct_ov5_021D1BEC *param0) {
     ov5_021D1BEC(param0);
 }
 
-BOOL ov5_021F0220(UnkStruct_ov5_021D1BEC *param0)
-{
+BOOL ov5_021F0220(UnkStruct_ov5_021D1BEC *param0) {
     UnkStruct_ov5_021F013C *v0 = ov5_021D1C2C(param0);
     return v0->unk_14;
 }
 
-UnkStruct_ov5_021D1BEC *ov5_021F022C(FieldSystem *fieldSystem)
-{
+UnkStruct_ov5_021D1BEC *ov5_021F022C(FieldSystem *fieldSystem) {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
         sizeof(UnkStruct_ov5_021F007C),
@@ -216,8 +202,7 @@ UnkStruct_ov5_021D1BEC *ov5_021F022C(FieldSystem *fieldSystem)
     return v1;
 }
 
-UnkStruct_ov5_021D1BEC *ov5_021F0240(FieldSystem *fieldSystem)
-{
+UnkStruct_ov5_021D1BEC *ov5_021F0240(FieldSystem *fieldSystem) {
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024,
         sizeof(UnkStruct_ov5_021F007C),
@@ -230,14 +215,12 @@ UnkStruct_ov5_021D1BEC *ov5_021F0240(FieldSystem *fieldSystem)
     return v1;
 }
 
-BOOL ov5_021F0254(UnkStruct_ov5_021D1BEC *param0)
-{
+BOOL ov5_021F0254(UnkStruct_ov5_021D1BEC *param0) {
     UnkStruct_ov5_021F007C *v0 = ov5_021D1C2C(param0);
     return v0->unk_3C;
 }
 
-static void ov5_021F0260(BgConfig *param0)
-{
+static void ov5_021F0260(BgConfig *param0) {
     GXRgb v0 = (GX_RGB(31, 10, 23));
     u8 *v1;
 
@@ -251,8 +234,7 @@ static void ov5_021F0260(BgConfig *param0)
     Bg_FillTilemap(param0, 2, (6 << 12) | 1);
 }
 
-static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2, int param3)
-{
+static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2, int param3) {
     param0->unk_00 = param1;
     param0->unk_04 = param1;
     param0->unk_08 = param2 - param1;
@@ -260,8 +242,7 @@ static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2,
     param0->unk_0C = 0;
 }
 
-static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0)
-{
+static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0) {
     int v0 = param0->unk_08 * param0->unk_0C;
     v0 = v0 / param0->unk_10;
 
@@ -276,18 +257,15 @@ static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0)
     return 1;
 }
 
-static void ov5_021F02F4(FieldSystem *fieldSystem)
-{
+static void ov5_021F02F4(FieldSystem *fieldSystem) {
     Bg_MaskPalette(BG_LAYER_MAIN_2, 0);
 }
 
-static void ov5_021F0300(FieldSystem *fieldSystem)
-{
+static void ov5_021F0300(FieldSystem *fieldSystem) {
     Bg_MaskPalette(BG_LAYER_MAIN_2, 0x7fff);
 }
 
-static void ov5_021F0310(FieldSystem *fieldSystem)
-{
+static void ov5_021F0310(FieldSystem *fieldSystem) {
     u16 v0 = 0x7fff;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -302,8 +280,7 @@ static void ov5_021F0310(FieldSystem *fieldSystem)
     ov5_021F02F4(fieldSystem);
 }
 
-static void ov5_021F0374(FieldSystem *fieldSystem)
-{
+static void ov5_021F0374(FieldSystem *fieldSystem) {
     u16 v0 = 0x7fff;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
@@ -318,8 +295,7 @@ static void ov5_021F0374(FieldSystem *fieldSystem)
     ov5_021F02F4(fieldSystem);
 }
 
-static BOOL ov5_021F03D8(FieldSystem *fieldSystem)
-{
+static BOOL ov5_021F03D8(FieldSystem *fieldSystem) {
     static const u32 v0[] = {
         23,
     };
@@ -341,8 +317,7 @@ static BOOL ov5_021F03D8(FieldSystem *fieldSystem)
     return 0;
 }
 
-static BOOL ov5_021F0408(FieldSystem *fieldSystem)
-{
+static BOOL ov5_021F0408(FieldSystem *fieldSystem) {
     static const u32 v0[1] = {
         8,
     };
@@ -364,8 +339,7 @@ static BOOL ov5_021F0408(FieldSystem *fieldSystem)
     return 0;
 }
 
-static BOOL ov5_021F0438(FieldSystem *fieldSystem)
-{
+static BOOL ov5_021F0438(FieldSystem *fieldSystem) {
     static const u32 v0[18] = {
         2,
         3,
@@ -404,8 +378,7 @@ static BOOL ov5_021F0438(FieldSystem *fieldSystem)
     return 1;
 }
 
-static void ov5_021F0468(UnkStruct_ov5_021F0468 *param0)
-{
+static void ov5_021F0468(UnkStruct_ov5_021F0468 *param0) {
     if (param0->unk_00) {
         ov5_021F0218(param0->unk_00);
         param0->unk_00 = NULL;
@@ -414,13 +387,11 @@ static void ov5_021F0468(UnkStruct_ov5_021F0468 *param0)
     Heap_Free(param0);
 }
 
-u32 ov5_021F0484(void)
-{
+u32 ov5_021F0484(void) {
     return sizeof(UnkStruct_ov5_021F0468);
 }
 
-BOOL ov5_021F0488(FieldTask *param0)
-{
+BOOL ov5_021F0488(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov5_021F0468 *v1 = FieldTask_GetEnv(param0);
     BOOL v2;

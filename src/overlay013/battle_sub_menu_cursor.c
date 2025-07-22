@@ -10,40 +10,33 @@
 #define NULL_POSITION_INDEX        0xff
 #define ALL_POSITIONS_ENABLED_MASK 0xffffffff
 
-BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID)
-{
+BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID) {
     BattleSubMenuCursor *cursor = Heap_AllocFromHeap(heapID, sizeof(BattleSubMenuCursor));
     memset(cursor, 0, sizeof(BattleSubMenuCursor));
     return cursor;
 }
 
-void DeleteBattleSubMenuCursor(BattleSubMenuCursor *cursor)
-{
+void DeleteBattleSubMenuCursor(BattleSubMenuCursor *cursor) {
     Heap_Free(cursor);
 }
 
-UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor)
-{
+UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor) {
     return cursor->sprites;
 }
 
-u8 IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor)
-{
+u8 IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor) {
     return cursor->isVisible;
 }
 
-void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, u8 isVisible)
-{
+void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, u8 isVisible) {
     cursor->isVisible = isVisible;
 }
 
-void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, UnkStruct_ov16_0226DC24 *sprites)
-{
+void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, UnkStruct_ov16_0226DC24 *sprites) {
     cursor->sprites = sprites;
 }
 
-void SetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor, u8 positionIndex)
-{
+void SetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor, u8 positionIndex) {
     cursor->currentPositionIndex = positionIndex;
 
     if (cursor->isVisible == TRUE) {
@@ -51,14 +44,12 @@ void SetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor, u8 posit
     }
 }
 
-void ResetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor)
-{
+void ResetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor) {
     cursor->currentPositionIndex = CURSOR_STARTING_INDEX;
     cursor->previousPositionIndex = NULL_POSITION_INDEX;
 }
 
-void SetBattleSubMenuCursorPositions(BattleSubMenuCursor *cursor, const GridMenuCursorPosition *positions)
-{
+void SetBattleSubMenuCursorPositions(BattleSubMenuCursor *cursor, const GridMenuCursorPosition *positions) {
     ResetBattleSubMenuCursorCurrentPosition(cursor);
 
     cursor->positions = positions;
@@ -69,13 +60,11 @@ void SetBattleSubMenuCursorPositions(BattleSubMenuCursor *cursor, const GridMenu
     }
 }
 
-void SetBattleSubMenuCursorEnabledPositionsMask(BattleSubMenuCursor *cursor, u32 mask)
-{
+void SetBattleSubMenuCursorEnabledPositionsMask(BattleSubMenuCursor *cursor, u32 mask) {
     cursor->enabledPositionsMask = mask;
 }
 
-static u8 IsCursorVisible(BattleSubMenuCursor *cursor)
-{
+static u8 IsCursorVisible(BattleSubMenuCursor *cursor) {
     if (cursor->isVisible == TRUE) {
         return TRUE;
     }
@@ -90,8 +79,7 @@ static u8 IsCursorVisible(BattleSubMenuCursor *cursor)
     return FALSE;
 }
 
-static BOOL CheckShouldStorePreviousPosition(const GridMenuCursorPosition *newPosition, u8 incomingDirection)
-{
+static BOOL CheckShouldStorePreviousPosition(const GridMenuCursorPosition *newPosition, u8 incomingDirection) {
     switch (incomingDirection) {
     case GRID_MENU_CURSOR_POSITION_DIRECTION_UP:
         if (newPosition->downIndex & BATTLE_SUB_MENU_CURSOR_GO_TO_PREVIOUS_POSITION_INDEX_MASK) {
@@ -118,8 +106,7 @@ static BOOL CheckShouldStorePreviousPosition(const GridMenuCursorPosition *newPo
     return FALSE;
 }
 
-u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor)
-{
+u32 BattleSubMenuCursorTick(BattleSubMenuCursor *cursor) {
     u8 nextPositionIndex;
     u8 pressedDirection;
 

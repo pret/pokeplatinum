@@ -34,13 +34,11 @@ static const u32 sSwarmMapIdTable[NUM_SWARMS] = {
     MAP_HEADER_ETERNA_FOREST
 };
 
-u32 Swarm_GetMapId(const u32 swarm)
-{
+u32 Swarm_GetMapId(const u32 swarm) {
     return sSwarmMapIdTable[swarm % NUM_SWARMS];
 }
 
-void Swarm_GetMapIdAndSpecies(const u32 swarm, u16 *mapIdDest, u16 *speciesDest)
-{
+void Swarm_GetMapIdAndSpecies(const u32 swarm, u16 *mapIdDest, u16 *speciesDest) {
     WildEncounters encounterData;
     u32 mapId = sSwarmMapIdTable[(swarm % NUM_SWARMS)];
 

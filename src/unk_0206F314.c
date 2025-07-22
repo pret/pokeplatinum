@@ -180,8 +180,7 @@ static const UnkStruct_020F02D0 *const Unk_020F0254[] = {
     Unk_020F0278
 };
 
-static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u16 param2)
-{
+static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u16 param2) {
     UnkStruct_0206F7F8 *v0;
     SaveData *saveData = fieldSystem->saveData;
 
@@ -206,8 +205,7 @@ static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u1
     return 1;
 }
 
-static int sub_0206F3A0(UnkStruct_0206F314 *param0)
-{
+static int sub_0206F3A0(UnkStruct_0206F314 *param0) {
     int v0, v1, v2, heapID;
     UnkStruct_0206F3A0 *v4;
     UnkStruct_0206F7F8 *v5 = param0->unk_08;
@@ -236,8 +234,7 @@ static int sub_0206F3A0(UnkStruct_0206F314 *param0)
     return 12;
 }
 
-static int sub_0206F448(UnkStruct_0206F7F8 *param0, SaveData *saveData)
-{
+static int sub_0206F448(UnkStruct_0206F7F8 *param0, SaveData *saveData) {
     sub_0206F7F8(param0, saveData);
     sub_0206FA08(param0);
     sub_0206FB38(param0);
@@ -246,8 +243,7 @@ static int sub_0206F448(UnkStruct_0206F7F8 *param0, SaveData *saveData)
     return 2;
 }
 
-static int sub_0206F468(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F468(UnkStruct_0206F7F8 *param0) {
     sub_0206FD94(param0);
     sub_0206FC4C(param0);
     sub_0206FAC0(param0);
@@ -256,14 +252,12 @@ static int sub_0206F468(UnkStruct_0206F7F8 *param0)
     return 11;
 }
 
-static int sub_0206F488(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F488(UnkStruct_0206F7F8 *param0) {
     sub_0206FDC0(param0, param0->unk_22, param0->unk_24);
     return 3;
 }
 
-static int sub_0206F498(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F498(UnkStruct_0206F7F8 *param0) {
     s32 v0 = ListMenu_ProcessInput(param0->unk_C0);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -294,14 +288,12 @@ static int sub_0206F498(UnkStruct_0206F7F8 *param0)
     return 3;
 }
 
-static int sub_0206F508(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F508(UnkStruct_0206F7F8 *param0) {
     sub_020701DC(param0, param0->unk_28);
     return 5;
 }
 
-static int sub_0206F514(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F514(UnkStruct_0206F7F8 *param0) {
     if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         sub_02070288(param0);
@@ -317,8 +309,7 @@ static int sub_0206F514(UnkStruct_0206F7F8 *param0)
     return 5;
 }
 
-static int sub_0206F554(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F554(UnkStruct_0206F7F8 *param0) {
     UnkStruct_0206F3A0 *v0;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
@@ -358,8 +349,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
     return 6;
 }
 
-static void sub_0206F62C(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206F62C(UnkStruct_0206F7F8 *param0) {
     static const WindowTemplate v0 = {
         0x3,
         0x19,
@@ -373,8 +363,7 @@ static void sub_0206F62C(UnkStruct_0206F7F8 *param0)
     param0->unk_C8 = Menu_MakeYesNoChoice(param0->unk_D0, &v0, (1024 - (18 + 12) - 9), 11, param0->heapID);
 }
 
-static int sub_0206F658(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F658(UnkStruct_0206F7F8 *param0) {
     int v0 = 0;
 
     switch (param0->unk_0C) {
@@ -418,8 +407,7 @@ static int sub_0206F658(UnkStruct_0206F7F8 *param0)
     return 7;
 }
 
-static int sub_0206F748(UnkStruct_0206F7F8 *param0)
-{
+static int sub_0206F748(UnkStruct_0206F7F8 *param0) {
     int v0 = 0;
 
     switch (param0->unk_0C) {
@@ -452,8 +440,7 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
     return 8;
 }
 
-static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *saveData)
-{
+static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *saveData) {
     int v0, v1, v2, v3;
     UnkStruct_0202EE10 *v4;
 
@@ -504,8 +491,7 @@ static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *saveData)
     }
 }
 
-static void sub_0206F9D4(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206F9D4(UnkStruct_0206F7F8 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_18 + 1; v0++) {
@@ -515,8 +501,7 @@ static void sub_0206F9D4(UnkStruct_0206F7F8 *param0)
     Heap_Free(param0->unk_324);
 }
 
-static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FA08(UnkStruct_0206F7F8 *param0) {
     int v0;
 
     param0->unk_2C.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0532, param0->heapID);
@@ -541,8 +526,7 @@ static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
     }
 }
 
-static void sub_0206FAC0(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FAC0(UnkStruct_0206F7F8 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -567,8 +551,7 @@ static void sub_0206FAC0(UnkStruct_0206F7F8 *param0)
     MessageLoader_Free(param0->unk_2C.unk_00);
 }
 
-static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FB38(UnkStruct_0206F7F8 *param0) {
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
     Bg_FillTilemapRect(param0->unk_D0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 1);
@@ -588,8 +571,7 @@ static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
     Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
 }
 
-static void sub_0206FC4C(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FC4C(UnkStruct_0206F7F8 *param0) {
     Window_EraseMessageBox(&param0->unk_E4, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_E4);
     Window_Remove(&param0->unk_E4);
@@ -601,8 +583,7 @@ static void sub_0206FC4C(UnkStruct_0206F7F8 *param0)
     Bg_SetPriority(BG_LAYER_MAIN_1, param0->unk_12);
 }
 
-static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FCC4(UnkStruct_0206F7F8 *param0) {
     int v0;
     SpriteResourceCapacities v1 = {
         1, 1, 1, 1, 0, 0
@@ -656,8 +637,7 @@ static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)
     ManagedSprite_SetDrawFlag(param0->unk_2FC[1], 0);
 }
 
-static void sub_0206FD94(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FD94(UnkStruct_0206F7F8 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -669,8 +649,7 @@ static void sub_0206FD94(UnkStruct_0206F7F8 *param0)
     ov5_021D375C(&param0->unk_134);
 }
 
-static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
-{
+static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2) {
     int v0, v1;
 
     v1 = param0->unk_18 + 1;
@@ -704,8 +683,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
 }
 
-static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FF10(UnkStruct_0206F7F8 *param0) {
     ListMenu_Free(param0->unk_C0, &(param0->unk_22), &(param0->unk_24));
     StringList_Free(param0->unk_C4);
     Window_ClearAndCopyToVRAM(&(param0->unk_D4));
@@ -715,8 +693,7 @@ static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
 }
 
-static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2)
-{
+static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2) {
     u16 v0, v1, v2;
     UnkStruct_0206F7F8 *v3 = (UnkStruct_0206F7F8 *)ListMenu_GetAttribute(param0, 19);
 
@@ -730,28 +707,24 @@ static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2)
     ManagedSprite_SetPositionXY(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
 }
 
-static void sub_0206FFB4(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FFB4(UnkStruct_0206F7F8 *param0) {
     Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_68[0], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
 }
 
-static void sub_0206FFE4(UnkStruct_0206F7F8 *param0)
-{
+static void sub_0206FFE4(UnkStruct_0206F7F8 *param0) {
     sub_0206FFB4(param0);
     ManagedSprite_SetPositionXY(param0->unk_2FC[0], 126, 16 + param0->unk_28 * 16);
     ManagedSprite_SetDrawFlag(param0->unk_2FC[0], 1);
 }
 
-static void sub_02070010(UnkStruct_0206F7F8 *param0)
-{
+static void sub_02070010(UnkStruct_0206F7F8 *param0) {
     Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_50[param0->unk_1F], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     ManagedSprite_SetDrawFlag(param0->unk_2FC[0], 0);
 }
 
-static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
-{
+static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1) {
     int v0, v1, v2, v3, v4, v5;
     UnkStruct_02070050 *v6;
     const UnkStruct_020F02D0 *v7;
@@ -812,8 +785,7 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
     }
 }
 
-static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
-{
+static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1) {
     Window_Add(param0->unk_D0, &param0->unk_D4, 1, 4, 1, 24, 12, 13, 1);
     Window_DrawStandardFrame(&param0->unk_D4, 1, (1024 - (18 + 12) - 9), 11);
     sub_02070050(param0, 0);
@@ -824,8 +796,7 @@ static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
 }
 
-static void sub_02070288(UnkStruct_0206F7F8 *param0)
-{
+static void sub_02070288(UnkStruct_0206F7F8 *param0) {
     Window_ClearAndCopyToVRAM(&param0->unk_D4);
     Window_EraseStandardFrame(&param0->unk_D4, 0);
     Window_Remove(&param0->unk_D4);
@@ -835,8 +806,7 @@ static void sub_02070288(UnkStruct_0206F7F8 *param0)
     ManagedSprite_SetDrawFlag(param0->unk_2FC[1], 0);
 }
 
-static BOOL sub_020702D0(FieldTask *param0)
-{
+static BOOL sub_020702D0(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206F314 *v1 = FieldTask_GetEnv(param0);
     UnkStruct_0206F7F8 *v2 = v1->unk_08;
@@ -897,8 +867,7 @@ static BOOL sub_020702D0(FieldTask *param0)
     return 0;
 }
 
-void sub_020703FC(FieldTask *param0, u16 param1)
-{
+void sub_020703FC(FieldTask *param0, u16 param1) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0206F314 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206F314));
 

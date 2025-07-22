@@ -10,8 +10,7 @@ static SysTask *SysTaskManager_AllocTask(SysTaskManager *sysTaskMgr);
 static BOOL SysTaskManager_FreeTask(SysTaskManager *sysTaskMgr, SysTask *task);
 static SysTask *SysTaskManager_InternalAddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback, void *param, u32 priority);
 
-static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task)
-{
+static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task) {
     task->manager = sysTaskMgr;
     task->prevTask = task->nextTask = &sysTaskMgr->sentinelTask;
     task->priority = 0;
@@ -19,8 +18,7 @@ static void SysTaskManager_InitTask(SysTaskManager *sysTaskMgr, SysTask *task)
     task->callback = NULL;
 }
 
-static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr)
-{
+static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr) {
     for (int i = 0; i < sysTaskMgr->maxTasks; i++) {
         SysTaskManager_InitTask(sysTaskMgr, &sysTaskMgr->tasks[i]);
         sysTaskMgr->taskStack[i] = &sysTaskMgr->tasks[i];
@@ -29,8 +27,7 @@ static void SysTaskManager_InitTasks(SysTaskManager *sysTaskMgr)
     sysTaskMgr->stackPointer = 0;
 }
 
-static SysTask *SysTaskManager_AllocTask(SysTaskManager *sysTaskMgr)
-{
+static SysTask *SysTaskManager_AllocTask(SysTaskManager *sysTaskMgr) {
     if (sysTaskMgr->stackPointer == sysTaskMgr->maxTasks) {
         return NULL;
     }
@@ -41,8 +38,7 @@ static SysTask *SysTaskManager_AllocTask(SysTaskManager *sysTaskMgr)
     return task;
 }
 
-static BOOL SysTaskManager_FreeTask(SysTaskManager *sysTaskMgr, SysTask *task)
-{
+static BOOL SysTaskManager_FreeTask(SysTaskManager *sysTaskMgr, SysTask *task) {
     if (sysTaskMgr->stackPointer == 0) {
         return FALSE;
     }
@@ -59,13 +55,11 @@ static BOOL SysTaskManager_FreeTask(SysTaskManager *sysTaskMgr, SysTask *task)
     return TRUE;
 }
 
-u32 SysTaskManager_GetRequiredSize(u32 maxTasks)
-{
+u32 SysTaskManager_GetRequiredSize(u32 maxTasks) {
     return sizeof(SysTaskManager) + (sizeof(SysTask *) + sizeof(SysTask)) * maxTasks;
 }
 
-SysTaskManager *SysTaskManager_Init(u32 maxTasks, void *memory)
-{
+SysTaskManager *SysTaskManager_Init(u32 maxTasks, void *memory) {
     GF_ASSERT(memory);
     SysTaskManager *sysTaskMgr = memory;
 
@@ -79,8 +73,7 @@ SysTaskManager *SysTaskManager_Init(u32 maxTasks, void *memory)
     return sysTaskMgr;
 }
 
-void SysTaskManager_InternalInit(SysTaskManager *sysTaskMgr)
-{
+void SysTaskManager_InternalInit(SysTaskManager *sysTaskMgr) {
     SysTaskManager_InitTasks(sysTaskMgr);
 
     sysTaskMgr->sentinelTask.manager = sysTaskMgr;
@@ -92,8 +85,7 @@ void SysTaskManager_InternalInit(SysTaskManager *sysTaskMgr)
     sysTaskMgr->currentTask = sysTaskMgr->sentinelTask.nextTask;
 }
 
-void SysTaskManager_ExecuteTasks(SysTaskManager *sysTaskMgr)
-{
+void SysTaskManager_ExecuteTasks(SysTaskManager *sysTaskMgr) {
     if (sysTaskMgr->locked) {
         return;
     }
@@ -117,8 +109,7 @@ void SysTaskManager_ExecuteTasks(SysTaskManager *sysTaskMgr)
     sysTaskMgr->currentTask->callback = NULL;
 }
 
-SysTask *SysTaskManager_AddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback, void *param, u32 priority)
-{
+SysTask *SysTaskManager_AddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback, void *param, u32 priority) {
     sysTaskMgr->locked = TRUE;
     SysTask *task = SysTaskManager_InternalAddTask(sysTaskMgr, callback, param, priority);
     sysTaskMgr->locked = FALSE;
@@ -126,8 +117,7 @@ SysTask *SysTaskManager_AddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback
     return task;
 }
 
-static SysTask *SysTaskManager_InternalAddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback, void *param, u32 priority)
-{
+static SysTask *SysTaskManager_InternalAddTask(SysTaskManager *sysTaskMgr, SysTaskFunc callback, void *param, u32 priority) {
     SysTask *task = SysTaskManager_AllocTask(sysTaskMgr);
     if (task == NULL) {
         return NULL;
@@ -180,8 +170,7 @@ static SysTask *SysTaskManager_InternalAddTask(SysTaskManager *sysTaskMgr, SysTa
     return task;
 }
 
-void SysTask_Delete(SysTask *task)
-{
+void SysTask_Delete(SysTask *task) {
     if (task->manager->nextTask == task) {
         task->manager->nextTask = task->nextTask;
     }
@@ -192,17 +181,14 @@ void SysTask_Delete(SysTask *task)
     SysTaskManager_FreeTask(task->manager, task);
 }
 
-void SysTask_SetCallback(SysTask *task, SysTaskFunc callback)
-{
+void SysTask_SetCallback(SysTask *task, SysTaskFunc callback) {
     task->callback = callback;
 }
 
-void *SysTask_GetParam(SysTask *task)
-{
+void *SysTask_GetParam(SysTask *task) {
     return task->param;
 }
 
-u32 SysTask_GetPriority(SysTask *task)
-{
+u32 SysTask_GetPriority(SysTask *task) {
     return task->priority;
 }

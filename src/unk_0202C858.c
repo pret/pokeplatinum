@@ -7,25 +7,21 @@
 
 #include "savedata.h"
 
-int WiFiHistory_SaveSize(void)
-{
+int WiFiHistory_SaveSize(void) {
     return sizeof(WiFiHistory);
 }
 
-void WiFiHistory_Init(WiFiHistory *wiFiHistory)
-{
+void WiFiHistory_Init(WiFiHistory *wiFiHistory) {
     MI_CpuClear32(wiFiHistory, sizeof(WiFiHistory));
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
-WiFiHistory *SaveData_WiFiHistory(SaveData *saveData)
-{
+WiFiHistory *SaveData_WiFiHistory(SaveData *saveData) {
     SaveData_Checksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
-void sub_0202C88C(WiFiHistory *wiFiHistory, int param1, int param2)
-{
+void sub_0202C88C(WiFiHistory *wiFiHistory, int param1, int param2) {
     GF_ASSERT(param1 < 256);
     GF_ASSERT(param2 < 64);
 
@@ -36,18 +32,15 @@ void sub_0202C88C(WiFiHistory *wiFiHistory, int param1, int param2)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
-int WiFiHistory_GetCountry(const WiFiHistory *wiFiHistory)
-{
+int WiFiHistory_GetCountry(const WiFiHistory *wiFiHistory) {
     return wiFiHistory->country;
 }
 
-int sub_0202C8C4(const WiFiHistory *wiFiHistory)
-{
+int sub_0202C8C4(const WiFiHistory *wiFiHistory) {
     return wiFiHistory->unk_06;
 }
 
-int sub_0202C8C8(const WiFiHistory *wiFiHistory, int param1, int param2)
-{
+int sub_0202C8C8(const WiFiHistory *wiFiHistory, int param1, int param2) {
     int v0;
 
     GF_ASSERT(param1 < 256);
@@ -62,8 +55,7 @@ int sub_0202C8C8(const WiFiHistory *wiFiHistory, int param1, int param2)
     return v0;
 }
 
-void sub_0202C918(WiFiHistory *wiFiHistory, int param1, int param2, int param3)
-{
+void sub_0202C918(WiFiHistory *wiFiHistory, int param1, int param2, int param3) {
     u8 *v0;
     u8 v1 = 3;
     u8 v2;
@@ -88,19 +80,16 @@ void sub_0202C918(WiFiHistory *wiFiHistory, int param1, int param2, int param3)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
-BOOL sub_0202C990(const WiFiHistory *wiFiHistory)
-{
+BOOL sub_0202C990(const WiFiHistory *wiFiHistory) {
     return wiFiHistory->unk_04;
 }
 
-void sub_0202C994(WiFiHistory *wiFiHistory, BOOL param1)
-{
+void sub_0202C994(WiFiHistory *wiFiHistory, BOOL param1) {
     wiFiHistory->unk_04 = param1;
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_WIFI_HISTORY);
 }
 
-void sub_0202C9A0(WiFiHistory *wiFiHistory)
-{
+void sub_0202C9A0(WiFiHistory *wiFiHistory) {
     int v0, v1;
     u8 v2;
 

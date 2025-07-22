@@ -5,8 +5,7 @@
 
 #include "constants/rtc.h"
 
-static inline BOOL IsLeapYear(u32 year)
-{
+static inline BOOL IsLeapYear(u32 year) {
     if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
         return TRUE;
     } else {

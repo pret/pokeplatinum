@@ -42,18 +42,15 @@ const s16 Unk_ov12_0223B0DC[][3] = {
     { 0x150, 0x32, 0xFFFFFFFFFFFFFE00 }
 };
 
-void ov12_022380BC(UnkStruct_ov12_022380DC *param0, int heapID)
-{
+void ov12_022380BC(UnkStruct_ov12_022380DC *param0, int heapID) {
     ov12_022380DC(param0, param0->unk_00, 0, heapID);
 }
 
-void ov12_022380CC(UnkStruct_ov12_022380DC *param0, int heapID)
-{
+void ov12_022380CC(UnkStruct_ov12_022380DC *param0, int heapID) {
     ov12_022380DC(param0, param0->unk_04, 1, heapID);
 }
 
-static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID)
-{
+static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID) {
     PokemonSpriteTemplate v0;
     PokemonSpriteTemplate *v1;
     int v2;
@@ -122,8 +119,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     }
 }
 
-void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
-{
+void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID) {
     PokemonSpriteTemplate *v0;
     int v1;
     int v2;
@@ -157,8 +153,7 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
     PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_Y_CENTER, v6);
 }
 
-void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
-{
+void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID) {
     PokemonSpriteTemplate v0;
     PokemonSpriteTemplate *v1;
     int v2;
@@ -205,8 +200,7 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
     }
 }
 
-s16 ov12_022384CC(int param0, int param1)
-{
+s16 ov12_022384CC(int param0, int param1) {
     if (param1 == 0) {
         return Unk_ov12_0223B0A0[param0][0];
     } else {

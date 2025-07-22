@@ -57,8 +57,7 @@ static void sub_0205C924(UnkStruct_0205C924 *param0);
 static void sub_0205C900(UnkStruct_0205C95C *param0);
 static void sub_0205C8DC(UnkStruct_0205C924 *param0);
 
-UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
-{
+UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0) {
     UnkStruct_0205C22C *v0 = (UnkStruct_0205C22C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205C22C));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0205C22C));
@@ -77,8 +76,7 @@ UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
     return v0;
 }
 
-void sub_0205C2B0(UnkStruct_0205C22C *param0)
-{
+void sub_0205C2B0(UnkStruct_0205C22C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 50 + 1; v0++) {
@@ -88,8 +86,7 @@ void sub_0205C2B0(UnkStruct_0205C22C *param0)
     }
 }
 
-void sub_0205C2C8(UnkStruct_0205C22C *param0)
-{
+void sub_0205C2C8(UnkStruct_0205C22C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 50 + 1; v0++) {
@@ -100,16 +97,14 @@ void sub_0205C2C8(UnkStruct_0205C22C *param0)
     }
 }
 
-void sub_0205C2E0(UnkStruct_0205C22C *param0)
-{
+void sub_0205C2E0(UnkStruct_0205C22C *param0) {
     SysTask_Done(param0->unk_04);
     sub_0205C970(param0->unk_478);
     Heap_Destroy(HEAP_ID_89);
     Heap_Free(param0);
 }
 
-static void sub_0205C304(SysTask *task, void *param1)
-{
+static void sub_0205C304(SysTask *task, void *param1) {
     UnkStruct_0205C22C *v0 = (UnkStruct_0205C22C *)param1;
     UnkStruct_0205B43C *v1 = v0->unk_00;
 
@@ -120,8 +115,7 @@ static void sub_0205C304(SysTask *task, void *param1)
     }
 }
 
-static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, PalPad *param3)
-{
+static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param2, PalPad *param3) {
     int v0, v1, v2 = 0;
     UnkStruct_0203330C *v3;
     UnkStruct_0205B4F8 *v4;
@@ -183,13 +177,11 @@ static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param
     return v2;
 }
 
-static void sub_0205C444(UnkStruct_0205C680 param0[], int param1, int param2)
-{
+static void sub_0205C444(UnkStruct_0205C680 param0[], int param1, int param2) {
     param0[param1].unk_00 = param2;
 }
 
-static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, PalPad *param3)
-{
+static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1, MapObjectManager *param2, PalPad *param3) {
     WMBssDesc *v0;
     int v1;
     UnkStruct_0203330C *v2;
@@ -242,8 +234,7 @@ static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1,
     }
 }
 
-static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
-{
+static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1) {
     MapObject *v0;
     int v1, v2, v3;
 
@@ -325,8 +316,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
     sub_0205C6BC(&param0->unk_0C[50]);
 }
 
-static void sub_0205C680(UnkStruct_0205C680 *param0, int param1)
-{
+static void sub_0205C680(UnkStruct_0205C680 *param0, int param1) {
     if (param0->unk_10 != NULL) {
         if (sub_020714F0(param0->unk_10)) {
             sub_0207136C(param0->unk_10);
@@ -346,8 +336,7 @@ static void sub_0205C680(UnkStruct_0205C680 *param0, int param1)
     }
 }
 
-static void sub_0205C6BC(UnkStruct_0205C680 *param0)
-{
+static void sub_0205C6BC(UnkStruct_0205C680 *param0) {
     if (param0->unk_04) {
         param0->unk_06--;
 
@@ -358,8 +347,7 @@ static void sub_0205C6BC(UnkStruct_0205C680 *param0)
     }
 }
 
-static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int param2, int param3)
-{
+static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int param2, int param3) {
     int v0 = MapObject_GetXInitial(param1);
     int v1 = MapObject_GetYInitial(param1);
     int v2 = MapObject_GetZInitial(param1);
@@ -390,8 +378,7 @@ static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int para
     }
 }
 
-static void sub_0205C788(UnkStruct_0205C680 *param0, MapObject *param1)
-{
+static void sub_0205C788(UnkStruct_0205C680 *param0, MapObject *param1) {
     LocalMapObj_SetAnimationCode(param1, MOVEMENT_ACTION_WARP_OUT);
     sub_02062DB4(param1, 1);
     MapObject_SetMoveCode(param1, MOVEMENT_TYPE_NONE);
@@ -402,8 +389,7 @@ static void sub_0205C788(UnkStruct_0205C680 *param0, MapObject *param1)
     param0->unk_01 = 3;
 }
 
-static void sub_0205C7BC(UnkStruct_0205C680 *param0, MapObject *param1)
-{
+static void sub_0205C7BC(UnkStruct_0205C680 *param0, MapObject *param1) {
     if (param0->unk_03 == 1) {
         if (param0->unk_04 == 0) {
             param0->unk_10 = ov5_021F6094(param1);
@@ -414,8 +400,7 @@ static void sub_0205C7BC(UnkStruct_0205C680 *param0, MapObject *param1)
     }
 }
 
-static void sub_0205C7E4(MapObjectManager *mapObjMan, int param1, int param2)
-{
+static void sub_0205C7E4(MapObjectManager *mapObjMan, int param1, int param2) {
     int v0;
     MapObject *v1;
 
@@ -432,8 +417,7 @@ static void sub_0205C7E4(MapObjectManager *mapObjMan, int param1, int param2)
     }
 }
 
-void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
-{
+void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1) {
     MapObject *mapObj;
     UnkStruct_0205C680 *v1;
 
@@ -486,8 +470,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
     }
 }
 
-static void sub_0205C8DC(UnkStruct_0205C924 *param0)
-{
+static void sub_0205C8DC(UnkStruct_0205C924 *param0) {
     param0->unk_00 = Strbuf_Init(7 + 1, HEAP_ID_89);
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
@@ -498,8 +481,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0)
     param0->unk_0C = 0;
 }
 
-static void sub_0205C900(UnkStruct_0205C95C *param0)
-{
+static void sub_0205C900(UnkStruct_0205C95C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 30; v0++) {
@@ -510,8 +492,7 @@ static void sub_0205C900(UnkStruct_0205C95C *param0)
     param0->unk_34C = 0;
 }
 
-static void sub_0205C924(UnkStruct_0205C924 *param0)
-{
+static void sub_0205C924(UnkStruct_0205C924 *param0) {
     Heap_Free(param0->unk_00);
 
     if (param0->unk_04 != NULL) {
@@ -523,8 +504,7 @@ static void sub_0205C924(UnkStruct_0205C924 *param0)
     }
 }
 
-static void sub_0205C944(UnkStruct_0205C95C *param0)
-{
+static void sub_0205C944(UnkStruct_0205C95C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 30; v0++) {
@@ -532,16 +512,14 @@ static void sub_0205C944(UnkStruct_0205C95C *param0)
     }
 }
 
-UnkStruct_0205C95C *sub_0205C95C(int heapID)
-{
+UnkStruct_0205C95C *sub_0205C95C(int heapID) {
     UnkStruct_0205C95C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0205C95C));
 
     sub_0205C900(v0);
     return v0;
 }
 
-void sub_0205C970(UnkStruct_0205C95C *param0)
-{
+void sub_0205C970(UnkStruct_0205C95C *param0) {
     sub_0205C944(param0);
     Heap_Free(param0);
 }

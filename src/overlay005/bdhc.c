@@ -60,8 +60,7 @@ static void BDHC_LoadPlates(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader
 static void BDHC_LoadStrips(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
 static void BDHC_LoadAccessList(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader);
 
-static BOOL BDHC_IsPointInBoundingBox(const BDHCPoint *boundingBoxFirstPoint, const BDHCPoint *boundingBoxSecondPoint, const BDHCPoint *point)
-{
+static BOOL BDHC_IsPointInBoundingBox(const BDHCPoint *boundingBoxFirstPoint, const BDHCPoint *boundingBoxSecondPoint, const BDHCPoint *point) {
     const fx32 *boundingBoxLeft, *boundingBoxRight, *boundingBoxUp, *boundingBoxDown;
 
     if (boundingBoxFirstPoint->x <= boundingBoxSecondPoint->x) {
@@ -87,24 +86,20 @@ static BOOL BDHC_IsPointInBoundingBox(const BDHCPoint *boundingBoxFirstPoint, co
     return FALSE;
 }
 
-static void BDHC_GetPointsFromPlate(const BDHC *bdhc, u16 plateIndex, BDHCPoint *platePoints)
-{
+static void BDHC_GetPointsFromPlate(const BDHC *bdhc, u16 plateIndex, BDHCPoint *platePoints) {
     platePoints[0] = bdhc->points[bdhc->plates[plateIndex].firstPointIndex];
     platePoints[1] = bdhc->points[bdhc->plates[plateIndex].secondPointIndex];
 }
 
-static void BDHC_GetNormalFromPlate(const BDHC *bdhc, u16 plateIndex, VecFx32 *normal)
-{
+static void BDHC_GetNormalFromPlate(const BDHC *bdhc, u16 plateIndex, VecFx32 *normal) {
     *normal = bdhc->normals[bdhc->plates[plateIndex].normalIndex];
 }
 
-static void BDHC_GetConstantFromPlate(const BDHC *bdhc, u16 plateIndex, fx32 *constant)
-{
+static void BDHC_GetConstantFromPlate(const BDHC *bdhc, u16 plateIndex, fx32 *constant) {
     *constant = bdhc->constants[bdhc->plates[plateIndex].constantIndex];
 }
 
-static void BDHC_InitCandidateObjectHeightsArray(BDHCCandidateObjectHeight *candidateObjectHeights)
-{
+static void BDHC_InitCandidateObjectHeightsArray(BDHCCandidateObjectHeight *candidateObjectHeights) {
     for (int i = 0; i < BDHC_NEW_OBJECT_HEIGHT_CANDIDATES_ARRAY_SIZE; i++) {
         candidateObjectHeights[i].val = 0;
         candidateObjectHeights[i].dummy04 = -1;
@@ -112,8 +107,7 @@ static void BDHC_InitCandidateObjectHeightsArray(BDHCCandidateObjectHeight *cand
     }
 }
 
-static BOOL BDHC_FindStripIndexByScanline(const BDHCStrip *strips, const u16 stripsCount, const fx32 scanline, u16 *stripIndex)
-{
+static BOOL BDHC_FindStripIndexByScanline(const BDHCStrip *strips, const u16 stripsCount, const fx32 scanline, u16 *stripIndex) {
     if (stripsCount == 0) {
         return FALSE;
     } else if (stripsCount == 1) {
@@ -149,8 +143,7 @@ static BOOL BDHC_FindStripIndexByScanline(const BDHCStrip *strips, const u16 str
     return FALSE;
 }
 
-BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, const BDHC *bdhc, fx32 *newObjectHeight)
-{
+BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx32 objectZ, const BDHC *bdhc, fx32 *newObjectHeight) {
     u16 i, plateIndex;
 
     if (bdhc->loaded == FALSE) {
@@ -236,8 +229,7 @@ BOOL CalculateObjectHeight(const fx32 objectHeight, const fx32 objectX, const fx
     return FALSE;
 }
 
-static void BDHC_LoadHeader(NARC *narc, BDHCHeader *bdhcHeader)
-{
+static void BDHC_LoadHeader(NARC *narc, BDHCHeader *bdhcHeader) {
     u16 magic[BDHC_MAGIC_LENGTH];
 
     MI_CpuClear32(bdhcHeader, sizeof(BDHCHeader));
@@ -251,8 +243,7 @@ static void BDHC_LoadHeader(NARC *narc, BDHCHeader *bdhcHeader)
     NARC_ReadFile(narc, 2, &bdhcHeader->accessListCount);
 }
 
-static void BDHC_PrepareBuffers(const BDHCHeader *bdhcHeader, BDHC *bdhc, void **buffer)
-{
+static void BDHC_PrepareBuffers(const BDHCHeader *bdhcHeader, BDHC *bdhc, void **buffer) {
     int offset = 0;
 
     void *ptr = (u8 *)*buffer;
@@ -282,38 +273,31 @@ static void BDHC_PrepareBuffers(const BDHCHeader *bdhcHeader, BDHC *bdhc, void *
     GF_ASSERT(offset <= BDHC_BUFFER_SIZE);
 }
 
-static void BDHC_LoadPoints(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
-{
+static void BDHC_LoadPoints(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader) {
     NARC_ReadFile(narc, sizeof(BDHCPoint) * bdhcHeader->pointsCount, bdhc->points);
 }
 
-static void BDHC_LoadNormals(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
-{
+static void BDHC_LoadNormals(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader) {
     NARC_ReadFile(narc, sizeof(VecFx32) * bdhcHeader->normalsCount, bdhc->normals);
 }
 
-static void BDHC_LoadConstants(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
-{
+static void BDHC_LoadConstants(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader) {
     NARC_ReadFile(narc, sizeof(fx32) * bdhcHeader->constantsCount, bdhc->constants);
 }
 
-static void BDHC_LoadPlates(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
-{
+static void BDHC_LoadPlates(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader) {
     NARC_ReadFile(narc, sizeof(BDHCPlate) * bdhcHeader->platesCount, bdhc->plates);
 }
 
-static void BDHC_LoadStrips(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
-{
+static void BDHC_LoadStrips(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader) {
     NARC_ReadFile(narc, sizeof(BDHCStrip) * bdhcHeader->stripsCount, bdhc->strips);
 }
 
-static void BDHC_LoadAccessList(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader)
-{
+static void BDHC_LoadAccessList(NARC *narc, BDHC *bdhc, const BDHCHeader *bdhcHeader) {
     NARC_ReadFile(narc, sizeof(u16) * bdhcHeader->accessListCount, bdhc->accessList);
 }
 
-static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
-{
+static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam) {
     BOOL subTaskCompleted;
     BDHCLoaderTaskContext *ctx = (BDHCLoaderTaskContext *)sysTaskParam;
 
@@ -364,8 +348,7 @@ static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
     }
 }
 
-BDHC *BDHC_New(void)
-{
+BDHC *BDHC_New(void) {
     BDHC *bdhc = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(BDHC));
 
     bdhc->points = NULL;
@@ -380,8 +363,7 @@ BDHC *BDHC_New(void)
     return bdhc;
 }
 
-void BDHC_Load(NARC *narc, const int bdhcSize, BDHC *bdhc, u8 *buffer)
-{
+void BDHC_Load(NARC *narc, const int bdhcSize, BDHC *bdhc, u8 *buffer) {
     BDHCHeader *bdhcHeader = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(BDHCHeader));
 
     BDHC_LoadHeader(narc, bdhcHeader);
@@ -399,8 +381,7 @@ void BDHC_Load(NARC *narc, const int bdhcSize, BDHC *bdhc, u8 *buffer)
     bdhc->loaded = TRUE;
 }
 
-void BDHC_Free(BDHC *bdhc)
-{
+void BDHC_Free(BDHC *bdhc) {
     if (bdhc == NULL) {
         return;
     }
@@ -409,8 +390,7 @@ void BDHC_Free(BDHC *bdhc)
     bdhc = NULL;
 }
 
-void BDHC_Reset(BDHC *bdhc)
-{
+void BDHC_Reset(BDHC *bdhc) {
     if (bdhc == NULL) {
         return;
     }
@@ -423,8 +403,7 @@ void BDHC_Reset(BDHC *bdhc)
     bdhc->accessList = NULL;
 }
 
-SysTask *BDHC_LazyLoad(NARC *landDataNARC, const int unused1, BDHC *bdhc, BOOL *loadTaskRunning, u8 **buffer, BOOL *mapModelLoadTaskRunning)
-{
+SysTask *BDHC_LazyLoad(NARC *landDataNARC, const int unused1, BDHC *bdhc, BOOL *loadTaskRunning, u8 **buffer, BOOL *mapModelLoadTaskRunning) {
     BDHCLoaderTaskContext *ctx = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(BDHCLoaderTaskContext));
 
     ctx->currentSubTask = BDHC_LOADER_SUBTASK_PREPARE_FILE_LOAD;
@@ -441,13 +420,11 @@ SysTask *BDHC_LazyLoad(NARC *landDataNARC, const int unused1, BDHC *bdhc, BOOL *
     return SysTask_Start(BDHC_LazyLoadTask, ctx, 1);
 }
 
-void BDHC_KillLoad(SysTask *sysTask)
-{
+void BDHC_KillLoad(SysTask *sysTask) {
     BDHCLoaderTaskContext *ctx = SysTask_GetParam(sysTask);
     ctx->killLoadTask = TRUE;
 }
 
-void BDHC_MarkNotLoaded(BDHC *bdhc)
-{
+void BDHC_MarkNotLoaded(BDHC *bdhc) {
     bdhc->loaded = FALSE;
 }

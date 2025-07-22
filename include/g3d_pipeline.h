@@ -35,8 +35,7 @@ typedef void (*G3DPipelineSetupCallback)(void);
 G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb);
 void G3DPipelineBuffers_Free(G3DPipelineBuffers *state);
 
-static inline G3DPipelineBuffers *G3DPipeline_Init(enum HeapId heapID, enum TextureVramSize texVramSize, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
-{
+static inline G3DPipelineBuffers *G3DPipeline_Init(enum HeapId heapID, enum TextureVramSize texVramSize, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb) {
     return G3DPipeline_InitEx(heapID, VRAM_MANAGER_TYPE_LINKED_LIST, texVramSize, VRAM_MANAGER_TYPE_LINKED_LIST, plttVramSize, cb);
 }
 

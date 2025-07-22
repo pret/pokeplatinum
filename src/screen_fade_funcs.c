@@ -365,8 +365,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, ScreenFade *param1);
 static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
 static BOOL sub_020123F4(UnkStruct_02012290 *param0, ScreenFade *param1);
 
-BOOL sub_0200F85C(ScreenFade *param0)
-{
+BOOL sub_0200F85C(ScreenFade *param0) {
     if (param0->state == 0) {
         param0->direction = FADE_OUT;
         param0->method = FADE_BY_BRIGHTNESS;
@@ -378,8 +377,7 @@ BOOL sub_0200F85C(ScreenFade *param0)
     return sub_020102D8(param0);
 }
 
-BOOL sub_0200F878(ScreenFade *param0)
-{
+BOOL sub_0200F878(ScreenFade *param0) {
     if (param0->state == 0) {
         param0->direction = FADE_IN;
         param0->method = FADE_BY_BRIGHTNESS;
@@ -391,8 +389,7 @@ BOOL sub_0200F878(ScreenFade *param0)
     return sub_020102D8(param0);
 }
 
-BOOL sub_0200F898(ScreenFade *param0)
-{
+BOOL sub_0200F898(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             0, 192, 1
@@ -415,8 +412,7 @@ BOOL sub_0200F898(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F8D4(ScreenFade *param0)
-{
+BOOL sub_0200F8D4(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             0, 192, 0
@@ -439,8 +435,7 @@ BOOL sub_0200F8D4(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F90C(ScreenFade *param0)
-{
+BOOL sub_0200F90C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             192,
@@ -467,8 +462,7 @@ BOOL sub_0200F90C(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F948(ScreenFade *param0)
-{
+BOOL sub_0200F948(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0 = {
             192,
@@ -495,8 +489,7 @@ BOOL sub_0200F948(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200F980(ScreenFade *param0)
-{
+BOOL sub_0200F980(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 },
@@ -518,8 +511,7 @@ BOOL sub_0200F980(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200F9AC(ScreenFade *param0)
-{
+BOOL sub_0200F9AC(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 0, 192 },
@@ -542,8 +534,7 @@ BOOL sub_0200F9AC(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200F9D8(ScreenFade *param0)
-{
+BOOL sub_0200F9D8(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 0, 96, 1 },
@@ -568,8 +559,7 @@ BOOL sub_0200F9D8(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FA14(ScreenFade *param0)
-{
+BOOL sub_0200FA14(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 96, 0, 0 },
@@ -595,8 +585,7 @@ BOOL sub_0200FA14(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FA4C(ScreenFade *param0)
-{
+BOOL sub_0200FA4C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 96, 0, 1 },
@@ -622,8 +611,7 @@ BOOL sub_0200FA4C(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FA88(ScreenFade *param0)
-{
+BOOL sub_0200FA88(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 0, 96, 0 },
@@ -649,8 +637,7 @@ BOOL sub_0200FA88(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FAC0(ScreenFade *param0)
-{
+BOOL sub_0200FAC0(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 },
@@ -673,8 +660,7 @@ BOOL sub_0200FAC0(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FAEC(ScreenFade *param0)
-{
+BOOL sub_0200FAEC(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 0, 128, 192 },
@@ -696,8 +682,7 @@ BOOL sub_0200FAEC(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FB18(ScreenFade *param0)
-{
+BOOL sub_0200FB18(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 0, 128, 192 },
@@ -728,8 +713,7 @@ BOOL sub_0200FB18(ScreenFade *param0)
     return sub_02010DEC(param0);
 }
 
-BOOL sub_0200FB4C(ScreenFade *param0)
-{
+BOOL sub_0200FB4C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 128, 192 },
@@ -760,8 +744,7 @@ BOOL sub_0200FB4C(ScreenFade *param0)
     return sub_02010DEC(param0);
 }
 
-BOOL sub_0200FB7C(ScreenFade *param0)
-{
+BOOL sub_0200FB7C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             256,
@@ -786,8 +769,7 @@ BOOL sub_0200FB7C(ScreenFade *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FBA8(ScreenFade *param0)
-{
+BOOL sub_0200FBA8(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             0,
@@ -812,8 +794,7 @@ BOOL sub_0200FBA8(ScreenFade *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FBD4(ScreenFade *param0)
-{
+BOOL sub_0200FBD4(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             512,
@@ -838,8 +819,7 @@ BOOL sub_0200FBD4(ScreenFade *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FC00(ScreenFade *param0)
-{
+BOOL sub_0200FC00(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             0,
@@ -864,8 +844,7 @@ BOOL sub_0200FC00(ScreenFade *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FC2C(ScreenFade *param0)
-{
+BOOL sub_0200FC2C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FC2C v0 = {
             ((0xffff * 90) / 360),
@@ -888,8 +867,7 @@ BOOL sub_0200FC2C(ScreenFade *param0)
     return sub_0201123C(param0);
 }
 
-BOOL sub_0200FC58(ScreenFade *param0)
-{
+BOOL sub_0200FC58(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FC2C v0 = {
             0,
@@ -912,8 +890,7 @@ BOOL sub_0200FC58(ScreenFade *param0)
     return sub_0201123C(param0);
 }
 
-BOOL sub_0200FC84(ScreenFade *param0)
-{
+BOOL sub_0200FC84(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 }, { 128, 96, 128, 96 }, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 1
@@ -931,8 +908,7 @@ BOOL sub_0200FC84(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FCB0(ScreenFade *param0)
-{
+BOOL sub_0200FCB0(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 96, 128, 96 }, { 0, 0, 255, 192 }, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 0
@@ -950,8 +926,7 @@ BOOL sub_0200FCB0(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FCDC(ScreenFade *param0)
-{
+BOOL sub_0200FCDC(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 128, 96, 128, 96 }, { 0, 0, 255, 192 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 1
@@ -969,8 +944,7 @@ BOOL sub_0200FCDC(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FD08(ScreenFade *param0)
-{
+BOOL sub_0200FD08(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 }, { 128, 96, 128, 96 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 0
@@ -988,8 +962,7 @@ BOOL sub_0200FD08(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0200FD34(ScreenFade *param0)
-{
+BOOL sub_0200FD34(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FD34 v0 = {
             ((0xffff * 90) / 360),
@@ -1011,8 +984,7 @@ BOOL sub_0200FD34(ScreenFade *param0)
     return sub_02011440(param0);
 }
 
-BOOL sub_0200FD60(ScreenFade *param0)
-{
+BOOL sub_0200FD60(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FD34 v0 = {
             ((0xffff * 0) / 360),
@@ -1035,8 +1007,7 @@ BOOL sub_0200FD60(ScreenFade *param0)
     return sub_02011440(param0);
 }
 
-BOOL sub_0200FD8C(ScreenFade *param0)
-{
+BOOL sub_0200FD8C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FD8C v0[] = {
             { 0, 0, 255, 48 },
@@ -1071,8 +1042,7 @@ BOOL sub_0200FD8C(ScreenFade *param0)
     return sub_020116D8(param0);
 }
 
-BOOL sub_0200FDE0(ScreenFade *param0)
-{
+BOOL sub_0200FDE0(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FD8C v0[] = {
             { 255, 0, 255, 48 }, { 0, 47, 0, 96 }, { 255, 96, 255, 144 }, { 0, 144, 0, 192 }
@@ -1101,8 +1071,7 @@ BOOL sub_0200FDE0(ScreenFade *param0)
     return sub_020116D8(param0);
 }
 
-BOOL sub_0200FE30(ScreenFade *param0)
-{
+BOOL sub_0200FE30(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[3] = {
             { 0, 64, 1 },
@@ -1126,8 +1095,7 @@ BOOL sub_0200FE30(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FE6C(ScreenFade *param0)
-{
+BOOL sub_0200FE6C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[3] = {
             { 64, 0, 0 },
@@ -1151,8 +1119,7 @@ BOOL sub_0200FE6C(ScreenFade *param0)
     return sub_02011F88(param0);
 }
 
-BOOL sub_0200FEA4(ScreenFade *param0)
-{
+BOOL sub_0200FEA4(ScreenFade *param0) {
     if (param0->state == 0) {
         UnkStruct_0200FEA4 v0 = {
             ((0 * 0xffff) / 360), ((179 * 0xffff) / 360), GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 1
@@ -1169,8 +1136,7 @@ BOOL sub_0200FEA4(ScreenFade *param0)
     return sub_020119A0(param0);
 }
 
-BOOL sub_0200FEEC(ScreenFade *param0)
-{
+BOOL sub_0200FEEC(ScreenFade *param0) {
     if (param0->state == 0) {
         UnkStruct_0200FEA4 v0 = {
             ((0 * 0xffff) / 360), ((179 * 0xffff) / 360), GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 0
@@ -1187,8 +1153,7 @@ BOOL sub_0200FEEC(ScreenFade *param0)
     return sub_020119A0(param0);
 }
 
-BOOL sub_0200FF30(ScreenFade *param0)
-{
+BOOL sub_0200FF30(ScreenFade *param0) {
     if (param0->state == 0) {
         UnkStruct_0200FF30 v0 = {
             ((0 * 0xffff) / 360), ((45 * 0xffff) / 360), GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 1
@@ -1205,8 +1170,7 @@ BOOL sub_0200FF30(ScreenFade *param0)
     return sub_02011CD4(param0);
 }
 
-BOOL sub_0200FF78(ScreenFade *param0)
-{
+BOOL sub_0200FF78(ScreenFade *param0) {
     if (param0->state == 0) {
         UnkStruct_0200FF30 v0 = {
             ((0 * 0xffff) / 360), ((45 * 0xffff) / 360), GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 0
@@ -1223,8 +1187,7 @@ BOOL sub_0200FF78(ScreenFade *param0)
     return sub_02011CD4(param0);
 }
 
-BOOL sub_0200FFBC(ScreenFade *param0)
-{
+BOOL sub_0200FFBC(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             512, 0, 128, -80, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 1
@@ -1241,8 +1204,7 @@ BOOL sub_0200FFBC(ScreenFade *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_0200FFE8(ScreenFade *param0)
-{
+BOOL sub_0200FFE8(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200FB7C v0 = {
             0, 512, 128, -80, 0, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, 0
@@ -1259,8 +1221,7 @@ BOOL sub_0200FFE8(ScreenFade *param0)
     return sub_02010F64(param0);
 }
 
-BOOL sub_02010014(ScreenFade *param0)
-{
+BOOL sub_02010014(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 0, 192 }, { 0, 0, 255, 192 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 1
@@ -1277,8 +1238,7 @@ BOOL sub_02010014(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_02010040(ScreenFade *param0)
-{
+BOOL sub_02010040(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F980 v0 = {
             { 0, 0, 255, 192 }, { 0, 0, 0, 192 }, 0, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, 0
@@ -1295,8 +1255,7 @@ BOOL sub_02010040(ScreenFade *param0)
     return sub_02010D44(param0);
 }
 
-BOOL sub_0201006C(ScreenFade *param0)
-{
+BOOL sub_0201006C(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 0, 94, 1 },
@@ -1332,8 +1291,7 @@ BOOL sub_0201006C(ScreenFade *param0)
     return sub_02012228(param0);
 }
 
-BOOL sub_020100A8(ScreenFade *param0)
-{
+BOOL sub_020100A8(ScreenFade *param0) {
     if (param0->state == 0) {
         static const UnkStruct_0200F898 v0[2] = {
             { 94, 0, 0 },
@@ -1370,13 +1328,11 @@ BOOL sub_020100A8(ScreenFade *param0)
     return sub_02012228(param0);
 }
 
-static fx32 sub_020100E0(int param0)
-{
+static fx32 sub_020100E0(int param0) {
     return FX_Div(FX_SinIdx(param0), FX_CosIdx(param0));
 }
 
-static int sub_020100FC(int param0, int param1)
-{
+static int sub_020100FC(int param0, int param1) {
     fx32 v0;
     fx32 v1;
 
@@ -1388,8 +1344,7 @@ static int sub_020100FC(int param0, int param1)
     return v1;
 }
 
-static void sub_02010124(int param0, int *param1, int param2, int param3)
-{
+static void sub_02010124(int param0, int *param1, int param2, int param3) {
     int v0;
     fx32 v1;
     fx32 v2, v3;
@@ -1405,8 +1360,7 @@ static void sub_02010124(int param0, int *param1, int param2, int param3)
     }
 }
 
-static int sub_02010178(int param0, int param1)
-{
+static int sub_02010178(int param0, int param1) {
     fx32 v0;
     fx32 v1;
     int v2;
@@ -1418,8 +1372,7 @@ static int sub_02010178(int param0, int param1)
     return v2;
 }
 
-static int sub_02010190(int param0, int param1, int param2)
-{
+static int sub_02010190(int param0, int param1, int param2) {
     int v0 = param1 - param0;
     v0 *= 128;
     v0 /= param2;
@@ -1427,8 +1380,7 @@ static int sub_02010190(int param0, int param1, int param2)
     return v0;
 }
 
-static int sub_020101A0(int param0, int param1)
-{
+static int sub_020101A0(int param0, int param1) {
     int v0 = param0 + param1;
 
     if (v0 < 0) {
@@ -1442,16 +1394,14 @@ static int sub_020101A0(int param0, int param1)
     return v0;
 }
 
-static void sub_020101B0(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1)
-{
+static void sub_020101B0(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1) {
     param0->unk_00 += param1->unk_00;
     param0->unk_04 += param1->unk_04;
     param0->unk_08 += param1->unk_08;
     param0->unk_0C += param1->unk_0C;
 }
 
-static void sub_020101D4(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1, UnkStruct_020101B0 *param2, const UnkStruct_0200FD8C *param3, const UnkStruct_0200FD8C *param4, int param5)
-{
+static void sub_020101D4(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1, UnkStruct_020101B0 *param2, const UnkStruct_0200FD8C *param3, const UnkStruct_0200FD8C *param4, int param5) {
     param0->unk_00 = param3->unk_00 * 128;
     param0->unk_04 = param3->unk_01 * 128;
     param0->unk_08 = param3->unk_02 * 128;
@@ -1468,8 +1418,7 @@ static void sub_020101D4(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1,
     param2->unk_0C = sub_02010190(param3->unk_03, param4->unk_03, param5);
 }
 
-static void sub_02010238(ScreenFade *param0, int param1)
-{
+static void sub_02010238(ScreenFade *param0, int param1) {
     int v0, v1;
     UnkStruct_02010318 *v2;
 
@@ -1518,8 +1467,7 @@ static void sub_02010238(ScreenFade *param0, int param1)
     param0->state++;
 }
 
-static BOOL sub_020102D8(ScreenFade *param0)
-{
+static BOOL sub_020102D8(ScreenFade *param0) {
     UnkStruct_02010318 *v0 = param0->data;
     BOOL v1;
     BOOL v2 = 0;
@@ -1548,8 +1496,7 @@ static BOOL sub_020102D8(ScreenFade *param0)
     return v2;
 }
 
-static BOOL sub_02010318(UnkStruct_02010318 *param0)
-{
+static BOOL sub_02010318(UnkStruct_02010318 *param0) {
     BOOL v0 = 0;
 
     param0->unk_08++;
@@ -1572,8 +1519,7 @@ static BOOL sub_02010318(UnkStruct_02010318 *param0)
     return v0;
 }
 
-static inline void inline_0201035C_sub(int param0, int param1, int param2, int param3, int param4, int param5)
-{
+static inline void inline_0201035C_sub(int param0, int param1, int param2, int param3, int param4, int param5) {
     if (param4 == 0) {
         if (param5 == 0) {
             if (GX_IsHBlank()) {
@@ -1597,14 +1543,12 @@ static inline void inline_0201035C_sub(int param0, int param1, int param2, int p
     }
 }
 
-static inline void inline_0201035C(UnkStruct_02010588 *param0, int param1, int param2)
-{
+static inline void inline_0201035C(UnkStruct_02010588 *param0, int param1, int param2) {
     UnkStruct_02010FC0 *v0 = sub_02010604(param0, param2);
     inline_0201035C_sub(v0->unk_00[0][param1], 0, v0->unk_00[1][param1], 192, v0->unk_600, param0->unk_08);
 }
 
-static void sub_0201035C(void *param0)
-{
+static void sub_0201035C(void *param0) {
     UnkStruct_02010588 *v0 = (UnkStruct_02010588 *)param0;
     int v1;
     int v2;
@@ -1629,8 +1573,7 @@ static void sub_0201035C(void *param0)
     }
 }
 
-static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int heapID)
-{
+static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int heapID) {
     switch (param1) {
     case 0:
     case 1:
@@ -1655,25 +1598,21 @@ static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int
     }
 }
 
-static void sub_020105EC(UnkStruct_02010588 *param0)
-{
+static void sub_020105EC(UnkStruct_02010588 *param0) {
     sub_020105F4(param0);
 }
 
-static void sub_020105F4(UnkStruct_02010588 *param0)
-{
+static void sub_020105F4(UnkStruct_02010588 *param0) {
     Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
 }
 
-static UnkStruct_02010FC0 *sub_02010604(UnkStruct_02010588 *param0, int param1)
-{
+static UnkStruct_02010FC0 *sub_02010604(UnkStruct_02010588 *param0, int param1) {
     GF_ASSERT(param0->unk_04 > param1);
     return param0->unk_00 + param1;
 }
 
-static void sub_02010624(SysTask *param0, void *param1)
-{
+static void sub_02010624(SysTask *param0, void *param1) {
     UnkStruct_02010588 *v0 = (UnkStruct_02010588 *)param1;
     UnkStruct_02010FC0 *v1;
     int v2;
@@ -1686,8 +1625,7 @@ static void sub_02010624(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static void sub_02010658(int param0, HardwareWindowSettings *param1, int param2)
-{
+static void sub_02010658(int param0, HardwareWindowSettings *param1, int param2) {
     if (param0 == 0) {
         RequestVisibleHardwareWindows(param1, GX_WNDMASK_NONE, param2);
     } else {
@@ -1698,8 +1636,7 @@ static void sub_02010658(int param0, HardwareWindowSettings *param1, int param2)
     }
 }
 
-static void sub_020106A8(HardwareWindowSettings *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
-{
+static void sub_020106A8(HardwareWindowSettings *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9) {
     if (param9 == 0) {
         SetHardwareWindowMaskInsidePlane(param1, 0, param3, param4);
         SetHardwareWindowMaskOutsidePlane(param2, 0, param4);
@@ -1711,8 +1648,7 @@ static void sub_020106A8(HardwareWindowSettings *param0, int param1, int param2,
     }
 }
 
-static void sub_02010710(HardwareWindowSettings *param0, int param1, int param2, int param3)
-{
+static void sub_02010710(HardwareWindowSettings *param0, int param1, int param2, int param3) {
     if (param3 == 0) {
         SetVisibleHardwareWindows(param1, param2);
     } else {
@@ -1720,8 +1656,7 @@ static void sub_02010710(HardwareWindowSettings *param0, int param1, int param2,
     }
 }
 
-static void sub_02010728(UnkStruct_0201076C *param0, int param1, int param2, int param3, int param4)
-{
+static void sub_02010728(UnkStruct_0201076C *param0, int param1, int param2, int param3, int param4) {
     memset(param0, 0, sizeof(UnkStruct_0201076C));
 
     if (param2 == 1) {
@@ -1736,23 +1671,19 @@ static void sub_02010728(UnkStruct_0201076C *param0, int param1, int param2, int
     }
 }
 
-static void sub_0201076C(UnkStruct_0201076C *param0)
-{
+static void sub_0201076C(UnkStruct_0201076C *param0) {
     SysTask_ExecuteAfterVBlank(sub_020107AC, param0, 1023);
 }
 
-static void sub_02010784(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID)
-{
+static void sub_02010784(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID) {
     RequestEnableScreenHBlank(param0, param1, sub_020107D8, param1->unk_309, heapID);
 }
 
-static void sub_0201079C(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID)
-{
+static void sub_0201079C(ScreenFadeHBlanks *param0, UnkStruct_0201076C *param1, u32 heapID) {
     RequestDisableScreenHBlank(param0, param1->unk_309, heapID);
 }
 
-static void sub_020107AC(SysTask *param0, void *param1)
-{
+static void sub_020107AC(SysTask *param0, void *param1) {
     UnkStruct_0201076C *v0 = param1;
     int v1;
 
@@ -1763,8 +1694,7 @@ static void sub_020107AC(SysTask *param0, void *param1)
     SysTask_Done(param0);
 }
 
-static inline void inline_020107D8_sub(int param0, BOOL param1, int param2)
-{
+static inline void inline_020107D8_sub(int param0, BOOL param1, int param2) {
     if (param2 == 0) {
         if (GX_IsHBlank()) {
             G2_SetWndOutsidePlane(param0, param1);
@@ -1776,8 +1706,7 @@ static inline void inline_020107D8_sub(int param0, BOOL param1, int param2)
     }
 }
 
-static inline void inline_020107D8_sub_1(int param0, BOOL param1, int param4, int param3)
-{
+static inline void inline_020107D8_sub_1(int param0, BOOL param1, int param4, int param3) {
     if (param4 == 0) {
         if (param3 == 0) {
             if (GX_IsHBlank()) {
@@ -1801,8 +1730,7 @@ static inline void inline_020107D8_sub_1(int param0, BOOL param1, int param4, in
     }
 }
 
-static inline void inline_020107D8(UnkStruct_0201076C *param0, int param1, int param2)
-{
+static inline void inline_020107D8(UnkStruct_0201076C *param0, int param1, int param2) {
     UnkStruct_02012174 *v0 = &param0->unk_00[param2];
 
     if (v0->unk_C0[param1] == 0) {
@@ -1814,8 +1742,7 @@ static inline void inline_020107D8(UnkStruct_0201076C *param0, int param1, int p
     }
 }
 
-static void sub_020107D8(void *param0)
-{
+static void sub_020107D8(void *param0) {
     UnkStruct_0201076C *v0 = (UnkStruct_0201076C *)param0;
     int v1;
     int v2;
@@ -1840,8 +1767,7 @@ static void sub_020107D8(void *param0)
     }
 }
 
-static void sub_02010CF4(ScreenFade *param0, const UnkStruct_0200F980 *param1)
-{
+static void sub_02010CF4(ScreenFade *param0, const UnkStruct_0200F980 *param1) {
     UnkStruct_02010EA4 *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010EA4));
@@ -1859,8 +1785,7 @@ static void sub_02010CF4(ScreenFade *param0, const UnkStruct_0200F980 *param1)
     param0->state++;
 }
 
-static BOOL sub_02010D44(ScreenFade *param0)
-{
+static BOOL sub_02010D44(ScreenFade *param0) {
     UnkStruct_02010EA4 *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -1894,8 +1819,7 @@ static BOOL sub_02010D44(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02010D94(ScreenFade *param0, const UnkStruct_0200F980 *param1, const UnkStruct_0200F980 *param2)
-{
+static void sub_02010D94(ScreenFade *param0, const UnkStruct_0200F980 *param1, const UnkStruct_0200F980 *param2) {
     UnkStruct_02010D94 *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02010D94));
@@ -1908,8 +1832,7 @@ static void sub_02010D94(ScreenFade *param0, const UnkStruct_0200F980 *param1, c
     param0->state++;
 }
 
-static BOOL sub_02010DEC(ScreenFade *param0)
-{
+static BOOL sub_02010DEC(ScreenFade *param0) {
     UnkStruct_02010D94 *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -1941,8 +1864,7 @@ static BOOL sub_02010DEC(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5)
-{
+static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5) {
     sub_020101D4(&param0->unk_00, &param0->unk_20, &param0->unk_10, &param1->unk_00, &param1->unk_04, param2);
 
     param0->unk_30 = param4;
@@ -1956,8 +1878,7 @@ static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *p
     sub_020106A8(param5, param1->unk_09, param1->unk_0A, param1->unk_08, param4, param1->unk_00.unk_00, param1->unk_00.unk_01, param1->unk_00.unk_02, param1->unk_00.unk_03, param0->unk_44);
 }
 
-static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0)
-{
+static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0) {
     param0->unk_40++;
 
     if (param0->unk_40 >= param0->unk_3C) {
@@ -1977,8 +1898,7 @@ static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0)
     return 0;
 }
 
-static void sub_02010F2C(ScreenFade *param0, const UnkStruct_0200FB7C *param1)
-{
+static void sub_02010F2C(ScreenFade *param0, const UnkStruct_0200FB7C *param1) {
     UnkStruct_0201109C *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201109C));
@@ -1989,8 +1909,7 @@ static void sub_02010F2C(ScreenFade *param0, const UnkStruct_0200FB7C *param1)
     param0->state++;
 }
 
-static BOOL sub_02010F64(ScreenFade *param0)
-{
+static BOOL sub_02010F64(ScreenFade *param0) {
     UnkStruct_0201109C *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -2024,8 +1943,7 @@ static BOOL sub_02010F64(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     int v0;
     UnkStruct_02010FC0 *v1;
 
@@ -2059,8 +1977,7 @@ static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *p
     RequestEnableScreenHBlank(param0->unk_34, &param0->unk_00, sub_0201035C, param4, heapID);
 }
 
-static BOOL sub_0201109C(UnkStruct_0201109C *param0)
-{
+static BOOL sub_0201109C(UnkStruct_0201109C *param0) {
     param0->unk_24++;
 
     if (param0->unk_24 >= param0->unk_20) {
@@ -2080,8 +1997,7 @@ static BOOL sub_0201109C(UnkStruct_0201109C *param0)
     return 0;
 }
 
-static void sub_020110EC(int param0, int param1, int param2, int param3, int *param4, int *param5)
-{
+static void sub_020110EC(int param0, int param1, int param2, int param3, int *param4, int *param5) {
     fx32 v0;
     fx32 v1;
     fx32 v2;
@@ -2116,8 +2032,7 @@ static void sub_020110EC(int param0, int param1, int param2, int param3, int *pa
     }
 }
 
-static void sub_02011180(UnkStruct_0201109C *param0)
-{
+static void sub_02011180(UnkStruct_0201109C *param0) {
     UnkStruct_02010588 *v0 = &param0->unk_00;
     int v1;
     int v2;
@@ -2142,8 +2057,7 @@ static void sub_02011180(UnkStruct_0201109C *param0)
     }
 }
 
-static void sub_02011204(ScreenFade *param0, const UnkStruct_0200FC2C *param1)
-{
+static void sub_02011204(ScreenFade *param0, const UnkStruct_0200FC2C *param1) {
     UnkStruct_02011360 *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011360));
@@ -2153,8 +2067,7 @@ static void sub_02011204(ScreenFade *param0, const UnkStruct_0200FC2C *param1)
     param0->state++;
 }
 
-static BOOL sub_0201123C(ScreenFade *param0)
-{
+static BOOL sub_0201123C(ScreenFade *param0) {
     UnkStruct_02011360 *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -2188,8 +2101,7 @@ static BOOL sub_0201123C(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     UnkStruct_02010FC0 *v0;
 
     param0->unk_10 = sub_02010190(param1->unk_00, param1->unk_02, param2);
@@ -2219,8 +2131,7 @@ static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *p
     RequestEnableScreenHBlank(param0->unk_28, &param0->unk_00, sub_0201035C, param4, heapID);
 }
 
-static BOOL sub_02011360(UnkStruct_02011360 *param0)
-{
+static BOOL sub_02011360(UnkStruct_02011360 *param0) {
     param0->unk_1C++;
 
     if (param0->unk_1C >= param0->unk_18) {
@@ -2240,8 +2151,7 @@ static BOOL sub_02011360(UnkStruct_02011360 *param0)
     return 0;
 }
 
-static void sub_020113B0(UnkStruct_02011360 *param0)
-{
+static void sub_020113B0(UnkStruct_02011360 *param0) {
     int v0;
     int v1, v2;
     int v3[192];
@@ -2254,8 +2164,7 @@ static void sub_020113B0(UnkStruct_02011360 *param0)
     }
 }
 
-static void sub_02011408(ScreenFade *param0, const UnkStruct_0200FD34 *param1)
-{
+static void sub_02011408(ScreenFade *param0, const UnkStruct_0200FD34 *param1) {
     UnkStruct_02011568 *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011568));
@@ -2265,8 +2174,7 @@ static void sub_02011408(ScreenFade *param0, const UnkStruct_0200FD34 *param1)
     param0->state++;
 }
 
-static BOOL sub_02011440(ScreenFade *param0)
-{
+static BOOL sub_02011440(ScreenFade *param0) {
     UnkStruct_02011568 *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -2297,8 +2205,7 @@ static BOOL sub_02011440(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     int v0;
     UnkStruct_02010FC0 *v1;
 
@@ -2333,8 +2240,7 @@ static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *p
     RequestEnableScreenHBlank(param0->unk_2C, &param0->unk_00, sub_0201035C, param4, heapID);
 }
 
-static BOOL sub_02011568(UnkStruct_02011568 *param0)
-{
+static BOOL sub_02011568(UnkStruct_02011568 *param0) {
     param0->unk_20++;
 
     if (param0->unk_20 >= param0->unk_1C) {
@@ -2354,8 +2260,7 @@ static BOOL sub_02011568(UnkStruct_02011568 *param0)
     return 0;
 }
 
-static void sub_020115B8(UnkStruct_02011568 *param0)
-{
+static void sub_020115B8(UnkStruct_02011568 *param0) {
     int v0;
     int v1;
     int v2;
@@ -2402,8 +2307,7 @@ static void sub_020115B8(UnkStruct_02011568 *param0)
     }
 }
 
-static void sub_020116A0(ScreenFade *param0, const UnkStruct_02011738 *param1)
-{
+static void sub_020116A0(ScreenFade *param0, const UnkStruct_02011738 *param1) {
     UnkStruct_0201184C *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0201184C));
@@ -2413,8 +2317,7 @@ static void sub_020116A0(ScreenFade *param0, const UnkStruct_02011738 *param1)
     param0->state++;
 }
 
-static BOOL sub_020116D8(ScreenFade *param0)
-{
+static BOOL sub_020116D8(ScreenFade *param0) {
     UnkStruct_0201184C *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -2449,8 +2352,7 @@ static BOOL sub_020116D8(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     int v0;
     UnkStruct_02010FC0 *v1;
 
@@ -2487,8 +2389,7 @@ static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *p
     RequestEnableScreenHBlank(param0->unk_28, &param0->unk_00, sub_0201035C, param4, heapID);
 }
 
-static BOOL sub_0201184C(UnkStruct_0201184C *param0)
-{
+static BOOL sub_0201184C(UnkStruct_0201184C *param0) {
     param0->unk_1C++;
 
     if (param0->unk_1C >= param0->unk_18) {
@@ -2508,14 +2409,12 @@ static BOOL sub_0201184C(UnkStruct_0201184C *param0)
     return 0;
 }
 
-static void sub_0201189C(UnkStruct_0201184C *param0)
-{
+static void sub_0201189C(UnkStruct_0201184C *param0) {
     Heap_Free(param0->unk_0C);
     param0->unk_0C = NULL;
 }
 
-static void sub_020118AC(UnkStruct_0201184C *param0)
-{
+static void sub_020118AC(UnkStruct_0201184C *param0) {
     int v0;
     UnkStruct_02010FC0 *v1 = sub_02010604(&param0->unk_00, 0);
     memset(v1->unk_300, 0, 768);
@@ -2525,8 +2424,7 @@ static void sub_020118AC(UnkStruct_0201184C *param0)
     }
 }
 
-static void sub_020118E0(UnkStruct_02010588 *param0, UnkStruct_020101B0 *param1)
-{
+static void sub_020118E0(UnkStruct_02010588 *param0, UnkStruct_020101B0 *param1) {
     int v0;
     UnkStruct_02010FC0 *v1;
     UnkStruct_020101B0 v2;
@@ -2544,8 +2442,7 @@ static void sub_020118E0(UnkStruct_02010588 *param0, UnkStruct_020101B0 *param1)
     }
 }
 
-static void sub_02011938(UnkStruct_0201184C *param0)
-{
+static void sub_02011938(UnkStruct_0201184C *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10; v0++) {
@@ -2553,8 +2450,7 @@ static void sub_02011938(UnkStruct_0201184C *param0)
     }
 }
 
-static void sub_02011960(ScreenFade *param0, UnkStruct_0200FEA4 *param1)
-{
+static void sub_02011960(ScreenFade *param0, UnkStruct_0200FEA4 *param1) {
     UnkStruct_02011AFC *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011AFC));
@@ -2566,8 +2462,7 @@ static void sub_02011960(ScreenFade *param0, UnkStruct_0200FEA4 *param1)
     param0->state++;
 }
 
-static BOOL sub_020119A0(ScreenFade *param0)
-{
+static BOOL sub_020119A0(ScreenFade *param0) {
     UnkStruct_02011AFC *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -2602,8 +2497,7 @@ static BOOL sub_020119A0(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
 
@@ -2635,8 +2529,7 @@ static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1,
     RequestEnableScreenHBlank(param0->unk_34, &param0->unk_00, sub_0201035C, param4, heapID);
 }
 
-static BOOL sub_02011AFC(UnkStruct_02011AFC *param0)
-{
+static BOOL sub_02011AFC(UnkStruct_02011AFC *param0) {
     param0->unk_24++;
 
     if (param0->unk_24 >= param0->unk_20) {
@@ -2657,13 +2550,11 @@ static BOOL sub_02011AFC(UnkStruct_02011AFC *param0)
     return 0;
 }
 
-static void sub_02011B54(UnkStruct_02011AFC *param0)
-{
+static void sub_02011B54(UnkStruct_02011AFC *param0) {
     return;
 }
 
-static void sub_02011B58(UnkStruct_02011AFC *param0)
-{
+static void sub_02011B58(UnkStruct_02011AFC *param0) {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
     u16 v2;
@@ -2720,16 +2611,14 @@ static void sub_02011B58(UnkStruct_02011AFC *param0)
     }
 }
 
-static void sub_02011C7C(UnkStruct_02011C7C *param0, int param1, int param2)
-{
+static void sub_02011C7C(UnkStruct_02011C7C *param0, int param1, int param2) {
     int v0 = param0->unk_08 * param1;
     v0 = v0 / param2;
 
     param0->unk_00 = v0 + param0->unk_04;
 }
 
-static void sub_02011C94(ScreenFade *param0, UnkStruct_0200FF30 *param1)
-{
+static void sub_02011C94(ScreenFade *param0, UnkStruct_0200FF30 *param1) {
     UnkStruct_02011E04 *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02011E04));
@@ -2741,8 +2630,7 @@ static void sub_02011C94(ScreenFade *param0, UnkStruct_0200FF30 *param1)
     param0->state++;
 }
 
-static BOOL sub_02011CD4(ScreenFade *param0)
-{
+static BOOL sub_02011CD4(ScreenFade *param0) {
     UnkStruct_02011E04 *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -2777,8 +2665,7 @@ static BOOL sub_02011CD4(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
 
@@ -2809,8 +2696,7 @@ static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1,
     RequestEnableScreenHBlank(param0->unk_34, &param0->unk_00, sub_0201035C, param4, heapID);
 }
 
-static BOOL sub_02011E04(UnkStruct_02011E04 *param0)
-{
+static BOOL sub_02011E04(UnkStruct_02011E04 *param0) {
     param0->unk_24++;
 
     if (param0->unk_24 >= param0->unk_20) {
@@ -2831,13 +2717,11 @@ static BOOL sub_02011E04(UnkStruct_02011E04 *param0)
     return 0;
 }
 
-static void sub_02011E5C(UnkStruct_02011E04 *param0)
-{
+static void sub_02011E5C(UnkStruct_02011E04 *param0) {
     return;
 }
 
-static void sub_02011E60(UnkStruct_02011E04 *param0)
-{
+static void sub_02011E60(UnkStruct_02011E04 *param0) {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
     u16 v2;
@@ -2874,16 +2758,14 @@ static void sub_02011E60(UnkStruct_02011E04 *param0)
     }
 }
 
-static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2)
-{
+static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2) {
     int v0 = param0->unk_08 * param1;
     v0 = v0 / param2;
 
     param0->unk_00 = v0 + param0->unk_04;
 }
 
-static void sub_02011F44(ScreenFade *param0, UnkStruct_0200FE6C *param1)
-{
+static void sub_02011F44(ScreenFade *param0, UnkStruct_0200FE6C *param1) {
     UnkStruct_020120D4 *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_020120D4));
@@ -2895,8 +2777,7 @@ static void sub_02011F44(ScreenFade *param0, UnkStruct_0200FE6C *param1)
     param0->state++;
 }
 
-static BOOL sub_02011F88(ScreenFade *param0)
-{
+static BOOL sub_02011F88(ScreenFade *param0) {
     UnkStruct_020120D4 *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -2930,8 +2811,7 @@ static BOOL sub_02011F88(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     sub_02010728(&param0->unk_00, param4, 1, 0, 0);
 
     if (param1->unk_06 == 0) {
@@ -2964,8 +2844,7 @@ static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1,
     sub_02010710(param5, GX_WNDMASK_W0, param4, param0->unk_324);
 }
 
-static BOOL sub_020120D4(UnkStruct_020120D4 *param0)
-{
+static BOOL sub_020120D4(UnkStruct_020120D4 *param0) {
     param0->unk_320++;
 
     if (param0->unk_320 >= param0->unk_31C) {
@@ -2985,13 +2864,11 @@ static BOOL sub_020120D4(UnkStruct_020120D4 *param0)
     return 0;
 }
 
-static void sub_02012134(UnkStruct_020120D4 *param0)
-{
+static void sub_02012134(UnkStruct_020120D4 *param0) {
     return;
 }
 
-static void sub_02012138(UnkStruct_020120D4 *param0)
-{
+static void sub_02012138(UnkStruct_020120D4 *param0) {
     int v0;
     UnkStruct_02012174 *v1;
     const UnkStruct_0200F898 *v2;
@@ -3004,8 +2881,7 @@ static void sub_02012138(UnkStruct_020120D4 *param0)
     }
 }
 
-static void sub_02012174(const UnkStruct_0200F898 *param0, UnkStruct_02012174 *param1, int param2, int param3)
-{
+static void sub_02012174(const UnkStruct_0200F898 *param0, UnkStruct_02012174 *param1, int param2, int param3) {
     int v0;
     int v1;
     int v2;
@@ -3046,8 +2922,7 @@ static void sub_02012174(const UnkStruct_0200F898 *param0, UnkStruct_02012174 *p
     }
 }
 
-static void sub_020121C4(ScreenFade *param0, UnkStruct_0201006C *param1)
-{
+static void sub_020121C4(ScreenFade *param0, UnkStruct_0201006C *param1) {
     UnkStruct_02012290 *v0;
 
     param0->data = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02012290));
@@ -3064,8 +2939,7 @@ static void sub_020121C4(ScreenFade *param0, UnkStruct_0201006C *param1)
     param0->state++;
 }
 
-static BOOL sub_02012228(ScreenFade *param0)
-{
+static BOOL sub_02012228(ScreenFade *param0) {
     UnkStruct_02012290 *v0;
     BOOL v1;
     BOOL v2 = 0;
@@ -3102,8 +2976,7 @@ static BOOL sub_02012228(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int param7)
-{
+static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int param7) {
     int v0 = FX_Mul(param2 * FX32_ONE, param1->unk_14) >> FX32_SHIFT;
 
     param0->unk_384 = param2 - v0;
@@ -3121,8 +2994,7 @@ static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1,
     param0->unk_385 = 0;
 }
 
-static BOOL sub_02012310(UnkStruct_02012290 *param0, ScreenFade *param1)
-{
+static BOOL sub_02012310(UnkStruct_02012290 *param0, ScreenFade *param1) {
     BOOL v0;
     BOOL v1 = 0;
 
@@ -3152,8 +3024,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, ScreenFade *param1)
     return v1;
 }
 
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
-{
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID) {
     int v0;
 
     param0->unk_384 = FX_Mul(param2 * FX32_ONE, param1->unk_14) >> FX32_SHIFT;
@@ -3168,8 +3039,7 @@ static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1,
     param0->unk_385 = 0;
 }
 
-static BOOL sub_020123F4(UnkStruct_02012290 *param0, ScreenFade *param1)
-{
+static BOOL sub_020123F4(UnkStruct_02012290 *param0, ScreenFade *param1) {
     BOOL v0;
     BOOL v1 = 0;
 

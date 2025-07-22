@@ -46,37 +46,31 @@ static const CommCmdTable Unk_020F58FC[] = {
     { ov6_02248DA0, sub_02032944, NULL }
 };
 
-void sub_02095AF0(void *param0)
-{
+void sub_02095AF0(void *param0) {
     int v0 = sizeof(Unk_020F58FC) / sizeof(CommCmdTable);
     CommCmd_Init(Unk_020F58FC, v0, param0);
 }
 
-static u8 *sub_02095B04(int param0, void *param1, int param2)
-{
+static u8 *sub_02095B04(int param0, void *param1, int param2) {
     UnkStruct_02095C48 *v0 = param1;
 
     GF_ASSERT(param2 < 1024);
     return v0->unk_969[param0];
 }
 
-static int sub_02095B24(void)
-{
+static int sub_02095B24(void) {
     return sizeof(UnkStruct_ov17_0224EDE0);
 }
 
-static int sub_02095B28(void)
-{
+static int sub_02095B28(void) {
     return sizeof(UnkStruct_02095B28);
 }
 
-static void sub_02095B2C(int param0, int param1, void *param2, void *param3)
-{
+static void sub_02095B2C(int param0, int param1, void *param2, void *param3) {
     return;
 }
 
-static void sub_02095B30(int param0, int param1, void *param2, void *param3)
-{
+static void sub_02095B30(int param0, int param1, void *param2, void *param3) {
     UnkStruct_02095C48 *v0 = param3;
     int v1;
     int v2;
@@ -91,8 +85,7 @@ static void sub_02095B30(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL sub_02095B5C(UnkStruct_02095C48 *param0, int param1, const UnkStruct_02029C88 *param2)
-{
+BOOL sub_02095B5C(UnkStruct_02095C48 *param0, int param1, const UnkStruct_02029C88 *param2) {
     u8 *v0;
     int v1;
     int v2;
@@ -112,8 +105,7 @@ BOOL sub_02095B5C(UnkStruct_02095C48 *param0, int param1, const UnkStruct_02029C
     return v2;
 }
 
-static void sub_02095B9C(int param0, int param1, void *param2, void *param3)
-{
+static void sub_02095B9C(int param0, int param1, void *param2, void *param3) {
     UnkStruct_02095C48 *v0 = param3;
     int v1, v2;
     u8 *v3;
@@ -132,8 +124,7 @@ static void sub_02095B9C(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL sub_02095BEC(UnkStruct_02095C48 *param0, UnkStruct_02029C88 **param1)
-{
+BOOL sub_02095BEC(UnkStruct_02095C48 *param0, UnkStruct_02029C88 **param1) {
     u8 *v0;
     int v1, v2;
     int v3;
@@ -159,14 +150,12 @@ BOOL sub_02095BEC(UnkStruct_02095C48 *param0, UnkStruct_02029C88 **param1)
     return v3;
 }
 
-static void sub_02095C48(int param0, int param1, void *param2, void *param3)
-{
+static void sub_02095C48(int param0, int param1, void *param2, void *param3) {
     UnkStruct_02095C48 *v0 = param3;
     MI_CpuCopy8(param2, &v0->unk_1984.unk_00, param1);
 }
 
-BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1)
-{
+BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1) {
     if (param0->unk_16 == 0) {
         param0->unk_00.unk_00 = param1;
         return 1;
@@ -185,15 +174,13 @@ BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1)
     return 0;
 }
 
-static void sub_02095C98(int param0, int param1, void *param2, void *param3)
-{
+static void sub_02095C98(int param0, int param1, void *param2, void *param3) {
     UnkStruct_02095C48 *v0 = param3;
     UnkStruct_02095B28 *v1 = param2;
     v0->unk_1984.unk_10[param0] = v1->unk_04;
 }
 
-BOOL sub_02095CA8(UnkStruct_02095C60 *param0, int param1)
-{
+BOOL sub_02095CA8(UnkStruct_02095C60 *param0, int param1) {
     if (param0->unk_16 == 0) {
         param0->unk_10[0] = param1;
         return 1;

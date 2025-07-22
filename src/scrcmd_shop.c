@@ -18,8 +18,7 @@
 #include "trainer_info.h"
 #include "unk_0203D1B8.h"
 
-BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx)
-{
+BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx) {
     u16 shopItems[64];
     u8 requiredBadges, badgeNum, i, j;
     u16 unused = ScriptContext_GetVar(ctx);
@@ -74,8 +73,7 @@ BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
-{
+BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx) {
     u16 martID = ScriptContext_GetVar(ctx);
     BOOL incBuyCount;
 
@@ -93,8 +91,7 @@ BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
 }
 
 // Veilstone
-BOOL ScrCmd_PokeMartDecor(ScriptContext *ctx)
-{
+BOOL ScrCmd_PokeMartDecor(ScriptContext *ctx) {
     u16 martID = ScriptContext_GetVar(ctx);
     BOOL incBuyCount;
 
@@ -112,16 +109,14 @@ BOOL ScrCmd_PokeMartDecor(ScriptContext *ctx)
 }
 
 // Sunyshore
-BOOL ScrCmd_PokeMartSeal(ScriptContext *ctx)
-{
+BOOL ScrCmd_PokeMartSeal(ScriptContext *ctx) {
     u16 martID = ScriptContext_GetVar(ctx);
 
     Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)SunyshoreMarketDailyStocks[martID], MART_TYPE_SEAL, FALSE);
     return TRUE;
 }
 
-BOOL ScrCmd_ShowAccessoryShop(ScriptContext *ctx)
-{
+BOOL ScrCmd_ShowAccessoryShop(ScriptContext *ctx) {
     AccessoryShop_Init(ctx->fieldSystem->task);
     return TRUE;
 }

@@ -47,8 +47,7 @@ static const UnkStruct_020E97B4 Unk_020E97B4[] = {
     { 0xAF, 0x4, 0x3, 0xAC, 0x34F, 0x230, 0x1, 0x0, FIRST_ARRIVAL_POKEMON_LEAGUE }
 };
 
-static int sub_0203A7D8(int param0)
-{
+static int sub_0203A7D8(int param0) {
     if ((param0 <= 0) || (param0 > NELEMS(Unk_020E97B4))) {
         GF_ASSERT(0);
         param0 = 1;
@@ -58,13 +57,11 @@ static int sub_0203A7D8(int param0)
     return param0;
 }
 
-int sub_0203A7EC(void)
-{
+int sub_0203A7EC(void) {
     return 1;
 }
 
-void sub_0203A7F0(int param0, Location *location)
-{
+void sub_0203A7F0(int param0, Location *location) {
     param0 = sub_0203A7D8(param0);
 
     location->mapId = Unk_020E97B4[param0].unk_06;
@@ -74,8 +71,7 @@ void sub_0203A7F0(int param0, Location *location)
     location->faceDirection = FACE_DOWN;
 }
 
-void sub_0203A824(int param0, Location *location)
-{
+void sub_0203A824(int param0, Location *location) {
     param0 = sub_0203A7D8(param0);
 
     location->mapId = Unk_020E97B4[param0].unk_00;
@@ -85,8 +81,7 @@ void sub_0203A824(int param0, Location *location)
     location->faceDirection = FACE_UP;
 }
 
-int sub_0203A858(int param0)
-{
+int sub_0203A858(int param0) {
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
@@ -98,8 +93,7 @@ int sub_0203A858(int param0)
     return 0;
 }
 
-int sub_0203A87C(int param0)
-{
+int sub_0203A87C(int param0) {
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
@@ -111,8 +105,7 @@ int sub_0203A87C(int param0)
     return 0;
 }
 
-int sub_0203A8A0(int param0, int param1, int param2)
-{
+int sub_0203A8A0(int param0, int param1, int param2) {
     int v0;
     int v1 = param1 / 32;
     int v2 = param2 / 32;
@@ -131,8 +124,7 @@ int sub_0203A8A0(int param0, int param1, int param2)
     return v3;
 }
 
-void sub_0203A8E8(FieldSystem *fieldSystem, int param1)
-{
+void sub_0203A8E8(FieldSystem *fieldSystem, int param1) {
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
@@ -143,8 +135,7 @@ void sub_0203A8E8(FieldSystem *fieldSystem, int param1)
     }
 }
 
-BOOL sub_0203A920(FieldSystem *fieldSystem, int param1)
-{
+BOOL sub_0203A920(FieldSystem *fieldSystem, int param1) {
     int v0 = sub_0203A7D8(param1);
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, Unk_020E97B4[v0].unk_0E);
 }

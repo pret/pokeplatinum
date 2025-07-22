@@ -48,27 +48,23 @@ static void ov5_021D4798(Camera *camera, u8 *param1);
 static void ov5_021D47DC(Camera *camera, u8 *param1);
 static u8 ov5_021D481C(const int param0);
 
-UnkStruct_ov5_021D432C *ov5_021D431C(void)
-{
+UnkStruct_ov5_021D432C *ov5_021D431C(void) {
     UnkStruct_ov5_021D432C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D432C));
     v0->unk_00 = 0;
 
     return v0;
 }
 
-void ov5_021D432C(UnkStruct_ov5_021D432C *param0)
-{
+void ov5_021D432C(UnkStruct_ov5_021D432C *param0) {
     Heap_Free(param0);
 }
 
-void ov5_021D4334(const int param0, const int param1, UnkStruct_ov5_021D432C *param2)
-{
+void ov5_021D4334(const int param0, const int param1, UnkStruct_ov5_021D432C *param2) {
     param2->unk_14 = param0;
     param2->unk_18 = param1;
 }
 
-BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
-{
+BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1) {
     MapObject *v0;
 
     switch (param1->unk_00) {
@@ -226,8 +222,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     return 0;
 }
 
-BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
-{
+BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1) {
     MapObject *v0;
 
     switch (param1->unk_00) {
@@ -402,8 +397,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     return 0;
 }
 
-static void ov5_021D4798(Camera *camera, u8 *param1)
-{
+static void ov5_021D4798(Camera *camera, u8 *param1) {
     u8 v0;
     u16 v1;
 
@@ -432,8 +426,7 @@ static void ov5_021D4798(Camera *camera, u8 *param1)
     }
 }
 
-static void ov5_021D47DC(Camera *camera, u8 *param1)
-{
+static void ov5_021D47DC(Camera *camera, u8 *param1) {
     u8 v0;
     u16 v1;
 
@@ -462,8 +455,7 @@ static void ov5_021D47DC(Camera *camera, u8 *param1)
     }
 }
 
-static u8 ov5_021D481C(const int param0)
-{
+static u8 ov5_021D481C(const int param0) {
     if (param0 == 442) {
         return 2;
     }
@@ -475,8 +467,7 @@ static u8 ov5_021D481C(const int param0)
     return 0;
 }
 
-BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, const u8 param2)
-{
+BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, const u8 param2) {
     MapObject *v0;
 
     switch (param1->unk_00) {
@@ -592,8 +583,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     return 0;
 }
 
-BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, const u8 param2)
-{
+BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, const u8 param2) {
     MapObject *v0;
 
     switch (param1->unk_00) {
@@ -694,8 +684,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     return 0;
 }
 
-static BOOL ov5_021D4BC8(FieldTask *param0)
-{
+static BOOL ov5_021D4BC8(FieldTask *param0) {
     BOOL v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     u8 *v2 = FieldTask_GetEnv(param0);
@@ -710,8 +699,7 @@ static BOOL ov5_021D4BC8(FieldTask *param0)
     return 0;
 }
 
-void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, const u8 param3)
-{
+void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, const u8 param3) {
     BOOL v0;
     MapProp *v1;
     TerrainCollisionHitbox v2;
@@ -756,8 +744,7 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
     }
 }
 
-void ov5_021D4C88(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov5_021D4C88(FieldSystem *fieldSystem, const u8 param1) {
     int v0;
     int v1;
     int v2;
@@ -786,8 +773,7 @@ void ov5_021D4C88(FieldSystem *fieldSystem, const u8 param1)
     MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, param1, v2, v1);
 }
 
-void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1) {
     int v0;
     int v1;
     int v2;
@@ -816,21 +802,18 @@ void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
     MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, param1, v2, v1);
 }
 
-void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1) {
     u8 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(u8));
 
     *v0 = param1;
     FieldTask_InitCall(fieldSystem->task, ov5_021D4BC8, v0);
 }
 
-void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1) {
     MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, param1);
 }
 
-void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSystem *fieldSystem)
-{
+void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSystem *fieldSystem) {
     BOOL v0;
     MapProp *v1;
     TerrainCollisionHitbox v2;
@@ -863,16 +846,14 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
     }
 }
 
-UnkStruct_ov5_021D4E00 *ov5_021D4E00(void)
-{
+UnkStruct_ov5_021D4E00 *ov5_021D4E00(void) {
     UnkStruct_ov5_021D4E00 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021D4E00));
     v0->unk_00 = 0;
 
     return v0;
 }
 
-BOOL ov5_021D4E10(FieldTask *param0)
-{
+BOOL ov5_021D4E10(FieldTask *param0) {
     MapObject *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
@@ -929,8 +910,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
     return 0;
 }
 
-BOOL ov5_021D4F14(FieldTask *param0)
-{
+BOOL ov5_021D4F14(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov5_021D4E00 *v1 = FieldTask_GetEnv(param0);
 
@@ -966,8 +946,7 @@ BOOL ov5_021D4F14(FieldTask *param0)
     return 0;
 }
 
-BOOL ov5_021D4FA0(FieldTask *param0)
-{
+BOOL ov5_021D4FA0(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov5_021D4E00 *v1 = FieldTask_GetEnv(param0);
 
@@ -997,8 +976,7 @@ BOOL ov5_021D4FA0(FieldTask *param0)
     return 0;
 }
 
-BOOL ov5_021D5020(FieldTask *param0)
-{
+BOOL ov5_021D5020(FieldTask *param0) {
     MapObject *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);
@@ -1076,8 +1054,7 @@ BOOL ov5_021D5020(FieldTask *param0)
     return 0;
 }
 
-BOOL ov5_021D5150(FieldTask *param0)
-{
+BOOL ov5_021D5150(FieldTask *param0) {
     MapObject *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov5_021D4E00 *v2 = FieldTask_GetEnv(param0);

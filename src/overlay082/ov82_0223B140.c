@@ -16,8 +16,7 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 
-BOOL ov82_0223B140(ApplicationManager **appManPtr)
-{
+BOOL ov82_0223B140(ApplicationManager **appManPtr) {
     if (*appManPtr) {
         if (ApplicationManager_Exec(*appManPtr)) {
             ApplicationManager_Free(*appManPtr);
@@ -29,8 +28,7 @@ BOOL ov82_0223B140(ApplicationManager **appManPtr)
     return 0;
 }
 
-int ov82_0223B164(ApplicationManager *appMan, int *param1)
-{
+int ov82_0223B164(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov83_0223C344 *v0 = NULL;
     UnkStruct_ov82_0223B164 *v1 = (UnkStruct_ov82_0223B164 *)ApplicationManager_Args(appMan);
 
@@ -56,8 +54,7 @@ int ov82_0223B164(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov82_0223B1D4(ApplicationManager *appMan, int *param1)
-{
+int ov82_0223B1D4(ApplicationManager *appMan, int *param1) {
     int v0;
     UnkStruct_ov83_0223C344 *v1 = ApplicationManager_Data(appMan);
     UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)ApplicationManager_Args(appMan);
@@ -88,8 +85,7 @@ int ov82_0223B1D4(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov82_0223B24C(ApplicationManager *appMan, int *param1)
-{
+int ov82_0223B24C(ApplicationManager *appMan, int *param1) {
     int heapID = HEAP_ID_SYSTEM;
     UnkStruct_ov83_0223C344 *v1 = ApplicationManager_Data(appMan);
     UnkStruct_ov82_0223B164 *v2 = (UnkStruct_ov82_0223B164 *)ApplicationManager_Args(appMan);

@@ -67,8 +67,7 @@ static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2);
 static void ov12_02234AE0(ManagedSprite *param0, int *param1, int *param2, int param3, int param4);
 static void ov12_02234CA8(SysTask *param0, void *param1);
 
-void ov12_022346A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_022346A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     SpriteTemplate v0;
     UnkStruct_ov12_022346A4 *v1;
     int v2;
@@ -102,8 +101,7 @@ void ov12_022346A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v1->unk_00, ov12_02234750, v1);
 }
 
-static void ov12_02234750(SysTask *param0, void *param1)
-{
+static void ov12_02234750(SysTask *param0, void *param1) {
     UnkStruct_ov12_022346A4 *v0 = param1;
     int v1;
 
@@ -148,8 +146,7 @@ static void ov12_02234750(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_0C);
 }
 
-static void ov12_0223483C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2, int param3)
-{
+static void ov12_0223483C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2, int param3) {
     s16 v0, v1;
 
     ManagedSprite_SetAffineOverwriteMode(param0, AFFINE_OVERWRITE_MODE_DOUBLE);
@@ -160,8 +157,7 @@ static void ov12_0223483C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1
     ov12_02225E68(param2, 2, 10, 10, 32);
 }
 
-static BOOL ov12_0223489C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2)
-{
+static BOOL ov12_0223489C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1, UnkStruct_ov12_02225F6C *param2) {
     BOOL v0;
 
     ov12_02225C50(param1, param0);
@@ -175,8 +171,7 @@ static BOOL ov12_0223489C(ManagedSprite *param0, UnkStruct_ov12_02225F6C *param1
     return 1;
 }
 
-void ov12_022348C8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_022348C8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     UnkStruct_ov12_022348C8 *v0;
     int v1;
 
@@ -196,8 +191,7 @@ void ov12_022348C8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234918, v0);
 }
 
-static void ov12_02234918(SysTask *param0, void *param1)
-{
+static void ov12_02234918(SysTask *param0, void *param1) {
     UnkStruct_ov12_022348C8 *v0 = param1;
     int v1;
 
@@ -243,8 +237,7 @@ static void ov12_02234918(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_0C);
 }
 
-void ov12_02234A10(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_02234A10(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     SpriteTemplate v0;
     UnkStruct_ov12_02234A10 *v1;
     int v2;
@@ -281,8 +274,7 @@ void ov12_02234A10(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v1->unk_00, ov12_02234B64, v1);
 }
 
-static void ov12_02234AE0(ManagedSprite *param0, int *param1, int *param2, int param3, int param4)
-{
+static void ov12_02234AE0(ManagedSprite *param0, int *param1, int *param2, int param3, int param4) {
     s16 v0, v1;
 
     ManagedSprite_SetAnim(param0, param3 / 2);
@@ -298,8 +290,7 @@ static void ov12_02234AE0(ManagedSprite *param0, int *param1, int *param2, int p
     ManagedSprite_SetPositionXY(param0, v0, v1);
 }
 
-static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2)
-{
+static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2) {
     if (*param2 > 0) {
         (*param2)--;
 
@@ -318,8 +309,7 @@ static BOOL ov12_02234B34(ManagedSprite *param0, int *param1, int *param2)
     return 0;
 }
 
-static void ov12_02234B64(SysTask *param0, void *param1)
-{
+static void ov12_02234B64(SysTask *param0, void *param1) {
     UnkStruct_ov12_02234A10 *v0 = param1;
     int v1;
     BOOL v2;
@@ -347,8 +337,7 @@ static void ov12_02234B64(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_08);
 }
 
-static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
-{
+static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1) {
     int v0;
     int v1 = ((360 * 0xffff) / 360) / 6;
 
@@ -359,8 +348,7 @@ static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
     }
 }
 
-static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0)
-{
+static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0) {
     int v0;
     u16 v1;
 
@@ -377,8 +365,7 @@ static void ov12_02234C30(UnkStruct_ov12_02234BD8 *param0)
     }
 }
 
-static void ov12_02234CA8(SysTask *param0, void *param1)
-{
+static void ov12_02234CA8(SysTask *param0, void *param1) {
     UnkStruct_ov12_02234BD8 *v0 = param1;
     int v1;
 
@@ -428,8 +415,7 @@ static void ov12_02234CA8(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_08);
 }
 
-void ov12_02234D98(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
-{
+void ov12_02234D98(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3) {
     UnkStruct_ov12_02234BD8 *v0;
     int v1;
     PokemonSprite *v2;

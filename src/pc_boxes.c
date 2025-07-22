@@ -22,19 +22,16 @@ typedef struct PCBoxes {
 
 static void PCBoxes_InitInternal(PCBoxes *pcBoxes);
 
-void PCBoxes_Init(PCBoxes *pcBoxes)
-{
+void PCBoxes_Init(PCBoxes *pcBoxes) {
     PCBoxes_InitInternal(pcBoxes);
     SaveData_SetFullSaveRequired();
 }
 
-u32 PCBoxes_SaveSize(void)
-{
+u32 PCBoxes_SaveSize(void) {
     return sizeof(PCBoxes);
 }
 
-static void PCBoxes_InitInternal(PCBoxes *pcBoxes)
-{
+static void PCBoxes_InitInternal(PCBoxes *pcBoxes) {
     u32 boxID, i;
     for (boxID = 0; boxID < MAX_PC_BOXES; boxID++) {
         for (i = 0; i < MAX_MONS_PER_BOX; i++) {
@@ -64,8 +61,7 @@ static void PCBoxes_InitInternal(PCBoxes *pcBoxes)
     pcBoxes->currentBoxID = 0;
 }
 
-BOOL PCBoxes_TryStoreBoxMon(PCBoxes *pcBoxes, BoxPokemon *boxMon)
-{
+BOOL PCBoxes_TryStoreBoxMon(PCBoxes *pcBoxes, BoxPokemon *boxMon) {
     u32 boxID = pcBoxes->currentBoxID;
     do {
         BoxPokemon_RestorePP(boxMon);
@@ -83,8 +79,7 @@ BOOL PCBoxes_TryStoreBoxMon(PCBoxes *pcBoxes, BoxPokemon *boxMon)
     return FALSE;
 }
 
-BOOL PCBoxes_TryStoreBoxMonInBox(PCBoxes *pcBoxes, u32 boxID, BoxPokemon *boxMon)
-{
+BOOL PCBoxes_TryStoreBoxMonInBox(PCBoxes *pcBoxes, u32 boxID, BoxPokemon *boxMon) {
     u32 monPosInBox;
 
     BoxPokemon_RestorePP(boxMon);
@@ -105,8 +100,7 @@ BOOL PCBoxes_TryStoreBoxMonInBox(PCBoxes *pcBoxes, u32 boxID, BoxPokemon *boxMon
     return FALSE;
 }
 
-BOOL PCBoxes_TryStoreBoxMonAt(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox, BoxPokemon *boxMon)
-{
+BOOL PCBoxes_TryStoreBoxMonAt(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox, BoxPokemon *boxMon) {
     BoxPokemon_RestorePP(boxMon);
     BoxPokemon_SetShayminForm(boxMon, SHAYMIN_FORM_LAND);
 
@@ -125,8 +119,7 @@ BOOL PCBoxes_TryStoreBoxMonAt(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox, BoxP
     return FALSE;
 }
 
-void PCBoxes_InitBoxMonAt(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox)
-{
+void PCBoxes_InitBoxMonAt(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox) {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
@@ -139,13 +132,11 @@ void PCBoxes_InitBoxMonAt(PCBoxes *pcBoxes, u32 boxID, u32 monPosInBox)
     }
 }
 
-u32 PCBoxes_GetCurrentBoxID(const PCBoxes *pcBoxes)
-{
+u32 PCBoxes_GetCurrentBoxID(const PCBoxes *pcBoxes) {
     return pcBoxes->currentBoxID;
 }
 
-u32 PCBoxes_FirstEmptyBox(const PCBoxes *pcBoxes)
-{
+u32 PCBoxes_FirstEmptyBox(const PCBoxes *pcBoxes) {
     int boxID = pcBoxes->currentBoxID;
 
     while (TRUE) {
@@ -167,8 +158,7 @@ u32 PCBoxes_FirstEmptyBox(const PCBoxes *pcBoxes)
     return MAX_PC_BOXES;
 }
 
-BOOL PCBoxes_TryGetNextAvailableSpace(const PCBoxes *pcBoxes, int *boxIndexDest, int *monPosInBoxDest)
-{
+BOOL PCBoxes_TryGetNextAvailableSpace(const PCBoxes *pcBoxes, int *boxIndexDest, int *monPosInBoxDest) {
     if (*boxIndexDest == USE_CURRENT_BOX) {
         *boxIndexDest = pcBoxes->currentBoxID;
     }
@@ -199,8 +189,7 @@ BOOL PCBoxes_TryGetNextAvailableSpace(const PCBoxes *pcBoxes, int *boxIndexDest,
     return MAX_PC_BOXES;
 }
 
-u32 PCBoxes_CountAllBoxMons(const PCBoxes *pcBoxes)
-{
+u32 PCBoxes_CountAllBoxMons(const PCBoxes *pcBoxes) {
     int boxID, monPosInBox;
     u32 count = 0;
 
@@ -215,8 +204,7 @@ u32 PCBoxes_CountAllBoxMons(const PCBoxes *pcBoxes)
     return count;
 }
 
-void PCBoxes_SetCurrentBox(PCBoxes *pcBoxes, u32 boxID)
-{
+void PCBoxes_SetCurrentBox(PCBoxes *pcBoxes, u32 boxID) {
     if (boxID < MAX_PC_BOXES) {
         pcBoxes->currentBoxID = boxID;
         SaveData_SetFullSaveRequired();
@@ -225,8 +213,7 @@ void PCBoxes_SetCurrentBox(PCBoxes *pcBoxes, u32 boxID)
     }
 }
 
-u32 PCBoxes_GetWallpaper(const PCBoxes *pcBoxes, u32 boxID)
-{
+u32 PCBoxes_GetWallpaper(const PCBoxes *pcBoxes, u32 boxID) {
     if (boxID < MAX_PC_BOXES) {
         return pcBoxes->wallpapers[boxID];
     } else {
@@ -235,8 +222,7 @@ u32 PCBoxes_GetWallpaper(const PCBoxes *pcBoxes, u32 boxID)
     }
 }
 
-void PCBoxes_SetWallpaper(PCBoxes *pcBoxes, u32 boxID, u32 wallpaper)
-{
+void PCBoxes_SetWallpaper(PCBoxes *pcBoxes, u32 boxID, u32 wallpaper) {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
@@ -253,8 +239,7 @@ void PCBoxes_SetWallpaper(PCBoxes *pcBoxes, u32 boxID, u32 wallpaper)
     }
 }
 
-void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, Strbuf *dest)
-{
+void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, Strbuf *dest) {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
@@ -266,8 +251,7 @@ void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, Strbuf *dest)
     }
 }
 
-void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const Strbuf *newName)
-{
+void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const Strbuf *newName) {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
@@ -278,8 +262,7 @@ void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const Strbuf *newName)
     }
 }
 
-u32 PCBoxes_CountMonsInBox(const PCBoxes *pcBoxes, u32 boxID)
-{
+u32 PCBoxes_CountMonsInBox(const PCBoxes *pcBoxes, u32 boxID) {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
@@ -301,8 +284,7 @@ u32 PCBoxes_CountMonsInBox(const PCBoxes *pcBoxes, u32 boxID)
     return 0;
 }
 
-u32 PCBoxes_CountNonEggMonsInBox(const PCBoxes *pcBoxes, u32 boxID)
-{
+u32 PCBoxes_CountNonEggMonsInBox(const PCBoxes *pcBoxes, u32 boxID) {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
@@ -326,8 +308,7 @@ u32 PCBoxes_CountNonEggMonsInBox(const PCBoxes *pcBoxes, u32 boxID)
     return 0;
 }
 
-u32 PCBoxes_CountAllNonEggBoxMons(const PCBoxes *pcBoxes)
-{
+u32 PCBoxes_CountAllNonEggBoxMons(const PCBoxes *pcBoxes) {
     u32 count, boxID;
 
     for (boxID = 0, count = 0; boxID < MAX_PC_BOXES; boxID++) {
@@ -337,8 +318,7 @@ u32 PCBoxes_CountAllNonEggBoxMons(const PCBoxes *pcBoxes)
     return count;
 }
 
-u32 PCBoxes_GetBoxMonData(const PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDataParam pokemonData, void *dest)
-{
+u32 PCBoxes_GetBoxMonData(const PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDataParam pokemonData, void *dest) {
     GF_ASSERT(boxID < MAX_PC_BOXES || boxID == USE_CURRENT_BOX);
     GF_ASSERT(slot < MAX_MONS_PER_BOX);
 
@@ -349,8 +329,7 @@ u32 PCBoxes_GetBoxMonData(const PCBoxes *pcBoxes, u32 boxID, u32 slot, enum Poke
     return BoxPokemon_GetValue((&pcBoxes->boxMons[boxID][slot]), pokemonData, dest);
 }
 
-void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDataParam pokemonData, void *value)
-{
+void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDataParam pokemonData, void *value) {
     GF_ASSERT(boxID < MAX_PC_BOXES || boxID == USE_CURRENT_BOX);
     GF_ASSERT(slot < MAX_MONS_PER_BOX);
 
@@ -362,8 +341,7 @@ void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDa
     SaveData_SetFullSaveRequired();
 }
 
-BoxPokemon *PCBoxes_GetBoxMonAt(const PCBoxes *pcBoxes, u32 boxID, u32 slot)
-{
+BoxPokemon *PCBoxes_GetBoxMonAt(const PCBoxes *pcBoxes, u32 boxID, u32 slot) {
     GF_ASSERT(boxID < MAX_PC_BOXES || boxID == USE_CURRENT_BOX);
     GF_ASSERT(slot < MAX_MONS_PER_BOX);
 
@@ -374,23 +352,20 @@ BoxPokemon *PCBoxes_GetBoxMonAt(const PCBoxes *pcBoxes, u32 boxID, u32 slot)
     return &pcBoxes->boxMons[boxID][slot];
 }
 
-void PCBoxes_UnlockWallpaper(PCBoxes *pcBoxes, u32 wallpaper)
-{
+void PCBoxes_UnlockWallpaper(PCBoxes *pcBoxes, u32 wallpaper) {
     GF_ASSERT(wallpaper < MAX_UNLOCKABLE_WALLPAPERS);
 
     pcBoxes->unlockedWallpapers |= (1 << wallpaper);
     SaveData_SetFullSaveRequired();
 }
 
-BOOL PCBoxes_CheckHasUnlockedWallpaper(const PCBoxes *pcBoxes, u32 wallpaper)
-{
+BOOL PCBoxes_CheckHasUnlockedWallpaper(const PCBoxes *pcBoxes, u32 wallpaper) {
     GF_ASSERT(wallpaper < MAX_UNLOCKABLE_WALLPAPERS);
 
     return (pcBoxes->unlockedWallpapers & (1 << wallpaper)) != 0;
 }
 
-u32 PCBoxes_CountUnlockedWallpapers(const PCBoxes *pcBoxes)
-{
+u32 PCBoxes_CountUnlockedWallpapers(const PCBoxes *pcBoxes) {
     u32 i, count;
 
     for (i = 0, count = 0; i < MAX_UNLOCKABLE_WALLPAPERS; i++) {

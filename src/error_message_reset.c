@@ -75,14 +75,12 @@ static const HeapParam sErrorMessageHeapParams[] = {
 
 static BOOL sErrorMessagePrinterLock;
 
-static void VBlankIntr(void)
-{
+static void VBlankIntr(void) {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void ErrorMessageReset_PrintErrorAndReset(void)
-{
+void ErrorMessageReset_PrintErrorAndReset(void) {
     BgConfig *bgConfig;
     Window window;
     MessageLoader *errorMsgData;

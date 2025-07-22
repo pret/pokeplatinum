@@ -20,8 +20,7 @@ static void sub_02099118(UnkStruct_0209903C *param0);
 static void sub_020993A8(UnkStruct_0209903C *param0);
 static s16 sub_020994B8(UnkStruct_0209903C *param0, u8 param1);
 
-UnkStruct_0209903C *sub_02098FFC(int heapID, u16 param1, u16 param2, u16 param3, int param4)
-{
+UnkStruct_0209903C *sub_02098FFC(int heapID, u16 param1, u16 param2, u16 param3, int param4) {
     UnkStruct_0209903C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209903C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209903C));
 
@@ -41,15 +40,13 @@ UnkStruct_0209903C *sub_02098FFC(int heapID, u16 param1, u16 param2, u16 param3,
     return v0;
 }
 
-void sub_0209903C(UnkStruct_0209903C *param0)
-{
+void sub_0209903C(UnkStruct_0209903C *param0) {
     sub_02099118(param0);
     MI_CpuClear8(param0, sizeof(UnkStruct_0209903C));
     Heap_Free(param0);
 }
 
-static void sub_02099058(UnkStruct_0209903C *param0)
-{
+static void sub_02099058(UnkStruct_0209903C *param0) {
     u32 v0, v1;
     u8 v2[] = { 1, 1, 1, 1 };
 
@@ -72,8 +69,7 @@ static void sub_02099058(UnkStruct_0209903C *param0)
     MI_CpuClear8(param0->unk_1C4, sizeof(UnkStruct_0209903C_sub1));
 }
 
-static void sub_02099118(UnkStruct_0209903C *param0)
-{
+static void sub_02099118(UnkStruct_0209903C *param0) {
     u32 v0;
 
     Heap_Free(param0->unk_1C4);
@@ -87,13 +83,11 @@ static void sub_02099118(UnkStruct_0209903C *param0)
     }
 }
 
-void sub_02099160(UnkStruct_0209903C *param0)
-{
+void sub_02099160(UnkStruct_0209903C *param0) {
     SpriteList_Update(param0->unk_10);
 }
 
-UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 param2, u16 param3, u16 param4, u8 param5, u8 param6, int param7)
-{
+UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 param2, u16 param3, u16 param4, u8 param5, u8 param6, int param7) {
     u8 v0;
     s16 v1;
     u32 v2;
@@ -165,16 +159,14 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     return v3;
 }
 
-void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int param2)
-{
+void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int param2) {
     SpriteResource *v0 = param0->unk_1B4[1]->resources[param1->unk_00];
 
     SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], v0, 88, 3 + param2, 0, param0->heapID);
     SpriteTransfer_ReplacePlttData(v0);
 }
 
-void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
-{
+void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1) {
     Sprite_DeleteAndFreeResources(param1->unk_04);
 
     param0->unk_1C4[param1->unk_00].unk_00 = 0;
@@ -184,8 +176,7 @@ void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
     Heap_Free(param1);
 }
 
-static void sub_020993A8(UnkStruct_0209903C *param0)
-{
+static void sub_020993A8(UnkStruct_0209903C *param0) {
     int v0;
     SpriteResourceCollection *v1;
     SpriteResourceList *v2;
@@ -229,8 +220,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     NARC_dtor(v4);
 }
 
-static s16 sub_020994B8(UnkStruct_0209903C *param0, u8 param1)
-{
+static s16 sub_020994B8(UnkStruct_0209903C *param0, u8 param1) {
     u16 v0 = 0;
 
     for (v0 = 0; v0 < param0->unk_0A; v0++) {

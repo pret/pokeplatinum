@@ -38,8 +38,7 @@ static const int Unk_020F2FB0[] = {
     133,
 };
 
-UnkStruct_0208B878 *sub_0208B284(UnkStruct_0208B284 param0, SpriteSystem *param1, SpriteManager *param2, PaletteData *param3)
-{
+UnkStruct_0208B878 *sub_0208B284(UnkStruct_0208B284 param0, SpriteSystem *param1, SpriteManager *param2, PaletteData *param3) {
     UnkStruct_0208B878 *v0 = Heap_AllocFromHeap(param0.heapID, sizeof(UnkStruct_0208B878));
     v0->unk_10.unk_00 = param0.unk_00;
     v0->unk_10.heapID = param0.heapID;
@@ -58,8 +57,7 @@ UnkStruct_0208B878 *sub_0208B284(UnkStruct_0208B284 param0, SpriteSystem *param1
     return v0;
 }
 
-static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7)
-{
+static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7) {
     f32 v0;
     f32 v1;
     Vec2F32 v2;
@@ -92,8 +90,7 @@ static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 *pa
     return 1;
 }
 
-static void sub_0208B3D4(SysTask *param0, void *param1)
-{
+static void sub_0208B3D4(SysTask *param0, void *param1) {
     UnkStruct_0208B878 *v0 = param1;
 
     if (v0->unk_F0 == 0) {
@@ -166,8 +163,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
     }
 }
 
-void sub_0208B63C(UnkStruct_0208B878 *param0, int param1)
-{
+void sub_0208B63C(UnkStruct_0208B878 *param0, int param1) {
     NARC *v0;
     SpriteSystem *v1 = param0->unk_00.unk_04;
     SpriteManager *v2 = param0->unk_00.unk_08;
@@ -180,8 +176,7 @@ void sub_0208B63C(UnkStruct_0208B878 *param0, int param1)
     SpriteSystem_LoadPaletteBufferFromOpenNarc(v3, 3, v1, v2, v0, Unk_020F2FB0[param1], 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 22222 + 2);
 }
 
-void sub_0208B6B0(UnkStruct_0208B878 *param0, int param1)
-{
+void sub_0208B6B0(UnkStruct_0208B878 *param0, int param1) {
     NARC *v0;
     SpriteSystem *v1;
     SpriteManager *v2;
@@ -215,8 +210,7 @@ void sub_0208B6B0(UnkStruct_0208B878 *param0, int param1)
     SpriteSystem_LoadAnimResObjFromOpenNarc(v1, v2, v0, 94, FALSE, v4);
 }
 
-void sub_0208B7B4(UnkStruct_0208B878 *param0)
-{
+void sub_0208B7B4(UnkStruct_0208B878 *param0) {
     int v0;
     SpriteTemplate v1;
     SpriteSystem *v2 = param0->unk_00.unk_04;
@@ -247,8 +241,7 @@ void sub_0208B7B4(UnkStruct_0208B878 *param0)
     }
 }
 
-void sub_0208B830(UnkStruct_0208B878 *param0)
-{
+void sub_0208B830(UnkStruct_0208B878 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
@@ -259,8 +252,7 @@ void sub_0208B830(UnkStruct_0208B878 *param0)
     }
 }
 
-BOOL sub_0208B878(UnkStruct_0208B878 *param0, int param1)
-{
+BOOL sub_0208B878(UnkStruct_0208B878 *param0, int param1) {
     param0->unk_00.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, param0->unk_10.heapID);
 
     sub_0208B6B0(param0, param1);
@@ -271,14 +263,12 @@ BOOL sub_0208B878(UnkStruct_0208B878 *param0, int param1)
     return 1;
 }
 
-BOOL sub_0208B8B0(UnkStruct_0208B878 *param0, BOOL param1)
-{
+BOOL sub_0208B8B0(UnkStruct_0208B878 *param0, BOOL param1) {
     param0->unk_F0 = param1;
     return 1;
 }
 
-BOOL sub_0208B8B8(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
-{
+BOOL sub_0208B8B8(UnkStruct_0208B878 *param0, s16 param1, s16 param2) {
     param0->unk_24[0].unk_04 = param1;
     param0->unk_24[0].unk_06 = param2;
     param0->unk_E8 = 0xFF;
@@ -295,8 +285,7 @@ BOOL sub_0208B8B8(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
     return 1;
 }
 
-BOOL sub_0208B8EC(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
-{
+BOOL sub_0208B8EC(UnkStruct_0208B878 *param0, s16 param1, s16 param2) {
     if (sub_0208B930(param0, param1, param2) == 0) {
         return 0;
     }
@@ -317,8 +306,7 @@ BOOL sub_0208B8EC(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
     return 1;
 }
 
-static BOOL sub_0208B930(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
-{
+static BOOL sub_0208B930(UnkStruct_0208B878 *param0, s16 param1, s16 param2) {
     if ((param0->unk_24[0].unk_04 == param1) && (param0->unk_24[0].unk_06 == param2)) {
         return 0;
     }
@@ -326,8 +314,7 @@ static BOOL sub_0208B930(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
     return 1;
 }
 
-BOOL sub_0208B948(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
-{
+BOOL sub_0208B948(UnkStruct_0208B878 *param0, s16 param1, s16 param2) {
     {
         int v0;
 
@@ -344,8 +331,7 @@ BOOL sub_0208B948(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
     return 1;
 }
 
-BOOL sub_0208B988(UnkStruct_0208B878 *param0)
-{
+BOOL sub_0208B988(UnkStruct_0208B878 *param0) {
     switch (param0->unk_E4) {
     case 0:
         sub_0208B8B0(param0, 0);
@@ -366,8 +352,7 @@ BOOL sub_0208B988(UnkStruct_0208B878 *param0)
     return 1;
 }
 
-BOOL sub_0208B9E0(UnkStruct_0208B878 *param0, BOOL param1)
-{
+BOOL sub_0208B9E0(UnkStruct_0208B878 *param0, BOOL param1) {
     {
         int v0;
 
@@ -379,8 +364,7 @@ BOOL sub_0208B9E0(UnkStruct_0208B878 *param0, BOOL param1)
     return 1;
 }
 
-void sub_0208BA08(UnkStruct_0208B878 *param0, int param1, int param2)
-{
+void sub_0208BA08(UnkStruct_0208B878 *param0, int param1, int param2) {
     if ((param1 != 0) && (param2 != 0)) {
         param0->unk_FC = param1;
         param0->unk_100 = param2;
@@ -390,8 +374,7 @@ void sub_0208BA08(UnkStruct_0208B878 *param0, int param1, int param2)
     }
 }
 
-void sub_0208BA30(UnkStruct_0208B878 *param0)
-{
+void sub_0208BA30(UnkStruct_0208B878 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
@@ -399,8 +382,7 @@ void sub_0208BA30(UnkStruct_0208B878 *param0)
     }
 }
 
-void sub_0208BA54(UnkStruct_0208B878 *param0)
-{
+void sub_0208BA54(UnkStruct_0208B878 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {

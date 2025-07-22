@@ -94,8 +94,7 @@ BattleRegulation Unk_02100860 = {
     0x0,
 };
 
-const BattleRegulation *sub_02026150(SaveData *saveData, int param1)
-{
+const BattleRegulation *sub_02026150(SaveData *saveData, int param1) {
     UnkStruct_02026030 *v0 = NULL;
 
     if (param1 < NELEMS(Unk_02100880)) {
@@ -106,8 +105,7 @@ const BattleRegulation *sub_02026150(SaveData *saveData, int param1)
     return &v0->unk_00[0];
 }
 
-void sub_0202616C(SaveData *saveData, int param1, Strbuf *param2, int heapID)
-{
+void sub_0202616C(SaveData *saveData, int param1, Strbuf *param2, int heapID) {
     MessageLoader *v0;
     UnkStruct_02026030 *v1 = NULL;
 
@@ -120,13 +118,11 @@ void sub_0202616C(SaveData *saveData, int param1, Strbuf *param2, int heapID)
     }
 }
 
-const BattleRegulation *sub_020261A8(void)
-{
+const BattleRegulation *sub_020261A8(void) {
     return &Unk_02100860;
 }
 
-int sub_020261B0(const BattleRegulation *param0)
-{
+int sub_020261B0(const BattleRegulation *param0) {
     int v0;
 
     if (param0 == NULL) {

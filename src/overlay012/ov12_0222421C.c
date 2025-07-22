@@ -29,8 +29,7 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
 static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *param2);
 static void ov12_02225094(UnkStruct_ov12_02225640 *param0, VecFx32 *param1);
 
-static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
-{
+static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1) {
     if (param1->unk_0C[2] != 0) {
         ov12_022242E0(param0, param1);
     }
@@ -50,8 +49,7 @@ static void ov12_0222421C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     }
 }
 
-static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
-{
+static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2) {
     BattleAnimSystem *v0;
     ParticleSystem *v1;
     int v2;
@@ -75,8 +73,7 @@ static void ov12_02224260(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
     ov12_02235448(v3, param2, BattleAnimSystem_IsContest(v0), v2);
 }
 
-static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2)
-{
+static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, VecFx32 *param2) {
     BattleAnimSystem *v0;
     ParticleSystem *v1;
     int v2;
@@ -100,8 +97,7 @@ static void ov12_022242A0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1, V
     ov12_02235448(v4, param2, BattleAnimSystem_IsContest(v0), v3);
 }
 
-static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
-{
+static void ov12_022242E0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1) {
     VecFx32 v0;
 
     switch (param1->unk_0C[2]) {
@@ -293,8 +289,7 @@ static const UnkStruct_ov12_022396AC Unk_ov12_0223934C[6][6];
 static const UnkStruct_ov12_022396AC Unk_ov12_02239A0C[6][6];
 static const UnkStruct_ov12_022396AC Unk_ov12_02239BBC[6][6];
 
-static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
-{
+static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1) {
     int v0;
     int v1;
     VecFx16 v2;
@@ -596,8 +591,7 @@ static void ov12_02224614(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     SPLEmitter_SetAxis(param0, &v2);
 }
 
-static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
-{
+static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1) {
     int v0;
     int v1;
     int v2;
@@ -615,13 +609,11 @@ static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     }
 }
 
-static void ov12_02224EA8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
-{
+static void ov12_02224EA8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1) {
     ov12_0222584C(param1->unk_0C[5], param0, param1);
 }
 
-static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
-{
+static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1) {
     fx32 v0;
     int v1;
     int v2;
@@ -667,8 +659,7 @@ static void ov12_02224EB8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     SPLEmitter_SetPosZ(param0, v0);
 }
 
-void ov12_02224F14(SPLEmitter *param0)
-{
+void ov12_02224F14(SPLEmitter *param0) {
     BattleAnimSystem *v0 = ParticleSystem_GetEmitterCallbackParam();
     UnkStruct_ov12_02225640 *v1 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(v0), sizeof(UnkStruct_ov12_02225640));
 
@@ -707,8 +698,7 @@ void ov12_02224F14(SPLEmitter *param0)
     Heap_Free(v1);
 }
 
-s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0)
-{
+s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0) {
     s8 v0 = 1;
     int v1 = BattleAnimUtil_GetBattlerType(param0->unk_00, param0->unk_24);
     int v2 = BattleAnimUtil_GetBattlerType(param0->unk_00, param0->unk_28);
@@ -735,8 +725,7 @@ s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0)
     return v0;
 }
 
-static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *param2)
-{
+static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *param2) {
     int v0;
     VecFx32 v1 = { 0, 0, 0 };
     int v2[4];
@@ -766,8 +755,7 @@ static void ov12_02225008(UnkStruct_ov12_02225640 *param0, int param1, VecFx32 *
     (*param2).z += v1.z;
 }
 
-static void ov12_02225094(UnkStruct_ov12_02225640 *param0, VecFx32 *param1)
-{
+static void ov12_02225094(UnkStruct_ov12_02225640 *param0, VecFx32 *param1) {
     int v0[3 + 1];
     VecFx32 v1 = { 0, 0, 0 };
 

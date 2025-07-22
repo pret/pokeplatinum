@@ -6,8 +6,7 @@
 #include "game_overlay.h"
 #include "heap.h"
 
-ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapId heapID)
-{
+ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *template, void *args, const enum HeapId heapID) {
     ApplicationManager *appMan = Heap_AllocFromHeap(heapID, sizeof(ApplicationManager));
 
     appMan->template = *template;
@@ -21,30 +20,25 @@ ApplicationManager *ApplicationManager_New(const ApplicationManagerTemplate *tem
     return appMan;
 }
 
-void ApplicationManager_Free(ApplicationManager *appMan)
-{
+void ApplicationManager_Free(ApplicationManager *appMan) {
     Heap_Free(appMan);
 }
 
-void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapId heapID)
-{
+void *ApplicationManager_NewData(ApplicationManager *appMan, u32 size, enum HeapId heapID) {
     appMan->data = Heap_AllocFromHeap(heapID, size);
     return appMan->data;
 }
 
-void *ApplicationManager_Data(ApplicationManager *appMan)
-{
+void *ApplicationManager_Data(ApplicationManager *appMan) {
     return appMan->data;
 }
 
-void ApplicationManager_FreeData(ApplicationManager *appMan)
-{
+void ApplicationManager_FreeData(ApplicationManager *appMan) {
     Heap_Free(appMan->data);
     appMan->data = NULL;
 }
 
-void *ApplicationManager_Args(ApplicationManager *appMan)
-{
+void *ApplicationManager_Args(ApplicationManager *appMan) {
     return appMan->args;
 }
 
@@ -55,8 +49,7 @@ enum OverlayExecState {
     OVERLAY_EXEC_EXIT,
 };
 
-BOOL ApplicationManager_Exec(ApplicationManager *appMan)
-{
+BOOL ApplicationManager_Exec(ApplicationManager *appMan) {
     switch (appMan->execState) {
     case OVERLAY_EXEC_LOAD:
         if (appMan->template.overlayID != FS_OVERLAY_ID_NONE) {

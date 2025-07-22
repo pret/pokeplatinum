@@ -91,8 +91,7 @@ static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0);
 u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0);
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
 
-static int ov104_0223A7F4(u8 param0, int param1, int param2)
-{
+static int ov104_0223A7F4(u8 param0, int param1, int param2) {
     int v0, v1, v2, v3;
 
     if (param1 >= NELEMS(Unk_ov104_022401FC)) {
@@ -121,8 +120,7 @@ static int ov104_0223A7F4(u8 param0, int param1, int param2)
     return v0;
 }
 
-void ov104_0223A860(u8 param0, int param1, u16 param2[], u8 param3)
-{
+void ov104_0223A860(u8 param0, int param1, u16 param2[], u8 param3) {
     int v0 = 0;
     int v1;
 
@@ -143,8 +141,7 @@ void ov104_0223A860(u8 param0, int param1, u16 param2[], u8 param3)
     } while (v0 < param3);
 }
 
-const UnkStruct_ov104_0224028C *ov104_0223A8A8(int param0, int param1)
-{
+const UnkStruct_ov104_0224028C *ov104_0223A8A8(int param0, int param1) {
     int v0;
     static const UnkStruct_ov104_0224028C *v1;
     int v2;
@@ -171,8 +168,7 @@ const UnkStruct_ov104_0224028C *ov104_0223A8A8(int param0, int param1)
     return &v1[v0];
 }
 
-const UnkStruct_ov104_0224028C *ov104_0223A8F4(int param0, int param1)
-{
+const UnkStruct_ov104_0224028C *ov104_0223A8F4(int param0, int param1) {
     if (param0 >= 8) {
         param0 = 8 - 1;
     }
@@ -192,8 +188,7 @@ static const int Unk_ov104_022401E8[] = {
     0x22
 };
 
-BOOL ov104_0223A918(const u16 param0[], const u16 param1[], int param2, int param3, u16 param4[], int param5, const UnkStruct_ov104_0224028C *param6, u16 param7, u8 param8[])
-{
+BOOL ov104_0223A918(const u16 param0[], const u16 param1[], int param2, int param3, u16 param4[], int param5, const UnkStruct_ov104_0224028C *param6, u16 param7, u8 param8[]) {
     u8 v0;
     int v1, v2, v3;
     BattleFrontierPokemonData v4[6];
@@ -258,8 +253,7 @@ BOOL ov104_0223A918(const u16 param0[], const u16 param1[], int param2, int para
     return 0;
 }
 
-u8 ov104_0223AA50(u8 param0)
-{
+u8 ov104_0223AA50(u8 param0) {
     switch (param0) {
     case 0:
     case 1:
@@ -272,8 +266,7 @@ u8 ov104_0223AA50(u8 param0)
     return 0;
 }
 
-u8 ov104_0223AA74(u8 param0, BOOL param1)
-{
+u8 ov104_0223AA74(u8 param0, BOOL param1) {
     switch (param0) {
     case 0:
     case 1:
@@ -290,8 +283,7 @@ u8 ov104_0223AA74(u8 param0, BOOL param1)
     return 0;
 }
 
-void ov104_0223AAA0(u16 param0, u8 param1, u16 *param2, FrontierPokemonDataDTO *param3, u8 *param4, u32 *param5, u16 param6, u16 *param7, u16 *param8)
-{
+void ov104_0223AAA0(u16 param0, u8 param1, u16 *param2, FrontierPokemonDataDTO *param3, u8 *param4, u32 *param5, u16 param6, u16 *param7, u16 *param8) {
     const UnkStruct_ov104_0224028C *v0;
     int v1;
 
@@ -307,8 +299,7 @@ void ov104_0223AAA0(u16 param0, u8 param1, u16 *param2, FrontierPokemonDataDTO *
     return;
 }
 
-void ov104_0223AB0C(u8 param0, u16 param1, u8 param2, FrontierPokemonDataDTO *param3, u16 *param4, FrontierPokemonDataDTO *param5, u8 *param6, u32 *param7, int param8)
-{
+void ov104_0223AB0C(u8 param0, u16 param1, u8 param2, FrontierPokemonDataDTO *param3, u16 *param4, FrontierPokemonDataDTO *param5, u8 *param6, u32 *param7, int param8) {
     int v0;
     FrontierPokemonDataDTO v1;
     u16 v3[6 * 2];
@@ -328,8 +319,7 @@ void ov104_0223AB0C(u8 param0, u16 param1, u8 param2, FrontierPokemonDataDTO *pa
     return;
 }
 
-FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104_02230BE4 *param1)
-{
+FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104_02230BE4 *param1) {
     int v0;
     u32 v1;
     u8 v2, v3;
@@ -404,8 +394,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
     return v4;
 }
 
-static u32 ov104_0223AD74(u8 param0)
-{
+static u32 ov104_0223AD74(u8 param0) {
     switch (param0) {
     case 0:
         return (0x0 | 0x1) | 0x80;
@@ -420,8 +409,7 @@ static u32 ov104_0223AD74(u8 param0)
     return (0x0 | 0x1) | 0x80;
 }
 
-u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0)
-{
+u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0) {
     if (param0->unk_05 == 0) {
         return 50;
     }
@@ -429,8 +417,7 @@ u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0)
     return 100;
 }
 
-void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0) {
     int v0;
     Pokemon *v1;
 
@@ -449,8 +436,7 @@ void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
-{
+void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0) {
     int v0, v1;
     Pokemon *v2;
     FrontierPokemonDataDTO v3[2];
@@ -475,8 +461,7 @@ void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-BOOL ov104_0223AED4(u8 param0)
-{
+BOOL ov104_0223AED4(u8 param0) {
     switch (param0) {
     case 2:
     case 3:
@@ -486,8 +471,7 @@ BOOL ov104_0223AED4(u8 param0)
     return 0;
 }
 
-static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0)
-{
+static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0) {
     u16 v0, v1;
 
     if (param0->unk_04 == 0) {
@@ -513,8 +497,7 @@ static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0)
     return v0;
 }
 
-u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0)
-{
+u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0) {
     u16 v0 = param0->unk_0E;
 
     if (ov104_0223AED4(param0->unk_04) == 1) {

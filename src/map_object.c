@@ -159,8 +159,7 @@ static UnkFuncPtr_ov5_021FB0F0_1 sub_02063234(const UnkStruct_ov5_021FB0F0 *para
 static UnkFuncPtr_ov5_021FB0F0_2 sub_02063238(const UnkStruct_ov5_021FB0F0 *param0);
 static const UnkStruct_ov5_021FB0F0 *sub_02063244(u32 param0);
 
-MapObjectManager *MapObjectMan_New(FieldSystem *fieldSystem, int maxObjs, int param2)
-{
+MapObjectManager *MapObjectMan_New(FieldSystem *fieldSystem, int maxObjs, int param2) {
     MapObjectManager *mapObjMan = MapObjectMan_Alloc(maxObjs);
     MapObjectMan_SetFieldSystem(mapObjMan, fieldSystem);
     MapObjectMan_SetMaxObjects(mapObjMan, maxObjs);
@@ -169,14 +168,12 @@ MapObjectManager *MapObjectMan_New(FieldSystem *fieldSystem, int maxObjs, int pa
     return mapObjMan;
 }
 
-void MapObjectMan_Delete(MapObjectManager *mapObjMan)
-{
+void MapObjectMan_Delete(MapObjectManager *mapObjMan) {
     Heap_FreeExplicit(HEAP_ID_FIELDMAP, MapObjectMan_GetMapObject(mapObjMan));
     Heap_FreeExplicit(HEAP_ID_FIELDMAP, mapObjMan);
 }
 
-void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEventCount, const ObjectEvent *objectEvent)
-{
+void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEventCount, const ObjectEvent *objectEvent) {
     int v0, maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObject(mapObjMan);
 
@@ -204,8 +201,7 @@ void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEve
     ov5_021EDA38(mapObjMan, sub_0206285C(mapObjMan));
 }
 
-static MapObjectManager *MapObjectMan_Alloc(int maxObjs)
-{
+static MapObjectManager *MapObjectMan_Alloc(int maxObjs) {
     int size;
     MapObject *mapObj;
     MapObjectManager *mapObjMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(MapObjectManager));
@@ -224,8 +220,7 @@ static MapObjectManager *MapObjectMan_Alloc(int maxObjs)
     return mapObjMan;
 }
 
-MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan, const ObjectEvent *objectEvent, int mapID)
-{
+MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan, const ObjectEvent *objectEvent, int mapID) {
     MapObject *mapObj;
     ObjectEvent v1 = *objectEvent;
     ObjectEvent *v2 = &v1;
@@ -267,8 +262,7 @@ MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan
     return mapObj;
 }
 
-MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, int z, int initialDir, int graphicsID, int movementType, int mapID)
-{
+MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, int z, int initialDir, int graphicsID, int movementType, int mapID) {
     ObjectEvent objectEvent;
     MapObject *mapObj;
 
@@ -293,8 +287,7 @@ MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, i
     return mapObj;
 }
 
-MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMan, int localID, int objEventCount, int mapID, const ObjectEvent *objectEvent)
-{
+MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMan, int localID, int objEventCount, int mapID, const ObjectEvent *objectEvent) {
     MapObject *mapObj = NULL;
     const ObjectEvent *v1 = sub_020631A4(localID, objEventCount, objectEvent);
 
@@ -310,16 +303,14 @@ MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMa
     return mapObj;
 }
 
-void sub_02061AB4(MapObject *mapObj, int graphicsID)
-{
+void sub_02061AB4(MapObject *mapObj, int graphicsID) {
     MapObject_SetGraphicsID(mapObj, graphicsID);
     sub_02062604(mapObj);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_14);
     sub_02062670(mapObj);
 }
 
-void sub_02061AD4(MapObject *mapObj, int param1)
-{
+void sub_02061AD4(MapObject *mapObj, int param1) {
     if (sub_02062DFC(mapObj) == TRUE) {
         sub_02061B48(mapObj);
     }
@@ -327,8 +318,7 @@ void sub_02061AD4(MapObject *mapObj, int param1)
     sub_02061AB4(mapObj, param1);
 }
 
-void MapObject_Delete(MapObject *mapObj)
-{
+void MapObject_Delete(MapObject *mapObj) {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     if (MapObjectMan_IsDrawInitialized(mapObjMan) == TRUE) {
@@ -341,15 +331,13 @@ void MapObject_Delete(MapObject *mapObj)
     sub_0206243C(mapObj);
 }
 
-void MapObject_SetFlagAndDeleteObject(MapObject *mapObj)
-{
+void MapObject_SetFlagAndDeleteObject(MapObject *mapObj) {
     int flag = MapObject_GetFlag(mapObj);
     FieldSystem_SetFlag(MapObject_FieldSystem(mapObj), flag);
     MapObject_Delete(mapObj);
 }
 
-void sub_02061B48(MapObject *mapObj)
-{
+void sub_02061B48(MapObject *mapObj) {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     if (MapObjectMan_IsDrawInitialized(mapObjMan) == TRUE) {
@@ -368,8 +356,7 @@ void sub_02061B48(MapObject *mapObj)
     sub_02062B9C(mapObj, sub_020633FC);
 }
 
-void MapObjectMan_DeleteAll(MapObjectManager *mapObjMan)
-{
+void MapObjectMan_DeleteAll(MapObjectManager *mapObjMan) {
     int i = 0;
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObject(mapObjMan);
@@ -384,8 +371,7 @@ void MapObjectMan_DeleteAll(MapObjectManager *mapObjMan)
     } while (i < maxObjects);
 }
 
-void sub_02061BF0(MapObjectManager *mapObjMan)
-{
+void sub_02061BF0(MapObjectManager *mapObjMan) {
     GF_ASSERT(MapObjectMan_IsDrawInitialized(mapObjMan) == TRUE);
 
     int i = 0;
@@ -403,8 +389,7 @@ void sub_02061BF0(MapObjectManager *mapObjMan)
     } while (i < maxObjects);
 }
 
-void sub_02061C48(MapObjectManager *mapObjMan)
-{
+void sub_02061C48(MapObjectManager *mapObjMan) {
     GF_ASSERT(MapObjectMan_IsDrawInitialized(mapObjMan) == TRUE);
 
     int i = 0;
@@ -428,8 +413,7 @@ void sub_02061C48(MapObjectManager *mapObjMan)
     } while (i < maxObjects);
 }
 
-void MapObjectMan_SaveAll(FieldSystem *fieldSystem, const MapObjectManager *mapObjMan, MapObjectSave *mapObjSave, int param3)
-{
+void MapObjectMan_SaveAll(FieldSystem *fieldSystem, const MapObjectManager *mapObjMan, MapObjectSave *mapObjSave, int param3) {
     int v0 = 0;
     MapObject *mapObj;
 
@@ -445,8 +429,7 @@ void MapObjectMan_SaveAll(FieldSystem *fieldSystem, const MapObjectManager *mapO
     }
 }
 
-void MapObjectMan_LoadAllObjects(const MapObjectManager *mapObjMan, MapObjectSave *mapObjSave, int size)
-{
+void MapObjectMan_LoadAllObjects(const MapObjectManager *mapObjMan, MapObjectSave *mapObjSave, int size) {
     int v0 = 0;
     MapObject *mapObj;
 
@@ -464,8 +447,7 @@ void MapObjectMan_LoadAllObjects(const MapObjectManager *mapObjMan, MapObjectSav
     }
 }
 
-static void MapObject_Save(FieldSystem *fieldSystem, MapObject *mapObj, MapObjectSave *mapObjSave)
-{
+static void MapObject_Save(FieldSystem *fieldSystem, MapObject *mapObj, MapObjectSave *mapObjSave) {
     mapObjSave->status = MapObject_GetStatus(mapObj);
     mapObjSave->unk_04 = sub_020628EC(mapObj);
     mapObjSave->localID = MapObject_GetLocalID(mapObj);
@@ -513,8 +495,7 @@ static void MapObject_Save(FieldSystem *fieldSystem, MapObject *mapObj, MapObjec
     memcpy(mapObjSave->unk_40, sub_02062AA0(mapObj), 16);
 }
 
-static void MapObject_LoadSave(MapObject *mapObj, MapObjectSave *mapObjSave)
-{
+static void MapObject_LoadSave(MapObject *mapObj, MapObjectSave *mapObjSave) {
     MapObject_SetStatus(mapObj, mapObjSave->status);
     sub_020628E8(mapObj, mapObjSave->unk_04);
     MapObject_SetLocalID(mapObj, mapObjSave->localID);
@@ -548,8 +529,7 @@ static void MapObject_LoadSave(MapObject *mapObj, MapObjectSave *mapObjSave)
     memcpy(sub_02062AA0(mapObj), mapObjSave->unk_40, 16);
 }
 
-static void sub_02061FA8(const MapObjectManager *mapObjMan, MapObject *mapObj)
-{
+static void sub_02061FA8(const MapObjectManager *mapObjMan, MapObject *mapObj) {
     sub_02061FF0(mapObj);
     sub_02062010(mapObj);
     MapObject_SetMapObjectManager(mapObj, mapObjMan);
@@ -561,15 +541,13 @@ static void sub_02061FA8(const MapObjectManager *mapObjMan, MapObject *mapObj)
     MapObjectMan_IncObjectCount(MapObjectMan_Deconst(mapObjMan));
 }
 
-static void sub_02061FF0(MapObject *mapObj)
-{
+static void sub_02061FF0(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_0 | MAP_OBJ_STATUS_START_MOVEMENT);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_PAUSE_MOVEMENT | MAP_OBJ_STATUS_HIDE | MAP_OBJ_STATUS_14 | MAP_OBJ_STATUS_START_JUMP | MAP_OBJ_STATUS_END_JUMP | MAP_OBJ_STATUS_END_MOVEMENT | MAP_OBJ_STATUS_18 | MAP_OBJ_STATUS_19 | MAP_OBJ_STATUS_21 | MAP_OBJ_STATUS_22 | MAP_OBJ_HEIGHT_CALCULATION_DISABLED);
     sub_02062618(mapObj);
 }
 
-static void sub_02062010(MapObject *mapObj)
-{
+static void sub_02062010(MapObject *mapObj) {
     int v0;
     VecFx32 v1;
 
@@ -589,8 +567,7 @@ static void sub_02062010(MapObject *mapObj)
     MapObject_SetPos(mapObj, &v1);
 }
 
-void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, const ObjectEvent *objectEvent)
-{
+void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, const ObjectEvent *objectEvent) {
     int v0;
     ObjectEvent *v1;
     UnkStruct_020620C4 *v2;
@@ -615,8 +592,7 @@ void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, con
     sub_020620C4(v2);
 }
 
-static void sub_020620C4(UnkStruct_020620C4 *param0)
-{
+static void sub_020620C4(UnkStruct_020620C4 *param0) {
     MapObject *mapObj;
     FieldSystem *fieldSystem;
     const ObjectEvent *objectEvent;
@@ -638,8 +614,7 @@ static void sub_020620C4(UnkStruct_020620C4 *param0)
     Heap_FreeExplicit(HEAP_ID_FIELDMAP, param0);
 }
 
-static MapObject *sub_02062120(const MapObjectManager *mapObjMan)
-{
+static MapObject *sub_02062120(const MapObjectManager *mapObjMan) {
     int i = 0;
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObject(mapObjMan);
@@ -656,8 +631,7 @@ static MapObject *sub_02062120(const MapObjectManager *mapObjMan)
     return NULL;
 }
 
-static MapObject *sub_02062154(const MapObjectManager *mapObjMan, int param1, int param2)
-{
+static MapObject *sub_02062154(const MapObjectManager *mapObjMan, int param1, int param2) {
     int v0 = 0;
     MapObject *mapObj;
 
@@ -672,8 +646,7 @@ static MapObject *sub_02062154(const MapObjectManager *mapObjMan, int param1, in
     return NULL;
 }
 
-static void MapObjectMan_AddMoveTask(const MapObjectManager *mapObjMan, MapObject *mapObj)
-{
+static void MapObjectMan_AddMoveTask(const MapObjectManager *mapObjMan, MapObject *mapObj) {
     int v0 = sub_02062858(mapObjMan);
     int movementType = MapObject_GetMovementType(mapObj);
     SysTask *task;
@@ -689,8 +662,7 @@ static void MapObjectMan_AddMoveTask(const MapObjectManager *mapObjMan, MapObjec
     sub_02062A1C(mapObj, task);
 }
 
-static void sub_020621E8(MapObject *mapObj, const ObjectEvent *objectEvent, FieldSystem *fieldSystem)
-{
+static void sub_020621E8(MapObject *mapObj, const ObjectEvent *objectEvent, FieldSystem *fieldSystem) {
     MapObject_SetLocalID(mapObj, ObjectEvent_GetLocalID(objectEvent));
     MapObject_SetGraphicsID(mapObj, sub_0206262C(fieldSystem, ObjectEvent_GetGraphicsID(objectEvent)));
     MapObject_SetMovementType(mapObj, ObjectEvent_GetMovementType(objectEvent));
@@ -706,8 +678,7 @@ static void sub_020621E8(MapObject *mapObj, const ObjectEvent *objectEvent, Fiel
     sub_020622B8(mapObj, objectEvent);
 }
 
-static void sub_020622B8(MapObject *mapObj, const ObjectEvent *objectEvent)
-{
+static void sub_020622B8(MapObject *mapObj, const ObjectEvent *objectEvent) {
     int v0 = ObjectEvent_GetX(objectEvent);
     VecFx32 v1;
 
@@ -734,8 +705,7 @@ static void sub_020622B8(MapObject *mapObj, const ObjectEvent *objectEvent)
     MapObject_SetPos(mapObj, &v1);
 }
 
-static void sub_0206234C(MapObject *mapObj, const MapObjectManager *mapObjMan)
-{
+static void sub_0206234C(MapObject *mapObj, const MapObjectManager *mapObjMan) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_0 | MAP_OBJ_STATUS_12 | MAP_OBJ_STATUS_11);
 
     if (MapObject_HasNoScript(mapObj) == TRUE) {
@@ -748,8 +718,7 @@ static void sub_0206234C(MapObject *mapObj, const MapObjectManager *mapObjMan)
     sub_020656DC(mapObj);
 }
 
-static void sub_0206239C(MapObject *mapObj)
-{
+static void sub_0206239C(MapObject *mapObj) {
     const UnkStruct_020EDF0C *v0 = sub_0206320C(MapObject_GetMovementType(mapObj));
 
     sub_02062AF8(mapObj, sub_02063224(v0));
@@ -757,8 +726,7 @@ static void sub_0206239C(MapObject *mapObj)
     sub_02062B20(mapObj, sub_0206322C(v0));
 }
 
-static void sub_020623D4(MapObject *mapObj)
-{
+static void sub_020623D4(MapObject *mapObj) {
     const UnkStruct_ov5_021FB0F0 *v0;
     u32 v1 = MapObject_GetGraphicsID(mapObj);
 
@@ -775,13 +743,11 @@ static void sub_020623D4(MapObject *mapObj)
     sub_02062B9C(mapObj, sub_02063240(v0));
 }
 
-static void sub_0206243C(MapObject *mapObj)
-{
+static void sub_0206243C(MapObject *mapObj) {
     memset(mapObj, 0, sizeof(MapObject));
 }
 
-static int sub_0206244C(const MapObject *mapObj, int param1, int objEventCount, const ObjectEvent *objectEvent)
-{
+static int sub_0206244C(const MapObject *mapObj, int param1, int objEventCount, const ObjectEvent *objectEvent) {
     int localID;
     int flag;
 
@@ -811,8 +777,7 @@ static int sub_0206244C(const MapObject *mapObj, int param1, int objEventCount, 
     return 0;
 }
 
-static MapObject *sub_020624CC(const MapObjectManager *mapObjMan, int localID, int flag)
-{
+static MapObject *sub_020624CC(const MapObjectManager *mapObjMan, int localID, int flag) {
     int v0 = 0;
     MapObject *mapObj;
 
@@ -825,8 +790,7 @@ static MapObject *sub_020624CC(const MapObjectManager *mapObjMan, int localID, i
     return NULL;
 }
 
-MapObject *MapObjMan_LocalMapObjByIndex(const MapObjectManager *mapObjMan, int index)
-{
+MapObject *MapObjMan_LocalMapObjByIndex(const MapObjectManager *mapObjMan, int index) {
     int maxObjects;
     MapObject *mapObj;
 
@@ -848,8 +812,7 @@ MapObject *MapObjMan_LocalMapObjByIndex(const MapObjectManager *mapObjMan, int i
     return NULL;
 }
 
-MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType)
-{
+MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType) {
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObjectStatic(mapObjMan);
 
@@ -865,8 +828,7 @@ MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType)
     return NULL;
 }
 
-int sub_020625B0(const MapObjectManager *mapObjMan, MapObject **mapObj, int *param2, u32 status)
-{
+int sub_020625B0(const MapObjectManager *mapObjMan, MapObject **mapObj, int *param2, u32 status) {
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *v1;
 
@@ -891,24 +853,20 @@ int sub_020625B0(const MapObjectManager *mapObjMan, MapObject **mapObj, int *par
     return FALSE;
 }
 
-static void sub_02062604(MapObject *mapObj)
-{
+static void sub_02062604(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT);
     sub_02062618(mapObj);
 }
 
-static void sub_02062618(MapObject *mapObj)
-{
+static void sub_02062618(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_SHOW_SHADOW | MAP_OBJ_STATUS_HIDE_SHADOW | MAP_OBJ_STATUS_26 | MAP_OBJ_STATUS_24);
 }
 
-static void sub_02062628(MapObject *mapObj)
-{
+static void sub_02062628(MapObject *mapObj) {
     (void)0;
 }
 
-static int sub_0206262C(FieldSystem *fieldSystem, int graphicsID)
-{
+static int sub_0206262C(FieldSystem *fieldSystem, int graphicsID) {
     if (graphicsID >= 0x65 && graphicsID <= 0x74) {
         graphicsID -= 0x65;
         graphicsID = sub_0203F164(fieldSystem, graphicsID);
@@ -917,21 +875,18 @@ static int sub_0206262C(FieldSystem *fieldSystem, int graphicsID)
     return graphicsID;
 }
 
-static void sub_02062648(MapObject *mapObj)
-{
+static void sub_02062648(MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_12)) {
         sub_020642F8(mapObj);
     }
 }
 
-static void sub_02062660(MapObject *mapObj)
-{
+static void sub_02062660(MapObject *mapObj) {
     sub_0206239C(mapObj);
     MapObject_InitMove(mapObj);
 }
 
-static void sub_02062670(MapObject *mapObj)
-{
+static void sub_02062670(MapObject *mapObj) {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     if (MapObjectMan_IsDrawInitialized(mapObjMan) == FALSE) {
@@ -949,8 +904,7 @@ static void sub_02062670(MapObject *mapObj)
     }
 }
 
-int MapObject_HasNoScript(const MapObject *mapObj)
-{
+int MapObject_HasNoScript(const MapObject *mapObj) {
     u16 script = (u16)MapObject_GetScript(mapObj);
 
     if (script == 0xffff) {
@@ -960,8 +914,7 @@ int MapObject_HasNoScript(const MapObject *mapObj)
     return FALSE;
 }
 
-static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, int mapID)
-{
+static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, int mapID) {
     GF_ASSERT(sub_02062E94(mapObj) == TRUE);
 
     sub_02062E78(mapObj, 0);
@@ -970,8 +923,7 @@ static void sub_020626D0(MapObject *mapObj, const ObjectEvent *objectEvent, int 
     MapObject_SetFlag(mapObj, ObjectEvent_GetFlag(objectEvent));
 }
 
-static void sub_02062714(MapObject *mapObj, int mapID, const ObjectEvent *objectEvent)
-{
+static void sub_02062714(MapObject *mapObj, int mapID, const ObjectEvent *objectEvent) {
     GF_ASSERT(ObjectEvent_HasNoScript(objectEvent) == TRUE);
 
     sub_02062E78(mapObj, 1);
@@ -980,16 +932,14 @@ static void sub_02062714(MapObject *mapObj, int mapID, const ObjectEvent *object
     sub_02062914(mapObj, mapID);
 }
 
-int sub_02062758(const MapObject *mapObj, int param1)
-{
+int sub_02062758(const MapObject *mapObj, int param1) {
     int v0 = sub_02062C0C(mapObj);
     v0 += param1;
 
     return v0;
 }
 
-int sub_02062764(const MapObject *mapObj, int param1, int param2)
-{
+int sub_02062764(const MapObject *mapObj, int param1, int param2) {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
         return FALSE;
     }
@@ -1011,8 +961,7 @@ int sub_02062764(const MapObject *mapObj, int param1, int param2)
     return TRUE;
 }
 
-int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3)
-{
+int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3) {
     if (!MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0)) {
         return 0;
     }
@@ -1026,8 +975,7 @@ int sub_020627B4(const MapObject *mapObj, int param1, int param2, int param3)
     return sub_02062764(mapObj, param2, param3);
 }
 
-static void MapObjectTask_Move(SysTask *task, void *_mapObject)
-{
+static void MapObjectTask_Move(SysTask *task, void *_mapObject) {
     MapObject *mapObj = (MapObject *)_mapObject;
 
     MapObject_Move(mapObj);
@@ -1039,8 +987,7 @@ static void MapObjectTask_Move(SysTask *task, void *_mapObject)
     MapObjectTask_Draw(mapObj);
 }
 
-static void MapObjectTask_Draw(MapObject *mapObj)
-{
+static void MapObjectTask_Draw(MapObject *mapObj) {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     if (MapObjectMan_IsDrawInitialized(mapObjMan) == TRUE) {
@@ -1048,196 +995,158 @@ static void MapObjectTask_Draw(MapObject *mapObj)
     }
 }
 
-static MapObjectManager *MapObjectMan_Deconst(const MapObjectManager *mapObjMan)
-{
+static MapObjectManager *MapObjectMan_Deconst(const MapObjectManager *mapObjMan) {
     return (MapObjectManager *)mapObjMan;
 }
 
-void MapObjectMan_SetMaxObjects(MapObjectManager *mapObjMan, int maxObjs)
-{
+void MapObjectMan_SetMaxObjects(MapObjectManager *mapObjMan, int maxObjs) {
     mapObjMan->maxObjects = maxObjs;
 }
 
-int MapObjectMan_GetMaxObjects(const MapObjectManager *mapObjMan)
-{
+int MapObjectMan_GetMaxObjects(const MapObjectManager *mapObjMan) {
     return mapObjMan->maxObjects;
 }
 
-static void MapObjectMan_IncObjectCount(MapObjectManager *mapObjMan)
-{
+static void MapObjectMan_IncObjectCount(MapObjectManager *mapObjMan) {
     mapObjMan->objectCnt++;
 }
 
-static void MapObjectMan_DecObjectCount(MapObjectManager *mapObjMan)
-{
+static void MapObjectMan_DecObjectCount(MapObjectManager *mapObjMan) {
     mapObjMan->objectCnt--;
 }
 
-void MapObjectMan_SetStatusFlagOn(MapObjectManager *mapObjMan, u32 flag)
-{
+void MapObjectMan_SetStatusFlagOn(MapObjectManager *mapObjMan, u32 flag) {
     mapObjMan->status |= flag;
 }
 
-void MapObjectMan_SetStatusFlagOff(MapObjectManager *mapObjMan, u32 flag)
-{
+void MapObjectMan_SetStatusFlagOff(MapObjectManager *mapObjMan, u32 flag) {
     mapObjMan->status &= ~flag;
 }
 
-u32 MapObjectMan_CheckStatus(const MapObjectManager *mapObjMan, u32 flag)
-{
+u32 MapObjectMan_CheckStatus(const MapObjectManager *mapObjMan, u32 flag) {
     return mapObjMan->status & flag;
 }
 
-void sub_02062854(MapObjectManager *mapObjMan, int param1)
-{
+void sub_02062854(MapObjectManager *mapObjMan, int param1) {
     mapObjMan->unk_0C = param1;
 }
 
-int sub_02062858(const MapObjectManager *mapObjMan)
-{
+int sub_02062858(const MapObjectManager *mapObjMan) {
     return mapObjMan->unk_0C;
 }
 
-UnkStruct_ov5_021ED0A4 *sub_0206285C(const MapObjectManager *mapObjMan)
-{
+UnkStruct_ov5_021ED0A4 *sub_0206285C(const MapObjectManager *mapObjMan) {
     return &(((MapObjectManager *)mapObjMan)->unk_18);
 }
 
-void MapObjectMan_SetMapObject(MapObjectManager *mapObjMan, MapObject *mapObj)
-{
+void MapObjectMan_SetMapObject(MapObjectManager *mapObjMan, MapObject *mapObj) {
     mapObjMan->mapObj = mapObj;
 }
 
-const MapObject *MapObjectMan_GetMapObjectConst(const MapObjectManager *mapObjMan)
-{
+const MapObject *MapObjectMan_GetMapObjectConst(const MapObjectManager *mapObjMan) {
     return mapObjMan->mapObj;
 }
 
-static MapObject *MapObjectMan_GetMapObjectStatic(const MapObjectManager *mapObjMan)
-{
+static MapObject *MapObjectMan_GetMapObjectStatic(const MapObjectManager *mapObjMan) {
     return mapObjMan->mapObj;
 }
 
-MapObject *MapObjectMan_GetMapObject(const MapObjectManager *mapObjMan)
-{
+MapObject *MapObjectMan_GetMapObject(const MapObjectManager *mapObjMan) {
     return mapObjMan->mapObj;
 }
 
-void sub_02062880(const MapObject **mapObj)
-{
+void sub_02062880(const MapObject **mapObj) {
     (*mapObj)++;
 }
 
-void MapObjectMan_SetFieldSystem(MapObjectManager *mapObjMan, FieldSystem *fieldSystem)
-{
+void MapObjectMan_SetFieldSystem(MapObjectManager *mapObjMan, FieldSystem *fieldSystem) {
     mapObjMan->fieldSystem = fieldSystem;
 }
 
-FieldSystem *MapObjectMan_FieldSystem(const MapObjectManager *mapObjMan)
-{
+FieldSystem *MapObjectMan_FieldSystem(const MapObjectManager *mapObjMan) {
     return mapObjMan->fieldSystem;
 }
 
-void MapObjectMan_SetNARC(MapObjectManager *mapObjMan, NARC *narc)
-{
+void MapObjectMan_SetNARC(MapObjectManager *mapObjMan, NARC *narc) {
     mapObjMan->narc = narc;
 }
 
-NARC *MapObjectMan_GetNARC(const MapObjectManager *mapObjMan)
-{
+NARC *MapObjectMan_GetNARC(const MapObjectManager *mapObjMan) {
     GF_ASSERT(mapObjMan->narc != NULL);
     return ((MapObjectManager *)mapObjMan)->narc;
 }
 
-void MapObject_SetStatus(MapObject *mapObj, u32 status)
-{
+void MapObject_SetStatus(MapObject *mapObj, u32 status) {
     mapObj->status = status;
 }
 
-u32 MapObject_GetStatus(const MapObject *mapObj)
-{
+u32 MapObject_GetStatus(const MapObject *mapObj) {
     return mapObj->status;
 }
 
-void MapObject_SetStatusFlagOn(MapObject *mapObj, u32 flag)
-{
+void MapObject_SetStatusFlagOn(MapObject *mapObj, u32 flag) {
     mapObj->status |= flag;
 }
 
-void MapObject_SetStatusFlagOff(MapObject *mapObj, u32 flag)
-{
+void MapObject_SetStatusFlagOff(MapObject *mapObj, u32 flag) {
     mapObj->status &= ~flag;
 }
 
-u32 MapObject_CheckStatus(const MapObject *mapObj, u32 flag)
-{
+u32 MapObject_CheckStatus(const MapObject *mapObj, u32 flag) {
     return mapObj->status & flag;
 }
 
-BOOL MapObject_CheckStatusFlag(const MapObject *mapObj, u32 flag)
-{
+BOOL MapObject_CheckStatusFlag(const MapObject *mapObj, u32 flag) {
     return mapObj->status & flag
         ? TRUE
         : FALSE;
 }
 
-void sub_020628E8(MapObject *mapObj, u32 param1)
-{
+void sub_020628E8(MapObject *mapObj, u32 param1) {
     mapObj->unk_04 = param1;
 }
 
-u32 sub_020628EC(const MapObject *mapObj)
-{
+u32 sub_020628EC(const MapObject *mapObj) {
     return mapObj->unk_04;
 }
 
-void sub_020628F0(MapObject *mapObj, u32 param1)
-{
+void sub_020628F0(MapObject *mapObj, u32 param1) {
     mapObj->unk_04 |= param1;
 }
 
-void sub_020628F8(MapObject *mapObj, u32 param1)
-{
+void sub_020628F8(MapObject *mapObj, u32 param1) {
     mapObj->unk_04 &= ~param1;
 }
 
-u32 sub_02062904(const MapObject *mapObj, u32 param1)
-{
+u32 sub_02062904(const MapObject *mapObj, u32 param1) {
     return mapObj->unk_04 & param1;
 }
 
-void MapObject_SetLocalID(MapObject *mapObj, u32 localID)
-{
+void MapObject_SetLocalID(MapObject *mapObj, u32 localID) {
     mapObj->localID = localID;
 }
 
-u32 MapObject_GetLocalID(const MapObject *mapObj)
-{
+u32 MapObject_GetLocalID(const MapObject *mapObj) {
     return mapObj->localID;
 }
 
-void sub_02062914(MapObject *mapObj, int param1)
-{
+void sub_02062914(MapObject *mapObj, int param1) {
     mapObj->unk_0C = param1;
 }
 
-int sub_02062918(const MapObject *mapObj)
-{
+int sub_02062918(const MapObject *mapObj) {
     return mapObj->unk_0C;
 }
 
-void MapObject_SetGraphicsID(MapObject *mapObj, u32 graphicsID)
-{
+void MapObject_SetGraphicsID(MapObject *mapObj, u32 graphicsID) {
     mapObj->graphicsID = graphicsID;
 }
 
-u32 MapObject_GetGraphicsID(const MapObject *mapObj)
-{
+u32 MapObject_GetGraphicsID(const MapObject *mapObj) {
     return mapObj->graphicsID;
 }
 
-u32 sub_02062924(const MapObject *mapObj)
-{
+u32 sub_02062924(const MapObject *mapObj) {
     u32 graphicsID = MapObject_GetGraphicsID(mapObj);
 
     if (sub_020677F4(graphicsID) == TRUE) {
@@ -1247,99 +1156,81 @@ u32 sub_02062924(const MapObject *mapObj)
     return graphicsID;
 }
 
-void MapObject_SetMovementType(MapObject *mapObj, u32 movementType)
-{
+void MapObject_SetMovementType(MapObject *mapObj, u32 movementType) {
     mapObj->movementType = movementType;
 }
 
-u32 MapObject_GetMovementType(const MapObject *mapObj)
-{
+u32 MapObject_GetMovementType(const MapObject *mapObj) {
     return mapObj->movementType;
 }
 
-void MapObject_SetTrainerType(MapObject *mapObj, u32 trainerType)
-{
+void MapObject_SetTrainerType(MapObject *mapObj, u32 trainerType) {
     mapObj->trainerType = trainerType;
 }
 
-u32 MapObject_GetTrainerType(const MapObject *mapObj)
-{
+u32 MapObject_GetTrainerType(const MapObject *mapObj) {
     return mapObj->trainerType;
 }
 
-void MapObject_SetFlag(MapObject *mapObj, u32 flag)
-{
+void MapObject_SetFlag(MapObject *mapObj, u32 flag) {
     mapObj->flag = flag;
 }
 
-u32 MapObject_GetFlag(const MapObject *mapObj)
-{
+u32 MapObject_GetFlag(const MapObject *mapObj) {
     return mapObj->flag;
 }
 
-void MapObject_SetScript(MapObject *mapObj, u32 script)
-{
+void MapObject_SetScript(MapObject *mapObj, u32 script) {
     mapObj->script = script;
 }
 
-u32 MapObject_GetScript(const MapObject *mapObj)
-{
+u32 MapObject_GetScript(const MapObject *mapObj) {
     return mapObj->script;
 }
 
-void MapObject_SetInitialDir(MapObject *mapObj, int initialDir)
-{
+void MapObject_SetInitialDir(MapObject *mapObj, int initialDir) {
     mapObj->initialDir = initialDir;
 }
 
-u32 MapObject_GetInitialDir(const MapObject *mapObj)
-{
+u32 MapObject_GetInitialDir(const MapObject *mapObj) {
     return mapObj->initialDir;
 }
 
-void MapObject_Face(MapObject *mapObj, int dir)
-{
+void MapObject_Face(MapObject *mapObj, int dir) {
     mapObj->prevFacingDir = mapObj->facingDir;
     mapObj->facingDir = dir;
 }
 
-void MapObject_TryFace(MapObject *mapObj, int dir)
-{
+void MapObject_TryFace(MapObject *mapObj, int dir) {
     if (!MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_LOCK_DIR)) {
         mapObj->prevFacingDir = mapObj->facingDir;
         mapObj->facingDir = dir;
     }
 }
 
-int MapObject_GetFacingDir(const MapObject *mapObj)
-{
+int MapObject_GetFacingDir(const MapObject *mapObj) {
     return mapObj->facingDir;
 }
 
-int MapObject_GetPrevFacingDir(const MapObject *mapObj)
-{
+int MapObject_GetPrevFacingDir(const MapObject *mapObj) {
     return mapObj->prevFacingDir;
 }
 
-void MapObject_Turn(MapObject *mapObj, int dir)
-{
+void MapObject_Turn(MapObject *mapObj, int dir) {
     mapObj->prevMovingDir = mapObj->movingDir;
     mapObj->movingDir = dir;
 }
 
-int MapObject_GetMovingDir(const MapObject *mapObj)
-{
+int MapObject_GetMovingDir(const MapObject *mapObj) {
     return mapObj->movingDir;
 }
 
-void MapObject_TryFaceAndTurn(MapObject *mapObj, int dir)
-{
+void MapObject_TryFaceAndTurn(MapObject *mapObj, int dir) {
     MapObject_TryFace(mapObj, dir);
     MapObject_Turn(mapObj, dir);
 }
 
-void MapObject_SetDataAt(MapObject *mapObj, int value, int index)
-{
+void MapObject_SetDataAt(MapObject *mapObj, int value, int index) {
     switch (index) {
     case 0:
         mapObj->data[0] = value;
@@ -1355,8 +1246,7 @@ void MapObject_SetDataAt(MapObject *mapObj, int value, int index)
     }
 }
 
-int MapObject_GetDataAt(const MapObject *mapObj, int index)
-{
+int MapObject_GetDataAt(const MapObject *mapObj, int index) {
     switch (index) {
     case 0:
         return mapObj->data[0];
@@ -1370,68 +1260,55 @@ int MapObject_GetDataAt(const MapObject *mapObj, int index)
     return FALSE;
 }
 
-void MapObject_SetMovementRangeX(MapObject *mapObj, int movementRangeX)
-{
+void MapObject_SetMovementRangeX(MapObject *mapObj, int movementRangeX) {
     mapObj->movementRangeX = movementRangeX;
 }
 
-int MapObject_GetMovementRangeX(const MapObject *mapObj)
-{
+int MapObject_GetMovementRangeX(const MapObject *mapObj) {
     return mapObj->movementRangeX;
 }
 
-void MapObject_SetMovementRangeZ(MapObject *mapObj, int movementRangeZ)
-{
+void MapObject_SetMovementRangeZ(MapObject *mapObj, int movementRangeZ) {
     mapObj->movementRangeZ = movementRangeZ;
 }
 
-int MapObject_GetMovementRangeZ(const MapObject *mapObj)
-{
+int MapObject_GetMovementRangeZ(const MapObject *mapObj) {
     return mapObj->movementRangeZ;
 }
 
-void sub_02062A0C(MapObject *mapObj, u32 param1)
-{
+void sub_02062A0C(MapObject *mapObj, u32 param1) {
     mapObj->unk_A0 = param1;
 }
 
-u32 sub_02062A14(const MapObject *mapObj)
-{
+u32 sub_02062A14(const MapObject *mapObj) {
     return mapObj->unk_A0;
 }
 
-void sub_02062A1C(MapObject *mapObj, SysTask *task)
-{
+void sub_02062A1C(MapObject *mapObj, SysTask *task) {
     mapObj->task = task;
 }
 
-SysTask *sub_02062A24(const MapObject *mapObj)
-{
+SysTask *sub_02062A24(const MapObject *mapObj) {
     return mapObj->task;
 }
 
-void sub_02062A2C(const MapObject *mapObj)
-{
+void sub_02062A2C(const MapObject *mapObj) {
     SysTask_Done(sub_02062A24(mapObj));
 }
 
-void MapObject_SetMapObjectManager(MapObject *mapObj, const MapObjectManager *mapObjMan)
-{
+void MapObject_SetMapObjectManager(MapObject *mapObj, const MapObjectManager *mapObjMan) {
     mapObj->mapObjMan = mapObjMan;
 }
 
-const MapObjectManager *MapObject_MapObjectManager(const MapObject *mapObj)
-{
+const MapObjectManager *MapObject_MapObjectManager(const MapObject *mapObj) {
     return mapObj->mapObjMan;
 }
 
-static MapObjectManager *sub_02062A48(const MapObject *mapObj)
-{
+static MapObjectManager *sub_02062A48(const MapObject *mapObj) {
     return MapObjectMan_Deconst(mapObj->mapObjMan);
 }
 
-void *sub_02062A54(MapObject *mapObj, int size)
-{
+void *sub_02062A54(MapObject *mapObj, int size) {
     void *v0;
 
     GF_ASSERT(size <= 16);
@@ -1442,13 +1319,11 @@ void *sub_02062A54(MapObject *mapObj, int size)
     return v0;
 }
 
-void *sub_02062A78(MapObject *mapObj)
-{
+void *sub_02062A78(MapObject *mapObj) {
     return mapObj->unk_D8;
 }
 
-void *sub_02062A7C(MapObject *mapObj, int size)
-{
+void *sub_02062A7C(MapObject *mapObj, int size) {
     u8 *v0;
 
     GF_ASSERT(size <= 16);
@@ -1459,13 +1334,11 @@ void *sub_02062A7C(MapObject *mapObj, int size)
     return v0;
 }
 
-void *sub_02062AA0(MapObject *mapObj)
-{
+void *sub_02062AA0(MapObject *mapObj) {
     return mapObj->unk_E8;
 }
 
-void *MapObject_InitMovementData(MapObject *mapObj, int size)
-{
+void *MapObject_InitMovementData(MapObject *mapObj, int size) {
     GF_ASSERT(size <= 16);
 
     void *movementData = MapObject_GetMovementData(mapObj);
@@ -1474,13 +1347,11 @@ void *MapObject_InitMovementData(MapObject *mapObj, int size)
     return movementData;
 }
 
-void *MapObject_GetMovementData(MapObject *mapObj)
-{
+void *MapObject_GetMovementData(MapObject *mapObj) {
     return mapObj->movementData;
 }
 
-void *sub_02062ACC(MapObject *mapObj, int size)
-{
+void *sub_02062ACC(MapObject *mapObj, int size) {
     u8 *v0;
 
     GF_ASSERT(size <= 32);
@@ -1491,171 +1362,138 @@ void *sub_02062ACC(MapObject *mapObj, int size)
     return v0;
 }
 
-void *sub_02062AF0(MapObject *mapObj)
-{
+void *sub_02062AF0(MapObject *mapObj) {
     return mapObj->unk_108;
 }
 
-void sub_02062AF8(MapObject *mapObj, UnkFuncPtr_020EDF0C param1)
-{
+void sub_02062AF8(MapObject *mapObj, UnkFuncPtr_020EDF0C param1) {
     mapObj->unk_B8 = param1;
 }
 
-void sub_02062B00(MapObject *mapObj)
-{
+void sub_02062B00(MapObject *mapObj) {
     mapObj->unk_B8(mapObj);
 }
 
-void sub_02062B0C(MapObject *mapObj, UnkFuncPtr_020EDF0C_1 param1)
-{
+void sub_02062B0C(MapObject *mapObj, UnkFuncPtr_020EDF0C_1 param1) {
     mapObj->unk_BC = param1;
 }
 
-void sub_02062B14(MapObject *mapObj)
-{
+void sub_02062B14(MapObject *mapObj) {
     mapObj->unk_BC(mapObj);
 }
 
-void sub_02062B20(MapObject *mapObj, UnkFuncPtr_020EDF0C_2 param1)
-{
+void sub_02062B20(MapObject *mapObj, UnkFuncPtr_020EDF0C_2 param1) {
     mapObj->unk_C0 = param1;
 }
 
-void sub_02062B28(MapObject *mapObj)
-{
+void sub_02062B28(MapObject *mapObj) {
     mapObj->unk_C0(mapObj);
 }
 
-void sub_02062B34(MapObject *mapObj)
-{
+void sub_02062B34(MapObject *mapObj) {
     const UnkStruct_020EDF0C *v0 = sub_0206320C(MapObject_GetMovementType(mapObj));
     v0->unk_10(mapObj);
 }
 
-void sub_02062B4C(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0 param1)
-{
+void sub_02062B4C(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0 param1) {
     mapObj->unk_C4 = param1;
 }
 
-void sub_02062B54(MapObject *mapObj)
-{
+void sub_02062B54(MapObject *mapObj) {
     mapObj->unk_C4(mapObj);
 }
 
-void sub_02062B60(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_1 param1)
-{
+void sub_02062B60(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_1 param1) {
     mapObj->unk_C8 = param1;
 }
 
-void sub_02062B68(MapObject *mapObj)
-{
+void sub_02062B68(MapObject *mapObj) {
     mapObj->unk_C8(mapObj);
 }
 
-void sub_02062B74(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_2 param1)
-{
+void sub_02062B74(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_2 param1) {
     mapObj->unk_CC = param1;
 }
 
-void sub_02062B7C(MapObject *mapObj)
-{
+void sub_02062B7C(MapObject *mapObj) {
     mapObj->unk_CC(mapObj);
 }
 
-void sub_02062B88(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_3 param1)
-{
+void sub_02062B88(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_3 param1) {
     mapObj->unk_D0 = param1;
 }
 
-void sub_02062B90(MapObject *mapObj)
-{
+void sub_02062B90(MapObject *mapObj) {
     mapObj->unk_D0(mapObj);
 }
 
-void sub_02062B9C(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_4 param1)
-{
+void sub_02062B9C(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_4 param1) {
     mapObj->unk_D4 = param1;
 }
 
-void sub_02062BA4(MapObject *mapObj)
-{
+void sub_02062BA4(MapObject *mapObj) {
     mapObj->unk_D4(mapObj);
 }
 
-void MapObject_SetMovementAction(MapObject *mapObj, enum MovementAction movementAction)
-{
+void MapObject_SetMovementAction(MapObject *mapObj, enum MovementAction movementAction) {
     mapObj->movementAction = movementAction;
 }
 
-enum MovementAction MapObject_GetMovementAction(const MapObject *mapObj)
-{
+enum MovementAction MapObject_GetMovementAction(const MapObject *mapObj) {
     return mapObj->movementAction;
 }
 
-void MapObject_SetMovementStep(MapObject *mapObj, int movementStep)
-{
+void MapObject_SetMovementStep(MapObject *mapObj, int movementStep) {
     mapObj->movementStep = movementStep;
 }
 
-void MapObject_AdvanceMovementStep(MapObject *mapObj)
-{
+void MapObject_AdvanceMovementStep(MapObject *mapObj) {
     mapObj->movementStep++;
 }
 
-int MapObject_GetMovementStep(const MapObject *mapObj)
-{
+int MapObject_GetMovementStep(const MapObject *mapObj) {
     return mapObj->movementStep;
 }
 
-void MapObject_SetCurrTileBehavior(MapObject *mapObj, u32 tileBehavior)
-{
+void MapObject_SetCurrTileBehavior(MapObject *mapObj, u32 tileBehavior) {
     mapObj->currTileBehavior = tileBehavior;
 }
 
-u32 MapObject_GetCurrTileBehavior(const MapObject *mapObj)
-{
+u32 MapObject_GetCurrTileBehavior(const MapObject *mapObj) {
     return mapObj->currTileBehavior;
 }
 
-void MapObject_SetPrevTileBehavior(MapObject *mapObj, u32 tileBehavior)
-{
+void MapObject_SetPrevTileBehavior(MapObject *mapObj, u32 tileBehavior) {
     mapObj->prevTileBehavior = tileBehavior;
 }
 
-u32 MapObject_GetPrevTileBehavior(const MapObject *mapObj)
-{
+u32 MapObject_GetPrevTileBehavior(const MapObject *mapObj) {
     return mapObj->prevTileBehavior;
 }
 
-FieldSystem *MapObject_FieldSystem(const MapObject *mapObj)
-{
+FieldSystem *MapObject_FieldSystem(const MapObject *mapObj) {
     MapObjectManager *mapObjMan = sub_02062A48(mapObj);
     return MapObjectMan_FieldSystem(mapObjMan);
 }
 
-int sub_02062C0C(const MapObject *mapObj)
-{
+int sub_02062C0C(const MapObject *mapObj) {
     return sub_02062858(MapObject_MapObjectManager(mapObj));
 }
 
-int sub_02062C18(const MapObject *mapObj)
-{
+int sub_02062C18(const MapObject *mapObj) {
     GF_ASSERT(sub_02062E94(mapObj) == TRUE);
     return MapObject_GetFlag(mapObj);
 }
 
-void MapObjectMan_StopAllMovement(MapObjectManager *mapObjMan)
-{
+void MapObjectMan_StopAllMovement(MapObjectManager *mapObjMan) {
     MapObjectMan_SetStatusFlagOn(mapObjMan, MAP_OBJ_STATUS_1 | MAP_OBJ_STATUS_START_MOVEMENT);
 }
 
-void sub_02062C3C(MapObjectManager *mapObjMan)
-{
+void sub_02062C3C(MapObjectManager *mapObjMan) {
     MapObjectMan_SetStatusFlagOff(mapObjMan, MAP_OBJ_STATUS_1 | MAP_OBJ_STATUS_START_MOVEMENT);
 }
 
-void MapObjectMan_PauseAllMovement(MapObjectManager *mapObjMan)
-{
+void MapObjectMan_PauseAllMovement(MapObjectManager *mapObjMan) {
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObject(mapObjMan);
 
@@ -1669,8 +1507,7 @@ void MapObjectMan_PauseAllMovement(MapObjectManager *mapObjMan)
     } while (maxObjects);
 }
 
-void MapObjectMan_UnpauseAllMovement(MapObjectManager *mapObjMan)
-{
+void MapObjectMan_UnpauseAllMovement(MapObjectManager *mapObjMan) {
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObject(mapObjMan);
 
@@ -1684,8 +1521,7 @@ void MapObjectMan_UnpauseAllMovement(MapObjectManager *mapObjMan)
     } while (maxObjects);
 }
 
-int MapObjectMan_IsDrawInitialized(const MapObjectManager *mapObjMan)
-{
+int MapObjectMan_IsDrawInitialized(const MapObjectManager *mapObjMan) {
     if (MapObjectMan_CheckStatus(mapObjMan, MAP_OBJ_STATUS_0)) {
         return TRUE;
     }
@@ -1693,15 +1529,13 @@ int MapObjectMan_IsDrawInitialized(const MapObjectManager *mapObjMan)
     return FALSE;
 }
 
-u32 MapObject_CheckManagerStatus(const MapObject *mapObj, u32 flag)
-{
+u32 MapObject_CheckManagerStatus(const MapObject *mapObj, u32 flag) {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     return MapObjectMan_CheckStatus(mapObjMan, flag);
 }
 
-void MapObjectMan_SetEndMovement(MapObjectManager *mapObjMan, int param1)
-{
+void MapObjectMan_SetEndMovement(MapObjectManager *mapObjMan, int param1) {
     if (param1 == FALSE) {
         MapObjectMan_SetStatusFlagOn(mapObjMan, MAP_OBJ_STATUS_END_MOVEMENT);
     } else {
@@ -1709,8 +1543,7 @@ void MapObjectMan_SetEndMovement(MapObjectManager *mapObjMan, int param1)
     }
 }
 
-int sub_02062CE4(const MapObjectManager *mapObjMan)
-{
+int sub_02062CE4(const MapObjectManager *mapObjMan) {
     if (MapObjectMan_CheckStatus(mapObjMan, MAP_OBJ_STATUS_END_MOVEMENT)) {
         return FALSE;
     }
@@ -1718,53 +1551,43 @@ int sub_02062CE4(const MapObjectManager *mapObjMan)
     return TRUE;
 }
 
-int sub_02062CF8(const MapObject *mapObj)
-{
+int sub_02062CF8(const MapObject *mapObj) {
     return MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_0);
 }
 
-void sub_02062D04(MapObject *mapObj)
-{
+void sub_02062D04(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_1);
 }
 
-void sub_02062D10(MapObject *mapObj)
-{
+void sub_02062D10(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_1);
 }
 
-int MapObject_IsMoving(const MapObject *mapObj)
-{
+int MapObject_IsMoving(const MapObject *mapObj) {
     return MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_1);
 }
 
-void MapObject_SetStartMovement(MapObject *mapObj)
-{
+void MapObject_SetStartMovement(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_START_MOVEMENT);
 }
 
-void MapObject_SetEndMovementOff(MapObject *mapObj)
-{
+void MapObject_SetEndMovementOff(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_END_MOVEMENT);
 }
 
-void sub_02062D40(MapObject *mapObj)
-{
+void sub_02062D40(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_14);
 }
 
-int sub_02062D4C(const MapObject *mapObj)
-{
+int sub_02062D4C(const MapObject *mapObj) {
     return MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_14);
 }
 
-int MapObject_IsHidden(const MapObject *mapObj)
-{
+int MapObject_IsHidden(const MapObject *mapObj) {
     return MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_HIDE);
 }
 
-void MapObject_SetHidden(MapObject *mapObj, int hidden)
-{
+void MapObject_SetHidden(MapObject *mapObj, int hidden) {
     if (hidden == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_HIDE);
     } else {
@@ -1772,8 +1595,7 @@ void MapObject_SetHidden(MapObject *mapObj, int hidden)
     }
 }
 
-void sub_02062D80(MapObject *mapObj, int param1)
-{
+void sub_02062D80(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_18);
     } else {
@@ -1781,8 +1603,7 @@ void sub_02062D80(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062D9C(MapObject *mapObj)
-{
+int sub_02062D9C(MapObject *mapObj) {
     if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_19) == TRUE) {
         return FALSE;
     }
@@ -1790,8 +1611,7 @@ int sub_02062D9C(MapObject *mapObj)
     return TRUE;
 }
 
-void sub_02062DB4(MapObject *mapObj, int param1)
-{
+void sub_02062DB4(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_19);
     } else {
@@ -1799,18 +1619,15 @@ void sub_02062DB4(MapObject *mapObj, int param1)
     }
 }
 
-void MapObject_SetPauseMovementOn(MapObject *mapObj)
-{
+void MapObject_SetPauseMovementOn(MapObject *mapObj) {
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_PAUSE_MOVEMENT);
 }
 
-void MapObject_SetPauseMovementOff(MapObject *mapObj)
-{
+void MapObject_SetPauseMovementOff(MapObject *mapObj) {
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_PAUSE_MOVEMENT);
 }
 
-int MapObject_IsMovementPaused(const MapObject *mapObj)
-{
+int MapObject_IsMovementPaused(const MapObject *mapObj) {
     if (MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_PAUSE_MOVEMENT) == TRUE) {
         return TRUE;
     }
@@ -1818,8 +1635,7 @@ int MapObject_IsMovementPaused(const MapObject *mapObj)
     return FALSE;
 }
 
-int sub_02062DFC(const MapObject *mapObj)
-{
+int sub_02062DFC(const MapObject *mapObj) {
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     if (MapObjectMan_IsDrawInitialized(mapObjMan) == FALSE) {
@@ -1833,8 +1649,7 @@ int sub_02062DFC(const MapObject *mapObj)
     return TRUE;
 }
 
-void MapObject_SetHeightCalculationDisabled(MapObject *mapObj, BOOL heightCalculationDisabled)
-{
+void MapObject_SetHeightCalculationDisabled(MapObject *mapObj, BOOL heightCalculationDisabled) {
     if (heightCalculationDisabled == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_HEIGHT_CALCULATION_DISABLED);
     } else {
@@ -1842,8 +1657,7 @@ void MapObject_SetHeightCalculationDisabled(MapObject *mapObj, BOOL heightCalcul
     }
 }
 
-int MapObject_IsHeightCalculationDisabled(const MapObject *mapObj)
-{
+int MapObject_IsHeightCalculationDisabled(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_HEIGHT_CALCULATION_DISABLED)) {
         return TRUE;
     }
@@ -1851,8 +1665,7 @@ int MapObject_IsHeightCalculationDisabled(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062E5C(MapObject *mapObj, int param1)
-{
+void sub_02062E5C(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10);
     } else {
@@ -1860,8 +1673,7 @@ void sub_02062E5C(MapObject *mapObj, int param1)
     }
 }
 
-void sub_02062E78(MapObject *mapObj, int param1)
-{
+void sub_02062E78(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_25);
     } else {
@@ -1869,8 +1681,7 @@ void sub_02062E78(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062E94(const MapObject *mapObj)
-{
+int sub_02062E94(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_25)) {
         return TRUE;
     }
@@ -1878,8 +1689,7 @@ int sub_02062E94(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062EAC(MapObject *mapObj, int param1)
-{
+void sub_02062EAC(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_26);
     } else {
@@ -1887,8 +1697,7 @@ void sub_02062EAC(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062EC8(const MapObject *mapObj)
-{
+int sub_02062EC8(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_26)) {
         return TRUE;
     }
@@ -1896,8 +1705,7 @@ int sub_02062EC8(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062EE0(MapObject *mapObj, int param1)
-{
+void sub_02062EE0(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_27);
     } else {
@@ -1905,8 +1713,7 @@ void sub_02062EE0(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062EFC(const MapObject *mapObj)
-{
+int sub_02062EFC(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_27)) {
         return TRUE;
     }
@@ -1914,8 +1721,7 @@ int sub_02062EFC(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062F14(MapObject *mapObj, int param1)
-{
+void sub_02062F14(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_28);
     } else {
@@ -1923,8 +1729,7 @@ void sub_02062F14(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062F30(const MapObject *mapObj)
-{
+int sub_02062F30(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_28)) {
         return TRUE;
     }
@@ -1932,8 +1737,7 @@ int sub_02062F30(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062F48(MapObject *mapObj, int param1)
-{
+void sub_02062F48(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_24);
     } else {
@@ -1941,8 +1745,7 @@ void sub_02062F48(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062F64(const MapObject *mapObj)
-{
+int sub_02062F64(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_24)) {
         return TRUE;
     }
@@ -1950,8 +1753,7 @@ int sub_02062F64(const MapObject *mapObj)
     return FALSE;
 }
 
-int sub_02062F7C(const MapObject *mapObj)
-{
+int sub_02062F7C(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_4)) {
         return TRUE;
     }
@@ -1959,8 +1761,7 @@ int sub_02062F7C(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062F90(MapObject *mapObj, int param1)
-{
+void sub_02062F90(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_29);
     } else {
@@ -1968,8 +1769,7 @@ void sub_02062F90(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062FAC(const MapObject *mapObj)
-{
+int sub_02062FAC(const MapObject *mapObj) {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_29)) {
         return TRUE;
     }
@@ -1977,8 +1777,7 @@ int sub_02062FAC(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062FC4(MapObject *mapObj, int param1)
-{
+void sub_02062FC4(MapObject *mapObj, int param1) {
     if (param1 == TRUE) {
         sub_020628F0(mapObj, (1 << 2));
     } else {
@@ -1986,8 +1785,7 @@ void sub_02062FC4(MapObject *mapObj, int param1)
     }
 }
 
-int sub_02062FDC(const MapObject *mapObj)
-{
+int sub_02062FDC(const MapObject *mapObj) {
     if (sub_02062904(mapObj, (1 << 2))) {
         return TRUE;
     }
@@ -1995,246 +1793,198 @@ int sub_02062FDC(const MapObject *mapObj)
     return FALSE;
 }
 
-int MapObject_GetXInitial(const MapObject *mapObj)
-{
+int MapObject_GetXInitial(const MapObject *mapObj) {
     return mapObj->xInitial;
 }
 
-void MapObject_SetXInitial(MapObject *mapObj, int x)
-{
+void MapObject_SetXInitial(MapObject *mapObj, int x) {
     mapObj->xInitial = x;
 }
 
-int MapObject_GetYInitial(const MapObject *mapObj)
-{
+int MapObject_GetYInitial(const MapObject *mapObj) {
     return mapObj->yInitial;
 }
 
-void MapObject_SetYInitial(MapObject *mapObj, int y)
-{
+void MapObject_SetYInitial(MapObject *mapObj, int y) {
     mapObj->yInitial = y;
 }
 
-int MapObject_GetZInitial(const MapObject *mapObj)
-{
+int MapObject_GetZInitial(const MapObject *mapObj) {
     return mapObj->zInitial;
 }
 
-void MapObject_SetZInitial(MapObject *mapObj, int z)
-{
+void MapObject_SetZInitial(MapObject *mapObj, int z) {
     mapObj->zInitial = z;
 }
 
-int MapObject_GetXPrev(const MapObject *mapObj)
-{
+int MapObject_GetXPrev(const MapObject *mapObj) {
     return mapObj->xPrev;
 }
 
-void MapObject_SetXPrev(MapObject *mapObj, int x)
-{
+void MapObject_SetXPrev(MapObject *mapObj, int x) {
     mapObj->xPrev = x;
 }
 
-int MapObject_GetYPrev(const MapObject *mapObj)
-{
+int MapObject_GetYPrev(const MapObject *mapObj) {
     return mapObj->yPrev;
 }
 
-void MapObject_SetYPrev(MapObject *mapObj, int y)
-{
+void MapObject_SetYPrev(MapObject *mapObj, int y) {
     mapObj->yPrev = y;
 }
 
-int MapObject_GetZPrev(const MapObject *mapObj)
-{
+int MapObject_GetZPrev(const MapObject *mapObj) {
     return mapObj->zPrev;
 }
 
-void MapObject_SetZPrev(MapObject *mapObj, int z)
-{
+void MapObject_SetZPrev(MapObject *mapObj, int z) {
     mapObj->zPrev = z;
 }
 
-int MapObject_GetX(const MapObject *mapObj)
-{
+int MapObject_GetX(const MapObject *mapObj) {
     return mapObj->x;
 }
 
-void MapObject_SetX(MapObject *mapObj, int x)
-{
+void MapObject_SetX(MapObject *mapObj, int x) {
     mapObj->x = x;
 }
 
-void MapObject_AddX(MapObject *mapObj, int dx)
-{
+void MapObject_AddX(MapObject *mapObj, int dx) {
     mapObj->x += dx;
 }
 
-int MapObject_GetY(const MapObject *mapObj)
-{
+int MapObject_GetY(const MapObject *mapObj) {
     return mapObj->y;
 }
 
-void MapObject_SetY(MapObject *mapObj, int y)
-{
+void MapObject_SetY(MapObject *mapObj, int y) {
     mapObj->y = y;
 }
 
-void MapObject_AddY(MapObject *mapObj, int dy)
-{
+void MapObject_AddY(MapObject *mapObj, int dy) {
     mapObj->y += dy;
 }
 
-int MapObject_GetZ(const MapObject *mapObj)
-{
+int MapObject_GetZ(const MapObject *mapObj) {
     return mapObj->z;
 }
 
-void MapObject_SetZ(MapObject *mapObj, int z)
-{
+void MapObject_SetZ(MapObject *mapObj, int z) {
     mapObj->z = z;
 }
 
-void MapObject_AddZ(MapObject *mapObj, int dz)
-{
+void MapObject_AddZ(MapObject *mapObj, int dz) {
     mapObj->z += dz;
 }
 
-void MapObject_GetPosPtr(const MapObject *mapObj, VecFx32 *pos)
-{
+void MapObject_GetPosPtr(const MapObject *mapObj, VecFx32 *pos) {
     *pos = mapObj->pos;
 }
 
-void MapObject_SetPos(MapObject *mapObj, const VecFx32 *pos)
-{
+void MapObject_SetPos(MapObject *mapObj, const VecFx32 *pos) {
     mapObj->pos = *pos;
 }
 
-const VecFx32 *MapObject_GetPos(const MapObject *mapObj)
-{
+const VecFx32 *MapObject_GetPos(const MapObject *mapObj) {
     return &mapObj->pos;
 }
 
-fx32 MapObject_GetPosY(const MapObject *mapObj)
-{
+fx32 MapObject_GetPosY(const MapObject *mapObj) {
     return mapObj->pos.y;
 }
 
-void sub_02063078(const MapObject *mapObj, VecFx32 *vec)
-{
+void sub_02063078(const MapObject *mapObj, VecFx32 *vec) {
     *vec = mapObj->unk_7C;
 }
 
-void sub_02063088(MapObject *mapObj, const VecFx32 *vec)
-{
+void sub_02063088(MapObject *mapObj, const VecFx32 *vec) {
     mapObj->unk_7C = *vec;
 }
 
-VecFx32 *sub_02063098(MapObject *mapObj)
-{
+VecFx32 *sub_02063098(MapObject *mapObj) {
     return &mapObj->unk_7C;
 }
 
-void sub_0206309C(const MapObject *mapObj, VecFx32 *vec)
-{
+void sub_0206309C(const MapObject *mapObj, VecFx32 *vec) {
     *vec = mapObj->unk_88;
 }
 
-void sub_020630AC(MapObject *mapObj, const VecFx32 *vec)
-{
+void sub_020630AC(MapObject *mapObj, const VecFx32 *vec) {
     mapObj->unk_88 = *vec;
 }
 
-void sub_020630BC(const MapObject *mapObj, VecFx32 *vec)
-{
+void sub_020630BC(const MapObject *mapObj, VecFx32 *vec) {
     *vec = mapObj->unk_94;
 }
 
-void sub_020630CC(MapObject *mapObj, const VecFx32 *vec)
-{
+void sub_020630CC(MapObject *mapObj, const VecFx32 *vec) {
     mapObj->unk_94 = *vec;
 }
 
-int sub_020630DC(const MapObject *mapObj)
-{
+int sub_020630DC(const MapObject *mapObj) {
     fx32 v0 = MapObject_GetPosY(mapObj);
     int v1 = ((v0) >> 3) / FX32_ONE;
 
     return v1;
 }
 
-void ObjectEvent_SetLocalID(ObjectEvent *objectEvent, int localID)
-{
+void ObjectEvent_SetLocalID(ObjectEvent *objectEvent, int localID) {
     objectEvent->localID = localID;
 }
 
-int ObjectEvent_GetLocalID(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetLocalID(const ObjectEvent *objectEvent) {
     return objectEvent->localID;
 }
 
-void ObjectEvent_SetGraphicsID(ObjectEvent *objectEvent, int graphicsID)
-{
+void ObjectEvent_SetGraphicsID(ObjectEvent *objectEvent, int graphicsID) {
     objectEvent->graphicsID = graphicsID;
 }
 
-int ObjectEvent_GetGraphicsID(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetGraphicsID(const ObjectEvent *objectEvent) {
     return objectEvent->graphicsID;
 }
 
-void ObjectEvent_SetMovementType(ObjectEvent *objectEvent, int movementType)
-{
+void ObjectEvent_SetMovementType(ObjectEvent *objectEvent, int movementType) {
     objectEvent->movementType = movementType;
 }
 
-int ObjectEvent_GetMovementType(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetMovementType(const ObjectEvent *objectEvent) {
     return objectEvent->movementType;
 }
 
-void ObjectEvent_SetTrainerType(ObjectEvent *objectEvent, int trainerType)
-{
+void ObjectEvent_SetTrainerType(ObjectEvent *objectEvent, int trainerType) {
     objectEvent->trainerType = trainerType;
 }
 
-int ObjectEvent_GetTrainerType(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetTrainerType(const ObjectEvent *objectEvent) {
     return objectEvent->trainerType;
 }
 
-void ObjectEvent_SetFlag(ObjectEvent *objectEvent, int flag)
-{
+void ObjectEvent_SetFlag(ObjectEvent *objectEvent, int flag) {
     objectEvent->flag = flag;
 }
 
-int ObjectEvent_GetFlag(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetFlag(const ObjectEvent *objectEvent) {
     return objectEvent->flag;
 }
 
-void ObjectEvent_SetScript(ObjectEvent *objectEvent, int script)
-{
+void ObjectEvent_SetScript(ObjectEvent *objectEvent, int script) {
     objectEvent->script = script;
 }
 
-int ObjectEvent_GetScript(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetScript(const ObjectEvent *objectEvent) {
     return objectEvent->script;
 }
 
-void ObjectEvent_SetInitialDir(ObjectEvent *objectEvent, int initialDir)
-{
+void ObjectEvent_SetInitialDir(ObjectEvent *objectEvent, int initialDir) {
     objectEvent->dir = initialDir;
 }
 
-int ObjectEvent_GetInitialDir(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetInitialDir(const ObjectEvent *objectEvent) {
     return objectEvent->dir;
 }
 
-void ObjectEvent_SetDataAt(ObjectEvent *objectEvent, int value, int index)
-{
+void ObjectEvent_SetDataAt(ObjectEvent *objectEvent, int value, int index) {
     switch (index) {
     case 0:
         objectEvent->data[0] = value;
@@ -2250,8 +2000,7 @@ void ObjectEvent_SetDataAt(ObjectEvent *objectEvent, int value, int index)
     }
 }
 
-int ObjectEvent_GetDataAt(const ObjectEvent *objectEvent, int index)
-{
+int ObjectEvent_GetDataAt(const ObjectEvent *objectEvent, int index) {
     switch (index) {
     case 0:
         return objectEvent->data[0];
@@ -2265,58 +2014,47 @@ int ObjectEvent_GetDataAt(const ObjectEvent *objectEvent, int index)
     return FALSE;
 }
 
-void ObjectEvent_SetMovementRangeX(ObjectEvent *objectEvent, int movementRangeX)
-{
+void ObjectEvent_SetMovementRangeX(ObjectEvent *objectEvent, int movementRangeX) {
     objectEvent->movementRangeX = movementRangeX;
 }
 
-int ObjectEvent_GetMovementRangeX(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetMovementRangeX(const ObjectEvent *objectEvent) {
     return objectEvent->movementRangeX;
 }
 
-void ObjectEvent_SetMovementRangeZ(ObjectEvent *objectEvent, int movementRangeZ)
-{
+void ObjectEvent_SetMovementRangeZ(ObjectEvent *objectEvent, int movementRangeZ) {
     objectEvent->movementRangeZ = movementRangeZ;
 }
 
-int ObjectEvent_GetMovementRangeZ(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetMovementRangeZ(const ObjectEvent *objectEvent) {
     return objectEvent->movementRangeZ;
 }
 
-void ObjectEvent_SetX(ObjectEvent *objectEvent, int x)
-{
+void ObjectEvent_SetX(ObjectEvent *objectEvent, int x) {
     objectEvent->x = x;
 }
 
-int ObjectEvent_GetX(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetX(const ObjectEvent *objectEvent) {
     return objectEvent->x;
 }
 
-void ObjectEvent_SetY(ObjectEvent *objectEvent, int y)
-{
+void ObjectEvent_SetY(ObjectEvent *objectEvent, int y) {
     objectEvent->y = y;
 }
 
-int ObjectEvent_GetY(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetY(const ObjectEvent *objectEvent) {
     return objectEvent->y;
 }
 
-void ObjectEvent_SetZ(ObjectEvent *objectEvent, int z)
-{
+void ObjectEvent_SetZ(ObjectEvent *objectEvent, int z) {
     objectEvent->z = z;
 }
 
-int ObjectEvent_GetZ(const ObjectEvent *objectEvent)
-{
+int ObjectEvent_GetZ(const ObjectEvent *objectEvent) {
     return objectEvent->z;
 }
 
-static const ObjectEvent *sub_020631A4(int localID, int objEventCount, const ObjectEvent *objectEvent)
-{
+static const ObjectEvent *sub_020631A4(int localID, int objEventCount, const ObjectEvent *objectEvent) {
     int i = 0;
 
     do {
@@ -2330,8 +2068,7 @@ static const ObjectEvent *sub_020631A4(int localID, int objEventCount, const Obj
     return NULL;
 }
 
-static int ObjectEvent_HasNoScript(const ObjectEvent *objectEvent)
-{
+static int ObjectEvent_HasNoScript(const ObjectEvent *objectEvent) {
     u16 script = (u16)ObjectEvent_GetScript(objectEvent);
 
     if (script == 0xffff) {
@@ -2341,60 +2078,49 @@ static int ObjectEvent_HasNoScript(const ObjectEvent *objectEvent)
     return FALSE;
 }
 
-static int ObjectEvent_GetFlagNoScript(const ObjectEvent *objectEvent)
-{
+static int ObjectEvent_GetFlagNoScript(const ObjectEvent *objectEvent) {
     GF_ASSERT(ObjectEvent_HasNoScript(objectEvent) == TRUE);
     return ObjectEvent_GetFlag(objectEvent);
 }
 
-static const UnkStruct_020EDF0C *sub_0206320C(u32 param0)
-{
+static const UnkStruct_020EDF0C *sub_0206320C(u32 param0) {
     GF_ASSERT(param0 < 0x44);
     return Unk_020EE3A8[param0];
 }
 
-static UnkFuncPtr_020EDF0C sub_02063224(const UnkStruct_020EDF0C *param0)
-{
+static UnkFuncPtr_020EDF0C sub_02063224(const UnkStruct_020EDF0C *param0) {
     return param0->unk_04;
 }
 
-static UnkFuncPtr_020EDF0C_1 sub_02063228(const UnkStruct_020EDF0C *param0)
-{
+static UnkFuncPtr_020EDF0C_1 sub_02063228(const UnkStruct_020EDF0C *param0) {
     return param0->unk_08;
 }
 
-static UnkFuncPtr_020EDF0C_2 sub_0206322C(const UnkStruct_020EDF0C *param0)
-{
+static UnkFuncPtr_020EDF0C_2 sub_0206322C(const UnkStruct_020EDF0C *param0) {
     return param0->unk_0C;
 }
 
-static UnkFuncPtr_ov5_021FB0F0 sub_02063230(const UnkStruct_ov5_021FB0F0 *param0)
-{
+static UnkFuncPtr_ov5_021FB0F0 sub_02063230(const UnkStruct_ov5_021FB0F0 *param0) {
     return param0->unk_00;
 }
 
-static UnkFuncPtr_ov5_021FB0F0_1 sub_02063234(const UnkStruct_ov5_021FB0F0 *param0)
-{
+static UnkFuncPtr_ov5_021FB0F0_1 sub_02063234(const UnkStruct_ov5_021FB0F0 *param0) {
     return param0->unk_04;
 }
 
-static UnkFuncPtr_ov5_021FB0F0_2 sub_02063238(const UnkStruct_ov5_021FB0F0 *param0)
-{
+static UnkFuncPtr_ov5_021FB0F0_2 sub_02063238(const UnkStruct_ov5_021FB0F0 *param0) {
     return param0->unk_08;
 }
 
-static UnkFuncPtr_ov5_021FB0F0_3 sub_0206323C(const UnkStruct_ov5_021FB0F0 *param0)
-{
+static UnkFuncPtr_ov5_021FB0F0_3 sub_0206323C(const UnkStruct_ov5_021FB0F0 *param0) {
     return param0->unk_0C;
 }
 
-static UnkFuncPtr_ov5_021FB0F0_4 sub_02063240(const UnkStruct_ov5_021FB0F0 *param0)
-{
+static UnkFuncPtr_ov5_021FB0F0_4 sub_02063240(const UnkStruct_ov5_021FB0F0 *param0) {
     return param0->unk_10;
 }
 
-static const UnkStruct_ov5_021FB0F0 *sub_02063244(u32 param0)
-{
+static const UnkStruct_ov5_021FB0F0 *sub_02063244(u32 param0) {
     const UnkStruct_ov5_021FB97C *v0 = Unk_ov5_021FB97C;
 
     do {
@@ -2409,8 +2135,7 @@ static const UnkStruct_ov5_021FB0F0 *sub_02063244(u32 param0)
     return NULL;
 }
 
-MapObject *sub_0206326C(const MapObjectManager *mapObjMan, int x, int z, int param3)
-{
+MapObject *sub_0206326C(const MapObjectManager *mapObjMan, int x, int z, int param3) {
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObject(mapObjMan);
 
@@ -2432,8 +2157,7 @@ MapObject *sub_0206326C(const MapObjectManager *mapObjMan, int x, int z, int par
     return NULL;
 }
 
-void MapObject_SetPosDirFromVec(MapObject *mapObj, const VecFx32 *pos, int dir)
-{
+void MapObject_SetPosDirFromVec(MapObject *mapObj, const VecFx32 *pos, int dir) {
     int x, y, z;
 
     x = ((pos->x) >> 4) / FX32_ONE;
@@ -2455,8 +2179,7 @@ void MapObject_SetPosDirFromVec(MapObject *mapObj, const VecFx32 *pos, int dir)
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_1 | MAP_OBJ_STATUS_END_MOVEMENT);
 }
 
-void MapObject_SetPosDirFromCoords(MapObject *mapObj, int x, int y, int z, int dir)
-{
+void MapObject_SetPosDirFromCoords(MapObject *mapObj, int x, int y, int z, int dir) {
     VecFx32 pos;
 
     pos.x = ((x << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
@@ -2479,58 +2202,48 @@ void MapObject_SetPosDirFromCoords(MapObject *mapObj, int x, int y, int z, int d
     sub_020656DC(mapObj);
 }
 
-void MapObject_SetMoveCode(MapObject *mapObj, u32 movementType)
-{
+void MapObject_SetMoveCode(MapObject *mapObj, u32 movementType) {
     sub_02062B28(mapObj);
     MapObject_SetMovementType(mapObj, movementType);
     sub_0206239C(mapObj);
     MapObject_InitMove(mapObj);
 }
 
-void sub_020633C8(MapObject *mapObj, int localID)
-{
+void sub_020633C8(MapObject *mapObj, int localID) {
     MapObject_SetLocalID(mapObj, localID);
 
     MapObject_SetStartMovement(mapObj);
     sub_02062618(mapObj);
 }
 
-void sub_020633E0(MapObject *mapObj)
-{
+void sub_020633E0(MapObject *mapObj) {
     return;
 }
 
-void sub_020633E4(MapObject *mapObj)
-{
+void sub_020633E4(MapObject *mapObj) {
     return;
 }
 
-void sub_020633E8(MapObject *mapObj)
-{
+void sub_020633E8(MapObject *mapObj) {
     return;
 }
 
-void sub_020633EC(MapObject *mapObj)
-{
+void sub_020633EC(MapObject *mapObj) {
     return;
 }
 
-void sub_020633F0(MapObject *mapObj)
-{
+void sub_020633F0(MapObject *mapObj) {
     return;
 }
 
-void sub_020633F4(MapObject *mapObj)
-{
+void sub_020633F4(MapObject *mapObj) {
     return;
 }
 
-void sub_020633F8(MapObject *mapObj)
-{
+void sub_020633F8(MapObject *mapObj) {
     return;
 }
 
-void sub_020633FC(MapObject *mapObj)
-{
+void sub_020633FC(MapObject *mapObj) {
     return;
 }

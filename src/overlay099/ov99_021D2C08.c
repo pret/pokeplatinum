@@ -68,8 +68,7 @@ static const UnkStruct_ov99_021D4B70 Unk_ov99_021D4B70[] = {
     },
 };
 
-BOOL ov99_021D2C08(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1)
-{
+BOOL ov99_021D2C08(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *param1) {
     UnkStruct_ov99_021D2C08 *v0 = &param1->unk_08_val1;
 
     switch (param1->unk_00) {
@@ -99,8 +98,7 @@ BOOL ov99_021D2C08(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
     return 0;
 }
 
-static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1)
-{
+static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1) {
     int v0, v1 = 0;
 
     GF_ASSERT(NELEMS(Unk_ov99_021D4B70) == 4 - 2 + 1);
@@ -112,8 +110,7 @@ static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     }
 }
 
-static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1)
-{
+static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1) {
     int v0, v1 = 0;
 
     for (v0 = 2; v0 <= 4; v0++, v1++) {
@@ -121,8 +118,7 @@ static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     }
 }
 
-static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, ManagedSprite *param2, int param3)
-{
+static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, ManagedSprite *param2, int param3) {
     UnkStruct_ov99_021D2D18 *v0 = &param1->unk_08[param3];
     const UnkStruct_ov99_021D4B70 *v1 = &Unk_ov99_021D4B70[param3];
     fx32 v2;
@@ -159,8 +155,7 @@ static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     }
 }
 
-static void ov99_021D2DF4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1)
-{
+static void ov99_021D2DF4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1) {
     param1->unk_00 += -0x40;
 
     Bg_SetOffset(param0->unk_08, BG_LAYER_MAIN_2, 0, param1->unk_00 / FX32_ONE);

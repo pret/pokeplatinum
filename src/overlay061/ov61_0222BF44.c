@@ -137,8 +137,7 @@ static const WindowTemplate Unk_ov61_0222E4A0 = {
     0x0
 };
 
-int ov61_0222BF44(ApplicationManager *appMan, int *param1)
-{
+int ov61_0222BF44(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov61_0222C664 *v0;
 
     SetVBlankCallback(NULL, NULL);
@@ -207,8 +206,7 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
-{
+int ov61_0222C0F8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov61_0222C664 *v0 = ApplicationManager_Data(appMan);
     int v1, v2;
 
@@ -243,8 +241,7 @@ int ov61_0222C0F8(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov61_0222C160(ApplicationManager *appMan, int *param1)
-{
+int ov61_0222C160(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov61_0222C664 *v0 = ApplicationManager_Data(appMan);
 
     inline_ov61_0222C160(&v0->unk_A4);
@@ -273,8 +270,7 @@ int ov61_0222C160(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov61_0222C1FC(void *param0)
-{
+static void ov61_0222C1FC(void *param0) {
     UnkStruct_ov61_0222C664 *v0 = param0;
 
     VramTransfer_Process();
@@ -286,8 +282,7 @@ static void ov61_0222C1FC(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov61_0222C224(BgConfig *param0)
-{
+static void ov61_0222C224(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -412,16 +407,14 @@ static void ov61_0222C224(BgConfig *param0)
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_117);
 }
 
-static void ov61_0222C38C(BgConfig *param0)
-{
+static void ov61_0222C38C(BgConfig *param0) {
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
-static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
-{
+static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0) {
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_117);
 
@@ -443,8 +436,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     NARC_dtor(v1);
 }
 
-static void ov61_0222C664(UnkStruct_ov61_0222C664 *param0)
-{
+static void ov61_0222C664(UnkStruct_ov61_0222C664 *param0) {
     Window_Add(param0->unk_04, &param0->unk_64, 0, 4, 4, 23, 16, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
     Window_FillTilemap(&param0->unk_64, 0x0);
     Window_Add(param0->unk_04, &param0->unk_54, 0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
@@ -456,15 +448,13 @@ static void ov61_0222C664(UnkStruct_ov61_0222C664 *param0)
     Window_FillTilemap(&param0->unk_44, 0x0);
 }
 
-static void ov61_0222C70C(UnkStruct_ov61_0222C664 *param0)
-{
+static void ov61_0222C70C(UnkStruct_ov61_0222C664 *param0) {
     Window_Remove(&param0->unk_44);
     Window_Remove(&param0->unk_54);
     Window_Remove(&param0->unk_64);
 }
 
-static int ov61_0222C728(Window *param0, Strbuf *param1, int param2, int param3, u32 param4, int param5)
-{
+static int ov61_0222C728(Window *param0, Strbuf *param1, int param2, int param3, u32 param4, int param5) {
     int v0 = 0, v1;
 
     switch (param3) {
@@ -481,14 +471,12 @@ static int ov61_0222C728(Window *param0, Strbuf *param1, int param2, int param3,
     return param2;
 }
 
-void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int param4, TextColor param5)
-{
+void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int param4, TextColor param5) {
     param2 = ov61_0222C728(param0, param1, param2, param4, param5, 1);
     Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, param1, param2, param3, TEXT_SPEED_INSTANT, param5, NULL);
 }
 
-static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
-{
+static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1) {
     Strbuf *v0 = Strbuf_Init(16 * 8 * 2, HEAP_ID_117);
 
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
@@ -502,8 +490,7 @@ static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
     Strbuf_Free(v0);
 }
 
-static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param2)
-{
+static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param2) {
     int v0;
 
     if (param1 != -1) {
@@ -518,8 +505,7 @@ static void ov61_0222C7F8(UnkStruct_ov61_0222C664 *param0, int param1, int param
     ov61_0222C794(param0, v0);
 }
 
-static int ov61_0222C834(int param0)
-{
+static int ov61_0222C834(int param0) {
     if ((param0 == 0xff) || (Text_IsPrinterActive(param0) == 0)) {
         return 0;
     }
@@ -527,23 +513,20 @@ static int ov61_0222C834(int param0)
     return 1;
 }
 
-static void ov61_0222C850(UnkStruct_ov61_0222C664 *param0)
-{
+static void ov61_0222C850(UnkStruct_ov61_0222C664 *param0) {
     if (param0->unk_88 == NULL) {
         param0->unk_88 = Window_AddWaitDial(&param0->unk_44, 1);
     }
 }
 
-static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0)
-{
+static void ov61_0222C86C(UnkStruct_ov61_0222C664 *param0) {
     if (param0->unk_88 != NULL) {
         DestroyWaitDial(param0->unk_88);
         param0->unk_88 = NULL;
     }
 }
 
-static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2)
-{
+static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2) {
     WindowTemplate v0;
 
     v0 = Unk_ov61_0222E4A0;
@@ -553,8 +536,7 @@ static Menu *ov61_0222C884(BgConfig *param0, int param1, int param2)
     return Menu_MakeYesNoChoice(param0, &v0, 1 + (18 + 12), 11, 117);
 }
 
-static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
-{
+static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1, int param2, int param3, u16 param4) {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
     StringTemplate_Format(param0->unk_20, param0->unk_34, v0);
@@ -570,14 +552,12 @@ static void ov61_0222C8B8(UnkStruct_ov61_0222C664 *param0, MessageLoader *param1
     }
 }
 
-static void ov61_0222C920(UnkStruct_ov61_0222C664 *param0, int param1, int param2)
-{
+static void ov61_0222C920(UnkStruct_ov61_0222C664 *param0, int param1, int param2) {
     param0->unk_08 = param1;
     param0->unk_0C = param2;
 }
 
-static BOOL ov61_0222C928(int param0, int param1)
-{
+static BOOL ov61_0222C928(int param0, int param1) {
     int v0;
     BOOL v1;
 
@@ -606,8 +586,7 @@ static BOOL ov61_0222C928(int param0, int param1)
     return v1;
 }
 
-static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0) {
     if (ov61_0222C834(param0->unk_40) == 1) {
         return 0;
     }
@@ -643,8 +622,7 @@ static int ov61_0222C960(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0) {
     switch (param0->unk_90) {
     case 0:
         sub_02038438(param0->unk_00->unk_00->saveData);
@@ -669,8 +647,7 @@ static int ov61_0222CA20(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CAA8(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CAA8(UnkStruct_ov61_0222C664 *param0) {
     DWC_ProcessInet();
 
     if (DWC_CheckInet()) {
@@ -725,15 +702,13 @@ static int ov61_0222CAA8(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CB2C(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CB2C(UnkStruct_ov61_0222C664 *param0) {
     DWC_NASLoginAsync();
     param0->unk_08 = 4;
     return 0;
 }
 
-static int ov61_0222CB3C(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CB3C(UnkStruct_ov61_0222C664 *param0) {
     switch (DWC_NASLoginProcess()) {
     case DWC_NASLOGIN_STATE_SUCCESS:;
         param0->unk_08 = 5;
@@ -789,8 +764,7 @@ static int ov61_0222CB3C(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0) {
     DWCUserData *v0;
     s32 v1;
     WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->unk_00->saveData);
@@ -810,8 +784,7 @@ static int ov61_0222CBF0(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0) {
     int v0 = ov4_021D1F3C(-param0->unk_18, param0->unk_1C);
     ov61_0222C7F8(param0, v0, -param0->unk_18);
     param0->unk_08 = 7;
@@ -819,8 +792,7 @@ static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0) {
     if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
         Window_EraseStandardFrame(&param0->unk_64, 0);
         param0->unk_90 = 0;
@@ -835,8 +807,7 @@ static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0) {
     if (param0->unk_08 != 9) {
         sub_0203848C();
     }
@@ -849,8 +820,7 @@ static int ov61_0222CCAC(UnkStruct_ov61_0222C664 *param0)
     return 1;
 }
 
-static int ov61_0222CCE8(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CCE8(UnkStruct_ov61_0222C664 *param0) {
     int v0 = 0;
 
     switch (param0->unk_10) {
@@ -879,8 +849,7 @@ static int ov61_0222CCE8(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CD58(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CD58(UnkStruct_ov61_0222C664 *param0) {
     switch (param0->unk_90) {
     case 0:
         ov61_0222C8B8(param0, param0->unk_24, 178, TEXT_SPEED_FAST, 0xf0f);
@@ -915,8 +884,7 @@ static int ov61_0222CD58(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CE14(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CE14(UnkStruct_ov61_0222C664 *param0) {
     if (ov61_0222C834(param0->unk_40) == 0) {
         param0->unk_08 = param0->unk_0C;
     }
@@ -924,8 +892,7 @@ static int ov61_0222CE14(UnkStruct_ov61_0222C664 *param0)
     return 0;
 }
 
-static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0)
-{
+static int ov61_0222CE2C(UnkStruct_ov61_0222C664 *param0) {
     if (ov61_0222C834(param0->unk_40) == 1) {
         return 0;
     }

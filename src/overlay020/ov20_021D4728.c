@@ -67,8 +67,7 @@ static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0);
 static void ov20_021D4C40(SysTask *param0, void *param1);
 static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7);
 
-UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
-{
+UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2) {
     UnkStruct_ov20_021D4AD4 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4AD4));
 
     v0->unk_00 = param0;
@@ -83,14 +82,12 @@ UnkStruct_ov20_021D4AD4 *ov20_021D4728(UnkStruct_ov20_021D2128 *param0, const Un
     return v0;
 }
 
-void ov20_021D4764(UnkStruct_ov20_021D4AD4 *param0)
-{
+void ov20_021D4764(UnkStruct_ov20_021D4AD4 *param0) {
     ov20_021D4AD4(param0);
     Heap_Free(param0);
 }
 
-void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
-{
+void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1) {
     Graphics_LoadPaletteFromOpenNARC(param1, 21, 4, 0, 0x40, HEAP_ID_35);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_0C, 4, 0, 0, 1, HEAP_ID_35);
 
@@ -109,8 +106,7 @@ void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 4);
 }
 
-static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
-{
+static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1) {
     static const u16 v0[] = {
         12,
         13,
@@ -136,8 +132,7 @@ static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     }
 }
 
-static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
-{
+static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1) {
     Strbuf *v0, *v1;
     void *v2;
     NNSG2dCharacterData *v3;
@@ -175,8 +170,7 @@ static const s16 Unk_ov20_021D52EC[] = {
     (22 + 56 * 3) - 1,
 };
 
-static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2, int param3)
-{
+static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2, int param3) {
     int v0, v1, v2, v3;
     u32 v4;
     Strbuf *v5;
@@ -197,8 +191,7 @@ static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2
     Strbuf_Free(v5);
 }
 
-static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
-{
+static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1) {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
 
@@ -219,8 +212,7 @@ static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     Sprite_SetDrawFlag(param0->unk_18, FALSE);
 }
 
-static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0)
-{
+static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0) {
     if (param0->unk_14) {
         Sprite_Delete(param0->unk_14);
     }
@@ -232,20 +224,17 @@ static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0)
     ov20_021D4B2C(&param0->unk_1C);
 }
 
-static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 param2, u32 param3)
-{
+static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 param2, u32 param3) {
     param0->unk_00 = Graphics_GetCellBankFromOpenNARC(param1, param2, 1, &(param0->unk_04), HEAP_ID_35);
     param0->unk_08 = Graphics_GetAnimBankFromOpenNARC(param1, param3, 1, &(param0->unk_0C), HEAP_ID_35);
 }
 
-static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0)
-{
+static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0) {
     Heap_Free(param0->unk_00);
     Heap_Free(param0->unk_08);
 }
 
-static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7)
-{
+static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, UnkStruct_ov20_021D4B2C *param3, int param4, int param5, int param6, int param7) {
     SpriteResourcesHeader v0;
     SpriteListTemplate v1;
     Sprite *v2;
@@ -279,8 +268,7 @@ static Sprite *ov20_021D4B40(UnkStruct_ov20_021D4AD4 *param0, NNSG2dImageProxy *
     return v2;
 }
 
-void ov20_021D4BA4(UnkStruct_ov20_021D4AD4 *param0)
-{
+void ov20_021D4BA4(UnkStruct_ov20_021D4AD4 *param0) {
     UnkStruct_ov20_021D4BA4 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4BA4));
 
     if (v0) {
@@ -315,13 +303,11 @@ void ov20_021D4BA4(UnkStruct_ov20_021D4AD4 *param0)
     }
 }
 
-BOOL ov20_021D4C2C(UnkStruct_ov20_021D4AD4 *param0)
-{
+BOOL ov20_021D4C2C(UnkStruct_ov20_021D4AD4 *param0) {
     return param0->unk_4FC == NULL;
 }
 
-static void ov20_021D4C40(SysTask *param0, void *param1)
-{
+static void ov20_021D4C40(SysTask *param0, void *param1) {
     UnkStruct_ov20_021D4BA4 *v0 = param1;
 
     switch (v0->unk_04) {
@@ -357,8 +343,7 @@ static void ov20_021D4C40(SysTask *param0, void *param1)
     }
 }
 
-void ov20_021D4DBC(UnkStruct_ov20_021D4AD4 *param0, BOOL param1)
-{
+void ov20_021D4DBC(UnkStruct_ov20_021D4AD4 *param0, BOOL param1) {
     if (param1) {
         Sprite_SetDrawFlag(param0->unk_14, ov20_021D204C(param0->unk_04));
         Sprite_SetDrawFlag(param0->unk_18, ov20_021D2060(param0->unk_04));
@@ -368,8 +353,7 @@ void ov20_021D4DBC(UnkStruct_ov20_021D4AD4 *param0, BOOL param1)
     }
 }
 
-void ov20_021D4DF4(UnkStruct_ov20_021D4AD4 *param0, int param1, int param2)
-{
+void ov20_021D4DF4(UnkStruct_ov20_021D4AD4 *param0, int param1, int param2) {
     switch (param1) {
     case 0:
         switch (param2) {

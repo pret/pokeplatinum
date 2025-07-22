@@ -8,21 +8,18 @@
 #include "heap.h"
 #include "pokemon.h"
 
-UnkStruct_020997B8 *sub_020997B8(u32 heapID)
-{
+UnkStruct_020997B8 *sub_020997B8(u32 heapID) {
     UnkStruct_020997B8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020997B8));
 
     memset(v0, 0, sizeof(UnkStruct_020997B8));
     return v0;
 }
 
-void sub_020997D0(UnkStruct_020997B8 *param0)
-{
+void sub_020997D0(UnkStruct_020997B8 *param0) {
     Heap_Free(param0);
 }
 
-u16 *sub_020997D8(Pokemon *mon, u32 heapID)
-{
+u16 *sub_020997D8(Pokemon *mon, u32 heapID) {
     u16 *v0;
     u16 *v1;
     u16 v2[4];
@@ -81,8 +78,7 @@ u16 *sub_020997D8(Pokemon *mon, u32 heapID)
     return v1;
 }
 
-BOOL sub_020998D8(u16 *param0)
-{
+BOOL sub_020998D8(u16 *param0) {
     if (param0[0] == 0xffff) {
         return 0;
     }

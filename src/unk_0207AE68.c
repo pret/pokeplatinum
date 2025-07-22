@@ -87,8 +87,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
-{
+UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID) {
     UnkStruct_0207AE68 *v0;
     PokemonSpriteTemplate v1;
     int v2;
@@ -164,8 +163,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     return v0;
 }
 
-static void sub_0207B0A0(SysTask *param0, void *param1)
-{
+static void sub_0207B0A0(SysTask *param0, void *param1) {
     UnkStruct_0207AE68 *v0 = (UnkStruct_0207AE68 *)param1;
 
     sub_0207B180(v0);
@@ -178,13 +176,11 @@ static void sub_0207B0A0(SysTask *param0, void *param1)
     }
 }
 
-BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0)
-{
+BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0) {
     return param0->unk_67 == 1;
 }
 
-void sub_0207B0E0(UnkStruct_0207AE68 *param0)
-{
+void sub_0207B0E0(UnkStruct_0207AE68 *param0) {
     int v0;
 
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
@@ -211,8 +207,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
 }
 
-static void sub_0207B180(UnkStruct_0207AE68 *param0)
-{
+static void sub_0207B180(UnkStruct_0207AE68 *param0) {
     if (param0->unk_70) {
         if ((param0->unk_70 & 1) == 0) {
             PokemonSprite_AddAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_X, param0->unk_71 * -1);
@@ -678,8 +673,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     }
 }
 
-static void sub_0207C028(UnkStruct_0207AE68 *param0)
-{
+static void sub_0207C028(UnkStruct_0207AE68 *param0) {
     int i;
 
     switch (param0->unk_78) {
@@ -753,8 +747,7 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
     }
 }
 
-static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
-{
+static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1) {
     GXLayers_DisableEngineALayers();
 
     {
@@ -916,8 +909,7 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
     SetVBlankCallback(sub_0207C520, param0);
 }
 
-static void sub_0207C460(BgConfig *param0)
-{
+static void sub_0207C460(BgConfig *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
@@ -926,8 +918,7 @@ static void sub_0207C460(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
 }
 
-static void sub_0207C498(UnkStruct_0207AE68 *param0)
-{
+static void sub_0207C498(UnkStruct_0207AE68 *param0) {
     PokemonSpriteTemplate v0;
     Pokemon *v1;
 
@@ -948,8 +939,7 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
     PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, 0x0);
 }
 
-static void sub_0207C520(void *param0)
-{
+static void sub_0207C520(void *param0) {
     UnkStruct_0207AE68 *v0 = (UnkStruct_0207AE68 *)param0;
 
     G2_SetWnd0Position(v0->unk_72, v0->unk_73, v0->unk_74, v0->unk_75);
@@ -962,8 +952,7 @@ static void sub_0207C520(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
-{
+static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1) {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
     StringTemplate_Format(param0->unk_0C, param0->unk_10, v0);
@@ -973,8 +962,7 @@ static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
     return Text_AddPrinterWithParams(param0->unk_04, FONT_MESSAGE, param0->unk_10, 0, 0, Options_TextFrameDelay(param0->options), sub_0207C5CC);
 }
 
-static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
-{
+static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1) {
     BOOL v0 = 0;
 
     switch (param1) {
@@ -1000,7 +988,6 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
     return v0;
 }
 
-static void sub_0207C624(UnkStruct_0207AE68 *param0)
-{
+static void sub_0207C624(UnkStruct_0207AE68 *param0) {
     param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_3C, param0->heapID);
 }

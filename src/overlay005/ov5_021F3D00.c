@@ -48,8 +48,7 @@ static UnkStruct_02073B50 *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int para
 static const UnkStruct_ov101_021D86B0 Unk_ov5_02200688;
 static const u32 Unk_ov5_02200678[4];
 
-void *ov5_021F3D00(UnkStruct_ov5_021DF47C *param0)
-{
+void *ov5_021F3D00(UnkStruct_ov5_021DF47C *param0) {
     UnkStruct_ov5_021F3D2C *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F3D2C)), 0, 0);
     v0->unk_00 = param0;
 
@@ -57,16 +56,14 @@ void *ov5_021F3D00(UnkStruct_ov5_021DF47C *param0)
     return v0;
 }
 
-void ov5_021F3D1C(void *param0)
-{
+void ov5_021F3D1C(void *param0) {
     UnkStruct_ov5_021F3D2C *v0 = param0;
 
     ov5_021F3D6C(v0);
     ov5_021DF554(v0);
 }
 
-static void ov5_021F3D2C(UnkStruct_ov5_021F3D2C *param0)
-{
+static void ov5_021F3D2C(UnkStruct_ov5_021F3D2C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -75,8 +72,7 @@ static void ov5_021F3D2C(UnkStruct_ov5_021F3D2C *param0)
     }
 }
 
-static void ov5_021F3D6C(UnkStruct_ov5_021F3D2C *param0)
-{
+static void ov5_021F3D6C(UnkStruct_ov5_021F3D2C *param0) {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -84,13 +80,11 @@ static void ov5_021F3D6C(UnkStruct_ov5_021F3D2C *param0)
     }
 }
 
-static UnkStruct_02073B50 *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1)
-{
+static UnkStruct_02073B50 *ov5_021F3D84(UnkStruct_ov5_021F3D2C *param0, int param1) {
     return &param0->unk_54[param1];
 }
 
-UnkStruct_ov101_021D5D90 *ov5_021F3D90(MapObject *param0, int param1)
-{
+UnkStruct_ov101_021D5D90 *ov5_021F3D90(MapObject *param0, int param1) {
     VecFx32 v0;
     UnkStruct_ov101_021D5D90 *v1;
     UnkStruct_ov5_021F3D90 v2;
@@ -121,8 +115,7 @@ UnkStruct_ov101_021D5D90 *ov5_021F3D90(MapObject *param0, int param1)
     return v1;
 }
 
-static int ov5_021F3E00(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static int ov5_021F3E00(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F3E00 *v0 = param1;
     const UnkStruct_ov5_021F3D90 *v1 = sub_020715BC(param0);
     MapObject *v2 = v1->unk_0C;
@@ -134,8 +127,7 @@ static int ov5_021F3E00(UnkStruct_ov101_021D5D90 *param0, void *param1)
     return 1;
 }
 
-static void ov5_021F3E30(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov5_021F3E30(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F3E00 *v0 = param1;
     MapObject *v1 = v0->unk_10.unk_0C;
 
@@ -144,13 +136,11 @@ static void ov5_021F3E30(UnkStruct_ov101_021D5D90 *param0, void *param1)
     }
 }
 
-static void ov5_021F3E50(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov5_021F3E50(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F3E00 *v0 = param1;
 }
 
-static void ov5_021F3E54(UnkStruct_ov101_021D5D90 *param0, void *param1)
-{
+static void ov5_021F3E54(UnkStruct_ov101_021D5D90 *param0, void *param1) {
     UnkStruct_ov5_021F3E00 *v0 = param1;
 
     if (v0->unk_04 == 1) {

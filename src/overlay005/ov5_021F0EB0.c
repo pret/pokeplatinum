@@ -34,8 +34,7 @@ static int ov5_021F0FF8(UnkStruct_ov5_021F0FB8 *param0);
 
 static void (*const Unk_ov5_0220020C[4])(UnkStruct_ov5_021F0FB8 *);
 
-SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID)
-{
+SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID) {
     SysTask *v0;
     UnkStruct_ov5_021F0FB8 *v1 = Heap_AllocFromHeapAtEnd(heapID, (sizeof(UnkStruct_ov5_021F0FB8)));
 
@@ -52,22 +51,19 @@ SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID)
     return v0;
 }
 
-BOOL ov5_021F0EF0(SysTask *param0)
-{
+BOOL ov5_021F0EF0(SysTask *param0) {
     UnkStruct_ov5_021F0FB8 *v0 = SysTask_GetParam(param0);
     return v0->unk_08;
 }
 
-void ov5_021F0EFC(SysTask *param0)
-{
+void ov5_021F0EFC(SysTask *param0) {
     UnkStruct_ov5_021F0FB8 *v0 = SysTask_GetParam(param0);
 
     Heap_Free(v0);
     SysTask_Done(param0);
 }
 
-void ov5_021F0F10(SysTask *param0, int param1, fx32 param2, u32 param3)
-{
+void ov5_021F0F10(SysTask *param0, int param1, fx32 param2, u32 param3) {
     UnkStruct_ov5_021F0FB8 *v0 = SysTask_GetParam(param0);
 
     v0->unk_04 = 0;
@@ -78,19 +74,16 @@ void ov5_021F0F10(SysTask *param0, int param1, fx32 param2, u32 param3)
     v0->unk_24 = 0;
 }
 
-static void ov5_021F0F2C(SysTask *param0, void *param1)
-{
+static void ov5_021F0F2C(SysTask *param0, void *param1) {
     UnkStruct_ov5_021F0FB8 *v0 = param1;
     Unk_ov5_0220020C[v0->unk_0C](v0);
 }
 
-static void ov5_021F0F40(UnkStruct_ov5_021F0FB8 *param0)
-{
+static void ov5_021F0F40(UnkStruct_ov5_021F0FB8 *param0) {
     param0->unk_08 = 1;
 }
 
-static void ov5_021F0F48(UnkStruct_ov5_021F0FB8 *param0)
-{
+static void ov5_021F0F48(UnkStruct_ov5_021F0FB8 *param0) {
     switch (param0->unk_04) {
     case 0:
         ov5_021F0FC8(param0);
@@ -105,8 +98,7 @@ static void ov5_021F0F48(UnkStruct_ov5_021F0FB8 *param0)
     }
 }
 
-static void ov5_021F0F80(UnkStruct_ov5_021F0FB8 *param0)
-{
+static void ov5_021F0F80(UnkStruct_ov5_021F0FB8 *param0) {
     switch (param0->unk_04) {
     case 0:
         ov5_021F0FE0(param0);
@@ -121,21 +113,18 @@ static void ov5_021F0F80(UnkStruct_ov5_021F0FB8 *param0)
     }
 }
 
-static void ov5_021F0FB8(UnkStruct_ov5_021F0FB8 *param0)
-{
+static void ov5_021F0FB8(UnkStruct_ov5_021F0FB8 *param0) {
     Camera_SetDistance(param0->unk_20, param0->camera);
 }
 
-static void ov5_021F0FC8(UnkStruct_ov5_021F0FB8 *param0)
-{
+static void ov5_021F0FC8(UnkStruct_ov5_021F0FB8 *param0) {
     fx32 v0 = param0->unk_1C;
 
     param0->unk_28 = param0->unk_14 / v0;
     param0->unk_18 = param0->unk_20 + param0->unk_14;
 }
 
-static void ov5_021F0FE0(UnkStruct_ov5_021F0FB8 *param0)
-{
+static void ov5_021F0FE0(UnkStruct_ov5_021F0FB8 *param0) {
     fx32 v0 = param0->unk_1C;
     fx32 v1 = param0->unk_10 - param0->unk_20;
 
@@ -143,8 +132,7 @@ static void ov5_021F0FE0(UnkStruct_ov5_021F0FB8 *param0)
     param0->unk_18 = param0->unk_10;
 }
 
-static int ov5_021F0FF8(UnkStruct_ov5_021F0FB8 *param0)
-{
+static int ov5_021F0FF8(UnkStruct_ov5_021F0FB8 *param0) {
     param0->unk_20 += param0->unk_28;
     param0->unk_24++;
 

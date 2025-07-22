@@ -36,8 +36,7 @@ static void ov108_022432B4(UnkStruct_ov108_02243030 *param0);
 static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Party *param2, u8 param3);
 static void ov108_02243490(UnkStruct_ov108_02243030 *param0);
 
-void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *param2, u8 param3)
-{
+void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *param2, u8 param3) {
     int v0;
 
     VramTransfer_New(32, HEAP_ID_103);
@@ -71,8 +70,7 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
     return;
 }
 
-Sprite *ov108_022430F0(UnkStruct_ov108_02243030 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7)
-{
+Sprite *ov108_022430F0(UnkStruct_ov108_02243030 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7) {
     int v0;
     SpriteResourcesHeader v1;
     Sprite *v2;
@@ -111,8 +109,7 @@ Sprite *ov108_022430F0(UnkStruct_ov108_02243030 *param0, u32 param1, u32 param2,
     return v2;
 }
 
-void ov108_02243194(UnkStruct_ov108_02243030 *param0)
-{
+void ov108_02243194(UnkStruct_ov108_02243030 *param0) {
     u8 v0;
 
     for (v0 = 0; v0 < 11; v0++) {
@@ -135,8 +132,7 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
     return;
 }
 
-static void ov108_022431FC(void)
-{
+static void ov108_022431FC(void) {
     {
         CharTransferTemplate v0 = {
             32, 1024, 1024, 103
@@ -152,8 +148,7 @@ static void ov108_022431FC(void)
     return;
 }
 
-static void ov108_02243230(UnkStruct_ov108_02243030 *param0)
-{
+static void ov108_02243230(UnkStruct_ov108_02243030 *param0) {
     param0->unk_1A0[1][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 18, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_103);
     param0->unk_1A0[1][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 40, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 8, HEAP_ID_103);
     param0->unk_1A0[1][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 20, 1, 1, 2, HEAP_ID_103);
@@ -162,8 +157,7 @@ static void ov108_02243230(UnkStruct_ov108_02243030 *param0)
     return;
 }
 
-static void ov108_022432B4(UnkStruct_ov108_02243030 *param0)
-{
+static void ov108_022432B4(UnkStruct_ov108_02243030 *param0) {
     NARC *v0;
     u32 v1;
 
@@ -178,8 +172,7 @@ static void ov108_022432B4(UnkStruct_ov108_02243030 *param0)
     return;
 }
 
-static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Party *param2, u8 param3)
-{
+static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Party *param2, u8 param3) {
     Pokemon *v0;
     Pokemon *v1;
     NARC *v2;
@@ -213,8 +206,7 @@ static void ov108_02243360(UnkStruct_ov108_02243030 *param0, Party *param1, Part
     return;
 }
 
-static void ov108_02243490(UnkStruct_ov108_02243030 *param0)
-{
+static void ov108_02243490(UnkStruct_ov108_02243030 *param0) {
     param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 21, 1, 0, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_103);
     param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 41, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 2, HEAP_ID_103);
     param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 23, 1, 0, 2, HEAP_ID_103);

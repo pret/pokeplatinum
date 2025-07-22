@@ -16,8 +16,7 @@
 
 static void ov16_02264800(SysTask *param0, void *param1);
 
-void ov16_02264798(BattlerData *param0, BattleSystem *battleSys)
-{
+void ov16_02264798(BattlerData *param0, BattleSystem *battleSys) {
     if (param0->unk_194 != NULL) {
         return;
     }
@@ -30,8 +29,7 @@ void ov16_02264798(BattlerData *param0, BattleSystem *battleSys)
     param0->unk_194 = SysTask_Start(ov16_02264800, param0, 1010);
 }
 
-void ov16_022647D8(BattlerData *param0)
-{
+void ov16_022647D8(BattlerData *param0) {
     if (param0->unk_194 == NULL) {
         return;
     }
@@ -44,8 +42,7 @@ void ov16_022647D8(BattlerData *param0)
     PokemonSprite_SetAttribute(param0->unk_20, MON_SPRITE_Y_OFFSET, 0);
 }
 
-static void ov16_02264800(SysTask *param0, void *param1)
-{
+static void ov16_02264800(SysTask *param0, void *param1) {
     BattlerData *v0 = param1;
     int v1;
 

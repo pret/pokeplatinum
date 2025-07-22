@@ -42,8 +42,7 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
 static void ov53_02256840(UnkStruct_ov53_02256420 *param0);
 static void ov53_02256874(PoketchAnimation_AnimatedSpriteData **param0, u32 param1);
 
-BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_02256420_1 *param1, BgConfig *param2)
-{
+BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_02256420_1 *param1, BgConfig *param2) {
     UnkStruct_ov53_02256420 *v0 = (UnkStruct_ov53_02256420 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov53_02256420));
 
     if (v0 != NULL) {
@@ -59,8 +58,7 @@ BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_022564
     return 0;
 }
 
-void ov53_02256454(UnkStruct_ov53_02256420 *param0)
-{
+void ov53_02256454(UnkStruct_ov53_02256420 *param0) {
     if (param0 != NULL) {
         Heap_Free(param0);
     }
@@ -74,29 +72,24 @@ static const PoketchTask Unk_ov53_02256914[] = {
     { 0x0, NULL, 0x0 }
 };
 
-void ov53_02256460(UnkStruct_ov53_02256420 *param0, u32 param1)
-{
+void ov53_02256460(UnkStruct_ov53_02256420 *param0, u32 param1) {
     PoketchTask_Start(Unk_ov53_02256914, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
-BOOL ov53_02256484(UnkStruct_ov53_02256420 *param0, u32 param1)
-{
+BOOL ov53_02256484(UnkStruct_ov53_02256420 *param0, u32 param1) {
     return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
-BOOL ov53_02256490(UnkStruct_ov53_02256420 *param0)
-{
+BOOL ov53_02256490(UnkStruct_ov53_02256420 *param0) {
     return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov53_0225649C(PoketchTaskManager *param0)
-{
+static void ov53_0225649C(PoketchTaskManager *param0) {
     UnkStruct_ov53_02256420 *v0 = PoketchTask_GetTaskData(param0);
     PoketchTask_EndTask(v0->unk_08, param0);
 }
 
-static void ov53_022564B0(SysTask *param0, void *param1)
-{
+static void ov53_022564B0(SysTask *param0, void *param1) {
     static const BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -130,8 +123,7 @@ static void ov53_022564B0(SysTask *param0, void *param1)
     ov53_0225649C(param1);
 }
 
-static void ov53_02256548(SysTask *param0, void *param1)
-{
+static void ov53_02256548(SysTask *param0, void *param1) {
     UnkStruct_ov53_02256420 *v0 = PoketchTask_GetTaskData(param1);
 
     ov53_02256840(v0);
@@ -139,8 +131,7 @@ static void ov53_02256548(SysTask *param0, void *param1)
     ov53_0225649C(param1);
 }
 
-static void ov53_02256568(SysTask *param0, void *param1)
-{
+static void ov53_02256568(SysTask *param0, void *param1) {
     UnkStruct_ov53_02256420 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov53_02256420_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
@@ -163,8 +154,7 @@ static void ov53_02256568(SysTask *param0, void *param1)
     ov53_0225649C(param1);
 }
 
-static void ov53_022565E0(SysTask *param0, void *param1)
-{
+static void ov53_022565E0(SysTask *param0, void *param1) {
     UnkStruct_ov53_02256420 *v0;
     const UnkStruct_ov53_02256420_1 *v1;
     int v2;
@@ -201,8 +191,7 @@ static void ov53_022565E0(SysTask *param0, void *param1)
     }
 }
 
-static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_02256420_1 *param1)
-{
+static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_02256420_1 *param1) {
     static const PoketchAnimation_AnimationData v0[] = {
         {
             { (96 << FX32_SHIFT), (32 << FX32_SHIFT) },
@@ -384,8 +373,7 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
     }
 }
 
-static void ov53_02256840(UnkStruct_ov53_02256420 *param0)
-{
+static void ov53_02256840(UnkStruct_ov53_02256420 *param0) {
     int v0;
 
     for (v0 = 0; v0 < 16; v0++) {
@@ -399,8 +387,7 @@ static void ov53_02256840(UnkStruct_ov53_02256420 *param0)
     PoketchAnimation_FreeSpriteData(&param0->unk_64);
 }
 
-static void ov53_02256874(PoketchAnimation_AnimatedSpriteData **param0, u32 param1)
-{
+static void ov53_02256874(PoketchAnimation_AnimatedSpriteData **param0, u32 param1) {
     int v0, v1, v2;
     BOOL v3 = 0;
 

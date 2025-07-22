@@ -14,8 +14,7 @@ static const u8 sbattlePocketIndexes[] = {
     BATTLE_POCKET_INDEX_RECOVER_HP_PP,
 };
 
-BOOL BattleBag_CanUseLastUsedItem(BattleBag *battleBag)
-{
+BOOL BattleBag_CanUseLastUsedItem(BattleBag *battleBag) {
     if (battleBag->context->lastUsedItem == ITEM_NONE) {
         return FALSE;
     }
@@ -29,8 +28,7 @@ BOOL BattleBag_CanUseLastUsedItem(BattleBag *battleBag)
     return TRUE;
 }
 
-void BattleBag_SetLastUsedPocket(BattleBag *battleBag)
-{
+void BattleBag_SetLastUsedPocket(BattleBag *battleBag) {
     u32 i;
 
     for (i = 0; i < BATTLE_POCKET_SIZE; i++) {
@@ -42,8 +40,7 @@ void BattleBag_SetLastUsedPocket(BattleBag *battleBag)
     }
 }
 
-void BattleBag_Init(BattleBag *battleBag)
-{
+void BattleBag_Init(BattleBag *battleBag) {
     BagItem *bagItem;
     u32 i, l, currentPocketSlot;
     s32 bagItemBattlePocketMask;
@@ -88,8 +85,7 @@ void BattleBag_Init(BattleBag *battleBag)
     }
 }
 
-u16 BattleBag_GetItem(BattleBag *battleBag, u32 pagePosition)
-{
+u16 BattleBag_GetItem(BattleBag *battleBag, u32 pagePosition) {
     if (battleBag->items[battleBag->currentBattlePocket][battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + pagePosition].item != ITEM_NONE && battleBag->items[battleBag->currentBattlePocket][battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + pagePosition].quantity != 0) {
         return battleBag->items[battleBag->currentBattlePocket][battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + pagePosition].item;
     }

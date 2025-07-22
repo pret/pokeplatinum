@@ -26,8 +26,7 @@ static const u8 Unk_ov94_02246360[] = {
     0x8
 };
 
-int ov94_022443E0(UnkStruct_ov94_0223FD4C *param0, int param1)
-{
+int ov94_022443E0(UnkStruct_ov94_0223FD4C *param0, int param1) {
     param0->unk_B8.monData = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
     param0->unk_B8.dataType = SUMMARY_DATA_BOX_MON;
     param0->unk_B8.monMax = 1;
@@ -48,8 +47,7 @@ int ov94_022443E0(UnkStruct_ov94_0223FD4C *param0, int param1)
     return 2;
 }
 
-int ov94_02244490(UnkStruct_ov94_0223FD4C *param0, int param1)
-{
+int ov94_02244490(UnkStruct_ov94_0223FD4C *param0, int param1) {
     int v0 = 3;
 
     if (ApplicationManager_Exec(param0->appMan)) {
@@ -62,8 +60,7 @@ int ov94_02244490(UnkStruct_ov94_0223FD4C *param0, int param1)
     return v0;
 }
 
-int ov94_022444BC(UnkStruct_ov94_0223FD4C *param0, int param1)
-{
+int ov94_022444BC(UnkStruct_ov94_0223FD4C *param0, int param1) {
     ov94_0223C4C8(param0);
     return 1;
 }

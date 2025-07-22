@@ -100,8 +100,7 @@ static const UnkFuncPtr_020EC57C Unk_020EC57C[7] = {
     NULL
 };
 
-void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int heapID)
-{
+void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int heapID) {
     UnkStruct_02056B30 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02056B30));
 
     v0->unk_04 = param1;
@@ -116,8 +115,7 @@ void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 pa
     FieldTask_InitCall(taskMan, sub_02056B70, v0);
 }
 
-static BOOL sub_02056B70(FieldTask *taskMan)
-{
+static BOOL sub_02056B70(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056B30 *v1 = FieldTask_GetEnv(taskMan);
 
@@ -138,8 +136,7 @@ static BOOL sub_02056B70(FieldTask *taskMan)
     return 0;
 }
 
-void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5, const int param6)
-{
+void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5, const int param6) {
     UnkStruct_02056BDC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
 
     v0->unk_00 = 0;
@@ -152,8 +149,7 @@ void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, 
     FieldSystem_CreateTask(fieldSystem, sub_02056CFC, v0);
 }
 
-void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5)
-{
+void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5) {
     int v0;
     int v1;
     UnkStruct_02056BDC *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
@@ -203,8 +199,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
     FieldSystem_CreateTask(fieldSystem, sub_02056CFC, v2);
 }
 
-static BOOL sub_02056CFC(FieldTask *taskMan)
-{
+static BOOL sub_02056CFC(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     Location *v2 = &v1->unk_08;
@@ -255,8 +250,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02056DE4(FieldTask *taskMan)
-{
+static BOOL sub_02056DE4(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
 
@@ -274,8 +268,7 @@ static BOOL sub_02056DE4(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02056E20(FieldTask *taskMan)
-{
+static BOOL sub_02056E20(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v2;
@@ -306,8 +299,7 @@ static BOOL sub_02056E20(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02056EA4(FieldTask *taskMan)
-{
+static BOOL sub_02056EA4(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v2;
@@ -334,8 +326,7 @@ static BOOL sub_02056EA4(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02056F1C(FieldTask *taskMan)
-{
+static BOOL sub_02056F1C(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2;
@@ -379,8 +370,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02056FC0(FieldTask *taskMan)
-{
+static BOOL sub_02056FC0(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
@@ -400,8 +390,7 @@ static BOOL sub_02056FC0(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02057008(FieldTask *taskMan)
-{
+static BOOL sub_02057008(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
@@ -421,8 +410,7 @@ static BOOL sub_02057008(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02057050(FieldTask *taskMan)
-{
+static BOOL sub_02057050(FieldTask *taskMan) {
     MapObject *mapObj;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v2 = FieldTask_GetEnv(taskMan);
@@ -472,8 +460,7 @@ static BOOL sub_02057050(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_0205711C(FieldTask *taskMan)
-{
+static BOOL sub_0205711C(FieldTask *taskMan) {
     MapObject *mapObj;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v2 = FieldTask_GetEnv(taskMan);
@@ -505,8 +492,7 @@ static BOOL sub_0205711C(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_020571A0(FieldTask *taskMan)
-{
+static BOOL sub_020571A0(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov5_021D432C *v2;
@@ -533,8 +519,7 @@ static BOOL sub_020571A0(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_02057218(FieldTask *taskMan)
-{
+static BOOL sub_02057218(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2;
@@ -583,8 +568,7 @@ static BOOL sub_02057218(FieldTask *taskMan)
     return 0;
 }
 
-static BOOL sub_020572B8(FieldTask *taskMan)
-{
+static BOOL sub_020572B8(FieldTask *taskMan) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_02056BDC *v1 = FieldTask_GetEnv(taskMan);
     MapObject *v2 = Player_MapObject(fieldSystem->playerAvatar);
@@ -604,8 +588,7 @@ static BOOL sub_020572B8(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_02057300(FieldSystem *fieldSystem)
-{
+static void sub_02057300(FieldSystem *fieldSystem) {
     int v0;
     VecFx32 v1;
 
@@ -625,8 +608,7 @@ static void sub_02057300(FieldSystem *fieldSystem)
     Camera_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem->camera);
 }
 
-static void sub_02057368(FieldSystem *fieldSystem)
-{
+static void sub_02057368(FieldSystem *fieldSystem) {
     int v0, v1, v2;
     VecFx32 v3;
     u8 v4;

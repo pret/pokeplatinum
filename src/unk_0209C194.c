@@ -39,8 +39,7 @@ static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
 static const ApplicationManagerTemplate Unk_020F94FC;
 static const ApplicationManagerTemplate Unk_020F950C;
 
-UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID)
-{
+UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID) {
     UnkStruct_0209C194 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209C194));
     memset(v0, 0, sizeof(UnkStruct_0209C194));
     v0->unk_14 = *param0;
@@ -49,20 +48,17 @@ UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID)
     return v0;
 }
 
-void sub_0209C1D0(UnkStruct_0209C194 *param0)
-{
+void sub_0209C1D0(UnkStruct_0209C194 *param0) {
     sub_0209BE64(param0->unk_34);
     sub_0209BE38(param0->unk_34);
     Heap_Free(param0);
 }
 
-BOOL sub_0209C1E8(UnkStruct_0209C194 *param0)
-{
+BOOL sub_0209C1E8(UnkStruct_0209C194 *param0) {
     return param0->unk_10;
 }
 
-void *sub_0209C1EC(FieldSystem *fieldSystem)
-{
+void *sub_0209C1EC(FieldSystem *fieldSystem) {
     UnkStruct_0209C1EC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209C1EC));
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
@@ -78,8 +74,7 @@ void *sub_0209C1EC(FieldSystem *fieldSystem)
     return v0;
 }
 
-BOOL sub_0209C238(void *param0)
-{
+BOOL sub_0209C238(void *param0) {
     UnkStruct_0209C1EC *v0 = param0;
 
     if (Unk_020F951C[v0->unk_00](v0) == 1) {
@@ -90,16 +85,14 @@ BOOL sub_0209C238(void *param0)
     return 0;
 }
 
-static BOOL sub_0209C25C(UnkStruct_0209C1EC *param0)
-{
+static BOOL sub_0209C25C(UnkStruct_0209C1EC *param0) {
     param0->unk_28 = sub_0209C194(&param0->unk_08, HEAP_ID_FIELDMAP);
     param0->unk_00 = 1;
     FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F94FC, param0->unk_28);
     return 0;
 }
 
-static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
-{
+static BOOL sub_0209C280(UnkStruct_0209C1EC *param0) {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         if (sub_0209C1E8(param0->unk_28) == 0) {
             param0->unk_00 = 5;
@@ -115,8 +108,7 @@ static BOOL sub_0209C280(UnkStruct_0209C1EC *param0)
     return 0;
 }
 
-static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
-{
+static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0) {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         int v0 = param0->unk_30->selectedMonSlot;
 
@@ -139,8 +131,7 @@ static BOOL sub_0209C2C0(UnkStruct_0209C1EC *param0)
     return 0;
 }
 
-static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
-{
+static BOOL sub_0209C324(UnkStruct_0209C1EC *param0) {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         Heap_Free(param0->unk_34);
         param0->unk_30 = sub_0203D644(param0->fieldSystem, param0->unk_04);
@@ -150,8 +141,7 @@ static BOOL sub_0209C324(UnkStruct_0209C1EC *param0)
     return 0;
 }
 
-static BOOL sub_0209C34C(UnkStruct_0209C1EC *param0)
-{
+static BOOL sub_0209C34C(UnkStruct_0209C1EC *param0) {
     if (FieldSystem_IsRunningApplication(param0->fieldSystem) == 0) {
         param0->unk_00 = 5;
     }
@@ -159,8 +149,7 @@ static BOOL sub_0209C34C(UnkStruct_0209C1EC *param0)
     return 0;
 }
 
-static BOOL sub_0209C364(UnkStruct_0209C1EC *param0)
-{
+static BOOL sub_0209C364(UnkStruct_0209C1EC *param0) {
     sub_0209C1D0(param0->unk_28);
     return 1;
 }

@@ -168,8 +168,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270134[][3] = {
     0x45
 };
 
-void ov16_02268520(UnkStruct_ov16_02268520 *param0)
-{
+void ov16_02268520(UnkStruct_ov16_02268520 *param0) {
     SpriteSystem *v0;
     SpriteManager *v1;
     const SpriteTemplate *v2;
@@ -205,8 +204,7 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     NARC_dtor(v10);
 }
 
-void ov16_0226862C(UnkStruct_ov16_02268520 *param0)
-{
+void ov16_0226862C(UnkStruct_ov16_02268520 *param0) {
     SpriteSystem *v0;
     SpriteManager *v1;
     const SpriteTemplate *v2;
@@ -219,8 +217,7 @@ void ov16_0226862C(UnkStruct_ov16_02268520 *param0)
     Sprite_TickFrame(param0->unk_00->sprite);
 }
 
-void ov16_02268660(UnkStruct_ov16_02268520 *param0)
-{
+void ov16_02268660(UnkStruct_ov16_02268520 *param0) {
     if (param0->unk_00 == NULL) {
         return;
     }
@@ -229,8 +226,7 @@ void ov16_02268660(UnkStruct_ov16_02268520 *param0)
     param0->unk_00 = NULL;
 }
 
-void ov16_02268674(UnkStruct_ov16_02268520 *param0)
-{
+void ov16_02268674(UnkStruct_ov16_02268520 *param0) {
     SpriteManager *v0;
     int v1, v2, v3;
 
@@ -252,8 +248,7 @@ void ov16_02268674(UnkStruct_ov16_02268520 *param0)
     SpriteManager_UnloadAnimObjById(v0, v3);
 }
 
-void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1)
-{
+void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1) {
     if (param0->unk_00 == NULL) {
         return;
     }
@@ -261,8 +256,7 @@ void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1)
     ManagedSprite_SetDrawFlag(param0->unk_00, param1);
 }
 
-void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *battleSys, u16 param2, int param3)
-{
+void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *battleSys, u16 param2, int param3) {
     MI_CpuClearFast(param0, sizeof(UnkStruct_ov16_02268520));
 
     param0->unk_04 = battleSys;
@@ -278,8 +272,7 @@ void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *battleSys, u16
     ov16_0226862C(param0);
 }
 
-void ov16_02268700(UnkStruct_ov16_02268520 *param0)
-{
+void ov16_02268700(UnkStruct_ov16_02268520 *param0) {
     ov16_02268660(param0);
     ov16_02268674(param0);
     MI_CpuClearFast(param0, sizeof(UnkStruct_ov16_02268520));

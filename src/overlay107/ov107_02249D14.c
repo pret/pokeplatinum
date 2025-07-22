@@ -57,8 +57,7 @@ static const UnkStruct_ov107_0224A218 Unk_ov107_0224A218[2] = {
     { Unk_ov107_0224A228, 0xC }
 };
 
-void ov107_02249D14(BgConfig *param0, Window *param1, u8 param2)
-{
+void ov107_02249D14(BgConfig *param0, Window *param1, u8 param2) {
     u8 v0;
     const WindowTemplate *v1 = Unk_ov107_0224A218[param2].unk_00;
     u32 v2 = Unk_ov107_0224A218[param2].unk_04;
@@ -71,8 +70,7 @@ void ov107_02249D14(BgConfig *param0, Window *param1, u8 param2)
     return;
 }
 
-void ov107_02249D5C(Window *param0, u8 param1)
-{
+void ov107_02249D5C(Window *param0, u8 param1) {
     u16 v0;
     u32 v1 = Unk_ov107_0224A218[param1].unk_04;
 
@@ -83,16 +81,14 @@ void ov107_02249D5C(Window *param0, u8 param1)
     return;
 }
 
-void ov107_02249D84(BgConfig *param0, Window *param1)
-{
+void ov107_02249D84(BgConfig *param0, Window *param1) {
     LoadStandardWindowGraphics(param0, Window_GetBgLayer(param1), (1024 - 9), 11, 0, HEAP_ID_100);
     Window_DrawStandardFrame(param1, 1, (1024 - 9), 11);
 
     return;
 }
 
-void ov107_02249DBC(Window *param0, int param1)
-{
+void ov107_02249DBC(Window *param0, int param1) {
     LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, HEAP_ID_100);
     Window_FillTilemap(param0, 15);
     Window_DrawMessageBoxWithScrollCursor(param0, 1, ((1024 - 9) - (18 + 12)), 10);

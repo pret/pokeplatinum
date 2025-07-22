@@ -18,8 +18,7 @@ typedef struct {
     UnkStruct_ov114_0225E854 *unk_08;
 } UnkStruct_ov117_02266498;
 
-int ov117_02266498(ApplicationManager *appMan, int *param1)
-{
+int ov117_02266498(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov117_02266498 *v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov117_02266498), HEAP_ID_110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02266498));
     v0->unk_00 = ApplicationManager_Args(appMan);
@@ -27,8 +26,7 @@ int ov117_02266498(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov117_022664BC(ApplicationManager *appMan, int *param1)
-{
+int ov117_022664BC(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov117_02266498 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_00->unk_3D == 1) {
@@ -105,8 +103,7 @@ int ov117_022664BC(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov117_022665E8(ApplicationManager *appMan, int *param1)
-{
+int ov117_022665E8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov117_02266498 *v0 = ApplicationManager_Data(appMan);
     ApplicationManager_FreeData(appMan);
 

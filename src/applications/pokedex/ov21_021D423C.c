@@ -19,8 +19,7 @@ static BOOL ov21_021D42EC(UnkStruct_ov21_021D423C *param0);
 static UnkStruct_ov21_021D4660 *ov21_021D42FC(UnkStruct_ov21_021D423C *param0, int param1);
 static void ov21_021D4334(UnkStruct_ov21_021D423C *param0, UnkStruct_ov21_021D4660 *param1);
 
-UnkStruct_ov21_021D423C *ov21_021D423C(enum HeapId heapID)
-{
+UnkStruct_ov21_021D423C *ov21_021D423C(enum HeapId heapID) {
     UnkStruct_ov21_021D423C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D423C));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D423C));
@@ -28,16 +27,14 @@ UnkStruct_ov21_021D423C *ov21_021D423C(enum HeapId heapID)
     return v0;
 }
 
-void ov21_021D426C(UnkStruct_ov21_021D423C *param0, UnkStruct_ov21_021D4660 *param1, int param2)
-{
+void ov21_021D426C(UnkStruct_ov21_021D423C *param0, UnkStruct_ov21_021D4660 *param1, int param2) {
     GF_ASSERT(param0);
 
     param0->unk_00 = param1;
     param0->unk_04 = param2;
 }
 
-const UnkStruct_ov21_021D4660 *ov21_021D4284(UnkStruct_ov21_021D423C *param0, int param1)
-{
+const UnkStruct_ov21_021D4660 *ov21_021D4284(UnkStruct_ov21_021D423C *param0, int param1) {
     UnkStruct_ov21_021D4660 *v0;
     BOOL v1;
 
@@ -62,8 +59,7 @@ const UnkStruct_ov21_021D4660 *ov21_021D4284(UnkStruct_ov21_021D423C *param0, in
     return param0->unk_08;
 }
 
-BOOL ov21_021D42D4(UnkStruct_ov21_021D423C *param0)
-{
+BOOL ov21_021D42D4(UnkStruct_ov21_021D423C *param0) {
     GF_ASSERT(param0);
 
     if (param0->unk_08) {
@@ -73,8 +69,7 @@ BOOL ov21_021D42D4(UnkStruct_ov21_021D423C *param0)
     return 0;
 }
 
-static BOOL ov21_021D42EC(UnkStruct_ov21_021D423C *param0)
-{
+static BOOL ov21_021D42EC(UnkStruct_ov21_021D423C *param0) {
     if (param0->unk_08) {
         return 1;
     }
@@ -82,8 +77,7 @@ static BOOL ov21_021D42EC(UnkStruct_ov21_021D423C *param0)
     return 0;
 }
 
-static UnkStruct_ov21_021D4660 *ov21_021D42FC(UnkStruct_ov21_021D423C *param0, int param1)
-{
+static UnkStruct_ov21_021D4660 *ov21_021D42FC(UnkStruct_ov21_021D423C *param0, int param1) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
@@ -97,8 +91,7 @@ static UnkStruct_ov21_021D4660 *ov21_021D42FC(UnkStruct_ov21_021D423C *param0, i
     return NULL;
 }
 
-static void ov21_021D4334(UnkStruct_ov21_021D423C *param0, UnkStruct_ov21_021D4660 *param1)
-{
+static void ov21_021D4334(UnkStruct_ov21_021D423C *param0, UnkStruct_ov21_021D4660 *param1) {
     param0->unk_08 = param1;
 
     if (param0->unk_08) {

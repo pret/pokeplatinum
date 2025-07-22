@@ -25,84 +25,69 @@ static u32 sub_0207CBE0(SaveData *saveData);
 static u32 sub_0207CBF0(SaveData *saveData);
 static u32 sub_0207CC00(SaveData *saveData);
 
-UnkStruct_0207CB08 *sub_0207CB08(u8 heapID)
-{
+UnkStruct_0207CB08 *sub_0207CB08(u8 heapID) {
     UnkStruct_0207CB08 *v0 = (UnkStruct_0207CB08 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207CB08));
     memset(v0, 0, sizeof(UnkStruct_0207CB08));
     return v0;
 }
 
-u32 sub_0207CB20(void)
-{
+u32 sub_0207CB20(void) {
     return sizeof(UnkStruct_0207CB08);
 }
 
-void sub_0207CB24(UnkStruct_0207CB08 *param0, u8 param1)
-{
+void sub_0207CB24(UnkStruct_0207CB08 *param0, u8 param1) {
     param0->unk_65 = param1;
 }
 
-void sub_0207CB2C(UnkStruct_0207CB08 *param0, SaveData *saveData, u8 param2, void *param3)
-{
+void sub_0207CB2C(UnkStruct_0207CB08 *param0, SaveData *saveData, u8 param2, void *param3) {
     sub_0207CB24(param0, param2);
     param0->saveData = saveData;
     param0->unk_6C = param3;
     param0->unk_66 = 0;
 }
 
-void sub_0207CB48(UnkStruct_0207CB08 *param0, BagItem *param1, u8 param2, u8 param3)
-{
+void sub_0207CB48(UnkStruct_0207CB08 *param0, BagItem *param1, u8 param2, u8 param3) {
     param0->unk_04[param3].unk_00 = param1;
     param0->unk_04[param3].unk_08 = param2;
 }
 
-void sub_0207CB58(UnkStruct_0207CB08 *param0)
-{
+void sub_0207CB58(UnkStruct_0207CB08 *param0) {
     param0->unk_76_0 = 1;
 }
 
-void sub_0207CB6C(UnkStruct_0207CB08 *param0, void *param1)
-{
+void sub_0207CB6C(UnkStruct_0207CB08 *param0, void *param1) {
     param0->unk_70 = param1;
 }
 
-void sub_0207CB70(UnkStruct_0207CB08 *param0, u8 param1)
-{
+void sub_0207CB70(UnkStruct_0207CB08 *param0, u8 param1) {
     param0->unk_74 = param1;
 }
 
-void sub_0207CB78(UnkStruct_0207CB08 *param0, u16 mapLoadType)
-{
+void sub_0207CB78(UnkStruct_0207CB08 *param0, u16 mapLoadType) {
     param0->mapLoadType = mapLoadType;
 }
 
-u16 sub_0207CB94(UnkStruct_0207CB08 *param0)
-{
+u16 sub_0207CB94(UnkStruct_0207CB08 *param0) {
     return param0->unk_66;
 }
 
-u16 sub_0207CB9C(UnkStruct_0207CB08 *param0)
-{
+u16 sub_0207CB9C(UnkStruct_0207CB08 *param0) {
     return param0->unk_68;
 }
 
-u8 sub_0207CBA4(UnkStruct_0207CB08 *param0)
-{
+u8 sub_0207CBA4(UnkStruct_0207CB08 *param0) {
     return param0->unk_74;
 }
 
-u8 sub_0207CBAC(UnkStruct_0207CB08 *param0)
-{
+u8 sub_0207CBAC(UnkStruct_0207CB08 *param0) {
     return param0->unk_75;
 }
 
-static u32 sub_0207CBB4(SaveData *saveData)
-{
+static u32 sub_0207CBB4(SaveData *saveData) {
     return Coins_GetValue(SaveData_GetCoins(saveData));
 }
 
-static u32 sub_0207CBC0(SaveData *saveData)
-{
+static u32 sub_0207CBC0(SaveData *saveData) {
     SealCase *v0;
     u32 v1, v2;
 
@@ -116,25 +101,21 @@ static u32 sub_0207CBC0(SaveData *saveData)
     return v2;
 }
 
-static u32 sub_0207CBE0(SaveData *saveData)
-{
+static u32 sub_0207CBE0(SaveData *saveData) {
     UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(saveData));
     return sub_02029DF0(v0);
 }
 
-static u32 sub_0207CBF0(SaveData *saveData)
-{
+static u32 sub_0207CBF0(SaveData *saveData) {
     UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(saveData));
     return sub_02029E0C(v0);
 }
 
-static u32 sub_0207CC00(SaveData *saveData)
-{
+static u32 sub_0207CC00(SaveData *saveData) {
     return (u32)sub_0202D230(sub_0202D750(saveData), 0, 0);
 }
 
-BOOL sub_0207CC10(SaveData *saveData, Strbuf *param1, u16 param2, u32 heapID)
-{
+BOOL sub_0207CC10(SaveData *saveData, Strbuf *param1, u16 param2, u32 heapID) {
     MessageLoader *v0;
     StringTemplate *v1;
     Strbuf *v2;
@@ -171,8 +152,7 @@ BOOL sub_0207CC10(SaveData *saveData, Strbuf *param1, u16 param2, u32 heapID)
     return 1;
 }
 
-void sub_0207CD34(void *param0, Strbuf *param1, u16 param2, u32 param3, u32 heapID)
-{
+void sub_0207CD34(void *param0, Strbuf *param1, u16 param2, u32 param3, u32 heapID) {
     MessageLoader *v0;
     StringTemplate *v1;
     Strbuf *v2;

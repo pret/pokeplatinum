@@ -10,8 +10,7 @@
 static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID);
 static void FreeEntries(StringList *list);
 
-StringList *StringList_New(u32 capacity, u32 heapID)
-{
+StringList *StringList_New(u32 capacity, u32 heapID) {
     StringList *list = Heap_AllocFromHeap(heapID, sizeof(StringList) * (capacity + 1));
 
     if (list) {
@@ -30,14 +29,12 @@ StringList *StringList_New(u32 capacity, u32 heapID)
     return list;
 }
 
-void StringList_Free(StringList *list)
-{
+void StringList_Free(StringList *list) {
     FreeEntries(list);
     Heap_Free(list);
 }
 
-void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader, u32 bankEntry, u32 index)
-{
+void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader, u32 bankEntry, u32 index) {
     u32 tmp;
     list = FindFirstEmptyEntry(list, &tmp);
 
@@ -47,8 +44,7 @@ void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader
     }
 }
 
-void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index)
-{
+void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index) {
     u32 heapID;
     list = FindFirstEmptyEntry(list, &heapID);
 
@@ -58,8 +54,7 @@ void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index)
     }
 }
 
-void StringList_AddFromEntry(StringList *list, const StringList *entry)
-{
+void StringList_AddFromEntry(StringList *list, const StringList *entry) {
     u32 tmp;
     list = FindFirstEmptyEntry(list, &tmp);
 
@@ -69,8 +64,7 @@ void StringList_AddFromEntry(StringList *list, const StringList *entry)
     }
 }
 
-static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID)
-{
+static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID) {
     while (list->entry != NULL) {
         if (list->entry == STRING_LIST_TERMINATOR) {
             GF_ASSERT(FALSE);
@@ -91,8 +85,7 @@ static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID)
     return empty;
 }
 
-static void FreeEntries(StringList *list)
-{
+static void FreeEntries(StringList *list) {
     StringList *tmp = list;
     while (tmp->entry != STRING_LIST_TERMINATOR) {
         if (tmp->entry == NULL) {

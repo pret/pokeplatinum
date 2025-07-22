@@ -30,8 +30,7 @@ struct UnkStruct_ov5_021D1BEC_t {
     void *unk_10;
 };
 
-UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int heapID, int param2)
-{
+UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int heapID, int param2) {
     UnkStruct_ov5_021D1A94 *v0;
     u32 v1;
 
@@ -52,8 +51,7 @@ UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int heapID, int p
     return v0;
 }
 
-void ov5_021D1AE4(UnkStruct_ov5_021D1A94 *param0)
-{
+void ov5_021D1AE4(UnkStruct_ov5_021D1A94 *param0) {
     int v0;
 
     for (v0 = 0; v0 < param0->unk_08; v0++) {
@@ -65,13 +63,11 @@ void ov5_021D1AE4(UnkStruct_ov5_021D1A94 *param0)
     Heap_Free(param0);
 }
 
-void ov5_021D1B18(UnkStruct_ov5_021D1A94 *param0)
-{
+void ov5_021D1B18(UnkStruct_ov5_021D1A94 *param0) {
     SysTaskManager_ExecuteTasks(param0->unk_10);
 }
 
-static void ov5_021D1B24(SysTask *param0, void *param1)
-{
+static void ov5_021D1B24(SysTask *param0, void *param1) {
     UnkStruct_ov5_021D1BEC *v0 = param1;
 
     if (FieldSystem_IsRunningFieldMapInner(v0->unk_00->fieldSystem)) {
@@ -81,8 +77,7 @@ static void ov5_021D1B24(SysTask *param0, void *param1)
     }
 }
 
-static void ov5_021D1B48(SysTask *param0, void *param1)
-{
+static void ov5_021D1B48(SysTask *param0, void *param1) {
     UnkStruct_ov5_021D1BEC *v0 = param1;
 
     if (FieldSystem_IsRunningFieldMapInner(v0->unk_00->fieldSystem)) {
@@ -92,8 +87,7 @@ static void ov5_021D1B48(SysTask *param0, void *param1)
     }
 }
 
-UnkStruct_ov5_021D1BEC *ov5_021D1B6C(UnkStruct_ov5_021D1A94 *param0, const UnkStruct_ov6_0223E6EC *param1)
-{
+UnkStruct_ov5_021D1BEC *ov5_021D1B6C(UnkStruct_ov5_021D1A94 *param0, const UnkStruct_ov6_0223E6EC *param1) {
     int v0;
     UnkStruct_ov5_021D1BEC *v1;
 
@@ -123,8 +117,7 @@ UnkStruct_ov5_021D1BEC *ov5_021D1B6C(UnkStruct_ov5_021D1A94 *param0, const UnkSt
     return NULL;
 }
 
-void ov5_021D1BEC(UnkStruct_ov5_021D1BEC *param0)
-{
+void ov5_021D1BEC(UnkStruct_ov5_021D1BEC *param0) {
     if (param0->unk_04 == NULL) {
         return;
     }
@@ -143,7 +136,6 @@ void ov5_021D1BEC(UnkStruct_ov5_021D1BEC *param0)
     MI_CpuClear32(param0, sizeof(UnkStruct_ov5_021D1BEC));
 }
 
-void *ov5_021D1C2C(UnkStruct_ov5_021D1BEC *param0)
-{
+void *ov5_021D1C2C(UnkStruct_ov5_021D1BEC *param0) {
     return param0->unk_10;
 }

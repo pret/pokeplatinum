@@ -21,8 +21,7 @@ enum PokedexEncFileIndex {
     PEFI_FIELDSPECIALNATDEX = (4 + MAX_SPECIES * 9),
 };
 
-void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, enum HeapId heapID)
-{
+void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLocations, int species, int encounterCategory, enum HeapId heapID) {
     int fileIndex;
     u32 fileSize;
 
@@ -63,8 +62,7 @@ void PokedexEncData_PopulateEncounterLocations(EncounterLocations *encounterLoca
     encounterLocations->numLocations = fileSize / sizeof(int);
 }
 
-void PokedexEncData_FreeEncounterLocations(EncounterLocations *encounterLocations)
-{
+void PokedexEncData_FreeEncounterLocations(EncounterLocations *encounterLocations) {
     GF_ASSERT(encounterLocations);
     GF_ASSERT(encounterLocations->locations);
 
@@ -74,8 +72,7 @@ void PokedexEncData_FreeEncounterLocations(EncounterLocations *encounterLocation
     encounterLocations->numLocations = 0;
 }
 
-DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int *numDungeons)
-{
+DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int *numDungeons) {
     u32 fileSize;
 
     DungeonCoordinates *dungeonCoordinatesArray = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 0, 0, heapID, 0, &fileSize);
@@ -87,8 +84,7 @@ DungeonCoordinates *PokedexEncData_GetDungeonCoordinates(enum HeapId heapID, int
     return dungeonCoordinatesArray;
 }
 
-FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapId heapID, int *numFields)
-{
+FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapId heapID, int *numFields) {
     u32 fileSize;
 
     FieldCoordinates *fieldCoordinatesArray = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_ENC_PLATINUM, 2, 0, heapID, 0, &fileSize);
@@ -100,8 +96,7 @@ FieldCoordinates *PokedexEncData_GetFieldCoordinates(enum HeapId heapID, int *nu
     return fieldCoordinatesArray;
 }
 
-void PokedexEncData_LocateFieldOnMap(u8 *pokedexFieldMap, u8 mapHeight, u8 mapWidth, const FieldCoordinates *fieldCoordinates)
-{
+void PokedexEncData_LocateFieldOnMap(u8 *pokedexFieldMap, u8 mapHeight, u8 mapWidth, const FieldCoordinates *fieldCoordinates) {
     GF_ASSERT((fieldCoordinates->x + fieldCoordinates->width) < mapWidth);
     GF_ASSERT((fieldCoordinates->y + fieldCoordinates->height) < mapHeight);
 
@@ -112,8 +107,7 @@ void PokedexEncData_LocateFieldOnMap(u8 *pokedexFieldMap, u8 mapHeight, u8 mapWi
     }
 }
 
-u32 PokedexEncData_LocateVisibleFields(u8 *pokedexFieldMap, int mapHeight, int mapWidth, const FieldCoordinates *fieldCoordinatesArray, const EncounterLocations *encounterLocations, const u8 *invisibleFields, u32 numInvisibleFields)
-{
+u32 PokedexEncData_LocateVisibleFields(u8 *pokedexFieldMap, int mapHeight, int mapWidth, const FieldCoordinates *fieldCoordinatesArray, const EncounterLocations *encounterLocations, const u8 *invisibleFields, u32 numInvisibleFields) {
     int locationIndex;
     int skipIndex;
     u32 numVisibleFields = 0;
@@ -136,8 +130,7 @@ u32 PokedexEncData_LocateVisibleFields(u8 *pokedexFieldMap, int mapHeight, int m
     return numVisibleFields;
 }
 
-void PokedexEncData_LocateDungeonOnMap(Sprite *cellActor, int xOffset, int yOffset, int xScale, int yScale, const DungeonCoordinates *dungeonCoordinates, int animID, int coronetAnimID)
-{
+void PokedexEncData_LocateDungeonOnMap(Sprite *cellActor, int xOffset, int yOffset, int xScale, int yScale, const DungeonCoordinates *dungeonCoordinates, int animID, int coronetAnimID) {
     VecFx32 position;
 
     position.x = (dungeonCoordinates->x * xScale) + xOffset;
@@ -154,8 +147,7 @@ void PokedexEncData_LocateDungeonOnMap(Sprite *cellActor, int xOffset, int yOffs
     }
 }
 
-int PokedexEncData_LocateVisibleDungeons(Sprite **cellActorArray, int initialNumVisibleDungeons, int maxNumDungeons, int xOffset, int yOffset, int xScale, int yScale, const DungeonCoordinates *dungeonCoordinatesArray, const EncounterLocations *encounterLocations, int animID, int coronetAnimID, const u8 *invisibleDungeons, u32 numInvisibleDungeons, u32 *cellActorsModified)
-{
+int PokedexEncData_LocateVisibleDungeons(Sprite **cellActorArray, int initialNumVisibleDungeons, int maxNumDungeons, int xOffset, int yOffset, int xScale, int yScale, const DungeonCoordinates *dungeonCoordinatesArray, const EncounterLocations *encounterLocations, int animID, int coronetAnimID, const u8 *invisibleDungeons, u32 numInvisibleDungeons, u32 *cellActorsModified) {
     int locationIndex, skipIndex;
     int numVisibleDungeons = initialNumVisibleDungeons;
     int DungeonCount = 0;

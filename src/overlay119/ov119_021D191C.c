@@ -35,14 +35,12 @@ static BOOL (*const Unk_ov119_021D26AC[])(UnkStruct_ov119_021D0FD0 *) = {
     ov119_021D1BD0,
 };
 
-BOOL ov119_021D191C(UnkStruct_ov119_021D0FD0 *param0)
-{
+BOOL ov119_021D191C(UnkStruct_ov119_021D0FD0 *param0) {
     BOOL v0 = Unk_ov119_021D26AC[param0->unk_5C](param0);
     return v0;
 }
 
-static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0) {
     BOOL v0 = 1;
 
     switch (param0->unk_60) {
@@ -220,8 +218,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
     return v0;
 }
 
-static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0) {
     BOOL v0 = 1;
 
     switch (param0->unk_60) {
@@ -370,8 +367,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
     return v0;
 }
 
-static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0) {
     switch (param0->unk_68) {
     case 0:
         ManagedSprite_SetAnimationFrame(param0->unk_74, 0);
@@ -393,8 +389,7 @@ static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0)
     return 1;
 }
 
-static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0) {
     switch (param0->unk_68) {
     case 0:
         if (ov119_021D14F8(param0->unk_04.unk_40) == 1) {
@@ -434,8 +429,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
     return 1;
 }
 
-static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0) {
     switch (param0->unk_68) {
     case 0:
         param0->unk_68++;
@@ -465,8 +459,7 @@ static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0)
     return 1;
 }
 
-static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0) {
     switch (param0->unk_68) {
     case 0:
         if (ov119_021D14F8(param0->unk_04.unk_40) == 1) {
@@ -501,8 +494,7 @@ static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0)
     return 1;
 }
 
-static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0) {
     switch (param0->unk_68) {
     case 0:
         if (ov119_021D14F8(param0->unk_04.unk_40) == 1) {
@@ -615,8 +607,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
     return 1;
 }
 
-static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
-{
+static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0) {
     switch (param0->unk_68) {
     case 0:
         ov119_021D14DC(param0->unk_04.unk_40, 0);

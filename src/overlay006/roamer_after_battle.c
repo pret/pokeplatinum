@@ -21,8 +21,7 @@
 static void MoveRoamersOffMap(SpecialEncounter *param0, const int param1);
 static Roamer *GetBattledRoamer(SpecialEncounter *speEnc, const int species);
 
-void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *battleParams)
-{
+void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *battleParams) {
     u16 roamerHP;
     u8 roamerStatus;
     int wildSpecies;
@@ -58,8 +57,7 @@ void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *b
 }
 
 // For all roamers, moves to a random location if they are on the current map
-static void MoveRoamersOffMap(SpecialEncounter *speEnc, const int currentMap)
-{
+static void MoveRoamersOffMap(SpecialEncounter *speEnc, const int currentMap) {
     int roamerMap;
     u8 i;
 
@@ -74,8 +72,7 @@ static void MoveRoamersOffMap(SpecialEncounter *speEnc, const int currentMap)
     }
 }
 
-static Roamer *GetBattledRoamer(SpecialEncounter *speEnc, const int species)
-{
+static Roamer *GetBattledRoamer(SpecialEncounter *speEnc, const int species) {
     u8 i;
     Roamer *roamer;
 

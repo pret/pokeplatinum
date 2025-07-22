@@ -11,8 +11,7 @@
 #define POKETCH_UNAVAILABLE_SCREEN_NARC_TILEMAP_IDX 11
 #define POKETCH_UNAVAILABLE_SCREEN_NARC_PALETTE_IDX 12
 
-void PoketchUnavailableScreen_Init(BgConfig *bgConfig)
-{
+void PoketchUnavailableScreen_Init(BgConfig *bgConfig) {
     static const BgTemplate template = {
         .x = 0,
         .y = 0,
@@ -48,13 +47,11 @@ void PoketchUnavailableScreen_Init(BgConfig *bgConfig)
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0);
 }
 
-void PoketchUnavailableScreen_Exit(BgConfig *bgConfig)
-{
+void PoketchUnavailableScreen_Exit(BgConfig *bgConfig) {
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
     Heap_Destroy(HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchUnavailableScreen_IsDone(BgConfig *bgConfig)
-{
+BOOL PoketchUnavailableScreen_IsDone(BgConfig *bgConfig) {
     return TRUE;
 }

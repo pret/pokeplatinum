@@ -39,8 +39,7 @@ static void ov83_0223D5CC(SysTask *param0, void *param1);
 static void ov83_0223D620(UnkStruct_ov83_0223D584 *param0);
 static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 *param0, int param1, const void *param2, int param3);
 
-UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, void *param2, int param3, int heapID)
-{
+UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, void *param2, int param3, int heapID) {
     UnkStruct_ov83_0223D4CC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov83_0223D4CC));
     v0->unk_00 = param3;
     v0->unk_04 = NULL;
@@ -54,8 +53,7 @@ UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, v
     return v0;
 }
 
-BOOL ov83_0223D508(int param0, const void *param1, int param2, UnkStruct_ov83_0223D4CC *param3)
-{
+BOOL ov83_0223D508(int param0, const void *param1, int param2, UnkStruct_ov83_0223D4CC *param3) {
     if (param3->unk_00 == 1) {
         if (sub_0203895C() == 29) {
             BOOL v0 = 1;
@@ -79,8 +77,7 @@ BOOL ov83_0223D508(int param0, const void *param1, int param2, UnkStruct_ov83_02
     }
 }
 
-void ov83_0223D558(UnkStruct_ov83_0223D4CC *param0)
-{
+void ov83_0223D558(UnkStruct_ov83_0223D4CC *param0) {
     if (param0->unk_00 == 0) {
         ov83_0223D620(param0->unk_04);
     }
@@ -88,8 +85,7 @@ void ov83_0223D558(UnkStruct_ov83_0223D4CC *param0)
     Heap_Free(param0);
 }
 
-int ov83_0223D570(UnkStruct_ov83_0223D4CC *param0)
-{
+int ov83_0223D570(UnkStruct_ov83_0223D4CC *param0) {
     if (param0->unk_00 == 1) {
         return CommSys_CurNetId();
     } else {
@@ -97,8 +93,7 @@ int ov83_0223D570(UnkStruct_ov83_0223D4CC *param0)
     }
 }
 
-static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int heapID)
-{
+static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int heapID) {
     UnkStruct_ov83_0223D584 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov83_0223D584));
     memset(v0, 0, sizeof(UnkStruct_ov83_0223D584));
 
@@ -110,8 +105,7 @@ static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int pa
     return v0;
 }
 
-static void ov83_0223D5CC(SysTask *param0, void *param1)
-{
+static void ov83_0223D5CC(SysTask *param0, void *param1) {
     UnkStruct_ov83_0223D584 *v0 = param1;
     int v1;
 
@@ -125,14 +119,12 @@ static void ov83_0223D5CC(SysTask *param0, void *param1)
     }
 }
 
-static void ov83_0223D620(UnkStruct_ov83_0223D584 *param0)
-{
+static void ov83_0223D620(UnkStruct_ov83_0223D584 *param0) {
     SysTask_Done(param0->unk_19C);
     Heap_Free(param0);
 }
 
-static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 *param0, int param1, const void *param2, int param3)
-{
+static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 *param0, int param1, const void *param2, int param3) {
     int v0;
     int v1;
     UnkStruct_ov83_0223D5CC *v2 = NULL;

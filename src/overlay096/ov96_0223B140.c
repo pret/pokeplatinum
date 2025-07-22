@@ -43,16 +43,14 @@ static int ov96_0223B608(int param0);
 
 static UnkStruct_ov96_0223DDE0 Unk_ov96_0223DDE0;
 
-void ov96_0223B140(s32 param0, u64 param1)
-{
+void ov96_0223B140(s32 param0, u64 param1) {
     Unk_ov96_0223DDE0.unk_00 = UnkEnum_ov96_0223B15C_01;
     Unk_ov96_0223DDE0.unk_04 = 0;
     Unk_ov96_0223DDE0.unk_08 = param0;
     Unk_ov96_0223DDE0.unk_0C = param1;
 }
 
-void ov96_0223B15C(void)
-{
+void ov96_0223B15C(void) {
     switch (Unk_ov96_0223DDE0.unk_00) {
     case UnkEnum_ov96_0223B15C_00:
         break;
@@ -225,8 +223,7 @@ void ov96_0223B15C(void)
     }
 }
 
-BOOL ov96_0223B3D4(void)
-{
+BOOL ov96_0223B3D4(void) {
     switch (Unk_ov96_0223DDE0.unk_00) {
     case UnkEnum_ov96_0223B15C_01:
         return 1;
@@ -240,13 +237,11 @@ BOOL ov96_0223B3D4(void)
     return 0;
 }
 
-s32 ov96_0223B3F4(void)
-{
+s32 ov96_0223B3F4(void) {
     return Unk_ov96_0223DDE0.unk_04;
 }
 
-void ov96_0223B400(s32 param0)
-{
+void ov96_0223B400(s32 param0) {
     ov60_0221FC84();
 
     Unk_ov96_0223DDE0.unk_14[0] = (u8)(param0 - 1);
@@ -265,8 +260,7 @@ void ov96_0223B400(s32 param0)
     }
 }
 
-void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
-{
+void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2) {
     Unk_ov96_0223DDE0.unk_108 = (u8 *)param2;
 
     ov60_0221FC84();
@@ -288,8 +282,7 @@ void ov96_0223B450(s32 param0, s32 param1, UnkStruct_ov96_0223B450 *param2)
     }
 }
 
-void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223B450_sub1 *param3)
-{
+void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223B450_sub1 *param3) {
     ov60_0221FC84();
 
     memcpy(&Unk_ov96_0223DDE0.unk_14[0], param3, sizeof(UnkStruct_ov96_0223B450_sub1));
@@ -314,8 +307,7 @@ void ov96_0223B4B0(s32 param0, s32 param1, s32 param2, const UnkStruct_ov96_0223
     }
 }
 
-void ov96_0223B530(void)
-{
+void ov96_0223B530(void) {
     ov60_0221FC84();
 
     if (ov96_0223B5D0((const u8 *)("http://gamestats2.gs.nintendowifi.net/pokemondpds/"
@@ -332,8 +324,7 @@ void ov96_0223B530(void)
     }
 }
 
-void ov96_0223B574(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1)
-{
+void ov96_0223B574(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B574_1 *param1) {
     OS_GetMacAddress((u8 *)param0->unk_14);
 
     memcpy(Unk_ov96_0223DDE0.unk_14, param0, sizeof(UnkStruct_ov96_0223B574));
@@ -355,8 +346,7 @@ void ov96_0223B574(const UnkStruct_ov96_0223B574 *param0, UnkStruct_ov96_0223B57
     }
 }
 
-static BOOL ov96_0223B5D0(const u8 *param0, const void *param1, int param2, void *param3, int param4)
-{
+static BOOL ov96_0223B5D0(const u8 *param0, const void *param1, int param2, void *param3, int param4) {
     switch (ov60_0221FCA8(param0, Unk_ov96_0223DDE0.unk_08, param1, param2, (u8 *)param3, param4)) {
     case 0:
         return 1;
@@ -370,8 +360,7 @@ static BOOL ov96_0223B5D0(const u8 *param0, const void *param1, int param2, void
     return 0;
 }
 
-static int ov96_0223B608(int param0)
-{
+static int ov96_0223B608(int param0) {
     int v0;
 
     switch (param0) {

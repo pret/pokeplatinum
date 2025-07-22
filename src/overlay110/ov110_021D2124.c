@@ -63,8 +63,7 @@ static const UnkStruct_ov110_021D2278 Unk_ov110_021D2278[5] = {
     { Unk_ov110_021D22D8, 0x9 }
 };
 
-void ov110_021D2124(BgConfig *param0, Window *param1, u8 param2)
-{
+void ov110_021D2124(BgConfig *param0, Window *param1, u8 param2) {
     u8 v0;
     const WindowTemplate *v1 = Unk_ov110_021D2278[param2].unk_00;
     u32 v2 = Unk_ov110_021D2278[param2].unk_04;
@@ -77,8 +76,7 @@ void ov110_021D2124(BgConfig *param0, Window *param1, u8 param2)
     return;
 }
 
-void ov110_021D216C(Window *param0, u8 param1)
-{
+void ov110_021D216C(Window *param0, u8 param1) {
     u16 v0;
     u32 v1 = Unk_ov110_021D2278[param1].unk_04;
 

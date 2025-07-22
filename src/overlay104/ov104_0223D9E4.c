@@ -59,8 +59,7 @@ static const u16 Unk_ov104_022418B0[] = {
     0x15
 };
 
-UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1)
-{
+UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1) {
     UnkStruct_ov104_0223DA28 *v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223DA28));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223DA28));
 
@@ -72,15 +71,13 @@ UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1)
     return v0;
 }
 
-void ov104_0223DA28(UnkStruct_ov104_0223DA28 *param0)
-{
+void ov104_0223DA28(UnkStruct_ov104_0223DA28 *param0) {
     ov104_0223DB34(param0->unk_00);
     ov104_0223DC04(param0->unk_04);
     Heap_Free(param0);
 }
 
-static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
-{
+static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0) {
     UnkStruct_ov104_0223DB34 *v0;
 
     GF_ASSERT(2 == NELEMS(Unk_ov104_022418B0));
@@ -130,14 +127,12 @@ static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
     return v0;
 }
 
-static void ov104_0223DB34(UnkStruct_ov104_0223DB34 *param0)
-{
+static void ov104_0223DB34(UnkStruct_ov104_0223DB34 *param0) {
     SysTask_Done(param0->unk_00);
     Heap_Free(param0);
 }
 
-static void ov104_0223DB48(SysTask *param0, void *param1)
-{
+static void ov104_0223DB48(SysTask *param0, void *param1) {
     u32 v0;
     UnkStruct_ov104_0223DB34 *v1 = param1;
 
@@ -158,8 +153,7 @@ static void ov104_0223DB48(SysTask *param0, void *param1)
     v1->unk_22009 ^= 1;
 }
 
-static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0)
-{
+static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0) {
     UnkStruct_ov104_0223DC04 *v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223DC04));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223DC04));
 
@@ -178,14 +172,12 @@ static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0)
     return v0;
 }
 
-static void ov104_0223DC04(UnkStruct_ov104_0223DC04 *param0)
-{
+static void ov104_0223DC04(UnkStruct_ov104_0223DC04 *param0) {
     SysTask_Done(param0->unk_00);
     Heap_Free(param0);
 }
 
-static void ov104_0223DC18(SysTask *param0, void *param1)
-{
+static void ov104_0223DC18(SysTask *param0, void *param1) {
     UnkStruct_ov104_0223DC04 *v0 = param1;
 
     if (v0->unk_69 < 8) {

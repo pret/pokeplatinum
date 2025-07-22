@@ -16,8 +16,7 @@
 #include "overlay097/struct_ov97_02233674.h"
 #include "overlay097/struct_ov97_022339EC_sub1.h"
 
-static BOOL ov97_02232DC8(void)
-{
+static BOOL ov97_02232DC8(void) {
     WMErrCode v0;
 
     v0 = WM_SetIndCallback(ov97_022323B0);
@@ -30,8 +29,7 @@ static BOOL ov97_02232DC8(void)
     return 1;
 }
 
-static void ov97_02232DE8(void)
-{
+static void ov97_02232DE8(void) {
     switch (ov97_02233418()) {
     case 0:
     case 2:
@@ -43,8 +41,7 @@ static void ov97_02232DE8(void)
     }
 }
 
-static void ov97_02232E00(const void *param0, u32 param1, u16 param2)
-{
+static void ov97_02232E00(const void *param0, u32 param1, u16 param2) {
     const WMParentParam *v0 = ov97_02233408();
 
     if (param1 > v0->parentMaxSize) {
@@ -55,8 +52,7 @@ static void ov97_02232E00(const void *param0, u32 param1, u16 param2)
     (void)ov97_02233814(param0, param1, param2);
 }
 
-static u32 ov97_02232E28(void)
-{
+static u32 ov97_02232E28(void) {
     u32 v0;
     u32 v1;
     u32 v2;
@@ -68,8 +64,7 @@ static u32 ov97_02232E28(void)
     return v2;
 }
 
-static u32 ov97_02232E30(void)
-{
+static u32 ov97_02232E30(void) {
     u32 v0;
     u32 v1;
     u32 v2;
@@ -81,8 +76,7 @@ static u32 ov97_02232E30(void)
     return v2;
 }
 
-void ov97_02232E38(UnkStruct_ov97_02232E38 *param0, void *param1)
-{
+void ov97_02232E38(UnkStruct_ov97_02232E38 *param0, void *param1) {
     WMParentParam *v0 = ov97_02233408();
     UnkStruct_ov97_0223222C *v1 = ov97_02233410();
     void *v2 = param1;
@@ -157,8 +151,7 @@ void ov97_02232E38(UnkStruct_ov97_02232E38 *param0, void *param1)
     (void)WM_GetNextTgid();
 }
 
-static void ov97_02232F68(void)
-{
+static void ov97_02232F68(void) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
 
     if (v0->unk_19 == 1) {
@@ -182,8 +175,7 @@ static void ov97_02232F68(void)
     }
 }
 
-static void ov97_02232FC4(void)
-{
+static void ov97_02232FC4(void) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
 
     if (v0->unk_19 == 0) {
@@ -229,8 +221,7 @@ static void ov97_02232FC4(void)
     }
 }
 
-static void ov97_02233080(void)
-{
+static void ov97_02233080(void) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
 
     switch (v0->unk_18) {
@@ -243,8 +234,7 @@ static void ov97_02233080(void)
     }
 }
 
-static void ov97_022330A0(void)
-{
+static void ov97_022330A0(void) {
     UnkStruct_ov97_02232620 *v0 = ov97_02233508();
 
     switch (ov97_02233418()) {
@@ -261,8 +251,7 @@ static void ov97_022330A0(void)
     }
 }
 
-static void ov97_022330CC(void)
-{
+static void ov97_022330CC(void) {
     switch (ov97_02233418()) {
     case 10:
         ov97_02233080();
@@ -272,8 +261,7 @@ static void ov97_022330CC(void)
     }
 }
 
-void ov97_022330DC(void)
-{
+void ov97_022330DC(void) {
     if (ov97_02233418() == 12) {
         return;
     }
@@ -317,15 +305,13 @@ void ov97_022330DC(void)
     }
 }
 
-void ov97_02233120()
-{
+void ov97_02233120() {
     ov97_02233518();
     ov97_02233454(1);
     ov97_02232DE8();
 }
 
-static u32 ov97_02233134(void)
-{
+static u32 ov97_02233134(void) {
     int v0 = ov97_02233448();
     u32 v1 = 0;
 
@@ -346,8 +332,7 @@ static u32 ov97_02233134(void)
     return v1;
 }
 
-BOOL ov97_0223316C(u32 param0)
-{
+BOOL ov97_0223316C(u32 param0) {
     if ((ov97_02233448() == 1) && (ov97_02233418() == 7)) {
         UnkStruct_ov97_02232620 *v0 = ov97_02233508();
 
@@ -359,8 +344,7 @@ BOOL ov97_0223316C(u32 param0)
     return 0;
 }
 
-void ov97_022331A8(u32 param0)
-{
+void ov97_022331A8(u32 param0) {
     if ((ov97_02233448() == 1) && (ov97_02233418() == 7)) {
         UnkStruct_ov97_02232620 *v0 = ov97_02233508();
 
@@ -373,8 +357,7 @@ void ov97_022331A8(u32 param0)
     }
 }
 
-static u32 ov97_022331F8(void)
-{
+static u32 ov97_022331F8(void) {
     int v0 = ov97_02233448();
     u32 v1 = 0;
 
@@ -395,8 +378,7 @@ static u32 ov97_022331F8(void)
     return v1;
 }
 
-u32 ov97_02233230(void)
-{
+u32 ov97_02233230(void) {
     UnkStruct_ov97_0223222C *v0 = ov97_02233410();
 
     if (!v0->unk_20) {
@@ -406,8 +388,7 @@ u32 ov97_02233230(void)
     }
 }
 
-u32 ov97_02233248(void)
-{
+u32 ov97_02233248(void) {
     int v0 = ov97_02233448();
     u32 v1;
 
@@ -426,8 +407,7 @@ u32 ov97_02233248(void)
     return v1;
 }
 
-void ov97_02233268(void)
-{
+void ov97_02233268(void) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
     UnkStruct_ov97_02233268 *v1 = ov97_02233590();
 
@@ -444,8 +424,7 @@ void ov97_02233268(void)
     }
 }
 
-void ov97_0223329C(void)
-{
+void ov97_0223329C(void) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
     UnkStruct_ov97_02233268 *v1 = ov97_02233590();
 
@@ -460,8 +439,7 @@ void ov97_0223329C(void)
     v0->unk_1C = (u8)0xFE;
 }
 
-void ov97_022332C8(void *param0, u32 param1, u32 param2)
-{
+void ov97_022332C8(void *param0, u32 param1, u32 param2) {
     UnkStruct_ov97_02232AC8 *v0 = ov97_02233538();
 
     if ((int)param2 > 0xF0) {
@@ -479,8 +457,7 @@ void ov97_022332C8(void *param0, u32 param1, u32 param2)
     v0->unk_1C = (u8)param2;
 }
 
-BOOL ov97_022332F4(void)
-{
+BOOL ov97_022332F4(void) {
     u32 v0 = 0;
 
     switch (ov97_02233448()) {
@@ -502,8 +479,7 @@ BOOL ov97_022332F4(void)
     return 0;
 }
 
-BOOL ov97_02233320(void)
-{
+BOOL ov97_02233320(void) {
     u32 v0 = 0;
 
     switch (ov97_02233448()) {
@@ -525,8 +501,7 @@ BOOL ov97_02233320(void)
     return 0;
 }
 
-BOOL ov97_0223334C(void)
-{
+BOOL ov97_0223334C(void) {
     switch (ov97_02233448()) {
     case 1:
     case 2: {
@@ -550,8 +525,7 @@ BOOL ov97_0223334C(void)
     return 0;
 }
 
-BOOL ov97_02233388(void)
-{
+BOOL ov97_02233388(void) {
     switch (ov97_02233448()) {
     case 2: {
         UnkStruct_ov97_02232254 *v0 = ov97_02233510();
@@ -574,8 +548,7 @@ BOOL ov97_02233388(void)
     }
 }
 
-void ov97_022333BC(void)
-{
+void ov97_022333BC(void) {
     ov97_0223343C(12);
 
     switch (ov97_02233418()) {
@@ -595,8 +568,7 @@ void ov97_022333BC(void)
     }
 }
 
-BOOL ov97_022333FC(void)
-{
+BOOL ov97_022333FC(void) {
     UnkStruct_ov97_0223222C *v0 = ov97_02233410();
     return v0->unk_20;
 }

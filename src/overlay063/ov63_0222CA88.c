@@ -24,8 +24,7 @@ static BOOL ov63_0222CC3C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
 static BOOL ov63_0222CCA4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BE18 *param1, int param2);
 static void ov63_0222CCB8(UnkStruct_ov63_0222CCB8 *param0, const UnkStruct_ov63_0222BEC0 *param1, int param2, u32 param3, int param4);
 
-BOOL ov63_0222CA88(const UnkStruct_ov63_0222BCE8 *param0, const UnkStruct_ov63_0222BE18 *param1, const UnkStruct_ov63_0222D894 *param2, UnkStruct_ov63_0222CCB8 *param3)
-{
+BOOL ov63_0222CA88(const UnkStruct_ov63_0222BCE8 *param0, const UnkStruct_ov63_0222BE18 *param1, const UnkStruct_ov63_0222D894 *param2, UnkStruct_ov63_0222CCB8 *param3) {
     const UnkStruct_ov63_0222BEC0 *v0;
     static BOOL (*const v1[12])(const UnkStruct_ov63_0222BEC0 *, const UnkStruct_ov63_0222BCE8 *, const UnkStruct_ov63_0222BE18 *, const UnkStruct_ov63_0222D894 *, UnkStruct_ov63_0222CCB8 *) = {
         ov63_0222CAE4,
@@ -56,8 +55,7 @@ BOOL ov63_0222CA88(const UnkStruct_ov63_0222BCE8 *param0, const UnkStruct_ov63_0
     return v2;
 }
 
-static BOOL ov63_0222CAE4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CAE4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     s32 v0 = ov63_0222BF90(param0, 5);
 
     if ((v0 == 0) || (v0 == 4)) {
@@ -68,8 +66,7 @@ static BOOL ov63_0222CAE4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
     return 0;
 }
 
-static BOOL ov63_0222CB10(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CB10(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     s32 v0;
     s32 v1;
 
@@ -86,8 +83,7 @@ static BOOL ov63_0222CB10(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
     return 0;
 }
 
-static BOOL ov63_0222CB4C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CB4C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     s32 v0;
     BOOL v1;
     s32 v2;
@@ -127,13 +123,11 @@ static BOOL ov63_0222CB4C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
     return 0;
 }
 
-static BOOL ov63_0222CBC0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CBC0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     return ov63_0222CB4C(param0, param1, param2, param3, param4);
 }
 
-static BOOL ov63_0222CBD0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CBD0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     s32 v0 = ov63_0222BF90(param0, 5);
 
     if (v0 == 0) {
@@ -144,19 +138,16 @@ static BOOL ov63_0222CBD0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
     return 0;
 }
 
-static BOOL ov63_0222CBF8(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CBF8(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     GF_ASSERT(0);
     return 0;
 }
 
-static BOOL ov63_0222CC04(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CC04(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     return ov63_0222CB4C(param0, param1, param2, param3, param4);
 }
 
-static BOOL ov63_0222CC14(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
-{
+static BOOL ov63_0222CC14(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4) {
     s32 v0 = ov63_0222BF90(param0, 5);
 
     if (v0 == 0) {
@@ -167,8 +158,7 @@ static BOOL ov63_0222CC14(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
     return 0;
 }
 
-static BOOL ov63_0222CC3C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, int param2)
-{
+static BOOL ov63_0222CC3C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, int param2) {
     UnkStruct_ov63_0222CC3C v0;
 
     v0 = ov63_0222C0E4(param0);
@@ -177,8 +167,7 @@ static BOOL ov63_0222CC3C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
     return ov63_0222BDAC(param1, (v0.unk_00) / 16, (v0.unk_02) / 16);
 }
 
-static BOOL ov63_0222CCA4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BE18 *param1, int param2)
-{
+static BOOL ov63_0222CCA4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BE18 *param1, int param2) {
     const UnkStruct_ov63_0222BEC0 *v0 = ov63_0222C1C4(param0, param1, param2);
 
     if (v0 == NULL) {
@@ -188,8 +177,7 @@ static BOOL ov63_0222CCA4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
     return 1;
 }
 
-static void ov63_0222CCB8(UnkStruct_ov63_0222CCB8 *param0, const UnkStruct_ov63_0222BEC0 *param1, int param2, u32 param3, int param4)
-{
+static void ov63_0222CCB8(UnkStruct_ov63_0222CCB8 *param0, const UnkStruct_ov63_0222BEC0 *param1, int param2, u32 param3, int param4) {
     param0->unk_00 = ov63_0222C0E4(param1);
     param0->unk_04 = param2;
     param0->unk_07 = param3;

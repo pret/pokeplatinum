@@ -65,8 +65,7 @@
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background);
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
 
-FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
-{
+FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType) {
     int i;
     FieldBattleDTO *dto = Heap_AllocFromHeap(heapID, sizeof(FieldBattleDTO));
     MI_CpuClear8(dto, sizeof(FieldBattleDTO));
@@ -133,22 +132,19 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapId heapID, int countSafariBalls)
-{
+FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapId heapID, int countSafariBalls) {
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_SAFARI);
     dto->countSafariBalls = countSafariBalls;
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapId heapID, int countParkBalls)
-{
+FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapId heapID, int countParkBalls) {
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_PAL_PARK);
     dto->countSafariBalls = countParkBalls;
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const FieldSystem *fieldSystem)
-{
+FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const FieldSystem *fieldSystem) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
@@ -186,8 +182,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     return dto;
 }
 
-void FieldBattleDTO_Free(FieldBattleDTO *dto)
-{
+void FieldBattleDTO_Free(FieldBattleDTO *dto) {
     int i;
     for (i = 0; i < 4; i++) {
         GF_ASSERT(dto->parties[i] != NULL);
@@ -211,32 +206,27 @@ void FieldBattleDTO_Free(FieldBattleDTO *dto)
     Heap_Free(dto);
 }
 
-void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int battler)
-{
+void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int battler) {
     GF_ASSERT(battler < MAX_BATTLERS);
     BOOL success = Party_AddPokemon(dto->parties[battler], src);
     GF_ASSERT(success);
 }
 
-void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, int battler)
-{
+void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, int battler) {
     GF_ASSERT(battler < MAX_BATTLERS);
     Party_Copy(src, dto->parties[battler]);
 }
 
-void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerInfo *src, int battler)
-{
+void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerInfo *src, int battler) {
     GF_ASSERT(battler < MAX_BATTLERS);
     TrainerInfo_Copy(src, dto->trainerInfo[battler]);
 }
 
-void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry *src, int battler)
-{
+void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry *src, int battler) {
     CopyChatotCryData(dto->chatotCries[battler], src);
 }
 
-void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *saveData, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)
-{
+void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *saveData, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
     Party *party = SaveData_GetParty(saveData);
     Bag *bag = SaveData_GetBag(saveData);
@@ -280,14 +270,12 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->saveData = saveData;
 }
 
-void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem)
-{
+void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem) {
     FieldBattleDTO_InitFromGameState(dto, fieldSystem, fieldSystem->saveData, fieldSystem->location->mapId, fieldSystem->journalEntry, fieldSystem->bagCursor, fieldSystem->battleSubscreenCursorOn);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
 }
 
-void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const FieldSystem *fieldSystem, int level)
-{
+void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const FieldSystem *fieldSystem, int level) {
     int i;
     u32 levelBaseExp;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
@@ -337,8 +325,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     FieldBattleDTO_CopyPlayerInfoToTrainerData(dto);
 }
 
-void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const Party *party, const u8 *partyOrder)
-{
+void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const Party *party, const u8 *partyOrder) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
@@ -411,13 +398,11 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
     }
 }
 
-void FieldBattleDTO_InitWithPartyOrderFromSave(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const u8 *partyOrder)
-{
+void FieldBattleDTO_InitWithPartyOrderFromSave(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const u8 *partyOrder) {
     FieldBattleDTO_InitWithPartyOrder(dto, fieldSystem, SaveData_GetParty(fieldSystem->saveData), partyOrder);
 }
 
-void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fieldSystem)
-{
+void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fieldSystem) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
@@ -432,8 +417,7 @@ void FieldBattleDTO_UpdateFieldSystem(const FieldBattleDTO *dto, FieldSystem *fi
     *fieldSysSafariBalls = dto->countSafariBalls;
 }
 
-void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldSystem)
-{
+void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldSystem) {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
@@ -468,8 +452,7 @@ static const enum BattleTerrain sTerrainForBackground[] = {
     [BACKGROUND_BATTLE_HALL] = TERRAIN_BATTLE_HALL,
 };
 
-static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background)
-{
+static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background) {
     u8 behavior = TerrainCollisionManager_GetTileBehavior(fieldSystem, fieldSystem->location->x, fieldSystem->location->z);
     if (TileBehavior_IsIce(behavior)) {
         return TERRAIN_ICE;
@@ -497,8 +480,7 @@ static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground bac
     return TERRAIN_MAX;
 }
 
-static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem)
-{
+static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem) {
     PlayerData *player = FieldOverworldState_GetPlayerData(SaveData_GetFieldOverworldState(fieldSystem->saveData));
     dto->background = MapHeader_GetBattleBG(fieldSystem->location->mapId);
     if (player->form == PLAYER_AVATAR_SURFING) {
@@ -508,13 +490,11 @@ static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fiel
     dto->terrain = CalcTerrain(fieldSystem, dto->background);
 }
 
-void FieldBattleDTO_SetWaterTerrain(FieldBattleDTO *dto)
-{
+void FieldBattleDTO_SetWaterTerrain(FieldBattleDTO *dto) {
     dto->terrain = TERRAIN_WATER;
 }
 
-BOOL CheckPlayerWonBattle(u32 battleResult)
-{
+BOOL CheckPlayerWonBattle(u32 battleResult) {
     switch (battleResult) {
     case BATTLE_RESULT_LOSE:
     case BATTLE_RESULT_DRAW:
@@ -524,8 +504,7 @@ BOOL CheckPlayerWonBattle(u32 battleResult)
     }
 }
 
-BOOL CheckPlayerLostBattle(u32 battleResult)
-{
+BOOL CheckPlayerLostBattle(u32 battleResult) {
     switch (battleResult) {
     case BATTLE_RESULT_WIN:
     case BATTLE_RESULT_CAPTURED_MON:
@@ -535,8 +514,7 @@ BOOL CheckPlayerLostBattle(u32 battleResult)
     }
 }
 
-BOOL CheckPlayerDidNotCaptureWildMon(u32 battleResult)
-{
+BOOL CheckPlayerDidNotCaptureWildMon(u32 battleResult) {
     switch (battleResult) {
     case BATTLE_RESULT_CAPTURED_MON:
         return FALSE;
@@ -545,8 +523,7 @@ BOOL CheckPlayerDidNotCaptureWildMon(u32 battleResult)
     }
 }
 
-void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto)
-{
+void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto) {
     dto->trainer[BATTLER_PLAYER_1].header.trainerType = TrainerInfo_Gender(dto->trainerInfo[BATTLER_PLAYER_1]);
     CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
     dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];

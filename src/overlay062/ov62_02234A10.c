@@ -35,8 +35,7 @@ static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0);
 static BOOL ov62_02234FCC(UnkStruct_0208C06C *param0);
 BOOL ov62_02235008(UnkStruct_0208C06C *param0);
 
-static void ov62_02234A10(UnkStruct_0208C06C *param0)
-{
+static void ov62_02234A10(UnkStruct_0208C06C *param0) {
     Strbuf *v0;
     int v1;
     Window *v2 = &param0->unk_8A4;
@@ -54,15 +53,13 @@ static void ov62_02234A10(UnkStruct_0208C06C *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
-static void ov62_02234A90(UnkStruct_0208C06C *param0)
-{
+static void ov62_02234A90(UnkStruct_0208C06C *param0) {
     Window_ClearAndCopyToVRAM(&param0->unk_8A4);
     Window_Remove(&param0->unk_8A4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
-static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0) {
     switch (param0->unk_08) {
     case 0:
         if (ov62_022300BC(param0) == 1) {
@@ -147,8 +144,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0) {
     switch (param0->unk_08) {
     case 0:
         ov62_02234540(param0, 1);
@@ -221,8 +217,7 @@ static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0) {
     switch (param0->unk_08) {
     case 0:
         sub_0208B948(param0->unk_6F0, 256 / 2, 192 / 2);
@@ -257,8 +252,7 @@ static BOOL ov62_02234EF8(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-static BOOL ov62_02234FCC(UnkStruct_0208C06C *param0)
-{
+static BOOL ov62_02234FCC(UnkStruct_0208C06C *param0) {
     BOOL v0 = ov62_02235008(param0);
 
     {
@@ -271,8 +265,7 @@ static BOOL ov62_02234FCC(UnkStruct_0208C06C *param0)
     return v0;
 }
 
-BOOL ov62_02235008(UnkStruct_0208C06C *param0)
-{
+BOOL ov62_02235008(UnkStruct_0208C06C *param0) {
     UnkStruct_ov62_02235008 *v0;
 
     switch (param0->unk_08) {

@@ -55,8 +55,7 @@ static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0);
 static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0);
 static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0);
 
-int ov22_0225B660(ApplicationManager *appMan, int *param1)
-{
+int ov22_0225B660(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov22_0225B85C *v0;
     UnkStruct_02041DC8 *v1;
 
@@ -109,8 +108,7 @@ int ov22_0225B660(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov22_0225B738(ApplicationManager *appMan, int *param1)
-{
+int ov22_0225B738(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov22_0225B85C *v0 = ApplicationManager_Data(appMan);
 
     {
@@ -154,8 +152,7 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov22_0225B7FC(ApplicationManager *appMan, int *param1)
-{
+int ov22_0225B7FC(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov22_0225B85C *v0 = ApplicationManager_Data(appMan);
 
     ov22_0225B020(v0->unk_10);
@@ -173,16 +170,14 @@ int ov22_0225B7FC(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov22_0225B848(void *param0)
-{
+static void ov22_0225B848(void *param0) {
     UnkStruct_ov22_0225B85C *v0 = param0;
 
     ov22_0225B06C(v0->unk_10);
     ov22_0225561C(&v0->unk_14);
 }
 
-static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0) {
     void *v0;
     NNSG2dScreenData *v1;
     int v2;
@@ -207,15 +202,13 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_14.unk_40, 1);
 }
 
-static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0) {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 32, HEAP_ID_14);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
 }
 
-static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0) {
     ov22_02255248(&param0->unk_14, param0->unk_14.unk_5C, 233, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     ov22_02255268(&param0->unk_14, param0->unk_14.unk_5C, 234, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 6, 1000);
     ov22_0225528C(&param0->unk_14, param0->unk_14.unk_5C, 232, 0, 1000);
@@ -226,8 +219,7 @@ static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)
     Sprite_SetExplicitPriority(param0->unk_1FC, 1);
 }
 
-static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0) {
     ov22_022552C4(&param0->unk_14, 1000);
     ov22_022552D8(&param0->unk_14, 1000);
     ov22_022552EC(&param0->unk_14, 1000);
@@ -235,8 +227,7 @@ static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
     Sprite_Delete(param0->unk_1FC);
 }
 
-static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0) {
     param0->unk_200 = Window_New(HEAP_ID_14, 1);
 
     Window_Add(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
@@ -247,15 +238,13 @@ static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
     Bg_SetOffset(param0->unk_14.unk_40, 3, 3, 0);
 }
 
-static void ov22_0225BAA8(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225BAA8(UnkStruct_ov22_0225B85C *param0) {
     Window_ClearAndCopyToVRAM(param0->unk_200);
     Window_Remove(param0->unk_200);
     Windows_Delete(param0->unk_200, 1);
 }
 
-static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0) {
     Window_FillTilemap(param0->unk_200, 0);
 
     if (param0->unk_0C == 0) {
@@ -267,8 +256,7 @@ static void ov22_0225BAD0(UnkStruct_ov22_0225B85C *param0)
     Window_CopyToVRAM(param0->unk_200);
 }
 
-static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0) {
     VecFx32 v0;
     int v1, v2;
     int v3;
@@ -314,8 +302,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     StringTemplate_Free(v5);
 }
 
-static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
-{
+static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0) {
     int v0;
     StringTemplate *v1;
     Strbuf *v2;

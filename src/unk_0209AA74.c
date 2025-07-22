@@ -65,8 +65,7 @@ static const WindowTemplate Unk_020F8B20 = {
     0x23
 };
 
-void sub_0209AA74(int heapID, int param1)
-{
+void sub_0209AA74(int heapID, int param1) {
     BgConfig *v0;
     Window v1;
     MessageLoader *v2;

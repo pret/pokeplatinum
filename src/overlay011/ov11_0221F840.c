@@ -11,8 +11,7 @@
 static u32 ov11_0221F914(u32 param0, BOOL param1);
 static u32 ov11_0221F930(u32 param0, BOOL param1);
 
-ParticleSystem *ov11_0221F840(int heapID)
-{
+ParticleSystem *ov11_0221F840(int heapID) {
     ParticleSystem *v0;
     void *v1;
     Camera *camera;
@@ -28,8 +27,7 @@ ParticleSystem *ov11_0221F840(int heapID)
     return v0;
 }
 
-ParticleSystem *ov11_0221F888(int heapID)
-{
+ParticleSystem *ov11_0221F888(int heapID) {
     ParticleSystem *v0;
     void *v1;
     Camera *camera;
@@ -50,16 +48,14 @@ ParticleSystem *ov11_0221F888(int heapID)
     return v0;
 }
 
-void ov11_0221F8D8(ParticleSystem *param0)
-{
+void ov11_0221F8D8(ParticleSystem *param0) {
     void *v0 = ParticleSystem_GetHeapStart(param0);
 
     ParticleSystem_Free(param0);
     Heap_Free(v0);
 }
 
-void ov11_0221F8F0(void)
-{
+void ov11_0221F8F0(void) {
     int v0;
     const MtxFx43 *v1;
 
@@ -79,8 +75,7 @@ void ov11_0221F8F0(void)
     ParticleSystem_UpdateAll();
 }
 
-static u32 ov11_0221F914(u32 param0, BOOL param1)
-{
+static u32 ov11_0221F914(u32 param0, BOOL param1) {
     NNSGfdTexKey v0;
     u32 v1;
 
@@ -91,8 +86,7 @@ static u32 ov11_0221F914(u32 param0, BOOL param1)
     return v1;
 }
 
-static u32 ov11_0221F930(u32 param0, BOOL param1)
-{
+static u32 ov11_0221F930(u32 param0, BOOL param1) {
     NNSGfdPlttKey v0;
     u32 v1;
 

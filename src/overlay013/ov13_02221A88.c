@@ -187,8 +187,7 @@ static const u32 Unk_ov13_02228EB0[] = {
     0x49
 };
 
-void ov13_02221A88(BattleParty *param0)
-{
+void ov13_02221A88(BattleParty *param0) {
     u32 v0;
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -198,8 +197,7 @@ void ov13_02221A88(BattleParty *param0)
     ov13_02221AC4(param0, param0->currentScreen);
 }
 
-void ov13_02221AC4(BattleParty *param0, u32 param1)
-{
+void ov13_02221AC4(BattleParty *param0, u32 param1) {
     const WindowTemplate *v0;
     u8 v1;
 
@@ -250,13 +248,11 @@ void ov13_02221AC4(BattleParty *param0, u32 param1)
     }
 }
 
-void ov13_02221BB0(BattleParty *param0)
-{
+void ov13_02221BB0(BattleParty *param0) {
     Windows_Delete(param0->unk_206C, param0->unk_2070);
 }
 
-void ov13_02221BC8(BattleParty *param0)
-{
+void ov13_02221BC8(BattleParty *param0) {
     u32 v0;
 
     Windows_Delete(param0->unk_206C, param0->unk_2070);
@@ -266,8 +262,7 @@ void ov13_02221BC8(BattleParty *param0)
     }
 }
 
-void ov13_02221BF8(BattleParty *param0, u32 param1)
-{
+void ov13_02221BF8(BattleParty *param0, u32 param1) {
     switch (param1) {
     case 0:
         ov13_0222339C(param0);
@@ -300,8 +295,7 @@ void ov13_02221BF8(BattleParty *param0, u32 param1)
     }
 }
 
-static void ov13_02221C54(BattleParty *param0, u32 param1, u32 param2, u16 param3, u8 param4, u8 param5)
-{
+static void ov13_02221C54(BattleParty *param0, u32 param1, u32 param2, u16 param3, u8 param4, u8 param5) {
     Window *v0;
     BattlePartyPokemon *v1;
     Strbuf *v2;
@@ -354,16 +348,14 @@ static void ov13_02221C54(BattleParty *param0, u32 param1, u32 param2, u16 param
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02221E08(BattleParty *param0, u32 param1, u16 param2, u8 param3, u8 param4)
-{
+static void ov13_02221E08(BattleParty *param0, u32 param1, u16 param2, u8 param3, u8 param4) {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param2];
 
     sub_0200C648(param0->unk_1FA0, 1, v0->level, 3, 0, &param0->unk_206C[param1], param3 + 8, param4);
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
-static void ov13_02221E50(BattleParty *param0, u32 param1, u16 param2, u8 param3, u8 param4)
-{
+static void ov13_02221E50(BattleParty *param0, u32 param1, u16 param2, u8 param3, u8 param4) {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param2];
 
     sub_0200C5BC(param0->unk_1FA0, v0->curHP, 3, 1, &param0->unk_206C[param1], param3, param4);
@@ -372,8 +364,7 @@ static void ov13_02221E50(BattleParty *param0, u32 param1, u16 param2, u8 param3
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
-static void ov13_02221ED0(BattleParty *param0, u32 param1, u16 param2, u8 param3, u8 param4)
-{
+static void ov13_02221ED0(BattleParty *param0, u32 param1, u16 param2, u8 param3, u8 param4) {
     BattlePartyPokemon *v0;
     u8 v1 = 1;
     u8 v2;
@@ -404,8 +395,7 @@ static void ov13_02221ED0(BattleParty *param0, u32 param1, u16 param2, u8 param3
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
-static void ov13_02221FA8(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_02221FA8(BattleParty *param0, u32 param1, u32 param2) {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param2];
     Strbuf *v1 = Strbuf_Init(16, param0->context->heapID);
     Strbuf *v2 = MessageLoader_GetNewStrbuf(param0->messageLoader, 8);
@@ -418,8 +408,7 @@ static void ov13_02221FA8(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
-static void ov13_02222030(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_02222030(BattleParty *param0, u32 param1, u32 param2) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -442,8 +431,7 @@ static void ov13_02222030(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
-static void ov13_022220CC(BattleParty *param0, u32 param1, u32 param2, u32 param3, u16 param4, u16 param5, TextColor param6)
-{
+static void ov13_022220CC(BattleParty *param0, u32 param1, u32 param2, u32 param3, u16 param4, u16 param5, TextColor param6) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -468,8 +456,7 @@ static void ov13_022220CC(BattleParty *param0, u32 param1, u32 param2, u32 param
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222170(BattleParty *param0, u16 param1, u8 param2, u8 param3)
-{
+static void ov13_02222170(BattleParty *param0, u16 param1, u8 param2, u8 param3) {
     Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, 14);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_206C[param1], FONT_SYSTEM, v0, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
@@ -477,8 +464,7 @@ static void ov13_02222170(BattleParty *param0, u16 param1, u8 param2, u8 param3)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
-static void ov13_022221C8(BattleParty *param0, u32 param1)
-{
+static void ov13_022221C8(BattleParty *param0, u32 param1) {
     Strbuf *v0;
 
     Window_DrawMessageBoxWithScrollCursor(&param0->messageBoxWindows[0], 1, 1, 14);
@@ -491,8 +477,7 @@ static void ov13_022221C8(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->messageBoxWindows[0]);
 }
 
-static void ov13_0222222C(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_0222222C(BattleParty *param0, u32 param1, u32 param2) {
     Window *v0;
     Strbuf *v1;
     u32 v2;
@@ -506,8 +491,7 @@ static void ov13_0222222C(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222290(BattleParty *param0, u32 param1)
-{
+static void ov13_02222290(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -559,8 +543,7 @@ static void ov13_02222290(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[12 + v4]);
 }
 
-static void ov13_02222464(BattleParty *param0, u32 param1)
-{
+static void ov13_02222464(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -591,8 +574,7 @@ static void ov13_02222464(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[5 + v3]);
 }
 
-static void ov13_02222560(BattleParty *param0, u32 param1)
-{
+static void ov13_02222560(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -623,8 +605,7 @@ static void ov13_02222560(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[6 + v3]);
 }
 
-static void ov13_0222265C(BattleParty *param0, u32 param1)
-{
+static void ov13_0222265C(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -656,8 +637,7 @@ static void ov13_0222265C(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[7 + v3]);
 }
 
-static void ov13_0222275C(BattleParty *param0, u32 param1)
-{
+static void ov13_0222275C(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -688,8 +668,7 @@ static void ov13_0222275C(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[8 + v3]);
 }
 
-static void ov13_0222285C(BattleParty *param0, u32 param1)
-{
+static void ov13_0222285C(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -720,8 +699,7 @@ static void ov13_0222285C(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[9 + v3]);
 }
 
-static void ov13_0222295C(BattleParty *param0, u32 param1)
-{
+static void ov13_0222295C(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -767,8 +745,7 @@ static void ov13_0222295C(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[4 + v6]);
 }
 
-static void ov13_02222AF4(BattleParty *param0, u32 param1)
-{
+static void ov13_02222AF4(BattleParty *param0, u32 param1) {
     BattlePartyPokemon *v0;
     MessageLoader *v1;
     Strbuf *v2;
@@ -785,8 +762,7 @@ static void ov13_02222AF4(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[2 + v3]);
 }
 
-static void ov13_02222B6C(BattleParty *param0, u32 param1)
-{
+static void ov13_02222B6C(BattleParty *param0, u32 param1) {
     Window *v0 = &param0->unk_206C[param1];
     Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 51);
 
@@ -795,8 +771,7 @@ static void ov13_02222B6C(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222BB4(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_02222BB4(BattleParty *param0, u32 param1, u32 param2) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -830,8 +805,7 @@ static void ov13_02222BB4(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222C9C(BattleParty *param0, u32 param1)
-{
+static void ov13_02222C9C(BattleParty *param0, u32 param1) {
     Window *v0 = &param0->unk_206C[param1];
     Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 48);
 
@@ -840,8 +814,7 @@ static void ov13_02222C9C(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222CE4(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_02222CE4(BattleParty *param0, u32 param1, u32 param2) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -875,8 +848,7 @@ static void ov13_02222CE4(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222DCC(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_02222DCC(BattleParty *param0, u32 param1, u32 param2) {
     MessageLoader *v0;
     Window *v1;
     Strbuf *v2;
@@ -891,8 +863,7 @@ static void ov13_02222DCC(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov13_02222E2C(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_02222E2C(BattleParty *param0, u32 param1, u32 param2) {
     MessageLoader *v0;
     Window *v1;
     Strbuf *v2;
@@ -912,8 +883,7 @@ static void ov13_02222E2C(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov13_02222E94(BattleParty *param0, u32 param1)
-{
+static void ov13_02222E94(BattleParty *param0, u32 param1) {
     Window *v0;
     Strbuf *v1;
     u16 v2;
@@ -929,8 +899,7 @@ static void ov13_02222E94(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222EF8(BattleParty *param0, u32 param1, u32 param2)
-{
+static void ov13_02222EF8(BattleParty *param0, u32 param1, u32 param2) {
     Window *v0;
     Strbuf *v1;
 
@@ -956,8 +925,7 @@ static void ov13_02222EF8(BattleParty *param0, u32 param1, u32 param2)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_02222F74(BattleParty *param0, u32 param1, u32 param2, u32 param3)
-{
+static void ov13_02222F74(BattleParty *param0, u32 param1, u32 param2, u32 param3) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -995,8 +963,7 @@ static void ov13_02222F74(BattleParty *param0, u32 param1, u32 param2, u32 param
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_022230A8(BattleParty *param0, u32 param1)
-{
+static void ov13_022230A8(BattleParty *param0, u32 param1) {
     Window *v0;
     Strbuf *v1;
     u32 v2;
@@ -1016,8 +983,7 @@ static void ov13_022230A8(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-void ov13_02223118(BattleParty *param0)
-{
+void ov13_02223118(BattleParty *param0) {
     Window *v0;
     Strbuf *v1;
 
@@ -1036,8 +1002,7 @@ void ov13_02223118(BattleParty *param0)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_0222317C(BattleParty *param0, BattlePartyPokemonMove *param1, u32 param2)
-{
+static void ov13_0222317C(BattleParty *param0, BattlePartyPokemonMove *param1, u32 param2) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -1076,8 +1041,7 @@ static void ov13_0222317C(BattleParty *param0, BattlePartyPokemonMove *param1, u
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_022232C8(BattleParty *param0, BattlePartyPokemonMove *param1, u32 param2)
-{
+static void ov13_022232C8(BattleParty *param0, BattlePartyPokemonMove *param1, u32 param2) {
     Window *v0;
     Strbuf *v1;
     Strbuf *v2;
@@ -1104,8 +1068,7 @@ static void ov13_022232C8(BattleParty *param0, BattlePartyPokemonMove *param1, u
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_0222339C(BattleParty *param0)
-{
+static void ov13_0222339C(BattleParty *param0) {
     s32 v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->context->party); v0++) {
@@ -1135,8 +1098,7 @@ static void ov13_0222339C(BattleParty *param0)
     }
 }
 
-void ov13_02223448(BattleParty *param0, u8 param1)
-{
+void ov13_02223448(BattleParty *param0, u8 param1) {
     Window_FillRectWithColor(&param0->unk_206C[0 + param1], 0, 56, 32, 24, 8);
     Window_FillRectWithColor(&param0->unk_206C[0 + param1], 0, (48 + 16), 24, 64, 8);
 
@@ -1144,15 +1106,13 @@ void ov13_02223448(BattleParty *param0, u8 param1)
     ov13_02221ED0(param0, 0 + param1, param1, (48 + 16), 24);
 }
 
-void ov13_022234A8(BattleParty *param0, u8 param1)
-{
+void ov13_022234A8(BattleParty *param0, u8 param1) {
     if (param0->partyPokemon[param1].isEgg == 0) {
         ov13_02221E08(param0, 0 + param1, param1, 0, 32);
     }
 }
 
-static void ov13_022234C8(BattleParty *param0)
-{
+static void ov13_022234C8(BattleParty *param0) {
     Window_FillTilemap(&param0->unk_206C[0], 0);
     Window_FillTilemap(&param0->unk_206C[1], 0);
     Window_FillTilemap(&param0->unk_206C[2], 0);
@@ -1171,8 +1131,7 @@ static void ov13_022234C8(BattleParty *param0)
     }
 }
 
-static void ov13_02223550(BattleParty *param0, u32 param1)
-{
+static void ov13_02223550(BattleParty *param0, u32 param1) {
     Window *v0;
     BattlePartyPokemon *v1;
     Strbuf *v2;
@@ -1231,8 +1190,7 @@ static void ov13_02223550(BattleParty *param0, u32 param1)
     Window_ScheduleCopyToVRAM(v0);
 }
 
-static void ov13_022236B8(BattleParty *param0)
-{
+static void ov13_022236B8(BattleParty *param0) {
     BattlePartyPokemonMove *v0;
     u16 v1, v2;
 
@@ -1268,8 +1226,7 @@ static void ov13_022236B8(BattleParty *param0)
     param0->unk_2071 ^= 1;
 }
 
-static void ov13_022237F8(BattleParty *param0)
-{
+static void ov13_022237F8(BattleParty *param0) {
     u32 v0 = 22 * param0->unk_2071;
 
     Window_FillTilemap(&param0->unk_206C[19], 0);
@@ -1313,8 +1270,7 @@ static void ov13_022237F8(BattleParty *param0)
     param0->unk_2071 ^= 1;
 }
 
-static void ov13_02223A10(BattleParty *param0)
-{
+static void ov13_02223A10(BattleParty *param0) {
     BattlePartyPokemonMove *v0;
     u32 v1 = 11 * param0->unk_2071;
 
@@ -1347,8 +1303,7 @@ static void ov13_02223A10(BattleParty *param0)
     param0->unk_2071 ^= 1;
 }
 
-static void ov13_02223B74(BattleParty *param0)
-{
+static void ov13_02223B74(BattleParty *param0) {
     BattlePartyPokemonMove *v0;
     u32 v1;
 
@@ -1389,8 +1344,7 @@ static void ov13_02223B74(BattleParty *param0)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[5]);
 }
 
-static void ov13_02223C9C(BattleParty *param0)
-{
+static void ov13_02223C9C(BattleParty *param0) {
     Window_FillTilemap(&param0->unk_206C[0], 0);
     Window_FillTilemap(&param0->unk_206C[2], 0);
     Window_FillTilemap(&param0->unk_206C[3], 0);
@@ -1433,8 +1387,7 @@ static void ov13_02223C9C(BattleParty *param0)
     ov13_022230A8(param0, 11);
 }
 
-static void ov13_02223E68(BattleParty *param0)
-{
+static void ov13_02223E68(BattleParty *param0) {
     BattlePartyPokemonMove *v0;
     u32 v1;
 
@@ -1467,14 +1420,12 @@ static void ov13_02223E68(BattleParty *param0)
     Window_ScheduleCopyToVRAM(&param0->unk_206C[4]);
 }
 
-void ov13_02223F5C(BattleParty *param0, u16 param1, u16 param2)
-{
+void ov13_02223F5C(BattleParty *param0, u16 param1, u16 param2) {
     BattlePartyPokemonMove *v0 = &param0->partyPokemon[param0->context->selectedPartyIndex].moves[param2];
     ov13_022232C8(param0, v0, param1);
 }
 
-static void ov13_02223F7C(BattleParty *param0)
-{
+static void ov13_02223F7C(BattleParty *param0) {
     Window_FillTilemap(&param0->unk_206C[0], 0);
     Window_FillTilemap(&param0->unk_206C[2], 0);
     Window_FillTilemap(&param0->unk_206C[3], 0);
@@ -1517,21 +1468,18 @@ static void ov13_02223F7C(BattleParty *param0)
     ov13_022230A8(param0, 6);
 }
 
-void BattlePartyText_DisplayMessage(BattleParty *battleParty)
-{
+void BattlePartyText_DisplayMessage(BattleParty *battleParty) {
     Window_DrawMessageBoxWithScrollCursor(&battleParty->messageBoxWindows[1], TRUE, 1, 14);
     Window_FillTilemap(&battleParty->messageBoxWindows[1], 15);
     ov13_02224108(battleParty);
 }
 
-void ov13_02224108(BattleParty *param0)
-{
+void ov13_02224108(BattleParty *param0) {
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     param0->textPrinterID = Text_AddPrinterWithParams(&param0->messageBoxWindows[1], FONT_MESSAGE, param0->strbuf, 0, 0, BattleSystem_TextSpeed(param0->context->battleSystem), NULL);
 }
 
-void ov13_02224144(BattleParty *param0)
-{
+void ov13_02224144(BattleParty *param0) {
     Pokemon *v0;
     BattlePartyContext *v1;
     void *v2;
@@ -1632,8 +1580,7 @@ void ov13_02224144(BattleParty *param0)
     Heap_Free(v2);
 }
 
-void ov13_0222449C(BattleParty *param0)
-{
+void ov13_0222449C(BattleParty *param0) {
     Pokemon *v0;
     BattlePartyContext *v1;
     Strbuf *v2;

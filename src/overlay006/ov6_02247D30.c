@@ -35,8 +35,7 @@ static VecFx32 Unk_ov6_022498E4[6] = {
     { ((FX32_ONE * 4) + (FX32_ONE / 2)), FX32_ONE * 12, ((FX32_ONE * 4) + (FX32_ONE / 2)) }
 };
 
-void ov6_02247D30(FieldSystem *fieldSystem, const u8 param1)
-{
+void ov6_02247D30(FieldSystem *fieldSystem, const u8 param1) {
     BOOL v0;
     MapProp *v1;
     int v2;
@@ -67,8 +66,7 @@ void ov6_02247D30(FieldSystem *fieldSystem, const u8 param1)
     }
 }
 
-static BOOL ov6_02247DAC(FieldTask *param0)
-{
+static BOOL ov6_02247DAC(FieldTask *param0) {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov6_02247D30 *v1 = (UnkStruct_ov6_02247D30 *)FieldTask_GetEnv(param0);
 

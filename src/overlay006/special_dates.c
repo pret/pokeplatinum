@@ -122,8 +122,7 @@ static const int sEncounterRateModifiers[] = {
     +10
 };
 
-int SpecialDates_ModifyEncounterRate(const int encounterModifier, const BOOL hasTimePenalty)
-{
+int SpecialDates_ModifyEncounterRate(const int encounterModifier, const BOOL hasTimePenalty) {
     u8 i;
     int newModifier;
     RTCDate currentDate;

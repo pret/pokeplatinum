@@ -327,8 +327,7 @@ static const SpriteTemplate Unk_ov113_022609D0 = {
     0x0
 };
 
-int ov113_0225C700(ApplicationManager *appMan, int *param1)
-{
+int ov113_0225C700(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov113_0225DBCC *v0;
 
     SetVBlankCallback(NULL, NULL);
@@ -442,8 +441,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov113_0225CA04(ApplicationManager *appMan, int *param1)
-{
+int ov113_0225CA04(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     ov113_0225E3F0(&v0->unk_194, v0->camera, v0->unk_9BC, v0->unk_00->unk_04);
@@ -614,8 +612,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
-{
+int ov113_0225CDFC(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov113_0225DBCC *v0 = ApplicationManager_Data(appMan);
 
     SysTask_Done(v0->unk_18);
@@ -662,8 +659,7 @@ int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void ov113_0225CEF0(SysTask *param0, void *param1)
-{
+static void ov113_0225CEF0(SysTask *param0, void *param1) {
     UnkStruct_ov113_0225DBCC *v0 = param1;
 
     ov113_0225E4E8(&v0->unk_194);
@@ -674,8 +670,7 @@ static void ov113_0225CEF0(SysTask *param0, void *param1)
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
-static void ov113_0225CF18(void *param0)
-{
+static void ov113_0225CF18(void *param0) {
     UnkStruct_ov113_0225DBCC *v0 = param0;
 
     ov113_0225E65C(&v0->unk_194, v0->unk_9BC);
@@ -688,8 +683,7 @@ static void ov113_0225CF18(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov113_0225CF58(BgConfig *param0)
-{
+static void ov113_0225CF58(BgConfig *param0) {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
@@ -856,8 +850,7 @@ static void ov113_0225CF58(BgConfig *param0)
     Bg_ClearTilesRange(5, 32, 0, HEAP_ID_118);
 }
 
-static void ov113_0225D12C(BgConfig *param0)
-{
+static void ov113_0225D12C(BgConfig *param0) {
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
@@ -866,8 +859,7 @@ static void ov113_0225D12C(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
 }
 
-static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
-{
+static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1) {
     BgConfig *v0 = param0->unk_08;
     u16 *v1;
 
@@ -908,8 +900,7 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     Bg_ScheduleTilemapTransfer(param0->unk_08, 6);
 }
 
-static void ov113_0225D304(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
-{
+static void ov113_0225D304(UnkStruct_ov113_0225DBCC *param0, NARC *param1) {
     int v0, v1;
     u16 v2;
 
@@ -941,8 +932,7 @@ static void ov113_0225D304(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     param0->unk_921 = SpriteSystem_LoadPaletteBuffer(param0->unk_0C, 2, param0->unk_1C, param0->unk_20, 187, 26, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
 }
 
-static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0) {
     int v0;
     SpriteTemplate v1;
 
@@ -991,8 +981,7 @@ static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225D5D8(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225D5D8(UnkStruct_ov113_0225DBCC *param0) {
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -1010,8 +999,7 @@ static void ov113_0225D5D8(UnkStruct_ov113_0225DBCC *param0)
     ov113_0225E250(&param0->unk_19C0);
 }
 
-static void ov113_0225D630(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
-{
+static void ov113_0225D630(UnkStruct_ov113_0225DBCC *param0, NARC *param1) {
     int v0;
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_0C, PLTTBUF_SUB_OBJ, param0->unk_1C, param0->unk_20, param1, 10, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
@@ -1027,8 +1015,7 @@ static void ov113_0225D630(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_1C, param0->unk_20, param1, 11, FALSE, 10005);
 }
 
-static void ov113_0225D6F8(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225D6F8(UnkStruct_ov113_0225DBCC *param0) {
     int v0;
     SpriteTemplate v1;
 
@@ -1049,8 +1036,7 @@ static void ov113_0225D6F8(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225D7A4(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225D7A4(UnkStruct_ov113_0225DBCC *param0) {
     int v0;
 
     Sprite_DeleteAndFreeResources(param0->unk_96C);
@@ -1060,8 +1046,7 @@ static void ov113_0225D7A4(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225D7CC(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225D7CC(UnkStruct_ov113_0225DBCC *param0) {
     int v0, v1;
     u16 *v2, *v3;
     int v4 = 0;
@@ -1098,8 +1083,7 @@ static void ov113_0225D7CC(UnkStruct_ov113_0225DBCC *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
-static BOOL ov113_0225D938(int param0, int param1, ManagedSprite *param2, NARC *param3, NARC *param4, NNS_G2D_VRAM_TYPE param5, BOOL param6)
-{
+static BOOL ov113_0225D938(int param0, int param1, ManagedSprite *param2, NARC *param3, NARC *param4, NNS_G2D_VRAM_TYPE param5, BOOL param6) {
     void *v0;
     NNSG2dImageProxy *v1;
     void *v2;
@@ -1139,8 +1123,7 @@ static BOOL ov113_0225D938(int param0, int param1, ManagedSprite *param2, NARC *
     return 1;
 }
 
-static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0) {
     VecFx32 v0 = { 0, -FX32_ONE * 8, 0 };
 
     param0->camera = Camera_Alloc(118);
@@ -1165,13 +1148,11 @@ static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225DA9C(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225DA9C(UnkStruct_ov113_0225DBCC *param0) {
     Camera_Delete(param0->camera);
 }
 
-static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
-{
+static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1) {
     int v0;
 
     if (param0->unk_00->unk_04 == 0) {
@@ -1187,13 +1168,11 @@ static void ov113_0225DAA8(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     Easy3DObject_SetVisible(&param0->unk_D8.unk_10, 1);
 }
 
-static void ov113_0225DAFC(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225DAFC(UnkStruct_ov113_0225DBCC *param0) {
     Easy3DModel_Release(&param0->unk_D8.unk_00);
 }
 
-static void ov113_0225DB08(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225DB08(UnkStruct_ov113_0225DBCC *param0) {
     VecFx32 v0, v1;
     MtxFx33 v2;
 
@@ -1229,8 +1208,7 @@ static void ov113_0225DB08(UnkStruct_ov113_0225DBCC *param0)
     NNS_G3dGePopMtx(1);
 }
 
-static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0) {
     int v0;
 
     Window_Add(param0->unk_08, &param0->unk_B4, 1, 2, 1, 27, 4, 13, (1 + (18 + 12)) + (29 * 4));
@@ -1242,8 +1220,7 @@ static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0) {
     int v0;
 
     Window_Remove(&param0->unk_B4);
@@ -1253,13 +1230,11 @@ static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static G3DPipelineBuffers *ov113_0225DC6C(int heapID)
-{
+static G3DPipelineBuffers *ov113_0225DC6C(int heapID) {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov113_0225DC88);
 }
 
-static void ov113_0225DC88(void)
-{
+static void ov113_0225DC88(void) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(1);
 
@@ -1273,19 +1248,16 @@ static void ov113_0225DC88(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov113_0225DD0C(G3DPipelineBuffers *param0)
-{
+static void ov113_0225DD0C(G3DPipelineBuffers *param0) {
     G3DPipelineBuffers_Free(param0);
 }
 
-static void ov113_0225DD14(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225DD14(UnkStruct_ov113_0225DBCC *param0) {
     UnkStruct_ov113_022607EC *v0 = &param0->unk_168;
     v0->unk_04 = ov66_022328F0();
 }
 
-static void ov113_0225DD24(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225CA04 *param1)
-{
+static void ov113_0225DD24(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225CA04 *param1) {
     UnkStruct_ov113_02260818 *v0;
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov113_0225CA04));
@@ -1298,13 +1270,11 @@ static void ov113_0225DD24(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     v0->unk_08 = 0;
 }
 
-UnkStruct_ov113_022607EC *ov113_0225DD44(UnkStruct_ov113_0225DBCC *param0)
-{
+UnkStruct_ov113_022607EC *ov113_0225DD44(UnkStruct_ov113_0225DBCC *param0) {
     return &param0->unk_168;
 }
 
-static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260818 *param2)
-{
+static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260818 *param2) {
     Party *v0;
     int v1;
     Pokemon *v2;
@@ -1324,8 +1294,7 @@ static void ov113_0225DD4C(int param0, SaveData *saveData, UnkStruct_ov113_02260
     }
 }
 
-BOOL ov113_0225DDC0(UnkStruct_ov113_0225DBCC *param0, const UnkStruct_ov113_02260818 *param1, s32 param2)
-{
+BOOL ov113_0225DDC0(UnkStruct_ov113_0225DBCC *param0, const UnkStruct_ov113_02260818 *param1, s32 param2) {
     int v0;
     u32 v1;
 
@@ -1350,8 +1319,7 @@ BOOL ov113_0225DDC0(UnkStruct_ov113_0225DBCC *param0, const UnkStruct_ov113_0226
     return v0;
 }
 
-static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0)
-{
+static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0) {
     UnkStruct_ov66_02232B20 v0;
     int v1, v2, v3, v4;
 
@@ -1421,18 +1389,15 @@ static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0)
     return 0;
 }
 
-void ov113_0225E044(UnkStruct_ov113_0225DBCC *param0, s32 param1)
-{
+void ov113_0225E044(UnkStruct_ov113_0225DBCC *param0, s32 param1) {
     ov113_02260620(param0->unk_30, param0->unk_2C, param0->unk_34, param0->unk_00->unk_00, param1);
 }
 
-void ov113_0225E05C(UnkStruct_ov113_0225DBCC *param0, u32 param1)
-{
+void ov113_0225E05C(UnkStruct_ov113_0225DBCC *param0, u32 param1) {
     ov113_02260714(param0->unk_34, param1);
 }
 
-static void ov113_0225E068(UnkStruct_ov113_0225DBCC *param0, int param1)
-{
+static void ov113_0225E068(UnkStruct_ov113_0225DBCC *param0, int param1) {
     SpriteTemplate v0;
     int v1;
 
@@ -1452,8 +1417,7 @@ static void ov113_0225E068(UnkStruct_ov113_0225DBCC *param0, int param1)
     Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
 }
 
-static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1)
-{
+static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1) {
     u16 *v0, *v1;
 
     v0 = PaletteData_GetUnfadedBuffer(param0->unk_0C, 2);
@@ -1463,8 +1427,7 @@ static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1)
     BlendPalette(&v0[1 * 16 + 1 + param1], &v1[1 * 16 + 1 + param1], 1, 6, 0x0);
 }
 
-static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0) {
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -1479,8 +1442,7 @@ static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9)
-{
+static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9) {
     UnkStruct_020127E8 v0;
     Window v1;
     CharTransferAllocation v2;
@@ -1534,14 +1496,12 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     param1->unk_10 = v7;
 }
 
-static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0)
-{
+static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0) {
     sub_02012870(param0->unk_00);
     CharTransfer_ClearRange(&param0->unk_04);
 }
 
-static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3)
-{
+static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3) {
     int v0 = Font_CalcStrbufWidth(param1, param0, 0);
     int v1 = v0 / 8;
 
@@ -1553,8 +1513,7 @@ static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *p
     *param3 = v1;
 }
 
-static void ov113_0225E294(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225E294(UnkStruct_ov113_0225DBCC *param0) {
     int v0, v1;
 
     if (param0->unk_19D4 == param0->unk_19D8) {
@@ -1580,8 +1539,7 @@ static void ov113_0225E294(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC *param0, int param1)
-{
+static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC *param0, int param1) {
     if (param0->unk_19D4 < param1) {
         return 0;
     }
@@ -1597,7 +1555,6 @@ static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC *param0, int param1)
     return 1;
 }
 
-static void ov113_0225E364(UnkStruct_ov113_0225DBCC *param0)
-{
+static void ov113_0225E364(UnkStruct_ov113_0225DBCC *param0) {
     return;
 }

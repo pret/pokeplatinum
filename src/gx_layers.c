@@ -13,8 +13,7 @@
 static int sEngineALayers;
 static int sEngineBLayers;
 
-void GXLayers_SetBanks(const UnkStruct_02099F80 *banks)
-{
+void GXLayers_SetBanks(const UnkStruct_02099F80 *banks) {
     GX_ResetBankForBG();
     GX_ResetBankForBGExtPltt();
     GX_ResetBankForSubBG();
@@ -38,13 +37,11 @@ void GXLayers_SetBanks(const UnkStruct_02099F80 *banks)
     GX_SetBankForTexPltt(banks->unk_24);
 }
 
-void GXLayers_DisableEngineALayers(void)
-{
+void GXLayers_DisableEngineALayers(void) {
     sEngineALayers = 0;
 }
 
-void GXLayers_EngineAToggleLayers(u8 layerMask, u8 enable)
-{
+void GXLayers_EngineAToggleLayers(u8 layerMask, u8 enable) {
     if (enable == 1) {
         if (sEngineALayers & layerMask) {
             return;
@@ -59,19 +56,16 @@ void GXLayers_EngineAToggleLayers(u8 layerMask, u8 enable)
     GX_SetVisiblePlane(sEngineALayers);
 }
 
-void GXLayers_EngineASetLayers(int layers)
-{
+void GXLayers_EngineASetLayers(int layers) {
     sEngineALayers = layers;
     GX_SetVisiblePlane(sEngineALayers);
 }
 
-void GXLayers_DisableEngineBLayers(void)
-{
+void GXLayers_DisableEngineBLayers(void) {
     sEngineBLayers = 0;
 }
 
-void GXLayers_EngineBToggleLayers(u8 layerMask, u8 enable)
-{
+void GXLayers_EngineBToggleLayers(u8 layerMask, u8 enable) {
     if (enable == 1) {
         if (sEngineBLayers & layerMask) {
             return;
@@ -86,20 +80,17 @@ void GXLayers_EngineBToggleLayers(u8 layerMask, u8 enable)
     GXS_SetVisiblePlane(sEngineBLayers);
 }
 
-void GXLayers_EngineBSetLayers(int layers)
-{
+void GXLayers_EngineBSetLayers(int layers) {
     sEngineBLayers = layers;
     GXS_SetVisiblePlane(sEngineBLayers);
 }
 
-void GXLayers_TurnBothDispOn(void)
-{
+void GXLayers_TurnBothDispOn(void) {
     GX_DispOn();
     GXS_DispOn();
 }
 
-void GXLayers_SwapDisplay(void)
-{
+void GXLayers_SwapDisplay(void) {
     if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     } else {
@@ -107,7 +98,6 @@ void GXLayers_SwapDisplay(void)
     }
 }
 
-int GXLayers_EngineAGetLayers(void)
-{
+int GXLayers_EngineAGetLayers(void) {
     return sEngineALayers;
 }

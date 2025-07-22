@@ -8,8 +8,7 @@ static void SetBoxTestParams(const fx16 x, const fx16 y, const fx16 z, const fx1
 static u32 PerformBoxTest(const GXBoxTestParam *boxTestParam);
 static void ReduceFx32ToFx16AndScale(const fx32 in, fx16 *outVal, int *outScale);
 
-u32 GFXBoxTest_IsModelInView(const NNSG3dResMdl *model, const VecFx32 *positionPtr, const MtxFx33 *rotation, const VecFx32 *scale)
-{
+u32 GFXBoxTest_IsModelInView(const NNSG3dResMdl *model, const VecFx32 *positionPtr, const MtxFx33 *rotation, const VecFx32 *scale) {
     GXBoxTestParam boxTestParam;
 
     VecFx32 position = *positionPtr;
@@ -30,8 +29,7 @@ u32 GFXBoxTest_IsModelInView(const NNSG3dResMdl *model, const VecFx32 *positionP
     return boxTestResult;
 }
 
-u32 GFXBoxTest_IsBoxAtPositionInView(const VecFx32 *position, const GFXTestBox *box)
-{
+u32 GFXBoxTest_IsBoxAtPositionInView(const VecFx32 *position, const GFXTestBox *box) {
     GXBoxTestParam boxTestParam;
     SetBoxTestParams(0, 0, 0, box->width, box->height, box->depth, &boxTestParam);
 
@@ -46,15 +44,13 @@ u32 GFXBoxTest_IsBoxAtPositionInView(const VecFx32 *position, const GFXTestBox *
     return boxTestResult;
 }
 
-void GFXBoxTest_MakeBox(const fx32 width, const fx32 height, const fx32 depth, GFXTestBox *box)
-{
+void GFXBoxTest_MakeBox(const fx32 width, const fx32 height, const fx32 depth, GFXTestBox *box) {
     ReduceFx32ToFx16AndScale(width, &box->width, &box->xScale);
     ReduceFx32ToFx16AndScale(height, &box->height, &box->yScale);
     ReduceFx32ToFx16AndScale(depth, &box->depth, &box->zScale);
 }
 
-static void SetBoxTestParams(const fx16 x, const fx16 y, const fx16 z, const fx16 width, const fx16 height, const fx16 depth, GXBoxTestParam *boxTestParam)
-{
+static void SetBoxTestParams(const fx16 x, const fx16 y, const fx16 z, const fx16 width, const fx16 height, const fx16 depth, GXBoxTestParam *boxTestParam) {
     boxTestParam->x = x;
     boxTestParam->y = y;
     boxTestParam->z = z;
@@ -63,8 +59,7 @@ static void SetBoxTestParams(const fx16 x, const fx16 y, const fx16 z, const fx1
     boxTestParam->depth = depth;
 }
 
-static u32 PerformBoxTest(const GXBoxTestParam *boxTestParam)
-{
+static u32 PerformBoxTest(const GXBoxTestParam *boxTestParam) {
     s32 boxTestResult = 1;
 
     NNS_G3dGePolygonAttr(GX_LIGHTMASK_0, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, 0, 0, GX_POLYGON_ATTR_MISC_FAR_CLIPPING | GX_POLYGON_ATTR_MISC_DISP_1DOT);
@@ -78,8 +73,7 @@ static u32 PerformBoxTest(const GXBoxTestParam *boxTestParam)
     return boxTestResult;
 }
 
-static void ReduceFx32ToFx16AndScale(const fx32 in, fx16 *outVal, int *outScale)
-{
+static void ReduceFx32ToFx16AndScale(const fx32 in, fx16 *outVal, int *outScale) {
     u8 scaleExponent = 0;
     u32 asU32 = (u32)in;
 

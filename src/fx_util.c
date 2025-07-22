@@ -10,8 +10,7 @@
 #define F32_PI               ((f32)3.14159265358979323846)
 #define FX_F32_RAD_TO_IDX(f) ((u16)(FX_RAD_TO_IDX(FX32_CONST(f))))
 
-fx32 FX_Min(fx32 a, fx32 b)
-{
+fx32 FX_Min(fx32 a, fx32 b) {
     if (a < b) {
         return a;
     } else {
@@ -19,8 +18,7 @@ fx32 FX_Min(fx32 a, fx32 b)
     }
 }
 
-fx32 FX_Max(fx32 a, fx32 b)
-{
+fx32 FX_Max(fx32 a, fx32 b) {
     if (a > b) {
         return a;
     } else {
@@ -28,8 +26,7 @@ fx32 FX_Max(fx32 a, fx32 b)
     }
 }
 
-fx32 VEC_AngleBetween(const VecFx32 *a, const VecFx32 *b)
-{
+fx32 VEC_AngleBetween(const VecFx32 *a, const VecFx32 *b) {
     VecFx32 aNorm, bNorm;
     fx32 sin, cos;
     fx32 angle;
@@ -49,8 +46,7 @@ fx32 VEC_AngleBetween(const VecFx32 *a, const VecFx32 *b)
     return angle;
 }
 
-void MTX_Rot33Vec(MtxFx33 *outRot, VecFx32 *angles)
-{
+void MTX_Rot33Vec(MtxFx33 *outRot, VecFx32 *angles) {
     MtxFx33 tmp;
 
     MTX_RotX33(outRot, FX_SinIdx((u16)angles->x), FX_CosIdx((u16)angles->x));
@@ -60,8 +56,7 @@ void MTX_Rot33Vec(MtxFx33 *outRot, VecFx32 *angles)
     MTX_Concat33(outRot, &tmp, outRot);
 }
 
-void MTX_Rot33Angles(MtxFx33 *outRot, u16 alpha, u16 beta, u16 gamma)
-{
+void MTX_Rot33Angles(MtxFx33 *outRot, u16 alpha, u16 beta, u16 gamma) {
     MtxFx33 tmp;
 
     MTX_RotX33(outRot, CalcSineDegrees(alpha), CalcCosineDegrees(alpha));
@@ -71,8 +66,7 @@ void MTX_Rot33Angles(MtxFx33 *outRot, u16 alpha, u16 beta, u16 gamma)
     MTX_Concat33(outRot, &tmp, outRot);
 }
 
-void CalcLinearFov(u16 angularFov, fx32 distance, fx32 aspectRatio, fx32 *outWidth, fx32 *outHeight)
-{
+void CalcLinearFov(u16 angularFov, fx32 distance, fx32 aspectRatio, fx32 *outWidth, fx32 *outHeight) {
     fx32 sin = FX_SinIdx(angularFov);
     fx32 cos = FX_CosIdx(angularFov);
     fx32 tan = FX_Div(sin, cos);

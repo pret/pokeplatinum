@@ -107,8 +107,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0);
 static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0);
 static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0);
 
-int ov75_021D0D80(ApplicationManager *appMan, int *param1)
-{
+int ov75_021D0D80(ApplicationManager *appMan, int *param1) {
     UnkStruct_020978D8 *v0;
     UnkStruct_ov75_021D1184 *v1 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
 
@@ -131,8 +130,7 @@ int ov75_021D0D80(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-int ov75_021D0DF8(ApplicationManager *appMan, int *param1)
-{
+int ov75_021D0DF8(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
 
     if (ov75_021D1184(v0)) {
@@ -142,8 +140,7 @@ int ov75_021D0DF8(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-int ov75_021D0E10(ApplicationManager *appMan, int *param1)
-{
+int ov75_021D0E10(ApplicationManager *appMan, int *param1) {
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)ApplicationManager_Data(appMan);
     int heapID;
 
@@ -157,8 +154,7 @@ int ov75_021D0E10(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static BOOL ov75_021D0E34(UnkStruct_ov75_021D1184 *param0)
-{
+static BOOL ov75_021D0E34(UnkStruct_ov75_021D1184 *param0) {
     int i = 0;
 
     for (i = 0; i < 3; i++) {
@@ -170,8 +166,7 @@ static BOOL ov75_021D0E34(UnkStruct_ov75_021D1184 *param0)
     return TRUE;
 }
 
-static int ov75_021D0E5C(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D0E5C(UnkStruct_ov75_021D1184 *param0) {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
         return 1;
@@ -180,8 +175,7 @@ static int ov75_021D0E5C(UnkStruct_ov75_021D1184 *param0)
     return 0;
 }
 
-static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0) {
     u8 v0 = 0;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A)) {
@@ -249,8 +243,7 @@ static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
     return 0;
 }
 
-static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0) {
     Strbuf *v0 = NULL;
 
     switch (param0->unk_08) {
@@ -283,8 +276,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
     return 0;
 }
 
-static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0) {
     static const WindowTemplate v0 = {
         0, 25, 13, 6, 4, UnkEnum_ov75_021D1598_03, 555
     };
@@ -292,8 +284,7 @@ static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0)
     param0->unk_A4 = Menu_MakeYesNoChoice(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->heapID);
 }
 
-static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0) {
     switch (Menu_ProcessInputAndHandleExit(param0->unk_A4, param0->heapID)) {
     case 0:
         return 1;
@@ -304,8 +295,7 @@ static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0)
     return -1;
 }
 
-static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0) {
     int v0;
     Strbuf *v1 = NULL;
 
@@ -359,8 +349,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
     return 0;
 }
 
-static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0) {
     switch (param0->unk_04) {
     case 0:
         SetVBlankCallback(NULL, NULL);
@@ -446,8 +435,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
     return 0;
 }
 
-static void ov75_021D131C(void *param0)
-{
+static void ov75_021D131C(void *param0) {
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)param0;
 
     if (v0->unk_30 != NULL) {
@@ -464,8 +452,7 @@ static void ov75_021D131C(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov75_021D1358(SysTask *param0, void *param1)
-{
+static void ov75_021D1358(SysTask *param0, void *param1) {
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)param1;
 
     if (v0->unk_30 == NULL) {
@@ -497,8 +484,7 @@ static void ov75_021D1358(SysTask *param0, void *param1)
     }
 }
 
-static int ov75_021D13E8(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D13E8(UnkStruct_ov75_021D1184 *param0) {
     switch (param0->unk_08) {
     case 0:
         ov75_021D1480(param0);
@@ -520,8 +506,7 @@ static int ov75_021D13E8(UnkStruct_ov75_021D1184 *param0)
     return 0;
 }
 
-static int ov75_021D1434(UnkStruct_ov75_021D1184 *param0)
-{
+static int ov75_021D1434(UnkStruct_ov75_021D1184 *param0) {
     ov75_021D1CB8(param0);
 
     if (param0->unk_24 != NULL) {
@@ -535,8 +520,7 @@ static int ov75_021D1434(UnkStruct_ov75_021D1184 *param0)
     return 1;
 }
 
-static void ov75_021D1460(void)
-{
+static void ov75_021D1460(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -553,8 +537,7 @@ static void ov75_021D1460(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov75_021D1480(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D1480(UnkStruct_ov75_021D1184 *param0) {
     int v0, v1;
 
     ov75_021D1460();
@@ -665,8 +648,7 @@ static void ov75_021D1480(UnkStruct_ov75_021D1184 *param0)
     Bg_ClearTilesRange(4, 32, 0, param0->heapID);
 }
 
-static void ov75_021D1564(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D1564(UnkStruct_ov75_021D1184 *param0) {
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_SUB_0);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_3);
     Bg_FreeTilemapBuffer(param0->unk_18, BG_LAYER_MAIN_2);
@@ -675,8 +657,7 @@ static void ov75_021D1564(UnkStruct_ov75_021D1184 *param0)
     Heap_Free(param0->unk_18);
 }
 
-static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0) {
     void *v0;
     u32 v1;
     void *v2;
@@ -755,8 +736,7 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     }
 }
 
-static void ov75_021D1868(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D1868(UnkStruct_ov75_021D1184 *param0) {
     Heap_Free(param0->unk_38);
     Heap_Free(param0->unk_34);
     PaletteData_FreeBuffer(param0->unk_30, 2);
@@ -768,8 +748,7 @@ static void ov75_021D1868(UnkStruct_ov75_021D1184 *param0)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
 }
 
-static void ov75_021D18A8(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D18A8(UnkStruct_ov75_021D1184 *param0) {
     int v0 = 0;
 
     Window_Add(param0->unk_18, &param0->unk_44[0], 1, 3, 3, 26, 4, 1, 1023 - 26 * 4);
@@ -788,8 +767,7 @@ static void ov75_021D18A8(UnkStruct_ov75_021D1184 *param0)
     }
 }
 
-static void ov75_021D19A8(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D19A8(UnkStruct_ov75_021D1184 *param0) {
     int v0 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -798,8 +776,7 @@ static void ov75_021D19A8(UnkStruct_ov75_021D1184 *param0)
     }
 }
 
-static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0) {
     int v0 = 0;
     Strbuf *v1;
 
@@ -841,8 +818,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
     }
 }
 
-static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0) {
     int v0 = 0, v1 = 0;
     SpriteTemplate v2;
 
@@ -927,8 +903,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
     }
 }
 
-static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0)
-{
+static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0) {
     int v0 = 0;
 
     if (param0->unk_0C == 0) {

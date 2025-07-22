@@ -21,8 +21,7 @@ static void ScrollList(ListMenu *menu, u8 lineCount, u8 isUpward);
 static u8 UpdateSelectedRow(ListMenu *menu, u8 updateCursor, u8 scrollCount, u8 movingDown);
 static void InvokeCursorCallback(ListMenu *menu, u8 onInit);
 
-ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID)
-{
+ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID) {
     ListMenu *menu = Heap_AllocFromHeap(heapID, sizeof(ListMenu));
 
     menu->template = *template;
@@ -56,8 +55,7 @@ ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 s
     return menu;
 }
 
-u32 ListMenu_ProcessInput(ListMenu *menu)
-{
+u32 ListMenu_ProcessInput(ListMenu *menu) {
     menu->lastAction = LIST_MENU_ACTION_NONE;
 
     if (JOY_NEW(PAD_BUTTON_A)) {
@@ -122,8 +120,7 @@ u32 ListMenu_ProcessInput(ListMenu *menu)
     return LIST_NOTHING_CHOSEN;
 }
 
-void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
-{
+void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos) {
     if (outListPos != NULL) {
         *outListPos = menu->listPos;
     }
@@ -136,23 +133,20 @@ void ListMenu_Free(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
     Heap_FreeExplicit(menu->heapID, menu);
 }
 
-void ListMenu_Draw(ListMenu *menu)
-{
+void ListMenu_Draw(ListMenu *menu) {
     Window_FillTilemap(menu->template.window, menu->template.textColorBg);
     PrintEntries(menu, menu->listPos, 0, menu->template.maxDisplay);
     PrintCursor(menu);
     Window_CopyToVRAM(menu->template.window);
 }
 
-void ListMenu_SetTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow)
-{
+void ListMenu_SetTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow) {
     menu->template.textColorFg = fg;
     menu->template.textColorBg = bg;
     menu->template.textColorShadow = shadow;
 }
 
-u32 ListMenu_TestInput(ListMenu *menu, ListMenuTemplate *template, u16 listPos, u16 cursorPos, u16 updateCursor, u16 input, u16 *outListPos, u16 *outCursorPos)
-{
+u32 ListMenu_TestInput(ListMenu *menu, ListMenuTemplate *template, u16 listPos, u16 cursorPos, u16 updateCursor, u16 input, u16 *outListPos, u16 *outCursorPos) {
     if (template) {
         menu->template = *template;
     }
@@ -179,21 +173,18 @@ u32 ListMenu_TestInput(ListMenu *menu, ListMenuTemplate *template, u16 listPos, 
     return LIST_NOTHING_CHOSEN;
 }
 
-void ListMenu_SetAltTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow)
-{
+void ListMenu_SetAltTextColors(ListMenu *menu, u8 fg, u8 bg, u8 shadow) {
     menu->altFont.textColorFg = fg;
     menu->altFont.textColorBg = bg;
     menu->altFont.textColorShadow = shadow;
     menu->altFont.prefer = TRUE;
 }
 
-void ListMenu_CalcTrueCursorPos(ListMenu *menu, u16 *outPos)
-{
+void ListMenu_CalcTrueCursorPos(ListMenu *menu, u16 *outPos) {
     *outPos = menu->listPos + menu->cursorPos;
 }
 
-void ListMenu_GetListAndCursorPos(ListMenu *menu, u16 *outListPos, u16 *outCursorPos)
-{
+void ListMenu_GetListAndCursorPos(ListMenu *menu, u16 *outListPos, u16 *outCursorPos) {
     if (outListPos != NULL) {
         *outListPos = menu->listPos;
     }
@@ -203,18 +194,15 @@ void ListMenu_GetListAndCursorPos(ListMenu *menu, u16 *outListPos, u16 *outCurso
     }
 }
 
-u8 ListMenu_GetLastAction(ListMenu *menu)
-{
+u8 ListMenu_GetLastAction(ListMenu *menu) {
     return menu->lastAction;
 }
 
-u32 ListMenu_GetIndexOfChoice(ListMenu *menu, u16 choice)
-{
+u32 ListMenu_GetIndexOfChoice(ListMenu *menu, u16 choice) {
     return menu->template.choices[choice].index;
 }
 
-u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
-{
+u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute) {
     u32 result;
 
     switch (attribute) {
@@ -301,13 +289,11 @@ u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
     return result;
 }
 
-void ListMenu_SetChoices(ListMenu *menu, StringList *choices)
-{
+void ListMenu_SetChoices(ListMenu *menu, StringList *choices) {
     menu->template.choices = choices;
 }
 
-static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset)
-{
+static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset) {
     if (strbuf == NULL) {
         return;
     }
@@ -337,8 +323,7 @@ static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset)
     }
 }
 
-static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lineCount)
-{
+static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lineCount) {
     u8 lineHeight = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
 
     for (int line = 0; line < lineCount; line++) {
@@ -360,8 +345,7 @@ static void PrintEntries(ListMenu *menu, u16 startIndex, u16 lineOffset, u16 lin
     }
 }
 
-static void PrintCursor(ListMenu *menu)
-{
+static void PrintCursor(ListMenu *menu) {
     u8 lineHeight = Font_GetAttribute(menu->template.fontID, FONTATTR_MAX_LETTER_HEIGHT) + menu->template.lineSpacing;
     u8 x = menu->template.cursorXOffset;
     u8 y = (menu->cursorPos * lineHeight) + menu->template.yOffset;
@@ -379,8 +363,7 @@ static void PrintCursor(ListMenu *menu)
     }
 }
 
-static void EraseCursor(ListMenu *menu, u16 atLine)
-{
+static void EraseCursor(ListMenu *menu, u16 atLine) {
     u8 lineHeight;
     switch (menu->template.cursorType) {
     case 0:
@@ -400,8 +383,7 @@ static void EraseCursor(ListMenu *menu, u16 atLine)
     }
 }
 
-static u8 UpdateOffsetsForScroll(ListMenu *menu, u8 movingDown)
-{
+static u8 UpdateOffsetsForScroll(ListMenu *menu, u8 movingDown) {
     u16 listPos, cursorPos, newListPos;
     cursorPos = menu->cursorPos;
     listPos = menu->listPos;
@@ -475,8 +457,7 @@ static u8 UpdateOffsetsForScroll(ListMenu *menu, u8 movingDown)
     return 2;
 }
 
-static void ScrollList(ListMenu *menu, u8 lineCount, u8 movingDown)
-{
+static void ScrollList(ListMenu *menu, u8 lineCount, u8 movingDown) {
     if (lineCount >= menu->template.maxDisplay) {
         Window_FillTilemap(menu->template.window, menu->template.textColorBg);
         PrintEntries(menu, menu->listPos, 0, menu->template.maxDisplay);
@@ -508,8 +489,7 @@ static void ScrollList(ListMenu *menu, u8 lineCount, u8 movingDown)
     }
 }
 
-static u8 UpdateSelectedRow(ListMenu *menu, u8 updateCursor, u8 scrollCount, u8 movingDown)
-{
+static u8 UpdateSelectedRow(ListMenu *menu, u8 updateCursor, u8 scrollCount, u8 movingDown) {
     u8 i, ret;
     u16 cursorPos = menu->cursorPos;
     u8 linesScrolled = 0;
@@ -555,8 +535,7 @@ static u8 UpdateSelectedRow(ListMenu *menu, u8 updateCursor, u8 scrollCount, u8 
     return FALSE;
 }
 
-static void InvokeCursorCallback(ListMenu *menu, u8 onInit)
-{
+static void InvokeCursorCallback(ListMenu *menu, u8 onInit) {
     if (menu->template.cursorCallback != NULL) {
         menu->template.cursorCallback(menu, menu->template.choices[menu->listPos + menu->cursorPos].index, onInit);
     }

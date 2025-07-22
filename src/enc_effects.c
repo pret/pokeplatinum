@@ -114,15 +114,13 @@ static u32 EncEffects_BGMForPair(u32 effectPairID, const FieldBattleDTO *dto);
 static u32 EncEffects_TrainerClassEffect(u32 trainerClass);
 static u32 EncEffects_WildPokemonEffect(Party *wildParty, int mapHeaderID);
 
-inline BOOL EncEffects_Galactic(u32 effect)
-{
+inline BOOL EncEffects_Galactic(u32 effect) {
     return (effect == ENCEFF_GALACTIC_GRUNT)
         || (effect == ENCEFF_GALACTIC_CMDR)
         || (effect == ENCEFF_GALACTIC_CYRUS);
 }
 
-static u32 EncEffects_GetEffectPair(const FieldBattleDTO *dto)
-{
+static u32 EncEffects_GetEffectPair(const FieldBattleDTO *dto) {
     u32 battleType = dto->battleType;
 
     if (battleType & BATTLE_TYPE_TRAINER) {
@@ -176,8 +174,7 @@ static u32 EncEffects_GetEffectPair(const FieldBattleDTO *dto)
     return pokemonEffect;
 }
 
-static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const FieldBattleDTO *dto)
-{
+static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const FieldBattleDTO *dto) {
     GF_ASSERT(effectPairID < ENCEFF_MAX);
 
     // If the cut-in effect specifies, determine what effect to use
@@ -189,25 +186,21 @@ static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const FieldBattleDTO 
     return sEncEffectsTable[effectPairID].cutInEffect;
 }
 
-static u32 EncEffects_BGMForPair(u32 effectPairID, const FieldBattleDTO *dto)
-{
+static u32 EncEffects_BGMForPair(u32 effectPairID, const FieldBattleDTO *dto) {
     GF_ASSERT(effectPairID < ENCEFF_MAX);
 
     return sEncEffectsTable[effectPairID].sdatBGMusic;
 }
 
-u32 EncEffects_CutInEffect(const FieldBattleDTO *dto)
-{
+u32 EncEffects_CutInEffect(const FieldBattleDTO *dto) {
     return EncEffects_CutInEffectForPair(EncEffects_GetEffectPair(dto), dto);
 }
 
-u32 EncEffects_BGM(const FieldBattleDTO *dto)
-{
+u32 EncEffects_BGM(const FieldBattleDTO *dto) {
     return EncEffects_BGMForPair(EncEffects_GetEffectPair(dto), dto);
 }
 
-static u32 EncEffects_TrainerClassEffect(u32 trainerClass)
-{
+static u32 EncEffects_TrainerClassEffect(u32 trainerClass) {
     u32 result = ENCEFF_NORMAL_TRAINER;
 
     switch (trainerClass) {
@@ -279,8 +272,7 @@ static u32 EncEffects_TrainerClassEffect(u32 trainerClass)
     return result;
 }
 
-static u32 EncEffects_WildPokemonEffect(Party *wildParty, int mapHeaderID)
-{
+static u32 EncEffects_WildPokemonEffect(Party *wildParty, int mapHeaderID) {
     u32 result = ENCEFF_NORMAL_WILD;
 
     Pokemon *wildPokemon = Party_FindFirstEligibleBattler(wildParty);

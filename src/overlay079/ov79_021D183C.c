@@ -72,14 +72,12 @@ static const ListMenuTemplate Unk_ov79_021D3B90 = {
     NULL
 };
 
-static void ov79_021D183C(UnkStruct_020989DC *param0)
-{
+static void ov79_021D183C(UnkStruct_020989DC *param0) {
     param0->unk_04_val1_5 = 0;
     param0->unk_07 = param0->unk_06 = 0xFF;
 }
 
-static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 param2, u8 param3)
-{
+static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 param2, u8 param3) {
     u32 v0 = TEXT_COLOR(1, 2, 15);
 
     if (param3) {
@@ -93,8 +91,7 @@ static void ov79_021D1850(UnkStruct_ov79_021D0E1C *param0, Strbuf *param1, u8 pa
     param0->unk_1F = Text_AddPrinterWithParamsAndColor(&param0->unk_E8[2], FONT_MESSAGE, param1, 0, 0, param2, v0, NULL);
 }
 
-static u16 ov79_021D18B4(UnkStruct_0203D9B8 *param0, UnkStruct_ov79_021D0E1C *param1)
-{
+static u16 ov79_021D18B4(UnkStruct_0203D9B8 *param0, UnkStruct_ov79_021D0E1C *param1) {
     u16 v0, v1 = 0;
     u8 v2, v3;
     UnkStruct_020989DC *v4;
@@ -143,8 +140,7 @@ static u16 ov79_021D18B4(UnkStruct_0203D9B8 *param0, UnkStruct_ov79_021D0E1C *pa
     return v1;
 }
 
-void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0) {
     u8 v0 = 0, v1 = 0;
     UnkStruct_020989DC *v2;
 
@@ -190,8 +186,7 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_16 = 1;
 }
 
-void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
-{
+void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1) {
     Window_FillRectWithColor(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
 
     if (param1) {
@@ -208,8 +203,7 @@ void ov79_021D1AB8(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
     param0->unk_CC = NULL;
 }
 
-void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2)
-{
+void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2) {
     switch (param2) {
     case 0:
         Sprite_SetAnim(param0->unk_1E0[param1], param1 * 3);
@@ -244,8 +238,7 @@ void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2)
     Window_CopyToVRAM(&param0->unk_E8[7 + param1]);
 }
 
-void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
-{
+void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1) {
     int v0;
     TextColor v1 = TEXT_COLOR(1, 2, 0);
 
@@ -280,8 +273,7 @@ void ov79_021D1C44(UnkStruct_ov79_021D0E1C *param0, u8 param1)
     Text_AddPrinterWithParamsAndColor(&param0->unk_E8[6], FONT_SYSTEM, param0->unk_30.unk_38[param0->unk_1B], v0 / 2, 3, TEXT_SPEED_INSTANT, v1, NULL);
 }
 
-static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *param1)
-{
+static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *param1) {
     u8 v0 = 0, v1 = 0x1;
 
     if (param1 == NULL) {
@@ -302,16 +294,14 @@ static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *p
     }
 }
 
-static void ov79_021D1D88(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov79_021D1D88(ListMenu *param0, u32 param1, u8 param2) {
     UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ListMenu_GetAttribute(param0, 19);
     TextColor v1;
 
     v1 = TEXT_COLOR(1, 2, 0);
 }
 
-static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2) {
     UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)ListMenu_GetAttribute(param0, 19);
     TextColor v1;
     u16 v2, v3;
@@ -363,8 +353,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     ManagedSprite_SetDrawFlag(v0->unk_1FC->unk_04, 1);
 }
 
-void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0) {
     u8 v0 = 0;
 
     param0->unk_D0 = StringList_New(3, param0->heapID);
@@ -385,8 +374,7 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_C8 = ListMenu_New(&param0->unk_A4, 0, 0, param0->heapID);
 }
 
-void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0) {
     u16 v0, v1;
 
     Window_EraseStandardFrame(&(param0->unk_E8[3]), 0);
@@ -399,15 +387,13 @@ void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_D0 = NULL;
 }
 
-static void ov79_021D1FA8(ListMenu *param0, u32 param1, u8 param2)
-{
+static void ov79_021D1FA8(ListMenu *param0, u32 param1, u8 param2) {
     if (!param2) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
-void ov79_021D1FBC(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D1FBC(UnkStruct_ov79_021D0E1C *param0) {
     Strbuf_Clear(param0->unk_30.unk_04);
     StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
@@ -415,8 +401,7 @@ void ov79_021D1FBC(UnkStruct_ov79_021D0E1C *param0)
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 1);
 }
 
-void ov79_021D2008(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D2008(UnkStruct_ov79_021D0E1C *param0) {
     Strbuf_Clear(param0->unk_30.unk_04);
     StringTemplate_SetStrbuf(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     StringTemplate_Format(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
@@ -424,8 +409,7 @@ void ov79_021D2008(UnkStruct_ov79_021D0E1C *param0)
     ov79_021D1850(param0, param0->unk_30.unk_04, param0->unk_30.unk_4C, 0);
 }
 
-void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0) {
     static const WindowTemplate v0 = {
         1, 26, 13, 5, 4, 13, 463
     };
@@ -433,8 +417,7 @@ void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_D4 = Menu_MakeYesNoChoice(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->heapID);
 }
 
-void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)
-{
+void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0) {
     int v0, v1;
     TextColor v2 = TEXT_COLOR(1, 2, 0);
     TextColor v3 = TEXT_COLOR(2, 3, 1);

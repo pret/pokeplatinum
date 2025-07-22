@@ -509,13 +509,11 @@ static const FootprintType sFootprintTypes[NATIONAL_DEX_COUNT + 1] = {
     [SPECIES_ARCEUS] = { FOOTPRINT_TYPE_TOUGH, TRUE },
 };
 
-u16 FootprintType_GetTypeFromSpecies(u16 species)
-{
+u16 FootprintType_GetTypeFromSpecies(u16 species) {
     return sFootprintTypes[species].type;
 }
 
-u16 FootprintType_SpeciesHasPrint(u16 species, u16 form)
-{
+u16 FootprintType_SpeciesHasPrint(u16 species, u16 form) {
     if (species == SPECIES_GIRATINA && form == 1) {
         return FALSE;
     }

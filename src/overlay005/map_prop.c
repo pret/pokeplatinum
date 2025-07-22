@@ -27,22 +27,19 @@ typedef struct {
     int dummy28[2];
 } MapPropFile;
 
-MapPropManager *MapPropManager_New(const u8 heapID)
-{
+MapPropManager *MapPropManager_New(const u8 heapID) {
     MapPropManager *mapPropManager = Heap_AllocFromHeap(heapID, sizeof(MapPropManager));
     MapPropManager_Init(mapPropManager);
 
     return mapPropManager;
 }
 
-void MapPropManager_Free(MapPropManager *mapPropManager)
-{
+void MapPropManager_Free(MapPropManager *mapPropManager) {
     Heap_Free(mapPropManager);
     mapPropManager = NULL;
 }
 
-void MapPropManager_Init(MapPropManager *mapPropManager)
-{
+void MapPropManager_Init(MapPropManager *mapPropManager) {
     for (u8 i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         VecFx32 nullVector = { 0, 0, 0 };
 
@@ -57,8 +54,7 @@ void MapPropManager_Init(MapPropManager *mapPropManager)
     }
 }
 
-void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager)
-{
+void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager) {
     GF_ASSERT(index < MAX_LOADED_MAP_PROPS);
     VecFx32 nullVector = { 0, 0, 0 };
 
@@ -72,8 +68,7 @@ void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager)
     mapPropManager->loadedProps[index].model = NULL;
 }
 
-void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDataManager *const areaDataManager, MapPropManager *mapPropManager, MapPropAnimationManager *mapPropAnimMan)
-{
+void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDataManager *const areaDataManager, MapPropManager *mapPropManager, MapPropAnimationManager *mapPropAnimMan) {
     MapPropFile *mapPropFiles = NULL;
     u32 mapPropFilesCount;
 
@@ -120,8 +115,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
     }
 }
 
-void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL applyAttrsToModel, ModelAttributes *const modelAttrs, MapPropManager *mapPropManager)
-{
+void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL applyAttrsToModel, ModelAttributes *const modelAttrs, MapPropManager *mapPropManager) {
     VecFx32 position;
     MtxFx33 rotationMatrix = {
         FX32_ONE,
@@ -170,48 +164,39 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager 
     }
 }
 
-VecFx32 *MapProp_GetRotation(MapProp *mapProp)
-{
+VecFx32 *MapProp_GetRotation(MapProp *mapProp) {
     return &mapProp->rotation;
 }
 
-VecFx32 MapProp_GetPosition(const MapProp *mapProp)
-{
+VecFx32 MapProp_GetPosition(const MapProp *mapProp) {
     return mapProp->position;
 }
 
-void MapProp_SetPosition(MapProp *mapProp, const VecFx32 *position)
-{
+void MapProp_SetPosition(MapProp *mapProp, const VecFx32 *position) {
     mapProp->position = *position;
 }
 
-void MapProp_SetHidden(MapProp *mapProp, const BOOL hidden)
-{
+void MapProp_SetHidden(MapProp *mapProp, const BOOL hidden) {
     mapProp->hidden = hidden;
 }
 
-int MapProp_GetModelID(const MapProp *mapProp)
-{
+int MapProp_GetModelID(const MapProp *mapProp) {
     return mapProp->modelID;
 }
 
-NNSG3dRenderObj *MapProp_GetRenderObj(const MapProp *mapProp)
-{
+NNSG3dRenderObj *MapProp_GetRenderObj(const MapProp *mapProp) {
     return &mapProp->renderObj;
 }
 
-NNSG3dResMdl *MapProp_GetModel(const MapProp *mapProp)
-{
+NNSG3dResMdl *MapProp_GetModel(const MapProp *mapProp) {
     return mapProp->model;
 }
 
-MapProp *MapPropManager_GetLoadedProp(MapPropManager *mapPropManager, const u8 index)
-{
+MapProp *MapPropManager_GetLoadedProp(MapPropManager *mapPropManager, const u8 index) {
     return &mapPropManager->loadedProps[index];
 }
 
-MapProp *MapPropManager_FindLoadedPropByModelID(MapPropManager *mapPropManager, const int modelID)
-{
+MapProp *MapPropManager_FindLoadedPropByModelID(MapPropManager *mapPropManager, const int modelID) {
     for (int i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         MapProp *loadedProp = &mapPropManager->loadedProps[i];
 
@@ -223,8 +208,7 @@ MapProp *MapPropManager_FindLoadedPropByModelID(MapPropManager *mapPropManager, 
     return NULL;
 }
 
-MapProp *MapPropManager_GetLoadedPropSafely(MapPropManager *mapPropManager, const int index)
-{
+MapProp *MapPropManager_GetLoadedPropSafely(MapPropManager *mapPropManager, const int index) {
     GF_ASSERT(index < MAX_LOADED_MAP_PROPS);
     MapProp *loadedProp = &mapPropManager->loadedProps[index];
     GF_ASSERT(loadedProp->loaded);
@@ -232,16 +216,14 @@ MapProp *MapPropManager_GetLoadedPropSafely(MapPropManager *mapPropManager, cons
     return loadedProp;
 }
 
-static void MapPropManager_InitRenderObj(const int modelID, AreaDataManager *const areaDataManager, NNSG3dRenderObj *renderObj, NNSG3dResMdl **model)
-{
+static void MapPropManager_InitRenderObj(const int modelID, AreaDataManager *const areaDataManager, NNSG3dRenderObj *renderObj, NNSG3dResMdl **model) {
     NNSG3dResFileHeader **modelFile = AreaDataManager_GetMapPropModelFile(modelID, areaDataManager);
 
     *model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*modelFile), 0);
     NNS_G3dRenderObjInit(renderObj, *model);
 }
 
-static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int modelID)
-{
+static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int modelID) {
     u8 i;
 
     NNS_G3dGlbSetBaseTrans(position);
@@ -269,8 +251,7 @@ static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx3
     }
 }
 
-u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager, const int modelID, const VecFx32 *position, const VecFx32 *rotation, MapPropAnimationManager *mapPropAnimMan)
-{
+u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager, const int modelID, const VecFx32 *position, const VecFx32 *rotation, MapPropAnimationManager *mapPropAnimMan) {
     VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
 
     for (u8 i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
@@ -301,8 +282,7 @@ u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const
     return MAX_LOADED_MAP_PROPS;
 }
 
-void MapPropManager_Render2(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager)
-{
+void MapPropManager_Render2(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager) {
     MtxFx33 rotationMatrix = {
         FX32_ONE,
         0,

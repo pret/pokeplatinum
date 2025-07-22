@@ -22,8 +22,7 @@
 
 static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID);
 
-void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID)
-{
+void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID) {
     Trainer trdata;
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, heapID);
     const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData));
@@ -51,8 +50,7 @@ void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID
     MessageLoader_Free(msgLoader);
 }
 
-u32 Trainer_LoadParam(int trainerID, enum TrainerDataParam paramID)
-{
+u32 Trainer_LoadParam(int trainerID, enum TrainerDataParam paramID) {
     // TODO: can this be trainerheader?
     u32 result;
     Trainer trdata;
@@ -95,8 +93,7 @@ u32 Trainer_LoadParam(int trainerID, enum TrainerDataParam paramID)
     return result;
 }
 
-BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID)
-{
+BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID) {
     NARC *narc; // must declare up here to match
     u16 offset, data[2];
 
@@ -124,8 +121,7 @@ BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int 
     return result;
 }
 
-void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID)
-{
+void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID) {
     NARC *narc; // must declare up here to match
     u16 offset, data[2];
 
@@ -151,18 +147,15 @@ void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf 
     }
 }
 
-void Trainer_Load(int trainerID, Trainer *trdata)
-{
+void Trainer_Load(int trainerID, Trainer *trdata) {
     NARC_ReadWholeMemberByIndexPair(trdata, NARC_INDEX_POKETOOL__TRAINER__TRDATA, trainerID);
 }
 
-void Trainer_LoadParty(int trainerID, void *trparty)
-{
+void Trainer_LoadParty(int trainerID, void *trparty) {
     NARC_ReadWholeMemberByIndexPair(trparty, NARC_INDEX_POKETOOL__TRAINER__TRPOKE, trainerID);
 }
 
-u8 TrainerClass_Gender(int trclass)
-{
+u8 TrainerClass_Gender(int trclass) {
     return sTrainerClassGender[trclass];
 }
 
@@ -173,8 +166,7 @@ u8 TrainerClass_Gender(int trclass)
  * @param battler       Which battler's party is to be loaded.
  * @param heapID        Heap on which to perform any allocations.
  */
-static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
-{
+static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID) {
     // must make declarations C89-style to match
     void *buf;
     int i, j;

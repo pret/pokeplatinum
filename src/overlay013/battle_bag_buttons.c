@@ -209,8 +209,7 @@ static const u8 *const sScrollableWindows[] = {
     [BUTTON_POCKET_MENU_SCREEN_ALT_ITEM_6] = sPocketMenuScreenAltItem6ButtonWindows
 };
 
-void BattleBagButtons_InitializeButtonData(BattleBag *battleBag, u16 *screenData)
-{
+void BattleBagButtons_InitializeButtonData(BattleBag *battleBag, u16 *screenData) {
     LoadButtonData(battleBag->menuPocketButtonData[BUTTON_STATE_UNPRESSED], screenData, 0, 0, MENU_POCKET_BUTTON_WIDTH, MENU_POCKET_BUTTON_HEIGHT);
     LoadButtonData(battleBag->menuPocketButtonData[BUTTON_STATE_PRESSING], screenData, 0, MENU_POCKET_BUTTON_HEIGHT, MENU_POCKET_BUTTON_WIDTH, MENU_POCKET_BUTTON_HEIGHT);
     LoadButtonData(battleBag->menuPocketButtonData[BUTTON_STATE_PRESSED], screenData, 0, MENU_POCKET_BUTTON_HEIGHT * 2, MENU_POCKET_BUTTON_WIDTH, MENU_POCKET_BUTTON_HEIGHT);
@@ -256,8 +255,7 @@ void BattleBagButtons_InitializeButtonData(BattleBag *battleBag, u16 *screenData
     LoadButtonData(battleBag->menuScreenBattleItemsIconData[BUTTON_STATE_PRESSED], screenData, MENU_POCKET_ICON_DATA_X_OFFSET + MENU_POCKET_ICON_WIDTH * 2, MENU_POCKET_ICON_DATA_Y_OFFSET + MENU_POCKET_ICON_HEIGHT * 3, MENU_POCKET_ICON_WIDTH, MENU_POCKET_ICON_HEIGHT);
 }
 
-static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOffset, u8 width, u8 height)
-{
+static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOffset, u8 width, u8 height) {
     u16 i, l;
 
     for (i = 0; i < height; i++) {
@@ -267,8 +265,7 @@ static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOff
     }
 }
 
-static u16 *RetrieveRawButtonData(BattleBag *battleBag, u8 button, u8 buttonState)
-{
+static u16 *RetrieveRawButtonData(BattleBag *battleBag, u8 button, u8 buttonState) {
     switch (button) {
     case BUTTON_MENU_SCREEN_RECOVER_HP_POCKET:
     case BUTTON_MENU_SCREEN_RECOVER_STATUS_POCKET:
@@ -299,8 +296,7 @@ static u16 *RetrieveRawButtonData(BattleBag *battleBag, u8 button, u8 buttonStat
     return NULL;
 }
 
-static u16 GetButtonColor(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen)
-{
+static u16 GetButtonColor(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen) {
     if (buttonState == BUTTON_STATE_DISABLED) {
         return 5;
     }
@@ -337,8 +333,7 @@ static u16 GetButtonColor(BattleBag *battleBag, u8 button, u8 buttonState, u8 sc
     return 0;
 }
 
-static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState)
-{
+static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState) {
     u16 *iconData;
     u16 i, l;
 
@@ -361,8 +356,7 @@ static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, u8 bu
     }
 }
 
-static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState, u8 screen)
-{
+static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState, u8 screen) {
     u16 i;
     u16 *rawButtonData = RetrieveRawButtonData(battleBag, button, buttonState);
     u16 colorData = GetButtonColor(battleBag, button, buttonState, screen) << 12;
@@ -374,8 +368,7 @@ static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button,
     AddIconDataToButtonData(battleBag, buttonData, button, buttonState);
 }
 
-static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen)
-{
+static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen) {
     u16 *buttonData = Heap_AllocFromHeap(battleBag->context->heapID, sButtonDimensions[button].width * sButtonDimensions[button].height * sizeof(u16));
 
     RetrieveButtonData(battleBag, buttonData, button, buttonState, screen);
@@ -385,8 +378,7 @@ static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 scree
     Heap_Free(buttonData);
 }
 
-static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)
-{
+static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState) {
     const u8 *windowsToScroll;
     u16 i;
     u8 scrollDirection, scrollDistance;
@@ -423,8 +415,7 @@ static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)
     }
 }
 
-static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonState)
-{
+static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonState) {
     ManagedSprite *sprite;
     u8 i;
 
@@ -453,8 +444,7 @@ static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonStat
     }
 }
 
-void BattleBagButtons_PressButton(BattleBag *battleBag, u8 pressedButton, u8 unused)
-{
+void BattleBagButtons_PressButton(BattleBag *battleBag, u8 pressedButton, u8 unused) {
     battleBag->pressedButtonState = BUTTON_STATE_UNPRESSED;
     battleBag->Unused1 = 0;
     battleBag->pressedButton = pressedButton;
@@ -462,8 +452,7 @@ void BattleBagButtons_PressButton(BattleBag *battleBag, u8 pressedButton, u8 unu
     battleBag->isAButtonPressed = TRUE;
 }
 
-void BattleBagButtons_Tick(BattleBag *battleBag)
-{
+void BattleBagButtons_Tick(BattleBag *battleBag) {
     if (battleBag->isAButtonPressed == FALSE) {
         return;
     }
@@ -494,8 +483,7 @@ void BattleBagButtons_Tick(BattleBag *battleBag)
     }
 }
 
-void BattleBagButtons_InitializeButtons(BattleBag *battleBag, u8 screen)
-{
+void BattleBagButtons_InitializeButtons(BattleBag *battleBag, u8 screen) {
     switch (screen) {
     case BATTLE_BAG_SCREEN_MENU:
         DrawButton(battleBag, BUTTON_MENU_SCREEN_RECOVER_HP_POCKET, BUTTON_STATE_UNPRESSED, screen);

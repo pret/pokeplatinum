@@ -239,8 +239,7 @@ static const u16 Unk_020F1CB0[] = {
     0x87,
 };
 
-static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
-{
+static int sub_0207E0B8(ApplicationManager *appMan, int *param1) {
     GameWindowLayout *v0;
     NARC *v1;
 
@@ -315,8 +314,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int sub_0207E2A8(ApplicationManager *appMan, int *param1)
-{
+static int sub_0207E2A8(ApplicationManager *appMan, int *param1) {
     GameWindowLayout *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
@@ -451,8 +449,7 @@ static int sub_0207E2A8(ApplicationManager *appMan, int *param1)
     return 0;
 }
 
-static int sub_0207E490(GameWindowLayout *param0)
-{
+static int sub_0207E490(GameWindowLayout *param0) {
     if (IsScreenFadeDone() == TRUE) {
         if ((param0->partyManagementData->unk_20 == 5) || (param0->partyManagementData->unk_20 == 16)) {
             if (CheckItemSacredAsh(param0->partyManagementData->usedItemID) == 1) {
@@ -481,8 +478,7 @@ static int sub_0207E490(GameWindowLayout *param0)
     return 0;
 }
 
-static int sub_0207E518(GameWindowLayout *param0)
-{
+static int sub_0207E518(GameWindowLayout *param0) {
     u8 v0 = sub_0207FE98(param0);
 
     if (v0 == 0) {
@@ -515,8 +511,7 @@ static int sub_0207E518(GameWindowLayout *param0)
     return 1;
 }
 
-static int sub_0207E5B4(GameWindowLayout *param0)
-{
+static int sub_0207E5B4(GameWindowLayout *param0) {
     u8 v0 = HandleSpecialInput(param0);
 
     if ((v0 == 0) || (v0 == 2)) {
@@ -530,8 +525,7 @@ static int sub_0207E5B4(GameWindowLayout *param0)
     return 4;
 }
 
-static int sub_0207E5F4(GameWindowLayout *param0)
-{
+static int sub_0207E5F4(GameWindowLayout *param0) {
     u8 v0 = HandleSpecialInput(param0);
 
     if ((v0 == 0) || (v0 == 2)) {
@@ -545,8 +539,7 @@ static int sub_0207E5F4(GameWindowLayout *param0)
     return 8;
 }
 
-static int sub_0207E634(GameWindowLayout *param0)
-{
+static int sub_0207E634(GameWindowLayout *param0) {
     u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
@@ -575,8 +568,7 @@ static int sub_0207E634(GameWindowLayout *param0)
     return 15;
 }
 
-static int sub_0207E6C0(GameWindowLayout *param0)
-{
+static int sub_0207E6C0(GameWindowLayout *param0) {
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         return param0->unk_B0E;
     }
@@ -584,8 +576,7 @@ static int sub_0207E6C0(GameWindowLayout *param0)
     return 24;
 }
 
-static int sub_0207E6E4(GameWindowLayout *param0)
-{
+static int sub_0207E6E4(GameWindowLayout *param0) {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         return 32;
@@ -594,14 +585,12 @@ static int sub_0207E6E4(GameWindowLayout *param0)
     return 25;
 }
 
-static int sub_0207E708(GameWindowLayout *param0)
-{
+static int sub_0207E708(GameWindowLayout *param0) {
     sub_020827EC(param0);
     return 27;
 }
 
-static int sub_0207E714(GameWindowLayout *param0)
-{
+static int sub_0207E714(GameWindowLayout *param0) {
     switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
     case 0:
         return param0->unk_B04.unk_00(param0);
@@ -612,8 +601,7 @@ static int sub_0207E714(GameWindowLayout *param0)
     return 27;
 }
 
-static int sub_0207E750(GameWindowLayout *param0)
-{
+static int sub_0207E750(GameWindowLayout *param0) {
     u8 v0 = HandleSpecialInput(param0);
 
     if ((v0 == 0) || (v0 == 2)) {
@@ -636,8 +624,7 @@ static int sub_0207E750(GameWindowLayout *param0)
     return 21;
 }
 
-static int sub_0207E7E0(ApplicationManager *appMan, int *param1)
-{
+static int sub_0207E7E0(ApplicationManager *appMan, int *param1) {
     GameWindowLayout *v0 = ApplicationManager_Data(appMan);
     u32 v1;
 
@@ -673,8 +660,7 @@ static int sub_0207E7E0(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static void sub_0207E898(void *param0)
-{
+static void sub_0207E898(void *param0) {
     GameWindowLayout *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_00);
@@ -684,8 +670,7 @@ static void sub_0207E898(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void sub_0207E8C0(void)
-{
+static void sub_0207E8C0(void) {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -702,8 +687,7 @@ static void sub_0207E8C0(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_0207E8E0(BgConfig *param0)
-{
+static void sub_0207E8E0(BgConfig *param0) {
     BgTemplate v0 = {
         .x = 0,
         .y = 0,
@@ -723,8 +707,7 @@ static void sub_0207E8E0(BgConfig *param0)
     Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
 }
 
-static void sub_0207E918(BgConfig *param0)
-{
+static void sub_0207E918(BgConfig *param0) {
     {
         GraphicsModes v0 = {
             GX_DISPMODE_GRAPHICS,
@@ -842,8 +825,7 @@ static void sub_0207E918(BgConfig *param0)
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_12);
 }
 
-static void sub_0207EA24(BgConfig *param0)
-{
+static void sub_0207EA24(BgConfig *param0) {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
@@ -855,8 +837,7 @@ static void sub_0207EA24(BgConfig *param0)
     Heap_FreeExplicit(HEAP_ID_12, param0);
 }
 
-void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
-{
+void sub_0207EA74(GameWindowLayout *windowLayout, int param1) {
     if (param1 == 0) {
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
         Bg_FreeTilemapBuffer(windowLayout->unk_00, BG_LAYER_MAIN_0);
@@ -874,13 +855,11 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
     }
 }
 
-static G3DPipelineBuffers *sub_0207EAD4(int heapID)
-{
+static G3DPipelineBuffers *sub_0207EAD4(int heapID) {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }
 
-static void sub_0207EAF4(void)
-{
+static void sub_0207EAF4(void) {
     G3X_SetShading(GX_SHADING_TOON);
     G3X_AntiAlias(1);
     G3X_AlphaTest(0, 0);
@@ -891,13 +870,11 @@ static void sub_0207EAF4(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64(G3DPipelineBuffers *param0)
-{
+static void sub_0207EB64(G3DPipelineBuffers *param0) {
     G3DPipelineBuffers_Free(param0);
 }
 
-static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
-{
+static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1) {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 15, param0->unk_00, 3, 0, 0, 0, HEAP_ID_12);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_00, 3, 0, 0, 0, HEAP_ID_12);
 
@@ -928,8 +905,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 }
 
-static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan)
-{
+static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan) {
     GameWindowLayout *v0;
     u32 v1;
 
@@ -966,8 +942,7 @@ static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan)
     return v0;
 }
 
-static void sub_0207EDC0(GameWindowLayout *param0)
-{
+static void sub_0207EDC0(GameWindowLayout *param0) {
     if ((param0->partyManagementData->unk_20 & 0x80) != 0) {
         param0->unk_B0F_7 = 1;
         param0->partyManagementData->unk_20 ^= 0x80;
@@ -978,8 +953,7 @@ static void sub_0207EDC0(GameWindowLayout *param0)
     }
 }
 
-static void sub_0207EE14(GameWindowLayout *param0)
-{
+static void sub_0207EE14(GameWindowLayout *param0) {
     u8 v0 = 3;
 
     if (param0->partyManagementData->unk_21 == 2) {
@@ -1014,13 +988,11 @@ static void sub_0207EE14(GameWindowLayout *param0)
     sub_020825B4(param0, v0);
 }
 
-u8 sub_0207EF04(GameWindowLayout *windowLayout, u8 param1)
-{
+u8 sub_0207EF04(GameWindowLayout *windowLayout, u8 param1) {
     return windowLayout->unk_704[param1].unk_29;
 }
 
-u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 partySlot)
-{
+u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 partySlot) {
     Pokemon *mon;
     u32 v1;
     u16 species;
@@ -1064,8 +1036,7 @@ u8 sub_0207EF14(GameWindowLayout *windowLayout, u8 partySlot)
     return 1;
 }
 
-static void sub_0207F094(GameWindowLayout *param0, Pokemon *param1, u8 param2)
-{
+static void sub_0207F094(GameWindowLayout *param0, Pokemon *param1, u8 param2) {
     u32 v0;
     u32 v1;
 
@@ -1093,8 +1064,7 @@ static void sub_0207F094(GameWindowLayout *param0, Pokemon *param1, u8 param2)
     }
 }
 
-static u32 sub_0207F134(Pokemon *param0, u8 param1)
-{
+static u32 sub_0207F134(Pokemon *param0, u8 param1) {
     u32 v0;
 
     switch (param1) {
@@ -1132,13 +1102,11 @@ static u32 sub_0207F134(Pokemon *param0, u8 param1)
     return v0;
 }
 
-const u16 *sub_0207F248(GameWindowLayout *windowLayout)
-{
+const u16 *sub_0207F248(GameWindowLayout *windowLayout) {
     return &windowLayout->unk_324[3 * 16 + 6];
 }
 
-static void sub_0207F250(GameWindowLayout *param0, u8 param1, u8 param2, u8 param3, u8 param4)
-{
+static void sub_0207F250(GameWindowLayout *param0, u8 param1, u8 param2, u8 param3, u8 param4) {
     const u16 *v0;
 
     if ((param1 == 0) || ((param0->partyManagementData->unk_21 != 0) && (param1 == 1))) {
@@ -1161,8 +1129,7 @@ static void sub_0207F250(GameWindowLayout *param0, u8 param1, u8 param2, u8 para
     sub_0207F8F8(param0, param1);
 }
 
-static void sub_0207F308(GameWindowLayout *param0)
-{
+static void sub_0207F308(GameWindowLayout *param0) {
     const UnkStruct_020F1DF8 *v0;
 
     if (param0->partyManagementData->unk_21 == 2) {
@@ -1187,8 +1154,7 @@ static void sub_0207F308(GameWindowLayout *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
 }
 
-static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
-{
+static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1) {
     u8 v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
@@ -1217,8 +1183,7 @@ static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
     NARC_dtor(v1);
 }
 
-static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
-{
+static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1) {
     u8 v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
@@ -1242,8 +1207,7 @@ static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
     NARC_dtor(v1);
 }
 
-static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
-{
+static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1) {
     u8 v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
@@ -1267,8 +1231,7 @@ static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
     NARC_dtor(v1);
 }
 
-static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
-{
+static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1) {
     u8 v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
@@ -1292,8 +1255,7 @@ static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
     NARC_dtor(v1);
 }
 
-static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
-{
+static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1) {
     u8 v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
@@ -1318,8 +1280,7 @@ static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
     NARC_dtor(v1);
 }
 
-static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
-{
+static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3) {
     Bg_CopyToTilemapRect(param0->unk_00, 2, param2, param3, 16, 6, (const void *)param0->unk_3E4, 0, 0, 16, 6);
     Bg_ChangeTilemapRectPalette(param0->unk_00, 2, param2, param3, 16, 6, 1);
     sub_02083014(param0, param1, 7);
@@ -1327,8 +1288,7 @@ static void sub_0207F884(GameWindowLayout *param0, u8 param1, s16 param2, s16 pa
     sub_02083104(param0, param1);
 }
 
-void sub_0207F8F8(GameWindowLayout *windowLayout, u8 partySlot)
-{
+void sub_0207F8F8(GameWindowLayout *windowLayout, u8 partySlot) {
     Pokemon *mon;
     u8 v1;
 
@@ -1355,8 +1315,7 @@ void sub_0207F8F8(GameWindowLayout *windowLayout, u8 partySlot)
     Bg_LoadPalette(2, &windowLayout->unk_4A4[v1 * 16], 8 * 2, (3 + partySlot) * 32);
 }
 
-static u8 sub_0207F984(GameWindowLayout *param0, u8 param1)
-{
+static u8 sub_0207F984(GameWindowLayout *param0, u8 param1) {
     if ((param0->partyManagementData->unk_21 == 2) && ((param1 & 1) != 0)) {
         return 1;
     }
@@ -1364,8 +1323,7 @@ static u8 sub_0207F984(GameWindowLayout *param0, u8 param1)
     return 0;
 }
 
-static void sub_0207F9A0(GameWindowLayout *param0)
-{
+static void sub_0207F9A0(GameWindowLayout *param0) {
     u8 v0, v1;
 
     GridMenuCursor_CheckNavigation(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->partySlot, GRID_MENU_CURSOR_POSITION_DIRECTION_NONE);
@@ -1380,8 +1338,7 @@ static const u8 Unk_020F1BD4[][6] = {
     { 0x5, 0x3, 0x1, 0x4, 0x2, 0x0 }
 };
 
-static u8 sub_0207FA00(GameWindowLayout *param0)
-{
+static u8 sub_0207FA00(GameWindowLayout *param0) {
     if (sub_0207FA24(param0) == 1) {
         return 1;
     }
@@ -1393,8 +1350,7 @@ static u8 sub_0207FA00(GameWindowLayout *param0)
     return 5;
 }
 
-static u8 sub_0207FA24(GameWindowLayout *param0)
-{
+static u8 sub_0207FA24(GameWindowLayout *param0) {
     u8 v0;
     u8 v1;
     u8 v2, v3;
@@ -1468,8 +1424,7 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
     return 0;
 }
 
-static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 param3)
-{
+static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 param3) {
     u8 v0 = param0->partySlot;
 
     while (TRUE) {
@@ -1487,8 +1442,7 @@ static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 para
     return v0;
 }
 
-static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u8 *param3)
-{
+static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u8 *param3) {
     u8 v0 = 0;
 
     while (TRUE) {
@@ -1508,8 +1462,7 @@ static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u
     return 0;
 }
 
-static u8 sub_0207FC94(GameWindowLayout *param0)
-{
+static u8 sub_0207FC94(GameWindowLayout *param0) {
     int v0 = GetValidWindowLayout(param0);
 
     if (v0 != 0xffffffff) {
@@ -1546,8 +1499,7 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
     return 0;
 }
 
-void sub_0207FD68(GameWindowLayout *windowLayout, u8 partySlot)
-{
+void sub_0207FD68(GameWindowLayout *windowLayout, u8 partySlot) {
     if ((partySlot == 6) || (partySlot == 7)) {
         Sprite_SetDrawFlag(windowLayout->unk_5B0[6], FALSE);
     } else {
@@ -1573,8 +1525,7 @@ void sub_0207FD68(GameWindowLayout *windowLayout, u8 partySlot)
     }
 }
 
-static void sub_0207FE1C(GameWindowLayout *param0)
-{
+static void sub_0207FE1C(GameWindowLayout *param0) {
     switch (param0->unk_B0C) {
     case 0:
         break;
@@ -1598,8 +1549,7 @@ static void sub_0207FE1C(GameWindowLayout *param0)
     }
 }
 
-static u8 sub_0207FE98(GameWindowLayout *param0)
-{
+static u8 sub_0207FE98(GameWindowLayout *param0) {
     u8 v0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -1664,8 +1614,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
     return v0;
 }
 
-static void sub_0207FFC8(GameWindowLayout *param0)
-{
+static void sub_0207FFC8(GameWindowLayout *param0) {
     u8 *v0;
     u8 v1;
 
@@ -1707,8 +1656,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 }
 
-static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1) {
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
     u16 v1;
     u8 v2 = 0, v3, v4 = 0, v5;
@@ -1757,16 +1705,14 @@ static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
     return v4;
 }
 
-static u8 sub_020801AC(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_020801AC(GameWindowLayout *param0, u8 *param1) {
     param1[0] = 14;
     param1[1] = 9;
 
     return 2;
 }
 
-static u8 sub_020801B8(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_020801B8(GameWindowLayout *param0, u8 *param1) {
     if (param0->unk_704[param0->partySlot].unk_10 == 0) {
         param1[0] = 8;
         param1[1] = 1;
@@ -1781,8 +1727,7 @@ static u8 sub_020801B8(GameWindowLayout *param0, u8 *param1)
     return 2;
 }
 
-static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1) {
     if (param0->unk_704[param0->partySlot].unk_0E_15 == 1) {
         param1[0] = 13;
         param1[1] = 1;
@@ -1797,8 +1742,7 @@ static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1)
     return 2;
 }
 
-static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1) {
     switch (sub_02080354(param0, param0->partySlot)) {
     case 0:
         param1[0] = 1;
@@ -1819,8 +1763,7 @@ static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1)
     return 0;
 }
 
-static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1) {
     switch (sub_02080404(param0, param0->partySlot)) {
     case 0:
         param1[0] = 1;
@@ -1841,8 +1784,7 @@ static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1)
     return 0;
 }
 
-static u8 sub_020802CC(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_020802CC(GameWindowLayout *param0, u8 *param1) {
     switch (sub_02080488(param0, param0->partySlot)) {
     case 0:
         param1[0] = 1;
@@ -1863,8 +1805,7 @@ static u8 sub_020802CC(GameWindowLayout *param0, u8 *param1)
     return 0;
 }
 
-static u8 sub_0208031C(GameWindowLayout *param0, u8 *param1)
-{
+static u8 sub_0208031C(GameWindowLayout *param0, u8 *param1) {
     if (param0->unk_704[param0->partySlot].unk_10 == 1) {
         param1[0] = 1;
         param1[1] = 15;
@@ -1878,8 +1819,7 @@ static u8 sub_0208031C(GameWindowLayout *param0, u8 *param1)
     return 2;
 }
 
-u8 sub_02080354(GameWindowLayout *windowLayout, u8 partySlot)
-{
+u8 sub_02080354(GameWindowLayout *windowLayout, u8 partySlot) {
     u8 v0;
 
     if (windowLayout->partyManagementData->battleRegulation != NULL) {
@@ -1909,8 +1849,7 @@ u8 sub_02080354(GameWindowLayout *windowLayout, u8 partySlot)
     return 1;
 }
 
-u8 sub_02080404(GameWindowLayout *windowLayout, u8 partySlot)
-{
+u8 sub_02080404(GameWindowLayout *windowLayout, u8 partySlot) {
     u8 v0;
 
     if (windowLayout->partyManagementData->unk_20 == 22) {
@@ -1932,8 +1871,7 @@ u8 sub_02080404(GameWindowLayout *windowLayout, u8 partySlot)
     return 1;
 }
 
-u8 sub_02080488(GameWindowLayout *windowLayout, u8 partySlot)
-{
+u8 sub_02080488(GameWindowLayout *windowLayout, u8 partySlot) {
     u8 v0;
 
     if (windowLayout->partyManagementData->unk_20 == 23) {
@@ -1955,8 +1893,7 @@ u8 sub_02080488(GameWindowLayout *windowLayout, u8 partySlot)
     return 1;
 }
 
-static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2)
-{
+static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2) {
     if (param1 == 6) {
         u8 v0 = Sprite_GetActiveAnim(param0->unk_5B0[8]);
 
@@ -1998,8 +1935,7 @@ static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2)
     sub_0207F8F8(param0, param1);
 }
 
-u8 sub_020805D0(u8 param0, u8 param1)
-{
+u8 sub_020805D0(u8 param0, u8 param1) {
     if ((param1 == 0) || ((param0 != 0) && (param1 == 1))) {
         return 1;
     }
@@ -2007,8 +1943,7 @@ u8 sub_020805D0(u8 param0, u8 param1)
     return 0;
 }
 
-static u8 sub_020805E4(GameWindowLayout *param0)
-{
+static u8 sub_020805E4(GameWindowLayout *param0) {
     u8 v0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -2044,8 +1979,7 @@ static u8 sub_020805E4(GameWindowLayout *param0)
     return v0;
 }
 
-static int HandleGameWindowEvent(GameWindowLayout *param0)
-{
+static int HandleGameWindowEvent(GameWindowLayout *param0) {
     u8 v0;
 
     for (v0 = 0; v0 < param0->partyManagementData->unk_32_0; v0++) {
@@ -2156,8 +2090,7 @@ static int HandleGameWindowEvent(GameWindowLayout *param0)
     return 32;
 }
 
-static u8 CheckDuplicateValues(GameWindowLayout *param0)
-{
+static u8 CheckDuplicateValues(GameWindowLayout *param0) {
     u8 v0, v1;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -2183,8 +2116,7 @@ static u8 CheckDuplicateValues(GameWindowLayout *param0)
     return 0;
 }
 
-static u8 CheckUniqueValues(GameWindowLayout *param0)
-{
+static u8 CheckUniqueValues(GameWindowLayout *param0) {
     u8 v0, v1;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -2206,8 +2138,7 @@ static u8 CheckUniqueValues(GameWindowLayout *param0)
     return 0;
 }
 
-static u8 CheckEqualityInArray(GameWindowLayout *param0)
-{
+static u8 CheckEqualityInArray(GameWindowLayout *param0) {
     u8 v0, v1;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -2248,8 +2179,7 @@ static const TouchScreenRect Unk_020F1C94[] = {
     { 0xFF, 0x0, 0x0, 0x0 }
 };
 
-static void UpdateWindowLayout(GameWindowLayout *param0, u8 param1, u8 param2)
-{
+static void UpdateWindowLayout(GameWindowLayout *param0, u8 param1, u8 param2) {
     u16 *v0;
     u16 v1;
     u8 v2, v3;
@@ -2267,14 +2197,12 @@ static void UpdateWindowLayout(GameWindowLayout *param0, u8 param1, u8 param2)
     }
 }
 
-static void CalculateWindowPosition(u8 param0, s16 *param1, s16 *param2)
-{
+static void CalculateWindowPosition(u8 param0, s16 *param1, s16 *param2) {
     *param1 = Unk_020F1BB8[param0][0] * 8 + ((5 * 8) >> 1);
     *param2 = Unk_020F1BB8[param0][1] * 8 + ((5 * 8) >> 1);
 }
 
-static int GetValidWindowLayout(GameWindowLayout *param0)
-{
+static int GetValidWindowLayout(GameWindowLayout *param0) {
     int v0;
 
     if (ValidateGameWindowState(param0) == 0) {
@@ -2294,8 +2222,7 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
     return v0;
 }
 
-static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
-{
+static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1) {
     u32 v0 = Menu_ProcessInput(param0->unk_700);
 
     switch (v0) {
@@ -2324,8 +2251,7 @@ static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
     return 0;
 }
 
-u8 GetElementIndex(u16 param0)
-{
+u8 GetElementIndex(u16 param0) {
     u8 v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020F1CB0); v0++) {
@@ -2337,8 +2263,7 @@ u8 GetElementIndex(u16 param0)
     return 0xff;
 }
 
-static int ProcessWindowInput(GameWindowLayout *param0)
-{
+static int ProcessWindowInput(GameWindowLayout *param0) {
     switch (param0->monStats[1]) {
     case 0:
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -2457,8 +2382,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
     return 30;
 }
 
-static u8 CheckPokemonCondition(GameWindowLayout *param0)
-{
+static u8 CheckPokemonCondition(GameWindowLayout *param0) {
     if (param0->unk_704[param0->partySlot].unk_10 != 0) {
         return 2;
     }
@@ -2476,8 +2400,7 @@ static u8 CheckPokemonCondition(GameWindowLayout *param0)
     return 0;
 }
 
-static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
-{
+static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2) {
     param0->unk_704[slot].curHP += param2;
     param0->monStats[2]++;
 
@@ -2499,8 +2422,7 @@ static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 slot, s8 param2)
     return 0;
 }
 
-static u8 HandleSpecialInput(GameWindowLayout *param0)
-{
+static u8 HandleSpecialInput(GameWindowLayout *param0) {
     u8 v0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
@@ -2543,8 +2465,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
     return v0;
 }
 
-static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
-{
+static int ApplyItemEffectOnPokemon(GameWindowLayout *param0) {
     ItemData *v0 = Item_Load(param0->partyManagementData->usedItemID, 0, 12);
 
     if ((param0->partyManagementData->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot)) == 1)) {
@@ -2594,8 +2515,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
     return 5;
 }
 
-static u8 CheckItemUsageValidity(GameWindowLayout *param0)
-{
+static u8 CheckItemUsageValidity(GameWindowLayout *param0) {
     if (param0->unk_704[param0->partySlot].unk_0C == 0) {
         return 0;
     } else if (Item_IsMail(param0->unk_704[param0->partySlot].unk_0C) == 1) {
@@ -2605,8 +2525,7 @@ static u8 CheckItemUsageValidity(GameWindowLayout *param0)
     return 1;
 }
 
-static int ProcessItemApplication(GameWindowLayout *param0)
-{
+static int ProcessItemApplication(GameWindowLayout *param0) {
     Pokemon *v0;
     Window *v1;
     int v2 = -1, v3;
@@ -2669,8 +2588,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
     return v2;
 }
 
-static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *param2)
-{
+static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *param2) {
     u32 item = param0->partyManagementData->usedItemID;
     FieldSystem *fieldSystem = param0->partyManagementData->fieldSystem;
 
@@ -2694,8 +2612,7 @@ static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *mon, int *pa
     return 11;
 }
 
-static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *mon, u32 param2, u32 param3)
-{
+static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *mon, u32 param2, u32 param3) {
     Bag_TryAddItem(param0->partyManagementData->bag, (u16)param2, 1, HEAP_ID_12);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &param3);
     Pokemon_SetArceusForm(mon);
@@ -2704,8 +2621,7 @@ static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *mon, u32 param2, 
     sub_02083040(param0, param0->partySlot, param0->unk_704[param0->partySlot].unk_0C);
 }
 
-static int HandleMessageCompletion(GameWindowLayout *param0)
-{
+static int HandleMessageCompletion(GameWindowLayout *param0) {
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return ResetWindowOnInput(param0);
@@ -2715,8 +2631,7 @@ static int HandleMessageCompletion(GameWindowLayout *param0)
     return 11;
 }
 
-static int ProcessMessageResult(GameWindowLayout *param0)
-{
+static int ProcessMessageResult(GameWindowLayout *param0) {
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
@@ -2728,8 +2643,7 @@ static int ProcessMessageResult(GameWindowLayout *param0)
     return 12;
 }
 
-static int HandleOverlayCompletion(GameWindowLayout *param0)
-{
+static int HandleOverlayCompletion(GameWindowLayout *param0) {
     if (ov118_021D0DBC(param0) == 1) {
         UnloadOverlay118(param0);
 
@@ -2739,8 +2653,7 @@ static int HandleOverlayCompletion(GameWindowLayout *param0)
     return 13;
 }
 
-static int FinalizeMessageProcessing(GameWindowLayout *param0)
-{
+static int FinalizeMessageProcessing(GameWindowLayout *param0) {
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         sub_020827EC(param0);
         return 10;
@@ -2749,8 +2662,7 @@ static int FinalizeMessageProcessing(GameWindowLayout *param0)
     return 9;
 }
 
-static int ProcessPokemonItemSwap(GameWindowLayout *param0)
-{
+static int ProcessPokemonItemSwap(GameWindowLayout *param0) {
     int v0, v1;
 
     switch (Menu_ProcessInputAndHandleExit(param0->unk_700, 12)) {
@@ -2801,8 +2713,7 @@ static int ProcessPokemonItemSwap(GameWindowLayout *param0)
     return 10;
 }
 
-static int ResetWindowOnInput(GameWindowLayout *param0)
-{
+static int ResetWindowOnInput(GameWindowLayout *param0) {
     if (param0->partyManagementData->unk_20 == 10) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
@@ -2815,8 +2726,7 @@ static int ResetWindowOnInput(GameWindowLayout *param0)
     return 32;
 }
 
-static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
-{
+static int UpdatePokemonFormWithItem(GameWindowLayout *param0) {
     Pokemon *v0;
     Window *v1;
     u32 v2;
@@ -2857,8 +2767,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
     return v4;
 }
 
-static int CheckForItemApplication(GameWindowLayout *param0)
-{
+static int CheckForItemApplication(GameWindowLayout *param0) {
     if (param0->unk_704[param0->partySlot].unk_12 == 0) {
         param0->partyManagementData->menuSelectionResult = 0;
         return 32;
@@ -2872,8 +2781,7 @@ static int CheckForItemApplication(GameWindowLayout *param0)
     return 24;
 }
 
-static BOOL ValidateGameWindowState(GameWindowLayout *param0)
-{
+static BOOL ValidateGameWindowState(GameWindowLayout *param0) {
     if ((param0->partyManagementData->unk_20 == 5) || (param0->partyManagementData->unk_20 == 6) || (param0->partyManagementData->unk_20 == 7) || (param0->partyManagementData->unk_20 == 8) || (param0->partyManagementData->unk_20 == 9) || (param0->partyManagementData->unk_20 == 11) || (param0->partyManagementData->unk_20 == 14) || (param0->partyManagementData->unk_20 == 16) || (param0->partyManagementData->unk_20 == 20)) {
         return 0;
     }
@@ -2881,28 +2789,23 @@ static BOOL ValidateGameWindowState(GameWindowLayout *param0)
     return 1;
 }
 
-u32 sub_02081930(void)
-{
+u32 sub_02081930(void) {
     return 20;
 }
 
-u32 sub_02081934(void)
-{
+u32 sub_02081934(void) {
     return 21;
 }
 
-u32 sub_02081938(void)
-{
+u32 sub_02081938(void) {
     return 19;
 }
 
-u32 sub_0208193C(void)
-{
+u32 sub_0208193C(void) {
     return 18;
 }
 
-void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3)
-{
+void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3) {
     NNSG2dScreenData *v0;
     void *v1;
     u16 *v2;
@@ -2921,13 +2824,11 @@ void LoadScreenDataFromNARC(u32 param0, u16 *param1, u16 *param2, u16 *param3)
     Heap_Free(v1);
 }
 
-void LoadOverlay118(GameWindowLayout *windowLayout)
-{
+void LoadOverlay118(GameWindowLayout *windowLayout) {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay118), 2);
     ov118_021D0D80(windowLayout);
 }
 
-void UnloadOverlay118(GameWindowLayout *windowLayout)
-{
+void UnloadOverlay118(GameWindowLayout *windowLayout) {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay118));
 }

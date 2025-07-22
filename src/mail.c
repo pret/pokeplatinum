@@ -41,8 +41,7 @@ static const struct {
     { 0x1E6, 0x222, SPECIES_ROTOM, ROTOM_FORM_MOW }
 };
 
-void Mail_Init(Mail *mail)
-{
+void Mail_Init(Mail *mail) {
     int i;
 
     mail->trainerID = 0;
@@ -64,8 +63,7 @@ void Mail_Init(Mail *mail)
     }
 }
 
-BOOL Mail_IsEmpty(Mail *mail)
-{
+BOOL Mail_IsEmpty(Mail *mail) {
     if ((mail->mailType >= 0) && (mail->mailType <= 11)) {
         return TRUE;
     }
@@ -73,21 +71,18 @@ BOOL Mail_IsEmpty(Mail *mail)
     return FALSE;
 }
 
-Mail *Mail_New(int heapID)
-{
+Mail *Mail_New(int heapID) {
     Mail *mail = Heap_AllocFromHeapAtEnd(heapID, sizeof(Mail));
     Mail_Init(mail);
 
     return mail;
 }
 
-void Mail_Copy(Mail *src, Mail *dest)
-{
+void Mail_Copy(Mail *src, Mail *dest) {
     MI_CpuCopy8(src, dest, sizeof(Mail));
 }
 
-void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData)
-{
+void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData) {
     u8 i, v1, palIndex, j;
     u16 species;
     u32 spriteIndex, isEgg, form;
@@ -134,28 +129,23 @@ void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData)
     }
 }
 
-u32 Mail_GetTrainerID(const Mail *mail)
-{
+u32 Mail_GetTrainerID(const Mail *mail) {
     return mail->trainerID;
 }
 
-u16 *Mail_GetTrainerName(Mail *mail)
-{
+u16 *Mail_GetTrainerName(Mail *mail) {
     return &(mail->trainerName[0]);
 }
 
-u8 Mail_GetTrainerGender(const Mail *mail)
-{
+u8 Mail_GetTrainerGender(const Mail *mail) {
     return mail->trainerGender;
 }
 
-u8 Mail_GetMailType(const Mail *mail)
-{
+u8 Mail_GetMailType(const Mail *mail) {
     return mail->mailType;
 }
 
-void Mail_SetMailType(Mail *mail, const u8 mailType)
-{
+void Mail_SetMailType(Mail *mail, const u8 mailType) {
     if (mailType >= NUM_MAILS) {
         return;
     }
@@ -163,18 +153,15 @@ void Mail_SetMailType(Mail *mail, const u8 mailType)
     mail->mailType = mailType;
 }
 
-u8 Mail_GetLanguage(const Mail *mail)
-{
+u8 Mail_GetLanguage(const Mail *mail) {
     return mail->language;
 }
 
-u8 Mail_GetGameVersion(const Mail *mail)
-{
+u8 Mail_GetGameVersion(const Mail *mail) {
     return mail->gameVersion;
 }
 
-u16 sub_02028328(const Mail *mail, u8 param1, u8 param2, u16 param3)
-{
+u16 sub_02028328(const Mail *mail, u8 param1, u8 param2, u16 param3) {
     UnkUnion_02028328 v0;
     int i;
 
@@ -208,13 +195,11 @@ u16 sub_02028328(const Mail *mail, u8 param1, u8 param2, u16 param3)
     }
 }
 
-u16 sub_02028408(const Mail *param0)
-{
+u16 sub_02028408(const Mail *param0) {
     return param0->unk_1E;
 }
 
-Sentence *sub_0202840C(Mail *param0, u8 param1)
-{
+Sentence *sub_0202840C(Mail *param0, u8 param1) {
     if (param1 < 3) {
         return &(param0->unk_20[param1]);
     } else {
@@ -222,8 +207,7 @@ Sentence *sub_0202840C(Mail *param0, u8 param1)
     }
 }
 
-void sub_0202841C(Mail *param0, Sentence *param1, u8 param2)
-{
+void sub_0202841C(Mail *param0, Sentence *param1, u8 param2) {
     if (param2 >= 3) {
         return;
     }
@@ -231,18 +215,15 @@ void sub_0202841C(Mail *param0, Sentence *param1, u8 param2)
     sub_02014CC0(&param0->unk_20[param2], param1);
 }
 
-Mailbox *SaveData_GetMailbox(SaveData *saveData)
-{
+Mailbox *SaveData_GetMailbox(SaveData *saveData) {
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_MAILBOX);
 }
 
-int Mailbox_SaveSize(void)
-{
+int Mailbox_SaveSize(void) {
     return sizeof(Mailbox);
 }
 
-void Mailbox_Init(Mailbox *mailbox)
-{
+void Mailbox_Init(Mailbox *mailbox) {
     int i = 0;
 
     for (i = 0; i < MAILBOX_SIZE; i++) {
@@ -250,8 +231,7 @@ void Mailbox_Init(Mailbox *mailbox)
     }
 }
 
-int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1)
-{
+int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1) {
     switch (param1) {
     case 0:
         return Mail_GetEmptySlotInArray_(mailbox->mail, MAILBOX_SIZE);
@@ -262,8 +242,7 @@ int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1)
     return 0xFFFFFFFF;
 }
 
-void sub_02028470(Mailbox *mailbox, int param1, int slot)
-{
+void sub_02028470(Mailbox *mailbox, int param1, int slot) {
     Mail *mail = Mailbox_GetMailFromSlot(mailbox, param1, slot);
 
     if (mail != NULL) {
@@ -271,8 +250,7 @@ void sub_02028470(Mailbox *mailbox, int param1, int slot)
     }
 }
 
-void Mailbox_CopyMailToSlot(Mailbox *mailbox, int param1, int slot, Mail *src)
-{
+void Mailbox_CopyMailToSlot(Mailbox *mailbox, int param1, int slot, Mail *src) {
     Mail *dest = Mailbox_GetMailFromSlot(mailbox, param1, slot);
 
     if (dest != NULL) {
@@ -280,8 +258,7 @@ void Mailbox_CopyMailToSlot(Mailbox *mailbox, int param1, int slot, Mail *src)
     }
 }
 
-int sub_02028494(Mailbox *mailbox, int param1)
-{
+int sub_02028494(Mailbox *mailbox, int param1) {
     switch (param1) {
     case 0:
         return Mail_GetEmptySlotCountInArray(mailbox->mail, MAILBOX_SIZE);
@@ -292,8 +269,7 @@ int sub_02028494(Mailbox *mailbox, int param1)
     return 0;
 }
 
-Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID)
-{
+Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID) {
     Mail *v0 = Mailbox_GetMailFromSlot(mailbox, param1, slot);
     Mail *v1 = Mail_New(heapID);
 
@@ -304,8 +280,7 @@ Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID)
     return v1;
 }
 
-void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3)
-{
+void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3) {
     Mail *v0 = Mailbox_GetMailFromSlot(mailbox, param1, param2);
 
     if (v0 == NULL) {
@@ -315,8 +290,7 @@ void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3)
     }
 }
 
-static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize)
-{
+static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize) {
     int i = 0;
 
     for (i = 0; i < arraySize; i++) {
@@ -328,8 +302,7 @@ static int Mail_GetEmptySlotInArray_(Mail *array, int arraySize)
     return 0xFFFFFFFF;
 }
 
-static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize)
-{
+static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize) {
     int i = 0;
     int count = 0;
 
@@ -342,8 +315,7 @@ static int Mail_GetEmptySlotCountInArray(Mail *array, int arraySize)
     return count;
 }
 
-static Mail *Mailbox_GetMailFromSlot(Mailbox *mailbox, int param1, int slot)
-{
+static Mail *Mailbox_GetMailFromSlot(Mailbox *mailbox, int param1, int slot) {
     Mail *mail = NULL;
 
     switch (param1) {
