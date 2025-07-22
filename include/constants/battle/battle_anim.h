@@ -65,5 +65,11 @@
 #define BATTLE_ANIM_DEFENDER         (1 << 3) //< Defender
 #define BATTLE_ANIM_DEFENDER_PARTNER (1 << 4) //< Defender's partner
 
+#define BATTLE_ANIM_MON_SPRITE_0 0
+#define BATTLE_ANIM_MON_SPRITE_1 1
+#define BATTLE_ANIM_MON_SPRITE_2 2
+#define BATTLE_ANIM_MON_SPRITE_3 3
+#define BATTLE_ANIM_MON_SPRITE_4 4
+
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
