@@ -9,7 +9,6 @@
 #include "battle/struct_ov16_02265BBC.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_022380DC.h"
-#include "overlay012/struct_ov12_02223764.h"
 
 #include "bg_window.h"
 #include "palette.h"

@@ -5,7 +5,6 @@
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/ov12_02235254.h"
 
 #include "bg_window.h"
 #include "graphics.h"

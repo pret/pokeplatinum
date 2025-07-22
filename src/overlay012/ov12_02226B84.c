@@ -2,17 +2,16 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_0222C7E0_sub1.h"
 #include "overlay012/struct_ov12_02235350.h"
-#include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02235998.h"
 
 #include "bg_window.h"

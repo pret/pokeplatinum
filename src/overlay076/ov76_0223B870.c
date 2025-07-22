@@ -9,7 +9,6 @@
 #include "struct_defs/struct_020127E8.h"
 
 #include "overlay012/ov12_02225864.h"
-#include "overlay012/ov12_02225864.h"
 #include "overlay076/const_ov76_0223EF3C.h"
 #include "overlay076/ov76_0223D338.h"
 #include "overlay076/struct_ov76_0223BBAC.h"

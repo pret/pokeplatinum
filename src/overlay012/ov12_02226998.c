@@ -36,7 +36,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Flash,
     BattleAnimScriptFunc_NightShadeAttacker,
     BattleAnimScriptFunc_NightShadeDefender,
-    ov12_0222BFA8,
+    BattleAnimScriptFunc_Splash,
     ov12_02230A8C,
     ov12_0222C0C0,
     ov12_0222C3C0,
