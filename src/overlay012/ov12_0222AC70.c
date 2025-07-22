@@ -161,14 +161,28 @@ enum DoubleTeamState {
 // One iteration is either a single outwards or inwards movement of all sprites
 #define DOUBLE_TEAM_MAX_MOVE_ITERATIONS 8
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    BattleAnimSystem *unk_04;
-    PokemonSprite *unk_08;
-    XYTransformContext unk_0C;
-} UnkStruct_ov12_0222B914;
+// -------------------------------------------------------------------
+// Growth
+// -------------------------------------------------------------------
+typedef struct GrowthContext {
+    u8 state;
+    u8 iterations;
+    u8 scaleState;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *sprite;
+    XYTransformContext scale;
+} GrowthContext;
+
+enum GrowthState {
+    GROWTH_STATE_SCALE_FADE = 0,
+    GROWTH_STATE_WAIT,
+};
+
+#define GROWTH_SCALE        115
+#define GROWTH_SCALE_FRAMES 6
+#define GROWTH_SCALE_CYCLES 2
+#define GROWTH_BLINK_COLOR  COLOR_WHITE
+#define GROWTH_BLINK_ALPHA  6
 
 typedef struct {
     u8 unk_00;
@@ -726,12 +740,13 @@ void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system)
 }
 
 enum DoubleTeamTableIndex {
-    TABLE_BASEPOS = 0,
-    TABLE_RANGE_X,
-    TABLE_ITERATION_FRAMES,
+    DOUBLE_TEAM_TABLE_BASEPOS = 0,
+    DOUBLE_TEAM_TABLE_RANGE_X,
+    DOUBLE_TEAM_TABLE_ITERATION_FRAMES,
+    DOUBLE_TEAM_TABLE_COUNT
 };
 
-static const s16 sDoubleTeamPositions[][3] = {
+static const s16 sDoubleTeamPositions[][DOUBLE_TEAM_TABLE_COUNT] = {
     { DOUBLE_TEAM_BASEPOS, DOUBLE_TEAM_RANGE_X, DOUBLE_TEAM_ITERATION_FRAMES_1 },
     { DOUBLE_TEAM_BASEPOS, DOUBLE_TEAM_RANGE_X, DOUBLE_TEAM_ITERATION_FRAMES_2 },
     { DOUBLE_TEAM_RANGE_X, DOUBLE_TEAM_BASEPOS, DOUBLE_TEAM_ITERATION_FRAMES_1 },
@@ -751,35 +766,35 @@ static void BattleAnimTask_DoubleTeam(SysTask *task, void *param)
 
         PosLerpContext_Init(
             &ctx->pos[DOUBLE_TEAM_SPRITE_R1],
-            ctx->attackerX + sDoubleTeamPositions[posIndex][TABLE_BASEPOS],
-            ctx->attackerX + sDoubleTeamPositions[posIndex][TABLE_RANGE_X],
+            ctx->attackerX + sDoubleTeamPositions[posIndex][DOUBLE_TEAM_TABLE_BASEPOS],
+            ctx->attackerX + sDoubleTeamPositions[posIndex][DOUBLE_TEAM_TABLE_RANGE_X],
             ctx->attackerY,
             ctx->attackerY,
-            sDoubleTeamPositions[posIndex][TABLE_ITERATION_FRAMES] - frameReduction);
+            sDoubleTeamPositions[posIndex][DOUBLE_TEAM_TABLE_ITERATION_FRAMES] - frameReduction);
 
         PosLerpContext_Init(
             &ctx->pos[DOUBLE_TEAM_SPRITE_L1],
-            ctx->attackerX - sDoubleTeamPositions[posIndex][TABLE_BASEPOS],
-            ctx->attackerX - sDoubleTeamPositions[posIndex][TABLE_RANGE_X],
+            ctx->attackerX - sDoubleTeamPositions[posIndex][DOUBLE_TEAM_TABLE_BASEPOS],
+            ctx->attackerX - sDoubleTeamPositions[posIndex][DOUBLE_TEAM_TABLE_RANGE_X],
             ctx->attackerY,
             ctx->attackerY,
-            sDoubleTeamPositions[posIndex][TABLE_ITERATION_FRAMES] - frameReduction);
+            sDoubleTeamPositions[posIndex][DOUBLE_TEAM_TABLE_ITERATION_FRAMES] - frameReduction);
 
         PosLerpContext_Init(
             &ctx->pos[DOUBLE_TEAM_SPRITE_R2],
-            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][TABLE_BASEPOS],
-            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][TABLE_RANGE_X], 
+            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_BASEPOS],
+            ctx->attackerX + sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_RANGE_X], 
             ctx->attackerY,
             ctx->attackerY,
-            sDoubleTeamPositions[posIndex + 1][TABLE_ITERATION_FRAMES] - frameReduction);
+            sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_ITERATION_FRAMES] - frameReduction);
 
         PosLerpContext_Init(
             &ctx->pos[DOUBLE_TEAM_SPRITE_L2],
-            ctx->attackerX - sDoubleTeamPositions[posIndex + 1][TABLE_BASEPOS],
-            ctx->attackerX - sDoubleTeamPositions[posIndex + 1][TABLE_RANGE_X],
+            ctx->attackerX - sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_BASEPOS],
+            ctx->attackerX - sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_RANGE_X],
             ctx->attackerY,
             ctx->attackerY,
-            sDoubleTeamPositions[posIndex + 1][TABLE_ITERATION_FRAMES] - frameReduction);
+            sDoubleTeamPositions[posIndex + 1][DOUBLE_TEAM_TABLE_ITERATION_FRAMES] - frameReduction);
     }
         ctx->iteration++;
         ctx->state++;
@@ -948,59 +963,71 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_DoubleTeam, ctx);
 }
 
-static const u8 Unk_ov12_0223A098[][3] = {
-    { 0x64, 0x73, 0x6 },
-    { 0x73, 0x64, 0x6 }
+enum {
+    GROWTH_TABLE_SCALE_START = 0,
+    GROWTH_TABLE_SCALE_END,
+    GROWTH_TABLE_FRAMES,
+    GROWTH_TABLE_COUNT
 };
 
-static void ov12_0222B914(SysTask *param0, void *param1)
+static const u8 sGrowthScaleTable[][GROWTH_TABLE_COUNT] = {
+    { BASE_SCALE_XY, GROWTH_SCALE, GROWTH_SCALE_FRAMES },
+    { GROWTH_SCALE, BASE_SCALE_XY, GROWTH_SCALE_FRAMES }
+};
+
+static void BattleAnimTask_Growth(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222B914 *v0 = (UnkStruct_ov12_0222B914 *)param1;
+    GrowthContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        ScaleLerpContext_Init(&v0->unk_0C, Unk_ov12_0223A098[v0->unk_02][0], 100, Unk_ov12_0223A098[v0->unk_02][1], Unk_ov12_0223A098[v0->unk_02][2]);
+    switch (ctx->state) {
+    case GROWTH_STATE_SCALE_FADE:
+        ScaleLerpContext_Init(
+            &ctx->scale,
+            sGrowthScaleTable[ctx->scaleState][GROWTH_TABLE_SCALE_START],
+            BASE_SCALE_XY,
+            sGrowthScaleTable[ctx->scaleState][GROWTH_TABLE_SCALE_END],
+            sGrowthScaleTable[ctx->scaleState][GROWTH_TABLE_FRAMES]);
 
-        if (v0->unk_02 == 0) {
-            PokemonSprite_StartFade(v0->unk_08, 0, 6, 0, 0x7FFF);
+        if (ctx->scaleState == 0) {
+            PokemonSprite_StartFade(ctx->sprite, 0, GROWTH_BLINK_ALPHA, 0, GROWTH_BLINK_COLOR);
         } else {
-            PokemonSprite_StartFade(v0->unk_08, 6, 0, 0, 0x7FFF);
+            PokemonSprite_StartFade(ctx->sprite, GROWTH_BLINK_ALPHA, 0, 0, GROWTH_BLINK_COLOR);
         }
 
-        v0->unk_02 ^= 1;
-        v0->unk_01++;
-        v0->unk_00++;
+        ctx->scaleState ^= 1;
+        ctx->iterations++;
+        ctx->state++;
         break;
-    case 1:
-        if ((ScaleLerpContext_Update(&v0->unk_0C) == 0) && (PokemonSprite_IsFadeActive(v0->unk_08) == 0)) {
-            if (v0->unk_01 < 4) {
-                v0->unk_00--;
+    case GROWTH_STATE_WAIT:
+        if (ScaleLerpContext_Update(&ctx->scale) == FALSE && PokemonSprite_IsFadeActive(ctx->sprite) == FALSE) {
+            if (ctx->iterations < (GROWTH_SCALE_CYCLES * 2)) {
+                ctx->state--;
             } else {
-                v0->unk_00++;
+                ctx->state++;
             }
         }
 
-        PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_SCALE_X, v0->unk_0C.x);
-        PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_SCALE_Y, v0->unk_0C.y);
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_04, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222B9E0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Growth(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222B914 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222B914));
+    GrowthContext *ctx = BattleAnimUtil_Alloc(system, sizeof(GrowthContext));
 
-    v0->unk_00 = 0;
-    v0->unk_02 = 0;
-    v0->unk_01 = 0;
-    v0->unk_04 = param0;
-    v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
+    ctx->state = GROWTH_STATE_SCALE_FADE;
+    ctx->scaleState = 0;
+    ctx->iterations = 0;
+    ctx->battleAnimSys = system;
+    ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_04, ov12_0222B914, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Growth, ctx);
 }
 
 static const u8 Unk_ov12_0223A0DF[][5] = {

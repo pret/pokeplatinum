@@ -30,7 +30,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Submission,
     BattleAnimScriptFunc_Confusion,
     BattleAnimScriptFunc_AcidArmor,
-    ov12_0222B9E0,
+    BattleAnimScriptFunc_Growth,
     ov12_0222BAE4,
     ov12_0222BCF4,
     ov12_0222BE48,
