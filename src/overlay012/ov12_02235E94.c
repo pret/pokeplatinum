@@ -1247,7 +1247,7 @@ static BOOL ov12_02236B20(BallRotation *param0)
         }
         break;
     case 1:
-        if (ov12_02225C50(&param0->unk_48[0], param0->unk_30) == 0) {
+        if (PosLerpContext_UpdateAndApplyToSprite(&param0->unk_48[0], param0->unk_30) == 0) {
             param0->unk_08++;
 
             ov12_022368E4(param0, 13);

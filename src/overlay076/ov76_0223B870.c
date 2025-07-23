@@ -310,7 +310,7 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
                 continue;
             }
 
-            if (ov12_02225C50(&v0->unk_00[v2], v0->unk_144[v2]) == 1) {
+            if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_00[v2], v0->unk_144[v2]) == 1) {
                 v1 = 1;
             }
         }
@@ -348,8 +348,8 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 
             ManagedSprite_GetPositionXY(v0->unk_144[v1], &v2, &v3);
             PosLerpContext_Init(&v0->unk_00[v1], v2, v2 + ((+7 * 8) * param1), v3, v3 + ((-2 * 8) * param1), param2);
-            ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
-            ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
+            PosLerpContext_UpdateAndApplyToSprite(&v0->unk_00[v1], v0->unk_144[v1]);
+            PosLerpContext_UpdateAndApplyToSprite(&v0->unk_00[v1], v0->unk_144[v1]);
         }
     }
 

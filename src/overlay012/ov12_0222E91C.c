@@ -105,15 +105,15 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
     case 1: {
         int v1 = 0;
 
-        if (ov12_02225C50(&v0->unk_58, v0->unk_1C.hwSprite) == 0) {
+        if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_58, v0->unk_1C.hwSprite) == 0) {
             v1++;
         }
 
-        if (ov12_02225C74(&v0->unk_34, v0->unk_1C.monSprite) == 0) {
+        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_34, v0->unk_1C.monSprite) == 0) {
             v1++;
         }
 
-        if (ov12_02225C50(&v0->unk_7C, v0->unk_30) == 0) {
+        if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_7C, v0->unk_30) == 0) {
             v1++;
         }
 

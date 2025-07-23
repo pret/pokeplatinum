@@ -20,7 +20,7 @@ void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *param0);
 void ov12_02231650(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_02231950(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_02231C1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void ov12_02231E7C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *param0);
 void ov12_02232024(BattleAnimSystem *param0);
 void ov12_02232378(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_0223249C(BattleAnimSystem *param0);

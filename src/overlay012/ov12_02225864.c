@@ -307,24 +307,24 @@ BOOL PosLerpContext_Update(XYTransformContext *ctx)
     return FALSE;
 }
 
-BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1)
+BOOL PosLerpContext_UpdateAndApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite)
 {
-    if (PosLerpContext_Update(param0)) {
-        XYTransformContext_ApplyPosOffsetToSprite(param0, param1, 0, 0);
-        return 1;
+    if (PosLerpContext_Update(ctx)) {
+        XYTransformContext_ApplyPosOffsetToSprite(ctx, sprite, 0, 0);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1)
+BOOL PosLerpContext_UpdateAndApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite)
 {
-    if (PosLerpContext_Update(param0)) {
-        XYTransformContext_ApplyPosOffsetToMon(param0, param1, 0, 0);
-        return 1;
+    if (PosLerpContext_Update(ctx)) {
+        XYTransformContext_ApplyPosOffsetToMon(ctx, sprite, 0, 0);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7)
@@ -370,8 +370,8 @@ void ValueLerpContext_Init(ValueLerpContext *ctx, s32 start, s32 end, u32 steps)
     GF_ASSERT(ctx);
 
     ctx->value = start;
-    ctx->data[ANGLE_PARAM_STEPS] = steps;
-    ctx->data[ANGLE_PARAM_STEP_SIZE] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps) >> FX32_SHIFT;
+    ctx->data[VALUE_PARAM_STEPS] = steps;
+    ctx->data[VALUE_PARAM_STEP_SIZE] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps) >> FX32_SHIFT;
 }
 
 void ValueLerpContext_InitFX32(ValueLerpContext *ctx, s16 start, s16 end, u32 steps)
@@ -379,18 +379,18 @@ void ValueLerpContext_InitFX32(ValueLerpContext *ctx, s16 start, s16 end, u32 st
     GF_ASSERT(ctx);
 
     ctx->value = start;
-    ctx->data[ANGLE_PARAM_FX32_STEPS] = steps;
-    ctx->data[ANGLE_PARAM_FX32_STEP_SIZE] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps);
-    ctx->data[ANGLE_PARAM_FX32_CUR_ANGLE] = start * FX32_ONE;
+    ctx->data[VALUE_PARAM_FX32_STEPS] = steps;
+    ctx->data[VALUE_PARAM_FX32_STEP_SIZE] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps);
+    ctx->data[VALUE_PARAM_FX32_CUR_ANGLE] = start * FX32_ONE;
 }
 
 BOOL ValueLerpContext_Update(ValueLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
-    if (ctx->data[ANGLE_PARAM_STEPS]) {
-        ctx->value += ctx->data[ANGLE_PARAM_STEP_SIZE];
-        ctx->data[ANGLE_PARAM_STEPS]--;
+    if (ctx->data[VALUE_PARAM_STEPS]) {
+        ctx->value += ctx->data[VALUE_PARAM_STEP_SIZE];
+        ctx->data[VALUE_PARAM_STEPS]--;
 
         return TRUE;
     }
@@ -402,10 +402,10 @@ BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
-    if (ctx->data[ANGLE_PARAM_FX32_STEPS]) {
-        ctx->data[ANGLE_PARAM_FX32_CUR_ANGLE] += ctx->data[ANGLE_PARAM_FX32_STEP_SIZE];
-        ctx->value = ctx->data[ANGLE_PARAM_FX32_CUR_ANGLE] >> FX32_SHIFT;
-        ctx->data[ANGLE_PARAM_FX32_STEPS]--;
+    if (ctx->data[VALUE_PARAM_FX32_STEPS]) {
+        ctx->data[VALUE_PARAM_FX32_CUR_ANGLE] += ctx->data[VALUE_PARAM_FX32_STEP_SIZE];
+        ctx->value = ctx->data[VALUE_PARAM_FX32_CUR_ANGLE] >> FX32_SHIFT;
+        ctx->data[VALUE_PARAM_FX32_STEPS]--;
 
         return TRUE;
     }
@@ -415,21 +415,21 @@ BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx)
 
 void AngleLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
 {
-    ctx->data[ANGLE_PARAM_COS_STEPS] = steps;
-    ctx->data[ANGLE_PARAM_COS_CUR_ANGLE] = start;
-    ctx->data[ANGLE_PARAM_COS_AMPLITUDE] = amplitude;
-    ctx->data[ANGLE_PARAM_COS_STEP_SIZE] = (end - start) / steps;
+    ctx->data[VALUE_PARAM_COS_STEPS] = steps;
+    ctx->data[VALUE_PARAM_COS_CUR_ANGLE] = start;
+    ctx->data[VALUE_PARAM_COS_AMPLITUDE] = amplitude;
+    ctx->data[VALUE_PARAM_COS_STEP_SIZE] = (end - start) / steps;
 }
 
 BOOL AngleLerpContext_UpdateCos(ValueLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 
-    if (ctx->data[ANGLE_PARAM_COS_STEPS]) {
-        ctx->data[ANGLE_PARAM_COS_CUR_ANGLE] += ctx->data[ANGLE_PARAM_COS_STEP_SIZE];
-        ctx->data[ANGLE_PARAM_COS_CUR_ANGLE] &= 0xFFFF;
-        ctx->data[ANGLE_PARAM_COS_STEPS]--;
-        ctx->value = FX_Mul(FX_CosIdx(ctx->data[ANGLE_PARAM_COS_CUR_ANGLE]), ctx->data[ANGLE_PARAM_COS_AMPLITUDE]) >> FX32_SHIFT;
+    if (ctx->data[VALUE_PARAM_COS_STEPS]) {
+        ctx->data[VALUE_PARAM_COS_CUR_ANGLE] += ctx->data[VALUE_PARAM_COS_STEP_SIZE];
+        ctx->data[VALUE_PARAM_COS_CUR_ANGLE] &= 0xFFFF;
+        ctx->data[VALUE_PARAM_COS_STEPS]--;
+        ctx->value = FX_Mul(FX_CosIdx(ctx->data[VALUE_PARAM_COS_CUR_ANGLE]), ctx->data[VALUE_PARAM_COS_AMPLITUDE]) >> FX32_SHIFT;
 
         return TRUE;
     }
