@@ -122,12 +122,11 @@ u8 BattleAnimUtil_GetSpritePalette(ManagedSprite *sprite)
     return PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(sprite->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-int BattleAnimUtil_GetTransformDirection(BattleAnimSystem *system, int battler)
+int BattleAnimUtil_GetTransformDirectionX(BattleAnimSystem *system, int battler)
 {
     int dir = 1;
 
     enum Battler side = BattleAnimUtil_GetBattlerSide(system, battler);
-
     if (BattleAnimSystem_IsContest(system)) {
         if (side == BTLSCR_PLAYER) {
             dir = -1;
@@ -141,18 +140,16 @@ int BattleAnimUtil_GetTransformDirection(BattleAnimSystem *system, int battler)
     return dir;
 }
 
-int ov12_0222598C(BattleAnimSystem *param0, int param1)
+int BattleAnimUtil_GetTransformDirectionY(BattleAnimSystem *system, int battler)
 {
-    int v0;
-    int v1 = 1;
+    int dir = 1;
 
-    v0 = BattleAnimUtil_GetBattlerSide(param0, param1);
-
-    if (v0 == 0x4) {
-        v1 = -1;
+    enum Battler side = BattleAnimUtil_GetBattlerSide(system, battler);
+    if (side == BTLSCR_ENEMY) {
+        dir = -1;
     }
 
-    return v1;
+    return dir;
 }
 
 fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)

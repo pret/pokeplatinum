@@ -388,20 +388,30 @@ enum EarthquakeState {
 #define EARTHQUAKE_SPRITE_SHAKE_AMOUNT   5
 
 typedef struct {
-    u8 unk_00;
-    u8 unk_01;
+    u8 state;
+    u8 unused;
     u8 unk_02;
     u8 unk_03;
-    Point2D unk_04;
-    BgConfig *unk_08;
-    BattleAnimSystem *unk_0C;
-    SpriteManager *unk_10;
-    PokemonSprite *unk_14;
-    ManagedSprite *unk_18;
-    XYTransformContext unk_1C;
-    XYTransformContext unk_40;
-    AlphaFadeContext unk_64;
-} UnkStruct_ov12_0222C678;
+    Point2D monPos;
+    BgConfig *bgConfig;
+    BattleAnimSystem *system;
+    SpriteManager *pokemonSpriteManager;
+    PokemonSprite *monSprite;
+    ManagedSprite *xluSprite;
+    XYTransformContext shake; // Never initialized so it doesn't do anything
+    XYTransformContext pos;
+    AlphaFadeContext alpha;
+} NightmareContext;
+
+#define NIGHTMARE_SPRITE_START_ALPHA   31
+#define NIGHTMARE_SPRITE_END_ALPHA     0
+#define NIGHTMARE_BG_START_ALPHA       0
+#define NIGHTMARE_BG_END_ALPHA         31
+#define NIGHTMARE_SPRITE_OFFSET_X      (-20)
+#define NIGHTMARE_SPRITE_OFFSET_Y      (20)
+#define NIGHTMARE_SPRITE_OFFSET_FRAMES 20
+#define NIGHTMARE_SPRITE_ALPHA_FRAMES  (NIGHTMARE_SPRITE_OFFSET_FRAMES - 5)
+#define NIGHTMARE_VAR_MOVE_ATTACKER    0
 
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
@@ -1861,66 +1871,80 @@ void BattleAnimScriptFunc_Earthquake(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Earthquake, ctx);
 }
 
-static void ov12_0222C678(SysTask *param0, void *param1)
+static void BattleAnimTask_Nightmare(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222C678 *v0 = (UnkStruct_ov12_0222C678 *)param1;
+    NightmareContext *ctx = param;
 
-    switch (v0->unk_00) {
+    switch (ctx->state) {
     case 0:
-        if (PosLerpContext_Update(&v0->unk_40) == 0) {
-            v0->unk_00++;
+        if (PosLerpContext_Update(&ctx->pos) == FALSE) {
+            ctx->state++;
         }
 
-        ShakeContext_Update(&v0->unk_1C);
-        AlphaFadeContext_IsDone(&v0->unk_64);
+        // Doesn't do anything
+        ShakeContext_Update(&ctx->shake);
+        AlphaFadeContext_IsDone(&ctx->alpha);
 
-        ManagedSprite_SetPositionXY(v0->unk_18, v0->unk_40.x, v0->unk_40.y);
-        ManagedSprite_TickFrame(v0->unk_18);
-        SpriteSystem_DrawSprites(v0->unk_10);
+        ManagedSprite_SetPositionXY(ctx->xluSprite, ctx->pos.x, ctx->pos.y);
+        ManagedSprite_TickFrame(ctx->xluSprite);
+        SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_0C, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->system, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222C6D4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Nightmare(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222C678 *v0;
-    int v1;
+    NightmareContext *ctx = BattleAnimUtil_Alloc(system, sizeof(NightmareContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222C678));
+    ctx->state = 0;
+    ctx->unused = 0;
+    ctx->system = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->system);
+    ctx->bgConfig = BattleAnimSystem_GetBgConfig(ctx->system);
+    ctx->xluSprite = BattleAnimSystem_GetPokemonSprite(ctx->system, BATTLE_ANIM_MON_SPRITE_0);
 
-    v0->unk_00 = 0;
-    v0->unk_01 = 0;
-    v0->unk_0C = param0;
-    v0->unk_10 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_0C);
-    v0->unk_08 = BattleAnimSystem_GetBgConfig(v0->unk_0C);
-    v0->unk_18 = BattleAnimSystem_GetPokemonSprite(v0->unk_0C, 0);
-
-    if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
-        v1 = BattleAnimSystem_GetDefender(v0->unk_0C);
+    int battler;
+    if (BattleAnimSystem_GetScriptVar(system, NIGHTMARE_VAR_MOVE_ATTACKER) == FALSE) {
+        battler = BattleAnimSystem_GetDefender(ctx->system);
     } else {
-        v1 = BattleAnimSystem_GetAttacker(v0->unk_0C);
+        battler = BattleAnimSystem_GetAttacker(ctx->system);
     }
 
-    v0->unk_14 = BattleAnimSystem_GetBattlerSprite(v0->unk_0C, v1);
-    BattleAnimUtil_GetMonSpritePos(v0->unk_14, &v0->unk_04);
-    v0->unk_04.y -= PokemonSprite_GetAttribute(v0->unk_14, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->system, battler);
+    BattleAnimUtil_GetMonSpritePos(ctx->monSprite, &ctx->monPos);
+    ctx->monPos.y -= PokemonSprite_GetAttribute(ctx->monSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    {
-        int v2 = BattleAnimUtil_GetTransformDirection(v0->unk_0C, v1);
-        int v3 = ov12_0222598C(v0->unk_0C, v1);
+    int dirX = BattleAnimUtil_GetTransformDirectionX(ctx->system, battler);
+    int dirY = BattleAnimUtil_GetTransformDirectionY(ctx->system, battler);
 
-        PosLerpContext_Init(&v0->unk_40, v0->unk_04.x, v0->unk_04.x + (-20 * v2), v0->unk_04.y, v0->unk_04.y + ((+20) * v3), 20);
-    }
+    PosLerpContext_Init(
+        &ctx->pos,
+        ctx->monPos.x,
+        ctx->monPos.x + NIGHTMARE_SPRITE_OFFSET_X * dirX,
+        ctx->monPos.y,
+        ctx->monPos.y + NIGHTMARE_SPRITE_OFFSET_Y * dirY,
+        NIGHTMARE_SPRITE_OFFSET_FRAMES);
 
-    BattleAnimUtil_SetSpriteBlending(v0->unk_0C, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
-    AlphaFadeContext_Init(&v0->unk_64, 31, 0, 0, 31, 20 - 5);
+    BattleAnimUtil_SetSpriteBlending(
+        ctx->system,
+        (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE)) | GX_WND_PLANEMASK_BG0,
+        BATTLE_ANIM_DEFAULT_ALPHA,
+        BATTLE_ANIM_DEFAULT_ALPHA);
 
-    ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
-    BattleAnimSystem_StartAnimTask(v0->unk_0C, ov12_0222C678, v0);
+    AlphaFadeContext_Init(
+        &ctx->alpha,
+        NIGHTMARE_SPRITE_START_ALPHA,
+        NIGHTMARE_SPRITE_END_ALPHA,
+        NIGHTMARE_BG_START_ALPHA,
+        NIGHTMARE_BG_END_ALPHA,
+        NIGHTMARE_SPRITE_ALPHA_FRAMES);
+
+    ManagedSprite_SetExplicitOamMode(ctx->xluSprite, GX_OAM_MODE_XLU);
+    BattleAnimSystem_StartAnimTask(ctx->system, BattleAnimTask_Nightmare, ctx);
 }
 
 static const int Unk_ov12_0223A118[][2] = {
@@ -2190,7 +2214,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v2->unk_04 = BattleAnimSystem_GetScriptVar(param0, 2);
     v2->unk_08 = BattleAnimSystem_GetScriptVar(param0, 3);
 
-    v1 = BattleAnimUtil_GetTransformDirection(param0, BattleAnimSystem_GetAttacker(param0));
+    v1 = BattleAnimUtil_GetTransformDirectionX(param0, BattleAnimSystem_GetAttacker(param0));
     v2->unk_38 = param3;
 
     ManagedSprite_SetAffineOverwriteMode(v2->unk_38, AFFINE_OVERWRITE_MODE_DOUBLE);
