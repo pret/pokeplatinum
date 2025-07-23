@@ -270,9 +270,12 @@ enum FlashState {
 #define FLASH_POKEMON_FADE_COLOR   COLOR_BLACK
 #define FLASH_HOLD_FRAMES          5
 
-typedef struct {
+// -------------------------------------------------------------------
+// Splash
+// -------------------------------------------------------------------
+typedef struct SplashContext {
     u8 state;
-    u8 interation;
+    u8 iteration;
     u8 cycles;
     s16 attackerY;
     s16 attackerHeight;
@@ -304,24 +307,49 @@ typedef struct {
     ManagedSprite *unk_10;
 } UnkStruct_ov12_0222BFF4;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    ManagedSprite *unk_04;
-    XYTransformContext unk_08;
-} UnkStruct_ov12_0222C1A4_sub1;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    s16 unk_02;
-    int unk_04;
-    s8 unk_08;
-    PokemonSprite *unk_0C;
-    BattleAnimSystem *unk_10;
-    SpriteManager *unk_14;
-    UnkStruct_ov12_0222C1A4_sub1 unk_18[3];
-} UnkStruct_ov12_0222C1A4;
+// -------------------------------------------------------------------
+// Minimize
+// -------------------------------------------------------------------
+#define MINIMIZE_SPRITE_COUNT 3
+
+typedef struct MinimizeSprite {
+    u8 state;
+    u8 frameCounter;
+    ManagedSprite *sprite;
+    XYTransformContext scale;
+} MinimizeSprite;
+
+typedef struct MinimizeContext {
+    u8 state;
+    u8 cycles;
+    s16 attackerY;
+    int attackerSpriteHeight;
+    s8 spriteDir;
+    PokemonSprite *attackerSprite;
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    MinimizeSprite sprites[MINIMIZE_SPRITE_COUNT];
+} MinimizeContext;
+
+enum MiminizeSpriteState {
+    MINIMIZE_SPRITE_STATE_INIT = 0,
+    MINIMIZE_SPRITE_STATE_SHRINK,
+};
+
+enum MinimizeState {
+    MINIMIZE_STATE_INIT = 0,
+    MINIMIZE_STATE_SHRINK,
+    MINIMIZE_STATE_SETUP_GROW,
+    MINIMIZE_STATE_GROW,
+};
+
+#define MINIMIZE_SPRITE_ALPHA   12
+#define MINIMIZE_BG_ALPHA       6
+#define MINIMIZE_SHRINK_SCALE_X 5
+#define MINIMIZE_SHRINK_SCALE_Y 5
+#define MINIMIZE_SHRINK_FRAMES  5
+#define MINIMIZE_SHRINK_CYCLES  3
 
 typedef struct {
     u8 unk_00;
@@ -1392,22 +1420,22 @@ static void BattleAnimTask_Splash(SysTask *task, void *param)
     case SPLASH_STATE_SETUP_ANIMS:
         ScaleLerpContext_InitXY(
             &ctx->scale,
-            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_SX],
-            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_EX],
-            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_SY],
-            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_EY],
+            sSplashScaleTable[ctx->iteration][SPLASH_TABLE_SCALE_SX],
+            sSplashScaleTable[ctx->iteration][SPLASH_TABLE_SCALE_EX],
+            sSplashScaleTable[ctx->iteration][SPLASH_TABLE_SCALE_SY],
+            sSplashScaleTable[ctx->iteration][SPLASH_TABLE_SCALE_EY],
             100,
-            sSplashScaleTable[ctx->interation][SPLASH_TABLE_SCALE_FRAMES]);
+            sSplashScaleTable[ctx->iteration][SPLASH_TABLE_SCALE_FRAMES]);
 
         PosLerpContext_Init(
             &ctx->pos,
             0,
             0,
-            ctx->attackerY + sSplashPosTable[ctx->interation][SPLASH_TABLE_POS_SY],
-            ctx->attackerY + sSplashPosTable[ctx->interation][SPLASH_TABLE_POS_EY],
-            sSplashPosTable[ctx->interation][SPLASH_TABLE_POS_FRAMES]);
+            ctx->attackerY + sSplashPosTable[ctx->iteration][SPLASH_TABLE_POS_SY],
+            ctx->attackerY + sSplashPosTable[ctx->iteration][SPLASH_TABLE_POS_EY],
+            sSplashPosTable[ctx->iteration][SPLASH_TABLE_POS_FRAMES]);
 
-        ctx->interation++;
+        ctx->iteration++;
         ctx->state++;
         break;
     case SPLASH_STATE_WAIT_FOR_ANIMS: {
@@ -1422,9 +1450,9 @@ static void BattleAnimTask_Splash(SysTask *task, void *param)
         }
 
         if (done >= 2) {
-            if (ctx->interation >= NELEMS(sSplashScaleTable)) {
+            if (ctx->iteration >= NELEMS(sSplashScaleTable)) {
                 ctx->cycles++;
-                ctx->interation = 0;
+                ctx->iteration = 0;
 
                 if (ctx->cycles >= SPLASH_CYCLES) {
                     ctx->state++;
@@ -1455,7 +1483,7 @@ void BattleAnimScriptFunc_Splash(BattleAnimSystem *system)
     SplashContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SplashContext));
 
     ctx->state = SPLASH_STATE_SETUP_ANIMS;
-    ctx->interation = 0;
+    ctx->iteration = 0;
     ctx->battleAnimSys = system;
     ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
@@ -1530,159 +1558,169 @@ void ov12_0222C0C0(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_04, ov12_0222BFF4, v0);
 }
 
-static const u8 Unk_ov12_0223A094[] = {
-    0x2,
-    0x7,
-    0xD,
-    0x12
+static const u8 sMinimizeSpriteDelays[] = {
+    2, 7, 13, 18
 };
 
-static void ov12_0222C1A4(SysTask *param0, void *param1)
+static void BattleAnimTask_Minimize(SysTask *task, void *param)
 {
-    int v0;
-    int v1;
-    UnkStruct_ov12_0222C1A4 *v2 = (UnkStruct_ov12_0222C1A4 *)param1;
+    int i;
+    int done;
+    MinimizeContext *ctx = param;
 
-    switch (v2->unk_00) {
-    case 0:
-        PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_PARTIAL_DRAW, 1);
-        v2->unk_00++;
+    switch (ctx->state) {
+    case MINIMIZE_STATE_INIT:
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_PARTIAL_DRAW, TRUE);
+        ctx->state++;
         break;
-    case 1:
-        v1 = 0;
+    case MINIMIZE_STATE_SHRINK:
+        done = 0;
 
-        for (v0 = 0; v0 < 3; v0++) {
-            switch (v2->unk_18[v0].unk_00) {
-            case 0:
-                if ((++v2->unk_18[v0].unk_01) >= Unk_ov12_0223A094[v0]) {
-                    ScaleLerpContext_InitXY(&v2->unk_18[v0].unk_08, 100, 5, 100, 5, 100, 5);
-                    v2->unk_18[v0].unk_00++;
+        for (i = 0; i < MINIMIZE_SPRITE_COUNT; i++) {
+            switch (ctx->sprites[i].state) {
+            case MINIMIZE_SPRITE_STATE_INIT:
+                if (++ctx->sprites[i].frameCounter >= sMinimizeSpriteDelays[i]) {
+                    ScaleLerpContext_InitXY(
+                        &ctx->sprites[i].scale,
+                        BASE_SCALE_XY,
+                        MINIMIZE_SHRINK_SCALE_X,
+                        BASE_SCALE_XY,
+                        MINIMIZE_SHRINK_SCALE_Y,
+                        BASE_SCALE_XY,
+                        MINIMIZE_SHRINK_FRAMES);
+                    ctx->sprites[i].state++;
                 }
                 break;
-            case 1:
-                if (ScaleLerpContext_UpdateXY(&v2->unk_18[v0].unk_08) == 0) {
-                    v2->unk_18[v0].unk_00++;
+            case MINIMIZE_SPRITE_STATE_SHRINK:
+                if (ScaleLerpContext_UpdateXY(&ctx->sprites[i].scale) == FALSE) {
+                    ctx->sprites[i].state++;
                 } else {
-                    f32 v3, v4;
+                    f32 scaleX, scaleY;
+                    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->sprites[i].scale, &scaleX, &scaleY);
 
-                    BattleAnimUtil_ConvertRelativeToAffineScale(&v2->unk_18[v0].unk_08, &v3, &v4);
-                    ManagedSprite_SetAffineScale(v2->unk_18[v0].unk_04, v3 * v2->unk_08, v4);
-                    BattleAnimUtil_SetSpriteAnchoredPosition(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
+                    ManagedSprite_SetAffineScale(ctx->sprites[i].sprite, scaleX * ctx->spriteDir, scaleY);
+                    BattleAnimUtil_SetSpriteAnchoredPosition(
+                        ctx->sprites[i].sprite,
+                        ctx->attackerY,
+                        ctx->attackerSpriteHeight,
+                        ctx->sprites[i].scale.data[XY_PARAM_CUR_Y],
+                        BATTLE_ANIM_ANCHOR_BOTTOM);
                 }
                 break;
             default:
-                v1++;
+                done++;
                 break;
             }
 
-            ManagedSprite_TickFrame(v2->unk_18[v0].unk_04);
+            ManagedSprite_TickFrame(ctx->sprites[i].sprite);
         }
 
-        if (v1 >= 3) {
-            v2->unk_01++;
+        if (done >= MINIMIZE_SPRITE_COUNT) {
+            ctx->cycles++;
 
-            if (v2->unk_01 < 3) {
-                for (v0 = 0; v0 < 3; v0++) {
-                    {
-                        s16 v5;
-                        s16 v6;
+            if (ctx->cycles < MINIMIZE_SHRINK_CYCLES) {
+                for (i = 0; i < MINIMIZE_SPRITE_COUNT; i++) {
+                    s16 x, y;
+                    ManagedSprite_GetPositionXY(ctx->sprites[i].sprite, &x, &y);
+                    ManagedSprite_SetPositionXY(ctx->sprites[i].sprite, x, ctx->attackerY);
+                    ManagedSprite_SetAffineScale(ctx->sprites[i].sprite, 1.0f * ctx->spriteDir, 1.0f);
 
-                        ManagedSprite_GetPositionXY(v2->unk_18[v0].unk_04, &v5, &v6);
-                        ManagedSprite_SetPositionXY(v2->unk_18[v0].unk_04, v5, v2->unk_02);
-                        ManagedSprite_SetAffineScale(v2->unk_18[v0].unk_04, 1.0f * v2->unk_08, 1.0f);
-                    }
-                    v2->unk_18[v0].unk_00 = 0;
-                    v2->unk_18[v0].unk_01 = 0;
+                    ctx->sprites[i].state = MINIMIZE_SPRITE_STATE_INIT;
+                    ctx->sprites[i].frameCounter = 0;
                 }
 
-                v2->unk_00--;
+                ctx->state--;
             } else {
-                v2->unk_00++;
+                ctx->state++;
             }
         }
         break;
-    case 2:
-        for (v0 = 0; v0 < 3; v0++) {
-            ManagedSprite_SetExplicitOamMode(v2->unk_18[v0].unk_04, GX_OAM_MODE_NORMAL);
-            ScaleLerpContext_InitXY(&v2->unk_18[v0].unk_08, 5, 100, 5, 100, 100, 5);
+    case MINIMIZE_STATE_SETUP_GROW:
+        for (i = 0; i < MINIMIZE_SPRITE_COUNT; i++) {
+            ManagedSprite_SetExplicitOamMode(ctx->sprites[i].sprite, GX_OAM_MODE_NORMAL);
+            ScaleLerpContext_InitXY(
+                &ctx->sprites[i].scale,
+                MINIMIZE_SHRINK_SCALE_X,
+                BASE_SCALE_XY,
+                MINIMIZE_SHRINK_SCALE_Y,
+                BASE_SCALE_XY,
+                BASE_SCALE_XY,
+                MINIMIZE_SHRINK_FRAMES);
         }
 
-        v2->unk_00++;
+        ctx->state++;
         break;
-    case 3:
-        v1 = 0;
+    case MINIMIZE_STATE_GROW:
+        done = 0;
 
-        for (v0 = 0; v0 < 3; v0++) {
-            if (ScaleLerpContext_UpdateXY(&v2->unk_18[v0].unk_08) == 0) {
-                v1++;
+        for (i = 0; i < MINIMIZE_SPRITE_COUNT; i++) {
+            if (ScaleLerpContext_UpdateXY(&ctx->sprites[i].scale) == FALSE) {
+                done++;
             } else {
-                f32 v7, v8;
+                f32 scaleX, scaleY;
+                BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->sprites[i].scale, &scaleX, &scaleY);
+                ManagedSprite_SetAffineScale(ctx->sprites[i].sprite, scaleX * ctx->spriteDir, scaleY);
 
-                BattleAnimUtil_ConvertRelativeToAffineScale(&v2->unk_18[v0].unk_08, &v7, &v8);
-                ManagedSprite_SetAffineScale(v2->unk_18[v0].unk_04, v7 * v2->unk_08, v8);
-                BattleAnimUtil_SetSpriteAnchoredPosition(v2->unk_18[v0].unk_04, v2->unk_02, v2->unk_04, v2->unk_18[v0].unk_08.data[4], 0);
+                BattleAnimUtil_SetSpriteAnchoredPosition(
+                    ctx->sprites[i].sprite,
+                    ctx->attackerY,
+                    ctx->attackerSpriteHeight,
+                    ctx->sprites[i].scale.data[XY_PARAM_CUR_Y],
+                    BATTLE_ANIM_ANCHOR_BOTTOM);
             }
         }
 
-        if (v1 >= 3) {
-            v2->unk_00++;
+        if (done >= MINIMIZE_SPRITE_COUNT) {
+            ctx->state++;
         }
         break;
     default:
-        PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_PARTIAL_DRAW, 0);
-        BattleAnimSystem_EndAnimTask(v2->unk_10, param0);
-        Heap_Free(v2);
+        PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_PARTIAL_DRAW, 0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v2->unk_14);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-void ov12_0222C3C0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Minimize(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222C1A4 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222C1A4));
+    MinimizeContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MinimizeContext));
 
-    v0->unk_00 = 0;
-    v0->unk_01 = 0;
-    v0->unk_10 = param0;
-    v0->unk_14 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_10);
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_10, BattleAnimSystem_GetAttacker(v0->unk_10));
-    v0->unk_02 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_02 -= PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_SHADOW_HEIGHT);
-    v0->unk_04 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_10, BattleAnimSystem_GetAttacker(v0->unk_10));
+    ctx->state = MINIMIZE_STATE_INIT;
+    ctx->cycles = 0;
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerY -= PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->attackerSpriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_10, 0xffffffff, 0xffffffff);
-    G2_ChangeBlendAlpha(12, 6);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
+    G2_ChangeBlendAlpha(MINIMIZE_SPRITE_ALPHA, MINIMIZE_BG_ALPHA);
 
-    {
-        int v1;
+    for (int i = 0; i < MINIMIZE_SPRITE_COUNT; i++) {
+        ctx->sprites[i].state = MINIMIZE_SPRITE_STATE_INIT;
+        ctx->sprites[i].frameCounter = 0;
+        ctx->sprites[i].sprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, i);
 
-        for (v1 = 0; v1 < 3; v1++) {
-            v0->unk_18[v1].unk_00 = 0;
-            v0->unk_18[v1].unk_01 = 0;
-            v0->unk_18[v1].unk_04 = BattleAnimSystem_GetPokemonSprite(v0->unk_10, v1);
-
-            ManagedSprite_SetAffineOverwriteMode(v0->unk_18[v1].unk_04, AFFINE_OVERWRITE_MODE_DOUBLE);
-            ManagedSprite_SetExplicitOamMode(v0->unk_18[v1].unk_04, GX_OAM_MODE_XLU);
-            ManagedSprite_SetPriority(v0->unk_18[v1].unk_04, v1 + 1);
-        }
+        ManagedSprite_SetAffineOverwriteMode(ctx->sprites[i].sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetExplicitOamMode(ctx->sprites[i].sprite, GX_OAM_MODE_XLU);
+        ManagedSprite_SetPriority(ctx->sprites[i].sprite, i + 1);
     }
 
-    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(param0, 0) == 1) {
-        v0->unk_08 = -1;
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(system, BATTLER_TYPE_ATTACKER) == TRUE) {
+        ctx->spriteDir = -1;
     } else {
-        v0->unk_08 = +1;
+        ctx->spriteDir = +1;
     }
 
-    {
-        int v2;
-
-        for (v2 = 0; v2 < 3; v2++) {
-            ManagedSprite_SetAffineScale(v0->unk_18[v2].unk_04, 1.0f * v0->unk_08, 1.0f);
-        }
+    for (int i = 0; i < MINIMIZE_SPRITE_COUNT; i++) {
+        ManagedSprite_SetAffineScale(ctx->sprites[i].sprite, 1.0f * ctx->spriteDir, 1.0f);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_10, ov12_0222C1A4, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Minimize, ctx);
 }
 
 static const s16 Unk_ov12_0223A0EE[] = {
