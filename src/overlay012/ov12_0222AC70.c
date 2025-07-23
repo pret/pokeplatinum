@@ -306,7 +306,6 @@ typedef struct {
     ManagedSprite *unk_10;
 } UnkStruct_ov12_0222BFF4;
 
-
 // -------------------------------------------------------------------
 // Minimize
 // -------------------------------------------------------------------
@@ -355,17 +354,38 @@ enum MinimizeState {
 // -------------------------------------------------------------------
 typedef struct EarthquakeContext {
     u8 state;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
+    u8 shakeCount;
+    u8 flashFlag;
+    u8 flashDuration;
     int spriteCount;
     BgConfig *bgConfig;
     BattleAnimSystem *battleAnimSys;
     SpriteManager *pokemonSpriteManager;
-    BattleAnimSpriteInfo sprites[4];
-    BattleAnimSpriteInfo unk_64[4];
-    XYTransformContext unk_B4;
+    BattleAnimSpriteInfo sprites[MAX_BATTLERS];
+    BattleAnimSpriteInfo unused[MAX_BATTLERS];
+    XYTransformContext shake;
 } EarthquakeContext;
+
+enum EarthquakeState {
+    EARTHQUAKE_STATE_INIT = 0,
+    EARTHQUAKE_STATE_FADE_BG,
+    EARTHQUAKE_STATE_FLASH,
+    EARTHQUAKE_STATE_SHAKE,
+};
+
+#define EARTHQUAKE_BG_FADE_DELAY         1
+#define EARTHQUAKE_BG_FADE_ALPHA         10
+#define EARTHQUAKE_BG_FADE_COLOR         COLOR_BLACK
+#define EARTHQUAKE_BG_FLASH_FRAMES       3
+#define EARTHQUAKE_BG_FLASH_PALETTES     0xFF
+#define EARTHQUAKE_BG_FLASH_ALPHA        10
+#define EARTHQUAKE_BG_FLASH_OFF_ALPHA    0
+#define EARTHQUAKE_BG_FLASH_OFF_COLOR    COLOR_BLACK
+#define EARTHQUAKE_BG_FLASH_0_COLOR      COLOR_BLACK
+#define EARTHQUAKE_BG_FLASH_1_COLOR      COLOR_WHITE
+#define EARTHQUAKE_SPRITE_SHAKE_EXTENT_Y 0
+#define EARTHQUAKE_SPRITE_SHAKE_INTERVAL 0
+#define EARTHQUAKE_SPRITE_SHAKE_AMOUNT   5
 
 typedef struct {
     u8 unk_00;
@@ -1725,15 +1745,8 @@ void BattleAnimScriptFunc_Minimize(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Minimize, ctx);
 }
 
-static const s16 Unk_ov12_0223A0EE[] = {
-    0xC,
-    0xA,
-    0x8,
-    0x6,
-    0x4,
-    0x2,
-    0x1,
-    0x0
+static const s16 sEarthquakeShakeExtents[] = {
+    12, 10, 8, 6, 4, 2, 1, 0
 };
 
 static void BattleAnimTask_Earthquake(SysTask *task, void *param)
@@ -1741,62 +1754,82 @@ static void BattleAnimTask_Earthquake(SysTask *task, void *param)
     EarthquakeContext *ctx = param;
 
     switch (ctx->state) {
-    case 0:
+    case EARTHQUAKE_STATE_INIT:
         PaletteData_StartFade(
             BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
             PLTTBUF_MAIN_BG_F,
             BattleAnimSystem_GetBaseBgPalettes(ctx->battleAnimSys),
-            1,
+            EARTHQUAKE_BG_FADE_DELAY,
             0,
-            10,
-            0x0);
+            EARTHQUAKE_BG_FADE_ALPHA,
+            EARTHQUAKE_BG_FADE_COLOR);
         ctx->state++;
         break;
-    case 1:
+    case EARTHQUAKE_STATE_FADE_BG:
         if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys)) != 0) {
             break;
         }
 
         ctx->state++;
-    case 2:
-        ShakeContext_Init(&ctx->unk_B4, Unk_ov12_0223A0EE[ctx->unk_01], 0, 0, 5);
+    case EARTHQUAKE_STATE_FLASH:
+        ShakeContext_Init(
+            &ctx->shake,
+            sEarthquakeShakeExtents[ctx->shakeCount],
+            EARTHQUAKE_SPRITE_SHAKE_EXTENT_Y,
+            EARTHQUAKE_SPRITE_SHAKE_INTERVAL,
+            EARTHQUAKE_SPRITE_SHAKE_AMOUNT);
 
-        if (ctx->unk_02 == 0) {
-            PaletteData_BlendMulti(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys), 0, 0xFF, 10, 0x0);
+        if (ctx->flashFlag == 0) {
+            PaletteData_BlendMulti(
+                BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                PLTTBUF_MAIN_BG,
+                EARTHQUAKE_BG_FLASH_PALETTES,
+                EARTHQUAKE_BG_FLASH_ALPHA,
+                EARTHQUAKE_BG_FLASH_0_COLOR);
         } else {
-            PaletteData_BlendMulti(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys), 0, 0xFF, 10, 0x7FFF);
+            PaletteData_BlendMulti(
+                BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                PLTTBUF_MAIN_BG,
+                EARTHQUAKE_BG_FLASH_PALETTES,
+                EARTHQUAKE_BG_FLASH_ALPHA,
+                EARTHQUAKE_BG_FLASH_1_COLOR);
         }
 
-        ctx->unk_03 = 3;
-        ctx->unk_02 ^= 1;
-        ctx->unk_01++;
+        ctx->flashDuration = EARTHQUAKE_BG_FLASH_FRAMES;
+        ctx->flashFlag ^= 1;
+        ctx->shakeCount++;
         ctx->state++;
-    case 3:
-        if (ShakeContext_Update(&ctx->unk_B4) == 0) {
-            if (ctx->unk_01 >= (NELEMS(Unk_ov12_0223A0EE))) {
+    case EARTHQUAKE_STATE_SHAKE:
+        if (ShakeContext_Update(&ctx->shake) == FALSE) {
+            if (ctx->shakeCount >= NELEMS(sEarthquakeShakeExtents)) {
                 ctx->state++;
             } else {
                 ctx->state--;
             }
         }
 
-        if (ctx->unk_03 > 0) {
-            ctx->unk_03--;
+        if (ctx->flashDuration > 0) {
+            ctx->flashDuration--;
 
-            if (ctx->unk_03 == 0) {
-                PaletteData_BlendMulti(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys), 0, 0xFF, 0, 0);
+            if (ctx->flashDuration == 0) {
+                PaletteData_BlendMulti(
+                    BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                    PLTTBUF_MAIN_BG,
+                    EARTHQUAKE_BG_FLASH_PALETTES,
+                    EARTHQUAKE_BG_FLASH_OFF_ALPHA,
+                    EARTHQUAKE_BG_FLASH_OFF_COLOR);
             }
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < MAX_BATTLERS; i++) {
             if (ctx->sprites[i].monSprite == NULL) {
                 continue;
             }
 
-            PokemonSprite_SetAttribute(ctx->sprites[i].monSprite, MON_SPRITE_X_CENTER, ctx->sprites[i].basePos.x + ctx->unk_B4.x);
+            PokemonSprite_SetAttribute(ctx->sprites[i].monSprite, MON_SPRITE_X_CENTER, ctx->sprites[i].basePos.x + ctx->shake.x);
         }
 
-        Bg_SetOffset(ctx->bgConfig, BG_LAYER_MAIN_3, 0, ctx->unk_B4.x);
+        Bg_SetOffset(ctx->bgConfig, BATTLE_BG_EFFECT, 0, ctx->shake.x);
         break;
     default:
         BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
@@ -1809,8 +1842,8 @@ void BattleAnimScriptFunc_Earthquake(BattleAnimSystem *system)
 {
     EarthquakeContext *ctx = BattleAnimUtil_Alloc(system, sizeof(EarthquakeContext));
 
-    ctx->state = 0;
-    ctx->unk_01 = 0;
+    ctx->state = EARTHQUAKE_STATE_INIT;
+    ctx->shakeCount = 0;
     ctx->battleAnimSys = system;
     ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
     ctx->bgConfig = BattleAnimSystem_GetBgConfig(ctx->battleAnimSys);

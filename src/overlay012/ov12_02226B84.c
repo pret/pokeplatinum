@@ -11,7 +11,6 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_0222C7E0_sub1.h"
-#include "math_util.h"
 
 #include "bg_window.h"
 #include "graphics.h"
