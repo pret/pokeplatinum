@@ -40,7 +40,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Spite,
     ov12_0222C0C0,
     BattleAnimScriptFunc_Minimize,
-    ov12_02231444,
+    BattleAnimScriptFunc_FaintAttack,
     ov12_0222C5FC,
     ov12_02231E7C,
     ov12_0222C6D4,

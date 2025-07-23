@@ -14,6 +14,8 @@
 
 #define REVOLUTION_CONTEXT_OVAL_RADIUS_X FX32_CONST(32)
 #define REVOLUTION_CONTEXT_OVAL_RADIUS_Y FX32_CONST(-8)
+#define REVOLUTION_CONTEXT_OVAL_RADIUS_X_INT 32
+#define REVOLUTION_CONTEXT_OVAL_RADIUS_Y_INT -8
 
 #define MAX_AFTERIMAGES               4
 #define AFTERIMAGE_TRANSFORM_POSITION 0
@@ -150,8 +152,8 @@ void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1);
 void RevolutionContext_Init(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7);
 void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7);
 BOOL RevolutionContext_Update(XYTransformContext *param0);
-BOOL ov12_02225B78(XYTransformContext *param0, s16 param1, s16 param2, ManagedSprite *param3);
-BOOL RevolutionContext_UpdateAndApply(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
+BOOL RevolutionContext_UpdateAndApplyToSprite(XYTransformContext *param0, s16 param1, s16 param2, ManagedSprite *param3);
+BOOL RevolutionContext_UpdateAndApplyToMon(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
 void PosLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5);
 BOOL PosLerpContext_Update(XYTransformContext *param0);
 BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1);
