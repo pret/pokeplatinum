@@ -11,9 +11,9 @@
 #include "pokemon_sprite.h"
 #include "sprite.h"
 
-#define BATTLE_ANIM_DEFAULT_ALPHA -1
+#define BATTLE_ANIM_DEFAULT_ALPHA        -1
 #define BATTLE_ANIM_DEFAULT_SPRITE_ALPHA 26
-#define BATTLE_ANIM_DEFAULT_BG_ALPHA 5
+#define BATTLE_ANIM_DEFAULT_BG_ALPHA     5
 
 typedef struct UnkStruct_ov12_0223595C {
     u8 unk_00;

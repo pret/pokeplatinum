@@ -371,12 +371,12 @@ enum FaintAttackState {
     FAINT_ATTACK_STATE_CLEANUP,
 };
 
-#define FAINT_ATTACK_REVOLUTION_COUNT 2
-#define FAINT_ATTACK_REVOLUTION_FRAMES 16
+#define FAINT_ATTACK_REVOLUTION_COUNT   2
+#define FAINT_ATTACK_REVOLUTION_FRAMES  16
 #define FAINT_ATTACK_SPRITE_START_ALPHA 16
-#define FAINT_ATTACK_SPRITE_END_ALPHA 0
-#define FAINT_ATTACK_ALPHA_FADE_FRAMES 32
-#define FAINT_ATTACK_FADE_IN_DELAY 16
+#define FAINT_ATTACK_SPRITE_END_ALPHA   0
+#define FAINT_ATTACK_ALPHA_FADE_FRAMES  32
+#define FAINT_ATTACK_FADE_IN_DELAY      16
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -2040,7 +2040,8 @@ static void BattleAnimTask_FaintAttack(SysTask *task, void *param)
                 &ctx->revs,
                 ctx->attackerX,
                 ctx->attackerY - ctx->attackerShadowHeight,
-                ctx->sprite) == FALSE) {
+                ctx->sprite)
+            == FALSE) {
             ctx->state++;
             ctx->delay = FAINT_ATTACK_FADE_IN_DELAY;
         }

@@ -7,7 +7,6 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
-#include "math_util.h"
 
 #include "bg_window.h"
 #include "heap.h"

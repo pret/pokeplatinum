@@ -9,11 +9,11 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
-#include "math_util.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
 #include "bg_window.h"
 #include "heap.h"
+#include "math_util.h"
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
