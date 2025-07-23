@@ -897,7 +897,7 @@ static void BattleAnimTask_Submission(SysTask *task, void *param)
 {
     SubmissionContext *ctx = param;
 
-    if (RevolutionContext_UpdateAndApply(&ctx->rev, ctx->baseX, ctx->baseY, ctx->sprite) == FALSE) {
+    if (RevolutionContext_UpdateAndApplyToMon(&ctx->rev, ctx->baseX, ctx->baseY, ctx->sprite) == FALSE) {
         PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_X_CENTER, ctx->baseX);
         PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->baseY + (REVOLUTION_CONTEXT_OVAL_RADIUS_Y >> FX32_SHIFT));
         PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_ROTATION_Z, 0);
@@ -2161,7 +2161,7 @@ static void ov12_02228DB8(SysTask *param0, void *param1)
     int v0;
     UnkStruct_ov12_02228DB8 *v1 = (UnkStruct_ov12_02228DB8 *)param1;
 
-    v0 = RevolutionContext_UpdateAndApply(&v1->unk_30, v1->unk_1C.unk_04.unk_00, v1->unk_1C.unk_04.unk_02, v1->unk_1C.unk_08);
+    v0 = RevolutionContext_UpdateAndApplyToMon(&v1->unk_30, v1->unk_1C.unk_04.unk_00, v1->unk_1C.unk_04.unk_02, v1->unk_1C.unk_08);
 
     if (v0 == 0) {
         PokemonSprite_SetAttribute(v1->unk_1C.unk_08, MON_SPRITE_X_CENTER, v1->unk_1C.unk_04.unk_00);

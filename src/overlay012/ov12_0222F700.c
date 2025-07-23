@@ -347,19 +347,36 @@ typedef struct {
     XYTransformContext unk_70;
 } UnkStruct_ov12_022310D4;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    int unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    ManagedSprite *unk_14;
-    s16 unk_18;
-    s16 unk_1A;
-    XYTransformContext unk_1C;
-    AlphaFadeContext unk_40;
-    s16 unk_68;
-} UnkStruct_ov12_02231390;
+// -------------------------------------------------------------------
+// Faint Attack
+// -------------------------------------------------------------------
+typedef struct FaintAttackContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    int state;
+    int delay;
+    PokemonSprite *attackerSprite;
+    ManagedSprite *sprite;
+    s16 attackerX;
+    s16 attackerY;
+    XYTransformContext revs;
+    AlphaFadeContext alpha;
+    s16 attackerShadowHeight;
+} FaintAttackContext;
+
+enum FaintAttackState {
+    FAINT_ATTACK_STATE_REVOLVE = 0,
+    FAINT_ATTACK_STATE_WAIT,
+    FAINT_ATTACK_STATE_FADE_IN,
+    FAINT_ATTACK_STATE_CLEANUP,
+};
+
+#define FAINT_ATTACK_REVOLUTION_COUNT 2
+#define FAINT_ATTACK_REVOLUTION_FRAMES 16
+#define FAINT_ATTACK_SPRITE_START_ALPHA 16
+#define FAINT_ATTACK_SPRITE_END_ALPHA 0
+#define FAINT_ATTACK_ALPHA_FADE_FRAMES 32
+#define FAINT_ATTACK_FADE_IN_DELAY 16
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -659,7 +676,7 @@ static void BattleAnimTask_QuickAttack(SysTask *task, void *param)
     QuickAttackContext *ctx = param;
 
     BOOL transformsActive[3];
-    transformsActive[0] = RevolutionContext_UpdateAndApply(&ctx->rev, ctx->attackerX, ctx->attackerY, ctx->attackerSprite);
+    transformsActive[0] = RevolutionContext_UpdateAndApplyToMon(&ctx->rev, ctx->attackerX, ctx->attackerY, ctx->attackerSprite);
     transformsActive[1] = Afterimage_Update(&ctx->afterImageCtx);
     transformsActive[2] = FALSE;
 
@@ -2013,73 +2030,85 @@ void ov12_022312A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022310D4, v0);
 }
 
-static void ov12_02231390(SysTask *param0, void *param1)
+static void BattleAnimTask_FaintAttack(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02231390 *v0 = param1;
+    FaintAttackContext *ctx = param;
 
-    switch (v0->unk_08) {
-    case 0:
-        if (ov12_02225B78(&v0->unk_1C, v0->unk_18, v0->unk_1A - v0->unk_68, v0->unk_14) == 0) {
-            v0->unk_08++;
-            v0->unk_0C = 16;
+    switch (ctx->state) {
+    case FAINT_ATTACK_STATE_REVOLVE:
+        if (RevolutionContext_UpdateAndApplyToSprite(
+                &ctx->revs,
+                ctx->attackerX,
+                ctx->attackerY - ctx->attackerShadowHeight,
+                ctx->sprite) == FALSE) {
+            ctx->state++;
+            ctx->delay = FAINT_ATTACK_FADE_IN_DELAY;
         }
         break;
-    case 1:
-        v0->unk_0C--;
+    case FAINT_ATTACK_STATE_WAIT:
+        ctx->delay--;
 
-        if (v0->unk_0C < 0) {
-            v0->unk_08++;
+        if (ctx->delay < 0) {
+            ctx->state++;
 
             AlphaFadeContext_Init(
-                &v0->unk_40, 0, 16, 16 - 0, 16 - 16, 32);
+                &ctx->alpha,
+                FAINT_ATTACK_SPRITE_END_ALPHA,
+                FAINT_ATTACK_SPRITE_START_ALPHA,
+                16 - FAINT_ATTACK_SPRITE_END_ALPHA,
+                16 - FAINT_ATTACK_SPRITE_START_ALPHA,
+                FAINT_ATTACK_ALPHA_FADE_FRAMES);
         }
         break;
-    case 2:
-        if (AlphaFadeContext_IsDone(&v0->unk_40)) {
-            ManagedSprite_SetDrawFlag(v0->unk_14, 1);
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 0);
-            v0->unk_08++;
+    case FAINT_ATTACK_STATE_FADE_IN:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ManagedSprite_SetDrawFlag(ctx->sprite, TRUE);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, FALSE);
+            ctx->state++;
         }
         break;
-    case 3:
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case FAINT_ATTACK_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_04);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-void ov12_02231444(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02231390 *v0;
-    int v1;
+    FaintAttackContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FaintAttackContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231390));
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
+    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v1 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerShadowHeight = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->attackerY -= REVOLUTION_CONTEXT_OVAL_RADIUS_Y_INT;
+    ctx->sprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
 
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
-    v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v0->unk_1A = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v0->unk_68 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_SHADOW_HEIGHT);
-    v0->unk_1A -= -8;
-    v0->unk_14 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
+    PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, TRUE);
 
-    ManagedSprite_SetExplicitOamMode(v0->unk_14, GX_OAM_MODE_XLU);
-    PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
+    RevolutionContext_InitOvalRevolutions(&ctx->revs, FAINT_ATTACK_REVOLUTION_COUNT, FAINT_ATTACK_REVOLUTION_FRAMES);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, FAINT_ATTACK_SPRITE_START_ALPHA, 16 - FAINT_ATTACK_SPRITE_START_ALPHA);
+    AlphaFadeContext_Init(
+        &ctx->alpha,
+        FAINT_ATTACK_SPRITE_START_ALPHA,
+        FAINT_ATTACK_SPRITE_END_ALPHA,
+        16 - FAINT_ATTACK_SPRITE_START_ALPHA,
+        16 - FAINT_ATTACK_SPRITE_END_ALPHA,
+        FAINT_ATTACK_ALPHA_FADE_FRAMES);
 
-    RevolutionContext_InitOvalRevolutions(&v0->unk_1C, 2, 16);
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 16, 16 - 16);
-    AlphaFadeContext_Init(&v0->unk_40, 16, 0, 16 - 16, 16 - 0, 32);
+    ctx->revs.data[XY_PARAM_REV_RADIUS_X] *= dir;
 
-    v0->unk_1C.data[2] *= v1;
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02231390, v0);
-    SpriteSystem_DrawSprites(v0->unk_04);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FaintAttack, ctx);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
 static BOOL ov12_02231508(UnkStruct_ov12_02231508 *param0)
@@ -2904,7 +2933,7 @@ static void ov12_022324E0(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        if (RevolutionContext_UpdateAndApply(&v0->unk_14, v0->unk_10, v0->unk_12 - -8, v0->unk_0C) == 0) {
+        if (RevolutionContext_UpdateAndApplyToMon(&v0->unk_14, v0->unk_10, v0->unk_12 - -8, v0->unk_0C) == 0) {
             PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER, v0->unk_10);
             PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_12);
 

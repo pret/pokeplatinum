@@ -261,17 +261,17 @@ BOOL RevolutionContext_Update(XYTransformContext *ctx)
     return FALSE;
 }
 
-BOOL ov12_02225B78(XYTransformContext *param0, s16 param1, s16 param2, ManagedSprite *param3)
+BOOL RevolutionContext_UpdateAndApplyToSprite(XYTransformContext *ctx, s16 cx, s16 cy, ManagedSprite *sprite)
 {
-    if (RevolutionContext_Update(param0)) {
-        XYTransformContext_ApplyPosOffsetToSprite(param0, param3, param1, param2);
-        return 1;
+    if (RevolutionContext_Update(ctx)) {
+        XYTransformContext_ApplyPosOffsetToSprite(ctx, sprite, cx, cy);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL RevolutionContext_UpdateAndApply(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite)
+BOOL RevolutionContext_UpdateAndApplyToMon(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite)
 {
     if (RevolutionContext_Update(ctx)) {
         RevolutionContext_Apply(ctx, sprite, cx, cy);
