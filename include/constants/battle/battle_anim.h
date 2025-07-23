@@ -64,6 +64,11 @@
 #define BATTLE_ANIM_ATTACKER_PARTNER (1 << 2) //< Attacker's partner
 #define BATTLE_ANIM_DEFENDER         (1 << 3) //< Defender
 #define BATTLE_ANIM_DEFENDER_PARTNER (1 << 4) //< Defender's partner
+#define BATTLE_ANIM_NOT_ATTACKER     (1 << 5) //< All battlers except attacker
+#define BATTLE_ANIM_ALL_BATTLERS     (1 << 6) //< All battlers
+#define BATTLE_ANIM_ATTACKER_SIDE    (BATTLE_ANIM_ATTACKER | BATTLE_ANIM_ATTACKER_PARTNER) //< Attacker and its partner
+#define BATTLE_ANIM_DEFENDER_SIDE    (BATTLE_ANIM_DEFENDER | BATTLE_ANIM_DEFENDER_PARTNER) //< Defender and its partner
+#define BATTLE_ANIM_BOTH_SIDES       (BATTLE_ANIM_ATTACKER_SIDE | BATTLE_ANIM_DEFENDER_SIDE) //< Both sides of the battle
 
 #define BATTLE_ANIM_MON_SPRITE_0 0
 #define BATTLE_ANIM_MON_SPRITE_1 1

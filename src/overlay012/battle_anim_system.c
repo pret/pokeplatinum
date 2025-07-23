@@ -1634,10 +1634,10 @@ static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum Batt
         result = system->context->defender;
         break;
     case BATTLER_TYPE_ATTACKER_PARTNER:
-        result = BattleAnimUtil_GetAlliedBattlerType(system, system->context->attacker);
+        result = BattleAnimUtil_GetAlliedBattler(system, system->context->attacker);
         break;
     case BATTLER_TYPE_DEFENDER_PARTNER:
-        result = BattleAnimUtil_GetAlliedBattlerType(system, system->context->defender);
+        result = BattleAnimUtil_GetAlliedBattler(system, system->context->defender);
         break;
 
     case BATTLER_TYPE_PLAYER_SLOT_1: {

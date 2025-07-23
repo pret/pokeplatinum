@@ -607,7 +607,7 @@ static void ov12_02224E74(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     for (v1 = 0; v1 < v0; v1++) {
         v2 = ov12_022255EC(v1);
 
-        if (inline_ov12_02235998(param1->unk_0C[4], v2) == 0) {
+        if (BattleAnimUtil_IsMaskSet(param1->unk_0C[4], v2) == 0) {
             continue;
         }
 

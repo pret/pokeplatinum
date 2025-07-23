@@ -6,9 +6,8 @@
 #include "generated/battle_script_battlers.h"
 
 #include "overlay012/battle_anim_system.h"
-#include "overlay012/struct_ov12_02235350.h"
-#include "overlay012/struct_ov12_02235998.h"
 
+#include "math_util.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
 
@@ -29,13 +28,21 @@ typedef struct UnkStruct_ov12_0223595C {
     PaletteData *paletteData;
 } UnkStruct_ov12_0223595C;
 
+typedef struct BattleAnimSpriteInfo {
+    Point2D basePos;
+    Point2D pos;
+    PokemonSprite *monSprite;
+    ManagedSprite *hwSprite;
+    int battler;
+} BattleAnimSpriteInfo;
+
 int BattleAnimUtil_GetBattlerType(BattleAnimSystem *param0, int param1);
 enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *param0, int param1);
 int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *param0, int param1);
-int BattleAnimUtil_GetAlliedBattlerType(BattleAnimSystem *param0, int param1);
+int BattleAnimUtil_GetAlliedBattler(BattleAnimSystem *param0, int param1);
 int BattleAnimUtil_GetOpposingBattlerType(int param0);
-void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2);
-void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2);
+void ov12_02235350(int param0, int param1, Point2D *param2);
+void ov12_022353AC(BattleAnimSystem *param0, int param1, Point2D *param2);
 void ov12_02235448(int param0, VecFx32 *param1, int param2, int param3);
 void ov12_02235458(int param0, VecFx32 *param1, int param2, int param3);
 void ov12_02235468(int param0, VecFx32 *param1, int param2, int param3);
@@ -67,12 +74,21 @@ void BattleAnimUtil_SetSpriteBgBlending(BattleAnimSystem *param0, int param1, in
 void BattleAnimUtil_SetSpriteBlending(BattleAnimSystem *param0, int param1, int param2, int param3);
 void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *param0, int param1, int param2);
 void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2);
-void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1);
-void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1);
+void BattleAnimUtil_GetMonSpritePos(PokemonSprite *param0, Point2D *param1);
+void BattleAnimUtil_GetSpritePos(ManagedSprite *param0, Point2D *param1);
 void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1);
-void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3);
-void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3);
+void BattleAnimUtil_GetBattlerSprites(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
+void ov12_02235D74(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
 void *BattleAnimUtil_Alloc(BattleAnimSystem *param0, int param1);
 void ov12_02235E80(void *param0);
+
+static inline BOOL BattleAnimUtil_IsMaskSet(int value, int mask)
+{
+    if ((value & mask) == mask) {
+        return TRUE;
+    }
+
+    return FALSE;
+}
 
 #endif // POKEPLATINUM_OV12_02235254_H
