@@ -2072,53 +2072,53 @@ static void ov12_02221810(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02221810 *v0 = param1;
 
-    if (v0->unk_0C == 0) {
+    if (v0->active == FALSE) {
         SysTask_Done(param0);
         return;
     }
 
-    if (v0->unk_00->pokemonSpriteManager != NULL) {
-        SpriteSystem_DrawSprites(v0->unk_04);
+    if (v0->battleAnimSys->pokemonSpriteManager != NULL) {
+        SpriteSystem_DrawSprites(v0->spriteManager);
     }
 }
 
-static void ov12_02221834(BattleAnimSystem *param0)
+static void ov12_02221834(BattleAnimSystem *system)
 {
-    int v0;
+    int type;
     int v1;
-    int v2;
+    int spriteID;
 
-    param0->scriptPtr += 1;
+    BattleAnimScript_Next(system);
 
-    v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    type = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v1 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    v1 = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    v2 = BattleAnimScript_ReadWord(param0->scriptPtr);
-    param0->scriptPtr += 1;
+    spriteID = BattleAnimScript_ReadWord(system->scriptPtr);
+    BattleAnimScript_Next(system);
 
-    param0->unk_48[v1].unk_00 = param0;
-    param0->unk_48[v1].unk_04 = param0->pokemonSpriteManager;
-    param0->unk_48[v1].unk_08 = param0->pokemonSprites[v2];
-    param0->unk_48[v1].unk_0C = 1;
+    system->unk_48[v1].battleAnimSys = system;
+    system->unk_48[v1].spriteManager = system->pokemonSpriteManager;
+    system->unk_48[v1].sprite = system->pokemonSprites[spriteID];
+    system->unk_48[v1].active = TRUE;
 
-    ManagedSprite_SetDrawFlag(param0->unk_48[v1].unk_08, 0);
+    ManagedSprite_SetDrawFlag(system->unk_48[v1].sprite, FALSE);
 
-    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-        int v3, v4;
+    if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+        int attackerType, defenderType;
 
-        v3 = BattleAnimUtil_GetBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
-        v4 = BattleAnimUtil_GetBattlerType(param0, BattleAnimSystem_GetDefender(param0));
+        attackerType = BattleAnimUtil_GetBattlerType(system, BattleAnimSystem_GetAttacker(system));
+        defenderType = BattleAnimUtil_GetBattlerType(system, BattleAnimSystem_GetDefender(system));
 
         {
             int v5;
             int v6;
             PokemonSprite *v7;
 
-            v6 = BattleAnimSystem_GetBattlerOfType(param0, v0);
-            v7 = BattleAnimSystem_GetBattlerSprite(param0, v6);
+            v6 = BattleAnimSystem_GetBattlerOfType(system, type);
+            v7 = BattleAnimSystem_GetBattlerSprite(system, v6);
 
             if (v7 != NULL) {
                 v5 = PokemonSprite_GetAttribute(v7, MON_SPRITE_HIDE);
@@ -2127,64 +2127,64 @@ static void ov12_02221834(BattleAnimSystem *param0)
             }
 
             if (v5 == 1) {
-                ManagedSprite_SetDrawFlag(param0->unk_48[v1].unk_08, 0);
+                ManagedSprite_SetDrawFlag(system->unk_48[v1].sprite, 0);
             } else {
-                ManagedSprite_SetDrawFlag(param0->unk_48[v1].unk_08, 1);
+                ManagedSprite_SetDrawFlag(system->unk_48[v1].sprite, 1);
             }
         }
 
-        switch (v0) {
-        case 0:
-            if ((v3 == 3) || (v3 == 4)) {
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 1);
+        switch (type) {
+        case BATTLER_TYPE_ATTACKER:
+            if ((attackerType == 3) || (attackerType == 4)) {
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
             } else {
-                ManagedSprite_SetDrawFlag(param0->unk_48[v1].unk_08, 0);
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 255);
+                ManagedSprite_SetDrawFlag(system->unk_48[v1].sprite, 0);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
             }
             break;
-        case 2:
-            if ((v3 == 5) || (v3 == 2)) {
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 1);
+        case BATTLER_TYPE_ATTACKER_PARTNER:
+            if ((attackerType == 5) || (attackerType == 2)) {
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
             } else {
-                ManagedSprite_SetDrawFlag(param0->unk_48[v1].unk_08, 0);
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 255);
+                ManagedSprite_SetDrawFlag(system->unk_48[v1].sprite, 0);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
             }
             break;
-        case 1:
-            switch (v4) {
+        case BATTLER_TYPE_DEFENDER:
+            switch (defenderType) {
             case 2:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 255);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
                 break;
             case 3:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 1);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
                 break;
             case 4:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 1);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
                 break;
             case 5:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 255);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
                 break;
             }
             break;
-        case 3:
-            switch (v4) {
+        case BATTLER_TYPE_DEFENDER_PARTNER:
+            switch (defenderType) {
             case 2:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 1);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
                 break;
             case 3:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 255);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
                 break;
             case 4:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 255);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
                 break;
             case 5:
-                ManagedSprite_SetPriority(param0->unk_48[v1].unk_08, 1);
+                ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
                 break;
             }
             break;
         }
 
-        SysTask_Start(ov12_02221810, &param0->unk_48[v1], 0x1000);
+        SysTask_Start(ov12_02221810, &system->unk_48[v1], 0x1000);
     }
 }
 
@@ -2196,7 +2196,7 @@ static void ov12_022219E8(BattleAnimSystem *param0)
 
     v0 = BattleAnimScript_ReadWord(param0->scriptPtr);
     param0->scriptPtr += 1;
-    param0->unk_48[v0].unk_0C = 0;
+    param0->unk_48[v0].active = 0;
 }
 
 static void BattleAnimScriptCmd_CancelTrackingTask(BattleAnimSystem *system)

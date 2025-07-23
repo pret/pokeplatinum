@@ -13,6 +13,8 @@
 #include "sprite.h"
 
 #define BATTLE_ANIM_DEFAULT_ALPHA -1
+#define BATTLE_ANIM_DEFAULT_SPRITE_ALPHA 26
+#define BATTLE_ANIM_DEFAULT_BG_ALPHA 5
 
 typedef struct UnkStruct_ov12_0223595C {
     u8 unk_00;
@@ -61,8 +63,8 @@ void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2);
 void ov12_02235748(VecFx32 *param0);
 void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3);
 void ov12_02235760(int param0, VecFx32 *param1);
-void BattleAnimUtil_SetEffectBgBlending(BattleAnimSystem *param0, int param1, int param2);
-void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3);
+void BattleAnimUtil_SetSpriteBgBlending(BattleAnimSystem *param0, int param1, int param2);
+void BattleAnimUtil_SetSpriteBlending(BattleAnimSystem *param0, int param1, int param2, int param3);
 void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *param0, int param1, int param2);
 void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2);
 void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1);

@@ -12,7 +12,7 @@ void BattleAnimScriptFunc_Confusion(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_AcidArmor(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_NightShadeAttacker(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *param0);
-void ov12_02230A8C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Spite(BattleAnimSystem *param0);
 void ov12_02230CEC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_02231010(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_022312A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);

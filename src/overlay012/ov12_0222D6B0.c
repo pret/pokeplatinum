@@ -195,7 +195,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_08 = param0;
 
     v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetEffectBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
 
     v1->unk_05 = BattleAnimSystem_GetScriptVar(v1->unk_08, 0);
     v1->unk_06 = 0;
@@ -415,7 +415,7 @@ void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_0C = param0;
 
     v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetEffectBgBlending(v1->unk_0C, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v1->unk_0C, 0xffffffff, 0xffffffff);
 
     v1->unk_09 = 0;
     v1->unk_0A = 15;
@@ -630,7 +630,7 @@ void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v2->unk_08 = param0;
 
     v3 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetEffectBgBlending(v2->unk_08, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v2->unk_08, 0xffffffff, 0xffffffff);
 
     v2->unk_02 = BattleAnimSystem_GetScriptVar(v2->unk_08, 0);
     v2->unk_02 = 12;
@@ -865,7 +865,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
             ov12_0222E248(v0->unk_2C[v1]);
 
             if (v0->unk_22[0] == 110) {
-                BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+                BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
 
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
@@ -902,7 +902,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
         }
 
         if (v0->unk_22[0] == 110) {
-            BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
 
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
