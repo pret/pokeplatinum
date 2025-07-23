@@ -203,7 +203,7 @@ static void ov12_02234918(SysTask *param0, void *param1)
     case 0:
         AlphaFadeContext_Init(&v0->unk_14, 0, 16, 20 - 0, 20 - 16, 10);
         ManagedSprite_SetDrawFlag(v0->unk_10, 1);
-        BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 20 - 0);
+        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 20 - 0);
         v0->unk_04++;
         break;
     case 1:
@@ -383,7 +383,7 @@ static void ov12_02234CA8(SysTask *param0, void *param1)
     switch (v0->unk_0C) {
     case 0:
 
-        BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 1, 16 - 1);
+        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 1, 16 - 1);
         AlphaFadeContext_Init(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
         ov12_02234BD8(v0, v0->unk_14);
         ov12_02234C30(v0);

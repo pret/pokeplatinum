@@ -627,37 +627,34 @@ void ov12_02235760(int param0, VecFx32 *param1)
     }
 }
 
-void BattleAnimUtil_SetEffectBgBlending(BattleAnimSystem *system, int alphaNone, int alphaEffect)
+void BattleAnimUtil_SetSpriteBgBlending(BattleAnimSystem *system, int spriteAlpha, int bgAlpha)
 {
-    if (alphaNone == BATTLE_ANIM_DEFAULT_ALPHA) {
-        alphaNone = 26;
+    if (spriteAlpha == BATTLE_ANIM_DEFAULT_ALPHA) {
+        spriteAlpha = BATTLE_ANIM_DEFAULT_SPRITE_ALPHA;
     }
 
-    if (alphaEffect == BATTLE_ANIM_DEFAULT_ALPHA) {
-        alphaEffect = 5;
+    if (bgAlpha == BATTLE_ANIM_DEFAULT_ALPHA) {
+        bgAlpha = BATTLE_ANIM_DEFAULT_BG_ALPHA;
     }
 
     G2_SetBlendAlpha(
         GX_BLEND_PLANEMASK_NONE,
         (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) | GX_BLEND_PLANEMASK_BG0,
-        alphaNone,
-        alphaEffect);
+        spriteAlpha,
+        bgAlpha);
 }
 
-void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
+void BattleAnimUtil_SetSpriteBlending(BattleAnimSystem *system, int planes, int spriteAlpha, int otherAlpha)
 {
-    int v0 = param2;
-    int v1 = param3;
-
-    if (param2 == BATTLE_ANIM_DEFAULT_ALPHA) {
-        v0 = 26;
+    if (spriteAlpha == BATTLE_ANIM_DEFAULT_ALPHA) {
+        spriteAlpha = BATTLE_ANIM_DEFAULT_SPRITE_ALPHA;
     }
 
-    if (param3 == BATTLE_ANIM_DEFAULT_ALPHA) {
-        v1 = 5;
+    if (otherAlpha == BATTLE_ANIM_DEFAULT_ALPHA) {
+        otherAlpha = BATTLE_ANIM_DEFAULT_BG_ALPHA;
     }
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, param1, v0, v1);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, planes, spriteAlpha, otherAlpha);
 }
 
 void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *system, int alphaBase, int alphaEffect)

@@ -556,7 +556,7 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_08 = param0;
 
     v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetEffectBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
 
     v1->unk_05 = 15;
     v1->unk_06 = 0;
@@ -927,7 +927,7 @@ void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system)
     ctx->blendA = DOUBLE_TEAM_BLEND_A;
     ctx->blendB = DOUBLE_TEAM_BLEND_B;
 
-    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, -1, -1);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, -1, -1);
     G2_ChangeBlendAlpha(ctx->blendA, ctx->blendB);
 
     int monPlttIndex = BattleAnimSystem_GetBattlerSpritePaletteIndex(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
@@ -1651,7 +1651,7 @@ void ov12_0222C3C0(BattleAnimSystem *param0)
     v0->unk_02 -= PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_SHADOW_HEIGHT);
     v0->unk_04 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_10, BattleAnimSystem_GetAttacker(v0->unk_10));
 
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_10, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_10, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(12, 6);
 
     {
@@ -1848,7 +1848,7 @@ void ov12_0222C6D4(BattleAnimSystem *param0)
         PosLerpContext_Init(&v0->unk_40, v0->unk_04.unk_00, v0->unk_04.unk_00 + (-20 * v2), v0->unk_04.unk_02, v0->unk_04.unk_02 + ((+20) * v3), 20);
     }
 
-    ov12_022357BC(v0->unk_0C, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBlending(v0->unk_0C, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BD | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
     AlphaFadeContext_Init(&v0->unk_64, 31, 0, 0, 31, 20 - 5);
 
     ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
@@ -2238,7 +2238,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
     v0->unk_44[0] = BattleAnimSystem_GetSprite(param0, 0);
     v0->unk_44[1] = BattleAnimSystem_GetSprite(param0, 1);
 
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_18.battleAnimSystem, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_18.battleAnimSystem, 0xffffffff, 0xffffffff);
 
     if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
         v0->unk_0C = 0;
@@ -2519,7 +2519,7 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_20 = PokemonSprite_GetAttribute(v1->unk_1C, MON_SPRITE_Y_CENTER);
     v1->unk_24 = BattleAnimSystem_GetBattlerSpriteHeight(v1->unk_10, BattleAnimSystem_GetAttacker(v1->unk_10));
 
-    ov12_022357BC(v1->unk_10, (1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBlending(v1->unk_10, (1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);
 
     v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);

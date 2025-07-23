@@ -25,6 +25,7 @@
 #define BATTLE_ANIM_SCRIPT_MAX_SPRITES          10
 #define BATTLE_ANIM_SCRIPT_MAX_SPRITE_MANAGERS  4
 
+#define BATTLE_BG_3D     BG_LAYER_MAIN_0
 #define BATTLE_BG_WINDOW BG_LAYER_MAIN_1
 #define BATTLE_BG_BASE   BG_LAYER_MAIN_2
 #define BATTLE_BG_EFFECT BG_LAYER_MAIN_3
@@ -139,10 +140,10 @@ typedef struct BattleAnimScriptLoop {
 } BattleAnimScriptLoop;
 
 typedef struct {
-    struct BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    ManagedSprite *unk_08;
-    BOOL unk_0C;
+    struct BattleAnimSystem *battleAnimSys;
+    SpriteManager *spriteManager;
+    ManagedSprite *sprite;
+    BOOL active;
 } UnkStruct_ov12_02221810;
 
 typedef struct {

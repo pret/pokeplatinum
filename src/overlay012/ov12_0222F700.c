@@ -251,18 +251,46 @@ enum NightShadeDefenderState {
 #define NIGHT_SHADE_DEFENDER_FADE_DELAY       0
 #define NIGHT_SHADE_DEFENDER_FADE_PLTTBUF     PLTTBUF_MAIN_OBJ_F
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    BgScrollContext *unk_14;
-    PaletteData *unk_18;
-    AlphaFadeContext unk_1C;
-    int unk_44;
-    ManagedSprite *unk_48;
-} UnkStruct_ov12_02230910;
+// -------------------------------------------------------------------
+// Spite
+// -------------------------------------------------------------------
+typedef struct SpiteContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    int subState;
+    int unused;
+    PokemonSprite *defenderSprite;
+    BgScrollContext *bgScroll;
+    PaletteData *paletteData;
+    AlphaFadeContext alpha;
+    int delay;
+    ManagedSprite *monSprite;
+} SpiteContext;
+
+enum SpiteState {
+    SPITE_STATE_INIT = 0,
+    SPITE_STATE_SCROLL_AND_FADE,
+    SPITE_STATE_CLEANUP,
+
+    SPITE_SUB_STATE_FADE_IN = 0,
+    SPITE_SUB_STATE_SCROLL,
+    SPITE_SUB_STATE_FADE_OUT,
+    SPITE_SUB_STATE_FINISH,
+};
+
+#define SPITE_XLU_SPRITE_START_ALPHA 0
+#define SPITE_XLU_SPRITE_END_ALPHA   8
+#define SPITE_BACKGROUND_START_ALPHA 16
+#define SPITE_BACKGROUND_END_ALPHA   8
+#define SPITE_ALPHA_FADE_FRAMES      24
+#define SPITE_SCROLL_DURATION        32
+#define SPITE_SCROLL_ANGLE_INCREMENT DEG_TO_IDX(5)
+#define SPITE_SCROLL_AMPLITUDE       FX32_CONST(5)
+#define SPITE_SCROLL_SPEED           100
+#define SPITE_BLEND_PLTTBUF          PLTTBUF_MAIN_BG
+#define SPITE_BLEND_PALETTE          8
+#define SPITE_BLEND_FRACTION         8
+#define SPITE_BLEND_COLOR            COLOR_BLACK
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -692,7 +720,7 @@ void BattleAnimScriptFunc_QuickAttack(BattleAnimSystem *system)
         NULL,
         NULL);
 
-    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, -1, -1);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, -1, -1);
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_QuickAttack, ctx);
 }
 
@@ -981,7 +1009,7 @@ void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     v0->unk_F8 = 0;
 
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 31);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 31);
     ManagedSprite_SetExplicitOamMode(v0->unk_0C.unk_00, GX_OAM_MODE_XLU);
 
     for (v2 = 0; v2 < 2; v2++) {
@@ -1087,7 +1115,7 @@ void BattleAnimScriptFunc_Confusion(BattleAnimSystem *system)
 
     ctx->jitterDir = 1;
 
-    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, CONFUSION_BLEND_A, CONFUSION_BLEND_B);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, CONFUSION_BLEND_A, CONFUSION_BLEND_B);
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Confusion, ctx);
 }
 
@@ -1401,7 +1429,7 @@ void BattleAnimScriptFunc_NightShadeAttacker(BattleAnimSystem *system)
         NIGHT_SHADE_ATTACKER_ALPHA_FRAMES);
 
     ManagedSprite_SetExplicitOamMode(ctx->xluSprite, GX_OAM_MODE_XLU);
-    BattleAnimUtil_SetEffectBgBlending(ctx->battleAnimSys, 0, NIGHT_SHADE_ATTACKER_SPRITE_MAX_ALPHA);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, 0, NIGHT_SHADE_ATTACKER_SPRITE_MAX_ALPHA);
     ManagedSprite_SetAffineOverwriteMode(ctx->xluSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
     if (ctx->isContest == TRUE) {
@@ -1471,122 +1499,154 @@ void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_NightShadeDefender, ctx);
 }
 
-static BOOL ov12_02230910(UnkStruct_ov12_02230910 *param0)
+static BOOL SpiteContext_UpdateFade(SpiteContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_08) {
-    case 0:
-        if (AlphaFadeContext_IsDone(&param0->unk_1C) == 1) {
-            param0->unk_08++;
-            param0->unk_44 = 32;
+    switch (ctx->subState) {
+    case SPITE_SUB_STATE_FADE_IN:
+        if (AlphaFadeContext_IsDone(&ctx->alpha) == TRUE) {
+            ctx->subState++;
+            ctx->delay = SPITE_SCROLL_DURATION;
         }
         break;
-    case 1:
-        param0->unk_44--;
+    case SPITE_SUB_STATE_SCROLL:
+        ctx->delay--;
 
-        if (param0->unk_44 < 0) {
-            param0->unk_08++;
+        if (ctx->delay < 0) {
+            ctx->subState++;
 
-            AlphaFadeContext_Init(&param0->unk_1C, 8, 0, 8, 16, 24);
+            AlphaFadeContext_Init(
+                &ctx->alpha,
+                SPITE_XLU_SPRITE_END_ALPHA,
+                SPITE_XLU_SPRITE_START_ALPHA,
+                SPITE_BACKGROUND_END_ALPHA,
+                SPITE_BACKGROUND_START_ALPHA,
+                SPITE_ALPHA_FADE_FRAMES);
         }
         break;
-    case 2:
-        if (AlphaFadeContext_IsDone(&param0->unk_1C) == 1) {
-            param0->unk_08++;
-            BgScrollContext_Free(param0->unk_14);
+    case SPITE_SUB_STATE_FADE_OUT:
+        if (AlphaFadeContext_IsDone(&ctx->alpha) == TRUE) {
+            ctx->subState++;
+            BgScrollContext_Free(ctx->bgScroll);
         }
         break;
-    case 3:
-        v0 = 1;
+    case SPITE_SUB_STATE_FINISH:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_02230994(SysTask *param0, void *param1)
+static void BattleAnimTask_Spite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02230910 *v0 = param1;
-    BOOL v1;
+    SpiteContext *ctx = param;
 
-    switch (v0->unk_04) {
-    case 0:
-        ov12_02230910(v0);
+    switch (ctx->state) {
+    case SPITE_STATE_INIT:
+        SpiteContext_UpdateFade(ctx);
 
-        if (ManagedSprite_GetDrawFlag(v0->unk_48) == 1) {
-            if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
-                PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
+        if (ManagedSprite_GetDrawFlag(ctx->monSprite) == TRUE) {
+            if (BattleAnimSystem_IsBattlerSemiInvulnerable(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)) == FALSE) {
+                PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_HIDE, TRUE);
             }
         }
 
-        v0->unk_04++;
+        ctx->state++;
         break;
-    case 1:
-        v1 = ov12_02230910(v0);
-
-        if (v1) {
-            v0->unk_04++;
+    case SPITE_STATE_SCROLL_AND_FADE:
+        if (SpiteContext_UpdateFade(ctx)) {
+            ctx->state++;
         }
         break;
-    case 2:
-        Bg_SetPriority(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), BattleAnimSystem_GetBgPriority(v0->unk_00, 1));
-        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
+    case SPITE_STATE_CLEANUP:
+        Bg_SetPriority(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            BattleAnimSystem_GetBgPriority(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE));
+        Bg_SetPriority(BATTLE_BG_3D, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
 
-        if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 0);
+        if (BattleAnimSystem_IsBattlerSemiInvulnerable(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)) == FALSE) {
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_HIDE, FALSE);
         }
 
-        Bg_ClearTilesRange(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(v0->unk_00));
-        Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(v0->unk_00), BattleAnimSystem_GetBgLayer(v0->unk_00, 1));
+        Bg_ClearTilesRange(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            0x4000,
+            0,
+            BattleAnimSystem_GetHeapID(ctx->battleAnimSys));
+        Bg_ClearTilemap(
+            BattleAnimSystem_GetBgConfig(ctx->battleAnimSys),
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE));
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02230A8C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Spite(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02230910 *v0;
-    int v1;
-    s16 v2, v3;
-    int v4;
-    int v5;
+    SpiteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SpiteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02230910));
+    ctx->battleAnimSys = system;
+    ctx->paletteData = BattleAnimSystem_GetPaletteData(ctx->battleAnimSys);
 
-    v0->unk_00 = param0;
-    v0->unk_18 = BattleAnimSystem_GetPaletteData(v0->unk_00);
+    // Small Explanation of what is happening here:
+    // First, the battle anim script for Spite creates a copy of the defenders 3D sprites
+    // as a 2D (hardware) sprite. It then loads that sprite into BATTLE_ANIM_BG_BASE (i.e. BG Layer 2).
 
-    BattleAnimUtil_SetEffectBaseBgBlending(v0->unk_00, 0, 16);
-    AlphaFadeContext_Init(&v0->unk_1C, 0, 8, 16, 8, 24);
+    // Set BG Base to transparent
+    BattleAnimUtil_SetEffectBaseBgBlending(ctx->battleAnimSys, SPITE_XLU_SPRITE_START_ALPHA, SPITE_BACKGROUND_START_ALPHA);
 
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+    // Setup task to slowly fade in BG Base
+    AlphaFadeContext_Init(
+        &ctx->alpha,
+        SPITE_XLU_SPRITE_START_ALPHA,
+        SPITE_XLU_SPRITE_END_ALPHA,
+        SPITE_BACKGROUND_START_ALPHA,
+        SPITE_BACKGROUND_END_ALPHA,
+        SPITE_ALPHA_FADE_FRAMES);
 
-    v2 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v3 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v3 -= PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_SHADOW_HEIGHT);
-    v2 -= (80 / 2);
-    v3 -= (80 / 2);
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
 
-    v0->unk_48 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
-    v5 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+    s16 defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    s16 defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    defenderY -= PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
+    defenderX -= MON_SPRITE_FRAME_WIDTH / 2;
+    defenderY -= MON_SPRITE_FRAME_HEIGHT / 2;
 
-    if ((v5 == 5) || (v5 == 2)) {
-        ManagedSprite_SetDrawFlag(v0->unk_48, 1);
-        ManagedSprite_SetExplicitPriority(v0->unk_48, 2);
+    ctx->monSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
+    int defenderType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+
+    if (defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2 || defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+        // P1 and E2 3D sprites require special handling so we use the 2D sprite with a higher priority instead
+        ManagedSprite_SetDrawFlag(ctx->monSprite, TRUE);
+        ManagedSprite_SetExplicitPriority(ctx->monSprite, 2);
     } else {
-        Bg_SetPriority(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
-        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00) + 1);
-        ManagedSprite_SetDrawFlag(v0->unk_48, 0);
+        // Make sure BG Base is drawn on top of the 3D Pokemon sprite and disable drawing
+        // of the 2D Pokemon sprite.
+        Bg_SetPriority(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
+        Bg_SetPriority(BATTLE_BG_3D, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
+        ManagedSprite_SetDrawFlag(ctx->monSprite, FALSE);
     }
 
-    v0->unk_14 = BgScrollContext_New(v3, v3 + 80, (5 * 0xffff) / 360, 5 * FX32_ONE, 100, BattleAnimSystem_GetBgID(param0, 1), 0, BattleAnimUtil_MakeBgOffsetValue(-v2, -v3), BattleAnimSystem_GetHeapID(param0));
-    v4 = 1 << 8;
+    // Setup scrolling for BG Base
+    ctx->bgScroll = BgScrollContext_New(
+        defenderY,
+        defenderY + MON_SPRITE_FRAME_HEIGHT,
+        SPITE_SCROLL_ANGLE_INCREMENT,
+        SPITE_SCROLL_AMPLITUDE,
+        SPITE_SCROLL_SPEED,
+        BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE),
+        0,
+        BattleAnimUtil_MakeBgOffsetValue(-defenderX, -defenderY),
+        BattleAnimSystem_GetHeapID(system));
 
-    PaletteData_BlendMulti(v0->unk_18, 0, v4, 8, 0x0);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02230994, v0);
+    PaletteData_BlendMulti(ctx->paletteData, SPITE_BLEND_PLTTBUF, 1 << SPITE_BLEND_PALETTE, SPITE_BLEND_FRACTION, SPITE_BLEND_COLOR);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Spite, ctx);
 }
 
 static void ov12_02230BE0(SysTask *param0, void *param1)
@@ -2013,7 +2073,7 @@ void ov12_02231444(BattleAnimSystem *param0)
     PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
 
     RevolutionContext_InitOvalRevolutions(&v0->unk_1C, 2, 16);
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 16, 16 - 16);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 16, 16 - 16);
     AlphaFadeContext_Init(&v0->unk_40, 16, 0, 16 - 16, 16 - 0, 32);
 
     v0->unk_1C.data[2] *= v1;
@@ -2612,7 +2672,7 @@ void ov12_02232024(BattleAnimSystem *param0)
 static void ov12_02232084(UnkStruct_ov12_02232084 *param0)
 {
     ScaleLerpContext_Init(&param0->unk_18, param0->unk_74 / 100, 10, param0->unk_78 / 100, param0->unk_70 / 100);
-    BattleAnimUtil_SetEffectBgBlending(param0->unk_00, 16, 16 - 16);
+    BattleAnimUtil_SetSpriteBgBlending(param0->unk_00, 16, 16 - 16);
     AlphaFadeContext_Init(&param0->unk_3C, 16, 10, 16 - 16, 16 - 10, (param0->unk_70 / 100) * 2);
 
     param0->unk_64 = 0;
@@ -2731,7 +2791,7 @@ static void ov12_0223223C(SysTask *param0, void *param1)
     case 2:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             v0->unk_0C++;
-            BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 16, 0);
+            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 16, 0);
             AlphaFadeContext_Init(&v0->unk_3C, 16, 0, 0, 16, 8);
         }
         break;
@@ -3365,7 +3425,7 @@ static void ov12_02233094(SysTask *param0, void *param1)
 
     switch (v0->unk_08) {
     case 0:
-        BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 16 - 0);
+        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 16 - 0);
         AlphaFadeContext_Init(&v0->unk_9C, 0, 8, 16 - 0, 16 - 8, 8);
         v0->unk_08++;
         break;
@@ -3596,7 +3656,7 @@ static void ov12_02233644(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 1, 16 - 1);
+        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 1, 16 - 1);
         AlphaFadeContext_Init(&v0->unk_108, 1, 16, 16 - 1, 16 - 16, 10);
         ov12_0223351C(v0, v0->unk_14);
         ov12_02233574(v0);
@@ -4010,7 +4070,7 @@ static void ov12_02233F4C(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        BattleAnimUtil_SetEffectBgBlending(v0->unk_00, 0, 16 - 0);
+        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 16 - 0);
         AlphaFadeContext_Init(&v0->unk_14, 0, 16, 16 - 0, 16 - 16, 8);
         v0->unk_0C++;
         break;

@@ -1363,7 +1363,7 @@ void ov12_02227CBC(BattleAnimSystem *param0)
     ManagedSprite_SetExplicitOamMode(v0->unk_10, GX_OAM_MODE_XLU);
     ManagedSprite_SetAffineOverwriteMode(v0->unk_10, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, v0->unk_38, 16 - v0->unk_38);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, v0->unk_38, 16 - v0->unk_38);
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02227B4C, v0);
 
     v2 = BattleAnimSystem_GetScriptVar(param0, 0);
@@ -1599,7 +1599,7 @@ void ov12_02228168(BattleAnimSystem *param0)
     v4 = BattleAnimSystem_GetScriptVar(param0, 1);
     v5 = BattleAnimSystem_GetScriptVar(param0, 3);
 
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00, v4, v5);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, v4, v5);
     AlphaFadeContext_Init(&v0->unk_08, v4, BattleAnimSystem_GetScriptVar(param0, 2), v5, BattleAnimSystem_GetScriptVar(param0, 4), BattleAnimSystem_GetScriptVar(param0, 5));
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0222813C, v0);
 }
@@ -3406,7 +3406,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
             ManagedSprite_SetExplicitOamMode(v0->unk_1C, GX_OAM_MODE_XLU);
             v0->unk_20 = 16;
             v0->unk_21 = 0;
-            BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, v0->unk_20, v0->unk_21);
+            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, v0->unk_20, v0->unk_21);
             v0->unk_00.unk_00++;
         }
     } break;

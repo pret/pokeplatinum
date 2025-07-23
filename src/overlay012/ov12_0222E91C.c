@@ -147,7 +147,7 @@ void ov12_0222EAA0(BattleAnimSystem *param0)
     v0->unk_A2 = 8;
     v0->unk_A3 = 8;
 
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(v0->unk_A2, v0->unk_A3);
 
     v0->unk_1C.unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem));
@@ -461,7 +461,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
     v0->unk_34 = 0;
     v0->unk_35 = 15;
 
-    BattleAnimUtil_SetEffectBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(v0->unk_34, v0->unk_35);
 
     {
