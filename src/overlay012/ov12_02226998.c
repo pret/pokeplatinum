@@ -43,7 +43,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_FaintAttack,
     BattleAnimScriptFunc_Earthquake,
     BattleAnimScriptFunc_PlayfulHops,
-    ov12_0222C6D4,
+    BattleAnimScriptFunc_Nightmare,
     ov12_0222C8F8,
     ov12_0222CA2C,
     ov12_0223249C,

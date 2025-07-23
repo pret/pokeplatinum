@@ -737,7 +737,7 @@ void BattleAnimScriptFunc_QuickAttack(BattleAnimSystem *system)
     RevolutionContext_InitOvalRevolutions(&afterImageRev, 1, QUICK_ATTACK_AFTERIMAGE_REVOLUTION_FRAMES);
 
     // Adjust rotation direction based on if the attacker is on the player's side or not
-    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->rev.data[XY_PARAM_REV_RADIUS_X] *= dir;
     afterImageRev.data[XY_PARAM_REV_RADIUS_X] *= dir;
 
@@ -839,11 +839,11 @@ void BattleAnimScriptFunc_DrillPeck(BattleAnimSystem *system)
     PosLerpContext_Init(&ctx->pos, 0, DRILL_PECK_MOVE_BWD_X, 0, DRILL_PECK_MOVE_BWD_Y, DRILL_PECK_MOVE_BWD_FRAMES);
     ValueLerpContext_Init(&ctx->angle, 0, DRILL_PECK_ROTATION_FWD_ANGLE, DRILL_PECK_ROTATION_FWD_FRAMES);
 
-    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->pos.data[XY_PARAM_STEP_SIZE] *= dir;
     ctx->angle.data[VALUE_PARAM_STEP_SIZE] *= dir;
 
-    int defenderDir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    int defenderDir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
 
     enum Battler attackerSide = BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     enum Battler defenderSide = BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
@@ -1023,7 +1023,7 @@ void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_EC = 0;
 
     v3 = BattleAnimSystem_GetAttacker(param0);
-    v4 = BattleAnimUtil_GetTransformDirection(param0, v3);
+    v4 = BattleAnimUtil_GetTransformDirectionX(param0, v3);
     v4 *= (-32 * FX32_ONE);
 
     v0->unk_0C.unk_00 = param3;
@@ -1289,7 +1289,7 @@ void BattleAnimScriptFunc_AcidArmor(BattleAnimSystem *system)
 
     PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_HIDE, TRUE);
 
-    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     ctx->scrollStartY = ctx->attackerY - ACID_ARMOR_SCROLL_CORRECTION;
     ctx->scrollEndY = ctx->attackerY + MON_SPRITE_FRAME_HEIGHT + ACID_ARMOR_SCROLL_CORRECTION;
@@ -1504,7 +1504,7 @@ void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *system)
         NIGHT_SHADE_DEFENDER_SHAKE_INTERVAL,
         NIGHT_SHADE_DEFENDER_SHAKE_CYCLES);
 
-    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
 
     // BUG: This should be
     // ctx->shake.data[XY_PARAM_SHAKE_EXTENT_X] *= dir;
@@ -1764,7 +1764,7 @@ void ov12_02230CEC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_04 = param1;
     v0->unk_08 = param2;
 
-    v1 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v1 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
 
     if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(v0->unk_00, 0) == 1) {
         v0->unk_54 = -1;
@@ -2035,7 +2035,7 @@ void ov12_022312A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
-    v0->unk_3C = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v0->unk_3C = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
     v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
     v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
     v0->unk_16 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
@@ -2109,7 +2109,7 @@ void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *system)
     ctx->battleAnimSys = system;
     ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
 
-    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
     ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
@@ -2235,8 +2235,8 @@ void ov12_02231650(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_04 = param1;
     v0->unk_08 = param2;
 
-    v1 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v2 = ov12_0222598C(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v1 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v2 = BattleAnimUtil_GetTransformDirectionY(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
 
     v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
 
@@ -2635,7 +2635,7 @@ void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *system)
     PlayfulHopsContext *ctx = BattleAnimUtil_Alloc(system, sizeof(PlayfulHopsContext));
     ctx->battleAnimSys = system;
 
-    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     if (BattleAnimSystem_GetScriptVar(system, PLAYFUL_HOPS_VAR_TARGET_BATTLER) == BATTLER_TYPE_ATTACKER) {
         ctx->battlerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
@@ -3033,7 +3033,7 @@ void ov12_022326AC(BattleAnimSystem *param0)
     UnkStruct_ov12_022324E0 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022324E0));
 
     v0->unk_04 = param0;
-    v0->unk_08 = BattleAnimUtil_GetTransformDirection(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
+    v0->unk_08 = BattleAnimUtil_GetTransformDirectionX(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
     v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetAttacker(param0));
     v0->unk_10 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER);
     v0->unk_12 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
@@ -3802,7 +3802,7 @@ void ov12_02233734(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAnimateFlag(v0->unk_18[v1], 1);
     }
 
-    v0->unk_14 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v0->unk_14 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233644, v0);
 }
 
@@ -3922,8 +3922,8 @@ void ov12_022339C4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAnim(v0->unk_18[v1], v1 % 3);
     }
 
-    v0->unk_10 = BattleAnimUtil_GetTransformDirection(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_14 = ov12_0222598C(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v0->unk_10 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v0->unk_14 = BattleAnimUtil_GetTransformDirectionY(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
 
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233988, v0);
 }
@@ -4300,8 +4300,8 @@ void ov12_022342C4(BattleAnimSystem *param0)
         Sprite_DeleteAndFreeResources(BattleAnimSystem_GetSprite(param0, 0));
     }
 
-    v2 = BattleAnimUtil_GetTransformDirection(param0, v1);
-    v3 = ov12_0222598C(param0, v1);
+    v2 = BattleAnimUtil_GetTransformDirectionX(param0, v1);
+    v3 = BattleAnimUtil_GetTransformDirectionY(param0, v1);
     v4 = BattleAnimUtil_GetBattlerPos(param0, v1, 0);
     v5 = BattleAnimUtil_GetBattlerPos(param0, v1, 1);
 
@@ -4370,8 +4370,8 @@ void ov12_022344D0(BattleAnimSystem *param0)
     v0->unk_14 = BattleAnimSystem_GetBattlerSprite(param0, v1);
     v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_14, MON_SPRITE_X_CENTER);
     v0->unk_1A = PokemonSprite_GetAttribute(v0->unk_14, MON_SPRITE_Y_CENTER);
-    v0->unk_0C = BattleAnimUtil_GetTransformDirection(param0, v1);
-    v0->unk_10 = ov12_0222598C(param0, v1);
+    v0->unk_0C = BattleAnimUtil_GetTransformDirectionX(param0, v1);
+    v0->unk_10 = BattleAnimUtil_GetTransformDirectionY(param0, v1);
 
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022343A0, v0);
 }
@@ -4428,8 +4428,8 @@ void ov12_0223464C(BattleAnimSystem *param0)
     v0->unk_10 = BattleAnimSystem_GetBattlerSprite(param0, v1);
     v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
     v0->unk_16 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v0->unk_08 = BattleAnimUtil_GetTransformDirection(param0, v1);
-    v0->unk_0C = ov12_0222598C(param0, v1);
+    v0->unk_08 = BattleAnimUtil_GetTransformDirectionX(param0, v1);
+    v0->unk_0C = BattleAnimUtil_GetTransformDirectionY(param0, v1);
 
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234528, v0);
 }
