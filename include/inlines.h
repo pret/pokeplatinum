@@ -212,12 +212,4 @@ static inline void inline_0202D558(u32 param0, RTCDate *param1)
     param1->week = inline_0202D558_sub4(param0);
 }
 
-static inline BOOL inline_ov12_02235998(int param0, int param1)
-{
-    if ((param0 & param1) == param1) {
-        return 1;
-    }
-    return 0;
-}
-
 #endif // POKEPLATINUM_INLINES_H

@@ -2,11 +2,11 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "constants/battle/battle_anim.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_02235350.h"
-#include "overlay012/struct_ov12_02235998.h"
+#include "math_util.h"
 
 #include "heap.h"
 #include "inlines.h"
@@ -72,7 +72,7 @@ int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *system, int type)
     return 0;
 }
 
-int BattleAnimUtil_GetAlliedBattlerType(BattleAnimSystem *system, int battler)
+int BattleAnimUtil_GetAlliedBattler(BattleAnimSystem *system, int battler)
 {
     int type = BattleAnimSystem_GetBattlerType(system, battler);
     if (type == BATTLER_TYPE_SOLO_PLAYER || type == BATTLER_TYPE_SOLO_ENEMY) {
@@ -132,9 +132,9 @@ int BattleAnimUtil_GetOpposingBattlerType(int battlerType)
     return BATTLER_TYPE_SOLO_PLAYER;
 }
 
-void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
+void ov12_02235350(int param0, int param1, Point2D *param2)
 {
-    const UnkStruct_ov12_02235350 v0[] = {
+    const Point2D v0[] = {
         { 0x40, 0x70 },
         { 0xC0, 0x30 },
         { 0x28, 0x70 },
@@ -142,7 +142,7 @@ void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
         { 0x50, 0x78 },
         { 0xB0, 0x2A }
     };
-    const UnkStruct_ov12_02235350 v1[] = {
+    const Point2D v1[] = {
         { 0xD8, 0x70 },
         { 0x50, 0x2A },
         { 0xD8, 0x70 },
@@ -159,7 +159,7 @@ void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
     *param2 = v0[param0];
 }
 
-void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2)
+void ov12_022353AC(BattleAnimSystem *param0, int param1, Point2D *param2)
 {
     int v0 = BattleAnimUtil_GetBattlerType(param0, param1);
     int v1 = BattleAnimSystem_IsContest(param0);
@@ -685,25 +685,25 @@ void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)
     G2_SetWndOutsidePlane((1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
 }
 
-void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
+void BattleAnimUtil_GetMonSpritePos(PokemonSprite *sprite, Point2D *pos)
 {
-    if (param0 == NULL) {
-        param1->unk_00 = 0;
-        param1->unk_02 = 0;
+    if (sprite == NULL) {
+        pos->x = 0;
+        pos->y = 0;
         return;
-    } else if (PokemonSprite_IsActive(param0) == 0) {
-        param1->unk_00 = 0;
-        param1->unk_02 = 0;
+    } else if (PokemonSprite_IsActive(sprite) == FALSE) {
+        pos->x = 0;
+        pos->y = 0;
         return;
     }
 
-    param1->unk_00 = PokemonSprite_GetAttribute(param0, MON_SPRITE_X_CENTER);
-    param1->unk_02 = PokemonSprite_GetAttribute(param0, MON_SPRITE_Y_CENTER);
+    pos->x = PokemonSprite_GetAttribute(sprite, MON_SPRITE_X_CENTER);
+    pos->y = PokemonSprite_GetAttribute(sprite, MON_SPRITE_Y_CENTER);
 }
 
-void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)
+void BattleAnimUtil_GetSpritePos(ManagedSprite *sprite, Point2D *pos)
 {
-    ManagedSprite_GetPositionXY(param0, &(param1->unk_00), &(param1->unk_02));
+    ManagedSprite_GetPositionXY(sprite, &pos->x, &pos->y);
 }
 
 void ov12_0223595C(BattleAnimSystem *system, UnkStruct_ov12_0223595C *param1)
@@ -720,172 +720,168 @@ void ov12_0223595C(BattleAnimSystem *system, UnkStruct_ov12_0223595C *param1)
     param1->paletteData = BattleAnimSystem_GetPaletteData(system);
 }
 
-void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
+void BattleAnimUtil_GetBattlerSprites(BattleAnimSystem *system, int targets, BattleAnimSpriteInfo *sprites, int *count)
 {
-    *param3 = 0;
+    *count = 0;
 
-    if (inline_ov12_02235998(param1, 0x40) == 1) {
-        int v0 = BattleAnimSystem_GetAttacker(param0);
-        int v1;
-        int v2;
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_ALL_BATTLERS) == TRUE) {
+        int attacker = BattleAnimSystem_GetAttacker(system);
 
-        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v0);
+        // Add the attacker sprite
+        sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, attacker);
 
-        if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = v0;
-            ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-            (*param3)++;
+        if (sprites[*count].monSprite != NULL) {
+            sprites[*count].battler = attacker;
+            BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+            (*count)++;
         }
 
-        v1 = BattleAnimUtil_GetAlliedBattlerType(param0, v0);
-        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
+        // Add the attacker's ally's sprite
+        int battler = BattleAnimUtil_GetAlliedBattler(system, attacker);
+        sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
 
-        if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = v1;
-            ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-            (*param3)++;
+        if (sprites[*count].monSprite != NULL) {
+            sprites[*count].battler = battler;
+            BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+            (*count)++;
         }
 
-        v2 = BattleAnimSystem_GetBattlerType(param0, v0);
-        v2 = BattleAnimUtil_GetOpposingBattlerType(v2);
-        v1 = BattleAnimUtil_GetBattlerOfType(param0, v2);
+        // Add the opposing battler's sprite
+        int type = BattleAnimSystem_GetBattlerType(system, attacker);
+        type = BattleAnimUtil_GetOpposingBattlerType(type);
+        battler = BattleAnimUtil_GetBattlerOfType(system, type);
 
-        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
+        sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
 
-        if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = v1;
-            ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-            (*param3)++;
+        if (sprites[*count].monSprite != NULL) {
+            sprites[*count].battler = battler;
+            BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+            (*count)++;
         }
 
-        v1 = BattleAnimUtil_GetAlliedBattlerType(param0, v1);
-        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
+        // Add the opposing battler's ally's sprite
+        battler = BattleAnimUtil_GetAlliedBattler(system, battler);
+        sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
 
-        if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = v1;
-            ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-            (*param3)++;
-        }
-
-        return;
-    }
-
-    if (inline_ov12_02235998(param1, 0x20) == 1) {
-        int v3 = BattleAnimSystem_GetAttacker(param0);
-        int v4;
-        int v5;
-
-        v4 = BattleAnimUtil_GetAlliedBattlerType(param0, v3);
-
-        if (v4 != v3) {
-            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
-
-            if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = v4;
-                ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-                (*param3)++;
-            }
-        }
-
-        v5 = BattleAnimSystem_GetBattlerType(param0, v3);
-        v5 = BattleAnimUtil_GetOpposingBattlerType(v5);
-        v4 = BattleAnimUtil_GetBattlerOfType(param0, v5);
-
-        if (v4 != v3) {
-            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
-
-            if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = v4;
-                ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-                (*param3)++;
-            }
-        }
-
-        v4 = BattleAnimUtil_GetAlliedBattlerType(param0, v4);
-
-        if (v4 != v3) {
-            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
-
-            if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = v4;
-                ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-                (*param3)++;
-            }
+        if (sprites[*count].monSprite != NULL) {
+            sprites[*count].battler = battler;
+            BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+            (*count)++;
         }
 
         return;
     }
 
-    if (inline_ov12_02235998(param1, 0x2) == 1) {
-        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetAttacker(param0));
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_NOT_ATTACKER) == TRUE) {
+        int attacker = BattleAnimSystem_GetAttacker(system);
 
-        if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = BattleAnimSystem_GetAttacker(param0);
-            ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-            (*param3)++;
+        // Add the attacker's ally's sprite
+        int battler = BattleAnimUtil_GetAlliedBattler(system, attacker);
+        if (battler != attacker) {
+            sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
+
+            if (sprites[*count].monSprite != NULL) {
+                sprites[*count].battler = battler;
+                BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+                (*count)++;
+            }
+        }
+
+        // Add the opposing battler's sprite
+        int type = BattleAnimSystem_GetBattlerType(system, attacker);
+        type = BattleAnimUtil_GetOpposingBattlerType(type);
+        battler = BattleAnimUtil_GetBattlerOfType(system, type);
+        if (battler != attacker) {
+            sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
+
+            if (sprites[*count].monSprite != NULL) {
+                sprites[*count].battler = battler;
+                BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+                (*count)++;
+            }
+        }
+
+        // Add the opposing battler's ally's sprite
+        battler = BattleAnimUtil_GetAlliedBattler(system, battler);
+        if (battler != attacker) {
+            sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
+
+            if (sprites[*count].monSprite != NULL) {
+                sprites[*count].battler = battler;
+                BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+                (*count)++;
+            }
+        }
+
+        return;
+    }
+
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_ATTACKER) == TRUE) {
+        sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimSystem_GetAttacker(system));
+        if (sprites[*count].monSprite != NULL) {
+            sprites[*count].battler = BattleAnimSystem_GetAttacker(system);
+            BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+            (*count)++;
         }
     }
 
-    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-        if (inline_ov12_02235998(param1, 0x4) == 1) {
-            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0)));
-
-            if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
-                ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-                (*param3)++;
+    if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+        if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_ATTACKER_PARTNER) == TRUE) {
+            sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetAttacker(system)));
+            if (sprites[*count].monSprite != NULL) {
+                sprites[*count].battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetAttacker(system));
+                BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+                (*count)++;
             }
         }
     }
 
-    if (inline_ov12_02235998(param1, 0x8) == 1) {
-        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetDefender(param0));
-
-        if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = BattleAnimSystem_GetDefender(param0);
-            ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-            (*param3)++;
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_DEFENDER) == TRUE) {
+        sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimSystem_GetDefender(system));
+        if (sprites[*count].monSprite != NULL) {
+            sprites[*count].battler = BattleAnimSystem_GetDefender(system);
+            BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+            (*count)++;
         }
     }
 
-    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-        if (inline_ov12_02235998(param1, 0x10) == 1) {
-            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0)));
-
-            if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
-                ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
-                (*param3)++;
+    if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+        if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_DEFENDER_PARTNER) == TRUE) {
+            sprites[*count].monSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetDefender(system)));
+            if (sprites[*count].monSprite != NULL) {
+                sprites[*count].battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetDefender(system));
+                BattleAnimUtil_GetMonSpritePos(sprites[*count].monSprite, &sprites[*count].pos);
+                (*count)++;
             }
         }
     }
 }
 
-void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
+void ov12_02235D74(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3)
 {
     *param3 = 0;
 
-    if (inline_ov12_02235998(param1, 0x2) == 1) {
-        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
+    if (BattleAnimUtil_IsMaskSet(param1, 0x2) == 1) {
+        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
+        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
         (*param3)++;
     }
 
-    if (inline_ov12_02235998(param1, 0x4) == 1) {
-        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
+    if (BattleAnimUtil_IsMaskSet(param1, 0x4) == 1) {
+        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
+        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
         (*param3)++;
     }
 
-    if (inline_ov12_02235998(param1, 0x8) == 1) {
-        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
+    if (BattleAnimUtil_IsMaskSet(param1, 0x8) == 1) {
+        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
+        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
         (*param3)++;
     }
 
-    if (inline_ov12_02235998(param1, 0x10) == 1) {
-        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
+    if (BattleAnimUtil_IsMaskSet(param1, 0x10) == 1) {
+        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
+        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
         (*param3)++;
     }
 }

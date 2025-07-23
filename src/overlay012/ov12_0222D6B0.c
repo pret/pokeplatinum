@@ -7,7 +7,7 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
-#include "overlay012/struct_ov12_02235350.h"
+#include "math_util.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -241,7 +241,7 @@ void ov12_0222D7C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222D6B0, v1, 1100);
 }
 
-static const UnkStruct_ov12_02235350 Unk_ov12_0223A162[] = {
+static const Point2D Unk_ov12_0223A162[] = {
     { 0x50, 0x32 },
     { 0xB4, 0x32 },
     { 0x50, 0x64 },
@@ -250,7 +250,7 @@ static const UnkStruct_ov12_02235350 Unk_ov12_0223A162[] = {
     { 0xB4, 0x4B }
 };
 
-static const UnkStruct_ov12_02235350 Unk_ov12_0223A17A[][2] = {
+static const Point2D Unk_ov12_0223A17A[][2] = {
     {
         { 0x78, 0x50 },
         { 0x88, 0x50 },
@@ -325,10 +325,10 @@ static void ov12_0222D934(SysTask *param0, void *param1)
             s16 v3, v4;
 
             ManagedSprite_GetPositionXY(v2->unk_34, &v3, &v4);
-            PosLerpContext_Init(&v2->unk_3C, v3, Unk_ov12_0223A17A[v2->unk_30][0].unk_00, v4, Unk_ov12_0223A17A[v2->unk_30][0].unk_02, Unk_ov12_0223A140[v2->unk_30]);
+            PosLerpContext_Init(&v2->unk_3C, v3, Unk_ov12_0223A17A[v2->unk_30][0].x, v4, Unk_ov12_0223A17A[v2->unk_30][0].y, Unk_ov12_0223A140[v2->unk_30]);
 
             ManagedSprite_GetPositionXY(v2->unk_38, &v3, &v4);
-            PosLerpContext_Init(&v2->unk_60, v3, Unk_ov12_0223A17A[v2->unk_30][1].unk_00, v4, Unk_ov12_0223A17A[v2->unk_30][1].unk_02, Unk_ov12_0223A140[v2->unk_30]);
+            PosLerpContext_Init(&v2->unk_60, v3, Unk_ov12_0223A17A[v2->unk_30][1].x, v4, Unk_ov12_0223A17A[v2->unk_30][1].y, Unk_ov12_0223A140[v2->unk_30]);
         }
         v2->unk_30++;
         v2->unk_00++;
@@ -442,7 +442,7 @@ void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     for (v0 = 0; v0 < v1->unk_08; v0++) {
         ManagedSprite_SetAnimateFlag(v1->unk_18[v0], 1);
-        ManagedSprite_SetPositionXY(v1->unk_18[v0], Unk_ov12_0223A162[v0].unk_00, Unk_ov12_0223A162[v0].unk_02);
+        ManagedSprite_SetPositionXY(v1->unk_18[v0], Unk_ov12_0223A162[v0].x, Unk_ov12_0223A162[v0].y);
         ManagedSprite_SetExplicitOamMode(v1->unk_18[v0], GX_OAM_MODE_XLU);
     }
 
@@ -454,7 +454,7 @@ void ov12_0222DB60(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222D934, v1, 1100);
 }
 
-static const UnkStruct_ov12_02235350 Unk_ov12_0223A14A[] = {
+static const Point2D Unk_ov12_0223A14A[] = {
     { 0x0, 0x0 },
     { 0x80, 0x0 },
     { 0x100, 0x0 },
@@ -517,13 +517,13 @@ static void ov12_0222DC98(SysTask *param0, void *param1)
         }
         break;
     case 6: {
-        UnkStruct_ov12_02235350 v1;
+        Point2D v1;
         int v2;
 
         v2 = 10 + (LCRNG_Next() % 10);
 
-        ManagedSprite_GetPositionXY(v0->unk_10, &v1.unk_00, &v1.unk_02);
-        PosLerpContext_Init(&v0->unk_14, v1.unk_00, Unk_ov12_0223A14A[v0->unk_0F].unk_00, v1.unk_02, Unk_ov12_0223A14A[v0->unk_0F].unk_02, v2);
+        ManagedSprite_GetPositionXY(v0->unk_10, &v1.x, &v1.y);
+        PosLerpContext_Init(&v0->unk_14, v1.x, Unk_ov12_0223A14A[v0->unk_0F].x, v1.y, Unk_ov12_0223A14A[v0->unk_0F].y, v2);
         v0->unk_0C++;
     } break;
     case 7: {
@@ -835,7 +835,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetFlipMode(v0->unk_28[1], 1);
 
         {
-            UnkStruct_ov12_02235350 v3;
+            Point2D v3;
         }
 
         ManagedSprite_OffsetPositionXY(v0->unk_28[0], -32, 0);

@@ -16,7 +16,7 @@ void BattleAnimScriptFunc_Flash(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Splash(BattleAnimSystem *param0);
 void ov12_0222C0C0(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Minimize(BattleAnimSystem *param0);
-void ov12_0222C5FC(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Earthquake(BattleAnimSystem *param0);
 void ov12_0222C6D4(BattleAnimSystem *param0);
 void ov12_0222C8F8(BattleAnimSystem *param0);
 void ov12_0222CA2C(BattleAnimSystem *param0);

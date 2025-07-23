@@ -14,6 +14,7 @@
 #include "buffer_manager.h"
 #include "heap.h"
 #include "inlines.h"
+#include "math_util.h"
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"
@@ -23,11 +24,6 @@
 #include "sys_task_manager.h"
 
 #define MAX_CYCLES_PER_SHAKE 4
-
-typedef struct BattleAnimPosition {
-    s16 x;
-    s16 y;
-} BattleAnimPosition;
 
 typedef struct UnkStruct_ov12_022267D4_t {
     BOOL unk_00;
@@ -47,7 +43,7 @@ typedef struct UnkStruct_ov12_022267D4_t {
 
 static void ov12_022268DC(u16 *param0, u16 param1);
 
-static const BattleAnimPosition sBattleAnimBattlerPositions[][6] = {
+static const Point2D sBattleAnimBattlerPositions[][6] = {
     // Single Battle
     {
         [BATTLER_TYPE_SOLO_PLAYER] = { 64, 112 },
