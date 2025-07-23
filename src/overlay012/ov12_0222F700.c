@@ -426,19 +426,44 @@ typedef struct {
     int unk_58;
 } UnkStruct_ov12_022319AC;
 
-typedef struct {
-    int unk_00;
-    BattleAnimSystem *unk_04;
-    PokemonSprite *unk_08;
-    s16 unk_0C;
-    s16 unk_0E;
-    ValueLerpContext unk_10;
-    XYTransformContext unk_24;
-    int unk_48;
-    int unk_4C;
-    int unk_50;
-    int unk_54;
-} UnkStruct_ov12_02231CD4;
+// -------------------------------------------------------------------
+// Playful Hops (Charm, Attract, Tickle, Captivate)
+// -------------------------------------------------------------------
+typedef struct PlayfulHopsContext {
+    int state;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *battlerSprite;
+    s16 battlerX;
+    s16 battlerY;
+    ValueLerpContext angle;
+    XYTransformContext pos;
+    int hopCount;
+    int hopState;
+    int hopDelay;
+    int flipTilt;
+} PlayfulHopsContext;
+
+enum PlayfulHopsHopState {
+    PLAYFUL_HOPS_HOP_STATE_TILT = 0,
+    PLAYFUL_HOPS_HOP_STATE_MOVE_DOWN,
+    PLAYFUL_HOPS_HOP_STATE_MOVE_UP,
+    PLAYFUL_HOPS_HOP_STATE_DONE,
+};
+
+enum PlayfulHopsState {
+    PLAYFUL_HOPS_STATE_DO_HOPS = 0,
+    PLAYFUL_HOPS_STATE_CLEANUP,
+};
+
+#define PLAYFUL_HOPS_SPRITE_X_PIVOT     16
+#define PLAYFUL_HOPS_SPRITE_Y_PIVOT     50
+#define PLAYFUL_HOPS_TILT_ANGLE         DEG_TO_IDX(15)
+#define PLAYFUL_HOPS_TILT_FRAMES        3
+#define PLAYFUL_HOPS_HOP_Y_OFFSET       2
+#define PLAYFUL_HOPS_HOP_FRAMES         2
+#define PLAYFUL_HOPS_HOP_DELAY          0
+#define PLAYFUL_HOPS_HOP_COUNT          4
+#define PLAYFUL_HOPS_VAR_TARGET_BATTLER 0
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -816,7 +841,7 @@ void BattleAnimScriptFunc_DrillPeck(BattleAnimSystem *system)
 
     int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->pos.data[XY_PARAM_STEP_SIZE] *= dir;
-    ctx->angle.data[ANGLE_PARAM_STEP_SIZE] *= dir;
+    ctx->angle.data[VALUE_PARAM_STEP_SIZE] *= dir;
 
     int defenderDir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
 
@@ -2496,126 +2521,142 @@ void ov12_02231C1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02231A38, v0);
 }
 
-static void ov12_02231CD4(UnkStruct_ov12_02231CD4 *param0, BOOL param1)
+static void PlayfulHopsContext_InitTilt(PlayfulHopsContext *ctx, BOOL flip)
 {
-    fx32 v0;
+    ValueLerpContext_InitFX32(
+        &ctx->angle,
+        0,
+        PLAYFUL_HOPS_TILT_ANGLE,
+        PLAYFUL_HOPS_TILT_FRAMES);
 
-    ValueLerpContext_InitFX32(&param0->unk_10, 0, (15 * 0xffff) / 360, 3);
-
-    if (param1) {
-        param0->unk_10.data[1] *= -1;
-        PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_X_PIVOT, 16);
+    if (flip) {
+        ctx->angle.data[VALUE_PARAM_FX32_STEP_SIZE] *= -1;
+        PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_X_PIVOT, PLAYFUL_HOPS_SPRITE_X_PIVOT);
     } else {
-        PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_X_PIVOT, -16);
+        PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_X_PIVOT, -PLAYFUL_HOPS_SPRITE_X_PIVOT);
     }
 
-    param0->unk_4C = 0;
-    param0->unk_50 = 0;
+    ctx->hopState = PLAYFUL_HOPS_HOP_STATE_TILT;
+    ctx->hopDelay = PLAYFUL_HOPS_HOP_DELAY;
 }
 
-static BOOL ov12_02231D18(UnkStruct_ov12_02231CD4 *param0)
+static BOOL PlayfulHopsContext_UpdateHop(PlayfulHopsContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_4C) {
-    case 0:
-        ValueLerpContext_UpdateFX32(&param0->unk_10);
-        PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.value);
+    switch (ctx->hopState) {
+    case PLAYFUL_HOPS_HOP_STATE_TILT:
+        ValueLerpContext_UpdateFX32(&ctx->angle);
+        PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_ROTATION_Z, ctx->angle.value);
 
-        param0->unk_50--;
+        ctx->hopDelay--;
 
-        if (param0->unk_50 < 0) {
-            param0->unk_4C++;
+        if (ctx->hopDelay < 0) {
+            ctx->hopState++;
 
-            PosLerpContext_Init(&param0->unk_24, param0->unk_0C, param0->unk_0C, param0->unk_0E, param0->unk_0E + 2, 2);
+            PosLerpContext_Init(
+                &ctx->pos,
+                ctx->battlerX,
+                ctx->battlerX,
+                ctx->battlerY,
+                ctx->battlerY + PLAYFUL_HOPS_HOP_Y_OFFSET,
+                PLAYFUL_HOPS_HOP_FRAMES);
         }
         break;
-    case 1:
-        if (ValueLerpContext_UpdateFX32(&param0->unk_10)) {
-            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.value);
+    case PLAYFUL_HOPS_HOP_STATE_MOVE_DOWN:
+        if (ValueLerpContext_UpdateFX32(&ctx->angle)) {
+            PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_ROTATION_Z, ctx->angle.value);
         }
 
-        if (ov12_02225C74(&param0->unk_24, param0->unk_08) == 0) {
-            param0->unk_4C++;
-            ValueLerpContext_InitFX32(&param0->unk_10, param0->unk_10.value, 0, 3);
-            PosLerpContext_Init(&param0->unk_24, param0->unk_0C, param0->unk_0C, param0->unk_0E + 2, param0->unk_0E, 2);
+        if (PosLerpContext_UpdateAndApplyToMon(&ctx->pos, ctx->battlerSprite) == FALSE) {
+            ctx->hopState++;
+            ValueLerpContext_InitFX32(
+                &ctx->angle,
+                ctx->angle.value,
+                DEG_TO_IDX(0),
+                PLAYFUL_HOPS_TILT_FRAMES);
+
+            PosLerpContext_Init(
+                &ctx->pos,
+                ctx->battlerX,
+                ctx->battlerX,
+                ctx->battlerY + PLAYFUL_HOPS_HOP_Y_OFFSET,
+                ctx->battlerY,
+                PLAYFUL_HOPS_HOP_FRAMES);
         }
         break;
-    case 2:
-        ov12_02225C74(&param0->unk_24, param0->unk_08);
+    case PLAYFUL_HOPS_HOP_STATE_MOVE_UP:
+        PosLerpContext_UpdateAndApplyToMon(&ctx->pos, ctx->battlerSprite);
 
-        if (ValueLerpContext_UpdateFX32(&param0->unk_10)) {
-            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, param0->unk_10.value);
+        if (ValueLerpContext_UpdateFX32(&ctx->angle)) {
+            PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_ROTATION_Z, ctx->angle.value);
         } else {
-            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_X_CENTER, param0->unk_0C);
-            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_Y_CENTER, param0->unk_0E);
-            PokemonSprite_SetAttribute(param0->unk_08, MON_SPRITE_ROTATION_Z, 0);
-            param0->unk_4C++;
+            PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_X_CENTER, ctx->battlerX);
+            PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_Y_CENTER, ctx->battlerY);
+            PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_ROTATION_Z, 0);
+            ctx->hopState++;
         }
         break;
-    case 3:
-        v0 = 1;
+    case PLAYFUL_HOPS_HOP_STATE_DONE:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_02231E28(SysTask *param0, void *param1)
+static void BattleAnimTask_PlayfulHops(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02231CD4 *v0 = param1;
+    PlayfulHopsContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        if (ov12_02231D18(v0)) {
-            v0->unk_48++;
+    switch (ctx->state) {
+    case PLAYFUL_HOPS_STATE_DO_HOPS:
+        if (PlayfulHopsContext_UpdateHop(ctx)) {
+            ctx->hopCount++;
 
-            if (v0->unk_48 < 4) {
-                v0->unk_54 ^= 1;
-                ov12_02231CD4(v0, v0->unk_54);
-                ov12_02231D18(v0);
+            if (ctx->hopCount < PLAYFUL_HOPS_HOP_COUNT) {
+                ctx->flipTilt ^= 1;
+                PlayfulHopsContext_InitTilt(ctx, ctx->flipTilt);
+                PlayfulHopsContext_UpdateHop(ctx);
             } else {
-                v0->unk_00++;
+                ctx->state++;
             }
         }
         break;
-    case 1:
-        BattleAnimSystem_EndAnimTask(v0->unk_04, param0);
-        Heap_Free(v0);
+    case PLAYFUL_HOPS_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 }
 
-void ov12_02231E7C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02231CD4 *v0;
-    int v1;
+    PlayfulHopsContext *ctx = BattleAnimUtil_Alloc(system, sizeof(PlayfulHopsContext));
+    ctx->battleAnimSys = system;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231CD4));
-    v0->unk_04 = param0;
+    int dir = BattleAnimUtil_GetTransformDirection(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v1 = BattleAnimUtil_GetTransformDirection(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
-
-    if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
-        v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetAttacker(param0));
-        v0->unk_0C = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_X_CENTER);
-        v0->unk_0E = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER);
+    if (BattleAnimSystem_GetScriptVar(system, PLAYFUL_HOPS_VAR_TARGET_BATTLER) == BATTLER_TYPE_ATTACKER) {
+        ctx->battlerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+        ctx->battlerX = PokemonSprite_GetAttribute(ctx->battlerSprite, MON_SPRITE_X_CENTER);
+        ctx->battlerY = PokemonSprite_GetAttribute(ctx->battlerSprite, MON_SPRITE_Y_CENTER);
     } else {
-        v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetDefender(param0));
-        v0->unk_0C = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_X_CENTER);
-        v0->unk_0E = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER);
+        ctx->battlerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
+        ctx->battlerX = PokemonSprite_GetAttribute(ctx->battlerSprite, MON_SPRITE_X_CENTER);
+        ctx->battlerY = PokemonSprite_GetAttribute(ctx->battlerSprite, MON_SPRITE_Y_CENTER);
     }
 
-    PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_Y_PIVOT, 50);
+    PokemonSprite_SetAttribute(ctx->battlerSprite, MON_SPRITE_Y_PIVOT, PLAYFUL_HOPS_SPRITE_Y_PIVOT);
 
-    if (v1 == 1) {
-        v0->unk_54 = 0;
+    if (dir == 1) {
+        ctx->flipTilt = FALSE;
     } else {
-        v0->unk_54 = 1;
+        ctx->flipTilt = TRUE;
     }
 
-    ov12_02231CD4(v0, v0->unk_54);
-    BattleAnimSystem_StartAnimTask(v0->unk_04, ov12_02231E28, v0);
+    PlayfulHopsContext_InitTilt(ctx, ctx->flipTilt);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_PlayfulHops, ctx);
 }
 
 static BOOL ov12_02231F18(UnkStruct_ov12_02231F18 *param0)
@@ -3225,7 +3266,7 @@ static void ov12_02232B40(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        ov12_02225C74(&v0->unk_38, v0->unk_10);
+        PosLerpContext_UpdateAndApplyToMon(&v0->unk_38, v0->unk_10);
 
         if (ov12_022260C8(&v0->unk_14, v0->unk_10) == 0) {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
@@ -3396,7 +3437,7 @@ static void ov12_02232F30(UnkStruct_ov12_02232D38 *param0)
     }
 
     ManagedSprite_SetAffineScale(param0->unk_1C, v2, v3);
-    ov12_02225C50(&param0->unk_70, param0->unk_1C);
+    PosLerpContext_UpdateAndApplyToSprite(&param0->unk_70, param0->unk_1C);
 
     param0->unk_94 = 0;
     param0->unk_98 = 6;
@@ -3418,14 +3459,14 @@ static BOOL ov12_02232FF0(UnkStruct_ov12_02232D38 *param0)
     switch (param0->unk_94) {
     case 0:
         param0->unk_98--;
-        ov12_02225C50(&param0->unk_70, param0->unk_1C);
+        PosLerpContext_UpdateAndApplyToSprite(&param0->unk_70, param0->unk_1C);
 
         if (param0->unk_98 < 0) {
             param0->unk_94++;
         }
         break;
     case 1:
-        ov12_02225C50(&param0->unk_70, param0->unk_1C);
+        PosLerpContext_UpdateAndApplyToSprite(&param0->unk_70, param0->unk_1C);
 
         v3 = ScaleLerpContext_UpdateXY(&param0->unk_28);
         BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v0, &v1);
@@ -3782,7 +3823,7 @@ static BOOL ov12_02233834(ManagedSprite *param0, XYTransformContext *param1)
     f32 v4;
     u16 v5;
 
-    if (ov12_02225C50(param1, param0)) {
+    if (PosLerpContext_UpdateAndApplyToSprite(param1, param0)) {
         ManagedSprite_GetPositionXY(param0, &v0, &v1);
 
         v5 = v0 * ((2 * 0xffff) / 360);
@@ -4227,7 +4268,7 @@ static void ov12_02234290(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02234290 *v0 = param1;
 
-    if (ov12_02225C50(&v0->unk_08, v0->unk_2C) == 0) {
+    if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_08, v0->unk_2C) == 0) {
         Sprite_DeleteAndFreeResources(v0->unk_2C);
         Heap_Free(v0);
         BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
@@ -4289,7 +4330,7 @@ static void ov12_022343A0(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (ov12_02225C74(&v0->unk_1C, v0->unk_14) == 0) {
+        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_1C, v0->unk_14) == 0) {
             v0->unk_04++;
             v0->unk_08 = 8;
         }
@@ -4303,7 +4344,7 @@ static void ov12_022343A0(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        if (ov12_02225C74(&v0->unk_1C, v0->unk_14) == 0) {
+        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_1C, v0->unk_14) == 0) {
             v0->unk_04++;
         }
         break;
@@ -4346,7 +4387,7 @@ static void ov12_02234528(SysTask *param0, void *param1)
         v0->unk_04++;
         break;
     case 1:
-        if (ov12_02225C74(&v0->unk_18, v0->unk_10) == 0) {
+        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_18, v0->unk_10) == 0) {
             v0->unk_04++;
             ShakeContext_Init(&v0->unk_3C, 4, 0, 1, 4);
         }
@@ -4361,7 +4402,7 @@ static void ov12_02234528(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if (ov12_02225C74(&v0->unk_18, v0->unk_10) == 0) {
+        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_18, v0->unk_10) == 0) {
             v0->unk_04++;
         }
         break;

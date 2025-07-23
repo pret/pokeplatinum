@@ -336,13 +336,13 @@ static void ov12_0222D934(SysTask *param0, void *param1)
         int v5 = 0;
         BOOL v6;
 
-        v6 = ov12_02225C50(&v2->unk_3C, v2->unk_34);
+        v6 = PosLerpContext_UpdateAndApplyToSprite(&v2->unk_3C, v2->unk_34);
 
         if (v6 == 0) {
             v5++;
         }
 
-        v6 = ov12_02225C50(&v2->unk_60, v2->unk_38);
+        v6 = PosLerpContext_UpdateAndApplyToSprite(&v2->unk_60, v2->unk_38);
 
         if (v6 == 0) {
             v5++;
@@ -528,7 +528,7 @@ static void ov12_0222DC98(SysTask *param0, void *param1)
     case 7: {
         BOOL v3;
 
-        v3 = ov12_02225C50(&v0->unk_14, v0->unk_10);
+        v3 = PosLerpContext_UpdateAndApplyToSprite(&v0->unk_14, v0->unk_10);
 
         if (v3 == 0) {
             ManagedSprite_SetDrawFlag(v0->unk_10, 0);

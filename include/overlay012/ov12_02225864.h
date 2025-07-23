@@ -33,18 +33,18 @@ enum BattleAnimPositionType {
     BATTLE_ANIM_POSITION_PARTICLE_Y,
 };
 
-enum AngleLerpParam {
-    ANGLE_PARAM_STEPS = 0,
-    ANGLE_PARAM_STEP_SIZE,
+enum ValueLerpParam {
+    VALUE_PARAM_STEPS = 0,
+    VALUE_PARAM_STEP_SIZE,
 
-    ANGLE_PARAM_FX32_STEPS = 0,
-    ANGLE_PARAM_FX32_STEP_SIZE,
-    ANGLE_PARAM_FX32_CUR_ANGLE,
+    VALUE_PARAM_FX32_STEPS = 0,
+    VALUE_PARAM_FX32_STEP_SIZE,
+    VALUE_PARAM_FX32_CUR_ANGLE,
 
-    ANGLE_PARAM_COS_STEPS = 0,
-    ANGLE_PARAM_COS_CUR_ANGLE,
-    ANGLE_PARAM_COS_AMPLITUDE,
-    ANGLE_PARAM_COS_STEP_SIZE,
+    VALUE_PARAM_COS_STEPS = 0,
+    VALUE_PARAM_COS_CUR_ANGLE,
+    VALUE_PARAM_COS_AMPLITUDE,
+    VALUE_PARAM_COS_STEP_SIZE,
 };
 
 enum XYTransformParam {
@@ -156,8 +156,8 @@ BOOL RevolutionContext_UpdateAndApplyToSprite(XYTransformContext *param0, s16 pa
 BOOL RevolutionContext_UpdateAndApplyToMon(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
 void PosLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, u16 param5);
 BOOL PosLerpContext_Update(XYTransformContext *param0);
-BOOL ov12_02225C50(XYTransformContext *param0, ManagedSprite *param1);
-BOOL ov12_02225C74(XYTransformContext *param0, PokemonSprite *param1);
+BOOL PosLerpContext_UpdateAndApplyToSprite(XYTransformContext *param0, ManagedSprite *param1);
+BOOL PosLerpContext_UpdateAndApplyToMon(XYTransformContext *param0, PokemonSprite *param1);
 void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7);
 BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1);
 BOOL ov12_02225D2C(XYTransformContext *param0, XYTransformContext *param1, ManagedSprite *param2);
