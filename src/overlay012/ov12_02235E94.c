@@ -1291,11 +1291,11 @@ static const s16 Unk_ov12_0223ACF0[][3] = {
 };
 
 static const int Unk_ov12_0223ABE4[][2] = {
-    { 0x1, 0x5E6 },
-    { 0x8, 0x5E6 },
-    { 0xE, 0x5E7 },
-    { 0x12, 0x5E8 },
-    { 0x14, 0x5E9 }
+    { 0x1, SEQ_SE_DP_KON },
+    { 0x8, SEQ_SE_DP_KON },
+    { 0xE, SEQ_SE_DP_KON2 },
+    { 0x12, SEQ_SE_DP_KON3 },
+    { 0x14, SEQ_SE_DP_KON4 }
 };
 
 static BOOL ov12_02236B98(BallRotation *param0)
@@ -1391,7 +1391,7 @@ static BOOL ov12_02236C64(BallRotation *param0)
             return 1;
         } else {
             if (param0->unk_0C == 5) {
-                Sound_PlayPannedEffect(1534, 117);
+                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA, 117);
             }
 
             ManagedSprite_OffsetPositionXY(param0->unk_30, v0, 0);
@@ -1656,7 +1656,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
             }
 
             if (param0->unk_90.ballID == (0xFF + 18)) {
-                Sound_PlayPannedEffect(2024, 117);
+                Sound_PlayPannedEffect(SEQ_SE_DP_W202B, 117);
             }
 
             param0->unk_08++;

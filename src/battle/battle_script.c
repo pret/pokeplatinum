@@ -10609,11 +10609,11 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 u32 battleType = BattleSystem_BattleType(v2->battleSys);
 
                 if (battleType & BATTLE_TYPE_TRAINER) {
-                    Sound_PlayPannedEffect(1510, 117);
+                    Sound_PlayPannedEffect(SEQ_SE_DP_KON, 117);
                     ov12_022368C8(v2->ballRotation, 2);
                     v2->seqNum = 25;
                 } else {
-                    Sound_PlayPannedEffect(1800, 117);
+                    Sound_PlayPannedEffect(SEQ_SE_DP_BOWA4, 117);
                     ov12_022368C8(v2->ballRotation, 1);
 
                     v2->seqNum = 2;
@@ -10672,7 +10672,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 7:
         if (--v2->tmpData[1] == 0) {
             ov12_022368C8(v2->ballRotation, 6);
-            Sound_PlayPannedEffect(1801, 117);
+            Sound_PlayPannedEffect(SEQ_SE_DP_GETTING, 117);
             v2->seqNum = 8;
         }
         break;
