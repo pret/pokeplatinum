@@ -30,11 +30,11 @@
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/keyboard.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/options_menu.h"
 #include "applications/pokedex/pokedex_main.h"
@@ -139,7 +139,6 @@
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
 #include "constdata/const_020F1E88.h"
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F2FCC.h"
 #include "constdata/const_020F410C.h"
 #include "constdata/const_020F6890.h"
@@ -212,7 +211,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     u16 *unk_08;
-    UnkStruct_0208737C *unk_0C;
+    KeyboardArgs *unk_0C;
     Strbuf *unk_10;
 } UnkStruct_0203DE98;
 
@@ -1162,7 +1161,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
         v2->unk_00++;
         break;
     case 1:
-        FieldTask_RunApplication(param0, &Unk_020F2DAC, v2->unk_0C);
+        FieldTask_RunApplication(param0, &gKeyboardAppTemplate, v2->unk_0C);
         v2->unk_00++;
         break;
     case 2:

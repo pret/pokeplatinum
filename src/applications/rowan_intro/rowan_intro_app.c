@@ -6,10 +6,10 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/rowan_intro/main.h"
+#include "applications/keyboard.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -46,7 +46,6 @@
 #include "unk_02015920.h"
 #include "unk_0208694C.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "res/text/bank/rowan_intro.h"
 
 FS_EXTERN_OVERLAY(game_start);
@@ -246,8 +245,8 @@ typedef struct RowanIntro {
     StringTemplate *strFormatter;
     UnkStruct_02015920 *unk_68;
     SysTask *unused;
-    UnkStruct_0208737C *unk_70;
-    UnkStruct_0208737C *unk_74;
+    KeyboardArgs *unk_70;
+    KeyboardArgs *unk_74;
     enum FadeBgLayerState fadeBgLayerState;
     int fadeBgLayerCurAlpha;
     int fadeBgLayerCurAlphaInv;
@@ -2694,7 +2693,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_NAME_APP_KEYBOARD:
         manager->unk_70->unk_04 = manager->playerGender;
         manager->appMan = ApplicationManager_New(
-            &Unk_020F2DAC,
+            &gKeyboardAppTemplate,
             manager->unk_70,
             manager->heapID);
         manager->state = RI_STATE_NAME_KEYBOARD;
@@ -2862,7 +2861,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_RIVAL_NAME_APP_KEYBOARD:
         manager->appMan = ApplicationManager_New(
-            &Unk_020F2DAC,
+            &gKeyboardAppTemplate,
             manager->unk_74,
             manager->heapID);
         manager->state = RI_STATE_RIVAL_NAME_KEYBOARD;

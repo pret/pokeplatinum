@@ -1,9 +1,10 @@
-#ifndef POKEPLATINUM_STRUCT_0208737C_H
-#define POKEPLATINUM_STRUCT_0208737C_H
+#ifndef POKEPLATINUM_KEYBOARD_H
+#define POKEPLATINUM_KEYBOARD_H
 
 #include "struct_decls/pc_boxes_decl.h"
 
 #include "game_options.h"
+#include "overlay_manager.h"
 #include "strbuf.h"
 
 typedef struct {
@@ -18,6 +19,8 @@ typedef struct {
     int unk_44;
     PCBoxes *pcBoxes;
     Options *options;
-} UnkStruct_0208737C;
+} KeyboardArgs;
 
-#endif // POKEPLATINUM_STRUCT_0208737C_H
+extern const ApplicationManagerTemplate gKeyboardAppTemplate;
+
+#endif // POKEPLATINUM_KEYBOARD_H

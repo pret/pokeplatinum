@@ -10,8 +10,8 @@
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_0208737C.h"
 
+#include "applications/keyboard.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay019/box_cursor.h"
 #include "overlay019/box_customization.h"
@@ -57,7 +57,6 @@
 #include "unk_0207CB08.h"
 #include "unk_0208694C.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F410C.h"
 #include "res/text/bank/box_messages.h"
 
@@ -132,7 +131,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     SaveData *saveData;
     PCBoxes *pcBoxes;
     Party *party;
-    UnkStruct_0208737C *unk_128;
+    KeyboardArgs *unk_128;
     PokemonSummary monSummary;
     ReleaseMon releaseMon;
     TouchScreenActions *mainBoxAndCompareButtonsAction;
@@ -2542,7 +2541,7 @@ static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             BoxGraphics_Free(param0->unk_114);
             Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
             PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->unk_128->textInputStr);
-            param0->ApplicationManager = ApplicationManager_New(&Unk_020F2DAC, param0->unk_128, HEAP_ID_BOX_DATA);
+            param0->ApplicationManager = ApplicationManager_New(&gKeyboardAppTemplate, param0->unk_128, HEAP_ID_BOX_DATA);
             (*state)++;
         }
         break;

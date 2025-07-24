@@ -17,9 +17,9 @@
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer.h"
 
+#include "applications/keyboard.h"
 #include "applications/pokedex/ov21_021E8D48.h"
 #include "applications/pokedex/struct_ov21_021E8E0C.h"
 #include "battle/battle_context.h"
@@ -73,7 +73,6 @@
 #include "unk_0208694C.h"
 #include "unk_0208C098.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "res/battle/scripts/sub_seq.naix.h"
 
 typedef BOOL (*BtlCmd)(BattleSystem *, BattleContext *);
@@ -10854,7 +10853,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 20:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
-                UnkStruct_0208737C *v16;
+                KeyboardArgs *v16;
 
                 SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
                 SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
@@ -10872,7 +10871,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
                 v16->pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
-                v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, HEAP_ID_BATTLE);
+                v2->tmpPtr[0] = ApplicationManager_New(&gKeyboardAppTemplate, v16, HEAP_ID_BATTLE);
                 v2->seqNum = 21;
 
                 ov16_0223F414(v2->battleSys);
@@ -10899,7 +10898,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 21:
         if (ApplicationManager_Exec(v2->tmpPtr[0])) {
             {
-                UnkStruct_0208737C *v19;
+                KeyboardArgs *v19;
                 int v20;
 
                 v19 = v2->tmpPtr[1];

@@ -15,6 +15,7 @@
 #include "overlay119/ov119_021D191C.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
 
+#include "applications/keyboard.h"
 #include "bg_window.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -41,7 +42,6 @@
 #include "unk_02092494.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"
 
 FS_EXTERN_OVERLAY(overlay119);
@@ -239,7 +239,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         v0->unk_08 = sub_0208712C(HEAP_ID_FIELDMAP, 1, v9, 10, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
         v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
-        FieldTask_RunApplication(param0, &Unk_020F2DAC, v0->unk_08);
+        FieldTask_RunApplication(param0, &gKeyboardAppTemplate, v0->unk_08);
         v0->unk_00++;
     } break;
     case 4:

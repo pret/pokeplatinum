@@ -4,11 +4,11 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/heap.h"
 
-#include "struct_decls/struct_02087A10_decl.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/keyboard.h"
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "charcode_util.h"
@@ -45,8 +45,6 @@
 #include "unk_0201567C.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F2DAC.h"
-
 typedef struct {
     int unk_00;
     int unk_04;
@@ -57,7 +55,7 @@ typedef struct {
     int unk_18;
 } UnkStruct_02087A10_sub1;
 
-struct UnkStruct_02087A10_t {
+typedef struct Keyboard {
     int unk_00;
     int unk_04;
     int unk_08;
@@ -73,12 +71,12 @@ struct UnkStruct_02087A10_t {
     u16 unk_118[32];
     u16 unk_158;
     u16 unk_15A[3];
-    BgConfig *unk_160;
+    BgConfig *bgConfig;
     BOOL unk_164;
-    StringTemplate *unk_168;
-    MessageLoader *unk_16C;
-    MessageLoader *unk_170;
-    MessageLoader *unk_174;
+    StringTemplate *strTemplate;
+    MessageLoader *namingScreenMsgLoader;
+    MessageLoader *genericNamesMsgLoader;
+    MessageLoader *battleStringsMsgLoader;
     Strbuf *unk_178;
     Strbuf *unk_17C;
     Strbuf *unk_180;
@@ -104,8 +102,8 @@ struct UnkStruct_02087A10_t {
     int unk_4EC;
     int unk_4F0;
     int unk_4F4[7];
-    void *unk_510;
-    NNSG2dCharacterData *unk_514;
+    void *charDataAlloc;
+    NNSG2dCharacterData *charData;
     void *unk_518;
     NNSG2dCharacterData *unk_51C;
     void *unk_520;
@@ -114,7 +112,7 @@ struct UnkStruct_02087A10_t {
     UnkStruct_020157E4 *unk_628;
     BOOL unk_62C;
     int unk_630;
-};
+} Keyboard;
 
 typedef struct {
     Sprite *unk_00;
@@ -141,49 +139,49 @@ typedef struct {
     u8 : 3;
 } UnkStruct_020F2A14;
 
-static int sub_0208694C(ApplicationManager *appMan, int *param1);
-static int sub_02086B64(ApplicationManager *appMan, int *param1);
-static int sub_02086F3C(ApplicationManager *appMan, int *param1);
-static void sub_02087190(void *param0);
-static void sub_020871CC(void);
-static void sub_020871EC(BgConfig *param0);
+static BOOL Keyboard_Init(ApplicationManager *appMan, int *state);
+static BOOL Keyboard_Main(ApplicationManager *appMan, int *state);
+static BOOL Keyboard_Exit(ApplicationManager *appMan, int *state);
+static void Keyboard_VBlankCallback(void *unused);
+static void Keyboard_InitGraphicsBanks(void);
+static void Keyboard_InitBgs(BgConfig *bgConfig);
 static void sub_0208765C(BgConfig *param0, Window *param1);
-static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1);
+static void Keyboard_LoadGraphicsFromNarc(Keyboard *keyboard, NARC *narc);
 static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], Sprite **param6, void *param7);
-static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan);
+static void sub_0208737C(Keyboard *param0, ApplicationManager *appMan);
 static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
-static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1);
-static void sub_02087A10(UnkStruct_02087A10 *param0);
-static void sub_020877C4(void);
-static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan, NARC *param2);
-static void sub_02088350(UnkStruct_02087A10 *param0);
+static void sub_020877F4(Keyboard *param0, NARC *param1);
+static void sub_02087A10(Keyboard *param0);
+static void Keyboard_TransferChars(void);
+static void sub_02087FC0(Keyboard *param0, ApplicationManager *appMan, NARC *param2);
+static void sub_02088350(Keyboard *param0);
 static void sub_02088514(u16 *param0);
 static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7);
 static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3);
 static void sub_02088844(u16 param0[][13], const int param1);
 static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5);
-static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2);
+static int sub_02088898(Keyboard *param0, u16 param1, int param2);
 static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *param4, int param5);
 static int sub_02088C9C(int param0, int param1, u16 *param2, int param3);
 static void sub_02088E1C(Sprite **param0, int param1, int param2);
-static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1);
+static void Keyboard_CopyParamsFromArgs(Keyboard *keyboard, KeyboardArgs *keyboardArgs);
 static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param3, u8 *param4);
-static void sub_02088454(UnkStruct_02087A10 *param0, int param1);
+static void sub_02088454(Keyboard *param0, int param1);
 static void sub_02088F40(int param0[], Sprite **param1, int param2);
 static void sub_020879DC(SysTask *param0, void *param1);
 static void sub_02087CDC(SysTask *param0, void *param1);
 static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3);
-static void sub_0208732C(int param0);
-static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan);
-static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *param1);
-static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1);
+static void Keyboard_ToggleEngineLayers(BOOL enable);
+static void sub_02087544(Keyboard *param0, ApplicationManager *appMan);
+static void sub_02087BE4(Keyboard *param0, AffineSpriteListTemplate *param1);
+static void sub_02086E6C(Keyboard *param0, KeyboardArgs *param1);
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2);
-static void sub_02088FD0(UnkStruct_02087A10 *param0);
-static int sub_02086D38(UnkStruct_02087A10 *param0, int param1);
+static void sub_02088FD0(Keyboard *param0);
+static int sub_02086D38(Keyboard *param0, int param1);
 static int sub_02086F14(u16 *param0);
 static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, TextColor param3);
-static BOOL sub_0208903C(UnkStruct_02087A10 *param0);
+static BOOL sub_0208903C(Keyboard *param0);
 
 static const int Unk_020F2984[][4] = {
     { 0x4, 0x44, 0x3, 0x1 },
@@ -859,21 +857,21 @@ static const int Unk_020F2850[] = {
     0x3
 };
 
-const ApplicationManagerTemplate Unk_020F2DAC = {
-    sub_0208694C,
-    sub_02086B64,
-    sub_02086F3C,
-    0xFFFFFFFF
+const ApplicationManagerTemplate gKeyboardAppTemplate = {
+    .init = Keyboard_Init,
+    .main = Keyboard_Main,
+    .exit = Keyboard_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
-static UnkStruct_02087A10 *Unk_021C0A30;
+static Keyboard *sKeyboardDummy;
 
-static int sub_0208694C(ApplicationManager *appMan, int *param1)
+static BOOL Keyboard_Init(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_02087A10 *v0;
-    NARC *v1;
+    Keyboard *keyboard;
+    NARC *narc;
 
-    switch (*param1) {
+    switch (*state) {
     case 0:
         SetVBlankCallback(NULL, NULL);
         DisableHBlank();
@@ -883,60 +881,75 @@ static int sub_0208694C(ApplicationManager *appMan, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_18, 0x20000 + 0x8000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_KEYBOARD_APP, 0x20000 + 0x8000);
 
-        v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02087A10), HEAP_ID_18);
-        memset(v0, 0, sizeof(UnkStruct_02087A10));
-        v0->unk_160 = BgConfig_New(HEAP_ID_18);
-        v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_18);
+        keyboard = ApplicationManager_NewData(appMan, sizeof(Keyboard), HEAP_ID_KEYBOARD_APP);
+        memset(keyboard, 0, sizeof(Keyboard));
+        keyboard->bgConfig = BgConfig_New(HEAP_ID_KEYBOARD_APP);
+        narc = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_KEYBOARD_APP);
 
-        v0->unk_168 = StringTemplate_Default(HEAP_ID_18);
-        v0->unk_16C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NAMING_SCREEN, HEAP_ID_18);
-        v0->unk_170 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0427, HEAP_ID_18);
-        v0->unk_174 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_18);
+        keyboard->strTemplate = StringTemplate_Default(HEAP_ID_KEYBOARD_APP);
+        keyboard->namingScreenMsgLoader = MessageLoader_Init(
+            MESSAGE_LOADER_BANK_HANDLE,
+            NARC_INDEX_MSGDATA__PL_MSG,
+            TEXT_BANK_NAMING_SCREEN,
+            HEAP_ID_KEYBOARD_APP
+        );
+        keyboard->genericNamesMsgLoader = MessageLoader_Init(
+            MESSAGE_LOADER_NARC_HANDLE,
+            NARC_INDEX_MSGDATA__PL_MSG,
+            TEXT_BANK_GENERIC_NAMES,
+            HEAP_ID_KEYBOARD_APP
+        );
+        keyboard->battleStringsMsgLoader = MessageLoader_Init(
+            MESSAGE_LOADER_NARC_HANDLE,
+            NARC_INDEX_MSGDATA__PL_MSG,
+            TEXT_BANK_BATTLE_STRINGS,
+            HEAP_ID_KEYBOARD_APP
+        );
 
         SetAutorepeat(4, 8);
-        sub_020871CC();
-        sub_020871EC(v0->unk_160);
-        sub_020871B0(v0, (UnkStruct_0208737C *)ApplicationManager_Args(appMan));
-        sub_0208769C(v0, v1);
-        Font_InitManager(FONT_SUBSCREEN, HEAP_ID_18);
-        SetVBlankCallback(sub_02087190, NULL);
-        sub_0208737C(v0, appMan);
-        Font_UseImmediateGlyphAccess(FONT_SYSTEM, 18);
-        sub_020877C4();
-        sub_020877F4(v0, v1);
-        sub_02087A10(v0);
-        sub_02087FC0(v0, appMan, v1);
-        sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
+        Keyboard_InitGraphicsBanks();
+        Keyboard_InitBgs(keyboard->bgConfig);
+        Keyboard_CopyParamsFromArgs(keyboard, (KeyboardArgs *)ApplicationManager_Args(appMan));
+        Keyboard_LoadGraphicsFromNarc(keyboard, narc);
+        Font_InitManager(FONT_SUBSCREEN, HEAP_ID_KEYBOARD_APP);
+        SetVBlankCallback(Keyboard_VBlankCallback, NULL);
+        sub_0208737C(keyboard, appMan);
+        Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_KEYBOARD_APP);
+        Keyboard_TransferChars();
+        sub_020877F4(keyboard, narc);
+        sub_02087A10(keyboard);
+        sub_02087FC0(keyboard, appMan, narc);
+        sub_02088754(&keyboard->unk_41C[4], keyboard->unk_D8, keyboard->unk_158, keyboard->unk_15A, keyboard->unk_528, keyboard->unk_17C);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_18);
-        sub_0208732C(1);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_KEYBOARD_APP);
+        Keyboard_ToggleEngineLayers(TRUE);
 
         {
             gSystem.whichScreenIs3D = DS_SCREEN_SUB;
             GXLayers_SwapDisplay();
         }
 
-        NARC_dtor(v1);
-        (*param1)++;
+        NARC_dtor(narc);
+        (*state)++;
         break;
     case 1:
-        v0 = ApplicationManager_Data(appMan);
+        keyboard = ApplicationManager_Data(appMan);
 
-        if (v0->unk_00 == 1) {
-            sub_02086B30(v0->unk_51C, v0->unk_524, v0->unk_04, v0->unk_08);
+        if (keyboard->unk_00 == 1) {
+            sub_02086B30(keyboard->unk_51C, keyboard->unk_524, keyboard->unk_04, keyboard->unk_08);
         }
 
-        Unk_021C0A30 = v0;
-        v0->unk_628 = sub_0201567C(NULL, 1, 12, HEAP_ID_18);
+        sKeyboardDummy = keyboard;
+        keyboard->unk_628 = sub_0201567C(NULL, 1, 12, HEAP_ID_KEYBOARD_APP);
 
-        (*param1) = 0;
-        return 1;
+        (*state) = 0;
+        return TRUE;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3)
@@ -948,14 +961,14 @@ static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1,
     GX_LoadOBJPltt((void *)(v0 + PokeIconPaletteIndex(param2, param3, 0) * 0x20), 6 * 0x20, 0x20);
 }
 
-static int sub_02086B64(ApplicationManager *appMan, int *param1)
+static BOOL Keyboard_Main(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_02087A10 *v0 = ApplicationManager_Data(appMan);
+    Keyboard *v0 = ApplicationManager_Data(appMan);
 
-    switch (*param1) {
+    switch (*state) {
     case 0:
         if (IsScreenFadeDone()) {
-            *param1 = 1;
+            *state = 1;
             v0->unk_630 = 0;
         }
         break;
@@ -966,14 +979,14 @@ static int sub_02086B64(ApplicationManager *appMan, int *param1)
         sub_02088F40(v0->unk_4F4, v0->unk_390, v0->unk_4C4);
 
         if (v0->unk_630 > 5) {
-            *param1 = 2;
+            *state = 2;
             v0->unk_630 = 0;
         }
         break;
     case 2:
         switch (v0->unk_4C0) {
         case 4:
-            *param1 = sub_02086D38(v0, *param1);
+            *state = sub_02086D38(v0, *state);
             sub_02088FD0(v0);
             break;
         case 5:
@@ -996,29 +1009,29 @@ static int sub_02086B64(ApplicationManager *appMan, int *param1)
             v0->unk_630++;
 
             if (v0->unk_630 > 30) {
-                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_18);
-                *param1 = 3;
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_KEYBOARD_APP);
+                *state = 3;
             }
             break;
         }
 
-        sub_02087D64(v0->unk_160, &v0->unk_41C[0], &v0->unk_4C0, v0->unk_4C4, &v0->unk_4C8, v0->unk_4CC, v0->unk_390, v0->unk_514->pRawData);
+        sub_02087D64(v0->bgConfig, &v0->unk_41C[0], &v0->unk_4C0, v0->unk_4C4, &v0->unk_4C8, v0->unk_4CC, v0->unk_390, v0->charData->pRawData);
         sub_02088F40(v0->unk_4F4, v0->unk_390, v0->unk_4C4);
         sub_02088514(&v0->unk_38);
         break;
     case 3:
         if (IsScreenFadeDone()) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
     SpriteList_Update(v0->unk_188);
 
-    return 0;
+    return FALSE;
 }
 
-static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
+static int sub_02086D38(Keyboard *param0, int param1)
 {
     sub_02088350(param0);
 
@@ -1063,15 +1076,15 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
     return param1;
 }
 
-static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
+static void sub_02086E6C(Keyboard *param0, KeyboardArgs *param1)
 {
     if (param0->unk_00 == 0) {
         Strbuf *v0;
 
         if (param0->unk_04 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 0 + LCRNG_Next() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->genericNamesMsgLoader, 0 + LCRNG_Next() % 18);
         } else if (param0->unk_04 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + LCRNG_Next() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->genericNamesMsgLoader, 18 + LCRNG_Next() % 18);
         }
 
         Strbuf_Copy(param1->textInputStr, v0);
@@ -1080,7 +1093,7 @@ static void sub_02086E6C(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
     } else if (param0->unk_00 == 3) {
         Strbuf *v1;
 
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (LCRNG_Next() % 2));
+        v1 = MessageLoader_GetNewStrbuf(param0->genericNamesMsgLoader, 88 + (LCRNG_Next() % 2));
 
         Strbuf_Copy(param1->textInputStr, v1);
         Strbuf_Free(v1);
@@ -1108,10 +1121,10 @@ static int sub_02086F14(u16 *param0)
     return v0;
 }
 
-static int sub_02086F3C(ApplicationManager *appMan, int *param1)
+static BOOL Keyboard_Exit(ApplicationManager *appMan, int *unusedState)
 {
-    UnkStruct_02087A10 *v0 = ApplicationManager_Data(appMan);
-    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
+    Keyboard *v0 = ApplicationManager_Data(appMan);
+    KeyboardArgs *v1 = (KeyboardArgs *)ApplicationManager_Args(appMan);
     int v2;
 
     v0->unk_D8[v0->unk_158] = 0xffff;
@@ -1120,7 +1133,7 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
         u16 v3[10 + 1];
         Pokemon *v4;
 
-        v4 = Pokemon_New(HEAP_ID_18);
+        v4 = Pokemon_New(HEAP_ID_KEYBOARD_APP);
         Pokemon_InitWith(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
         Heap_Free(v4);
     }
@@ -1150,17 +1163,17 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
 
     SpriteList_Delete(v0->unk_188);
     RenderOam_Free();
-    Heap_FreeExplicit(HEAP_ID_18, v0->unk_510);
+    Heap_FreeExplicit(HEAP_ID_KEYBOARD_APP, v0->charDataAlloc);
 
     if (v0->unk_00 == 1) {
-        Heap_FreeExplicit(HEAP_ID_18, v0->unk_518);
-        Heap_FreeExplicit(HEAP_ID_18, v0->unk_520);
+        Heap_FreeExplicit(HEAP_ID_KEYBOARD_APP, v0->unk_518);
+        Heap_FreeExplicit(HEAP_ID_KEYBOARD_APP, v0->unk_520);
     }
 
-    Bg_FreeTilemapBuffer(v0->unk_160, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(v0->bgConfig, BG_LAYER_SUB_3);
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0208765C(v0->unk_160, v0->unk_41C);
+    sub_0208765C(v0->bgConfig, v0->unk_41C);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1173,25 +1186,25 @@ static int sub_02086F3C(ApplicationManager *appMan, int *param1)
 
     Strbuf_Free(v0->unk_178);
     Strbuf_Free(v0->unk_17C);
-    MessageLoader_Free(v0->unk_174);
-    MessageLoader_Free(v0->unk_170);
-    MessageLoader_Free(v0->unk_16C);
-    StringTemplate_Free(v0->unk_168);
+    MessageLoader_Free(v0->battleStringsMsgLoader);
+    MessageLoader_Free(v0->genericNamesMsgLoader);
+    MessageLoader_Free(v0->namingScreenMsgLoader);
+    StringTemplate_Free(v0->strTemplate);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(HEAP_ID_18);
+    Heap_Destroy(HEAP_ID_KEYBOARD_APP);
 
     {
         gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
         GXLayers_SwapDisplay();
     }
 
-    return 1;
+    return TRUE;
 }
 
-UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3, Options *options)
+KeyboardArgs *sub_0208712C(int heapID, int param1, int param2, int param3, Options *options)
 {
-    UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0208737C));
+    KeyboardArgs *v0 = (KeyboardArgs *)Heap_AllocFromHeap(heapID, sizeof(KeyboardArgs));
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
@@ -1208,7 +1221,7 @@ UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3,
     return v0;
 }
 
-void sub_0208716C(UnkStruct_0208737C *param0)
+void sub_0208716C(KeyboardArgs *param0)
 {
     GF_ASSERT((param0->textInputStr) != NULL);
     GF_ASSERT((param0) != NULL);
@@ -1217,7 +1230,7 @@ void sub_0208716C(UnkStruct_0208737C *param0)
     Heap_Free(param0);
 }
 
-static void sub_02087190(void *param0)
+static void Keyboard_VBlankCallback(void *unused)
 {
     VramTransfer_Process();
     RenderOam_Transfer();
@@ -1225,49 +1238,49 @@ static void sub_02087190(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void sub_020871B0(UnkStruct_02087A10 *param0, UnkStruct_0208737C *param1)
+static void Keyboard_CopyParamsFromArgs(Keyboard *keyboard, KeyboardArgs *keyboardArgs)
 {
-    param0->unk_00 = param1->unk_00;
-    param0->unk_04 = param1->unk_04;
-    param0->unk_08 = param1->unk_08;
-    param0->unk_0C = param1->unk_0C;
-    param0->unk_10 = param1->unk_10;
-    param0->options = param1->options;
+    keyboard->unk_00 = keyboardArgs->unk_00;
+    keyboard->unk_04 = keyboardArgs->unk_04;
+    keyboard->unk_08 = keyboardArgs->unk_08;
+    keyboard->unk_0C = keyboardArgs->unk_0C;
+    keyboard->unk_10 = keyboardArgs->unk_10;
+    keyboard->options = keyboardArgs->options;
 }
 
-static void sub_020871CC(void)
+static void Keyboard_InitGraphicsBanks(void)
 {
-    UnkStruct_02099F80 v0 = {
-        GX_VRAM_BG_128_A,
-        GX_VRAM_BGEXTPLTT_NONE,
-        GX_VRAM_SUB_BG_128_C,
-        GX_VRAM_SUB_BGEXTPLTT_NONE,
-        GX_VRAM_OBJ_128_B,
-        GX_VRAM_OBJEXTPLTT_NONE,
-        GX_VRAM_SUB_OBJ_16_I,
-        GX_VRAM_SUB_OBJEXTPLTT_NONE,
-        GX_VRAM_TEX_NONE,
-        GX_VRAM_TEXPLTT_NONE
+    UnkStruct_02099F80 banks = {
+        .unk_00 = GX_VRAM_BG_128_A,
+        .unk_04 = GX_VRAM_BGEXTPLTT_NONE,
+        .unk_08 = GX_VRAM_SUB_BG_128_C,
+        .unk_0C = GX_VRAM_SUB_BGEXTPLTT_NONE,
+        .unk_10 = GX_VRAM_OBJ_128_B,
+        .unk_14 = GX_VRAM_OBJEXTPLTT_NONE,
+        .unk_18 = GX_VRAM_SUB_OBJ_16_I,
+        .unk_1C = GX_VRAM_SUB_OBJEXTPLTT_NONE,
+        .unk_20 = GX_VRAM_TEX_NONE,
+        .unk_24 = GX_VRAM_TEXPLTT_NONE,
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
-static void sub_020871EC(BgConfig *param0)
+static void Keyboard_InitBgs(BgConfig *bgConfig)
 {
     {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D,
+        GraphicsModes graphicsModes = {
+            .displayMode = GX_DISPMODE_GRAPHICS,
+            .mainBgMode  = GX_BGMODE_0,
+            .subBgMode   = GX_BGMODE_0,
+            .bg0As2DOr3D = GX_BG0_AS_2D,
         };
 
-        SetAllGraphicsModes(&v0);
+        SetAllGraphicsModes(&graphicsModes);
     }
 
     {
-        BgTemplate v1 = {
+        BgTemplate layerMain0Template = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x1000,
@@ -1282,12 +1295,12 @@ static void sub_020871EC(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &layerMain0Template, BG_TYPE_STATIC);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     }
 
     {
-        BgTemplate v2 = {
+        BgTemplate layerMain1Template = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x1000,
@@ -1302,12 +1315,12 @@ static void sub_020871EC(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &layerMain1Template, BG_TYPE_STATIC);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
     }
 
     {
-        BgTemplate v3 = {
+        BgTemplate layerMain2Template = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x800,
@@ -1322,12 +1335,12 @@ static void sub_020871EC(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &layerMain2Template, BG_TYPE_STATIC);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
     }
 
     {
-        BgTemplate v4 = {
+        BgTemplate layerSub0Template = {
             .x = 0,
             .y = 0,
             .bufferSize = 0x800,
@@ -1342,134 +1355,134 @@ static void sub_020871EC(BgConfig *param0)
             .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &layerSub0Template, BG_TYPE_STATIC);
+        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
     }
 
-    sub_0208732C(0);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_18);
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_18);
+    Keyboard_ToggleEngineLayers(FALSE);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_KEYBOARD_APP);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_KEYBOARD_APP);
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
-    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ, 1);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
     G2_SetWnd0Position(0, 0, 255, 64);
     G2S_BlendNone();
 }
 
-static void sub_0208732C(int param0)
+static void Keyboard_ToggleEngineLayers(BOOL enable)
 {
-    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
-    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, param0);
-    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG2, param0);
-    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG3, 0);
-    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_OBJ, param0);
-    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
-    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
-    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG0, enable);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, enable);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG2, enable);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG3, FALSE);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_OBJ, enable);
+    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG0, enable);
+    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG1, FALSE);
+    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, FALSE);
 }
 
-static void sub_0208737C(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
+static void sub_0208737C(Keyboard *keyboard, ApplicationManager *appMan)
 {
-    UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
+    KeyboardArgs *keyboardArgs = (KeyboardArgs *)ApplicationManager_Args(appMan);
 
-    param0->unk_4C0 = 4;
+    keyboard->unk_4C0 = 4;
 
-    sub_02088260(param0->unk_4CC, 0);
-    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + param0->unk_4C8, 0, param0->unk_4CC[param0->unk_4C8].x);
-    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + param0->unk_4C8, 3, param0->unk_4CC[param0->unk_4C8].y);
-    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + ((param0->unk_4C8) ^ 1), 0, param0->unk_4CC[((param0->unk_4C8) ^ 1)].x);
-    Bg_SetOffset(param0->unk_160, BG_LAYER_MAIN_0 + ((param0->unk_4C8) ^ 1), 3, param0->unk_4CC[((param0->unk_4C8) ^ 1)].y);
+    sub_02088260(keyboard->unk_4CC, 0);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + keyboard->unk_4C8, 0, keyboard->unk_4CC[keyboard->unk_4C8].x);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + keyboard->unk_4C8, 3, keyboard->unk_4CC[keyboard->unk_4C8].y);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + ((keyboard->unk_4C8) ^ 1), 0, keyboard->unk_4CC[((keyboard->unk_4C8) ^ 1)].x);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + ((keyboard->unk_4C8) ^ 1), 3, keyboard->unk_4CC[((keyboard->unk_4C8) ^ 1)].y);
 
-    param0->unk_118[0] = 0xffff;
+    keyboard->unk_118[0] = 0xffff;
 
-    if (v0->textInputStr) {
-        Strbuf_ToChars(v0->textInputStr, param0->unk_118, 32);
+    if (keyboardArgs->textInputStr) {
+        Strbuf_ToChars(keyboardArgs->textInputStr, keyboard->unk_118, 32);
     }
 
-    MI_CpuFill16(param0->unk_D8, 0x1, 32 * 2);
+    MI_CpuFill16(keyboard->unk_D8, 0x1, 32 * 2);
 
-    if (param0->unk_00 == 1) {
+    if (keyboard->unk_00 == 1) {
         Pokemon *v1;
 
-        v1 = Pokemon_New(HEAP_ID_18);
-        Pokemon_InitWith(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
-        StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
+        v1 = Pokemon_New(HEAP_ID_KEYBOARD_APP);
+        Pokemon_InitWith(v1, keyboard->unk_04, 5, 10, 10, 10, 10, 10);
+        StringTemplate_SetSpeciesName(keyboard->strTemplate, 0, Pokemon_GetBoxPokemon(v1));
         Heap_Free(v1);
     }
 
-    if (v0->unk_44 != 0) {
-        param0->unk_14 = 1;
+    if (keyboardArgs->unk_44 != 0) {
+        keyboard->unk_14 = 1;
     }
 
-    param0->unk_178 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], HEAP_ID_18);
-    param0->unk_17C = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_16C, 8, HEAP_ID_18);
-    param0->unk_184 = MessageLoader_GetNewStrbuf(param0->unk_16C, 7);
-    param0->unk_158 = CharCode_Length(param0->unk_118);
-    param0->unk_1C.unk_00 = 0;
-    param0->unk_1C.unk_04 = 1;
-    param0->unk_1C.unk_08 = -1;
-    param0->unk_1C.unk_0C = -1;
-    param0->unk_1C.unk_14 = 0;
-    param0->unk_1C.unk_18 = 0;
-    param0->unk_4E8 = 0xffffffff;
-    param0->unk_4EC = 0;
-    param0->unk_4F0 = 0;
-    param0->unk_D8[param0->unk_0C] = 0xffff;
+    keyboard->unk_178 = MessageUtil_ExpandedStrbuf(keyboard->strTemplate, keyboard->namingScreenMsgLoader, Unk_020F2850[keyboard->unk_00], HEAP_ID_KEYBOARD_APP);
+    keyboard->unk_17C = MessageUtil_ExpandedStrbuf(keyboard->strTemplate, keyboard->namingScreenMsgLoader, 8, HEAP_ID_KEYBOARD_APP);
+    keyboard->unk_184 = MessageLoader_GetNewStrbuf(keyboard->namingScreenMsgLoader, 7);
+    keyboard->unk_158 = CharCode_Length(keyboard->unk_118);
+    keyboard->unk_1C.unk_00 = 0;
+    keyboard->unk_1C.unk_04 = 1;
+    keyboard->unk_1C.unk_08 = -1;
+    keyboard->unk_1C.unk_0C = -1;
+    keyboard->unk_1C.unk_14 = 0;
+    keyboard->unk_1C.unk_18 = 0;
+    keyboard->unk_4E8 = 0xffffffff;
+    keyboard->unk_4EC = 0;
+    keyboard->unk_4F0 = 0;
+    keyboard->unk_D8[keyboard->unk_0C] = 0xffff;
 
     {
         int v2;
 
         for (v2 = 0; v2 < 7; v2++) {
-            param0->unk_4F4[v2] = 0;
+            keyboard->unk_4F4[v2] = 0;
         }
 
-        switch (param0->unk_00) {
+        switch (keyboard->unk_00) {
         case 4:
-            param0->unk_4F4[3] = 1;
+            keyboard->unk_4F4[3] = 1;
             break;
         default:
-            param0->unk_4F4[0] = 1;
+            keyboard->unk_4F4[0] = 1;
             break;
         }
     }
 }
 
-static void sub_02087544(UnkStruct_02087A10 *param0, ApplicationManager *appMan)
+static void sub_02087544(Keyboard *param0, ApplicationManager *appMan)
 {
     Strbuf *v0 = NULL;
-    UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
+    KeyboardArgs *v1 = (KeyboardArgs *)ApplicationManager_Args(appMan);
 
     if (v1->unk_44 != 0) {
         int v2, v3;
 
-        v0 = Strbuf_Init(200, HEAP_ID_18);
+        v0 = Strbuf_Init(200, HEAP_ID_KEYBOARD_APP);
         param0->unk_180 = NULL;
         v2 = PCBoxes_GetCurrentBoxID(v1->pcBoxes);
         v3 = PCBoxes_FirstEmptyBox(v1->pcBoxes);
 
-        StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->pcBoxes, v2);
+        StringTemplate_SetPCBoxName(param0->strTemplate, 1, v1->pcBoxes, v2);
 
         if (v2 != v3) {
-            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->pcBoxes, v3);
+            StringTemplate_SetPCBoxName(param0->strTemplate, 2, v1->pcBoxes, v3);
             v1->unk_44 += 2;
         } else {
-            StringTemplate_SetPCBoxName(param0->unk_168, 2, v1->pcBoxes, v2);
+            StringTemplate_SetPCBoxName(param0->strTemplate, 2, v1->pcBoxes, v2);
         }
 
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
-            Pokemon *v4 = Pokemon_New(HEAP_ID_18);
+            Pokemon *v4 = Pokemon_New(HEAP_ID_KEYBOARD_APP);
 
             Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
-            StringTemplate_SetSpeciesName(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
+            StringTemplate_SetSpeciesName(param0->strTemplate, 0, Pokemon_GetBoxPokemon(v4));
             Heap_Free(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;
             Strbuf_CopyChars(v0, param0->unk_D8);
-            StringTemplate_SetStrbuf(param0->unk_168, 0, v0, 0, 0, 0);
+            StringTemplate_SetStrbuf(param0->strTemplate, 0, v0, 0, 0, 0);
         }
 
-        param0->unk_180 = MessageUtil_ExpandedStrbuf(param0->unk_168, param0->unk_174, v1->unk_44, HEAP_ID_18);
+        param0->unk_180 = MessageUtil_ExpandedStrbuf(param0->strTemplate, param0->battleStringsMsgLoader, v1->unk_44, HEAP_ID_KEYBOARD_APP);
         param0->unk_14 = 1;
 
         Strbuf_Free(v0);
@@ -1488,75 +1501,136 @@ static void sub_0208765C(BgConfig *param0, Window *param1)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Heap_FreeExplicit(HEAP_ID_18, param0);
+    Heap_FreeExplicit(HEAP_ID_KEYBOARD_APP, param0);
 }
 
-static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
+static void Keyboard_LoadGraphicsFromNarc(Keyboard *keyboard, NARC *narc)
 {
-    BgConfig *v0 = param0->unk_160;
+    BgConfig *bgConfig = keyboard->bgConfig;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, HEAP_ID_18);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 16 * 2, HEAP_ID_18);
+    Graphics_LoadPaletteFromOpenNARC(narc, 0, PAL_LOAD_MAIN_BG, 0, 16 * 3 * 2, HEAP_ID_KEYBOARD_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, PAL_LOAD_SUB_BG, 0, 16 * 2, HEAP_ID_KEYBOARD_APP);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, (32 * 8) * 0x20, 1, HEAP_ID_18);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_18);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_18);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, 32 * 14 * 2, 1, HEAP_ID_18);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, 32 * 14 * 2, 1, HEAP_ID_18);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_18);
-    LoadMessageBoxGraphics(param0->unk_160, BG_LAYER_SUB_0, 32 * 8, 10, Options_Frame(param0->options), HEAP_ID_18);
-    Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_18);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(
+        narc,
+        2,
+        bgConfig,
+        BG_LAYER_MAIN_2,
+        0,
+        (32 * 8) * 0x20,
+        TRUE,
+        HEAP_ID_KEYBOARD_APP
+    );
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(
+        narc,
+        4,
+        bgConfig,
+        BG_LAYER_MAIN_2,
+        0,
+        32 * 24 * 2,
+        TRUE,
+        HEAP_ID_KEYBOARD_APP
+    );
+    Graphics_LoadTilesToBgLayerFromOpenNARC(
+        narc,
+        2,
+        bgConfig,
+        BG_LAYER_MAIN_1,
+        0,
+        32 * 8 * 0x20,
+        TRUE,
+        HEAP_ID_KEYBOARD_APP
+    );
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(
+        narc,
+        6,
+        bgConfig,
+        BG_LAYER_MAIN_1,
+        0,
+        32 * 14 * 2,
+        TRUE,
+        HEAP_ID_KEYBOARD_APP
+    );
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(
+        narc,
+        7,
+        bgConfig,
+        BG_LAYER_MAIN_0,
+        0,
+        32 * 14 * 2,
+        TRUE,
+        HEAP_ID_KEYBOARD_APP
+    );
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 12 * 32, HEAP_ID_KEYBOARD_APP);
+    LoadMessageBoxGraphics(
+        keyboard->bgConfig,
+        BG_LAYER_SUB_0,
+        32 * 8,
+        10,
+        Options_Frame(keyboard->options),
+        HEAP_ID_KEYBOARD_APP
+    );
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, 12 * 32, HEAP_ID_KEYBOARD_APP);
 
-    param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, HEAP_ID_18);
+    keyboard->charDataAlloc = Graphics_GetCharDataFromOpenNARC(
+        narc,
+        16,
+        TRUE,
+        &keyboard->charData,
+        HEAP_ID_KEYBOARD_APP
+    );
 }
 
-void sub_020877C4(void)
+void Keyboard_TransferChars(void)
 {
     {
-        CharTransferTemplate v0 = {
-            20, 2048, 2048, 18
+        CharTransferTemplate charTransferTemplate = {
+            .maxTasks = 20,
+            .sizeMain = 2048,
+            .sizeSub  = 2048,
+            .heapID   = HEAP_ID_KEYBOARD_APP,
         };
 
-        CharTransfer_Init(&v0);
+        CharTransfer_Init(&charTransferTemplate);
     }
 
-    PlttTransfer_Init(20, HEAP_ID_18);
+    PlttTransfer_Init(20, HEAP_ID_KEYBOARD_APP);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
 
-static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
+static void sub_020877F4(Keyboard *param0, NARC *param1)
 {
     int v0;
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 18);
 
-    param0->unk_188 = SpriteList_InitRendering(40 + 4, &param0->unk_18C, HEAP_ID_18);
+    param0->unk_188 = SpriteList_InitRendering(40 + 4, &param0->unk_18C, HEAP_ID_KEYBOARD_APP);
 
     SetSubScreenViewRect(&param0->unk_18C, 0, 256 * FX32_ONE);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_318[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_18);
+        param0->unk_318[v0] = SpriteResourceCollection_New(2, v0, HEAP_ID_KEYBOARD_APP);
     }
 
-    param0->unk_328[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_18);
-    param0->unk_328[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_18);
-    param0->unk_328[0][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 12, 1, 0, 2, HEAP_ID_18);
-    param0->unk_328[0][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 14, 1, 0, 3, HEAP_ID_18);
+    param0->unk_328[0][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 10, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_KEYBOARD_APP);
+    param0->unk_328[0][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAP_ID_KEYBOARD_APP);
+    param0->unk_328[0][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 12, 1, 0, 2, HEAP_ID_KEYBOARD_APP);
+    param0->unk_328[0][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 14, 1, 0, 3, HEAP_ID_KEYBOARD_APP);
 
     if (param0->unk_00 == 1) {
-        param0->unk_518 = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, HEAP_ID_18);
+        param0->unk_518 = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, HEAP_ID_KEYBOARD_APP);
         DC_FlushRange(param0->unk_51C, 0x20 * 4 * 4);
 
-        param0->unk_520 = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &param0->unk_524, HEAP_ID_18);
+        param0->unk_520 = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &param0->unk_524, HEAP_ID_KEYBOARD_APP);
         DC_FlushRange(param0->unk_524, 0x20 * 4);
     }
 
-    param0->unk_328[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 11, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_18);
-    param0->unk_328[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_18);
-    param0->unk_328[1][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 13, 1, 1, 2, HEAP_ID_18);
-    param0->unk_328[1][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 15, 1, 1, 3, HEAP_ID_18);
+    param0->unk_328[1][0] = SpriteResourceCollection_AddTilesFrom(param0->unk_318[0], param1, 11, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_KEYBOARD_APP);
+    param0->unk_328[1][1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_318[1], param1, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAP_ID_KEYBOARD_APP);
+    param0->unk_328[1][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 13, 1, 1, 2, HEAP_ID_KEYBOARD_APP);
+    param0->unk_328[1][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 15, 1, 1, 3, HEAP_ID_KEYBOARD_APP);
 
     SpriteTransfer_RequestChar(param0->unk_328[0][0]);
     SpriteTransfer_RequestChar(param0->unk_328[1][0]);
@@ -1578,7 +1652,7 @@ static void sub_020879DC(SysTask *param0, void *param1)
     Sprite_SetPosition(v2->unk_04, &v1);
 }
 
-static void sub_02087A10(UnkStruct_02087A10 *param0)
+static void sub_02087A10(Keyboard *param0)
 {
     int v0;
 
@@ -1599,7 +1673,7 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
         v1.affineZRotation = 0;
         v1.priority = 1;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = HEAP_ID_18;
+        v1.heapID = HEAP_ID_KEYBOARD_APP;
 
         for (v0 = 0; v0 < 9; v0++) {
             v1.position.x = FX32_ONE * Unk_020F2984[v0][0];
@@ -1644,7 +1718,7 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *param1)
+static void sub_02087BE4(Keyboard *param0, AffineSpriteListTemplate *param1)
 {
     param1->position.x = FX32_ONE * 24;
     param1->position.y = FX32_ONE * (16 - 8);
@@ -1735,7 +1809,7 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
     case 0: {
         u16 v3 = Unk_020F24DC[param3] | (Unk_020F24DC[param3] << 4);
 
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__NAMEIN, 6 + param3, param0, 0 + v0, 0, 32 * 14 * 2, 1, HEAP_ID_18);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__NAMEIN, 6 + param3, param0, 0 + v0, 0, 32 * 14 * 2, 1, HEAP_ID_KEYBOARD_APP);
         sub_02088260(param5, v0);
         sub_02088E58(&param1[v0], v3, param3, TEXT_COLOR(14, 15, 0), param7);
         (*param2)++;
@@ -1815,30 +1889,30 @@ static void sub_02087F78(Window *param0, int param1, Strbuf *param2)
     Window_CopyToVRAM(param0);
 }
 
-static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan, NARC *param2)
+static void sub_02087FC0(Keyboard *param0, ApplicationManager *appMan, NARC *param2)
 {
-    Window_Add(param0->unk_160, &param0->unk_41C[0], 0, 2, 1, 26, 12, 1, 32 * 8);
-    Window_Add(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, (32 * 8) + (26 * 12));
+    Window_Add(param0->bgConfig, &param0->unk_41C[0], 0, 2, 1, 26, 12, 1, 32 * 8);
+    Window_Add(param0->bgConfig, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, (32 * 8) + (26 * 12));
 
     if (param0->unk_00 == 4) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 6 + 3, param0->unk_160, 1, 0, 32 * 14 * 2, 1, HEAP_ID_18);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 6 + 3, param0->bgConfig, 1, 0, 32 * 14 * 2, 1, HEAP_ID_KEYBOARD_APP);
         param0->unk_4C4 = 4;
         sub_02088844(param0->unk_3A, 4);
-        sub_02088E58(&param0->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), param0->unk_514->pRawData);
+        sub_02088E58(&param0->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), param0->charData->pRawData);
     } else {
         param0->unk_4C4 = 0;
         sub_02088844(param0->unk_3A, 0);
-        sub_02088E58(&param0->unk_41C[1], 0x404, 0, TEXT_COLOR(14, 15, 0), param0->unk_514->pRawData);
+        sub_02088E58(&param0->unk_41C[1], 0x404, 0, TEXT_COLOR(14, 15, 0), param0->charData->pRawData);
     }
 
-    Window_Add(param0->unk_160, &param0->unk_41C[2], 2, 7, 2, 22, 2, 0, ((32 * 8) + (26 * 12)) + (26 * 12));
+    Window_Add(param0->bgConfig, &param0->unk_41C[2], 2, 7, 2, 22, 2, 0, ((32 * 8) + (26 * 12)) + (26 * 12));
 
     {
         int v0 = ((param0->unk_0C * 12) / 8) + 1;
 
-        Window_Add(param0->unk_160, &param0->unk_41C[3], 2, 10, 3, v0, 2, 0, (((32 * 8) + (26 * 12)) + (26 * 12)) + 44);
+        Window_Add(param0->bgConfig, &param0->unk_41C[3], 2, 10, 3, v0, 2, 0, (((32 * 8) + (26 * 12)) + (26 * 12)) + 44);
         Window_FillTilemap(&param0->unk_41C[3], 0x101);
-        Window_Add(param0->unk_160, &param0->unk_41C[8], 2, 10 + v0 - 1, 3, 7, 2, 0, ((((32 * 8) + (26 * 12)) + (26 * 12)) + 44) + 36);
+        Window_Add(param0->bgConfig, &param0->unk_41C[8], 2, 10 + v0 - 1, 3, 7, 2, 0, ((((32 * 8) + (26 * 12)) + (26 * 12)) + 44) + 36);
         Window_FillTilemap(&param0->unk_41C[8], 0x101);
     }
 
@@ -1847,12 +1921,12 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan,
         Window_CopyToVRAM(&param0->unk_41C[8]);
     }
 
-    Window_Add(param0->unk_160, &param0->unk_41C[9], 4, 2, 19, 27, 4, 12, 120 + (2 * 2 * 3));
+    Window_Add(param0->bgConfig, &param0->unk_41C[9], 4, 2, 19, 27, 4, 12, 120 + (2 * 2 * 3));
     Window_FillTilemap(&param0->unk_41C[9], 0xf0f);
     sub_02087F48(&param0->unk_41C[9], param0->unk_00, param0->unk_178);
 
     {
-        UnkStruct_0208737C *v1 = (UnkStruct_0208737C *)ApplicationManager_Args(appMan);
+        KeyboardArgs *v1 = (KeyboardArgs *)ApplicationManager_Args(appMan);
 
         if (param0->unk_118[0] != 0xffff) {
             CharCode_Copy(param0->unk_D8, param0->unk_118);
@@ -1864,11 +1938,11 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, ApplicationManager *appMan,
         int v2;
 
         for (v2 = 0; v2 < 3; v2++) {
-            Window_Add(param0->unk_160, &param0->unk_41C[4 + v2], 2, 0, 0, 2, 2, 0, 120);
+            Window_Add(param0->bgConfig, &param0->unk_41C[4 + v2], 2, 0, 0, 2, 2, 0, 120);
             Window_FillTilemap(&param0->unk_41C[4 + v2], 0);
         }
 
-        Window_Add(param0->unk_160, &param0->unk_41C[7], 2, 0, 0, 16, 2, 0, 120 + (2 * 2 * 3));
+        Window_Add(param0->bgConfig, &param0->unk_41C[7], 2, 0, 0, 16, 2, 0, 120 + (2 * 2 * 3));
         Window_FillTilemap(&param0->unk_41C[7], 0);
     }
 }
@@ -1908,7 +1982,7 @@ static int sub_02088288(int param0, int param1, int param2)
     return param0;
 }
 
-static void sub_02088298(UnkStruct_02087A10 *param0, int param1)
+static void sub_02088298(Keyboard *param0, int param1)
 {
     int v0, v1;
     u16 v2;
@@ -1937,7 +2011,7 @@ static void sub_02088298(UnkStruct_02087A10 *param0, int param1)
     param0->unk_1C.unk_04 = v1;
 }
 
-static void sub_02088350(UnkStruct_02087A10 *param0)
+static void sub_02088350(Keyboard *param0)
 {
     int v0 = 0;
     int v1 = 0;
@@ -2001,7 +2075,7 @@ static void sub_02088350(UnkStruct_02087A10 *param0)
     }
 }
 
-static void sub_02088454(UnkStruct_02087A10 *param0, int param1)
+static void sub_02088454(Keyboard *param0, int param1)
 {
     if (param0->unk_1C.unk_04 != 0) {
         VecFx32 v0;
@@ -2059,7 +2133,7 @@ static void sub_02088554(Window *param0, const u16 *param1, int param2, int para
 {
     int v0 = 0, v1, v2;
     u16 v3[2];
-    Strbuf *v4 = Strbuf_Init(2, HEAP_ID_18);
+    Strbuf *v4 = Strbuf_Init(2, HEAP_ID_KEYBOARD_APP);
 
     while (param1[v0] != 0xffff) {
         if ((param1[v0] == 0xd001) || (param1[v0] == (0xd001 + 1)) || (param1[v0] == (0xd001 + 2))) {
@@ -2116,7 +2190,7 @@ static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *
         GXS_LoadOBJ(param2, Unk_020F24D8[v1] * 0x20, 0x20 * 4 * 2);
     }
 
-    v4 = Strbuf_Init(20 + 1, HEAP_ID_18);
+    v4 = Strbuf_Init(20 + 1, HEAP_ID_KEYBOARD_APP);
 
     for (v1 = 0; v1 < 3; v1++) {
         v0[0] = param1[v1];
@@ -2204,7 +2278,7 @@ static void sub_02088844(u16 param0[][13], const int param1)
     }
 }
 
-static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
+static int sub_02088898(Keyboard *param0, u16 param1, int param2)
 {
     if ((param1 == (0xd001 + 2)) || (param1 == (0xd001 + 3))) {
         param1 = 0x1;
@@ -2286,7 +2360,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         if (param0->unk_14 == 0) {
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
             param0->unk_4F4[6]++;
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_18);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_KEYBOARD_APP);
             return 3;
         } else {
             param0->unk_4C0 = 5;
@@ -2483,7 +2557,7 @@ static void sub_02088F40(int param0[], Sprite **param1, int param2)
     }
 }
 
-static void sub_02088FD0(UnkStruct_02087A10 *param0)
+static void sub_02088FD0(Keyboard *param0)
 {
     if (!Sprite_IsAnimated(param0->unk_390[8])) {
         if (param0->unk_158 == param0->unk_0C) {
@@ -2580,7 +2654,7 @@ static const UnkStruct_020F2A14 Unk_020F2A14[] = {
     { 0xDC, 0xA4, 0x2, 0xC, 0x5 }
 };
 
-static BOOL sub_0208903C(UnkStruct_02087A10 *param0)
+static BOOL sub_0208903C(Keyboard *param0)
 {
     int v0, v1 = 0;
     u8 v2, v3, v4, v5, v6, v7;
