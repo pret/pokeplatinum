@@ -181,7 +181,7 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
 BOOL RowanIntroTv_Exit(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
     RowanIntroTv *tv = ApplicationManager_Data(appMan);
-    int heapID = tv->heapID;
+    enum HeapId heapID = tv->heapID;
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
