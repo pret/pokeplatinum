@@ -68,15 +68,13 @@ static void ov70_0226D31C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E
 static void ov70_0226D33C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
 static BOOL ov70_0226D35C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
 
-// clang-format off
 static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
-    { SPECIES_TORCHIC,   SPECIES_CHARIZARD, 0xFFFE,            SEQ_SE_PL_FLOAT10, SEQ_SE_PL_FIRE,      SEQ_SE_PL_FLOAT03 },
-    { SPECIES_PIPLUP,    SPECIES_GYARADOS,  SEQ_SE_PL_FLOAT10, SEQ_SE_PL_FLOAT12, SEQ_SE_PL_WATER,     SEQ_SE_PL_FLOAT10 },
-    { SPECIES_PIKACHU,   SPECIES_MAGNEZONE, 0xFFFE,            SEQ_SE_PL_FLOAT10, 0xFFFE,              SEQ_SE_PL_ELECTRO },
-    { SPECIES_BULBASAUR, SPECIES_CARNIVINE, SEQ_SE_PL_WHIP,    SEQ_SE_PL_FLOAT11, SEQ_SE_PL_FLOAT03,   SEQ_SE_PL_FLOAT10 },
-    { SPECIES_MEW,       SPECIES_MEW,       0xFFFE,            SEQ_SE_PL_FLOAT10, SEQ_SE_PL_KIRAKIRA4, SEQ_SE_PL_FLOAT10 }
+    { .species = SPECIES_TORCHIC, .species2 = SPECIES_CHARIZARD, .unk_04 = 0xFFFE, .unk_06 = SEQ_SE_PL_FLOAT10, .unk_08 = SEQ_SE_PL_FIRE, .unk_0A = SEQ_SE_PL_FLOAT03 },
+    { .species = SPECIES_PIPLUP, .species2 = SPECIES_GYARADOS, .unk_04 = SEQ_SE_PL_FLOAT10, .unk_06 = SEQ_SE_PL_FLOAT12, .unk_08 = SEQ_SE_PL_WATER, .unk_0A = SEQ_SE_PL_FLOAT10 },
+    { .species = SPECIES_PIKACHU, .species2 = SPECIES_MAGNEZONE, .unk_04 = 0xFFFE, .unk_06 = SEQ_SE_PL_FLOAT10, .unk_08 = 0xFFFE, .unk_0A = SEQ_SE_PL_ELECTRO },
+    { .species = SPECIES_BULBASAUR, .species2 = SPECIES_CARNIVINE, .unk_04 = SEQ_SE_PL_WHIP, .unk_06 = SEQ_SE_PL_FLOAT11, .unk_08 = SEQ_SE_PL_FLOAT03, .unk_0A = SEQ_SE_PL_FLOAT10 },
+    { .species = SPECIES_MEW, .species2 = SPECIES_MEW, .unk_04 = 0xFFFE, .unk_06 = SEQ_SE_PL_FLOAT10, .unk_08 = SEQ_SE_PL_KIRAKIRA4, .unk_0A = SEQ_SE_PL_FLOAT10 }
 };
-// clang-format on
 
 UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
 {
