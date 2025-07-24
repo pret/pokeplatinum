@@ -134,8 +134,7 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
                 COLOR_BLACK,
                 6,
                 1,
-                tv->heapID
-            );
+                tv->heapID);
             *state = RIT_APP_STATE_WAIT_SCREEN_FADE;
         }
         break;
@@ -157,8 +156,7 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
                 COLOR_BLACK,
                 6,
                 1,
-                tv->heapID
-            );
+                tv->heapID);
             *state = RIT_APP_STATE_EXIT_AFTER_FADE;
         }
         break;
