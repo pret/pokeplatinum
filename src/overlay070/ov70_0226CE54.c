@@ -49,8 +49,8 @@ typedef struct UnkStruct_ov70_0226CF38_t {
 } UnkStruct_ov70_0226CF38;
 
 typedef struct {
-    u16 species;
-    u16 species2;
+    u16 unk_00;
+    u16 unk_02;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;
@@ -69,11 +69,46 @@ static void ov70_0226D33C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E
 static BOOL ov70_0226D35C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
 
 static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
-    { .species = SPECIES_TORCHIC, .species2 = SPECIES_CHARIZARD, .unk_04 = 0xFFFE, .unk_06 = SEQ_SE_PL_FLOAT10, .unk_08 = SEQ_SE_PL_FIRE, .unk_0A = SEQ_SE_PL_FLOAT03 },
-    { .species = SPECIES_PIPLUP, .species2 = SPECIES_GYARADOS, .unk_04 = SEQ_SE_PL_FLOAT10, .unk_06 = SEQ_SE_PL_FLOAT12, .unk_08 = SEQ_SE_PL_WATER, .unk_0A = SEQ_SE_PL_FLOAT10 },
-    { .species = SPECIES_PIKACHU, .species2 = SPECIES_MAGNEZONE, .unk_04 = 0xFFFE, .unk_06 = SEQ_SE_PL_FLOAT10, .unk_08 = 0xFFFE, .unk_0A = SEQ_SE_PL_ELECTRO },
-    { .species = SPECIES_BULBASAUR, .species2 = SPECIES_CARNIVINE, .unk_04 = SEQ_SE_PL_WHIP, .unk_06 = SEQ_SE_PL_FLOAT11, .unk_08 = SEQ_SE_PL_FLOAT03, .unk_0A = SEQ_SE_PL_FLOAT10 },
-    { .species = SPECIES_MEW, .species2 = SPECIES_MEW, .unk_04 = 0xFFFE, .unk_06 = SEQ_SE_PL_FLOAT10, .unk_08 = SEQ_SE_PL_KIRAKIRA4, .unk_0A = SEQ_SE_PL_FLOAT10 }
+    {
+        .unk_00 = SPECIES_TORCHIC,
+        .unk_02 = SPECIES_CHARIZARD,
+        .unk_04 = 0xFFFE,
+        .unk_06 = SEQ_SE_PL_FLOAT10,
+        .unk_08 = SEQ_SE_PL_FIRE,
+        .unk_0A = SEQ_SE_PL_FLOAT03
+    },
+    {
+        .unk_00 = SPECIES_PIPLUP,
+        .unk_02 = SPECIES_GYARADOS,
+        .unk_04 = SEQ_SE_PL_FLOAT10,
+        .unk_06 = SEQ_SE_PL_FLOAT12,
+        .unk_08 = SEQ_SE_PL_WATER,
+        .unk_0A = SEQ_SE_PL_FLOAT10
+    },
+    {
+        .unk_00 = SPECIES_PIKACHU,
+        .unk_02 = SPECIES_MAGNEZONE,
+        .unk_04 = 0xFFFE,
+        .unk_06 = SEQ_SE_PL_FLOAT10,
+        .unk_08 = 0xFFFE,
+        .unk_0A = SEQ_SE_PL_ELECTRO
+    },
+    {
+        .unk_00 = SPECIES_BULBASAUR,
+        .unk_02 = SPECIES_CARNIVINE,
+        .unk_04 = SEQ_SE_PL_WHIP,
+        .unk_06 = SEQ_SE_PL_FLOAT11,
+        .unk_08 = SEQ_SE_PL_FLOAT03,
+        .unk_0A = SEQ_SE_PL_FLOAT10
+    },
+    {
+        .unk_00 = SPECIES_MEW,
+        .unk_02 = SPECIES_MEW,
+        .unk_04 = 0xFFFE,
+        .unk_06 = SEQ_SE_PL_FLOAT10,
+        .unk_08 = SEQ_SE_PL_KIRAKIRA4,
+        .unk_0A = SEQ_SE_PL_FLOAT10
+    }
 };
 
 UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
@@ -227,13 +262,13 @@ static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL para
 
                 if (v2 == 1) {
                     if ((param1 % 3) == 2) {
-                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].species2);
+                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_02);
 
                         if (Unk_ov70_0226E774[v4].unk_08 != 0xfffe) {
                             ov70_0226D24C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_08);
                         }
                     } else {
-                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].species);
+                        ov70_0226D27C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_00);
 
                         if (Unk_ov70_0226E774[v4].unk_04 != 0xfffe) {
                             ov70_0226D24C(param2, param3, v5, Unk_ov70_0226E774[v4].unk_04);
