@@ -75,7 +75,7 @@ static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
         .unk_04 = 0xFFFE,
         .unk_06 = SEQ_SE_PL_FLOAT10,
         .unk_08 = SEQ_SE_PL_FIRE,
-        .unk_0A = SEQ_SE_PL_FLOAT03
+        .unk_0A = SEQ_SE_PL_FLOAT03,
     },
     {
         .unk_00 = SPECIES_PIPLUP,
@@ -83,7 +83,7 @@ static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
         .unk_04 = SEQ_SE_PL_FLOAT10,
         .unk_06 = SEQ_SE_PL_FLOAT12,
         .unk_08 = SEQ_SE_PL_WATER,
-        .unk_0A = SEQ_SE_PL_FLOAT10
+        .unk_0A = SEQ_SE_PL_FLOAT10,
     },
     {
         .unk_00 = SPECIES_PIKACHU,
@@ -91,7 +91,7 @@ static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
         .unk_04 = 0xFFFE,
         .unk_06 = SEQ_SE_PL_FLOAT10,
         .unk_08 = 0xFFFE,
-        .unk_0A = SEQ_SE_PL_ELECTRO
+        .unk_0A = SEQ_SE_PL_ELECTRO,
     },
     {
         .unk_00 = SPECIES_BULBASAUR,
@@ -99,7 +99,7 @@ static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
         .unk_04 = SEQ_SE_PL_WHIP,
         .unk_06 = SEQ_SE_PL_FLOAT11,
         .unk_08 = SEQ_SE_PL_FLOAT03,
-        .unk_0A = SEQ_SE_PL_FLOAT10
+        .unk_0A = SEQ_SE_PL_FLOAT10,
     },
     {
         .unk_00 = SPECIES_MEW,
@@ -107,8 +107,8 @@ static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
         .unk_04 = 0xFFFE,
         .unk_06 = SEQ_SE_PL_FLOAT10,
         .unk_08 = SEQ_SE_PL_KIRAKIRA4,
-        .unk_0A = SEQ_SE_PL_FLOAT10
-    }
+        .unk_0A = SEQ_SE_PL_FLOAT10,
+    },
 };
 
 UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
