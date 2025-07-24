@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/text_banks.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
@@ -17,6 +19,8 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
+
+#include "res/text/bank/rowan_intro_tv_app.h"
 
 enum RowanIntroTvAppState {
     RIT_APP_STATE_INIT = 0,
@@ -47,13 +51,13 @@ typedef struct {
 BOOL RowanIntroTv_Init(ApplicationManager *appMan, enum RowanIntroTvAppState *state);
 BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *state);
 BOOL RowanIntroTv_Exit(ApplicationManager *appMan, enum RowanIntroTvAppState *state);
-static void RowanIntroTv_VBlankCallback(void *param0);
-static void RowanIntroTv_InitGraphics(RowanIntroTv *param0);
-static void RowanIntroTv_FreeGraphics(RowanIntroTv *param0);
-static void RowanIntroTv_InitMessageStructs(RowanIntroTv *param0);
-static void RowanIntroTv_FreeMessageStructs(RowanIntroTv *param0);
-static BOOL RowanIntroTv_Run(RowanIntroTv *param0, int param1, int param2, int param3);
-static void RowanIntroTv_ShiftCrtOverlay(RowanIntroTv *param0);
+static void RowanIntroTv_VBlankCallback(void *uncastTv);
+static void RowanIntroTv_InitGraphics(RowanIntroTv *tv);
+static void RowanIntroTv_FreeGraphics(RowanIntroTv *tv);
+static void RowanIntroTv_InitMessageStructs(RowanIntroTv *tv);
+static void RowanIntroTv_FreeMessageStructs(RowanIntroTv *tv);
+static BOOL RowanIntroTv_Run(RowanIntroTv *tv, int msgEntryID, int unused0, int unused1);
+static void RowanIntroTv_ShiftCrtOverlay(RowanIntroTv *tv);
 
 BOOL RowanIntroTv_Init(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
@@ -123,7 +127,15 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
             tv->delayUpdateCounter--;
         } else {
             tv->delayUpdateCounter = 0;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, tv->heapID);
+            StartScreenFade(
+                FADE_BOTH_SCREENS,
+                FADE_TYPE_BRIGHTNESS_IN,
+                FADE_TYPE_BRIGHTNESS_IN,
+                COLOR_BLACK,
+                6,
+                1,
+                tv->heapID
+            );
             *state = RIT_APP_STATE_WAIT_SCREEN_FADE;
         }
         break;
@@ -137,8 +149,16 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
     case RIT_APP_STATE_DISPLAY_TEXT_WAIT_INPUT:
         RowanIntroTv_ShiftCrtOverlay(tv);
 
-        if (RowanIntroTv_Run(tv, 0, 5 * 8, 6 * 8) == TRUE) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, tv->heapID);
+        if (RowanIntroTv_Run(tv, pl_msg_00000607_00000, 5 * 8, 6 * 8) == TRUE) {
+            StartScreenFade(
+                FADE_BOTH_SCREENS,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                COLOR_BLACK,
+                6,
+                1,
+                tv->heapID
+            );
             *state = RIT_APP_STATE_EXIT_AFTER_FADE;
         }
         break;
@@ -395,7 +415,7 @@ static void RowanIntroTv_InitMessageStructs(RowanIntroTv *tv)
     tv->msgLoader = MessageLoader_Init(
         MESSAGE_LOADER_NARC_HANDLE,
         NARC_INDEX_MSGDATA__PL_MSG,
-        TEXT_BANK_UNK_0607,
+        TEXT_BANK_ROWAN_INTRO_TV_APP,
         tv->heapID);
 
     Text_ResetAllPrinters();
