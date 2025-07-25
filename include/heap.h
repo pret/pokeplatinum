@@ -11,9 +11,9 @@ typedef struct HeapParam {
 } HeapParam;
 
 void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHeaps, u32 preSize);
-BOOL Heap_Create(u32 parent, u32 child, u32 size);
-BOOL Heap_CreateAtEnd(u32 parent, u32 child, u32 size);
-void Heap_Destroy(u32 heapID);
+BOOL Heap_Create(enum HeapID parent, enum HeapID child, u32 size);
+BOOL Heap_CreateAtEnd(enum HeapID parent, enum HeapID child, u32 size);
+void Heap_Destroy(enum HeapID heapID);
 void *Heap_Alloc(u32 heapID, u32 size);
 void *Heap_AllocAtEnd(u32 heapID, u32 size);
 void Heap_Free(void *ptr);
