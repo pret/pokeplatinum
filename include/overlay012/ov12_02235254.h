@@ -15,10 +15,10 @@
 #define BATTLE_ANIM_DEFAULT_SPRITE_ALPHA 26
 #define BATTLE_ANIM_DEFAULT_BG_ALPHA     5
 
-typedef struct UnkStruct_ov12_0223595C {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
+typedef struct BattleAnimScriptFuncCommon {
+    u8 state;
+    u8 counter1; // General purpose counters
+    u8 counter2;
     u8 unk_03;
     BattleAnimSystem *battleAnimSystem;
     SpriteSystem *spriteSystem;
@@ -26,7 +26,7 @@ typedef struct UnkStruct_ov12_0223595C {
     SpriteManager *primarySpriteManager;
     BgConfig *bgConfig;
     PaletteData *paletteData;
-} UnkStruct_ov12_0223595C;
+} BattleAnimScriptFuncCommon;
 
 typedef struct BattleAnimSpriteInfo {
     Point2D basePos;
@@ -76,7 +76,7 @@ void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *param0, int param1
 void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2);
 void BattleAnimUtil_GetMonSpritePos(PokemonSprite *param0, Point2D *param1);
 void BattleAnimUtil_GetSpritePos(ManagedSprite *param0, Point2D *param1);
-void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1);
+void BattleAnimSystem_GetCommonData(BattleAnimSystem *param0, BattleAnimScriptFuncCommon *param1);
 void BattleAnimUtil_GetBattlerSprites(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
 void ov12_02235D74(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
 void *BattleAnimUtil_Alloc(BattleAnimSystem *param0, int param1);

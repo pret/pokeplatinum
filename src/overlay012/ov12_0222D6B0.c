@@ -76,7 +76,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_ov12_0223595C unk_04;
+    BattleAnimScriptFuncCommon unk_04;
     ManagedSprite *unk_20;
     ManagedSprite *unk_24;
     BgScrollContext *unk_28;
@@ -84,14 +84,14 @@ typedef struct {
 } UnkStruct_ov12_0222E080;
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
+    BattleAnimScriptFuncCommon unk_00;
     s16 unk_1C;
     s16 unk_1E[4];
     ManagedSprite *unk_28[4];
 } UnkStruct_ov12_0222E25C;
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
+    BattleAnimScriptFuncCommon unk_00;
     int unk_1C;
     s16 unk_20;
     s16 unk_22[4];
@@ -680,14 +680,14 @@ static void ov12_0222E080(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222E080 *v0 = (UnkStruct_ov12_0222E080 *)param1;
 
-    switch (v0->unk_04.unk_00) {
+    switch (v0->unk_04.state) {
     case 0: {
         PokemonSprite *v1;
 
         v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_04.battleAnimSystem));
         PokemonSprite_SetAttribute(v1, MON_SPRITE_HIDE, 1);
     }
-        v0->unk_04.unk_00++;
+        v0->unk_04.state++;
         break;
     case 1:
         if (AlphaFadeContext_IsDone(&v0->unk_2C) == 0) {
@@ -696,7 +696,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
 
         v0->unk_00 = 0;
         v0->unk_28 = BgScrollContext_New(0, 160, (2 * 0xffff) / 360, 12 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_04.battleAnimSystem, 1), 0, BattleAnimUtil_MakeBgOffsetValue(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.battleAnimSystem));
-        v0->unk_04.unk_00++;
+        v0->unk_04.state++;
         break;
     case 2:
         v0->unk_00++;
@@ -707,7 +707,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
 
         BgScrollContext_Free(v0->unk_28);
         AlphaFadeContext_Init(&v0->unk_2C, 2, 16, 16, 2, 16);
-        v0->unk_04.unk_00++;
+        v0->unk_04.state++;
         break;
     case 3:
         if (AlphaFadeContext_IsDone(&v0->unk_2C) == 0) {
@@ -720,7 +720,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
             v2 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_04.battleAnimSystem));
             PokemonSprite_SetAttribute(v2, MON_SPRITE_HIDE, 0);
         }
-        v0->unk_04.unk_00++;
+        v0->unk_04.state++;
         break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -740,7 +740,7 @@ void ov12_0222E1A8(BattleAnimSystem *param0)
     UnkStruct_ov12_0222E080 *v0 = NULL;
 
     v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E080));
-    ov12_0223595C(param0, &v0->unk_04);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_04);
 
     v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.battleAnimSystem, 0);
     ManagedSprite_SetExplicitOamMode(v0->unk_20, GX_OAM_MODE_OBJWND);
@@ -814,7 +814,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E25C));
     v0->unk_1C = 10;
 
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     {
         int v1;
@@ -953,7 +953,7 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E390));
     v0->unk_20 = 10;
 
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     {
         int v1;

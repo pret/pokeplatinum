@@ -707,18 +707,18 @@ void BattleAnimUtil_GetSpritePos(ManagedSprite *sprite, Point2D *pos)
     ManagedSprite_GetPositionXY(sprite, &pos->x, &pos->y);
 }
 
-void ov12_0223595C(BattleAnimSystem *system, UnkStruct_ov12_0223595C *param1)
+void BattleAnimSystem_GetCommonData(BattleAnimSystem *system, BattleAnimScriptFuncCommon *common)
 {
-    param1->unk_00 = 0;
-    param1->unk_01 = 0;
-    param1->unk_02 = 0;
-    param1->unk_03 = 0;
-    param1->battleAnimSystem = system;
-    param1->spriteSystem = BattleAnimSystem_GetSpriteSystem(system);
-    param1->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(system);
-    param1->primarySpriteManager = BattleAnimSystem_GetPrimarySpriteManager(system);
-    param1->bgConfig = BattleAnimSystem_GetBgConfig(system);
-    param1->paletteData = BattleAnimSystem_GetPaletteData(system);
+    common->state = 0;
+    common->counter1 = 0;
+    common->counter2 = 0;
+    common->unk_03 = 0;
+    common->battleAnimSystem = system;
+    common->spriteSystem = BattleAnimSystem_GetSpriteSystem(system);
+    common->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(system);
+    common->primarySpriteManager = BattleAnimSystem_GetPrimarySpriteManager(system);
+    common->bgConfig = BattleAnimSystem_GetBgConfig(system);
+    common->paletteData = BattleAnimSystem_GetPaletteData(system);
 }
 
 void BattleAnimUtil_GetBattlerSprites(BattleAnimSystem *system, int targets, BattleAnimSpriteInfo *sprites, int *count)

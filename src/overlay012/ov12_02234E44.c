@@ -26,7 +26,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_02234E44 unk_00;
-    UnkStruct_ov12_0223595C unk_18;
+    BattleAnimScriptFuncCommon unk_18;
     ManagedSprite *unk_34;
     ManagedSprite *unk_38;
     ManagedSprite *unk_3C;
@@ -71,18 +71,18 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02234E54 *v0 = (UnkStruct_ov12_02234E54 *)param1;
 
-    switch (v0->unk_18.unk_00) {
+    switch (v0->unk_18.state) {
     case 0:
         ov12_02234E54(v0, 2);
-        v0->unk_18.unk_00++;
+        v0->unk_18.state++;
         break;
     case 1:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3, v0->unk_00.unk_14, v0->unk_00.unk_16);
-        v0->unk_18.unk_00++;
+        v0->unk_18.state++;
         break;
     case 2:
         if (v0->unk_40 > 20) {
-            v0->unk_18.unk_00++;
+            v0->unk_18.state++;
         } else {
             v0->unk_40++;
         }
@@ -101,7 +101,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
             ManagedSprite_SetDrawFlag(v0->unk_34, 0);
             ManagedSprite_SetDrawFlag(v0->unk_38, 0);
             ManagedSprite_SetDrawFlag(v0->unk_3C, 0);
-            v0->unk_18.unk_00++;
+            v0->unk_18.state++;
         }
 
         G2_ChangeBlendAlpha(v0->unk_00.unk_14, v0->unk_00.unk_16);
@@ -141,7 +141,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 {
     UnkStruct_ov12_02234E54 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234E54));
 
-    ov12_0223595C(param0, &v0->unk_18);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_18);
 
     v0->unk_00 = (*param1);
     v0->unk_34 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSystem, 0);

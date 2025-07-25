@@ -662,14 +662,14 @@ BOOL ShakeContext_Update(XYTransformContext *ctx)
     return FALSE;
 }
 
-BOOL ov12_0222619C(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3)
+BOOL ShakeContext_UpdateAndApply(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite)
 {
-    if (ShakeContext_Update(param0)) {
-        XYTransformContext_ApplyPosOffsetToMon(param0, param3, param1, param2);
-        return 1;
+    if (ShakeContext_Update(ctx)) {
+        XYTransformContext_ApplyPosOffsetToMon(ctx, sprite, cx, cy);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void Afterimage_Init(AfterimageContext *ctx, XYTransformContext *transformCtx, XYTransformFunc transformFunc, s16 x, s16 y, u16 delay, u8 count, u8 mode, ManagedSprite *sprite0, ManagedSprite *sprite1, ManagedSprite *sprite2, ManagedSprite *sprite3)
