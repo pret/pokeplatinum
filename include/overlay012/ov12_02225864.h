@@ -152,11 +152,11 @@ int BattleAnimUtil_GetTransformDirectionY(BattleAnimSystem *param0, int param1);
 fx32 BattleAnimMath_GetStepSize(fx32 param0, fx32 param1, u32 param2);
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2);
 void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *param0, ManagedSprite *param1, s16 param2, s16 param3);
-void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1);
+void ScaleLerpContext_ApplyToSprite(XYTransformContext *param0, ManagedSprite *param1);
 void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *param0, PokemonSprite *param1, s16 param2, s16 param3);
 #define RevolutionContext_Apply XYTransformContext_ApplyPosOffsetToMon
 #define PosLerpContext_Apply    XYTransformContext_ApplyPosOffsetToMon
-void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1);
+void ScaleLerpContext_ApplyToMon(XYTransformContext *param0, PokemonSprite *param1);
 void RevolutionContext_Init(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7);
 void ov12_02225A8C(XYTransformContext *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, u16 param7);
 BOOL RevolutionContext_Update(XYTransformContext *param0);
@@ -183,8 +183,8 @@ void BattleAnimUtil_ConvertRelativeToAffineScale(XYTransformContext *param0, f32
 s16 BattleAnimUtil_GetGroundAnchoredScaleOffset(s16 param0, int param1, fx32 param2);
 void BattleAnimUtil_SetPokemonSpriteAnchoredPosition(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, enum BattleAnimAnchorType param4);
 void BattleAnimUtil_SetSpriteAnchoredPosition(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, enum BattleAnimAnchorType param4);
-BOOL ov12_022260A8(XYTransformContext *param0, ManagedSprite *param1);
-BOOL ov12_022260C8(XYTransformContext *param0, PokemonSprite *param1);
+BOOL ScaleLerpContext_UpdateAndApplyToSprite(XYTransformContext *param0, ManagedSprite *param1);
+BOOL ScaleLerpContext_UpdateAndApplyToMon(XYTransformContext *param0, PokemonSprite *param1);
 BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1);
 void ShakeContext_Init(XYTransformContext *ctx, s16 extentX, s16 extentY, u32 interval, u32 amount);
 BOOL ShakeContext_Update(XYTransformContext *param0);

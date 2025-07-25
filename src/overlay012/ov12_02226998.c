@@ -48,7 +48,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Magnitude,
     BattleAnimScriptFunc_Return,
     BattleAnimScriptFunc_VitalThrow,
-    ov12_02232024,
+    BattleAnimScriptFunc_Swagger,
     ov12_02233178,
     ov12_02227828,
     ov12_0222797C,
