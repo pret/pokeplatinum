@@ -70,7 +70,7 @@ void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHea
             sHeapInfo.heapHandles[i] = NNS_FndCreateExpHeap(ptr, templates[i].size);
             sHeapInfo.heapIdxs[i] = i;
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
     }
 
@@ -164,7 +164,7 @@ void Heap_Destroy(enum HeapID heapID) {
         if ((parentHeap != NNS_FND_HEAP_INVALID_HANDLE) && (childRaw != NULL)) {
             NNS_FndFreeToExpHeap(parentHeap, childRaw);
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         sHeapInfo.heapHandles[sHeapInfo.heapIdxs[heapID]] = (void *)0;
@@ -262,7 +262,7 @@ void Heap_Free(void *ptr) {
             OS_RestoreInterrupts(intrMode);
         }
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -278,7 +278,7 @@ void Heap_FreeExplicit(u32 heapID, void *ptr) {
         ptr -= sizeof(MemoryBlock);
 
         if (((MemoryBlock *)ptr)->heapID != heapID) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
 
         NNS_FndFreeToExpHeap(heap, ptr);
@@ -286,7 +286,7 @@ void Heap_FreeExplicit(u32 heapID, void *ptr) {
         GF_ASSERT(sHeapInfo.numMemBlocks[heapID]);
         sHeapInfo.numMemBlocks[heapID]--;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -297,7 +297,7 @@ u32 HeapExp_FndGetTotalFreeSize(u32 heapID) {
         return NNS_FndGetTotalFreeSizeForExpHeap(heap);
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -307,7 +307,7 @@ void HeapExp_FndInitAllocator(NNSFndAllocator *pAllocator, u32 heapID, int align
         NNSFndHeapHandle heap = sHeapInfo.heapHandles[index];
         NNS_FndInitAllocatorForExpHeap(pAllocator, heap, alignment);
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -324,7 +324,7 @@ void Heap_Realloc(void *ptr, u32 newSize) {
 
         NNS_FndResizeForMBlockExpHeap(heap, ptr, newSize);
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
