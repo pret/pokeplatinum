@@ -203,19 +203,19 @@ enum BunearyAnimState {
 };
 
 enum ChoicesCase {
-    CC_YESNO,
+    CC_YESNO = 0,
     CC_INFO,
     CC_RIVAL_NAMES,
 };
 
 enum DisplayTextBlockCase {
-    DTBC_CONTROL_INFO_0,
+    DTBC_CONTROL_INFO_0 = 0,
     DTBC_ADVENTURE_INFO,
     DTBC_CONTROL_INFO_1,
 };
 
 enum DisplayTextBlockState {
-    DTB_STATE_INIT,
+    DTB_STATE_INIT = 0,
     DTB_STATE_COPY_WINDOW_TO_VRAM,
     DTB_STATE_FADE_IN_TEXT,
     DTB_STATE_WAIT_FOR_INPUT,
@@ -297,17 +297,17 @@ int RowanIntroTv_Main(ApplicationManager *appMan, int *state);
 int RowanIntroTv_Exit(ApplicationManager *appMan, int *state);
 
 const ApplicationManagerTemplate sDummyApplicationManagerTemplate = {
-    RowanIntro_Init,
-    RowanIntro_Main,
-    RowanIntro_Exit,
-    FS_OVERLAY_ID_NONE,
+    .init = RowanIntro_Init,
+    .main = RowanIntro_Main,
+    .exit = RowanIntro_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
 static const ApplicationManagerTemplate sTvApplicationTemplate = {
-    RowanIntroTv_Init,
-    RowanIntroTv_Main,
-    RowanIntroTv_Exit,
-    FS_OVERLAY_ID_NONE,
+    .init = RowanIntroTv_Init,
+    .main = RowanIntroTv_Main,
+    .exit = RowanIntroTv_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
 BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
@@ -497,16 +497,16 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
 {
     {
         UnkStruct_02099F80 banks = {
-            GX_VRAM_BG_128_B,
-            GX_VRAM_BGEXTPLTT_NONE,
-            GX_VRAM_SUB_BG_128_C,
-            GX_VRAM_SUB_BGEXTPLTT_NONE,
-            GX_VRAM_OBJ_NONE,
-            GX_VRAM_OBJEXTPLTT_NONE,
-            GX_VRAM_SUB_OBJ_NONE,
-            GX_VRAM_SUB_OBJEXTPLTT_NONE,
-            GX_VRAM_TEX_NONE,
-            GX_VRAM_TEXPLTT_NONE
+            .unk_00 = GX_VRAM_BG_128_B,
+            .unk_04 = GX_VRAM_BGEXTPLTT_NONE,
+            .unk_08 = GX_VRAM_SUB_BG_128_C,
+            .unk_0C = GX_VRAM_SUB_BGEXTPLTT_NONE,
+            .unk_10 = GX_VRAM_OBJ_NONE,
+            .unk_14 = GX_VRAM_OBJEXTPLTT_NONE,
+            .unk_18 = GX_VRAM_SUB_OBJ_NONE,
+            .unk_1C = GX_VRAM_SUB_OBJEXTPLTT_NONE,
+            .unk_20 = GX_VRAM_TEX_NONE,
+            .unk_24 = GX_VRAM_TEXPLTT_NONE
         };
 
         GXLayers_SetBanks(&banks);
@@ -518,10 +518,10 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
 
     {
         GraphicsModes graphicsModes = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D
+            .displayMode = GX_DISPMODE_GRAPHICS,
+            .mainBgMode = GX_BGMODE_0,
+            .subBgMode = GX_BGMODE_0,
+            .bg0As2DOr3D = GX_BG0_AS_2D
         };
 
         SetAllGraphicsModes(&graphicsModes);
@@ -926,51 +926,52 @@ const WindowTemplate sAdventureInfoTextWindow = {
 };
 
 static const ListMenuTemplate sChoiceBoxTemplate = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    0x0,
-    0x0,
-    0x0,
-    0xC,
-    0x0,
-    0x0,
-    0x1,
-    0xF,
-    0x2,
-    0x0,
-    0x0,
-    PAGER_MODE_NONE,
-    FONT_SYSTEM,
-    0x0
+    .choices = NULL,
+    .cursorCallback = NULL,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = 0x0,
+    .maxDisplay = 0x0,
+    .headerXOffset = 0x0,
+    .textXOffset = 0xC,
+    .cursorXOffset = 0x0,
+    .yOffset = 0x0,
+    .textColorFg = 0x1,
+    .textColorBg = 0xF,
+    .textColorShadow = 0x2,
+    .letterSpacing = 0x0,
+    .lineSpacing = 0x0,
+    .pagerMode = PAGER_MODE_NONE,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 0x0,
+    .parent = NULL,
 };
 
 static const ChoiceInfo sYesNoChoiceInfos[] = {
-    { pl_msg_00000389_00034, 0x1 },
-    { pl_msg_00000389_00035, 0x2 }
+    { .textID = pl_msg_00000389_00034, .choiceIndex = 0x1 },
+    { .textID = pl_msg_00000389_00035, .choiceIndex = 0x2 }
 };
 
 static const ChoiceInfo sInfoChoiceInfos[] = {
-    { pl_msg_00000389_00031, 0x1 },
-    { pl_msg_00000389_00032, 0x2 },
-    { pl_msg_00000389_00033, 0x3 }
+    { .textID = pl_msg_00000389_00031, .choiceIndex = 0x1 },
+    { .textID = pl_msg_00000389_00032, .choiceIndex = 0x2 },
+    { .textID = pl_msg_00000389_00033, .choiceIndex = 0x3 }
 };
 
 static const ChoiceInfo sRivalNameChoiceInfos[] = {
-    { pl_msg_00000389_00036, 0x1 },
-    { pl_msg_00000389_00037, 0x2 },
-    { pl_msg_00000389_00038, 0x3 },
-    { pl_msg_00000389_00039, 0x4 },
-    { pl_msg_00000389_00040, 0x5 }
+    { .textID = pl_msg_00000389_00036, .choiceIndex = 0x1 },
+    { .textID = pl_msg_00000389_00037, .choiceIndex = 0x2 },
+    { .textID = pl_msg_00000389_00038, .choiceIndex = 0x3 },
+    { .textID = pl_msg_00000389_00039, .choiceIndex = 0x4 },
+    { .textID = pl_msg_00000389_00040, .choiceIndex = 0x5 }
 };
 
 static const ChoiceInfo sUnusedRivalNameChoiceInfos[] = {
-    { pl_msg_00000389_00036, 0x1 },
-    { pl_msg_00000389_00041, 0x2 },
-    { pl_msg_00000389_00042, 0x3 },
-    { pl_msg_00000389_00043, 0x4 },
-    { pl_msg_00000389_00044, 0x5 }
+    { .textID = pl_msg_00000389_00036, .choiceIndex = 0x1 },
+    { .textID = pl_msg_00000389_00041, .choiceIndex = 0x2 },
+    { .textID = pl_msg_00000389_00042, .choiceIndex = 0x3 },
+    { .textID = pl_msg_00000389_00043, .choiceIndex = 0x4 },
+    { .textID = pl_msg_00000389_00044, .choiceIndex = 0x5 }
 };
 
 static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endEarly)
@@ -1147,7 +1148,12 @@ static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCa
     return isFinished;
 }
 
-static BOOL RowanIntro_DisplayTextBlock(RowanIntro *manager, u32 textID, enum DisplayTextBlockCase whichCase, int param3, int param4)
+static BOOL RowanIntro_DisplayTextBlock(
+    RowanIntro *manager,
+    u32 textID,
+    enum DisplayTextBlockCase whichCase,
+    int param3,
+    int param4)
 {
     // param3 and param4 have different uses depending on what value is passed to whichCase
 
@@ -1807,7 +1813,7 @@ static BOOL RowanIntro_AnimateAvatarShrink(RowanIntro *manager)
             BG_LAYER_MAIN_1,
             0,
             0,
-            0,
+            FALSE,
             manager->heapID);
     }
 
