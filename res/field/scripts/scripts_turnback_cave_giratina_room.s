@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_giratina_room.h"
 
-    .data
 
     ScriptEntry _001C
     ScriptEntry _0037

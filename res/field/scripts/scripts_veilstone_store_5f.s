@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_5f.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _002D

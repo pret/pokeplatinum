@@ -90,14 +90,13 @@ static const BgTemplate sMoveTesterBgTemplate = {
     .y = 0,
     .bufferSize = 0x800,
     .baseTile = 0,
-    .screenSize = 1,
+    .screenSize = BG_SCREEN_SIZE_256x256,
     .colorMode = GX_BG_COLORMODE_16,
     .screenBase = GX_BG_SCRBASE_0x7000,
     .charBase = GX_BG_CHARBASE_0x00000,
     .bgExtPltt = GX_BG_EXTPLTT_01,
     .priority = 2,
     .areaOver = 0,
-    .dummy = 0,
     .mosaic = FALSE
 };
 
@@ -150,7 +149,7 @@ static void SetupSprites(PoketchMoveTesterGraphics *graphics)
 
     for (index = 0; index < 5; index++) {
         graphics->exclamSprites[index] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &sPoketchMoveTester_AnimDataExclamation, &graphics->spriteData);
-        PoketchAnimation_SetSpritePosition(graphics->exclamSprites[index], ((44 + 8 * index) << FX32_SHIFT), FX32_CONST(48));
+        PoketchAnimation_SetSpritePosition(graphics->exclamSprites[index], (44 + 8 * index) << FX32_SHIFT, FX32_CONST(48));
     }
 }
 

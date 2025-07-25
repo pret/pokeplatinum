@@ -3,7 +3,6 @@
 #include "generated/tutor_locations.h"
 #include "res/text/bank/common_strings.h"
 
-    .data
 
     ScriptEntry Common_HandleSignpostInput
     ScriptEntry _034C

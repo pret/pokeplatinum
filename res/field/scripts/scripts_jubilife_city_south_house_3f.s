@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city_south_house_3f.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

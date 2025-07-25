@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_4f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _012C

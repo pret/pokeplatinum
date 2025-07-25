@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 
-    .data
 
     ScriptEntry _0066
     ScriptEntry _01F9

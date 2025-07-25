@@ -7,7 +7,6 @@
 #include "constants/narc.h"
 
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay119/struct_ov119_021D0FD0.h"
@@ -19,6 +18,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -38,12 +38,11 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 void ov119_021D0D80(void);
 void ov119_021D0DA8(void);
-GenericPointerData *ov119_021D0DD4(void);
+G3DPipelineBuffers *ov119_021D0DD4(void);
 void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
@@ -67,9 +66,9 @@ void ov119_021D0DA8(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-GenericPointerData *ov119_021D0DD4(void)
+G3DPipelineBuffers *ov119_021D0DD4(void)
 {
-    return sub_02024220(HEAP_ID_71, 0, 2, 0, 2, ov119_021D0DF4);
+    return G3DPipeline_Init(HEAP_ID_71, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov119_021D0DF4);
 }
 
 void ov119_021D0DF4(void)
@@ -145,49 +144,46 @@ void ov119_021D0EB8(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                2,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 2,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -208,19 +204,18 @@ void ov119_021D0EB8(BgConfig *param0)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x6800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x6800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -262,12 +257,12 @@ void ov119_021D1004(void)
 
 void ov119_021D1028(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_71);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1048(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_71);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
@@ -276,7 +271,7 @@ void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
 
     LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 20, 15, param2, v0);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), v0, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, (20 + (18 + 12)), 13, 0, v0);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, 20 + (18 + 12), 13, 0, v0);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), v0, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
@@ -301,7 +296,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
 
     Window_FillTilemap(param0, 15);
 
-    v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0357, HEAP_ID_71);
+    v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_71);
     v3 = StringTemplate_Default(HEAP_ID_71);
     v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, HEAP_ID_71);
@@ -332,7 +327,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     {
         int v1;
         Strbuf *v2;
-        MessageLoader *v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0357, HEAP_ID_71);
+        MessageLoader *v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_71);
 
         for (v1 = 0; v1 < 2; v1++) {
             v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);
@@ -352,7 +347,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     v0.suppressCursor = FALSE;
     v0.loopAround = TRUE;
 
-    Window_DrawStandardFrame(param2, 1, (20 + (18 + 12)), 13);
+    Window_DrawStandardFrame(param2, 1, 20 + (18 + 12), 13);
     param0->unk_04.unk_48 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
 }
 
@@ -420,7 +415,7 @@ static ParticleSystem *ov119_021D13EC(int heapID)
     camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
-        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+        Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
     }
 
     return v0;

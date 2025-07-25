@@ -1151,19 +1151,18 @@ static void ov23_0223EC34(BgConfig *bgConfig)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x1000,
-            0,
-            3,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xc000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x1000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xc000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v2, 0);
@@ -1173,19 +1172,18 @@ static void ov23_0223EC34(BgConfig *bgConfig)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x1000,
-            0,
-            3,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xd000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x1000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xd000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v3, 0);
@@ -1194,19 +1192,18 @@ static void ov23_0223EC34(BgConfig *bgConfig)
     }
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x1000,
-            0,
-            3,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_23,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x1000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_512x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v4, 0);
@@ -1215,19 +1212,18 @@ static void ov23_0223EC34(BgConfig *bgConfig)
     }
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_23,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &v5, 0);
@@ -1295,13 +1291,13 @@ static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0)
 
     SetVBlankCallback(ov23_022411E8, bgConfig);
 
-    ov23_02253E2C(ov23_0224219C(), bgConfig, (512 - (18 + 12)), (((512 - (18 + 12)) - 73) - (27 * 4)));
+    ov23_02253E2C(ov23_0224219C(), bgConfig, 512 - (18 + 12), ((512 - (18 + 12)) - 73) - (27 * 4));
     ov23_0223EC34(bgConfig);
 
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
-    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_3, (512 - (18 + 12)), 10, 0, HEAP_ID_MINING);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_3, 512 - (18 + 12), 10, 0, HEAP_ID_MINING);
 
     {
         NARC *narc;
@@ -1375,7 +1371,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     Unk_ov23_02257740->bgConfig = NULL;
 
     Heap_Destroy(HEAP_ID_MINING);
-    ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->bgConfig, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
+    ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->bgConfig, 1024 - (18 + 12), ((1024 - (18 + 12)) - 73) - (27 * 4));
 }
 
 static void ov23_0223F118(SysTask *param0, void *param1)
@@ -1393,7 +1389,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         (v0->state)++;
         break;
     case 2:
@@ -1420,7 +1416,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 6, 1, HEAP_ID_MINING);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1535,7 +1531,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         SpriteList_Update(Unk_ov23_02257740->spriteList);
         ov23_02254044(ov23_0224219C());
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 6, 1, HEAP_ID_MINING);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
         (v0->state)++;
         break;
     case 19:
@@ -1554,7 +1550,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             sub_02039734();
             sub_020594FC();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
+            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
             (v0->state)++;
             break;
         }
@@ -1598,7 +1594,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 23:
         SpriteList_Update(Unk_ov23_02257740->spriteList);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_2, FADE_TYPE_UNK_2, FADE_TO_BLACK, 15, 1, HEAP_ID_MINING);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_2, FADE_TYPE_UNK_2, COLOR_BLACK, 15, 1, HEAP_ID_MINING);
         Sound_PlayEffect(SEQ_SE_DP_UG_001);
         v0->state = 24;
         break;
@@ -1833,7 +1829,7 @@ static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_
     int typesOfRocks = Mining_GetTotalTypesOfRocks();
     int selectedPlates[MAX_BURIED_ITEMS];
 
-    param2->itemCount = MATH_Rand32(&Unk_ov23_02257740->rand, (MAX_BURIED_ITEMS - 1)) + 2;
+    param2->itemCount = MATH_Rand32(&Unk_ov23_02257740->rand, MAX_BURIED_ITEMS - 1) + 2;
 
     if (Underground_HasNeverMined(underground)) {
         param2->itemCount = 3;
@@ -2819,7 +2815,7 @@ static void ov23_0224119C(void)
 {
     {
         CharTransferTemplate v0 = {
-            20, (2048 * 2), (2048 * 2), 29
+            20, 2048 * 2, 2048 * 2, 29
         };
 
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
@@ -3088,7 +3084,7 @@ BOOL ov23_022415B8(Strbuf *param0)
 void ov23_0224160C(void)
 {
     if (Unk_ov23_02257740) {
-        MI_CpuClear8(Unk_ov23_02257740->unk_908, (7 + 1));
+        MI_CpuClear8(Unk_ov23_02257740->unk_908, 7 + 1);
     }
 }
 

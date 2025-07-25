@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_214_gate_to_veilstone_city.h"
 
-    .data
 
     ScriptEntry _0068
     ScriptEntry _000A

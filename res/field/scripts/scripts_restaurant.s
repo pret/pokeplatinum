@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/restaurant.h"
 
-    .data
 
     ScriptEntry _031E
     ScriptEntry _0058

@@ -7,7 +7,6 @@
 #define LOCALID_MOVE_TO_LEARN VAR_0x8001
 #define LOCALID_ROTOM_FORM VAR_0x8004
 
-    .data
 
     ScriptEntry RotomsRoom_MicrowaveOven
     ScriptEntry RotomsRoom_Refrigerator
@@ -293,7 +292,7 @@ RotomsRoom_PokemonEnteredMotor:
 RotomsRoom_Text_PokemonTryingToLearnMove:
     BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
     BufferMoveName 1, LOCALID_MOVE_TO_LEARN
-    Message RotomsRoom_Text_PokemonEnteredTheMotorTryingToLearnMove
+    Message RotomsRoom_Text_PokemonEnteredMotorTryingToLearnMove
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
     GoTo RotomsRoom_LearnMove

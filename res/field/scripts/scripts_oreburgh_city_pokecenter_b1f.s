@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city_pokecenter_b1f.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd

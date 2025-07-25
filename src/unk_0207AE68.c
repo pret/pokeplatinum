@@ -22,6 +22,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -49,10 +50,8 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
 #include "vram_transfer.h"
@@ -116,7 +115,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     PaletteData_SetAutoTransparent(v0->unk_14, 1);
     PaletteData_AllocBuffer(v0->unk_14, 0, 0x200, heapID);
     PaletteData_AllocBuffer(v0->unk_14, 1, 0x200, heapID);
-    PaletteData_AllocBuffer(v0->unk_14, 2, (((16 - 2) * 16) * sizeof(u16)), heapID);
+    PaletteData_AllocBuffer(v0->unk_14, 2, ((16 - 2) * 16) * sizeof(u16), heapID);
     PaletteData_AllocBuffer(v0->unk_14, 3, 0x200, heapID);
 
     v0->unk_00 = BgConfig_New(heapID);
@@ -128,7 +127,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     sub_0207C664();
     sub_0207C730();
     sub_0207C1CC(v0, v0->unk_00);
-    Window_Add(v0->unk_00, v0->unk_04, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    Window_Add(v0->unk_00, v0->unk_04, 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(v0->unk_04, 0xff);
     Window_DrawMessageBoxWithScrollCursor(v0->unk_04, 0, 1, 10);
 
@@ -138,7 +137,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     v0->unk_66 = 2;
     v0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, heapID);
     v0->unk_0C = StringTemplate_Default(heapID);
-    v0->unk_10 = Strbuf_Init((2 * 160), heapID);
+    v0->unk_10 = Strbuf_Init(2 * 160, heapID);
     v0->unk_3C = Heap_Alloc(heapID, sizeof(PokemonSummary));
 
     MI_CpuClearFast(v0->unk_3C, sizeof(PokemonSummary));
@@ -152,7 +151,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     v0->unk_7C = param10;
 
     sub_0207C498(v0);
-    PaletteData_StartFade(v0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 16, 0, 0x0);
+    PaletteData_StartFade(v0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 16, 0, 0x0);
     PokemonSpriteManager_StartFadeAll(v0->unk_18, 16, 0, 0, 0x0);
 
     v0->unk_58 = sub_0201567C(v0->unk_14, 0, 0xb, heapID);
@@ -188,8 +187,8 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
 {
     int v0;
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     SetVBlankCallback(NULL, NULL);
     Windows_Delete(param0->unk_04, 1);
     PaletteData_FreeBuffer(param0->unk_14, 0);
@@ -199,7 +198,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
     PaletteData_Free(param0->unk_14);
     PokemonSpriteManager_Free(param0->unk_18);
     sub_02015FB8(param0->unk_44);
-    sub_020242C4(param0->unk_34);
+    G3DPipelineBuffers_Free(param0->unk_34);
     sub_0207C460(param0->unk_00);
     MessageLoader_Free(param0->unk_08);
     StringTemplate_Free(param0->unk_0C);
@@ -241,7 +240,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     }
 
     if ((param0->unk_7C & 0x1) && (param0->unk_64 == 8) && (gSystem.pressedKeys & PAD_BUTTON_B)) {
-        PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 0, 0, 16, 0x7fff);
+        PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xc00 ^ 0xffff, 0, 0, 16, 0x7fff);
         param0->unk_64 = 41;
     }
 
@@ -350,7 +349,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             sub_0207C8C4(param0->unk_30, 5);
             sub_0207C8C4(param0->unk_30, 6);
             sub_0207C8C4(param0->unk_30, 10);
-            PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 2, 0, 16, 0x7fff);
+            PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xc00 ^ 0xffff, 2, 0, 16, 0x7fff);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_X, 0x0);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_Y, 0x0);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, 0x100);
@@ -370,7 +369,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_0207C8C4(param0->unk_30, 12);
-                PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 4, 16, 0, 0x7fff);
+                PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xc00 ^ 0xffff, 4, 16, 0, 0x7fff);
                 PokemonSpriteManager_StartFadeAll(param0->unk_18, 16, 0, 3, 0x7fff);
                 Sound_PlayEffect(SEQ_SE_DP_W080);
                 param0->unk_64++;
@@ -481,7 +480,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->heapID)) {
         case 0:
             param0->unk_64 = 22;
-            PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+            PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
             PokemonSpriteManager_StartFadeAll(param0->unk_18, 0, 16, 0, 0x0);
             break;
         case 0xfffffffe:
@@ -491,8 +490,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 22:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
             sub_0207C460(param0->unk_00);
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
@@ -518,7 +517,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 0);
             PokemonSprite_ScheduleReloadFromNARC(param0->unk_1C[0]);
             PokemonSprite_ScheduleReloadFromNARC(param0->unk_1C[1]);
-            PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 16, 0, 0x0);
+            PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 16, 0, 0x0);
             PokemonSpriteManager_StartFadeAll(param0->unk_18, 16, 0, 0, 0x0);
             sub_02039734();
             param0->unk_64++;
@@ -609,7 +608,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
         break;
     case 39:
-        PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+        PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
         PokemonSpriteManager_StartFadeAll(param0->unk_18, 0, 16, 0, 0x0);
         param0->unk_64++;
         break;
@@ -627,7 +626,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, 0x0);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, 0x0);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
-            PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 0, 16, 0, 0x7fff);
+            PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xc00 ^ 0xffff, 0, 16, 0, 0x7fff);
             PokemonSpriteManager_StartFadeAll(param0->unk_18, 16, 0, 0, 0x7fff);
             param0->unk_72 = 0;
             param0->unk_73 = 0;
@@ -665,7 +664,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
     case 44:
         if (Text_IsPrinterActive(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
-                PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+                PaletteData_StartFade(param0->unk_14, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
                 PokemonSpriteManager_StartFadeAll(param0->unk_18, 0, 16, 0, 0x0);
                 param0->unk_64++;
             }
@@ -794,49 +793,46 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -854,19 +850,18 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x6800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x6800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 

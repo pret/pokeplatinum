@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battleground.h"
 
-    .data
 
     ScriptEntry _015A
     ScriptEntry _0183

@@ -93,8 +93,8 @@ void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapID
 
     memset(newAppData, 0, appDataSize);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     return newAppData;
 }
@@ -113,7 +113,6 @@ void MainMenuUtil_InitBG(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = FALSE
     };
 

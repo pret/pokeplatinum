@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier.h"
 
-    .data
 
     ScriptEntry _0460
     ScriptEntry _00DB

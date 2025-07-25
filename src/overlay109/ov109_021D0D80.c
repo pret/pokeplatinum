@@ -5,6 +5,7 @@
 
 #include "generated/game_records.h"
 #include "generated/journal_online_events.h"
+#include "generated/text_banks.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_defs/struct_02073838.h"
@@ -480,7 +481,7 @@ int ov109_021D0D80(ApplicationManager *appMan, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_95);
 
     return 1;
 }
@@ -690,7 +691,7 @@ static int ov109_021D1100(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1124(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (ov109_021D3AB8(param0, (1 << 3)) == 1) {
+    if (ov109_021D3AB8(param0, 1 << 3) == 1) {
         GF_ASSERT(param0->unk_2C.unk_04 >= 2);
         GF_ASSERT(param0->unk_2C.unk_00 != 0);
         param0->unk_00 = 10;
@@ -728,7 +729,7 @@ static int ov109_021D11A0(UnkStruct_ov109_021D0F70 *param0)
 {
     int v0;
     u32 v1 = (u32)param0->unk_24;
-    v0 = CommSys_SendDataHuge(131, (void *)v1, (236 * 6 + 4 * 2));
+    v0 = CommSys_SendDataHuge(131, (void *)v1, 236 * 6 + 4 * 2);
 
     if (v0) {
         param0->unk_00 = 14;
@@ -870,7 +871,7 @@ static int ov109_021D1390(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D13BC(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (ov109_021D3AB8(param0, (1 << 2)) == 1) {
+    if (ov109_021D3AB8(param0, 1 << 2) == 1) {
         param0->unk_00 = 22;
 
         return 1;
@@ -1079,7 +1080,7 @@ static int ov109_021D167C(UnkStruct_ov109_021D0F70 *param0)
     u32 v0;
     UnkStruct_ov109_021D2D78 *v1 = param0->unk_28;
 
-    ov109_021D39FC(param0, (FX32_ONE * 4));
+    ov109_021D39FC(param0, FX32_ONE * 4);
     param0->unk_28 = ov109_021D2DF8(param0);
 
     if (param0->unk_28->unk_0C != CommSys_CurNetId()) {
@@ -1356,7 +1357,7 @@ static int ov109_021D1A6C(UnkStruct_ov109_021D0F70 *param0)
     if (CommTiming_IsSyncState(202)) {
         ov109_021D3B70(param0, param0->unk_28->unk_0C);
         sub_02038ED4(&param0->unk_04);
-        param0->unk_DC8 = Window_AddWaitDial(&param0->unk_C9C.unk_0C[0], (1 + 9));
+        param0->unk_DC8 = Window_AddWaitDial(&param0->unk_C9C.unk_0C[0], 1 + 9);
         param0->unk_00 = 45;
     }
 
@@ -1450,7 +1451,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, param0->unk_1C, 1);
@@ -1686,19 +1687,18 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_D84, BG_LAYER_MAIN_1, &v1, 0);
@@ -1708,19 +1708,18 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0800,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0800,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_D84, BG_LAYER_MAIN_2, &v2, 0);
@@ -1729,19 +1728,18 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_D84, BG_LAYER_MAIN_3, &v3, 0);
@@ -1750,19 +1748,18 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1000,
-            GX_BG_CHARBASE_0x14000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x14000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_D84, BG_LAYER_SUB_2, &v4, 0);
@@ -1771,19 +1768,18 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x1800,
-            GX_BG_CHARBASE_0x1c000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1800,
+            .charBase = GX_BG_CHARBASE_0x1c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0->unk_D84, BG_LAYER_SUB_3, &v5, 0);
@@ -1795,29 +1791,29 @@ static void ov109_021D2004(UnkStruct_ov109_021D0F70 *param0)
 {
     void *v0 = ov109_021D3A2C(param0, 17, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
-    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 0, (32 * 0), (32 * 2));
+    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 0, 32 * 0, 32 * 2);
     Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 20, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_D90);
-    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 1, (32 * 0), (32 * 2));
+    PaletteData_LoadBuffer(param0->unk_D9C, param0->unk_D90->pRawData, 1, 32 * 0, 32 * 2);
     Heap_Free(v0);
 
     PaletteData_BlendMulti(param0->unk_D9C, 1, 0xffff, 8, 0);
 
     v0 = ov109_021D3A2C(param0, 16, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
-    Bg_LoadTiles(param0->unk_D84, 3, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
+    Bg_LoadTiles(param0->unk_D84, 3, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, 32 * 0);
     Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 22, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
-    Bg_LoadTiles(param0->unk_D84, 6, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
+    Bg_LoadTiles(param0->unk_D84, 6, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, 32 * 0);
     Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 21, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_D8C);
-    Bg_LoadTiles(param0->unk_D84, 7, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, (32 * 0));
+    Bg_LoadTiles(param0->unk_D84, 7, param0->unk_D8C->pRawData, param0->unk_D8C->szByte, 32 * 0);
     Heap_Free(v0);
 
     v0 = ov109_021D3A2C(param0, 19, 0);
@@ -2000,11 +1996,11 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
     LoadStandardWindowGraphics(param0->unk_D84, BG_LAYER_MAIN_1, 1, 15, 0, HEAP_ID_95);
-    LoadMessageBoxGraphics(param0->unk_D84, BG_LAYER_MAIN_1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, HEAP_ID_95);
+    LoadMessageBoxGraphics(param0->unk_D84, BG_LAYER_MAIN_1, 1 + 9, 14, param0->unk_CC->unk_14.unk_04, HEAP_ID_95);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
-    v1->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0376, HEAP_ID_95);
+    v1->unk_04 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPIN_TRADE, HEAP_ID_95);
     v1->unk_08 = StringTemplate_Default(HEAP_ID_95);
 
     for (v0 = 0; v0 < 1; v0++) {
@@ -2047,7 +2043,7 @@ static void ov109_021D2634(UnkStruct_ov109_021D0F70 *param0, u32 param1)
     Window *v1 = &v0->unk_0C[0];
 
     Window_FillTilemap(v1, 15);
-    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 14);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 14);
     Window_FillTilemap(v1, 15);
     MessageLoader_GetStrbuf(v0->unk_04, param1, v0->unk_6C);
     Text_AddPrinterWithParams(v1, FONT_MESSAGE, v0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -2068,7 +2064,7 @@ static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const T
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
-    Window_DrawMessageBoxWithScrollCursor(v2, 1, (1 + 9), 14);
+    Window_DrawMessageBoxWithScrollCursor(v2, 1, 1 + 9, 14);
     Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v2);
@@ -2087,7 +2083,7 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
     Strbuf_Free(v0);
-    Window_DrawMessageBoxWithScrollCursor(v2, 1, (1 + 9), 14);
+    Window_DrawMessageBoxWithScrollCursor(v2, 1, 1 + 9, 14);
     Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v2);
@@ -3503,11 +3499,11 @@ static BOOL ov109_021D3C08(UnkStruct_ov109_021D0F70 *param0, fx32 param1, int pa
     ov109_021D39D4(&param1, -param0->unk_D4.unk_3C);
 
     v1 = param1;
-    ov109_021D39D4(&v1, (FX32_ONE * -4));
+    ov109_021D39D4(&v1, FX32_ONE * -4);
     v2 = ((v1) / FX32_ONE);
 
     v1 = param1;
-    ov109_021D39D4(&v1, (FX32_ONE * 5));
+    ov109_021D39D4(&v1, FX32_ONE * 5);
     v3 = ((v1) / FX32_ONE);
 
     v4 = &Unk_ov109_021D5C14[param2];
@@ -3708,8 +3704,8 @@ static const u32 Unk_ov109_021D5A80[5 + 1] = {
 static const fx32 Unk_ov109_021D5A98[5 + 1] = {
     0x0,
     0x0,
-    (FX32_ONE * -72),
-    (FX32_ONE * 0),
-    (FX32_ONE * -181),
+    FX32_ONE * -72,
+    FX32_ONE * 0,
+    FX32_ONE * -181,
     (FX32_ONE * 0)
 };

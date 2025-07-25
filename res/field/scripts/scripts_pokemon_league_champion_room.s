@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_champion_room.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000E

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poffin_house.h"
 
-    .data
 
     ScriptEntry _0070
     ScriptEntry _0083

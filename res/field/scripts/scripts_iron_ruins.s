@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_ruins.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _003D

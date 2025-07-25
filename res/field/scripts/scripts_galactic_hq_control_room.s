@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_control_room.h"
 
-    .data
 
     ScriptEntry _003E
     ScriptEntry _0055

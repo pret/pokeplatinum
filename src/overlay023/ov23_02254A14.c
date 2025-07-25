@@ -221,7 +221,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         ov23_02255EBC(1, v1);
         break;
     case 1:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_41, FADE_TYPE_UNK_41, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_41, FADE_TYPE_UNK_41, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ov23_02255EBC(2, v1);
         break;
     case 2:
@@ -254,7 +254,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         break;
     case 9:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_40, FADE_TYPE_UNK_40, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_40, FADE_TYPE_UNK_40, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ov23_02255EBC(10, v1);
         break;
     case 10:

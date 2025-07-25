@@ -20,7 +20,7 @@
 #include "system.h"
 #include "text.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct {
     int heapID;
@@ -104,8 +104,8 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
         Sound_StopBGM(SEQ_TITLE01, 0);
         Sound_ConfigureBGMChannelsAndReverb(SOUND_CHANNEL_CONFIG_DEFAULT);
         Sound_SetScene(SOUND_SCENE_NONE);
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
@@ -119,7 +119,7 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
         sub_0209A098(v0);
         SetVBlankCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, v0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, v0->heapID);
         *param1 = 1;
         break;
     case 1:
@@ -129,7 +129,7 @@ int sub_02099E38(ApplicationManager *appMan, int *param1)
         break;
     case 2:
         if (sub_0209A0F4(v0) == TRUE) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, v0->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, v0->heapID);
             *param1 = 3;
         }
         break;
@@ -195,25 +195,24 @@ static void sub_02099F80(UnkStruct_02099DFC *param0)
     }
     {
         BgTemplate v2 = {
-            0x0,
-            0x0,
-            0x800,
-            0x0,
-            0x1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0x0000,
-            GX_BG_CHARBASE_0x18000,
-            GX_BG_EXTPLTT_01,
-            0x1,
-            0x0,
-            0x0,
-            0x0
+            .x = 0x0,
+            .y = 0x0,
+            .bufferSize = 0x800,
+            .baseTile = 0x0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x18000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0x1,
+            .areaOver = 0x0,
+            .mosaic = FALSE,
         };
         Bg_InitFromTemplate(param0->unk_14, BG_LAYER_MAIN_0, &v2, 0);
         Bg_ClearTilemap(param0->unk_14, BG_LAYER_MAIN_0);
     }
 
-    LoadMessageBoxGraphics(param0->unk_14, BG_LAYER_MAIN_0, (512 - (18 + 12)), 2, 0, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_14, BG_LAYER_MAIN_0, 512 - (18 + 12), 2, 0, param0->heapID);
     LoadStandardWindowGraphics(param0->unk_14, BG_LAYER_MAIN_0, 512 - (18 + 12) - 9, 3, 0, param0->heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), param0->heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, param0->heapID);

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_pokemon_research_lab.h"
 
-    .data
 
     ScriptEntry _003E
     ScriptEntry _01AE
@@ -53,7 +52,7 @@ _00B7:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _07AE
     GoToIfUnset FLAG_UNK_0x09BA, _00E5
-    ScrCmd_1E8 VAR_RESULT
+    CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _060E
 _00E5:
     GoToIfGe VAR_UNK_0x4071, 2, _0100

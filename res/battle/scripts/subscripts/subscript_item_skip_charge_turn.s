@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     PlayMoveAnimation BTLSCR_ATTACKER

@@ -37,6 +37,16 @@ c_args = [
     '-D_MSL_RESTRICT=',
 ]
 
+if get_option('revision') == '0'
+    c_args += [
+        '-DPOKEPLATINUM_REVISION=0'
+    ]
+else
+    c_args += [
+        '-DPOKEPLATINUM_REVISION=1'
+    ]
+endif
+
 if get_option('gdb_debugging')
     c_args += [
         '-O1,p',
@@ -166,9 +176,7 @@ main = executable('main',
         pokeplatinum_asm,
         c_consts_generators,
         naix_headers,
-        tutorable_moves_h,
-        species_learnsets_by_tutor_h,
-        species_footprints_h,
+        h_headers,
     ],
     c_args: [
         pokeplatinum_args,
@@ -274,9 +282,14 @@ ovly_mapper = custom_target('overlay.map',
 ############################################################
 sha1sum = find_program(['sha1sum', 'shasum'], native: true)
 
-test('SBIN Checksums',
+test('SBIN Checksums - Shared',
     sha1sum,
     args: ['-c', '--quiet', sbins_sha1]
+)
+
+test('SBIN Checksums - For Revision',
+    sha1sum,
+    args: ['-c', '--quiet', sbins_for_rev_sha1]
 )
 
 test('Filesystem Checksums',

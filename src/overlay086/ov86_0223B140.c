@@ -400,7 +400,7 @@ static BOOL ov86_0223B3C8(UnkStruct_ov86_0223B3C8 *param0)
 {
     switch (param0->unk_00) {
     case 0:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_63);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_63);
         param0->unk_00++;
         break;
     case 1:
@@ -416,7 +416,7 @@ static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0)
 {
     switch (param0->unk_00) {
     case 0:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 2, 1, HEAP_ID_63);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 2, 1, HEAP_ID_63);
         Sound_FadeOutBGM(0, 30);
         param0->unk_00++;
         break;
@@ -622,49 +622,46 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
         GX_BG0_AS_3D
     };
     static const BgTemplate v3 = {
-        0,
-        0,
-        0x1000,
-        0,
-        2,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x512,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     static const BgTemplate v4 = {
-        0,
-        0,
-        0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x18000,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x18000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     static const BgTemplate v5 = {
-        0,
-        0,
-        0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x18000,
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x18000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     param0->unk_10 = BgConfig_New(HEAP_ID_63);
@@ -755,7 +752,7 @@ static void ov86_0223B9A8(UnkStruct_ov86_0223B3C8 *param0)
 
     Camera_SetUp(&v0, param0->camera);
     Camera_SetAsActive(param0->camera);
-    Camera_SetClipping((1 << FX32_SHIFT), (500 << FX32_SHIFT), param0->camera);
+    Camera_SetClipping(1 << FX32_SHIFT, 500 << FX32_SHIFT, param0->camera);
 }
 
 static void ov86_0223BA34(UnkStruct_ov86_0223B3C8 *param0)
@@ -857,7 +854,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     NNS_G2dLoadImage1DMapping(v7, 38400, NNS_G2D_VRAM_TYPE_2DMAIN, &v5);
     NNS_G2dLoadPalette(v8, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
-    sub_02076AAC(((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0), 2, &v4);
+    sub_02076AAC((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0, 2, &v4);
     sub_020135F0(v4.narcID, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
 
     DC_FlushRange(param0->unk_310, 3200);

@@ -122,7 +122,7 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
         if (param0->unk_0C != 0) {
             param0->unk_0C -= 4;
         } else {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_102);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_102);
             param0->unk_08++;
         }
         break;

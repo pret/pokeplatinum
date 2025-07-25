@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poketch_co_1f.h"
 
-    .data
 
     ScriptEntry _0042
     ScriptEntry _01C3

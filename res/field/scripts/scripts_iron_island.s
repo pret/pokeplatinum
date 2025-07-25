@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0014

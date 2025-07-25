@@ -2,7 +2,6 @@
 #include "res/text/bank/iron_island_b2f_left_room.h"
 #include "res/text/bank/special_met_location_names.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _0060

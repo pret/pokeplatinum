@@ -5,7 +5,6 @@
 
 #include "constants/items.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -17,6 +16,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -46,7 +46,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
-#include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
@@ -123,9 +122,9 @@ static u8 CheckDuplicateValues(GameWindowLayout *param0);
 static u8 CheckUniqueValues(GameWindowLayout *param0);
 static u8 CheckEqualityInArray(GameWindowLayout *param0);
 static BOOL ValidateGameWindowState(GameWindowLayout *param0);
-static GenericPointerData *sub_0207EAD4(int heapID);
+static G3DPipelineBuffers *sub_0207EAD4(int heapID);
 static void sub_0207EAF4(void);
-static void sub_0207EB64(GenericPointerData *param0);
+static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(GameWindowLayout *param0);
 static int HandleOverlayCompletion(GameWindowLayout *param0);
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1);
@@ -261,7 +260,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(appMan);
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_12);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, COLOR_BLACK, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -706,19 +705,18 @@ static void sub_0207E8C0(void)
 static void sub_0207E8E0(BgConfig *param0)
 {
     BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v0, 0);
@@ -744,19 +742,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
@@ -765,19 +762,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
@@ -786,19 +782,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
@@ -806,19 +801,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
@@ -827,19 +821,18 @@ static void sub_0207E918(BgConfig *param0)
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
@@ -881,9 +874,9 @@ void sub_0207EA74(GameWindowLayout *windowLayout, int param1)
     }
 }
 
-static GenericPointerData *sub_0207EAD4(int heapID)
+static G3DPipelineBuffers *sub_0207EAD4(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 2, sub_0207EAF4);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }
 
 static void sub_0207EAF4(void)
@@ -898,9 +891,9 @@ static void sub_0207EAF4(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64(GenericPointerData *param0)
+static void sub_0207EB64(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
@@ -924,7 +917,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_12);
     LoadStandardWindowGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1, 14, 0, HEAP_ID_12);
-    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_0, (1 + 9), 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
+    LoadMessageBoxGraphics(param0->unk_00, BG_LAYER_MAIN_0, 1 + 9, 15, Options_Frame(param0->partyManagementData->options), HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, HEAP_ID_12);
     Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, HEAP_ID_12);
@@ -2669,7 +2662,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
         }
     }
 
-    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 
@@ -2853,7 +2846,7 @@ static int UpdatePokemonFormWithItem(GameWindowLayout *param0)
         StringTemplate_Format(param0->template, param0->unk_6A4, param0->unk_6A8);
     }
 
-    Window_DrawMessageBoxWithScrollCursor(v1, 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 15);
     Window_FillTilemap(v1, 15);
     sub_0208274C(param0);
 

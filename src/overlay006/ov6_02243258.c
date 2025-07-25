@@ -1009,12 +1009,12 @@ static NARC *ov6_02243F20(void)
 
 static void ov6_02243F2C(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD1);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_FIELD1);
 }
 
 static void ov6_02243F50(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD1);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, HEAP_ID_FIELD1);
 }
 
 static void ov6_02243F74(FieldSystem *fieldSystem, int param1)
@@ -1226,7 +1226,7 @@ static int ov6_02244228(UnkStruct_ov6_02243FFC *param0)
         param0->unk_00++;
 
         {
-            Pokemon_IsEligibleForAction(param0->unk_5C);
+            Pokemon_PlayCry(param0->unk_5C);
         }
     }
 

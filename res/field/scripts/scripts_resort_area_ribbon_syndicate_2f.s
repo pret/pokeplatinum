@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_2f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _02E8

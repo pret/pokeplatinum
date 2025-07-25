@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_gym.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0022

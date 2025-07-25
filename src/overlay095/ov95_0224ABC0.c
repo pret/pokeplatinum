@@ -208,7 +208,7 @@ static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1)
 {
     ov95_0224AE1C(param0);
     ov95_0224B084(param0);
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -271,7 +271,7 @@ static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1)
         break;
     case 1:
         if (++(param0->unk_08) > 13) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
@@ -306,34 +306,32 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
         GX_BG0_AS_3D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0,
-        0,
-        5,
-        GX_BG_COLORMODE_256,
-        GX_BG_SCRBASE_0xb000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_1024x1024,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xb000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const BgTemplate v3 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_256,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        3,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const u16 v4[] = {
         0x20,
@@ -501,8 +499,8 @@ static void ov95_0224B1F8(SysTask *param0, void *param1)
     if (v0->unk_08) {
         v0->unk_0C += v0->unk_14;
         v0->unk_10 += v0->unk_14;
-        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_2, 3, (v0->unk_0C >> 12));
-        Bg_SetOffset(v0->unk_04, BG_LAYER_SUB_2, 3, (v0->unk_10 >> 12));
+        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_2, 3, v0->unk_0C >> 12);
+        Bg_SetOffset(v0->unk_04, BG_LAYER_SUB_2, 3, v0->unk_10 >> 12);
         v0->unk_08--;
     } else {
         Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_2, 3, UnkEnum_ov95_0224B1A8_00);

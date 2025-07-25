@@ -206,7 +206,7 @@ static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID)
 
 static void sub_02015AC0(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
 {
-    sub_02015DCC(84, 1, param0->unk_7C, param0->unk_80, param1->unk_08, param0->heapID);
+    sub_02015DCC(NARC_INDEX_GRAPHIC__TOUCH_SUBWINDOW, 1, param0->unk_7C, param0->unk_80, param1->unk_08, param0->heapID);
 }
 
 static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
@@ -219,7 +219,7 @@ static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
         v0 = 4;
     }
 
-    sub_02015E1C(84, 0, v0, param1->unk_0C * 32, 2 * 32, param0->heapID);
+    sub_02015E1C(NARC_INDEX_GRAPHIC__TOUCH_SUBWINDOW, 0, v0, param1->unk_0C * 32, 2 * 32, param0->heapID);
 }
 
 static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
@@ -314,7 +314,7 @@ static BOOL sub_02015CC0(UnkStruct_02015C38 *param0)
         return 1;
     }
 
-    sub_02015D98(&param0->unk_28, (FX32_HALF));
+    sub_02015D98(&param0->unk_28, FX32_HALF);
 
     return 0;
 }

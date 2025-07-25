@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town.h"
 
-    .data
 
     ScriptEntry _004F
     ScriptEntry _0062

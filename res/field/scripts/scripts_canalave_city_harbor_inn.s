@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city_harbor_inn.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0093

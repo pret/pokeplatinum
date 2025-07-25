@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_2f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0036

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_library_3f.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0062

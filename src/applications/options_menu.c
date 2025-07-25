@@ -225,7 +225,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
             return FALSE;
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_IN:
@@ -286,7 +286,7 @@ BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
             Text_RemovePrinter(menuData->textPrinter);
         }
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_OUT:
@@ -449,7 +449,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 1,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -464,7 +463,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 2,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -479,7 +477,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 3,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -494,7 +491,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -509,7 +505,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
     };

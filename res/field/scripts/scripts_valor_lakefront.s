@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valor_lakefront.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _0061

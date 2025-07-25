@@ -4,7 +4,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/struct_0207C690.h"
 
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
 #include "overlay117/struct_ov117_022605C0.h"
@@ -27,6 +26,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "g3d_pipeline.h"
 #include "message.h"
 #include "palette.h"
 #include "particle_system.h"
@@ -52,7 +52,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     PaletteData *unk_8C;
     UnkStruct_02012744 *unk_90;
     SysTask *unk_94;
-    GenericPointerData *unk_98;
+    G3DPipelineBuffers *unk_98;
     Camera *camera1;
     Camera *camera2;
     ParticleSystem *unk_A4;

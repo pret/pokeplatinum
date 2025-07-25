@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/trainer.h"
 #include "generated/object_events.h"
 #include "generated/species_data_params.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/battle_frontier_pokemon_data.h"

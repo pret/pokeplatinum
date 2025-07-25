@@ -1580,7 +1580,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 1:
         FinishScreenFade();
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         v1->unk_0C++;
@@ -1614,7 +1614,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
         FinishScreenFade();
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         (v1->unk_0C)++;
         break;
     case 7:
@@ -2377,7 +2377,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         break;
     case 4:
         Heap_Free(param1);

@@ -129,8 +129,8 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         EnableTouchPad();
@@ -142,7 +142,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, param0->heapID);
         break;
     case 2:
         ov79_021D21F8(param0);
@@ -159,7 +159,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         }
 
         param0->unk_0C = 0;
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param0->heapID);
         break;
     case 4:
         ov79_021D21F8(param0);
@@ -175,8 +175,8 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         break;
     case 6:
         DisableTouchPad();
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
         SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -494,94 +494,88 @@ static void ov79_021D132C(UnkStruct_ov79_021D0E1C *param0)
     {
         BgTemplate v3[] = {
             {
-                0x0,
-                0x0,
-                0x800,
-                0x0,
-                0x1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0x0,
-                0x0,
-                0x0,
-                0x0,
+                .x = 0x0,
+                .y = 0x0,
+                .bufferSize = 0x800,
+                .baseTile = 0x0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xf800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x0,
+                .areaOver = 0x0,
+                .mosaic = FALSE,
             },
             {
-                0x0,
-                0x0,
-                0x800,
-                0x0,
-                0x1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                0x1,
-                0x0,
-                0x0,
-                0x0,
+                .x = 0x0,
+                .y = 0x0,
+                .bufferSize = 0x800,
+                .baseTile = 0x0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xf000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x1,
+                .areaOver = 0x0,
+                .mosaic = FALSE,
             },
             {
-                0x0,
-                0x0,
-                0x800,
-                0x0,
-                0x1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xe800,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                0x3,
-                0x0,
-                0x0,
-                0x0,
+                .x = 0x0,
+                .y = 0x0,
+                .bufferSize = 0x800,
+                .baseTile = 0x0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xe800,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x3,
+                .areaOver = 0x0,
+                .mosaic = FALSE,
             },
             {
-                0x0,
-                0x0,
-                0x800,
-                0x0,
-                0x1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xe000,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0x3,
-                0x0,
-                0x0,
-                0x0,
+                .x = 0x0,
+                .y = 0x0,
+                .bufferSize = 0x800,
+                .baseTile = 0x0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xe000,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x3,
+                .areaOver = 0x0,
+                .mosaic = FALSE,
             },
             {
-                0x0,
-                0x0,
-                0x800,
-                0x0,
-                0x1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf800,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                0x0,
-                0x0,
-                0x0,
-                0x0,
+                .x = 0x0,
+                .y = 0x0,
+                .bufferSize = 0x800,
+                .baseTile = 0x0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xf800,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x0,
+                .areaOver = 0x0,
+                .mosaic = FALSE,
             },
             {
-                0x0,
-                0x0,
-                0x800,
-                0x0,
-                0x1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xf000,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                0x1,
-                0x0,
-                0x0,
-                0x0,
+                .x = 0x0,
+                .y = 0x0,
+                .bufferSize = 0x800,
+                .baseTile = 0x0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xf000,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0x1,
+                .areaOver = 0x0,
+                .mosaic = FALSE,
             },
         };
 

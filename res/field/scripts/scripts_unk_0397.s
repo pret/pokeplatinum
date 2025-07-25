@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/common_strings.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _002E

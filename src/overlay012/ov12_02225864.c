@@ -3,15 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/battle_anim.h"
+
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/funcptr_ov12_02226274.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay012/struct_ov12_02225D50.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226274.h"
 #include "overlay012/struct_ov12_02226454.h"
 
+#include "battle_script_battlers.h"
 #include "buffer_manager.h"
 #include "heap.h"
 #include "inlines.h"
@@ -24,10 +26,10 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-} UnkStruct_ov12_02239E34;
+typedef struct BattleAnimPosition {
+    s16 x;
+    s16 y;
+} BattleAnimPosition;
 
 typedef void (*UnkFuncPtr_ov12_02226490)(void *);
 
@@ -72,42 +74,45 @@ typedef struct UnkStruct_ov12_022267D4_t {
 
 static void ov12_022268DC(u16 *param0, u16 param1);
 
-static const UnkStruct_ov12_02239E34 Unk_ov12_02239E34[][6] = {
+static const BattleAnimPosition sBattleAnimBattlerPositions[][6] = {
+    // Single Battle
     {
-        { 0x40, 0x70 },
-        { 0xC0, 0x30 },
-        { 0xD8, 0x70 },
-        { 0x50, 0x2A },
-        { 0x0, 0x0 },
-        { 0x0, 0x0 },
+        [BATTLER_TYPE_SOLO_PLAYER] = { 64, 112 },
+        [BATTLER_TYPE_SOLO_ENEMY] = { 192, 48 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { 216, 112 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { 80, 42 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { 0, 0 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { 0, 0 },
     },
+
+    // Double Battle
     {
-        { 0x40, 0x70 },
-        { 0xC0, 0x30 },
-        { 0x28, 0x70 },
-        { 0xD8, 0x32 },
-        { 0x50, 0x78 },
-        { 0xB0, 0x2A },
+        [BATTLER_TYPE_SOLO_PLAYER] = { 64, 112 },
+        [BATTLER_TYPE_SOLO_ENEMY] = { 192, 48 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { 40, 112 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { 216, 50 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { 80, 120 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { 176, 42 },
     },
 };
 
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3)
 {
     if (param2 != NULL) {
-        *param2 = Unk_ov12_02239E34[param0][param1].unk_00;
+        *param2 = sBattleAnimBattlerPositions[param0][param1].x;
     }
 
     if (param3 != NULL) {
-        *param3 = Unk_ov12_02239E34[param0][param1].unk_02;
+        *param3 = sBattleAnimBattlerPositions[param0][param1].y;
     }
 }
 
-void ov12_02225898(UnkStruct_ov12_0221FCDC *param0, int param1, s16 *param2, s16 *param3)
+void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3)
 {
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         ov12_02225864(0, param1 + 2, param2, param3);
     } else {
-        if (ov12_02223364(param0) == 1) {
+        if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
             ov12_02225864(1, param1 - 2, param2, param3);
         } else {
             ov12_02225864(0, param1, param2, param3);
@@ -115,32 +120,31 @@ void ov12_02225898(UnkStruct_ov12_0221FCDC *param0, int param1, s16 *param2, s16
     }
 }
 
-s16 ov12_022258E0(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
+s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *system, int battler, enum BattleAnimPositionType posType)
 {
-    int v0, v1;
+    int isDoubles;
+    int battlerType = BattleAnimUtil_GetBattlerType(system, battler);
 
-    v0 = ov12_02235254(param0, param1);
-
-    if (ov12_02223364(param0) == 1) {
-        v1 = 1;
+    if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+        isDoubles = TRUE;
     } else {
-        v1 = 0;
+        isDoubles = FALSE;
     }
 
-    if (ov12_0221FDD4(param0) == 1) {
-        v0 += 2;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        battlerType += 2;
     }
 
-    switch (param2) {
-    case 0:
-    case 2:
-        return Unk_ov12_02239E34[v1][v0].unk_00;
-    case 1:
-    case 3:
-        return Unk_ov12_02239E34[v1][v0].unk_02;
+    switch (posType) {
+    case BATTLE_ANIM_POSITION_MON_X:
+    case BATTLE_ANIM_POSITION_PARTICLE_X:
+        return sBattleAnimBattlerPositions[isDoubles][battlerType].x;
+    case BATTLE_ANIM_POSITION_MON_Y:
+    case BATTLE_ANIM_POSITION_PARTICLE_Y:
+        return sBattleAnimBattlerPositions[isDoubles][battlerType].y;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -149,32 +153,31 @@ u8 ov12_02225950(ManagedSprite *param0)
     return PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
-int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1)
+int BattleAnimMath_GetRotationDirection(BattleAnimSystem *system, int battler)
 {
-    int v0;
-    int v1 = 1;
+    int dir = 1;
 
-    v0 = ov12_0223525C(param0, param1);
+    enum Battler side = BattleAnimUtil_GetBattlerSide(system, battler);
 
-    if (ov12_0221FDD4(param0)) {
-        if (v0 == 0x3) {
-            v1 = -1;
+    if (BattleAnimSystem_IsContest(system)) {
+        if (side == BTLSCR_PLAYER) {
+            dir = -1;
         }
     } else {
-        if (v0 == 0x4) {
-            v1 = -1;
+        if (side == BTLSCR_ENEMY) {
+            dir = -1;
         }
     }
 
-    return v1;
+    return dir;
 }
 
-int ov12_0222598C(UnkStruct_ov12_0221FCDC *param0, int param1)
+int ov12_0222598C(BattleAnimSystem *param0, int param1)
 {
     int v0;
     int v1 = 1;
 
-    v0 = ov12_0223525C(param0, param1);
+    v0 = BattleAnimUtil_GetBattlerSide(param0, param1);
 
     if (v0 == 0x4) {
         v1 = -1;
@@ -183,13 +186,9 @@ int ov12_0222598C(UnkStruct_ov12_0221FCDC *param0, int param1)
     return v1;
 }
 
-fx32 ov12_022259A0(fx32 param0, fx32 param1, u32 param2)
+fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)
 {
-    fx32 v0;
-
-    v0 = FX_Div((param1 - param0), param2 << FX32_SHIFT);
-
-    return v0;
+    return FX_Div(end - start, steps << FX32_SHIFT);
 }
 
 u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
@@ -197,7 +196,7 @@ u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
     fx32 v0;
     fx32 v1;
 
-    v0 = FX_Div((param1 - param0), param2);
+    v0 = FX_Div(param1 - param0, param2);
 
     v1 = FX_Modf(v0, &v0);
 
@@ -318,8 +317,8 @@ void ov12_02225BC8(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     param0->unk_00 = param1;
     param0->unk_02 = param3;
     param0->unk_04[0] = param5;
-    param0->unk_04[1] = ov12_022259A0(param1 * FX32_ONE, param2 * FX32_ONE, param5);
-    param0->unk_04[2] = ov12_022259A0(param3 * FX32_ONE, param4 * FX32_ONE, param5);
+    param0->unk_04[1] = BattleAnimMath_GetStepSize(param1 * FX32_ONE, param2 * FX32_ONE, param5);
+    param0->unk_04[2] = BattleAnimMath_GetStepSize(param3 * FX32_ONE, param4 * FX32_ONE, param5);
     param0->unk_04[3] = param1 * FX32_ONE;
     param0->unk_04[4] = param3 * FX32_ONE;
 }
@@ -366,7 +365,7 @@ void ov12_02225C98(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     ov12_02225BC8(param0, param2, param3, param4, param5, param6);
     param1->unk_00 = 0;
     param1->unk_02 = 0;
-    ov12_02225A5C(param1, 0, 0, ((90 * 0xffff) / 360), ((270 * 0xffff) / 360), 0, param7, param6);
+    ov12_02225A5C(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
 }
 
 BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1)
@@ -399,76 +398,76 @@ BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     return 0;
 }
 
-void ov12_02225D50(UnkStruct_ov12_02225D50 *param0, s32 param1, s32 param2, u32 param3)
+void AngleLerpContext_Init(AngleLerpContext *ctx, s32 start, s32 end, u32 steps)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    param0->unk_00 = param1;
-    param0->unk_04[0] = param3;
-    param0->unk_04[1] = ov12_022259A0(param1 * FX32_ONE, param2 * FX32_ONE, param3) >> FX32_SHIFT;
+    ctx->angle = start;
+    ctx->data[0] = steps;
+    ctx->data[1] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps) >> FX32_SHIFT;
 }
 
-void ov12_02225D78(UnkStruct_ov12_02225D50 *param0, s16 param1, s16 param2, u32 param3)
+void AngleLerpContext_InitFX32(AngleLerpContext *ctx, s16 start, s16 end, u32 steps)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    param0->unk_00 = param1;
-    param0->unk_04[0] = param3;
-    param0->unk_04[1] = ov12_022259A0(param1 * FX32_ONE, param2 * FX32_ONE, param3);
-    param0->unk_04[2] = param1 * FX32_ONE;
+    ctx->angle = start;
+    ctx->data[0] = steps;
+    ctx->data[1] = BattleAnimMath_GetStepSize(start * FX32_ONE, end * FX32_ONE, steps);
+    ctx->data[2] = start * FX32_ONE;
 }
 
-BOOL ov12_02225DA0(UnkStruct_ov12_02225D50 *param0)
+BOOL AngleLerpContext_Update(AngleLerpContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    if (param0->unk_04[0]) {
-        param0->unk_00 += param0->unk_04[1];
-        param0->unk_04[0]--;
+    if (ctx->data[0]) {
+        ctx->angle += ctx->data[1];
+        ctx->data[0]--;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov12_02225DC8(UnkStruct_ov12_02225D50 *param0)
+BOOL AngleLerpContext_UpdateFX32(AngleLerpContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    if (param0->unk_04[0]) {
-        param0->unk_04[2] += param0->unk_04[1];
-        param0->unk_00 = param0->unk_04[2] >> FX32_SHIFT;
-        param0->unk_04[0]--;
+    if (ctx->data[0]) {
+        ctx->data[2] += ctx->data[1];
+        ctx->angle = ctx->data[2] >> FX32_SHIFT;
+        ctx->data[0]--;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov12_02225DF4(UnkStruct_ov12_02225D50 *param0, u16 param1, u16 param2, fx32 param3, u32 param4)
+void AngleLerpContext_InitCos(AngleLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
 {
-    param0->unk_04[0] = param4;
-    param0->unk_04[1] = param1;
-    param0->unk_04[2] = param3;
-    param0->unk_04[3] = (param2 - param1) / param4;
+    ctx->data[0] = steps;
+    ctx->data[1] = start;
+    ctx->data[2] = amplitude;
+    ctx->data[3] = (end - start) / steps;
 }
 
-BOOL ov12_02225E0C(UnkStruct_ov12_02225D50 *param0)
+BOOL AngleLerpContext_UpdateCos(AngleLerpContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    if (param0->unk_04[0]) {
-        param0->unk_04[1] += param0->unk_04[3];
-        param0->unk_04[1] &= 0xffff;
-        param0->unk_04[0]--;
-        param0->unk_00 = FX_Mul(FX_CosIdx(param0->unk_04[1]), param0->unk_04[2]) >> FX32_SHIFT;
+    if (ctx->data[0]) {
+        ctx->data[1] += ctx->data[3];
+        ctx->data[1] &= 0xFFFF;
+        ctx->data[0]--;
+        ctx->angle = FX_Mul(FX_CosIdx(ctx->data[1]), ctx->data[2]) >> FX32_SHIFT;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 #define SCALE_RATE_PER(p1, p2) (((p1) * 0x100) / p2)
@@ -481,7 +480,7 @@ void ov12_02225E68(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     v0 = param0;
 
     v0->unk_04[0] = param4;
-    v0->unk_04[1] = ov12_022259A0(SCALE_RATE_PER(param1, param2) * FX32_ONE, SCALE_RATE_PER(param3, param2) * FX32_ONE, param4);
+    v0->unk_04[1] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param1, param2) * FX32_ONE, SCALE_RATE_PER(param3, param2) * FX32_ONE, param4);
     v0->unk_00 = SCALE_RATE_PER(param1, param2);
     v0->unk_02 = SCALE_RATE_PER(param1, param2);
     v0->unk_04[3] = v0->unk_00 * FX32_ONE;
@@ -518,8 +517,8 @@ void ov12_02225EF0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, s16 
     v0 = param0;
 
     v0->unk_04[0] = param6;
-    v0->unk_04[1] = ov12_022259A0(SCALE_RATE_PER(param1, param5) * FX32_ONE, SCALE_RATE_PER(param2, param5) * FX32_ONE, param6);
-    v0->unk_04[2] = ov12_022259A0(SCALE_RATE_PER(param3, param5) * FX32_ONE, SCALE_RATE_PER(param4, param5) * FX32_ONE, param6);
+    v0->unk_04[1] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param1, param5) * FX32_ONE, SCALE_RATE_PER(param2, param5) * FX32_ONE, param6);
+    v0->unk_04[2] = BattleAnimMath_GetStepSize(SCALE_RATE_PER(param3, param5) * FX32_ONE, SCALE_RATE_PER(param4, param5) * FX32_ONE, param6);
     v0->unk_00 = SCALE_RATE_PER(param1, param5);
     v0->unk_02 = SCALE_RATE_PER(param3, param5);
     v0->unk_04[3] = v0->unk_00 * FX32_ONE;
@@ -794,7 +793,7 @@ void ov12_022263A4(UnkStruct_ov12_02225F6C *param0, int param1, int param2)
 {
     int v0;
 
-    ov12_02225A5C(param0, 0, ((360 * 0xffff) / 360), 0, ((360 * 0xffff) / 360), (32 * FX32_ONE), (-8 * FX32_ONE), param2);
+    ov12_02225A5C(param0, 0, (360 * 0xffff) / 360, 0, (360 * 0xffff) / 360, 32 * FX32_ONE, -8 * FX32_ONE, param2);
     param0->unk_04[0] *= param1;
 }
 
@@ -912,7 +911,7 @@ static void ov12_0222653C(void *param0)
     ov12_02226504(v0);
 }
 
-UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, int heapID)
+UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapID heapID)
 {
     UnkStruct_ov12_02226504 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02226504));
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
@@ -982,7 +981,7 @@ UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 pa
 
     memset(v0, 0, sizeof(UnkStruct_ov12_0222660C));
 
-    v1 = ov12_022266F0(param5);
+    v1 = BattleAnimUtil_GetHOffsetRegisterForBg(param5);
     v0->screenScrollMgr = ScreenScrollManager_New(heapID);
 
     ScreenScrollManager_ScrollX(v0->screenScrollMgr, param0, param1, param2, param3, param4, v1, param7, param6);
@@ -1021,26 +1020,18 @@ u32 ov12_022266E8(u16 param0, u16 param1)
     return (param1 << 16) | param0;
 }
 
-u32 ov12_022266F0(int param0)
+u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
 {
-    u32 v0;
-
-    switch (param0) {
-    case 0:
-        v0 = REG_BG0HOFS_ADDR;
-        break;
-    case 1:
-        v0 = REG_BG1HOFS_ADDR;
-        break;
-    case 2:
-        v0 = REG_BG2HOFS_ADDR;
-        break;
-    case 3:
-        v0 = REG_BG3HOFS_ADDR;
-        break;
+    switch (bgID) {
+    case BATTLE_BG_ID_UNUSED:
+        return REG_BG0HOFS_ADDR;
+    case BATTLE_BG_ID_WINDOW:
+        return REG_BG1HOFS_ADDR;
+    case BATTLE_BG_ID_BASE:
+        return REG_BG2HOFS_ADDR;
+    case BATTLE_BG_ID_EFFECT:
+        return REG_BG3HOFS_ADDR;
     }
-
-    return v0;
 }
 
 void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, s16 *param5)
@@ -1063,7 +1054,7 @@ void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4)
     s16 v1 = (param1 - param3) * -1;
     s16 v2;
 
-    *param4 = FX_Atan2Idx((v1 * FX32_ONE), v0 * FX32_ONE);
+    *param4 = FX_Atan2Idx(v1 * FX32_ONE, v0 * FX32_ONE);
 
     if ((*param4 > 0) && (v1 < 0)) {
         *param4 = (*param4 - ((180 * 0xffff) / 360)) * 0xffff;
@@ -1190,23 +1181,23 @@ static void ov12_022268DC(u16 *param0, u16 param1)
     }
 }
 
-void ov12_02226924(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226924(BattleAnimSystem *param0)
 {
-    PaletteData *v0 = ov12_0222332C(param0);
+    PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
     u16 *v1 = PaletteData_GetFadedBuffer(v0, 0);
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         ov12_022268DC(v1, 16 * 3);
     } else {
         ov12_022268DC(v1, 16 * 8);
     }
 }
 
-void ov12_02226954(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02226954(BattleAnimSystem *param0)
 {
-    PaletteData *v0 = ov12_0222332C(param0);
+    PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
 
-    if (ov12_0221FDD4(param0) == 1) {
+    if (BattleAnimSystem_IsContest(param0) == 1) {
         PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 3 * 2);
     } else {
         PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 8 * 2);

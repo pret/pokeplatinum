@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CheckSubstitute BTLSCR_SIDE_EFFECT_MON, _043

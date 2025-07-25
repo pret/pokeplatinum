@@ -72,11 +72,11 @@ void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D16
 static void ov63_0222D31C(BgConfig *param0, int param1, const UnkStruct_ov65_0223582C *param2)
 {
     BgTemplate v0 = {
-        0,
-        0,
-        0x1000,
-        0,
-        3,
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
     };
 
     v0.colorMode = param2->unk_02;

@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     .byte 3
     .short 0x2328, 0

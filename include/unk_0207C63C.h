@@ -1,13 +1,14 @@
 #ifndef POKEPLATINUM_UNK_0207C63C_H
 #define POKEPLATINUM_UNK_0207C63C_H
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"
 
+#include "g3d_pipeline.h"
+
 void sub_0207C63C(void);
 void sub_0207C664(void);
-GenericPointerData *sub_0207C690(int heapID);
+G3DPipelineBuffers *sub_0207C690(int heapID);
 void sub_0207C6AC(void);
 void sub_0207C730(void);
 void sub_0207C770(void);

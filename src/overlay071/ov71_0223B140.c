@@ -248,8 +248,8 @@ int ov71_0223B140(ApplicationManager *appMan, int *param1)
 
     SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
-    Sound_SetPlayerVolume(1, (127 / 3));
-    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, FADE_TO_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
+    Sound_SetPlayerVolume(1, 127 / 3);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, COLOR_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
     NARC_dtor(v1);
 
     return 1;
@@ -319,7 +319,7 @@ int ov71_0223B388(ApplicationManager *appMan, int *param1)
             } else if (v1 == 4) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-                StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_4, FADE_TYPE_UNK_4, FADE_TO_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
+                StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_4, FADE_TYPE_UNK_4, COLOR_BLACK, 6, 1, HEAP_ID_TRAINER_CARD_SCREEN);
                 *param1 = 2;
             }
         }
@@ -548,19 +548,18 @@ static void ov71_0223B858(BgConfig *bgConfig)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_3, &v1, BG_TYPE_STATIC_WITH_AFFINE);
@@ -569,19 +568,18 @@ static void ov71_0223B858(BgConfig *bgConfig)
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x0c000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &v2, BG_TYPE_STATIC);
@@ -590,19 +588,18 @@ static void ov71_0223B858(BgConfig *bgConfig)
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_2, &v3, BG_TYPE_AFFINE);
@@ -611,19 +608,18 @@ static void ov71_0223B858(BgConfig *bgConfig)
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v4, BG_TYPE_STATIC);
@@ -632,19 +628,18 @@ static void ov71_0223B858(BgConfig *bgConfig)
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
         Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &v5, BG_TYPE_AFFINE);
@@ -708,7 +703,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *narc)
         }
 
         if (v6 != -1) {
-            Graphics_LoadPaletteFromOpenNARC(narc, v6, 4, (4 * 32), (2 * 32), HEAP_ID_TRAINER_CARD_SCREEN);
+            Graphics_LoadPaletteFromOpenNARC(narc, v6, 4, 4 * 32, 2 * 32, HEAP_ID_TRAINER_CARD_SCREEN);
         }
 
         if (param0->trainerCard->gender == GENDER_MALE) {
@@ -1268,7 +1263,7 @@ static void ov71_0223C530(BgConfig *bgConfig, const int bgLayer, const u8 *param
     u8 v1, v2;
     u16 v3;
 
-    Bg_LoadTiles(bgConfig, bgLayer, param2, (24 * 8 * 64), 1);
+    Bg_LoadTiles(bgConfig, bgLayer, param2, 24 * 8 * 64, 1);
 
     v0 = (u16 *)Bg_GetTilemapBuffer(bgConfig, bgLayer);
     v3 = 0;

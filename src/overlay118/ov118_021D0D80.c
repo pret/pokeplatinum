@@ -127,7 +127,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
         v0->unk_00++;
         break;
     case 7:
-        Pokemon_IsEligibleForAction(v1);
+        Pokemon_PlayCry(v1);
         v0->unk_00++;
         break;
     case 8:

@@ -9,7 +9,7 @@
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay097/distribution_cartridge.h"
 #include "overlay097/main_menu_util.h"
 #include "overlay097/ov97_0222D04C.h"
@@ -61,7 +61,7 @@
 #include "res/text/bank/mystery_gift_menu.h"
 #include "res/text/bank/unk_0695.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay97);
 
 #define EVENT_LOCATION_MOVIES_START     3
@@ -823,14 +823,13 @@ static void InitBgLayer(BgConfig *bgConfig, int bgLayer, u32 screenBase, u32 cha
         .y = 0,
         .bufferSize = 0x800,
         .baseTile = 0,
-        .screenSize = 1,
+        .screenSize = BG_SCREEN_SIZE_256x256,
         .colorMode = GX_BG_COLORMODE_16,
         .screenBase = GX_BG_SCRBASE_0xe000,
         .charBase = GX_BG_CHARBASE_0x00000,
         .bgExtPltt = GX_BG_EXTPLTT_01,
         .priority = 0,
         .areaOver = 0,
-        .dummy = 0,
         .mosaic = 0
     };
 
@@ -1175,8 +1174,8 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
     ov97_02232054();
     SetupGraphics(appData->bgConfig);
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_10, SEQ_PRESENT, 1);
     DistributionCartridge_UseHeap(HEAP_ID_MYSTERY_GIFT_APP);
@@ -2449,13 +2448,13 @@ extern const ApplicationManagerTemplate gWonderCardsAppTemplate;
 
 static int MysteryGiftApp_Exit(ApplicationManager *appMan, int *unused)
 {
-    FS_EXTERN_OVERLAY(overlay77);
+    FS_EXTERN_OVERLAY(game_opening);
     FS_EXTERN_OVERLAY(overlay97);
 
     MysteryGiftAppData *appData = ApplicationManager_Data(appMan);
 
     if (appData->exitToWondercardsApp == FALSE) {
-        EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+        EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     } else if (appData->exitToWondercardsApp == TRUE) {
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &gWonderCardsAppTemplate);
     }

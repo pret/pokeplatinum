@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_condominiums_3f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025

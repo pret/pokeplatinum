@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_pokecenter_1f.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _0022

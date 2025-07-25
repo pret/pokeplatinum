@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_room_3.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _0089

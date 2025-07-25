@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b7f.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _001E

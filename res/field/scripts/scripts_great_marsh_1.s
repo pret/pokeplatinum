@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/great_marsh_1.h"
 
-    .data
 
     ScriptEntry _001D
     ScriptEntry _000A

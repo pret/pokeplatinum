@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     CompareMonDataToValue OPCODE_NEQ, BTLSCR_ATTACKER, BATTLEMON_HELD_ITEM, ITEM_NONE, _022

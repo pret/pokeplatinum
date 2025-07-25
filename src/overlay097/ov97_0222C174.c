@@ -4,7 +4,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay077/const_ov77_021D742C.h"
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay097/main_menu_util.h"
 #include "overlay097/ov97_02232DC8.h"
 #include "overlay097/ov97_02233408.h"
@@ -40,7 +40,7 @@
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct {
     u16 unk_00;
@@ -773,7 +773,7 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
 static int ov97_0222C948(ApplicationManager *appMan, int *param1)
 {
     Heap_Destroy(HEAP_ID_91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_85);
 

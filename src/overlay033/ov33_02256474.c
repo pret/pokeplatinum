@@ -191,19 +191,18 @@ static void ov33_02256584(PoketchTaskManager *param0)
 static void ov33_02256598(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     UnkStruct_ov33_02256474 *v2 = PoketchTask_GetTaskData(param1);
@@ -257,8 +256,8 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         for (v5 = 0; v5 < param1->unk_00; v5++) {
             v4 = NARC_AllocAndReadWholeMember(v1, param1->unk_04[v5].unk_00, 8);
             NNS_G2dGetUnpackedCharacterData(v4, &v3);
-            DC_FlushRange(v3->pRawData, ((4 * 4 * 2) * 0x20));
-            GXS_LoadOBJ(v3->pRawData, ((4 * 4 * 2) * 0x20) * v5, ((4 * 4 * 2) * 0x20));
+            DC_FlushRange(v3->pRawData, (4 * 4 * 2) * 0x20);
+            GXS_LoadOBJ(v3->pRawData, ((4 * 4 * 2) * 0x20) * v5, (4 * 4 * 2) * 0x20);
             Heap_Free(v4);
 
             v2.translation.x = ((v0[v5].x) << FX32_SHIFT);
@@ -275,7 +274,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 
             if (param0->unk_134[v5].unk_04) {
                 PoketchAnimation_HideSprite(param0->unk_134[v5].unk_04, 1);
-                PoketchAnimation_SetSpriteCharNo(param0->unk_134[v5].unk_04, ((4 * 4 * 2) * 6));
+                PoketchAnimation_SetSpriteCharNo(param0->unk_134[v5].unk_04, (4 * 4 * 2) * 6);
                 PoketchAnimation_SetCParam(param0->unk_134[v5].unk_04, 0);
             } else {
                 GF_ASSERT(0);

@@ -125,8 +125,8 @@ static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0)
     param0->unk_0C.unk_624[0].unk_164 = 1;
     param0->unk_0C.unk_624[0].unk_154 = FX32_HALF;
 
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_624[0].unk_00, 0);
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_16FC[0].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_624[0].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_16FC[0].unk_00, 0);
 
     ov100_021D4AC8(&param0->unk_0C.unk_624[1], 68, param0->unk_1D28->unk_00);
     Easy3DObject_SetPosition(&param0->unk_0C.unk_624[1].unk_00, FX32_CONST(+50), FX32_CONST(+0), FX32_CONST(-50));
@@ -136,8 +136,8 @@ static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0)
     param0->unk_0C.unk_624[1].unk_164 = 1;
     param0->unk_0C.unk_624[1].unk_154 = FX32_HALF;
 
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_624[1].unk_00, 0);
-    Easy3DObject_SetVisibility(&param0->unk_0C.unk_16FC[1].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_624[1].unk_00, 0);
+    Easy3DObject_SetVisible(&param0->unk_0C.unk_16FC[1].unk_00, 0);
 
     if (TrainerInfo_Gender(param0->unk_1D2C->unk_08) != 1) {
         ov100_021D4AC8(&param0->unk_0C.unk_13EC[0], 61, param0->unk_1D28->unk_00);
@@ -360,8 +360,8 @@ static void ov100_021D37F4(SysTask *param0, void *param1)
 
         v0->unk_04++;
 
-        Easy3DObject_SetVisibility(&v0->unk_10->unk_00, 1);
-        Easy3DObject_SetVisibility(&v0->unk_14->unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_10->unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_14->unk_00, 1);
 
         v0->unk_00++;
         break;
@@ -479,11 +479,11 @@ BOOL ov100_021D39E4(void *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == 80) {
-            Sound_PlayPannedEffect(1746, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX01, -70);
         }
 
         if (v0->unk_04 == 135) {
-            Sound_PlayPannedEffect(1746, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX01, +70);
         }
 
         if ((v0->unk_04 == 310) || (v0->unk_04 == 375) || (v0->unk_04 == 432)) {
@@ -495,19 +495,19 @@ BOOL ov100_021D39E4(void *param0)
         }
 
         if (v0->unk_04 == 165) {
-            Sound_PlayPannedEffect(1747, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX03, -70);
         }
 
         if (v0->unk_04 == 220) {
-            Sound_PlayPannedEffect(1747, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX03, +70);
         }
 
         if (v0->unk_04 == 470) {
-            Sound_PlayPannedEffect(1750, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX10, -70);
         }
 
         if (v0->unk_04 == 520) {
-            Sound_PlayPannedEffect(1750, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX10, +70);
         }
 
         if (v0->unk_04 == 120) {
@@ -521,7 +521,7 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_0C.unk_10DC[0].unk_160 == 0) {
             v0->unk_1D28->unk_AC.unk_00 = 6;
             ov100_021D398C(v0, 0, 483);
-            Sound_PlayPannedEffect(1751, -70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12, -70);
             v0->unk_00++;
         }
         break;
@@ -529,7 +529,7 @@ BOOL ov100_021D39E4(void *param0)
         if (v0->unk_0C.unk_10DC[1].unk_160 == 0) {
             v0->unk_1D28->unk_AC.unk_00 = 7;
             ov100_021D398C(v0, 1, 484);
-            Sound_PlayPannedEffect(1751, +70);
+            Sound_PlayPannedEffect(SEQ_SE_DP_CLIMAX12, +70);
             v0->unk_00++;
             v0->unk_04 = 0;
         }
@@ -640,7 +640,7 @@ BOOL ov100_021D39E4(void *param0)
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[0].unk_00, v0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[0].unk_150);
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[1].unk_00, v0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[1].unk_150);
         } else {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_111);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_111);
             v0->unk_00++;
         }
         break;

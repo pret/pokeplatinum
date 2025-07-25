@@ -5,7 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay099/ov99_021D1A54.h"
@@ -18,6 +17,7 @@
 #include "camera.h"
 #include "easy3d_object.h"
 #include "enums.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -33,12 +33,11 @@
 #include "system.h"
 #include "touch_pad.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "vram_transfer.h"
 
 static const CameraAngle Unk_ov99_021D46CC = {
     ((0 * 0xffff) / 360),
-    ((0 * 0xffff) / 360),
+    (0 * 0xffff) / 360,
     ((0 * 0xffff) / 360)
 };
 
@@ -76,9 +75,9 @@ static void ov99_021D1380(BgConfig *param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0);
-static GenericPointerData *ov99_021D19AC(int heapID);
+static G3DPipelineBuffers *ov99_021D19AC(int heapID);
 static void ov99_021D19C8(void);
-static void ov99_021D1A4C(GenericPointerData *param0);
+static void ov99_021D1A4C(G3DPipelineBuffers *param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 *param0);
@@ -132,15 +131,15 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
 
     v0->unk_18 = SpriteSystem_Alloc(HEAP_ID_75);
 
-    SpriteSystem_Init(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
+    SpriteSystem_Init(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_1C = SpriteManager_New(v0->unk_18);
 
-    SpriteSystem_InitSprites(v0->unk_18, v0->unk_1C, (64 + 64));
+    SpriteSystem_InitSprites(v0->unk_18, v0->unk_1C, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_18), 0, (192 + 80) << FX32_SHIFT);
 
     ov99_021D16E4(v0);
 
@@ -168,7 +167,7 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(ov99_021D1350, v0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_14, SEQ_BLD_ENDING, 1);
 
-    BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
+    BrightnessController_SetScreenBrightness(-16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
     SetScreenMasterBrightness(DS_SCREEN_MAIN, 0);
     SetScreenMasterBrightness(1, 0);
 
@@ -189,7 +188,7 @@ int ov99_021D1028(ApplicationManager *appMan, int *param1)
 
     if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_75);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_75);
             v0->unk_1100 = 1;
         }
     }
@@ -399,49 +398,46 @@ static void ov99_021D1380(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0,
-                0,
-                1,
-                GX_BG_COLORMODE_256,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_23,
-                2,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_256,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_23,
+                .priority = 2,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -466,49 +462,46 @@ static void ov99_021D1380(BgConfig *param0)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x2000,
-                GX_BG_CHARBASE_0x14000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x2000,
+                .charBase = GX_BG_CHARBASE_0x14000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -578,49 +571,46 @@ static void ov99_021D1580(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0,
-                0,
-                1,
-                GX_BG_COLORMODE_256,
-                GX_BG_SCRBASE_0x0800,
-                GX_BG_CHARBASE_0x20000,
-                GX_BG_EXTPLTT_23,
-                2,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_256,
+                .screenBase = GX_BG_SCRBASE_0x0800,
+                .charBase = GX_BG_CHARBASE_0x20000,
+                .bgExtPltt = GX_BG_EXTPLTT_23,
+                .priority = 2,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0,
-                0,
-                1,
-                GX_BG_COLORMODE_256,
-                GX_BG_SCRBASE_0x2800,
-                GX_BG_CHARBASE_0x30000,
-                GX_BG_EXTPLTT_23,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_256,
+                .screenBase = GX_BG_SCRBASE_0x2800,
+                .charBase = GX_BG_CHARBASE_0x30000,
+                .bgExtPltt = GX_BG_EXTPLTT_23,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -643,19 +633,18 @@ static void ov99_021D1580(BgConfig *param0)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x2000,
-                GX_BG_CHARBASE_0x14000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x2000,
+                .charBase = GX_BG_CHARBASE_0x14000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
@@ -749,16 +738,16 @@ static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0)
 {
-    VecFx32 v0 = { 0, (-FX32_ONE * 8), 0 };
+    VecFx32 v0 = { 0, -FX32_ONE * 8, 0 };
     VecFx32 v1 = { -31712, -142304, 496744 };
     VecFx32 v2 = { -31712, -67780, -5704 };
 
     param0->camera = Camera_Alloc(75);
 
-    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov99_021D46CC, ((22 * 0xffff) / 360), 0, 0, param0->camera);
+    Camera_InitWithTarget(&v0, 0x7c000, &Unk_ov99_021D46CC, (22 * 0xffff) / 360, 0, 0, param0->camera);
     Camera_SetPosition(&v1, param0->camera);
     Camera_SetTarget(&v2, param0->camera);
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), param0->camera);
+    Camera_SetClipping(FX32_ONE, FX32_ONE * 900, param0->camera);
     Camera_SetAsActive(param0->camera);
 }
 
@@ -767,9 +756,9 @@ static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0)
     Camera_Delete(param0->camera);
 }
 
-static GenericPointerData *ov99_021D19AC(int heapID)
+static G3DPipelineBuffers *ov99_021D19AC(int heapID)
 {
-    return sub_02024220(heapID, 0, 1, 0, 1, ov99_021D19C8);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov99_021D19C8);
 }
 
 static void ov99_021D19C8(void)
@@ -787,7 +776,7 @@ static void ov99_021D19C8(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov99_021D1A4C(GenericPointerData *param0)
+static void ov99_021D1A4C(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }

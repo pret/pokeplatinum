@@ -3,8 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
@@ -35,113 +34,102 @@ void include_unk_ov12_0223A218(VecFx32 *dummy)
     *dummy = Unk_ov12_0223A218;
 }
 
-int ov12_02235254(UnkStruct_ov12_0221FCDC *param0, int param1)
+int BattleAnimUtil_GetBattlerType(BattleAnimSystem *system, int battler)
 {
-    return ov12_022232B8(param0, param1);
+    return BattleAnimSystem_GetBattlerType(system, battler);
 }
 
-int ov12_0223525C(UnkStruct_ov12_0221FCDC *param0, int param1)
+enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *system, int battler)
 {
-    int v0;
-    int v1;
+    int battlerType;
+    int type = BattleAnimSystem_GetBattlerType(system, battler);
 
-    v0 = ov12_022232B8(param0, param1);
-
-    switch (v0) {
-    case 0:
-    case 2:
-    case 4:
-        v1 = 0x3;
+    switch (type) {
+    case BATTLER_TYPE_SOLO_PLAYER:
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+        battlerType = BTLSCR_PLAYER;
         break;
-    case 1:
-    case 3:
-    case 5:
-        v1 = 0x4;
+    case BATTLER_TYPE_SOLO_ENEMY:
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+        battlerType = BTLSCR_ENEMY;
         break;
     }
 
-    return v1;
+    return battlerType;
 }
 
-int ov12_02235288(UnkStruct_ov12_0221FCDC *param0, int param1)
+int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *system, int type)
 {
-    int v0;
-    int v1;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        v1 = ov12_022232B8(param0, v0);
-
-        if (v1 == param1) {
-            return v0;
+    for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+        int battlerType = BattleAnimSystem_GetBattlerType(system, battler);
+        if (battlerType == type) {
+            return battler;
         }
     }
 
     return 0;
 }
 
-int ov12_022352AC(UnkStruct_ov12_0221FCDC *param0, int param1)
+int BattleAnimUtil_GetAlliedBattlerType(BattleAnimSystem *system, int battler)
 {
-    int v0;
-    int v1;
-    int v2;
-
-    v1 = ov12_022232B8(param0, param1);
-
-    if ((v1 == 0) || (v1 == 1)) {
-        return v1;
+    int type = BattleAnimSystem_GetBattlerType(system, battler);
+    if (type == BATTLER_TYPE_SOLO_PLAYER || type == BATTLER_TYPE_SOLO_ENEMY) {
+        return type;
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v2 = ov12_022232B8(param0, v0);
+    for (int otherBattler = 0; otherBattler < MAX_BATTLERS; otherBattler++) {
+        int otherType = BattleAnimSystem_GetBattlerType(system, otherBattler);
 
-        switch (v1) {
-        case 2:
-            if (v2 == 4) {
-                return v0;
+        switch (type) {
+        case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+            if (otherType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                return otherBattler;
             }
             break;
-        case 4:
-            if (v2 == 2) {
-                return v0;
+        case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+            if (otherType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                return otherBattler;
             }
             break;
-        case 3:
-            if (v2 == 5) {
-                return v0;
+        case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+            if (otherType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                return otherBattler;
             }
             break;
-        case 5:
-            if (v2 == 3) {
-                return v0;
+        case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+            if (otherType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                return otherBattler;
             }
             break;
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 
-    return v1;
+    return type;
 }
 
-int ov12_02235310(int param0)
+int BattleAnimUtil_GetOpposingBattlerType(int battlerType)
 {
-    switch (param0) {
-    case 0:
-        return 1;
-    case 1:
-        return 0;
-    case 2:
-        return 3;
-    case 3:
-        return 2;
-    case 4:
-        return 5;
-    case 5:
-        return 4;
+    switch (battlerType) {
+    case BATTLER_TYPE_SOLO_PLAYER:
+        return BATTLER_TYPE_SOLO_ENEMY;
+    case BATTLER_TYPE_SOLO_ENEMY:
+        return BATTLER_TYPE_SOLO_PLAYER;
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+        return BATTLER_TYPE_ENEMY_SIDE_SLOT_1;
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+        return BATTLER_TYPE_PLAYER_SIDE_SLOT_1;
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+        return BATTLER_TYPE_ENEMY_SIDE_SLOT_2;
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+        return BATTLER_TYPE_PLAYER_SIDE_SLOT_2;
     }
 
-    GF_ASSERT(0);
-    return 0;
+    GF_ASSERT(FALSE);
+    return BATTLER_TYPE_SOLO_PLAYER;
 }
 
 void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
@@ -171,10 +159,10 @@ void ov12_02235350(int param0, int param1, UnkStruct_ov12_02235350 *param2)
     *param2 = v0[param0];
 }
 
-void ov12_022353AC(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_02235350 *param2)
+void ov12_022353AC(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235350 *param2)
 {
-    int v0 = ov12_02235254(param0, param1);
-    int v1 = ov12_0221FDD4(param0);
+    int v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    int v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235350(v0, v1, param2);
 }
@@ -474,146 +462,146 @@ void ov12_022354F8(int param0, VecFx32 *param1, int param2, int param3)
     ov12_022353CC(param0, param1, param2, param3, 11);
 }
 
-void ov12_02235508(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235508(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235448(v0, param2, v1, v2);
 }
 
-void ov12_02235538(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235458(v0, param2, v1, v2);
 }
 
-void ov12_02235568(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235568(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235468(v0, param2, v1, v2);
 }
 
-void ov12_02235598(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235598(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235478(v0, param2, v1, v2);
 }
 
-void ov12_022355C8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_022355C8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235488(v0, param2, v1, v2);
 }
 
-void ov12_022355F8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_022355F8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_02235498(v0, param2, v1, v2);
 }
 
-void ov12_02235628(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235628(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354A8(v0, param2, v1, v2);
 }
 
-void ov12_02235658(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235658(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354B8(v0, param2, v1, v2);
 }
 
-void ov12_02235688(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235688(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354C8(v0, param2, v1, v2);
 }
 
-void ov12_022356B8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_022356B8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354D8(v0, param2, v1, v2);
 }
 
-void ov12_022356E8(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_022356E8(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354E8(v0, param2, v1, v2);
 }
 
-void ov12_02235718(UnkStruct_ov12_0221FCDC *param0, int param1, VecFx32 *param2)
+void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2)
 {
     int v0, v1;
     int v2;
-    ParticleSystem *v3 = ov12_02220250(param0);
+    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
     v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = ov12_02235254(param0, param1);
-    v1 = ov12_0221FDD4(param0);
+    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
+    v1 = BattleAnimSystem_IsContest(param0);
 
     ov12_022354F8(v0, param2, v1, v2);
 }
@@ -639,7 +627,7 @@ void ov12_02235760(int param0, VecFx32 *param1)
     }
 }
 
-void ov12_02235780(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
+void ov12_02235780(BattleAnimSystem *param0, int param1, int param2)
 {
     int v0 = param1;
     int v1 = param2;
@@ -652,10 +640,10 @@ void ov12_02235780(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
         v1 = 5;
     }
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (1 << ov12_022233EC(param0, 2)) | GX_BLEND_PLANEMASK_BG0, v0, v1);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_BLEND_PLANEMASK_BG0, v0, v1);
 }
 
-void ov12_022357BC(UnkStruct_ov12_0221FCDC *param0, int param1, int param2, int param3)
+void ov12_022357BC(BattleAnimSystem *param0, int param1, int param2, int param3)
 {
     int v0 = param2;
     int v1 = param3;
@@ -671,7 +659,7 @@ void ov12_022357BC(UnkStruct_ov12_0221FCDC *param0, int param1, int param2, int 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, param1, v0, v1);
 }
 
-void ov12_022357EC(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
+void ov12_022357EC(BattleAnimSystem *param0, int param1, int param2)
 {
     int v0 = param1;
     int v1 = param2;
@@ -684,18 +672,18 @@ void ov12_022357EC(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
         v1 = 5;
     }
 
-    G2_SetBlendAlpha((1 << ov12_022233EC(param0, 1)), (1 << ov12_022233EC(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
+    G2_SetBlendAlpha(1 << BattleAnimSystem_GetBgID(param0, 1), (1 << BattleAnimSystem_GetBgID(param0, 2)) | GX_WND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, v0, v1);
 }
 
-void ov12_02235838(UnkStruct_ov12_0221FCDC *param0, int param1, BOOL param2)
+void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)
 {
     if (param1 == 0) {
-        G2_SetWnd0InsidePlane((1 << ov12_022233EC(param0, 2)) | (1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
+        G2_SetWnd0InsidePlane((1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
     } else {
-        G2_SetWnd1InsidePlane((1 << ov12_022233EC(param0, 2)) | (1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
+        G2_SetWnd1InsidePlane((1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
     }
 
-    G2_SetWndOutsidePlane((1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
+    G2_SetWndOutsidePlane((1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
 }
 
 void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
@@ -719,30 +707,30 @@ void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)
     ManagedSprite_GetPositionXY(param0, &(param1->unk_00), &(param1->unk_02));
 }
 
-void ov12_0223595C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_0223595C *param1)
+void ov12_0223595C(BattleAnimSystem *param0, UnkStruct_ov12_0223595C *param1)
 {
     param1->unk_00 = 0;
     param1->unk_01 = 0;
     param1->unk_02 = 0;
     param1->unk_03 = 0;
     param1->unk_04 = param0;
-    param1->unk_08 = ov12_02220308(param0);
-    param1->unk_0C = ov12_022202EC(param0);
+    param1->unk_08 = BattleAnimSystem_GetSpriteSystem(param0);
+    param1->unk_0C = BattleAnimSystem_GetPokemonSpriteManager(param0);
     param1->unk_10 = ov12_02220300(param0);
-    param1->unk_14 = ov12_02220278(param0);
-    param1->unk_18 = ov12_0222332C(param0);
+    param1->unk_14 = BattleAnimSystem_GetBgConfig(param0);
+    param1->unk_18 = BattleAnimSystem_GetPaletteData(param0);
 }
 
-void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
+void ov12_02235998(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
 {
     *param3 = 0;
 
     if (inline_ov12_02235998(param1, 0x40) == 1) {
-        int v0 = ov12_02220240(param0);
+        int v0 = BattleAnimSystem_GetAttacker(param0);
         int v1;
         int v2;
 
-        param2[*param3].unk_08 = ov12_022232FC(param0, v0);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v0);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v0;
@@ -750,8 +738,8 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
             (*param3)++;
         }
 
-        v1 = ov12_022352AC(param0, v0);
-        param2[*param3].unk_08 = ov12_022232FC(param0, v1);
+        v1 = BattleAnimUtil_GetAlliedBattlerType(param0, v0);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v1;
@@ -759,11 +747,11 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
             (*param3)++;
         }
 
-        v2 = ov12_022232B8(param0, v0);
-        v2 = ov12_02235310(v2);
-        v1 = ov12_02235288(param0, v2);
+        v2 = BattleAnimSystem_GetBattlerType(param0, v0);
+        v2 = BattleAnimUtil_GetOpposingBattlerType(v2);
+        v1 = BattleAnimUtil_GetBattlerOfType(param0, v2);
 
-        param2[*param3].unk_08 = ov12_022232FC(param0, v1);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v1;
@@ -771,8 +759,8 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
             (*param3)++;
         }
 
-        v1 = ov12_022352AC(param0, v1);
-        param2[*param3].unk_08 = ov12_022232FC(param0, v1);
+        v1 = BattleAnimUtil_GetAlliedBattlerType(param0, v1);
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v1);
 
         if (param2[*param3].unk_08 != NULL) {
             param2[*param3].unk_10 = v1;
@@ -784,14 +772,14 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
     }
 
     if (inline_ov12_02235998(param1, 0x20) == 1) {
-        int v3 = ov12_02220240(param0);
+        int v3 = BattleAnimSystem_GetAttacker(param0);
         int v4;
         int v5;
 
-        v4 = ov12_022352AC(param0, v3);
+        v4 = BattleAnimUtil_GetAlliedBattlerType(param0, v3);
 
         if (v4 != v3) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, v4);
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
 
             if (param2[*param3].unk_08 != NULL) {
                 param2[*param3].unk_10 = v4;
@@ -800,12 +788,12 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
             }
         }
 
-        v5 = ov12_022232B8(param0, v3);
-        v5 = ov12_02235310(v5);
-        v4 = ov12_02235288(param0, v5);
+        v5 = BattleAnimSystem_GetBattlerType(param0, v3);
+        v5 = BattleAnimUtil_GetOpposingBattlerType(v5);
+        v4 = BattleAnimUtil_GetBattlerOfType(param0, v5);
 
         if (v4 != v3) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, v4);
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
 
             if (param2[*param3].unk_08 != NULL) {
                 param2[*param3].unk_10 = v4;
@@ -814,10 +802,10 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
             }
         }
 
-        v4 = ov12_022352AC(param0, v4);
+        v4 = BattleAnimUtil_GetAlliedBattlerType(param0, v4);
 
         if (v4 != v3) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, v4);
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, v4);
 
             if (param2[*param3].unk_08 != NULL) {
                 param2[*param3].unk_10 = v4;
@@ -830,21 +818,21 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
     }
 
     if (inline_ov12_02235998(param1, 0x2) == 1) {
-        param2[*param3].unk_08 = ov12_022232FC(param0, ov12_02220240(param0));
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetAttacker(param0));
 
         if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = ov12_02220240(param0);
+            param2[*param3].unk_10 = BattleAnimSystem_GetAttacker(param0);
             ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
             (*param3)++;
         }
     }
 
-    if (ov12_02223364(param0) == 1) {
+    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         if (inline_ov12_02235998(param1, 0x4) == 1) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, ov12_022352AC(param0, ov12_02220240(param0)));
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0)));
 
             if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = ov12_022352AC(param0, ov12_02220240(param0));
+                param2[*param3].unk_10 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetAttacker(param0));
                 ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
                 (*param3)++;
             }
@@ -852,21 +840,21 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
     }
 
     if (inline_ov12_02235998(param1, 0x8) == 1) {
-        param2[*param3].unk_08 = ov12_022232FC(param0, ov12_02220248(param0));
+        param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetDefender(param0));
 
         if (param2[*param3].unk_08 != NULL) {
-            param2[*param3].unk_10 = ov12_02220248(param0);
+            param2[*param3].unk_10 = BattleAnimSystem_GetDefender(param0);
             ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
             (*param3)++;
         }
     }
 
-    if (ov12_02223364(param0) == 1) {
+    if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
         if (inline_ov12_02235998(param1, 0x10) == 1) {
-            param2[*param3].unk_08 = ov12_022232FC(param0, ov12_022352AC(param0, ov12_02220248(param0)));
+            param2[*param3].unk_08 = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0)));
 
             if (param2[*param3].unk_08 != NULL) {
-                param2[*param3].unk_10 = ov12_022352AC(param0, ov12_02220248(param0));
+                param2[*param3].unk_10 = BattleAnimUtil_GetAlliedBattlerType(param0, BattleAnimSystem_GetDefender(param0));
                 ov12_02235918(param2[*param3].unk_08, &param2[*param3].unk_04);
                 (*param3)++;
             }
@@ -874,43 +862,43 @@ void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_0
     }
 }
 
-void ov12_02235D74(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
+void ov12_02235D74(BattleAnimSystem *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3)
 {
     *param3 = 0;
 
     if (inline_ov12_02235998(param1, 0x2) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }
 
     if (inline_ov12_02235998(param1, 0x4) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }
 
     if (inline_ov12_02235998(param1, 0x8) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }
 
     if (inline_ov12_02235998(param1, 0x10) == 1) {
-        param2[*param3].unk_0C = ov12_022202C0(param0, *param3);
+        param2[*param3].unk_0C = BattleAnimSystem_GetPokemonSprite(param0, *param3);
         ov12_02235950(param2[*param3].unk_0C, &param2[*param3].unk_04);
         (*param3)++;
     }
 }
 
-void *ov12_02235E50(UnkStruct_ov12_0221FCDC *param0, int param1)
+void *ov12_02235E50(BattleAnimSystem *param0, int param1)
 {
     int heapID;
     void *v1 = NULL;
 
     GF_ASSERT(param0 != NULL);
 
-    heapID = ov12_0221FDE4(param0);
+    heapID = BattleAnimSystem_GetHeapID(param0);
     v1 = Heap_Alloc(heapID, param1);
 
     GF_ASSERT(v1 != NULL);

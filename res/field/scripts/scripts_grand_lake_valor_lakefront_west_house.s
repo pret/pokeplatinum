@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/grand_lake_valor_lakefront_west_house.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -11,10 +10,10 @@ _0006:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0001, _00D3
-    ScrCmd_1E8 VAR_RESULT
+    CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _004C
     GoToIfUnset FLAG_UNK_0x00AB, _0057
-    ScrCmd_1E9 VAR_RESULT
+    CheckNationalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0057
     GoTo _0095
 

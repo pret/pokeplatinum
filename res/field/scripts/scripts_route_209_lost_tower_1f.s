@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209_lost_tower_1f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0014

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_elevator_to_hall_of_fame.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000A

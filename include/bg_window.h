@@ -104,7 +104,6 @@ typedef struct BgTemplate {
     u8 bgExtPltt;
     u8 priority;
     u8 areaOver;
-    u8 dummy;
     BOOL mosaic;
 } BgTemplate;
 

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_b1f.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0045

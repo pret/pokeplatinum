@@ -561,8 +561,8 @@ void EncounterEffect_ScreenSplit(EncounterEffect *encEffect, ScreenSplitEffect *
     screenSplitEfx->state = SCREENSPLIT_STATE_INTERPOLATE;
     screenSplitEfx->done = &encEffect->hBlankFlag;
 
-    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->xInterpolationTask, 0, (255 * FX32_ONE), initialSpeedX, numSteps);
-    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->yInterpolationTask, 0, (96 * FX32_ONE), initialSpeedY, numSteps);
+    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->xInterpolationTask, 0, 255 * FX32_ONE, initialSpeedX, numSteps);
+    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->yInterpolationTask, 0, 96 * FX32_ONE, initialSpeedY, numSteps);
 
     G2_SetWnd0Position(0, 0, 255, 192);
     G2_SetWnd1Position(0, 0, 255, 192);
@@ -652,55 +652,52 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
     }
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_23,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
     }
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_23,
-            0,
-            1,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 0,
+            .areaOver = 1,
+            .mosaic = FALSE,
         };
     }
 }
@@ -1147,7 +1144,7 @@ void ov5_021DEC38(UnkStruct_ov5_021DEC18 *param0, u8 param1, Window *param2, u8 
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        ov5_021DEAA0(param0->unk_00[v0], param1, ((Unk_ov5_021F9A2C[v0][0] * 0xffff) / 360), ((Unk_ov5_021F9A2C[v0][1] * 0xffff) / 360), param2, param3);
+        ov5_021DEAA0(param0->unk_00[v0], param1, (Unk_ov5_021F9A2C[v0][0] * 0xffff) / 360, (Unk_ov5_021F9A2C[v0][1] * 0xffff) / 360, param2, param3);
     }
 
     param0->unk_20 = 1;
@@ -1585,19 +1582,18 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
         {
             BgTemplate v3 = {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xe800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_23,
-                0,
-                0,
-                0,
-                0
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xe800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_23,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             };
 
             Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_2, &v3, 0);

@@ -2,6 +2,7 @@
 #define POKEPLATINUM_OV16_0223DF00_H
 
 #include "constants/rtc.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
@@ -19,7 +20,7 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -35,6 +36,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
+#include "unk_0201567C.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
@@ -84,7 +86,7 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
  */
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSys);
-UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
+BattleAnimSystem *ov16_0223E008(BattleSystem *battleSys);
 SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
@@ -141,7 +143,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int param1);
 u8 Battler_Side(BattleSystem *battleSys, int param1);
-void *ov16_0223E220(BattleSystem *battleSys);
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys);
 PCBoxes *BattleSystem_PCBoxes(BattleSystem *battleSys);
 
 /**
@@ -296,7 +298,7 @@ void ov16_0223F9A0(BattleSystem *battleSys, int param1);
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *battleSys, int param1, int param2, int param3, int param4);
+u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum TrainerMessageType msgType, int param4);
 
 /**
  * @brief Print a BattleMessage to the main text display window.

@@ -233,7 +233,7 @@ BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021
 
             RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
             v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, HEAP_ID_BOX_GRAPHICS);
-            SetSubScreenViewRect(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
+            SetSubScreenViewRect(&(v0->unk_1C), 0, 384 << FX32_SHIFT);
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
 
@@ -443,7 +443,7 @@ static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1)
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
         v2->state++;
         break;
     case 1:
@@ -465,7 +465,7 @@ static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1)
     switch (v2->state) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         v2->state++;
         break;
     case 1:
@@ -486,7 +486,7 @@ static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1)
 
     switch (v2->state) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         v2->state++;
         break;
     case 1:
@@ -1517,7 +1517,7 @@ static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1)
     switch (params->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
         params->state++;
         break;
     case 1:
@@ -1551,163 +1551,153 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     };
 
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        0,
-        0,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = 0,
+        .charBase = 0,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v3 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xe000),
-        (GX_BG_CHARBASE_0x18000),
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xe000),
+        .charBase = (GX_BG_CHARBASE_0x18000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v4 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xe800),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xe800),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v5 = {
-        0,
-        0,
-        0x1000,
-        0,
-        3,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xf000),
-        (GX_BG_CHARBASE_0x10000),
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xf000),
+        .charBase = (GX_BG_CHARBASE_0x10000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v6 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xf000),
-        (GX_BG_CHARBASE_0x10000),
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xf000),
+        .charBase = (GX_BG_CHARBASE_0x10000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v7 = {
-        0,
-        0,
-        0x0,
-        0,
-        3,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xd000),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xd000),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v8 = {
-        0,
-        0,
-        0x0,
-        0,
-        3,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xe000),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xe000),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v9 = {
-        0,
-        0,
-        0x0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xf800),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xf800),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v10 = {
-        0,
-        0,
-        0x0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v11 = {
-        0,
-        0,
-        0x0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     GXLayers_SetBanks(&v0);
@@ -1893,7 +1883,7 @@ Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 par
 
     if (v1) {
         Sprite_SetAnimateFlag(v1, 1);
-        Sprite_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
+        Sprite_SetAnimSpeed(v1, FX32_ONE * (2 / 2));
     }
 
     return v1;

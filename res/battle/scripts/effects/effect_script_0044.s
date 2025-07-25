@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     SetMultiHit 2, SYSCTL_MULTI_HIT_MOVE

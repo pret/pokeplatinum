@@ -194,7 +194,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_37, FADE_TO_BLACK, 6, 1, param0->heapID);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, param0->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU);
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
@@ -206,7 +206,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
 int ov80_021D159C(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
-    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, FADE_TO_BLACK, 6, 1, param0->heapID);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, param0->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
     return 0;
 }
@@ -215,7 +215,7 @@ int ov80_021D15C8(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, FADE_TO_BLACK, 6, 1, param0->heapID);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, param0->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU);
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 
@@ -227,7 +227,7 @@ int ov80_021D1610(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, FADE_TO_BLACK, 6, 1, param0->heapID);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, param0->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
 
     return 0;
@@ -1107,7 +1107,7 @@ static void ov80_021D2774(SysTask *param0, void *param1)
         Sprite_SetAnimateFlag(v1->unk_100, 0);
 
         v0->unk_14 = 0;
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_2, FADE_TO_BLACK, 8, 1, v0->heapID);
+        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_2, COLOR_BLACK, 8, 1, v0->heapID);
         v1->unk_04++;
         break;
     case 3:
@@ -1125,7 +1125,7 @@ static void ov80_021D2774(SysTask *param0, void *param1)
         ov80_021D19E4(v0);
 
         v0->unk_14 = 0;
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_5, FADE_TO_BLACK, 8, 1, v0->heapID);
+        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_5, COLOR_BLACK, 8, 1, v0->heapID);
         v1->unk_04++;
         break;
     case 4:
@@ -1152,7 +1152,7 @@ static void ov80_021D28EC(SysTask *param0, void *param1)
     switch (v1->unk_04) {
     case 0:
         v0->unk_14 = 0;
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_2, FADE_TO_BLACK, 8, 1, v0->heapID);
+        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_2, COLOR_BLACK, 8, 1, v0->heapID);
         Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
         v1->unk_04++;
         break;
@@ -1166,7 +1166,7 @@ static void ov80_021D28EC(SysTask *param0, void *param1)
         Bg_ScheduleTilemapTransfer(v0->unk_28, 4);
         Bg_ScheduleTilemapTransfer(v0->unk_28, 5);
         v0->unk_14 = 0;
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_5, FADE_TO_BLACK, 8, 1, v0->heapID);
+        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_5, COLOR_BLACK, 8, 1, v0->heapID);
         v1->unk_04++;
         break;
     case 2:

@@ -3,8 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "heap.h"
 #include "sprite.h"
@@ -12,24 +11,27 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#define TASK_STATE_RUNNING 0
+#define TASK_STATE_DONE    1
+
 typedef struct {
-    u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
-} UnkStruct_ov12_022269C4;
+    u8 state;
+    BattleAnimSystem *system;
+} AnimExampleContext;
+
+typedef struct {
+    u8 state;
+    BattleAnimSystem *system;
+} SoundExampleContext;
+
+typedef struct {
+    u8 state;
+    BattleAnimSystem *system;
+} GenericExampleContext;
 
 typedef struct {
     u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
-} UnkStruct_ov12_02226A14;
-
-typedef struct {
-    u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
-} UnkStruct_ov12_02226A64;
-
-typedef struct {
-    u8 unk_00;
-    UnkStruct_ov12_0221FCDC *unk_04;
+    BattleAnimSystem *unk_04;
     SpriteSystem *unk_08;
     SpriteManager *unk_0C;
     ManagedSprite *unk_10;
@@ -37,84 +39,84 @@ typedef struct {
     Sprite *unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
-void ov12_022269C0(UnkStruct_ov12_0221FCDC *param0)
+void BattleAnimScriptFunc_Nop(BattleAnimSystem *system)
 {
     return;
 }
 
-static void ov12_022269C4(SysTask *param0, void *param1)
+static void BattleAnimTask_AnimExample(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022269C4 *v0 = (UnkStruct_ov12_022269C4 *)param1;
+    AnimExampleContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        v0->unk_00++;
+    switch (ctx->state) {
+    case TASK_STATE_RUNNING:
+        ctx->state++;
         break;
-    case 1:
-        ov12_02220220(v0->unk_04, param0);
-        Heap_Free(v0);
-        break;
-    }
-}
-
-void ov12_022269EC(UnkStruct_ov12_0221FCDC *param0)
-{
-    UnkStruct_ov12_022269C4 *v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_022269C4));
-
-    v0->unk_00 = 0;
-    v0->unk_04 = param0;
-
-    ov12_022201CC(v0->unk_04, ov12_022269C4, v0, 0x1000);
-}
-
-static void ov12_02226A14(SysTask *param0, void *param1)
-{
-    UnkStruct_ov12_02226A14 *v0 = (UnkStruct_ov12_02226A14 *)param1;
-
-    switch (v0->unk_00) {
-    case 0:
-        v0->unk_00++;
-        break;
-    case 1:
-        ov12_02220230(v0->unk_04, param0);
-        Heap_Free(v0);
+    case TASK_STATE_DONE:
+        BattleAnimSystem_EndAnimTask(ctx->system, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02226A3C(UnkStruct_ov12_0221FCDC *param0)
+void BattleAnimScriptFunc_AnimExample(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02226A14 *v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A14));
+    AnimExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(AnimExampleContext));
 
-    v0->unk_00 = 0;
-    v0->unk_04 = param0;
+    ctx->state = TASK_STATE_RUNNING;
+    ctx->system = system;
 
-    ov12_02220204(v0->unk_04, ov12_02226A14, v0, 0x1000);
+    BattleAnimSystem_StartAnimTaskEx(ctx->system, BattleAnimTask_AnimExample, ctx, 0x1000);
 }
 
-static void ov12_02226A64(SysTask *param0, void *param1)
+static void BattleAnimTask_SoundExample(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02226A64 *v0 = (UnkStruct_ov12_02226A64 *)param1;
+    SoundExampleContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        v0->unk_00++;
+    switch (ctx->state) {
+    case TASK_STATE_RUNNING:
+        ctx->state++;
         break;
-    case 1:
-        SysTask_Done(param0);
-        Heap_Free(v0);
+    case TASK_STATE_DONE:
+        BattleAnimSystem_EndSoundTask(ctx->system, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02226A88(UnkStruct_ov12_0221FCDC *param0)
+void BattleAnimScriptFunc_SoundExample(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02226A64 *v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov12_02226A64));
+    SoundExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(SoundExampleContext));
 
-    v0->unk_00 = 0;
-    v0->unk_04 = param0;
+    ctx->state = TASK_STATE_RUNNING;
+    ctx->system = system;
 
-    SysTask_Start(ov12_02226A64, v0, 0x1000);
+    BattleAnimSystem_StartSoundTask(ctx->system, BattleAnimTask_SoundExample, ctx, 0x1000);
+}
+
+static void BattleAnimtTask_GenericExample(SysTask *task, void *param)
+{
+    GenericExampleContext *ctx = param;
+
+    switch (ctx->state) {
+    case TASK_STATE_RUNNING:
+        ctx->state++;
+        break;
+    case TASK_STATE_DONE:
+        SysTask_Done(task);
+        Heap_Free(ctx);
+        break;
+    }
+}
+
+void BattleAnimScriptFunc_GenericExample(BattleAnimSystem *system)
+{
+    GenericExampleContext *ctx = Heap_Alloc(HEAP_ID_BATTLE, sizeof(GenericExampleContext));
+
+    ctx->state = TASK_STATE_RUNNING;
+    ctx->system = system;
+
+    SysTask_Start(BattleAnimtTask_GenericExample, ctx, 0x1000);
 }
 
 static void ov12_02226AAC(SysTask *param0, void *param1)
@@ -134,16 +136,16 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
         SpriteSystem_DrawSprites(v0->unk_0C);
         break;
     case 1: {
-        UnkStruct_ov12_0221FCDC *v1 = v0->unk_04;
+        BattleAnimSystem *v1 = v0->unk_04;
 
         Sprite_DeleteAndFreeResources(v0->unk_10);
         Heap_Free(v0);
-        ov12_02220220(v1, param0);
+        BattleAnimSystem_EndAnimTask(v1, param0);
     } break;
     }
 }
 
-void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void ov12_02226B1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_02226AAC *v0;
     SpriteTemplate v1;
@@ -158,7 +160,7 @@ void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
     v0->unk_10 = param3;
     v0->unk_04 = param0;
 
-    v1 = ov12_0222329C(param0);
+    v1 = BattleAnimSystem_GetLastSpriteTemplate(param0);
     v0->unk_14[0] = param3;
 
     {
@@ -169,5 +171,5 @@ void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
         }
     }
 
-    ov12_022201CC(param0, ov12_02226AAC, v0, 0x1000);
+    BattleAnimSystem_StartAnimTaskEx(param0, ov12_02226AAC, v0, 0x1000);
 }

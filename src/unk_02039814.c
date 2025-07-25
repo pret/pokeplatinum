@@ -41,19 +41,18 @@ static const GraphicsModes Unk_020E5ED0 = {
 };
 
 static const BgTemplate Unk_020E5EE0 = {
-    0x0,
-    0x0,
-    0x800,
-    0x0,
-    0x1,
-    GX_BG_COLORMODE_16,
-    GX_BG_SCRBASE_0x0000,
-    GX_BG_CHARBASE_0x18000,
-    GX_BG_EXTPLTT_01,
-    0x1,
-    0x0,
-    0x0,
-    0x0
+    .x = 0x0,
+    .y = 0x0,
+    .bufferSize = 0x800,
+    .baseTile = 0x0,
+    .screenSize = BG_SCREEN_SIZE_256x256,
+    .colorMode = GX_BG_COLORMODE_16,
+    .screenBase = GX_BG_SCRBASE_0x0000,
+    .charBase = GX_BG_CHARBASE_0x18000,
+    .bgExtPltt = GX_BG_EXTPLTT_01,
+    .priority = 0x1,
+    .areaOver = 0x0,
+    .mosaic = FALSE,
 };
 
 static const WindowTemplate Unk_020E5EC8 = {
@@ -107,8 +106,8 @@ void sub_02039834(int heapID, int param1, int param2)
         break;
     }
 
-    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
     (void)OS_DisableIrqMask(OS_IE_V_BLANK);
     OS_SetIrqFunction(OS_IE_V_BLANK, sub_02039814);
@@ -137,7 +136,7 @@ void sub_02039834(int heapID, int param1, int param2)
     SetAllGraphicsModes(&Unk_020E5ED0);
     Bg_InitFromTemplate(v0, BG_LAYER_MAIN_0, &Unk_020E5EE0, 0);
     Bg_ClearTilemap(v0, BG_LAYER_MAIN_0);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (512 - 9), 2, 0, heapID);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 512 - 9, 2, 0, heapID);
     Font_LoadTextPalette(0, 1 * (2 * 16), heapID);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
@@ -151,7 +150,7 @@ void sub_02039834(int heapID, int param1, int param2)
 
     Window_AddFromTemplate(v0, &v1, &Unk_020E5EC8);
     Window_FillRectWithColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    Window_DrawStandardFrame(&v1, 0, (512 - 9), 2);
+    Window_DrawStandardFrame(&v1, 0, 512 - 9, 2);
 
     StringTemplate_SetNumber(v5, 0, param2, 5, 2, 1);
     MessageLoader_GetStrbuf(v2, v6, v4);
@@ -163,7 +162,7 @@ void sub_02039834(int heapID, int param1, int param2)
     GXLayers_TurnBothDispOn();
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
-    BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
+    BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
 
     Window_Remove(&v1);
     MessageLoader_Free(v2);

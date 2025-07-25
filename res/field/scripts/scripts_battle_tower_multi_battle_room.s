@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_multi_battle_room.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0074
