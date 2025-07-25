@@ -495,15 +495,31 @@ typedef struct {
     int unk_7C;
 } UnkStruct_ov12_02232084;
 
-typedef struct {
-    int unk_00;
-    BattleAnimSystem *unk_04;
-    PokemonSprite *unk_08;
-    s16 unk_0C;
-    s16 unk_0E;
-    XYTransformContext unk_10;
-    int unk_34;
-} UnkStruct_ov12_022323E4;
+// -------------------------------------------------------------------
+// Return
+// -------------------------------------------------------------------
+typedef struct ReturnContext {
+    int state;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *attackerSprite;
+    s16 attackerX;
+    s16 attackerY;
+    XYTransformContext pos;
+    int moveCount;
+} ReturnContext;
+
+enum ReturnState {
+    RETURN_STATE_INIT = 0,
+    RETURN_STATE_MOVE,
+    RETURN_STATE_CLEANUP,
+};
+
+#define RETURN_MOVE_START_X 0
+#define RETURN_MOVE_START_Y 0
+#define RETURN_MOVE_END_X   0
+#define RETURN_MOVE_END_Y   32
+#define RETURN_MOVE_FRAMES  6
+#define RETURN_MOVE_COUNT   4
 
 typedef struct {
     int unk_00;
@@ -2908,60 +2924,71 @@ void ov12_02232378(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0223223C, v0);
 }
 
-static void ov12_022323E4(UnkStruct_ov12_022323E4 *param0)
+static void ReturnContext_InitMovement(ReturnContext *ctx)
 {
-    switch (param0->unk_34) {
+    switch (ctx->moveCount) {
     case 0:
     case 2:
-        PosLerpContext_Init(&param0->unk_10, 0, 0, 0, 32, 6);
+        PosLerpContext_Init(
+            &ctx->pos,
+            RETURN_MOVE_START_X,
+            RETURN_MOVE_END_X,
+            RETURN_MOVE_START_Y,
+            RETURN_MOVE_END_Y,
+            RETURN_MOVE_FRAMES);
         break;
     case 1:
     case 3:
-        PosLerpContext_Init(&param0->unk_10, 0, 0, 32, 0, 6);
+        PosLerpContext_Init(
+            &ctx->pos,
+            RETURN_MOVE_END_X,
+            RETURN_MOVE_START_X,
+            RETURN_MOVE_END_Y,
+            RETURN_MOVE_START_Y,
+            RETURN_MOVE_FRAMES);
         break;
     }
 }
 
-static void ov12_02232430(SysTask *param0, void *param1)
+static void BattleAnimTask_Return(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022323E4 *v0 = param1;
+    ReturnContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        ov12_022323E4(v0);
-        v0->unk_00++;
+    switch (ctx->state) {
+    case RETURN_STATE_INIT:
+        ReturnContext_InitMovement(ctx);
+        ctx->state++;
         break;
-    case 1:
-        if (PosLerpContext_Update(&v0->unk_10)) {
-            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_0E);
+    case RETURN_STATE_MOVE:
+        if (PosLerpContext_Update(&ctx->pos)) {
+            XYTransformContext_ApplyPosOffsetToMon(&ctx->pos, ctx->attackerSprite, ctx->attackerX, ctx->attackerY);
         } else {
-            v0->unk_34++;
-
-            if (v0->unk_34 < 4) {
-                v0->unk_00 = 0;
+            ctx->moveCount++;
+            if (ctx->moveCount < RETURN_MOVE_COUNT) {
+                ctx->state = RETURN_STATE_INIT;
             } else {
-                v0->unk_00++;
+                ctx->state++;
             }
         }
         break;
-    case 2:
-        BattleAnimSystem_EndAnimTask(v0->unk_04, param0);
-        Heap_Free(v0);
+    case RETURN_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0223249C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Return(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_022323E4 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022323E4));
+    ReturnContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ReturnContext));
 
-    v0->unk_04 = param0;
-    v0->unk_08 = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetAttacker(param0));
-    v0->unk_0C = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_X_CENTER);
-    v0->unk_0E = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER);
-    v0->unk_34 = 0;
+    ctx->battleAnimSys = system;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->moveCount = 0;
 
-    BattleAnimSystem_StartAnimTask(v0->unk_04, ov12_02232430, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Return, ctx);
 }
 
 static void ov12_022324E0(SysTask *param0, void *param1)

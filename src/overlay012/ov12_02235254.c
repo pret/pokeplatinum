@@ -892,12 +892,12 @@ void *BattleAnimUtil_Alloc(BattleAnimSystem *system, int size)
     GF_ASSERT(system != NULL);
 
     enum HeapId heapID = BattleAnimSystem_GetHeapID(system);
-    void *v1 = Heap_AllocFromHeap(heapID, size);
+    void *ptr = Heap_AllocFromHeap(heapID, size);
 
-    GF_ASSERT(v1 != NULL);
-    memset(v1, 0, size);
+    GF_ASSERT(ptr != NULL);
+    memset(ptr, 0, size);
 
-    return v1;
+    return ptr;
 }
 
 void ov12_02235E80(void *param0)
