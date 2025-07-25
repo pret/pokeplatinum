@@ -5,9 +5,9 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
-#include "constants/trainer.h"
 #include "generated/object_events.h"
 #include "generated/species_data_params.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/wi_fi_history.h"

@@ -2,6 +2,7 @@
 #define POKEPLATINUM_OV16_0223DF00_H
 
 #include "constants/rtc.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
@@ -297,7 +298,7 @@ void ov16_0223F9A0(BattleSystem *battleSys, int param1);
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *battleSys, int param1, int param2, int param3, int param4);
+u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum TrainerMessageType msgType, int param4);
 
 /**
  * @brief Print a BattleMessage to the main text display window.

@@ -10,7 +10,6 @@
 #include "constants/sound.h"
 #include "constants/species.h"
 #include "constants/string.h"
-#include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
@@ -46,6 +45,10 @@
 #include "unk_0208C098.h"
 
 #include "res/battle/scripts/sub_seq.naix.h"
+
+#define TRMSG_ACTIVE_BATTLER_HALF_HP_FLAG 2
+#define TRMSG_LAST_BATTLER_FLAG           3
+#define TRMSG_LAST_BATTLER_HALF_HP_FLAG   4
 
 static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
 static int MapSideEffectToSubscript(BattleContext *battleCtx, enum BattleSideEffectType type, u32 effect);

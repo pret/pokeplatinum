@@ -425,7 +425,7 @@ static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerStarterSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx);
-static BOOL ScrCmd_0E6(ScriptContext *ctx);
+static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx);
 static BOOL ScrCmd_0F2(ScriptContext *ctx);
 static BOOL sub_02042F74(ScriptContext *ctx);
 static BOOL ScrCmd_0F3(ScriptContext *ctx);
@@ -996,12 +996,12 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferUndergroundItemName,
     ScrCmd_0E2,
     ScrCmd_GetSwarmMapAndSpecies,
-    ScrCmd_0E4,
+    ScrCmd_GetTrainerID,
     ScrCmd_StartTrainerBattle,
-    ScrCmd_0E6,
-    ScrCmd_0E7,
-    ScrCmd_0E8,
-    ScrCmd_0E9,
+    ScrCmd_PrintTrainerDialogue,
+    ScrCmd_GetTrainerMessageTypes,
+    ScrCmd_GetTrainerRematchMessageTypes,
+    ScrCmd_CheckIsTrainerDoubleBattle,
     ScrCmd_PlayTrainerEncounterBGM,
     ScrCmd_BlackOutFromBattle,
     ScrCmd_CheckWonBattle,
@@ -4633,20 +4633,20 @@ static BOOL ScrCmd_GetPlayerStarterSpecies(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0E6(ScriptContext *ctx)
+static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
-    Strbuf **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    u8 *v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
-    u8 *v4 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
-    u16 v5 = ScriptContext_GetVar(ctx);
-    u16 v6 = ScriptContext_GetVar(ctx);
+    u16 *unused = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
+    Strbuf **strbuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    u8 *unused2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    u16 trainerID = ScriptContext_GetVar(ctx);
+    u16 msgType = ScriptContext_GetVar(ctx);
 
-    Trainer_LoadMessage(v5, v6, *v2, 11);
+    Trainer_LoadMessage(trainerID, msgType, *strbuf, HEAP_ID_FIELDMAP);
     Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *v4 = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *v2, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
+    *printerID = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *strbuf, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
     ScriptContext_Pause(ctx, sub_02040014);
 
     return TRUE;
