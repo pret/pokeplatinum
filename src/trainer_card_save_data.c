@@ -15,12 +15,12 @@ void TrainerCardSaveData_Init(TrainerCardSaveData *tcSaveData)
     memset(tcSaveData, 0, sizeof(TrainerCardSaveData));
 
     int badgeID;
-    TrainerCardBadge *badges;
+    TrainerCardSaveDataBadge *badges;
 
-    badges = TrainerCardSaveData_GetTrainerCardBadges(tcSaveData);
+    badges = TrainerCardSaveData_GetTrainerCardSaveDataBadges(tcSaveData);
 
     for (badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
-        TrainerCardBadge_SetCleanliness(badgeID, 140, badges);
+        TrainerCardSaveDataBadge_SetPolish(badgeID, BADGE_POLISH_THRESHOLD_NORMAL, badges);
     }
 }
 
@@ -34,17 +34,17 @@ u8 *TrainerCardSaveData_GetSignature(TrainerCardSaveData *tcSaveData)
     return tcSaveData->signature;
 }
 
-TrainerCardBadge *TrainerCardSaveData_GetTrainerCardBadges(TrainerCardSaveData *tcSaveData)
+TrainerCardSaveDataBadge *TrainerCardSaveData_GetTrainerCardSaveDataBadges(TrainerCardSaveData *tcSaveData)
 {
     return tcSaveData->badges;
 }
 
-int TrainerCardBadge_GetCleanliness(const u8 badgeID, TrainerCardBadge *badges)
+int TrainerCardSaveDataBadge_GetPolish(u8 badgeID, TrainerCardSaveDataBadge *badges)
 {
-    return badges[badgeID].cleanliness;
+    return badges[badgeID].polish;
 }
 
-void TrainerCardBadge_SetCleanliness(const u8 badgeID, const int cleanliness, TrainerCardBadge *badges)
+void TrainerCardSaveDataBadge_SetPolish(u8 badgeID, int polish, TrainerCardSaveDataBadge *badges)
 {
-    badges[badgeID].cleanliness = cleanliness;
+    badges[badgeID].polish = polish;
 }

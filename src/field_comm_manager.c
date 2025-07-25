@@ -180,7 +180,7 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
             }
         }
 
-        TrainerCard_Init(0, 0, 0, 0xff, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCard[netId]);
+        TrainerCard_Init(FALSE, FALSE, 0, 0xFF, sFieldCommMan->fieldSystem, sFieldCommMan->trainerCard[netId]);
     }
 
     CommTiming_StartSync(95);

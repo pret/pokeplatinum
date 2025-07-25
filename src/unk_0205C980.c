@@ -59,27 +59,27 @@ int TrainerInfo_GetAppearanceIndex(u32 trainerId, int trainerGender, u32 variant
     return TRAINER_APPEARANCES[v1][0];
 }
 
-static int sub_0205C9E0(int param0, int param1)
+static int sub_0205C9E0(int gender, int param1)
 {
     int v0;
 
     for (v0 = 0; v0 < 16 / 2; v0++) {
-        if (TRAINER_APPEARANCES[v0 + (param0 * (16 / 2))][0] == param1) {
-            return v0 + (param0 * (16 / 2));
+        if (TRAINER_APPEARANCES[v0 + (gender * (16 / 2))][0] == param1) {
+            return v0 + (gender * (16 / 2));
         }
     }
 
     return 0;
 }
 
-int sub_0205CA0C(int param0, int param1)
+int sub_0205CA0C(int gender, int param1)
 {
-    return sub_0205C9E0(param0, param1);
+    return sub_0205C9E0(gender, param1);
 }
 
-int sub_0205CA14(int param0, int param1, int param2)
+int sub_0205CA14(int gender, int param1, int param2)
 {
-    int v0 = sub_0205C9E0(param0, param1);
+    int v0 = sub_0205C9E0(gender, param1);
 
     switch (param2) {
     case 0:

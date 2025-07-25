@@ -6,9 +6,6 @@
 
 #include "sound_system.h"
 
-#define SOUND_PLAYBACK_TRACK(TRACK) (1 << (TRACK))
-#define SOUND_PLAYBACK_TRACK_ALL    0xFFFF
-
 enum BGMFadeInType {
     BGM_FADE_IN_TYPE_FROM_ZERO = 0, // Fade in from volume 0
     BGM_FADE_IN_TYPE_FROM_CURRENT = 1, // Fade in from the current volume

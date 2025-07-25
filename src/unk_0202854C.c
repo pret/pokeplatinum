@@ -169,7 +169,7 @@ static int sub_02028638(Underground *underground)
     return -1;
 }
 
-void sub_02028658(SaveData *saveData, int param1)
+void sub_02028658(SaveData *saveData, int daysPassed)
 {
     Underground *v0 = SaveData_GetUnderground(saveData);
     MATHRandContext16 v1;
@@ -177,13 +177,13 @@ void sub_02028658(SaveData *saveData, int param1)
     u8 v3[] = { 0, 1, 1, 3, 3, 5 };
     int i, v5, v6, v7, j;
 
-    if (param1 <= 0) {
+    if (daysPassed <= 0) {
         return;
     }
 
-    v5 = param1;
+    v5 = daysPassed;
 
-    if (param1 > 99) {
+    if (daysPassed > 99) {
         v5 = 99;
     }
 
@@ -204,7 +204,7 @@ void sub_02028658(SaveData *saveData, int param1)
         }
     }
 
-    v0->randomSeed = ARNG_Next(v0->randomSeed + param1);
+    v0->randomSeed = ARNG_Next(v0->randomSeed + daysPassed);
     v0->unk_9AC_0 = 1;
 }
 

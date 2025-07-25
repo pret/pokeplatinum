@@ -38,6 +38,7 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "sound.h"
 #include "sound_playback.h"
 #include "spl.h"
 #include "sprite.h"
