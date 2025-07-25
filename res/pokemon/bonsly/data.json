@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FAKE_TEARS" ],
@@ -84,6 +85,14 @@
             "MOVE_EARTH_POWER",
             "MOVE_SUCKER_PUNCH",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_SELFDESTRUCT",
+            "MOVE_HEADBUTT",
+            "MOVE_HARDEN",
+            "MOVE_DEFENSE_CURL",
+            "MOVE_ROLLOUT",
+            "MOVE_SAND_TOMB"
         ]
     },
     "evolutions": [

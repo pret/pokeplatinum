@@ -28,12 +28,16 @@
  *   - tutorable_moves.h
  *   - species_learnsets_by_tutor.h
  *   - species_footprints.h
+ *   - species_egg_moves.h
+ *   - species_icon_palettes.h
  */
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <optional>
+#include <regex>
 #include <string>
 
 #include "datagen.h"
@@ -363,6 +367,64 @@ static void TryEmitTutorableLearnset(rapidjson::Document &root, std::ofstream &o
     ofs << "},\n";
 }
 
+static void TryEmitEggMoves(rapidjson::Document &root, std::ofstream &ofs, std::string species)
+{
+    const rapidjson::Value &learnsets = root["learnset"];
+    if (!learnsets.HasMember("egg_moves")) {
+        return;
+    }
+
+    std::transform(species.begin(), species.end(), species.begin(), ::toupper);
+    ofs << "    EGG_MOVES(SPECIES_"
+        << species;
+
+    const rapidjson::Value &eggMoves = learnsets["egg_moves"];
+    for (const auto &entry : eggMoves.GetArray()) {
+        ofs << ",\n"
+            << "        "
+            << entry.GetString();
+    }
+
+    ofs << "\n"
+        << "    ),\n"
+        << "\n";
+}
+
+static std::string FormPathToName(std::string path)
+{
+    path = std::regex_replace(path, std::regex("/forms/"), "_");
+    std::transform(path.begin(), path.end(), path.begin(), ::toupper);
+    return path;
+}
+
+static void EmitIconPaletteData(rapidjson::Document &root, std::ofstream &ofs, std::string species, u16 personalValue)
+{
+    const rapidjson::Value &iconPallete = root["icon_palette"];
+
+    ofs << "    [";
+
+    if (personalValue == SPECIES_BAD_EGG) {
+        ofs << "ICON_MANAPHY_EGG";
+    } else {
+        if (personalValue < SPECIES_EGG) {
+            std::transform(species.begin(), species.end(), species.begin(), ::toupper);
+            ofs << "SPECIES_"
+                << species;
+        } else {
+            if (species.compare("unown") == 0) {
+                ofs << "ICON_UNOWN_A";
+            } else {
+                ofs << "ICON_"
+                    << FormPathToName(species);
+            }
+        }
+    }
+
+    ofs << "] = "
+        << iconPallete.GetInt()
+        << ",\n";
+}
+
 static void PackHeights(vfs_pack_ctx *vfs, rapidjson::Document &root, u8 genderRatio)
 {
     u8 *backFemale, *backMale, *frontFemale, *frontMale;
@@ -480,6 +542,21 @@ int main(int argc, char **argv)
                     << "static const MovesetMask sSpeciesLearnsetsByTutor[MOVESET_MAX] = {\n";
     byTutorMovesets << std::hex << std::setiosflags(std::ios::uppercase); // render all numeric inputs to the stream as hexadecimal
 
+    // Bootstrap the egg moves header.
+    std::ofstream eggMoves(outputRoot / "species_egg_moves.h");
+    eggMoves << sHeaderMessage << "\n"
+             << "#ifndef POKEPLATINUM_GENERATED_SPECIES_EGG_MOVES_H\n"
+             << "#define POKEPLATINUM_GENERATED_SPECIES_EGG_MOVES_H\n"
+             << "\n"
+             << "#include \"constants/species.h\"\n"
+             << "#include \"generated/moves.h\"\n"
+             << "\n"
+             << "#define EGG_MOVES_SPECIES_OFFSET     20000\n"
+             << "#define EGG_MOVES_TERMINATOR         0xFFFF\n"
+             << "#define EGG_MOVES(species, moves...) (##species + EGG_MOVES_SPECIES_OFFSET), moves\n"
+             << "\n"
+             << "static const u16 sEggMoves[] = {\n";
+
     // Bootstrap the footprints header.
     std::ofstream footprints(outputRoot / "species_footprints.h");
     footprints << sHeaderMessage << "\n"
@@ -492,6 +569,18 @@ int main(int argc, char **argv)
                << "#include \"overlay113/footprint_data.h\"\n"
                << "\n"
                << "static const FootprintData sSpeciesFootprints[NATIONAL_DEX_COUNT + 1] = {\n";
+
+    // Bootstrap the icon palette offset header.
+    std::ofstream iconPalettes(outputRoot / "species_icon_palettes.h");
+    iconPalettes << sHeaderMessage << "\n"
+                 << "#ifndef POKEPLATINUM_GENERATED_SPECIES_ICON_PALETTES_H\n"
+                 << "#define POKEPLATINUM_GENERATED_SPECIES_ICON_PALETTES_H\n"
+                 << "\n"
+                 << "#include \"constants/species.h\"\n"
+                 << "\n"
+                 << "enum FormIconIndex {\n"
+                 << "    ICON_EGG = SPECIES_EGG,\n"
+                 << "    ICON_MANAPHY_EGG,\n";
 
     // Tutorable learnsets are stored as an array of bitmasks; each bit in the mask
     // denotes if a tutorable move can be learned by a given species.
@@ -512,7 +601,27 @@ int main(int argc, char **argv)
     std::vector<u16> offspringData;
     std::vector<ArchivedPokeSpriteData> pokeSpriteData;
 
+    // Generate pokeicon form enum
+    for (auto &form : formsRegistry) {
+        iconPalettes << "    ICON_";
+        if (form.compare("unown") == 0) {
+            iconPalettes << "UNOWN_A";
+        } else {
+            iconPalettes << FormPathToName(form);
+        }
+        iconPalettes << ",\n";
+    }
+    iconPalettes << "};\n"
+                 << "\n"
+                 << "/**\n"
+                 << " * @brief This table defines which index of the shared palette file is used\n"
+                 << " * for the icons used by Pokemon in PC boxes, the party list, etc. Alternate\n"
+                 << " * forms are listed after the full National Dex using a custom ordering.\n"
+                 << " */\n"
+                 << "const u8 sPokemonIconPaletteIndex[] = {\n";
+
     u16 personalValue = 0;
+    BOOL unownDupe = FALSE;
     rapidjson::Document doc;
     for (auto &species : speciesRegistry) {
         fs::path speciesDataPath = dataRoot / species / "data.json";
@@ -523,6 +632,19 @@ int main(int argc, char **argv)
             std::exit(EXIT_FAILURE);
         }
 
+        EmitIconPaletteData(doc, iconPalettes, species, personalValue);
+        // if form is icon only, no more data to read
+        if (!doc.HasMember("base_stats")) {
+            continue;
+        }
+        // Unown A is both data and icon only
+        if (species.compare("unown") == 0) {
+            if (unownDupe) {
+                continue;
+            }
+            unownDupe = TRUE;
+        }
+
         try {
             SpeciesData data = ParseSpeciesData(doc);
             SpeciesEvolutionList evos = ParseEvolutions(doc);
@@ -530,6 +652,7 @@ int main(int argc, char **argv)
             std::optional<SpeciesPalPark> palPark = TryParsePalPark(doc);
             u16 offspring = TryParseOffspring(doc, personalValue);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
+            TryEmitEggMoves(doc, eggMoves, species);
             TryEmitFootprint(doc, footprints);
 
             narc_pack_file_copy(personalVFS, reinterpret_cast<unsigned char *>(&data), sizeof(data));
@@ -571,10 +694,21 @@ int main(int argc, char **argv)
                     << "#endif // POKEPLATINUM_GENERATED_SPECIES_LEARNSETS_BY_TUTOR_H\n";
     byTutorMovesets.close();
 
+    eggMoves << "    EGG_MOVES_TERMINATOR,\n"
+             << "};\n"
+             << "\n"
+             << "#endif // POKEPLATINUM_GENERATED_SPECIES_EGG_MOVES_H\n";
+    eggMoves.close();
+
     footprints << "};\n"
                << "\n"
                << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n";
     footprints.close();
+
+    iconPalettes << "};\n"
+                 << "\n"
+                 << "#endif // POKEPLATINUM_GENERATED_SPECIES_ICON_PALETTES_H\n";
+    iconPalettes.close();
 
     PackNarc(personalVFS, outputRoot / "pl_personal.narc");
     PackNarc(evoVFS, outputRoot / "evo.narc");

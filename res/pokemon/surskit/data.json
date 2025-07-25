@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BUBBLE" ],
@@ -78,6 +79,15 @@
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_FORESIGHT",
+            "MOVE_MUD_SHOT",
+            "MOVE_PSYBEAM",
+            "MOVE_HYDRO_PUMP",
+            "MOVE_MIND_READER",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_BUG_BITE"
         ]
     },
     "evolutions": [

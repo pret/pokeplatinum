@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LEER" ],
@@ -86,6 +87,16 @@
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_SUCKER_PUNCH"
+        ],
+        "egg_moves": [
+            "MOVE_COUNTER",
+            "MOVE_DISABLE",
+            "MOVE_SUPERSONIC",
+            "MOVE_TAKE_DOWN",
+            "MOVE_AMNESIA",
+            "MOVE_CONFUSION",
+            "MOVE_BEAT_UP",
             "MOVE_SUCKER_PUNCH"
         ]
     },

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LEER" ],
@@ -99,6 +100,15 @@
             "MOVE_TWISTER",
             "MOVE_IRON_DEFENSE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_DRILL_PECK",
+            "MOVE_PURSUIT",
+            "MOVE_WHIRLWIND",
+            "MOVE_SKY_ATTACK",
+            "MOVE_CURSE",
+            "MOVE_BRAVE_BIRD",
+            "MOVE_ASSURANCE"
         ]
     },
     "evolutions": [  ],

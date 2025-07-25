@@ -31,6 +31,7 @@
     "safari_flee_rate": 90,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_INGRAIN" ],
@@ -92,6 +93,17 @@
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_FLAIL",
+            "MOVE_CONFUSION",
+            "MOVE_MEGA_DRAIN",
+            "MOVE_REFLECT",
+            "MOVE_AMNESIA",
+            "MOVE_LEECH_SEED",
+            "MOVE_NATURE_POWER",
+            "MOVE_ENDEAVOR",
+            "MOVE_LEAF_STORM"
         ]
     },
     "evolutions": [

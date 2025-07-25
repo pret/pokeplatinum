@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WITHDRAW" ],
@@ -85,6 +86,14 @@
             "MOVE_HELPING_HAND",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER"
+        ],
+        "egg_moves": [
+            "MOVE_SWEET_SCENT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_HELPING_HAND",
+            "MOVE_ACUPRESSURE",
+            "MOVE_SAND_TOMB",
+            "MOVE_MUD_SLAP"
         ]
     },
     "evolutions": [  ],

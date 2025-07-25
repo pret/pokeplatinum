@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -88,6 +89,18 @@
             "MOVE_SYNTHESIS",
             "MOVE_EARTH_POWER",
             "MOVE_SEED_BOMB"
+        ],
+        "egg_moves": [
+            "MOVE_WORRY_SEED",
+            "MOVE_GROWTH",
+            "MOVE_TICKLE",
+            "MOVE_BODY_SLAM",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_SAND_TOMB",
+            "MOVE_SEED_BOMB",
+            "MOVE_THRASH",
+            "MOVE_AMNESIA",
+            "MOVE_SUPERPOWER"
         ]
     },
     "evolutions": [

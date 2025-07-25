@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_WHITE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -77,6 +78,17 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_MAGNET_RISE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_TAKE_DOWN",
+            "MOVE_BODY_SLAM",
+            "MOVE_SAFEGUARD",
+            "MOVE_SCREECH",
+            "MOVE_REFLECT",
+            "MOVE_ODOR_SLEUTH",
+            "MOVE_CHARGE",
+            "MOVE_FLATTER",
+            "MOVE_SAND_ATTACK"
         ]
     },
     "evolutions": [

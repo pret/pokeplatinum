@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
@@ -85,6 +86,15 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_SEED_BOMB",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_SYNTHESIS",
+            "MOVE_RAZOR_LEAF",
+            "MOVE_SWEET_SCENT",
+            "MOVE_LEECH_SEED",
+            "MOVE_FLAIL",
+            "MOVE_WATER_GUN",
+            "MOVE_TICKLE"
         ]
     },
     "evolutions": [

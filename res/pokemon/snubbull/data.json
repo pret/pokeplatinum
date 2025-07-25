@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ICE_FANG" ],
@@ -101,6 +102,20 @@
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_LAST_RESORT"
+        ],
+        "egg_moves": [
+            "MOVE_METRONOME",
+            "MOVE_FAINT_ATTACK",
+            "MOVE_REFLECT",
+            "MOVE_PRESENT",
+            "MOVE_CRUNCH",
+            "MOVE_HEAL_BELL",
+            "MOVE_SNORE",
+            "MOVE_SMELLING_SALT",
+            "MOVE_CLOSE_COMBAT",
+            "MOVE_ICE_FANG",
+            "MOVE_FIRE_FANG",
+            "MOVE_THUNDER_FANG"
         ]
     },
     "evolutions": [

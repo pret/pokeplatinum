@@ -185,12 +185,14 @@ datagen_species_out = custom_target('datagen_species_out',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
         'species_footprints.h',
+        'species_egg_moves.h',
+        'species_icon_palettes.h',
     ],
     command: [
         datagen_species_exe,
         meson.current_build_dir(),
         pokemon_data_root,
-        form_data_order,
+        form_icons_order,
         files('move_tutors.json'),
     ],
     env: species_env,
@@ -198,9 +200,11 @@ datagen_species_out = custom_target('datagen_species_out',
         species_data_files,
     ],
 )
-h_headers += datagen_species_out[6]
 h_headers += datagen_species_out[7]
 h_headers += datagen_species_out[8]
+h_headers += datagen_species_out[9]
+h_headers += datagen_species_out[10]
+h_headers += datagen_species_out[11]
 
 
 # OLD NARCs

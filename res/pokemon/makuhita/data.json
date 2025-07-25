@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -94,6 +95,18 @@
             "MOVE_HELPING_HAND",
             "MOVE_VACUUM_WAVE",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_FAINT_ATTACK",
+            "MOVE_DETECT",
+            "MOVE_FORESIGHT",
+            "MOVE_HELPING_HAND",
+            "MOVE_CROSS_CHOP",
+            "MOVE_REVENGE",
+            "MOVE_DYNAMIC_PUNCH",
+            "MOVE_COUNTER",
+            "MOVE_WAKE_UP_SLAP",
+            "MOVE_BULLET_PUNCH"
         ]
     },
     "evolutions": [

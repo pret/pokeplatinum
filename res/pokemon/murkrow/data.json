@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_PECK" ],
@@ -95,6 +96,19 @@
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_WHIRLWIND",
+            "MOVE_DRILL_PECK",
+            "MOVE_MIRROR_MOVE",
+            "MOVE_WING_ATTACK",
+            "MOVE_SKY_ATTACK",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_FEATHER_DANCE",
+            "MOVE_PERISH_SONG",
+            "MOVE_PSYCHO_SHIFT",
+            "MOVE_SCREECH",
+            "MOVE_FAINT_ATTACK"
         ]
     },
     "evolutions": [

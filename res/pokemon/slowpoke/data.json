@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_CURSE" ],
@@ -104,6 +105,18 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_SAFEGUARD",
+            "MOVE_BELLY_DRUM",
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_STOMP",
+            "MOVE_MUD_SPORT",
+            "MOVE_SLEEP_TALK",
+            "MOVE_SNORE",
+            "MOVE_ME_FIRST",
+            "MOVE_BLOCK",
+            "MOVE_ZEN_HEADBUTT"
         ]
     },
     "evolutions": [
