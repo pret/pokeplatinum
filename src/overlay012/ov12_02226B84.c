@@ -950,7 +950,7 @@ static void ov12_02227620(UnkStruct_ov12_02227620 *param0, s16 param1, s16 param
 
 static BOOL ov12_02227658(UnkStruct_ov12_02227620 *param0)
 {
-    if (ov12_022260A8(&param0->unk_18, param0->unk_14) == 0) {
+    if (ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_18, param0->unk_14) == 0) {
         if (param0->unk_40) {
             ManagedSprite_SetDrawFlag(param0->unk_14, 0);
             return 1;
@@ -1383,7 +1383,7 @@ static void ov12_02227DE0(SysTask *param0, void *param1)
     switch (v0->unk_04) {
     case 0:
         ScaleLerpContext_InitXY(&v0->unk_10, v0->unk_34, v0->unk_38, v0->unk_3C, v0->unk_40, v0->unk_44, v0->unk_4C >> 16);
-        ov12_022260C8(&v0->unk_10, v0->unk_0C);
+        ScaleLerpContext_UpdateAndApplyToMon(&v0->unk_10, v0->unk_0C);
         v0->unk_04++;
         break;
     case 1:

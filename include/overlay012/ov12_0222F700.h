@@ -21,7 +21,7 @@ void ov12_02231650(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 void ov12_02231950(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_02231C1C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *param0);
-void ov12_02232024(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Swagger(BattleAnimSystem *param0);
 void ov12_02232378(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_Return(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_VitalThrow(BattleAnimSystem *param0);

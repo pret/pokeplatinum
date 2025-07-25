@@ -163,7 +163,7 @@ static BOOL ov12_0223489C(ManagedSprite *param0, XYTransformContext *param1, XYT
     BOOL v0;
 
     PosLerpContext_UpdateAndApplyToSprite(param1, param0);
-    v0 = ov12_022260A8(param2, param0);
+    v0 = ScaleLerpContext_UpdateAndApplyToSprite(param2, param0);
 
     if (v0) {
         return 0;

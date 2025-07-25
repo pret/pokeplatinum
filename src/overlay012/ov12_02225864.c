@@ -180,12 +180,11 @@ void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedS
     ManagedSprite_SetPositionXY(sprite, cx + ctx->x, cy + ctx->y);
 }
 
-void ov12_022259FC(XYTransformContext *param0, ManagedSprite *param1)
+void ScaleLerpContext_ApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite)
 {
-    f32 v0, v1;
-
-    BattleAnimUtil_ConvertRelativeToAffineScale(param0, &v0, &v1);
-    ManagedSprite_SetAffineScale(param1, v0, v1);
+    f32 scaleX, scaleY;
+    BattleAnimUtil_ConvertRelativeToAffineScale(ctx, &scaleX, &scaleY);
+    ManagedSprite_SetAffineScale(sprite, scaleX, scaleY);
 }
 
 void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSprite *sprite, s16 cx, s16 cy)
@@ -194,10 +193,10 @@ void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSpri
     PokemonSprite_SetAttribute(sprite, MON_SPRITE_Y_CENTER, cy + ctx->y);
 }
 
-void ov12_02225A3C(XYTransformContext *param0, PokemonSprite *param1)
+void ScaleLerpContext_ApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite)
 {
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_X, param0->x);
-    PokemonSprite_SetAttribute(param1, MON_SPRITE_SCALE_Y, param0->y);
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_SCALE_X, ctx->x);
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_SCALE_Y, ctx->y);
 }
 
 void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, int steps)
@@ -578,34 +577,34 @@ void BattleAnimUtil_SetSpriteAnchoredPosition(ManagedSprite *sprite, s16 y, s16 
     ManagedSprite_SetPositionXY(sprite, curX, y + offset);
 }
 
-BOOL ov12_022260A8(XYTransformContext *param0, ManagedSprite *param1)
+BOOL ScaleLerpContext_UpdateAndApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite)
 {
-    if (ScaleLerpContext_Update(param0)) {
-        ov12_022259FC(param0, param1);
-        return 1;
+    if (ScaleLerpContext_Update(ctx)) {
+        ScaleLerpContext_ApplyToSprite(ctx, sprite);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL ov12_022260C8(XYTransformContext *param0, PokemonSprite *param1)
+BOOL ScaleLerpContext_UpdateAndApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite)
 {
-    if (ScaleLerpContext_Update(param0)) {
-        ov12_02225A3C(param0, param1);
-        return 1;
+    if (ScaleLerpContext_Update(ctx)) {
+        ScaleLerpContext_ApplyToMon(ctx, sprite);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1)
 {
     if (ScaleLerpContext_UpdateXY(param0)) {
-        ov12_02225A3C(param0, param1);
-        return 1;
+        ScaleLerpContext_ApplyToMon(param0, param1);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static inline void ShakeContext_FlipPosition(s16 *cur, s32 *prev, s32 unused)

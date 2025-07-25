@@ -465,17 +465,38 @@ enum PlayfulHopsState {
 #define PLAYFUL_HOPS_HOP_COUNT          4
 #define PLAYFUL_HOPS_VAR_TARGET_BATTLER 0
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    int unk_08;
-    PokemonSprite *unk_0C;
-    XYTransformContext unk_10;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
-    int unk_40;
-} UnkStruct_ov12_02231F18;
+// -------------------------------------------------------------------
+// Swagger
+// -------------------------------------------------------------------
+typedef struct SwaggerContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    int delay;
+    PokemonSprite *sprite;
+    XYTransformContext scale;
+    int scaleDelay;
+    int subState;
+    int baseY;
+    int spriteHeight;
+} SwaggerContext;
+
+enum SwaggerState {
+    SWAGGER_STATE_SCALE = 0,
+    SWAGGER_STATE_WAIT,
+    SWAGGER_STATE_CLEANUP,
+
+    SWAGGER_SUB_STATE_GROW = 0,
+    SWAGGER_SUB_STATE_WAIT,
+    SWAGGER_SUB_STATE_SHRINK,
+    SWAGGER_SUB_STATE_FINISH,
+};
+
+#define SWAGGER_START_SCALE  10
+#define SWAGGER_END_SCALE    15
+#define SWAGGER_REF_SCALE    10
+#define SWAGGER_SCALE_FRAMES 8
+#define SWAGGER_SCALE_DELAY  4
+#define SWAGGER_END_DELAY    16
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -2209,7 +2230,7 @@ static BOOL ov12_02231584(UnkStruct_ov12_02231508 *param0)
 
     switch (param0->unk_40) {
     case 0:
-        ov12_022260A8(&param0->unk_44, param0->unk_3C);
+        ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_44, param0->unk_3C);
         v1 = PosLerpContext_Update(&param0->unk_68);
 
         if (v1) {
@@ -2694,85 +2715,100 @@ void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_PlayfulHops, ctx);
 }
 
-static BOOL ov12_02231F18(UnkStruct_ov12_02231F18 *param0)
+static BOOL SwaggerContext_UpdateScale(SwaggerContext *ctx)
 {
-    BOOL v0 = 0;
+    BOOL done = FALSE;
 
-    switch (param0->unk_38) {
-    case 0:
-        if (ov12_022260C8(&param0->unk_10, param0->unk_0C)) {
-            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_0C, param0->unk_3C, param0->unk_40, param0->unk_10.data[4], 0);
+    switch (ctx->subState) {
+    case SWAGGER_SUB_STATE_GROW:
+        if (ScaleLerpContext_UpdateAndApplyToMon(&ctx->scale, ctx->sprite)) {
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+                ctx->sprite,
+                ctx->baseY,
+                ctx->spriteHeight,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            param0->unk_38++;
+            ctx->subState++;
         }
         break;
-    case 1:
-        param0->unk_34--;
-
-        if (param0->unk_34 < 0) {
-            param0->unk_38++;
-            ScaleLerpContext_Init(&param0->unk_10, 15, 10, 10, 8);
+    case SWAGGER_SUB_STATE_WAIT:
+        ctx->scaleDelay--;
+        if (ctx->scaleDelay < 0) {
+            ctx->subState++;
+            ScaleLerpContext_Init(
+                &ctx->scale,
+                SWAGGER_END_SCALE,
+                SWAGGER_REF_SCALE,
+                SWAGGER_START_SCALE,
+                SWAGGER_SCALE_FRAMES);
         }
         break;
-    case 2:
-        if (ov12_022260C8(&param0->unk_10, param0->unk_0C)) {
-            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_0C, param0->unk_3C, param0->unk_40, param0->unk_10.data[4], 0);
+    case SWAGGER_SUB_STATE_SHRINK:
+        if (ScaleLerpContext_UpdateAndApplyToMon(&ctx->scale, ctx->sprite)) {
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+                ctx->sprite,
+                ctx->baseY,
+                ctx->spriteHeight,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            param0->unk_38++;
+            ctx->subState++;
         }
         break;
-    case 3:
-        PokemonSprite_SetAttribute(param0->unk_0C, MON_SPRITE_SCALE_X, 0x100);
-        PokemonSprite_SetAttribute(param0->unk_0C, MON_SPRITE_SCALE_Y, 0x100);
-        v0 = 1;
+    case SWAGGER_SUB_STATE_FINISH:
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_02231FD8(SysTask *param0, void *param1)
+static void BattleAnimTask_Swagger(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02231F18 *v0 = param1;
+    SwaggerContext *ctx = param;
 
-    switch (v0->unk_04) {
-    case 0:
-        if (ov12_02231F18(v0)) {
-            v0->unk_04++;
-            v0->unk_08 = 16;
+    switch (ctx->state) {
+    case SWAGGER_STATE_SCALE:
+        if (SwaggerContext_UpdateScale(ctx)) {
+            ctx->state++;
+            ctx->delay = SWAGGER_END_DELAY;
         }
         break;
-    case 1:
-        v0->unk_08--;
-
-        if (v0->unk_08 < 0) {
-            v0->unk_04++;
+    case SWAGGER_STATE_WAIT:
+        ctx->delay--;
+        if (ctx->delay < 0) {
+            ctx->state++;
         }
         break;
-    case 2:
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case SWAGGER_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 }
 
-void ov12_02232024(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Swagger(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02231F18 *v0;
-    PokemonSprite *v1;
+    SwaggerContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SwaggerContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02231F18));
+    ctx->battleAnimSys = system;
+    ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
 
-    v0->unk_00 = param0;
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    ScaleLerpContext_Init(
+        &ctx->scale,
+        SWAGGER_START_SCALE,
+        SWAGGER_REF_SCALE,
+        SWAGGER_END_SCALE,
+        SWAGGER_SCALE_FRAMES);
 
-    ScaleLerpContext_Init(&v0->unk_10, 10, 10, 15, 8);
+    ctx->scaleDelay = SWAGGER_SCALE_DELAY;
+    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
 
-    v0->unk_34 = 4;
-    v0->unk_40 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_3C = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02231FD8, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Swagger, ctx);
 }
 
 static void ov12_02232084(UnkStruct_ov12_02232084 *param0)
@@ -2791,13 +2827,13 @@ static BOOL ov12_022320EC(UnkStruct_ov12_02232084 *param0)
 
     switch (param0->unk_64) {
     case 0:
-        if (ov12_022260A8(&param0->unk_18, param0->unk_14) == 0) {
+        if (ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_18, param0->unk_14) == 0) {
             ScaleLerpContext_Init(&param0->unk_18, param0->unk_78 / 100, 10, param0->unk_74 / 100, param0->unk_70 / 100);
             param0->unk_64++;
         }
         break;
     case 1:
-        if (ov12_022260A8(&param0->unk_18, param0->unk_14) == 0) {
+        if (ScaleLerpContext_UpdateAndApplyToSprite(&param0->unk_18, param0->unk_14) == 0) {
             param0->unk_68++;
 
             if (param0->unk_68 < 2) {
@@ -3337,7 +3373,7 @@ static void ov12_02232B40(SysTask *param0, void *param1)
     case 2:
         PosLerpContext_UpdateAndApplyToMon(&v0->unk_38, v0->unk_10);
 
-        if (ov12_022260C8(&v0->unk_14, v0->unk_10) == 0) {
+        if (ScaleLerpContext_UpdateAndApplyToMon(&v0->unk_14, v0->unk_10) == 0) {
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_HIDE, 1);
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_X, 0x100);
             PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_Y, 0x100);
