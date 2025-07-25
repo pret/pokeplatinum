@@ -1812,7 +1812,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
         system->heapID,
         PLTTBUF_MAIN_BG,
         0,
-        PLTT_DEST(8));
+        PLTT_DEST(BATTLE_BG_PALETTE_MON_SPRITE));
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG],
@@ -2305,7 +2305,7 @@ static void BattleBgSwitch_SetBg(BattleBgSwitch *bgSwitch, BattleAnimSystem *sys
         system->heapID,
         0,
         PALETTE_SIZE_BYTES,
-        PLTT_DEST(9));
+        PLTT_DEST(BATTLE_BG_PALETTE_EFFECT));
 
     Bg_ClearTilemap(system->bgConfig, bgLayer);
 
@@ -2582,10 +2582,10 @@ static BOOL BattleBgSwitch_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
         // set effect BG palette to black/white immediately
         if (bgSwitch->fadeType == BATTLE_BG_FADE_TO_BLACK) {
             PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, bgSwitch->battleAnimSystem->baseBgPalettes, 0, 0, 16, GX_RGBA(0, 0, 0, 0));
-            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, BATTLE_BG_PALETTE_EFFECT, 16, GX_RGBA(0, 0, 0, 0));
+            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, BATTLE_BG_PALETTE_FLAG_EFFECT, 16, GX_RGBA(0, 0, 0, 0));
         } else {
             PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, bgSwitch->battleAnimSystem->baseBgPalettes, 0, 0, 16, GX_RGBA(31, 31, 31, 1));
-            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, BATTLE_BG_PALETTE_EFFECT, 16, GX_RGBA(31, 31, 31, 1));
+            PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, BATTLE_BG_PALETTE_FLAG_EFFECT, 16, GX_RGBA(31, 31, 31, 1));
         }
 
         bgSwitch->state++;
@@ -2603,9 +2603,9 @@ static BOOL BattleBgSwitch_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
 
         // Fade effect BG palette back to normal
         if (bgSwitch->fadeType == BATTLE_BG_FADE_TO_BLACK) {
-            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 16, 0, GX_RGBA(0, 0, 0, 0));
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_FLAG_EFFECT, 0, 16, 0, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 16, 0, GX_RGBA(31, 31, 31, 1));
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_FLAG_EFFECT, 0, 16, 0, GX_RGBA(31, 31, 31, 1));
         }
 
         BattleBgSwitch_ApplyFlags(bgSwitch);
@@ -2638,10 +2638,10 @@ static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
         // Fade effect BG palette to black/white and
         // set normal battle/contest BG palettes to black/white
         if (bgSwitch->fadeType == BATTLE_BG_FADE_TO_BLACK) {
-            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 0, 16, GX_RGBA(0, 0, 0, 0));
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_FLAG_EFFECT, 0, 0, 16, GX_RGBA(0, 0, 0, 0));
             PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, bgSwitch->battleAnimSystem->baseBgPalettes, 16, GX_RGBA(0, 0, 0, 0));
         } else {
-            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_EFFECT, 0, 0, 16, GX_RGBA(31, 31, 31, 1));
+            PaletteData_StartFade(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG_F, BATTLE_BG_PALETTE_FLAG_EFFECT, 0, 0, 16, GX_RGBA(31, 31, 31, 1));
             PaletteData_BlendMulti(bgSwitch->battleAnimSystem->paletteData, PLTTBUF_MAIN_BG, bgSwitch->battleAnimSystem->baseBgPalettes, 16, GX_RGBA(31, 31, 31, 1));
         }
 

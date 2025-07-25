@@ -49,7 +49,10 @@
 #define BATTLE_BG_PRIORITY_BASE         1
 #define BATTLE_BG_PRIORITY_EFFECT       3
 
-#define BATTLE_BG_PALETTE_EFFECT        (1 << 9)
+#define BATTLE_BG_PALETTE_EFFECT          9
+#define BATTLE_BG_PALETTE_MON_SPRITE      8
+#define BATTLE_BG_PALETTE_FLAG_EFFECT     (1 << BATTLE_BG_PALETTE_EFFECT)
+#define BATTLE_BG_PALETTE_FLAG_MON_SPRITE (1 << BATTLE_BG_PALETTE_MON_SPRITE)
 
 #define BATTLE_BG_ANIM_REVERSE_NEVER        0 //< Don't reverse BG anims
 #define BATTLE_BG_ANIM_REVERSE_ENEMY_ONLY   1 //< Reverse BG anims only for enemy attacking player
@@ -79,6 +82,10 @@
 // Script function specific constants
 #define FLAIL_MODE_ATTACKER 0
 #define FLAIL_MODE_DEFENDER 1
+
+#define FADE_BG_TYPE_BASE       0
+#define FADE_BG_TYPE_MON_SPRITE 1
+#define FADE_BG_TYPE_EFFECT     2
 
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

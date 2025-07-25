@@ -93,10 +93,19 @@ typedef struct {
     s16 unk_4E;
 } UnkStruct_ov12_02227620;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    PaletteData *unk_04;
-} UnkStruct_ov12_02227808;
+// -------------------------------------------------------------------
+// Fade BG
+// -------------------------------------------------------------------
+typedef struct FadeBgContext {
+    BattleAnimSystem *battleAnimSys;
+    PaletteData *paletteData;
+} FadeBgContext;
+
+#define FADE_BG_VAR_BG_TYPE     0
+#define FADE_BG_VAR_DELAY       1
+#define FADE_BG_VAR_START_VALUE 2
+#define FADE_BG_VAR_END_VALUE   3
+#define FADE_BG_VAR_COLOR       4
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -1046,43 +1055,49 @@ void ov12_0222777C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02227738, v0);
 }
 
-static void ov12_02227808(SysTask *param0, void *param1)
+static void BattleAnimTask_FadeBg(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02227808 *v0 = param1;
+    FadeBgContext *ctx = param;
 
-    if (PaletteData_GetSelectedBuffersMask(v0->unk_04) == 0) {
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    if (PaletteData_GetSelectedBuffersMask(ctx->paletteData) == 0) {
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
     }
 }
 
-void ov12_02227828(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_FadeBg(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02227808 *v0;
-    u16 v1;
+    FadeBgContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FadeBgContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02227808));
+    ctx->battleAnimSys = system;
+    ctx->paletteData = BattleAnimSystem_GetPaletteData(ctx->battleAnimSys);
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPaletteData(v0->unk_00);
-
-    switch (BattleAnimSystem_GetScriptVar(param0, 0)) {
-    case 0:
-        v1 = BattleAnimSystem_GetBaseBgPalettes(param0);
+    u16 paletteToFade;
+    switch (BattleAnimSystem_GetScriptVar(system, FADE_BG_VAR_BG_TYPE)) {
+    case FADE_BG_TYPE_BASE:
+        paletteToFade = BattleAnimSystem_GetBaseBgPalettes(system);
         break;
-    case 1:
-        v1 = (1 << 8);
+    case FADE_BG_TYPE_MON_SPRITE:
+        paletteToFade = BATTLE_BG_PALETTE_FLAG_MON_SPRITE;
         break;
-    case 2:
-        v1 = (1 << 9);
+    case FADE_BG_TYPE_EFFECT:
+        paletteToFade = BATTLE_BG_PALETTE_FLAG_EFFECT;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    PaletteData_StartFade(v0->unk_04, 0x1, v1, BattleAnimSystem_GetScriptVar(param0, 1), BattleAnimSystem_GetScriptVar(param0, 2), BattleAnimSystem_GetScriptVar(param0, 3), BattleAnimSystem_GetScriptVar(param0, 4));
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02227808, v0);
+    PaletteData_StartFade(
+        ctx->paletteData,
+        PLTTBUF_MAIN_BG_F,
+        paletteToFade,
+        BattleAnimSystem_GetScriptVar(system, FADE_BG_VAR_DELAY),
+        BattleAnimSystem_GetScriptVar(system, FADE_BG_VAR_START_VALUE),
+        BattleAnimSystem_GetScriptVar(system, FADE_BG_VAR_END_VALUE),
+        BattleAnimSystem_GetScriptVar(system, FADE_BG_VAR_COLOR));
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FadeBg, ctx);
 }
 
 static void ov12_022278D0(SysTask *param0, void *param1)

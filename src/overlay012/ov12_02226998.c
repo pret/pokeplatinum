@@ -50,7 +50,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_VitalThrow,
     BattleAnimScriptFunc_Swagger,
     BattleAnimScriptFunc_Memento,
-    ov12_02227828,
+    BattleAnimScriptFunc_FadeBg,
     ov12_0222797C,
     ov12_02227CBC,
     ov12_02226CB0,
