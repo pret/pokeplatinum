@@ -607,27 +607,70 @@ typedef struct {
     s16 unk_8A;
 } UnkStruct_ov12_02232B40;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    ManagedSprite *unk_18;
-    ManagedSprite *unk_1C;
-    ManagedSprite *unk_20;
-    ManagedSprite *unk_24;
-    XYTransformContext unk_28;
-    XYTransformContext unk_4C;
-    XYTransformContext unk_70;
-    int unk_94;
-    int unk_98;
-    AlphaFadeContext unk_9C;
-    PaletteData *unk_C4;
-    BOOL unk_C8;
-    BOOL unk_CC;
-} UnkStruct_ov12_02232D38;
+// -------------------------------------------------------------------
+// Memento
+// -------------------------------------------------------------------
+typedef struct MementoContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    int state;
+    int delay;
+    int attackerHeight;
+    int attackerY;
+    ManagedSprite *attackerSprite;
+    ManagedSprite *defenderSprite;
+    ManagedSprite *attackerPartnerSprite;
+    ManagedSprite *defenderPartnerSprite;
+    XYTransformContext scale; // Used for Y stretch and defender scale
+    XYTransformContext scaleX; // Used for X squish
+    XYTransformContext defenderPos;
+    int spriteState;
+    int spriteDelay;
+    AlphaFadeContext alpha;
+    PaletteData *paletteData;
+    BOOL attackerFlipped;
+    BOOL defenderFlipped;
+} MementoContext;
+
+enum MementoState {
+    MEMENTO_STATE_INIT = 0,
+    MEMENTO_STATE_FADE_AND_INIT_ATTACKER,
+    MEMENTO_STATE_UPDATE_ATTACKER,
+    MEMENTO_STATE_INIT_DEFENDER,
+    MEMENTO_STATE_UPDATE_DEFENDER,
+    MEMENTO_STATE_FADE,
+    MEMENTO_STATE_CLEANUP,
+
+    MEMENTO_ATTACKER_STATE_STRETCH = 0,
+    MEMENTO_ATTACKER_STATE_SQUISH,
+    MEMENTO_ATTACKER_STATE_FINISH,
+
+    MEMENTO_DEFENDER_STATE_MOVE = 0,
+    MEMENTO_DEFENDER_STATE_SCALE,
+    MEMENTO_DEFENDER_STATE_FINISH,
+};
+
+#define MEMENTO_SPRITE_PRIORITY        100
+#define MEMENTO_SPRITE_EXP_PRIORITY    1
+#define MEMENTO_SPRITE_START_ALPHA     0
+#define MEMENTO_SPRITE_END_ALPHA       8
+#define MEMENTO_BG_START_ALPHA         16
+#define MEMENTO_ALPHA_FADE_FRAMES      8
+#define MEMENTO_REF_SCALE              10
+#define MEMENTO_START_SCALE_Y          10
+#define MEMENTO_END_SCALE_Y            20
+#define MEMENTO_START_SCALE_X          10
+#define MEMENTO_END_SCALE_X            1
+#define MEMENTO_STRETCH_FRAMES         8
+#define MEMENTO_SQUISH_FRAMES          4
+#define MEMENTO_SQUISH_DELAY           6
+#define MEMENTO_SPRITE_BLEND_COLOR     COLOR_BLACK
+#define MEMENTO_SPRITE_BLEND_FRACTION  8
+#define MEMENTO_DEFENDER_Y_OFFSET      64
+#define MEMENTO_DEFENDER_ANIM_FRAMES   8
+#define MEMENTO_DEFENDER_START_SCALE_X 2
+#define MEMENTO_DEFENDER_SCALE_DELAY   6
+#define MEMENTO_DEFENDER_DELAY         2
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -3430,274 +3473,324 @@ void ov12_02232CA8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02232B40, v0);
 }
 
-static const u16 Unk_ov12_0223A1CC[6] = {
-    0x0,
-    0x0,
-    0x1,
-    0x0,
-    0x0,
-    0x1
+static const u16 sMementoPartnerVisibilities[] = {
+    [BATTLER_TYPE_SOLO_PLAYER] = FALSE,
+    [BATTLER_TYPE_SOLO_ENEMY] = FALSE,
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = TRUE,
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = FALSE,
+    [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = FALSE,
+    [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = TRUE
 };
 
-static void ov12_02232D38(UnkStruct_ov12_02232D38 *param0, ManagedSprite *param1)
+static void MementoContext_BlendSprite(MementoContext *ctx, ManagedSprite *sprite)
 {
-    int v0 = 1 << BattleAnimUtil_GetSpritePalette(param1);
-    PaletteData_BlendMulti(param0->unk_C4, 2, v0, 8, 0x0);
+    int paletteMask = 1 << BattleAnimUtil_GetSpritePalette(sprite);
+    PaletteData_BlendMulti(
+        ctx->paletteData,
+        PLTTBUF_MAIN_OBJ,
+        paletteMask,
+        MEMENTO_SPRITE_BLEND_FRACTION,
+        MEMENTO_SPRITE_BLEND_COLOR);
 }
 
-static void ov12_02232D64(UnkStruct_ov12_02232D38 *param0)
+static void MementoContext_InitAttacker(MementoContext *ctx)
 {
-    int v0;
-    f32 v1, v2;
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        MEMENTO_REF_SCALE,
+        MEMENTO_REF_SCALE,
+        MEMENTO_START_SCALE_Y,
+        MEMENTO_END_SCALE_Y,
+        MEMENTO_REF_SCALE,
+        MEMENTO_STRETCH_FRAMES);
+    ScaleLerpContext_Init(
+        &ctx->scaleX,
+        MEMENTO_START_SCALE_X,
+        MEMENTO_REF_SCALE,
+        MEMENTO_END_SCALE_X,
+        MEMENTO_SQUISH_FRAMES);
 
-    ScaleLerpContext_InitXY(&param0->unk_28, 10, 10, 10, 20, 10, 8);
-    ScaleLerpContext_Init(&param0->unk_4C, 10, 10, 1, 4);
+    ctx->spriteState = MEMENTO_ATTACKER_STATE_STRETCH;
+    ctx->spriteDelay = MEMENTO_SQUISH_DELAY;
 
-    param0->unk_94 = 0;
-    param0->unk_98 = 6;
+    int battlerType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ManagedSprite_SetDrawFlag(ctx->attackerPartnerSprite, sMementoPartnerVisibilities[battlerType]);
+    ManagedSprite_SetDrawFlag(ctx->attackerSprite, TRUE);
 
-    v0 = BattleAnimUtil_GetBattlerType(param0->unk_00, BattleAnimSystem_GetAttacker(param0->unk_00));
+    f32 scaleX, scaleY;
+    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
 
-    ManagedSprite_SetDrawFlag(param0->unk_20, Unk_ov12_0223A1CC[v0]);
-    ManagedSprite_SetDrawFlag(param0->unk_18, 1);
-
-    BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v1, &v2);
-
-    if (param0->unk_C8 == 1) {
-        v1 = -v1;
+    if (ctx->attackerFlipped == TRUE) {
+        scaleX = -scaleX;
     }
 
-    ManagedSprite_SetAffineScale(param0->unk_18, v1, v2);
-    ov12_02232D38(param0, param0->unk_18);
+    ManagedSprite_SetAffineScale(ctx->attackerSprite, scaleX, scaleY);
+    MementoContext_BlendSprite(ctx, ctx->attackerSprite);
 }
 
-static BOOL ov12_02232E04(UnkStruct_ov12_02232D38 *param0)
+static BOOL MementoContext_UpdateAttacker(MementoContext *ctx)
 {
-    BOOL v0 = 0;
-    f32 v1, v2;
+    BOOL done = FALSE;
+    f32 scaleX, scaleY;
 
-    switch (param0->unk_94) {
-    case 0:
-        ScaleLerpContext_UpdateXY(&param0->unk_28);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v1, &v2);
-
-        if (param0->unk_C8 == 1) {
-            v1 = -v1;
+    switch (ctx->spriteState) {
+    case MEMENTO_ATTACKER_STATE_STRETCH:
+        ScaleLerpContext_UpdateXY(&ctx->scale);
+        BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+        if (ctx->attackerFlipped == TRUE) {
+            scaleX = -scaleX;
         }
 
-        ManagedSprite_SetAffineScale(param0->unk_18, v1, v2);
-        BattleAnimUtil_SetSpriteAnchoredPosition(param0->unk_18, param0->unk_14, param0->unk_10, param0->unk_28.data[4], 0);
-        param0->unk_98--;
+        ManagedSprite_SetAffineScale(ctx->attackerSprite, scaleX, scaleY);
+        BattleAnimUtil_SetSpriteAnchoredPosition(
+            ctx->attackerSprite,
+            ctx->attackerY,
+            ctx->attackerHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
 
-        if (param0->unk_98 < 0) {
-            param0->unk_94++;
-            ScaleLerpContext_InitXY(&param0->unk_28, 10, 1, 20, 20, 10, 4);
+        ctx->spriteDelay--;
+        if (ctx->spriteDelay < 0) {
+            ctx->spriteState++;
+
+            // Only used here to make sure the Y scale of the sprite doesn't change anymore
+            ScaleLerpContext_InitXY(
+                &ctx->scale,
+                MEMENTO_START_SCALE_X,
+                MEMENTO_END_SCALE_X,
+                MEMENTO_END_SCALE_Y,
+                MEMENTO_END_SCALE_Y,
+                MEMENTO_REF_SCALE,
+                MEMENTO_SQUISH_FRAMES);
         }
         break;
-    case 1:
-        ScaleLerpContext_UpdateXY(&param0->unk_28);
+    case MEMENTO_ATTACKER_STATE_SQUISH:
+        ScaleLerpContext_UpdateXY(&ctx->scale);
+        if (ScaleLerpContext_Update(&ctx->scaleX)) {
+            ctx->scale.x = ctx->scaleX.x;
 
-        if (ScaleLerpContext_Update(&param0->unk_4C)) {
-            param0->unk_28.x = param0->unk_4C.x;
-
-            BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v1, &v2);
-
-            if (param0->unk_C8 == 1) {
-                v1 = -v1;
+            BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+            if (ctx->attackerFlipped == TRUE) {
+                scaleX = -scaleX;
             }
 
-            ManagedSprite_SetAffineScale(param0->unk_18, v1, v2);
-            BattleAnimUtil_SetSpriteAnchoredPosition(param0->unk_18, param0->unk_14, param0->unk_10, param0->unk_28.data[4], 0);
+            ManagedSprite_SetAffineScale(ctx->attackerSprite, scaleX, scaleY);
+            BattleAnimUtil_SetSpriteAnchoredPosition(
+                ctx->attackerSprite,
+                ctx->attackerY,
+                ctx->attackerHeight,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            param0->unk_94++;
+            ctx->spriteState++;
 
-            ManagedSprite_SetDrawFlag(param0->unk_20, 0);
-            ManagedSprite_SetDrawFlag(param0->unk_18, 0);
+            ManagedSprite_SetDrawFlag(ctx->attackerPartnerSprite, FALSE);
+            ManagedSprite_SetDrawFlag(ctx->attackerSprite, FALSE);
 
-            v0 = 1;
+            done = TRUE;
         }
         break;
-    case 2:
-        v0 = 1;
+    case MEMENTO_ATTACKER_STATE_FINISH:
+        done = TRUE;
         break;
     }
 
-    return v0;
+    return done;
 }
 
-static void ov12_02232F30(UnkStruct_ov12_02232D38 *param0)
+static void MementoContext_InitDefender(MementoContext *ctx)
 {
-    s16 v0, v1;
-    f32 v2, v3;
-    int v4;
+    s16 posX, posY;
+    ManagedSprite_GetPositionXY(ctx->defenderSprite, &posX, &posY);
 
-    ManagedSprite_GetPositionXY(param0->unk_1C, &v0, &v1);
+    PosLerpContext_Init(
+        &ctx->defenderPos,
+        posX,
+        posX,
+        posY - MEMENTO_DEFENDER_Y_OFFSET,
+        posY,
+        MEMENTO_DEFENDER_ANIM_FRAMES);
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        MEMENTO_DEFENDER_START_SCALE_X,
+        MEMENTO_START_SCALE_X,
+        MEMENTO_END_SCALE_Y,
+        MEMENTO_START_SCALE_Y,
+        MEMENTO_REF_SCALE,
+        MEMENTO_DEFENDER_ANIM_FRAMES);
 
-    PosLerpContext_Init(&param0->unk_70, v0, v0, v1 - 64, v1, 8);
-    ScaleLerpContext_InitXY(&param0->unk_28, 2, 10, 20, 10, 10, 8);
-    BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v2, &v3);
-
-    if (param0->unk_CC == 1) {
-        v2 = -v2;
+    f32 scaleX, scaleY;
+    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+    if (ctx->defenderFlipped == TRUE) {
+        scaleX = -scaleX;
     }
 
-    ManagedSprite_SetAffineScale(param0->unk_1C, v2, v3);
-    PosLerpContext_UpdateAndApplyToSprite(&param0->unk_70, param0->unk_1C);
+    ManagedSprite_SetAffineScale(ctx->defenderSprite, scaleX, scaleY);
+    PosLerpContext_UpdateAndApplyToSprite(&ctx->defenderPos, ctx->defenderSprite);
 
-    param0->unk_94 = 0;
-    param0->unk_98 = 6;
+    ctx->spriteState = MEMENTO_DEFENDER_STATE_MOVE;
+    ctx->spriteDelay = MEMENTO_DEFENDER_SCALE_DELAY;
 
-    v4 = BattleAnimUtil_GetBattlerType(param0->unk_00, BattleAnimSystem_GetDefender(param0->unk_00));
+    int battlerType = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    ManagedSprite_SetDrawFlag(ctx->defenderPartnerSprite, sMementoPartnerVisibilities[battlerType]);
+    ManagedSprite_SetDrawFlag(ctx->defenderSprite, TRUE);
 
-    ManagedSprite_SetDrawFlag(param0->unk_24, Unk_ov12_0223A1CC[v4]);
-    ManagedSprite_SetDrawFlag(param0->unk_1C, 1);
-
-    ov12_02232D38(param0, param0->unk_1C);
+    MementoContext_BlendSprite(ctx, ctx->defenderSprite);
 }
 
-static BOOL ov12_02232FF0(UnkStruct_ov12_02232D38 *param0)
+static BOOL MementoContext_UpdateDefender(MementoContext *ctx)
 {
-    f32 v0, v1;
-    BOOL v2 = 0;
-    BOOL v3;
+    f32 scaleX, scaleY;
+    BOOL done = FALSE;
+    BOOL scaleActive;
 
-    switch (param0->unk_94) {
-    case 0:
-        param0->unk_98--;
-        PosLerpContext_UpdateAndApplyToSprite(&param0->unk_70, param0->unk_1C);
+    switch (ctx->spriteState) {
+    case MEMENTO_DEFENDER_STATE_MOVE:
+        ctx->spriteDelay--;
+        PosLerpContext_UpdateAndApplyToSprite(&ctx->defenderPos, ctx->defenderSprite);
 
-        if (param0->unk_98 < 0) {
-            param0->unk_94++;
+        if (ctx->spriteDelay < 0) {
+            ctx->spriteState++;
         }
         break;
-    case 1:
-        PosLerpContext_UpdateAndApplyToSprite(&param0->unk_70, param0->unk_1C);
+    case MEMENTO_DEFENDER_STATE_SCALE:
+        PosLerpContext_UpdateAndApplyToSprite(&ctx->defenderPos, ctx->defenderSprite);
 
-        v3 = ScaleLerpContext_UpdateXY(&param0->unk_28);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_28, &v0, &v1);
+        scaleActive = ScaleLerpContext_UpdateXY(&ctx->scale);
 
-        if (param0->unk_CC == 1) {
-            v0 = -v0;
+        BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+        if (ctx->defenderFlipped == TRUE) {
+            scaleX = -scaleX;
         }
 
-        ManagedSprite_SetAffineScale(param0->unk_1C, v0, v1);
+        ManagedSprite_SetAffineScale(ctx->defenderSprite, scaleX, scaleY);
 
-        if (v3 == 0) {
-            param0->unk_94++;
-            v2 = 1;
+        if (scaleActive == FALSE) {
+            ctx->spriteState++;
+            done = TRUE;
         }
         break;
-    case 2:
-        v2 = 1;
-        break;
-    }
-
-    return v2;
-}
-
-static void ov12_02233094(SysTask *param0, void *param1)
-{
-    UnkStruct_ov12_02232D38 *v0 = param1;
-
-    switch (v0->unk_08) {
-    case 0:
-        BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 16 - 0);
-        AlphaFadeContext_Init(&v0->unk_9C, 0, 8, 16 - 0, 16 - 8, 8);
-        v0->unk_08++;
-        break;
-    case 1:
-        if (AlphaFadeContext_IsDone(&v0->unk_9C)) {
-            v0->unk_08++;
-            ov12_02232D64(v0);
-        }
-        break;
-    case 2:
-        if (ov12_02232E04(v0)) {
-            v0->unk_08++;
-            v0->unk_0C = 2;
-        }
-        break;
-    case 3:
-        v0->unk_0C--;
-
-        if (v0->unk_0C < 0) {
-            ov12_02232F30(v0);
-            v0->unk_08++;
-        }
-        break;
-    case 4:
-        if (ov12_02232FF0(v0)) {
-            v0->unk_08++;
-            AlphaFadeContext_Init(&v0->unk_9C, 8, 0, 16 - 8, 16 - 0, 8);
-        }
-        break;
-    case 5:
-        if (AlphaFadeContext_IsDone(&v0->unk_9C)) {
-            v0->unk_08++;
-        }
-        break;
-    case 6:
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case MEMENTO_DEFENDER_STATE_FINISH:
+        done = TRUE;
         break;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_04);
+    return done;
 }
 
-void ov12_02233178(BattleAnimSystem *param0)
+static void BattleAnimTask_Memento(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02232D38 *v0;
-    PokemonSprite *v1;
-    s16 v2, v3;
-    s16 v4, v5;
+    MementoContext *ctx = param;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02232D38));
+    switch (ctx->state) {
+    case MEMENTO_STATE_INIT:
+        BattleAnimUtil_SetSpriteBgBlending(
+            ctx->battleAnimSys,
+            MEMENTO_SPRITE_START_ALPHA,
+            MEMENTO_BG_START_ALPHA - MEMENTO_SPRITE_START_ALPHA);
+        AlphaFadeContext_Init(
+            &ctx->alpha,
+            MEMENTO_SPRITE_START_ALPHA,
+            MEMENTO_SPRITE_END_ALPHA,
+            MEMENTO_BG_START_ALPHA - MEMENTO_SPRITE_START_ALPHA,
+            MEMENTO_BG_START_ALPHA - MEMENTO_SPRITE_END_ALPHA,
+            MEMENTO_ALPHA_FADE_FRAMES);
+        ctx->state++;
+        break;
+    case MEMENTO_STATE_FADE_AND_INIT_ATTACKER:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ctx->state++;
+            MementoContext_InitAttacker(ctx);
+        }
+        break;
+    case MEMENTO_STATE_UPDATE_ATTACKER:
+        if (MementoContext_UpdateAttacker(ctx)) {
+            ctx->state++;
+            ctx->delay = MEMENTO_DEFENDER_DELAY;
+        }
+        break;
+    case MEMENTO_STATE_INIT_DEFENDER:
+        ctx->delay--;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
-    v0->unk_C4 = BattleAnimSystem_GetPaletteData(v0->unk_00);
+        if (ctx->delay < 0) {
+            MementoContext_InitDefender(ctx);
+            ctx->state++;
+        }
+        break;
+    case MEMENTO_STATE_UPDATE_DEFENDER:
+        if (MementoContext_UpdateDefender(ctx)) {
+            ctx->state++;
+            AlphaFadeContext_Init(
+                &ctx->alpha,
+                MEMENTO_SPRITE_END_ALPHA,
+                MEMENTO_SPRITE_START_ALPHA,
+                MEMENTO_BG_START_ALPHA - MEMENTO_SPRITE_END_ALPHA,
+                MEMENTO_BG_START_ALPHA - MEMENTO_SPRITE_START_ALPHA,
+                MEMENTO_ALPHA_FADE_FRAMES);
+        }
+        break;
+    case MEMENTO_STATE_FADE:
+        if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+            ctx->state++;
+        }
+        break;
+    case MEMENTO_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
+        break;
+    }
 
-    v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
-    v2 = PokemonSprite_GetAttribute(v1, MON_SPRITE_X_CENTER);
-    v3 = PokemonSprite_GetAttribute(v1, MON_SPRITE_Y_CENTER);
-    v3 -= PokemonSprite_GetAttribute(v1, MON_SPRITE_SHADOW_HEIGHT);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
+}
 
-    v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
-    v4 = PokemonSprite_GetAttribute(v1, MON_SPRITE_X_CENTER);
-    v5 = PokemonSprite_GetAttribute(v1, MON_SPRITE_Y_CENTER);
-    v5 -= PokemonSprite_GetAttribute(v1, MON_SPRITE_SHADOW_HEIGHT);
+void BattleAnimScriptFunc_Memento(BattleAnimSystem *system)
+{
+    MementoContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MementoContext));
 
-    v0->unk_14 = v3;
-    v0->unk_10 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_18 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 0);
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->paletteData = BattleAnimSystem_GetPaletteData(ctx->battleAnimSys);
 
-    ManagedSprite_SetPriority(v0->unk_18, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_18, 1);
-    ManagedSprite_SetPositionXY(v0->unk_18, v2, v3);
-    ManagedSprite_SetDrawFlag(v0->unk_18, FALSE);
-    ManagedSprite_SetExplicitOamMode(v0->unk_18, GX_OAM_MODE_XLU);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_18, AFFINE_OVERWRITE_MODE_DOUBLE);
+    PokemonSprite *attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    s16 attackerX = PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_X_CENTER);
+    s16 attackerY = PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_Y_CENTER);
+    attackerY -= PokemonSprite_GetAttribute(attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 1);
+    PokemonSprite *defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
+    s16 defenderX = PokemonSprite_GetAttribute(defenderSprite, MON_SPRITE_X_CENTER);
+    s16 defenderY = PokemonSprite_GetAttribute(defenderSprite, MON_SPRITE_Y_CENTER);
+    defenderY -= PokemonSprite_GetAttribute(defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    ManagedSprite_SetPriority(v0->unk_1C, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, 1);
-    ManagedSprite_SetPositionXY(v0->unk_1C, v4, v5);
-    ManagedSprite_SetDrawFlag(v0->unk_1C, FALSE);
-    ManagedSprite_SetExplicitOamMode(v0->unk_1C, GX_OAM_MODE_XLU);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_1C, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetAffineTranslation(v0->unk_1C, 0, 80 / 2);
+    ctx->attackerY = attackerY;
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
 
-    v0->unk_C8 = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(v0->unk_00, 0);
-    v0->unk_CC = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(v0->unk_00, 1);
-    v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 2);
-    v0->unk_24 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, 3);
+    ManagedSprite_SetPriority(ctx->attackerSprite, MEMENTO_SPRITE_PRIORITY);
+    ManagedSprite_SetExplicitPriority(ctx->attackerSprite, MEMENTO_SPRITE_EXP_PRIORITY);
+    ManagedSprite_SetPositionXY(ctx->attackerSprite, attackerX, attackerY);
+    ManagedSprite_SetDrawFlag(ctx->attackerSprite, FALSE);
+    ManagedSprite_SetExplicitOamMode(ctx->attackerSprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAffineOverwriteMode(ctx->attackerSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    ManagedSprite_SetDrawFlag(v0->unk_20, 0);
-    ManagedSprite_SetDrawFlag(v0->unk_24, 0);
+    ctx->defenderSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233094, v0);
+    ManagedSprite_SetPriority(ctx->defenderSprite, MEMENTO_SPRITE_PRIORITY);
+    ManagedSprite_SetExplicitPriority(ctx->defenderSprite, MEMENTO_SPRITE_EXP_PRIORITY);
+    ManagedSprite_SetPositionXY(ctx->defenderSprite, defenderX, defenderY);
+    ManagedSprite_SetDrawFlag(ctx->defenderSprite, FALSE);
+    ManagedSprite_SetExplicitOamMode(ctx->defenderSprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAffineOverwriteMode(ctx->defenderSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetAffineTranslation(ctx->defenderSprite, 0, MON_SPRITE_FRAME_HEIGHT / 2);
+
+    ctx->attackerFlipped = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, BATTLER_TYPE_ATTACKER);
+    ctx->defenderFlipped = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, BATTLER_TYPE_DEFENDER);
+    ctx->attackerPartnerSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_2);
+    ctx->defenderPartnerSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_3);
+
+    ManagedSprite_SetDrawFlag(ctx->attackerPartnerSprite, FALSE);
+    ManagedSprite_SetDrawFlag(ctx->defenderPartnerSprite, FALSE);
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Memento, ctx);
 }
 
 static void ov12_022332E8(UnkStruct_ov12_022332E8 *param0)
