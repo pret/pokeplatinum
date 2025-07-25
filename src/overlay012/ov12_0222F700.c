@@ -521,19 +521,38 @@ enum ReturnState {
 #define RETURN_MOVE_FRAMES  6
 #define RETURN_MOVE_COUNT   4
 
-typedef struct {
-    int unk_00;
-    BattleAnimSystem *unk_04;
-    int unk_08;
-    PokemonSprite *unk_0C;
-    s16 unk_10;
-    s16 unk_12;
-    XYTransformContext unk_14;
-    PokemonSprite *unk_38;
-    s16 unk_3C;
-    s16 unk_3E;
-    XYTransformContext unk_40;
-} UnkStruct_ov12_022324E0;
+// -------------------------------------------------------------------
+// Vital Throw
+// -------------------------------------------------------------------
+typedef struct VitalThrowContext {
+    int state;
+    BattleAnimSystem *battleAnimSys;
+    int dir;
+    PokemonSprite *attackerSprite;
+    s16 attackerX;
+    s16 attackerY;
+    XYTransformContext attackerPos;
+    PokemonSprite *defenderSprite;
+    s16 defenderX;
+    s16 defenderY;
+    XYTransformContext defenderPos;
+} VitalThrowContext;
+
+enum VitalThrowState {
+    VITAL_THROW_STATE_INIT = 0,
+    VITAL_THROW_STATE_REVOLVE,
+    VITAL_THROW_STATE_MOVE_ATTACKER,
+    VITAL_THROW_STATE_MOVE_DEFENDER,
+    VITAL_THROW_STATE_MOVE_BACK_ATTACKER,
+    VITAL_THROW_STATE_MOVE_BACK_DEFENDER,
+    VITAL_THROW_STATE_CLEANUP,
+};
+
+#define VITAL_THROW_REVOLUTION_COUNT  1
+#define VITAL_THROW_REVOLUTION_FRAMES 64
+#define VITAL_THROW_MOVE_OFFSET_X     32
+#define VITAL_THROW_MOVE_FRAMES       2
+#define VITAL_THROW_MOVE_BACK_FRAMES  8
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -2991,84 +3010,107 @@ void BattleAnimScriptFunc_Return(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Return, ctx);
 }
 
-static void ov12_022324E0(SysTask *param0, void *param1)
+static void BattleAnimTask_VitalThrow(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022324E0 *v0 = param1;
+    VitalThrowContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        RevolutionContext_InitOvalRevolutions(&v0->unk_14, 1, 64);
-        v0->unk_14.data[2] *= v0->unk_08;
-        v0->unk_00++;
+    switch (ctx->state) {
+    case VITAL_THROW_STATE_INIT:
+        RevolutionContext_InitOvalRevolutions(
+            &ctx->attackerPos,
+            VITAL_THROW_REVOLUTION_COUNT,
+            VITAL_THROW_REVOLUTION_FRAMES);
+        ctx->attackerPos.data[XY_PARAM_REV_RADIUS_X] *= ctx->dir;
+        ctx->state++;
         break;
-    case 1:
-        if (RevolutionContext_UpdateAndApplyToMon(&v0->unk_14, v0->unk_10, v0->unk_12 - -8, v0->unk_0C) == 0) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER, v0->unk_10);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER, v0->unk_12);
+    case VITAL_THROW_STATE_REVOLVE:
+        if (RevolutionContext_UpdateAndApplyToMon(
+                &ctx->attackerPos,
+                ctx->attackerX,
+                ctx->attackerY - REVOLUTION_CONTEXT_OVAL_RADIUS_Y_INT,
+                ctx->attackerSprite)
+            == FALSE) {
 
-            PosLerpContext_Init(&v0->unk_14, v0->unk_10, v0->unk_10 + 32, 0, 0, 2);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerX);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY);
 
-            v0->unk_14.data[1] *= v0->unk_08;
-            v0->unk_00++;
+            PosLerpContext_Init(
+                &ctx->attackerPos,
+                ctx->attackerX,
+                ctx->attackerX + VITAL_THROW_MOVE_OFFSET_X,
+                0,
+                0,
+                VITAL_THROW_MOVE_FRAMES);
 
-            PosLerpContext_Update(&v0->unk_14);
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER, v0->unk_14.x);
+            ctx->attackerPos.data[XY_PARAM_REV_CUR_X] *= ctx->dir;
+            ctx->state++;
+
+            PosLerpContext_Update(&ctx->attackerPos);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerPos.x);
         }
         break;
-    case 2:
-        if (PosLerpContext_Update(&v0->unk_14)) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER, v0->unk_14.x);
+    case VITAL_THROW_STATE_MOVE_ATTACKER:
+        if (PosLerpContext_Update(&ctx->attackerPos)) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerPos.x);
         } else {
-            PosLerpContext_Init(&v0->unk_40, v0->unk_3C, v0->unk_3C + (32 * v0->unk_08), 0, 0, 2);
-            v0->unk_00++;
+            PosLerpContext_Init(
+                &ctx->defenderPos,
+                ctx->defenderX,
+                ctx->defenderX + (VITAL_THROW_MOVE_OFFSET_X * ctx->dir),
+                0,
+                0,
+                VITAL_THROW_MOVE_FRAMES);
+            ctx->state++;
         }
         break;
-    case 3:
-        if (PosLerpContext_Update(&v0->unk_40)) {
-            PokemonSprite_SetAttribute(v0->unk_38, MON_SPRITE_X_CENTER, v0->unk_40.x);
+    case VITAL_THROW_STATE_MOVE_DEFENDER:
+        if (PosLerpContext_Update(&ctx->defenderPos)) {
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderPos.x);
         } else {
-            PosLerpContext_Init(&v0->unk_14, v0->unk_14.x, v0->unk_10, 0, 0, 8);
-            v0->unk_00++;
+            PosLerpContext_Init(&ctx->attackerPos, ctx->attackerPos.x, ctx->attackerX, 0, 0, VITAL_THROW_MOVE_BACK_FRAMES);
+            ctx->state++;
         }
         break;
-    case 4:
-        if (PosLerpContext_Update(&v0->unk_14)) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER, v0->unk_14.x);
+    case VITAL_THROW_STATE_MOVE_BACK_ATTACKER:
+        if (PosLerpContext_Update(&ctx->attackerPos)) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerPos.x);
         } else {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER, v0->unk_10);
-            PosLerpContext_Init(&v0->unk_40, v0->unk_40.x, v0->unk_3C, 0, 0, 8);
-            v0->unk_00++;
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerX);
+            PosLerpContext_Init(&ctx->defenderPos, ctx->defenderPos.x, ctx->defenderX, 0, 0, VITAL_THROW_MOVE_BACK_FRAMES);
+            ctx->state++;
         }
         break;
-    case 5:
-        if (PosLerpContext_Update(&v0->unk_40)) {
-            PokemonSprite_SetAttribute(v0->unk_38, MON_SPRITE_X_CENTER, v0->unk_40.x);
+    case VITAL_THROW_STATE_MOVE_BACK_DEFENDER:
+        if (PosLerpContext_Update(&ctx->defenderPos)) {
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderPos.x);
         } else {
-            PokemonSprite_SetAttribute(v0->unk_38, MON_SPRITE_X_CENTER, v0->unk_3C);
-            v0->unk_00++;
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderX);
+            ctx->state++;
         }
         break;
-    case 6:
-        BattleAnimSystem_EndAnimTask(v0->unk_04, param0);
-        Heap_Free(v0);
+    case VITAL_THROW_STATE_CLEANUP:
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_022326AC(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_VitalThrow(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_022324E0 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022324E0));
+    VitalThrowContext *ctx = BattleAnimUtil_Alloc(system, sizeof(VitalThrowContext));
 
-    v0->unk_04 = param0;
-    v0->unk_08 = BattleAnimUtil_GetTransformDirectionX(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetAttacker(param0));
-    v0->unk_10 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER);
-    v0->unk_12 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_38 = BattleAnimSystem_GetBattlerSprite(v0->unk_04, BattleAnimSystem_GetDefender(param0));
-    v0->unk_3C = PokemonSprite_GetAttribute(v0->unk_38, MON_SPRITE_X_CENTER);
-    v0->unk_3E = PokemonSprite_GetAttribute(v0->unk_38, MON_SPRITE_Y_CENTER);
+    ctx->battleAnimSys = system;
+    ctx->dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_04, ov12_022324E0, v0);
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
+    ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_VitalThrow, ctx);
 }
 
 static void ov12_02232720(UnkStruct_ov12_02232720 *param0)
