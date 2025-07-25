@@ -135,6 +135,14 @@ typedef struct BgScrollContext {
     ScreenScrollManager *screenScrollMgr;
 } BgScrollContext;
 
+typedef struct SpriteShakeInfo {
+    s16 extentX;
+    s16 extentY;
+    s16 interval;
+    s16 amount;
+    int unk_08;
+} SpriteShakeInfo;
+
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
 s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *param0, int param1, enum BattleAnimPositionType param2);
@@ -180,7 +188,7 @@ BOOL ov12_022260C8(XYTransformContext *param0, PokemonSprite *param1);
 BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1);
 void ShakeContext_Init(XYTransformContext *ctx, s16 extentX, s16 extentY, u32 interval, u32 amount);
 BOOL ShakeContext_Update(XYTransformContext *param0);
-BOOL ov12_0222619C(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
+BOOL ShakeContext_UpdateAndApply(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
 void Afterimage_Init(AfterimageContext *ctx, XYTransformContext *transformCtx, XYTransformFunc transformFunc, s16 x, s16 y, u16 delay, u8 count, u8 mode, ManagedSprite *sprite0, ManagedSprite *sprite1, ManagedSprite *sprite2, ManagedSprite *sprite3);
 BOOL Afterimage_Update(AfterimageContext *param0);
 void RevolutionContext_InitOvalRevolutions(XYTransformContext *param0, int param1, int param2);

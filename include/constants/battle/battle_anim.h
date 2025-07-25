@@ -76,5 +76,9 @@
 #define BATTLE_ANIM_MON_SPRITE_3 3
 #define BATTLE_ANIM_MON_SPRITE_4 4
 
+// Script function specific constants
+#define FLAIL_MODE_ATTACKER 0
+#define FLAIL_MODE_DEFENDER 1
+
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

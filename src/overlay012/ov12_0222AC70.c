@@ -11,11 +11,11 @@
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
-#include "overlay012/struct_ov12_0222C7E0_sub1.h"
 
 #include "battle_script_battlers.h"
 #include "bg_window.h"
 #include "heap.h"
+#include "math_util.h"
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"
@@ -387,7 +387,10 @@ enum EarthquakeState {
 #define EARTHQUAKE_SPRITE_SHAKE_INTERVAL 0
 #define EARTHQUAKE_SPRITE_SHAKE_AMOUNT   5
 
-typedef struct {
+// -------------------------------------------------------------------
+// Nightmare
+// -------------------------------------------------------------------
+typedef struct NightmareContext {
     u8 state;
     u8 unused;
     u8 unk_02;
@@ -413,21 +416,40 @@ typedef struct {
 #define NIGHTMARE_SPRITE_ALPHA_FRAMES  (NIGHTMARE_SPRITE_OFFSET_FRAMES - 5)
 #define NIGHTMARE_VAR_MOVE_ATTACKER    0
 
-typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
-    UnkStruct_ov12_0222C7E0_sub1 unk_1C;
-    PokemonSprite *unk_28[2];
+// -------------------------------------------------------------------
+// Flail (animation), used by Struggle, Flail, Frustration, etc.
+// -------------------------------------------------------------------
+typedef struct FlailContext {
+    BattleAnimScriptFuncCommon common;
+    SpriteShakeInfo shakeInfo;
+    PokemonSprite *battlerSprites[2];
     s16 unk_30;
     s16 unk_32;
     s16 unk_34;
     s16 unk_36;
-    XYTransformContext unk_38;
-    ValueLerpContext unk_5C;
-} UnkStruct_ov12_0222C7E0;
+    XYTransformContext shake;
+    ValueLerpContext angle;
+} FlailContext;
+
+enum FlailState {
+    FLAIL_MODE_ATTACKER_STATE_SETUP_ROTATION = 0,
+    FLAIL_MODE_ATTACKER_STATE_ROTATE,
+
+    FLAIL_MODE_DEFENDER_STATE_SETUP_SHAKE = 0,
+    FLAIL_MODE_DEFENDER_STATE_SHAKE,
+};
+
+#define FLAIL_WIGGLES 5
+#define FLAIL_WIGGLE_PIVOT_Y 100
+#define FLAIL_VAR_MODE 0
+#define FLAIL_VAR_SHAKE_EXTENT_X 1
+#define FLAIL_VAR_SHAKE_EXTENT_Y 2
+#define FLAIL_VAR_SHAKE_INTERVAL 3
+#define FLAIL_VAR_SHAKE_AMOUNT 4
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
-    UnkStruct_ov12_0222C7E0_sub1 unk_1C;
+    BattleAnimScriptFuncCommon unk_00;
+    SpriteShakeInfo unk_1C;
     Point2D unk_28[4];
     PokemonSprite *unk_38[4];
     int unk_48;
@@ -435,8 +457,8 @@ typedef struct {
 } UnkStruct_ov12_0222C994;
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
-    UnkStruct_ov12_0222C7E0_sub1 unk_1C;
+    BattleAnimScriptFuncCommon unk_00;
+    SpriteShakeInfo unk_1C;
     Point2D unk_28[2];
     PokemonSprite *unk_30[2];
     ManagedSprite *unk_38[2];
@@ -448,8 +470,8 @@ typedef struct {
     int unk_04;
     int unk_08;
     Point2D unk_0C;
-    UnkStruct_ov12_0223595C unk_10;
-    UnkStruct_ov12_0222C7E0_sub1 unk_2C;
+    BattleAnimScriptFuncCommon unk_10;
+    SpriteShakeInfo unk_2C;
     ManagedSprite *unk_38;
     BattleAnimSpriteInfo unk_3C[4];
     XYTransformContext unk_8C[2];
@@ -468,8 +490,8 @@ typedef struct {
     u8 unk_11;
     s16 unk_12;
     Point2D unk_14;
-    UnkStruct_ov12_0223595C unk_18;
-    UnkStruct_ov12_0222C7E0_sub1 unk_34;
+    BattleAnimScriptFuncCommon unk_18;
+    SpriteShakeInfo unk_34;
     ManagedSprite *unk_40;
     ManagedSprite *unk_44[2];
     BattleAnimSpriteInfo unk_4C[4];
@@ -1947,109 +1969,126 @@ void BattleAnimScriptFunc_Nightmare(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->system, BattleAnimTask_Nightmare, ctx);
 }
 
-static const int Unk_ov12_0223A118[][2] = {
-    { ((20 * 0xffff) / 360), 0x3 },
-    { ((15 * 0xffff) / 360), 0x3 },
-    { ((10 * 0xffff) / 360), 0x2 },
-    { ((5 * 0xffff) / 360), 0x2 },
-    { ((0 * 0xffff) / 360), 0x1 }
+enum {
+    FLAIL_ANGLE_TABLE_ANGLE = 0,
+    FLAIL_ANGLE_TABLE_FRAMES,
 };
 
-static void ov12_0222C7E0(SysTask *param0, void *param1)
+static const int sFlailAngles[][2] = {
+    { DEG_TO_IDX(20), 3 },
+    { DEG_TO_IDX(15), 3 },
+    { DEG_TO_IDX(10), 2 },
+    { DEG_TO_IDX(5), 2 },
+    { DEG_TO_IDX(0), 1 }
+};
+
+static void BattleAnimTask_FlailAttackerMode(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222C7E0 *v0 = (UnkStruct_ov12_0222C7E0 *)param1;
+    FlailContext *ctx = param;
 
-    switch (v0->unk_00.unk_00) {
-    case 0: {
-        int v1;
-        int v2;
+    switch (ctx->common.state) {
+    case FLAIL_MODE_ATTACKER_STATE_SETUP_ROTATION: {
+        int startAngle;
+        int endAngle;
 
-        if (v0->unk_00.unk_01 == 0) {
-            v1 = -Unk_ov12_0223A118[v0->unk_00.unk_02][0];
-            v2 = +Unk_ov12_0223A118[v0->unk_00.unk_02][0];
+        if (ctx->common.counter1 == 0) {
+            startAngle = -sFlailAngles[ctx->common.counter2][FLAIL_ANGLE_TABLE_ANGLE];
+            endAngle = +sFlailAngles[ctx->common.counter2][FLAIL_ANGLE_TABLE_ANGLE];
         } else {
-            v1 = +Unk_ov12_0223A118[v0->unk_00.unk_02][0];
-            v2 = -Unk_ov12_0223A118[v0->unk_00.unk_02][0];
+            startAngle = +sFlailAngles[ctx->common.counter2][FLAIL_ANGLE_TABLE_ANGLE];
+            endAngle = -sFlailAngles[ctx->common.counter2][FLAIL_ANGLE_TABLE_ANGLE];
         }
 
-        ValueLerpContext_Init(&v0->unk_5C, v1, v2, Unk_ov12_0223A118[v0->unk_00.unk_02][1]);
+        ValueLerpContext_Init(
+            &ctx->angle,
+            startAngle,
+            endAngle,
+            sFlailAngles[ctx->common.counter2][FLAIL_ANGLE_TABLE_FRAMES]);
 
-        if (v0->unk_00.unk_01 == 1) {
-            v0->unk_00.unk_02++;
+        if (ctx->common.counter1 == 1) {
+            ctx->common.counter2++;
         }
 
-        v0->unk_00.unk_01 ^= 1;
+        ctx->common.counter1 ^= 1;
+        ctx->common.state++;
     }
-        v0->unk_00.unk_00++;
-    case 1:
-        if (ValueLerpContext_Update(&v0->unk_5C) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_ROTATION_Z, (u16)v0->unk_5C.value);
+    case FLAIL_MODE_ATTACKER_STATE_ROTATE:
+        if (ValueLerpContext_Update(&ctx->angle) == TRUE) {
+            PokemonSprite_SetAttribute(
+                ctx->battlerSprites[BATTLER_TYPE_ATTACKER],
+                MON_SPRITE_ROTATION_Z,
+                (u16)ctx->angle.value);
         } else {
-            if (v0->unk_00.unk_02 >= 5) {
-                v0->unk_00.unk_00++;
+            if (ctx->common.counter2 >= FLAIL_WIGGLES) {
+                ctx->common.state++;
             } else {
-                v0->unk_00.unk_00--;
+                ctx->common.state--;
             }
         }
         break;
     default:
-        PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_ROTATION_Z, 0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-        Heap_Free(v0);
+        PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], MON_SPRITE_ROTATION_Z, 0);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-static void ov12_0222C884(SysTask *param0, void *param1)
+static void BattleAnimTask_FlailDefenderMode(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222C7E0 *v0 = (UnkStruct_ov12_0222C7E0 *)param1;
+    FlailContext *ctx = param;
 
-    switch (v0->unk_00.unk_00) {
-    case 0:
-        ShakeContext_Init(&v0->unk_38, v0->unk_1C.unk_00, v0->unk_1C.unk_02, v0->unk_1C.unk_04, v0->unk_1C.unk_06);
-        v0->unk_00.unk_00++;
+    switch (ctx->common.state) {
+    case FLAIL_MODE_DEFENDER_STATE_SETUP_SHAKE:
+        ShakeContext_Init(
+            &ctx->shake,
+            ctx->shakeInfo.extentX,
+            ctx->shakeInfo.extentY,
+            ctx->shakeInfo.interval,
+            ctx->shakeInfo.amount);
+        ctx->common.state++;
         break;
-    case 1: {
-        Point2D v1;
+    case FLAIL_MODE_DEFENDER_STATE_SHAKE: {
+        Point2D pos;
+        BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_DEFENDER], &pos);
 
-        BattleAnimUtil_GetMonSpritePos(v0->unk_28[1], &v1);
-
-        if (ov12_0222619C(&v0->unk_38, v1.x, v1.y, v0->unk_28[1]) == 0) {
-            v0->unk_00.unk_00++;
+        if (ShakeContext_UpdateAndApply(&ctx->shake, pos.x, pos.y, ctx->battlerSprites[BATTLER_TYPE_DEFENDER]) == FALSE) {
+            ctx->common.state++;
         }
     } break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222C8F8(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Flail(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222C7E0 *v0;
-    int v1 = 0;
+    FlailContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FlailContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222C7E0));
-    ov12_0223595C(param0, &v0->unk_00);
+    ctx->battlerSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(
+        ctx->common.battleAnimSystem,
+        BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+    ctx->battlerSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(
+        ctx->common.battleAnimSystem,
+        BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
 
-    v0->unk_28[0] = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem));
-    v0->unk_28[1] = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
+    PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], MON_SPRITE_Y_PIVOT, FLAIL_WIGGLE_PIVOT_Y);
 
-    PokemonSprite_SetAttribute(v0->unk_28[0], MON_SPRITE_Y_PIVOT, 100);
+    int mode = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_MODE);
 
-    v1 = BattleAnimSystem_GetScriptVar(param0, 0);
+    ctx->shakeInfo.extentX = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_SHAKE_EXTENT_X);
+    ctx->shakeInfo.extentY = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_SHAKE_EXTENT_Y);
+    ctx->shakeInfo.interval = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_SHAKE_INTERVAL);
+    ctx->shakeInfo.amount = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_SHAKE_AMOUNT);
+    ctx->shakeInfo.unk_08 = BattleAnimSystem_GetScriptVar(system, 5);
 
-    v0->unk_1C.unk_00 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_1C.unk_02 = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_1C.unk_04 = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_1C.unk_06 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v0->unk_1C.unk_08 = BattleAnimSystem_GetScriptVar(param0, 5);
-
-    if (v1 == 0) {
-        BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222C7E0, v0);
+    if (mode == FLAIL_MODE_ATTACKER) {
+        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_FlailAttackerMode, ctx);
     } else {
-        BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222C884, v0);
+        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_FlailDefenderMode, ctx);
     }
 }
 
@@ -2058,14 +2097,14 @@ static void ov12_0222C994(SysTask *param0, void *param1)
     int v0;
     UnkStruct_ov12_0222C994 *v1 = (UnkStruct_ov12_0222C994 *)param1;
 
-    switch (v1->unk_00.unk_00) {
+    switch (v1->unk_00.state) {
     case 0:
         ShakeContext_Init(&v1->unk_4C, 2 + v1->unk_48, v1->unk_48, 0, 10);
-        v1->unk_00.unk_00++;
+        v1->unk_00.state++;
         break;
     case 1:
         if (ShakeContext_Update(&v1->unk_4C) == 0) {
-            v1->unk_00.unk_00++;
+            v1->unk_00.state++;
         } else {
             for (v0 = 0; v0 < 4; v0++) {
                 if (v1->unk_38[v0] == NULL) {
@@ -2091,7 +2130,7 @@ void ov12_0222CA2C(BattleAnimSystem *param0)
     UnkStruct_ov12_0222C994 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222C994));
     int v1;
 
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     {
         int v2 = BattleAnimSystem_GetMoveInfo(v0->unk_00.battleAnimSystem, 1);
@@ -2139,15 +2178,15 @@ static void ov12_0222CACC(SysTask *param0, void *param1)
     int v0;
     UnkStruct_ov12_0222CACC *v1 = (UnkStruct_ov12_0222CACC *)param1;
 
-    switch (v1->unk_00.unk_00) {
+    switch (v1->unk_00.state) {
     case 0:
         ShakeContext_Init(&v1->unk_40[0], 20, 0, 0, 10);
         ShakeContext_Init(&v1->unk_40[1], 2, 0, 0, 10);
-        v1->unk_00.unk_00++;
+        v1->unk_00.state++;
         break;
     case 1:
         if (ShakeContext_Update(&v1->unk_40[0]) == 0) {
-            v1->unk_00.unk_00++;
+            v1->unk_00.state++;
         } else {
             ManagedSprite_SetPositionXY(v1->unk_38[0], +v1->unk_28[1].x + v1->unk_40[0].x, v1->unk_28[1].y + v1->unk_40[0].y);
             ManagedSprite_SetPositionXY(v1->unk_38[1], -v1->unk_28[1].x + v1->unk_40[0].x, v1->unk_28[1].y + v1->unk_40[0].y);
@@ -2169,7 +2208,7 @@ void ov12_0222CB90(BattleAnimSystem *param0)
     UnkStruct_ov12_0222CACC *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222CACC));
     int v1;
 
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     v0->unk_38[0] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 0);
     v0->unk_38[1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 1);
@@ -2207,7 +2246,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     int v0;
     int v1;
     UnkStruct_ov12_0222CBFC *v2 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222CBFC));
-    ov12_0223595C(param0, &v2->unk_10);
+    BattleAnimSystem_GetCommonData(param0, &v2->unk_10);
 
     v2->unk_0C.x = BattleAnimSystem_GetScriptVar(param0, 0);
     v2->unk_0C.y = BattleAnimSystem_GetScriptVar(param0, 1);
@@ -2251,15 +2290,15 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222CDF0 *v0 = (UnkStruct_ov12_0222CDF0 *)param1;
 
-    switch (v0->unk_18.unk_00) {
+    switch (v0->unk_18.state) {
     case 0:
         ScaleLerpContext_InitXY(&v0->unk_9C, 100 * v0->unk_12, 60 * v0->unk_12, 5, 150, 100, 12);
-        v0->unk_18.unk_00++;
+        v0->unk_18.state++;
         break;
     case 1:
         if (ScaleLerpContext_UpdateXY(&v0->unk_9C) == 0) {
             ScaleLerpContext_InitXY(&v0->unk_9C, 60 * v0->unk_12, 150 * v0->unk_12, 150, 10, 100, 12);
-            v0->unk_18.unk_00++;
+            v0->unk_18.state++;
         } else {
             f32 v1, v2;
             s16 v3;
@@ -2282,12 +2321,12 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
         break;
     case 2:
         if (++v0->unk_04 >= 4) {
-            v0->unk_18.unk_00++;
+            v0->unk_18.state++;
         }
         break;
     case 3:
         if (ScaleLerpContext_UpdateXY(&v0->unk_9C) == 0) {
-            v0->unk_18.unk_00++;
+            v0->unk_18.state++;
         } else {
             f32 v4, v5;
             s16 v6;
@@ -2325,7 +2364,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222CDF0 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222CDF0));
 
-    ov12_0223595C(param0, &v0->unk_18);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_18);
 
     v0->unk_44[0] = BattleAnimSystem_GetSprite(param0, 0);
     v0->unk_44[1] = BattleAnimSystem_GetSprite(param0, 1);

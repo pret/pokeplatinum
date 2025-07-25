@@ -18,7 +18,7 @@ void ov12_0222C0C0(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Minimize(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Earthquake(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Nightmare(BattleAnimSystem *param0);
-void ov12_0222C8F8(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Flail(BattleAnimSystem *param0);
 void ov12_0222CA2C(BattleAnimSystem *param0);
 void ov12_0222CB90(BattleAnimSystem *param0);
 void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);

@@ -12,7 +12,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
+    BattleAnimScriptFuncCommon unk_00;
     BattleAnimSpriteInfo unk_1C;
     BattleAnimSpriteInfo unk_30[2];
     s16 unk_58;
@@ -25,7 +25,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222E784 *v0 = (UnkStruct_ov12_0222E784 *)param1;
 
-    switch (v0->unk_00.unk_00) {
+    switch (v0->unk_00.state) {
     case 0:
         if (ScaleLerpContext_UpdateXY(&v0->unk_60) == 0) {
             ManagedSprite_SetDrawFlag(v0->unk_1C.hwSprite, 0);
@@ -61,7 +61,7 @@ void ov12_0222E810(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222E784 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E784));
 
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     v0->unk_1C.monSprite = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
     v0->unk_58 = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER);

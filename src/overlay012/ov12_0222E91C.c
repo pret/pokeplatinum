@@ -23,7 +23,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
+    BattleAnimScriptFuncCommon unk_00;
     BattleAnimSpriteInfo unk_1C;
     ManagedSprite *unk_30;
     XYTransformContext unk_34;
@@ -37,7 +37,7 @@ typedef struct {
 } UnkStruct_ov12_0222E91C;
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
+    BattleAnimScriptFuncCommon unk_00;
     s16 unk_1C;
     s16 unk_1E[8];
     ManagedSprite *unk_30[8];
@@ -45,7 +45,7 @@ typedef struct {
 } UnkStruct_ov12_0222EC18;
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
+    BattleAnimScriptFuncCommon unk_00;
     ManagedSprite *unk_1C[3];
     int unk_28;
     f32 unk_2C;
@@ -57,7 +57,7 @@ typedef struct {
 } UnkStruct_ov12_0222EE50;
 
 typedef struct {
-    UnkStruct_ov12_0223595C unk_00;
+    BattleAnimScriptFuncCommon unk_00;
     BattleAnimSpriteInfo unk_1C;
     XYTransformContext unk_30;
     s16 unk_54;
@@ -79,7 +79,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     PokemonSprite *unk_1C;
-    UnkStruct_ov12_0223595C unk_20;
+    BattleAnimScriptFuncCommon unk_20;
     BattleAnimSpriteInfo unk_3C;
 } UnkStruct_ov12_0222F464;
 
@@ -87,7 +87,7 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222E91C *v0 = (UnkStruct_ov12_0222E91C *)param1;
 
-    switch (v0->unk_00.unk_00) {
+    switch (v0->unk_00.state) {
     case 0:
         if (v0->unk_A0 == 0) {
             PosLerpContext_Init(&v0->unk_34, v0->unk_1C.pos.x, v0->unk_1C.pos.x + 48, v0->unk_1C.pos.y, v0->unk_1C.pos.y, 3);
@@ -100,7 +100,7 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
         }
 
         v0->unk_A0++;
-        v0->unk_00.unk_00++;
+        v0->unk_00.state++;
         break;
     case 1: {
         int v1 = 0;
@@ -119,9 +119,9 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
 
         if (v1 >= 3) {
             if (v0->unk_A0 == 1) {
-                v0->unk_00.unk_00--;
+                v0->unk_00.state--;
             } else {
-                v0->unk_00.unk_00++;
+                v0->unk_00.state++;
             }
         }
     } break;
@@ -140,7 +140,7 @@ void ov12_0222EAA0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222E91C *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E91C));
 
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     v0->unk_A1 = 0;
     v0->unk_A2 = 8;
@@ -224,7 +224,7 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222EC18));
     v0->unk_1C = 10;
 
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     {
         int v1;
@@ -325,14 +325,14 @@ static void ov12_0222EE50(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222EE50 *v0 = param1;
 
-    switch (v0->unk_00.unk_00) {
+    switch (v0->unk_00.state) {
     case 0:
         if (v0->unk_28 > 14) {
             v0->unk_30 -= 0.2f;
             v0->unk_2C += 0.2f;
 
             if (v0->unk_30 <= 0.2) {
-                v0->unk_00.unk_00++;
+                v0->unk_00.state++;
                 ManagedSprite_SetDrawFlag(v0->unk_1C[0], 0);
             } else {
                 ManagedSprite_SetAffineScale(v0->unk_1C[0], v0->unk_2C * v0->unk_36, v0->unk_30);
@@ -354,7 +354,7 @@ static void ov12_0222EE50(SysTask *param0, void *param1)
             v1 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_1C[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
             v0->unk_38[1] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v1 * 16, 16, 0, 1, 15, 0, 0xFFFFFF, 1100);
-            v0->unk_00.unk_00++;
+            v0->unk_00.state++;
         }
         break;
     case 2:
@@ -384,7 +384,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
     s16 v5;
 
     v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222EE50));
-    ov12_0223595C(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
 
     v0->unk_1C[0] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 0);
     v0->unk_1C[1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 1);
@@ -475,18 +475,18 @@ static void ov12_0222F208(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222F208 *v0 = (UnkStruct_ov12_0222F208 *)param1;
 
-    switch (v0->unk_00.unk_00) {
+    switch (v0->unk_00.state) {
     case 0:
         PosLerpContext_Init(&v0->unk_30, v0->unk_1C.pos.x, v0->unk_6C[v0->unk_68], v0->unk_78[v0->unk_68], v0->unk_78[v0->unk_68], 15);
         PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Z_CENTER, v0->unk_84[v0->unk_68]);
         PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 1);
-        v0->unk_00.unk_00++;
+        v0->unk_00.state++;
     case 1:
         if (PosLerpContext_Update(&v0->unk_30) == 0) {
             v0->unk_68++;
 
             if (v0->unk_68 > 2) {
-                v0->unk_00.unk_00++;
+                v0->unk_00.state++;
             } else {
                 {
                     UnkStruct_ov12_022380DC v1;
@@ -502,7 +502,7 @@ static void ov12_0222F208(SysTask *param0, void *param1)
                     }
                 }
 
-                v0->unk_00.unk_00 = 0;
+                v0->unk_00.state = 0;
             }
 
             v0->unk_1C.pos.x = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_X_CENTER);
@@ -523,7 +523,7 @@ void ov12_0222F2F8(BattleAnimSystem *param0)
 {
     int v0;
     UnkStruct_ov12_0222F208 *v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222F208));
-    ov12_0223595C(param0, &v1->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v1->unk_00);
 
     {
         int v2 = BattleAnimSystem_GetAttacker(v1->unk_00.battleAnimSystem);
@@ -592,12 +592,12 @@ static void ov12_0222F464(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222F464 *v0 = param1;
 
-    switch (v0->unk_20.unk_00) {
+    switch (v0->unk_20.state) {
     case 0:
         v0->unk_10 += 79;
 
         if (v0->unk_10 >= 80) {
-            v0->unk_20.unk_00++;
+            v0->unk_20.state++;
             v0->unk_14 ^= 1;
             v0->unk_10 = 0;
         } else {
@@ -612,7 +612,7 @@ static void ov12_0222F464(SysTask *param0, void *param1)
         v0->unk_04 -= (2 / 2);
         v0->unk_0C += (2 / 2);
         G2_SetWnd0Position(v0->unk_08, v0->unk_04, v0->unk_08 + 80, v0->unk_0C);
-        v0->unk_20.unk_00++;
+        v0->unk_20.state++;
         break;
     case 2:
         v0->unk_04 -= (2 / 2);
@@ -621,14 +621,14 @@ static void ov12_0222F464(SysTask *param0, void *param1)
         v0->unk_00++;
 
         if (v0->unk_00 > ((80 / 2) - 2)) {
-            v0->unk_20.unk_00++;
+            v0->unk_20.state++;
         } else {
-            v0->unk_20.unk_00 = 0;
+            v0->unk_20.state = 0;
         }
         break;
     case 3:
         PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_PARTIAL_DRAW, 0);
-        v0->unk_20.unk_00++;
+        v0->unk_20.state++;
         break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -645,7 +645,7 @@ static void ov12_0222F464(SysTask *param0, void *param1)
 void ov12_0222F5EC(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_0222F464 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222F464));
-    ov12_0223595C(param0, &v0->unk_20);
+    BattleAnimSystem_GetCommonData(param0, &v0->unk_20);
 
     v0->unk_1C = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetDefender(param0));
     v0->unk_00 = 0;

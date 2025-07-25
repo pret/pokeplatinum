@@ -1893,7 +1893,7 @@ static void ov12_02230F3C(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 1:
-        if (ov12_0222619C(&v0->unk_20, v0->unk_1C, v0->unk_1E, v0->unk_18) == 0) {
+        if (ShakeContext_UpdateAndApply(&v0->unk_20, v0->unk_1C, v0->unk_1E, v0->unk_18) == 0) {
             v0->unk_0C++;
         }
         break;
@@ -3626,7 +3626,7 @@ static void ov12_02233394(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (ov12_0222619C(&v0->unk_14, v0->unk_38, v0->unk_3A, v0->unk_10) == 0) {
+        if (ShakeContext_UpdateAndApply(&v0->unk_14, v0->unk_38, v0->unk_3A, v0->unk_10) == 0) {
             v0->unk_0C++;
             ov12_02233338(v0);
         }
@@ -4194,13 +4194,13 @@ static void ov12_02234044(SysTask *param0, void *param1)
     switch (v0->unk_04) {
     case 0:
         ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_5C, v0->unk_60, v0->unk_64, v0->unk_68, v0->unk_6C, v0->unk_74 >> 16);
-        ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
+        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         ov12_022260E8(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
         v0->unk_04++;
         break;
     case 1:
-        ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
+        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         v1 = ov12_022260E8(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
 
@@ -4210,13 +4210,13 @@ static void ov12_02234044(SysTask *param0, void *param1)
         break;
     case 2:
         ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_60, v0->unk_5C, v0->unk_68, v0->unk_64, v0->unk_6C, v0->unk_74 & 0xffff);
-        ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
+        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         ov12_022260E8(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
         v0->unk_04++;
         break;
     case 3:
-        ov12_0222619C(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
+        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
         v1 = ov12_022260E8(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
 
@@ -4324,7 +4324,7 @@ static void ov12_022343A0(SysTask *param0, void *param1)
         v0->unk_04++;
         break;
     case 1:
-        if (ov12_0222619C(&v0->unk_40, v0->unk_18, v0->unk_1A, v0->unk_14) == 0) {
+        if (ShakeContext_UpdateAndApply(&v0->unk_40, v0->unk_18, v0->unk_1A, v0->unk_14) == 0) {
             v0->unk_04++;
             PosLerpContext_Init(&v0->unk_1C, v0->unk_18, v0->unk_18 + (40 * v0->unk_0C), v0->unk_1A, v0->unk_1A + (-7 * v0->unk_10), 4);
         }
@@ -4396,7 +4396,7 @@ static void ov12_02234528(SysTask *param0, void *param1)
         v1 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
         v2 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
 
-        if (ov12_0222619C(&v0->unk_3C, v1, v2, v0->unk_10) == 0) {
+        if (ShakeContext_UpdateAndApply(&v0->unk_3C, v1, v2, v0->unk_10) == 0) {
             v0->unk_04++;
             PosLerpContext_Init(&v0->unk_18, v0->unk_14 + (-40 * v0->unk_08), v0->unk_14, v0->unk_16 + (16 * v0->unk_0C), v0->unk_16, 4);
         }
