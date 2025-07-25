@@ -447,14 +447,33 @@ enum FlailState {
 #define FLAIL_VAR_SHAKE_INTERVAL 3
 #define FLAIL_VAR_SHAKE_AMOUNT 4
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
+// -------------------------------------------------------------------
+// Magnitude
+// -------------------------------------------------------------------
+typedef struct MagnitudeContext {
+    BattleAnimScriptFuncCommon common;
     SpriteShakeInfo unk_1C;
-    Point2D unk_28[4];
-    PokemonSprite *unk_38[4];
-    int unk_48;
-    XYTransformContext unk_4C;
-} UnkStruct_ov12_0222C994;
+    Point2D battlerPositions[MAX_BATTLERS];
+    PokemonSprite *battlerSprites[MAX_BATTLERS];
+    int power;
+    XYTransformContext shake;
+} MagnitudeContext;
+
+enum MagnitudeState {
+    MAGNITUDE_STATE_INIT = 0,
+    MAGNITUDE_STATE_SHAKE,
+};
+
+#define MAGNITUDE_POWER150_SHAKE_EXTENT 6
+#define MAGNITUDE_POWER110_SHAKE_EXTENT 5
+#define MAGNITUDE_POWER90_SHAKE_EXTENT 4
+#define MAGNITUDE_POWER70_SHAKE_EXTENT 3
+#define MAGNITUDE_POWER50_SHAKE_EXTENT 2
+#define MAGNITUDE_POWER30_SHAKE_EXTENT 1
+#define MAGNITUDE_DEFAULT_SHAKE_EXTENT 0
+#define MAGNITUDE_SHAKE_BASE_EXTENT 2
+#define MAGNITUDE_SHAKE_INTERVAL 0
+#define MAGNITUDE_SHAKE_AMOUNT 10
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -2092,85 +2111,86 @@ void BattleAnimScriptFunc_Flail(BattleAnimSystem *system)
     }
 }
 
-static void ov12_0222C994(SysTask *param0, void *param1)
+static void BattleAnimTask_Magnitude(SysTask *task, void *param1)
 {
-    int v0;
-    UnkStruct_ov12_0222C994 *v1 = (UnkStruct_ov12_0222C994 *)param1;
+    MagnitudeContext *ctx = param1;
 
-    switch (v1->unk_00.state) {
-    case 0:
-        ShakeContext_Init(&v1->unk_4C, 2 + v1->unk_48, v1->unk_48, 0, 10);
-        v1->unk_00.state++;
+    switch (ctx->common.state) {
+    case MAGNITUDE_STATE_INIT:
+        ShakeContext_Init(
+            &ctx->shake,
+            MAGNITUDE_SHAKE_BASE_EXTENT + ctx->power,
+            ctx->power,
+            MAGNITUDE_SHAKE_INTERVAL,
+            MAGNITUDE_SHAKE_AMOUNT);
+        ctx->common.state++;
         break;
-    case 1:
-        if (ShakeContext_Update(&v1->unk_4C) == 0) {
-            v1->unk_00.state++;
+    case MAGNITUDE_STATE_SHAKE:
+        if (ShakeContext_Update(&ctx->shake) == FALSE) {
+            ctx->common.state++;
         } else {
-            for (v0 = 0; v0 < 4; v0++) {
-                if (v1->unk_38[v0] == NULL) {
+            for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+                if (ctx->battlerSprites[battler] == NULL) {
                     continue;
                 }
 
-                PokemonSprite_SetAttribute(v1->unk_38[v0], MON_SPRITE_X_CENTER, v1->unk_28[v0].x + v1->unk_4C.x);
+                PokemonSprite_SetAttribute(
+                    ctx->battlerSprites[battler],
+                    MON_SPRITE_X_CENTER,
+                    ctx->battlerPositions[battler].x + ctx->shake.x);
             }
 
-            Bg_SetOffset(v1->unk_00.bgConfig, 3, 0, v1->unk_4C.x);
-            Bg_SetOffset(v1->unk_00.bgConfig, 3, 3, v1->unk_4C.y);
+            Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_EFFECT, BG_OFFSET_UPDATE_SET_X, ctx->shake.x);
+            Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_EFFECT, BG_OFFSET_UPDATE_SET_Y, ctx->shake.y);
         }
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v1->unk_00.battleAnimSystem, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222CA2C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Magnitude(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222C994 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222C994));
-    int v1;
+    MagnitudeContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MagnitudeContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
-
-    {
-        int v2 = BattleAnimSystem_GetMoveInfo(v0->unk_00.battleAnimSystem, 1);
-
-        switch (v2) {
-        case 150:
-            v0->unk_48 = 6;
-            break;
-        case 110:
-            v0->unk_48 = 5;
-            break;
-        case 90:
-            v0->unk_48 = 4;
-            break;
-        case 70:
-            v0->unk_48 = 3;
-            break;
-        case 50:
-            v0->unk_48 = 2;
-            break;
-        case 30:
-            v0->unk_48 = 1;
-            break;
-        default:
-            v0->unk_48 = 0;
-            break;
-        }
+    int power = BattleAnimSystem_GetMoveInfo(ctx->common.battleAnimSystem, BATTLE_ANIM_MOVE_INFO_POWER);
+    switch (power) {
+    case 150:
+        ctx->power = MAGNITUDE_POWER150_SHAKE_EXTENT;
+        break;
+    case 110:
+        ctx->power = MAGNITUDE_POWER110_SHAKE_EXTENT;
+        break;
+    case 90:
+        ctx->power = MAGNITUDE_POWER90_SHAKE_EXTENT;
+        break;
+    case 70:
+        ctx->power = MAGNITUDE_POWER70_SHAKE_EXTENT;
+        break;
+    case 50:
+        ctx->power = MAGNITUDE_POWER50_SHAKE_EXTENT;
+        break;
+    case 30:
+        ctx->power = MAGNITUDE_POWER30_SHAKE_EXTENT;
+        break;
+    default:
+        ctx->power = MAGNITUDE_DEFAULT_SHAKE_EXTENT;
+        break;
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v0->unk_38[v1] = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, v1);
-
-        if (v0->unk_38[v1] == NULL) {
+    for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+        ctx->battlerSprites[battler] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, battler);
+        if (ctx->battlerSprites[battler] == NULL) {
             continue;
         }
 
-        BattleAnimUtil_GetMonSpritePos(v0->unk_38[v1], &v0->unk_28[v1]);
+        BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[battler], &ctx->battlerPositions[battler]);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222C994, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Magnitude, ctx);
 }
 
 static void ov12_0222CACC(SysTask *param0, void *param1)
