@@ -17,7 +17,6 @@
 #include "party.h"
 #include "pokemon.h"
 
-#define MAX_PP_UP_BONUSES 3
 #define PP_UP_REQUIREMENT 5 // Moves with fewer max PP can't benefit from PP Ups (e.g. Sketch)
 
 #define MAX_EV_VITAMIN 100
