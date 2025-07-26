@@ -107,16 +107,35 @@ typedef struct FadeBgContext {
 #define FADE_BG_VAR_END_VALUE   3
 #define FADE_BG_VAR_COLOR       4
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    PokemonSprite *unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-} UnkStruct_ov12_022278D0;
+// -------------------------------------------------------------------
+// Fade Battler Sprite
+// -------------------------------------------------------------------
+typedef struct FadeBattlerSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *sprite;
+    int state;
+    int endDelay;
+    int fadeDelay;
+    int color;
+    int alpha;
+    int holdDelay;
+} FadeBattlerSpriteContext;
+
+enum FadeBattlerSpriteState {
+    FADE_BATTLER_SPRITE_STATE_INIT = 0,
+    FADE_BATTLER_SPRITE_STATE_FADE_IN,
+    FADE_BATTLER_SPRITE_STATE_HOLD,
+    FADE_BATTLER_SPRITE_STATE_INIT_FADE_OUT,
+    FADE_BATTLER_SPRITE_STATE_FADE_OUT,
+    FADE_BATTLER_SPRITE_STATE_CLEANUP,
+};
+
+#define FADE_BATTLER_SPRITE_VAR_TARGET           0
+#define FADE_BATTLER_SPRITE_VAR_FADE_STEP_FRAMES 1
+#define FADE_BATTLER_SPRITE_VAR_END_DELAY        2
+#define FADE_BATTLER_SPRITE_VAR_COLOR            3
+#define FADE_BATTLER_SPRITE_VAR_ALPHA            4
+#define FADE_BATTLER_SPRITE_VAR_HOLD_FRAMES      5
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -1100,176 +1119,158 @@ void BattleAnimScriptFunc_FadeBg(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FadeBg, ctx);
 }
 
-static void ov12_022278D0(SysTask *param0, void *param1)
+static void BattleAnimTask_FadeBattlerSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022278D0 *v0 = param1;
+    FadeBattlerSpriteContext *ctx = param;
 
-    switch (v0->unk_08) {
-    case 0:
-        PokemonSprite_StartFade(v0->unk_04, 0, v0->unk_18, v0->unk_10, v0->unk_14);
-        v0->unk_08++;
+    switch (ctx->state) {
+    case FADE_BATTLER_SPRITE_STATE_INIT:
+        PokemonSprite_StartFade(ctx->sprite, 0, ctx->alpha, ctx->fadeDelay, ctx->color);
+        ctx->state++;
         break;
-    case 1:
-        if (PokemonSprite_IsFadeActive(v0->unk_04) == 0) {
-            v0->unk_08++;
+    case FADE_BATTLER_SPRITE_STATE_FADE_IN:
+        if (PokemonSprite_IsFadeActive(ctx->sprite) == FALSE) {
+            ctx->state++;
         }
         break;
-    case 2:
-        if (v0->unk_1C == 0) {
-            v0->unk_08++;
+    case FADE_BATTLER_SPRITE_STATE_HOLD:
+        if (ctx->holdDelay == 0) {
+            ctx->state++;
         } else {
-            v0->unk_1C--;
+            ctx->holdDelay--;
             break;
         }
-    case 3:
-        PokemonSprite_StartFade(v0->unk_04, v0->unk_18, 0, v0->unk_10, v0->unk_14);
-        v0->unk_08++;
+    case FADE_BATTLER_SPRITE_STATE_INIT_FADE_OUT:
+        PokemonSprite_StartFade(ctx->sprite, ctx->alpha, 0, ctx->fadeDelay, ctx->color);
+        ctx->state++;
         break;
-    case 4:
-        if (PokemonSprite_IsFadeActive(v0->unk_04) == 0) {
-            v0->unk_0C--;
+    case FADE_BATTLER_SPRITE_STATE_FADE_OUT:
+        if (PokemonSprite_IsFadeActive(ctx->sprite) == FALSE) {
+            ctx->endDelay--;
 
-            if (v0->unk_0C <= 0) {
-                v0->unk_08++;
+            if (ctx->endDelay <= 0) {
+                ctx->state++;
             } else {
-                v0->unk_08 = 0;
+                ctx->state = 0;
             }
         }
         break;
-    case 5:
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    case FADE_BATTLER_SPRITE_STATE_CLEANUP:
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         return;
     }
 }
 
-void ov12_0222797C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_022278D0 *v0;
-    int v1;
+    FadeBattlerSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FadeBattlerSpriteContext));
+    ctx->battleAnimSys = system;
+    ctx->sprite = NULL;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022278D0));
-    v0->unk_00 = param0;
-    v0->unk_04 = NULL;
-
-    switch (BattleAnimSystem_GetScriptVar(param0, 0)) {
-    case 0x2:
-        v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
+    int targetBattler;
+    switch (BattleAnimSystem_GetScriptVar(system, FADE_BATTLER_SPRITE_VAR_TARGET)) {
+    case BATTLE_ANIM_ATTACKER:
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
         break;
-    case 0x4:
-        if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattler(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00)));
+    case BATTLE_ANIM_ATTACKER_PARTNER:
+        if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+            ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimUtil_GetAlliedBattler(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys)));
         }
         break;
-    case 0x8:
-        v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
+    case BATTLE_ANIM_DEFENDER:
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
         break;
-    case 0x10:
-        if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimUtil_GetAlliedBattler(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)));
+    case BATTLE_ANIM_DEFENDER_PARTNER:
+        if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+            ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimUtil_GetAlliedBattler(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)));
         }
         break;
-    case (0x2 | 0x800): {
-        int v2;
-        int v3;
+    case BATTLE_ANIM_BATTLER_PLAYER_1: {
+        targetBattler = BATTLER_NONE;
 
-        v1 = 0xFF;
-
-        for (v2 = 0; v2 < 4; v2++) {
-            v3 = BattleAnimSystem_GetBattlerType(param0, v2);
-
-            if ((v3 == 0) || (v3 == 2)) {
-                v1 = v2;
+        for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
+            int type = BattleAnimSystem_GetBattlerType(system, battler);
+            if (type == BATTLER_TYPE_SOLO_PLAYER || type == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                targetBattler = battler;
                 break;
             }
         }
 
-        if (v1 == 0xFF) {
-            v1 = 0;
+        if (targetBattler == BATTLER_NONE) {
+            targetBattler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v1);
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
     } break;
-    case (0x4 | 0x800): {
-        int v4;
-        int v5;
+    case BATTLE_ANIM_BATTLER_PLAYER_2: {
+        targetBattler = BATTLER_NONE;
 
-        v1 = 0xFF;
-
-        for (v4 = 0; v4 < 4; v4++) {
-            v5 = BattleAnimSystem_GetBattlerType(param0, v4);
-
-            if (v5 == 4) {
-                v1 = v4;
+        for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
+            int type = BattleAnimSystem_GetBattlerType(system, battler);
+            if (type == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                targetBattler = battler;
                 break;
             }
         }
 
-        if (v1 == 0xFF) {
-            v1 = 0;
+        if (targetBattler == BATTLER_NONE) {
+            targetBattler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v1);
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
     } break;
-    case (0x8 | 0x800): {
-        int v6;
-        int v7;
+    case BATTLE_ANIM_BATTLER_ENEMY_1: {
+        targetBattler = BATTLER_NONE;
 
-        v1 = 0xFF;
-
-        for (v6 = 0; v6 < 4; v6++) {
-            v7 = BattleAnimSystem_GetBattlerType(param0, v6);
-
-            if ((v7 == 1) || (v7 == 3)) {
-                v1 = v6;
+        for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
+            int type = BattleAnimSystem_GetBattlerType(system, battler);
+            if (type == BATTLER_TYPE_SOLO_ENEMY || type == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                targetBattler = battler;
                 break;
             }
         }
 
-        if (v1 == 0xFF) {
-            v1 = 0;
+        if (targetBattler == BATTLER_NONE) {
+            targetBattler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v1);
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
     } break;
-    case (0x10 | 0x800): {
-        int v8;
-        int v9;
+    case BATTLE_ANIM_BATTLER_ENEMY_2: {
+        targetBattler = BATTLER_NONE;
 
-        v1 = 0xFF;
-
-        for (v8 = 0; v8 < 4; v8++) {
-            v9 = BattleAnimSystem_GetBattlerType(param0, v8);
-
-            if (v9 == 5) {
-                v1 = v8;
+        for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
+            int type = BattleAnimSystem_GetBattlerType(system, battler);
+            if (type == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                targetBattler = battler;
                 break;
             }
         }
 
-        if (v1 == 0xFF) {
-            v1 = 0;
+        if (targetBattler == BATTLER_NONE) {
+            targetBattler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_04 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v1);
+        ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, targetBattler);
     } break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    if (v0->unk_04 == NULL) {
-        Heap_Free(v0);
+    if (ctx->sprite == NULL) {
+        Heap_Free(ctx);
         return;
     }
 
-    v0->unk_10 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_0C = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_14 = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_18 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v0->unk_1C = BattleAnimSystem_GetScriptVar(param0, 5);
+    ctx->fadeDelay = BattleAnimSystem_GetScriptVar(system, FADE_BATTLER_SPRITE_VAR_FADE_STEP_FRAMES);
+    ctx->endDelay = BattleAnimSystem_GetScriptVar(system, FADE_BATTLER_SPRITE_VAR_END_DELAY);
+    ctx->color = BattleAnimSystem_GetScriptVar(system, FADE_BATTLER_SPRITE_VAR_COLOR);
+    ctx->alpha = BattleAnimSystem_GetScriptVar(system, FADE_BATTLER_SPRITE_VAR_ALPHA);
+    ctx->holdDelay = BattleAnimSystem_GetScriptVar(system, FADE_BATTLER_SPRITE_VAR_HOLD_FRAMES);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022278D0, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FadeBattlerSprite, ctx);
 }
 
 static void ov12_02227B4C(SysTask *param0, void *param1)

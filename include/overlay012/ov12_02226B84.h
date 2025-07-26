@@ -12,7 +12,7 @@ void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Submission(BattleAnimSystem *param0);
 void ov12_0222777C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_FadeBg(BattleAnimSystem *param0);
-void ov12_0222797C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *param0);
 void ov12_02227CBC(BattleAnimSystem *param0);
 void ov12_02227F30(BattleAnimSystem *param0);
 void ov12_02228168(BattleAnimSystem *param0);
