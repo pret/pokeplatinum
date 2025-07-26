@@ -756,12 +756,31 @@ enum ExtrasensoryState {
 #define EXTRASENSORY_DISTORTION_3_FRAMES    16
 #define EXTRASENSORY_DISTORTION_COUNT       3
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    int unk_08;
-    XYTransformContext unk_0C;
-} UnkStruct_ov12_02233DCC;
+// -------------------------------------------------------------------
+// Fake Out
+// -------------------------------------------------------------------
+typedef struct FakeOutContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    int delay;
+    XYTransformContext curtainPos;
+} FakeOutContext;
+
+enum FakeOutState {
+    FAKE_OUT_STATE_INIT = 0,
+    FAKE_OUT_STATE_WAIT,
+    FAKE_OUT_STATE_MOVE_CURTAIN,
+    FAKE_OUT_STATE_HIDE_CURTAIN,
+    FAKE_OUT_STATE_WAIT_FOR_FADE,
+    FAKE_OUT_STATE_CLEANUP,
+};
+
+#define FAKE_OUT_CURTAIN_START_X     127
+#define FAKE_OUT_CURTAIN_END_X       0
+#define FAKE_OUT_CURTAIN_MOVE_FRAMES 8
+#define FAKE_OUT_CURTAIN_DELAY       7
+#define FAKE_OUT_CURTAIN_COLOR       GX_RGBA(31, 31, 31, 1)
+#define FAKE_OUT_CURTAIN_COLOR_ALPHA 16
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -4308,59 +4327,84 @@ void BattleAnimScriptFunc_Extrasensory(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Extrasensory, ctx);
 }
 
-static void ov12_02233DCC(SysTask *param0, void *param1)
+static void BattleAnimTask_FakeOut(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02233DCC *v0 = param1;
+    FakeOutContext *ctx = param;
 
-    switch (v0->unk_04) {
-    case 0:
-        PosLerpContext_Init(&v0->unk_0C, 127, 0, 0, 0, 8);
+    switch (ctx->state) {
+    case FAKE_OUT_STATE_INIT:
+        PosLerpContext_Init(
+            &ctx->curtainPos,
+            FAKE_OUT_CURTAIN_START_X,
+            FAKE_OUT_CURTAIN_END_X,
+            0,
+            0,
+            FAKE_OUT_CURTAIN_MOVE_FRAMES);
         GX_SetVisibleWnd(GX_WNDMASK_W0);
-        ov12_02235838(v0->unk_00, 0, 0);
-        G2_SetWnd0Position(0, 0, 255, 191);
-        v0->unk_08 = 7;
-        v0->unk_04++;
+        BattleAnimUtil_SetBackgroundWindowMask(ctx->battleAnimSys, BATTLE_ANIM_WINDOW_0, FALSE);
+        G2_SetWnd0Position(0, 0, HW_LCD_WIDTH - 1, HW_LCD_HEIGHT - 1);
+        ctx->delay = FAKE_OUT_CURTAIN_DELAY;
+        ctx->state++;
         break;
-    case 1:
-        v0->unk_08--;
+    case FAKE_OUT_STATE_WAIT:
+        ctx->delay--;
 
-        if (v0->unk_08 < 0) {
-            PaletteData_StartFade(BattleAnimSystem_GetPaletteData(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), 0, 0, 16, 0xffff);
-            v0->unk_04++;
+        if (ctx->delay < 0) {
+            PaletteData_StartFade(
+                BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                PLTTBUF_MAIN_BG_F,
+                BattleAnimSystem_GetBaseBgPalettes(ctx->battleAnimSys),
+                0,
+                0,
+                FAKE_OUT_CURTAIN_COLOR_ALPHA,
+                FAKE_OUT_CURTAIN_COLOR);
+            ctx->state++;
         }
         break;
-    case 2:
-        if (PosLerpContext_Update(&v0->unk_0C)) {
-            G2_SetWnd0Position(127 - v0->unk_0C.x, 0, 128 + v0->unk_0C.x, 191);
+    case FAKE_OUT_STATE_MOVE_CURTAIN:
+        if (PosLerpContext_Update(&ctx->curtainPos)) {
+            G2_SetWnd0Position(
+                (HW_LCD_WIDTH / 2 - 1) - ctx->curtainPos.x,
+                0,
+                (HW_LCD_WIDTH / 2) + ctx->curtainPos.x,
+                HW_LCD_HEIGHT - 1);
         } else {
-            v0->unk_04++;
+            ctx->state++;
         }
         break;
-    case 3:
-        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(v0->unk_00)) == 0) {
-            v0->unk_04++;
+    case FAKE_OUT_STATE_HIDE_CURTAIN:
+        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys)) == 0) {
+            ctx->state++;
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
-            PaletteData_StartFade(BattleAnimSystem_GetPaletteData(v0->unk_00), 0x1, BattleAnimSystem_GetBaseBgPalettes(v0->unk_00), 0, 16, 0, 0xffff);
+            PaletteData_StartFade(
+                BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+                PLTTBUF_MAIN_BG_F,
+                BattleAnimSystem_GetBaseBgPalettes(ctx->battleAnimSys),
+                0,
+                FAKE_OUT_CURTAIN_COLOR_ALPHA,
+                0,
+                FAKE_OUT_CURTAIN_COLOR);
         }
         break;
-    case 4:
-        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(v0->unk_00)) == 0) {
-            v0->unk_04++;
+    case FAKE_OUT_STATE_WAIT_FOR_FADE:
+        if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys)) == 0) {
+            ctx->state++;
         }
         break;
-    case 5:
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    case FAKE_OUT_STATE_CLEANUP:
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         break;
     }
 }
 
-void ov12_02233F30(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02233DCC *v0 = BattleAnimUtil_Alloc(param0, sizeof(ExtrasensoryContext));
-    v0->unk_00 = param0;
+    // BUG: Should be sizeof(FakeOutContext), but since sizeof(ExtrasensoryContext) is larger, it works anyway.
+    FakeOutContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ExtrasensoryContext));
+    ctx->battleAnimSys = system;
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233DCC, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FakeOut, ctx);
 }
 
 static void ov12_02233F4C(SysTask *param0, void *param1)
