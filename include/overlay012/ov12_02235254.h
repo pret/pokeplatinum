@@ -15,6 +15,11 @@
 #define BATTLE_ANIM_DEFAULT_SPRITE_ALPHA 26
 #define BATTLE_ANIM_DEFAULT_BG_ALPHA     5
 
+enum BattleAnimWindow {
+    BATTLE_ANIM_WINDOW_0 = 0,
+    BATTLE_ANIM_WINDOW_1,
+};
+
 typedef struct BattleAnimScriptFuncCommon {
     u8 state;
     u8 counter1; // General purpose counters
@@ -73,7 +78,7 @@ void ov12_02235760(int param0, VecFx32 *param1);
 void BattleAnimUtil_SetSpriteBgBlending(BattleAnimSystem *param0, int param1, int param2);
 void BattleAnimUtil_SetSpriteBlending(BattleAnimSystem *param0, int param1, int param2, int param3);
 void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *param0, int param1, int param2);
-void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2);
+void BattleAnimUtil_SetBackgroundWindowMask(BattleAnimSystem *param0, enum BattleAnimWindow param1, BOOL applyEffects);
 void BattleAnimUtil_GetMonSpritePos(PokemonSprite *param0, Point2D *param1);
 void BattleAnimUtil_GetSpritePos(ManagedSprite *param0, Point2D *param1);
 void BattleAnimSystem_GetCommonData(BattleAnimSystem *param0, BattleAnimScriptFuncCommon *param1);

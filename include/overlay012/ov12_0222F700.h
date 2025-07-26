@@ -32,7 +32,7 @@ void ov12_02233454(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 void ov12_02233734(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_022339C4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_Extrasensory(BattleAnimSystem *param0);
-void ov12_02233F30(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *param0);
 void ov12_02234008(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_02234214(BattleAnimSystem *param0);
 void ov12_022342C4(BattleAnimSystem *param0);

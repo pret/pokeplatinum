@@ -675,16 +675,35 @@ void BattleAnimUtil_SetEffectBaseBgBlending(BattleAnimSystem *system, int alphaB
         alphaEffect);
 }
 
-void ov12_02235838(BattleAnimSystem *param0, int param1, BOOL param2)
+// clang-format off
+void BattleAnimUtil_SetBackgroundWindowMask(BattleAnimSystem *system, enum BattleAnimWindow window, BOOL applyEffects)
 {
-    if (param1 == 0) {
-        G2_SetWnd0InsidePlane((1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
+    if (window == BATTLE_ANIM_WINDOW_0) {
+        G2_SetWnd0InsidePlane(
+            (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) |
+            (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_WINDOW)) |
+            (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE)) |
+            GX_WND_PLANEMASK_BG0 |
+            GX_WND_PLANEMASK_OBJ,
+            applyEffects);
     } else {
-        G2_SetWnd1InsidePlane((1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, param2);
+        G2_SetWnd1InsidePlane(
+            (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)) |
+            (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_WINDOW)) |
+            (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE)) |
+            GX_WND_PLANEMASK_BG0 |
+            GX_WND_PLANEMASK_OBJ,
+            applyEffects);
     }
 
-    G2_SetWndOutsidePlane((1 << BattleAnimSystem_GetBgID(param0, 0)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
+    G2_SetWndOutsidePlane(
+        (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_WINDOW)) |
+        (1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE)) |
+        GX_WND_PLANEMASK_BG0 |
+        GX_WND_PLANEMASK_OBJ,
+        TRUE);
 }
+// clang-format on
 
 void BattleAnimUtil_GetMonSpritePos(PokemonSprite *sprite, Point2D *pos)
 {
