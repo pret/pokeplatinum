@@ -206,6 +206,9 @@ typedef struct {
     int unk_50;
 } UnkStruct_ov12_02227DE0;
 
+// -------------------------------------------------------------------
+// Alpha Fade Pokemon Sprite
+// -------------------------------------------------------------------
 typedef struct AlphaFadePokemonSpriteContext {
     BattleAnimSystem *battleAnimSys;
     SpriteManager *pokemonSpriteManager;
@@ -218,6 +221,12 @@ typedef struct AlphaFadePokemonSpriteContext {
 #define ALPHA_FADE_POKEMON_SPRITE_VAR_BG_START_ALPHA     3
 #define ALPHA_FADE_POKEMON_SPRITE_VAR_BG_END_ALPHA       4
 #define ALPHA_FADE_POKEMON_SPRITE_VAR_FRAMES             5
+
+// -------------------------------------------------------------------
+// Hide Battler
+// -------------------------------------------------------------------
+#define HIDE_BATTLER_VAR_TARGET 0
+#define HIDE_BATTLER_VAR_HIDE   1
 
 typedef struct {
     int unk_00;
@@ -1675,21 +1684,26 @@ void BattleAnimScriptFunc_AlphaFadePokemonSprite(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_AlphaFadePokemonSprite, ctx);
 }
 
-void ov12_02228214(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_HideBattler(BattleAnimSystem *system)
 {
-    BattleAnimSpriteInfo v0;
-    int v1;
-    int v2;
-    int v3 = BattleAnimSystem_GetScriptVar(param0, 1);
+    int i; // required to match
+    BOOL hide = BattleAnimSystem_GetScriptVar(system, HIDE_BATTLER_VAR_HIDE);
 
-    BattleAnimUtil_GetBattlerSprites(param0, BattleAnimSystem_GetScriptVar(param0, 0), &v0, &v1);
+    // BUG: spriteInfo should really be an array here so you can pass in multiple sprites at once.
+    int spriteCount;
+    BattleAnimSpriteInfo spriteInfo;
+    BattleAnimUtil_GetBattlerSprites(
+        system,
+        BattleAnimSystem_GetScriptVar(system, HIDE_BATTLER_VAR_TARGET),
+        &spriteInfo,
+        &spriteCount);
 
-    for (v2 = 0; v2 < v1; v2++) {
-        if ((BattleAnimSystem_IsBattlerSemiInvulnerable(param0, v0.battler) == 1) && (v3 == 0)) {
+    for (i = 0; i < spriteCount; i++) {
+        if (BattleAnimSystem_IsBattlerSemiInvulnerable(system, spriteInfo.battler) == TRUE && hide == FALSE) {
             continue;
         }
 
-        PokemonSprite_SetAttribute(v0.monSprite, MON_SPRITE_HIDE, v3);
+        PokemonSprite_SetAttribute(spriteInfo.monSprite, MON_SPRITE_HIDE, hide);
     }
 }
 
