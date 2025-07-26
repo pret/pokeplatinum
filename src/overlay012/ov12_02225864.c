@@ -1,5 +1,6 @@
 #include "overlay012/ov12_02225864.h"
 
+#include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -846,70 +847,70 @@ static void VBlankDMAController_DisableDMA(VBlankDMAController *dmaController)
     dmaController->doDMA = FALSE;
 }
 
-static void ov12_02226504(UnkStruct_ov12_02226504 *param0)
+static void CustomBgScrollContext_DoDMAImpl(CustomBgScrollContext *ctx)
 {
-    const void *v0 = BufferManager_GetReadBuffer(param0->bufferManager);
+    const void *buffer = BufferManager_GetReadBuffer(ctx->bufferManager);
 
     BufferManager_StopDMA();
-    BufferManager_StartDMA(v0, (void *)param0->unk_620, 4, 1);
+    BufferManager_StartDMA(buffer, (void *)ctx->offsetReg, sizeof(u32), BUFFER_MANAGER_DMA_TYPE_32BIT);
 }
 
-static void ov12_02226528(void *param)
+static void CustomBgScrollContext_SwapBuffers(void *param)
 {
-    UnkStruct_ov12_02226504 *v0 = param;
+    CustomBgScrollContext *ctx = param;
 
-    BufferManager_SwapBuffers(v0->bufferManager);
-    ov12_02226504(v0);
+    BufferManager_SwapBuffers(ctx->bufferManager);
+    CustomBgScrollContext_DoDMAImpl(ctx);
 }
 
-static void ov12_0222653C(void *param0)
+static void CustomBgScrollContext_DoDMA(void *param)
 {
-    UnkStruct_ov12_02226504 *v0 = param0;
-    ov12_02226504(v0);
+    CustomBgScrollContext *ctx = param;
+    CustomBgScrollContext_DoDMAImpl(ctx);
 }
 
-UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID)
+CustomBgScrollContext *CustomBgScrollContext_New(u32 offsetReg, u32 initValue, enum HeapId heapID)
 {
-    UnkStruct_ov12_02226504 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02226504));
-    memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
+    CustomBgScrollContext *ctx = Heap_AllocFromHeap(heapID, sizeof(CustomBgScrollContext));
+    memset(ctx, 0, sizeof(CustomBgScrollContext));
 
-    GF_ASSERT(v0);
-    v0->bufferManager = BufferManager_New(heapID, v0->unk_20, v0->unk_320);
+    GF_ASSERT(ctx);
+    ctx->bufferManager = BufferManager_New(heapID, ctx->buffer1, ctx->buffer2);
 
-    GF_ASSERT(v0->bufferManager);
-    v0->unk_620 = param0;
+    GF_ASSERT(ctx->bufferManager);
+    ctx->offsetReg = offsetReg;
 
-    MI_CpuFill32(v0->unk_20, param1, sizeof(u32) * 192);
-    MI_CpuFill32(v0->unk_320, param1, sizeof(u32) * 192);
+    MI_CpuFill32(ctx->buffer1, initValue, sizeof(u32) * HW_LCD_HEIGHT);
+    MI_CpuFill32(ctx->buffer2, initValue, sizeof(u32) * HW_LCD_HEIGHT);
 
-    VBlankDMAController_Init(&v0->unk_00, v0, ov12_02226528, ov12_0222653C);
+    VBlankDMAController_Init(&ctx->dmaController, ctx, CustomBgScrollContext_SwapBuffers, CustomBgScrollContext_DoDMA);
 
-    return v0;
+    return ctx;
 }
 
-void ov12_022265C0(UnkStruct_ov12_02226504 *param0)
+void CustomBgScrollContext_Free(CustomBgScrollContext *ctx)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(ctx);
 
-    VBlankDMAController_Deinit(&param0->unk_00);
+    VBlankDMAController_Deinit(&ctx->dmaController);
 
-    if (param0->bufferManager != NULL) {
-        BufferManager_Delete(param0->bufferManager);
+    if (ctx->bufferManager != NULL) {
+        BufferManager_Delete(ctx->bufferManager);
     }
 
-    Heap_Free(param0);
+    Heap_Free(ctx);
 }
 
-void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0)
+void *CustomBgScrollContext_GetWriteBuffer(const CustomBgScrollContext *ctx)
 {
-    GF_ASSERT(param0);
-    return BufferManager_GetWriteBuffer(param0->bufferManager);
+    GF_ASSERT(ctx);
+    return BufferManager_GetWriteBuffer(ctx->bufferManager);
 }
 
-void ov12_022265F8(UnkStruct_ov12_02226504 *param0)
+void CustomBgScrollContext_Stop(CustomBgScrollContext *ctx)
 {
-    GF_ASSERT(param0);
-    VBlankDMAController_DisableDMA(&param0->unk_00);
+    GF_ASSERT(ctx);
+    VBlankDMAController_DisableDMA(&ctx->dmaController);
 }
 
 static void BgScrollContext_SwapBuffers(void *param)
