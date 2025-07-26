@@ -99,7 +99,7 @@ void *MainMenuUtil_InitAppAndFadeToBlack(ApplicationManager *appMan, enum HeapId
     return newAppData;
 }
 
-void MainMenuUtil_InitBG(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize, u32 screenBase, u32 charBase)
+void MainMenuUtil_InitBGLayer(BgConfig *bgConfig, enum BgLayer bgLayer, u8 screenSize, u32 screenBase, u32 charBase)
 {
     BgTemplate bgTemplate = {
         .x = 0,
@@ -241,7 +241,7 @@ static int MainMenuWindow_PrintText(MainMenuWindow *window, int textEntryID)
                 printerID = Text_AddPrinterWithParamsAndColor(window->window, window->font, strBuf, window->textXOffset, window->textYOffset, window->renderDelay, window->textColor, NULL);
             } else {
                 int textWidth = Font_CalcStrbufWidth(window->font, strBuf, Font_GetAttribute(window->font, FONTATTR_LETTER_SPACING));
-                int windowWidth = Window_GetWidth(window->window) * 8 - textWidth;
+                int windowWidth = Window_GetWidth(window->window) * TILE_WIDTH_PIXELS - textWidth;
                 printerID = Text_AddPrinterWithParamsAndColor(window->window, window->font, strBuf, windowWidth, window->textYOffset, window->renderDelay, window->textColor, NULL);
 
                 window->textRightAligned = FALSE;
@@ -257,7 +257,7 @@ static int MainMenuWindow_PrintText(MainMenuWindow *window, int textEntryID)
         }
     }
 
-    window->renderDelay = 0xff;
+    window->renderDelay = TEXT_SPEED_NO_TRANSFER;
     return printerID;
 }
 
@@ -300,10 +300,10 @@ void MainMenuUtil_InitCharPlttTransferBuffers(void)
 {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
     CharTransferTemplate charTransTemplte = {
-        40,
-        4096,
-        4096,
-        HEAP_ID_SYSTEM,
+        .maxTasks = 40,
+        .sizeMain = 4096,
+        .sizeSub = 4096,
+        .heapID = HEAP_ID_SYSTEM,
     };
 
     charTransTemplte.heapID = utilMan->heapID;
@@ -332,7 +332,7 @@ void MainMenuUtil_InitSpriteLoader(void)
     utilMan->spriteManager.spriteList = SpriteList_InitRendering(128, &utilMan->spriteManager.renderer, utilMan->heapID);
     SetSubScreenViewRect(&utilMan->spriteManager.renderer, 0, 256 * FX32_ONE);
 
-    utilMan->bottomScreenTopY = 192 << FX32_SHIFT;
+    utilMan->bottomScreenTopY = HW_LCD_HEIGHT << FX32_SHIFT;
 
     for (int i = 0; i < SPRITE_RESOURCE_MAX; i++) {
         utilMan->spriteManager.resourceCollections[i] = SpriteResourceCollection_New(32, i, utilMan->heapID);
@@ -377,7 +377,7 @@ void MainMenuUtil_LoadSprite(enum NarcID narcID, int tilesID, int plttID, int ce
 
     SpriteTransfer_RequestChar(utilMan->spriteManager.resources[screen][SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_RequestPlttFreeSpace(utilMan->spriteManager.resources[screen][SPRITE_RESOURCE_PLTT]);
-    SpriteResourcesHeader_Init(&utilMan->spriteManager.resourceHeaders[screen], screen, screen, screen, screen, 0xffffffff, 0xffffffff, FALSE, 0, utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_CHAR], utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_PLTT], utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_CELL], utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(&utilMan->spriteManager.resourceHeaders[screen], screen, screen, screen, screen, -1, -1, FALSE, 0, utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_CHAR], utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_PLTT], utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_CELL], utilMan->spriteManager.resourceCollections[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
     if (screen == DS_SCREEN_MAIN) {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -396,12 +396,12 @@ void MainMenuUtil_SetSubScreenViewRect(fx32 x, fx32 y)
     utilMan->bottomScreenTopY = y;
 }
 
-void MainMenuUtil_UpdateSpritesSkipGift(void)
+void MainMenuUtil_UpdateSprites(void)
 {
-    MainMenuUtil_UpdateSprites(FALSE);
+    MainMenuUtil_UpdateSpritesForAnimStatus(MG_ANIMATION_STATUS_DONE);
 }
 
-void MainMenuUtil_UpdateSprites(BOOL skipDrawGift)
+void MainMenuUtil_UpdateSpritesForAnimStatus(enum MysteryGiftAnimationStatus animStatus)
 {
     MainMenuUtilManager *utilMan = &sMainMenuUtilManager;
 
@@ -409,7 +409,7 @@ void MainMenuUtil_UpdateSprites(BOOL skipDrawGift)
         VecFx32 *spritePos;
 
         if (utilMan->giftSpriteDelay == 0) {
-            if (Sprite_GetDrawFlag(utilMan->mysteryGiftSprite) == FALSE && skipDrawGift == FALSE) {
+            if (Sprite_GetDrawFlag(utilMan->mysteryGiftSprite) == FALSE && animStatus == MG_ANIMATION_STATUS_DONE) {
                 Sprite_SetDrawFlag(utilMan->mysteryGiftSprite, TRUE);
             }
 
@@ -617,6 +617,9 @@ static void LoadSpriteForMonGift(MainMenuUtilManager *param0, enum MysteryGiftTy
     case MYST_GIFT_MANAPHY_EGG:
         LoadPokemonSprite(param0->mysteryGiftSprite, mon, SPECIES_EGG, EGG_FORM_MANAPHY, param0->monSpriteBuffer, &param0->monSpriteTemplate);
         break;
+    default:
+        // Should never be reached
+        break;
     }
 }
 
@@ -640,6 +643,9 @@ static void LoadItemSprite(MainMenuUtilManager *utilMan, enum MysteryGiftType gi
     case MYST_GIFT_SECRET_KEY:
         item = ITEM_SECRET_KEY;
         break;
+    default:
+        // Should never be reached
+        break;
     }
 
     MainMenuUtil_LoadSprite(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), Item_FileID(item, ITEM_FILE_TYPE_PALETTE), Item_IconNCERFile(), Item_IconNANRFile(), DS_SCREEN_SUB);
@@ -660,17 +666,17 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     enum MysteryGiftType giftType = wonderCard->pgt.type;
     int plttOffset = CalcPlttOffsetForGiftType(giftType);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 30, bgConfig, BG_LAYER_SUB_1, 0, 10 * 16 * 0x20, TRUE, utilMan->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 30, bgConfig, BG_LAYER_SUB_1, 0, 10 * 16 * TILE_SIZE_4BPP, TRUE, utilMan->heapID);
 
     NNSG2dScreenData *screenData;
     void *nscr = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__MYSTERY, 31, TRUE, utilMan->heapID, TRUE);
 
     NNS_G2dGetUnpackedScreenData(nscr, &screenData);
 
-    Bg_LoadTilemapBuffer(bgConfig, BG_LAYER_SUB_1, screenData->rawData, 32 * 24 * 2);
+    Bg_LoadTilemapBuffer(bgConfig, BG_LAYER_SUB_1, screenData->rawData, (HW_LCD_WIDTH / TILE_WIDTH_PIXELS) * (HW_LCD_HEIGHT / TILE_HEIGHT_PIXELS) * 2);
     Heap_Free(nscr);
 
-    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, 32, 24, PLTT_8 + plttOffset);
+    Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_SUB_1, 0, 0, HW_LCD_WIDTH / TILE_WIDTH_PIXELS, HW_LCD_HEIGHT / TILE_HEIGHT_PIXELS, PLTT_8 + plttOffset);
     Bg_ScheduleTilemapTransfer(bgConfig, BG_LAYER_SUB_1);
 
     utilMan->onVBlank = LoadMysteryGiftPalettes;
@@ -696,6 +702,9 @@ void MainMenuUtil_LoadGiftSprite(BgConfig *bgConfig, WonderCard *wonderCard)
     case MYST_GIFT_AZURE_FLUTE:
     case MYST_GIFT_SECRET_KEY:
         LoadItemSprite(utilMan, giftType, wonderCard);
+        break;
+    default:
+        // Should never be reached
         break;
     }
 

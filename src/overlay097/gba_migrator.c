@@ -583,7 +583,7 @@ static void ov97_02233FA4(GBAMigrator *migrator)
 
 static void ov97_022340B0(GBAMigrator *migrator)
 {
-    SpriteResourcesHeader_Init(&migrator->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, migrator->unk_1B8[0], migrator->unk_1B8[1], migrator->unk_1B8[2], migrator->unk_1B8[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&migrator->unk_1E8, 0, 0, 0, 0, -1, -1, 0, 0, migrator->unk_1B8[0], migrator->unk_1B8[1], migrator->unk_1B8[2], migrator->unk_1B8[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
@@ -1183,7 +1183,7 @@ static void ov97_02234A2C(GBAMigrator *migrator, int boxNum)
     v0.unk_2C = TEXT_COLOR(1, 2, 0);
     v0.unk_20 = 0xA0;
 
-    GBAStringToDSString(migrator->pokemonStorage->boxNames[boxNum], boxName, GBA_BOX_NAME_LEN + 1, GBACart_GetLanguage());
+    GBA_ConvertStringToDS(migrator->pokemonStorage->boxNames[boxNum], boxName, GBA_BOX_NAME_LEN + 1, GBACart_GetLanguage());
     v0.unk_38 = boxName;
     ov97_02233DD0(migrator, &v0, 0x1);
 }
@@ -1255,7 +1255,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     }
 
     GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_NICKNAME, gbaNickname);
-    GBAStringToDSString(gbaNickname, dsNickname, GBA_MON_NAME_LEN + 1, GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_LANGUAGE, NULL));
+    GBA_ConvertStringToDS(gbaNickname, dsNickname, GBA_MON_NAME_LEN + 1, GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_LANGUAGE, NULL));
 
     v4.unk_38 = dsNickname;
     v4.messageEntryID = -1;
@@ -1656,7 +1656,7 @@ static void ov97_02235344(GBAMigrator *migrator)
     Strbuf *strBuf;
     u16 playerName[GBA_PLAYER_NAME_LEN + 1];
 
-    GBAStringToDSString(GetGBAPlayerName(), playerName, GBA_PLAYER_NAME_LEN + 1, GBACart_GetLanguage());
+    GBA_ConvertStringToDS(GetGBAPlayerName(), playerName, GBA_PLAYER_NAME_LEN + 1, GBACart_GetLanguage());
 
     strTemplate = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
     strBuf = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);

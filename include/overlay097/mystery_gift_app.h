@@ -91,6 +91,12 @@ enum MysteryGiftAppState {
     MG_APP_KEEP_PREVIOUS_STATE = -1,
 };
 
+enum MysteryGiftAnimationStatus {
+    MG_ANIMATION_STATUS_DONE = 0,
+    MG_ANIMATION_STATUS_BEGIN,
+    MG_ANIMATION_STATUS_PROCEED_IMPLOSION
+};
+
 typedef struct MysteryGiftEventData {
     MysteryGiftEventHeader header;
     WonderCard wonderCard;
@@ -114,7 +120,7 @@ struct MysteryGiftAppData {
     int msgBoxPrinterDelay;
     int textPrinterId;
     int unused_70;
-    int queuedState;
+    enum MysteryGiftAppState queuedState;
     ListMenu *listMenu;
     StringList *listMenuOptions;
     int canReceiveGiftStatus;
@@ -137,7 +143,7 @@ struct MysteryGiftAppData {
     u8 wirelessDistributionBuffer[MG_APP_DISTRIBUTION_DATA_BUFFER_SIZE];
     int receptionMethod;
     enum MysteryGiftAppState *statePtr;
-    int unk_1640;
+    int giftSearchResultDelay;
     int nasAuthState;
     u8 *unused_1648;
     DWCInetControl unk_164C;
@@ -158,9 +164,9 @@ struct MysteryGiftAppData {
     Window wifiCommErrorWindow;
     WonderCard wonderCard;
     MysteryGiftAppMainCallbackFuncPtr mainCallback;
-    int cancelSave;
+    BOOL cancelSave;
     void *waitDial;
-    int animationStatus;
+    enum MysteryGiftAnimationStatus animationStatus;
 };
 
 void MysteryGiftApp_ToggleWaitDial(MysteryGiftAppData *appData, BOOL show);
