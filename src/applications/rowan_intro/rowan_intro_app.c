@@ -224,7 +224,7 @@ enum DisplayTextBlockState {
 };
 
 typedef struct RowanIntro {
-    enum HeapId heapID;
+    enum HeapID heapID;
     SaveData *saveData;
     Options *options;
     enum RowanIntroState state;
@@ -333,8 +333,8 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->bgLayer2TilemapIndex = 0;
     manager->bgSubLayer3TilemapIndex = 0;
     manager->delayUpdateCounter = 0;
-    manager->bunearyPalette = Heap_AllocFromHeap(heapID, 0x20);
-    manager->bunearyBlendedPalette = Heap_AllocFromHeap(heapID, 0x20);
+    manager->bunearyPalette = Heap_Alloc(heapID, 0x20);
+    manager->bunearyBlendedPalette = Heap_Alloc(heapID, 0x20);
 
     return TRUE;
 }
@@ -430,7 +430,7 @@ BOOL RowanIntro_Main(ApplicationManager *appMan, int *state)
 BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
 {
     RowanIntro *manager = ApplicationManager_Data(appMan);
-    enum HeapId heapID = manager->heapID;
+    enum HeapID heapID = manager->heapID;
 
     Heap_Free(manager->bunearyPalette);
     Heap_Free(manager->bunearyBlendedPalette);
@@ -1562,7 +1562,7 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
         NULL,
         NULL);
 
-    rawData = Heap_AllocFromHeap(manager->heapID, (10 * 10) * 2);
+    rawData = Heap_Alloc(manager->heapID, (10 * 10) * 2);
 
     {
         int i;

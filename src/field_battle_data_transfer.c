@@ -65,10 +65,10 @@
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background);
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
 
-FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
+FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
 {
     int i;
-    FieldBattleDTO *dto = Heap_AllocFromHeap(heapID, sizeof(FieldBattleDTO));
+    FieldBattleDTO *dto = Heap_Alloc(heapID, sizeof(FieldBattleDTO));
     MI_CpuClear8(dto, sizeof(FieldBattleDTO));
 
     dto->battleType = battleType;
@@ -133,21 +133,21 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapId heapID, int countSafariBalls)
+FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapID heapID, int countSafariBalls)
 {
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_SAFARI);
     dto->countSafariBalls = countSafariBalls;
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapId heapID, int countParkBalls)
+FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapID heapID, int countParkBalls)
 {
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_PAL_PARK);
     dto->countSafariBalls = countParkBalls;
     return dto;
 }
 
-FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const FieldSystem *fieldSystem)
+FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const FieldSystem *fieldSystem)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
@@ -302,7 +302,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
 
     FieldBattleDTO_CopyTrainerInfoToBattler(dto, trainerInfo, BATTLER_PLAYER_1);
 
-    Pokemon *mon = Pokemon_New(HEAP_ID_FIELDMAP);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
     Party_InitWithCapacity(dto->parties[BATTLER_PLAYER_1], Party_GetCurrentCount(party));
     for (i = 0; i < Party_GetCurrentCount(party); i++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(party, i), mon);
@@ -366,7 +366,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
         if (numToCopy == 0) {
             FieldBattleDTO_CopyPartyToBattler(dto, party, BATTLER_PLAYER_1);
         } else {
-            mon = Pokemon_New(HEAP_ID_FIELDMAP);
+            mon = Pokemon_New(HEAP_ID_FIELD2);
             Party_InitWithCapacity(dto->parties[BATTLER_PLAYER_1], numToCopy);
             for (i = 0; i < numToCopy; i++) {
                 Pokemon_Copy(Party_GetPokemonBySlotIndex(party, partyOrder[i] - 1), mon);

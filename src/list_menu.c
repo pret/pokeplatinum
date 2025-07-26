@@ -23,7 +23,7 @@ static void InvokeCursorCallback(ListMenu *menu, u8 onInit);
 
 ListMenu *ListMenu_New(const ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID)
 {
-    ListMenu *menu = Heap_AllocFromHeap(heapID, sizeof(ListMenu));
+    ListMenu *menu = Heap_Alloc(heapID, sizeof(ListMenu));
 
     menu->template = *template;
     menu->cursor = ColoredArrow_New(heapID);

@@ -46,7 +46,7 @@ static void ov70_02263098(UnkStruct_ov70_0226308C *param0);
 
 UnkStruct_ov70_022630A4 *ov70_02262DA8(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
 {
-    UnkStruct_ov70_022630A4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_022630A4));
+    UnkStruct_ov70_022630A4 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_022630A4));
     memset(v0, 0, sizeof(UnkStruct_ov70_022630A4));
 
     v0->unk_00 = heapID;
@@ -98,7 +98,7 @@ void *ov70_02262E3C(UnkStruct_ov70_02263344 *param0, u32 param1)
 {
     GF_ASSERT(param0->unk_04.unk_04 == NULL);
 
-    param0->unk_04.unk_04 = Heap_AllocFromHeap(param0->heapID, param1);
+    param0->unk_04.unk_04 = Heap_Alloc(param0->heapID, param1);
     memset(param0->unk_04.unk_04, 0, param1);
 
     return param0->unk_04.unk_04;

@@ -67,7 +67,7 @@ static void NitroStaticInit(void)
 
 static BOOL New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    PoketchDigitalWatch *digitalWatch = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchDigitalWatch));
+    PoketchDigitalWatch *digitalWatch = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchDigitalWatch));
 
     if (digitalWatch != NULL) {
         if (Init(digitalWatch, poketchSys, bgConfig, appID)

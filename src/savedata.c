@@ -38,7 +38,7 @@ static BOOL sSaveComplete;
 
 SaveData *SaveData_Init(void)
 {
-    SaveData *saveData = Heap_AllocFromHeap(HEAP_ID_SAVE, sizeof(SaveData));
+    SaveData *saveData = Heap_Alloc(HEAP_ID_SAVE, sizeof(SaveData));
     ;
 
     MI_CpuClearFast(saveData, sizeof(SaveData));
@@ -117,7 +117,7 @@ const void *SaveData_SaveTableConst(const SaveData *saveData, int saveTableID)
 
 BOOL SaveData_Erase(SaveData *saveData)
 {
-    u8 *saveBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE);
+    u8 *saveBuffer = Heap_AllocAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE);
 
     SleepLock(SLEEP_TYPE_SAVE_DATA);
 
@@ -440,8 +440,8 @@ static void SaveData_SetBlockCheckInfo(SaveData *saveData, const SaveCheckInfo *
 
 static int SaveData_LoadCheck(SaveData *saveData)
 {
-    u8 *primaryBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
-    u8 *backupBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
+    u8 *primaryBuffer = Heap_AllocAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
+    u8 *backupBuffer = Heap_AllocAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE * SAVE_PAGE_MAX);
 
     SaveCheckInfo normalInfo[SECTOR_ID_MAX];
     SaveCheckInfo boxInfo[SECTOR_ID_MAX];
@@ -1053,7 +1053,7 @@ void *SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *lo
     GF_ASSERT(saveTable->dataID == extraSaveID);
 
     u32 size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
-    void *ret = Heap_AllocFromHeap(heapID, size);
+    void *ret = Heap_Alloc(heapID, size);
 
     SaveData_CardLoad((PRIMARY_SECTOR_START + saveTable->blockID) * SAVE_SECTOR_SIZE, ret, size);
 
@@ -1118,7 +1118,7 @@ void *SaveDataExtra_Mirror(SaveData *saveData, int heapID, int extraSaveID, int 
     GF_ASSERT(saveTable->dataID == extraSaveID);
 
     size = saveTable->sizeFunc() + sizeof(SaveCheckFooter);
-    ret = Heap_AllocFromHeap(heapID, size);
+    ret = Heap_Alloc(heapID, size);
 
     u32 primaryKey, backupKey, currKey, oldKey;
     u8 keyFlag;

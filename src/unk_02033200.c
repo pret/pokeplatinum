@@ -75,16 +75,16 @@ void CommServerClient_Init(TrainerInfo *trainerInfo, BOOL param1)
         return;
     }
 
-    sCommServerClient = (CommServerClient *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommServerClient));
+    sCommServerClient = (CommServerClient *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(CommServerClient));
     MI_CpuClear8(sCommServerClient, sizeof(CommServerClient));
 
-    sCommServerClient->unk_14E8 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_02031C50());
+    sCommServerClient->unk_14E8 = Heap_Alloc(HEAP_ID_COMMUNICATION, sub_02031C50());
     MI_CpuClear8(sCommServerClient->unk_14E8, sub_02031C50());
 
-    sCommServerClient->unk_1500 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sub_0202602C());
+    sCommServerClient->unk_1500 = Heap_Alloc(HEAP_ID_COMMUNICATION, sub_0202602C());
     MI_CpuClear8(sCommServerClient->unk_1500, sub_0202602C());
 
-    sCommServerClient->unk_1508 = (u32)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
+    sCommServerClient->unk_1508 = (u32)Heap_Alloc(HEAP_ID_COMMUNICATION, WM_SIZE_USER_GAMEINFO + 32);
     sCommServerClient->unk_150C = (u16 *)(32 - (sCommServerClient->unk_1508 % 32) + sCommServerClient->unk_1508);
 
     sCommServerClient->unk_1504 = 0x333;

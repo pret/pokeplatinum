@@ -12,7 +12,7 @@ static void FreeEntries(StringList *list);
 
 StringList *StringList_New(u32 capacity, u32 heapID)
 {
-    StringList *list = Heap_AllocFromHeap(heapID, sizeof(StringList) * (capacity + 1));
+    StringList *list = Heap_Alloc(heapID, sizeof(StringList) * (capacity + 1));
 
     if (list) {
         u32 i;

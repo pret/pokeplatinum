@@ -98,11 +98,11 @@ typedef struct AccessoryShopItemList {
 typedef struct AccessoryShopYesNoChoice {
     BOOL active;
     Menu *menu;
-    enum HeapId heapID;
+    enum HeapID heapID;
 } AccessoryShopYesNoChoice;
 
 typedef struct AccessoryShopDataPtrs {
-    enum HeapId heapID;
+    enum HeapID heapID;
     BgConfig *bgConfig;
     AccessoryShopDescBox *descBox;
     const AccessoryShopItem *items;
@@ -116,7 +116,7 @@ typedef struct AccessoryShop {
     UnkStruct_02029D04 *unk_0C;
     Bag *bag;
     BgConfig *bgConfig;
-    enum HeapId heapID;
+    enum HeapID heapID;
     SpriteList *spriteList;
     G2dRenderer g2dRenderer;
     MessageLoader *msgLoader;
@@ -129,7 +129,7 @@ typedef struct AccessoryShop {
     AccessoryShopDataPtrs dataPtr;
 } AccessoryShop;
 
-AccessoryShop *AccessoryShop_New(enum HeapId heapID, SaveData *saveData, BgConfig *bgConfig);
+AccessoryShop *AccessoryShop_New(enum HeapID heapID, SaveData *saveData, BgConfig *bgConfig);
 void AccessoryShop_Free(AccessoryShop *shop);
 BOOL AccessoryShop_Main(AccessoryShop *shop);
 

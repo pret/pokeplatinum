@@ -10,7 +10,7 @@
 
 UnkStruct_020997B8 *sub_020997B8(u32 heapID)
 {
-    UnkStruct_020997B8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020997B8));
+    UnkStruct_020997B8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_020997B8));
 
     memset(v0, 0, sizeof(UnkStruct_020997B8));
     return v0;
@@ -39,8 +39,8 @@ u16 *sub_020997D8(Pokemon *mon, u32 heapID)
         v2[v7] = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + v7, NULL);
     }
 
-    v0 = Heap_AllocFromHeap(heapID, (44 / 2) * 2);
-    v1 = Heap_AllocFromHeap(heapID, (44 / 2) * 2);
+    v0 = Heap_Alloc(heapID, (44 / 2) * 2);
+    v1 = Heap_Alloc(heapID, (44 / 2) * 2);
 
     Pokemon_LoadLevelUpMovesOf(v3, v5, v0);
 

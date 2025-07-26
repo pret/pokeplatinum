@@ -183,7 +183,7 @@ typedef struct BgTrackingTask {
 } BgTrackingTask;
 
 typedef struct BattleAnimSystem {
-    enum HeapId heapID;
+    enum HeapID heapID;
     enum NarcID moveArcID;
     BOOL isContest;
     BOOL isActive;
@@ -225,10 +225,10 @@ typedef struct BattleAnimSystem {
 
 typedef void (*BattleAnimScriptCmd)(BattleAnimSystem *);
 
-BattleAnimSystem *BattleAnimSystem_New(enum HeapId heapID);
+BattleAnimSystem *BattleAnimSystem_New(enum HeapID heapID);
 void BattleAnimSystem_SetIsContest(BattleAnimSystem *param0, BOOL param1);
 BOOL BattleAnimSystem_IsContest(BattleAnimSystem *param0);
-enum HeapId BattleAnimSystem_GetHeapID(BattleAnimSystem *param0);
+enum HeapID BattleAnimSystem_GetHeapID(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_Delete(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_StartMove(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
 BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *param0);

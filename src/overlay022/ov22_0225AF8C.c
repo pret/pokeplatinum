@@ -237,7 +237,7 @@ static UnkStruct_ov22_0225B1BC *ov22_0225B1BC(const UnkStruct_ov22_0225B4E4 *par
     UnkStruct_ov22_0225B1BC *v0;
     BOOL v1;
 
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov22_0225B1BC));
+    v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov22_0225B1BC));
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->heapID;
@@ -267,7 +267,7 @@ static UnkStruct_ov22_0225B1BC *ov22_0225B258(const UnkStruct_ov22_0225B4E4 *par
     UnkStruct_ov22_0225B1BC *v0;
     BOOL v1;
 
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov22_0225B1BC));
+    v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov22_0225B1BC));
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->heapID;

@@ -27,7 +27,7 @@ typedef struct {
 
 void *sub_0207064C(u32 heapID, FieldSystem *fieldSystem, Pokemon *param2, u16 param3, s16 param4, s16 param5)
 {
-    UnkStruct_0207064C *v0 = Heap_AllocFromHeapAtEnd(heapID, (sizeof(UnkStruct_0207064C)));
+    UnkStruct_0207064C *v0 = Heap_AllocAtEnd(heapID, (sizeof(UnkStruct_0207064C)));
 
     memset(v0, 0, (sizeof(UnkStruct_0207064C)));
 

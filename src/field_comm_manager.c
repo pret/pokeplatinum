@@ -82,7 +82,7 @@ void FieldCommMan_Init(FieldSystem *fieldSystem)
 
     CommFieldCmd_Init(fieldSystem);
 
-    sFieldCommMan = (FieldCommunicationManager *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(FieldCommunicationManager));
+    sFieldCommMan = (FieldCommunicationManager *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(FieldCommunicationManager));
     MI_CpuFill8(sFieldCommMan, 0, sizeof(FieldCommunicationManager));
 
     sFieldCommMan->timer = 50;
@@ -176,7 +176,7 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 
         for (netJd = 0; netJd < CommSys_ConnectedCount(); netJd++) {
             if (sFieldCommMan->trainerCard[netJd] == NULL) {
-                sFieldCommMan->trainerCard[netJd] = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(TrainerCard));
+                sFieldCommMan->trainerCard[netJd] = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(TrainerCard));
             }
         }
 
@@ -286,7 +286,7 @@ static void sub_02059984(void)
     void *v0;
 
     if (CommTiming_IsSyncState(98)) {
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(v0, sFieldCommMan->fieldSystem, 0);
         sub_02059524();
         CommSys_DisableSendMovementData();
@@ -310,7 +310,7 @@ static void sub_020599E4(void)
     }
 
     if (CommTiming_IsSyncState(92)) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         CommPlayerMan_Restart();
@@ -357,7 +357,7 @@ static void sub_02059AB4(void)
     void *v0;
 
     if (CommTiming_IsSyncState(98)) {
-        v0 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, CommPlayer_Size());
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
         CommPlayerMan_Init(v0, sFieldCommMan->fieldSystem, 0);
         sub_02059524();
         CommTiming_StartSync(92);
@@ -386,7 +386,7 @@ static void sub_02059B10(void)
         u8 v0 = 1;
         CommSys_SendDataFixedSize(94, &v0);
 
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         FieldCommMan_SetTask(sub_02059CD8, 0);
@@ -434,7 +434,7 @@ static void sub_02059BF4(void)
 static void sub_02059C2C(BOOL param0, const Party *party)
 {
     if (party) {
-        sFieldCommMan->party = Party_New(HEAP_ID_FIELDMAP);
+        sFieldCommMan->party = Party_New(HEAP_ID_FIELD2);
         Party_Copy(party, sFieldCommMan->party);
     }
 

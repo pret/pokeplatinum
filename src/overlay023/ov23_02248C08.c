@@ -19,7 +19,7 @@
 
 UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, Underground *underground, BOOL param6)
 {
-    UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02248D20));
+    UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_Alloc(heapID, sizeof(UnkStruct_ov23_02248D20));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02248D20));
 

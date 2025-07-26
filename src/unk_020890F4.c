@@ -156,7 +156,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     int i;
     UnkStruct_02089438 *v1 = NULL;
 
-    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02089438));
+    v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
     v1->unk_1C = Strbuf_Init(param1 + 1, heapID);

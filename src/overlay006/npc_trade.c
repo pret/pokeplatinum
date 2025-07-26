@@ -29,7 +29,7 @@ NpcTradeData *NpcTrade_Init(u32 heapID, u32 npcTradeID)
 {
     GF_ASSERT(npcTradeID < MAX_NPC_TRADES);
 
-    NpcTradeData *data = Heap_AllocFromHeap(heapID, sizeof(NpcTradeData));
+    NpcTradeData *data = Heap_Alloc(heapID, sizeof(NpcTradeData));
     memset(data, 0, sizeof(NpcTradeData));
 
     data->npcTradeMon = LoadMemberFromNARC(NARC_INDEX_FIELDDATA__POKEMON_TRADE__FLD_TRADE, npcTradeID, FALSE, heapID, FALSE);

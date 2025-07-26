@@ -30,7 +30,7 @@ static const struct {
 
 UnkStruct_0200C440 *sub_0200C440(u32 param0, u32 param1, u32 param2, u32 heapID)
 {
-    UnkStruct_0200C440 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0200C440));
+    UnkStruct_0200C440 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0200C440));
 
     if (v0) {
         u32 v1;

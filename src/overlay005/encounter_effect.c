@@ -179,11 +179,11 @@ static UnkStruct_ov5_02202120 *Unk_ov5_02202120 = NULL;
 
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *done)
 {
-    SysTask *effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
+    SysTask *effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD1);
     EncounterEffect *encEffect = SysTask_GetParam(effectTask);
     encEffect->fieldSystem = fieldSystem;
     encEffect->done = done;
-    encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_FIELD);
+    encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_FIELD1);
 
     if (encEffect->done != NULL) {
         *(encEffect->done) = FALSE;
@@ -195,13 +195,13 @@ void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem,
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 {
     NARC_dtor(encEffect->narc);
-    Heap_FreeExplicit(HEAP_ID_FIELD, encEffect->param);
+    Heap_FreeExplicit(HEAP_ID_FIELD1, encEffect->param);
     SysTask_FinishAndFreeParam(effectTask);
 }
 
 void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherScreenFlashColor, BOOL *done, u32 numFlashes)
 {
-    ScreenFlash *screenFlash = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ScreenFlash));
+    ScreenFlash *screenFlash = Heap_Alloc(HEAP_ID_FIELD1, sizeof(ScreenFlash));
     memset(screenFlash, 0, sizeof(ScreenFlash));
     SysTask_Start(EncounterEffect_FlashTask, screenFlash, 5);
 
@@ -398,7 +398,7 @@ static void BrightnessFadeTask_SetBrightness(SysTask *task, void *param)
 
 ScreenSliceEffect *ScreenSliceEffect_New(void)
 {
-    ScreenSliceEffect *efx = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ScreenSliceEffect));
+    ScreenSliceEffect *efx = Heap_Alloc(HEAP_ID_FIELD1, sizeof(ScreenSliceEffect));
     memset(efx, 0, sizeof(ScreenSliceEffect));
 
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
@@ -531,7 +531,7 @@ static void ScreenSliceEffect_HBlankCallback(HBlankTask *task, void *param)
 
 ScreenSplitEffect *ScreenSplitEffect_New(void)
 {
-    ScreenSplitEffect *screenSplitEfx = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ScreenSplitEffect));
+    ScreenSplitEffect *screenSplitEfx = Heap_Alloc(HEAP_ID_FIELD1, sizeof(ScreenSplitEffect));
     memset(screenSplitEfx, 0, sizeof(ScreenSplitEffect));
 
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
@@ -707,10 +707,10 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
     void *v0;
     NNSG2dScreenData *v1;
 
-    Graphics_LoadPaletteFromOpenNARC(param0, param3, 0, param4 * 32, param5 * 32, HEAP_ID_FIELD);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0, param2, param6, param7, 0, 0, 0, HEAP_ID_FIELD);
+    Graphics_LoadPaletteFromOpenNARC(param0, param3, 0, param4 * 32, param5 * 32, HEAP_ID_FIELD1);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0, param2, param6, param7, 0, 0, 0, HEAP_ID_FIELD1);
 
-    v0 = Graphics_GetScrnDataFromOpenNARC(param0, param1, 0, &v1, HEAP_ID_FIELD);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param0, param1, 0, &v1, HEAP_ID_FIELD1);
 
     Bg_LoadToTilemapRect(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
@@ -722,10 +722,10 @@ void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
 {
     int v0;
 
-    param0->unk_00 = SpriteList_InitRendering(param1, &param0->unk_04, HEAP_ID_FIELD);
+    param0->unk_00 = SpriteList_InitRendering(param1, &param0->unk_04, HEAP_ID_FIELD1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, HEAP_ID_FIELD);
+        param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, HEAP_ID_FIELD1);
     }
 }
 
@@ -743,9 +743,9 @@ void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0)
 void ov5_021DE4CC(NARC *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_021DE5A4 *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     param2->unk_00[0] = SpriteResourceCollection_AddTilesFromEx(param1->unk_190[0], param0, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAP_ID_SAVE);
-    param2->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_190[1], param0, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, HEAP_ID_FIELD);
-    param2->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_190[2], param0, param6, 0, param8, 2, HEAP_ID_FIELD);
-    param2->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_190[3], param0, param7, 0, param8, 3, HEAP_ID_FIELD);
+    param2->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_190[1], param0, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, HEAP_ID_FIELD1);
+    param2->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_190[2], param0, param6, 0, param8, 2, HEAP_ID_FIELD1);
+    param2->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_190[3], param0, param7, 0, param8, 3, HEAP_ID_FIELD1);
 
     SpriteTransfer_RequestCharAtEnd(param2->unk_00[0]);
     SpriteResource_ReleaseData(param2->unk_00[0]);
@@ -773,7 +773,7 @@ void ov5_021DE5D0(Sprite *param0, u32 heapID, u32 param2, u8 param3, u16 param4)
     u16 *v3;
 
     sub_02076AAC(param2, 2, &v0);
-    v3 = Heap_AllocFromHeap(heapID, 32);
+    v3 = Heap_Alloc(heapID, 32);
     v2 = Graphics_GetPlttData(v0.narcID, v0.unk_08, &v1, heapID);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
@@ -795,7 +795,7 @@ Sprite *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *par
     v0.position.z = param4;
     v0.priority = param5;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.heapID = HEAP_ID_FIELD;
+    v0.heapID = HEAP_ID_FIELD1;
 
     v1 = SpriteList_Add(&v0);
     GF_ASSERT(v1);
@@ -817,7 +817,7 @@ static void ov5_021DE67C(Sprite *param0, void *param1, u32 param2)
 
 UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 heapID)
 {
-    UnkStruct_ov5_021DE6BC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DE6BC));
+    UnkStruct_ov5_021DE6BC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DE6BC));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE6BC));
 
     return v0;
@@ -866,7 +866,7 @@ BOOL ov5_021DE71C(UnkStruct_ov5_021DE6BC *param0)
 
 static UnkStruct_ov5_021DE79C *ov5_021DE784(u32 heapID)
 {
-    UnkStruct_ov5_021DE79C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DE79C));
+    UnkStruct_ov5_021DE79C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DE79C));
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE79C));
     return v0;
@@ -953,7 +953,7 @@ UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 heapID)
     UnkStruct_ov5_021DE928 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DE928));
+    v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021DE928));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE928));
 
     for (v1 = 0; v1 < 48; v1++) {
@@ -1030,7 +1030,7 @@ BOOL ov5_021DE988(UnkStruct_ov5_021DE928 *param0)
 
 UnkStruct_ov5_021DEA98 *ov5_021DEA80(u32 heapID)
 {
-    UnkStruct_ov5_021DEA98 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DEA98));
+    UnkStruct_ov5_021DEA98 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DEA98));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DEA98));
     return v0;
 }
@@ -1118,7 +1118,7 @@ UnkStruct_ov5_021DEC18 *ov5_021DEBEC(u32 heapID)
     UnkStruct_ov5_021DEC18 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DEC18));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov5_021DEC18));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DEC18));
 
     for (v1 = 0; v1 < 8; v1++) {
@@ -1174,7 +1174,7 @@ BOOL ov5_021DECB8(UnkStruct_ov5_021DEC18 *param0)
 
 UnkStruct_ov5_021DED04 *ov5_021DECEC(void)
 {
-    UnkStruct_ov5_021DED04 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DED04));
+    UnkStruct_ov5_021DED04 *v0 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_021DED04));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DED04));
 
     return v0;
@@ -1353,7 +1353,7 @@ void ov5_021DEFA0(FieldSystem *fieldSystem)
 {
     GF_ASSERT(Unk_ov5_02202120 == NULL);
 
-    Unk_ov5_02202120 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_02202120));
+    Unk_ov5_02202120 = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UnkStruct_ov5_02202120));
     memset(Unk_ov5_02202120, 0, sizeof(UnkStruct_ov5_02202120));
 
     Unk_ov5_02202120->unk_00 = 0;
@@ -1415,8 +1415,8 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     GF_ASSERT(Unk_ov5_02202120);
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
 
-    Unk_ov5_02202120->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELD, 0x4800);
-    Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
+    Unk_ov5_02202120->unk_0C = Heap_Alloc(HEAP_ID_FIELD1, 0x4800);
+    Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD1);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
     ParticleSystem_SetCameraProjection(Unk_ov5_02202120->unk_08, 1);
@@ -1424,7 +1424,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     v1 = ParticleSystem_GetCamera(Unk_ov5_02202120->unk_08);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, v1);
 
-    v0 = LoadMemberFromOpenNARC(param0, param1, 0, HEAP_ID_FIELD, 0);
+    v0 = LoadMemberFromOpenNARC(param0, param1, 0, HEAP_ID_FIELD1, 0);
     ParticleSystem_SetResource(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
 }
 
@@ -1597,7 +1597,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
             };
 
             Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_2, &v3, 0);
-            Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD1);
             Bg_ClearTilemap(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
         }
     }

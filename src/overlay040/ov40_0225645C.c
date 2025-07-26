@@ -49,7 +49,7 @@ static void ov40_02256A14(PoketchAnimation_AnimatedSpriteData *param0, u32 param
 
 BOOL ov40_0225645C(UnkStruct_ov40_0225645C **param0, const UnkStruct_ov40_0225645C_1 *param1, BgConfig *param2)
 {
-    UnkStruct_ov40_0225645C *v0 = (UnkStruct_ov40_0225645C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov40_0225645C));
+    UnkStruct_ov40_0225645C *v0 = (UnkStruct_ov40_0225645C *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov40_0225645C));
 
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);

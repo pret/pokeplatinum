@@ -61,7 +61,7 @@ BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second);
  * @param destination   The pad to push entries into
  * @param source        The pad to push from
  * @param numberToCopy  The number of elements to take from {source}
- * @param heapId        Heap area for pointer operations
+ * @param heapID        Heap area for pointer operations
  */
 void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID);
 
