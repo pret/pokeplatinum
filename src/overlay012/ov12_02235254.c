@@ -858,32 +858,32 @@ void BattleAnimUtil_GetBattlerSprites(BattleAnimSystem *system, int targets, Bat
     }
 }
 
-void ov12_02235D74(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3)
+void BattleAnimUtil_GetPokemonSprites(BattleAnimSystem *system, int targets, BattleAnimSpriteInfo *sprites, int *count)
 {
-    *param3 = 0;
+    *count = 0;
 
-    if (BattleAnimUtil_IsMaskSet(param1, 0x2) == 1) {
-        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
-        (*param3)++;
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_POKEMON_SPRITE_0) == TRUE) {
+        sprites[*count].hwSprite = BattleAnimSystem_GetPokemonSprite(system, *count);
+        BattleAnimUtil_GetSpritePos(sprites[*count].hwSprite, &sprites[*count].pos);
+        (*count)++;
     }
 
-    if (BattleAnimUtil_IsMaskSet(param1, 0x4) == 1) {
-        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
-        (*param3)++;
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_POKEMON_SPRITE_1) == TRUE) {
+        sprites[*count].hwSprite = BattleAnimSystem_GetPokemonSprite(system, *count);
+        BattleAnimUtil_GetSpritePos(sprites[*count].hwSprite, &sprites[*count].pos);
+        (*count)++;
     }
 
-    if (BattleAnimUtil_IsMaskSet(param1, 0x8) == 1) {
-        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
-        (*param3)++;
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_POKEMON_SPRITE_2) == TRUE) {
+        sprites[*count].hwSprite = BattleAnimSystem_GetPokemonSprite(system, *count);
+        BattleAnimUtil_GetSpritePos(sprites[*count].hwSprite, &sprites[*count].pos);
+        (*count)++;
     }
 
-    if (BattleAnimUtil_IsMaskSet(param1, 0x10) == 1) {
-        param2[*param3].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, *param3);
-        BattleAnimUtil_GetSpritePos(param2[*param3].hwSprite, &param2[*param3].pos);
-        (*param3)++;
+    if (BattleAnimUtil_IsMaskSet(targets, BATTLE_ANIM_POKEMON_SPRITE_3) == TRUE) {
+        sprites[*count].hwSprite = BattleAnimSystem_GetPokemonSprite(system, *count);
+        BattleAnimUtil_GetSpritePos(sprites[*count].hwSprite, &sprites[*count].pos);
+        (*count)++;
     }
 }
 

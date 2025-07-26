@@ -25,13 +25,27 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    int unk_00;
-    BattleAnimScriptFuncCommon unk_04;
-    SpriteShakeInfo unk_20;
-    BattleAnimSpriteInfo unk_2C[4];
-    XYTransformContext unk_7C;
-} UnkStruct_ov12_02226BA0;
+// -------------------------------------------------------------------
+// Shake
+// -------------------------------------------------------------------
+typedef struct ShakeContext {
+    int spriteCount;
+    BattleAnimScriptFuncCommon common;
+    SpriteShakeInfo shakeInfo;
+    BattleAnimSpriteInfo sprites[MAX_BATTLERS];
+    XYTransformContext shake;
+} ShakeContext;
+
+enum ShakeState {
+    SHAKE_STATE_INIT = 0,
+    SHAKE_STATE_SHAKE,
+};
+
+#define SHAKE_VAR_EXTENT_X 0
+#define SHAKE_VAR_EXTENT_Y 1
+#define SHAKE_VAR_INTERVAL 2
+#define SHAKE_VAR_AMOUNT   3
+#define SHAKE_VAR_TARGETS  4
 
 typedef struct {
     int unk_00;
@@ -483,74 +497,75 @@ static void ov12_02226B84(PokemonSprite *param0)
     PokemonSprite_SetAttribute(param0, MON_SPRITE_SCALE_Y, 0x100);
 }
 
-static void ov12_02226BA0(SysTask *param0, void *param1)
+static void BattleAnimTask_Shake(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_02226BA0 *v1 = (UnkStruct_ov12_02226BA0 *)param1;
+    ShakeContext *ctx = param;
 
-    switch (v1->unk_04.state) {
-    case 0:
-        ShakeContext_Init(&v1->unk_7C, v1->unk_20.extentX, v1->unk_20.extentY, v1->unk_20.interval, v1->unk_20.amount);
-        v1->unk_04.state++;
+    switch (ctx->common.state) {
+    case SHAKE_STATE_INIT:
+        ShakeContext_Init(&ctx->shake, ctx->shakeInfo.extentX, ctx->shakeInfo.extentY, ctx->shakeInfo.interval, ctx->shakeInfo.amount);
+        ctx->common.state++;
         break;
-    case 1:
-        if (ShakeContext_Update(&v1->unk_7C) == 0) {
-            v1->unk_04.state++;
+    case SHAKE_STATE_SHAKE:
+        if (ShakeContext_Update(&ctx->shake) == FALSE) {
+            ctx->common.state++;
         } else {
-            if (BattleAnimUtil_IsMaskSet(v1->unk_20.unk_08, 0x100) == 1) {
-                for (v0 = 0; v0 < v1->unk_00; v0++) {
-                    if (v1->unk_2C[v0].monSprite == NULL) {
+            if (BattleAnimUtil_IsMaskSet(ctx->shakeInfo.targets, BATTLE_ANIM_BATTLER_SPRITES) == TRUE) {
+                for (int i = 0; i < ctx->spriteCount; i++) {
+                    if (ctx->sprites[i].monSprite == NULL) {
                         continue;
                     }
 
-                    PokemonSprite_SetAttribute(v1->unk_2C[v0].monSprite, MON_SPRITE_X_CENTER, v1->unk_2C[v0].pos.x + v1->unk_7C.x);
-                    PokemonSprite_SetAttribute(v1->unk_2C[v0].monSprite, MON_SPRITE_Y_CENTER, v1->unk_2C[v0].pos.y + v1->unk_7C.y);
+                    PokemonSprite_SetAttribute(ctx->sprites[i].monSprite, MON_SPRITE_X_CENTER, ctx->sprites[i].pos.x + ctx->shake.x);
+                    PokemonSprite_SetAttribute(ctx->sprites[i].monSprite, MON_SPRITE_Y_CENTER, ctx->sprites[i].pos.y + ctx->shake.y);
                 }
-            } else if (BattleAnimUtil_IsMaskSet(v1->unk_20.unk_08, 0x200) == 1) {
-                for (v0 = 0; v0 < v1->unk_00; v0++) {
-                    if (v1->unk_2C[v0].hwSprite == NULL) {
+            } else if (BattleAnimUtil_IsMaskSet(ctx->shakeInfo.targets, BATTLE_ANIM_POKEMON_SPRITES) == TRUE) {
+                for (int i = 0; i < ctx->spriteCount; i++) {
+                    if (ctx->sprites[i].hwSprite == NULL) {
                         continue;
                     }
 
-                    ManagedSprite_SetPositionXY(v1->unk_2C[v0].hwSprite, v1->unk_2C[v0].pos.x + v1->unk_7C.x, v1->unk_2C[v0].pos.y + v1->unk_7C.y);
-                    ManagedSprite_TickFrame(v1->unk_2C[v0].hwSprite);
+                    ManagedSprite_SetPositionXY(
+                        ctx->sprites[i].hwSprite,
+                        ctx->sprites[i].pos.x + ctx->shake.x,
+                        ctx->sprites[i].pos.y + ctx->shake.y);
+                    ManagedSprite_TickFrame(ctx->sprites[i].hwSprite);
                 }
 
-                SpriteSystem_DrawSprites(v1->unk_04.pokemonSpriteManager);
+                SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
             }
 
-            if (BattleAnimUtil_IsMaskSet(v1->unk_20.unk_08, 0x400) == 1) {
-                Bg_SetOffset(v1->unk_04.bgConfig, 3, 0, v1->unk_7C.x);
+            if (BattleAnimUtil_IsMaskSet(ctx->shakeInfo.targets, BATTLE_ANIM_BACKGROUND) == TRUE) {
+                Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_EFFECT, BG_OFFSET_UPDATE_SET_X, ctx->shake.x);
             }
         }
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v1->unk_04.battleAnimSystem, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02226CB0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Shake(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02226BA0 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02226BA0));
-    int v1;
+    ShakeContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ShakeContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_04);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_20.extentX = BattleAnimSystem_GetScriptVar(param0, 0);
-    v0->unk_20.extentY = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_20.interval = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_20.amount = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_20.unk_08 = BattleAnimSystem_GetScriptVar(param0, 4);
+    ctx->shakeInfo.extentX = BattleAnimSystem_GetScriptVar(system, SHAKE_VAR_EXTENT_X);
+    ctx->shakeInfo.extentY = BattleAnimSystem_GetScriptVar(system, SHAKE_VAR_EXTENT_Y);
+    ctx->shakeInfo.interval = BattleAnimSystem_GetScriptVar(system, SHAKE_VAR_INTERVAL);
+    ctx->shakeInfo.amount = BattleAnimSystem_GetScriptVar(system, SHAKE_VAR_AMOUNT);
+    ctx->shakeInfo.targets = BattleAnimSystem_GetScriptVar(system, SHAKE_VAR_TARGETS);
 
-    if (BattleAnimUtil_IsMaskSet(v0->unk_20.unk_08, 0x100) == 1) {
-        BattleAnimUtil_GetBattlerSprites(param0, v0->unk_20.unk_08, &(v0->unk_2C[0]), &v0->unk_00);
-    } else if (BattleAnimUtil_IsMaskSet(v0->unk_20.unk_08, 0x200) == 1) {
-        ov12_02235D74(param0, v0->unk_20.unk_08, &(v0->unk_2C[0]), &v0->unk_00);
+    if (BattleAnimUtil_IsMaskSet(ctx->shakeInfo.targets, BATTLE_ANIM_BATTLER_SPRITES) == TRUE) {
+        BattleAnimUtil_GetBattlerSprites(system, ctx->shakeInfo.targets, &ctx->sprites[0], &ctx->spriteCount);
+    } else if (BattleAnimUtil_IsMaskSet(ctx->shakeInfo.targets, BATTLE_ANIM_POKEMON_SPRITES) == TRUE) {
+        BattleAnimUtil_GetPokemonSprites(system, ctx->shakeInfo.targets, &ctx->sprites[0], &ctx->spriteCount);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_04.battleAnimSystem, ov12_02226BA0, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Shake, ctx);
 }
 
 static void ov12_02226D38(SysTask *param0, void *param1)
@@ -2432,7 +2447,7 @@ void ov12_022291AC(BattleAnimSystem *param0)
         int v7 = BattleAnimSystem_GetScriptVar(param0, 4);
         int v8 = BattleAnimSystem_GetScriptVar(param0, 5);
 
-        ov12_02235D74(param0, v3, &(v1->unk_1C), &v0);
+        BattleAnimUtil_GetPokemonSprites(param0, v3, &(v1->unk_1C), &v0);
 
         v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->unk_1C.hwSprite->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
         v1->unk_30 = ov12_02226870(v1->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v2 * 16, 16, v4, v5, v6, v7, v8, 1100);

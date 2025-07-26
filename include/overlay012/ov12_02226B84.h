@@ -5,7 +5,7 @@
 
 #include "sprite_system.h"
 
-void ov12_02226CB0(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Shake(BattleAnimSystem *param0);
 void ov12_02226EB0(BattleAnimSystem *param0);
 void ov12_022271D8(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *param0);

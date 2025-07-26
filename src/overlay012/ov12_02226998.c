@@ -53,7 +53,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_FadeBg,
     BattleAnimScriptFunc_FadeBattlerSprite,
     BattleAnimScriptFunc_ScalePokemonSprite,
-    ov12_02226CB0,
+    BattleAnimScriptFunc_Shake,
     ov12_02233CD4,
     ov12_02228168,
     ov12_0222CB90,

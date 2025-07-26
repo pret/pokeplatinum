@@ -2102,7 +2102,7 @@ void BattleAnimScriptFunc_Flail(BattleAnimSystem *system)
     ctx->shakeInfo.extentY = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_SHAKE_EXTENT_Y);
     ctx->shakeInfo.interval = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_SHAKE_INTERVAL);
     ctx->shakeInfo.amount = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_SHAKE_AMOUNT);
-    ctx->shakeInfo.unk_08 = BattleAnimSystem_GetScriptVar(system, 5);
+    ctx->shakeInfo.targets = BattleAnimSystem_GetScriptVar(system, 5);
 
     if (mode == FLAIL_MODE_ATTACKER) {
         BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_FlailAttackerMode, ctx);

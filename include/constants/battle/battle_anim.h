@@ -69,22 +69,34 @@
 #define BATTLE_ANIM_ATTACKER_PARTNER (1 << 2) //< Attacker's partner
 #define BATTLE_ANIM_DEFENDER         (1 << 3) //< Defender
 #define BATTLE_ANIM_DEFENDER_PARTNER (1 << 4) //< Defender's partner
+#define BATTLE_ANIM_POKEMON_SPRITE_0 (1 << 1) //< First Pokemon sprite
+#define BATTLE_ANIM_POKEMON_SPRITE_1 (1 << 2) //< Second Pokemon sprite
+#define BATTLE_ANIM_POKEMON_SPRITE_2 (1 << 3) //< Third Pokemon sprite
+#define BATTLE_ANIM_POKEMON_SPRITE_3 (1 << 4) //< Fourth Pokemon sprite
 #define BATTLE_ANIM_NOT_ATTACKER     (1 << 5) //< All battlers except attacker
 #define BATTLE_ANIM_ALL_BATTLERS     (1 << 6) //< All battlers
 #define BATTLE_ANIM_ATTACKER_SIDE    (BATTLE_ANIM_ATTACKER | BATTLE_ANIM_ATTACKER_PARTNER) //< Attacker and its partner
 #define BATTLE_ANIM_DEFENDER_SIDE    (BATTLE_ANIM_DEFENDER | BATTLE_ANIM_DEFENDER_PARTNER) //< Defender and its partner
 #define BATTLE_ANIM_BOTH_SIDES       (BATTLE_ANIM_ATTACKER_SIDE | BATTLE_ANIM_DEFENDER_SIDE) //< Both sides of the battle
+#define BATTLE_ANIM_BATTLER_SPRITES  (1 << 8) //< Use battler sprites
+#define BATTLE_ANIM_POKEMON_SPRITES  (1 << 9) //< Use Pokemon sprites
+#define BATTLE_ANIM_BACKGROUND       (1 << 10) //< Use background
 #define BATTLE_ANIM_SPECIFIC_BATTLER (1 << 11) //< Specific battler slot, do not use by itself
 #define BATTLE_ANIM_BATTLER_PLAYER_1 (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_ATTACKER) //< Player's first battler
 #define BATTLE_ANIM_BATTLER_PLAYER_2 (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_ATTACKER_PARTNER) //< Player's second battler
 #define BATTLE_ANIM_BATTLER_ENEMY_1  (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_DEFENDER) //< Enemy's first battler
 #define BATTLE_ANIM_BATTLER_ENEMY_2  (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_DEFENDER_PARTNER) //< Enemy's second battler
 
+#define BATTLE_ANIM_POKEMON_SPRITE(N) ((1 << (N + 1)) | BATTLE_ANIM_POKEMON_SPRITES) //< Pokemon sprite N, where N is 0-3
+#define BATTLE_ANIM_BATTLER_SPRITE(N) ((1 << (N + 1)) | BATTLE_ANIM_BATTLER_SPRITES) //< Battler sprite N, where N is 0-3
+
+
 #define BATTLE_ANIM_MON_SPRITE_0 0
 #define BATTLE_ANIM_MON_SPRITE_1 1
 #define BATTLE_ANIM_MON_SPRITE_2 2
 #define BATTLE_ANIM_MON_SPRITE_3 3
 #define BATTLE_ANIM_MON_SPRITE_4 4
+
 
 // Script function specific constants
 #define FLAIL_MODE_ATTACKER 0
