@@ -56,7 +56,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Shake,
     BattleAnimScriptFunc_Extrasensory,
     BattleAnimScriptFunc_AlphaFadePokemonSprite,
-    ov12_0222CB90,
+    BattleAnimScriptFunc_OdorSleuth,
     ov12_02228214,
     ov12_02233F30,
     ov12_02227F30,

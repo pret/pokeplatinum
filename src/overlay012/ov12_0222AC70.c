@@ -475,14 +475,31 @@ enum MagnitudeState {
 #define MAGNITUDE_SHAKE_INTERVAL        0
 #define MAGNITUDE_SHAKE_AMOUNT          10
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    SpriteShakeInfo unk_1C;
-    Point2D unk_28[2];
-    PokemonSprite *unk_30[2];
-    ManagedSprite *unk_38[2];
-    XYTransformContext unk_40[2];
-} UnkStruct_ov12_0222CACC;
+// -------------------------------------------------------------------
+// Odor Sleuth
+// -------------------------------------------------------------------
+typedef struct OdorSleuthContext {
+    BattleAnimScriptFuncCommon common;
+    SpriteShakeInfo unused;
+    Point2D spritePositions[NUM_BATTLE_SIDES];
+    PokemonSprite *battlerSprites[NUM_BATTLE_SIDES];
+    ManagedSprite *monSprites[NUM_BATTLE_SIDES];
+    XYTransformContext shake[NUM_BATTLE_SIDES];
+} OdorSleuthContext;
+
+enum OdorSleuthState {
+    ODOR_SLEUTH_STATE_INIT = 0,
+    ODOR_SLEUTH_STATE_SHAKE,
+};
+
+#define ODOR_SLEUTH_ATTACKER_SHAKE_EXTENT_X 20
+#define ODOR_SLEUTH_ATTACKER_SHAKE_EXTENT_Y 0
+#define ODOR_SLEUTH_ATTACKER_SHAKE_INTERVAL 0
+#define ODOR_SLEUTH_ATTACKER_SHAKE_AMOUNT   10
+#define ODOR_SLEUTH_DEFENDER_SHAKE_EXTENT_X 2 // Note: These "defender" values aren't actually used/applied.
+#define ODOR_SLEUTH_DEFENDER_SHAKE_EXTENT_Y 0
+#define ODOR_SLEUTH_DEFENDER_SHAKE_INTERVAL 0
+#define ODOR_SLEUTH_DEFENDER_SHAKE_AMOUNT   10
 
 typedef struct {
     int unk_00;
@@ -2193,51 +2210,67 @@ void BattleAnimScriptFunc_Magnitude(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Magnitude, ctx);
 }
 
-static void ov12_0222CACC(SysTask *param0, void *param1)
+static void BattleAnimTask_OdorSleuth(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_0222CACC *v1 = (UnkStruct_ov12_0222CACC *)param1;
+    OdorSleuthContext *ctx = param;
 
-    switch (v1->unk_00.state) {
+    switch (ctx->common.state) {
     case 0:
-        ShakeContext_Init(&v1->unk_40[0], 20, 0, 0, 10);
-        ShakeContext_Init(&v1->unk_40[1], 2, 0, 0, 10);
-        v1->unk_00.state++;
+        ShakeContext_Init(
+            &ctx->shake[BATTLER_TYPE_ATTACKER],
+            ODOR_SLEUTH_ATTACKER_SHAKE_EXTENT_X,
+            ODOR_SLEUTH_ATTACKER_SHAKE_EXTENT_Y,
+            ODOR_SLEUTH_ATTACKER_SHAKE_INTERVAL,
+            ODOR_SLEUTH_ATTACKER_SHAKE_AMOUNT);
+        ShakeContext_Init(
+            &ctx->shake[BATTLER_TYPE_DEFENDER],
+            ODOR_SLEUTH_DEFENDER_SHAKE_EXTENT_X,
+            ODOR_SLEUTH_DEFENDER_SHAKE_EXTENT_Y,
+            ODOR_SLEUTH_DEFENDER_SHAKE_INTERVAL,
+            ODOR_SLEUTH_DEFENDER_SHAKE_AMOUNT);
+        ctx->common.state++;
         break;
     case 1:
-        if (ShakeContext_Update(&v1->unk_40[0]) == 0) {
-            v1->unk_00.state++;
+        if (ShakeContext_Update(&ctx->shake[BATTLER_TYPE_ATTACKER]) == FALSE) {
+            ctx->common.state++;
         } else {
-            ManagedSprite_SetPositionXY(v1->unk_38[0], +v1->unk_28[1].x + v1->unk_40[0].x, v1->unk_28[1].y + v1->unk_40[0].y);
-            ManagedSprite_SetPositionXY(v1->unk_38[1], -v1->unk_28[1].x + v1->unk_40[0].x, v1->unk_28[1].y + v1->unk_40[0].y);
-            ManagedSprite_TickFrame(v1->unk_38[0]);
-            ManagedSprite_TickFrame(v1->unk_38[1]);
+            ManagedSprite_SetPositionXY(
+                ctx->monSprites[BATTLER_TYPE_ATTACKER],
+                +ctx->spritePositions[BATTLER_TYPE_DEFENDER].x + ctx->shake[BATTLER_TYPE_ATTACKER].x,
+                ctx->spritePositions[BATTLER_TYPE_DEFENDER].y + ctx->shake[BATTLER_TYPE_ATTACKER].y);
+            ManagedSprite_SetPositionXY(
+                ctx->monSprites[BATTLER_TYPE_DEFENDER],
+                -ctx->spritePositions[BATTLER_TYPE_DEFENDER].x + ctx->shake[BATTLER_TYPE_ATTACKER].x,
+                ctx->spritePositions[BATTLER_TYPE_DEFENDER].y + ctx->shake[BATTLER_TYPE_ATTACKER].y);
+
+            ManagedSprite_TickFrame(ctx->monSprites[BATTLER_TYPE_ATTACKER]);
+            ManagedSprite_TickFrame(ctx->monSprites[BATTLER_TYPE_DEFENDER]);
         }
 
-        SpriteSystem_DrawSprites(v1->unk_00.pokemonSpriteManager);
+        SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v1->unk_00.battleAnimSystem, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222CB90(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_OdorSleuth(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222CACC *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222CACC));
-    int v1;
+    OdorSleuthContext *ctx = BattleAnimUtil_Alloc(system, sizeof(OdorSleuthContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_38[0] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 0);
-    v0->unk_38[1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 1);
-    v0->unk_30[0] = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem));
-    v0->unk_30[1] = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
+    ctx->monSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->monSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_1);
+    ctx->battlerSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+    ctx->battlerSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
 
-    BattleAnimUtil_GetMonSpritePos(v0->unk_30[0], &v0->unk_28[0]);
-    BattleAnimUtil_GetMonSpritePos(v0->unk_30[1], &v0->unk_28[1]);
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222CACC, v0);
+    BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], &ctx->spritePositions[BATTLER_TYPE_ATTACKER]);
+    BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_DEFENDER], &ctx->spritePositions[BATTLER_TYPE_DEFENDER]);
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_OdorSleuth, ctx);
 }
 
 static void ov12_0222CBFC(SysTask *param0, void *param1)
