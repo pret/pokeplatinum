@@ -1012,7 +1012,7 @@ void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
     }
 
     GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_NICKNAME, gbaNickname);
-    GBAStringToDSString(gbaNickname, dsNickName, MON_NAME_LEN + 2, language);
+    GBA_ConvertStringToDS(gbaNickname, dsNickName, MON_NAME_LEN + 2, language);
     BoxPokemon_SetValue(boxMon, MON_DATA_NICKNAME_AND_FLAG, dsNickName);
 
     if (GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
@@ -1024,7 +1024,7 @@ void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &value);
 
     GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_OT_NAME, gbaNickname);
-    GBAStringToDSString(gbaNickname, dsNickName, GBA_PLAYER_NAME_LEN + 1, language);
+    GBA_ConvertStringToDS(gbaNickname, dsNickName, GBA_PLAYER_NAME_LEN + 1, language);
     BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME, dsNickName);
 
     value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MET_LOCATION, NULL);

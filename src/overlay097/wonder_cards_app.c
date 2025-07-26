@@ -157,6 +157,7 @@ enum WonderCardAction {
     WC_ACTION_SHARE,
     WC_ACTION_TRASH,
     WC_ACTION_EXIT,
+    NUM_WC_ACTIONS,
 };
 
 enum WonderCardShareBtn {
@@ -210,14 +211,14 @@ typedef struct WonderCardsAppWindowTemplate {
     int topMarginSize;
 } WonderCardsAppWindowTemplate;
 
-typedef struct {
+typedef struct StateTransitionMenuOptionTemplate {
     int textEntryID;
     union {
         enum WonderCardsAppState targetState; //!< Used when the state transition is handled by the main function
         StateTransitionFuncPtr transitionFunc; //!< Used when some action needs to be performed outside of the main function before changing the state, typically showing a message box and/or menu
         u32 asU32;
     } stateChange;
-} StateTransitionListMenuEntryTemplate;
+} StateTransitionMenuOptionTemplate;
 
 struct WonderCardsAppData {
     int heapID;
@@ -262,8 +263,8 @@ struct WonderCardsAppData {
     int queuedState;
     SpriteList *spriteList;
     G2dRenderer g2dRenderer;
-    SpriteResourceCollection *spriteResourceCollections[6];
-    SpriteResource *spriteResources[6];
+    SpriteResourceCollection *spriteResourceCollections[SPRITE_RESOURCE_MAX];
+    SpriteResource *spriteResources[SPRITE_RESOURCE_MAX];
     SpriteResourcesHeader spriteResourceHeader;
     Sprite *shareScreenBtnSprites[2];
     Sprite *selectedWcSprites[NUM_WONDERCARD_SPRITES];
@@ -276,9 +277,9 @@ struct WonderCardsAppData {
 
 static enum WonderCardsAppState AskConfirmDeleteWc(ApplicationManager *appMan);
 static enum WonderCardsAppState AskConfirmShareWc(ApplicationManager *appMan);
-static enum WonderCardsAppState GoBackToWcActionsMenu(ApplicationManager *appMan);
+static enum WonderCardsAppState ReturnToWcActionsMenu(ApplicationManager *appMan);
 static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(ApplicationManager *appMan);
-static void WonderCardsApp_CloseListMenu(WonderCardsAppData *appData);
+
 static BOOL DoNothing(WonderCardsAppData *appData, Window *window, TextColor color);
 static BOOL PrintWondercardTitle(WonderCardsAppData *appData, Window *window, TextColor color);
 static BOOL DetermineGiftStatus(WonderCardsAppData *appData, Window *window, TextColor color);
@@ -289,6 +290,8 @@ static BOOL InitWondercardActionsMenu(WonderCardsAppData *appData, Window *windo
 static BOOL InitConfirmWondercardDeleteMenu(WonderCardsAppData *appData, Window *window, TextColor color);
 static BOOL InitConfirmWondercardShareMenu(WonderCardsAppData *appData, Window *window, TextColor color);
 static BOOL SetupEntriesCount(WonderCardsAppData *appData, Window *window, TextColor color);
+
+static void WonderCardsApp_CloseListMenu(WonderCardsAppData *appData);
 static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window);
 static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *window, int count);
 static void StopWirelessCommunication(WonderCardsAppData *appData, enum WonderCardsAppState *state, enum WonderCardsAppState nextState);
@@ -301,7 +304,7 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData);
 static void ResetAllSprites(WonderCardsAppData *appData);
 static int CountConnectedPlayers(WonderCardsAppData *appData);
 
-WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] = {
+static WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] = {
     [WC_FRONT_TEXT_WONDER_CARD] = {
         .screen = WC_SCREEN_WONDERCARD_FRONT,
         .tilemapLeft = 2,
@@ -572,26 +575,26 @@ WonderCardsAppWindowTemplate sWonderCardsAppWindows[NUM_WC_APP_WINDOWS] = {
     },
 };
 
-static StateTransitionListMenuEntryTemplate sWonderCardActions[] = {
+static StateTransitionMenuOptionTemplate sWonderCardActions[] = {
     [WC_ACTION_INFO] = { MysteryGiftMenu_Text_Info, { .targetState = WC_APP_STATE_START_FLIP_WC_TO_BACK } },
     [WC_ACTION_SHARE] = { MysteryGiftMenu_Text_Share, { .transitionFunc = AskConfirmShareWc } },
     [WC_ACTION_TRASH] = { MysteryGiftMenu_Text_Trash, { .transitionFunc = AskConfirmDeleteWc } },
     [WC_ACTION_EXIT] = { MysteryGiftMenu_Text_Exit_WonderCards, { .targetState = WC_APP_STATE_CLOSE_WINDOWS } }
 };
 
-static StateTransitionListMenuEntryTemplate sConfirmWondercardDeleteOptions[] = {
+static StateTransitionMenuOptionTemplate sConfirmWondercardDeleteOptions[] = {
     { MysteryGiftMenu_Text_Yes_WonderCards, { .transitionFunc = DeleteWcAndOpenNextWcActionsMenu } },
-    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = GoBackToWcActionsMenu } }
+    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = ReturnToWcActionsMenu } }
 };
 
-static StateTransitionListMenuEntryTemplate sConfirmWondercardShareOptions[] = {
+static StateTransitionMenuOptionTemplate sConfirmWondercardShareOptions[] = {
     { MysteryGiftMenu_Text_Yes_WonderCards, { .targetState = WC_APP_STATE_ASK_START_WIRELESS_TO_SHARE_WC } },
-    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = GoBackToWcActionsMenu } }
+    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = ReturnToWcActionsMenu } }
 };
 
-static StateTransitionListMenuEntryTemplate sConfirmStartWirelessOptions[] = {
+static StateTransitionMenuOptionTemplate sConfirmStartWirelessOptions[] = {
     { MysteryGiftMenu_Text_Yes_WonderCards, { .targetState = WC_APP_STATE_START_TRANSITION_TO_WC_SHARE_SCREEN } },
-    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = GoBackToWcActionsMenu } }
+    { MysteryGiftMenu_Text_No_WonderCards, { .transitionFunc = ReturnToWcActionsMenu } }
 };
 
 static ListMenuTemplate sWonderCardsAppListMenuTemplate = {
@@ -620,7 +623,7 @@ static void LoadWcShareScreenButtonsGraphics(WonderCardsAppData *appData)
     ResetAllSprites(appData);
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 15, 12, 14, 13, 0);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 15, 12, 14, 13, DS_SCREEN_MAIN);
 }
 
 static void ResetAllSprites(WonderCardsAppData *appData)
@@ -653,11 +656,11 @@ static void ResetAllSprites(WonderCardsAppData *appData)
 
 static void ShowWcShareButtons(WonderCardsAppData *appData)
 {
-    appData->shareScreenSelectedBtn = 0;
-    appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND] = MainMenuUtil_InitSprite(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 72, WONDERCARD_HEIGHT, 1);
+    appData->shareScreenSelectedBtn = WC_SHARE_BTN_SEND;
+    appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND] = MainMenuUtil_InitSprite(DS_SCREEN_MAIN, appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 72, WONDERCARD_HEIGHT, 1);
     Sprite_SetExplicitPriority(appData->shareScreenBtnSprites[WC_SHARE_BTN_SEND], 2);
 
-    appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL] = MainMenuUtil_InitSprite(0, appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 184, WONDERCARD_HEIGHT, 0);
+    appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL] = MainMenuUtil_InitSprite(DS_SCREEN_MAIN, appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 184, WONDERCARD_HEIGHT, 0);
     Sprite_SetExplicitPriority(appData->shareScreenBtnSprites[WC_SHARE_BTN_CANCEL], 2);
 }
 
@@ -675,7 +678,7 @@ static void EraseMessageBoxIfInUse(Window *window, u8 skipTransfer)
     }
 }
 
-static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appData, StateTransitionListMenuEntryTemplate *entries, int numEntries, Window *window, int startCursorPos)
+static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appData, StateTransitionMenuOptionTemplate *entries, int numEntries, Window *window, int startCursorPos)
 {
     if (appData->strList) {
         StringList_Free(appData->strList);
@@ -787,7 +790,7 @@ static enum WonderCardsAppState DeleteWcAndOpenNextWcActionsMenu(ApplicationMana
     return WC_APP_STATE_WAIT_FOR_MENU_CHOICE;
 }
 
-static enum WonderCardsAppState GoBackToWcActionsMenu(ApplicationManager *appMan)
+static enum WonderCardsAppState ReturnToWcActionsMenu(ApplicationManager *appMan)
 {
     WonderCardsAppData *appData = ApplicationManager_Data(appMan);
 
@@ -889,7 +892,7 @@ static BOOL SetupRemainingSharesCount(WonderCardsAppData *appData, Window *windo
 
 static BOOL InitWondercardActionsMenu(WonderCardsAppData *appData, Window *window, TextColor unused)
 {
-    StateTransitionListMenuEntryTemplate entries[4];
+    StateTransitionMenuOptionTemplate entries[NUM_WC_ACTIONS];
     WonderCardsAppWindowTemplate *windowTemplate;
     int numOptions = 0;
 
@@ -906,7 +909,7 @@ static BOOL InitWondercardActionsMenu(WonderCardsAppData *appData, Window *windo
 
     Window_ClearAndCopyToVRAM(window);
     Window_Remove(window);
-    Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop + (4 - numOptions) * 2, windowTemplate->width, windowTemplate->height - (4 - numOptions) * 2, PLTT_15, appData->messageBoxBaseTile);
+    Window_Add(appData->bgConfig, window, BG_LAYER_MAIN_2, windowTemplate->tilemapLeft, windowTemplate->tilemapTop + TEXT_LINES_TILES(NUM_WC_ACTIONS - numOptions), windowTemplate->width, windowTemplate->height - TEXT_LINES_TILES(NUM_WC_ACTIONS - numOptions), PLTT_15, appData->messageBoxBaseTile);
     MakeStateChangeListMenuFromEntryTemplates(appData, entries, numOptions, window, 0);
 
     return TRUE;
@@ -938,9 +941,9 @@ static BOOL SetupEntriesCount(WonderCardsAppData *appData, Window *window, TextC
     return TRUE;
 }
 
-static void DoScreenTransitionToState(WonderCardsAppData *appData, int param1, enum WonderCardsAppState nextState, enum WonderCardsAppState *state)
+static void DoScreenTransitionToState(WonderCardsAppData *appData, enum FadeType fadeType, enum WonderCardsAppState nextState, enum WonderCardsAppState *state)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, HEAP_ID_WONDER_CARDS_APP);
+    StartScreenFade(FADE_BOTH_SCREENS, fadeType, fadeType, COLOR_BLACK, 6, 1, HEAP_ID_WONDER_CARDS_APP);
 
     if (state) {
         *state = WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION;
@@ -988,7 +991,7 @@ static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum 
                     Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, windowTemplates[i].entryID, appData->heapID);
 
                     {
-                        u32 yOffset = (windowTemplates[i].leftMarginSize == CENTER_TEXT) ? Font_CalcCenterAlignment(windowTemplates[i].font, strBuf, 0, windowTemplates[i].width * 8) : windowTemplates[i].leftMarginSize;
+                        u32 yOffset = (windowTemplates[i].leftMarginSize == CENTER_TEXT) ? Font_CalcCenterAlignment(windowTemplates[i].font, strBuf, 0, windowTemplates[i].width * TILE_WIDTH_PIXELS) : windowTemplates[i].leftMarginSize;
                         Text_AddPrinterWithParamsAndColor(&appData->windows[i], windowTemplates[i].font, strBuf, yOffset, windowTemplates[i].topMarginSize, TEXT_SPEED_NO_TRANSFER, color, NULL);
                     }
 
@@ -1097,6 +1100,8 @@ static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCards
     case WC_SCREEN_WONDERCARD_BACK:
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 5, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_BACK_TILEMAP_WIDTH * WC_BACK_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
         break;
+    default:
+        break;
     }
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), PALETTE_SIZE_BYTES, appData->heapID);
@@ -1160,7 +1165,7 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
 
         MainMenuUtil_InitCharPlttTransferBuffers();
         MainMenuUtil_InitSpriteLoader();
-        MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 26, 23, 25, 24, 0);
+        MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 26, 23, 25, 24, DS_SCREEN_MAIN);
 
         Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(3), 0, appData->heapID);
     }
@@ -1181,11 +1186,11 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
 
         NNSG2dCharacterData *charData;
 
-        appData->selectedWcSprites[i] = MainMenuUtil_InitSprite(0, appData->selectedWcSprites[i], spriteX, 16, 10 + i);
+        appData->selectedWcSprites[i] = MainMenuUtil_InitSprite(DS_SCREEN_MAIN, appData->selectedWcSprites[i], spriteX, 16, 10 + i);
         u8 *ncgrBuffer = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(species, FALSE, HEAP_ID_SYSTEM), FALSE, &charData, appData->heapID);
 
-        DC_FlushRange(charData->pRawData, (4 * 4 * 0x20));
-        GX_LoadOBJ(charData->pRawData, (0x64 + i * 4 * 4) * 0x20, (4 * 4 * 0x20));
+        DC_FlushRange(charData->pRawData, (4 * 4 * TILE_SIZE_4BPP));
+        GX_LoadOBJ(charData->pRawData, (0x64 + i * 4 * 4) * TILE_SIZE_4BPP, (4 * 4 * TILE_SIZE_4BPP));
 
         Sprite_SetExplicitPalette(appData->selectedWcSprites[i], PokeIconPaletteIndex(species, 0, 0) + 3);
         Heap_Free(ncgrBuffer);
@@ -1309,7 +1314,7 @@ static BOOL RunFlipAnimFrame(WonderCardsAppData *appData)
         offsetFx32 += flipAnimMan->offsetStep;
     }
 
-    DC_FlushRange(buffer, SCROLL_REGISTER_SIZE * 4 * HW_LCD_HEIGHT);
+    DC_FlushRange(buffer, sizeof(flipAnimMan->scrollsBuffers[0]));
     BufferManager_SwapBuffers(flipAnimMan->bufferManager);
 
     return FALSE;
@@ -1317,9 +1322,9 @@ static BOOL RunFlipAnimFrame(WonderCardsAppData *appData)
 
 static void WonderCardsAppCallbackSaveGame(WonderCardsAppData *appData)
 {
-    int stage = MainMenuUtil_SaveState();
+    int saveStatus = MainMenuUtil_SaveState();
 
-    if (stage == 2 || stage == 3) {
+    if (saveStatus == SAVE_RESULT_OK || saveStatus == SAVE_RESULT_CORRUPT) {
         Sound_PlayEffect(SEQ_SE_DP_SAVE);
         appData->mainCallback = NULL;
     }
@@ -1425,7 +1430,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         LoadMessageBoxGraphics(appData->bgConfig, BG_LAYER_MAIN_0, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_10, appData->msgBoxFrame, HEAP_ID_WONDER_CARDS_APP);
 
         ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
-        DoScreenTransitionToState(appData, 1, WC_APP_STATE_SELECT_WONDERCARD, state);
+        DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_SELECT_WONDERCARD, state);
         break;
     case WC_APP_STATE_SELECT_WONDERCARD: {
         int selectedWcSlot = appData->selectedWondercardSlot;
@@ -1436,7 +1441,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
             selectedWcSlot = GetNextOccupiedWcSlot(appData, appData->selectedWondercardSlot, DIRECTION_NEXT);
         } else if (JOY_NEW(PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            DoScreenTransitionToState(appData, 0, WC_APP_STATE_EXIT, state);
+            DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_OUT, WC_APP_STATE_EXIT, state);
         } else if (JOY_NEW(PAD_BUTTON_A)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             *state = WC_APP_STATE_SHOW_WONDERCARD_ACTIONS;
@@ -1511,17 +1516,17 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         *state = WC_APP_STATE_SELECT_WONDERCARD;
         break;
     case WC_APP_STATE_WAIT_CONFIRM_DELETION:
-        ProcessStateTransitionMenuInput(appMan, state, GoBackToWcActionsMenu);
+        ProcessStateTransitionMenuInput(appMan, state, ReturnToWcActionsMenu);
         break;
     case WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS:
-        ProcessStateTransitionMenuInput(appMan, state, GoBackToWcActionsMenu);
+        ProcessStateTransitionMenuInput(appMan, state, ReturnToWcActionsMenu);
         break;
     case WC_APP_STATE_ASK_START_WIRELESS_TO_SHARE_WC:
         AskConfirmStartWireless(appData, &appData->standardWindow, TEXT_COLOR(1, 2, 0));
         *state = WC_APP_STATE_WAIT_CONFIRM_START_WIRELESS;
         break;
     case WC_APP_STATE_START_TRANSITION_TO_WC_SHARE_SCREEN:
-        DoScreenTransitionToState(appData, 0, WC_APP_STATE_SHOW_WC_SHARE_SCREEN, state);
+        DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_OUT, WC_APP_STATE_SHOW_WC_SHARE_SCREEN, state);
         break;
     case WC_APP_STATE_SHOW_WC_SHARE_SCREEN:
         WonderCardsApp_CloseListMenu(appData);
@@ -1537,7 +1542,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
     case WC_APP_STATE_PREPARE_FOR_SHARING:
         PrepareSelectedWCForSharing(appData);
         sub_02039734();
-        DoScreenTransitionToState(appData, 1, WC_APP_STATE_WAIT_FOR_PLAYERS, state);
+        DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_WAIT_FOR_PLAYERS, state);
         break;
     case WC_APP_STATE_WAIT_FOR_PLAYERS: {
         int connectedPlayersCount = 0;
@@ -1561,7 +1566,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         break;
     }
     case WC_APP_STATE_RETURN_AFTER_COMM_MAN_EXIT:
-        DoScreenTransitionToState(appData, 0, WC_APP_STATE_RETURN_TO_WC_ACTIONS, state);
+        DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_OUT, WC_APP_STATE_RETURN_TO_WC_ACTIONS, state);
         break;
     case WC_APP_STATE_RETURN_TO_WC_ACTIONS:
         ResetAllSprites(appData);
@@ -1569,7 +1574,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         EraseStandardWindowIfInUse(&appData->standardWindow, FALSE);
         ShowWindowsForScreen(appData, 1, WC_SCREEN_WONDERCARD_FRONT);
         Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), HEAP_ID_WONDER_CARDS_APP);
-        DoScreenTransitionToState(appData, 1, WC_APP_STATE_SHOW_WONDERCARD_ACTIONS, state);
+        DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_IN, WC_APP_STATE_SHOW_WONDERCARD_ACTIONS, state);
         break;
     case WC_APP_STATE_WAIT_FOR_COMM_MAN_EXIT:
         if (CommMan_IsInitialized() == FALSE) {
@@ -1585,7 +1590,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         }
         break;
     case WC_APP_STATE_START_COMM_SYNC:
-        if (MainMenuUtil_GetSavingStatus() == 4) {
+        if (MainMenuUtil_GetSavingStatus() == MAIN_MENU_UTIL_SAVING_IDLE) {
             CommTiming_StartSync(0x93);
             *state = WC_APP_STATE_WAIT_FOR_COMM_SYNC;
         }
@@ -1604,7 +1609,7 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         }
         break;
     case WC_APP_STATE_NO_MORE_WONDERCARDS:
-        DoScreenTransitionToState(appData, 0, WC_APP_STATE_EXIT, state);
+        DoScreenTransitionToState(appData, FADE_TYPE_BRIGHTNESS_OUT, WC_APP_STATE_EXIT, state);
         break;
     case WC_APP_STATE_WAIT_FOR_SCREEN_TRANSITION:
         if (IsScreenFadeDone()) {
@@ -1618,13 +1623,16 @@ static int WonderCardsApp_Main(ApplicationManager *appMan, enum WonderCardsAppSt
         break;
     case WC_APP_STATE_UNUSED:
         break;
+    default:
+        // Should never be reached
+        break;
     }
 
     if (appData->spriteList != NULL) {
         SpriteList_Update(appData->spriteList);
     }
 
-    MainMenuUtil_UpdateSpritesSkipGift();
+    MainMenuUtil_UpdateSprites();
 
     if (appData->mainCallback) {
         appData->mainCallback(appData);
@@ -1755,7 +1763,7 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
             Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 80, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
             Strbuf_Free(strBuf);
 
-            trainerInfoYOffset += 24;
+            trainerInfoYOffset += TEXT_LINES(1) + 8;
         }
     }
 

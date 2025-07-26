@@ -17,6 +17,8 @@
 #define DIST_CTRDG_DATA_LENGTH      1192
 #define DIST_CTRDG_SIGNATURE_LENGTH 128
 
+#define NINTENDO_MAKER_CODE 0x3130 // ASCII characters "01", as a little-endian 16-bit integer
+
 static u32 sDistributionCartridgeGameCodes[] = {
     'B5BE',
     'B5CE',
@@ -79,7 +81,7 @@ inline u32 FlipEndianness(u32 val)
     return ((val >> 0) & 255) << 24 | ((val >> 8) & 255) << 16 | ((val >> 16) & 255) << 8 | ((val >> 24) & 255) << 0;
 }
 
-static BOOL CheckDistCartridgeGameCodeAndSignature(void)
+static BOOL VerifyCartridgeAuthenticity(void)
 {
     u32 gameCode = CTRDG_GetAgbGameCode();
 
@@ -114,11 +116,11 @@ static BOOL CheckGBASlotHasDistributionCartridge(void)
         return FALSE;
     }
 
-    if (CTRDG_GetAgbMakerCode() != 0x3130) {
+    if (CTRDG_GetAgbMakerCode() != NINTENDO_MAKER_CODE) {
         return FALSE;
     }
 
-    if (CheckDistCartridgeGameCodeAndSignature() == FALSE) {
+    if (VerifyCartridgeAuthenticity() == FALSE) {
         return FALSE;
     }
 

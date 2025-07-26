@@ -528,10 +528,10 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     GXLayers_SetBanks(&v1);
 
     SetAllGraphicsModes(&v2);
-    MainMenuUtil_InitBG(param0->unk_04, 0, 1, 0xF000, 0x0);
-    MainMenuUtil_InitBG(param0->unk_04, 1, 1, 0xF800, 0x4000);
-    MainMenuUtil_InitBG(param0->unk_04, 4, 1, 0x7800, 0x0);
-    MainMenuUtil_InitBG(param0->unk_04, 5, 1, 0x7000, 0x4000);
+    MainMenuUtil_InitBGLayer(param0->unk_04, 0, 1, 0xF000, 0x0);
+    MainMenuUtil_InitBGLayer(param0->unk_04, 1, 1, 0xF800, 0x4000);
+    MainMenuUtil_InitBGLayer(param0->unk_04, 4, 1, 0x7800, 0x0);
+    MainMenuUtil_InitBGLayer(param0->unk_04, 5, 1, 0x7000, 0x4000);
 
     Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 0 * 32, param0->heapID);
@@ -765,7 +765,7 @@ static int ov97_0222C78C(ApplicationManager *appMan, int *param1)
         break;
     }
 
-    MainMenuUtil_UpdateSpritesSkipGift();
+    MainMenuUtil_UpdateSprites();
 
     return 0;
 }
