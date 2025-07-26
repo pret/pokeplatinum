@@ -42,7 +42,7 @@ static void ov12_0222E784(SysTask *param0, void *param1)
         {
             f32 v1, v2;
 
-            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_60, &v1, &v2);
+            ScaleLerpContext_GetAffineScale(&v0->unk_60, &v1, &v2);
             ManagedSprite_SetAffineScale(v0->unk_1C.hwSprite, v1, v2);
             BattleAnimUtil_SetSpriteAnchoredPosition(v0->unk_1C.hwSprite, v0->unk_58, v0->unk_5A, v0->unk_60.data[4], 0);
         }

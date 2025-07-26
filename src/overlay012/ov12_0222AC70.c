@@ -599,7 +599,7 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
             for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
                 f32 v4, v5;
 
-                BattleAnimUtil_ConvertRelativeToAffineScale(&v1->unk_20, &v4, &v5);
+                ScaleLerpContext_GetAffineScale(&v1->unk_20, &v4, &v5);
                 ManagedSprite_SetAffineScale(v1->unk_14[v0], v4, v5);
             }
         } else {
@@ -1669,7 +1669,7 @@ static void BattleAnimTask_Minimize(SysTask *task, void *param)
                     ctx->sprites[i].state++;
                 } else {
                     f32 scaleX, scaleY;
-                    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->sprites[i].scale, &scaleX, &scaleY);
+                    ScaleLerpContext_GetAffineScale(&ctx->sprites[i].scale, &scaleX, &scaleY);
 
                     ManagedSprite_SetAffineScale(ctx->sprites[i].sprite, scaleX * ctx->spriteDir, scaleY);
                     BattleAnimUtil_SetSpriteAnchoredPosition(
@@ -1731,7 +1731,7 @@ static void BattleAnimTask_Minimize(SysTask *task, void *param)
                 done++;
             } else {
                 f32 scaleX, scaleY;
-                BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->sprites[i].scale, &scaleX, &scaleY);
+                ScaleLerpContext_GetAffineScale(&ctx->sprites[i].scale, &scaleX, &scaleY);
                 ManagedSprite_SetAffineScale(ctx->sprites[i].sprite, scaleX * ctx->spriteDir, scaleY);
 
                 BattleAnimUtil_SetSpriteAnchoredPosition(
@@ -2323,7 +2323,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
             f32 v1, v2;
             s16 v3;
 
-            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_9C, &v1, &v2);
+            ScaleLerpContext_GetAffineScale(&v0->unk_9C, &v1, &v2);
             ManagedSprite_SetAffineScale(v0->unk_40, v1, v2);
             v3 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.y, 16, v0->unk_9C.data[4]);
             ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.x, v0->unk_14.y + v3);
@@ -2351,7 +2351,7 @@ static void ov12_0222CDF0(SysTask *param0, void *param1)
             f32 v4, v5;
             s16 v6;
 
-            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_9C, &v4, &v5);
+            ScaleLerpContext_GetAffineScale(&v0->unk_9C, &v4, &v5);
             ManagedSprite_SetAffineScale(v0->unk_40, v4, v5);
             v6 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.y, 16, v0->unk_9C.data[4]);
             ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.x, v0->unk_14.y + v6);
@@ -2445,7 +2445,7 @@ void ov12_0222CFA0(BattleAnimSystem *param0)
         ScaleLerpContext_InitXY(&v0->unk_9C, 100 * v0->unk_12, 100 * v0->unk_12, 100, 5, 100, 1);
         ScaleLerpContext_UpdateXY(&v0->unk_9C);
 
-        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_9C, &v1, &v2);
+        ScaleLerpContext_GetAffineScale(&v0->unk_9C, &v1, &v2);
         ManagedSprite_SetAffineScale(v0->unk_40, v1, v2);
 
         v3 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.y, 16, v0->unk_9C.data[4]);

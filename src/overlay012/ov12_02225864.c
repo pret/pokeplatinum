@@ -183,7 +183,7 @@ void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedS
 void ScaleLerpContext_ApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite)
 {
     f32 scaleX, scaleY;
-    BattleAnimUtil_ConvertRelativeToAffineScale(ctx, &scaleX, &scaleY);
+    ScaleLerpContext_GetAffineScale(ctx, &scaleX, &scaleY);
     ManagedSprite_SetAffineScale(sprite, scaleX, scaleY);
 }
 
@@ -506,7 +506,7 @@ BOOL ScaleLerpContext_UpdateXY(XYTransformContext *ctx)
     return FALSE;
 }
 
-void BattleAnimUtil_ConvertRelativeToAffineScale(XYTransformContext *ctx, f32 *px, f32 *py)
+void ScaleLerpContext_GetAffineScale(XYTransformContext *ctx, f32 *px, f32 *py)
 {
     *px = (1.0f * ctx->x) / MON_AFFINE_SCALE(1);
     *py = (1.0f * ctx->y) / MON_AFFINE_SCALE(1);
@@ -725,7 +725,7 @@ BOOL Afterimage_Update(AfterimageContext *ctx)
                 ManagedSprite_SetPositionXY(ctx->sprites[i], ctx->x + ctx->transforms[i].x, ctx->y + ctx->transforms[i].y);
             } else {
                 f32 x, y;
-                BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->transforms[i], &x, &y);
+                ScaleLerpContext_GetAffineScale(&ctx->transforms[i], &x, &y);
                 ManagedSprite_SetAffineScale(ctx->sprites[i], x, y);
             }
         } else {

@@ -137,22 +137,43 @@ enum FadeBattlerSpriteState {
 #define FADE_BATTLER_SPRITE_VAR_ALPHA            4
 #define FADE_BATTLER_SPRITE_VAR_HOLD_FRAMES      5
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    int unk_08;
-    s16 unk_0C;
-    s16 unk_0E;
-    ManagedSprite *unk_10;
-    XYTransformContext unk_14;
-    int unk_38;
-    int unk_3C;
-    int unk_40;
-    int unk_44;
-    int unk_48;
-    int unk_4C;
-    BOOL unk_50;
-} UnkStruct_ov12_02227B4C;
+// -------------------------------------------------------------------
+// Scale Pokemon Sprite
+// -------------------------------------------------------------------
+typedef struct ScalePokemonSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    int state;
+    s16 baseY;
+    s16 battlerHeight;
+    ManagedSprite *sprite;
+    XYTransformContext scale;
+    int spriteAlpha;
+    int startScale;
+    int endScale;
+    int refScale;
+    int cycles;
+    int scaleFrames;
+    BOOL flip;
+} ScalePokemonSpriteContext;
+
+enum ScalePokemonSpriteState {
+    SCALE_POKEMON_SPRITE_STATE_INIT_SCALE = 0,
+    SCALE_POKEMON_SPRITE_STATE_SCALE,
+    SCALE_POKEMON_SPRITE_STATE_INIT_RESTORE,
+    SCALE_POKEMON_SPRITE_STATE_RESTORE,
+    SCALE_POKEMON_SPRITE_STATE_CLEANUP
+};
+
+#define SCALE_POKEMON_SPRITE_BG_ALPHA         16
+#define SCALE_POKEMON_SPRITE_VAR_TARGET       0
+#define SCALE_POKEMON_SPRITE_VAR_SPRITE_ALPHA 1
+#define SCALE_POKEMON_SPRITE_VAR_START_SCALE  2
+#define SCALE_POKEMON_SPRITE_VAR_END_SCALE    3
+#define SCALE_POKEMON_SPRITE_VAR_REF_SCALE    4
+#define SCALE_POKEMON_SPRITE_VAR_CYCLES       5
+#define SCALE_POKEMON_SPRITE_VAR_FRAMES       6
+#define SCALE_POKEMON_SPRITE_VAR_SPRITE       7
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -1273,122 +1294,137 @@ void BattleAnimScriptFunc_FadeBattlerSprite(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FadeBattlerSprite, ctx);
 }
 
-static void ov12_02227B4C(SysTask *param0, void *param1)
+static void BattleAnimTask_ScalePokemonSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02227B4C *v0 = param1;
-    f32 v1, v2;
-    BOOL v3;
+    ScalePokemonSpriteContext *ctx = param;
+    f32 scaleX, scaleY;
+    BOOL active;
 
-    switch (v0->unk_08) {
-    case 0:
-        ScaleLerpContext_Init(&v0->unk_14, v0->unk_3C, v0->unk_44, v0->unk_40, v0->unk_4C >> 16);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v1, &v2);
+    switch (ctx->state) {
+    case SCALE_POKEMON_SPRITE_STATE_INIT_SCALE:
+        ScaleLerpContext_Init(
+            &ctx->scale,
+            ctx->startScale,
+            ctx->refScale,
+            ctx->endScale,
+            SCALE_POKEMON_SPRITE_SCALE_FRAMES(ctx->scaleFrames));
+        ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
 
-        if (v0->unk_50 == 1) {
-            v1 = -v1;
+        if (ctx->flip == TRUE) {
+            scaleX = -scaleX;
         }
 
-        ManagedSprite_SetAffineScale(v0->unk_10, v1, v2);
-        v0->unk_08++;
+        ManagedSprite_SetAffineScale(ctx->sprite, scaleX, scaleY);
+        ctx->state++;
         break;
-    case 1:
-        v3 = ScaleLerpContext_Update(&v0->unk_14);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v1, &v2);
+    case SCALE_POKEMON_SPRITE_STATE_SCALE:
+        active = ScaleLerpContext_Update(&ctx->scale);
+        ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
 
-        if (v0->unk_50 == 1) {
-            v1 = -v1;
+        if (ctx->flip == TRUE) {
+            scaleX = -scaleX;
         }
 
-        ManagedSprite_SetAffineScale(v0->unk_10, v1, v2);
+        ManagedSprite_SetAffineScale(ctx->sprite, scaleX, scaleY);
 
-        if (v3) {
-            BattleAnimUtil_SetSpriteAnchoredPosition(v0->unk_10, v0->unk_0C, v0->unk_0E, v0->unk_14.data[4], 0);
+        if (active) {
+            BattleAnimUtil_SetSpriteAnchoredPosition(
+                ctx->sprite,
+                ctx->baseY,
+                ctx->battlerHeight,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            v0->unk_08++;
+            ctx->state++;
         }
         break;
-    case 2:
-        ScaleLerpContext_Init(&v0->unk_14, v0->unk_40, v0->unk_44, v0->unk_3C, v0->unk_4C & 0xffff);
-        v0->unk_08++;
+    case SCALE_POKEMON_SPRITE_STATE_INIT_RESTORE:
+        ScaleLerpContext_Init(
+            &ctx->scale,
+            ctx->endScale,
+            ctx->refScale,
+            ctx->startScale,
+            SCALE_POKEMON_SPRITE_RESTORE_FRAMES(ctx->scaleFrames));
+        ctx->state++;
         break;
-    case 3:
-        v3 = ScaleLerpContext_Update(&v0->unk_14);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v1, &v2);
+    case SCALE_POKEMON_SPRITE_STATE_RESTORE:
+        active = ScaleLerpContext_Update(&ctx->scale);
+        ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
 
-        if (v0->unk_50 == 1) {
-            v1 = -v1;
+        if (ctx->flip == TRUE) {
+            scaleX = -scaleX;
         }
 
-        ManagedSprite_SetAffineScale(v0->unk_10, v1, v2);
+        ManagedSprite_SetAffineScale(ctx->sprite, scaleX, scaleY);
 
-        if (v3) {
-            BattleAnimUtil_SetSpriteAnchoredPosition(v0->unk_10, v0->unk_0C, v0->unk_0E, v0->unk_14.data[4], 0);
+        if (active) {
+            BattleAnimUtil_SetSpriteAnchoredPosition(
+                ctx->sprite,
+                ctx->baseY,
+                ctx->battlerHeight,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            v0->unk_48--;
+            ctx->cycles--;
 
-            if (v0->unk_48 <= 0) {
-                v0->unk_08++;
+            if (ctx->cycles <= 0) {
+                ctx->state++;
             } else {
-                v0->unk_08 = 0;
+                ctx->state = SCALE_POKEMON_SPRITE_STATE_INIT_SCALE;
             }
         }
         break;
-    case 4:
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    case SCALE_POKEMON_SPRITE_STATE_CLEANUP:
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_04);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-void ov12_02227CBC(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_ScalePokemonSprite(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02227B4C *v0;
-    PokemonSprite *v1;
-    int v2;
+    ScalePokemonSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ScalePokemonSpriteContext));
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02227B4C));
-
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
-
-    if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
-        v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
-        v0->unk_0E = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    PokemonSprite *battlerSprite;
+    if (BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_TARGET) == BATTLER_TYPE_ATTACKER) {
+        battlerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+        ctx->battlerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     } else {
-        v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-        v0->unk_0E = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
+        battlerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+        ctx->battlerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
     }
 
-    v0->unk_0C = PokemonSprite_GetAttribute(v1, MON_SPRITE_Y_CENTER);
-    v0->unk_0C -= PokemonSprite_GetAttribute(v1, MON_SPRITE_SHADOW_HEIGHT);
-    v0->unk_38 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_3C = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_40 = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_44 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v0->unk_48 = BattleAnimSystem_GetScriptVar(param0, 5);
-    v0->unk_4C = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_10 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, BattleAnimSystem_GetScriptVar(param0, 7));
+    ctx->baseY = PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_Y_CENTER);
+    ctx->baseY -= PokemonSprite_GetAttribute(battlerSprite, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->spriteAlpha = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_SPRITE_ALPHA);
+    ctx->startScale = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_START_SCALE);
+    ctx->endScale = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_END_SCALE);
+    ctx->refScale = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_REF_SCALE);
+    ctx->cycles = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_CYCLES);
+    ctx->scaleFrames = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_FRAMES);
+    ctx->sprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_SPRITE));
 
-    ManagedSprite_SetPriority(v0->unk_10, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_10, 1);
-    ManagedSprite_SetExplicitOamMode(v0->unk_10, GX_OAM_MODE_XLU);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_10, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetPriority(ctx->sprite, BATTLE_ANIM_HW_SPRITE_PRIORITY);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, BATTLE_ANIM_HW_SPRITE_EXP_PRIORITY);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, v0->unk_38, 16 - v0->unk_38);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02227B4C, v0);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, ctx->spriteAlpha, SCALE_POKEMON_SPRITE_BG_ALPHA - ctx->spriteAlpha);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ScalePokemonSprite, ctx);
 
-    v2 = BattleAnimSystem_GetScriptVar(param0, 0);
-
-    if (v2 == 0) {
-        v2 = 0;
+    int battlerType = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_TARGET);
+    if (battlerType == BATTLER_TYPE_ATTACKER) {
+        battlerType = BATTLER_TYPE_ATTACKER;
     } else {
-        v2 = 1;
+        battlerType = BATTLER_TYPE_DEFENDER;
     }
 
-    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(v0->unk_00, v2) == 1) {
-        v0->unk_50 = 1;
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, battlerType) == TRUE) {
+        ctx->flip = TRUE;
     }
 }
 
