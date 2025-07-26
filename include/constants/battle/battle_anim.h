@@ -96,6 +96,7 @@
 #define BATTLE_ANIM_MON_SPRITE_2 2
 #define BATTLE_ANIM_MON_SPRITE_3 3
 #define BATTLE_ANIM_MON_SPRITE_4 4
+#define BATTLE_ANIM_MON_SPRITE_F(N) (1 << (N))
 
 
 // Script function specific constants
