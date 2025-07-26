@@ -206,11 +206,18 @@ typedef struct {
     int unk_50;
 } UnkStruct_ov12_02227DE0;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    AlphaFadeContext unk_08;
-} UnkStruct_ov12_0222813C;
+typedef struct AlphaFadePokemonSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    AlphaFadeContext alpha;
+} AlphaFadePokemonSpriteContext;
+
+#define ALPHA_FADE_POKEMON_SPRITE_VAR_TARGETS            0
+#define ALPHA_FADE_POKEMON_SPRITE_VAR_SPRITE_START_ALPHA 1
+#define ALPHA_FADE_POKEMON_SPRITE_VAR_SPRITE_END_ALPHA   2
+#define ALPHA_FADE_POKEMON_SPRITE_VAR_BG_START_ALPHA     3
+#define ALPHA_FADE_POKEMON_SPRITE_VAR_BG_END_ALPHA       4
+#define ALPHA_FADE_POKEMON_SPRITE_VAR_FRAMES             5
 
 typedef struct {
     int unk_00;
@@ -476,8 +483,8 @@ typedef struct {
 } UnkStruct_ov12_0222A624;
 
 typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *battlerSprites[4];
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprites[4];
     int frames;
     int unk_30;
 } RenderPokemonSpritesContext;
@@ -1625,47 +1632,47 @@ void ov12_02227F30(BattleAnimSystem *param0)
     ov12_02227DE0(v2, v0);
 }
 
-static void ov12_0222813C(SysTask *param0, void *param1)
+static void BattleAnimTask_AlphaFadePokemonSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222813C *v0 = param1;
+    AlphaFadePokemonSpriteContext *ctx = param;
 
-    if (AlphaFadeContext_IsDone(&v0->unk_08)) {
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    if (AlphaFadeContext_IsDone(&ctx->alpha)) {
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
     } else {
-        SpriteSystem_DrawSprites(v0->unk_04);
+        SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
     }
 }
 
-void ov12_02228168(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_AlphaFadePokemonSprite(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222813C *v0;
-    int v1;
-    int v2;
-    ManagedSprite *v3;
-    int v4;
-    int v5;
+    AlphaFadePokemonSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(AlphaFadePokemonSpriteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222813C));
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_00);
+    int targets = BattleAnimSystem_GetScriptVar(system, ALPHA_FADE_POKEMON_SPRITE_VAR_TARGETS);
 
-    v1 = BattleAnimSystem_GetScriptVar(param0, 0);
-
-    for (v2 = 0; v2 < 4; v2++) {
-        if (v1 & (1 << v2)) {
-            v3 = BattleAnimSystem_GetPokemonSprite(v0->unk_00, v2);
-            ManagedSprite_SetExplicitOamMode(v3, GX_OAM_MODE_XLU);
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        if (targets & BATTLE_ANIM_MON_SPRITE_F(i)) {
+            ManagedSprite *sprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, i);
+            ManagedSprite_SetExplicitOamMode(sprite, GX_OAM_MODE_XLU);
         }
     }
 
-    v4 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v5 = BattleAnimSystem_GetScriptVar(param0, 3);
+    int spriteStartAlpha = BattleAnimSystem_GetScriptVar(system, ALPHA_FADE_POKEMON_SPRITE_VAR_SPRITE_START_ALPHA);
+    int bgStartAlpha = BattleAnimSystem_GetScriptVar(system, ALPHA_FADE_POKEMON_SPRITE_VAR_BG_START_ALPHA);
 
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, v4, v5);
-    AlphaFadeContext_Init(&v0->unk_08, v4, BattleAnimSystem_GetScriptVar(param0, 2), v5, BattleAnimSystem_GetScriptVar(param0, 4), BattleAnimSystem_GetScriptVar(param0, 5));
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0222813C, v0);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, spriteStartAlpha, bgStartAlpha);
+    AlphaFadeContext_Init(
+        &ctx->alpha,
+        spriteStartAlpha,
+        BattleAnimSystem_GetScriptVar(system, ALPHA_FADE_POKEMON_SPRITE_VAR_SPRITE_END_ALPHA),
+        bgStartAlpha,
+        BattleAnimSystem_GetScriptVar(system, ALPHA_FADE_POKEMON_SPRITE_VAR_BG_END_ALPHA),
+        BattleAnimSystem_GetScriptVar(system, ALPHA_FADE_POKEMON_SPRITE_VAR_FRAMES));
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_AlphaFadePokemonSprite, ctx);
 }
 
 void ov12_02228214(BattleAnimSystem *param0)
@@ -3771,12 +3778,12 @@ void ov12_0222A8F4(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222A878, v0);
 }
 
-static void BattleAnimTask_RenderPokemonSprites(SysTask *param0, void *param)
+static void BattleAnimTask_RenderPokemonSprites(SysTask *task, void *param)
 {
     RenderPokemonSpritesContext *ctx = param;
 
     if (ctx->frames == 0) {
-        BattleAnimSystem_EndAnimTask(ctx->unk_00.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
         Heap_Free(ctx);
         return;
     }
@@ -3784,20 +3791,20 @@ static void BattleAnimTask_RenderPokemonSprites(SysTask *param0, void *param)
     ctx->frames--;
 
     for (int i = BATTLER_PLAYER_1; i < MAX_BATTLERS; i++) {
-        if (ctx->battlerSprites[i] == NULL) {
+        if (ctx->sprites[i] == NULL) {
             continue;
         }
 
-        ManagedSprite_TickFrame(ctx->battlerSprites[i]);
+        ManagedSprite_TickFrame(ctx->sprites[i]);
     }
 
-    SpriteSystem_DrawSprites(ctx->unk_00.pokemonSpriteManager);
+    SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 }
 
 void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *system)
 {
     RenderPokemonSpritesContext *ctx = BattleAnimUtil_Alloc(system, sizeof(RenderPokemonSpritesContext));
-    BattleAnimSystem_GetCommonData(system, &ctx->unk_00);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
     if (BattleAnimSystem_GetScriptVar(system, 0) == 0) {
         ctx->frames = 2 + 1;
@@ -3813,14 +3820,14 @@ void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *system)
     };
 
     for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
-        ctx->battlerSprites[battler] = BattleAnimSystem_GetPokemonSprite(ctx->unk_00.battleAnimSystem, battler);
+        ctx->sprites[battler] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, battler);
 
-        if (ctx->battlerSprites[battler] != NULL) {
-            ManagedSprite_SetPriority(ctx->battlerSprites[battler], priorityTable[battler]);
+        if (ctx->sprites[battler] != NULL) {
+            ManagedSprite_SetPriority(ctx->sprites[battler], priorityTable[battler]);
         }
     }
 
-    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->unk_00.battleAnimSystem, BattleAnimTask_RenderPokemonSprites, ctx);
+    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_RenderPokemonSprites, ctx);
     BattleAnimTask_RenderPokemonSprites(task, ctx);
 }
 

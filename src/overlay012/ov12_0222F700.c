@@ -756,7 +756,6 @@ enum ExtrasensoryState {
 #define EXTRASENSORY_DISTORTION_3_FRAMES    16
 #define EXTRASENSORY_DISTORTION_COUNT       3
 
-
 typedef struct {
     BattleAnimSystem *unk_00;
     int unk_04;
@@ -4210,7 +4209,7 @@ static void ExtrasensoryContext_UpdateScroll(ExtrasensoryContext *ctx)
         xOffset += ((y - ctx->centerY) * ctx->amplitudeStep) / EXTRASENSORY_SCROLL_DAMPENING_VALUE;
         s16 initX = ctx->initValue & BG_OFFSET_X_MASK;
         s16 initY = ctx->initValue >> BG_OFFSET_Y_SHIFT;
-        
+
         int index = y - 1;
         if (index < 0) {
             index += HW_LCD_HEIGHT;
