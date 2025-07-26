@@ -12,10 +12,10 @@
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224F294.h"
-#include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 #include "overlay023/struct_ov23_0224271C.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
 #include "communication_system.h"
@@ -77,8 +77,8 @@ static void ov23_022416A8(int param0)
 static void ov23_022416B0(int param0)
 {
     if (param0 > 0) {
-        ov23_02254154(ov23_0224219C(), 0, param0);
-        ov23_02253F40(ov23_0224219C(), 75, 1, ov23_022416A8);
+        UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 0, param0);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 75, TRUE, ov23_022416A8);
     } else {
         ov23_022416A8(param0);
     }
@@ -279,8 +279,8 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3)
                     v4 = v5->unk_04 + v5->unk_05;
                 }
 
-                ov23_02254154(ov23_0224219C(), 1, v4);
-                ov23_022541DC(ov23_0224219C(), 2, v5->unk_06);
+                UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, v4);
+                UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(CommManUnderground_GetCommonTextPrinter(), 2, v5->unk_06);
 
                 v4 = v5->unk_05;
 
@@ -288,12 +288,12 @@ void ov23_022419B4(int param0, int param1, void *param2, void *param3)
                     v4 = 99 - v5->unk_04;
                 }
 
-                ov23_02253F78(ov23_0224219C(), 69, 1, ov23_022416B0, v4);
-                ov23_02253F98(ov23_0224219C());
+                UndergroundTextPrinter_PrintTextWithCallbackParam(CommManUnderground_GetCommonTextPrinter(), 69, TRUE, ov23_022416B0, v4);
+                UndergroundTextPrinter_SetDummyField(CommManUnderground_GetCommonTextPrinter());
                 ov23_02241C48(v5);
                 ov23_02241778();
             } else {
-                ov23_02253F40(ov23_0224219C(), 83, 1, ov23_022416A8);
+                UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 83, TRUE, ov23_022416A8);
             }
         }
     }
@@ -357,17 +357,17 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
     v0.unk_05 = 0;
 
     if (ov23_02242E58(param2, param3)) {
-        ov23_02253F40(ov23_0224219C(), 84, 0, NULL);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 84, FALSE, NULL);
         return;
     }
 
     if (CommPlayer_CheckNPCCollision(param2, param3)) {
-        ov23_02253F40(ov23_0224219C(), 55, 0, NULL);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 55, FALSE, NULL);
         return;
     }
 
     if (TerrainCollisionManager_CheckCollision(Unk_ov23_02257744->fieldSystem, param2, param3)) {
-        ov23_02253F40(ov23_0224219C(), 60, 0, NULL);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 60, FALSE, NULL);
         return;
     }
 
@@ -387,7 +387,7 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
 
             v2 = 1;
         } else {
-            ov23_02253F40(ov23_0224219C(), 59, 0, NULL);
+            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 59, FALSE, NULL);
         }
     } else {
         ov23_02241CAC(&v0);
@@ -395,9 +395,9 @@ void ov23_02241AE8(int param0, int param1, int param2, int param3)
     }
 
     if (v2) {
-        ov23_022541A0(ov23_0224219C(), 0, param0);
-        ov23_02254154(ov23_0224219C(), 1, param1);
-        ov23_02253F40(ov23_0224219C(), 58, 0, NULL);
+        UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetCommonTextPrinter(), 0, param0);
+        UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, param1);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 58, FALSE, NULL);
         ov23_02250128(param0);
 
         Sound_PlayEffect(SEQ_SE_DP_SUTYA);
@@ -505,7 +505,7 @@ BOOL ov23_02241D58(Strbuf *param0)
 
             StringTemplate_SetUndergroundItemNameWithArticle(v1, 2, Unk_ov23_02257744->unk_468[v0]);
             StringTemplate_CapitalizeArgAtIndex(v1, 2);
-            MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 95, v2);
+            MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), 95, v2);
             StringTemplate_Format(v1, param0, v2);
 
             Unk_ov23_02257744->unk_468[v0] = 0;
