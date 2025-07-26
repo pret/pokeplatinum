@@ -179,7 +179,7 @@ void ScaleLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s
 BOOL ScaleLerpContext_Update(XYTransformContext *param0);
 void ScaleLerpContext_InitXY(XYTransformContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, s16 param5, u32 param6);
 BOOL ScaleLerpContext_UpdateXY(XYTransformContext *param0);
-void BattleAnimUtil_ConvertRelativeToAffineScale(XYTransformContext *param0, f32 *param1, f32 *param2);
+void ScaleLerpContext_GetAffineScale(XYTransformContext *param0, f32 *param1, f32 *param2);
 s16 BattleAnimUtil_GetGroundAnchoredScaleOffset(s16 param0, int param1, fx32 param2);
 void BattleAnimUtil_SetPokemonSpriteAnchoredPosition(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, enum BattleAnimAnchorType param4);
 void BattleAnimUtil_SetSpriteAnchoredPosition(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, enum BattleAnimAnchorType param4);

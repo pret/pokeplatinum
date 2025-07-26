@@ -1167,7 +1167,7 @@ static void ConfusionContext_Apply(ConfusionContext *ctx)
     ManagedSprite_SetPositionXY(ctx->monSprite, ctx->defenderX + ctx->shake.x, ctx->defenderY + ctx->shake.y - ctx->defenderShadowHeight);
 
     f32 x, y;
-    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &x, &y);
+    ScaleLerpContext_GetAffineScale(&ctx->scale, &x, &y);
     x += ctx->jitterDir * CONFUSION_SCALE_X_JITTER;
     ManagedSprite_SetAffineScale(ctx->monSprite, x, y);
 
@@ -1450,7 +1450,7 @@ static void BattleAnimTask_NightShadeAttacker(SysTask *task, void *param)
         break;
     case NIGHT_SHADE_ATTACKER_STATE_GROW:
         active = ScaleLerpContext_Update(&ctx->scale);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+        ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
 
         if (ctx->isContest == TRUE) {
             scaleX = -scaleX;
@@ -1802,7 +1802,7 @@ static void ov12_02230BE0(SysTask *param0, void *param1)
         v1 = ScaleLerpContext_Update(&v0->unk_14);
 
         if (v1 == 1) {
-            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v2, &v3);
+            ScaleLerpContext_GetAffineScale(&v0->unk_14, &v2, &v3);
             ManagedSprite_SetAffineScale(v0->unk_10, v2 * v0->unk_54, v3);
         } else {
             v0->unk_0C++;
@@ -1834,7 +1834,7 @@ static void ov12_02230BE0(SysTask *param0, void *param1)
         v1 = ScaleLerpContext_Update(&v0->unk_14);
 
         if (v1 == 1) {
-            BattleAnimUtil_ConvertRelativeToAffineScale(&v0->unk_14, &v2, &v3);
+            ScaleLerpContext_GetAffineScale(&v0->unk_14, &v2, &v3);
             ManagedSprite_SetAffineScale(v0->unk_10, v2 * v0->unk_54, v3);
         } else {
             v0->unk_0C++;
@@ -1949,7 +1949,7 @@ static BOOL ov12_02230EC0(UnkStruct_ov12_02230E24 *param0)
     v0 = ScaleLerpContext_Update(&param0->unk_04);
 
     if (v0 == 1) {
-        BattleAnimUtil_ConvertRelativeToAffineScale(&param0->unk_04, &v1, &v2);
+        ScaleLerpContext_GetAffineScale(&param0->unk_04, &v1, &v2);
 
         if (param0->unk_28) {
             ManagedSprite_SetAffineScale(param0->unk_00, -v1, 1);
@@ -3518,7 +3518,7 @@ static void MementoContext_InitAttacker(MementoContext *ctx)
     ManagedSprite_SetDrawFlag(ctx->attackerSprite, TRUE);
 
     f32 scaleX, scaleY;
-    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+    ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
 
     if (ctx->attackerFlipped == TRUE) {
         scaleX = -scaleX;
@@ -3536,7 +3536,7 @@ static BOOL MementoContext_UpdateAttacker(MementoContext *ctx)
     switch (ctx->spriteState) {
     case MEMENTO_ATTACKER_STATE_STRETCH:
         ScaleLerpContext_UpdateXY(&ctx->scale);
-        BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+        ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
         if (ctx->attackerFlipped == TRUE) {
             scaleX = -scaleX;
         }
@@ -3569,7 +3569,7 @@ static BOOL MementoContext_UpdateAttacker(MementoContext *ctx)
         if (ScaleLerpContext_Update(&ctx->scaleX)) {
             ctx->scale.x = ctx->scaleX.x;
 
-            BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+            ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
             if (ctx->attackerFlipped == TRUE) {
                 scaleX = -scaleX;
             }
@@ -3620,7 +3620,7 @@ static void MementoContext_InitDefender(MementoContext *ctx)
         MEMENTO_DEFENDER_ANIM_FRAMES);
 
     f32 scaleX, scaleY;
-    BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+    ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
     if (ctx->defenderFlipped == TRUE) {
         scaleX = -scaleX;
     }
@@ -3658,7 +3658,7 @@ static BOOL MementoContext_UpdateDefender(MementoContext *ctx)
 
         scaleActive = ScaleLerpContext_UpdateXY(&ctx->scale);
 
-        BattleAnimUtil_ConvertRelativeToAffineScale(&ctx->scale, &scaleX, &scaleY);
+        ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
         if (ctx->defenderFlipped == TRUE) {
             scaleX = -scaleX;
         }

@@ -62,6 +62,8 @@
 #define BATTLE_BG_SCREEN_REVERSE_ENEMY_ONLY 1 //< Reverse BG screen only for enemy attacking player
 #define BATTLE_BG_SCREEN_REVERSE_DEFAULT    2 //< Reverse BG screen for enemy attacking player OR enemy attacking enemy
 
+#define BATTLE_ANIM_HW_SPRITE_PRIORITY     100
+#define BATTLE_ANIM_HW_SPRITE_EXP_PRIORITY 1
 
 #define BATTLE_ANIM_ATTACKER         (1 << 1) //< Attacker
 #define BATTLE_ANIM_ATTACKER_PARTNER (1 << 2) //< Attacker's partner
@@ -91,6 +93,10 @@
 #define FADE_BG_TYPE_BASE       0
 #define FADE_BG_TYPE_MON_SPRITE 1
 #define FADE_BG_TYPE_EFFECT     2
+
+#define SCALE_POKEMON_SPRITE_FRAMES(scaleFrames, restoreFrames) (((scaleFrames & 0xFFFF) << 16) | (restoreFrames & 0xFFFF))
+#define SCALE_POKEMON_SPRITE_SCALE_FRAMES(frames) ((frames) >> 16)
+#define SCALE_POKEMON_SPRITE_RESTORE_FRAMES(frames) ((frames) & 0xFFFF)
 
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
