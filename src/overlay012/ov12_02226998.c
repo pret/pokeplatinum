@@ -59,7 +59,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_OdorSleuth,
     BattleAnimScriptFunc_HideBattler,
     BattleAnimScriptFunc_FakeOut,
-    ov12_02227F30,
+    BattleAnimScriptFunc_ScaleBattlerSprite,
     ov12_02234214,
     ov12_02226EB0,
     ov12_022271D8,

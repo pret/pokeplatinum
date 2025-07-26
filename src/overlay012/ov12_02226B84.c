@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
+#include "constants/graphics.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
@@ -189,22 +190,43 @@ enum ScalePokemonSpriteState {
 #define SCALE_POKEMON_SPRITE_VAR_FRAMES       6
 #define SCALE_POKEMON_SPRITE_VAR_SPRITE       7
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    s16 unk_08;
-    s16 unk_0A;
-    PokemonSprite *unk_0C;
-    XYTransformContext unk_10;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
-    int unk_40;
-    int unk_44;
-    int unk_48;
-    int unk_4C;
-    int unk_50;
-} UnkStruct_ov12_02227DE0;
+// -------------------------------------------------------------------
+// Scale Battler Sprite
+// -------------------------------------------------------------------
+typedef struct ScaleBattlerSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    s16 battlerY;
+    s16 battlerSpriteHeight;
+    PokemonSprite *monSprite;
+    XYTransformContext scale;
+    int startX;
+    int endX;
+    int startY;
+    int endY;
+    int reference;
+    int cycles;
+    int scaleFrames;
+    int hold;
+} ScaleBattlerSpriteContext;
+
+enum ScaleBattlerSpriteState {
+    SCALE_BATTLER_SPRITE_STATE_INIT_SCALE = 0,
+    SCALE_BATTLER_SPRITE_STATE_SCALE,
+    SCALE_BATTLER_SPRITE_STATE_HOLD,
+    SCALE_BATTLER_SPRITE_STATE_INIT_RESTORE,
+    SCALE_BATTLER_SPRITE_STATE_RESTORE,
+    SCALE_BATTLER_SPRITE_STATE_CLEANUP,
+};
+
+#define SCALE_BATTLER_SPRITE_VAR_TARGET      0
+#define SCALE_BATTLER_SPRITE_VAR_START_X     1
+#define SCALE_BATTLER_SPRITE_VAR_END_X       2
+#define SCALE_BATTLER_SPRITE_VAR_START_Y     3
+#define SCALE_BATTLER_SPRITE_VAR_END_Y       4
+#define SCALE_BATTLER_SPRITE_VAR_REFERENCE   5
+#define SCALE_BATTLER_SPRITE_VAR_HOLD_CYCLES 6
+#define SCALE_BATTLER_SPRITE_VAR_FRAMES      7
 
 // -------------------------------------------------------------------
 // Alpha Fade Pokemon Sprite
@@ -507,10 +529,10 @@ typedef struct {
 
 static int ov12_02229454(BattleAnimSystem *param0, int param1);
 
-static void ov12_02226B84(PokemonSprite *param0)
+static void ResetMonScale(PokemonSprite *sprite)
 {
-    PokemonSprite_SetAttribute(param0, MON_SPRITE_SCALE_X, 0x100);
-    PokemonSprite_SetAttribute(param0, MON_SPRITE_SCALE_Y, 0x100);
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
 }
 
 static void BattleAnimTask_Shake(SysTask *task, void *param)
@@ -1459,186 +1481,208 @@ void BattleAnimScriptFunc_ScalePokemonSprite(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02227DE0(SysTask *param0, void *param1)
+static void BattleAnimTask_ScaleBattlerSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02227DE0 *v0 = param1;
+    ScaleBattlerSpriteContext *ctx = param;
 
-    switch (v0->unk_04) {
-    case 0:
-        ScaleLerpContext_InitXY(&v0->unk_10, v0->unk_34, v0->unk_38, v0->unk_3C, v0->unk_40, v0->unk_44, v0->unk_4C >> 16);
-        ScaleLerpContext_UpdateAndApplyToMon(&v0->unk_10, v0->unk_0C);
-        v0->unk_04++;
+    switch (ctx->state) {
+    case SCALE_BATTLER_SPRITE_STATE_INIT_SCALE:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            ctx->startX,
+            ctx->endX,
+            ctx->startY,
+            ctx->endY,
+            ctx->reference,
+            SCALE_POKEMON_SPRITE_SCALE_FRAMES(ctx->scaleFrames));
+        ScaleLerpContext_UpdateAndApplyToMon(&ctx->scale, ctx->monSprite);
+        ctx->state++;
         break;
-    case 1:
-        if (ov12_022260E8(&v0->unk_10, v0->unk_0C)) {
-            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_0C, v0->unk_08, v0->unk_0A, v0->unk_10.data[4], 0);
+    case SCALE_BATTLER_SPRITE_STATE_SCALE:
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->monSprite)) {
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+                ctx->monSprite,
+                ctx->battlerY,
+                ctx->battlerSpriteHeight,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            v0->unk_04++;
+            ctx->state++;
         }
         break;
-    case 2:
-        if (v0->unk_50 == 0) {
-            v0->unk_04++;
+    case SCALE_BATTLER_SPRITE_STATE_HOLD:
+        if (ctx->hold == 0) {
+            ctx->state++;
         } else {
-            v0->unk_50--;
+            // BUG: Because the initial hold value isn't saved anywhere, the hold
+            // will only apply to the first cycle.
+            ctx->hold--;
             break;
         }
-    case 3:
-        ScaleLerpContext_InitXY(&v0->unk_10, v0->unk_38, v0->unk_34, v0->unk_40, v0->unk_3C, v0->unk_44, v0->unk_4C & 0xffff);
-        ov12_022260E8(&v0->unk_10, v0->unk_0C);
-        v0->unk_04++;
+    case SCALE_BATTLER_SPRITE_STATE_INIT_RESTORE:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            ctx->endX,
+            ctx->startX,
+            ctx->endY,
+            ctx->startY,
+            ctx->reference,
+            SCALE_POKEMON_SPRITE_RESTORE_FRAMES(ctx->scaleFrames));
+        ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->monSprite);
+        ctx->state++;
         break;
-    case 4:
-        if (ov12_022260E8(&v0->unk_10, v0->unk_0C)) {
-            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_0C, v0->unk_08, v0->unk_0A, v0->unk_10.data[4], 0);
+    case SCALE_BATTLER_SPRITE_STATE_RESTORE:
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->monSprite)) {
+            BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+                ctx->monSprite,
+                ctx->battlerY,
+                ctx->battlerSpriteHeight,
+                ctx->scale.data[XY_PARAM_CUR_Y],
+                BATTLE_ANIM_ANCHOR_BOTTOM);
         } else {
-            v0->unk_48--;
+            ctx->cycles--;
 
-            if (v0->unk_48 <= 0) {
-                v0->unk_04++;
+            if (ctx->cycles <= 0) {
+                ctx->state++;
             } else {
-                v0->unk_04 = 0;
+                ctx->state = SCALE_BATTLER_SPRITE_STATE_INIT_SCALE;
             }
         }
         break;
-    case 5:
-        ov12_02226B84(v0->unk_0C);
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    case SCALE_BATTLER_SPRITE_STATE_CLEANUP:
+        ResetMonScale(ctx->monSprite);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         return;
     }
 }
 
-void ov12_02227F30(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_ScaleBattlerSprite(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02227DE0 *v0;
-    BattleAnimSpriteInfo v1[4];
-    SysTask *v2;
-    int v3;
-    int v4;
+    BattleAnimSpriteInfo sprites[MAX_BATTLERS];
+    int spriteCount;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02227DE0));
-    v0->unk_00 = param0;
+    ScaleBattlerSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ScaleBattlerSpriteContext));
+    ctx->battleAnimSys = system;
 
-    switch (BattleAnimSystem_GetScriptVar(param0, 0)) {
-    case 0x2 | 0x100:
-    case 0x4 | 0x100:
-        v0->unk_0A = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-        BattleAnimUtil_GetBattlerSprites(v0->unk_00, BattleAnimSystem_GetScriptVar(param0, 0), v1, &v3);
-        v0->unk_0C = v1[0].monSprite;
+    switch (BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_TARGET)) {
+    case BATTLE_ANIM_BATTLER_SPRITE_ATTACKER:
+    case BATTLE_ANIM_BATTLER_SPRITE_ATTACKER_PARTNER:
+        ctx->battlerSpriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(
+            ctx->battleAnimSys,
+            BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+        BattleAnimUtil_GetBattlerSprites(
+            ctx->battleAnimSys,
+            BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_TARGET),
+            sprites,
+            &spriteCount);
+
+        ctx->monSprite = sprites[0].monSprite;
         break;
-    case 0x8 | 0x100:
-    case 0x10 | 0x100:
-        v0->unk_0A = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-        BattleAnimUtil_GetBattlerSprites(v0->unk_00, BattleAnimSystem_GetScriptVar(param0, 0), v1, &v3);
-        v0->unk_0C = v1[0].monSprite;
+    case BATTLE_ANIM_BATTLER_SPRITE_DEFENDER:
+    case BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER:
+        ctx->battlerSpriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(
+            ctx->battleAnimSys,
+            BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+        BattleAnimUtil_GetBattlerSprites(
+            ctx->battleAnimSys,
+            BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_TARGET),
+            sprites,
+            &spriteCount);
+
+        ctx->monSprite = sprites[0].monSprite;
         break;
-    case (0x2 | 0x800): {
-        int v5;
-        int v6;
+    case BATTLE_ANIM_BATTLER_PLAYER_1: {
+        int battler = BATTLER_NONE;
 
-        v4 = 0xFF;
-
-        for (v5 = 0; v5 < 4; v5++) {
-            v6 = BattleAnimSystem_GetBattlerType(param0, v5);
-
-            if ((v6 == 0) || (v6 == 2)) {
-                v4 = v5;
+        for (int i = 0; i < MAX_BATTLERS; i++) {
+            int type = BattleAnimSystem_GetBattlerType(system, i);
+            if (type == BATTLER_TYPE_SOLO_PLAYER || type == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                battler = i;
                 break;
             }
         }
 
-        if (v4 == 0xFF) {
-            v4 = 0;
+        if (battler == BATTLER_NONE) {
+            battler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v4);
+        ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
     } break;
-    case (0x4 | 0x800): {
-        int v7;
-        int v8;
+    case BATTLE_ANIM_BATTLER_PLAYER_2: {
+        int battler = BATTLER_NONE;
 
-        v4 = 0xFF;
-
-        for (v7 = 0; v7 < 4; v7++) {
-            v8 = BattleAnimSystem_GetBattlerType(param0, v7);
-
-            if (v8 == 4) {
-                v4 = v7;
+        for (int i = 0; i < MAX_BATTLERS; i++) {
+            int type = BattleAnimSystem_GetBattlerType(system, i);
+            if (type == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                battler = i;
                 break;
             }
         }
 
-        if (v4 == 0xFF) {
-            v4 = 0;
+        if (battler == BATTLER_NONE) {
+            battler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v4);
+        ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
     } break;
-    case (0x8 | 0x800): {
-        int v9;
-        int v10;
+    case BATTLE_ANIM_BATTLER_ENEMY_1: {
+        int battler = BATTLER_NONE;
 
-        v4 = 0xFF;
-
-        for (v9 = 0; v9 < 4; v9++) {
-            v10 = BattleAnimSystem_GetBattlerType(param0, v9);
-
-            if ((v10 == 1) || (v10 == 3)) {
-                v4 = v9;
+        for (int i = 0; i < MAX_BATTLERS; i++) {
+            int type = BattleAnimSystem_GetBattlerType(system, i);
+            if (type == BATTLER_TYPE_SOLO_ENEMY || type == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                battler = i;
                 break;
             }
         }
 
-        if (v4 == 0xFF) {
-            v4 = 0;
+        if (battler == BATTLER_NONE) {
+            battler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v4);
+        ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
     } break;
-    case (0x10 | 0x800): {
-        int v11;
-        int v12;
+    case BATTLE_ANIM_BATTLER_ENEMY_2: {
+        int battler = BATTLER_NONE;
 
-        v4 = 0xFF;
-
-        for (v11 = 0; v11 < 4; v11++) {
-            v12 = BattleAnimSystem_GetBattlerType(param0, v11);
-
-            if (v12 == 5) {
-                v4 = v11;
+        for (int i = 0; i < MAX_BATTLERS; i++) {
+            int type = BattleAnimSystem_GetBattlerType(system, i);
+            if (type == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                battler = i;
                 break;
             }
         }
 
-        if (v4 == 0xFF) {
-            v4 = 0;
+        if (battler == BATTLER_NONE) {
+            battler = BATTLER_PLAYER_1;
         }
 
-        v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v4);
+        ctx->monSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, battler);
     } break;
     }
 
-    if (v0->unk_0C == NULL) {
-        Heap_Free(v0);
+    if (ctx->monSprite == NULL) {
+        Heap_Free(ctx);
         return;
     }
 
-    v0->unk_08 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v0->unk_0A = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_SHADOW_HEIGHT);
-    v0->unk_0A += 16;
-    v0->unk_34 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_38 = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_3C = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_40 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v0->unk_44 = BattleAnimSystem_GetScriptVar(param0, 5);
-    v0->unk_48 = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_4C = BattleAnimSystem_GetScriptVar(param0, 7);
-    v0->unk_48 = BattleAnimSystem_GetScriptVar(param0, 6) & 0xffff;
-    v0->unk_50 = BattleAnimSystem_GetScriptVar(param0, 6) >> 16;
+    ctx->battlerY = PokemonSprite_GetAttribute(ctx->monSprite, MON_SPRITE_Y_CENTER);
+    ctx->battlerSpriteHeight = PokemonSprite_GetAttribute(ctx->monSprite, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->battlerSpriteHeight += 16;
 
-    v2 = BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02227DE0, v0);
-    ov12_02227DE0(v2, v0);
+    ctx->startX = BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_START_X);
+    ctx->endX = BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_END_X);
+    ctx->startY = BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_START_Y);
+    ctx->endY = BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_END_Y);
+    ctx->reference = BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_REFERENCE);
+    ctx->cycles = BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_HOLD_CYCLES);
+    ctx->scaleFrames = BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_FRAMES);
+    ctx->cycles = SCALE_BATTLER_SPRITE_CYCLES(BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_HOLD_CYCLES));
+    ctx->hold = SCALE_BATTLER_SPRITE_HOLD(BattleAnimSystem_GetScriptVar(system, SCALE_BATTLER_SPRITE_VAR_HOLD_CYCLES));
+
+    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ScaleBattlerSprite, ctx);
+    BattleAnimTask_ScaleBattlerSprite(task, ctx);
 }
 
 static void BattleAnimTask_AlphaFadePokemonSprite(SysTask *task, void *param)
@@ -2514,7 +2558,7 @@ static void ov12_02229278(SysTask *param0, void *param1)
         v0->unk_54 += v0->unk_42;
     } break;
     default:
-        ov12_02226B84(v0->unk_1C.monSprite);
+        ResetMonScale(v0->unk_1C.monSprite);
         BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
         Heap_Free(v0);
         break;
@@ -2631,7 +2675,7 @@ static void ov12_022294AC(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_28.monSprite, MON_SPRITE_PARTIAL_DRAW, 0);
         PokemonSprite_SetAttribute(v0->unk_28.monSprite, MON_SPRITE_Y_CENTER, v0->unk_48);
         PokemonSprite_SetAttribute(v0->unk_28.monSprite, MON_SPRITE_DRAW_HEIGHT, v0->unk_40);
-        ov12_02226B84(v0->unk_28.monSprite);
+        ResetMonScale(v0->unk_28.monSprite);
         BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
         Heap_Free(v0);
         break;
@@ -2664,7 +2708,7 @@ static void ov12_02229538(SysTask *param0, void *param1)
         PokemonSprite_SetAttribute(v0->unk_28.monSprite, MON_SPRITE_PARTIAL_DRAW, 0);
         PokemonSprite_SetAttribute(v0->unk_28.monSprite, MON_SPRITE_Y_CENTER, v0->unk_48);
         PokemonSprite_SetAttribute(v0->unk_28.monSprite, MON_SPRITE_DRAW_HEIGHT, v0->unk_40);
-        ov12_02226B84(v0->unk_28.monSprite);
+        ResetMonScale(v0->unk_28.monSprite);
         BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
         Heap_Free(v0);
         break;
@@ -2694,7 +2738,7 @@ static void ov12_022295C4(SysTask *param0, void *param1)
         break;
     case 1:
         PokemonSprite_SetAttribute(v0->unk_28.monSprite, MON_SPRITE_PARTIAL_DRAW, 0);
-        ov12_02226B84(v0->unk_28.monSprite);
+        ResetMonScale(v0->unk_28.monSprite);
         BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
         Heap_Free(v0);
         break;

@@ -3250,7 +3250,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
 
     switch (param0->unk_40) {
     case 0:
-        if (ov12_022260E8(&param0->unk_1C, param0->unk_18)) {
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&param0->unk_1C, param0->unk_18)) {
             BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             param0->unk_40++;
@@ -3258,7 +3258,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
         }
         break;
     case 1:
-        if (ov12_022260E8(&param0->unk_1C, param0->unk_18)) {
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&param0->unk_1C, param0->unk_18)) {
             BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             param0->unk_40++;
@@ -3266,7 +3266,7 @@ static BOOL ov12_02232744(UnkStruct_ov12_02232720 *param0)
         }
         break;
     case 2:
-        if (ov12_022260E8(&param0->unk_1C, param0->unk_18)) {
+        if (ScaleLerpContext_UpdateXYAndApplyToMon(&param0->unk_1C, param0->unk_18)) {
             BattleAnimUtil_SetPokemonSpriteAnchoredPosition(param0->unk_18, param0->unk_44, param0->unk_46, param0->unk_1C.data[4], 0);
         } else {
             PokemonSprite_SetAttribute(param0->unk_18, MON_SPRITE_SCALE_X, 0x100);
@@ -4467,13 +4467,13 @@ static void ov12_02234044(SysTask *param0, void *param1)
     case 0:
         ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_5C, v0->unk_60, v0->unk_64, v0->unk_68, v0->unk_6C, v0->unk_74 >> 16);
         ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        ov12_022260E8(&v0->unk_14, v0->unk_10);
+        ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
         v0->unk_04++;
         break;
     case 1:
         ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        v1 = ov12_022260E8(&v0->unk_14, v0->unk_10);
+        v1 = ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
 
         if (v1 == 0) {
@@ -4483,13 +4483,13 @@ static void ov12_02234044(SysTask *param0, void *param1)
     case 2:
         ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_60, v0->unk_5C, v0->unk_68, v0->unk_64, v0->unk_6C, v0->unk_74 & 0xffff);
         ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        ov12_022260E8(&v0->unk_14, v0->unk_10);
+        ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
         v0->unk_04++;
         break;
     case 3:
         ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        v1 = ov12_022260E8(&v0->unk_14, v0->unk_10);
+        v1 = ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
         BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
 
         if (v1 == 0) {

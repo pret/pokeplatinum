@@ -82,10 +82,16 @@
 #define BATTLE_ANIM_POKEMON_SPRITES  (1 << 9) //< Use Pokemon sprites
 #define BATTLE_ANIM_BACKGROUND       (1 << 10) //< Use background
 #define BATTLE_ANIM_SPECIFIC_BATTLER (1 << 11) //< Specific battler slot, do not use by itself
+
 #define BATTLE_ANIM_BATTLER_PLAYER_1 (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_ATTACKER) //< Player's first battler
 #define BATTLE_ANIM_BATTLER_PLAYER_2 (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_ATTACKER_PARTNER) //< Player's second battler
 #define BATTLE_ANIM_BATTLER_ENEMY_1  (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_DEFENDER) //< Enemy's first battler
 #define BATTLE_ANIM_BATTLER_ENEMY_2  (BATTLE_ANIM_SPECIFIC_BATTLER | BATTLE_ANIM_DEFENDER_PARTNER) //< Enemy's second battler
+
+#define BATTLE_ANIM_BATTLER_SPRITE_ATTACKER (BATTLE_ANIM_ATTACKER | BATTLE_ANIM_BATTLER_SPRITES) //< Attacker's battler sprite
+#define BATTLE_ANIM_BATTLER_SPRITE_ATTACKER_PARTNER (BATTLE_ANIM_ATTACKER_PARTNER | BATTLE_ANIM_BATTLER_SPRITES) //< Attacker's partner's battler sprite
+#define BATTLE_ANIM_BATTLER_SPRITE_DEFENDER (BATTLE_ANIM_DEFENDER | BATTLE_ANIM_BATTLER_SPRITES) //< Defender's battler sprite
+#define BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER (BATTLE_ANIM_DEFENDER_PARTNER | BATTLE_ANIM_BATTLER_SPRITES) //< Defender's partner's battler sprite
 
 #define BATTLE_ANIM_POKEMON_SPRITE(N) ((1 << (N + 1)) | BATTLE_ANIM_POKEMON_SPRITES) //< Pokemon sprite N, where N is 0-3
 #define BATTLE_ANIM_BATTLER_SPRITE(N) ((1 << (N + 1)) | BATTLE_ANIM_BATTLER_SPRITES) //< Battler sprite N, where N is 0-3
@@ -110,6 +116,11 @@
 #define SCALE_POKEMON_SPRITE_FRAMES(scaleFrames, restoreFrames) (((scaleFrames & 0xFFFF) << 16) | (restoreFrames & 0xFFFF))
 #define SCALE_POKEMON_SPRITE_SCALE_FRAMES(frames) ((frames) >> 16)
 #define SCALE_POKEMON_SPRITE_RESTORE_FRAMES(frames) ((frames) & 0xFFFF)
+
+#define SCALE_BATTLER_SPRITE_FRAMES(scaleFrames, restoreFrames) SCALE_POKEMON_SPRITE_FRAMES(scaleFrames, restoreFrames)
+#define SCALE_BATTLER_SPRITE_HOLD_CYCLES(delay, cycles) (((delay & 0xFFFF) << 16) | (cycles & 0xFFFF))
+#define SCALE_BATTLER_SPRITE_HOLD(frames) ((frames) >> 16)
+#define SCALE_BATTLER_SPRITE_CYCLES(frames) ((frames) & 0xFFFF)
 
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
