@@ -375,31 +375,62 @@ static void TryEmitEggMoves(rapidjson::Document &root, std::ofstream &ofs, std::
     }
 
     std::transform(species.begin(), species.end(), species.begin(), ::toupper);
-    ofs << "    EGG_MOVES(SPECIES_"
-        << species;
+    ofs << "    SPECIES_"
+        << species
+        << " + EGG_MOVES_SPECIES_OFFSET,\n";
 
     const rapidjson::Value &eggMoves = learnsets["egg_moves"];
     for (const auto &entry : eggMoves.GetArray()) {
-        ofs << ",\n"
-            << "        "
-            << entry.GetString();
+        ofs << "    "
+            << entry.GetString()
+            << ",\n";
     }
 
-    ofs << "\n"
-        << "    ),\n"
-        << "\n";
+    ofs << "\n";
 }
 
 static std::string FormPathToName(std::string path)
 {
-    path = std::regex_replace(path, std::regex("/forms/"), "_");
-    std::transform(path.begin(), path.end(), path.begin(), ::toupper);
+    path = std::regex_replace(path, std::regex("/FORMS/"), "_");
     return path;
 }
 
-static void EmitIconPaletteData(rapidjson::Document &root, std::ofstream &ofs, std::string species, u16 personalValue)
+static void EmitIconEnum(std::ofstream &ofs, std::string species, std::string form)
+{
+    std::transform(species.begin(), species.end(), species.begin(), ::toupper);
+    std::transform(form.begin(), form.end(), form.begin(), ::toupper);
+    ofs << "    ICON_"
+        << species
+        << "_"
+        << form
+        << ",\n";
+}
+
+static void EmitIconPaletteData(rapidjson::Document &root, std::ofstream &ofs, std::string species, u16 personalValue, std::map<std::string, std::vector<std::string>> iconRegistry)
 {
     const rapidjson::Value &iconPallete = root["icon_palette"];
+
+    std::string speciesUpper = species;
+    std::transform(speciesUpper.begin(), speciesUpper.end(), speciesUpper.begin(), ::toupper);
+
+    int iconIdx;
+    if (iconPallete.IsInt()) {
+        iconIdx = iconPallete.GetInt();
+    } else {
+        iconIdx = iconPallete["base"].GetInt();
+
+        for (auto &form : iconRegistry.at(species)) {
+            const rapidjson::Value &formIcon = iconPallete[(char *)form.c_str()];
+            std::transform(form.begin(), form.end(), form.begin(), ::toupper);
+            ofs << "    [ICON_"
+                << speciesUpper
+                << "_"
+                << form
+                << "] = "
+                << formIcon.GetInt()
+                << ",\n";
+        }
+    }
 
     ofs << "    [";
 
@@ -407,21 +438,16 @@ static void EmitIconPaletteData(rapidjson::Document &root, std::ofstream &ofs, s
         ofs << "ICON_MANAPHY_EGG";
     } else {
         if (personalValue < SPECIES_EGG) {
-            std::transform(species.begin(), species.end(), species.begin(), ::toupper);
             ofs << "SPECIES_"
-                << species;
+                << speciesUpper;
         } else {
-            if (species.compare("unown") == 0) {
-                ofs << "ICON_UNOWN_A";
-            } else {
-                ofs << "ICON_"
-                    << FormPathToName(species);
-            }
+            ofs << "ICON_"
+                << FormPathToName(speciesUpper);
         }
     }
 
     ofs << "] = "
-        << iconPallete.GetInt()
+        << iconIdx
         << ",\n";
 }
 
@@ -553,7 +579,6 @@ int main(int argc, char **argv)
              << "\n"
              << "#define EGG_MOVES_SPECIES_OFFSET     20000\n"
              << "#define EGG_MOVES_TERMINATOR         0xFFFF\n"
-             << "#define EGG_MOVES(species, moves...) (##species + EGG_MOVES_SPECIES_OFFSET), moves\n"
              << "\n"
              << "static const u16 sEggMoves[] = {\n";
 
@@ -588,28 +613,48 @@ int main(int argc, char **argv)
 
     // Prepare loop contents.
     std::vector<std::string> speciesRegistry = ReadRegistryEnvVar("SPECIES");
-    std::vector<std::string> formsRegistry = ReadFileLines(formsRegistryFname);
-    speciesRegistry.insert(speciesRegistry.end(), formsRegistry.begin(), formsRegistry.end());
-    std::vector<std::string>::iterator lastNatDex = speciesRegistry.end() - formsRegistry.size() - 3; // -3 accounts for egg and bad_egg
+    std::map<std::string, std::vector<std::string>> iconRegistry;
+    // read form data
+    std::string formsRegistryJson = ReadWholeFile(formsRegistryFname);
+    rapidjson::Document formRegDoc;
+    rapidjson::ParseResult formOk = formRegDoc.Parse(formsRegistryJson.c_str(), formsRegistryJson.length());
+    if (!formOk) {
+        ReportJsonError(formOk, formsRegistryJson, formsRegistryFname);
+        std::exit(EXIT_FAILURE);
+    }
+    for (auto &formRegSpecies : formRegDoc.GetObject()) {
+        std::string speciesName = formRegSpecies.name.GetString();
+        std::vector<std::string> speciesIcons;
 
-    // Prepare VFSes for each NARC to be output.
-    vfs_pack_ctx *personalVFS = narc_pack_start();
-    vfs_pack_ctx *evoVFS = narc_pack_start();
-    vfs_pack_ctx *wotblVFS = narc_pack_start();
-    vfs_pack_ctx *heightVFS = narc_pack_start();
-    std::vector<SpeciesPalPark> palParkData;
-    std::vector<u16> offspringData;
-    std::vector<ArchivedPokeSpriteData> pokeSpriteData;
-
-    // Generate pokeicon form enum
-    for (auto &form : formsRegistry) {
-        iconPalettes << "    ICON_";
-        if (form.compare("unown") == 0) {
-            iconPalettes << "UNOWN_A";
-        } else {
-            iconPalettes << FormPathToName(form);
+        if (formRegSpecies.value.HasMember("__dupe_base_icon")) {
+            EmitIconEnum(iconPalettes, speciesName, "base");
+            speciesIcons.push_back("base");
         }
-        iconPalettes << ",\n";
+
+        for (auto &form : formRegSpecies.value.GetObject()) {
+            std::string formName = form.name.GetString();
+            if (formName[0] == '_') {
+                continue;
+            }
+            std::string formType = form.value.GetString();
+            if (formType.compare("data") == 0) {
+                EmitIconEnum(iconPalettes, speciesName, formName);
+
+                formName = formRegSpecies.name.GetString();
+                formName.append("/forms/");
+                formName.append(form.name.GetString());
+                speciesRegistry.push_back(formName);
+            }
+            if (formType.compare("icon") == 0) {
+                EmitIconEnum(iconPalettes, speciesName, formName);
+
+                speciesIcons.push_back(formName);
+            }
+        }
+
+        if (speciesIcons.size() > 0) {
+            iconRegistry.insert({ speciesName, speciesIcons });
+        }
     }
     iconPalettes << "};\n"
                  << "\n"
@@ -620,8 +665,16 @@ int main(int argc, char **argv)
                  << " */\n"
                  << "const u8 sPokemonIconPaletteIndex[] = {\n";
 
+    // Prepare VFSes for each NARC to be output.
+    vfs_pack_ctx *personalVFS = narc_pack_start();
+    vfs_pack_ctx *evoVFS = narc_pack_start();
+    vfs_pack_ctx *wotblVFS = narc_pack_start();
+    vfs_pack_ctx *heightVFS = narc_pack_start();
+    std::vector<SpeciesPalPark> palParkData;
+    std::vector<u16> offspringData;
+    std::vector<ArchivedPokeSpriteData> pokeSpriteData;
+
     u16 personalValue = 0;
-    BOOL unownDupe = FALSE;
     rapidjson::Document doc;
     for (auto &species : speciesRegistry) {
         fs::path speciesDataPath = dataRoot / species / "data.json";
@@ -630,19 +683,6 @@ int main(int argc, char **argv)
         if (!ok) {
             ReportJsonError(ok, json, speciesDataPath);
             std::exit(EXIT_FAILURE);
-        }
-
-        EmitIconPaletteData(doc, iconPalettes, species, personalValue);
-        // if form is icon only, no more data to read
-        if (!doc.HasMember("base_stats")) {
-            continue;
-        }
-        // Unown A is both data and icon only
-        if (species.compare("unown") == 0) {
-            if (unownDupe) {
-                continue;
-            }
-            unownDupe = TRUE;
         }
 
         try {
@@ -654,6 +694,7 @@ int main(int argc, char **argv)
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
             TryEmitEggMoves(doc, eggMoves, species);
             TryEmitFootprint(doc, footprints);
+            EmitIconPaletteData(doc, iconPalettes, species, personalValue, iconRegistry);
 
             narc_pack_file_copy(personalVFS, reinterpret_cast<unsigned char *>(&data), sizeof(data));
             narc_pack_file_copy(evoVFS, reinterpret_cast<unsigned char *>(&evos), sizeof(evos));
