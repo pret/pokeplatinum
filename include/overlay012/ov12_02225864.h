@@ -122,13 +122,13 @@ typedef struct {
     void *param;
 } VBlankDMAController;
 
-typedef struct UnkStruct_ov12_02226504 {
-    VBlankDMAController unk_00;
+typedef struct CustomBgScrollContext {
+    VBlankDMAController dmaController;
     BufferManager *bufferManager;
-    u32 unk_20[HW_LCD_HEIGHT];
-    u32 unk_320[HW_LCD_HEIGHT];
-    u32 unk_620;
-} UnkStruct_ov12_02226504;
+    u32 buffer1[HW_LCD_HEIGHT];
+    u32 buffer2[HW_LCD_HEIGHT];
+    u32 offsetReg;
+} CustomBgScrollContext;
 
 typedef struct BgScrollContext {
     VBlankDMAController dmaController;
@@ -194,10 +194,10 @@ BOOL Afterimage_Update(AfterimageContext *param0);
 void RevolutionContext_InitOvalRevolutions(XYTransformContext *param0, int param1, int param2);
 void AlphaFadeContext_Init(AlphaFadeContext *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5);
 BOOL AlphaFadeContext_IsDone(const AlphaFadeContext *param0);
-UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID);
-void ov12_022265C0(UnkStruct_ov12_02226504 *param0);
-void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0);
-void ov12_022265F8(UnkStruct_ov12_02226504 *param0);
+CustomBgScrollContext *CustomBgScrollContext_New(u32 param0, u32 param1, enum HeapId heapID);
+void CustomBgScrollContext_Free(CustomBgScrollContext *param0);
+void *CustomBgScrollContext_GetWriteBuffer(const CustomBgScrollContext *param0);
+void CustomBgScrollContext_Stop(CustomBgScrollContext *param0);
 BgScrollContext *BgScrollContext_New(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, enum HeapId heapID);
 void BgScrollContext_Free(BgScrollContext *param0);
 void *BgScrollContext_GetWriteBuffer(const BgScrollContext *param0);

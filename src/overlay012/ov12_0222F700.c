@@ -713,21 +713,49 @@ typedef struct {
     int unk_274;
 } UnkStruct_ov12_02233900;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    UnkStruct_ov12_02226504 *unk_04;
-    int unk_08;
-    PokemonSprite *unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    fx32 unk_1C;
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    u32 unk_30;
-} UnkStruct_ov12_02233AA0;
+// -------------------------------------------------------------------
+// Extrasensory
+// -------------------------------------------------------------------
+typedef struct ExtrasensoryContext {
+    BattleAnimSystem *battleAnimSys;
+    CustomBgScrollContext *bgScroll;
+    int state;
+    PokemonSprite *defenderSprite;
+    int y;
+    int centerY;
+    int baseAngle;
+    fx32 baseAmplitude;
+    int dir;
+    int amplitudeStep;
+    int delay;
+    int count;
+    u32 initValue;
+} ExtrasensoryContext;
+
+enum ExtrasensoryState {
+    EXTRASENSORY_STATE_SET_PARAMS = 0,
+    EXTRASENSORY_STATE_SCROLL,
+    EXTRASENSORY_STATE_CLEANUP,
+};
+
+#define EXTRASENSORY_SCROLL_ANGLE_INCREMENT (DEG_TO_IDX(180) / MON_SPRITE_FRAME_HEIGHT)
+#define EXTRASENSORY_SCROLL_Y_RANGE_OFFSET  (-8)
+#define EXTRASENSORY_SCROLL_JITTER_FACTOR   FX32_CONST(1)
+#define EXTRASENSORY_SCROLL_DAMPENING_VALUE 10
+#define EXTRASENSORY_DISTORTION_1_ANGLE     DEG_TO_IDX(180)
+#define EXTRASENSORY_DISTORTION_1_STEP      5
+#define EXTRASENSORY_DISTORTION_1_AMPLITUDE FX32_CONST(16)
+#define EXTRASENSORY_DISTORTION_1_FRAMES    16
+#define EXTRASENSORY_DISTORTION_2_ANGLE     DEG_TO_IDX(180)
+#define EXTRASENSORY_DISTORTION_2_STEP      -5
+#define EXTRASENSORY_DISTORTION_2_AMPLITUDE FX32_CONST(-16)
+#define EXTRASENSORY_DISTORTION_2_FRAMES    16
+#define EXTRASENSORY_DISTORTION_3_ANGLE     DEG_TO_IDX(180)
+#define EXTRASENSORY_DISTORTION_3_STEP      10
+#define EXTRASENSORY_DISTORTION_3_AMPLITUDE FX32_CONST(20)
+#define EXTRASENSORY_DISTORTION_3_FRAMES    16
+#define EXTRASENSORY_DISTORTION_COUNT       3
+
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -1420,7 +1448,7 @@ void BattleAnimScriptFunc_AcidArmor(BattleAnimSystem *system)
         Bg_SetPriority(
             BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
             BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
-        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
+        Bg_SetPriority(BATTLE_BG_3D, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
     }
 
     BattleAnimTask_AcidArmor(task, ctx);
@@ -4126,156 +4154,159 @@ void ov12_022339C4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233988, v0);
 }
 
-static void ov12_02233AA0(UnkStruct_ov12_02233AA0 *param0)
+static void ExtrasensoryContext_SetParameters(ExtrasensoryContext *ctx)
 {
-    switch (param0->unk_2C) {
+    switch (ctx->count) {
     case 0:
-        param0->unk_18 = ((180 * 0xffff) / 360);
-        param0->unk_24 = 5;
-        param0->unk_1C = (16 * FX32_ONE);
-        param0->unk_28 = 16;
+        ctx->baseAngle = EXTRASENSORY_DISTORTION_1_ANGLE;
+        ctx->amplitudeStep = EXTRASENSORY_DISTORTION_1_STEP;
+        ctx->baseAmplitude = EXTRASENSORY_DISTORTION_1_AMPLITUDE;
+        ctx->delay = EXTRASENSORY_DISTORTION_1_FRAMES;
         break;
     case 1:
-        param0->unk_18 = ((180 * 0xffff) / 360);
-        param0->unk_24 = -5;
-        param0->unk_1C = (-16 * FX32_ONE);
-        param0->unk_28 = 16;
+        ctx->baseAngle = EXTRASENSORY_DISTORTION_2_ANGLE;
+        ctx->amplitudeStep = EXTRASENSORY_DISTORTION_2_STEP;
+        ctx->baseAmplitude = EXTRASENSORY_DISTORTION_2_AMPLITUDE;
+        ctx->delay = EXTRASENSORY_DISTORTION_2_FRAMES;
         break;
     case 2:
-        param0->unk_18 = ((180 * 0xffff) / 360);
-        param0->unk_24 = 10;
-        param0->unk_1C = (20 * FX32_ONE);
-        param0->unk_28 = 16;
-        param0->unk_28 = 16;
+        ctx->baseAngle = EXTRASENSORY_DISTORTION_3_ANGLE;
+        ctx->amplitudeStep = EXTRASENSORY_DISTORTION_3_STEP;
+        ctx->baseAmplitude = EXTRASENSORY_DISTORTION_3_AMPLITUDE;
+        ctx->delay = EXTRASENSORY_DISTORTION_3_FRAMES;
         break;
     }
 }
 
-static void ov12_02233AF4(UnkStruct_ov12_02233AA0 *param0)
+static void ExtrasensoryContext_UpdateScroll(ExtrasensoryContext *ctx)
 {
-    u32 *v0 = ov12_022265E4(param0->unk_04);
-    int v1;
-    s16 v2;
-    s16 v3;
-    s16 v4;
-    u16 v5;
-    int v6;
-    int v7 = param0->unk_10 + -8;
-    int v8 = param0->unk_10 + 80 - -8;
-    int v9;
+    u32 *buffer = CustomBgScrollContext_GetWriteBuffer(ctx->bgScroll);
 
-    if (v7 < 0) {
-        v7 = 0;
+    int startY = ctx->y + EXTRASENSORY_SCROLL_Y_RANGE_OFFSET;
+    int endY = ctx->y + MON_SPRITE_FRAME_HEIGHT - EXTRASENSORY_SCROLL_Y_RANGE_OFFSET;
+
+    if (startY < 0) {
+        startY = 0;
     }
 
-    if (v8 > 192) {
-        v8 = 192;
+    if (endY > HW_LCD_HEIGHT) {
+        endY = HW_LCD_HEIGHT;
     }
 
-    param0->unk_20 *= -1;
+    // Switch direction every frame to create a jittery effect
+    ctx->dir *= -1;
 
-    for (v1 = v7; v1 < v8; v1++) {
-        if (v1 & 2) {
-            v6 = param0->unk_1C + ((1 * FX32_ONE) * param0->unk_20);
+    for (int y = startY; y < endY; y++) {
+        // Alternate every 4th row
+        int amplitude;
+        if (y & 2) {
+            amplitude = ctx->baseAmplitude + (EXTRASENSORY_SCROLL_JITTER_FACTOR * ctx->dir);
         } else {
-            v6 = param0->unk_1C - ((1 * FX32_ONE) * param0->unk_20);
+            amplitude = ctx->baseAmplitude - (EXTRASENSORY_SCROLL_JITTER_FACTOR * ctx->dir);
         }
 
-        v5 = param0->unk_18 + (((180 * 0xffff) / 360) / 80) * (v1 - v7);
-        v2 = FX_Mul(FX_SinIdx(v5), v6) >> FX32_SHIFT;
-        v2 += ((v1 - param0->unk_14) * param0->unk_24) / 10;
-        v3 = param0->unk_30 & 0xffff;
-        v4 = param0->unk_30 >> 16;
-        v9 = v1 - 1;
-
-        if (v9 < 0) {
-            v9 += 192;
+        u16 angle = ctx->baseAngle + EXTRASENSORY_SCROLL_ANGLE_INCREMENT * (y - startY);
+        s16 xOffset = FX_Mul(FX_SinIdx(angle), amplitude) >> FX32_SHIFT;
+        xOffset += ((y - ctx->centerY) * ctx->amplitudeStep) / EXTRASENSORY_SCROLL_DAMPENING_VALUE;
+        s16 initX = ctx->initValue & BG_OFFSET_X_MASK;
+        s16 initY = ctx->initValue >> BG_OFFSET_Y_SHIFT;
+        
+        int index = y - 1;
+        if (index < 0) {
+            index += HW_LCD_HEIGHT;
         }
 
-        v0[v9] = BattleAnimUtil_MakeBgOffsetValue(v3 + v2, v4);
+        buffer[index] = BattleAnimUtil_MakeBgOffsetValue(initX + xOffset, initY);
     }
 }
 
-static void ov12_02233BD8(SysTask *param0, void *param1)
+static void BattleAnimTask_Extrasensory(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02233AA0 *v0 = param1;
+    ExtrasensoryContext *ctx = param;
 
-    switch (v0->unk_08) {
-    case 0:
-        ov12_02233AA0(v0);
-        ov12_02233AF4(v0);
-        v0->unk_08++;
+    switch (ctx->state) {
+    case EXTRASENSORY_STATE_SET_PARAMS:
+        ExtrasensoryContext_SetParameters(ctx);
+        ExtrasensoryContext_UpdateScroll(ctx);
+        ctx->state++;
         break;
-    case 1:
-        v0->unk_28--;
-        ov12_02233AF4(v0);
+    case EXTRASENSORY_STATE_SCROLL:
+        ctx->delay--;
+        ExtrasensoryContext_UpdateScroll(ctx);
 
-        if (v0->unk_28 < 0) {
-            v0->unk_2C++;
+        if (ctx->delay < 0) {
+            ctx->count++;
 
-            if (v0->unk_2C < 3) {
-                v0->unk_08 = 0;
+            if (ctx->count < EXTRASENSORY_DISTORTION_COUNT) {
+                ctx->state = EXTRASENSORY_STATE_SET_PARAMS;
             } else {
-                v0->unk_08++;
+                ctx->state++;
             }
         }
         break;
-    case 2:
-        if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
-            PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_HIDE, 0);
+    case EXTRASENSORY_STATE_CLEANUP:
+        if (BattleAnimSystem_IsBattlerSemiInvulnerable(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)) == FALSE) {
+            PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_HIDE, FALSE);
         }
 
-        ov12_022265F8(v0->unk_04);
-        ov12_022265C0(v0->unk_04);
+        CustomBgScrollContext_Stop(ctx->bgScroll);
+        CustomBgScrollContext_Free(ctx->bgScroll);
 
-        Bg_SetPriority(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), BattleAnimSystem_GetBgPriority(v0->unk_00, 1));
-        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
+        Bg_SetPriority(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            BattleAnimSystem_GetBgPriority(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE));
+        Bg_SetPriority(BATTLE_BG_3D, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
 
-        Bg_ClearTilesRange(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), 0x4000, 0, BattleAnimSystem_GetHeapID(v0->unk_00));
-        Bg_ClearTilemap(BattleAnimSystem_GetBgConfig(v0->unk_00), BattleAnimSystem_GetBgLayer(v0->unk_00, 1));
+        Bg_ClearTilesRange(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            0x4000,
+            0,
+            BattleAnimSystem_GetHeapID(ctx->battleAnimSys));
+        Bg_ClearTilemap(
+            BattleAnimSystem_GetBgConfig(ctx->battleAnimSys),
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE));
 
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         break;
     }
 }
 
-void ov12_02233CD4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Extrasensory(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02233AA0 *v0;
-    PokemonSprite *v1;
-    s16 v2, v3;
-    int v4;
+    ExtrasensoryContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ExtrasensoryContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233AA0));
+    ctx->battleAnimSys = system;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
 
-    v0->unk_00 = param0;
-    v0->unk_0C = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
+    s16 defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    s16 defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    defenderY -= PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    v2 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_X_CENTER);
-    v3 = PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_Y_CENTER);
-    v3 -= PokemonSprite_GetAttribute(v0->unk_0C, MON_SPRITE_SHADOW_HEIGHT);
-
-    if (BattleAnimSystem_IsBattlerSemiInvulnerable(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00)) == 0) {
-        PokemonSprite_SetAttribute(v0->unk_0C, MON_SPRITE_HIDE, 1);
+    if (BattleAnimSystem_IsBattlerSemiInvulnerable(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys)) == FALSE) {
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_HIDE, TRUE);
     }
 
-    v0->unk_14 = v3;
-    v2 = v2 - (80 / 2);
+    ctx->centerY = defenderY;
+    defenderX -= (MON_SPRITE_FRAME_WIDTH / 2);
+    ctx->y = defenderY - (MON_SPRITE_FRAME_HEIGHT / 2);
 
-    v0->unk_10 = v3 - (80 / 2);
-    v0->unk_30 = BattleAnimUtil_MakeBgOffsetValue(-v2, -v0->unk_10);
-    v0->unk_04 = ov12_02226544(BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(v0->unk_00, 1)), v0->unk_30, BattleAnimSystem_GetHeapID(v0->unk_00));
-    v0->unk_20 = 1;
+    ctx->initValue = BattleAnimUtil_MakeBgOffsetValue(-defenderX, -ctx->y);
+    ctx->bgScroll = CustomBgScrollContext_New(
+        BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE)),
+        ctx->initValue,
+        BattleAnimSystem_GetHeapID(ctx->battleAnimSys));
+    ctx->dir = 1;
 
-    v4 = BattleAnimUtil_GetBattlerType(v0->unk_00, BattleAnimSystem_GetDefender(param0));
-
-    if ((v4 == 3) || (v4 == 4)) {
-        Bg_SetPriority(BattleAnimSystem_GetBgLayer(v0->unk_00, 1), BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00));
-        Bg_SetPriority(BG_LAYER_MAIN_0, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00) + 1);
+    int type = BattleAnimUtil_GetBattlerType(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
+    if (type == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 || type == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+        Bg_SetPriority(
+            BattleAnimSystem_GetBgLayer(ctx->battleAnimSys, BATTLE_ANIM_BG_BASE),
+            BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
+        Bg_SetPriority(BATTLE_BG_3D, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233BD8, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Extrasensory, ctx);
 }
 
 static void ov12_02233DCC(SysTask *param0, void *param1)
@@ -4327,7 +4358,7 @@ static void ov12_02233DCC(SysTask *param0, void *param1)
 
 void ov12_02233F30(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02233DCC *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02233AA0));
+    UnkStruct_ov12_02233DCC *v0 = BattleAnimUtil_Alloc(param0, sizeof(ExtrasensoryContext));
     v0->unk_00 = param0;
 
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233DCC, v0);

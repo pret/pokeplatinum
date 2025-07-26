@@ -154,10 +154,10 @@ typedef struct {
     int unk_08;
 } UnkStruct_ov12_022224F8_sub1;
 
-struct UnkStruct_ov12_02226504;
+struct CustomBgScrollContext;
 typedef struct {
     UnkStruct_ov12_022224F8_sub1 unk_00[16];
-    struct UnkStruct_ov12_02226504 *unk_C0;
+    struct CustomBgScrollContext *unk_C0;
 } UnkStruct_ov12_022224F8;
 
 typedef struct UnkStruct_ov12_022222D4_t {

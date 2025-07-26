@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/battle/battle_anim.h"
+#include "constants/graphics.h"
 #include "generated/battle_terrains.h"
 #include "generated/moves.h"
 
@@ -1838,8 +1839,8 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     s16 y = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_Y_CENTER);
     y -= PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_SHADOW_HEIGHT);
 
-    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, -(x - 40));
-    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
+    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, -(x - (MON_SPRITE_FRAME_WIDTH / 2)));
+    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, -(y - (MON_SPRITE_FRAME_HEIGHT / 2)));
 
     Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
     Bg_SetPriority(BATTLE_BG_BASE, BattleAnimSystem_GetPokemonSpritePriority(system));
@@ -2813,7 +2814,7 @@ static BOOL ov12_0222240C(BattleBgSwitch *param0)
     param0->unk_44_1 = 1;
 
     v3->cancel = 0;
-    v3->unk_1C->unk_C0 = ov12_02226544(
+    v3->unk_1C->unk_C0 = CustomBgScrollContext_New(
         BattleAnimUtil_GetHOffsetRegisterForBg(BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)),
         BattleAnimUtil_MakeBgOffsetValue(0, 0),
         system->heapID);
@@ -2854,14 +2855,14 @@ static void ov12_022224F8(SysTask *param0, void *param1)
     BattleBgAnim *v4 = (BattleBgAnim *)param1;
 
     if (v4->cancel == 1) {
-        ov12_022265C0(v4->unk_1C->unk_C0);
+        CustomBgScrollContext_Free(v4->unk_1C->unk_C0);
         Heap_Free(v4->unk_1C);
         Heap_Free(v4);
         SysTask_Done(param0);
         return;
     }
 
-    v2 = ov12_022265E4(v3->unk_C0);
+    v2 = CustomBgScrollContext_GetWriteBuffer(v3->unk_C0);
 
     for (v0 = 0; v0 < ((192 - 64) / 8); v0++) {
         v3->unk_00[v0].unk_06 += v3->unk_00[v0].unk_04;
