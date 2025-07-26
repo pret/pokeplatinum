@@ -598,10 +598,10 @@ BOOL ScaleLerpContext_UpdateAndApplyToMon(XYTransformContext *ctx, PokemonSprite
     return FALSE;
 }
 
-BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1)
+BOOL ScaleLerpContext_UpdateXYAndApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite)
 {
-    if (ScaleLerpContext_UpdateXY(param0)) {
-        ScaleLerpContext_ApplyToMon(param0, param1);
+    if (ScaleLerpContext_UpdateXY(ctx)) {
+        ScaleLerpContext_ApplyToMon(ctx, sprite);
         return TRUE;
     }
 

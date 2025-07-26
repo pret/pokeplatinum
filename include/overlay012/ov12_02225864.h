@@ -185,7 +185,7 @@ void BattleAnimUtil_SetPokemonSpriteAnchoredPosition(PokemonSprite *param0, s16 
 void BattleAnimUtil_SetSpriteAnchoredPosition(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, enum BattleAnimAnchorType param4);
 BOOL ScaleLerpContext_UpdateAndApplyToSprite(XYTransformContext *param0, ManagedSprite *param1);
 BOOL ScaleLerpContext_UpdateAndApplyToMon(XYTransformContext *param0, PokemonSprite *param1);
-BOOL ov12_022260E8(XYTransformContext *param0, PokemonSprite *param1);
+BOOL ScaleLerpContext_UpdateXYAndApplyToMon(XYTransformContext *param0, PokemonSprite *param1);
 void ShakeContext_Init(XYTransformContext *ctx, s16 extentX, s16 extentY, u32 interval, u32 amount);
 BOOL ShakeContext_Update(XYTransformContext *param0);
 BOOL ShakeContext_UpdateAndApply(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
