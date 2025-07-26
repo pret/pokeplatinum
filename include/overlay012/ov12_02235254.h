@@ -78,7 +78,7 @@ void BattleAnimUtil_GetMonSpritePos(PokemonSprite *param0, Point2D *param1);
 void BattleAnimUtil_GetSpritePos(ManagedSprite *param0, Point2D *param1);
 void BattleAnimSystem_GetCommonData(BattleAnimSystem *param0, BattleAnimScriptFuncCommon *param1);
 void BattleAnimUtil_GetBattlerSprites(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
-void ov12_02235D74(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
+void BattleAnimUtil_GetPokemonSprites(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
 void *BattleAnimUtil_Alloc(BattleAnimSystem *param0, int param1);
 void ov12_02235E80(void *param0);
 

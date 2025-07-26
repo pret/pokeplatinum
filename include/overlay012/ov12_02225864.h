@@ -140,7 +140,7 @@ typedef struct SpriteShakeInfo {
     s16 extentY;
     s16 interval;
     s16 amount;
-    int unk_08;
+    int targets;
 } SpriteShakeInfo;
 
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
