@@ -106,7 +106,6 @@ void BattleFont_DrawPartyScreenLevelText(BattleFontContext *context, int tableId
         8);
 }
 
-// SOMETHING to do with drawing party (in a battle)
 void BattleFont_DrawPartyScreenHPText(BattleFontContext *context, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
 {
     int idx;
@@ -130,8 +129,6 @@ void BattleFont_DrawPartyScreenText(BattleFontContext *context, int tableIdx, s3
     BattleFont_DrawPartyScreenHPText(context, displayValue, digits, paddingMode, window, x + 16, y);
 }
 
-// something to do with updating local HP values after taking damage
-// this DISPLAYS the data from the main window function for the main battle screen
 void BattleFont_DrawBattleScreenText(BattleFontContext *context, s32 displayNum, u32 numDigits, enum PaddingMode paddingMode, void *displayPtr)
 {
     int idx;
@@ -140,15 +137,12 @@ void BattleFont_DrawBattleScreenText(BattleFontContext *context, s32 displayNum,
 
     transparent = context->transparent | (context->transparent << 4);
 
-    // Store the current number (e.g., current HP, max HP, level) as a charcode array
     CharCode_FromInt(context->charcodes, displayNum, paddingMode, numDigits);
 
     for (idx = 0; context->charcodes[idx] != CHAR_EOS; idx++) {
         if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
-            // Draw the current charcode based on pixel storage in pRawData
             MI_CpuCopy32((u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * BTIMAP_SIZE), &displayPtrBytes[idx * BTIMAP_SIZE], BTIMAP_SIZE);
         } else {
-            // Fill current number slot with a transparent bitmap
             MI_CpuFill8(&displayPtrBytes[idx * BTIMAP_SIZE], transparent, BTIMAP_SIZE);
         }
     }
