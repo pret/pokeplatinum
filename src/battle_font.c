@@ -132,7 +132,7 @@ void BattleFont_DrawPartyScreenText(BattleFontContext *context, int tableIdx, s3
 
 // something to do with updating local HP values after taking damage
 // this DISPLAYS the data from the main window function for the main battle screen
-void BattleFont_DrawBattleText(BattleFontContext *context, s32 displayNum, u32 numDigits, enum PaddingMode paddingMode, void *displayPtr)
+void BattleFont_DrawBattleScreenText(BattleFontContext *context, s32 displayNum, u32 numDigits, enum PaddingMode paddingMode, void *displayPtr)
 {
     int idx;
     u8 transparent;
