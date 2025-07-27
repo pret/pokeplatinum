@@ -2320,24 +2320,24 @@ static BOOL ScrCmd_CloseMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
-    u8 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    u8 *isMsgBoxOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
-    Window_EraseMessageBox(window, 0);
+    Window_EraseMessageBox(window, FALSE);
     Window_Remove(window);
 
-    *v2 = 0;
+    *isMsgBoxOpen = FALSE;
     return FALSE;
 }
 
 static BOOL ScrCmd_CloseMessageWithoutErasing(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Window *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
-    u8 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    u8 *isMsgBoxOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
-    Window_Remove(v1);
+    Window_Remove(window);
 
-    *v2 = 0;
+    *isMsgBoxOpen = FALSE;
     return FALSE;
 }
 
