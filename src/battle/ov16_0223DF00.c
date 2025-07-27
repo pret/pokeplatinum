@@ -197,7 +197,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1);
 void ov16_0223F9A0(BattleSystem *battleSystem, int param1);
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3, int param4);
+u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum TrainerMessageType msgType, int param4);
 u8 BattleMessage_PrintToWindow(BattleSystem *battleSystem, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8);
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
