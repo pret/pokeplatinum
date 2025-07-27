@@ -5,8 +5,8 @@
 
 #include "constants/moves.h"
 
+#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -436,7 +436,7 @@ typedef struct PokemonSummaryScreen {
     Sprite *sprites[SUMMARY_SPRITE_MAX];
     ManagedSprite *managedSprites[SUMMARY_SPRITE_MAX];
 
-    UnkStruct_0200C440 *unk_684;
+    BattleFontContext *unk_684;
     MessageLoader *msgLoader;
     MessageLoader *ribbonLoader;
     StringTemplate *strFormatter;

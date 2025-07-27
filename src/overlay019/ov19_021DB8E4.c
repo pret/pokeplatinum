@@ -15,6 +15,7 @@
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DBA9C.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "font.h"
 #include "graphics.h"
@@ -29,7 +30,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200C440.h"
 
 typedef struct {
     UnkStruct_ov19_021DBA9C *unk_00;
@@ -116,7 +116,7 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_1C = Graphics_GetCellBankFromOpenNARC(param5, 18, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
     param0->unk_34 = Graphics_GetScrnDataFromOpenNARC(param5, 2, 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
     param0->unk_2C = Graphics_GetScrnDataFromOpenNARC(param5, 3, 1, &(param0->unk_30), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_44 = sub_0200C440(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_44 = BattleFont_Init(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
     param0->unk_4BFC = Strbuf_Init(500, HEAP_ID_BOX_GRAPHICS);
     param0->unk_10 = NULL;
     param0->unk_3C.pixels = param0->unk_18->pRawData;
@@ -177,7 +177,7 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
     }
 
     if (param0->unk_44) {
-        sub_0200C560(param0->unk_44);
+        BattleFont_Free(param0->unk_44);
     }
 
     if (param0->unk_4BFC) {
@@ -455,7 +455,7 @@ static void ov19_021DBFC4(UnkStruct_ov19_021DBA9C *param0)
     v0 = ov19_021DBD40(param0);
 
     for (v1 = 0; v1 < 7; v1++) {
-        sub_0200C5BC(param0->unk_44, param0->unk_94[v0], 2, 2, v2, 32 * v1, 0);
+        BattleFont_DrawPartyScreenHPText(param0->unk_44, param0->unk_94[v0], 2, 2, v2, 32 * v1, 0);
 
         if (++v0 >= 18) {
             v0 = 0;

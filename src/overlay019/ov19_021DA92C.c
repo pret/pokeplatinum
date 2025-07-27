@@ -10,6 +10,7 @@
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA9E0.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
@@ -23,7 +24,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "type_icon.h"
-#include "unk_0200C440.h"
 
 typedef struct {
     u16 unk_00;
@@ -64,8 +64,8 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_4C = NULL;
     param0->unk_24 = NULL;
     param0->unk_20 = ov19_021D7818(param1);
-    param0->unk_18 = sub_0200C440(9, 6, 15, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_1C = sub_0200C440(1, 2, 15, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_18 = BattleFont_Init(9, 6, 15, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_1C = BattleFont_Init(1, 2, 15, HEAP_ID_BOX_GRAPHICS);
     param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), HEAP_ID_BOX_GRAPHICS);
     param0->unk_30 = NULL;
     param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
@@ -99,11 +99,11 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_18) {
-        sub_0200C560(param0->unk_18);
+        BattleFont_Free(param0->unk_18);
     }
 
     if (param0->unk_1C) {
-        sub_0200C560(param0->unk_1C);
+        BattleFont_Free(param0->unk_1C);
     }
 
     if (param0->unk_44) {
@@ -533,10 +533,10 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 
         if (preview->dexNum) {
-            sub_0200C648(param0->unk_18, 2, preview->dexNum, 3, 2, &(param0->unk_04[1]), 0, 0);
+            BattleFont_DrawPartyScreenText(param0->unk_18, 2, preview->dexNum, 3, 2, &(param0->unk_04[1]), 0, 0);
         }
 
-        sub_0200C648(param0->unk_1C, 1, preview->level, 3, 1, &(param0->unk_04[2]), 0, 16);
+        BattleFont_DrawPartyScreenText(param0->unk_1C, 1, preview->level, 3, 1, &(param0->unk_04[2]), 0, 16);
     }
 
     BoxPokemon_BuildSpriteTemplate(&v0, preview->mon, 2, 0);

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0207F248_H
 #define POKEPLATINUM_STRUCT_0207F248_H
 
-#include "struct_decls/struct_0200C440_decl.h"
+#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
 #include "struct_defs/struct_020831B4.h"
@@ -35,7 +35,7 @@ typedef struct {
     SpriteManager *unk_5AC;
     Sprite *unk_5B0[29];
     ManagedSprite *unk_624[29];
-    UnkStruct_0200C440 *unk_698;
+    BattleFontContext *unk_698;
     MessageLoader *messageLoader;
     StringTemplate *template;
     Strbuf *unk_6A4;

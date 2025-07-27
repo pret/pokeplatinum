@@ -34,6 +34,7 @@
 #include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
+#include "battle_font.h"
 #include "bg_window.h"
 #include "cell_transfer.h"
 #include "communication_system.h"
@@ -73,7 +74,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_0202F1D4.h"
@@ -529,9 +529,9 @@ static void ov16_0223B790(ApplicationManager *appMan)
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     if (battleSys->battleType & BATTLE_TYPE_SAFARI) {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
+        battleSys->unk_1A4 = BattleFont_Init(0xe, 2, 0xf, HEAP_ID_BATTLE);
     } else {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
+        battleSys->unk_1A4 = BattleFont_Init(0xe, 2, 0xf, HEAP_ID_BATTLE);
     }
 
     battleSys->unk_1A8 = battleSys->unk_1A4;
@@ -779,7 +779,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     Heap_Free(battleSystem->unk_04);
     Heap_Free(battleSystem->unk_21C);
     Heap_Free(battleSystem->unk_220);
-    sub_0200C560(battleSystem->unk_1A4);
+    BattleFont_Free(battleSystem->unk_1A4);
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSystem->unk_1C);
     SysTask_Done(battleSystem->unk_20);

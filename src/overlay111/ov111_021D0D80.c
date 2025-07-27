@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C440_decl.h"
+#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203E608.h"
@@ -17,6 +17,7 @@
 #include "overlay111/struct_ov111_021D33F4_decl.h"
 #include "overlay111/struct_ov111_021D3620.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
@@ -42,7 +43,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_0200C440.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
 #include "vram_transfer.h"
@@ -81,7 +81,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     BgConfig *unk_58;
     Window unk_5C[16];
     PaletteData *unk_15C;
-    UnkStruct_0200C440 *unk_160;
+    BattleFontContext *unk_160;
     Options *options;
     SaveData *saveData;
     UnkStruct_ov111_021D2F80 unk_16C;
@@ -1114,7 +1114,7 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
     StringTemplate_Free(param0->unk_3C);
     Strbuf_Free(param0->unk_40);
     Strbuf_Free(param0->unk_44);
-    sub_0200C560(param0->unk_160);
+    BattleFont_Free(param0->unk_160);
     Heap_Free(param0->unk_3F0);
     Heap_Free(param0->unk_3F8);
 
@@ -1158,7 +1158,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_115);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_115);
 
-    param0->unk_160 = sub_0200C440(15, 14, 0, HEAP_ID_115);
+    param0->unk_160 = BattleFont_Init(15, 14, 0, HEAP_ID_115);
     ov111_021D3548(param0->unk_58, param0->unk_5C);
     param0->unk_34 = sub_0201567C(NULL, 1, 12, HEAP_ID_115);
 

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_SHOP_MENU_H
 #define POKEPLATINUM_SHOP_MENU_H
 
-#include "struct_decls/struct_0200C440_decl.h"
+#include "struct_decls/battle_font_decl.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D30A8.h"
@@ -116,7 +116,7 @@ typedef struct {
     s16 itemAmount;
     u16 itemAmountMax;
     u32 itemPrice;
-    UnkStruct_0200C440 *unk_2B4;
+    BattleFontContext *unk_2B4;
 } ShopMenu;
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount);

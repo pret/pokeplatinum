@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_H
 #define POKEPLATINUM_BATTLE_PARTY_H
 
+#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0200C440_decl.h"
 
 #include "overlay013/battle_sub_menu_cursor.h"
 
@@ -123,7 +123,7 @@ typedef struct BattleParty {
     u8 unk_1F9F_0 : 4;
     u8 unk_1F9F_4 : 3;
     u8 unk_1F9F_7 : 1;
-    UnkStruct_0200C440 *unk_1FA0;
+    BattleFontContext *unk_1FA0;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     Strbuf *strbuf;

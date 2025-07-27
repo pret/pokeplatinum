@@ -13,6 +13,7 @@
 #include "overlay013/battle_bag_text.h"
 #include "overlay013/battle_bag_utils.h"
 
+#include "battle_font.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -30,7 +31,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_0200679C.h"
-#include "unk_0200C440.h"
 
 #include "res/text/bank/battle_bag.h"
 #include "res/text/bank/common_strings.h"
@@ -740,7 +740,7 @@ static void LoadGraphicsData(BattleBag *battleBag)
 static void InitializeMessageLoader(BattleBag *battleBagTask)
 {
     battleBagTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_BAG, battleBagTask->context->heapID);
-    battleBagTask->unk_0C = sub_0200C440(15, 14, 0, battleBagTask->context->heapID);
+    battleBagTask->unk_0C = BattleFont_Init(15, 14, 0, battleBagTask->context->heapID);
     battleBagTask->stringTemplate = StringTemplate_Default(battleBagTask->context->heapID);
     battleBagTask->strbuf = Strbuf_Init(512, battleBagTask->context->heapID);
 }
@@ -748,7 +748,7 @@ static void InitializeMessageLoader(BattleBag *battleBagTask)
 static void CleanupMessageLoader(BattleBag *battleBag)
 {
     MessageLoader_Free(battleBag->messageLoader);
-    sub_0200C560(battleBag->unk_0C);
+    BattleFont_Free(battleBag->unk_0C);
     StringTemplate_Free(battleBag->stringTemplate);
     Strbuf_Free(battleBag->strbuf);
 }

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C440_decl.h"
+#include "struct_decls/battle_font_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -17,6 +17,7 @@
 #include "overlay106/struct_ov106_02243310.h"
 #include "overlay106/struct_ov106_02243650_decl.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "communication_system.h"
 #include "dexmode_checker.h"
@@ -47,7 +48,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 #include "unk_02030108.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
@@ -93,7 +93,7 @@ struct UnkStruct_ov106_02243118_t {
     Menu *unk_98;
     StringList unk_9C[2];
     PaletteData *unk_AC;
-    UnkStruct_0200C440 *unk_B0;
+    BattleFontContext *unk_B0;
     Options *options;
     SaveData *saveData;
     PokemonSummary *unk_BC;
@@ -750,7 +750,7 @@ static void ov106_022423E8(UnkStruct_ov106_02243118 *param0)
     StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
-    sub_0200C560(param0->unk_B0);
+    BattleFont_Free(param0->unk_B0);
 
     for (v0 = 0; v0 < 2; v0++) {
         Strbuf_Free(param0->unk_30[v0]);
@@ -814,7 +814,7 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_98);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_98);
 
-    param0->unk_B0 = sub_0200C440(15, 14, 0, HEAP_ID_98);
+    param0->unk_B0 = BattleFont_Init(15, 14, 0, HEAP_ID_98);
 
     ov106_022436E0(param0->unk_48, param0->unk_4C);
     ov106_02242F4C(param0, param0->unk_48);
@@ -1166,7 +1166,7 @@ static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
 
 static void ov106_02242C04(UnkStruct_ov106_02243118 *param0, Window *param1, u8 param2, u32 param3, u32 param4)
 {
-    sub_0200C5BC(param0->unk_B0, param2, 2, 0, param1, param3, param4);
+    BattleFont_DrawPartyScreenHPText(param0->unk_B0, param2, 2, 0, param1, param3, param4);
     Window_ScheduleCopyToVRAM(param1);
     return;
 }

@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200C440_decl.h"
+#include "struct_decls/battle_font_decl.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -30,7 +30,7 @@ typedef struct {
     void *unk_34;
     NNSG2dScreenData *unk_38;
     Bitmap unk_3C;
-    UnkStruct_0200C440 *unk_44;
+    BattleFontContext *unk_44;
     Sprite *unk_48[18];
     Sprite *unk_90;
     u32 unk_94[18];
