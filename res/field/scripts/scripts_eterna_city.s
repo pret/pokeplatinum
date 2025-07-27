@@ -180,7 +180,7 @@ _0276:
 _0286:
     ClearFlag FLAG_UNK_0x0180
     AddObject 12
-    ScrCmd_062 12
+    LockObject 12
     CallIfEq VAR_0x8005, 0x20A, _034B
     CallIfNe VAR_0x8005, 0x20A, _0361
     BufferPlayerName 0
@@ -778,7 +778,7 @@ _0954:
     SetObjectEventPos 33, 0x12B, 0x215
     ClearFlag FLAG_UNK_0x018C
     AddObject 33
-    ScrCmd_062 33
+    LockObject 33
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x20B, _099D
     GoToIfEq VAR_0x8005, 0x20C, _09B7
@@ -1129,7 +1129,7 @@ _0DD2:
 _0DE8:
     ClearFlag FLAG_UNK_0x0180
     AddObject 12
-    ScrCmd_062 12
+    LockObject 12
     Return
 
 _0DF6:

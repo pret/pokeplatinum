@@ -86,7 +86,7 @@ _0139:
 _0149:
     ClearFlag FLAG_UNK_0x017A
     AddObject 7
-    ScrCmd_062 7
+    LockObject 7
     ApplyMovement 7, _043C
     WaitMovement
     ApplyMovement 7, _044C
@@ -969,7 +969,7 @@ _0C7C:
     SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x018B
     AddObject 30
-    ScrCmd_062 30
+    LockObject 30
     ApplyMovement 30, _0DC0
     WaitMovement
     Message 78

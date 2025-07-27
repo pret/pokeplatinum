@@ -141,7 +141,7 @@ _01DB:
     ClearFlag FLAG_UNK_0x01F9
     SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 5
-    ScrCmd_062 5
+    LockObject 5
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 6, _0218
     GoToIfEq VAR_0x8005, 7, _0232

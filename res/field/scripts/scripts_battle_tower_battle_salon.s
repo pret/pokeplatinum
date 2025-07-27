@@ -176,7 +176,7 @@ _02DD:
     Message 8
     CloseMessage
     ReleaseAll
-    ScrCmd_062 1
+    LockObject 1
     GoTo _055C
     End
 
@@ -205,7 +205,7 @@ _0341:
     Message 17
     CloseMessage
     ReleaseAll
-    ScrCmd_062 2
+    LockObject 2
     GoTo _05A1
     End
 
@@ -232,7 +232,7 @@ _03A5:
     Message 5
     CloseMessage
     ReleaseAll
-    ScrCmd_062 3
+    LockObject 3
     GoTo _05E6
     End
 
@@ -259,7 +259,7 @@ _0406:
     Message 14
     CloseMessage
     ReleaseAll
-    ScrCmd_062 4
+    LockObject 4
     GoTo _062B
     End
 
@@ -286,7 +286,7 @@ _0467:
     Message 11
     CloseMessage
     ReleaseAll
-    ScrCmd_062 5
+    LockObject 5
     GoTo _0670
     End
 

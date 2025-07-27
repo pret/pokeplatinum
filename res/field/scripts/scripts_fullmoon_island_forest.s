@@ -21,7 +21,7 @@ _000C:
     CallIfEq VAR_RESULT, 0, _007E
     ScrCmd_063 0
     ScrCmd_26A 0, 6, 8
-    ScrCmd_062 0
+    LockObject 0
     SetFlag FLAG_UNK_0x024F
     RemoveObject 0
     ActivateRoamingPokemon ROAMING_SLOT_CRESSELIA

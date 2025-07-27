@@ -339,7 +339,7 @@ static BOOL ScrCmd_WaitMovement(ScriptContext *ctx);
 static BOOL ScrCmd_LockAll(ScriptContext *ctx);
 static BOOL sub_020410CC(ScriptContext *ctx);
 static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx);
-static BOOL ScrCmd_062(ScriptContext *ctx);
+static BOOL SrcCmd_LockObject(ScriptContext *ctx);
 static BOOL ScrCmd_063(ScriptContext *ctx);
 static BOOL ScrCmd_AddObject(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
@@ -866,7 +866,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitMovement,
     ScrCmd_LockAll,
     ScrCmd_ReleaseAll,
-    ScrCmd_062,
+    SrcCmd_LockObject,
     ScrCmd_063,
     ScrCmd_AddObject,
     ScrCmd_RemoveObject,
@@ -3167,7 +3167,7 @@ static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_062(ScriptContext *ctx)
+static BOOL SrcCmd_LockObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 

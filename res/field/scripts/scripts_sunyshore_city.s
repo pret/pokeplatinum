@@ -46,7 +46,7 @@ _0099:
     WaitMovement
     ClearFlag FLAG_UNK_0x0255
     AddObject 20
-    ScrCmd_062 20
+    LockObject 20
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 0x355, _00FA
     GoToIfEq VAR_0x8004, 0x356, _0114

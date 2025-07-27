@@ -620,7 +620,7 @@
     .short 97
     .endm
 
-    .macro ScrCmd_062 arg0
+    .macro LockObject arg0
     .short 98
     .short \arg0
     .endm
