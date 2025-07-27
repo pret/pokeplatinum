@@ -317,7 +317,7 @@
     .short 52
     .endm
 
-    .macro ScrCmd_035
+    .macro CloseMessageWithoutErasing
     .short 53
     .endm
 

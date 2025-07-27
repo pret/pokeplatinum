@@ -109,7 +109,7 @@ _0127:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_UP
     ReleaseAll
     End
@@ -119,7 +119,7 @@ _013D:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_DOWN
     ReleaseAll
     End

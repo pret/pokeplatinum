@@ -46,11 +46,11 @@ _0070:
     ApplyMovement 128, _017C
     WaitMovement
     Message 0
-    ScrCmd_035
+    CloseMessageWithoutErasing
     ApplyMovement 128, _0198
     WaitMovement
     Message 1
-    ScrCmd_035
+    CloseMessageWithoutErasing
     ApplyMovement 128, _01A4
     WaitMovement
     Message 2

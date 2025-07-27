@@ -306,7 +306,7 @@ static BOOL ScrCmd_WaitABPadPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx);
 static BOOL ScrCmd_OpenMessage(ScriptContext *ctx);
 static BOOL ScrCmd_CloseMessage(ScriptContext *ctx);
-static BOOL ScrCmd_035(ScriptContext *ctx);
+static BOOL ScrCmd_CloseMessageWithoutErasing(ScriptContext *ctx);
 static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx);
 static BOOL ScrCmd_DrawSignpostTextBox(ScriptContext *ctx);
 static BOOL ScrCmd_SetSignpostCommand(ScriptContext *ctx);
@@ -821,7 +821,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitABPadPress,
     ScrCmd_OpenMessage,
     ScrCmd_CloseMessage,
-    ScrCmd_035,
+    ScrCmd_CloseMessageWithoutErasing,
     ScrCmd_DrawSignpostInstantMessage,
     ScrCmd_DrawSignpostTextBox,
     ScrCmd_SetSignpostCommand,
@@ -2329,7 +2329,7 @@ static BOOL ScrCmd_CloseMessage(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_035(ScriptContext *ctx)
+static BOOL ScrCmd_CloseMessageWithoutErasing(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Window *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);

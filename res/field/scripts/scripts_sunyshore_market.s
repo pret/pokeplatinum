@@ -70,7 +70,7 @@ _00A9:
     GoToIfEq VAR_RESULT, 0, _00D9
     Message 7
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     Call _00E4
     ReleaseAll
     End

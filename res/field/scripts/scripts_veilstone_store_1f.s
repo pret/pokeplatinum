@@ -47,7 +47,7 @@ _005B:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT
     ReleaseAll
     End
@@ -57,7 +57,7 @@ _0071:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT
     ReleaseAll
     End
