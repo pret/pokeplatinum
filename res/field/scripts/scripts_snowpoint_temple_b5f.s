@@ -27,7 +27,7 @@ _0025:
     BufferPlayerName 0
     Message 1
     CloseMessage
-    ScrCmd_063 0
+    ReleaseObject 0
     ScrCmd_269 0, 8, 90, 3, 0
     LockObject 0
     GoTo _0081

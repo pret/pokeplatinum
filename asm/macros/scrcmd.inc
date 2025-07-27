@@ -625,7 +625,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_063 arg0
+    .macro ReleaseObject arg0
     .short 99
     .short \arg0
     .endm

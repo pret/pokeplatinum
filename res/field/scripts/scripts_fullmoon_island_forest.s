@@ -19,7 +19,7 @@ _000C:
     PlayCry SPECIES_CRESSELIA
     GetPlayerDir VAR_RESULT
     CallIfEq VAR_RESULT, 0, _007E
-    ScrCmd_063 0
+    ReleaseObject 0
     ScrCmd_26A 0, 6, 8
     LockObject 0
     SetFlag FLAG_UNK_0x024F
