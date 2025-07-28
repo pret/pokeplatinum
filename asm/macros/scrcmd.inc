@@ -1046,9 +1046,9 @@
     .short 170
     .endm
 
-    .macro OpenPokemonStorage arg0
+    .macro OpenPokemonStorage boxMode
     .short 171
-    .byte \arg0
+    .byte \boxMode
     .endm
 
     .macro ScrCmd_0AC

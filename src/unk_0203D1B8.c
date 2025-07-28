@@ -12,6 +12,7 @@
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/pokemon_storage_session.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
@@ -27,7 +28,6 @@
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
-#include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_0208737C.h"
@@ -626,7 +626,7 @@ int PokemonSummary_GetSelectedMoveSlot(void *summary)
     return ((PokemonSummary *)summary)->selectedMoveSlot;
 }
 
-void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1)
+void sub_0203D754(FieldSystem *fieldSystem, PokemonStorageSession *param1)
 {
     FS_EXTERN_OVERLAY(overlay19);
 

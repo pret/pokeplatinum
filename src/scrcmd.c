@@ -36,13 +36,13 @@
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
 #include "struct_defs/mail.h"
+#include "struct_defs/pokemon_storage_session.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
-#include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/underground.h"
@@ -3721,28 +3721,28 @@ BOOL sub_02041CC8(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL sub_02041CF4(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForPokemonStorageClose(ScriptContext *ctx)
 {
-    void **v0;
-    UnkStruct_02042434 *v2;
+    void **partyManagementData;
+    PokemonStorageSession *pokemonStorageSession;
 
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    v0 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    v2 = *v0;
+    partyManagementData = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    pokemonStorageSession = *partyManagementData;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return FALSE;
     }
 
-    if (v2->recordBoxUseInJournal == TRUE) {
+    if (pokemonStorageSession->recordBoxUseInJournal == TRUE) {
         void *journalEntryLocationEvent;
 
         journalEntryLocationEvent = JournalEntry_CreateEventUsedPCBox(HEAP_ID_FIELDMAP);
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
     }
 
-    Heap_Free(*v0);
-    *v0 = NULL;
+    Heap_Free(*partyManagementData);
+    *partyManagementData = NULL;
 
     return TRUE;
 }
@@ -4138,15 +4138,15 @@ static BOOL ScrCmd_1D9(ScriptContext *ctx)
 
 static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    UnkStruct_02042434 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
+    void **partyManagementData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    PokemonStorageSession *pokemonStorageSession = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonStorageSession));
 
-    v1->saveData = ctx->fieldSystem->saveData;
-    v1->boxMode = ScriptContext_ReadByte(ctx);
-    *v0 = v1;
+    pokemonStorageSession->saveData = ctx->fieldSystem->saveData;
+    pokemonStorageSession->boxMode = ScriptContext_ReadByte(ctx);
+    *partyManagementData = pokemonStorageSession;
 
-    sub_0203D754(ctx->fieldSystem, *v0);
-    ScriptContext_Pause(ctx, sub_02041CF4);
+    sub_0203D754(ctx->fieldSystem, *partyManagementData);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForPokemonStorageClose);
 
     return TRUE;
 }

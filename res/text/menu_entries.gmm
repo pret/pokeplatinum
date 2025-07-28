@@ -276,27 +276,27 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SWITCH OFF</language>
 	</row>
-	<row id="pl_msg_00000361_00065" index="65">
+	<row id="MenuEntries_Text_PokemonStorageDepositPokemon" index="65">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">DEPOSIT POKéMON</language>
 	</row>
-	<row id="pl_msg_00000361_00066" index="66">
+	<row id="MenuEntries_Text_PokemonStorageWithdrawPokemon" index="66">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">WITHDRAW POKéMON</language>
 	</row>
-	<row id="pl_msg_00000361_00067" index="67">
+	<row id="MenuEntries_Text_PokemonStorageMovePokemon" index="67">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MOVE POKéMON</language>
 	</row>
-	<row id="pl_msg_00000361_00068" index="68">
+	<row id="MenuEntries_Text_PokemonStorageMoveItems" index="68">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">MOVE ITEMS</language>
 	</row>
-	<row id="pl_msg_00000361_00069" index="69">
+	<row id="MenuEntries_Text_PokemonStorageComparePokemon" index="69">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">COMPARE POKéMON</language>
 	</row>
-	<row id="pl_msg_00000361_00070" index="70">
+	<row id="MenuEntries_Text_PokemonStorageSeeYa" index="70">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SEE YA!</language>
 	</row>
@@ -312,27 +312,27 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">LOG OUT</language>
 	</row>
-	<row id="pl_msg_00000361_00074" index="74">
+	<row id="MenuEntries_Text_PokemonStorageDepositPokemonDescription" index="74">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon in your party may be stored\nin the storage system’s Boxes.</language>
 	</row>
-	<row id="pl_msg_00000361_00075" index="75">
+	<row id="MenuEntries_Text_PokemonStorageWithdrawPokemonDescription" index="75">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon stored in Boxes may be added\nto your party.</language>
 	</row>
-	<row id="pl_msg_00000361_00076" index="76">
+	<row id="MenuEntries_Text_PokemonStorageMovePokemonDescription" index="76">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You may sort the Pokémon in Boxes\nand in your party.</language>
 	</row>
-	<row id="pl_msg_00000361_00077" index="77">
+	<row id="MenuEntries_Text_PokemonStorageMoveItemsDescription" index="77">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You may sort the items held by your\nPokémon in Boxes and in your party.</language>
 	</row>
-	<row id="pl_msg_00000361_00078" index="78">
+	<row id="MenuEntries_Text_PokemonStorageComparePokemonDescription" index="78">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You may compare two Pokémon in Boxes\nor your party side by side.</language>
 	</row>
-	<row id="pl_msg_00000361_00079" index="79">
+	<row id="MenuEntries_Text_PokemonStorageSeeYaDescription" index="79">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Log out of the Pokémon Storage\nSystem.</language>
 	</row>
