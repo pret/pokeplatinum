@@ -374,10 +374,10 @@ _04C4:
     CallIfEq VAR_0x8000, GENDER_FEMALE, _0658
     CloseMessage
     PlayMusic SEQ_POKERADAR
-    ScrCmd_308 189, 0x332
+    AddCameraOverrideObject 189, 0x332
     ApplyFreeCameraMovement _06F8
     WaitMovement
-    ScrCmd_309
+    RemoveCameraOverrideObject
     ApplyMovement 3, _0690
     ApplyMovement LOCALID_PLAYER, _06D0
     WaitMovement

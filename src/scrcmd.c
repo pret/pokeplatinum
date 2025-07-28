@@ -345,8 +345,8 @@ static BOOL ScrCmd_AddObject(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
 static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx);
 static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx);
-static BOOL ScrCmd_308(ScriptContext *ctx);
-static BOOL ScrCmd_309(ScriptContext *ctx);
+static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx);
+static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx);
 static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_06A(ScriptContext *ctx);
@@ -1544,8 +1544,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonForm2,
     ScrCmd_ShowListMenuRememberCursor,
     ScrCmd_307,
-    ScrCmd_308,
-    ScrCmd_309,
+    SrcCmd_AddCameraOverrideObject,
+    SrcCmd_RemoveCameraOverrideObject,
     ScrCmd_IncrementTrainerScore,
     ScrCmd_30B,
     ScrCmd_30C,
@@ -3254,7 +3254,7 @@ static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_308(ScriptContext *ctx)
+static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
@@ -3269,7 +3269,7 @@ static BOOL ScrCmd_308(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_309(ScriptContext *ctx)
+static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx)
 {
     MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 

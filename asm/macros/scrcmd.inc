@@ -4423,13 +4423,13 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_308 arg0, arg1
+    .macro AddCameraOverrideObject arg0, arg1
     .short 776
     .short \arg0
     .short \arg1
     .endm
 
-    .macro ScrCmd_309
+    .macro RemoveCameraOverrideObject
     .short 777
     .endm
 
