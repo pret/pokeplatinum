@@ -41,7 +41,7 @@ _0062:
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    ApplyMovement 241, _0340
+    ApplyFreeCameraMovement _0340
     WaitMovement
     WaitTime 30, VAR_RESULT
     BufferRivalName 0
@@ -146,7 +146,7 @@ _0184:
     ReturnToField
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    ApplyMovement 241, _0340
+    ApplyFreeCameraMovement _0340
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -164,7 +164,7 @@ _0184:
     ApplyMovement 3, _03BC
     ApplyMovement 4, _0388
     ApplyMovement 2, _02F0
-    ApplyMovement 241, _0348
+    ApplyFreeCameraMovement _0348
     WaitMovement
     RemoveObject 4
     RemoveObject 3

@@ -43,7 +43,7 @@ _009A:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    ApplyMovement 241, _00E8
+    ApplyFreeCameraMovement _00E8
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 0
@@ -53,7 +53,7 @@ _009A:
     ApplyMovement 2, _00F8
     WaitMovement
     RemoveObject 2
-    ApplyMovement 241, _00F0
+    ApplyFreeCameraMovement _00F0
     WaitMovement
     RestoreCamera
     SetVar VAR_UNK_0x4084, 1

@@ -646,6 +646,10 @@
     .short \arg1
     .endm
 
+    .macro ApplyFreeCameraMovement movementOffset
+    ApplyMovement 241, \movementOffset
+    .endm
+
     .macro RestoreCamera
     .short 103
     .endm

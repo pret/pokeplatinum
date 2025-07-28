@@ -110,7 +110,7 @@ _0194:
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    ApplyMovement 241, _0280
+    ApplyFreeCameraMovement _0280
     ApplyMovement 130, _026C
     ApplyMovement 129, _0258
     ApplyMovement LOCALID_PLAYER, _0244
@@ -123,7 +123,7 @@ _0194:
     ApplyMovement 130, _0274
     WaitMovement
     ScrCmd_312 130
-    ApplyMovement 241, _0288
+    ApplyFreeCameraMovement _0288
     WaitMovement
     RestoreCamera
     Message 11

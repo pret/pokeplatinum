@@ -499,23 +499,23 @@ _05C0:
     Return
 
 _060F:
-    ApplyMovement 241, _0644
+    ApplyFreeCameraMovement _0644
     Return
 
 _0619:
-    ApplyMovement 241, _0654
+    ApplyFreeCameraMovement _0654
     Return
 
 _0623:
-    ApplyMovement 241, _0664
+    ApplyFreeCameraMovement _0664
     Return
 
 _062D:
-    ApplyMovement 241, _0670
+    ApplyFreeCameraMovement _0670
     Return
 
 _0637:
-    ApplyMovement 241, _0680
+    ApplyFreeCameraMovement _0680
     Return
 
     .balign 4, 0

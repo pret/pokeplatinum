@@ -9,7 +9,7 @@ _0006:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     AddFreeCamera VAR_0x8004, VAR_0x8005
-    ApplyMovement 241, _0228
+    ApplyFreeCameraMovement _0228
     WaitMovement
     WaitTime 15, VAR_RESULT
     ApplyMovement 2, _01C4
@@ -70,7 +70,7 @@ _0006:
 
 _0136:
     ApplyMovement 1, _01F4
-    ApplyMovement 241, _0230
+    ApplyFreeCameraMovement _0230
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _01B0
     WaitMovement
@@ -78,7 +78,7 @@ _0136:
 
 _0154:
     ApplyMovement 1, _0204
-    ApplyMovement 241, _0230
+    ApplyFreeCameraMovement _0230
     WaitMovement
     Return
 

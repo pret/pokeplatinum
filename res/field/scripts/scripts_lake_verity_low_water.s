@@ -47,14 +47,14 @@ _006F:
     Message 0
     CloseMessage
     AddFreeCamera 46, 53
-    ApplyMovement 241, _01B4
+    ApplyFreeCameraMovement _01B4
     WaitMovement
     WaitTime 15, VAR_RESULT
     Message 1
     CloseMessage
     WaitTime 30, VAR_RESULT
     ApplyMovement 4, _01E0
-    ApplyMovement 241, _01C0
+    ApplyFreeCameraMovement _01C0
     WaitMovement
     RestoreCamera
     Message 2

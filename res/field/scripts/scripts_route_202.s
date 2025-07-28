@@ -375,7 +375,7 @@ _04C4:
     CloseMessage
     PlayMusic SEQ_POKERADAR
     ScrCmd_308 189, 0x332
-    ApplyMovement 241, _06F8
+    ApplyFreeCameraMovement _06F8
     WaitMovement
     ScrCmd_309
     ApplyMovement 3, _0690

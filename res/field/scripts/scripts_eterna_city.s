@@ -859,13 +859,13 @@ _0AB6:
     ScrCmd_32E
     ScrCmd_332
     AddFreeCamera 0x143, 0x20C
-    ApplyMovement 241, _0CD4
+    ApplyFreeCameraMovement _0CD4
     WaitMovement
     Message 3
     CloseMessage
     WaitTime 15, VAR_RESULT
     ApplyMovement 32, _0CE4
-    ApplyMovement 241, _0CDC
+    ApplyFreeCameraMovement _0CDC
     WaitMovement
     RestoreCamera
     Message 4
