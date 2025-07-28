@@ -104,7 +104,7 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
         {
             u16 *paletteAddress = (u16 *)GetHardwareMainBgPaletteAddress();
 
-            BlendPalettes(paletteAddress, paletteAddress, 0xFFFC, 7, 0x0);
+            BlendPalettes(paletteAddress, paletteAddress, 0xFFFC, 7, 0);
             GX_LoadBGPltt((const void *)paletteAddress, 0, 16 * 0x20);
         }
 
@@ -148,7 +148,7 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
     case RIT_APP_STATE_DISPLAY_TEXT_WAIT_INPUT:
         RowanIntroTv_ShiftCrtOverlay(tv);
 
-        if (RowanIntroTv_Run(tv, pl_msg_00000607_00000, 5 * 8, 6 * 8) == TRUE) {
+        if (RowanIntroTv_Run(tv, RowanIntroTv_TextId, 5 * 8, 6 * 8) == TRUE) {
             StartScreenFade(
                 FADE_BOTH_SCREENS,
                 FADE_TYPE_BRIGHTNESS_OUT,
@@ -382,10 +382,10 @@ static void RowanIntroTv_InitGraphics(RowanIntroTv *tv)
         0x20 * 14,
         tv->heapID);
     Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), tv->heapID);
-    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
-    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 0x4, 0xc);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 4, 12);
 }
 
 static void RowanIntroTv_FreeGraphics(RowanIntroTv *tv)
@@ -427,12 +427,12 @@ static void RowanIntroTv_FreeMessageStructs(RowanIntroTv *tv)
 
 static const WindowTemplate sMessageWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_2,
-    .tilemapLeft = 0x0,
-    .tilemapTop = 0x0,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
     .width = 0x20,
     .height = 0x18,
-    .palette = 0x1,
-    .baseTile = 0x1,
+    .palette = 1,
+    .baseTile = 1,
 };
 
 static BOOL RowanIntroTv_Run(RowanIntroTv *tv, int msgEntryID, int unused0, int unused1)
