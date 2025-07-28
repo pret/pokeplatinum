@@ -71,7 +71,7 @@ _00D9:
     ScrCmd_2F7 VAR_0x8004
     ReturnToField
     SetVar VAR_UNK_0x4080, 1
-    ScrCmd_1B2 0xFF
+    HideObject 0xFF
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End

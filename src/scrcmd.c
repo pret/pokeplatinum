@@ -550,8 +550,8 @@ static BOOL ScrCmd_Unused_1A1(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1A2(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_03F(ScriptContext *ctx);
 static BOOL ScrCmd_1AC(ScriptContext *ctx);
-static BOOL ScrCmd_1B1(ScriptContext *ctx);
-static BOOL ScrCmd_1B2(ScriptContext *ctx);
+static BOOL ScrCmd_ShowObject(ScriptContext *ctx);
+static BOOL ScrCmd_HideObject(ScriptContext *ctx);
 static BOOL ScrCmd_1B3(ScriptContext *ctx);
 static BOOL ScrCmd_1B4(ScriptContext *ctx);
 static BOOL ScrCmd_1B5(ScriptContext *ctx);
@@ -1203,8 +1203,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferDaycareGainedLevelsBySlot,
     ScrCmd_BufferPartyMonNicknameReturnSpecies,
     ScrCmd_StorePartyMonIntoDaycare,
-    ScrCmd_1B1,
-    ScrCmd_1B2,
+    ScrCmd_ShowObject,
+    ScrCmd_HideObject,
     ScrCmd_1B3,
     ScrCmd_1B4,
     ScrCmd_1B5,
@@ -5730,7 +5730,7 @@ static BOOL ScrCmd_Unused_03F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1B1(ScriptContext *ctx)
+static BOOL ScrCmd_ShowObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -5744,7 +5744,7 @@ static BOOL ScrCmd_1B1(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1B2(ScriptContext *ctx)
+static BOOL ScrCmd_HideObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 

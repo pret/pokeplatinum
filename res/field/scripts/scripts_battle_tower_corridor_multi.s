@@ -26,12 +26,12 @@ _004A:
 
 _0068:
     CallIfNe VAR_UNK_0x40DD, 0, _007F
-    ScrCmd_1B2 2
-    ScrCmd_1B2 3
+    HideObject 2
+    HideObject 3
     End
 
 _007F:
-    ScrCmd_1B2 0xFF
+    HideObject 0xFF
     ScrCmd_06B 8, 0, 0
     Return
 
@@ -58,8 +58,8 @@ _00C9:
     ApplyMovement 0, _0174
     ApplyMovement 1, _0174
     WaitMovement
-    ScrCmd_1B1 2
-    ScrCmd_1B1 3
+    ShowObject 2
+    ShowObject 3
     ApplyMovement 2, _0180
     ApplyMovement 3, _0180
     WaitMovement

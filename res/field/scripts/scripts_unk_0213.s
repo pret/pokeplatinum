@@ -26,7 +26,7 @@ _0046:
     End
 
 _0055:
-    ScrCmd_1B2 0xFF
+    HideObject 0xFF
     Return
 
 _005B:
@@ -47,7 +47,7 @@ _008F:
     LockAll
     ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
     Call _050B
-    ScrCmd_1B1 0xFF
+    ShowObject 0xFF
     ApplyMovement LOCALID_PLAYER, _00F0
     WaitMovement
     Call _0513

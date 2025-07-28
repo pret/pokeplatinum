@@ -83,7 +83,7 @@ _015D:
     End
 
 _0179:
-    ScrCmd_1B2 0xFF
+    HideObject 0xFF
     Return
 
 _017F:
@@ -306,7 +306,7 @@ _04A6:
     Call _0488
     ApplyMovement 0, _06C8
     WaitMovement
-    ScrCmd_1B1 0xFF
+    ShowObject 0xFF
     ApplyMovement LOCALID_PLAYER, _06B8
     WaitMovement
     Call _049B

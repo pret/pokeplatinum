@@ -35,7 +35,7 @@ _008E:
     End
 
 _0090:
-    ScrCmd_1B2 0xFF
+    HideObject 0xFF
     ScrCmd_06B 8, 0, 0
     Return
 

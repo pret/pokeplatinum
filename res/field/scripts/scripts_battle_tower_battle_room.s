@@ -18,7 +18,7 @@ _0035:
     End
 
 _0037:
-    ScrCmd_1B2 0xFF
+    HideObject 0xFF
     GoToIfEq VAR_UNK_0x40D9, 3, _004A
     End
 

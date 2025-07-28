@@ -2402,12 +2402,12 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1B1 arg0
+    .macro ShowObject arg0
     .short 433
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B2 arg0
+    .macro HideObject arg0
     .short 434
     .short \arg0
     .endm

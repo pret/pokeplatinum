@@ -158,7 +158,7 @@ _01D4:
     End
 
 _01E3:
-    ScrCmd_1B2 0xFF
+    HideObject 0xFF
     Return
 
 _01E9:
