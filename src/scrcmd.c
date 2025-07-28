@@ -531,7 +531,7 @@ static BOOL ScrCmd_18D(ScriptContext *ctx);
 static BOOL ScrCmd_18E(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx);
 static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx);
-static BOOL ScrCmd_191(ScriptContext *ctx);
+static BOOL ScrCmd_SelectMoveTutorPokemon(ScriptContext *ctx);
 static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx);
 static BOOL ScrCmd_2D0(ScriptContext *ctx);
 static BOOL ScrCmd_2D4(ScriptContext *ctx);
@@ -1171,7 +1171,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_18E,
     ScrCmd_18F,
     ScrCmd_WaitABPressTime,
-    ScrCmd_191,
+    ScrCmd_SelectMoveTutorPokemon,
     ScrCmd_192,
     ScrCmd_GetSelectedPartySlot,
     ScrCmd_194,
@@ -3427,7 +3427,7 @@ static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_191(ScriptContext *ctx)
+static BOOL ScrCmd_SelectMoveTutorPokemon(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     *v0 = sub_0203D3C0(32, ctx->fieldSystem);

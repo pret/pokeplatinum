@@ -2232,7 +2232,7 @@
     .short \frames
     .endm
 
-    .macro ScrCmd_191
+    .macro SelectMoveTutorPokemon
     .short 401
     .endm
 

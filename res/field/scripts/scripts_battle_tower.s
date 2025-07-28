@@ -1271,7 +1271,7 @@ _140A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_191
+    SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
     SetVar VAR_0x8000, VAR_RESULT
