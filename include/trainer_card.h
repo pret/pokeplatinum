@@ -17,7 +17,7 @@
 #define BADGE_POLISH_THRESHOLD_4_SPARKLES 190
 #define MAX_BADGE_POLISH                  199
 
-typedef struct {
+typedef struct TrainerCardBadge {
     int obtained : 1;
     int polish : 31;
 } TrainerCardBadge;

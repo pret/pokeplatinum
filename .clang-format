@@ -53,6 +53,9 @@ IndentGotoLabels: false
 IndentPPDirectives: None
 IndentWidth: 4
 
+Macros:
+  - FX32_ONE=0x0000000000001000L
+
 SortIncludes: CaseSensitive
 IncludeBlocks: Regroup
 IncludeCategories:

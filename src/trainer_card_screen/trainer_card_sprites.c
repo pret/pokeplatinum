@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "trainer_card_screen/struct_trainer_card_sprite_data.h"
+#include "trainer_card_screen/trainer_card_screen_defs.h"
 
 #include "badges.h"
 #include "char_transfer.h"
@@ -93,10 +93,10 @@ void TrainerCard_InitSpriteData(TrainerCardSpriteData *spriteData, NARC *narc)
         if (spriteData->badgePaletteBuffers[badgeID] != NULL) {
             if (NNS_G2dGetUnpackedPaletteData(spriteData->badgePaletteBuffers[badgeID], &spriteData->badgePalettes[badgeID]) == FALSE) {
                 Heap_Free(spriteData->badgePalettes[badgeID]);
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
             }
         } else {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
         }
     }
 
@@ -127,10 +127,8 @@ void TrainerCard_DrawBadgeCaseSprites(TrainerCardSpriteData *spriteData, u8 *bad
     template.heapID = HEAP_ID_TRAINER_CARD_SCREEN;
 
     for (badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
-        // clang-format off
         template.position.x = FX32_ONE * sBadgeCoordinates[badgeID].x;
         template.position.y = FX32_ONE * sBadgeCoordinates[badgeID].y;
-        // clang-format on
         spriteData->sprites[badgeID] = SpriteList_AddAffine(&template);
         Sprite_SetAnimateFlag(spriteData->sprites[badgeID], FALSE);
         Sprite_SetAnim(spriteData->sprites[badgeID], badgeID);
@@ -143,10 +141,8 @@ void TrainerCard_DrawBadgeCaseSprites(TrainerCardSpriteData *spriteData, u8 *bad
     index = TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX;
 
     for (badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
-        // clang-format off
         template.position.x = FX32_ONE * sSparkleCoordinates[badgeID].x;
         template.position.y = FX32_ONE * sSparkleCoordinates[badgeID].y;
-        // clang-format on
         template.priority = 1;
         spriteData->sprites[index + badgeID] = SpriteList_AddAffine(&template);
         Sprite_SetAnimateFlag(spriteData->sprites[index + badgeID], TRUE);
@@ -157,10 +153,8 @@ void TrainerCard_DrawBadgeCaseSprites(TrainerCardSpriteData *spriteData, u8 *bad
     index += TRAINER_CARD_FOUR_SPARKLES_SPRITES_INDEX - TRAINER_CARD_TWO_SPARKLES_SPRITES_INDEX;
 
     for (badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
-        // clang-format off
         template.position.x = FX32_ONE * sSparkleCoordinates[badgeID].x;
         template.position.y = FX32_ONE * sSparkleCoordinates[badgeID].y;
-        // clang-format on
         template.priority = 1;
         spriteData->sprites[index + badgeID] = SpriteList_AddAffine(&template);
         Sprite_SetAnimateFlag(spriteData->sprites[index + badgeID], TRUE);

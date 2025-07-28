@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "trainer_card_screen/struct_trainer_card_screen.h"
+#include "trainer_card_screen/trainer_card_screen_defs.h"
 
 #include "bg_window.h"
 #include "font.h"

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "trainer_card_screen/struct_trainer_card_badge_chime_state.h"
 #include "trainer_card_screen/trainer_card_screen.h"
+#include "trainer_card_screen/trainer_card_screen_defs.h"
 
 #include "badges.h"
 #include "sound.h"

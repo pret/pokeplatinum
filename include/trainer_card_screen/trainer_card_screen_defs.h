@@ -3,11 +3,12 @@
 
 #include <nnsys.h>
 
-#include "trainer_card_screen/struct_trainer_card_badge_chime_state.h"
-#include "trainer_card_screen/struct_trainer_card_sprite_data.h"
-
 #include "badges.h"
 #include "bg_window.h"
+#include "sound.h"
+#include "sprite.h"
+#include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "trainer_card.h"
 
@@ -33,6 +34,20 @@ typedef struct BadgePolishingState {
     s8 currentYDirection;
     u8 soundEffectIndex;
 } BadgePolishingState;
+
+typedef struct TrainerCardBadgeChimeState {
+    u8 badgeChimePlayers[NUM_SE_PLAYERS][2];
+} TrainerCardBadgeChimeState;
+
+typedef struct TrainerCardSpriteData {
+    SpriteList *spriteList;
+    G2dRenderer g2dRenderer;
+    SpriteResourceCollection *spriteResourceCollection[4];
+    SpriteResource *spriteResources[2][4];
+    Sprite *sprites[MAX_BADGES * 3 + 1];
+    void *badgePaletteBuffers[MAX_BADGES];
+    NNSG2dPaletteData *badgePalettes[MAX_BADGES];
+} TrainerCardSpriteData;
 
 typedef struct TrainerCardScreen {
     BgConfig *bgConfig;

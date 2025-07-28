@@ -7,9 +7,8 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "trainer_card_screen/struct_trainer_card_screen.h"
-#include "trainer_card_screen/trainer_card_badge_chimes.h"
 #include "trainer_card_screen/trainer_card_display_text.h"
+#include "trainer_card_screen/trainer_card_screen_defs.h"
 #include "trainer_card_screen/trainer_card_sprites.h"
 
 #include "badges.h"
@@ -70,7 +69,8 @@ enum BadgeCaseTouchRectangles {
 
 enum BadgeCaseOpenCloseStates {
     BADGE_CASE_CLOSED,
-    BADGE_CASE_OPEN
+    BADGE_CASE_OPEN,
+    BADGE_CASE_OPEN_CLOSE_STATE_COUNT
 };
 
 enum BadgeCaseButtonStates {
@@ -94,7 +94,7 @@ enum BadgeCaseButtonSpriteIndices {
 };
 
 typedef struct TouchRectangleSet {
-    const TouchScreenRect *touchRectangles[2];
+    const TouchScreenRect *touchRectangles[BADGE_CASE_OPEN_CLOSE_STATE_COUNT];
 } TouchRectangleSet;
 
 static void TrainerCard_InitStrBufs(TrainerCardScreen *trainerCardScreen);
@@ -139,20 +139,20 @@ static const u8 sPolishThresholds[BADGE_POLISH_LEVEL_COUNT] = {
 };
 
 static const TouchScreenRect sTouchRectangles_BadgesEnabled[] = {
-    [TOUCH_RECTANGLE_OPEN_CLOSE_BADGE_CASE] = { .rect.top = 152, .rect.bottom = 183, .rect.left = 120, .rect.right = 151 },
-    [TOUCH_RECTANGLE_COAL_BADGE] = { .rect.top = 40, .rect.bottom = 79, .rect.left = 24, .rect.right = 63 },
-    [TOUCH_RECTANGLE_FOREST_BADGE] = { .rect.top = 40, .rect.bottom = 79, .rect.left = 80, .rect.right = 119 },
-    [TOUCH_RECTANGLE_COBBLE_BADGE] = { .rect.top = 40, .rect.bottom = 79, .rect.left = 136, .rect.right = 167 },
-    [TOUCH_RECTANGLE_FEN_BADGE] = { .rect.top = 40, .rect.bottom = 79, .rect.left = 192, .rect.right = 231 },
-    [TOUCH_RECTANGLE_RELIC_BADGE] = { .rect.top = 96, .rect.bottom = 135, .rect.left = 24, .rect.right = 63 },
-    [TOUCH_RECTANGLE_MINE_BADGE] = { .rect.top = 96, .rect.bottom = 135, .rect.left = 80, .rect.right = 119 },
-    [TOUCH_RECTANGLE_ICICLE_BADGE] = { .rect.top = 96, .rect.bottom = 135, .rect.left = 136, .rect.right = 167 },
-    [TOUCH_RECTANGLE_BEACON_BADGE] = { .rect.top = 96, .rect.bottom = 135, .rect.left = 192, .rect.right = 231 },
+    [TOUCH_RECTANGLE_OPEN_CLOSE_BADGE_CASE] = { .rect = { .top = 152, .bottom = 183, .left = 120, .right = 151 } },
+    [TOUCH_RECTANGLE_COAL_BADGE] = { .rect = { .top = 40, .bottom = 79, .left = 24, .right = 63 } },
+    [TOUCH_RECTANGLE_FOREST_BADGE] = { .rect = { .top = 40, .bottom = 79, .left = 80, .right = 119 } },
+    [TOUCH_RECTANGLE_COBBLE_BADGE] = { .rect = { .top = 40, .bottom = 79, .left = 136, .right = 167 } },
+    [TOUCH_RECTANGLE_FEN_BADGE] = { .rect = { .top = 40, .bottom = 79, .left = 192, .right = 231 } },
+    [TOUCH_RECTANGLE_RELIC_BADGE] = { .rect = { .top = 96, .bottom = 135, .left = 24, .right = 63 } },
+    [TOUCH_RECTANGLE_MINE_BADGE] = { .rect = { .top = 96, .bottom = 135, .left = 80, .right = 119 } },
+    [TOUCH_RECTANGLE_ICICLE_BADGE] = { .rect = { .top = 96, .bottom = 135, .left = 136, .right = 167 } },
+    [TOUCH_RECTANGLE_BEACON_BADGE] = { .rect = { .top = 96, .bottom = 135, .left = 192, .right = 231 } },
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
 static const TouchScreenRect sTouchRectangles_BadgesDisabled[] = {
-    [TOUCH_RECTANGLE_OPEN_CLOSE_BADGE_CASE] = { .rect.top = 152, .rect.bottom = 183, .rect.left = 120, .rect.right = 151 },
+    [TOUCH_RECTANGLE_OPEN_CLOSE_BADGE_CASE] = { .rect = { .top = 152, .bottom = 183, .left = 120, .right = 151 } },
     { TOUCHSCREEN_TABLE_TERMINATOR, 0, 0, 0 }
 };
 
