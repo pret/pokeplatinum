@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": true,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WRAP" ],
@@ -90,6 +91,15 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_STOCKPILE",
+            "MOVE_SWALLOW",
+            "MOVE_SPIT_UP",
+            "MOVE_BODY_SLAM",
+            "MOVE_SCARY_FACE",
+            "MOVE_ASSURANCE",
+            "MOVE_NIGHT_SLASH"
         ]
     },
     "evolutions": [  ],

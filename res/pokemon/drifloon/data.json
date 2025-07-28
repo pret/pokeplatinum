@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_CONSTRICT" ],
@@ -101,6 +102,14 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_MEMENTO",
+            "MOVE_BODY_SLAM",
+            "MOVE_DESTINY_BOND",
+            "MOVE_DISABLE",
+            "MOVE_HAZE",
+            "MOVE_HYPNOSIS"
         ]
     },
     "evolutions": [

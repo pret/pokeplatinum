@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -85,6 +86,20 @@
             "MOVE_BOUNCE",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_COUNTER",
+            "MOVE_REVERSAL",
+            "MOVE_ENDURE",
+            "MOVE_SWAGGER",
+            "MOVE_ROCK_SLIDE",
+            "MOVE_SMELLING_SALT",
+            "MOVE_CRUSH_CLAW",
+            "MOVE_BATON_PASS",
+            "MOVE_AGILITY",
+            "MOVE_NIGHT_SLASH",
+            "MOVE_LAST_RESORT",
+            "MOVE_FEINT"
         ]
     },
     "evolutions": [

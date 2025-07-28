@@ -8,7 +8,6 @@
 #include "constants/pokemon.h"
 #include "constants/rtc.h"
 #include "constants/species.h"
-#include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
 

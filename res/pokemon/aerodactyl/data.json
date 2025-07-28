@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ICE_FANG" ],
@@ -107,6 +108,15 @@
             "MOVE_TWISTER",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_WHIRLWIND",
+            "MOVE_PURSUIT",
+            "MOVE_FORESIGHT",
+            "MOVE_STEEL_WING",
+            "MOVE_DRAGON_BREATH",
+            "MOVE_CURSE",
+            "MOVE_ASSURANCE"
         ]
     },
     "evolutions": [  ],
