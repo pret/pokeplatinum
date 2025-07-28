@@ -2173,7 +2173,7 @@
     .short \z
     .endm
 
-    .macro ScrCmd_187 arg0, arg1, arg2, arg3, arg4
+    .macro SetPosition arg0, arg1, arg2, arg3, arg4
     .short 391
     .short \arg0
     .short \arg1

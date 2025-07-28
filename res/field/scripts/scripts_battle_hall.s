@@ -34,12 +34,12 @@ _005A:
 
 _007A:
     SetObjectEventPos 12, 8, 11
-    ScrCmd_187 12, 8, 0, 11, 2
+    SetPosition 12, 8, 0, 11, 2
     Return
 
 _0090:
     SetObjectEventPos 12, 13, 11
-    ScrCmd_187 12, 13, 0, 11, 2
+    SetPosition 12, 13, 0, 11, 2
     Return
 
 _00A6:

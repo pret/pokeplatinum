@@ -87,7 +87,7 @@ _0179:
     Return
 
 _017F:
-    ScrCmd_187 0, 8, 0, 3, 1
+    SetPosition 0, 8, 0, 3, 1
     End
 
 _018D:

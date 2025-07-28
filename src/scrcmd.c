@@ -5424,7 +5424,7 @@ static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_187(ScriptContext *ctx)
+static BOOL ScrCmd_SetPosition(ScriptContext *ctx)
 {
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);

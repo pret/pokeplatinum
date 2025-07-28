@@ -40,8 +40,8 @@ _0090:
     Return
 
 _009E:
-    ScrCmd_187 2, 5, 0, 5, 3
-    ScrCmd_187 3, 5, 0, 6, 3
+    SetPosition 2, 5, 0, 5, 3
+    SetPosition 3, 5, 0, 6, 3
     GoTo _008E
     End
 
