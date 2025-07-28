@@ -69,7 +69,6 @@
 #include "trainer_info.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "unk_0208694C.h"
 #include "unk_0208C098.h"
 
 #include "res/battle/scripts/sub_seq.naix.h"
@@ -10858,7 +10857,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
-                v16 = sub_0208712C(HEAP_ID_BATTLE, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));
+                v16 = KeyboardArgs_Init(HEAP_ID_BATTLE, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));
                 v2->tmpPtr[1] = v16;
 
                 if (BattleSystem_PartyCount(v2->battleSys, 0) < 6) {
@@ -10908,7 +10907,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     ov16_0223F24C(v2->battleSys, (1 + 48));
                 }
 
-                sub_0208716C(v19);
+                KeyboardArgs_Free(v19);
                 ApplicationManager_Free(v2->tmpPtr[0]);
                 ov16_0223F314(v2->battleSys, 2);
 

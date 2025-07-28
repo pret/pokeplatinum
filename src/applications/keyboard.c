@@ -1,9 +1,10 @@
-#include "unk_0208694C.h"
+#include "charcode.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/charcode.h"
 #include "constants/heap.h"
 
 #include "struct_defs/struct_02099F80.h"
@@ -44,6 +45,32 @@
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "vram_transfer.h"
+
+enum KeyboardAppState {
+    KBD_APP_STATE_WAIT_FADE_IN = 0,
+    KBD_APP_STATE_INITIAL_DELAY,
+    KBD_APP_STATE_RUNNING,
+    KBD_APP_STATE_WAIT_FADE_OUT,
+};
+
+enum KeyboardState {
+    KBD_STATE_PLACEHOLDER_4 = 4,
+    KBD_STATE_PLACEHOLDER_5,
+    KBD_STATE_PLACEHOLDER_6,
+    KBD_STATE_PLACEHOLDER_7,
+};
+
+enum ChangeCharsState {
+    CC_STATE_LOAD_GRAPHICS = 0,
+    CC_STATE_SET_INITIAL_POSITION,
+    CC_STATE_SLIDE_IN,
+    CC_STATE_FINISH_SLIDING_OUT,
+    CC_STATE_NOTHING,
+};
+
+enum KeyboardSprite {
+    KBD_SPRITE_OVERLAY = 7,
+};
 
 typedef struct {
     int unk_00;
@@ -87,21 +114,26 @@ typedef struct Keyboard {
     SpriteResource *unk_328[2][4];
     SpriteResourcesHeader unk_348;
     SpriteResourcesHeader unk_36C;
-    Sprite *unk_390[14];
-    Sprite *unk_3C8[12];
-    Sprite *unk_3F8[2];
+    Sprite *miscSprites[14];
+    Sprite *textCursorSprites[12];
+    Sprite *entitySprite[2];
     SysTask *unk_400[7];
     Window unk_41C[10];
     int unk_4BC;
-    int unk_4C0;
-    int unk_4C4;
-    int unk_4C8;
-    VecFx32 unk_4CC[2];
+    union {
+        enum KeyboardState main;
+        enum ChangeCharsState changeChars;
+    } state;
+    int currentCharsIdx;
+    // initially set to 0 (in memset in init)
+    // alternates between 0 and 1. (see Keyboard_AnimateChangeChars)
+    enum BgLayer freeCharsBgLayer;
+    VecFx32 charsPosition[2];
     int unk_4E4;
     int unk_4E8;
     int unk_4EC;
     int unk_4F0;
-    int unk_4F4[7];
+    BOOL spritesToUpdate[7];
     void *charDataAlloc;
     NNSG2dCharacterData *charData;
     void *unk_518;
@@ -111,7 +143,7 @@ typedef struct Keyboard {
     u8 unk_528[256];
     UnkStruct_020157E4 *unk_628;
     BOOL unk_62C;
-    int unk_630;
+    int delayUpdateCounter;
 } Keyboard;
 
 typedef struct {
@@ -122,11 +154,11 @@ typedef struct {
 } UnkStruct_020879DC;
 
 typedef struct {
-    Sprite *unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-} UnkStruct_02087CDC;
+    Sprite *overlaySprite;
+    int state;
+    fx32 overlayXPosition;
+    fx32 overlayYPosition;
+} OverlayWiggleParameters;
 
 typedef struct {
     u8 unk_00;
@@ -147,17 +179,35 @@ static void Keyboard_InitGraphicsBanks(void);
 static void Keyboard_InitBgs(BgConfig *bgConfig);
 static void sub_0208765C(BgConfig *param0, Window *param1);
 static void Keyboard_LoadGraphicsFromNarc(Keyboard *keyboard, NARC *narc);
-static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], Sprite **param6, void *param7);
+static void Keyboard_AnimateChangeChars(
+    BgConfig *bgConfig,
+    Window *window,
+    enum ChangeCharsState *statePtr,
+    int currentCharsIdx,
+    enum BgLayer *bgLayerPtr,
+    VecFx32 charsPosition[],
+    Sprite **param6,
+    void *rawCharData
+);
 static void sub_0208737C(Keyboard *param0, ApplicationManager *appMan);
-static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[]);
-static void sub_02088260(VecFx32 param0[], int param1);
+static void Keyboard_UpdateCharsPriorities(BgConfig *unused0, enum BgLayer oldBgLayer, VecFx32 unused1[]);
+static void Keyboard_InitializeCharsPosition(VecFx32 param0[], enum BgLayer freeBgLayer);
 static void sub_020877F4(Keyboard *param0, NARC *param1);
-static void sub_02087A10(Keyboard *param0);
+static void Keyboard_InitSprites(Keyboard *param0);
 static void Keyboard_TransferChars(void);
 static void sub_02087FC0(Keyboard *param0, ApplicationManager *appMan, NARC *param2);
-static void sub_02088350(Keyboard *param0);
+static void Keyboard_ProcessDirectionInputs(Keyboard *param0);
 static void sub_02088514(u16 *param0);
-static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7);
+static void Keyboard_PrintChars(
+    Window *window,
+    const charcode_t *charCodes,
+    int baseXOffset,
+    int yOffset,
+    int charSpacing,
+    int renderDelay,
+    TextColor textColor,
+    void *rawCharData
+);
 static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *param3);
 static void sub_02088844(u16 param0[][13], const int param1);
 static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5);
@@ -166,11 +216,17 @@ static int sub_02088D08(int param0, int param1, int param2, int param3, u16 *par
 static int sub_02088C9C(int param0, int param1, u16 *param2, int param3);
 static void sub_02088E1C(Sprite **param0, int param1, int param2);
 static void Keyboard_CopyParamsFromArgs(Keyboard *keyboard, KeyboardArgs *keyboardArgs);
-static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param3, u8 *param4);
-static void sub_02088454(Keyboard *param0, int param1);
-static void sub_02088F40(int param0[], Sprite **param1, int param2);
+static void Keyboard_InitializeCharsGraphics(
+    Window *param0,
+    u16 param1,
+    int param2,
+    TextColor param3,
+    void *rawCharData
+);
+static void Keyboard_MoveCursor(Keyboard *param0, int param1);
+static void Keyboard_UpdateSpriteAnimations(int param0[], Sprite **param1, int param2);
 static void sub_020879DC(SysTask *param0, void *param1);
-static void sub_02087CDC(SysTask *param0, void *param1);
+static void Keyboard_WiggleOverlayTask(SysTask *param0, void *param1);
 static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3);
 static void Keyboard_ToggleEngineLayers(BOOL enable);
 static void sub_02087544(Keyboard *param0, ApplicationManager *appMan);
@@ -178,12 +234,12 @@ static void sub_02087BE4(Keyboard *param0, AffineSpriteListTemplate *param1);
 static void sub_02086E6C(Keyboard *param0, KeyboardArgs *param1);
 static void sub_02087F48(Window *param0, int param1, Strbuf *param2);
 static void sub_02088FD0(Keyboard *param0);
-static int sub_02086D38(Keyboard *param0, int param1);
+static enum KeyboardAppState Keyboard_ProcessInputs(Keyboard *param0, enum KeyboardAppState param1);
 static int sub_02086F14(u16 *param0);
 static void *sub_02088654(Window *param0, Strbuf *param1, u8 param2, TextColor param3);
 static BOOL sub_0208903C(Keyboard *param0);
 
-static const int Unk_020F2984[][4] = {
+static const int sKeyboardSpriteAnimations[][4] = {
     { 0x4, 0x44, 0x3, 0x1 },
     { 0x24, 0x44, 0x8, 0x1 },
     { 0x44, 0x44, 0xD, 0x1 },
@@ -256,259 +312,259 @@ static const u8 Unk_020F24E8[] = {
     0x29
 };
 
-static const u16 Unk_020F261C[] = {
-    0x12B,
-    0x12C,
-    0x12D,
-    0x12E,
-    0x12f,
-    0x130,
-    0x131,
-    0x132,
-    0x133,
-    0x134,
-    0x1DE,
-    0x1AD,
-    0x1AE,
-    0xffff
+static const charcode_t sKeyboardCharCodesUpper0[] = {
+    CHAR_A,
+    CHAR_B,
+    CHAR_C,
+    CHAR_D,
+    CHAR_E,
+    CHAR_F,
+    CHAR_G,
+    CHAR_H,
+    CHAR_I,
+    CHAR_J,
+    CHAR_SPACE,
+    CHAR_COMMA,
+    CHAR_PERIOD,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F2638[] = {
-    0x135,
-    0x136,
-    0x137,
-    0x138,
-    0x139,
-    0x13A,
-    0x13B,
-    0x13C,
-    0x13D,
-    0x13E,
-    0x1DE,
-    0x1B3,
-    0x1BE,
-    0xffff
+static const charcode_t sKeyboardCharCodesUpper1[] = {
+    CHAR_K,
+    CHAR_L,
+    CHAR_M,
+    CHAR_N,
+    CHAR_O,
+    CHAR_P,
+    CHAR_Q,
+    CHAR_R,
+    CHAR_S,
+    CHAR_T,
+    CHAR_SPACE,
+    CHAR_SINGLE_QUOTE_CLOSE,
+    CHAR_MINUS,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F2654[] = {
-    0x13f,
-    0x140,
-    0x141,
-    0x142,
-    0x143,
-    0x144,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1BB,
-    0x1BC,
-    0xffff
+static const charcode_t sKeyboardCharCodesUpper2[] = {
+    CHAR_U,
+    CHAR_V,
+    CHAR_W,
+    CHAR_X,
+    CHAR_Y,
+    CHAR_Z,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_MALE,
+    CHAR_FEMALE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F25C8[] = {
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesUpper3[] = {
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F2600[] = {
-    0x121,
-    0x122,
-    0x123,
-    0x124,
-    0x125,
-    0x126,
-    0x127,
-    0x128,
-    0x129,
-    0x12A,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesUpper4[] = {
+    CHAR_0,
+    CHAR_1,
+    CHAR_2,
+    CHAR_3,
+    CHAR_4,
+    CHAR_5,
+    CHAR_6,
+    CHAR_7,
+    CHAR_8,
+    CHAR_9,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F268C[] = {
-    0x145,
-    0x146,
-    0x147,
-    0x148,
-    0x149,
-    0x14A,
-    0x14B,
-    0x14C,
-    0x14D,
-    0x14E,
-    0x1DE,
-    0x1AD,
-    0x1AE,
-    0xffff
+static const u16 sKeyboardCharCodesLower0[] = {
+    CHAR_a,
+    CHAR_b,
+    CHAR_c,
+    CHAR_d,
+    CHAR_e,
+    CHAR_f,
+    CHAR_g,
+    CHAR_h,
+    CHAR_i,
+    CHAR_j,
+    CHAR_SPACE,
+    CHAR_COMMA,
+    CHAR_PERIOD,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F26A8[] = {
-    0x14f,
-    0x150,
-    0x151,
-    0x152,
-    0x153,
-    0x154,
-    0x155,
-    0x156,
-    0x157,
-    0x158,
-    0x1DE,
-    0x1B3,
-    0x1BE,
-    0xffff
+static const charcode_t sKeyboardCharCodesLower1[] = {
+    CHAR_k,
+    CHAR_l,
+    CHAR_m,
+    CHAR_n,
+    CHAR_o,
+    CHAR_p,
+    CHAR_q,
+    CHAR_r,
+    CHAR_s,
+    CHAR_t,
+    CHAR_SPACE,
+    CHAR_SINGLE_QUOTE_CLOSE,
+    CHAR_MINUS,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F27F8[] = {
-    0x159,
-    0x15A,
-    0x15B,
-    0x15C,
-    0x15D,
-    0x15E,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1BB,
-    0x1BC,
-    0xffff
+static const charcode_t sKeyboardCharCodesLower2[] = {
+    CHAR_u,
+    CHAR_v,
+    CHAR_w,
+    CHAR_x,
+    CHAR_y,
+    CHAR_z,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_MALE,
+    CHAR_FEMALE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F26FC[] = {
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesLower3[] = {
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F27C0[] = {
-    0x121,
-    0x122,
-    0x123,
-    0x124,
-    0x125,
-    0x126,
-    0x127,
-    0x128,
-    0x129,
-    0x12A,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesLower4[] = {
+    CHAR_0,
+    CHAR_1,
+    CHAR_2,
+    CHAR_3,
+    CHAR_4,
+    CHAR_5,
+    CHAR_6,
+    CHAR_7,
+    CHAR_8,
+    CHAR_9,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F2734[] = {
-    0x1AD,
-    0x1AE,
-    0x1C4,
-    0x1C5,
-    0x1AB,
-    0x1AC,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1BB,
-    0x1BC,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesOthers0[] = {
+    CHAR_COMMA,
+    CHAR_PERIOD,
+    CHAR_COLON,
+    CHAR_SEMICOLON,
+    CHAR_EXCLAMATION,
+    CHAR_QUESTION,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_MALE,
+    CHAR_FEMALE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F276C[] = {
-    0x1B4,
-    0x1B5,
-    0x1B2,
-    0x1B3,
-    0x1B9,
-    0x1BA,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesOthers1[] = {
+    CHAR_DOUBLE_QUOTE_OPEN,
+    CHAR_DOUBLE_QUOTE_CLOSE,
+    CHAR_SINGLE_QUOTE_OPEN,
+    CHAR_SINGLE_QUOTE_CLOSE,
+    CHAR_PAREN_OPEN,
+    CHAR_PAREN_CLOSE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F2788[] = {
-    0x1af,
-    0x1B0,
-    0x1C3,
-    0x1D0,
-    0x1C0,
-    0x1D2,
-    0x1BD,
-    0x1BE,
-    0x1bf,
-    0x1B1,
-    0x1C1,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesOthers2[] = {
+    CHAR_ELLIPSIS,
+    CHAR_DOT,
+    CHAR_TILDE,
+    CHAR_AT_SIGN,
+    CHAR_HASH,
+    CHAR_PERCENT,
+    CHAR_PLUS,
+    CHAR_MINUS,
+    CHAR_ASTERISK,
+    CHAR_SLASH,
+    CHAR_EQUALS,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F27A4[] = {
-    0x1CB,
-    0x1CC,
-    0x1CD,
-    0x1CE,
-    0x1cf,
-    0x1C6,
-    0x1C8,
-    0x1C9,
-    0x1C7,
-    0x1CA,
-    0x1D1,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesOthers3[] = {
+    CHAR_DOUBLE_CIRCLE,
+    CHAR_CIRCLE,
+    CHAR_SQUARE,
+    CHAR_TRIANGLE,
+    CHAR_DIAMOND_OPEN,
+    CHAR_SPADE,
+    CHAR_HEART,
+    CHAR_DIAMOND,
+    CHAR_CLUB,
+    CHAR_STAR,
+    CHAR_EIGHT_NOTE,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
-static const u16 Unk_020F27DC[] = {
-    0x1D3,
-    0x1D4,
-    0x1D5,
-    0x1D6,
-    0x1D7,
-    0x1D8,
-    0x1D9,
-    0x1DA,
-    0x1DD,
-    0x1DB,
-    0x1DC,
-    0x1DE,
-    0x1DE,
-    0xffff
+static const charcode_t sKeyboardCharCodesOthers4[] = {
+    CHAR_SUN,
+    CHAR_CLOUD,
+    CHAR_UMBRELLA,
+    CHAR_SILHOUETTE,
+    CHAR_EMOTE_SMILE,
+    CHAR_EMOTE_LAUGH,
+    CHAR_EMOTE_UPSET,
+    CHAR_EMOTE_FROWN,
+    CHAR_ZZZ,
+    CHAR_ARROW_CURVE_UP,
+    CHAR_ARROW_CURVE_DOWN,
+    CHAR_SPACE,
+    CHAR_SPACE,
+    CHAR_EOS,
 };
 
 static const u16 Unk_020F2718[] = {
@@ -659,12 +715,42 @@ static const u16 Unk_020F28B8[] = {
     0xffff
 };
 
-const u16 *Unk_02100C54[][5] = {
-    { Unk_020F261C, Unk_020F2638, Unk_020F2654, Unk_020F25C8, Unk_020F2600 },
-    { Unk_020F268C, Unk_020F26A8, Unk_020F27F8, Unk_020F26FC, Unk_020F27C0 },
-    { Unk_020F2734, Unk_020F276C, Unk_020F2788, Unk_020F27A4, Unk_020F27DC },
-    { Unk_020F2718, Unk_020F258E, Unk_020F26E0, Unk_020F26C4, Unk_020F25E4 },
-    { Unk_020F2870, Unk_020F2894, Unk_020F28B8, Unk_020F28B8, Unk_020F28B8 }
+const charcode_t *sKeyboardCharCodes[][5] = {
+    {
+        sKeyboardCharCodesUpper0,
+        sKeyboardCharCodesUpper1,
+        sKeyboardCharCodesUpper2,
+        sKeyboardCharCodesUpper3,
+        sKeyboardCharCodesUpper4,
+    },
+    {
+        sKeyboardCharCodesLower0,
+        sKeyboardCharCodesLower1,
+        sKeyboardCharCodesLower2,
+        sKeyboardCharCodesLower3,
+        sKeyboardCharCodesLower4,
+    },
+    {
+        sKeyboardCharCodesOthers0,
+        sKeyboardCharCodesOthers1,
+        sKeyboardCharCodesOthers2,
+        sKeyboardCharCodesOthers3,
+        sKeyboardCharCodesOthers4,
+    },
+    {
+        Unk_020F2718,
+        Unk_020F258E,
+        Unk_020F26E0,
+        Unk_020F26C4,
+        Unk_020F25E4,
+    },
+    {
+        Unk_020F2870,
+        Unk_020F2894,
+        Unk_020F28B8,
+        Unk_020F28B8,
+        Unk_020F28B8,
+    }
 };
 
 static const u16 Unk_020F2BBE[][3] = {
@@ -786,7 +872,7 @@ static const int Unk_020F24F0[] = {
     0x48
 };
 
-static const u8 Unk_020F24DC[4] = {
+static const u8 sKeyboardCharsBgColor[4] = {
     0x4,
     0x7,
     0xD,
@@ -919,7 +1005,7 @@ static BOOL Keyboard_Init(ApplicationManager *appMan, int *state)
         Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_KEYBOARD_APP);
         Keyboard_TransferChars();
         sub_020877F4(keyboard, narc);
-        sub_02087A10(keyboard);
+        Keyboard_InitSprites(keyboard);
         sub_02087FC0(keyboard, appMan, narc);
         sub_02088754(&keyboard->unk_41C[4], keyboard->unk_D8, keyboard->unk_158, keyboard->unk_15A, keyboard->unk_528, keyboard->unk_17C);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
@@ -944,7 +1030,7 @@ static BOOL Keyboard_Init(ApplicationManager *appMan, int *state)
         sKeyboardDummy = keyboard;
         keyboard->unk_628 = sub_0201567C(NULL, 1, 12, HEAP_ID_KEYBOARD_APP);
 
-        (*state) = 0;
+        (*state) = KBD_APP_STATE_WAIT_FADE_IN;
         return TRUE;
         break;
     }
@@ -963,117 +1049,135 @@ static void sub_02086B30(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1,
 
 static BOOL Keyboard_Main(ApplicationManager *appMan, int *state)
 {
-    Keyboard *v0 = ApplicationManager_Data(appMan);
+    Keyboard *keyboard = ApplicationManager_Data(appMan);
 
     switch (*state) {
-    case 0:
+    case KBD_APP_STATE_WAIT_FADE_IN:
         if (IsScreenFadeDone()) {
-            *state = 1;
-            v0->unk_630 = 0;
+            *state = KBD_APP_STATE_INITIAL_DELAY;
+            keyboard->delayUpdateCounter = 0;
         }
         break;
-    case 1:
-        v0->unk_630++;
+    case KBD_APP_STATE_INITIAL_DELAY:
+        keyboard->delayUpdateCounter++;
 
-        sub_02088FD0(v0);
-        sub_02088F40(v0->unk_4F4, v0->unk_390, v0->unk_4C4);
+        // these just process the animations.
+        sub_02088FD0(keyboard);
+        Keyboard_UpdateSpriteAnimations(keyboard->spritesToUpdate, keyboard->miscSprites, keyboard->currentCharsIdx);
 
-        if (v0->unk_630 > 5) {
-            *state = 2;
-            v0->unk_630 = 0;
+        if (keyboard->delayUpdateCounter > 5) {
+            *state = KBD_APP_STATE_RUNNING;
+            keyboard->delayUpdateCounter = 0;
         }
         break;
-    case 2:
-        switch (v0->unk_4C0) {
-        case 4:
-            *state = sub_02086D38(v0, *state);
-            sub_02088FD0(v0);
+    case KBD_APP_STATE_RUNNING:
+        switch (keyboard->state.main) {
+        case KBD_STATE_PLACEHOLDER_4:
+            *state = Keyboard_ProcessInputs(keyboard, *state);
+            sub_02088FD0(keyboard);
             break;
-        case 5:
-            sub_02087544(v0, appMan);
-            Window_FillTilemap(&v0->unk_41C[9], 0xf0f);
-            Window_DrawMessageBoxWithScrollCursor(&v0->unk_41C[9], 0, 32 * 8, 10);
-            v0->unk_4BC = Text_AddPrinterWithParams(&v0->unk_41C[9], FONT_MESSAGE, v0->unk_180, 0, 0, TEXT_SPEED_FAST, NULL);
-            Window_CopyToVRAM(&v0->unk_41C[9]);
-            v0->unk_4C0 = 6;
+        case KBD_STATE_PLACEHOLDER_5:
+            sub_02087544(keyboard, appMan);
+            Window_FillTilemap(&keyboard->unk_41C[9], 0x0f);
+            Window_DrawMessageBoxWithScrollCursor(&keyboard->unk_41C[9], 0, 32 * 8, 10);
+            keyboard->unk_4BC = Text_AddPrinterWithParams(&keyboard->unk_41C[9], FONT_MESSAGE, keyboard->unk_180, 0, 0, TEXT_SPEED_FAST, NULL);
+            Window_CopyToVRAM(&keyboard->unk_41C[9]);
+            keyboard->state.main = KBD_STATE_PLACEHOLDER_6;
             break;
-        case 6:
-            if (Text_IsPrinterActive(v0->unk_4BC) == 0) {
+        case KBD_STATE_PLACEHOLDER_6:
+            if (Text_IsPrinterActive(keyboard->unk_4BC) == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
-                v0->unk_4F4[6]++;
-                v0->unk_630 = 0;
-                v0->unk_4C0 = 7;
+                keyboard->spritesToUpdate[6]++;
+                keyboard->delayUpdateCounter = 0;
+                keyboard->state.main = KBD_STATE_PLACEHOLDER_7;
             }
             break;
-        case 7:
-            v0->unk_630++;
+        case KBD_STATE_PLACEHOLDER_7:
+            keyboard->delayUpdateCounter++;
 
-            if (v0->unk_630 > 30) {
-                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_KEYBOARD_APP);
-                *state = 3;
+            if (keyboard->delayUpdateCounter > 30) {
+                StartScreenFade(
+                    FADE_SUB_THEN_MAIN,
+                    FADE_TYPE_BRIGHTNESS_OUT,
+                    FADE_TYPE_BRIGHTNESS_OUT,
+                    COLOR_BLACK,
+                    16,
+                    1,
+                    HEAP_ID_KEYBOARD_APP
+                );
+                *state = KBD_APP_STATE_WAIT_FADE_OUT;
             }
             break;
         }
 
-        sub_02087D64(v0->bgConfig, &v0->unk_41C[0], &v0->unk_4C0, v0->unk_4C4, &v0->unk_4C8, v0->unk_4CC, v0->unk_390, v0->charData->pRawData);
-        sub_02088F40(v0->unk_4F4, v0->unk_390, v0->unk_4C4);
-        sub_02088514(&v0->unk_38);
+        Keyboard_AnimateChangeChars(
+            keyboard->bgConfig,
+            &keyboard->unk_41C[0],
+            &keyboard->state.changeChars,
+            keyboard->currentCharsIdx,
+            &keyboard->freeCharsBgLayer,
+            keyboard->charsPosition,
+            keyboard->miscSprites,
+            keyboard->charData->pRawData
+        );
+        Keyboard_UpdateSpriteAnimations(keyboard->spritesToUpdate, keyboard->miscSprites, keyboard->currentCharsIdx);
+        sub_02088514(&keyboard->unk_38);
         break;
-    case 3:
+    case KBD_APP_STATE_WAIT_FADE_OUT:
         if (IsScreenFadeDone()) {
             return TRUE;
         }
         break;
     }
 
-    SpriteList_Update(v0->unk_188);
+    SpriteList_Update(keyboard->unk_188);
 
     return FALSE;
 }
 
-static int sub_02086D38(Keyboard *param0, int param1)
+static enum KeyboardAppState Keyboard_ProcessInputs(Keyboard *keyboard, enum KeyboardAppState appState)
 {
-    sub_02088350(param0);
+    Keyboard_ProcessDirectionInputs(keyboard);
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
-        if (Sprite_GetDrawFlag(param0->unk_390[8]) == 0) {
-            Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
-            return param1;
+        if (!Sprite_GetDrawFlag(keyboard->miscSprites[8])) {
+            Sprite_SetDrawFlag(keyboard->miscSprites[8], TRUE);
+            return appState;
         }
 
-        if (param0->unk_00 != 4) {
-            param0->unk_4C0 = 0;
-            param0->unk_4C4++;
+        if (keyboard->unk_00 != 4) {
+            keyboard->state.changeChars = CC_STATE_LOAD_GRAPHICS;
+            keyboard->currentCharsIdx++;
 
-            if (param0->unk_4C4 >= 3) {
-                param0->unk_4C4 = 0;
+            if (keyboard->currentCharsIdx >= 3) {
+                keyboard->currentCharsIdx = 0;
             }
 
-            param0->unk_4F4[param0->unk_4C4]++;
+            keyboard->spritesToUpdate[keyboard->currentCharsIdx]++;
 
-            sub_02088844(param0->unk_3A, param0->unk_4C4);
+            sub_02088844(keyboard->unk_3A, keyboard->currentCharsIdx);
             Sound_PlayEffect(SEQ_SE_DP_SYU03);
 
-            param0->unk_1C.unk_14 = 1;
+            keyboard->unk_1C.unk_14 = 1;
         }
 
-        param0->unk_4F4[param0->unk_4C4]++;
+        keyboard->spritesToUpdate[keyboard->currentCharsIdx]++;
 
-        sub_02088844(param0->unk_3A, param0->unk_4C4);
+        sub_02088844(keyboard->unk_3A, keyboard->currentCharsIdx);
         Sound_PlayEffect(SEQ_SE_DP_SYU03);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        param1 = sub_02088898(param0, param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00], 1);
-        param0->unk_1C.unk_14 = 1;
-    } else if (param0->unk_62C == 1) {
-        param1 = sub_02088898(param0, param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00], 0);
-        param0->unk_1C.unk_14 = 0;
+        appState = sub_02088898(keyboard, keyboard->unk_3A[keyboard->unk_1C.unk_04][keyboard->unk_1C.unk_00], 1);
+        keyboard->unk_1C.unk_14 = 1;
+    } else if (keyboard->unk_62C == 1) {
+        appState = sub_02088898(keyboard, keyboard->unk_3A[keyboard->unk_1C.unk_04][keyboard->unk_1C.unk_00], 0);
+        keyboard->unk_1C.unk_14 = 0;
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        param1 = sub_02088898(param0, 0xe001 + 6, 1);
+        appState = sub_02088898(keyboard, 0xe001 + 6, 1);
     } else if (gSystem.pressedKeys & PAD_BUTTON_R) {
-        param1 = sub_02088898(param0, 0xe001 + 5, 1);
+        appState = sub_02088898(keyboard, 0xe001 + 5, 1);
     }
 
-    return param1;
+    return appState;
 }
 
 static void sub_02086E6C(Keyboard *param0, KeyboardArgs *param1)
@@ -1202,13 +1306,13 @@ static BOOL Keyboard_Exit(ApplicationManager *appMan, int *unusedState)
     return TRUE;
 }
 
-KeyboardArgs *sub_0208712C(int heapID, int param1, int param2, int param3, Options *options)
+KeyboardArgs *KeyboardArgs_Init(enum HeapId heapID, int param1, int param2, int maxChars, Options *options)
 {
     KeyboardArgs *v0 = (KeyboardArgs *)Heap_AllocFromHeap(heapID, sizeof(KeyboardArgs));
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
-    v0->unk_0C = param3;
+    v0->maxChars = maxChars;
     v0->unk_14 = 0;
     v0->unk_1C[0] = 0xffff;
     v0->textInputStr = Strbuf_Init(32, heapID);
@@ -1221,7 +1325,7 @@ KeyboardArgs *sub_0208712C(int heapID, int param1, int param2, int param3, Optio
     return v0;
 }
 
-void sub_0208716C(KeyboardArgs *param0)
+void KeyboardArgs_Free(KeyboardArgs *param0)
 {
     GF_ASSERT((param0->textInputStr) != NULL);
     GF_ASSERT((param0) != NULL);
@@ -1243,7 +1347,7 @@ static void Keyboard_CopyParamsFromArgs(Keyboard *keyboard, KeyboardArgs *keyboa
     keyboard->unk_00 = keyboardArgs->unk_00;
     keyboard->unk_04 = keyboardArgs->unk_04;
     keyboard->unk_08 = keyboardArgs->unk_08;
-    keyboard->unk_0C = keyboardArgs->unk_0C;
+    keyboard->unk_0C = keyboardArgs->maxChars;
     keyboard->unk_10 = keyboardArgs->unk_10;
     keyboard->options = keyboardArgs->options;
 }
@@ -1386,13 +1490,13 @@ static void sub_0208737C(Keyboard *keyboard, ApplicationManager *appMan)
 {
     KeyboardArgs *keyboardArgs = (KeyboardArgs *)ApplicationManager_Args(appMan);
 
-    keyboard->unk_4C0 = 4;
+    keyboard->state.main = KBD_STATE_PLACEHOLDER_4;
 
-    sub_02088260(keyboard->unk_4CC, 0);
-    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + keyboard->unk_4C8, 0, keyboard->unk_4CC[keyboard->unk_4C8].x);
-    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + keyboard->unk_4C8, 3, keyboard->unk_4CC[keyboard->unk_4C8].y);
-    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + ((keyboard->unk_4C8) ^ 1), 0, keyboard->unk_4CC[((keyboard->unk_4C8) ^ 1)].x);
-    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + ((keyboard->unk_4C8) ^ 1), 3, keyboard->unk_4CC[((keyboard->unk_4C8) ^ 1)].y);
+    Keyboard_InitializeCharsPosition(keyboard->charsPosition, 0);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + keyboard->freeCharsBgLayer, 0, keyboard->charsPosition[keyboard->freeCharsBgLayer].x);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + keyboard->freeCharsBgLayer, 3, keyboard->charsPosition[keyboard->freeCharsBgLayer].y);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + ((keyboard->freeCharsBgLayer) ^ 1), 0, keyboard->charsPosition[((keyboard->freeCharsBgLayer) ^ 1)].x);
+    Bg_SetOffset(keyboard->bgConfig, BG_LAYER_MAIN_0 + ((keyboard->freeCharsBgLayer) ^ 1), 3, keyboard->charsPosition[((keyboard->freeCharsBgLayer) ^ 1)].y);
 
     keyboard->unk_118[0] = 0xffff;
 
@@ -1403,12 +1507,12 @@ static void sub_0208737C(Keyboard *keyboard, ApplicationManager *appMan)
     MI_CpuFill16(keyboard->unk_D8, 0x1, 32 * 2);
 
     if (keyboard->unk_00 == 1) {
-        Pokemon *v1;
+        Pokemon *pkm;
 
-        v1 = Pokemon_New(HEAP_ID_KEYBOARD_APP);
-        Pokemon_InitWith(v1, keyboard->unk_04, 5, 10, 10, 10, 10, 10);
-        StringTemplate_SetSpeciesName(keyboard->strTemplate, 0, Pokemon_GetBoxPokemon(v1));
-        Heap_Free(v1);
+        pkm = Pokemon_New(HEAP_ID_KEYBOARD_APP);
+        Pokemon_InitWith(pkm, keyboard->unk_04, 5, 10, 10, 10, 10, 10);
+        StringTemplate_SetSpeciesName(keyboard->strTemplate, 0, Pokemon_GetBoxPokemon(pkm));
+        Heap_Free(pkm);
     }
 
     if (keyboardArgs->unk_44 != 0) {
@@ -1434,15 +1538,15 @@ static void sub_0208737C(Keyboard *keyboard, ApplicationManager *appMan)
         int v2;
 
         for (v2 = 0; v2 < 7; v2++) {
-            keyboard->unk_4F4[v2] = 0;
+            keyboard->spritesToUpdate[v2] = 0;
         }
 
         switch (keyboard->unk_00) {
         case 4:
-            keyboard->unk_4F4[3] = 1;
+            keyboard->spritesToUpdate[3] = 1;
             break;
         default:
-            keyboard->unk_4F4[0] = 1;
+            keyboard->spritesToUpdate[0] = 1;
             break;
         }
     }
@@ -1604,7 +1708,7 @@ static void sub_020877F4(Keyboard *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 18);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_KEYBOARD_APP);
 
     param0->unk_188 = SpriteList_InitRendering(40 + 4, &param0->unk_18C, HEAP_ID_KEYBOARD_APP);
 
@@ -1646,24 +1750,56 @@ static void sub_020879DC(SysTask *param0, void *param1)
 
     v0 = Sprite_GetPosition(v2->unk_00);
     v1.x = v0->x + v2->unk_08;
-    v1.y = FX32_ONE * Unk_020F2984[v2->unk_0C][1];
+    v1.y = FX32_ONE * sKeyboardSpriteAnimations[v2->unk_0C][1];
     v1.z = 0;
 
     Sprite_SetPosition(v2->unk_04, &v1);
 }
 
-static void sub_02087A10(Keyboard *param0)
+static void Keyboard_InitSprites(Keyboard *keyboard)
 {
-    int v0;
+    int i;
 
-    SpriteResourcesHeader_Init(&param0->unk_348, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 1, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
-    SpriteResourcesHeader_Init(&param0->unk_36C, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
+    SpriteResourcesHeader_Init(
+        &keyboard->unk_348,
+        0,
+        0,
+        0,
+        0,
+        0xffffffff,
+        0xffffffff,
+        0,
+        1,
+        keyboard->unk_318[0],
+        keyboard->unk_318[1],
+        keyboard->unk_318[2],
+        keyboard->unk_318[3],
+        NULL,
+        NULL
+    );
+    SpriteResourcesHeader_Init(
+        &keyboard->unk_36C,
+        1,
+        1,
+        1,
+        1,
+        0xffffffff,
+        0xffffffff,
+        0,
+        0,
+        keyboard->unk_318[0],
+        keyboard->unk_318[1],
+        keyboard->unk_318[2],
+        keyboard->unk_318[3],
+        NULL,
+        NULL
+    );
 
     {
         AffineSpriteListTemplate v1;
 
-        v1.list = param0->unk_188;
-        v1.resourceData = &param0->unk_348;
+        v1.list = keyboard->unk_188;
+        v1.resourceData = &keyboard->unk_348;
         v1.position.x = FX32_CONST(32);
         v1.position.y = FX32_CONST(96);
         v1.position.z = 0;
@@ -1675,43 +1811,43 @@ static void sub_02087A10(Keyboard *param0)
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v1.heapID = HEAP_ID_KEYBOARD_APP;
 
-        for (v0 = 0; v0 < 9; v0++) {
-            v1.position.x = FX32_ONE * Unk_020F2984[v0][0];
-            v1.position.y = FX32_ONE * Unk_020F2984[v0][1];
+        for (i = 0; i < 9; i++) {
+            v1.position.x = FX32_ONE * sKeyboardSpriteAnimations[i][0];
+            v1.position.y = FX32_ONE * sKeyboardSpriteAnimations[i][1];
 
-            param0->unk_390[v0] = SpriteList_AddAffine(&v1);
+            keyboard->miscSprites[i] = SpriteList_AddAffine(&v1);
 
-            Sprite_SetAnimateFlag(param0->unk_390[v0], 1);
-            Sprite_SetAnim(param0->unk_390[v0], Unk_020F2984[v0][2]);
-            Sprite_SetPriority(param0->unk_390[v0], Unk_020F2984[v0][3]);
+            Sprite_SetAnimateFlag(keyboard->miscSprites[i], TRUE);
+            Sprite_SetAnim(keyboard->miscSprites[i], sKeyboardSpriteAnimations[i][2]);
+            Sprite_SetPriority(keyboard->miscSprites[i], sKeyboardSpriteAnimations[i][3]);
         }
 
-        Sprite_SetDrawFlag(param0->unk_390[4], FALSE);
-        Sprite_SetDrawFlag(param0->unk_390[8], FALSE);
+        Sprite_SetDrawFlag(keyboard->miscSprites[4], FALSE);
+        Sprite_SetDrawFlag(keyboard->miscSprites[8], FALSE);
 
-        for (v0 = 0; v0 < 7; v0++) {
+        for (i = 0; i < 7; i++) {
             UnkStruct_020879DC *v2;
 
-            param0->unk_400[v0] = SysTask_StartAndAllocateParam(sub_020879DC, 16, 5, 18);
-            v2 = SysTask_GetParam(param0->unk_400[v0]);
-            v2->unk_00 = param0->unk_390[7];
-            v2->unk_04 = param0->unk_390[v0];
-            v2->unk_08 = FX32_ONE * Unk_020F2984[v0][0];
-            v2->unk_0C = v0;
+            keyboard->unk_400[i] = SysTask_StartAndAllocateParam(sub_020879DC, 16, 5, HEAP_ID_KEYBOARD_APP);
+            v2 = SysTask_GetParam(keyboard->unk_400[i]);
+            v2->unk_00 = keyboard->miscSprites[7];
+            v2->unk_04 = keyboard->miscSprites[i];
+            v2->unk_08 = FX32_ONE * sKeyboardSpriteAnimations[i][0];
+            v2->unk_0C = i;
         }
 
-        for (v0 = 0; v0 < param0->unk_0C; v0++) {
-            v1.position.x = FX32_ONE * ((10 * 8) + v0 * 12);
+        for (i = 0; i < keyboard->unk_0C; i++) {
+            v1.position.x = FX32_ONE * ((10 * 8) + i * 12);
             v1.position.y = FX32_ONE * (4 * 8 + 7);
 
-            param0->unk_3C8[v0] = SpriteList_AddAffine(&v1);
+            keyboard->textCursorSprites[i] = SpriteList_AddAffine(&v1);
 
-            Sprite_SetAnimateFlag(param0->unk_3C8[v0], 1);
-            Sprite_SetAnim(param0->unk_3C8[v0], 43);
+            Sprite_SetAnimateFlag(keyboard->textCursorSprites[i], TRUE);
+            Sprite_SetAnim(keyboard->textCursorSprites[i], 43);
         }
 
-        sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
-        sub_02087BE4(param0, &v1);
+        sub_02088E1C(keyboard->textCursorSprites, keyboard->unk_158, keyboard->unk_0C);
+        sub_02087BE4(keyboard, &v1);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1722,148 +1858,176 @@ static void sub_02087BE4(Keyboard *param0, AffineSpriteListTemplate *param1)
 {
     param1->position.x = FX32_ONE * 24;
     param1->position.y = FX32_ONE * (16 - 8);
-    param0->unk_3F8[0] = SpriteList_AddAffine(param1);
+    param0->entitySprite[0] = SpriteList_AddAffine(param1);
 
-    Sprite_SetAnimateFlag(param0->unk_3F8[0], 1);
+    Sprite_SetAnimateFlag(param0->entitySprite[0], TRUE);
 
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_04 == 0) {
-            Sprite_SetAnim(param0->unk_3F8[0], 48);
+            Sprite_SetAnim(param0->entitySprite[0], 48);
         } else {
-            Sprite_SetAnim(param0->unk_3F8[0], 49);
+            Sprite_SetAnim(param0->entitySprite[0], 49);
         }
         break;
     case 3:
-        Sprite_SetAnim(param0->unk_3F8[0], 51);
+        Sprite_SetAnim(param0->entitySprite[0], 51);
         break;
     case 6:
-        Sprite_SetAnim(param0->unk_3F8[0], 55);
+        Sprite_SetAnim(param0->entitySprite[0], 55);
         break;
     case 5:
-        Sprite_SetAnim(param0->unk_3F8[0], 54);
+        Sprite_SetAnim(param0->entitySprite[0], 54);
         break;
     case 4:
     case 7:
-        Sprite_SetAnim(param0->unk_3F8[0], 53);
+        Sprite_SetAnim(param0->entitySprite[0], 53);
         break;
     case 2:
-        Sprite_SetAnim(param0->unk_3F8[0], 47);
+        Sprite_SetAnim(param0->entitySprite[0], 47);
         break;
     case 1:
-        Sprite_SetAnim(param0->unk_3F8[0], 50);
+        Sprite_SetAnim(param0->entitySprite[0], 50);
 
         if (param0->unk_10 != 2) {
             param1->position.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
             param1->position.y = FX32_ONE * ((4 * 8 + 7) - 12);
-            param0->unk_3F8[1] = SpriteList_AddAffine(param1);
+            param0->entitySprite[1] = SpriteList_AddAffine(param1);
 
             if (param0->unk_10 == 0) {
-                Sprite_SetAnim(param0->unk_3F8[1], 45);
+                Sprite_SetAnim(param0->entitySprite[1], 45);
             } else {
-                Sprite_SetAnim(param0->unk_3F8[1], 46);
+                Sprite_SetAnim(param0->entitySprite[1], 46);
             }
         }
         break;
     }
 }
 
-static void sub_02087CDC(SysTask *param0, void *param1)
+static void Keyboard_WiggleOverlayTask(SysTask *task, void *paramsPtr)
 {
-    UnkStruct_02087CDC *v0 = (UnkStruct_02087CDC *)param1;
-    VecFx32 v1;
+    OverlayWiggleParameters *params = (OverlayWiggleParameters *)paramsPtr;
+    VecFx32 newPos;
 
-    v1.y = v0->unk_0C;
-    v1.z = 0;
+    newPos.y = params->overlayYPosition;
+    newPos.z = 0;
 
-    switch (v0->unk_04) {
+    switch (params->state) {
     case 0:
-        v1.x = v0->unk_08 + 4 * FX32_ONE;
-        Sprite_SetPosition(v0->unk_00, &v1);
+        newPos.x = params->overlayXPosition + 4 * FX32_ONE;
+        Sprite_SetPosition(params->overlaySprite, &newPos);
         break;
     case 2:
-        v1.x = v0->unk_08 - 3 * FX32_ONE;
-        Sprite_SetPosition(v0->unk_00, &v1);
+        newPos.x = params->overlayXPosition - 3 * FX32_ONE;
+        Sprite_SetPosition(params->overlaySprite, &newPos);
         break;
     case 4:
-        v1.x = v0->unk_08 + 2 * FX32_ONE;
-        Sprite_SetPosition(v0->unk_00, &v1);
+        newPos.x = params->overlayXPosition + 2 * FX32_ONE;
+        Sprite_SetPosition(params->overlaySprite, &newPos);
         break;
     case 6:
-        v1.x = v0->unk_08;
-        Sprite_SetPosition(v0->unk_00, &v1);
-        SysTask_FinishAndFreeParam(param0);
+        newPos.x = params->overlayXPosition;
+        Sprite_SetPosition(params->overlaySprite, &newPos);
+        SysTask_FinishAndFreeParam(task);
         break;
     }
 
-    v0->unk_04++;
+    params->state++;
 }
 
-static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int param3, int *param4, VecFx32 param5[], Sprite **param6, void *param7)
+static void Keyboard_AnimateChangeChars(
+    BgConfig *bgConfig,
+    Window *window,
+    enum ChangeCharsState *statePtr,
+    int currentCharsIdx,
+    enum BgLayer *bgLayerPtr,
+    VecFx32 charsPosition[],
+    Sprite **sprites,
+    void *rawCharData
+)
 {
-    int v0 = *param4;
-    int v1 = v0 ^ 1;
-    int v2;
+    enum BgLayer bgLayer = *bgLayerPtr;
+    enum BgLayer oldBgLayer = bgLayer ^ 1;
 
-    switch (*param2) {
-    case 0: {
-        u16 v3 = Unk_020F24DC[param3] | (Unk_020F24DC[param3] << 4);
+    switch (*statePtr) {
+    case CC_STATE_LOAD_GRAPHICS: {
+        u16 bgColor = sKeyboardCharsBgColor[currentCharsIdx] | (sKeyboardCharsBgColor[currentCharsIdx] << 4);
 
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_DATA__NAMEIN, 6 + param3, param0, 0 + v0, 0, 32 * 14 * 2, 1, HEAP_ID_KEYBOARD_APP);
-        sub_02088260(param5, v0);
-        sub_02088E58(&param1[v0], v3, param3, TEXT_COLOR(14, 15, 0), param7);
-        (*param2)++;
+        Graphics_LoadTilemapToBgLayer(
+            NARC_INDEX_DATA__NAMEIN,
+            6 + currentCharsIdx,
+            bgConfig,
+            bgLayer,
+            0,
+            32 * 14 * 2,
+            TRUE,
+            HEAP_ID_KEYBOARD_APP
+        );
+        Keyboard_InitializeCharsPosition(charsPosition, bgLayer);
+        Keyboard_InitializeCharsGraphics(
+            &window[bgLayer],
+            bgColor,
+            currentCharsIdx,
+            TEXT_COLOR(14, 15, 0),
+            rawCharData
+        );
+        (*statePtr)++;
     } break;
-    case 1:
-        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 0, 238);
-        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 3, -80);
-        (*param2)++;
+    case CC_STATE_SET_INITIAL_POSITION:
+        Bg_SetOffset(bgConfig, bgLayer, BG_OFFSET_UPDATE_SET_X, 238);
+        Bg_SetOffset(bgConfig, bgLayer, BG_OFFSET_UPDATE_SET_Y, -80);
+        (*statePtr)++;
         break;
-    case 2:
-        param5[v0].x -= 24;
+    case CC_STATE_SLIDE_IN:
+        charsPosition[bgLayer].x -= 24;
 
-        if (param5[v0].x < -11 + 10) {
-            UnkStruct_02087CDC *v4;
-            SysTask *v5;
+        if (charsPosition[bgLayer].x < -11 + 10) {
+            OverlayWiggleParameters *wiggleParam;
+            SysTask *wiggleTask;
 
-            v5 = SysTask_StartAndAllocateParam(sub_02087CDC, 16, 0, 18);
-            v4 = SysTask_GetParam(v5);
-            v4->unk_00 = param6[7];
-            v4->unk_04 = 0;
-            v4->unk_08 = Sprite_GetPosition(param6[7])->x;
-            v4->unk_0C = Sprite_GetPosition(param6[7])->y;
+            wiggleTask = SysTask_StartAndAllocateParam(
+                Keyboard_WiggleOverlayTask,
+                sizeof(OverlayWiggleParameters),
+                0,
+                HEAP_ID_KEYBOARD_APP
+            );
+            wiggleParam = SysTask_GetParam(wiggleTask);
+            wiggleParam->overlaySprite = sprites[KBD_SPRITE_OVERLAY];
+            wiggleParam->state = 0;
+            wiggleParam->overlayXPosition = Sprite_GetPosition(sprites[7])->x;
+            wiggleParam->overlayYPosition = Sprite_GetPosition(sprites[7])->y;
 
-            param5[v0].x = -11;
-            (*param2)++;
+            charsPosition[bgLayer].x = -11;
+            (*statePtr)++;
         }
 
-        param5[v1].y -= 10;
+        charsPosition[oldBgLayer].y -= 10;
 
-        if (param5[v1].y < -196) {
-            param5[v1].y = -196;
+        if (charsPosition[oldBgLayer].y < -196) {
+            charsPosition[oldBgLayer].y = -196;
         }
 
-        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 0, param5[v0].x);
-        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v1, 3, param5[v1].y);
+        Bg_SetOffset(bgConfig, bgLayer, BG_OFFSET_UPDATE_SET_X, charsPosition[bgLayer].x);
+        Bg_SetOffset(bgConfig, oldBgLayer, BG_OFFSET_UPDATE_SET_Y, charsPosition[oldBgLayer].y);
         break;
-    case 3:
-        param5[v1].y -= 10;
+    case CC_STATE_FINISH_SLIDING_OUT:
+        charsPosition[oldBgLayer].y -= 10;
 
-        if (param5[v1].y < -196) {
-            param5[v1].y = -196;
+        if (charsPosition[oldBgLayer].y < -196) {
+            charsPosition[oldBgLayer].y = -196;
         }
 
-        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v0, 0, param5[v0].x);
-        Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v1, 3, param5[v1].y);
+        Bg_SetOffset(bgConfig, bgLayer, BG_OFFSET_UPDATE_SET_X, charsPosition[bgLayer].x);
+        Bg_SetOffset(bgConfig, oldBgLayer, BG_OFFSET_UPDATE_SET_Y, charsPosition[oldBgLayer].y);
 
-        if ((param5[v0].x == -11) && (param5[v1].y == -196)) {
-            (*param2)++;
-            (*param4) ^= 1;
-            sub_02088240(param0, *param4, param5);
+        if ((charsPosition[bgLayer].x == -11) && (charsPosition[oldBgLayer].y == -196)) {
+            (*statePtr)++;
+            (*bgLayerPtr) ^= 1;
+            Keyboard_UpdateCharsPriorities(bgConfig, *bgLayerPtr, charsPosition);
             Sound_PlayEffect(SEQ_SE_DP_NAMEIN_01);
         }
         break;
-    case 4:
+    case CC_STATE_NOTHING:
         break;
     }
 }
@@ -1896,13 +2060,13 @@ static void sub_02087FC0(Keyboard *param0, ApplicationManager *appMan, NARC *par
 
     if (param0->unk_00 == 4) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 6 + 3, param0->bgConfig, 1, 0, 32 * 14 * 2, 1, HEAP_ID_KEYBOARD_APP);
-        param0->unk_4C4 = 4;
+        param0->currentCharsIdx = 4;
         sub_02088844(param0->unk_3A, 4);
-        sub_02088E58(&param0->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), param0->charData->pRawData);
+        Keyboard_InitializeCharsGraphics(&param0->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), param0->charData->pRawData);
     } else {
-        param0->unk_4C4 = 0;
+        param0->currentCharsIdx = 0;
         sub_02088844(param0->unk_3A, 0);
-        sub_02088E58(&param0->unk_41C[1], 0x404, 0, TEXT_COLOR(14, 15, 0), param0->charData->pRawData);
+        Keyboard_InitializeCharsGraphics(&param0->unk_41C[1], 0x404, 0, TEXT_COLOR(14, 15, 0), param0->charData->pRawData);
     }
 
     Window_Add(param0->bgConfig, &param0->unk_41C[2], 2, 7, 2, 22, 2, 0, ((32 * 8) + (26 * 12)) + (26 * 12));
@@ -1930,7 +2094,7 @@ static void sub_02087FC0(Keyboard *param0, ApplicationManager *appMan, NARC *par
 
         if (param0->unk_118[0] != 0xffff) {
             CharCode_Copy(param0->unk_D8, param0->unk_118);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+            Keyboard_PrintChars(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
         }
     }
 
@@ -1947,18 +2111,18 @@ static void sub_02087FC0(Keyboard *param0, ApplicationManager *appMan, NARC *par
     }
 }
 
-static void sub_02088240(BgConfig *param0, int param1, VecFx32 param2[])
+static void Keyboard_UpdateCharsPriorities(BgConfig *unused0, enum BgLayer oldBgLayer, VecFx32 unused1[])
 {
-    Bg_SetPriority(BG_LAYER_MAIN_0 + param1, 1);
-    Bg_SetPriority(BG_LAYER_MAIN_0 + param1 ^ 1, 2);
+    Bg_SetPriority(oldBgLayer, 1);
+    Bg_SetPriority(oldBgLayer ^ 1, 2);
 }
 
-static void sub_02088260(VecFx32 param0[], int param1)
+static void Keyboard_InitializeCharsPosition(VecFx32 charsPosition[], enum BgLayer freeBgLayer)
 {
-    param0[param1].x = 238;
-    param0[param1].y = -80;
-    param0[param1 ^ 1].x = -11;
-    param0[param1 ^ 1].y = -80;
+    charsPosition[freeBgLayer].x = 238;
+    charsPosition[freeBgLayer].y = -80;
+    charsPosition[freeBgLayer ^ 1].x = -11;
+    charsPosition[freeBgLayer ^ 1].y = -80;
 }
 
 static const int Unk_020F2904[][2] = {
@@ -2011,82 +2175,83 @@ static void sub_02088298(Keyboard *param0, int param1)
     param0->unk_1C.unk_04 = v1;
 }
 
-static void sub_02088350(Keyboard *param0)
+static void Keyboard_ProcessDirectionInputs(Keyboard *keyboard)
 {
-    int v0 = 0;
+    BOOL didInput = FALSE;
     int v1 = 0;
-    BOOL v2 = 0;
+    BOOL v2 = FALSE;
 
-    if (Sprite_GetDrawFlag(param0->unk_390[8]) == 0) {
-        v2 = 1;
+    if (Sprite_GetDrawFlag(keyboard->miscSprites[8]) == 0) {
+        v2 = TRUE;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
+        Sprite_SetDrawFlag(keyboard->miscSprites[8], TRUE);
         v1 = 1;
-        v0++;
+        didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
+        Sprite_SetDrawFlag(keyboard->miscSprites[8], TRUE);
         v1 = 2;
-        v0++;
+        didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
+        Sprite_SetDrawFlag(keyboard->miscSprites[8], TRUE);
         v1 = 3;
-        v0++;
+        didInput++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
+        Sprite_SetDrawFlag(keyboard->miscSprites[8], TRUE);
         v1 = 4;
-        v0++;
+        didInput++;
     }
 
+    // start counts as a direction input, because it moves the cursor.
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
-        param0->unk_1C.unk_00 = 12;
-        param0->unk_1C.unk_04 = 0;
-        v0++;
+        Sprite_SetDrawFlag(keyboard->miscSprites[8], TRUE);
+        keyboard->unk_1C.unk_00 = 12;
+        keyboard->unk_1C.unk_04 = 0;
+        didInput++;
     }
 
     {
-        if ((param0->unk_62C = sub_0208903C(param0)) == 1) {
+        if ((keyboard->unk_62C = sub_0208903C(keyboard)) == 1) {
             v1 = 0;
-            v0++;
+            didInput++;
         }
     }
 
-    if (v2 == 1) {
-        v0 = 0;
-        sub_02088454(param0, v1);
+    if (v2 == TRUE) {
+        didInput = 0;
+        Keyboard_MoveCursor(keyboard, v1);
     }
 
-    if (v0) {
-        sub_02088298(param0, v1);
-        sub_02088454(param0, v1);
+    if (didInput) {
+        sub_02088298(keyboard, v1);
+        Keyboard_MoveCursor(keyboard, v1);
     }
 }
 
-static void sub_02088454(Keyboard *param0, int param1)
+static void Keyboard_MoveCursor(Keyboard *param0, int param1)
 {
     if (param0->unk_1C.unk_04 != 0) {
         VecFx32 v0;
 
         if ((param0->unk_1C.unk_0C == 0) && (param0->unk_1C.unk_0C != param0->unk_1C.unk_04)) {
-            Sprite_SetAnim(param0->unk_390[8], 39);
+            Sprite_SetAnim(param0->miscSprites[8], 39);
         }
 
         v0.x = FX32_ONE * (26 + param0->unk_1C.unk_00 * 16);
         v0.y = FX32_ONE * ((111 - 20) + (param0->unk_1C.unk_04 - 1) * 19);
-        Sprite_SetPosition(param0->unk_390[8], &v0);
+        Sprite_SetPosition(param0->miscSprites[8], &v0);
     } else {
         VecFx32 v1;
         int v2 = param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00] - (0xe001 + 1);
@@ -2094,13 +2259,13 @@ static void sub_02088454(Keyboard *param0, int param1)
         v1.x = FX32_ONE * Unk_020F251C[v2];
         v1.y = FX32_ONE * (88 - 20);
 
-        Sprite_SetAnim(param0->unk_390[8], Unk_020F24E8[v2]);
-        Sprite_SetPosition(param0->unk_390[8], &v1);
+        Sprite_SetAnim(param0->miscSprites[8], Unk_020F24E8[v2]);
+        Sprite_SetPosition(param0->miscSprites[8], &v1);
     }
 
     param0->unk_38 = 180;
 
-    Sprite_SetAnimFrame(param0->unk_390[8], 0);
+    Sprite_SetAnimFrame(param0->miscSprites[8], 0);
 
     param0->unk_1C.unk_08 = param0->unk_1C.unk_00;
     param0->unk_1C.unk_0C = param0->unk_1C.unk_04;
@@ -2129,36 +2294,65 @@ static void sub_02088514(u16 *param0)
     GX_LoadOBJPltt((u16 *)&v1, (16 + 13) * 2, 2);
 }
 
-static void sub_02088554(Window *param0, const u16 *param1, int param2, int param3, int param4, int param5, TextColor param6, u8 *param7)
+static void Keyboard_PrintChars(
+    Window *window,
+    const charcode_t *charCodes,
+    int baseXOffset,
+    int yOffset,
+    int charSpacing,
+    int renderDelay,
+    TextColor textColor,
+    void *rawCharData
+)
 {
-    int v0 = 0, v1, v2;
-    u16 v3[2];
-    Strbuf *v4 = Strbuf_Init(2, HEAP_ID_KEYBOARD_APP);
+    int i = 0, charWidth, charXOffset;
+    u16 charBuffer[2];
+    Strbuf *strBuf = Strbuf_Init(2, HEAP_ID_KEYBOARD_APP);
 
-    while (param1[v0] != 0xffff) {
-        if ((param1[v0] == 0xd001) || (param1[v0] == (0xd001 + 1)) || (param1[v0] == (0xd001 + 2))) {
-            u16 v5 = param1[v0] - 0xd001;
-            Window_BlitBitmapRect(param0, (void *)&param7[v5 * 8 * 8 * 4 / 2], 0, 0, 12, 12, param2 + v0 * param4, param3 + 2, 12, 12);
+    while (charCodes[i] != CHAR_EOS) {
+        if ((charCodes[i] == 0xd001) || (charCodes[i] == (0xd001 + 1)) || (charCodes[i] == (0xd001 + 2))) {
+            u16 v5 = charCodes[i] - 0xd001;
+            Window_BlitBitmapRect(
+                window,
+                (void *)&rawCharData[v5 * 8 * 8 * 4 / 2],
+                0,
+                0,
+                12,
+                12,
+                baseXOffset + i * charSpacing,
+                yOffset + 2,
+                12,
+                12
+            );
         } else {
-            if (param1[v0] == (0xd001 + 3)) {
-                v0++;
+            if (charCodes[i] == (0xd001 + 3)) {
+                i++;
                 continue;
             }
 
-            v3[0] = param1[v0];
-            v3[1] = 0xffff;
+            charBuffer[0] = charCodes[i];
+            charBuffer[1] = CHAR_EOS;
 
-            v1 = Font_CalcStringWidth(FONT_SYSTEM, v3, 0);
-            v2 = param2 + v0 * param4 + ((param4 - v1) / 2);
+            charWidth = Font_CalcStringWidth(FONT_SYSTEM, charBuffer, 0);
+            charXOffset = baseXOffset + i * charSpacing + ((charSpacing - charWidth) / 2);
 
-            Strbuf_CopyChars(v4, v3);
-            Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v4, v2, param3, param5, param6, NULL);
+            Strbuf_CopyChars(strBuf, charBuffer);
+            Text_AddPrinterWithParamsAndColor(
+                window,
+                FONT_SYSTEM,
+                strBuf,
+                charXOffset,
+                yOffset,
+                renderDelay,
+                textColor,
+                NULL
+            );
         }
 
-        v0++;
+        i++;
     }
 
-    Strbuf_Free(v4);
+    Strbuf_Free(strBuf);
 }
 
 static const u8 Unk_020F24D8[] = {
@@ -2273,7 +2467,7 @@ static void sub_02088844(u16 param0[][13], const int param1)
 
     for (v1 = 0; v1 < 6 - 1; v1++) {
         for (v0 = 0; v0 < 13; v0++) {
-            param0[1 + v1][v0] = Unk_02100C54[param1][v1][v0];
+            param0[1 + v1][v0] = sKeyboardCharCodes[param1][v1][v0];
         }
     }
 }
@@ -2290,31 +2484,31 @@ static int sub_02088898(Keyboard *param0, u16 param1, int param2)
         }
     }
 
-    if ((Sprite_GetDrawFlag(param0->unk_390[8]) == 0) && (gSystem.touchPressed == 0)) {
-        Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
-        return 2;
+    if ((Sprite_GetDrawFlag(param0->miscSprites[8]) == 0) && (gSystem.touchPressed == 0)) {
+        Sprite_SetDrawFlag(param0->miscSprites[8], TRUE);
+        return KBD_APP_STATE_RUNNING;
     }
 
     switch (param1) {
     case 0xd001:
         if (sub_02088D08(42, 42 + 40, 1, 0xd001, param0->unk_D8, param0->unk_158)) {
             Window_FillTilemap(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+            Keyboard_PrintChars(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
     case (0xd001 + 1):
         if (sub_02088D08(72, 72 + 10, 2, 0xd001 + 1, param0->unk_D8, param0->unk_158)) {
             Window_FillTilemap(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+            Keyboard_PrintChars(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
     case (0xe001 + 5):
         if (sub_02088C9C(0, 72 + 10, param0->unk_D8, param0->unk_158)) {
             Window_FillTilemap(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
-            param0->unk_4F4[4]++;
+            Keyboard_PrintChars(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+            param0->spritesToUpdate[4]++;
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
@@ -2322,13 +2516,13 @@ static int sub_02088898(Keyboard *param0, u16 param1, int param2)
     case (0xe001 + 2):
     case (0xe001 + 3):
     case (0xe001 + 4):
-        if (param0->unk_4C4 != param1 - (0xe001 + 1)) {
-            param0->unk_4C0 = 0;
-            param0->unk_4C4 = param1 - (0xe001 + 1);
-            sub_02088844(param0->unk_3A, param0->unk_4C4);
-            param0->unk_4F4[param1 - (0xe001 + 1)]++;
+        if (param0->currentCharsIdx != param1 - (0xe001 + 1)) {
+            param0->state.changeChars = CC_STATE_LOAD_GRAPHICS;
+            param0->currentCharsIdx = param1 - (0xe001 + 1);
+            sub_02088844(param0->unk_3A, param0->currentCharsIdx);
+            param0->spritesToUpdate[param1 - (0xe001 + 1)]++;
             Sound_PlayEffect(SEQ_SE_DP_SYU03);
-            Sprite_SetDrawFlag(param0->unk_390[8], param2);
+            Sprite_SetDrawFlag(param0->miscSprites[8], param2);
         }
         break;
     case (0xe001 + 6):
@@ -2341,51 +2535,51 @@ static int sub_02088898(Keyboard *param0, u16 param1, int param2)
             if (param0->unk_158 == 0) {
                 Window_CopyToVRAM(&param0->unk_41C[3]);
             } else {
-                sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+                Keyboard_PrintChars(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             }
 
             sub_02088754(&param0->unk_41C[4], param0->unk_D8, param0->unk_158, param0->unk_15A, param0->unk_528, param0->unk_17C);
-            sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
+            sub_02088E1C(param0->textCursorSprites, param0->unk_158, param0->unk_0C);
 
-            param0->unk_4F4[5]++;
+            param0->spritesToUpdate[5]++;
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            Sprite_SetDrawFlag(param0->unk_390[8], param2);
+            Sprite_SetDrawFlag(param0->miscSprites[8], param2);
         }
         break;
     case (0xe001 + 7):
         sub_02015760(param0->unk_628);
-        Sprite_SetDrawFlag(param0->unk_390[8], param2);
+        Sprite_SetDrawFlag(param0->miscSprites[8], param2);
 
         if (param0->unk_14 == 0) {
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
-            param0->unk_4F4[6]++;
+            param0->spritesToUpdate[6]++;
             StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 16, 1, HEAP_ID_KEYBOARD_APP);
-            return 3;
+            return KBD_APP_STATE_WAIT_FADE_OUT;
         } else {
-            param0->unk_4C0 = 5;
+            param0->state.main = KBD_STATE_PLACEHOLDER_5;
         }
         break;
     default:
-        if ((param0->unk_4C4 == 4) && (param1 == 0x1)) {
-            return 2;
+        if ((param0->currentCharsIdx == 4) && (param1 == 0x1)) {
+            return KBD_APP_STATE_RUNNING;
         }
 
         if (param0->unk_158 != param0->unk_0C) {
             param0->unk_D8[param0->unk_158] = param1;
 
             Window_FillTilemap(&param0->unk_41C[3], 0x101);
-            sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
+            Keyboard_PrintChars(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
 
             param0->unk_158++;
 
-            sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
+            sub_02088E1C(param0->textCursorSprites, param0->unk_158, param0->unk_0C);
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
-            Sprite_SetDrawFlag(param0->unk_390[8], TRUE);
-            Sprite_SetExplicitOAMMode(param0->unk_390[8], GX_OAM_MODE_XLU);
+            Sprite_SetDrawFlag(param0->miscSprites[8], TRUE);
+            Sprite_SetExplicitOAMMode(param0->miscSprites[8], GX_OAM_MODE_XLU);
 
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 8, 8);
-            Sprite_SetAnim(param0->unk_390[8], 60);
+            Sprite_SetAnim(param0->miscSprites[8], 60);
 
             param0->unk_1C.unk_18 = 1;
 
@@ -2393,7 +2587,7 @@ static int sub_02088898(Keyboard *param0, u16 param1, int param2)
         }
     }
 
-    return 2;
+    return KBD_APP_STATE_RUNNING;
 }
 
 static u16 sub_02088C7C(const u16 *param0, int param1)
@@ -2499,7 +2693,7 @@ static void sub_02088E1C(Sprite **param0, int param1, int param2)
     }
 }
 
-static const u8 Unk_020F24E0[] = {
+static const u8 sKeyboardCharsAltBgColor[] = {
     0x3,
     0x6,
     0xC,
@@ -2507,76 +2701,91 @@ static const u8 Unk_020F24E0[] = {
     0x9
 };
 
-static void sub_02088E58(Window *param0, u16 param1, int param2, TextColor param3, u8 *param4)
+static void Keyboard_InitializeCharsGraphics(
+    Window *window,
+    u16 bgColor,
+    int currentCharsIdx,
+    TextColor textColor,
+    void *rawCharData
+)
 {
-    int v0, v1, v2;
+    int i;
 
-    Window_FillTilemap(param0, param1);
+    Window_FillTilemap(window, bgColor);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        Window_FillRectWithColor(param0, Unk_020F24E0[param2], 16 + 32 * v0, 0, 16, 19);
-        Window_FillRectWithColor(param0, Unk_020F24E0[param2], 16 + 32 * v0, 19 * 2, 16, 19);
-        Window_FillRectWithColor(param0, Unk_020F24E0[param2], 16 + 32 * v0, 19 * 4, 16, 19);
+    // fill checkerboard
+    for (i = 0; i < 6; i++) {
+        Window_FillRectWithColor(window, sKeyboardCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 0, 16, 19);
+        Window_FillRectWithColor(window, sKeyboardCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 19 * 2, 16, 19);
+        Window_FillRectWithColor(window, sKeyboardCharsAltBgColor[currentCharsIdx], 16 + 32 * i, 19 * 4, 16, 19);
+    }
+    for (i = 0; i < 7; i++) {
+        Window_FillRectWithColor(window, sKeyboardCharsAltBgColor[currentCharsIdx], 32 * i, 19, 16, 19);
+        Window_FillRectWithColor(window, sKeyboardCharsAltBgColor[currentCharsIdx], 32 * i, 19 * 3, 16, 19);
     }
 
-    for (v0 = 0; v0 < 7; v0++) {
-        Window_FillRectWithColor(param0, Unk_020F24E0[param2], 32 * v0, 19, 16, 19);
-        Window_FillRectWithColor(param0, Unk_020F24E0[param2], 32 * v0, 19 * 3, 16, 19);
+    for (i = 0; i < 5; i++) {
+        Keyboard_PrintChars(
+            window,
+            sKeyboardCharCodes[currentCharsIdx][i],
+            0,
+            i * 19 + 4,
+            16,
+            TEXT_SPEED_NO_TRANSFER,
+            textColor,
+            rawCharData
+        );
     }
 
-    for (v0 = 0; v0 < 5; v0++) {
-        sub_02088554(param0, Unk_02100C54[param2][v0], 0, v0 * 19 + 4, 16, TEXT_SPEED_NO_TRANSFER, param3, param4);
-    }
-
-    Window_CopyToVRAM(param0);
+    Window_CopyToVRAM(window);
 }
 
-static void sub_02088F40(int param0[], Sprite **param1, int param2)
+static void Keyboard_UpdateSpriteAnimations(BOOL spritesToUpdate[], Sprite **sprites, int unused)
 {
-    int v0, v1;
+    int i, j;
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0[v0]) {
-            for (v1 = 0; v1 < 3; v1++) {
-                Sprite_SetAnim(param1[v1], Unk_020F2984[v1][2]);
+    for (i = 0; i < 3; i++) {
+        if (spritesToUpdate[i]) {
+            for (j = 0; j < 3; j++) {
+                Sprite_SetAnim(sprites[j], sKeyboardSpriteAnimations[j][2]);
             }
 
-            Sprite_SetAnim(param1[v0], Unk_020F2984[v0][2] - 3);
+            Sprite_SetAnim(sprites[i], sKeyboardSpriteAnimations[i][2] - 3);
             break;
         }
     }
 
-    for (v0 = 5; v0 < 7; v0++) {
-        if (param0[v0]) {
-            Sprite_SetAnim(param1[v0], Unk_020F2984[v0][2] + 1);
+    for (i = 5; i < 7; i++) {
+        if (spritesToUpdate[i]) {
+            Sprite_SetAnim(sprites[i], sKeyboardSpriteAnimations[i][2] + 1);
         }
     }
 
-    for (v0 = 0; v0 < 7; v0++) {
-        param0[v0] = 0;
+    for (i = 0; i < 7; i++) {
+        spritesToUpdate[i] = FALSE;
     }
 }
 
 static void sub_02088FD0(Keyboard *param0)
 {
-    if (!Sprite_IsAnimated(param0->unk_390[8])) {
+    if (!Sprite_IsAnimated(param0->miscSprites[8])) {
         if (param0->unk_158 == param0->unk_0C) {
             param0->unk_1C.unk_00 = 12;
             param0->unk_1C.unk_04 = 0;
-            Sprite_SetAnim(param0->unk_390[8], 39);
+            Sprite_SetAnim(param0->miscSprites[8], 39);
         } else {
-            Sprite_SetAnim(param0->unk_390[8], 39);
+            Sprite_SetAnim(param0->miscSprites[8], 39);
         }
 
         if (param0->unk_1C.unk_14 == 0) {
-            Sprite_SetDrawFlag(param0->unk_390[8], FALSE);
+            Sprite_SetDrawFlag(param0->miscSprites[8], FALSE);
         } else {
-            sub_02088454(param0, 0);
+            Keyboard_MoveCursor(param0, 0);
         }
 
         param0->unk_1C.unk_18 = 0;
 
-        Sprite_SetExplicitOAMMode(param0->unk_390[8], GX_OAM_MODE_NORMAL);
+        Sprite_SetExplicitOAMMode(param0->miscSprites[8], GX_OAM_MODE_NORMAL);
     }
 }
 

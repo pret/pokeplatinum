@@ -44,7 +44,6 @@
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_0208694C.h"
 
 #include "res/text/bank/rowan_intro.h"
 
@@ -325,8 +324,8 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->state = RI_STATE_FIRST_FADE_BLACK_START;
     manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->unk_70 = sub_0208712C(heapID, 0, 0, 7, manager->options);
-    manager->unk_74 = sub_0208712C(heapID, 3, 0, 7, manager->options);
+    manager->unk_70 = KeyboardArgs_Init(heapID, 0, 0, 7, manager->options);
+    manager->unk_74 = KeyboardArgs_Init(heapID, 3, 0, 7, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;
@@ -447,8 +446,8 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
         MiscSaveBlock_SetRivalName(miscSaveBlock, manager->unk_74->textInputStr);
     }
 
-    sub_0208716C(manager->unk_70);
-    sub_0208716C(manager->unk_74);
+    KeyboardArgs_Free(manager->unk_70);
+    KeyboardArgs_Free(manager->unk_74);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);

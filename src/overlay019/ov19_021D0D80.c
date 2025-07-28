@@ -55,7 +55,6 @@
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "unk_0207CB08.h"
-#include "unk_0208694C.h"
 
 #include "constdata/const_020F410C.h"
 #include "res/text/bank/box_messages.h"
@@ -3379,7 +3378,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->mon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
     GF_ASSERT(param0->MessageVariableBuffer);
-    param0->unk_128 = sub_0208712C(HEAP_ID_BOX_DATA, 2, 0, 8, param0->options);
+    param0->unk_128 = KeyboardArgs_Init(HEAP_ID_BOX_DATA, 2, 0, 8, param0->options);
 
     if (param1->boxMode != PC_MODE_COMPARE) {
         param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
@@ -3416,7 +3415,7 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
     MessageLoader_Free(param0->speciesNameLoader);
     MessageLoader_Free(param0->natureNameLoader);
     MessageLoader_Free(param0->abilityNameLoader);
-    sub_0208716C(param0->unk_128);
+    KeyboardArgs_Free(param0->unk_128);
 
     PCMonPreviewFree(&(param0->unk_00.pcMonPreview));
     ov19_MonSelectionFree(&(param0->unk_00.selection));

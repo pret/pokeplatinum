@@ -128,7 +128,6 @@
 #include "unk_0206CCB0.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
-#include "unk_0208694C.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
@@ -1190,7 +1189,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
             *v2->unk_08 = v2->unk_0C->unk_14;
         }
 
-        sub_0208716C(v2->unk_0C);
+        KeyboardArgs_Free(v2->unk_0C);
         Strbuf_Free(v2->unk_10);
         Heap_Free(v2);
 
@@ -1239,7 +1238,7 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
     v2->unk_00 = 0;
     v2->unk_04 = param4;
     v2->unk_08 = param6;
-    v2->unk_0C = sub_0208712C(HEAP_ID_FIELDMAP, param1, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
+    v2->unk_0C = KeyboardArgs_Init(HEAP_ID_FIELDMAP, param1, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
     v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELDMAP);
 
     switch (param1) {

@@ -93,7 +93,6 @@
 #include "unk_020366A0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
-#include "unk_0208694C.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 
@@ -1448,7 +1447,7 @@ static BOOL ov104_02230900(UnkStruct_ov104_0222E930 *param0)
 static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    void *v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
+    void *v0 = KeyboardArgs_Init(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
 
     sub_0209B988(param0->unk_00->unk_00, &gKeyboardAppTemplate, v0, 0, ov104_02230950);
 
@@ -1457,7 +1456,7 @@ static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
 
 static void ov104_02230950(void *param0)
 {
-    sub_0208716C(param0);
+    KeyboardArgs_Free(param0);
 }
 
 static BOOL ov104_02230958(UnkStruct_ov104_0222E930 *param0)

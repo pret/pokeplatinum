@@ -62,7 +62,6 @@
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
 #include "unk_0205C980.h"
-#include "unk_0208694C.h"
 #include "unk_020890F4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
@@ -2501,7 +2500,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
         param2->unk_04 = 3;
         break;
     case 3:
-        sub_0208716C(param0->unk_04);
+        KeyboardArgs_Free(param0->unk_04);
         sub_02089438(param0->unk_08);
         ov64_0222DF48(param1, heapID);
         return 1;
@@ -2528,7 +2527,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
         }
         break;
     case 6:
-        sub_0208716C(param0->unk_04);
+        KeyboardArgs_Free(param0->unk_04);
         ov64_0222DF48(param1, heapID);
         return 1;
     }
@@ -2555,7 +2554,7 @@ static KeyboardArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov
 {
     KeyboardArgs *v0;
 
-    v0 = sub_0208712C(heapID, 7, 0, 7, SaveData_GetOptions(param1->saveData));
+    v0 = KeyboardArgs_Init(heapID, 7, 0, 7, SaveData_GetOptions(param1->saveData));
 
     if (param1->unk_34.unk_04 == 1) {
         {
