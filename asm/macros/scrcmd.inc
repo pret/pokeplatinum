@@ -4535,10 +4535,10 @@
     .short \arg0
     .endm
 
-    .macro TryRevertPokemonForm arg0, arg1
+    .macro TryRevertPokemonForm partySlot, destVar
     .short 798
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro ResetDistortionWorldPersistedCameraAngles
