@@ -297,7 +297,7 @@ static BOOL ScrCmd_MessageVar(ScriptContext *ctx);
 static BOOL ScrCmd_2C0(ScriptContext *ctx);
 static BOOL ScrCmd_02E(ScriptContext *ctx);
 static BOOL ScrCmd_02F(ScriptContext *ctx);
-static BOOL sub_02040014(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForFinishedPrinting(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPress(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABXPadPress(ScriptContext *ctx);
@@ -742,7 +742,7 @@ static BOOL ScrCmd_322(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
 static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
-static BOOL sub_02040F0C(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForMovement(ScriptContext *ctx);
 static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAnimCmd *param2);
 static void sub_02040F5C(SysTask *param0, void *param1);
 static u32 SaveData_GetRotomFormsInSave(SaveData *saveData);
@@ -2060,7 +2060,7 @@ static BOOL ScrCmd_1FB(ScriptContext *ctx)
     ScriptMessage_Show(ctx, msgLoader, v2, TRUE, NULL);
 
     MessageLoader_Free(msgLoader);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2084,7 +2084,7 @@ static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
     ScriptMessage_ShowSentence(ctx, v0, v1, v2, v3, 1);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2109,7 +2109,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
         ScriptMessage_ShowSentence(ctx, v0[0], v0[1], v0[2], v0[3], 1);
     }
 
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
     return TRUE;
 }
 
@@ -2126,7 +2126,7 @@ static BOOL ScrCmd_1FF(ScriptContext *ctx)
 
     ScriptMessage_ShowTemplate(ctx, v6, v1 + v5, TRUE);
     StringTemplate_Free(v6);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2140,7 +2140,7 @@ static BOOL ScrCmd_26D(ScriptContext *ctx)
     v0.fontID = 3;
 
     ScriptMessage_Show(ctx, ctx->loader, v1, FALSE, &v0);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2150,17 +2150,17 @@ static BOOL ScrCmd_Message(ScriptContext *ctx)
     u8 messageID = ScriptContext_ReadByte(ctx);
 
     ScriptMessage_Show(ctx, ctx->loader, messageID, TRUE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
 
-static BOOL sub_02040014(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForFinishedPrinting(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    u8 *printedID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 
-    return FieldMessage_FinishedPrinting(*v1);
+    return FieldMessage_FinishedPrinting(*printedID);
 }
 
 static BOOL ScrCmd_MessageVar(ScriptContext *ctx)
@@ -2168,7 +2168,7 @@ static BOOL ScrCmd_MessageVar(ScriptContext *ctx)
     u16 messageID = ScriptContext_GetVar(ctx);
 
     ScriptMessage_Show(ctx, ctx->loader, (u8)messageID, TRUE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2183,7 +2183,7 @@ static BOOL ScrCmd_2C0(ScriptContext *ctx)
     v1.autoScroll = 1;
 
     ScriptMessage_Show(ctx, ctx->loader, (u8)v0, TRUE, &v1);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2193,7 +2193,7 @@ static BOOL ScrCmd_02E(ScriptContext *ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
 
     ScriptMessage_Show(ctx, ctx->loader, (u8)v0, FALSE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2204,7 +2204,7 @@ static BOOL ScrCmd_20C(ScriptContext *ctx)
     u8 v1 = MapObject_GetTrainerType(*mapObj);
 
     ScriptMessage_Show(ctx, ctx->loader, v1, TRUE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2226,7 +2226,7 @@ static BOOL ScrCmd_02F(ScriptContext *ctx)
         ScriptMessage_Show(ctx, ctx->loader, messageID, FALSE, &msgOptions);
     }
 
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
     return TRUE;
 }
 
@@ -2955,11 +2955,11 @@ static MapObject *sub_02040ED4(FieldSystem *fieldSystem, int param1)
 
 static BOOL ScrCmd_WaitMovement(ScriptContext *ctx)
 {
-    ScriptContext_Pause(ctx, sub_02040F0C);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForMovement);
     return TRUE;
 }
 
-static BOOL sub_02040F0C(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForMovement(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MOVEMENT_COUNT);
@@ -4647,7 +4647,7 @@ static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx)
     Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
     *printerID = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *strbuf, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
