@@ -24,7 +24,7 @@ _0006:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 14, _0136
     CallIfEq VAR_0x8004, 15, _0154
-    ScrCmd_067
+    RestoreCamera
     Message 2
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

@@ -646,7 +646,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_067
+    .macro RestoreCamera
     .short 103
     .endm
 

@@ -55,7 +55,7 @@ _009A:
     RemoveObject 2
     ApplyMovement 241, _00F0
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     SetVar VAR_UNK_0x4084, 1
     ReleaseAll
     End

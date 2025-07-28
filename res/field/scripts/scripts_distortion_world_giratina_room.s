@@ -125,7 +125,7 @@ _0194:
     ScrCmd_312 130
     ApplyMovement 241, _0288
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     Message 11
     ApplyMovement 129, _0264
     WaitMovement

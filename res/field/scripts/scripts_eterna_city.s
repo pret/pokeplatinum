@@ -867,7 +867,7 @@ _0AB6:
     ApplyMovement 32, _0CE4
     ApplyMovement 241, _0CDC
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     Message 4
     CloseMessage
     ApplyMovement 32, _0CF4

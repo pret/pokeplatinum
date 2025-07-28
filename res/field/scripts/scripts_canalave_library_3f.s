@@ -141,7 +141,7 @@ _0184:
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_067
+    RestoreCamera
     ScrCmd_310
     ReturnToField
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -168,7 +168,7 @@ _0184:
     WaitMovement
     RemoveObject 4
     RemoveObject 3
-    ScrCmd_067
+    RestoreCamera
     ApplyMovement LOCALID_PLAYER, _02C0
     WaitMovement
     Message 25

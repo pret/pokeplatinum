@@ -56,7 +56,7 @@ _006F:
     ApplyMovement 4, _01E0
     ApplyMovement 241, _01C0
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     Message 2
     CloseMessage
     ApplyMovement 5, _02A0

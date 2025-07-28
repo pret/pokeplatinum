@@ -49,7 +49,7 @@ _0006:
     WaitFadeScreen
     ApplyMovement 241, _0204
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     RemoveObject 0
     RemoveObject 1
     RemoveObject 4

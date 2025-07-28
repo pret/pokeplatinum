@@ -344,7 +344,7 @@ static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx);
 static BOOL ScrCmd_AddObject(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
 static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx);
-static BOOL ScrCmd_067(ScriptContext *ctx);
+static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx);
 static BOOL ScrCmd_308(ScriptContext *ctx);
 static BOOL ScrCmd_309(ScriptContext *ctx);
 static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
@@ -871,7 +871,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_AddObject,
     ScrCmd_RemoveObject,
     SrcCmd_AddFreeCamera,
-    ScrCmd_067,
+    SrcCmd_RestoreCamera,
     ScrCmd_FacePlayer,
     ScrCmd_GetPlayerMapPos,
     ScrCmd_06A,
@@ -3237,7 +3237,7 @@ static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_067(ScriptContext *ctx)
+static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
 {
     MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 

@@ -40,7 +40,7 @@ _0088:
     RemoveObject 1
     ApplyMovement 241, _0178
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     ApplyMovement LOCALID_PLAYER, _013C
     ApplyMovement 0, _014C
     WaitMovement

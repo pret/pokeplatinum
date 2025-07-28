@@ -479,7 +479,7 @@ _0567:
     SetVar VAR_UNK_0x40C3, 1
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
-    ScrCmd_067
+    RestoreCamera
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End
 
