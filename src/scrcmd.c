@@ -343,7 +343,7 @@ static BOOL SrcCmd_LockObject(ScriptContext *ctx);
 static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx);
 static BOOL ScrCmd_AddObject(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
-static BOOL ScrCmd_066(ScriptContext *ctx);
+static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx);
 static BOOL ScrCmd_067(ScriptContext *ctx);
 static BOOL ScrCmd_308(ScriptContext *ctx);
 static BOOL ScrCmd_309(ScriptContext *ctx);
@@ -870,7 +870,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     SrcCmd_ReleaseObject,
     ScrCmd_AddObject,
     ScrCmd_RemoveObject,
-    ScrCmd_066,
+    SrcCmd_AddFreeCamera,
     ScrCmd_067,
     ScrCmd_FacePlayer,
     ScrCmd_GetPlayerMapPos,
@@ -3216,7 +3216,7 @@ static BOOL ScrCmd_RemoveObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_066(ScriptContext *ctx)
+static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);

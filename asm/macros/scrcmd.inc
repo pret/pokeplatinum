@@ -640,7 +640,7 @@
     .short \localID
     .endm
 
-    .macro ScrCmd_066 arg0, arg1
+    .macro AddFreeCamera arg0, arg1
     .short 102
     .short \arg0
     .short \arg1

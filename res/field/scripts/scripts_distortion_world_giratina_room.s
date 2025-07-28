@@ -109,7 +109,7 @@ _016E:
 _0194:
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_066 VAR_0x8004, VAR_0x8005
+    AddFreeCamera VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0280
     ApplyMovement 130, _026C
     ApplyMovement 129, _0258

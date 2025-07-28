@@ -14,7 +14,7 @@ _0006:
     CloseMessage
     CallIfEq VAR_0x8005, 12, _01AD
     CallIfEq VAR_0x8005, 13, _01C1
-    ScrCmd_066 VAR_0x8004, VAR_0x8005
+    AddFreeCamera VAR_0x8004, VAR_0x8005
     FadeScreen 6, 3, 0, 0
     ApplyMovement 241, _01F8
     WaitMovement

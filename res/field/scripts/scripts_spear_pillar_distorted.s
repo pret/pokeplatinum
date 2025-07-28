@@ -22,7 +22,7 @@ _0022:
     SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01CD
     AddObject 0
-    ScrCmd_066 30, 30
+    AddFreeCamera 30, 30
     ApplyMovement 241, _016C
     WaitMovement
     FadeScreen 6, 1, 1, 0

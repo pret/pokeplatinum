@@ -858,7 +858,7 @@ _0AB6:
     CallCommonScript 0x7FB
     ScrCmd_32E
     ScrCmd_332
-    ScrCmd_066 0x143, 0x20C
+    AddFreeCamera 0x143, 0x20C
     ApplyMovement 241, _0CD4
     WaitMovement
     Message 3

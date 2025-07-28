@@ -8,7 +8,7 @@
 _0006:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_066 VAR_0x8004, VAR_0x8005
+    AddFreeCamera VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0228
     WaitMovement
     WaitTime 15, VAR_RESULT

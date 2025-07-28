@@ -447,7 +447,7 @@ _0508:
     ApplyMovement LOCALID_PLAYER, _05B8
     WaitMovement
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
-    ScrCmd_066 VAR_0x8000, VAR_0x8001
+    AddFreeCamera VAR_0x8000, VAR_0x8001
     Call _05C0
     WaitMovement
     SetVar VAR_0x8005, 13

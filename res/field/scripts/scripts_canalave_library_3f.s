@@ -40,7 +40,7 @@ _0062:
     ApplyMovement LOCALID_PLAYER, _0310
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_066 VAR_0x8004, VAR_0x8005
+    AddFreeCamera VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0340
     WaitMovement
     WaitTime 30, VAR_RESULT
@@ -145,7 +145,7 @@ _0184:
     ScrCmd_310
     ReturnToField
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_066 VAR_0x8004, VAR_0x8005
+    AddFreeCamera VAR_0x8004, VAR_0x8005
     ApplyMovement 241, _0340
     WaitMovement
     FadeScreen 6, 1, 1, 0
