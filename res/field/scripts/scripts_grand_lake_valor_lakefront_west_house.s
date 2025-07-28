@@ -66,11 +66,11 @@ _00D3:
     End
 
 _00DE:
-    ScrCmd_260 26
+    Duplicate_IncrementTrainerScore 26
     Return
 
 _00E4:
-    ScrCmd_260 27
+    Duplicate_IncrementTrainerScore 27
     Return
 
     .balign 4, 0

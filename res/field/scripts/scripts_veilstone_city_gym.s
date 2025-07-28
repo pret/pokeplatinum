@@ -33,7 +33,7 @@ _0022:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_COBBLE
-    ScrCmd_260 23
+    Duplicate_IncrementTrainerScore 23
     SetTrainerFlag TRAINER_BLACK_BELT_COLBY
     SetTrainerFlag TRAINER_BLACK_BELT_DARREN
     SetTrainerFlag TRAINER_BLACK_BELT_RAFAEL

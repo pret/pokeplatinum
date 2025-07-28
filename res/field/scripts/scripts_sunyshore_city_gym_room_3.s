@@ -39,7 +39,7 @@ _0027:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_BEACON
-    ScrCmd_260 23
+    Duplicate_IncrementTrainerScore 23
     SetTrainerFlag TRAINER_ACE_TRAINER_ZACHERY
     SetTrainerFlag TRAINER_ACE_TRAINER_DESTINY
     SetTrainerFlag TRAINER_GUITARIST_JERRY

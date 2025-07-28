@@ -3462,7 +3462,7 @@
     .short 607
     .endm
 
-    .macro ScrCmd_260 arg0
+    .macro Duplicate_IncrementTrainerScore arg0
     .short 608
     .short \arg0
     .endm

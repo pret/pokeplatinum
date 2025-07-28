@@ -498,7 +498,7 @@ _06BB:
 
 _06D5:
     RemoveItem ITEM_HONEY, 1, VAR_RESULT
-    ScrCmd_260 1
+    Duplicate_IncrementTrainerScore 1
     SlatherHoneyTree
     WaitTime 10, VAR_RESULT
     Message 51

@@ -641,7 +641,7 @@ static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
 static BOOL ScrCmd_25F(ScriptContext *ctx);
-static BOOL ScrCmd_260(ScriptContext *ctx);
+static BOOL ScrCmd_Duplicate_IncrementTrainerScore(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasSpecies2(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyCombeeGenderCount(ScriptContext *ctx);
@@ -1378,7 +1378,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap,
     ScrCmd_25E,
     ScrCmd_25F,
-    ScrCmd_260,
+    ScrCmd_Duplicate_IncrementTrainerScore,
     ScrCmd_BufferAccessoryName,
     ScrCmd_CheckPartyHasSpecies2,
     ScrCmd_ChangeDeoxysForm,
@@ -6584,7 +6584,7 @@ static BOOL ScrCmd_25F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_260(ScriptContext *ctx)
+static BOOL ScrCmd_Duplicate_IncrementTrainerScore(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
 

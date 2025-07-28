@@ -30,7 +30,7 @@ _0016:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_MINE
-    ScrCmd_260 23
+    Duplicate_IncrementTrainerScore 23
     SetTrainerFlag TRAINER_BLACK_BELT_DAVID
     SetTrainerFlag TRAINER_WORKER_JACKSON
     SetTrainerFlag TRAINER_WORKER_GARY
