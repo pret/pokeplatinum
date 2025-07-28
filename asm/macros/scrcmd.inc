@@ -1046,7 +1046,7 @@
     .short 170
     .endm
 
-    .macro ScrCmd_0AB arg0
+    .macro OpenPokemonStorage arg0
     .short 171
     .byte \arg0
     .endm

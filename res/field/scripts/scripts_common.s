@@ -1007,35 +1007,35 @@ _0D73:
 _0DC2:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 0
+    OpenPokemonStorage 0
     ReturnToField
     GoTo _0E21
 
 _0DD5:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 1
+    OpenPokemonStorage 1
     ReturnToField
     GoTo _0E21
 
 _0DE8:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 2
+    OpenPokemonStorage 2
     ReturnToField
     GoTo _0E21
 
 _0DFB:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 3
+    OpenPokemonStorage 3
     ReturnToField
     GoTo _0E21
 
 _0E0E:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 4
+    OpenPokemonStorage 4
     ReturnToField
     GoTo _0E21
 

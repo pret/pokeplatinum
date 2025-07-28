@@ -389,7 +389,7 @@ static BOOL ScrCmd_0AA(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_1D8(ScriptContext *ctx);
 static BOOL ScrCmd_1D9(ScriptContext *ctx);
-static BOOL ScrCmd_0AB(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx);
 static BOOL ScrCmd_0AC(ScriptContext *ctx);
 static BOOL ScrCmd_0AD(ScriptContext *ctx);
 static BOOL ScrCmd_0AE(ScriptContext *ctx);
@@ -939,7 +939,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0A8,
     ScrCmd_OpenSealCapsuleEditor,
     ScrCmd_0AA,
-    ScrCmd_0AB,
+    ScrCmd_OpenPokemonStorage,
     ScrCmd_0AC,
     ScrCmd_0AD,
     ScrCmd_0AE,
@@ -4136,7 +4136,7 @@ static BOOL ScrCmd_1D9(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0AB(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     UnkStruct_02042434 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
