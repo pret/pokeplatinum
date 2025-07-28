@@ -6,9 +6,9 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 
-#include "data/pokeicon_palettes.h"
-
 #include "pokemon.h"
+
+#include "res/pokemon/species_icon_palettes.h"
 
 enum PokeIconSharedResourceIndex {
     POKEICON_SHARED_PALETTES = 0,
@@ -137,7 +137,7 @@ const u8 PokeIconPaletteIndex(u32 species, u32 form, u32 isEgg)
         if (species == SPECIES_DEOXYS) {
             species = ICON_DEOXYS_ATTACK + form - 1;
         } else if (species == SPECIES_UNOWN) {
-            species = ICON_UNOWN_A + form - 1;
+            species = ICON_UNOWN_BASE + form - 1;
         } else if (species == SPECIES_BURMY) {
             species = ICON_BURMY_SANDY + form - 1;
         } else if (species == SPECIES_WORMADAM) {
