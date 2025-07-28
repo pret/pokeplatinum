@@ -4423,10 +4423,10 @@
     .short \arg0
     .endm
 
-    .macro AddCameraOverrideObject arg0, arg1
+    .macro AddCameraOverrideObject x, z
     .short 776
-    .short \arg0
-    .short \arg1
+    .short \x
+    .short \z
     .endm
 
     .macro RemoveCameraOverrideObject

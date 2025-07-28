@@ -3256,24 +3256,24 @@ static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
 
 static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    MapObject **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    u16 xPos = ScriptContext_GetVar(ctx);
+    u16 zPos = ScriptContext_GetVar(ctx);
+    MapObject **cameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
+    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
-    MapObject_RecalculateObjectHeight(*v2);
-    MapObject_SetHidden(*v2, TRUE);
-    sub_02062D80(*v2, FALSE);
+    MapObject_RecalculateObjectHeight(*cameraObject);
+    MapObject_SetHidden(*cameraObject, TRUE);
+    sub_02062D80(*cameraObject, FALSE);
 
     return FALSE;
 }
 
 static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx)
 {
-    MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    MapObject **cameraOverrideObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    MapObject_Delete(*v0);
+    MapObject_Delete(*cameraOverrideObject);
     return FALSE;
 }
 
