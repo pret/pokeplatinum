@@ -2402,14 +2402,14 @@
     .short \partySlot
     .endm
 
-    .macro ShowObject arg0
+    .macro ShowObject localID
     .short 433
-    .short \arg0
+    .short \localID
     .endm
 
-    .macro HideObject arg0
+    .macro HideObject localID
     .short 434
-    .short \arg0
+    .short \localID
     .endm
 
     .macro ScrCmd_1B3

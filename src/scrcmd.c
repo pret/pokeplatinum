@@ -5734,13 +5734,13 @@ static BOOL ScrCmd_ShowObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
 
-    if (v0 == NULL) {
+    if (mapObject == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    MapObject_SetHidden(v0, FALSE);
+    MapObject_SetHidden(mapObject, FALSE);
     return FALSE;
 }
 
@@ -5748,13 +5748,13 @@ static BOOL ScrCmd_HideObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
 
-    if (v0 == NULL) {
+    if (mapObject == NULL) {
         GF_ASSERT(FALSE);
     }
 
-    MapObject_SetHidden(v0, TRUE);
+    MapObject_SetHidden(mapObject, TRUE);
     return FALSE;
 }
 
