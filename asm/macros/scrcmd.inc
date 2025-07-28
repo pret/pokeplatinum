@@ -620,14 +620,14 @@
     .short 97
     .endm
 
-    .macro LockObject arg0
+    .macro LockObject localID
     .short 98
-    .short \arg0
+    .short \localID
     .endm
 
-    .macro ReleaseObject arg0
+    .macro ReleaseObject localID
     .short 99
-    .short \arg0
+    .short \localID
     .endm
 
     .macro AddObject arg0
