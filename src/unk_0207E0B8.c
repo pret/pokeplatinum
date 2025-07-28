@@ -71,9 +71,9 @@ typedef struct {
     u16 unk_0A;
 } UnkStruct_020F1DF8;
 
-static int sub_0207E0B8(ApplicationManager *appMan, int *param1);
-static int sub_0207E2A8(ApplicationManager *appMan, int *param1);
-static int sub_0207E7E0(ApplicationManager *appMan, int *param1);
+static int PokemonParty_Init(ApplicationManager *appMan, int *param1);
+static int PokemonParty_Main(ApplicationManager *appMan, int *param1);
+static int PokemonParty_Exit(ApplicationManager *appMan, int *param1);
 static int sub_0207E490(GameWindowLayout *param0);
 static int sub_0207E518(GameWindowLayout *param0);
 static int sub_0207E5B4(GameWindowLayout *param0);
@@ -151,11 +151,11 @@ u8 sub_02080488(GameWindowLayout *param0, u8 param1);
 static u8 CheckPokemonCondition(GameWindowLayout *param0);
 static BOOL UpdatePokemonStatus(GameWindowLayout *param0, u8 param1, s8 param2);
 
-const ApplicationManagerTemplate Unk_020F1E88 = {
-    sub_0207E0B8,
-    sub_0207E2A8,
-    sub_0207E7E0,
-    0xFFFFFFFF
+const ApplicationManagerTemplate gPokemonPartyAppTemplate = {
+    .init = PokemonParty_Init,
+    .main = PokemonParty_Main,
+    .exit = PokemonParty_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE
 };
 
 static const UnkStruct_020F1DF8 Unk_020F1DF8[2][6] = {
@@ -239,7 +239,7 @@ static const u16 Unk_020F1CB0[] = {
     0x87,
 };
 
-static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
+static int PokemonParty_Init(ApplicationManager *appMan, int *param1)
 {
     GameWindowLayout *v0;
     NARC *v1;
@@ -315,7 +315,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static int sub_0207E2A8(ApplicationManager *appMan, int *param1)
+static int PokemonParty_Main(ApplicationManager *appMan, int *param1)
 {
     GameWindowLayout *v0 = ApplicationManager_Data(appMan);
 
@@ -636,7 +636,7 @@ static int sub_0207E750(GameWindowLayout *param0)
     return 21;
 }
 
-static int sub_0207E7E0(ApplicationManager *appMan, int *param1)
+static int PokemonParty_Exit(ApplicationManager *appMan, int *param1)
 {
     GameWindowLayout *v0 = ApplicationManager_Data(appMan);
     u32 v1;

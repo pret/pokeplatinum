@@ -3429,8 +3429,8 @@ static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx)
 
 static BOOL ScrCmd_SelectMoveTutorPokemon(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    *v0 = sub_0203D3C0(32, ctx->fieldSystem);
+    void **partyData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    *partyData = FieldSystem_SelectMoveTutorPokemon(32, ctx->fieldSystem);
 
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return TRUE;

@@ -156,7 +156,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
         GF_ASSERT(0);
     }
 
-    sub_0209B988(param0, &Unk_020F1E88, param1->unk_A8, 0, NULL);
+    sub_0209B988(param0, &gPokemonPartyAppTemplate, param1->unk_A8, 0, NULL);
     return;
 }
 
