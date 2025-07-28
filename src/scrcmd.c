@@ -500,7 +500,7 @@ static BOOL sub_02043C70(ScriptContext *ctx);
 static BOOL ScrCmd_151(ScriptContext *ctx);
 static BOOL ScrCmd_152(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
-static BOOL ScrCmd_187(ScriptContext *ctx);
+static BOOL ScrCmd_SetPosition(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
@@ -1161,7 +1161,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_184,
     ScrCmd_185,
     ScrCmd_SetObjectEventPos,
-    ScrCmd_187,
+    ScrCmd_SetPosition,
     ScrCmd_SetObjectEventMovementType,
     ScrCmd_SetObjectEventDir,
     ScrCmd_SetWarpEventPos,
@@ -5426,16 +5426,16 @@ static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx)
 
 static BOOL ScrCmd_SetPosition(ScriptContext *ctx)
 {
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_GetVar(ctx);
-    u16 v5 = ScriptContext_GetVar(ctx);
+    u16 localID = ScriptContext_GetVar(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 y = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
+    u16 dir = ScriptContext_GetVar(ctx);
 
-    MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
+    MapObject *mapObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, localID);
 
-    MapObject_SetPosDirFromCoords(v0, v2, v3, v4, v5);
-    MapObject_RecalculateObjectHeight(v0);
+    MapObject_SetPosDirFromCoords(mapObject, x, y, z, dir);
+    MapObject_RecalculateObjectHeight(mapObject);
 
     return FALSE;
 }

@@ -2173,13 +2173,13 @@
     .short \z
     .endm
 
-    .macro SetPosition arg0, arg1, arg2, arg3, arg4
+    .macro SetPosition localID, x, y, z, dir
     .short 391
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \localID
+    .short \x
+    .short \y
+    .short \z
+    .short \dir
     .endm
 
     .macro SetObjectEventMovementType localID, movementType
