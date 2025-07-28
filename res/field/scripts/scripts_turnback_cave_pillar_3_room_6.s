@@ -6,9 +6,9 @@
 
 _0006:
     Call _0014
-    InitTurnbackCave VAR_UNK_0x410B, VAR_UNK_0x410C
+    InitTurnbackCave VAR_TURNBACK_CAVE_PILLARS_SEEN, VAR_TURNBACK_CAVE_ROOMS_VISITED
     End
 
 _0014:
-    AddVar VAR_UNK_0x410C, 1
+    AddVar VAR_TURNBACK_CAVE_ROOMS_VISITED, 1
     Return
