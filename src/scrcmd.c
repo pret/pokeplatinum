@@ -1568,7 +1568,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_31B,
     ScrCmd_CheckPartyHasFatefulEncounter,
     ScrCmd_31D,
-    ScrCmd_31E,
+    ScrCmd_TryRevertPokemonForm,
     ScrCmd_ResetDistortionWorldPersistedCameraAngles,
     ScrCmd_320,
     ScrCmd_321,

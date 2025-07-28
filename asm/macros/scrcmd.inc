@@ -4535,7 +4535,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_31E arg0, arg1
+    .macro TryRevertPokemonForm arg0, arg1
     .short 798
     .short \arg0
     .short \arg1

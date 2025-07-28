@@ -137,11 +137,11 @@ _020B:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _0145
-    ScrCmd_31E VAR_MAP_LOCAL_2, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _05E1
-    ScrCmd_31E VAR_MAP_LOCAL_5, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_5, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _05E1
-    ScrCmd_31E VAR_MAP_LOCAL_6, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_6, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _05E1
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_1
     GoToIfEq VAR_MAP_LOCAL_1, 0, _0145

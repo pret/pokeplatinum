@@ -141,7 +141,7 @@ _01DE:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _0292
-    ScrCmd_31E VAR_0x8000, VAR_RESULT
+    TryRevertPokemonForm VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _04EF
     GetPartyMonSpecies VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, _0285

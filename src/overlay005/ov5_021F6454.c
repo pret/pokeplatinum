@@ -552,7 +552,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_31E(ScriptContext *param0)
+BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
 {
     Pokemon *v0;
     Party *v1;
