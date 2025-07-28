@@ -666,7 +666,7 @@ static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx);
 static BOOL ScrCmd_27F(ScriptContext *ctx);
 static BOOL ScrCmd_282(ScriptContext *ctx);
 static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx);
-static BOOL ScrCmd_285(ScriptContext *ctx);
+static BOOL ScrCmd_InitTurnbackCave(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundItemsGivenAway(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundFossilsUnearthed(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTrapsSet(ScriptContext *ctx);
@@ -1415,7 +1415,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_282,
     ScrCmd_SetInitialVolumeForSequence,
     ScrCmd_GetUnownFormsSeenCount,
-    ScrCmd_285,
+    ScrCmd_InitTurnbackCave,
     ScrCmd_GetUndergroundItemsGivenAway,
     ScrCmd_GetUndergroundFossilsUnearthed,
     ScrCmd_GetUndergroundTrapsSet,
@@ -6937,7 +6937,7 @@ static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_285(ScriptContext *ctx)
+static BOOL ScrCmd_InitTurnbackCave(ScriptContext *ctx)
 {
     u8 v0;
     u16 v5 = ScriptContext_GetVar(ctx);

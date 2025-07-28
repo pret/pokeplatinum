@@ -6,7 +6,7 @@
 
 _0006:
     AddVar VAR_UNK_0x410C, 1
-    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
+    InitTurnbackCave VAR_UNK_0x410B, VAR_UNK_0x410C
     End
 
 TurnbackCavePillar3Room1_Unused:

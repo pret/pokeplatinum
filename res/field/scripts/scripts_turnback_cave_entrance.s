@@ -9,7 +9,7 @@
 _000A:
     SetFlag FLAG_UNK_0x09D4
     Call _001C
-    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
+    InitTurnbackCave VAR_UNK_0x410B, VAR_UNK_0x410C
     End
 
 _001C:

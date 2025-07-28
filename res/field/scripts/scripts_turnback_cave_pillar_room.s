@@ -8,7 +8,7 @@
 
 _000A:
     Call _0018
-    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
+    InitTurnbackCave VAR_UNK_0x410B, VAR_UNK_0x410C
     End
 
 _0018:

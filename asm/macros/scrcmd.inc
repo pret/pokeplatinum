@@ -3674,7 +3674,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_285 arg0, arg1
+    .macro InitTurnbackCave arg0, arg1
     .short 645
     .short \arg0
     .short \arg1
