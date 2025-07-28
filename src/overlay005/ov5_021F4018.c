@@ -100,7 +100,7 @@ void ov5_021F4098(FieldSystem *fieldSystem, int param1)
             for (v0 = 1; v0 < (1 + 4); v0++, v5++) {
                 v2.x = (((v0) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
                 v2.z = (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
-                v2.y = sub_020644D0(fieldSystem, &v2, 0);
+                v2.y = MapObject_RecalculatePositionHeight(fieldSystem, &v2, 0);
                 *v5 = ov5_021DF72C(v3, &Unk_ov5_022006C8, &v2, 0, &v6, 0);
             }
         }
@@ -113,7 +113,7 @@ void ov5_021F4098(FieldSystem *fieldSystem, int param1)
             for (v0 = 18; v0 < (18 + 4); v0++, v5++) {
                 v2.x = (((v0) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
                 v2.z = (((v1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
-                v2.y = sub_020644D0(fieldSystem, &v2, 0);
+                v2.y = MapObject_RecalculatePositionHeight(fieldSystem, &v2, 0);
                 *v5 = ov5_021DF72C(v3, &Unk_ov5_022006C8, &v2, 0, &v6, 0);
             }
         }

@@ -3218,20 +3218,20 @@ static BOOL ScrCmd_RemoveObject(ScriptContext *ctx)
 
 static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    MapObject **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    u16 xPos = ScriptContext_GetVar(ctx);
+    u16 zPos = ScriptContext_GetVar(ctx);
+    MapObject **cameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
+    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
-    sub_020642F8(*v2);
-    MapObject_SetHidden(*v2, TRUE);
-    sub_02062D80(*v2, FALSE);
+    MapObject_RecalculateObjectHeight(*cameraObject);
+    MapObject_SetHidden(*cameraObject, TRUE);
+    sub_02062D80(*cameraObject, FALSE);
 
     {
-        const VecFx32 *v3 = MapObject_GetPos(*v2);
-        LandDataManager_TrackTarget(v3, ctx->fieldSystem->landDataMan);
-        Camera_TrackTarget(v3, ctx->fieldSystem->camera);
+        const VecFx32 *cameraPos = MapObject_GetPos(*cameraObject);
+        LandDataManager_TrackTarget(cameraPos, ctx->fieldSystem->landDataMan);
+        Camera_TrackTarget(cameraPos, ctx->fieldSystem->camera);
     }
 
     return FALSE;
@@ -3239,16 +3239,16 @@ static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
 
 static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
 {
-    MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    MapObject **freeCameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    MapObject_Delete(*v0);
+    MapObject_Delete(*freeCameraObject);
 
     {
-        MapObject *v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 0xff);
-        const VecFx32 *v2 = MapObject_GetPos(v1);
+        MapObject *playerObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, LOCALID_PLAYER);
+        const VecFx32 *playerPos = MapObject_GetPos(playerObject);
 
-        LandDataManager_TrackTarget(v2, ctx->fieldSystem->landDataMan);
-        Camera_TrackTarget(v2, ctx->fieldSystem->camera);
+        LandDataManager_TrackTarget(playerPos, ctx->fieldSystem->landDataMan);
+        Camera_TrackTarget(playerPos, ctx->fieldSystem->camera);
     }
 
     return FALSE;
@@ -3262,7 +3262,7 @@ static BOOL ScrCmd_308(ScriptContext *ctx)
 
     *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
-    sub_020642F8(*v2);
+    MapObject_RecalculateObjectHeight(*v2);
     MapObject_SetHidden(*v2, TRUE);
     sub_02062D80(*v2, FALSE);
 
@@ -5435,7 +5435,7 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
     MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
 
     MapObject_SetPosDirFromCoords(v0, v2, v3, v4, v5);
-    sub_020642F8(v0);
+    MapObject_RecalculateObjectHeight(v0);
 
     return FALSE;
 }

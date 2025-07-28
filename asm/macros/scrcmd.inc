@@ -640,10 +640,10 @@
     .short \localID
     .endm
 
-    .macro AddFreeCamera arg0, arg1
+    .macro AddFreeCamera x, z
     .short 102
-    .short \arg0
-    .short \arg1
+    .short \x
+    .short \z
     .endm
 
     .macro ApplyFreeCameraMovement movementOffset
