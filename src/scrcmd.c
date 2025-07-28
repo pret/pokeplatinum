@@ -6586,9 +6586,9 @@ static BOOL ScrCmd_25F(ScriptContext *ctx)
 
 static BOOL ScrCmd_Duplicate_IncrementTrainerScore(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 scoreID = ScriptContext_ReadHalfWord(ctx);
 
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(ctx->fieldSystem->saveData), v0);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(ctx->fieldSystem->saveData), scoreID);
     return FALSE;
 }
 

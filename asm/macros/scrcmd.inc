@@ -3462,9 +3462,9 @@
     .short 607
     .endm
 
-    .macro Duplicate_IncrementTrainerScore arg0
+    .macro Duplicate_IncrementTrainerScore scoreID
     .short 608
-    .short \arg0
+    .short \scoreID
     .endm
 
     .macro BufferAccessoryName templateArg, accessory
