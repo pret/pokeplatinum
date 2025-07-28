@@ -7,18 +7,18 @@
 #include "overlay023/funcptr_ov23_022427DC.h"
 #include "overlay023/funcptr_ov23_022431EC.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
-#include "overlay023/struct_ov23_02253E2C_decl.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "savedata.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
-UnkStruct_ov23_02253E2C *ov23_0224219C(void);
-UnkStruct_ov23_02253E2C *ov23_022421AC(void);
-UnkStruct_ov23_02253E2C *ov23_022421BC(void);
-UnkStruct_ov23_02253E2C *ov23_022421CC(void);
-UnkStruct_ov23_02253E2C *ov23_022421DC(void);
+UndergroundTextPrinter *CommManUnderground_GetCommonTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetCaptureFlagTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void);
 void ov23_022421EC(void);
 BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3);
 BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3);
