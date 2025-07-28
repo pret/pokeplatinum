@@ -6939,43 +6939,43 @@ static BOOL ScrCmd_GetUnownFormsSeenCount(ScriptContext *ctx)
 
 static BOOL ScrCmd_InitTurnbackCave(ScriptContext *ctx)
 {
-    u8 v0;
-    u16 v5 = ScriptContext_GetVar(ctx);
-    u16 v6 = ScriptContext_GetVar(ctx);
+    u8 entryWarpID;
+    u16 pillarsSeen = ScriptContext_GetVar(ctx);
+    u16 roomsVisited = ScriptContext_GetVar(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
     static const u16 unused[] = {
-        0x10F,
-        0x110,
-        0x111,
-        0x206,
-        0x207,
-        0x208,
-        0x209,
-        0x20A,
-        0x20B,
-        0x20C,
-        0x20D,
-        0x20E,
-        0x20F,
-        0x210,
-        0x211,
-        0x212,
-        0x213,
-        0x214
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_4,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_5,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_6,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_1,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_2,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_3,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_4,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_5,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_2_ROOM_6,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_1,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_2,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_3,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_4,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_5,
+        MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_6
     };
 
-    u16 v2 = 0;
-    u16 v3 = fieldSystem->location->x;
-    u16 v4 = fieldSystem->location->z;
+    u16 destHeaderID = 0;
+    u16 xPos = fieldSystem->location->x;
+    u16 zPos = fieldSystem->location->z;
 
-    if (v5 >= 3) {
-        v2 = MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM;
-    } else if (v6 >= 30) {
-        v2 = MAP_HEADER_TURNBACK_CAVE_ENTRANCE;
+    if (pillarsSeen >= 3) {
+        destHeaderID = MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM;
+    } else if (roomsVisited >= 30) {
+        destHeaderID = MAP_HEADER_TURNBACK_CAVE_ENTRANCE;
     } else if (LCRNG_Next() % 100 < 25) {
-        v2 = MAP_HEADER_TURNBACK_CAVE_PILLAR_ROOM;
+        destHeaderID = MAP_HEADER_TURNBACK_CAVE_PILLAR_ROOM;
     } else {
-        static const u16 v9[] = {
+        static const u16 pillarRooms[] = {
             MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_1,
             MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_2,
             MAP_HEADER_TURNBACK_CAVE_PILLAR_1_ROOM_3,
@@ -6996,32 +6996,32 @@ static BOOL ScrCmd_InitTurnbackCave(ScriptContext *ctx)
             MAP_HEADER_TURNBACK_CAVE_PILLAR_3_ROOM_6
         };
 
-        v2 = LCRNG_Next() % 6;
-        v2 = v9[v2 + (v5 * 6)];
+        destHeaderID = LCRNG_Next() % 6;
+        destHeaderID = pillarRooms[destHeaderID + (pillarsSeen * 6)];
     }
 
-    if (v3 == 11) {
-        if (v4 == 1) {
-            v0 = 0;
-        } else if (v4 == 20) {
-            v0 = 2;
+    if (xPos == 11) {
+        if (zPos == 1) {
+            entryWarpID = 0;
+        } else if (zPos == 20) {
+            entryWarpID = 2;
         } else {
-            v0 = 5;
+            entryWarpID = 5;
         }
     } else {
-        if (v3 == 20) {
-            v0 = 1;
+        if (xPos == 20) {
+            entryWarpID = 1;
         } else {
-            v0 = 3;
+            entryWarpID = 3;
         }
     }
 
-    for (u8 v1 = 0; v1 < 4; v1++) {
-        if (v1 == v0) {
+    for (u8 warpID = 0; warpID < 4; warpID++) {
+        if (warpID == entryWarpID) {
             continue;
         }
 
-        MapHeaderData_SetWarpEventDestHeaderID(ctx->fieldSystem, v1, v2);
+        MapHeaderData_SetWarpEventDestHeaderID(ctx->fieldSystem, warpID, destHeaderID);
     }
 
     return FALSE;
