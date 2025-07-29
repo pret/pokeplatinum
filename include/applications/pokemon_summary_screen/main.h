@@ -10,9 +10,9 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_animation_frame.h"
 
-#include "battle_font.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "message.h"
 #include "narc.h"
@@ -436,7 +436,7 @@ typedef struct PokemonSummaryScreen {
     Sprite *sprites[SUMMARY_SPRITE_MAX];
     ManagedSprite *managedSprites[SUMMARY_SPRITE_MAX];
 
-    BattleFontContext *unk_684;
+    FontSpecialCharsContext *unk_684;
     MessageLoader *msgLoader;
     MessageLoader *ribbonLoader;
     StringTemplate *strFormatter;

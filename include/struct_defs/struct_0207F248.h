@@ -10,8 +10,8 @@
 #include "functypes/funcptr_0207F248.h"
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
-#include "battle_font.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "g3d_pipeline.h"
 #include "grid_menu_cursor_position.h"
 #include "menu.h"
@@ -35,7 +35,7 @@ typedef struct {
     SpriteManager *unk_5AC;
     Sprite *unk_5B0[29];
     ManagedSprite *unk_624[29];
-    BattleFontContext *unk_698;
+    FontSpecialCharsContext *unk_698;
     MessageLoader *messageLoader;
     StringTemplate *template;
     Strbuf *unk_6A4;

@@ -16,9 +16,9 @@
 #include "overlay111/struct_ov111_021D33F4_decl.h"
 #include "overlay111/struct_ov111_021D3620.h"
 
-#include "battle_font.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -80,7 +80,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     BgConfig *unk_58;
     Window unk_5C[16];
     PaletteData *unk_15C;
-    BattleFontContext *unk_160;
+    FontSpecialCharsContext *unk_160;
     Options *options;
     SaveData *saveData;
     UnkStruct_ov111_021D2F80 unk_16C;
@@ -1113,7 +1113,7 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
     StringTemplate_Free(param0->unk_3C);
     Strbuf_Free(param0->unk_40);
     Strbuf_Free(param0->unk_44);
-    BattleFont_Free(param0->unk_160);
+    FontSpecialChars_Free(param0->unk_160);
     Heap_Free(param0->unk_3F0);
     Heap_Free(param0->unk_3F8);
 
@@ -1157,7 +1157,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_115);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_115);
 
-    param0->unk_160 = BattleFont_Init(15, 14, 0, HEAP_ID_115);
+    param0->unk_160 = FontSpecialChars_Init(15, 14, 0, HEAP_ID_115);
     ov111_021D3548(param0->unk_58, param0->unk_5C);
     param0->unk_34 = sub_0201567C(NULL, 1, 12, HEAP_ID_115);
 

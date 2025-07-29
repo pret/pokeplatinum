@@ -5,8 +5,8 @@
 
 #include "overlay013/battle_sub_menu_cursor.h"
 
-#include "battle_font.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "message.h"
 #include "palette.h"
 #include "party.h"
@@ -123,7 +123,7 @@ typedef struct BattleParty {
     u8 unk_1F9F_0 : 4;
     u8 unk_1F9F_4 : 3;
     u8 unk_1F9F_7 : 1;
-    BattleFontContext *unk_1FA0;
+    FontSpecialCharsContext *unk_1FA0;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     Strbuf *strbuf;

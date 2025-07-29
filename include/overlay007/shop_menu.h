@@ -4,10 +4,10 @@
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 
-#include "battle_font.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_task.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
@@ -115,7 +115,7 @@ typedef struct {
     s16 itemAmount;
     u16 itemAmountMax;
     u32 itemPrice;
-    BattleFontContext *unk_2B4;
+    FontSpecialCharsContext *unk_2B4;
 } ShopMenu;
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount);

@@ -1,4 +1,4 @@
-#include "battle_font.h"
+#include "font_special_chars.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -24,9 +24,9 @@ static const struct {
     { 0x2A0, 0x10 }
 };
 
-BattleFontContext *BattleFont_Init(u32 color, u32 outline, u32 transparent, u32 heapID)
+FontSpecialCharsContext *FontSpecialChars_Init(u32 color, u32 outline, u32 transparent, u32 heapID)
 {
-    BattleFontContext *context = Heap_AllocFromHeap(heapID, sizeof(BattleFontContext));
+    FontSpecialCharsContext *context = Heap_AllocFromHeap(heapID, sizeof(FontSpecialCharsContext));
 
     if (context) {
         u32 idx;
@@ -73,7 +73,7 @@ BattleFontContext *BattleFont_Init(u32 color, u32 outline, u32 transparent, u32 
     return context;
 }
 
-void BattleFont_Free(BattleFontContext *context)
+void FontSpecialChars_Free(FontSpecialCharsContext *context)
 {
     if (context) {
         if (context->ncgrBuffer) {
@@ -84,7 +84,7 @@ void BattleFont_Free(BattleFontContext *context)
     }
 }
 
-void BattleFont_DrawPartyScreenLevelText(BattleFontContext *context, int tableIdx, Window *window, u32 x, u32 y)
+void FontSpecialChars_DrawPartyScreenLevelText(FontSpecialCharsContext *context, int tableIdx, Window *window, u32 x, u32 y)
 {
     Window_BlitBitmapRect(
         window,
@@ -99,7 +99,7 @@ void BattleFont_DrawPartyScreenLevelText(BattleFontContext *context, int tableId
         8);
 }
 
-void BattleFont_DrawPartyScreenHPText(BattleFontContext *context, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
+void FontSpecialChars_DrawPartyScreenHPText(FontSpecialCharsContext *context, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
 {
     int idx;
 
@@ -116,13 +116,13 @@ void BattleFont_DrawPartyScreenHPText(BattleFontContext *context, s32 displayVal
     }
 }
 
-void BattleFont_DrawPartyScreenText(BattleFontContext *context, int tableIdx, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
+void FontSpecialChars_DrawPartyScreenText(FontSpecialCharsContext *context, int tableIdx, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
 {
-    BattleFont_DrawPartyScreenLevelText(context, tableIdx, window, x, y);
-    BattleFont_DrawPartyScreenHPText(context, displayValue, digits, paddingMode, window, x + 16, y);
+    FontSpecialChars_DrawPartyScreenLevelText(context, tableIdx, window, x, y);
+    FontSpecialChars_DrawPartyScreenHPText(context, displayValue, digits, paddingMode, window, x + 16, y);
 }
 
-void BattleFont_DrawBattleScreenText(BattleFontContext *context, s32 displayNum, u32 numDigits, enum PaddingMode paddingMode, void *displayPtr)
+void FontSpecialChars_DrawBattleScreenText(FontSpecialCharsContext *context, s32 displayNum, u32 numDigits, enum PaddingMode paddingMode, void *displayPtr)
 {
     int idx;
     u8 transparent;

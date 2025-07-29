@@ -42,7 +42,7 @@ Static main
 	Object main.nef.p/src_message.c.o
 	Object main.nef.p/src_message_util.c.o
 	Object main.nef.p/src_string_template.c.o
-	Object main.nef.p/src_battle_font.c.o
+	Object main.nef.p/src_font_special_chars.c.o
 	Object main.nef.p/src_sprite_system.c.o
 	Object main.nef.p/src_sys_task.c.o
 	Object main.nef.p/src_render_window.c.o

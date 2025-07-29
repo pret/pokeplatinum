@@ -23,9 +23,9 @@
 #include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "font_special_chars.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "message.h"
@@ -76,8 +76,8 @@ struct BattleSystem {
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 *unk_198;
     PartyGauge *partyGauges[2];
-    BattleFontContext *unk_1A4;
-    BattleFontContext *unk_1A8;
+    FontSpecialCharsContext *unk_1A4;
+    FontSpecialCharsContext *unk_1A8;
     UnkStruct_020157E4 *unk_1AC;
     Options *options;
     PalPad *palPad;

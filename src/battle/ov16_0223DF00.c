@@ -39,12 +39,12 @@
 #include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
@@ -86,8 +86,8 @@ SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem);
-BattleFontContext *ov16_0223E04C(BattleSystem *battleSystem);
-BattleFontContext *ov16_0223E054(BattleSystem *battleSystem);
+FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSystem);
+FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSystem);
 MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem);
 MessageLoader *ov16_0223E060(BattleSystem *battleSystem);
 PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSystem);
@@ -328,12 +328,12 @@ void BattleSystem_SetPartyGauge(BattleSystem *battleSystem, enum PartyGaugeSide 
     battleSystem->partyGauges[partyGaugeSide] = partyGauge;
 }
 
-BattleFontContext *ov16_0223E04C(BattleSystem *battleSystem)
+FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSystem)
 {
     return battleSystem->unk_1A4;
 }
 
-BattleFontContext *ov16_0223E054(BattleSystem *battleSystem)
+FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSystem)
 {
     return battleSystem->unk_1A8;
 }

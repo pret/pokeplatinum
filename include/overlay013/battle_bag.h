@@ -7,8 +7,8 @@
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "message.h"
 #include "palette.h"
 #include "sprite_system.h"
@@ -107,7 +107,7 @@ typedef struct BattleBag {
     BattleBagContext *context;
     BgConfig *background;
     PaletteData *palette;
-    BattleFontContext *unk_0C;
+    FontSpecialCharsContext *unk_0C;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     Strbuf *strbuf;

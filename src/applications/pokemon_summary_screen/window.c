@@ -11,10 +11,10 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprites.h"
 
-#include "battle_font.h"
 #include "bg_window.h"
 #include "dexmode_checker.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "heap.h"
 #include "message.h"
 #include "move_table.h"
@@ -849,7 +849,7 @@ void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen)
 
     Strbuf *buf;
     if (summaryScreen->monData.isEgg == FALSE) {
-        BattleFont_DrawPartyScreenLevelText(summaryScreen->unk_684, 1, window, 0, 5);
+        FontSpecialChars_DrawPartyScreenLevelText(summaryScreen->unk_684, 1, window, 0, 5);
 
         buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_TemplateMonLevel);
 

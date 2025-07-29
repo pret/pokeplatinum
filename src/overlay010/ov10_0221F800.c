@@ -12,12 +12,12 @@
 #include "overlay010/struct_ov10_0221F800.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -2207,7 +2207,7 @@ static void ov10_022223E8(UnkStruct_ov10_0221FB28 *param0)
     }
 }
 
-static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, BattleFontContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
 {
     Pokemon *v0;
     Window *v1;
@@ -2239,17 +2239,17 @@ static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
     }
 }
 
-static void ov10_022224F0(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, BattleFontContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_022224F0(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
 {
     Window *v0;
     Strbuf *v1;
 
     v0 = &param0->unk_10[param5 * 4 + 1];
 
-    BattleFont_DrawPartyScreenText(param2, 1, param0->unk_214[param5].unk_0C, 3, 0, v0, 0, 5 - 3);
+    FontSpecialChars_DrawPartyScreenText(param2, 1, param0->unk_214[param5].unk_0C, 3, 0, v0, 0, 5 - 3);
 }
 
-static void ov10_02222528(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, BattleFontContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_02222528(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
 {
     Window *v0;
     Strbuf *v1;
@@ -2258,9 +2258,9 @@ static void ov10_02222528(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
     int v4 = 0 + 2;
     v0 = &param0->unk_10[param5 * 4 + 2];
 
-    BattleFont_DrawPartyScreenHPText(param2, param0->unk_214[param5].unk_06, 3, 1, v0, v3, v4);
-    BattleFont_DrawPartyScreenLevelText(param2, 0, v0, v3 + 8 * 3, v4);
-    BattleFont_DrawPartyScreenHPText(param2, param0->unk_214[param5].unk_08, 3, 0, v0, v3 + (8 * 3) + 8, v4);
+    FontSpecialChars_DrawPartyScreenHPText(param2, param0->unk_214[param5].unk_06, 3, 1, v0, v3, v4);
+    FontSpecialChars_DrawPartyScreenLevelText(param2, 0, v0, v3 + 8 * 3, v4);
+    FontSpecialChars_DrawPartyScreenHPText(param2, param0->unk_214[param5].unk_08, 3, 0, v0, v3 + (8 * 3) + 8, v4);
 }
 
 static void ov10_02222594(UnkStruct_ov10_0221FB28 *param0, u32 param1)
@@ -2296,7 +2296,7 @@ static void ov10_02222594(UnkStruct_ov10_0221FB28 *param0, u32 param1)
     Window_FillRectWithColor(v0, 10, 0, 5, v1, 1);
 }
 
-static void ov10_02222684(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, BattleFontContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
+static void ov10_02222684(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1, FontSpecialCharsContext *param2, StringTemplate *param3, Strbuf *param4, u32 param5)
 {
     Pokemon *v0;
     Window *v1;
@@ -2324,13 +2324,13 @@ static void ov10_02222684(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
 static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
 {
     MessageLoader *v0;
-    BattleFontContext *v1;
+    FontSpecialCharsContext *v1;
     StringTemplate *v2;
     Strbuf *v3;
     u32 v4;
 
     v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, param0->unk_00->heapID);
-    v1 = BattleFont_Init(15, 14, 0, param0->unk_00->heapID);
+    v1 = FontSpecialChars_Init(15, 14, 0, param0->unk_00->heapID);
     v2 = StringTemplate_Default(param0->unk_00->heapID);
     v3 = Strbuf_Init(32, param0->unk_00->heapID);
 
@@ -2344,7 +2344,7 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
 
     Strbuf_Free(v3);
     MessageLoader_Free(v0);
-    BattleFont_Free(v1);
+    FontSpecialChars_Free(v1);
     StringTemplate_Free(v2);
 }
 

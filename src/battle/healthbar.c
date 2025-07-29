@@ -10,8 +10,8 @@
 #include "battle/struct_ov16_022674C4.h"
 
 #include "assert.h"
-#include "battle_font.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "heap.h"
 #include "math_util.h"
 #include "message.h"
@@ -1157,7 +1157,7 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
     v1 = Heap_AllocFromHeap(HEAP_ID_BATTLE, v3 * 2);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), v3);
-    BattleFont_DrawBattleScreenText(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
 
     {
         void *v7;
@@ -1200,7 +1200,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
     v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    BattleFont_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
 
     {
         void *v2;
@@ -1225,7 +1225,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
     v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    BattleFont_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
 
     {
         void *v2;

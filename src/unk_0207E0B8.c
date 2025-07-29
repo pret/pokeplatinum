@@ -14,9 +14,9 @@
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -660,7 +660,7 @@ static int sub_0207E7E0(ApplicationManager *appMan, int *param1)
     }
 
     MessageLoader_Free(v0->messageLoader);
-    BattleFont_Free(v0->unk_698);
+    FontSpecialChars_Free(v0->unk_698);
     StringTemplate_Free(v0->template);
 
     if (v0->unk_B20 != NULL) {
@@ -946,7 +946,7 @@ static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan)
     }
 
     v0->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, HEAP_ID_12);
-    v0->unk_698 = BattleFont_Init(15, 14, 0, HEAP_ID_12);
+    v0->unk_698 = FontSpecialChars_Init(15, 14, 0, HEAP_ID_12);
     v0->template = StringTemplate_Default(HEAP_ID_12);
 
     for (v1 = 0; v1 < 6; v1++) {

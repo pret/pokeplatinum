@@ -20,9 +20,9 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -584,7 +584,7 @@ int ov84_0223B900(ApplicationManager *appMan, int *param1)
     MessageLoader_Free(v0->unk_120);
     MessageLoader_Free(v0->unk_11C);
     MessageLoader_Free(v0->unk_114);
-    BattleFont_Free(v0->unk_110);
+    FontSpecialChars_Free(v0->unk_110);
     StringTemplate_Free(v0->unk_118);
     NARC_dtor(v0->unk_D4);
     ApplicationManager_FreeData(appMan);
@@ -825,7 +825,7 @@ static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
 static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)
 {
     param0->unk_114 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, HEAP_ID_6);
-    param0->unk_110 = BattleFont_Init(1, 2, 0, HEAP_ID_6);
+    param0->unk_110 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_6);
     param0->unk_118 = StringTemplate_Default(HEAP_ID_6);
     param0->unk_11C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_6);
     param0->unk_120 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_6);

@@ -7,8 +7,8 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "list_menu.h"
 #include "menu.h"
@@ -32,7 +32,7 @@ typedef struct {
     SpriteSystem *unk_D8;
     SpriteManager *unk_DC;
     ManagedSprite *unk_E0[12];
-    BattleFontContext *unk_110;
+    FontSpecialCharsContext *unk_110;
     MessageLoader *unk_114;
     StringTemplate *unk_118;
     MessageLoader *unk_11C;

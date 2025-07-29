@@ -22,9 +22,9 @@
 #include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
-#include "battle_font.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
@@ -93,8 +93,8 @@ UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
 PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1);
 void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
-BattleFontContext *ov16_0223E04C(BattleSystem *battleSys);
-BattleFontContext *ov16_0223E054(BattleSystem *battleSys);
+FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSys);
+FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSys);
 MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSys);
 MessageLoader *ov16_0223E060(BattleSystem *battleSys);
 PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSys);
