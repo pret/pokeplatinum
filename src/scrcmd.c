@@ -36,7 +36,6 @@
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
 #include "struct_defs/mail.h"
-#include "struct_defs/pokemon_storage_session.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202DF8C.h"
@@ -88,6 +87,7 @@
 #include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
@@ -4143,7 +4143,7 @@ static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx)
     pokemonStorageSession->boxMode = ScriptContext_ReadByte(ctx);
     *partyManagementData = pokemonStorageSession;
 
-    sub_0203D754(ctx->fieldSystem, *partyManagementData);
+    FieldSystem_OpenPokemonStorage(ctx->fieldSystem, *partyManagementData);
     ScriptContext_Pause(ctx, ScriptContext_WaitForPokemonStorageClose);
 
     return TRUE;

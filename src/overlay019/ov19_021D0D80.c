@@ -9,7 +9,6 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_storage_session.h"
 #include "struct_defs/struct_0208737C.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -21,6 +20,7 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/pc_compare_mon.h"
 #include "overlay019/pc_mon_preview.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"

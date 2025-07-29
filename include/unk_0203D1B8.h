@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/pokemon_storage_session.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203E234.h"
@@ -16,6 +15,7 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "field_battle_data_transfer.h"
@@ -47,7 +47,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1);
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode);
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
-void sub_0203D754(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession);
+void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession);
 void sub_0203D80C(FieldTask *param0, u16 *param1, u16 *param2, u16 *param3);
 void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1);
 void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1);
