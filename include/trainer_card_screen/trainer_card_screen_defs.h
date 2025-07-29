@@ -27,6 +27,15 @@ enum TrainerCardWindows {
     TRAINER_CARD_WINDOW_COUNT
 };
 
+enum BadgePolishLevels {
+    BADGE_POLISH_LEVEL_FILTHY,
+    BADGE_POLISH_LEVEL_DIRTY,
+    BADGE_POLISH_LEVEL_NORMAL,
+    BADGE_POLISH_LEVEL_2_SPARKLES,
+    BADGE_POLISH_LEVEL_4_SPARKLES,
+    BADGE_POLISH_LEVEL_COUNT
+};
+
 typedef struct BadgePolishingState {
     s8 previousXDirection;
     s8 previousYDirection;
