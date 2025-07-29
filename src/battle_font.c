@@ -9,6 +9,8 @@
 #include "graphics.h"
 #include "heap.h"
 
+#include "res/fonts/pl_font.naix.h"
+
 static const struct {
     u16 unk_00;
     u16 unk_02;
@@ -30,7 +32,7 @@ BattleFontContext *BattleFont_Init(u32 color, u32 outline, u32 transparent, u32 
         u32 idx;
         u8 *rawData;
 
-        context->ncgrBuffer = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, 4, 1, &context->charData, heapID);
+        context->ncgrBuffer = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_FONT, font_special_chars_NCGR_lz, TRUE, &context->charData, heapID);
         rawData = context->charData->pRawData;
 
         for (idx = 0; idx < context->charData->szByte; idx++) {
