@@ -12,16 +12,16 @@
 #include "res/fonts/pl_font.naix.h"
 
 static const struct {
-    u16 unk_00;
-    u16 unk_02;
-} Unk_020E4FEC[] = {
-    { 0x140, 0x8 },
-    { 0x160, 0x10 },
-    { 0x1A0, 0x10 },
-    { 0x1E0, 0x10 },
-    { 0x220, 0x10 },
-    { 0x260, 0x10 },
-    { 0x2A0, 0x10 }
+    u16 offset;
+    u16 width;
+} sNonNumericWidths[] = {
+    [SPECIAL_CHAR_SLASH] = { .offset = 10 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(1) },
+    [SPECIAL_CHAR_LEVEL] = { .offset = 11 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) },
+    [SPECIAL_CHAR_NUMBER] = { .offset = 13 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) },
+    [SPECIAL_CHAR_ID] = { .offset = 15 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) },
+    [SPECIAL_CHAR_LEVEL_FEMALE_UNUSED] = { .offset = 17 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) },
+    [SPECIAL_CHAR_LEVEL_MALE_UNUSED] = { .offset = 19 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) },
+    [SPECIAL_CHAR_LEVEL_UNUSED] = { .offset = 21 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) }
 };
 
 FontSpecialCharsContext *FontSpecialChars_Init(u32 color, u32 outline, u32 transparent, u32 heapID)
@@ -84,18 +84,18 @@ void FontSpecialChars_Free(FontSpecialCharsContext *context)
     }
 }
 
-void FontSpecialChars_DrawPartyScreenLevelText(FontSpecialCharsContext *context, int tableIdx, Window *window, u32 x, u32 y)
+void FontSpecialChars_DrawPartyScreenLevelText(FontSpecialCharsContext *context, enum NonNumericSpecialChar tableIdx, Window *window, u32 x, u32 y)
 {
     Window_BlitBitmapRect(
         window,
-        (u8 *)(context->charData->pRawData) + Unk_020E4FEC[tableIdx].unk_00,
+        (u8 *)(context->charData->pRawData) + sNonNumericWidths[tableIdx].offset,
         0,
         0,
-        Unk_020E4FEC[tableIdx].unk_02,
+        sNonNumericWidths[tableIdx].width,
         8,
         x,
         y,
-        Unk_020E4FEC[tableIdx].unk_02,
+        sNonNumericWidths[tableIdx].width,
         8);
 }
 
@@ -116,7 +116,7 @@ void FontSpecialChars_DrawPartyScreenHPText(FontSpecialCharsContext *context, s3
     }
 }
 
-void FontSpecialChars_DrawPartyScreenText(FontSpecialCharsContext *context, int tableIdx, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
+void FontSpecialChars_DrawPartyScreenText(FontSpecialCharsContext *context, enum NonNumericSpecialChar tableIdx, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
 {
     FontSpecialChars_DrawPartyScreenLevelText(context, tableIdx, window, x, y);
     FontSpecialChars_DrawPartyScreenHPText(context, displayValue, digits, paddingMode, window, x + 16, y);
