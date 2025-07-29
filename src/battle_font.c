@@ -9,8 +9,6 @@
 #include "graphics.h"
 #include "heap.h"
 
-#define BTIMAP_SIZE 0x20
-
 typedef struct BattleFontContext_t {
     void *ncgrBuffer;
     NNSG2dCharacterData *charData;
@@ -141,9 +139,9 @@ void BattleFont_DrawBattleScreenText(BattleFontContext *context, s32 displayNum,
 
     for (idx = 0; context->charcodes[idx] != CHAR_EOS; idx++) {
         if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
-            MI_CpuCopy32((u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * BTIMAP_SIZE), &displayPtrBytes[idx * BTIMAP_SIZE], BTIMAP_SIZE);
+            MI_CpuCopy32((u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * TILE_SIZE_4BPP), &displayPtrBytes[idx * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
         } else {
-            MI_CpuFill8(&displayPtrBytes[idx * BTIMAP_SIZE], transparent, BTIMAP_SIZE);
+            MI_CpuFill8(&displayPtrBytes[idx * TILE_SIZE_4BPP], transparent, TILE_SIZE_4BPP);
         }
     }
 }
