@@ -4,7 +4,6 @@
 #include "constants/rtc.h"
 #include "generated/trainer_message_types.h"
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -23,6 +22,7 @@
 #include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
+#include "battle_font.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
 #include "game_options.h"

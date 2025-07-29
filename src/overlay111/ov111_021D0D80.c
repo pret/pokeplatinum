@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203E608.h"

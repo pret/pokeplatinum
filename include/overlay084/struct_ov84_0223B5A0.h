@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 #define POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
+#include "battle_font.h"
 #include "bg_window.h"
 #include "game_options.h"
 #include "list_menu.h"

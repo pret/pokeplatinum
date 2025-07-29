@@ -3,11 +3,10 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/battle_font_decl.h"
-
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "message.h"
 #include "sprite.h"

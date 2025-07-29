@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0207F248_H
 #define POKEPLATINUM_STRUCT_0207F248_H
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
 #include "struct_defs/struct_020831B4.h"
@@ -11,6 +10,7 @@
 #include "functypes/funcptr_0207F248.h"
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "g3d_pipeline.h"
 #include "grid_menu_cursor_position.h"

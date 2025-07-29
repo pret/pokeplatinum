@@ -5,12 +5,12 @@
 
 #include "constants/moves.h"
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_animation_frame.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "game_options.h"

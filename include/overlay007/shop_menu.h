@@ -1,11 +1,10 @@
 #ifndef POKEPLATINUM_SHOP_MENU_H
 #define POKEPLATINUM_SHOP_MENU_H
 
-#include "struct_decls/battle_font_decl.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_task.h"

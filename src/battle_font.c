@@ -9,13 +9,6 @@
 #include "graphics.h"
 #include "heap.h"
 
-typedef struct BattleFontContext_t {
-    void *ncgrBuffer;
-    NNSG2dCharacterData *charData;
-    charcode_t charcodes[16];
-    u32 transparent;
-} BattleFontContext;
-
 static const struct {
     u16 unk_00;
     u16 unk_02;

@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_H
 #define POKEPLATINUM_BATTLE_PARTY_H
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/battle_system.h"
 
 #include "overlay013/battle_sub_menu_cursor.h"
 
+#include "battle_font.h"
 #include "bg_window.h"
 #include "message.h"
 #include "palette.h"

@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_BATTLE_BAG_H
 #define POKEPLATINUM_BATTLE_BAG_H
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/battle_system.h"
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bag.h"
+#include "battle_font.h"
 #include "bg_window.h"
 #include "message.h"
 #include "palette.h"

@@ -1,10 +1,16 @@
 #ifndef POKEPLATINUM_BATTLE_FONT_H
 #define POKEPLATINUM_BATTLE_FONT_H
 
-#include "struct_decls/battle_font_decl.h"
-
+#include "battle_font.h"
 #include "bg_window.h"
 #include "charcode_util.h"
+
+typedef struct BattleFontContext {
+    void *ncgrBuffer;
+    NNSG2dCharacterData *charData;
+    charcode_t charcodes[16];
+    u32 transparent;
+} BattleFontContext;
 
 BattleFontContext *BattleFont_Init(u32 color, u32 outline, u32 transparent, u32 heapID);
 void BattleFont_Free(BattleFontContext *context);

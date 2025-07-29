@@ -6,7 +6,6 @@
 #include "constants/battle.h"
 #include "constants/rtc.h"
 
-#include "struct_decls/battle_font_decl.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
@@ -24,6 +23,7 @@
 #include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
+#include "battle_font.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
 #include "g3d_pipeline.h"
