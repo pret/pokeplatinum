@@ -280,7 +280,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(fieldSystem->playerAvatar);
 
         if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
-            int event = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
+            int event = BgEvent_GetFacingPositionScript(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
             if (event != 0xffff) {
                 ScriptManager_Set(fieldSystem, event, NULL);
@@ -347,7 +347,7 @@ static BOOL Field_CheckSign(FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    int event = sub_0203CB80(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
+    int event = BgEvent_GetFacingWallScript(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
     if (event != 0xffff) {
         ScriptManager_Set(fieldSystem, event, NULL);
@@ -509,7 +509,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
             return TRUE;
         }
 
-        int v2 = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
+        int v2 = BgEvent_GetFacingPositionScript(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
         if (v2 != 0xffff) {
             ScriptManager_Set(fieldSystem, v2, NULL);

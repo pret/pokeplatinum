@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/bg_event_dirs.h"
+#include "generated/bg_event_types.h"
+
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -15,32 +18,32 @@
 #include "script_manager.h"
 #include "terrain_collision_manager.h"
 
-static u8 sub_0203CB18(FieldSystem *fieldSystem, const BgEvent *param1);
-static u8 sub_0203CAEC(FieldSystem *fieldSystem, const BgEvent *param1);
+static u8 BgEvent_CheckPlayerFacingDirection(FieldSystem *fieldSystem, const BgEvent *param1);
+static u8 BgEvent_IsHiddenItemAvailable(FieldSystem *fieldSystem, const BgEvent *param1);
 
-static int sub_0203C954(FieldSystem *fieldSystem, int *param1, int *param2)
+static int BgEvent_GetPlayerFacingPosition(FieldSystem *fieldSystem, int *x, int *z)
 {
-    int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int facingDir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    *param1 = Player_GetXPos(fieldSystem->playerAvatar);
-    *param2 = Player_GetZPos(fieldSystem->playerAvatar);
+    *x = Player_GetXPos(fieldSystem->playerAvatar);
+    *z = Player_GetZPos(fieldSystem->playerAvatar);
 
-    switch (v0) {
-    case 0:
-        *param2 -= 1;
+    switch (facingDir) {
+    case DIR_NORTH:
+        *z -= 1;
         break;
-    case 1:
-        *param2 += 1;
+    case DIR_SOUTH:
+        *z += 1;
         break;
-    case 2:
-        *param1 -= 1;
+    case DIR_WEST:
+        *x -= 1;
         break;
-    case 3:
-        *param1 += 1;
+    case DIR_EAST:
+        *x += 1;
         break;
     }
 
-    return v0;
+    return facingDir;
 }
 
 static u8 sub_0203C9B0(PlayerAvatar *playerAvatar, MapObject *param1)
@@ -60,7 +63,7 @@ void sub_0203C9D4(FieldSystem *fieldSystem, MapObject **param1)
     int v2;
     u8 v3;
 
-    v2 = sub_0203C954(fieldSystem, &v0, &v1);
+    v2 = BgEvent_GetPlayerFacingPosition(fieldSystem, &v0, &v1);
     v3 = TerrainCollisionManager_GetTileBehavior(fieldSystem, v0, v1);
 
     if (TileBehavior_IsTable(v3) == 1) {
@@ -96,23 +99,23 @@ u8 sub_0203CA40(FieldSystem *fieldSystem, MapObject **param1)
     return 0;
 }
 
-u16 sub_0203CA6C(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
+u16 BgEvent_GetFacingPositionScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents)
 {
-    const BgEvent *v0 = param1;
-    int v1, v2;
-    int v3;
+    const BgEvent *events = bgEvents;
+    int facingX, facingZ;
+    int eventIndex;
 
-    sub_0203C954(fieldSystem, &v1, &v2);
+    BgEvent_GetPlayerFacingPosition(fieldSystem, &facingX, &facingZ);
 
-    for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 == v0[v3].x) && (v2 == v0[v3].z)) {
-            if (v0[v3].type == 2) {
-                if (sub_0203CAEC(fieldSystem, &v0[v3]) == 1) {
-                    return v0[v3].script;
+    for (eventIndex = 0; eventIndex < numBgEvents; eventIndex++) {
+        if ((facingX == events[eventIndex].x) && (facingZ == events[eventIndex].z)) {
+            if (events[eventIndex].type == BG_EVENT_TYPE_HIDDEN_ITEM) {
+                if (BgEvent_IsHiddenItemAvailable(fieldSystem, &events[eventIndex]) == TRUE) {
+                    return events[eventIndex].script;
                 }
             } else {
-                if (sub_0203CB18(fieldSystem, &v0[v3]) == 1) {
-                    return v0[v3].script;
+                if (BgEvent_CheckPlayerFacingDirection(fieldSystem, &events[eventIndex]) == TRUE) {
+                    return events[eventIndex].script;
                 }
             }
         }
@@ -121,66 +124,66 @@ u16 sub_0203CA6C(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
     return 0xffff;
 }
 
-static u8 sub_0203CAEC(FieldSystem *fieldSystem, const BgEvent *param1)
+static u8 BgEvent_IsHiddenItemAvailable(FieldSystem *fieldSystem, const BgEvent *param1)
 {
     if (param1->type != 2) {
-        return 0;
+        return FALSE;
     }
 
-    if (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(param1->script)) == 1) {
-        return 0;
+    if (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(param1->script)) == TRUE) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static u8 sub_0203CB18(FieldSystem *fieldSystem, const BgEvent *param1)
+static u8 BgEvent_CheckPlayerFacingDirection(FieldSystem *fieldSystem, const BgEvent *bgEvent)
 {
-    if (param1->playerFacingDir == 4) {
-        return 1;
+    if (bgEvent->playerFacingDir == BG_EVENT_DIR_ALL) {
+        return TRUE;
     }
 
     switch (PlayerAvatar_GetDir(fieldSystem->playerAvatar)) {
-    case 0:
-        if ((param1->playerFacingDir == 0) || (param1->playerFacingDir == 6)) {
-            return 1;
+    case DIR_NORTH:
+        if ((bgEvent->playerFacingDir == BG_EVENT_DIR_NORTH) || (bgEvent->playerFacingDir == BG_EVENT_DIR_NORTH_SOUTH)) {
+            return TRUE;
         }
         break;
-    case 1:
-        if ((param1->playerFacingDir == 3) || (param1->playerFacingDir == 6)) {
-            return 1;
+    case DIR_SOUTH:
+        if ((bgEvent->playerFacingDir == BG_EVENT_DIR_SOUTH) || (bgEvent->playerFacingDir == BG_EVENT_DIR_NORTH_SOUTH)) {
+            return TRUE;
         }
         break;
-    case 2:
-        if ((param1->playerFacingDir == 2) || (param1->playerFacingDir == 5)) {
-            return 1;
+    case DIR_WEST:
+        if ((bgEvent->playerFacingDir == BG_EVENT_DIR_WEST) || (bgEvent->playerFacingDir == BG_EVENT_DIR_WEST_EAST)) {
+            return TRUE;
         }
         break;
-    case 3:
-        if ((param1->playerFacingDir == 1) || (param1->playerFacingDir == 5)) {
-            return 1;
+    case DIR_EAST:
+        if ((bgEvent->playerFacingDir == BG_EVENT_DIR_EAST) || (bgEvent->playerFacingDir == BG_EVENT_DIR_WEST_EAST)) {
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-u16 sub_0203CB80(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
+u16 BgEvent_GetFacingWallScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents)
 {
-    int v1, v2;
-    int v3;
+    int facingX, facingZ;
+    int eventIndex;
 
-    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != 0) {
+    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != DIR_NORTH) {
         return 0xffff;
     }
 
-    const BgEvent *v0 = param1;
-    sub_0203C954(fieldSystem, &v1, &v2);
+    const BgEvent *events = bgEvents;
+    BgEvent_GetPlayerFacingPosition(fieldSystem, &facingX, &facingZ);
 
-    for (v3 = 0; v3 < param2; v3++) {
-        if ((v1 == v0[v3].x) && (v2 == v0[v3].z) && (v0[v3].type == 1)) {
-            return v0[v3].script;
+    for (eventIndex = 0; eventIndex < numBgEvents; eventIndex++) {
+        if ((facingX == events[eventIndex].x) && (facingZ == events[eventIndex].z) && (events[eventIndex].type == BG_EVENT_TYPE_WALL)) {
+            return events[eventIndex].script;
         }
     }
 
@@ -189,7 +192,7 @@ u16 sub_0203CB80(FieldSystem *fieldSystem, const BgEvent *param1, int param2)
 
 u8 sub_0203CBE0(FieldSystem *fieldSystem, MapObject **param1)
 {
-    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != 0) {
+    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) != DIR_NORTH) {
         return 0;
     }
 
