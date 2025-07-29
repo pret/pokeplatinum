@@ -3243,13 +3243,11 @@ static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
 
     MapObject_Delete(*freeCameraObject);
 
-    {
-        MapObject *playerObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, LOCALID_PLAYER);
-        const VecFx32 *playerPos = MapObject_GetPos(playerObject);
+    MapObject *playerObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, LOCALID_PLAYER);
+    const VecFx32 *playerPos = MapObject_GetPos(playerObject);
 
-        LandDataManager_TrackTarget(playerPos, ctx->fieldSystem->landDataMan);
-        Camera_TrackTarget(playerPos, ctx->fieldSystem->camera);
-    }
+    LandDataManager_TrackTarget(playerPos, ctx->fieldSystem->landDataMan);
+    Camera_TrackTarget(playerPos, ctx->fieldSystem->camera);
 
     return FALSE;
 }
