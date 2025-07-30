@@ -1270,7 +1270,7 @@ static void LoadGraphicsData(BattleParty *battleParty)
     PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
 
     u16 *rawPaletteData = PaletteData_GetUnfadedBuffer(battleParty->palette, PLTTBUF_SUB_BG);
-    u16 *paletteData = Heap_AllocFromHeap(battleParty->context->heapID, PALETTE_SIZE_BYTES);
+    u16 *paletteData = Heap_Alloc(battleParty->context->heapID, PALETTE_SIZE_BYTES);
 
     memcpy(paletteData, &rawPaletteData[208], PALETTE_SIZE_BYTES);
     memcpy(&paletteData[7], &rawPaletteData[154], 4);

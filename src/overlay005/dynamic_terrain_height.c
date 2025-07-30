@@ -22,9 +22,9 @@ static BOOL DynamicTerrainHeightPlate_IsTileInPlate(const int tileX, const int t
 
 DynamicTerrainHeightManager *DynamicTerrainHeightManager_New(const u8 platesCount, const u8 heapID)
 {
-    DynamicTerrainHeightManager *dynamicTerrainHeightMan = Heap_AllocFromHeap(heapID, sizeof(DynamicTerrainHeightManager));
+    DynamicTerrainHeightManager *dynamicTerrainHeightMan = Heap_Alloc(heapID, sizeof(DynamicTerrainHeightManager));
 
-    dynamicTerrainHeightMan->plates = Heap_AllocFromHeap(heapID, sizeof(DynamicTerrainHeightPlate) * platesCount);
+    dynamicTerrainHeightMan->plates = Heap_Alloc(heapID, sizeof(DynamicTerrainHeightPlate) * platesCount);
     dynamicTerrainHeightMan->platesCount = platesCount;
 
     for (u8 i = 0; i < platesCount; i++) {

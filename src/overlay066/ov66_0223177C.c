@@ -99,7 +99,7 @@ static BOOL ov66_022324D0(enum PlazaMinigame param0, u32 param1);
 
 UnkStruct_ov66_0223177C *ov66_0223177C(u32 heapID)
 {
-    UnkStruct_ov66_0223177C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_0223177C));
+    UnkStruct_ov66_0223177C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0223177C));
     memset(v0, 0, sizeof(UnkStruct_ov66_0223177C));
 
     ov66_02231D38(&v0->unk_08);

@@ -89,7 +89,7 @@ static BOOL sub_0206C680(FieldTask *param0)
 
 void sub_0206C740(FieldTask *param0, NpcTradeData *param1, int param2, u32 heapID)
 {
-    UnkStruct_0206C660 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206C660));
+    UnkStruct_0206C660 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0206C660));
 
     memset(v0, 0, sizeof(UnkStruct_0206C660));
 

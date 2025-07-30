@@ -45,7 +45,7 @@ static const struct MonIconCoords {
 
 BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPartyStatus *playerParty, BgConfig *bgConfig)
 {
-    PoketchPartyStatusGraphics *graphicsData = (PoketchPartyStatusGraphics *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatusGraphics));
+    PoketchPartyStatusGraphics *graphicsData = (PoketchPartyStatusGraphics *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatusGraphics));
 
     if (graphicsData != NULL) {
         PoketchTask_InitActiveTaskList(graphicsData->activeTaskIds, 8);

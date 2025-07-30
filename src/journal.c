@@ -580,7 +580,7 @@ static void JournalEntry_SaveOnlineEventMinigame(u8 *onlineEvent, JournalEntryOn
 
 void *JournalEntry_CreateTitle(u16 mapID, u32 heapID)
 {
-    JournalEntryTitle *journalEntryTitle = Heap_AllocFromHeap(heapID, sizeof(JournalEntryTitle));
+    JournalEntryTitle *journalEntryTitle = Heap_Alloc(heapID, sizeof(JournalEntryTitle));
     RTCDate currDate;
 
     GetCurrentDate(&currDate);
@@ -596,7 +596,7 @@ void *JournalEntry_CreateTitle(u16 mapID, u32 heapID)
 
 static JournalEntryLocationEvent *JournalEntry_CreateLocationEvent(u32 heapID)
 {
-    JournalEntryLocationEvent *journalEntryLocationEvent = Heap_AllocFromHeap(heapID, sizeof(JournalEntryLocationEvent));
+    JournalEntryLocationEvent *journalEntryLocationEvent = Heap_Alloc(heapID, sizeof(JournalEntryLocationEvent));
 
     memset(journalEntryLocationEvent, 0, sizeof(JournalEntryLocationEvent));
     return journalEntryLocationEvent;
@@ -799,7 +799,7 @@ void *JournalEntry_CreateEventBattleFacility(u32 heapID, u32 eventType)
 
 static JournalEntryMon *JournalEntry_CreateMon(u32 heapID)
 {
-    JournalEntryMon *journalEntryMon = Heap_AllocFromHeap(heapID, sizeof(JournalEntryMon));
+    JournalEntryMon *journalEntryMon = Heap_Alloc(heapID, sizeof(JournalEntryMon));
 
     memset(journalEntryMon, 0, sizeof(JournalEntryMon));
     return journalEntryMon;
@@ -853,7 +853,7 @@ void *JournalEntry_CreateEventMonDefeated(const PlayTime *playTime, u16 species,
 
 void *JournalEntry_CreateEventStandardTrainer(u16 mapID, u16 trainerID, u32 heapID)
 {
-    JournalEntryTrainer *journalEntryTrainer = Heap_AllocFromHeap(heapID, sizeof(JournalEntryTrainer));
+    JournalEntryTrainer *journalEntryTrainer = Heap_Alloc(heapID, sizeof(JournalEntryTrainer));
 
     journalEntryTrainer->standard = 1;
     journalEntryTrainer->mapID = mapID;
@@ -864,7 +864,7 @@ void *JournalEntry_CreateEventStandardTrainer(u16 mapID, u16 trainerID, u32 heap
 
 static JournalEntryOnlineEvent *JournalEntry_CreateOnlineEvent(u32 heapID)
 {
-    JournalEntryOnlineEvent *journalEntryOnlineEvent = Heap_AllocFromHeap(heapID, sizeof(JournalEntryOnlineEvent));
+    JournalEntryOnlineEvent *journalEntryOnlineEvent = Heap_Alloc(heapID, sizeof(JournalEntryOnlineEvent));
 
     memset(journalEntryOnlineEvent, 0, sizeof(JournalEntryOnlineEvent));
     return journalEntryOnlineEvent;

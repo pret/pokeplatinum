@@ -25,7 +25,7 @@ static void CalcCursorDrawCoords(Menu *menu, u8 *outX, u8 *outY, u8 cursorPos);
 
 Menu *Menu_New(const MenuTemplate *template, u8 xOffset, u8 yOffset, u8 cursorStart, u8 heapID, u32 cancelKeys)
 {
-    Menu *menu = Heap_AllocFromHeap(heapID, sizeof(Menu));
+    Menu *menu = Heap_Alloc(heapID, sizeof(Menu));
 
     menu->template = *template;
     menu->cursor = ColoredArrow_New(heapID);

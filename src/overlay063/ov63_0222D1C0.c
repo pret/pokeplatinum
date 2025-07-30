@@ -33,7 +33,7 @@ static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 para
 
 UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 heapID)
 {
-    UnkStruct_ov63_0222D1C0 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222D1C0));
+    UnkStruct_ov63_0222D1C0 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222D1C0));
     memset(v0, 0, sizeof(UnkStruct_ov63_0222D1C0));
 
     v0->unk_00 = param0;

@@ -75,7 +75,7 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0);
 void ov12_022263A4(UnkStruct_ov12_02225F6C *param0, int param1, int param2);
 void ov12_02226424(UnkStruct_ov12_02226454 *param0, s16 param1, s16 param2, s16 param3, s16 param4, int param5);
 BOOL ov12_02226454(const UnkStruct_ov12_02226454 *param0);
-UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapId heapID);
+UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, enum HeapID heapID);
 void ov12_022265C0(UnkStruct_ov12_02226504 *param0);
 void *ov12_022265E4(const UnkStruct_ov12_02226504 *param0);
 void ov12_022265F8(UnkStruct_ov12_02226504 *param0);

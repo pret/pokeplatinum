@@ -20,7 +20,7 @@ int sub_02038FFC(int heapID)
     sub_02099550();
     sub_020995B4();
 
-    v1 = Heap_AllocFromHeap(heapID, DWC_INIT_WORK_SIZE + 32);
+    v1 = Heap_Alloc(heapID, DWC_INIT_WORK_SIZE + 32);
     v2 = (u8 *)(((u32)v1 + 31) / 32 * 32);
     v0 = DWC_Init(v2);
 

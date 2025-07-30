@@ -21,14 +21,14 @@ TouchScreenActions *TouchScreenActions_RegisterHandler(const TouchScreenHitTable
 {
     GF_ASSERT(hitTableLength > 0);
 
-    TouchScreenActions *buttonAction = Heap_AllocFromHeap(heapID, sizeof(TouchScreenActions));
+    TouchScreenActions *buttonAction = Heap_Alloc(heapID, sizeof(TouchScreenActions));
 
     if (buttonAction) {
         buttonAction->hitTables = hitTable;
         buttonAction->hitTablesLength = hitTableLength;
         buttonAction->action = action;
         buttonAction->hitTableContext = context;
-        buttonAction->actionStates = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTableActionStateInternal) * hitTableLength);
+        buttonAction->actionStates = Heap_Alloc(heapID, sizeof(TouchScreenHitTableActionStateInternal) * hitTableLength);
 
         if (buttonAction->actionStates) {
             for (u32 i = 0; i < hitTableLength; i++) {

@@ -41,7 +41,7 @@ void SpriteResourcesHeader_Init(SpriteResourcesHeader *resourceHeader,
 void SpriteResourcesHeader_Clear(SpriteResourcesHeader *resourceHeader);
 
 SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries,
-    enum HeapId heapID,
+    enum HeapID heapID,
     SpriteResourceCollection *charResources,
     SpriteResourceCollection *plttResources,
     SpriteResourceCollection *cellResources,
@@ -50,7 +50,7 @@ SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatT
     SpriteResourceCollection *manimResources);
 void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *param0);
 
-SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID);
+SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapID heapID);
 void SetMainScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y);
 void SetSubScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y);
 void ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar vramMode);

@@ -28,7 +28,7 @@ static CommTool *sCommTool = NULL;
 void CommTool_Init(int netId)
 {
     if (!sCommTool) {
-        sCommTool = Heap_AllocFromHeap(netId, sizeof(CommTool));
+        sCommTool = Heap_Alloc(netId, sizeof(CommTool));
         MI_CpuFill8(sCommTool, 0, sizeof(CommTool));
     }
 

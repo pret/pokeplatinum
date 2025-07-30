@@ -13,9 +13,9 @@
 
 static void SetupDefaultPipelineState(void);
 
-G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
+G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapID heapID, enum VramManagerType texVramManagerType, enum TextureVramSize texVramSize, enum VramManagerType plttVramManagerType, enum PaletteVramSize plttVramSize, G3DPipelineSetupCallback cb)
 {
-    G3DPipelineBuffers *buffers = Heap_AllocFromHeap(heapID, sizeof(G3DPipelineBuffers));
+    G3DPipelineBuffers *buffers = Heap_Alloc(heapID, sizeof(G3DPipelineBuffers));
     buffers->heapID = heapID;
 
     NNS_G3dInit();
@@ -25,7 +25,7 @@ G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType 
 
     if (texVramManagerType == VRAM_MANAGER_TYPE_LINKED_LIST) {
         int bufferSize = NNS_GfdGetLnkTexVramManagerWorkSize(128 * texVramSize);
-        buffers->textureBuffer = Heap_AllocFromHeap(buffers->heapID, bufferSize);
+        buffers->textureBuffer = Heap_Alloc(buffers->heapID, bufferSize);
         NNS_GfdInitLnkTexVramManager(texVramSize * TEXTURE_VRAM_BLOCK_SIZE, 0, buffers->textureBuffer, bufferSize, TRUE);
     } else {
         NNS_GfdInitFrmTexVramManager(texVramSize, TRUE);
@@ -33,7 +33,7 @@ G3DPipelineBuffers *G3DPipeline_InitEx(enum HeapId heapID, enum VramManagerType 
 
     if (plttVramManagerType == VRAM_MANAGER_TYPE_LINKED_LIST) {
         int bufferSize = NNS_GfdGetLnkPlttVramManagerWorkSize(256 * plttVramSize);
-        buffers->paletteBuffer = Heap_AllocFromHeap(buffers->heapID, bufferSize);
+        buffers->paletteBuffer = Heap_Alloc(buffers->heapID, bufferSize);
         NNS_GfdInitLnkPlttVramManager(plttVramSize * PALETTE_VRAM_BLOCK_SIZE, buffers->paletteBuffer, bufferSize, TRUE);
     } else {
         // BUG: This should be NNS_GfdInitFrmPlttVramManager

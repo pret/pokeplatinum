@@ -39,7 +39,7 @@ enum RowanIntroTvState {
 };
 
 typedef struct {
-    enum HeapId heapID;
+    enum HeapID heapID;
     BgConfig *bgConfig;
     MessageLoader *msgLoader;
     enum RowanIntroTvState state;
@@ -179,7 +179,7 @@ BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *st
 BOOL RowanIntroTv_Exit(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
     RowanIntroTv *tv = ApplicationManager_Data(appMan);
-    enum HeapId heapID = tv->heapID;
+    enum HeapID heapID = tv->heapID;
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);

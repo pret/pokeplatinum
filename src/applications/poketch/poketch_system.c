@@ -121,7 +121,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_MAIN, HEAP_SIZE_POKETCH_MAIN);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, HEAP_SIZE_POKETCH_APP);
 
-    PoketchSystem *new_system = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(PoketchSystem));
+    PoketchSystem *new_system = Heap_Alloc(HEAP_ID_POKETCH_MAIN, sizeof(PoketchSystem));
 
     if (new_system != NULL) {
         *poketchSys = new_system;

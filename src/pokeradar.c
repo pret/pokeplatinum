@@ -63,7 +63,7 @@ static void IncWithCap(int *param0);
 
 RadarChain *RadarChain_Init(const int heapID)
 {
-    RadarChain *chain = Heap_AllocFromHeap(heapID, sizeof(RadarChain));
+    RadarChain *chain = Heap_Alloc(heapID, sizeof(RadarChain));
     GFXBoxTest_MakeBox(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &chain->grassPatchVolume);
     return chain;
 }
@@ -499,7 +499,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
 {
     u8 *v0;
 
-    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_POKE_RADAR, 1, HEAP_ID_FIELD) == TRUE) {
+    if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_POKE_RADAR, 1, HEAP_ID_FIELD1) == TRUE) {
         v0 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;
