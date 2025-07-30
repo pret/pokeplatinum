@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My Pokémon were taken from me...\nTeam Galactic did it...\rEver since, I’ve never forgiven\ntheir faces...\r",
+        "TRMSG_DEFEAT": "Gwaaaaaah!\n",
+        "TRMSG_POST_BATTLE": "I’m not doing my Pokémon any favors\nby ruining its memory like this...\rI can’t be wallowing around forever.\nI gotta move on and turn the page."
+    }
 }

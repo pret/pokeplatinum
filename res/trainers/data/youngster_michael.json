@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I get my get-up-and-go from my\nPokémon!\rHere we go!\nKRICKETOT! ZUBAT!\r",
+        "TRMSG_DEFEAT": "Ack! My Pokémon...",
+        "TRMSG_POST_BATTLE": "Keep out of the grass or dodge the\neyes of Trainers...?\rI always have a tough time choosing.\n",
+        "TRMSG_REMATCH": "Hey, I remember your face, Trainer.\nYou’ll battle me again, won’t you?\r"
+    }
 }

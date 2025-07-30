@@ -27,10 +27,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "There is nothing here... And yet\nthere is a power lurking...\rWere you drawn by it, as well?\r",
+        "TRMSG_DEFEAT": "The power that slumbers within you...\nIt is rather marvelous indeed...\n",
+        "TRMSG_POST_BATTLE": "A place where nothing else exists...\rA place such as that is better suited\nto awaken the power within.\n",
+        "TRMSG_REMATCH": "Do you see now?\nYou’ve come back again.\rThere must be something that draws\nyou to this place...\r"
+    }
 }

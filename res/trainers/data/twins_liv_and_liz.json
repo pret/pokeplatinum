@@ -27,16 +27,16 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
-        "TRMSG_POST_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_1",
-        "TRMSG_PRE_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
-        "TRMSG_POST_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_2"
-    ]
+    "messages": {
+        "TRMSG_PRE_DOUBLE_BATTLE_1": "Liv: We can one-shot this Trainer,\ncan’t we, Liz?\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Liv: Oh, oh, oh?\n",
+        "TRMSG_POST_DOUBLE_BATTLE_1": "Liv: This Trainer...will brag about\nbeating us, Liz.\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "Liv: You only have one Pokémon?\nThat’s so boring!",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_1": "Liv: Oh! You’re that Trainer!\nLet’s get payback, Liz!\r",
+        "TRMSG_PRE_DOUBLE_BATTLE_2": "Liz: We’re the strongest in our\nclass!\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Liz: Oh, but, wait!\n",
+        "TRMSG_POST_DOUBLE_BATTLE_2": "Liz: This Trainer...is really happy about\nbeating us, Liv.\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "Liz: Um, will you battle with us?\nMe and Liv?\n",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_2": "Liz: We’re the best in our class.\nWe can’t be losers all the time!\r"
+    }
 }

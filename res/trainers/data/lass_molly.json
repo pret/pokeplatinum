@@ -21,9 +21,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Boo! Did I scare you?\nThis battle will!\r",
+        "TRMSG_DEFEAT": "Uh, whoopsie!\nThat didn’t end well!\n",
+        "TRMSG_POST_BATTLE": "Since you’re here, you might as well\ntake on every Trainer.\n"
+    }
 }

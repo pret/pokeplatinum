@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I am one of the Ninja Trio!\nBeing discovered means I must battle!\r",
+        "TRMSG_DEFEAT": "I concede defeat...\n",
+        "TRMSG_POST_BATTLE": "My cover is blown, so what should\nI do?\rMaybe I’ll go catch some Contests in\nHearthome City. Maybe I’ll do that.\n",
+        "TRMSG_REMATCH": "Do you remember me?\nI am one of the Ninja Trio!\fBeing discovered means I must battle!\r"
+    }
 }

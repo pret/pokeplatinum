@@ -36,14 +36,14 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
-        "TRMSG_POST_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
-        "TRMSG_PRE_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
-        "TRMSG_POST_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2"
-    ]
+    "messages": {
+        "TRMSG_PRE_DOUBLE_BATTLE_1": "Al: I intend to perfect my Double\nBattle technique.\rThat will make me better all around.\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Al: You! You’re an expert\ndouble battler, too!\n",
+        "TRMSG_POST_DOUBLE_BATTLE_1": "Al: Your mastery over several\nPokémon at once...\rYou’re a remarkable Trainer!\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "Al: You have but one Pokémon?\rI would say that you are taking\nVictory Road too lightly, kid.\n",
+        "TRMSG_PRE_DOUBLE_BATTLE_2": "Kay: I want to improve my doubles\ntechnique as much as I can.\rThat will improve me as a Trainer.\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Kay: My goodness!\nYou’re great at doubles, too!",
+        "TRMSG_POST_DOUBLE_BATTLE_2": "Kay: Depending on the combinations,\nevery kind of Pokémon can excel.\rAt least, that’s what I think.\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "Kay: You’re really going through\nVictory Road with only one Pokémon?\n"
+    }
 }

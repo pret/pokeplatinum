@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "We’re not done yet!\nThere’s no giving up!\n",
+        "TRMSG_DEFEAT": "Hmm!\nMy sturdy Pokémon--defeated!\n"
+    }
 }

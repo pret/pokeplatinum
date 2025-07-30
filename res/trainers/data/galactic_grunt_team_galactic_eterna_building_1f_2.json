@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "So sorry, sweetie.\nTeam Galactic has no room for kiddies!\r",
+        "TRMSG_DEFEAT": "B-but, deary, you’re just a kid!\n",
+        "TRMSG_POST_BATTLE": "You wanted to go up?\nWell, why didn’t you?\n"
+    }
 }

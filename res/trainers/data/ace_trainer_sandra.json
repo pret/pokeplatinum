@@ -37,10 +37,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "When eyes meet...\nThat’s when a battle starts!\r",
+        "TRMSG_DEFEAT": "You won’t let me win?\n",
+        "TRMSG_POST_BATTLE": "I suddenly remembered what it was \nlike when I had my first battle.\rI wonder why that would be?\n",
+        "TRMSG_REMATCH": "When eyes meet...\nThat’s when a battle starts!\fThat’s what makes us Trainers!\r"
+    }
 }

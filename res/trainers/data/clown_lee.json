@@ -17,7 +17,7 @@
             "ball_seal": 3
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "Oh, no, no, no!\nMwahahah?\n"
+    }
 }

@@ -44,10 +44,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I just startled you!\rWhile you’re still struggling to\nrecover, I’ll already be the winner!\r",
+        "TRMSG_DEFEAT": "Oh, what’s that?\nYou’re supposed to be fumbling more.\n",
+        "TRMSG_POST_BATTLE": "I wanted a better reaction from you.\nNow I feel silly for hiding!\n",
+        "TRMSG_REMATCH": "You just saw me, and I bet you\nthought, “Long time no see.”\rWhile you’re still thinking that, I’ll\nalready be the winner!\r"
+    }
 }

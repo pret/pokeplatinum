@@ -29,8 +29,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Oh, how do you do? May I investigate\nhow much tougher you’ve become since\four last encounter?\r",
+        "TRMSG_DEFEAT": "Our research arrived at this one\nconclusion: you’re tough!\n"
+    }
 }

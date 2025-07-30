@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I wish some fishing-loving lady’d come\nalong. But no, it’s all just Trainers.\r",
+        "TRMSG_DEFEAT": "Sure, so I lost.\nBut I’ll keep on fishing.\n",
+        "TRMSG_POST_BATTLE": "If you know of any ladies that like\nfishing, help me reel ’em in!\n",
+        "TRMSG_REMATCH": "Umm... Yeah. Weren’t you that person\nwho preferred Pokémon over fishing?\r"
+    }
 }

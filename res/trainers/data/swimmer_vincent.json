@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "OK! Get your breathing in order!\nOK! You’re ready to go!\r",
+        "TRMSG_DEFEAT": "I let my momentum falter...\n",
+        "TRMSG_POST_BATTLE": "Listen, I have something important to\nsay to you.\rDon’t drown in your own talent.\n",
+        "TRMSG_REMATCH": "OK! You’re ready to go!\nThis time, I’m going for the win!\r"
+    }
 }

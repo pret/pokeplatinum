@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Deep breathing before battle!\nBreathe in...and out!\r",
+        "TRMSG_DEFEAT": "Breathe in...and out.\nBreathe in...and out!\n",
+        "TRMSG_POST_BATTLE": "Deep breathing after battle, too!\nBreathe in...and out!\n",
+        "TRMSG_REMATCH": "Deep breathing always!\nBreathe in...and out!\r"
+    }
 }

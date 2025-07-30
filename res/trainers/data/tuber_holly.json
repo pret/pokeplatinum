@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Listen, listen! Can you tell me what\nkind of Pokémon you have?\r",
+        "TRMSG_DEFEAT": "You’re so tough. I’m stunned...\n",
+        "TRMSG_POST_BATTLE": "I want to hang on to a BUIZEL and\njust bob around.\n",
+        "TRMSG_REMATCH": "Listen, listen! Did you find any new\nkinds of Pokémon?\r"
+    }
 }

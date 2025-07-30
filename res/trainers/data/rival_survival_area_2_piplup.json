@@ -99,8 +99,8 @@
             "ball_seal": 24
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "No way! I won’t give up!\nThere’s never any giving up!",
+        "TRMSG_DEFEAT": "What was that about?!\rI’m going to get tougher, though!\nTougher with these guys!\n"
+    }
 }

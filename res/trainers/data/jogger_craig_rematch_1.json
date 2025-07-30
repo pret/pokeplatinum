@@ -26,8 +26,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "If I battle now, won’t it mess up my\nusual pace?\r",
+        "TRMSG_DEFEAT": "My pace is completely off...\n"
+    }
 }

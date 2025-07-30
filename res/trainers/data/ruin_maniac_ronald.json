@@ -19,10 +19,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I travel all over the world in search of\nmysteries.\r",
+        "TRMSG_DEFEAT": "Gasp... One more... Gasp...\nIt’s like I went on a diet...\n",
+        "TRMSG_POST_BATTLE": "There are mysteries waiting for me\nto investigate around the world.\rThis is no time to be feeling sorry\nfor myself.\n",
+        "TRMSG_REMATCH": "There’s an endless supply of\nmysteries around the world.\rRunning into you here just happens\nto be one such mystery!\r"
+    }
 }

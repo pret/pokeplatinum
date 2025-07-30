@@ -52,9 +52,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I want my Pokémon to get a taste of\nthe sweetness that is victory.\rI can’t afford to lose this one!\r",
+        "TRMSG_DEFEAT": "This defeat has the tang of my bitter\ntears...",
+        "TRMSG_POST_BATTLE": "I’m sorry, my Pokémon team...\rI promise, I’ll get better at this so\nyou can get a taste of victory!\n"
+    }
 }

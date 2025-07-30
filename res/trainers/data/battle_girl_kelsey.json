@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hiyah!\nThere’s no holding anything back!\r",
+        "TRMSG_DEFEAT": "I... I concede!\nI think you’re on a different level...\n",
+        "TRMSG_POST_BATTLE": "Hiyah! You put me in my place!\nI appreciate it!\n",
+        "TRMSG_REMATCH": "Hiyah! This time, there really is no\nholding anything back!\r"
+    }
 }

@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Oh? A little kid like you is going to\nteach me about Pokémon?\r",
+        "TRMSG_DEFEAT": "Wow, is that right?\n",
+        "TRMSG_POST_BATTLE": "There are so many kinds of Pokémon.\nI can’t decide which one to pamper.\n",
+        "TRMSG_REMATCH": "Yoohoo, little kid! Can you teach me\nsome more about Pokémon?\r"
+    }
 }

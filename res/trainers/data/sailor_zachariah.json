@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I came out here because I wanted to\nsee the Pokémon League for myself.\r",
+        "TRMSG_DEFEAT": "I’m shocked...\nNo, really, I am.\n",
+        "TRMSG_POST_BATTLE": "The way I battle now, well, I can\nonly look at the Pokémon League!\rYou, go on! You go to the Pokémon\nLeague for me, too!\n",
+        "TRMSG_REMATCH": "I’ve been training here in hopes of\ngoing to the Pokémon League.\r"
+    }
 }

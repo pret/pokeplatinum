@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Let me see how well your Pokémon can\nbattle!\r",
+        "TRMSG_DEFEAT": "Brilliant!\n",
+        "TRMSG_POST_BATTLE": "Rather than navigating Victory Road,\nI have a much better time putting\fyoung Trainers like you to the test.\n"
+    }
 }

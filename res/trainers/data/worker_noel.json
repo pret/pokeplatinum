@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "The working-class hero says hi!\r",
+        "TRMSG_DEFEAT": "The working-class hero waves bye...\n",
+        "TRMSG_POST_BATTLE": "I used to work here a long time\nago, before it shut down.\rI worked at the ironworks near\nFloaroma Town, too.\rYou might say I’m drawn by iron\nas if by magnet!\n"
+    }
 }

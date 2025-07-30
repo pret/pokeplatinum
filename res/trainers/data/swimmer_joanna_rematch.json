@@ -35,8 +35,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "People still keep coming to us for\nbattles! Why?!\r",
+        "TRMSG_DEFEAT": "OK, we lost.\n"
+    }
 }

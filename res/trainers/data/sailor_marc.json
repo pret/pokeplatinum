@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Oh, we’ll ride upon the sea,\nin a boat, just you and me!\rThat’s the way of the Sailor!\nWay of the Sailor. Sing it!\r",
+        "TRMSG_DEFEAT": "Your Pokémon...\nThey’re looking good!\n",
+        "TRMSG_POST_BATTLE": "You ought to think about becoming\na Sailor yourself.\rIt’s been great to be able to visit\ndifferent places around the world.\n",
+        "TRMSG_REMATCH": "Oh, we’ll ride upon the sea,\nin a boat, just you and me!\rThat’s the way of the Sailor!\nWay of the Sailor. You sing, too!\r"
+    }
 }

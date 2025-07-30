@@ -83,8 +83,8 @@
             "ball_seal": 14
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "You methodically corner me!\nJust like before!\n",
+        "TRMSG_DEFEAT": "I even felt thrilled during our\nmatch.\rThat was a very good battle.\n"
+    }
 }

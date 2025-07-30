@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Are you getting worn out from all\nthe running you’ve done?\r",
+        "TRMSG_DEFEAT": "You’re not tired at all?!\n",
+        "TRMSG_POST_BATTLE": "The world is full of Pokémon and all\nsorts of Trainers.\n",
+        "TRMSG_REMATCH": "What do you think of the Battle\nZone?\rYou’ve met so many Pokémon...\nI’ve got to battle you again!\r"
+    }
 }

@@ -38,10 +38,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "There’s something about you...\nYou’re not just anybody.\rI challenge you!\r",
+        "TRMSG_DEFEAT": "You’re at a different level of\nexpertise for sure!\n",
+        "TRMSG_POST_BATTLE": "You’ve won countless times...\nThat has made you very powerful.\n",
+        "TRMSG_REMATCH": "There’s something about you...\nYou still remain extraordinary.\rI challenge you again!\r"
+    }
 }

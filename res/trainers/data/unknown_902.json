@@ -17,7 +17,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "Oh, dear... The trouble with fun is that\nit is over so quickly.\n"
+    }
 }

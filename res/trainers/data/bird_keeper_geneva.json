@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My Pokémon grew up in the arms of\nMother Nature. They’re tough!\r",
+        "TRMSG_DEFEAT": "How could you be tougher than\nMother Nature?\n",
+        "TRMSG_POST_BATTLE": "Most of the time, my Pokémon return\nto their Poké Balls right away.\rBut sometimes, they just fall asleep\non top of my head. That gets messy.",
+        "TRMSG_REMATCH": "The desire to win... That should be\nevident in every Trainer!\r"
+    }
 }

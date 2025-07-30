@@ -53,7 +53,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "What’s with you?!\nDo you have a vendetta against me?!\n"
+    }
 }

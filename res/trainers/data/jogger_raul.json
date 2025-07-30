@@ -17,11 +17,11 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_NOT_MORNING_UNUSED",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Jogging is about rhythm.\nBattling is about rhythm, too!\r",
+        "TRMSG_DEFEAT": "It’s a goal of sorts, I’d say!\n",
+        "TRMSG_POST_BATTLE": "If I get out of rhythm, I can’t get my\nact together.\n",
+        "TRMSG_NOT_MORNING_UNUSED": "When I was jogging the other day,\na wild Pokémon came after me.\rI ran so fast, I was on top of the\nwaves, I swear!",
+        "TRMSG_REMATCH": "Jogging is about rhythm.\nBattling is about rhythm, too.\fOur rematch is also about rhythm!\r"
+    }
 }

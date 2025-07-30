@@ -25,9 +25,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Are you lost?\nAre you enjoying yourself?\r",
+        "TRMSG_DEFEAT": "Let me guess.\nYou are enjoying yourself.\n",
+        "TRMSG_POST_BATTLE": "Whatever happens in life, it’s better to\ntry to enjoy it the best one can.\rBeing in the dark here, I came to\nrealize that.\n"
+    }
 }

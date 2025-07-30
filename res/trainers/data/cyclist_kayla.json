@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "If you beat me, you can count on\nsomething rotten coming your way!\r",
+        "TRMSG_DEFEAT": "Kerrrash!",
+        "TRMSG_POST_BATTLE": "Aww!\nWhy did you beat me?!\rI hope you get so lost in Wayward Cave\nyou cry! Boo-hoo-hoo!\n",
+        "TRMSG_REMATCH": "I had to get my revenge on you.\rI trained my Pokémon while wandering\flost in Wayward Cave!\r"
+    }
 }

@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m a mermaid drifting among the\nwaves...\rAnd a high-spirited gal who battles with\nPokémon!\r",
+        "TRMSG_DEFEAT": "Losing...\nMakes my tears well up.\n",
+        "TRMSG_POST_BATTLE": "A mermaid’s tears are so salty...\n",
+        "TRMSG_REMATCH": "I’m still a mermaid drifting among the\nwaves...\rAnd a high-spirited gal who battles with\nPokémon!\r"
+    }
 }

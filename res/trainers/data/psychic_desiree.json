@@ -37,9 +37,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Allow me to demonstrate how a true\nPsychic conducts a battle!\r",
+        "TRMSG_DEFEAT": "Did I get to show you anything...?\nAnything at all?\n",
+        "TRMSG_POST_BATTLE": "What can psychic power be used for?\rWell, one mustn’t use it for committing\ncrimes.\rBut, I don’t use it for doing good,\neither.\rUsing psychic power leaves me too worn\nout!\n"
+    }
 }

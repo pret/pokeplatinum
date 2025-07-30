@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We set off the Galactic Bomb!\nIts blast force was phenomenal!\r",
+        "TRMSG_DEFEAT": "Your Pokémon attack with phenomenal\npower...\n",
+        "TRMSG_POST_BATTLE": "But so what?\nYou aim to take us all on?\rDream on!\nTeam Galactic is huge in number.\rEven as we speak, other members should\nbe near Twinleaf Town.\rThat’s right, they’re on the way to\nLake Verity!\n"
+    }
 }

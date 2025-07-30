@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "In the embrace of Mother Nature,\npeople and Pokémon grow strong!\r",
+        "TRMSG_DEFEAT": "Your Pokémon are so muscular.\nIt makes me sigh seeing them...\n",
+        "TRMSG_POST_BATTLE": "It doesn’t matter where they grow.\rPokémon can be made tougher\nanywhere if you set your mind to it.\n",
+        "TRMSG_REMATCH": "By battling tough opponents, both\nTrainers and Pokémon grow tough!\r"
+    }
 }

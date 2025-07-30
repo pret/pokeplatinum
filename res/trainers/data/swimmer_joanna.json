@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "People keep coming to us for battles.\nI really don’t know why! Teehee!\r",
+        "TRMSG_DEFEAT": "OK, we lost.\n",
+        "TRMSG_POST_BATTLE": "I wanted to be alone, but swatting\naway immature boys on the prowl...\rWell, my Pokémon grew tough without\nme really even trying.\n",
+        "TRMSG_REMATCH": "People still keep coming to us for\nbattles! Why?! Leave me alone!\r"
+    }
 }

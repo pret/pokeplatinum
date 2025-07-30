@@ -34,9 +34,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve been around the world, going from\nplace to place training Pokémon.\rIt’s this Gym I’ve chosen to make my\nhome!\rYou can bet it’s tough!\r",
+        "TRMSG_DEFEAT": "You!\nYou’re truly top-class tough!\n",
+        "TRMSG_POST_BATTLE": "If you were to go around the world,\nI’m sure you’d meet tougher Pokémon.\n"
+    }
 }

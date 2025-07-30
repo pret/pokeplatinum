@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "ZUBAT! Doesn’t that sound like a\nninja bursting from cover?\r",
+        "TRMSG_DEFEAT": "Oh!\nMy ZUBAT tristars...\n",
+        "TRMSG_POST_BATTLE": "Sowing confusion among the foe is\none way a ninja battles.\rA Pokémon can’t overcome its\nconfusion unless it switches out.\n",
+        "TRMSG_REMATCH": "The shinobi live by speed!\nI’ll get in my attacks before you do!\r"
+    }
 }

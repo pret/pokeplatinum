@@ -24,7 +24,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "Ack! I lost...\nCheck, please!\n\n"
+    }
 }

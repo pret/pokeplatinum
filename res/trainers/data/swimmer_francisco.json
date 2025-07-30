@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "The sea around these parts is harsh.\nAs am I!\r",
+        "TRMSG_DEFEAT": "The world is so harsh...\n",
+        "TRMSG_POST_BATTLE": "What? You’ve got that many Gym\nBadges? No wonder you’re so tough...\n",
+        "TRMSG_REMATCH": "It’s me again! The harsh sea here\nshould have toughened me up more!\r"
+    }
 }

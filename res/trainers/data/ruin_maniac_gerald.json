@@ -28,9 +28,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "In deep tunnels and caves, there’re\na couple things you’re sure to see.\rZUBAT and Ruin Maniacs!\r",
+        "TRMSG_DEFEAT": "Your awesome power...\nIt’s mystifying.\n",
+        "TRMSG_POST_BATTLE": "I’ve scoured every inch of this\nplace... Most of it while I was lost.\rAnyway, if there’s one thing I can\nsay, this place can’t be called ruins!\n"
+    }
 }

@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "The fun things about winter!\nOne, skiing! Two, Pokémon!\r",
+        "TRMSG_DEFEAT": "Snivel...",
+        "TRMSG_POST_BATTLE": "If it was skiing, I wouldn’t lose.\nI should go ski with my Pokémon...\n",
+        "TRMSG_REMATCH": "You’re a better Trainer than a skier.\nBut I’ll challenge you again anyway!\r"
+    }
 }

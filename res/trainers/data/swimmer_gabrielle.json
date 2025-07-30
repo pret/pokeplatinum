@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My favorite kind of guy is someone\nthat looks good out on the open sea!\r",
+        "TRMSG_DEFEAT": "The tide is going out...\n",
+        "TRMSG_POST_BATTLE": "Don’t get me wrong, it’s not as if I\ndon’t like mountain men.\rBut, you know, my most favorite kind of\nguy looks great with Pokémon!\n",
+        "TRMSG_REMATCH": "Hello again! You’re that Trainer who\nlooks keen with your Pokémon!\r"
+    }
 }

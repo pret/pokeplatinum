@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Well? Does it look like I’m swimming\ngracefully?\r",
+        "TRMSG_DEFEAT": "I’m finally feeling fatigued...\n",
+        "TRMSG_POST_BATTLE": "I may look like I’m swimming\ngracefully, but beneath the surface\fI’m kicking furiously.\n",
+        "TRMSG_REMATCH": "You were attracted by my graceful\nswimming again, weren’t you?\r"
+    }
 }

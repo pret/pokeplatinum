@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "You’ve worked so hard to get here.\nYou should be proud of yourself!\rAnd now, I’ll send you packing home\nwith only that happy thought!\r",
+        "TRMSG_DEFEAT": "Wh-- How dare you! That’s how you\nrespond to my generosity?\n",
+        "TRMSG_POST_BATTLE": "We couldn’t stop you...\nWe’ll be discarded as useless...\rOur boss is ruthless that way...\n"
+    }
 }

@@ -37,8 +37,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Do you remember my slogan?\nPeople! Nature! Pokémon!\rThat’s right. Harmony is essential!\r",
+        "TRMSG_DEFEAT": "You’re A-OK!\n"
+    }
 }

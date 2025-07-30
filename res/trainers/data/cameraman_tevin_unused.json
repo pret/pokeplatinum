@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve spotted a charismatic Trainer!\nWe just might have a scoop here!\r",
+        "TRMSG_DEFEAT": "My camera’s too heavy.\nI couldn’t battle effectively...\n",
+        "TRMSG_POST_BATTLE": "The lively expressions on you and\nyour Pokémon’s faces...\rIt sure makes for some great TV!\n"
+    }
 }

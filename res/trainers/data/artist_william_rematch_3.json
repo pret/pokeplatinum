@@ -50,8 +50,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "The key to becoming a good painter\nis to be observant.\rThat is the same for battling.\nOne must be observant!\r",
+        "TRMSG_DEFEAT": "Magnificent!\nI am aglow with inspiration!\n"
+    }
 }

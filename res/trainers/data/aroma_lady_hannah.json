@@ -27,10 +27,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Oh, you want to have a battle?\rI was meaning to enter a Contest,\nbut beating you won’t take long...\r",
+        "TRMSG_DEFEAT": "Oh, you have us beaten.\n",
+        "TRMSG_POST_BATTLE": "You and your Pokémon have so much\nenergy.\rI think you would do well in\nContests, too.\n",
+        "TRMSG_REMATCH": "Oh, didn’t we meet before?\rI was meaning to enter a Contest,\nbut let’s have a quick battle first.\r"
+    }
 }

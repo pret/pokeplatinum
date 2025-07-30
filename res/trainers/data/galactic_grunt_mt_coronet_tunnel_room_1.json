@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I can’t believe you chased me here...\nOK, let’s see how tough you are.\r",
+        "TRMSG_DEFEAT": "Where do you get that power?!\n",
+        "TRMSG_POST_BATTLE": "Mt. Coronet...\rI might be just a grunt, but even I\ncan tell it has a weird energy!\n"
+    }
 }

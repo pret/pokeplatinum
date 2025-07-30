@@ -24,8 +24,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Oh, I don’t know.\nShould I play a little again?\r",
+        "TRMSG_DEFEAT": "Oh, boo!\nHow insulting!\n"
+    }
 }

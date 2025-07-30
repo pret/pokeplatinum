@@ -22,9 +22,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My body isn’t the only thing I\nwork on toughening up here.\rI also work on my Pokémon and my\nspirit!\r",
+        "TRMSG_DEFEAT": "Wow, Trainer! You just might be\ntougher than our Gym Leader!\n",
+        "TRMSG_POST_BATTLE": "Maybe I’ll do like Wake,\rI mean, Crasher Wake, and wear\nthe same kind of mask.\n"
+    }
 }

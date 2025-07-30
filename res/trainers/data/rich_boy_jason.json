@@ -19,10 +19,10 @@
             "ball_seal": 23
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My Pokémon sleeps in a bed I got from\noverseas.\rI’m very well off, if you haven’t\nnoticed!\r",
+        "TRMSG_DEFEAT": "What? Over already?\nWell, that’s fine.\fRich people like me don’t fight.\n",
+        "TRMSG_POST_BATTLE": "Oh, no.\nMy Pokémon is worn out.\rI’d better let it sleep it off in the\nbed I had sent from overseas.\n",
+        "TRMSG_REMATCH": "I do this only because I love my\nPokémon. Winning isn’t that important.\r"
+    }
 }

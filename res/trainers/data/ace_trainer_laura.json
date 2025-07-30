@@ -24,10 +24,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m fully kitted up and equipped!\nAnytime will be fine!\r",
+        "TRMSG_DEFEAT": "Hunh?!\n",
+        "TRMSG_POST_BATTLE": "Perhaps I should maybe change into\na more comfy outfit...\n",
+        "TRMSG_REMATCH": "I’m fully equipped again today!\nAnytime you’re ready will be fine!\r"
+    }
 }

@@ -27,10 +27,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Right after this, you will send out your\nPokémon to do battle!\r",
+        "TRMSG_DEFEAT": "After this, I will reluctantly hand over\nthe prize money to you...\n",
+        "TRMSG_POST_BATTLE": "What will you do after this?\rWhy don’t you decide for yourself?\nIt would be much more fun that way!\n",
+        "TRMSG_REMATCH": "Right after this, you will hurl a Poké\nBall in an astonishingly cool way!\r"
+    }
 }

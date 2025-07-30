@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I fished up some tough Pokémon!\nLet’s have ourselves a battle!\r",
+        "TRMSG_DEFEAT": "Losing to a kid has me gasping like\na MAGIKARP...\n",
+        "TRMSG_POST_BATTLE": "My feet are tangled, too!\nOuch! Ouch!\n",
+        "TRMSG_REMATCH": "I’m going to win this time!\nI said I’ll win, and I mean it!\r"
+    }
 }

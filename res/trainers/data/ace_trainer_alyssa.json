@@ -51,10 +51,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "As an Ace Trainer, I have to take\nbattles in stride.\rI need to stay cool and calm whether\nI win or lose.\r",
+        "TRMSG_DEFEAT": "Aiyeeeeh!\nWe lost!\n",
+        "TRMSG_POST_BATTLE": "How dare you beat us!\nGo away! Go!\n",
+        "TRMSG_REMATCH": "Last time, I got a little emotional\nover losing...\rI’ll stay cool and calm today!\r"
+    }
 }

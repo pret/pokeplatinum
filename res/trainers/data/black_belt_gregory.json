@@ -36,10 +36,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "You come along with your heart\npounding!\rYou think you can win like that?!\nHiyah!\r",
+        "TRMSG_DEFEAT": "Gurgle...\n",
+        "TRMSG_POST_BATTLE": "If I lose here, I wouldn’t stand a\nchance at the Battle Frontier.\rNot against those hard-core pros,\nI wouldn’t!\n",
+        "TRMSG_REMATCH": "Am I lost, you ask?\nI merely feigned it! Hiyah!\r"
+    }
 }

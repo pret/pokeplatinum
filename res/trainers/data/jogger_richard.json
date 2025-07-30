@@ -17,11 +17,11 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_NOT_MORNING_UNUSED",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I jog every morning to keep my\nPokémon fit.\r",
+        "TRMSG_DEFEAT": "Oops!\nYou threw off my running rhythm.\n",
+        "TRMSG_POST_BATTLE": "Nothing beats being fit and healthy!\rCome on, won’t you run with me?\nTo a better tomorrow!\n",
+        "TRMSG_NOT_MORNING_UNUSED": "Do you jog every morning, too?\n",
+        "TRMSG_REMATCH": "When I go on my jogs, I pass by lots\nof people.\rI have trouble remembering faces,\nbut we did meet before, right?\r"
+    }
 }

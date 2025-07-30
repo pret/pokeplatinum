@@ -54,8 +54,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "You’ve forced my hand this time!\n",
+        "TRMSG_DEFEAT": "Impressive.\nYour prowess is notable.\n"
+    }
 }

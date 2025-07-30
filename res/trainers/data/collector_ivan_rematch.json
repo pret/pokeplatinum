@@ -17,8 +17,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Pal Park, huh? I wonder what kinds\nof Pokémon you can see there?\r",
+        "TRMSG_DEFEAT": "You’re one enthusiastic Trainer.\n"
+    }
 }

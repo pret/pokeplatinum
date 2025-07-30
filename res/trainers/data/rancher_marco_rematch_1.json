@@ -26,8 +26,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Whoa! You’re that real-tough\nTrainer from before!\rHere are my ranch-toughened Pokémon!\nI’m right proud of them!\r",
+        "TRMSG_DEFEAT": "Hahahah! Your Pokémon sure can be\ncounted on!\n"
+    }
 }

@@ -22,9 +22,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Even concealed, there is no hiding\nthe aroma of flowers.\r",
+        "TRMSG_DEFEAT": "Just like your inability to conceal\nyour abundant skill.\n",
+        "TRMSG_POST_BATTLE": "Your next opponent is under four\nflowers.\n"
+    }
 }

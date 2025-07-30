@@ -19,10 +19,10 @@
             "ball_seal": 4
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I need to escape these doldrums...\nYou can keep me company.\r",
+        "TRMSG_DEFEAT": "That did liberate me from the doldrums,\nbut at what price...\n\n",
+        "TRMSG_POST_BATTLE": "I’m going back to the hotel to rest!\nI find you exceedingly tiresome!\n",
+        "TRMSG_REMATCH": "I’m afraid I’m in the doldrums again.\nYou shall keep me company again!\r"
+    }
 }

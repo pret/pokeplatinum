@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ll teach you about the charms of\nbird Pokémon!\r",
+        "TRMSG_DEFEAT": "Well, that was surprising!\n",
+        "TRMSG_POST_BATTLE": "The sight of you battling...\nIt was simply a wonder to watch!\n",
+        "TRMSG_REMATCH": "Are you finally noticing the great\nqualities of bird Pokémon?\r"
+    }
 }

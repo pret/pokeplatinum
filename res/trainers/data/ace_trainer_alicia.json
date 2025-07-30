@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Are you feeling all run-down?\rBut a good Trainer is one who wins no\nmatter the situation!\r",
+        "TRMSG_DEFEAT": "That’s right. A good Trainer will win,\nno matter what the situation may be.\n",
+        "TRMSG_POST_BATTLE": "The Trainer’s feelings...\nThe Pokémon’s feelings...\rIf they are one and the same, you\nwill never lose.\n"
+    }
 }

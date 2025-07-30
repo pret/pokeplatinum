@@ -26,8 +26,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "It doesn’t matter how long it takes,\nI’m going to the Pokémon League!\r",
+        "TRMSG_DEFEAT": "Th-this is so hard...\n"
+    }
 }

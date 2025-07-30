@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "For the sake of my collection, I\ntake on people I know I can’t beat.\fThat’s what a Collector does.\r",
+        "TRMSG_DEFEAT": "That attack right then was remarkable!\nYou ought to be proud of it!\n",
+        "TRMSG_POST_BATTLE": "I take pride in having Pokémon that\nothers don’t.\rOh, I’m also proud about winning second\nprize in one of Jubilife TV’s drawings.\n",
+        "TRMSG_REMATCH": "For the sake of my collection, I\nkeep battling people I can’t beat.\rThat’s what a Collector does.\r"
+    }
 }

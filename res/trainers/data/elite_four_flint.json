@@ -83,9 +83,9 @@
             "ball_seal": 13
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "I can feel your determination.\nYour will is overpowering me!\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "This situation...\nThis is heating up! I’m blazing now!\n",
+        "TRMSG_DEFEAT": "...!\rI don’t believe it! I lost!\nI didn’t take you for granted...\rBut I didn’t expect you to win!\nI’d never even considered it!\rI’m blown away by this!\nYou and your Pokémon are hot stuff!\n"
+    }
 }

@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "It’s not over yet!\nA League Elite Four cannot give up!\n",
+        "TRMSG_DEFEAT": "I will now concede defeat.\rBut I think you came to see how\ngreat Bug-type Pokémon can be.\rI hope you also realized what you’re\nup against in the Pokémon League.\rBattling is a deep and complex\naffair...\n"
+    }
 }

@@ -80,8 +80,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "This is like back at the Gym, isn’t it?\nI’m in a bit of a bind, aren’t I?\n",
+        "TRMSG_DEFEAT": "I’m forced to admit defeat again...\nYou are much too strong.\n"
+    }
 }

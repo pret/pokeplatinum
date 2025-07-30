@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Spark!\rThis is what our Gym Leader did\nto the Gym out of boredom!\r",
+        "TRMSG_DEFEAT": "Spark...\n",
+        "TRMSG_POST_BATTLE": "We were lacking energy...\rNo, we lacked more than that. We\ndidn’t want the win enough.\n"
+    }
 }

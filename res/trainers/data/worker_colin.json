@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Fine, all righty then.\nJust a quick battle on my break!\r",
+        "TRMSG_DEFEAT": "Wahaha!\nMercy, I cry mercy!\n",
+        "TRMSG_POST_BATTLE": "I’d better get on back to work...\rYou know, I’d rather be traveling\naround with Pokémon the way you do.\n"
+    }
 }

@@ -49,9 +49,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve been to all sorts of places.\nThat means I know tons of things!\r",
+        "TRMSG_DEFEAT": "Yeah, whatever.\nYou can battle, too...\n",
+        "TRMSG_POST_BATTLE": "I’m gonna visit new places and find\nnew Pokémon so I’ll be a know-it-all!\n"
+    }
 }

@@ -19,9 +19,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "To celebrate my getting through this\ncave, I’m going to battle you!\r",
+        "TRMSG_DEFEAT": "Well, I guess losing is something\nto commemorate, too...\n",
+        "TRMSG_POST_BATTLE": "Getting through that cave feels\nlike an adventure.\n"
+    }
 }

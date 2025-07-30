@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My senses tingle...\nI’ve spotted a rare Pokémon!\r",
+        "TRMSG_DEFEAT": "Awawawawah...\n",
+        "TRMSG_POST_BATTLE": "I thought it was a rare Pokémon, but\nit turned out to be just a Trainer!\n"
+    }
 }

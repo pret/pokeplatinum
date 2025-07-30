@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "This karate man’s going to pulverize\nyou!\r",
+        "TRMSG_DEFEAT": "We got pulverized...\n",
+        "TRMSG_POST_BATTLE": "It’s obvious I need to train myself\nand my Pokémon harder.\rHey, if you’ve got a Vs. Seeker, you’d\nbetter put it to good use.\rNothing beats some repeated battling\nfor toughening up your Pokémon.\n",
+        "TRMSG_REMATCH": "This karate man hasn’t forgotten\nbeing pulverized by you!\r"
+    }
 }

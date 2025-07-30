@@ -23,10 +23,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Go do it, my Pokémon!\nI’ll work hard, too!\r",
+        "TRMSG_DEFEAT": "Oh...\nWe lost...",
+        "TRMSG_POST_BATTLE": "I think we’ll visit the TV station in\nJubilife City next.\rOr maybe we should go to the Global\nTerminal?\n",
+        "TRMSG_REMATCH": "Umm, aren’t you that Trainer who beat\nus before?\rWe feel good today, so we’ll be happy\nto face you again!\r"
+    }
 }

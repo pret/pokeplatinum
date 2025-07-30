@@ -21,10 +21,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "When I toss this coin, you call it.\nHeads, we battle.\rTails, we battle!\rNow, how will this play out, my friend?\r",
+        "TRMSG_DEFEAT": "The coin came up tails, and like it, my\nPokémon is facedown...\n",
+        "TRMSG_POST_BATTLE": "I flipped a coin when I was ten.\nI decided to live in Sinnoh then.\n",
+        "TRMSG_REMATCH": "Luck wasn’t with me last time, but I’m\nfeeling good about this.\fMy lucky coin tells me so!\r"
+    }
 }

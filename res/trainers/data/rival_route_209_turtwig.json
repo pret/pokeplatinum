@@ -66,9 +66,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_FIRST_DAMAGE",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_FIRST_DAMAGE": "Oh, yeah?\nI’ll show you something wicked, too!\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "What the?! We’re in trouble?!\nBut there’s no giving up on me!\n",
+        "TRMSG_DEFEAT": "What just happened?!\nYou’re telling me I lost?!\n"
+    }
 }

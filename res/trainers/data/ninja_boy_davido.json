@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A ninja can use all kinds of skills.\nLike this and like that!\r",
+        "TRMSG_DEFEAT": "Hmm...\nMy ninja techniques failed to work...\n",
+        "TRMSG_POST_BATTLE": "There’s a ninja Gym Leader somewhere\nfar away.\rI should become a devotee of theirs.\n",
+        "TRMSG_REMATCH": "What’s with you?\nYou’re not a ninja yet?\r"
+    }
 }

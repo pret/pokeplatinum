@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Dragon Pokémon are sacred beings...\nThat’s what my master taught me.\rAnd now I’ll prove it to you!\r",
+        "TRMSG_DEFEAT": "Not good enough!\nWe’re still not strong enough!\n",
+        "TRMSG_POST_BATTLE": "It’s not good enough for a Pokémon\nto just be tough.\rIt’s not good enough for a Trainer\nto just work hard.\rBoth have to grow together!",
+        "TRMSG_REMATCH": "This time we’ll get it right!\rMarvel at the exquisite combination of\nmy Pokémon and myself!\r"
+    }
 }

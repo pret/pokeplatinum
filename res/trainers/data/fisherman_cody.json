@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Muhihi...\nI’ll haul you up and out!\r",
+        "TRMSG_DEFEAT": "Restraint is my favorite word.\nLike...from crushing my opponents.\n",
+        "TRMSG_POST_BATTLE": "You need a Good Rod if you want to\ncatch good Pokémon.\n",
+        "TRMSG_REMATCH": "Muhihi... There won’t be any\nrestraint this time, OK?\r"
+    }
 }

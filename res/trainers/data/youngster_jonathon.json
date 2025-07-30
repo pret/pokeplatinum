@@ -20,9 +20,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "You avoided the long way around?\nLet’s see why you’d do that!\r",
+        "TRMSG_DEFEAT": "Now I understand why you decided to\nbattle with me.\n",
+        "TRMSG_POST_BATTLE": "You should go whichever way you\nwant, shortcut or the long way!\n"
+    }
 }

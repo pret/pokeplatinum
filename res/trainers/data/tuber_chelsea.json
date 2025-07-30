@@ -17,10 +17,10 @@
             "ball_seal": 9
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Ehehe...\nI can battle, too!\r",
+        "TRMSG_DEFEAT": "Losing made me all hungry now.\n",
+        "TRMSG_POST_BATTLE": "That cloud looks like giant ice cream!\nI bet it tastes yummy!\n",
+        "TRMSG_REMATCH": "I’ve been dawdling here all this\ntime!\r"
+    }
 }

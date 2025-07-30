@@ -38,9 +38,9 @@
             "ball_seal": 7
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I can’t explain it...\nBeing here compels me to battle!\r",
+        "TRMSG_DEFEAT": "Hunh?!\nWhat was I just doing?!\n",
+        "TRMSG_POST_BATTLE": "The desire to do battle lingers on...\rDo such spirits of Pokémon still roam\nwithin these walls?\n"
+    }
 }

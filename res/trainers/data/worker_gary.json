@@ -20,9 +20,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A Pokémon Gym isn’t only about seeing\nhow tough your Pokémon happen to be.\rIt’s so much deeper than just that.\nIt’s a test of you as a person.\r",
+        "TRMSG_DEFEAT": "That move was devastating!\n",
+        "TRMSG_POST_BATTLE": "I get to work all day with my\nPokémon, and even battle sometimes.\rI get all the fun I need every day!"
+    }
 }

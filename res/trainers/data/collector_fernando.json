@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We were having a heated discussion\nover Pokémon the way Collectors do.\r",
+        "TRMSG_DEFEAT": "Knowledge alone isn’t everything,\nyou know...\n",
+        "TRMSG_POST_BATTLE": "I’m more knowledgeable than anyone\nelse!\rI have a rare Pokémon!\rBut, I’m weak at battling...\nThat’s a Pokémon Collector for you..."
+    }
 }

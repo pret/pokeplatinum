@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "This buff physique isn’t just for\nshow!\r",
+        "TRMSG_DEFEAT": "B-but!\nMy buff physique!",
+        "TRMSG_POST_BATTLE": "Why? Is it because my training isn’t\nenough?!\n",
+        "TRMSG_REMATCH": "My buff physique!\nFeast your eyes on it again!\r"
+    }
 }

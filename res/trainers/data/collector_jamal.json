@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "To find my favorite Pokémon, I’ll go\neast, west, or any which way!\r",
+        "TRMSG_DEFEAT": "But they’re rare Pokémon!\n",
+        "TRMSG_POST_BATTLE": "If you’re trying to find the Pokémon\nyou want, you need to go everywhere!\rNot just east and west, either.\nSouth and north are important, too!",
+        "TRMSG_REMATCH": "For my favorite Pokémon, I’ll go\neast, west, or any which way!\r...Saying that, I’ve been wandering\naround here all this time.\r"
+    }
 }

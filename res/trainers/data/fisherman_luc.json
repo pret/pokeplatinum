@@ -53,10 +53,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Yeah, yeah...\nNothing’s biting!\r",
+        "TRMSG_DEFEAT": "Can’t catch a fish!\nCan’t catch a break!\n",
+        "TRMSG_POST_BATTLE": "I was counting on strength in numbers,\nbut...\rPacking it in and going home sounds good\nat a time like this...\n",
+        "TRMSG_REMATCH": "Yeah, yeah...\nNothing’s biting today either.\r"
+    }
 }

@@ -20,10 +20,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Before I challenge the Pokémon Gym\nLeader, I’ll test my strength on you!\r",
+        "TRMSG_DEFEAT": "I guess it means I’m not ready for\nthe Gym challenge yet...\n",
+        "TRMSG_POST_BATTLE": "I guess if you don’t have a single\nGym Badge, you’re a total nobody...\n",
+        "TRMSG_REMATCH": "I’m about ready to challenge the\nPokémon Gym Leader.\rBut before I do, let me test my\nstrength on you again!\r"
+    }
 }

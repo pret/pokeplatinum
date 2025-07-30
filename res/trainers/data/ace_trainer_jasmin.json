@@ -24,9 +24,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Can you answer this for me?\nWhat is space?\r",
+        "TRMSG_DEFEAT": "And another...\nA new memory was born.\n",
+        "TRMSG_POST_BATTLE": "For me, space is where memories are\nmade...\n"
+    }
 }

@@ -17,9 +17,9 @@
             "ball_seal": 2
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ll let you join my fan club if you can\nbeat me!\r",
+        "TRMSG_DEFEAT": "Ouch! Are you one of those loyal\nfans? You sure are rowdy!\n",
+        "TRMSG_POST_BATTLE": "Well, that’s me and my Pokémon!\nThank you for being such a fan!\rJust so you know, our latest single\nis “Jigglin’ Pokémon Wub”!\n"
+    }
 }

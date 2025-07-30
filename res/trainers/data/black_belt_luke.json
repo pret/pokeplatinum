@@ -36,10 +36,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I dress light wherever I go.\nHiyah!\r",
+        "TRMSG_DEFEAT": "Achoo!\n",
+        "TRMSG_POST_BATTLE": "Maybe I’ll dress warm and come back.\nHiyah!\n",
+        "TRMSG_REMATCH": "Lightly dressed like always.\nHiyah!\r"
+    }
 }

@@ -37,10 +37,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We go on patrol to make sure there’s\nnothing strange going on.\rAnd occasionally, we battle!\r",
+        "TRMSG_DEFEAT": "Thanks much!\n",
+        "TRMSG_POST_BATTLE": "Using the Pokémon ability Pickup for\ngathering dropped items is a good thing.\rI think it’s ecological, even.\nI am cleaning up the environment!\n",
+        "TRMSG_REMATCH": "Patrols day in and day out!\nAnd the occasional battle!\r"
+    }
 }

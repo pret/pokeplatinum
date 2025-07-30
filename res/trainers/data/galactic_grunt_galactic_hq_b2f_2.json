@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What with that creepy Charon and a kid\nlike you around, the HQ’s not the\fsame anymore.\rLike, you characters changed the,\nwell, character of the place!\r",
+        "TRMSG_DEFEAT": "Oh, sure. Why don’t you just get\nall cocky about it!\n",
+        "TRMSG_POST_BATTLE": "Without our special card key, you’re\nnot going to get very far.\rWell, non-Team Galactic member?\nWhat’s your next move?\n"
+    }
 }

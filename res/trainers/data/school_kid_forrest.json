@@ -24,9 +24,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "This is the toughest Gym in Sinnoh.\rThat’s why I’m here--to learn the\nbest battle techniques around!\r",
+        "TRMSG_DEFEAT": "...You’re tough.\n",
+        "TRMSG_POST_BATTLE": "You just showed me that there’s\nstill lots I need to learn.\rThe world of Pokémon is deep!\n"
+    }
 }

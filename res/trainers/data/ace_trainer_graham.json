@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I took great pains raising my partners.\nI’ll show you how strong I made them!\r",
+        "TRMSG_DEFEAT": "It needs to be leveled more?!\n",
+        "TRMSG_POST_BATTLE": "My Pokémon...\rThey’re the first friends I ever\ncaught. They mean everything to me!",
+        "TRMSG_REMATCH": "...When I close my eyes, I can picture\nhow we lost to you in vivid detail.\rBut, I’ve raised them since then! I’ll\nthrow their strength in your face!\r"
+    }
 }

@@ -19,9 +19,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Where am I? Am I lost? Who are you?\nAre you a Pokémon Trainer?\r",
+        "TRMSG_DEFEAT": "OK, so we’re both Trainers.\nThat’s a start, right?\n",
+        "TRMSG_POST_BATTLE": "I just wanted to have a picnic under\nthe Cycling Road.\rI didn’t think I would get lost\nin a place like this..."
+    }
 }

@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "How do you do?\nI’m Stanley, and I’m a Dragon Tamer.\rWhat do you say we let our Pokémon\nhave it out? Sound OK to you?\r",
+        "TRMSG_DEFEAT": "Victory!\nThat is, victory for you...\n",
+        "TRMSG_POST_BATTLE": "It seems to me, there’s this certain\nimage that goes with a Dragon Tamer.\rBut me, I’d much sooner take it easy,\ntake it slow, and take it my own way.\rI figure there’s more than my style\nthat I need to work on first.\n",
+        "TRMSG_REMATCH": "Hey, how do you do again?\rWhat do you say we let our Pokémon\nhave at it again? Sound OK to you?\r"
+    }
 }

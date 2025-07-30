@@ -36,10 +36,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "There!\nBehind you!\r",
+        "TRMSG_DEFEAT": "My plan to spook you didn’t go over\nwell at all.\n",
+        "TRMSG_POST_BATTLE": "You might be tough, but let down\nyour guard at your own risk!\n",
+        "TRMSG_REMATCH": "Wah!\nThat thing curled around your neck!\r...Nice scarf, kid!\r"
+    }
 }

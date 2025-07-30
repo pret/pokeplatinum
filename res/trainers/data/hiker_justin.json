@@ -27,10 +27,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I just got through Mt. Coronet, but\nI’ve still got energy to burn!\r",
+        "TRMSG_DEFEAT": "Whoops!\nTaken down easily!\n",
+        "TRMSG_POST_BATTLE": "We need to rest up in Oreburgh City\nbefore heading to Mt. Coronet again.\n",
+        "TRMSG_REMATCH": "I just got through Mt. Coronet,\nand who do I see?\rA Trainer who we’ve battled before!\r"
+    }
 }

@@ -26,8 +26,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I got a nifty-keen Gym Badge from\nthe Gym Leader in Oreburgh City!\r...Did I show you already?\r",
+        "TRMSG_DEFEAT": "Oh, I lost! Lalala!\n"
+    }
 }

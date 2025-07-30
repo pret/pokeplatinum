@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I want to win!\nThat desire I pour into my guitar!\rI want to win!\nThat passion compels my Pokémon!\r",
+        "TRMSG_DEFEAT": "We couldn’t win...\nNo encores for us...\n",
+        "TRMSG_POST_BATTLE": "The Trainer’s desire to win!\rIf you don’t lose that, there’s\nno limit on what you can become!\n"
+    }
 }

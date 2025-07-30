@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve decided!\nI’m off to the Pokémon League if I win!\r",
+        "TRMSG_DEFEAT": "Blblblblugh...\n",
+        "TRMSG_POST_BATTLE": "It’s OK. Just let me float away\nlike driftwood...\n",
+        "TRMSG_REMATCH": "This is it! I’m going to beat you, then\nI’m off to the Pokémon League!\r"
+    }
 }

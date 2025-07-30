@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hush now, lost little Pokémon, don’t\nyou cry.\rI’m here to take care of you!\r",
+        "TRMSG_DEFEAT": "Sniffle... W-who’s crying now?\n",
+        "TRMSG_POST_BATTLE": "Speaking of crying, I’m positive I\nheard crying from deeper in the cave.\n"
+    }
 }

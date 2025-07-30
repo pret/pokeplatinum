@@ -44,8 +44,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "On rainy days, I get more energetic!\r",
+        "TRMSG_DEFEAT": "Like rain, my tears fall from losing...\nThey call me Rain Woman...\n"
+    }
 }

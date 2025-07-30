@@ -22,9 +22,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Whether you’re a Trainer or a\nGuitarist, it takes dedication to\fimprove your mad skills!\r",
+        "TRMSG_DEFEAT": "My skills seem to have let me down.\nI must have been out of tune!\n",
+        "TRMSG_POST_BATTLE": "The way you battle, I can feel the\nvery heart of rock and roll.\rTell me, are you maybe a fan of\nrocking out?\n"
+    }
 }

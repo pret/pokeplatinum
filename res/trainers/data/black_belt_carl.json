@@ -27,10 +27,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "All right, my Pokémon squad!\nGet out there and kick up a storm!\r",
+        "TRMSG_DEFEAT": "The squad failed to hit its stride...\n",
+        "TRMSG_POST_BATTLE": "Hmm...\rGazing out over the sea doesn’t do a\nthing for toughening up my Pokémon!\n",
+        "TRMSG_REMATCH": "Ah, it’s been a long time!\rI have been toughening my fists\nagainst the sea, just as before!\r"
+    }
 }

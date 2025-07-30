@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Our time has come!\nIt’s Team Galactic’s time now!\r",
+        "TRMSG_DEFEAT": "When’s it gonna be my turn...\n",
+        "TRMSG_POST_BATTLE": "It’s too late!\rNo amount of desperation from a kid\nlike you will make a difference!\n"
+    }
 }

@@ -38,10 +38,10 @@
             "ball_seal": 21
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "You’re willing to battle?\nLet me see what you have?\r",
+        "TRMSG_DEFEAT": "Your love of Pokémon really shows!\n",
+        "TRMSG_POST_BATTLE": "I grew up together with Felix and\nmy team, right from my childhood.\rAll our memories, we’ve always shared\nthem.\n",
+        "TRMSG_REMATCH": "Oh, hi, we meet again.\rMay I see what you’ve done with your\nPokémon?\r"
+    }
 }

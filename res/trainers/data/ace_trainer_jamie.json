@@ -24,10 +24,10 @@
             "ball_seal": 11
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I constantly analyze Pokémon and\nvarious battles on my laptop.\r",
+        "TRMSG_DEFEAT": "...Things don’t always work out\naccording to my calculations...\n",
+        "TRMSG_POST_BATTLE": "I had a lot of fun battling with\nyou, though.\rI wonder if I can analyze the\nbattle data properly?\rI could use a rematch to get\nsome additional data.\n",
+        "TRMSG_REMATCH": "I analyzed our last battle on my\nlaptop.\r"
+    }
 }

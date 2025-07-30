@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I go everywhere with my NOCTOWL.\nWe’re gonna show you owl best! Ha!\r",
+        "TRMSG_DEFEAT": "We did our best. That’s what\nmatters. Right?\n",
+        "TRMSG_POST_BATTLE": "Even on cold days, just being with\nmy NOCTOWL keeps me warm!\n",
+        "TRMSG_REMATCH": "I curled up inside my NOCTOWL’s wings\nand waited for you to return!\r"
+    }
 }

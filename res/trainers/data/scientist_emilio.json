@@ -20,7 +20,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "Hmm... I failed to foresee this\noutcome...\n"
+    }
 }

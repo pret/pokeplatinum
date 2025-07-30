@@ -26,11 +26,11 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_NOT_NIGHT_UNUSED",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Who’s there?!\nWhat do you think you’re doing?!\r",
+        "TRMSG_DEFEAT": "I happen to be rather jumpy, so\neveryone looks suspicious to me.\n",
+        "TRMSG_POST_BATTLE": "I’m easy to scare, and yet here I am\non patrol. Funny how things go.\n",
+        "TRMSG_NOT_NIGHT_UNUSED": "At night, I get tense and nervous.\nI don’t know why.\n",
+        "TRMSG_REMATCH": "I’ll repeat myself! Who’s there?!\nWhat do you think you’re doing?!\r"
+    }
 }

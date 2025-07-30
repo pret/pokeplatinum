@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Ding-ding! Watch out, you!\nOr, did you want to battle?\r",
+        "TRMSG_DEFEAT": "Despite all the effort, I’m just spinning\nmy wheels...\rIt’s always that way with me!\n",
+        "TRMSG_POST_BATTLE": "I might try racing through Cycling\nRoad in one long shot.\n",
+        "TRMSG_REMATCH": "There you are!\rI’ve been riding in this spot so I’d\nget a rematch with you!\r"
+    }
 }

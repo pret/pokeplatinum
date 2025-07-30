@@ -52,9 +52,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What, were you just dawdling around\nhoping I’d notice you for a battle?\rYou know you’re going to get whupped\nhere, don’t you?\r",
+        "TRMSG_DEFEAT": "I kinda deserved that, didn’t I?\nI gotta stop mouthing off like that...\n",
+        "TRMSG_POST_BATTLE": "I’ll remember you and your shifty\nPokémon, too. I’m watching you...\n"
+    }
 }

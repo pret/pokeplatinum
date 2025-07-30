@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We’ve grown strong together in\nnature and in the concrete jungle.\rWe make everywhere we go our\nplayground!\r",
+        "TRMSG_DEFEAT": "You’re really tough, aren’t you?!\n",
+        "TRMSG_POST_BATTLE": "Look around you at this wildly\ncontorted terrain.\rIt’s no wonder that Pokémon would\ngrow tough in a place like this.\n",
+        "TRMSG_REMATCH": "We’re tough, but we know you’re just\nas tough!\rLet’s battle it out to see which one of\nus is tougher!\r"
+    }
 }

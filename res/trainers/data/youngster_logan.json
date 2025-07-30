@@ -19,10 +19,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Let’s have a Pokémon battle!\nHumph! But I’m gonna win!\r",
+        "TRMSG_DEFEAT": "You beat me?!\nYou’ve got talent!",
+        "TRMSG_POST_BATTLE": "It was fun battling!\nYup! I’m going to battle everyone!",
+        "TRMSG_REMATCH": "Let’s have another Pokémon battle!\nThis time, I’m gonna win!\r"
+    }
 }

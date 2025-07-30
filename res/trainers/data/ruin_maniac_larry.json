@@ -19,10 +19,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I don’t care who you are--no one\ninterferes with my treasure hunting!\r",
+        "TRMSG_DEFEAT": "My Pokémon!\nMy treasures!\n",
+        "TRMSG_POST_BATTLE": "I heard there’s an intriguing stone\nmonument around, so I came running.\n",
+        "TRMSG_REMATCH": "I’m still here...and still searching\nfor treasures.\rHowever, a battle with you\nis a treasure I can’t pass up!\r"
+    }
 }

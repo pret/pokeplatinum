@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Join me in this on-the-spot report,\nlive at the scene of a battle!\r",
+        "TRMSG_DEFEAT": "The media is the victim!\n",
+        "TRMSG_POST_BATTLE": "Interviews are about taking the\ninitiative. The people need to know.\n"
+    }
 }

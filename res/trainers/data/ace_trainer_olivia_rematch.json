@@ -52,8 +52,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "This isn’t like last time. See how\nmuch I’ve trained since then!\r",
+        "TRMSG_DEFEAT": "Whew...\nYou’re overtrained for me.\n"
+    }
 }

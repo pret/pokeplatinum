@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "The Trainers and Pokémon that gather\nhere aren’t pushovers.\fThey all have tricks up their sleeves!\r",
+        "TRMSG_DEFEAT": "You’re not a Trainer that can be\ntaken lightly!\n",
+        "TRMSG_POST_BATTLE": "The Pokémon you’ll meet here won’t\nmake it easy for you to move onward.\n"
+    }
 }

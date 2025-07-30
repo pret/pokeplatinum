@@ -52,9 +52,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I came here after winning my way\nthrough the Battle Tower!\r",
+        "TRMSG_DEFEAT": "But...\nI had a win streak going...\n",
+        "TRMSG_POST_BATTLE": "Train more at the Battle Tower...\nThat’s what I’ll do.\n"
+    }
 }

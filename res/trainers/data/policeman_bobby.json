@@ -26,11 +26,11 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_NOT_NIGHT_UNUSED",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hold it right there, citizen!\nWalking around at night is unsafe!\r",
+        "TRMSG_DEFEAT": "You’ve got tough partners with you.\nCarry on, citizen. Carry on.\n",
+        "TRMSG_POST_BATTLE": "Out so late? Does your mother\nknow you’re out so late?\n",
+        "TRMSG_NOT_NIGHT_UNUSED": "Well, hello there!\rThat’s very civil minded of you to\nsay hello to your local Policeman!\n",
+        "TRMSG_REMATCH": "Didn’t I already give you a warning?\nIt’s unsafe to walk around at night!\r"
+    }
 }

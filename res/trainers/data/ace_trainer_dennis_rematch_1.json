@@ -52,8 +52,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I’ll battle against people who’ve\nbeaten me again and again.\rBy doing that, we both grow a little\nas Trainers.\r",
+        "TRMSG_DEFEAT": "You won and I lost, but the both of\nus gained something from this.\n"
+    }
 }

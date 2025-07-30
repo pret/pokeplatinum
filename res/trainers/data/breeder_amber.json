@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m a rookie breeder, but I’ll do\nmy very best!\r",
+        "TRMSG_DEFEAT": "It’s all right!\nI’m still a rookie!\n",
+        "TRMSG_POST_BATTLE": "The best way to raise Pokémon?\r...Hmm, when it comes right down to it,\nisn’t it all about love?\n",
+        "TRMSG_REMATCH": "I can’t be a rookie forever.\nI’ve learned a lot since we last met.\r"
+    }
 }

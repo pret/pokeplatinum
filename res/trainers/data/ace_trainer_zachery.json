@@ -37,9 +37,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Wow! I’m surprised you’ve come this\nfar, but you’ll have to turn back.\rThere isn’t any chance that you\ncould ever beat me!\r",
+        "TRMSG_DEFEAT": "What makes your Pokémon\nso special?\n",
+        "TRMSG_POST_BATTLE": "As a challenger, you’re one tough\nTrainer.\n"
+    }
 }

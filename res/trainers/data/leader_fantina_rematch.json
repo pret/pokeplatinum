@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "It is too difficult, but...\nNever give up, never surrender!\n",
+        "TRMSG_DEFEAT": "You are so fantastically strong.\nI know why I have lost.\n"
+    }
 }

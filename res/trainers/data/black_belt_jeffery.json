@@ -22,9 +22,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We’re the Karate Quads!\rI will strike a blow for tears with\nmy fist! Hiyah, teeeeeeaaaaaaaaars!\r",
+        "TRMSG_DEFEAT": "I’m so hungry, kid...\nI don’t have any strength left...\n",
+        "TRMSG_POST_BATTLE": "I lost because I didn’t eat\nenough pizza.\r...No. Anything I say will sound\nlike I’m making excuses."
+    }
 }

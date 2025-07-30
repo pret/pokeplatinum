@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Our objectives are incredible!\nToo incredible for me to understand!\rI’ll fight blindly to defend them,\nand your intrusion won’t be forgiven!\r",
+        "TRMSG_DEFEAT": "What was I fighting for, again?",
+        "TRMSG_POST_BATTLE": "What do you have against taking\nPokémon from others?\rLook in any field or forest!\nThose things aren’t exactly rare!\n"
+    }
 }

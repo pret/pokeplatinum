@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Well, I am fishing, but...\rVery well!\nI accept your challenge!\r",
+        "TRMSG_DEFEAT": "A bittersweet smile is on my lips.\n",
+        "TRMSG_POST_BATTLE": "I’ve gone down in defeat.\nWhatever more is there to say?\n",
+        "TRMSG_REMATCH": "Well, just as before, I’m fishing, but...\rVery well!\nI accept your challenge!\r"
+    }
 }

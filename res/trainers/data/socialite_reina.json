@@ -19,10 +19,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve never battled a young Trainer like\nyourself. It’s quite nerve wracking.\r",
+        "TRMSG_DEFEAT": "Oh, dear... That wasn’t anything like\nbattling with my friends.\n",
+        "TRMSG_POST_BATTLE": "Usually, I’ll have matches with\nmembers of my social club.\n",
+        "TRMSG_REMATCH": "Oh, it’s you again, dear?\rIt makes me a little nervous to ask,\nbut may I have a rematch?\r"
+    }
 }

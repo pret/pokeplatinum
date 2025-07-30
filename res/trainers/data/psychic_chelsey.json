@@ -27,9 +27,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ll use my mystifying psychic power\nto pulverize you!\r",
+        "TRMSG_DEFEAT": "That’s what I get for making idle\nclaims...\n",
+        "TRMSG_POST_BATTLE": "Psychic power is a mystery that\ndefies explanation.\rBut if everything could be explained,\nit would be a boring world."
+    }
 }

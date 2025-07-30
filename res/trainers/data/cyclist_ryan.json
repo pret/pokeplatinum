@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A bike will carry you a long way.\rThe only thing that limits you is your\nown endurance!\r",
+        "TRMSG_DEFEAT": "Gasp... Gasp... Gasp...\n",
+        "TRMSG_POST_BATTLE": "My Pokémon and I are plumb worn out.\nWe should be getting home to rest...\n",
+        "TRMSG_REMATCH": "We took a recuperative rest.\nWe’re not losing this time!\r"
+    }
 }

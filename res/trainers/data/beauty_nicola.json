@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "After enjoying a meal at the hotel\nrestaurant, one has a battle.\rThat’s the social etiquette.\r",
+        "TRMSG_DEFEAT": "Enchanting.\n",
+        "TRMSG_POST_BATTLE": "Personally, I would much rather pamper\nPokémon than make them battle.\n",
+        "TRMSG_REMATCH": "I only seem to run into you after\nI go to the restaurant.\rEtiquette calls for a battle after a\nmeal. Shall we?\r"
+    }
 }

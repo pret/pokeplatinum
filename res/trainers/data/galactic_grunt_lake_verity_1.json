@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "It is our mission to stall you.\nSorry, but we gotta do our job.\r",
+        "TRMSG_DEFEAT": "Losing was a part of my job, too.\n...I feel better by saying that.\n",
+        "TRMSG_POST_BATTLE": "From three lakes, we must secure three\nPokémon.\rYou simply mustn’t interfere!\n"
+    }
 }

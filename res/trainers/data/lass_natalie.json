@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I spy, with my little eye...\nA Trainer!\rA battle, please!\r",
+        "TRMSG_DEFEAT": "Oh, boo!\nI can’t win!",
+        "TRMSG_POST_BATTLE": "My Pokémon are all tuckered out!\nI need to go to a Pokémon Center!",
+        "TRMSG_REMATCH": "Oh, hi!\nI remember you, Trainer!\rA battle, please!\r"
+    }
 }

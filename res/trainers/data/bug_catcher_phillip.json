@@ -49,9 +49,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Here comes the swarm!\r",
+        "TRMSG_DEFEAT": "Whoooh...\n",
+        "TRMSG_POST_BATTLE": "There’s a Pokémon ability named Swarm.\n"
+    }
 }

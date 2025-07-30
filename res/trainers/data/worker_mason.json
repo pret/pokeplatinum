@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m gonna let you in on a secret...\nI snuck my Pokémon to work!\r",
+        "TRMSG_DEFEAT": "Well, now aren’t you something!\n",
+        "TRMSG_POST_BATTLE": "OK, OK, time for work! I’ll work up\na thirst with my Pokémon!\n"
+    }
 }

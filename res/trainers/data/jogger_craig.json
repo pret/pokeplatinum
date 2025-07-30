@@ -26,11 +26,11 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_NOT_MORNING_UNUSED",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "If I battle now, won’t it mess up my\nusual pace?\r",
+        "TRMSG_DEFEAT": "My pace is completely off...\n",
+        "TRMSG_POST_BATTLE": "Sticking to one’s own goal is more\nimportant than it seems.\rIf you match your goal with someone\nelse, you’ll lose your identity.\n",
+        "TRMSG_NOT_MORNING_UNUSED": "Well, yes, sometimes I do walk.\nI even stop on occasion.\rI am human, after all.\n",
+        "TRMSG_REMATCH": "Up till now, I’d maintained my pace.\nBut seeing you threw me off!\r"
+    }
 }

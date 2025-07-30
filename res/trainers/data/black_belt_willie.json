@@ -27,9 +27,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Judo chop!\nPokémon battle!\r",
+        "TRMSG_DEFEAT": "Wrroar!\nJudo chop defeated!",
+        "TRMSG_POST_BATTLE": "I’ll forget that we lost!\r...Wait, if I did that, we’d never\nlearn from our mistakes...\n"
+    }
 }

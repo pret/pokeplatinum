@@ -20,9 +20,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "When a Trainer and a Pokémon bond\nas one, a wondrous power is born...\r",
+        "TRMSG_DEFEAT": "Urmmm...\nUrrrrmmmmm...\n",
+        "TRMSG_POST_BATTLE": "There still remain many mysteries yet\nto be solved in this strange world...\n"
+    }
 }

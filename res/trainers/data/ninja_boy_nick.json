@@ -26,10 +26,10 @@
             "ball_seal": 25
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Speed is a ninja’s best weapon!\nCan you keep up?\r",
+        "TRMSG_DEFEAT": "I did a lot to conceal myself, too...\n",
+        "TRMSG_POST_BATTLE": "I’ll wait here for a weaker-looking\nTrainer and then ambush them!\n",
+        "TRMSG_REMATCH": "I became even faster!\nHow can you hope to keep up?\r"
+    }
 }

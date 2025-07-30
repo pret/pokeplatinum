@@ -52,10 +52,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I always play for keeps!\nThis isn’t practice!\r",
+        "TRMSG_DEFEAT": "Good job!\nThat was an excellent battle.\n",
+        "TRMSG_POST_BATTLE": "If you don’t play for keeps, you’ll\nlose battles you should be dominating.\n",
+        "TRMSG_REMATCH": "When I lost to you last time, I was\nbattling for keeps.\rBut this time, I really mean it.\nThis is seriously for keeps!\r"
+    }
 }

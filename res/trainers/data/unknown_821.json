@@ -36,9 +36,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hi, what kinds of Pokémon do you\nhave with you?\rI’ll show you my Pokémon while we\nhave a battle.\r",
+        "TRMSG_DEFEAT": "Huh? It’s over already?!\nI thought I’d win for sure!\n",
+        "TRMSG_POST_BATTLE": "You’re too tough!\nI won’t battle you again!\rJust joking! I’ll challenge you again\nwhen I level up my Pokémon.\n"
+    }
 }

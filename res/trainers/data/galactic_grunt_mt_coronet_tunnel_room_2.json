@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "This is our final operation.\nNo one will interfere!\r",
+        "TRMSG_DEFEAT": "You turned the tables on me...\nI call interference...\n",
+        "TRMSG_POST_BATTLE": "The closer you are to the peak,\nthe closer you are to space!\rSoon, Team Galactic will... Uh...\nTeam Galactic will achieve greatness!\n"
+    }
 }

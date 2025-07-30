@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Our time is coming!\nA time for us alone!\rWe’ll send you back in time.\nA time before you started training!\r",
+        "TRMSG_DEFEAT": "Gyah!\n",
+        "TRMSG_POST_BATTLE": "You can struggle all you want, but\nyou can’t stop Team Galactic alone!\rIt doesn’t matter how many Pokémon\nyou try to use as your tools!\n"
+    }
 }

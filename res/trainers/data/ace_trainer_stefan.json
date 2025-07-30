@@ -28,9 +28,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Let me ask to see if you know.\nWhat is time?\r",
+        "TRMSG_DEFEAT": "Another memory...\nIn a chain of memories.\n",
+        "TRMSG_POST_BATTLE": "For me, time is the fabric woven by\nmemories, one after another...\n"
+    }
 }

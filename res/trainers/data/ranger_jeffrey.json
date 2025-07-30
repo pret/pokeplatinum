@@ -19,10 +19,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Heya, Trainer!\nAre you being good to Mother Nature?\r",
+        "TRMSG_DEFEAT": "Good. You seem to be a kindhearted\nTrainer.\n",
+        "TRMSG_POST_BATTLE": "Listen, people and Pokémon, we’re all a\npart of Mother Nature.\n",
+        "TRMSG_REMATCH": "Heya, long time!\rAre you enjoying your nature-filled\nadventure with Pokémon?\r"
+    }
 }

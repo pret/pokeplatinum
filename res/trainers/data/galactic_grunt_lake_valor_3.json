@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "...Would you like to join the MAGIKARP\nand flop around in the mud?\r",
+        "TRMSG_DEFEAT": "...Overwhelming!\n",
+        "TRMSG_POST_BATTLE": "I played you for a child, and paid\na stiff price for my arrogance...\rHowever, you’re much too late.\rTeam Galactic has already found the\nsunken island under the lake.\rAnd the Pokémon that lay in it?\nWell, what do you think?\n"
+    }
 }

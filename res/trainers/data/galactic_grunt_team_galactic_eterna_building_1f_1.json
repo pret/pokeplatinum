@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We are acquiring Pokémon for a most\nastonishing undertaking!\rYour meddling won’t be tolerated!\r",
+        "TRMSG_DEFEAT": "I feel like I got meddled with...\n",
+        "TRMSG_POST_BATTLE": "Our astonishing undertaking is\nmost certainly breathtaking.\rIf you ever hope to see its glorious\nunveiling, then don’t meddle with us!\n"
+    }
 }

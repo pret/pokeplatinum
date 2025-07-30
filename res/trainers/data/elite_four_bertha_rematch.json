@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "Dear child, don’t assume for an\ninstant that you’ve won.\n",
+        "TRMSG_DEFEAT": "Well! Dear child, I must say, that\nwas most impressive.\rYour Pokémon believed in you and did\ntheir best to earn you the win.\rEven though I’ve lost, I find myself\nwith this silly grin!\n"
+    }
 }

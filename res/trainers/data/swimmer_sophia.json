@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Are your Pokémon growing properly?\r",
+        "TRMSG_DEFEAT": "Maybe too grown up!\n",
+        "TRMSG_POST_BATTLE": "I’ve grown with my Pokémon, too.\nMy swimsuit’s getting a little tight...\n",
+        "TRMSG_REMATCH": "Did your Pokémon grow any more?\rMy Pokémon?\nMine are doing awesome!\r"
+    }
 }

@@ -19,9 +19,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_FIRST_DAMAGE",
-        "TRMSG_ACTIVE_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_FIRST_DAMAGE": "What in the...?!\nThat one hurt, you!\n",
+        "TRMSG_ACTIVE_BATTLER_HALF_HP": "No way! We can keep going!\nThis is where we hit our stride!\n",
+        "TRMSG_DEFEAT": "What are you saying?!\nWe ended up losing?!\n"
+    }
 }

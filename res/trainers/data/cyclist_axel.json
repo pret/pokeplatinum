@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Yo! Cycling and Pokémon!\nWhich do you prefer?\r",
+        "TRMSG_DEFEAT": "Hey, not bad, you!\n",
+        "TRMSG_POST_BATTLE": "This Cycling Road is one fine place--\ngreat bikes, superb Pokémon,\fand awesome Trainers all around!\n",
+        "TRMSG_REMATCH": "I’m sure I’ve seen your face before.\nDid we maybe battle?\r"
+    }
 }

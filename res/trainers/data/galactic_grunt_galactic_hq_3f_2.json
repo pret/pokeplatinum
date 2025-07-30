@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Intruder alert!\nThere’s something smelly about you!\r",
+        "TRMSG_DEFEAT": "Oh, it was my own Pokémon’s smell...\n",
+        "TRMSG_POST_BATTLE": "How could we arouse suspicion?\nWe’re Team Galactic, and this is our HQ!\n"
+    }
 }

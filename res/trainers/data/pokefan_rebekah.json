@@ -20,9 +20,9 @@
             "ball_seal": 6
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I need to shake off my sorrow...\nPlease, battle with me!\r",
+        "TRMSG_DEFEAT": "My sorrow has deepened...\n",
+        "TRMSG_POST_BATTLE": "I won’t ever forget the Pokémon that\nI’ve spent time with, however fleeting.\n"
+    }
 }

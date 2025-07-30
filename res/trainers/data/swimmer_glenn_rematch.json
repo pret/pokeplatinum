@@ -26,8 +26,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Yo, Pokémon-riding Trainer!\nHow about a rematch?\r",
+        "TRMSG_DEFEAT": "Awesome!\nYou’re a real wild child!\n"
+    }
 }

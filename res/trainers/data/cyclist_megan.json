@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Cycling feels great!\rIt will feel even better when I beat\nyou in a battle!\r",
+        "TRMSG_DEFEAT": "Whew!\nYou worked us over.\n",
+        "TRMSG_POST_BATTLE": "I like spinning the pedals backward\nwhile sailing downhill.\n",
+        "TRMSG_REMATCH": "It feels great on my Bike!\rI’m already sweaty, so let’s have a\nrematch!\r"
+    }
 }

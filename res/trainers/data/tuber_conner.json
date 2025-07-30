@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Look, look! Look at my Pokémon!\nIt’s really cool!\r",
+        "TRMSG_DEFEAT": "Wowee! I had to hold on tight to\nmy inflatable tube!\n",
+        "TRMSG_POST_BATTLE": "Pools are OK, but I like the sea\nbecause Pokémon live there.\n",
+        "TRMSG_REMATCH": "Yay! You came to see my Pokémon\nagain, right? Look, look!\r"
+    }
 }

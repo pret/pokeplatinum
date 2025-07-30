@@ -51,10 +51,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m taking the Veilstone Gym\nchallenge. But first...\r",
+        "TRMSG_DEFEAT": "...My confidence is crushed.\n",
+        "TRMSG_POST_BATTLE": "I think about Pokémon all day long.\nI was confident, you know.\n",
+        "TRMSG_REMATCH": "Oh, it’s you again!\rI’ve regained my confidence.\nLet’s have another battle!\r"
+    }
 }

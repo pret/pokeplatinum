@@ -83,9 +83,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "I admit that you have pushed me\nto this extreme.\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "This... This cannot be!\nIt’s not possible that I lose!\n",
+        "TRMSG_DEFEAT": "I won’t accept this!\nThis can’t be!\rNot after all the sacrifices we’ve made\nto get this far!\rWhat of my new world?!\nOf my new galaxy?!\rWas this all a dream to be swept away\nby your reality?!\n"
+    }
 }

@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "The both of us are on Bikes, and we\nboth have Pokémon!\rI can’t let you get the better of me!\r",
+        "TRMSG_DEFEAT": "Oh, geez...\nI seem to have fallen off my Bike.",
+        "TRMSG_POST_BATTLE": "I should have challenged you to a race,\nnot a battle!\n",
+        "TRMSG_REMATCH": "I hate knowing you’ve beaten me.\nThis time, I’m going to win!\r"
+    }
 }

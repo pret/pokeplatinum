@@ -19,10 +19,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "It’s a long way between Floaroma\nand Eterna City. So, let’s battle!\r",
+        "TRMSG_DEFEAT": "Wawawaah!\nI’m out of Pokémon that can go!\n",
+        "TRMSG_POST_BATTLE": "Camping with Pokémon!\nDo you have any idea how fun that is?\n",
+        "TRMSG_REMATCH": "While I was enjoying camping, my\nPokémon got all buffed up!\r"
+    }
 }

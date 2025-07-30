@@ -44,10 +44,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Please, let me battle the Pokémon\nyou’ve raised!\r",
+        "TRMSG_DEFEAT": "Giggle...\nThey’re raised with a lot of care!\n",
+        "TRMSG_POST_BATTLE": "Raise your Pokémon with lots of love,\nand they’ll bond closely with you.\n",
+        "TRMSG_REMATCH": "You’re that Trainer who treats Pokémon\nwith a lot of love!\rPlease, let me battle the Pokémon\nyou’ve raised again!\r"
+    }
 }

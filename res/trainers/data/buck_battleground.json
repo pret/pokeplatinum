@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "Now this!\nThis is a smoking-hot situation!\n",
+        "TRMSG_DEFEAT": "Heeheehee!\nSo hot, you!\n"
+    }
 }

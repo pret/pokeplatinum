@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Rainy days make me feel blue...\rBut the instant it starts to snow,\nI’m as happy as can be!\r",
+        "TRMSG_DEFEAT": "The conditions weren’t very good.\n",
+        "TRMSG_POST_BATTLE": "Can any of your Pokémon use that\nhidden move to climb cliffs?\n",
+        "TRMSG_REMATCH": "You really must like snow.\rAfter all, if you didn’t, I doubt that\nyou’d come here so often!\r"
+    }
 }

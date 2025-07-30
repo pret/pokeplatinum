@@ -35,8 +35,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I had to get my revenge on you.\rI trained my Pokémon while lost and\fwandering in the Wayward Cave!\r",
+        "TRMSG_DEFEAT": "Kerrrash!"
+    }
 }

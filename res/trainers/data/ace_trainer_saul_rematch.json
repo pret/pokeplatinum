@@ -24,8 +24,8 @@
             "ball_seal": 12
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "The urge to battle you again has\nstruck me. Humor me!\r",
+        "TRMSG_DEFEAT": "I shouldn’t have paid attention\nto my urge...\n"
+    }
 }

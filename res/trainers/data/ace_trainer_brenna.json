@@ -51,9 +51,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve only been involved with Pokémon\nfor a short time.\rI managed to get this far because\nskilled friends toughened me up!\r",
+        "TRMSG_DEFEAT": "I can’t believe how tough you are!\n",
+        "TRMSG_POST_BATTLE": "If you have wonderful friends, there\nis no limit to how far you can go.\n"
+    }
 }

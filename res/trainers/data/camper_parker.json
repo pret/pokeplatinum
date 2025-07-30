@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Huh? Are you lost too?\nNo? It doesn’t matter.\fLet’s have a quick Pokémon battle!\r",
+        "TRMSG_DEFEAT": "Lost?\nThere’s nothing lost about this kid!\n",
+        "TRMSG_POST_BATTLE": "I got separated from my friends...\rI’ve got my Pokémon with me, so I’m\nOK, but...\n"
+    }
 }

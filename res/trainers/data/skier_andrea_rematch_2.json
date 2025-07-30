@@ -17,8 +17,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Why would you wander around here?\nYou must really like it here.\r",
+        "TRMSG_DEFEAT": "The winds of victory shifted...\n"
+    }
 }

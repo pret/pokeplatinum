@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hi, traveler!\nHow would you like to battle?\r",
+        "TRMSG_DEFEAT": "You’ve bested this fisherman traveler.\n",
+        "TRMSG_POST_BATTLE": "I like to fish.\nYou’re a traveler.\rFarewell, until we meet again!\n",
+        "TRMSG_REMATCH": "Hi, traveler!\rI’ve forgotten your name, but we’ve\nbattled before, haven’t we?\r"
+    }
 }

@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "May I please trouble you for a\nbattle?\r",
+        "TRMSG_DEFEAT": "Oh...\nYou’re so strong...\n",
+        "TRMSG_POST_BATTLE": "Maybe I could have won if my Pokémon\nwas holding a Berry...\n",
+        "TRMSG_REMATCH": "Excuse me, may I please trouble you to\nhave one more battle?\r"
+    }
 }

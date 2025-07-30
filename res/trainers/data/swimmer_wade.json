@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Me and my Pokémon are pumped up\nand ready to go all out!\r",
+        "TRMSG_DEFEAT": "Our muscles are deflating...\n",
+        "TRMSG_POST_BATTLE": "Overwhelm with our dazzling physiques!\nThat was our game plan...\n",
+        "TRMSG_REMATCH": "Me and my Pokémon are pumped up!\nSee, our muscles are twitching!\r"
+    }
 }

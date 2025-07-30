@@ -19,9 +19,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What every good picnic needs is a\ncute setting, good food, and a fun\fbattle!\r",
+        "TRMSG_DEFEAT": "That wasn’t any fun for me!\n",
+        "TRMSG_POST_BATTLE": "Why have a picnic here? I don’t know.\nThere’s no deep meaning to it."
+    }
 }

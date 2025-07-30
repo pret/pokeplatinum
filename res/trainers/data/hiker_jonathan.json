@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "If I beat you, will you share some\nfood with me?\r",
+        "TRMSG_DEFEAT": "We were starved for food, and now\nwe’re starved for a win...\n",
+        "TRMSG_POST_BATTLE": "Sigh... I feel even hungrier...\nMaybe I’ll chow down some Berries...\rBut that’s kind of gross.\nWhat am I, a Pokémon?\n",
+        "TRMSG_REMATCH": "I, uh, chowed down my packed lunch\nbefore we started climbing.\rIf I beat you this time, share some\nfood with me!\r"
+    }
 }

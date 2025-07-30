@@ -37,8 +37,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_FIRST_DAMAGE",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_FIRST_DAMAGE": "How insolent.\nTake a bite of this, child!\n",
+        "TRMSG_DEFEAT": "Losing to some child...\nBeing careless cost me too much.\n"
+    }
 }
