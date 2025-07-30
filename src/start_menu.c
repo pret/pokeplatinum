@@ -1356,11 +1356,11 @@ static BOOL StartMenu_TrainerCard(FieldTask *taskMan)
 
     menu->taskData = TrainerCard_New(HEAP_ID_FIELD2);
 
-    TrainerCard_Init(1, 1, 0, 0xff, fieldSystem, (TrainerCard *)menu->taskData);
-    sub_0203E09C(fieldSystem, (TrainerCard *)menu->taskData);
+    TrainerCard_Init(TRUE, TRUE, 0, 0xFF, fieldSystem, (TrainerCard *)menu->taskData);
+    FieldSystem_OpenTrainerCardScreen(fieldSystem, (TrainerCard *)menu->taskData);
 
     menu->callback = sub_0203BF00;
-    return 0;
+    return FALSE;
 }
 
 static BOOL sub_0203BF00(FieldTask *taskMan)
@@ -1368,13 +1368,13 @@ static BOOL sub_0203BF00(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    sub_020721D4(fieldSystem, (TrainerCard *)menu->taskData);
+    TrainerCard_SaveBadgePolish(fieldSystem, (TrainerCard *)menu->taskData);
     TrainerCard_Free((TrainerCard *)menu->taskData);
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->state = START_MENU_STATE_12;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL StartMenu_SelectSave(FieldTask *taskMan)

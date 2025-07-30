@@ -121,7 +121,7 @@ _016F:
     PlayMusic SEQ_OPENING2
     ClearFlag FLAG_UNK_0x0178
     AddObject 5
-    ScrCmd_062 5
+    LockObject 5
     ApplyMovement 5, _07C0
     WaitMovement
     Message 6
@@ -207,7 +207,7 @@ _030B:
     WaitTime 25, VAR_RESULT
     ClearFlag FLAG_UNK_0x0179
     AddObject 6
-    ScrCmd_062 6
+    LockObject 6
     CallCommonScript 0x7F8
     ApplyMovement 6, _08C8
     WaitMovement
@@ -378,7 +378,7 @@ Route201_StartFirstBattleChimchar:
 _05CF:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _05F5
-    ScrCmd_062 2
+    LockObject 2
     BufferRivalName 0
     BufferPlayerName 1
     Message 48
@@ -387,7 +387,7 @@ _05CF:
 
 _05F5:
     ReturnToField
-    ScrCmd_062 2
+    LockObject 2
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
     BufferRivalName 0

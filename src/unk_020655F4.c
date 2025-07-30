@@ -450,7 +450,7 @@ static BOOL MovementAction_Walk_Step1(MapObject *mapObj)
     WalkMovementData *data = MapObject_GetMovementData(mapObj);
 
     MapObject_MovePosInDir(mapObj, data->dir, data->distance);
-    sub_020642F8(mapObj);
+    MapObject_RecalculateObjectHeight(mapObj);
 
     if (--(data->duration) > 0) {
         return FALSE;
@@ -820,7 +820,7 @@ static BOOL MovementAction_Jump_Step1(MapObject *mapObj)
 
     if (data->distance) {
         MapObject_MovePosInDir(mapObj, data->dir, data->distance);
-        sub_020642F8(mapObj);
+        MapObject_RecalculateObjectHeight(mapObj);
 
         if (data->unk_04 >= FX32_CONST(16)) {
             data->unk_04 = 0;
@@ -1257,7 +1257,7 @@ static BOOL MovementAction_WalkUneven(MapObject *mapObj, const fx32 *stepSizes)
     WalkUnevenMovementData *data = MapObject_GetMovementData(mapObj);
 
     MapObject_MovePosInDir(mapObj, data->dir, stepSizes[data->timer]);
-    sub_020642F8(mapObj);
+    MapObject_RecalculateObjectHeight(mapObj);
 
     if (++(data->timer) < data->duration) {
         return FALSE;

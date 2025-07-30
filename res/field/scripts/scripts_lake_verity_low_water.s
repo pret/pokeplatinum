@@ -46,17 +46,17 @@ _006F:
     BufferRivalName 0
     Message 0
     CloseMessage
-    ScrCmd_066 46, 53
-    ApplyMovement 241, _01B4
+    AddFreeCamera 46, 53
+    ApplyFreeCameraMovement _01B4
     WaitMovement
     WaitTime 15, VAR_RESULT
     Message 1
     CloseMessage
     WaitTime 30, VAR_RESULT
     ApplyMovement 4, _01E0
-    ApplyMovement 241, _01C0
+    ApplyFreeCameraMovement _01C0
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     Message 2
     CloseMessage
     ApplyMovement 5, _02A0

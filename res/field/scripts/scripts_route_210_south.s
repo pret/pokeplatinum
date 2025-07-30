@@ -94,7 +94,7 @@ _016F:
 _0183:
     ClearFlag FLAG_UNK_0x01B1
     AddObject 20
-    ScrCmd_062 20
+    LockObject 20
     ApplyMovement 20, _02C4
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _02DC

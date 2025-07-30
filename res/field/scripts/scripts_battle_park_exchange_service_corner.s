@@ -23,7 +23,7 @@ _0030:
     LockAll
     FacePlayer
     Message 15
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
     ReleaseAll
     End
@@ -33,7 +33,7 @@ _0044:
     LockAll
     FacePlayer
     Message 15
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
     ReleaseAll
     End

@@ -79,7 +79,7 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE * 2,
     FX32_ONE * 2,
     FX32_ONE * 1,
-    FX32_ONE / 2
+    FX32_ONE / 2,
 };
 
 void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)

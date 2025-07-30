@@ -1041,7 +1041,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         }
         break;
     case 3:
-        sub_0203E09C(fieldSystem, v2);
+        FieldSystem_OpenTrainerCardScreen(fieldSystem, v2);
         v1->unk_28++;
         break;
     case 4:

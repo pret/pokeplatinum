@@ -133,12 +133,12 @@ int ov93_021D120C(ApplicationManager *appMan, int *param1)
         0,
         0,
         0,
-        FX32_ONE
+        FX32_ONE,
     };
     VecFx32 v3 = {
         FX32_ONE,
         FX32_ONE,
-        FX32_ONE
+        FX32_ONE,
     };
     VecFx32 v4 = {
         0,

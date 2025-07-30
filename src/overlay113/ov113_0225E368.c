@@ -242,7 +242,7 @@ static const struct {
     -FX32_ONE * 16 * (5 + 0),
     FX32_ONE * 16 * (5 + 0),
     FX32_ONE * 16 * (3 + 0),
-    -FX32_ONE * 16 * (3 + 0)
+    -FX32_ONE * 16 * (3 + 0),
 };
 
 static const UnkStruct_ov113_02260CAC Unk_ov113_02260CAC[] = {

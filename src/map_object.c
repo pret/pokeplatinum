@@ -496,8 +496,8 @@ static void MapObject_Save(FieldSystem *fieldSystem, MapObject *mapObj, MapObjec
     sub_02064450(mapObjSave->x, mapObjSave->z, &v0);
     v0.y = MapObject_GetPosY(mapObj);
 
-    v2 = sub_02062FAC(mapObj);
-    v1 = sub_020644D0(fieldSystem, &v0, v2);
+    v2 = MapObject_IsDynamicHeightCalculationEnabled(mapObj);
+    v1 = MapObject_RecalculatePositionHeight(fieldSystem, &v0, v2);
 
     if (v1 == 0) {
         mapObjSave->unk_2C = MapObject_GetPosY(mapObj);
@@ -920,7 +920,7 @@ static int sub_0206262C(FieldSystem *fieldSystem, int graphicsID)
 static void sub_02062648(MapObject *mapObj)
 {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_12)) {
-        sub_020642F8(mapObj);
+        MapObject_RecalculateObjectHeight(mapObj);
     }
 }
 
@@ -1959,18 +1959,18 @@ int sub_02062F7C(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062F90(MapObject *mapObj, int param1)
+void MapObject_SetDynamicHeightCalculationEnabled(MapObject *mapObj, int enabled)
 {
-    if (param1 == TRUE) {
-        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_29);
+    if (enabled == TRUE) {
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_DYNAMIC_HEIGHT_CALCULATION_ENABLED);
     } else {
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_29);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_DYNAMIC_HEIGHT_CALCULATION_ENABLED);
     }
 }
 
-int sub_02062FAC(const MapObject *mapObj)
+int MapObject_IsDynamicHeightCalculationEnabled(const MapObject *mapObj)
 {
-    if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_29)) {
+    if (MapObject_CheckStatus(mapObj, MAP_OBJ_DYNAMIC_HEIGHT_CALCULATION_ENABLED)) {
         return TRUE;
     }
 

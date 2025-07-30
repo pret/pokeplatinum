@@ -349,7 +349,7 @@ _0458:
 _048D:
     SetObjectEventPos 21, 0x386, 0x1F8
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _0598
     WaitMovement
     GoTo _04F3
@@ -358,7 +358,7 @@ _048D:
 _04AF:
     SetObjectEventPos 21, 0x386, 0x1F9
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _05A4
     WaitMovement
     GoTo _04F3
@@ -367,7 +367,7 @@ _04AF:
 _04D1:
     SetObjectEventPos 21, 0x386, 0x1FA
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _05B0
     WaitMovement
     GoTo _04F3
