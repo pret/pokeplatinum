@@ -104,11 +104,11 @@ void FontSpecialChars_DrawPartyScreenLevelText(FontSpecialCharsContext *context,
         0,
         0,
         sNonNumericWidths[tableIdx].width,
-        8,
+        TILE_HEIGHT_PIXELS,
         x,
         y,
         sNonNumericWidths[tableIdx].width,
-        8);
+        TILE_HEIGHT_PIXELS);
 }
 
 void FontSpecialChars_DrawPartyScreenHPText(FontSpecialCharsContext *context, s32 displayValue, u32 digits, enum PaddingMode paddingMode, Window *window, u32 x, u32 y)
@@ -119,12 +119,22 @@ void FontSpecialChars_DrawPartyScreenHPText(FontSpecialCharsContext *context, s3
 
     for (idx = 0; context->charcodes[idx] != CHAR_EOS; idx++) {
         if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
-            Window_BlitBitmapRect(window, (u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * 0x20), 0, 0, 8, 8, x, y, 8, 8);
+            Window_BlitBitmapRect(
+                window,
+                (u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * 0x20),
+                0,
+                0,
+                TILE_WIDTH_PIXELS,
+                TILE_HEIGHT_PIXELS,
+                x,
+                y,
+                TILE_WIDTH_PIXELS,
+                TILE_HEIGHT_PIXELS);
         } else {
-            Window_FillRectWithColor(window, context->bgColor, x, y, 8, 8);
+            Window_FillRectWithColor(window, context->bgColor, x, y, TILE_WIDTH_PIXELS, TILE_HEIGHT_PIXELS);
         }
 
-        x += 8;
+        x += TILE_WIDTH_PIXELS;
     }
 }
 
