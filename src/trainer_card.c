@@ -10,6 +10,7 @@
 
 #include "field/field_system.h"
 
+#include "badges.h"
 #include "charcode_util.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -29,27 +30,31 @@
 #include "unk_0205B33C.h"
 #include "vars_flags.h"
 
+#define TRAINER_CARD_MAX_TIMES_LINKED        999999
+#define TRAINER_CARD_MAX_LINK_BATTLE_RESULTS 9999
+#define TRAINER_CARD_MAX_LINK_TRADES         99999
+
 typedef struct {
     int unk_00;
     TrainerCard *unk_04;
 } UnkStruct_02072204;
 
-static void sub_02072014(u8 param0, u8 gameVersion, u8 stars, u8 param3, u8 regionCode, TrainerCard *trainerCard);
+static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 stars, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard);
 static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard);
 static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *hofDebutDate, const RTCTime *hofDebutTime, u8 param5, TrainerCard *trainerCard);
-static void TrainerCard_SetLinkDataAndSignature(u32 param0, u32 param1, u32 param2, u32 param3, const u8 *param4, TrainerCard *trainerCard);
-static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *trainerCard);
+static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleWins, u32 linkBattleLosses, u32 linkTrades, const u8 *signature, TrainerCard *trainerCard);
+static void TrainerCard_SetBadgeData(TrainerInfo *trainerInfo, FieldSystem *fieldSystem, TrainerCard *trainerCard);
 static BOOL sub_02072230(FieldTask *param0);
 
-void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *fieldSystem, TrainerCard *trainerCard)
+void TrainerCard_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersToHide, u8 trainerAppearance, FieldSystem *fieldSystem, TrainerCard *trainerCard)
 {
     SaveData *saveData = FieldSystem_GetSaveData(fieldSystem);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
     GameRecords *gameRecords = SaveData_GetGameRecords(saveData);
 
-    trainerCard->unk_05 = param3;
+    trainerCard->trainerAppearance = trainerAppearance;
 
-    sub_02072014(param0, GAME_VERSION, TrainerCard_CalculateStars(fieldSystem), param2, TrainerInfo_RegionCode(trainerInfo), trainerCard);
+    TrainerCard_SetFields(badgesInteractable, GAME_VERSION, TrainerCard_CalculateStars(fieldSystem), gymLeadersToHide, TrainerInfo_RegionCode(trainerInfo), trainerCard);
 
     TrainerCard_SetTrainerInfo(TrainerInfo_ID_LowHalf(trainerInfo), TrainerInfo_Gender(trainerInfo), TrainerInfo_Name(trainerInfo), TrainerInfo_Money(trainerInfo), Pokedex_CountSeen(SaveData_GetPokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(gameRecords), trainerCard);
 
@@ -60,7 +65,7 @@ void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *f
 
     FieldSystem_GetStartTimestamp(fieldSystem, &adventureStartedDate, &firstCompletionTime);
     FieldSystem_GetFirstCompletionTimestamp(fieldSystem, &firstCompletionDate, &firstCompletionTime);
-    TrainerCard_SetDates(SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData)), playTime, &adventureStartedDate, &firstCompletionDate, &firstCompletionTime, param1, trainerCard);
+    TrainerCard_SetDates(SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData)), playTime, &adventureStartedDate, &firstCompletionDate, &firstCompletionTime, liveTimeDisplay, trainerCard);
 
     TrainerCardSaveData *tcSaveData = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
     u32 timesLinked = GameRecords_GetRecordValue(gameRecords, RECORD_UNK_091) + GameRecords_GetRecordValue(gameRecords, RECORD_LOCAL_LINK_TRADES) + GameRecords_GetRecordValue(gameRecords, RECORD_WIFI_TRADES) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_020) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_025) + GameRecords_GetRecordValue(gameRecords, RECORD_UNK_032);
@@ -70,13 +75,13 @@ void TrainerCard_Init(u8 param0, u8 param1, u8 param2, u8 param3, FieldSystem *f
 
     TrainerCard_SetLinkDataAndSignature(timesLinked, linkBattleWins, linkBattleLosses, linkTrades, TrainerCardSaveData_GetSignature(tcSaveData), trainerCard);
 
-    sub_0207216C(trainerInfo, fieldSystem, trainerCard);
+    TrainerCard_SetBadgeData(trainerInfo, fieldSystem, trainerCard);
 
     int i, checksum = 0;
-    u8 *v15 = (u8 *)trainerCard;
+    u8 *buffer = (u8 *)trainerCard;
 
     for (i = 0; i < sizeof(TrainerCard); i++) {
-        checksum ^= v15[i];
+        checksum ^= buffer[i];
     }
 
     trainerCard->checksum = checksum;
@@ -131,13 +136,13 @@ u8 TrainerCard_CalculateStars(FieldSystem *fieldSystem)
     return trainerCardStars;
 }
 
-static void sub_02072014(u8 param0, u8 gameVersion, u8 stars, u8 param3, u8 regionCode, TrainerCard *trainerCard)
+static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 stars, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard)
 {
-    trainerCard->unk_04_0 = param0;
+    trainerCard->badgesInteractable = badgesInteractable;
     trainerCard->gameVersion = gameVersion;
     trainerCard->stars = stars;
     trainerCard->regionCode = regionCode;
-    trainerCard->unk_02 = param3;
+    trainerCard->gymLeadersToHide_Unused = gymLeadersToHide;
 }
 
 static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard)
@@ -153,7 +158,7 @@ static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 m
     trainerCard->score = score;
 }
 
-static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *firstCompletionDate, const RTCTime *firstCompletionTime, const u8 param5, TrainerCard *trainerCard)
+static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *firstCompletionDate, const RTCTime *firstCompletionTime, const u8 liveTimeDisplay, TrainerCard *trainerCard)
 {
     trainerCard->playTimeHours = PlayTime_GetHours(playTime);
     trainerCard->playTimeMinutes = PlayTime_GetMinutes(playTime);
@@ -175,9 +180,9 @@ static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, con
         trainerCard->hofDebutMinute = 0;
     }
 
-    trainerCard->unk_04_1 = param5;
+    trainerCard->liveTimeDisplay = liveTimeDisplay;
 
-    if (param5) {
+    if (liveTimeDisplay) {
         trainerCard->playTime = playTime;
     } else {
         trainerCard->playTime = NULL;
@@ -188,55 +193,55 @@ static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleW
 {
     trainerCard->timesLinked = timesLinked;
 
-    if (trainerCard->timesLinked > 999999) {
-        trainerCard->timesLinked = 999999;
+    if (trainerCard->timesLinked > TRAINER_CARD_MAX_TIMES_LINKED) {
+        trainerCard->timesLinked = TRAINER_CARD_MAX_TIMES_LINKED;
     }
 
     trainerCard->linkBattleWins = linkBattleWins;
     trainerCard->linkBattleLosses = linkBattleLosses;
 
-    if (trainerCard->linkBattleWins > 9999) {
-        trainerCard->linkBattleWins = 9999;
+    if (trainerCard->linkBattleWins > TRAINER_CARD_MAX_LINK_BATTLE_RESULTS) {
+        trainerCard->linkBattleWins = TRAINER_CARD_MAX_LINK_BATTLE_RESULTS;
     }
 
-    if (trainerCard->linkBattleLosses > 9999) {
-        trainerCard->linkBattleLosses = 9999;
+    if (trainerCard->linkBattleLosses > TRAINER_CARD_MAX_LINK_BATTLE_RESULTS) {
+        trainerCard->linkBattleLosses = TRAINER_CARD_MAX_LINK_BATTLE_RESULTS;
     }
 
     trainerCard->linkTrades = linkTrades;
 
-    if (trainerCard->linkTrades > 99999) {
-        trainerCard->linkTrades = 99999;
+    if (trainerCard->linkTrades > TRAINER_CARD_MAX_LINK_TRADES) {
+        trainerCard->linkTrades = TRAINER_CARD_MAX_LINK_TRADES;
     }
 
-    MI_CpuCopy8(signature, trainerCard->signature, 24 * 8 * 8);
+    MI_CpuCopy8(signature, trainerCard->signature, SIGNATURE_WIDTH * SIGNATURE_HEIGHT * 8);
 }
 
-static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *trainerCard)
+static void TrainerCard_SetBadgeData(TrainerInfo *trainerInfo, FieldSystem *fieldSystem, TrainerCard *trainerCard)
 {
-    u8 v0;
-    TrainerCardSaveData *v1 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
-    TrainerCardBadge *v2 = TrainerCardSaveData_GetTrainerCardBadges(v1);
+    u8 badgeID;
+    TrainerCardSaveData *tcSaveData = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
+    TrainerCardSaveDataBadge *badges = TrainerCardSaveData_GetTrainerCardSaveDataBadges(tcSaveData);
 
-    for (v0 = 0; v0 < 8; v0++) {
-        if (TrainerInfo_HasBadge(param0, v0)) {
-            trainerCard->unk_48[v0].unk_00_0 = 1;
+    for (badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
+        if (TrainerInfo_HasBadge(trainerInfo, badgeID)) {
+            trainerCard->badges[badgeID].obtained = TRUE;
         } else {
-            trainerCard->unk_48[v0].unk_00_0 = 0;
+            trainerCard->badges[badgeID].obtained = FALSE;
         }
 
-        trainerCard->unk_48[v0].unk_00_1 = TrainerCardBadge_GetCleanliness(v0, v2);
+        trainerCard->badges[badgeID].polish = TrainerCardSaveDataBadge_GetPolish(badgeID, badges);
     }
 }
 
-void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *trainerCard)
+void TrainerCard_SaveBadgePolish(FieldSystem *fieldSystem, const TrainerCard *trainerCard)
 {
-    u8 v0;
-    TrainerCardSaveData *v1 = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
-    TrainerCardBadge *v2 = TrainerCardSaveData_GetTrainerCardBadges(v1);
+    u8 badgeID;
+    TrainerCardSaveData *tcSaveData = SaveData_GetTrainerCardSaveData(fieldSystem->saveData);
+    TrainerCardSaveDataBadge *badges = TrainerCardSaveData_GetTrainerCardSaveDataBadges(tcSaveData);
 
-    for (v0 = 0; v0 < 8; v0++) {
-        TrainerCardBadge_SetCleanliness(v0, trainerCard->unk_48[v0].unk_00_1, v2);
+    for (badgeID = 0; badgeID < MAX_BADGES; badgeID++) {
+        TrainerCardSaveDataBadge_SetPolish(badgeID, trainerCard->badges[badgeID].polish, badges);
     }
 }
 
@@ -265,7 +270,7 @@ static BOOL sub_02072230(FieldTask *param0)
         }
         break;
     case 10:
-        sub_0203E09C(fieldSystem, v1->unk_04);
+        FieldSystem_OpenTrainerCardScreen(fieldSystem, v1->unk_04);
         v1->unk_00 = 11;
         break;
     case 11:

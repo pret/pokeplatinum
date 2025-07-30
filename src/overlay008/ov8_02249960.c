@@ -2264,12 +2264,16 @@ static const u32 Unk_ov8_0224C700[2] = {
 };
 
 static const VecFx32 Unk_ov8_0224C7A0[2] = {
-    { ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+    {
+        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
         FX32_ONE * 12,
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1) },
-    { ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
-        (FX32_ONE * 13),
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1) }
+        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+    },
+    {
+        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+        FX32_ONE * 13,
+        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+    }
 };
 
 static const u16 Unk_ov8_0224C7B8[12] = {
