@@ -12,6 +12,7 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
+#include "battle_script_battlers.h"
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
@@ -48,23 +49,48 @@ enum ShakeState {
 #define SHAKE_VAR_AMOUNT   3
 #define SHAKE_VAR_TARGETS  4
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    u16 unk_08;
-    s16 unk_0A;
-    s16 unk_0C;
-    s16 unk_0E;
-    s16 unk_10;
-    u16 unk_12;
-    u16 unk_14;
-    u16 unk_16;
-    u16 unk_18;
-    BattleAnimScriptFuncCommon unk_1C;
-    SpriteShakeInfo unk_38;
-    BattleAnimSpriteInfo unk_44[4];
-    XYTransformContext unk_94;
-} UnkStruct_ov12_02226D38;
+// -------------------------------------------------------------------
+// Scroll Custom BG
+// -------------------------------------------------------------------
+typedef struct ScrollCustomBgContext {
+    BOOL reverse;
+    BOOL scrollFinished;
+    u16 targetBgAlpha;
+    s16 x;
+    s16 y;
+    s16 stepX;
+    s16 stepY;
+    u16 slowDownTime;
+    u16 timer;
+    u16 bgAlpha;
+    u16 otherAlpha;
+    BattleAnimScriptFuncCommon common;
+    SpriteShakeInfo unused0;
+    BattleAnimSpriteInfo unused1[MAX_BATTLERS];
+    XYTransformContext unused2;
+} ScrollCustomBgContext;
+
+enum ScrollCustomBgState {
+    SCROLL_CUSTOM_BG_STATE_INIT = 0,
+    SCROLL_CUSTOM_BG_STATE_FADE_IN,
+    SCROLL_CUSTOM_BG_STATE_WAIT,
+    SCROLL_CUSTOM_BG_STATE_FADE_OUT,
+};
+
+#define SCROLL_CUSTOM_BG_ALPHA_STEP          2
+#define SCROLL_CUSTOM_BG_OTHER_START_ALPHA   31
+#define SCROLL_CUSTOM_BG_OTHER_TARGET_ALPHA  7
+#define SCROLL_CUSTOM_BG_MAX_Y               512
+#define SCROLL_CUSTOM_BG_MIN_Y               (-412)
+#define SCROLL_CUSTOM_BG_START_Y_OFFSET      ((128 / 3) * 2)
+#define SCROLL_CUSTOM_BG_VAR_BG_ID           0
+#define SCROLL_CUSTOM_BG_VAR_START_X         1
+#define SCROLL_CUSTOM_BG_VAR_START_Y         2
+#define SCROLL_CUSTOM_BG_VAR_STEP_X          3
+#define SCROLL_CUSTOM_BG_VAR_STEP_Y          4
+#define SCROLL_CUSTOM_BG_VAR_REVERSE         5
+#define SCROLL_CUSTOM_BG_VAR_TARGET_BG_ALPHA 6
+#define SCROLL_CUSTOM_BG_VAR_SLOW_DOWN_TIME  7
 
 typedef struct RotateMonContext {
     u8 state;
@@ -606,162 +632,184 @@ void BattleAnimScriptFunc_Shake(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Shake, ctx);
 }
 
-static void ov12_02226D38(SysTask *param0, void *param1)
+static void BattleAnimTask_ScrollCustomBg(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02226D38 *v0 = (UnkStruct_ov12_02226D38 *)param1;
+    ScrollCustomBgContext *ctx = param;
 
-    switch (v0->unk_1C.state) {
-    case 0:
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3, v0->unk_16, v0->unk_18);
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-        v0->unk_1C.state++;
-    case 1: {
-        int v1 = 0;
+    switch (ctx->common.state) {
+    case SCROLL_CUSTOM_BG_STATE_INIT:
+        G2_SetBlendAlpha(
+            GX_BLEND_PLANEMASK_BG2,
+            GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3,
+            ctx->bgAlpha,
+            ctx->otherAlpha);
+        Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
+        ctx->common.state++;
+    case SCROLL_CUSTOM_BG_STATE_FADE_IN: {
+        int completed = 0;
 
-        if (v0->unk_16 < v0->unk_08 - 2) {
-            v0->unk_16 += 2;
+        if (ctx->bgAlpha < ctx->targetBgAlpha - SCROLL_CUSTOM_BG_ALPHA_STEP) {
+            ctx->bgAlpha += SCROLL_CUSTOM_BG_ALPHA_STEP;
         } else {
-            v1++;
+            completed++;
         }
 
-        if (v0->unk_18 > 7 + 2) {
-            v0->unk_18 -= 2;
+        if (ctx->otherAlpha > SCROLL_CUSTOM_BG_OTHER_TARGET_ALPHA + SCROLL_CUSTOM_BG_ALPHA_STEP) {
+            ctx->otherAlpha -= SCROLL_CUSTOM_BG_ALPHA_STEP;
         } else {
-            v1++;
+            completed++;
         }
 
-        if (v1 == 2) {
-            v0->unk_16 = v0->unk_08;
-            v0->unk_18 = 7;
-            v0->unk_1C.state++;
+        if (completed == 2) {
+            ctx->bgAlpha = ctx->targetBgAlpha;
+            ctx->otherAlpha = SCROLL_CUSTOM_BG_OTHER_TARGET_ALPHA;
+            ctx->common.state++;
         }
 
-        G2_ChangeBlendAlpha(v0->unk_16, v0->unk_18);
+        G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
     } break;
-    case 2:
-        if (v0->unk_04) {
-            v0->unk_1C.state++;
+    case SCROLL_CUSTOM_BG_STATE_WAIT:
+        if (ctx->scrollFinished) {
+            ctx->common.state++;
         }
         break;
-    case 3: {
-        int v2 = 0;
+    case SCROLL_CUSTOM_BG_STATE_FADE_OUT: {
+        int completed = 0;
 
-        if (v0->unk_16 > 2) {
-            v0->unk_16 -= 2;
+        if (ctx->bgAlpha > SCROLL_CUSTOM_BG_ALPHA_STEP) {
+            ctx->bgAlpha -= SCROLL_CUSTOM_BG_ALPHA_STEP;
         } else {
-            v2++;
+            completed++;
         }
 
-        if (v0->unk_18 < 31 - 2) {
-            v0->unk_18 += 2;
+        if (ctx->otherAlpha < SCROLL_CUSTOM_BG_OTHER_START_ALPHA - SCROLL_CUSTOM_BG_ALPHA_STEP) {
+            ctx->otherAlpha += SCROLL_CUSTOM_BG_ALPHA_STEP;
         } else {
-            v2++;
+            completed++;
         }
 
-        if (v2 == 2) {
-            v0->unk_16 = 0;
-            v0->unk_18 = 31;
-            v0->unk_1C.state++;
+        if (completed == 2) {
+            ctx->bgAlpha = 0;
+            ctx->otherAlpha = SCROLL_CUSTOM_BG_OTHER_START_ALPHA;
+            ctx->common.state++;
         }
 
-        G2_ChangeBlendAlpha(v0->unk_16, v0->unk_18);
+        G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
     } break;
     default:
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-        BattleAnimSystem_EndAnimTask(v0->unk_1C.battleAnimSystem, param0);
-        Heap_Free(v0);
+        Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         return;
     }
 
-    if (((v0->unk_10 > 0) && (v0->unk_0C >= 512)) || ((v0->unk_10 < 0) && (v0->unk_0C <= -412))) {
-        v0->unk_04 = 1;
+    if ((ctx->stepY > 0 && ctx->y >= SCROLL_CUSTOM_BG_MAX_Y) || (ctx->stepY < 0 && ctx->y <= SCROLL_CUSTOM_BG_MIN_Y)) {
+        ctx->scrollFinished = TRUE;
     }
 
-    v0->unk_0A += v0->unk_0E;
-    v0->unk_0C += v0->unk_10;
+    ctx->x += ctx->stepX;
+    ctx->y += ctx->stepY;
 
-    if (v0->unk_12 < v0->unk_14) {
-        if (v0->unk_10 < 0) {
-            v0->unk_10++;
+    if (ctx->slowDownTime < ctx->timer) {
+        if (ctx->stepY < 0) {
+            ctx->stepY++;
         } else {
-            v0->unk_10 = 0;
+            ctx->stepY = 0;
         }
 
-        if (v0->unk_0E < 0) {
-            v0->unk_0E++;
+        if (ctx->stepX < 0) {
+            ctx->stepX++;
         } else {
-            v0->unk_0E = 0;
+            ctx->stepX = 0;
         }
 
-        v0->unk_14 = 0;
+        ctx->timer = 0;
     } else {
-        v0->unk_14++;
+        ctx->timer++;
     }
 
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 0, v0->unk_0A);
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 3, v0->unk_0C);
+    Bg_SetOffset(ctx->common.bgConfig, 2, 0, ctx->x);
+    Bg_SetOffset(ctx->common.bgConfig, 2, 3, ctx->y);
 }
 
-void ov12_02226EB0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_ScrollCustomBg(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02226D38 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02226D38));
-    int v1;
+    ScrollCustomBgContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ScrollCustomBgContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_1C);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_0A = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_0C = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_0E = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_10 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v0->unk_00 = BattleAnimSystem_GetScriptVar(param0, 5);
-    v0->unk_08 = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_12 = BattleAnimSystem_GetScriptVar(param0, 7);
-    v0->unk_14 = 0;
+    ctx->x = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_START_X);
+    ctx->y = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_START_Y);
+    ctx->stepX = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_STEP_X);
+    ctx->stepY = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_STEP_Y);
+    ctx->reverse = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_REVERSE);
+    ctx->targetBgAlpha = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_TARGET_BG_ALPHA);
+    ctx->slowDownTime = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_SLOW_DOWN_TIME);
+    ctx->timer = 0;
 
-    if ((v0->unk_00 != 0) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
-        v0->unk_0A *= -1;
-        v0->unk_0C *= -1;
-        v0->unk_0E *= -1;
-        v0->unk_10 *= -1;
-        v0->unk_0C -= ((128 / 3) * 2);
+    if (ctx->reverse && BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_ENEMY) {
+        ctx->x *= -1;
+        ctx->y *= -1;
+        ctx->stepX *= -1;
+        ctx->stepY *= -1;
+        ctx->y -= SCROLL_CUSTOM_BG_START_Y_OFFSET;
     } else {
-        v0->unk_0C += ((128 / 3) * 2);
+        ctx->y += SCROLL_CUSTOM_BG_START_Y_OFFSET;
     }
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0->unk_0E *= -1;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        ctx->stepX *= -1;
     }
 
-    v0->unk_16 = 0;
-    v0->unk_18 = 31;
-    v0->unk_04 = 0;
+    ctx->bgAlpha = 0;
+    ctx->otherAlpha = SCROLL_CUSTOM_BG_OTHER_START_ALPHA;
+    ctx->scrollFinished = FALSE;
 
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
 
-    {
-        int v2 = BattleAnimSystem_GetScriptVar(param0, 0);
+    int bgID = BattleAnimSystem_GetScriptVar(system, SCROLL_CUSTOM_BG_VAR_BG_ID);
 
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, HEAP_ID_SYSTEM), v0->unk_1C.bgConfig, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
-        PaletteData_LoadBufferFromFileStart(v0->unk_1C.paletteData, 7, BattleAnimSystem_GetBgNarcMemberIndex(v2, 1), BattleAnimSystem_GetHeapID(param0), 0, 0x20, 9 * 16);
-        Bg_ClearTilemap(v0->unk_1C.bgConfig, 2);
+    Graphics_LoadTilesToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCGR),
+        ctx->common.bgConfig,
+        BATTLE_BG_BASE,
+        0,
+        0,
+        TRUE,
+        BattleAnimSystem_GetHeapID(system));
+    PaletteData_LoadBufferFromFileStart(
+        ctx->common.paletteData,
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCLR),
+        BattleAnimSystem_GetHeapID(system),
+        PLTTBUF_MAIN_BG,
+        PALETTE_SIZE_BYTES,
+        PLTT_DEST(BATTLE_BG_PALETTE_EFFECT));
+    Bg_ClearTilemap(ctx->common.bgConfig, BATTLE_BG_BASE);
 
-        {
-            int v3 = 2;
+    enum BgNarcMemberType member = BG_NARC_MEMBER_NSCR1;
 
-            if (BattleAnimSystem_IsContest(param0) == 1) {
-                v3 = 4;
-            } else if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
-                v3 = 3;
-            }
-
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, v3), v0->unk_1C.bgConfig, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
-        }
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        member = BG_NARC_MEMBER_NSCR3;
+    } else if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_ENEMY) {
+        member = BG_NARC_MEMBER_NSCR2;
     }
 
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 0, v0->unk_0A);
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 3, v0->unk_0C);
+    Graphics_LoadTilemapToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, member),
+        ctx->common.bgConfig,
+        BATTLE_BG_BASE,
+        0,
+        0,
+        TRUE,
+        BattleAnimSystem_GetHeapID(system));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_1C.battleAnimSystem, ov12_02226D38, v0);
+    Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, ctx->x);
+    Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, ctx->y);
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_ScrollCustomBg, ctx);
 }
 
 static void ov12_02227064(SysTask *param0, void *param1)

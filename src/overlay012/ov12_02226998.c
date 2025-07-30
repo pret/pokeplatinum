@@ -61,7 +61,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_FakeOutCurtain,
     BattleAnimScriptFunc_ScaleBattlerSprite,
     BattleAnimScriptFunc_FakeOut,
-    ov12_02226EB0,
+    BattleAnimScriptFunc_ScrollCustomBg,
     ov12_022271D8,
     ov12_022342C4,
     ov12_022344D0,
