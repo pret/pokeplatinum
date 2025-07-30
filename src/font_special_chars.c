@@ -11,11 +11,9 @@
 
 #include "res/fonts/pl_font.naix.h"
 
-enum FontColorBitField {
-    BIT_BG_COLOR = 0,
-    BIT_FG_COLOR,
-    BIT_SHADOW_COLOR
-};
+#define BG_COLOR_F     (0)
+#define FG_COLOR_F     (1 << 0)
+#define SHADOW_COLOR_F (1 << 1)
 
 static const struct {
     u16 offset;
@@ -44,36 +42,36 @@ FontSpecialCharsContext *FontSpecialChars_Init(u32 fgColor, u32 shadowColor, u32
         for (idx = 0; idx < context->charData->szByte; idx++) {
             // The initial value of each rawData byte is two 4bpp pixels.
             // Each nibble represents one of three color options:
-            // 0b0000 (BIT_BG_COLOR): bgColor
-            // 0b0001 (BIT_FG_COLOR): fgColor
-            // 0b0010 (BIT_SHADOW_COLOR): shadowColor
+            // 0b0000 (BG_COLOR_F): bgColor
+            // 0b0001 (FG_COLOR_F): fgColor
+            // 0b0010 (SHADOW_COLOR_F): shadowColor
             // The corresponding color parameters replace the bit fields.
             switch (rawData[idx]) {
-            case (BIT_BG_COLOR << 4) | (BIT_BG_COLOR):
+            case (BG_COLOR_F << 4) | (BG_COLOR_F):
                 rawData[idx] = (bgColor << 4) | (bgColor);
                 break;
-            case (BIT_BG_COLOR << 4) | (BIT_FG_COLOR):
+            case (BG_COLOR_F << 4) | (FG_COLOR_F):
                 rawData[idx] = (bgColor << 4) | (fgColor);
                 break;
-            case (BIT_BG_COLOR << 4) | (BIT_SHADOW_COLOR):
+            case (BG_COLOR_F << 4) | (SHADOW_COLOR_F):
                 rawData[idx] = (bgColor << 4) | (shadowColor);
                 break;
-            case (BIT_FG_COLOR << 4) | (BIT_BG_COLOR):
+            case (FG_COLOR_F << 4) | (BG_COLOR_F):
                 rawData[idx] = (fgColor << 4) | (bgColor);
                 break;
-            case (BIT_FG_COLOR << 4) | (BIT_FG_COLOR):
+            case (FG_COLOR_F << 4) | (FG_COLOR_F):
                 rawData[idx] = (fgColor << 4) | (fgColor);
                 break;
-            case (BIT_FG_COLOR << 4) | (BIT_SHADOW_COLOR):
+            case (FG_COLOR_F << 4) | (SHADOW_COLOR_F):
                 rawData[idx] = (fgColor << 4) | (shadowColor);
                 break;
-            case (BIT_SHADOW_COLOR << 4) | (BIT_BG_COLOR):
+            case (SHADOW_COLOR_F << 4) | (BG_COLOR_F):
                 rawData[idx] = (shadowColor << 4) | (bgColor);
                 break;
-            case (BIT_SHADOW_COLOR << 4) | (BIT_FG_COLOR):
+            case (SHADOW_COLOR_F << 4) | (FG_COLOR_F):
                 rawData[idx] = (shadowColor << 4) | (fgColor);
                 break;
-            case (BIT_SHADOW_COLOR << 4) | (BIT_SHADOW_COLOR):
+            case (SHADOW_COLOR_F << 4) | (SHADOW_COLOR_F):
                 rawData[idx] = (shadowColor << 4) | (shadowColor);
                 break;
             }
@@ -121,7 +119,7 @@ void FontSpecialChars_DrawPartyScreenHPText(FontSpecialCharsContext *context, s3
         if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
             Window_BlitBitmapRect(
                 window,
-                (u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * 0x20),
+                (u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * TILE_SIZE_4BPP),
                 0,
                 0,
                 TILE_WIDTH_PIXELS,
