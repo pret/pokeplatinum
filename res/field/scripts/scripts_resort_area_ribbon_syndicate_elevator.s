@@ -39,7 +39,7 @@ _0048:
 _008F:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 0x1CE, 0, 18, 2, 1
+    SetExitLocation 0x1CE, 0, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 0, _0164
     SetVar VAR_0x8004, 0
     Call _0105
@@ -49,7 +49,7 @@ _008F:
 _00CA:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 0x1CD, 1, 18, 2, 1
+    SetExitLocation 0x1CD, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 1, _0164
     SetVar VAR_0x8004, 1
     Call _0105

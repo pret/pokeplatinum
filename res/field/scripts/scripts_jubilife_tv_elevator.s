@@ -58,7 +58,7 @@ _007E:
 _00E9:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 11, 2, 18, 2, 1
+    SetExitLocation 11, 2, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 3, _026C
     CallIfGt VAR_UNK_0x40CE, 3, _022D
     CallIfLt VAR_UNK_0x40CE, 3, _0238
@@ -70,7 +70,7 @@ _00E9:
 _013A:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 12, 3, 18, 2, 1
+    SetExitLocation 12, 3, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 2, _026C
     CallIfGt VAR_UNK_0x40CE, 2, _022D
     CallIfLt VAR_UNK_0x40CE, 2, _0238
@@ -82,7 +82,7 @@ _013A:
 _018B:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 13, 4, 18, 2, 1
+    SetExitLocation 13, 4, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 1, _026C
     CallIfGt VAR_UNK_0x40CE, 1, _022D
     CallIfLt VAR_UNK_0x40CE, 1, _0238
@@ -94,7 +94,7 @@ _018B:
 _01DC:
     WaitTime 1, VAR_RESULT
     GetFloorsAbove VAR_UNK_0x40CE
-    ScrCmd_11B 14, 1, 18, 2, 1
+    SetExitLocation 14, 1, 18, 2, 1
     GoToIfEq VAR_UNK_0x40CE, 0, _026C
     CallIfGt VAR_UNK_0x40CE, 0, _022D
     CallIfLt VAR_UNK_0x40CE, 0, _0238

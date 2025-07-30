@@ -436,7 +436,7 @@ static BOOL ScrCmd_Unused_0F4(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0F5(ScriptContext *ctx);
 static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0F7(ScriptContext *ctx);
-static BOOL ScrCmd_11B(ScriptContext *ctx);
+static BOOL ScrCmd_SetExitLocation(ScriptContext *ctx);
 static BOOL ScrCmd_GetFloorsAbove(ScriptContext *ctx);
 static BOOL ScrCmd_ShowCurrentFloor(ScriptContext *ctx);
 static BOOL ScrCmd_GetLocalDexSeenCount(ScriptContext *ctx);
@@ -1053,7 +1053,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_118,
     ScrCmd_CheckPartyPokerus,
     ScrCmd_11A,
-    ScrCmd_11B,
+    ScrCmd_SetExitLocation,
     ScrCmd_GetFloorsAbove,
     ScrCmd_ShowCurrentFloor,
     ScrCmd_GetLocalDexSeenCount,
@@ -4746,7 +4746,7 @@ static BOOL ScrCmd_Unused_0F7(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_11B(ScriptContext *ctx)
+static BOOL ScrCmd_SetExitLocation(ScriptContext *ctx)
 {
     Location location;
 
