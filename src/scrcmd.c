@@ -2635,16 +2635,16 @@ static BOOL ScrCmd_ShowSavingIcon(ScriptContext *ctx)
 {
     Window *window = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW);
 
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVING_ICON);
-    *v0 = Window_AddWaitDial(v1, 1024 - (18 + 12));
+    void **savingIcon = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVING_ICON);
+    *savingIcon = Window_AddWaitDial(window, 1024 - (18 + 12));
 
     return FALSE;
 }
 
 static BOOL ScrCmd_HideSavingIcon(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVING_ICON);
-    DestroyWaitDial(*v0);
+    void **savingIcon = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVING_ICON);
+    DestroyWaitDial(*savingIcon);
 
     return FALSE;
 }
