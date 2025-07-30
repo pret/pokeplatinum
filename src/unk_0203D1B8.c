@@ -34,8 +34,8 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
-#include "applications/naming_screen.h"
 #include "applications/journal_display/journal_controller.h"
+#include "applications/naming_screen.h"
 #include "applications/options_menu.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
@@ -1236,8 +1236,7 @@ void sub_0203DFE8(
     int param3,
     int param4,
     const u16 *param5,
-    u16 *param6
-)
+    u16 *param6)
 {
     Pokemon *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);

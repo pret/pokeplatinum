@@ -416,8 +416,7 @@ void sub_02012C60(
     int height,
     int x,
     int y,
-    char *output
-)
+    char *output)
 {
     int i;
     int dstOffset;

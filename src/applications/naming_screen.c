@@ -1,17 +1,17 @@
-#include "charcode.h"
+#include "applications/naming_screen.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/graphics.h"
 #include "constants/charcode.h"
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "applications/naming_screen.h"
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "charcode.h"
 #include "charcode_util.h"
 #include "font.h"
 #include "game_options.h"
@@ -46,19 +46,18 @@
 #include "unk_0201567C.h"
 #include "vram_transfer.h"
 
-#define NAMING_SCREEN_CONTROL_DAKU 0xD001
-#define NAMING_SCREEN_CONTROL_HANDAKU 0xD002
-#define NAMING_SCREEN_CONTROL_SPACE 0xD003
-#define NAMING_SCREEN_CONTROL_SKIP 0xD004
-#define NAMING_SCREEN_BUTTON_START 0xE001
-#define NAMING_SCREEN_BUTTON_PAGE_UPPER 0xE002
-#define NAMING_SCREEN_BUTTON_PAGE_LOWER 0xE003
-#define NAMING_SCREEN_BUTTON_PAGE_OTHERS 0xE004
-#define NAMING_SCREEN_BUTTON_PAGE_JP_UNUSED 0xE005
+#define NAMING_SCREEN_CONTROL_DAKU            0xD001
+#define NAMING_SCREEN_CONTROL_HANDAKU         0xD002
+#define NAMING_SCREEN_CONTROL_SPACE           0xD003
+#define NAMING_SCREEN_CONTROL_SKIP            0xD004
+#define NAMING_SCREEN_BUTTON_START            0xE001
+#define NAMING_SCREEN_BUTTON_PAGE_UPPER       0xE002
+#define NAMING_SCREEN_BUTTON_PAGE_LOWER       0xE003
+#define NAMING_SCREEN_BUTTON_PAGE_OTHERS      0xE004
+#define NAMING_SCREEN_BUTTON_PAGE_JP_UNUSED   0xE005
 #define NAMING_SCREEN_BUTTON_PAGE_JP_UNUSED_2 0xE006
-#define NAMING_SCREEN_BUTTON_BACK 0xE007
-#define NAMING_SCREEN_BUTTON_OK 0xE008
-
+#define NAMING_SCREEN_BUTTON_BACK             0xE007
+#define NAMING_SCREEN_BUTTON_OK               0xE008
 
 enum NamingScreenAppState {
     NMS_APP_STATE_WAIT_FADE_IN = 0,
@@ -198,8 +197,7 @@ static void NamingScreen_AnimateChangeChars(
     enum BgLayer *bgLayerPtr,
     VecFx32 charsPosition[],
     Sprite **param6,
-    void *rawCharData
-);
+    void *rawCharData);
 static void NamingScreen_InitCursorsAndChars(NamingScreen *param0, ApplicationManager *appMan);
 static void NamingScreen_UpdateCharsPriorities(BgConfig *unused0, enum BgLayer oldBgLayer, VecFx32 unused1[]);
 static void NamingScreen_InitializeCharsPosition(VecFx32 param0[], enum BgLayer freeBgLayer);
@@ -217,8 +215,7 @@ static void NamingScreen_PrintChars(
     int charSpacing,
     int renderDelay,
     TextColor textColor,
-    void *rawCharData
-);
+    void *rawCharData);
 static void NamingScreen_PrintCharOnWindowAndOBJ(Window *param0, const charcode_t *param1, u8 *param2, Strbuf *param3);
 static void sub_02088844(u16 param0[][13], const int param1);
 static void sub_02088754(Window *param0, u16 *param1, int param2, u16 *param3, u8 *param4, Strbuf *param5);
@@ -232,8 +229,7 @@ static void NamingScreen_InitializeCharsGraphics(
     u16 param1,
     int param2,
     TextColor param3,
-    void *rawCharData
-);
+    void *rawCharData);
 static void NamingScreen_MoveCursor(NamingScreen *param0, int param1);
 static void NamingScreen_UpdateSpriteAnimations(int param0[], Sprite **param1, int param2);
 static void sub_020879DC(SysTask *param0, void *param1);
@@ -990,20 +986,17 @@ static BOOL NamingScreen_Init(ApplicationManager *appMan, int *state)
             MESSAGE_LOADER_BANK_HANDLE,
             NARC_INDEX_MSGDATA__PL_MSG,
             TEXT_BANK_NAMING_SCREEN,
-            HEAP_ID_NAMING_SCREEN_APP
-        );
+            HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->genericNamesMsgLoader = MessageLoader_Init(
             MESSAGE_LOADER_NARC_HANDLE,
             NARC_INDEX_MSGDATA__PL_MSG,
             TEXT_BANK_GENERIC_NAMES,
-            HEAP_ID_NAMING_SCREEN_APP
-        );
+            HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->battleStringsMsgLoader = MessageLoader_Init(
             MESSAGE_LOADER_NARC_HANDLE,
             NARC_INDEX_MSGDATA__PL_MSG,
             TEXT_BANK_BATTLE_STRINGS,
-            HEAP_ID_NAMING_SCREEN_APP
-        );
+            HEAP_ID_NAMING_SCREEN_APP);
 
         SetAutorepeat(4, 8);
         NamingScreen_InitGraphicsBanks();
@@ -1024,8 +1017,7 @@ static BOOL NamingScreen_Init(ApplicationManager *appMan, int *state)
             namingScreen->textCursorPos,
             namingScreen->tmpBuf,
             namingScreen->pixelBuf,
-            namingScreen->unk_17C
-        );
+            namingScreen->unk_17C);
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_52, SEQ_NONE, 0);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 16, 1, HEAP_ID_NAMING_SCREEN_APP);
         NamingScreen_ToggleEngineLayers(TRUE);
@@ -1121,8 +1113,7 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
                     COLOR_BLACK,
                     16,
                     1,
-                    HEAP_ID_NAMING_SCREEN_APP
-                );
+                    HEAP_ID_NAMING_SCREEN_APP);
                 *state = NMS_APP_STATE_WAIT_FADE_OUT;
             }
             break;
@@ -1136,8 +1127,7 @@ static BOOL NamingScreen_Main(ApplicationManager *appMan, int *state)
             &namingScreen->freeCharsBgLayer,
             namingScreen->charsPosition,
             namingScreen->miscSprites,
-            namingScreen->charData->pRawData
-        );
+            namingScreen->charData->pRawData);
         NamingScreen_UpdateSpriteAnimations(namingScreen->spritesToUpdate, namingScreen->miscSprites, namingScreen->currentCharsIdx);
         sub_02088514(&namingScreen->unk_38);
         break;
@@ -1393,8 +1383,8 @@ static void NamingScreen_InitBgs(BgConfig *bgConfig)
     {
         GraphicsModes graphicsModes = {
             .displayMode = GX_DISPMODE_GRAPHICS,
-            .mainBgMode  = GX_BGMODE_0,
-            .subBgMode   = GX_BGMODE_0,
+            .mainBgMode = GX_BGMODE_0,
+            .subBgMode = GX_BGMODE_0,
             .bg0As2DOr3D = GX_BG0_AS_2D,
         };
 
@@ -1515,26 +1505,22 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
         namingScreen->bgConfig,
         namingScreen->freeCharsBgLayer,
         BG_OFFSET_UPDATE_SET_X,
-        namingScreen->charsPosition[namingScreen->freeCharsBgLayer].x
-    );
+        namingScreen->charsPosition[namingScreen->freeCharsBgLayer].x);
     Bg_SetOffset(
         namingScreen->bgConfig,
         namingScreen->freeCharsBgLayer,
         BG_OFFSET_UPDATE_SET_Y,
-        namingScreen->charsPosition[namingScreen->freeCharsBgLayer].y
-    );
+        namingScreen->charsPosition[namingScreen->freeCharsBgLayer].y);
     Bg_SetOffset(
         namingScreen->bgConfig,
         ((namingScreen->freeCharsBgLayer) ^ 1),
         BG_OFFSET_UPDATE_SET_X,
-        namingScreen->charsPosition[((namingScreen->freeCharsBgLayer) ^ 1)].x
-    );
+        namingScreen->charsPosition[((namingScreen->freeCharsBgLayer) ^ 1)].x);
     Bg_SetOffset(
         namingScreen->bgConfig,
         ((namingScreen->freeCharsBgLayer) ^ 1),
         BG_OFFSET_UPDATE_SET_Y,
-        namingScreen->charsPosition[((namingScreen->freeCharsBgLayer) ^ 1)].y
-    );
+        namingScreen->charsPosition[((namingScreen->freeCharsBgLayer) ^ 1)].y);
 
     namingScreen->entryBufBak[0] = CHAR_EOS;
 
@@ -1561,8 +1547,7 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
         namingScreen->strTemplate,
         namingScreen->namingScreenMsgLoader,
         Unk_020F2850[namingScreen->type],
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
     namingScreen->unk_17C = MessageUtil_ExpandedStrbuf(namingScreen->strTemplate, namingScreen->namingScreenMsgLoader, 8, HEAP_ID_NAMING_SCREEN_APP);
     namingScreen->unk_184 = MessageLoader_GetNewStrbuf(namingScreen->namingScreenMsgLoader, 7);
     namingScreen->textCursorPos = CharCode_Length(namingScreen->entryBufBak);
@@ -1666,8 +1651,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         0,
         (32 * 8) * 0x20,
         TRUE,
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
         4,
@@ -1676,8 +1660,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         0,
         32 * 24 * 2,
         TRUE,
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
         2,
@@ -1686,8 +1669,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         0,
         32 * 8 * 0x20,
         TRUE,
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
         6,
@@ -1696,8 +1678,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         0,
         32 * 14 * 2,
         TRUE,
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
         7,
@@ -1706,8 +1687,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         0,
         32 * 14 * 2,
         TRUE,
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
     Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, 12 * 32, HEAP_ID_NAMING_SCREEN_APP);
     LoadMessageBoxGraphics(
         namingScreen->bgConfig,
@@ -1715,8 +1695,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         32 * 8,
         10,
         Options_Frame(namingScreen->options),
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
     Font_LoadScreenIndicatorsPalette(PAL_LOAD_SUB_BG, 12 * 32, HEAP_ID_NAMING_SCREEN_APP);
 
     namingScreen->charDataAlloc = Graphics_GetCharDataFromOpenNARC(
@@ -1724,8 +1703,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         16,
         TRUE,
         &namingScreen->charData,
-        HEAP_ID_NAMING_SCREEN_APP
-    );
+        HEAP_ID_NAMING_SCREEN_APP);
 }
 
 void NamingScreen_TransferChars(void)
@@ -1734,8 +1712,8 @@ void NamingScreen_TransferChars(void)
         CharTransferTemplate charTransferTemplate = {
             .maxTasks = 20,
             .sizeMain = 2048,
-            .sizeSub  = 2048,
-            .heapID   = HEAP_ID_NAMING_SCREEN_APP,
+            .sizeSub = 2048,
+            .heapID = HEAP_ID_NAMING_SCREEN_APP,
         };
 
         CharTransfer_Init(&charTransferTemplate);
@@ -1818,8 +1796,7 @@ static void NamingScreen_InitSprites(NamingScreen *namingScreen)
         namingScreen->unk_318[2],
         namingScreen->unk_318[3],
         NULL,
-        NULL
-    );
+        NULL);
     SpriteResourcesHeader_Init(
         &namingScreen->unk_36C,
         1,
@@ -1835,8 +1812,7 @@ static void NamingScreen_InitSprites(NamingScreen *namingScreen)
         namingScreen->unk_318[2],
         namingScreen->unk_318[3],
         NULL,
-        NULL
-    );
+        NULL);
 
     {
         AffineSpriteListTemplate v1;
@@ -1986,8 +1962,7 @@ static void NamingScreen_AnimateChangeChars(
     enum BgLayer *bgLayerPtr,
     VecFx32 charsPosition[],
     Sprite **sprites,
-    void *rawCharData
-)
+    void *rawCharData)
 {
     enum BgLayer bgLayer = *bgLayerPtr;
     enum BgLayer oldBgLayer = bgLayer ^ 1;
@@ -2004,16 +1979,14 @@ static void NamingScreen_AnimateChangeChars(
             0,
             32 * 14 * 2,
             TRUE,
-            HEAP_ID_NAMING_SCREEN_APP
-        );
+            HEAP_ID_NAMING_SCREEN_APP);
         NamingScreen_InitializeCharsPosition(charsPosition, bgLayer);
         NamingScreen_InitializeCharsGraphics(
             &window[bgLayer],
             bgColor,
             currentCharsIdx,
             TEXT_COLOR(14, 15, 0),
-            rawCharData
-        );
+            rawCharData);
         (*statePtr)++;
     } break;
     case CC_STATE_SET_INITIAL_POSITION:
@@ -2032,8 +2005,7 @@ static void NamingScreen_AnimateChangeChars(
                 NamingScreen_WiggleOverlayTask,
                 sizeof(OverlayWiggleParameters),
                 0,
-                HEAP_ID_NAMING_SCREEN_APP
-            );
+                HEAP_ID_NAMING_SCREEN_APP);
             wiggleParam = SysTask_GetParam(wiggleTask);
             wiggleParam->overlaySprite = sprites[NMS_SPRITE_OVERLAY];
             wiggleParam->state = 0;
@@ -2158,8 +2130,7 @@ static void sub_02087FC0(NamingScreen *namingScreen, ApplicationManager *appMan,
             16,
             2,
             0,
-            120 + (2 * 2 * 3)
-        );
+            120 + (2 * 2 * 3));
         Window_FillTilemap(&namingScreen->unk_41C[7], 0);
     }
 }
@@ -2355,8 +2326,7 @@ static void NamingScreen_PrintChars(
     int charSpacing,
     int renderDelay,
     TextColor textColor,
-    void *rawCharData
-)
+    void *rawCharData)
 {
     int i = 0, charWidth, charXOffset;
     u16 charBuffer[2];
@@ -2375,8 +2345,7 @@ static void NamingScreen_PrintChars(
                 baseXOffset + i * charSpacing,
                 yOffset + 2,
                 12,
-                12
-            );
+                12);
         } else {
             if (charCodes[i] == (0xd001 + 3)) {
                 i++;
@@ -2398,8 +2367,7 @@ static void NamingScreen_PrintChars(
                 yOffset,
                 renderDelay,
                 textColor,
-                NULL
-            );
+                NULL);
         }
 
         i++;
@@ -2463,8 +2431,7 @@ static void sub_02088754(
     int srcCharIdx,
     charcode_t *charCodeBuf,
     u8 *pixelBuf,
-    Strbuf *param5
-)
+    Strbuf *param5)
 {
     int i, j;
     const u16 *v2 = NULL;
@@ -2577,8 +2544,7 @@ static int sub_02088898(NamingScreen *param0, u16 param1, int param2)
                 12,
                 TEXT_SPEED_INSTANT,
                 TEXT_COLOR(14, 15, 1),
-                NULL
-            );
+                NULL);
             param0->spritesToUpdate[4]++;
             Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
@@ -2777,8 +2743,7 @@ static void NamingScreen_InitializeCharsGraphics(
     u16 bgColor,
     int currentCharsIdx,
     TextColor textColor,
-    void *rawCharData
-)
+    void *rawCharData)
 {
     int i;
 
@@ -2804,8 +2769,7 @@ static void NamingScreen_InitializeCharsGraphics(
             16,
             TEXT_SPEED_NO_TRANSFER,
             textColor,
-            rawCharData
-        );
+            rawCharData);
     }
 
     Window_CopyToVRAM(window);

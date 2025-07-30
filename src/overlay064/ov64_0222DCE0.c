@@ -12,12 +12,12 @@
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/naming_screen.h"
 #include "overlay063/ov63_0222AE60.h"
 #include "overlay063/struct_ov63_0222AE60_decl.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
 
-#include "applications/naming_screen.h"
 #include "ascii_util.h"
 #include "bag.h"
 #include "bg_window.h"

@@ -8,8 +8,8 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "applications/rowan_intro/main.h"
 #include "applications/naming_screen.h"
+#include "applications/rowan_intro/main.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"

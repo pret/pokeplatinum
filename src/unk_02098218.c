@@ -9,13 +9,13 @@
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0209843C.h"
 
+#include "applications/naming_screen.h"
 #include "field/field_system.h"
 #include "overlay005/daycare.h"
 #include "overlay119/ov119_021D0D80.h"
 #include "overlay119/ov119_021D191C.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
 
-#include "applications/naming_screen.h"
 #include "bg_window.h"
 #include "field_system.h"
 #include "field_task.h"

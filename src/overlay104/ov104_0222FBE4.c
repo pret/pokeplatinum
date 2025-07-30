@@ -7,8 +7,8 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "applications/naming_screen.h"
 
+#include "applications/naming_screen.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"

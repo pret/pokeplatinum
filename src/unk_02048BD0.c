@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "applications/naming_screen.h"
 
 #include "field_script_context.h"

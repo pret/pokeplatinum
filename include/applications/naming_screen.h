@@ -39,8 +39,7 @@ NamingScreenArgs *NamingScreenArgs_Init(
     enum NamingScreenType type,
     int param2,
     int param3,
-    Options *options
-);
+    Options *options);
 void NamingScreenArgs_Free(NamingScreenArgs *param0);
 
 #endif // POKEPLATINUM_KEYBOARD_H
