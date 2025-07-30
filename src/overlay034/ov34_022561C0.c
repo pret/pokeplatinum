@@ -34,7 +34,7 @@ static void ov34_02256294(void *param0);
 static void ov34_0225629C(UnkStruct_ov34_0225621C *param0, u32 param1);
 static BOOL ov34_022562B0(UnkStruct_ov34_0225621C *param0);
 static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0);
-static BOOL DowsingMachine_IfScreenTapped(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *param2);
+static BOOL DowsingMachine_CheckScreenTapped(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *param2);
 static void DowsingMachine_FindNearbyHiddenItems(UnkStruct_ov34_0225621C *param0, int param1, int param2);
 static void DowsingMachine_GetItemScreenPosition(int screenTileX, int screenTileZ, int *screenX, int *screenZ);
 static BOOL ov34_0225650C(UnkStruct_ov34_0225621C *param0);
@@ -153,7 +153,7 @@ static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
 
     switch (param0->unk_01) {
     case 0:
-        if (DowsingMachine_IfScreenTapped(param0, &v0, &v1)) {
+        if (DowsingMachine_CheckScreenTapped(param0, &v0, &v1)) {
             DowsingMachine_FindNearbyHiddenItems(param0, v0, v1);
             PoketchSystem_PlaySoundEffect(1640);
             ov34_02256640(param0->unk_48, 2);
@@ -172,7 +172,7 @@ static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
             break;
         }
 
-        if (DowsingMachine_IfScreenTapped(param0, &v0, &v1)) {
+        if (DowsingMachine_CheckScreenTapped(param0, &v0, &v1)) {
             DowsingMachine_FindNearbyHiddenItems(param0, v0, v1);
             ov34_02256A0C(param0->unk_48);
             param0->unk_01 = 3;
@@ -196,7 +196,7 @@ static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
     return 0;
 }
 
-static BOOL DowsingMachine_IfScreenTapped(UnkStruct_ov34_0225621C *param0, u32 *x, u32 *y)
+static BOOL DowsingMachine_CheckScreenTapped(UnkStruct_ov34_0225621C *param0, u32 *x, u32 *y)
 {
     if (PoketechSystem_IsRunningTask(param0->poketchSys) == 0) {
         if (TouchScreen_GetTapState(x, y)) {
@@ -211,7 +211,7 @@ static BOOL DowsingMachine_IfScreenTapped(UnkStruct_ov34_0225621C *param0, u32 *
 
 static void DowsingMachine_FindNearbyHiddenItems(UnkStruct_ov34_0225621C *param0, int touchX, int touchZ)
 {
-    static const fx32 rangeDistances[] = {
+    static const fx32 sRangeDistances[] = {
         8 << FX32_SHIFT,
         24 << FX32_SHIFT,
         48 << FX32_SHIFT,
@@ -233,7 +233,7 @@ static void DowsingMachine_FindNearbyHiddenItems(UnkStruct_ov34_0225621C *param0
             DowsingMachine_GetItemScreenPosition(hiddenItems[itemIndex].screenTileX, hiddenItems[itemIndex].screenTileZ, &screenX, &screenZ);
             itemDistance = FX_Sqrt(((screenX - touchX) * (screenX - touchX) + (screenZ - touchZ) * (screenZ - touchZ)) << FX32_SHIFT);
 
-            if (itemDistance <= rangeDistances[hiddenItems[itemIndex].range]) {
+            if (itemDistance <= sRangeDistances[hiddenItems[itemIndex].range]) {
                 if (taskData->nearbyItemCount < 8) {
                     taskData->hiddenItemPositions[taskData->nearbyItemCount].screenX = screenX;
                     taskData->hiddenItemPositions[taskData->nearbyItemCount].screenZ = screenZ;
@@ -241,7 +241,7 @@ static void DowsingMachine_FindNearbyHiddenItems(UnkStruct_ov34_0225621C *param0
                     taskData->nearbyItemCount++;
                     taskData->foundItemType = DOWSING_MACHINE_FOUND_NEARBY_ITEMS;
                 }
-            } else if (itemDistance <= rangeDistances[(NELEMS(rangeDistances) - 1)]) {
+            } else if (itemDistance <= sRangeDistances[(NELEMS(sRangeDistances) - 1)]) {
                 if (taskData->foundItemType == 0) {
                     taskData->foundItemType = DOWSING_MACHINE_FOUND_FAR_ITEMS;
                 }
