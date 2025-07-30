@@ -662,7 +662,7 @@ BOOL ShakeContext_Update(XYTransformContext *ctx)
     return FALSE;
 }
 
-BOOL ShakeContext_UpdateAndApply(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite)
+BOOL ShakeContext_UpdateAndApplyToMon(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite)
 {
     if (ShakeContext_Update(ctx)) {
         XYTransformContext_ApplyPosOffsetToMon(ctx, sprite, cx, cy);

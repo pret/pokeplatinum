@@ -188,7 +188,7 @@ BOOL ScaleLerpContext_UpdateAndApplyToMon(XYTransformContext *param0, PokemonSpr
 BOOL ScaleLerpContext_UpdateXYAndApplyToMon(XYTransformContext *param0, PokemonSprite *param1);
 void ShakeContext_Init(XYTransformContext *ctx, s16 extentX, s16 extentY, u32 interval, u32 amount);
 BOOL ShakeContext_Update(XYTransformContext *param0);
-BOOL ShakeContext_UpdateAndApply(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
+BOOL ShakeContext_UpdateAndApplyToMon(XYTransformContext *param0, s16 param1, s16 param2, PokemonSprite *param3);
 void Afterimage_Init(AfterimageContext *ctx, XYTransformContext *transformCtx, XYTransformFunc transformFunc, s16 x, s16 y, u16 delay, u8 count, u8 mode, ManagedSprite *sprite0, ManagedSprite *sprite1, ManagedSprite *sprite2, ManagedSprite *sprite3);
 BOOL Afterimage_Update(AfterimageContext *param0);
 void RevolutionContext_InitOvalRevolutions(XYTransformContext *param0, int param1, int param2);

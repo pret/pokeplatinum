@@ -2088,7 +2088,7 @@ static void BattleAnimTask_FlailDefenderMode(SysTask *task, void *param)
         Point2D pos;
         BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_DEFENDER], &pos);
 
-        if (ShakeContext_UpdateAndApply(&ctx->shake, pos.x, pos.y, ctx->battlerSprites[BATTLER_TYPE_DEFENDER]) == FALSE) {
+        if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, pos.x, pos.y, ctx->battlerSprites[BATTLER_TYPE_DEFENDER]) == FALSE) {
             ctx->common.state++;
         }
     } break;
