@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LEER" ],
@@ -93,6 +94,20 @@
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_FIRE_SPIN",
+            "MOVE_RAGE",
+            "MOVE_PURSUIT",
+            "MOVE_COUNTER",
+            "MOVE_SPITE",
+            "MOVE_REVERSAL",
+            "MOVE_BEAT_UP",
+            "MOVE_WILL_O_WISP",
+            "MOVE_FIRE_FANG",
+            "MOVE_THUNDER_FANG",
+            "MOVE_NASTY_PLOT",
+            "MOVE_PUNISHMENT"
         ]
     },
     "evolutions": [

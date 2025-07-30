@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_HORN_ATTACK" ],
@@ -102,6 +103,20 @@
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_CRUNCH",
+            "MOVE_REVERSAL",
+            "MOVE_ROCK_SLIDE",
+            "MOVE_COUNTER",
+            "MOVE_MAGNITUDE",
+            "MOVE_SWORDS_DANCE",
+            "MOVE_CURSE",
+            "MOVE_CRUSH_CLAW",
+            "MOVE_DRAGON_RUSH",
+            "MOVE_ICE_FANG",
+            "MOVE_FIRE_FANG",
+            "MOVE_THUNDER_FANG"
         ]
     },
     "evolutions": [

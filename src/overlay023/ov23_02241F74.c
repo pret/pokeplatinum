@@ -21,12 +21,11 @@
 #include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
-#include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 #include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
-#include "overlay023/struct_ov23_02253E2C_decl.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -80,11 +79,11 @@ typedef struct {
     u8 unk_104[8];
     u8 unk_10C[8];
     UnkFuncPtr_ov23_022427DC unk_114;
-    UnkStruct_ov23_02253E2C *unk_118;
-    UnkStruct_ov23_02253E2C *unk_11C;
-    UnkStruct_ov23_02253E2C *unk_120;
-    UnkStruct_ov23_02253E2C *unk_124;
-    UnkStruct_ov23_02253E2C *unk_128;
+    UndergroundTextPrinter *commonTextPrinter;
+    UndergroundTextPrinter *captureFlagTextPrinter;
+    UndergroundTextPrinter *miscTextPrinter;
+    UndergroundTextPrinter *decorateBaseTextPrinter;
+    UndergroundTextPrinter *itemNameTextPrinter;
     int unk_12C;
     int unk_130;
     u8 unk_134;
@@ -125,7 +124,7 @@ static CommManUnderground *sCommManUnderground = NULL;
 
 static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fieldSystem)
 {
-    u8 v0 = Options_TextFrameDelay(SaveData_GetOptions(fieldSystem->saveData));
+    u8 renderDelay = Options_TextFrameDelay(SaveData_GetOptions(fieldSystem->saveData));
     int i;
 
     sCommManUnderground = param0;
@@ -137,11 +136,11 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_1C.unk_02 = 0;
     sCommManUnderground->unk_14B = 0;
     sCommManUnderground->unk_147 = 1;
-    sCommManUnderground->unk_118 = ov23_02253D48(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, v0, 500);
-    sCommManUnderground->unk_11C = ov23_02253D48(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
-    sCommManUnderground->unk_120 = ov23_02253D48(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, v0, 1000);
-    sCommManUnderground->unk_124 = ov23_02253D48(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
-    sCommManUnderground->unk_128 = ov23_02253D48(TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
+    sCommManUnderground->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 500);
+    sCommManUnderground->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
+    sCommManUnderground->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 1000);
+    sCommManUnderground->decorateBaseTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
+    sCommManUnderground->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
     Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
@@ -171,49 +170,49 @@ static void ov23_02242108(void)
     sub_02032110(NULL);
     SysTask_Done(sCommManUnderground->unk_14);
 
-    ov23_02253DD8(sCommManUnderground->unk_118);
-    ov23_02253DD8(sCommManUnderground->unk_11C);
-    ov23_02253DD8(sCommManUnderground->unk_120);
-    ov23_02253DD8(sCommManUnderground->unk_124);
-    ov23_02253DD8(sCommManUnderground->unk_128);
+    UndergroundTextPrinter_Free(sCommManUnderground->commonTextPrinter);
+    UndergroundTextPrinter_Free(sCommManUnderground->captureFlagTextPrinter);
+    UndergroundTextPrinter_Free(sCommManUnderground->miscTextPrinter);
+    UndergroundTextPrinter_Free(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_Free(sCommManUnderground->itemNameTextPrinter);
 
     sCommManUnderground->fieldSystem->unk_90 = 0;
     Heap_Free(sCommManUnderground);
     sCommManUnderground = NULL;
 }
 
-UnkStruct_ov23_02253E2C *ov23_0224219C(void)
+UndergroundTextPrinter *CommManUnderground_GetCommonTextPrinter(void)
 {
-    return sCommManUnderground->unk_118;
+    return sCommManUnderground->commonTextPrinter;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421AC(void)
+UndergroundTextPrinter *CommManUnderground_GetCaptureFlagTextPrinter(void)
 {
-    return sCommManUnderground->unk_11C;
+    return sCommManUnderground->captureFlagTextPrinter;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421BC(void)
+UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void)
 {
-    return sCommManUnderground->unk_120;
+    return sCommManUnderground->miscTextPrinter;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421CC(void)
+UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void)
 {
-    return sCommManUnderground->unk_124;
+    return sCommManUnderground->decorateBaseTextPrinter;
 }
 
-UnkStruct_ov23_02253E2C *ov23_022421DC(void)
+UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void)
 {
-    return sCommManUnderground->unk_128;
+    return sCommManUnderground->itemNameTextPrinter;
 }
 
 void ov23_022421EC(void)
 {
-    ov23_02254210(sCommManUnderground->unk_118);
-    ov23_02254210(sCommManUnderground->unk_11C);
-    ov23_02254210(sCommManUnderground->unk_120);
-    ov23_02254210(sCommManUnderground->unk_124);
-    ov23_02254210(sCommManUnderground->unk_128);
+    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->commonTextPrinter);
+    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->captureFlagTextPrinter);
+    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->miscTextPrinter);
+    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->itemNameTextPrinter);
 }
 
 BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3)
@@ -227,7 +226,7 @@ BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf 
 
         StringTemplate_SetPlayerName(v0, 0, param0);
         StringTemplate_SetPlayerName(v0, 1, param1);
-        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), param2, v1);
         StringTemplate_Format(v0, param3, v1);
         Strbuf_Free(v1);
         StringTemplate_Free(v0);
@@ -248,7 +247,7 @@ BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
         v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD1);
 
         StringTemplate_SetPlayerName(v0, param1, param0);
-        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), param2, v1);
         StringTemplate_Format(v0, param3, v1);
         Strbuf_Free(v1);
         StringTemplate_Free(v0);
@@ -1056,7 +1055,7 @@ void UndergroundMan_SetReturnLog(int param0)
             v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD2);
 
             StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
-            MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);
+            MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), 115, v1);
             StringTemplate_Format(v0, sCommManUnderground->unk_DC[param0], v1);
             Strbuf_Free(v1);
             StringTemplate_Free(v0);
@@ -1172,12 +1171,12 @@ BOOL ov23_0224321C(void)
     }
 
     ov23_022421EC();
-    ov23_02254044(sCommManUnderground->unk_118);
-    ov23_02254044(sCommManUnderground->unk_11C);
-    ov23_02254044(sCommManUnderground->unk_120);
-    ov23_02254044(sCommManUnderground->unk_124);
-    ov23_02254044(sCommManUnderground->unk_128);
-    ov23_02254044(sCommManUnderground->unk_118);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->commonTextPrinter);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->captureFlagTextPrinter);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->miscTextPrinter);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->itemNameTextPrinter);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->commonTextPrinter);
 
     return v0;
 }
@@ -1218,11 +1217,11 @@ BOOL ov23_02243298(int param0)
 
 static void ov23_02243310(SysTask *param0, void *param1)
 {
-    ov23_02254250(sCommManUnderground->unk_118);
-    ov23_02254250(sCommManUnderground->unk_11C);
-    ov23_02254250(sCommManUnderground->unk_120);
-    ov23_02254250(sCommManUnderground->unk_124);
-    ov23_02254250(sCommManUnderground->unk_128);
+    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->commonTextPrinter);
+    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->captureFlagTextPrinter);
+    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->miscTextPrinter);
+    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->itemNameTextPrinter);
 }
 
 void ov23_02243360(void)

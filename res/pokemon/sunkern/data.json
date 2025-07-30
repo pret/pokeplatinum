@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ABSORB" ],
@@ -84,6 +85,16 @@
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_GRASS_WHISTLE",
+            "MOVE_ENCORE",
+            "MOVE_LEECH_SEED",
+            "MOVE_NATURE_POWER",
+            "MOVE_CURSE",
+            "MOVE_HELPING_HAND",
+            "MOVE_INGRAIN",
+            "MOVE_SWEET_SCENT"
         ]
     },
     "evolutions": [

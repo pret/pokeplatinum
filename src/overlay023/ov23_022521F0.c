@@ -10,10 +10,10 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248C08.h"
 #include "overlay023/ov23_0224F294.h"
-#include "overlay023/ov23_02253D40.h"
 #include "overlay023/ov23_0225426C.h"
 #include "overlay023/ov23_0225429C.h"
 #include "overlay023/struct_ov23_02250CD4.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
 #include "comm_player_manager.h"
@@ -225,23 +225,23 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
         if (param0->unk_2AC == 1) {
             v3 = 13;
             ov23_022521F0(param0, param0->unk_288);
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), v3, 0);
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), v3 + 1, 1);
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), v3 + 2, 0xfffffffe);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3, 0);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 1, 1);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 2, 0xfffffffe);
         } else if (param0->unk_2AC == 0) {
             v3 = 16;
             ov23_022522F0(param0, param0->unk_288);
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), v3, 0);
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), v3 + 1, 1);
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), v3 + 2, 0xfffffffe);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3, 0);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 1, 1);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), v3 + 2, 0xfffffffe);
         } else {
             v3 = 28;
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), 28, 0);
-            StringList_AddFromMessageBank(param0->unk_40, ov23_02253E3C(ov23_022421BC()), 22, 0xfffffffe);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 28, 0);
+            StringList_AddFromMessageBank(param0->unk_40, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 22, 0xfffffffe);
         }
     }
 
-    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
+    MI_CpuCopy8(UndergroundTextPrinter_GetListMenuTemplate(), &v0, sizeof(ListMenuTemplate));
 
     v0.choices = param0->unk_40;
     v0.window = &param0->unk_10;
@@ -267,13 +267,13 @@ static void ov23_0225265C(ListMenu *param0, u32 param1, u8 param2)
     u32 v1 = param1;
 
     Window_FillTilemap(&v0->unk_20, 15);
-    MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 23 + v0->unk_2AB, v0->unk_68);
+    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v0->unk_2AB, v0->unk_68);
     Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->unk_68, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param1 != 0xfffffffe) {
         StringTemplate_SetUndergroundItemName(v0->unk_70, 2, v0->unk_279[v1]);
         StringTemplate_SetNumber(v0->unk_70, 6, v0->unk_27E[v1], 2, 1, 1);
-        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v0->unk_68);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v0->unk_68);
         StringTemplate_Format(v0->unk_70, v0->unk_6C, v0->unk_68);
         Text_AddPrinterWithParams(&v0->unk_20, FONT_SYSTEM, v0->unk_6C, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
@@ -347,7 +347,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
         }
     }
 
-    MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 23 + v1->unk_2AB, v1->unk_68);
+    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 23 + v1->unk_2AB, v1->unk_68);
     Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->unk_68, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (param1 == 0xfffffffe) {
@@ -355,7 +355,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
     } else if (v7 != 0) {
         StringTemplate_SetUndergroundItemName(v1->unk_70, 2, v7);
         StringTemplate_SetNumber(v1->unk_70, 6, v8, 2, 1, 1);
-        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 25, v1->unk_68);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 25, v1->unk_68);
         StringTemplate_Format(v1->unk_70, v1->unk_6C, v1->unk_68);
         Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->unk_6C, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
 
@@ -364,7 +364,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
     } else {
         v1->unk_279[0] = v7;
 
-        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), 26, v1->unk_68);
+        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), 26, v1->unk_68);
         Text_AddPrinterWithParams(&v1->unk_20, FONT_SYSTEM, v1->unk_68, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
@@ -407,13 +407,13 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
 
         if (param0->unk_2AC == 1) {
             v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAP_NAMES, HEAP_ID_FIELD1);
-            ov23_02253DFC(ov23_022421DC(), 630, 0);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAP_NAMES, MESSAGE_LOADER_BANK_HANDLE);
         } else if (param0->unk_2AC == 0) {
             v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
-            ov23_02253DFC(ov23_022421DC(), 626, 0);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MESSAGE_LOADER_BANK_HANDLE);
         } else {
             v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEM_NAMES, HEAP_ID_FIELD1);
-            ov23_02253DFC(ov23_022421DC(), 628, 0);
+            UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEM_NAMES, MESSAGE_LOADER_BANK_HANDLE);
         }
 
         for (v3 = 0; v3 < v1 - 1; v3++) {
@@ -424,7 +424,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
         MessageLoader_Free(v2);
     }
 
-    MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(ListMenuTemplate));
+    MI_CpuCopy8(UndergroundTextPrinter_GetListMenuTemplate(), &v0, sizeof(ListMenuTemplate));
 
     v0.choices = param0->unk_40;
     v0.window = &param0->unk_10;
@@ -517,30 +517,30 @@ void *ov23_02252C98(int param0, FieldSystem *fieldSystem, int param2)
 
 int ov23_02252C9C(int param0)
 {
-    ov23_02253DFC(ov23_022421BC(), 636, 1);
-    ov23_02254068(ov23_022421BC(), CommInfo_TrainerInfo(CommSys_CurNetId()));
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_NPCS, MESSAGE_LOADER_NARC_HANDLE);
+    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetMiscTextPrinter(), CommInfo_TrainerInfo(CommSys_CurNetId()));
 
-    return ov23_02253F40(ov23_022421BC(), param0, 0, NULL);
+    return UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), param0, FALSE, NULL);
 }
 
 void ov23_02252CD4(void)
 {
-    ov23_02254044(ov23_022421BC());
+    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
 }
 
 void ov23_02252CE0(int param0, int param1)
 {
-    ov23_022541A0(ov23_022421BC(), param0, param1);
+    UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetMiscTextPrinter(), param0, param1);
 }
 
 void ov23_02252CF4(int param0, int param1)
 {
-    ov23_022541B4(ov23_022421BC(), param0, param1);
+    UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(CommManUnderground_GetMiscTextPrinter(), param0, param1);
 }
 
 void ov23_02252D08(int param0, int param1)
 {
-    ov23_022541C8(ov23_022421BC(), param0, param1);
+    UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(CommManUnderground_GetMiscTextPrinter(), param0, param1);
 }
 
 static void ov23_02252D1C(UnkStruct_ov23_02250CD4 *param0)
@@ -562,7 +562,7 @@ void ov23_02252D74(UnkStruct_ov23_02250CD4 *param0, int param1)
     Window_FillTilemap(&param0->unk_30, 15);
     Window_CopyToVRAM(&param0->unk_30);
 
-    MessageLoader_GetStrbuf(ov23_02253E3C(ov23_022421BC()), param1, param0->unk_68);
+    MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), param1, param0->unk_68);
     Text_AddPrinterWithParams(&param0->unk_30, FONT_SYSTEM, param0->unk_68, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_30);
 }
@@ -616,7 +616,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         v0->unk_2AA = 1;
         break;
     case 1:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             v0->unk_2AA = 2;
         }
         break;
@@ -684,7 +684,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         }
 
         if (v1 != 0xffffffff) {
-            ov23_02254044(ov23_022421DC());
+            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
         }
 
         switch (v1) {
@@ -711,7 +711,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v0->unk_2AA = 7;
             }
@@ -735,13 +735,13 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         v0->unk_2AA = 8;
         break;
     case 8:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             v1 = ov23_02248D20(v0->unk_4C);
             ListMenu_GetListAndCursorPos(v0->unk_4C->unk_0C, &v3, &v4);
             ov23_022430E0(12, v4, v3);
 
             if (v1 != 0xffffffff) {
-                ov23_02254044(ov23_022421DC());
+                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
             }
 
             switch (v1) {
@@ -779,7 +779,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         v0->unk_2AA = 10;
         break;
     case 9:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 if (v0->unk_2AC == 1) {
                     ov23_02252CF4(2, v0->unk_2A8);
@@ -795,7 +795,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         }
         break;
     case 10:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 ov23_02252C9C(8);
                 v0->unk_2AA = 2;
@@ -829,7 +829,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
 
         switch (v1) {
         case 0xfffffffe:
-            ov23_02254044(ov23_022421DC());
+            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
             ov23_02252B90(v0, 1);
             ov23_02252DF4(v0);
             v0->unk_2AA = 2;
@@ -838,7 +838,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
             break;
         default:
             if (v0->unk_279[0] != 0) {
-                ov23_02254044(ov23_022421DC());
+                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
                 v0->unk_2A8 = v1;
                 ov23_02252B90(v0, 1);
                 ov23_02252DF4(v0);
@@ -849,7 +849,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         }
         break;
     case 14:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             v0->unk_5C = Menu_MakeYesNoChoice(v0->fieldSystem->bgConfig, &Unk_ov23_022569D8, 1024 - (18 + 12) - 9, 11, 4);
             v0->unk_2AA = 15;
         }
@@ -876,9 +876,9 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         v0->unk_5C = NULL;
         break;
     case 16:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                ov23_0225412C(ov23_022421BC(), v0->unk_27E[0]);
+                UndergroundTextPrinter_SetTwoDigitNumber(CommManUnderground_GetMiscTextPrinter(), v0->unk_27E[0]);
                 ov23_02252CE0(2, v0->unk_279[0]);
                 ov23_02252C9C(7);
 
@@ -893,7 +893,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         v0->unk_2AA = 18;
         break;
     case 18:
-        if (ov23_02254238(ov23_022421BC()) == 0) {
+        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter()) == FALSE) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 ov23_02252CD4();
                 ov23_02252C78(v0);

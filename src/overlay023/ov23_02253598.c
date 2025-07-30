@@ -11,8 +11,8 @@
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/funcptr_ov23_02253834.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
 #include "comm_player_manager.h"
@@ -224,7 +224,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0640, HEAP_ID_FIELD1);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_RECORDS, HEAP_ID_FIELD1);
     Window_FillTilemap(&v4->unk_08, 15);
 
     if (param4) {
@@ -316,7 +316,7 @@ void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
     GF_ASSERT(param1 <= 45);
 
     sub_020594FC();
-    ov23_02253DFC(ov23_022421BC(), 640, 1);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_RECORDS, MESSAGE_LOADER_NARC_HANDLE);
 
     undergroundRecordBuffer = UndergroundRecord_Init(HEAP_ID_FIELD1);
     MI_CpuCopy8(undergroundRecord, undergroundRecordBuffer, UndergroundRecord_Size());
@@ -324,8 +324,8 @@ void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
     v0 = v2(undergroundRecordBuffer);
     Heap_Free(undergroundRecordBuffer);
 
-    ov23_02254178(ov23_022421BC(), v0);
-    ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
+    UndergroundTextPrinter_SetNumber(CommManUnderground_GetMiscTextPrinter(), v0);
+    UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), param1, TRUE, ov23_022539F8);
 }
 
 static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const Underground *param4)
@@ -407,7 +407,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *undergro
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD1);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_BASE_PC, HEAP_ID_FIELD1);
     Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;

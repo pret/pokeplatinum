@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -85,6 +86,20 @@
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_LIGHT_SCREEN",
+            "MOVE_SKULL_BASH",
+            "MOVE_SAFEGUARD",
+            "MOVE_CHARM",
+            "MOVE_PETAL_DANCE",
+            "MOVE_MAGICAL_LEAF",
+            "MOVE_GRASS_WHISTLE",
+            "MOVE_CURSE",
+            "MOVE_INGRAIN",
+            "MOVE_NATURE_POWER",
+            "MOVE_AMNESIA",
+            "MOVE_LEAF_STORM"
         ]
     },
     "evolutions": [

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BIDE" ],
@@ -77,6 +78,16 @@
             "MOVE_SPITE",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB"
+        ],
+        "egg_moves": [
+            "MOVE_LEECH_SEED",
+            "MOVE_AMNESIA",
+            "MOVE_QUICK_ATTACK",
+            "MOVE_RAZOR_WIND",
+            "MOVE_TAKE_DOWN",
+            "MOVE_FALSE_SWIPE",
+            "MOVE_WORRY_SEED",
+            "MOVE_NASTY_PLOT"
         ]
     },
     "evolutions": [
