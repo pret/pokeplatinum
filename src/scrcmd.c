@@ -13,6 +13,7 @@
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
 #include "constants/species.h"
+#include "constants/string.h"
 #include "generated/accessories.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
@@ -4303,7 +4304,7 @@ static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_PLAYER, 0, 7, 0, NULL, ScriptContext_GetVarPointer(ctx));
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, 0, NULL, ScriptContext_GetVarPointer(ctx));
     return TRUE;
 }
 
@@ -4316,7 +4317,7 @@ static BOOL ScrCmd_0BB(ScriptContext *ctx)
     Pokemon *v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
 
     Pokemon_GetValue(v1, MON_DATA_NICKNAME, v0);
-    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 10, v3, v0, ScriptContext_GetVarPointer(ctx));
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), MON_NAME_LEN, v3, v0, ScriptContext_GetVarPointer(ctx));
 
     return TRUE;
 }

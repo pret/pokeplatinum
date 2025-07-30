@@ -8,6 +8,7 @@
 #include "constants/pokemon.h"
 #include "constants/rtc.h"
 #include "constants/species.h"
+#include "constants/string.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
 
@@ -10857,7 +10858,12 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
-                v16 = NamingScreenArgs_Init(HEAP_ID_BATTLE, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));
+                v16 = NamingScreenArgs_Init(
+                    HEAP_ID_BATTLE,
+                    NAMING_SCREEN_TYPE_POKEMON,
+                    Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL),
+                    MON_NAME_LEN,
+                    BattleSystem_GetOptions(v2->battleSys));
                 v2->tmpPtr[1] = v16;
 
                 if (BattleSystem_PartyCount(v2->battleSys, 0) < 6) {

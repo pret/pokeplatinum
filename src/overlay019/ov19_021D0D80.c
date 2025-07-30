@@ -5,6 +5,7 @@
 
 #include "constants/items.h"
 #include "constants/species.h"
+#include "constants/string.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
@@ -3378,7 +3379,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, PokemonStorageSession
     param0->mon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
     GF_ASSERT(param0->MessageVariableBuffer);
-    param0->unk_128 = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, 8, param0->options);
+    param0->unk_128 = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, BOX_NAME_LEN, param0->options);
 
     if (pokemonStorageSession->boxMode != PC_MODE_COMPARE) {
         param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);

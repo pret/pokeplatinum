@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/string.h"
 #include "generated/genders.h"
 
 #include "struct_decls/struct_02015920_decl.h"
@@ -324,8 +325,8 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->state = RI_STATE_FIRST_FADE_BLACK_START;
     manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->unk_70 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, 7, manager->options);
-    manager->unk_74 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, 7, manager->options);
+    manager->unk_70 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, manager->options);
+    manager->unk_74 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, TRAINER_NAME_LEN, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;

@@ -166,14 +166,14 @@ typedef struct {
     int unk_0C;
 } UnkStruct_020879DC;
 
-typedef struct {
+typedef struct OverlayWiggleParameters {
     Sprite *overlaySprite;
     int state;
     fx32 overlayXPosition;
     fx32 overlayYPosition;
 } OverlayWiggleParameters;
 
-typedef struct {
+typedef struct NamingScreenTouchHitbox {
     u8 unk_00;
     u8 unk_01;
     u16 unk_02_0 : 2;
@@ -1235,73 +1235,72 @@ static int sub_02086F14(u16 *param0)
 
 static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
 {
-    NamingScreen *naming_screen = ApplicationManager_Data(appMan);
-    NamingScreenArgs *naming_screen_args = (NamingScreenArgs *)ApplicationManager_Args(appMan);
+    NamingScreen *namingScreen = ApplicationManager_Data(appMan);
+    NamingScreenArgs *namingScreenArgs = (NamingScreenArgs *)ApplicationManager_Args(appMan);
     int v2;
 
-    naming_screen->entryBuf[naming_screen->textCursorPos] = CHAR_EOS;
+    namingScreen->entryBuf[namingScreen->textCursorPos] = CHAR_EOS;
 
-    if (naming_screen->type == NAMING_SCREEN_TYPE_POKEMON) {
-        u16 v3[10 + 1];
-        Pokemon *v4;
+    if (namingScreen->type == NAMING_SCREEN_TYPE_POKEMON) {
+        Pokemon *mon;
 
-        v4 = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
-        Pokemon_InitWith(v4, naming_screen->unk_04, 5, 10, 10, 10, 10, 10);
-        Heap_Free(v4);
+        mon = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
+        Pokemon_InitWith(mon, namingScreen->unk_04, 5, 10, 10, 10, 10, 10);
+        Heap_Free(mon);
     }
 
-    if ((naming_screen->textCursorPos == 0) || (CharCode_Compare(naming_screen->entryBuf, naming_screen->entryBufBak) == 0) || sub_02086F14(naming_screen->entryBuf)) {
-        sub_02086E6C(naming_screen, naming_screen_args);
+    if ((namingScreen->textCursorPos == 0) || (CharCode_Compare(namingScreen->entryBuf, namingScreen->entryBufBak) == 0) || sub_02086F14(namingScreen->entryBuf)) {
+        sub_02086E6C(namingScreen, namingScreenArgs);
     } else {
-        CharCode_Copy(naming_screen->entryBufBak, naming_screen->entryBuf);
-        CharCode_Copy(naming_screen_args->unk_1C, naming_screen->entryBuf);
-        Strbuf_CopyChars(naming_screen_args->textInputStr, naming_screen->entryBuf);
+        CharCode_Copy(namingScreen->entryBufBak, namingScreen->entryBuf);
+        CharCode_Copy(namingScreenArgs->unk_1C, namingScreen->entryBuf);
+        Strbuf_CopyChars(namingScreenArgs->textInputStr, namingScreen->entryBuf);
     }
 
-    Strbuf_Free(naming_screen->unk_184);
+    Strbuf_Free(namingScreen->unk_184);
 
     for (v2 = 0; v2 < 7; v2++) {
-        SysTask_FinishAndFreeParam(naming_screen->unk_400[v2]);
+        SysTask_FinishAndFreeParam(namingScreen->unk_400[v2]);
     }
 
-    SpriteTransfer_ResetCharTransfer(naming_screen->unk_328[0][0]);
-    SpriteTransfer_ResetCharTransfer(naming_screen->unk_328[1][0]);
-    SpriteTransfer_ResetPlttTransfer(naming_screen->unk_328[0][1]);
-    SpriteTransfer_ResetPlttTransfer(naming_screen->unk_328[1][1]);
+    SpriteTransfer_ResetCharTransfer(namingScreen->unk_328[0][0]);
+    SpriteTransfer_ResetCharTransfer(namingScreen->unk_328[1][0]);
+    SpriteTransfer_ResetPlttTransfer(namingScreen->unk_328[0][1]);
+    SpriteTransfer_ResetPlttTransfer(namingScreen->unk_328[1][1]);
 
     for (v2 = 0; v2 < 4; v2++) {
-        SpriteResourceCollection_Delete(naming_screen->unk_318[v2]);
+        SpriteResourceCollection_Delete(namingScreen->unk_318[v2]);
     }
 
-    SpriteList_Delete(naming_screen->unk_188);
+    SpriteList_Delete(namingScreen->unk_188);
     RenderOam_Free();
-    Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, naming_screen->charDataAlloc);
+    Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->charDataAlloc);
 
-    if (naming_screen->type == NAMING_SCREEN_TYPE_POKEMON) {
-        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, naming_screen->unk_518);
-        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, naming_screen->unk_520);
+    if (namingScreen->type == NAMING_SCREEN_TYPE_POKEMON) {
+        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->unk_518);
+        Heap_FreeExplicit(HEAP_ID_NAMING_SCREEN_APP, namingScreen->unk_520);
     }
 
-    Bg_FreeTilemapBuffer(naming_screen->bgConfig, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(namingScreen->bgConfig, BG_LAYER_SUB_3);
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0208765C(naming_screen->bgConfig, naming_screen->unk_41C);
+    sub_0208765C(namingScreen->bgConfig, namingScreen->unk_41C);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
     Font_Free(FONT_SUBSCREEN);
 
-    if (naming_screen->unk_180) {
-        Strbuf_Free(naming_screen->unk_180);
+    if (namingScreen->unk_180) {
+        Strbuf_Free(namingScreen->unk_180);
     }
 
-    Strbuf_Free(naming_screen->unk_178);
-    Strbuf_Free(naming_screen->unk_17C);
-    MessageLoader_Free(naming_screen->battleStringsMsgLoader);
-    MessageLoader_Free(naming_screen->genericNamesMsgLoader);
-    MessageLoader_Free(naming_screen->namingScreenMsgLoader);
-    StringTemplate_Free(naming_screen->strTemplate);
+    Strbuf_Free(namingScreen->unk_178);
+    Strbuf_Free(namingScreen->unk_17C);
+    MessageLoader_Free(namingScreen->battleStringsMsgLoader);
+    MessageLoader_Free(namingScreen->genericNamesMsgLoader);
+    MessageLoader_Free(namingScreen->namingScreenMsgLoader);
+    StringTemplate_Free(namingScreen->strTemplate);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_NAMING_SCREEN_APP);
@@ -1899,7 +1898,7 @@ static void sub_02087BE4(NamingScreen *param0, AffineSpriteListTemplate *param1)
         Sprite_SetAnim(param0->entitySprite[0], 54);
         break;
     case NAMING_SCREEN_TYPE_UNK4:
-    case NAMING_SCREEN_TYPE_UNK7:
+    case NAMING_SCREEN_TYPE_PAL_PAD:
         Sprite_SetAnim(param0->entitySprite[0], 53);
         break;
     case NAMING_SCREEN_TYPE_BOX:

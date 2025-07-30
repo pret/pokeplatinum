@@ -6,6 +6,7 @@
 
 #include "constants/graphics.h"
 #include "constants/savedata/vars_flags.h"
+#include "constants/string.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/battle_frontier.h"
@@ -2554,7 +2555,7 @@ static NamingScreenArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruc
 {
     NamingScreenArgs *v0;
 
-    v0 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_UNK7, 0, 7, SaveData_GetOptions(param1->saveData));
+    v0 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PAL_PAD, 0, TRAINER_NAME_LEN, SaveData_GetOptions(param1->saveData));
 
     if (param1->unk_34.unk_04 == 1) {
         {

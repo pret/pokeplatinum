@@ -418,6 +418,8 @@ void sub_02012C60(
     int y,
     char *output)
 {
+    // this function copies a rectangle of pixels from the window
+    // to the output starting at (x,y) and spanning (width,height)
     int i;
     int dstOffset;
     int srcOffset;

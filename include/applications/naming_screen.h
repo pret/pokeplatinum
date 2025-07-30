@@ -15,10 +15,10 @@ enum NamingScreenType {
     NAMING_SCREEN_TYPE_UNK4,
     NAMING_SCREEN_TYPE_GROUP,
     NAMING_SCREEN_TYPE_UNK6,
-    NAMING_SCREEN_TYPE_UNK7,
+    NAMING_SCREEN_TYPE_PAL_PAD,
 };
 
-typedef struct {
+typedef struct NamingScreenArgs {
     enum NamingScreenType type;
     int unk_04;
     int unk_08;
