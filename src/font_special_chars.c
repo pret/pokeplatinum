@@ -11,6 +11,12 @@
 
 #include "res/fonts/pl_font.naix.h"
 
+enum FontColorBitField {
+    BIT_BG_COLOR = 0,
+    BIT_FG_COLOR,
+    BIT_SHADOW_COLOR
+};
+
 static const struct {
     u16 offset;
     u16 width;
@@ -36,32 +42,38 @@ FontSpecialCharsContext *FontSpecialChars_Init(u32 fgColor, u32 shadowColor, u32
         rawData = context->charData->pRawData;
 
         for (idx = 0; idx < context->charData->szByte; idx++) {
+            // The initial value of each rawData byte is two 4bpp pixels.
+            // Each nibble represents one of three color options:
+            // 0b0000 (BIT_BG_COLOR): bgColor
+            // 0b0001 (BIT_FG_COLOR): fgColor
+            // 0b0010 (BIT_SHADOW_COLOR): shadowColor
+            // The corresponding color parameters replace the bit fields.
             switch (rawData[idx]) {
-            case 0:
+            case (BIT_BG_COLOR << 4) | (BIT_BG_COLOR):
                 rawData[idx] = (bgColor << 4) | (bgColor);
                 break;
-            case 1:
+            case (BIT_BG_COLOR << 4) | (BIT_FG_COLOR):
                 rawData[idx] = (bgColor << 4) | (fgColor);
                 break;
-            case 2:
+            case (BIT_BG_COLOR << 4) | (BIT_SHADOW_COLOR):
                 rawData[idx] = (bgColor << 4) | (shadowColor);
                 break;
-            case 16:
+            case (BIT_FG_COLOR << 4) | (BIT_BG_COLOR):
                 rawData[idx] = (fgColor << 4) | (bgColor);
                 break;
-            case 17:
+            case (BIT_FG_COLOR << 4) | (BIT_FG_COLOR):
                 rawData[idx] = (fgColor << 4) | (fgColor);
                 break;
-            case 18:
+            case (BIT_FG_COLOR << 4) | (BIT_SHADOW_COLOR):
                 rawData[idx] = (fgColor << 4) | (shadowColor);
                 break;
-            case 32:
+            case (BIT_SHADOW_COLOR << 4) | (BIT_BG_COLOR):
                 rawData[idx] = (shadowColor << 4) | (bgColor);
                 break;
-            case 33:
+            case (BIT_SHADOW_COLOR << 4) | (BIT_FG_COLOR):
                 rawData[idx] = (shadowColor << 4) | (fgColor);
                 break;
-            case 34:
+            case (BIT_SHADOW_COLOR << 4) | (BIT_SHADOW_COLOR):
                 rawData[idx] = (shadowColor << 4) | (shadowColor);
                 break;
             }
