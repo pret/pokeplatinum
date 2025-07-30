@@ -746,9 +746,9 @@ void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID)
 
 BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
 {
-    const u8 *initScripts = MapHeaderData_GetInitScripts(fieldSystem);
+    const u8 *initScriptBytes = MapHeaderData_GetInitScriptBytes(fieldSystem);
 
-    if (initScripts == NULL) {
+    if (initScriptBytes == NULL) {
         return FALSE;
     }
 
@@ -772,19 +772,23 @@ BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
     return TRUE;
 }
 
+#define GET8(bytes)  *bytes
+#define GET16(bytes) bytes[0] + (bytes[1] << 8)
+#define GET32(bytes) bytes[0] + (bytes[1] << 8) + (bytes[2] << 16) + (bytes[3] << 24)
+
 static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initScriptType)
 {
     while (TRUE) {
-        if (*initScripts == 0) {
+        if (GET8(initScriptBytes) == 0) {
             return 0xffff;
         }
 
-        if (*initScripts == initScriptType) {
-            initScripts++;
-            return *initScripts + (*(initScripts + 1) << 8);
+        if (GET8(initScriptBytes) == initScriptType) {
+            initScriptBytes++;
+            return GET16(initScriptBytes);
         }
 
-        initScripts += (1 + 2 + 2);
+        initScriptBytes += (1 + 2 + 2);
     }
 
     return 0xffff;
@@ -796,46 +800,46 @@ static u16 FieldSystem_GetFirstMatchInitScriptID(FieldSystem *fieldSystem, const
     u32 offset = 0;
 
     while (TRUE) {
-        if (*initScripts == 0) {
+        if (GET8(initScriptBytes) == 0) {
             return 0xffff;
         }
 
-        if ((*initScripts) == initScriptType) {
-            initScripts++;
-            offset = (*initScripts + (*(initScripts + 1) << 8) + (*(initScripts + 2) << 16) + (*(initScripts + 3) << 24));
-            initScripts += 4;
+        if (GET8(initScriptBytes) == initScriptType) {
+            initScriptBytes++;
+            offset = GET32(initScriptBytes);
+            initScriptBytes += 4;
             break;
         }
 
-        initScripts += (1 + 4);
+        initScriptBytes += (1 + 4);
     }
 
     if (offset == 0) {
         return 0xffff;
     }
 
-    initScripts = (initScripts + offset);
+    initScriptBytes = (initScriptBytes + offset);
 
     while (TRUE) {
-        if (*initScripts == 0) {
+        if (GET8(initScriptBytes) == 0) {
             return 0xffff;
         }
 
-        currentVar = (*initScripts + (*(initScripts + 1) << 8));
+        currentVar = GET16(initScriptBytes);
 
         if (currentVar == 0) {
             return 0xffff;
         }
 
-        initScripts += 2;
-        compareVar = (*initScripts + (*(initScripts + 1) << 8));
-        initScripts += 2;
+        initScriptBytes += 2;
+        compareVar = GET16(initScriptBytes);
+        initScriptBytes += 2;
 
         if (FieldSystem_TryGetVar(fieldSystem, currentVar) == FieldSystem_TryGetVar(fieldSystem, compareVar)) {
-            return *initScripts + (*(initScripts + 1) << 8);
+            return GET16(initScriptBytes);
         }
 
-        initScripts += 2;
+        initScriptBytes += 2;
     }
 
     return 0xffff;
