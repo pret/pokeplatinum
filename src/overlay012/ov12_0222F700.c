@@ -757,22 +757,22 @@ enum ExtrasensoryState {
 #define EXTRASENSORY_DISTORTION_COUNT       3
 
 // -------------------------------------------------------------------
-// Fake Out
+// Fake Out Curtain
 // -------------------------------------------------------------------
-typedef struct FakeOutContext {
+typedef struct FakeOutCurtainContext {
     BattleAnimSystem *battleAnimSys;
     int state;
     int delay;
     XYTransformContext curtainPos;
-} FakeOutContext;
+} FakeOutCurtainContext;
 
-enum FakeOutState {
-    FAKE_OUT_STATE_INIT = 0,
-    FAKE_OUT_STATE_WAIT,
-    FAKE_OUT_STATE_MOVE_CURTAIN,
-    FAKE_OUT_STATE_HIDE_CURTAIN,
-    FAKE_OUT_STATE_WAIT_FOR_FADE,
-    FAKE_OUT_STATE_CLEANUP,
+enum FakeOutCurtainState {
+    FAKE_OUT_CURTAIN_STATE_INIT = 0,
+    FAKE_OUT_CURTAIN_STATE_WAIT,
+    FAKE_OUT_CURTAIN_STATE_MOVE_CURTAIN,
+    FAKE_OUT_CURTAIN_STATE_HIDE_CURTAIN,
+    FAKE_OUT_CURTAIN_STATE_WAIT_FOR_FADE,
+    FAKE_OUT_CURTAIN_STATE_CLEANUP,
 };
 
 #define FAKE_OUT_CURTAIN_START_X     127
@@ -791,23 +791,46 @@ typedef struct {
     AlphaFadeContext unk_14;
 } UnkStruct_ov12_02233F4C;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    s16 unk_08;
-    s16 unk_0A;
-    s16 unk_0C;
-    PokemonSprite *unk_10;
-    XYTransformContext unk_14;
-    XYTransformContext unk_38;
-    int unk_5C;
-    int unk_60;
-    int unk_64;
-    int unk_68;
-    int unk_6C;
-    int unk_70;
-    int unk_74;
-} UnkStruct_ov12_02234044;
+// -------------------------------------------------------------------
+// Fake Out
+// -------------------------------------------------------------------
+typedef struct FakeOutContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    s16 defenderY;
+    s16 defenderX;
+    s16 defenderHeight;
+    PokemonSprite *defenderSprite;
+    XYTransformContext scale;
+    XYTransformContext shake;
+    int sx;
+    int ex;
+    int sy;
+    int ey;
+    int refScale;
+    int cycles;
+    int frames;
+} FakeOutContext;
+
+enum FakeOutState {
+    FAKE_OUT_STATE_INIT_SCALE = 0,
+    FAKE_OUT_STATE_SCALE,
+    FAKE_OUT_STATE_INIT_RESTORE,
+    FAKE_OUT_STATE_RESTORE,
+    FAKE_OUT_STATE_CLEANUP,
+};
+
+#define FAKE_OUT_SCALE_START_X  10
+#define FAKE_OUT_SCALE_START_Y  10
+#define FAKE_OUT_SCALE_END_X    7
+#define FAKE_OUT_SCALE_END_Y    30
+#define FAKE_OUT_SCALE_REF      10
+#define FAKE_OUT_SCALE_CYCLES   1
+#define FAKE_OUT_SHAKE_FRAMES   SCALE_POKEMON_SPRITE_FRAMES(4, 3)
+#define FAKE_OUT_SHAKE_EXTENT_X 2
+#define FAKE_OUT_SHAKE_EXTENT_Y 0
+#define FAKE_OUT_SHAKE_INTERVAL 1
+#define FAKE_OUT_SHAKE_AMOUNT   2
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -2038,7 +2061,7 @@ static void ov12_02230F3C(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 1:
-        if (ShakeContext_UpdateAndApply(&v0->unk_20, v0->unk_1C, v0->unk_1E, v0->unk_18) == 0) {
+        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_20, v0->unk_1C, v0->unk_1E, v0->unk_18) == 0) {
             v0->unk_0C++;
         }
         break;
@@ -3870,7 +3893,7 @@ static void ov12_02233394(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (ShakeContext_UpdateAndApply(&v0->unk_14, v0->unk_38, v0->unk_3A, v0->unk_10) == 0) {
+        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_14, v0->unk_38, v0->unk_3A, v0->unk_10) == 0) {
             v0->unk_0C++;
             ov12_02233338(v0);
         }
@@ -4327,12 +4350,12 @@ void BattleAnimScriptFunc_Extrasensory(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Extrasensory, ctx);
 }
 
-static void BattleAnimTask_FakeOut(SysTask *task, void *param)
+static void BattleAnimTask_FakeOutCurtain(SysTask *task, void *param)
 {
-    FakeOutContext *ctx = param;
+    FakeOutCurtainContext *ctx = param;
 
     switch (ctx->state) {
-    case FAKE_OUT_STATE_INIT:
+    case FAKE_OUT_CURTAIN_STATE_INIT:
         PosLerpContext_Init(
             &ctx->curtainPos,
             FAKE_OUT_CURTAIN_START_X,
@@ -4346,7 +4369,7 @@ static void BattleAnimTask_FakeOut(SysTask *task, void *param)
         ctx->delay = FAKE_OUT_CURTAIN_DELAY;
         ctx->state++;
         break;
-    case FAKE_OUT_STATE_WAIT:
+    case FAKE_OUT_CURTAIN_STATE_WAIT:
         ctx->delay--;
 
         if (ctx->delay < 0) {
@@ -4361,7 +4384,7 @@ static void BattleAnimTask_FakeOut(SysTask *task, void *param)
             ctx->state++;
         }
         break;
-    case FAKE_OUT_STATE_MOVE_CURTAIN:
+    case FAKE_OUT_CURTAIN_STATE_MOVE_CURTAIN:
         if (PosLerpContext_Update(&ctx->curtainPos)) {
             G2_SetWnd0Position(
                 (HW_LCD_WIDTH / 2 - 1) - ctx->curtainPos.x,
@@ -4372,7 +4395,7 @@ static void BattleAnimTask_FakeOut(SysTask *task, void *param)
             ctx->state++;
         }
         break;
-    case FAKE_OUT_STATE_HIDE_CURTAIN:
+    case FAKE_OUT_CURTAIN_STATE_HIDE_CURTAIN:
         if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys)) == 0) {
             ctx->state++;
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -4386,25 +4409,25 @@ static void BattleAnimTask_FakeOut(SysTask *task, void *param)
                 FAKE_OUT_CURTAIN_COLOR);
         }
         break;
-    case FAKE_OUT_STATE_WAIT_FOR_FADE:
+    case FAKE_OUT_CURTAIN_STATE_WAIT_FOR_FADE:
         if (PaletteData_GetSelectedBuffersMask(BattleAnimSystem_GetPaletteData(ctx->battleAnimSys)) == 0) {
             ctx->state++;
         }
         break;
-    case FAKE_OUT_STATE_CLEANUP:
+    case FAKE_OUT_CURTAIN_STATE_CLEANUP:
         Heap_Free(ctx);
         BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         break;
     }
 }
 
-void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *system)
+void BattleAnimScriptFunc_FakeOutCurtain(BattleAnimSystem *system)
 {
-    // BUG: Should be sizeof(FakeOutContext), but since sizeof(ExtrasensoryContext) is larger, it works anyway.
-    FakeOutContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ExtrasensoryContext));
+    // BUG: Should be sizeof(FakeOutCurtainContext), but since sizeof(ExtrasensoryContext) is larger, it works anyway.
+    FakeOutCurtainContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ExtrasensoryContext));
     ctx->battleAnimSys = system;
 
-    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FakeOut, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FakeOutCurtain, ctx);
 }
 
 static void ov12_02233F4C(SysTask *param0, void *param1)
@@ -4458,82 +4481,121 @@ void ov12_02234008(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02233F4C, v0);
 }
 
-static void ov12_02234044(SysTask *param0, void *param1)
+static void BattleAnimTask_FakeOut(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02234044 *v0 = param1;
-    BOOL v1;
+    FakeOutContext *ctx = param;
+    BOOL active;
 
-    switch (v0->unk_04) {
-    case 0:
-        ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_5C, v0->unk_60, v0->unk_64, v0->unk_68, v0->unk_6C, v0->unk_74 >> 16);
-        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
-        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
-        v0->unk_04++;
+    switch (ctx->state) {
+    case FAKE_OUT_STATE_INIT_SCALE:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            ctx->sx,
+            ctx->ex,
+            ctx->sy,
+            ctx->ey,
+            ctx->refScale,
+            SCALE_POKEMON_SPRITE_SCALE_FRAMES(ctx->frames));
+        ShakeContext_UpdateAndApplyToMon(&ctx->shake, ctx->defenderX, ctx->defenderY, ctx->defenderSprite);
+        ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->defenderSprite);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+            ctx->defenderSprite,
+            ctx->defenderY,
+            ctx->defenderHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
+        ctx->state++;
         break;
-    case 1:
-        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        v1 = ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
-        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
+    case FAKE_OUT_STATE_SCALE:
+        ShakeContext_UpdateAndApplyToMon(&ctx->shake, ctx->defenderX, ctx->defenderY, ctx->defenderSprite);
+        active = ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->defenderSprite);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+            ctx->defenderSprite,
+            ctx->defenderY,
+            ctx->defenderHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
 
-        if (v1 == 0) {
-            v0->unk_04++;
+        if (active == FALSE) {
+            ctx->state++;
         }
         break;
-    case 2:
-        ScaleLerpContext_InitXY(&v0->unk_14, v0->unk_60, v0->unk_5C, v0->unk_68, v0->unk_64, v0->unk_6C, v0->unk_74 & 0xffff);
-        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
-        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
-        v0->unk_04++;
+    case FAKE_OUT_STATE_INIT_RESTORE:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            ctx->ex,
+            ctx->sx,
+            ctx->ey,
+            ctx->sy,
+            ctx->refScale,
+            SCALE_POKEMON_SPRITE_RESTORE_FRAMES(ctx->frames));
+        ShakeContext_UpdateAndApplyToMon(&ctx->shake, ctx->defenderX, ctx->defenderY, ctx->defenderSprite);
+        ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->defenderSprite);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+            ctx->defenderSprite,
+            ctx->defenderY,
+            ctx->defenderHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
+        ctx->state++;
         break;
-    case 3:
-        ShakeContext_UpdateAndApply(&v0->unk_38, v0->unk_0A, v0->unk_08, v0->unk_10);
-        v1 = ScaleLerpContext_UpdateXYAndApplyToMon(&v0->unk_14, v0->unk_10);
-        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(v0->unk_10, v0->unk_08, v0->unk_0C, v0->unk_14.data[4], 0);
+    case FAKE_OUT_STATE_RESTORE:
+        ShakeContext_UpdateAndApplyToMon(&ctx->shake, ctx->defenderX, ctx->defenderY, ctx->defenderSprite);
+        active = ScaleLerpContext_UpdateXYAndApplyToMon(&ctx->scale, ctx->defenderSprite);
+        BattleAnimUtil_SetPokemonSpriteAnchoredPosition(
+            ctx->defenderSprite,
+            ctx->defenderY,
+            ctx->defenderHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
 
-        if (v1 == 0) {
-            v0->unk_70--;
+        if (active == FALSE) {
+            ctx->cycles--;
 
-            if (v0->unk_70 <= 0) {
-                v0->unk_04++;
+            if (ctx->cycles <= 0) {
+                ctx->state++;
             } else {
-                v0->unk_04 = 0;
+                ctx->state = 0;
             }
         }
         break;
-    case 4:
-        PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_0A);
-        PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_08);
+    case FAKE_OUT_STATE_CLEANUP:
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderX);
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER, ctx->defenderY);
 
-        PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_X, 0x100);
-        PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_SCALE_Y, 0x100);
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
 
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         return;
     }
 }
 
-void ov12_02234214(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02234044 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234044));
+    FakeOutContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FakeOutContext));
 
-    v0->unk_00 = param0;
-    v0->unk_0C = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(v0->unk_00));
-    v0->unk_08 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v0->unk_0A = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v0->unk_5C = 10;
-    v0->unk_60 = 7;
-    v0->unk_64 = 10;
-    v0->unk_68 = 30;
-    v0->unk_6C = 10;
-    v0->unk_70 = 1;
-    v0->unk_74 = ((4 << 16) | 3);
+    ctx->battleAnimSys = system;
+    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    ctx->sx = FAKE_OUT_SCALE_START_X;
+    ctx->ex = FAKE_OUT_SCALE_END_X;
+    ctx->sy = FAKE_OUT_SCALE_START_Y;
+    ctx->ey = FAKE_OUT_SCALE_END_Y;
+    ctx->refScale = FAKE_OUT_SCALE_REF;
+    ctx->cycles = FAKE_OUT_SCALE_CYCLES;
+    ctx->frames = FAKE_OUT_SHAKE_FRAMES;
 
-    ShakeContext_Init(&v0->unk_38, 2, 0, 1, 2);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234044, v0);
+    ShakeContext_Init(
+        &ctx->shake,
+        FAKE_OUT_SHAKE_EXTENT_X,
+        FAKE_OUT_SHAKE_EXTENT_Y,
+        FAKE_OUT_SHAKE_INTERVAL,
+        FAKE_OUT_SHAKE_AMOUNT);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FakeOut, ctx);
 }
 
 static void ov12_02234290(SysTask *param0, void *param1)
@@ -4596,7 +4658,7 @@ static void ov12_022343A0(SysTask *param0, void *param1)
         v0->unk_04++;
         break;
     case 1:
-        if (ShakeContext_UpdateAndApply(&v0->unk_40, v0->unk_18, v0->unk_1A, v0->unk_14) == 0) {
+        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_40, v0->unk_18, v0->unk_1A, v0->unk_14) == 0) {
             v0->unk_04++;
             PosLerpContext_Init(&v0->unk_1C, v0->unk_18, v0->unk_18 + (40 * v0->unk_0C), v0->unk_1A, v0->unk_1A + (-7 * v0->unk_10), 4);
         }
@@ -4668,7 +4730,7 @@ static void ov12_02234528(SysTask *param0, void *param1)
         v1 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
         v2 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
 
-        if (ShakeContext_UpdateAndApply(&v0->unk_3C, v1, v2, v0->unk_10) == 0) {
+        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_3C, v1, v2, v0->unk_10) == 0) {
             v0->unk_04++;
             PosLerpContext_Init(&v0->unk_18, v0->unk_14 + (-40 * v0->unk_08), v0->unk_14, v0->unk_16 + (16 * v0->unk_0C), v0->unk_16, 4);
         }
