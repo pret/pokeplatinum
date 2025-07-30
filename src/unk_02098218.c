@@ -9,6 +9,7 @@
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0209843C.h"
 
+#include "applications/naming_screen.h"
 #include "field/field_system.h"
 #include "overlay005/daycare.h"
 #include "overlay119/ov119_021D0D80.h"
@@ -37,11 +38,9 @@
 #include "trainer_info.h"
 #include "unk_02015F84.h"
 #include "unk_0202F180.h"
-#include "unk_0208694C.h"
 #include "unk_02092494.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"
 
 FS_EXTERN_OVERLAY(overlay119);
@@ -236,10 +235,10 @@ static BOOL sub_0209843C(FieldTask *param0)
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = sub_0208712C(HEAP_ID_FIELDMAP, 1, v9, 10, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
+        v0->unk_08 = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, NAMING_SCREEN_TYPE_POKEMON, v9, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
         v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
-        FieldTask_RunApplication(param0, &Unk_020F2DAC, v0->unk_08);
+        FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v0->unk_08);
         v0->unk_00++;
     } break;
     case 4:
@@ -254,7 +253,7 @@ static BOOL sub_0209843C(FieldTask *param0)
             }
         }
 
-        sub_0208716C(v0->unk_08);
+        NamingScreenArgs_Free(v0->unk_08);
         v0->unk_00++;
         break;
     case 5:

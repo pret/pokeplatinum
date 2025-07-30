@@ -6,5 +6,6 @@
 #define TABLET_NAME_LEN      10
 #define MOVE_NAME_LEN        16
 #define UNION_GROUP_NAME_LEN 7
+#define BOX_NAME_LEN         8
 
 #endif

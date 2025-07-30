@@ -410,23 +410,31 @@ void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Windo
     Heap_Free(v1);
 }
 
-void sub_02012C60(const Window *param0, int param1, int param2, int param3, int param4, char *param5)
+void sub_02012C60(
+    const Window *window,
+    int width,
+    int height,
+    int x,
+    int y,
+    char *output)
 {
-    int v0;
-    int v1;
-    int v2;
+    // this function copies a rectangle of pixels from the window
+    // to the output starting at (x,y) and spanning (width,height)
+    int i;
+    int dstOffset;
+    int srcOffset;
 
-    GF_ASSERT(param0->width >= (param1 + param3));
-    GF_ASSERT(param0->height >= (param2 + param4));
+    GF_ASSERT(window->width >= (width + x));
+    GF_ASSERT(window->height >= (height + y));
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v1 = v0 * param1;
-        v1 *= 32;
-        v2 = ((v0 + param4) * param0->width);
-        v2 += param3;
-        v2 *= 32;
+    for (i = 0; i < height; i++) {
+        dstOffset = i * width;
+        dstOffset *= 32;
+        srcOffset = ((i + y) * window->width);
+        srcOffset += x;
+        srcOffset *= 32;
 
-        memcpy(param5 + v1, (char *)(param0->pixels) + v2, 32 * param1);
+        memcpy(output + dstOffset, (char *)(window->pixels) + srcOffset, 32 * width);
     }
 }
 
