@@ -54,5 +54,8 @@
             "power": 200,
             "ball_seal": 14
         }
+    ],
+    "messages": [
+        "TRMSG_DEFEAT"
     ]
 }

@@ -36,5 +36,9 @@
             "power": 100,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        "TRMSG_FIRST_DAMAGE",
+        "TRMSG_DEFEAT"
     ]
 }

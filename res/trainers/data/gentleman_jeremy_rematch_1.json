@@ -18,5 +18,9 @@
             "power": 0,
             "ball_seal": 22
         }
+    ],
+    "messages": [
+        "TRMSG_REMATCH",
+        "TRMSG_DEFEAT"
     ]
 }

@@ -65,5 +65,9 @@
             "power": 80,
             "ball_seal": 10
         }
+    ],
+    "messages": [
+        "TRMSG_LAST_BATTLER",
+        "TRMSG_DEFEAT"
     ]
 }

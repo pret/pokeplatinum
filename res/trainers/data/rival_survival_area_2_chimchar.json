@@ -98,5 +98,9 @@
             "power": 250,
             "ball_seal": 24
         }
+    ],
+    "messages": [
+        "TRMSG_LAST_BATTLER_HALF_HP",
+        "TRMSG_DEFEAT"
     ]
 }

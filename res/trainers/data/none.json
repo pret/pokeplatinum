@@ -4,5 +4,6 @@
     "items": [],
     "ai_flags": [],
     "double_battle": false,
-    "party": []
+    "party": [],
+    "messages": []
 }

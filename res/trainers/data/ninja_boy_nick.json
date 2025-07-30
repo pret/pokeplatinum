@@ -25,5 +25,11 @@
             "power": 0,
             "ball_seal": 25
         }
+    ],
+    "messages": [
+        "TRMSG_PRE_BATTLE",
+        "TRMSG_DEFEAT",
+        "TRMSG_POST_BATTLE",
+        "TRMSG_REMATCH"
     ]
 }
