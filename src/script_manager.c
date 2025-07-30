@@ -39,8 +39,8 @@ static void ScriptContext_JumpToOffsetID(ScriptContext *ctx, u16 param1);
 static void *ScriptContext_LoadScripts(int headerID);
 static u32 MapHeaderToMsgArchive(int headerID);
 static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 scriptID);
-static u16 FieldSystem_GetStaticInitScriptID(const u8 *param0, u8 param1);
-static u16 FieldSystem_GetDynamicInitScriptID(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
+static u16 FieldSystem_GetFixedInitScriptID(const u8 *param0, u8 param1);
+static u16 FieldSystem_GetFirstMatchInitScriptID(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object)
 {
@@ -754,9 +754,9 @@ BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
 
     u16 scriptID;
     if (initScriptType == INIT_SCRIPT_TYPE_FIRST_MATCH) {
-        scriptID = FieldSystem_GetDynamicInitScriptID(fieldSystem, initScripts, initScriptType);
+        scriptID = FieldSystem_GetFirstMatchInitScriptID(fieldSystem, initScriptBytes, initScriptType);
     } else {
-        scriptID = FieldSystem_GetStaticInitScriptID(initScripts, initScriptType);
+        scriptID = FieldSystem_GetFixedInitScriptID(initScriptBytes, initScriptType);
     }
 
     if (scriptID == 0xffff) {
@@ -772,7 +772,7 @@ BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
     return TRUE;
 }
 
-static u16 FieldSystem_GetStaticInitScriptID(const u8 *initScripts, u8 initScriptType)
+static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initScriptType)
 {
     while (TRUE) {
         if (*initScripts == 0) {
@@ -790,7 +790,7 @@ static u16 FieldSystem_GetStaticInitScriptID(const u8 *initScripts, u8 initScrip
     return 0xffff;
 }
 
-static u16 FieldSystem_GetDynamicInitScriptID(FieldSystem *fieldSystem, const u8 *initScripts, u8 initScriptType)
+static u16 FieldSystem_GetFirstMatchInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType)
 {
     u16 currentVar, compareVar;
     u32 offset = 0;
