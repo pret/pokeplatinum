@@ -3222,7 +3222,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_23C arg0, arg1
+    .macro PlayElevatorAnimation arg0, arg1
     .short 572
     .short \arg0
     .short \arg1

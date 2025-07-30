@@ -621,7 +621,7 @@ static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
-static BOOL ScrCmd_23C(ScriptContext *ctx);
+static BOOL ScrCmd_PlayElevatorAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx);
 static BOOL ScrCmd_243(ScriptContext *ctx);
 static BOOL ScrCmd_244(ScriptContext *ctx);
@@ -1342,7 +1342,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_239,
     ScrCmd_GetSpeciesFootprintType,
     ScrCmd_23B,
-    ScrCmd_23C,
+    ScrCmd_PlayElevatorAnimation,
     ScrCmd_PlayBoatCutscene,
     ScrCmd_MysteryGiftGive,
     ScrCmd_Dummy23F,
@@ -6394,7 +6394,7 @@ static BOOL ScrCmd_23B(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_23C(ScriptContext *ctx)
+static BOOL ScrCmd_PlayElevatorAnimation(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);

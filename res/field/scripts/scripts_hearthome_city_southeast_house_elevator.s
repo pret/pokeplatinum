@@ -36,7 +36,7 @@ _006A:
 
 _009C:
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C VAR_0x8004, 4
+    PlayElevatorAnimation VAR_0x8004, 4
     ApplyMovement LOCALID_PLAYER, _00C4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2

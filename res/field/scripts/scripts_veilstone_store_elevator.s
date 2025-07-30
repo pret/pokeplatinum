@@ -147,7 +147,7 @@ _0321:
     ApplyMovement 0, _0410
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C VAR_0x8004, 4
+    PlayElevatorAnimation VAR_0x8004, 4
     Return
 
 _033F:

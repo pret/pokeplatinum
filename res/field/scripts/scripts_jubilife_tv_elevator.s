@@ -119,7 +119,7 @@ _0243:
     ApplyMovement 0, _029C
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_23C VAR_0x8004, 4
+    PlayElevatorAnimation VAR_0x8004, 4
     Return
 
 _0261:

@@ -68,7 +68,7 @@ _010A:
 
 _0132:
     Call _0188
-    ScrCmd_23C VAR_MAP_LOCAL_0, 3
+    PlayElevatorAnimation VAR_MAP_LOCAL_0, 3
     Call _0194
     Return
 
