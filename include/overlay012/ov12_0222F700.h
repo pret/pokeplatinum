@@ -35,8 +35,8 @@ void BattleAnimScriptFunc_Extrasensory(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_FakeOutCurtain(BattleAnimSystem *param0);
 void ov12_02234008(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *param0);
-void ov12_022342C4(BattleAnimSystem *param0);
-void ov12_022344D0(BattleAnimSystem *param0);
-void ov12_0223464C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Megahorn(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_MegahornAttacker(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_MegahornDefender(BattleAnimSystem *param0);
 
 #endif // POKEPLATINUM_OV12_0222F700_H
