@@ -199,8 +199,10 @@ static void ParseAndPackParty(const rapidjson::Document &doc, TrainerDataType mo
 static int ParseMessages(const rapidjson::Document &doc)
 {
     int ret = 0;
-    for (const auto &member : doc["messages"].GetArray()) {
-        ret |= 1 << LookupConst(member.GetString(), TrainerMessageType);
+    if (doc["messages"].GetArray().Size() != 0) {
+        for (const auto &member : doc["messages"].GetArray()) {
+            ret |= 1 << LookupConst(member.GetString(), TrainerMessageType);
+        }
     }
     return ret;
 }
