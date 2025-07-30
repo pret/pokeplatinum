@@ -832,37 +832,86 @@ enum FakeOutState {
 #define FAKE_OUT_SHAKE_INTERVAL 1
 #define FAKE_OUT_SHAKE_AMOUNT   2
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteManager *unk_04;
-    XYTransformContext unk_08;
-    ManagedSprite *unk_2C;
-} UnkStruct_ov12_02234290;
+// -------------------------------------------------------------------
+// Megahorn (Unused)
+// -------------------------------------------------------------------
+typedef struct MegahornContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *spriteManager;
+    XYTransformContext pos;
+    ManagedSprite *hornSprite;
+} MegahornContext;
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    PokemonSprite *unk_14;
-    s16 unk_18;
-    s16 unk_1A;
-    XYTransformContext unk_1C;
-    XYTransformContext unk_40;
-} UnkStruct_ov12_022343A0;
+#define MEGAHORN_OFFSET_X    64
+#define MEGAHORN_OFFSET_Y    (-16)
+#define MEGAHORN_MOVE_X      48
+#define MEGAHORN_MOVE_Y      (-16)
+#define MEGAHORN_MOVE_FRAMES 6
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    s16 unk_14;
-    s16 unk_16;
-    XYTransformContext unk_18;
-    XYTransformContext unk_3C;
-} UnkStruct_ov12_02234528;
+// -------------------------------------------------------------------
+// Megahorn (Attacker)
+// -------------------------------------------------------------------
+typedef struct MegahornAttackerContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    int delay;
+    int dirX;
+    int dirY;
+    PokemonSprite *sprite;
+    s16 x;
+    s16 y;
+    XYTransformContext pos;
+    XYTransformContext shake;
+} MegahornAttackerContext;
+
+enum MegahornAttackerState {
+    MEGAHORN_ATTACKER_STATE_INIT = 0,
+    MEGAHORN_ATTACKER_STATE_SHAKE,
+    MEGAHORN_ATTACKER_STATE_MOVE,
+    MEGAHORN_ATTACKER_STATE_WAIT,
+    MEGAHORN_ATTACKER_STATE_MOVE_BACK,
+    MEGAHORN_ATTACKER_STATE_CLEANUP,
+};
+
+#define MEGAHORN_ATTACKER_SHAKE_EXTENT_X 4
+#define MEGAHORN_ATTACKER_SHAKE_EXTENT_Y 0
+#define MEGAHORN_ATTACKER_SHAKE_INTERVAL 1
+#define MEGAHORN_ATTACKER_SHAKE_AMOUNT   4
+#define MEGAHORN_ATTACKER_MOVE_X         40
+#define MEGAHORN_ATTACKER_MOVE_Y         (-7)
+#define MEGAHORN_ATTACKER_MOVE_FRAMES    4
+#define MEGAHORN_ATTACKER_DELAY_FRAMES   8
+
+// -------------------------------------------------------------------
+// Megahorn (Defender)
+// -------------------------------------------------------------------
+typedef struct MegahornDefenderContext {
+    BattleAnimSystem *battleAnimSys;
+    int state;
+    int dirX;
+    int dirY;
+    PokemonSprite *sprite;
+    s16 x;
+    s16 y;
+    XYTransformContext pos;
+    XYTransformContext shake;
+} MegahornDefenderContext;
+
+enum MegahornDefenderState {
+    MEGAHORN_DEFENDER_STATE_INIT = 0,
+    MEGAHORN_DEFENDER_STATE_MOVE,
+    MEGAHORN_DEFENDER_STATE_SHAKE,
+    MEGAHORN_DEFENDER_STATE_MOVE_BACK,
+    MEGAHORN_DEFENDER_STATE_CLEANUP,
+};
+
+#define MEGAHORN_DEFENDER_MOVE_X         (-40)
+#define MEGAHORN_DEFENDER_MOVE_Y         16
+#define MEGAHORN_DEFENDER_MOVE_FRAMES    4
+#define MEGAHORN_DEFENDER_SHAKE_EXTENT_X 4
+#define MEGAHORN_DEFENDER_SHAKE_EXTENT_Y 0
+#define MEGAHORN_DEFENDER_SHAKE_INTERVAL 1
+#define MEGAHORN_DEFENDER_SHAKE_AMOUNT   4
 
 static void BattleAnimTask_QuickAttack(SysTask *task, void *param)
 {
@@ -4598,172 +4647,202 @@ void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_FakeOut, ctx);
 }
 
-static void ov12_02234290(SysTask *param0, void *param1)
+static void BattleAnimTask_Megahorn(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02234290 *v0 = param1;
+    MegahornContext *ctx = param;
 
-    if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_08, v0->unk_2C) == 0) {
-        Sprite_DeleteAndFreeResources(v0->unk_2C);
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    if (PosLerpContext_UpdateAndApplyToSprite(&ctx->pos, ctx->hornSprite) == FALSE) {
+        Sprite_DeleteAndFreeResources(ctx->hornSprite);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_04);
+    SpriteSystem_DrawSprites(ctx->spriteManager);
 }
 
-void ov12_022342C4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Megahorn(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02234290 *v0;
-    int v1;
-    int v2, v3;
-    int v4, v5;
+    MegahornContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MegahornContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234290));
+    ctx->battleAnimSys = system;
+    ctx->spriteManager = BattleAnimSystem_GetPrimarySpriteManager(system);
 
-    v0->unk_00 = param0;
-    v0->unk_04 = BattleAnimSystem_GetPrimarySpriteManager(param0);
+    int attacker = BattleAnimSystem_GetAttacker(system);
 
-    v1 = BattleAnimSystem_GetAttacker(param0);
-
-    if (BattleAnimUtil_GetBattlerSide(param0, v1) == 0x3) {
-        v0->unk_2C = BattleAnimSystem_GetSprite(param0, 0);
-        Sprite_DeleteAndFreeResources(BattleAnimSystem_GetSprite(param0, 1));
+    if (BattleAnimUtil_GetBattlerSide(system, attacker) == BTLSCR_PLAYER) {
+        ctx->hornSprite = BattleAnimSystem_GetSprite(system, 0);
+        Sprite_DeleteAndFreeResources(BattleAnimSystem_GetSprite(system, 1));
     } else {
-        v0->unk_2C = BattleAnimSystem_GetSprite(param0, 1);
-        Sprite_DeleteAndFreeResources(BattleAnimSystem_GetSprite(param0, 0));
+        ctx->hornSprite = BattleAnimSystem_GetSprite(system, 1);
+        Sprite_DeleteAndFreeResources(BattleAnimSystem_GetSprite(system, 0));
     }
 
-    v2 = BattleAnimUtil_GetTransformDirectionX(param0, v1);
-    v3 = BattleAnimUtil_GetTransformDirectionY(param0, v1);
-    v4 = BattleAnimUtil_GetBattlerPos(param0, v1, 0);
-    v5 = BattleAnimUtil_GetBattlerPos(param0, v1, 1);
+    int dirX = BattleAnimUtil_GetTransformDirectionX(system, attacker);
+    int dirY = BattleAnimUtil_GetTransformDirectionY(system, attacker);
+    int hornX = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_X);
+    int hornY = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_Y);
 
-    v4 += 64 * v2;
-    v5 += -16 * v3;
+    hornX += MEGAHORN_OFFSET_X * dirX;
+    hornY += MEGAHORN_OFFSET_Y * dirY;
 
-    ManagedSprite_SetPositionXY(v0->unk_2C, v4, v5);
+    ManagedSprite_SetPositionXY(ctx->hornSprite, hornX, hornY);
 
-    PosLerpContext_Init(&v0->unk_08, v4, v4 + (48 * v2), v5, v5 + (-16 * v3), 6);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234290, v0);
+    PosLerpContext_Init(
+        &ctx->pos,
+        hornX,
+        hornX + MEGAHORN_MOVE_X * dirX,
+        hornY,
+        hornY + MEGAHORN_MOVE_Y * dirY,
+        MEGAHORN_MOVE_FRAMES);
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Megahorn, ctx);
 }
 
-static void ov12_022343A0(SysTask *param0, void *param1)
+static void BattleAnimTask_MegahornAttacker(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022343A0 *v0 = param1;
+    MegahornAttackerContext *ctx = param;
 
-    switch (v0->unk_04) {
-    case 0:
-        ShakeContext_Init(&v0->unk_40, 4, 0, 1, 4);
-        v0->unk_04++;
+    switch (ctx->state) {
+    case MEGAHORN_ATTACKER_STATE_INIT:
+        ShakeContext_Init(
+            &ctx->shake,
+            MEGAHORN_ATTACKER_SHAKE_EXTENT_X,
+            MEGAHORN_ATTACKER_SHAKE_EXTENT_Y,
+            MEGAHORN_ATTACKER_SHAKE_INTERVAL,
+            MEGAHORN_ATTACKER_SHAKE_AMOUNT);
+        ctx->state++;
         break;
-    case 1:
-        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_40, v0->unk_18, v0->unk_1A, v0->unk_14) == 0) {
-            v0->unk_04++;
-            PosLerpContext_Init(&v0->unk_1C, v0->unk_18, v0->unk_18 + (40 * v0->unk_0C), v0->unk_1A, v0->unk_1A + (-7 * v0->unk_10), 4);
+    case MEGAHORN_ATTACKER_STATE_SHAKE:
+        if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, ctx->x, ctx->y, ctx->sprite) == FALSE) {
+            ctx->state++;
+            PosLerpContext_Init(
+                &ctx->pos,
+                ctx->x,
+                ctx->x + (MEGAHORN_ATTACKER_MOVE_X * ctx->dirX),
+                ctx->y,
+                ctx->y + (MEGAHORN_ATTACKER_MOVE_Y * ctx->dirY),
+                MEGAHORN_ATTACKER_MOVE_FRAMES);
         }
         break;
-    case 2:
-        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_1C, v0->unk_14) == 0) {
-            v0->unk_04++;
-            v0->unk_08 = 8;
+    case MEGAHORN_ATTACKER_STATE_MOVE:
+        if (PosLerpContext_UpdateAndApplyToMon(&ctx->pos, ctx->sprite) == FALSE) {
+            ctx->state++;
+            ctx->delay = MEGAHORN_ATTACKER_DELAY_FRAMES;
         }
         break;
-    case 3:
-        v0->unk_08--;
+    case MEGAHORN_ATTACKER_STATE_WAIT:
+        ctx->delay--;
 
-        if (v0->unk_08 < 0) {
-            v0->unk_04++;
-            PosLerpContext_Init(&v0->unk_1C, v0->unk_18 + (40 * v0->unk_0C), v0->unk_18, v0->unk_1A + (-7 * v0->unk_10), v0->unk_1A, 4);
+        if (ctx->delay < 0) {
+            ctx->state++;
+            PosLerpContext_Init(
+                &ctx->pos,
+                ctx->x + (MEGAHORN_ATTACKER_MOVE_X * ctx->dirX),
+                ctx->x,
+                ctx->y + (MEGAHORN_ATTACKER_MOVE_Y * ctx->dirY),
+                ctx->y,
+                MEGAHORN_ATTACKER_MOVE_FRAMES);
         }
         break;
-    case 4:
-        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_1C, v0->unk_14) == 0) {
-            v0->unk_04++;
+    case MEGAHORN_ATTACKER_STATE_MOVE_BACK:
+        if (PosLerpContext_UpdateAndApplyToMon(&ctx->pos, ctx->sprite) == FALSE) {
+            ctx->state++;
         }
         break;
-    case 5:
-        PokemonSprite_SetAttribute(v0->unk_14, MON_SPRITE_X_CENTER, v0->unk_18);
-        PokemonSprite_SetAttribute(v0->unk_14, MON_SPRITE_Y_CENTER, v0->unk_1A);
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        break;
-    }
-}
-
-void ov12_022344D0(BattleAnimSystem *param0)
-{
-    UnkStruct_ov12_022343A0 *v0;
-    int v1;
-
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022343A0));
-    v0->unk_00 = param0;
-
-    v1 = BattleAnimSystem_GetAttacker(param0);
-
-    v0->unk_14 = BattleAnimSystem_GetBattlerSprite(param0, v1);
-    v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_14, MON_SPRITE_X_CENTER);
-    v0->unk_1A = PokemonSprite_GetAttribute(v0->unk_14, MON_SPRITE_Y_CENTER);
-    v0->unk_0C = BattleAnimUtil_GetTransformDirectionX(param0, v1);
-    v0->unk_10 = BattleAnimUtil_GetTransformDirectionY(param0, v1);
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022343A0, v0);
-}
-
-static void ov12_02234528(SysTask *param0, void *param1)
-{
-    UnkStruct_ov12_02234528 *v0 = param1;
-    s16 v1, v2;
-
-    switch (v0->unk_04) {
-    case 0:
-        PosLerpContext_Init(&v0->unk_18, v0->unk_14, v0->unk_14 + (-40 * v0->unk_08), v0->unk_16, v0->unk_16 + (16 * v0->unk_0C), 4);
-        v0->unk_04++;
-        break;
-    case 1:
-        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_18, v0->unk_10) == 0) {
-            v0->unk_04++;
-            ShakeContext_Init(&v0->unk_3C, 4, 0, 1, 4);
-        }
-        break;
-    case 2:
-        v1 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-        v2 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-
-        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_3C, v1, v2, v0->unk_10) == 0) {
-            v0->unk_04++;
-            PosLerpContext_Init(&v0->unk_18, v0->unk_14 + (-40 * v0->unk_08), v0->unk_14, v0->unk_16 + (16 * v0->unk_0C), v0->unk_16, 4);
-        }
-        break;
-    case 3:
-        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_18, v0->unk_10) == 0) {
-            v0->unk_04++;
-        }
-        break;
-    case 4:
-        PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
-        PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
-        Heap_Free(v0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
+    case MEGAHORN_ATTACKER_STATE_CLEANUP:
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_X_CENTER, ctx->x);
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->y);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         break;
     }
 }
 
-void ov12_0223464C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MegahornAttacker(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02234528 *v0;
-    int v1;
+    MegahornAttackerContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MegahornAttackerContext));
+    ctx->battleAnimSys = system;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02234528));
-    v0->unk_00 = param0;
+    int attacker = BattleAnimSystem_GetAttacker(system);
 
-    v1 = BattleAnimSystem_GetDefender(param0);
+    ctx->sprite = BattleAnimSystem_GetBattlerSprite(system, attacker);
+    ctx->x = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_X_CENTER);
+    ctx->y = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
+    ctx->dirX = BattleAnimUtil_GetTransformDirectionX(system, attacker);
+    ctx->dirY = BattleAnimUtil_GetTransformDirectionY(system, attacker);
 
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(param0, v1);
-    v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v0->unk_16 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
-    v0->unk_08 = BattleAnimUtil_GetTransformDirectionX(param0, v1);
-    v0->unk_0C = BattleAnimUtil_GetTransformDirectionY(param0, v1);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_MegahornAttacker, ctx);
+}
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02234528, v0);
+static void BattleAnimTask_MegahornDefender(SysTask *task, void *param)
+{
+    MegahornDefenderContext *ctx = param;
+    s16 baseX, baseY;
+
+    switch (ctx->state) {
+    case MEGAHORN_DEFENDER_STATE_INIT:
+        PosLerpContext_Init(
+            &ctx->pos,
+            ctx->x,
+            ctx->x + (MEGAHORN_DEFENDER_MOVE_X * ctx->dirX),
+            ctx->y,
+            ctx->y + (MEGAHORN_DEFENDER_MOVE_Y * ctx->dirY),
+            MEGAHORN_DEFENDER_MOVE_FRAMES);
+        ctx->state++;
+        break;
+    case MEGAHORN_DEFENDER_STATE_MOVE:
+        if (PosLerpContext_UpdateAndApplyToMon(&ctx->pos, ctx->sprite) == FALSE) {
+            ctx->state++;
+            ShakeContext_Init(
+                &ctx->shake,
+                MEGAHORN_DEFENDER_SHAKE_EXTENT_X,
+                MEGAHORN_DEFENDER_SHAKE_EXTENT_Y,
+                MEGAHORN_DEFENDER_SHAKE_INTERVAL,
+                MEGAHORN_DEFENDER_SHAKE_AMOUNT);
+        }
+        break;
+    case MEGAHORN_DEFENDER_STATE_SHAKE:
+        baseX = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_X_CENTER);
+        baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
+
+        if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, baseX, baseY, ctx->sprite) == FALSE) {
+            ctx->state++;
+            PosLerpContext_Init(
+                &ctx->pos,
+                ctx->x + (MEGAHORN_DEFENDER_MOVE_X * ctx->dirX),
+                ctx->x,
+                ctx->y + (MEGAHORN_DEFENDER_MOVE_Y * ctx->dirY),
+                ctx->y,
+                MEGAHORN_DEFENDER_MOVE_FRAMES);
+        }
+        break;
+    case MEGAHORN_DEFENDER_STATE_MOVE_BACK:
+        if (PosLerpContext_UpdateAndApplyToMon(&ctx->pos, ctx->sprite) == FALSE) {
+            ctx->state++;
+        }
+        break;
+    case MEGAHORN_DEFENDER_STATE_CLEANUP:
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_X_CENTER, ctx->x);
+        PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->y);
+        Heap_Free(ctx);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        break;
+    }
+}
+
+void BattleAnimScriptFunc_MegahornDefender(BattleAnimSystem *system)
+{
+    MegahornDefenderContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MegahornDefenderContext));
+    ctx->battleAnimSys = system;
+
+    int defender = BattleAnimSystem_GetDefender(system);
+
+    ctx->sprite = BattleAnimSystem_GetBattlerSprite(system, defender);
+    ctx->x = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_X_CENTER);
+    ctx->y = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
+    ctx->dirX = BattleAnimUtil_GetTransformDirectionX(system, defender);
+    ctx->dirY = BattleAnimUtil_GetTransformDirectionY(system, defender);
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_MegahornDefender, ctx);
 }
