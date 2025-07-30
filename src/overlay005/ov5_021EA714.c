@@ -16,7 +16,7 @@
 FS_EXTERN_OVERLAY(poketch_unavailable);
 FS_EXTERN_OVERLAY(overlay25);
 
-void ov5_021EA714(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy)
+void FieldSystem_SendPoketchEvent(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy)
 {
     if (fieldSystem->unk_04 != NULL && fieldSystem->unk_04->poketchSys != NULL) {
         PoketchSystem_SendEvent(fieldSystem->unk_04->poketchSys, eventID, dummy);

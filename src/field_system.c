@@ -206,7 +206,7 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 {
     HandleFieldInput(fieldSystem);
     if (FieldTask_Run(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
-        ov5_021EA714(fieldSystem, POKETCH_EVENT_SLEEP, 0);
+        FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 0);
     }
 
     if (fieldSystem->processManager->parent) {
@@ -285,7 +285,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                 MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
-                ov5_021EA714(fieldSystem, 0, 1);
+                FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 1);
             } else {
                 if (gSystem.pressedKeys & PAD_BUTTON_A) {
                     MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
@@ -309,7 +309,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                 Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
                 sub_0205F56C(fieldSystem->playerAvatar);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
-                ov5_021EA714(fieldSystem, 0, 1);
+                FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 1);
             } else {
                 if (gSystem.pressedKeys & PAD_BUTTON_A) {
                     MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
