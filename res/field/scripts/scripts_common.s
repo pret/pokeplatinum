@@ -389,7 +389,7 @@ _0552:
 _0568:
     ScrCmd_18D
     CallIfSet FLAG_UNK_0x001F, _05BE
-    ScrCmd_12D VAR_RESULT
+    TrySaveGame VAR_RESULT
     ScrCmd_18E
     Return
 

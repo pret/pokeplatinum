@@ -454,7 +454,7 @@ _06B8:
 
 _06DF:
     ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
+    TrySaveGame VAR_RESULT
     ScrCmd_18E
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE

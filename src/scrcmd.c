@@ -456,7 +456,7 @@ static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx);
 static BOOL ScrCmd_12A(ScriptContext *ctx);
 static BOOL ScrCmd_12B(ScriptContext *ctx);
 static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
-static BOOL ScrCmd_12D(ScriptContext *ctx);
+static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx);
 static BOOL ScrCmd_131(ScriptContext *ctx);
 static BOOL ScrCmd_132(ScriptContext *ctx);
 static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
@@ -1071,7 +1071,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_12A,
     ScrCmd_12B,
     ScrCmd_CheckSaveType,
-    ScrCmd_12D,
+    ScrCmd_TrySaveGame,
     ScrCmd_12E,
     ScrCmd_12F,
     ScrCmd_130,
@@ -4960,7 +4960,7 @@ static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_12D(ScriptContext *ctx)
+static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *destVarResult = ScriptContext_GetVarPointer(ctx);

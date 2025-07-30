@@ -1735,7 +1735,7 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_12D arg0
+    .macro TrySaveGame arg0
     .short 301
     .short \arg0
     .endm
