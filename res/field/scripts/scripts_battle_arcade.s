@@ -453,9 +453,9 @@ _06B8:
     End
 
 _06DF:
-    ScrCmd_18D
+    ShowSavingIcon
     TrySaveGame VAR_RESULT
-    ScrCmd_18E
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return

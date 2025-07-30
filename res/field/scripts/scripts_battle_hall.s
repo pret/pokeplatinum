@@ -575,9 +575,9 @@ _08B4:
     End
 
 _08DB:
-    ScrCmd_18D
+    ShowSavingIcon
     TrySaveGame VAR_RESULT
-    ScrCmd_18E
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return

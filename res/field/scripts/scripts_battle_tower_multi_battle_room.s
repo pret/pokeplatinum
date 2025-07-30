@@ -151,9 +151,9 @@ _025B:
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 0
-    ScrCmd_18D
+    ShowSavingIcon
     TrySaveGame VAR_RESULT
-    ScrCmd_18E
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     FadeScreen 6, 1, 0, 0

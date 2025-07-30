@@ -527,8 +527,8 @@ static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx);
 static BOOL ScrCmd_178(ScriptContext *ctx);
 static BOOL ScrCmd_179(ScriptContext *ctx);
 static BOOL ScrCmd_17A(ScriptContext *ctx);
-static BOOL ScrCmd_18D(ScriptContext *ctx);
-static BOOL ScrCmd_18E(ScriptContext *ctx);
+static BOOL ScrCmd_ShowSavingIcon(ScriptContext *ctx);
+static BOOL ScrCmd_HideSavingIcon(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx);
 static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx);
 static BOOL ScrCmd_SelectMoveTutorPokemon(ScriptContext *ctx);
@@ -1167,8 +1167,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetWarpEventPos,
     ScrCmd_18B,
     ScrCmd_18C,
-    ScrCmd_18D,
-    ScrCmd_18E,
+    ScrCmd_ShowSavingIcon,
+    ScrCmd_HideSavingIcon,
     ScrCmd_18F,
     ScrCmd_WaitABPressTime,
     ScrCmd_SelectMoveTutorPokemon,
@@ -2631,9 +2631,9 @@ static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_18D(ScriptContext *ctx)
+static BOOL ScrCmd_ShowSavingIcon(ScriptContext *ctx)
 {
-    Window *v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW);
+    Window *window = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW);
 
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVING_ICON);
     *v0 = Window_AddWaitDial(v1, 1024 - (18 + 12));
@@ -2641,7 +2641,7 @@ static BOOL ScrCmd_18D(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_18E(ScriptContext *ctx)
+static BOOL ScrCmd_HideSavingIcon(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVING_ICON);
     DestroyWaitDial(*v0);

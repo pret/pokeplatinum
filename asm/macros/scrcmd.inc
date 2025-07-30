@@ -2214,11 +2214,11 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_18D
+    .macro ShowSavingIcon
     .short 397
     .endm
 
-    .macro ScrCmd_18E
+    .macro HideSavingIcon
     .short 398
     .endm
 

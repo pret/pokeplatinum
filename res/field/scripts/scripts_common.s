@@ -387,10 +387,10 @@ _0552:
     GoTo _057D
 
 _0568:
-    ScrCmd_18D
+    ShowSavingIcon
     CallIfSet FLAG_UNK_0x001F, _05BE
     TrySaveGame VAR_RESULT
-    ScrCmd_18E
+    HideSavingIcon
     Return
 
 _057D:
