@@ -24,7 +24,7 @@ static const struct {
     [SPECIAL_CHAR_LEVEL_UNUSED] = { .offset = 21 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) }
 };
 
-FontSpecialCharsContext *FontSpecialChars_Init(u32 color, u32 outline, u32 transparent, u32 heapID)
+FontSpecialCharsContext *FontSpecialChars_Init(u32 fgColor, u32 shadowColor, u32 bgColor, u32 heapID)
 {
     FontSpecialCharsContext *context = Heap_AllocFromHeap(heapID, sizeof(FontSpecialCharsContext));
 
@@ -38,36 +38,36 @@ FontSpecialCharsContext *FontSpecialChars_Init(u32 color, u32 outline, u32 trans
         for (idx = 0; idx < context->charData->szByte; idx++) {
             switch (rawData[idx]) {
             case 0:
-                rawData[idx] = (transparent << 4) | (transparent);
+                rawData[idx] = (bgColor << 4) | (bgColor);
                 break;
             case 1:
-                rawData[idx] = (transparent << 4) | (color);
+                rawData[idx] = (bgColor << 4) | (fgColor);
                 break;
             case 2:
-                rawData[idx] = (transparent << 4) | (outline);
+                rawData[idx] = (bgColor << 4) | (shadowColor);
                 break;
             case 16:
-                rawData[idx] = (color << 4) | (transparent);
+                rawData[idx] = (fgColor << 4) | (bgColor);
                 break;
             case 17:
-                rawData[idx] = (color << 4) | (color);
+                rawData[idx] = (fgColor << 4) | (fgColor);
                 break;
             case 18:
-                rawData[idx] = (color << 4) | (outline);
+                rawData[idx] = (fgColor << 4) | (shadowColor);
                 break;
             case 32:
-                rawData[idx] = (outline << 4) | (transparent);
+                rawData[idx] = (shadowColor << 4) | (bgColor);
                 break;
             case 33:
-                rawData[idx] = (outline << 4) | (color);
+                rawData[idx] = (shadowColor << 4) | (fgColor);
                 break;
             case 34:
-                rawData[idx] = (outline << 4) | (outline);
+                rawData[idx] = (shadowColor << 4) | (shadowColor);
                 break;
             }
         }
 
-        context->transparent = transparent;
+        context->bgColor = bgColor;
     }
 
     return context;
@@ -109,7 +109,7 @@ void FontSpecialChars_DrawPartyScreenHPText(FontSpecialCharsContext *context, s3
         if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
             Window_BlitBitmapRect(window, (u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * 0x20), 0, 0, 8, 8, x, y, 8, 8);
         } else {
-            Window_FillRectWithColor(window, context->transparent, x, y, 8, 8);
+            Window_FillRectWithColor(window, context->bgColor, x, y, 8, 8);
         }
 
         x += 8;
@@ -125,10 +125,10 @@ void FontSpecialChars_DrawPartyScreenText(FontSpecialCharsContext *context, enum
 void FontSpecialChars_DrawBattleScreenText(FontSpecialCharsContext *context, s32 displayNum, u32 numDigits, enum PaddingMode paddingMode, void *displayPtr)
 {
     int idx;
-    u8 transparent;
+    u8 bgColor;
     u8 *displayPtrBytes = displayPtr;
 
-    transparent = context->transparent | (context->transparent << 4);
+    bgColor = context->bgColor | (context->bgColor << 4);
 
     CharCode_FromInt(context->charcodes, displayNum, paddingMode, numDigits);
 
@@ -136,7 +136,7 @@ void FontSpecialChars_DrawBattleScreenText(FontSpecialCharsContext *context, s32
         if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
             MI_CpuCopy32((u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * TILE_SIZE_4BPP), &displayPtrBytes[idx * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
         } else {
-            MI_CpuFill8(&displayPtrBytes[idx * TILE_SIZE_4BPP], transparent, TILE_SIZE_4BPP);
+            MI_CpuFill8(&displayPtrBytes[idx * TILE_SIZE_4BPP], bgColor, TILE_SIZE_4BPP);
         }
     }
 }
