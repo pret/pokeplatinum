@@ -26,11 +26,11 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_NOT_NIGHT_UNUSED",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Let’s enjoy a fierce battle in the\nchilly night winds! Brrrr! Refreshing!\r",
+        "TRMSG_DEFEAT": "I need to explain, all right?\nIt was too dark and hard to see.\n",
+        "TRMSG_POST_BATTLE": "Oops, I’d better get back to my\nbeat before the boss radios me...\n",
+        "TRMSG_NOT_NIGHT_UNUSED": "Yo! Hanging tough, Trainer? Word!\nI’m trying to make my lingo more hip!\n",
+        "TRMSG_REMATCH": "Still training this late?\rThat makes you either a bad kid or\na good Trainer. Which one is it?\r"
+    }
 }

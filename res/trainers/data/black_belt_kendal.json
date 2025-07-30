@@ -18,9 +18,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ll pound the fear of my fists into\nyou all karate style, punk!\r",
+        "TRMSG_DEFEAT": "I’m so sorry...\nI got a bit mouthy there, didn’t I?\n",
+        "TRMSG_POST_BATTLE": "So, I’m gonna try and shatter steel!\rI wonder how many more years it\nwould take for me to do that?\n"
+    }
 }

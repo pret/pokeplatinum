@@ -24,8 +24,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Oh, I’m delighted to see you again.\nAre you prepared?\r",
+        "TRMSG_DEFEAT": "Oh, how very impressive of you.\n"
+    }
 }

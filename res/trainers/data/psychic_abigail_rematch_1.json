@@ -36,8 +36,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Wah! That thing curled around your\nneck!\r...Nice scarf, kid!\r",
+        "TRMSG_DEFEAT": "My plan to spook you didn’t go over\nat all.\n"
+    }
 }

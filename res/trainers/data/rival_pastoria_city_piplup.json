@@ -66,8 +66,8 @@
             "ball_seal": 10
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "Yeah, I can tell you raised your\nPokémon to be tough!\n",
+        "TRMSG_DEFEAT": "What just happened?!\nYou’re telling me I lost?!\n"
+    }
 }

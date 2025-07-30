@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "How about that!\nI’ve netted me a feisty Trainer!\r",
+        "TRMSG_DEFEAT": "I let a big win slip away...\n",
+        "TRMSG_POST_BATTLE": "Do you have a fishing rod?\nCatch some big ones!\n",
+        "TRMSG_REMATCH": "Hey, you feisty tyke! I caught a big\none! Let’s battle again!\r"
+    }
 }

@@ -49,10 +49,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Really? So you think you can beat me?\nI’m an Ace Trainer, you do realize?\r",
+        "TRMSG_DEFEAT": "I admit defeat...\n",
+        "TRMSG_POST_BATTLE": "Beaten in battle, but not in spirit.\nThat’s the mark of a real Ace Trainer.\n",
+        "TRMSG_REMATCH": "Ace Trainers always work to improve\ntheir natural-born talents.\r"
+    }
 }

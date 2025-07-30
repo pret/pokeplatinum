@@ -47,9 +47,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Like the raging sea, I crash down\nand wash away everything before me!\rThat’s just how I roll!\r",
+        "TRMSG_DEFEAT": "That wave didn’t even wash\nmy hands...\n",
+        "TRMSG_POST_BATTLE": "I’m now becalmed like a waveless\nsea...\n"
+    }
 }

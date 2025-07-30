@@ -35,7 +35,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "You know, I had confidence before\nheading into this.\n"
+    }
 }

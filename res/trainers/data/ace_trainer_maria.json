@@ -52,10 +52,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "To be ready to answer any call!\nTo be ready to accept any challenge!\rThat is the way of a Trainer!\r",
+        "TRMSG_DEFEAT": "Oh, yeah?\nEat snowball, punk!\n",
+        "TRMSG_POST_BATTLE": "You can make all the preparations in\nthe world, but if it doesn’t work, it\fdoesn’t work.\n",
+        "TRMSG_REMATCH": "I got everything ready so we could\nhave a rematch whenever you come.\r"
+    }
 }

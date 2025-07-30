@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My dragon Pokémon chose to become\npowerful here. They sure like it!\r",
+        "TRMSG_DEFEAT": "Your battle style...\nSo savage...\n",
+        "TRMSG_POST_BATTLE": "It’s been several years since I left\nthe Dragon’s Den.\rI’ve got to say, your Pokémon are\nin the top class for toughness.",
+        "TRMSG_REMATCH": "My dragon Pokémon chose to remain\nhere to become powerful.\r"
+    }
 }

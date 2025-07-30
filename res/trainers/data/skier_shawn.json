@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ll show you the techniques I had\ndrummed into me at ski school!\r",
+        "TRMSG_DEFEAT": "I don’t believe it...\nMy techniques were rebuffed...\n",
+        "TRMSG_POST_BATTLE": "Maybe I should’ve studied at the\nTrainers’ school instead...\n",
+        "TRMSG_REMATCH": "Since I lost to you last time,\nI redid my training at ski school!\r"
+    }
 }

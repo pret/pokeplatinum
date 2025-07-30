@@ -55,9 +55,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "Hey! That there!\nThat was a good move!\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "This is where it gets exciting!\n",
+        "TRMSG_DEFEAT": "Hunwah!\nIt’s gone and ended!\rHow will I say this... I want more!\nI wanted to battle a lot more!\n"
+    }
 }

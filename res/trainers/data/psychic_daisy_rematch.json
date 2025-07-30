@@ -27,8 +27,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Right after this, you will hurl a Poké\nBall in an astonishingly cool manner!\r",
+        "TRMSG_DEFEAT": "Right after this, I have to pay\nout your prize money...\n"
+    }
 }

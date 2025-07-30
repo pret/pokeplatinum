@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I want to be with my water Pokémon!\nThat’s why I swim!\r",
+        "TRMSG_DEFEAT": "Glub glub...\nI’m sinking...\n",
+        "TRMSG_POST_BATTLE": "I thought that everyone would be all\ndedicated to training out here.\rBut most people are really laid back.\nIt’s not like what I imagined.\rI guess being with Pokémon, people get\nall mellowed out.\n",
+        "TRMSG_REMATCH": "I want to be with water Pokémon!\nThat’s why I’m going to get tougher!\r"
+    }
 }

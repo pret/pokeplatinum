@@ -24,10 +24,10 @@
             "ball_seal": 12
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve got the urge to battle with you.\nHope you’re willing to oblige!\r",
+        "TRMSG_DEFEAT": "I shouldn’t have paid attention\nto my urge...\n",
+        "TRMSG_POST_BATTLE": "So long as my partner’s alongside me,\nI’m willing to take on the world!\n",
+        "TRMSG_REMATCH": "The urge to battle you again has\nstruck me. Want to humor me?\r"
+    }
 }

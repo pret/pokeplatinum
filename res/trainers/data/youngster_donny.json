@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hey, now!\nYou’re not even close to the door yet.\rYou have to beat me before you can\ngo, you know?\r",
+        "TRMSG_DEFEAT": "Argh! I should’ve dazzled you by\nshining my light in your eyes!\n",
+        "TRMSG_POST_BATTLE": "Just walk around and look for the blue\nmarks on the tiles.\n"
+    }
 }

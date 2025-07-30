@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Protect the natural environment.\nThat’s what we Rangers do!\r",
+        "TRMSG_DEFEAT": "We’ve got to get tougher than this...",
+        "TRMSG_POST_BATTLE": "I love how natural it is here.\nI wish I could live out here.\n",
+        "TRMSG_REMATCH": "What do you think? The environment\nis unharmed in this area.\r"
+    }
 }

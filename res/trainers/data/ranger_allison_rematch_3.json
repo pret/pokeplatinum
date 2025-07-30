@@ -28,8 +28,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "What do you think? The environment\nis unharmed in this area.\r",
+        "TRMSG_DEFEAT": "We have to get tougher than this..."
+    }
 }

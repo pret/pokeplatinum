@@ -38,10 +38,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m an elite battler, but cold is\nmy nemesis!\r",
+        "TRMSG_DEFEAT": "But, how...?\nAm I weak at battling, too?\n",
+        "TRMSG_POST_BATTLE": "I’d rather be asleep in the lodge’s\nbed...\rI can’t take this cold...\n",
+        "TRMSG_REMATCH": "I’m an elite at battling, but cold is\nmy nemesis!\r"
+    }
 }

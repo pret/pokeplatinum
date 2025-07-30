@@ -36,9 +36,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I trained all of my gnarly Pokémon\nat the Fighting Dojo in Kanto!\r",
+        "TRMSG_DEFEAT": "D  n     i\n  o  e     n...\n",
+        "TRMSG_POST_BATTLE": "We’re gonna go ahead and leave...\nYou know, go train elsewhere.\n"
+    }
 }

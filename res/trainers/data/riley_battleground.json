@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "Your team!\nI sense your strong aura!\n",
+        "TRMSG_DEFEAT": "At times we battle, and sometimes we\nteam up...\rIt’s great how Trainers can interact.\n"
+    }
 }

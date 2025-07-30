@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I can’t swim without my inflatable tube.\nBut my Pokémon might be strong!\r",
+        "TRMSG_DEFEAT": "They weren’t tough, my Pokémon...\n",
+        "TRMSG_POST_BATTLE": "My mommy said that Professor Rowan\nis really kindhearted.",
+        "TRMSG_REMATCH": "Oh! You’re the Trainer who played\nwith us before!\rCan you see if my Pokémon have grown\nstronger?\r"
+    }
 }

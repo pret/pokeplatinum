@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hello, there!\nAren’t you going to swim?\r",
+        "TRMSG_DEFEAT": "What’s saltier?\nMy tears or the sea...\n",
+        "TRMSG_POST_BATTLE": "There aren’t many sea routes that\nyou can swim in Sinnoh.\rIt makes me want to take a vacation\nin the Hoenn region.\n",
+        "TRMSG_REMATCH": "When I see people surfing, I don’t\nfeel jealous or anything.\rI just simply love to swim!\r"
+    }
 }

@@ -37,9 +37,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "If we were to battle, your Pokémon \nwould become tougher.\rLikewise, my Pokémon would also\nbecome tougher.\rIt’s all good.\nThis calls for a battle!\r",
+        "TRMSG_DEFEAT": "You know, I would have really enjoyed\na win there. Would’ve been real nice.\n",
+        "TRMSG_POST_BATTLE": "This mine’s been abandoned, but\nnow it’s home to many Pokémon.\rI guess everything finds a place\nto call home someday..."
+    }
 }

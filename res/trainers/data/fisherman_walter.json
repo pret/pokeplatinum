@@ -20,9 +20,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I wield the stupendous power of water!\nDon’t think you can win!\r",
+        "TRMSG_DEFEAT": "But the kid wins anyway!\nI’m just bowled over!\n",
+        "TRMSG_POST_BATTLE": "The water rising and falling is tricky,\nbut don’t let it annoy you.\rIf you lose sight of yourself, that’s\nwhen you’re set to lose.\n"
+    }
 }

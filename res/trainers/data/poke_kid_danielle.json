@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hi, hi!\nI’m a Pokémon!\r",
+        "TRMSG_DEFEAT": "So sad...\nSo bitter...\n",
+        "TRMSG_POST_BATTLE": "I don’t want to be a Trainer.\nI want to be a Pokémon!\n",
+        "TRMSG_REMATCH": "Hi, hi!\nI’m a Pokémon!\r...You knew that, didn’t you?\r"
+    }
 }

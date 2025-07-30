@@ -55,9 +55,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "Oh, heavens. What is this?\nIs this my final Pokémon?\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "Never give up, never surrender!\n",
+        "TRMSG_DEFEAT": "You are so fantastically strong.\nI know now why I have lost.\n"
+    }
 }

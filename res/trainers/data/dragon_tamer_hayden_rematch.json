@@ -28,8 +28,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "My dragon Pokémon chose to remain\nhere to become powerful.\r",
+        "TRMSG_DEFEAT": "Your battle style...\n"
+    }
 }

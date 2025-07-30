@@ -36,10 +36,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "They call me an Ace Trainer.\rAllow me to demonstrate the talent\nthat makes me so!\r",
+        "TRMSG_DEFEAT": "I’m burning with jealousy over your\nraw talent!\n",
+        "TRMSG_POST_BATTLE": "I think keeping up the effort to\nbetter yourself is a talent in itself.\n",
+        "TRMSG_REMATCH": "Last time, I stumbled before I could\nshowcase my talent.\rThis time, I’ll conclusively demonstrate\nthe might of an Ace Trainer!\r"
+    }
 }

@@ -38,10 +38,10 @@
             "ball_seal": 23
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Welcome to my Pokémon show!\r",
+        "TRMSG_DEFEAT": "Did you enjoy the show?\nSuper fabulous, wasn’t it?\n",
+        "TRMSG_POST_BATTLE": "I’ll be happy to battle you again!\nLet’s battle again sometime, yeah?",
+        "TRMSG_REMATCH": "Welcome to my new Pokémon show!\r"
+    }
 }

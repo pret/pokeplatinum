@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Let me demonstrate my technique.\nIt’s how this grown-up battles.\r",
+        "TRMSG_DEFEAT": "Oh, my gosh!\nYou attack that savagely?\n",
+        "TRMSG_POST_BATTLE": "You’re so much more of a Trainer\nthan you look!\n",
+        "TRMSG_REMATCH": "OK, this time I’ll really show you how a\ngrown-up battles!\r"
+    }
 }

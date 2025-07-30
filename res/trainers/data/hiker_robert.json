@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Gahahaha! You’re just a little kid!\rHow’re you supposed to beat a big\nman like me?\r",
+        "TRMSG_DEFEAT": "Oh my, a big man like me got schooled\nby a little kid like you!\n",
+        "TRMSG_POST_BATTLE": "Wow, you’re sure impressive!\rI guess it makes no difference if\nyou’re young or old in battles.\n",
+        "TRMSG_REMATCH": "Hey, you, tough little kid!\nThrow us a rematch, will you?\r"
+    }
 }

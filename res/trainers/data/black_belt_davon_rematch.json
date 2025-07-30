@@ -36,8 +36,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "This time! This time I will win!\nMy spirit is renewed and strong!\r",
+        "TRMSG_DEFEAT": "My spirit is broken...\n"
+    }
 }

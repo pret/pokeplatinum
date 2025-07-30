@@ -22,9 +22,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Our mission is to implement our\noperations without question.\rIt is all for the new world order\nthat our boss will lead!\r",
+        "TRMSG_DEFEAT": "This won’t go unpunished...\n",
+        "TRMSG_POST_BATTLE": "I’m willing to do anything to get ahead\nin Team Galactic.\rOne day you’ll see what we are all\nabout.\rIt’s wonder, compassion, splendor,\nhumor, power, awe, and tragedy!\n"
+    }
 }

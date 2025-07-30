@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I like fishing, no question.\nBut battling? That’s what I love!\r",
+        "TRMSG_DEFEAT": "Sploosh!\n",
+        "TRMSG_POST_BATTLE": "If you don’t know how to fish, you’re\nmissing half of life’s enjoyment.\rIf you don’t know Pokémon...\nYou’re missing out on all of it!\n",
+        "TRMSG_REMATCH": "Come on, battle me again!\nYou know I love to fish and battle!\r"
+    }
 }

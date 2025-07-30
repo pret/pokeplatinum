@@ -38,8 +38,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Last time, you beat me before I had\na chance to show you my skill.\rThis time, I’ll shows you why they\nconsider me an ace!\r",
+        "TRMSG_DEFEAT": "I’m burning with jealousy over your\ntalent!\n"
+    }
 }

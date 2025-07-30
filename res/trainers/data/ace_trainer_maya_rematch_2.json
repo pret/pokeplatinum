@@ -52,8 +52,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Oh, it’s you again!\rI’ve regained my confidence.\nLet’s have another battle!\r",
+        "TRMSG_DEFEAT": "You made me lose my confidence...\n"
+    }
 }

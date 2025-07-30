@@ -52,7 +52,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "...You, my friend, are tough!\nI can see why you defy us so...\n"
+    }
 }

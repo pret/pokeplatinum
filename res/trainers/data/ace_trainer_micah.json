@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "When Trainers lock eyes...\rThat’s right! It’s time to let\ntheir Pokémon go wild!\r",
+        "TRMSG_DEFEAT": "Your Pokémon have a real peppy feel to\nthem!\n",
+        "TRMSG_POST_BATTLE": "Whether you’re talking to people or\nPokémon, it’s important to always look\fthem square in the eyes.\n"
+    }
 }

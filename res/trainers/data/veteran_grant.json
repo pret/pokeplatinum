@@ -52,9 +52,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m a Veteran, yes, but don’t you\ndare treat me like a senior citizen!\r",
+        "TRMSG_DEFEAT": "Grrr...\nSo young, and yet so talented!\n",
+        "TRMSG_POST_BATTLE": "I’ll always remain young at heart.\nNever let them say you’re too old!\n"
+    }
 }

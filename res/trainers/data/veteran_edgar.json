@@ -52,9 +52,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I can sense that your Pokémon have\na lot of trust in you.\rYou and your Pokémon...\nYou seem to be aglow.\r",
+        "TRMSG_DEFEAT": "Ah, I understand it now!\n",
+        "TRMSG_POST_BATTLE": "Neither Pokémon nor people live\nforever.\rBut it is the very frailty of life that\nallows us to shine!"
+    }
 }

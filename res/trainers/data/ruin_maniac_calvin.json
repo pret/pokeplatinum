@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m a treasure hunter.\rToday, the loot is a victory from\nyou!\r",
+        "TRMSG_DEFEAT": "I can’t win.\nYou’re too strong for me to win.\n",
+        "TRMSG_POST_BATTLE": "If one’s after treasures, maybe the\nUnderground is the better choice.\n",
+        "TRMSG_REMATCH": "I’m a treasure hunter.\rThis time for sure, the loot is\nvictory over you!\r"
+    }
 }

@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "You look like you might just have\nthe Pokémon I’ve been looking for!\r",
+        "TRMSG_DEFEAT": "You didn’t have a single Pokémon\nI wanted... You’re no Collector!\n",
+        "TRMSG_POST_BATTLE": "I’m very picky, so I want to collect\nevery Pokémon without anyone’s help.\r...I do have friends, though.\nNo, seriously! I do!\n"
+    }
 }

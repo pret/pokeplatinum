@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Collecting electricity from the Valley\nWindworks... That’s our mission.\r",
+        "TRMSG_DEFEAT": "I really don’t like kids who also\nhappen to be tough Trainers...\n",
+        "TRMSG_POST_BATTLE": "You don’t have an inkling of what\nTeam Galactic is trying to achieve!\rOf course, they don’t tell a grunt\nlike me anything, either... But still!\n"
+    }
 }

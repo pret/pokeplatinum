@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "This total stranger’ll be a good way\nto see if I have what it takes to own\fthe Pokémon League’s Elite Four!\r",
+        "TRMSG_DEFEAT": "That battle just now must make you\ntougher than everyone in the world.\n",
+        "TRMSG_POST_BATTLE": "It doesn’t appear as if anyone could\neven try to stand against your might.\rThe Elite Four should just surrender."
+    }
 }

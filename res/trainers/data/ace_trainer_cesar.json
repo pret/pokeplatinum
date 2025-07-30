@@ -24,9 +24,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "An ace has the knowledge and\nexperience of battling at high levels.\rI’ll demonstrate what that means to\na noob like you!\r",
+        "TRMSG_DEFEAT": "Wow...\nI’m in the mood to sing a lullaby...\n",
+        "TRMSG_POST_BATTLE": "Your earnest enthusiasm...\nI guess that kinda makes you an ace.\rMaybe you’re a Trainer who has the\npotential to surpass aces!\n"
+    }
 }

@@ -27,10 +27,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "You’re going to win!\nThat’s the future I saw!\r",
+        "TRMSG_DEFEAT": "What I saw in the future turned out\nto be true...\n",
+        "TRMSG_POST_BATTLE": "I lost, but my vision of the future\ncame true...\n",
+        "TRMSG_REMATCH": "You’re going to win again!\nThat’s the future I saw!\r"
+    }
 }

@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "...It’s t-too cold.\nI can’t even feel my t-tongue.\r",
+        "TRMSG_DEFEAT": "This result...\n...It’s cold. Bitter cold.\n",
+        "TRMSG_POST_BATTLE": "The higher up you slide from, the\nmore speed you’ll have to smash\fthose big snowballs.\n"
+    }
 }

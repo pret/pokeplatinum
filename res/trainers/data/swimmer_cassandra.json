@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Did you know, I was crowned the\nchampion of a swimsuit contest!\rSo now, I’m trying to win a title\nat a Pokémon Contest!\r",
+        "TRMSG_DEFEAT": "I’m speechless!\nI never lose when I’m in my swimsuit!\n",
+        "TRMSG_POST_BATTLE": "I shouldn’t be worried about what bikini\nto wear.\rThe first thing to do is consider what\nPokémon I should be using!\n",
+        "TRMSG_REMATCH": "I’m so wonderful, I won a swimsuit\ncontest.\rI’m going to take you on so that I can\nwin a Pokémon Contest!\r"
+    }
 }

@@ -48,9 +48,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve landed the most fish Pokémon\nin the world. I’m next!\r",
+        "TRMSG_DEFEAT": "Being number one in the world doesn’t\nmean a thing...\n",
+        "TRMSG_POST_BATTLE": "I figure I got too wrapped up in\nfishing and neglected training.\n"
+    }
 }

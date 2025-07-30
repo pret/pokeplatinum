@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "The human body floats more easily in\nthe sea, so it’s easy to swim!\r",
+        "TRMSG_DEFEAT": "The sea is salty, but all I taste is\nbitterness...\n",
+        "TRMSG_POST_BATTLE": "I’ve got that sinking feeling...\n",
+        "TRMSG_REMATCH": "Pokémon can stay afloat even while\ncarrying someone. That’s so cool!\r"
+    }
 }

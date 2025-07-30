@@ -21,7 +21,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "My luck’s run out...\n"
+    }
 }

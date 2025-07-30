@@ -26,16 +26,16 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
-        "TRMSG_POST_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_1",
-        "TRMSG_PRE_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
-        "TRMSG_POST_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_2"
-    ]
+    "messages": {
+        "TRMSG_PRE_DOUBLE_BATTLE_1": "Emma: We’re tough because we battle\ntogether!\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Emma: Waaah!\n",
+        "TRMSG_POST_DOUBLE_BATTLE_1": "Emma: That was awesome!\nAre you maybe a Pokémon genius?\fYou’re well deserving of respect!\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "We won’t talk to people who have only\none Pokémon!\n",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_1": "Emma: When I battle with Lil,\nwe shouldn’t lose!\r",
+        "TRMSG_PRE_DOUBLE_BATTLE_2": "Lil: We’re gonna crunch and\nmunch you all up!\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Lil: Hwaaah!\n",
+        "TRMSG_POST_DOUBLE_BATTLE_2": "Lil: We’re going to be super-strong\nTrainers like you!\rI just decided now!\nPlease cheer for us!\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "We don’t talk to people who have only\none Pokémon!\n",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_2": "Lil: You munched us all up last\ntime, but it’s our turn now!\r"
+    }
 }

@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Look at these beautiful wings!\r",
+        "TRMSG_DEFEAT": "Oh, you!\nI’m going to peck you for that!\n",
+        "TRMSG_POST_BATTLE": "There’s a bird Pokémon that can learn\nhuman speech! Did you know that?\n",
+        "TRMSG_REMATCH": "My bird Pokémon has such gorgeous\nwings.\rIt must have been some sort of a\nmistake that we lost last time!\r"
+    }
 }

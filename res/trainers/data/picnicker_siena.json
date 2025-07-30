@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What kinds of Pokémon live around\nhere, I wonder?\r",
+        "TRMSG_DEFEAT": "I’m shocked!\nHow did I lose?\n",
+        "TRMSG_POST_BATTLE": "I know all sorts of things about\nPokémon!\rLet’s see... There are males and\nfemales, and some aren’t either!\n",
+        "TRMSG_REMATCH": "Oh, hi! We meet again!\nHave you seen any rare Pokémon?\r"
+    }
 }

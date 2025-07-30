@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A Trainer riding a Pokémon!\nI like that! Let’s battle it out!\r",
+        "TRMSG_DEFEAT": "Awesome!\nYou’re a real wild child!\n",
+        "TRMSG_POST_BATTLE": "You ride atop the waves while riding on\na Pokémon!\rAnd you rode right over me!\n",
+        "TRMSG_REMATCH": "Yo, Pokémon-riding Trainer!\nHow about a rematch?\r"
+    }
 }

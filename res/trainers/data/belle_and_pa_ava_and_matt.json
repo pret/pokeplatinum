@@ -26,16 +26,16 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
-        "TRMSG_POST_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_1",
-        "TRMSG_PRE_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
-        "TRMSG_POST_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_2"
-    ]
+    "messages": {
+        "TRMSG_PRE_DOUBLE_BATTLE_1": "Matt: Uhohoho! I’ll show y’all how\ntightly I’ve bonded with my daughter!\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Matt: Parent-and-child power couldn’t\nget the job done.\n",
+        "TRMSG_POST_DOUBLE_BATTLE_1": "Matt: I reckon the bonds between you\nand your Pokémon are like the bonds\fparents share with their kids.\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "Matt: Oh, there’s no way you could\nbeat us both with one Pokémon.\n",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_1": "Matt: Ayuh? You’re here to check the\nbond I have with my daughter again?\r",
+        "TRMSG_PRE_DOUBLE_BATTLE_2": "Ava: I can get away with slacking\noff if I have my Pokémon out!\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Ava: Oh, sheesh!\n",
+        "TRMSG_POST_DOUBLE_BATTLE_2": "Ava: Papa, I’m so sorry!\nI’ll work harder from tomorrow on!\r...Yup, tomorrow’s when I’m going to\nstart working.\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "Ava: You’re battling me and my pa.\nOne Pokémon won’t cut it, dear!\n",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_2": "Ava: Oh, hi! It’s good y’all came\ncalling on us again!\rI can take a break from work if I’m\nbattling Pokémon. Lucky for me!\r"
+    }
 }

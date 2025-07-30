@@ -28,8 +28,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Hey! You’re that high-energy Trainer!\nI bet you can’t keep up with us now!\r",
+        "TRMSG_DEFEAT": "You’ve got energy to burn!\n"
+    }
 }

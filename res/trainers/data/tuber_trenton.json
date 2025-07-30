@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I love my inflatable tube.\nSo I admire jellyfish Pokémon!\r",
+        "TRMSG_DEFEAT": "I’m drifting away...\n",
+        "TRMSG_POST_BATTLE": "I wish Professor Rowan would\ngive me a Pokédex.\rBut that old guy looks kind of\nscary.\n",
+        "TRMSG_REMATCH": "I love my inflatable tube.\nSo I admire jellyfish Pokémon.\rWon’t you hang out with us and just\nbob around on the waves?\r"
+    }
 }

@@ -38,10 +38,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "There is something missing in the\nway I battle...\rI’ve come here to find it.\r",
+        "TRMSG_DEFEAT": "I see it now...\nI know what I lack.\n",
+        "TRMSG_POST_BATTLE": "Battling you was an eye-opener.\rI learned something very important\nin that short time.\n",
+        "TRMSG_REMATCH": "Have you discovered what’s missing in\nyour battles? I have.\r"
+    }
 }

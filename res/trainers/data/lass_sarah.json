@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Oh, a weak-looking Trainer...\nDo you want to have a go?\r",
+        "TRMSG_DEFEAT": "Aww...\nI should have said no.\n",
+        "TRMSG_POST_BATTLE": "Oh, you’re so mean!\nI just started training Pokémon!\n",
+        "TRMSG_REMATCH": "Hi, pretty-tough Trainer!\nWill you give me a rematch?\r"
+    }
 }

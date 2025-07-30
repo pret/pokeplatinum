@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Your spirit’s vibes, man... I can feel\nthat you’ve got rock in your soul!\r",
+        "TRMSG_DEFEAT": "You beat me, man, but...\nI feel totally amped to jam harder!\n",
+        "TRMSG_POST_BATTLE": "Rock is about your spirit!\nBattling is about spirit, too!\fThat’s why battles rock! Rawk!\n"
+    }
 }

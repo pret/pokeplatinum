@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Outdoor fishing for the win!\rShouting doesn’t help my fishing any,\nbut shout I must!\r",
+        "TRMSG_DEFEAT": "Gwaaah!\nThis is hurting!\n",
+        "TRMSG_POST_BATTLE": "Oh, right... My shouting is scaring\naway the Pokémon.\n",
+        "TRMSG_REMATCH": "Super outdoor fishing!\nShouting still doesn’t help!\r"
+    }
 }

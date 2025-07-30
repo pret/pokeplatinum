@@ -21,8 +21,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I wasn’t lucky the other day.\nThings will be different today.\r",
+        "TRMSG_DEFEAT": "I guessed wrong too often.\n"
+    }
 }

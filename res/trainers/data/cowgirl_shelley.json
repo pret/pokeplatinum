@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Say, honey, where’d you come from?\nWhat kinds of Pokémon are you with?\r",
+        "TRMSG_DEFEAT": "Fancy folks like you have fancy\nPokémon too, it looks like.\n",
+        "TRMSG_POST_BATTLE": "While working the ranch, I get to raise\nmy Pokémon, too.\rI’d say it’s the best of both worlds!\n",
+        "TRMSG_REMATCH": "Oh, howdy! Come visiting again?\nWhat kinds of Pokémon’d you bring?\r"
+    }
 }

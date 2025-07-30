@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Excuse me for wearing my bikini!\r",
+        "TRMSG_DEFEAT": "Was I multitasking too much, battling\nand swimming at the same time?\n",
+        "TRMSG_POST_BATTLE": "When I’m in my bikini, I’m at a loss\nabout where to carry my Poké Balls!\n",
+        "TRMSG_REMATCH": "Giggle...\nExcuse me for wearing my bikini!\r"
+    }
 }

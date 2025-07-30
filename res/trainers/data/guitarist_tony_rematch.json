@@ -26,8 +26,8 @@
             "ball_seal": 18
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Rock ’n’ roll!\nWe’ll beat it out again!\fOur rhythm of battle!\r",
+        "TRMSG_DEFEAT": "Can you hear it?\nThat’s my guitar weeping...\n"
+    }
 }

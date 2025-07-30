@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ll beat you with the MAGIKARP my dad\ngave me!\r",
+        "TRMSG_DEFEAT": "But they’re Pokémon I got from my\ndad...\n",
+        "TRMSG_POST_BATTLE": "Who gave you your first Pokémon?\rYour first Pokémon is the one with\nthe most fond memories, I think.\n",
+        "TRMSG_REMATCH": "This time, I’ll beat you with the\nPokémon my dad gave me!\r"
+    }
 }

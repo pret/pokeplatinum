@@ -52,9 +52,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What do you expect to achieve here?\nI’ll be the one to make that call!\r",
+        "TRMSG_DEFEAT": "You’ve earned the right to be here.\nBoth you and your Pokémon.\n",
+        "TRMSG_POST_BATTLE": "You may find it odd, but the stink\nof sulfur from the volcanic gas\fis what draws me here.\n"
+    }
 }

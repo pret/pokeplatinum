@@ -36,10 +36,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hah! Hah!\nI’m psyched for this! Here goes!\r",
+        "TRMSG_DEFEAT": "I don’t get why we can’t win.\n",
+        "TRMSG_POST_BATTLE": "I don’t reminisce over yesterday.\nI don’t think about tomorrow.\fI only live today to the fullest.\fThat’s my policy!\n",
+        "TRMSG_REMATCH": "Hiyah! Hiyah! Hiyah! Hiyah!\nThis time, I’m properly psyched!\r"
+    }
 }

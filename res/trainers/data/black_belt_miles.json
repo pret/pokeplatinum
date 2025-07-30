@@ -18,9 +18,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My Pokémon knows karate!\nI’m warning you, it’s a tough one!\r",
+        "TRMSG_DEFEAT": "I’ve met my match in strength!\n",
+        "TRMSG_POST_BATTLE": "I’ve made it this far in life using the\nkarate I learned on the Internet!\n"
+    }
 }

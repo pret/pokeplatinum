@@ -47,9 +47,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We’re the Karate Quads!\rI will strike a blow for love with my\nfist! Hiyah, looooooooove!\r",
+        "TRMSG_DEFEAT": "Argh! Crunched!\n",
+        "TRMSG_POST_BATTLE": "Your Pokémon sure are tough!\rBut our Gym Leader Maylene will\nbreak you like a stack of bricks!\n"
+    }
 }

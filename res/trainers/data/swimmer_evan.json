@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Brr... I’m starting to get chilly.\nI could use a win to get warmed up.\r",
+        "TRMSG_DEFEAT": "The chill of the sea, and the\ncoldness of defeat...\rIt’s a double whammy.\n",
+        "TRMSG_POST_BATTLE": "Look at my lips...\nThey’re the color of prunes!\n",
+        "TRMSG_REMATCH": "Brr... I’m starting to feel chilly.\nHow about a hot Pokémon battle?\r"
+    }
 }

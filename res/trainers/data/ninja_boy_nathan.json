@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We ninjas appear where you least\nexpect us!\r",
+        "TRMSG_DEFEAT": "I didn’t expect to lose...\n",
+        "TRMSG_POST_BATTLE": "While hiding, I think about what Pokémon\nmust be thinking inside their Poké Balls.\n",
+        "TRMSG_REMATCH": "Wah! Another chance encounter with\na foe who defeated me before!\r"
+    }
 }

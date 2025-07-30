@@ -80,9 +80,9 @@
             "ball_seal": 10
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "We’ve gotten out of tighter spots\nthan this plenty of times before!\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "We’re not done yet! Neither me nor\nmy Pokémon have given up!",
+        "TRMSG_DEFEAT": "What just happened?!\nYou’re telling me I lost?!\n"
+    }
 }

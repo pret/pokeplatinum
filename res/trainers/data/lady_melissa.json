@@ -19,10 +19,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’d like to begin now.\nAre you quite prepared?\r",
+        "TRMSG_DEFEAT": "Oh!\nHow terrible of you...\n",
+        "TRMSG_POST_BATTLE": "You... You must have one fantastic\nteacher to be so good.\n",
+        "TRMSG_REMATCH": "We meet again.\nAre you quite prepared?\r"
+    }
 }

@@ -18,9 +18,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Wandering around, I got hungry, so\nI ate some wild mushrooms...\rThey gave me gas, and now I can’t\nstop burping! Bluurrf!\r",
+        "TRMSG_DEFEAT": "Bleff! Hurk!\nI think...I’m getting better...\n",
+        "TRMSG_POST_BATTLE": "I hear there’s a Pokémon that has\nmushrooms growing on its back.\rNot around here, somewhere far away.\nI wonder if they taste any good?"
+    }
 }

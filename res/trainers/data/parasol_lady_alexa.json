@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "There are Pokémon that grow stronger\nwhen it’s raining.\r",
+        "TRMSG_DEFEAT": "Like rain, my tears flow from losing...\nThey call me the Rain Woman...\n",
+        "TRMSG_POST_BATTLE": "I want to show off my pretty parasol,\nbut it will get dirty in the rain.\rOh, such a big dilemma!\n",
+        "TRMSG_REMATCH": "On rainy days, I get more energetic!\r"
+    }
 }

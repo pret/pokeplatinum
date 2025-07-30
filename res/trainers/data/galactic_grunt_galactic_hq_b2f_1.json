@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Well, what have we here?\nA Trainer who’s lost their way?\r",
+        "TRMSG_DEFEAT": "You’re lost but you won!\nThat burns me up to eleven!\n",
+        "TRMSG_POST_BATTLE": "You barged right into our HQ?\nYou must not know what fear is, kid!\n"
+    }
 }

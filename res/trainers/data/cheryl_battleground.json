@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "I can’t keep up with healing...\n",
+        "TRMSG_DEFEAT": "Striking the right balance of offense\nand defense... It’s not easy to do.\n"
+    }
 }

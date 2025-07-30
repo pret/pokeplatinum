@@ -19,9 +19,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Humph! You’re lost, aren’t you?\nI’ll guide you if you can beat me.\r",
+        "TRMSG_DEFEAT": "You didn’t really have to win!\nI’m not going to guide you now!\n",
+        "TRMSG_POST_BATTLE": "I’m not lost, I tell you!\nI’m camping! That’s my story!\n"
+    }
 }

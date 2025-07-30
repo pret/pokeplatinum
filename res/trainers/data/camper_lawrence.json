@@ -28,9 +28,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Yeah, I like to camp! So what?\nLet’s battle!\r",
+        "TRMSG_DEFEAT": "I should’ve just stuck to\ncamping out here...\n",
+        "TRMSG_POST_BATTLE": "When I’m with my Pokémon, I can camp\njust about anywhere I want!\n"
+    }
 }

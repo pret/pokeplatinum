@@ -26,8 +26,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Oh, we’ll ride upon the sea,\nin a boat, just you and me!\rThat’s the way of the Sailor!\nWay of the Sailor. You sing, too!\r",
+        "TRMSG_DEFEAT": "Your Pokémon...\nThey’re looking good!\n"
+    }
 }

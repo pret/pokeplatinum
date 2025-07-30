@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Some people compete over speed, and\nsome compete over technique.\rWhich kind are you?\r",
+        "TRMSG_DEFEAT": "You’re a speedy technician!\n",
+        "TRMSG_POST_BATTLE": "I enjoy the scenery.\rDon’t you think the area below\nCycling Road looks nice?\n",
+        "TRMSG_REMATCH": "I polished up both my speed and\ntechniques. Can you beat me now?\r"
+    }
 }

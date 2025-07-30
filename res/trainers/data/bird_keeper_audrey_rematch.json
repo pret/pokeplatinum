@@ -35,8 +35,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I let my bird Pokémon do as they\nwish. And so, we train here daily!\r",
+        "TRMSG_DEFEAT": "Sheesh... I arrive in a new place and\nit turns out to be the Battle Zone...\n"
+    }
 }

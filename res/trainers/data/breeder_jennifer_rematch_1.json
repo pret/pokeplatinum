@@ -44,8 +44,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I don’t want to ever battle with\npeople who don’t treat Pokémon nice!\rBut I know you treat yours kindly.\nI’ll battle you anytime!\r",
+        "TRMSG_DEFEAT": "Giggle...\nThey’re raised with a lot of care!\n"
+    }
 }

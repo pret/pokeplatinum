@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hey! This is no playground!\nIf you’re gonna play, battle me!\r",
+        "TRMSG_DEFEAT": "You played me like an amateur!\n",
+        "TRMSG_POST_BATTLE": "They were going to close this place\nup so no one could get in.\rBut, they left it open so people and\nPokémon can get together here."
+    }
 }

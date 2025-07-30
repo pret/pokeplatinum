@@ -23,9 +23,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A battle is a clash of willpower!\rThe one who wants the win the most\nwill emerge the victor!\r",
+        "TRMSG_DEFEAT": "But... I thought I could win!\n",
+        "TRMSG_POST_BATTLE": "Psychic power...\rI know it isn’t easy to believe in\nsomething that you can’t see.\rBut love, friendship...\nYou can’t see those, either.\n"
+    }
 }

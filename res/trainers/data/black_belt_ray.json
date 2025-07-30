@@ -37,9 +37,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My Pokémon can destroy anything.\nAnd you think you can win?!\r",
+        "TRMSG_DEFEAT": "We weren’t up to the task!\n",
+        "TRMSG_POST_BATTLE": "Even though my team could break\nbricks and shatter boulders, they\ffailed to dent your spirits!\n"
+    }
 }

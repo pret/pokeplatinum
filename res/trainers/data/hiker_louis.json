@@ -27,10 +27,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "See how Mt. Coronet towers above us.\nI want to be big like that one day!\r",
+        "TRMSG_DEFEAT": "You loom before me as a giant presence!\n",
+        "TRMSG_POST_BATTLE": "Mt. Coronet has long been known as\nan ancient and mysterious mountain.\n",
+        "TRMSG_REMATCH": "Hmm?! \nYou loom before me again?!\rYou’re like Mt. Coronet that way!\r"
+    }
 }

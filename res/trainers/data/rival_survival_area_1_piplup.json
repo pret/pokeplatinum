@@ -97,8 +97,8 @@
             "ball_seal": 24
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "Oh, yeah? When the going gets tough,\nmy Pokémon get tougher!\n",
+        "TRMSG_DEFEAT": "What just went down?!\nYou’re telling me I lost again?!\n"
+    }
 }

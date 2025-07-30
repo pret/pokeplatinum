@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Yes, I know I can surf, but I’d\nrather swim instead.\rIt does seem weird, I agree.\r",
+        "TRMSG_DEFEAT": "Kaploosh!\n",
+        "TRMSG_POST_BATTLE": "If you don’t know how, I’m willing to\nshow you how to swim.\n",
+        "TRMSG_REMATCH": "If you rely on your Pokémon all the\ntime, you’ll never learn how to swim!\r"
+    }
 }

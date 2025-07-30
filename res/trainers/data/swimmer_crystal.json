@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Your Pokémon doesn’t seem to be tiring\nat all from carrying you on its back.\rLet me see how strong it is!\r",
+        "TRMSG_DEFEAT": "I can’t take any more...\nI’m all tired out!\n",
+        "TRMSG_POST_BATTLE": "While floating here, I think about\neverything and nothing.\rLike how I should battle next, and\nwhat’s for dinner tomorrow, and...\n",
+        "TRMSG_REMATCH": "How much stronger have your Pokémon\nbecome?\rLet me check ’em out, OK?\r"
+    }
 }

@@ -36,9 +36,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I am a Psychic!\nI can see your past!\r",
+        "TRMSG_DEFEAT": "Your past...\nYou’ve been through a lot...\n",
+        "TRMSG_POST_BATTLE": "Let me guess.\nHave you met any legendary Pokémon?\n"
+    }
 }

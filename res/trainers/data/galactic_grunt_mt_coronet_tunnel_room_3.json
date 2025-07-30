@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Say, listen, do you realize you’re\nbreaking hearts by being successful?\rIt’s your fault that Team Galactic\nmembers are in so much pain...\r",
+        "TRMSG_DEFEAT": "See? You’ve left me brokenhearted,\ntoo...\n",
+        "TRMSG_POST_BATTLE": "Someone’s joy is another person’s\nsorrow...\rEveryone be happy and laughing?\nHow ridiculous!\rTeam Galactic should be doing all the\nlaughing!\n"
+    }
 }

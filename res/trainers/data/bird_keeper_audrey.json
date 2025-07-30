@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I let my bird Pokémon carry me to\nwherever. And so, here I am!\r",
+        "TRMSG_DEFEAT": "Sheesh... I arrive in a new place, and\nit turns out to be the Battle Zone...\n",
+        "TRMSG_POST_BATTLE": "I was born in the Hoenn region.\nI’ve only just recently flown here.\n",
+        "TRMSG_REMATCH": "I let my bird Pokémon do as they\nwish. And so, we train here daily!\r"
+    }
 }

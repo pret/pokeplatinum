@@ -37,10 +37,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Whilst exploring the ruins, I spotted\na Trainer! I must investigate!\r",
+        "TRMSG_DEFEAT": "My investigation has revealed the\nTrainer to be tough! Ouch...\n",
+        "TRMSG_POST_BATTLE": "Celestic Town is an old town.\nI’m sure to find something cool.\n",
+        "TRMSG_REMATCH": "Whilst exploring the ruins, I spotted\nyou again! I will now investigate!\r"
+    }
 }

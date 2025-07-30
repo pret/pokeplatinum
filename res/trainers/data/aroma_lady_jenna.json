@@ -48,9 +48,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My Grass-type Pokémon can dole out\nspecial attacks...\rI won’t let you win easily!\r",
+        "TRMSG_DEFEAT": "The more beautiful a flower,\nthe faster it withers...\n",
+        "TRMSG_POST_BATTLE": "Oh, that’s right...\nA hint about the next Trainer...\rIn the middle of three trees.\nThat’s my hint. Good luck.\n"
+    }
 }

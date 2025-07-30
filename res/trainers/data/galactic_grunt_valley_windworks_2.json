@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Oi! This is no fun and games!\nThis is proper work, I tell you!\r",
+        "TRMSG_DEFEAT": "What...?!\nSome brat messed up my job...\n",
+        "TRMSG_POST_BATTLE": "Team Galactic needs electricity for\ndoing something big!\n"
+    }
 }

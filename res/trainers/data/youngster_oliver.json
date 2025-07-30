@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Waah! Ghost! Get away! Eek!\nHelp me, team!\r",
+        "TRMSG_DEFEAT": "Hey...\nYou’re no ghost...\n",
+        "TRMSG_POST_BATTLE": "I had to come to the Lost Tower on\na dare...\rI have to go to the top and use Defog\nthere...\n"
+    }
 }

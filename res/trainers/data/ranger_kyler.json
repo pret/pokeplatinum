@@ -37,10 +37,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "People! Nature! Pokémon!\nHarmony is essential!\r",
+        "TRMSG_DEFEAT": "You’re A-OK!\n",
+        "TRMSG_POST_BATTLE": "Protecting Pokémon and nature.\nThink of what that means.\n",
+        "TRMSG_REMATCH": "Do you remember my slogan?\nPeople! Nature! Pokémon!\rThat’s right, harmony is essential!\r"
+    }
 }

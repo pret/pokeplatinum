@@ -69,9 +69,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "I’m going to break the ice and bring\nout my last-resort Pokémon!\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "I can sense your will to win, but I\npromise you I’m not about to lose!\n",
+        "TRMSG_DEFEAT": "I must say, I’ve warmed up to you!\nI might even admire you a little.\n"
+    }
 }

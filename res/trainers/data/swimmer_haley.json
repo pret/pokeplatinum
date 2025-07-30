@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hi, wave-riding Trainer!\nHow about a battle on the sea?\r",
+        "TRMSG_DEFEAT": "You sure schooled me there.\n",
+        "TRMSG_POST_BATTLE": "Maybe I should switch to surfing,\ntoo...\n",
+        "TRMSG_REMATCH": "Hi, we meet again!\nWave-riding Trainer!\r"
+    }
 }

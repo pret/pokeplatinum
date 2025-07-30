@@ -52,10 +52,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ll take on anyone!\nIt can only make me stronger!\r",
+        "TRMSG_DEFEAT": "You won and I lost, but the both of\nus gained something from this.\n",
+        "TRMSG_POST_BATTLE": "In a Pokémon battle, it doesn’t\nmatter how old or young you are.\rYour gender doesn’t matter, either.\nNothing like that means anything!\n",
+        "TRMSG_REMATCH": "I’ll battle against people who’ve\nbeaten me again and again.\rBy doing that, we both grow a little\nas Trainers.\r"
+    }
 }

@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "On your marks, get set, go!\r...When I say that, let’s start.\r",
+        "TRMSG_DEFEAT": "Yow-ow-ow-ow!\nMy leg’s cramped up!\n",
+        "TRMSG_POST_BATTLE": "I forgot to do my stretching\nexercises...\n",
+        "TRMSG_REMATCH": "Hi, I was waiting for you!\nReady? On your marks, get set...\r"
+    }
 }

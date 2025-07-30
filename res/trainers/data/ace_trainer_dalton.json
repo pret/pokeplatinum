@@ -38,10 +38,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "This cold is but nothing compared\nto the fire that burns in my heart!\r",
+        "TRMSG_DEFEAT": "Your heart burns as hot as mine!\n",
+        "TRMSG_POST_BATTLE": "The weather clears up sometimes.\nThe view is breathtaking then.\n",
+        "TRMSG_REMATCH": "We’ll come at you with our hearts\nablaze!\r"
+    }
 }

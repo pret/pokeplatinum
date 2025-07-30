@@ -52,10 +52,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Please don’t hold anything back.\r",
+        "TRMSG_DEFEAT": "Hmm...\n",
+        "TRMSG_POST_BATTLE": "I feel invigorated from that battle,\neven though we lost.\rAfter all, we gave it everything we\nhad.",
+        "TRMSG_REMATCH": "Hello again! Please don’t hold\nanything back--just like before.\r"
+    }
 }

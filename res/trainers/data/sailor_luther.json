@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My dream’s a big one!\rI want to battle every kind of Pokémon\nfrom around the world!\r",
+        "TRMSG_DEFEAT": "I lost, but I am one step closer to\nrealizing my dream!\n",
+        "TRMSG_POST_BATTLE": "Listen, you! Whatever happens, never\nlose sight of your dream!\n",
+        "TRMSG_REMATCH": "All right, you!\rHelp me realize my dream of battling\nevery kind of Pokémon there is!\r"
+    }
 }

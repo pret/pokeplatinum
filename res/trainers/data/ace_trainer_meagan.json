@@ -38,10 +38,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What sort of moves have you taught?\nThat tells me how good you are!\r",
+        "TRMSG_DEFEAT": "Yowch!\n",
+        "TRMSG_POST_BATTLE": "I heard that somewhere there’s\nsomeone who teaches Pokémon moves.\n",
+        "TRMSG_REMATCH": "Have you taught your team any new\nmoves since last time?\r"
+    }
 }

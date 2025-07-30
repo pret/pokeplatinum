@@ -35,8 +35,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I’ve been training here in hopes of\ngoing to the Pokémon League.\r",
+        "TRMSG_DEFEAT": "I’m shocked...\nNo, really.\n"
+    }
 }

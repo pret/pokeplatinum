@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "That Bike you’ve got there...it’s the\ntype that can change gears!\rYou gotta love that!\nSure, I’ll give you a battle!\r",
+        "TRMSG_DEFEAT": "Crash! Tinkle...\n",
+        "TRMSG_POST_BATTLE": "The 3-speed makes for easy turning,\nand the 4-speed’s for going fast.\rI love them both!\n",
+        "TRMSG_REMATCH": "Is your bicycle geared to 3-speed now?\nOr do you have it set to 4-speed?\r"
+    }
 }

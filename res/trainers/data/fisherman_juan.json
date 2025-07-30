@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Can’t you see I’m fishing?\nDon’t talk! You’ll spook the fish!\r",
+        "TRMSG_DEFEAT": "How do you like that?\nBoth my catch and the win got away!\n",
+        "TRMSG_POST_BATTLE": "Fishing and battling are delicate\nthings--as am I. Is that wrong?\n",
+        "TRMSG_REMATCH": "You can see I’m fishing, can’t you?\nThen don’t talk to me! Geez!\r"
+    }
 }

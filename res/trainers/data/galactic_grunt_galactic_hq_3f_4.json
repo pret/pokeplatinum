@@ -35,9 +35,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hey there, little Trainer!\nYou’re famous among Team Galactic.\rThe order has been issued--we get\na promotion if we put you down!\r",
+        "TRMSG_DEFEAT": "I just blew my promotion...\n",
+        "TRMSG_POST_BATTLE": "What’s so special about you anyway?\rYou’re just like any other little kid\nTrainer you can find anywhere!"
+    }
 }

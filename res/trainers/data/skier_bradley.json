@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m skiing right now, but OK.\nAs we Skiers say, “Spur thing!”\r",
+        "TRMSG_DEFEAT": "...I’ve hit an ice patch!\n",
+        "TRMSG_POST_BATTLE": "I quite enjoyed that battle!\nLet us meet again. Slalom!\n",
+        "TRMSG_REMATCH": "We might get snowbound, but why not?\nIt’s on the “spur” of the moment!\r"
+    }
 }

@@ -52,10 +52,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve seen countless Trainers and\neven more Pokémon!\rSo, what kind of a Trainer are you?\r",
+        "TRMSG_DEFEAT": "I see...\nSimply outstanding.",
+        "TRMSG_POST_BATTLE": "I’ve seen countless Trainers and\neven more Pokémon.\rYou’re a strong Trainer.\nMoreover, your heart is strong.\n",
+        "TRMSG_REMATCH": "I am indeed a Veteran, but I don’t\nuse that as an excuse to slack off.\rI take pride in challenging those\nwho have bested me before!\r"
+    }
 }

@@ -26,16 +26,16 @@
             "ball_seal": 20
         }
     ],
-    "messages": [
-        "TRMSG_PRE_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
-        "TRMSG_POST_DOUBLE_BATTLE_1",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_1",
-        "TRMSG_PRE_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
-        "TRMSG_POST_DOUBLE_BATTLE_2",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_2"
-    ]
+    "messages": {
+        "TRMSG_PRE_DOUBLE_BATTLE_1": "Teri: Yay! We’re gonna battle with\nlots of Pokémon!\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Teri: We tried really hard together,\nbut we lost anyway.\n",
+        "TRMSG_POST_DOUBLE_BATTLE_1": "Teri: Our mommy is a twin, too.\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "Teri: We want to battle with lots\nof Pokémon.\n",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_1": "Teri: Yay! We’re gonna battle with\nlots of Pokémon again!\r",
+        "TRMSG_PRE_DOUBLE_BATTLE_2": "Tia: Yay!\nWe’re all going to battle!\r",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Tia: We tried really hard together,\nbut we couldn’t win anyway.\n",
+        "TRMSG_POST_DOUBLE_BATTLE_2": "Tia: When Mommy and Aunty and me\nand Teri get together, it’s really\fconfusing and fun!\n",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "Tia: Um, no.\nWe all want to battle together.\n",
+        "TRMSG_DOUBLE_BATTLE_REMATCH_2": "Tia: Yay!\nWe’re all going to battle again!\r"
+    }
 }

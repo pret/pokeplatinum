@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "Oh, no!\nYou’re too much for me!\n",
+        "TRMSG_DEFEAT": "Mira wonders if she can get very far in\nthe Battle Tower.\n"
+    }
 }

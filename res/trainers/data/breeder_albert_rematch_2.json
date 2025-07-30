@@ -44,8 +44,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I’ve raised my Pokémon since we met.\nHow much have you raised yours?\r",
+        "TRMSG_DEFEAT": "Good stuff! Your Pokémon are in\nimpeccable condition.\n"
+    }
 }

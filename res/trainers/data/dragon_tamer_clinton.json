@@ -37,9 +37,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "This is a place where tough Trainers\nnaturally congregate.\rIt’s ideal for training!\r",
+        "TRMSG_DEFEAT": "That’s why I like it here; I get to\nbattle tough characters like you.\n",
+        "TRMSG_POST_BATTLE": "When two roads diverge, you must\nchoose the path less traveled...\n"
+    }
 }

@@ -28,9 +28,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I take Pokémon that are tough to begin\nwith and toughen them up even more.\rYou can help me!\r",
+        "TRMSG_DEFEAT": "There’s no way I could have won!\n",
+        "TRMSG_POST_BATTLE": "How should I teach the most powerful\nof the Dragon-type moves...?\n"
+    }
 }

@@ -51,9 +51,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I see it!\nI see a victory for me!\r",
+        "TRMSG_DEFEAT": "The future...is different!\nWhy?!\n",
+        "TRMSG_POST_BATTLE": "Your efforts have altered the very\npath of the future!\n"
+    }
 }

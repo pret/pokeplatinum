@@ -28,9 +28,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Learning how to manage tough Pokémon\nis the shortcut to getting tough.\r",
+        "TRMSG_DEFEAT": "I lost? But how is that possible?!\n",
+        "TRMSG_POST_BATTLE": "Getting the best out of any Pokémon...\nThat’s what makes a good Trainer...\n"
+    }
 }

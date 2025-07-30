@@ -17,10 +17,10 @@
             "ball_seal": 5
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Poof!\rYou’ve got a good eye spotting me!\r",
+        "TRMSG_DEFEAT": "You also saw through my weak\nspots...\n",
+        "TRMSG_POST_BATTLE": "I’ll play with my Pokémon--even in a\nblizzard!\n",
+        "TRMSG_REMATCH": "Poof!\rYou saw through my camouflage again!\r"
+    }
 }

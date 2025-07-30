@@ -28,10 +28,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Ah-ha! I found me a Trainer!\rI challenge you to battle with\nthe Pokémon I’ve found!\r",
+        "TRMSG_DEFEAT": "It’s a challenge trying to win with\nPokémon one isn’t familiar with...\n",
+        "TRMSG_POST_BATTLE": "Discovery is the treasure I seek.\nCollecting a lot is my life!\n",
+        "TRMSG_REMATCH": "Ah-ha! I found me a Trainer!\rI challenge you to battle with\nthe Pokémon I’ve found!\r"
+    }
 }

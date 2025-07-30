@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Are you a novice?\nOr around midlevel?\r",
+        "TRMSG_DEFEAT": "I never expected you to be an\nexpert...\n",
+        "TRMSG_POST_BATTLE": "You know how to play your Pokémon\nwith an edge!\n",
+        "TRMSG_REMATCH": "Knowing you to be an expert,\nI challenge you to a rematch!\r"
+    }
 }

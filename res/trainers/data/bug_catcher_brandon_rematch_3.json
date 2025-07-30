@@ -35,8 +35,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "So, listen. Tell me you’ve grown to\nlike bug Pokémon since we last met.\r",
+        "TRMSG_DEFEAT": "I’m not going to be able to explain\nthe charms of bug Pokémon this way!\n"
+    }
 }

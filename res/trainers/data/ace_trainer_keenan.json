@@ -37,9 +37,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What it means to win battles...\nThat is what I seek.\fTeach me if you will!\r",
+        "TRMSG_DEFEAT": "I grow less certain still...\n",
+        "TRMSG_POST_BATTLE": "Perhaps there is no meaning to\nvictory, but still I will battle!\rThat is what makes me a Trainer!\n"
+    }
 }

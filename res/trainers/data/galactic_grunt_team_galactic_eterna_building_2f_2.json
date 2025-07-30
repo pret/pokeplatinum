@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Let’s see how good this Pokémon is!\nI stole it from some weak Trainer.\r",
+        "TRMSG_DEFEAT": "What is this?!\n",
+        "TRMSG_POST_BATTLE": "Wimpy little Pokémon...\rWhen I get promoted, I’ll demand\nbetter stolen Pokémon.\n"
+    }
 }

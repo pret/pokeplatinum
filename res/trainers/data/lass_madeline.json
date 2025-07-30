@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I got a nifty-keen Gym Badge from\nthe Gym Leader in Oreburgh City!\r",
+        "TRMSG_DEFEAT": "Oh, I lost! Lalala!\n",
+        "TRMSG_POST_BATTLE": "I’m collecting lots of Gym Badges.\nThey’re so sparkly and pretty!\n",
+        "TRMSG_REMATCH": "I got a nifty-keen Gym Badge from\nthe Gym Leader in Oreburgh City!\r...Did I show you already?\r"
+    }
 }

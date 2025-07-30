@@ -38,8 +38,8 @@
             "ball_seal": 19
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "We’ve faced many challengers since\nwe met, but they were all weak...\rI relish the tough resistance that\nonly you can provide!\r",
+        "TRMSG_DEFEAT": "I’ve found a tough adversary in\nyou...\n"
+    }
 }

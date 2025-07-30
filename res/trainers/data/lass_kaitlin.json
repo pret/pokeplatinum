@@ -45,10 +45,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I found a Trainer while looking for\nsome Pokémon!\r",
+        "TRMSG_DEFEAT": "Hunh? You’re finished so soon?\n",
+        "TRMSG_POST_BATTLE": "I walk through tall grass until I\nfind the Pokémon I want.\n",
+        "TRMSG_REMATCH": "I found a familiar-looking Trainer!\r"
+    }
 }

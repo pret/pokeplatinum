@@ -51,9 +51,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "Think you can take down the \nnext Pokémon like you did earlier?\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "No way! Not yet!\nNot giving up!\n",
+        "TRMSG_DEFEAT": "W-what? That can’t be!\nMy buffed-up Pokémon!\n"
+    }
 }

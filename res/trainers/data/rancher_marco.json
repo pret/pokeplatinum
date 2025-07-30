@@ -17,10 +17,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My Pokémon toughened up while working\non the ranch.\rI’m right proud of them!\r",
+        "TRMSG_DEFEAT": "Hahahah! Your Pokémon sure can be\ncounted on!\n",
+        "TRMSG_POST_BATTLE": "When I cuddle with my Pokémon, I can\nfeel not just their bodies’ warmth, but\ftheir compassion.\n",
+        "TRMSG_REMATCH": "Whoa! You’re that real-tough\nTrainer from before!\rHere are my ranch-toughened Pokémon!\nI’m right proud of them!\r"
+    }
 }

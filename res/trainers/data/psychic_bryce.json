@@ -36,9 +36,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I am a Psychic!\nI can see your future!\r",
+        "TRMSG_DEFEAT": "So be it! I will now divulge what\nI know of your future... Hmm!\n",
+        "TRMSG_POST_BATTLE": "I see it now!\rYou will battle the Elite Four of the\nPokémon League!\n"
+    }
 }

@@ -62,10 +62,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Nothing’s biting...\nI could use a break, I suppose.\r",
+        "TRMSG_DEFEAT": "Well, that didn’t do anything for me...\n",
+        "TRMSG_POST_BATTLE": "!\rYank your fishing rod when that\nappears. That’s how you fish.\n",
+        "TRMSG_REMATCH": "All right! I caught some tough\nPokémon. I’m ready for battle!\r"
+    }
 }

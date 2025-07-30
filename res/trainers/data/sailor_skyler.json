@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A man of the sea is also a man of\nPokémon!\r",
+        "TRMSG_DEFEAT": "Anchors away!\n",
+        "TRMSG_POST_BATTLE": "You’ve got what it takes to be\na Trainer among Trainers!\n",
+        "TRMSG_REMATCH": "Hard to starboard!\nThat’s a sharp turn to the right!\rHard to port!\nAnd that’s a sharp turn to the left!\r"
+    }
 }

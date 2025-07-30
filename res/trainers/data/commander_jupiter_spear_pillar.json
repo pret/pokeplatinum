@@ -53,7 +53,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "Humph! You’ve toughened up.\nBut you’re no match for our boss.\n"
+    }
 }

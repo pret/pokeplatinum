@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Hey, check this out! Look at the\nluster of my Pokémon’s fur!\r",
+        "TRMSG_DEFEAT": "Hey, hey, did you take a good look?\n",
+        "TRMSG_POST_BATTLE": "The Veilstone Department Store is\npretty impressive!\rDid you know they even sell Poffins?\n",
+        "TRMSG_REMATCH": "I brushed my party a lot.\nSo we’d be ready for a rematch!\r"
+    }
 }

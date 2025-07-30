@@ -17,7 +17,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "I think I have what it takes to\nbecome a successful model!\n"
+    }
 }

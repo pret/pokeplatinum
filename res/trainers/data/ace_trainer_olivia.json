@@ -52,10 +52,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Wh-what is it?\nP-Pokémon battle?!\r",
+        "TRMSG_DEFEAT": "Whew...\nYou are alive, aren’t you?\n",
+        "TRMSG_POST_BATTLE": "Around these parts, perhaps because\nof all the snow, there are many\ffolktales of hauntings...\n",
+        "TRMSG_REMATCH": "This isn’t like last time. See how\nmuch I’ve trained since then!\r"
+    }
 }

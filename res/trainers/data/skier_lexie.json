@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve been skiing with Pokémon since\nI was just five years old.\r",
+        "TRMSG_DEFEAT": "Hunh, what...?\nI repeat, hunh, what...?\n",
+        "TRMSG_POST_BATTLE": "The scenery doesn’t change very much\naround here. Don’t go getting lost!\n",
+        "TRMSG_REMATCH": "Oh... Did you maybe get lost again?\nYou should pay more attention!\r"
+    }
 }

@@ -19,8 +19,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Oh, it’s you again, dear?\rIt makes me a little nervous, but\nmay I have a rematch?\r",
+        "TRMSG_DEFEAT": "Oh, dear... This isn’t anything like\nbattling with my friends.\n"
+    }
 }

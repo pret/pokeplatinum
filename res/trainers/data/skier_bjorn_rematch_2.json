@@ -35,8 +35,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I knew you were headed back here.\nI felt it with the soles of my feet!\r",
+        "TRMSG_DEFEAT": "I got a good taste of your power!\n"
+    }
 }

@@ -52,10 +52,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Have you any knowledge of levels\nor the stats of Pokémon? Well, I do!\r",
+        "TRMSG_DEFEAT": "Hmm. I like how you attack.\n",
+        "TRMSG_POST_BATTLE": "Pokémon and numbers...\nWho cares about that stuff?\rWinning is what’s important.\nNumbers aren’t everything.\n",
+        "TRMSG_REMATCH": "Pokémon battles aren’t decided by\nnumbers.\rIt’s the bond you share with your\nPokémon that decides outcomes!\r"
+    }
 }

@@ -34,9 +34,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Pokémon and people have worked\ntogether for many years.\rLet us show you an example of that\nhistory!\r",
+        "TRMSG_DEFEAT": "A spectacular loss!\nBut it’s still a loss!\n",
+        "TRMSG_POST_BATTLE": "The way you helped each other...\nThat is what made you prevail!\n"
+    }
 }

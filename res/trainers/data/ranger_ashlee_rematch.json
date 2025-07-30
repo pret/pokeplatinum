@@ -37,8 +37,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "By battling tough opponents, both\npeople and Pokémon grow tough!\r",
+        "TRMSG_DEFEAT": "My, you are tough.\n"
+    }
 }

@@ -17,8 +17,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Hey, you feisty tyke! I caught me\na big one! Let’s battle again!\r",
+        "TRMSG_DEFEAT": "I let a big win slip away...\n"
+    }
 }

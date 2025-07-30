@@ -37,9 +37,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Tough Pokémon...\nTough Trainers...\rYou tell me, where else can I find\na place as good as this to train?\r",
+        "TRMSG_DEFEAT": "That was good.\nYou’ve bonded well with your Pokémon.\n",
+        "TRMSG_POST_BATTLE": "Tough Pokémon...\nTough Trainers...\rTheir strength comes from their bond.\nAnd that’s something that can be\fmade stronger anywhere.\n"
+    }
 }

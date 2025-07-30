@@ -21,9 +21,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Giggle! You found me!\nOf course, let’s battle!\r",
+        "TRMSG_DEFEAT": "Aww, boo!\nLook, you’ve beaten me!\n",
+        "TRMSG_POST_BATTLE": "Giggle! There’s only our Gym Leader\nleft. Go on, don’t be afraid!\n"
+    }
 }

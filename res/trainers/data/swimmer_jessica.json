@@ -44,10 +44,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Swimming is a workout for your entire\nbody.\rJump in and swim!\nSwim, you!\r",
+        "TRMSG_DEFEAT": "Sunk like a stone!\n",
+        "TRMSG_POST_BATTLE": "Well, Pokémon’s one thing, but you\nshould take up swimming, too!\n",
+        "TRMSG_REMATCH": "Hiya, Pokémon-riding Trainer!\nYou should be swimming like me!\r"
+    }
 }

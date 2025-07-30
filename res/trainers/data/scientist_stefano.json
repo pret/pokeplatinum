@@ -25,10 +25,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I find it reassuring to be on this\ndamp soil...\r",
+        "TRMSG_DEFEAT": "Ufufufufu...\nYou had to beat me...\n",
+        "TRMSG_POST_BATTLE": "It feels good to mope here after a\nloss... Ufufufufu...\n",
+        "TRMSG_REMATCH": "Is Damp my favorite Pokémon ability?\nFufufu... Anything will do...\r"
+    }
 }

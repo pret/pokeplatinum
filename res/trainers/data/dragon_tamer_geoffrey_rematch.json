@@ -28,8 +28,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "I’ve cranked up my dragon Pokémon’s\nabilities!\rI’ve been looking forward to seeing\nyou again!\r",
+        "TRMSG_DEFEAT": "Raising abilities alone doesn’t mean\nI can win either...\n"
+    }
 }

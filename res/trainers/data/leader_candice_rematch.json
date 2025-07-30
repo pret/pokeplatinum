@@ -83,8 +83,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER_HALF_HP": "Not yet!\nYou can’t break our will!\n",
+        "TRMSG_DEFEAT": "You’re mighty!\nYou’re worthy of lots of respect.\n"
+    }
 }

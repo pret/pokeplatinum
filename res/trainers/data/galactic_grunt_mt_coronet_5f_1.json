@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Team Galactic will take control of\neverything!\rYou can try all you want, but you\ncan’t do anything alone!\r",
+        "TRMSG_DEFEAT": "All you gave me was the taste of\ndefeat...\n",
+        "TRMSG_POST_BATTLE": "...Is our boss about to ditch us\nand claim everything for himself?"
+    }
 }

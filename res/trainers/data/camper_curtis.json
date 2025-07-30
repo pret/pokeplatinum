@@ -28,9 +28,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "We Trainers will accept challenges\nanywhere! It’s what we do.\r",
+        "TRMSG_DEFEAT": "Hmm...\nInsufficiently raised?\n",
+        "TRMSG_POST_BATTLE": "Pokémon can appear anywhere in a cave.\nIt’s not like the tall grass by roads.\n"
+    }
 }

@@ -26,10 +26,10 @@
             "ball_seal": 1
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Check out my dynamic form!\nVictory is assured!\r",
+        "TRMSG_DEFEAT": "Oh.\nThat’s how it is.\n",
+        "TRMSG_POST_BATTLE": "Being a good swimmer doesn’t make\nme any better as a Trainer...\n",
+        "TRMSG_REMATCH": "Hi! You’re that kid who’s great with\nPokémon!\rI’ll battle with an even more dynamic\nform than before! Watch me now!\r"
+    }
 }

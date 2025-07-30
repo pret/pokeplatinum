@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "...Our boss is going to do something\nhuge at the summit.\rBut here I am dealing with some pesky\nintruder.\rYou’re spoiling the atmosphere.\nYou can lose quickly, right?\r",
+        "TRMSG_DEFEAT": "You’re not supposed to work me\nover like that.\n",
+        "TRMSG_POST_BATTLE": "All my excitement’s gone now...\rThis whole Mt. Coronet trip is too\nrough, long, and draining...\n"
+    }
 }

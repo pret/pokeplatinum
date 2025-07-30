@@ -50,8 +50,8 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_REMATCH",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_REMATCH": "Are you finally getting the attractive\nqualities of bird Pokémon?\r",
+        "TRMSG_DEFEAT": "Wow. I admit to being surprised.\n"
+    }
 }

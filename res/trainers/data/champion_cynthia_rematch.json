@@ -99,9 +99,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_LAST_BATTLER",
-        "TRMSG_LAST_BATTLER_HALF_HP",
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_LAST_BATTLER": "I can’t remember the last time I\nwas put in a corner like this!\n",
+        "TRMSG_LAST_BATTLER_HALF_HP": "I won’t let this end yet! This match\nis too fun to let it end this easily!\n",
+        "TRMSG_DEFEAT": "...Just a few minutes ago, you were\nthe most powerful challenger.\rAnd just now, you became the most\npowerful of all the Trainers.\rYou are now our newest Champion!\n"
+    }
 }

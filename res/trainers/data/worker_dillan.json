@@ -26,9 +26,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I work in the fiery foundry.\nYou bet I’m hot and sweaty!\r",
+        "TRMSG_DEFEAT": "I burned out...\n",
+        "TRMSG_POST_BATTLE": "I toughened up my muscles from\nhonest work.\rPokémon have nothing on me!\n"
+    }
 }

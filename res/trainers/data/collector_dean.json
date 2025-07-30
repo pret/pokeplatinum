@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’m proud of my Pokémon!\nHere, I’ll show you why!\r",
+        "TRMSG_DEFEAT": "Youch! You sure showed me how tough\nyou were.\n",
+        "TRMSG_POST_BATTLE": "Oh, what have we here?\nThat’s a Pokédex!\rIt records Pokémon data upon\nsight? I’ve never seen one before!\rI heard you can move the sun or\nmoon icon to check the Pokémon\fhabitat map by time of day!\n",
+        "TRMSG_REMATCH": "I take down details in my notebook\nabout Pokémon I’ve battled.\rI’ll write more data down about your\nPokémon!\r"
+    }
 }

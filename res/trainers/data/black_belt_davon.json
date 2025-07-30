@@ -36,10 +36,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My quest for power brought me here.\rIt was beneath the desert sand that\nI toughened my body and soul.\rAccept my challenge! Uraah!\r",
+        "TRMSG_DEFEAT": "My spirit is broken...\n",
+        "TRMSG_POST_BATTLE": "I thought I couldn’t win before it\nbecame a fact...\rI’ve let down my Pokémon...\rThey go to battle with faith in\ntheir Trainer...",
+        "TRMSG_REMATCH": "This time! This time I will win!\nMy spirit is renewed and strong!\r"
+    }
 }

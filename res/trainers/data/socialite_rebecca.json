@@ -19,7 +19,7 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_DEFEAT"
-    ]
+    "messages": {
+        "TRMSG_DEFEAT": "So young, and yet so strong!\nHow very remarkable!"
+    }
 }

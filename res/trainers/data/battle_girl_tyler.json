@@ -18,9 +18,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Beating you would be my 100th\nstraight win! Here’s to a fun battle!\r",
+        "TRMSG_DEFEAT": "How could I lose now?!\nThis is beyond aggravating!\n",
+        "TRMSG_POST_BATTLE": "I wish I could beat Maylene in\nVeilstone City one day...\n"
+    }
 }

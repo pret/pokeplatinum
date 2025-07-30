@@ -26,10 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "There are several clans of ninjas.\nAre you from the Iga clan? Or Kouga?\r",
+        "TRMSG_DEFEAT": "I’m not much of a ninja either way...\n",
+        "TRMSG_POST_BATTLE": "I wonder why everyone stops being\na ninja when they grow up?\n",
+        "TRMSG_REMATCH": "I forged my willpower in the snow!\nWitness my snowy might!\r"
+    }
 }

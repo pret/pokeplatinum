@@ -35,10 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Waah! Now! Just now!\nI was just about to reel it in!\r",
+        "TRMSG_DEFEAT": "You need to have more respect for\na grown-up...\n",
+        "TRMSG_POST_BATTLE": "Go on. Don’t be shy about going up to\npeople to hear what they have to say...\rJust don’t you talk to me.\n",
+        "TRMSG_REMATCH": "Waah! Now! Just now!\nI was just about to reel it in!\r...Right. You again!\r"
+    }
 }

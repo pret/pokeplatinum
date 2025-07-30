@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Eek! That’s so bright!\rSurprise attack!\r",
+        "TRMSG_DEFEAT": "Your strength is dazzling!\nI have to shield my eyes!\n",
+        "TRMSG_POST_BATTLE": "I’m going over the reasons why I\nlost. That way, I’ll win next time.\n"
+    }
 }

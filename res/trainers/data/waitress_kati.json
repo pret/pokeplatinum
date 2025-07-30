@@ -17,9 +17,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Welcome!\nThis place is my pride and joy!\r",
+        "TRMSG_DEFEAT": "I take losses with an unusually big\nsmile! Do you find that odd at all?\n",
+        "TRMSG_POST_BATTLE": "After a match, you should have some\nMoomoo Milk to quench your thirst!\rJust chug it right down! Glug glug!\n"
+    }
 }

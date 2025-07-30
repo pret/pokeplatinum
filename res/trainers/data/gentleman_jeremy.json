@@ -19,10 +19,10 @@
             "ball_seal": 22
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "If it pleases you, may I challenge you\nto a battle?\r",
+        "TRMSG_DEFEAT": "Bravo! Your technique is impeccable\nfor someone so young.\n",
+        "TRMSG_POST_BATTLE": "Hahaha! I was invited by the master of\nthe Pokémon Mansion.\rHe’s promised to show me through\nhis prized garden of Pokémon.\n",
+        "TRMSG_REMATCH": "If it pleases you, would you care for\na rematch with me?\r"
+    }
 }

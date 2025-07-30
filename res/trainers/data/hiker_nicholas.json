@@ -18,10 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE",
-        "TRMSG_REMATCH"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I’ve lost my way...\nHere of all places...\r",
+        "TRMSG_DEFEAT": "Having lost his way, the Trainer lost\nthe battle too...\n",
+        "TRMSG_POST_BATTLE": "From being lost in the mountains so\nlong, I became a Hiker...\n",
+        "TRMSG_REMATCH": "I’ve lost my way again...\rYes, it’s me again with no sense of\ndirection...\r"
+    }
 }

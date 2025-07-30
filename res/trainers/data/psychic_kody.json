@@ -22,9 +22,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A strange presence has been felt...\nIt is emanating from...you!\r",
+        "TRMSG_DEFEAT": "Oh, no!\nMy MEDITITE!",
+        "TRMSG_POST_BATTLE": "The Old Chateau... I sense...\na particularly strong presence there."
+    }
 }

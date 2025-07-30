@@ -38,9 +38,9 @@
             "ball_seal": 0
         }
     ],
-    "messages": [
-        "TRMSG_PRE_BATTLE",
-        "TRMSG_DEFEAT",
-        "TRMSG_POST_BATTLE"
-    ]
+    "messages": {
+        "TRMSG_PRE_BATTLE": "What does it feel like, taking one step\nafter another into darkness?\r",
+        "TRMSG_DEFEAT": "You’re the kind of person who can keep\ngoing forward even into the unknown.\n",
+        "TRMSG_POST_BATTLE": "I think, sometimes, one has to make\nmistakes to learn what is right.\n"
+    }
 }
