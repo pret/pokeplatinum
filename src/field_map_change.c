@@ -753,11 +753,11 @@ void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int param2, int x,
     FieldTask_InitCall(task, FieldTask_ChangeMapFull, mapChangeSub);
 }
 
-void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int mapID, int warpID, int x, int z, int facingDirection)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapID, warpID, x, z, facingDirection);
 
     MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
@@ -768,11 +768,11 @@ void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param
     FieldSystem_CreateTask(fieldSystem, FieldTask_MapChangeFly, mapChangeData);
 }
 
-void FieldTask_ChangeMapChangeFly(FieldTask *task, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapChangeFly(FieldTask *task, int mapID, int warpID, int x, int z, int facingDirection)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapID, warpID, x, z, facingDirection);
 
     MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
@@ -806,7 +806,7 @@ static BOOL FieldTask_MapChangeFly(FieldTask *task)
         }
 
         Sound_PlayMapBGM(fieldSystem, location->mapId);
-        sub_0207056C(fieldSystem);
+        FieldSystem_SetFlyFlags(fieldSystem);
         FieldTransition_StartMapAndFadeInFly(task);
         mapChangeData->state++;
         break;

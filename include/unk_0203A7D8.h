@@ -6,8 +6,8 @@
 #include "location.h"
 
 int sub_0203A7EC(void);
-void sub_0203A7F0(int param0, Location *param1);
-void sub_0203A824(int param0, Location *param1);
+void Location_InitFly(int flyDestination, Location *location);
+void Location_InitWhiteOut(int whiteOutDestination, Location *location);
 int sub_0203A858(int param0);
 int sub_0203A87C(int param0);
 int sub_0203A8A0(int param0, int param1, int param2);
