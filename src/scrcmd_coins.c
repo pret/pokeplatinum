@@ -139,6 +139,6 @@ BOOL ScrCmd_CanAddCoins(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 value = ScriptContext_GetVar(ctx);
 
-    *destVar = Coins_CanAddAmount(coins, value);
+    *destVar = Coins_CanAdd(coins, value);
     return FALSE;
 }
