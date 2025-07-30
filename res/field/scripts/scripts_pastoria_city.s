@@ -633,7 +633,7 @@ _05E0:
     SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 26, DIR_SOUTH
     AddObject 26
-    ScrCmd_062 26
+    LockObject 26
     ApplyMovement 26, _0798
     ApplyMovement LOCALID_PLAYER, _07CC
     WaitMovement
@@ -651,7 +651,7 @@ _05E0:
     SetObjectEventDir 27, DIR_NORTH
     SetObjectEventMovementType 27, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 27
-    ScrCmd_062 27
+    LockObject 27
     ApplyMovement 27, _0764
     WaitMovement
     ScrCmd_16C 77
@@ -834,7 +834,7 @@ _086F:
     SetObjectEventDir 21, DIR_EAST
     SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     Return
 
 _08D9:

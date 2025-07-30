@@ -87,7 +87,7 @@ _013C:
     SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01AC
     AddObject 3
-    ScrCmd_062 3
+    LockObject 3
     Return
 
 _0166:

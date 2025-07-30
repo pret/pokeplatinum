@@ -10,7 +10,7 @@ _000A:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End

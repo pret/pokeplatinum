@@ -42,7 +42,6 @@
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
-#include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/underground.h"
@@ -88,6 +87,7 @@
 #include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
@@ -242,31 +242,31 @@ static BOOL ScrCmd_Dummy(ScriptContext *ctx);
 static BOOL ScrCmd_End(ScriptContext *ctx);
 static BOOL ScrCmd_WaitTime(ScriptContext *ctx);
 static BOOL ScriptContext_DecrementTimer(ScriptContext *ctx);
-static BOOL ScrCmd_004(ScriptContext *ctx);
-static BOOL ScrCmd_005(ScriptContext *ctx);
-static BOOL ScrCmd_006(ScriptContext *ctx);
-static BOOL ScrCmd_007(ScriptContext *ctx);
-static BOOL ScrCmd_008(ScriptContext *ctx);
-static BOOL ScrCmd_009(ScriptContext *ctx);
-static BOOL ScrCmd_00A(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_004(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_005(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_006(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_007(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_008(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_009(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_00A(ScriptContext *ctx);
 static u32 Compare(u16 value0, u16 value1);
-static BOOL ScrCmd_00B(ScriptContext *ctx);
-static BOOL ScrCmd_00C(ScriptContext *ctx);
-static BOOL ScrCmd_00D(ScriptContext *ctx);
-static BOOL ScrCmd_00E(ScriptContext *ctx);
-static BOOL ScrCmd_00F(ScriptContext *ctx);
-static BOOL ScrCmd_010(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_00B(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_00C(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_00D(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_00E(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_00F(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_010(ScriptContext *ctx);
 static BOOL ScrCmd_CompareVarToValue(ScriptContext *ctx);
 static BOOL ScrCmd_CompareVarToVar(ScriptContext *ctx);
-static BOOL ScrCmd_013(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_013(ScriptContext *ctx);
 static BOOL ScrCmd_CallCommonScript(ScriptContext *ctx);
 static BOOL ScriptContext_WaitSubContext(ScriptContext *ctx);
 static BOOL ScrCmd_ReturnCommonScript(ScriptContext *ctx);
 static BOOL ScrCmd_GoTo(ScriptContext *ctx);
 static MapObject *sub_02040ED4(FieldSystem *fieldSystem, int param1);
-static BOOL ScrCmd_017(ScriptContext *ctx);
-static BOOL ScrCmd_018(ScriptContext *ctx);
-static BOOL ScrCmd_019(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_017(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_018(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_019(ScriptContext *ctx);
 static BOOL ScrCmd_Call(ScriptContext *ctx);
 static BOOL ScrCmd_Return(ScriptContext *ctx);
 static BOOL ScrCmd_GoToIf(ScriptContext *ctx);
@@ -283,12 +283,12 @@ static BOOL ScrCmd_AddVar(ScriptContext *ctx);
 static BOOL ScrCmd_SubVar(ScriptContext *ctx);
 static BOOL ScrCmd_SetVarFromValue(ScriptContext *ctx);
 static BOOL ScrCmd_SetVarFromVar(ScriptContext *ctx);
-static BOOL ScrCmd_02A(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_02A(ScriptContext *ctx);
 static BOOL ScrCmd_MessageInstant(ScriptContext *ctx);
-static BOOL ScrCmd_1FA(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx);
 static BOOL ScrCmd_1FB(ScriptContext *ctx);
-static BOOL ScrCmd_1FC(ScriptContext *ctx);
-static BOOL ScrCmd_1FD(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1FC(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx);
 static BOOL ScrCmd_1FE(ScriptContext *ctx);
 static BOOL ScrCmd_1FF(ScriptContext *ctx);
 static BOOL ScrCmd_26D(ScriptContext *ctx);
@@ -297,7 +297,7 @@ static BOOL ScrCmd_MessageVar(ScriptContext *ctx);
 static BOOL ScrCmd_2C0(ScriptContext *ctx);
 static BOOL ScrCmd_02E(ScriptContext *ctx);
 static BOOL ScrCmd_02F(ScriptContext *ctx);
-static BOOL sub_02040014(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForFinishedPrinting(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPress(ScriptContext *ctx);
 static BOOL ScrCmd_WaitABXPadPress(ScriptContext *ctx);
@@ -306,7 +306,7 @@ static BOOL ScrCmd_WaitABPadPress(ScriptContext *ctx);
 static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx);
 static BOOL ScrCmd_OpenMessage(ScriptContext *ctx);
 static BOOL ScrCmd_CloseMessage(ScriptContext *ctx);
-static BOOL ScrCmd_035(ScriptContext *ctx);
+static BOOL ScrCmd_CloseMessageWithoutErasing(ScriptContext *ctx);
 static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx);
 static BOOL ScrCmd_DrawSignpostTextBox(ScriptContext *ctx);
 static BOOL ScrCmd_SetSignpostCommand(ScriptContext *ctx);
@@ -339,37 +339,37 @@ static BOOL ScrCmd_WaitMovement(ScriptContext *ctx);
 static BOOL ScrCmd_LockAll(ScriptContext *ctx);
 static BOOL sub_020410CC(ScriptContext *ctx);
 static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx);
-static BOOL ScrCmd_062(ScriptContext *ctx);
-static BOOL ScrCmd_063(ScriptContext *ctx);
+static BOOL SrcCmd_LockObject(ScriptContext *ctx);
+static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx);
 static BOOL ScrCmd_AddObject(ScriptContext *ctx);
 static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
-static BOOL ScrCmd_066(ScriptContext *ctx);
-static BOOL ScrCmd_067(ScriptContext *ctx);
-static BOOL ScrCmd_308(ScriptContext *ctx);
-static BOOL ScrCmd_309(ScriptContext *ctx);
+static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx);
+static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx);
+static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx);
+static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx);
 static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
-static BOOL ScrCmd_06A(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_06A(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx);
 static BOOL ScrCmd_06B(ScriptContext *ctx);
 static BOOL ScrCmd_06C(ScriptContext *ctx);
 static BOOL ScrCmd_06D(ScriptContext *ctx);
 static BOOL ScrCmd_2AD(ScriptContext *ctx);
-static BOOL ScrCmd_06E(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
 static BOOL ScrCmd_094(ScriptContext *ctx);
 static BOOL ScrCmd_GetPartyMonForm(ScriptContext *ctx);
 static BOOL ScrCmd_09B(ScriptContext *ctx);
 static BOOL ScrCmd_315(ScriptContext *ctx);
-static BOOL ScrCmd_09C(ScriptContext *ctx);
-static BOOL ScrCmd_09D(ScriptContext *ctx);
-static BOOL ScrCmd_09E(ScriptContext *ctx);
-static BOOL ScrCmd_09F(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_09C(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_09D(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_09E(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_09F(ScriptContext *ctx);
 static BOOL ScrCmd_ReturnToField(ScriptContext *ctx);
 static BOOL ScrCmd_1F8(ScriptContext *ctx);
 static BOOL ScrCmd_0A2(ScriptContext *ctx);
 static BOOL ScrCmd_0A3(ScriptContext *ctx);
-static BOOL ScrCmd_0A4(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_0A4(ScriptContext *ctx);
 static BOOL ScrCmd_207(ScriptContext *ctx);
 static BOOL ScrCmd_DrawPokemonPreview(ScriptContext *ctx);
 static void FieldSystem_WriteSpeciesSeen(FieldSystem *fieldSystem, u16 param1);
@@ -389,7 +389,7 @@ static BOOL ScrCmd_0AA(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
 static BOOL ScrCmd_1D8(ScriptContext *ctx);
 static BOOL ScrCmd_1D9(ScriptContext *ctx);
-static BOOL ScrCmd_0AB(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx);
 static BOOL ScrCmd_0AC(ScriptContext *ctx);
 static BOOL ScrCmd_0AD(ScriptContext *ctx);
 static BOOL ScrCmd_0AE(ScriptContext *ctx);
@@ -401,7 +401,7 @@ static BOOL ScrCmd_0B2(ScriptContext *ctx);
 static BOOL ScrCmd_0B3(ScriptContext *ctx);
 static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
 static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx);
-static BOOL ScrCmd_0BA(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx);
 static BOOL ScrCmd_0BB(ScriptContext *ctx);
 static BOOL ScrCmd_271(ScriptContext *ctx);
 static BOOL ScrCmd_FadeScreen(ScriptContext *ctx);
@@ -430,18 +430,18 @@ static BOOL ScrCmd_0F2(ScriptContext *ctx);
 static BOOL sub_02042F74(ScriptContext *ctx);
 static BOOL ScrCmd_0F3(ScriptContext *ctx);
 static BOOL sub_0204300C(ScriptContext *ctx);
-static BOOL ScrCmd_0F4(ScriptContext *ctx);
-static BOOL ScrCmd_0F5(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_0F4(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_0F5(ScriptContext *ctx);
 static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx);
-static BOOL ScrCmd_0F7(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_0F7(ScriptContext *ctx);
 static BOOL ScrCmd_11B(ScriptContext *ctx);
 static BOOL ScrCmd_GetFloorsAbove(ScriptContext *ctx);
 static BOOL ScrCmd_ShowCurrentFloor(ScriptContext *ctx);
 static BOOL ScrCmd_11E(ScriptContext *ctx);
-static BOOL ScrCmd_11F(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_11F(ScriptContext *ctx);
 static BOOL ScrCmd_120(ScriptContext *ctx);
 static BOOL ScrCmd_121(ScriptContext *ctx);
-static BOOL ScrCmd_122(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_122(ScriptContext *ctx);
 static BOOL ScrCmd_123(ScriptContext *ctx);
 static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
@@ -462,7 +462,7 @@ static BOOL ScrCmd_CheckPoketchAppRegistered(ScriptContext *ctx);
 static BOOL ScrCmd_135(ScriptContext *ctx);
 static BOOL sub_02043678(ScriptContext *ctx);
 static BOOL ScrCmd_136(ScriptContext *ctx);
-static BOOL ScrCmd_137(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_137(ScriptContext *ctx);
 static BOOL ScrCmd_138(ScriptContext *ctx);
 static BOOL ScrCmd_139(ScriptContext *ctx);
 static BOOL ScrCmd_13B(ScriptContext *ctx);
@@ -544,9 +544,9 @@ static BOOL sub_020441C8(ScriptContext *ctx);
 static BOOL ScrCmd_19F(ScriptContext *ctx);
 static BOOL sub_02044240(ScriptContext *ctx);
 static BOOL ScrCmd_1A0(ScriptContext *ctx);
-static BOOL ScrCmd_1A1(ScriptContext *ctx);
-static BOOL ScrCmd_1A2(ScriptContext *ctx);
-static BOOL ScrCmd_03F(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1A1(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1A2(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_03F(ScriptContext *ctx);
 static BOOL ScrCmd_1AC(ScriptContext *ctx);
 static BOOL ScrCmd_1B1(ScriptContext *ctx);
 static BOOL ScrCmd_1B2(ScriptContext *ctx);
@@ -563,10 +563,10 @@ static BOOL ScrCmd_BufferSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_InitSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
-static BOOL ScrCmd_1CE(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_1D2(ScriptContext *ctx);
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
-static BOOL ScrCmd_1D4(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_1D5(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_192(ScriptContext *ctx);
@@ -578,10 +578,10 @@ static BOOL ScrCmd_1EA(ScriptContext *ctx);
 static BOOL ScrCmd_1EB(ScriptContext *ctx);
 static BOOL ScrCmd_AddTrophyGardenMon(ScriptContext *ctx);
 static BOOL ScrCmd_GetTrophyGardenSlot1Species(ScriptContext *ctx);
-static BOOL ScrCmd_1EF(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1EF(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
-static BOOL ScrCmd_1E6(ScriptContext *ctx);
-static BOOL ScrCmd_1E7(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1E6(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_1E7(ScriptContext *ctx);
 static BOOL ScrCmd_AddToGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_AddToGameRecordBigValue(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
@@ -656,7 +656,7 @@ static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
 static BOOL ScrCmd_273(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx);
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
-static BOOL ScrCmd_279(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_279(ScriptContext *ctx);
 static BOOL ScrCmd_27A(ScriptContext *ctx);
 static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_27D(ScriptContext *ctx);
@@ -683,7 +683,7 @@ static BOOL ScrCmd_291(ScriptContext *ctx);
 static BOOL ScrCmd_29E(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
 static BOOL ScrCmd_29F(ScriptContext *ctx);
-static BOOL ScrCmd_2A1(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx);
 static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx);
 static BOOL ScrCmd_2A3(ScriptContext *ctx);
 static BOOL ScrCmd_2A4(ScriptContext *ctx);
@@ -705,7 +705,7 @@ static BOOL ScrCmd_2BE(ScriptContext *ctx);
 static BOOL ScrCmd_2BF(ScriptContext *ctx);
 static BOOL ScrCmd_2C1(ScriptContext *ctx);
 static BOOL ScrCmd_2C2(ScriptContext *ctx);
-static BOOL ScrCmd_2C3(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuXOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_SetMenuYOriginSide(ScriptContext *ctx);
 static BOOL ScrCmd_2C4(ScriptContext *ctx);
@@ -713,7 +713,7 @@ static BOOL ScrCmd_2C6(ScriptContext *ctx);
 static BOOL ScrCmd_2C7(ScriptContext *ctx);
 static BOOL ScrCmd_2CA(ScriptContext *ctx);
 static BOOL ScrCmd_2CD(ScriptContext *ctx);
-static BOOL ScrCmd_2CE(ScriptContext *ctx);
+static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx);
 static BOOL ScrCmd_2D6(ScriptContext *ctx);
 static BOOL ScrCmd_2D7(ScriptContext *ctx);
 static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx);
@@ -742,7 +742,7 @@ static BOOL ScrCmd_322(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
 static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
-static BOOL sub_02040F0C(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForMovement(ScriptContext *ctx);
 static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAnimCmd *param2);
 static void sub_02040F5C(SysTask *param0, void *param1);
 static u32 SaveData_GetRotomFormsInSave(SaveData *saveData);
@@ -772,28 +772,28 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Dummy,
     ScrCmd_End,
     ScrCmd_WaitTime,
-    ScrCmd_004,
-    ScrCmd_005,
-    ScrCmd_006,
-    ScrCmd_007,
-    ScrCmd_008,
-    ScrCmd_009,
-    ScrCmd_00A,
-    ScrCmd_00B,
-    ScrCmd_00C,
-    ScrCmd_00D,
-    ScrCmd_00E,
-    ScrCmd_00F,
-    ScrCmd_010,
+    ScrCmd_Unused_004,
+    ScrCmd_Unused_005,
+    ScrCmd_Unused_006,
+    ScrCmd_Unused_007,
+    ScrCmd_Unused_008,
+    ScrCmd_Unused_009,
+    ScrCmd_Unused_00A,
+    ScrCmd_Unused_00B,
+    ScrCmd_Unused_00C,
+    ScrCmd_Unused_00D,
+    ScrCmd_Unused_00E,
+    ScrCmd_Unused_00F,
+    ScrCmd_Unused_010,
     ScrCmd_CompareVarToValue,
     ScrCmd_CompareVarToVar,
-    ScrCmd_013,
+    ScrCmd_Unused_013,
     ScrCmd_CallCommonScript,
     ScrCmd_ReturnCommonScript,
     ScrCmd_GoTo,
-    ScrCmd_017,
-    ScrCmd_018,
-    ScrCmd_019,
+    ScrCmd_Unused_017,
+    ScrCmd_Unused_018,
+    ScrCmd_Unused_019,
     ScrCmd_Call,
     ScrCmd_Return,
     ScrCmd_GoToIf,
@@ -810,7 +810,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SubVar,
     ScrCmd_SetVarFromValue,
     ScrCmd_SetVarFromVar,
-    ScrCmd_02A,
+    ScrCmd_Unused_02A,
     ScrCmd_MessageInstant,
     ScrCmd_Message,
     ScrCmd_MessageVar,
@@ -821,7 +821,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitABPadPress,
     ScrCmd_OpenMessage,
     ScrCmd_CloseMessage,
-    ScrCmd_035,
+    ScrCmd_CloseMessageWithoutErasing,
     ScrCmd_DrawSignpostInstantMessage,
     ScrCmd_DrawSignpostTextBox,
     ScrCmd_SetSignpostCommand,
@@ -831,7 +831,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ShowStartMenu,
     ScrCmd_ScrollBG3,
     ScrCmd_ShowYesNoMenu,
-    ScrCmd_03F,
+    ScrCmd_Unused_03F,
     ScrCmd_InitGlobalTextMenu,
     ScrCmd_InitLocalTextMenu,
     ScrCmd_AddMenuEntryImm,
@@ -866,19 +866,19 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_WaitMovement,
     ScrCmd_LockAll,
     ScrCmd_ReleaseAll,
-    ScrCmd_062,
-    ScrCmd_063,
+    SrcCmd_LockObject,
+    SrcCmd_ReleaseObject,
     ScrCmd_AddObject,
     ScrCmd_RemoveObject,
-    ScrCmd_066,
-    ScrCmd_067,
+    SrcCmd_AddFreeCamera,
+    SrcCmd_RestoreCamera,
     ScrCmd_FacePlayer,
     ScrCmd_GetPlayerMapPos,
-    ScrCmd_06A,
+    ScrCmd_Unused_06A,
     ScrCmd_06B,
     ScrCmd_06C,
     ScrCmd_06D,
-    ScrCmd_06E,
+    ScrCmd_Unused_06E,
     ScrCmd_GiveMoney,
     ScrCmd_RemoveMoney,
     ScrCmd_CheckMoney,
@@ -924,22 +924,22 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPartyMonHasMove,
     ScrCmd_FindPartySlotWithMove,
     ScrCmd_09B,
-    ScrCmd_09C,
-    ScrCmd_09D,
-    ScrCmd_09E,
-    ScrCmd_09F,
+    ScrCmd_Unused_09C,
+    ScrCmd_Unused_09D,
+    ScrCmd_Unused_09E,
+    ScrCmd_Unused_09F,
     ScrCmd_0A0,
     ScrCmd_ReturnToField,
     ScrCmd_0A2,
     ScrCmd_0A3,
-    ScrCmd_0A4,
+    ScrCmd_Unused_0A4,
     ScrCmd_0A5,
     ScrCmd_0A6,
     ScrCmd_0A7,
     ScrCmd_0A8,
     ScrCmd_OpenSealCapsuleEditor,
     ScrCmd_0AA,
-    ScrCmd_0AB,
+    ScrCmd_OpenPokemonStorage,
     ScrCmd_0AC,
     ScrCmd_0AD,
     ScrCmd_0AE,
@@ -954,7 +954,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0B7,
     ScrCmd_0B8,
     ScrCmd_0B9,
-    ScrCmd_0BA,
+    ScrCmd_Unused_0BA,
     ScrCmd_0BB,
     ScrCmd_FadeScreen,
     ScrCmd_WaitFadeScreen,
@@ -1012,10 +1012,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0F1,
     ScrCmd_0F2,
     ScrCmd_0F3,
-    ScrCmd_0F4,
-    ScrCmd_0F5,
+    ScrCmd_Unused_0F4,
+    ScrCmd_Unused_0F5,
     ScrCmd_StartLinkBattle,
-    ScrCmd_0F7,
+    ScrCmd_Unused_0F7,
     ScrCmd_0F8,
     ScrCmd_0F9,
     ScrCmd_0FA,
@@ -1055,10 +1055,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetFloorsAbove,
     ScrCmd_ShowCurrentFloor,
     ScrCmd_11E,
-    ScrCmd_11F,
+    ScrCmd_Unused_11F,
     ScrCmd_120,
     ScrCmd_121,
-    ScrCmd_122,
+    ScrCmd_Unused_122,
     ScrCmd_123,
     ScrCmd_StartWildBattle,
     ScrCmd_StartFirstBattle,
@@ -1079,7 +1079,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPoketchAppRegistered,
     ScrCmd_135,
     ScrCmd_136,
-    ScrCmd_137,
+    ScrCmd_Unused_137,
     ScrCmd_138,
     ScrCmd_139,
     ScrCmd_13A,
@@ -1185,8 +1185,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_19E,
     ScrCmd_19F,
     ScrCmd_1A0,
-    ScrCmd_1A1,
-    ScrCmd_1A2,
+    ScrCmd_Unused_1A1,
+    ScrCmd_Unused_1A2,
     ScrCmd_RemoveMoney2,
     ScrCmd_MoveMonToPartyFromDaycareSlot,
     ScrCmd_Dummy1A5,
@@ -1230,13 +1230,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1CB,
     ScrCmd_GiveJournal,
     ScrCmd_CreateJournalEvent,
-    ScrCmd_1CE,
+    ScrCmd_Unused_1CE,
     ScrCmd_Strength,
     ScrCmd_Flash,
     ScrCmd_Defog,
     ScrCmd_1D2,
     ScrCmd_CanFitAccessory,
-    ScrCmd_1D4,
+    ScrCmd_Unused_1D4,
     ScrCmd_1D5,
     ScrCmd_CheckBackdrop,
     ScrCmd_1D7,
@@ -1254,8 +1254,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1E3,
     ScrCmd_1E4,
     ScrCmd_IncrementGameRecord,
-    ScrCmd_1E6,
-    ScrCmd_1E7,
+    ScrCmd_Unused_1E6,
+    ScrCmd_Unused_1E7,
     ScrCmd_CheckLocalDexCompleted,
     ScrCmd_CheckNationalDexCompleted,
     ScrCmd_1EA,
@@ -1263,7 +1263,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_AddTrophyGardenMon,
     ScrCmd_GetTrophyGardenSlot1Species,
     ScrCmd_1EE,
-    ScrCmd_1EF,
+    ScrCmd_Unused_1EF,
     ScrCmd_1F0,
     ScrCmd_1F1,
     ScrCmd_1F2,
@@ -1274,10 +1274,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SurvivePoison,
     ScrCmd_1F8,
     ScrCmd_Dummy1F9,
-    ScrCmd_1FA,
+    ScrCmd_Unused_1FA,
     ScrCmd_1FB,
-    ScrCmd_1FC,
-    ScrCmd_1FD,
+    ScrCmd_Unused_1FC,
+    ScrCmd_Unused_1FD,
     ScrCmd_1FE,
     ScrCmd_1FF,
     ScrCmd_GetPreviousMapID,
@@ -1401,7 +1401,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CanAddCoins,
     ScrCmd_GetDailyRandomLevel,
     ScrCmd_278,
-    ScrCmd_279,
+    ScrCmd_Unused_279,
     ScrCmd_27A,
     ScrCmd_InitDailyRandomLevel,
     ScrCmd_27C,
@@ -1441,7 +1441,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_29E,
     ScrCmd_29F,
     ScrCmd_StartTagBattle,
-    ScrCmd_2A1,
+    ScrCmd_Unused_2A1,
     ScrCmd_TrySetUnusedUndergroundField,
     ScrCmd_2A3,
     ScrCmd_2A4,
@@ -1475,7 +1475,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2C0,
     ScrCmd_2C1,
     ScrCmd_2C2,
-    ScrCmd_2C3,
+    ScrCmd_Unused_2C3,
     ScrCmd_2C4,
     ScrCmd_2C5,
     ScrCmd_2C6,
@@ -1486,7 +1486,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CountRepeatedSpeciesInParty,
     ScrCmd_2CC,
     ScrCmd_2CD,
-    ScrCmd_2CE,
+    ScrCmd_Unused_2CE,
     ScrCmd_2CF,
     ScrCmd_2D0,
     ScrCmd_2D1,
@@ -1544,8 +1544,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonForm2,
     ScrCmd_ShowListMenuRememberCursor,
     ScrCmd_307,
-    ScrCmd_308,
-    ScrCmd_309,
+    SrcCmd_AddCameraOverrideObject,
+    SrcCmd_RemoveCameraOverrideObject,
     ScrCmd_IncrementTrainerScore,
     ScrCmd_30B,
     ScrCmd_30C,
@@ -1659,7 +1659,7 @@ static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_004(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_004(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
 
@@ -1667,7 +1667,7 @@ static BOOL ScrCmd_004(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_005(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_005(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u32 v1 = ScriptContext_ReadWord(ctx);
@@ -1676,7 +1676,7 @@ static BOOL ScrCmd_005(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_006(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_006(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u8 *v1 = (u8 *)ScriptContext_ReadWord(ctx);
@@ -1685,7 +1685,7 @@ static BOOL ScrCmd_006(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_007(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_007(ScriptContext *ctx)
 {
     u8 *v0 = (u8 *)ScriptContext_ReadWord(ctx);
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -1694,7 +1694,7 @@ static BOOL ScrCmd_007(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_008(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_008(ScriptContext *ctx)
 {
     u8 *v0 = (u8 *)ScriptContext_ReadWord(ctx);
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -1703,7 +1703,7 @@ static BOOL ScrCmd_008(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_009(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_009(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -1712,7 +1712,7 @@ static BOOL ScrCmd_009(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_00A(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_00A(ScriptContext *ctx)
 {
     u8 *v0 = (u8 *)ScriptContext_ReadWord(ctx);
     u8 *v1 = (u8 *)ScriptContext_ReadWord(ctx);
@@ -1732,7 +1732,7 @@ static u32 Compare(u16 value0, u16 value1)
     }
 }
 
-static BOOL ScrCmd_00B(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_00B(ScriptContext *ctx)
 {
     u8 v0 = ctx->data[ScriptContext_ReadByte(ctx)];
     u8 v1 = ctx->data[ScriptContext_ReadByte(ctx)];
@@ -1741,7 +1741,7 @@ static BOOL ScrCmd_00B(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_00C(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_00C(ScriptContext *ctx)
 {
     u8 v0 = ctx->data[ScriptContext_ReadByte(ctx)];
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -1750,7 +1750,7 @@ static BOOL ScrCmd_00C(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_00D(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_00D(ScriptContext *ctx)
 {
     u8 v0 = ctx->data[ScriptContext_ReadByte(ctx)];
     u8 v1 = *(u8 *)ScriptContext_ReadWord(ctx);
@@ -1759,7 +1759,7 @@ static BOOL ScrCmd_00D(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_00E(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_00E(ScriptContext *ctx)
 {
     u8 v0 = *(u8 *)ScriptContext_ReadWord(ctx);
     u8 v1 = ctx->data[ScriptContext_ReadByte(ctx)];
@@ -1768,7 +1768,7 @@ static BOOL ScrCmd_00E(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_00F(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_00F(ScriptContext *ctx)
 {
     u8 v0 = *(u8 *)ScriptContext_ReadWord(ctx);
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -1777,7 +1777,7 @@ static BOOL ScrCmd_00F(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_010(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_010(ScriptContext *ctx)
 {
     u8 v0 = *(u8 *)ScriptContext_ReadWord(ctx);
     u8 v1 = *(u8 *)ScriptContext_ReadWord(ctx);
@@ -1802,7 +1802,7 @@ static BOOL ScrCmd_CompareVarToVar(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_013(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_013(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_NUM_ACTIVE_CONTEXTS);
@@ -1852,7 +1852,7 @@ static BOOL ScrCmd_GoTo(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_017(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_017(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -1867,7 +1867,7 @@ static BOOL ScrCmd_017(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_018(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_018(ScriptContext *ctx)
 {
     u32 taskVal = FieldTask_GetDummy1CVal(ctx->task);
     u8 val = ScriptContext_ReadByte(ctx);
@@ -1880,7 +1880,7 @@ static BOOL ScrCmd_018(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_019(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_019(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -2022,7 +2022,7 @@ static BOOL ScrCmd_SetVarFromVar(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_02A(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_02A(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     *v0 = ScriptContext_GetVar(ctx);
@@ -2038,7 +2038,7 @@ static BOOL ScrCmd_MessageInstant(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1FA(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1FA(ScriptContext *ctx)
 {
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
@@ -2060,12 +2060,12 @@ static BOOL ScrCmd_1FB(ScriptContext *ctx)
     ScriptMessage_Show(ctx, msgLoader, v2, TRUE, NULL);
 
     MessageLoader_Free(msgLoader);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_1FC(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1FC(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
@@ -2076,7 +2076,7 @@ static BOOL ScrCmd_1FC(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1FD(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1FD(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_ReadHalfWord(ctx);
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
@@ -2084,7 +2084,7 @@ static BOOL ScrCmd_1FD(ScriptContext *ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
     ScriptMessage_ShowSentence(ctx, v0, v1, v2, v3, 1);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2109,7 +2109,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
         ScriptMessage_ShowSentence(ctx, v0[0], v0[1], v0[2], v0[3], 1);
     }
 
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
     return TRUE;
 }
 
@@ -2126,7 +2126,7 @@ static BOOL ScrCmd_1FF(ScriptContext *ctx)
 
     ScriptMessage_ShowTemplate(ctx, v6, v1 + v5, TRUE);
     StringTemplate_Free(v6);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2140,7 +2140,7 @@ static BOOL ScrCmd_26D(ScriptContext *ctx)
     v0.fontID = 3;
 
     ScriptMessage_Show(ctx, ctx->loader, v1, FALSE, &v0);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2150,17 +2150,17 @@ static BOOL ScrCmd_Message(ScriptContext *ctx)
     u8 messageID = ScriptContext_ReadByte(ctx);
 
     ScriptMessage_Show(ctx, ctx->loader, messageID, TRUE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
 
-static BOOL sub_02040014(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForFinishedPrinting(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    u8 *printedID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 
-    return FieldMessage_FinishedPrinting(*v1);
+    return FieldMessage_FinishedPrinting(*printedID);
 }
 
 static BOOL ScrCmd_MessageVar(ScriptContext *ctx)
@@ -2168,7 +2168,7 @@ static BOOL ScrCmd_MessageVar(ScriptContext *ctx)
     u16 messageID = ScriptContext_GetVar(ctx);
 
     ScriptMessage_Show(ctx, ctx->loader, (u8)messageID, TRUE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2183,7 +2183,7 @@ static BOOL ScrCmd_2C0(ScriptContext *ctx)
     v1.autoScroll = 1;
 
     ScriptMessage_Show(ctx, ctx->loader, (u8)v0, TRUE, &v1);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2193,7 +2193,7 @@ static BOOL ScrCmd_02E(ScriptContext *ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
 
     ScriptMessage_Show(ctx, ctx->loader, (u8)v0, FALSE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2204,7 +2204,7 @@ static BOOL ScrCmd_20C(ScriptContext *ctx)
     u8 v1 = MapObject_GetTrainerType(*mapObj);
 
     ScriptMessage_Show(ctx, ctx->loader, v1, TRUE, NULL);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -2226,7 +2226,7 @@ static BOOL ScrCmd_02F(ScriptContext *ctx)
         ScriptMessage_Show(ctx, ctx->loader, messageID, FALSE, &msgOptions);
     }
 
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
     return TRUE;
 }
 
@@ -2320,24 +2320,24 @@ static BOOL ScrCmd_CloseMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
-    u8 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    u8 *isMsgBoxOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
-    Window_EraseMessageBox(window, 0);
+    Window_EraseMessageBox(window, FALSE);
     Window_Remove(window);
 
-    *v2 = 0;
+    *isMsgBoxOpen = FALSE;
     return FALSE;
 }
 
-static BOOL ScrCmd_035(ScriptContext *ctx)
+static BOOL ScrCmd_CloseMessageWithoutErasing(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Window *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
-    u8 *v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
+    Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
+    u8 *isMsgBoxOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
 
-    Window_Remove(v1);
+    Window_Remove(window);
 
-    *v2 = 0;
+    *isMsgBoxOpen = FALSE;
     return FALSE;
 }
 
@@ -2888,7 +2888,7 @@ static BOOL ScrCmd_ApplyMovement(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2A1(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx)
 {
     u16 v5 = ScriptContext_GetVar(ctx);
     u16 v6 = ScriptContext_GetVar(ctx);
@@ -2955,11 +2955,11 @@ static MapObject *sub_02040ED4(FieldSystem *fieldSystem, int param1)
 
 static BOOL ScrCmd_WaitMovement(ScriptContext *ctx)
 {
-    ScriptContext_Pause(ctx, sub_02040F0C);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForMovement);
     return TRUE;
 }
 
-static BOOL sub_02040F0C(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForMovement(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MOVEMENT_COUNT);
@@ -3167,7 +3167,7 @@ static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_062(ScriptContext *ctx)
+static BOOL SrcCmd_LockObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -3177,7 +3177,7 @@ static BOOL ScrCmd_062(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_063(ScriptContext *ctx)
+static BOOL SrcCmd_ReleaseObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -3216,64 +3216,62 @@ static BOOL ScrCmd_RemoveObject(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_066(ScriptContext *ctx)
+static BOOL SrcCmd_AddFreeCamera(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    MapObject **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    u16 xPos = ScriptContext_GetVar(ctx);
+    u16 zPos = ScriptContext_GetVar(ctx);
+    MapObject **cameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
+    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
-    sub_020642F8(*v2);
-    MapObject_SetHidden(*v2, TRUE);
-    sub_02062D80(*v2, FALSE);
+    MapObject_RecalculateObjectHeight(*cameraObject);
+    MapObject_SetHidden(*cameraObject, TRUE);
+    sub_02062D80(*cameraObject, FALSE);
 
     {
-        const VecFx32 *v3 = MapObject_GetPos(*v2);
-        LandDataManager_TrackTarget(v3, ctx->fieldSystem->landDataMan);
-        Camera_TrackTarget(v3, ctx->fieldSystem->camera);
+        const VecFx32 *cameraPos = MapObject_GetPos(*cameraObject);
+        LandDataManager_TrackTarget(cameraPos, ctx->fieldSystem->landDataMan);
+        Camera_TrackTarget(cameraPos, ctx->fieldSystem->camera);
     }
 
     return FALSE;
 }
 
-static BOOL ScrCmd_067(ScriptContext *ctx)
+static BOOL SrcCmd_RestoreCamera(ScriptContext *ctx)
 {
-    MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    MapObject **freeCameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    MapObject_Delete(*v0);
+    MapObject_Delete(*freeCameraObject);
 
-    {
-        MapObject *v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 0xff);
-        const VecFx32 *v2 = MapObject_GetPos(v1);
+    MapObject *playerObject = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, LOCALID_PLAYER);
+    const VecFx32 *playerPos = MapObject_GetPos(playerObject);
 
-        LandDataManager_TrackTarget(v2, ctx->fieldSystem->landDataMan);
-        Camera_TrackTarget(v2, ctx->fieldSystem->camera);
-    }
+    LandDataManager_TrackTarget(playerPos, ctx->fieldSystem->landDataMan);
+    Camera_TrackTarget(playerPos, ctx->fieldSystem->camera);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_308(ScriptContext *ctx)
+static BOOL SrcCmd_AddCameraOverrideObject(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    MapObject **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    u16 xPos = ScriptContext_GetVar(ctx);
+    u16 zPos = ScriptContext_GetVar(ctx);
+    MapObject **cameraObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    *v2 = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
+    *cameraObject = MapObjectMan_AddMapObject(ctx->fieldSystem->mapObjMan, xPos, zPos, 0, 0x2000, 0x0, ctx->fieldSystem->location->mapId);
 
-    sub_020642F8(*v2);
-    MapObject_SetHidden(*v2, TRUE);
-    sub_02062D80(*v2, FALSE);
+    MapObject_RecalculateObjectHeight(*cameraObject);
+    MapObject_SetHidden(*cameraObject, TRUE);
+    sub_02062D80(*cameraObject, FALSE);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_309(ScriptContext *ctx)
+static BOOL SrcCmd_RemoveCameraOverrideObject(ScriptContext *ctx)
 {
-    MapObject **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+    MapObject **cameraOverrideObject = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
 
-    MapObject_Delete(*v0);
+    MapObject_Delete(*cameraOverrideObject);
     return FALSE;
 }
 
@@ -3306,7 +3304,7 @@ static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_06A(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_06A(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -3378,7 +3376,7 @@ static BOOL ScrCmd_2AD(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_06E(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_06E(ScriptContext *ctx)
 {
     MapObject *mapObj = sub_02062570(ctx->fieldSystem->mapObjMan, 0x30);
 
@@ -3685,22 +3683,22 @@ static BOOL ScrCmd_315(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_09C(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_09C(ScriptContext *ctx)
 {
     return FALSE;
 }
 
-static BOOL ScrCmd_09D(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_09D(ScriptContext *ctx)
 {
     return FALSE;
 }
 
-static BOOL ScrCmd_09E(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_09E(ScriptContext *ctx)
 {
     return TRUE;
 }
 
-static BOOL ScrCmd_09F(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_09F(ScriptContext *ctx)
 {
     return FALSE;
 }
@@ -3721,28 +3719,28 @@ BOOL sub_02041CC8(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL sub_02041CF4(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForPokemonStorageClose(ScriptContext *ctx)
 {
-    void **v0;
-    UnkStruct_02042434 *v2;
+    void **partyManagementData;
+    PokemonStorageSession *pokemonStorageSession;
 
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    v0 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    v2 = *v0;
+    partyManagementData = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    pokemonStorageSession = *partyManagementData;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return FALSE;
     }
 
-    if (v2->recordBoxUseInJournal == TRUE) {
+    if (pokemonStorageSession->recordBoxUseInJournal == TRUE) {
         void *journalEntryLocationEvent;
 
         journalEntryLocationEvent = JournalEntry_CreateEventUsedPCBox(HEAP_ID_FIELDMAP);
         JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
     }
 
-    Heap_Free(*v0);
-    *v0 = NULL;
+    Heap_Free(*partyManagementData);
+    *partyManagementData = NULL;
 
     return TRUE;
 }
@@ -3826,7 +3824,7 @@ static BOOL ScrCmd_0A3(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0A4(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_0A4(ScriptContext *ctx)
 {
     void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
@@ -4136,17 +4134,17 @@ static BOOL ScrCmd_1D9(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0AB(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPokemonStorage(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    UnkStruct_02042434 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02042434));
+    void **partyManagementData = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    PokemonStorageSession *pokemonStorageSession = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonStorageSession));
 
-    v1->saveData = ctx->fieldSystem->saveData;
-    v1->boxMode = ScriptContext_ReadByte(ctx);
-    *v0 = v1;
+    pokemonStorageSession->saveData = ctx->fieldSystem->saveData;
+    pokemonStorageSession->boxMode = ScriptContext_ReadByte(ctx);
+    *partyManagementData = pokemonStorageSession;
 
-    sub_0203D754(ctx->fieldSystem, *v0);
-    ScriptContext_Pause(ctx, sub_02041CF4);
+    FieldSystem_OpenPokemonStorage(ctx->fieldSystem, *partyManagementData);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForPokemonStorageClose);
 
     return TRUE;
 }
@@ -4300,7 +4298,7 @@ static BOOL ScrCmd_179(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0BA(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -4647,7 +4645,7 @@ static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx)
     Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
     *printerID = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *strbuf, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
-    ScriptContext_Pause(ctx, sub_02040014);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
 }
@@ -4712,7 +4710,7 @@ static BOOL sub_0204300C(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0F4(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_0F4(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
@@ -4720,7 +4718,7 @@ static BOOL ScrCmd_0F4(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0F5(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_0F5(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
@@ -4741,7 +4739,7 @@ static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0F7(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_0F7(ScriptContext *ctx)
 {
     return TRUE;
 }
@@ -4793,7 +4791,7 @@ static BOOL ScrCmd_11E(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_11F(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_11F(ScriptContext *ctx)
 {
     const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
@@ -4820,7 +4818,7 @@ static BOOL ScrCmd_121(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_122(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_122(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -5048,7 +5046,7 @@ static BOOL ScrCmd_136(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_137(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_137(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
@@ -5435,7 +5433,7 @@ static BOOL ScrCmd_187(ScriptContext *ctx)
     MapObject *v0 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, v1);
 
     MapObject_SetPosDirFromCoords(v0, v2, v3, v4, v5);
-    sub_020642F8(v0);
+    MapObject_RecalculateObjectHeight(v0);
 
     return FALSE;
 }
@@ -5707,7 +5705,7 @@ static BOOL ScrCmd_1A0(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1A1(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1A1(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
@@ -5716,7 +5714,7 @@ static BOOL ScrCmd_1A1(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1A2(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1A2(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
@@ -5725,7 +5723,7 @@ static BOOL ScrCmd_1A2(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_03F(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_03F(ScriptContext *ctx)
 {
     return TRUE;
 }
@@ -5920,7 +5918,7 @@ static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1CE(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx)
 {
     return FALSE;
 }
@@ -5950,7 +5948,7 @@ static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1D4(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
 {
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
@@ -6053,7 +6051,7 @@ static BOOL ScrCmd_GetTrophyGardenSlot1Species(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1EF(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1EF(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     return FALSE;
@@ -6067,7 +6065,7 @@ static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1E6(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1E6(ScriptContext *ctx)
 {
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
     u16 v4 = ScriptContext_ReadHalfWord(ctx);
@@ -6082,7 +6080,7 @@ static BOOL ScrCmd_1E6(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1E7(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_1E7(ScriptContext *ctx)
 {
     u16 v1 = ScriptContext_ReadHalfWord(ctx);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
@@ -6834,7 +6832,7 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_279(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_279(ScriptContext *ctx)
 {
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
@@ -7414,7 +7412,7 @@ static BOOL ScrCmd_2C2(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2C3(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_2C3(ScriptContext *ctx)
 {
     sub_02070428(ctx->fieldSystem, ScriptContext_ReadByte(ctx));
     return FALSE;
@@ -7478,7 +7476,7 @@ static BOOL ScrCmd_2CD(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_2CE(ScriptContext *ctx)
+static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v1 = FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData));

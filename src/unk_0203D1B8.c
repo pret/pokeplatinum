@@ -27,7 +27,6 @@
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
-#include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_0208737C.h"
@@ -48,6 +47,7 @@
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay007/accessory_shop.h"
 #include "overlay019/ov19_021D0D80.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
@@ -626,18 +626,18 @@ int PokemonSummary_GetSelectedMoveSlot(void *summary)
     return ((PokemonSummary *)summary)->selectedMoveSlot;
 }
 
-void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1)
+void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession)
 {
     FS_EXTERN_OVERLAY(overlay19);
 
-    static const ApplicationManagerTemplate v0 = {
+    static const ApplicationManagerTemplate template = {
         ov19_021D0D80,
         ov19_021D0DEC,
         ov19_021D0E58,
         FS_OVERLAY_ID(overlay19)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, pokemonStorageSession);
 }
 
 static BOOL sub_0203D764(FieldTask *taskMan)

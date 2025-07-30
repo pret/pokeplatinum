@@ -22,8 +22,8 @@ _0022:
     SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01CD
     AddObject 0
-    ScrCmd_066 30, 30
-    ApplyMovement 241, _016C
+    AddFreeCamera 30, 30
+    ApplyFreeCameraMovement _016C
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -38,9 +38,9 @@ _0088:
     ScrCmd_20D 6, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0088
     RemoveObject 1
-    ApplyMovement 241, _0178
+    ApplyFreeCameraMovement _0178
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     ApplyMovement LOCALID_PLAYER, _013C
     ApplyMovement 0, _014C
     WaitMovement
