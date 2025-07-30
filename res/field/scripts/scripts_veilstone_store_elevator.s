@@ -20,27 +20,27 @@ _0006:
     End
 
 _0068:
-    ScrCmd_347 0, 5
+    BufferFloorNumber 0, 5
     GoTo _00A6
 
 _0072:
-    ScrCmd_347 0, 4
+    BufferFloorNumber 0, 4
     GoTo _00A6
 
 _007C:
-    ScrCmd_347 0, 3
+    BufferFloorNumber 0, 3
     GoTo _00A6
 
 _0086:
-    ScrCmd_347 0, 2
+    BufferFloorNumber 0, 2
     GoTo _00A6
 
 _0090:
-    ScrCmd_347 0, 1
+    BufferFloorNumber 0, 1
     GoTo _00A6
 
 _009A:
-    ScrCmd_347 0, 0
+    BufferFloorNumber 0, 0
     GoTo _00A6
     End
 

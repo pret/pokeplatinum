@@ -4811,7 +4811,7 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_347 arg0, arg1
+    .macro BufferFloorNumber arg0, arg1
     .short 839
     .byte \arg0
     .byte \arg1

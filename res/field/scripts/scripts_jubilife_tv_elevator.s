@@ -18,22 +18,22 @@ _0006:
     End
 
 _004E:
-    ScrCmd_347 0, 4
+    BufferFloorNumber 0, 4
     GoTo _007E
     End
 
 _005A:
-    ScrCmd_347 0, 3
+    BufferFloorNumber 0, 3
     GoTo _007E
     End
 
 _0066:
-    ScrCmd_347 0, 2
+    BufferFloorNumber 0, 2
     GoTo _007E
     End
 
 _0072:
-    ScrCmd_347 0, 1
+    BufferFloorNumber 0, 1
     GoTo _007E
     End
 

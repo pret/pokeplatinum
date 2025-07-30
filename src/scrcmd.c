@@ -1609,7 +1609,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_344,
     ScrCmd_345,
     ScrCmd_346,
-    ScrCmd_347,
+    ScrCmd_BufferFloorNumber,
 };
 
 const u32 Unk_020EAB80 = NELEMS(Unk_020EAC58);

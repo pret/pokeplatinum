@@ -592,7 +592,7 @@ BOOL ScrCmd_346(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_347(ScriptContext *param0)
+BOOL ScrCmd_BufferFloorNumber(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
