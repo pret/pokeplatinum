@@ -247,7 +247,7 @@ void SystemVars_RandomizeJubilifeLotteryTrainerID(VarsFlags *varsFlags)
 
 #define LOTTERY_LCRNG_INCREMENT 12345
 
-void SystemVars_SynchronizeJubilifeLotteryTrainerID(SaveData *saveData, u16 trainerID)
+void SystemVars_SynchronizeJubilifeLotteryTrainerID(SaveData *saveData, u16 unused)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(saveData);
     u32 recordMixedRand = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(saveData)) * LCRNG_MULTIPLIER + LOTTERY_LCRNG_INCREMENT;
