@@ -18,5 +18,10 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        "TRMSG_FIRST_DAMAGE",
+        "TRMSG_ACTIVE_BATTLER_HALF_HP",
+        "TRMSG_DEFEAT"
     ]
 }

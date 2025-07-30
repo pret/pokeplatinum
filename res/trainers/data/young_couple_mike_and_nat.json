@@ -25,5 +25,15 @@
             "power": 0,
             "ball_seal": 0
         }
+    ],
+    "messages": [
+        "TRMSG_PRE_DOUBLE_BATTLE_1",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+        "TRMSG_POST_DOUBLE_BATTLE_1",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+        "TRMSG_PRE_DOUBLE_BATTLE_2",
+        "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+        "TRMSG_POST_DOUBLE_BATTLE_2",
+        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2"
     ]
 }
