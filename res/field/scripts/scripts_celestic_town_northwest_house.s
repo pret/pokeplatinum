@@ -14,7 +14,7 @@ _0012:
     FacePlayer
     Message 0
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
@@ -24,7 +24,7 @@ _002B:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
@@ -34,7 +34,7 @@ _0041:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_CELESTIC
     ReleaseAll
     End

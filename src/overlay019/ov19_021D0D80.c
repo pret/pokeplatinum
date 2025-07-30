@@ -9,7 +9,6 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02042434.h"
 
 #include "applications/naming_screen.h"
 #include "applications/pokemon_summary_screen/main.h"
@@ -21,6 +20,7 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/pc_compare_mon.h"
 #include "overlay019/pc_mon_preview.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
@@ -126,7 +126,7 @@ typedef struct {
 typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_ov19_021D4DF0 unk_00;
     UnkStruct_ov19_021D61B0 *unk_114;
-    UnkStruct_02042434 *unk_118;
+    PokemonStorageSession *pokemonStorageSession;
     SaveData *saveData;
     PCBoxes *pcBoxes;
     Party *party;
@@ -220,7 +220,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_021D4B88(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_BoxTouchScreenMarkingsButtonHandler(u32 buttonIndex, enum TouchScreenButtonState buttonTouchState, void *context);
-static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1);
+static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, PokemonStorageSession *pokemonStorageSession);
 static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0);
 static void BoxSettings_Init(BoxSettings *param0, enum BoxMode boxMode);
 static void ov19_InitCursor(UnkStruct_ov19_021D5DF8 *param0);
@@ -385,7 +385,7 @@ static CursorLocationInputHandler ov19_GetCursorLocationInputHandler(UnkStruct_o
 
 static void ov19_FlagRecordBoxUseInJournal(UnkStruct_ov19_021D5DF8 *param0)
 {
-    param0->unk_118->recordBoxUseInJournal = TRUE;
+    param0->pokemonStorageSession->recordBoxUseInJournal = TRUE;
 }
 
 static void ov19_021D0F20(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
@@ -3362,14 +3362,14 @@ static void ov19_BoxTouchScreenMarkingsButtonHandler(u32 buttonIndex, enum Touch
     }
 }
 
-static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1)
+static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, PokemonStorageSession *pokemonStorageSession)
 {
-    param0->pcBoxes = SaveData_GetPCBoxes(param1->saveData);
-    param0->saveData = param1->saveData;
-    param0->party = SaveData_GetParty(param1->saveData);
-    param0->options = SaveData_GetOptions(param1->saveData);
-    param0->unk_118 = param1;
-    param1->recordBoxUseInJournal = FALSE;
+    param0->pcBoxes = SaveData_GetPCBoxes(pokemonStorageSession->saveData);
+    param0->saveData = pokemonStorageSession->saveData;
+    param0->party = SaveData_GetParty(pokemonStorageSession->saveData);
+    param0->options = SaveData_GetOptions(pokemonStorageSession->saveData);
+    param0->pokemonStorageSession = pokemonStorageSession;
+    pokemonStorageSession->recordBoxUseInJournal = FALSE;
     param0->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_BOX_DATA);
     param0->speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BOX_DATA);
     param0->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
@@ -3380,7 +3380,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     GF_ASSERT(param0->MessageVariableBuffer);
     param0->unk_128 = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, 8, param0->options);
 
-    if (param1->boxMode != PC_MODE_COMPARE) {
+    if (pokemonStorageSession->boxMode != PC_MODE_COMPARE) {
         param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
     } else {
         param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sComparePokemonButtons, NELEMS(sComparePokemonButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
@@ -3392,7 +3392,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_00.unk_110 = 0;
     param0->unk_00.cursorItem = ITEM_NONE;
 
-    BoxSettings_Init(&(param0->unk_00.boxSettings), param1->boxMode);
+    BoxSettings_Init(&(param0->unk_00.boxSettings), pokemonStorageSession->boxMode);
     PCMonPreviewInit(&(param0->unk_00.pcMonPreview));
     PCBoxes_InitCustomization(param0->pcBoxes, &(param0->unk_00.customization));
     ov19_PCCompareMonsInit(&(param0->unk_00.unk_A4));

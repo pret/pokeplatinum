@@ -46,7 +46,7 @@ _0099:
     WaitMovement
     ClearFlag FLAG_UNK_0x0255
     AddObject 20
-    ScrCmd_062 20
+    LockObject 20
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 0x355, _00FA
     GoToIfEq VAR_0x8004, 0x356, _0114
@@ -611,7 +611,7 @@ _0791:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, DAY_OF_WEEK_SUNDAY, _0806

@@ -447,7 +447,7 @@ _0508:
     ApplyMovement LOCALID_PLAYER, _05B8
     WaitMovement
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
-    ScrCmd_066 VAR_0x8000, VAR_0x8001
+    AddFreeCamera VAR_0x8000, VAR_0x8001
     Call _05C0
     WaitMovement
     SetVar VAR_0x8005, 13
@@ -479,7 +479,7 @@ _0567:
     SetVar VAR_UNK_0x40C3, 1
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
-    ScrCmd_067
+    RestoreCamera
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End
 
@@ -499,23 +499,23 @@ _05C0:
     Return
 
 _060F:
-    ApplyMovement 241, _0644
+    ApplyFreeCameraMovement _0644
     Return
 
 _0619:
-    ApplyMovement 241, _0654
+    ApplyFreeCameraMovement _0654
     Return
 
 _0623:
-    ApplyMovement 241, _0664
+    ApplyFreeCameraMovement _0664
     Return
 
 _062D:
-    ApplyMovement 241, _0670
+    ApplyFreeCameraMovement _0670
     Return
 
 _0637:
-    ApplyMovement 241, _0680
+    ApplyFreeCameraMovement _0680
     Return
 
     .balign 4, 0

@@ -43,7 +43,7 @@ _004E:
 _008E:
     ClearFlag FLAG_UNK_0x01CC
     AddObject 18
-    ScrCmd_062 18
+    LockObject 18
     Return
 
 _009C:
