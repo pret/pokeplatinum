@@ -48,6 +48,7 @@
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
+#include "applications/naming_screen.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -4304,7 +4305,7 @@ static BOOL ScrCmd_0BA(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_0203DFE8(ctx->task, 0, 0, 7, 0, NULL, ScriptContext_GetVarPointer(ctx));
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_PLAYER, 0, 7, 0, NULL, ScriptContext_GetVarPointer(ctx));
     return TRUE;
 }
 
@@ -4317,14 +4318,14 @@ static BOOL ScrCmd_0BB(ScriptContext *ctx)
     Pokemon *v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
 
     Pokemon_GetValue(v1, MON_DATA_NICKNAME, v0);
-    sub_0203DFE8(ctx->task, 1, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 10, v3, v0, ScriptContext_GetVarPointer(ctx));
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 10, v3, v0, ScriptContext_GetVarPointer(ctx));
 
     return TRUE;
 }
 
 static BOOL ScrCmd_271(ScriptContext *ctx)
 {
-    sub_0203DFE8(ctx->task, 6, 0, 10, 0, NULL, ScriptContext_GetVarPointer(ctx));
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_UNK6, 0, 10, 0, NULL, ScriptContext_GetVarPointer(ctx));
     return TRUE;
 }
 

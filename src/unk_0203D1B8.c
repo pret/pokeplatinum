@@ -34,7 +34,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
-#include "applications/keyboard.h"
+#include "applications/naming_screen.h"
 #include "applications/journal_display/journal_controller.h"
 #include "applications/options_menu.h"
 #include "applications/pokedex/pokedex_main.h"
@@ -210,7 +210,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     u16 *unk_08;
-    KeyboardArgs *unk_0C;
+    NamingScreenArgs *unk_0C;
     Strbuf *unk_10;
 } UnkStruct_0203DE98;
 
@@ -1160,7 +1160,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
         v2->unk_00++;
         break;
     case 1:
-        FieldTask_RunApplication(param0, &gKeyboardAppTemplate, v2->unk_0C);
+        FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v2->unk_0C);
         v2->unk_00++;
         break;
     case 2:
@@ -1168,11 +1168,11 @@ static BOOL sub_0203DE98(FieldTask *param0)
         v2->unk_00++;
         break;
     case 3:
-        if (v2->unk_0C->unk_00 == 1) {
+        if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
             if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
                 v2->unk_0C->unk_14 = 1;
             }
-        } else if (v2->unk_0C->unk_00 == 5) {
+        } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
             const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
@@ -1189,7 +1189,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
             *v2->unk_08 = v2->unk_0C->unk_14;
         }
 
-        KeyboardArgs_Free(v2->unk_0C);
+        NamingScreenArgs_Free(v2->unk_0C);
         Strbuf_Free(v2->unk_10);
         Heap_Free(v2);
 
@@ -1204,23 +1204,23 @@ static void sub_0203DF68(FieldTask *param0)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0203DE98 *v1 = FieldTask_GetEnv(param0);
 
-    switch (v1->unk_0C->unk_00) {
-    case 0: {
+    switch (v1->unk_0C->type) {
+    case NAMING_SCREEN_TYPE_PLAYER: {
         TrainerInfo *v2 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         TrainerInfo_SetName(v2, v1->unk_0C->unk_1C);
     } break;
-    case 1: {
+    case NAMING_SCREEN_TYPE_POKEMON: {
         Pokemon *v3;
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
         Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
     } break;
-    case 5: {
+    case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
         RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->textInputStr);
     } break;
-    case 6: {
+    case NAMING_SCREEN_TYPE_UNK6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
         MiscSaveBlock_SetTabletName(v6, v1->unk_0C->textInputStr);
     } break;
@@ -1229,7 +1229,15 @@ static void sub_0203DF68(FieldTask *param0)
     return;
 }
 
-void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int param4, const u16 *param5, u16 *param6)
+void sub_0203DFE8(
+    FieldTask *param0,
+    enum NamingScreenType type,
+    int param2,
+    int param3,
+    int param4,
+    const u16 *param5,
+    u16 *param6
+)
 {
     Pokemon *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -1238,11 +1246,11 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
     v2->unk_00 = 0;
     v2->unk_04 = param4;
     v2->unk_08 = param6;
-    v2->unk_0C = KeyboardArgs_Init(HEAP_ID_FIELDMAP, param1, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
+    v2->unk_0C = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, type, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
     v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELDMAP);
 
-    switch (param1) {
-    case 1:
+    switch (type) {
+    case NAMING_SCREEN_TYPE_POKEMON:
         v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2->unk_04);
         v2->unk_0C->unk_10 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
         v2->unk_0C->unk_08 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
@@ -1251,7 +1259,7 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
             Strbuf_CopyChars(v2->unk_10, param5);
         }
         break;
-    case 5:
+    case NAMING_SCREEN_TYPE_GROUP:
         Strbuf_CopyChars(v2->unk_10, param5);
         break;
     default:

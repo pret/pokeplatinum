@@ -17,7 +17,7 @@
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
 
-#include "applications/keyboard.h"
+#include "applications/naming_screen.h"
 #include "ascii_util.h"
 #include "bag.h"
 #include "bg_window.h"
@@ -180,7 +180,7 @@ typedef struct {
 
 typedef struct {
     ApplicationManager *appMan;
-    KeyboardArgs *unk_04;
+    NamingScreenArgs *unk_04;
     UnkStruct_02089438 *unk_08;
 } UnkStruct_ov64_02230444;
 
@@ -325,7 +325,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 static void ov64_022305CC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
 static void ov64_022305D4(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
 static void ov64_022305D8(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
-static KeyboardArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID);
+static NamingScreenArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID);
 static void ov64_02230620(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
 static int ov64_02230628(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
 static void ov64_02230678(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
@@ -2471,7 +2471,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 
         param0->unk_08 = sub_02089400(heapID, 12, v0, SaveData_GetOptions(param2->saveData), 0, 0);
         ov64_0222DFD0(param1);
-        param0->appMan = ApplicationManager_New(&gKeyboardAppTemplate, param0->unk_04, heapID);
+        param0->appMan = ApplicationManager_New(&gNamingScreenAppTemplate, param0->unk_04, heapID);
         param2->unk_04 = 1;
         break;
     case 1:
@@ -2500,14 +2500,14 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
         param2->unk_04 = 3;
         break;
     case 3:
-        KeyboardArgs_Free(param0->unk_04);
+        NamingScreenArgs_Free(param0->unk_04);
         sub_02089438(param0->unk_08);
         ov64_0222DF48(param1, heapID);
         return 1;
     case 4:
         param0->unk_04 = ov64_022305DC(param0, param2, heapID);
         ov64_0222DFD0(param1);
-        param0->appMan = ApplicationManager_New(&gKeyboardAppTemplate, param0->unk_04, heapID);
+        param0->appMan = ApplicationManager_New(&gNamingScreenAppTemplate, param0->unk_04, heapID);
         param2->unk_04 = 5;
         break;
     case 5:
@@ -2527,7 +2527,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
         }
         break;
     case 6:
-        KeyboardArgs_Free(param0->unk_04);
+        NamingScreenArgs_Free(param0->unk_04);
         ov64_0222DF48(param1, heapID);
         return 1;
     }
@@ -2550,11 +2550,11 @@ static void ov64_022305D8(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E0
     return;
 }
 
-static KeyboardArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID)
+static NamingScreenArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID)
 {
-    KeyboardArgs *v0;
+    NamingScreenArgs *v0;
 
-    v0 = KeyboardArgs_Init(heapID, 7, 0, 7, SaveData_GetOptions(param1->saveData));
+    v0 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_UNK7, 0, 7, SaveData_GetOptions(param1->saveData));
 
     if (param1->unk_34.unk_04 == 1) {
         {

@@ -18,7 +18,7 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/trainer.h"
 
-#include "applications/keyboard.h"
+#include "applications/naming_screen.h"
 #include "applications/pokedex/ov21_021E8D48.h"
 #include "applications/pokedex/struct_ov21_021E8E0C.h"
 #include "battle/battle_context.h"
@@ -10851,13 +10851,13 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 20:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
-                KeyboardArgs *v16;
+                NamingScreenArgs *v16;
 
                 SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
                 SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
-                v16 = KeyboardArgs_Init(HEAP_ID_BATTLE, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));
+                v16 = NamingScreenArgs_Init(HEAP_ID_BATTLE, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));
                 v2->tmpPtr[1] = v16;
 
                 if (BattleSystem_PartyCount(v2->battleSys, 0) < 6) {
@@ -10869,7 +10869,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
                 v16->pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
-                v2->tmpPtr[0] = ApplicationManager_New(&gKeyboardAppTemplate, v16, HEAP_ID_BATTLE);
+                v2->tmpPtr[0] = ApplicationManager_New(&gNamingScreenAppTemplate, v16, HEAP_ID_BATTLE);
                 v2->seqNum = 21;
 
                 ov16_0223F414(v2->battleSys);
@@ -10896,7 +10896,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 21:
         if (ApplicationManager_Exec(v2->tmpPtr[0])) {
             {
-                KeyboardArgs *v19;
+                NamingScreenArgs *v19;
                 int v20;
 
                 v19 = v2->tmpPtr[1];
@@ -10907,7 +10907,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     ov16_0223F24C(v2->battleSys, (1 + 48));
                 }
 
-                KeyboardArgs_Free(v19);
+                NamingScreenArgs_Free(v19);
                 ApplicationManager_Free(v2->tmpPtr[0]);
                 ov16_0223F314(v2->battleSys, 2);
 

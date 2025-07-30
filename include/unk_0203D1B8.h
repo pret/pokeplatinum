@@ -14,6 +14,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/naming_screen.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
 #include "overlay090/struct_ov90_021D0D80.h"
@@ -67,7 +68,15 @@ void sub_0203DDFC(FieldSystem *fieldSystem);
 void *sub_0203DE34(FieldSystem *fieldSystem);
 void sub_0203DE78(FieldSystem *fieldSystem, SaveData *saveData);
 void sub_0203DE88(FieldSystem *fieldSystem, SaveData *saveData);
-void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int param4, const u16 *param5, u16 *param6);
+void sub_0203DFE8(
+    FieldTask *param0,
+    enum NamingScreenType type,
+    int param2,
+    int param3,
+    int param4,
+    const u16 *param5,
+    u16 *param6
+);
 void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1);
 BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);

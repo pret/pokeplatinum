@@ -293,7 +293,7 @@ pokeplatinum_c = files(
     'unk_02082C2C.c',
     'unk_02083370.c',
     'unk_02084B70.c',
-    'applications/keyboard.c',
+    'applications/naming_screen.c',
     'unk_020890F4.c',
     'unk_02089604.c',
     'unk_0208A3F4.c',

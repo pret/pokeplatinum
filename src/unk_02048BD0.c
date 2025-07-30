@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "applications/naming_screen.h"
 
 #include "field_script_context.h"
 #include "inlines.h"
@@ -63,7 +64,7 @@ BOOL ScrCmd_21D(ScriptContext *param0)
         const u16 *v11;
 
         v11 = RecordMixedRNG_GetEntryName(v1, 0, 0);
-        sub_0203DFE8(param0->task, 5, 0, 7, 0, v11, ScriptContext_GetVarPointer(param0));
+        sub_0203DFE8(param0->task, NAMING_SCREEN_TYPE_GROUP, 0, 7, 0, v11, ScriptContext_GetVarPointer(param0));
     }
         return 1;
     case 5: {

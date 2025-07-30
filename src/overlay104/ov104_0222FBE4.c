@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "applications/keyboard.h"
+#include "applications/naming_screen.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay063/ov63_0222BE18.h"
@@ -1447,16 +1447,16 @@ static BOOL ov104_02230900(UnkStruct_ov104_0222E930 *param0)
 static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    void *v0 = KeyboardArgs_Init(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
+    void *v0 = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, NAMING_SCREEN_TYPE_PLAYER, 0, 8, (void *)v1->options);
 
-    sub_0209B988(param0->unk_00->unk_00, &gKeyboardAppTemplate, v0, 0, ov104_02230950);
+    sub_0209B988(param0->unk_00->unk_00, &gNamingScreenAppTemplate, v0, 0, ov104_02230950);
 
     return 1;
 }
 
 static void ov104_02230950(void *param0)
 {
-    KeyboardArgs_Free(param0);
+    NamingScreenArgs_Free(param0);
 }
 
 static BOOL ov104_02230958(UnkStruct_ov104_0222E930 *param0)

@@ -9,7 +9,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/rowan_intro/main.h"
-#include "applications/keyboard.h"
+#include "applications/naming_screen.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -244,8 +244,8 @@ typedef struct RowanIntro {
     StringTemplate *strFormatter;
     UnkStruct_02015920 *unk_68;
     SysTask *unused;
-    KeyboardArgs *unk_70;
-    KeyboardArgs *unk_74;
+    NamingScreenArgs *unk_70;
+    NamingScreenArgs *unk_74;
     enum FadeBgLayerState fadeBgLayerState;
     int fadeBgLayerCurAlpha;
     int fadeBgLayerCurAlphaInv;
@@ -324,8 +324,8 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->state = RI_STATE_FIRST_FADE_BLACK_START;
     manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->unk_70 = KeyboardArgs_Init(heapID, 0, 0, 7, manager->options);
-    manager->unk_74 = KeyboardArgs_Init(heapID, 3, 0, 7, manager->options);
+    manager->unk_70 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, 7, manager->options);
+    manager->unk_74 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, 7, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;
@@ -446,8 +446,8 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
         MiscSaveBlock_SetRivalName(miscSaveBlock, manager->unk_74->textInputStr);
     }
 
-    KeyboardArgs_Free(manager->unk_70);
-    KeyboardArgs_Free(manager->unk_74);
+    NamingScreenArgs_Free(manager->unk_70);
+    NamingScreenArgs_Free(manager->unk_74);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);
@@ -2692,7 +2692,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_NAME_APP_KEYBOARD:
         manager->unk_70->unk_04 = manager->playerGender;
         manager->appMan = ApplicationManager_New(
-            &gKeyboardAppTemplate,
+            &gNamingScreenAppTemplate,
             manager->unk_70,
             manager->heapID);
         manager->state = RI_STATE_NAME_KEYBOARD;
@@ -2860,7 +2860,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_RIVAL_NAME_APP_KEYBOARD:
         manager->appMan = ApplicationManager_New(
-            &gKeyboardAppTemplate,
+            &gNamingScreenAppTemplate,
             manager->unk_74,
             manager->heapID);
         manager->state = RI_STATE_RIVAL_NAME_KEYBOARD;
