@@ -82,14 +82,9 @@ _014A:
     ClearFlag FLAG_UNK_0x02C3
     Return
 
-    .byte 219
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 27
-    .byte 0
+BattleTower_Unused:
+    ScrCmd_1DB 0, 1
+    Return
 
 _0158:
     SetVar VAR_UNK_0x40D8, 0xFF
@@ -1088,12 +1083,8 @@ _1205:
     GoToIfNe VAR_RESULT, 0, _0784
     Message 60
     GoTo _0784
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-
+    End
+    
     .balign 4, 0
 _1248:
     Delay4

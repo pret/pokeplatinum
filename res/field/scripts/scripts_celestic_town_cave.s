@@ -169,26 +169,11 @@ _02D2:
     WaitMovement
     Return
 
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 90
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 226
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
+CelesticTownCave_Unused:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement
+    ApplyMovement 0, _04D8
+    WaitMovement
+    Return
 
 _02FA:
     GoToIfEq VAR_0x8005, 4, _031B
@@ -203,26 +188,11 @@ _031B:
     WaitMovement
     Return
 
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 49
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 153
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
+CelesticTownCave_Unused2:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement2
+    ApplyMovement 0, _04D8
+    WaitMovement
+    Return
 
 _0343:
     ApplyMovement LOCALID_PLAYER, _0474
@@ -332,18 +302,10 @@ _043C:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+CelesticTownCave_UnusedMovement:
+    WalkNormalNorth 2
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0454:
@@ -356,18 +318,10 @@ _045C:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+CelesticTownCave_UnusedMovement2:
+    WalkNormalNorth 2
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0474:

@@ -73,5 +73,4 @@ _00E4:
     ScrCmd_260 27
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

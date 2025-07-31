@@ -312,15 +312,10 @@ _044D:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+SandgemTownPokemonResearchLab_UnusedMovement:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _047C:
@@ -668,14 +663,9 @@ _080C:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+SandgemTownPokemonResearchLab_UnusedMovement2:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0824:
@@ -748,5 +738,4 @@ _08C2:
     SetVar VAR_0x8006, 1
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

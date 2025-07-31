@@ -71,37 +71,13 @@ _0109:
 _0133:
     Return
 
-    .byte 77
-    .byte 1
-    .byte 12
-    .byte 128
-    .byte 41
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 5
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 6
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 41
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 6
-    .byte 128
-    .byte 27
-    .byte 0
+SpearPillar_Unused:
+    GetPlayerGender VAR_RESULT
+    SetVar VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, SpearPillar_Unused2
+    SetVar VAR_0x8004, VAR_0x8006
+SpearPillar_Unused2:
+    Return
 
 _0154:
     LockAll
@@ -368,69 +344,26 @@ _04A7:
     ScrCmd_18C 5, 3
     Return
 
-    .byte 94
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 27
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 71
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 72
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 71
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 11
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 72
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+SpearPillar_Unused3:
+    ApplyMovement 4, SpearPillar_UnusedMovement
+    ApplyMovement 2, SpearPillar_UnusedMovement2
+    WaitMovement
+    Return
+
+    .balign 4, 0
+SpearPillar_UnusedMovement:
+    FaceEast
+    LockDir
+    WalkSlowWest
+    UnlockDir
+    EndMovement
+
+SpearPillar_UnusedMovement2:
+    FaceWest
+    LockDir
+    WalkSlowEast
+    UnlockDir
+    EndMovement
 
     .balign 4, 0
 _04F4:

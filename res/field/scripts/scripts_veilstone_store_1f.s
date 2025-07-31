@@ -119,6 +119,4 @@ _0129:
     SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

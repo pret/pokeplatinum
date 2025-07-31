@@ -8,7 +8,7 @@ _0006:
     SetFlag FLAG_UNK_0x09CD
     End
 
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+RavagedPath_Unused:
+    End
+
+    .balign 4, 0

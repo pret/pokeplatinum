@@ -112,14 +112,9 @@ _0160:
     FaceEast
     EndMovement
 
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+IronIslandB2FLeftRoom_UnusedMovement:
+    WalkNormalWest
+    EndMovement
 
     .balign 4, 0
 _0170:
@@ -211,30 +206,15 @@ _02A5:
     WaitMovement
     Return
 
-    .byte 94
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 51
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 51
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
+IronIslandB2FLeftRoom_Unused:
+    ApplyMovement 4, IronIslandB2FLeftRoom_UnusedMovement6
+    WaitMovement
+    Return
+
+IronIslandB2FLeftRoom_Unused2:
+    ApplyMovement 4, IronIslandB2FLeftRoom_UnusedMovement7
+    WaitMovement
+    Return
 
 _02D1:
     ApplyMovement 4, _0414
@@ -313,54 +293,25 @@ _039C:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+IronIslandB2FLeftRoom_UnusedMovement2:
+    WalkNormalWest
+    WalkOnSpotNormalEast
+    EndMovement
+
+IronIslandB2FLeftRoom_UnusedMovement3:
+    WalkNormalNorth
+    WalkOnSpotNormalWest
+    EndMovement
+
+IronIslandB2FLeftRoom_UnusedMovement4:
+    WalkOnSpotNormalNorth
+    Delay8 2
+    WalkOnSpotNormalWest
+    EndMovement
+
+IronIslandB2FLeftRoom_UnusedMovement5:
+    WalkNormalNorth
+    EndMovement
 
     .balign 4, 0
 _03D4:
@@ -376,30 +327,15 @@ _03E4:
     WalkNormalWest 2
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+IronIslandB2FLeftRoom_UnusedMovement6:
+    WalkNormalSouth
+    WalkNormalWest
+    EndMovement
+
+IronIslandB2FLeftRoom_UnusedMovement7:
+    WalkNormalNorth
+    WalkNormalWest
+    EndMovement
 
     .balign 4, 0
 _040C:
@@ -507,5 +443,4 @@ _0513:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

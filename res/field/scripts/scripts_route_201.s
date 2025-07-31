@@ -490,14 +490,9 @@ _0708:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement:
+    WalkNormalEast
+    EndMovement
 
     .balign 4, 0
 _071C:
@@ -570,18 +565,10 @@ _0788:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement2:
+    Delay8
+    WalkOnSpotFastEast
+    EndMovement
 
     .balign 4, 0
 _07A8:
@@ -928,46 +915,25 @@ _0AF4:
     WalkNormalNorth
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement3:
+    WalkNormalNorth
+    EndMovement
+
+Route201_UnusedMovement4:
+    WalkNormalNorth
+    EndMovement
+
+Route201_UnusedMovement5:
+    WalkNormalWest
+    EndMovement
+
+Route201_UnusedMovement6:
+    WalkNormalWest
+    EndMovement
+
+Route201_UnusedMovement7:
+    WalkNormalWest
+    EndMovement
 
 _0B24:
     LockAll
@@ -1123,14 +1089,9 @@ _0D80:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement8:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0D94:
@@ -1315,6 +1276,4 @@ _0FA4:
     ShowScrollingSign 62
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

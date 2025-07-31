@@ -136,6 +136,4 @@ _0201:
     SetVar VAR_RESULT, 1
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

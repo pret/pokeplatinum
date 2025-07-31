@@ -8,7 +8,7 @@ _0006:
     SetFlag FLAG_UNK_0x09DB
     End
 
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+IronIsland1F_Unused:
+    End
+
+    .balign 4, 0
