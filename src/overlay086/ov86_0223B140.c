@@ -1285,7 +1285,7 @@ static void ov86_0223C54C(UnkStruct_ov86_0223C3E4 *param0)
     switch (v0) {
     case 0:
     case 1:
-        StringTemplate_SetLocationName(param0->unk_14, 0, Pokemon_GetValue(param0->unk_24, MON_DATA_HATCH_LOCATION, NULL));
+        StringTemplate_SetLocationName(param0->unk_14, 0, Pokemon_GetValue(param0->unk_24, MON_DATA_MET_LOCATION, NULL));
         break;
     }
 
@@ -1311,7 +1311,7 @@ static void ov86_0223C58C(SysTask *param0, void *param1)
         v0->unk_34++;
         break;
     case 1:
-        Pokemon_GetValue(v0->unk_24, MON_DATA_NICKNAME_STRBUF, v0->unk_1C);
+        Pokemon_GetValue(v0->unk_24, MON_DATA_NICKNAME_STRING, v0->unk_1C);
         ov86_0223C47C(v0, 48);
         ov86_0223C4DC(v0);
         ov86_0223C47C(v0, 64);
@@ -1914,7 +1914,7 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
             }
 
             TrainerInfo_NameStrbuf(param2, param0->unk_1C48);
-            Pokemon_GetValue(param1, MON_DATA_OTNAME_STRBUF, param0->unk_1C4C);
+            Pokemon_GetValue(param1, MON_DATA_OT_NAME_STRING, param0->unk_1C4C);
 
             if (Strbuf_Compare(param0->unk_1C48, param0->unk_1C4C)) {
                 v1 = 2;
@@ -1922,10 +1922,10 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
             }
         }
 
-        if (Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) >= 2000) {
+        if (Pokemon_GetValue(param1, MON_DATA_MET_LOCATION, NULL) >= 2000) {
             v1 = 6;
         } else {
-            if (Pokemon_GetValue(param1, MON_DATA_MET_MONTH, NULL) == 0) {
+            if (Pokemon_GetValue(param1, MON_DATA_HATCH_MONTH, NULL) == 0) {
                 v1 = 0;
             } else {
                 v1 = 1;
