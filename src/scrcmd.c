@@ -624,7 +624,7 @@ static BOOL ScrCmd_23D(ScriptContext *ctx);
 static BOOL ScrCmd_243(ScriptContext *ctx);
 static BOOL ScrCmd_244(ScriptContext *ctx);
 static BOOL ScrCmd_245(ScriptContext *ctx);
-static BOOL ScrCmd_246(ScriptContext *ctx);
+static BOOL ScrCmd_GetGameVersion(ScriptContext *ctx);
 static BOOL ScrCmd_249(ScriptContext *ctx);
 static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx);
 static BOOL ScrCmd_24B(ScriptContext *ctx);
@@ -1350,7 +1350,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_243,
     ScrCmd_244,
     ScrCmd_245,
-    ScrCmd_246,
+    ScrCmd_GetGameVersion,
     ScrCmd_GetFirstNonEggInParty,
     ScrCmd_248,
     ScrCmd_249,
@@ -6413,11 +6413,11 @@ static BOOL ScrCmd_23D(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_246(ScriptContext *ctx)
+static BOOL ScrCmd_GetGameVersion(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = GAME_VERSION;
+    *destVar = GAME_VERSION;
     return FALSE;
 }
 

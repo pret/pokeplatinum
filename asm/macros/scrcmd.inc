@@ -3321,9 +3321,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_246 arg0
+    .macro GetGameVersion destVar
     .short 582
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro GetFirstNonEggInParty partySlot

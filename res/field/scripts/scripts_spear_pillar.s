@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
+#include "generated/versions.h"
 
 
     ScriptEntry _0022
@@ -63,10 +64,10 @@ _0107:
     End
 
 _0109:
-    ScrCmd_246 VAR_RESULT
+    GetGameVersion VAR_RESULT
     SetVar VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_RESULT, 10, _0133
-    GoToIfEq VAR_RESULT, 12, _0133
+    GoToIfEq VAR_RESULT, VERSION_DIAMOND, _0133
+    GoToIfEq VAR_RESULT, VERSION_PLATINUM, _0133
     SetVar VAR_0x8004, VAR_0x8006
 _0133:
     Return
