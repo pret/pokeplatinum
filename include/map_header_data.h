@@ -86,7 +86,7 @@ BOOL MapHeaderData_SetWarpEventDestWarpID(FieldSystem *fieldSystem, u16 index, u
 BOOL MapHeaderData_SetBgEventPos(FieldSystem *fieldSystem, u16 index, u16 x, u16 z);
 void MapHeaderData_LoadWildEncounters(WildEncounters *encounterData, int headerID);
 const WildEncounters *MapHeaderData_GetWildEncounters(const FieldSystem *fieldSystem);
-const u8 *MapHeaderData_GetInitScripts(const FieldSystem *fieldSystem);
+const u8 *MapHeaderData_GetInitScriptBytes(const FieldSystem *fieldSystem);
 BOOL MapHeaderData_IsAnyObjectEventAtPos(const FieldSystem *fieldSystem, u16 x, u16 z);
 
 #endif // POKEPLATINUM_MAP_HEADER_DATA_H

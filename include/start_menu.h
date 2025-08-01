@@ -11,7 +11,7 @@ BOOL sub_0203A9C8(FieldSystem *fieldSystem);
 void StartMenu_Init(struct FieldSystem_t *fieldSystem);
 void sub_0203AA78(struct FieldSystem_t *fieldSystem);
 void sub_0203AABC(FieldSystem *fieldSystem);
-void sub_0203AB00(FieldSystem *fieldSystem);
+void StartMenu_Open(FieldSystem *fieldSystem);
 void sub_0203B674(StartMenu *param0, void *param1);
 BOOL sub_0203B7C0(FieldTask *param0);
 BOOL sub_0203C3F4(FieldTask *param0);

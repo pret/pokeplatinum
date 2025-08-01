@@ -336,7 +336,7 @@ void sub_0203AABC(FieldSystem *fieldSystem)
     FieldSystem_CreateTask(fieldSystem, sub_0203AC44, menu);
 }
 
-void sub_0203AB00(FieldSystem *fieldSystem)
+void StartMenu_Open(FieldSystem *fieldSystem)
 {
     StartMenu *menu;
 

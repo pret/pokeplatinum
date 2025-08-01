@@ -239,7 +239,7 @@ static void MapHeaderData_LoadInitScripts(MapHeaderData *data, int headerID)
     NARC_ReadWholeMemberByIndexPair(data->initScripts, NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, initScriptsID);
 }
 
-const u8 *MapHeaderData_GetInitScripts(const FieldSystem *fieldSystem)
+const u8 *MapHeaderData_GetInitScriptBytes(const FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->mapHeaderData != NULL);
     return (const u8 *)&fieldSystem->mapHeaderData->initScripts;

@@ -130,7 +130,7 @@ static MapObject *sub_020624CC(const MapObjectManager *mapObjMan, int localID, i
 static void sub_02062604(MapObject *mapObj);
 static void sub_02062618(MapObject *mapObj);
 static void sub_02062628(MapObject *mapObj);
-static int sub_0206262C(FieldSystem *fieldSystem, int param1);
+static int MapObject_GetFieldSystemGraphicsID(FieldSystem *fieldSystem, int param1);
 static void sub_02062648(MapObject *mapObj);
 static void sub_02062660(MapObject *mapObj);
 static void sub_02062670(MapObject *mapObj);
@@ -692,7 +692,7 @@ static void MapObjectMan_AddMoveTask(const MapObjectManager *mapObjMan, MapObjec
 static void sub_020621E8(MapObject *mapObj, const ObjectEvent *objectEvent, FieldSystem *fieldSystem)
 {
     MapObject_SetLocalID(mapObj, ObjectEvent_GetLocalID(objectEvent));
-    MapObject_SetGraphicsID(mapObj, sub_0206262C(fieldSystem, ObjectEvent_GetGraphicsID(objectEvent)));
+    MapObject_SetGraphicsID(mapObj, MapObject_GetFieldSystemGraphicsID(fieldSystem, ObjectEvent_GetGraphicsID(objectEvent)));
     MapObject_SetMovementType(mapObj, ObjectEvent_GetMovementType(objectEvent));
     MapObject_SetTrainerType(mapObj, ObjectEvent_GetTrainerType(objectEvent));
     MapObject_SetFlag(mapObj, ObjectEvent_GetFlag(objectEvent));
@@ -907,11 +907,11 @@ static void sub_02062628(MapObject *mapObj)
     (void)0;
 }
 
-static int sub_0206262C(FieldSystem *fieldSystem, int graphicsID)
+static int MapObject_GetFieldSystemGraphicsID(FieldSystem *fieldSystem, int graphicsID)
 {
     if (graphicsID >= 0x65 && graphicsID <= 0x74) {
         graphicsID -= 0x65;
-        graphicsID = sub_0203F164(fieldSystem, graphicsID);
+        graphicsID = FieldSystem_GetGraphicsID(fieldSystem, graphicsID);
     }
 
     return graphicsID;
