@@ -6,7 +6,7 @@
 #include "applications/poketch/poketch_animation.h"
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_task.h"
-#include "overlay034/struct_ov34_02256540_1.h"
+#include "overlay034/dowsing_machine_task_data.h"
 #include "overlay034/struct_ov34_02256540_decl.h"
 
 #include "bg_window.h"
@@ -15,7 +15,7 @@
 #include "sys_task_manager.h"
 
 struct UnkStruct_ov34_02256540_t {
-    const UnkStruct_ov34_02256540_1 *unk_00;
+    const DowsingMachineTaskData *unk_00;
     BgConfig *unk_04;
     u32 unk_08[10];
     PoketchAnimation_AnimationManager *unk_30;
@@ -34,12 +34,12 @@ static void ov34_02256790(SysTask *param0, void *param1);
 static void ov34_022567D4(SysTask *param0, void *param1);
 static void ov34_0225684C(SysTask *param0, void *param1);
 static void ov34_022568C0(SysTask *param0, void *param1);
-static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1);
-static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1);
+static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const DowsingMachineTaskData *param1);
+static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const DowsingMachineTaskData *param1);
 static BOOL ov34_022569DC(UnkStruct_ov34_02256540 *param0);
 static void ov34_022569E8(UnkStruct_ov34_02256540 *param0);
 
-BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const UnkStruct_ov34_02256540_1 *param1, BgConfig *param2)
+BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const DowsingMachineTaskData *param1, BgConfig *param2)
 {
     UnkStruct_ov34_02256540 *v0 = (UnkStruct_ov34_02256540 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov34_02256540));
 
@@ -216,12 +216,12 @@ static void ov34_02256790(SysTask *param0, void *param1)
         ov34_022568C0
     };
     UnkStruct_ov34_02256540 *v1 = PoketchTask_GetTaskData(param1);
-    const UnkStruct_ov34_02256540_1 *v2 = PoketchTask_GetConstTaskData(param1);
+    const DowsingMachineTaskData *v2 = PoketchTask_GetConstTaskData(param1);
     u32 *v3 = PoketchTask_GetExtraData(param1);
 
     if (PoketchTask_GetState(param1) == 0) {
         v1->unk_6C = 1;
-        *v3 = v2->unk_08;
+        *v3 = v2->foundItemType;
     }
 
     v0[*v3](param0, param1);
@@ -230,11 +230,11 @@ static void ov34_02256790(SysTask *param0, void *param1)
 static void ov34_022567D4(SysTask *param0, void *param1)
 {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
-    const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
+    const DowsingMachineTaskData *v1 = PoketchTask_GetConstTaskData(param1);
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        PoketchAnimation_SetSpritePosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        PoketchAnimation_SetSpritePosition(v0->unk_34, v1->touchX << FX32_SHIFT, v1->touchZ << FX32_SHIFT);
         PoketchAnimation_HideSprite(v0->unk_34, 0);
         PoketchAnimation_UpdateAnimationIdx(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
@@ -257,11 +257,11 @@ static void ov34_022567D4(SysTask *param0, void *param1)
 static void ov34_0225684C(SysTask *param0, void *param1)
 {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
-    const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
+    const DowsingMachineTaskData *v1 = PoketchTask_GetConstTaskData(param1);
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        PoketchAnimation_SetSpritePosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        PoketchAnimation_SetSpritePosition(v0->unk_34, v1->touchX << FX32_SHIFT, v1->touchZ << FX32_SHIFT);
         PoketchAnimation_UpdateAnimationIdx(v0->unk_34, 0);
         PoketchAnimation_HideSprite(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
@@ -283,12 +283,12 @@ static void ov34_0225684C(SysTask *param0, void *param1)
 static void ov34_022568C0(SysTask *param0, void *param1)
 {
     UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
-    const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
+    const DowsingMachineTaskData *v1 = PoketchTask_GetConstTaskData(param1);
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
         ov34_02256974(v0, v1);
-        PoketchAnimation_SetSpritePosition(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        PoketchAnimation_SetSpritePosition(v0->unk_34, v1->touchX << FX32_SHIFT, v1->touchZ << FX32_SHIFT);
         PoketchAnimation_UpdateAnimationIdx(v0->unk_34, 0);
         PoketchAnimation_HideSprite(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
@@ -320,21 +320,21 @@ static void ov34_022568C0(SysTask *param0, void *param1)
     }
 }
 
-static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1)
+static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const DowsingMachineTaskData *param1)
 {
     u32 v0;
 
-    for (v0 = 0; v0 < param1->unk_0C; v0++) {
-        PoketchAnimation_SetSpritePosition(param0->unk_38[v0], param1->unk_10[v0].unk_00 << FX32_SHIFT, param1->unk_10[v0].unk_02 << FX32_SHIFT);
+    for (v0 = 0; v0 < param1->nearbyItemCount; v0++) {
+        PoketchAnimation_SetSpritePosition(param0->unk_38[v0], param1->hiddenItemPositions[v0].screenX << FX32_SHIFT, param1->hiddenItemPositions[v0].screenZ << FX32_SHIFT);
     }
 }
 
-static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_02256540_1 *param1)
+static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const DowsingMachineTaskData *param1)
 {
     u32 v0, v1;
 
-    for (v0 = 0; v0 < param1->unk_0C; v0++) {
-        v1 = 1 + param1->unk_10[v0].unk_04;
+    for (v0 = 0; v0 < param1->nearbyItemCount; v0++) {
+        v1 = 1 + param1->hiddenItemPositions[v0].range;
 
         if (v1 >= 3) {
             v1 = 3;

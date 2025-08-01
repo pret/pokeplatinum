@@ -666,67 +666,67 @@ static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 script
     return TRUE;
 }
 
-UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID)
+HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_0203F478 *v0;
-    const BgEvent *v1;
-    int v2, v3, v4, v5, v6, v7;
-    int v8, v9, v10, v11;
+    HiddenItemTilePosition *hiddenItems;
+    const BgEvent *bgEvents;
+    int playerX, playerZ, eventIndex, numBgEvents, itemIndex, distance;
+    int playerMinX, playerMaxX, playerMinZ, playerMaxZ;
 
-    v6 = 0;
-    v5 = MapHeaderData_GetNumBgEvents(fieldSystem);
-    v5++;
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203F478) * v5);
+    itemIndex = 0;
+    numBgEvents = MapHeaderData_GetNumBgEvents(fieldSystem);
+    numBgEvents++;
+    hiddenItems = Heap_AllocFromHeap(heapID, sizeof(HiddenItemTilePosition) * numBgEvents);
 
-    if (v5 == 1) {
-        v0[0].unk_04 = 0xff;
-        v0[0].unk_00 = 0xffff;
-        v0[0].unk_02 = 0xffff;
-        return v0;
+    if (numBgEvents == 1) {
+        hiddenItems[0].range = 0xff;
+        hiddenItems[0].screenTileX = 0xffff;
+        hiddenItems[0].screenTileZ = 0xffff;
+        return hiddenItems;
     }
 
-    v1 = MapHeaderData_GetBgEvents(fieldSystem);
+    bgEvents = MapHeaderData_GetBgEvents(fieldSystem);
 
-    if (v1 == NULL) {
-        v0[0].unk_04 = 0xff;
-        v0[0].unk_00 = 0xffff;
-        v0[0].unk_02 = 0xffff;
-        return v0;
+    if (bgEvents == NULL) {
+        hiddenItems[0].range = 0xff;
+        hiddenItems[0].screenTileX = 0xffff;
+        hiddenItems[0].screenTileZ = 0xffff;
+        return hiddenItems;
     }
 
-    v2 = Player_GetXPos(fieldSystem->playerAvatar);
-    v3 = Player_GetZPos(fieldSystem->playerAvatar);
-    v8 = v2 - 7;
-    v9 = v2 + 7;
-    v10 = v3 - 7;
-    v11 = v3 + 6;
+    playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerMinX = playerX - 7;
+    playerMaxX = playerX + 7;
+    playerMinZ = playerZ - 7;
+    playerMaxZ = playerZ + 6;
 
-    if (v8 < 0) {
-        v8 = 0;
+    if (playerMinX < 0) {
+        playerMinX = 0;
     }
 
-    if (v10 < 0) {
-        v10 = 0;
+    if (playerMinZ < 0) {
+        playerMinZ = 0;
     }
 
-    for (v4 = 0; v4 < v5; v4++) {
-        if ((v1[v4].type == 2) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(v1[v4].script)) == 0)) {
-            if ((v1[v4].x >= v8) && (v1[v4].x <= v9) && (v1[v4].z >= v10) && (v1[v4].z <= v11)) {
-                v0[v6].unk_04 = Script_GetHiddenItemRange(v1[v4].script);
-                v7 = (v2 - v1[v4].x);
-                v0[v6].unk_00 = abs(7 - v7);
-                v7 = (v3 - v1[v4].z);
-                v0[v6].unk_02 = abs(7 - v7);
-                v6++;
+    for (eventIndex = 0; eventIndex < numBgEvents; eventIndex++) {
+        if ((bgEvents[eventIndex].type == 2) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(bgEvents[eventIndex].script)) == FALSE)) {
+            if ((bgEvents[eventIndex].x >= playerMinX) && (bgEvents[eventIndex].x <= playerMaxX) && (bgEvents[eventIndex].z >= playerMinZ) && (bgEvents[eventIndex].z <= playerMaxZ)) {
+                hiddenItems[itemIndex].range = Script_GetHiddenItemRange(bgEvents[eventIndex].script);
+                distance = (playerX - bgEvents[eventIndex].x);
+                hiddenItems[itemIndex].screenTileX = abs(7 - distance);
+                distance = (playerZ - bgEvents[eventIndex].z);
+                hiddenItems[itemIndex].screenTileZ = abs(7 - distance);
+                itemIndex++;
             }
         }
     }
 
-    v0[v6].unk_04 = 0xff;
-    v0[v6].unk_00 = 0xffff;
-    v0[v6].unk_02 = 0xffff;
+    hiddenItems[itemIndex].range = 0xff;
+    hiddenItems[itemIndex].screenTileX = 0xffff;
+    hiddenItems[itemIndex].screenTileZ = 0xffff;
 
-    return v0;
+    return hiddenItems;
 }
 
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem)

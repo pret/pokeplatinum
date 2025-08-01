@@ -2,11 +2,9 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_defs/struct_0203F478.h"
-
 #include "applications/poketch/poketch_system.h"
+#include "overlay034/dowsing_machine_task_data.h"
 #include "overlay034/ov34_02256540.h"
-#include "overlay034/struct_ov34_02256540_1.h"
 #include "overlay034/struct_ov34_02256540_decl.h"
 
 #include "bg_window.h"
@@ -20,10 +18,10 @@ typedef struct {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
-    UnkStruct_ov34_02256540_1 unk_04;
+    DowsingMachineTaskData taskData;
     UnkStruct_ov34_02256540 *unk_48;
     PoketchSystem *poketchSys;
-    UnkStruct_0203F478 *unk_50;
+    HiddenItemTilePosition *unk_50;
 } UnkStruct_ov34_0225621C;
 
 static void NitroStaticInit(void);
@@ -36,9 +34,9 @@ static void ov34_02256294(void *param0);
 static void ov34_0225629C(UnkStruct_ov34_0225621C *param0, u32 param1);
 static BOOL ov34_022562B0(UnkStruct_ov34_0225621C *param0);
 static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0);
-static BOOL ov34_022563E4(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *param2);
-static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param2);
-static void ov34_022564F0(int param0, int param1, int *param2, int *param3);
+static BOOL DowsingMachine_CheckScreenTapped(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *param2);
+static void DowsingMachine_FindNearbyHiddenItems(UnkStruct_ov34_0225621C *param0, int param1, int param2);
+static void DowsingMachine_GetItemScreenPosition(int screenTileX, int screenTileZ, int *screenX, int *screenZ);
 static BOOL ov34_0225650C(UnkStruct_ov34_0225621C *param0);
 
 static void NitroStaticInit(void)
@@ -66,7 +64,7 @@ static BOOL ov34_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
 
 static BOOL ov34_0225621C(UnkStruct_ov34_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
 {
-    if (ov34_02256540(&(param0->unk_48), &(param0->unk_04), param2)) {
+    if (ov34_02256540(&(param0->unk_48), &(param0->taskData), param2)) {
         param0->unk_00 = 0;
         param0->unk_01 = 0;
         param0->unk_02 = 0;
@@ -155,8 +153,8 @@ static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
 
     switch (param0->unk_01) {
     case 0:
-        if (ov34_022563E4(param0, &v0, &v1)) {
-            ov34_02256428(param0, v0, v1);
+        if (DowsingMachine_CheckScreenTapped(param0, &v0, &v1)) {
+            DowsingMachine_FindNearbyHiddenItems(param0, v0, v1);
             PoketchSystem_PlaySoundEffect(1640);
             ov34_02256640(param0->unk_48, 2);
             param0->unk_01 = 1;
@@ -174,8 +172,8 @@ static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
             break;
         }
 
-        if (ov34_022563E4(param0, &v0, &v1)) {
-            ov34_02256428(param0, v0, v1);
+        if (DowsingMachine_CheckScreenTapped(param0, &v0, &v1)) {
+            DowsingMachine_FindNearbyHiddenItems(param0, v0, v1);
             ov34_02256A0C(param0->unk_48);
             param0->unk_01 = 3;
             break;
@@ -198,11 +196,11 @@ static BOOL ov34_022562F0(UnkStruct_ov34_0225621C *param0)
     return 0;
 }
 
-static BOOL ov34_022563E4(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *param2)
+static BOOL DowsingMachine_CheckScreenTapped(UnkStruct_ov34_0225621C *param0, u32 *x, u32 *y)
 {
     if (PoketechSystem_IsRunningTask(param0->poketchSys) == 0) {
-        if (TouchScreen_GetTapState(param1, param2)) {
-            if (((u32)((*param1) - 24) < (u32)(200 - 24)) & ((u32)((*param2) - 24) < (u32)(168 - 24))) {
+        if (TouchScreen_GetTapState(x, y)) {
+            if (((u32)((*x) - 24) < (u32)(200 - 24)) & ((u32)((*y) - 24) < (u32)(168 - 24))) {
                 return 1;
             }
         }
@@ -211,59 +209,59 @@ static BOOL ov34_022563E4(UnkStruct_ov34_0225621C *param0, u32 *param1, u32 *par
     return 0;
 }
 
-static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param2)
+static void DowsingMachine_FindNearbyHiddenItems(UnkStruct_ov34_0225621C *param0, int touchX, int touchZ)
 {
-    static const fx32 v0[] = {
+    static const fx32 sRangeDistances[] = {
         8 << FX32_SHIFT,
         24 << FX32_SHIFT,
         48 << FX32_SHIFT,
     };
-    UnkStruct_0203F478 *v1 = sub_0203F478(PoketchSystem_GetFieldSystem(param0->poketchSys), HEAP_ID_POKETCH_APP);
-    UnkStruct_ov34_02256540_1 *v2 = &(param0->unk_04);
+    HiddenItemTilePosition *hiddenItems = FieldSystem_GetNearbyHiddenItems(PoketchSystem_GetFieldSystem(param0->poketchSys), HEAP_ID_POKETCH_APP);
+    DowsingMachineTaskData *taskData = &(param0->taskData);
 
-    v2->unk_08 = 0;
-    v2->unk_00 = param1;
-    v2->unk_04 = param2;
-    v2->unk_0C = 0;
+    taskData->foundItemType = DOWSING_MACHINE_FOUND_NO_ITEMS;
+    taskData->touchX = touchX;
+    taskData->touchZ = touchZ;
+    taskData->nearbyItemCount = 0;
 
-    if (v1) {
-        int v3, v4;
-        int v5;
-        fx32 v6;
+    if (hiddenItems) {
+        int screenX, screenZ;
+        int itemIndex;
+        fx32 itemDistance;
 
-        for (v5 = 0; v1[v5].unk_04 != 0xff; v5++) {
-            ov34_022564F0(v1[v5].unk_00, v1[v5].unk_02, &v3, &v4);
-            v6 = FX_Sqrt(((v3 - param1) * (v3 - param1) + (v4 - param2) * (v4 - param2)) << FX32_SHIFT);
+        for (itemIndex = 0; hiddenItems[itemIndex].range != 0xff; itemIndex++) {
+            DowsingMachine_GetItemScreenPosition(hiddenItems[itemIndex].screenTileX, hiddenItems[itemIndex].screenTileZ, &screenX, &screenZ);
+            itemDistance = FX_Sqrt(((screenX - touchX) * (screenX - touchX) + (screenZ - touchZ) * (screenZ - touchZ)) << FX32_SHIFT);
 
-            if (v6 <= v0[v1[v5].unk_04]) {
-                if (v2->unk_0C < 8) {
-                    v2->unk_10[v2->unk_0C].unk_00 = v3;
-                    v2->unk_10[v2->unk_0C].unk_02 = v4;
-                    v2->unk_10[v2->unk_0C].unk_04 = v1[v5].unk_04;
-                    v2->unk_0C++;
-                    v2->unk_08 = 2;
+            if (itemDistance <= sRangeDistances[hiddenItems[itemIndex].range]) {
+                if (taskData->nearbyItemCount < 8) {
+                    taskData->hiddenItemPositions[taskData->nearbyItemCount].screenX = screenX;
+                    taskData->hiddenItemPositions[taskData->nearbyItemCount].screenZ = screenZ;
+                    taskData->hiddenItemPositions[taskData->nearbyItemCount].range = hiddenItems[itemIndex].range;
+                    taskData->nearbyItemCount++;
+                    taskData->foundItemType = DOWSING_MACHINE_FOUND_NEARBY_ITEMS;
                 }
-            } else if (v6 <= v0[(NELEMS(v0) - 1)]) {
-                if (v2->unk_08 == 0) {
-                    v2->unk_08 = 1;
+            } else if (itemDistance <= sRangeDistances[(NELEMS(sRangeDistances) - 1)]) {
+                if (taskData->foundItemType == 0) {
+                    taskData->foundItemType = DOWSING_MACHINE_FOUND_FAR_ITEMS;
                 }
             }
         }
 
-        Heap_Free(v1);
+        Heap_Free(hiddenItems);
     }
 }
 
-static void ov34_022564F0(int param0, int param1, int *param2, int *param3)
+static void DowsingMachine_GetItemScreenPosition(int screenTileX, int screenTileZ, int *screenX, int *screenZ)
 {
     fx32 v0, v1;
     fx32 v2, v3;
 
-    param0 -= 7;
-    param1 -= 7;
+    screenTileX -= 7;
+    screenTileZ -= 7;
 
-    *param2 = 112 + (param0 * 11);
-    *param3 = 101 + (param1 * 11);
+    *screenX = 112 + (screenTileX * 11);
+    *screenZ = 101 + (screenTileZ * 11);
 }
 
 static BOOL ov34_0225650C(UnkStruct_ov34_0225621C *param0)
