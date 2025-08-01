@@ -18,7 +18,7 @@
 #include "system.h"
 #include "text.h"
 
-FS_EXTERN_OVERLAY(overlay97);
+FS_EXTERN_OVERLAY(main_menu);
 
 typedef struct {
     int heapID;
@@ -126,7 +126,7 @@ int sub_0209A3A4(ApplicationManager *appMan, int *param1)
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
-    EnqueueApplication(FS_OVERLAY_ID(overlay97), &gMainMenuAppTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(main_menu), &gMainMenuAppTemplate);
 
     return 1;
 }
