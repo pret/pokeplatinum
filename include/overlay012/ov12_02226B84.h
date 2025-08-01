@@ -7,7 +7,7 @@
 
 void BattleAnimScriptFunc_Shake(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_ScrollCustomBg(BattleAnimSystem *param0);
-void ov12_022271D8(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_MuddyWater(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Submission(BattleAnimSystem *param0);
 void ov12_0222777C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);

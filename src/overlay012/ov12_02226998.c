@@ -62,7 +62,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_ScaleBattlerSprite,
     BattleAnimScriptFunc_FakeOut,
     BattleAnimScriptFunc_ScrollCustomBg,
-    ov12_022271D8,
+    BattleAnimScriptFunc_MuddyWater,
     BattleAnimScriptFunc_Megahorn,
     BattleAnimScriptFunc_MegahornAttacker,
     BattleAnimScriptFunc_MegahornDefender,
