@@ -109,30 +109,15 @@ _0174:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route207_UnusedMovement:
+    Delay8 8
+    WalkOnSpotNormalWest
+    EndMovement
+
+Route207_UnusedMovement2:
+    Delay8 1
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _0194:
@@ -190,4 +175,4 @@ _021A:
     ShowScrollingSign 13
     End
 
-    .byte 0
+    .balign 4, 0

@@ -37,4 +37,4 @@ _0040:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

@@ -218,37 +218,15 @@ _0338:
     ScrCmd_187 VAR_0x8002, 51, 2, 47, 3
     Return
 
-    .byte 188
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 189
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 5
-    .byte 52
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+AmitySquare_Unused:
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    Message 5
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, _03C0
+    WaitMovement
+    ReleaseAll
+    End
 
 AmitySquare_Trigger_ExitAmitySquare:
     LockAll
@@ -294,18 +272,10 @@ _03C8:
     WalkNormalNorth
     EndMovement
 
-    .byte 85
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+AmitySquare_UnusedMovement:
+    WalkFastestSouth 2
+    FaceWest
+    EndMovement
 
 AmitySquare_FollowerMon_SetNextPickUpType:
     GetRandom VAR_RESULT, 5
@@ -1043,12 +1013,10 @@ AmitySquare_GiftMan_DeclinedGift:
     ReleaseAll
     End
 
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+AmitySquare_Unused2:
+    CloseMessage
+    ReleaseAll
+    End
 
 AmitySquare_GiftMan_CannotFitItem:
     CallCommonScript 0x7E1

@@ -414,128 +414,30 @@ _0526:
     WaitFadeScreen
     End
 
-    .byte 188
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 189
-    .byte 0
-    .byte 248
-    .byte 1
-    .byte 179
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 41
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 12
-    .byte 128
-    .byte 247
-    .byte 2
-    .byte 4
-    .byte 128
-    .byte 161
-    .byte 0
-    .byte 188
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 189
-    .byte 0
-    .byte 104
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 77
-    .byte 26
-    .byte 0
-    .byte 15
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 211
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 95
-    .byte 0
-    .byte 26
-    .byte 0
-    .byte 7
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 211
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 95
-    .byte 0
-    .byte 104
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 77
-    .byte 26
-    .byte 0
-    .byte 228
-    .byte 252
-    .byte 0xFF
-    .byte 0xFF
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 192
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 95
-    .byte 0
-    .byte 26
-    .byte 0
-    .byte 220
-    .byte 252
-    .byte 0xFF
-    .byte 0xFF
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+Unk423_Unused:
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    ScrCmd_1F8
+    ScrCmd_0B3 VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
+    ScrCmd_2F7 VAR_0x8004
+    ReturnToField
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ScrCmd_168 0, 0, 5, 2, 77
+    Call _0320
+    ApplyMovement LOCALID_PLAYER, _03EC
+    WaitMovement
+    Call _0328
+    ApplyMovement LOCALID_PLAYER, _03FC
+    WaitMovement
+    ScrCmd_168 0, 0, 5, 5, 77
+    Call _0320
+    ApplyMovement LOCALID_PLAYER, _0404
+    WaitMovement
+    Call _0328
+    ReleaseAll
+    End
 
 _0650:
     LockAll

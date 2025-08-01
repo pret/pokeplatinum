@@ -130,4 +130,4 @@ _018C:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

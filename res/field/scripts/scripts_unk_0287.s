@@ -8,7 +8,7 @@ _0006:
     SetFlag FLAG_UNK_0x09D3
     End
 
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+Unk287_Unused:
+    End
+
+    .balign 4, 0

@@ -1211,4 +1211,4 @@ PokemonCenterDailyTrainers_TrainerAlreadyDefeated:
     SetVar VAR_DEFEATED, TRUE
     Return
 
-    .byte 0
+    .balign 4, 0

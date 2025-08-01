@@ -204,46 +204,19 @@ _02DC:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route210South_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalEast
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
+
+Route210South_UnusedMovement2:
+    Delay8
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
 
 _030C:
     PlayFanfare SEQ_SE_CONFIRM
@@ -299,5 +272,4 @@ _03A7:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

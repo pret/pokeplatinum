@@ -330,20 +330,12 @@ _052C:
 _0537:
     Message 24
     GoTo _054D
+    End
 
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 23
-    .byte 22
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+VeilstoneStoreB1F_Unused:
+    Message 23
+    GoTo _054D
+    End
 
 _054D:
     WaitABXPadPress
@@ -465,6 +457,4 @@ _0708:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

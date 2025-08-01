@@ -66,4 +66,4 @@ _00A7:
     SetFlag FLAG_UNK_0x0084
     GoTo _005E
 
-    .byte 0
+    .balign 4, 0

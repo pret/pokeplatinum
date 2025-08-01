@@ -37,12 +37,9 @@ _009C:
     ScrCmd_18C 3, 0
     Return
 
-    .byte 30
-    .byte 0
-    .byte 202
-    .byte 2
-    .byte 27
-    .byte 0
+Route224_Unused:
+    SetFlag FLAG_UNK_0x02CA
+    Return
 
 _00AA:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
@@ -311,14 +308,9 @@ _0404:
     Delay16
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route224_UnusedMovement:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0438:

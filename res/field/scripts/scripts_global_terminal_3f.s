@@ -166,7 +166,6 @@ _0163:
 _0184:
     Message 12
     GoTo _0119
-
-    .byte 2
-    .byte 0
-    .byte 0
+    End
+    
+    .balign 4, 0

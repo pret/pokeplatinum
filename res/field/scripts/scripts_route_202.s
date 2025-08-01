@@ -502,44 +502,24 @@ _06A0:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route202_UnusedMovement:
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _06B0:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route202_UnusedMovement2:
+    Delay8
+    WalkOnSpotNormalWest
+    EndMovement
+
+Route202_UnusedMovement3:
+    Delay8
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _06D0:
@@ -561,14 +541,9 @@ _06E8:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route202_UnusedMovement4:
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _06F8:

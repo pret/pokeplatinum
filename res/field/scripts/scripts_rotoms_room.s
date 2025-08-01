@@ -565,34 +565,18 @@ _08AC:
     EmoteExclamationMark
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+RotomsRoom_UnusedMovement:
+    WalkOnSpotNormalWest
+    EndMovement
+
+RotomsRoom_UnusedMovement2:
+    WalkOnSpotNormalEast
+    EndMovement
+
+RotomsRoom_UnusedMovement3:
+    Delay8
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _08D4:
@@ -665,6 +649,4 @@ _09D5:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

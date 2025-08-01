@@ -232,25 +232,14 @@ _02DB:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+LakeVerity_UnusedMovement:
+    WalkOnSpotNormalNorth
+    EndMovement
+
+LakeVerity_UnusedMovement2:
+    WalkNormalNorth 3
+    EndMovement
 
     .balign 4, 0
 _02F4:
@@ -276,6 +265,4 @@ _030C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

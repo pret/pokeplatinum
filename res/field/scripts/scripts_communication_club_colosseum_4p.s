@@ -8,5 +8,5 @@ _0006:
     ScrCmd_151
     End
 
-    .byte 2
-    .byte 0
+CommClubColosseum4P_Unused:
+    End

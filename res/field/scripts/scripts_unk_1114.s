@@ -1161,6 +1161,4 @@ _1250:
     GoToIfEq VAR_RESULT, 0, _1250
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -23,6 +23,4 @@ _0022:
 _0027:
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

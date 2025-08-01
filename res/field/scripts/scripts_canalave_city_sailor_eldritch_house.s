@@ -36,12 +36,9 @@ _007B:
     SetObjectEventDir 1, DIR_WEST
     Return
 
-    .byte 30
-    .byte 0
-    .byte 91
-    .byte 2
-    .byte 27
-    .byte 0
+CanalaveCitySailorEldritchHouse_Unused:
+    SetFlag FLAG_UNK_0x025B
+    Return
 
 _00A5:
     SetVar VAR_0x8008, VAR_UNK_0x4106

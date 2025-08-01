@@ -44,64 +44,18 @@ _0098:
     SetFlag FLAG_UNK_0x01D3
     End
 
-    .byte 52
-    .byte 2
-    .byte 0
-    .byte 64
-    .byte 17
-    .byte 0
-    .byte 0
-    .byte 64
-    .byte 0
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 15
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 0
-    .byte 64
-    .byte 6
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 134
-    .byte 1
-    .byte 7
-    .byte 0
-    .byte 146
-    .byte 2
-    .byte 174
-    .byte 1
-    .byte 136
-    .byte 1
-    .byte 7
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 137
-    .byte 1
-    .byte 7
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 31
-    .byte 0
-    .byte 211
-    .byte 1
-    .byte 2
-    .byte 0
+FightArea_CheckForWeekend_Unused:
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0 DAY_OF_WEEK_SUNDAY FightArea_ActivateRivalFight_Unused
+    GoToIfEq VAR_MAP_LOCAL_0 DAY_OF_WEEK_SATURDAY FightArea_ActivateRivalFight_Unused
+    End
+
+FightArea_ActivateRivalFight_Unused:
+    SetObjectEventPos 7, 658, 430
+    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir 7, DIR_SOUTH
+    ClearFlag FLAG_UNK_0x01D3
+    End
 
 _00D8:
     LockAll
@@ -264,14 +218,9 @@ _0340:
     EmoteExclamationMark
     EndMovement
 
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement:
+    WalkNormalWest
+    EndMovement
 
     .balign 4, 0
 _0354:
@@ -301,14 +250,9 @@ _0380:
     UnlockDir
     EndMovement
 
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement2:
+    EmoteExclamationMark
+    EndMovement
 
     .balign 4, 0
 _039C:
@@ -386,18 +330,10 @@ _0428:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement3:
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _043C:
@@ -446,22 +382,13 @@ _0484:
     WalkNormalSouth 8
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement4:
+    WalkOnSpotNormalWest
+    EndMovement
+
+FightArea_UnusedMovement5:
+    WalkNormalEast 10
+    EndMovement
 
 _049C:
     PlayFanfare SEQ_SE_CONFIRM
@@ -854,4 +781,4 @@ _08B0:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 0
