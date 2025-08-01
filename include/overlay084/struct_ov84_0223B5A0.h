@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 #define POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
@@ -9,6 +8,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "list_menu.h"
 #include "menu.h"
@@ -32,7 +32,7 @@ typedef struct {
     SpriteSystem *unk_D8;
     SpriteManager *unk_DC;
     ManagedSprite *unk_E0[12];
-    UnkStruct_0200C440 *unk_110;
+    FontSpecialCharsContext *unk_110;
     MessageLoader *unk_114;
     StringTemplate *unk_118;
     MessageLoader *unk_11C;

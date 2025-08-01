@@ -19,6 +19,7 @@
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -49,7 +50,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
@@ -250,7 +250,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     shopMenu->journalEntry = fieldSystem->journalEntry;
     shopMenu->martType = martType;
     shopMenu->saveData = fieldSystem->saveData;
-    shopMenu->unk_2B4 = sub_0200C440(1, 2, 0, HEAP_ID_FIELDMAP);
+    shopMenu->unk_2B4 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_FIELDMAP);
 
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
@@ -474,7 +474,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
             }
         }
 
-        sub_0200C560(shopMenu->unk_2B4);
+        FontSpecialChars_Free(shopMenu->unk_2B4);
         Heap_Free(shopMenu->itemsPtr);
         Heap_Free(shopMenu);
 
@@ -768,7 +768,7 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
         if ((itemId <= ITEM_HM01) && (itemId >= ITEM_TM01)) {
             itemId = itemId - ITEM_TM01 + 1;
 
-            sub_0200C648(shopMenu->unk_2B4, 2, itemId, 2, 2, &shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 0, yOffset + 4);
+            FontSpecialChars_DrawPartyScreenText(shopMenu->unk_2B4, 2, itemId, 2, 2, &shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 0, yOffset + 4);
         }
 
         price = Shop_GetItemPrice(shopMenu, index);

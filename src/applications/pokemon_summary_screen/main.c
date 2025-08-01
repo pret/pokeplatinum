@@ -20,6 +20,7 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -48,7 +49,6 @@
 #include "system_flags.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 #include "unk_02015F84.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -534,7 +534,7 @@ static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
 {
     summaryScreen->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->ribbonLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_RIBBON_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->unk_684 = sub_0200C440(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->unk_684 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strFormatter = StringTemplate_Default(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.speciesName = Strbuf_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->monData.nickname = Strbuf_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
@@ -553,7 +553,7 @@ static void FreeStrings(PokemonSummaryScreen *summaryScreen)
     MessageLoader_Free(summaryScreen->moveNameLoader);
     MessageLoader_Free(summaryScreen->ribbonLoader);
     MessageLoader_Free(summaryScreen->msgLoader);
-    sub_0200C560(summaryScreen->unk_684);
+    FontSpecialChars_Free(summaryScreen->unk_684);
     StringTemplate_Free(summaryScreen->strFormatter);
     Strbuf_Free(summaryScreen->monData.speciesName);
     Strbuf_Free(summaryScreen->monData.nickname);

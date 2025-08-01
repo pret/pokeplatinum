@@ -9,6 +9,7 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "heap.h"
 #include "item.h"
 #include "message.h"
@@ -20,7 +21,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200C440.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -358,7 +358,7 @@ static void ov13_02221E08(BattleParty *param0, u32 param1, u16 param2, u8 param3
 {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param2];
 
-    sub_0200C648(param0->unk_1FA0, 1, v0->level, 3, 0, &param0->unk_206C[param1], param3 + 8, param4);
+    FontSpecialChars_DrawPartyScreenText(param0->unk_1FA0, 1, v0->level, 3, 0, &param0->unk_206C[param1], param3 + 8, param4);
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
@@ -366,9 +366,9 @@ static void ov13_02221E50(BattleParty *param0, u32 param1, u16 param2, u8 param3
 {
     BattlePartyPokemon *v0 = &param0->partyPokemon[param2];
 
-    sub_0200C5BC(param0->unk_1FA0, v0->curHP, 3, 1, &param0->unk_206C[param1], param3, param4);
-    sub_0200C578(param0->unk_1FA0, 0, &param0->unk_206C[param1], param3 + 8 * 3, param4);
-    sub_0200C5BC(param0->unk_1FA0, v0->maxHP, 3, 0, &param0->unk_206C[param1], param3 + 8 * 3 + 8, param4);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1FA0, v0->curHP, 3, 1, &param0->unk_206C[param1], param3, param4);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_1FA0, 0, &param0->unk_206C[param1], param3 + 8 * 3, param4);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1FA0, v0->maxHP, 3, 0, &param0->unk_206C[param1], param3 + 8 * 3 + 8, param4);
     Window_ScheduleCopyToVRAM(&param0->unk_206C[param1]);
 }
 
