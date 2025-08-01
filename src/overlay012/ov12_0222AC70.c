@@ -514,26 +514,55 @@ typedef struct {
     ValueLerpContext unk_D4;
 } UnkStruct_ov12_0222CBFC;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    u8 unk_0C;
-    u8 unk_0D;
-    u8 unk_0E;
-    u8 unk_0F;
-    u8 unk_10;
-    u8 unk_11;
-    s16 unk_12;
-    Point2D unk_14;
-    BattleAnimScriptFuncCommon unk_18;
-    SpriteShakeInfo unk_34;
-    ManagedSprite *unk_40;
-    ManagedSprite *unk_44[2];
-    BattleAnimSpriteInfo unk_4C[4];
-    XYTransformContext unk_9C;
-    ValueLerpContext unk_C0;
-} UnkStruct_ov12_0222CDF0;
+// -------------------------------------------------------------------
+// Surf
+// -------------------------------------------------------------------
+typedef struct SurfContext {
+    int state;
+    int holdTimer;
+    int unused0;
+    u8 alphaStart;
+    u8 alphaBg;
+    u8 alphaEnd;
+    u8 alphaReset;
+    u8 alphaTargetStart;
+    u8 alphaTargetBg;
+    s16 dir;
+    Point2D spritePos;
+    BattleAnimScriptFuncCommon common;
+    SpriteShakeInfo unused1;
+    ManagedSprite *currentSprite;
+    ManagedSprite *sprites[2];
+    BattleAnimSpriteInfo unused2[4];
+    XYTransformContext scale;
+    ValueLerpContext unused3;
+} SurfContext;
+
+enum SurfState {
+    SURF_STATE_COMPRESS = 0,
+    SURF_STATE_STRETCH,
+    SURF_STATE_HOLD,
+    SURF_STATE_RESTORE,
+};
+
+#define SURF_CONTEST_X             (255 - 76)
+#define SURF_CONTEST_Y             120
+#define SURF_PLAYER_SIDE_X         76
+#define SURF_PLAYER_SIDE_Y         120
+#define SURF_ENEMY_SIDE_X          144
+#define SURF_ENEMY_SIDE_Y          64
+#define SURF_SCALE_INITIAL         100
+#define SURF_SCALE_COMPRESSED      60
+#define SURF_SCALE_STRETCHED       150
+#define SURF_SCALE_FRAMES_INITIAL  5
+#define SURF_SCALE_FRAMES_STRETCH  150
+#define SURF_SCALE_FRAMES_COMPRESS 10
+#define SURF_SCALE_FRAMES_GROW     12
+#define SURF_HOLD_FRAMES           4
+#define SURF_ALPHA_TRANSPARENT     0
+#define SURF_ALPHA_OPAQUE          31
+#define SURF_ALPHA_TARGET          4
+#define SURF_SPRITE_HEIGHT         16
 
 typedef struct {
     ManagedSprite *unk_00;
@@ -2339,153 +2368,168 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v2->unk_10.battleAnimSystem, ov12_0222CBFC, v2);
 }
 
-static void ov12_0222CDF0(SysTask *param0, void *param1)
+static void BattleAnimTask_Surf(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222CDF0 *v0 = (UnkStruct_ov12_0222CDF0 *)param1;
+    SurfContext *ctx = param;
 
-    switch (v0->unk_18.state) {
-    case 0:
-        ScaleLerpContext_InitXY(&v0->unk_9C, 100 * v0->unk_12, 60 * v0->unk_12, 5, 150, 100, 12);
-        v0->unk_18.state++;
+    switch (ctx->common.state) {
+    case SURF_STATE_COMPRESS:
+        ScaleLerpContext_InitXY(
+            &ctx->scale,
+            SURF_SCALE_INITIAL * ctx->dir,
+            SURF_SCALE_COMPRESSED * ctx->dir,
+            SURF_SCALE_FRAMES_INITIAL,
+            SURF_SCALE_STRETCHED,
+            SURF_SCALE_INITIAL,
+            SURF_SCALE_FRAMES_GROW);
+
+        ctx->common.state++;
         break;
-    case 1:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_9C) == 0) {
-            ScaleLerpContext_InitXY(&v0->unk_9C, 60 * v0->unk_12, 150 * v0->unk_12, 150, 10, 100, 12);
-            v0->unk_18.state++;
+    case SURF_STATE_STRETCH:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == FALSE) {
+            ScaleLerpContext_InitXY(&ctx->scale, SURF_SCALE_COMPRESSED * ctx->dir, SURF_SCALE_STRETCHED * ctx->dir, SURF_SCALE_FRAMES_STRETCH, SURF_SCALE_FRAMES_COMPRESS, SURF_SCALE_INITIAL, SURF_SCALE_FRAMES_GROW);
+            ctx->common.state++;
         } else {
-            f32 v1, v2;
-            s16 v3;
+            f32 scaleX, scaleY;
+            ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
+            ManagedSprite_SetAffineScale(ctx->currentSprite, scaleX, scaleY);
+            s16 offsetY = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->spritePos.y, SURF_SPRITE_HEIGHT, ctx->scale.data[4]);
+            ManagedSprite_SetPositionXY(ctx->currentSprite, ctx->spritePos.x, ctx->spritePos.y + offsetY);
 
-            ScaleLerpContext_GetAffineScale(&v0->unk_9C, &v1, &v2);
-            ManagedSprite_SetAffineScale(v0->unk_40, v1, v2);
-            v3 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.y, 16, v0->unk_9C.data[4]);
-            ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.x, v0->unk_14.y + v3);
-
-            if (v0->unk_0C < v0->unk_10) {
-                v0->unk_0C++;
+            if (ctx->alphaStart < ctx->alphaTargetStart) {
+                ctx->alphaStart++;
             }
 
-            if (v0->unk_0D > v0->unk_11) {
-                v0->unk_0D--;
+            if (ctx->alphaBg > ctx->alphaTargetBg) {
+                ctx->alphaBg--;
             }
 
-            G2_ChangeBlendAlpha(v0->unk_0C, v0->unk_0D);
+            G2_ChangeBlendAlpha(ctx->alphaStart, ctx->alphaBg);
         }
         break;
-    case 2:
-        if (++v0->unk_04 >= 4) {
-            v0->unk_18.state++;
+    case SURF_STATE_HOLD:
+        if (++ctx->holdTimer >= SURF_HOLD_FRAMES) {
+            ctx->common.state++;
         }
         break;
-    case 3:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_9C) == 0) {
-            v0->unk_18.state++;
+    case SURF_STATE_RESTORE:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == FALSE) {
+            ctx->common.state++;
         } else {
-            f32 v4, v5;
-            s16 v6;
+            f32 scaleX, scaleY;
+            ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
+            ManagedSprite_SetAffineScale(ctx->currentSprite, scaleX, scaleY);
+            s16 offsetY = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->spritePos.y, SURF_SPRITE_HEIGHT, ctx->scale.data[4]);
+            ManagedSprite_SetPositionXY(ctx->currentSprite, ctx->spritePos.x, ctx->spritePos.y + offsetY);
 
-            ScaleLerpContext_GetAffineScale(&v0->unk_9C, &v4, &v5);
-            ManagedSprite_SetAffineScale(v0->unk_40, v4, v5);
-            v6 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.y, 16, v0->unk_9C.data[4]);
-            ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.x, v0->unk_14.y + v6);
-
-            if (v0->unk_0C > v0->unk_0E) {
-                v0->unk_0C--;
+            if (ctx->alphaStart > ctx->alphaEnd) {
+                ctx->alphaStart--;
             }
 
-            if (v0->unk_0D < v0->unk_0F) {
-                v0->unk_0D++;
+            if (ctx->alphaBg < ctx->alphaReset) {
+                ctx->alphaBg++;
             }
 
-            G2_ChangeBlendAlpha(v0->unk_0C, v0->unk_0D);
+            G2_ChangeBlendAlpha(ctx->alphaStart, ctx->alphaBg);
         }
         break;
     default:
-        Sprite_DeleteAndFreeResources(v0->unk_44[0]);
-        Sprite_DeleteAndFreeResources(v0->unk_44[1]);
-        BattleAnimSystem_EndAnimTask(v0->unk_18.battleAnimSystem, param0);
-        ov12_02235E80(v0);
-        (v0) = NULL;
+        Sprite_DeleteAndFreeResources(ctx->sprites[0]);
+        Sprite_DeleteAndFreeResources(ctx->sprites[1]);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        ov12_02235E80(ctx);
+        (ctx) = NULL;
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_40);
-    SpriteSystem_DrawSprites(v0->unk_18.primarySpriteManager);
+    ManagedSprite_TickFrame(ctx->currentSprite);
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222CFA0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Surf(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222CDF0 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222CDF0));
+    SurfContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SurfContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_18);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_44[0] = BattleAnimSystem_GetSprite(param0, 0);
-    v0->unk_44[1] = BattleAnimSystem_GetSprite(param0, 1);
+    ctx->sprites[0] = BattleAnimSystem_GetSprite(system, 0);
+    ctx->sprites[1] = BattleAnimSystem_GetSprite(system, 1);
 
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_18.battleAnimSystem, 0xffffffff, 0xffffffff);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSystem, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 
-    if (BattleAnimSystem_GetScriptVar(param0, 0) == 0) {
-        v0->unk_0C = 0;
-        v0->unk_0D = 31;
-        v0->unk_0E = 0;
-        v0->unk_0F = 31;
-        v0->unk_10 = 31;
-        v0->unk_11 = 4;
+    if (BattleAnimSystem_GetScriptVar(system, 0) == 0) {
+        ctx->alphaStart = SURF_ALPHA_TRANSPARENT;
+        ctx->alphaBg = SURF_ALPHA_OPAQUE;
+        ctx->alphaEnd = SURF_ALPHA_TRANSPARENT;
+        ctx->alphaReset = SURF_ALPHA_OPAQUE;
+        ctx->alphaTargetStart = SURF_ALPHA_OPAQUE;
+        ctx->alphaTargetBg = SURF_ALPHA_TARGET;
     } else {
-        v0->unk_0C = 0;
-        v0->unk_0D = 31;
-        v0->unk_0E = 0;
-        v0->unk_0F = 31;
-        v0->unk_10 = 31;
-        v0->unk_11 = 4;
+        ctx->alphaStart = SURF_ALPHA_TRANSPARENT;
+        ctx->alphaBg = SURF_ALPHA_OPAQUE;
+        ctx->alphaEnd = SURF_ALPHA_TRANSPARENT;
+        ctx->alphaReset = SURF_ALPHA_OPAQUE;
+        ctx->alphaTargetStart = SURF_ALPHA_OPAQUE;
+        ctx->alphaTargetBg = SURF_ALPHA_TARGET;
     }
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0->unk_40 = v0->unk_44[0];
-        ManagedSprite_SetDrawFlag(v0->unk_44[1], 0);
-        ManagedSprite_SetAnim(v0->unk_40, 0);
-        v0->unk_14.x = 255 - 76;
-        v0->unk_14.y = 120;
-        ManagedSprite_SetExplicitPriority(v0->unk_40, BattleAnimSystem_GetPokemonSpritePriority(param0) + 1);
-        v0->unk_12 = -1;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        ctx->currentSprite = ctx->sprites[0];
+        ManagedSprite_SetDrawFlag(ctx->sprites[1], FALSE);
+        ManagedSprite_SetAnim(ctx->currentSprite, 0);
+        ctx->spritePos.x = SURF_CONTEST_X;
+        ctx->spritePos.y = SURF_CONTEST_Y;
+        ManagedSprite_SetExplicitPriority(
+            ctx->currentSprite,
+            BattleAnimSystem_GetPokemonSpritePriority(system) + 1);
+        ctx->dir = -1;
     } else {
-        if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
-            v0->unk_40 = v0->unk_44[1];
-            ManagedSprite_SetDrawFlag(v0->unk_44[0], 0);
-            ManagedSprite_SetAnim(v0->unk_40, 1);
-            v0->unk_14.x = 144;
-            v0->unk_14.y = 64;
+        if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system))
+            == BTLSCR_ENEMY) {
+            ctx->currentSprite = ctx->sprites[1];
+            ManagedSprite_SetDrawFlag(ctx->sprites[0], FALSE);
+            ManagedSprite_SetAnim(ctx->currentSprite, 1);
+            ctx->spritePos.x = SURF_ENEMY_SIDE_X;
+            ctx->spritePos.y = SURF_ENEMY_SIDE_Y;
         } else {
-            v0->unk_40 = v0->unk_44[0];
-            ManagedSprite_SetDrawFlag(v0->unk_44[1], 0);
-            ManagedSprite_SetAnim(v0->unk_40, 0);
-            v0->unk_14.x = 76;
-            v0->unk_14.y = 120;
-            ManagedSprite_SetExplicitPriority(v0->unk_40, BattleAnimSystem_GetPokemonSpritePriority(param0) + 1);
+            ctx->currentSprite = ctx->sprites[0];
+            ManagedSprite_SetDrawFlag(ctx->sprites[1], FALSE);
+            ManagedSprite_SetAnim(ctx->currentSprite, 0);
+            ctx->spritePos.x = SURF_PLAYER_SIDE_X;
+            ctx->spritePos.y = SURF_PLAYER_SIDE_Y;
+            ManagedSprite_SetExplicitPriority(
+                ctx->currentSprite,
+                BattleAnimSystem_GetPokemonSpritePriority(system) + 1);
         }
 
-        v0->unk_12 = +1;
+        ctx->dir = 1;
     }
 
-    ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.x, v0->unk_14.y);
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_40, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetExplicitOamMode(v0->unk_40, GX_OAM_MODE_XLU);
+    ManagedSprite_SetPositionXY(ctx->currentSprite, ctx->spritePos.x, ctx->spritePos.y);
+    ManagedSprite_SetAffineOverwriteMode(ctx->currentSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetExplicitOamMode(ctx->currentSprite, GX_OAM_MODE_XLU);
 
-    {
-        f32 v1, v2;
-        s16 v3;
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        SURF_SCALE_INITIAL * ctx->dir,
+        SURF_SCALE_INITIAL * ctx->dir,
+        SURF_SCALE_INITIAL,
+        SURF_SCALE_FRAMES_INITIAL,
+        SURF_SCALE_INITIAL,
+        1);
+    ScaleLerpContext_UpdateXY(&ctx->scale);
 
-        ScaleLerpContext_InitXY(&v0->unk_9C, 100 * v0->unk_12, 100 * v0->unk_12, 100, 5, 100, 1);
-        ScaleLerpContext_UpdateXY(&v0->unk_9C);
+    f32 scaleX, scaleY;
+    ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
+    ManagedSprite_SetAffineScale(ctx->currentSprite, scaleX, scaleY);
 
-        ScaleLerpContext_GetAffineScale(&v0->unk_9C, &v1, &v2);
-        ManagedSprite_SetAffineScale(v0->unk_40, v1, v2);
+    s16 offsetY = BattleAnimUtil_GetGroundAnchoredScaleOffset(
+        ctx->spritePos.y,
+        SURF_SPRITE_HEIGHT,
+        ctx->scale.data[XY_PARAM_CUR_Y]);
+    ManagedSprite_SetPositionXY(ctx->currentSprite, ctx->spritePos.x, ctx->spritePos.y + offsetY);
 
-        v3 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_14.y, 16, v0->unk_9C.data[4]);
-        ManagedSprite_SetPositionXY(v0->unk_40, v0->unk_14.x, v0->unk_14.y + v3);
-    }
-
-    BattleAnimSystem_StartAnimTask(v0->unk_18.battleAnimSystem, ov12_0222CDF0, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Surf, ctx);
 }
 
 static const u8 Unk_ov12_0223A0D0[][5] = {

@@ -66,7 +66,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Megahorn,
     BattleAnimScriptFunc_MegahornAttacker,
     BattleAnimScriptFunc_MegahornDefender,
-    ov12_0222CFA0,
+    BattleAnimScriptFunc_Surf,
     ov12_022282BC,
     ov12_02228394,
     ov12_02228520,
