@@ -285,23 +285,51 @@ typedef struct {
     BattleAnimSystem *unk_3C;
 } UnkStruct_ov12_02228268;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    u16 unk_08;
-    s16 unk_0A;
-    s16 unk_0C;
-    s16 unk_0E;
-    s16 unk_10;
-    u16 unk_12;
-    u16 unk_14;
-    u16 unk_16;
-    u16 unk_18;
-    BattleAnimScriptFuncCommon unk_1C;
-    SpriteShakeInfo unk_38;
-    BattleAnimSpriteInfo unk_44[4];
-    XYTransformContext unk_94;
-} UnkStruct_ov12_02227064;
+// -------------------------------------------------------------------
+// Muddy Water
+// -------------------------------------------------------------------
+typedef struct MuddyWaterContext {
+    BOOL reverse;
+    BOOL scrollFinished;
+    u16 unused;
+    s16 x;
+    s16 y;
+    s16 stepX;
+    s16 stepY;
+    u16 slowDownTime;
+    u16 timer;
+    u16 bgAlpha;
+    u16 otherAlpha;
+    BattleAnimScriptFuncCommon common;
+    SpriteShakeInfo shakeInfo;
+    BattleAnimSpriteInfo spriteInfo[4];
+    XYTransformContext transform;
+} MuddyWaterContext;
+
+enum MuddyWaterState {
+    MUDDY_WATER_STATE_INIT,
+    MUDDY_WATER_STATE_FADE_IN,
+    MUDDY_WATER_STATE_WAIT,
+    MUDDY_WATER_STATE_FADE_OUT,
+    MUDDY_WATER_STATE_END
+};
+
+#define MUDDY_WATER_VAR_BG_ID          0
+#define MUDDY_WATER_VAR_START_X        1
+#define MUDDY_WATER_VAR_START_Y        2
+#define MUDDY_WATER_VAR_STEP_X         3
+#define MUDDY_WATER_VAR_STEP_Y         4
+#define MUDDY_WATER_VAR_REVERSE        5
+#define MUDDY_WATER_VAR_UNUSED         6
+#define MUDDY_WATER_VAR_SLOW_DOWN_TIME 7
+#define MUDDY_WATER_MAX_Y              512
+#define MUDDY_WATER_MIN_Y              (-412)
+#define MUDDY_WATER_START_Y_OFFSET     ((128 / 3) * 2)
+#define MUDDY_WATER_BG_START_ALPHA     4
+#define MUDDY_WATER_OTHER_START_ALPHA  16
+#define MUDDY_WATER_BG_END_ALPHA       16
+#define MUDDY_WATER_OTHER_END_ALPHA    4
+#define MUDDY_WATER_ALPHA_STEP         2
 
 typedef struct {
     int unk_00;
@@ -812,164 +840,182 @@ void BattleAnimScriptFunc_ScrollCustomBg(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_ScrollCustomBg, ctx);
 }
 
-static void ov12_02227064(SysTask *param0, void *param1)
+static void BattleAnimTask_MuddyWater(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02227064 *v0 = (UnkStruct_ov12_02227064 *)param1;
+    MuddyWaterContext *ctx = (MuddyWaterContext *)param;
 
-    switch (v0->unk_1C.state) {
-    case 0:
-        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3, v0->unk_16, v0->unk_18);
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-        v0->unk_1C.state++;
-    case 1: {
-        int v1 = 0;
+    switch (ctx->common.state) {
+    case MUDDY_WATER_STATE_INIT:
+        G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3, ctx->bgAlpha, ctx->otherAlpha);
+        Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
+        ctx->common.state++;
+    case MUDDY_WATER_STATE_FADE_IN: {
+        int fadeInComplete = 0;
 
-        if (v0->unk_16 < 16) {
-            v0->unk_16 += 2;
+        if (ctx->bgAlpha < MUDDY_WATER_BG_END_ALPHA) {
+            ctx->bgAlpha += MUDDY_WATER_ALPHA_STEP;
         } else {
-            v1++;
+            fadeInComplete++;
         }
 
-        if (v0->unk_18 > 4) {
-            v0->unk_18 -= 2;
+        if (ctx->otherAlpha > MUDDY_WATER_OTHER_END_ALPHA) {
+            ctx->otherAlpha -= MUDDY_WATER_ALPHA_STEP;
         } else {
-            v1++;
+            fadeInComplete++;
         }
 
-        if (v1 == 2) {
-            v0->unk_16 = 16;
-            v0->unk_18 = 4;
-            v0->unk_1C.state++;
+        if (fadeInComplete == 2) {
+            ctx->bgAlpha = MUDDY_WATER_BG_END_ALPHA;
+            ctx->otherAlpha = MUDDY_WATER_OTHER_END_ALPHA;
+            ctx->common.state++;
         }
 
-        G2_ChangeBlendAlpha(v0->unk_16, v0->unk_18);
+        G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
     } break;
-    case 2:
-        if (v0->unk_04) {
-            v0->unk_1C.state++;
+    case MUDDY_WATER_STATE_WAIT:
+        if (ctx->scrollFinished) {
+            ctx->common.state++;
         }
         break;
-    case 3: {
-        int v2 = 0;
+    case MUDDY_WATER_STATE_FADE_OUT: {
+        int fadeOutComplete = 0;
 
-        if (v0->unk_16 > 2) {
-            v0->unk_16 -= 2;
+        if (ctx->bgAlpha > 2) {
+            ctx->bgAlpha -= MUDDY_WATER_ALPHA_STEP;
         } else {
-            v2++;
+            fadeOutComplete++;
         }
 
-        if (v0->unk_18 < 16) {
-            v0->unk_18 += 2;
+        if (ctx->otherAlpha < MUDDY_WATER_OTHER_START_ALPHA) {
+            ctx->otherAlpha += MUDDY_WATER_ALPHA_STEP;
         } else {
-            v2++;
+            fadeOutComplete++;
         }
 
-        if (v2 == 2) {
-            v0->unk_16 = 0;
-            v0->unk_18 = 31;
-            v0->unk_1C.state++;
+        if (fadeOutComplete == 2) {
+            ctx->bgAlpha = 0;
+            ctx->otherAlpha = 31;
+            ctx->common.state++;
         }
 
-        G2_ChangeBlendAlpha(v0->unk_16, v0->unk_18);
+        G2_ChangeBlendAlpha(ctx->bgAlpha, ctx->otherAlpha);
     } break;
     default:
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-        BattleAnimSystem_EndAnimTask(v0->unk_1C.battleAnimSystem, param0);
-        Heap_Free(v0);
+        Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         return;
     }
 
-    if (((v0->unk_10 > 0) && (v0->unk_0C >= 512)) || ((v0->unk_10 < 0) && (v0->unk_0C <= -412))) {
-        v0->unk_04 = 1;
+    if ((ctx->stepY > 0 && ctx->y >= MUDDY_WATER_MAX_Y) || (ctx->stepY < 0 && ctx->y <= MUDDY_WATER_MIN_Y)) {
+        ctx->scrollFinished = TRUE;
     }
 
-    v0->unk_0A += v0->unk_0E;
-    v0->unk_0C += v0->unk_10;
+    ctx->x += ctx->stepX;
+    ctx->y += ctx->stepY;
 
-    if (v0->unk_12 < v0->unk_14) {
-        if (v0->unk_10 < 0) {
-            v0->unk_10++;
+    if (ctx->slowDownTime < ctx->timer) {
+        if (ctx->stepY < 0) {
+            ctx->stepY++;
         } else {
-            v0->unk_10 = 0;
+            ctx->stepY = 0;
         }
 
-        if (v0->unk_0E < 0) {
-            v0->unk_0E++;
+        if (ctx->stepX < 0) {
+            ctx->stepX++;
         } else {
-            v0->unk_0E = 0;
+            ctx->stepX = 0;
         }
 
-        v0->unk_14 = 0;
+        ctx->timer = 0;
     } else {
-        v0->unk_14++;
+        ctx->timer++;
     }
 
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 0, v0->unk_0A);
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 3, v0->unk_0C);
+    Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, ctx->x);
+    Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, ctx->y);
 }
 
-void ov12_022271D8(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MuddyWater(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02227064 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02227064));
-    int v1;
+    MuddyWaterContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MuddyWaterContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_1C);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_0A = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_0C = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_0E = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_10 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v0->unk_00 = BattleAnimSystem_GetScriptVar(param0, 5);
-    v0->unk_08 = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_12 = BattleAnimSystem_GetScriptVar(param0, 7);
-    v0->unk_14 = 0;
+    ctx->x = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_START_X);
+    ctx->y = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_START_Y);
+    ctx->stepX = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_STEP_X);
+    ctx->stepY = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_STEP_Y);
+    ctx->reverse = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_REVERSE);
+    ctx->unused = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_UNUSED);
+    ctx->slowDownTime = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_SLOW_DOWN_TIME);
+    ctx->timer = 0;
 
-    if ((v0->unk_00 != 0) && (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4)) {
-        v0->unk_0A *= -1;
-        v0->unk_0C *= -1;
-        v0->unk_0E *= -1;
-        v0->unk_10 *= -1;
-        v0->unk_0C -= ((128 / 3) * 2);
+    if (ctx->reverse != 0 && BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_ENEMY) {
+        ctx->x *= -1;
+        ctx->y *= -1;
+        ctx->stepX *= -1;
+        ctx->stepY *= -1;
+        ctx->y -= MUDDY_WATER_START_Y_OFFSET;
     } else {
-        v0->unk_0C += ((128 / 3) * 2);
+        ctx->y += MUDDY_WATER_START_Y_OFFSET;
     }
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v0->unk_0E *= -1;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        ctx->stepX *= -1;
     }
 
-    v0->unk_16 = 4;
-    v0->unk_18 = 16;
-    v0->unk_16 = 0;
-    v0->unk_18 = 16;
-    v0->unk_04 = 0;
+    ctx->bgAlpha = MUDDY_WATER_BG_START_ALPHA;
+    ctx->otherAlpha = MUDDY_WATER_OTHER_START_ALPHA;
+    ctx->bgAlpha = 0;
+    ctx->otherAlpha = MUDDY_WATER_OTHER_START_ALPHA;
+    ctx->scrollFinished = FALSE;
 
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
 
-    {
-        int v2 = BattleAnimSystem_GetScriptVar(param0, 0);
+    int bgID = BattleAnimSystem_GetScriptVar(system, MUDDY_WATER_VAR_BG_ID);
 
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, HEAP_ID_SYSTEM), v0->unk_1C.bgConfig, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
-        PaletteData_LoadBufferFromFileStart(v0->unk_1C.paletteData, 7, BattleAnimSystem_GetBgNarcMemberIndex(v2, 1), BattleAnimSystem_GetHeapID(param0), 0, 0x20, 9 * 16);
-        Bg_ClearTilemap(v0->unk_1C.bgConfig, 2);
+    Graphics_LoadTilesToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCGR),
+        ctx->common.bgConfig,
+        BATTLE_BG_BASE,
+        0,
+        0,
+        TRUE,
+        BattleAnimSystem_GetHeapID(system));
+    PaletteData_LoadBufferFromFileStart(
+        ctx->common.paletteData,
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, BG_NARC_MEMBER_NCLR),
+        BattleAnimSystem_GetHeapID(system),
+        0,
+        PALETTE_SIZE_BYTES,
+        PLTT_DEST(BATTLE_BG_PALETTE_EFFECT));
+    Bg_ClearTilemap(ctx->common.bgConfig, BATTLE_BG_BASE);
 
-        {
-            int v3 = 2;
+    enum BgNarcMemberType member = BG_NARC_MEMBER_NSCR1;
 
-            if (BattleAnimSystem_IsContest(param0) == 1) {
-                v3 = 4;
-            } else if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
-                v3 = 3;
-            }
-
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, BattleAnimSystem_GetBgNarcMemberIndex(v2, v3), v0->unk_1C.bgConfig, 2, 0, 0, 1, BattleAnimSystem_GetHeapID(param0));
-        }
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        member = BG_NARC_MEMBER_NSCR3;
+    } else if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_ENEMY) {
+        member = BG_NARC_MEMBER_NSCR2;
     }
 
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 0, v0->unk_0A);
-    Bg_SetOffset(v0->unk_1C.bgConfig, 2, 3, v0->unk_0C);
+    Graphics_LoadTilemapToBgLayer(
+        NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG,
+        BattleAnimSystem_GetBgNarcMemberIndex(bgID, member),
+        ctx->common.bgConfig,
+        BATTLE_BG_BASE,
+        0,
+        0,
+        TRUE,
+        BattleAnimSystem_GetHeapID(system));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_1C.battleAnimSystem, ov12_02227064, v0);
+    Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, ctx->x);
+    Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, ctx->y);
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MuddyWater, ctx);
 }
 
 static void BattleAnimTask_RotateMon(SysTask *task, void *param)
