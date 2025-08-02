@@ -6,6 +6,7 @@
 
 #include "charcode.h"
 
+// clang-format off
 /**
  * @brief Block A of the BoxPokemon data structure
  */
@@ -122,6 +123,7 @@ typedef struct BoxPokemon {
     /* 0x006 */ u16 checksum; //!< Checksum for the Pokemon's data blocks.
     /* 0x008 */ PokemonDataBlock dataBlocks[4]; //!< Data blocks containing the Pokemon's boxed data, stored encrypted.
 } BoxPokemon;
+// clang-format on
 
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
