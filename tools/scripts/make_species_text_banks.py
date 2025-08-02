@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from typing import NamedTuple
+
 import argparse
 import json
 import os
@@ -13,6 +15,11 @@ ANSI_CLEAR = "\033[0m"
 
 SPECIES_DIRS = os.environ['SPECIES'].split(';')
 
+class GeneratedFile(NamedTuple):
+    name: str
+    key: int
+    zero_is_empty: bool = False
+
 argparser = argparse.ArgumentParser(
     prog='make_pokedex_message_banks_py',
     description='Compiles pokedex message files'
@@ -23,51 +30,59 @@ argparser.add_argument('-s', '--source-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the gmm files will be made)')
+argparser.add_argument('-f', '--format',
+                       required=False,
+                       help='File format(s) to be generated',
+                       choices=['gmm', 'json'],
+                       action='append')
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
 output_dir = pathlib.Path(args.output_dir)
-file_names = [
-    'species_name.gmm',
-    'species_name_with_articles.gmm',
-    'species_pokedex_entry_fr.gmm',
-    'species_pokedex_entry_de.gmm',
-    'species_pokedex_entry_it.gmm',
-    'species_pokedex_entry_es.gmm',
-    'species_pokedex_entry_jp.gmm',
-    'species_pokedex_entry_en.gmm',
-    'species_weight.gmm',
-    'species_weight_gira.gmm',
-    'species_height.gmm',
-    'species_height_gira.gmm',
-    'species_category.gmm',
-    'species_name_with_natdex_number_en.gmm',
-    'species_name_with_natdex_number_fr.gmm',
-    'species_name_with_natdex_number_de.gmm',
-    'species_name_with_natdex_number_it.gmm',
-    'species_name_with_natdex_number_es.gmm',
-    'species_name_with_natdex_number_jp.gmm',
-    'species_category_en.gmm',
-    'species_category_fr.gmm',
-    'species_category_de.gmm',
-    'species_category_it.gmm',
-    'species_category_es.gmm',
-    'species_category_jp.gmm'
+formats = args.format or []
+print(f"{formats=}")
+
+files: list[GeneratedFile] = [
+    GeneratedFile('species_name', 30764),
+    GeneratedFile('species_name_with_articles', 59681, zero_is_empty=True),
+    GeneratedFile('species_pokedex_entry_fr', 30030, zero_is_empty=True),
+    GeneratedFile('species_pokedex_entry_de', 30034, zero_is_empty=True),
+    GeneratedFile('species_pokedex_entry_it', 30038, zero_is_empty=True),
+    GeneratedFile('species_pokedex_entry_es', 30042, zero_is_empty=True),
+    GeneratedFile('species_pokedex_entry_jp', 30046, zero_is_empty=True),
+    GeneratedFile('species_pokedex_entry_en', 63572, zero_is_empty=True),
+    GeneratedFile('species_weight', 25297),
+    GeneratedFile('species_weight_gira', 64639),
+    GeneratedFile('species_height', 5013),
+    GeneratedFile('species_height_gira', 28660),
+    GeneratedFile('species_category', 48809),
+    GeneratedFile('species_name_with_natdex_number_en', 32249),
+    GeneratedFile('species_name_with_natdex_number_fr', 32242),
+    GeneratedFile('species_name_with_natdex_number_de', 32254),
+    GeneratedFile('species_name_with_natdex_number_it', 32250),
+    GeneratedFile('species_name_with_natdex_number_es', 32230),
+    GeneratedFile('species_name_with_natdex_number_jp', 32226),
+    GeneratedFile('species_category_en', 22840),
+    GeneratedFile('species_category_fr', 46193),
+    GeneratedFile('species_category_de', 46205),
+    GeneratedFile('species_category_it', 46201),
+    GeneratedFile('species_category_es', 46181),
+    GeneratedFile('species_category_jp', 46177),
 ]
 
 # variables
 NUM_POKEMON = len(SPECIES_DIRS)
 languages = ['en', 'fr', 'de', 'it', 'es', 'jp']
 NUM_LANGUAGES = len(languages)
-species_name = ['' for i in range(NUM_POKEMON)]
-species_name_articles = ['' for i in range(NUM_POKEMON)]
-species_pokedex_entry = [['' for i in range(NUM_POKEMON-2)] for j in range(NUM_LANGUAGES)]
-species_weight = ['' for i in range(NUM_POKEMON-2)]
-species_weight_gira = ['' for i in range(NUM_POKEMON-2)]
-species_height = ['' for i in range(NUM_POKEMON-2)]
-species_height_gira = ['' for i in range(NUM_POKEMON-2)]
-species_name_number = [['' for i in range(NUM_POKEMON-2)] for j in range(NUM_LANGUAGES)]
-species_category = [['' for i in range(NUM_POKEMON-2)] for j in range(NUM_LANGUAGES)]
+species_name = [''] * NUM_POKEMON
+species_name_articles = [''] * NUM_POKEMON
+species_pokedex_entry = [[''] * (NUM_POKEMON-2) for _ in range(NUM_LANGUAGES)]
+species_weight = [''] * (NUM_POKEMON-2)
+species_weight_gira = [''] * (NUM_POKEMON-2)
+species_height = [''] * (NUM_POKEMON-2)
+species_height_gira = [''] * (NUM_POKEMON-2)
+species_name_number = [[''] * (NUM_POKEMON-2) for _ in range(NUM_LANGUAGES)]
+species_category = [[''] * (NUM_POKEMON-2) for _ in range(NUM_LANGUAGES)]
 
 def Convert_weight(hectograms):
     conv = 4.536 # this is the best estimate for the value Gamefreak used for conversion
@@ -183,74 +198,73 @@ species_height[0] = '???’??”'
 species_height_gira[0] = '???’??”'
 
 # organize data
-text_data = [species_name, species_name_articles]
-text_data += species_pokedex_entry
-text_data += [species_weight, species_weight_gira, species_height, species_height_gira, species_category[0]]
-text_data += species_name_number
-text_data += species_category
-
-# constants
-fileKeys = [
-    '30764',
-    '59681',
-    '30030',
-    '30034',
-    '30038',
-    '30042',
-    '30046',
-    '63572',
-    '25297',
-    '64639',
-    '5013',
-    '28660',
-    '48809',
-    '32249',
-    '32242',
-    '32254',
-    '32250',
-    '32230',
-    '32226',
-    '22840',
-    '46193',
-    '46205',
-    '46201',
-    '46181',
-    '46177'
+text_data = [
+    species_name,
+    species_name_articles,
+    *species_pokedex_entry,
+    species_weight,
+    species_weight_gira,
+    species_height,
+    species_height_gira,
+    species_category[0],
+    *species_name_number,
+    *species_category,
 ]
-empty_string = 'empty_string'
 
-# construct binaries
-for file in range(25):
-    body = ET.Element('body')
-    body.set('language', 'English')
-    key = ET.SubElement(body, 'key')
-    key.set('value', fileKeys[file])
-    for i in range(len(text_data[file])):
-        row = ET.SubElement(body, 'row')
-        row.set('id', f'pl_msg_{file_names[file][:-4]}_{SPECIES_DIRS[i]}')
-        row.set('index', f'{i}')
 
-        attribute = ET.SubElement(row, 'attribute')
-        attribute.set('name', 'window_context_name')
-        if (((file > 0) and (file < 8)) and (i == 0)):
-            attribute.text = 'garbage'
-            language = ET.SubElement(row, 'language')
-            language.set('name', 'English')
-            language.text = empty_string
-            language = ET.SubElement(row, 'language')
-            language.set('name', '日本語')
-            language.text = empty_string
+def dump_gmm(file: GeneratedFile, data: list[str]):
+    body = ET.Element("body", { "language": "English" })
+    _ = ET.SubElement(body, "key", { "value": str(file.key) })
+
+    for i, text in enumerate(data):
+        row = ET.SubElement(body, "row", {
+            "id": f"{file.name}_{SPECIES_DIRS[i]}",
+            "index": f"{i}",
+        })
+
+        attribute = ET.SubElement(row, "attribute", { "name": "window_context_name" })
+        language = ET.SubElement(row, "language", { "name": "English" })
+        if i == 0 and file.zero_is_empty:
+            attribute.text = "garbage"
+            _ = ET.SubElement(row, "language", { "name": "日本語" })
         else:
-            attribute.text = 'used'
-            language = ET.SubElement(row, 'language')
-            language.set('name', 'English')
-            language.text = text_data[file][i]
-    ET.indent(body, '\t')
-    message_bank = ET.tostring(body, encoding='utf-8')
-    message_bank = message_bank.decode('utf-8').replace(empty_string, '').encode('utf-8')
-    file_data = bytes('<?xml version="1.0"?>\n', encoding='utf-8') + message_bank + bytes('\n', encoding='utf-8')
+            attribute.text = "used"
+            language.text = text
 
-    # save gmm
-    target_fname = output_dir / file_names[file]
-    with open(target_fname, 'wb+') as target_file:
-        target_file.write(file_data)
+    ET.indent(body, "\t")
+
+    print(f"write {file.name}.gmm...")
+    with open((output_dir / file.name).with_suffix(".gmm"), "w", encoding="utf-8") as fout:
+        _ = fout.write('<?xml version="1.0"?>\n')
+        _ = fout.write(ET.tostring(body, encoding="utf-8").decode("utf-8"))
+        _ = fout.write("\n")
+
+
+def dump_json(file: GeneratedFile, data: list[str]):
+    messages: list[dict[str, int | str]] = [
+        { "id": f"{file.name}_{SPECIES_DIRS[i]}", "en_US": s }
+        for i, s in enumerate(data[1:], 1)
+    ]
+
+    if file.zero_is_empty:
+        messages.insert(0, {
+            "id": f"{file.name}_none",
+            "garbage": 0,
+        })
+    else:
+        messages.insert(0, {
+            "id": f"{file.name}_none",
+            "en_US": data[0],
+        })
+
+    payload = { "key": file.key, "messages": messages }
+    print(f"write {file.name}.json...")
+    with open((output_dir / file.name).with_suffix(".json"), "w", encoding="utf-8") as fout:
+        json.dump(payload, fout, ensure_ascii=False, indent=2)
+
+
+for file, data in zip(files, text_data):
+    if "json" in formats:
+        dump_json(file, data)
+    if "gmm" in formats or not formats:
+        dump_gmm(file, data)
