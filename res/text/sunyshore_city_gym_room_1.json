@@ -1,0 +1,69 @@
+{
+  "key": 14701,
+  "messages": [
+    {
+      "id": "pl_msg_00000164_00000",
+      "en_US": [
+        "Hey, there!\n",
+        "How’s it going, Champ-to-be?\r",
+        "Let me check out your Trainer Case.\n",
+        "Let’s see how many Badges you have.\r",
+        "One, two, three...\n",
+        "Whoa! Wow! You’ve already got seven!\r",
+        "That means if you can beat this Gym\n",
+        "Leader, you’re on your way to the\f",
+        "Pokémon League next.\r",
+        "That also means this is the last time\n",
+        "I get to give you advice.\r",
+        "This is it, kiddo!\n",
+        "Listen carefully...one last time!\r",
+        "The Gym Leader here is a master of\n",
+        "Electric-type Pokémon!\r",
+        "That’s all I have to say.\n",
+        "The rest is up to you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000164_00001",
+      "en_US": [
+        "Oh! {STRVAR_1 3, 0, 0}!\n",
+        "Did you beat the Gym Leader?\f",
+        "Well, of course you did!\r",
+        "But, you know what?\n",
+        "You haven’t made it in my mind yet!\r",
+        "Do you know why?\r",
+        "Because you and your Pokémon are\n",
+        "capable of achieving so much more!\r",
+        "But, I am proud of you!\n",
+        "Eight Sinnoh Badges!\f",
+        "Way to go, kiddo!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000164_00002",
+      "en_US": [
+        "Sunyshore City Pokémon Gym\r",
+        "Leader: Volkner"
+      ]
+    },
+    {
+      "id": "pl_msg_00000164_00003",
+      "en_US": [
+        "Sunyshore City Pokémon Gym\r",
+        "Leader: Volkner\n",
+        "Certified Trainers:\f",
+        "{STRVAR_1 3, 0, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000164_00004",
+      "en_US": [
+        "Sunyshore City Pokémon Gym\r",
+        "Leader: Volkner\n",
+        "Certified Trainers:\f",
+        "{STRVAR_1 3, 0, 0}\f",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,400 @@
+{
+  "key": 2287,
+  "messages": [
+    {
+      "id": "pl_msg_00000383_00000",
+      "en_US": [
+        "Rowan: Ah, {STRVAR_1 3, 0, 0}!\r",
+        "You’ve come to show me the progress\n",
+        "you’ve made on your Pokédex?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00001",
+      "en_US": [
+        "Hmm...\r",
+        "You’ve spotted {STRVAR_1 52, 0, 0} Pokémon in\n",
+        "Sinnoh...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00002",
+      "en_US": [
+        "What’s wrong?\r",
+        "You’re not suggesting you’ve seen so\n",
+        "few that you’re afraid to show me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00003",
+      "garbage": 45
+    },
+    {
+      "id": "pl_msg_00000383_00004",
+      "en_US": [
+        "I see!\r",
+        "You’ve met all the Pokémon there\n",
+        "are in Sinnoh!\r",
+        "{STRVAR_1 3, 0, 0}, I need to see you\n",
+        "at my lab. I’ll be waiting!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00005",
+      "en_US": [
+        "I see!\r",
+        "You’ve met all the Pokémon there\n",
+        "are in Sinnoh!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00006",
+      "en_US": [
+        "Look harder for wild Pokémon.\r",
+        "Don’t be afraid of going into tall\n",
+        "grass."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00007",
+      "en_US": [
+        "Your pace is picking up.\n",
+        "Things can only get better!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00008",
+      "en_US": [
+        "Be persistent when you’re searching\n",
+        "for Pokémon that appear only in\f",
+        "certain places."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00009",
+      "en_US": [
+        "Are you using fishing rods?\r",
+        "Pokémon that live underwater need to\n",
+        "be caught by fishing."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00010",
+      "en_US": [
+        "Remember, it’s important to make the\n",
+        "Pokémon you’ve caught evolve."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00011",
+      "en_US": [
+        "Pokémon don’t just hide in tall grass.\r",
+        "You can find many others in caves and\n",
+        "seas."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00012",
+      "en_US": [
+        "The Trainers that challenge you to\n",
+        "battle have Pokémon, obviously.\r",
+        "They may have rare ones with them,\n",
+        "and that can add to your Pokédex."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00013",
+      "en_US": [
+        "Some Pokémon appear only in the\n",
+        "morning and some only at night.\r",
+        "I know it’s a challenge, but I urge you\n",
+        "to keep searching."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00014",
+      "en_US": [
+        "Fantastic! Your effort is helping us\n",
+        "understand what evolving involves.\r",
+        "Your Pokédex doesn’t have long to go\n",
+        "now."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00015",
+      "en_US": [
+        "I’m simply astounded by the huge\n",
+        "variety of Pokémon in Sinnoh.\r",
+        "This will help my studies immensely!\n",
+        "Sincerely, thank you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00016",
+      "en_US": [
+        "Your Pokédex is well on the way to\n",
+        "being filled up.\r",
+        "This Pokédex can be considered a\n",
+        "journal of your adventure."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00017",
+      "en_US": [
+        "You’re not far from seeing every\n",
+        "Pokémon there is to see in Sinnoh!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00018",
+      "en_US": [
+        "Oak: Ah, {STRVAR_1 3, 0, 0}!\r",
+        "You’ve come to show me how\n",
+        "your Pokédex is coming along?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00019",
+      "en_US": [
+        "Oak: Ah, {STRVAR_1 3, 0, 0}!\r",
+        "You’ve come to show me how\n",
+        "your Pokédex is coming along?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00020",
+      "en_US": [
+        "Hmhm...\n",
+        "You’ve caught {STRVAR_1 52, 0, 0} so far...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00021",
+      "en_US": [
+        "I see...\r",
+        "Come see me if you’d like me to have\n",
+        "a look at your Pokédex."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00022",
+      "en_US": [
+        "They say there are at least 400\n",
+        "species of Pokémon nationwide.\r",
+        "If you’re planning to catch them all,\n",
+        "you’d better be a committed Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00023",
+      "en_US": [
+        "Hm! Little by little, you’re filling\n",
+        "the Pokédex with complete\f",
+        "data on Pokémon you’ve gotten.\r",
+        "Keep up the good work!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00024",
+      "en_US": [
+        "Here’s a tip on catching Pokémon\n",
+        "in the wild.\r",
+        "Minimize their HP before you throw\n",
+        "your Poké Ball to catch them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00025",
+      "en_US": [
+        "Remember: If you can’t catch them,\n",
+        "you can always trade for them.\r",
+        "As soon as you trade, the Pokémon’s\n",
+        "data is added to the Pokédex.\r",
+        "That’s why you should seek out as many\n",
+        "trades as possible."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00026",
+      "en_US": [
+        "Have you visited the Great Marsh?\r",
+        "Some Pokémon only appear in places\n",
+        "such as that."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00027",
+      "en_US": [
+        "As you know, there are Pokémon\n",
+        "that eventually evolve.\r",
+        "That’s an important thing to consider\n",
+        "when you’re filling your Pokédex."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00028",
+      "en_US": [
+        "You’ve proven yourself capable.\n",
+        "There’s nothing to worry about.\r",
+        "Keep catching Pokémon the way you’ve\n",
+        "been doing so far."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00029",
+      "en_US": [
+        "Are you aware that there is more than\n",
+        "one style of evolution?\r",
+        "There are some Pokémon that evolve by\n",
+        "becoming friends with the Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00030",
+      "en_US": [
+        "Apparently, there are some Pokémon\n",
+        "that appear in swarms on occasion.\r",
+        "Don’t miss out on these massive\n",
+        "outbreaks of Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00031",
+      "en_US": [
+        "Amazing! You’ve already gotten over\n",
+        "300 Pokémon!\r",
+        "That’s already a major achievement,\n",
+        "but I know you’re capable of more!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00032",
+      "en_US": [
+        "Some wild Pokémon only appear during\n",
+        "certain times of the day.\r",
+        "You’ll need to look for Pokémon\n",
+        "around the clock."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00033",
+      "en_US": [
+        "I’ve been getting reports of\n",
+        "different Pokémon sightings.\r",
+        "By different, I mean Pokémon that\n",
+        "aren’t native to the Sinnoh region.\r",
+        "You should perhaps go back to\n",
+        "areas you’ve already scoured.\r",
+        "You may end up seeing Pokémon\n",
+        "that weren’t there before."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00034",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, have you visited\n",
+        "the Pal Park recently?\r",
+        "There still may be Pokémon that are\n",
+        "rarely seen in Sinnoh."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00035",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, have you visited\n",
+        "the Pal Park recently?\r",
+        "There still may be Pokémon that are\n",
+        "rarely seen in Sinnoh."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00036",
+      "en_US": [
+        "Hm! Your Pokédex is getting closer\n",
+        "to completion.\r",
+        "Have you ever considered a career\n",
+        "as a Pokémon professor?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00037",
+      "en_US": [
+        "Hmm... You’ve caught quite the\n",
+        "impressive collection of Pokémon.\r",
+        "You’ve obviously had to employ many\n",
+        "means to seek them all out.\r",
+        "If you have a Poké Radar, keep an eye\n",
+        "out for rustling tall grass."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00038",
+      "en_US": [
+        "I can only marvel at the diversity\n",
+        "of Pokémon.\r",
+        "I’m still very much in awe of\n",
+        "them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00039",
+      "en_US": [
+        "Good, good, you’re getting close to\n",
+        "completing the Pokédex.\r",
+        "I’m looking forward to seeing its\n",
+        "completion.\r",
+        "When that happens, your views about\n",
+        "Pokémon will likely have changed!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00040",
+      "en_US": [
+        "Hmm... You are so very close to\n",
+        "completing your Pokédex.\r",
+        "Think about what’s missing.\n",
+        "Recall what you’ve overlooked.\r",
+        "You’re so close--please finish the\n",
+        "Pokédex!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00041",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}!\n",
+        "You’ve finally done it!\r",
+        "You’ve finally completed\n",
+        "the National Pokédex!\r",
+        "This is better than meeting any\n",
+        "exotic Pokémon for the first time!\r",
+        "I feel blessed to have become friends\n",
+        "with a Trainer like you!\r",
+        "Sincerely, I thank you from the\n",
+        "bottom of my heart!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00042",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}!\n",
+        "You’ve finally done it!\r",
+        "You’ve finally completed\n",
+        "the National Pokédex!\r",
+        "This is better than meeting any\n",
+        "exotic Pokémon for the first time!\r",
+        "I feel blessed to have become friends\n",
+        "with a Trainer like you!\r",
+        "Sincerely, I thank you from the\n",
+        "bottom of my heart!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000383_00043",
+      "en_US": "Accessed Professor Rowan’s PC.\r"
+    },
+    {
+      "id": "pl_msg_00000383_00044",
+      "en_US": "Accessed Professor Oak’s PC.\r"
+    }
+  ]
+}

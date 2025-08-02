@@ -1,0 +1,83 @@
+{
+  "key": 29698,
+  "messages": [
+    {
+      "id": "pl_msg_00000229_00000",
+      "en_US": [
+        "Mr. Fuego: Well, hello!\n",
+        "It’s not often I get a visitor here.\r",
+        "I tried to make the ironworks run\n",
+        "better with the moving floor tiles.\r",
+        "But no one was happy about it! They\n",
+        "said the moving floor made them dizzy!\r",
+        "But you don’t want to listen to me\n",
+        "whine. Here’s a souvenir!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000229_00001",
+      "en_US": [
+        "Mr. Fuego: My ironworks makes iron by\n",
+        "removing impurities from iron ore.\r",
+        "In the process, we find a variety of\n",
+        "colored Shards.\r",
+        "If you’d like, we can trade Star Pieces\n",
+        "for these Shards."
+      ]
+    },
+    {
+      "id": "pl_msg_00000229_00002",
+      "en_US": [
+        "Mr. Fuego: My ironworks makes iron by\n",
+        "removing impurities from iron ore.\r",
+        "In the process, we find a variety of\n",
+        "colored Shards.\r",
+        "If you’d like, we can trade Star Pieces\n",
+        "for these Shards?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000229_00003",
+      "en_US": [
+        "Mr. Fuego: Do you have any Star Pieces?\n",
+        "You can trade them for various Shards."
+      ]
+    },
+    {
+      "id": "pl_msg_00000229_00004",
+      "en_US": [
+        "Mr. Fuego: Are you interested?\n",
+        "Want to trade Star Pieces for Shards?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000229_00005",
+      "en_US": [
+        "Mr. Fuego: I see you’ve got many Star\n",
+        "Pieces.\r",
+        "Would you like to trade ten of them?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000229_00006",
+      "en_US": [
+        "Mr. Fuego: There you are--\n",
+        "red, blue, yellow, and green.\f",
+        "Shards in different colors!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000229_00007",
+      "en_US": "Mr. Fuego: You’re not trading?!"
+    },
+    {
+      "id": "pl_msg_00000229_00008",
+      "en_US": [
+        "Mr. Fuego: My ironworks would be\n",
+        "nothing if there were no iron.\r",
+        "That’s why I’m always thankful for\n",
+        "nature supplying me with iron."
+      ]
+    }
+  ]
+}

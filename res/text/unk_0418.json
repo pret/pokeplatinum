@@ -1,0 +1,974 @@
+{
+  "key": 33015,
+  "messages": [
+    {
+      "id": "pl_msg_00000418_00000",
+      "en_US": [
+        "Reporter: Hello! The time for\n",
+        "Discovering Groups is upon us.\r",
+        "Today, we dropped in to check up on\n",
+        "the Trainer {STRVAR_1 3, 0, 0}.\r",
+        "The Trainer is a member of the group\n",
+        "{STRVAR_1 5, 1, 0}.\r",
+        "Oh, that must be {STRVAR_1 3, 0, 0} over\n",
+        "there.\r",
+        "The Trainer is obviously enjoying\n",
+        "being a member of the group.\r",
+        "It’s like the Trainer has found\n",
+        "a second home!\r",
+        "If I had to describe this group, in my\n",
+        "uninformed, subjective view,\f",
+        "it would be the {STRVAR_1 15, 2, 0} type?\r",
+        "Please look forward to the next\n",
+        "show!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00001",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "{STRVAR_1 4, 0, 0} is blessed with\n",
+        "cloudless skies!\r",
+        "I would like to take this opportunity\n",
+        "to do my piled-up laundry!\r",
+        "It will be nice to dry them under\n",
+        "the sun here!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00002",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "{STRVAR_1 4, 0, 0} is under clear skies!\r",
+        "It’s the perfect sort of day to go\n",
+        "cycling.\r",
+        "If you were to crash into a stream,\n",
+        "you’d dry off quickly today!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00003",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "It’s nothing but blue skies over\n",
+        "{STRVAR_1 4, 0, 0}!\r",
+        "It would be a shame to spend a day\n",
+        "like this cooped up indoors.\r",
+        "Why not step outside and bask under\n",
+        "the sun?\r",
+        "Why not amuse yourself with a solo\n",
+        "whistling performance?\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00004",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "There isn’t a cloud in the sky above\n",
+        "{STRVAR_1 4, 0, 0}!\r",
+        "It’s the sort of day that’s ideal\n",
+        "for having your picture taken.\r",
+        "Everyone looks prettier under\n",
+        "the smiling sun!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00005",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "{STRVAR_1 4, 0, 0} is under gloomy\n",
+        "clouds.\r",
+        "But watch out!\n",
+        "Don’t be fooled by the sun’s absence.\r",
+        "It’s days like this that you can get\n",
+        "sunburned!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00006",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "{STRVAR_1 4, 0, 0} is getting doused\n",
+        "by rain.\r",
+        "It’s the sort of weather that’s right\n",
+        "for enjoying music at home.\r",
+        "Maybe have some tea and gaze at\n",
+        "the rain-covered plants.\r",
+        "Perhaps you can giggle at people\n",
+        "running to avoid the downpour.\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00007",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "A steady downpour continues to\n",
+        "fall on {STRVAR_1 4, 0, 0}!\r",
+        "This is your chance to shout your\n",
+        "loved one’s name to the skies!\r",
+        "Forget about an umbrella!\n",
+        "Think of the dramatic possibilities!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00008",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "It’s cold!\n",
+        "Snow is falling on {STRVAR_1 4, 0, 0}!\r",
+        "I would like to not act my age and\n",
+        "try to charm you with my cuteness...\r",
+        "But it’s too cold for me to be\n",
+        "frolicking!\r",
+        "I’m heading home right after this\n",
+        "to curl up with my CLEFAIRY.\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00009",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "{STRVAR_1 4, 0, 0} is taking cover\n",
+        "in a blizzard!\r",
+        "Some of you may brave the weather\n",
+        "in hopes of finding rare Pokémon\f",
+        "under these extreme conditions.\r",
+        "Be sure to dress extra warm, and\n",
+        "don’t fall asleep!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00010",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "A-as y-you c-can see...\r",
+        "{STRVAR_1 4, 0, 0} is besieged by \n",
+        "a howling blizzard!\r",
+        "My hair, even in my nostrils,\n",
+        "is caked with ice!\r",
+        "I’m grateful for having the sense to\n",
+        "buy a new coat with my bonus!\r",
+        "But even under these brutal\n",
+        "conditions, there are Trainers about!\r",
+        "I think they are foolish, and yet\n",
+        "I can’t help but respect them.\r",
+        "...May I please go inside now?\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00011",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weath...\r",
+        "Giyaaaah!\n",
+        "Thunder!\r",
+        "There is a thunderstorm over\n",
+        "{STRVAR_1 4, 0, 0}!\r",
+        "It’s...\n",
+        "Giyaaaaaah!\r",
+        "That camera’s like a lightning rod!\n",
+        "Let’s finish this now!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00012",
+      "en_US": [
+        "Helena: This is Helena bringing you\n",
+        "on-the-spot weather!\r",
+        "Today, we bring you a sight you\n",
+        "very rarely get to see.\r",
+        "Diamond dust is visible in the sky\n",
+        "above {STRVAR_1 4, 0, 0}.\r",
+        "The glittery cloud of ice is\n",
+        "fantastically beautiful.\r",
+        "Young Couples should step out for a\n",
+        "truly magical and romantic experience.\r",
+        "Every girl can be a princess\n",
+        "on a day like this.\r",
+        "Guys, there’s no better setting\n",
+        "to propose to your girl!\r",
+        "That’s the weather brought to you\n",
+        "by Helena!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00013",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, we turn our focus on Twinleaf\n",
+        "Town’s best three features.\r",
+        "First, no. 3!\n",
+        "The guy blown away by technology!\r",
+        "Next, no. 2!\n",
+        "...Oh, hold on a second!\r",
+        "We have a tie!\n",
+        "There isn’t a no. 2, just two no. 1s!\r",
+        "So, what are they?\n",
+        "One at a time now!\r",
+        "Everybody’s favorite: a two-story\n",
+        "house!\r",
+        "That’s {STRVAR_1 3, 0, 0}’s house!\r",
+        "Also coming in first...\n",
+        "Oh, another two-story house!\r",
+        "It’s {STRVAR_1 3, 1, 0}’s house!\n",
+        "The kind of place people aspire to own!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Drop into Twinleaf Town and scope out\n",
+        "what makes it special!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00014",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, we examine Sandgem Town’s best\n",
+        "three features.\r",
+        "First, no. 3!\n",
+        "{STRVAR_1 3, 1, 0}’s house!\r",
+        "Next, no. 2!\n",
+        "...Oh, this is unexpected!\f",
+        "The Pokémon Lab is no. 2!\r",
+        "So, what grabbed the glory of no. 1?\n",
+        "The town’s Pokémon Center! Believe it!\r",
+        "According to our survey, it came out\n",
+        "on top for one very good reason.\r",
+        "It’s the only one around in the area!\n",
+        "...That is a good reason!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Slide into Sandgem Town and check out\n",
+        "what makes it unique!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00015",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, we’ll count down Floaroma\n",
+        "Town’s best three features.\r",
+        "First, no. 3!\n",
+        "The town gate!\r",
+        "Next, no. 2!\n",
+        "Pick a Peck of Colors Flower Shop!\f",
+        "It’s a place to take your Berries!\r",
+        "And the honor of the no. 1 spot goes\n",
+        "to...\r",
+        "The floral meadow of Floaroma!\n",
+        "It’s a jungle of flowers!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Make a visit to Floaroma Town and\n",
+        "experience its charms!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00016",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, we’ll turn our eyes to Solaceon\n",
+        "Town’s best three features.\r",
+        "First, no. 3!\n",
+        "The Pokémon News Press!\f",
+        "The place for aspiring journalists!\r",
+        "Next, no. 2!\n",
+        "The caves on the outskirts of town!\r",
+        "So, what gets the honor of the town’s\n",
+        "best feature?\r",
+        "The Pokémon Day Care! \n",
+        "Where Eggs come to the lucky!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Come on down to Solaceon Town and\n",
+        "see what it has to offer!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00017",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, all our attention is on Celestic\n",
+        "Town’s best three features.\r",
+        "First, no. 3!\n",
+        "The bright red shrine in the square!\r",
+        "Next, no. 2!\n",
+        "The very history of the town!\r",
+        "The romance of the ages! Folklore!\n",
+        "The traditionally built manor!\r",
+        "Against all that, what is the town’s\n",
+        "best feature?\r",
+        "The cave with the primitive art!\n",
+        "The exotic mystery of it all!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Be sure to visit Celestic Town and take\n",
+        "in its appealing nature!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00018",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, let’s list off Jubilife City’s\n",
+        "best three features.\r",
+        "First, no. 3!\n",
+        "The Pokétch Company!\f",
+        "We love our Pokétches! We sure do!\r",
+        "Next, no. 2!\n",
+        "Jubilife TV!\r",
+        "You can find it under the massive\n",
+        "monitor screen of thrills and chills!\r",
+        "So, what’s going to grab the glory of\n",
+        "no. 1 in Jubilife?\r",
+        "The Global Terminal!\n",
+        "Who knew that warping could be so fun?\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "If you find yourself in Jubilife, you owe\n",
+        "it to yourself to check it out!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00019",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, we’ll introduce you to Canalave\n",
+        "City’s best three features.\r",
+        "First, no. 3!\n",
+        "Canalave Library!\f",
+        "An oasis of literature!\r",
+        "Next, no. 2!\n",
+        "The drawbridge!\r",
+        "The town’s centerpiece opens every\n",
+        "so often, cutting the city in half!\r",
+        "And, the honor of Canalave’s best\n",
+        "feature goes to...\r",
+        "Canalave’s pier!\n",
+        "Take me out to sea, matey!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "If you set foot in Canalave, be sure\n",
+        "to explore every nook and cranny!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00020",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, we delve into Oreburgh City and\n",
+        "its best three features.\r",
+        "First, no. 3!\n",
+        "A mechanical river of coal!\f",
+        "The mine’s conveyor-belt system!\r",
+        "Next, no. 2!\n",
+        "The Mining Museum!\f",
+        "Let’s dig up some Fossils and go!\r",
+        "So, what gets the glory of being\n",
+        "Oreburgh’s best feature?\r",
+        "The Oreburgh Mine!\n",
+        "The sweat of the working man fuels the\f",
+        "mine’s operation!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "On a visit to Oreburgh, be sure to take\n",
+        "in its many sights!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00021",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, the spotlight is on Eterna City\n",
+        "and its best three features.\r",
+        "First, no. 3!\n",
+        "The Name Rater!\r",
+        "Will changing your name change the\n",
+        "quality of your life?\r",
+        "Next, no. 2!\n",
+        "The Underground Man’s house!\r",
+        "All roads to the Underground go\n",
+        "through here!\r",
+        "The honor of Eterna’s best feature\n",
+        "goes to...\r",
+        "The Team Galactic Eterna Building!\n",
+        "The imposing structure bristling with\f",
+        "spinning, heavy metal spikes!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Pay a visit to Eterna and scope out\n",
+        "what it has to offer!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00022",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, we’ll have a gander at Hearthome\n",
+        "City’s best three features.\r",
+        "First, no. 3!\n",
+        "The Poffin House!\r",
+        "Swirl and knead your way to culinary\n",
+        "ecstasy!\r",
+        "Next, no. 2!\n",
+        "Amity Square!\r",
+        "A place for bonding and for finding\n",
+        "goodies on the ground!\r",
+        "So, what’s no. 1 in Hearthome?\n",
+        "What deserves the glory?\r",
+        "The Contest Hall!\n",
+        "Will you be tomorrow’s Pokémon idol?\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Cruise by Hearthome City and get a feel\n",
+        "for all its entertaining delights!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00023",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, Pastoria City’s best three\n",
+        "features go under our microscope.\r",
+        "First, no. 3!\n",
+        "Pastoria Observatory’s telescope!\f",
+        "Nothing can escape its probing eye!\r",
+        "Next, no. 2!\n",
+        "The Pastoria Great Marsh with the\f",
+        "not-so-quick Quick Trams!\r",
+        "The honor of Pastoria’s best feature\n",
+        "goes to...\r",
+        "CROAGUNK, Pastoria’s official mascot\n",
+        "Pokémon!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Check out Pastoria City and do a tour\n",
+        "of all its sights and sounds!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00024",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, it’s all about Veilstone City and\n",
+        "its best three features.\r",
+        "First, no. 3!\n",
+        "The Veilstone Department Store!\r",
+        "A place that fills you with happiness\n",
+        "while emptying your wallet!\r",
+        "Next, no. 2!\n",
+        "The Veilstone Game Corner!\r",
+        "It’ll suck you in like the Great Marsh\n",
+        "of Pastoria!\r",
+        "So, what’s the best thing Veilstone has\n",
+        "to offer?\r",
+        "The Galactic Veilstone Building!\n",
+        "The place with the sinister antennas!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Come out to Veilstone and get in on its\n",
+        "charm!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00025",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Today, let’s cruise on out to Sunyshore\n",
+        "City for its best three features.\r",
+        "First, no. 3!\n",
+        "The Vista Lighthouse!\r",
+        "Next, no. 2!\n",
+        "The Pokémon Rock!\f",
+        "What does it look like to you?\r",
+        "The city’s best feature?\r",
+        "The honor goes to the Sunyshore\n",
+        "Market!\r",
+        "Where the discerning Trainer comes to\n",
+        "shop!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "Do visit Sunyshore and check out all\n",
+        "of its appeal!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00026",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "On tap today, the best three features\n",
+        "of Snowpoint City!\r",
+        "First, no. 3!\n",
+        "The ferry service to who knows where!\r",
+        "Next, no. 2!\n",
+        "The Snowpoint Temple!\f",
+        "Which is filled with who knows what!\r",
+        "So, what gets the glory as the city’s\n",
+        "no. 1 feature?\r",
+        "It’s the brilliant diamond dust that can\n",
+        "be seen who knows when!\r",
+        "Well? Did you guess any of the top\n",
+        "three features correctly?\r",
+        "If you’re in Snowpoint’s vicinities,\n",
+        "you owe it to yourself to check it out!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00027",
+      "en_US": [
+        "MC: It’s time!\n",
+        "Your Town’s Best Three!\r",
+        "Where will we go next? To that town?\n",
+        "To this city?\r",
+        "Wherever you go, be like us and check\n",
+        "it out from stem to stern!\r",
+        "See you around, folks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00028",
+      "garbage": 180
+    },
+    {
+      "id": "pl_msg_00000418_00029",
+      "en_US": [
+        "Newscaster: We bring you this\n",
+        "news flash.\r",
+        "We’ve just received word that hordes\n",
+        "of {STRVAR_1 0, 1, 0} have been spotted in\f",
+        "the vicinity of {STRVAR_1 4, 0, 0}.\r",
+        "If you’ve ever had the desire to be\n",
+        "surrounded by {STRVAR_1 0, 1, 0}...\r",
+        "Or wished to make a team full of\n",
+        "{STRVAR_1 0, 1, 0}...\r",
+        "Or wanted to wear them on your\n",
+        "head...\r",
+        "If you’re a true viva {STRVAR_1 0, 1, 0}\n",
+        "sort of Trainer...\r",
+        "Then make your way to\n",
+        "{STRVAR_1 4, 0, 0} right now!\r",
+        "That concludes this news flash."
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00030",
+      "garbage": 159
+    },
+    {
+      "id": "pl_msg_00000418_00031",
+      "en_US": [
+        "Ace Trainer: Hey, how are y’all doing,\n",
+        "Poké fans?\r",
+        "Thanks for tuning in to the Matchup\n",
+        "Channel!\r",
+        "Hey, fans, you’ve all used\n",
+        "{STRVAR_1 15, 0, 0}-type moves, right?\r",
+        "They’re super effective against\n",
+        "{STRVAR_1 15, 1, 0}-type Pokémon!\r",
+        "I’m telling you, the effect is like\n",
+        "seeing me in person!\r",
+        "That’s all for today, but don’t\n",
+        "forget to send me fan mail!\r",
+        "Give it to your bird Pokémon, then\n",
+        "set them free into the skies!\r",
+        "A chance encounter with greatness--\n",
+        "that’s me--is always possible!\r",
+        "See you again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00032",
+      "en_US": [
+        "Ace Trainer: Hey, how are y’all doing,\n",
+        "Poké fans?\r",
+        "Thanks for tuning in to the Matchup\n",
+        "Channel!\r",
+        "Hey, fans, you’ve all used\n",
+        "{STRVAR_1 15, 0, 0}-type moves, right?\r",
+        "They’re, like, not much better than\n",
+        "OK against {STRVAR_1 15, 1, 0}-type Pokémon!\r",
+        "They’re plain, like other Ace\n",
+        "Trainers are plain next to me.\r",
+        "That’s all for today, but don’t\n",
+        "forget to send me fan mail!\r",
+        "Give it to your bird Pokémon, then\n",
+        "set them free into the skies!\r",
+        "A chance encounter with greatness--\n",
+        "that’s me--is always possible!\r",
+        "See you again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00033",
+      "en_US": [
+        "Ace Trainer: Hey, how are y’all doing,\n",
+        "Poké fans?\r",
+        "Thanks for tuning in to the Matchup\n",
+        "Channel!\r",
+        "Hey, fans, you’ve all used\n",
+        "{STRVAR_1 15, 0, 0}-type moves, right?\r",
+        "They’re not very effective against\n",
+        "{STRVAR_1 15, 1, 0}-type Pokémon!\r",
+        "In fact, they’re wimpy like the many\n",
+        "wannabe Trainers that copy me!\r",
+        "That’s all for today, but don’t\n",
+        "forget to send me fan mail!\r",
+        "Give it to your bird Pokémon, then\n",
+        "set them free into the skies!\r",
+        "A chance encounter with greatness--\n",
+        "that’s me--is always possible!\r",
+        "See you again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00034",
+      "en_US": [
+        "Ace Trainer: Hey, how are y’all doing,\n",
+        "Poké fans?\r",
+        "Thanks for tuning in to the Matchup\n",
+        "Channel!\r",
+        "Hey, fans, you’ve all used\n",
+        "{STRVAR_1 15, 0, 0}-type moves, right?\r",
+        "They’re absolutely hopeless against\n",
+        "{STRVAR_1 15, 1, 0}-type Pokémon!\r",
+        "It’s a totally wasted effort, like the\n",
+        "way other Trainers try to mess\f",
+        "with me out of jealousy!\r",
+        "That’s all for today, but don’t\n",
+        "forget to send me fan mail!\r",
+        "Give it to your bird Pokémon, then\n",
+        "set them free into the skies!\r",
+        "A chance encounter with greatness--\n",
+        "that’s me--is always possible!\r",
+        "See you again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00035",
+      "garbage": 241
+    },
+    {
+      "id": "pl_msg_00000418_00036",
+      "en_US": [
+        "Berry Prof: Say hey, hey, how are\n",
+        "your Berries growing today?\r",
+        "Say hey, Berry fans, how goes\n",
+        "it today? OK?\r",
+        "Enough fooling about, let me roll it\n",
+        "right out, today’s Berry Lookout!\r",
+        "{STRVAR_1 4, 0, 0} is where I went,\n",
+        "hoping to find Berries by scent!\r",
+        "And there I found them!\r",
+        "My journey was rewarded!\r",
+        "My heart raced!\n",
+        "I felt enfevered!\r",
+        "But there I left them.\n",
+        "As gifts for you!\r",
+        "Say hey! Check your Berries today!\n",
+        "Thanks, everyone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00037",
+      "en_US": [
+        "Berry Prof: Say hey, hey, how do\n",
+        "your Berries grow today?\r",
+        "Say hey, Berry fans, how goes\n",
+        "it today? OK?\r",
+        "Enough fooling around, let me lay it\n",
+        "right out, today’s Berry Lookout!\r",
+        "{STRVAR_1 4, 0, 0} is where I went,\n",
+        "hoping to find Berries by scent!\r",
+        "But!\n",
+        "No Berries there were...\r",
+        "Still, there is hope!\n",
+        "For flowers were in bloom.\r",
+        "The aroma tickled and danced in\n",
+        "my nose!\r",
+        "Flowers bloomed in the cockles of\n",
+        "my heart!\r",
+        "I grew heartened, for the Berries\n",
+        "they will come, they will come!\r",
+        "Say hey! Check your Berries today!\n",
+        "Thanks, everyone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00038",
+      "en_US": [
+        "Berry Prof: Say hey, hey, how do\n",
+        "your Berries grow today?\r",
+        "Say hey, Berry fans, how goes\n",
+        "it today? OK?\r",
+        "Enough fooling around, let me lay it\n",
+        "right out, today’s Berry Lookout!\r",
+        "{STRVAR_1 4, 0, 0} is where I went,\n",
+        "hoping to find Berries by scent!\r",
+        "But!\n",
+        "No Berries there were...\r",
+        "Still, all is not lost!\r",
+        "The plant’s stem grows thick, and\n",
+        "with it my hope!\r",
+        "I surely look forward to seeing\n",
+        "its flowers in bloom!\r",
+        "Say hey! Check your Berries today!\n",
+        "Thanks, everyone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00039",
+      "en_US": [
+        "Berry Prof: Say hey, hey, how do\n",
+        "your Berries grow today?\r",
+        "Say hey, Berry fans, how goes\n",
+        "it today? OK?\r",
+        "Enough fooling around, let me lay it\n",
+        "right out, today’s Berry Lookout!\r",
+        "{STRVAR_1 4, 0, 0} is where I went,\n",
+        "hoping to find Berries by scent!\r",
+        "But!\n",
+        "No Berries there were...\r",
+        "Still, all is not lost!\r",
+        "The plant’s sprout has burst up!\n",
+        "It’s a celebration of life!\r",
+        "All of you watching, don’t trample\n",
+        "it under!\r",
+        "Say hey! Check your Berries today!\n",
+        "Thanks, everyone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00040",
+      "en_US": [
+        "Berry Prof: Say hey, hey, how do\n",
+        "your Berries grow today?\r",
+        "Say hey, Berry fans, how goes\n",
+        "it today? OK?\r",
+        "Enough fooling around, let me lay it\n",
+        "right out, today’s Berry Lookout!\r",
+        "{STRVAR_1 4, 0, 0} is where I went,\n",
+        "hoping to find Berries by scent!\r",
+        "But!\n",
+        "No Berries there were...\r",
+        "My time had been wasted!\n",
+        "I had traveled in vain!\r",
+        "My excitement shriveled and withered\n",
+        "away...\r",
+        "But it must mean someone’s happy\n",
+        "for having picked Berries!\r",
+        "Say hey! Plant your Berries today!\n",
+        "Thanks, everyone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00041",
+      "garbage": 172
+    },
+    {
+      "id": "pl_msg_00000418_00042",
+      "garbage": 181
+    },
+    {
+      "id": "pl_msg_00000418_00043",
+      "en_US": [
+        "Scientist: It’s the Pokémon\n",
+        "Research Corner!\r",
+        "Today, we’ll examine a wild Pokémon\n",
+        "live in the field.\r",
+        "Ah, here we go, a wild {STRVAR_1 0, 0, 0}\n",
+        "conveniently just came along...\r",
+        "Oh? It’s holding something!\n",
+        "Let’s roll on up and take a look!\r",
+        "Hi, there!\n",
+        "Can I take a look...\r",
+        "Yow! Ouch!\n",
+        "It scratched my finger!\r",
+        "But OK, we now know that wild\n",
+        "{STRVAR_1 0, 0, 0} have the possibility\f",
+        "of holding the item {STRVAR_1 8, 1, 0}.\r",
+        "Thank you, {STRVAR_1 0, 0, 0}, here’s your\n",
+        "{STRVAR_1 8, 1, 0} back...\r",
+        "Aiyaaah! Ow, ow, ow!\n",
+        "Scratched me again!\r",
+        "As usual, I got a Pokémon riled up\n",
+        "at me!\r",
+        "It’s time for me to go!\n",
+        "So long!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00044",
+      "en_US": [
+        "Rich Boy: My daddy’s a big shot at the\n",
+        "TV station, so I get to be on TV.\r",
+        "I’ll tell you about the nature of\n",
+        "Pokémon.\r",
+        "A Pokémon with the {STRVAR_1 7, 0, 0} nature\n",
+        "will be awesome for its {STRVAR_1 13, 1, 0} stat.\r",
+        "I’m not lying!\r",
+        "I raised a hundred Pokémon with the\n",
+        "{STRVAR_1 7, 0, 0} nature and confirmed it!\r",
+        "Also, I think I have a cheerful nature.\n",
+        "See ya."
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00045",
+      "en_US": [
+        "Rich Boy: My daddy’s a big shot at the\n",
+        "TV station, so I get to be on TV.\r",
+        "I’ll tell you about the nature of\n",
+        "Pokémon.\r",
+        "A Pokémon with the {STRVAR_1 7, 0, 0} nature\n",
+        "likes {STRVAR_1 16, 2, 0} Poffins.\r",
+        "I’m not lying!\r",
+        "I bought a hundred {STRVAR_1 16, 2, 0}\n",
+        "Poffins and tested it myself.\r",
+        "Also, I like hot milk.\n",
+        "See ya."
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00046",
+      "en_US": [
+        "Rich Boy: My daddy’s a big shot at the\n",
+        "TV station, so I get to be on TV.\r",
+        "I’ll tell you about the nature of\n",
+        "Pokémon.\r",
+        "A Pokémon with the {STRVAR_1 7, 0, 0} nature\n",
+        "doesn’t have any likes or dislikes about\f",
+        "Poffin flavors.\r",
+        "I’m not lying!\r",
+        "I bought a hundred Poffins and tested\n",
+        "it myself.\r",
+        "Also, I like hot milk.\n",
+        "See ya."
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00047",
+      "garbage": 177
+    },
+    {
+      "id": "pl_msg_00000418_00048",
+      "garbage": 471
+    },
+    {
+      "id": "pl_msg_00000418_00049",
+      "en_US": [
+        "Newscaster: We bring you this\n",
+        "news flash.\r",
+        "We’ve just received word that\n",
+        "{STRVAR_1 0, 1, 0} has been spotted in the\f",
+        "vicinity of {STRVAR_1 4, 0, 0}.\r",
+        "If you’ve ever had the desire to see\n",
+        "{STRVAR_1 0, 1, 0}...\r",
+        "Or befriend {STRVAR_1 0, 1, 0}...\r",
+        "If you’re willing to forego bathing\n",
+        "just for the chance of seeing one...\r",
+        "If even a handshake with {STRVAR_1 0, 1, 0}\n",
+        "will do...\r",
+        "Then hurry! Make your way to\n",
+        "{STRVAR_1 4, 0, 0} right now!\r",
+        "That concludes this news flash."
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00050",
+      "garbage": 286
+    },
+    {
+      "id": "pl_msg_00000418_00051",
+      "garbage": 307
+    },
+    {
+      "id": "pl_msg_00000418_00052",
+      "en_US": [
+        "Reporter: I’m bringing you this report\n",
+        "from the second floor of Jubilife TV.\r",
+        "I’m here to examine a recently added\n",
+        "photo titled “{STRVAR_1 28, 1, 0},”\f",
+        "which belongs to {STRVAR_1 3, 0, 0}.\r",
+        "Oh, is this it here?\n",
+        "Let’s see...\r",
+        "The title “{STRVAR_1 28, 1, 0}” does\n",
+        "sound fitting for this photo...\r",
+        "But one can’t help but think perhaps\n",
+        "a better title could have been found.\r",
+        "All controversy aside, it’s certainly\n",
+        "worth seeing. Please do visit!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000418_00053",
+      "garbage": 205
+    },
+    {
+      "id": "pl_msg_00000418_00054",
+      "garbage": 201
+    },
+    {
+      "id": "pl_msg_00000418_00055",
+      "garbage": 264
+    }
+  ]
+}

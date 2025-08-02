@@ -1,0 +1,38 @@
+{
+  "key": 17479,
+  "messages": [
+    {
+      "id": "pl_msg_00000051_00000",
+      "en_US": [
+        "Wi: We come from faraway land.\n",
+        "I come see the Pokémon I trade.\r",
+        "I worry if it growing properly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000051_00001",
+      "en_US": [
+        "Fi: I like look at Pokémon I get\n",
+        "from friend in trade.\r",
+        "It make me remember my friend!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000051_00002",
+      "en_US": [
+        "You can trade Pokémon with people\n",
+        "around the world on Nintendo WFC...\r",
+        "Just hearing that gets my heart\n",
+        "racing. Such exciting times!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000051_00003",
+      "en_US": [
+        "When you connect with people on\n",
+        "Nintendo WFC, it’s hard to\f",
+        "tell if the world’s big or small."
+      ]
+    }
+  ]
+}

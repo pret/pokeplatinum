@@ -1,0 +1,170 @@
+{
+  "key": 13315,
+  "messages": [
+    {
+      "id": "pl_msg_00000136_00000",
+      "en_US": [
+        "Welcome to the Great Marsh, the home\n",
+        "of Pastoria’s Safari Game!\r",
+        "All you can catch for just $500!\n",
+        "Would you like to play a Safari Game?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00001",
+      "en_US": "That will be $500, please.\r"
+    },
+    {
+      "id": "pl_msg_00000136_00002",
+      "en_US": "Here are your Safari Balls.\r"
+    },
+    {
+      "id": "pl_msg_00000136_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "30 Safari Balls.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00004",
+      "en_US": [
+        "We’ll let you know when your game\n",
+        "is over.\r",
+        "Until then, enjoy yourself, please!\n",
+        "Off you go on your wild excursion!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00005",
+      "en_US": [
+        "OK.\n",
+        "Please come again!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00006",
+      "en_US": [
+        "You don’t have enough money.\n",
+        "Sorry.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00007",
+      "en_US": [
+        "I’m sorry, you don’t have enough\n",
+        "room to catch any more Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00008",
+      "en_US": [
+        "Welcome to the Great Marsh, the home\n",
+        "of Pastoria’s Safari Game!\r",
+        "Recently, there have been sightings\n",
+        "of Pokémon that are new to the area.\r",
+        "Which brings us to...\r",
+        "All you can catch for just $500!\n",
+        "Would you like to play a Safari Game?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00009",
+      "en_US": [
+        "You still have time left. Are you sure\n",
+        "you want to exit the Great Marsh?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00010",
+      "en_US": [
+        "OK.\r",
+        "I’ll relieve you of your remaining\n",
+        "Safari Balls.\r",
+        "Thank you for playing.\n",
+        "We hope to see you again.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00011",
+      "en_US": [
+        "Please enjoy the rest of your wild\n",
+        "Safari Game adventure!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00012",
+      "en_US": [
+        "Welcome to the Great Marsh!\n",
+        "Is this your first Safari Game?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00013",
+      "en_US": [
+        "When you enter the Great Marsh, you\n",
+        "start with 30 Safari Balls.\r",
+        "That’s the only kind of Ball you’re\n",
+        "allowed to use in the Safari Game.\r",
+        "The game is over when you run out of\n",
+        "Safari Balls, or when you’ve walked\f",
+        "500 steps.\r",
+        "Please do enjoy the untamed nature\n",
+        "of the Great Marsh!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00014",
+      "en_US": [
+        "I see.\n",
+        "Enjoy your Safari Game!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00015",
+      "en_US": [
+        "Howdy.\n",
+        "You’re playing the Safari Game?\r",
+        "How would you like to try my game out\n",
+        "at the same time?\r",
+        "The rule--yep, there’s only one--is\n",
+        "real simple.\r",
+        "All you have to do is capture five or\n",
+        "more Pokémon in one Safari Game.\r",
+        "If you can do that, I’ll give you the\n",
+        "Pokétch app Matchup Checker."
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00016",
+      "garbage": 63
+    },
+    {
+      "id": "pl_msg_00000136_00017",
+      "garbage": 117
+    },
+    {
+      "id": "pl_msg_00000136_00018",
+      "en_US": [
+        "So, how many Pokémon did you catch in\n",
+        "your Safari Game? At least five?\r",
+        "Ayup! You’ve done that all right!\n",
+        "Isn’t that something!\r",
+        "Well, here you are, then.\n",
+        "The Pokétch app Matchup Checker.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00019",
+      "en_US": [
+        "The Matchup Checker app figures out\n",
+        "how Pokémon types match up.\r",
+        "It won’t help tell us how we match up\n",
+        "as friends, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000136_00020",
+      "garbage": 66
+    }
+  ]
+}

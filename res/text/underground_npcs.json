@@ -1,0 +1,439 @@
+{
+  "key": 10232,
+  "messages": [
+    {
+      "id": "pl_msg_00000636_00000",
+      "en_US": [
+        "You’ve got a Sphere or two?\n",
+        "If you do, I’ll trade you something."
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00001",
+      "en_US": [
+        "Which Sphere will you trade me for\n",
+        "my {STRVAR_1 25, 2, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00002",
+      "en_US": [
+        "All right!\n",
+        "Let’s do this trade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00003",
+      "en_US": [
+        "Oh, now wait a second!\n",
+        "You don’t have any room for this!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00004",
+      "en_US": "That’s not the right kind of Sphere!"
+    },
+    {
+      "id": "pl_msg_00000636_00005",
+      "en_US": [
+        "Hmm...\n",
+        "No, this Sphere’s not big enough."
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00006",
+      "en_US": [
+        "The {STRVAR_1 25, 2, 0}\n",
+        "was obtained!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00007",
+      "en_US": [
+        "You obtained a {STRVAR_1 25, 2, 0},\n",
+        "size {STRVAR_1 51, 6, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00008",
+      "en_US": "Do you need anything else?"
+    },
+    {
+      "id": "pl_msg_00000636_00009",
+      "en_US": "I’ll be seeing you, then!"
+    },
+    {
+      "id": "pl_msg_00000636_00010",
+      "en_US": [
+        "You’ll trade your {STRVAR_1 25, 2, 0}\n",
+        "for my {STRVAR_1 25, 4, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00011",
+      "en_US": [
+        "All right!\n",
+        "Let’s trade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00012",
+      "en_US": [
+        "Oh, now wait a second! You don’t\n",
+        "have room for another Sphere!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00013",
+      "en_US": "GET TRAP"
+    },
+    {
+      "id": "pl_msg_00000636_00014",
+      "en_US": "GIVE TRAP"
+    },
+    {
+      "id": "pl_msg_00000636_00015",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000636_00016",
+      "en_US": "GET GOODS"
+    },
+    {
+      "id": "pl_msg_00000636_00017",
+      "en_US": "GIVE GOODS"
+    },
+    {
+      "id": "pl_msg_00000636_00018",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000636_00019",
+      "en_US": [
+        "Spheres\n",
+        " on hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00020",
+      "en_US": [
+        "Traps on\n",
+        " hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00021",
+      "en_US": [
+        "Goods on\n",
+        " hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00022",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000636_00023",
+      "en_US": "Required Sphere"
+    },
+    {
+      "id": "pl_msg_00000636_00024",
+      "en_US": "Offered Sphere"
+    },
+    {
+      "id": "pl_msg_00000636_00025",
+      "en_US": "{STRVAR_1 25, 2, 0} {STRVAR_1 51, 6, 0}"
+    },
+    {
+      "id": "pl_msg_00000636_00026",
+      "en_US": "NOT FOR SALE"
+    },
+    {
+      "id": "pl_msg_00000636_00027",
+      "en_US": [
+        "You have any treasures? I’ll trade\n",
+        "you some Spheres for them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00028",
+      "en_US": "GIVE TREASURES"
+    },
+    {
+      "id": "pl_msg_00000636_00029",
+      "en_US": [
+        "Treasures\n",
+        " on hand"
+      ]
+    },
+    {
+      "id": "pl_msg_00000636_00030",
+      "garbage": 34
+    },
+    {
+      "id": "pl_msg_00000636_00031",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000636_00032",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000636_00033",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000636_00034",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000636_00035",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000636_00036",
+      "garbage": 64
+    },
+    {
+      "id": "pl_msg_00000636_00037",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000636_00038",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00039",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000636_00040",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00041",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00042",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000636_00043",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000636_00044",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000636_00045",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000636_00046",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000636_00047",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000636_00048",
+      "garbage": 56
+    },
+    {
+      "id": "pl_msg_00000636_00049",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000636_00050",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00051",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000636_00052",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00053",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00054",
+      "garbage": 37
+    },
+    {
+      "id": "pl_msg_00000636_00055",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000636_00056",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000636_00057",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000636_00058",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000636_00059",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000636_00060",
+      "garbage": 63
+    },
+    {
+      "id": "pl_msg_00000636_00061",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000636_00062",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00063",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000636_00064",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00065",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000636_00066",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000636_00067",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000636_00068",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000636_00069",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000636_00070",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000636_00071",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000636_00072",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000636_00073",
+      "garbage": 52
+    },
+    {
+      "id": "pl_msg_00000636_00074",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000636_00075",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000636_00076",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000636_00077",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000636_00078",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000636_00079",
+      "garbage": 50
+    },
+    {
+      "id": "pl_msg_00000636_00080",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000636_00081",
+      "garbage": 43
+    },
+    {
+      "id": "pl_msg_00000636_00082",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000636_00083",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000636_00084",
+      "garbage": 33
+    },
+    {
+      "id": "pl_msg_00000636_00085",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000636_00086",
+      "garbage": 27
+    },
+    {
+      "id": "pl_msg_00000636_00087",
+      "garbage": 27
+    },
+    {
+      "id": "pl_msg_00000636_00088",
+      "garbage": 36
+    },
+    {
+      "id": "pl_msg_00000636_00089",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000636_00090",
+      "garbage": 42
+    },
+    {
+      "id": "pl_msg_00000636_00091",
+      "en_US": [
+        "Roark: Hey! {STRVAR_1 3, 0, 0}!\n",
+        "Is this maybe your first time here?\r",
+        "Welcome to Sinnoh’s Underground!\r",
+        "Huh? Where is this, you ask?\n",
+        "Doesn’t the Radar make it obvious?\r",
+        "This is a giant underground network\n",
+        "of passages underneath Sinnoh.\r",
+        "Huh? What am I doing down in this\n",
+        "expanse of a place?\r",
+        "That’s kind of hard to answer.\r",
+        "I mean, you can do pretty much\n",
+        "anything you want down here.\r",
+        "For instance, you can dig up Treasure,\n",
+        "Spheres, and make a Secret Base.\r",
+        "You can play with your friends down\n",
+        "here, too.\r",
+        "You should talk to the Underground\n",
+        "Man in Eterna City.\r",
+        "I have to get going now.\n",
+        "I’ll see you around!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "key": 37914,
+  "messages": [
+    {
+      "id": "pl_msg_00000099_00000",
+      "en_US": [
+        "I gathered up a lot of Berries, so\n",
+        "I’m trading them in for Accessories.\r",
+        "Next stop, Hearthome City!\n",
+        "I’m taking the Contest challenge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000099_00001",
+      "en_US": [
+        "Badges from Gyms, or Contest wins...\n",
+        "There’s more than just one way to\r",
+        "be a winner, it seems.\n",
+        "Here’s hoping you’ll find something\r",
+        "in which you can be the victor."
+      ]
+    },
+    {
+      "id": "pl_msg_00000099_00002",
+      "en_US": [
+        "Hahaha! I’ve got you now!\n",
+        "I’m gonna take your Flag!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000099_00003",
+      "en_US": [
+        "You can’t catch me!\n",
+        "I set some Traps!"
+      ]
+    }
+  ]
+}

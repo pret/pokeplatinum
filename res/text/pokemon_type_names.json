@@ -1,0 +1,77 @@
+{
+  "key": 15241,
+  "messages": [
+    {
+      "id": "pl_msg_00000624_00000",
+      "en_US": "NORMAL"
+    },
+    {
+      "id": "pl_msg_00000624_00001",
+      "en_US": "FIGHTING"
+    },
+    {
+      "id": "pl_msg_00000624_00002",
+      "en_US": "FLYING"
+    },
+    {
+      "id": "pl_msg_00000624_00003",
+      "en_US": "POISON"
+    },
+    {
+      "id": "pl_msg_00000624_00004",
+      "en_US": "GROUND"
+    },
+    {
+      "id": "pl_msg_00000624_00005",
+      "en_US": "ROCK"
+    },
+    {
+      "id": "pl_msg_00000624_00006",
+      "en_US": "BUG"
+    },
+    {
+      "id": "pl_msg_00000624_00007",
+      "en_US": "GHOST"
+    },
+    {
+      "id": "pl_msg_00000624_00008",
+      "en_US": "STEEL"
+    },
+    {
+      "id": "pl_msg_00000624_00009",
+      "en_US": "???"
+    },
+    {
+      "id": "pl_msg_00000624_00010",
+      "en_US": "FIRE"
+    },
+    {
+      "id": "pl_msg_00000624_00011",
+      "en_US": "WATER"
+    },
+    {
+      "id": "pl_msg_00000624_00012",
+      "en_US": "GRASS"
+    },
+    {
+      "id": "pl_msg_00000624_00013",
+      "en_US": "ELECTRIC"
+    },
+    {
+      "id": "pl_msg_00000624_00014",
+      "en_US": "PSYCHIC"
+    },
+    {
+      "id": "pl_msg_00000624_00015",
+      "en_US": "ICE"
+    },
+    {
+      "id": "pl_msg_00000624_00016",
+      "en_US": "DRAGON"
+    },
+    {
+      "id": "pl_msg_00000624_00017",
+      "en_US": "DARK"
+    }
+  ]
+}

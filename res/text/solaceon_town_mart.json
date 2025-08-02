@@ -1,0 +1,21 @@
+{
+  "key": 53200,
+  "messages": [
+    {
+      "id": "pl_msg_00000576_00000",
+      "en_US": [
+        "Someone gave me a Seal Case.\n",
+        "Now, I’m off to a Pokémon Center.\r",
+        "You see, you need to use a PC to put\n",
+        "Seals on your Poké Balls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000576_00001",
+      "en_US": [
+        "If you’re not totally happy with Repel,\n",
+        "consider moving up to a Super Repel."
+      ]
+    }
+  ]
+}

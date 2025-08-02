@@ -125,6 +125,7 @@
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
 	<row id="MigrateFromGBA_Text_SafelyMigratedToPlatinum" index="29">
+		<attribute name="window_context_name">used</attribute>
 		<language name="English">Six Pokémon safely migrated to\nthe Pokémon Platinum Game Card.</language>
 	</row>
 	<row id="MigrateFromGBA_Text_SafelyMigratedToPearl" index="30">

@@ -1,0 +1,301 @@
+{
+  "key": 42019,
+  "messages": [
+    {
+      "id": "AmitySquare_Text_PermittedList",
+      "en_US": [
+        "In Amity Square, you may go for\n",
+        "a stroll with a cute Pokémon.\r",
+        "The permitted Pokémon are: \n",
+        "TURTWIG,{CURSOR_X 70}GROTLE,{CURSOR_X 140}TORTERRA,\f",
+        "CHIMCHAR,{CURSOR_X 70}MONFERNO,{CURSOR_X 140}INFERNAPE,\f",
+        "PIPLUP,{CURSOR_X 70}PRINPLUP,{CURSOR_X 140}EMPOLEON,\f",
+        "PIKACHU,{CURSOR_X 70}CLEFAIRY,{CURSOR_X 140}PSYDUCK,\f",
+        "PACHIRISU,{CURSOR_X 70}HAPPINY,{CURSOR_X 140}BUNEARY,\f",
+        "and DRIFLOON!\r",
+        "Please do come back with one!\r"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PermittedListNationalDex",
+      "en_US": [
+        "In Amity Square, you may go for\n",
+        "a stroll with a cute Pokémon.\r",
+        "The permitted Pokémon are: \n",
+        "TURTWIG,{CURSOR_X 70}GROTLE,{CURSOR_X 140}TORTERRA,\f",
+        "CHIMCHAR,{CURSOR_X 70}MONFERNO,{CURSOR_X 140}INFERNAPE,\f",
+        "PIPLUP,{CURSOR_X 70}PRINPLUP,{CURSOR_X 140}EMPOLEON,\f",
+        "PIKACHU,{CURSOR_X 70}CLEFAIRY,{CURSOR_X 140}PSYDUCK,\f",
+        "PACHIRISU,{CURSOR_X 70}HAPPINY,{CURSOR_X 140}BUNEARY,\f",
+        "DRIFLOON,{CURSOR_X 70}JIGGLYPUFF,{CURSOR_X 140}TORCHIC,\f",
+        "SKITTY,{CURSOR_X 70}and SHROOMISH!\r",
+        "Please do come back with one!\r"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_OkWouldYouLikeToGoForAStrollWithYourPokemon",
+      "en_US": [
+        "In Amity Square, you may go for\n",
+        "a stroll with a cute Pokémon.\r",
+        "OK? Would you like to go for\n",
+        "a stroll with your {STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PleaseDoEnjoyYourTimeTogether",
+      "en_US": [
+        "Please do enjoy your time together,\n",
+        "just the two of you! OK?\r"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_OhOkThenYouWouldRatherGoForAStrollWithYourPokemon",
+      "en_US": [
+        "Oh, OK? Then you would rather go\n",
+        "for a stroll with your {STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_ISeePleaseComeBack",
+      "en_US": [
+        "I see. Please come back if you happen\n",
+        "to have a change of heart. OK?\r"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_AreYouFeelingRefreshedPleaseComeAgainOk",
+      "en_US": [
+        "Are you feeling refreshed?\n",
+        "Please come again! OK?\r"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_YourPokemonLooksQuitePleasedFollowingYouAround",
+      "en_US": [
+        "Your {STRVAR_1 1, 0, 0} looks quite pleased\n",
+        "following you around.\r",
+        "It really is adorable!"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_OkTheOwnerOfAmitySquare",
+      "en_US": [
+        "OK? The owner of Amity Square?\r",
+        "I’m sure the owner is somewhere on\n",
+        "the grounds.\r",
+        "Seeing Trainers with their Pokémon\n",
+        "makes our owner happy."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_YouMayFindUsefulItemsOnTheGround",
+      "en_US": [
+        "You may find useful items on the ground.\r",
+        "They’re quite small, however.\n",
+        "Your Pokémon may find them.\r",
+        "You should try talking to your\n",
+        "Pokémon every so often. OK?"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_AreYouEnjoyingYourStroll",
+      "en_US": [
+        "Are you enjoying your stroll?\r",
+        "You should try talking to your\n",
+        "Pokémon. It will be happy you did."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_ItMakesMeHappySeeingAllTheCutePokemon",
+      "en_US": [
+        "It makes me happy seeing all the\n",
+        "cute Pokémon and their kind\f",
+        "Trainers."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_YouMaySpendAllTheTimeYouLikeInAmitySquare",
+      "en_US": [
+        "You may spend all the time you\n",
+        "like in Amity Square. OK?"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonIsHappilyKeepingUp",
+      "en_US": "{STRVAR_1 1, 0, 0} is happily keeping up."
+    },
+    {
+      "id": "AmitySquare_Text_PokemonAppearsToBeVeryHappy",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} appears to be very\n",
+        "happy."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonAppearsToBeFeelingGood",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} appears to be feeling\n",
+        "good."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonIsLookingEndearinglyAtYou",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is looking endearingly\n",
+        "at you."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonIsPickingAtTheGroundForSomeReason",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is picking at the ground\n",
+        "for some reason..."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonAlmostTripped",
+      "en_US": "{STRVAR_1 1, 0, 0} almost tripped!"
+    },
+    {
+      "id": "AmitySquare_Text_PokemonIsSkippingHappily",
+      "en_US": "{STRVAR_1 1, 0, 0} is skipping happily."
+    },
+    {
+      "id": "AmitySquare_Text_PokemonSeemsToBeSoHappyItCantKeepStill",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} seems to be so happy\n",
+        "it can’t keep still."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonSeemsToBeEnjoyingTheWalk",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} seems to be enjoying\n",
+        "the walk."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_OhPokemonIsHoldingSomething",
+      "en_US": [
+        "Oh?\n",
+        "{STRVAR_1 1, 0, 0} is holding something!\r"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonIsFollowingAlongRelaxedAndCasual",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is following along, relaxed\n",
+        "and casual."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PokemonSnuggledUpClose",
+      "en_US": "{STRVAR_1 1, 0, 0} snuggled up close."
+    },
+    {
+      "id": "AmitySquare_Text_PokemonPretendedToTrip",
+      "en_US": "{STRVAR_1 1, 0, 0} pretended to trip."
+    },
+    {
+      "id": "AmitySquare_Text_PokemonGaveAContentedYawn",
+      "en_US": "{STRVAR_1 1, 0, 0} gave a contented yawn."
+    },
+    {
+      "id": "AmitySquare_Text_PokemonIsSniffingAtTheGrass",
+      "en_US": "{STRVAR_1 1, 0, 0} is sniffing at the grass."
+    },
+    {
+      "id": "AmitySquare_Text_TheseRuinsAreFromALongLongTimeAgo",
+      "en_US": [
+        "These ruins are from a long, long\n",
+        "time ago."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_DrifloonFoon",
+      "en_US": "DRIFLOON: Foon!"
+    },
+    {
+      "id": "AmitySquare_Text_IComeHereWithMyHappinyEverySingleDay",
+      "en_US": [
+        "I come here with my HAPPINY\n",
+        "every single day!\r",
+        "I can let it run free without any\n",
+        "worries at all."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_HappinyAppearsToBeDrowsy",
+      "en_US": "HAPPINY appears to be drowsy."
+    },
+    {
+      "id": "AmitySquare_Text_OohIJustCantBelieveIt",
+      "en_US": [
+        "Ooh, I just can’t believe it!\n",
+        "I’m so overjoyed with my PIKACHU!\r",
+        "Wherever I go, my PIKACHU follows\n",
+        "me without hesitation!\r",
+        "Ahaha! It’s just the two of us!\n",
+        "Woohoo!"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PikachuPikkaPika",
+      "en_US": "PIKACHU: Pikka pika!"
+    },
+    {
+      "id": "AmitySquare_Text_YouShouldTalkToYourPokemon",
+      "en_US": [
+        "You should talk to your Pokémon.\n",
+        "It can occasionally find things."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_ThereIsSomethingShinyInClefairysHands",
+      "en_US": [
+        "There is something shiny in CLEFAIRY’s\n",
+        "hands..."
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_HelloHowDoYouDoILoveThisPark",
+      "en_US": [
+        "Hello, how do you do!\r",
+        "I love this park.\n",
+        "It’s why I try to keep it neat and tidy.\r",
+        "I don’t mind the cleaning at all.\n",
+        "I find all sorts of items doing so.\r",
+        "It’s quite fun, even exciting.\n",
+        "Oh, I know.\r"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_DoYouKnowTheItemIFoundSome",
+      "en_US": [
+        "Do you know the item {STRVAR_1 8, 0, 0}?\n",
+        "I found some. Would you like them?"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_OhItsNoProblemToMe",
+      "en_US": [
+        "Oh, it’s no problem to me.\n",
+        "They’re yours if you want, OK?"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_HahahahPerhapsIllSeeYouAgainTomorrow",
+      "en_US": [
+        "Hahahah!\n",
+        "Perhaps I’ll see you again tomorrow!"
+      ]
+    },
+    {
+      "id": "AmitySquare_Text_PlayerReceivedItem",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "5 {STRVAR_1 8, 1, 0}!"
+      ]
+    }
+  ]
+}

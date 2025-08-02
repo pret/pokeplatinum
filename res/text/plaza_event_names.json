@@ -1,0 +1,17 @@
+{
+  "key": 45494,
+  "messages": [
+    {
+      "id": "pl_msg_00000649_00000",
+      "en_US": "Lighting Event"
+    },
+    {
+      "id": "pl_msg_00000649_00001",
+      "en_US": "Fireworks Event"
+    },
+    {
+      "id": "pl_msg_00000649_00002",
+      "en_US": "Pokémon Parade"
+    }
+  ]
+}

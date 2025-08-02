@@ -1,0 +1,735 @@
+{
+  "key": 3393,
+  "messages": [
+    {
+      "id": "pl_msg_00000353_00000",
+      "en_US": "There appears to be a problem..."
+    },
+    {
+      "id": "pl_msg_00000353_00001",
+      "en_US": [
+        "Waiting for {STRVAR_1 3, 1, 0}’s\n",
+        "response..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00002",
+      "en_US": [
+        "Asking {STRVAR_1 3, 1, 0} to do member\n",
+        "registration. Please wait."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00003",
+      "en_US": "Do you want to leave the group?"
+    },
+    {
+      "id": "pl_msg_00000353_00004",
+      "en_US": "{STRVAR_1 3, 1, 0} replied, “OK.”"
+    },
+    {
+      "id": "pl_msg_00000353_00005",
+      "en_US": "{STRVAR_1 3, 1, 0} refused...\r"
+    },
+    {
+      "id": "pl_msg_00000353_00006",
+      "en_US": "You have left the group."
+    },
+    {
+      "id": "pl_msg_00000353_00007",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000353_00008",
+      "en_US": [
+        "Single Battle!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00009",
+      "en_US": [
+        "Double Battle!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00010",
+      "en_US": [
+        "Multi Battle!\n",
+        "Awaiting contact from your friends."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00011",
+      "en_US": [
+        "Mix Battle!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00012",
+      "en_US": [
+        "When the group is ready:\n",
+        "A Button: Proceed   B Button: Cancel"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00013",
+      "en_US": [
+        "Record Corner!\n",
+        "Awaiting contact from your friend(s)."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00014",
+      "en_US": [
+        "When the group is ready:\n",
+        "A Button: Proceed   B Button: Cancel"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00015",
+      "en_US": [
+        "Battle Tower!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00016",
+      "en_US": [
+        "Battle Factory--Level 50!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00017",
+      "en_US": [
+        "Battle Factory--Open Level!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00018",
+      "en_US": [
+        "Battle Hall!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00019",
+      "en_US": [
+        "Battle Castle!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00020",
+      "en_US": [
+        "Battle Arcade!\n",
+        "Awaiting contact from your friend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00021",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Would you like to trade?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00022",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Start a Single Battle?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00023",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Start a Double Battle?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00024",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Start a Mix Battle?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00025",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Let {STRVAR_1 3, 1, 0} join your group?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00026",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Take the Battle Tower challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00027",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Start the Battle Factory challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00028",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Start the Battle Hall challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00029",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Start the Battle Castle challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00030",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Start the Battle Arcade challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00031",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0} has contacted you.\n",
+        "Let {STRVAR_1 3, 1, 0} join your group?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00032",
+      "en_US": [
+        "Multi Battle!\n",
+        "Is this group OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00033",
+      "en_US": "Is this group OK?"
+    },
+    {
+      "id": "pl_msg_00000353_00034",
+      "en_US": [
+        "Record Corner!\n",
+        "Is this group OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00035",
+      "en_US": [
+        "Contest!\n",
+        "Is this group OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00036",
+      "en_US": [
+        "Cancel a Multi Battle involving this\n",
+        "group?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00037",
+      "en_US": "Cancel the cooking session?"
+    },
+    {
+      "id": "pl_msg_00000353_00038",
+      "en_US": "Cancel mixing records with this group?"
+    },
+    {
+      "id": "pl_msg_00000353_00039",
+      "en_US": [
+        "Cancel holding a Contest with this\n",
+        "group?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00040",
+      "en_US": [
+        "Choose the friend that you want to\n",
+        "trade Pokémon with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00041",
+      "en_US": [
+        "Choose the Single Battle you would\n",
+        "like to join."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00042",
+      "en_US": [
+        "Choose the Double Battle you would\n",
+        "like to join."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00043",
+      "en_US": [
+        "Choose the Multi Battle you would\n",
+        "like to join."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00044",
+      "en_US": [
+        "Choose the Mix Battle you would\n",
+        "like to join."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00045",
+      "en_US": [
+        "Choose the friend(s) you want to\n",
+        "cook with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00046",
+      "en_US": [
+        "Choose the friend(s) you want to\n",
+        "mix records with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00047",
+      "en_US": [
+        "Choose the friends you want to\n",
+        "hold a Contest with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00048",
+      "en_US": [
+        "Choose the friend you want to take\n",
+        "to the Battle Tower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00049",
+      "en_US": [
+        "Choose the friend you want to play\n",
+        "with at the Battle Factory--Level 50."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00050",
+      "en_US": [
+        "Choose the friend you want to play with\n",
+        "at the Battle Factory--Open Level."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00051",
+      "en_US": [
+        "Choose the friend you want to play\n",
+        "with in the Battle Hall."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00052",
+      "en_US": [
+        "Choose the friend you want to play\n",
+        "with at the Battle Castle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00053",
+      "en_US": [
+        "Choose the friend you want to play\n",
+        "with at the Battle Arcade."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00054",
+      "en_US": [
+        "A member has dropped out.\r",
+        "Please repeat the registration\n",
+        "process from the beginning."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00055",
+      "en_US": [
+        "Record mixing with this group will\n",
+        "be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00056",
+      "en_US": [
+        "A Contest involving this group will\n",
+        "be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00057",
+      "en_US": "Replied “OK” to {STRVAR_1 3, 1, 0}."
+    },
+    {
+      "id": "pl_msg_00000353_00058",
+      "en_US": [
+        "Multi Battle!\n",
+        "Waiting for the rest of the group."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00059",
+      "en_US": "Waiting for the rest of the group."
+    },
+    {
+      "id": "pl_msg_00000353_00060",
+      "en_US": [
+        "Record Corner!\n",
+        "Waiting for the rest of the group."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00061",
+      "en_US": [
+        "Contest!\n",
+        "Waiting for the rest of the group."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00062",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}\n",
+        "ID{STRVAR_1 54, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00063",
+      "en_US": "{STRVAR_1 51, 0, 0}:{STRVAR_1 3, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000353_00064",
+      "en_US": "{STRVAR_1 51, 0, 0}:"
+    },
+    {
+      "id": "pl_msg_00000353_00065",
+      "en_US": "ID{STRVAR_1 54, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000353_00066",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000353_00067",
+      "en_US": [
+        "{STRVAR_1 50, 0, 0} more\n",
+        "needed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00068",
+      "en_US": "{STRVAR_1 50, 0, 0} Players"
+    },
+    {
+      "id": "pl_msg_00000353_00069",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000353_00070",
+      "en_US": "STANDARD"
+    },
+    {
+      "id": "pl_msg_00000353_00071",
+      "en_US": "FANCY"
+    },
+    {
+      "id": "pl_msg_00000353_00072",
+      "en_US": "LITTLE"
+    },
+    {
+      "id": "pl_msg_00000353_00073",
+      "en_US": "LIGHT"
+    },
+    {
+      "id": "pl_msg_00000353_00074",
+      "en_US": "DOUBLE"
+    },
+    {
+      "id": "pl_msg_00000353_00075",
+      "en_US": "No. of Pokémon:"
+    },
+    {
+      "id": "pl_msg_00000353_00076",
+      "en_US": "Pokémon level:"
+    },
+    {
+      "id": "pl_msg_00000353_00077",
+      "en_US": "Total levels:"
+    },
+    {
+      "id": "pl_msg_00000353_00078",
+      "en_US": "Height:"
+    },
+    {
+      "id": "pl_msg_00000353_00079",
+      "en_US": "Weight:"
+    },
+    {
+      "id": "pl_msg_00000353_00080",
+      "en_US": "Evolved Pokémon:"
+    },
+    {
+      "id": "pl_msg_00000353_00081",
+      "en_US": "Special Pokémon:"
+    },
+    {
+      "id": "pl_msg_00000353_00082",
+      "en_US": "Same Pokémon:"
+    },
+    {
+      "id": "pl_msg_00000353_00083",
+      "en_US": "Same items:"
+    },
+    {
+      "id": "pl_msg_00000353_00084",
+      "en_US": "{STRVAR_1 50, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000353_00085",
+      "en_US": "Max. {STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000353_00086",
+      "en_US": "Max. {STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000353_00087",
+      "en_US": "Max. {STRVAR_1 50, 0, 0}’ {STRVAR_1 50, 1, 0}”"
+    },
+    {
+      "id": "pl_msg_00000353_00088",
+      "en_US": "Min. {STRVAR_1 50, 0, 0}’ {STRVAR_1 50, 1, 0}”"
+    },
+    {
+      "id": "pl_msg_00000353_00089",
+      "en_US": "Max. {STRVAR_1 51, 0, 0} lbs."
+    },
+    {
+      "id": "pl_msg_00000353_00090",
+      "en_US": "Min. {STRVAR_1 51, 0, 0} lbs."
+    },
+    {
+      "id": "pl_msg_00000353_00091",
+      "en_US": "Permitted"
+    },
+    {
+      "id": "pl_msg_00000353_00092",
+      "en_US": "Banned"
+    },
+    {
+      "id": "pl_msg_00000353_00093",
+      "en_US": "Permitted"
+    },
+    {
+      "id": "pl_msg_00000353_00094",
+      "en_US": "Banned"
+    },
+    {
+      "id": "pl_msg_00000353_00095",
+      "en_US": "{STRVAR_1 26, 0, 0} Cup"
+    },
+    {
+      "id": "pl_msg_00000353_00096",
+      "en_US": "NO RESTRICTIONS"
+    },
+    {
+      "id": "pl_msg_00000353_00097",
+      "en_US": [
+        "Players have chosen different rules.\n",
+        "The same rules must be chosen."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00098",
+      "en_US": [
+        "Cool Contest!\n",
+        "Awaiting contact from another player."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00099",
+      "en_US": [
+        "Beauty Contest!\n",
+        "Awaiting contact from another player."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00100",
+      "en_US": [
+        "Cute Contest!\n",
+        "Awaiting contact from another player."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00101",
+      "en_US": [
+        "Smart Contest!\n",
+        "Awaiting contact from another player."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00102",
+      "en_US": [
+        "Tough Contest!\n",
+        "Awaiting contact from another player."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00103",
+      "en_US": [
+        "Cool Contest!\n",
+        "Please choose the leader."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00104",
+      "en_US": [
+        "Beauty Contest!\n",
+        "Please choose the leader."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00105",
+      "en_US": [
+        "Cute Contest!\n",
+        "Please choose the leader."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00106",
+      "en_US": [
+        "Smart Contest!\n",
+        "Please choose the leader."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00107",
+      "en_US": [
+        "Tough Contest!\n",
+        "Please choose the leader."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00108",
+      "en_US": [
+        "Cool Contest! Awaiting contact.\n",
+        "A Button: When everyone’s ready."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00109",
+      "en_US": [
+        "Beauty Contest! Awaiting contact.\n",
+        "A Button: When everyone’s ready."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00110",
+      "en_US": [
+        "Cute Contest! Awaiting contact.\n",
+        "A Button: When everyone’s ready."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00111",
+      "en_US": [
+        "Smart Contest! Awaiting contact.\n",
+        "A Button: When everyone’s ready."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00112",
+      "en_US": [
+        "Tough Contest! Awaiting contact.\n",
+        "A Button: When everyone’s ready."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00113",
+      "en_US": [
+        "Cool Contest!\n",
+        "Awaiting other members!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00114",
+      "en_US": [
+        "Beauty Contest!\n",
+        "Awaiting other members!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00115",
+      "en_US": [
+        "Cute Contest!\n",
+        "Awaiting other members!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00116",
+      "en_US": [
+        "Smart Contest!\n",
+        "Awaiting other members!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00117",
+      "en_US": [
+        "Tough Contest!\n",
+        "Awaiting other members!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00118",
+      "en_US": [
+        "The Cool Contest with\n",
+        "these members will be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00119",
+      "en_US": [
+        "The Beauty Contest with\n",
+        "these members will be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00120",
+      "en_US": [
+        "The Cute Contest with\n",
+        "these members will be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00121",
+      "en_US": [
+        "The Smart Contest with\n",
+        "these members will be canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000353_00122",
+      "en_US": [
+        "The Tough Contest with\n",
+        "these members will be canceled."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,484 @@
+{
+  "key": 5131,
+  "messages": [
+    {
+      "id": "RotomsRoom_Text_PokemonEnteredMotorTryingToLearnMove",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} entered the motor.\r",
+        "{STRVAR_1 0, 0, 0} is trying to\n",
+        "learn {STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 0, 0, 0} can’t learn\n",
+        "more than four moves.\r",
+        "Delete a move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_GiveUpLearningMove",
+      "en_US": [
+        "Give up on learning the move\n",
+        "{STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_PokemonDidNotLearnMoveEmergedFromTheMotor",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} did not learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "{STRVAR_1 0, 0, 0} emerged from the motor."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_TheMoveWillBeForgotten",
+      "en_US": [
+        "The move {STRVAR_1 6, 1, 0} will be\n",
+        "forgotten. Is that OK?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_12andPoof",
+      "en_US": "1,{PAUSE 20} 2,{PAUSE 20} and...{PAUSE 20} ...{PAUSE 20} Poof!"
+    },
+    {
+      "id": "RotomsRoom_Text_PokemonForgotHowToUseMove",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} forgot how to\n",
+        "use {STRVAR_1 6, 1, 0}.\r",
+        "And..."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_PokemonLearnedMove",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_WhichRotomAreYouChoosing",
+      "en_US": "Which ROTOM are you choosing?\r"
+    },
+    {
+      "id": "RotomsRoom_Text_AnEggCantEnterAMotor",
+      "en_US": "An Egg can’t enter a motor."
+    },
+    {
+      "id": "RotomsRoom_Text_ThatPokemonCantEnterAMotor",
+      "en_US": "That Pokémon can’t enter a motor."
+    },
+    {
+      "id": "RotomsRoom_Text_PokemonEnteredMotor",
+      "en_US": "{STRVAR_1 0, 0, 0} entered the motor.\r"
+    },
+    {
+      "id": "RotomsRoom_Text_PokemonEmergedFromTheMotor",
+      "en_US": "{STRVAR_1 0, 0, 0} emerged from the motor.\r"
+    },
+    {
+      "id": "RotomsRoom_Text_00012",
+      "garbage": 24
+    },
+    {
+      "id": "RotomsRoom_Text_OhRotomWantsToRevertToItsOriginalForm",
+      "en_US": [
+        "Oh? ROTOM appears as if it wants to\n",
+        "revert to its original form.\r",
+        "Would you like to recall it from\n",
+        "the motor?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_Recall",
+      "en_US": "RECALL"
+    },
+    {
+      "id": "RotomsRoom_Text_Yes",
+      "en_US": "YES"
+    },
+    {
+      "id": "RotomsRoom_Text_No",
+      "en_US": "NO"
+    },
+    {
+      "id": "RotomsRoom_Text_ThatRotomHasntEnteredAMotor",
+      "en_US": "That ROTOM hasn’t entered a motor."
+    },
+    {
+      "id": "RotomsRoom_Text_ThereWasAnApplianceHere",
+      "en_US": [
+        "There was an appliance here.\n",
+        "The one with the oddly shaped motor."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsAMicrowaveOven",
+      "en_US": [
+        "It’s a microwave oven.\n",
+        "It has an odd-shaped motor on it."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsAMicrowaveOvenRotomWantsToGoIntoTheMotor",
+      "en_US": [
+        "It’s a microwave oven.\n",
+        "It has an odd-shaped motor on it.\r",
+        "Oh? ROTOM appears as if it wants\n",
+        "to go into the motor.\r",
+        "Allow it to enter the motor?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheMicrowaveOvensMotor",
+      "en_US": [
+        "ROTOM reluctantly gave up on entering\n",
+        "the microwave oven’s motor..."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsARefrigerator",
+      "en_US": [
+        "It’s a refrigerator.\n",
+        "It has an odd-shaped motor on it."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsARefrigeratorRotomWantsToGoIntoTheMotor",
+      "en_US": [
+        "It’s a refrigerator.\n",
+        "It has an odd-shaped motor on it.\r",
+        "Oh? ROTOM appears as if it wants\n",
+        "to go into the motor.\r",
+        "Allow it to enter the motor?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheRefrigeratorsMotor",
+      "en_US": [
+        "ROTOM reluctantly gave up on entering\n",
+        "the refrigerator’s motor..."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsAWashingMachine",
+      "en_US": [
+        "It’s a washing machine.\n",
+        "It has an odd-shaped motor on it."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsAWashingMachineRotomWantsToGoIntoTheMotor",
+      "en_US": [
+        "It’s a washing machine.\n",
+        "It has an odd-shaped motor on it.\r",
+        "Oh? ROTOM appears as if it wants\n",
+        "to go into the motor.\r",
+        "Allow it to enter the motor?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheWashingMachinesMotor",
+      "en_US": [
+        "ROTOM reluctantly gave up on entering\n",
+        "the washing machine’s motor..."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsARotaryFan",
+      "en_US": [
+        "It’s a rotary fan.\n",
+        "It has an odd-shaped motor on it."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsARotaryFanRotomWantsToGoIntoTheMotor",
+      "en_US": [
+        "It’s a rotary fan.\n",
+        "It has an odd-shaped motor on it.\r",
+        "Oh? ROTOM appears as if it wants\n",
+        "to go into the motor.\r",
+        "Allow it to enter the motor?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheRotaryFansMotor",
+      "en_US": [
+        "ROTOM reluctantly gave up on entering\n",
+        "the rotary fan’s motor..."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsALawnMower",
+      "en_US": [
+        "It’s a lawn mower.\n",
+        "It has an odd-shaped motor on it."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsALawnMowerRotomWantsToGoIntoTheMotor",
+      "en_US": [
+        "It’s a lawn mower.\n",
+        "It has an odd-shaped motor on it.\r",
+        "Oh? ROTOM appears as if it wants\n",
+        "to go into the motor.\r",
+        "Allow it to enter the motor?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RotomGaveUpEnteringTheLawnMowersMotor",
+      "en_US": [
+        "ROTOM reluctantly gave up on entering\n",
+        "the lawn mower’s motor..."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ThereIsAMysteriousNotebookHere",
+      "en_US": [
+        "There is a mysterious notebook here.\n",
+        "Its age is impossible to tell.\r",
+        "“It was by pure chance that I obtained\n",
+        "information about the Pokémon ROTOM.\r",
+        "“Remarkably, ROTOM has the ability to\n",
+        "enter and merge with special motors.\r",
+        "“It’s now known that ROTOM can stay\n",
+        "inside a motor almost indefinitely.\r",
+        "“However, it will emerge if it enters a\n",
+        "Union Room or a Wi-Fi Club.\r",
+        "“ROTOM will also emerge from the motor\n",
+        "if it is left at the Day Care.\r",
+        "“ROTOM may also forget certain moves\n",
+        "when it leaves a motor.\r",
+        "“This Pokémon requires exhaustive\n",
+        "observation and analysis.\r",
+        "“To ensure I get all the credit, my\n",
+        "ROTOM research must be kept secret.\r",
+        "“They will come to recognize me as the\n",
+        "scientific genius Char...”\r",
+        "The rest of the notebook is blank."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RowanAhImagineFindingYouHere",
+      "en_US": [
+        "Rowan: Ah, imagine finding you here!\r",
+        "You must be eager to fill your Pokédex\n",
+        "to be searching even here.\r",
+        "What am I doing?\r",
+        "I visit a professor I know in Eterna\n",
+        "every so often.\r",
+        "He tells me intriguing rumors of rare\n",
+        "Pokémon sightings and such.\r"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_APokemonThatSlipsIntoElectricAppliancesYouSay",
+      "en_US": [
+        "A Pokémon that slips into electric\n",
+        "appliances, you say...\r",
+        "Hmm...\r",
+        "That is somewhat off from what I’ve\n",
+        "heard about it.\r",
+        "Hmm...\n",
+        "This is what I’ve heard.\r",
+        "Long ago, there was a Pokémon that\n",
+        "merged with a toy robot.\r",
+        "Should that Pokémon be recognized as a\n",
+        "new species or not...\r",
+        "Debates over the issue were about to\n",
+        "start when they were rendered moot.\r",
+        "The very topic of discussion--the\n",
+        "Pokémon-infused robot--disappeared...\r"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_AnywayThisRotomWhatAnInterestingPokemon",
+      "en_US": [
+        "Anyway, this ROTOM...\n",
+        "What an interesting Pokémon.\r",
+        "So, you say it enters an appliance and\n",
+        "essentially merges with the device.\r",
+        "In the process, it may also learn new\n",
+        "moves.\r",
+        "In a way, I suppose it could be thought\n",
+        "of as a mechanical Pokémon.\r",
+        "Hmm...!\r",
+        "Though it is utterly unique, it is\n",
+        "undeniably a form of Pokémon.\r",
+        "Fine, fine, so be it!\r",
+        "No matter how old one gets, there will\n",
+        "always be new Pokémon discoveries!\r",
+        "Take care, {STRVAR_1 3, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ItsAnOldNotebook",
+      "en_US": [
+        "It’s an old notebook.\n",
+        "There’s no telling how old it is.\r",
+        "Would you like to read it?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_OurEncounterWasASuddenOne",
+      "en_US": [
+        "“Our encounter was a sudden one.\r",
+        "“It was when I found my toy robot,\n",
+        "one that I had earlier misplaced.\r",
+        "“At that instant, a Pokémon startlingly\n",
+        "emerged from the lawn mower’s motor!\r",
+        "“Clutching my robot, I stared,\n",
+        "transfixed by the peculiar Pokémon.”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ThePokemonHoveredInTheAir",
+      "en_US": [
+        "“The Pokémon hovered in the air, held\n",
+        "aloft by a power unseen.\r",
+        "“As if curious and unafraid of my\n",
+        "presence, it floated toward me.\r",
+        "“Crackling sounds accompanied it, as \n",
+        "if from static electricity in the air.\r",
+        "“Remarkably, it seemed the Pokémon\n",
+        "was the source of this power!\r",
+        "“In alarm, I flinched, certain that my\n",
+        "face would be subjected to a shock.\r",
+        "“Much to my surprise, the Pokémon\n",
+        "seemed to favor me with a smile.”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_ThePokemonOnlyWishedToBeFriends",
+      "en_US": [
+        "“Finally, I came to realize that the\n",
+        "Pokémon only wished to be friends.\r",
+        "“I have decided to name this most\n",
+        "wondrous Pokémon ’ROTOM.’\r",
+        "“Simple though it may be, ROTOM emerged\n",
+        "to me from the motor of a lawn mower.\r",
+        "“Motor and ROTOM...\n",
+        "Surely the link is obvious?”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RotomIsAPokemonThatIsSensational",
+      "en_US": [
+        "“ROTOM is a Pokémon that is simply\n",
+        "sensational.\r",
+        "“The fact that it can turn invisible is\n",
+        "simply the beginning.\r",
+        "“What makes ROTOM unique is its ability\n",
+        "to enter and operate machinery!”\r",
+        "...This is about halfway through.\n",
+        "Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_RotomAndIBecameFastFriends",
+      "en_US": [
+        "“ROTOM and I became fast friends.\n",
+        "We were perpetual companions.\r",
+        "“The electricity from its body forbade\n",
+        "contact, however.\r",
+        "“We could not touch, let alone hug or\n",
+        "hold hands, but we cared not.\r",
+        "“For we were bonded on a much deeper,\n",
+        "incorporeal level.”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_AFeelingOfMischiefGotTheBetterOfMe",
+      "en_US": [
+        "“A feeling of mischief got the better\n",
+        "of me one day.\r",
+        "“Seeing ROTOM hovering, I decided to\n",
+        "startle it--normally I would not.\r",
+        "“Perhaps frightened, ROTOM discharged\n",
+        "power beyond its usual range.\r",
+        "“I fell, stunned, into the arms of\n",
+        "unconsciousness...”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_WhenICameToRotomDisappeared",
+      "en_US": [
+        "“When I came to, to my horror I\n",
+        "realized that ROTOM had disappeared.\r",
+        "“I searched high and low for my friend\n",
+        "in dismay and desperation.\r",
+        "“’Don’t chastise yourself.’\r",
+        "“’The fault is mine. No harm done.’\r",
+        "“’Let us play as we always have.’\r",
+        "“Though my words poured out, my friend\n",
+        "could not be found to hear them...”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_MySearchForRotomCarriedMeFarFromHome",
+      "en_US": [
+        "“My search for ROTOM carried me far\n",
+        "from home.\r",
+        "“It was in the town’s rubbish heap that\n",
+        "I again found my old toy robot.\r",
+        "“Curiously, our eyes met, then the\n",
+        "robot waved a hand as if in greeting.\r",
+        "“I knew then that I had found my lost\n",
+        "friend.\r",
+        "“I ran to it and hugged ROTOM tight,\n",
+        "talking on and on.”\r",
+        "...Would you like to keep reading?"
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_TheRobotEyesLitUpHappilyAsIHeldIt",
+      "en_US": [
+        "“The robot’s eyes lit up happily as\n",
+        "I held it.\r",
+        "“I’m certain that, within it, ROTOM was \n",
+        "emitting lots of electricity.\r",
+        "“Somehow, I felt I could understand\n",
+        "ROTOM’s thoughts better than before.\r",
+        "“Also, I realized that we would remain\n",
+        "friends throughout our lives...”\r",
+        "...The notebook ends with this page..."
+      ]
+    },
+    {
+      "id": "RotomsRoom_Text_00048",
+      "garbage": 14
+    },
+    {
+      "id": "RotomsRoom_Text_00049",
+      "garbage": 14
+    },
+    {
+      "id": "RotomsRoom_Text_00050",
+      "garbage": 14
+    },
+    {
+      "id": "RotomsRoom_Text_00051",
+      "garbage": 14
+    },
+    {
+      "id": "RotomsRoom_Text_00052",
+      "garbage": 14
+    },
+    {
+      "id": "RotomsRoom_Text_00053",
+      "garbage": 20
+    },
+    {
+      "id": "RotomsRoom_Text_00054",
+      "garbage": 2
+    },
+    {
+      "id": "RotomsRoom_Text_00055",
+      "garbage": 3
+    }
+  ]
+}

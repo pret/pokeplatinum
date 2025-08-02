@@ -1,0 +1,229 @@
+{
+  "key": 47375,
+  "messages": [
+    {
+      "id": "OptionsMenu_Text_Title",
+      "en_US": "OPTIONS"
+    },
+    {
+      "id": "pl_msg_00000220_00001",
+      "en_US": "POKéMON DIAMOND"
+    },
+    {
+      "id": "pl_msg_00000220_00002",
+      "en_US": "POKéMON PEARL"
+    },
+    {
+      "id": "OptionsMenu_Text_TextSpeedLabel",
+      "en_US": "TEXT SPEED"
+    },
+    {
+      "id": "OptionsMenu_Text_BattleSceneLabel",
+      "en_US": "BATTLE SCENE"
+    },
+    {
+      "id": "OptionsMenu_Text_BattleStyleLabel",
+      "en_US": "BATTLE STYLE"
+    },
+    {
+      "id": "OptionsMenu_Text_SoundModeLabel",
+      "en_US": "SOUND"
+    },
+    {
+      "id": "OptionsMenu_Text_ButtonModeLabel",
+      "en_US": "BUTTON MODE"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyleLabel",
+      "en_US": "FRAME"
+    },
+    {
+      "id": "OptionsMenu_Text_ConfirmLabel",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "OptionsMenu_Text_TextSpeedSlow",
+      "en_US": "SLOW"
+    },
+    {
+      "id": "OptionsMenu_Text_TextSpeedMid",
+      "en_US": "MID"
+    },
+    {
+      "id": "OptionsMenu_Text_TextSpeedFast",
+      "en_US": "FAST"
+    },
+    {
+      "id": "OptionsMenu_Text_BattleSceneOn",
+      "en_US": "ON"
+    },
+    {
+      "id": "OptionsMenu_Text_BattleSceneOff",
+      "en_US": "OFF"
+    },
+    {
+      "id": "OptionsMenu_Text_BattleStyleShift",
+      "en_US": "SHIFT"
+    },
+    {
+      "id": "OptionsMenu_Text_BattleStyleSet",
+      "en_US": "SET"
+    },
+    {
+      "id": "OptionsMenu_Text_SoundModeStereo",
+      "en_US": "STEREO"
+    },
+    {
+      "id": "OptionsMenu_Text_SoundModeMono",
+      "en_US": "MONO"
+    },
+    {
+      "id": "OptionsMenu_Text_ButtonModeNormal",
+      "en_US": "NORMAL"
+    },
+    {
+      "id": "OptionsMenu_Text_ButtonModeStartIs_x",
+      "en_US": "START = X"
+    },
+    {
+      "id": "OptionsMenu_Text_ButtonMode_l_is_a",
+      "en_US": "L = A"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_01",
+      "en_US": "TYPE 1"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_02",
+      "en_US": "TYPE 2"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_03",
+      "en_US": "TYPE 3"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_04",
+      "en_US": "TYPE 4"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_05",
+      "en_US": "TYPE 5"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_06",
+      "en_US": "TYPE 6"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_07",
+      "en_US": "TYPE 7"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_08",
+      "en_US": "TYPE 8"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_09",
+      "en_US": "TYPE 9"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_10",
+      "en_US": "TYPE 10"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_11",
+      "en_US": "TYPE 11"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_12",
+      "en_US": "TYPE 12"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_13",
+      "en_US": "TYPE 13"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_14",
+      "en_US": "TYPE 14"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_15",
+      "en_US": "TYPE 15"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_16",
+      "en_US": "TYPE 16"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_17",
+      "en_US": "TYPE 17"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_18",
+      "en_US": "TYPE 18"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_19",
+      "en_US": "TYPE 19"
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyle_20",
+      "en_US": "TYPE 20"
+    },
+    {
+      "id": "OptionsMenu_Text_CloseLabel",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "OptionsMenu_Text_TextSpeedDescription",
+      "en_US": [
+        "Choose one of three text-display\n",
+        "speeds."
+      ]
+    },
+    {
+      "id": "OptionsMenu_Text_BattleSceneDescription",
+      "en_US": [
+        "Choose between seeing or not seeing\n",
+        "Pokémon battle animations."
+      ]
+    },
+    {
+      "id": "OptionsMenu_Text_BattleStyleDescription",
+      "en_US": [
+        "Choose between battle rules on\n",
+        "replacing a fallen Pokémon."
+      ]
+    },
+    {
+      "id": "OptionsMenu_Text_SoundModeDescription",
+      "en_US": "Choose the game’s sound mode."
+    },
+    {
+      "id": "OptionsMenu_Text_ButtonModeDescription",
+      "en_US": [
+        "Choose one of three sets of button\n",
+        "settings."
+      ]
+    },
+    {
+      "id": "OptionsMenu_Text_MessageBoxStyleDescription",
+      "en_US": "Choose the text-window design."
+    },
+    {
+      "id": "OptionsMenu_Text_ConfirmDialog",
+      "en_US": "Switch to the selected settings?"
+    },
+    {
+      "id": "OptionsMenu_Text_ConfirmDialogYes",
+      "en_US": "YES"
+    },
+    {
+      "id": "OptionsMenu_Text_ConfirmDialogNo",
+      "en_US": "NO"
+    },
+    {
+      "id": "OptionsMenu_Text_CloseDescription",
+      "en_US": "Return to the game."
+    }
+  ]
+}
