@@ -314,7 +314,7 @@ BOOL ScrCmd_1BA(ScriptContext *param0)
             v2++;
         }
 
-        if (Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == v5) {
+        if (Pokemon_GetValue(v1, MON_DATA_EGG_LOCATION, NULL) == v5) {
             v2++;
         }
     }

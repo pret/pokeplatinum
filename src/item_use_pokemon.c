@@ -581,7 +581,7 @@ static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 loc
             change++;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) == location) {
+        if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == location) {
             change++;
         }
     }

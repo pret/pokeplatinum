@@ -303,7 +303,7 @@ static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const U
         for (v1 = 0; v1 < v3; v1++) {
             v7 = &(param2->unk_1150[v5].unk_04[v1]);
 
-            if ((v7->isEgg == 0) && (v7->invalidData == 0)) {
+            if ((v7->isEgg == 0) && (v7->checksumFailed == 0)) {
                 param1->unk_00[v4] = v7->species;
                 param1->unk_18[v4] = v7->form;
             }

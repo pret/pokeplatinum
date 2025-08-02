@@ -652,7 +652,7 @@ u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest)
 
         if (checksum != mon->box.checksum) {
             GF_ASSERT(checksum == mon->box.checksum);
-            mon->box.invalidData = TRUE;
+            mon->box.checksumFailed = TRUE;
         }
     }
 
@@ -737,7 +737,7 @@ u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *d
 
         if (checksum != boxMon->checksum) {
             GF_ASSERT(checksum == boxMon->checksum);
-            boxMon->invalidData = TRUE;
+            boxMon->checksumFailed = TRUE;
         }
     }
 
@@ -783,7 +783,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_CHECKSUM_FAILED:
-        result = boxMon->invalidData;
+        result = boxMon->checksumFailed;
         break;
 
     case MON_DATA_CHECKSUM:
@@ -795,8 +795,8 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_SANITY_IS_EGG:
-        if (boxMon->invalidData) {
-            result = boxMon->invalidData;
+        if (boxMon->checksumFailed) {
+            result = boxMon->checksumFailed;
         } else {
             result = monDataBlockB->isEgg;
         }
@@ -805,7 +805,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
 
     case MON_DATA_SPECIES_OR_EGG:
         result = monDataBlockA->species;
-        if (result != SPECIES_NONE && (monDataBlockB->isEgg || boxMon->invalidData)) {
+        if (result != SPECIES_NONE && (monDataBlockB->isEgg || boxMon->checksumFailed)) {
             result = SPECIES_EGG;
         }
 
@@ -816,7 +816,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_SPECIES:
-        if (boxMon->invalidData) {
+        if (boxMon->checksumFailed) {
             result = SPECIES_EGG;
         } else {
             result = monDataBlockA->species;
@@ -845,7 +845,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_MARKINGS:
-        result = monDataBlockA->marks;
+        result = monDataBlockA->markings;
         break;
 
     case MON_DATA_LANGUAGE:
@@ -929,7 +929,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_CLASSIC_RIBBON:
     case MON_DATA_PREMIER_RIBBON:
     case MON_DATA_UNUSED_RIBBON_53:
-        result = GetRibbon(monDataBlockA->sinnohRibbons, param, MON_DATA_SINNOH_CHAMP_RIBBON);
+        result = GetRibbon(monDataBlockA->ribbonsA, param, MON_DATA_SINNOH_CHAMP_RIBBON);
         break;
 
     case MON_DATA_MOVE1:
@@ -985,8 +985,8 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_IS_EGG:
-        if (boxMon->invalidData) {
-            result = boxMon->invalidData;
+        if (boxMon->checksumFailed) {
+            result = boxMon->checksumFailed;
         } else {
             result = monDataBlockB->isEgg;
         }
@@ -1028,7 +1028,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_NATIONAL_RIBBON:
     case MON_DATA_EARTH_RIBBON:
     case MON_DATA_WORLD_RIBBON:
-        result = GetRibbon(monDataBlockB->hoennRibbons, param, MON_DATA_COOL_RIBBON);
+        result = GetRibbon(monDataBlockB->ribbonsB, param, MON_DATA_COOL_RIBBON);
         break;
 
     case MON_DATA_FATEFUL_ENCOUNTER:
@@ -1046,15 +1046,15 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_UNUSED_113:
-        result = monDataBlockB->dummy_19;
+        result = monDataBlockB->unused1;
         break;
 
     case MON_DATA_UNUSED_114:
-        result = monDataBlockB->dummy_1A;
+        result = monDataBlockB->unused2;
         break;
 
     case MON_DATA_NICKNAME:
-        if (boxMon->invalidData) {
+        if (boxMon->checksumFailed) {
             // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
             MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, 0, dest);
         } else {
@@ -1071,7 +1071,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->hasNickname;
         // fall-through
     case MON_DATA_NICKNAME_STRING:
-        if (boxMon->invalidData) {
+        if (boxMon->checksumFailed) {
             Strbuf *strbuf = MessageUtil_SpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM);
 
             Strbuf_Copy(dest, strbuf);
@@ -1082,7 +1082,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_UNUSED_121:
-        result = monDataBlockC->originCode;
+        result = monDataBlockC->unused;
         break;
 
     case MON_DATA_MET_GAME:
@@ -1110,7 +1110,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_SUPER_TOUGH_RIBBON_ULTRA:
     case MON_DATA_SUPER_TOUGH_RIBBON_MASTER:
     case MON_DATA_UNUSED_RIBBON_143:
-        result = GetRibbon(monDataBlockC->contestRibbons, param, MON_DATA_SUPER_COOL_RIBBON);
+        result = GetRibbon(monDataBlockC->ribbonsC, param, MON_DATA_SUPER_COOL_RIBBON);
         break;
 
     case MON_DATA_OT_NAME:
@@ -1127,45 +1127,45 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         Strbuf_CopyChars(dest, monDataBlockD->otName);
         break;
 
-    case MON_DATA_HATCH_YEAR:
-        result = monDataBlockD->metYear;
+    case MON_DATA_EGG_YEAR:
+        result = monDataBlockD->eggYear;
         break;
 
-    case MON_DATA_HATCH_MONTH:
-        result = monDataBlockD->metMonth;
+    case MON_DATA_EGG_MONTH:
+        result = monDataBlockD->eggMonth;
         break;
 
-    case MON_DATA_HATCH_DAY:
-        result = monDataBlockD->metDay;
+    case MON_DATA_EGG_DAY:
+        result = monDataBlockD->eggDay;
         break;
 
     case MON_DATA_MET_YEAR:
-        result = monDataBlockD->hatchYear;
+        result = monDataBlockD->metYear;
         break;
 
     case MON_DATA_MET_MONTH:
-        result = monDataBlockD->hatchMonth;
+        result = monDataBlockD->metMonth;
         break;
 
     case MON_DATA_MET_DAY:
-        result = monDataBlockD->hatchDay;
+        result = monDataBlockD->metDay;
         break;
 
-    case MON_DATA_HATCH_LOCATION:
-    case MON_DATA_FATEFUL_HATCH_LOCATION:
-        if (monDataBlockD->metLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->fatefulMetLocation) {
-            result = monDataBlockB->fatefulMetLocation;
+    case MON_DATA_EGG_LOCATION:
+    case MON_DATA_PLATHGSS_EGG_LOCATION:
+        if (monDataBlockD->DP_EggLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->PlatHGSS_EggLocation) {
+            result = monDataBlockB->PlatHGSS_EggLocation;
         } else {
-            result = monDataBlockD->metLocation;
+            result = monDataBlockD->DP_EggLocation;
         }
         break;
 
     case MON_DATA_MET_LOCATION:
-    case MON_DATA_FATEFUL_MET_LOCATION:
-        if (monDataBlockD->hatchLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->fatefulHatchLocation) {
-            result = monDataBlockB->fatefulHatchLocation;
+    case MON_DATA_PLATHGSS_MET_LOCATION:
+        if (monDataBlockD->DP_MetLocation == FATEFUL_ENCOUNTER_LOCATION && monDataBlockB->PlatHGSS_MetLocation) {
+            result = monDataBlockB->PlatHGSS_MetLocation;
         } else {
-            result = monDataBlockD->hatchLocation;
+            result = monDataBlockD->DP_MetLocation;
         }
         break;
 
@@ -1189,8 +1189,8 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockD->metTerrain;
         break;
 
-    case MON_DATA_DUMMY_D_1:
-        result = monDataBlockD->dummy_1E;
+    case MON_DATA_UNUSED_159:
+        result = monDataBlockD->unused;
         break;
 
     case MON_DATA_COMBINED_IVS:
@@ -1237,7 +1237,7 @@ void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *val
 
         if (checksum != mon->box.checksum) {
             GF_ASSERT(checksum == mon->box.checksum);
-            mon->box.invalidData = TRUE;
+            mon->box.checksumFailed = TRUE;
             Pokemon_EncryptData(mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
             return;
         }
@@ -1321,7 +1321,7 @@ void BoxPokemon_SetValue(BoxPokemon *boxMon, enum PokemonDataParam param, const 
 
         if (checksum != boxMon->checksum) {
             GF_ASSERT(checksum == boxMon->checksum);
-            boxMon->invalidData = TRUE;
+            boxMon->checksumFailed = TRUE;
             Pokemon_EncryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
             return;
         }
@@ -1363,7 +1363,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_CHECKSUM_FAILED:
-        boxMon->invalidData = *u8Value;
+        boxMon->checksumFailed = *u8Value;
         break;
 
     case MON_DATA_CHECKSUM:
@@ -1395,7 +1395,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_MARKINGS:
-        monDataBlockA->marks = *u8Value;
+        monDataBlockA->markings = *u8Value;
         break;
 
     case MON_DATA_LANGUAGE:
@@ -1482,9 +1482,9 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         u64 bit = 1 << (param - MON_DATA_SINNOH_CHAMP_RIBBON);
 
         if (*u8Value) {
-            monDataBlockA->sinnohRibbons |= bit;
+            monDataBlockA->ribbonsA |= bit;
         } else {
-            monDataBlockA->sinnohRibbons &= (bit ^ 0xFFFFFFFF);
+            monDataBlockA->ribbonsA &= (bit ^ 0xFFFFFFFF);
         }
 
         break;
@@ -1584,9 +1584,9 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         u64 bit = 1 << (param - MON_DATA_COOL_RIBBON);
 
         if (*u8Value) {
-            monDataBlockB->hoennRibbons |= bit;
+            monDataBlockB->ribbonsB |= bit;
         } else {
-            monDataBlockB->hoennRibbons &= (bit ^ 0xFFFFFFFF);
+            monDataBlockB->ribbonsB &= (bit ^ 0xFFFFFFFF);
         }
 
         break;
@@ -1605,11 +1605,11 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_UNUSED_113:
-        monDataBlockB->dummy_19 = *u8Value;
+        monDataBlockB->unused1 = *u8Value;
         break;
 
     case MON_DATA_UNUSED_114:
-        monDataBlockB->dummy_1A = *u16Value;
+        monDataBlockB->unused2 = *u16Value;
         break;
 
     case MON_DATA_NICKNAME_AND_FLAG: {
@@ -1640,7 +1640,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_UNUSED_121:
-        monDataBlockC->originCode = *u8Value;
+        monDataBlockC->unused = *u8Value;
         break;
 
     case MON_DATA_MET_GAME:
@@ -1671,9 +1671,9 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         u64 bit = 1 << (param - MON_DATA_SUPER_COOL_RIBBON);
 
         if (*u8Value) {
-            monDataBlockC->contestRibbons |= bit;
+            monDataBlockC->ribbonsC |= bit;
         } else {
-            monDataBlockC->contestRibbons &= (bit ^ 0xFFFFFFFFFFFFFFFF);
+            monDataBlockC->ribbonsC &= (bit ^ 0xFFFFFFFFFFFFFFFF);
         }
 
         break;
@@ -1689,49 +1689,49 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         Strbuf_ToChars(value, monDataBlockD->otName, NELEMS(monDataBlockD->otName));
         break;
 
-    case MON_DATA_HATCH_YEAR:
-        monDataBlockD->metYear = *u8Value;
+    case MON_DATA_EGG_YEAR:
+        monDataBlockD->eggYear = *u8Value;
         break;
 
-    case MON_DATA_HATCH_MONTH:
-        monDataBlockD->metMonth = *u8Value;
+    case MON_DATA_EGG_MONTH:
+        monDataBlockD->eggMonth = *u8Value;
         break;
 
-    case MON_DATA_HATCH_DAY:
-        monDataBlockD->metDay = *u8Value;
+    case MON_DATA_EGG_DAY:
+        monDataBlockD->eggDay = *u8Value;
         break;
 
     case MON_DATA_MET_YEAR:
-        monDataBlockD->hatchYear = *u8Value;
+        monDataBlockD->metYear = *u8Value;
         break;
 
     case MON_DATA_MET_MONTH:
-        monDataBlockD->hatchMonth = *u8Value;
+        monDataBlockD->metMonth = *u8Value;
         break;
 
     case MON_DATA_MET_DAY:
-        monDataBlockD->hatchDay = *u8Value;
+        monDataBlockD->metDay = *u8Value;
         break;
 
-    case MON_DATA_HATCH_LOCATION:
-    case MON_DATA_FATEFUL_HATCH_LOCATION:
+    case MON_DATA_EGG_LOCATION:
+    case MON_DATA_PLATHGSS_EGG_LOCATION:
         if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
-            monDataBlockD->metLocation = *u16Value;
-            monDataBlockB->fatefulMetLocation = *u16Value;
+            monDataBlockD->DP_EggLocation = *u16Value;
+            monDataBlockB->PlatHGSS_EggLocation = *u16Value;
         } else {
-            monDataBlockD->metLocation = FATEFUL_ENCOUNTER_LOCATION;
-            monDataBlockB->fatefulMetLocation = *u16Value;
+            monDataBlockD->DP_EggLocation = FATEFUL_ENCOUNTER_LOCATION;
+            monDataBlockB->PlatHGSS_EggLocation = *u16Value;
         }
         break;
 
     case MON_DATA_MET_LOCATION:
-    case MON_DATA_FATEFUL_MET_LOCATION:
+    case MON_DATA_PLATHGSS_MET_LOCATION:
         if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
-            monDataBlockD->hatchLocation = *u16Value;
-            monDataBlockB->fatefulHatchLocation = *u16Value;
+            monDataBlockD->DP_MetLocation = *u16Value;
+            monDataBlockB->PlatHGSS_MetLocation = *u16Value;
         } else {
-            monDataBlockD->hatchLocation = FATEFUL_ENCOUNTER_LOCATION;
-            monDataBlockB->fatefulHatchLocation = *u16Value;
+            monDataBlockD->DP_MetLocation = FATEFUL_ENCOUNTER_LOCATION;
+            monDataBlockB->PlatHGSS_MetLocation = *u16Value;
         }
         break;
 
@@ -1755,8 +1755,8 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockD->metTerrain = *u8Value;
         break;
 
-    case MON_DATA_DUMMY_D_1:
-        monDataBlockD->dummy_1E = *u16Value;
+    case MON_DATA_UNUSED_159:
+        monDataBlockD->unused = *u16Value;
         break;
 
     case MON_DATA_COMBINED_IVS:
@@ -2105,20 +2105,20 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_UNUSED_RIBBON_143:
     case MON_DATA_OT_NAME:
     case MON_DATA_OT_NAME_STRING:
-    case MON_DATA_HATCH_YEAR:
-    case MON_DATA_HATCH_MONTH:
-    case MON_DATA_HATCH_DAY:
+    case MON_DATA_EGG_YEAR:
+    case MON_DATA_EGG_MONTH:
+    case MON_DATA_EGG_DAY:
     case MON_DATA_MET_YEAR:
     case MON_DATA_MET_MONTH:
     case MON_DATA_MET_DAY:
-    case MON_DATA_HATCH_LOCATION:
+    case MON_DATA_EGG_LOCATION:
     case MON_DATA_MET_LOCATION:
     case MON_DATA_POKERUS:
     case MON_DATA_POKEBALL:
     case MON_DATA_MET_LEVEL:
     case MON_DATA_OT_GENDER:
     case MON_DATA_MET_TERRAIN:
-    case MON_DATA_DUMMY_D_1:
+    case MON_DATA_UNUSED_159:
     case MON_DATA_COMBINED_IVS:
     case MON_DATA_NO_PRINT_GENDER:
     case MON_DATA_TYPE_1:
@@ -2661,7 +2661,7 @@ void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2)
         v3++;
     }
 
-    if (v3 > 0 && Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) == param2) {
+    if (v3 > 0 && Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == param2) {
         v3++;
     }
 
@@ -5231,7 +5231,7 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
     param1->personality = boxMon->personality;
     param1->partyDecrypted = FALSE;
     param1->boxDecrypted = FALSE;
-    param1->invalidData = boxMon->invalidData;
+    param1->checksumFailed = boxMon->checksumFailed;
     param1->species = monDataBlockA->species;
     param1->heldItem = monDataBlockA->heldItem;
     param1->otID = monDataBlockA->otID;
@@ -5306,7 +5306,7 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
     boxMon->personality = param0->personality;
     boxMon->partyDecrypted = FALSE;
     boxMon->boxDecrypted = FALSE;
-    boxMon->invalidData = param0->invalidData;
+    boxMon->checksumFailed = param0->checksumFailed;
 
     monDataBlockA->species = param0->species;
     monDataBlockA->heldItem = param0->heldItem;

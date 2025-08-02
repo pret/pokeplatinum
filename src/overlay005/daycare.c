@@ -682,7 +682,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     Pokemon_SetValue(egg, MON_DATA_MET_LEVEL, &metLvl);
 
     if (param2) {
-        Pokemon_SetValue(egg, MON_DATA_HATCH_LOCATION, &param2);
+        Pokemon_SetValue(egg, MON_DATA_EGG_LOCATION, &param2);
     }
 
     isEgg = TRUE;
@@ -1126,7 +1126,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     form = Pokemon_GetValue(egg, MON_DATA_FORM, NULL);
 
     if (species == SPECIES_MANAPHY) {
-        if (Pokemon_GetValue(egg, MON_DATA_HATCH_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
+        if (Pokemon_GetValue(egg, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
             while (Pokemon_IsPersonalityShiny(otID, personality)) {
                 personality = ARNG_Next(personality);
             }
@@ -1158,15 +1158,15 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     Pokemon_SetValue(mon, MON_DATA_OT_ID, &otID);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
-    u16 location = Pokemon_GetValue(egg, MON_DATA_HATCH_LOCATION, NULL);
-    u8 year = Pokemon_GetValue(egg, MON_DATA_HATCH_YEAR, NULL);
-    u8 month = Pokemon_GetValue(egg, MON_DATA_HATCH_MONTH, NULL);
-    u8 day = Pokemon_GetValue(egg, MON_DATA_HATCH_DAY, NULL);
+    u16 location = Pokemon_GetValue(egg, MON_DATA_EGG_LOCATION, NULL);
+    u8 year = Pokemon_GetValue(egg, MON_DATA_EGG_YEAR, NULL);
+    u8 month = Pokemon_GetValue(egg, MON_DATA_EGG_MONTH, NULL);
+    u8 day = Pokemon_GetValue(egg, MON_DATA_EGG_DAY, NULL);
 
-    Pokemon_SetValue(mon, MON_DATA_HATCH_LOCATION, &location);
-    Pokemon_SetValue(mon, MON_DATA_HATCH_YEAR, &year);
-    Pokemon_SetValue(mon, MON_DATA_HATCH_MONTH, &month);
-    Pokemon_SetValue(mon, MON_DATA_HATCH_DAY, &day);
+    Pokemon_SetValue(mon, MON_DATA_EGG_LOCATION, &location);
+    Pokemon_SetValue(mon, MON_DATA_EGG_YEAR, &year);
+    Pokemon_SetValue(mon, MON_DATA_EGG_MONTH, &month);
+    Pokemon_SetValue(mon, MON_DATA_EGG_DAY, &day);
 
     location = Pokemon_GetValue(egg, MON_DATA_MET_LOCATION, NULL);
     year = Pokemon_GetValue(egg, MON_DATA_MET_YEAR, NULL);

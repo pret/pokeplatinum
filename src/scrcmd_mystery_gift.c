@@ -184,7 +184,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
 
     Pokemon *pokemon = &giftData->pokemonGiftData.pokemon;
     u8 *giftSpecialRibbons = giftData->pokemonGiftData.specialRibbonsDescIDs;
-    int metLocation = Pokemon_GetValue(pokemon, MON_DATA_HATCH_LOCATION, NULL);
+    int metLocation = Pokemon_GetValue(pokemon, MON_DATA_EGG_LOCATION, NULL);
     u32 giftPersonality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
     u32 giftOtID = Pokemon_GetValue(pokemon, MON_DATA_OT_ID, NULL);
     u32 personality = ARNG_Next(OS_GetTick());

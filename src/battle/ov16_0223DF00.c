@@ -740,7 +740,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
                 friendship++;
             }
 
-            if (Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) == BattleSystem_MapHeader(battleSys)) {
+            if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == BattleSystem_MapHeader(battleSys)) {
                 friendship++;
             }
 

@@ -1925,7 +1925,7 @@ static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const
         if (Pokemon_GetValue(param1, MON_DATA_MET_LOCATION, NULL) >= 2000) {
             v1 = 6;
         } else {
-            if (Pokemon_GetValue(param1, MON_DATA_HATCH_MONTH, NULL) == 0) {
+            if (Pokemon_GetValue(param1, MON_DATA_EGG_MONTH, NULL) == 0) {
                 v1 = 0;
             } else {
                 v1 = 1;
