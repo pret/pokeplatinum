@@ -16,5 +16,11 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "How do you expect to battle in this\nheavy snow?\r",
+        "TRMSG_DEFEAT": "The winds of victory shifted...\n",
+        "TRMSG_POST_BATTLE": "It’s so cold here, but here you are,\nso full of energy.\rI guess you kids are made tougher\nthan people my age.\n",
+        "TRMSG_REMATCH": "Why would you wander around here?\nYou must really like this area.\r"
+    }
 }

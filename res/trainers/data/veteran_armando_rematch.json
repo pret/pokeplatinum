@@ -51,5 +51,9 @@
             "power": 100,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "I am indeed a Veteran, but I don’t\nuse that as an excuse to slack off.\rI take pride in challenging those\nwho have bested me before!\r",
+        "TRMSG_DEFEAT": "I see...\nSimply outstanding."
+    }
 }

@@ -18,5 +18,11 @@
             "power": 50,
             "ball_seal": 17
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Try not to be shocked when you lay your\neyes on my Pokémon!\r",
+        "TRMSG_DEFEAT": "Oh, my...\nGood golly ’n’ gosh...\n",
+        "TRMSG_POST_BATTLE": "A dragon Pokémon’s real power is\nnothing like mine!\n",
+        "TRMSG_REMATCH": "You again?\rYou must really like that dragon\nPokémon I use.\r"
+    }
 }

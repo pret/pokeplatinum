@@ -37,5 +37,9 @@
             "power": 50,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "We’ll come at you with our hearts\nablaze!\r",
+        "TRMSG_DEFEAT": "Your heart burns as hot as mine!\n"
+    }
 }
