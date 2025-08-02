@@ -23,7 +23,7 @@
 #include "trainer_info.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx)

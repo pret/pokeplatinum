@@ -1,4 +1,4 @@
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 
 #include <nitro.h>
 #include <string.h>

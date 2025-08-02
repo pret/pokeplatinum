@@ -36,7 +36,7 @@
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/mystery_gift_deliveryman.h"

@@ -32,7 +32,7 @@
 #include "unk_0202C858.h"
 #include "unk_02038F8C.h"
 #include "unk_0208C098.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 
 static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_TRAINER_CHERYL, OBJ_EVENT_GFX_CHERYL },

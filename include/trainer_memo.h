@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02092494_H
-#define POKEPLATINUM_UNK_02092494_H
+#ifndef POKEPLATINUM_TRAINER_MEMO_H
+#define POKEPLATINUM_TRAINER_MEMO_H
 
 #include "struct_defs/struct_02090800.h"
 
@@ -11,4 +11,4 @@ void sub_0209282C(PokemonInfoDisplayStruct *param0);
 void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID);
 void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID);
 
-#endif // POKEPLATINUM_UNK_02092494_H
+#endif // POKEPLATINUM_TRAINER_MEMO_H

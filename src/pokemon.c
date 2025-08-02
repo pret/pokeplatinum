@@ -57,7 +57,7 @@
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "unk_0202C9F4.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 
 #define FATEFUL_ENCOUNTER_LOCATION 3002
 

@@ -77,7 +77,7 @@
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 #include "unk_02095CD4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"

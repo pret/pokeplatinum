@@ -38,7 +38,7 @@
 #include "unk_02015F84.h"
 #include "unk_0202F180.h"
 #include "unk_0208694C.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"

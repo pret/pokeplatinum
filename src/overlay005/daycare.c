@@ -31,7 +31,7 @@
 #include "unk_02017038.h"
 #include "unk_0202CC64.h"
 #include "unk_020559DC.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 
 #include "res/pokemon/species_egg_moves.h"
 

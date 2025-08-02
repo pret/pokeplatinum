@@ -57,7 +57,7 @@
 #include "unk_02038ED4.h"
 #include "unk_020393C8.h"
 #include "unk_02073838.h"
-#include "unk_02092494.h"
+#include "trainer_memo.h"
 #include "unk_0209BDF8.h"
 #include "vram_transfer.h"
 
