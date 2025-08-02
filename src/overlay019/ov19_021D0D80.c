@@ -1901,13 +1901,13 @@ static void ov19_PlaceMonAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 static BOOL ov19_CheckLastAliveMonReason(UnkStruct_ov19_021D5DF8 *param0, u32 *destMessageID)
 {
     if (ov19_OnLastAliveMon(param0)) {
-        if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_EGG_EXISTS, NULL)) {
+        if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_SANITY_IS_EGG, NULL)) {
             *destMessageID = BoxText_LastMon;
             return TRUE;
         }
 
         if (ov19_GetCursorMonIsPartyMon(&param0->unk_00)) {
-            if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_CURRENT_HP, NULL) == 0) {
+            if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_CUR_HP, NULL) == 0) {
                 *destMessageID = BoxText_LastMon;
                 return TRUE;
             }
@@ -2176,7 +2176,7 @@ static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0)
         mon = Party_GetPokemonBySlotIndex(param0->party, i);
         reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_EGG_EXISTS, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+        if (Pokemon_GetValue(mon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_CUR_HP, NULL)) {
             count++;
         }
 
@@ -2187,11 +2187,11 @@ static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0)
         }
     }
 
-    if (ov19_GetPreviewedOrSelectedMonValue(&param0->unk_00, MON_DATA_EGG_EXISTS, NULL)) {
+    if (ov19_GetPreviewedOrSelectedMonValue(&param0->unk_00, MON_DATA_SANITY_IS_EGG, NULL)) {
         return FALSE;
     }
 
-    if (ov19_GetPreviewedOrSelectedMonValue(&param0->unk_00, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (ov19_GetPreviewedOrSelectedMonValue(&param0->unk_00, MON_DATA_CUR_HP, NULL) == 0) {
         return FALSE;
     }
 
@@ -2200,7 +2200,7 @@ static BOOL ov19_OnLastAliveMon(UnkStruct_ov19_021D5DF8 *param0)
 
 static BOOL ov19_CheckReleaseMonValid(UnkStruct_ov19_021D5DF8 *param0, int *destBoxMessageID)
 {
-    if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_EGG_EXISTS, NULL)) {
+    if (ov19_GetPreviewedMonValue(&param0->unk_00, MON_DATA_SANITY_IS_EGG, NULL)) {
         *destBoxMessageID = BoxText_CantReleaseEgg;
         return FALSE;
     }
@@ -2494,7 +2494,7 @@ static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
     BOOL hasMove = FALSE;
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL) == FALSE) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE) {
         for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
                 hasMove = TRUE;
@@ -4176,20 +4176,20 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
     preview->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     preview->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     preview->dexNum = GetDexNumber(SaveData_GetDexMode(param2->saveData), preview->species);
-    preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL);
+    preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL);
     SpeciesData *speciesData = SpeciesData_FromMonSpecies(preview->species, HEAP_ID_BOX_DATA);
-    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXP, NULL));
-    preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
+    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXPERIENCE, NULL));
+    preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
     preview->type1 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
     preview->type2 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_2, NULL);
 
-    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
+    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NO_PRINT_GENDER, NULL)) {
         preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL));
     } else {
         preview->gender = GENDER_INVALID;
     }
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, preview->nickname);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, preview->nickname);
 
     if (preview->isEgg == FALSE) {
         MessageLoader_GetStrbuf(param2->speciesNameLoader, preview->species, preview->speciesName);
@@ -4286,7 +4286,7 @@ static void ov19_UpdatePreviewMonMarkings(UnkStruct_ov19_021D4DF0 *param0)
     u8 markings = param0->boxMenu.markings;
     preview->markings = markings;
 
-    BoxPokemon_SetValue(preview->mon, MON_DATA_MARKS, &(markings));
+    BoxPokemon_SetValue(preview->mon, MON_DATA_MARKINGS, &(markings));
 
     if (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX && ov19_GetPreviewMonSource(param0) == PREVIEW_MON_UNDER_CURSOR) {
         SaveData_SetFullSaveRequired();
