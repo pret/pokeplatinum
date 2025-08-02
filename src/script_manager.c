@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "generated/bg_event_types.h"
 #include "generated/map_headers.h"
 
 #include "data/field/hidden_items.h"
@@ -710,7 +711,7 @@ UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID)
     }
 
     for (v4 = 0; v4 < v5; v4++) {
-        if ((v1[v4].type == 2) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(v1[v4].script)) == 0)) {
+        if ((v1[v4].type == BG_EVENT_TYPE_HIDDEN_ITEM) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(v1[v4].script)) == 0)) {
             if ((v1[v4].x >= v8) && (v1[v4].x <= v9) && (v1[v4].z >= v10) && (v1[v4].z <= v11)) {
                 v0[v6].unk_04 = Script_GetHiddenItemRange(v1[v4].script);
                 v7 = (v2 - v1[v4].x);
