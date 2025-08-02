@@ -1,0 +1,425 @@
+{
+  "key": 26324,
+  "messages": [
+    {
+      "id": "pl_msg_00000329_00000",
+      "en_US": "Target {STRVAR_1 50, 3, 0}"
+    },
+    {
+      "id": "pl_msg_00000329_00001",
+      "en_US": "Effect No. {STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000329_00002",
+      "en_US": "Effect name {STRVAR_1 6, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000329_00003",
+      "en_US": "No. of turns {STRVAR_1 51, 2, 0}"
+    },
+    {
+      "id": "pl_msg_00000329_00004",
+      "en_US": "Shadow (perspective)"
+    },
+    {
+      "id": "pl_msg_00000329_00005",
+      "en_US": "Shadow (direct)"
+    },
+    {
+      "id": "pl_msg_00000329_00006",
+      "en_US": "Shadow (basic)"
+    },
+    {
+      "id": "pl_msg_00000329_00007",
+      "en_US": "AA to BB"
+    },
+    {
+      "id": "pl_msg_00000329_00008",
+      "en_US": "BB to AA"
+    },
+    {
+      "id": "pl_msg_00000329_00009",
+      "en_US": "A to B"
+    },
+    {
+      "id": "pl_msg_00000329_00010",
+      "en_US": "A to D"
+    },
+    {
+      "id": "pl_msg_00000329_00011",
+      "en_US": "C to B"
+    },
+    {
+      "id": "pl_msg_00000329_00012",
+      "en_US": "C to D"
+    },
+    {
+      "id": "pl_msg_00000329_00013",
+      "en_US": "B to A"
+    },
+    {
+      "id": "pl_msg_00000329_00014",
+      "en_US": "B to C"
+    },
+    {
+      "id": "pl_msg_00000329_00015",
+      "en_US": "D to A"
+    },
+    {
+      "id": "pl_msg_00000329_00016",
+      "en_US": "D to C"
+    },
+    {
+      "id": "pl_msg_00000329_00017",
+      "en_US": "A to C"
+    },
+    {
+      "id": "pl_msg_00000329_00018",
+      "en_US": "C to A"
+    },
+    {
+      "id": "pl_msg_00000329_00019",
+      "en_US": "B to D"
+    },
+    {
+      "id": "pl_msg_00000329_00020",
+      "en_US": "D to B"
+    },
+    {
+      "id": "pl_msg_00000329_00021",
+      "en_US": "Ball Capsule PC"
+    },
+    {
+      "id": "pl_msg_00000329_00022",
+      "en_US": "Ball Capsules (fewer)"
+    },
+    {
+      "id": "pl_msg_00000329_00023",
+      "en_US": "Ball Capsules (full)"
+    },
+    {
+      "id": "pl_msg_00000329_00024",
+      "en_US": "Egg hatch Demo"
+    },
+    {
+      "id": "pl_msg_00000329_00025",
+      "en_US": "Egg demo: MANAPHY"
+    },
+    {
+      "id": "pl_msg_00000329_00026",
+      "en_US": "Dummy"
+    },
+    {
+      "id": "pl_msg_00000329_00027",
+      "en_US": "Sleep"
+    },
+    {
+      "id": "pl_msg_00000329_00028",
+      "en_US": "Poison"
+    },
+    {
+      "id": "pl_msg_00000329_00029",
+      "en_US": "Burned"
+    },
+    {
+      "id": "pl_msg_00000329_00030",
+      "en_US": "Frozen"
+    },
+    {
+      "id": "pl_msg_00000329_00031",
+      "en_US": "Paralysed"
+    },
+    {
+      "id": "pl_msg_00000329_00032",
+      "en_US": "Confusion"
+    },
+    {
+      "id": "pl_msg_00000329_00033",
+      "en_US": "Infatuation"
+    },
+    {
+      "id": "pl_msg_00000329_00034",
+      "en_US": "Level Up"
+    },
+    {
+      "id": "pl_msg_00000329_00035",
+      "en_US": "Trainer’s item"
+    },
+    {
+      "id": "pl_msg_00000329_00036",
+      "en_US": "Pokémon Berry"
+    },
+    {
+      "id": "pl_msg_00000329_00037",
+      "en_US": "Rare effect"
+    },
+    {
+      "id": "pl_msg_00000329_00038",
+      "en_US": "Up"
+    },
+    {
+      "id": "pl_msg_00000329_00039",
+      "en_US": "Down"
+    },
+    {
+      "id": "pl_msg_00000329_00040",
+      "en_US": "Recover"
+    },
+    {
+      "id": "pl_msg_00000329_00041",
+      "en_US": "Out of the screen"
+    },
+    {
+      "id": "pl_msg_00000329_00042",
+      "en_US": "Into the screen"
+    },
+    {
+      "id": "pl_msg_00000329_00043",
+      "en_US": "Item Pocket"
+    },
+    {
+      "id": "pl_msg_00000329_00044",
+      "en_US": "Weather: Mist"
+    },
+    {
+      "id": "pl_msg_00000329_00045",
+      "en_US": "Weather: Rain"
+    },
+    {
+      "id": "pl_msg_00000329_00046",
+      "en_US": "Weather: Hail"
+    },
+    {
+      "id": "pl_msg_00000329_00047",
+      "en_US": "Weather: Sandstorm"
+    },
+    {
+      "id": "pl_msg_00000329_00048",
+      "en_US": "Weather: Sunny"
+    },
+    {
+      "id": "pl_msg_00000329_00049",
+      "en_US": "no use"
+    },
+    {
+      "id": "pl_msg_00000329_00050",
+      "en_US": "no use"
+    },
+    {
+      "id": "pl_msg_00000329_00051",
+      "en_US": "Call decoy"
+    },
+    {
+      "id": "pl_msg_00000329_00052",
+      "en_US": "Delete decoy"
+    },
+    {
+      "id": "pl_msg_00000329_00053",
+      "en_US": "Bait: Pleased"
+    },
+    {
+      "id": "pl_msg_00000329_00054",
+      "en_US": "Bait: Eat"
+    },
+    {
+      "id": "pl_msg_00000329_00055",
+      "en_US": "Upset"
+    },
+    {
+      "id": "pl_msg_00000329_00056",
+      "en_US": "Turn: Curse"
+    },
+    {
+      "id": "pl_msg_00000329_00057",
+      "en_US": "Turn: Nightmare"
+    },
+    {
+      "id": "pl_msg_00000329_00058",
+      "en_US": "Turn: Leech Seed"
+    },
+    {
+      "id": "pl_msg_00000329_00059",
+      "en_US": "Turn: Bind"
+    },
+    {
+      "id": "pl_msg_00000329_00060",
+      "en_US": "Turn: Wrap"
+    },
+    {
+      "id": "pl_msg_00000329_00061",
+      "en_US": "Turn: Fire Spin"
+    },
+    {
+      "id": "pl_msg_00000329_00062",
+      "en_US": "Turn: Magma Storm"
+    },
+    {
+      "id": "pl_msg_00000329_00063",
+      "en_US": "Turn: Clamp"
+    },
+    {
+      "id": "pl_msg_00000329_00064",
+      "en_US": "Turn: Whirlpool"
+    },
+    {
+      "id": "pl_msg_00000329_00065",
+      "en_US": "Turn: Sand Tomb"
+    },
+    {
+      "id": "pl_msg_00000329_00066",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000329_00067",
+      "en_US": "Create Profile1"
+    },
+    {
+      "id": "pl_msg_00000329_00068",
+      "en_US": "Create Profile2"
+    },
+    {
+      "id": "pl_msg_00000329_00069",
+      "en_US": "Create Profile3"
+    },
+    {
+      "id": "pl_msg_00000329_00070",
+      "en_US": "Giratina at Spear Pillar"
+    },
+    {
+      "id": "pl_msg_00000329_00071",
+      "en_US": "Cancel sending the dress data"
+    },
+    {
+      "id": "pl_msg_00000329_00072",
+      "en_US": "Delete home location data"
+    },
+    {
+      "id": "pl_msg_00000329_00073",
+      "en_US": "Ranking"
+    },
+    {
+      "id": "pl_msg_00000329_00074",
+      "en_US": "Dress-Up"
+    },
+    {
+      "id": "pl_msg_00000329_00075",
+      "en_US": "Box Data"
+    },
+    {
+      "id": "pl_msg_00000329_00076",
+      "en_US": "Browsing Mode"
+    },
+    {
+      "id": "pl_msg_00000329_00077",
+      "en_US": "Cancel sending the Video data"
+    },
+    {
+      "id": "pl_msg_00000329_00078",
+      "en_US": "Ranking Score Control"
+    },
+    {
+      "id": "pl_msg_00000329_00079",
+      "en_US": "Honey Tree Check"
+    },
+    {
+      "id": "pl_msg_00000329_00080",
+      "en_US": "No good"
+    },
+    {
+      "id": "pl_msg_00000329_00081",
+      "en_US": "so-so"
+    },
+    {
+      "id": "pl_msg_00000329_00082",
+      "en_US": "rare"
+    },
+    {
+      "id": "pl_msg_00000329_00083",
+      "en_US": "Very rare"
+    },
+    {
+      "id": "pl_msg_00000329_00084",
+      "en_US": "R205A"
+    },
+    {
+      "id": "pl_msg_00000329_00085",
+      "en_US": "R205B"
+    },
+    {
+      "id": "pl_msg_00000329_00086",
+      "en_US": "R206"
+    },
+    {
+      "id": "pl_msg_00000329_00087",
+      "en_US": "R207"
+    },
+    {
+      "id": "pl_msg_00000329_00088",
+      "en_US": "R208"
+    },
+    {
+      "id": "pl_msg_00000329_00089",
+      "en_US": "R209"
+    },
+    {
+      "id": "pl_msg_00000329_00090",
+      "en_US": "R210A"
+    },
+    {
+      "id": "pl_msg_00000329_00091",
+      "en_US": "R210B"
+    },
+    {
+      "id": "pl_msg_00000329_00092",
+      "en_US": "R211B"
+    },
+    {
+      "id": "pl_msg_00000329_00093",
+      "en_US": "R212A"
+    },
+    {
+      "id": "pl_msg_00000329_00094",
+      "en_US": "R212B"
+    },
+    {
+      "id": "pl_msg_00000329_00095",
+      "en_US": "R213"
+    },
+    {
+      "id": "pl_msg_00000329_00096",
+      "en_US": "R214"
+    },
+    {
+      "id": "pl_msg_00000329_00097",
+      "en_US": "R215"
+    },
+    {
+      "id": "pl_msg_00000329_00098",
+      "en_US": "R218"
+    },
+    {
+      "id": "pl_msg_00000329_00099",
+      "en_US": "R221"
+    },
+    {
+      "id": "pl_msg_00000329_00100",
+      "en_US": "R222"
+    },
+    {
+      "id": "pl_msg_00000329_00101",
+      "en_US": "D02"
+    },
+    {
+      "id": "pl_msg_00000329_00102",
+      "en_US": "D03"
+    },
+    {
+      "id": "pl_msg_00000329_00103",
+      "en_US": "D04"
+    },
+    {
+      "id": "pl_msg_00000329_00104",
+      "en_US": "D13R0101"
+    }
+  ]
+}

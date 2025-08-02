@@ -1,0 +1,147 @@
+{
+  "key": 1026,
+  "messages": [
+    {
+      "id": "pl_msg_00000227_00000",
+      "en_US": [
+        "Hello, my name’s Cheryl.\n",
+        "And you are...?\r",
+        "OK, so your name is {STRVAR_1 3, 0, 0}.\n",
+        "I’m sincerely glad to meet you.\r",
+        "{STRVAR_1 3, 0, 0}, may I ask a big favor\n",
+        "of you?\r",
+        "I want to get through this forest,\n",
+        "but I’m afraid of doing it alone.\r",
+        "I’ve heard that there is a sinister\n",
+        "group of people called Team Galactic\f",
+        "about.\r",
+        "I think there’d be safety in numbers.\n",
+        "Please, may I go through with you?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} decided to go with\n",
+        "Cheryl!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00002",
+      "en_US": [
+        "Cheryl: I’ll keep your Pokémon\n",
+        "in perfect health."
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00003",
+      "en_US": [
+        "Cheryl: Oh, hi, {STRVAR_1 3, 0, 0}!\n",
+        "I’ve been waiting like I said.\r",
+        "Let’s get through this forest\n",
+        "together.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00004",
+      "en_US": [
+        "Cheryl: Oh? Are you going back?\n",
+        "I’ll wait here for you, then.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00005",
+      "en_US": [
+        "Cheryl: Oh! There’s the exit!\n",
+        "I’m so relieved... We finally got here.\r",
+        "I would’ve never been able to get\n",
+        "through this by myself.\r",
+        "Thank you so much, {STRVAR_1 3, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00006",
+      "en_US": [
+        "This is my token of appreciation.\n",
+        "Please accept it!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00007",
+      "en_US": [
+        "I’m sure we’ll meet again somewhere!\n",
+        "Bye for now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00008",
+      "en_US": [
+        "Cheryl: There is an Old Chateau ahead.\r",
+        "No one lives there now.\n",
+        "They say it’s haunted."
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00009",
+      "en_US": [
+        "I’m searching for bug Pokémon so I can\n",
+        "win at the Eterna Gym.\r",
+        "Bug Pokémon are great, you know?\n",
+        "They grow really fast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00010",
+      "en_US": [
+        "The rock is covered in moss.\n",
+        "It feels pleasantly cool."
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00011",
+      "en_US": [
+        "Gardenia: Hiya! Were you intrigued\n",
+        "by the rumors going around, too?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00012",
+      "en_US": [
+        "You know, people’ve been talking about\n",
+        "the ghost Pokémon of the Old Chateau.\r",
+        "I’ve been hearing rumors about\n",
+        "sinister shadows, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00013",
+      "en_US": [
+        "I should check it out myself, but\n",
+        "going in there is...\r",
+        "...Well, you know, being that I’m\n",
+        "a Gym Leader, I’m always busy.\r",
+        "So, since I’m so busy, I can’t go in.\n",
+        "It’s not because I’m s-scared!\r",
+        "S-so, good luck with your\n",
+        "investigation!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00014",
+      "en_US": [
+        "The Eterna Forest\n",
+        "Where Time Flows Eternally"
+      ]
+    },
+    {
+      "id": "pl_msg_00000227_00015",
+      "en_US": [
+        "Trainer Tips!\r",
+        "In forests and caves, there are many\n",
+        "items on the ground that cannot be\f",
+        "seen in the murky darkness.\r",
+        "Take the time to search carefully!"
+      ]
+    }
+  ]
+}

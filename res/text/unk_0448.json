@@ -1,0 +1,124 @@
+{
+  "key": 5861,
+  "messages": [
+    {
+      "id": "pl_msg_00000448_00000",
+      "en_US": [
+        "Please!\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00001",
+      "en_US": "Go! {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000448_00002",
+      "en_US": [
+        "I’ll battle with\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00003",
+      "en_US": "It’s {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000448_00004",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0}, I’m going\n",
+        "with {STRVAR_1 28, 1, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00005",
+      "en_US": "Look at {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000448_00006",
+      "en_US": "I’ll show you {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000448_00007",
+      "en_US": [
+        "Now!\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00008",
+      "en_US": [
+        "I’ll show you my\n",
+        "{STRVAR_1 28, 0, 0} strategy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00009",
+      "en_US": "I’ll {STRVAR_1 28, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000448_00010",
+      "en_US": [
+        "I’ll shock you with\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00011",
+      "en_US": [
+        "This is the beginning\n",
+        "of {STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00012",
+      "en_US": [
+        "This battle is\n",
+        "{STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00013",
+      "en_US": [
+        "I don’t think I’ll\n",
+        "ever lose at {STRVAR_1 28, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00014",
+      "en_US": "Team {STRVAR_1 28, 0, 0} is here!"
+    },
+    {
+      "id": "pl_msg_00000448_00015",
+      "en_US": [
+        "You think you can beat\n",
+        "{STRVAR_1 28, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00016",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0}!\n",
+        "{STRVAR_1 28, 1, 0} power!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00017",
+      "en_US": [
+        "This is the {STRVAR_1 28, 0, 0}\n",
+        "Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000448_00018",
+      "en_US": "{STRVAR_1 28, 0, 0} won’t lose!"
+    },
+    {
+      "id": "pl_msg_00000448_00019",
+      "en_US": [
+        "Please {STRVAR_1 28, 0, 0}!\n",
+        "{STRVAR_1 28, 1, 0}!"
+      ]
+    }
+  ]
+}

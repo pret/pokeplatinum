@@ -1,0 +1,209 @@
+{
+  "key": 2537,
+  "messages": [
+    {
+      "id": "pl_msg_00000688_00000",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000688_00001",
+      "en_US": "Hokkaido (Sapporo)"
+    },
+    {
+      "id": "pl_msg_00000688_00002",
+      "en_US": "Hokkaido (Hakodate)"
+    },
+    {
+      "id": "pl_msg_00000688_00003",
+      "en_US": "Hokkaido (Wakkanai)"
+    },
+    {
+      "id": "pl_msg_00000688_00004",
+      "en_US": "Hokkaido (Kushiro)"
+    },
+    {
+      "id": "pl_msg_00000688_00005",
+      "en_US": "Aomori"
+    },
+    {
+      "id": "pl_msg_00000688_00006",
+      "en_US": "Iwate"
+    },
+    {
+      "id": "pl_msg_00000688_00007",
+      "en_US": "Miyagi"
+    },
+    {
+      "id": "pl_msg_00000688_00008",
+      "en_US": "Akita"
+    },
+    {
+      "id": "pl_msg_00000688_00009",
+      "en_US": "Yamagata"
+    },
+    {
+      "id": "pl_msg_00000688_00010",
+      "en_US": "Fukushima"
+    },
+    {
+      "id": "pl_msg_00000688_00011",
+      "en_US": "Ibaraki"
+    },
+    {
+      "id": "pl_msg_00000688_00012",
+      "en_US": "Tochigi"
+    },
+    {
+      "id": "pl_msg_00000688_00013",
+      "en_US": "Gunma"
+    },
+    {
+      "id": "pl_msg_00000688_00014",
+      "en_US": "Saitama"
+    },
+    {
+      "id": "pl_msg_00000688_00015",
+      "en_US": "Chiba"
+    },
+    {
+      "id": "pl_msg_00000688_00016",
+      "en_US": "Tokyo"
+    },
+    {
+      "id": "pl_msg_00000688_00017",
+      "en_US": "Kanagawa"
+    },
+    {
+      "id": "pl_msg_00000688_00018",
+      "en_US": "Niigata"
+    },
+    {
+      "id": "pl_msg_00000688_00019",
+      "en_US": "Toyama"
+    },
+    {
+      "id": "pl_msg_00000688_00020",
+      "en_US": "Ishikawa"
+    },
+    {
+      "id": "pl_msg_00000688_00021",
+      "en_US": "Fukui"
+    },
+    {
+      "id": "pl_msg_00000688_00022",
+      "en_US": "Yamanashi"
+    },
+    {
+      "id": "pl_msg_00000688_00023",
+      "en_US": "Nagano"
+    },
+    {
+      "id": "pl_msg_00000688_00024",
+      "en_US": "Gifu"
+    },
+    {
+      "id": "pl_msg_00000688_00025",
+      "en_US": "Shizuoka"
+    },
+    {
+      "id": "pl_msg_00000688_00026",
+      "en_US": "Aichi"
+    },
+    {
+      "id": "pl_msg_00000688_00027",
+      "en_US": "Mie"
+    },
+    {
+      "id": "pl_msg_00000688_00028",
+      "en_US": "Shiga"
+    },
+    {
+      "id": "pl_msg_00000688_00029",
+      "en_US": "Kyoto"
+    },
+    {
+      "id": "pl_msg_00000688_00030",
+      "en_US": "Osaka"
+    },
+    {
+      "id": "pl_msg_00000688_00031",
+      "en_US": "Hyogo"
+    },
+    {
+      "id": "pl_msg_00000688_00032",
+      "en_US": "Nara"
+    },
+    {
+      "id": "pl_msg_00000688_00033",
+      "en_US": "Wakayama"
+    },
+    {
+      "id": "pl_msg_00000688_00034",
+      "en_US": "Tottori"
+    },
+    {
+      "id": "pl_msg_00000688_00035",
+      "en_US": "Shimane"
+    },
+    {
+      "id": "pl_msg_00000688_00036",
+      "en_US": "Okayama"
+    },
+    {
+      "id": "pl_msg_00000688_00037",
+      "en_US": "Hiroshima"
+    },
+    {
+      "id": "pl_msg_00000688_00038",
+      "en_US": "Yamaguchi"
+    },
+    {
+      "id": "pl_msg_00000688_00039",
+      "en_US": "Tokushima"
+    },
+    {
+      "id": "pl_msg_00000688_00040",
+      "en_US": "Kagawa"
+    },
+    {
+      "id": "pl_msg_00000688_00041",
+      "en_US": "Ehime"
+    },
+    {
+      "id": "pl_msg_00000688_00042",
+      "en_US": "Kochi"
+    },
+    {
+      "id": "pl_msg_00000688_00043",
+      "en_US": "Fukuoka"
+    },
+    {
+      "id": "pl_msg_00000688_00044",
+      "en_US": "Saga"
+    },
+    {
+      "id": "pl_msg_00000688_00045",
+      "en_US": "Nagasaki"
+    },
+    {
+      "id": "pl_msg_00000688_00046",
+      "en_US": "Kumamoto"
+    },
+    {
+      "id": "pl_msg_00000688_00047",
+      "en_US": "Oita"
+    },
+    {
+      "id": "pl_msg_00000688_00048",
+      "en_US": "Miyazaki"
+    },
+    {
+      "id": "pl_msg_00000688_00049",
+      "en_US": "Kagoshima"
+    },
+    {
+      "id": "pl_msg_00000688_00050",
+      "en_US": "Okinawa"
+    }
+  ]
+}

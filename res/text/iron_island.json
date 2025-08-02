@@ -1,0 +1,59 @@
+{
+  "key": 53182,
+  "messages": [
+    {
+      "id": "pl_msg_00000276_00000",
+      "en_US": [
+        "...You are?\r",
+        "OK, you’re {STRVAR_1 3, 0, 0}.\n",
+        "I’m Riley.\r",
+        "I’m a Trainer, and yes, it is a bit\n",
+        "odd that I would be training here.\r",
+        "Anyway, it’s always nice to meet\n",
+        "another Trainer. Here’s a gift.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000276_00001",
+      "en_US": [
+        "Riley: That Hidden Machine contains\n",
+        "the move Strength.\r",
+        "To use it out of battle, you need the\n",
+        "Badge from Canalave Gym...\r",
+        "Oh, never mind, you’ve already got the\n",
+        "Mine Badge. My bad.\r",
+        "I’ll be training inside.\n",
+        "You can join me if you’d like.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000276_00002",
+      "en_US": [
+        "Riley: That Hidden Machine contains\n",
+        "the move Strength.\r",
+        "To use it out of battle, you need the\n",
+        "Mine Badge from Canalave Gym.\r",
+        "I’ll be training inside.\n",
+        "You can join me if you’d like.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000276_00003",
+      "en_US": "Do you want to sail somewhere?"
+    },
+    {
+      "id": "pl_msg_00000276_00004",
+      "en_US": [
+        "Aye, aye!\n",
+        "Anchors aweigh!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000276_00005",
+      "en_US": [
+        "You just go on and tell me whenever\n",
+        "you want to set sail again!"
+      ]
+    }
+  ]
+}

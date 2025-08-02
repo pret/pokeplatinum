@@ -1,0 +1,652 @@
+{
+  "key": 18315,
+  "messages": [
+    {
+      "id": "pl_msg_00000143_00000",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "Please, can you help me?\r",
+        "Some Team Galactic goons took my\n",
+        "Pokédex away from me.\r",
+        "I need your help to get it back.\r",
+        "I’ll be waiting in front of the\n",
+        "warehouses. Please come!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00001",
+      "en_US": [
+        "Lucas: Hey! {STRVAR_1 3, 0, 0}!\n",
+        "Listen, I need your help...\r",
+        "Some Team Galactic goons grabbed my\n",
+        "Pokédex and won’t give it back.\f",
+        "I sure could use your help.\r",
+        "I’ll be waiting in front of the\n",
+        "warehouses. Please come!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00002",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}, are you going\n",
+        "to take the Gym challenge?\r",
+        "Gee, you keep getting tougher and\n",
+        "tougher, don’t you?\r",
+        "Me? Well, I went shopping at the\n",
+        "department store, and...\r",
+        "I mean, well, of course I’ve been\n",
+        "working on my Pokédex, but...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00003",
+      "en_US": [
+        "Lucas: Hey! {STRVAR_1 3, 0, 0}, are you\n",
+        "going to take on the Gym Leader?\r",
+        "Wow, you just keep getting tougher\n",
+        "and tougher.\r",
+        "Me? Well, I took a look in the\n",
+        "Game Corner, and...\r",
+        "I mean, yeah, of course I’ve been\n",
+        "working on my Pokédex, but...\r",
+        "Anyway, keep it up!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00004",
+      "en_US": [
+        "The ring is my roiling sea. ♫\n",
+        "The towering waves shaped me.\r",
+        "Crash! Crash! Crasher Wake!\n",
+        "Crash! Crash! Crasher Wake!\r",
+        "I’m the tidal wave of power to wash\n",
+        "you away!\r",
+        "Put out the fire, Crasher Wake!\n",
+        "Run from electricity, Crasher Wake!\r",
+        "Ah, ah, aaaah!\n",
+        "The ring is my sea. ♫\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00005",
+      "en_US": [
+        "Hello, dude and young lady!\n",
+        "You’re challenging the Gym Leader,\f",
+        "are you?\r",
+        "Let me tell you now, she’s young, but\n",
+        "she’s a born genius.\r",
+        "I tried training with her, and I was\n",
+        "stunned by how tough she was!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00006",
+      "en_US": [
+        "Whoops!\n",
+        "I’d better tell you who I am!\r",
+        "I’m the triple-threat Gym Leader in\n",
+        "Pokémon, wrestling, and song.\r",
+        "I’m Crasher Wake of Pastoria Gym!\n",
+        "We’ll meet again!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00007",
+      "en_US": "Dawn: ...\r"
+    },
+    {
+      "id": "pl_msg_00000143_00008",
+      "en_US": [
+        "So, uh, {STRVAR_1 3, 0, 0}.\n",
+        "Good luck on your Gym challenge.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00009",
+      "en_US": "Lucas: ...\r"
+    },
+    {
+      "id": "pl_msg_00000143_00010",
+      "en_US": [
+        "So, uh, yeah, {STRVAR_1 3, 0, 0}.\n",
+        "Good luck with the Pokémon Gym.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00011",
+      "en_US": [
+        "Grunt 1: Hey, you!\n",
+        "Yeah, you!\r",
+        "This is Team Galactic’s warehouse!\n",
+        "It ain’t no playground for kids!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00012",
+      "en_US": [
+        "Grunt 1: Hey, you!\n",
+        "Yeah, you!\r",
+        "This is Team Galactic’s warehouse!\n",
+        "It ain’t no playground for kids!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00013",
+      "en_US": [
+        "Grunt 2: This is the awesome Team\n",
+        "Galactic’s awesome warehouse!\r",
+        "A little kid like you should be playing\n",
+        "at the Pokémon Gym.\r",
+        "After all, the Gym Leader happens to\n",
+        "be a kid just like you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00014",
+      "en_US": [
+        "Grunt 1: What? Now you’ve brought\n",
+        "your buddy along so you can get your\f",
+        "Pokédex back?\r",
+        "We’ll be just as happy to send both\n",
+        "of you crying home to your mommies!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00015",
+      "en_US": [
+        "Grunt 2: You’re trying to get the\n",
+        "Pokédex back from us?\r",
+        "Not when we, Team Galactic, can make\n",
+        "so much better use of it!\r",
+        "But, OK, guarding the warehouse\n",
+        "does get boring!\r",
+        "We’ll take you on two-on-two!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00016",
+      "en_US": [
+        "Grunt 1: Aww, that stinks!\n",
+        "Our Pokémon are chumps!\r",
+        "We should get new ones from\n",
+        "headquarters.\r",
+        "Humph! Who cares about some\n",
+        "Pokédex anyway?\r",
+        "Team Galactic’s going to own\n",
+        "all the Pokémon in the world...\f",
+        "No, in the universe!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00017",
+      "en_US": [
+        "There! Take it!\n",
+        "Take your Pokédex!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00018",
+      "en_US": [
+        "Grunt 2: Those things we had in\n",
+        "the warehouse’ve already been moved\f",
+        "to Pastoria City anyway...\r",
+        "So, we’ll say “You’ll get yours!”\n",
+        "And run like the grunts we are.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00019",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "Please, can you help me?\r",
+        "Do you remember Team Galactic?\n",
+        "Those horrible people?\r",
+        "They tried to steal Prof. Rowan’s\n",
+        "research results in Jubilife, remember?\r",
+        "I ran into them, and they took away my\n",
+        "Pokédex.\r",
+        "Please, I need your help.\n",
+        "Team up and battle with me!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00020",
+      "en_US": [
+        "Dawn: You and your Pokémon together\n",
+        "with me and my Pokémon...\r",
+        "United like this, our dream team\n",
+        "has no chance of losing!\r",
+        "I’m not letting those bad people get\n",
+        "away with their dirty deeds!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00021",
+      "en_US": [
+        "Dawn: I’ll be waiting.\n",
+        "Please get ready and come quickly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00022",
+      "en_US": [
+        "Dawn: What’s going on?\r",
+        "Why is Team Galactic out in the\n",
+        "streets like they own the place?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00023",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 0, 0}, thank you,\n",
+        "sincerely.\r",
+        "I would’ve been lost without my\n",
+        "Pokédex.\r",
+        "It’s indispensable for helping Prof.\n",
+        "Rowan with his studies.\r",
+        "So, {STRVAR_1 3, 0, 0}, what are you going\n",
+        "to do now?\r",
+        "I’m thinking of going to the Pokémon\n",
+        "Mansion on Route 212.\r",
+        "I hear they show rare Pokémon to\n",
+        "visitors there.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00024",
+      "en_US": [
+        "Lucas: Hey! {STRVAR_1 3, 0, 0}!\n",
+        "Listen, I need your help...\r",
+        "Remember those Team Galactic goons?\r",
+        "The guys who tried to take Prof.\n",
+        "Rowan’s research results in Jubilife?\r",
+        "I ran into them, and they ripped off my\n",
+        "Pokédex!\r",
+        "Will you team up with me to take\n",
+        "them on?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00025",
+      "en_US": [
+        "Lucas: You and your Pokémon together\n",
+        "with me and my Pokémon...\r",
+        "Our dream team’s not going to lose.\n",
+        "Not with the way we work together!\r",
+        "I’m not letting those criminals get\n",
+        "away with this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00026",
+      "en_US": [
+        "Lucas: I’ll be waiting!\n",
+        "Get ready and come quick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00027",
+      "en_US": [
+        "Lucas: What’s going on here?\r",
+        "Why is Team Galactic out in the\n",
+        "streets like they own the place?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00028",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 0, 0}, thanks,\n",
+        "honestly.\r",
+        "I’m useless without my Pokédex.\r",
+        "I have to have it for helping Prof.\n",
+        "Rowan with his studies.\r",
+        "So, {STRVAR_1 3, 0, 0}, what are your plans\n",
+        "now?\r",
+        "I think I’m off to the Pokémon Mansion\n",
+        "on Route 212.\r",
+        "They say they show off rare Pokémon to\n",
+        "visitors.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00029",
+      "en_US": [
+        "Looker: Have no fear, I have come\n",
+        "running.\r",
+        "I heard of children feuding with the\n",
+        "Team Galactic.\r",
+        "It turns out, of course, to be you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00030",
+      "en_US": [
+        "Dawn: Oh...\n",
+        "It’s that funny man from Jubilife...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00031",
+      "en_US": [
+        "Lucas: Hey...\n",
+        "It’s that weirdo from Jubilife.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00032",
+      "en_US": [
+        "Looker: You insult me to my face?\n",
+        "How very uncouth of you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00033",
+      "en_US": [
+        "Dawn: I’m terribly sorry.\r",
+        "Team Galactic took my Pokédex, so I was\n",
+        "very irritated...\r",
+        "I just blurted it out...\r",
+        "...I should be going now.\n",
+        "Be wary of Team Galactic.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00034",
+      "en_US": [
+        "Lucas: Oh, sorry. Honestly.\r",
+        "I was upset from having my Pokédex\n",
+        "ripped off by Team Galactic.\r",
+        "I didn’t even think when I spoke up.\r",
+        "I’ll be going now.\n",
+        "Uh... Watch out for Team Galactic.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00035",
+      "en_US": [
+        "Looker: It is of no matter.\r",
+        "Of more interest is the criminal\n",
+        "behavior of the Team Galactic.\r",
+        "They attempt to steal the belongings of\n",
+        "a child?\r",
+        "The scale of their criminality, it seems\n",
+        "rather minuscule.\r",
+        "The triviality of their action makes\n",
+        "them more sinister, perhaps.\r",
+        "Their warehouse needs investigation.\n",
+        "Come with me, and we’ll take a look!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00036",
+      "en_US": [
+        "There!\n",
+        "Would you look at those antennae?\r",
+        "I don’t know what they do, but those\n",
+        "are some mighty impressive antennae!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00037",
+      "en_US": [
+        "Hey!\n",
+        "It’s you!\r",
+        "I bet you don’t remember me, but\n",
+        "I sure remember you!\r",
+        "Because of you, they took my CLEFAIRY\n",
+        "away...\r",
+        "My partner called it quits and went\n",
+        "back to his old country...\r",
+        "Waah! I know nothing! I don’t know\n",
+        "anything about any Storage Key!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00038",
+      "en_US": [
+        "Ah-hah!\n",
+        "You leave this to me!\r",
+        "The Storage Key for entering the Team\n",
+        "Galactic hideout, I have right here.\r",
+        "A frontal assault, it is not possible.\n",
+        "But we can enter their hideout.\r",
+        "Well? Will you enter the hideout?\n",
+        "You have your reasons, yes?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00039",
+      "en_US": [
+        "Very well.\n",
+        "Inside the Team Galactic warehouse.\f",
+        "We will meet there.\r",
+        "Prepare the best you can.\n",
+        "I shall join you shortly.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00040",
+      "en_US": [
+        "Looker: ...Yes, I see your point.\r",
+        "Sneaking into the hideout of the Team\n",
+        "Galactic...it is daunting."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00041",
+      "en_US": "Looker: {STRVAR_1 3, 0, 0}!\r"
+    },
+    {
+      "id": "pl_msg_00000143_00042",
+      "en_US": [
+        "We have the Hidden Machine that teaches\n",
+        "Fly stored in the warehouse.\r",
+        "They said I can use it if I show them\n",
+        "that I deserve it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00043",
+      "en_US": [
+        "Yeah, Team Galactic is hiding all sorts\n",
+        "of good stuff in their warehouse.\r",
+        "I hear they even have a Hidden\n",
+        "Machine in there!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00044",
+      "en_US": [
+        "The Game Corner is dangerous!\r",
+        "Why is it dangerous?\n",
+        "It’s so fun, I lose track of time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00045",
+      "en_US": [
+        "I got a TM as a prize from the\n",
+        "Game Corner.\r",
+        "I used it on my Pokémon right away!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00046",
+      "en_US": [
+        "Maylene is Veilstone’s Gym Leader.\n",
+        "Then, there’s Wake in Pastoria...\r",
+        "They’re way too tough for me.\n",
+        "I can’t even come close to them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00047",
+      "en_US": [
+        "I came to this city just so I could\n",
+        "go shopping at the department store.\r",
+        "But with all these rock walls around,\n",
+        "this place feels kind of cold."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00048",
+      "en_US": [
+        "I bought a new parasol.\r",
+        "But I don’t want it to get rained on,\n",
+        "so I watch the TV weather reports."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00049",
+      "en_US": [
+        "Do you know where one might find\n",
+        "a Coin Case?\r",
+        "I heard that there’s a clown giving\n",
+        "’em away, but..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00050",
+      "en_US": [
+        "Veilstone is the city of stone.\n",
+        "We even have meteorites!\r",
+        "This has nothing to do with anything,\n",
+        "but take this Technical Machine!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00051",
+      "en_US": [
+        "If someone uses Embargo on your\n",
+        "Pokémon, it becomes impossible to\f",
+        "use any items on it.\r",
+        "Anyway, enjoy your visit to Veilstone,\n",
+        "the city of...well, stone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00052",
+      "en_US": [
+        "Salut, Trainer!\n",
+        "Tu aimes les Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00053",
+      "en_US": [
+        "Moi aussi!\n",
+        "C’est génial!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00054",
+      "en_US": [
+        "J’ai du mal à te croire...\n",
+        "Il n’y a qu’à vous regarder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00055",
+      "en_US": [
+        "A man spoke to me in a foreign language.\n",
+        "He really surprised me!\r",
+        "I think he was asking if I liked Pokémon\n",
+        "or something."
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_MeteoriteFromTheStars",
+      "en_US": [
+        "It’s a mysterious meteorite that\n",
+        "fell from the stars..."
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_MeteoriteSpeed",
+      "en_US": [
+        "Touching the meteorite boosted\n",
+        "the Speed of a certain Pokémon."
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_MeteoriteDefense",
+      "en_US": [
+        "Touching the meteorite heightened\n",
+        "the defensive capabilities of\f",
+        "a certain Pokémon."
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_MeteoriteAttack",
+      "en_US": [
+        "Touching the meteorite heightened\n",
+        "the offensive capabilities of\f",
+        "a certain Pokémon."
+      ]
+    },
+    {
+      "id": "VeilstoneCity_Text_MeteoriteNormal",
+      "en_US": [
+        "Touching the meteorite balanced out\n",
+        "the attributes of a certain Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00061",
+      "en_US": [
+        "Veilstone City\n",
+        "Hewn from Rock"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00062",
+      "en_US": [
+        "Veilstone City Pokémon Gym\n",
+        "Leader: Maylene\f",
+        "The Barefoot, Fighting Genius!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00063",
+      "en_US": [
+        "Galactic Warehouse\n",
+        "NO TRESPASSING!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00064",
+      "en_US": [
+        "Galactic Veilstone Building\n",
+        "We Dream of the Universe!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00065",
+      "en_US": [
+        "Veilstone Department Store\n",
+        "A Shop Full of Dreams!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00066",
+      "en_US": [
+        "Veilstone Game Corner\n",
+        "Aim for an Explosion of Luck!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00067",
+      "en_US": [
+        "Prize Exchange\n",
+        "Coins Exchanged for Prizes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000143_00068",
+      "en_US": [
+        "Visit Beautiful Lake Valor!\n",
+        "Right off Rt. 214!"
+      ]
+    }
+  ]
+}

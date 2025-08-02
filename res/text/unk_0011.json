@@ -1,0 +1,156 @@
+{
+  "key": 14338,
+  "messages": [
+    {
+      "id": "pl_msg_00000011_00000",
+      "en_US": [
+        "Please take your designated position\n",
+        "and start the battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00001",
+      "en_US": [
+        "Please wait a moment...\n",
+        "Press the B Button to cancel."
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00002",
+      "en_US": [
+        "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
+        "Trainer Case...\r",
+        "...It’s a Normal Card!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00003",
+      "en_US": [
+        "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
+        "Trainer Case...\r",
+        "...It’s a Bronze Card!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00004",
+      "en_US": [
+        "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
+        "Trainer Case...\r",
+        "...It’s a Copper Card!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00005",
+      "en_US": [
+        "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
+        "Trainer Case...\r",
+        "...It’s a Silver Card!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00006",
+      "en_US": [
+        "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
+        "Trainer Case...\r",
+        "...It’s a Gold Card!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00007",
+      "en_US": [
+        "Let’s check out {STRVAR_1 3, 0, 0}’s\n",
+        "Trainer Case...\r",
+        "...It’s a Black Card!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00008",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000011_00009",
+      "en_US": [
+        "Communication will be ended.\n",
+        "Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00010",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000011_00011",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000011_00012",
+      "en_US": [
+        "Ending communication.\n",
+        "Please wait."
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00013",
+      "en_US": [
+        "Please choose the Pokémon to be\n",
+        "entered.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00014",
+      "en_US": "Waiting for {STRVAR_1 3, 0, 0} to choose."
+    },
+    {
+      "id": "pl_msg_00000011_00015",
+      "en_US": "The battle has been canceled."
+    },
+    {
+      "id": "pl_msg_00000011_00016",
+      "en_US": "Please come again."
+    },
+    {
+      "id": "pl_msg_00000011_00017",
+      "en_US": [
+        "Please select one of your opponent’s\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00018",
+      "en_US": "Is {STRVAR_1 0, 1, 0} your choice?"
+    },
+    {
+      "id": "pl_msg_00000011_00019",
+      "en_US": [
+        "Please select the three Pokémon\n",
+        "that will participate.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00020",
+      "en_US": [
+        "In a Mix Battle, you and your\n",
+        "opponent first choose one of each\f",
+        "other’s Pokémon.\r",
+        "Then, you exchange the chosen\n",
+        "Pokémon and battle.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000011_00021",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000011_00022",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "pl_msg_00000011_00023",
+      "en_US": "OK"
+    },
+    {
+      "id": "pl_msg_00000011_00024",
+      "en_US": "CANCEL"
+    }
+  ]
+}

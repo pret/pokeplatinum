@@ -1,0 +1,37 @@
+{
+  "key": 55004,
+  "messages": [
+    {
+      "id": "pl_msg_00000395_00000",
+      "en_US": "ITEMS"
+    },
+    {
+      "id": "pl_msg_00000395_00001",
+      "en_US": "MEDICINE"
+    },
+    {
+      "id": "pl_msg_00000395_00002",
+      "en_US": "POKé BALLS"
+    },
+    {
+      "id": "pl_msg_00000395_00003",
+      "en_US": "TMs & HMs"
+    },
+    {
+      "id": "pl_msg_00000395_00004",
+      "en_US": "BERRIES"
+    },
+    {
+      "id": "pl_msg_00000395_00005",
+      "en_US": "MAIL"
+    },
+    {
+      "id": "pl_msg_00000395_00006",
+      "en_US": "BATTLE ITEMS"
+    },
+    {
+      "id": "pl_msg_00000395_00007",
+      "en_US": "KEY ITEMS"
+    }
+  ]
+}

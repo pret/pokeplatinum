@@ -1,0 +1,85 @@
+{
+  "key": 20115,
+  "messages": [
+    {
+      "id": "Route222EastHouse_Text_DreamtLargeRemoraid",
+      "en_US": [
+        "I had a dream!\n",
+        "It was a wonderful dream!\r",
+        "I dreamt that a Trainer would bring\n",
+        "me a giant REMORAID!"
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_DreamtLargeRemoraidWasNoDream",
+      "en_US": [
+        "I had a dream!\n",
+        "It was a wonderful dream!\r",
+        "I dreamt that a Trainer would bring\n",
+        "me a giant REMORAID!\r",
+        "Oh, my gosh!\n",
+        "That dream was no dream!\r",
+        "H-how big of a REMORAID did you\n",
+        "bring me?!\r"
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_BetterThanInMyDream",
+      "en_US": [
+        "{STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches...\n",
+        "This REMORAID is {STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches...\r",
+        "...I think you did better than in\n",
+        "my dream!\r",
+        "I’d like you to have this.\r"
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_WillDreamOfBiggerRemoraid",
+      "en_US": [
+        "Thank you!\n",
+        "I really enjoyed this.\r",
+        "I think I’ll dream of an even bigger\n",
+        "REMORAID tonight."
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_RememberThisSize",
+      "en_US": [
+        "{STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches...\n",
+        "Am I experiencing deja vu?\f",
+        "I distinctly remember this size..."
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_KnowAGenius",
+      "en_US": [
+        "This REMORAID was {STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches.\r",
+        "I know a genius who brought me\n",
+        "a REMORAID that was {STRVAR_1 52, 2, 0}.{STRVAR_1 50, 3, 0} inches..."
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_DidYouListen",
+      "en_US": [
+        "Wha...\n",
+        "What do you think you’re showing me?\r",
+        "Did you even listen to what I had\n",
+        "to say?"
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_BagJammedFull",
+      "en_US": [
+        "Your Bag’s jammed full...\n",
+        "I can’t give you this..."
+      ]
+    },
+    {
+      "id": "Route222EastHouse_Text_DenyMeasureRemoraid",
+      "en_US": [
+        "Oh, what? Why would you deny me\n",
+        "the chance to measure your REMORAID?"
+      ]
+    }
+  ]
+}

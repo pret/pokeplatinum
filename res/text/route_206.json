@@ -1,0 +1,27 @@
+{
+  "key": 40576,
+  "messages": [
+    {
+      "id": "pl_msg_00000474_00000",
+      "en_US": [
+        "This is odd... I heard there were two\n",
+        "caves on Route 206.\r",
+        "But I can only find one entrance."
+      ]
+    },
+    {
+      "id": "pl_msg_00000474_00001",
+      "en_US": [
+        "Rt. 206\n",
+        "Eterna City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000474_00002",
+      "en_US": [
+        "Rt. 206\n",
+        "Oreburgh City"
+      ]
+    }
+  ]
+}

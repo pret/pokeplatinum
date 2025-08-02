@@ -1,0 +1,25 @@
+{
+  "key": 33810,
+  "messages": [
+    {
+      "id": "pl_msg_00000118_00000",
+      "en_US": [
+        "In Amity Square, you may go for\n",
+        "a stroll with a cute Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000118_00001",
+      "en_US": [
+        "My PIKACHU seems delighted to be out\n",
+        "of its Poké Ball for a walk outside.\r",
+        "See? You can tell because its cheeks\n",
+        "are twitching away!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000118_00002",
+      "en_US": "PIKACHU: Pikappi!"
+    }
+  ]
+}

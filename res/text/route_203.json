@@ -1,0 +1,76 @@
+{
+  "key": 40596,
+  "messages": [
+    {
+      "id": "pl_msg_00000468_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey! {STRVAR_1 3, 1, 0}!\n",
+        "Tell me you got a little tougher!\r",
+        "Me? Do you even need to ask?\n",
+        "Of course I got tougher!\r",
+        "Come on!\n",
+        "I’ll demonstrate it to you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000468_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Waah!\n",
+        "What do you mean I lost?!\r",
+        "Well, that’s it!\n",
+        "That’s the last time I’ll ever lose!\r",
+        "I’m going to be the world’s toughest\n",
+        "Trainer, and you know it!\r",
+        "The first thing to do is take on\n",
+        "the Oreburgh City Pokémon Gym!\r",
+        "I’m gonna toughen up for that,\n",
+        "totally!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000468_00002",
+      "en_US": [
+        "Your favorite Pokémon should be placed\n",
+        "at the top left of your party list.\r",
+        "That way, it will be the first to go out\n",
+        "in a battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000468_00003",
+      "en_US": [
+        "Rt. 203\n",
+        "Jubilife City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000468_00004",
+      "en_US": [
+        "Rt. 203\n",
+        "Oreburgh City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000468_00005",
+      "en_US": [
+        "Trainer Tips!\r",
+        "If a Pokémon is about to evolve,\n",
+        "it can be instantly stopped.\r",
+        "Press the B Button during evolution\n",
+        "to startle the Pokémon into stopping.\r",
+        "That is how evolution can be\n",
+        "canceled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000468_00006",
+      "en_US": [
+        "Trainer Tips!\r",
+        "Pokémon moves use energy called\n",
+        "Power Points, or PP for short.\r",
+        "If the PP of moves runs low, head for\n",
+        "any Pokémon Center."
+      ]
+    }
+  ]
+}

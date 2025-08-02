@@ -1,0 +1,24 @@
+{
+  "key": 59412,
+  "messages": [
+    {
+      "id": "pl_msg_00000409_00000",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "pl_msg_00000409_00001",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000409_00002",
+      "en_US": "Please enter a phrase or word."
+    },
+    {
+      "id": "pl_msg_00000409_00003",
+      "en_US": [
+        "Stop giving the Pokémon\n",
+        "Mail?"
+      ]
+    }
+  ]
+}

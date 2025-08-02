@@ -1,0 +1,44 @@
+{
+  "key": 7915,
+  "messages": [
+    {
+      "id": "pl_msg_00000508_00000",
+      "en_US": [
+        "While I was fighting my way through\n",
+        "the blizzard, I dropped an HM.\r",
+        "If I still had that hidden move\n",
+        "Rock Climb, I’d be able to scale\f",
+        "sheer cliffs..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000508_00001",
+      "en_US": [
+        "While I was fighting my way through\n",
+        "the blizzard, I dropped an HM.\r",
+        "If I still had that hidden move\n",
+        "Rock Climb, I’d be able to scale\f",
+        "sheer cliffs...\r",
+        "Hey! What’s this?\n",
+        "You found the Hidden Machine?\r",
+        "But I’d already given it up for lost,\n",
+        "and you found it.\r",
+        "It’s yours to keep, my friend.\n",
+        "Make good use of it.\r",
+        "I like your honesty, though.\n",
+        "Let me reward you with this.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000508_00002",
+      "en_US": [
+        "That Icicle Plate, I found that under\n",
+        "the snow as well.\r",
+        "I’m no expert, but it looks to be\n",
+        "of ancient origin.\r",
+        "Even as old as the time when Sinnoh\n",
+        "came into being..."
+      ]
+    }
+  ]
+}

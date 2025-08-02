@@ -1,0 +1,47 @@
+{
+  "key": 33850,
+  "messages": [
+    {
+      "id": "pl_msg_00000121_00000",
+      "en_US": [
+        "There’s a wrecked stone pillar up\n",
+        "ahead.\r",
+        "I wonder what it is?\n",
+        "It’s got me very curious."
+      ]
+    },
+    {
+      "id": "pl_msg_00000121_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Ta-daah!\n",
+        "Kept me waiting again, {STRVAR_1 3, 1, 0}!\r",
+        "Let’s see how much tougher you and\n",
+        "I have gotten, right here and now!\r",
+        "Hey, you’re a Trainer now. You’re\n",
+        "expected to be ready for a battle.\r",
+        "No whining! No waiting!\n",
+        "Let’s get the show started!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000121_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Waaah!\r",
+        "It goes to show my surefire winning\n",
+        "strategy doesn’t work.\r",
+        "Say, hey, {STRVAR_1 3, 1, 0}.\n",
+        "Remember what I told you before?\r",
+        "Make sure all your attacks hit!\n",
+        "Avoid every enemy attack!\r",
+        "I thought that was a wicked strategy,\n",
+        "but it doesn’t work worth beans.\r",
+        "I guess I have to grind it out and\n",
+        "toughen up the team a bit at a time.\r",
+        "Anyway! I’m off to Solaceon Town!\n",
+        "See ya, {STRVAR_1 3, 1, 0}!\r",
+        "You’ll be shocked by my growth the\n",
+        "next time we meet!\r"
+      ]
+    }
+  ]
+}

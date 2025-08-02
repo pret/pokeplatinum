@@ -1,0 +1,61 @@
+{
+  "key": 41845,
+  "messages": [
+    {
+      "id": "pl_msg_00000436_00000",
+      "en_US": "POKéMON"
+    },
+    {
+      "id": "pl_msg_00000436_00001",
+      "en_US": "POKéMON 2"
+    },
+    {
+      "id": "pl_msg_00000436_00002",
+      "en_US": "MOVE"
+    },
+    {
+      "id": "pl_msg_00000436_00003",
+      "en_US": "MOVE 2"
+    },
+    {
+      "id": "pl_msg_00000436_00004",
+      "en_US": "STATUS"
+    },
+    {
+      "id": "pl_msg_00000436_00005",
+      "en_US": "TRAINER"
+    },
+    {
+      "id": "pl_msg_00000436_00006",
+      "en_US": "PEOPLE"
+    },
+    {
+      "id": "pl_msg_00000436_00007",
+      "en_US": "GREETINGS"
+    },
+    {
+      "id": "pl_msg_00000436_00008",
+      "en_US": "LIFESTYLE"
+    },
+    {
+      "id": "pl_msg_00000436_00009",
+      "en_US": "FEELINGS"
+    },
+    {
+      "id": "pl_msg_00000436_00010",
+      "en_US": "TOUGH WORDS"
+    },
+    {
+      "id": "pl_msg_00000436_00011",
+      "en_US": "UNION"
+    },
+    {
+      "id": "pl_msg_00000436_00012",
+      "en_US": "???"
+    },
+    {
+      "id": "pl_msg_00000436_00013",
+      "en_US": "CANCEL"
+    }
+  ]
+}

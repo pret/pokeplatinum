@@ -1,0 +1,262 @@
+{
+  "key": 17598,
+  "messages": [
+    {
+      "id": "pl_msg_00000621_00000",
+      "en_US": [
+        "Hello!\n",
+        "I’m with Jubilife TV!\r",
+        "May I hit you up for a quick\n",
+        "interview?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00001",
+      "en_US": [
+        "Oh, that’s too bad.\n",
+        "I hope you can oblige another time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00002",
+      "en_US": [
+        "Thank you for sharing your thoughts\n",
+        "with us.\r",
+        "We’ll be featuring this interview in\n",
+        "an upcoming TV program.\r",
+        "Please do tune in and see how you\n",
+        "look on TV!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00003",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000621_00004",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "So, may I hear about your Battle Tower\n",
+        "challenge?\r",
+        "Can you tell me what you’re feeling now?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00005",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000621_00006",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "Your {STRVAR_1 0, 0, 0} is quite appealing,\n",
+        "isn’t it?\r",
+        "May I have your comment on your\n",
+        "{STRVAR_1 0, 0, 0}?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00007",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000621_00008",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "May I ask you which Pokétch app you\n",
+        "use the most?\r",
+        "...The {STRVAR_1 24, 0, 0}...\n",
+        "I see!\r",
+        "May I have your comment on\n",
+        "the {STRVAR_1 24, 0, 0}?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00009",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "So, may I hear about your Contest\n",
+        "challenge?\r",
+        "Can you tell me what you’re feeling\n",
+        "now?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00010",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000621_00011",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "May I have your comment on the finished\n",
+        "photograph?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00012",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "Please select your favorite Pokémon\n",
+        "type from this list.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00013",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "Can you describe your feelings about\n",
+        "preparing Poffins?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00014",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000621_00015",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "I’d like to hear about your stroll\n",
+        "with your {STRVAR_1 0, 0, 0}.\r",
+        "Can you tell me what you’re feeling\n",
+        "now?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00016",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "How do you think your {STRVAR_1 0, 0, 0}\n",
+        "feels now?\r",
+        "Can you tell me what you think?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00017",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "If you were to become a Gym Leader,\n",
+        "what would you name your Gym?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00018",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "If you had to compare your mother to a\n",
+        "Pokémon, what kind would it be?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00019",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "What would you consider to be the\n",
+        "third most important thing in your life?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00020",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "Let’s imagine that you’ve slept in, and\n",
+        "you’re running to make an appointment.\r",
+        "You dash around a corner and collide\n",
+        "with someone.\r",
+        "What sort of person would this be?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00021",
+      "en_US": [
+        "Thank you very much!\n",
+        "Let’s not waste any time...\r",
+        "You partnered with the Trainer\n",
+        "{STRVAR_1 3, 0, 0} for a Multi Battle.\r",
+        "How would you describe this Trainer?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000621_00022",
+      "en_US": "Normal"
+    },
+    {
+      "id": "pl_msg_00000621_00023",
+      "en_US": "Fire"
+    },
+    {
+      "id": "pl_msg_00000621_00024",
+      "en_US": "Water"
+    },
+    {
+      "id": "pl_msg_00000621_00025",
+      "en_US": "Electric"
+    },
+    {
+      "id": "pl_msg_00000621_00026",
+      "en_US": "Grass"
+    },
+    {
+      "id": "pl_msg_00000621_00027",
+      "en_US": "Ice"
+    },
+    {
+      "id": "pl_msg_00000621_00028",
+      "en_US": "Fighting"
+    },
+    {
+      "id": "pl_msg_00000621_00029",
+      "en_US": "Poison"
+    },
+    {
+      "id": "pl_msg_00000621_00030",
+      "en_US": "Ground"
+    },
+    {
+      "id": "pl_msg_00000621_00031",
+      "en_US": "Flying"
+    },
+    {
+      "id": "pl_msg_00000621_00032",
+      "en_US": "Psychic"
+    },
+    {
+      "id": "pl_msg_00000621_00033",
+      "en_US": "Bug"
+    },
+    {
+      "id": "pl_msg_00000621_00034",
+      "en_US": "Rock"
+    },
+    {
+      "id": "pl_msg_00000621_00035",
+      "en_US": "Ghost"
+    },
+    {
+      "id": "pl_msg_00000621_00036",
+      "en_US": "Dragon"
+    },
+    {
+      "id": "pl_msg_00000621_00037",
+      "en_US": "Dark"
+    },
+    {
+      "id": "pl_msg_00000621_00038",
+      "en_US": "Steel"
+    }
+  ]
+}

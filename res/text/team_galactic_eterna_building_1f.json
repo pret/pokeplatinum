@@ -1,0 +1,80 @@
+{
+  "key": 5147,
+  "messages": [
+    {
+      "id": "pl_msg_00000092_00000",
+      "en_US": [
+        "Looker: Hello! It is me! Me!\n",
+        "Hahaha! I have startled you, yes?\r",
+        "I am, after all, an officer of the\n",
+        "International Police.\r",
+        "It is only natural that I be a master of\n",
+        "disguise.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000092_00001",
+      "en_US": [
+        "...Incidentally, you are a first-rate\n",
+        "Trainer. Of that, I am very aware.\r",
+        "I therefore think you will be OK, but\n",
+        "I must warn you to be careful anyway.\r",
+        "Also, a word of advice.\r",
+        "This building, it has two stairs.\n",
+        "One of them, a trap it must be.\r",
+        "But the crooks of Team Galactic, they\n",
+        "do not appear, how shall I say, smart.\r",
+        "There should be an easy way to tell\n",
+        "the stairs apart!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000092_00002",
+      "en_US": [
+        "Looker: Now, I have been conducting\n",
+        "my investigation into Team Galactic.\r",
+        "But I have no clue as to who they are\n",
+        "or what it is they wish to do.\r",
+        "The minions, they appear ignorant of\n",
+        "the intentions of their boss.\r",
+        "Also, a word of advice.\r",
+        "This building, it has two stairs.\n",
+        "One of them, a trap it must be.\r",
+        "But the crooks of Team Galactic, they\n",
+        "do not appear, how shall I say, smart.\r",
+        "There should be an easy way to tell\n",
+        "the stairs apart!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000092_00003",
+      "en_US": [
+        "Welcome to Team Galactic. Are you\n",
+        "here to donate your Pokémon?\r",
+        "What? You’re not?\n",
+        "Then kindly get off our property!\r",
+        "Do we have to bring the pain like we\n",
+        "did with the Cycle Shop manager?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000092_00004",
+      "en_US": [
+        "As a group, Team Galactic has its sights\n",
+        "set on the stars, not on this world!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000092_00005",
+      "en_US": "The path you chose leads to glory."
+    },
+    {
+      "id": "pl_msg_00000092_00006",
+      "en_US": "{STRVAR_1 3, 0, 0} used the {STRVAR_1 8, 1, 0}!\r"
+    },
+    {
+      "id": "pl_msg_00000092_00007",
+      "en_US": "It’s the entrance to a secret room!"
+    }
+  ]
+}

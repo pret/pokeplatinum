@@ -1,0 +1,34 @@
+{
+  "key": 25603,
+  "messages": [
+    {
+      "id": "pl_msg_00000070_00000",
+      "en_US": [
+        "There are eight Gym Leaders in the\n",
+        "Sinnoh region.\r",
+        "The objective for Trainers is to get\n",
+        "Gym Badges from them all.\r",
+        "That means you have to defeat all of\n",
+        "them in battles at their Gyms!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000070_00001",
+      "en_US": [
+        "A Gym Leader isn’t like just any Trainer\n",
+        "you meet.\r",
+        "Obviously, they’re a lot tougher.\n",
+        "A lot.\r",
+        "I’d take as many Pokémon as possible\n",
+        "if I were you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000070_00002",
+      "en_US": [
+        "Roark lets us train our Pokémon in\n",
+        "the mine."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "key": 54274,
+  "messages": [
+    {
+      "id": "pl_msg_00000188_00000",
+      "en_US": [
+        "Ah, you timed your arrival well.\r",
+        "I’ve just finished reading a book,\n",
+        "you see.\r",
+        "Allow me to introduce myself.\r",
+        "I am Lucian.\n",
+        "I am a user of the Psychic type.\r",
+        "I must say, you’ve already proven\n",
+        "yourself to be outstanding by coming\f",
+        "this far.\r",
+        "They say I am the toughest of the\n",
+        "Elite Four.\r",
+        "I’m afraid I will have to go all out\n",
+        "against you to live up to that\f",
+        "reputation.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000188_00001",
+      "en_US": [
+        "Congratulations.\n",
+        "You’ve now beaten the Elite Four.\r",
+        "However, that doesn’t mean you’re\n",
+        "done with the Pokémon League.\r",
+        "There remains the Champion.\r",
+        "I should warn you--the Champion is\n",
+        "far stronger than the Elite Four.\r",
+        "Now, go on. Step through the\n",
+        "doorway to your final battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000188_00002",
+      "en_US": [
+        "I’ll be reading books until the next\n",
+        "challenger arrives.\r",
+        "That will calm my nerves, so that\n",
+        "I may deal with all situations without\f",
+        "panicking."
+      ]
+    }
+  ]
+}

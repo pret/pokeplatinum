@@ -1,0 +1,24 @@
+{
+  "key": 50234,
+  "messages": [
+    {
+      "id": "pl_msg_00000196_00000",
+      "en_US": [
+        "To the north is the Survival Area and\n",
+        "then Stark Mountain.\r",
+        "The road there is too tough for me to\n",
+        "travel, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000196_00001",
+      "en_US": [
+        "Are you stocked up on Poké Balls?\r",
+        "In the tall grass past here, you’ll find\n",
+        "interesting Pokémon.\r",
+        "Like, Pokémon you never see anywhere\n",
+        "else in Sinnoh!"
+      ]
+    }
+  ]
+}

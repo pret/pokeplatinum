@@ -1,0 +1,68 @@
+{
+  "key": 53290,
+  "messages": [
+    {
+      "id": "pl_msg_00000191_00000",
+      "en_US": [
+        "Rowan: It’s been a long while since\n",
+        "I last entered this room...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000191_00001",
+      "en_US": [
+        "Rowan: No matter how many times\n",
+        "I come here, I always find myself\f",
+        "standing up straighter than usual.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000191_00002",
+      "en_US": [
+        "Cynthia: If your last time here was\n",
+        "when I became Champion, then yes,\f",
+        "that would be quite a long time ago.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000191_00003",
+      "en_US": [
+        "Cynthia: It’s a natural reaction,\n",
+        "Professor.\r",
+        "This room is a legacy to the hopes,\n",
+        "dreams, and struggles of Pokémon\f",
+        "and their Trainers to excel.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000191_00004",
+      "en_US": [
+        "Cynthia: {STRVAR_1 3, 0, 0}, welcome\n",
+        "to the Hall of Fame.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000191_00005",
+      "en_US": [
+        "Cynthia: {STRVAR_1 3, 0, 0}, welcome\n",
+        "to the Hall of Fame.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000191_00006",
+      "en_US": [
+        "Your names will be recorded for\n",
+        "posterity here.\r",
+        "What you are leaving are the memories\n",
+        "of your adventure so far.\r",
+        "It’s time to record your names.\n",
+        "You and your Pokémon.\r",
+        "Remember, your Pokémon are partners\n",
+        "that grew with you through\f",
+        "many challenging battles.\r",
+        "This machine will make a permanent\n",
+        "record of your achievement.\r"
+      ]
+    }
+  ]
+}

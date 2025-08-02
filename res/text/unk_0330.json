@@ -1,0 +1,129 @@
+{
+  "key": 51869,
+  "messages": [
+    {
+      "id": "pl_msg_00000330_00000",
+      "en_US": "Hearthome Gym"
+    },
+    {
+      "id": "pl_msg_00000330_00001",
+      "en_US": "Fog: Red"
+    },
+    {
+      "id": "pl_msg_00000330_00002",
+      "en_US": "Fog: Green"
+    },
+    {
+      "id": "pl_msg_00000330_00003",
+      "en_US": "Fog: Blue"
+    },
+    {
+      "id": "pl_msg_00000330_00004",
+      "en_US": "Fog: Alpha"
+    },
+    {
+      "id": "pl_msg_00000330_00005",
+      "en_US": "Fog: thickness"
+    },
+    {
+      "id": "pl_msg_00000330_00006",
+      "en_US": "Camera"
+    },
+    {
+      "id": "pl_msg_00000330_00007",
+      "en_US": "Camera: revolution"
+    },
+    {
+      "id": "pl_msg_00000330_00008",
+      "en_US": "Camera: rotation"
+    },
+    {
+      "id": "pl_msg_00000330_00009",
+      "en_US": "Camera: Zoom"
+    },
+    {
+      "id": "pl_msg_00000330_00010",
+      "en_US": "Camera: Distance"
+    },
+    {
+      "id": "pl_msg_00000330_00011",
+      "en_US": "Move target"
+    },
+    {
+      "id": "pl_msg_00000330_00012",
+      "en_US": "Change angles"
+    },
+    {
+      "id": "pl_msg_00000330_00013",
+      "en_US": "Reset Camera Settings"
+    },
+    {
+      "id": "pl_msg_00000330_00014",
+      "en_US": "Distortion World"
+    },
+    {
+      "id": "pl_msg_00000330_00015",
+      "en_US": "Walk along the wall: left"
+    },
+    {
+      "id": "pl_msg_00000330_00016",
+      "en_US": "Helical Movement"
+    },
+    {
+      "id": "pl_msg_00000330_00017",
+      "en_US": "Up-side down"
+    },
+    {
+      "id": "pl_msg_00000330_00018",
+      "en_US": "Walk along the wall: right"
+    },
+    {
+      "id": "pl_msg_00000330_00019",
+      "en_US": "じきかいてん"
+    },
+    {
+      "id": "pl_msg_00000330_00020",
+      "en_US": "じきリセット"
+    },
+    {
+      "id": "pl_msg_00000330_00021",
+      "en_US": "ロングクリップ"
+    },
+    {
+      "id": "pl_msg_00000330_00022",
+      "en_US": "All Furniture"
+    },
+    {
+      "id": "pl_msg_00000330_00023",
+      "en_US": "Surf"
+    },
+    {
+      "id": "pl_msg_00000330_00024",
+      "en_US": "Strength Flag ON"
+    },
+    {
+      "id": "pl_msg_00000330_00025",
+      "en_US": "Dist. World:Giratina Event"
+    },
+    {
+      "id": "pl_msg_00000330_00026",
+      "en_US": "Dist. World:Battle w/ Cyrus"
+    },
+    {
+      "id": "pl_msg_00000330_00027",
+      "en_US": "Dist. World:boulders ON/OFF"
+    },
+    {
+      "id": "pl_msg_00000330_00028",
+      "en_US": "やぶくもポ－ズ"
+    },
+    {
+      "id": "pl_msg_00000330_00029",
+      "en_US": "Dist. World:Background"
+    },
+    {
+      "id": "pl_msg_00000330_00030",
+      "en_US": "ジムライト"
+    }
+  ]
+}

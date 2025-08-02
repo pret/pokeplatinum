@@ -1,0 +1,651 @@
+{
+  "key": 24069,
+  "messages": [
+    {
+      "id": "pl_msg_00000221_00000",
+      "en_US": [
+        "Welcome to the Pokémon Communication\n",
+        "Club Colosseum.\r",
+        "You may battle with your friends\n",
+        "here.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00001",
+      "en_US": [
+        "Which Battle Mode would you like\n",
+        "to play?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00002",
+      "en_US": [
+        "There are four Battle Modes.\r",
+        "Single Battle is for two Trainers\n",
+        "with one or more Pokémon each.\r",
+        "Each Trainer can have one Pokémon\n",
+        "in battle at a time.\r",
+        "Double Battle is for two Trainers\n",
+        "with two or more Pokémon each.\r",
+        "Each Trainer will send out two\n",
+        "Pokémon to battle at a time.\r",
+        "Mix Battle is for two Trainers\n",
+        "with three Pokémon each.\r",
+        "Each Trainer chooses one of the\n",
+        "opponent’s Pokémon, mixes them\r",
+        "with their own party, and then\n",
+        "battles the other Trainer.\r",
+        "Multi Battle is for four Trainers\n",
+        "with one or more Pokémon each.\r",
+        "Each Trainer can have one Pokémon\n",
+        "in battle at a time.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00003",
+      "garbage": 266
+    },
+    {
+      "id": "pl_msg_00000221_00004",
+      "garbage": 41
+    },
+    {
+      "id": "pl_msg_00000221_00005",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000221_00006",
+      "en_US": [
+        "For a Double Battle, you must\n",
+        "have at least two Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00007",
+      "garbage": 27
+    },
+    {
+      "id": "pl_msg_00000221_00008",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000221_00009",
+      "en_US": "Would you like to save the game?"
+    },
+    {
+      "id": "pl_msg_00000221_00010",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000221_00011",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000221_00012",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000221_00013",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000221_00014",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000221_00015",
+      "en_US": "Please do visit again."
+    },
+    {
+      "id": "pl_msg_00000221_00016",
+      "en_US": [
+        "Communication error.\r",
+        "Please repeat the registration\n",
+        "process from the beginning."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00017",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000221_00018",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000221_00019",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000221_00020",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000221_00021",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000221_00022",
+      "en_US": [
+        "Please decide which of you two\n",
+        "will become the leader.\r",
+        "The other player must then choose\n",
+        "“JOIN GROUP.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00023",
+      "garbage": 24
+    },
+    {
+      "id": "pl_msg_00000221_00024",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000221_00025",
+      "garbage": 27
+    },
+    {
+      "id": "pl_msg_00000221_00026",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000221_00027",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000221_00028",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000221_00029",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000221_00030",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000221_00031",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000221_00032",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000221_00033",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000221_00034",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000221_00035",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000221_00036",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000221_00037",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000221_00038",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000221_00039",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000221_00040",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000221_00041",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000221_00042",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000221_00043",
+      "en_US": [
+        "Please decide which of you four\n",
+        "will become the group leader.\r",
+        "The other players must then choose\n",
+        "“JOIN GROUP.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00044",
+      "en_US": [
+        "Please choose the leader\n",
+        "for a Multi Battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00045",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} was asked to register\n",
+        "you as a member. Please wait."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00046",
+      "en_US": "{STRVAR_1 3, 0, 0} replied, “No...”"
+    },
+    {
+      "id": "pl_msg_00000221_00047",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} OK’d your registration\n",
+        "as a member."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00048",
+      "en_US": [
+        "Multi Battle!\n",
+        "Awaiting other members!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00049",
+      "en_US": [
+        "Multi Battle! Awaiting\n",
+        "communication from another player."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00050",
+      "en_US": [
+        "Cancel the Multi Battle Mode\n",
+        "with these members?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00051",
+      "en_US": "{STRVAR_1 3, 0, 0} contacted you."
+    },
+    {
+      "id": "pl_msg_00000221_00052",
+      "en_US": [
+        "The members have gathered.\n",
+        "Please enter the room."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00053",
+      "garbage": 46
+    },
+    {
+      "id": "pl_msg_00000221_00054",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000221_00055",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000221_00056",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000221_00057",
+      "en_US": [
+        "Welcome to the Pokémon Wireless\n",
+        "Club Union Room.\r",
+        "You may interact directly with\n",
+        "many Trainers here.\r",
+        "Would you like to enter the room?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00058",
+      "en_US": [
+        "The Trainers in the Union Room\n",
+        "will be those players around you\f",
+        "who have also entered the room.\r",
+        "You may enter two Pokémon up to\n",
+        "Lv. 30 for a one-on-one battle.\r",
+        "Or, you may trade your Pokémon here\n",
+        "with another Trainer.\r",
+        "You may also mix records or draw\n",
+        "with other players.\r",
+        "You may also chat with other\n",
+        "players in the room.\r",
+        "...Or find friends by touching\n",
+        "the spoken words.\r",
+        "Would you like to enter the room?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00059",
+      "en_US": "Would you like to save the game?"
+    },
+    {
+      "id": "pl_msg_00000221_00060",
+      "en_US": [
+        "There is already a saved file.\n",
+        "Is it OK to overwrite it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00061",
+      "en_US": [
+        "Saving...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00062",
+      "en_US": "{STRVAR_1 3, 0, 0} saved the game."
+    },
+    {
+      "id": "pl_msg_00000221_00063",
+      "en_US": [
+        "I hope you enjoy your time in\n",
+        "the Union Room.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00064",
+      "garbage": 92
+    },
+    {
+      "id": "pl_msg_00000221_00065",
+      "garbage": 115
+    },
+    {
+      "id": "pl_msg_00000221_00066",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000221_00067",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000221_00068",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000221_00069",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000221_00070",
+      "garbage": 63
+    },
+    {
+      "id": "pl_msg_00000221_00071",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000221_00072",
+      "garbage": 34
+    },
+    {
+      "id": "pl_msg_00000221_00073",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000221_00074",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000221_00075",
+      "garbage": 24
+    },
+    {
+      "id": "pl_msg_00000221_00076",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000221_00077",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000221_00078",
+      "garbage": 27
+    },
+    {
+      "id": "pl_msg_00000221_00079",
+      "garbage": 96
+    },
+    {
+      "id": "pl_msg_00000221_00080",
+      "garbage": 158
+    },
+    {
+      "id": "pl_msg_00000221_00081",
+      "garbage": 87
+    },
+    {
+      "id": "pl_msg_00000221_00082",
+      "garbage": 90
+    },
+    {
+      "id": "pl_msg_00000221_00083",
+      "garbage": 61
+    },
+    {
+      "id": "pl_msg_00000221_00084",
+      "garbage": 85
+    },
+    {
+      "id": "pl_msg_00000221_00085",
+      "garbage": 105
+    },
+    {
+      "id": "pl_msg_00000221_00086",
+      "garbage": 65
+    },
+    {
+      "id": "pl_msg_00000221_00087",
+      "garbage": 63
+    },
+    {
+      "id": "pl_msg_00000221_00088",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000221_00089",
+      "garbage": 75
+    },
+    {
+      "id": "pl_msg_00000221_00090",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000221_00091",
+      "garbage": 73
+    },
+    {
+      "id": "pl_msg_00000221_00092",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000221_00093",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000221_00094",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000221_00095",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000221_00096",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000221_00097",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000221_00098",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000221_00099",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000221_00100",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000221_00101",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000221_00102",
+      "en_US": [
+        "You may sign the back of your\n",
+        "Trainer Card here.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00103",
+      "en_US": [
+        "Would you like to sign your\n",
+        "Trainer Card?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00104",
+      "en_US": "Please do visit again."
+    },
+    {
+      "id": "pl_msg_00000221_00105",
+      "en_US": [
+        "You may sign the back of your\n",
+        "Trainer Card here.\r",
+        "You may show your signature to\n",
+        "other players in the Union Room.\r",
+        "If you write a new signature, the\n",
+        "old one will be deleted, however.\f",
+        "Please be aware of that.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00106",
+      "en_US": [
+        "Which set of rules would you like\n",
+        "to use?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00107",
+      "en_US": [
+        "You need at least {STRVAR_1 50, 1, 0} Pokémon that\n",
+        "qualify under {STRVAR_1 26, 0, 0} Cup\f",
+        "rules."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00108",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000221_00109",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000221_00110",
+      "garbage": 6
+    },
+    {
+      "id": "pl_msg_00000221_00111",
+      "garbage": 6
+    },
+    {
+      "id": "pl_msg_00000221_00112",
+      "garbage": 6
+    },
+    {
+      "id": "pl_msg_00000221_00113",
+      "en_US": "{STRVAR_1 26, 0, 0} Cup"
+    },
+    {
+      "id": "pl_msg_00000221_00114",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000221_00115",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "pl_msg_00000221_00116",
+      "en_US": "RULES"
+    },
+    {
+      "id": "pl_msg_00000221_00117",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000221_00118",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000221_00119",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000221_00120",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000221_00121",
+      "en_US": [
+        "It’s impossible to form a team of\n",
+        "Pokémon that qualify under the\r",
+        "{STRVAR_1 26, 0, 0} Cup rules with a\n",
+        "total level limit of {STRVAR_1 52, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00122",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000221_00123",
+      "en_US": "NO RESTRICTIONS"
+    },
+    {
+      "id": "pl_msg_00000221_00124",
+      "en_US": [
+        "DS Wireless Communications will be\n",
+        "launched."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00125",
+      "en_US": [
+        "For a Multi Battle, you must have\n",
+        "at least three Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00126",
+      "en_US": [
+        "For a Mix Battle, you must have\n",
+        "at least three Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000221_00127",
+      "en_US": [
+        "You have at least one Pokémon\n",
+        "that can’t be taken."
+      ]
+    }
+  ]
+}

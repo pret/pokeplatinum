@@ -1,0 +1,125 @@
+{
+  "key": 12299,
+  "messages": [
+    {
+      "id": "pl_msg_00000022_00000",
+      "en_US": "Battle Room Results"
+    },
+    {
+      "id": "pl_msg_00000022_00001",
+      "en_US": "Multi Battle Room Results"
+    },
+    {
+      "id": "pl_msg_00000022_00002",
+      "en_US": "Wi-Fi Battle Room Results"
+    },
+    {
+      "id": "pl_msg_00000022_00003",
+      "en_US": [
+        "{COLOR 1}Single{COLOR 3} {COLOR 2}\n",
+        "{COLOR 1}Record{COLOR 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00004",
+      "en_US": [
+        "{COLOR 1}Multi{COLOR 3} {COLOR 0}\n",
+        "{COLOR 1}Record{COLOR 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00005",
+      "en_US": [
+        "{COLOR 1}Current{COLOR 3} {COLOR 0}\n",
+        "{COLOR 1}Rank{COLOR 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00006",
+      "en_US": [
+        "{COLOR 1}Double{COLOR 3} {COLOR 0}\n",
+        "{COLOR 1}Record{COLOR 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00007",
+      "en_US": [
+        "{COLOR 1}Link{COLOR 3} {COLOR 0}\n",
+        "{COLOR 1}Record{COLOR 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00008",
+      "en_US": [
+        "{COLOR 1}Wi-Fi{COLOR 0}\n",
+        "{COLOR 1}Record{COLOR 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00009",
+      "en_US": "{COLOR 1}PREV{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00010",
+      "en_US": "{COLOR 1}CURRENT{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00011",
+      "en_US": "{COLOR 1}RECORD{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00012",
+      "en_US": "{COLOR 1}RANK{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00013",
+      "en_US": "Win streak: {COLOR 2}{STRVAR_1 53, 0, 0}{COLOR 0} "
+    },
+    {
+      "id": "pl_msg_00000022_00014",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00015",
+      "en_US": "Rank {STRVAR_1 51, 0, 0}, Battle Room {STRVAR_1 52, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00016",
+      "en_US": "LIST OF LEADERS"
+    },
+    {
+      "id": "pl_msg_00000022_00017",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00018",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000022_00019",
+      "en_US": [
+        "{STRVAR_1 36, 0, 0}\n",
+        "{STRVAR_1 37, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00020",
+      "en_US": "{STRVAR_1 36, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000022_00021",
+      "en_US": [
+        "Home country\n",
+        "unregistered"
+      ]
+    },
+    {
+      "id": "pl_msg_00000022_00022",
+      "en_US": "Plato"
+    },
+    {
+      "id": "pl_msg_00000022_00023",
+      "en_US": "Plato"
+    }
+  ]
+}

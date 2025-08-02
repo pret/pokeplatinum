@@ -1,0 +1,67 @@
+{
+  "key": 50251,
+  "messages": [
+    {
+      "id": "VerityCavern_Text_MespritCry",
+      "en_US": "Kyauun.\r"
+    },
+    {
+      "id": "VerityCavern_Text_MespritFlewOff",
+      "en_US": "MESPRIT flew off somewhere...\r"
+    },
+    {
+      "id": "VerityCavern_Text_RowanThatWasMesprit",
+      "en_US": [
+        "Rowan: ...\n",
+        "...\r",
+        "{STRVAR_1 3, 0, 0}, that was MESPRIT,\n",
+        "wasn’t it?\r",
+        "You’ve accomplished what I’d asked\n",
+        "you to do at the Canalave Library...\r",
+        "I asked you to get data on the\n",
+        "Pokémon of the lake, and you did.\r",
+        "But it didn’t provide any answers\n",
+        "about the mysteries of evolution.\r",
+        "I still don’t know why some Pokémon\n",
+        "evolve and others don’t.\r",
+        "Ultimately, it only deepened the\n",
+        "mystery.\r",
+        "But having mysteries to solve...\n",
+        "That adds to my enjoyment!\r"
+      ]
+    },
+    {
+      "id": "VerityCavern_Text_RowanChaseAfterMesprit",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, why don’t you chase\n",
+        "after MESPRIT?\r",
+        "To me, it seemed as if it wanted to\n",
+        "play with you.\r",
+        "If you were to use the Pokétch app\n",
+        "Marking Map, you’d be able to\f",
+        "track the movements of Pokémon.\r"
+      ]
+    },
+    {
+      "id": "VerityCavern_Text_RowanNoMarkingMap",
+      "en_US": [
+        "What?\n",
+        "You don’t have the Marking Map?\r",
+        "...You should occasionally pay visits\n",
+        "to the Pokétch Company, you know.\r"
+      ]
+    },
+    {
+      "id": "VerityCavern_Text_RowanGoOn",
+      "en_US": [
+        "Go on, {STRVAR_1 3, 0, 0}.\r",
+        "I’m sure that you will keep meeting\n",
+        "countless Pokémon and people.\r",
+        "Those encounters will keep thrilling\n",
+        "you in their own special ways.\r",
+        "I hope you’ll enjoy that experience!\n",
+        "Take care, {STRVAR_1 3, 0, 0}.\r"
+      ]
+    }
+  ]
+}

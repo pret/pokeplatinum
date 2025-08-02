@@ -1,0 +1,69 @@
+{
+  "key": 4362,
+  "messages": [
+    {
+      "id": "pl_msg_00000398_00000",
+      "en_US": "BERRY TAG"
+    },
+    {
+      "id": "pl_msg_00000398_00001",
+      "en_US": "SPICY"
+    },
+    {
+      "id": "pl_msg_00000398_00002",
+      "en_US": "DRY"
+    },
+    {
+      "id": "pl_msg_00000398_00003",
+      "en_US": "SWEET"
+    },
+    {
+      "id": "pl_msg_00000398_00004",
+      "en_US": "BITTER"
+    },
+    {
+      "id": "pl_msg_00000398_00005",
+      "en_US": "SOUR"
+    },
+    {
+      "id": "pl_msg_00000398_00006",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000398_00007",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000398_00008",
+      "en_US": "SIZE /"
+    },
+    {
+      "id": "pl_msg_00000398_00009",
+      "en_US": "{STRVAR_1 51, 0, 0}.{STRVAR_1 50, 1, 0}”"
+    },
+    {
+      "id": "pl_msg_00000398_00010",
+      "en_US": "FIRM /"
+    },
+    {
+      "id": "pl_msg_00000398_00011",
+      "en_US": "Very soft"
+    },
+    {
+      "id": "pl_msg_00000398_00012",
+      "en_US": "Soft"
+    },
+    {
+      "id": "pl_msg_00000398_00013",
+      "en_US": "Hard"
+    },
+    {
+      "id": "pl_msg_00000398_00014",
+      "en_US": "Very hard"
+    },
+    {
+      "id": "pl_msg_00000398_00015",
+      "en_US": "Super hard"
+    }
+  ]
+}

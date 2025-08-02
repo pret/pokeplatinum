@@ -1,0 +1,33 @@
+{
+  "key": 62555,
+  "messages": [
+    {
+      "id": "pl_msg_00000278_00000",
+      "en_US": [
+        "Byron: Hm?\n",
+        "You’re in training, then?\r",
+        "You know, my son trains as hard as\n",
+        "you do.\r",
+        "But I still treat him as if he were\n",
+        "a child.\r",
+        "It’s ridiculous, really.\n",
+        "He is a proper Gym Leader and all.\r",
+        "It’s always tricky between a father\n",
+        "and son, it seems.\r",
+        "Humph, I’ve wasted your time.\n",
+        "Take this as my apology!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000278_00001",
+      "en_US": [
+        "There are Pokémon that evolve into\n",
+        "the Steel type using that Metal Coat.\r",
+        "They need to hold that item while\n",
+        "being traded to evolve.\r",
+        "Try using it if you’d like.\n",
+        "Farewell!\r"
+      ]
+    }
+  ]
+}

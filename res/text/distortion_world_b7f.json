@@ -1,0 +1,135 @@
+{
+  "key": 29762,
+  "messages": [
+    {
+      "id": "pl_msg_00000319_00000",
+      "en_US": [
+        "Cynthia: This is it...\n",
+        "GIRATINA is up ahead.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00001",
+      "en_US": "Cynthia: ...So, you were already here.\r"
+    },
+    {
+      "id": "pl_msg_00000319_00002",
+      "en_US": [
+        "Cynthia: Why do you seek to change the\n",
+        "world?\r",
+        "If you hate our world, you should just\n",
+        "go off somewhere alone.\r",
+        "Find somewhere where you can live\n",
+        "without seeing others.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00003",
+      "en_US": [
+        "Cynthia: But...\n",
+        "That’s no justice at all!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00004",
+      "en_US": [
+        "Cyrus: Why should I run and hide from\n",
+        "the world and have to wait quietly?\r",
+        "My aim is to rid our world of the vague\n",
+        "and incomplete thing we call spirit.\r",
+        "By freeing ourselves of that, our\n",
+        "world can be made complete.\r",
+        "That is my justice!\n",
+        "No one can interfere!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00005",
+      "en_US": [
+        "Cyrus: I won’t lose!\r",
+        "Not to that shadowy Pokémon!\n",
+        "Not in any worthless world!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00006",
+      "en_US": [
+        "Cyrus: ...Don’t think that you can\n",
+        "defeat or capture that Pokémon.\r",
+        "This bizarre world is none other than\n",
+        "that Pokémon itself!\r",
+        "Capturing it or defeating it will make\n",
+        "this world disappear!\r",
+        "Very well!\n",
+        "Do what you will!\r",
+        "Rather than repairing the world, you’re\n",
+        "going to destroy it for me!\r",
+        "Do it.\n",
+        "You inherit my legacy.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00007",
+      "en_US": [
+        "Cynthia: Don’t believe his lies.\r",
+        "It’s not possible that a Pokémon can\n",
+        "make the world disappear.\r",
+        "The world awaited your birth.\n",
+        "Not only yours, either.\r",
+        "The Pokémon with you.\n",
+        "The people close to you.\r",
+        "All the Pokémon and people were born\n",
+        "because they have a part in the world.\r",
+        "I’m convinced of that.\r",
+        "GIRATINA won’t go out of existence.\n",
+        "This Distortion World won’t disappear.\f",
+        "Our world won’t disappear, either.\r",
+        "Let’s go meet GIRATINA.\r",
+        "...Oops. I should do something about\n",
+        "your hardworking Pokémon first.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00008",
+      "en_US": [
+        "Cynthia fully healed {STRVAR_1 3, 0, 0}’s\n",
+        "Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00009",
+      "en_US": "Cynthia: Now let’s go meet GIRATINA!\r"
+    },
+    {
+      "id": "pl_msg_00000319_00010",
+      "en_US": [
+        "Cynthia: GIRATINA is enraged because\n",
+        "the two worlds are endangered.\r",
+        "It has merged the Distortion World and\n",
+        "our world at the Spear Pillar.\r",
+        "That’s why both worlds are becoming\n",
+        "distorted.\r",
+        "But there’s nothing to fear.\r",
+        "You can defeat GIRATINA and show the\n",
+        "tight bond you share with your Pokémon.\r",
+        "Or you can demonstrate how much you\n",
+        "want it to join you.\r",
+        "If you succeed in doing either,\n",
+        "GIRATINA will understand.\r",
+        "The distortion of the two worlds will\n",
+        "stop!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00011",
+      "en_US": [
+        "Cynthia: I know that the bond you\n",
+        "share with your Pokémon is strong!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000319_00012",
+      "garbage": 7
+    }
+  ]
+}

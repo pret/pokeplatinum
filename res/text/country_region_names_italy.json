@@ -1,0 +1,89 @@
+{
+  "key": 6605,
+  "messages": [
+    {
+      "id": "pl_msg_00000687_00000",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000687_00001",
+      "en_US": "Abruzzo"
+    },
+    {
+      "id": "pl_msg_00000687_00002",
+      "en_US": "Basilicata"
+    },
+    {
+      "id": "pl_msg_00000687_00003",
+      "en_US": "Calabria"
+    },
+    {
+      "id": "pl_msg_00000687_00004",
+      "en_US": "Campania"
+    },
+    {
+      "id": "pl_msg_00000687_00005",
+      "en_US": "Emilia-Romagna"
+    },
+    {
+      "id": "pl_msg_00000687_00006",
+      "en_US": "Friuli-Venezia Giulia"
+    },
+    {
+      "id": "pl_msg_00000687_00007",
+      "en_US": "Lazio"
+    },
+    {
+      "id": "pl_msg_00000687_00008",
+      "en_US": "Liguria"
+    },
+    {
+      "id": "pl_msg_00000687_00009",
+      "en_US": "Lombardia"
+    },
+    {
+      "id": "pl_msg_00000687_00010",
+      "en_US": "Marche"
+    },
+    {
+      "id": "pl_msg_00000687_00011",
+      "en_US": "Molise"
+    },
+    {
+      "id": "pl_msg_00000687_00012",
+      "en_US": "Piemonte"
+    },
+    {
+      "id": "pl_msg_00000687_00013",
+      "en_US": "Puglia"
+    },
+    {
+      "id": "pl_msg_00000687_00014",
+      "en_US": "Sardegna"
+    },
+    {
+      "id": "pl_msg_00000687_00015",
+      "en_US": "Sicilia"
+    },
+    {
+      "id": "pl_msg_00000687_00016",
+      "en_US": "Toscana"
+    },
+    {
+      "id": "pl_msg_00000687_00017",
+      "en_US": "Trentino-Alto Adige"
+    },
+    {
+      "id": "pl_msg_00000687_00018",
+      "en_US": "Umbria"
+    },
+    {
+      "id": "pl_msg_00000687_00019",
+      "en_US": "Valle d’Aosta"
+    },
+    {
+      "id": "pl_msg_00000687_00020",
+      "en_US": "Veneto"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "key": 29739,
+  "messages": [
+    {
+      "id": "pl_msg_00000063_00000",
+      "en_US": [
+        "...Welcome...\r",
+        "...\n",
+        "...Kekeke...\r",
+        "We’ve had a reservation for you.\n",
+        "We’ve held it a long time...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000063_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} lay down on the bed as if\n",
+        "bidden there...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000063_00002",
+      "en_US": "{STRVAR_1 3, 0, 0} awakened!"
+    },
+    {
+      "id": "pl_msg_00000063_00003",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000063_00004",
+      "en_US": [
+        "Though fading out of consciousness,\n",
+        "these words were heard...\r",
+        "???: DARKRAI...\n",
+        "Your power is strong.\r",
+        "Though you do not wish it, you cause\n",
+        "people and Pokémon around you to see\f",
+        "deeply disturbing dreams...\r",
+        "There is a place right for you.\r",
+        "Newmoon Island...\n",
+        "You will be alone there.\r",
+        "There is no one there to see the\n",
+        "dreadful dreams you bring.\r",
+        "If someone does, Fullmoon Island is\n",
+        "nearby...\r",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000063_00005",
+      "garbage": 12
+    }
+  ]
+}

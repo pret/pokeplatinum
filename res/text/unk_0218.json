@@ -1,0 +1,52 @@
+{
+  "key": 51967,
+  "messages": [
+    {
+      "id": "pl_msg_00000218_00000",
+      "en_US": [
+        "Dexter: That’s it, folks!\n",
+        "All judging has been completed!\r",
+        "Which Pokémon will be crowned the\n",
+        "winner?\r",
+        "Let’s announce the results!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000218_00001",
+      "en_US": [
+        "First, the results of the Visual\n",
+        "Competition!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000218_00002",
+      "en_US": [
+        "Next, let’s have the results of the\n",
+        "Dance Competition!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000218_00003",
+      "en_US": [
+        "And finally, here are the results of\n",
+        "the Acting Competition!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000218_00004",
+      "en_US": [
+        "Dexter: The winner is...\n",
+        "Entry number {STRVAR_1 50, 0, 0}!\r",
+        "{STRVAR_1 3, 1, 0} and {STRVAR_1 0, 2, 0}!\n",
+        "Congratulations!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000218_00005",
+      "en_US": [
+        "And now, it’s time to announce the\n",
+        "results of the individual categories!\r"
+      ]
+    }
+  ]
+}

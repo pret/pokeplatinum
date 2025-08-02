@@ -1,0 +1,189 @@
+{
+  "key": 10503,
+  "messages": [
+    {
+      "id": "BoxText_MonSelected",
+      "en_US": "{STRVAR_1 1, 0, 0} is selected."
+    },
+    {
+      "id": "BoxText_MarkMon",
+      "en_US": "Mark your Pokémon."
+    },
+    {
+      "id": "BoxText_ReleaseMon",
+      "en_US": "Release this Pokémon?"
+    },
+    {
+      "id": "BoxText_MonReleased",
+      "en_US": "{STRVAR_1 1, 0, 0} was released."
+    },
+    {
+      "id": "BoxText_GoodbyeForever",
+      "en_US": "Bye-bye, {STRVAR_1 1, 0, 0}!"
+    },
+    {
+      "id": "BoxText_PartyFull",
+      "en_US": "Your party’s full!"
+    },
+    {
+      "id": "BoxText_LastMon",
+      "en_US": "That’s your last Pokémon!"
+    },
+    {
+      "id": "BoxText_WhatDo",
+      "en_US": "What do you want to do?"
+    },
+    {
+      "id": "BoxText_JumpToBox",
+      "en_US": "Jump to which Box?"
+    },
+    {
+      "id": "BoxText_PickTheme",
+      "en_US": "Please pick a theme."
+    },
+    {
+      "id": "BoxText_Wallpaper",
+      "en_US": "Pick the wallpaper."
+    },
+    {
+      "id": "BoxText_ConfirmExit",
+      "en_US": "Exit from the Box?"
+    },
+    {
+      "id": "BoxText_ConfirmContinue",
+      "en_US": "Continue Box operations?"
+    },
+    {
+      "id": "BoxText_BoxFull",
+      "en_US": "The Box is full."
+    },
+    {
+      "id": "BoxText_BagFull",
+      "en_US": "The Bag is full."
+    },
+    {
+      "id": "BoxText_TookItem",
+      "en_US": "Took the {STRVAR_1 8, 0, 0}."
+    },
+    {
+      "id": "BoxText_HoldingItem",
+      "en_US": "{STRVAR_1 8, 0, 0} is now being held."
+    },
+    {
+      "id": "BoxText_HoldingMon",
+      "en_US": "You’re holding a Pokémon!"
+    },
+    {
+      "id": "BoxText_PickOne",
+      "en_US": "Which one will you take?"
+    },
+    {
+      "id": "BoxText_PickDepositBox",
+      "en_US": "Deposit in which Box?"
+    },
+    {
+      "id": "BoxText_NoItem",
+      "en_US": "No item"
+    },
+    {
+      "id": "BoxText_Male",
+      "en_US": "♂"
+    },
+    {
+      "id": "BoxText_Female",
+      "en_US": "♀"
+    },
+    {
+      "id": "BoxText_ConfirmTakeItem",
+      "en_US": "Take this {STRVAR_1 8, 0, 0}?"
+    },
+    {
+      "id": "BoxText_CantTakeMail",
+      "en_US": "Mail can’t be taken away."
+    },
+    {
+      "id": "BoxText_ItemSelected",
+      "en_US": "{STRVAR_1 8, 0, 0} is selected."
+    },
+    {
+      "id": "BoxText_PutAwayItem",
+      "en_US": "Put away {STRVAR_1 8, 0, 0}?"
+    },
+    {
+      "id": "BoxText_PlaceItemInBag",
+      "en_US": "Placed {STRVAR_1 8, 0, 0} in the Bag."
+    },
+    {
+      "id": "BoxText_GiveToMon",
+      "en_US": "Give to a Pokémon?"
+    },
+    {
+      "id": "BoxText_DetachBallCapsule",
+      "en_US": "Please detach the Ball Capsule."
+    },
+    {
+      "id": "BoxText_RemoveMail",
+      "en_US": "Please remove the Mail."
+    },
+    {
+      "id": "BoxText_CantReleaseEgg",
+      "en_US": "You can’t release an Egg."
+    },
+    {
+      "id": "BoxText_MonReturned",
+      "en_US": "{STRVAR_1 1, 0, 0} came back!"
+    },
+    {
+      "id": "BoxText_MonWasWorried",
+      "en_US": "Was it worried about you?"
+    },
+    {
+      "id": "BoxText_EggsCantHoldItems",
+      "en_US": "An Egg can’t hold an item."
+    },
+    {
+      "id": "BoxText_Nature",
+      "en_US": "NATURE"
+    },
+    {
+      "id": "BoxText_Level",
+      "en_US": "Lv."
+    },
+    {
+      "id": "BoxText_HP",
+      "en_US": "HP"
+    },
+    {
+      "id": "BoxText_Attack",
+      "en_US": "ATTACK"
+    },
+    {
+      "id": "BoxText_Defense",
+      "en_US": "DEFENSE"
+    },
+    {
+      "id": "BoxText_SpecialAttack",
+      "en_US": "SP. ATK"
+    },
+    {
+      "id": "BoxText_SpecialDefense",
+      "en_US": "SP. DEF"
+    },
+    {
+      "id": "BoxText_Speed",
+      "en_US": "SPEED"
+    },
+    {
+      "id": "BoxText_Move",
+      "en_US": "MOVE"
+    },
+    {
+      "id": "BoxText_QuestionMarks",
+      "en_US": "???"
+    },
+    {
+      "id": "BoxText_MonCantHoldItem",
+      "en_US": "It can’t hold the {STRVAR_1 8, 0, 0}."
+    }
+  ]
+}

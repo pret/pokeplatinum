@@ -1,0 +1,34 @@
+{
+  "key": 1027,
+  "messages": [
+    {
+      "id": "pl_msg_00000114_00000",
+      "en_US": [
+        "There are the Contests!\n",
+        "Then, we have Amity Square!\r",
+        "Hearthome gets visitors from all over,\n",
+        "so things have to be nice and clean!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000114_00001",
+      "en_US": [
+        "People all over the world follow\n",
+        "Pokémon Contests.\r",
+        "What should I do?\n",
+        "I could captivate the whole world!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000114_00002",
+      "en_US": [
+        "My SHROOMISH finds Berries and things\n",
+        "when we go to Amity Square."
+      ]
+    },
+    {
+      "id": "pl_msg_00000114_00003",
+      "en_US": "SHROOMISH: Pofwaaah!"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "key": 54330,
+  "messages": [
+    {
+      "id": "pl_msg_00000187_00000",
+      "en_US": [
+        "Yo, Trainer!\r",
+        "You had me counting the days on my\n",
+        "fingers waiting for you to come.\r",
+        "I heard from Volkner what you \n",
+        "did in Sunyshore.\r",
+        "You managed to light a fire in that\n",
+        "guy’s heart again.\r",
+        "How could you not expect me to look\n",
+        "forward to seeing you in battle?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000187_00001",
+      "en_US": [
+        "You’re facing a Fire-type Pokémon\n",
+        "user with me.\r",
+        "Let Flint see how hot your spirit\n",
+        "burns!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000187_00002",
+      "en_US": [
+        "...\n",
+        "...\r",
+        "...\n",
+        "...\r",
+        "...\n",
+        "...\r",
+        "...Whew...\n",
+        "...Burnt right down to cinders..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000187_00003",
+      "en_US": [
+        "...\n",
+        "...\r",
+        "...\n",
+        "...\r",
+        "...\n",
+        "...\r",
+        "...Keep going..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000187_00004",
+      "en_US": [
+        "I was waiting for you, challenger!\r",
+        "Flint, the master of the Fire type,\n",
+        "is up next!\r",
+        "Battles are clashes of the burning\n",
+        "spirit of Pokémon.\r",
+        "Battles aren’t about appearances\n",
+        "or what’s weak or strong.\r",
+        "It all comes down to whether the\n",
+        "combatants can burn hot or not.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000187_00005",
+      "en_US": [
+        "...\n",
+        "...\r",
+        "...Whew...\n",
+        "...Burnt right down to cinders..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000187_00006",
+      "en_US": [
+        "...\n",
+        "...\r",
+        "...Keep going...\r",
+        "I know your spirit burns hot.\n",
+        "Your whole team does."
+      ]
+    }
+  ]
+}

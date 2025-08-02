@@ -1,0 +1,29 @@
+{
+  "key": 17411,
+  "messages": [
+    {
+      "id": "pl_msg_00000036_00000",
+      "en_US": [
+        "You can see the rankings of people\n",
+        "in your group here.\r",
+        "It makes me try even harder ’cause\n",
+        "I can’t stand losing to my friends!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000036_00001",
+      "en_US": [
+        "These rankings are nifty!\r",
+        "I’m going to make a group and\n",
+        "compete with all my best friends!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000036_00002",
+      "en_US": [
+        "Sorry, I’m still fine-tuning this\n",
+        "thingy here."
+      ]
+    }
+  ]
+}

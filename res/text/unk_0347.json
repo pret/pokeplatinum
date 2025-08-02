@@ -1,0 +1,103 @@
+{
+  "key": 15771,
+  "messages": [
+    {
+      "id": "pl_msg_00000347_00000",
+      "en_US": "Ratio"
+    },
+    {
+      "id": "pl_msg_00000347_00001",
+      "en_US": "Height"
+    },
+    {
+      "id": "pl_msg_00000347_00002",
+      "en_US": [
+        "LEFT: Shrink\n",
+        "RIGHT: Enlarge\n",
+        "UP: Move upward\n",
+        "DOWN: Move downward\n",
+        "A: Change\n",
+        "B: Cancel\n",
+        "L: Next Pokémon\n",
+        "R: Previous Pokémon\n",
+        "SELECT: Switch gender"
+      ]
+    },
+    {
+      "id": "pl_msg_00000347_00003",
+      "en_US": "Player (Girl)"
+    },
+    {
+      "id": "pl_msg_00000347_00004",
+      "en_US": "0"
+    },
+    {
+      "id": "pl_msg_00000347_00005",
+      "en_US": "1"
+    },
+    {
+      "id": "pl_msg_00000347_00006",
+      "en_US": "2"
+    },
+    {
+      "id": "pl_msg_00000347_00007",
+      "en_US": "3"
+    },
+    {
+      "id": "pl_msg_00000347_00008",
+      "en_US": "4"
+    },
+    {
+      "id": "pl_msg_00000347_00009",
+      "en_US": "5"
+    },
+    {
+      "id": "pl_msg_00000347_00010",
+      "en_US": "6"
+    },
+    {
+      "id": "pl_msg_00000347_00011",
+      "en_US": "7"
+    },
+    {
+      "id": "pl_msg_00000347_00012",
+      "en_US": "8"
+    },
+    {
+      "id": "pl_msg_00000347_00013",
+      "en_US": "9"
+    },
+    {
+      "id": "pl_msg_00000347_00014",
+      "en_US": "A"
+    },
+    {
+      "id": "pl_msg_00000347_00015",
+      "en_US": "B"
+    },
+    {
+      "id": "pl_msg_00000347_00016",
+      "en_US": "C"
+    },
+    {
+      "id": "pl_msg_00000347_00017",
+      "en_US": "D"
+    },
+    {
+      "id": "pl_msg_00000347_00018",
+      "en_US": "E"
+    },
+    {
+      "id": "pl_msg_00000347_00019",
+      "en_US": "F"
+    },
+    {
+      "id": "pl_msg_00000347_00020",
+      "en_US": "Player (Boy)"
+    },
+    {
+      "id": "pl_msg_00000347_00021",
+      "en_US": "In progress"
+    }
+  ]
+}

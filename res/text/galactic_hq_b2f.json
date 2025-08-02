@@ -1,0 +1,46 @@
+{
+  "key": 54367,
+  "messages": [
+    {
+      "id": "pl_msg_00000287_00000",
+      "en_US": [
+        "OK, to get into Master Cyrus’s\n",
+        "speech... Uh, where was it now?\r",
+        "At the Galactic Veilstone Building,\n",
+        "that much I’m sure about.\r",
+        "Go in through the door beside the\n",
+        "reception counter, I think it was?\r",
+        "Uh? What’d I do with that key anyway?\n",
+        "Where’s it gone?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000287_00001",
+      "en_US": [
+        "Team Galactic will set free all Pokémon,\n",
+        "all of nature!\r",
+        "Uwahahaha!\n",
+        "Team Galactic will then own it all!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000287_00002",
+      "en_US": [
+        "The door is locked.\n",
+        "A special key is needed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000287_00003",
+      "en_US": [
+        "The door is locked.\n",
+        "A special key is needed.\r",
+        "Use the Galactic Key?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000287_00004",
+      "en_US": "The door opened."
+    }
+  ]
+}

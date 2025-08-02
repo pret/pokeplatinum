@@ -1,0 +1,78 @@
+{
+  "key": 62503,
+  "messages": [
+    {
+      "id": "pl_msg_00000582_00000",
+      "en_US": [
+        "The Pokémon in this town’s ruins look\n",
+        "like some kind of strange alphabet.\r",
+        "I think they’re really neat.\n",
+        "I’m too small to catch them, though.\r",
+        "Instead, I play with Seals to try\n",
+        "reading those weird letters.\r",
+        "If you can give me Pokémon that look\n",
+        "like letters, I’ll give you some Seals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000582_00001",
+      "en_US": [
+        "Oh, that {STRVAR_1 0, 0, 0} looks just like\n",
+        "my Seals!\r",
+        "I’ll give you a bunch of Seals that\n",
+        "look like it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000582_00002",
+      "garbage": 47
+    },
+    {
+      "id": "pl_msg_00000582_00003",
+      "en_US": [
+        "I wanted to give you some Seals,\n",
+        "but you don’t have a Seal Case!\r",
+        "You should talk to my mom!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000582_00004",
+      "en_US": [
+        "The {STRVAR_1 10, 0, 0} were\n",
+        "put away in the Seal Case."
+      ]
+    },
+    {
+      "id": "pl_msg_00000582_00005",
+      "en_US": [
+        "You can customize Poké Balls by\n",
+        "affixing Seals on them.\r",
+        "Oh, you don’t have a Seal Case?\n",
+        "Well, here you go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000582_00006",
+      "en_US": [
+        "Next, some Seals.\n",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000582_00007",
+      "en_US": [
+        "I’ll explain how the Seals work.\n",
+        "You’ll need a Pokémon Center PC.\r",
+        "First, select your PC, then check the\n",
+        "heading “Ball Capsules” in the\f",
+        "PC menu.\r",
+        "Next, choose a Capsule and apply\n",
+        "Seals to it as you wish.\r",
+        "When you’re done, put the Capsule\n",
+        "on a Poké Ball.\r",
+        "You can see the results when you use\n",
+        "that Pokémon in battle."
+      ]
+    }
+  ]
+}

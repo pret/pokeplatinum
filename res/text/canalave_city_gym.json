@@ -1,0 +1,117 @@
+{
+  "key": 63854,
+  "messages": [
+    {
+      "id": "pl_msg_00000056_00000",
+      "en_US": [
+        "Ah!\n",
+        "That’s Oreburgh’s Gym Badge!\r",
+        "I see, I see!\n",
+        "You’ve defeated my son.\r",
+        "But that’s no surprise.\n",
+        "He still has much to learn.\r",
+        "In place of my son Roark, I, Byron,\n",
+        "will take your challenge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00001",
+      "en_US": [
+        "You were strong enough to take down\n",
+        "my prized team of Pokémon.\r",
+        "In recognition of that power,\n",
+        "I give you this: the Mine Badge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Mine Badge from Byron!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00003",
+      "en_US": [
+        "Having the Mine Badge enables you to\n",
+        "use the hidden move Strength anytime\f",
+        "outside of battle.\r",
+        "And you now have six Gym Badges.\r",
+        "That means all Pokémon up to Lv. 70\n",
+        "will obey you without question.\r",
+        "Here!\n",
+        "Take this, too!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00004",
+      "en_US": [
+        "That {STRVAR_1 8, 0, 0} contains the move\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "If it hits, it may also lower the\n",
+        "target’s Special Defense."
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00005",
+      "en_US": [
+        "Gwahahahaha!\n",
+        "The Sinnoh region is vast!\r",
+        "Tough Trainers like you and\n",
+        "{STRVAR_1 3, 1, 0} crop up constantly\f",
+        "to challenge the old guard!\r",
+        "With more young Trainers like my son\n",
+        "and you two taking charge, the\f",
+        "future of Pokémon is bright!\r",
+        "But I’m not stepping aside just yet!\r",
+        "I merely need to rededicate myself\n",
+        "to training on Iron Island."
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00006",
+      "en_US": [
+        "Hey, there!\n",
+        "Champ-to-be!\r",
+        "The Gym Leader here uses Steel-type\n",
+        "Pokémon.\r",
+        "Steel-type Pokémon have high Defense,\n",
+        "so you’d have to hit them hard!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00007",
+      "en_US": [
+        "Oh! {STRVAR_1 3, 0, 0}!\n",
+        "You’ve beaten the Gym Leader!\r",
+        "Good going!\n",
+        "That makes it six Gym Badges!\r",
+        "I tell you what, you’re really turning\n",
+        "into one fine Trainer.\r",
+        "If you were to say you’re going to\n",
+        "try to become the Pokémon Champ...\r",
+        "No one’d laugh at you now!\n",
+        "I’m in your corner, kiddo!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00008",
+      "en_US": [
+        "Canalave City Pokémon Gym\n",
+        "Leader: Byron\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000056_00009",
+      "en_US": [
+        "Canalave City Pokémon Gym\n",
+        "Leader: Byron\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 0, 0}\f",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    }
+  ]
+}

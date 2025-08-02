@@ -1,0 +1,73 @@
+{
+  "key": 56820,
+  "messages": [
+    {
+      "id": "pl_msg_00000681_00000",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000681_00001",
+      "en_US": "Baden-Wurttemberg"
+    },
+    {
+      "id": "pl_msg_00000681_00002",
+      "en_US": "Bayern"
+    },
+    {
+      "id": "pl_msg_00000681_00003",
+      "en_US": "Berlin"
+    },
+    {
+      "id": "pl_msg_00000681_00004",
+      "en_US": "Brandenburg"
+    },
+    {
+      "id": "pl_msg_00000681_00005",
+      "en_US": "Bremen"
+    },
+    {
+      "id": "pl_msg_00000681_00006",
+      "en_US": "Hamburg"
+    },
+    {
+      "id": "pl_msg_00000681_00007",
+      "en_US": "Hessen"
+    },
+    {
+      "id": "pl_msg_00000681_00008",
+      "en_US": "Mecklenburg-Vorpommern"
+    },
+    {
+      "id": "pl_msg_00000681_00009",
+      "en_US": "Niedersachsen"
+    },
+    {
+      "id": "pl_msg_00000681_00010",
+      "en_US": "Nordrhein-Westfalen"
+    },
+    {
+      "id": "pl_msg_00000681_00011",
+      "en_US": "Rheinland-Pfalz"
+    },
+    {
+      "id": "pl_msg_00000681_00012",
+      "en_US": "Saarland"
+    },
+    {
+      "id": "pl_msg_00000681_00013",
+      "en_US": "Sachsen"
+    },
+    {
+      "id": "pl_msg_00000681_00014",
+      "en_US": "Sachsen-Anhalt"
+    },
+    {
+      "id": "pl_msg_00000681_00015",
+      "en_US": "Schleswig-Holstein"
+    },
+    {
+      "id": "pl_msg_00000681_00016",
+      "en_US": "Freistaat Thuringen"
+    }
+  ]
+}

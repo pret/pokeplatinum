@@ -1,0 +1,47 @@
+{
+  "key": 54314,
+  "messages": [
+    {
+      "id": "pl_msg_00000185_00000",
+      "en_US": [
+        "Hello!\n",
+        "Welcome to the Pokémon League!\r",
+        "I’m Aaron of the Elite Four.\n",
+        "It’s good to meet you.\r",
+        "Oh, I should explain, I’m a huge fan\n",
+        "of bug Pokémon.\r",
+        "Bug Pokémon are nasty-mean, and yet\n",
+        "they’re beautiful, too...\r",
+        "Would you like to know why I take\n",
+        "on challengers here?\r",
+        "It’s because I want to become\n",
+        "perfect, just like my bug Pokémon!\r",
+        "OK! Let me take you on!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000185_00001",
+      "en_US": [
+        "I lost with the most beautiful and\n",
+        "toughest of the bug Pokémon...\r",
+        "We lost because I wasn’t good\n",
+        "enough...\r",
+        "That’s it! Back to training camp!\n",
+        "Let’s hear it for me!\r",
+        "No... That was wrong... Anyway...\n",
+        "Go on to the next room!\r",
+        "Three Trainers are waiting for you.\n",
+        "They’re all tougher than me."
+      ]
+    },
+    {
+      "id": "pl_msg_00000185_00002",
+      "en_US": [
+        "Go on, go to the next room.\r",
+        "I’m going to become a top-level\n",
+        "Trainer who can’t be outclassed with\f",
+        "my beautiful and tough bug Pokémon!"
+      ]
+    }
+  ]
+}

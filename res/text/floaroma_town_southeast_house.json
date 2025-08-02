@@ -1,0 +1,22 @@
+{
+  "key": 1054,
+  "messages": [
+    {
+      "id": "pl_msg_00000573_00000",
+      "en_US": [
+        "Some kinds of Pokémon appear only\n",
+        "if they’re attracted by the sweet\f",
+        "scent of Honey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000573_00001",
+      "en_US": [
+        "Pokémon must have an acute sense\n",
+        "of smell.\r",
+        "They can sense the aroma of Honey\n",
+        "from very far away."
+      ]
+    }
+  ]
+}

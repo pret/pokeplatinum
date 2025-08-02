@@ -1,0 +1,60 @@
+{
+  "key": 37905,
+  "messages": [
+    {
+      "id": "pl_msg_00000404_00000",
+      "en_US": [
+        "Hi!\n",
+        "I’m the game director!\r",
+        "Oh! You’re working on filling a\n",
+        "Pokédex!\r",
+        "I hope you’ll come show me your Pokédex\n",
+        "when you’ve filled it up more!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000404_00001",
+      "en_US": [
+        "Hi!\n",
+        "I’m the game director!\r",
+        "Oh! You’ve seen every Pokémon in\n",
+        "Sinnoh!\r",
+        "That’s excellent!\n",
+        "Let me give you an award!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000404_00002",
+      "en_US": [
+        "Hi!\n",
+        "I’m the game director!\r",
+        "Whoa-oh-oh!\n",
+        "This is awesome!\r",
+        "You’ve finally obtained every\n",
+        "Pokémon there is in the world!\r",
+        "Your Pokédex is completed!\n",
+        "That’s outstanding work!\r",
+        "The effort you went through getting\n",
+        "this Pokédex together...\r",
+        "Please allow me to honor you with an\n",
+        "award!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000404_00003",
+      "en_US": [
+        "How did you meet all the Pokémon\n",
+        "that filled your Pokédex?\r",
+        "Did you work long and hard to catch\n",
+        "and raise them?\r",
+        "Did you receive them as gifts from\n",
+        "friends?\r",
+        "Maybe you got some in trades from\n",
+        "around the world?\r",
+        "Though everyone’s Pokédexes may\n",
+        "look the same, the stories they\f",
+        "contain are all unique."
+      ]
+    }
+  ]
+}

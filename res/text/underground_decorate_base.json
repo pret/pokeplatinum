@@ -1,0 +1,136 @@
+{
+  "key": 208,
+  "messages": [
+    {
+      "id": "pl_msg_00000637_00000",
+      "en_US": "DECOR"
+    },
+    {
+      "id": "pl_msg_00000637_00001",
+      "en_US": "DECORATE"
+    },
+    {
+      "id": "pl_msg_00000637_00002",
+      "en_US": "PUT AWAY"
+    },
+    {
+      "id": "pl_msg_00000637_00003",
+      "en_US": "MOVE GOODS"
+    },
+    {
+      "id": "pl_msg_00000637_00004",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000637_00005",
+      "en_US": [
+        "Pick decoration goods stored on the\n",
+        "PC and display them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00006",
+      "en_US": [
+        "Take goods displayed in your Secret\n",
+        "Base and put them away in your PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00007",
+      "en_US": [
+        "Move displayed decoration goods inside\n",
+        "your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00008",
+      "en_US": "Cancel decorating."
+    },
+    {
+      "id": "pl_msg_00000637_00009",
+      "en_US": "Goods Set"
+    },
+    {
+      "id": "pl_msg_00000637_00010",
+      "en_US": "{STRVAR_1 51, 0, 0}/{STRVAR_1 51, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000637_00011",
+      "en_US": "The {STRVAR_1 10, 0, 0} was placed."
+    },
+    {
+      "id": "pl_msg_00000637_00012",
+      "en_US": "It can’t be placed here."
+    },
+    {
+      "id": "pl_msg_00000637_00013",
+      "en_US": [
+        "The {STRVAR_1 10, 0, 0} was\n",
+        "returned to the PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00014",
+      "en_US": "The Big Boulder was removed."
+    },
+    {
+      "id": "pl_msg_00000637_00015",
+      "en_US": "You can’t remove a Big Boulder."
+    },
+    {
+      "id": "pl_msg_00000637_00016",
+      "en_US": "You can’t move a Big Boulder."
+    },
+    {
+      "id": "pl_msg_00000637_00017",
+      "en_US": [
+        "You are able to remove {STRVAR_1 51, 0, 0} more\n",
+        "Big Boulder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00018",
+      "en_US": "No more Big Boulders can be removed."
+    },
+    {
+      "id": "pl_msg_00000637_00019",
+      "en_US": [
+        "There are no decoration goods stored\n",
+        "on your PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00020",
+      "en_US": [
+        "No more decoration goods can be\n",
+        "displayed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00021",
+      "en_US": [
+        "That decoration good is already out\n",
+        "on display."
+      ]
+    },
+    {
+      "id": "pl_msg_00000637_00022",
+      "en_US": "The PC cannot be put away."
+    },
+    {
+      "id": "pl_msg_00000637_00023",
+      "en_US": "The PC cannot be moved."
+    },
+    {
+      "id": "pl_msg_00000637_00024",
+      "en_US": "Quit decorating."
+    },
+    {
+      "id": "pl_msg_00000637_00025",
+      "en_US": [
+        "You are able to remove {STRVAR_1 51, 0, 0} more\n",
+        "Big Boulders."
+      ]
+    }
+  ]
+}

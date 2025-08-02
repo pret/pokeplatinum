@@ -1,0 +1,553 @@
+{
+  "key": 18307,
+  "messages": [
+    {
+      "id": "pl_msg_00000106_00000",
+      "en_US": [
+        "Oh, thank goodness that you happened\n",
+        "to be there!\r",
+        "If it weren’t for you, who knows how\n",
+        "far away my BUNEARY could have run...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00001",
+      "en_US": [
+        "Baby BUNEARY, back into the Poké\n",
+        "Ball you go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00002",
+      "en_US": [
+        "I’m Keira!\n",
+        "I’m a Pokémon Contest Judge.\r",
+        "Be sure to drop by the Contest Hall\n",
+        "so I can thank you properly!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00003",
+      "en_US": [
+        "Hey, there!\n",
+        "How’s it going, Trainer?\r",
+        "You being here tells me you’re going\n",
+        "to challenge the Gym Leader.\r",
+        "Well... I hate to break it to you, but\n",
+        "that’s impossible.\r",
+        "You’re questioning why, and the answer\n",
+        "is: she’s not here.\r",
+        "Not to worry, though.\n",
+        "We know she’s at the Contest Hall.\r",
+        "Come back another time, OK?\n",
+        "I’ll be waiting right here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00004",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Ta-daah!\n",
+        "Kept me waiting again, {STRVAR_1 3, 1, 0}!\r",
+        "Let’s see how much tougher you and\n",
+        "I have gotten, right here and now!\r",
+        "Hey, you’re a Trainer now. You’re\n",
+        "expected to be ready for a battle.\r",
+        "No whining! No waiting!\n",
+        "Let’s get the show started!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Waaah!\n",
+        "What are you saying? I lost again?!\r",
+        "It goes to show my surefire winning\n",
+        "strategy doesn’t work.\r",
+        "Say, hey, {STRVAR_1 3, 1, 0}.\n",
+        "Remember what I told you before?\r",
+        "Make sure all your attacks hit!\n",
+        "Avoid every enemy attack!\r",
+        "I thought that was a wicked strategy,\n",
+        "but it doesn’t work worth beans.\r",
+        "I guess I have to grind it out and\n",
+        "toughen up the team a bit at a time.\r",
+        "Anyway!\n",
+        "Where to next?\r",
+        "The closest place is Solaceon Town,\n",
+        "I think?\r",
+        "That’ll do! I’m off to Solaceon Town!\n",
+        "See ya, {STRVAR_1 3, 1, 0}!\r",
+        "You’ll be shocked by my growth the\n",
+        "next time we meet!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00006",
+      "en_US": [
+        "Did you know?\r",
+        "They found an Egg at the Day Care in\n",
+        "Solaceon Town past here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00007",
+      "en_US": [
+        "Did you know?\r",
+        "They find Eggs in the far-off Johto\n",
+        "region, too."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00008",
+      "en_US": [
+        "You’re a Trainer, are you?\r",
+        "You’ve got two choices of challenges,\n",
+        "either the Gym or a Contest, right?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00009",
+      "en_US": [
+        "At the Lost Tower, people unburden\n",
+        "themselves of unbearable sorrow...\r",
+        "You’ll understand what I mean if you\n",
+        "visit the Lost Tower on Route 209."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00010",
+      "en_US": [
+        "This place is beautiful.\n",
+        "Perhaps even too much so.\r",
+        "Pokémon, people, and nature are in\n",
+        "perfect harmony here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00011",
+      "en_US": [
+        "I can’t decide what Accessories I\n",
+        "should dress up Pokémon with.\r",
+        "There are just so many kinds."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00012",
+      "en_US": [
+        "I get to see Pokémon all day long,\n",
+        "but there sure are many kinds.\r",
+        "How many are there now?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00013",
+      "en_US": [
+        "I used a Fire Stone on my Pokémon,\n",
+        "and it evolved!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00014",
+      "en_US": [
+        "I’m visiting here all the way from\n",
+        "the Hoenn region.\r",
+        "I had been hoping to find the Contest\n",
+        "Hall, but being new, I lost my way.\r",
+        "Fortunately, the local people very\n",
+        "kindly led me to my destination.\r",
+        "I was impressed by their kindness and\n",
+        "generosity to a complete stranger.\r",
+        "Now, may I offer you the courtesy\n",
+        "of showing you to the Contest Hall?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00015",
+      "en_US": [
+        "Ah.\n",
+        "Please follow me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00016",
+      "en_US": [
+        "This is the Contest Hall.\n",
+        "Please, do go inside."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00017",
+      "en_US": [
+        "It makes me happy knowing I’ve\n",
+        "helped another person."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00018",
+      "en_US": [
+        "Oh, I do apologize.\n",
+        "I should mind my own business."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00019",
+      "en_US": [
+        "When I take my baby out in his stroller,\n",
+        "I see the town in a different way.\r",
+        "I notice things like stairs and bumps\n",
+        "in the sidewalk."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00020",
+      "en_US": "Apapapu!"
+    },
+    {
+      "id": "pl_msg_00000106_00021",
+      "en_US": [
+        "I went for a stroll in Amity Square\n",
+        "with my PACHIRISU today.\r",
+        "We came across a Pokémon feather\n",
+        "while we walked.\r",
+        "Do you think it’d make my PACHIRISU\n",
+        "look any cuter?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00022",
+      "en_US": "PACHIRISU: Kyukyuuh!"
+    },
+    {
+      "id": "pl_msg_00000106_00023",
+      "en_US": [
+        "I have a professor friend, and this is\n",
+        "what he told me.\r",
+        "If you leave a pair of Pokémon with the\n",
+        "Day Care, sometimes Eggs are found.\r",
+        "Or things that are like Eggs, anyway.\r",
+        "I wonder how my pal Prof. Elm is doing\n",
+        "these days?\r",
+        "He was always a quiet sort and didn’t\n",
+        "really stand out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00024",
+      "en_US": [
+        "They call me Mr. Goods.\r",
+        "No one knows my real name.\n",
+        "No, not even I do...\r",
+        "I dedicate myself to seeking rarities.\n",
+        "It’s what I live for.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00025",
+      "en_US": [
+        "Hm!\n",
+        "Hmhmhmhm?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00026",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000106_00027",
+      "en_US": [
+        "I was going to give you something,\n",
+        "but I just gave a rare thing away.\r",
+        "I’ll find something else for you,\n",
+        "so just talk to me some other time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00028",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000106_00029",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000106_00030",
+      "en_US": [
+        "Oh? Your underground PC appears\n",
+        "to be full.\r",
+        "I’ll hold your gift until you make\n",
+        "room for it. Tell me when, OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00031",
+      "garbage": 45
+    },
+    {
+      "id": "pl_msg_00000106_00032",
+      "en_US": [
+        "I’ll find something rare for you,\n",
+        "so talk to me some other time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00033",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "Your adventure has gone global in\n",
+        "scale, has it?\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00034",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve conquered all the Gyms,\n",
+        "have you?\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00035",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve finally conquered the Master\n",
+        "Rank of the Cute Contest!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00036",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve finally conquered the Master\n",
+        "Rank of the Cool Contest!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00037",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve finally conquered the Master\n",
+        "Rank of the Beauty Contest!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00038",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve finally conquered the Master\n",
+        "Rank of the Tough Contest!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00039",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve finally conquered the Master\n",
+        "Rank of the Smart Contest!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00040",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve met so very many people\n",
+        "in the Underground!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00041",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve given away many items to\n",
+        "people in the Underground!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00042",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve dug up so many Fossils in\n",
+        "the Underground!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00043",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve set many Traps in the\n",
+        "Underground!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00044",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve finally beaten 10 Trainers in\n",
+        "a row at the Battle Tower!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00045",
+      "en_US": [
+        "Oh!\n",
+        "How impressive!\r",
+        "You’ve finally beaten 50 Trainers in\n",
+        "a row at the Battle Tower!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00046",
+      "en_US": [
+        "Oh!\n",
+        "How incredible!\r",
+        "You’ve finally beaten 100 Trainers in\n",
+        "a row at the Battle Tower!\r",
+        "For a Trainer like you, I have just\n",
+        "the thing!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00047",
+      "en_US": [
+        "I can feel the baby stroller getting\n",
+        "heavier each and every day.\r",
+        "I wonder what kind of Pokémon my\n",
+        "child will become friends with first?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00048",
+      "en_US": "Papa! Mama!"
+    },
+    {
+      "id": "pl_msg_00000106_00049",
+      "en_US": [
+        "I lived in total seclusion up in\n",
+        "the mountains for thirty years!\r",
+        "I’m going to clean up some Contests\n",
+        "with a dance move I came up with!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00050",
+      "en_US": [
+        "I’d like to live in Hearthome when\n",
+        "I get married.\r",
+        "But my boyfriend wants to live in\n",
+        "Veilstone ’cause of its Game Corner..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00051",
+      "en_US": [
+        "I put my Vs. Seeker through its paces\n",
+        "a lot.\r",
+        "I battled this one intriguing Trainer\n",
+        "over and over using it.\r",
+        "She asked me, “Do you like me?”\n",
+        "Like, oops! Hahahahah!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00052",
+      "en_US": [
+        "Hearthome City\n",
+        "Warm & Kind"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00053",
+      "en_US": [
+        "Hearthome City Pokémon Gym\n",
+        "Leader: Fantina\f",
+        "The Alluring, Soulful Dancer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00054",
+      "en_US": [
+        "Pokémon Contest Hall\n",
+        "Calling All Enthusiasts!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00055",
+      "en_US": [
+        "Pokémon Fan Club\n",
+        "All Trainers Welcome"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00056",
+      "en_US": [
+        "Rt. 208\n",
+        "Rt. 212"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00057",
+      "en_US": [
+        "Rt. 209\n",
+        "Solaceon Town"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00058",
+      "en_US": [
+        "Amity Square West Gate\n",
+        "Stroll with Your Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00059",
+      "en_US": [
+        "Amity Square East Gate\n",
+        "Stroll with Your Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000106_00060",
+      "en_US": [
+        "The Poffin House\n",
+        "Delicious Poffins--Smiles for All"
+      ]
+    }
+  ]
+}

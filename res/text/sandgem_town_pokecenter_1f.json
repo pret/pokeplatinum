@@ -1,0 +1,32 @@
+{
+  "key": 11795,
+  "messages": [
+    {
+      "id": "pl_msg_00000563_00000",
+      "en_US": [
+        "Talk to that nice lady at the counter\n",
+        "and hand her your Pokémon.\r",
+        "She’ll heal your Pokémon to perfect\n",
+        "health in no time at all!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000563_00001",
+      "en_US": [
+        "Do you see that PC over there?\n",
+        "That fancy blue one?\r",
+        "If you’ve got Pokémon with you,\n",
+        "it’s free to use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000563_00002",
+      "en_US": [
+        "The top floor of any Pokémon Center\n",
+        "is the Pokémon Communication Club.\r",
+        "There, you can have all sorts of fun\n",
+        "with your friends."
+      ]
+    }
+  ]
+}

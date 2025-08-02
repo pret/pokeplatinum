@@ -1,0 +1,25 @@
+{
+  "key": 21510,
+  "messages": [
+    {
+      "id": "pl_msg_00000245_00000",
+      "en_US": [
+        "I picked this up during a Safari Game.\r",
+        "I don’t collect Shards, so you can\n",
+        "have it. Take it away, even.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000245_00001",
+      "en_US": [
+        "Do those Shards turn into something\n",
+        "good if you collect them?\r",
+        "I’ll try finding more tomorrow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000245_00002",
+      "en_US": "Great Marsh Area 6"
+    }
+  ]
+}

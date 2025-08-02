@@ -1,0 +1,273 @@
+{
+  "key": 3245,
+  "messages": [
+    {
+      "id": "pl_msg_00000385_00000",
+      "en_US": "DONE!"
+    },
+    {
+      "id": "pl_msg_00000385_00001",
+      "en_US": "Is your Pokémon all dressed up?"
+    },
+    {
+      "id": "pl_msg_00000385_00002",
+      "en_US": "Would you like to save this design?"
+    },
+    {
+      "id": "pl_msg_00000385_00003",
+      "en_US": "There is no more space."
+    },
+    {
+      "id": "pl_msg_00000385_00004",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000385_00005",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000385_00006",
+      "en_US": "Theme: "
+    },
+    {
+      "id": "pl_msg_00000385_00007",
+      "en_US": "The Shapely"
+    },
+    {
+      "id": "pl_msg_00000385_00008",
+      "en_US": "The Sharp"
+    },
+    {
+      "id": "pl_msg_00000385_00009",
+      "en_US": "The Created"
+    },
+    {
+      "id": "pl_msg_00000385_00010",
+      "en_US": "The Natural"
+    },
+    {
+      "id": "pl_msg_00000385_00011",
+      "en_US": "The Colorful"
+    },
+    {
+      "id": "pl_msg_00000385_00012",
+      "en_US": "The Solid"
+    },
+    {
+      "id": "pl_msg_00000385_00013",
+      "en_US": "The Bright"
+    },
+    {
+      "id": "pl_msg_00000385_00014",
+      "en_US": "The Gaudy"
+    },
+    {
+      "id": "pl_msg_00000385_00015",
+      "en_US": "The Flexible"
+    },
+    {
+      "id": "pl_msg_00000385_00016",
+      "en_US": "The Festive"
+    },
+    {
+      "id": "pl_msg_00000385_00017",
+      "en_US": "The Intangible"
+    },
+    {
+      "id": "pl_msg_00000385_00018",
+      "en_US": "The Relaxed"
+    },
+    {
+      "id": "pl_msg_00000385_00019",
+      "garbage": 121
+    },
+    {
+      "id": "pl_msg_00000385_00020",
+      "garbage": 53
+    },
+    {
+      "id": "pl_msg_00000385_00021",
+      "garbage": 51
+    },
+    {
+      "id": "pl_msg_00000385_00022",
+      "garbage": 52
+    },
+    {
+      "id": "pl_msg_00000385_00023",
+      "garbage": 52
+    },
+    {
+      "id": "pl_msg_00000385_00024",
+      "garbage": 53
+    },
+    {
+      "id": "pl_msg_00000385_00025",
+      "garbage": 86
+    },
+    {
+      "id": "pl_msg_00000385_00026",
+      "en_US": [
+        "Let’s have the contestants move\n",
+        "backstage!\r",
+        "You have 60 seconds to dress up\n",
+        "your Pokémon with Accessories.\r",
+        "Match the theme and earn higher\n",
+        "scores!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00027",
+      "garbage": 85
+    },
+    {
+      "id": "pl_msg_00000385_00028",
+      "en_US": [
+        "OK! Let’s begin this practice Visual\n",
+        "Competition!\r",
+        "Use the Touch Screen to dress up\n",
+        "your Pokémon with Accessories.\r",
+        "Match your dress-up choices to the\n",
+        "theme to score big points!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00029",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Shapely”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00030",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Sharp”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00031",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Created”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00032",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Natural”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00033",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Colorful”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00034",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Solid”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00035",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Bright”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00036",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Gaudy”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00037",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Flexible”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00038",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Festive”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00039",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Intangible”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00040",
+      "en_US": [
+        "OK, our theme this time is...\n",
+        "“The Relaxed”!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00041",
+      "en_US": [
+        "The time limit is 60 seconds!\n",
+        "You are allowed {STRVAR_1 51, 0, 0} Accessories!\r",
+        "Make sure they are securely set!\n",
+        "Begin dressing up now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00042",
+      "en_US": [
+        "The time limit is 60 seconds!\n",
+        "You are allowed {STRVAR_1 51, 0, 0} Accessories!\r",
+        "Your fashion sense is on trial!\n",
+        "Begin dressing up now!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00043",
+      "en_US": "{STRVAR_1 34, 0, 0} {STRVAR_1 35, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000385_00044",
+      "en_US": "{STRVAR_1 3, 3, 0}’s {STRVAR_1 1, 4, 0}"
+    },
+    {
+      "id": "pl_msg_00000385_00045",
+      "en_US": "{STRVAR_1 28, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000385_00046",
+      "en_US": "Communicating. Please stand by..."
+    },
+    {
+      "id": "pl_msg_00000385_00047",
+      "en_US": [
+        "You can see your Accessories on the\n",
+        "left side of the lower screen.\r",
+        "Touch an Accessory, drag it to\n",
+        "your Pokémon on the right, and\f",
+        "position it securely.\r",
+        "You can put on ten Accessories,\n",
+        "so you should check for the right\f",
+        "ones using the arrow buttons.\r",
+        "Change the background with the\n",
+        "square button at the center right.\r",
+        "OK? Let’s begin dressing up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000385_00048",
+      "garbage": 0
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "key": 50179,
+  "messages": [
+    {
+      "id": "pl_msg_00000180_00000",
+      "en_US": [
+        "I love how my girl has so much\n",
+        "vivacity and charm."
+      ]
+    },
+    {
+      "id": "pl_msg_00000180_00001",
+      "en_US": [
+        "Thanks to you, my girl’s been in\n",
+        "a really happy mood."
+      ]
+    },
+    {
+      "id": "pl_msg_00000180_00002",
+      "en_US": [
+        "By any chance, do you have a Pokémon\n",
+        "called MEDICHAM?\r",
+        "If you do, would you like to trade\n",
+        "your MEDICHAM for my HAUNTER?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000180_00003",
+      "en_US": [
+        "Haha! Did my HAUNTER turn into\n",
+        "something else? Just kidding!\r",
+        "I made it hold something that\n",
+        "prevents it from evolving.\r",
+        "Please treat my HAUNTER nicely!\n",
+        "I’ll be good to your MEDICHAM, too!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000180_00004",
+      "en_US": "What I asked for was a MEDICHAM...?"
+    },
+    {
+      "id": "pl_msg_00000180_00005",
+      "en_US": [
+        "It’s OK if you don’t want to.\r",
+        "But if you change your mind, let’s\n",
+        "trade Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000180_00006",
+      "en_US": [
+        "Thanks to Pokémon, we got to be\n",
+        "friends, didn’t we?"
+      ]
+    }
+  ]
+}

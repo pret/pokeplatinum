@@ -1,0 +1,23 @@
+{
+  "key": 39243,
+  "messages": [
+    {
+      "id": "pl_msg_00000111_00000",
+      "en_US": [
+        "Question: The first room’s answer?\n",
+        "Answer: ←2 ↑16 →15"
+      ]
+    },
+    {
+      "id": "pl_msg_00000111_00001",
+      "en_US": [
+        "Correct!\n",
+        "Congratulations!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000111_00002",
+      "en_US": "Please answer the quiz!"
+    }
+  ]
+}

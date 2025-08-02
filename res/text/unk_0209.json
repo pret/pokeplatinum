@@ -1,0 +1,110 @@
+{
+  "key": 23702,
+  "messages": [
+    {
+      "id": "pl_msg_00000209_00000",
+      "en_US": [
+        "All right, thanks for your patience!\n",
+        "Let’s begin the Visual Competition!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000209_00001",
+      "en_US": [
+        "Dexter: Entry number 1!\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 0, 0} has entered the Contest\n",
+        "with {STRVAR_1 0, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000209_00002",
+      "en_US": [
+        "Dexter: Entry number 2!\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 0, 0} enters our Contest with\n",
+        "{STRVAR_1 0, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000209_00003",
+      "en_US": [
+        "Dexter: Entry number 3!\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 0, 0} is in the Contest with\n",
+        "{STRVAR_1 0, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000209_00004",
+      "en_US": [
+        "Dexter: Entry number 4!\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 0, 0}’s Contest hopes ride\n",
+        "with {STRVAR_1 0, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000209_00005",
+      "en_US": [
+        "The Dance Competition is next!\n",
+        "Is everyone up and ready for this?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000209_00006",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000209_00007",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000209_00008",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000209_00009",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000209_00010",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000209_00011",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000209_00012",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000209_00013",
+      "garbage": 51
+    },
+    {
+      "id": "pl_msg_00000209_00014",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000209_00015",
+      "garbage": 83
+    },
+    {
+      "id": "pl_msg_00000209_00016",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000209_00017",
+      "en_US": [
+        "OK, let’s watch the reactions of the\n",
+        "audience toward the Pokémon involved\f",
+        "in this practice session!\r",
+        "I’ll pass over the MC duties to\n",
+        "Dexter and call this a rehearsal!\f",
+        "Dexter: Sure thing! I’ve got it!\r"
+      ]
+    }
+  ]
+}

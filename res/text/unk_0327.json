@@ -1,0 +1,121 @@
+{
+  "key": 47853,
+  "messages": [
+    {
+      "id": "pl_msg_00000327_00000",
+      "en_US": "Bag ON"
+    },
+    {
+      "id": "pl_msg_00000327_00001",
+      "en_US": "Bag OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00002",
+      "en_US": "Game clear ON"
+    },
+    {
+      "id": "pl_msg_00000327_00003",
+      "en_US": "Game clear OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00004",
+      "en_US": "Journal ON"
+    },
+    {
+      "id": "pl_msg_00000327_00005",
+      "en_US": "Journal OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00006",
+      "en_US": "Special Saving Process ON"
+    },
+    {
+      "id": "pl_msg_00000327_00007",
+      "en_US": "Special Saving Process OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00008",
+      "en_US": "Strength ON"
+    },
+    {
+      "id": "pl_msg_00000327_00009",
+      "en_US": "Strength OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00010",
+      "en_US": "Safari ON"
+    },
+    {
+      "id": "pl_msg_00000327_00011",
+      "en_US": "Safari OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00012",
+      "en_US": "Dash ON/OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00013",
+      "en_US": "Show D15"
+    },
+    {
+      "id": "pl_msg_00000327_00014",
+      "en_US": "Hide D15"
+    },
+    {
+      "id": "pl_msg_00000327_00015",
+      "en_US": "Show D30"
+    },
+    {
+      "id": "pl_msg_00000327_00016",
+      "en_US": "Hide D30"
+    },
+    {
+      "id": "pl_msg_00000327_00017",
+      "en_US": "Show L04"
+    },
+    {
+      "id": "pl_msg_00000327_00018",
+      "en_US": "Hide L04"
+    },
+    {
+      "id": "pl_msg_00000327_00019",
+      "en_US": "Show D18"
+    },
+    {
+      "id": "pl_msg_00000327_00020",
+      "en_US": "Hide D18"
+    },
+    {
+      "id": "pl_msg_00000327_00021",
+      "en_US": "Dist. flag 1 ON"
+    },
+    {
+      "id": "pl_msg_00000327_00022",
+      "en_US": "Dist. flag 1 OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00023",
+      "en_US": "Dist. flag 2 ON"
+    },
+    {
+      "id": "pl_msg_00000327_00024",
+      "en_US": "Dist. flag 2 OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00025",
+      "en_US": "Dist. flag 3 ON"
+    },
+    {
+      "id": "pl_msg_00000327_00026",
+      "en_US": "Dist. flag 3 OFF"
+    },
+    {
+      "id": "pl_msg_00000327_00027",
+      "en_US": "Dist. flag 4 ON"
+    },
+    {
+      "id": "pl_msg_00000327_00028",
+      "en_US": "Dist. flag 4 OFF"
+    }
+  ]
+}

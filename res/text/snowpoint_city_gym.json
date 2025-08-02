@@ -1,0 +1,114 @@
+{
+  "key": 39276,
+  "messages": [
+    {
+      "id": "pl_msg_00000178_00000",
+      "en_US": [
+        "You want to challenge Candice?\r",
+        "Sure thing!\n",
+        "I was waiting for someone tough!\r",
+        "But I should tell you, I’m tough\n",
+        "because I know how to focus.\r",
+        "Pokémon, fashion, romance...\n",
+        "It’s all about focus!\r",
+        "I’ll show you just what I mean.\n",
+        "Get ready to lose!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00001",
+      "en_US": [
+        "Wow! You’re great!\n",
+        "You’ve earned my respect!\r",
+        "I think your focus and will bowled\n",
+        "us over totally.\r",
+        "Oh, that’s right!\n",
+        "I’m supposed to give you this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Icicle Badge from Candice."
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00003",
+      "en_US": [
+        "That Icicle Badge I just gave you?\r",
+        "Because you have it, you can use the\n",
+        "hidden move Rock Climb anytime, even\f",
+        "when you’re not in a battle.\r",
+        "Oh, and take this, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00004",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0} contains the move\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "If the user takes damage, the move’s\n",
+        "power is doubled!\r",
+        "Can you imagine what sort of focus\n",
+        "you’d need to pull it off?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00005",
+      "en_US": [
+        "Do you think I should try to act\n",
+        "more like an Ice-type Gym Leader?\r",
+        "Like, do you think I should be more\n",
+        "cool and distant?\r",
+        "That sort of thing I have trouble\n",
+        "with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00006",
+      "en_US": [
+        "Hey, there!\n",
+        "How’s it going, Champ-to-be?\r",
+        "Do you see the big snowballs placed\n",
+        "here and there?\r",
+        "You need to slide on the ice with\n",
+        "enough momentum to crush them.\r",
+        "The Gym Leader is a user of\n",
+        "Ice-type Pokémon.\r",
+        "Melt her defenses with scorching-\n",
+        "hot Fire-type moves!\r",
+        "It’s all about focus with this Gym.\n",
+        "Bear down and focus!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00007",
+      "en_US": [
+        "Oh! {STRVAR_1 3, 0, 0}!\n",
+        "You’ve beaten the Gym Leader!\r",
+        "You were more focused than her,\n",
+        "and your Pokémon picked up on it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00008",
+      "en_US": [
+        "Snowpoint City Pokémon Gym\n",
+        "Leader: Candice\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000178_00009",
+      "en_US": [
+        "Snowpoint City Pokémon Gym\n",
+        "Leader: Candice\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 0, 0}\f",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "key": 35850,
+  "messages": [
+    {
+      "id": "pl_msg_00000129_00000",
+      "en_US": [
+        "For the Visual judging, you want to\n",
+        "dress up your Pokémon nicely with\f",
+        "Accessories matched to the theme.\r",
+        "That means you’ll be at an advantage\n",
+        "if you have lots of Accessories."
+      ]
+    },
+    {
+      "id": "pl_msg_00000129_00001",
+      "en_US": [
+        "For the Dance competition, your\n",
+        "Pokémon needs to perfectly mimic\f",
+        "the dance steps of the lead dancer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000129_00002",
+      "en_US": [
+        "For the performance aspect of\n",
+        "Contests, Pokémon need the right\f",
+        "kinds of moves.\r",
+        "But what’s even more important is\n",
+        "your choice of the Judge.\r",
+        "If everyone performs for the same\n",
+        "Judge, your Pokémon leaves less of\f",
+        "an impression on that Judge."
+      ]
+    },
+    {
+      "id": "pl_msg_00000129_00003",
+      "en_US": [
+        "At the Cool Contest you gotta pull\n",
+        "off a cool move!\f",
+        "Gets the Judges all excited!\r",
+        "If the Judge’s excitement peaks, you\n",
+        "score massive bonus points! So hot!"
+      ]
+    }
+  ]
+}

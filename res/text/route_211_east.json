@@ -1,0 +1,69 @@
+{
+  "key": 40315,
+  "messages": [
+    {
+      "id": "pl_msg_00000488_00000",
+      "en_US": [
+        "I’m strong!\n",
+        "I’m strong!\f",
+        "I’m strong!\f",
+        "I’m strong!\f",
+        "I’m strong!\f",
+        "I’m strong!\f",
+        "I’m strong!\f",
+        "I’m strong!\f",
+        "...Am I really?\f",
+        "No, I am strong!\f",
+        "I’m strong!\f",
+        "OK! I’m all good to go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000488_00001",
+      "en_US": [
+        "Wah!\n",
+        "You startled me good!\r",
+        "I think you’ll understand what I was\n",
+        "doing when you see this TM.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000488_00002",
+      "en_US": [
+        "Let me explain how that move works\n",
+        "without getting too technical.\r",
+        "Let’s say your opponent raises its\n",
+        "Defense using Harden.\r",
+        "Your Pokémon can use Psych Up to get\n",
+        "the same Defense boost as its foe.\r",
+        "Basically, your Pokémon gets the same\n",
+        "status boosts as its target."
+      ]
+    },
+    {
+      "id": "pl_msg_00000488_00003",
+      "en_US": [
+        "Rt. 211\n",
+        "Mt. Coronet"
+      ]
+    },
+    {
+      "id": "pl_msg_00000488_00004",
+      "en_US": [
+        "Trainer Tips\r",
+        "Even Veterans can get lost inside of\n",
+        "Mt. Coronet.\r",
+        "Trainers should check their supply\n",
+        "of medicine and items before trying\f",
+        "to venture through."
+      ]
+    },
+    {
+      "id": "pl_msg_00000488_00005",
+      "en_US": [
+        "Rt. 211\n",
+        "Celestic Town"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "key": 9267,
+  "messages": [
+    {
+      "id": "pl_msg_00000159_00000",
+      "en_US": [
+        "You’re a Trainer, aren’t you?\r",
+        "You see, there’s this Pokémon I’d like\n",
+        "someone to look after.\r",
+        "It’s a Pokémon called PORYGON.\n",
+        "I found it near Team Galactic’s building.\r",
+        "I’m no Trainer, so can you take it off\n",
+        "my hands?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000159_00001",
+      "en_US": [
+        "You’re a Trainer, aren’t you?\r",
+        "You see, there’s this Pokémon I’d like\n",
+        "someone to look after.\r",
+        "It’s a Pokémon called PORYGON.\n",
+        "Can you take it off my hands?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000159_00002",
+      "en_US": [
+        "Excellent! Thanks!\n",
+        "That’ll make the PORYGON happy, too.\r",
+        "I suspect it ran away from those Team\n",
+        "Galactic goons.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000159_00003",
+      "en_US": "{STRVAR_1 3, 0, 0} accepted the PORYGON!\r"
+    },
+    {
+      "id": "pl_msg_00000159_00004",
+      "en_US": [
+        "Would you like to give a nickname\n",
+        "to the PORYGON you received?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000159_00005",
+      "en_US": [
+        "Thanks!\r",
+        "...But, oops, you already have a whole\n",
+        "team of Pokémon with you.\r",
+        "If you want this PORYGON, you’d better\n",
+        "put one in a PC Box first."
+      ]
+    },
+    {
+      "id": "pl_msg_00000159_00006",
+      "en_US": [
+        "Is that so...\r",
+        "I’ll look after it for a while. Please\n",
+        "come see me if you change your mind."
+      ]
+    },
+    {
+      "id": "pl_msg_00000159_00007",
+      "en_US": [
+        "Team Galactic’s building bugs me so\n",
+        "much, I can’t sleep well.\r",
+        "It’s so bizarre, like a robot that’s\n",
+        "about to start moving."
+      ]
+    },
+    {
+      "id": "pl_msg_00000159_00008",
+      "en_US": [
+        "Those thorny things on the building...\n",
+        "The way it moves meaninglessly...\r",
+        "I don’t understand their idea of \n",
+        "“awesomely fashionable” at all.\r",
+        "Still, Team Galactic does seem to have\n",
+        "a huge supply of energy."
+      ]
+    }
+  ]
+}

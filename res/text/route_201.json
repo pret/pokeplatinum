@@ -1,0 +1,557 @@
+{
+  "key": 40604,
+  "messages": [
+    {
+      "id": "pl_msg_00000466_00000",
+      "en_US": "Too slow!\r"
+    },
+    {
+      "id": "pl_msg_00000466_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: All right!\n",
+        "Let’s get moving to Prof. Rowan’s lab.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...\n",
+        "...\r",
+        "What?\n",
+        "Don’t go into the grass, right?\f",
+        "No worries! No problem!\r",
+        "It doesn’t matter that we don’t have\n",
+        "any Pokémon.\r",
+        "Trust me on this one.\n",
+        "I’ve got an idea!\r",
+        "Now listen. You know how wild Pokémon\n",
+        "jump out when you go into tall grass?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00003",
+      "en_US": [
+        "So, what you do is, you scoot over to\n",
+        "the next patch of grass before any\f",
+        "wild Pokémon can appear!\r",
+        "If we just keep dashing, we can get to\n",
+        "Sandgem Town without running into\f",
+        "wild Pokémon!\r",
+        "OK, stick with me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00004",
+      "en_US": [
+        "OK, here goes!\r",
+        "On your marks...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00005",
+      "en_US": "{SIZE 200}Hold it!{SIZE 100}\r"
+    },
+    {
+      "id": "pl_msg_00000466_00006",
+      "en_US": [
+        "Professor: You two don’t seem to have\n",
+        "any Pokémon between you?\r",
+        "Then, what is the meaning of going into\n",
+        "the tall grass?!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00007",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...\n",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00008",
+      "en_US": [
+        "Professor: ...\n",
+        "...\r",
+        "...\n",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00009",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}.\n",
+        "This old guy...\r",
+        "It’s Prof. Rowan, isn’t it?\n",
+        "What’s he doing here...?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00010",
+      "en_US": [
+        "Professor: ...\n",
+        "...\r",
+        "They tried to go into the tall grass\n",
+        "because they wanted Pokémon...\r",
+        "Hmm...\n",
+        "What to do...?\r",
+        "Their world would surely change if\n",
+        "they were to meet Pokémon...\r",
+        "Is it right for me to put them on that\n",
+        "path...?\r",
+        "...\n",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00011",
+      "en_US": [
+        "You two.\n",
+        "You truly love Pokémon, do you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00012",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Whoa, hold up!\n",
+        "You’re not making any sense here!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00013",
+      "en_US": [
+        "Professor: Er-hem!\r",
+        "I didn’t quite catch that, so I will\n",
+        "ask you again.\r",
+        "You two.\n",
+        "You truly love Pokémon, do you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00014",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Me, too!\n",
+        "I love Pokémon, too!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00015",
+      "en_US": [
+        "Professor: I will ask you once again.\r",
+        "You two.\n",
+        "You truly love Pokémon, do you?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00016",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What?!\n",
+        "You can ask a hundred times!\f",
+        "The answer will never change!\r",
+        "We’ll both answer a hundred times,\n",
+        "we love Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00017",
+      "en_US": "Right, {STRVAR_1 3, 1, 0}?"
+    },
+    {
+      "id": "pl_msg_00000466_00018",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...\n",
+        "That joke’s getting old!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00019",
+      "en_US": [
+        "Professor: ...A pair of reckless kids\n",
+        "who foolishly try to enter tall grass\f",
+        "without Pokémon of their own...?\r",
+        "It worries me what people like that\n",
+        "would do with Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00020",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...Uh...\n",
+        "Well, I, uh...\r",
+        "...\n",
+        "...\r",
+        "Well, then forget about me, but give\n",
+        "a Pokémon to my friend here!\r",
+        "I mean, it was me who tried to go into\n",
+        "the tall grass and all...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00021",
+      "en_US": [
+        "Professor: !\r",
+        "How big of you...\r",
+        "Very well, then!\n",
+        "I will entrust you two with Pokémon!\r",
+        "I apologize for putting you through\n",
+        "that exercise.\r",
+        "However!\r",
+        "You must promise me that you will never\n",
+        "recklessly endanger yourselves again.\r",
+        "Now, then...\r",
+        "Hm?\n",
+        "Now, where...?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00022",
+      "en_US": [
+        "Dawn: Professor Rowan.\r",
+        "You left your briefcase at the lake!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00023",
+      "en_US": [
+        "Oh?\n",
+        "Is something wrong here?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00024",
+      "en_US": [
+        "Lucas: Professor Rowan!\r",
+        "You left your briefcase behind at\n",
+        "the lake.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00025",
+      "en_US": "Is something wrong here?\r"
+    },
+    {
+      "id": "pl_msg_00000466_00026",
+      "en_US": [
+        "Rowan: Ah! There it is!\n",
+        "Dawn, nice work.\r",
+        "What I was about to do was to entrust\n",
+        "these two with their own Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00027",
+      "en_US": [
+        "Rowan: Ah! There it is!\n",
+        "Lucas, nice work.\r",
+        "What I was about to do was to entrust\n",
+        "these two with their own Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00028",
+      "en_US": [
+        "Dawn: Pardon?!\r",
+        "Those Pokémon are hard to replace.\n",
+        "Are you sure about giving them away?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00029",
+      "en_US": [
+        "Lucas: Wha...?!\r",
+        "Those Pokémon are crucial.\n",
+        "You’re giving them away?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00030",
+      "en_US": [
+        "Rowan: Hm!\r",
+        "We exist side by side with Pokémon.\r",
+        "There comes a time when people should\n",
+        "meet Pokémon.\r",
+        "There is a world that should be\n",
+        "explored together.\r",
+        "For them, today is that time.\n",
+        "The place, right here.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00031",
+      "en_US": [
+        "Go on! Open the briefcase and choose\n",
+        "a Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00032",
+      "en_US": [
+        "Rowan: Go on! Open the briefcase and\n",
+        "choose a Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00033",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Really?!\n",
+        "Prof. Rowan!\r",
+        "I can’t believe it! I’m so happy now\n",
+        "that I can’t keep a straight face!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00034",
+      "en_US": [
+        "Hey, {STRVAR_1 3, 1, 0}.\n",
+        "You can choose first.\r",
+        "Hey, I’m practically a grown-up.\n",
+        "I have to show some class here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00035",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What’s up with you?\n",
+        "Open the briefcase and pick a Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00036",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Then, I choose you!\n",
+        "I’m picking this {STRVAR_1 0, 2, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00037",
+      "en_US": [
+        "Rowan: Very well! Both of you have\n",
+        "chosen a good Pokémon, it seems.\r",
+        "Now, listen well!\r",
+        "The Pokémon you have been entrusted\n",
+        "with are unfamiliar with the world.\r",
+        "In that regard, they’re much\n",
+        "like you.\r",
+        "As fellow newcomers to the world,\n",
+        "I hope you’ll do well together.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00038",
+      "en_US": [
+        "If you have any trouble, come see me\n",
+        "at my lab in Sandgem Town.\r",
+        "And now, we’ll be on our way.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00039",
+      "en_US": [
+        "Dawn: Professor!\n",
+        "Wait for me, please!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00040",
+      "en_US": [
+        "I’m sorry...\n",
+        "Please let me pass.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00041",
+      "en_US": [
+        "Lucas: Professor!\n",
+        "Wait for me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00042",
+      "en_US": "Uh, sorry, folks.\r"
+    },
+    {
+      "id": "pl_msg_00000466_00043",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: How do you like that?\n",
+        "Prof. Rowan’s really nice.\r",
+        "On TV, he seems so stern and scary.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00044",
+      "en_US": [
+        "Heheh, {STRVAR_1 3, 1, 0}!\n",
+        "We’ve both got Pokémon now.\r",
+        "There’s only one thing to do, right?\n",
+        "Are you up for this?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00045",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What’s with that attitude?\n",
+        "Don’t be that way!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00046",
+      "garbage": 41
+    },
+    {
+      "id": "pl_msg_00000466_00047",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: I’ve always wanted to\n",
+        "say this...\r",
+        "The time has finally come!\r",
+        "{STRVAR_1 3, 1, 0}!\n",
+        "I challenge you to a battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00048",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Whew!\n",
+        "Let’s go home.\r",
+        "I’m beat after that battle.\n",
+        "My Pokémon needs rest, too.\r",
+        "See ya, {STRVAR_1 3, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00049",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Aha...\n",
+        "Ahaha... I won? I won!\r",
+        "But that battle, it could’ve gone\n",
+        "either way. It was that close!\r",
+        "I can tell you one thing: battling is\n",
+        "awesomely fun!\r",
+        "OK, let’s go home.\r",
+        "I’m beat after that battle.\n",
+        "My Pokémon needs rest, too.\r",
+        "See ya, {STRVAR_1 3, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00050",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Too slow!\n",
+        "{STRVAR_1 3, 1, 0}, I’m sick of waiting!\r",
+        "I’m going to go see Prof. Rowan, so I\n",
+        "can thank him properly.\r",
+        "So, I had this great idea.\n",
+        "Listen up, OK?\r",
+        "You know that lake where we always\n",
+        "play at?\r",
+        "You know how they say a legendary\n",
+        "Pokémon lives there?\r",
+        "You guessed it!\n",
+        "Let’s catch that Pokémon.\r",
+        "That’ll make Prof. Rowan happy.\n",
+        "I’m sure of that!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00051",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Me and you together,\n",
+        "we’ve got nothing to fear!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00052",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Heheh, {STRVAR_1 3, 1, 0}.\n",
+        "The lake’s not that way!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00053",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
+        "I said, the lake’s not that way!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00054",
+      "en_US": [
+        "Wild Pokémon lurk in tall grass. They\n",
+        "can come bursting out at any time.\r",
+        "So, if you’re wanting to battle wild\n",
+        "Pokémon, just walk in tall grass.\r",
+        "If you want to avoid wild Pokémon,\n",
+        "then stay out of the tall grass."
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00055",
+      "en_US": [
+        "Hi!\n",
+        "I work at a Pokémon Mart.\r",
+        "Did you know that a Pokémon’s health\n",
+        "is measured by Hit Points (HP)?\r",
+        "If a Pokémon runs out of HP, it\n",
+        "faints and can’t battle anymore.\r",
+        "If a Pokémon’s HP gets low, you\n",
+        "should heal it with a Potion.\r",
+        "Here, let me give you a Potion as\n",
+        "a free sample. First one’s free!\r",
+        "It will automatically go in the\n",
+        "Medicine Pocket of your Bag.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00056",
+      "en_US": [
+        "You can find a Pokémon Mart in cities\n",
+        "and most major towns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00057",
+      "en_US": [
+        "That ledge is one way. Jump down\n",
+        "for a shortcut to Twinleaf Town!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00058",
+      "en_US": [
+        "If your Pokémon’s health--that’s its\n",
+        "HP--is getting low, you should go\f",
+        "home and get some rest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00059",
+      "en_US": [
+        "If your Pokémon’s health--that’s its\n",
+        "HP--is getting low, you should go\f",
+        "to a Pokémon Center!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00060",
+      "en_US": [
+        "Rt. 201\n",
+        "Twinleaf Town"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00061",
+      "en_US": [
+        "Rt. 201\n",
+        "Sandgem Town"
+      ]
+    },
+    {
+      "id": "pl_msg_00000466_00062",
+      "en_US": [
+        "Trainer Tips!\r",
+        "Don’t be shy! Talk to anyone and\n",
+        "everyone you happen to see.\r",
+        "By talking to people, you will get\n",
+        "invaluable information and advice."
+      ]
+    }
+  ]
+}

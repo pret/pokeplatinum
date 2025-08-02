@@ -1,0 +1,24 @@
+{
+  "key": 50082,
+  "messages": [
+    {
+      "id": "pl_msg_00000254_00000",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000254_00001",
+      "en_US": "I lost!"
+    },
+    {
+      "id": "pl_msg_00000254_00002",
+      "en_US": [
+        "When Trainers lock eyes with you,\n",
+        "it’s the signal to battle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000254_00003",
+      "en_US": "Floaroma Garden"
+    }
+  ]
+}

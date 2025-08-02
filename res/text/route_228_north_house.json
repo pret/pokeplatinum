@@ -1,0 +1,156 @@
+{
+  "key": 61075,
+  "messages": [
+    {
+      "id": "pl_msg_00000529_00000",
+      "en_US": [
+        "Your quest for power has brought\n",
+        "you here...\r",
+        "...Very well.\r",
+        "Let me reward your passion with some\n",
+        "absolutely astounding moves.\r",
+        "They’re the ultimate moves!\n",
+        "Shall I teach them to your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00001",
+      "en_US": [
+        "The ultimate moves!\n",
+        "Shall I teach them to your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00002",
+      "en_US": [
+        "To which Pokémon should I teach\n",
+        "a move?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00003",
+      "en_US": [
+        "Hmm... Well, that is fine, as well.\n",
+        "Visit if you have a change of heart."
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00004",
+      "en_US": [
+        "To which Pokémon should I teach\n",
+        "a move?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00005",
+      "en_US": [
+        "That Pokémon can’t learn a move!\n",
+        "Read the poster! Keh!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00006",
+      "en_US": [
+        "Teach a move to an Egg?\n",
+        "Impossible even for me! Keh!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00007",
+      "en_US": [
+        "You’ve not bonded strongly enough\n",
+        "with your Pokémon! Keh!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00008",
+      "en_US": [
+        "That Pokémon already knows the move\n",
+        "I’ve offered to teach! Keh!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00009",
+      "en_US": [
+        "I should teach Blast Burn to\n",
+        "your {STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00010",
+      "en_US": [
+        "I should teach Hydro Cannon to\n",
+        "your {STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00011",
+      "en_US": [
+        "I should teach Frenzy Plant to\n",
+        "your {STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00012",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00013",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 0, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00014",
+      "en_US": [
+        "Is it OK to forget the\n",
+        "move {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00015",
+      "en_US": [
+        "1, 2, and... ... ... Poof!\r",
+        "{STRVAR_1 0, 0, 0} forgot how to\n",
+        "use {STRVAR_1 6, 1, 0}.\r",
+        "And...\n",
+        "{STRVAR_1 0, 0, 0} learned {STRVAR_1 6, 2, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00016",
+      "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
+    },
+    {
+      "id": "pl_msg_00000529_00017",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} did not learn\n",
+        "the move {STRVAR_1 6, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000529_00018",
+      "en_US": [
+        "To the Pokémon listed here,\n",
+        "the ultimate moves may be taught!\r",
+        "The blazing fire Pokémon\n",
+        "{CURSOR_X 7}CHARIZARD TYPHLOSION\f",
+        "{CURSOR_X 7}BLAZIKEN INFERNAPE\r",
+        "The restless water Pokémon\n",
+        "{CURSOR_X 7}BLASTOISE FERALIGATR\f",
+        "{CURSOR_X 7}SWAMPERT EMPOLEON\r",
+        "The quiet grass Pokémon\n",
+        "{CURSOR_X 7}VENUSAUR MEGANIUM\f",
+        "{CURSOR_X 7}SCEPTILE TORTERRA"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "key": 22894,
+  "messages": [
+    {
+      "id": "pl_msg_00000144_00000",
+      "en_US": [
+        "Hello.\n",
+        "I’m pleased to meet you.\r",
+        "I’m Maylene, and I’m the Gym\n",
+        "Leader.\r",
+        "I don’t really know what it means to\n",
+        "be strong, or how I got to be the\f",
+        "Gym Leader.\r",
+        "But I will do the best I can as the\n",
+        "Gym Leader.\r",
+        "I take battling very seriously.\n",
+        "Whenever you’re ready!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00001",
+      "en_US": [
+        "...OK.\n",
+        "You win.\r",
+        "That was a tough loss.\n",
+        "I learned a lot from it.\r",
+        "Please, accept this Gym Badge.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Cobble Badge from Maylene."
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00003",
+      "en_US": [
+        "Um... I should explain about that\n",
+        "official Pokémon League Gym Badge.\r",
+        "With it, you can use the hidden move Fly\n",
+        "outside of battle.\r",
+        "Oh, and since you now have four Gym\n",
+        "Badges, Pokémon obtained in trades\f",
+        "will obey you up to Lv. 50.\r",
+        "Oh, and please take this as well.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00004",
+      "en_US": [
+        "That {STRVAR_1 8, 0, 0} contains the move\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "Um... That move inflicts damage,\n",
+        "and it robs the target’s HP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00005",
+      "en_US": [
+        "Gee, I’m hungry...\r",
+        "Oh, sorry, it’s nothing.\n",
+        "I didn’t say anything.\r",
+        "{STRVAR_1 3, 0, 0}, I can’t explain what\n",
+        "it means to be strong.\r",
+        "I don’t know how much effort goes\n",
+        "into being strong...\r",
+        "But being with Pokémon lets us\n",
+        "keep making the effort, doesn’t it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00006",
+      "en_US": [
+        "Hey, there!\n",
+        "How’s it going, Champ-to-be?\r",
+        "The Gym Leader is a user of\n",
+        "Fighting-type Pokémon.\r",
+        "She’d be a terror against Normal-type\n",
+        "Pokémon.\r",
+        "But! And it’s a big but!\n",
+        "Just between you and me...\r",
+        "Maylene, the Gym Leader, said Flying-\n",
+        "and Psychic-type Pokémon could be\f",
+        "real trouble for her!\r",
+        "If you want to battle her, smack the\n",
+        "punching bags along the rails.\r",
+        "You have to hit those bags hard!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00007",
+      "en_US": [
+        "Oh! {STRVAR_1 3, 0, 0}!\n",
+        "You’ve beaten the Gym Leader!\r",
+        "Of course, I thought you’d win."
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00008",
+      "en_US": [
+        "Veilstone City Pokémon Gym\n",
+        "Leader: Maylene\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00009",
+      "en_US": [
+        "Veilstone City Pokémon Gym\n",
+        "Leader: Maylene\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 0, 0}\f",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00010",
+      "en_US": "A good deed for every day."
+    },
+    {
+      "id": "pl_msg_00000144_00011",
+      "en_US": [
+        "Treasure every encounter,\n",
+        "for it is unique."
+      ]
+    },
+    {
+      "id": "pl_msg_00000144_00012",
+      "en_US": "One day at a time."
+    }
+  ]
+}

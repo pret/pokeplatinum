@@ -1,0 +1,24 @@
+{
+  "key": 30287,
+  "messages": [
+    {
+      "id": "pl_msg_00000004_00000",
+      "en_US": "Delete all saved data?"
+    },
+    {
+      "id": "pl_msg_00000004_00001",
+      "en_US": [
+        "Once data has been deleted,\n",
+        "there is no way to recover it.\r",
+        "Delete the saved data anyway?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000004_00002",
+      "en_US": [
+        "Deleting all data.\n",
+        "Don’t turn off the power."
+      ]
+    }
+  ]
+}

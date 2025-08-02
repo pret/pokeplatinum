@@ -1,0 +1,251 @@
+{
+  "key": 40918,
+  "messages": [
+    {
+      "id": "pl_msg_00000211_00000",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} will perform\n",
+        "first the next turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00001",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} will perform\n",
+        "before {STRVAR_1 1, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00002",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} will perform\n",
+        "last in the next turn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00003",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} will perform\n",
+        "after {STRVAR_1 1, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00004",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} didn’t choose\n",
+        "the same Judge as anyone\f",
+        "else! {COLOR 1}+0{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00005",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} chose the same\n",
+        "Judge as another Pokémon!\f",
+        "{COLOR 1}+2{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00006",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} chose the same\n",
+        "Judge as two other\f",
+        "Pokémon! {COLOR 1}+4{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00007",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} chose the same\n",
+        "Judge as everyone else! {COLOR 1}+6{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00008",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} performed\n",
+        "{STRVAR_1 6, 1, 0}!\r",
+        "It excited the audience!\n",
+        "{COLOR 1}+2{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00009",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} didn’t pick the\n",
+        "same Judge as anyone else!\r",
+        "The performance stood out!\n",
+        "{COLOR 1}+3{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00010",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} chose the same\n",
+        "Judge as another Pokémon!\r",
+        "The performance didn’t\n",
+        "stand out! {COLOR 1}+0{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00011",
+      "en_US": [
+        "If {STRVAR_1 1, 0, 0}’s move\n",
+        "stands out and doesn’t\r",
+        "share the same Judge with\n",
+        "another Pokémon: {COLOR 1}+3{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00012",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} can perform\n",
+        "the same move twice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00013",
+      "en_US": [
+        "The Voltage score is added\n",
+        "on! {COLOR 1}+{STRVAR_1 50, 0, 0}{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00014",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} chose the same\n",
+        "Judge as everyone! {COLOR 1}+15{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00015",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} didn’t choose\n",
+        "the same Judge as all the\f",
+        "others! {COLOR 1}+0{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00016",
+      "en_US": [
+        "If {STRVAR_1 1, 0, 0} chooses the\n",
+        "same Judge as everyone\f",
+        "else: {COLOR 1}+15{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00017",
+      "en_US": [
+        "The Voltage of all the\n",
+        "Judges went down!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00018",
+      "en_US": [
+        "From the previous turn,\n",
+        "{STRVAR_1 1, 0, 0} gets {COLOR 1}+{STRVAR_1 50, 1, 0}{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00019",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} got the same\n",
+        "rating as {STRVAR_1 1, 1, 0}, who\f",
+        "went before!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00020",
+      "en_US": [
+        "The Voltage is prevented\n",
+        "from rising!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00021",
+      "en_US": [
+        "The next turn’s order has\n",
+        "been scrambled!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00022",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} performed\n",
+        "last! {COLOR 1}+{STRVAR_1 50, 1, 0}{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00023",
+      "en_US": [
+        "Higher score earned for low\n",
+        "Voltage! {COLOR 1}+{STRVAR_1 50, 0, 0}{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00024",
+      "en_US": "First performance! {COLOR 1}+2{COLOR 0}!"
+    },
+    {
+      "id": "pl_msg_00000211_00025",
+      "en_US": "Last performance! {COLOR 1}+2{COLOR 0}!"
+    },
+    {
+      "id": "pl_msg_00000211_00026",
+      "en_US": [
+        "The Voltage is prevented\n",
+        "from falling!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00027",
+      "en_US": [
+        "The Voltage went up\n",
+        "consecutively! {COLOR 1}+3{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00028",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s performance\n",
+        "is first! {COLOR 1}+1{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00029",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s performance\n",
+        "is second! {COLOR 1}+2{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00030",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s performance\n",
+        "is third! {COLOR 1}+3{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00031",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s performance\n",
+        "is last! {COLOR 1}+4{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00032",
+      "en_US": [
+        "The performance came after\n",
+        "the Voltage peaked! {COLOR 1}+3{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000211_00033",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} has the lowest\n",
+        "score! {COLOR 1}+3{COLOR 0}!"
+      ]
+    }
+  ]
+}

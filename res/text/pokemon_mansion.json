@@ -1,0 +1,258 @@
+{
+  "key": 21172,
+  "messages": [
+    {
+      "id": "pl_msg_00000490_00000",
+      "en_US": [
+        "Mr. Backlot is the master of this\n",
+        "mansion. This is his office."
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00001",
+      "en_US": [
+        "This is the way out to the trophy\n",
+        "garden.\r",
+        "The garden is open for all visitors\n",
+        "to enjoy.\r",
+        "However, please beware--wild Pokémon\n",
+        "may appear in the garden."
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00002",
+      "en_US": [
+        "Welcome.\r",
+        "Here, you may challenge the mansion’s\n",
+        "pride--the five Trainer maids.\r",
+        "The challenge is to beat all five of us\n",
+        "in a row without a break.\r",
+        "In addition to beating us, if you can\n",
+        "beat us in a specific number of turns,\f",
+        "there will be a special gift.\r",
+        "Incidentally, a turn refers to the time\n",
+        "it takes for a Trainer and the opponent\f",
+        "to each make an action.\r",
+        "In this case, action refers to making a\n",
+        "Pokémon use a move, using an item, or\f",
+        "switching a Pokémon.\r",
+        "And now...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00003",
+      "en_US": [
+        "The 5-Maid Knockout Exact-Turn Attack\n",
+        "Challenge!\r",
+        "Today’s targeted number of turns is\n",
+        "{STRVAR_1 52, 0, 0}! Would you like to try?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00004",
+      "en_US": [
+        "Oh, how disappointing...\n",
+        "Please take the challenge sometime."
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00005",
+      "en_US": [
+        "Very well!\n",
+        "Our first maid, please!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00006",
+      "en_US": [
+        "Congratulations!\n",
+        "You have defeated four maids so far.\r",
+        "You have taken {STRVAR_1 52, 1, 0} turns up to now.\n",
+        "The target is {STRVAR_1 52, 0, 0} turns.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00007",
+      "en_US": [
+        "Congratulations for your sweep.\n",
+        "The targeted number of turns was {STRVAR_1 52, 0, 0}.\r",
+        "The number of turns you needed to\n",
+        "defeat the maids was {STRVAR_1 52, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00008",
+      "en_US": [
+        "How splendid of you!\n",
+        "You hit the target!\r",
+        "For making the sweep in the targeted\n",
+        "number of turns, a special gift!\r",
+        "The chance to battle our very own\n",
+        "prodigy, Master Liam!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00009",
+      "en_US": [
+        "How splendid of you!\n",
+        "You hit the target!\r",
+        "For making the sweep in the targeted\n",
+        "number of turns, a special gift!\r",
+        "The chance to battle our very own\n",
+        "prodigy, Lady Celeste!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00010",
+      "en_US": [
+        "Your splendor is authentic!\r",
+        "Sweeping the floor with the five maids\n",
+        "wasn’t enough for you, oh no!\r",
+        "Why, to think you would triumph over\n",
+        "even our Master Liam!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00011",
+      "en_US": [
+        "Your splendor is authentic!\r",
+        "Sweeping the floor with the five maids\n",
+        "wasn’t enough for you, oh no!\r",
+        "Why, to think you would triumph over\n",
+        "even our Lady Celeste!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00012",
+      "en_US": [
+        "Ooh...\n",
+        "How disappointing for you.\r",
+        "That said, you swept the five maids.\n",
+        "That’s plenty to be proud of!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00013",
+      "en_US": "Please visit again tomorrow."
+    },
+    {
+      "id": "pl_msg_00000490_00014",
+      "en_US": [
+        "I’m so sorry. Everything beyond this\n",
+        "point is strictly off-limits.\r",
+        "Please, you really mustn’t.\n",
+        "Mr. Backlot will be so cross with me!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00015",
+      "en_US": [
+        "First up! My favorite color is blue!\n",
+        "I will open the proceedings!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00016",
+      "en_US": [
+        "The next person up is quite strong,\n",
+        "really.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00017",
+      "en_US": [
+        "I’m pleased to meet you in battle.\n",
+        "My best color is green!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00018",
+      "en_US": [
+        "I was no. 2, and a little bit tough!\n",
+        "The next maid is even tougher!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00019",
+      "en_US": [
+        "My lucky color is yellow!\n",
+        "The sunshine girl! That’s me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00020",
+      "en_US": [
+        "The next maid is a wee bit stronger\n",
+        "than I am.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00021",
+      "en_US": [
+        "Pink is the color I can’t do without!\n",
+        "I’m the fourth in line!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00022",
+      "en_US": "Th-the next maid up is really strong!\r"
+    },
+    {
+      "id": "pl_msg_00000490_00023",
+      "en_US": [
+        "My symbolic color is red!\n",
+        "Prepare for no. 5!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00024",
+      "en_US": [
+        "You knocked out the five of us!\n",
+        "You have to be splendid!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00025",
+      "en_US": [
+        "A Trainer would come here and pull me\n",
+        "into a battle...?\r",
+        "I never expected this, but I may as\n",
+        "well enjoy it, don’t you think?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00026",
+      "en_US": [
+        "Wonderful!\n",
+        "You’re a marvel of a Trainer!\r",
+        "Oh, I’ll ask you not to pry into what\n",
+        "I’m doing in the back of the mansion.\r",
+        "This knowing wink is all you’ll get out\n",
+        "of me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00027",
+      "en_US": [
+        "Oh, my... You must show me how good\n",
+        "you are for the ladies to call me out.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00028",
+      "en_US": [
+        "Oh, my! My, my, my!\n",
+        "Your technique was most enchanting.\r",
+        "I will take my leave now.\n",
+        "Giggle...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000490_00029",
+      "en_US": [
+        "The expensive-looking book Mr. Backlot\n",
+        "has... It tugs at my attention."
+      ]
+    }
+  ]
+}

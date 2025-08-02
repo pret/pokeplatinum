@@ -1,0 +1,3953 @@
+{
+  "key": 30022,
+  "messages": [
+    {
+      "id": "pl_msg_00000699_00000",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000699_00001",
+      "en_US": [
+        "For some time after its birth, it\n",
+        "grows by gaining nourishment from\n",
+        "the seed on its back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00002",
+      "en_US": [
+        "When the bud on its back starts\n",
+        "swelling, a sweet aroma wafts to\n",
+        "indicate the flower’s coming bloom."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00003",
+      "en_US": [
+        "After a rainy day, the flower on\n",
+        "its back smells stronger. The\n",
+        "scent attracts other Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00004",
+      "en_US": [
+        "The fire on the tip of its tail is a\n",
+        "measure of its life. If healthy,\n",
+        "its tail burns intensely."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00005",
+      "en_US": [
+        "In the rocky mountains where\n",
+        "CHARMELEON live, their fiery\n",
+        "tails shine at night like stars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00006",
+      "en_US": [
+        "It is said that CHARIZARD’s fire\n",
+        "burns hotter if it has\n",
+        "experienced harsh battles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00007",
+      "en_US": [
+        "It shelters itself in its shell,\n",
+        "then strikes back with spouts of\n",
+        "water at every opportunity."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00008",
+      "en_US": [
+        "It is said to live 10,000 years.\n",
+        "Its furry tail is popular as a\n",
+        "symbol of longevity."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00009",
+      "en_US": [
+        "The jets of water it spouts from\n",
+        "the rocket cannons on its shell\n",
+        "can punch through thick steel."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00010",
+      "en_US": [
+        "It releases a stench from its red\n",
+        "antenna to repel enemies. It\n",
+        "grows by molting repeatedly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00011",
+      "en_US": [
+        "A steel-hard shell protects its\n",
+        "tender body. It quietly endures\n",
+        "hardships while awaiting evolution."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00012",
+      "en_US": [
+        "It loves the honey of flowers and\n",
+        "can locate flower patches that\n",
+        "have even tiny amounts of pollen."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00013",
+      "en_US": [
+        "It eats its weight in leaves every\n",
+        "day. It fends off attackers with\n",
+        "the needle on its head."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00014",
+      "en_US": [
+        "While awaiting evolution, it\n",
+        "hides from predators under\n",
+        "leaves and in nooks of branches."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00015",
+      "en_US": [
+        "Its best attack involves flying\n",
+        "around at high speed, striking with\n",
+        "poison needles, then flying off."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00016",
+      "en_US": [
+        "It is docile and prefers to avoid\n",
+        "conflict. If disturbed, however,\n",
+        "it can ferociously strike back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00017",
+      "en_US": [
+        "It flies over its wide territory in\n",
+        "search of prey, downing it\n",
+        "with its highly developed claws."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00018",
+      "en_US": [
+        "By flapping its wings with all its\n",
+        "might, PIDGEOT can make a gust of\n",
+        "wind capable of bending tall trees."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00019",
+      "en_US": [
+        "Cautious in the extreme, its\n",
+        "hardy vitality lets it live in\n",
+        "any kind of environment."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00020",
+      "en_US": [
+        "It whittles its constantly growing\n",
+        "fangs by gnawing on hard things.\n",
+        "It can chew apart cinder walls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00021",
+      "en_US": [
+        "It flaps its small wings busily to\n",
+        "fly. Using its beak, it searches\n",
+        "in grass for prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00022",
+      "en_US": [
+        "It has the stamina to keep flying\n",
+        "all day on its broad wings. It\n",
+        "fights by using its sharp beak."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00023",
+      "en_US": [
+        "It sneaks through grass without\n",
+        "making a sound and strikes\n",
+        "unsuspecting prey from behind."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00024",
+      "en_US": [
+        "The pattern on its belly is for\n",
+        "intimidation. It constricts foes\n",
+        "while they are frozen in fear."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00025",
+      "en_US": [
+        "If it looses crackling power from\n",
+        "the electric pouches on its\n",
+        "cheeks, it is being wary."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00026",
+      "en_US": [
+        "It can loose 100,000-volt bursts\n",
+        "of electricity, instantly downing\n",
+        "foes several times its size."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00027",
+      "en_US": [
+        "To protect itself from attackers,\n",
+        "it curls up into a ball. It lives in\n",
+        "arid regions with minimal rainfall."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00028",
+      "en_US": [
+        "It curls up, then rolls into foes\n",
+        "with its back. Its sharp spines\n",
+        "inflict severe damage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00029",
+      "en_US": [
+        "While it does not prefer to fight,\n",
+        "even one drop of the poison it\n",
+        "secretes from barbs can be fatal."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00030",
+      "en_US": [
+        "When it senses danger, it raises\n",
+        "all the barbs on its body. These\n",
+        "barbs grow slower than NIDORINO’s."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00031",
+      "en_US": [
+        "Its entire body is armored with\n",
+        "hard scales. It will protect the\n",
+        "young in its burrow with its life."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00032",
+      "en_US": [
+        "It scans its surroundings by\n",
+        "raising its ears out of the grass.\n",
+        "Its toxic horn is for protection."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00033",
+      "en_US": [
+        "It has a violent disposition and\n",
+        "stabs foes with its horn, which\n",
+        "oozes poison upon impact."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00034",
+      "en_US": [
+        "One swing of its mighty tail can\n",
+        "snap a telephone pole as if it were\n",
+        "a matchstick."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00035",
+      "en_US": [
+        "It flies using the wings on its\n",
+        "back to collect moonlight. This\n",
+        "Pokémon is difficult to find."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00036",
+      "en_US": [
+        "Its hearing is so acute it can\n",
+        "hear a pin drop over half a mile\n",
+        "away. It lives on quiet mountains."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00037",
+      "en_US": [
+        "It controls balls of fire. As it\n",
+        "grows, its six tails split from\n",
+        "their tips to make more tails."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00038",
+      "en_US": [
+        "Its nine tails are said to be\n",
+        "imbued with a mystic power.\n",
+        "It can live for a thousand years."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00039",
+      "en_US": [
+        "When it wavers its big, round\n",
+        "eyes, it begins singing a lullaby\n",
+        "that makes everyone drowsy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00040",
+      "en_US": [
+        "Its fine fur feels sublime to the\n",
+        "touch. It can expand its body by\n",
+        "inhaling air."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00041",
+      "en_US": [
+        "Disliking sunlight, it sleeps\n",
+        "deep in forests and caves\n",
+        "until sundown."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00042",
+      "en_US": [
+        "Once it starts sucking blood, it\n",
+        "does not stop until it is full. It\n",
+        "flies at night in search of prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00043",
+      "en_US": [
+        "It often plants its root feet in the\n",
+        "ground during the day and sows\n",
+        "seeds as it walks about at night."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00044",
+      "en_US": [
+        "The honey it drools from its mouth\n",
+        "smells so atrocious, it can curl\n",
+        "noses more than a mile away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00045",
+      "en_US": [
+        "Its petals are the largest in the\n",
+        "world. As it walks, it scatters\n",
+        "extremely allergenic pollen."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00046",
+      "en_US": [
+        "Mushrooms named tochukaso grow\n",
+        "on its back. They grow along\n",
+        "with the host PARAS."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00047",
+      "en_US": [
+        "It is controlled by a mushroom\n",
+        "grown larger than the bug body.\n",
+        "It is said to prefer damp places."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00048",
+      "en_US": [
+        "Its big eyes are actually clusters\n",
+        "of tiny eyes. At night, its kind is\n",
+        "drawn by light."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00049",
+      "en_US": [
+        "It flutters its wings to scatter\n",
+        "dustlike scales. The scales leach\n",
+        "toxins if they contact skin."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00050",
+      "en_US": [
+        "A Pokémon that lives underground.\n",
+        "Because of its dark habitat, it is\n",
+        "repelled by bright sunlight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00051",
+      "en_US": [
+        "Its three heads move alternately,\n",
+        "driving it through tough soil to\n",
+        "depths of over 60 miles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00052",
+      "en_US": [
+        "It is nocturnal in nature. If it\n",
+        "spots something shiny, its eyes\n",
+        "glitter brightly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00053",
+      "en_US": [
+        "A very haughty Pokémon. Among\n",
+        "fans, the size of the jewel in its\n",
+        "forehead is a topic of much talk."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00054",
+      "en_US": [
+        "It never remembers using its\n",
+        "odd powers, so it always tilts\n",
+        "its head in puzzlement."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00055",
+      "en_US": [
+        "The flippers of its well-developed\n",
+        "limbs give it shocking speed. It is\n",
+        "the best swimmer among Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00056",
+      "en_US": [
+        "It lives in treetop colonies.\n",
+        "If one becomes enraged, the whole\n",
+        "colony rampages for no reason."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00057",
+      "en_US": [
+        "It grows angry if you see its eyes\n",
+        "and gets angrier if you run. If you\n",
+        "beat it, it gets even madder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00058",
+      "en_US": [
+        "A Pokémon with a loyal nature.\n",
+        "It will remain motionless until it is\n",
+        "given an order by its Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00059",
+      "en_US": [
+        "Its proud and regal appearance\n",
+        "has captured the hearts of\n",
+        "people since long ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00060",
+      "en_US": [
+        "Its skin is so thin, its internal\n",
+        "organs are visible. It has trouble\n",
+        "walking on its newly grown feet."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00061",
+      "en_US": [
+        "The spiral pattern on its belly\n",
+        "subtly undulates. Staring at it\n",
+        "gradually causes drowsiness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00062",
+      "en_US": [
+        "With its extremely tough muscles,\n",
+        "it can keep swimming in the Pacific\n",
+        "Ocean without resting."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00063",
+      "en_US": [
+        "Even while asleep, it maintains a\n",
+        "telepathic radar. It teleports\n",
+        "when it is threatened."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00064",
+      "en_US": [
+        "When it uses its psychic power, it\n",
+        "emits strong alpha waves that can\n",
+        "ruin precision devices."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00065",
+      "en_US": [
+        "Its highly developed brain is on\n",
+        "par with a supercomputer. It can\n",
+        "use all forms of psychic abilities."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00066",
+      "en_US": [
+        "Its muscles never cramp however\n",
+        "much it trains. It lives in the\n",
+        "mountains away from humans."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00067",
+      "en_US": [
+        "It can lift a dump truck with one\n",
+        "hand. Using that power, it helps\n",
+        "people with heavy jobs."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00068",
+      "en_US": [
+        "It can knock a train flying with a\n",
+        "punch. However, it is terrible at\n",
+        "delicate work using its fingers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00069",
+      "en_US": [
+        "It prefers hot and humid\n",
+        "environments. It is quick at\n",
+        "capturing prey with its vines."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00070",
+      "en_US": [
+        "A Pokémon that appears to be a\n",
+        "plant. It captures unwary prey by\n",
+        "dousing them with a toxic powder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00071",
+      "en_US": [
+        "It pools in its mouth a fluid with\n",
+        "a honeylike scent, which is really\n",
+        "an acid that dissolves anything."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00072",
+      "en_US": [
+        "It drifts in sea currents.\n",
+        "Countless fishermen are\n",
+        "hurt by its poison stingers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00073",
+      "en_US": [
+        "It alerts others to danger by\n",
+        "stridently flashing the red orbs\n",
+        "on its head."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00074",
+      "en_US": [
+        "It is impossible to distinguish from\n",
+        "rocks. It slams against others in\n",
+        "contests of hardness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00075",
+      "en_US": [
+        "It tumbles down slopes, heedless\n",
+        "of any body parts chipping off.\n",
+        "It eats a ton of rocks daily."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00076",
+      "en_US": [
+        "It tumbles down mountains, leaving\n",
+        "grooves from peak to base.\n",
+        "Stay clear of these grooves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00077",
+      "en_US": [
+        "Its legs grow strong while it\n",
+        "chases after its parent. It runs\n",
+        "in fields and mountains all day."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00078",
+      "en_US": [
+        "It has astounding acceleration.\n",
+        "From a standstill, it can reach\n",
+        "top speed within 10 steps."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00079",
+      "en_US": [
+        "Although slow, it is skilled at\n",
+        "fishing with its tail. It does not\n",
+        "feel pain if its tail is bitten."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00080",
+      "en_US": [
+        "Though usually dim witted, it\n",
+        "seems to become inspired if the\n",
+        "SHELLDER on its tail bites down."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00081",
+      "en_US": [
+        "The units at its sides generate\n",
+        "electromagnetic waves that keep it\n",
+        "airborne. It feeds on electricity."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00082",
+      "en_US": [
+        "It is actually three MAGNEMITE\n",
+        "linked by magnetism. A group can\n",
+        "set off a magnetic storm."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00083",
+      "en_US": [
+        "It can’t live without the stalk it\n",
+        "holds. That’s why it defends the\n",
+        "stalk from attackers with its life."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00084",
+      "en_US": [
+        "The brains in its two heads appear\n",
+        "to communicate emotions to each\n",
+        "other with a telepathic power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00085",
+      "en_US": [
+        "When DODUO evolves into this odd\n",
+        "breed, one of its heads splits into\n",
+        "two. It runs at nearly 40 mph."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00086",
+      "en_US": [
+        "A Pokémon that lives on icebergs.\n",
+        "It swims in the sea using the point\n",
+        "on its head to break up ice."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00087",
+      "en_US": [
+        "In snow, the pure white coat\n",
+        "covering its body obscures it from\n",
+        "predators."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00088",
+      "en_US": [
+        "It was born when sludge in a dirty\n",
+        "stream was exposed to the moon’s\n",
+        "X-rays. It appears among filth."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00089",
+      "en_US": [
+        "A toxic fluid seeps from its body.\n",
+        "The fluid instantly kills plants and\n",
+        "trees on contact."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00090",
+      "en_US": [
+        "It swims backward by opening and\n",
+        "closing its two shells. Its large\n",
+        "tongue is always kept hanging out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00091",
+      "en_US": [
+        "It fights by keeping its shell\n",
+        "tightly shut for protection and\n",
+        "by shooting spikes to repel foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00092",
+      "en_US": [
+        "A Pokémon born from poison gases.\n",
+        "It defeats even the largest foes\n",
+        "by enveloping them in gas."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00093",
+      "en_US": [
+        "It licks with its gaseous tongue\n",
+        "to steal the victim’s life force.\n",
+        "It lurks in darkness for prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00094",
+      "en_US": [
+        "Lurking in the shadowy corners\n",
+        "of rooms, it awaits chances to\n",
+        "steal its prey’s life force."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00095",
+      "en_US": [
+        "It squirms through the ground\n",
+        "using its long and rugged body.\n",
+        "It always eats while burrowing."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00096",
+      "en_US": [
+        "It can tell what people are\n",
+        "dreaming by sniffing with its big\n",
+        "nose. It loves fun dreams."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00097",
+      "en_US": [
+        "Seeing its swinging pendulum can\n",
+        "induce sleep in three seconds,\n",
+        "even in someone who just woke up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00098",
+      "en_US": [
+        "It lives in burrows dug on sandy\n",
+        "beaches. Its pincers fully grow\n",
+        "back if they are broken in battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00099",
+      "en_US": [
+        "The larger pincer has 10,000-\n",
+        "horsepower strength. However, it\n",
+        "is so heavy, it is difficult to aim."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00100",
+      "en_US": [
+        "It looks just like a Poké Ball.\n",
+        "It is dangerous because it may\n",
+        "electrocute or explode on touch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00101",
+      "en_US": [
+        "It is known to drift on winds if it\n",
+        "is bloated to bursting with stored\n",
+        "electricity."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00102",
+      "en_US": [
+        "Its six eggs converse using\n",
+        "telepathy. They can quickly gather\n",
+        "if they become separated."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00103",
+      "en_US": [
+        "It is called “The Walking Jungle.”\n",
+        "If a head grows too big, it falls\n",
+        "off and becomes an EXEGGCUTE."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00104",
+      "en_US": [
+        "When it thinks of its dead mother,\n",
+        "it cries. Its crying makes the\n",
+        "skull it wears rattle hollowly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00105",
+      "en_US": [
+        "From its birth, this savage Pokémon\n",
+        "constantly holds bones. It is\n",
+        "skilled in using them as weapons."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00106",
+      "en_US": [
+        "Its legs can stretch double.\n",
+        "First-time foes are startled by\n",
+        "its extensible reach."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00107",
+      "en_US": [
+        "The arm-twisting punches it throws\n",
+        "pulverize even concrete. It rests\n",
+        "after three minutes of fighting."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00108",
+      "en_US": [
+        "Instead of hands, it uses its\n",
+        "tongue, which is twice its height.\n",
+        "Its sticky saliva grips anything."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00109",
+      "en_US": [
+        "Lighter-than-air gases in its body\n",
+        "keep it aloft. The gases not only\n",
+        "smell, they are also explosive."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00110",
+      "en_US": [
+        "It grows by feeding on gases\n",
+        "released by garbage. Though very\n",
+        "rare, triplets have been found."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00111",
+      "en_US": [
+        "Its body is clad in a thick hide,\n",
+        "and its tackles topple buildings.\n",
+        "Unfortunately, it is not smart."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00112",
+      "en_US": [
+        "Its brain developed after it stood\n",
+        "up on its hind legs. Its drill horn\n",
+        "bores tunnels through solid rock."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00113",
+      "en_US": [
+        "It lays several eggs a day and\n",
+        "won’t share them with those\n",
+        "who have evil in their hearts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00114",
+      "en_US": [
+        "It is shrouded by blue vines.\n",
+        "No one has seen the face hidden\n",
+        "behind this growth of vines."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00115",
+      "en_US": [
+        "It raises its offspring in its belly\n",
+        "pouch. It lets the baby out to\n",
+        "play only when it feels safe."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00116",
+      "en_US": [
+        "It makes its nest in the shade of\n",
+        "corals. If it senses danger, it\n",
+        "spits murky ink and flees."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00117",
+      "en_US": [
+        "Its spines provide protection.\n",
+        "Its fins and bones are prized as\n",
+        "traditional medicine ingredients."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00118",
+      "en_US": [
+        "It swims at a steady 5 knots.\n",
+        "If it senses danger, it will strike\n",
+        "back with its sharp horn."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00119",
+      "en_US": [
+        "To protect its family, it will fight\n",
+        "with its drill-sharp horn. It lives\n",
+        "in hollowed rocks in streams."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00120",
+      "en_US": [
+        "If its body is torn, it can grow\n",
+        "back if the red core remains.\n",
+        "The core flashes at midnight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00121",
+      "en_US": [
+        "At the center of its body is a red\n",
+        "core, which sends mysterious\n",
+        "radio signals into the night sky."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00122",
+      "en_US": [
+        "Emanations from its fingertips\n",
+        "solidify the air into invisible walls\n",
+        "that repel even harsh attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00123",
+      "en_US": [
+        "It is nearly impossible to parry\n",
+        "its attacking scythes. Its\n",
+        "movements are like a ninja’s."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00124",
+      "en_US": [
+        "Its cries sound like human speech.\n",
+        "However, it is impossible to tell\n",
+        "what it is trying to say."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00125",
+      "en_US": [
+        "Half of all blackouts occur when\n",
+        "this Pokémon appears at power\n",
+        "plants and eats electricity."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00126",
+      "en_US": [
+        "Born in the spout of a volcano,\n",
+        "its body is covered by flames\n",
+        "that shimmer like the sun."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00127",
+      "en_US": [
+        "It grips prey with its pincers\n",
+        "until the prey is torn in half.\n",
+        "What it can’t tear, it tosses far."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00128",
+      "en_US": [
+        "Once it takes aim at its foe, it\n",
+        "makes a headlong charge. It is\n",
+        "famous for its violent nature."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00129",
+      "en_US": [
+        "It is unable to swim against even\n",
+        "slow-moving currents. It always\n",
+        "splashes about for some reason."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00130",
+      "en_US": [
+        "In ancient literature, there is a\n",
+        "record of a GYARADOS that razed\n",
+        "a village when violence flared."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00131",
+      "en_US": [
+        "It loves crossing the sea with\n",
+        "people and Pokémon on its back.\n",
+        "It understands human speech."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00132",
+      "en_US": [
+        "It has the ability to reconstitute\n",
+        "its entire cellular structure to\n",
+        "transform into whatever it sees."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00133",
+      "en_US": [
+        "A rare Pokémon that adapts to\n",
+        "harsh environments by taking on\n",
+        "different evolutionary forms."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00134",
+      "en_US": [
+        "It has evolved to be suitable for\n",
+        "an aquatic life. It can invisibly\n",
+        "melt away into water."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00135",
+      "en_US": [
+        "It controls 10,000-volt power\n",
+        "and can raise all the fur on its\n",
+        "body as if it were sharp needles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00136",
+      "en_US": [
+        "It has a flame sac in its body.\n",
+        "Its body temperature tops 1,650\n",
+        "degrees Fahrenheit before battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00137",
+      "en_US": [
+        "The world’s first artificially\n",
+        "created Pokémon. It can travel\n",
+        "through electronic space."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00138",
+      "en_US": [
+        "A Pokémon that was resurrected\n",
+        "from a fossil using modern science.\n",
+        "It swam in ancient seas."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00139",
+      "en_US": [
+        "It is thought that this Pokémon\n",
+        "became extinct because its spiral\n",
+        "shell grew too large."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00140",
+      "en_US": [
+        "It is thought to have inhabited\n",
+        "beaches 300 million years ago.\n",
+        "It is protected by a stiff shell."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00141",
+      "en_US": [
+        "It is thought that this Pokémon\n",
+        "came onto land because its\n",
+        "prey adapted to life on land."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00142",
+      "en_US": [
+        "A Pokémon that roamed the skies\n",
+        "in the dinosaur era. Its teeth are\n",
+        "like saw blades."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00143",
+      "en_US": [
+        "It stops eating only to sleep.\n",
+        "It doesn’t feel full unless it\n",
+        "eats nearly 900 pounds a day."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00144",
+      "en_US": [
+        "A legendary bird Pokémon.\n",
+        "It can create blizzards by\n",
+        "freezing moisture in the air."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00145",
+      "en_US": [
+        "A legendary Pokémon that is said\n",
+        "to live in thunderclouds. It freely\n",
+        "controls lightning bolts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00146",
+      "en_US": [
+        "One of the legendary bird Pokémon.\n",
+        "It is said that its appearance\n",
+        "indicates the coming of spring."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00147",
+      "en_US": [
+        "It is called the “Mirage Pokémon”\n",
+        "because so few have seen it.\n",
+        "Its shed skin has been found."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00148",
+      "en_US": [
+        "If its body takes on an aura, the\n",
+        "weather changes instantly. It is\n",
+        "said to live in seas and lakes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00149",
+      "en_US": [
+        "It is said to make its home\n",
+        "somewhere in the sea. It guides\n",
+        "crews of shipwrecks to shore."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00150",
+      "en_US": [
+        "A Pokémon created by recombining\n",
+        "MEW’s genes. It’s said to have the\n",
+        "most savage heart among Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00151",
+      "en_US": [
+        "Because it can use all kinds of\n",
+        "moves, many scientists believe MEW\n",
+        "to be the ancestor of Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00152",
+      "en_US": [
+        "It uses the leaf on its head to\n",
+        "determine the temperature and\n",
+        "humidity. It loves to sunbathe."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00153",
+      "en_US": [
+        "The buds that ring its neck give\n",
+        "off a spicy aroma that perks\n",
+        "people up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00154",
+      "en_US": [
+        "Its breath has the fantastic\n",
+        "ability to revive dead plants and\n",
+        "flowers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00155",
+      "en_US": [
+        "It has a timid nature. If it is\n",
+        "startled, the flames on its back\n",
+        "burn more vigorously."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00156",
+      "en_US": [
+        "It intimidates foes with the heat\n",
+        "of its flames. The fire burns more\n",
+        "strongly when it readies to fight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00157",
+      "en_US": [
+        "It attacks using blasts of fire.\n",
+        "It creates heat shimmers with\n",
+        "intense fire to hide itself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00158",
+      "en_US": [
+        "It has the habit of biting anything\n",
+        "with its developed jaws. Even its\n",
+        "Trainer needs to be careful."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00159",
+      "en_US": [
+        "Once it bites down, it won’t let go\n",
+        "until it loses its fangs. New fangs\n",
+        "quickly grow into place."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00160",
+      "en_US": [
+        "It usually moves slowly, but it\n",
+        "goes at blinding speed when it\n",
+        "attacks and bites prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00161",
+      "en_US": [
+        "It has a very nervous nature.\n",
+        "It stands up high on its tail so it\n",
+        "can scan wide areas."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00162",
+      "en_US": [
+        "The mother puts its offspring to\n",
+        "sleep by curling up around them.\n",
+        "It corners foes with speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00163",
+      "en_US": [
+        "It switches its standing foot so\n",
+        "quickly, it can’t be seen. It cries\n",
+        "at the same time every day."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00164",
+      "en_US": [
+        "If it flips its head upside down,\n",
+        "it’s a sign that it is engaged in\n",
+        "very complex thinking."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00165",
+      "en_US": [
+        "It is so timid, it can’t move if it\n",
+        "isn’t with a swarm of others. It\n",
+        "conveys its feelings with scent."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00166",
+      "en_US": [
+        "It uses starlight as energy. When\n",
+        "more stars appear at night, the\n",
+        "patterns on its back grow larger."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00167",
+      "en_US": [
+        "It sets a trap by spinning a web\n",
+        "with thin but strong silk. It waits\n",
+        "motionlessly for prey to arrive."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00168",
+      "en_US": [
+        "It attaches silk to its prey and\n",
+        "sets it free. Later, it tracks the\n",
+        "silk to the prey and its friends."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00169",
+      "en_US": [
+        "A Pokémon that gained vastly\n",
+        "enhanced flying performance by\n",
+        "having its legs turn into wings."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00170",
+      "en_US": [
+        "It discharges positive and\n",
+        "negative electricity from its\n",
+        "antenna tips to shock its foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00171",
+      "en_US": [
+        "LANTURN’s light can shine up from\n",
+        "great depths. It is nicknamed\n",
+        "“The Deep-Sea Star.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00172",
+      "en_US": [
+        "It plays with others by touching\n",
+        "tails and setting off sparks. This\n",
+        "appears to be a test of courage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00173",
+      "en_US": [
+        "Many appear when the night skies\n",
+        "are filled with shooting stars.\n",
+        "They disappear with sunrise."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00174",
+      "en_US": [
+        "It has a soft and bouncy body.\n",
+        "Once it starts bouncing, it\n",
+        "becomes impossible to stop."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00175",
+      "en_US": [
+        "Its shell is said to be stuffed\n",
+        "with happiness that it shares with\n",
+        "kindhearted people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00176",
+      "en_US": [
+        "It is said to appear in front of\n",
+        "kindly people to scatter a glowing\n",
+        "down called “joy dust.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00177",
+      "en_US": [
+        "It picks food from cactus plants,\n",
+        "deftly avoiding buds and spines.\n",
+        "It seems to skip about to move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00178",
+      "en_US": [
+        "This odd Pokémon can see both\n",
+        "the past and the future. It eyes\n",
+        "the sun’s movement all day."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00179",
+      "en_US": [
+        "Its fluffy coat swells to double\n",
+        "when static electricity builds up.\n",
+        "Touching it can be shocking."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00180",
+      "en_US": [
+        "If its coat becomes fully charged\n",
+        "with electricity, its tail lights up.\n",
+        "It fires hair that zaps on impact."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00181",
+      "en_US": [
+        "The tip of its tail shines brightly.\n",
+        "In the olden days, people sent\n",
+        "signals using the tail’s light."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00182",
+      "en_US": [
+        "When the heavy rainfall season\n",
+        "ends, it is drawn out by warm\n",
+        "sunlight to dance in the open."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00183",
+      "en_US": [
+        "The tip of its tail is filled with oil\n",
+        "that is lighter than water, so it\n",
+        "acts as a float."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00184",
+      "en_US": [
+        "Its long ears are superb sensors.\n",
+        "It can distinguish the movements\n",
+        "of living things on riverbeds."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00185",
+      "en_US": [
+        "It stands along paths pretending\n",
+        "to be a tree. If it starts raining,\n",
+        "it seems to disappear."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00186",
+      "en_US": [
+        "It gathers groups of others as\n",
+        "their leader. Its cries make\n",
+        "POLIWAG obey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00187",
+      "en_US": [
+        "It drifts on winds. It is said that\n",
+        "when HOPPIP gather in fields and\n",
+        "mountains, spring is on the way."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00188",
+      "en_US": [
+        "It blooms when the weather warms.\n",
+        "It floats in the sky to soak up as\n",
+        "much sunlight as possible."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00189",
+      "en_US": [
+        "Blown by seasonal winds, it\n",
+        "circles the globe, scattering\n",
+        "cotton spores as it goes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00190",
+      "en_US": [
+        "It lives atop giant trees.\n",
+        "It wraps its tail around a branch\n",
+        "so it won’t fall off while asleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00191",
+      "en_US": [
+        "It suddenly falls out of the sky in\n",
+        "the morning. A year after a cold\n",
+        "summer, their population explodes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00192",
+      "en_US": [
+        "It gets energy from warm sunlight\n",
+        "and is known for its habit of\n",
+        "moving in pursuit of it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00193",
+      "en_US": [
+        "Its eyes can see 360 degrees\n",
+        "without moving its head. It won’t\n",
+        "miss prey--even those behind it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00194",
+      "en_US": [
+        "When the temperature cools in the\n",
+        "evening, they emerge from water\n",
+        "to seek food along the shore."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00195",
+      "en_US": [
+        "A dim-witted Pokémon. It doesn’t\n",
+        "care if it bumps its head into\n",
+        "boats or rocks while swimming."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00196",
+      "en_US": [
+        "Its fur has the look and feel of\n",
+        "velvet. The orb on its forehead\n",
+        "glows when it uses psycho-power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00197",
+      "en_US": [
+        "The light of the moon changed\n",
+        "EEVEE’s genetic structure. It\n",
+        "lurks in darkness for prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00198",
+      "en_US": [
+        "It appears near travelers to lure\n",
+        "them into deep forests. It is said\n",
+        "to carry misfortune."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00199",
+      "en_US": [
+        "Being bitten by SHELLDER gave it\n",
+        "intelligence comparable to that of\n",
+        "award-winning scientists."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00200",
+      "en_US": [
+        "It gets nourishment from fear\n",
+        "that it absorbs into its red orbs.\n",
+        "In daytime, it sleeps in darkness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00201",
+      "en_US": [
+        "They seem to communicate among\n",
+        "each other telepathically. They\n",
+        "are always found stuck on walls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00202",
+      "en_US": [
+        "It desperately tries to keep its\n",
+        "black tail hidden. It is said to be\n",
+        "proof the tail hides a secret."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00203",
+      "en_US": [
+        "While it sleeps, the head on its\n",
+        "tail keeps watch. The tail doesn’t\n",
+        "need to sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00204",
+      "en_US": [
+        "It looks just like a pinecone.\n",
+        "Its shell protects it from bird\n",
+        "Pokémon that peck it by mistake."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00205",
+      "en_US": [
+        "It is encased in a steel shell. Its\n",
+        "peering eyes are all that can be\n",
+        "seen of its mysterious innards."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00206",
+      "en_US": [
+        "It digs into the ground with its\n",
+        "tail and makes a mazelike nest.\n",
+        "It can fly just a little."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00207",
+      "en_US": [
+        "It sails on the winds with its\n",
+        "limbs extended to strike from the\n",
+        "sky. It aims for the prey’s face."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00208",
+      "en_US": [
+        "It chews its way through boulders\n",
+        "with its sturdy jaws. Its eyes can\n",
+        "see in the darkness underground."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00209",
+      "en_US": [
+        "Small Pokémon flee from its scary\n",
+        "face. It is, however, considered\n",
+        "by women to be cute."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00210",
+      "en_US": [
+        "It is timid in spite of its looks.\n",
+        "If it becomes enraged, however,\n",
+        "it will strike with its huge fangs."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00211",
+      "en_US": [
+        "It shoots the poison spines on its\n",
+        "body in all directions. Its round\n",
+        "form makes it a poor swimmer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00212",
+      "en_US": [
+        "It has a steel-hard body. It\n",
+        "intimidates foes by upraising its\n",
+        "eye-patterned pincers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00213",
+      "en_US": [
+        "It stores berries in its shell.\n",
+        "The berries eventually ferment to\n",
+        "become delicious juices."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00214",
+      "en_US": [
+        "With powerful legs and claws,\n",
+        "it generates enough power to hurl\n",
+        "foes over great distances."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00215",
+      "en_US": [
+        "It is extremely vicious and will not\n",
+        "stop attacking until its foe is\n",
+        "incapable of moving."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00216",
+      "en_US": [
+        "It lets honey soak into its paws\n",
+        "so it can lick them all the time.\n",
+        "Every set of paws tastes unique."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00217",
+      "en_US": [
+        "In its territory, it leaves\n",
+        "scratches on trees that bear\n",
+        "delicious berries or fruits."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00218",
+      "en_US": [
+        "Its body is made of magma.\n",
+        "If it doesn’t keep moving, its\n",
+        "body will cool and harden."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00219",
+      "en_US": [
+        "Its body temperature is roughly\n",
+        "18,000 degrees F. Flames spout\n",
+        "from gaps in its hardened shell."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00220",
+      "en_US": [
+        "It loves eating mushrooms that\n",
+        "grow under dead grass. It also\n",
+        "finds hot springs while foraging."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00221",
+      "en_US": [
+        "Its shaggy coat makes it unable\n",
+        "to see. It checks surroundings\n",
+        "with its sensitive nose instead."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00222",
+      "en_US": [
+        "Many live in the clean seas of the\n",
+        "south. They apparently can’t live\n",
+        "in polluted waters."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00223",
+      "en_US": [
+        "It clings to MANTINE to feed on\n",
+        "the big Pokémon’s scraps. This is\n",
+        "an adaptation to avoid foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00224",
+      "en_US": [
+        "It obscures its foe’s vision by\n",
+        "spitting a cloud of murky ink.\n",
+        "It makes its nest among boulders."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00225",
+      "en_US": [
+        "It carries food rolled up in its\n",
+        "tail. It has the habit of sharing\n",
+        "food with people lost in mountains."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00226",
+      "en_US": [
+        "It swims elegantly, mindless of\n",
+        "REMORAID hitching on to its broad\n",
+        "fins. It has a docile nature."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00227",
+      "en_US": [
+        "Despite being clad entirely in\n",
+        "iron-hard armor, it flies at\n",
+        "speeds over 180 mph."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00228",
+      "en_US": [
+        "It conveys its feelings using\n",
+        "different cries. It works in a pack\n",
+        "to cleverly take down prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00229",
+      "en_US": [
+        "Long ago, people imagined\n",
+        "its eerie howls to be the call\n",
+        "of the grim reaper."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00230",
+      "en_US": [
+        "It lives in caves on the seafloor\n",
+        "and creates giant whirlpools\n",
+        "every time it moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00231",
+      "en_US": [
+        "It is strong despite its compact\n",
+        "size. It can easily pick up and\n",
+        "carry an adult human on its back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00232",
+      "en_US": [
+        "It attacks by curling up, then\n",
+        "rolling into its foe. It can blow\n",
+        "apart a house in one hit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00233",
+      "en_US": [
+        "With planetary development\n",
+        "software installed, it became\n",
+        "capable of working in space."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00234",
+      "en_US": [
+        "Staring at its antlers creates\n",
+        "an odd sensation as if one were\n",
+        "being drawn into their centers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00235",
+      "en_US": [
+        "It marks its territory by using its\n",
+        "tail like a paintbrush. There are\n",
+        "more than 5,000 different marks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00236",
+      "en_US": [
+        "It is famous for its eagerness to\n",
+        "fight and always nurses injuries\n",
+        "from challenging larger foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00237",
+      "en_US": [
+        "It fights while spinning like a top.\n",
+        "The centrifugal force boosts its\n",
+        "destructive power by ten."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00238",
+      "en_US": [
+        "It tests everything by touching\n",
+        "with its lips, which remember\n",
+        "what it likes and dislikes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00239",
+      "en_US": [
+        "It generates electricity by\n",
+        "whirling its arms. However, it\n",
+        "can’t store the energy it makes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00240",
+      "en_US": [
+        "Its body temperature is around\n",
+        "1,100 degrees F. It is healthy if\n",
+        "it is breathing yellow flames."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00241",
+      "en_US": [
+        "It is said that kids who drink\n",
+        "MILTANK’s milk grow up to become\n",
+        "hearty, healthy adults."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00242",
+      "en_US": [
+        "It is a Pokémon that delivers\n",
+        "happiness. Eating its egg is said\n",
+        "to make one kind to everyone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00243",
+      "en_US": [
+        "It is said to have fallen with\n",
+        "lightning. It can fire thunderbolts\n",
+        "from the rain clouds on its back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00244",
+      "en_US": [
+        "It is said that when it roars, a\n",
+        "volcano erupts somewhere around\n",
+        "the globe."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00245",
+      "en_US": [
+        "It races around the world to\n",
+        "purify fouled water. It dashes\n",
+        "away with the north wind."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00246",
+      "en_US": [
+        "A Pokémon that eats soil. Once it\n",
+        "has eaten a large mountain, it\n",
+        "goes to sleep so it can grow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00247",
+      "en_US": [
+        "Its body is as hard as bedrock.\n",
+        "By venting pressurized gas, it can\n",
+        "launch itself like a rocket."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00248",
+      "en_US": [
+        "If it rampages, it knocks down\n",
+        "mountains and buries rivers. Maps\n",
+        "must be redrawn afterward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00249",
+      "en_US": [
+        "It sleeps in a deep-sea trench.\n",
+        "If it flaps its wings, it is said to\n",
+        "cause a 40-day storm."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00250",
+      "en_US": [
+        "Its feathers are in seven colors.\n",
+        "It is said that anyone seeing it is\n",
+        "promised eternal happiness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00251",
+      "en_US": [
+        "It has the power to travel across\n",
+        "time, but it is said to appear only\n",
+        "in peaceful times."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00252",
+      "en_US": [
+        "The soles of its feet are covered\n",
+        "by countless tiny spikes, enabling\n",
+        "it to walk on walls and ceilings."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00253",
+      "en_US": [
+        "It lives in dense jungles. While \n",
+        "closing in on its prey, it leaps\n",
+        "from branch to branch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00254",
+      "en_US": [
+        "The leaves that grow on its arms\n",
+        "can slice down thick trees. It is\n",
+        "without peer in jungle combat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00255",
+      "en_US": [
+        "A fire burns inside, so it feels\n",
+        "very warm to hug. It launches\n",
+        "fireballs of 1,800 degrees F."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00256",
+      "en_US": [
+        "Its kicking mastery lets it loose\n",
+        "10 kicks per second. It emits\n",
+        "sharp cries to intimidate foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00257",
+      "en_US": [
+        "Flames spout from its wrists,\n",
+        "enveloping its knuckles. Its\n",
+        "punches scorch its foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00258",
+      "en_US": [
+        "To alert it, the fin on its head\n",
+        "senses the flow of water. It has\n",
+        "the strength to heft boulders."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00259",
+      "en_US": [
+        "Its sturdy legs give it sure\n",
+        "footing, even in mud. It\n",
+        "burrows into dirt to sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00260",
+      "en_US": [
+        "It can swim while towing a large\n",
+        "ship. It bashes down foes with a\n",
+        "swing of its thick arms."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00261",
+      "en_US": [
+        "A Pokémon with a persistent\n",
+        "nature, it chases its chosen prey\n",
+        "until the prey becomes exhausted."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00262",
+      "en_US": [
+        "It chases down prey in a pack.\n",
+        "It will never disobey the commands\n",
+        "of a skilled Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00263",
+      "en_US": [
+        "It walks in zigzag fashion. It is\n",
+        "good at finding items in the\n",
+        "grass and even in the ground."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00264",
+      "en_US": [
+        "It charges prey at speeds over\n",
+        "60 mph. However, because it can\n",
+        "only run straight, it often fails."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00265",
+      "en_US": [
+        "It spits a white silk that turns\n",
+        "sticky when it contacts air. It is\n",
+        "used to immobilize foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00266",
+      "en_US": [
+        "It drinks dew that collects on its\n",
+        "silk and waits for evolution. Its\n",
+        "hard cocoon repels attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00267",
+      "en_US": [
+        "When flower fields bloom, it flits\n",
+        "around, collecting pollen. Despite\n",
+        "its appearance, it is savage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00268",
+      "en_US": [
+        "Encased within its tough cocoon, it\n",
+        "endures attacks. It never forgets\n",
+        "the appearance of its foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00269",
+      "en_US": [
+        "It violently flutters its wings to\n",
+        "scatter toxic dust when attacked.\n",
+        "It becomes active after sunset."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00270",
+      "en_US": [
+        "It looks like an aquatic plant and\n",
+        "serves as a ferry to Pokémon\n",
+        "that can’t swim."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00271",
+      "en_US": [
+        "It has a mischievous spirit. If it\n",
+        "spots an angler, it will tug on the\n",
+        "fishing line to interfere."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00272",
+      "en_US": [
+        "If it hears festive music, all its\n",
+        "muscles fill with energy. It can’t\n",
+        "help breaking out into a dance."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00273",
+      "en_US": [
+        "When it dangles from a tree\n",
+        "branch, it looks just like an acorn.\n",
+        "It enjoys scaring other Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00274",
+      "en_US": [
+        "The sound of its grass flute makes\n",
+        "its listeners uneasy. It lives deep\n",
+        "in forests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00275",
+      "en_US": [
+        "By flapping its leafy fan, it can\n",
+        "whip up gusts of 100 ft/second\n",
+        "that can level houses."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00276",
+      "en_US": [
+        "It has a gutsy spirit that makes\n",
+        "it bravely take on tough foes. It\n",
+        "flies in search of warm climates."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00277",
+      "en_US": [
+        "It circles the sky in search of\n",
+        "prey. When it spots one, it dives\n",
+        "steeply to catch the prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00278",
+      "en_US": [
+        "Catching sea winds with its long\n",
+        "wings, it soars as if it were a\n",
+        "glider. It folds its wings to rest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00279",
+      "en_US": [
+        "It acts as a delivery service by\n",
+        "carrying small Pokémon in its bill.\n",
+        "It bobs on the waves to rest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00280",
+      "en_US": [
+        "It uses the horns on its head to\n",
+        "sense human emotions. It is said to\n",
+        "appear in front of cheerful people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00281",
+      "en_US": [
+        "It is highly perceptive of its\n",
+        "Trainer’s feelings. It dances when\n",
+        "it is feeling happy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00282",
+      "en_US": [
+        "It will try to guard its trusted\n",
+        "Trainer with its life. It has the\n",
+        "ability to see the future."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00283",
+      "en_US": [
+        "It appears as if it is skating on\n",
+        "water. It draws prey with a sweet\n",
+        "scent from the tip of its head."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00284",
+      "en_US": [
+        "Its antennae have eye patterns\n",
+        "on them. Its four wings enable it\n",
+        "to hover and fly in any direction."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00285",
+      "en_US": [
+        "It spouts poison spores from the\n",
+        "top of its head. These spores\n",
+        "cause pain all over if inhaled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00286",
+      "en_US": [
+        "Its short arms stretch when it\n",
+        "throws punches. Its technique is\n",
+        "equal to that of pro boxers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00287",
+      "en_US": [
+        "It spends nearly all its time in a\n",
+        "day sprawled out. Just seeing it\n",
+        "makes one drowsy."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00288",
+      "en_US": [
+        "Its heart beats at a tenfold\n",
+        "tempo, so it cannot sit still for\n",
+        "even a moment."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00289",
+      "en_US": [
+        "The world’s laziest Pokémon. When\n",
+        "it is lounging, it is actually saving\n",
+        "energy for striking back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00290",
+      "en_US": [
+        "It grows underground, sensing\n",
+        "its surroundings using antennae\n",
+        "instead of its virtually blind eyes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00291",
+      "en_US": [
+        "Because it moves so quickly, it\n",
+        "sometimes becomes unseeable. It\n",
+        "congregates around tree sap."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00292",
+      "en_US": [
+        "A discarded bug shell that came to\n",
+        "life. Peering into the crack on its\n",
+        "back is said to steal one’s spirit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00293",
+      "en_US": [
+        "Usually, its cries are like quiet\n",
+        "murmurs. If frightened, it shrieks\n",
+        "at the same volume as a jet plane."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00294",
+      "en_US": [
+        "The shock waves from its cries can\n",
+        "tip over trucks. It stamps its\n",
+        "feet to power up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00295",
+      "en_US": [
+        "Its howls can be heard over six\n",
+        "miles away. It emits all sorts of\n",
+        "noises from the ports on its body."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00296",
+      "en_US": [
+        "It toughens its body by slamming\n",
+        "into thick trees. Many snapped\n",
+        "trees can be found near its nest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00297",
+      "en_US": [
+        "It loves to match power with\n",
+        "big-bodied Pokémon. It can knock a\n",
+        "truck flying with its arm thrusts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00298",
+      "en_US": [
+        "Its tail is filled with nutrients\n",
+        "necessary for growth. It plays\n",
+        "by bouncing on its tail."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00299",
+      "en_US": [
+        "Its nose is a magnet. As a result,\n",
+        "this Pokémon always keeps its face\n",
+        "pointing north."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00300",
+      "en_US": [
+        "It can’t stop itself from chasing\n",
+        "moving things, and it runs in a\n",
+        "circle, chasing its own tail."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00301",
+      "en_US": [
+        "It is highly popular among female\n",
+        "Trainers for its sublime fur.\n",
+        "It does not keep a nest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00302",
+      "en_US": [
+        "It hides in the darkness of caves.\n",
+        "Its diet of gems has transformed\n",
+        "its eyes into gemstones."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00303",
+      "en_US": [
+        "Attached to its head is a huge\n",
+        "set of jaws formed by horns.\n",
+        "It can chew through iron beams."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00304",
+      "en_US": [
+        "It usually lives deep in mountains.\n",
+        "However, hunger may drive it to\n",
+        "eat railroad tracks and cars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00305",
+      "en_US": [
+        "For food, it digs up iron ore. It\n",
+        "smashes its steely body against\n",
+        "others to fight over territory."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00306",
+      "en_US": [
+        "While seeking iron for food, it\n",
+        "digs tunnels by breaking through\n",
+        "bedrock with its steel horns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00307",
+      "en_US": [
+        "It never misses its daily yoga\n",
+        "workouts, and it heightens its\n",
+        "spiritual power through meditation."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00308",
+      "en_US": [
+        "Through daily meditation, it hones\n",
+        "its spiritual power. It can sense\n",
+        "what others are thinking."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00309",
+      "en_US": [
+        "Using electricity stored in its fur,\n",
+        "it stimulates its muscles to\n",
+        "heighten its reaction speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00310",
+      "en_US": [
+        "It discharges electricity from its\n",
+        "mane. It creates a thundercloud\n",
+        "overhead to drop lightning bolts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00311",
+      "en_US": [
+        "It cheers on friends with pom-poms\n",
+        "made of sparks. It drains power\n",
+        "from telephone poles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00312",
+      "en_US": [
+        "It cheers on friends. If its\n",
+        "friends are losing, its body lets\n",
+        "off more and more sparks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00313",
+      "en_US": [
+        "It communicates with others by\n",
+        "lighting up its rear at night. It\n",
+        "loves ILLUMISE’s sweet aroma."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00314",
+      "en_US": [
+        "With its sweet aroma, it guides\n",
+        "VOLBEAT to draw signs with light in\n",
+        "the night sky."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00315",
+      "en_US": [
+        "The beautiful flowers on its arms\n",
+        "have toxic thorns. Don’t even\n",
+        "think about picking those flowers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00316",
+      "en_US": [
+        "Almost all its body is its stomach.\n",
+        "Its harsh digestive juices quickly\n",
+        "dissolve anything it swallows."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00317",
+      "en_US": [
+        "It swallows anything whole.\n",
+        "It sweats toxic fluids from its\n",
+        "follicles to douse foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00318",
+      "en_US": [
+        "They swarm any foe that invades\n",
+        "their territory. Their sharp fangs\n",
+        "can tear out boat hulls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00319",
+      "en_US": [
+        "Its fangs rip through sheet iron.\n",
+        "It swims at 75 mph and is known as\n",
+        "“The Bully of the Sea.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00320",
+      "en_US": [
+        "On sunny days, it lands on beaches\n",
+        "to bounce like a ball and play.\n",
+        "It spouts water from its nose."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00321",
+      "en_US": [
+        "The biggest of all Pokémon.\n",
+        "It can dive to a depth of almost\n",
+        "10,000 feet on only one breath."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00322",
+      "en_US": [
+        "Its humped back stores intensely\n",
+        "hot magma. In rain, the magma\n",
+        "cools, slowing its movement."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00323",
+      "en_US": [
+        "It has volcanoes on its back. If\n",
+        "magma builds up in its body, it\n",
+        "shudders, then erupts violently."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00324",
+      "en_US": [
+        "It burns coal inside its shell for\n",
+        "energy. It blows out black soot if\n",
+        "it is endangered."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00325",
+      "en_US": [
+        "It bounces constantly, using its\n",
+        "tail like a spring. The shock of\n",
+        "bouncing keeps its heart beating."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00326",
+      "en_US": [
+        "It uses black pearls to amplify its\n",
+        "psycho-power. It does an odd\n",
+        "dance to gain control over foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00327",
+      "en_US": [
+        "No two SPINDA have the same\n",
+        "pattern of spots. Its tottering\n",
+        "step fouls the aim of foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00328",
+      "en_US": [
+        "It makes a conical pit in desert\n",
+        "sand and lies in wait at the bottom\n",
+        "for prey to come tumbling down."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00329",
+      "en_US": [
+        "It violently shudders its wings,\n",
+        "generating ultrasonic waves to\n",
+        "induce headaches in people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00330",
+      "en_US": [
+        "It whips up sandstorms with\n",
+        "powerful flaps of its wings. It is\n",
+        "known as “The Desert Spirit.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00331",
+      "en_US": [
+        "By storing water in its body, this\n",
+        "desert dweller can survive for 30\n",
+        "days without water."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00332",
+      "en_US": [
+        "It becomes active at night,\n",
+        "seeking prey that is exhausted\n",
+        "from the day’s desert heat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00333",
+      "en_US": [
+        "Its wings are like cotton tufts.\n",
+        "If it perches on someone’s head,\n",
+        "it looks like a cotton hat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00334",
+      "en_US": [
+        "It looks like a fluffy cloud when\n",
+        "it is in flight. It hums with its\n",
+        "soprano voice."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00335",
+      "en_US": [
+        "It has feuded with SEVIPER for\n",
+        "many generations. Its sharp claws\n",
+        "are its biggest weapons."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00336",
+      "en_US": [
+        "For many generations, it has\n",
+        "feuded with ZANGOOSE. It whets its\n",
+        "bladed tail on rocks for battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00337",
+      "en_US": [
+        "Because it turns active on nights\n",
+        "of the full moon, it is said to have\n",
+        "some link to the lunar phases."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00338",
+      "en_US": [
+        "A new Pokémon species, rumored\n",
+        "to be from the sun. It gives off\n",
+        "light while spinning."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00339",
+      "en_US": [
+        "Its whiskers make a superb radar.\n",
+        "They are used to locate prey,\n",
+        "even in the murkiest of water."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00340",
+      "en_US": [
+        "As a result of causing tremors by\n",
+        "thrashing about, it developed the\n",
+        "ability to foretell real quakes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00341",
+      "en_US": [
+        "Its hardy vitality enables it to\n",
+        "adapt to any environment. Its\n",
+        "pincers will never release prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00342",
+      "en_US": [
+        "It is a ruffian that uses its\n",
+        "pincers to pick up and toss out\n",
+        "other Pokémon from its pond."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00343",
+      "en_US": [
+        "It moves by spinning on its foot.\n",
+        "It is a rare Pokémon that was\n",
+        "discovered in ancient ruins."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00344",
+      "en_US": [
+        "An ancient clay figurine that came\n",
+        "to life as a Pokémon from exposure\n",
+        "to a mysterious ray of light."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00345",
+      "en_US": [
+        "It lived on the seafloor 100\n",
+        "million years ago and was\n",
+        "reanimated scientifically."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00346",
+      "en_US": [
+        "It lives in the shallows of warm\n",
+        "seas. When the tide goes out, it\n",
+        "digs up prey from beaches."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00347",
+      "en_US": [
+        "A Pokémon ancestor that was\n",
+        "reanimated from a fossil. It lived\n",
+        "in the sea and hunted with claws."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00348",
+      "en_US": [
+        "It went ashore after evolving.\n",
+        "Its entire body is clad in a sturdy\n",
+        "armor."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00349",
+      "en_US": [
+        "It eats anything, so it can even\n",
+        "live in polluted streams and lakes.\n",
+        "No one pays any attention to it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00350",
+      "en_US": [
+        "It is the world’s most beautiful\n",
+        "Pokémon. There are many works of\n",
+        "art featuring MILOTIC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00351",
+      "en_US": [
+        "Its appearance changes with the\n",
+        "weather. Recently, its molecules\n",
+        "were found to be just like water."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00352",
+      "en_US": [
+        "It can freely change its body’s\n",
+        "color. The zigzag pattern on its\n",
+        "belly doesn’t change, however."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00353",
+      "en_US": [
+        "It loves vengeful emotions and\n",
+        "hangs in rows under the eaves of\n",
+        "houses where vengeful people live."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00354",
+      "en_US": [
+        "A doll that became a Pokémon over\n",
+        "its grudge from being junked. It\n",
+        "seeks the child that disowned it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00355",
+      "en_US": [
+        "It doggedly pursues its prey\n",
+        "wherever it goes. However, the\n",
+        "chase is abandoned at sunrise."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00356",
+      "en_US": [
+        "Its body is hollow. It is said that\n",
+        "those who look into its body are\n",
+        "sucked into the void."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00357",
+      "en_US": [
+        "Because it continually ate only\n",
+        "its favorite fruit, the fruit\n",
+        "started growing around its neck."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00358",
+      "en_US": [
+        "Emitting ultrasonic cries, it\n",
+        "floats on winds to travel great\n",
+        "distances."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00359",
+      "en_US": [
+        "It senses coming disasters and\n",
+        "appears before people only to\n",
+        "warn them of impending danger."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00360",
+      "en_US": [
+        "It grows strong by pushing up\n",
+        "against others en masse.\n",
+        "It loves eating sweet fruit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00361",
+      "en_US": [
+        "In the snow country, certain\n",
+        "folklore says a house will\n",
+        "prosper if a SNORUNT lives there."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00362",
+      "en_US": [
+        "To protect itself, it clads its\n",
+        "body in an armor of ice, made\n",
+        "by freezing moisture in the air."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00363",
+      "en_US": [
+        "It rolls across ice floes to reach\n",
+        "shore because its body is poorly\n",
+        "shaped for swimming."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00364",
+      "en_US": [
+        "It habitually spins things on its\n",
+        "nose. By doing so, it learns\n",
+        "textures and odors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00365",
+      "en_US": [
+        "It shatters ice with its big tusks.\n",
+        "Its thick blubber repels not only\n",
+        "the cold, but also enemy attacks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00366",
+      "en_US": [
+        "It makes a single pearl during\n",
+        "its lifetime. The pearl is said\n",
+        "to amplify psychic power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00367",
+      "en_US": [
+        "It lives deep in the sea. With a\n",
+        "tail shaped like a small fish, it\n",
+        "attracts unsuspecting prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00368",
+      "en_US": [
+        "It lives at the bottom of the sea.\n",
+        "In the springtime, its pink body\n",
+        "turns more vivid for some reason."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00369",
+      "en_US": [
+        "A rare Pokémon discovered during\n",
+        "a deep-sea exploration. It has not\n",
+        "changed in over 100 million years."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00370",
+      "en_US": [
+        "It lives in warm seas. It is said\n",
+        "that a couple finding this Pokémon\n",
+        "will be blessed with eternal love."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00371",
+      "en_US": [
+        "Dreaming of one day flying, it\n",
+        "practices by leaping off cliffs\n",
+        "every day."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00372",
+      "en_US": [
+        "Within its rugged shell, its cells\n",
+        "have begun changing. The shell\n",
+        "peels off the instant it evolves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00373",
+      "en_US": [
+        "As a result of its long-held dream\n",
+        "of flying, its cellular structure\n",
+        "changed, and wings grew out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00374",
+      "en_US": [
+        "It converses with others by using\n",
+        "magnetic pulses. In a swarm, they\n",
+        "move in perfect unison."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00375",
+      "en_US": [
+        "It is formed by two BELDUM joining\n",
+        "together. Its steel body won’t be\n",
+        "scratched if it collides with a jet."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00376",
+      "en_US": [
+        "METANG combined to form it.\n",
+        "With four brains, it has the\n",
+        "intelligence of a supercomputer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00377",
+      "en_US": [
+        "Its entire body is made of rock.\n",
+        "If any part chips off in battle, it\n",
+        "attaches rocks to repair itself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00378",
+      "en_US": [
+        "Its body is made of ice from the\n",
+        "ice age. It controls frigid air of\n",
+        "-328 degrees Fahrenheit."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00379",
+      "en_US": [
+        "Tempered by pressure underground\n",
+        "over tens of thousands of years,\n",
+        "its body cannot be scratched."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00380",
+      "en_US": [
+        "Its body is covered with a down\n",
+        "that can refract light in such a\n",
+        "way that it becomes invisible."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00381",
+      "en_US": [
+        "A highly intelligent Pokémon.\n",
+        "By folding back its wings in flight,\n",
+        "it can overtake jet planes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00382",
+      "en_US": [
+        "It is said to have widened the\n",
+        "seas by causing downpours. It had\n",
+        "been asleep in a marine trench."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00383",
+      "en_US": [
+        "It had been asleep in underground\n",
+        "magma ever since it fiercely\n",
+        "fought KYOGRE long ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00384",
+      "en_US": [
+        "It lives in the ozone layer far\n",
+        "above the clouds and cannot be\n",
+        "seen from the ground."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00385",
+      "en_US": [
+        "It is said to have the ability to\n",
+        "grant any wish for just one week\n",
+        "every thousand years."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00386",
+      "en_US": [
+        "An alien virus that fell to earth\n",
+        "on a meteor underwent a DNA\n",
+        "mutation to become this Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00387",
+      "en_US": [
+        "It undertakes photosynthesis with\n",
+        "its body, making oxygen. The leaf\n",
+        "on its head wilts if it is thirsty."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00388",
+      "en_US": [
+        "The shell is hardened soil. Some\n",
+        "Pokémon come to peck the berries\n",
+        "growing on the trees on its back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00389",
+      "en_US": [
+        "Groups of this Pokémon migrating\n",
+        "in search of water have been\n",
+        "mistaken for “moving forests.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00390",
+      "en_US": [
+        "Its fiery rear end is fueled by\n",
+        "gas made in its belly. Even rain\n",
+        "can’t extinguish the fire."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00391",
+      "en_US": [
+        "It uses ceilings and walls to\n",
+        "launch aerial attacks. Its fiery\n",
+        "tail is but one weapon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00392",
+      "en_US": [
+        "Its crown of fire is indicative of\n",
+        "its fiery nature. It is beaten by\n",
+        "none in terms of quickness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00393",
+      "en_US": [
+        "It lives along shores in northern\n",
+        "countries. A skilled swimmer, it\n",
+        "dives for over 10 minutes to hunt."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00394",
+      "en_US": [
+        "Its wings deliver wicked blows that\n",
+        "snap even the thickest of trees.\n",
+        "It searches for prey in icy seas."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00395",
+      "en_US": [
+        "It swims as fast as a jet boat.\n",
+        "The edges of its wings are sharp\n",
+        "and can slice apart drifting ice."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00396",
+      "en_US": [
+        "Usually with a large flock, it is\n",
+        "barely noticeable when alone.\n",
+        "Its cries are very strident."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00397",
+      "en_US": [
+        "It lives in forests and fields.\n",
+        "Squabbles over territory occur\n",
+        "when flocks collide."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00398",
+      "en_US": [
+        "The muscles in its wings and legs\n",
+        "are strong. It can easily fly while\n",
+        "gripping a small Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00399",
+      "en_US": [
+        "It constantly gnaws on logs and\n",
+        "rocks to whittle down its front\n",
+        "teeth. It nests alongside water."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00400",
+      "en_US": [
+        "While its movements out of water\n",
+        "are sluggish, it can swim as fast\n",
+        "as any FEEBAS."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00401",
+      "en_US": [
+        "It chats with others using the\n",
+        "sounds of its colliding antennae.\n",
+        "These sounds are fall hallmarks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00402",
+      "en_US": [
+        "It signals its emotions with its\n",
+        "melodies. Scientists are studying\n",
+        "these melodic patterns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00403",
+      "en_US": [
+        "Its forelegs have a muscle-based\n",
+        "system of generating electricity.\n",
+        "Its body shines if endangered."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00404",
+      "en_US": [
+        "It rests its forelegs on others to\n",
+        "communicate with rhythmic electric\n",
+        "pulses from its claws."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00405",
+      "en_US": [
+        "When its eyes gleam gold, it can\n",
+        "spot hiding prey--even those\n",
+        "taking shelter behind a wall."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00406",
+      "en_US": [
+        "It lives alongside clear ponds.\n",
+        "It scatters pollen that induces\n",
+        "harsh sneezing and runny noses."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00407",
+      "en_US": [
+        "With the movements of a dancer,\n",
+        "it strikes with whips that are\n",
+        "densely lined with poison thorns."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00408",
+      "en_US": [
+        "It was resurrected from an iron\n",
+        "ball-like fossil. It downs prey with\n",
+        "its head butts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00409",
+      "en_US": [
+        "Its skull is as hard as iron. It is\n",
+        "a brute that tears down jungle\n",
+        "trees while catching prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00410",
+      "en_US": [
+        "It habitually polishes its face by\n",
+        "rubbing it against tree trunks. It\n",
+        "is weak to attacks from behind."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00411",
+      "en_US": [
+        "When attacked, they form a wall\n",
+        "with their shieldlike faces to\n",
+        "protect their young."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00412",
+      "en_US": [
+        "If its cloak is broken in battle,\n",
+        "it quickly remakes the cloak with\n",
+        "materials nearby."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00413",
+      "en_US": [
+        "Its appearance changes depending\n",
+        "on where it evolved. The materials\n",
+        "on hand become a part of its body."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00414",
+      "en_US": [
+        "It does not keep a nest. It flies\n",
+        "over fields and mountains in\n",
+        "constant search of floral honey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00415",
+      "en_US": [
+        "It collects and delivers honey to\n",
+        "its colony. At night, they cluster\n",
+        "to form a beehive and sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00416",
+      "en_US": [
+        "When endangered, grubs from its\n",
+        "six-cell honeycomb strike back.\n",
+        "There is only one in a colony. "
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00417",
+      "en_US": [
+        "It makes electricity with pouches\n",
+        "in its cheeks and shoots charges\n",
+        "from its tail. It lives atop trees."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00418",
+      "en_US": [
+        "It swims by rotating its two tails\n",
+        "like a screw. When it dives, its\n",
+        "flotation sac collapses."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00419",
+      "en_US": [
+        "Its flotation sac developed as a\n",
+        "result of pursuing aquatic prey.\n",
+        "It can double as a rubber raft."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00420",
+      "en_US": [
+        "Sunlight colors it red. When the\n",
+        "small ball is drained of nutrients,\n",
+        "it shrivels to herald evolution."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00421",
+      "en_US": [
+        "It is docile as a bud, but turns\n",
+        "cheerful when it blooms. It folds\n",
+        "back into a bud if sunlight wanes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00422",
+      "en_US": [
+        "It lives along bodies of water.\n",
+        "Its body shape has changed to\n",
+        "suit its habitat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00423",
+      "en_US": [
+        "It apparently had a huge shell for\n",
+        "protection in ancient times.\n",
+        "It lives in shallow tidal pools."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00424",
+      "en_US": [
+        "They work in large colonies and\n",
+        "make rings by linking their\n",
+        "tails, apparently in friendship."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00425",
+      "en_US": [
+        "It tugs on the hands of children\n",
+        "to steal them away. However, it\n",
+        "gets pulled around instead."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00426",
+      "en_US": [
+        "It carries people and Pokémon\n",
+        "when it flies. But since it only\n",
+        "drifts, it can end up anywhere."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00427",
+      "en_US": [
+        "When it senses danger, it perks up\n",
+        "its ears. On cold nights, it sleeps\n",
+        "with its head tucked into its fur."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00428",
+      "en_US": [
+        "It is very conscious of its looks\n",
+        "and never fails to groom its ears.\n",
+        "It runs with sprightly jumps."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00429",
+      "en_US": [
+        "It chants incantations. While they\n",
+        "usually torment targets, some\n",
+        "chants bring happiness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00430",
+      "en_US": [
+        "It makes its MURKROW cronies\n",
+        "bring it food. It idles its time\n",
+        "away, grooming itself in its nest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00431",
+      "en_US": [
+        "With its sharp glare, it puts\n",
+        "foes in a mild hypnotic state.\n",
+        "It is a very fickle Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00432",
+      "en_US": [
+        "To make itself appear intimidatingly\n",
+        "beefy, it tightly cinches its waist\n",
+        "with its twin tails."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00433",
+      "en_US": [
+        "Each time it hops, it makes a\n",
+        "ringing sound. It deafens foes by\n",
+        "emitting high-frequency cries."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00434",
+      "en_US": [
+        "It sprays a nose-curling,\n",
+        "stinky fluid from its rear to\n",
+        "repel attackers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00435",
+      "en_US": [
+        "It sprays a stinky fluid from its\n",
+        "tail. The fluid smells worse the\n",
+        "longer it is allowed to fester."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00436",
+      "en_US": [
+        "X-ray photos were taken to check\n",
+        "its body structure. Nothing\n",
+        "appeared, however."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00437",
+      "en_US": [
+        "It can summon rain clouds.\n",
+        "People long ago revered it as the\n",
+        "bringer of plentiful harvests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00438",
+      "en_US": [
+        "It prefers arid environments. It\n",
+        "leaks water from its eyes to\n",
+        "adjust its body’s fluid levels."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00439",
+      "en_US": [
+        "It likes places where people\n",
+        "gather. It mimics foes to confuse\n",
+        "them, then makes its getaway."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00440",
+      "en_US": [
+        "It carries a round, egg-shaped\n",
+        "rock in its belly pouch and gives\n",
+        "the rock to its friends."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00441",
+      "en_US": [
+        "It keeps rhythm by flicking its\n",
+        "tail feathers like a metronome.\n",
+        "It imitates human speech."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00442",
+      "en_US": [
+        "It was bound to a fissure in an\n",
+        "odd keystone as punishment for\n",
+        "misdeeds 500 years ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00443",
+      "en_US": [
+        "It once lived in the tropics. To\n",
+        "avoid the cold, it lives in caves\n",
+        "warmed by geothermal heat."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00444",
+      "en_US": [
+        "It habitually digs up and hoards\n",
+        "gems in its nest. Its loot is\n",
+        "constantly targeted by thieves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00445",
+      "en_US": [
+        "It flies at speeds equal to a jet\n",
+        "fighter plane. It never allows its\n",
+        "prey to escape."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00446",
+      "en_US": [
+        "It hides food under its long body\n",
+        "hair. However, it forgets it has\n",
+        "hidden the food."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00447",
+      "en_US": [
+        "Its body is lithe yet powerful.\n",
+        "It can crest three mountains and\n",
+        "cross two canyons in one night."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00448",
+      "en_US": [
+        "By catching the aura emanating\n",
+        "from others, it can read their\n",
+        "thoughts and movements."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00449",
+      "en_US": [
+        "It enshrouds itself with sand to\n",
+        "protect itself from germs.\n",
+        "It does not enjoy getting wet."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00450",
+      "en_US": [
+        "Its huge mouth is almost seven\n",
+        "feet across. It has enough power\n",
+        "to completely crush a car."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00451",
+      "en_US": [
+        "It lives in arid lands. It buries\n",
+        "itself in sand and lies in wait for\n",
+        "unsuspecting prey."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00452",
+      "en_US": [
+        "Its body is encased in a sturdy\n",
+        "shell. Its head rotates 180\n",
+        "degrees, eliminating blind spots."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00453",
+      "en_US": [
+        "Inflating its poison sacs, it\n",
+        "makes an eerie blubbering sound\n",
+        "for intimidation."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00454",
+      "en_US": [
+        "The toxin made in its poison sacs\n",
+        "is pumped to the knuckle claws\n",
+        "through tubes down its arms."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00455",
+      "en_US": [
+        "Hanging from branches using its\n",
+        "tentacles, it looks like a plant.\n",
+        "It awaits prey, mouth wide open."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00456",
+      "en_US": [
+        "The way its two tail fins flutter\n",
+        "while it swims has earned it the\n",
+        "nickname “BEAUTIFLY of the Sea.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00457",
+      "en_US": [
+        "To avoid detection by predators,\n",
+        "it crawls along the seafloor using\n",
+        "the two fins on its chest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00458",
+      "en_US": [
+        "Scientists discovered that the\n",
+        "distinctive patterns on its back\n",
+        "differ by region."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00459",
+      "en_US": [
+        "In the spring, it grows berries\n",
+        "with the texture of frozen treats\n",
+        "around its belly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00460",
+      "en_US": [
+        "It blankets wide areas in snow by\n",
+        "whipping up blizzards. It is also\n",
+        "known as “The Ice Monster.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00461",
+      "en_US": [
+        "It sends signals to others by\n",
+        "carving odd patterns in frost-\n",
+        "covered trees and ice."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00462",
+      "en_US": [
+        "It evolved from exposure to a\n",
+        "special magnetic field.\n",
+        "Three units generate magnetism."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00463",
+      "en_US": [
+        "It wraps things with its extensible\n",
+        "tongue. Getting too close to it\n",
+        "will leave you soaked with drool."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00464",
+      "en_US": [
+        "It puts rocks in holes in its palms\n",
+        "and uses its muscles to shoot them.\n",
+        "GEODUDE are shot at rare times."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00465",
+      "en_US": [
+        "It ensnares prey by extending\n",
+        "arms made of vines. Losing arms to\n",
+        "predators does not trouble it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00466",
+      "en_US": [
+        "It pushes the tips of its two tails\n",
+        "against the foe, then lets loose\n",
+        "with over 20,000 volts of power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00467",
+      "en_US": [
+        "It blasts fireballs of over 3,600\n",
+        "degrees F from the ends of its\n",
+        "arms. It lives in volcanic craters."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00468",
+      "en_US": [
+        "It will never appear where there\n",
+        "is strife. Its sightings have\n",
+        "become rare recently."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00469",
+      "en_US": [
+        "By churning its wings, it creates\n",
+        "shock waves that inflict critical\n",
+        "internal injuries to foes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00470",
+      "en_US": [
+        "Just like a plant, it uses\n",
+        "photosynthesis. As a result, it is\n",
+        "always enveloped in clear air."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00471",
+      "en_US": [
+        "As a protective technique, it can\n",
+        "completely freeze its fur to make\n",
+        "its hairs stand like needles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00472",
+      "en_US": [
+        "It observes prey while hanging\n",
+        "inverted from branches. When the\n",
+        "chance presents itself, it swoops!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00473",
+      "en_US": [
+        "Its impressive tusks are made of\n",
+        "ice. The population thinned when it\n",
+        "turned warm after the ice age."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00474",
+      "en_US": [
+        "Additional software was installed\n",
+        "to make it a better Pokémon.\n",
+        "It began acting oddly, however."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00475",
+      "en_US": [
+        "A master of courtesy and\n",
+        "swordsmanship, it fights using\n",
+        "extending swords on its elbows."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00476",
+      "en_US": [
+        "It exudes strong magnetism from\n",
+        "all over. It controls three small\n",
+        "units called Mini-Noses."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00477",
+      "en_US": [
+        "The antenna on its head captures\n",
+        "radio waves from the world of spirits\n",
+        "that command it to take people there."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00478",
+      "en_US": [
+        "It freezes foes with an icy breath\n",
+        "nearly -60 degrees F. What seems\n",
+        "to be its body is actually hollow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00479",
+      "en_US": [
+        "Its body is composed of plasma. It\n",
+        "is known to infiltrate electronic\n",
+        "devices and wreak havoc."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00480",
+      "en_US": [
+        "It is said that its emergence\n",
+        "gave humans the intelligence to\n",
+        "improve their quality of life."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00481",
+      "en_US": [
+        "It sleeps at the bottom of a lake.\n",
+        "Its spirit is said to leave its body\n",
+        "to fly on the lake’s surface."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00482",
+      "en_US": [
+        "It is thought that UXIE, MESPRIT\n",
+        "and AZELF all came from the same\n",
+        "egg."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00483",
+      "en_US": [
+        "A Pokémon spoken of in legend.\n",
+        "It is said that time began moving\n",
+        "when DIALGA was born."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00484",
+      "en_US": [
+        "It is said to live in a gap in the\n",
+        "spatial dimension parallel to ours.\n",
+        "It appears in mythology."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00485",
+      "en_US": [
+        "It dwells in volcanic caves. It\n",
+        "digs in with its cross-shaped feet\n",
+        "to crawl on ceilings and walls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00486",
+      "en_US": [
+        "There is an enduring legend that\n",
+        "states this Pokémon towed\n",
+        "continents with ropes."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00487",
+      "en_US": [
+        "A Pokémon that is said to live in a\n",
+        "world on the reverse side of ours.\n",
+        "It appears in an ancient cemetery."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00488",
+      "en_US": [
+        "Shiny particles are released from\n",
+        "its wings like a veil. It is said\n",
+        "to represent the crescent moon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00489",
+      "en_US": [
+        "A Pokémon that lives in warm seas.\n",
+        "It inflates the flotation sac on its\n",
+        "head to drift and search for food."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00490",
+      "en_US": [
+        "Water makes up 80% of its body.\n",
+        "This Pokémon is easily affected by\n",
+        "its environment."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00491",
+      "en_US": [
+        "Folklore has it that on moonless\n",
+        "nights, this Pokémon will make\n",
+        "people see horrific nightmares."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00492",
+      "en_US": [
+        "It can dissolve toxins in the air\n",
+        "to instantly transform ruined land\n",
+        "into a lush field of flowers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000699_00493",
+      "en_US": [
+        "It is told in mythology that this\n",
+        "Pokémon was born before the\n",
+        "universe even existed."
+      ]
+    }
+  ]
+}

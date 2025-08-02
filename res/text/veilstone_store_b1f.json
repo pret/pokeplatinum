@@ -1,0 +1,245 @@
+{
+  "key": 9219,
+  "messages": [
+    {
+      "id": "pl_msg_00000154_00000",
+      "en_US": [
+        "Prof. Rowan: Hmm... Rage Candy Bars\n",
+        "are too popular, it seems.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00001",
+      "en_US": [
+        "Ah, {STRVAR_1 3, 0, 0}, it’s you.\r",
+        "Does life continue to thrill you?\n",
+        "It does for me.\r",
+        "For example, I recently discovered\n",
+        "some Pokémon evolve only in certain\f",
+        "locations.\r",
+        "When I learned that, I felt thrilled!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00002",
+      "en_US": [
+        "I didn’t expect to find paradise in the\n",
+        "department store’s basement.\r",
+        "I got carried away and bought up all\n",
+        "the Rage Candy Bars!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00003",
+      "en_US": [
+        "I’m hopeless at cooking Poffins, so I\n",
+        "buy them here.\r",
+        "I wish I could feed my babies Poffins\n",
+        "that I made myself, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00004",
+      "en_US": [
+        "Pay attention, please.\r",
+        "The flavors of Poffins affect the\n",
+        "condition of Pokémon.\r",
+        "Spicy Poffins enhance coolness.\r",
+        "Dry Poffins enhance beauty.\r",
+        "Sweet Poffins enhance cuteness.\r",
+        "Bitter Poffins enhance smartness.\r",
+        "And Sour Poffins enhance toughness.\r",
+        "Sigh...\n",
+        "Poffins are wonderful, aren’t they?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00005",
+      "en_US": [
+        "Welcome to the basement--the food and\n",
+        "produce section.\r",
+        "We offer a fine and pleasing selection\n",
+        "of Pokémon food and treats."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00006",
+      "en_US": [
+        "Have you ever planted Berries, then\n",
+        "promptly forgotten about them?\r",
+        "If that’s you, we have Berries on sale,\n",
+        "too."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00007",
+      "en_US": [
+        "Hello!\n",
+        "Rage Candy Bars...\r",
+        "I’m all sold out.\n",
+        "I’m terribly sorry."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00008",
+      "en_US": [
+        "Hello, there.\r",
+        "Would you like some Lava Cookies?\n",
+        "They’re $200 each."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00009",
+      "en_US": [
+        "Here you go, one Lava Cookie.\n",
+        "Thank you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00010",
+      "en_US": [
+        "Here you go, ten Lava Cookies.\n",
+        "Thank you very much."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00011",
+      "en_US": [
+        "I’m sorry, but you’ve got no more\n",
+        "room."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00012",
+      "en_US": [
+        "I’m sorry, but you don’t have enough\n",
+        "money."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00013",
+      "en_US": "Please come again."
+    },
+    {
+      "id": "pl_msg_00000154_00014",
+      "en_US": "1"
+    },
+    {
+      "id": "pl_msg_00000154_00015",
+      "en_US": "10"
+    },
+    {
+      "id": "pl_msg_00000154_00016",
+      "en_US": "No, thanks."
+    },
+    {
+      "id": "pl_msg_00000154_00017",
+      "en_US": [
+        "Hello!\n",
+        "I sell Poffins.\r",
+        "The ones I sell go for $6,400 each.\n",
+        "Would you like one?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00018",
+      "en_US": "Which Poffin would you like?"
+    },
+    {
+      "id": "pl_msg_00000154_00019",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000154_00020",
+      "en_US": [
+        "Thank you very much.\n",
+        "Please do shop with us again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00021",
+      "en_US": [
+        "I’m so sorry, but you don’t have\n",
+        "enough money."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00022",
+      "en_US": [
+        "Oh...\n",
+        "Your Poffin Case is already full."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00023",
+      "en_US": "Please come again."
+    },
+    {
+      "id": "pl_msg_00000154_00024",
+      "en_US": [
+        "I’m so sorry.\r",
+        "We can’t sell Poffins if you don’t have\n",
+        "a Poffin Case for them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000154_00025",
+      "en_US": "Spicy-Dry Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00026",
+      "en_US": "Spicy-Sweet Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00027",
+      "en_US": "Spicy-Bitter Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00028",
+      "en_US": "Spicy-Sour Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00029",
+      "en_US": "Dry-Sweet Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00030",
+      "en_US": "Dry-Bitter Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00031",
+      "en_US": "Dry-Sour Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00032",
+      "en_US": "Sweet-Bitter Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00033",
+      "en_US": "Sweet-Sour Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00034",
+      "en_US": "Bitter-Sour Poffin"
+    },
+    {
+      "id": "pl_msg_00000154_00035",
+      "en_US": "No, thanks."
+    },
+    {
+      "id": "pl_msg_00000154_00036",
+      "garbage": 64
+    },
+    {
+      "id": "pl_msg_00000154_00037",
+      "en_US": [
+        "B1F: Food & Produce\r",
+        "1F: Trainers’ Zone\r",
+        "2F: Battle Collection\r",
+        "3F: TM Corner\r",
+        "4F: Poké Dolls & Goods\r",
+        "5F: Rooftop Plaza"
+      ]
+    }
+  ]
+}

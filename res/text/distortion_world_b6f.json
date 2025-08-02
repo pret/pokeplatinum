@@ -1,0 +1,62 @@
+{
+  "key": 29766,
+  "messages": [
+    {
+      "id": "pl_msg_00000318_00000",
+      "en_US": "MESPRIT: Piih!\r"
+    },
+    {
+      "id": "pl_msg_00000318_00001",
+      "en_US": "UXIE: Piih!\r"
+    },
+    {
+      "id": "pl_msg_00000318_00002",
+      "en_US": "AZELF: Piiuw!\r"
+    },
+    {
+      "id": "pl_msg_00000318_00003",
+      "en_US": [
+        "Cynthia: This place...\n",
+        "It seems to be a giant puzzle.\r",
+        "Maybe GIRATINA wants to test those\n",
+        "that visit here?\r",
+        "It appears as if we can’t go on unless\n",
+        "we solve the puzzle.\r",
+        "There were some boulders that could\n",
+        "be moved...\r",
+        "And there are several odd pits on\n",
+        "the floor...\r",
+        "The Pokémon of the lakes seem eager to\n",
+        "show us something..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000318_00004",
+      "en_US": [
+        "Cynthia: I guess the Pokémon of the\n",
+        "lakes must have gone home.\r",
+        "I understand they can keep balance\n",
+        "against either PALKIA or DIALGA.\r",
+        "Does it mean they can’t do that with\n",
+        "GIRATINA?\r",
+        "...Oops.\n",
+        "This is no time for idle chitchat.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000318_00005",
+      "en_US": [
+        "Cynthia: Call it a Trainer’s intuition,\n",
+        "but we’re getting close.\r",
+        "Let’s go on!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000318_00006",
+      "en_US": [
+        "At the bottom of the pit is a space\n",
+        "that a boulder might fit into..."
+      ]
+    }
+  ]
+}

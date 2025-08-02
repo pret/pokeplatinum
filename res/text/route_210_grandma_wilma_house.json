@@ -1,0 +1,121 @@
+{
+  "key": 58101,
+  "messages": [
+    {
+      "id": "pl_msg_00000486_00000",
+      "en_US": [
+        "Hohoho...\n",
+        "They call me Grandma Wilma.\r",
+        "I came out here by myself from\n",
+        "a town of Dragon Tamers.\r",
+        "I can teach the strongest of all\n",
+        "Dragon-type moves to the tough\f",
+        "Pokémon of Sinnoh.\r",
+        "Would you like me to teach that\n",
+        "move to one of your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00001",
+      "en_US": [
+        "Ah, it is you again...\r",
+        "Would you like me to teach the best\n",
+        "Dragon-type move I know to one of\f",
+        "your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00002",
+      "en_US": [
+        "Well, perhaps if you change your\n",
+        "mind, do come back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00003",
+      "en_US": [
+        "I see...\n",
+        "I like your sense of adventure.\r",
+        "However, none of the Pokémon with\n",
+        "you now can learn the move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00004",
+      "en_US": [
+        "Fine, fine, now pick the Pokémon\n",
+        "I should teach the move to.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00005",
+      "en_US": [
+        "Sorry to disappoint you...\r",
+        "That Pokémon you have can learn this\n",
+        "move, but it hasn’t come to trust\f",
+        "you fully yet...\r",
+        "Until then, I can’t make it learn\n",
+        "this move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00006",
+      "en_US": [
+        "Sorry to disappoint you...\n",
+        "That Pokémon can’t learn this move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00007",
+      "en_US": [
+        "Hmmmm...\r",
+        "Teaching a move to an Egg is\n",
+        "a challenge that’s beyond me."
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00008",
+      "en_US": [
+        "Oh? That Pokémon already knows\n",
+        "{STRVAR_1 6, 0, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000486_00009",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000486_00010",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000486_00011",
+      "garbage": 88
+    },
+    {
+      "id": "pl_msg_00000486_00012",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000486_00013",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000486_00014",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000486_00015",
+      "garbage": 76
+    },
+    {
+      "id": "pl_msg_00000486_00016",
+      "en_US": [
+        "Draco Meteor’s destructive power\n",
+        "is awe inspiring.\r",
+        "However, using it will also lower\n",
+        "the Pokémon’s Special Attack."
+      ]
+    }
+  ]
+}

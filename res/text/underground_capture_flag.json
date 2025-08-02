@@ -1,0 +1,124 @@
+{
+  "key": 47325,
+  "messages": [
+    {
+      "id": "pl_msg_00000638_00000",
+      "en_US": [
+        "You’re holding a Flag!\n",
+        "You can’t deal with this now!\r",
+        "Or, would you like to throw away\n",
+        "the Flag you’re holding?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00001",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000638_00002",
+      "en_US": "Discarded the Flag."
+    },
+    {
+      "id": "pl_msg_00000638_00003",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000638_00004",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000638_00005",
+      "en_US": [
+        "Something is buried in front of you.\n",
+        "But you’re holding a Flag!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00006",
+      "en_US": [
+        "You don’t have the time to stop\n",
+        "and chat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00007",
+      "en_US": [
+        "The obtained Flag was registered\n",
+        "on the PC!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00008",
+      "en_US": [
+        "You’ve obtained the Flag\n",
+        "from {STRVAR_1 1, 0, 0}’s Base!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00009",
+      "en_US": "You already have a Flag!"
+    },
+    {
+      "id": "pl_msg_00000638_00010",
+      "en_US": "{STRVAR_1 1, 0, 0} took away your Flag!"
+    },
+    {
+      "id": "pl_msg_00000638_00011",
+      "en_US": "{STRVAR_1 1, 0, 0} took back the Flag!"
+    },
+    {
+      "id": "pl_msg_00000638_00012",
+      "en_US": "Took a Flag from {STRVAR_1 1, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000638_00013",
+      "en_US": "Took back the Flag!"
+    },
+    {
+      "id": "pl_msg_00000638_00014",
+      "en_US": [
+        "...\r",
+        "One Flag has been registered,\n",
+        "so your Flag became a Bronze Flag!\r",
+        "You may now display up to a dozen\n",
+        "decoration goods.\r",
+        "You may also put away one Big\n",
+        "Boulder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00015",
+      "en_US": [
+        "...\r",
+        "Three Flags have been registered,\n",
+        "so your Flag became a Silver Flag!\r",
+        "You may now display up to 15\n",
+        "decoration goods.\r",
+        "You may also put away five Big\n",
+        "Boulders."
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00016",
+      "en_US": [
+        "...\r",
+        "Ten Flags have been registered,\n",
+        "so your Flag became a Gold Flag!\r",
+        "You may now put away ten Big\n",
+        "Boulders.\r",
+        "You may now also use the Radar from\n",
+        "your PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000638_00017",
+      "en_US": [
+        "...\r",
+        "Fifty Flags have been registered,\n",
+        "so your Flag became a Platinum Flag!\r",
+        "You may now put away any number\n",
+        "of Big Boulders."
+      ]
+    }
+  ]
+}

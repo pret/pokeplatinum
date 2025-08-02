@@ -1,0 +1,363 @@
+{
+  "key": 47895,
+  "messages": [
+    {
+      "id": "pl_msg_00000542_00000",
+      "en_US": [
+        "This Seal releases a cloud of\n",
+        "small pink hearts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00001",
+      "en_US": [
+        "This Seal releases a cloud of\n",
+        "big pink hearts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00002",
+      "en_US": [
+        "This Seal releases a cloud of\n",
+        "small black hearts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00003",
+      "en_US": [
+        "This Seal releases a cloud of\n",
+        "big black hearts."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00004",
+      "en_US": [
+        "This Seal releases pink hearts that\n",
+        "float up a little."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00005",
+      "en_US": [
+        "This Seal releases pink hearts that\n",
+        "float up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00006",
+      "en_US": [
+        "This Seal releases a few popping yellow\n",
+        "stars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00007",
+      "en_US": [
+        "This Seal releases many popping yellow\n",
+        "stars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00008",
+      "en_US": [
+        "This Seal releases a few popping blue\n",
+        "stars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00009",
+      "en_US": [
+        "This Seal releases many popping blue\n",
+        "stars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00010",
+      "en_US": [
+        "This Seal releases a few popping stars\n",
+        "in changing colors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00011",
+      "en_US": [
+        "This Seal releases many popping stars\n",
+        "in changing colors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00012",
+      "en_US": [
+        "This Seal releases white lines that\n",
+        "spread out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00013",
+      "en_US": [
+        "This Seal releases yellow lines that\n",
+        "spread out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00014",
+      "en_US": [
+        "This Seal releases black lines that\n",
+        "spread out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00015",
+      "en_US": [
+        "This Seal releases blue lines that\n",
+        "spread out."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00016",
+      "en_US": [
+        "This Seal releases a towering cloud of\n",
+        "white smoke."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00017",
+      "en_US": [
+        "This Seal releases a towering cloud of\n",
+        "black smoke."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00018",
+      "en_US": [
+        "This Seal releases a cloud of white\n",
+        "smoke."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00019",
+      "en_US": [
+        "This Seal releases a cloud of black\n",
+        "smoke."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00020",
+      "en_US": [
+        "This Seal releases yellow bolts of\n",
+        "electricity upward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00021",
+      "en_US": [
+        "This Seal releases green bolts of\n",
+        "electricity upward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00022",
+      "en_US": [
+        "This Seal releases yellow bolts of\n",
+        "electricity downward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00023",
+      "en_US": [
+        "This Seal releases green bolts of\n",
+        "electricity downward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00024",
+      "en_US": [
+        "This Seal releases a small number of\n",
+        "blue bubbles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00025",
+      "en_US": "This Seal releases many blue bubbles.\n"
+    },
+    {
+      "id": "pl_msg_00000542_00026",
+      "en_US": [
+        "This Seal releases a small number of\n",
+        "pink bubbles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00027",
+      "en_US": "This Seal releases many pink bubbles.\n"
+    },
+    {
+      "id": "pl_msg_00000542_00028",
+      "en_US": [
+        "This Seal releases a small amount of\n",
+        "orange flames."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00029",
+      "en_US": [
+        "This Seal releases a lot of orange\n",
+        "flames."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00030",
+      "en_US": [
+        "This Seal releases a small amount of\n",
+        "blue flames."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00031",
+      "en_US": [
+        "This Seal releases a lot of blue\n",
+        "flames."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00032",
+      "en_US": [
+        "This Seal releases a cloud of red\n",
+        "confetti."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00033",
+      "en_US": [
+        "This Seal releases a cloud of blue\n",
+        "confetti."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00034",
+      "en_US": [
+        "This Seal releases a cloud of yellow\n",
+        "confetti."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00035",
+      "en_US": [
+        "This Seal releases a cloud of white\n",
+        "confetti."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00036",
+      "en_US": [
+        "This Seal releases a shower of pink\n",
+        "flower petals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00037",
+      "en_US": [
+        "This Seal releases pink flower\n",
+        "petals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00038",
+      "en_US": [
+        "This Seal releases a shower of purple\n",
+        "flower petals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00039",
+      "en_US": [
+        "This Seal releases purple flower\n",
+        "petals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00040",
+      "en_US": [
+        "This Seal releases a shower of yellow\n",
+        "flower petals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00041",
+      "en_US": [
+        "This Seal releases yellow flower\n",
+        "petals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00042",
+      "en_US": [
+        "A green Seal featuring a treble clef\n",
+        "design."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00043",
+      "en_US": [
+        "A red Seal featuring a musical note\n",
+        "design."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00044",
+      "en_US": [
+        "An orange Seal featuring a musical\n",
+        "note design."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00045",
+      "en_US": [
+        "A yellow Seal featuring a musical\n",
+        "note design."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00046",
+      "en_US": [
+        "A blue Seal featuring a musical\n",
+        "note design."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00047",
+      "en_US": [
+        "A lime green Seal featuring a musical\n",
+        "note design."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00048",
+      "en_US": [
+        "A navy blue Seal featuring a musical\n",
+        "note design."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00049",
+      "en_US": [
+        "A special Seal that makes a\n",
+        "spectacular splash."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00050",
+      "en_US": [
+        "A special Seal that explodes in a\n",
+        "spectacular fashion."
+      ]
+    },
+    {
+      "id": "pl_msg_00000542_00051",
+      "en_US": [
+        "A special Seal that releases pretty\n",
+        "sparkles."
+      ]
+    }
+  ]
+}

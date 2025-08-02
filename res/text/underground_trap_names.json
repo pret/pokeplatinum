@@ -1,0 +1,380 @@
+{
+  "key": 1161,
+  "messages": [
+    {
+      "id": "pl_msg_00000630_00000",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "pl_msg_00000630_00001",
+      "en_US": "Move Trap ↑"
+    },
+    {
+      "id": "pl_msg_00000630_00002",
+      "en_US": "Move Trap →"
+    },
+    {
+      "id": "pl_msg_00000630_00003",
+      "en_US": "Move Trap ↓"
+    },
+    {
+      "id": "pl_msg_00000630_00004",
+      "en_US": "Move Trap ←"
+    },
+    {
+      "id": "pl_msg_00000630_00005",
+      "en_US": "Hurl Trap ↑"
+    },
+    {
+      "id": "pl_msg_00000630_00006",
+      "en_US": "Hurl Trap →"
+    },
+    {
+      "id": "pl_msg_00000630_00007",
+      "en_US": "Hurl Trap ↓"
+    },
+    {
+      "id": "pl_msg_00000630_00008",
+      "en_US": "Hurl Trap ←"
+    },
+    {
+      "id": "pl_msg_00000630_00009",
+      "en_US": "Warp Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00010",
+      "en_US": "Hi-Warp Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00011",
+      "en_US": "Hole Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00012",
+      "en_US": "Pit Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00013",
+      "en_US": "Reverse Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00014",
+      "en_US": "Confuse Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00015",
+      "en_US": "Run Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00016",
+      "en_US": "Fade Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00017",
+      "en_US": "Slow Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00018",
+      "en_US": "Smoke Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00019",
+      "en_US": "Big Smoke Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00020",
+      "en_US": "Rock Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00021",
+      "en_US": "Rockfall Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00022",
+      "en_US": "Foam Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00023",
+      "en_US": "Bubble Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00024",
+      "en_US": "Alert Trap 1"
+    },
+    {
+      "id": "pl_msg_00000630_00025",
+      "en_US": "Alert Trap 2"
+    },
+    {
+      "id": "pl_msg_00000630_00026",
+      "en_US": "Alert Trap 3"
+    },
+    {
+      "id": "pl_msg_00000630_00027",
+      "en_US": "Alert Trap 4"
+    },
+    {
+      "id": "pl_msg_00000630_00028",
+      "en_US": "Leaf Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00029",
+      "en_US": "Flower Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00030",
+      "en_US": "Ember Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00031",
+      "en_US": "Fire Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00032",
+      "en_US": "Radar Trap"
+    },
+    {
+      "id": "pl_msg_00000630_00033",
+      "en_US": "Digger Drill"
+    },
+    {
+      "id": "pl_msg_00000630_00034",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "pl_msg_00000630_00035",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying upward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00036",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying to the right."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00037",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying downward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00038",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying to the left."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00039",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far upward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00040",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far to the right."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00041",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far downward."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00042",
+      "en_US": [
+        "Stepping on this Trap sends the\n",
+        "victim flying far to the left."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00043",
+      "en_US": [
+        "Stepping on this Trap warps the\n",
+        "victim far away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00044",
+      "en_US": [
+        "Stepping on this Trap warps the\n",
+        "victim far, far away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00045",
+      "en_US": [
+        "A pit opens up underneath the Trap\n",
+        "to immobilize the victim."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00046",
+      "en_US": [
+        "A huge pit opens up underneath the\n",
+        "Trap to immobilize the victim."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00047",
+      "en_US": [
+        "Stepping on this Trap reverses the\n",
+        "victim’s movements."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00048",
+      "en_US": [
+        "Stepping on this Trap scrambles the\n",
+        "victim’s movements."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00049",
+      "en_US": [
+        "Stepping on this Trap makes the\n",
+        "victim run."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00050",
+      "en_US": [
+        "Stepping on this Trap makes the\n",
+        "victim invisible."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00051",
+      "en_US": [
+        "Stepping on this Trap slows the\n",
+        "victim’s foot speed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00052",
+      "en_US": [
+        "A Trap that releases obscuring smoke.\n",
+        "The smoke can be rubbed away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00053",
+      "en_US": [
+        "A Trap that releases billowing smoke.\n",
+        "The smoke can be rubbed away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00054",
+      "en_US": [
+        "A Trap that makes blocking boulders.\n",
+        "Break the boulders to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00055",
+      "en_US": [
+        "A Trap that makes Big Boulders.\n",
+        "Break the boulders to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00056",
+      "en_US": [
+        "A Trap that releases bubbles.\n",
+        "Pop the bubbles to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00057",
+      "en_US": [
+        "A Trap that releases a mass of\n",
+        "bubbles. Pop them to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00058",
+      "en_US": [
+        "Stepping on this Trap sends \n",
+        "greetings to everyone near you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00059",
+      "en_US": [
+        "Stepping on this Trap sends\n",
+        "farewells to everyone near you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00060",
+      "en_US": [
+        "Stepping on this Trap tells all nearby\n",
+        "that you are going to the Union Room."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00061",
+      "en_US": [
+        "Stepping on this Trap alerts everyone\n",
+        "to gather around you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00062",
+      "en_US": [
+        "This Trap releases immobilizing leaves.\n",
+        "Blow the leaves away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00063",
+      "en_US": [
+        "This Trap releases many flowers.\n",
+        "Blow the flowers away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00064",
+      "en_US": [
+        "This Trap releases immobilizing embers.\n",
+        "Blow the embers away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00065",
+      "en_US": [
+        "This Trap releases billowing flames.\n",
+        "Blow the flames away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00066",
+      "en_US": [
+        "Stepping on this renders the Radar\n",
+        "useless for a while."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00067",
+      "en_US": [
+        "A single-use drill to drill a hole in\n",
+        "the wall for your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000630_00068",
+      "en_US": "Close the Bag."
+    }
+  ]
+}

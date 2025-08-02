@@ -1,0 +1,48 @@
+{
+  "key": 24259,
+  "messages": [
+    {
+      "id": "pl_msg_00000499_00000",
+      "en_US": [
+        "Is that right? You’re a traveler?\n",
+        "Yes, it’s good to see other places!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000499_00001",
+      "en_US": [
+        "Do you know about Mt. Moon in\n",
+        "the Kanto region?\r",
+        "CLEFAIRY dancing under the moon...\n",
+        "It’s something I must see in my life."
+      ]
+    },
+    {
+      "id": "pl_msg_00000499_00002",
+      "en_US": [
+        "Have you heard of the Tin Tower\n",
+        "in the Johto region?\r",
+        "The rainbow-colored Pokémon...\n",
+        "I must see that during my lifetime."
+      ]
+    },
+    {
+      "id": "pl_msg_00000499_00003",
+      "en_US": [
+        "Do you know about the Space Center\n",
+        "in the Hoenn region?\r",
+        "A rocket launching into space...\n",
+        "I must see that during my lifetime."
+      ]
+    },
+    {
+      "id": "pl_msg_00000499_00004",
+      "en_US": [
+        "Have you heard of the Whirl Islands\n",
+        "in the Johto region?\r",
+        "The silver-colored Pokémon...\n",
+        "I must see that during my lifetime."
+      ]
+    }
+  ]
+}

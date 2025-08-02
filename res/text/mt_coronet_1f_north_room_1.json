@@ -1,0 +1,35 @@
+{
+  "key": 24590,
+  "messages": [
+    {
+      "id": "pl_msg_00000233_00000",
+      "en_US": [
+        "There’s no way of getting to the\n",
+        "peak of Mt. Coronet from this side!\r",
+        "Uh-oh... Was I supposed to go up from\n",
+        "the Oreburgh City side?\r",
+        "Maybe I wasn’t supposed to climb from\n",
+        "the Eterna City side?\r",
+        "Oh, didn’t I need hidden moves like\n",
+        "Surf, too?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000233_00001",
+      "en_US": [
+        "Grunt 1: The fog is so thick ahead\n",
+        "I can’t even see my own hand!\r",
+        "Can you use Defog so we can see?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000233_00002",
+      "en_US": [
+        "Grunt 2: Hah? The Pokémon they gave me\n",
+        "can’t use Defog, either.\r",
+        "I think we’re stuck.\n",
+        "Let’s wait till the others get here.\r"
+      ]
+    }
+  ]
+}

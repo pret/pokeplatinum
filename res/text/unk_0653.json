@@ -1,0 +1,124 @@
+{
+  "key": 49372,
+  "messages": [
+    {
+      "id": "pl_msg_00000653_00000",
+      "en_US": "{COLOR 1}PLAZA NEWS{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000653_00001",
+      "en_US": "TIME"
+    },
+    {
+      "id": "pl_msg_00000653_00002",
+      "en_US": [
+        "PEOPLE\n",
+        "IN PLAZA"
+      ]
+    },
+    {
+      "id": "pl_msg_00000653_00003",
+      "en_US": "LATEST NEWS HEADLINES"
+    },
+    {
+      "id": "pl_msg_00000653_00004",
+      "garbage": 74
+    },
+    {
+      "id": "pl_msg_00000653_00005",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0} is seeking players... There is room for {COLOR 1}{STRVAR_1 50, 2, 0}{COLOR 0} more..."
+    },
+    {
+      "id": "pl_msg_00000653_00006",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2} {STRVAR_1 3, 1, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0}, {COLOR 4}{STRVAR_1 3, 3, 0}{COLOR 0}, and {COLOR 5}{STRVAR_1 3, 4, 0}{COLOR 0} are in play..."
+    },
+    {
+      "id": "pl_msg_00000653_00007",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0} and {COLOR 3}{STRVAR_1 3, 1, 0}{COLOR 0} are chatting..."
+    },
+    {
+      "id": "pl_msg_00000653_00008",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0} shared a {COLOR 1}{STRVAR_6 2, 2, 0}{COLOR 0} with {COLOR 3}{STRVAR_1 3, 1, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00009",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0} has joined... There is still room for {COLOR 1}{STRVAR_1 50, 2, 0}{COLOR 0} more..."
+    },
+    {
+      "id": "pl_msg_00000653_00010",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 1, 0}{COLOR 0}, {COLOR 4}{STRVAR_1 3, 2, 0}{COLOR 0}, and {COLOR 5}{STRVAR_1 3, 3, 0}{COLOR 0} are checking the {COLOR 1}{STRVAR_6 0, 4, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00011",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 1, 0}{COLOR 0}, and {COLOR 4}{STRVAR_1 3, 2, 0}{COLOR 0} are checking the {COLOR 1}{STRVAR_6 0, 3, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00012",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0} and {COLOR 3}{STRVAR_1 3, 1, 0}{COLOR 0} are checking the {COLOR 1}{STRVAR_6 0, 2, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00013",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0} is checking the {COLOR 1}{STRVAR_6 0, 1, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00014",
+      "en_US": "{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0} is checking the {COLOR 1}{STRVAR_6 0, 1, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00015",
+      "en_US": "It’s almost time for the Wi-Fi Plaza {COLOR 1}{STRVAR_6 1, 0, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00016",
+      "en_US": "It’s almost time for the Wi-Fi Plaza {COLOR 1}{STRVAR_6 1, 0, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00017",
+      "en_US": "The Wi-Fi Plaza will be closing soon. We look forward to your next visit."
+    },
+    {
+      "id": "pl_msg_00000653_00018",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0}, and {COLOR 4}{STRVAR_1 3, 3, 0}{COLOR 0} are in play..."
+    },
+    {
+      "id": "pl_msg_00000653_00019",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0} and {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0} are in play..."
+    },
+    {
+      "id": "pl_msg_00000653_00020",
+      "en_US": "It’s almost time for the Wi-Fi Plaza {COLOR 1}{STRVAR_6 1, 0, 0}{COLOR 0}..."
+    },
+    {
+      "id": "pl_msg_00000653_00021",
+      "en_US": "{COLOR 1}A very special visitor{COLOR 0} has apparently visited..."
+    },
+    {
+      "id": "pl_msg_00000653_00022",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0} has won..."
+    },
+    {
+      "id": "pl_msg_00000653_00023",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0}, {COLOR 4}{STRVAR_1 3, 3, 0}{COLOR 0}, and {COLOR 5}{STRVAR_1 3, 4, 0}{COLOR 0} have popped ten or more balloons..."
+    },
+    {
+      "id": "pl_msg_00000653_00024",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0} and {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0} have won..."
+    },
+    {
+      "id": "pl_msg_00000653_00025",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0}, and {COLOR 4}{STRVAR_1 3, 3, 0}{COLOR 0} have won..."
+    },
+    {
+      "id": "pl_msg_00000653_00026",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0}, {COLOR 4}{STRVAR_1 3, 3, 0}{COLOR 0}, and {COLOR 5}{STRVAR_1 3, 4, 0}{COLOR 0} have won..."
+    },
+    {
+      "id": "pl_msg_00000653_00027",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0} and {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0} have popped ten or more balloons..."
+    },
+    {
+      "id": "pl_msg_00000653_00028",
+      "en_US": "{COLOR 1}{STRVAR_6 0, 0, 0}{COLOR 0}: {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0}, {COLOR 3}{STRVAR_1 3, 2, 0}{COLOR 0}, and {COLOR 4}{STRVAR_1 3, 3, 0}{COLOR 0} have popped ten or more balloons..."
+    }
+  ]
+}

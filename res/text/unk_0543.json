@@ -1,0 +1,222 @@
+{
+  "key": 59722,
+  "messages": [
+    {
+      "id": "pl_msg_00000543_00000",
+      "en_US": [
+        "Welcome!\n",
+        "How may I serve you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00001",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "pl_msg_00000543_00002",
+      "en_US": [
+        "Is there anything else I may do\n",
+        "for you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00003",
+      "en_US": "You don’t have enough money."
+    },
+    {
+      "id": "pl_msg_00000543_00004",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Certainly.\n",
+        "How many would you like?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00005",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}, and you want {STRVAR_1 51, 1, 0}.\n",
+        "That will be ${STRVAR_1 55, 2, 0}. OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00006",
+      "en_US": [
+        "Here you are!\n",
+        "Thank you!\r",
+        "You put away the {STRVAR_1 8, 0, 0}\n",
+        "in the {STRVAR_1 27, 1, 0} Pocket."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00007",
+      "en_US": [
+        "You have no more room for this\n",
+        "item."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00008",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000543_00009",
+      "en_US": "${STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000543_00010",
+      "en_US": [
+        "You also get a Premier Ball as\n",
+        "an added bonus."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00011",
+      "en_US": [
+        "Thank you! We’ll send\n",
+        "the {STRVAR_1 10, 0, 0} to your PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00012",
+      "en_US": [
+        "Your PC is full.\n",
+        "You have no more room for goods."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00013",
+      "en_US": [
+        "You placed the {STRVAR_1 10, 0, 0}\n",
+        "in the Seal Case."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00014",
+      "en_US": [
+        "The Seal Case is full.\n",
+        "You have no more room for Seals."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00015",
+      "en_US": "BUY"
+    },
+    {
+      "id": "pl_msg_00000543_00016",
+      "en_US": "SELL"
+    },
+    {
+      "id": "pl_msg_00000543_00017",
+      "en_US": "SEE YA!"
+    },
+    {
+      "id": "pl_msg_00000543_00018",
+      "en_US": "Money"
+    },
+    {
+      "id": "pl_msg_00000543_00019",
+      "en_US": "${STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000543_00020",
+      "en_US": "In Bag: {STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000543_00021",
+      "en_US": "x{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000543_00022",
+      "en_US": "${STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000543_00023",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000543_00024",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000543_00025",
+      "en_US": [
+        "Welcome! Are you shopping for\n",
+        "Technical Machines?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00026",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000543_00027",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0} {STRVAR_1 6, 3, 0} will\n",
+        "be ${STRVAR_1 55, 2, 0} for {STRVAR_1 51, 1, 0}. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00028",
+      "en_US": [
+        "Welcome!\n",
+        "This is the Point Exchange Corner.\r",
+        "Would you like to exchange your BP\n",
+        "for prizes?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00029",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000543_00030",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000543_00031",
+      "en_US": [
+        "Please save some BP and come see us\n",
+        "again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00032",
+      "en_US": "{STRVAR_1 51, 0, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000543_00033",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? OK.\n",
+        "How many would you like?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00034",
+      "en_US": "{STRVAR_1 53, 0, 0} BP"
+    },
+    {
+      "id": "pl_msg_00000543_00035",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0} will be {STRVAR_1 53, 2, 0} BP\n",
+        "for {STRVAR_1 51, 1, 0}. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00036",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0} {STRVAR_1 6, 3, 0} will be\n",
+        "{STRVAR_1 53, 2, 0} BP for {STRVAR_1 51, 1, 0}. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00037",
+      "en_US": [
+        "I’m sorry.\n",
+        "You don’t have enough BP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000543_00038",
+      "en_US": "{STRVAR_1 53, 0, 0} BP"
+    }
+  ]
+}

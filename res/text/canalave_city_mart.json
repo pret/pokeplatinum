@@ -1,0 +1,23 @@
+{
+  "key": 51920,
+  "messages": [
+    {
+      "id": "pl_msg_00000055_00000",
+      "en_US": [
+        "A Poké Ball that makes it easy to\n",
+        "catch the same kinds of Pokémon...\r",
+        "Well, that’s the Repeat Ball!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000055_00001",
+      "en_US": [
+        "I should take a Revive out to\n",
+        "everyone training on Iron Island.\r",
+        "I’m sure they’d appreciate it.\r",
+        "It can be rough out there, especially\n",
+        "since there’s no Pokémon Center."
+      ]
+    }
+  ]
+}

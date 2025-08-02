@@ -1,0 +1,196 @@
+{
+  "key": 17435,
+  "messages": [
+    {
+      "id": "pl_msg_00000030_00000",
+      "en_US": [
+        "Why don’t you try dressing up your\n",
+        "Pokémon now?\r",
+        "We have a Fitting Room on\n",
+        "the second floor.\r",
+        "Dress up your Pokémon nicely with\n",
+        "Accessories!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00001",
+      "en_US": [
+        "This is the Pokémon Lottery Corner.\n",
+        "I’m Felicity, your attendant today.\r",
+        "If your drawn number matches the\n",
+        "ID No. of any of your Pokémon,\f",
+        "you could win fabulous gifts.\r",
+        "Would you like to check today’s lucky\n",
+        "number?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00002",
+      "en_US": [
+        "You’ve already drawn a Loto Ticket\n",
+        "today. Please come back tomorrow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00003",
+      "en_US": [
+        "Oh. I see.\n",
+        "Please do visit us again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00004",
+      "en_US": [
+        "First, I’ll look up today’s Pokémon\n",
+        "Lottery Corner lucky number.\r",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00005",
+      "en_US": [
+        "Your Loto Ticket number is {STRVAR_1 54, 0, 0}.\r",
+        "Now, let’s see if it matches the\n",
+        "ID No. of any of your Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00006",
+      "en_US": [
+        "Congratulations!\r",
+        "The ID No. of your team’s\n",
+        "{STRVAR_1 1, 0, 0} matches your Loto\f",
+        "Ticket number!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00007",
+      "en_US": [
+        "Congratulations!\r",
+        "The ID No. of your PC-boxed\n",
+        "{STRVAR_1 1, 0, 0} matches your Loto\f",
+        "Ticket number!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00008",
+      "en_US": [
+        "I’m sorry.\n",
+        "You didn’t get a match..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00009",
+      "en_US": [
+        "The last digit matched, so you\n",
+        "win the fourth prize!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00010",
+      "en_US": [
+        "You gained a new Backdrop for use\n",
+        "in Fitting Rooms."
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00011",
+      "en_US": [
+        "The last two digits matched, so you\n",
+        "win the third prize!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00012",
+      "en_US": [
+        "The last three digits matched, so you\n",
+        "win the second prize!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00013",
+      "en_US": [
+        "The last four digits matched, so you\n",
+        "win the first prize!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00014",
+      "en_US": [
+        "Oh, my goodness, all five digits\n",
+        "matched!\r",
+        "You’ve won the jackpot prize!\n",
+        "This is just so incredible!\r",
+        "...Oh, I’m sorry! Your prize!\n",
+        "I got carried away there.\r",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00015",
+      "en_US": [
+        "...Oh?\n",
+        "You seem to have no room for this.\r",
+        "Please make room in your Bag and\n",
+        "then let me know."
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00016",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}?\n",
+        "Yes, I’ve been expecting you.\r",
+        "This is the prize we’ve been holding\n",
+        "for you. Here you go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00017",
+      "en_US": [
+        "Please do visit again!\n",
+        "Good-bye from Felicity, your attendant!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00018",
+      "en_US": [
+        "This is the Pokémon Lottery Corner.\r",
+        "Would you like to check today’s lucky\n",
+        "number again?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00019",
+      "en_US": [
+        "They keep track of official records\n",
+        "here.\r",
+        "Things like winning streaks, or how many\n",
+        "Pokémon you’ve caught.\r",
+        "You can check everyone’s records\n",
+        "up on the third floor."
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00020",
+      "en_US": [
+        "I’m going to get commercials shown\n",
+        "on TV.\r",
+        "They’ll attract more customers to\n",
+        "the department store."
+      ]
+    },
+    {
+      "id": "pl_msg_00000030_00021",
+      "en_US": [
+        "The TV station interviews all sorts of\n",
+        "Trainers for its shows.\r",
+        "After all, people want to know about\n",
+        "good Trainers and what they say.\r",
+        "Personally, I’d like to learn more about\n",
+        "Gym Leaders.\r",
+        "I’d also like to hear about the tough\n",
+        "Elite Four of the Pokémon League."
+      ]
+    }
+  ]
+}
