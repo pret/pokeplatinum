@@ -9,8 +9,8 @@
 
 void sub_0203C9D4(FieldSystem *fieldSystem, MapObject **param1);
 u8 sub_0203CA40(FieldSystem *fieldSystem, MapObject **param1);
-u16 BgEvent_GetFacingPositionScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int bgEventCount);
-u16 BgEvent_GetFacingWallScript(FieldSystem *fieldSystem, const BgEvent *param1, int param2);
+u16 FieldEvent_GetInteractedBgEventScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents);
+u16 FieldEvent_GetInteractedWallSignScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents);
 u8 sub_0203CBE0(FieldSystem *fieldSystem, MapObject **param1);
 u16 sub_0203CC14(FieldSystem *fieldSystem, void *param1, int param2);
 

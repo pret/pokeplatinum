@@ -99,7 +99,7 @@ u8 sub_0203CA40(FieldSystem *fieldSystem, MapObject **param1)
     return 0;
 }
 
-u16 BgEvent_GetFacingPositionScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents)
+u16 FieldEvent_GetInteractedBgEventScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents)
 {
     const BgEvent *events = bgEvents;
     int facingX, facingZ;
@@ -124,13 +124,13 @@ u16 BgEvent_GetFacingPositionScript(FieldSystem *fieldSystem, const BgEvent *bgE
     return 0xffff;
 }
 
-static u8 BgEvent_IsHiddenItemAvailable(FieldSystem *fieldSystem, const BgEvent *param1)
+static u8 BgEvent_IsHiddenItemAvailable(FieldSystem *fieldSystem, const BgEvent *bgEvent)
 {
-    if (param1->type != 2) {
+    if (bgEvent->type != BG_EVENT_TYPE_HIDDEN_ITEM) {
         return FALSE;
     }
 
-    if (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(param1->script)) == TRUE) {
+    if (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(bgEvent->script)) == TRUE) {
         return FALSE;
     }
 
@@ -169,7 +169,7 @@ static u8 BgEvent_CheckPlayerFacingDirection(FieldSystem *fieldSystem, const BgE
     return FALSE;
 }
 
-u16 BgEvent_GetFacingWallScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents)
+u16 FieldEvent_GetInteractedWallSignScript(FieldSystem *fieldSystem, const BgEvent *bgEvents, int numBgEvents)
 {
     int facingX, facingZ;
     int eventIndex;
@@ -182,7 +182,7 @@ u16 BgEvent_GetFacingWallScript(FieldSystem *fieldSystem, const BgEvent *bgEvent
     BgEvent_GetPlayerFacingPosition(fieldSystem, &facingX, &facingZ);
 
     for (eventIndex = 0; eventIndex < numBgEvents; eventIndex++) {
-        if ((facingX == events[eventIndex].x) && (facingZ == events[eventIndex].z) && (events[eventIndex].type == BG_EVENT_TYPE_WALL)) {
+        if ((facingX == events[eventIndex].x) && (facingZ == events[eventIndex].z) && (events[eventIndex].type == BG_EVENT_TYPE_WALL_SIGN)) {
             return events[eventIndex].script;
         }
     }
