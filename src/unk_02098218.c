@@ -35,10 +35,10 @@
 #include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
+#include "trainer_memo.h"
 #include "unk_02015F84.h"
 #include "unk_0202F180.h"
 #include "unk_0208694C.h"
-#include "trainer_memo.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"

@@ -17,9 +17,9 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "trainer_info.h"
+#include "trainer_memo.h"
 #include "unk_0202F180.h"
 #include "unk_020559DC.h"
-#include "trainer_memo.h"
 
 static inline Strbuf *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID);
 static Strbuf *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID);

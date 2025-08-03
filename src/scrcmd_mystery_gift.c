@@ -28,6 +28,7 @@
 #include "string_template.h"
 #include "system_vars.h"
 #include "trainer_info.h"
+#include "trainer_memo.h"
 #include "unk_02017038.h"
 #include "unk_0202602C.h"
 #include "unk_0202854C.h"
@@ -36,7 +37,6 @@
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
-#include "trainer_memo.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/mystery_gift_deliveryman.h"

@@ -21,9 +21,9 @@
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"
+#include "trainer_memo.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
-#include "trainer_memo.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_SetClearInCatchingShowFlag(ScriptContext *ctx)

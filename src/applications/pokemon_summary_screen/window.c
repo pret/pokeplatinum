@@ -23,8 +23,8 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200C440.h"
 #include "trainer_memo.h"
+#include "unk_0200C440.h"
 #include "unk_02094EDC.h"
 
 #include "res/text/bank/pokemon_summary_screen.h"

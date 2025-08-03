@@ -29,10 +29,10 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
+#include "trainer_memo.h"
 #include "unk_0202C858.h"
 #include "unk_02038F8C.h"
 #include "unk_0208C098.h"
-#include "trainer_memo.h"
 
 static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_TRAINER_CHERYL, OBJ_EVENT_GFX_CHERYL },
