@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/flavor.h"
+#include "generated/natures.h"
+
 #include "struct_defs/struct_02090800.h"
 
 #include "global/pm_version.h"
@@ -16,401 +19,363 @@
 #include "trainer_info.h"
 #include "unk_02017038.h"
 
-static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2);
-static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0);
-static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1);
-static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1);
-static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2);
-static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0);
-static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0);
-static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0);
+#include "res/text/bank/pokemon_summary_screen.h"
+
+typedef enum MetCondition {
+    MET_CONDITION_WILD_ENCOUNTER,
+    MET_CONDITION_WILD_ENCOUNTER_TRADED,
+    MET_CONDITION_WILD_GIFT,
+    MET_CONDITION_EGG_HATCHED,
+    MET_CONDITION_EGG_HATCHED_TRADED,
+    MET_CONDITION_EGG_HATCHED_GIFT,
+    MET_CONDITION_EGG_HATCHED_GIFT_TRADED,
+    MET_CONDITION_FATEFUL_ENCOUNTER,
+    MET_CONDITION_FATEFUL_ENCOUNTER_TRADED,
+    MET_CONDITION_FATEFUL_EGG_HATCHED,
+    MET_CONDITION_FATEFUL_EGG_HATCHED_TRADED,
+    MET_CONDITION_FATEFUL_EGG_HATCHED_ARRIVED,
+    MET_CONDITION_FATEFUL_EGG_HATCHED_ARRIVED_TRADED,
+    MET_CONDITION_FATEFUL_EGG_HATCHED_GIFT,
+    MET_CONDITION_FATEFUL_EGG_HATCHED_GIFT_TRADED,
+    MET_CONDITION_MIGRATED,
+    MET_CONDITION_EGG,
+    MET_CONDITION_EGG_TRADED,
+    MET_CONDITION_FATEFUL_EGG,
+    MET_CONDITION_FATEFUL_EGG_TRADED,
+    MET_CONDITION_FATEFUL_EGG_ARRIVED,
+} MetCondition;
+
+static int MonMetCondition(Pokemon *mon, BOOL param1, int param2);
+static void FormatNature(PokemonInfoDisplayStruct *infoDisplay);
+static void FormatDateAndLocationMet(PokemonInfoDisplayStruct *infoDisplay, int msgNo);
+static void FormatDateAndLocation_Migrated(PokemonInfoDisplayStruct *infoDisplay, int param1);
+static void FormatDateAndLocation_Egg(PokemonInfoDisplayStruct *infoDisplay, int param1, int param2);
+static void FormatCharacteristic(PokemonInfoDisplayStruct *infoDisplay);
+static void FormatFlavorPreference(PokemonInfoDisplayStruct *infoDisplay);
+static void FormatEggWatch(PokemonInfoDisplayStruct *infoDisplay);
 static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *param1, int param2);
 static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch);
 static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch);
 static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon);
 static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 
-PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
+PokemonInfoDisplayStruct *sub_02092494(Pokemon *mon, BOOL isMine, int heapID)
 {
-    PokemonInfoDisplayStruct *v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
-    v0->heapID = heapID;
-    v0->unk_04 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, v0->heapID);
-    v0->unk_08 = StringTemplate_New(9, 32, v0->heapID);
-    v0->unk_0C = param0;
-    v0->unk_10 = param1;
+    PokemonInfoDisplayStruct *ptr = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
+    ptr->heapID = heapID;
+    ptr->msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_SUMMARY_SCREEN, ptr->heapID);
+    ptr->msgFmt = StringTemplate_New(9, 32, ptr->heapID);
+    ptr->mon = mon;
+    ptr->isMine = isMine;
+    ptr->notepad.natureLine = 0;
+    ptr->notepad.nature = NULL;
+    ptr->notepad.dateLocationMetLine = 0;
+    ptr->notepad.dateLocationMet = NULL;
+    ptr->notepad.characteristicLine = 0;
+    ptr->notepad.characteristic = NULL;
+    ptr->notepad.flavorPreferenceLine = 0;
+    ptr->notepad.flavorPreference = NULL;
+    ptr->notepad.eggWatchLine = 0;
+    ptr->notepad.eggWatch = NULL;
 
-    {
-        v0->unk_14.unk_00 = 0;
-        v0->unk_14.unk_04 = NULL;
-
-        v0->unk_1C.unk_00 = 0;
-        v0->unk_1C.unk_04 = NULL;
-
-        v0->unk_24.unk_00 = 0;
-        v0->unk_24.unk_04 = NULL;
-
-        v0->unk_2C.unk_00 = 0;
-        v0->unk_2C.unk_04 = NULL;
-
-        v0->unk_34.unk_00 = 0;
-        v0->unk_34.unk_04 = NULL;
-    }
-
-    switch (DeterminePokemonStatus(v0->unk_0C, v0->unk_10, v0->heapID)) {
-    case 0:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 49);
-
-        v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+    switch (MonMetCondition(ptr->mon, ptr->isMine, ptr->heapID)) {
+    case MET_CONDITION_WILD_ENCOUNTER:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00049);
+        ptr->notepad.characteristicLine = 6;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 7;
+        FormatFlavorPreference(ptr);
         break;
-    case 1:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 50);
-
-        v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_WILD_ENCOUNTER_TRADED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00050);
+        ptr->notepad.characteristicLine = 6;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 7;
+        FormatFlavorPreference(ptr);
         break;
-    case 2:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 51);
-
-        v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_WILD_GIFT:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00051);
+        ptr->notepad.characteristicLine = 6;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 7;
+        FormatFlavorPreference(ptr);
         break;
-    case 3:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 52);
-
-        v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_EGG_HATCHED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00052);
+        ptr->notepad.characteristicLine = 8;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 9;
+        FormatFlavorPreference(ptr);
         break;
-    case 4:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 53);
-
-        v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_EGG_HATCHED_TRADED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00053);
+        ptr->notepad.characteristicLine = 8;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 9;
+        FormatFlavorPreference(ptr);
         break;
-    case 5:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 54);
-
-        v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_EGG_HATCHED_GIFT:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00054);
+        ptr->notepad.characteristicLine = 8;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 9;
+        FormatFlavorPreference(ptr);
         break;
-    case 6:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 55);
-
-        v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_EGG_HATCHED_GIFT_TRADED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00055);
+        ptr->notepad.characteristicLine = 8;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 9;
+        FormatFlavorPreference(ptr);
         break;
-    case 7:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 56);
-
-        v0->unk_24.unk_00 = 7;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 8;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_FATEFUL_ENCOUNTER:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00056);
+        ptr->notepad.characteristicLine = 7;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 8;
+        FormatFlavorPreference(ptr);
         break;
-    case 8:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 57);
-
-        v0->unk_24.unk_00 = 7;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 8;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_FATEFUL_ENCOUNTER_TRADED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00057);
+        ptr->notepad.characteristicLine = 7;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 8;
+        FormatFlavorPreference(ptr);
         break;
-    case 9:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 58);
-
-        v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_HATCHED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00058);
+        ptr->notepad.characteristicLine = 9;
+        FormatCharacteristic(ptr);
         break;
-    case 10:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 59);
-
-        v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_HATCHED_TRADED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00059);
+        ptr->notepad.characteristicLine = 9;
+        FormatCharacteristic(ptr);
         break;
-    case 11:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 60);
-
-        v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_HATCHED_ARRIVED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00060);
+        ptr->notepad.characteristicLine = 9;
+        FormatCharacteristic(ptr);
         break;
-    case 12:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 61);
-
-        v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_HATCHED_ARRIVED_TRADED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00061);
+        ptr->notepad.characteristicLine = 9;
+        FormatCharacteristic(ptr);
         break;
-    case 13:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 62);
-
-        v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_HATCHED_GIFT:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00062);
+        ptr->notepad.characteristicLine = 9;
+        FormatCharacteristic(ptr);
         break;
-    case 14:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 63);
-
-        v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_HATCHED_GIFT_TRADED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocationMet(ptr, pl_msg_00000455_00063);
+        ptr->notepad.characteristicLine = 9;
+        FormatCharacteristic(ptr);
         break;
-    case 15:
-        v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
-
-        v0->unk_1C.unk_00 = 2;
-        InitializeAlternateMetInfoStrBuf(v0, 64);
-
-        v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
-
-        v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+    case MET_CONDITION_MIGRATED:
+        ptr->notepad.natureLine = 1;
+        FormatNature(ptr);
+        ptr->notepad.dateLocationMetLine = 2;
+        FormatDateAndLocation_Migrated(ptr, pl_msg_00000455_00064);
+        ptr->notepad.characteristicLine = 6;
+        FormatCharacteristic(ptr);
+        ptr->notepad.flavorPreferenceLine = 7;
+        FormatFlavorPreference(ptr);
         break;
-    case 16:
-        v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 101, 0);
-
-        v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+    case MET_CONDITION_EGG:
+        ptr->notepad.dateLocationMetLine = 1;
+        FormatDateAndLocation_Egg(ptr, pl_msg_00000455_00101, 0);
+        ptr->notepad.eggWatchLine = 6;
+        FormatEggWatch(ptr);
         break;
-    case 17:
-        v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 102, 1);
-
-        v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+    case MET_CONDITION_EGG_TRADED:
+        ptr->notepad.dateLocationMetLine = 1;
+        FormatDateAndLocation_Egg(ptr, pl_msg_00000455_00102, 1);
+        ptr->notepad.eggWatchLine = 6;
+        FormatEggWatch(ptr);
         break;
-    case 18:
-        v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 103, 0);
-
-        v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG:
+        ptr->notepad.dateLocationMetLine = 1;
+        FormatDateAndLocation_Egg(ptr, pl_msg_00000455_00103, 0);
+        ptr->notepad.eggWatchLine = 6;
+        FormatEggWatch(ptr);
         break;
-    case 19:
-        v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 103, 1);
-
-        v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_TRADED:
+        ptr->notepad.dateLocationMetLine = 1;
+        FormatDateAndLocation_Egg(ptr, pl_msg_00000455_00103, 1);
+        ptr->notepad.eggWatchLine = 6;
+        FormatEggWatch(ptr);
         break;
-    case 20:
-        v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 104, 0);
-
-        v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+    case MET_CONDITION_FATEFUL_EGG_ARRIVED:
+        ptr->notepad.dateLocationMetLine = 1;
+        FormatDateAndLocation_Egg(ptr, pl_msg_00000455_00104, 0);
+        ptr->notepad.eggWatchLine = 6;
+        FormatEggWatch(ptr);
         break;
     }
-
-    return v0;
+    return ptr;
 }
 
-void sub_0209282C(PokemonInfoDisplayStruct *param0)
+void sub_0209282C(PokemonInfoDisplayStruct *infoDisplay)
 {
-    if (param0->unk_14.unk_04 != NULL) {
-        Heap_Free(param0->unk_14.unk_04);
+    if (infoDisplay->notepad.nature != NULL) {
+        Heap_Free(infoDisplay->notepad.nature);
+    }
+    if (infoDisplay->notepad.dateLocationMet != NULL) {
+        Heap_Free(infoDisplay->notepad.dateLocationMet);
+    }
+    if (infoDisplay->notepad.characteristic != NULL) {
+        Heap_Free(infoDisplay->notepad.characteristic);
+    }
+    if (infoDisplay->notepad.flavorPreference != NULL) {
+        Heap_Free(infoDisplay->notepad.flavorPreference);
+    }
+    if (infoDisplay->notepad.eggWatch != NULL) {
+        Heap_Free(infoDisplay->notepad.eggWatch);
     }
 
-    if (param0->unk_1C.unk_04 != NULL) {
-        Heap_Free(param0->unk_1C.unk_04);
-    }
-
-    if (param0->unk_24.unk_04 != NULL) {
-        Heap_Free(param0->unk_24.unk_04);
-    }
-
-    if (param0->unk_2C.unk_04 != NULL) {
-        Heap_Free(param0->unk_2C.unk_04);
-    }
-
-    if (param0->unk_34.unk_04 != NULL) {
-        Heap_Free(param0->unk_34.unk_04);
-    }
-
-    StringTemplate_Free(param0->unk_08);
-    MessageLoader_Free(param0->unk_04);
-    Heap_Free(param0);
+    StringTemplate_Free(infoDisplay->msgFmt);
+    MessageLoader_Free(infoDisplay->msgData);
+    Heap_Free(infoDisplay);
 }
 
-static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)
+static void FormatNature(PokemonInfoDisplayStruct *infoDisplay)
 {
-    int v0 = Pokemon_GetNature(param0->unk_0C);
-
-    if (v0 > 24) {
-        return;
+    int nature = Pokemon_GetNature(infoDisplay->mon);
+    if (nature <= NATURE_COUNT - 1) {
+        infoDisplay->notepad.nature = Strbuf_Init(((2 * 18) * 2), infoDisplay->heapID);
+        MessageLoader_GetStrbuf(infoDisplay->msgData, (24 + nature), infoDisplay->notepad.nature);
     }
-
-    param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
-    MessageLoader_GetStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
-static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
+static void FormatDateAndLocationMet(PokemonInfoDisplayStruct *infoDisplay, int msgNo)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
+    Strbuf *str = Strbuf_Init((((2 * 18) * 2) * 8), infoDisplay->heapID);
+    infoDisplay->notepad.dateLocationMet = Strbuf_Init((((2 * 18) * 2) * 8), infoDisplay->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
+    MessageLoader_GetStrbuf(infoDisplay->msgData, msgNo, str);
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 0, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
+    StringTemplate_SetMonthName(infoDisplay->msgFmt, 1, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_MONTH, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 2, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 3, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
+    StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_LOCATION, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
+    StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_MONTH, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_DAY, NULL), 2, 0, 1);
+    StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LOCATION, NULL));
 
-    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
-    StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
-    StringTemplate_SetMonthName(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_MONTH, NULL));
-    StringTemplate_SetNumber(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
-    StringTemplate_SetNumber(param0->unk_08, 3, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
-    StringTemplate_SetMetLocationName(param0->unk_08, 4, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_LOCATION, NULL));
-    StringTemplate_SetNumber(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
-    StringTemplate_SetMonthName(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_MONTH, NULL));
-    StringTemplate_SetNumber(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_DAY, NULL), 2, 0, 1);
-    StringTemplate_SetMetLocationName(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LOCATION, NULL));
-    StringTemplate_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
-    Strbuf_Free(v0);
+    StringTemplate_Format(infoDisplay->msgFmt, infoDisplay->notepad.dateLocationMet, str);
+    Strbuf_Free(str);
 }
 
-static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
+static void FormatDateAndLocation_Migrated(PokemonInfoDisplayStruct *infoDisplay, int msgNo)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
+    Strbuf *str = Strbuf_Init((((2 * 18) * 2) * 4), infoDisplay->heapID);
+    infoDisplay->notepad.dateLocationMet = Strbuf_Init((((2 * 18) * 2) * 4), infoDisplay->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
+    MessageLoader_GetStrbuf(infoDisplay->msgData, msgNo, str);
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 0, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
+    StringTemplate_SetMonthName(infoDisplay->msgFmt, 1, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_MONTH, NULL));
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 2, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
+    StringTemplate_SetNumber(infoDisplay->msgFmt, 3, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
 
-    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
-    StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
-    StringTemplate_SetMonthName(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_MONTH, NULL));
-    StringTemplate_SetNumber(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
-    StringTemplate_SetNumber(param0->unk_08, 3, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
-
-    switch (Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_GAME, NULL)) {
+    switch (Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_GAME, NULL)) {
     default:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
     case VERSION_FIRERED:
     case VERSION_LEAFGREEN:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 3)));
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, (SpecialMetLoc_GetId(1, 3)));
         break;
     case VERSION_HEARTGOLD:
     case VERSION_SOULSILVER:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 4)));
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, (SpecialMetLoc_GetId(1, 4)));
         break;
     case VERSION_RUBY:
     case VERSION_SAPPHIRE:
     case VERSION_EMERALD:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 5)));
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, (SpecialMetLoc_GetId(1, 5)));
         break;
     case VERSION_GAMECUBE:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 8)));
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, (SpecialMetLoc_GetId(1, 8)));
         break;
     case VERSION_DIAMOND:
     case VERSION_PEARL:
     case VERSION_PLATINUM:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
     }
 
-    StringTemplate_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
-    Strbuf_Free(v0);
+    StringTemplate_Format(infoDisplay->msgFmt, infoDisplay->notepad.dateLocationMet, str);
+    Strbuf_Free(str);
 }
 
-static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2)
+static void FormatDateAndLocation_Egg(PokemonInfoDisplayStruct *infoDisplay, int param1, int param2)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
+    Strbuf *str = Strbuf_Init((((2 * 18) * 2) * 5), infoDisplay->heapID);
+    infoDisplay->notepad.dateLocationMet = Strbuf_Init((((2 * 18) * 2) * 5), infoDisplay->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
-
-    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
+    MessageLoader_GetStrbuf(infoDisplay->msgData, param1, str);
 
     if (param2 == 0) {
-        StringTemplate_SetNumber(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
-        StringTemplate_SetMonthName(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_MONTH, NULL));
-        StringTemplate_SetNumber(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_DAY, NULL), 2, 0, 1);
-        StringTemplate_SetMetLocationName(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LOCATION, NULL));
+        StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
+        StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_MONTH, NULL));
+        StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_DAY, NULL), 2, 0, 1);
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_MET_LOCATION, NULL));
     } else {
-        StringTemplate_SetNumber(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
-        StringTemplate_SetMonthName(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_MONTH, NULL));
-        StringTemplate_SetNumber(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
-        StringTemplate_SetMetLocationName(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_HATCH_LOCATION, NULL));
+        StringTemplate_SetNumber(infoDisplay->msgFmt, 5, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_YEAR, NULL), 2, 2, 1);
+        StringTemplate_SetMonthName(infoDisplay->msgFmt, 6, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_MONTH, NULL));
+        StringTemplate_SetNumber(infoDisplay->msgFmt, 7, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_DAY, NULL), 2, 0, 1);
+        StringTemplate_SetMetLocationName(infoDisplay->msgFmt, 8, Pokemon_GetValue(infoDisplay->mon, MON_DATA_HATCH_LOCATION, NULL));
     }
 
-    StringTemplate_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
-    Strbuf_Free(v0);
+    StringTemplate_Format(infoDisplay->msgFmt, infoDisplay->notepad.dateLocationMet, str);
+    Strbuf_Free(str);
 }
 
 static const u16 Unk_020F5578[6][5] = {
@@ -422,200 +387,168 @@ static const u16 Unk_020F5578[6][5] = {
     { 0x60, 0x61, 0x62, 0x63, 0x64 }
 };
 
-static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0)
+static void FormatCharacteristic(PokemonInfoDisplayStruct *infoDisplay)
 {
-    int v0[6], v1, v2;
-    int v3, v4;
+    int index, maxIV;
 
-    param0->unk_24.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
+    infoDisplay->notepad.characteristic = Strbuf_Init(((2 * 18) * 2), infoDisplay->heapID);
 
-    v0[0] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_HP_IV, NULL));
-    v0[1] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_ATK_IV, NULL));
-    v0[2] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_DEF_IV, NULL));
-    v0[3] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_SPEED_IV, NULL));
-    v0[4] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_SPATK_IV, NULL));
-    v0[5] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_SPDEF_IV, NULL));
+    int hpIV = Pokemon_GetValue(infoDisplay->mon, MON_DATA_HP_IV, NULL);
+    int atkIV = Pokemon_GetValue(infoDisplay->mon, MON_DATA_ATK_IV, NULL);
+    int defIV = Pokemon_GetValue(infoDisplay->mon, MON_DATA_DEF_IV, NULL);
+    int speedIV = Pokemon_GetValue(infoDisplay->mon, MON_DATA_SPEED_IV, NULL);
+    int spAtkIV = Pokemon_GetValue(infoDisplay->mon, MON_DATA_SPATK_IV, NULL);
+    int spDefIV = Pokemon_GetValue(infoDisplay->mon, MON_DATA_SPDEF_IV, NULL);
+    u32 personality = Pokemon_GetValue(infoDisplay->mon, MON_DATA_PERSONALITY, NULL);
 
-    switch (Pokemon_GetValue(param0->unk_0C, MON_DATA_PERSONALITY, NULL) % 6) {
-    default:
+    switch (personality % 6) {
     case 0:
-        v1 = 0;
-        v2 = v0[0];
-
-        if (v2 < v0[1]) {
-            v1 = 1;
-            v2 = v0[1];
+    default:
+        index = 0;
+        maxIV = hpIV;
+        if (maxIV < atkIV) {
+            index = 1;
+            maxIV = atkIV;
         }
-
-        if (v2 < v0[2]) {
-            v1 = 2;
-            v2 = v0[2];
+        if (maxIV < defIV) {
+            index = 2;
+            maxIV = defIV;
         }
-
-        if (v2 < v0[3]) {
-            v1 = 3;
-            v2 = v0[3];
+        if (maxIV < speedIV) {
+            index = 3;
+            maxIV = speedIV;
         }
-
-        if (v2 < v0[4]) {
-            v1 = 4;
-            v2 = v0[4];
+        if (maxIV < spAtkIV) {
+            index = 4;
+            maxIV = spAtkIV;
         }
-
-        if (v2 < v0[5]) {
-            v1 = 5;
-            v2 = v0[5];
+        if (maxIV < spDefIV) {
+            index = 5;
+            maxIV = spDefIV;
         }
         break;
     case 1:
-        v1 = 1;
-        v2 = v0[1];
-
-        if (v2 < v0[2]) {
-            v1 = 2;
-            v2 = v0[2];
+        index = 1;
+        maxIV = atkIV;
+        if (maxIV < defIV) {
+            index = 2;
+            maxIV = defIV;
         }
-
-        if (v2 < v0[3]) {
-            v1 = 3;
-            v2 = v0[3];
+        if (maxIV < speedIV) {
+            index = 3;
+            maxIV = speedIV;
         }
-
-        if (v2 < v0[4]) {
-            v1 = 4;
-            v2 = v0[4];
+        if (maxIV < spAtkIV) {
+            index = 4;
+            maxIV = spAtkIV;
         }
-
-        if (v2 < v0[5]) {
-            v1 = 5;
-            v2 = v0[5];
+        if (maxIV < spDefIV) {
+            index = 5;
+            maxIV = spDefIV;
         }
-
-        if (v2 < v0[0]) {
-            v1 = 0;
-            v2 = v0[0];
+        if (maxIV < hpIV) {
+            index = 0;
+            maxIV = hpIV;
         }
         break;
     case 2:
-        v1 = 2;
-        v2 = v0[2];
-
-        if (v2 < v0[3]) {
-            v1 = 3;
-            v2 = v0[3];
+        index = 2;
+        maxIV = defIV;
+        if (maxIV < speedIV) {
+            index = 3;
+            maxIV = speedIV;
         }
-
-        if (v2 < v0[4]) {
-            v1 = 4;
-            v2 = v0[4];
+        if (maxIV < spAtkIV) {
+            index = 4;
+            maxIV = spAtkIV;
         }
-
-        if (v2 < v0[5]) {
-            v1 = 5;
-            v2 = v0[5];
+        if (maxIV < spDefIV) {
+            index = 5;
+            maxIV = spDefIV;
         }
-
-        if (v2 < v0[0]) {
-            v1 = 0;
-            v2 = v0[0];
+        if (maxIV < hpIV) {
+            index = 0;
+            maxIV = hpIV;
         }
-
-        if (v2 < v0[1]) {
-            v1 = 1;
-            v2 = v0[1];
+        if (maxIV < atkIV) {
+            index = 1;
+            maxIV = atkIV;
         }
         break;
     case 3:
-        v1 = 3;
-        v2 = v0[3];
-
-        if (v2 < v0[4]) {
-            v1 = 4;
-            v2 = v0[4];
+        index = 3;
+        maxIV = speedIV;
+        if (maxIV < spAtkIV) {
+            index = 4;
+            maxIV = spAtkIV;
         }
-
-        if (v2 < v0[5]) {
-            v1 = 5;
-            v2 = v0[5];
+        if (maxIV < spDefIV) {
+            index = 5;
+            maxIV = spDefIV;
         }
-
-        if (v2 < v0[0]) {
-            v1 = 0;
-            v2 = v0[0];
+        if (maxIV < hpIV) {
+            index = 0;
+            maxIV = hpIV;
         }
-
-        if (v2 < v0[1]) {
-            v1 = 1;
-            v2 = v0[1];
+        if (maxIV < atkIV) {
+            index = 1;
+            maxIV = atkIV;
         }
-
-        if (v2 < v0[2]) {
-            v1 = 2;
-            v2 = v0[2];
+        if (maxIV < defIV) {
+            index = 2;
+            maxIV = defIV;
         }
         break;
     case 4:
-        v1 = 4;
-        v2 = v0[4];
-
-        if (v2 < v0[5]) {
-            v1 = 5;
-            v2 = v0[5];
+        index = 4;
+        maxIV = spAtkIV;
+        if (maxIV < spDefIV) {
+            index = 5;
+            maxIV = spDefIV;
         }
-
-        if (v2 < v0[0]) {
-            v1 = 0;
-            v2 = v0[0];
+        if (maxIV < hpIV) {
+            index = 0;
+            maxIV = hpIV;
         }
-
-        if (v2 < v0[1]) {
-            v1 = 1;
-            v2 = v0[1];
+        if (maxIV < atkIV) {
+            index = 1;
+            maxIV = atkIV;
         }
-
-        if (v2 < v0[2]) {
-            v1 = 2;
-            v2 = v0[2];
+        if (maxIV < defIV) {
+            index = 2;
+            maxIV = defIV;
         }
-
-        if (v2 < v0[3]) {
-            v1 = 3;
-            v2 = v0[3];
+        if (maxIV < speedIV) {
+            index = 3;
+            maxIV = speedIV;
         }
         break;
     case 5:
-        v1 = 5;
-        v2 = v0[5];
-
-        if (v2 < v0[0]) {
-            v1 = 0;
-            v2 = v0[0];
+        index = 5;
+        maxIV = spDefIV;
+        if (maxIV < hpIV) {
+            index = 0;
+            maxIV = hpIV;
         }
-
-        if (v2 < v0[1]) {
-            v1 = 1;
-            v2 = v0[1];
+        if (maxIV < atkIV) {
+            index = 1;
+            maxIV = atkIV;
         }
-
-        if (v2 < v0[2]) {
-            v1 = 2;
-            v2 = v0[2];
+        if (maxIV < defIV) {
+            index = 2;
+            maxIV = defIV;
         }
-
-        if (v2 < v0[3]) {
-            v1 = 3;
-            v2 = v0[3];
+        if (maxIV < speedIV) {
+            index = 3;
+            maxIV = speedIV;
         }
-
-        if (v2 < v0[4]) {
-            v1 = 4;
-            v2 = v0[4];
+        if (maxIV < spAtkIV) {
+            index = 4;
+            maxIV = spAtkIV;
         }
         break;
     }
-
-    v4 = Unk_020F5578[v1][(v2 % 5)];
-    MessageLoader_GetStrbuf(param0->unk_04, v4, param0->unk_24.unk_04);
+    MessageLoader_GetStrbuf(infoDisplay->msgData, Unk_020F5578[index][(maxIV % 5)], infoDisplay->notepad.characteristic);
 }
 
 static const u16 Unk_020F556C[6] = {
@@ -627,58 +560,53 @@ static const u16 Unk_020F556C[6] = {
     0x45
 };
 
-static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0)
+static void FormatFlavorPreference(PokemonInfoDisplayStruct *infoDisplay)
 {
-    int v0, v1, v2;
-
-    param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
-    v1 = 0;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        if (Pokemon_GetFlavorAffinity(param0->unk_0C, v0) == 1) {
-            v1 = v0 + 1;
+    infoDisplay->notepad.flavorPreference = Strbuf_Init(((2 * 18) * 2), infoDisplay->heapID);
+    int index = 0;
+    for (int flavor = 0; flavor < FLAVOR_MAX; flavor++) {
+        if (Pokemon_GetFlavorAffinity(infoDisplay->mon, flavor) == 1) {
+            index = flavor + 1;
         }
     }
 
-    v2 = Unk_020F556C[v1];
-    MessageLoader_GetStrbuf(param0->unk_04, v2, param0->unk_2C.unk_04);
+    MessageLoader_GetStrbuf(infoDisplay->msgData, Unk_020F556C[index], infoDisplay->notepad.flavorPreference);
 }
 
-static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0)
+static void FormatEggWatch(PokemonInfoDisplayStruct *infoDisplay)
 {
-    int v0 = Pokemon_GetValue(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
-    int v1;
+    int msgNo;
+    int eggCycles = Pokemon_GetValue(infoDisplay->mon, MON_DATA_FRIENDSHIP, NULL);
 
-    param0->unk_34.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
+    infoDisplay->notepad.eggWatch = Strbuf_Init((((2 * 18) * 2) * 4), infoDisplay->heapID);
 
-    if (v0 <= 5) {
-        v1 = 105;
-    } else if (v0 <= 10) {
-        v1 = 106;
-    } else if (v0 <= 40) {
-        v1 = 107;
+    if (eggCycles <= 5) {
+        msgNo = pl_msg_00000455_00105;
+    } else if (eggCycles <= 10) {
+        msgNo = pl_msg_00000455_00106;
+    } else if (eggCycles <= 40) {
+        msgNo = pl_msg_00000455_00107;
     } else {
-        v1 = 108;
+        msgNo = pl_msg_00000455_00108;
     }
-
-    MessageLoader_GetStrbuf(param0->unk_04, v1, param0->unk_34.unk_04);
+    MessageLoader_GetStrbuf(infoDisplay->msgData, msgNo, infoDisplay->notepad.eggWatch);
 }
 
-static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
+static int MonMetCondition(Pokemon *mon, BOOL param1, int param2)
 {
     int v0 = 0;
 
-    if (Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-        if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == 0) {
-            if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(0, 55))) {
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == 0) {
+            if (Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(0, 55))) {
                 v0 = 15;
-            } else if (Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
+            } else if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
                 if (param1 == 1) {
                     v0 = 7;
                 } else {
                     v0 = 8;
                 }
-            } else if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(1, 1))) {
+            } else if (Pokemon_GetValue(mon, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(1, 1))) {
                 v0 = 2;
             } else {
                 if (param1 == 1) {
@@ -688,14 +616,14 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
                 }
             }
         } else {
-            if (Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 2)) {
+            if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
+                if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 2)) {
                     if (param1 == 1) {
                         v0 = 13;
                     } else {
                         v0 = 14;
                     }
-                } else if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
+                } else if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
                     if (param1 == 1) {
                         v0 = 11;
                     } else {
@@ -709,7 +637,7 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
                     }
                 }
             } else {
-                if ((Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 1)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 0)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 9)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 10)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 11))) {
+                if ((Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 1)) || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 0)) || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 9)) || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 10)) || (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 11))) {
                     if (param1 == 1) {
                         v0 = 5;
                     } else {
@@ -726,8 +654,8 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
         }
     } else {
         if (param1 == 1) {
-            if (Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == (SpecialMetLoc_GetId(2, 1))) {
+            if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
+                if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == (SpecialMetLoc_GetId(2, 1))) {
                     v0 = 20;
                 } else {
                     v0 = 18;
@@ -736,7 +664,7 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
                 v0 = 16;
             }
         } else {
-            if (Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
+            if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
                 v0 = 19;
             } else {
                 v0 = 17;
