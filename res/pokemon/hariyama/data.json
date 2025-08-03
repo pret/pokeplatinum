@@ -110,7 +110,8 @@
     "offspring": "SPECIES_MAKUHITA",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 23,

@@ -105,7 +105,8 @@
     "offspring": "SPECIES_BAGON",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 11,

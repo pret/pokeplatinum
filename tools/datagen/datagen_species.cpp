@@ -27,7 +27,8 @@
  *   - pms.narc
  *   - tutorable_moves.h
  *   - species_learnsets_by_tutor.h
- *   - species_footprints.h
+ *   - species_footprint_sizes.h
+ *   - species_footprint_types.h
  *   - species_egg_moves.h
  *   - species_icon_palettes.h
  */
@@ -513,16 +514,30 @@ static PokeSpriteFaceData ParsePokeSpriteFace(const rapidjson::Value &face)
     return data;
 }
 
-static void TryEmitFootprint(const rapidjson::Document &root, std::ofstream &ofs)
+static void TryEmitFootprint(const rapidjson::Document &root, std::string species, std::ofstream &ofs_size, std::ofstream &ofs_type)
 {
     if (!root.HasMember("footprint")) {
         return;
     }
 
+    std::transform(species.begin(), species.end(), species.begin(), ::toupper);
+
     const rapidjson::Value &footprint = root["footprint"];
-    ofs << "    { "
-        << (footprint["has"].GetBool() ? "TRUE,  " : "FALSE, ")
-        << footprint["size"].GetString() << ", },\n";
+    std::string hasFootprintType;
+    if (footprint.HasMember("has_type")) { // this is just for Spiritomb
+        hasFootprintType = (footprint["has_type"].GetBool() ? ", TRUE" : ", FALSE");
+    } else {
+        hasFootprintType = (footprint["has"].GetBool() ? ", TRUE" : ", FALSE");
+    }
+    ofs_size << "    { "
+             << (footprint["has"].GetBool() ? "TRUE,  " : "FALSE, ")
+             << footprint["size"].GetString() << ", },\n";
+    ofs_type << "    [SPECIES_"
+             << species
+             << "] = { "
+             << footprint["type"].GetString()
+             << hasFootprintType
+             << " },\n";
 }
 
 static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
@@ -582,18 +597,34 @@ int main(int argc, char **argv)
              << "\n"
              << "static const u16 sEggMoves[] = {\n";
 
-    // Bootstrap the footprints header.
-    std::ofstream footprints(outputRoot / "species_footprints.h");
-    footprints << sHeaderMessage << "\n"
-               << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
-               << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
-               << "\n"
-               << "#include \"constants/species.h\"\n"
-               << "#include \"generated/footprint_sizes.h\"\n"
-               << "\n"
-               << "#include \"overlay113/footprint_data.h\"\n"
-               << "\n"
-               << "static const FootprintData sSpeciesFootprints[NATIONAL_DEX_COUNT + 1] = {\n";
+    // Bootstrap the footprint sizes header.
+    std::ofstream footprint_sizes(outputRoot / "species_footprint_sizes.h");
+    footprint_sizes << sHeaderMessage << "\n"
+                    << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_SIZES_H\n"
+                    << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_SIZES_H\n"
+                    << "\n"
+                    << "#include \"constants/species.h\"\n"
+                    << "#include \"generated/footprint_sizes.h\"\n"
+                    << "\n"
+                    << "#include \"overlay113/footprint_data.h\"\n"
+                    << "\n"
+                    << "static const FootprintData sSpeciesFootprints[NATIONAL_DEX_COUNT + 1] = {\n";
+
+    // Bootstrap the footprint types header.
+    std::ofstream footprint_types(outputRoot / "species_footprint_types.h");
+    footprint_types << sHeaderMessage << "\n"
+                    << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_TYPES_H\n"
+                    << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_TYPES_H\n"
+                    << "\n"
+                    << "#include \"constants/footstep_house.h\"\n"
+                    << "#include \"constants/species.h\"\n"
+                    << "\n"
+                    << "typedef struct FootprintType {\n"
+                    << "    u16 type;\n"
+                    << "    u16 hasPrint;\n"
+                    << "} FootprintType;\n"
+                    << "\n"
+                    << "static const FootprintType sFootprintTypes[NATIONAL_DEX_COUNT + 1] = {\n";
 
     // Bootstrap the icon palette offset header.
     std::ofstream iconPalettes(outputRoot / "species_icon_palettes.h");
@@ -663,7 +694,7 @@ int main(int argc, char **argv)
                  << " * for the icons used by Pokemon in PC boxes, the party list, etc. Alternate\n"
                  << " * forms are listed after the full National Dex using a custom ordering.\n"
                  << " */\n"
-                 << "const u8 sPokemonIconPaletteIndex[] = {\n";
+                 << "static const u8 sPokemonIconPaletteIndex[] = {\n";
 
     // Prepare VFSes for each NARC to be output.
     vfs_pack_ctx *personalVFS = narc_pack_start();
@@ -693,7 +724,7 @@ int main(int argc, char **argv)
             u16 offspring = TryParseOffspring(doc, personalValue);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
             TryEmitEggMoves(doc, eggMoves, species);
-            TryEmitFootprint(doc, footprints);
+            TryEmitFootprint(doc, species, footprint_sizes, footprint_types);
             EmitIconPaletteData(doc, iconPalettes, species, personalValue, iconRegistry);
 
             narc_pack_file_copy(personalVFS, reinterpret_cast<unsigned char *>(&data), sizeof(data));
@@ -741,10 +772,15 @@ int main(int argc, char **argv)
              << "#endif // POKEPLATINUM_GENERATED_SPECIES_EGG_MOVES_H\n";
     eggMoves.close();
 
-    footprints << "};\n"
-               << "\n"
-               << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n";
-    footprints.close();
+    footprint_sizes << "};\n"
+                    << "\n"
+                    << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_SIZES_H\n";
+    footprint_sizes.close();
+
+    footprint_types << "};\n"
+                    << "\n"
+                    << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_TYPES_H\n";
+    footprint_types.close();
 
     iconPalettes << "};\n"
                  << "\n"

@@ -117,7 +117,8 @@
     "offspring": "SPECIES_TORCHIC",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 19,
