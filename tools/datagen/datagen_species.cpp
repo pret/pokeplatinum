@@ -523,12 +523,11 @@ static void TryEmitFootprint(const rapidjson::Document &root, std::string specie
     std::transform(species.begin(), species.end(), species.begin(), ::toupper);
 
     const rapidjson::Value &footprint = root["footprint"];
-    std::string hasFootprintType;
+    BOOL hasFootprintType = footprint["has"].GetBool();
     if (footprint.HasMember("has_type")) { // this is just for Spiritomb
-        hasFootprintType = (footprint["has_type"].GetBool() ? ", TRUE" : ", FALSE");
-    } else {
-        hasFootprintType = (footprint["has"].GetBool() ? ", TRUE" : ", FALSE");
+        hasFootprintType = footprint["has_type"].GetBool();
     }
+
     ofs_size << "    { "
              << (footprint["has"].GetBool() ? "TRUE,  " : "FALSE, ")
              << footprint["size"].GetString() << ", },\n";
@@ -536,7 +535,7 @@ static void TryEmitFootprint(const rapidjson::Document &root, std::string specie
              << species
              << "] = { "
              << footprint["type"].GetString()
-             << hasFootprintType
+             << (hasFootprintType ? ", TRUE" : ", FALSE")
              << " },\n";
 }
 
