@@ -2281,7 +2281,7 @@ static BOOL ScriptContext_CheckABXPadPress(ScriptContext *ctx)
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_EAST);
     } else if (gSystem.pressedKeys & PAD_BUTTON_X) {
-        sub_0203F0C0(ctx->fieldSystem);
+        FieldSystem_ShowStartMenu(ctx->fieldSystem);
     } else {
         return FALSE;
     }
@@ -2588,7 +2588,7 @@ static BOOL ScrCmd_ShowStartMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_0203F0C0(fieldSystem);
+    FieldSystem_ShowStartMenu(fieldSystem);
     return FALSE;
 }
 
