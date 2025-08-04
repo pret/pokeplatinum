@@ -21,11 +21,6 @@
 #define INVALID_TILE_ATTRIBUTES 0xFF
 #define INVALID_TILE_BEHAVIOR   0xFF
 
-#define TERRAIN_ATTRIBUTES_COLLISION_SHIFT 15
-#define TERRAIN_ATTRIBUTES_COLLISION_MASK  0x01
-
-#define TERRAIN_ATTRIBUTES_TILE_BEHAVIOR_MASK 0xFF
-
 enum VerticalDirection {
     VERTICAL_DIRECTION_DOWN = -1,
     VERTICAL_DIRECTION_NONE,
@@ -227,7 +222,7 @@ BOOL TerrainCollisionManager_CheckCollision(const FieldSystem *fieldSystem, cons
 
     if (attributesValid) {
         u8 hasCollision = attributes >> TERRAIN_ATTRIBUTES_COLLISION_SHIFT;
-        hasCollision &= TERRAIN_ATTRIBUTES_COLLISION_MASK;
+        hasCollision &= TERRAIN_ATTRIBUTES_COLLISION_MASK_SHIFTED;
 
         if (hasCollision == TRUE) {
             return TRUE;

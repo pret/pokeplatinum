@@ -215,7 +215,7 @@ static int PlayerAvatar_CheckStartMoveInternal(PlayerAvatar *playerAvatar, int d
 
                 sub_02061674(playerAvatar, dir, &xOut, &yOut, &zOut);
 
-                if (ov9_02250FBC(fieldSystem, xOut, yOut, zOut) == 0) {
+                if (DistWorld_IsValidTileOnCurrentFloatingPlatform(fieldSystem, xOut, yOut, zOut) == 0) {
                     if (ov9_02250FD8(fieldSystem, xOut, yOut, zOut) == 1) {
                         ov9_02251000(fieldSystem, xOut, yOut, zOut);
                         v2 = sub_020611FC(playerAvatar, mapObj, dir);
@@ -990,7 +990,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
         y = ((y) / 2);
         sub_02061674(playerAvatar, param2, &x, &y, &z);
 
-        if (ov9_02250FBC(fieldSystem, x, y, z) == 0) {
+        if (DistWorld_IsValidTileOnCurrentFloatingPlatform(fieldSystem, x, y, z) == 0) {
             if (ov9_02250FD8(fieldSystem, x, y, z) == 1) {
                 ov9_02251000(fieldSystem, x, y, z);
                 v0 = sub_020611FC(playerAvatar, param1, param2);
@@ -1992,7 +1992,7 @@ static int sub_02061100(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
         sub_02061674(playerAvatar, param2, &x, &y, &z);
 
-        if (ov9_02250F90(fieldSystem, x, y, z) == 1) {
+        if (DistWorld_CheckCollisionOnCurrentFloatingPlatform(fieldSystem, x, y, z) == 1) {
             v0 |= (1 << 1);
         }
 
@@ -2020,7 +2020,7 @@ static int sub_02061180(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
             sub_02061674(playerAvatar, param2, &x, &y, &z);
 
-            v1 = ov9_02251044(fieldSystem, x, y, z, &v2);
+            v1 = DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(fieldSystem, x, y, z, &v2);
 
             if (TileBehavior_IsSurfable(v2)) {
                 return 1;
@@ -2070,7 +2070,7 @@ static int sub_02061248(PlayerAvatar *playerAvatar, MapObject *mapObj, int param
 
             sub_02061674(playerAvatar, param2, &x, &y, &z);
 
-            v0 = ov9_02251044(fieldSystem, x, y, z, &v2);
+            v0 = DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(fieldSystem, x, y, z, &v2);
 
             switch (param2) {
             case 0:
@@ -2442,7 +2442,7 @@ u32 PlayerAvatar_GetDistortionTileBehaviour(PlayerAvatar *playerAvatar, int para
         int z = MapObject_GetZ(mapObj);
 
         sub_02061674(playerAvatar, param1, &x, &y, &z);
-        ov9_02251044(fieldSystem, x, y, z, &v0);
+        DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(fieldSystem, x, y, z, &v0);
     }
 
     return v0;
@@ -2460,7 +2460,7 @@ u32 PlayerAvatar_GetDistortionCurrTileBehaviour(PlayerAvatar *playerAvatar)
     if (PlayerAvatar_DistortionGravityChanged(playerAvatar) == FALSE) {
         v0 = TerrainCollisionManager_GetTileBehavior(fieldSystem, x, z);
     } else {
-        ov9_02251044(fieldSystem, x, y, z, &v0);
+        DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(fieldSystem, x, y, z, &v0);
     }
 
     return v0;
