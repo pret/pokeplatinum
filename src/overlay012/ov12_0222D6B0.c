@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/battle_anim.h"
+
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
@@ -74,14 +76,33 @@ typedef struct {
     int unk_514[20];
 } UnkStruct_ov12_0222DE24;
 
-typedef struct {
-    int unk_00;
-    BattleAnimScriptFuncCommon unk_04;
-    ManagedSprite *unk_20;
-    ManagedSprite *unk_24;
-    BgScrollContext *unk_28;
-    AlphaFadeContext unk_2C;
-} UnkStruct_ov12_0222E080;
+typedef struct CamouflageContext {
+    int timer;
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *maskSprite;
+    ManagedSprite *xluSprite;
+    BgScrollContext *bgScroll;
+    AlphaFadeContext alpha;
+} CamouflageContext;
+
+enum CamouflageState {
+    CAMOUFLAGE_STATE_INIT = 0,
+    CAMOUFLAGE_STATE_FADE_OUT,
+    CAMOUFLAGE_STATE_SCROLL,
+    CAMOUFLAGE_STATE_FADE_IN,
+};
+
+#define CAMOUFLAGE_SPRITE_START_ALPHA   16
+#define CAMOUFLAGE_SPRITE_END_ALPHA     2
+#define CAMOUFLAGE_OTHER_START_ALPHA    2
+#define CAMOUFLAGE_OTHER_END_ALPHA      16
+#define CAMOUFLAGE_ALPHA_FADE_FRAMES    16
+#define CAMOUFLAGE_BG_SCROLL_START_Y    0
+#define CAMOUFLAGE_BG_SCROLL_END_Y      160
+#define CAMOUFLAGE_BG_SCROLL_ANGLE_STEP DEG_TO_IDX(2)
+#define CAMOUFLAGE_BG_SCROLL_AMPLITUDE  FX32_CONST(12)
+#define CAMOUFLAGE_BG_SCROLL_SPEED      200
+#define CAMOUFLAGE_BG_SCROLL_FRAMES     120
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -676,87 +697,104 @@ void ov12_0222DEFC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222DE24, v2, 1100 + 1);
 }
 
-static void ov12_0222E080(SysTask *param0, void *param1)
+static void BattleAnimTask_Camouflage(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222E080 *v0 = (UnkStruct_ov12_0222E080 *)param1;
+    CamouflageContext *ctx = param;
 
-    switch (v0->unk_04.state) {
-    case 0: {
-        PokemonSprite *v1;
-
-        v1 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_04.battleAnimSystem));
-        PokemonSprite_SetAttribute(v1, MON_SPRITE_HIDE, 1);
-    }
-        v0->unk_04.state++;
-        break;
-    case 1:
-        if (AlphaFadeContext_IsDone(&v0->unk_2C) == 0) {
+    switch (ctx->common.state) {
+    case CAMOUFLAGE_STATE_INIT: {
+        PokemonSprite *attackerSprite = BattleAnimSystem_GetBattlerSprite(
+            ctx->common.battleAnimSystem,
+            BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+        PokemonSprite_SetAttribute(attackerSprite, MON_SPRITE_HIDE, TRUE);
+        ctx->common.state++;
+    } break;
+    case CAMOUFLAGE_STATE_FADE_OUT:
+        if (AlphaFadeContext_IsDone(&ctx->alpha) == FALSE) {
             break;
         }
 
-        v0->unk_00 = 0;
-        v0->unk_28 = BgScrollContext_New(0, 160, (2 * 0xffff) / 360, 12 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_04.battleAnimSystem, 1), 0, BattleAnimUtil_MakeBgOffsetValue(0, 0), BattleAnimSystem_GetHeapID(v0->unk_04.battleAnimSystem));
-        v0->unk_04.state++;
+        ctx->timer = 0;
+        ctx->bgScroll = BgScrollContext_New(
+            CAMOUFLAGE_BG_SCROLL_START_Y,
+            CAMOUFLAGE_BG_SCROLL_END_Y,
+            CAMOUFLAGE_BG_SCROLL_ANGLE_STEP,
+            CAMOUFLAGE_BG_SCROLL_AMPLITUDE,
+            CAMOUFLAGE_BG_SCROLL_SPEED,
+            BattleAnimSystem_GetBgID(ctx->common.battleAnimSystem, BATTLE_ANIM_BG_BASE),
+            0,
+            BattleAnimUtil_MakeBgOffsetValue(0, 0),
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSystem));
+        ctx->common.state++;
         break;
-    case 2:
-        v0->unk_00++;
-
-        if (v0->unk_00 < 120) {
+    case CAMOUFLAGE_STATE_SCROLL:
+        ctx->timer++;
+        if (ctx->timer < CAMOUFLAGE_BG_SCROLL_FRAMES) {
             break;
         }
 
-        BgScrollContext_Free(v0->unk_28);
-        AlphaFadeContext_Init(&v0->unk_2C, 2, 16, 16, 2, 16);
-        v0->unk_04.state++;
+        BgScrollContext_Free(ctx->bgScroll);
+        AlphaFadeContext_Init(
+            &ctx->alpha,
+            CAMOUFLAGE_SPRITE_END_ALPHA,
+            CAMOUFLAGE_SPRITE_START_ALPHA,
+            CAMOUFLAGE_OTHER_END_ALPHA,
+            CAMOUFLAGE_OTHER_START_ALPHA,
+            CAMOUFLAGE_ALPHA_FADE_FRAMES);
+        ctx->common.state++;
         break;
-    case 3:
-        if (AlphaFadeContext_IsDone(&v0->unk_2C) == 0) {
+    case CAMOUFLAGE_STATE_FADE_IN: {
+        if (AlphaFadeContext_IsDone(&ctx->alpha) == FALSE) {
             break;
         }
 
-        {
-            PokemonSprite *v2;
-
-            v2 = BattleAnimSystem_GetBattlerSprite(v0->unk_04.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_04.battleAnimSystem));
-            PokemonSprite_SetAttribute(v2, MON_SPRITE_HIDE, 0);
-        }
-        v0->unk_04.state++;
-        break;
+        PokemonSprite *attackerSprite = BattleAnimSystem_GetBattlerSprite(
+            ctx->common.battleAnimSystem,
+            BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+        PokemonSprite_SetAttribute(attackerSprite, MON_SPRITE_HIDE, FALSE);
+        ctx->common.state++;
+    } break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_UnloadBaseBg(v0->unk_04.battleAnimSystem, 2);
-        BattleAnimSystem_EndAnimTask(v0->unk_04.battleAnimSystem, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_UnloadBaseBg(ctx->common.battleAnimSystem, BATTLE_BG_BASE);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_24);
-    ManagedSprite_TickFrame(v0->unk_20);
-    SpriteSystem_DrawSprites(v0->unk_04.pokemonSpriteManager);
+    ManagedSprite_TickFrame(ctx->xluSprite);
+    ManagedSprite_TickFrame(ctx->maskSprite);
+    SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 }
 
-void ov12_0222E1A8(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Camouflage(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222E080 *v0 = NULL;
+    CamouflageContext *ctx = BattleAnimUtil_Alloc(system, sizeof(CamouflageContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E080));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_04);
+    ctx->maskSprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_0);
+    ManagedSprite_SetExplicitOamMode(ctx->maskSprite, GX_OAM_MODE_OBJWND);
 
-    v0->unk_20 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.battleAnimSystem, 0);
-    ManagedSprite_SetExplicitOamMode(v0->unk_20, GX_OAM_MODE_OBJWND);
-
+    // Mask background to attacker sprite
     GX_SetVisibleWnd(GX_WNDMASK_OW);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
-    G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ, 0);
+    G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, FALSE);
+    G2_SetWndOBJInsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | GX_WND_PLANEMASK_OBJ, FALSE);
 
-    v0->unk_24 = BattleAnimSystem_GetPokemonSprite(v0->unk_04.battleAnimSystem, 1);
-    ManagedSprite_SetExplicitOamMode(v0->unk_24, GX_OAM_MODE_XLU);
+    ctx->xluSprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_1);
+    ManagedSprite_SetExplicitOamMode(ctx->xluSprite, GX_OAM_MODE_XLU);
 
-    AlphaFadeContext_Init(&v0->unk_2C, 16, 2, 2, 16, 16);
-    BattleAnimSystem_LoadBaseBg(v0->unk_04.battleAnimSystem, 2);
+    AlphaFadeContext_Init(
+        &ctx->alpha,
+        CAMOUFLAGE_SPRITE_START_ALPHA,
+        CAMOUFLAGE_SPRITE_END_ALPHA,
+        CAMOUFLAGE_OTHER_START_ALPHA,
+        CAMOUFLAGE_OTHER_END_ALPHA,
+        CAMOUFLAGE_ALPHA_FADE_FRAMES);
 
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-    BattleAnimSystem_StartAnimTask(v0->unk_04.battleAnimSystem, ov12_0222E080, v0);
+    BattleAnimSystem_LoadBaseBg(ctx->common.battleAnimSystem, BATTLE_BG_BASE);
+
+    Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Camouflage, ctx);
 }
 
 void ov12_0222E248(ManagedSprite *param0)
