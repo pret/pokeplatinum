@@ -9,7 +9,7 @@ _0006:
     ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
     End
 
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+TurnbackCavePillar1Room5_Unused:
+    End
+
+    .balign 4, 0

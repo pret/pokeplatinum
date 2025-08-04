@@ -2,7 +2,7 @@
 #include "generated/distribution_events.h"
 #include "generated/tutor_locations.h"
 #include "res/text/bank/common_strings.h"
-
+#include "res/text/bank/menu_entries.h"
 
     ScriptEntry Common_HandleSignpostInput
     ScriptEntry _034C
@@ -282,10 +282,9 @@ _03DE:
     PlaySound SEQ_FANFA2
     Return
 
-    .byte 21
-    .byte 0
-    .byte 2
-    .byte 0
+Common_Unused:
+    ReturnCommonScript
+    End
 
 _03E8:
     LockAll
@@ -476,33 +475,12 @@ _067E:
     Message 49
     GoTo _06BB
 
-    .byte 126
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 5
-    .byte 31
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+Common_Unused2:
+    CheckItem ITEM_HONEY, 1, VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _06BB
+    CloseMessage
+    ReleaseAll
+    End
 
 _06A2:
     CheckItem ITEM_HONEY, 1, VAR_RESULT
@@ -982,16 +960,16 @@ _0D16:
 
 _0D2C:
     InitGlobalTextListMenu 1, 1, 0, VAR_RESULT
-    AddListMenuEntry 65, 0, 74
-    AddListMenuEntry 66, 1, 75
-    AddListMenuEntry 67, 2, 76
-    AddListMenuEntry 68, 3, 77
+    AddListMenuEntry MenuEntries_Text_PokemonStorageDepositPokemon, 0, MenuEntries_Text_PokemonStorageDepositPokemonDescription
+    AddListMenuEntry MenuEntries_Text_PokemonStorageWithdrawPokemon, 1, MenuEntries_Text_PokemonStorageWithdrawPokemonDescription
+    AddListMenuEntry MenuEntries_Text_PokemonStorageMovePokemon, 2, MenuEntries_Text_PokemonStorageMovePokemonDescription
+    AddListMenuEntry MenuEntries_Text_PokemonStorageMoveItems, 3, MenuEntries_Text_PokemonStorageMoveItemsDescription
     CallIfSet FLAG_CONTEST_HALL_VISITED, _0D69
-    AddListMenuEntry 70, 5, 79
+    AddListMenuEntry MenuEntries_Text_PokemonStorageSeeYa, 5, MenuEntries_Text_PokemonStorageSeeYaDescription
     Return
 
 _0D69:
-    AddListMenuEntry 69, 4, 78
+    AddListMenuEntry MenuEntries_Text_PokemonStorageComparePokemon, 4, MenuEntries_Text_PokemonStorageComparePokemonDescription
     Return
 
 _0D73:
@@ -1007,35 +985,35 @@ _0D73:
 _0DC2:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 0
+    OpenPokemonStorage 0
     ReturnToField
     GoTo _0E21
 
 _0DD5:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 1
+    OpenPokemonStorage 1
     ReturnToField
     GoTo _0E21
 
 _0DE8:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 2
+    OpenPokemonStorage 2
     ReturnToField
     GoTo _0E21
 
 _0DFB:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 3
+    OpenPokemonStorage 3
     ReturnToField
     GoTo _0E21
 
 _0E0E:
     CloseMessage
     Call _0F94
-    ScrCmd_0AB 4
+    OpenPokemonStorage 4
     ReturnToField
     GoTo _0E21
 
@@ -1345,22 +1323,13 @@ _1260:
     FaceWest
     EndMovement
 
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Common_UnusedMovement:
+    FaceNorth
+    EndMovement
+
+Common_UnusedMovement2:
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _1278:
@@ -1728,4 +1697,4 @@ _170A:
     ReturnCommonScript
     End
 
-    .byte 0
+    .balign 4, 0

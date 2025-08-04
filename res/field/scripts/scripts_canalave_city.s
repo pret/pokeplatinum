@@ -256,7 +256,7 @@ _03C8:
     CloseMessage
     ClearFlag FLAG_UNK_0x01B4
     AddObject 14
-    ScrCmd_062 14
+    LockObject 14
     ApplyMovement 14, _04AC
     WaitMovement
     Message 6

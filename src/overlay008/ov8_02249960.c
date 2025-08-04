@@ -2264,12 +2264,16 @@ static const u32 Unk_ov8_0224C700[2] = {
 };
 
 static const VecFx32 Unk_ov8_0224C7A0[2] = {
-    { ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+    {
+        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
         FX32_ONE * 12,
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1) },
-    { ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
-        (FX32_ONE * 13),
-        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1) }
+        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+    },
+    {
+        ((11 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+        FX32_ONE * 13,
+        ((13 << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1),
+    }
 };
 
 static const u16 Unk_ov8_0224C7B8[12] = {
@@ -2516,7 +2520,7 @@ static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
 
     param1->unk_20 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
-    sub_020642F8(param1->unk_20);
+    MapObject_RecalculateObjectHeight(param1->unk_20);
     MapObject_SetHidden(param1->unk_20, 1);
     sub_02062D80(param1->unk_20, 0);
     MapObject_SetHeightCalculationDisabled(param1->unk_20, TRUE);
@@ -3518,7 +3522,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
     v3->unk_14 = v1;
     v3->unk_30 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, v0, v1, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
-    sub_020642F8(v3->unk_30);
+    MapObject_RecalculateObjectHeight(v3->unk_30);
     MapObject_SetHidden(v3->unk_30, 1);
     sub_02062D80(v3->unk_30, 0);
     MapObject_SetHeightCalculationDisabled(v3->unk_30, TRUE);

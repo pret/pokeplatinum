@@ -166,6 +166,4 @@ _0294:
     Message 12
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -18,12 +18,12 @@
 #include "special_encounter.h"
 #include "system_data.h"
 #include "system_vars.h"
+#include "trainer_card_badge_dirt.h"
 #include "unk_0202854C.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
 #include "unk_02055C50.h"
 #include "unk_0206B9D8.h"
-#include "unk_0206C2D0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
@@ -48,15 +48,15 @@ void sub_020559DC(FieldSystem *fieldSystem)
     inline_020559DC(fieldSystem, v2, &v0, &v1);
 }
 
-static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2)
+static void sub_02055A14(FieldSystem *fieldSystem, GameTime *gameTime, const RTCDate *currentDate)
 {
-    s32 v0 = RTC_ConvertDateToDay(param2);
+    s32 currentDay = RTC_ConvertDateToDay(currentDate);
 
-    if (v0 < param1->day) {
-        param1->day = v0;
-    } else if (v0 > param1->day) {
-        sub_02055AC0(fieldSystem, v0 - param1->day);
-        param1->day = v0;
+    if (currentDay < gameTime->day) {
+        gameTime->day = currentDay;
+    } else if (currentDay > gameTime->day) {
+        sub_02055AC0(fieldSystem, currentDay - gameTime->day);
+        gameTime->day = currentDay;
     }
 }
 
@@ -84,27 +84,27 @@ static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RT
     }
 }
 
-static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
+static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
 {
-    sub_02028658(FieldSystem_GetSaveData(fieldSystem), param1);
+    sub_02028658(FieldSystem_GetSaveData(fieldSystem), daysPassed);
     sub_0203F1FC(fieldSystem);
-    sub_0206C2D0(fieldSystem->saveData, param1);
-    RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), param1);
+    TrainerCard_AccumulateBadgeDirt(fieldSystem->saveData, daysPassed);
+    RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), daysPassed);
     SpecialEncounter_SetMixedRecordDailies(SaveData_GetSpecialEncounters(fieldSystem->saveData), RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData)));
 
     {
         Party *v0;
 
         v0 = SaveData_GetParty(fieldSystem->saveData);
-        Party_UpdatePokerusStatus(v0, param1);
+        Party_UpdatePokerusStatus(v0, daysPassed);
     }
 
     {
         VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
         u16 deadlineInDays = SystemVars_GetNewsPressDeadline(varsFlags);
 
-        if (deadlineInDays > param1) {
-            deadlineInDays -= param1;
+        if (deadlineInDays > daysPassed) {
+            deadlineInDays -= daysPassed;
         } else {
             deadlineInDays = 0;
         }
@@ -113,7 +113,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     }
 
     {
-        SystemVars_SynchronizeJubilifeLotteryTrainerID(fieldSystem->saveData, param1);
+        SystemVars_SynchronizeJubilifeLotteryTrainerID(fieldSystem->saveData, daysPassed);
     }
 
     {

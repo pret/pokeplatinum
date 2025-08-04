@@ -42,7 +42,7 @@ Static main
 	Object main.nef.p/src_message.c.o
 	Object main.nef.p/src_message_util.c.o
 	Object main.nef.p/src_string_template.c.o
-	Object main.nef.p/src_unk_0200C440.c.o
+	Object main.nef.p/src_font_special_chars.c.o
 	Object main.nef.p/src_sprite_system.c.o
 	Object main.nef.p/src_sys_task.c.o
 	Object main.nef.p/src_render_window.c.o
@@ -269,7 +269,7 @@ Static main
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
-	Object main.nef.p/src_unk_0206C2D0.c.o
+	Object main.nef.p/src_trainer_card_badge_dirt.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_unk_0206C784.c.o
@@ -854,7 +854,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_0225128C.c.o
 	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
 	Object main.nef.p/src_overlay023_ov23_02253598.c.o
-	Object main.nef.p/src_overlay023_ov23_02253D40.c.o
+	Object main.nef.p/src_overlay023_underground_text_printer.c.o
 	Object main.nef.p/src_overlay023_ov23_0225426C.c.o
 	Object main.nef.p/src_overlay023_ov23_0225429C.c.o
 	Object main.nef.p/src_overlay023_ov23_022542CC.c.o
@@ -1244,18 +1244,18 @@ Overlay overlay70
 	Object main.nef.p/src_overlay070_ov70_0226CE54.c.o
 }
 
-Overlay overlay71
+Overlay trainer_card_screen
 {
 	After overlay12
-	Object main.nef.p/src_overlay071_ov71_0223B140.c.o
-	Object main.nef.p/src_overlay071_trainer_card_display_text.c.o
-	Object main.nef.p/src_overlay071_ov71_0223CF0C.c.o
-	Object main.nef.p/src_overlay071_ov71_0223D324.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_screen.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_display_text.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_sprites.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_badge_chimes.c.o
 }
 
 Overlay overlay72
 {
-	After overlay71
+	After trainer_card_screen
 	Object main.nef.p/src_overlay072_ov72_0223D7A0.c.o
 }
 

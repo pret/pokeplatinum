@@ -14,7 +14,7 @@ _0016:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
@@ -24,7 +24,7 @@ _002C:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_JUBILIFE
     ReleaseAll
     End
@@ -59,4 +59,4 @@ _0068:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

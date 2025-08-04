@@ -39,24 +39,13 @@ PalPark_Trigger_Countdown:
     ReleaseAll
     End
 
-    .byte 83
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 243
-    .byte 64
-    .byte 1
-    .byte 0
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+PalPark_Unused:
+    SetInCatchingShowFlag
+    SetVar VAR_PAL_PARK_STATE, 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    End
 
 PalPark_Trigger_CaughtAllPokemon:
     PlayFanfare SEQ_SE_CONFIRM
@@ -167,5 +156,4 @@ PalPark_ClearFlagAndWarpOut:
     WaitFadeScreen
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

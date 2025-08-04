@@ -107,7 +107,7 @@ _00E8:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_B1F
     ReleaseAll
     End
@@ -330,20 +330,12 @@ _052C:
 _0537:
     Message 24
     GoTo _054D
+    End
 
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 23
-    .byte 22
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+VeilstoneStoreB1F_Unused:
+    Message 23
+    GoTo _054D
+    End
 
 _054D:
     WaitABXPadPress
@@ -465,6 +457,4 @@ _0708:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

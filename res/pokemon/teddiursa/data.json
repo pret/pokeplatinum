@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": true,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_COVET" ],
@@ -100,6 +101,20 @@
             "MOVE_SEED_BOMB",
             "MOVE_LAST_RESORT",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_CRUNCH",
+            "MOVE_TAKE_DOWN",
+            "MOVE_SEISMIC_TOSS",
+            "MOVE_COUNTER",
+            "MOVE_METAL_CLAW",
+            "MOVE_FAKE_TEARS",
+            "MOVE_YAWN",
+            "MOVE_SLEEP_TALK",
+            "MOVE_CROSS_CHOP",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_CLOSE_COMBAT",
+            "MOVE_NIGHT_SLASH"
         ]
     },
     "evolutions": [

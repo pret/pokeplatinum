@@ -206,4 +206,4 @@ _02BD:
     ClearFlag FLAG_UNK_0x0185
     Return
 
-    .byte 0
+    .balign 4, 0

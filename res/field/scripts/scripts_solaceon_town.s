@@ -138,7 +138,7 @@ _0168:
     SetObjectEventPos 18, VAR_0x8004, 0x295
     ClearFlag FLAG_UNK_0x021E
     AddObject 18
-    ScrCmd_062 18
+    LockObject 18
     ApplyMovement LOCALID_PLAYER, _0228
     ApplyMovement 18, _01E8
     WaitMovement

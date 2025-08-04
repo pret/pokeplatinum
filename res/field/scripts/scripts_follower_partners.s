@@ -32,23 +32,15 @@ FollowerPartners_Rival_PostStarterMessage:
     Message FollowerPartners_Text_Rival_ThatPokemonBattle
     WaitABXPadPress
     GoTo FollowerPartners_Rival_IncreaseTimesTalked
+    End
 
-    .byte 2
-    .byte 0
-    .byte 206
-    .byte 0
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 8
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+FollowerPartners_Rival_Unused:
+    BufferRivalName 0
+    Message FollowerPartners_Text_Rival_AllRightLetsMoveOut
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    End
 
 FollowerPartners_Rival_HeyThatsEnoughTalkingAlready:
     BufferRivalName 0
@@ -245,5 +237,4 @@ FollowerPartners_Marley_IncreaseTimesTalked:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

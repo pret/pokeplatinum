@@ -100,11 +100,7 @@ _0123:
 _012B:
     Message 4
     GoTo _0073
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _0138:

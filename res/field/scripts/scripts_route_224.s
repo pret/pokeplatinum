@@ -37,12 +37,9 @@ _009C:
     ScrCmd_18C 3, 0
     Return
 
-    .byte 30
-    .byte 0
-    .byte 202
-    .byte 2
-    .byte 27
-    .byte 0
+Route224_Unused:
+    SetFlag FLAG_UNK_0x02CA
+    Return
 
 _00AA:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
@@ -311,14 +308,9 @@ _0404:
     Delay16
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route224_UnusedMovement:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0438:
@@ -349,7 +341,7 @@ _0458:
 _048D:
     SetObjectEventPos 21, 0x386, 0x1F8
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _0598
     WaitMovement
     GoTo _04F3
@@ -358,7 +350,7 @@ _048D:
 _04AF:
     SetObjectEventPos 21, 0x386, 0x1F9
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _05A4
     WaitMovement
     GoTo _04F3
@@ -367,7 +359,7 @@ _04AF:
 _04D1:
     SetObjectEventPos 21, 0x386, 0x1FA
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _05B0
     WaitMovement
     GoTo _04F3

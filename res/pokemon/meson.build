@@ -87,13 +87,15 @@ endforeach
 #   - Unown forms have unique party/menu icons and sprites, but not unique base
 #     stats.
 #   - Castform forms have only unique sprites.
+form_registry_json = files('form_registry.json')
+
 form_registry = custom_target('form_registry',
     output: [
         'form_data.order',
         'form_icons.order',
         'form_sprites.order',
     ],
-    input: files('form_registry.json'),
+    input: form_registry_json,
     command: [ ordergen_forms_py, '@INPUT@', '@OUTPUT0@', '@OUTPUT1@', '@OUTPUT2@' ],
 )
 form_data_order = form_registry[0]
@@ -185,12 +187,14 @@ datagen_species_out = custom_target('datagen_species_out',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
         'species_footprints.h',
+        'species_egg_moves.h',
+        'species_icon_palettes.h',
     ],
     command: [
         datagen_species_exe,
         meson.current_build_dir(),
         pokemon_data_root,
-        form_data_order,
+        form_registry_json,
         files('move_tutors.json'),
     ],
     env: species_env,
@@ -198,9 +202,11 @@ datagen_species_out = custom_target('datagen_species_out',
         species_data_files,
     ],
 )
-h_headers += datagen_species_out[6]
 h_headers += datagen_species_out[7]
 h_headers += datagen_species_out[8]
+h_headers += datagen_species_out[9]
+h_headers += datagen_species_out[10]
+h_headers += datagen_species_out[11]
 
 
 # OLD NARCs

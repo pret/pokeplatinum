@@ -1372,7 +1372,7 @@ void *sub_0205C17C(UnkStruct_0205B43C *param0)
     param0->unk_188[0] = TrainerCard_New(HEAP_ID_SYSTEM);
     param0->unk_188[1] = TrainerCard_New(HEAP_ID_SYSTEM);
 
-    TrainerCard_Init(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
+    TrainerCard_Init(FALSE, FALSE, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 
     return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }

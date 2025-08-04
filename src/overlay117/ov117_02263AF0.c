@@ -296,7 +296,7 @@ static const fx32 Unk_ov117_02266BA4[] = {
     FX32_ONE,
     0x1800,
     0xA00,
-    0x2000
+    0x2000,
 };
 
 static const u16 Unk_ov117_02266C54[][4] = {

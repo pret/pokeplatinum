@@ -16,6 +16,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -45,7 +46,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
-#include "unk_0200C440.h"
 #include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
@@ -260,7 +260,7 @@ static int sub_0207E0B8(ApplicationManager *appMan, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(appMan);
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, COLOR_BLACK, 6, 1, HEAP_ID_12);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_DOWNWARD_IN, FADE_TYPE_DOWNWARD_IN, COLOR_BLACK, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -660,7 +660,7 @@ static int sub_0207E7E0(ApplicationManager *appMan, int *param1)
     }
 
     MessageLoader_Free(v0->messageLoader);
-    sub_0200C560(v0->unk_698);
+    FontSpecialChars_Free(v0->unk_698);
     StringTemplate_Free(v0->template);
 
     if (v0->unk_B20 != NULL) {
@@ -946,7 +946,7 @@ static GameWindowLayout *sub_0207ECC0(ApplicationManager *appMan)
     }
 
     v0->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0453, HEAP_ID_12);
-    v0->unk_698 = sub_0200C440(15, 14, 0, HEAP_ID_12);
+    v0->unk_698 = FontSpecialChars_Init(15, 14, 0, HEAP_ID_12);
     v0->template = StringTemplate_Default(HEAP_ID_12);
 
     for (v1 = 0; v1 < 6; v1++) {

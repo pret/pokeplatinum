@@ -20,51 +20,69 @@
 #include "system.h"
 #include "text.h"
 
+#include "res/text/bank/rowan_intro_tv_app.h"
+
+enum RowanIntroTvAppState {
+    RIT_APP_STATE_INIT = 0,
+    RIT_APP_STATE_WAIT_AND_START_BGM,
+    RIT_APP_STATE_WAIT_AND_START_FADE_IN,
+    RIT_APP_STATE_WAIT_SCREEN_FADE,
+    RIT_APP_STATE_DISPLAY_TEXT_WAIT_INPUT,
+    RIT_APP_STATE_EXIT_AFTER_FADE,
+};
+
+enum RowanIntroTvState {
+    RIT_STATE_INIT = 0,
+    RIT_STATE_WAIT_BEFORE_INPUT,
+    RIT_STATE_WAIT_INPUT,
+    RIT_STATE_EXIT,
+};
+
 typedef struct {
-    int heapID;
-    BgConfig *unk_04;
-    MessageLoader *unk_08;
-    int unk_0C;
-    Window unk_10;
-    int unk_20;
-    int unk_24;
-} UnkStruct_ov73_021D342C;
+    enum HeapId heapID;
+    BgConfig *bgConfig;
+    MessageLoader *msgLoader;
+    enum RowanIntroTvState state;
+    Window window;
+    int crtOverlayPosition;
+    int delayUpdateCounter;
+} RowanIntroTv;
 
-void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
-int RowanIntroTv_Init(ApplicationManager *appMan, int *param1);
-int RowanIntroTv_Main(ApplicationManager *appMan, int *param1);
-int RowanIntroTv_Exit(ApplicationManager *appMan, int *param1);
-static void ov73_021D3420(void *param0);
-static void ov73_021D342C(UnkStruct_ov73_021D342C *param0);
-static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0);
-static void ov73_021D366C(UnkStruct_ov73_021D342C *param0);
-static void ov73_021D368C(UnkStruct_ov73_021D342C *param0);
-static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *param0, int param1, int param2, int param3);
-static void ov73_021D37AC(UnkStruct_ov73_021D342C *param0);
+BOOL RowanIntroTv_Init(ApplicationManager *appMan, enum RowanIntroTvAppState *state);
+BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *state);
+BOOL RowanIntroTv_Exit(ApplicationManager *appMan, enum RowanIntroTvAppState *state);
+static void RowanIntroTv_VBlankCallback(void *uncastTv);
+static void RowanIntroTv_InitGraphics(RowanIntroTv *tv);
+static void RowanIntroTv_FreeGraphics(RowanIntroTv *tv);
+static void RowanIntroTv_InitMessageStructs(RowanIntroTv *tv);
+static void RowanIntroTv_FreeMessageStructs(RowanIntroTv *tv);
+static BOOL RowanIntroTv_Run(RowanIntroTv *tv, int msgEntryID, int unused0, int unused1);
+static void RowanIntroTv_ShiftCrtOverlay(RowanIntroTv *tv);
 
-int RowanIntroTv_Init(ApplicationManager *appMan, int *param1)
+BOOL RowanIntroTv_Init(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
-    UnkStruct_ov73_021D342C *v0;
-    int heapID = HEAP_ID_83;
+    RowanIntroTv *tv;
+    // changing this to enum HeapId breaks the checksum.
+    int heapID = HEAP_ID_ROWAN_INTRO_TV;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov73_021D342C), heapID);
-    memset(v0, 0, sizeof(UnkStruct_ov73_021D342C));
+    tv = ApplicationManager_NewData(appMan, sizeof(RowanIntroTv), heapID);
+    memset(tv, 0, sizeof(RowanIntroTv));
 
-    v0->heapID = heapID;
-    v0->unk_24 = 0;
+    tv->heapID = heapID;
+    tv->delayUpdateCounter = 0;
 
-    return 1;
+    return TRUE;
 }
 
-int RowanIntroTv_Main(ApplicationManager *appMan, int *param1)
+BOOL RowanIntroTv_Main(ApplicationManager *appMan, enum RowanIntroTvAppState *state)
 {
-    UnkStruct_ov73_021D342C *v0 = ApplicationManager_Data(appMan);
-    int v1 = 0;
+    RowanIntroTv *tv = ApplicationManager_Data(appMan);
+    BOOL isFinished = FALSE;
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case RIT_APP_STATE_INIT:
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
@@ -77,126 +95,142 @@ int RowanIntroTv_Main(ApplicationManager *appMan, int *param1)
         GXS_SetVisiblePlane(0);
         SetAutorepeat(4, 8);
 
-        ov73_021D342C(v0);
-        ov73_021D366C(v0);
+        RowanIntroTv_InitGraphics(tv);
+        RowanIntroTv_InitMessageStructs(tv);
 
-        SetVBlankCallback(ov73_021D3420, (void *)v0);
+        SetVBlankCallback(RowanIntroTv_VBlankCallback, (void *)tv);
         GXLayers_TurnBothDispOn();
 
         {
-            u16 *v2 = (u16 *)GetHardwareMainBgPaletteAddress();
+            u16 *paletteAddress = (u16 *)GetHardwareMainBgPaletteAddress();
 
-            BlendPalettes(v2, v2, 0xFFFC, 7, 0x0);
-            GX_LoadBGPltt((const void *)v2, 0, 16 * 0x20);
+            BlendPalettes(paletteAddress, paletteAddress, 0xFFFC, 7, 0);
+            GX_LoadBGPltt((const void *)paletteAddress, 0, 16 * 0x20);
         }
 
-        v0->unk_24 = 2 * 30;
-        *param1 = 1;
+        tv->delayUpdateCounter = 2 * 30;
+        *state = RIT_APP_STATE_WAIT_AND_START_BGM;
         break;
-    case 1:
-        if (v0->unk_24) {
-            v0->unk_24--;
+    case RIT_APP_STATE_WAIT_AND_START_BGM:
+        if (tv->delayUpdateCounter) {
+            tv->delayUpdateCounter--;
         } else {
             Sound_SetFieldBGM(SEQ_TV_HOUSOU);
             Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, SEQ_TV_HOUSOU, 1);
 
-            v0->unk_24 = 3 * 30;
-            *param1 = 2;
+            tv->delayUpdateCounter = 3 * 30;
+            *state = RIT_APP_STATE_WAIT_AND_START_FADE_IN;
         }
         break;
-    case 2:
-        if (v0->unk_24) {
-            v0->unk_24--;
+    case RIT_APP_STATE_WAIT_AND_START_FADE_IN:
+        if (tv->delayUpdateCounter) {
+            tv->delayUpdateCounter--;
         } else {
-            v0->unk_24 = 0;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, v0->heapID);
-            *param1 = 3;
+            tv->delayUpdateCounter = 0;
+            StartScreenFade(
+                FADE_BOTH_SCREENS,
+                FADE_TYPE_BRIGHTNESS_IN,
+                FADE_TYPE_BRIGHTNESS_IN,
+                COLOR_BLACK,
+                6,
+                1,
+                tv->heapID);
+            *state = RIT_APP_STATE_WAIT_SCREEN_FADE;
         }
         break;
-    case 3:
-        ov73_021D37AC(v0);
+    case RIT_APP_STATE_WAIT_SCREEN_FADE:
+        RowanIntroTv_ShiftCrtOverlay(tv);
 
         if (IsScreenFadeDone() == TRUE) {
-            *param1 = 4;
+            *state = RIT_APP_STATE_DISPLAY_TEXT_WAIT_INPUT;
         }
         break;
-    case 4:
-        ov73_021D37AC(v0);
+    case RIT_APP_STATE_DISPLAY_TEXT_WAIT_INPUT:
+        RowanIntroTv_ShiftCrtOverlay(tv);
 
-        if (ov73_021D3698(v0, 0, 5 * 8, 6 * 8) == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, v0->heapID);
-            *param1 = 5;
+        if (RowanIntroTv_Run(tv, RowanIntroTv_TextId, 5 * 8, 6 * 8) == TRUE) {
+            StartScreenFade(
+                FADE_BOTH_SCREENS,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                FADE_TYPE_BRIGHTNESS_OUT,
+                COLOR_BLACK,
+                6,
+                1,
+                tv->heapID);
+            *state = RIT_APP_STATE_EXIT_AFTER_FADE;
         }
         break;
-    case 5:
-        ov73_021D37AC(v0);
+    case RIT_APP_STATE_EXIT_AFTER_FADE:
+        RowanIntroTv_ShiftCrtOverlay(tv);
 
         if (IsScreenFadeDone() == TRUE) {
-            ov73_021D368C(v0);
-            ov73_021D35F4(v0);
+            RowanIntroTv_FreeMessageStructs(tv);
+            RowanIntroTv_FreeGraphics(tv);
             SetVBlankCallback(NULL, NULL);
 
-            v1 = 1;
+            isFinished = TRUE;
         }
         break;
     }
 
-    return v1;
+    return isFinished;
 }
 
-int RowanIntroTv_Exit(ApplicationManager *appMan, int *param1)
+BOOL RowanIntroTv_Exit(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
-    UnkStruct_ov73_021D342C *v0 = ApplicationManager_Data(appMan);
-    int heapID = v0->heapID;
+    RowanIntroTv *tv = ApplicationManager_Data(appMan);
+    enum HeapId heapID = tv->heapID;
 
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov73_021D3420(void *param0)
+static void RowanIntroTv_VBlankCallback(void *uncastTv)
 {
-    UnkStruct_ov73_021D342C *v0 = param0;
-    Bg_RunScheduledUpdates(v0->unk_04);
+    RowanIntroTv *tv = uncastTv;
+    Bg_RunScheduledUpdates(tv->bgConfig);
 }
 
-static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
+static void RowanIntroTv_InitGraphics(RowanIntroTv *tv)
 {
     {
-        UnkStruct_02099F80 v0 = {
-            GX_VRAM_BG_256_AB,
-            GX_VRAM_BGEXTPLTT_NONE,
-            GX_VRAM_SUB_BG_NONE,
-            GX_VRAM_SUB_BGEXTPLTT_NONE,
-            GX_VRAM_OBJ_NONE,
-            GX_VRAM_OBJEXTPLTT_NONE,
-            GX_VRAM_SUB_OBJ_NONE,
-            GX_VRAM_SUB_OBJEXTPLTT_NONE,
-            GX_VRAM_TEX_NONE,
-            GX_VRAM_TEXPLTT_NONE
+        UnkStruct_02099F80 banks = {
+            .unk_00 = GX_VRAM_BG_256_AB,
+            .unk_04 = GX_VRAM_BGEXTPLTT_NONE,
+            .unk_08 = GX_VRAM_SUB_BG_NONE,
+            .unk_0C = GX_VRAM_SUB_BGEXTPLTT_NONE,
+            .unk_10 = GX_VRAM_OBJ_NONE,
+            .unk_14 = GX_VRAM_OBJEXTPLTT_NONE,
+            .unk_18 = GX_VRAM_SUB_OBJ_NONE,
+            .unk_1C = GX_VRAM_SUB_OBJEXTPLTT_NONE,
+            .unk_20 = GX_VRAM_TEX_NONE,
+            .unk_24 = GX_VRAM_TEXPLTT_NONE
         };
 
-        GXLayers_SetBanks(&v0);
+        GXLayers_SetBanks(&banks);
     }
 
     {
-        param0->unk_04 = BgConfig_New(param0->heapID);
+        tv->bgConfig = BgConfig_New(tv->heapID);
     }
     {
-        GraphicsModes v1 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D
+        GraphicsModes graphicsModes = {
+            .displayMode = GX_DISPMODE_GRAPHICS,
+            .mainBgMode = GX_BGMODE_0,
+            .subBgMode = GX_BGMODE_0,
+            .bg0As2DOr3D = GX_BG0_AS_2D
         };
 
-        SetAllGraphicsModes(&v1);
+        SetAllGraphicsModes(&graphicsModes);
     }
     {
-        int v2, v3, v4;
+        // changing to enum BgLayer breaks the checksum
+        int bgLayer;
+        int tilesNarcMemberIdx, tilemapNarcMemberIdx;
         {
-            BgTemplate v5 = {
+            BgTemplate layerMain2Template = {
                 .x = 0,
                 .y = 0,
                 .bufferSize = 0x800,
@@ -211,14 +245,14 @@ static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
                 .mosaic = FALSE,
             };
 
-            v2 = 2;
+            bgLayer = BG_LAYER_MAIN_2;
 
-            Bg_InitFromTemplate(param0->unk_04, v2, &v5, 0);
-            Bg_ClearTilesRange(v2, 32, 0, param0->heapID);
-            Bg_ClearTilemap(param0->unk_04, v2);
+            Bg_InitFromTemplate(tv->bgConfig, bgLayer, &layerMain2Template, BG_TYPE_STATIC);
+            Bg_ClearTilesRange(bgLayer, 32, 0, tv->heapID);
+            Bg_ClearTilemap(tv->bgConfig, bgLayer);
         }
         {
-            BgTemplate v6 = {
+            BgTemplate layerMain0Template = {
                 .x = 0,
                 .y = 0,
                 .bufferSize = 0x800,
@@ -233,16 +267,32 @@ static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
                 .mosaic = FALSE,
             };
 
-            v2 = 0;
-            v3 = 1;
-            v4 = 4;
+            bgLayer = BG_LAYER_MAIN_0;
+            tilesNarcMemberIdx = 1;
+            tilemapNarcMemberIdx = 4;
 
-            Bg_InitFromTemplate(param0->unk_04, v2, &v6, 0);
-            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, v3, param0->unk_04, v2, 0, 0, 0, param0->heapID);
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, v4, param0->unk_04, v2, 0, 0, 0, param0->heapID);
+            Bg_InitFromTemplate(tv->bgConfig, bgLayer, &layerMain0Template, BG_TYPE_STATIC);
+            Graphics_LoadTilesToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO_TV,
+                tilesNarcMemberIdx,
+                tv->bgConfig,
+                bgLayer,
+                0,
+                0,
+                FALSE,
+                tv->heapID);
+            Graphics_LoadTilemapToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO_TV,
+                tilemapNarcMemberIdx,
+                tv->bgConfig,
+                bgLayer,
+                0,
+                0,
+                FALSE,
+                tv->heapID);
         }
         {
-            BgTemplate v7 = {
+            BgTemplate layerMain1Template = {
                 .x = 0,
                 .y = 0,
                 .bufferSize = 0x800,
@@ -257,16 +307,32 @@ static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
                 .mosaic = FALSE,
             };
 
-            v2 = 1;
-            v3 = 2;
-            v4 = 5;
+            bgLayer = BG_LAYER_MAIN_1;
+            tilesNarcMemberIdx = 2;
+            tilemapNarcMemberIdx = 5;
 
-            Bg_InitFromTemplate(param0->unk_04, v2, &v7, 0);
-            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, v3, param0->unk_04, v2, 0, 0, 0, param0->heapID);
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, v4, param0->unk_04, v2, 0, 0, 0, param0->heapID);
+            Bg_InitFromTemplate(tv->bgConfig, bgLayer, &layerMain1Template, BG_TYPE_STATIC);
+            Graphics_LoadTilesToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO_TV,
+                tilesNarcMemberIdx,
+                tv->bgConfig,
+                bgLayer,
+                0,
+                0,
+                FALSE,
+                tv->heapID);
+            Graphics_LoadTilemapToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO_TV,
+                tilemapNarcMemberIdx,
+                tv->bgConfig,
+                bgLayer,
+                0,
+                0,
+                FALSE,
+                tv->heapID);
         }
         {
-            BgTemplate v8 = {
+            BgTemplate layerMain3Template = {
                 .x = 0,
                 .y = 0,
                 .bufferSize = 0x800,
@@ -281,111 +347,149 @@ static void ov73_021D342C(UnkStruct_ov73_021D342C *param0)
                 .mosaic = FALSE,
             };
 
-            v2 = 3;
-            v3 = 8;
-            v4 = 7;
+            bgLayer = BG_LAYER_MAIN_3;
+            tilesNarcMemberIdx = 8;
+            tilemapNarcMemberIdx = 7;
 
-            Bg_InitFromTemplate(param0->unk_04, v2, &v8, 0);
-            Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, v3, param0->unk_04, v2, 0, 0, 0, param0->heapID);
-            Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, v4, param0->unk_04, v2, 0, 0, 0, param0->heapID);
+            Bg_InitFromTemplate(tv->bgConfig, bgLayer, &layerMain3Template, BG_TYPE_STATIC);
+            Graphics_LoadTilesToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO_TV,
+                tilesNarcMemberIdx,
+                tv->bgConfig,
+                bgLayer,
+                0,
+                0,
+                FALSE,
+                tv->heapID);
+            Graphics_LoadTilemapToBgLayer(
+                NARC_INDEX_DEMO__INTRO__INTRO_TV,
+                tilemapNarcMemberIdx,
+                tv->bgConfig,
+                bgLayer,
+                0,
+                0,
+                FALSE,
+                tv->heapID);
         }
     }
-    Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO_TV, 6, 0, 0, 0, param0->heapID);
-    Graphics_LoadPaletteWithSrcOffset(NARC_INDEX_DEMO__INTRO__INTRO_TV, 9, 0, 0x20 * 2, 0x20 * 2, 0x20 * 14, param0->heapID);
-    Font_LoadTextPalette(0, 1 * (2 * 16), param0->heapID);
-    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
-    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
+    Graphics_LoadPalette(NARC_INDEX_DEMO__INTRO__INTRO_TV, 6, PAL_LOAD_MAIN_BG, 0, 0, tv->heapID);
+    Graphics_LoadPaletteWithSrcOffset(
+        NARC_INDEX_DEMO__INTRO__INTRO_TV,
+        9,
+        PAL_LOAD_MAIN_BG,
+        0x20 * 2,
+        0x20 * 2,
+        0x20 * 14,
+        tv->heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), tv->heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 0x4, 0xc);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 4, 12);
 }
 
-static void ov73_021D35F4(UnkStruct_ov73_021D342C *param0)
+static void RowanIntroTv_FreeGraphics(RowanIntroTv *tv)
 {
-    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
-    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, FALSE);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, FALSE);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, FALSE);
 
     G2_BlendNone();
 
-    Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_0);
-    Bg_FreeTilemapBuffer(param0->unk_04, BG_LAYER_MAIN_2);
-    Heap_Free(param0->unk_04);
+    Bg_FreeTilemapBuffer(tv->bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(tv->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(tv->bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(tv->bgConfig, BG_LAYER_MAIN_2);
+    Heap_Free(tv->bgConfig);
 }
 
-static void ov73_021D366C(UnkStruct_ov73_021D342C *param0)
+static void RowanIntroTv_InitMessageStructs(RowanIntroTv *tv)
 {
-    param0->unk_08 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ROWAN_INTRO_TV_APP, param0->heapID);
+    tv->msgLoader = MessageLoader_Init(
+        MESSAGE_LOADER_NARC_HANDLE,
+        NARC_INDEX_MSGDATA__PL_MSG,
+        TEXT_BANK_ROWAN_INTRO_TV_APP,
+        tv->heapID);
 
     Text_ResetAllPrinters();
-    param0->unk_0C = 0;
+    tv->state = 0;
 }
 
-static void ov73_021D368C(UnkStruct_ov73_021D342C *param0)
+static void RowanIntroTv_FreeMessageStructs(RowanIntroTv *tv)
 {
-    MessageLoader_Free(param0->unk_08);
+    MessageLoader_Free(tv->msgLoader);
 }
 
-static const WindowTemplate Unk_ov72_021D3A38 = {
-    0x2,
-    0x0,
-    0x0,
-    0x20,
-    0x18,
-    0x1,
-    0x1
+static const WindowTemplate sMessageWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_2,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 0x20,
+    .height = 0x18,
+    .palette = 1,
+    .baseTile = 1,
 };
 
-static BOOL ov73_021D3698(UnkStruct_ov73_021D342C *a0, int a1, int a2, int a3)
+static BOOL RowanIntroTv_Run(RowanIntroTv *tv, int msgEntryID, int unused0, int unused1)
 {
-    BOOL r6 = FALSE;
-    switch (a0->unk_0C) {
-    case 0:
+    BOOL isFinished = FALSE;
+    switch (tv->state) {
+    case RIT_STATE_INIT:
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-        Strbuf *r5 = Strbuf_Init(0x400, a0->heapID);
-        MessageLoader_GetStrbuf(a0->unk_08, a1, r5);
-        Window_AddFromTemplate(a0->unk_04, &a0->unk_10, &Unk_ov72_021D3A38);
-        Window_FillRectWithColor(&a0->unk_10, 0, 0, 0, 0x100, 0xc0);
-        u32 r7 = (0x100 - Font_CalcMaxLineWidth(0, r5, 0)) / 2;
-        u32 r1 = Strbuf_NumLines(r5) * 16;
-        u32 sp00 = (0xc0 - r1) / 2;
-        Text_AddPrinterWithParamsAndColor(&a0->unk_10, FONT_SYSTEM, r5, r7, sp00, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
-        Strbuf_Free(r5);
-        Window_CopyToVRAM(&a0->unk_10);
-        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
-        a0->unk_24 = 240;
-        a0->unk_0C = 1;
+        Strbuf *tmpStrbuf = Strbuf_Init(0x400, tv->heapID);
+        MessageLoader_GetStrbuf(tv->msgLoader, msgEntryID, tmpStrbuf);
+        Window_AddFromTemplate(tv->bgConfig, &tv->window, &sMessageWindowTemplate);
+        Window_FillRectWithColor(&tv->window, 0, 0, 0, 0x100, 0xc0);
+        u32 xOffset = (0x100 - Font_CalcMaxLineWidth(FONT_SYSTEM, tmpStrbuf, 0)) / 2;
+        u32 yOffset = (0xc0 - Strbuf_NumLines(tmpStrbuf) * 16) / 2;
+        Text_AddPrinterWithParamsAndColor(
+            &tv->window,
+            FONT_SYSTEM,
+            tmpStrbuf,
+            xOffset,
+            yOffset,
+            TEXT_SPEED_INSTANT,
+            TEXT_COLOR(15, 2, 0),
+            NULL);
+        Strbuf_Free(tmpStrbuf);
+        Window_CopyToVRAM(&tv->window);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
+        tv->delayUpdateCounter = 240;
+        tv->state = RIT_STATE_WAIT_BEFORE_INPUT;
         break;
-    case 1:
-        if (a0->unk_24) {
-            a0->unk_24--;
+    case RIT_STATE_WAIT_BEFORE_INPUT:
+        if (tv->delayUpdateCounter) {
+            tv->delayUpdateCounter--;
         } else {
-            a0->unk_0C = 2;
+            tv->state = RIT_STATE_WAIT_INPUT;
         }
         break;
-    case 2:
+    case RIT_STATE_WAIT_INPUT:
         if (JOY_NEW(PAD_BUTTON_A) == PAD_BUTTON_A || JOY_NEW(PAD_BUTTON_B) == PAD_BUTTON_B) {
-            a0->unk_0C = 3;
+            tv->state = RIT_STATE_EXIT;
         }
         break;
-    case 3:
-        Window_Remove(&a0->unk_10);
-        Bg_ClearTilemap(a0->unk_04, BG_LAYER_MAIN_2);
-        a0->unk_0C = 0;
-        r6 = TRUE;
+    case RIT_STATE_EXIT:
+        Window_Remove(&tv->window);
+        Bg_ClearTilemap(tv->bgConfig, BG_LAYER_MAIN_2);
+        tv->state = RIT_STATE_INIT;
+        isFinished = TRUE;
         break;
     }
-    return r6;
+    return isFinished;
 }
 
-static void ov73_021D37AC(UnkStruct_ov73_021D342C *param0)
+static void RowanIntroTv_ShiftCrtOverlay(RowanIntroTv *tv)
 {
-    param0->unk_20 += 0x4;
-    Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, param0->unk_20 >> 4);
+    tv->crtOverlayPosition += 4;
+    Bg_SetOffset(
+        tv->bgConfig,
+        BG_LAYER_MAIN_1,
+        BG_OFFSET_UPDATE_SET_Y,
+        tv->crtOverlayPosition >> 4);
 }

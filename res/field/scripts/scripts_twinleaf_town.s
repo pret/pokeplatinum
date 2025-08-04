@@ -517,4 +517,4 @@ _0659:
     ShowLandmarkSign 14
     End
 
-    .byte 0
+    .balign 4, 0

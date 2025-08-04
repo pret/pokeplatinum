@@ -50,26 +50,11 @@ _008E:
     ScrCmd_16A 77
     Return
 
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 138
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 146
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
+BattleTowerCorridor_Unused:
+    ApplyMovement 0, BattleTowerCorridor_UnusedMovement
+    ApplyMovement LOCALID_PLAYER, BattleTowerCorridor_UnusedMovement2
+    WaitMovement
+    Return
 
 _00D6:
     ApplyMovement 0, _0178
@@ -97,11 +82,7 @@ _0124:
     ApplyMovement LOCALID_PLAYER, _01F4
     WaitMovement
     GoTo _0066
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _0140:
@@ -114,42 +95,18 @@ _014C:
     WalkNormalSouth 2
     EndMovement
 
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 69
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 20
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 69
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleTowerCorridor_UnusedMovement:
+    FaceNorth
+    WalkNormalNorth 2
+    SetInvisible
+    EndMovement
+
+BattleTowerCorridor_UnusedMovement2:
+    WalkNormalEast
+    FaceNorth
+    WalkFasterNorth
+    SetInvisible
+    EndMovement
 
     .balign 4, 0
 _0178:

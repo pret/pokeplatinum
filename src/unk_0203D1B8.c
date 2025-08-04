@@ -27,7 +27,6 @@
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
-#include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_0208737C.h"
@@ -48,13 +47,13 @@
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay007/accessory_shop.h"
 #include "overlay019/ov19_021D0D80.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
 #include "overlay058/ov58_021D0D80.h"
 #include "overlay059/ov59_021D0D80.h"
 #include "overlay064/ov64_0222DCE0.h"
-#include "overlay071/ov71_0223B140.h"
 #include "overlay072/ov72_0223D7A0.h"
 #include "overlay080/ov80_021D0D80.h"
 #include "overlay084/const_ov84_02241130.h"
@@ -79,6 +78,7 @@
 #include "overlay110/ov110_021D0D80.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "savedata/save_table.h"
+#include "trainer_card_screen/trainer_card_screen.h"
 
 #include "bag.h"
 #include "coins.h"
@@ -153,7 +153,7 @@ FS_EXTERN_OVERLAY(overlay58);
 FS_EXTERN_OVERLAY(overlay59);
 FS_EXTERN_OVERLAY(overlay61);
 FS_EXTERN_OVERLAY(overlay64);
-FS_EXTERN_OVERLAY(overlay71);
+FS_EXTERN_OVERLAY(trainer_card_screen);
 FS_EXTERN_OVERLAY(overlay72);
 FS_EXTERN_OVERLAY(options_menu);
 FS_EXTERN_OVERLAY(choose_starter);
@@ -626,18 +626,18 @@ int PokemonSummary_GetSelectedMoveSlot(void *summary)
     return ((PokemonSummary *)summary)->selectedMoveSlot;
 }
 
-void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1)
+void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession)
 {
     FS_EXTERN_OVERLAY(overlay19);
 
-    static const ApplicationManagerTemplate v0 = {
+    static const ApplicationManagerTemplate template = {
         ov19_021D0D80,
         ov19_021D0DEC,
         ov19_021D0E58,
         FS_OVERLAY_ID(overlay19)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, pokemonStorageSession);
 }
 
 static BOOL sub_0203D764(FieldTask *taskMan)
@@ -1266,18 +1266,18 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
     FieldTask_InitCall(param0, sub_0203DE98, v2);
 }
 
-void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1)
+void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard)
 {
-    FS_EXTERN_OVERLAY(overlay71);
+    FS_EXTERN_OVERLAY(trainer_card_screen);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov71_0223B140,
-        ov71_0223B388,
-        ov71_0223B5B8,
-        FS_OVERLAY_ID(overlay71)
+    static const ApplicationManagerTemplate template = {
+        .init = TrainerCardScreen_Init,
+        .main = TrainerCardScreen_Main,
+        .exit = TrainerCardScreen_Exit,
+        .overlayID = FS_OVERLAY_ID(trainer_card_screen)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, trainerCard);
 }
 
 BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)

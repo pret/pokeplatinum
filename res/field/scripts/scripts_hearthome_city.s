@@ -200,18 +200,10 @@ _0225:
     ReleaseAll
     End
 
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 65
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+HearthomeCity_UnusedMovement:
+    EmoteExclamationMark
+    Delay16
+    EndMovement
 
     .balign 4, 0
 _0240:
@@ -620,14 +612,9 @@ _0884:
     WalkFastWest 9
     EndMovement
 
-    .byte 19
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+HearthomeCity_UnusedMovement2:
+    WalkFastEast 8
+    EndMovement
 
     .balign 4, 0
 _0894:
@@ -705,5 +692,4 @@ _0997:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

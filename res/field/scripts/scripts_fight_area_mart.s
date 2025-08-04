@@ -13,7 +13,7 @@ _0012:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
@@ -58,6 +58,4 @@ _0086:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

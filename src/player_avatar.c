@@ -86,7 +86,7 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1
     MapObject_SetGraphicsID(mapObj, Player_MoveStateFromGender(v0, gender));
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10 | MAP_OBJ_STATUS_13);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
-    sub_02062F90(mapObj, 1);
+    MapObject_SetDynamicHeightCalculationEnabled(mapObj, TRUE);
     PlayerAvatar_SetMapObject(playerAvatar, mapObj);
 
     return playerAvatar;
@@ -168,7 +168,7 @@ static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjec
     MapObject_SetMovementRangeZ(mapObj, -1);
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10 | MAP_OBJ_STATUS_13);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
-    sub_02062F90(mapObj, 1);
+    MapObject_SetDynamicHeightCalculationEnabled(mapObj, TRUE);
 
     PlayerAvatar_SetMapObject(playerAvatar, mapObj);
 }
@@ -574,7 +574,7 @@ void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvata
 
     if (heightCalculationEnabled == TRUE) {
         MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
-        sub_020642F8(mapObj);
+        MapObject_RecalculateObjectHeight(mapObj);
     } else {
         MapObject_SetHeightCalculationDisabled(mapObj, TRUE);
     }

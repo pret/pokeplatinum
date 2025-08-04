@@ -1,11 +1,11 @@
-#include "overlay071/trainer_card_display_text.h"
+#include "trainer_card_screen/trainer_card_display_text.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
 
-#include "overlay071/struct_ov71_0223B620.h"
+#include "trainer_card_screen/trainer_card_screen_defs.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -22,8 +22,8 @@
 #define TRAINER_CARD_WINDOW_FULL_WIDTH    28
 #define TRAINER_CARD_WINDOW_HEIGHT        2
 
-static void TrainerCard_DrawNumber(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, Strbuf *strbuf, const u32 num, const u8 maxDigits, enum PaddingMode paddingMode);
-static void TrainerCard_DrawString(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, const Strbuf *strbuf);
+static void TrainerCard_DrawNumber(Window *window, u32 windowWidth, u32 endXOffset, u32 yOffset, Strbuf *strbuf, u32 num, u8 maxDigits, enum PaddingMode paddingMode);
+static void TrainerCard_DrawString(Window *window, u32 windowWidth, u32 endXOffset, u32 yOffset, const Strbuf *strbuf);
 
 static const WindowTemplate sTrainerCardWindowTemplates[] = {
     [TRAINER_CARD_WINDOW_ID] = {
@@ -211,7 +211,7 @@ void TrainerCard_DrawFrontText(Window *windows, const TrainerCard *trainerCard)
 
     TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_SCORE], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, strbuf, trainerCard->score, 9, PADDING_MODE_SPACES);
 
-    if (trainerCard->unk_04_1) {
+    if (trainerCard->liveTimeDisplay) {
         StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCard->playTime), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
         StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(trainerCard->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
         MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_Format_HHMMWithoutColon, fmtString);
@@ -277,17 +277,17 @@ void TrainerCard_DrawBackText(Window *windows, const TrainerCard *trainerCard)
         MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_BlankDate, strbuf);
     }
 
-    u32 xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(0, strbuf, 0);
+    u32 xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_Format_HHMMWithColon, fmtString);
     StringTemplate_Format(template, strbuf, fmtString);
-    xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(0, strbuf, 0);
+    xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_HOF_DEBUT], FONT_SYSTEM, strbuf, xOffset, 16, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
     StringTemplate_SetNumber(template, 5, trainerCard->timesLinked, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
     MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_Format_Number_2, fmtString);
     StringTemplate_Format(template, strbuf, fmtString);
-    xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(0, strbuf, 0);
+    xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_TIMES_LINKED], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
     MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_W, strbuf);
@@ -300,8 +300,8 @@ void TrainerCard_DrawBackText(Window *windows, const TrainerCard *trainerCard)
     StringTemplate_SetNumber(template, 5, trainerCard->linkTrades, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
     MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_Format_Number_2, fmtString);
     StringTemplate_Format(template, strbuf, fmtString);
-    xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(0, strbuf, 0);
-    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_TRADES], FONT_SYSTEM, strbuf, xOffset, 0, 0, TEXT_COLOR(1, 2, 0), NULL);
+    xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_LINK_TRADES], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
     Strbuf_Free(fmtString);
     StringTemplate_Free(template);
@@ -309,23 +309,21 @@ void TrainerCard_DrawBackText(Window *windows, const TrainerCard *trainerCard)
     MessageLoader_Free(messageLoader);
 }
 
-void TrainerCard_ClearWindows(Window *windows, const u8 start, const u8 end)
+void TrainerCard_ClearWindows(Window *windows, u8 start, u8 end)
 {
-    u8 i;
-
-    for (i = start; i <= end; i++) {
+    for (u8 i = start; i <= end; i++) {
         Window_ClearAndCopyToVRAM(&windows[i]);
     }
 }
 
-static void TrainerCard_DrawNumber(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, Strbuf *strbuf, const u32 num, const u8 maxDigits, enum PaddingMode paddingMode)
+static void TrainerCard_DrawNumber(Window *window, u32 windowWidth, u32 endXOffset, u32 yOffset, Strbuf *strbuf, u32 num, u8 maxDigits, enum PaddingMode paddingMode)
 {
     Strbuf_FormatInt(strbuf, num, maxDigits, paddingMode, CHARSET_MODE_EN);
     u32 width = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 
-static void TrainerCard_DrawString(Window *window, const u32 windowWidth, const u32 endXOffset, const u32 yOffset, const Strbuf *strbuf)
+static void TrainerCard_DrawString(Window *window, u32 windowWidth, u32 endXOffset, u32 yOffset, const Strbuf *strbuf)
 {
     u32 width = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, windowWidth - (width + endXOffset), yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
@@ -348,8 +346,8 @@ void TrainerCard_DrawUpdatedTime(Window *windows, const TrainerCard *trainerCard
     Strbuf *fmtString = Strbuf_Init(32, HEAP_ID_TRAINER_CARD_SCREEN);
     StringTemplate *template = StringTemplate_New(2, 32, HEAP_ID_TRAINER_CARD_SCREEN);
 
-    StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCard->playTime), 3, 1, 1);
-    StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(trainerCard->playTime), 2, 2, 1);
+    StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCard->playTime), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(template, 1, PlayTime_GetMinutes(trainerCard->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
     MessageLoader_GetStrbuf(messageLoader, TrainerCard_Text_Format_HHMMWithoutColon, fmtString);
     StringTemplate_Format(template, strbuf, fmtString);
     u32 xOffset = TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
@@ -361,7 +359,7 @@ void TrainerCard_DrawUpdatedTime(Window *windows, const TrainerCard *trainerCard
     StringTemplate_Free(template);
 }
 
-void TrainerCard_BlinkPlaytimeColon(Window *window, const BOOL showColon, Strbuf *strbuf)
+void TrainerCard_BlinkPlaytimeColon(Window *window, BOOL showColon, Strbuf *strbuf)
 {
     if (showColon) {
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, 205, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);

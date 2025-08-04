@@ -14,6 +14,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
@@ -30,7 +31,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
@@ -311,18 +311,18 @@ void ov84_0223F8D0(UnkStruct_ov84_0223B5A0 *param0, BagItem *param1, u32 param2)
 
     if (v0 < 420) {
         v0 = v0 - 328 + 1;
-        sub_0200C648(param0->unk_110, 2, v0, 2, 2, &param0->unk_04[0], 0, param2 + 5);
+        FontSpecialChars_DrawPartyScreenText(param0->unk_110, 2, v0, 2, 2, &param0->unk_04[0], 0, param2 + 5);
         ov84_0223F81C(param0, param1->quantity, param2, TEXT_COLOR(1, 2, 0));
     } else {
         v0 = v0 - 420 + 1;
-        sub_0200C5BC(param0->unk_110, v0, 2, 1, &param0->unk_04[0], 16, param2 + 5);
+        FontSpecialChars_DrawPartyScreenHPText(param0->unk_110, v0, 2, 1, &param0->unk_04[0], 16, param2 + 5);
         ov84_0223F9B0(param0, param2);
     }
 }
 
 void ov84_0223F94C(UnkStruct_ov84_0223B5A0 *param0, BagItem *param1, u32 param2)
 {
-    sub_0200C648(param0->unk_110, 2, Item_BerryNumber(param1->item) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
+    FontSpecialChars_DrawPartyScreenText(param0->unk_110, 2, Item_BerryNumber(param1->item) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
     ov84_0223F81C(param0, param1->quantity, param2, TEXT_COLOR(1, 2, 0));
 }
 

@@ -184,19 +184,11 @@ _0289:
     SetFlag FLAG_UNDERGROUND_FIRST_ENTERED
     End
 
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+Underground_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _02D4:
