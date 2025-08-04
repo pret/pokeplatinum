@@ -23,8 +23,6 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-#define BASE_SCALE_XY 100
-
 typedef struct {
     u8 unk_00;
     u8 unk_01[3];
