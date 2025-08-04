@@ -7,6 +7,7 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "menu.h"
 #include "message.h"
@@ -19,7 +20,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200C440.h"
 #include "unk_0207E0B8.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
@@ -257,7 +257,7 @@ static const u16 Unk_020F1EA0[6][4] = {
 
 static void sub_02081EAC(GameWindowLayout *param0, u8 param1)
 {
-    sub_0200C578(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
 }
 
 void sub_02081ED8(GameWindowLayout *param0, Pokemon *param1, u32 param2)
@@ -310,7 +310,7 @@ void sub_02081FFC(GameWindowLayout *param0, u8 param1)
         return;
     }
 
-    sub_0200C648(param0->unk_698, 1, param0->unk_704[param1].level, 3, 0, v0, 5, 2);
+    FontSpecialChars_DrawPartyScreenText(param0->unk_698, 1, param0->unk_704[param1].level, 3, 0, v0, 5, 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -322,7 +322,7 @@ void sub_02082058(GameWindowLayout *param0, u8 param1)
 
     v0 = &param0->unk_04[2 + param1 * 5];
 
-    sub_0200C5BC(param0->unk_698, param0->unk_704[param1].curHP, 3, 1, v0, (28 - 24), 2);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_698, param0->unk_704[param1].curHP, 3, 1, v0, (28 - 24), 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -345,7 +345,7 @@ static void sub_020820C4(GameWindowLayout *param0, u8 param1)
 
     v0 = &param0->unk_04[2 + param1 * 5];
 
-    sub_0200C5BC(param0->unk_698, param0->unk_704[param1].maxHP, 3, 0, v0, (28 + 8), 2);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_698, param0->unk_704[param1].maxHP, 3, 0, v0, (28 + 8), 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 

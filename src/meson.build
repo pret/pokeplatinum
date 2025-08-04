@@ -37,7 +37,7 @@ pokeplatinum_c = files(
     'message.c',
     'message_util.c',
     'string_template.c',
-    'unk_0200C440.c',
+    'font_special_chars.c',
     'sprite_system.c',
     'sys_task.c',
     'render_window.c',
