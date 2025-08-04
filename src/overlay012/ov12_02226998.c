@@ -68,8 +68,8 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_MegahornDefender,
     BattleAnimScriptFunc_Surf,
     BattleAnimScriptFunc_BlinkAttacker,
-    ov12_02228394,
-    ov12_02228520,
+    BattleAnimScriptFunc_MoveBattlerX,
+    BattleAnimScriptFunc_MoveBattlerX2, // Functionally equivalent to MoveBattlerX
     ov12_022287CC,
     ov12_02228A0C,
     ov12_0222E1A8,
