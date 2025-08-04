@@ -45,7 +45,7 @@ pokeplatinum_c = files(
     'screen_fade_funcs.c',
     'hardware_window.c',
     'unk_02012744.c',
-    'unk_020131EC.c',
+    'character_sprite.c',
     'rtc.c',
     'string_list.c',
     'screen_scroll_manager.c',

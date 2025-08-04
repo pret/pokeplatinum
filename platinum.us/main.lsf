@@ -50,7 +50,7 @@ Static main
 	Object main.nef.p/src_screen_fade_funcs.c.o
 	Object main.nef.p/src_hardware_window.c.o
 	Object main.nef.p/src_unk_02012744.c.o
-	Object main.nef.p/src_unk_020131EC.c.o
+	Object main.nef.p/src_character_sprite.c.o
 	Object main.nef.p/src_rtc.c.o
 	Object main.nef.p/src_string_list.c.o
 	Object main.nef.p/src_screen_scroll_manager.c.o
