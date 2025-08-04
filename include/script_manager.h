@@ -2,11 +2,11 @@
 #define POKEPLATINUM_SCRIPT_MANAGER_H
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0203F478.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/field_menu.h"
 #include "overlay005/save_info_window.h"
+#include "overlay034/dowsing_machine_task_data.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
@@ -178,7 +178,7 @@ u16 Script_GetHiddenItemFlag(u16 scriptID);
 u16 Script_GetHiddenItemScript(u16 scriptID);
 void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem);
 u8 Script_GetHiddenItemRange(u16 scriptID);
-UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID);
+HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, int heapID);
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
 BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 param1);
