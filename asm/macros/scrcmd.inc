@@ -3695,20 +3695,20 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_289 arg0, arg1, arg2, arg3, arg4, arg5, arg6
+    .macro GivePoffin destVar, spiciness, dryness, sweetness, bitterness, sourness, smoothness
     .short 649
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
-    .short \arg5
-    .short \arg6
+    .short \destVar
+    .short \spiciness
+    .short \dryness
+    .short \sweetness
+    .short \bitterness
+    .short \sourness
+    .short \smoothness
     .endm
 
-    .macro ScrCmd_28A arg0
+    .macro CheckHasEmptyPoffinCaseSlot destVar
     .short 650
-    .short \arg0
+    .short \destVar
     .endm
 
     /* Check if a given distribution event has been enabled and return the boolean-state in destVarID. */
@@ -4418,9 +4418,9 @@
     .short \cursorPosVar
     .endm
 
-    .macro ScrCmd_307 arg0
+    .macro GetEmptyPoffinCaseSlotCount destVar
     .short 775
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro AddCameraOverrideObject x, z

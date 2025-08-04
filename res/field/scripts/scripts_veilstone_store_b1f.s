@@ -295,14 +295,14 @@ _048C:
     End
 
 _04B5:
-    ScrCmd_307 VAR_RESULT
+    GetEmptyPoffinCaseSlotCount VAR_RESULT
     GoToIfLt VAR_RESULT, VAR_0x8005, _0521
     GoTo _04CE
     End
 
 _04CE:
     GoToIfEq VAR_0x8005, 0, _0503
-    ScrCmd_289 VAR_RESULT, VAR_0x8007, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003, 20
+    GivePoffin VAR_RESULT, VAR_0x8007, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003, 20
     AddToGameRecord RECORD_MONEY_SPENT, 6400
     RemoveMoney2 6400
     SubVar VAR_0x8005, 1

@@ -670,9 +670,9 @@ static BOOL ScrCmd_285(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundItemsGivenAway(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundFossilsUnearthed(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTrapsSet(ScriptContext *ctx);
-static BOOL ScrCmd_289(ScriptContext *ctx);
-static BOOL ScrCmd_28A(ScriptContext *ctx);
-static BOOL ScrCmd_307(ScriptContext *ctx);
+static BOOL ScrCmd_GivePoffin(ScriptContext *ctx);
+static BOOL ScrCmd_CheckHasEmptyPoffinCaseSlot(ScriptContext *ctx);
+static BOOL ScrCmd_GetEmptyPoffinCaseSlotCount(ScriptContext *ctx);
 static BOOL ScrCmd_CheckDistributionEvent(ScriptContext *ctx);
 static BOOL ScrCmd_DrawPokemonPreviewFromPartySlot(ScriptContext *ctx);
 static BOOL ScrCmd_28D(ScriptContext *ctx);
@@ -1419,8 +1419,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetUndergroundItemsGivenAway,
     ScrCmd_GetUndergroundFossilsUnearthed,
     ScrCmd_GetUndergroundTrapsSet,
-    ScrCmd_289,
-    ScrCmd_28A,
+    ScrCmd_GivePoffin,
+    ScrCmd_CheckHasEmptyPoffinCaseSlot,
     ScrCmd_CheckDistributionEvent,
     ScrCmd_DrawPokemonPreviewFromPartySlot,
     ScrCmd_28D,
@@ -1545,7 +1545,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetRotomForm,
     ScrCmd_GetPartyMonForm2,
     ScrCmd_ShowListMenuRememberCursor,
-    ScrCmd_307,
+    ScrCmd_GetEmptyPoffinCaseSlotCount,
     SrcCmd_AddCameraOverrideObject,
     SrcCmd_RemoveCameraOverrideObject,
     ScrCmd_IncrementTrainerScore,
@@ -7051,51 +7051,51 @@ static BOOL ScrCmd_GetUndergroundTrapsSet(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_289(ScriptContext *ctx)
+static BOOL ScrCmd_GivePoffin(ScriptContext *ctx)
 {
-    u8 v3[5];
-    u16 *v6 = ScriptContext_GetVarPointer(ctx);
+    u8 flavors[FLAVOR_MAX];
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    for (int v7 = 0; v7 < 5; v7++) {
-        v3[v7] = ScriptContext_GetVar(ctx);
+    for (int i = 0; i < FLAVOR_MAX; i++) {
+        flavors[i] = ScriptContext_GetVar(ctx);
     }
 
-    u8 v4 = ScriptContext_GetVar(ctx);
+    u8 smoothness = ScriptContext_GetVar(ctx);
     Poffin *poffin = Poffin_New(HEAP_ID_FIELD);
-    int v1 = sub_0202A9E4(poffin, v3, v4, FALSE);
+    int poffinFlavor = Poffin_MakePoffin(poffin, flavors, smoothness, FALSE);
     PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
     u16 slotId = PoffinCase_AddPoffin(poffinCase, poffin);
 
     Heap_Free(poffin);
 
     if (slotId == POFFIN_NONE) {
-        *v6 = 0xffff;
+        *destVar = POFFIN_NONE;
     } else {
-        *v6 = v1;
+        *destVar = poffinFlavor;
     }
 
     return FALSE;
 }
 
-static BOOL ScrCmd_28A(ScriptContext *ctx)
+static BOOL ScrCmd_CheckHasEmptyPoffinCaseSlot(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
 
     if (PoffinCase_GetEmptySlot(poffinCase) == POFFIN_NONE) {
-        *v1 = 0;
+        *destVar = FALSE;
     } else {
-        *v1 = 1;
+        *destVar = TRUE;
     }
 
     return FALSE;
 }
 
-static BOOL ScrCmd_307(ScriptContext *ctx)
+static BOOL ScrCmd_GetEmptyPoffinCaseSlotCount(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     PoffinCase *poffinCase = SaveData_GetPoffinCase(ctx->fieldSystem->saveData);
-    *v1 = PoffinCase_CountEmptySlots(poffinCase);
+    *destVar = PoffinCase_CountEmptySlots(poffinCase);
 
     return FALSE;
 }
