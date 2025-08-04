@@ -276,14 +276,20 @@ typedef struct AlphaFadePokemonSpriteContext {
 #define HIDE_BATTLER_VAR_TARGET 0
 #define HIDE_BATTLER_VAR_HIDE   1
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    BattleAnimSpriteInfo unk_0C;
-    BattleAnimScriptFuncCommon unk_20;
-    BattleAnimSystem *unk_3C;
-} UnkStruct_ov12_02228268;
+// -------------------------------------------------------------------
+// Blink Attacker
+// -------------------------------------------------------------------
+typedef struct BlinkAttackerContext {
+    int count;
+    int timer;
+    int interval;
+    BattleAnimSpriteInfo spriteInfo;
+    BattleAnimScriptFuncCommon common;
+    BattleAnimSystem *battleAnimSys;
+} BlinkAttackerContext;
+
+#define BLINK_ATTACKER_VAR_COUNT    0
+#define BLINK_ATTACKER_VAR_INTERVAL 1
 
 // -------------------------------------------------------------------
 // Muddy Water
@@ -1845,39 +1851,37 @@ void BattleAnimScriptFunc_HideBattler(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02228268(SysTask *param0, void *param1)
+static void BattleAnimTask_BlinkAttacker(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02228268 *v0 = (UnkStruct_ov12_02228268 *)param1;
+    BlinkAttackerContext *ctx = param;
 
-    if (v0->unk_04 >= v0->unk_08) {
-        if (v0->unk_00 == 0) {
-            PokemonSprite_SetAttribute(v0->unk_0C.monSprite, MON_SPRITE_HIDE, 0);
-            Heap_Free(v0);
-            BattleAnimSystem_EndAnimTask(v0->unk_3C, param0);
+    if (ctx->timer >= ctx->interval) {
+        if (ctx->count == 0) {
+            PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_HIDE, FALSE);
+            Heap_Free(ctx);
+            BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
         } else {
-            int v1;
-
-            v1 = PokemonSprite_GetAttribute(v0->unk_0C.monSprite, MON_SPRITE_HIDE);
-            PokemonSprite_SetAttribute(v0->unk_0C.monSprite, MON_SPRITE_HIDE, v1 ^ 1);
-            v0->unk_00--;
-            v0->unk_04 = 0;
+            BOOL hide = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_HIDE);
+            PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_HIDE, hide ^ 1);
+            ctx->count--;
+            ctx->timer = 0;
         }
     } else {
-        v0->unk_04++;
+        ctx->timer++;
     }
 }
 
-void ov12_022282BC(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_BlinkAttacker(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02228268 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02228268));
+    BlinkAttackerContext *ctx = BattleAnimUtil_Alloc(system, sizeof(BlinkAttackerContext));
 
-    v0->unk_3C = param0;
-    v0->unk_00 = BattleAnimSystem_GetScriptVar(param0, 0) * 2;
-    v0->unk_08 = BattleAnimSystem_GetScriptVar(param0, 1);
+    ctx->battleAnimSys = system;
+    ctx->count = BattleAnimSystem_GetScriptVar(system, BLINK_ATTACKER_VAR_COUNT) * 2;
+    ctx->interval = BattleAnimSystem_GetScriptVar(system, BLINK_ATTACKER_VAR_INTERVAL);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_20);
-    v0->unk_0C.monSprite = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetAttacker(param0));
-    BattleAnimSystem_StartAnimTask(v0->unk_3C, ov12_02228268, v0);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    ctx->spriteInfo.monSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimSystem_GetAttacker(system));
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_BlinkAttacker, ctx);
 }
 
 static void ov12_0222830C(SysTask *param0, void *param1)
