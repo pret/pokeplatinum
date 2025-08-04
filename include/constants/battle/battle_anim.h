@@ -104,6 +104,7 @@
 #define BATTLE_ANIM_MON_SPRITE_4 4
 #define BATTLE_ANIM_MON_SPRITE_F(N) (1 << (N))
 
+#define BASE_SCALE_XY 100
 
 // Script function specific constants
 #define FLAIL_MODE_ATTACKER 0
