@@ -49,10 +49,12 @@ static const Point2D sBattleAnimBattlerPositions[][6] = {
     {
         [BATTLER_TYPE_SOLO_PLAYER] = { 64, 112 },
         [BATTLER_TYPE_SOLO_ENEMY] = { 192, 48 },
-        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { 216, 112 },
-        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { 80, 42 },
-        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { 0, 0 },
-        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { 0, 0 },
+
+        // Contest Positions
+        [2] = { 216, 112 },
+        [3] = { 80, 42 },
+        [4] = { 0, 0 },
+        [5] = { 0, 0 },
     },
 
     // Double Battle
@@ -66,26 +68,26 @@ static const Point2D sBattleAnimBattlerPositions[][6] = {
     },
 };
 
-void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3)
+void ov12_02225864(int isDoubles, int battlerType, s16 *px, s16 *py)
 {
-    if (param2 != NULL) {
-        *param2 = sBattleAnimBattlerPositions[param0][param1].x;
+    if (px != NULL) {
+        *px = sBattleAnimBattlerPositions[isDoubles][battlerType].x;
     }
 
-    if (param3 != NULL) {
-        *param3 = sBattleAnimBattlerPositions[param0][param1].y;
+    if (py != NULL) {
+        *py = sBattleAnimBattlerPositions[isDoubles][battlerType].y;
     }
 }
 
-void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3)
+void ov12_02225898(BattleAnimSystem *system, int battler, s16 *px, s16 *py)
 {
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        ov12_02225864(0, param1 + 2, param2, param3);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        ov12_02225864(FALSE, battler + 2, px, py);
     } else {
-        if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            ov12_02225864(1, param1 - 2, param2, param3);
+        if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+            ov12_02225864(TRUE, battler - 2, px, py);
         } else {
-            ov12_02225864(0, param1, param2, param3);
+            ov12_02225864(FALSE, battler, px, py);
         }
     }
 }
