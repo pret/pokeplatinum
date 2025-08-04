@@ -1,11 +1,11 @@
 #include "main_menu/distribution_cartridge.h"
 
+#include <crypto.h>
 #include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
 
-#include "crypto.h"
 #include "heap.h"
 
 #define DIST_CTRDG_SIGNATURE_PTR     (void *)0x8020000

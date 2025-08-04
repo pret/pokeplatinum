@@ -1,5 +1,6 @@
 #include "main_menu/main_menu_util.h"
 
+#include <crypto.h>
 #include <nitro.h>
 #include <string.h>
 
@@ -14,7 +15,6 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
-#include "crypto.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"

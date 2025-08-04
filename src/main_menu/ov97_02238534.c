@@ -1,13 +1,12 @@
 #include "main_menu/ov97_02238534.h"
 
+#include <crypto.h>
 #include <nitro.h>
 #include <nitro/cht.h>
 #include <nitro/wm.h>
 #include <string.h>
 
 #include "main_menu/funcptr_ov97_02238A4C.h"
-
-#include "crypto.h"
 
 typedef struct {
     u16 unk_00;
