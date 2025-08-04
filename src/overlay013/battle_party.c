@@ -513,7 +513,7 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
             if (BattlePartyTask_CheckCanPartySlotBeSelected(battleParty, context->selectedPartyIndex) == PARTY_SLOT_SELECTABLE_IN_BATTLE && Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_REVIVE, context->heapID) == FALSE) {
                 UseBagItem(context->battleSystem, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
                 battleParty->partyPokemon[context->selectedPartyIndex].pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
-                context->currentDamage = Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_CURRENT_HP, NULL);
+                context->currentDamage = Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_CUR_HP, NULL);
                 context->currentDamage -= battleParty->partyPokemon[context->selectedPartyIndex].curHP;
                 battleParty->queuedState = TASK_STATE_EXIT;
             } else {
@@ -1009,7 +1009,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
                 ov13_022234A8(battleParty, context->selectedPartyIndex);
             }
 
-            battleParty->selectedPokemonCurrentHP = Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_CURRENT_HP, NULL);
+            battleParty->selectedPokemonCurrentHP = Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].pokemon, MON_DATA_CUR_HP, NULL);
             battleParty->useItemState = BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_START_RESTORING_HP;
         }
 
@@ -1313,13 +1313,13 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].speed = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_SPEED, NULL);
         battleParty->partyPokemon[i].spAtk = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_SP_ATK, NULL);
         battleParty->partyPokemon[i].spDef = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_SP_DEF, NULL);
-        battleParty->partyPokemon[i].curHP = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_CURRENT_HP, NULL);
+        battleParty->partyPokemon[i].curHP = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_CUR_HP, NULL);
         battleParty->partyPokemon[i].maxHP = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_MAX_HP, NULL);
         battleParty->partyPokemon[i].type_1 = (u8)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_TYPE_1, NULL);
         battleParty->partyPokemon[i].type_2 = (u8)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_TYPE_2, NULL);
         battleParty->partyPokemon[i].level = (u8)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_LEVEL, NULL);
 
-        if (Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == TRUE) {
+        if (Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE) {
             battleParty->partyPokemon[i].displayNidoranGender = FALSE;
         } else {
             battleParty->partyPokemon[i].displayNidoranGender = TRUE;
@@ -1330,7 +1330,7 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].isEgg = (u8)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_IS_EGG, NULL);
         battleParty->partyPokemon[i].ability = (u16)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_ABILITY, NULL);
         battleParty->partyPokemon[i].heldItem = (u16)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_HELD_ITEM, NULL);
-        battleParty->partyPokemon[i].exp = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_EXP, NULL);
+        battleParty->partyPokemon[i].exp = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_EXPERIENCE, NULL);
         battleParty->partyPokemon[i].currentLevelBaseExp = Pokemon_GetSpeciesBaseExpAt(battleParty->partyPokemon[i].species, battleParty->partyPokemon[i].level);
 
         if (battleParty->partyPokemon[i].level == MAX_POKEMON_LEVEL) {

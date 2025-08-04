@@ -1272,7 +1272,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
         u8 v1 = 70;
 
         if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-            if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+            if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
                 VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
                 if (SystemVars_GetArceusEventState(v2) == 0) {
@@ -1319,7 +1319,7 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     }
 
     if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+        if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
             if (SystemVars_GetArceusEventState(v0) == 0) {
