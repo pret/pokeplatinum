@@ -17,7 +17,7 @@ void BattleAnimScriptFunc_ScalePokemonSprite(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_ScaleBattlerSprite(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_AlphaFadePokemonSprite(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_HideBattler(BattleAnimSystem *param0);
-void ov12_022282BC(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_BlinkAttacker(BattleAnimSystem *param0);
 void ov12_02228394(BattleAnimSystem *param0);
 void ov12_02228520(BattleAnimSystem *param0);
 void ov12_022287CC(BattleAnimSystem *param0);
