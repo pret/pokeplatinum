@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "generated/bg_event_types.h"
 #include "generated/map_headers.h"
 
 #include "data/field/hidden_items.h"
@@ -710,7 +711,7 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
     }
 
     for (eventIndex = 0; eventIndex < numBgEvents; eventIndex++) {
-        if ((bgEvents[eventIndex].type == 2) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(bgEvents[eventIndex].script)) == FALSE)) {
+        if ((bgEvents[eventIndex].type == BG_EVENT_TYPE_HIDDEN_ITEM) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(bgEvents[eventIndex].script)) == FALSE)) {
             if ((bgEvents[eventIndex].x >= playerMinX) && (bgEvents[eventIndex].x <= playerMaxX) && (bgEvents[eventIndex].z >= playerMinZ) && (bgEvents[eventIndex].z <= playerMaxZ)) {
                 hiddenItems[itemIndex].range = Script_GetHiddenItemRange(bgEvents[eventIndex].script);
                 distance = (playerX - bgEvents[eventIndex].x);
