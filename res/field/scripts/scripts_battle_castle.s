@@ -494,41 +494,19 @@ _0745:
 
 _0760:
     GoTo _0139
+    End
 
-    .byte 2
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleCastle_UnusedMovement:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
+
+BattleCastle_UnusedMovement2:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
 
 _0788:
     PlayFanfare SEQ_SE_CONFIRM
@@ -600,6 +578,4 @@ _07FA:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

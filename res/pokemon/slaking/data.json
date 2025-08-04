@@ -114,7 +114,8 @@
     "offspring": "SPECIES_SLAKOTH",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 20,

@@ -108,7 +108,8 @@
     "offspring": "SPECIES_TORKOAL",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 5,

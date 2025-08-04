@@ -44,48 +44,25 @@ _0096:
     ClearFlag FLAG_UNK_0x008E
     End
 
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainRoom3_UnusedMovement:
+    WalkNormalWest
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _00B4:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainRoom3_UnusedMovement2:
+    WalkOnSpotNormalNorth
+    EndMovement
+
+StarkMountainRoom3_UnusedMovement3:
+    Delay8
+    WalkNormalSouth 9
+    EndMovement
 
 _00D0:
     BufferPlayerName 1
@@ -145,34 +122,18 @@ _017A:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_5
     Return
 
-    .byte 12
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainRoom3_UnusedMovement4:
+    WalkNormalNorth 6
+    EndMovement
+
+StarkMountainRoom3_UnusedMovement5:
+    WalkNormalSouth 6
+    EndMovement
+
+StarkMountainRoom3_UnusedMovement6:
+    Delay8 4
+    WalkOnSpotNormalSouth
+    EndMovement
 
 _019C:
     LockAll

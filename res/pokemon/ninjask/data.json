@@ -104,7 +104,8 @@
     "offspring": "SPECIES_NINCADA",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 8,

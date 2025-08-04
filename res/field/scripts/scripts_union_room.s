@@ -245,18 +245,11 @@ _0476:
     ReleaseAll
     End
 
-    .byte 67
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+UnionRoom_Unused:
+    ScrCmd_143 0, 1
+    CloseMessage
+    ReleaseAll
+    End
 
 _0486:
     Message 38
@@ -414,33 +407,14 @@ _06E8:
     MessageVar VAR_RESULT
     WaitTime 30, VAR_RESULT
     GoTo _07AE
+    End
 
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 1
-    .byte 7
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 45
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 3
-    .byte 0
-    .byte 30
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 22
-    .byte 0
-    .byte 152
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+UnionRoom_Unused2:
+    ScrCmd_13F 7, VAR_RESULT
+    MessageVar VAR_RESULT
+    WaitTime 30, VAR_RESULT
+    GoTo _07AE
+    End
 
 _0718:
     ScrCmd_13F 8, VAR_RESULT
@@ -736,18 +710,11 @@ _0B9A:
     ReleaseAll
     End
 
-    .byte 67
-    .byte 1
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+UnionRoom_Unused3:
+    ScrCmd_143 1, 1
+    CloseMessage
+    ReleaseAll
+    End
 
 _0BB2:
     ScrCmd_13D
@@ -865,14 +832,8 @@ _0D26:
 _0D31:
     Message 163
     GoTo _0C72
+    End
 
-    .byte 2
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 177
-    .byte 254
-    .byte 0xFF
-    .byte 0xFF
-    .byte 2
-    .byte 0
+UnionRoom_Unused4:
+    GoTo _0BF3
+    End

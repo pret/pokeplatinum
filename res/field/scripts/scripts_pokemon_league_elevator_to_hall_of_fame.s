@@ -122,14 +122,9 @@ _017C:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PokemonLeagueElevatorToHallOfFame_UnusedMovement:
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0190:

@@ -436,12 +436,7 @@ _06A3:
     ApplyMovement 5, _07C8
     WaitMovement
     GoTo _0500
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _06B8:

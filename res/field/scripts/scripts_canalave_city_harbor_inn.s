@@ -118,4 +118,4 @@ _0197:
     SetVar VAR_UNK_0x40F8, 3
     Return
 
-    .byte 0
+    .balign 4, 0

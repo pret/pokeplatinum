@@ -47,5 +47,4 @@ _007B:
     ShowArrowSign 3
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

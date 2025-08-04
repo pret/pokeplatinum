@@ -22,4 +22,4 @@ _0031:
     SetVar VAR_MAP_LOCAL_0, 1
     End
 
-    .byte 0
+    .balign 4, 0

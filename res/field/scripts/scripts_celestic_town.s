@@ -168,30 +168,15 @@ _0204:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+CelesticTown_UnusedMovement:
+    Delay8 8
+    WalkOnSpotNormalSouth
+    EndMovement
+
+CelesticTown_UnusedMovement2:
+    Delay8 9
+    WalkOnSpotNormalSouth
+    EndMovement
 
 _022C:
     LockAll
@@ -339,6 +324,4 @@ _0378:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

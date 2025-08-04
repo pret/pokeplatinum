@@ -103,4 +103,4 @@ _0150:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

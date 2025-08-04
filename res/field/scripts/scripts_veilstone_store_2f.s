@@ -136,25 +136,15 @@ _017A:
     ReleaseAll
     End
 
-    .byte 73
-    .byte 0
-    .byte 220
-    .byte 5
-    .byte 96
-    .byte 0
-    .byte 104
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 10
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+VeilstoneStore2F_Unused:
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    Message 10
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    End
 
 _0198:
     PlayFanfare SEQ_SE_CONFIRM
@@ -185,6 +175,4 @@ _01C4:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

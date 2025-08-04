@@ -110,7 +110,8 @@
     "offspring": "SPECIES_SWABLU",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 11,

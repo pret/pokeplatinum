@@ -282,10 +282,9 @@ _03DE:
     PlaySound SEQ_FANFA2
     Return
 
-    .byte 21
-    .byte 0
-    .byte 2
-    .byte 0
+Common_Unused:
+    ReturnCommonScript
+    End
 
 _03E8:
     LockAll
@@ -476,33 +475,12 @@ _067E:
     Message 49
     GoTo _06BB
 
-    .byte 126
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 5
-    .byte 31
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+Common_Unused2:
+    CheckItem ITEM_HONEY, 1, VAR_RESULT
+    GoToIfNe VAR_RESULT, 0, _06BB
+    CloseMessage
+    ReleaseAll
+    End
 
 _06A2:
     CheckItem ITEM_HONEY, 1, VAR_RESULT
@@ -1345,22 +1323,13 @@ _1260:
     FaceWest
     EndMovement
 
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Common_UnusedMovement:
+    FaceNorth
+    EndMovement
+
+Common_UnusedMovement2:
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _1278:
@@ -1728,4 +1697,4 @@ _170A:
     ReturnCommonScript
     End
 
-    .byte 0
+    .balign 4, 0

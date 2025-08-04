@@ -186,5 +186,4 @@ _028C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0
