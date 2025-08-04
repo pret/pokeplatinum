@@ -6,6 +6,38 @@
 #define POFFIN_NONE 0xFFFF
 #define MAX_POFFINS 100
 
+enum PoffinFlavors {
+    POFFIN_FLAVOR_SPICY,
+    POFFIN_FLAVOR_SPICY_DRY,
+    POFFIN_FLAVOR_SPICY_SWEET,
+    POFFIN_FLAVOR_SPICY_BITTER,
+    POFFIN_FLAVOR_SPICY_SOUR,
+    POFFIN_FLAVOR_DRY_SPICY,
+    POFFIN_FLAVOR_DRY,
+    POFFIN_FLAVOR_DRY_SWEET,
+    POFFIN_FLAVOR_DRY_BITTER,
+    POFFIN_FLAVOR_DRY_SOUR,
+    POFFIN_FLAVOR_SWEET_SPICY,
+    POFFIN_FLAVOR_SWEET_DRY,
+    POFFIN_FLAVOR_SWEET,
+    POFFIN_FLAVOR_SWEET_BITTER,
+    POFFIN_FLAVOR_SWEET_SOUR,
+    POFFIN_FLAVOR_BITTER_SPICY,
+    POFFIN_FLAVOR_BITTER_DRY,
+    POFFIN_FLAVOR_BITTER_SWEET,
+    POFFIN_FLAVOR_BITTER,
+    POFFIN_FLAVOR_BITTER_SOUR,
+    POFFIN_FLAVOR_SOUR_SPICY,
+    POFFIN_FLAVOR_SOUR_DRY,
+    POFFIN_FLAVOR_SOUR_SWEET,
+    POFFIN_FLAVOR_SOUR_BITTER,
+    POFFIN_FLAVOR_SOUR,
+    POFFIN_FLAVOR_RICH,
+    POFFIN_FLAVOR_OVERRIPE,
+    POFFIN_FLAVOR_FOUL,
+    POFFIN_FLAVOR_MILD
+};
+
 typedef struct {
     union {
         struct PoffinInner {
@@ -15,7 +47,7 @@ typedef struct {
             u8 sweetness;
             u8 bitterness;
             u8 sourness;
-            u8 val1_06;
+            u8 smoothness;
             u8 dummy;
         };
         u8 attributes[sizeof(struct PoffinInner)];
@@ -33,7 +65,7 @@ enum PoffinAttributeID {
     POFFIN_ATTRIBUTEID_SWEETNESS,
     POFFIN_ATTRIBUTEID_BITTERNESS,
     POFFIN_ATTRIBUTEID_SOURNESS,
-    POFFIN_ATTRIBUTEID_06,
+    POFFIN_ATTRIBUTEID_SMOOTHNESS,
     POFFIN_ATTRIBUTEID_NUM
 };
 
@@ -43,7 +75,7 @@ void Poffin_Clear(Poffin *poffin);
 Poffin *Poffin_New(int heapID);
 void Poffin_Copy(Poffin *src, Poffin *dest);
 u8 Poffin_GetAttribute(Poffin *poffin, enum PoffinAttributeID attributeID);
-int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul);
+int Poffin_MakePoffin(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul);
 void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest);
 u8 Poffin_CalcLevel(Poffin *poffin);
 PoffinCase *SaveData_GetPoffinCase(SaveData *saveData);

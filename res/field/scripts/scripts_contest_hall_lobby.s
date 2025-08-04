@@ -298,7 +298,7 @@ _038A:
     CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _037F
     Message 13
-    ScrCmd_28A VAR_RESULT
+    CheckHasEmptyPoffinCaseSlot VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _03C8
     Call _0437
     SetFlag FLAG_UNK_0x015A
@@ -320,7 +320,7 @@ _03D3:
     CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0428
     Message 13
-    ScrCmd_28A VAR_RESULT
+    CheckHasEmptyPoffinCaseSlot VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0419
     Call _0437
     SetFlag FLAG_UNK_0x015A
@@ -345,7 +345,7 @@ _0428:
     End
 
 _0437:
-    ScrCmd_289 VAR_RESULT, 60, 30, 30, 30, 30, 40
+    GivePoffin VAR_RESULT, 60, 30, 30, 30, 30, 40
     PlaySound SEQ_FANFA4
     BufferPlayerName 0
     Message 14
