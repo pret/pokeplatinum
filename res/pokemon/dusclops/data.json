@@ -127,7 +127,8 @@
     "offspring": "SPECIES_DUSKULL",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SCARY"
     },
     "pokedex_data": {
         "height": 16,

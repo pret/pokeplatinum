@@ -186,7 +186,8 @@ datagen_species_out = custom_target('datagen_species_out',
         'pms.narc',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
-        'species_footprints.h',
+        'species_footprint_sizes.h',
+        'species_footprint_types.h',
         'species_egg_moves.h',
         'species_icon_palettes.h',
     ],
@@ -207,6 +208,7 @@ h_headers += datagen_species_out[8]
 h_headers += datagen_species_out[9]
 h_headers += datagen_species_out[10]
 h_headers += datagen_species_out[11]
+h_headers += datagen_species_out[12]
 
 
 # OLD NARCs
