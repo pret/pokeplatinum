@@ -2,11 +2,11 @@
 #define POKEPLATINUM_SCRIPT_MANAGER_H
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0203F478.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/field_menu.h"
 #include "overlay005/save_info_window.h"
+#include "overlay034/dowsing_machine_task_data.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
@@ -100,6 +100,11 @@ enum ScriptContextType {
 
 #define SCRIPT_MANAGER_MAGIC_NUMBER 0x3643F
 
+#define INIT_SCRIPT_TYPE_FIRST_MATCH 1
+#define INIT_SCRIPT_TYPE_FIXED_UNK_2 2
+#define INIT_SCRIPT_TYPE_FIXED_UNK_3 3
+#define INIT_SCRIPT_TYPE_FIXED_UNK_4 4
+
 typedef void (*FieldSysFunc)(FieldSystem *);
 
 typedef struct ApproachingTrainer {
@@ -153,10 +158,10 @@ void ScriptManager_Change(FieldTask *taskManager, u16 scriptID, MapObject *objec
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID);
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member);
 void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member);
-void sub_0203F0C0(FieldSystem *fieldSystem);
+void FieldSystem_ShowStartMenu(FieldSystem *fieldSystem);
 u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID);
 u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID);
-u16 sub_0203F164(FieldSystem *fieldSystem, u16 param1);
+u16 FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, u16 param1);
 BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_SetFlag(FieldSystem *fieldSystem, u16 flagID);
 void FieldSystem_ClearFlag(FieldSystem *fieldSystem, u16 flagID);
@@ -173,9 +178,9 @@ u16 Script_GetHiddenItemFlag(u16 scriptID);
 u16 Script_GetHiddenItemScript(u16 scriptID);
 void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem);
 u8 Script_GetHiddenItemRange(u16 scriptID);
-UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID);
+HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, int heapID);
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
-BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1);
+BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 param1);
 
 #endif // POKEPLATINUM_SCRIPT_MANAGER_H

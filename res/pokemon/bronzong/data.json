@@ -114,7 +114,8 @@
     "offspring": "SPECIES_BRONZOR",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 13,

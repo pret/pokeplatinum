@@ -34,7 +34,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
     { 0x2D4A, 0x5651 }
 };
 
-#include "res/pokemon/species_footprints.h"
+#include "res/pokemon/species_footprint_sizes.h"
 
 static const TouchScreenRect Unk_ov113_02260D4C[] = {
     { 0xA0, 0xC0, 0x0, 0x20 },

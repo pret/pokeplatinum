@@ -115,7 +115,8 @@
     "offspring": "SPECIES_CORPHISH",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SCARY"
     },
     "pokedex_data": {
         "height": 11,

@@ -14,6 +14,7 @@
 #include "bg_window.h"
 #include "dexmode_checker.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "heap.h"
 #include "message.h"
 #include "move_table.h"
@@ -24,7 +25,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_memo.h"
-#include "unk_0200C440.h"
 #include "unk_02094EDC.h"
 
 #include "res/text/bank/pokemon_summary_screen.h"
@@ -849,7 +849,7 @@ void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen)
 
     Strbuf *buf;
     if (summaryScreen->monData.isEgg == FALSE) {
-        sub_0200C578(summaryScreen->unk_684, 1, window, 0, 5);
+        FontSpecialChars_DrawPartyScreenLevelText(summaryScreen->unk_684, 1, window, 0, 5);
 
         buf = MessageLoader_GetNewStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_TemplateMonLevel);
 
