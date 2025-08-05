@@ -1,5 +1,6 @@
 #include "overlay012/ov12_02226B84.h"
 
+#include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -468,13 +469,19 @@ typedef struct RevolveBattlerContext {
 #define REVOLVE_BATTLER_VAR_REVS           1
 #define REVOLVE_BATTLER_VAR_FRAMES_PER_REV 2
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    BattleAnimSpriteInfo unk_1C;
-    XYTransformContext unk_30;
-    Point2D unk_54;
-    Point2D unk_58;
-} UnkStruct_ov12_02228E78;
+// -------------------------------------------------------------------
+// Move Battler Off-Screen
+// -------------------------------------------------------------------
+typedef struct MoveBattlerOffScreenContext {
+    BattleAnimScriptFuncCommon common;
+    BattleAnimSpriteInfo spriteInfo;
+    XYTransformContext pos;
+    Point2D unused;
+    Point2D destPos;
+} MoveBattlerOffScreenContext;
+
+#define MOVE_BATTLER_OFF_SCREEN_VAR_TARGET 0
+#define MOVE_BATTLER_OFF_SCREEN_VAR_FRAMES 1
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -2479,72 +2486,71 @@ void BattleAnimScriptFunc_RevolveBattler(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_RevolveBattler, ctx);
 }
 
-static void ov12_02228E78(SysTask *param0, void *param1)
+static void BattleAnimTask_MoveBattlerOffScreen(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02228E78 *v0 = (UnkStruct_ov12_02228E78 *)param1;
+    MoveBattlerOffScreenContext *ctx = param;
 
-    switch (v0->unk_00.state) {
+    switch (ctx->common.state) {
     case 0:
-        if (PosLerpContext_Update(&v0->unk_30) == 0) {
-            v0->unk_00.state++;
+        if (PosLerpContext_Update(&ctx->pos) == FALSE) {
+            ctx->common.state++;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_X_CENTER, v0->unk_30.x);
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER, v0->unk_30.y);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_X_CENTER, ctx->pos.x);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->pos.y);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02228EC0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MoveBattlerOffScreen(BattleAnimSystem *system)
 {
-    Point2D v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    UnkStruct_ov12_02228E78 *v5 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02228E78));
+    // Need to be declared here to match
+    int target, battler, frames;
 
-    BattleAnimSystem_GetCommonData(param0, &v5->unk_00);
+    MoveBattlerOffScreenContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MoveBattlerOffScreenContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v1 = BattleAnimSystem_GetScriptVar(param0, 0);
-    v4 = BattleAnimSystem_GetScriptVar(param0, 1);
+    target = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_OFF_SCREEN_VAR_TARGET);
+    frames = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_OFF_SCREEN_VAR_FRAMES);
 
-    switch (v1) {
-    case 0x2:
-        v2 = BattleAnimSystem_GetAttacker(param0);
+    switch (target) {
+    case BATTLE_ANIM_ATTACKER:
+        battler = BattleAnimSystem_GetAttacker(system);
         break;
-    case 0x4:
-        v2 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetAttacker(param0));
+    case BATTLE_ANIM_ATTACKER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetAttacker(system));
         break;
-    case 0x8:
-        v2 = BattleAnimSystem_GetDefender(param0);
+    case BATTLE_ANIM_DEFENDER:
+        battler = BattleAnimSystem_GetDefender(system);
         break;
-    case 0x10:
-        v2 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetDefender(param0));
+    case BATTLE_ANIM_DEFENDER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetDefender(system));
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    ov12_022353AC(param0, v2, &v5->unk_54);
-    BattleAnimUtil_GetBattlerSprites(param0, v1, &(v5->unk_1C), &v3);
+    BattleAnimUtil_GetBattlerDefaultPos(system, battler, &ctx->unused);
 
-    v5->unk_58.x = 0;
-    v5->unk_58.y = 0;
+    int spriteCount;
+    BattleAnimUtil_GetBattlerSprites(system, target, &ctx->spriteInfo, &spriteCount);
 
-    if (BattleAnimUtil_GetBattlerSide(v5->unk_00.battleAnimSystem, v2) == 0x3) {
-        v5->unk_58.x = (0 - 80);
+    ctx->destPos.x = 0;
+    ctx->destPos.y = 0;
+
+    if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSystem, battler) == BTLSCR_PLAYER) {
+        ctx->destPos.x = -MON_SPRITE_FRAME_WIDTH;
     } else {
-        v5->unk_58.x = (256 + 80);
+        ctx->destPos.x = HW_LCD_WIDTH + MON_SPRITE_FRAME_WIDTH;
     }
 
-    PosLerpContext_Init(&v5->unk_30, v5->unk_1C.pos.x, v5->unk_58.x, v5->unk_1C.pos.y, v5->unk_1C.pos.y, v4);
-    BattleAnimSystem_StartAnimTask(v5->unk_00.battleAnimSystem, ov12_02228E78, v5);
+    PosLerpContext_Init(&ctx->pos, ctx->spriteInfo.pos.x, ctx->destPos.x, ctx->spriteInfo.pos.y, ctx->spriteInfo.pos.y, frames);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MoveBattlerOffScreen, ctx);
 }
 
 void ov12_02228FB4(BattleAnimSystem *param0)
@@ -2555,9 +2561,9 @@ void ov12_02228FB4(BattleAnimSystem *param0)
     int v3;
     int v4;
     int v5;
-    UnkStruct_ov12_02228E78 *v6 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02228E78));
+    MoveBattlerOffScreenContext *v6 = BattleAnimUtil_Alloc(param0, sizeof(MoveBattlerOffScreenContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v6->unk_00);
+    BattleAnimSystem_GetCommonData(param0, &v6->common);
 
     v1 = BattleAnimSystem_GetScriptVar(param0, 0);
     v5 = BattleAnimSystem_GetScriptVar(param0, 1);
@@ -2581,28 +2587,28 @@ void ov12_02228FB4(BattleAnimSystem *param0)
         break;
     }
 
-    ov12_022353AC(param0, v2, &v6->unk_54);
-    BattleAnimUtil_GetBattlerSprites(param0, v5, &(v6->unk_1C), &v3);
+    BattleAnimUtil_GetBattlerDefaultPos(param0, v2, &v6->unused);
+    BattleAnimUtil_GetBattlerSprites(param0, v5, &(v6->spriteInfo), &v3);
 
-    v6->unk_58.x = 0;
-    v6->unk_58.y = 0;
+    v6->destPos.x = 0;
+    v6->destPos.y = 0;
 
-    if (BattleAnimUtil_GetBattlerSide(v6->unk_00.battleAnimSystem, v2) == 0x3) {
-        v6->unk_58.x = (0 - 80);
+    if (BattleAnimUtil_GetBattlerSide(v6->common.battleAnimSystem, v2) == 0x3) {
+        v6->destPos.x = (0 - 80);
     } else {
-        v6->unk_58.x = (256 + 80);
+        v6->destPos.x = (256 + 80);
     }
 
     if (v1 == 0) {
-        PosLerpContext_Init(&v6->unk_30, v6->unk_1C.pos.x, v6->unk_58.x, v6->unk_1C.pos.y, v6->unk_1C.pos.y, v4);
+        PosLerpContext_Init(&v6->pos, v6->spriteInfo.pos.x, v6->destPos.x, v6->spriteInfo.pos.y, v6->spriteInfo.pos.y, v4);
     } else {
         s16 v7;
 
         v7 = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
-        PosLerpContext_Init(&v6->unk_30, v6->unk_58.x, v7, v6->unk_1C.pos.y, v6->unk_1C.pos.y, v4);
+        PosLerpContext_Init(&v6->pos, v6->destPos.x, v7, v6->spriteInfo.pos.y, v6->spriteInfo.pos.y, v4);
     }
 
-    BattleAnimSystem_StartAnimTask(v6->unk_00.battleAnimSystem, ov12_02228E78, v6);
+    BattleAnimSystem_StartAnimTask(v6->common.battleAnimSystem, BattleAnimTask_MoveBattlerOffScreen, v6);
 }
 
 void ov12_022290DC(BattleAnimSystem *param0)
@@ -2633,7 +2639,7 @@ void ov12_022290DC(BattleAnimSystem *param0)
         break;
     }
 
-    ov12_022353AC(param0, v1, &v3);
+    BattleAnimUtil_GetBattlerDefaultPos(param0, v1, &v3);
     BattleAnimUtil_GetBattlerSprites(param0, v0, &v4, &v2);
 
     {

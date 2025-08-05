@@ -46,8 +46,8 @@ enum Battler BattleAnimUtil_GetBattlerSide(BattleAnimSystem *param0, int param1)
 int BattleAnimUtil_GetBattlerOfType(BattleAnimSystem *param0, int param1);
 int BattleAnimUtil_GetAlliedBattler(BattleAnimSystem *param0, int param1);
 int BattleAnimUtil_GetOpposingBattlerType(int param0);
-void ov12_02235350(int param0, int param1, Point2D *param2);
-void ov12_022353AC(BattleAnimSystem *param0, int param1, Point2D *param2);
+void BattleAnimUtil_GetBattlerTypeDefaultPos(int param0, BOOL param1, Point2D *param2);
+void BattleAnimUtil_GetBattlerDefaultPos(BattleAnimSystem *param0, int param1, Point2D *param2);
 void ov12_02235448(int param0, VecFx32 *param1, int param2, int param3);
 void ov12_02235458(int param0, VecFx32 *param1, int param2, int param3);
 void ov12_02235468(int param0, VecFx32 *param1, int param2, int param3);

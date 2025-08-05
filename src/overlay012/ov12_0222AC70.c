@@ -715,9 +715,9 @@ void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         int v4 = BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0));
 
         if (v4 == 0x3) {
-            ov12_02235350(0, BattleAnimSystem_IsContest(param0), &v3);
+            BattleAnimUtil_GetBattlerTypeDefaultPos(0, BattleAnimSystem_IsContest(param0), &v3);
         } else {
-            ov12_02235350(1, BattleAnimSystem_IsContest(param0), &v3);
+            BattleAnimUtil_GetBattlerTypeDefaultPos(1, BattleAnimSystem_IsContest(param0), &v3);
         }
 
         for (v0 = 1; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {

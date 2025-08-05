@@ -25,7 +25,7 @@ void ov12_02228A0C(BattleAnimSystem *param0);
 void ov12_02228B40(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattler(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RevolveBattler(BattleAnimSystem *param0);
-void ov12_02228EC0(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_MoveBattlerOffScreen(BattleAnimSystem *param0);
 void ov12_02228FB4(BattleAnimSystem *param0);
 void ov12_022290DC(BattleAnimSystem *param0);
 void ov12_022291AC(BattleAnimSystem *param0);
