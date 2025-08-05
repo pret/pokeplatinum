@@ -4,7 +4,6 @@
 #include "nitro/hw/common/lcd.h"
 
 #include "overlay012/battle_anim_system.h"
-#include "overlay012/struct_ov12_022267D4_decl.h"
 
 #include "buffer_manager.h"
 #include "palette.h"
@@ -143,6 +142,22 @@ typedef struct SpriteShakeInfo {
     int targets;
 } SpriteShakeInfo;
 
+typedef struct UnkStruct_ov12_022267D4_t {
+    BOOL active;
+    SysTask *task;
+    enum PaletteBufferID bufferID;
+    u16 index;
+    u16 count;
+    u16 color;
+    u8 startFrac;
+    u8 endFrac;
+    u8 fraction;
+    s8 step;
+    s8 stepFrames;
+    s8 timer;
+    PaletteData *paletteData;
+} PaletteFadeContext;
+
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
 s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *param0, int param1, enum BattleAnimPositionType param2);
@@ -208,9 +223,9 @@ void ov12_02226728(s16 param0, s16 param1, s16 param2, s16 param3, s16 *param4, 
 void ov12_02226744(s16 param0, s16 param1, s16 param2, s16 param3, fx32 *param4);
 void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 *param4);
 BOOL ov12_022267A8(int *param0, int param1, s32 param2);
-BOOL ov12_02226848(UnkStruct_ov12_022267D4 *param0);
-void ov12_02226858(UnkStruct_ov12_022267D4 *param0);
-UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10);
+BOOL PaletteFadeContext_IsActive(PaletteFadeContext *param0);
+void PaletteFadeContext_Free(PaletteFadeContext *param0);
+PaletteFadeContext *PaletteFadeContext_New(PaletteData *param0, enum HeapId heapID, enum PaletteBufferID param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10);
 void ov12_02226924(BattleAnimSystem *param0);
 void ov12_02226954(BattleAnimSystem *param0);
 

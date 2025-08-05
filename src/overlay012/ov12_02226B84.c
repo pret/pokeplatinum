@@ -12,7 +12,6 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_022267D4_decl.h"
 
 #include "battle_script_battlers.h"
 #include "bg_window.h"
@@ -483,11 +482,22 @@ typedef struct MoveBattlerOffScreenContext {
 #define MOVE_BATTLER_OFF_SCREEN_VAR_TARGET 0
 #define MOVE_BATTLER_OFF_SCREEN_VAR_FRAMES 1
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    BattleAnimSpriteInfo unk_1C;
-    UnkStruct_ov12_022267D4 *unk_30;
-} UnkStruct_ov12_02229184;
+// -------------------------------------------------------------------
+// Fade Pokemon Sprite
+// -------------------------------------------------------------------
+typedef struct FadePokemonSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    BattleAnimSpriteInfo spriteInfo;
+    PaletteFadeContext *paletteFade;
+} FadePokemonSpriteContext;
+
+#define FADE_POKEMON_SPRITE_TASK_PRIORITY   1100
+#define FADE_POKEMON_SPRITE_VAR_TARGET      0
+#define FADE_POKEMON_SPRITE_VAR_STEP_FRAMES 1
+#define FADE_POKEMON_SPRITE_VAR_STEP_SIZE   2
+#define FADE_POKEMON_SPRITE_VAR_START_FRAC  3
+#define FADE_POKEMON_SPRITE_VAR_END_FRAC    4
+#define FADE_POKEMON_SPRITE_VAR_COLOR       5
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -2648,40 +2658,47 @@ void BattleAnimScriptFunc_MoveBattlerToDefaultPos(BattleAnimSystem *system)
     PokemonSprite_SetAttribute(spriteInfo.monSprite, MON_SPRITE_Y_CENTER, destPos.y + height);
 }
 
-static void ov12_02229184(SysTask *param0, void *param1)
+static void BattleAnimTask_FadePokemonSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02229184 *v0 = (UnkStruct_ov12_02229184 *)param1;
+    FadePokemonSpriteContext *ctx = param;
 
-    if (ov12_02226848(v0->unk_30) == 0) {
-        ov12_02226858(v0->unk_30);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-        Heap_Free(v0);
+    if (PaletteFadeContext_IsActive(ctx->paletteFade) == FALSE) {
+        PaletteFadeContext_Free(ctx->paletteFade);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
     }
 }
 
-void ov12_022291AC(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_FadePokemonSprite(BattleAnimSystem *system)
 {
-    int v0;
-    UnkStruct_ov12_02229184 *v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02229184));
+    FadePokemonSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FadePokemonSpriteContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v1->unk_00);
+    int target = BattleAnimSystem_GetScriptVar(system, FADE_POKEMON_SPRITE_VAR_TARGET);
+    int stepFrames = BattleAnimSystem_GetScriptVar(system, FADE_POKEMON_SPRITE_VAR_STEP_FRAMES);
+    int step = BattleAnimSystem_GetScriptVar(system, FADE_POKEMON_SPRITE_VAR_STEP_SIZE);
+    int startFrac = BattleAnimSystem_GetScriptVar(system, FADE_POKEMON_SPRITE_VAR_START_FRAC);
+    int endFrac = BattleAnimSystem_GetScriptVar(system, FADE_POKEMON_SPRITE_VAR_END_FRAC);
+    int color = BattleAnimSystem_GetScriptVar(system, FADE_POKEMON_SPRITE_VAR_COLOR);
 
-    {
-        int v2;
-        int v3 = BattleAnimSystem_GetScriptVar(param0, 0);
-        int v4 = BattleAnimSystem_GetScriptVar(param0, 1);
-        int v5 = BattleAnimSystem_GetScriptVar(param0, 2);
-        int v6 = BattleAnimSystem_GetScriptVar(param0, 3);
-        int v7 = BattleAnimSystem_GetScriptVar(param0, 4);
-        int v8 = BattleAnimSystem_GetScriptVar(param0, 5);
+    int count;
+    BattleAnimUtil_GetPokemonSprites(system, target, &ctx->spriteInfo, &count);
 
-        BattleAnimUtil_GetPokemonSprites(param0, v3, &(v1->unk_1C), &v0);
+    int palDest = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->spriteInfo.hwSprite->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    ctx->paletteFade = PaletteFadeContext_New(
+        ctx->common.paletteData,
+        BattleAnimSystem_GetHeapID(system),
+        PLTTBUF_MAIN_OBJ,
+        PLTT_DEST(palDest),
+        PALETTE_SIZE,
+        stepFrames,
+        step,
+        startFrac,
+        endFrac,
+        color,
+        FADE_POKEMON_SPRITE_TASK_PRIORITY);
 
-        v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->unk_1C.hwSprite->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-        v1->unk_30 = ov12_02226870(v1->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v2 * 16, 16, v4, v5, v6, v7, v8, 1100);
-    }
-
-    BattleAnimSystem_StartAnimTask(v1->unk_00.battleAnimSystem, ov12_02229184, v1);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_FadePokemonSprite, ctx);
 }
 
 static void ov12_02229278(SysTask *param0, void *param1)

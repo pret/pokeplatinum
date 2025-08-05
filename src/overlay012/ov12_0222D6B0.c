@@ -8,7 +8,6 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_022267D4_decl.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -117,7 +116,7 @@ typedef struct {
     s16 unk_20;
     s16 unk_22[4];
     ManagedSprite *unk_2C[4];
-    UnkStruct_ov12_022267D4 *unk_3C[6];
+    PaletteFadeContext *unk_3C[6];
     int unk_54;
     int unk_58;
 } UnkStruct_ov12_0222E390;
@@ -915,27 +914,27 @@ static void ov12_0222E390(SysTask *param0, void *param1)
         }
 
         if (v0->unk_22[0] == 40 + 10) {
-            v0->unk_3C[0] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[0] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 50 + 10) {
-            v0->unk_3C[1] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 60 + 10) {
-            v0->unk_3C[2] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[2] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 70 + 10) {
-            v0->unk_3C[3] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[3] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 80 + 10) {
-            v0->unk_3C[4] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[4] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 90 + 10) {
-            v0->unk_3C[5] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[5] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 110) {
@@ -972,7 +971,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
             }
 
             for (v1 = 0; v1 < 6; v1++) {
-                ov12_02226858(v0->unk_3C[v1]);
+                PaletteFadeContext_Free(v0->unk_3C[v1]);
             }
 
             BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);

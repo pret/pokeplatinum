@@ -10,7 +10,6 @@
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_022267D4_decl.h"
 
 #include "battle_script_battlers.h"
 #include "bg_window.h"
@@ -246,7 +245,7 @@ typedef struct FlashContext {
     u8 delay;
     PaletteData *paletteData;
     BattleAnimSystem *battleAnimSys;
-    UnkStruct_ov12_022267D4 *unk_0C;
+    PaletteFadeContext *unk_0C;
     PokemonSprite *attackerSprite;
 } FlashContext;
 
