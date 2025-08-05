@@ -834,12 +834,12 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
         param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        CharacterSprite_GetPokemonSpriteRegion(v1.narcID, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), TRUE, FACE_FRONT, param0->unk_2E0[v12]);
+        CharacterSprite_LoadPokemonSpriteRegion(v1.narcID, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), TRUE, FACE_FRONT, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        CharacterSprite_GetPokemonSpriteRegion(v1.narcID, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), TRUE, FACE_FRONT, param0->unk_2E0[v12]);
+        CharacterSprite_LoadPokemonSpriteRegion(v1.narcID, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), TRUE, FACE_FRONT, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
@@ -854,7 +854,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     NNS_G2dLoadPalette(v8, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
     sub_02076AAC((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0, 2, &v4);
-    CharacterSprite_GetSpriteRegion(v4.narcID, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
+    CharacterSprite_LoadSpriteRegion(v4.narcID, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
 
     DC_FlushRange(param0->unk_310, 3200);
     GX_LoadOBJ(param0->unk_310, 38400, 3200);

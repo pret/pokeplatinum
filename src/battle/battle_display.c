@@ -5643,7 +5643,7 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
         face = FACE_BACK;
     }
 
-    CharacterSprite_GetPokemonSprite(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, FALSE, face, param2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, FALSE, face, param2->spindaSpots);
     ov16_0223F2CC(ov16_0223E0C8(battleSys), param10, param2->narcID);
     ov16_0223F2E4(ov16_0223E0C8(battleSys), param10, param2->palette);
     ov16_0223F2FC(ov16_0223E0C8(battleSys), param10, param6);

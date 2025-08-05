@@ -576,7 +576,7 @@ static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species
     BuildPokemonSpriteTemplate(monSpriteTemplate, species, monGender, FACE_FRONT, shiny, form, 0);
 
     u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
-    CharacterSprite_GetPokemonSpriteRect(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, FALSE, FACE_FRONT, species);
+    CharacterSprite_LoadPokemonSpriteRect(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, FALSE, FACE_FRONT, species);
 
     DC_FlushRange(buffer, MON_SPRITE_FRAME_MAX_SIZE_BYTES);
 

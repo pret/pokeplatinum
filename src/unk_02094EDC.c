@@ -671,7 +671,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
 
     if (param4 != NULL) {
         GF_ASSERT(param4->unk_00 != NULL);
-        CharacterSprite_GetSpriteFrame0(v0.narcID, v0.character, heapID, param4->unk_00);
+        CharacterSprite_LoadSpriteFrame0(v0.narcID, v0.character, heapID, param4->unk_00);
         param4->unk_08 = v0.palette;
         param4->unk_04 = v0.narcID;
     }

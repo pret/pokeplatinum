@@ -2057,7 +2057,7 @@ static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 he
 
     {
         int v1 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        CharacterSprite_GetPokemonSprite(param1->narcID, param1->character, heapID, v0, v1, FALSE, FACE_FRONT, param1->spindaSpots);
+        CharacterSprite_LoadPokemonSprite(param1->narcID, param1->character, heapID, v0, v1, FALSE, FACE_FRONT, param1->spindaSpots);
     }
 
     return v0;
