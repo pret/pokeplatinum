@@ -11,7 +11,6 @@
 #include "overlay012/ov12_0222D6B0.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
 #include "bg_window.h"
@@ -84,7 +83,7 @@ typedef struct {
     u8 unk_34;
     u8 unk_35;
     s8 unk_36;
-    UnkStruct_ov12_022267D4 *unk_38[2];
+    PaletteFadeContext *unk_38[2];
 } UnkStruct_ov12_0222EE50;
 
 typedef struct {
@@ -427,23 +426,23 @@ static void ov12_0222EE50(SysTask *param0, void *param1)
         }
         break;
     case 1:
-        if (ov12_02226848(v0->unk_38[1]) == 0) {
+        if (PaletteFadeContext_IsActive(v0->unk_38[1]) == 0) {
             int v1;
 
-            ov12_02226858(v0->unk_38[0]);
-            ov12_02226858(v0->unk_38[1]);
+            PaletteFadeContext_Free(v0->unk_38[0]);
+            PaletteFadeContext_Free(v0->unk_38[1]);
 
             v1 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_1C[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-            v0->unk_38[1] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v1 * 16, 16, 0, 1, 15, 0, 0xFFFFFF, 1100);
+            v0->unk_38[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v1 * 16, 16, 0, 1, 15, 0, 0xFFFFFF, 1100);
             v0->unk_00.state++;
         }
         break;
     case 2:
     default:
-        if (ov12_02226848(v0->unk_38[1]) == 0) {
+        if (PaletteFadeContext_IsActive(v0->unk_38[1]) == 0) {
             ManagedSprite_TickFrame(v0->unk_1C[1]);
-            ov12_02226858(v0->unk_38[1]);
+            PaletteFadeContext_Free(v0->unk_38[1]);
             BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
             Heap_Free(v0);
             return;
@@ -497,10 +496,10 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
         int v6;
 
         v6 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_1C[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-        v0->unk_38[0] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
+        v0->unk_38[0] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
 
         v6 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_1C[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-        v0->unk_38[1] = ov12_02226870(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
+        v0->unk_38[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
     }
 
     {

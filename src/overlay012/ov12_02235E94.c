@@ -11,7 +11,6 @@
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_02237E54.h"
 #include "overlay012/struct_ov12_02223764.h"
-#include "overlay012/struct_ov12_022267D4_decl.h"
 #include "overlay012/struct_ov12_02236030.h"
 #include "overlay012/struct_ov12_02236690.h"
 #include "overlay012/struct_ov12_02237728.h"
@@ -100,7 +99,7 @@ typedef struct BallRotation {
     UnkStruct_ov12_02237C54_sub1 unk_B8;
     SysTask *unk_CC;
     UnkStruct_ov12_02236648 *unk_D0;
-    UnkStruct_ov12_022267D4 *unk_D4;
+    PaletteFadeContext *unk_D4;
     UnkStruct_ov12_02223764 *unk_D8;
     int unk_DC;
 } BallRotation;
@@ -1620,7 +1619,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
                     int v1;
 
                     v1 = ManagedSprite_GetExplicitPaletteOffset(param0->unk_30);
-                    param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                    param0->unk_D4 = PaletteFadeContext_New(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
                 }
             }
         }
@@ -1640,11 +1639,11 @@ static BOOL ov12_02236F24(BallRotation *param0)
         break;
     case 2:
         if ((ov12_02235EF0(param0->unk_90.type) == 1) && (param0->unk_D4 != NULL)) {
-            if (ov12_02226848(param0->unk_D4) == 1) {
+            if (PaletteFadeContext_IsActive(param0->unk_D4) == 1) {
                 break;
             }
 
-            ov12_02226858(param0->unk_D4);
+            PaletteFadeContext_Free(param0->unk_D4);
             param0->unk_28 = 1;
 
             return 0;
@@ -1674,7 +1673,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
 
                 if ((param0->unk_90.type != 12) && (param0->unk_90.type != 13)) {
                     v2 = ManagedSprite_GetExplicitPaletteOffset(param0->unk_30);
-                    param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                    param0->unk_D4 = PaletteFadeContext_New(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
                 }
             }
             param0->unk_28 = 1;
@@ -1685,11 +1684,11 @@ static BOOL ov12_02236F24(BallRotation *param0)
         }
 
         if ((param0->unk_90.type != 12) && (param0->unk_90.type != 13)) {
-            if (ov12_02226848(param0->unk_D4) == 1) {
+            if (PaletteFadeContext_IsActive(param0->unk_D4) == 1) {
                 break;
             }
 
-            ov12_02226858(param0->unk_D4);
+            PaletteFadeContext_Free(param0->unk_D4);
         }
 
         return 0;
@@ -1731,7 +1730,7 @@ static BOOL ov12_022371E4(BallRotation *param0)
                     int v1;
 
                     v1 = ManagedSprite_GetExplicitPaletteOffset(param0->unk_30);
-                    param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                    param0->unk_D4 = PaletteFadeContext_New(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
                 }
             }
         }
@@ -1751,11 +1750,11 @@ static BOOL ov12_022371E4(BallRotation *param0)
         break;
     case 2:
         if ((ov12_02235EF0(param0->unk_90.type) == 1) && (param0->unk_D4 != NULL)) {
-            if (ov12_02226848(param0->unk_D4) == 1) {
+            if (PaletteFadeContext_IsActive(param0->unk_D4) == 1) {
                 break;
             }
 
-            ov12_02226858(param0->unk_D4);
+            PaletteFadeContext_Free(param0->unk_D4);
             param0->unk_28 = 1;
 
             return 0;
@@ -1783,7 +1782,7 @@ static BOOL ov12_022371E4(BallRotation *param0)
                 int v2;
 
                 v2 = ManagedSprite_GetExplicitPaletteOffset(param0->unk_30);
-                param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                param0->unk_D4 = PaletteFadeContext_New(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
             }
 
             param0->unk_28 = 1;
@@ -1793,11 +1792,11 @@ static BOOL ov12_022371E4(BallRotation *param0)
             break;
         }
 
-        if (ov12_02226848(param0->unk_D4) == 1) {
+        if (PaletteFadeContext_IsActive(param0->unk_D4) == 1) {
             break;
         }
 
-        ov12_02226858(param0->unk_D4);
+        PaletteFadeContext_Free(param0->unk_D4);
 
         return 0;
     }

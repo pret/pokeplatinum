@@ -1,6 +1,7 @@
 #include "overlay012/ov12_02225864.h"
 
 #include "nitro/hw/common/lcd.h"
+#include "nitro/types.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -25,22 +26,6 @@
 #include "sys_task_manager.h"
 
 #define MAX_CYCLES_PER_SHAKE 4
-
-typedef struct UnkStruct_ov12_022267D4_t {
-    BOOL unk_00;
-    SysTask *unk_04;
-    int unk_08;
-    u16 unk_0C;
-    u16 unk_0E;
-    u16 unk_10;
-    u8 unk_12;
-    u8 unk_13;
-    u8 unk_14;
-    s8 unk_15;
-    s8 unk_16;
-    s8 unk_17;
-    PaletteData *unk_18;
-} UnkStruct_ov12_022267D4;
 
 static void ov12_022268DC(u16 *param0, u16 param1);
 
@@ -1041,83 +1026,80 @@ BOOL ov12_022267A8(int *param0, int param1, s32 param2)
     return 1;
 }
 
-static void ov12_022267D4(SysTask *param0, void *param1)
+static void PaletteFadeContext_FadeTask(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022267D4 *v0 = (UnkStruct_ov12_022267D4 *)param1;
+    PaletteFadeContext *ctx = param;
 
-    if (v0->unk_00 == 0) {
+    if (ctx->active == FALSE) {
         return;
     }
 
-    if ((++v0->unk_17) >= v0->unk_16) {
-        v0->unk_17 = 0;
-        PaletteData_Blend(v0->unk_18, v0->unk_08, v0->unk_0C, v0->unk_0E, v0->unk_14, v0->unk_10);
+    if (++ctx->timer >= ctx->stepFrames) {
+        ctx->timer = 0;
+        PaletteData_Blend(ctx->paletteData, ctx->bufferID, ctx->index, ctx->count, ctx->fraction, ctx->color);
 
-        if (v0->unk_14 == v0->unk_13) {
-            v0->unk_00 = 0;
+        if (ctx->fraction == ctx->endFrac) {
+            ctx->active = FALSE;
         } else {
-            s8 v1 = v0->unk_14 + v0->unk_15;
+            s8 newFrac = ctx->fraction + ctx->step;
 
-            if (v0->unk_15 > 0) {
-                if (v1 > v0->unk_13) {
-                    v0->unk_14 = v0->unk_13;
+            if (ctx->step > 0) {
+                if (newFrac > ctx->endFrac) {
+                    ctx->fraction = ctx->endFrac;
                 } else {
-                    v0->unk_14 += v0->unk_15;
+                    ctx->fraction += ctx->step;
                 }
             } else {
-                if (v1 < v0->unk_13) {
-                    v0->unk_14 = v0->unk_13;
+                if (newFrac < ctx->endFrac) {
+                    ctx->fraction = ctx->endFrac;
                 } else {
-                    v0->unk_14 += v0->unk_15;
+                    ctx->fraction += ctx->step;
                 }
             }
         }
     }
 }
 
-BOOL ov12_02226848(UnkStruct_ov12_022267D4 *param0)
+BOOL PaletteFadeContext_IsActive(PaletteFadeContext *ctx)
 {
-    GF_ASSERT(param0 != NULL);
-    return param0->unk_00;
+    GF_ASSERT(ctx != NULL);
+    return ctx->active;
 }
 
-void ov12_02226858(UnkStruct_ov12_022267D4 *param0)
+void PaletteFadeContext_Free(PaletteFadeContext *ctx)
 {
-    GF_ASSERT(param0 != NULL);
+    GF_ASSERT(ctx != NULL);
 
-    SysTask_Done(param0->unk_04);
-    Heap_Free(param0);
+    SysTask_Done(ctx->task);
+    Heap_Free(ctx);
 }
 
-UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
+PaletteFadeContext *PaletteFadeContext_New(PaletteData *paletteData, enum HeapId heapID, enum PaletteBufferID bufferID, u16 index, u16 count, s8 stepFrames, s8 step, u8 startFrac, u8 endFrac, u16 color, int priority)
 {
-    UnkStruct_ov12_022267D4 *v0 = NULL;
+    PaletteFadeContext *ctx = Heap_AllocFromHeap(heapID, sizeof(PaletteFadeContext));
+    GF_ASSERT(ctx != NULL);
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_022267D4));
+    ctx->paletteData = paletteData;
+    ctx->bufferID = bufferID;
+    ctx->index = index;
+    ctx->count = count;
+    ctx->color = color;
+    ctx->startFrac = startFrac;
+    ctx->endFrac = endFrac;
+    ctx->fraction = startFrac;
+    ctx->stepFrames = stepFrames;
+    ctx->timer = stepFrames;
 
-    GF_ASSERT(v0 != NULL);
-
-    v0->unk_18 = param0;
-    v0->unk_08 = param2;
-    v0->unk_0C = param3;
-    v0->unk_0E = param4;
-    v0->unk_10 = param9;
-    v0->unk_12 = param7;
-    v0->unk_13 = param8;
-    v0->unk_14 = param7;
-    v0->unk_16 = param5;
-    v0->unk_17 = param5;
-
-    if (v0->unk_12 < v0->unk_13) {
-        v0->unk_15 = param6;
+    if (ctx->startFrac < ctx->endFrac) {
+        ctx->step = step;
     } else {
-        v0->unk_15 = param6 * -1;
+        ctx->step = -step;
     }
 
-    v0->unk_00 = 1;
-    v0->unk_04 = SysTask_Start(ov12_022267D4, v0, param10);
+    ctx->active = TRUE;
+    ctx->task = SysTask_Start(PaletteFadeContext_FadeTask, ctx, priority);
 
-    return v0;
+    return ctx;
 }
 
 static void ov12_022268DC(u16 *param0, u16 param1)
