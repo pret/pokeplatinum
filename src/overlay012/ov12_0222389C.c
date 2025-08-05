@@ -76,15 +76,15 @@ void ov12_022238E0(SPLEmitter *param0)
         int v10;
 
         if (BattleAnimUtil_GetBattlerSide(v0, v2) == 0x3) {
-            ov12_02235508(v0, v2, &v5);
+            BattleAnimUtil_GetBattlerWorldPos_Normal(v0, v2, &v5);
         } else {
             v8 = BattleAnimUtil_GetBattlerType(v0, v2);
             v9 = BattleAnimUtil_GetOpposingBattlerType(v8);
             v10 = ParticleSystem_GetCameraProjection(v1);
             v4 = BattleAnimSystem_IsContest(v0);
 
-            ov12_02235448(v9, &v5, v4, v10);
-            ov12_02235448(v8, &v6, v4, v10);
+            BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v9, &v5, v4, v10);
+            BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v8, &v6, v4, v10);
         }
     }
 
@@ -127,7 +127,7 @@ void ov12_02223998(SPLEmitter *param0)
     v2 = BattleAnimSystem_GetDefender(v0);
     v1 = BattleAnimSystem_GetCurrentParticleSystem(v0);
 
-    ov12_02235508(v0, 0, &v3);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(v0, 0, &v3);
 
     SPLEmitter_SetPosX(param0, v3.x);
     SPLEmitter_SetPosY(param0, v3.y);
@@ -146,7 +146,7 @@ void ov12_022239F4(SPLEmitter *param0)
     v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = BattleAnimSystem_GetDefender(v0);
 
-    ov12_02235508(v0, v1, &v2);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(v0, v1, &v2);
 
     SPLEmitter_SetPosX(param0, v2.x);
     SPLEmitter_SetPosY(param0, v2.y);
@@ -162,7 +162,7 @@ void ov12_02223A38(SPLEmitter *param0)
     v0 = ParticleSystem_GetEmitterCallbackParam();
     v1 = BattleAnimSystem_GetAttacker(v0);
 
-    ov12_02235508(v0, v1, &v2);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(v0, v1, &v2);
 
     SPLEmitter_SetPosX(param0, v2.x);
     SPLEmitter_SetPosY(param0, v2.y);
@@ -180,7 +180,7 @@ void ov12_02223A7C(SPLEmitter *param0)
     v1 = BattleAnimSystem_GetAttacker(v0);
     v2 = BattleAnimSystem_GetDefender(v0);
 
-    ov12_02235508(v0, v1, &v3);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(v0, v1, &v3);
 
     SPLEmitter_SetPosX(param0, v3.x);
     SPLEmitter_SetPosY(param0, v3.y);
@@ -209,7 +209,7 @@ void ov12_02223AC8(SPLEmitter *param0)
         v4 = 1;
     }
 
-    ov12_02235448(v4, &v1, BattleAnimSystem_IsContest(v0), v3);
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v4, &v1, BattleAnimSystem_IsContest(v0), v3);
 
     SPLEmitter_SetPosX(param0, v1.x);
     SPLEmitter_SetPosY(param0, v1.y);
@@ -239,7 +239,7 @@ void ov12_02223B30(SPLEmitter *param0)
         v5 = 1;
     }
 
-    ov12_02235448(v5, &v1, BattleAnimSystem_IsContest(v0), v4);
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(v5, &v1, BattleAnimSystem_IsContest(v0), v4);
 
     SPLEmitter_SetPosX(param0, v1.x);
     SPLEmitter_SetPosY(param0, v1.y);
@@ -346,10 +346,10 @@ static void ov12_02223CD4(BattleAnimSystem *param0, SPLEmitter *param1, int para
         v0.z = 0 * param5;
         break;
     case 3:
-        ov12_02235508(param0, param3, &v0);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param0, param3, &v0);
         break;
     case 4:
-        ov12_02235508(param0, param2, &v0);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param0, param2, &v0);
         break;
     case 5: {
         int v1[4] = { 0, 0, 0, 0 };
@@ -386,10 +386,10 @@ static void ov12_02223DA4(BattleAnimSystem *param0, SPLEmitter *param1, int para
         v0.z = 0 * param5;
         break;
     case 3:
-        ov12_02235508(param0, param3, &v0);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param0, param3, &v0);
         break;
     case 4:
-        ov12_02235508(param0, param2, &v0);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param0, param2, &v0);
         break;
     case 5: {
         int v1[4] = { 0, 0, 0, 0 };
@@ -489,7 +489,7 @@ static void ov12_02223E74(BattleAnimSystem *param0, SPLEmitter *param1, int para
         VecFx32 v14;
 
         ov12_0222325C(param0, v13, 3);
-        ov12_02235508(param0, param2, &v14);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param0, param2, &v14);
 
         if ((v13[0] == 0) && (v13[1] == 0) && (v13[2] == 0)) {
             v1 = v14;

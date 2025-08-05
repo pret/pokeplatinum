@@ -1,7 +1,9 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
-// clang-format off
 
+#include "constants/battle.h"
+
+// clang-format off
 #define BATTLE_ANIM_VAR_BG_MOVE_STEP_X  0 //< Step size for background movement in X direction (BATTLE_BG_SWITCH_FLAG_MOVE)
 #define BATTLE_ANIM_VAR_BG_MOVE_STEP_Y  1 //< Step size for background movement in Y direction (BATTLE_BG_SWITCH_FLAG_MOVE)
 #define BATTLE_ANIM_VAR_BG_MOVE_START_X 2 //< Starting position for background movement on X axis (BATTLE_BG_SWITCH_FLAG_MOVE)
@@ -103,6 +105,11 @@
 #define BATTLE_ANIM_MON_SPRITE_4 4
 #define BATTLE_ANIM_MON_SPRITE_F(N) (1 << (N))
 
+// Arbitrary scaling factor to convert particle world coordinates to screen coordinates
+#define BATTLE_PARTICLE_PIXEL_FACTOR 172
+#define BATTLE_PARTICLE_WORLD_TO_SCREEN(X) ((X) / BATTLE_PARTICLE_PIXEL_FACTOR)
+#define BATTLE_PARTICLE_SCREEN_TO_WORLD(X) ((X) * BATTLE_PARTICLE_PIXEL_FACTOR)
+
 // Default positions for battler sprites, lines up with BATTLER_TYPE_*
 #define BATTLER_POS_SOLO_PLAYER_X   64
 #define BATTLER_POS_SOLO_PLAYER_Y   112
@@ -123,6 +130,9 @@
 #define CONTESTANT_POS_ENEMY_X  80
 #define CONTESTANT_POS_ENEMY_Y  42
 
+#define CONTESTANT_TYPE_PLAYER (BATTLER_TYPE_MAX + BATTLER_TYPE_SOLO_PLAYER)
+#define CONTESTANT_TYPE_ENEMY  (BATTLER_TYPE_MAX + BATTLER_TYPE_SOLO_ENEMY)
+
 #define BASE_SCALE_XY 100
 
 // Script function specific constants
@@ -141,6 +151,13 @@
 #define SCALE_BATTLER_SPRITE_HOLD_CYCLES(delay, cycles) (((delay & 0xFFFF) << 16) | (cycles & 0xFFFF))
 #define SCALE_BATTLER_SPRITE_HOLD(frames) ((frames) >> 16)
 #define SCALE_BATTLER_SPRITE_CYCLES(frames) ((frames) & 0xFFFF)
+
+#define EMITTER_ANIMATION_MODE_ATK_TO_DEF 0 //< Animation from attacker to defender
+#define EMITTER_ANIMATION_MODE_DEF_TO_ATK 1 //< Animation from defender to attacker
+#define EMITTER_ANIMATION_DEFAULT_FRAMES 0xFF
+#define EMITTER_ANIMATION_PARAMS(skipFrames, maxFrames) (((skipFrames & 0xFFFF) << 16) | (maxFrames & 0xFFFF))
+#define EMITTER_ANIMATION_SKIP_FRAMES(params) ((params & 0xFFFF0000) >> 16)
+#define EMITTER_ANIMATION_MAX_FRAMES(params) ((params) & 0x0000FFFF)
 
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

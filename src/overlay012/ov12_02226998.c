@@ -82,7 +82,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_MoveBattlerToDefaultPos,
     BattleAnimScriptFunc_FadePokemonSprite,
     ov12_02229304,
-    ov12_02229B28,
+    BattleAnimScriptFunc_MoveEmitterA2BLinear,
     ov12_02229E54,
     ov12_02229638,
     ov12_02229810,
