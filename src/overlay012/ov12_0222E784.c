@@ -1,7 +1,7 @@
 #include "overlay012/ov12_0222E784.h"
 
-#include <nitro.h>
-#include <string.h>
+#include "constants/battle.h"
+#include "constants/battle/battle_anim.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
@@ -11,87 +11,102 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    BattleAnimSpriteInfo unk_1C;
-    BattleAnimSpriteInfo unk_30[2];
-    s16 unk_58;
-    s16 unk_5A;
-    s16 unk_5C;
-    XYTransformContext unk_60;
-} UnkStruct_ov12_0222E784;
+enum {
+    DEFENDER = 0,
+    DEFENDER_PARTNER,
+    DEFENDER_COUNT,
+};
 
-static void ov12_0222E784(SysTask *param0, void *param1)
+typedef struct MimicContext {
+    BattleAnimScriptFuncCommon common;
+    BattleAnimSpriteInfo defenderSprite;
+    BattleAnimSpriteInfo opponentSprites[DEFENDER_COUNT];
+    s16 defenderY;
+    s16 defenderHeight;
+    s16 unused;
+    XYTransformContext scale;
+} MimicContext;
+
+#define MIMIC_SCALE_X      20
+#define MIMIC_SCALE_Y      20
+#define MIMIC_SCALE_FRAMES 10
+
+static void BattleAnimTask_Mimic(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222E784 *v0 = (UnkStruct_ov12_0222E784 *)param1;
+    MimicContext *ctx = param;
 
-    switch (v0->unk_00.state) {
-    case 0:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_60) == 0) {
-            ManagedSprite_SetDrawFlag(v0->unk_1C.hwSprite, 0);
-            ManagedSprite_SetDrawFlag(v0->unk_30[0].hwSprite, 0);
-            ManagedSprite_SetDrawFlag(v0->unk_30[0].hwSprite, 0);
+    switch (ctx->common.state) {
+    case 0: {
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == FALSE) {
+            ManagedSprite_SetDrawFlag(ctx->defenderSprite.hwSprite, FALSE);
+            ManagedSprite_SetDrawFlag(ctx->opponentSprites[DEFENDER].hwSprite, FALSE);
+            ManagedSprite_SetDrawFlag(ctx->opponentSprites[DEFENDER].hwSprite, FALSE);
 
-            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-            ov12_02235E80(v0);
-            (v0) = NULL;
+            BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+            BattleAnimUtil_Free(ctx);
+            ctx = NULL;
 
             return;
         }
 
-        {
-            f32 v1, v2;
-
-            ScaleLerpContext_GetAffineScale(&v0->unk_60, &v1, &v2);
-            ManagedSprite_SetAffineScale(v0->unk_1C.hwSprite, v1, v2);
-            BattleAnimUtil_SetSpriteAnchoredPosition(v0->unk_1C.hwSprite, v0->unk_58, v0->unk_5A, v0->unk_60.data[4], 0);
-        }
-        break;
+        f32 scaleX, scaleY;
+        ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
+        ManagedSprite_SetAffineScale(ctx->defenderSprite.hwSprite, scaleX, scaleY);
+        BattleAnimUtil_SetSpriteAnchoredPosition(
+            ctx->defenderSprite.hwSprite,
+            ctx->defenderY,
+            ctx->defenderHeight,
+            ctx->scale.data[XY_PARAM_CUR_Y],
+            BATTLE_ANIM_ANCHOR_BOTTOM);
+    } break;
     default:
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C.hwSprite);
-    ManagedSprite_TickFrame(v0->unk_30[0].hwSprite);
-    ManagedSprite_TickFrame(v0->unk_30[1].hwSprite);
-    SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
+    ManagedSprite_TickFrame(ctx->defenderSprite.hwSprite);
+    ManagedSprite_TickFrame(ctx->opponentSprites[DEFENDER].hwSprite);
+    ManagedSprite_TickFrame(ctx->opponentSprites[DEFENDER_PARTNER].hwSprite);
+    SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 }
 
-void ov12_0222E810(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Mimic(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222E784 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E784));
+    MimicContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MimicContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_1C.monSprite = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
-    v0->unk_58 = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER);
-    v0->unk_5C = v0->unk_58;
-    v0->unk_5A = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
-    v0->unk_1C.hwSprite = BattleAnimSystem_GetPokemonSprite(param0, 0);
-    v0->unk_30[0].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, 1);
-    v0->unk_30[1].hwSprite = BattleAnimSystem_GetPokemonSprite(param0, 2);
+    ctx->defenderSprite.monSprite = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite.monSprite, MON_SPRITE_Y_CENTER);
+    ctx->unused = ctx->defenderY;
+    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    ctx->defenderSprite.hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->opponentSprites[DEFENDER].hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_1);
+    ctx->opponentSprites[DEFENDER_PARTNER].hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_2);
 
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_1C.hwSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetExplicitPriority(v0->unk_1C.hwSprite, BattleAnimSystem_GetPokemonSpritePriority(param0));
-    ManagedSprite_SetExplicitPriority(v0->unk_30[0].hwSprite, BattleAnimSystem_GetPokemonSpritePriority(param0));
-    ManagedSprite_SetExplicitPriority(v0->unk_30[1].hwSprite, BattleAnimSystem_GetPokemonSpritePriority(param0));
+    ManagedSprite_SetAffineOverwriteMode(ctx->defenderSprite.hwSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetExplicitPriority(ctx->defenderSprite.hwSprite, BattleAnimSystem_GetPokemonSpritePriority(system));
+    ManagedSprite_SetExplicitPriority(ctx->opponentSprites[DEFENDER].hwSprite, BattleAnimSystem_GetPokemonSpritePriority(system));
+    ManagedSprite_SetExplicitPriority(ctx->opponentSprites[DEFENDER_PARTNER].hwSprite, BattleAnimSystem_GetPokemonSpritePriority(system));
 
-    {
-        int v1;
-
-        v1 = BattleAnimSystem_GetBattlerType(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSystem));
-
-        if ((v1 == 3) || (v1 == 4)) {
-            ManagedSprite_SetPriority(v0->unk_1C.hwSprite, 30);
-            ManagedSprite_SetPriority(v0->unk_30[0].hwSprite, 50);
-            ManagedSprite_SetPriority(v0->unk_30[1].hwSprite, 70);
-        } else {
-            ManagedSprite_SetPriority(v0->unk_1C.hwSprite, 60);
-            ManagedSprite_SetPriority(v0->unk_30[0].hwSprite, 70);
-            ManagedSprite_SetPriority(v0->unk_30[1].hwSprite, 50);
-        }
+    int defenderType = BattleAnimSystem_GetBattlerType(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    if (defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 || defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+        ManagedSprite_SetPriority(ctx->defenderSprite.hwSprite, 30);
+        ManagedSprite_SetPriority(ctx->opponentSprites[DEFENDER].hwSprite, 50);
+        ManagedSprite_SetPriority(ctx->opponentSprites[DEFENDER_PARTNER].hwSprite, 70);
+    } else {
+        ManagedSprite_SetPriority(ctx->defenderSprite.hwSprite, 60);
+        ManagedSprite_SetPriority(ctx->opponentSprites[DEFENDER].hwSprite, 70);
+        ManagedSprite_SetPriority(ctx->opponentSprites[DEFENDER_PARTNER].hwSprite, 50);
     }
 
-    ScaleLerpContext_InitXY(&v0->unk_60, 100, 20, 100, 20, 100, 10);
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E784, v0);
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        BASE_SCALE_XY,
+        MIMIC_SCALE_X,
+        BASE_SCALE_XY,
+        MIMIC_SCALE_Y,
+        BASE_SCALE_XY,
+        MIMIC_SCALE_FRAMES);
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Mimic, ctx);
 }

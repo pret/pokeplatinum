@@ -2308,7 +2308,7 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
     if (ov12_02225D2C(&v1->unk_8C[0], &v1->unk_8C[1], v1->unk_38) == 0) {
         Sprite_DeleteAndFreeResources(v1->unk_38);
         BattleAnimSystem_EndAnimTask(v1->unk_10.battleAnimSystem, param0);
-        ov12_02235E80(v1);
+        BattleAnimUtil_Free(v1);
         (v1) = NULL;
         return;
     }
@@ -2435,7 +2435,7 @@ static void BattleAnimTask_Surf(SysTask *task, void *param)
         Sprite_DeleteAndFreeResources(ctx->sprites[0]);
         Sprite_DeleteAndFreeResources(ctx->sprites[1]);
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
-        ov12_02235E80(ctx);
+        BattleAnimUtil_Free(ctx);
         (ctx) = NULL;
         return;
     }

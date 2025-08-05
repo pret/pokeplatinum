@@ -113,7 +113,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         Bg_SetOffset(v0->unk_18.bgConfig, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         BattleAnimSystem_EndAnimTask(v0->unk_18.battleAnimSystem, param0);
-        ov12_02235E80(v0);
+        BattleAnimUtil_Free(v0);
         (v0) = NULL;
         return;
     }

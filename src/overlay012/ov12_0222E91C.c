@@ -127,7 +127,7 @@ static void ov12_0222E91C(SysTask *param0, void *param1)
     } break;
     default:
         BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-        ov12_02235E80(v0);
+        BattleAnimUtil_Free(v0);
         (v0) = NULL;
         return;
     }
