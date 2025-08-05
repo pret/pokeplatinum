@@ -325,7 +325,7 @@ Static main
 	Object main.nef.p/src_applications_pokemon_summary_screen_3d_anim.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_subscreen.c.o
 	Object main.nef.p/src_ribbon.c.o
-	Object main.nef.p/src_unk_02092494.c.o
+	Object main.nef.p/src_trainer_memo.c.o
 	Object main.nef.p/src_unk_020933F8.c.o
 	Object main.nef.p/src_unk_02094EDC.c.o
 	Object main.nef.p/src_unk_02095AF0.c.o
