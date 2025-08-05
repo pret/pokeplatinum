@@ -1256,7 +1256,7 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteT
         int personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         enum Species species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        CharacterSprite_GetPokemonSpriteRect(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, personality, FALSE, FACE_FRONT, species);
+        CharacterSprite_LoadPokemonSpriteRect(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, personality, FALSE, FACE_FRONT, species);
     }
 
     DC_FlushRange(param2, 0x20 * 10 * 10);

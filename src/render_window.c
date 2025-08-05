@@ -888,11 +888,11 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
 
     // frame 0
     TileRegion frame0Region = FRAME_0_REGION;
-    CharacterSprite_GetSpriteRegion(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &frame0Region, buf);
+    CharacterSprite_LoadSpriteRegion(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &frame0Region, buf);
 
     // frame 1
     TileRegion frame1Region = FRAME_1_REGION;
-    CharacterSprite_GetSpriteRegion(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &frame1Region, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
+    CharacterSprite_LoadSpriteRegion(spriteTemplate->narcID, spriteTemplate->character, param0->heapID, &frame1Region, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
 
     charResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_CHAR], POKEMON_PREVIEW_RESOURCE_ID);
     imageProxy = SpriteTransfer_GetImageProxy(charResource);

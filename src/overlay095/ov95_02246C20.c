@@ -551,7 +551,7 @@ void ov95_022473E8(TradeSequenceData *param0, int param1, u32 param2, u32 param3
             v4.width *= 2;
         }
 
-        CharacterSprite_GetPokemonSpriteRegion(v0.narcID, v0.character, HEAP_ID_57, &v4, v3, personality, param4, FACE_FRONT, species);
+        CharacterSprite_LoadPokemonSpriteRegion(v0.narcID, v0.character, HEAP_ID_57, &v4, v3, personality, param4, FACE_FRONT, species);
         DC_FlushRange(v3, v2);
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 

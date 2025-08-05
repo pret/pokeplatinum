@@ -96,7 +96,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     *v1 = v0;
 
     PokemonSprite_ScheduleReloadFromNARC(param0->sprites[param0->unk_00]);
-    CharacterSprite_GetPokemonSprite(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v7, FALSE, v4, v1->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v7, FALSE, v4, v1->spindaSpots);
 
     param0->pokemonSpriteData[param0->unk_00]->narcID = v1->narcID;
     param0->pokemonSpriteData[param0->unk_00]->palette = v1->palette;
@@ -146,7 +146,7 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
         v3 = 0;
     }
 
-    CharacterSprite_GetPokemonSprite(v0->narcID, v0->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v5, FALSE, v3, v0->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v0->narcID, v0->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v5, FALSE, v3, v0->spindaSpots);
 
     param0->pokemonSpriteData[param0->unk_00]->narcID = v0->narcID;
     param0->pokemonSpriteData[param0->unk_00]->palette = v0->palette;
@@ -185,7 +185,7 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
     *v1 = v0;
 
     PokemonSprite_ScheduleReloadFromNARC(param0->sprites[param0->unk_00]);
-    CharacterSprite_GetSpriteFrame0(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles);
+    CharacterSprite_LoadSpriteFrame0(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles);
 
     param0->pokemonSpriteData[param0->unk_00]->narcID = v0.narcID;
     param0->pokemonSpriteData[param0->unk_00]->palette = v0.palette;
