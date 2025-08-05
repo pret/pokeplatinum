@@ -79,7 +79,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_ShadowPunch,
     BattleAnimScriptFunc_RevolveBattler,
     BattleAnimScriptFunc_MoveBattlerOffScreen,
-    ov12_022290DC,
+    BattleAnimScriptFunc_MoveBattlerToDefaultPos,
     ov12_022291AC,
     ov12_02229304,
     ov12_02229B28,
