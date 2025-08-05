@@ -514,7 +514,7 @@ void ov12_0222EFB0(BattleAnimSystem *param0)
         v8 = BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem);
         v9 = BattleAnimUtil_GetBattlerType(v0->unk_00.battleAnimSystem, v8);
 
-        ov12_02235350(v9, BattleAnimSystem_IsContest(v0->unk_00.battleAnimSystem), &v11);
+        BattleAnimUtil_GetBattlerTypeDefaultPos(v9, BattleAnimSystem_IsContest(v0->unk_00.battleAnimSystem), &v11);
         ManagedSprite_GetPositionXY(v0->unk_1C[0], &v12.x, &v12.y);
 
         {
@@ -610,8 +610,8 @@ void ov12_0222F2F8(BattleAnimSystem *param0)
     {
         int v2 = BattleAnimSystem_GetAttacker(v1->unk_00.battleAnimSystem);
 
-        ov12_022353AC(v1->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v1->unk_00.battleAnimSystem), &v1->unk_5C[0]);
-        ov12_022353AC(v1->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v1->unk_00.battleAnimSystem), &v1->unk_5C[1]);
+        BattleAnimUtil_GetBattlerDefaultPos(v1->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v1->unk_00.battleAnimSystem), &v1->unk_5C[0]);
+        BattleAnimUtil_GetBattlerDefaultPos(v1->unk_00.battleAnimSystem, BattleAnimSystem_GetDefender(v1->unk_00.battleAnimSystem), &v1->unk_5C[1]);
 
         if (BattleAnimUtil_GetBattlerSide(v1->unk_00.battleAnimSystem, v2) == 0x3) {
             v1->unk_54 = +1;

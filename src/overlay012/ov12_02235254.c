@@ -133,39 +133,39 @@ int BattleAnimUtil_GetOpposingBattlerType(int battlerType)
     return BATTLER_TYPE_SOLO_PLAYER;
 }
 
-void ov12_02235350(int param0, int param1, Point2D *param2)
+void BattleAnimUtil_GetBattlerTypeDefaultPos(int battlerType, BOOL isContest, Point2D *pos)
 {
-    const Point2D v0[] = {
-        { 0x40, 0x70 },
-        { 0xC0, 0x30 },
-        { 0x28, 0x70 },
-        { 0xD8, 0x32 },
-        { 0x50, 0x78 },
-        { 0xB0, 0x2A }
+    const Point2D battlerPositions[] = {
+        [BATTLER_TYPE_SOLO_PLAYER] = { BATTLER_POS_SOLO_PLAYER_X, BATTLER_POS_SOLO_PLAYER_Y },
+        [BATTLER_TYPE_SOLO_ENEMY] = { BATTLER_POS_SOLO_ENEMY_X, BATTLER_POS_SOLO_ENEMY_Y },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { BATTLER_POS_PLAYER_SLOT_1_X, BATTLER_POS_PLAYER_SLOT_1_Y },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { BATTLER_POS_ENEMY_SLOT_1_X, BATTLER_POS_ENEMY_SLOT_1_Y },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { BATTLER_POS_PLAYER_SLOT_2_X, BATTLER_POS_PLAYER_SLOT_2_Y },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { BATTLER_POS_ENEMY_SLOT_2_X, BATTLER_POS_ENEMY_SLOT_2_Y }
     };
-    const Point2D v1[] = {
-        { 0xD8, 0x70 },
-        { 0x50, 0x2A },
-        { 0xD8, 0x70 },
-        { 0x50, 0x2A },
-        { 0xD8, 0x70 },
-        { 0x50, 0x2A }
+    const Point2D contestantPositions[] = {
+        [BATTLER_TYPE_SOLO_PLAYER] = { CONTESTANT_POS_PLAYER_X, CONTESTANT_POS_PLAYER_Y },
+        [BATTLER_TYPE_SOLO_ENEMY] = { CONTESTANT_POS_ENEMY_X, CONTESTANT_POS_ENEMY_Y },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = { CONTESTANT_POS_PLAYER_X, CONTESTANT_POS_PLAYER_Y },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = { CONTESTANT_POS_ENEMY_X, CONTESTANT_POS_ENEMY_Y },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = { CONTESTANT_POS_PLAYER_X, CONTESTANT_POS_PLAYER_Y },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = { CONTESTANT_POS_ENEMY_X, CONTESTANT_POS_ENEMY_Y }
     };
 
-    if (param1) {
-        *param2 = v1[param0];
+    if (isContest) {
+        *pos = contestantPositions[battlerType];
         return;
     }
 
-    *param2 = v0[param0];
+    *pos = battlerPositions[battlerType];
 }
 
-void ov12_022353AC(BattleAnimSystem *param0, int param1, Point2D *param2)
+void BattleAnimUtil_GetBattlerDefaultPos(BattleAnimSystem *system, int battler, Point2D *pos)
 {
-    int v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    int v1 = BattleAnimSystem_IsContest(param0);
+    int battlerType = BattleAnimUtil_GetBattlerType(system, battler);
+    BOOL isContest = BattleAnimSystem_IsContest(system);
 
-    ov12_02235350(v0, v1, param2);
+    BattleAnimUtil_GetBattlerTypeDefaultPos(battlerType, isContest, pos);
 }
 
 static void ov12_022353CC(int param0, VecFx32 *param1, int param2, int param3, int param4)
