@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02013610.h"
-
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay095/ov95_02247B6C.h"
 #include "overlay095/ov95_02248590.h"
@@ -19,6 +17,7 @@
 #include "overlay095/struct_ov95_02247628_decl.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -37,7 +36,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_020131EC.h"
 #include "unk_020393C8.h"
 
 struct UnkStruct_ov95_02247628_t {
@@ -554,30 +552,25 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     v3 = Heap_AllocFromHeapAtEnd(HEAP_ID_57, v2);
 
     if (v3) {
-        UnkStruct_02013610 v4 = {
-            0,
-            0,
-            10,
-            10,
-        };
+        TileRegion v4 = FRAME_0_REGION;
         BoxPokemon *v5;
         BOOL v6;
-        u32 v7;
-        u16 v8;
+        u32 personality;
+        u16 species;
 
         v5 = (BoxPokemon *)((param1 == 0) ? param0->unk_00->unk_00 : param0->unk_00->unk_04);
         v6 = BoxPokemon_EnterDecryptionContext(v5);
 
         BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
-        v7 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
-        v8 = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+        personality = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
+        species = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
 
         if (param4) {
-            v4.unk_08 *= 2;
+            v4.width *= 2;
         }
 
-        sub_02013720(v0.narcID, v0.character, HEAP_ID_57, &v4, v3, v7, param4, 2, v8);
+        CharacterSprite_LoadPokemonSpriteRegion(v0.narcID, v0.character, HEAP_ID_57, &v4, v3, personality, param4, FACE_FRONT, species);
         DC_FlushRange(v3, v2);
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 

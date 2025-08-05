@@ -12,6 +12,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "field_message.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -28,7 +29,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020131EC.h"
 #include "unk_020711EC.h"
 
 typedef struct {
@@ -2057,7 +2057,7 @@ static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 he
 
     {
         int v1 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        sub_02013750(param1->narcID, param1->character, heapID, v0, v1, 0, 2, param1->spindaSpots);
+        CharacterSprite_LoadPokemonSprite(param1->narcID, param1->character, heapID, v0, v1, FALSE, FACE_FRONT, param1->spindaSpots);
     }
 
     return v0;
@@ -2065,7 +2065,7 @@ static void *ov6_0224509C(Pokemon *param0, PokemonSpriteTemplate *param1, u32 he
 
 static void *ov6_022450E4(PokemonSpriteTemplate *param0, u32 heapID)
 {
-    void *v0 = sub_02013660(param0->narcID, param0->palette, heapID);
+    void *v0 = CharacterSprite_GetPaletteData(param0->narcID, param0->palette, heapID);
     return v0;
 }
 
