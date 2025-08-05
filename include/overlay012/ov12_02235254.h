@@ -85,7 +85,7 @@ void BattleAnimSystem_GetCommonData(BattleAnimSystem *param0, BattleAnimScriptFu
 void BattleAnimUtil_GetBattlerSprites(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
 void BattleAnimUtil_GetPokemonSprites(BattleAnimSystem *param0, int param1, BattleAnimSpriteInfo *param2, int *param3);
 void *BattleAnimUtil_Alloc(BattleAnimSystem *param0, int param1);
-void ov12_02235E80(void *param0);
+void BattleAnimUtil_Free(void *param0);
 
 static inline BOOL BattleAnimUtil_IsMaskSet(int value, int mask)
 {

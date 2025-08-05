@@ -919,8 +919,8 @@ void *BattleAnimUtil_Alloc(BattleAnimSystem *system, int size)
     return ptr;
 }
 
-void ov12_02235E80(void *param0)
+void BattleAnimUtil_Free(void *ptr)
 {
-    GF_ASSERT(param0 != NULL);
-    Heap_Free(param0);
+    GF_ASSERT(ptr != NULL);
+    Heap_Free(ptr);
 }
