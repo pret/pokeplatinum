@@ -455,11 +455,18 @@ enum MoveBattlerState {
 #define MOVE_BATTLER_VAR_OFFSET_Y 2
 #define MOVE_BATTLER_VAR_TARGET   3
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    BattleAnimSpriteInfo unk_1C;
-    XYTransformContext unk_30;
-} UnkStruct_ov12_02228DB8;
+// -------------------------------------------------------------------
+// Revolve Battler
+// -------------------------------------------------------------------
+typedef struct RevolveBattlerContext {
+    BattleAnimScriptFuncCommon common;
+    BattleAnimSpriteInfo spriteInfo;
+    XYTransformContext revs;
+} RevolveBattlerContext;
+
+#define REVOLVE_BATTLER_VAR_TARGET         0
+#define REVOLVE_BATTLER_VAR_REVS           1
+#define REVOLVE_BATTLER_VAR_FRAMES_PER_REV 2
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -2438,39 +2445,38 @@ void BattleAnimScriptFunc_MoveBattler(BattleAnimSystem *system)
     BattleAnimTask_MoveBattler(task, ctx);
 }
 
-static void ov12_02228DB8(SysTask *param0, void *param1)
+static void BattleAnimTask_RevolveBattler(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_02228DB8 *v1 = (UnkStruct_ov12_02228DB8 *)param1;
+    RevolveBattlerContext *ctx = param;
 
-    v0 = RevolutionContext_UpdateAndApplyToMon(&v1->unk_30, v1->unk_1C.pos.x, v1->unk_1C.pos.y, v1->unk_1C.monSprite);
-
-    if (v0 == 0) {
-        PokemonSprite_SetAttribute(v1->unk_1C.monSprite, MON_SPRITE_X_CENTER, v1->unk_1C.pos.x);
-        PokemonSprite_SetAttribute(v1->unk_1C.monSprite, MON_SPRITE_Y_CENTER, v1->unk_1C.pos.y + ((-8 * FX32_ONE) >> FX32_SHIFT));
-        BattleAnimSystem_EndAnimTask(v1->unk_00.battleAnimSystem, param0);
-        Heap_Free(v1);
+    BOOL ative = RevolutionContext_UpdateAndApplyToMon(&ctx->revs, ctx->spriteInfo.pos.x, ctx->spriteInfo.pos.y, ctx->spriteInfo.monSprite);
+    if (ative == FALSE) {
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_X_CENTER, ctx->spriteInfo.pos.x);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->spriteInfo.pos.y + REVOLUTION_CONTEXT_OVAL_RADIUS_Y_INT);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        Heap_Free(ctx);
     }
 }
 
-void ov12_02228E00(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_RevolveBattler(BattleAnimSystem *system)
 {
-    int v0;
-    UnkStruct_ov12_02228DB8 *v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02228DB8));
+    RevolveBattlerContext *ctx = BattleAnimUtil_Alloc(system, sizeof(RevolveBattlerContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v1->unk_00);
-    BattleAnimUtil_GetBattlerSprites(param0, BattleAnimSystem_GetScriptVar(param0, 0), &(v1->unk_1C), &v0);
+    int spriteCount;
+    BattleAnimUtil_GetBattlerSprites(system, BattleAnimSystem_GetScriptVar(system, REVOLVE_BATTLER_VAR_TARGET), &ctx->spriteInfo, &spriteCount);
 
-    v1->unk_1C.pos.y -= (-8 * FX32_ONE) >> FX32_SHIFT;
+    ctx->spriteInfo.pos.y -= REVOLUTION_CONTEXT_OVAL_RADIUS_Y_INT;
 
-    RevolutionContext_InitOvalRevolutions(&v1->unk_30, BattleAnimSystem_GetScriptVar(param0, 1), BattleAnimSystem_GetScriptVar(param0, 2));
+    RevolutionContext_InitOvalRevolutions(
+        &ctx->revs,
+        BattleAnimSystem_GetScriptVar(system, REVOLVE_BATTLER_VAR_REVS),
+        BattleAnimSystem_GetScriptVar(system, REVOLVE_BATTLER_VAR_FRAMES_PER_REV));
 
-    {
-        v1->unk_30.data[2] /= 2;
-        v1->unk_30.data[4] /= 2;
-    }
+    ctx->revs.data[XY_PARAM_REV_RADIUS_X] /= 2;
+    ctx->revs.data[XY_PARAM_REV_RADIUS_Y] /= 2;
 
-    BattleAnimSystem_StartAnimTask(v1->unk_00.battleAnimSystem, ov12_02228DB8, v1);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_RevolveBattler, ctx);
 }
 
 static void ov12_02228E78(SysTask *param0, void *param1)
