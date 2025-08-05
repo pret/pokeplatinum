@@ -430,17 +430,30 @@ typedef struct {
     ManagedSprite *unk_24;
 } UnkStruct_ov12_02228B10;
 
-typedef struct {
+// -------------------------------------------------------------------
+// Move Battler
+// -------------------------------------------------------------------
+typedef struct MoveBattlerContext {
     int unk_00;
     int unk_04;
-    int unk_08;
-    BattleAnimSpriteInfo unk_0C;
-    BattleAnimScriptFuncCommon unk_20;
-    XYTransformContext unk_3C;
-    BattleAnimSystem *unk_60;
-    s16 unk_64;
-    s16 unk_66;
-} UnkStruct_ov12_02228BD0;
+    int frames;
+    BattleAnimSpriteInfo spriteInfo;
+    BattleAnimScriptFuncCommon common;
+    XYTransformContext pos;
+    BattleAnimSystem *battleAnimSys;
+    s16 offsetX;
+    s16 offsetY;
+} MoveBattlerContext;
+
+enum MoveBattlerState {
+    MOVE_BATTLER_STATE_INIT = 0,
+    MOVE_BATTLER_STATE_MOVE,
+};
+
+#define MOVE_BATTLER_VAR_FRAMES   0
+#define MOVE_BATTLER_VAR_OFFSET_X 1
+#define MOVE_BATTLER_VAR_OFFSET_Y 2
+#define MOVE_BATTLER_VAR_TARGET   3
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -2331,100 +2344,98 @@ void ov12_02228B40(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v1->unk_04.battleAnimSystem, ov12_02228B10, v1);
 }
 
-static void ov12_02228BD0(SysTask *param0, void *param1)
+static void BattleAnimTask_MoveBattler(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02228BD0 *v0 = (UnkStruct_ov12_02228BD0 *)param1;
+    MoveBattlerContext *ctx = param;
 
-    switch (v0->unk_20.state) {
-    case 0:
-        PosLerpContext_Init(&v0->unk_3C, v0->unk_0C.pos.x, v0->unk_0C.pos.x + v0->unk_64, v0->unk_0C.pos.y, v0->unk_0C.pos.y + v0->unk_66, v0->unk_08);
-        v0->unk_20.state++;
-    case 1:
-        if (PosLerpContext_Update(&v0->unk_3C) == 0) {
-            v0->unk_20.state++;
+    switch (ctx->common.state) {
+    case MOVE_BATTLER_STATE_INIT:
+        PosLerpContext_Init(
+            &ctx->pos,
+            ctx->spriteInfo.pos.x,
+            ctx->spriteInfo.pos.x + ctx->offsetX,
+            ctx->spriteInfo.pos.y,
+            ctx->spriteInfo.pos.y + ctx->offsetY,
+            ctx->frames);
+        ctx->common.state++;
+    case MOVE_BATTLER_STATE_MOVE:
+        if (PosLerpContext_Update(&ctx->pos) == FALSE) {
+            ctx->common.state++;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_0C.monSprite, MON_SPRITE_X_CENTER, v0->unk_3C.x);
-        PokemonSprite_SetAttribute(v0->unk_0C.monSprite, MON_SPRITE_Y_CENTER, v0->unk_3C.y);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_X_CENTER, ctx->pos.x);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->pos.y);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_60, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02228C6C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MoveBattler(BattleAnimSystem *system)
 {
-    int v0;
-    int v1;
-    int v2;
-    UnkStruct_ov12_02228BD0 *v3 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02228BD0));
+    MoveBattlerContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MoveBattlerContext));
 
-    v3->unk_60 = param0;
-    v3->unk_08 = BattleAnimSystem_GetScriptVar(param0, 0);
-    v3->unk_64 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v3->unk_66 = BattleAnimSystem_GetScriptVar(param0, 2);
+    ctx->battleAnimSys = system;
+    ctx->frames = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_VAR_FRAMES);
+    ctx->offsetX = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_VAR_OFFSET_X);
+    ctx->offsetY = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_VAR_OFFSET_Y);
+    int target = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_VAR_TARGET);
 
-    v1 = BattleAnimSystem_GetScriptVar(param0, 3);
-    BattleAnimSystem_GetCommonData(param0, &v3->unk_20);
-    v2 = 0xFF;
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    int battler = BATTLER_NONE;
 
-    switch (v1) {
-    case 0x2 | 0x100:
-        v2 = BattleAnimSystem_GetAttacker(param0);
+    switch (target) {
+    case BATTLE_ANIM_BATTLER_SPRITE_ATTACKER:
+        battler = BattleAnimSystem_GetAttacker(system);
         break;
-    case 0x4 | 0x100:
-        if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetAttacker(param0));
+    case BATTLE_ANIM_BATTLER_SPRITE_ATTACKER_PARTNER:
+        if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+            battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetAttacker(system));
         }
         break;
-    case 0x8 | 0x100:
-        v2 = BattleAnimSystem_GetDefender(param0);
+    case BATTLE_ANIM_BATTLER_SPRITE_DEFENDER:
+        battler = BattleAnimSystem_GetDefender(system);
         break;
-    case 0x10 | 0x100:
-        if (BattleAnimSystem_IsDoubleBattle(param0) == 1) {
-            v2 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetDefender(param0));
+    case BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER:
+        if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
+            battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetDefender(system));
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    if (v2 == 0xFF) {
-        Heap_Free(v3);
+    if (battler == BATTLER_NONE) {
+        Heap_Free(ctx);
         return;
     }
 
-    v3->unk_0C.monSprite = BattleAnimSystem_GetBattlerSprite(param0, v2);
-
-    if (v3->unk_0C.monSprite == NULL) {
-        Heap_Free(v3);
+    ctx->spriteInfo.monSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
+    if (ctx->spriteInfo.monSprite == NULL) {
+        Heap_Free(ctx);
         return;
     }
 
-    BattleAnimUtil_GetMonSpritePos(v3->unk_0C.monSprite, &v3->unk_0C.pos);
-    v0 = BattleAnimUtil_GetTransformDirectionX(param0, v2);
+    BattleAnimUtil_GetMonSpritePos(ctx->spriteInfo.monSprite, &ctx->spriteInfo.pos);
 
-    if (v0 > 0) {
-        v3->unk_64 *= +1;
-        v3->unk_66 *= +1;
+    int dir = BattleAnimUtil_GetTransformDirectionX(system, battler);
+    if (dir > 0) {
+        ctx->offsetX *= +1;
+        ctx->offsetY *= +1;
     } else {
-        v3->unk_64 *= -1;
-        v3->unk_66 *= -1;
+        ctx->offsetX *= -1;
+        ctx->offsetY *= -1;
     }
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        v3->unk_66 *= -1;
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        ctx->offsetY *= -1;
     }
 
-    {
-        SysTask *v4;
-
-        v4 = BattleAnimSystem_StartAnimTask(v3->unk_60, ov12_02228BD0, v3);
-        ov12_02228BD0(v4, v3);
-    }
+    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_MoveBattler, ctx);
+    BattleAnimTask_MoveBattler(task, ctx);
 }
 
 static void ov12_02228DB8(SysTask *param0, void *param1)
