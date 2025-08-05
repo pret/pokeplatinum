@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/battle_anim.h"
+#include "constants/graphics.h"
+
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_0222D6B0.h"
@@ -22,19 +25,47 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    BattleAnimSpriteInfo unk_1C;
-    ManagedSprite *unk_30;
-    XYTransformContext unk_34;
-    XYTransformContext unk_58;
-    XYTransformContext unk_7C;
-    u8 unk_A0;
-    u8 unk_A1;
-    u8 unk_A2;
-    u8 unk_A3;
-    s16 unk_A4;
-} UnkStruct_ov12_0222E91C;
+// -------------------------------------------------------------------
+// Shadow Punch
+// -------------------------------------------------------------------
+typedef struct ShadowPunchContext {
+    BattleAnimScriptFuncCommon common;
+
+    // spriteInfo.monSprite is the main sprite
+    // spriteInfo.hwSprite is the first afterimage sprite
+    // sprite is the second afterimage sprite
+    BattleAnimSpriteInfo spriteInfo;
+    ManagedSprite *sprite;
+    XYTransformContext mainPos;
+    XYTransformContext afterimage1Pos;
+    XYTransformContext afterimage2Pos;
+    u8 iteration;
+    u8 unused;
+    u8 spriteAlpha;
+    u8 bgAlpha;
+    s16 attackerHeight;
+} ShadowPunchContext;
+
+enum ShadowPunchState {
+    SHADOW_PUNCH_STATE_INIT = 0,
+    SHADOW_PUNCH_STATE_MOVE,
+};
+
+#define SHADOW_PUNCH_SPRITE_ALPHA                  8
+#define SHADOW_PUNCH_BG_ALPHA                      8
+#define SHADOW_PUNCH_OFFSET_X                      48
+#define SHADOW_PUNCH_MOVE_RIGHT_MAIN_FRAMES        3
+#define SHADOW_PUNCH_MOVE_RIGHT_AFTERIMAGE1_FRAMES 6
+#define SHADOW_PUNCH_MOVE_RIGHT_AFTERIMAGE2_FRAMES 8
+#define SHADOW_PUNCH_MOVE_LEFT_MAIN_FRAMES         3
+#define SHADOW_PUNCH_MOVE_LEFT_AFTERIMAGE1_FRAMES  6
+#define SHADOW_PUNCH_MOVE_LEFT_AFTERIMAGE2_FRAMES  9
+#define SHADOW_PUNCH_AFTERIMAGE1_R                 196
+#define SHADOW_PUNCH_AFTERIMAGE1_G                 196
+#define SHADOW_PUNCH_AFTERIMAGE1_B                 196
+#define SHADOW_PUNCH_AFTERIMAGE2_R                 196
+#define SHADOW_PUNCH_AFTERIMAGE2_G                 196
+#define SHADOW_PUNCH_AFTERIMAGE2_B                 196
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -83,101 +114,152 @@ typedef struct {
     BattleAnimSpriteInfo unk_3C;
 } UnkStruct_ov12_0222F464;
 
-static void ov12_0222E91C(SysTask *param0, void *param1)
+static void BattleAnimTask_ShadowPunch(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222E91C *v0 = (UnkStruct_ov12_0222E91C *)param1;
+    ShadowPunchContext *ctx = param;
 
-    switch (v0->unk_00.state) {
-    case 0:
-        if (v0->unk_A0 == 0) {
-            PosLerpContext_Init(&v0->unk_34, v0->unk_1C.pos.x, v0->unk_1C.pos.x + 48, v0->unk_1C.pos.y, v0->unk_1C.pos.y, 3);
-            PosLerpContext_Init(&v0->unk_58, v0->unk_1C.pos.x, v0->unk_1C.pos.x + 48, v0->unk_1C.pos.y + v0->unk_A4, v0->unk_1C.pos.y + v0->unk_A4, 6);
-            PosLerpContext_Init(&v0->unk_7C, v0->unk_1C.pos.x, v0->unk_1C.pos.x + 48, v0->unk_1C.pos.y + v0->unk_A4, v0->unk_1C.pos.y + v0->unk_A4, 8);
+    switch (ctx->common.state) {
+    case SHADOW_PUNCH_STATE_INIT:
+        if (ctx->iteration == 0) {
+            PosLerpContext_Init(
+                &ctx->mainPos,
+                ctx->spriteInfo.pos.x,
+                ctx->spriteInfo.pos.x + SHADOW_PUNCH_OFFSET_X,
+                ctx->spriteInfo.pos.y,
+                ctx->spriteInfo.pos.y,
+                SHADOW_PUNCH_MOVE_RIGHT_MAIN_FRAMES);
+            PosLerpContext_Init(
+                &ctx->afterimage1Pos,
+                ctx->spriteInfo.pos.x,
+                ctx->spriteInfo.pos.x + SHADOW_PUNCH_OFFSET_X,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                SHADOW_PUNCH_MOVE_RIGHT_AFTERIMAGE1_FRAMES);
+            PosLerpContext_Init(
+                &ctx->afterimage2Pos,
+                ctx->spriteInfo.pos.x,
+                ctx->spriteInfo.pos.x + SHADOW_PUNCH_OFFSET_X,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                SHADOW_PUNCH_MOVE_RIGHT_AFTERIMAGE2_FRAMES);
         } else {
-            PosLerpContext_Init(&v0->unk_34, v0->unk_1C.pos.x + 48, v0->unk_1C.pos.x, v0->unk_1C.pos.y, v0->unk_1C.pos.y, 3);
-            PosLerpContext_Init(&v0->unk_58, v0->unk_1C.pos.x + 48, v0->unk_1C.pos.x, v0->unk_1C.pos.y + v0->unk_A4, v0->unk_1C.pos.y + v0->unk_A4, 6);
-            PosLerpContext_Init(&v0->unk_7C, v0->unk_1C.pos.x + 48, v0->unk_1C.pos.x, v0->unk_1C.pos.y + v0->unk_A4, v0->unk_1C.pos.y + v0->unk_A4, 9);
+            PosLerpContext_Init(
+                &ctx->mainPos,
+                ctx->spriteInfo.pos.x + SHADOW_PUNCH_OFFSET_X,
+                ctx->spriteInfo.pos.x,
+                ctx->spriteInfo.pos.y,
+                ctx->spriteInfo.pos.y,
+                SHADOW_PUNCH_MOVE_LEFT_MAIN_FRAMES);
+            PosLerpContext_Init(
+                &ctx->afterimage1Pos,
+                ctx->spriteInfo.pos.x + SHADOW_PUNCH_OFFSET_X,
+                ctx->spriteInfo.pos.x,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                SHADOW_PUNCH_MOVE_LEFT_AFTERIMAGE1_FRAMES);
+            PosLerpContext_Init(
+                &ctx->afterimage2Pos,
+                ctx->spriteInfo.pos.x + SHADOW_PUNCH_OFFSET_X,
+                ctx->spriteInfo.pos.x,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                ctx->spriteInfo.pos.y + ctx->attackerHeight,
+                SHADOW_PUNCH_MOVE_LEFT_AFTERIMAGE2_FRAMES);
         }
 
-        v0->unk_A0++;
-        v0->unk_00.state++;
+        ctx->iteration++;
+        ctx->common.state++;
         break;
-    case 1: {
-        int v1 = 0;
+    case SHADOW_PUNCH_STATE_MOVE: {
+        int done = 0;
 
-        if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_58, v0->unk_1C.hwSprite) == 0) {
-            v1++;
+        if (PosLerpContext_UpdateAndApplyToSprite(&ctx->afterimage1Pos, ctx->spriteInfo.hwSprite) == FALSE) {
+            done++;
         }
 
-        if (PosLerpContext_UpdateAndApplyToMon(&v0->unk_34, v0->unk_1C.monSprite) == 0) {
-            v1++;
+        if (PosLerpContext_UpdateAndApplyToMon(&ctx->mainPos, ctx->spriteInfo.monSprite) == FALSE) {
+            done++;
         }
 
-        if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_7C, v0->unk_30) == 0) {
-            v1++;
+        if (PosLerpContext_UpdateAndApplyToSprite(&ctx->afterimage2Pos, ctx->sprite) == FALSE) {
+            done++;
         }
 
-        if (v1 >= 3) {
-            if (v0->unk_A0 == 1) {
-                v0->unk_00.state--;
+        if (done >= 3) {
+            if (ctx->iteration == 1) {
+                ctx->common.state--;
             } else {
-                v0->unk_00.state++;
+                ctx->common.state++;
             }
         }
     } break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-        BattleAnimUtil_Free(v0);
-        (v0) = NULL;
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimUtil_Free(ctx);
+        ctx = NULL;
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C.hwSprite);
-    SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
+    ManagedSprite_TickFrame(ctx->spriteInfo.hwSprite);
+    SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 }
 
-void ov12_0222EAA0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_ShadowPunch(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222E91C *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222E91C));
+    ShadowPunchContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ShadowPunchContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    ctx->unused = 0;
+    ctx->spriteAlpha = SHADOW_PUNCH_SPRITE_ALPHA;
+    ctx->bgAlpha = SHADOW_PUNCH_BG_ALPHA;
 
-    v0->unk_A1 = 0;
-    v0->unk_A2 = 8;
-    v0->unk_A3 = 8;
+    BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSystem, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
+    G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
 
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
-    G2_ChangeBlendAlpha(v0->unk_A2, v0->unk_A3);
+    ctx->spriteInfo.monSprite = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+    ctx->spriteInfo.pos.x = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_X_CENTER);
+    ctx->spriteInfo.pos.y = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER);
+    ctx->spriteInfo.hwSprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->sprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_1);
+    ctx->attackerHeight = -PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    v0->unk_1C.monSprite = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem));
-    v0->unk_1C.pos.x = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_X_CENTER);
-    v0->unk_1C.pos.y = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER);
-    v0->unk_1C.hwSprite = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 0);
-    v0->unk_30 = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, 1);
-    v0->unk_A4 = -PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_SHADOW_HEIGHT);
+    int memberIndex = BattleAnimSystem_GetBattlerSpritePaletteIndex(ctx->common.battleAnimSystem, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+    int narcID = BattleAnimSystem_GetBattlerSpriteNarcID(ctx->common.battleAnimSystem, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
 
-    {
-        ManagedSprite *v1;
-        int v2;
-        int v3 = BattleAnimSystem_GetBattlerSpritePaletteIndex(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem));
-        int v4 = BattleAnimSystem_GetBattlerSpriteNarcID(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSystem));
+    ManagedSprite *sprite = ctx->spriteInfo.hwSprite;
+    ManagedSprite_SetExplicitPriority(sprite, BattleAnimSystem_GetPokemonSpritePriority(ctx->common.battleAnimSystem) + 1);
+    int dst = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(sprite->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        v1 = v0->unk_1C.hwSprite;
-        ManagedSprite_SetExplicitPriority(v1, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSystem) + 1);
-        v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    PaletteData_LoadBufferFromFileStartWithTint(
+        BattleAnimSystem_GetPaletteData(ctx->common.battleAnimSystem),
+        narcID,
+        memberIndex,
+        BattleAnimSystem_GetHeapID(ctx->common.battleAnimSystem),
+        PLTTBUF_MAIN_OBJ,
+        PALETTE_SIZE_BYTES,
+        PLTT_DEST(dst),
+        SHADOW_PUNCH_AFTERIMAGE1_R,
+        SHADOW_PUNCH_AFTERIMAGE1_G,
+        SHADOW_PUNCH_AFTERIMAGE1_B);
+    ManagedSprite_SetExplicitOamMode(sprite, GX_OAM_MODE_XLU);
 
-        PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_00.battleAnimSystem), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, 0x20, v2 * 16, 196, 196, 196);
-        ManagedSprite_SetExplicitOamMode(v1, GX_OAM_MODE_XLU);
+    sprite = ctx->sprite;
+    ManagedSprite_SetExplicitPriority(sprite, BattleAnimSystem_GetPokemonSpritePriority(ctx->common.battleAnimSystem) + 1);
+    dst = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(sprite->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        v1 = v0->unk_30;
-        ManagedSprite_SetExplicitPriority(v1, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSystem) + 1);
-        v2 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v1->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    PaletteData_LoadBufferFromFileStartWithTint(
+        BattleAnimSystem_GetPaletteData(ctx->common.battleAnimSystem),
+        narcID,
+        memberIndex,
+        BattleAnimSystem_GetHeapID(ctx->common.battleAnimSystem),
+        PLTTBUF_MAIN_OBJ,
+        PALETTE_SIZE_BYTES,
+        PLTT_DEST(dst),
+        SHADOW_PUNCH_AFTERIMAGE2_R,
+        SHADOW_PUNCH_AFTERIMAGE2_G,
+        SHADOW_PUNCH_AFTERIMAGE2_B);
+    ManagedSprite_SetExplicitOamMode(sprite, GX_OAM_MODE_XLU);
 
-        PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_00.battleAnimSystem), v4, v3, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, 0x20, v2 * 16, 196, 196, 196);
-        ManagedSprite_SetExplicitOamMode(v1, GX_OAM_MODE_XLU);
-    }
-
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E91C, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_ShadowPunch, ctx);
 }
 
 static void ov12_0222EC18(SysTask *param0, void *param1)
