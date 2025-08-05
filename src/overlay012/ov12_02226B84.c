@@ -500,19 +500,19 @@ typedef struct FadePokemonSpriteContext {
 #define FADE_POKEMON_SPRITE_VAR_COLOR       5
 
 typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    BattleAnimSpriteInfo unk_1C;
-    int unk_30;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
-    s16 unk_40;
-    s16 unk_42;
-    int unk_44;
-    int unk_48;
-    int unk_4C;
-    int unk_50;
-    int unk_54;
+    BattleAnimScriptFuncCommon common;
+    BattleAnimSpriteInfo spriteInfo;
+    int xOffset;
+    int yOffset;
+    int width;
+    int height;
+    s16 unused;
+    s16 step;
+    int stepFrames;
+    int mode;
+    int timer;
+    int y;
+    int drawHeight;
 } UnkStruct_ov12_02229278;
 
 typedef struct {
@@ -559,28 +559,41 @@ typedef struct {
     int unk_2C;
 } UnkStruct_ov12_0222988C;
 
-typedef struct {
-    int unk_00;
-    s16 unk_04;
-    s16 unk_06;
+// -------------------------------------------------------------------
+// Emitter Animation
+// -------------------------------------------------------------------
+typedef struct EmitterAnimationContext {
+    int emitterID;
+    s16 startDelay;
+    s16 frames;
     int unk_08;
-    Point2D unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    int unk_30;
-    ParticleSystem *unk_34;
-    SPLEmitter *unk_38;
-    BattleAnimScriptFuncCommon unk_3C;
+    Point2D offset;
+    int mode;
+    int startBattler;
+    int endBattler;
+    int frame; // Never actually used properly so doesn't do anything
+    int skipFrames; // Number of steps/frames to skip before updating the emitter
+    int maxFrames;
+    int timer;
+    int angle;
+    BOOL curve;
+    ParticleSystem *particleSys;
+    SPLEmitter *emitter;
+    BattleAnimScriptFuncCommon common;
     BattleAnimSpriteInfo unk_58[4];
-    XYTransformContext unk_A8[2];
-    ValueLerpContext unk_F0;
-} UnkStruct_ov12_02229980;
+    XYTransformContext pos[2];
+    ValueLerpContext unused;
+} EmitterAnimationContext;
+
+#define EMITTER_ANIMATION_VAR_EMITTER_ID  0
+#define EMITTER_ANIMATION_VAR_OFFSET_X    1
+#define EMITTER_ANIMATION_VAR_OFFSET_Y    2
+#define EMITTER_ANIMATION_VAR_START_DELAY 3
+#define EMITTER_ANIMATION_VAR_FRAMES      4
+#define EMITTER_ANIMATION_VAR_5           5
+#define EMITTER_ANIMATION_VAR_MODE        6
+#define EMITTER_ANIMATION_VAR_PARAMS      7
+#define EMITTER_ANIMATION_VAR_CURVE       8
 
 typedef struct {
     int unk_00;
@@ -2705,103 +2718,100 @@ static void ov12_02229278(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02229278 *v0 = (UnkStruct_ov12_02229278 *)param1;
 
-    switch (v0->unk_00.state) {
+    switch (v0->common.state) {
     case 0: {
-        if ((++v0->unk_4C) < v0->unk_44) {
+        if (++v0->timer < v0->stepFrames) {
             return;
         }
 
-        v0->unk_4C = 0;
+        v0->timer = 0;
 
-        if (v0->unk_48 == 0) {
-            if (v0->unk_54 < 0) {
-                v0->unk_54 = 0;
+        if (v0->mode == 0) {
+            if (v0->drawHeight < 0) {
+                v0->drawHeight = 0;
             }
 
-            if (v0->unk_54 == 0) {
-                v0->unk_00.state++;
+            if (v0->drawHeight == 0) {
+                v0->common.state++;
             }
         } else {
-            if (v0->unk_54 > 80) {
-                v0->unk_54 = 80;
+            if (v0->drawHeight > 80) {
+                v0->drawHeight = 80;
             }
 
-            if (v0->unk_54 == 80) {
-                v0->unk_00.state++;
+            if (v0->drawHeight == 80) {
+                v0->common.state++;
             }
         }
 
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_DRAW_HEIGHT, v0->unk_54);
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER, v0->unk_50);
+        PokemonSprite_SetAttribute(v0->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT, v0->drawHeight);
+        PokemonSprite_SetAttribute(v0->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, v0->y);
 
-        v0->unk_50 -= v0->unk_42;
-        v0->unk_54 += v0->unk_42;
+        v0->y -= v0->step;
+        v0->drawHeight += v0->step;
     } break;
     default:
-        ResetMonScale(v0->unk_1C.monSprite);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
+        ResetMonScale(v0->spriteInfo.monSprite);
+        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSystem, param0);
         Heap_Free(v0);
         break;
     }
 }
 
-void ov12_02229304(BattleAnimSystem *param0)
+void ov12_02229304(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02229278 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02229278));
+    UnkStruct_ov12_02229278 *ctx = BattleAnimUtil_Alloc(system, sizeof(UnkStruct_ov12_02229278));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    {
-        int v1 = BattleAnimSystem_GetScriptVar(param0, 0);
-        int v2;
-        int v3;
+    int target = BattleAnimSystem_GetScriptVar(system, 0);
+    int count;
+    BattleAnimUtil_GetBattlerSprites(system, target, &ctx->spriteInfo, &count);
 
-        BattleAnimUtil_GetBattlerSprites(param0, v1, &(v0->unk_1C), &v2);
-
-        switch (v1) {
-        case 0x2:
-            v3 = BattleAnimSystem_GetAttacker(param0);
-            break;
-        case 0x4:
-            v3 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetAttacker(param0));
-            break;
-        case 0x8:
-            v3 = BattleAnimSystem_GetDefender(param0);
-            break;
-        case 0x10:
-            v3 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetDefender(param0));
-            break;
-        default:
-            GF_ASSERT(0);
-            break;
-        }
-
-        v0->unk_48 = BattleAnimSystem_GetScriptVar(param0, 1);
-
-        if (v0->unk_48 == 0) {
-            v0->unk_50 = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER);
-            v0->unk_54 = 80 - PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_DRAW_HEIGHT);
-            v0->unk_40 = BattleAnimSystem_GetScriptVar(param0, 2);
-            v0->unk_42 = BattleAnimSystem_GetScriptVar(param0, 3);
-            v0->unk_42 *= -1;
-        } else {
-            v0->unk_50 = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER);
-            v0->unk_54 = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_DRAW_HEIGHT);
-            v0->unk_40 = BattleAnimSystem_GetScriptVar(param0, 2);
-            v0->unk_42 = BattleAnimSystem_GetScriptVar(param0, 3);
-        }
-
-        v0->unk_30 = 0;
-        v0->unk_34 = 0;
-        v0->unk_38 = 80;
-        v0->unk_3C = 80 - BattleAnimSystem_GetBattlerSpriteHeight(param0, v3);
-        v0->unk_44 = BattleAnimSystem_GetScriptVar(param0, 4);
-        v0->unk_4C = 0;
-
-        PokemonSprite_SetPartialDraw(v0->unk_1C.monSprite, v0->unk_30, v0->unk_34, v0->unk_38, v0->unk_3C);
+    int battler;
+    switch (target) {
+    case BATTLE_ANIM_ATTACKER:
+        battler = BattleAnimSystem_GetAttacker(system);
+        break;
+    case BATTLE_ANIM_ATTACKER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetAttacker(system));
+        break;
+    case BATTLE_ANIM_DEFENDER:
+        battler = BattleAnimSystem_GetDefender(system);
+        break;
+    case BATTLE_ANIM_DEFENDER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetDefender(system));
+        break;
+    default:
+        GF_ASSERT(FALSE);
+        break;
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_02229278, v0);
+    ctx->mode = BattleAnimSystem_GetScriptVar(system, 1);
+
+    if (ctx->mode == 0) {
+        ctx->y = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER);
+        ctx->drawHeight = MON_SPRITE_FRAME_HEIGHT - PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT);
+        ctx->unused = BattleAnimSystem_GetScriptVar(system, 2);
+        ctx->step = BattleAnimSystem_GetScriptVar(system, 3);
+        ctx->step *= -1;
+    } else {
+        ctx->y = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER);
+        ctx->drawHeight = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT);
+        ctx->unused = BattleAnimSystem_GetScriptVar(system, 2);
+        ctx->step = BattleAnimSystem_GetScriptVar(system, 3);
+    }
+
+    ctx->xOffset = 0;
+    ctx->yOffset = 0;
+    ctx->width = MON_SPRITE_FRAME_WIDTH;
+    ctx->height = MON_SPRITE_FRAME_HEIGHT - BattleAnimSystem_GetBattlerSpriteHeight(system, battler);
+    ctx->stepFrames = BattleAnimSystem_GetScriptVar(system, 4);
+    ctx->timer = 0;
+
+    PokemonSprite_SetPartialDraw(ctx->spriteInfo.monSprite, ctx->xOffset, ctx->yOffset, ctx->width, ctx->height);
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, ov12_02229278, ctx);
 }
 
 static int ov12_02229454(BattleAnimSystem *param0, int param1)
@@ -3109,145 +3119,140 @@ void ov12_02229908(BattleAnimSystem *param0)
     }
 }
 
-static void ov12_02229980(BattleAnimSystem *param0, UnkStruct_ov12_02229980 *param1)
+static void EmitterAnimationContext_Init(BattleAnimSystem *system, EmitterAnimationContext *ctx)
 {
-    param1->unk_00 = BattleAnimSystem_GetScriptVar(param0, 0);
-    param1->unk_0C.x = BattleAnimSystem_GetScriptVar(param0, 1);
-    param1->unk_0C.y = BattleAnimSystem_GetScriptVar(param0, 2);
-    param1->unk_04 = BattleAnimSystem_GetScriptVar(param0, 3);
-    param1->unk_06 = BattleAnimSystem_GetScriptVar(param0, 4);
-    param1->unk_08 = BattleAnimSystem_GetScriptVar(param0, 5);
-    param1->unk_10 = BattleAnimSystem_GetScriptVar(param0, 6);
-    param1->unk_30 = BattleAnimSystem_GetScriptVar(param0, 8);
+    ctx->emitterID = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_EMITTER_ID);
+    ctx->offset.x = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_OFFSET_X);
+    ctx->offset.y = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_OFFSET_Y);
+    ctx->startDelay = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_START_DELAY);
+    ctx->frames = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_FRAMES);
+    ctx->unk_08 = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_5);
+    ctx->mode = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_MODE);
+    ctx->curve = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_CURVE);
 
-    {
-        int v0 = BattleAnimSystem_GetScriptVar(param0, 7);
+    int params = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_PARAMS);
 
-        param1->unk_1C = 0;
-        param1->unk_20 = (v0 & 0xFFFF0000) >> 16;
-        param1->unk_24 = (v0 & 0xFFFF);
+    ctx->frame = 0;
+    ctx->skipFrames = EMITTER_ANIMATION_SKIP_FRAMES(params);
+    ctx->maxFrames = EMITTER_ANIMATION_MAX_FRAMES(params);
 
-        if (param1->unk_20 == 0) {
-            param1->unk_20 = 0;
-        }
-
-        if (param1->unk_24 == 0) {
-            param1->unk_24 = 0xFF;
-        }
+    if (ctx->skipFrames == 0) {
+        ctx->skipFrames = 0;
     }
 
-    param1->unk_38 = BattleAnimSystem_GetEmitter(param0, param1->unk_00);
-    param1->unk_34 = BattleAnimSystem_GetCurrentParticleSystem(param0);
+    if (ctx->maxFrames == 0) {
+        ctx->maxFrames = EMITTER_ANIMATION_DEFAULT_FRAMES;
+    }
 
-    if (param1->unk_10 == 0) {
-        param1->unk_14 = BattleAnimSystem_GetAttacker(param0);
-        param1->unk_18 = BattleAnimSystem_GetDefender(param0);
-    } else if (param1->unk_10 == 1) {
-        param1->unk_14 = BattleAnimSystem_GetDefender(param0);
-        param1->unk_18 = BattleAnimSystem_GetAttacker(param0);
+    ctx->emitter = BattleAnimSystem_GetEmitter(system, ctx->emitterID);
+    ctx->particleSys = BattleAnimSystem_GetCurrentParticleSystem(system);
+
+    if (ctx->mode == EMITTER_ANIMATION_MODE_ATK_TO_DEF) {
+        ctx->startBattler = BattleAnimSystem_GetAttacker(system);
+        ctx->endBattler = BattleAnimSystem_GetDefender(system);
+    } else if (ctx->mode == EMITTER_ANIMATION_MODE_DEF_TO_ATK) {
+        ctx->startBattler = BattleAnimSystem_GetDefender(system);
+        ctx->endBattler = BattleAnimSystem_GetAttacker(system);
     } else {
-        GF_ASSERT("FALSE");
+        GF_ASSERT("FALSE"); // bruh
     }
 
-    if (param1->unk_38 == NULL) {
-        GF_ASSERT(0);
+    if (ctx->emitter == NULL) {
+        GF_ASSERT(FALSE);
     }
 }
 
-static BOOL ov12_02229A50(SPLEmitter *param0)
+static BOOL IsEmitterActive(SPLEmitter *emitter)
 {
-    BOOL v0 = 0;
+    BOOL active = FALSE;
+    SPLParticle *particle = emitter->particles.first;
 
-    {
-        SPLParticle *v1;
-        int v2;
-        int v3;
-
-        v1 = param0->particles.first;
-
-        while (v1 != NULL) {
-            v2 = v1->age;
-            v3 = v1->lifeTime;
-            v1 = v1->next;
-        }
-
-        if (v2 != v3) {
-            v0 = 1;
-        }
+    int age;
+    int lifeTime;
+    while (particle != NULL) {
+        age = particle->age;
+        lifeTime = particle->lifeTime;
+        particle = particle->next;
     }
 
-    return v0;
+    // If the youngest particle is still alive, the emitter is active
+    if (age != lifeTime) {
+        active = TRUE;
+    }
+
+    return active;
 }
 
-static void ov12_02229A6C(SysTask *param0, void *param1)
+static void BattleAnimTask_MoveEmitterA2BLinear(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02229980 *v0 = param1;
-    BOOL v1 = ov12_02229A50(v0->unk_38);
+    EmitterAnimationContext *ctx = param;
+    BOOL emitterActive = IsEmitterActive(ctx->emitter);
 
-    if (v0->unk_28 < v0->unk_04) {
-        v0->unk_28++;
+    if (ctx->timer < ctx->startDelay) {
+        ctx->timer++;
         return;
     }
 
-    if ((PosLerpContext_Update(&v0->unk_A8[0]) == 0) && (v1 == 0)) {
-        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
-        BattleAnimSystem_EndAnimTask(v0->unk_3C.battleAnimSystem, param0);
-        BattleAnimUtil_Free(v0);
-        (v0) = NULL;
+    if (PosLerpContext_Update(&ctx->pos[0]) == FALSE && emitterActive == FALSE) {
+        ParticleSystem_DeleteEmitter(ctx->particleSys, ctx->emitter);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimUtil_Free(ctx);
+        ctx = NULL;
         return;
     } else {
-        if (((v0->unk_20 > v0->unk_1C) || (v0->unk_24 < v0->unk_1C)) && (v0->unk_24 != 255)) {
+        if ((ctx->skipFrames > ctx->frame || ctx->maxFrames < ctx->frame) && ctx->maxFrames != EMITTER_ANIMATION_DEFAULT_FRAMES) {
             return;
         }
 
-        SPLEmitter_SetPosX(v0->unk_38, v0->unk_A8[0].x * 172);
-        SPLEmitter_SetPosY(v0->unk_38, v0->unk_A8[0].y * 172);
+        SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].x));
+        SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].y));
 
-        if (v0->unk_30) {
-            v0->unk_2C += (360 / (v0->unk_06));
-            SPLEmitter_SetPosY(v0->unk_38, (v0->unk_A8[0].y * 172) + CalcSineDegrees_Wraparound(v0->unk_2C));
+        if (ctx->curve) {
+            ctx->angle += 360 / (ctx->frames);
+            SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].y) + CalcSineDegrees_Wraparound(ctx->angle));
         }
     }
 }
 
-void ov12_02229B28(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *system)
 {
-    int v0;
-    VecFx32 v1;
-    VecFx32 v2;
-    UnkStruct_ov12_02229980 *v3 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02229980));
+    EmitterAnimationContext *ctx = BattleAnimUtil_Alloc(system, sizeof(EmitterAnimationContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v3->unk_3C);
-    ov12_02229980(param0, v3);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    EmitterAnimationContext_Init(system, ctx);
 
-    v0 = BattleAnimUtil_GetTransformDirectionX(param0, BattleAnimSystem_GetAttacker(param0));
+    int dir = BattleAnimUtil_GetTransformDirectionX(system, BattleAnimSystem_GetAttacker(system));
 
-    ov12_02235508(param0, v3->unk_14, &v1);
-    ov12_02235508(param0, v3->unk_18, &v2);
-    PosLerpContext_Init(&v3->unk_A8[0], v1.x / 172, (v2.x / 172) + (v3->unk_0C.x * v0), v1.y / 172, (v2.y / 172) + (v3->unk_0C.y * v0), v3->unk_06);
+    VecFx32 startPos, endPos;
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->startBattler, &startPos);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->endBattler, &endPos);
 
-    if (v0 > 0) {
-        ValueLerpContext_Init(&v3->unk_F0, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+    PosLerpContext_Init(
+        &ctx->pos[0],
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.x),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(endPos.x) + (ctx->offset.x * dir),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.y),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(endPos.y) + (ctx->offset.y * dir),
+        ctx->frames);
+
+    if (dir > 0) {
+        ValueLerpContext_Init(&ctx->unused, DEG_TO_IDX(20) * dir, DEG_TO_IDX(130) * dir, 10);
     } else {
-        ValueLerpContext_Init(&v3->unk_F0, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&ctx->unused, DEG_TO_IDX(90) * dir, DEG_TO_IDX(130) * dir, 10);
     }
 
-    {
-        int v4;
-
-        for (v4 = 0; v4 < v3->unk_20; v4++) {
-            PosLerpContext_Update(&v3->unk_A8[0]);
-        }
-
-        if (v3->unk_24 != 0xFF) {
-            v3->unk_1C = v3->unk_24 + 1;
-        }
-
-        SPLEmitter_SetPosX(v3->unk_38, v3->unk_A8[0].x * 172);
-        SPLEmitter_SetPosY(v3->unk_38, v3->unk_A8[0].y * 172);
+    for (int i = 0; i < ctx->skipFrames; i++) {
+        PosLerpContext_Update(&ctx->pos[0]);
     }
 
-    BattleAnimSystem_StartAnimTask(v3->unk_3C.battleAnimSystem, ov12_02229A6C, v3);
+    if (ctx->maxFrames != EMITTER_ANIMATION_DEFAULT_FRAMES) {
+        ctx->frame = ctx->maxFrames + 1;
+    }
+
+    SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].x));
+    SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].y));
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BLinear, ctx);
 }
 
 void ov12_02229C5C(BattleAnimSystem *param0)
@@ -3255,51 +3260,51 @@ void ov12_02229C5C(BattleAnimSystem *param0)
     VecFx32 v0;
     VecFx32 v1;
     int v2;
-    UnkStruct_ov12_02229980 *v3 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02229980));
-    BattleAnimSystem_GetCommonData(param0, &v3->unk_3C);
+    EmitterAnimationContext *v3 = BattleAnimUtil_Alloc(param0, sizeof(EmitterAnimationContext));
+    BattleAnimSystem_GetCommonData(param0, &v3->common);
 
-    v3->unk_00 = BattleAnimSystem_GetScriptVar(param0, 0);
-    v3->unk_10 = BattleAnimSystem_GetScriptVar(param0, 1);
+    v3->emitterID = BattleAnimSystem_GetScriptVar(param0, 0);
+    v3->mode = BattleAnimSystem_GetScriptVar(param0, 1);
 
     v2 = BattleAnimSystem_GetScriptVar(param0, 2);
 
-    v3->unk_06 = BattleAnimSystem_GetScriptVar(param0, 3);
-    v3->unk_04 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v3->unk_28 = 0;
+    v3->frames = BattleAnimSystem_GetScriptVar(param0, 3);
+    v3->startDelay = BattleAnimSystem_GetScriptVar(param0, 4);
+    v3->timer = 0;
 
     {
         int v4 = BattleAnimSystem_GetScriptVar(param0, 5);
 
-        v3->unk_1C = 0;
-        v3->unk_20 = (v4 & 0xFFFF0000) >> 16;
-        v3->unk_24 = (v4 & 0xFFFF);
+        v3->frame = 0;
+        v3->skipFrames = (v4 & 0xFFFF0000) >> 16;
+        v3->maxFrames = (v4 & 0xFFFF);
 
-        if (v3->unk_20 == 0) {
-            v3->unk_20 = 0;
+        if (v3->skipFrames == 0) {
+            v3->skipFrames = 0;
         }
 
-        if (v3->unk_24 == 0) {
-            v3->unk_24 = 0xFF;
+        if (v3->maxFrames == 0) {
+            v3->maxFrames = 0xFF;
         }
     }
 
-    v3->unk_38 = BattleAnimSystem_GetEmitter(param0, v3->unk_00);
-    v3->unk_34 = BattleAnimSystem_GetCurrentParticleSystem(param0);
+    v3->emitter = BattleAnimSystem_GetEmitter(param0, v3->emitterID);
+    v3->particleSys = BattleAnimSystem_GetCurrentParticleSystem(param0);
 
-    if (v3->unk_10 == 0) {
-        v3->unk_14 = BattleAnimSystem_GetAttacker(param0);
-        v3->unk_18 = BattleAnimSystem_GetAttacker(param0);
+    if (v3->mode == 0) {
+        v3->startBattler = BattleAnimSystem_GetAttacker(param0);
+        v3->endBattler = BattleAnimSystem_GetAttacker(param0);
     } else {
-        v3->unk_14 = BattleAnimSystem_GetDefender(param0);
-        v3->unk_18 = BattleAnimSystem_GetDefender(param0);
+        v3->startBattler = BattleAnimSystem_GetDefender(param0);
+        v3->endBattler = BattleAnimSystem_GetDefender(param0);
     }
 
-    if (v3->unk_38 == NULL) {
+    if (v3->emitter == NULL) {
         GF_ASSERT(0);
     }
 
-    ov12_02235508(param0, v3->unk_14, &v0);
-    ov12_02235508(param0, v3->unk_18, &v1);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->startBattler, &v0);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->endBattler, &v1);
 
     if (v2 == 0) {
         ov12_02235748(&v0);
@@ -3309,40 +3314,40 @@ void ov12_02229C5C(BattleAnimSystem *param0)
         v1.x = v0.x;
     }
 
-    PosLerpContext_Init(&v3->unk_A8[0], v0.x / 172, v1.x / 172, v0.y / 172, v1.y / 172, v3->unk_06);
+    PosLerpContext_Init(&v3->pos[0], v0.x / 172, v1.x / 172, v0.y / 172, v1.y / 172, v3->frames);
 
     {
         int v5;
 
-        for (v5 = 0; v5 < v3->unk_20; v5++) {
-            PosLerpContext_Update(&v3->unk_A8[0]);
+        for (v5 = 0; v5 < v3->skipFrames; v5++) {
+            PosLerpContext_Update(&v3->pos[0]);
         }
 
-        if (v3->unk_24 != 0xFF) {
-            v3->unk_1C = v3->unk_24 + 1;
+        if (v3->maxFrames != 0xFF) {
+            v3->frame = v3->maxFrames + 1;
         }
 
-        SPLEmitter_SetPosX(v3->unk_38, v3->unk_A8[0].x * 172);
-        SPLEmitter_SetPosY(v3->unk_38, v3->unk_A8[0].y * 172);
+        SPLEmitter_SetPosX(v3->emitter, v3->pos[0].x * 172);
+        SPLEmitter_SetPosY(v3->emitter, v3->pos[0].y * 172);
     }
 
-    BattleAnimSystem_StartAnimTask(v3->unk_3C.battleAnimSystem, ov12_02229A6C, v3);
+    BattleAnimSystem_StartAnimTask(v3->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BLinear, v3);
 }
 
 static void ov12_02229DF0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov12_02229980 *v0 = param1;
-    BOOL v1 = ov12_02229A50(v0->unk_38);
+    EmitterAnimationContext *v0 = param1;
+    BOOL v1 = IsEmitterActive(v0->emitter);
 
-    if ((ov12_02225CE4(&v0->unk_A8[0], &v0->unk_A8[1]) == 0) && (v1 == 0)) {
-        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
-        BattleAnimSystem_EndAnimTask(v0->unk_3C.battleAnimSystem, param0);
+    if ((ov12_02225CE4(&v0->pos[0], &v0->pos[1]) == 0) && (v1 == 0)) {
+        ParticleSystem_DeleteEmitter(v0->particleSys, v0->emitter);
+        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSystem, param0);
         BattleAnimUtil_Free(v0);
         (v0) = NULL;
         return;
     } else {
-        SPLEmitter_SetPosX(v0->unk_38, v0->unk_A8[0].x * 172);
-        SPLEmitter_SetPosY(v0->unk_38, v0->unk_A8[0].y * 172);
+        SPLEmitter_SetPosX(v0->emitter, v0->pos[0].x * 172);
+        SPLEmitter_SetPosY(v0->emitter, v0->pos[0].y * 172);
     }
 }
 
@@ -3351,45 +3356,45 @@ void ov12_02229E54(BattleAnimSystem *param0)
     int v0;
     VecFx32 v1;
     VecFx32 v2;
-    UnkStruct_ov12_02229980 *v3 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02229980));
+    EmitterAnimationContext *v3 = BattleAnimUtil_Alloc(param0, sizeof(EmitterAnimationContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v3->unk_3C);
-    ov12_02229980(param0, v3);
+    BattleAnimSystem_GetCommonData(param0, &v3->common);
+    EmitterAnimationContext_Init(param0, v3);
 
     v0 = BattleAnimUtil_GetTransformDirectionX(param0, BattleAnimSystem_GetAttacker(param0));
 
-    ov12_02235508(param0, v3->unk_14, &v1);
-    ov12_02235508(param0, v3->unk_18, &v2);
-    ov12_02225C98(&v3->unk_A8[0], &v3->unk_A8[1], v1.x / 172, (v2.x / 172) + (v3->unk_0C.x * v0), v1.y / 172, (v2.y / 172) + (v3->unk_0C.y * v0), v3->unk_06, v3->unk_08 * -FX32_ONE);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->startBattler, &v1);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->endBattler, &v2);
+    ov12_02225C98(&v3->pos[0], &v3->pos[1], v1.x / 172, (v2.x / 172) + (v3->offset.x * v0), v1.y / 172, (v2.y / 172) + (v3->offset.y * v0), v3->frames, v3->unk_08 * -FX32_ONE);
 
     if (v0 > 0) {
-        ValueLerpContext_Init(&v3->unk_F0, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&v3->unused, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
     } else {
-        ValueLerpContext_Init(&v3->unk_F0, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&v3->unused, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
     }
 
     {
         int v4;
 
-        for (v4 = 0; v4 < v3->unk_20; v4++) {
-            ov12_02225CE4(&v3->unk_A8[0], &v3->unk_A8[1]);
+        for (v4 = 0; v4 < v3->skipFrames; v4++) {
+            ov12_02225CE4(&v3->pos[0], &v3->pos[1]);
         }
 
-        if (v3->unk_24 != 0xFF) {
-            v3->unk_1C = v3->unk_24 + 1;
+        if (v3->maxFrames != 0xFF) {
+            v3->frame = v3->maxFrames + 1;
         }
 
-        SPLEmitter_SetPosX(v3->unk_38, v3->unk_A8[0].x * 172);
-        SPLEmitter_SetPosY(v3->unk_38, v3->unk_A8[0].y * 172);
+        SPLEmitter_SetPosX(v3->emitter, v3->pos[0].x * 172);
+        SPLEmitter_SetPosY(v3->emitter, v3->pos[0].y * 172);
     }
 
-    BattleAnimSystem_StartAnimTask(v3->unk_3C.battleAnimSystem, ov12_02229DF0, v3);
+    BattleAnimSystem_StartAnimTask(v3->common.battleAnimSystem, ov12_02229DF0, v3);
 }
 
 static void ov12_02229F9C(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02229F9C *v0 = param1;
-    BOOL v1 = ov12_02229A50(v0->unk_38);
+    BOOL v1 = IsEmitterActive(v0->unk_38);
 
     if ((RevolutionContext_Update(&v0->unk_58) == 0) && (v1 == 0)) {
         ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
@@ -3428,7 +3433,7 @@ void ov12_0222A00C(BattleAnimSystem *param0)
         v0->unk_24 = BattleAnimSystem_GetDefender(param0);
     }
 
-    ov12_02235508(param0, v0->unk_24, &v0->unk_88);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v0->unk_24, &v0->unk_88);
 
     v0->unk_38 = BattleAnimSystem_GetEmitter(param0, v0->unk_00);
     v0->unk_34 = BattleAnimSystem_GetParticleSystem(param0, BattleAnimSystem_GetScriptVar(param0, 9));

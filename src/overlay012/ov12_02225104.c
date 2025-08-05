@@ -136,10 +136,10 @@ static BOOL ov12_02225200(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         v1.z *= param1->unk_08;
     } break;
     case 2:
-        ov12_02235508(param1->unk_00, param1->unk_24, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v1);
         break;
     case 3:
-        ov12_02235508(param1->unk_00, param1->unk_28, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v1);
         break;
     case 0xFF:
         break;
@@ -290,17 +290,17 @@ static BOOL ov12_02225444(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
         v1.z *= param1->unk_08;
     } break;
     case 4:
-        ov12_02235508(param1->unk_00, param1->unk_28, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v1);
 
         v1.x = (v1.x * v0[2]) / v0[3];
         v1.y = (v1.y * v0[2]) / v0[3];
         v1.z = (v1.z * v0[2]) / v0[3];
         break;
     case 2:
-        ov12_02235508(param1->unk_00, param1->unk_24, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_24, &v1);
         break;
     case 3:
-        ov12_02235508(param1->unk_00, param1->unk_28, &v1);
+        BattleAnimUtil_GetBattlerWorldPos_Normal(param1->unk_00, param1->unk_28, &v1);
         break;
     case 0xFF:
         break;

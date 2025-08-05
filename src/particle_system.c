@@ -1,5 +1,6 @@
 #include "particle_system.h"
 
+#include "nitro/fx/fx_trig.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -125,7 +126,7 @@ ParticleSystem *ParticleSystem_New(SPLTexVRAMAllocFunc texAllocFunc, SPLPalVRAMA
         particleSystem->camera = Camera_Alloc(heapID);
 
         VEC_Set(&particleSystem->unused1, 0, 0, 0);
-        particleSystem->cameraFov = 8192;
+        particleSystem->cameraFov = FX_DEG_TO_IDX(FX32_CONST(45.0f));
 
         Camera_InitWithTargetAndPosition(
             &sParticleSystemDefaultCameraTarget,

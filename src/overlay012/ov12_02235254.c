@@ -3,11 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
 
 #include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
 
+#include "camera.h"
+#include "fx_util.h"
 #include "heap.h"
 #include "inlines.h"
 #include "math_util.h"
@@ -168,228 +171,226 @@ void BattleAnimUtil_GetBattlerDefaultPos(BattleAnimSystem *system, int battler, 
     BattleAnimUtil_GetBattlerTypeDefaultPos(battlerType, isContest, pos);
 }
 
-static void ov12_022353CC(int param0, VecFx32 *param1, int param2, int param3, int param4)
+static void BattleAnimUtil_GetBattlerTypeWorldPosInternal(int battlerType, VecFx32 *outPos, int isContest, int projection, int posType)
 {
-    int v0;
-    const VecFx32 *v1;
-    const VecFx32 v2[][24] = {
-        {
-            { -9616, -5464, 0x40 },
-            { -10240, -6400, 0x40 },
-            { -3968, -3328, 0x40 },
-            { -6568, -4000, 0x40 },
-            { -3968, -3328, 0x40 },
-            { -6720, -5792, 0x40 },
-            { -8632, -6936, 0x0 },
-            { -8632, -6936, 0x0 },
-            { -12544, -3840, 0x0 },
-            { -12544, -3840, 0x0 },
-            { -9632, -5856, 0x0 },
-            { -9632, -5856, 0x0 },
-            { -4144, -5200, 0x0 },
-            { -4144, -5200, 0x0 },
-            { -12480, -4288, 0x0 },
-            { -12480, -4288, 0x0 },
-            { -1792, -4224, 0x0 },
-            { -1792, -4224, 0x0 },
-            { -8320, -4160, 0x0 },
-            { -8320, -4160, 0x0 },
-            { 0x2378, 0x15A0, 0x0 },
-            { 0x2378, 0x15A0, 0x0 },
-            { -6248, -2944, 0x0 },
-            { -6248, -2944, 0x0 },
+    const VecFx32 particlePositions[][12 * CAMERA_PROJECTION_COUNT] = {
+        [BATTLER_TYPE_SOLO_PLAYER] = {
+            VEC_FX32(-2.3477, -1.334, 0.0156),
+            VEC_FX32(-2.5, -1.5625, 0.0156),
+            VEC_FX32(-0.9688, -0.8125, 0.0156),
+            VEC_FX32(-1.6035, -0.9766, 0.0156),
+            VEC_FX32(-0.9688, -0.8125, 0.0156),
+            VEC_FX32(-1.6406, -1.414, 0.0156),
+            VEC_FX32(-2.1074, -1.6934, 0),
+            VEC_FX32(-2.1074, -1.6934, 0),
+            VEC_FX32(-3.0625, -0.9375, 0),
+            VEC_FX32(-3.0625, -0.9375, 0),
+            VEC_FX32(-2.3516, -1.4297, 0),
+            VEC_FX32(-2.3516, -1.4297, 0),
+            VEC_FX32(-1.0117, -1.2695, 0),
+            VEC_FX32(-1.0117, -1.2695, 0),
+            VEC_FX32(-3.0469, -1.0469, 0),
+            VEC_FX32(-3.0469, -1.0469, 0),
+            VEC_FX32(-0.4375, -1.0312, 0),
+            VEC_FX32(-0.4375, -1.0312, 0),
+            VEC_FX32(-2.0312, -1.0156, 0),
+            VEC_FX32(-2.0312, -1.0156, 0),
+            VEC_FX32(2.2168, 1.3516, 0),
+            VEC_FX32(2.2168, 1.3516, 0),
+            VEC_FX32(-1.5254, -0.7188, 0),
+            VEC_FX32(-1.5254, -0.7188, 0),
         },
-        {
-            { 0x2B30, 0x1130, -5248 },
-            { 0x2800, 0xC00, -5248 },
-            { 0x2480, 0x880, -5248 },
-            { 0x2260, 0x1940, -5248 },
-            { 0x2480, 0x880, -5248 },
-            { 0x38C0, 0x1F60, -5248 },
-            { 0x3268, 0x13F4, 0x0 },
-            { 0x3268, 0x13F4, 0x0 },
-            { 0x1538, 0x1A18, 0x0 },
-            { 0x1538, 0x1A18, 0x0 },
-            { 0x3358, 0x2C08, 0x0 },
-            { 0x3358, 0x2C08, 0x0 },
-            { 0x40D0, 0x1430, 0x0 },
-            { 0x40D0, 0x1430, 0x0 },
-            { 0x3380, 0x1DC0, 0x0 },
-            { 0x3380, 0x1DC0, 0x0 },
-            { 0x4200, 0xD00, 0x0 },
-            { 0x4200, 0xD00, 0x0 },
-            { 0x2A80, 0x1180, 0x0 },
-            { 0x2A80, 0x1180, 0x0 },
-            { -6936, -4832, 0x0 },
-            { -6936, -4832, 0x0 },
-            { 0x2058, 0x1538, 0x0 },
-            { 0x2058, 0x1538, 0x0 },
+        [BATTLER_TYPE_SOLO_ENEMY] = {
+            VEC_FX32(2.6992, 1.0742, -1.2812),
+            VEC_FX32(2.5, 0.75, -1.2812),
+            VEC_FX32(2.2812, 0.5312, -1.2812),
+            VEC_FX32(2.1484, 1.5781, -1.2812),
+            VEC_FX32(2.2812, 0.5312, -1.2812),
+            VEC_FX32(3.5469, 1.961, -1.2812),
+            VEC_FX32(3.1504, 1.247, 0),
+            VEC_FX32(3.1504, 1.247, 0),
+            VEC_FX32(1.3262, 1.6309, 0),
+            VEC_FX32(1.3262, 1.6309, 0),
+            VEC_FX32(3.209, 2.752, 0),
+            VEC_FX32(3.209, 2.752, 0),
+            VEC_FX32(4.0508, 1.2617, 0),
+            VEC_FX32(4.0508, 1.2617, 0),
+            VEC_FX32(3.2188, 1.8594, 0),
+            VEC_FX32(3.2188, 1.8594, 0),
+            VEC_FX32(4.125, 0.8125, 0),
+            VEC_FX32(4.125, 0.8125, 0),
+            VEC_FX32(2.6562, 1.0938, 0),
+            VEC_FX32(2.6562, 1.0938, 0),
+            VEC_FX32(-1.6934, -1.1797, 0),
+            VEC_FX32(-1.6934, -1.1797, 0),
+            VEC_FX32(2.0215, 1.3262, 0),
+            VEC_FX32(2.0215, 1.3262, 0),
         },
-        {
-            { -14936, -5032, 0x40 },
-            { -15360, -6272, 0x40 },
-            { -9856, -3200, 0x40 },
-            { -11400, -2944, 0x40 },
-            { -9856, -3200, 0x40 },
-            { -9856, -3200, 0x40 },
-            { -9456, -3104, 0x0 },
-            { -9456, -3104, 0x0 },
-            { -17856, -3624, 0x0 },
-            { -17856, -3624, 0x0 },
-            { -12592, -2976, 0x0 },
-            { -12592, -2976, 0x0 },
-            { -6366, -3776, 0x0 },
-            { -6366, -3776, 0x0 },
-            { -14912, -2176, 0x0 },
-            { -14912, -2176, 0x0 },
-            { -6080, -5504, 0x0 },
-            { -6080, -5504, 0x0 },
-            { -12032, -3200, 0x0 },
-            { -12032, -3200, 0x0 },
-            { 0x2A48, 0x1D40, 0x0 },
-            { 0x2A48, 0x1D40, 0x0 },
-            { -9856, -3200, 0x0 },
-            { -9856, -3200, 0x0 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_1] = {
+            VEC_FX32(-3.6465, -1.2285, 0.0156),
+            VEC_FX32(-3.75, -1.5312, 0.0156),
+            VEC_FX32(-2.4062, -0.7812, 0.0156),
+            VEC_FX32(-2.7832, -0.7188, 0.0156),
+            VEC_FX32(-2.4062, -0.7812, 0.0156),
+            VEC_FX32(-2.4062, -0.7812, 0.0156),
+            VEC_FX32(-2.3086, -0.7578, 0),
+            VEC_FX32(-2.3086, -0.7578, 0),
+            VEC_FX32(-4.3594, -0.8848, 0),
+            VEC_FX32(-4.3594, -0.8848, 0),
+            VEC_FX32(-3.0742, -0.7266, 0),
+            VEC_FX32(-3.0742, -0.7266, 0),
+            VEC_FX32(-1.5542, -0.9219, 0),
+            VEC_FX32(-1.5542, -0.9219, 0),
+            VEC_FX32(-3.6406, -0.5312, 0),
+            VEC_FX32(-3.6406, -0.5312, 0),
+            VEC_FX32(-1.4844, -1.3438, 0),
+            VEC_FX32(-1.4844, -1.3438, 0),
+            VEC_FX32(-2.9375, -0.7812, 0),
+            VEC_FX32(-2.9375, -0.7812, 0),
+            VEC_FX32(2.6426, 1.8281, 0),
+            VEC_FX32(2.6426, 1.8281, 0),
+            VEC_FX32(-2.4062, -0.7812, 0),
+            VEC_FX32(-2.4062, -0.7812, 0),
         },
-        {
-            { 0x1CC8, 0x1748, -5248 },
-            { 0x3500, 0xB80, -5248 },
-            { 0x3500, 0xB80, -5248 },
-            { 0x3170, 0x1668, -5248 },
-            { 0x3500, 0xB80, -5248 },
-            { 0x3500, 0xB80, -5248 },
-            { 0x4640, 0x18C0, 0x0 },
-            { 0x4640, 0x18C0, 0x0 },
-            { 0x1F58, 0x1778, 0x0 },
-            { 0x1F58, 0x1778, 0x0 },
-            { 0x3310, 0x1840, 0x0 },
-            { 0x3310, 0x1840, 0x0 },
-            { 0x4400, 0x1440, 0x0 },
-            { 0x4400, 0x1440, 0x0 },
-            { 0x3F00, 0x1CC0, 0x0 },
-            { 0x3F00, 0x1CC0, 0x0 },
-            { 0x50C0, 0xD98, 0x0 },
-            { 0x50C0, 0xD98, 0x0 },
-            { 0x3480, 0x1520, 0x0 },
-            { 0x3480, 0x1520, 0x0 },
-            { -9536, -3120, 0xAA8 },
-            { -9536, -3120, 0xAA8 },
-            { 0x3500, 0xB80, 0x0 },
-            { 0x3500, 0xB80, 0x0 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_1] = {
+            VEC_FX32(1.7988, 1.455, -1.2812),
+            VEC_FX32(3.3125, 0.7188, -1.2812),
+            VEC_FX32(3.3125, 0.7188, -1.2812),
+            VEC_FX32(3.0898, 1.4004, -1.2812),
+            VEC_FX32(3.3125, 0.7188, -1.2812),
+            VEC_FX32(3.3125, 0.7188, -1.2812),
+            VEC_FX32(4.3906, 1.5469, 0),
+            VEC_FX32(4.3906, 1.5469, 0),
+            VEC_FX32(1.959, 1.4668, 0),
+            VEC_FX32(1.959, 1.4668, 0),
+            VEC_FX32(3.1914, 1.5156, 0),
+            VEC_FX32(3.1914, 1.5156, 0),
+            VEC_FX32(4.25, 1.2656, 0),
+            VEC_FX32(4.25, 1.2656, 0),
+            VEC_FX32(3.9375, 1.7969, 0),
+            VEC_FX32(3.9375, 1.7969, 0),
+            VEC_FX32(5.0469, 0.8496, 0),
+            VEC_FX32(5.0469, 0.8496, 0),
+            VEC_FX32(3.2812, 1.3203, 0),
+            VEC_FX32(3.2812, 1.3203, 0),
+            VEC_FX32(-2.3281, -0.7617, 0.666),
+            VEC_FX32(-2.3281, -0.7617, 0.666),
+            VEC_FX32(3.3125, 0.7188, 0),
+            VEC_FX32(3.3125, 0.7188, 0),
         },
-        {
-            { -5364, -6568, -0x400 },
-            { -7552, -6912, -0x400 },
-            { -2308, -5632, -0x400 },
-            { -2984, -5272, -0x400 },
-            { -2308, -5632, -0x400 },
-            { -2308, -5632, -0x400 },
-            { -2480, -5568, 0x0 },
-            { -2480, -5568, 0x0 },
-            { -8200, -4776, 0x0 },
-            { -8200, -4776, 0x0 },
-            { -5600, -6480, 0x0 },
-            { -5600, -6480, 0x0 },
-            { -632, -5176, 0x0 },
-            { -632, -5176, 0x0 },
-            { -8448, -8384, 0x0 },
-            { -8448, -8384, 0x0 },
-            { 0x200, -6528, 0x0 },
-            { 0x200, -6528, 0x0 },
-            { -6848, -6144, 0x0 },
-            { -6848, -6144, 0x0 },
-            { 0x1420, 0x1D40, 0x0 },
-            { 0x1420, 0x1D40, 0x0 },
-            { -2308, -5632, 0x0 },
-            { -2308, -5632, 0x0 },
+        [BATTLER_TYPE_PLAYER_SIDE_SLOT_2] = {
+            VEC_FX32(-1.3096, -1.6035, -0.25),
+            VEC_FX32(-1.8438, -1.6875, -0.25),
+            VEC_FX32(-0.5635, -1.375, -0.25),
+            VEC_FX32(-0.7285, -1.287, -0.25),
+            VEC_FX32(-0.5635, -1.375, -0.25),
+            VEC_FX32(-0.5635, -1.375, -0.25),
+            VEC_FX32(-0.6055, -1.3594, 0),
+            VEC_FX32(-0.6055, -1.3594, 0),
+            VEC_FX32(-2.002, -1.166, 0),
+            VEC_FX32(-2.002, -1.166, 0),
+            VEC_FX32(-1.3672, -1.582, 0),
+            VEC_FX32(-1.3672, -1.582, 0),
+            VEC_FX32(-0.1543, -1.2637, 0),
+            VEC_FX32(-0.1543, -1.2637, 0),
+            VEC_FX32(-2.0625, -2.0469, 0),
+            VEC_FX32(-2.0625, -2.0469, 0),
+            VEC_FX32(0.125, -1.5938, 0),
+            VEC_FX32(0.125, -1.5938, 0),
+            VEC_FX32(-1.6719, -1.5, 0),
+            VEC_FX32(-1.6719, -1.5, 0),
+            VEC_FX32(1.2578, 1.8281, 0),
+            VEC_FX32(1.2578, 1.8281, 0),
+            VEC_FX32(-0.5635, -1.375, 0),
+            VEC_FX32(-0.5635, -1.375, 0),
         },
-        {
-            { 0x3B50, 0x1148, -0x1cb0 },
-            { 0x1B00, 0x1000, -0x1cb0 },
-            { 0x1B00, 0x1000, -0x1cb0 },
-            { 0x1AF8, 0x2048, -0x1cb0 },
-            { 0x1B00, 0x1000, -0x1cb0 },
-            { 0x1B00, 0x1000, -0x1cb0 },
-            { 0x3210, 0x15E0, 0x0 },
-            { 0x3210, 0x15E0, 0x0 },
-            { 0x7D8, 0x1258, 0x0 },
-            { 0x7D8, 0x1258, 0x0 },
-            { 0x1F58, 0x18A8, 0x0 },
-            { 0x1F58, 0x18A8, 0x0 },
-            { 0x2E08, 0x1808, 0x0 },
-            { 0x2E08, 0x1808, 0x0 },
-            { 0x2700, 0x2500, 0x0 },
-            { 0x2700, 0x2500, 0x0 },
-            { 0x3640, 0xD98, 0x0 },
-            { 0x3640, 0xD98, 0x0 },
-            { 0x1840, 0x1540, 0x0 },
-            { 0x1840, 0x1540, 0x0 },
-            { -5408, -6000, 0x0 },
-            { -5408, -6000, 0x0 },
-            { 0x1B00, 0x1000, 0x0 },
-            { 0x1B00, 0x1000, 0x0 },
+        [BATTLER_TYPE_ENEMY_SIDE_SLOT_2] = {
+            VEC_FX32(3.707, 1.08, -1.793),
+            VEC_FX32(1.6875, 1.0, -1.793),
+            VEC_FX32(1.6875, 1.0, -1.793),
+            VEC_FX32(1.6855, 2.0176, -1.793),
+            VEC_FX32(1.6875, 1.0, -1.793),
+            VEC_FX32(1.6875, 1.0, -1.793),
+            VEC_FX32(3.129, 1.3672, 0),
+            VEC_FX32(3.129, 1.3672, 0),
+            VEC_FX32(0.4902, 1.1465, 0),
+            VEC_FX32(0.4902, 1.1465, 0),
+            VEC_FX32(1.959, 1.541, 0),
+            VEC_FX32(1.959, 1.541, 0),
+            VEC_FX32(2.877, 1.502, 0),
+            VEC_FX32(2.877, 1.502, 0),
+            VEC_FX32(2.4375, 2.3125, 0),
+            VEC_FX32(2.4375, 2.3125, 0),
+            VEC_FX32(3.3906, 0.8496, 0),
+            VEC_FX32(3.3906, 0.8496, 0),
+            VEC_FX32(1.5156, 1.3281, 0),
+            VEC_FX32(1.5156, 1.3281, 0),
+            VEC_FX32(-1.3203, -1.4648, 0),
+            VEC_FX32(-1.3203, -1.4648, 0),
+            VEC_FX32(1.6875, 1.0, 0),
+            VEC_FX32(1.6875, 1.0, 0),
         },
-        {
-            { 0x1CC8, -5032, 0x40 },
-            { 0x3500, -6272, 0x40 },
-            { 0x3500, -3200, 0x40 },
-            { 0x3170, -2944, 0x40 },
-            { 0x3500, -3200, 0x40 },
-            { 0x3500, -3200, 0x40 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x1D90, -3200, 0x0 },
-            { 0x1D90, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { -9536, 0x1D40, 0x0 },
-            { -9536, 0x1D40, 0x0 },
-            { 0x3500, -3200, 0x0 },
-            { 0x3500, -2944, 0x0 },
+        [CONTESTANT_TYPE_PLAYER] = {
+            VEC_FX32(1.7988, -1.2285, 0.0156),
+            VEC_FX32(3.3125, -1.5312, 0.0156),
+            VEC_FX32(3.3125, -0.7812, 0.0156),
+            VEC_FX32(3.0898, -0.7188, 0.0156),
+            VEC_FX32(3.3125, -0.7812, 0.0156),
+            VEC_FX32(3.3125, -0.7812, 0.0156),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(1.8477, -0.7812, 0),
+            VEC_FX32(1.8477, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(-2.3281, 1.8281, 0),
+            VEC_FX32(-2.3281, 1.8281, 0),
+            VEC_FX32(3.3125, -0.7812, 0),
+            VEC_FX32(3.3125, -0.7188, 0),
         },
-        {
-            { -5364, 0x1148, -5248 },
-            { -7552, 0x1000, -5248 },
-            { -2308, 0x1000, -5248 },
-            { -2984, 0x2048, -5248 },
-            { -2308, 0x1000, -5248 },
-            { -2308, 0x1000, -5248 },
-            { -2480, 0x15E0, 0x0 },
-            { -2480, 0x15E0, 0x0 },
-            { -8200, 0x1258, 0x0 },
-            { -8200, 0x1258, 0x0 },
-            { -5600, 0x18A8, 0x0 },
-            { -5600, 0x18A8, 0x0 },
-            { -632, 0x1808, 0x0 },
-            { -632, 0x1808, 0x0 },
-            { -8448, 0x2500, 0x0 },
-            { -8448, 0x2500, 0x0 },
-            { 0x200, 0xD98, 0x0 },
-            { 0x200, 0xD98, 0x0 },
-            { -6848, 0x1540, 0x0 },
-            { -6848, 0x1540, 0x0 },
-            { 0x1420, -6000, 0xAA8 },
-            { 0x1420, -5408, 0xAA8 },
-            { -2308, 0x1000, 0x0 },
-            { -2984, 0x2048, 0x0 },
+        [CONTESTANT_TYPE_ENEMY] = {
+            VEC_FX32(-1.3096, 1.08, -1.2812),
+            VEC_FX32(-1.8438, 1.0, -1.2812),
+            VEC_FX32(-0.5635, 1.0, -1.2812),
+            VEC_FX32(-0.7285, 2.0176, -1.2812),
+            VEC_FX32(-0.5635, 1.0, -1.2812),
+            VEC_FX32(-0.5635, 1.0, -1.2812),
+            VEC_FX32(-0.6055, 1.3672, 0),
+            VEC_FX32(-0.6055, 1.3672, 0),
+            VEC_FX32(-2.002, 1.1465, 0),
+            VEC_FX32(-2.002, 1.1465, 0),
+            VEC_FX32(-1.3672, 1.541, 0),
+            VEC_FX32(-1.3672, 1.541, 0),
+            VEC_FX32(-0.1543, 1.502, 0),
+            VEC_FX32(-0.1543, 1.502, 0),
+            VEC_FX32(-2.0625, 2.3125, 0),
+            VEC_FX32(-2.0625, 2.3125, 0),
+            VEC_FX32(0.125, 0.8496, 0),
+            VEC_FX32(0.125, 0.8496, 0),
+            VEC_FX32(-1.6719, 1.3281, 0),
+            VEC_FX32(-1.6719, 1.3281, 0),
+            VEC_FX32(1.2578, -1.4648, 0.666),
+            VEC_FX32(1.2578, -1.3203, 0.666),
+            VEC_FX32(-0.5635, 1.0, 0),
+            VEC_FX32(-0.7285, 2.0176, 0),
         },
     };
 
-    if (param2 == 1) {
-        switch (param0) {
-        case 0:
-            param0 = 5 + 1;
+    if (isContest == TRUE) {
+        switch (battlerType) {
+        case BATTLER_TYPE_SOLO_PLAYER:
+            battlerType = CONTESTANT_TYPE_PLAYER;
             break;
-        case 1:
-            param0 = 5 + 2;
+        case BATTLER_TYPE_SOLO_ENEMY:
+            battlerType = CONTESTANT_TYPE_ENEMY;
             break;
         default:
             GF_ASSERT(FALSE);
@@ -397,82 +398,80 @@ static void ov12_022353CC(int param0, VecFx32 *param1, int param2, int param3, i
         }
     }
 
-    v0 = param3 + (param4 * 2);
-    v1 = &v2[param0][v0];
+    int index = projection + (posType * CAMERA_PROJECTION_COUNT);
+    const VecFx32 *pos = &particlePositions[battlerType][index];
 
-    VEC_Set(param1, v1->x, v1->y, v1->z);
+    VEC_Set(outPos, pos->x, pos->y, pos->z);
 }
 
-void ov12_02235448(int param0, VecFx32 *param1, int param2, int param3)
+void BattleAnimUtil_GetBattlerTypeWorldPos_Normal(int battlerType, VecFx32 *pos, BOOL isContest, enum CameraProjection projection)
 {
-    ov12_022353CC(param0, param1, param2, param3, 0);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(battlerType, pos, isContest, projection, 0);
 }
 
-void ov12_02235458(int param0, VecFx32 *param1, int param2, int param3)
+void ov12_02235458(int battlerType, VecFx32 *pos, int isContest, int projection)
 {
-    ov12_022353CC(param0, param1, param2, param3, 1);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(battlerType, pos, isContest, projection, 1);
 }
 
 void ov12_02235468(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 2);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 2);
 }
 
 void ov12_02235478(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 3);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 3);
 }
 
 void ov12_02235488(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 4);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 4);
 }
 
 void ov12_02235498(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 5);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 5);
 }
 
 void ov12_022354A8(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 6);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 6);
 }
 
 void ov12_022354B8(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 7);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 7);
 }
 
 void ov12_022354C8(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 8);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 8);
 }
 
 void ov12_022354D8(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 9);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 9);
 }
 
 void ov12_022354E8(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 10);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 10);
 }
 
 void ov12_022354F8(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_022353CC(param0, param1, param2, param3, 11);
+    BattleAnimUtil_GetBattlerTypeWorldPosInternal(param0, param1, param2, param3, 11);
 }
 
-void ov12_02235508(BattleAnimSystem *param0, int param1, VecFx32 *param2)
+void BattleAnimUtil_GetBattlerWorldPos_Normal(BattleAnimSystem *system, int battler, VecFx32 *pos)
 {
-    int v0, v1;
-    int v2;
-    ParticleSystem *v3 = BattleAnimSystem_GetCurrentParticleSystem(param0);
-    v2 = ParticleSystem_GetCameraProjection(v3);
-    v0 = BattleAnimUtil_GetBattlerType(param0, param1);
-    v1 = BattleAnimSystem_IsContest(param0);
+    ParticleSystem *ps = BattleAnimSystem_GetCurrentParticleSystem(system);
+    enum CameraProjection projection = ParticleSystem_GetCameraProjection(ps);
+    int battlerType = BattleAnimUtil_GetBattlerType(system, battler);
+    BOOL isContest = BattleAnimSystem_IsContest(system);
 
-    ov12_02235448(v0, param2, v1, v2);
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(battlerType, pos, isContest, projection);
 }
 
 void ov12_02235538(BattleAnimSystem *param0, int param1, VecFx32 *param2)
@@ -616,7 +615,7 @@ void ov12_02235748(VecFx32 *param0)
 
 void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3)
 {
-    ov12_02235448(param0, param1, param2, param3);
+    BattleAnimUtil_GetBattlerTypeWorldPos_Normal(param0, param1, param2, param3);
 }
 
 void ov12_02235760(int param0, VecFx32 *param1)
