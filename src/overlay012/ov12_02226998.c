@@ -74,7 +74,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     ov12_02228A0C,
     BattleAnimScriptFunc_Camouflage,
     ov12_02228B40,
-    ov12_02228C6C,
+    BattleAnimScriptFunc_MoveBattler,
     ov12_0222E810,
     ov12_0222EAA0,
     ov12_02228E00,
