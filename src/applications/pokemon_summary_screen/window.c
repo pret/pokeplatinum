@@ -1098,24 +1098,24 @@ static void PrintTrainerMemo(Window *window, Pokemon *mon, BOOL monOTMatches)
 {
     PokemonInfoDisplayStruct *infoDisplay = sub_02092494(mon, monOTMatches, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    if (infoDisplay->notepad.nature != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->notepad.nature, 0, (infoDisplay->notepad.natureLine - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->nature.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->nature.string, 0, (infoDisplay->nature.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->notepad.dateLocationMet != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->notepad.dateLocationMet, 0, (infoDisplay->notepad.dateLocationMetLine - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->metDateAndLocation.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->metDateAndLocation.string, 0, (infoDisplay->metDateAndLocation.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->notepad.characteristic != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->notepad.characteristic, 0, (infoDisplay->notepad.characteristicLine - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->characteristic.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->characteristic.string, 0, (infoDisplay->characteristic.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->notepad.flavorPreference != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->notepad.flavorPreference, 0, (infoDisplay->notepad.flavorPreferenceLine - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->flavorPreference.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->flavorPreference.string, 0, (infoDisplay->flavorPreference.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
-    if (infoDisplay->notepad.eggWatch != NULL) {
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->notepad.eggWatch, 0, (infoDisplay->notepad.eggWatchLine - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+    if (infoDisplay->eggWatch.string != NULL) {
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, infoDisplay->eggWatch.string, 0, (infoDisplay->eggWatch.line - 1) * 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 
     sub_0209282C(infoDisplay);

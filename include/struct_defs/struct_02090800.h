@@ -7,27 +7,22 @@
 #include "pokemon.h"
 #include "string_template.h"
 
-// Each string in the notepad and which line it starts on.
-typedef struct MemoNotepad {
-    int natureLine;
-    Strbuf *nature;
-    int dateLocationMetLine;
-    Strbuf *dateLocationMet;
-    int characteristicLine;
-    Strbuf *characteristic;
-    int flavorPreferenceLine;
-    Strbuf *flavorPreference;
-    int eggWatchLine;
-    Strbuf *eggWatch;
-} MemoNotepad;
+typedef struct MemoNotepadString {
+    int line;
+    Strbuf *string;
+} MemoNotepadString;
 
-typedef struct {
-    int heapID;
+typedef struct PokemonInfoDisplayStruct {
+    enum HeapId heapID;
     MessageLoader *msgData;
     StringTemplate *msgFmt;
     Pokemon *mon;
     BOOL isMine;
-    MemoNotepad notepad;
+    MemoNotepadString nature;
+    MemoNotepadString metDateAndLocation;
+    MemoNotepadString characteristic;
+    MemoNotepadString flavorPreference;
+    MemoNotepadString eggWatch;
 } PokemonInfoDisplayStruct;
 
 #endif // POKEPLATINUM_STRUCT_02090800_H
