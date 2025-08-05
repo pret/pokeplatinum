@@ -2611,43 +2611,41 @@ void ov12_02228FB4(BattleAnimSystem *param0)
     BattleAnimSystem_StartAnimTask(v6->common.battleAnimSystem, BattleAnimTask_MoveBattlerOffScreen, v6);
 }
 
-void ov12_022290DC(BattleAnimSystem *param0)
+#define MOVE_BATTLER_TO_DEFAULT_POS_VAR_TARGET 0
+
+void BattleAnimScriptFunc_MoveBattlerToDefaultPos(BattleAnimSystem *system)
 {
-    int v0;
-    int v1;
-    int v2;
-    Point2D v3;
-    BattleAnimSpriteInfo v4;
+    // Need to be declared here to match
+    int battler, count;
+    Point2D destPos;
+    BattleAnimSpriteInfo spriteInfo;
 
-    v0 = BattleAnimSystem_GetScriptVar(param0, 0);
+    int target = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_TO_DEFAULT_POS_VAR_TARGET);
 
-    switch (v0) {
-    case 0x2:
-        v1 = BattleAnimSystem_GetAttacker(param0);
+    switch (target) {
+    case BATTLE_ANIM_ATTACKER:
+        battler = BattleAnimSystem_GetAttacker(system);
         break;
-    case 0x4:
-        v1 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetAttacker(param0));
+    case BATTLE_ANIM_ATTACKER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetAttacker(system));
         break;
-    case 0x8:
-        v1 = BattleAnimSystem_GetDefender(param0);
+    case BATTLE_ANIM_DEFENDER:
+        battler = BattleAnimSystem_GetDefender(system);
         break;
-    case 0x10:
-        v1 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetDefender(param0));
+    case BATTLE_ANIM_DEFENDER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetDefender(system));
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    BattleAnimUtil_GetBattlerDefaultPos(param0, v1, &v3);
-    BattleAnimUtil_GetBattlerSprites(param0, v0, &v4, &v2);
+    BattleAnimUtil_GetBattlerDefaultPos(system, battler, &destPos);
+    BattleAnimUtil_GetBattlerSprites(system, target, &spriteInfo, &count);
 
-    {
-        s16 v5 = BattleAnimSystem_GetBattlerSpriteHeight(param0, v1);
-
-        PokemonSprite_SetAttribute(v4.monSprite, MON_SPRITE_X_CENTER, v3.x);
-        PokemonSprite_SetAttribute(v4.monSprite, MON_SPRITE_Y_CENTER, v3.y + v5);
-    }
+    s16 height = BattleAnimSystem_GetBattlerSpriteHeight(system, battler);
+    PokemonSprite_SetAttribute(spriteInfo.monSprite, MON_SPRITE_X_CENTER, destPos.x);
+    PokemonSprite_SetAttribute(spriteInfo.monSprite, MON_SPRITE_Y_CENTER, destPos.y + height);
 }
 
 static void ov12_02229184(SysTask *param0, void *param1)
