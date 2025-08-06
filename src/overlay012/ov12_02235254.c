@@ -606,11 +606,11 @@ void ov12_02235718(BattleAnimSystem *param0, int param1, VecFx32 *param2)
     ov12_022354F8(v0, param2, v1, v2);
 }
 
-void ov12_02235748(VecFx32 *param0)
+void BattleAnimUtil_GetParticleViewportTopPosition(VecFx32 *pos)
 {
-    param0->x = 0;
-    param0->y = (+16512) + (60 * 172);
-    param0->z = 0;
+    pos->x = 0;
+    pos->y = BATTLE_PARTICLE_VIEWPORT_TOP + BATTLE_PARTICLE_SCREEN_TO_WORLD(60); // ~60 pixels from the top of the screen
+    pos->z = 0;
 }
 
 void ov12_02235758(int param0, VecFx32 *param1, int param2, int param3)

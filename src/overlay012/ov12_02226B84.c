@@ -630,6 +630,13 @@ typedef struct EmitterAnimationContext {
 #define EMITTER_ANIMATION_VAR_MODE        6
 #define EMITTER_ANIMATION_VAR_PARAMS      7
 #define EMITTER_ANIMATION_VAR_CURVE       8
+// Vars for MoveEmitterViewportTop
+#define EMITTER_ANIMATION_VAR_EMITTER_ID_ALT  0
+#define EMITTER_ANIMATION_VAR_MODE_ALT        1
+#define EMITTER_ANIMATION_VAR_TYPE_ALT        2
+#define EMITTER_ANIMATION_VAR_FRAMES_ALT      3
+#define EMITTER_ANIMATION_VAR_START_DELAY_ALT 4
+#define EMITTER_ANIMATION_VAR_PARAMS_ALT      5
 
 // -------------------------------------------------------------------
 // Emitter Revolution
@@ -3290,83 +3297,81 @@ void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveEmitterA2BLinear, ctx);
 }
 
-void ov12_02229C5C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MoveEmitterViewportTop(BattleAnimSystem *system)
 {
-    VecFx32 v0;
-    VecFx32 v1;
-    int v2;
-    EmitterAnimationContext *v3 = BattleAnimUtil_Alloc(param0, sizeof(EmitterAnimationContext));
-    BattleAnimSystem_GetCommonData(param0, &v3->common);
+    EmitterAnimationContext *ctx = BattleAnimUtil_Alloc(system, sizeof(EmitterAnimationContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v3->emitterID = BattleAnimSystem_GetScriptVar(param0, 0);
-    v3->mode = BattleAnimSystem_GetScriptVar(param0, 1);
+    ctx->emitterID = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_EMITTER_ID_ALT);
+    ctx->mode = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_MODE_ALT);
 
-    v2 = BattleAnimSystem_GetScriptVar(param0, 2);
+    int type = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_TYPE_ALT);
 
-    v3->frames = BattleAnimSystem_GetScriptVar(param0, 3);
-    v3->startDelay = BattleAnimSystem_GetScriptVar(param0, 4);
-    v3->timer = 0;
+    ctx->frames = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_FRAMES_ALT);
+    ctx->startDelay = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_START_DELAY_ALT);
+    ctx->timer = 0;
 
-    {
-        int v4 = BattleAnimSystem_GetScriptVar(param0, 5);
+    int params = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_PARAMS_ALT);
 
-        v3->frame = 0;
-        v3->skipFrames = (v4 & 0xFFFF0000) >> 16;
-        v3->maxFrames = (v4 & 0xFFFF);
+    ctx->frame = 0;
+    ctx->skipFrames = EMITTER_ANIMATION_SKIP_FRAMES(params);
+    ctx->maxFrames = EMITTER_ANIMATION_MAX_FRAMES(params);
 
-        if (v3->skipFrames == 0) {
-            v3->skipFrames = 0;
-        }
-
-        if (v3->maxFrames == 0) {
-            v3->maxFrames = 0xFF;
-        }
+    if (ctx->skipFrames == 0) {
+        ctx->skipFrames = 0;
     }
 
-    v3->emitter = BattleAnimSystem_GetEmitter(param0, v3->emitterID);
-    v3->particleSys = BattleAnimSystem_GetCurrentParticleSystem(param0);
+    if (ctx->maxFrames == 0) {
+        ctx->maxFrames = EMITTER_ANIMATION_DEFAULT_FRAMES;
+    }
 
-    if (v3->mode == 0) {
-        v3->startBattler = BattleAnimSystem_GetAttacker(param0);
-        v3->endBattler = BattleAnimSystem_GetAttacker(param0);
+    ctx->emitter = BattleAnimSystem_GetEmitter(system, ctx->emitterID);
+    ctx->particleSys = BattleAnimSystem_GetCurrentParticleSystem(system);
+
+    if (ctx->mode == EMITTER_ANIMATION_MODE_ATK_TO_DEF) {
+        ctx->startBattler = BattleAnimSystem_GetAttacker(system);
+        ctx->endBattler = BattleAnimSystem_GetAttacker(system);
     } else {
-        v3->startBattler = BattleAnimSystem_GetDefender(param0);
-        v3->endBattler = BattleAnimSystem_GetDefender(param0);
+        ctx->startBattler = BattleAnimSystem_GetDefender(system);
+        ctx->endBattler = BattleAnimSystem_GetDefender(system);
     }
 
-    if (v3->emitter == NULL) {
-        GF_ASSERT(0);
+    if (ctx->emitter == NULL) {
+        GF_ASSERT(FALSE);
     }
 
-    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->startBattler, &v0);
-    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->endBattler, &v1);
+    VecFx32 startPos, endPos;
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->startBattler, &startPos);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->endBattler, &endPos);
 
-    if (v2 == 0) {
-        ov12_02235748(&v0);
-        v0.x = v1.x;
+    if (type == EMITTER_ANIMATION_FROM_TOP) {
+        BattleAnimUtil_GetParticleViewportTopPosition(&startPos);
+        startPos.x = endPos.x;
     } else {
-        ov12_02235748(&v1);
-        v1.x = v0.x;
+        BattleAnimUtil_GetParticleViewportTopPosition(&endPos);
+        endPos.x = startPos.x;
     }
 
-    PosLerpContext_Init(&v3->transforms[0], v0.x / 172, v1.x / 172, v0.y / 172, v1.y / 172, v3->frames);
+    PosLerpContext_Init(
+        &ctx->transforms[0],
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.x),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(endPos.x),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.y),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(endPos.y),
+        ctx->frames);
 
-    {
-        int v5;
-
-        for (v5 = 0; v5 < v3->skipFrames; v5++) {
-            PosLerpContext_Update(&v3->transforms[0]);
-        }
-
-        if (v3->maxFrames != 0xFF) {
-            v3->frame = v3->maxFrames + 1;
-        }
-
-        SPLEmitter_SetPosX(v3->emitter, v3->transforms[0].x * 172);
-        SPLEmitter_SetPosY(v3->emitter, v3->transforms[0].y * 172);
+    for (int i = 0; i < ctx->skipFrames; i++) {
+        PosLerpContext_Update(&ctx->transforms[0]);
     }
 
-    BattleAnimSystem_StartAnimTask(v3->common.battleAnimSys, BattleAnimTask_MoveEmitterA2BLinear, v3);
+    if (ctx->maxFrames != EMITTER_ANIMATION_DEFAULT_FRAMES) {
+        ctx->frame = ctx->maxFrames + 1;
+    }
+
+    SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].x));
+    SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y));
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveEmitterA2BLinear, ctx);
 }
 
 static void BattleAnimTask_MoveEmitterA2BParabolic(SysTask *task, void *param)
@@ -3484,7 +3489,7 @@ void BattleAnimScriptFunc_RevolveEmitter(BattleAnimSystem *system)
         ctx->frames);
 
     RevolutionContext_Update(&ctx->revs);
-    
+
     VecFx32 startPos;
     startPos.x = ctx->battlerPos.x + BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->revs.x);
     startPos.y = ctx->battlerPos.y + BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->revs.y);

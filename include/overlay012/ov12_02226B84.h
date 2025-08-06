@@ -34,7 +34,7 @@ void BattleAnimScriptFunc_BattlerPartialDraw(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_ShakeBg(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_PixelatePokemonSprite(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *param0);
-void ov12_02229C5C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_MoveEmitterViewportTop(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveEmitterA2BParabolic(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RevolveEmitter(BattleAnimSystem *param0);
 void ov12_0222A1AC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);

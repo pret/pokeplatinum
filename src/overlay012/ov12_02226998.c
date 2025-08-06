@@ -90,7 +90,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_RolePlay,
     BattleAnimScriptFunc_Snatch,
     BattleAnimScriptFunc_RevolveEmitter,
-    ov12_02229C5C,
+    BattleAnimScriptFunc_MoveEmitterViewportTop,
     ov12_0222A604,
     ov12_0222A8F4,
     ov12_0222AC40,
