@@ -631,27 +631,39 @@ typedef struct EmitterAnimationContext {
 #define EMITTER_ANIMATION_VAR_PARAMS      7
 #define EMITTER_ANIMATION_VAR_CURVE       8
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    int unk_30;
-    ParticleSystem *unk_34;
-    SPLEmitter *unk_38;
-    BattleAnimScriptFuncCommon unk_3C;
-    XYTransformContext unk_58;
-    VecFx32 unk_7C;
-    VecFx32 unk_88;
-} UnkStruct_ov12_02229F9C;
+// -------------------------------------------------------------------
+// Emitter Revolution
+// -------------------------------------------------------------------
+typedef struct EmitterAnimationContext2 {
+    int emitterID;
+    int sx;
+    int sy;
+    int ex;
+    int ey;
+    int rx;
+    int ry;
+    int frames;
+    int mode;
+    int battler;
+    int unused0[3];
+    ParticleSystem *particleSys;
+    SPLEmitter *emitter;
+    BattleAnimScriptFuncCommon common;
+    XYTransformContext revs;
+    VecFx32 unused1;
+    VecFx32 battlerPos;
+} EmitterRevolutionContext;
+
+#define EMITTER_REVOLUTION_VAR_EMITTER_ID      0
+#define EMITTER_REVOLUTION_VAR_START_X         1
+#define EMITTER_REVOLUTION_VAR_END_X           2
+#define EMITTER_REVOLUTION_VAR_START_Y         3
+#define EMITTER_REVOLUTION_VAR_END_Y           4
+#define EMITTER_REVOLUTION_VAR_RADIUS_X        5
+#define EMITTER_REVOLUTION_VAR_RADIUS_Y        6
+#define EMITTER_REVOLUTION_VAR_FRAMES          7
+#define EMITTER_REVOLUTION_VAR_MODE            8
+#define EMITTER_REVOLUTION_VAR_PARTICLE_SYSTEM 9
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -3416,68 +3428,71 @@ void BattleAnimScriptFunc_MoveEmitterA2BParabolic(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveEmitterA2BParabolic, ctx);
 }
 
-static void ov12_02229F9C(SysTask *param0, void *param1)
+static void BattleAnimTask_RevolveEmitter(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02229F9C *v0 = param1;
-    BOOL v1 = IsEmitterActive(v0->unk_38);
+    EmitterRevolutionContext *ctx = param;
+    BOOL emitterActive = IsEmitterActive(ctx->emitter);
 
-    if ((RevolutionContext_Update(&v0->unk_58) == 0) && (v1 == 0)) {
-        ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
-        BattleAnimSystem_EndAnimTask(v0->unk_3C.battleAnimSys, param0);
-        Heap_Free(v0);
+    if (RevolutionContext_Update(&ctx->revs) == FALSE && emitterActive == FALSE) {
+        ParticleSystem_DeleteEmitter(ctx->particleSys, ctx->emitter);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
     } else {
-        VecFx32 v2;
+        VecFx32 emitterPos;
+        emitterPos.x = ctx->battlerPos.x + BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->revs.x);
+        emitterPos.y = ctx->battlerPos.y + BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->revs.y);
 
-        v2.x = v0->unk_88.x + (v0->unk_58.x * 172);
-        v2.y = v0->unk_88.y + (v0->unk_58.y * 172);
-
-        SPLEmitter_SetPosX(v0->unk_38, v2.x);
-        SPLEmitter_SetPosY(v0->unk_38, v2.y);
+        SPLEmitter_SetPosX(ctx->emitter, emitterPos.x);
+        SPLEmitter_SetPosY(ctx->emitter, emitterPos.y);
     }
 }
 
-void ov12_0222A00C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_RevolveEmitter(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02229F9C *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02229F9C));
+    EmitterRevolutionContext *ctx = BattleAnimUtil_Alloc(system, sizeof(EmitterRevolutionContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_3C);
+    ctx->emitterID = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_EMITTER_ID);
+    ctx->sx = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_START_X);
+    ctx->ex = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_END_X);
+    ctx->sy = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_START_Y);
+    ctx->ey = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_END_Y);
+    ctx->rx = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_RADIUS_X);
+    ctx->ry = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_RADIUS_Y);
+    ctx->frames = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_FRAMES);
+    ctx->mode = BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_MODE);
 
-    v0->unk_00 = BattleAnimSystem_GetScriptVar(param0, 0);
-    v0->unk_04 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_0C = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_08 = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_10 = BattleAnimSystem_GetScriptVar(param0, 4);
-    v0->unk_14 = BattleAnimSystem_GetScriptVar(param0, 5);
-    v0->unk_18 = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_1C = BattleAnimSystem_GetScriptVar(param0, 7);
-    v0->unk_20 = BattleAnimSystem_GetScriptVar(param0, 8);
-
-    if (v0->unk_20 == 0) {
-        v0->unk_24 = BattleAnimSystem_GetAttacker(param0);
+    if (ctx->mode == EMITTER_REVOLUTION_MODE_ATTACKER) {
+        ctx->battler = BattleAnimSystem_GetAttacker(system);
     } else {
-        v0->unk_24 = BattleAnimSystem_GetDefender(param0);
+        ctx->battler = BattleAnimSystem_GetDefender(system);
     }
 
-    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v0->unk_24, &v0->unk_88);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->battler, &ctx->battlerPos);
 
-    v0->unk_38 = BattleAnimSystem_GetEmitter(param0, v0->unk_00);
-    v0->unk_34 = BattleAnimSystem_GetParticleSystem(param0, BattleAnimSystem_GetScriptVar(param0, 9));
+    ctx->emitter = BattleAnimSystem_GetEmitter(system, ctx->emitterID);
+    ctx->particleSys = BattleAnimSystem_GetParticleSystem(system, BattleAnimSystem_GetScriptVar(system, EMITTER_REVOLUTION_VAR_PARTICLE_SYSTEM));
 
-    RevolutionContext_Init(&v0->unk_58, (v0->unk_04 * 0xffff) / 360, (v0->unk_0C * 0xffff) / 360, (v0->unk_08 * 0xffff) / 360, (v0->unk_10 * 0xffff) / 360, v0->unk_14 * FX32_ONE, v0->unk_18 * FX32_ONE, v0->unk_1C);
+    RevolutionContext_Init(
+        &ctx->revs,
+        DEG_TO_IDX(ctx->sx),
+        DEG_TO_IDX(ctx->ex),
+        DEG_TO_IDX(ctx->sy),
+        DEG_TO_IDX(ctx->ey),
+        ctx->rx * FX32_ONE,
+        ctx->ry * FX32_ONE,
+        ctx->frames);
 
-    {
-        VecFx32 v1;
+    RevolutionContext_Update(&ctx->revs);
+    
+    VecFx32 startPos;
+    startPos.x = ctx->battlerPos.x + BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->revs.x);
+    startPos.y = ctx->battlerPos.y + BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->revs.y);
 
-        RevolutionContext_Update(&v0->unk_58);
+    SPLEmitter_SetPosX(ctx->emitter, startPos.x);
+    SPLEmitter_SetPosY(ctx->emitter, startPos.y);
 
-        v1.x = v0->unk_88.x + (v0->unk_58.x * 172);
-        v1.y = v0->unk_88.y + (v0->unk_58.y * 172);
-
-        SPLEmitter_SetPosX(v0->unk_38, v1.x);
-        SPLEmitter_SetPosY(v0->unk_38, v1.y);
-    }
-
-    BattleAnimSystem_StartAnimTask(v0->unk_3C.battleAnimSys, ov12_02229F9C, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_RevolveEmitter, ctx);
 }
 
 static void ov12_0222A178(SysTask *param0, void *param1)

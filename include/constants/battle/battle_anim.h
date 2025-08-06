@@ -162,5 +162,8 @@
 #define SHAKE_BG_TARGET_EFFECT 0 //< Shake the effect background
 #define SHAKE_BG_TARGET_BASE   1 //< Shake the base background
 
+#define EMITTER_REVOLUTION_MODE_ATTACKER 0
+#define EMITTER_REVOLUTION_MODE_DEFENDER 1
+
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
