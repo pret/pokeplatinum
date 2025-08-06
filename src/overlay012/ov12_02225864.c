@@ -311,37 +311,35 @@ BOOL PosLerpContext_UpdateAndApplyToMon(XYTransformContext *ctx, PokemonSprite *
     return FALSE;
 }
 
-void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7)
+void XYTransformContext_InitParabolic(XYTransformContext *linear, XYTransformContext *revs, s16 sx, s16 ex, s16 sy, s16 ey, u16 frames, fx32 r)
 {
-    PosLerpContext_Init(param0, param2, param3, param4, param5, param6);
-    param1->x = 0;
-    param1->y = 0;
-    RevolutionContext_Init(param1, 0, 0, (90 * 0xffff) / 360, (270 * 0xffff) / 360, 0, param7, param6);
+    PosLerpContext_Init(linear, sx, ex, sy, ey, frames);
+    revs->x = 0;
+    revs->y = 0;
+    RevolutionContext_Init(revs, 0, 0, DEG_TO_IDX(90), DEG_TO_IDX(270), 0, r, frames);
 }
 
-BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1)
+BOOL XYTransformContext_UpdateParabolic(XYTransformContext *linear, XYTransformContext *revs)
 {
-    BOOL v0, v1;
+    GF_ASSERT(linear);
+    GF_ASSERT(revs);
 
-    GF_ASSERT(param0);
-    GF_ASSERT(param1);
+    BOOL linearActive = PosLerpContext_Update(linear);
+    BOOL revsActive = RevolutionContext_Update(revs);
 
-    v0 = PosLerpContext_Update(param0);
-    v1 = RevolutionContext_Update(param1);
+    linear->x += revs->x;
+    linear->y += revs->y;
 
-    param0->x += param1->x;
-    param0->y += param1->y;
-
-    if ((v0 == v1) && (v0 == 0)) {
-        return 0;
+    if (linearActive == revsActive && linearActive == FALSE) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 BOOL ov12_02225D2C(XYTransformContext *param0, XYTransformContext *param1, ManagedSprite *param2)
 {
-    if (ov12_02225CE4(param0, param1)) {
+    if (XYTransformContext_UpdateParabolic(param0, param1)) {
         XYTransformContext_ApplyPosOffsetToSprite(param0, param2, 0, 0);
         return 1;
     }

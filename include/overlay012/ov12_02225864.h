@@ -181,8 +181,8 @@ void PosLerpContext_Init(XYTransformContext *param0, s16 param1, s16 param2, s16
 BOOL PosLerpContext_Update(XYTransformContext *param0);
 BOOL PosLerpContext_UpdateAndApplyToSprite(XYTransformContext *param0, ManagedSprite *param1);
 BOOL PosLerpContext_UpdateAndApplyToMon(XYTransformContext *param0, PokemonSprite *param1);
-void ov12_02225C98(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7);
-BOOL ov12_02225CE4(XYTransformContext *param0, XYTransformContext *param1);
+void XYTransformContext_InitParabolic(XYTransformContext *param0, XYTransformContext *param1, s16 param2, s16 param3, s16 param4, s16 param5, u16 param6, fx32 param7);
+BOOL XYTransformContext_UpdateParabolic(XYTransformContext *param0, XYTransformContext *param1);
 BOOL ov12_02225D2C(XYTransformContext *param0, XYTransformContext *param1, ManagedSprite *param2);
 void ValueLerpContext_Init(ValueLerpContext *param0, s32 param1, s32 param2, u32 param3);
 void ValueLerpContext_InitFX32(ValueLerpContext *param0, s16 param1, s16 param2, u32 param3); // Uses FX32 internally

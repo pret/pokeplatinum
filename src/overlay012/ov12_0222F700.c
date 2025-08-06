@@ -2207,7 +2207,7 @@ static void ov12_022310D4(SysTask *param0, void *param1)
         return;
     case 2:
         if (ov12_02225D2C(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
-            ov12_02225C98(&v0->unk_4C, &v0->unk_70, v0->unk_44, v0->unk_14, v0->unk_46, v0->unk_16, 10, -(32 * FX32_ONE));
+            XYTransformContext_InitParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_44, v0->unk_14, v0->unk_46, v0->unk_16, 10, -(32 * FX32_ONE));
             v0->unk_0C++;
         }
         break;
@@ -2268,7 +2268,7 @@ void ov12_022312A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     ManagedSprite_SetPriority(v0->unk_48, 100);
     ManagedSprite_SetExplicitPriority(v0->unk_48, 1);
 
-    ov12_02225C98(&v0->unk_4C, &v0->unk_70, v0->unk_14, v0->unk_44, v0->unk_16, v0->unk_46, 10, 32 * FX32_ONE);
+    XYTransformContext_InitParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_14, v0->unk_44, v0->unk_16, v0->unk_46, 10, 32 * FX32_ONE);
     BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022310D4, v0);
 }
 
