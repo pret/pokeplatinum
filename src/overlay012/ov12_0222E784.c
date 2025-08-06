@@ -78,7 +78,7 @@ void BattleAnimScriptFunc_Mimic(BattleAnimSystem *system)
     ctx->defenderSprite.monSprite = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
     ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite.monSprite, MON_SPRITE_Y_CENTER);
     ctx->unused = ctx->defenderY;
-    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
     ctx->defenderSprite.hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_0);
     ctx->opponentSprites[DEFENDER].hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_1);
     ctx->opponentSprites[DEFENDER_PARTNER].hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_2);

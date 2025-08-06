@@ -3773,7 +3773,7 @@ int BattleAnimSystem_GetBattlerSpriteNarcID(BattleAnimSystem *system, int battle
     return system->context->pokemonSpriteData[battler]->narcID;
 }
 
-int BattleAnimSystem_GetBattlerSpriteHeight(BattleAnimSystem *system, int battler)
+int BattleAnimSystem_GetBattlerSpriteOffset(BattleAnimSystem *system, int battler)
 {
     return system->context->pokemonSpriteData[battler]->yOffset;
 }

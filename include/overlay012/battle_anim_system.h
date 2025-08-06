@@ -289,7 +289,7 @@ PokemonSprite *BattleAnimSystem_GetBattlerSprite(BattleAnimSystem *param0, int p
 PaletteData *BattleAnimSystem_GetPaletteData(BattleAnimSystem *param0);
 int BattleAnimSystem_GetBattlerSpritePaletteIndex(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetBattlerSpriteNarcID(BattleAnimSystem *param0, int param1);
-int BattleAnimSystem_GetBattlerSpriteHeight(BattleAnimSystem *param0, int param1);
+int BattleAnimSystem_GetBattlerSpriteOffset(BattleAnimSystem *param0, int param1);
 BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_IsBattlerSemiInvulnerable(BattleAnimSystem *param0, int param1);
 int BattleAnimSystem_GetPokemonSpritePriority(BattleAnimSystem *param0);

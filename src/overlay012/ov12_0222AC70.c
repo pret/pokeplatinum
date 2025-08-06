@@ -1,5 +1,6 @@
 #include "overlay012/ov12_0222AC70.h"
 
+#include "nitro/pad/common/pad.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -822,7 +823,7 @@ void BattleAnimScriptFunc_Strength(BattleAnimSystem *system)
     ctx->battleAnimSys = system;
     ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
-    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     ScaleLerpContext_Init(
         &ctx->scale,
@@ -939,7 +940,7 @@ void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system)
     ctx->battleAnimSys = system;
     ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
-    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     ScaleLerpContext_InitXY(
         &ctx->scale,
@@ -1307,7 +1308,7 @@ void BattleAnimScriptFunc_Meditate(BattleAnimSystem *system)
     ctx->battleAnimSys = system;
     ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
-    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Meditate, ctx);
 }
@@ -1423,7 +1424,7 @@ void BattleAnimScriptFunc_Teleport(BattleAnimSystem *system)
     ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
     ctx->baseY = ctx->attackerY;
-    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Teleport, ctx);
 }
@@ -1603,7 +1604,7 @@ void BattleAnimScriptFunc_Splash(BattleAnimSystem *system)
     ctx->battleAnimSys = system;
     ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
-    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Splash, ctx);
 }
@@ -1811,7 +1812,7 @@ void BattleAnimScriptFunc_Minimize(BattleAnimSystem *system)
     ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
     ctx->attackerY -= PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_SHADOW_HEIGHT);
-    ctx->attackerSpriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerSpriteHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
     BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
     G2_ChangeBlendAlpha(MINIMIZE_SPRITE_ALPHA, MINIMIZE_BG_ALPHA);
@@ -2742,7 +2743,7 @@ void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v1->unk_08 = 16;
     v1->unk_1C = BattleAnimSystem_GetBattlerSprite(v1->unk_10, BattleAnimSystem_GetAttacker(v1->unk_10));
     v1->unk_20 = PokemonSprite_GetAttribute(v1->unk_1C, MON_SPRITE_Y_CENTER);
-    v1->unk_24 = BattleAnimSystem_GetBattlerSpriteHeight(v1->unk_10, BattleAnimSystem_GetAttacker(v1->unk_10));
+    v1->unk_24 = BattleAnimSystem_GetBattlerSpriteOffset(v1->unk_10, BattleAnimSystem_GetAttacker(v1->unk_10));
 
     BattleAnimUtil_SetSpriteBlending(v1->unk_10, (1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
     G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);

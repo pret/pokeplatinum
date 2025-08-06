@@ -2966,7 +2966,7 @@ void BattleAnimScriptFunc_Swagger(BattleAnimSystem *system)
         SWAGGER_SCALE_FRAMES);
 
     ctx->scaleDelay = SWAGGER_SCALE_DELAY;
-    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->spriteHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->baseY = PokemonSprite_GetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER);
 
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Swagger, ctx);
@@ -3475,7 +3475,7 @@ void ov12_022329E0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v4 = PokemonSprite_GetAttribute(v0->unk_18, MON_SPRITE_Y_CENTER);
 
     v0->unk_44 = v4;
-    v0->unk_46 = BattleAnimSystem_GetBattlerSpriteHeight(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
+    v0->unk_46 = BattleAnimSystem_GetBattlerSpriteOffset(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
 
     v1 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00);
 
@@ -3880,7 +3880,7 @@ void BattleAnimScriptFunc_Memento(BattleAnimSystem *system)
     defenderY -= PokemonSprite_GetAttribute(defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
 
     ctx->attackerY = attackerY;
-    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     ctx->attackerSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
 
     ManagedSprite_SetPriority(ctx->attackerSprite, MEMENTO_SPRITE_PRIORITY);
@@ -4626,7 +4626,7 @@ void BattleAnimScriptFunc_FakeOut(BattleAnimSystem *system)
     FakeOutContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FakeOutContext));
 
     ctx->battleAnimSys = system;
-    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteHeight(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
+    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
     ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(ctx->battleAnimSys));
     ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
     ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
