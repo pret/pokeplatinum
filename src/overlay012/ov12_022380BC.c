@@ -68,22 +68,22 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     s8 v11;
     u8 v12;
 
-    PokemonSprite_Push(param0->unk_18[param0->unk_00]);
+    PokemonSprite_Push(param0->sprites[param0->unk_00]);
 
-    v2 = param0->unk_28[param0->unk_04];
-    v3 = param0->unk_30[param0->unk_04];
-    v5 = param0->unk_34[param0->unk_04];
-    v6 = param0->unk_38[param0->unk_04];
-    v7 = param0->unk_3C[param0->unk_04];
+    v2 = param0->species[param0->unk_04];
+    v3 = param0->genders[param0->unk_04];
+    v5 = param0->shinyFlags[param0->unk_04];
+    v6 = param0->forms[param0->unk_04];
+    v7 = param0->personalities[param0->unk_04];
 
     if (param2) {
-        if (param0->unk_4C[param1] & 0x1) {
+        if (param0->types[param1] & 0x1) {
             v4 = 0;
         } else {
             v4 = 2;
         }
     } else {
-        if (param0->unk_4C[param1] & 0x1) {
+        if (param0->types[param1] & 0x1) {
             v4 = 2;
         } else {
             v4 = 0;
@@ -92,19 +92,19 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
 
     BuildPokemonSpriteTemplate(&v0, v2, v3, v4, v5, v6, v7);
 
-    v1 = PokemonSprite_GetTemplate(param0->unk_18[param0->unk_00]);
+    v1 = PokemonSprite_GetTemplate(param0->sprites[param0->unk_00]);
     *v1 = v0;
 
-    PokemonSprite_ScheduleReloadFromNARC(param0->unk_18[param0->unk_00]);
+    PokemonSprite_ScheduleReloadFromNARC(param0->sprites[param0->unk_00]);
     sub_02013750(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v7, 0, v4, v1->spindaSpots);
 
     param0->pokemonSpriteData[param0->unk_00]->narcID = v1->narcID;
     param0->pokemonSpriteData[param0->unk_00]->palette = v1->palette;
 
     v11 = param0->pokemonSpriteData[param0->unk_00]->yOffset = LoadPokemonSpriteYOffset(v2, v3, v4, v6, v7);
-    v8 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1);
+    v8 = ov12_022384CC(param0->types[param0->unk_00], 1);
 
-    PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_Y_CENTER, v8 + v11);
+    PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_Y_CENTER, v8 + v11);
 
     if (v4 == 2) {
         NARC *v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
@@ -114,11 +114,11 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
         PokeSprite_LoadShadowSize(v13, &v12, v2);
         NARC_dtor(v13);
 
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_SIZE, v12);
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_Y, (v8 + v11) + (36 - v11));
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_X_OFFSET, v10);
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_Y_OFFSET, 36 - v11);
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_HEIGHT, v9);
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_SIZE, v12);
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_Y, (v8 + v11) + (36 - v11));
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_X_OFFSET, v10);
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_Y_OFFSET, 36 - v11);
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_HEIGHT, v9);
     }
 }
 
@@ -132,15 +132,15 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
     u32 v5;
     int v6;
 
-    PokemonSprite_Pop(param0->unk_18[param0->unk_00]);
+    PokemonSprite_Pop(param0->sprites[param0->unk_00]);
 
-    v0 = PokemonSprite_GetTemplate(param0->unk_18[param0->unk_00]);
-    v1 = param0->unk_28[param0->unk_00];
-    v2 = param0->unk_30[param0->unk_00];
-    v4 = param0->unk_38[param0->unk_00];
-    v5 = param0->unk_3C[param0->unk_00];
+    v0 = PokemonSprite_GetTemplate(param0->sprites[param0->unk_00]);
+    v1 = param0->species[param0->unk_00];
+    v2 = param0->genders[param0->unk_00];
+    v4 = param0->forms[param0->unk_00];
+    v5 = param0->personalities[param0->unk_00];
 
-    if (param0->unk_4C[param0->unk_00] & 0x1) {
+    if (param0->types[param0->unk_00] & 0x1) {
         v3 = 2;
     } else {
         v3 = 0;
@@ -152,9 +152,9 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
     param0->pokemonSpriteData[param0->unk_00]->palette = v0->palette;
     param0->pokemonSpriteData[param0->unk_00]->yOffset = LoadPokemonSpriteYOffset(v1, v2, v3, v4, v5);
 
-    v6 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->pokemonSpriteData[param0->unk_00]->yOffset;
+    v6 = ov12_022384CC(param0->types[param0->unk_00], 1) + param0->pokemonSpriteData[param0->unk_00]->yOffset;
 
-    PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_Y_CENTER, v6);
+    PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_Y_CENTER, v6);
 }
 
 void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
@@ -165,7 +165,7 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
     int v3;
     u8 v4;
 
-    PokemonSprite_Push(param0->unk_18[param0->unk_00]);
+    PokemonSprite_Push(param0->sprites[param0->unk_00]);
 
     v0.narcID = 117;
     v0.palette = 250;
@@ -173,7 +173,7 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
     v0.dummy = 0;
     v0.personality = 0;
 
-    if (param0->unk_4C[param0->unk_00] & 0x1) {
+    if (param0->types[param0->unk_00] & 0x1) {
         v0.character = 249;
         v3 = 135;
     } else {
@@ -181,10 +181,10 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
         v3 = 134;
     }
 
-    v1 = PokemonSprite_GetTemplate(param0->unk_18[param0->unk_00]);
+    v1 = PokemonSprite_GetTemplate(param0->sprites[param0->unk_00]);
     *v1 = v0;
 
-    PokemonSprite_ScheduleReloadFromNARC(param0->unk_18[param0->unk_00]);
+    PokemonSprite_ScheduleReloadFromNARC(param0->sprites[param0->unk_00]);
     sub_02013610(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles);
 
     param0->pokemonSpriteData[param0->unk_00]->narcID = v0.narcID;
@@ -192,16 +192,16 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
 
     NARC_ReadWholeMemberByIndexPair(&v4, NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O, v3);
     param0->pokemonSpriteData[param0->unk_00]->yOffset = v4;
-    v2 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->pokemonSpriteData[param0->unk_00]->yOffset;
+    v2 = ov12_022384CC(param0->types[param0->unk_00], 1) + param0->pokemonSpriteData[param0->unk_00]->yOffset;
 
-    PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_Y_CENTER, v2);
+    PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_Y_CENTER, v2);
 
-    if (param0->unk_4C[param0->unk_00] & 0x1) {
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_SIZE, 1);
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_Y, v2 + (36 - v4));
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_X_OFFSET, 0);
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_Y_OFFSET, 36 - v4);
-        PokemonSprite_SetAttribute(param0->unk_18[param0->unk_00], MON_SPRITE_SHADOW_HEIGHT, 0);
+    if (param0->types[param0->unk_00] & 0x1) {
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_SIZE, 1);
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_Y, v2 + (36 - v4));
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_X_OFFSET, 0);
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_Y_OFFSET, 36 - v4);
+        PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_SHADOW_HEIGHT, 0);
     }
 }
 

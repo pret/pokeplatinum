@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
 #include "constants/graphics.h"
 #include "generated/battle_terrains.h"
@@ -977,40 +978,38 @@ int BattleAnimSystem_GetMoveInfo(BattleAnimSystem *system, enum BattleAnimMoveIn
     }
 }
 
-void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, int param2)
+void ov12_02220590(BattleAnimSystem *system, UnkStruct_ov12_022380DC *ctx, int param2)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        param1->pokemonSpriteData[v0] = param0->context->pokemonSpriteData[v0];
-        param1->unk_18[v0] = param0->context->battlerSprites[v0];
-        param1->unk_28[v0] = param0->context->battlerSpecies[v0];
-        param1->unk_30[v0] = param0->context->battlerGenders[v0];
-        param1->unk_34[v0] = param0->context->battlerShinyFlags[v0];
-        param1->unk_38[v0] = param0->context->battlerForms[v0];
-        param1->unk_3C[v0] = param0->context->battlerPersonalities[v0];
-        param1->unk_4C[v0] = param0->context->battlerTypes[v0];
+    for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
+        ctx->pokemonSpriteData[battler] = system->context->pokemonSpriteData[battler];
+        ctx->sprites[battler] = system->context->battlerSprites[battler];
+        ctx->species[battler] = system->context->battlerSpecies[battler];
+        ctx->genders[battler] = system->context->battlerGenders[battler];
+        ctx->shinyFlags[battler] = system->context->battlerShinyFlags[battler];
+        ctx->forms[battler] = system->context->battlerForms[battler];
+        ctx->personalities[battler] = system->context->battlerPersonalities[battler];
+        ctx->types[battler] = system->context->battlerTypes[battler];
     }
 
     switch (param2) {
     case 0:
-        param1->unk_00 = param0->context->attacker;
-        param1->unk_04 = param0->context->defender;
+        ctx->unk_00 = system->context->attacker;
+        ctx->unk_04 = system->context->defender;
         break;
     case 1:
-        param1->unk_00 = param0->context->attacker;
-        param1->unk_04 = param0->context->attacker;
+        ctx->unk_00 = system->context->attacker;
+        ctx->unk_04 = system->context->attacker;
         break;
     case 2:
-        param1->unk_00 = param0->context->attacker;
-        param1->unk_04 = param0->context->attacker;
+        ctx->unk_00 = system->context->attacker;
+        ctx->unk_04 = system->context->attacker;
         break;
     case 3:
-        param1->unk_00 = param0->context->attacker;
-        param1->unk_04 = param0->context->attacker;
+        ctx->unk_00 = system->context->attacker;
+        ctx->unk_04 = system->context->attacker;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

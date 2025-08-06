@@ -6135,15 +6135,15 @@ static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *para
 
     for (i = 0; i < 4; i++) {
         param2->pokemonSpriteData[i] = ov16_0223F2AC(battleSys, i);
-        param2->unk_28[i] = param1->unk_18[i];
-        param2->unk_30[i] = param1->unk_20[i];
-        param2->unk_34[i] = param1->unk_24[i];
-        param2->unk_38[i] = param1->unk_28[i];
-        param2->unk_3C[i] = param1->unk_2C[i];
+        param2->species[i] = param1->unk_18[i];
+        param2->genders[i] = param1->unk_20[i];
+        param2->shinyFlags[i] = param1->unk_24[i];
+        param2->forms[i] = param1->unk_28[i];
+        param2->personalities[i] = param1->unk_2C[i];
     }
 
-    ov16_0223F87C(battleSys, &(param2->unk_4C[0]));
-    ov16_0223F8AC(battleSys, &(param2->unk_18[0]));
+    ov16_0223F87C(battleSys, &(param2->types[0]));
+    ov16_0223F8AC(battleSys, &(param2->sprites[0]));
 }
 
 static void ov16_022645B8(u8 *param0, u8 *param1, int param2, int param3, u16 param4)
