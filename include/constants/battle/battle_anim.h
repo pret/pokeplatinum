@@ -105,10 +105,10 @@
 #define BATTLE_ANIM_MON_SPRITE_4 4
 #define BATTLE_ANIM_MON_SPRITE_F(N) (1 << (N))
 
-// Arbitrary scaling factor to convert particle world coordinates to screen coordinates
-#define BATTLE_PARTICLE_PIXEL_FACTOR 172
+#define BATTLE_PARTICLE_PIXEL_FACTOR 172 //< Arbitrary scaling factor to convert particle world coordinates to screen coordinates
 #define BATTLE_PARTICLE_WORLD_TO_SCREEN(X) ((X) / BATTLE_PARTICLE_PIXEL_FACTOR)
 #define BATTLE_PARTICLE_SCREEN_TO_WORLD(X) ((X) * BATTLE_PARTICLE_PIXEL_FACTOR)
+#define BATTLE_PARTICLE_VIEWPORT_TOP 16512 //< Top of the viewport in world coordinates
 
 // Default positions for battler sprites, lines up with BATTLER_TYPE_*
 #define BATTLER_POS_SOLO_PLAYER_X   64
@@ -164,6 +164,9 @@
 
 #define EMITTER_REVOLUTION_MODE_ATTACKER 0
 #define EMITTER_REVOLUTION_MODE_DEFENDER 1
+
+#define EMITTER_ANIMATION_FROM_TOP 0 //< Animation from the top of the screen
+#define EMITTER_ANIMATION_TO_TOP   1 //< Animation to the top of the screen
 
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H
