@@ -159,5 +159,8 @@
 #define EMITTER_ANIMATION_SKIP_FRAMES(params) ((params & 0xFFFF0000) >> 16)
 #define EMITTER_ANIMATION_MAX_FRAMES(params) ((params) & 0x0000FFFF)
 
+#define SHAKE_BG_TARGET_EFFECT 0 //< Shake the effect background
+#define SHAKE_BG_TARGET_BASE   1 //< Shake the base background
+
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

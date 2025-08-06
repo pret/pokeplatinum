@@ -31,7 +31,7 @@ void BattleAnimScriptFunc_MoveBattlerToDefaultPos(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_FadePokemonSprite(BattleAnimSystem *param0);
 void ov12_02229304(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_BattlerPartialDraw(BattleAnimSystem *param0);
-void ov12_02229810(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_ShakeBg(BattleAnimSystem *param0);
 void ov12_02229908(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *param0);
 void ov12_02229C5C(BattleAnimSystem *param0);
