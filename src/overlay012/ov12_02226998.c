@@ -91,7 +91,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Snatch,
     BattleAnimScriptFunc_RevolveEmitter,
     BattleAnimScriptFunc_MoveEmitterViewportTop,
-    ov12_0222A604,
+    BattleAnimScriptFunc_SetBgGrayscale,
     ov12_0222A8F4,
     ov12_0222AC40,
     ov12_02228FB4,

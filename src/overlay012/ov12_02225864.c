@@ -20,6 +20,7 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon_sprite.h"
+#include "spl_internal.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
@@ -27,7 +28,7 @@
 
 #define MAX_CYCLES_PER_SHAKE 4
 
-static void ov12_022268DC(u16 *param0, u16 param1);
+static void BattleAnimUtil_ConvertColorsToGrayscale(u16 *param0, u16 param1);
 
 static const Point2D sBattleAnimBattlerPositions[][6] = {
     // Single Battle
@@ -1100,41 +1101,37 @@ PaletteFadeContext *PaletteFadeContext_New(PaletteData *paletteData, enum HeapId
     return ctx;
 }
 
-static void ov12_022268DC(u16 *param0, u16 param1)
+static void BattleAnimUtil_ConvertColorsToGrayscale(u16 *colors, u16 param1)
 {
-    int v0, v1, v2, v3;
-    u32 v4;
-
-    for (v0 = 0; v0 < param1; v0++) {
-        v1 = ((*param0) & 0x1f);
-        v2 = (((*param0) >> 5) & 0x1f);
-        v3 = (((*param0) >> 10) & 0x1f);
-        v4 = (((v1) * 76 + (v2) * 151 + (v3) * 29) >> 8);
-
-        *param0 = (u16)((v4 << 10) | (v4 << 5) | v4);
-        param0++;
+    for (int i = 0; i < param1; i++) {
+        int r = GX_RGB_R(*colors);
+        int g = GX_RGB_G(*colors);
+        int b = GX_RGB_B(*colors);
+        u32 y = RGB_TO_GRAYSCALE(r, g, b);
+        *colors = (u16)((y << 10) | (y << 5) | y);
+        colors++;
     }
 }
 
-void ov12_02226924(BattleAnimSystem *param0)
+void BattleAnimUtil_MakeBgPalsGrayscale(BattleAnimSystem *system)
 {
-    PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
-    u16 *v1 = PaletteData_GetFadedBuffer(v0, 0);
+    PaletteData *paletteData = BattleAnimSystem_GetPaletteData(system);
+    u16 *buffer = PaletteData_GetFadedBuffer(paletteData, PLTTBUF_MAIN_BG);
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        ov12_022268DC(v1, 16 * 3);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        BattleAnimUtil_ConvertColorsToGrayscale(buffer, PALETTE_SIZE * 3);
     } else {
-        ov12_022268DC(v1, 16 * 8);
+        BattleAnimUtil_ConvertColorsToGrayscale(buffer, PALETTE_SIZE * BATTLE_BG_PALETTE_MON_SPRITE);
     }
 }
 
-void ov12_02226954(BattleAnimSystem *param0)
+void BattleAnimUtil_ReturnBgPalsToNormal(BattleAnimSystem *system)
 {
-    PaletteData *v0 = BattleAnimSystem_GetPaletteData(param0);
+    PaletteData *paletteData = BattleAnimSystem_GetPaletteData(system);
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 3 * 2);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        PaletteData_CopyBuffer(paletteData, PLTTBUF_MAIN_BG, 0, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE_BYTES * 3);
     } else {
-        PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 8 * 2);
+        PaletteData_CopyBuffer(paletteData, PLTTBUF_MAIN_BG, 0, PLTTBUF_MAIN_BG, 0, PALETTE_SIZE_BYTES * BATTLE_BG_PALETTE_MON_SPRITE);
     }
 }

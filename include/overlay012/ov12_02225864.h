@@ -226,7 +226,7 @@ BOOL ov12_022267A8(int *param0, int param1, s32 param2);
 BOOL PaletteFadeContext_IsActive(PaletteFadeContext *param0);
 void PaletteFadeContext_Free(PaletteFadeContext *param0);
 PaletteFadeContext *PaletteFadeContext_New(PaletteData *param0, enum HeapId heapID, enum PaletteBufferID param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10);
-void ov12_02226924(BattleAnimSystem *param0);
-void ov12_02226954(BattleAnimSystem *param0);
+void BattleAnimUtil_MakeBgPalsGrayscale(BattleAnimSystem *param0);
+void BattleAnimUtil_ReturnBgPalsToNormal(BattleAnimSystem *param0);
 
 #endif // POKEPLATINUM_OV12_02225864_H

@@ -41,7 +41,7 @@ void ov12_0222A1AC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 void ov12_0222A34C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_0222A5C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void ov12_0222A604(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_SetBgGrayscale(BattleAnimSystem *param0);
 void ov12_0222A8F4(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *param0);
 void ov12_0222AC40(BattleAnimSystem *param0);
