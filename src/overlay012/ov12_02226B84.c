@@ -3807,14 +3807,13 @@ void ov12_0222A5C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A4A0, v0);
 }
 
-void ov12_0222A604(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_SetBgGrayscale(BattleAnimSystem *system)
 {
-    int v0 = BattleAnimSystem_GetScriptVar(param0, 0);
-
-    if (v0 != 0) {
-        ov12_02226924(param0);
+    BOOL grayscale = BattleAnimSystem_GetScriptVar(system, 0);
+    if (grayscale != FALSE) {
+        BattleAnimUtil_MakeBgPalsGrayscale(system);
     } else {
-        ov12_02226954(param0);
+        BattleAnimUtil_ReturnBgPalsToNormal(system);
     }
 }
 

@@ -66,4 +66,6 @@ enum DSScreen {
 #define RGBA_BLACK GX_RGBA(0, 0, 0, 0)
 #define RGBA_WHITE GX_RGBA(31, 31, 31, 1)
 
+#define RGB_TO_GRAYSCALE(r, g, b) (((r) * 76 + (g) * 151 + (b) * 29) >> 8)
+
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H
