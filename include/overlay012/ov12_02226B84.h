@@ -36,7 +36,7 @@ void BattleAnimScriptFunc_PixelatePokemonSprite(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *param0);
 void ov12_02229C5C(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveEmitterA2BParabolic(BattleAnimSystem *param0);
-void ov12_0222A00C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_RevolveEmitter(BattleAnimSystem *param0);
 void ov12_0222A1AC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_0222A34C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);

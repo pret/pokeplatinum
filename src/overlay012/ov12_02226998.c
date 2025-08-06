@@ -89,7 +89,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_PixelatePokemonSprite,
     BattleAnimScriptFunc_RolePlay,
     BattleAnimScriptFunc_Snatch,
-    ov12_0222A00C,
+    BattleAnimScriptFunc_RevolveEmitter,
     ov12_02229C5C,
     ov12_0222A604,
     ov12_0222A8F4,
