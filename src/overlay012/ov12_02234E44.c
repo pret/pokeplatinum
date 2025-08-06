@@ -57,8 +57,8 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     int v0;
     int v1;
 
-    v0 = BattleAnimSystem_GetHeapID(param0->unk_18.battleAnimSystem);
-    v1 = BattleAnimSystem_GetBgPriority(param0->unk_18.battleAnimSystem, 3);
+    v0 = BattleAnimSystem_GetHeapID(param0->unk_18.battleAnimSys);
+    v1 = BattleAnimSystem_GetBgPriority(param0->unk_18.battleAnimSys, 3);
 
     Bg_SetPriority(param1, v1);
     Graphics_LoadTilesToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.bgConfig, param1, 0, 0, 1, v0);
@@ -112,7 +112,7 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         Bg_SetOffset(v0->unk_18.bgConfig, 2, 0, 0);
         Bg_SetOffset(v0->unk_18.bgConfig, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_EndAnimTask(v0->unk_18.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_18.battleAnimSys, param0);
         BattleAnimUtil_Free(v0);
         (v0) = NULL;
         return;
@@ -144,14 +144,14 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
     BattleAnimSystem_GetCommonData(param0, &v0->unk_18);
 
     v0->unk_00 = (*param1);
-    v0->unk_34 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSystem, 0);
-    v0->unk_38 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSystem, 1);
-    v0->unk_3C = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSystem, 2);
+    v0->unk_34 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSys, 0);
+    v0->unk_38 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSys, 1);
+    v0->unk_3C = BattleAnimSystem_GetPokemonSprite(v0->unk_18.battleAnimSys, 2);
 
     {
         int v1;
 
-        v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.battleAnimSystem, 2);
+        v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.battleAnimSys, 2);
         v1 = 2;
 
         ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
@@ -171,7 +171,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
 
             if (BattleAnimSystem_IsContest(param0) == 1) {
                 ManagedSprite_SetDrawFlag(v0->unk_3C, 0);
-                v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.battleAnimSystem, 2);
+                v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.battleAnimSys, 2);
                 ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
                 ManagedSprite_SetExplicitPriority(v0->unk_38, v1);
             } else {
@@ -205,7 +205,7 @@ static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *par
     v0->unk_00.unk_10 = 0;
     v0->unk_00.unk_12 = 0;
 
-    BattleAnimSystem_StartAnimTask(v0->unk_18.battleAnimSystem, ov12_02234EF0, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_18.battleAnimSys, ov12_02234EF0, v0);
 }
 
 void ov12_022351A4(BattleAnimSystem *param0)

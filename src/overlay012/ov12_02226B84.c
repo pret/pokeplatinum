@@ -576,14 +576,24 @@ enum ShakeBgState {
 #define SHAKE_BG_VAR_CYCLES   4
 #define SHAKE_BG_VAR_TARGET   5
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *unk_1C;
-    s16 unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-} UnkStruct_ov12_0222988C;
+// -------------------------------------------------------------------
+// Pixelate Pokemon Sprite
+// -------------------------------------------------------------------
+typedef struct PixelatePokemonSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprite;
+    s16 scaleStep;
+    int scaleX;
+    int scaleY;
+    int targetScale;
+} PixelatePokemonSpriteContext;
+
+#define PIXELATE_POKEMON_SPRITE_MIN_SCALE   0
+#define PIXELATE_POKEMON_SPRITE_MAX_SCALE   15
+#define PIXELATE_POKEMON_SPRITE_VAR_TARGET  0
+#define PIXELATE_POKEMON_SPRITE_VAR_STEP    1
+#define PIXELATE_POKEMON_SPRITE_VAR_START_X 2
+#define PIXELATE_POKEMON_SPRITE_VAR_START_Y 3
 
 // -------------------------------------------------------------------
 // Emitter Animation
@@ -748,7 +758,7 @@ static void BattleAnimTask_Shake(SysTask *task, void *param)
         }
         break;
     default:
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -772,7 +782,7 @@ void BattleAnimScriptFunc_Shake(BattleAnimSystem *system)
         BattleAnimUtil_GetPokemonSprites(system, ctx->shakeInfo.targets, &ctx->sprites[0], &ctx->spriteCount);
     }
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Shake, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Shake, ctx);
 }
 
 static void BattleAnimTask_ScrollCustomBg(SysTask *task, void *param)
@@ -841,7 +851,7 @@ static void BattleAnimTask_ScrollCustomBg(SysTask *task, void *param)
     } break;
     default:
         Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         return;
     }
@@ -952,7 +962,7 @@ void BattleAnimScriptFunc_ScrollCustomBg(BattleAnimSystem *system)
     Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, ctx->x);
     Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, ctx->y);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_ScrollCustomBg, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_ScrollCustomBg, ctx);
 }
 
 static void BattleAnimTask_MuddyWater(SysTask *task, void *param)
@@ -1017,7 +1027,7 @@ static void BattleAnimTask_MuddyWater(SysTask *task, void *param)
     } break;
     default:
         Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         return;
     }
@@ -1130,7 +1140,7 @@ void BattleAnimScriptFunc_MuddyWater(BattleAnimSystem *system)
     Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, ctx->x);
     Bg_SetOffset(ctx->common.bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, ctx->y);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MuddyWater, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MuddyWater, ctx);
 }
 
 static void BattleAnimTask_RotateMon(SysTask *task, void *param)
@@ -2373,8 +2383,8 @@ static void ov12_02228B10(SysTask *param0, void *param1)
     switch (v0->unk_04.state) {
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_UnloadBaseBg(v0->unk_04.battleAnimSystem, 2);
-        BattleAnimSystem_EndAnimTask(v0->unk_04.battleAnimSystem, param0);
+        BattleAnimSystem_UnloadBaseBg(v0->unk_04.battleAnimSys, 2);
+        BattleAnimSystem_EndAnimTask(v0->unk_04.battleAnimSys, param0);
         Heap_Free(v0);
         return;
     }
@@ -2392,9 +2402,9 @@ void ov12_02228B40(BattleAnimSystem *param0)
     v0 = BattleAnimSystem_GetScriptVar(param0, 0);
 
     BattleAnimSystem_GetCommonData(param0, &v1->unk_04);
-    BattleAnimSystem_LoadBaseBg(v1->unk_04.battleAnimSystem, 2);
+    BattleAnimSystem_LoadBaseBg(v1->unk_04.battleAnimSys, 2);
 
-    v1->unk_24 = BattleAnimSystem_GetPokemonSprite(v1->unk_04.battleAnimSystem, 0);
+    v1->unk_24 = BattleAnimSystem_GetPokemonSprite(v1->unk_04.battleAnimSys, 0);
 
     ManagedSprite_SetExplicitOamMode(v1->unk_24, GX_OAM_MODE_OBJWND);
     ManagedSprite_SetAffineOverwriteMode(v1->unk_24, AFFINE_OVERWRITE_MODE_DOUBLE);
@@ -2404,7 +2414,7 @@ void ov12_02228B40(BattleAnimSystem *param0)
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
     G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2, 0);
 
-    BattleAnimSystem_StartAnimTask(v1->unk_04.battleAnimSystem, ov12_02228B10, v1);
+    BattleAnimSystem_StartAnimTask(v1->unk_04.battleAnimSys, ov12_02228B10, v1);
 }
 
 static void BattleAnimTask_MoveBattler(SysTask *task, void *param)
@@ -2509,7 +2519,7 @@ static void BattleAnimTask_RevolveBattler(SysTask *task, void *param)
     if (ative == FALSE) {
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_X_CENTER, ctx->spriteInfo.pos.x);
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->spriteInfo.pos.y + REVOLUTION_CONTEXT_OVAL_RADIUS_Y_INT);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
     }
 }
@@ -2532,7 +2542,7 @@ void BattleAnimScriptFunc_RevolveBattler(BattleAnimSystem *system)
     ctx->revs.data[XY_PARAM_REV_RADIUS_X] /= 2;
     ctx->revs.data[XY_PARAM_REV_RADIUS_Y] /= 2;
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_RevolveBattler, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_RevolveBattler, ctx);
 }
 
 static void BattleAnimTask_MoveBattlerOffScreen(SysTask *task, void *param)
@@ -2549,7 +2559,7 @@ static void BattleAnimTask_MoveBattlerOffScreen(SysTask *task, void *param)
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->pos.y);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2592,14 +2602,14 @@ void BattleAnimScriptFunc_MoveBattlerOffScreen(BattleAnimSystem *system)
     ctx->destPos.x = 0;
     ctx->destPos.y = 0;
 
-    if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSystem, battler) == BTLSCR_PLAYER) {
+    if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, battler) == BTLSCR_PLAYER) {
         ctx->destPos.x = -MON_SPRITE_FRAME_WIDTH;
     } else {
         ctx->destPos.x = HW_LCD_WIDTH + MON_SPRITE_FRAME_WIDTH;
     }
 
     PosLerpContext_Init(&ctx->pos, ctx->spriteInfo.pos.x, ctx->destPos.x, ctx->spriteInfo.pos.y, ctx->spriteInfo.pos.y, frames);
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MoveBattlerOffScreen, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveBattlerOffScreen, ctx);
 }
 
 void ov12_02228FB4(BattleAnimSystem *param0)
@@ -2642,7 +2652,7 @@ void ov12_02228FB4(BattleAnimSystem *param0)
     v6->destPos.x = 0;
     v6->destPos.y = 0;
 
-    if (BattleAnimUtil_GetBattlerSide(v6->common.battleAnimSystem, v2) == 0x3) {
+    if (BattleAnimUtil_GetBattlerSide(v6->common.battleAnimSys, v2) == 0x3) {
         v6->destPos.x = (0 - 80);
     } else {
         v6->destPos.x = (256 + 80);
@@ -2657,7 +2667,7 @@ void ov12_02228FB4(BattleAnimSystem *param0)
         PosLerpContext_Init(&v6->pos, v6->destPos.x, v7, v6->spriteInfo.pos.y, v6->spriteInfo.pos.y, v4);
     }
 
-    BattleAnimSystem_StartAnimTask(v6->common.battleAnimSystem, BattleAnimTask_MoveBattlerOffScreen, v6);
+    BattleAnimSystem_StartAnimTask(v6->common.battleAnimSys, BattleAnimTask_MoveBattlerOffScreen, v6);
 }
 
 #define MOVE_BATTLER_TO_DEFAULT_POS_VAR_TARGET 0
@@ -2703,7 +2713,7 @@ static void BattleAnimTask_FadePokemonSprite(SysTask *task, void *param)
 
     if (PaletteFadeContext_IsActive(ctx->paletteFade) == FALSE) {
         PaletteFadeContext_Free(ctx->paletteFade);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
     }
 }
@@ -2737,7 +2747,7 @@ void BattleAnimScriptFunc_FadePokemonSprite(BattleAnimSystem *system)
         color,
         FADE_POKEMON_SPRITE_TASK_PRIORITY);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_FadePokemonSprite, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FadePokemonSprite, ctx);
 }
 
 static void ov12_02229278(SysTask *param0, void *param1)
@@ -2778,7 +2788,7 @@ static void ov12_02229278(SysTask *param0, void *param1)
     } break;
     default:
         ResetMonScale(v0->spriteInfo.monSprite);
-        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSys, param0);
         Heap_Free(v0);
         break;
     }
@@ -2837,7 +2847,7 @@ void ov12_02229304(BattleAnimSystem *system)
 
     PokemonSprite_SetPartialDraw(ctx->spriteInfo.monSprite, ctx->xOffset, ctx->yOffset, ctx->width, ctx->height);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, ov12_02229278, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, ov12_02229278, ctx);
 }
 
 static int GetBattlerFromBattlerFlags(BattleAnimSystem *system, int battlerFlags)
@@ -2892,7 +2902,7 @@ static void BattleAnimTask_BattlerPartialDrawAppear(SysTask *task, void *param)
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->baseY);
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT, ctx->height);
         ResetMonScale(ctx->spriteInfo.monSprite);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2925,7 +2935,7 @@ static void BattleAnimTask_BattlerPartialDrawDisappear(SysTask *task, void *para
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->baseY);
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT, ctx->height);
         ResetMonScale(ctx->spriteInfo.monSprite);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2955,7 +2965,7 @@ static void BattleAnimTask_BattlerPartialDrawSketch(SysTask *task, void *param)
     case BATTLE_PARTIAL_DRAW_STATE_CLEANUP:
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_PARTIAL_DRAW, FALSE);
         ResetMonScale(ctx->spriteInfo.monSprite);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2981,7 +2991,7 @@ void BattleAnimScriptFunc_BattlerPartialDraw(BattleAnimSystem *system)
         ctx->height = 0;
 
         PokemonSprite_SetPartialDraw(ctx->spriteInfo.monSprite, 0, ctx->yOffset, MON_SPRITE_FRAME_WIDTH, ctx->height);
-        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_BattlerPartialDrawSketch, ctx);
+        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_BattlerPartialDrawSketch, ctx);
 
         return;
     }
@@ -2994,13 +3004,13 @@ void BattleAnimScriptFunc_BattlerPartialDraw(BattleAnimSystem *system)
 
     if (ctx->step > 0) {
         PokemonSprite_SetPartialDraw(ctx->spriteInfo.monSprite, 0, 0, MON_SPRITE_FRAME_WIDTH, ctx->yOffset);
-        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_BattlerPartialDrawDisappear, ctx);
+        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_BattlerPartialDrawDisappear, ctx);
     } else {
         ctx->yOffset = 0;
         ctx->y += ctx->height;
         PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->y);
         PokemonSprite_SetPartialDraw(ctx->spriteInfo.monSprite, 0, 0, MON_SPRITE_FRAME_HEIGHT, ctx->yOffset);
-        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_BattlerPartialDrawAppear, ctx);
+        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_BattlerPartialDrawAppear, ctx);
     }
 }
 
@@ -3073,69 +3083,63 @@ void BattleAnimScriptFunc_ShakeBg(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ShakeBg, ctx);
 }
 
-static void ov12_0222988C(SysTask *param0, void *param1)
+static void BattleAnimTask_PixelatePokemonSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222988C *v0 = param1;
+    PixelatePokemonSpriteContext *ctx = param;
 
-    if ((v0->unk_24 == v0->unk_2C) || (v0->unk_28 == v0->unk_2C)) {
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
-        Heap_Free(v0);
+    if (ctx->scaleX == ctx->targetScale || ctx->scaleY == ctx->targetScale) {
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    if (v0->unk_20 < 0) {
-        if (v0->unk_24 + v0->unk_20 > 0) {
-            v0->unk_24 += v0->unk_20;
-            v0->unk_28 += v0->unk_20;
+    if (ctx->scaleStep < 0) {
+        if (ctx->scaleX + ctx->scaleStep > PIXELATE_POKEMON_SPRITE_MIN_SCALE) {
+            ctx->scaleX += ctx->scaleStep;
+            ctx->scaleY += ctx->scaleStep;
         } else {
-            v0->unk_24 = v0->unk_2C;
-            v0->unk_28 = v0->unk_2C;
+            ctx->scaleX = ctx->targetScale;
+            ctx->scaleY = ctx->targetScale;
         }
     } else {
-        if (v0->unk_24 + v0->unk_20 < 15) {
-            v0->unk_24 += v0->unk_20;
-            v0->unk_28 += v0->unk_20;
+        if (ctx->scaleX + ctx->scaleStep < PIXELATE_POKEMON_SPRITE_MAX_SCALE) {
+            ctx->scaleX += ctx->scaleStep;
+            ctx->scaleY += ctx->scaleStep;
         } else {
-            v0->unk_24 = v0->unk_2C;
-            v0->unk_28 = v0->unk_2C;
+            ctx->scaleX = ctx->targetScale;
+            ctx->scaleY = ctx->targetScale;
         }
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C);
-    G2_SetOBJMosaicSize(v0->unk_24, v0->unk_28);
-    SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
+    ManagedSprite_TickFrame(ctx->sprite);
+    G2_SetOBJMosaicSize(ctx->scaleX, ctx->scaleY);
+    SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 }
 
-void ov12_02229908(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_PixelatePokemonSprite(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222988C *v0;
-    int v1;
+    PixelatePokemonSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(PixelatePokemonSpriteContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222988C));
+    ctx->scaleStep = BattleAnimSystem_GetScriptVar(ctx->common.battleAnimSys, PIXELATE_POKEMON_SPRITE_VAR_STEP);
+    ctx->scaleX = BattleAnimSystem_GetScriptVar(ctx->common.battleAnimSys, PIXELATE_POKEMON_SPRITE_VAR_START_X);
+    ctx->scaleY = BattleAnimSystem_GetScriptVar(ctx->common.battleAnimSys, PIXELATE_POKEMON_SPRITE_VAR_START_Y);
+    ctx->sprite = BattleAnimSystem_GetPokemonSprite(
+        ctx->common.battleAnimSys,
+        BattleAnimSystem_GetScriptVar(ctx->common.battleAnimSys, PIXELATE_POKEMON_SPRITE_VAR_TARGET));
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    ManagedSprite_SetDrawFlag(ctx->sprite, TRUE);
 
-    v0->unk_20 = BattleAnimSystem_GetScriptVar(v0->unk_00.battleAnimSystem, 1);
-    v0->unk_24 = BattleAnimSystem_GetScriptVar(v0->unk_00.battleAnimSystem, 2);
-    v0->unk_28 = BattleAnimSystem_GetScriptVar(v0->unk_00.battleAnimSystem, 3);
-    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, BattleAnimSystem_GetScriptVar(v0->unk_00.battleAnimSystem, 0));
-
-    ManagedSprite_SetDrawFlag(v0->unk_1C, 1);
-
-    if (v0->unk_20 < 0) {
-        v0->unk_2C = 0;
+    if (ctx->scaleStep < PIXELATE_POKEMON_SPRITE_MIN_SCALE) {
+        ctx->targetScale = PIXELATE_POKEMON_SPRITE_MIN_SCALE;
     } else {
-        v0->unk_2C = 15;
+        ctx->targetScale = PIXELATE_POKEMON_SPRITE_MAX_SCALE;
     }
 
-    ManagedSprite_SetMosaicFlag(v0->unk_1C, 1);
+    ManagedSprite_SetMosaicFlag(ctx->sprite, TRUE);
 
-    {
-        SysTask *v2;
-
-        v2 = BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222988C, v0);
-        ov12_0222988C(v2, v0);
-    }
+    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_PixelatePokemonSprite, ctx);
+    BattleAnimTask_PixelatePokemonSprite(task, ctx);
 }
 
 static void EmitterAnimationContext_Init(BattleAnimSystem *system, EmitterAnimationContext *ctx)
@@ -3214,7 +3218,7 @@ static void BattleAnimTask_MoveEmitterA2BLinear(SysTask *task, void *param)
 
     if (PosLerpContext_Update(&ctx->transforms[0]) == FALSE && emitterActive == FALSE) {
         ParticleSystem_DeleteEmitter(ctx->particleSys, ctx->emitter);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         BattleAnimUtil_Free(ctx);
         ctx = NULL;
         return;
@@ -3271,7 +3275,7 @@ void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *system)
     SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].x));
     SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y));
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BLinear, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveEmitterA2BLinear, ctx);
 }
 
 void ov12_02229C5C(BattleAnimSystem *param0)
@@ -3350,7 +3354,7 @@ void ov12_02229C5C(BattleAnimSystem *param0)
         SPLEmitter_SetPosY(v3->emitter, v3->transforms[0].y * 172);
     }
 
-    BattleAnimSystem_StartAnimTask(v3->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BLinear, v3);
+    BattleAnimSystem_StartAnimTask(v3->common.battleAnimSys, BattleAnimTask_MoveEmitterA2BLinear, v3);
 }
 
 static void BattleAnimTask_MoveEmitterA2BParabolic(SysTask *task, void *param)
@@ -3360,7 +3364,7 @@ static void BattleAnimTask_MoveEmitterA2BParabolic(SysTask *task, void *param)
 
     if (XYTransformContext_UpdateParabolic(&ctx->transforms[0], &ctx->transforms[1]) == FALSE && emitterActive == FALSE) {
         ParticleSystem_DeleteEmitter(ctx->particleSys, ctx->emitter);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         BattleAnimUtil_Free(ctx);
         ctx = NULL;
         return;
@@ -3409,7 +3413,7 @@ void BattleAnimScriptFunc_MoveEmitterA2BParabolic(BattleAnimSystem *system)
     SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].x));
     SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y));
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BParabolic, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveEmitterA2BParabolic, ctx);
 }
 
 static void ov12_02229F9C(SysTask *param0, void *param1)
@@ -3419,7 +3423,7 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
 
     if ((RevolutionContext_Update(&v0->unk_58) == 0) && (v1 == 0)) {
         ParticleSystem_DeleteEmitter(v0->unk_34, v0->unk_38);
-        BattleAnimSystem_EndAnimTask(v0->unk_3C.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_3C.battleAnimSys, param0);
         Heap_Free(v0);
     } else {
         VecFx32 v2;
@@ -3473,7 +3477,7 @@ void ov12_0222A00C(BattleAnimSystem *param0)
         SPLEmitter_SetPosY(v0->unk_38, v1.y);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_3C.battleAnimSystem, ov12_02229F9C, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_3C.battleAnimSys, ov12_02229F9C, v0);
 }
 
 static void ov12_0222A178(SysTask *param0, void *param1)
@@ -3486,7 +3490,7 @@ static void ov12_0222A178(SysTask *param0, void *param1)
 
     if (v0 == 0) {
         Sprite_DeleteAndFreeResources(v1->unk_1C);
-        BattleAnimSystem_EndAnimTask(v1->unk_00.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v1->unk_00.battleAnimSys, param0);
         Heap_Free(v1);
         return;
     }
@@ -3514,7 +3518,7 @@ void ov12_0222A1AC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_OffsetPositionXY(param3, v1, v2);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222A178, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A178, v0);
 }
 
 static const s16 Unk_ov12_0223A03C[] = {
@@ -3580,11 +3584,11 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
             if (v1 == 0) {
                 v2 = ManagedSprite_GetExplicitPriority(v0->unk_1C);
 
-                if (v2 == BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSystem)) {
-                    v3 = BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSystem, 2);
+                if (v2 == BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSys)) {
+                    v3 = BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 2);
                     ManagedSprite_SetExplicitPriority(v0->unk_1C, v3);
                 } else {
-                    v3 = BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSystem);
+                    v3 = BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSys);
                     ManagedSprite_SetExplicitPriority(v0->unk_1C, v3);
                 }
             }
@@ -3629,7 +3633,7 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
     } break;
     default:
         Sprite_DeleteAndFreeResources(v0->unk_1C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
         Heap_Free(v0);
         return;
     }
@@ -3663,10 +3667,10 @@ void ov12_0222A34C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAnim(v0->unk_1C, 0);
     }
 
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSystem));
+    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetPokemonSpritePriority(v0->unk_00.battleAnimSys));
     ManagedSprite_OffsetPositionXY(v0->unk_1C, 0, +12);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222A1F4, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A1F4, v0);
 }
 
 static void ov12_0222A3DC(SysTask *param0, void *param1)
@@ -3676,7 +3680,7 @@ static void ov12_0222A3DC(SysTask *param0, void *param1)
 
     if (v1 == 0) {
         Sprite_DeleteAndFreeResources(v0->unk_1C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
         Heap_Free(v0);
         return;
     }
@@ -3702,7 +3706,7 @@ void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
             v4 = 32;
             v1 = 0;
         } else {
-            if (BattleAnimUtil_GetBattlerSide(v0->unk_00.battleAnimSystem, v2) == 0x3) {
+            if (BattleAnimUtil_GetBattlerSide(v0->unk_00.battleAnimSys, v2) == 0x3) {
                 v4 = 190 - 32 - 32;
                 v1 = 1;
             } else {
@@ -3715,8 +3719,8 @@ void ov12_0222A410(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_SetAnim(v0->unk_1C, v1);
     }
 
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSystem, 2));
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222A3DC, v0);
+    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 2));
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A3DC, v0);
 }
 
 static void ov12_0222A4A0(SysTask *param0, void *param1)
@@ -3741,7 +3745,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
             ManagedSprite_SetExplicitOamMode(v0->unk_1C, GX_OAM_MODE_XLU);
             v0->unk_20 = 16;
             v0->unk_21 = 0;
-            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, v0->unk_20, v0->unk_21);
+            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, v0->unk_20, v0->unk_21);
             v0->unk_00.state++;
         }
     } break;
@@ -3762,7 +3766,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
         break;
     default:
         Sprite_DeleteAndFreeResources(v0->unk_1C);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
         Heap_Free(v0);
         return;
     }
@@ -3778,9 +3782,9 @@ void ov12_0222A5C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     v0->unk_1C = param3;
 
     ManagedSprite_SetPositionXY(v0->unk_1C, -30, 160);
-    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSystem, 2));
+    ManagedSprite_SetExplicitPriority(v0->unk_1C, BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 2));
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222A4A0, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A4A0, v0);
 }
 
 void ov12_0222A604(BattleAnimSystem *param0)
@@ -3916,7 +3920,7 @@ static void ov12_0222A878(SysTask *param0, void *param1)
         ManagedSprite_SetDrawFlag(v0->unk_1C, 0);
         SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
         Heap_Free(v0);
         return;
     }
@@ -3936,7 +3940,7 @@ void ov12_0222A8F4(BattleAnimSystem *param0)
     v0->unk_2C = BattleAnimSystem_GetScriptVar(param0, 3);
     v0->unk_30 = BattleAnimSystem_GetScriptVar(param0, 5);
     v0->unk_34 = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSystem, v0->unk_20);
+    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSys, v0->unk_20);
     v0->unk_38 = 0;
 
     {
@@ -4039,7 +4043,7 @@ void ov12_0222A8F4(BattleAnimSystem *param0)
         }
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222A878, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A878, v0);
 }
 
 static void BattleAnimTask_RenderPokemonSprites(SysTask *task, void *param)
@@ -4047,7 +4051,7 @@ static void BattleAnimTask_RenderPokemonSprites(SysTask *task, void *param)
     RenderPokemonSpritesContext *ctx = param;
 
     if (ctx->frames == 0) {
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         return;
     }
@@ -4084,14 +4088,14 @@ void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *system)
     };
 
     for (int battler = BATTLER_PLAYER_1; battler < MAX_BATTLERS; battler++) {
-        ctx->sprites[battler] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, battler);
+        ctx->sprites[battler] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, battler);
 
         if (ctx->sprites[battler] != NULL) {
             ManagedSprite_SetPriority(ctx->sprites[battler], priorityTable[battler]);
         }
     }
 
-    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_RenderPokemonSprites, ctx);
+    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_RenderPokemonSprites, ctx);
     BattleAnimTask_RenderPokemonSprites(task, ctx);
 }
 
@@ -4102,7 +4106,7 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
     switch (v0->unk_08.state) {
     case 0:
         v0->unk_00 = 0;
-        v0->unk_24 = BgScrollContext_New(0, 160, (1 * 0xffff) / 360, 32 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_08.battleAnimSystem, 2), 0, BattleAnimUtil_MakeBgOffsetValue(0, 0), BattleAnimSystem_GetHeapID(v0->unk_08.battleAnimSystem));
+        v0->unk_24 = BgScrollContext_New(0, 160, (1 * 0xffff) / 360, 32 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_08.battleAnimSys, 2), 0, BattleAnimUtil_MakeBgOffsetValue(0, 0), BattleAnimSystem_GetHeapID(v0->unk_08.battleAnimSys));
         v0->unk_08.state++;
         break;
     case 1:
@@ -4115,7 +4119,7 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
         BgScrollContext_Free(v0->unk_24);
         v0->unk_08.state++;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_08.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_08.battleAnimSys, param0);
         Heap_Free(v0);
         return;
     }
@@ -4129,5 +4133,5 @@ void ov12_0222AC40(BattleAnimSystem *param0)
     BattleAnimSystem_GetCommonData(param0, &v0->unk_08);
     v0->unk_04 = BattleAnimSystem_GetScriptVar(param0, 0);
 
-    BattleAnimSystem_StartAnimTask(v0->unk_08.battleAnimSystem, ov12_0222ABBC, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_08.battleAnimSys, ov12_0222ABBC, v0);
 }

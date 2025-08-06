@@ -2091,7 +2091,7 @@ static void BattleAnimTask_FlailAttackerMode(SysTask *task, void *param)
         break;
     default:
         PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], MON_SPRITE_ROTATION_Z, 0);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2120,7 +2120,7 @@ static void BattleAnimTask_FlailDefenderMode(SysTask *task, void *param)
         }
     } break;
     default:
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2132,11 +2132,11 @@ void BattleAnimScriptFunc_Flail(BattleAnimSystem *system)
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
     ctx->battlerSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(
-        ctx->common.battleAnimSystem,
-        BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+        ctx->common.battleAnimSys,
+        BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
     ctx->battlerSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(
-        ctx->common.battleAnimSystem,
-        BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+        ctx->common.battleAnimSys,
+        BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
 
     PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], MON_SPRITE_Y_PIVOT, FLAIL_WIGGLE_PIVOT_Y);
 
@@ -2149,9 +2149,9 @@ void BattleAnimScriptFunc_Flail(BattleAnimSystem *system)
     ctx->shakeInfo.targets = BattleAnimSystem_GetScriptVar(system, 5);
 
     if (mode == FLAIL_MODE_ATTACKER) {
-        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_FlailAttackerMode, ctx);
+        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FlailAttackerMode, ctx);
     } else {
-        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_FlailDefenderMode, ctx);
+        BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FlailDefenderMode, ctx);
     }
 }
 
@@ -2189,7 +2189,7 @@ static void BattleAnimTask_Magnitude(SysTask *task, void *param1)
         }
         break;
     default:
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2200,7 +2200,7 @@ void BattleAnimScriptFunc_Magnitude(BattleAnimSystem *system)
     MagnitudeContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MagnitudeContext));
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    int power = BattleAnimSystem_GetMoveInfo(ctx->common.battleAnimSystem, BATTLE_ANIM_MOVE_INFO_POWER);
+    int power = BattleAnimSystem_GetMoveInfo(ctx->common.battleAnimSys, BATTLE_ANIM_MOVE_INFO_POWER);
     switch (power) {
     case 150:
         ctx->power = MAGNITUDE_POWER150_SHAKE_EXTENT;
@@ -2226,7 +2226,7 @@ void BattleAnimScriptFunc_Magnitude(BattleAnimSystem *system)
     }
 
     for (int battler = 0; battler < MAX_BATTLERS; battler++) {
-        ctx->battlerSprites[battler] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, battler);
+        ctx->battlerSprites[battler] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, battler);
         if (ctx->battlerSprites[battler] == NULL) {
             continue;
         }
@@ -2234,7 +2234,7 @@ void BattleAnimScriptFunc_Magnitude(BattleAnimSystem *system)
         BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[battler], &ctx->battlerPositions[battler]);
     }
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Magnitude, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Magnitude, ctx);
 }
 
 static void BattleAnimTask_OdorSleuth(SysTask *task, void *param)
@@ -2277,7 +2277,7 @@ static void BattleAnimTask_OdorSleuth(SysTask *task, void *param)
         SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
         break;
     default:
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
     }
@@ -2289,15 +2289,15 @@ void BattleAnimScriptFunc_OdorSleuth(BattleAnimSystem *system)
 
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    ctx->monSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_0);
-    ctx->monSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_1);
-    ctx->battlerSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
-    ctx->battlerSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    ctx->monSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->monSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
+    ctx->battlerSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
+    ctx->battlerSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
 
     BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], &ctx->spritePositions[BATTLER_TYPE_ATTACKER]);
     BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_DEFENDER], &ctx->spritePositions[BATTLER_TYPE_DEFENDER]);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_OdorSleuth, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_OdorSleuth, ctx);
 }
 
 static void ov12_0222CBFC(SysTask *param0, void *param1)
@@ -2307,7 +2307,7 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
 
     if (ov12_02225D2C(&v1->unk_8C[0], &v1->unk_8C[1], v1->unk_38) == 0) {
         Sprite_DeleteAndFreeResources(v1->unk_38);
-        BattleAnimSystem_EndAnimTask(v1->unk_10.battleAnimSystem, param0);
+        BattleAnimSystem_EndAnimTask(v1->unk_10.battleAnimSys, param0);
         BattleAnimUtil_Free(v1);
         (v1) = NULL;
         return;
@@ -2363,7 +2363,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     ov12_02225D2C(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_38);
 
     ManagedSprite_TickFrame(v2->unk_38);
-    BattleAnimSystem_StartAnimTask(v2->unk_10.battleAnimSystem, ov12_0222CBFC, v2);
+    BattleAnimSystem_StartAnimTask(v2->unk_10.battleAnimSys, ov12_0222CBFC, v2);
 }
 
 static void BattleAnimTask_Surf(SysTask *task, void *param)
@@ -2434,7 +2434,7 @@ static void BattleAnimTask_Surf(SysTask *task, void *param)
     default:
         Sprite_DeleteAndFreeResources(ctx->sprites[0]);
         Sprite_DeleteAndFreeResources(ctx->sprites[1]);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         BattleAnimUtil_Free(ctx);
         (ctx) = NULL;
         return;
@@ -2453,7 +2453,7 @@ void BattleAnimScriptFunc_Surf(BattleAnimSystem *system)
     ctx->sprites[0] = BattleAnimSystem_GetSprite(system, 0);
     ctx->sprites[1] = BattleAnimSystem_GetSprite(system, 1);
 
-    BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSystem, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 
     if (BattleAnimSystem_GetScriptVar(system, 0) == 0) {
         ctx->alphaStart = SURF_ALPHA_TRANSPARENT;
@@ -2527,7 +2527,7 @@ void BattleAnimScriptFunc_Surf(BattleAnimSystem *system)
         ctx->scale.data[XY_PARAM_CUR_Y]);
     ManagedSprite_SetPositionXY(ctx->currentSprite, ctx->spritePos.x, ctx->spritePos.y + offsetY);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Surf, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Surf, ctx);
 }
 
 static const u8 Unk_ov12_0223A0D0[][5] = {

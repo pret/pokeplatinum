@@ -42,7 +42,7 @@ static void BattleAnimTask_Mimic(SysTask *task, void *param)
             ManagedSprite_SetDrawFlag(ctx->opponentSprites[DEFENDER].hwSprite, FALSE);
             ManagedSprite_SetDrawFlag(ctx->opponentSprites[DEFENDER].hwSprite, FALSE);
 
-            BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+            BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
             BattleAnimUtil_Free(ctx);
             ctx = NULL;
 
@@ -75,10 +75,10 @@ void BattleAnimScriptFunc_Mimic(BattleAnimSystem *system)
 
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    ctx->defenderSprite.monSprite = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    ctx->defenderSprite.monSprite = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
     ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite.monSprite, MON_SPRITE_Y_CENTER);
     ctx->unused = ctx->defenderY;
-    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    ctx->defenderHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
     ctx->defenderSprite.hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_0);
     ctx->opponentSprites[DEFENDER].hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_1);
     ctx->opponentSprites[DEFENDER_PARTNER].hwSprite = BattleAnimSystem_GetPokemonSprite(system, BATTLE_ANIM_MON_SPRITE_2);
@@ -88,7 +88,7 @@ void BattleAnimScriptFunc_Mimic(BattleAnimSystem *system)
     ManagedSprite_SetExplicitPriority(ctx->opponentSprites[DEFENDER].hwSprite, BattleAnimSystem_GetPokemonSpritePriority(system));
     ManagedSprite_SetExplicitPriority(ctx->opponentSprites[DEFENDER_PARTNER].hwSprite, BattleAnimSystem_GetPokemonSpritePriority(system));
 
-    int defenderType = BattleAnimSystem_GetBattlerType(ctx->common.battleAnimSystem, BattleAnimSystem_GetDefender(ctx->common.battleAnimSystem));
+    int defenderType = BattleAnimSystem_GetBattlerType(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
     if (defenderType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 || defenderType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
         ManagedSprite_SetPriority(ctx->defenderSprite.hwSprite, 30);
         ManagedSprite_SetPriority(ctx->opponentSprites[DEFENDER].hwSprite, 50);
@@ -108,5 +108,5 @@ void BattleAnimScriptFunc_Mimic(BattleAnimSystem *system)
         BASE_SCALE_XY,
         MIMIC_SCALE_FRAMES);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Mimic, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Mimic, ctx);
 }

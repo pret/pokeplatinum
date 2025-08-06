@@ -25,7 +25,7 @@ typedef struct BattleAnimScriptFuncCommon {
     u8 counter1; // General purpose counters
     u8 counter2;
     u8 unk_03;
-    BattleAnimSystem *battleAnimSystem;
+    BattleAnimSystem *battleAnimSys;
     SpriteSystem *spriteSystem;
     SpriteManager *pokemonSpriteManager;
     SpriteManager *primarySpriteManager;

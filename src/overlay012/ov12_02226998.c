@@ -86,7 +86,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_MoveEmitterA2BParabolic,
     BattleAnimScriptFunc_BattlerPartialDraw,
     BattleAnimScriptFunc_ShakeBg,
-    ov12_02229908,
+    BattleAnimScriptFunc_PixelatePokemonSprite,
     ov12_0222EFB0,
     ov12_0222F2F8,
     ov12_0222A00C,
