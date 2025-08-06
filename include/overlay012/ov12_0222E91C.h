@@ -7,7 +7,7 @@
 
 void BattleAnimScriptFunc_ShadowPunch(BattleAnimSystem *param0);
 void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
-void ov12_0222EFB0(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *param0);
 void ov12_0222F2F8(BattleAnimSystem *param0);
 void ov12_0222F5EC(BattleAnimSystem *param0);
 

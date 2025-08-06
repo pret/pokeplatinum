@@ -13,6 +13,7 @@
 #include "overlay012/ov12_022380BC.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
+#include "battle_script_battlers.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "math_util.h"
@@ -74,17 +75,45 @@ typedef struct {
     XYTransformContext unk_50;
 } UnkStruct_ov12_0222EC18;
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *unk_1C[3];
-    int unk_28;
-    f32 unk_2C;
-    f32 unk_30;
-    u8 unk_34;
-    u8 unk_35;
-    s8 unk_36;
-    PaletteFadeContext *unk_38[2];
-} UnkStruct_ov12_0222EE50;
+// -------------------------------------------------------------------
+// Role Play
+// -------------------------------------------------------------------
+enum RolePlaySprite {
+    ROLE_PLAY_SPRITE_ATTACKER_0 = 0, // Attacker's sprite
+    ROLE_PLAY_SPRITE_ATTACKER_1, // Copy of attacker's sprite
+    ROLE_PLAY_SPRITE_DEFENDER, // Defender's sprite
+    ROLE_PLAY_SPRITE_COUNT
+};
+
+typedef struct RolePlayContext {
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprites[ROLE_PLAY_SPRITE_COUNT];
+    int blendStep;
+    f32 scaleX;
+    f32 scaleY;
+    u8 spriteAlpha;
+    u8 bgAlpha;
+    s8 scaleDirX;
+    PaletteFadeContext *palFades[2];
+} RolePlayContext;
+
+enum RolePlayState {
+    ROLE_PLAY_STATE_SCALE = 0,
+    ROLE_PLAY_STATE_WAIT_FOR_FADE,
+    ROLE_PLAY_STATE_CLEANUP,
+};
+
+#define ROLE_PLAY_PAL_FADE_INTERVAL   0
+#define ROLE_PLAY_PAL_FADE_STEP_SIZE  1
+#define ROLE_PLAY_PAL_FADE_START_FRAC 0
+#define ROLE_PLAY_PAL_FADE_END_FRAC   15
+#define ROLE_PLAY_PAL_FADE_COLOR      RGBA_WHITE
+#define ROLE_PLAY_PAL_FADE_PRIORITY   1100
+#define ROLE_PLAY_ATTACKER_X_OFFSET   (-32)
+#define ROLE_PLAY_MIN_ALPHA           0
+#define ROLE_PLAY_MAX_ALPHA           15
+#define ROLE_PLAY_BLEND_STEPS         14
+#define ROLE_PLAY_SCALE_STEP          0.2
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -402,154 +431,165 @@ void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222EC18, v0);
 }
 
-static void ov12_0222EE50(SysTask *param0, void *param1)
+static void BattleAnimTask_RolePlay(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222EE50 *v0 = param1;
+    RolePlayContext *ctx = param;
 
-    switch (v0->unk_00.state) {
-    case 0:
-        if (v0->unk_28 > 14) {
-            v0->unk_30 -= 0.2f;
-            v0->unk_2C += 0.2f;
+    switch (ctx->common.state) {
+    case ROLE_PLAY_STATE_SCALE:
+        if (ctx->blendStep > ROLE_PLAY_BLEND_STEPS) {
+            ctx->scaleY -= (f32)ROLE_PLAY_SCALE_STEP;
+            ctx->scaleX += (f32)ROLE_PLAY_SCALE_STEP;
 
-            if (v0->unk_30 <= 0.2) {
-                v0->unk_00.state++;
-                ManagedSprite_SetDrawFlag(v0->unk_1C[0], 0);
+            if (ctx->scaleY <= ROLE_PLAY_SCALE_STEP) {
+                ctx->common.state++;
+                ManagedSprite_SetDrawFlag(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], FALSE);
             } else {
-                ManagedSprite_SetAffineScale(v0->unk_1C[0], v0->unk_2C * v0->unk_36, v0->unk_30);
+                ManagedSprite_SetAffineScale(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], ctx->scaleX * ctx->scaleDirX, ctx->scaleY);
             }
         } else {
-            v0->unk_34++;
-            v0->unk_35--;
-            G2_ChangeBlendAlpha(v0->unk_34, v0->unk_35);
-            v0->unk_28++;
+            ctx->spriteAlpha++;
+            ctx->bgAlpha--;
+            G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
+            ctx->blendStep++;
         }
         break;
-    case 1:
-        if (PaletteFadeContext_IsActive(v0->unk_38[1]) == 0) {
-            int v1;
+    case ROLE_PLAY_STATE_WAIT_FOR_FADE:
+        if (PaletteFadeContext_IsActive(ctx->palFades[BATTLER_TYPE_DEFENDER]) == FALSE) {
+            PaletteFadeContext_Free(ctx->palFades[BATTLER_TYPE_ATTACKER]);
+            PaletteFadeContext_Free(ctx->palFades[BATTLER_TYPE_DEFENDER]);
 
-            PaletteFadeContext_Free(v0->unk_38[0]);
-            PaletteFadeContext_Free(v0->unk_38[1]);
+            int palIndex = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->sprites[ROLE_PLAY_SPRITE_DEFENDER]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-            v1 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_1C[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-
-            v0->unk_38[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v1 * 16, 16, 0, 1, 15, 0, 0xFFFFFF, 1100);
-            v0->unk_00.state++;
+            ctx->palFades[BATTLER_TYPE_DEFENDER] = PaletteFadeContext_New(
+                ctx->common.paletteData,
+                BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
+                PLTTBUF_MAIN_OBJ,
+                PLTT_DEST(palIndex),
+                PALETTE_SIZE,
+                ROLE_PLAY_PAL_FADE_INTERVAL,
+                ROLE_PLAY_PAL_FADE_STEP_SIZE,
+                ROLE_PLAY_PAL_FADE_END_FRAC,
+                ROLE_PLAY_PAL_FADE_START_FRAC,
+                ROLE_PLAY_PAL_FADE_COLOR,
+                ROLE_PLAY_PAL_FADE_PRIORITY);
+            ctx->common.state++;
         }
         break;
-    case 2:
+    case ROLE_PLAY_STATE_CLEANUP:
     default:
-        if (PaletteFadeContext_IsActive(v0->unk_38[1]) == 0) {
-            ManagedSprite_TickFrame(v0->unk_1C[1]);
-            PaletteFadeContext_Free(v0->unk_38[1]);
-            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-            Heap_Free(v0);
+        if (PaletteFadeContext_IsActive(ctx->palFades[BATTLER_TYPE_DEFENDER]) == FALSE) {
+            ManagedSprite_TickFrame(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_1]);
+            PaletteFadeContext_Free(ctx->palFades[BATTLER_TYPE_DEFENDER]);
+            BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+            Heap_Free(ctx);
             return;
         }
         break;
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C[0]);
-    ManagedSprite_TickFrame(v0->unk_1C[1]);
-    ManagedSprite_TickFrame(v0->unk_1C[2]);
-    SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
+    ManagedSprite_TickFrame(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0]);
+    ManagedSprite_TickFrame(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_1]);
+    ManagedSprite_TickFrame(ctx->sprites[ROLE_PLAY_SPRITE_DEFENDER]);
+    SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 }
 
-void ov12_0222EFB0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222EE50 *v0;
-    int v1;
-    s16 v2, v3;
-    s16 v4;
-    s16 v5;
+    RolePlayContext *ctx = BattleAnimUtil_Alloc(system, sizeof(RolePlayContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222EE50));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_1] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
+    ctx->sprites[ROLE_PLAY_SPRITE_DEFENDER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_2);
+    ctx->blendStep = 0;
 
-    v0->unk_1C[0] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSys, 0);
-    v0->unk_1C[1] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSys, 1);
-    v0->unk_1C[2] = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSys, 2);
-    v0->unk_28 = 0;
+    s16 xOffset = ROLE_PLAY_ATTACKER_X_OFFSET;
+    s16 dir = BattleAnimUtil_GetTransformDirectionX(system, BattleAnimSystem_GetAttacker(system));
+    xOffset *= dir;
 
-    {
-        v4 = -32;
-        v5 = BattleAnimUtil_GetTransformDirectionX(param0, BattleAnimSystem_GetAttacker(param0));
-        v4 *= v5;
+    ctx->scaleX = 1.0f;
+    ctx->scaleY = 1.0f;
 
-        v0->unk_2C = 1.0f;
-        v0->unk_30 = 1.0f;
-
-        if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(param0, 1) == 1) {
-            v0->unk_36 = -1;
-        } else {
-            v0->unk_36 = +1;
-        }
-
-        ManagedSprite_GetPositionXY(v0->unk_1C[1], &v2, &v3);
-        ManagedSprite_SetPositionXY(v0->unk_1C[0], v2 + v4, v3);
-        ManagedSprite_SetAffineOverwriteMode(v0->unk_1C[0], AFFINE_OVERWRITE_MODE_DOUBLE);
-        ManagedSprite_SetAffineScale(v0->unk_1C[0], v0->unk_2C * v0->unk_36, v0->unk_30);
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(system, BATTLER_TYPE_DEFENDER) == TRUE) {
+        ctx->scaleDirX = -1;
+    } else {
+        ctx->scaleDirX = +1;
     }
 
-    {
-        int v6;
+    s16 posX, posY;
+    ManagedSprite_GetPositionXY(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_1], &posX, &posY);
+    ManagedSprite_SetPositionXY(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], posX + xOffset, posY);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetAffineScale(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], ctx->scaleX * ctx->scaleDirX, ctx->scaleY);
 
-        v6 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_1C[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-        v0->unk_38[0] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
+    int palIndex = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    ctx->palFades[BATTLER_TYPE_ATTACKER] = PaletteFadeContext_New(
+        ctx->common.paletteData,
+        BattleAnimSystem_GetHeapID(system),
+        PLTTBUF_MAIN_OBJ,
+        PLTT_DEST(palIndex),
+        PALETTE_SIZE,
+        ROLE_PLAY_PAL_FADE_INTERVAL,
+        ROLE_PLAY_PAL_FADE_STEP_SIZE,
+        ROLE_PLAY_PAL_FADE_START_FRAC,
+        ROLE_PLAY_PAL_FADE_END_FRAC,
+        ROLE_PLAY_PAL_FADE_COLOR,
+        ROLE_PLAY_PAL_FADE_PRIORITY);
 
-        v6 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_1C[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-        v0->unk_38[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
+    palIndex = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->sprites[ROLE_PLAY_SPRITE_DEFENDER]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    ctx->palFades[BATTLER_TYPE_DEFENDER] = PaletteFadeContext_New(
+        ctx->common.paletteData,
+        BattleAnimSystem_GetHeapID(system),
+        PLTTBUF_MAIN_OBJ,
+        PLTT_DEST(palIndex),
+        PALETTE_SIZE,
+        ROLE_PLAY_PAL_FADE_INTERVAL,
+        ROLE_PLAY_PAL_FADE_STEP_SIZE,
+        ROLE_PLAY_PAL_FADE_START_FRAC,
+        ROLE_PLAY_PAL_FADE_END_FRAC,
+        ROLE_PLAY_PAL_FADE_COLOR,
+        ROLE_PLAY_PAL_FADE_PRIORITY);
+
+        
+    u8 attacker = BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys);
+    u8 attackerType = BattleAnimUtil_GetBattlerType(ctx->common.battleAnimSys, attacker);
+    
+    Point2D attackerDefaultPos;
+    Point2D attackerPos;
+    BattleAnimUtil_GetBattlerTypeDefaultPos(attackerType, BattleAnimSystem_IsContest(ctx->common.battleAnimSys), &attackerDefaultPos);
+    ManagedSprite_GetPositionXY(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], &attackerPos.x, &attackerPos.y);
+    
+    int face;
+    if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, attacker) == BTLSCR_PLAYER) {
+        face = 0;
+        ManagedSprite_SetExplicitPriority(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], 1);
+        ManagedSprite_SetPriority(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], 0);
+    } else {
+        ManagedSprite_SetExplicitPriority(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], 2);
+        ManagedSprite_SetPriority(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], 0);
+        face = 2;
     }
 
-    {
-        u8 v7;
-        u8 v8;
-        u8 v9;
-        PokemonSprite *v10;
-        Point2D v11;
-        Point2D v12;
+    u8 defender = BattleAnimSystem_GetDefender(ctx->common.battleAnimSys);
+    u8 defenderYOffset = LoadPokemonSpriteYOffset(
+        BattleAnimSystem_GetBattlerSpecies(ctx->common.battleAnimSys, defender),
+        BattleAnimSystem_GetBattlerGender(ctx->common.battleAnimSys, defender),
+        face,
+        BattleAnimSystem_GetBattlerForm(ctx->common.battleAnimSys, defender),
+        BattleAnimSystem_GetBattlerPersonality(ctx->common.battleAnimSys, defender));
 
-        v8 = BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSys);
-        v9 = BattleAnimUtil_GetBattlerType(v0->unk_00.battleAnimSys, v8);
+    ManagedSprite_SetPositionXY(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], attackerPos.x, attackerDefaultPos.y + defenderYOffset);
+    ManagedSprite_SetDrawFlag(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], TRUE);
 
-        BattleAnimUtil_GetBattlerTypeDefaultPos(v9, BattleAnimSystem_IsContest(v0->unk_00.battleAnimSys), &v11);
-        ManagedSprite_GetPositionXY(v0->unk_1C[0], &v12.x, &v12.y);
+    ctx->spriteAlpha = ROLE_PLAY_MIN_ALPHA;
+    ctx->bgAlpha = ROLE_PLAY_MAX_ALPHA;
 
-        {
-            int v13;
+    BattleAnimUtil_SetSpriteBgBlending(ctx->common.battleAnimSys, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
+    G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
 
-            if (BattleAnimUtil_GetBattlerSide(v0->unk_00.battleAnimSys, v8) == 0x3) {
-                v13 = 0;
-                ManagedSprite_SetExplicitPriority(v0->unk_1C[0], 1);
-                ManagedSprite_SetPriority(v0->unk_1C[0], 0);
-            } else {
-                ManagedSprite_SetExplicitPriority(v0->unk_1C[0], 2);
-                ManagedSprite_SetPriority(v0->unk_1C[0], 0);
-                v13 = 2;
-            }
-
-            v8 = BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSys);
-            v7 = LoadPokemonSpriteYOffset(BattleAnimSystem_GetBattlerSpecies(v0->unk_00.battleAnimSys, v8), BattleAnimSystem_GetBattlerGender(v0->unk_00.battleAnimSys, v8), v13, BattleAnimSystem_GetBattlerForm(v0->unk_00.battleAnimSys, v8), BattleAnimSystem_GetBattlerPersonality(v0->unk_00.battleAnimSys, v8));
-        }
-
-        ManagedSprite_SetPositionXY(v0->unk_1C[0], v12.x, v11.y + v7);
-    }
-
-    ManagedSprite_SetDrawFlag(v0->unk_1C[0], 1);
-
-    v0->unk_34 = 0;
-    v0->unk_35 = 15;
-
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, 0xffffffff, 0xffffffff);
-    G2_ChangeBlendAlpha(v0->unk_34, v0->unk_35);
-
-    {
-        SysTask *v14;
-
-        v14 = BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222EE50, v0);
-        ov12_0222EE50(v14, v0);
-    }
+    SysTask *task = BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_RolePlay, ctx);
+    BattleAnimTask_RolePlay(task, ctx);
 }
 
 static void ov12_0222F208(SysTask *param0, void *param1)
