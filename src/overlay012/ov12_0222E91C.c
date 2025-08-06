@@ -1,5 +1,6 @@
 #include "overlay012/ov12_0222E91C.h"
 
+#include "nitro/hw/common/lcd.h"
 #include <nitro.h>
 #include <string.h>
 
@@ -115,19 +116,34 @@ enum RolePlayState {
 #define ROLE_PLAY_BLEND_STEPS         14
 #define ROLE_PLAY_SCALE_STEP          0.2
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    BattleAnimSpriteInfo unk_1C;
-    XYTransformContext unk_30;
-    s16 unk_54;
-    int unk_58;
-    Point2D unk_5C[2];
+// -------------------------------------------------------------------
+// Snatch
+// -------------------------------------------------------------------
+#define SNATCH_MAX_ITERATIONS 3
+
+typedef struct SnatchContext {
+    BattleAnimScriptFuncCommon common;
+    BattleAnimSpriteInfo spriteInfo;
+    XYTransformContext pos;
+    s16 dir;
+    BOOL doRev;
+    Point2D battlerPositions[2];
     int unk_64;
-    int unk_68;
-    int unk_6C[3];
-    int unk_78[3];
-    int unk_84[3];
-} UnkStruct_ov12_0222F208;
+    int iteration;
+    int xpos[SNATCH_MAX_ITERATIONS];
+    int ypos[SNATCH_MAX_ITERATIONS];
+    int zpos[SNATCH_MAX_ITERATIONS];
+} SnatchContext;
+
+enum SnatchState {
+    SNATCH_STATE_INIT = 0,
+    SNATCH_STATE_MOVE,
+};
+
+#define SNATCH_IN_FRONT_ZPOS 10
+#define SNATCH_BEHIND_ZPOS   -650
+#define SNATCH_MOVE_FRAMES   15
+#define SNATCH_VAR_TARGET    0
 
 typedef struct {
     int unk_00;
@@ -551,15 +567,14 @@ void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system)
         ROLE_PLAY_PAL_FADE_COLOR,
         ROLE_PLAY_PAL_FADE_PRIORITY);
 
-        
     u8 attacker = BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys);
     u8 attackerType = BattleAnimUtil_GetBattlerType(ctx->common.battleAnimSys, attacker);
-    
+
     Point2D attackerDefaultPos;
     Point2D attackerPos;
     BattleAnimUtil_GetBattlerTypeDefaultPos(attackerType, BattleAnimSystem_IsContest(ctx->common.battleAnimSys), &attackerDefaultPos);
     ManagedSprite_GetPositionXY(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], &attackerPos.x, &attackerPos.y);
-    
+
     int face;
     if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, attacker) == BTLSCR_PLAYER) {
         face = 0;
@@ -592,116 +607,120 @@ void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system)
     BattleAnimTask_RolePlay(task, ctx);
 }
 
-static void ov12_0222F208(SysTask *param0, void *param1)
+static void BattleAnimTask_Snatch(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222F208 *v0 = (UnkStruct_ov12_0222F208 *)param1;
+    SnatchContext *ctx = param;
 
-    switch (v0->unk_00.state) {
-    case 0:
-        PosLerpContext_Init(&v0->unk_30, v0->unk_1C.pos.x, v0->unk_6C[v0->unk_68], v0->unk_78[v0->unk_68], v0->unk_78[v0->unk_68], 15);
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Z_CENTER, v0->unk_84[v0->unk_68]);
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 1);
-        v0->unk_00.state++;
-    case 1:
-        if (PosLerpContext_Update(&v0->unk_30) == 0) {
-            v0->unk_68++;
+    switch (ctx->common.state) {
+    case SNATCH_STATE_INIT:
+        PosLerpContext_Init(
+            &ctx->pos,
+            ctx->spriteInfo.pos.x,
+            ctx->xpos[ctx->iteration],
+            ctx->ypos[ctx->iteration],
+            ctx->ypos[ctx->iteration],
+            SNATCH_MOVE_FRAMES);
 
-            if (v0->unk_68 > 2) {
-                v0->unk_00.state++;
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Z_CENTER, ctx->zpos[ctx->iteration]);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, TRUE);
+        ctx->common.state++;
+    case SNATCH_STATE_MOVE:
+        if (PosLerpContext_Update(&ctx->pos) == FALSE) {
+            ctx->iteration++;
+
+            if (ctx->iteration > (SNATCH_MAX_ITERATIONS - 1)) {
+                ctx->common.state++;
             } else {
-                {
-                    UnkStruct_ov12_022380DC v1;
+                UnkStruct_ov12_022380DC v1;
 
-                    if (v0->unk_58 == 0) {
-                        ov12_02220590(v0->unk_00.battleAnimSys, &v1, 3);
+                if (ctx->doRev == FALSE) {
+                    ov12_02220590(ctx->common.battleAnimSys, &v1, 3);
 
-                        if (v0->unk_68 == 2) {
-                            ov12_022382BC(&v1, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys));
-                        } else {
-                            ov12_022380CC(&v1, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys));
-                        }
+                    if (ctx->iteration == 2) {
+                        ov12_022382BC(&v1, BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
+                    } else {
+                        ov12_022380CC(&v1, BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
                     }
                 }
 
-                v0->unk_00.state = 0;
+                ctx->common.state = SNATCH_STATE_INIT;
             }
 
-            v0->unk_1C.pos.x = PokemonSprite_GetAttribute(v0->unk_1C.monSprite, MON_SPRITE_X_CENTER);
+            ctx->spriteInfo.pos.x = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_X_CENTER);
         }
 
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_X_CENTER, v0->unk_30.x);
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_Y_CENTER, v0->unk_30.y);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_X_CENTER, ctx->pos.x);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->pos.y);
         break;
     default:
-        PokemonSprite_SetAttribute(v0->unk_1C.monSprite, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, 0);
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-        Heap_Free(v0);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y, FALSE);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222F2F8(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Snatch(BattleAnimSystem *system)
 {
-    int v0;
-    UnkStruct_ov12_0222F208 *v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222F208));
-    BattleAnimSystem_GetCommonData(param0, &v1->unk_00);
+    SnatchContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SnatchContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    {
-        int v2 = BattleAnimSystem_GetAttacker(v1->unk_00.battleAnimSys);
+    int attacker = BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys);
 
-        BattleAnimUtil_GetBattlerDefaultPos(v1->unk_00.battleAnimSys, BattleAnimSystem_GetAttacker(v1->unk_00.battleAnimSys), &v1->unk_5C[0]);
-        BattleAnimUtil_GetBattlerDefaultPos(v1->unk_00.battleAnimSys, BattleAnimSystem_GetDefender(v1->unk_00.battleAnimSys), &v1->unk_5C[1]);
+    BattleAnimUtil_GetBattlerDefaultPos(
+        ctx->common.battleAnimSys,
+        BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys),
+        &ctx->battlerPositions[BATTLER_TYPE_ATTACKER]);
 
-        if (BattleAnimUtil_GetBattlerSide(v1->unk_00.battleAnimSys, v2) == 0x3) {
-            v1->unk_54 = +1;
-        } else {
-            v1->unk_54 = -1;
-        }
-    }
+    BattleAnimUtil_GetBattlerDefaultPos(
+        ctx->common.battleAnimSys,
+        BattleAnimSystem_GetDefender(ctx->common.battleAnimSys),
+        &ctx->battlerPositions[BATTLER_TYPE_DEFENDER]);
 
-    {
-        int v3 = BattleAnimUtil_GetBattlerSide(v1->unk_00.battleAnimSys, BattleAnimSystem_GetAttacker(v1->unk_00.battleAnimSys));
-        int v4 = BattleAnimUtil_GetBattlerSide(v1->unk_00.battleAnimSys, BattleAnimSystem_GetDefender(v1->unk_00.battleAnimSys));
-
-        if (v3 == v4) {
-            v1->unk_58 = 1;
-        } else {
-            v1->unk_58 = 0;
-        }
-    }
-
-    v1->unk_68 = 0;
-
-    {
-        int v5;
-        BattleAnimUtil_GetBattlerSprites(param0, BattleAnimSystem_GetScriptVar(param0, 0), &(v1->unk_1C), &v5);
-    }
-
-    v0 = PokemonSprite_GetAttribute(v1->unk_1C.monSprite, MON_SPRITE_Y_CENTER) - v1->unk_5C[0].y;
-
-    if (v1->unk_54 > 0) {
-        v1->unk_6C[0] = 255 + 80;
-        v1->unk_6C[1] = 0 - 80;
-        v1->unk_6C[2] = v1->unk_5C[0].x;
-        v1->unk_78[0] = v1->unk_5C[0].y + v0;
-        v1->unk_78[1] = v1->unk_5C[1].y + v0;
-        v1->unk_78[2] = v1->unk_5C[0].y + v0;
-        v1->unk_84[0] = 0 + 10;
-        v1->unk_84[1] = -0x280 - 10;
-        v1->unk_84[2] = PokemonSprite_GetAttribute(v1->unk_1C.monSprite, MON_SPRITE_Z_CENTER);
+    if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, attacker) == BTLSCR_PLAYER) {
+        ctx->dir = +1;
     } else {
-        v1->unk_6C[0] = 0 - 80;
-        v1->unk_6C[1] = 255 + 80;
-        v1->unk_6C[2] = v1->unk_5C[0].x;
-        v1->unk_78[0] = v1->unk_5C[0].y + v0;
-        v1->unk_78[1] = v1->unk_5C[1].y + v0;
-        v1->unk_78[2] = v1->unk_5C[0].y + v0;
-        v1->unk_84[0] = -0x280 - 10;
-        v1->unk_84[1] = 0 + 10;
-        v1->unk_84[2] = PokemonSprite_GetAttribute(v1->unk_1C.monSprite, MON_SPRITE_Z_CENTER);
+        ctx->dir = -1;
     }
 
-    BattleAnimSystem_StartAnimTask(v1->unk_00.battleAnimSys, ov12_0222F208, v1);
+    int attackerSide = BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
+    int defenderSide = BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
+
+    ctx->doRev = attackerSide == defenderSide;
+    ctx->iteration = 0;
+
+    int count;
+    BattleAnimUtil_GetBattlerSprites(system, BattleAnimSystem_GetScriptVar(system, SNATCH_VAR_TARGET), &ctx->spriteInfo, &count);
+
+    int height = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER) - ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y;
+
+    if (ctx->dir > 0) {
+        ctx->xpos[0] = HW_LCD_WIDTH + MON_SPRITE_FRAME_WIDTH - 1;
+        ctx->xpos[1] = -MON_SPRITE_FRAME_WIDTH;
+        ctx->xpos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].x;
+
+        ctx->ypos[0] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
+        ctx->ypos[1] = ctx->battlerPositions[BATTLER_TYPE_DEFENDER].y + height;
+        ctx->ypos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
+
+        ctx->zpos[0] = SNATCH_IN_FRONT_ZPOS;
+        ctx->zpos[1] = SNATCH_BEHIND_ZPOS;
+        ctx->zpos[2] = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Z_CENTER);
+    } else {
+        ctx->xpos[0] = -MON_SPRITE_FRAME_WIDTH;
+        ctx->xpos[1] = HW_LCD_WIDTH + MON_SPRITE_FRAME_WIDTH - 1;
+        ctx->xpos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].x;
+
+        ctx->ypos[0] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
+        ctx->ypos[1] = ctx->battlerPositions[BATTLER_TYPE_DEFENDER].y + height;
+        ctx->ypos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
+
+        ctx->zpos[0] = SNATCH_BEHIND_ZPOS;
+        ctx->zpos[1] = SNATCH_IN_FRONT_ZPOS;
+        ctx->zpos[2] = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Z_CENTER);
+    }
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Snatch, ctx);
 }
 
 static void ov12_0222F44C(PokemonSprite *param0, int param1, int param2, int param3, int param4)
