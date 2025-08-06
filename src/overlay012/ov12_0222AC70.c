@@ -2342,7 +2342,7 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 
     BattleAnimUtil_GetMonSpritePos(v2->unk_3C[0].monSprite, &v2->unk_3C[0].pos);
     BattleAnimUtil_GetMonSpritePos(v2->unk_3C[1].monSprite, &v2->unk_3C[1].pos);
-    ov12_02225C98(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_3C[0].pos.x, v2->unk_3C[1].pos.x + (v2->unk_0C.x * v1), v2->unk_3C[0].pos.y, v2->unk_3C[1].pos.y + (v2->unk_0C.y * v1), v2->unk_04, v2->unk_08 * FX32_ONE);
+    XYTransformContext_InitParabolic(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_3C[0].pos.x, v2->unk_3C[1].pos.x + (v2->unk_0C.x * v1), v2->unk_3C[0].pos.y, v2->unk_3C[1].pos.y + (v2->unk_0C.y * v1), v2->unk_04, v2->unk_08 * FX32_ONE);
 
     if ((BattleAnimSystem_GetBattlerType(param0, BattleAnimSystem_GetAttacker(param0)) == 4) && (BattleAnimSystem_GetBattlerType(param0, BattleAnimSystem_GetDefender(param0)) == 2)) {
         v1 *= -1;
@@ -2644,8 +2644,8 @@ static void ov12_0222D128(SysTask *param0, void *param1)
         ManagedSprite_GetPositionXY(v1->unk_30[0].unk_00, &v11, &v12);
         ManagedSprite_GetPositionXY(v1->unk_30[1].unk_00, &v13, &v14);
 
-        ov12_02225C98(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v11, v13, v12, v14, 10, v1->unk_2C * v15[v1->unk_0C][0]);
-        ov12_02225C98(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v13, v11, v14, v12, 10, v1->unk_2C * v15[v1->unk_0C][1]);
+        XYTransformContext_InitParabolic(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v11, v13, v12, v14, 10, v1->unk_2C * v15[v1->unk_0C][0]);
+        XYTransformContext_InitParabolic(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v13, v11, v14, v12, 10, v1->unk_2C * v15[v1->unk_0C][1]);
     }
         v1->unk_0C++;
         v1->unk_00++;

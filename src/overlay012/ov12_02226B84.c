@@ -566,7 +566,7 @@ typedef struct EmitterAnimationContext {
     int emitterID;
     s16 startDelay;
     s16 frames;
-    int unk_08;
+    int radius;
     Point2D offset;
     int mode;
     int startBattler;
@@ -581,7 +581,7 @@ typedef struct EmitterAnimationContext {
     SPLEmitter *emitter;
     BattleAnimScriptFuncCommon common;
     BattleAnimSpriteInfo unk_58[4];
-    XYTransformContext pos[2];
+    XYTransformContext transforms[2];
     ValueLerpContext unused;
 } EmitterAnimationContext;
 
@@ -590,7 +590,7 @@ typedef struct EmitterAnimationContext {
 #define EMITTER_ANIMATION_VAR_OFFSET_Y    2
 #define EMITTER_ANIMATION_VAR_START_DELAY 3
 #define EMITTER_ANIMATION_VAR_FRAMES      4
-#define EMITTER_ANIMATION_VAR_5           5
+#define EMITTER_ANIMATION_VAR_RADIUS      5
 #define EMITTER_ANIMATION_VAR_MODE        6
 #define EMITTER_ANIMATION_VAR_PARAMS      7
 #define EMITTER_ANIMATION_VAR_CURVE       8
@@ -3126,7 +3126,7 @@ static void EmitterAnimationContext_Init(BattleAnimSystem *system, EmitterAnimat
     ctx->offset.y = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_OFFSET_Y);
     ctx->startDelay = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_START_DELAY);
     ctx->frames = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_FRAMES);
-    ctx->unk_08 = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_5);
+    ctx->radius = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_RADIUS);
     ctx->mode = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_MODE);
     ctx->curve = BattleAnimSystem_GetScriptVar(system, EMITTER_ANIMATION_VAR_CURVE);
 
@@ -3193,7 +3193,7 @@ static void BattleAnimTask_MoveEmitterA2BLinear(SysTask *task, void *param)
         return;
     }
 
-    if (PosLerpContext_Update(&ctx->pos[0]) == FALSE && emitterActive == FALSE) {
+    if (PosLerpContext_Update(&ctx->transforms[0]) == FALSE && emitterActive == FALSE) {
         ParticleSystem_DeleteEmitter(ctx->particleSys, ctx->emitter);
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
         BattleAnimUtil_Free(ctx);
@@ -3204,12 +3204,12 @@ static void BattleAnimTask_MoveEmitterA2BLinear(SysTask *task, void *param)
             return;
         }
 
-        SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].x));
-        SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].y));
+        SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].x));
+        SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y));
 
         if (ctx->curve) {
             ctx->angle += 360 / (ctx->frames);
-            SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].y) + CalcSineDegrees_Wraparound(ctx->angle));
+            SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y) + CalcSineDegrees_Wraparound(ctx->angle));
         }
     }
 }
@@ -3228,7 +3228,7 @@ void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *system)
     BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->endBattler, &endPos);
 
     PosLerpContext_Init(
-        &ctx->pos[0],
+        &ctx->transforms[0],
         BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.x),
         BATTLE_PARTICLE_WORLD_TO_SCREEN(endPos.x) + (ctx->offset.x * dir),
         BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.y),
@@ -3242,15 +3242,15 @@ void BattleAnimScriptFunc_MoveEmitterA2BLinear(BattleAnimSystem *system)
     }
 
     for (int i = 0; i < ctx->skipFrames; i++) {
-        PosLerpContext_Update(&ctx->pos[0]);
+        PosLerpContext_Update(&ctx->transforms[0]);
     }
 
     if (ctx->maxFrames != EMITTER_ANIMATION_DEFAULT_FRAMES) {
         ctx->frame = ctx->maxFrames + 1;
     }
 
-    SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].x));
-    SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->pos[0].y));
+    SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].x));
+    SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y));
 
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BLinear, ctx);
 }
@@ -3314,81 +3314,83 @@ void ov12_02229C5C(BattleAnimSystem *param0)
         v1.x = v0.x;
     }
 
-    PosLerpContext_Init(&v3->pos[0], v0.x / 172, v1.x / 172, v0.y / 172, v1.y / 172, v3->frames);
+    PosLerpContext_Init(&v3->transforms[0], v0.x / 172, v1.x / 172, v0.y / 172, v1.y / 172, v3->frames);
 
     {
         int v5;
 
         for (v5 = 0; v5 < v3->skipFrames; v5++) {
-            PosLerpContext_Update(&v3->pos[0]);
+            PosLerpContext_Update(&v3->transforms[0]);
         }
 
         if (v3->maxFrames != 0xFF) {
             v3->frame = v3->maxFrames + 1;
         }
 
-        SPLEmitter_SetPosX(v3->emitter, v3->pos[0].x * 172);
-        SPLEmitter_SetPosY(v3->emitter, v3->pos[0].y * 172);
+        SPLEmitter_SetPosX(v3->emitter, v3->transforms[0].x * 172);
+        SPLEmitter_SetPosY(v3->emitter, v3->transforms[0].y * 172);
     }
 
     BattleAnimSystem_StartAnimTask(v3->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BLinear, v3);
 }
 
-static void ov12_02229DF0(SysTask *param0, void *param1)
+static void BattleAnimTask_MoveEmitterA2BParabolic(SysTask *task, void *param)
 {
-    EmitterAnimationContext *v0 = param1;
-    BOOL v1 = IsEmitterActive(v0->emitter);
+    EmitterAnimationContext *ctx = param;
+    BOOL emitterActive = IsEmitterActive(ctx->emitter);
 
-    if ((ov12_02225CE4(&v0->pos[0], &v0->pos[1]) == 0) && (v1 == 0)) {
-        ParticleSystem_DeleteEmitter(v0->particleSys, v0->emitter);
-        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSystem, param0);
-        BattleAnimUtil_Free(v0);
-        (v0) = NULL;
+    if (XYTransformContext_UpdateParabolic(&ctx->transforms[0], &ctx->transforms[1]) == FALSE && emitterActive == FALSE) {
+        ParticleSystem_DeleteEmitter(ctx->particleSys, ctx->emitter);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimUtil_Free(ctx);
+        ctx = NULL;
         return;
     } else {
-        SPLEmitter_SetPosX(v0->emitter, v0->pos[0].x * 172);
-        SPLEmitter_SetPosY(v0->emitter, v0->pos[0].y * 172);
+        SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].x));
+        SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y));
     }
 }
 
-void ov12_02229E54(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MoveEmitterA2BParabolic(BattleAnimSystem *system)
 {
-    int v0;
-    VecFx32 v1;
-    VecFx32 v2;
-    EmitterAnimationContext *v3 = BattleAnimUtil_Alloc(param0, sizeof(EmitterAnimationContext));
+    EmitterAnimationContext *ctx = BattleAnimUtil_Alloc(system, sizeof(EmitterAnimationContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v3->common);
-    EmitterAnimationContext_Init(param0, v3);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    EmitterAnimationContext_Init(system, ctx);
 
-    v0 = BattleAnimUtil_GetTransformDirectionX(param0, BattleAnimSystem_GetAttacker(param0));
+    int dir = BattleAnimUtil_GetTransformDirectionX(system, BattleAnimSystem_GetAttacker(system));
 
-    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->startBattler, &v1);
-    BattleAnimUtil_GetBattlerWorldPos_Normal(param0, v3->endBattler, &v2);
-    ov12_02225C98(&v3->pos[0], &v3->pos[1], v1.x / 172, (v2.x / 172) + (v3->offset.x * v0), v1.y / 172, (v2.y / 172) + (v3->offset.y * v0), v3->frames, v3->unk_08 * -FX32_ONE);
+    VecFx32 startPos, endPos;
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->startBattler, &startPos);
+    BattleAnimUtil_GetBattlerWorldPos_Normal(system, ctx->endBattler, &endPos);
+    XYTransformContext_InitParabolic(
+        &ctx->transforms[0],
+        &ctx->transforms[1],
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.x),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(endPos.x) + (ctx->offset.x * dir),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(startPos.y),
+        BATTLE_PARTICLE_WORLD_TO_SCREEN(endPos.y) + (ctx->offset.y * dir),
+        ctx->frames,
+        ctx->radius * -FX32_ONE);
 
-    if (v0 > 0) {
-        ValueLerpContext_Init(&v3->unused, ((20 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+    if (dir > 0) {
+        ValueLerpContext_Init(&ctx->unused, DEG_TO_IDX(20) * dir, DEG_TO_IDX(130) * dir, 10);
     } else {
-        ValueLerpContext_Init(&v3->unused, ((90 * 0xffff) / 360) * v0, ((130 * 0xffff) / 360) * v0, 10);
+        ValueLerpContext_Init(&ctx->unused, DEG_TO_IDX(90) * dir, DEG_TO_IDX(130) * dir, 10);
     }
 
-    {
-        int v4;
-
-        for (v4 = 0; v4 < v3->skipFrames; v4++) {
-            ov12_02225CE4(&v3->pos[0], &v3->pos[1]);
-        }
-
-        if (v3->maxFrames != 0xFF) {
-            v3->frame = v3->maxFrames + 1;
-        }
-
-        SPLEmitter_SetPosX(v3->emitter, v3->pos[0].x * 172);
-        SPLEmitter_SetPosY(v3->emitter, v3->pos[0].y * 172);
+    for (int i = 0; i < ctx->skipFrames; i++) {
+        XYTransformContext_UpdateParabolic(&ctx->transforms[0], &ctx->transforms[1]);
     }
 
-    BattleAnimSystem_StartAnimTask(v3->common.battleAnimSystem, ov12_02229DF0, v3);
+    if (ctx->maxFrames != EMITTER_ANIMATION_DEFAULT_FRAMES) {
+        ctx->frame = ctx->maxFrames + 1;
+    }
+
+    SPLEmitter_SetPosX(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].x));
+    SPLEmitter_SetPosY(ctx->emitter, BATTLE_PARTICLE_SCREEN_TO_WORLD(ctx->transforms[0].y));
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_MoveEmitterA2BParabolic, ctx);
 }
 
 static void ov12_02229F9C(SysTask *param0, void *param1)
@@ -3705,7 +3707,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
 
     switch (v0->unk_00.state) {
     case 0:
-        ov12_02225C98(&v0->unk_24[0], &v0->unk_24[1], -30, 128 - 16, 160, 80 + 32, 21, 64 * FX32_ONE);
+        XYTransformContext_InitParabolic(&v0->unk_24[0], &v0->unk_24[1], -30, 128 - 16, 160, 80 + 32, 21, 64 * FX32_ONE);
         v0->unk_00.state++;
         break;
     case 1:

@@ -1590,7 +1590,7 @@ static BOOL ov12_02236F24(BallRotation *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        ov12_02225C98(&param0->unk_48[0], &param0->unk_48[1], param0->unk_B8.unk_00, param0->unk_B8.unk_04, param0->unk_B8.unk_02, param0->unk_B8.unk_06, param0->unk_B8.unk_08, param0->unk_B8.unk_10 * FX32_ONE);
+        XYTransformContext_InitParabolic(&param0->unk_48[0], &param0->unk_48[1], param0->unk_B8.unk_00, param0->unk_B8.unk_04, param0->unk_B8.unk_02, param0->unk_B8.unk_06, param0->unk_B8.unk_08, param0->unk_B8.unk_10 * FX32_ONE);
 
         param0->unk_B8.unk_0C = 0;
         param0->unk_08++;
@@ -1701,7 +1701,7 @@ static BOOL ov12_022371E4(BallRotation *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        ov12_02225C98(&param0->unk_48[0], &param0->unk_48[1], param0->unk_B8.unk_00, param0->unk_B8.unk_04, param0->unk_B8.unk_02, param0->unk_B8.unk_06, param0->unk_B8.unk_08, param0->unk_B8.unk_10 * FX32_ONE);
+        XYTransformContext_InitParabolic(&param0->unk_48[0], &param0->unk_48[1], param0->unk_B8.unk_00, param0->unk_B8.unk_04, param0->unk_B8.unk_02, param0->unk_B8.unk_06, param0->unk_B8.unk_08, param0->unk_B8.unk_10 * FX32_ONE);
 
         param0->unk_B8.unk_0C = 0;
         param0->unk_08++;
