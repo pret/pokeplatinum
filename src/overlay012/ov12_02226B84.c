@@ -541,27 +541,40 @@ enum BattlerPartialDrawState {
 #define BATTLER_PARTIAL_DRAW_VAR_STEP_INTERVAL 4
 #define BATTLER_PARTIAL_DRAW_VAR_IS_SKETCH     5
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    int unk_1C;
-    int unk_20;
-    int unk_24;
-    BgConfig *unk_28;
-    BattleAnimSystem *unk_2C;
-    SpriteManager *unk_30;
-    BattleAnimSpriteInfo unk_34[4];
-    BattleAnimSpriteInfo unk_84[4];
-    XYTransformContext unk_D4;
-} UnkStruct_ov12_02229738;
+// -------------------------------------------------------------------
+// Shake Background
+// -------------------------------------------------------------------
+typedef struct ShakeBgContext {
+    u8 state;
+    u8 iteration;
+    u8 unused0[2];
+    int extentX;
+    int extentY;
+    int interval;
+    int amount;
+    int unused1;
+    int cycles;
+    int bgLayer;
+    BOOL resetX;
+    BOOL resetY;
+    BgConfig *bgConfig;
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    BattleAnimSpriteInfo unused2[8];
+    XYTransformContext shake;
+} ShakeBgContext;
+
+enum ShakeBgState {
+    SHAKE_BG_STATE_INIT = 0,
+    SHAKE_BG_STATE_SHAKE,
+};
+
+#define SHAKE_BG_VAR_EXTENT_X 0
+#define SHAKE_BG_VAR_EXTENT_Y 1
+#define SHAKE_BG_VAR_INTERVAL 2
+#define SHAKE_BG_VAR_AMOUNT   3
+#define SHAKE_BG_VAR_CYCLES   4
+#define SHAKE_BG_VAR_TARGET   5
 
 typedef struct {
     BattleAnimScriptFuncCommon unk_00;
@@ -2991,74 +3004,73 @@ void BattleAnimScriptFunc_BattlerPartialDraw(BattleAnimSystem *system)
     }
 }
 
-static void ov12_02229738(SysTask *param0, void *param1)
+static void BattleAnimTask_ShakeBg(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_02229738 *v1 = (UnkStruct_ov12_02229738 *)param1;
+    ShakeBgContext *ctx = param;
 
-    switch (v1->unk_00) {
-    case 0:
-        ShakeContext_Init(&v1->unk_D4, v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10);
-        v1->unk_00++;
-    case 1: {
-        if (ShakeContext_Update(&v1->unk_D4) == 0) {
-            if (v1->unk_01 >= v1->unk_18) {
-                v1->unk_00++;
+    switch (ctx->state) {
+    case SHAKE_BG_STATE_INIT:
+        ShakeContext_Init(&ctx->shake, ctx->extentX, ctx->extentY, ctx->interval, ctx->amount);
+        ctx->state++;
+    case SHAKE_BG_STATE_SHAKE: {
+        if (ShakeContext_Update(&ctx->shake) == FALSE) {
+            if (ctx->iteration >= ctx->cycles) {
+                ctx->state++;
             } else {
-                v1->unk_00--;
+                ctx->state--;
             }
 
-            if (v1->unk_20 != 0) {
-                Bg_SetOffset(v1->unk_28, v1->unk_1C, 0, 0);
+            if (ctx->resetX != FALSE) {
+                Bg_SetOffset(ctx->bgConfig, ctx->bgLayer, BG_OFFSET_UPDATE_SET_X, 0);
             }
 
-            if (v1->unk_24 != 0) {
-                Bg_SetOffset(v1->unk_28, v1->unk_1C, 3, 0);
+            if (ctx->resetY != FALSE) {
+                Bg_SetOffset(ctx->bgConfig, ctx->bgLayer, BG_OFFSET_UPDATE_SET_Y, 0);
             }
 
-            v1->unk_01++;
+            ctx->iteration++;
         } else {
-            if (v1->unk_D4.x != 0) {
-                v1->unk_20 = 1;
-                Bg_SetOffset(v1->unk_28, v1->unk_1C, 0, v1->unk_D4.x);
+            if (ctx->shake.x != 0) {
+                ctx->resetX = TRUE;
+                Bg_SetOffset(ctx->bgConfig, ctx->bgLayer, BG_OFFSET_UPDATE_SET_X, ctx->shake.x);
             }
 
-            if (v1->unk_D4.y != 0) {
-                v1->unk_24 = 1;
-                Bg_SetOffset(v1->unk_28, v1->unk_1C, 3, v1->unk_D4.y);
+            if (ctx->shake.y != 0) {
+                ctx->resetY = TRUE;
+                Bg_SetOffset(ctx->bgConfig, ctx->bgLayer, BG_OFFSET_UPDATE_SET_Y, ctx->shake.y);
             }
         }
     } break;
     default:
-        BattleAnimSystem_EndAnimTask(v1->unk_2C, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02229810(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_ShakeBg(BattleAnimSystem *system)
 {
-    int v0;
-    UnkStruct_ov12_02229738 *v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02229738));
+    ShakeBgContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ShakeBgContext));
 
-    v1->unk_00 = 0;
-    v1->unk_01 = 0;
-    v1->unk_2C = param0;
-    v1->unk_30 = BattleAnimSystem_GetPokemonSpriteManager(v1->unk_2C);
-    v1->unk_28 = BattleAnimSystem_GetBgConfig(v1->unk_2C);
-    v1->unk_04 = BattleAnimSystem_GetScriptVar(param0, 0);
-    v1->unk_08 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v1->unk_0C = BattleAnimSystem_GetScriptVar(param0, 2);
-    v1->unk_10 = BattleAnimSystem_GetScriptVar(param0, 3);
-    v1->unk_18 = BattleAnimSystem_GetScriptVar(param0, 4);
+    ctx->state = SHAKE_BG_STATE_INIT;
+    ctx->iteration = 0;
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->bgConfig = BattleAnimSystem_GetBgConfig(ctx->battleAnimSys);
 
-    if (BattleAnimSystem_GetScriptVar(param0, 5) == 0) {
-        v1->unk_1C = 3;
+    ctx->extentX = BattleAnimSystem_GetScriptVar(system, SHAKE_BG_VAR_EXTENT_X);
+    ctx->extentY = BattleAnimSystem_GetScriptVar(system, SHAKE_BG_VAR_EXTENT_Y);
+    ctx->interval = BattleAnimSystem_GetScriptVar(system, SHAKE_BG_VAR_INTERVAL);
+    ctx->amount = BattleAnimSystem_GetScriptVar(system, SHAKE_BG_VAR_AMOUNT);
+    ctx->cycles = BattleAnimSystem_GetScriptVar(system, SHAKE_BG_VAR_CYCLES);
+
+    if (BattleAnimSystem_GetScriptVar(system, SHAKE_BG_VAR_TARGET) == SHAKE_BG_TARGET_EFFECT) {
+        ctx->bgLayer = BATTLE_BG_EFFECT;
     } else {
-        v1->unk_1C = 2;
+        ctx->bgLayer = BATTLE_BG_BASE;
     }
 
-    BattleAnimSystem_StartAnimTask(v1->unk_2C, ov12_02229738, v1);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ShakeBg, ctx);
 }
 
 static void ov12_0222988C(SysTask *param0, void *param1)
