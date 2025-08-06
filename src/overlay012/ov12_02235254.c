@@ -731,7 +731,7 @@ void BattleAnimSystem_GetCommonData(BattleAnimSystem *system, BattleAnimScriptFu
     common->counter1 = 0;
     common->counter2 = 0;
     common->unk_03 = 0;
-    common->battleAnimSystem = system;
+    common->battleAnimSys = system;
     common->spriteSystem = BattleAnimSystem_GetSpriteSystem(system);
     common->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(system);
     common->primarySpriteManager = BattleAnimSystem_GetPrimarySpriteManager(system);

@@ -703,8 +703,8 @@ static void BattleAnimTask_Camouflage(SysTask *task, void *param)
     switch (ctx->common.state) {
     case CAMOUFLAGE_STATE_INIT: {
         PokemonSprite *attackerSprite = BattleAnimSystem_GetBattlerSprite(
-            ctx->common.battleAnimSystem,
-            BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+            ctx->common.battleAnimSys,
+            BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
         PokemonSprite_SetAttribute(attackerSprite, MON_SPRITE_HIDE, TRUE);
         ctx->common.state++;
     } break;
@@ -720,10 +720,10 @@ static void BattleAnimTask_Camouflage(SysTask *task, void *param)
             CAMOUFLAGE_BG_SCROLL_ANGLE_STEP,
             CAMOUFLAGE_BG_SCROLL_AMPLITUDE,
             CAMOUFLAGE_BG_SCROLL_SPEED,
-            BattleAnimSystem_GetBgID(ctx->common.battleAnimSystem, BATTLE_ANIM_BG_BASE),
+            BattleAnimSystem_GetBgID(ctx->common.battleAnimSys, BATTLE_ANIM_BG_BASE),
             0,
             BattleAnimUtil_MakeBgOffsetValue(0, 0),
-            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSystem));
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
         ctx->common.state++;
         break;
     case CAMOUFLAGE_STATE_SCROLL:
@@ -748,15 +748,15 @@ static void BattleAnimTask_Camouflage(SysTask *task, void *param)
         }
 
         PokemonSprite *attackerSprite = BattleAnimSystem_GetBattlerSprite(
-            ctx->common.battleAnimSystem,
-            BattleAnimSystem_GetAttacker(ctx->common.battleAnimSystem));
+            ctx->common.battleAnimSys,
+            BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
         PokemonSprite_SetAttribute(attackerSprite, MON_SPRITE_HIDE, FALSE);
         ctx->common.state++;
     } break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_UnloadBaseBg(ctx->common.battleAnimSystem, BATTLE_BG_BASE);
-        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSystem, task);
+        BattleAnimSystem_UnloadBaseBg(ctx->common.battleAnimSys, BATTLE_BG_BASE);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         return;
     }
@@ -771,7 +771,7 @@ void BattleAnimScriptFunc_Camouflage(BattleAnimSystem *system)
     CamouflageContext *ctx = BattleAnimUtil_Alloc(system, sizeof(CamouflageContext));
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    ctx->maskSprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->maskSprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
     ManagedSprite_SetExplicitOamMode(ctx->maskSprite, GX_OAM_MODE_OBJWND);
 
     // Mask background to attacker sprite
@@ -779,7 +779,7 @@ void BattleAnimScriptFunc_Camouflage(BattleAnimSystem *system)
     G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, FALSE);
     G2_SetWndOBJInsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | GX_WND_PLANEMASK_OBJ, FALSE);
 
-    ctx->xluSprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSystem, BATTLE_ANIM_MON_SPRITE_1);
+    ctx->xluSprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
     ManagedSprite_SetExplicitOamMode(ctx->xluSprite, GX_OAM_MODE_XLU);
 
     AlphaFadeContext_Init(
@@ -790,10 +790,10 @@ void BattleAnimScriptFunc_Camouflage(BattleAnimSystem *system)
         CAMOUFLAGE_OTHER_END_ALPHA,
         CAMOUFLAGE_ALPHA_FADE_FRAMES);
 
-    BattleAnimSystem_LoadBaseBg(ctx->common.battleAnimSystem, BATTLE_BG_BASE);
+    BattleAnimSystem_LoadBaseBg(ctx->common.battleAnimSys, BATTLE_BG_BASE);
 
     Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSystem, BattleAnimTask_Camouflage, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Camouflage, ctx);
 }
 
 void ov12_0222E248(ManagedSprite *param0)
@@ -835,7 +835,7 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
                 Sprite_DeleteAndFreeResources(v0->unk_28[v1]);
             }
 
-            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
+            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
             Heap_Free(v0);
             return;
         }
@@ -857,7 +857,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         int v1;
         SpriteTemplate v2;
 
-        v2 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSystem);
+        v2 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSys);
 
         v0->unk_28[0] = param3;
         v0->unk_1E[0] = 0;
@@ -880,7 +880,7 @@ void ov12_0222E2F8(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         ManagedSprite_OffsetPositionXY(v0->unk_28[3], +32, +32);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E25C, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222E25C, v0);
 }
 
 static void ov12_0222E390(SysTask *param0, void *param1)
@@ -901,7 +901,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
             ov12_0222E248(v0->unk_2C[v1]);
 
             if (v0->unk_22[0] == 110) {
-                BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+                BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, 0xffffffff, 0xffffffff);
 
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
                 ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
@@ -914,31 +914,31 @@ static void ov12_0222E390(SysTask *param0, void *param1)
         }
 
         if (v0->unk_22[0] == 40 + 10) {
-            v0->unk_3C[0] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[0] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 50 + 10) {
-            v0->unk_3C[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[1] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 60 + 10) {
-            v0->unk_3C[2] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[2] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 70 + 10) {
-            v0->unk_3C[3] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[3] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 80 + 10) {
-            v0->unk_3C[4] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+            v0->unk_3C[4] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 90 + 10) {
-            v0->unk_3C[5] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSystem), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
+            v0->unk_3C[5] = PaletteFadeContext_New(v0->unk_00.paletteData, BattleAnimSystem_GetHeapID(v0->unk_00.battleAnimSys), 2, v0->unk_1C * 16, 16, -2, 2, 14, 0, 0xFFFF, 1002);
         }
 
         if (v0->unk_22[0] == 110) {
-            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSystem, 0xffffffff, 0xffffffff);
+            BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, 0xffffffff, 0xffffffff);
 
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[0], GX_OAM_MODE_XLU);
             ManagedSprite_SetExplicitOamMode(v0->unk_2C[1], GX_OAM_MODE_XLU);
@@ -974,7 +974,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
                 PaletteFadeContext_Free(v0->unk_3C[v1]);
             }
 
-            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSystem, param0);
+            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
             Heap_Free(v0);
             return;
         }
@@ -997,7 +997,7 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
         s16 v2, v3;
         SpriteTemplate v4;
 
-        v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSystem);
+        v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSys);
 
         v0->unk_2C[0] = param3;
         v0->unk_22[0] = 0;
@@ -1061,5 +1061,5 @@ void ov12_0222E61C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
     }
 
     v0->unk_1C = ManagedSprite_GetExplicitPaletteOffset(v0->unk_2C[0]);
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSystem, ov12_0222E390, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222E390, v0);
 }
