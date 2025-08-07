@@ -34,5 +34,11 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "I only live to swim. Teach me what’s\nso fun about Pokémon!\r",
+        "TRMSG_DEFEAT": "Oh, yeah, that was fun!\nI learned something good!\n",
+        "TRMSG_POST_BATTLE": "It’s what I live for!\nPokémon!\n",
+        "TRMSG_REMATCH": "Hey, didn’t you teach me what’s so fun\nabout Pokémon?\rTeach me more.\nI’m eager to learn!\r"
+    }
 }

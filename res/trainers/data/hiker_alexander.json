@@ -26,5 +26,11 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "They call me the Echo Man!\nBattle with me! Yahoo!\r",
+        "TRMSG_DEFEAT": "Ohh... Yo...\nYodelay...\n",
+        "TRMSG_POST_BATTLE": "Here’s good advice from the Echo Man!\rIf you’re at a loss as to where you\nshould be going, check the Town Map!\n",
+        "TRMSG_REMATCH": "Oh, hi there! Remember us?\nI’m the Echo Man!\rLet’s have another battle!\nYahoo!\r"
+    }
 }

@@ -164,8 +164,8 @@ de5c1035595e3cb52990b183497e513246bd0efe *res/pokemon/pms.narc
 cd4b737f173cc6ac1a25636efa4edfd83da79599 *res/pokemon/wotbl.narc
 59f49fe682ef8cf4dfb8f6b7da2e0f51401b50cc *res/trainers/trdata.narc
 da4dc734c7051754a3280d9e918942c42d183adb *res/trainers/trpoke.narc
-f2510b7ff0305a01e0aaec1fd438ebd63a52b3bc *res/prebuilt/poketool/trmsg/trtbl.narc
-eb67fe3a80265f7d874c107850a3f6b75cadb83d *res/prebuilt/poketool/trmsg/trtblofs.narc
+f2510b7ff0305a01e0aaec1fd438ebd63a52b3bc *res/trainers/trtbl.narc
+eb67fe3a80265f7d874c107850a3f6b75cadb83d *res/trainers/trtblofs.narc
 8bac81f0ff446438c6bf34a161619dce22e9db77 *res/prebuilt/battle/graphic/b_bag_gra.narc
 036b81fe61c6347100c73b2c23d28da5abc7626c *res/prebuilt/battle/graphic/b_plist_gra.narc
 d672202157109fb1bb293070b5d35787b2b2b6d3 *res/prebuilt/battle/graphic/batt_bg.narc

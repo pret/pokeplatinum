@@ -25,5 +25,10 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "You got Pokémon! I got Pokémon!\nLet’s see whose Pokémon is the best!\r",
+        "TRMSG_DEFEAT": "I give up! You’re too much!\nAre you maybe a Pokémon genius?\n",
+        "TRMSG_POST_BATTLE": "Making Pokémon battle each other\nmakes them tougher.\n"
+    }
 }

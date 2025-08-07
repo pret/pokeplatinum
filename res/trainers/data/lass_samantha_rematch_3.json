@@ -34,5 +34,9 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "Oh, thank you for the last time.\rMay I please trouble you for\nanother battle?\r",
+        "TRMSG_DEFEAT": "Oh...\nYou’re so strong...\n"
+    }
 }

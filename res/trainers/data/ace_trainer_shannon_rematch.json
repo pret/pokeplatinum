@@ -51,5 +51,9 @@
             "power": 50,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "Ace Trainers always work to improve\ntheir natural-born talents.\r",
+        "TRMSG_DEFEAT": "I see...\nI have to concede defeat.\n"
+    }
 }

@@ -26,5 +26,11 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "For some reason I was drawn here,\nand it is here that I met you...\rI want to know what all this means!\r",
+        "TRMSG_DEFEAT": "I see...\rSo that’s what it means...\n",
+        "TRMSG_POST_BATTLE": "I feel... I feel some sort of a mystic\npresence emanating from here...\n",
+        "TRMSG_REMATCH": "Why have you come back to this spot?\nI want to know what all this means!\r"
+    }
 }

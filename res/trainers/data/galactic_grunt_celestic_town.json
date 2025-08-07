@@ -25,5 +25,8 @@
             "power": 30,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_DEFEAT": "I just got worked over!\nAnd by a kid no less...\n"
+    }
 }

@@ -43,5 +43,8 @@
             "power": 120,
             "ball_seal": 2
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_DEFEAT": "Ouch! Are you one of those loyal\nfans? You sure are rowdy!\n"
+    }
 }
