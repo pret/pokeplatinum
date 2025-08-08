@@ -96,7 +96,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_ScrollSwitchedBg,
     BattleAnimScriptFunc_MoveBattlerOnOrOffScreen,
     BattleAnimScriptFunc_RenderPokemonSprites,
-    ov12_0222F5EC,
+    BattleAnimScriptFunc_Sketch,
     ov12_022351A4,
     ov12_022351D0,
     ov12_022351FC,
