@@ -29,7 +29,7 @@ void BattleAnimScriptFunc_MoveBattlerOffScreen(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattlerOnOrOffScreen(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattlerToDefaultPos(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_FadePokemonSprite(BattleAnimSystem *param0);
-void ov12_02229304(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_BattlerPartialDrawTest(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_BattlerPartialDraw(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_ShakeBg(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_PixelatePokemonSprite(BattleAnimSystem *param0);
