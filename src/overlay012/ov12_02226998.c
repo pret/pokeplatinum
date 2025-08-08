@@ -38,7 +38,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_NightShadeDefender,
     BattleAnimScriptFunc_Splash,
     BattleAnimScriptFunc_Spite,
-    ov12_0222C0C0,
+    BattleAnimScriptFunc_Harden,
     BattleAnimScriptFunc_Minimize,
     BattleAnimScriptFunc_FaintAttack,
     BattleAnimScriptFunc_Earthquake,

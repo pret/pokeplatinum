@@ -295,14 +295,28 @@ enum SplashState {
 #define SPLASH_BASE_POS_Y    0
 #define SPLASH_OFFSET_POS_Y  16
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    BattleAnimSystem *unk_04;
-    SpriteManager *unk_08;
-    ManagedSprite *unk_0C;
-    ManagedSprite *unk_10;
-} UnkStruct_ov12_0222BFF4;
+// -------------------------------------------------------------------
+// Harden
+// -------------------------------------------------------------------
+typedef struct HardenContext {
+    u8 state;
+    u8 timer;
+    BattleAnimSystem *battleAnimSys;
+    SpriteManager *pokemonSpriteManager;
+    ManagedSprite *attackerSprite1;
+    ManagedSprite *attackerSprite2;
+} HardenContext;
+
+enum HardenState {
+    HARDEN_STATE_WAIT = 0,
+    HARDEN_STATE_ENABLE_SPRITES,
+    HARDEN_STATE_WAIT_DRAW,
+};
+
+#define HARDEN_TINT_R      256
+#define HARDEN_TINT_G      256
+#define HARDEN_TINT_B      256
+#define HARDEN_START_DELAY 10
 
 // -------------------------------------------------------------------
 // Minimize
@@ -1609,70 +1623,78 @@ void BattleAnimScriptFunc_Splash(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Splash, ctx);
 }
 
-static void ov12_0222BFF4(SysTask *param0, void *param1)
+static void BattleAnimTask_Harden(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222BFF4 *v0 = (UnkStruct_ov12_0222BFF4 *)param1;
+    HardenContext *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        if ((++v0->unk_01) >= 10) {
-            v0->unk_01 = 0;
-            v0->unk_00++;
+    switch (ctx->state) {
+    case HARDEN_STATE_WAIT:
+        if (++ctx->timer >= HARDEN_START_DELAY) {
+            ctx->timer = 0;
+            ctx->state++;
         }
         break;
-    case 1:
-        ManagedSprite_SetDrawFlag(v0->unk_0C, 1);
-        ManagedSprite_SetDrawFlag(v0->unk_10, 1);
-        ManagedSprite_SetExplicitOamMode(v0->unk_10, GX_OAM_MODE_OBJWND);
-        v0->unk_00++;
+    case HARDEN_STATE_ENABLE_SPRITES:
+        ManagedSprite_SetDrawFlag(ctx->attackerSprite1, TRUE);
+        ManagedSprite_SetDrawFlag(ctx->attackerSprite2, TRUE);
+        ManagedSprite_SetExplicitOamMode(ctx->attackerSprite2, GX_OAM_MODE_OBJWND);
+        ctx->state++;
         break;
-    case 2:
-        if ((++v0->unk_01) >= 10) {
-            G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
-            G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
-            ManagedSprite_SetDrawFlag(v0->unk_0C, 0);
-            ManagedSprite_SetDrawFlag(v0->unk_10, 0);
-            v0->unk_01 = 0;
-            v0->unk_00++;
+    case HARDEN_STATE_WAIT_DRAW:
+        if (++ctx->timer >= HARDEN_START_DELAY) {
+            G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_ALL | GX_WND_PLANEMASK_OBJ, FALSE);
+            G2_SetWndOBJInsidePlane(BATTLE_BG_WNDMASK_ALL | GX_WND_PLANEMASK_OBJ, FALSE);
+            ManagedSprite_SetDrawFlag(ctx->attackerSprite1, FALSE);
+            ManagedSprite_SetDrawFlag(ctx->attackerSprite2, FALSE);
+            ctx->timer = 0;
+            ctx->state++;
         }
         break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_EndAnimTask(v0->unk_04, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_0C);
-    ManagedSprite_TickFrame(v0->unk_10);
-    SpriteSystem_DrawSprites(v0->unk_08);
+    ManagedSprite_TickFrame(ctx->attackerSprite1);
+    ManagedSprite_TickFrame(ctx->attackerSprite2);
+    SpriteSystem_DrawSprites(ctx->pokemonSpriteManager);
 }
 
-void ov12_0222C0C0(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Harden(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222BFF4 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222BFF4));
+    HardenContext *ctx = BattleAnimUtil_Alloc(system, sizeof(HardenContext));
 
-    v0->unk_04 = param0;
-    v0->unk_08 = BattleAnimSystem_GetPokemonSpriteManager(v0->unk_04);
-    v0->unk_0C = BattleAnimSystem_GetPokemonSprite(v0->unk_04, 0);
-    v0->unk_10 = BattleAnimSystem_GetPokemonSprite(v0->unk_04, 1);
+    ctx->battleAnimSys = system;
+    ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
+    ctx->attackerSprite1 = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->attackerSprite2 = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
 
     GX_SetVisibleWnd(GX_WNDMASK_OW);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
-    G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ, 0);
+    G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_ALL | GX_WND_PLANEMASK_OBJ, FALSE);
+    G2_SetWndOBJInsidePlane(BATTLE_BG_WNDMASK_WINDOW | GX_WND_PLANEMASK_OBJ, FALSE);
 
-    {
-        int v1;
-        int v2 = BattleAnimSystem_GetBattlerSpritePaletteIndex(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
-        int v3 = BattleAnimSystem_GetBattlerSpriteNarcID(v0->unk_04, BattleAnimSystem_GetAttacker(v0->unk_04));
+    int paletteIndex = BattleAnimSystem_GetBattlerSpritePaletteIndex(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    int narcID = BattleAnimSystem_GetBattlerSpriteNarcID(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-        v1 = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(v0->unk_0C->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-        PaletteData_LoadBufferFromFileStartWithTint(BattleAnimSystem_GetPaletteData(v0->unk_04), v3, v2, BattleAnimSystem_GetHeapID(param0), 2, 0x20, v1 * 16, 256, 256, 256);
-    }
+    int palOffset = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->attackerSprite1->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    PaletteData_LoadBufferFromFileStartWithTint(
+        BattleAnimSystem_GetPaletteData(ctx->battleAnimSys),
+        narcID,
+        paletteIndex,
+        BattleAnimSystem_GetHeapID(system),
+        PLTTBUF_MAIN_OBJ,
+        PALETTE_SIZE_BYTES,
+        PLTT_DEST(palOffset),
+        HARDEN_TINT_R,
+        HARDEN_TINT_G,
+        HARDEN_TINT_B);
 
-    ManagedSprite_SetDrawFlag(v0->unk_0C, 0);
-    ManagedSprite_SetDrawFlag(v0->unk_10, 0);
-    BattleAnimSystem_StartAnimTask(v0->unk_04, ov12_0222BFF4, v0);
+    ManagedSprite_SetDrawFlag(ctx->attackerSprite1, FALSE);
+    ManagedSprite_SetDrawFlag(ctx->attackerSprite2, FALSE);
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Harden, ctx);
 }
 
 static const u8 sMinimizeSpriteDelays[] = {
