@@ -524,7 +524,10 @@ typedef struct FadePokemonSpriteContext {
 #define FADE_POKEMON_SPRITE_VAR_END_FRAC    4
 #define FADE_POKEMON_SPRITE_VAR_COLOR       5
 
-typedef struct {
+// -------------------------------------------------------------------
+// Battler Partial Draw Test
+// -------------------------------------------------------------------
+typedef struct BattlerPartialDrawTestContext {
     BattleAnimScriptFuncCommon common;
     BattleAnimSpriteInfo spriteInfo;
     int xOffset;
@@ -538,7 +541,13 @@ typedef struct {
     int timer;
     int y;
     int drawHeight;
-} UnkStruct_ov12_02229278;
+} BattlerPartialDrawTestContext;
+
+#define BATTLER_PARTIAL_DRAW_TEST_VAR_TARGET      0
+#define BATTLER_PARTIAL_DRAW_TEST_VAR_MODE        1
+#define BATTLER_PARTIAL_DRAW_TEST_VAR_UNUSED      2
+#define BATTLER_PARTIAL_DRAW_TEST_VAR_STEP        3
+#define BATTLER_PARTIAL_DRAW_TEST_VAR_STEP_FRAMES 4
 
 // -------------------------------------------------------------------
 // Battler Partial Draw
@@ -2813,57 +2822,57 @@ void BattleAnimScriptFunc_FadePokemonSprite(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FadePokemonSprite, ctx);
 }
 
-static void ov12_02229278(SysTask *param0, void *param1)
+static void BattleAnimTask_BattlerPartialDrawTest(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02229278 *v0 = (UnkStruct_ov12_02229278 *)param1;
+    BattlerPartialDrawTestContext *ctx = param;
 
-    switch (v0->common.state) {
+    switch (ctx->common.state) {
     case 0: {
-        if (++v0->timer < v0->stepFrames) {
+        if (++ctx->timer < ctx->stepFrames) {
             return;
         }
 
-        v0->timer = 0;
+        ctx->timer = 0;
 
-        if (v0->mode == 0) {
-            if (v0->drawHeight < 0) {
-                v0->drawHeight = 0;
+        if (ctx->mode == 0) {
+            if (ctx->drawHeight < 0) {
+                ctx->drawHeight = 0;
             }
 
-            if (v0->drawHeight == 0) {
-                v0->common.state++;
+            if (ctx->drawHeight == 0) {
+                ctx->common.state++;
             }
         } else {
-            if (v0->drawHeight > 80) {
-                v0->drawHeight = 80;
+            if (ctx->drawHeight > MON_SPRITE_FRAME_HEIGHT) {
+                ctx->drawHeight = MON_SPRITE_FRAME_HEIGHT;
             }
 
-            if (v0->drawHeight == 80) {
-                v0->common.state++;
+            if (ctx->drawHeight == MON_SPRITE_FRAME_HEIGHT) {
+                ctx->common.state++;
             }
         }
 
-        PokemonSprite_SetAttribute(v0->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT, v0->drawHeight);
-        PokemonSprite_SetAttribute(v0->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, v0->y);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT, ctx->drawHeight);
+        PokemonSprite_SetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER, ctx->y);
 
-        v0->y -= v0->step;
-        v0->drawHeight += v0->step;
+        ctx->y -= ctx->step;
+        ctx->drawHeight += ctx->step;
     } break;
     default:
-        ResetMonScale(v0->spriteInfo.monSprite);
-        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSys, param0);
-        Heap_Free(v0);
+        ResetMonScale(ctx->spriteInfo.monSprite);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02229304(BattleAnimSystem *system)
+void BattleAnimScriptFunc_BattlerPartialDrawTest(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02229278 *ctx = BattleAnimUtil_Alloc(system, sizeof(UnkStruct_ov12_02229278));
-
+    BattlerPartialDrawTestContext *ctx = BattleAnimUtil_Alloc(system, sizeof(BattlerPartialDrawTestContext));
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    int target = BattleAnimSystem_GetScriptVar(system, 0);
+    int target = BattleAnimSystem_GetScriptVar(system, BATTLER_PARTIAL_DRAW_TEST_VAR_TARGET);
+
     int count;
     BattleAnimUtil_GetBattlerSprites(system, target, &ctx->spriteInfo, &count);
 
@@ -2886,31 +2895,30 @@ void ov12_02229304(BattleAnimSystem *system)
         break;
     }
 
-    ctx->mode = BattleAnimSystem_GetScriptVar(system, 1);
-
+    ctx->mode = BattleAnimSystem_GetScriptVar(system, BATTLER_PARTIAL_DRAW_TEST_VAR_MODE);
     if (ctx->mode == 0) {
         ctx->y = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER);
         ctx->drawHeight = MON_SPRITE_FRAME_HEIGHT - PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT);
-        ctx->unused = BattleAnimSystem_GetScriptVar(system, 2);
-        ctx->step = BattleAnimSystem_GetScriptVar(system, 3);
+        ctx->unused = BattleAnimSystem_GetScriptVar(system, BATTLER_PARTIAL_DRAW_TEST_VAR_UNUSED);
+        ctx->step = BattleAnimSystem_GetScriptVar(system, BATTLER_PARTIAL_DRAW_TEST_VAR_STEP);
         ctx->step *= -1;
     } else {
         ctx->y = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER);
         ctx->drawHeight = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_DRAW_HEIGHT);
-        ctx->unused = BattleAnimSystem_GetScriptVar(system, 2);
-        ctx->step = BattleAnimSystem_GetScriptVar(system, 3);
+        ctx->unused = BattleAnimSystem_GetScriptVar(system, BATTLER_PARTIAL_DRAW_TEST_VAR_UNUSED);
+        ctx->step = BattleAnimSystem_GetScriptVar(system, BATTLER_PARTIAL_DRAW_TEST_VAR_STEP);
     }
 
     ctx->xOffset = 0;
     ctx->yOffset = 0;
     ctx->width = MON_SPRITE_FRAME_WIDTH;
     ctx->height = MON_SPRITE_FRAME_HEIGHT - BattleAnimSystem_GetBattlerSpriteOffset(system, battler);
-    ctx->stepFrames = BattleAnimSystem_GetScriptVar(system, 4);
+    ctx->stepFrames = BattleAnimSystem_GetScriptVar(system, BATTLER_PARTIAL_DRAW_TEST_VAR_STEP_FRAMES);
     ctx->timer = 0;
 
     PokemonSprite_SetPartialDraw(ctx->spriteInfo.monSprite, ctx->xOffset, ctx->yOffset, ctx->width, ctx->height);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, ov12_02229278, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_BattlerPartialDrawTest, ctx);
 }
 
 static int GetBattlerFromBattlerFlags(BattleAnimSystem *system, int battlerFlags)
