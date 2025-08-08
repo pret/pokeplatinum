@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_022237EC.h"
+#include "battle_anim/battle_particle_util.h"
 
 #include <nitro.h>
 #include <string.h>

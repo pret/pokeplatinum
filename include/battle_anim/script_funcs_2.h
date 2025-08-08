@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_0222F700_H
-#define POKEPLATINUM_OV12_0222F700_H
+#ifndef POKEPLATINUM_SCRIPT_FUNCS_2_H
+#define POKEPLATINUM_SCRIPT_FUNCS_2_H
 
 #include "battle_anim/battle_anim_system.h"
 
@@ -39,4 +39,4 @@ void BattleAnimScriptFunc_Megahorn(BattleAnimSystem *system);
 void BattleAnimScriptFunc_MegahornAttacker(BattleAnimSystem *system);
 void BattleAnimScriptFunc_MegahornDefender(BattleAnimSystem *system);
 
-#endif // POKEPLATINUM_OV12_0222F700_H
+#endif // POKEPLATINUM_SCRIPT_FUNCS_2_H

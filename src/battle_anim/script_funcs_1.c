@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_0222E91C.h"
+#include "battle_anim/script_funcs_1.h"
 
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>
@@ -9,7 +9,7 @@
 
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/ov12_02225864.h"
-#include "battle_anim/ov12_0222D6B0.h"
+#include "battle_anim/script_funcs_4.h"
 #include "battle_anim/ov12_02235254.h"
 #include "battle_anim/ov12_022380BC.h"
 #include "battle_anim/struct_ov12_022380DC.h"

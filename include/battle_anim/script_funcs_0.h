@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_0222AC70_H
-#define POKEPLATINUM_OV12_0222AC70_H
+#ifndef POKEPLATINUM_SCRIPT_FUNCS_0_H
+#define POKEPLATINUM_SCRIPT_FUNCS_0_H
 
 #include "battle_anim/battle_anim_system.h"
 
@@ -25,4 +25,4 @@ void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 void BattleAnimScriptFunc_Surf(BattleAnimSystem *system);
 void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 
-#endif // POKEPLATINUM_OV12_0222AC70_H
+#endif // POKEPLATINUM_SCRIPT_FUNCS_0_H

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_02226B84_H
-#define POKEPLATINUM_OV12_02226B84_H
+#ifndef POKEPLATINUM_SCRIPT_FUNCS_3_H
+#define POKEPLATINUM_SCRIPT_FUNCS_3_H
 
 #include "battle_anim/battle_anim_system.h"
 
@@ -46,4 +46,4 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system);
 void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *system);
 void BattleAnimScriptFunc_ScrollSwitchedBg(BattleAnimSystem *system);
 
-#endif // POKEPLATINUM_OV12_02226B84_H
+#endif // POKEPLATINUM_SCRIPT_FUNCS_3_H
