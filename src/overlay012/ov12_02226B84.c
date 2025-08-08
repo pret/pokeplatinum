@@ -469,7 +469,7 @@ typedef struct RevolveBattlerContext {
 #define REVOLVE_BATTLER_VAR_FRAMES_PER_REV 2
 
 // -------------------------------------------------------------------
-// Move Battler Off-Screen
+// Move Battler On/Off-Screen
 // -------------------------------------------------------------------
 typedef struct MoveBattlerOffScreenContext {
     BattleAnimScriptFuncCommon common;
@@ -479,8 +479,11 @@ typedef struct MoveBattlerOffScreenContext {
     Point2D destPos;
 } MoveBattlerOffScreenContext;
 
-#define MOVE_BATTLER_OFF_SCREEN_VAR_TARGET 0
-#define MOVE_BATTLER_OFF_SCREEN_VAR_FRAMES 1
+#define MOVE_BATTLER_OFF_SCREEN_VAR_TARGET       0
+#define MOVE_BATTLER_OFF_SCREEN_VAR_FRAMES       1
+#define MOVE_BATTLER_ON_OR_OFF_SCREEN_VAR_MODE   0
+#define MOVE_BATTLER_ON_OR_OFF_SCREEN_VAR_TARGET 1
+#define MOVE_BATTLER_ON_OR_OFF_SCREEN_VAR_FRAMES 2
 
 // -------------------------------------------------------------------
 // Fade Pokemon Sprite
@@ -2667,62 +2670,55 @@ void BattleAnimScriptFunc_MoveBattlerOffScreen(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveBattlerOffScreen, ctx);
 }
 
-void ov12_02228FB4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_MoveBattlerOnOrOffScreen(BattleAnimSystem *system)
 {
-    Point2D v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    MoveBattlerOffScreenContext *v6 = BattleAnimUtil_Alloc(param0, sizeof(MoveBattlerOffScreenContext));
+    int mode, battler, count;
+    MoveBattlerOffScreenContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MoveBattlerOffScreenContext));
 
-    BattleAnimSystem_GetCommonData(param0, &v6->common);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v1 = BattleAnimSystem_GetScriptVar(param0, 0);
-    v5 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v4 = BattleAnimSystem_GetScriptVar(param0, 2);
+    mode = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_ON_OR_OFF_SCREEN_VAR_MODE);
+    int target = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_ON_OR_OFF_SCREEN_VAR_TARGET);
+    int frames = BattleAnimSystem_GetScriptVar(system, MOVE_BATTLER_ON_OR_OFF_SCREEN_VAR_FRAMES);
 
-    switch (v5) {
-    case 0x2:
-        v2 = BattleAnimSystem_GetAttacker(param0);
+    switch (target) {
+    case BATTLE_ANIM_ATTACKER:
+        battler = BattleAnimSystem_GetAttacker(system);
         break;
-    case 0x4:
-        v2 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetAttacker(param0));
+    case BATTLE_ANIM_ATTACKER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetAttacker(system));
         break;
-    case 0x8:
-        v2 = BattleAnimSystem_GetDefender(param0);
+    case BATTLE_ANIM_DEFENDER:
+        battler = BattleAnimSystem_GetDefender(system);
         break;
-    case 0x10:
-        v2 = BattleAnimUtil_GetAlliedBattler(param0, BattleAnimSystem_GetDefender(param0));
+    case BATTLE_ANIM_DEFENDER_PARTNER:
+        battler = BattleAnimUtil_GetAlliedBattler(system, BattleAnimSystem_GetDefender(system));
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    BattleAnimUtil_GetBattlerDefaultPos(param0, v2, &v6->unused);
-    BattleAnimUtil_GetBattlerSprites(param0, v5, &(v6->spriteInfo), &v3);
+    BattleAnimUtil_GetBattlerDefaultPos(system, battler, &ctx->unused);
+    BattleAnimUtil_GetBattlerSprites(system, target, &ctx->spriteInfo, &count);
 
-    v6->destPos.x = 0;
-    v6->destPos.y = 0;
+    ctx->destPos.x = 0;
+    ctx->destPos.y = 0;
 
-    if (BattleAnimUtil_GetBattlerSide(v6->common.battleAnimSys, v2) == 0x3) {
-        v6->destPos.x = (0 - 80);
+    if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, battler) == BTLSCR_PLAYER) {
+        ctx->destPos.x = -MON_SPRITE_FRAME_WIDTH;
     } else {
-        v6->destPos.x = (256 + 80);
+        ctx->destPos.x = HW_LCD_WIDTH + MON_SPRITE_FRAME_WIDTH;
     }
 
-    if (v1 == 0) {
-        PosLerpContext_Init(&v6->pos, v6->spriteInfo.pos.x, v6->destPos.x, v6->spriteInfo.pos.y, v6->spriteInfo.pos.y, v4);
+    if (mode == MOVE_BATTLER_OFF_SCREEN) {
+        PosLerpContext_Init(&ctx->pos, ctx->spriteInfo.pos.x, ctx->destPos.x, ctx->spriteInfo.pos.y, ctx->spriteInfo.pos.y, frames);
     } else {
-        s16 v7;
-
-        v7 = BattleAnimUtil_GetBattlerPos(param0, v2, 0);
-        PosLerpContext_Init(&v6->pos, v6->destPos.x, v7, v6->spriteInfo.pos.y, v6->spriteInfo.pos.y, v4);
+        s16 battlerX = BattleAnimUtil_GetBattlerPos(system, battler, BATTLE_ANIM_POSITION_MON_X);
+        PosLerpContext_Init(&ctx->pos, ctx->destPos.x, battlerX, ctx->spriteInfo.pos.y, ctx->spriteInfo.pos.y, frames);
     }
 
-    BattleAnimSystem_StartAnimTask(v6->common.battleAnimSys, BattleAnimTask_MoveBattlerOffScreen, v6);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_MoveBattlerOffScreen, ctx);
 }
 
 #define MOVE_BATTLER_TO_DEFAULT_POS_VAR_TARGET 0

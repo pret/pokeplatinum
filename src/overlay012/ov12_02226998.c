@@ -94,7 +94,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_SetBgGrayscale,
     BattleAnimScriptFunc_SetPokemonSpritePriority,
     BattleAnimScriptFunc_ScrollSwitchedBg,
-    ov12_02228FB4,
+    BattleAnimScriptFunc_MoveBattlerOnOrOffScreen,
     BattleAnimScriptFunc_RenderPokemonSprites,
     ov12_0222F5EC,
     ov12_022351A4,

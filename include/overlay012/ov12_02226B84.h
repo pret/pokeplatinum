@@ -26,7 +26,7 @@ void ov12_02228B40(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattler(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RevolveBattler(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattlerOffScreen(BattleAnimSystem *param0);
-void ov12_02228FB4(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_MoveBattlerOnOrOffScreen(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattlerToDefaultPos(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_FadePokemonSprite(BattleAnimSystem *param0);
 void ov12_02229304(BattleAnimSystem *param0);
