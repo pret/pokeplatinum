@@ -162,7 +162,7 @@ static void ov5_021E0FC0(SysTask *param0);
 static void ov5_021E0FF0(SysTask *param0, void *param1);
 static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRideTask *monRideTask);
 static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask);
-static BOOL CheckCutInFinished(MonRideTask *monRideTask);
+static BOOL CheckMonRideCutInFinished(MonRideTask *monRideTask);
 static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1);
 static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1);
 static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1);
@@ -676,7 +676,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
         }
         break;
     case 1:
-        if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
+        if (CheckMonRideCutInFinished(&taskEnv->monRideTask) == TRUE) {
             taskEnv->state++;
         }
         break;
@@ -1072,7 +1072,7 @@ static int SubTask_RockClimb_PlayCutIn(RockClimbTaskEnv *taskEnv)
 
 static int SubTask_RockClimb_WaitCutIn(RockClimbTaskEnv *taskEnv)
 {
-    if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
+    if (CheckMonRideCutInFinished(&taskEnv->monRideTask) == TRUE) {
         taskEnv->state++;
     }
 
@@ -1236,7 +1236,7 @@ static int SubTask_Waterfall_PlayAscentCutIn(WaterfallTaskEnv *taskEnv)
 
 static int SubTask_Waterfall_WaitForAscentCutIn(WaterfallTaskEnv *taskEnv)
 {
-    if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
+    if (CheckMonRideCutInFinished(&taskEnv->monRideTask) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_FW463);
         taskEnv->state++;
     }
@@ -1353,7 +1353,7 @@ static int SubTask_Waterfall_PlayDescentCutIn(WaterfallTaskEnv *taskEnv)
 
 static int SubTask_Waterfall_WaitForDescentCutIn(WaterfallTaskEnv *taskEnv)
 {
-    if (CheckCutInFinished(&taskEnv->monRideTask) == TRUE) {
+    if (CheckMonRideCutInFinished(&taskEnv->monRideTask) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_FW463);
         taskEnv->state++;
     }
@@ -1719,13 +1719,13 @@ static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRid
 
 static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask)
 {
-    monRideTask->HMCutInTask = ov6_02243F88(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
+    monRideTask->HMCutInTask = SysTask_CutIn_New(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
 }
 
-static BOOL CheckCutInFinished(MonRideTask *monRideTask)
+static BOOL CheckMonRideCutInFinished(MonRideTask *monRideTask)
 {
-    if (ov6_02243FBC(monRideTask->HMCutInTask) == TRUE) {
-        ov6_02243FC8(monRideTask->HMCutInTask);
+    if (CheckCutInFinished(monRideTask->HMCutInTask) == TRUE) {
+        SysTask_CutIn_Done(monRideTask->HMCutInTask);
         return TRUE;
     }
 

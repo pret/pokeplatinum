@@ -215,8 +215,8 @@ BOOL sub_02052B2C(FieldTask *task)
             FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
             u16 warpId = FieldOverworldState_GetWarpId(fieldState);
 
-            sub_0203A824(warpId, &location);
-            sub_0203A7F0(warpId, FieldOverworldState_GetExitLocation(fieldState));
+            Location_InitWhiteOut(warpId, &location);
+            Location_InitFly(warpId, FieldOverworldState_GetExitLocation(fieldState));
             FieldTask_ChangeMapByLocation(task, &location);
             FieldSystem_ClearPartnerTrainer(fieldSystem);
         }
