@@ -71,7 +71,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_MoveBattlerX,
     BattleAnimScriptFunc_MoveBattlerX2, // Functionally equivalent to MoveBattlerX
     BattleAnimScriptFunc_ShakeAndScaleAttacker,
-    ov12_02228A0C,
+    BattleAnimScriptFunc_ShakeAndScaleAttacker2,
     BattleAnimScriptFunc_Camouflage,
     ov12_02228B40,
     BattleAnimScriptFunc_MoveBattler,

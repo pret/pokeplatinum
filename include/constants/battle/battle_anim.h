@@ -152,6 +152,10 @@
 #define SCALE_BATTLER_SPRITE_HOLD(frames) ((frames) >> 16)
 #define SCALE_BATTLER_SPRITE_CYCLES(frames) ((frames) & 0xFFFF)
 
+#define SHAKE_AND_SCALE_ATTACKER_SCALE_PARAMS(start, end) (((start & 0xFF) << 16) | (end & 0xFF))
+#define SHAKE_AND_SCALE_ATTACKER_START(scale) ((scale) >> 16)
+#define SHAKE_AND_SCALE_ATTACKER_END(scale) ((scale) & 0xFF)
+
 #define EMITTER_ANIMATION_MODE_ATK_TO_DEF 0 //< Animation from attacker to defender
 #define EMITTER_ANIMATION_MODE_DEF_TO_ATK 1 //< Animation from defender to attacker
 #define EMITTER_ANIMATION_DEFAULT_FRAMES 0xFF

@@ -21,7 +21,7 @@ void BattleAnimScriptFunc_BlinkAttacker(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattlerX(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattlerX2(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_ShakeAndScaleAttacker(BattleAnimSystem *param0);
-void ov12_02228A0C(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_ShakeAndScaleAttacker2(BattleAnimSystem *param0);
 void ov12_02228B40(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_MoveBattler(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RevolveBattler(BattleAnimSystem *param0);

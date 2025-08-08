@@ -158,8 +158,8 @@ typedef struct UnkStruct_ov12_022267D4_t {
     PaletteData *paletteData;
 } PaletteFadeContext;
 
-void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
-void ov12_02225898(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
+void BattleAnimUtil_GetBattlerTypeDefaultPos2(int param0, int param1, s16 *param2, s16 *param3);
+void BattleAnimUtil_GetBattlerDefaultPos2(BattleAnimSystem *param0, int param1, s16 *param2, s16 *param3);
 s16 BattleAnimUtil_GetBattlerPos(BattleAnimSystem *param0, int param1, enum BattleAnimPositionType param2);
 u8 BattleAnimUtil_GetSpritePalette(ManagedSprite *param0);
 int BattleAnimUtil_GetTransformDirectionX(BattleAnimSystem *param0, int param1);
