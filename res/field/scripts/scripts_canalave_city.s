@@ -541,7 +541,7 @@ _0796:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    ScrCmd_23D 3, 3, 0x120, 100, 0x1F6
+    PlayBoatCutscene 3, 3, 0x120, 100, 0x1F6
     ReleaseAll
     End
 
@@ -550,7 +550,7 @@ _07D1:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    ScrCmd_23D 3, 2, 0x104, 39, 0x115
+    PlayBoatCutscene 3, 2, 0x104, 39, 0x115
     ReleaseAll
     End
 
@@ -559,7 +559,7 @@ _080C:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    ScrCmd_23D 3, 3, 0x140, 152, 0x115
+    PlayBoatCutscene 3, 3, 0x140, 152, 0x115
     ReleaseAll
     End
 

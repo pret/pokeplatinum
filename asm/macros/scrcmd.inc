@@ -3215,7 +3215,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_23D arg0, arg1, arg2, arg3, arg4
+    .macro PlayBoatCutscene arg0, arg1, arg2, arg3, arg4
     .short 573
     .byte \arg0
     .byte \arg1

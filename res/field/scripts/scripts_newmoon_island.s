@@ -37,7 +37,7 @@ _005D:
     CallIfEq VAR_0x8004, 1, _00C2
     CallIfEq VAR_0x8004, 2, _00DC
     CallIfEq VAR_0x8004, 0, _00F6
-    ScrCmd_23D 0, 2, 33, 44, 0x2EE
+    PlayBoatCutscene 0, 2, 33, 44, 0x2EE
     ReleaseAll
     End
 

@@ -622,7 +622,7 @@ static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
 static BOOL ScrCmd_23C(ScriptContext *ctx);
-static BOOL ScrCmd_23D(ScriptContext *ctx);
+static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx);
 static BOOL ScrCmd_243(ScriptContext *ctx);
 static BOOL ScrCmd_244(ScriptContext *ctx);
 static BOOL ScrCmd_245(ScriptContext *ctx);
@@ -1343,7 +1343,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetSpeciesFootprintType,
     ScrCmd_23B,
     ScrCmd_23C,
-    ScrCmd_23D,
+    ScrCmd_PlayBoatCutscene,
     ScrCmd_MysteryGiftGive,
     ScrCmd_Dummy23F,
     ScrCmd_Dummy240,
@@ -1959,7 +1959,7 @@ static BOOL ScrCmd_CheckFlagFromVar(ScriptContext *ctx)
     u16 *flagID = ScriptContext_GetVarPointer(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = FieldSystem_CheckFlag(fieldSystem, (*flagID));
+    *destVar = FieldSystem_CheckFlag(fieldSystem, *flagID);
     return FALSE;
 }
 
@@ -4569,10 +4569,10 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     if (rideBike == TRUE) {
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_BICYCLE);
         Sound_TryFadeOutToBGM(ctx->fieldSystem, SEQ_BICYCLE, 1);
-        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, 1 << 1);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
-        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, 1 << 0);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_NONE);
         Sound_TryFadeOutToBGM(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
@@ -6403,7 +6403,7 @@ static BOOL ScrCmd_23C(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_23D(ScriptContext *ctx)
+static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx)
 {
     u8 v0 = ScriptContext_ReadByte(ctx);
     u8 v1 = ScriptContext_ReadByte(ctx);
