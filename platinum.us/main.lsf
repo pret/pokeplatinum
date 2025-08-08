@@ -630,32 +630,32 @@ Overlay overlay11
 	Object main.nef.p/src_overlay011_particle_helper.c.o
 }
 
-Overlay overlay12
+Overlay battle_anim
 {
 	After overlay11
-	Object main.nef.p/src_overlay012_battle_anim_system.c.o
-	Object main.nef.p/src_overlay012_ov12_022237EC.c.o
-	Object main.nef.p/src_overlay012_ov12_0222389C.c.o
-	Object main.nef.p/src_overlay012_ov12_0222421C.c.o
-	Object main.nef.p/src_overlay012_ov12_02225104.c.o
-	Object main.nef.p/src_overlay012_ov12_02225640.c.o
-	Object main.nef.p/src_overlay012_ov12_02225864.c.o
-	Object main.nef.p/src_overlay012_ov12_02226998.c.o
-	Object main.nef.p/src_overlay012_ov12_022269C0.c.o
-	Object main.nef.p/src_overlay012_ov12_02226B84.c.o
-	Object main.nef.p/src_overlay012_ov12_0222AC70.c.o
-	Object main.nef.p/src_overlay012_ov12_0222D6B0.c.o
-	Object main.nef.p/src_overlay012_ov12_0222E784.c.o
-	Object main.nef.p/src_overlay012_ov12_0222E91C.c.o
-	Object main.nef.p/src_overlay012_ov12_0222F700.c.o
-	Object main.nef.p/src_overlay012_ov12_022346A4.c.o
-	Object main.nef.p/src_overlay012_ov12_02234E44.c.o
-	Object main.nef.p/src_overlay012_ov12_02235254.c.o
-	Object main.nef.p/src_overlay012_ov12_02235E94.c.o
-	Object main.nef.p/src_overlay012_ov12_02237E54.c.o
-	Object main.nef.p/src_overlay012_ov12_02237EFC.c.o
-	Object main.nef.p/src_overlay012_ov12_022380BC.c.o
-	Object main.nef.p/src_overlay012_is_form_symmetrical.c.o
+	Object main.nef.p/src_battle_anim_battle_anim_system.c.o
+	Object main.nef.p/src_battle_anim_ov12_022237EC.c.o
+	Object main.nef.p/src_battle_anim_ov12_0222389C.c.o
+	Object main.nef.p/src_battle_anim_ov12_0222421C.c.o
+	Object main.nef.p/src_battle_anim_ov12_02225104.c.o
+	Object main.nef.p/src_battle_anim_ov12_02225640.c.o
+	Object main.nef.p/src_battle_anim_ov12_02225864.c.o
+	Object main.nef.p/src_battle_anim_ov12_02226998.c.o
+	Object main.nef.p/src_battle_anim_ov12_022269C0.c.o
+	Object main.nef.p/src_battle_anim_ov12_02226B84.c.o
+	Object main.nef.p/src_battle_anim_ov12_0222AC70.c.o
+	Object main.nef.p/src_battle_anim_ov12_0222D6B0.c.o
+	Object main.nef.p/src_battle_anim_ov12_0222E784.c.o
+	Object main.nef.p/src_battle_anim_ov12_0222E91C.c.o
+	Object main.nef.p/src_battle_anim_ov12_0222F700.c.o
+	Object main.nef.p/src_battle_anim_ov12_022346A4.c.o
+	Object main.nef.p/src_battle_anim_ov12_02234E44.c.o
+	Object main.nef.p/src_battle_anim_ov12_02235254.c.o
+	Object main.nef.p/src_battle_anim_ov12_02235E94.c.o
+	Object main.nef.p/src_battle_anim_ov12_02237E54.c.o
+	Object main.nef.p/src_battle_anim_ov12_02237EFC.c.o
+	Object main.nef.p/src_battle_anim_ov12_022380BC.c.o
+	Object main.nef.p/src_battle_anim_is_form_symmetrical.c.o
 }
 
 Overlay overlay13
@@ -688,7 +688,7 @@ Overlay overlay15
 
 Overlay battle
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_battle_ov16_0223B140.c.o
 	Object main.nef.p/src_battle_ov16_0223DF00.c.o
 	Object main.nef.p/src_battle_battle_script.c.o
@@ -709,7 +709,7 @@ Overlay battle
 
 Overlay overlay17
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_overlay017_ov17_0223B140.c.o
 	Object main.nef.p/src_overlay017_ov17_0223CB1C.c.o
 	Object main.nef.p/src_overlay017_ov17_0223DAD0.c.o
@@ -1246,7 +1246,7 @@ Overlay overlay70
 
 Overlay trainer_card_screen
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_trainer_card_screen_trainer_card_screen.c.o
 	Object main.nef.p/src_trainer_card_screen_trainer_card_display_text.c.o
 	Object main.nef.p/src_trainer_card_screen_trainer_card_sprites.c.o
@@ -1280,7 +1280,7 @@ Overlay overlay75
 
 Overlay overlay76
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_overlay076_ov76_0223B140.c.o
 	Object main.nef.p/src_overlay076_ov76_0223B870.c.o
 	Object main.nef.p/src_overlay076_ov76_0223D338.c.o
@@ -1330,7 +1330,7 @@ Overlay journal_display
 
 Overlay overlay82
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_overlay082_ov82_0223B140.c.o
 	Object main.nef.p/src_overlay082_ov82_0223B2E0.c.o
 }
@@ -1363,7 +1363,7 @@ Overlay overlay85
 
 Overlay overlay86
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_overlay086_ov86_0223B140.c.o
 }
 
@@ -1376,7 +1376,7 @@ Overlay overlay87
 
 Overlay overlay88
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_overlay088_ov88_0223B140.c.o
 	Object main.nef.p/src_overlay088_ov88_0223E9C4.c.o
 }
@@ -1414,7 +1414,7 @@ Overlay boat_cutscene
 
 Overlay overlay94
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_overlay094_ov94_0223B140.c.o
 	Object main.nef.p/src_overlay094_ov94_0223BCB0.c.o
 	Object main.nef.p/src_overlay094_ov94_0223C610.c.o
@@ -1446,7 +1446,7 @@ Overlay overlay95
 
 Overlay overlay96
 {
-	After overlay12
+	After battle_anim
 	Object main.nef.p/src_overlay096_ov96_0223B140.c.o
 	Object main.nef.p/src_overlay096_ov96_0223B6A0.c.o
 	Object main.nef.p/src_overlay096_ov96_0223BCE0.c.o

@@ -6,7 +6,7 @@
 
 #include "struct_defs/seal_case.h"
 
-#include "overlay012/ov12_02237E54.h"
+#include "battle_anim/ov12_02237E54.h"
 #include "overlay076/struct_ov76_0223B52C.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 
@@ -19,12 +19,12 @@
 #include "unk_02097B18.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 
 static void NitroStaticInit(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
 }
 
 static void ov76_0223B15C(TouchScreenRect *rect, u8 param1, u8 param2)
