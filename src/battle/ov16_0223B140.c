@@ -30,7 +30,7 @@
 #include "battle/struct_ov16_022674C4.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
-#include "overlay011/ov11_0221F840.h"
+#include "overlay011/particle_helper.h"
 #include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
@@ -1540,7 +1540,7 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
 
     if ((v0->unk_23F9 == 0) || (v0->unk_23F9 == 3)) {
         if (v0->unk_23F9 == 0) {
-            ov11_0221F8F0();
+            ParticleHelper_DrawParticleSystems();
         }
 
         PokemonSpriteManager_DrawSprites(v0->unk_88);

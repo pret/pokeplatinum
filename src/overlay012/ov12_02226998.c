@@ -148,9 +148,9 @@ void UnusedSpriteFunc()
     UNUSED(sUnusedSpriteFuncs[0]);
 }
 
-BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
+BattleAnimScriptFunc BattleAnimScript_GetFunc(u32 id)
 {
-    if (id >= (NELEMS(sBattleAnimScriptFuncs))) {
+    if (id >= NELEMS(sBattleAnimScriptFuncs)) {
         return NULL;
     }
 
@@ -159,7 +159,7 @@ BattleAnimScriptFunc BattleAnimScript_GetFunc(enum BattleAnimScriptFuncID id)
 
 BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id)
 {
-    if (id >= (NELEMS(sBattleAnimScriptSpriteFuncs))) {
+    if (id >= NELEMS(sBattleAnimScriptSpriteFuncs)) {
         return NULL;
     }
 
