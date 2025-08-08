@@ -145,18 +145,27 @@ enum SnatchState {
 #define SNATCH_MOVE_FRAMES   15
 #define SNATCH_VAR_TARGET    0
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    int unk_18;
-    PokemonSprite *unk_1C;
-    BattleAnimScriptFuncCommon unk_20;
+typedef struct SketchContext {
+    int viewHeight;
+    int bottom;
+    int left;
+    int windowY2;
+    int viewWidth;
+    int origin;
+    int defenderAlpha;
+    PokemonSprite *defenderSprite;
+    BattleAnimScriptFuncCommon common;
     BattleAnimSpriteInfo unk_3C;
-} UnkStruct_ov12_0222F464;
+} SketchContext;
+
+enum SketchState {
+    SKETCH_STATE_SET_PARTIAL_DRAW = 0,
+    SKETCH_STATE_INCREASE_Y,
+    SKETCH_STATE_INCREASE_Y_CHECK,
+    SKETCH_STATE_DISABLE_PARTIAL_DRAW,
+};
+
+#define SKETCH_STEP_SIZE_Y 2
 
 static void BattleAnimTask_ShadowPunch(SysTask *task, void *param)
 {
@@ -723,107 +732,109 @@ void BattleAnimScriptFunc_Snatch(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Snatch, ctx);
 }
 
-static void ov12_0222F44C(PokemonSprite *param0, int param1, int param2, int param3, int param4)
+static void SetMonPartialDraw(PokemonSprite *sprite, int xOffset, int width, int yOffsetFromBottom, int height)
 {
-    PokemonSprite_SetPartialDraw(param0, param1, 80 - param3, param2, param4);
+    PokemonSprite_SetPartialDraw(sprite, xOffset, MON_SPRITE_FRAME_HEIGHT - yOffsetFromBottom, width, height);
 }
 
-static void ov12_0222F464(SysTask *param0, void *param1)
+static void BattleAnimTask_Sketch(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222F464 *v0 = param1;
+    SketchContext *ctx = param;
 
-    switch (v0->unk_20.state) {
-    case 0:
-        v0->unk_10 += 79;
-
-        if (v0->unk_10 >= 80) {
-            v0->unk_20.state++;
-            v0->unk_14 ^= 1;
-            v0->unk_10 = 0;
+    switch (ctx->common.state) {
+    case SKETCH_STATE_SET_PARTIAL_DRAW:
+        ctx->viewWidth += MON_SPRITE_FRAME_WIDTH - 1;
+        if (ctx->viewWidth >= MON_SPRITE_FRAME_WIDTH) {
+            ctx->common.state++;
+            ctx->origin ^= 1;
+            ctx->viewWidth = 0;
         } else {
-            if (v0->unk_14 == 0) {
-                ov12_0222F44C(v0->unk_1C, 0, v0->unk_10, (v0->unk_00 + 2) * 2, 2);
+            // From right or left of the sprite
+            if (ctx->origin == 0) {
+                SetMonPartialDraw(
+                    ctx->defenderSprite,
+                    0,
+                    ctx->viewWidth,
+                    (ctx->viewHeight + SKETCH_STEP_SIZE_Y) * SKETCH_STEP_SIZE_Y,
+                    SKETCH_STEP_SIZE_Y);
             } else {
-                ov12_0222F44C(v0->unk_1C, 80 - v0->unk_10, v0->unk_10, (v0->unk_00 + 2) * 2, 2);
+                SetMonPartialDraw(
+                    ctx->defenderSprite,
+                    MON_SPRITE_FRAME_WIDTH - ctx->viewWidth,
+                    ctx->viewWidth,
+                    (ctx->viewHeight + SKETCH_STEP_SIZE_Y) * SKETCH_STEP_SIZE_Y,
+                    SKETCH_STEP_SIZE_Y);
             }
         }
         break;
-    case 1:
-        v0->unk_04 -= (2 / 2);
-        v0->unk_0C += (2 / 2);
-        G2_SetWnd0Position(v0->unk_08, v0->unk_04, v0->unk_08 + 80, v0->unk_0C);
-        v0->unk_20.state++;
+    case SKETCH_STATE_INCREASE_Y:
+        ctx->bottom -= SKETCH_STEP_SIZE_Y / 2;
+        ctx->windowY2 += SKETCH_STEP_SIZE_Y / 2;
+        G2_SetWnd0Position(ctx->left, ctx->bottom, ctx->left + MON_SPRITE_FRAME_WIDTH, ctx->windowY2);
+        ctx->common.state++;
         break;
-    case 2:
-        v0->unk_04 -= (2 / 2);
-        v0->unk_0C += (2 / 2);
-        G2_SetWnd0Position(v0->unk_08, v0->unk_04, v0->unk_08 + 80, v0->unk_0C);
-        v0->unk_00++;
+    case SKETCH_STATE_INCREASE_Y_CHECK:
+        ctx->bottom -= SKETCH_STEP_SIZE_Y / 2;
+        ctx->windowY2 += SKETCH_STEP_SIZE_Y / 2;
+        G2_SetWnd0Position(ctx->left, ctx->bottom, ctx->left + MON_SPRITE_FRAME_WIDTH, ctx->windowY2);
+        ctx->viewHeight++;
 
-        if (v0->unk_00 > ((80 / 2) - 2)) {
-            v0->unk_20.state++;
+        if (ctx->viewHeight > ((MON_SPRITE_FRAME_HEIGHT / SKETCH_STEP_SIZE_Y) - SKETCH_STEP_SIZE_Y)) {
+            ctx->common.state++;
         } else {
-            v0->unk_20.state = 0;
+            ctx->common.state = SKETCH_STATE_SET_PARTIAL_DRAW;
         }
         break;
-    case 3:
-        PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_PARTIAL_DRAW, 0);
-        v0->unk_20.state++;
+    case SKETCH_STATE_DISABLE_PARTIAL_DRAW:
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_PARTIAL_DRAW, FALSE);
+        ctx->common.state++;
         break;
     default:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, 0);
-        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, 0);
+        G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, FALSE);
+        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, FALSE);
         G2_SetWnd0Position(0, 0, 0, 0);
-        BattleAnimSystem_EndAnimTask(v0->unk_20.battleAnimSys, param0);
-        PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_ALPHA, v0->unk_18);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_ALPHA, ctx->defenderAlpha);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_0222F5EC(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Sketch(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222F464 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222F464));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_20);
+    SketchContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SketchContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_1C = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetDefender(param0));
-    v0->unk_00 = 0;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimSystem_GetDefender(system));
+    ctx->viewHeight = 0;
 
-    {
-        int v1;
-
-        v1 = BattleAnimUtil_GetBattlerType(param0, BattleAnimSystem_GetDefender(param0));
-
-        switch (v1) {
-        case 3:
-        case 4:
-            Bg_SetPriority(BG_LAYER_MAIN_2, BattleAnimSystem_GetPokemonSpritePriority(param0) - 1);
-            break;
-        }
+    int defenderType = BattleAnimUtil_GetBattlerType(system, BattleAnimSystem_GetDefender(system));
+    switch (defenderType) {
+    case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+    case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+        Bg_SetPriority(BATTLE_BG_BASE, BattleAnimSystem_GetPokemonSpritePriority(system) - 1);
+        break;
     }
 
-    {
-        s16 v2, v3;
+    s16 defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    s16 defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    defenderY -= PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_SHADOW_HEIGHT);
 
-        v2 = PokemonSprite_GetAttribute(v0->unk_1C, MON_SPRITE_X_CENTER);
-        v3 = PokemonSprite_GetAttribute(v0->unk_1C, MON_SPRITE_Y_CENTER);
-        v3 -= PokemonSprite_GetAttribute(v0->unk_1C, MON_SPRITE_SHADOW_HEIGHT);
+    ctx->defenderAlpha = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_ALPHA);
+    PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_ALPHA, 8);
 
-        v0->unk_18 = PokemonSprite_GetAttribute(v0->unk_1C, MON_SPRITE_ALPHA);
-        PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_ALPHA, 8);
+    // Anchor coordinates to bottom-left of the sprite
+    ctx->left = defenderX - (MON_SPRITE_FRAME_WIDTH / 2);
+    ctx->bottom = defenderY + (MON_SPRITE_FRAME_HEIGHT / 2);
+    ctx->viewWidth = 0;
+    ctx->windowY2 = ctx->bottom;
+    ctx->origin = 0;
 
-        v0->unk_08 = v2 - 40;
-        v0->unk_04 = v3 + 40;
-        v0->unk_10 = 0;
-        v0->unk_0C = v0->unk_04;
-        v0->unk_14 = 0;
+    GX_SetVisibleWnd(GX_WNDMASK_W0);
+    G2_SetWnd0InsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWnd0Position(ctx->left, ctx->bottom, ctx->left + MON_SPRITE_FRAME_WIDTH, ctx->windowY2);
 
-        GX_SetVisibleWnd(GX_WNDMASK_W0);
-        G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-        G2_SetWnd0Position(v0->unk_08, v0->unk_04, v0->unk_08 + 80, v0->unk_0C);
-    }
-
-    BattleAnimSystem_StartAnimTask(v0->unk_20.battleAnimSys, ov12_0222F464, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Sketch, ctx);
 }

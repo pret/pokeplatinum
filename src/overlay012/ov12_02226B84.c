@@ -740,6 +740,9 @@ typedef struct RenderPokemonSpritesContext {
     int unused;
 } RenderPokemonSpritesContext;
 
+#define RENDER_POKEMON_SPRITES_DEFAULT_FRAMES 3
+#define RENDER_POKEMON_SPRITES_VAR_FRAMES     0
+
 // -------------------------------------------------------------------
 // Scroll Switched Bg
 // -------------------------------------------------------------------
@@ -4116,10 +4119,10 @@ void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *system)
     RenderPokemonSpritesContext *ctx = BattleAnimUtil_Alloc(system, sizeof(RenderPokemonSpritesContext));
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    if (BattleAnimSystem_GetScriptVar(system, 0) == 0) {
-        ctx->frames = 2 + 1;
+    if (BattleAnimSystem_GetScriptVar(system, RENDER_POKEMON_SPRITES_VAR_FRAMES) == 0) {
+        ctx->frames = RENDER_POKEMON_SPRITES_DEFAULT_FRAMES;
     } else {
-        ctx->frames = BattleAnimSystem_GetScriptVar(system, 0);
+        ctx->frames = BattleAnimSystem_GetScriptVar(system, RENDER_POKEMON_SPRITES_VAR_FRAMES);
     }
 
     static int priorityTable[MAX_BATTLERS] = {
