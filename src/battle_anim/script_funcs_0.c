@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_0222AC70.h"
+#include "battle_anim/script_funcs_0.h"
 
 #include "nitro/pad/common/pad.h"
 #include <nitro.h>

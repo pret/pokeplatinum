@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_02226998_H
-#define POKEPLATINUM_OV12_02226998_H
+#ifndef POKEPLATINUM_SCRIPT_FUNC_TABLES_H
+#define POKEPLATINUM_SCRIPT_FUNC_TABLES_H
 
 #include "sprite_system.h"
 
@@ -11,4 +11,4 @@ typedef void (*BattleAnimScriptSpriteFunc)(struct BattleAnimSystem *, SpriteSyst
 BattleAnimScriptFunc BattleAnimScript_GetFunc(u32 id);
 BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id);
 
-#endif // POKEPLATINUM_OV12_02226998_H
+#endif // POKEPLATINUM_SCRIPT_FUNC_TABLES_H

@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_022269C0.h"
+#include "battle_anim/script_func_examples.h"
 
 #include <nitro.h>
 #include <string.h>

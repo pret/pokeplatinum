@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_02226B84.h"
+#include "battle_anim/script_funcs_3.h"
 
 #include "nitro/hw/common/lcd.h"
 #include <nitro.h>

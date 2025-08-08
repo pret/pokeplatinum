@@ -634,22 +634,22 @@ Overlay battle_anim
 {
 	After overlay11
 	Object main.nef.p/src_battle_anim_battle_anim_system.c.o
-	Object main.nef.p/src_battle_anim_ov12_022237EC.c.o
+	Object main.nef.p/src_battle_anim_battle_particle_util.c.o
 	Object main.nef.p/src_battle_anim_ov12_0222389C.c.o
 	Object main.nef.p/src_battle_anim_ov12_0222421C.c.o
 	Object main.nef.p/src_battle_anim_ov12_02225104.c.o
 	Object main.nef.p/src_battle_anim_ov12_02225640.c.o
 	Object main.nef.p/src_battle_anim_ov12_02225864.c.o
-	Object main.nef.p/src_battle_anim_ov12_02226998.c.o
-	Object main.nef.p/src_battle_anim_ov12_022269C0.c.o
-	Object main.nef.p/src_battle_anim_ov12_02226B84.c.o
-	Object main.nef.p/src_battle_anim_ov12_0222AC70.c.o
-	Object main.nef.p/src_battle_anim_ov12_0222D6B0.c.o
-	Object main.nef.p/src_battle_anim_ov12_0222E784.c.o
-	Object main.nef.p/src_battle_anim_ov12_0222E91C.c.o
-	Object main.nef.p/src_battle_anim_ov12_0222F700.c.o
+	Object main.nef.p/src_battle_anim_script_func_tables.c.o
+	Object main.nef.p/src_battle_anim_script_func_examples.c.o
+	Object main.nef.p/src_battle_anim_script_funcs_3.c.o
+	Object main.nef.p/src_battle_anim_script_funcs_0.c.o
+	Object main.nef.p/src_battle_anim_script_funcs_4.c.o
+	Object main.nef.p/src_battle_anim_script_func_mimic.c.o
+	Object main.nef.p/src_battle_anim_script_funcs_1.c.o
+	Object main.nef.p/src_battle_anim_script_funcs_2.c.o
 	Object main.nef.p/src_battle_anim_ov12_022346A4.c.o
-	Object main.nef.p/src_battle_anim_ov12_02234E44.c.o
+	Object main.nef.p/src_battle_anim_script_funcs_stat_change.c.o
 	Object main.nef.p/src_battle_anim_ov12_02235254.c.o
 	Object main.nef.p/src_battle_anim_ov12_02235E94.c.o
 	Object main.nef.p/src_battle_anim_ov12_02237E54.c.o

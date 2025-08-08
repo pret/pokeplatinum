@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "battle_anim/battle_anim_system.h"
-#include "battle_anim/ov12_022237EC.h"
+#include "battle_anim/battle_particle_util.h"
 #include "battle_anim/struct_ov12_02237EFC.h"
 #include "battle_anim/struct_ov12_02237F38.h"
 

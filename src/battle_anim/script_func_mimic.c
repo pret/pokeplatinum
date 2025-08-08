@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_0222E784.h"
+#include "battle_anim/script_func_mimic.h"
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"

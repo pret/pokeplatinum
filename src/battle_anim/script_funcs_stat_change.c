@@ -1,4 +1,4 @@
-#include "battle_anim/ov12_02234E44.h"
+#include "battle_anim/script_funcs_stat_change.h"
 
 #include "nitro/os/common/emulator.h"
 #include <nitro.h>

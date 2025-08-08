@@ -1,20 +1,20 @@
-#include "battle_anim/ov12_02226998.h"
+#include "battle_anim/script_func_tables.h"
 
 #include <nitro.h>
 #include <string.h>
 
 #include "global/utility.h"
 #include "battle_anim/battle_anim_system.h"
-#include "battle_anim/ov12_02226998.h"
-#include "battle_anim/ov12_022269C0.h"
-#include "battle_anim/ov12_02226B84.h"
-#include "battle_anim/ov12_0222AC70.h"
-#include "battle_anim/ov12_0222D6B0.h"
-#include "battle_anim/ov12_0222E784.h"
-#include "battle_anim/ov12_0222E91C.h"
-#include "battle_anim/ov12_0222F700.h"
+#include "battle_anim/script_func_tables.h"
+#include "battle_anim/script_func_examples.h"
+#include "battle_anim/script_funcs_3.h"
+#include "battle_anim/script_funcs_0.h"
+#include "battle_anim/script_funcs_4.h"
+#include "battle_anim/script_func_mimic.h"
+#include "battle_anim/script_funcs_1.h"
+#include "battle_anim/script_funcs_2.h"
 #include "battle_anim/ov12_022346A4.h"
-#include "battle_anim/ov12_02234E44.h"
+#include "battle_anim/script_funcs_stat_change.h"
 
 static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_Nop,

@@ -6,7 +6,7 @@
 #include "struct_defs/seal_case.h"
 
 #include "battle_anim/battle_anim_system.h"
-#include "battle_anim/ov12_022237EC.h"
+#include "battle_anim/battle_particle_util.h"
 #include "battle_anim/ov12_02225864.h"
 #include "battle_anim/ov12_02235254.h"
 #include "battle_anim/ov12_02237E54.h"
