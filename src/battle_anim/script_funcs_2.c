@@ -10,8 +10,8 @@
 #include "constants/graphics.h"
 
 #include "battle_anim/battle_anim_system.h"
-#include "battle_anim/ov12_02225864.h"
-#include "battle_anim/ov12_02235254.h"
+#include "battle_anim/battle_anim_helpers.h"
+#include "battle_anim/battle_anim_util.h"
 #include "pch/global_pch.h"
 
 #include "battle_script_battlers.h"

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_02225864_H
-#define POKEPLATINUM_OV12_02225864_H
+#ifndef POKEPLATINUM_BATTLE_ANIM_HELPERS_H
+#define POKEPLATINUM_BATTLE_ANIM_HELPERS_H
 
 #include "nitro/hw/common/lcd.h"
 
@@ -229,4 +229,4 @@ PaletteFadeContext *PaletteFadeContext_New(PaletteData *param0, enum HeapId heap
 void BattleAnimUtil_MakeBgPalsGrayscale(BattleAnimSystem *param0);
 void BattleAnimUtil_ReturnBgPalsToNormal(BattleAnimSystem *param0);
 
-#endif // POKEPLATINUM_OV12_02225864_H
+#endif // POKEPLATINUM_BATTLE_ANIM_HELPERS_H
