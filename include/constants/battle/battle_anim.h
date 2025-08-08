@@ -168,5 +168,10 @@
 #define EMITTER_ANIMATION_FROM_TOP 0 //< Animation from the top of the screen
 #define EMITTER_ANIMATION_TO_TOP   1 //< Animation to the top of the screen
 
+#define BATTLE_ANIM_DEFAULT_PRIORITY 0xFF //< Default priority for battle anim sprites
+
+#define POKEMON_SPRITE_PRIORITY_MODE_DEFAULT   0
+#define POKEMON_SPRITE_PRIORITY_MODE_DARK_VOID 0xFF
+
 // clang-format on
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_ANIM_H

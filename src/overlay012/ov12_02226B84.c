@@ -641,7 +641,7 @@ typedef struct EmitterAnimationContext {
 // -------------------------------------------------------------------
 // Emitter Revolution
 // -------------------------------------------------------------------
-typedef struct EmitterAnimationContext2 {
+typedef struct EmitterRevolutionContext {
     int emitterID;
     int sx;
     int sy;
@@ -698,18 +698,34 @@ typedef struct {
     XYTransformContext unk_24[2];
 } UnkStruct_ov12_0222A4A0;
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    ManagedSprite *unk_1C;
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    int unk_30;
-    int unk_34;
-    int unk_38;
-    int unk_3C;
-} UnkStruct_ov12_0222A624;
+// -------------------------------------------------------------------
+// Set Pokemon Sprite Priority
+// -------------------------------------------------------------------
+typedef struct SetPokemonSpritePriorityContext {
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *sprite;
+    int spriteID;
+    int maxFrames;
+    int bg;
+    int spritePriority;
+    int mode;
+    int windowType;
+    int stepCount;
+    int sinkFullyStartFrame;
+} SetPokemonSpritePriorityContext;
+
+#define DARK_VOID_RANDOM_STEP_Y                         4
+#define DARK_VOID_RANDOM_STEP_Y_L                       8
+#define DARK_VOID_MAX_Y                                 130
+#define DARK_VOID_SINK_FULLY_MIN_FRAME                  35
+#define DARK_VOID_SINK_FULLY_RNG_FRAME                  5
+#define SET_POKEMON_SPRITE_PRIORITY_VAR_SPRITE_ID       0
+#define SET_POKEMON_SPRITE_PRIORITY_VAR_MAX_FRAMES      1
+#define SET_POKEMON_SPRITE_PRIORITY_VAR_BG              2
+#define SET_POKEMON_SPRITE_PRIORITY_VAR_SPRITE_PRIORITY 3
+#define SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER         4
+#define SET_POKEMON_SPRITE_PRIORITY_VAR_MODE            5
+#define SET_POKEMON_SPRITE_PRIORITY_VAR_WINDOW_TYPE     6
 
 typedef struct {
     BattleAnimScriptFuncCommon common;
@@ -719,9 +735,9 @@ typedef struct {
 } RenderPokemonSpritesContext;
 
 typedef struct {
-    int unk_00;
-    int unk_04;
-    BattleAnimScriptFuncCommon unk_08;
+    int timer;
+    int frames;
+    BattleAnimScriptFuncCommon common;
     BgScrollContext *unk_24;
 } UnkStruct_ov12_0222ABBC;
 
@@ -3817,102 +3833,99 @@ void BattleAnimScriptFunc_SetBgGrayscale(BattleAnimSystem *system)
     }
 }
 
-static void ov12_0222A624(UnkStruct_ov12_0222A624 *param0)
+static void SetPokemonSpritePriorityContext_DoDarkVoidEffects(SetPokemonSpritePriorityContext *ctx)
 {
-    switch (param0->unk_00.state) {
+    switch (ctx->common.state) {
     case 0:
-        if (param0->unk_34 == 0) {
+        if (ctx->windowType == 0) {
             GX_SetVisibleWnd(GX_WNDMASK_W0);
-            G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, 1);
-            G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-            G2_SetWnd0Position(0, 160, 128, 192);
-            param0->unk_3C = 35 + (LCRNG_Next() % 5);
+            G2_SetWnd0InsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | BATTLE_BG_WNDMASK_EFFECT, TRUE);
+            G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, TRUE);
+            G2_SetWnd0Position(0, 160, HW_LCD_WIDTH / 2, HW_LCD_HEIGHT);
+            ctx->sinkFullyStartFrame = DARK_VOID_SINK_FULLY_MIN_FRAME + (LCRNG_Next() % DARK_VOID_SINK_FULLY_RNG_FRAME);
         } else {
             GX_SetVisibleWnd(GX_WNDMASK_W0);
-            G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, 1);
-            G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
-            G2_SetWnd0Position(128, 96 - 10, 256, 192);
-            param0->unk_3C = 35 + (LCRNG_Next() % 5);
+            G2_SetWnd0InsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | BATTLE_BG_WNDMASK_EFFECT, TRUE);
+            G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, TRUE);
+            G2_SetWnd0Position(HW_LCD_WIDTH / 2, (HW_LCD_HEIGHT / 2) - 10, HW_LCD_WIDTH, HW_LCD_HEIGHT);
+            ctx->sinkFullyStartFrame = DARK_VOID_SINK_FULLY_MIN_FRAME + (LCRNG_Next() % DARK_VOID_SINK_FULLY_RNG_FRAME);
         }
         break;
     case 5:
     case 6:
         if (LCRNG_Next() % 2) {
-            if (param0->unk_38 == 0) {
-                param0->unk_38++;
-                ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +4);
+            if (ctx->stepCount == 0) {
+                ctx->stepCount++;
+                ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y);
             }
         }
         break;
     case 7:
-        if (param0->unk_38 != 1) {
-            param0->unk_38++;
-            ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +4);
+        if (ctx->stepCount != 1) {
+            ctx->stepCount++;
+            ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y);
         }
         break;
     case 10:
     case 11:
         if (LCRNG_Next() % 2) {
-            if (param0->unk_38 == 1) {
-                param0->unk_38++;
-                ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +4);
+            if (ctx->stepCount == 1) {
+                ctx->stepCount++;
+                ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y);
             }
         }
         break;
     case 12:
-        if (param0->unk_38 != 2) {
-            param0->unk_38++;
-            ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +4);
+        if (ctx->stepCount != 2) {
+            ctx->stepCount++;
+            ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y);
         }
         break;
     case 15:
     case 16:
         if (LCRNG_Next() % 2) {
-            if (param0->unk_38 == 2) {
-                param0->unk_38++;
-                ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +4);
+            if (ctx->stepCount == 2) {
+                ctx->stepCount++;
+                ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y);
             }
         }
         break;
     case 17:
-        if (param0->unk_38 != 3) {
-            param0->unk_38++;
-            ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +4);
+        if (ctx->stepCount != 3) {
+            ctx->stepCount++;
+            ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y);
         }
         break;
     case 22:
     case 23:
         if (LCRNG_Next() % 2) {
-            if (param0->unk_38 == 3) {
-                param0->unk_38++;
-                ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +8);
+            if (ctx->stepCount == 3) {
+                ctx->stepCount++;
+                ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y_L);
             }
         }
         break;
     case 24:
-        if (param0->unk_38 != 4) {
-            param0->unk_38++;
-            ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +8);
+        if (ctx->stepCount != 4) {
+            ctx->stepCount++;
+            ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y_L);
         }
         break;
     default:
-        if (param0->unk_00.state > param0->unk_3C) {
-            if (param0->unk_38 < 20) {
-                ManagedSprite_OffsetPositionXY(param0->unk_1C, 0, +4);
+        if (ctx->common.state > ctx->sinkFullyStartFrame) {
+            if (ctx->stepCount < 20) {
+                ManagedSprite_OffsetPositionXY(ctx->sprite, 0, DARK_VOID_RANDOM_STEP_Y);
 
-                {
-                    s16 v0, v1;
+                s16 x, y;
+                ManagedSprite_GetPositionXY(ctx->sprite, &x, &y);
 
-                    ManagedSprite_GetPositionXY(param0->unk_1C, &v0, &v1);
-
-                    if (v1 > 130) {
-                        ManagedSprite_SetDrawFlag(param0->unk_1C, 0);
-                    }
+                if (y > DARK_VOID_MAX_Y) {
+                    ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
                 }
 
-                param0->unk_38++;
+                ctx->stepCount++;
             } else {
-                ManagedSprite_SetDrawFlag(param0->unk_1C, 0);
+                ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
             }
         }
 
@@ -3920,149 +3933,143 @@ static void ov12_0222A624(UnkStruct_ov12_0222A624 *param0)
     }
 }
 
-static void ov12_0222A878(SysTask *param0, void *param1)
+static void BattleAnimTask_SetPokemonSpritePriority(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222A624 *v0 = param1;
+    SetPokemonSpritePriorityContext *ctx = param;
 
-    if (v0->unk_30 != 0) {
-        ov12_0222A624(v0);
+    if (ctx->mode != POKEMON_SPRITE_PRIORITY_MODE_DEFAULT) {
+        SetPokemonSpritePriorityContext_DoDarkVoidEffects(ctx);
     }
 
-    v0->unk_00.state++;
+    ctx->common.state++;
 
-    if (v0->unk_00.state >= v0->unk_24) {
+    if (ctx->common.state >= ctx->maxFrames) {
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, 0);
-        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, 0);
+        G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_NONE, FALSE);
+        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_NONE, FALSE);
         G2_SetWnd0Position(0, 0, 0, 0);
 
-        ManagedSprite_SetDrawFlag(v0->unk_1C, 0);
-        SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
+        ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
+        SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    ManagedSprite_TickFrame(v0->unk_1C);
-    SpriteSystem_DrawSprites(v0->unk_00.pokemonSpriteManager);
+    ManagedSprite_TickFrame(ctx->sprite);
+    SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
 }
 
-void ov12_0222A8F4(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222A624 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222A624));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    SetPokemonSpritePriorityContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SetPokemonSpritePriorityContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v0->unk_20 = BattleAnimSystem_GetScriptVar(param0, 0);
-    v0->unk_24 = BattleAnimSystem_GetScriptVar(param0, 1);
-    v0->unk_28 = BattleAnimSystem_GetScriptVar(param0, 2);
-    v0->unk_2C = BattleAnimSystem_GetScriptVar(param0, 3);
-    v0->unk_30 = BattleAnimSystem_GetScriptVar(param0, 5);
-    v0->unk_34 = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_1C = BattleAnimSystem_GetPokemonSprite(v0->unk_00.battleAnimSys, v0->unk_20);
-    v0->unk_38 = 0;
+    ctx->spriteID = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_SPRITE_ID);
+    ctx->maxFrames = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_MAX_FRAMES);
+    ctx->bg = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BG);
+    ctx->spritePriority = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_SPRITE_PRIORITY);
+    ctx->mode = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_MODE);
+    ctx->windowType = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_WINDOW_TYPE);
+    ctx->sprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, ctx->spriteID);
+    ctx->stepCount = 0;
 
-    {
-        int v1;
-
-        if (v0->unk_28 != 0xFF) {
-            v1 = BattleAnimSystem_GetBgPriority(param0, v0->unk_28);
-            ManagedSprite_SetExplicitPriority(v0->unk_1C, v1);
-        }
-
-        if (v0->unk_2C != 0xFF) {
-            ManagedSprite_SetPriority(v0->unk_1C, v0->unk_2C);
-        }
+    if (ctx->bg != BATTLE_ANIM_BG_NONE) {
+        int bgPriority = BattleAnimSystem_GetBgPriority(system, ctx->bg);
+        ManagedSprite_SetExplicitPriority(ctx->sprite, bgPriority);
     }
 
-    if (BattleAnimSystem_IsDoubleBattle(param0) != 1) {
-        if ((BattleAnimSystem_GetScriptVar(param0, 4) == 2) || (BattleAnimSystem_GetScriptVar(param0, 4) == 3)) {
-            ManagedSprite_SetDrawFlag(v0->unk_1C, 0);
-            Heap_Free(v0);
+    if (ctx->spritePriority != BATTLE_ANIM_DEFAULT_PRIORITY) {
+        ManagedSprite_SetPriority(ctx->sprite, ctx->spritePriority);
+    }
+
+    if (BattleAnimSystem_IsDoubleBattle(system) != TRUE) {
+        if (BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER) == BATTLER_TYPE_ATTACKER_PARTNER || BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER) == BATTLER_TYPE_DEFENDER_PARTNER) {
+            ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
+            Heap_Free(ctx);
             return;
         }
     }
 
-    {
-        int v2 = BattleAnimSystem_GetScriptVar(param0, 4);
-        int v3 = BattleAnimSystem_GetAttacker(param0);
-        int v4 = BattleAnimSystem_GetDefender(param0);
-        int v5, v6;
+    enum BattleAnimBattlerType battlerType = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER);
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    int defender = BattleAnimSystem_GetDefender(system);
 
-        if (v0->unk_2C != 0xFF) {
-            v5 = BattleAnimUtil_GetBattlerType(param0, v3);
-            v6 = BattleAnimUtil_GetBattlerType(param0, v4);
+    // Seems like a bug, should probably be == instead of !=
+    if (ctx->spritePriority != BATTLE_ANIM_DEFAULT_PRIORITY) {
+        int attackerType = BattleAnimUtil_GetBattlerType(system, attacker);
+        int defenderType = BattleAnimUtil_GetBattlerType(system, defender);
 
-            switch (v2) {
-            case 0:
-                switch (v5) {
-                case 2:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                case 3:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                case 4:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                case 5:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                }
+        switch (battlerType) {
+        case BATTLER_TYPE_ATTACKER:
+            switch (attackerType) {
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
                 break;
-            case 2:
-                switch (v5) {
-                case 2:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                case 3:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                case 4:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                case 5:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                }
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
                 break;
-            case 1:
-                switch (v6) {
-                case 2:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                case 3:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                case 4:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                case 5:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                }
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
                 break;
-            case 3:
-                switch (v6) {
-                case 2:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                case 3:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                case 4:
-                    ManagedSprite_SetPriority(v0->unk_1C, 20);
-                    break;
-                case 5:
-                    ManagedSprite_SetPriority(v0->unk_1C, 10);
-                    break;
-                }
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
                 break;
             }
+            break;
+        case BATTLER_TYPE_ATTACKER_PARTNER:
+            switch (attackerType) {
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
+                break;
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
+                break;
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
+                break;
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
+                break;
+            }
+            break;
+        case BATTLER_TYPE_DEFENDER:
+            switch (defenderType) {
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
+                break;
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
+                break;
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
+                break;
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
+                break;
+            }
+            break;
+        case BATTLER_TYPE_DEFENDER_PARTNER:
+            switch (defenderType) {
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
+                break;
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_1:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
+                break;
+            case BATTLER_TYPE_PLAYER_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 20);
+                break;
+            case BATTLER_TYPE_ENEMY_SIDE_SLOT_2:
+                ManagedSprite_SetPriority(ctx->sprite, 10);
+                break;
+            }
+            break;
         }
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222A878, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_SetPokemonSpritePriority, ctx);
 }
 
 static void BattleAnimTask_RenderPokemonSprites(SysTask *task, void *param)
@@ -4122,35 +4129,41 @@ static void ov12_0222ABBC(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222ABBC *v0 = (UnkStruct_ov12_0222ABBC *)param1;
 
-    switch (v0->unk_08.state) {
+    switch (v0->common.state) {
     case 0:
-        v0->unk_00 = 0;
-        v0->unk_24 = BgScrollContext_New(0, 160, (1 * 0xffff) / 360, 32 * FX32_ONE, 2 * 100, BattleAnimSystem_GetBgID(v0->unk_08.battleAnimSys, 2), 0, BattleAnimUtil_MakeBgOffsetValue(0, 0), BattleAnimSystem_GetHeapID(v0->unk_08.battleAnimSys));
-        v0->unk_08.state++;
+        v0->timer = 0;
+        v0->unk_24 = BgScrollContext_New(
+            0,
+            160,
+            (1 * 0xffff) / 360,
+            32 * FX32_ONE,
+            2 * 100,
+            BattleAnimSystem_GetBgID(v0->common.battleAnimSys, 2),
+            0,
+            BattleAnimUtil_MakeBgOffsetValue(0, 0),
+            BattleAnimSystem_GetHeapID(v0->common.battleAnimSys));
+        v0->common.state++;
         break;
     case 1:
-        v0->unk_00++;
-
-        if (v0->unk_00 < v0->unk_04) {
+        v0->timer++;
+        if (v0->timer < v0->frames) {
             break;
         }
 
         BgScrollContext_Free(v0->unk_24);
-        v0->unk_08.state++;
+        v0->common.state++;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_08.battleAnimSys, param0);
+        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSys, param0);
         Heap_Free(v0);
         return;
     }
 }
 
-void ov12_0222AC40(BattleAnimSystem *param0)
+void ov12_0222AC40(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222ABBC *v0 = NULL;
+    UnkStruct_ov12_0222ABBC *ctx = BattleAnimUtil_Alloc(system, sizeof(UnkStruct_ov12_0222ABBC));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    ctx->frames = BattleAnimSystem_GetScriptVar(system, 0);
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222ABBC));
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_08);
-    v0->unk_04 = BattleAnimSystem_GetScriptVar(param0, 0);
-
-    BattleAnimSystem_StartAnimTask(v0->unk_08.battleAnimSys, ov12_0222ABBC, v0);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, ov12_0222ABBC, ctx);
 }
