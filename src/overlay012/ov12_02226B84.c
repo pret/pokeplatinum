@@ -442,12 +442,15 @@ enum ShakeAndScaleAttacker2State {
 #define SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_2_FRAMES 5
 #define SHAKE_AND_SCALE_ATTACKER_2_VAR_HOLD_FRAMES    6
 
-typedef struct {
-    int unk_00;
-    BattleAnimScriptFuncCommon unk_04;
-    ManagedSprite *unk_20;
-    ManagedSprite *unk_24;
-} UnkStruct_ov12_02228B10;
+// -------------------------------------------------------------------
+// Superpower
+// -------------------------------------------------------------------
+typedef struct SuperpowerContext {
+    int unused0;
+    BattleAnimScriptFuncCommon common;
+    ManagedSprite *unused1;
+    ManagedSprite *sprite;
+} SuperpowerContext;
 
 // -------------------------------------------------------------------
 // Move Battler
@@ -2453,45 +2456,35 @@ void BattleAnimScriptFunc_ShakeAndScaleAttacker2(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ShakeAndScaleAttacker2, ctx);
 }
 
-static void ov12_02228B10(SysTask *param0, void *param1)
+static void BattleAnimTask_Superpower(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02228B10 *v0 = (UnkStruct_ov12_02228B10 *)param1;
+    SuperpowerContext *ctx = param;
 
-    switch (v0->unk_04.state) {
-    default:
-        GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        BattleAnimSystem_UnloadBaseBg(v0->unk_04.battleAnimSys, 2);
-        BattleAnimSystem_EndAnimTask(v0->unk_04.battleAnimSys, param0);
-        Heap_Free(v0);
-        return;
-    }
-
-    ManagedSprite_TickFrame(v0->unk_24);
-    SpriteSystem_DrawSprites(v0->unk_04.pokemonSpriteManager);
+    GX_SetVisibleWnd(GX_WNDMASK_NONE);
+    BattleAnimSystem_UnloadBaseBg(ctx->common.battleAnimSys, BATTLE_BG_BASE);
+    BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+    Heap_Free(ctx);
 }
 
-void ov12_02228B40(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_Superpower(BattleAnimSystem *system)
 {
-    int v0;
-    UnkStruct_ov12_02228B10 *v1 = NULL;
+    SuperpowerContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SuperpowerContext));
+    UNUSED(BattleAnimSystem_GetScriptVar(system, 0));
 
-    v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02228B10));
-    v0 = BattleAnimSystem_GetScriptVar(param0, 0);
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
+    BattleAnimSystem_LoadBaseBg(ctx->common.battleAnimSys, BATTLE_BG_BASE);
 
-    BattleAnimSystem_GetCommonData(param0, &v1->unk_04);
-    BattleAnimSystem_LoadBaseBg(v1->unk_04.battleAnimSys, 2);
+    ctx->sprite = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
 
-    v1->unk_24 = BattleAnimSystem_GetPokemonSprite(v1->unk_04.battleAnimSys, 0);
-
-    ManagedSprite_SetExplicitOamMode(v1->unk_24, GX_OAM_MODE_OBJWND);
-    ManagedSprite_SetAffineOverwriteMode(v1->unk_24, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetAffineScale(v1->unk_24, 1.2f, 1.2f);
+    ManagedSprite_SetExplicitOamMode(ctx->sprite, GX_OAM_MODE_OBJWND);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetAffineScale(ctx->sprite, 1.2f, 1.2f);
 
     GX_SetVisibleWnd(GX_WNDMASK_OW);
-    G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
-    G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2, 0);
+    G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, FALSE);
+    G2_SetWndOBJInsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE, FALSE);
 
-    BattleAnimSystem_StartAnimTask(v1->unk_04.battleAnimSys, ov12_02228B10, v1);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Superpower, ctx);
 }
 
 static void BattleAnimTask_MoveBattler(SysTask *task, void *param)
