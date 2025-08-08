@@ -86,6 +86,8 @@ enum BattleAnimBg {
     BATTLE_ANIM_BG_BASE, // BG for base battle BG
     BATTLE_ANIM_BG_EFFECT, // BG for move anim BG switching
     BATTLE_ANIM_BG_POKEMON, // BG for Pokemon sprites
+    BATTLE_ANIM_BG_COUNT, // Total number of battle BGs
+    BATTLE_ANIM_BG_NONE = 0xFF,
 };
 
 enum BattleAnimBattlerType {
