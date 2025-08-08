@@ -44,6 +44,6 @@ void ov12_0222A5C0(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager
 void BattleAnimScriptFunc_SetBgGrayscale(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *param0);
-void ov12_0222AC40(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_ScrollSwitchedBg(BattleAnimSystem *param0);
 
 #endif // POKEPLATINUM_OV12_02226B84_H
