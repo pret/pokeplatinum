@@ -73,7 +73,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_ShakeAndScaleAttacker,
     BattleAnimScriptFunc_ShakeAndScaleAttacker2,
     BattleAnimScriptFunc_Camouflage,
-    ov12_02228B40,
+    BattleAnimScriptFunc_Superpower,
     BattleAnimScriptFunc_MoveBattler,
     BattleAnimScriptFunc_Mimic,
     BattleAnimScriptFunc_ShadowPunch,
