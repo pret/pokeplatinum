@@ -145,6 +145,9 @@ enum SnatchState {
 #define SNATCH_MOVE_FRAMES   15
 #define SNATCH_VAR_TARGET    0
 
+// -------------------------------------------------------------------
+// Sketch
+// -------------------------------------------------------------------
 typedef struct SketchContext {
     int viewHeight;
     int bottom;
@@ -832,7 +835,7 @@ void BattleAnimScriptFunc_Sketch(BattleAnimSystem *system)
     ctx->origin = 0;
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
-    G2_SetWnd0InsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_BASE | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, TRUE);
+    G2_SetWnd0InsidePlane(BATTLE_BG_WNDMASK_ALL | GX_WND_PLANEMASK_OBJ, TRUE);
     G2_SetWndOutsidePlane(BATTLE_BG_WNDMASK_3D | BATTLE_BG_WNDMASK_WINDOW | BATTLE_BG_WNDMASK_EFFECT | GX_WND_PLANEMASK_OBJ, TRUE);
     G2_SetWnd0Position(ctx->left, ctx->bottom, ctx->left + MON_SPRITE_FRAME_WIDTH, ctx->windowY2);
 

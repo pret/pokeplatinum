@@ -3,9 +3,9 @@
 
 #include "overlay012/battle_anim_system.h"
 
-void ov12_022351A4(BattleAnimSystem *param0);
-void ov12_022351D0(BattleAnimSystem *param0);
-void ov12_022351FC(BattleAnimSystem *param0);
-void ov12_02235228(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_StatChangeUp(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_StatChangeDown(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_StatChangeHeal(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_StatChangeMetal(BattleAnimSystem *param0);
 
 #endif // POKEPLATINUM_OV12_02234E44_H

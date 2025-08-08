@@ -97,10 +97,10 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_MoveBattlerOnOrOffScreen,
     BattleAnimScriptFunc_RenderPokemonSprites,
     BattleAnimScriptFunc_Sketch,
-    ov12_022351A4,
-    ov12_022351D0,
-    ov12_022351FC,
-    ov12_02235228
+    BattleAnimScriptFunc_StatChangeUp,
+    BattleAnimScriptFunc_StatChangeDown,
+    BattleAnimScriptFunc_StatChangeHeal,
+    BattleAnimScriptFunc_StatChangeMetal
 };
 
 static const BattleAnimScriptSpriteFunc sBattleAnimScriptSpriteFuncs[] = {
