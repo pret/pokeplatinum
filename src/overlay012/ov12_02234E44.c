@@ -59,8 +59,7 @@ enum StatChangeState {
 #define STAT_CHANGE_VAR_MEMBER_TABLE_INDEX 0
 #define STAT_CHANGE_VAR_MODE               1
 
-
-enum StatChangeMemberTable {
+enum {
     STAT_CHANGE_MEMBER_TILES,
     STAT_CHANGE_MEMBER_PALETTE,
     STAT_CHANGE_MEMBER_TILEMAP,

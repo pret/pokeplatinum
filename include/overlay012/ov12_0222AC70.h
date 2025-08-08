@@ -14,7 +14,7 @@ void BattleAnimScriptFunc_Meditate(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Teleport(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Flash(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Splash(BattleAnimSystem *param0);
-void ov12_0222C0C0(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Harden(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Minimize(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Earthquake(BattleAnimSystem *param0);
 void BattleAnimScriptFunc_Nightmare(BattleAnimSystem *param0);
