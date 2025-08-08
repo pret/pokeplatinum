@@ -727,19 +727,39 @@ typedef struct SetPokemonSpritePriorityContext {
 #define SET_POKEMON_SPRITE_PRIORITY_VAR_MODE            5
 #define SET_POKEMON_SPRITE_PRIORITY_VAR_WINDOW_TYPE     6
 
-typedef struct {
+// -------------------------------------------------------------------
+// Render Pokemon Sprites
+// -------------------------------------------------------------------
+typedef struct RenderPokemonSpritesContext {
     BattleAnimScriptFuncCommon common;
-    ManagedSprite *sprites[4];
+    ManagedSprite *sprites[MAX_BATTLERS];
     int frames;
-    int unk_30;
+    int unused;
 } RenderPokemonSpritesContext;
 
-typedef struct {
+// -------------------------------------------------------------------
+// Scroll Switched Bg
+// -------------------------------------------------------------------
+typedef struct ScrollSwitchedBgContext {
     int timer;
     int frames;
     BattleAnimScriptFuncCommon common;
-    BgScrollContext *unk_24;
-} UnkStruct_ov12_0222ABBC;
+    BgScrollContext *bgScroll;
+} ScrollSwitchedBgContext;
+
+enum ScrollSwitchedBgState {
+    SCROLL_SWITCHED_BG_STATE_INIT,
+    SCROLL_SWITCHED_BG_STATE_SCROLL,
+};
+
+#define SCROLL_SWITCHED_BG_START_Y    0
+#define SCROLL_SWITCHED_BG_END_Y      160
+#define SCROLL_SWITCHED_BG_ANGLE_STEP DEG_TO_IDX(1)
+#define SCROLL_SWITCHED_BG_AMPLITUDE  FX32_CONST(32)
+#define SCROLL_SWITCHED_BG_SPEED      200
+#define SCROLL_SWITCHED_BG_INIT_X     0
+#define SCROLL_SWITCHED_BG_INIT_Y     0
+#define SCROLL_SWITCHED_BG_VAR_FRAMES 0
 
 static int GetBattlerFromBattlerFlags(BattleAnimSystem *param0, int param1);
 
@@ -4125,45 +4145,45 @@ void BattleAnimScriptFunc_RenderPokemonSprites(BattleAnimSystem *system)
     BattleAnimTask_RenderPokemonSprites(task, ctx);
 }
 
-static void ov12_0222ABBC(SysTask *param0, void *param1)
+static void BattleAnimTask_ScrollSwitchedBg(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222ABBC *v0 = (UnkStruct_ov12_0222ABBC *)param1;
+    ScrollSwitchedBgContext *ctx = param;
 
-    switch (v0->common.state) {
-    case 0:
-        v0->timer = 0;
-        v0->unk_24 = BgScrollContext_New(
+    switch (ctx->common.state) {
+    case SCROLL_SWITCHED_BG_STATE_INIT:
+        ctx->timer = 0;
+        ctx->bgScroll = BgScrollContext_New(
+            SCROLL_SWITCHED_BG_START_Y,
+            SCROLL_SWITCHED_BG_END_Y,
+            SCROLL_SWITCHED_BG_ANGLE_STEP,
+            SCROLL_SWITCHED_BG_AMPLITUDE,
+            SCROLL_SWITCHED_BG_SPEED,
+            BattleAnimSystem_GetBgID(ctx->common.battleAnimSys, BATTLE_ANIM_BG_EFFECT),
             0,
-            160,
-            (1 * 0xffff) / 360,
-            32 * FX32_ONE,
-            2 * 100,
-            BattleAnimSystem_GetBgID(v0->common.battleAnimSys, 2),
-            0,
-            BattleAnimUtil_MakeBgOffsetValue(0, 0),
-            BattleAnimSystem_GetHeapID(v0->common.battleAnimSys));
-        v0->common.state++;
+            BattleAnimUtil_MakeBgOffsetValue(SCROLL_SWITCHED_BG_INIT_X, SCROLL_SWITCHED_BG_INIT_Y),
+            BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys));
+        ctx->common.state++;
         break;
-    case 1:
-        v0->timer++;
-        if (v0->timer < v0->frames) {
+    case SCROLL_SWITCHED_BG_STATE_SCROLL:
+        ctx->timer++;
+        if (ctx->timer < ctx->frames) {
             break;
         }
 
-        BgScrollContext_Free(v0->unk_24);
-        v0->common.state++;
+        BgScrollContext_Free(ctx->bgScroll);
+        ctx->common.state++;
     default:
-        BattleAnimSystem_EndAnimTask(v0->common.battleAnimSys, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 }
 
-void ov12_0222AC40(BattleAnimSystem *system)
+void BattleAnimScriptFunc_ScrollSwitchedBg(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_0222ABBC *ctx = BattleAnimUtil_Alloc(system, sizeof(UnkStruct_ov12_0222ABBC));
+    ScrollSwitchedBgContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ScrollSwitchedBgContext));
     BattleAnimSystem_GetCommonData(system, &ctx->common);
-    ctx->frames = BattleAnimSystem_GetScriptVar(system, 0);
+    ctx->frames = BattleAnimSystem_GetScriptVar(system, SCROLL_SWITCHED_BG_VAR_FRAMES);
 
-    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, ov12_0222ABBC, ctx);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_ScrollSwitchedBg, ctx);
 }

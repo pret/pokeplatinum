@@ -93,7 +93,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_MoveEmitterViewportTop,
     BattleAnimScriptFunc_SetBgGrayscale,
     BattleAnimScriptFunc_SetPokemonSpritePriority,
-    ov12_0222AC40,
+    BattleAnimScriptFunc_ScrollSwitchedBg,
     ov12_02228FB4,
     BattleAnimScriptFunc_RenderPokemonSprites,
     ov12_0222F5EC,
