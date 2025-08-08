@@ -54,7 +54,7 @@ static const Point2D sBattleAnimBattlerPositions[][6] = {
     },
 };
 
-void ov12_02225864(int isDoubles, int battlerType, s16 *px, s16 *py)
+void BattleAnimUtil_GetBattlerTypeDefaultPos2(int isDoubles, int battlerType, s16 *px, s16 *py)
 {
     if (px != NULL) {
         *px = sBattleAnimBattlerPositions[isDoubles][battlerType].x;
@@ -65,15 +65,15 @@ void ov12_02225864(int isDoubles, int battlerType, s16 *px, s16 *py)
     }
 }
 
-void ov12_02225898(BattleAnimSystem *system, int battler, s16 *px, s16 *py)
+void BattleAnimUtil_GetBattlerDefaultPos2(BattleAnimSystem *system, int battler, s16 *px, s16 *py)
 {
     if (BattleAnimSystem_IsContest(system) == TRUE) {
-        ov12_02225864(FALSE, battler + 2, px, py);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(FALSE, battler + 2, px, py);
     } else {
         if (BattleAnimSystem_IsDoubleBattle(system) == TRUE) {
-            ov12_02225864(TRUE, battler - 2, px, py);
+            BattleAnimUtil_GetBattlerTypeDefaultPos2(TRUE, battler - 2, px, py);
         } else {
-            ov12_02225864(FALSE, battler, px, py);
+            BattleAnimUtil_GetBattlerTypeDefaultPos2(FALSE, battler, px, py);
         }
     }
 }

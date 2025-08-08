@@ -406,22 +406,41 @@ enum ShakeAndScaleAttackerState {
 #define SHAKE_AND_SCALE_ATTACKER_VAR_FRAMES_2    3
 #define SHAKE_AND_SCALE_ATTACKER_VAR_HOLD_FRAMES 4
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    s16 unk_02;
-    int unk_04;
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    BattleAnimSystem *unk_18;
-    PokemonSprite *unk_1C;
-    XYTransformContext unk_20;
-    XYTransformContext unk_44;
-} UnkStruct_ov12_02228868;
+typedef struct ShakeAndScaleAttacker2Context {
+    u8 state;
+    u8 unused0;
+    s16 posY;
+    int spriteOffset;
+    u8 unused1;
+    u8 timer;
+    u8 holdFrames;
+    int scale2X;
+    int scale2Y;
+    int scale2Frames;
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *sprite;
+    XYTransformContext scale;
+    XYTransformContext shake;
+} ShakeAndScaleAttacker2Context;
+
+enum ShakeAndScaleAttacker2State {
+    SHAKE_AND_SCALE_ATTACKER_2_STATE_SCALE_1 = 0,
+    SHAKE_AND_SCALE_ATTACKER_2_STATE_HOLD,
+    SHAKE_AND_SCALE_ATTACKER_2_STATE_SCALE_2,
+    SHAKE_AND_SCALE_ATTACKER_2_STATE_WAIT,
+};
+
+#define SHAKE_AND_SCALE_ATTACKER_2_EXTENT_X           2
+#define SHAKE_AND_SCALE_ATTACKER_2_EXTENT_Y           0
+#define SHAKE_AND_SCALE_ATTACKER_2_INTERVAL           0
+#define SHAKE_AND_SCALE_ATTACKER_2_AMOUNT             10
+#define SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_X      0
+#define SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_Y      1
+#define SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_FRAMES 2
+#define SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_2_X      3
+#define SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_2_Y      4
+#define SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_2_FRAMES 5
+#define SHAKE_AND_SCALE_ATTACKER_2_VAR_HOLD_FRAMES    6
 
 typedef struct {
     int unk_00;
@@ -2280,6 +2299,7 @@ static void BattleAnimTask_ShakeAndScaleAttacker(SysTask *task, void *param)
         if (ScaleLerpContext_Update(&ctx->scale) == TRUE) {
             PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
             PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+
             s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->spriteY, ctx->spriteHeight, ctx->scale.data[XY_PARAM_CUR_Y]);
             PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->spriteY + offset);
         } else {
@@ -2326,115 +2346,111 @@ void BattleAnimScriptFunc_ShakeAndScaleAttacker(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ShakeAndScaleAttacker, ctx);
 }
 
-static void ov12_02228868(SysTask *param0, void *param1)
+static void BattleAnimTask_ShakeAndScaleAttacker2(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02228868 *v0 = (UnkStruct_ov12_02228868 *)param1;
+    ShakeAndScaleAttacker2Context *ctx = param;
 
-    switch (v0->unk_00) {
-    case 0:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_20) == 1) {
-            ShakeContext_Update(&v0->unk_44);
+    switch (ctx->state) {
+    case SHAKE_AND_SCALE_ATTACKER_2_STATE_SCALE_1:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            ShakeContext_Update(&ctx->shake);
 
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_X, v0->unk_20.x);
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_Y, v0->unk_20.y);
-            PokemonSprite_AddAttribute(v0->unk_1C, MON_SPRITE_X_CENTER, v0->unk_44.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
+            PokemonSprite_AddAttribute(ctx->sprite, MON_SPRITE_X_CENTER, ctx->shake.x);
 
-            {
-                s16 v1 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_20.data[4]);
-
-                PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_Y_CENTER, v0->unk_02 + v1);
-            }
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->posY, ctx->spriteOffset, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->posY + offset);
         } else {
-            v0->unk_00++;
+            ctx->state++;
         }
         break;
-    case 1:
-        if ((++v0->unk_09) > v0->unk_0A) {
-            {
-                s16 v2, v3;
-                s16 v4, v5;
+    case SHAKE_AND_SCALE_ATTACKER_2_STATE_HOLD:
+        if (++ctx->timer > ctx->holdFrames) {
+            s16 sx = SHAKE_AND_SCALE_ATTACKER_START(ctx->scale2X);
+            s16 ex = SHAKE_AND_SCALE_ATTACKER_END(ctx->scale2X);
+            s16 sy = SHAKE_AND_SCALE_ATTACKER_START(ctx->scale2Y);
+            s16 ey = SHAKE_AND_SCALE_ATTACKER_END(ctx->scale2Y);
 
-                v2 = v0->unk_0C >> 16;
-                v4 = v0->unk_0C & 0xFF;
-                v3 = v0->unk_10 >> 16;
-                v5 = v0->unk_10 & 0xFF;
+            ScaleLerpContext_InitXY(&ctx->scale, sx, ex, sy, ey, BASE_SCALE_XY, ctx->scale2Frames);
 
-                ScaleLerpContext_InitXY(&v0->unk_20, v2, v4, v3, v5, 100, v0->unk_14);
-            }
-
-            v0->unk_00++;
+            ctx->state++;
         }
         break;
-    case 2:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_20) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_X, v0->unk_20.x);
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_Y, v0->unk_20.y);
+    case SHAKE_AND_SCALE_ATTACKER_2_STATE_SCALE_2:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
 
-            {
-                s16 v6 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_20.data[4]);
-                PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_Y_CENTER, v0->unk_02 + v6);
-            }
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->posY, ctx->spriteOffset, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->posY + offset);
         } else {
-            v0->unk_00++;
+            ctx->state++;
         }
         break;
-    case 3:
-        if (ScaleLerpContext_UpdateXY(&v0->unk_20) == 1) {
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_X, v0->unk_20.x);
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_Y, v0->unk_20.y);
+    case SHAKE_AND_SCALE_ATTACKER_2_STATE_WAIT:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, ctx->scale.x);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, ctx->scale.y);
 
-            {
-                s16 v7 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v0->unk_02, v0->unk_04, v0->unk_20.data[4]);
-                PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_Y_CENTER, v0->unk_02 + v7);
-            }
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(ctx->posY, ctx->spriteOffset, ctx->scale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->posY + offset);
         } else {
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_X, 0x100);
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_SCALE_Y, 0x100);
-            PokemonSprite_SetAttribute(v0->unk_1C, MON_SPRITE_Y_CENTER, v0->unk_02);
-            v0->unk_00++;
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+            PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_Y_CENTER, ctx->posY);
+            ctx->state++;
         }
         break;
     default:
-        BattleAnimSystem_EndAnimTask(v0->unk_18, param0);
-        Heap_Free(v0);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         break;
     }
 }
 
-void ov12_02228A0C(BattleAnimSystem *param0)
+void BattleAnimScriptFunc_ShakeAndScaleAttacker2(BattleAnimSystem *system)
 {
-    UnkStruct_ov12_02228868 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_02228868));
+    ShakeAndScaleAttacker2Context *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(ShakeAndScaleAttacker2Context));
 
-    v0->unk_08 = 0;
-    v0->unk_00 = 0;
-    v0->unk_18 = param0;
-    v0->unk_1C = BattleAnimSystem_GetBattlerSprite(v0->unk_18, BattleAnimSystem_GetAttacker(v0->unk_18));
-    v0->unk_09 = 0;
-    v0->unk_0A = BattleAnimSystem_GetScriptVar(param0, 6);
-    v0->unk_0C = BattleAnimSystem_GetScriptVar(v0->unk_18, 3);
-    v0->unk_10 = BattleAnimSystem_GetScriptVar(v0->unk_18, 4);
-    v0->unk_14 = BattleAnimSystem_GetScriptVar(v0->unk_18, 5);
+    ctx->unused1 = 0;
+    ctx->state = SHAKE_AND_SCALE_ATTACKER_2_STATE_SCALE_1;
+    ctx->battleAnimSys = system;
+    ctx->sprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->timer = 0;
+    ctx->holdFrames = BattleAnimSystem_GetScriptVar(system, SHAKE_AND_SCALE_ATTACKER_2_VAR_HOLD_FRAMES);
+    ctx->scale2X = BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_2_X);
+    ctx->scale2Y = BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_2_Y);
+    ctx->scale2Frames = BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_2_FRAMES);
 
-    ov12_02225898(param0, BattleAnimSystem_GetAttacker(v0->unk_18), NULL, &v0->unk_02);
+    BattleAnimUtil_GetBattlerDefaultPos2(system, BattleAnimSystem_GetAttacker(ctx->battleAnimSys), NULL, &ctx->posY);
 
-    v0->unk_04 = BattleAnimSystem_GetBattlerSpriteOffset(v0->unk_18, BattleAnimSystem_GetAttacker(v0->unk_18));
-    v0->unk_02 += v0->unk_04;
+    ctx->spriteOffset = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->posY += ctx->spriteOffset;
 
-    {
-        s16 v1, v2;
-        s16 v3, v4;
-        s16 v5;
+    // Need to be declared like this because of the decl order
+    s16 sx, sy, ex, ey;
+    sx = SHAKE_AND_SCALE_ATTACKER_START(BattleAnimSystem_GetScriptVar(system, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_X));
+    ex = SHAKE_AND_SCALE_ATTACKER_END(BattleAnimSystem_GetScriptVar(system, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_X));
+    sy = SHAKE_AND_SCALE_ATTACKER_START(BattleAnimSystem_GetScriptVar(system, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_Y));
+    ey = SHAKE_AND_SCALE_ATTACKER_END(BattleAnimSystem_GetScriptVar(system, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_Y));
 
-        v1 = BattleAnimSystem_GetScriptVar(param0, 0) >> 16;
-        v3 = BattleAnimSystem_GetScriptVar(param0, 0) & 0xFF;
-        v2 = BattleAnimSystem_GetScriptVar(param0, 1) >> 16;
-        v4 = BattleAnimSystem_GetScriptVar(param0, 1) & 0xFF;
+    ScaleLerpContext_InitXY(
+        &ctx->scale,
+        sx,
+        ex,
+        sy,
+        ey,
+        BASE_SCALE_XY,
+        BattleAnimSystem_GetScriptVar(system, SHAKE_AND_SCALE_ATTACKER_2_VAR_SCALE_1_FRAMES));
+    ShakeContext_Init(
+        &ctx->shake,
+        SHAKE_AND_SCALE_ATTACKER_2_EXTENT_X,
+        SHAKE_AND_SCALE_ATTACKER_2_EXTENT_Y,
+        SHAKE_AND_SCALE_ATTACKER_2_INTERVAL,
+        SHAKE_AND_SCALE_ATTACKER_2_AMOUNT);
 
-        ScaleLerpContext_InitXY(&v0->unk_20, v1, v3, v2, v4, 100, BattleAnimSystem_GetScriptVar(param0, 2));
-    }
-
-    ShakeContext_Init(&v0->unk_44, 2, 0, 0, 10);
-    BattleAnimSystem_StartAnimTask(v0->unk_18, ov12_02228868, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ShakeAndScaleAttacker2, ctx);
 }
 
 static void ov12_02228B10(SysTask *param0, void *param1)

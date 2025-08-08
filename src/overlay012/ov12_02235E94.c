@@ -2091,44 +2091,44 @@ static void ov12_022378A0(BallRotation *param0)
         param0->unk_B8.unk_08 = 12;
         return;
     case 6:
-        ov12_02225864(0, 0, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 0, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
         break;
     case 7:
         ManagedSprite_GetPositionXY(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
-        ov12_02225864(1, 4, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 4, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
         break;
     case 8:
-        ov12_02225864(1, 2, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 2, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
         break;
     case 9:
-        ov12_02225864(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
         break;
     case 10:
-        ov12_02225864(1, 3, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 3, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
         break;
     case 11:
-        ov12_02225864(1, 5, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 5, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 48;
         param0->unk_B8.unk_06 += 32;
         break;
     case 12:
-        ov12_02225864(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 16;
         param0->unk_B8.unk_06 += 16;
         param0->unk_B8.unk_08 = 12;
         return;
     case 13:
-        ov12_02225864(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 32;
         param0->unk_B8.unk_04 -= 20;
         param0->unk_B8.unk_06 += 38;
@@ -2141,19 +2141,19 @@ static void ov12_022378A0(BallRotation *param0)
         param0->unk_B8.unk_06 += 32;
         break;
     case 15:
-        ov12_02225864(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 1, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 64;
         param0->unk_B8.unk_06 += 8;
         param0->unk_B8.unk_08 = 16;
         return;
     case 16:
-        ov12_02225864(1, 3, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 3, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 64;
         param0->unk_B8.unk_06 += 8;
         param0->unk_B8.unk_08 = 16;
         return;
     case 17:
-        ov12_02225864(1, 5, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 5, &param0->unk_B8.unk_04, &param0->unk_B8.unk_06);
         param0->unk_B8.unk_10 = 64;
         param0->unk_B8.unk_06 += 8;
         param0->unk_B8.unk_08 = 16;
@@ -2169,27 +2169,27 @@ static void ov12_02237B14(BallRotation *param0, s16 *param1, s16 *param2)
 {
     switch (param0->unk_90.type) {
     case 0:
-        ov12_02225864(0, 0, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 0, param1, param2);
         (*param2) += (32 + 8);
         break;
     case 1:
-        ov12_02225864(0, 1, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 1, param1, param2);
         (*param2) += 38;
         break;
     case 2:
-        ov12_02225864(1, 2, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 2, param1, param2);
         (*param2) += (32 + 8);
         break;
     case 4:
-        ov12_02225864(1, 4, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 4, param1, param2);
         (*param2) += (32 + 8);
         break;
     case 3:
-        ov12_02225864(1, 3, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 3, param1, param2);
         (*param2) += 38;
         break;
     case 5:
-        ov12_02225864(1, 5, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(1, 5, param1, param2);
         (*param2) += 38;
         break;
     case 6:
@@ -2205,19 +2205,19 @@ static void ov12_02237B14(BallRotation *param0, s16 *param1, s16 *param2)
         *param2 = 100;
         break;
     case 9:
-        ov12_02225864(0, 0, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 0, param1, param2);
         break;
     case 10:
-        ov12_02225864(0, 0, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 0, param1, param2);
         break;
     case 11:
-        ov12_02225864(0, 0, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 0, param1, param2);
         break;
     case 12:
-        ov12_02225864(0, 0, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 0, param1, param2);
         break;
     case 13:
-        ov12_02225864(0, 0, param1, param2);
+        BattleAnimUtil_GetBattlerTypeDefaultPos2(0, 0, param1, param2);
         break;
     case 14:
         *param1 = 230;
