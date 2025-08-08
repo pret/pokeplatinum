@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay011/ov11_0221F840.h"
+#include "overlay011/particle_helper.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_022476F8.h"
 #include "overlay017/ov17_02247A48.h"
@@ -392,7 +392,7 @@ static void ov17_0223D164(SysTask *param0, void *param1)
             }
         }
 
-        ov11_0221F8F0();
+        ParticleHelper_DrawParticleSystems();
         SpriteSystem_DrawSprites(v0->unk_0C.unk_20);
         SpriteSystem_UpdateTransfer();
 

@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay011/ov11_0221F840.h"
+#include "overlay011/particle_helper.h"
 #include "overlay012/battle_anim_system.h"
 #include "overlay017/const_ov17_022536B4.h"
 #include "overlay017/ov17_0223F118.h"
@@ -400,7 +400,7 @@ static void ov17_0223B6F0(SysTask *param0, void *param1)
 
     if (v0->unk_7EC == 1) {
         PokemonSpriteManager_DrawSprites(v0->unk_0C.unk_04);
-        ov11_0221F8F0();
+        ParticleHelper_DrawParticleSystems();
         SpriteSystem_DrawSprites(v0->unk_0C.unk_1C);
         SpriteSystem_UpdateTransfer();
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);

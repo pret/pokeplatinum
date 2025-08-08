@@ -627,7 +627,7 @@ Overlay overlay11
 {
 	After overlay4
 	Object main.nef.p/src_overlay011_move_palettes.c.o
-	Object main.nef.p/src_overlay011_ov11_0221F840.c.o
+	Object main.nef.p/src_overlay011_particle_helper.c.o
 }
 
 Overlay overlay12

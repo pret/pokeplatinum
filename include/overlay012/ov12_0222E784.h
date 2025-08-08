@@ -3,6 +3,6 @@
 
 #include "overlay012/battle_anim_system.h"
 
-void BattleAnimScriptFunc_Mimic(BattleAnimSystem *param0);
+void BattleAnimScriptFunc_Mimic(BattleAnimSystem *system);
 
 #endif // POKEPLATINUM_OV12_0222E784_H
