@@ -43,7 +43,7 @@
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0224FA24(void *param0);
@@ -340,7 +340,7 @@ int ov17_0224F86C(ApplicationManager *appMan, int *param1)
     sub_02039794();
 
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
 
     return 1;

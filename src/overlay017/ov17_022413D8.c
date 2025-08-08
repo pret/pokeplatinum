@@ -6,7 +6,7 @@
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
 
-#include "overlay012/is_form_symmetrical.h"
+#include "battle_anim/is_form_symmetrical.h"
 #include "overlay017/const_ov17_022536B4.h"
 #include "overlay017/ov17_0223B140.h"
 #include "overlay017/ov17_0223F118.h"

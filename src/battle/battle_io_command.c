@@ -61,9 +61,9 @@
 #include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
-#include "overlay012/ov12_02235E94.h"
-#include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_02237728.h"
+#include "battle_anim/ov12_02235E94.h"
+#include "battle_anim/ov12_022380BC.h"
+#include "battle_anim/struct_ov12_02237728.h"
 
 #include "bg_window.h"
 #include "flags.h"

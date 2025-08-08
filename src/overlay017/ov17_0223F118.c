@@ -36,7 +36,7 @@
 #include "unk_02012744.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0223F6E8(SysTask *param0, void *param1);
@@ -73,7 +73,7 @@ static const struct {
 static void NitroStaticInit(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 

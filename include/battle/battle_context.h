@@ -10,7 +10,7 @@
 #include "battle/ai_context.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
-#include "overlay012/struct_ball_rotation_decl.h"
+#include "battle_anim/struct_ball_rotation_decl.h"
 
 #include "char_transfer.h"
 #include "sprite_system.h"

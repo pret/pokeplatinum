@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay011/particle_helper.h"
-#include "overlay012/battle_anim_system.h"
+#include "battle_anim/battle_anim_system.h"
 #include "overlay017/const_ov17_022536B4.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_0223F7E4.h"
@@ -54,7 +54,7 @@
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0223B728(BgConfig *param0);
@@ -375,7 +375,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
     sub_02095A24();
     sub_02039794();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
 
     return 1;

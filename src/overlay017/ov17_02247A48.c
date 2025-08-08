@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_02235E94.h"
-#include "overlay012/struct_ov12_02237728.h"
+#include "battle_anim/ov12_02235E94.h"
+#include "battle_anim/struct_ov12_02237728.h"
 #include "overlay017/ov17_022476F8.h"
 #include "overlay017/ov17_0224F18C.h"
 #include "overlay017/struct_ov17_02243C28.h"

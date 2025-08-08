@@ -31,7 +31,7 @@
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/particle_helper.h"
-#include "overlay012/battle_anim_system.h"
+#include "battle_anim/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -89,7 +89,7 @@
 
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay13);
 FS_EXTERN_OVERLAY(trainer_ai);
 FS_EXTERN_OVERLAY(pokedex);
@@ -225,7 +225,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         break;
     case 8:
         Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
         ov16_0223B790(appMan);
         *param1 = 9;
         break;
@@ -297,7 +297,7 @@ void ov16_0223B384(BattleSystem *battleSys)
     ov16_0223F314(battleSys, 3);
 
     if (battleSys->overlayFlags == 0) {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+        Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
     } else {
         Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
     }
@@ -328,7 +328,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay13));
 
     if (battleSys->overlayFlags == 0) {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
     } else {
         Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), 2);
     }
@@ -476,9 +476,9 @@ void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags)
 
     if (flags == 0) {
         Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
     } else {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+        Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
         Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), 2);
     }
 }
@@ -805,7 +805,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
 
     Heap_Free(battleSystem);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
 
     if (!sub_020389B8()) {
         Overlay_UnloadByID(FS_OVERLAY_ID(pokedex));

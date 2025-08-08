@@ -47,7 +47,7 @@
 #include "constdata/const_020F64C0.h"
 
 FS_EXTERN_OVERLAY(overlay11);
-FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(battle_anim);
 FS_EXTERN_OVERLAY(overlay76);
 
 typedef struct {
@@ -262,7 +262,7 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
 
     Heap_Destroy(HEAP_ID_53);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
 
     return 1;
 }

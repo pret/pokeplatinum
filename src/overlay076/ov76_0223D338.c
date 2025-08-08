@@ -11,9 +11,9 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay012/ov12_02235E94.h"
-#include "overlay012/struct_ov12_02236030.h"
-#include "overlay012/struct_ov12_02237728.h"
+#include "battle_anim/ov12_02235E94.h"
+#include "battle_anim/struct_ov12_02236030.h"
+#include "battle_anim/struct_ov12_02237728.h"
 #include "overlay076/const_ov76_0223EF3C.h"
 #include "overlay076/funcptr_ov76_0223D674.h"
 #include "overlay076/ov76_0223B140.h"
