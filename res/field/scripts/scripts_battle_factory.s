@@ -47,7 +47,7 @@ _0075:
     End
 
 _0091:
-    CheckHeapMemory 0
+    RecordHeapMemory
     CallIfEq VAR_MAP_LOCAL_4, 0, _0570
     CallIfEq VAR_MAP_LOCAL_4, 1, _0575
     GoTo _00B7
@@ -243,7 +243,7 @@ _03C1:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    CheckHeapMemory 1
+    AssertHeapMemory
     End
 
 _042A:
@@ -395,7 +395,7 @@ _05AB:
     Return
 
 _05B0:
-    CheckHeapMemory 0
+    RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_UNK_0x40B7, 0
     Message 11
