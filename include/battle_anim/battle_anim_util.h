@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV12_02235254_H
-#define POKEPLATINUM_OV12_02235254_H
+#ifndef POKEPLATINUM_BATTLE_ANIM_UTIL_H
+#define POKEPLATINUM_BATTLE_ANIM_UTIL_H
 
 #include <nitro/fx/fx.h>
 
@@ -96,4 +96,4 @@ static inline BOOL BattleAnimUtil_IsMaskSet(int value, int mask)
     return FALSE;
 }
 
-#endif // POKEPLATINUM_OV12_02235254_H
+#endif // POKEPLATINUM_BATTLE_ANIM_UTIL_H

@@ -639,7 +639,7 @@ Overlay battle_anim
 	Object main.nef.p/src_battle_anim_ov12_0222421C.c.o
 	Object main.nef.p/src_battle_anim_ov12_02225104.c.o
 	Object main.nef.p/src_battle_anim_ov12_02225640.c.o
-	Object main.nef.p/src_battle_anim_ov12_02225864.c.o
+	Object main.nef.p/src_battle_anim_battle_anim_helpers.c.o
 	Object main.nef.p/src_battle_anim_script_func_tables.c.o
 	Object main.nef.p/src_battle_anim_script_func_examples.c.o
 	Object main.nef.p/src_battle_anim_script_funcs_3.c.o
@@ -650,7 +650,7 @@ Overlay battle_anim
 	Object main.nef.p/src_battle_anim_script_funcs_2.c.o
 	Object main.nef.p/src_battle_anim_ov12_022346A4.c.o
 	Object main.nef.p/src_battle_anim_script_funcs_stat_change.c.o
-	Object main.nef.p/src_battle_anim_ov12_02235254.c.o
+	Object main.nef.p/src_battle_anim_battle_anim_util.c.o
 	Object main.nef.p/src_battle_anim_ov12_02235E94.c.o
 	Object main.nef.p/src_battle_anim_ov12_02237E54.c.o
 	Object main.nef.p/src_battle_anim_ov12_02237EFC.c.o
