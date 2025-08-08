@@ -735,7 +735,7 @@ static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
 static BOOL ScrCmd_311(ScriptContext *ctx);
 static BOOL ScrCmd_312(ScriptContext *ctx);
 static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx);
-static BOOL ScrCmd_313(ScriptContext *ctx);
+static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx);
 static BOOL ScrCmd_320(ScriptContext *ctx);
@@ -1557,7 +1557,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_310,
     ScrCmd_311,
     ScrCmd_312,
-    ScrCmd_313,
+    ScrCmd_CheckHeapMemory,
     ScrCmd_314,
     ScrCmd_315,
     ScrCmd_316,
@@ -7879,7 +7879,7 @@ u32 Unk_021C07E8;
 u32 Unk_021C07E4;
 u32 Unk_021C07EC;
 
-static BOOL ScrCmd_313(ScriptContext *ctx)
+static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v1 = ScriptContext_GetVar(ctx);

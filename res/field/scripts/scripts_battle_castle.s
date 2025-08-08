@@ -47,7 +47,7 @@ _0075:
     End
 
 _0091:
-    ScrCmd_313 0
+    CheckHeapMemory 0
     CallIfEq VAR_MAP_LOCAL_4, 0, _0664
     CallIfEq VAR_MAP_LOCAL_4, 1, _0669
     GoTo _00B7
@@ -291,7 +291,7 @@ _04D0:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_313 1
+    CheckHeapMemory 1
     End
 
 _0539:
@@ -438,7 +438,7 @@ _069F:
     Return
 
 _06A4:
-    ScrCmd_313 0
+    CheckHeapMemory 0
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_UNK_0x40BC, 0
     Message 33

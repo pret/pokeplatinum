@@ -4476,7 +4476,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_313 arg0
+    .macro CheckHeapMemory arg0
     .short 787
     .short \arg0
     .endm
