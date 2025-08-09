@@ -22,7 +22,7 @@ BOOL ScrCmd_083(ScriptContext *param0)
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
     v2 = SaveData_GetUnderground(saveData);
-    *v5 = sub_0202895C(v2, v3);
+    *v5 = Underground_TryAddGoodPC(v2, v3);
 
     return 0;
 }
@@ -47,7 +47,7 @@ BOOL ScrCmd_085(ScriptContext *param0)
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
     v2 = SaveData_GetUnderground(saveData);
-    *v5 = sub_02028984(v2, v3);
+    *v5 = Underground_IsRoomForGoodsInPC(v2, v3);
 
     return 0;
 }
@@ -72,7 +72,7 @@ BOOL ScrCmd_087(ScriptContext *param0)
     u16 *v5 = ScriptContext_GetVarPointer(param0);
 
     v2 = SaveData_GetUnderground(saveData);
-    *v5 = sub_02028E84(v2, v3);
+    *v5 = Underground_TryAddTrap(v2, v3);
 
     return 0;
 }

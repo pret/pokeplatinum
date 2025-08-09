@@ -9,7 +9,6 @@
 #include "overlay023/funcptr_ov23_0224FD84.h"
 #include "overlay023/funcptr_ov23_0224FE38.h"
 #include "overlay023/funcptr_ov23_0225021C.h"
-#include "overlay023/funcptr_ov23_022515D8.h"
 #include "overlay023/struct_ov23_02248D20.h"
 
 #include "bg_window.h"
@@ -37,18 +36,18 @@ typedef struct {
     Menu *unk_54;
     StringList *unk_58;
     Menu *unk_5C;
-    UnkFuncPtr_ov23_022515D8 unk_60;
-    UnkFuncPtr_ov23_022515D8 unk_64;
-    Strbuf *unk_68;
-    Strbuf *unk_6C;
-    StringTemplate *unk_70;
+    CursorCallback cursorCallback;
+    PrintCallback printCallback;
+    Strbuf *strbuf;
+    Strbuf *fmtString;
+    StringTemplate *template;
     UnkStruct_ov5_021D30A8 unk_74;
     ManagedSprite *unk_23C[8];
     u32 unk_25C;
     UnkFuncPtr_ov23_0224F758 unk_260;
-    UnkFuncPtr_ov23_0224FE38 unk_264;
-    UnkFuncPtr_ov23_0224FD84 unk_268;
-    UnkFuncPtr_ov23_0225021C unk_26C;
+    UnkFuncPtr_ov23_0224FE38 itemCountGetter;
+    UnkFuncPtr_ov23_0224FD84 itemGetter;
+    UnkFuncPtr_ov23_0225021C sphereSizeGetter;
     void *unk_270;
     u8 unk_274[5];
     u8 unk_279[5];

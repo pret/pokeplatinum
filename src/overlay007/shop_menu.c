@@ -1041,7 +1041,7 @@ static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         canFitItem = Bag_CanFitItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELDMAP);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        if (sub_020289A0(shopMenu->destInventory) == 200) {
+        if (Underground_GetGoodsCountPC(shopMenu->destInventory) == MAX_GOODS_PC_SLOTS) {
             canFitItem = FALSE;
         } else {
             canFitItem = TRUE;
@@ -1218,7 +1218,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELDMAP);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        sub_0202895C(shopMenu->destInventory, shopMenu->itemId);
+        Underground_TryAddGoodPC(shopMenu->destInventory, shopMenu->itemId);
     } else {
         sub_0202CAE0(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount);
     }

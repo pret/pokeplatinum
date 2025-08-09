@@ -366,7 +366,7 @@ static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
     if (v2 == v3 - 1) {
         v0 = 278;
     } else {
-        v0 = sub_020289B8(v1, v2);
+        v0 = Underground_GetGoodAtSlotPC(v1, v2);
         v0 = 145 + v0 - 7;
     }
 
@@ -382,7 +382,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     int v5;
 
     v0 = SaveData_GetUnderground(param0->fieldSystem->saveData);
-    v4 = sub_020289A0(v0);
+    v4 = Underground_GetGoodsCountPC(v0);
     param0->unk_48 = v4;
     v5 = v4 + 1;
 
@@ -442,8 +442,8 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         }
 
         for (v7 = 0; v7 < v4; v7++) {
-            v8 = sub_020289B8(v0, v7);
-            v9 = sub_02028AFC(v0, v7);
+            v8 = Underground_GetGoodAtSlotPC(v0, v7);
+            v9 = Underground_IsGoodAtSlotPlacedInBase(v0, v7);
 
             if (!v9) {
                 v11 = 1;
@@ -472,7 +472,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     v1.cursorCallback = ov23_022546A0;
     v1.parent = v0;
 
-    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD, sub_02028A10, v0, 1);
+    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD, Underground_MoveGoodPC, v0, 1);
 
     Window_CopyToVRAM(&param0->unk_08);
     Window_CopyToVRAM(&param0->unk_18);
