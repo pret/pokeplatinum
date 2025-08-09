@@ -439,10 +439,10 @@ static BOOL ScrCmd_Unused_0F7(ScriptContext *ctx);
 static BOOL ScrCmd_11B(ScriptContext *ctx);
 static BOOL ScrCmd_GetFloorsAbove(ScriptContext *ctx);
 static BOOL ScrCmd_ShowCurrentFloor(ScriptContext *ctx);
-static BOOL ScrCmd_11E(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_11F(ScriptContext *ctx);
-static BOOL ScrCmd_120(ScriptContext *ctx);
-static BOOL ScrCmd_121(ScriptContext *ctx);
+static BOOL ScrCmd_GetLocalDexSeenCount(ScriptContext *ctx);
+static BOOL ScrCmd_GetLocalDexCaughtCount_Unused(ScriptContext *ctx);
+static BOOL ScrCmd_GetNationalDexSeenCount(ScriptContext *ctx);
+static BOOL ScrCmd_GetNationalDexCaughtCount(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_122(ScriptContext *ctx);
 static BOOL ScrCmd_123(ScriptContext *ctx);
 static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
@@ -1056,10 +1056,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_11B,
     ScrCmd_GetFloorsAbove,
     ScrCmd_ShowCurrentFloor,
-    ScrCmd_11E,
-    ScrCmd_Unused_11F,
-    ScrCmd_120,
-    ScrCmd_121,
+    ScrCmd_GetLocalDexSeenCount,
+    ScrCmd_GetLocalDexCaughtCount_Unused,
+    ScrCmd_GetNationalDexSeenCount,
+    ScrCmd_GetNationalDexCaughtCount,
     ScrCmd_Unused_122,
     ScrCmd_123,
     ScrCmd_StartWildBattle,
@@ -4784,39 +4784,39 @@ static BOOL ScrCmd_ShowCurrentFloor(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_11E(ScriptContext *ctx)
+static BOOL ScrCmd_GetLocalDexSeenCount(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *dex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_CountSeen_Local(v0);
+    *destVar = Pokedex_CountSeen_Local(dex);
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_11F(ScriptContext *ctx)
+static BOOL ScrCmd_GetLocalDexCaughtCount_Unused(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *dex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_CountCaught_Local(v0);
+    *destVar = Pokedex_CountCaught_Local(dex);
     return FALSE;
 }
 
-static BOOL ScrCmd_120(ScriptContext *ctx)
+static BOOL ScrCmd_GetNationalDexSeenCount(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *dex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_CountSeen_National(v0);
+    *destVar = Pokedex_CountSeen_National(dex);
     return FALSE;
 }
 
-static BOOL ScrCmd_121(ScriptContext *ctx)
+static BOOL ScrCmd_GetNationalDexCaughtCount(ScriptContext *ctx)
 {
-    const Pokedex *v0 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    const Pokedex *dex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Pokedex_CountCaught_National(v0);
+    *destVar = Pokedex_CountCaught_National(dex);
     return FALSE;
 }
 
