@@ -1664,24 +1664,24 @@
     .short \destVarID    /* unused */
     .endm
 
-    .macro ScrCmd_11E arg0
+    .macro GetLocalDexSeenCount destVar
     .short 286
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_Unused_11F arg0
+    .macro GetLocalDexCaughtCount_Unused destVar
     .short 287
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_120 arg0
+    .macro GetNationalDexSeenCount destVar
     .short 288
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_121 arg0
+    .macro GetNationalDexCaughtCount destVar
     .short 289
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_Unused_122

@@ -94,7 +94,7 @@ _00F9:
     GoTo _0102
 
 _0102:
-    ScrCmd_120 VAR_0x8004
+    GetNationalDexSeenCount VAR_0x8004
     BufferNumber 1, VAR_0x8004
     GoToIfLt VAR_0x8004, 35, _015F
     Message 5

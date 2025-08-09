@@ -88,7 +88,7 @@ _00E8:
     CheckLocalDexCompleted VAR_RESULT
     CallIfEq VAR_RESULT, 1, _0120
 _0104:
-    ScrCmd_11E VAR_0x8004
+    GetLocalDexSeenCount VAR_0x8004
     BufferNumber 0, VAR_0x8004
     Message 1
     ScrCmd_123 0, VAR_RESULT
@@ -102,7 +102,7 @@ _0120:
     Return
 
 _0126:
-    ScrCmd_121 VAR_0x8004
+    GetNationalDexCaughtCount VAR_0x8004
     GetPlayerGender VAR_0x8005
     BufferNumber 0, VAR_0x8004
     Message 20
