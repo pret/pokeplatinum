@@ -439,7 +439,7 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
         manager->unk_70->textInputStr);
     TrainerInfo_SetGender(
         SaveData_GetTrainerInfo(manager->saveData),
-        manager->unk_70->unk_04);
+        manager->unk_70->playerGenderOrMonSpecies);
 
     {
         MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlock(manager->saveData);
@@ -2704,7 +2704,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_NAME_APP_KEYBOARD:
-        manager->unk_70->unk_04 = manager->playerGender;
+        manager->unk_70->playerGenderOrMonSpecies = manager->playerGender;
         manager->appMan = ApplicationManager_New(
             &gNamingScreenAppTemplate,
             manager->unk_70,
