@@ -702,11 +702,11 @@ void FieldTask_ChangeMapByLocation(FieldTask *task, const Location *nextLocation
     FieldTask_InitCall(task, FieldTask_ChangeMapSub, mapChangeSub);
 }
 
-void FieldTask_ChangeMapToLocation(FieldTask *task, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapToLocation(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapId, warpId, x, z, dir);
     FieldTask_ChangeMapByLocation(task, &location);
 }
 
@@ -743,21 +743,21 @@ static BOOL FieldTask_ChangeMapFull(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int param2, int x, int z, int dir)
+void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     MapChangeSubData *mapChangeSub = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeSubData));
 
     mapChangeSub->state = 0;
 
-    Location_Set(&mapChangeSub->nextLocation, mapId, param2, x, z, dir);
+    Location_Set(&mapChangeSub->nextLocation, mapId, warpId, x, z, dir);
     FieldTask_InitCall(task, FieldTask_ChangeMapFull, mapChangeSub);
 }
 
-void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int mapId, int warpId, int x, int z, int dir)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapId, warpId, x, z, dir);
 
     MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
@@ -768,11 +768,11 @@ void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param
     FieldSystem_CreateTask(fieldSystem, FieldTask_MapChangeFly, mapChangeData);
 }
 
-void FieldTask_ChangeMapChangeFly(FieldTask *task, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapChangeFly(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapId, warpId, x, z, dir);
 
     MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
@@ -1550,7 +1550,7 @@ static BOOL FieldTask_ChangeMapColosseum(FieldTask *task)
     return FALSE;
 }
 
-void sub_02054800(FieldTask *task, int mapId, int param2, int x, int z, int param5)
+void sub_02054800(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     Location nextLocation;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
@@ -1562,7 +1562,7 @@ void sub_02054800(FieldTask *task, int mapId, int param2, int x, int z, int para
 
     MapChangeData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeData));
 
-    Location_Set(&nextLocation, mapId, param2, x, z, param5);
+    Location_Set(&nextLocation, mapId, warpId, x, z, dir);
 
     mapChangeData->state = 0;
     mapChangeData->nextLocation = nextLocation;
