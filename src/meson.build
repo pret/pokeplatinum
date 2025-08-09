@@ -640,7 +640,7 @@ pokeplatinum_c = files(
     'overlay022/ov22_0225AF8C.c',
     'overlay022/ov22_0225B660.c',
     'overlay023/ov23_0223E140.c',
-    'overlay023/ov23_022416A8.c',
+    'overlay023/underground_spheres.c',
     'overlay023/ov23_02241F74.c',
     'overlay023/ov23_0224340C.c',
     'overlay023/ov23_02248C08.c',

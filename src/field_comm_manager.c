@@ -464,7 +464,7 @@ static void sub_02059C8C(void)
         return;
     }
 
-    sub_020594FC();
+    CommPlayerMan_PauseFieldSystem();
     sub_0205AB10(sFieldCommMan->fieldSystem, sub_02059C2C);
     FieldCommMan_SetTask(sub_02059C7C, 0);
 }

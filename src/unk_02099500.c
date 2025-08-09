@@ -6,7 +6,6 @@
 #include "struct_defs/struct_02039A58.h"
 
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
@@ -14,6 +13,7 @@
 #include "overlay023/ov23_0224DC40.h"
 #include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_02253598.h"
+#include "overlay023/underground_spheres.h"
 
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
@@ -87,7 +87,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_0224D4CC, ov23_0224D4FC, NULL },
     { ov23_0224B700, CommPacketSizeOf_NetId, NULL },
     { sub_02058018, CommPacketSizeOf_NetId, NULL },
-    { ov23_022419B4, CommPacketSizeOf_NetId, NULL },
+    { UndergroundSpheres_RetrieveBuriedSphere, CommPacketSizeOf_NetId, NULL },
     { ov23_0223E9D4, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EAF8, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EB8C, CommPacketSizeOf_NetId, NULL },

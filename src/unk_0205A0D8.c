@@ -305,7 +305,7 @@ static BOOL sub_0205A324(FieldTask *param0)
     case 5:
         sub_0205AC28(v0);
         Heap_Free(v0);
-        sub_02059514();
+        CommPlayerMan_ResumeFieldSystem();
         return 1;
     case 8:
         if (CommTiming_IsSyncState(93)) {
@@ -1061,7 +1061,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         }
         break;
     case 7:
-        sub_02059514();
+        CommPlayerMan_ResumeFieldSystem();
         Heap_Free(v1);
         return 1;
     default:
@@ -1075,8 +1075,8 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
 {
     int v0;
     int v1 = CommSys_CurNetId();
-    int v2 = sub_02058D88(v1);
-    int v3 = sub_02058DC0(v1);
+    int v2 = CommPlayer_GetXInFrontOfPlayerServer(v1);
+    int v3 = CommPlayer_GetZInFrontOfPlayerServer(v1);
 
     for (v0 = 0; v0 < CommSys_ConnectedCount(); v0++) {
         if (v0 == v1) {

@@ -354,7 +354,7 @@ u16 sub_0206BDBC(SaveData *saveData)
     v2 = SaveData_GetUnderground(saveData);
 
     if (!v4) {
-        if (sub_02028984(v2, 85)) {
+        if (Underground_IsRoomForGoodsInPC(v2, 85)) {
             sub_0202D414(v1, 13, 1);
             return 1;
         } else {
@@ -371,7 +371,7 @@ u16 sub_0206BDBC(SaveData *saveData)
     }
 
     if (!v5) {
-        if (sub_02028984(v2, 86)) {
+        if (Underground_IsRoomForGoodsInPC(v2, 86)) {
             sub_0202D414(v1, 0, 1);
             return 2;
         } else {
@@ -387,7 +387,7 @@ u16 sub_0206BDBC(SaveData *saveData)
         return 0;
     }
 
-    if (sub_02028984(v2, 87)) {
+    if (Underground_IsRoomForGoodsInPC(v2, 87)) {
         sub_0202D414(v1, 1, 1);
         return 3;
     } else {
