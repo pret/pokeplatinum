@@ -1,39 +1,39 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="29139" />
-	<row id="pl_msg_00000422_00000" index="0">
+	<row id="NamingScreen_Text_PlayerPrompt" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your name?{YESNO 0}</language>
 	</row>
-	<row id="pl_msg_00000422_00001" index="1">
+	<row id="NamingScreen_Text_PokemonPrompt" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 0, 0}’s nickname?{YESNO 0}</language>
 	</row>
-	<row id="pl_msg_00000422_00002" index="2">
+	<row id="NamingScreen_Text_BoxPrompt" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Box name?{YESNO 0}</language>
 	</row>
-	<row id="pl_msg_00000422_00003" index="3">
+	<row id="NamingScreen_Text_FriendNamePrompt" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your friend’s name?{YESNO 0}</language>
 	</row>
-	<row id="pl_msg_00000422_00004" index="4">
+	<row id="NamingScreen_Text_FriendCodePrompt" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Enter the Friend Code.{YESNO 0}</language>
 	</row>
-	<row id="pl_msg_00000422_00005" index="5">
+	<row id="NamingScreen_Text_GroupPrompt" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Group name?{YESNO 0}</language>
 	</row>
-	<row id="pl_msg_00000422_00006" index="6">
+	<row id="NamingScreen_Text_ThanksPrompt" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thank who?{YESNO 0}</language>
 	</row>
-	<row id="pl_msg_00000422_00007" index="7">
+	<row id="NamingScreen_Text_Group" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Group</language>
 	</row>
-	<row id="pl_msg_00000422_00008" index="8">
+	<row id="NamingScreen_Text_Xs" index="8">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXX</language>

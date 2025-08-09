@@ -10867,14 +10867,14 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->tmpPtr[1] = v16;
 
                 if (BattleSystem_PartyCount(v2->battleSys, 0) < 6) {
-                    v16->unk_44 = 0;
+                    v16->battleMsgID = 0;
                 } else {
-                    v16->unk_44 = 1174 + ov16_0223F240(v2->battleSys);
+                    v16->battleMsgID = 1174 + ov16_0223F240(v2->battleSys);
                 }
 
-                v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
+                v16->monForm = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
                 v16->pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
-                v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
+                v16->monGender = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
                 v2->tmpPtr[0] = ApplicationManager_New(&gNamingScreenAppTemplate, v16, HEAP_ID_BATTLE);
                 v2->seqNum = 21;
 
