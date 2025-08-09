@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_prop.h"
+#include "constants/map_object.h"
 
 #include "struct_defs/struct_0206C8D4.h"
 
@@ -27,323 +28,338 @@
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06[2];
-    fx32 unk_08;
-    int unk_0C;
-    fx32 unk_10;
-    fx32 unk_14;
+#define BOAT_CUTSCENE_STEP_START_WITHOUT_BRIDGE 0
+#define BOAT_CUTSCENE_STEP_START_WITH_BRIDGE    1
+#define BOAT_CUTSCENE_STEP_FADE_OUT_START       2
+#define BOAT_CUTSCENE_STEP_FADE_OUT_END         3
+#define BOAT_CUTSCENE_STEP_PLAY_TRAVEL_CUTSCENE 4
+#define BOAT_CUTSCENE_STEP_MAP_TRANSITION       5
+#define BOAT_CUTSCENE_STEP_FADE_IN              6
+#define BOAT_CUTSCENE_STEP_CLEAN_UP             7
+
+#define BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT  1
+#define BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT 2
+
+typedef struct BoatCutscene {
+    u8 step;
+    u8 startDir;
+    u8 bridgeReached;
+    u8 speedTick;
+    u8 endDir;
+    u8 dummy;
+    u8 unused[2];
+    fx32 cameraAdjustment;
+    int goalDistance;
+    fx32 bridgeDistance;
+    fx32 distanceTraveled;
     int mapID;
-    int unk_1C;
-    int unk_20;
-    VecFx32 unk_24;
-    MapProp *unk_30;
-    ModelAttributes unk_34;
-    fx32 unk_7C;
-} UnkStruct_0206CAD0;
+    int x;
+    int z;
+    VecFx32 cameraPos;
+    MapProp *boat;
+    ModelAttributes areaModelAttrs;
+    fx32 speed;
+} BoatCutscene;
 
-static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2);
-static BOOL sub_0206C8F8(FieldTask *param0);
-static BOOL sub_0206C964(FieldTask *param0);
-static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0);
-static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2);
-static void sub_0206CBA0(FieldSystem *fieldSystem);
-static void sub_0206CC64(UnkStruct_0206CAD0 *param0);
+static void FieldSystem_PlayBoatTravelCutscene(FieldSystem *fieldSystem, const u8 startDir, ModelAttributes *areaModelAttrs);
+static BOOL FieldTask_PlayBoatTravelCutscene(FieldTask *taskMan);
+static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan);
+static BOOL BoatCutscene_MoveBoatToGoal(BoatCutscene *boatCutscene);
+static BOOL BoatCutscene_CheckBridgeReached(const fx32 *distanceTraveled, const fx32 *bridgeDistance, u8 *bridgeReached);
+static void FieldSystem_LoadCanalaveBridgeAnimation(FieldSystem *fieldSystem);
+static void BoatCutscene_PanStartingCamera(BoatCutscene *boatCutscene);
 
-void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, const int param3, const int param4, const int param5)
+void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 startDir, const u8 endDir, const int mapID, const int x, const int z)
 {
-    UnkStruct_0206CAD0 *v0;
-    BOOL v1;
-    BOOL v2;
-    TerrainCollisionHitbox v3;
-    int v4;
-    int v5;
+    BoatCutscene *boatCutscene;
+    BOOL moveBeforeFadeOut;
+    BOOL boatFound;
+    TerrainCollisionHitbox hitbox;
+    int targetMapPropModelID;
+    int goalDistance;
 
-    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206CAD0));
+    boatCutscene = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(BoatCutscene));
 
-    v0->unk_01 = param1;
-    v0->unk_04 = param2;
-    v0->mapID = param3;
-    v0->unk_1C = param4;
-    v0->unk_20 = param5;
-    v0->unk_34 = *(fieldSystem->areaModelAttrs);
+    boatCutscene->startDir = startDir;
+    boatCutscene->endDir = endDir;
+    boatCutscene->mapID = mapID;
+    boatCutscene->x = x;
+    boatCutscene->z = z;
+    boatCutscene->areaModelAttrs = *(fieldSystem->areaModelAttrs);
 
-    v1 = 0;
+    moveBeforeFadeOut = FALSE;
 
-    v0->unk_10 = 0xffffffff;
-    v0->unk_05 = 0;
-    v0->unk_08 = 0;
+    boatCutscene->bridgeDistance = 0xffffffff;
+    boatCutscene->dummy = 0;
+    boatCutscene->cameraAdjustment = 0;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_64, SEQ_NONE, 0);
 
-    if (param1 == 3) {
-        v4 = MAP_PROP_MODEL_REGULAR_SHIP;
-        TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &v3);
-        v1 = 1;
-        v5 = (25 * 16 * FX32_ONE);
-        v0->unk_10 = (14 * 16 * FX32_ONE);
-    } else if (param1 == 2) {
-        v4 = MAP_PROP_MODEL_SCREW_STEAMSHIP_SPIRAL;
-        TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &v3);
-        v1 = 1;
-        v5 = (12 * 16 * FX32_ONE);
+    if (startDir == DIR_EAST) {
+        targetMapPropModelID = MAP_PROP_MODEL_REGULAR_SHIP;
+        TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &hitbox);
+        moveBeforeFadeOut = TRUE;
+        goalDistance = (25 * 16 * FX32_ONE);
+        boatCutscene->bridgeDistance = (14 * 16 * FX32_ONE);
+    } else if (startDir == DIR_WEST) {
+        targetMapPropModelID = MAP_PROP_MODEL_SCREW_STEAMSHIP_SPIRAL;
+        TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &hitbox);
+        moveBeforeFadeOut = TRUE;
+        goalDistance = (12 * 16 * FX32_ONE);
     }
 
-    if (v1) {
-        v2 = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, v4, &v3, &v0->unk_30);
+    if (moveBeforeFadeOut) {
+        boatFound = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, targetMapPropModelID, &hitbox, &boatCutscene->boat);
 
-        if (v2) {
-            v0->unk_0C = v5;
-            v0->unk_14 = 0;
-            v0->unk_03 = 0;
-            v0->unk_7C = (FX32_ONE / 4);
+        if (boatFound) {
+            boatCutscene->goalDistance = goalDistance;
+            boatCutscene->distanceTraveled = 0;
+            boatCutscene->speedTick = 0;
+            boatCutscene->speed = (FX32_ONE / 4);
 
-            PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v0->unk_24);
+            PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &boatCutscene->cameraPos);
             Camera_ReleaseTarget(fieldSystem->camera);
-            Camera_TrackTarget(&v0->unk_24, fieldSystem->camera);
+            Camera_TrackTarget(&boatCutscene->cameraPos, fieldSystem->camera);
 
-            if (v0->unk_10 != 0xffffffff) {
-                v0->unk_02 = 0;
-                v0->unk_00 = 1;
+            if (boatCutscene->bridgeDistance != 0xffffffff) {
+                boatCutscene->bridgeReached = FALSE;
+                boatCutscene->step = BOAT_CUTSCENE_STEP_START_WITH_BRIDGE;
 
-                sub_0206CBA0(fieldSystem);
+                FieldSystem_LoadCanalaveBridgeAnimation(fieldSystem);
                 Sound_PlayEffect(SEQ_SE_DP_SHIP02);
             } else {
-                v0->unk_00 = 0;
+                boatCutscene->step = BOAT_CUTSCENE_STEP_START_WITHOUT_BRIDGE;
             }
         } else {
             GF_ASSERT(FALSE);
-            Heap_Free(v0);
+            Heap_Free(boatCutscene);
             return;
         }
     } else {
-        v0->unk_00 = 2;
+        boatCutscene->step = BOAT_CUTSCENE_STEP_FADE_OUT_START;
     }
 
-    FieldTask_InitCall(fieldSystem->task, sub_0206C964, v0);
+    FieldTask_InitCall(fieldSystem->task, FieldSystem_PlayBoatCutsceneStep, boatCutscene);
 }
 
-static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2)
+static void FieldSystem_PlayBoatTravelCutscene(FieldSystem *fieldSystem, const u8 startDir, ModelAttributes *areaModelAttrs)
 {
-    UnkStruct_0206C8D4 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206C8D4));
+    UnkStruct_0206C8D4 *taskEnv = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206C8D4));
 
-    v0->unk_04 = param2;
-    v0->unk_00 = param1;
+    taskEnv->unk_04 = areaModelAttrs;
+    taskEnv->unk_00 = startDir;
 
-    FieldTask_InitCall(fieldSystem->task, sub_0206C8F8, v0);
+    FieldTask_InitCall(fieldSystem->task, FieldTask_PlayBoatTravelCutscene, taskEnv);
 }
 
-static BOOL sub_0206C8F8(FieldTask *taskMan)
+static BOOL FieldTask_PlayBoatTravelCutscene(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_0206C8D4 *v1 = FieldTask_GetEnv(taskMan);
-    int *v2 = FieldTask_GetState(taskMan);
+    UnkStruct_0206C8D4 *taskEnv = FieldTask_GetEnv(taskMan);
+    int *state = FieldTask_GetState(taskMan);
 
-    switch (*v2) {
+    switch (*state) {
     case 0:
-        if ((v1->unk_00 == 1) || (v1->unk_00 == 2)) {
-            sub_0203E2D4(fieldSystem, v1);
+        if ((taskEnv->unk_00 == DIR_SOUTH) || (taskEnv->unk_00 == DIR_WEST)) {
+            sub_0203E2D4(fieldSystem, taskEnv);
         } else {
-            sub_0203E2AC(fieldSystem, v1);
+            sub_0203E2AC(fieldSystem, taskEnv);
         }
         break;
     case 1:
         if (FieldSystem_IsRunningApplication(fieldSystem)) {
-            return 0;
+            return FALSE;
         }
         break;
     case 2:
-        Heap_Free(v1);
-        return 1;
+        Heap_Free(taskEnv);
+        return TRUE;
     }
 
-    (*v2)++;
-    return 0;
+    (*state)++;
+    return FALSE;
 }
 
-static BOOL sub_0206C964(FieldTask *taskMan)
+static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_0206CAD0 *v1 = FieldTask_GetEnv(taskMan);
+    BoatCutscene *boatCutscene = FieldTask_GetEnv(taskMan);
 
-    switch (v1->unk_00) {
-    case 0:
-        sub_0206CC64(v1);
+    switch (boatCutscene->step) {
+    case BOAT_CUTSCENE_STEP_START_WITHOUT_BRIDGE:
+        BoatCutscene_PanStartingCamera(boatCutscene);
 
-        if (sub_0206CAD0(v1)) {
-            v1->unk_00 = 2;
+        if (BoatCutscene_MoveBoatToGoal(boatCutscene)) {
+            boatCutscene->step = BOAT_CUTSCENE_STEP_FADE_OUT_START;
         }
         break;
-    case 1: {
-        BOOL v2;
+    case BOAT_CUTSCENE_STEP_START_WITH_BRIDGE: {
+        BOOL goalReached;
 
-        sub_0206CC64(v1);
-        v2 = sub_0206CAD0(v1);
+        BoatCutscene_PanStartingCamera(boatCutscene);
+        goalReached = BoatCutscene_MoveBoatToGoal(boatCutscene);
 
-        if (!v1->unk_02) {
-            if (sub_0206CB8C(&v1->unk_10, &v1->unk_14, &v1->unk_02)) {
-                MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 1, 0);
-                MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 2, 0);
+        if (!boatCutscene->bridgeReached) {
+            if (BoatCutscene_CheckBridgeReached(&boatCutscene->bridgeDistance, &boatCutscene->distanceTraveled, &boatCutscene->bridgeReached)) {
+                MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT, 0);
+                MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT, 0);
                 Sound_PlayEffect(SEQ_SE_DP_SHIP03);
             }
         } else {
-            if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 2)) && v2) {
-                v1->unk_00 = 2;
+            if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT)) && goalReached) {
+                boatCutscene->step = BOAT_CUTSCENE_STEP_FADE_OUT_START;
             }
         }
     } break;
-    case 2:
+    case BOAT_CUTSCENE_STEP_FADE_OUT_START:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELDMAP);
         Sound_FadeOutBGM(0, 6);
-        v1->unk_00 = 3;
+        boatCutscene->step = BOAT_CUTSCENE_STEP_FADE_OUT_END;
         break;
-    case 3:
+    case BOAT_CUTSCENE_STEP_FADE_OUT_END:
         if (!IsScreenFadeDone() || (Sound_IsFadeActive())) {
-            return 0;
+            return FALSE;
         }
 
-        if (v1->unk_10 != 0xffffffff) {
-            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 1);
-            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 2);
+        if (boatCutscene->bridgeDistance != 0xffffffff) {
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT);
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT);
         }
 
         FieldTransition_FinishMap(taskMan);
-        v1->unk_00 = 4;
+        boatCutscene->step = BOAT_CUTSCENE_STEP_PLAY_TRAVEL_CUTSCENE;
         break;
-    case 4:
-        sub_0206C8D4(fieldSystem, v1->unk_01, &v1->unk_34);
-        v1->unk_00 = 5;
+    case BOAT_CUTSCENE_STEP_PLAY_TRAVEL_CUTSCENE:
+        FieldSystem_PlayBoatTravelCutscene(fieldSystem, boatCutscene->startDir, &boatCutscene->areaModelAttrs);
+        boatCutscene->step = BOAT_CUTSCENE_STEP_MAP_TRANSITION;
         break;
-    case 5:
-        FieldTask_ChangeMapToLocation(taskMan, v1->mapID, -1, v1->unk_1C, v1->unk_20, v1->unk_04);
-        v1->unk_00 = 6;
+    case BOAT_CUTSCENE_STEP_MAP_TRANSITION:
+        FieldTask_ChangeMapToLocation(taskMan, boatCutscene->mapID, -1, boatCutscene->x, boatCutscene->z, boatCutscene->endDir);
+        boatCutscene->step = BOAT_CUTSCENE_STEP_FADE_IN;
         break;
-    case 6:
-        Sound_PlayMapBGM(fieldSystem, v1->mapID);
+    case BOAT_CUTSCENE_STEP_FADE_IN:
+        Sound_PlayMapBGM(fieldSystem, boatCutscene->mapID);
         FieldTransition_StartMapAndFadeIn(taskMan);
-        v1->unk_00 = 7;
+        boatCutscene->step = BOAT_CUTSCENE_STEP_CLEAN_UP;
         break;
-    case 7:
-        Heap_Free(v1);
-        return 1;
+    case BOAT_CUTSCENE_STEP_CLEAN_UP:
+        Heap_Free(boatCutscene);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0)
+static BOOL BoatCutscene_MoveBoatToGoal(BoatCutscene *boatCutscene)
 {
-    VecFx32 v0;
+    VecFx32 position;
 
-    v0 = MapProp_GetPosition(param0->unk_30);
+    position = MapProp_GetPosition(boatCutscene->boat);
 
-    switch (param0->unk_01) {
-    case 0:
-        v0.z += param0->unk_7C;
-        param0->unk_24.z += param0->unk_7C;
+    switch (boatCutscene->startDir) {
+    case DIR_NORTH:
+        position.z += boatCutscene->speed;
+        boatCutscene->cameraPos.z += boatCutscene->speed;
         break;
-    case 3:
-        v0.z -= param0->unk_7C;
-        param0->unk_24.z -= param0->unk_7C;
+    case DIR_EAST:
+        position.z -= boatCutscene->speed;
+        boatCutscene->cameraPos.z -= boatCutscene->speed;
         break;
-    case 2:
-        v0.x += param0->unk_7C;
-        param0->unk_24.x += param0->unk_7C;
+    case DIR_WEST:
+        position.x += boatCutscene->speed;
+        boatCutscene->cameraPos.x += boatCutscene->speed;
         break;
-    case 1:
-        v0.x -= param0->unk_7C;
-        param0->unk_24.x -= param0->unk_7C;
+    case DIR_SOUTH:
+        position.x -= boatCutscene->speed;
+        boatCutscene->cameraPos.x -= boatCutscene->speed;
         break;
     default:
-        GF_ASSERT(0);
-        return 1;
+        GF_ASSERT(FALSE);
+        return TRUE;
     }
 
-    if (param0->unk_7C < (FX32_ONE)) {
-        param0->unk_03++;
+    if (boatCutscene->speed < (FX32_ONE)) {
+        boatCutscene->speedTick++;
 
-        if (param0->unk_03 >= 24) {
-            param0->unk_7C += FX32_ONE;
-            param0->unk_03 = 0;
+        if (boatCutscene->speedTick >= 24) {
+            boatCutscene->speed += FX32_ONE;
+            boatCutscene->speedTick = 0;
         }
     }
 
-    MapProp_SetPosition(param0->unk_30, &v0);
-    param0->unk_14 += param0->unk_7C;
+    MapProp_SetPosition(boatCutscene->boat, &position);
+    boatCutscene->distanceTraveled += boatCutscene->speed;
 
-    if (param0->unk_0C <= param0->unk_14) {
-        return 1;
+    if (boatCutscene->goalDistance <= boatCutscene->distanceTraveled) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static BOOL sub_0206CB8C(const fx32 *param0, const fx32 *param1, u8 *param2)
+static BOOL BoatCutscene_CheckBridgeReached(const fx32 *distanceTraveled, const fx32 *bridgeDistance, u8 *bridgeReached)
 {
-    if ((*param0) <= (*param1)) {
-        (*param2) = 1;
-        return 1;
+    if ((*distanceTraveled) <= (*bridgeDistance)) {
+        (*bridgeReached) = TRUE;
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-static void sub_0206CBA0(FieldSystem *fieldSystem)
+static void FieldSystem_LoadCanalaveBridgeAnimation(FieldSystem *fieldSystem)
 {
-    u8 v0;
-    BOOL v1;
-    int v2[2] = {
+    u8 bridgeIndex;
+    BOOL mapPropLoaded;
+    int bridgeIDs[2] = {
         MAP_PROP_MODEL_CANALAVE_BRIDGE_LEFT,
         MAP_PROP_MODEL_CANALAVE_BRIDGE_RIGHT
     };
-    int v3[2] = { 1, 2 };
+    int tags[2] = {
+        BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT,
+        BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_RIGHT
+    };
 
-    for (v0 = 0; v0 < 2; v0++) {
-        v1 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v2[v0], NULL, NULL);
+    for (bridgeIndex = 0; bridgeIndex < 2; bridgeIndex++) {
+        mapPropLoaded = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, bridgeIDs[bridgeIndex], NULL, NULL);
 
-        if (v1) {
-            NNSG3dResMdl *v4;
-            NNSG3dResFileHeader **v5;
-            MapProp *v6;
-            NNSG3dRenderObj *v7;
+        if (mapPropLoaded) {
+            NNSG3dResMdl *bridgeModel;
+            NNSG3dResFileHeader **bridgeModelFile;
+            MapProp *bridgeMapProp;
+            NNSG3dRenderObj *bridgeRenderObj;
 
-            v5 = AreaDataManager_GetMapPropModelFile(v2[v0], fieldSystem->areaDataManager);
-            v4 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v5), 0);
-            v1 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v2[v0], &v6, NULL);
+            bridgeModelFile = AreaDataManager_GetMapPropModelFile(bridgeIDs[bridgeIndex], fieldSystem->areaDataManager);
+            bridgeModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*bridgeModelFile), 0);
+            mapPropLoaded = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, bridgeIDs[bridgeIndex], &bridgeMapProp, NULL);
 
-            GF_ASSERT(v1);
-            v7 = MapProp_GetRenderObj(v6);
+            GF_ASSERT(mapPropLoaded);
+            bridgeRenderObj = MapProp_GetRenderObj(bridgeMapProp);
 
-            MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, v3[v0], v2[v0], v7, v4, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
+            MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, tags[bridgeIndex], bridgeIDs[bridgeIndex], bridgeRenderObj, bridgeModel, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, FALSE);
         } else {
             GF_ASSERT(FALSE);
         }
     }
 }
 
-static void sub_0206CC64(UnkStruct_0206CAD0 *param0)
+static void BoatCutscene_PanStartingCamera(BoatCutscene *boatCutscene)
 {
-    switch (param0->unk_01) {
-    case 3:
-        if (param0->unk_08 < (FX32_ONE * 16 * 2)) {
-            param0->unk_24.x += (FX32_ONE);
-            param0->unk_08 += (FX32_ONE);
+    switch (boatCutscene->startDir) {
+    case DIR_EAST:
+        if (boatCutscene->cameraAdjustment < (FX32_ONE * 16 * 2)) {
+            boatCutscene->cameraPos.x += (FX32_ONE);
+            boatCutscene->cameraAdjustment += (FX32_ONE);
         }
         break;
-    case 2:
-        if (param0->unk_08 < (FX32_ONE * 16 * 3)) {
-            param0->unk_24.z += (FX32_ONE / 2);
-            param0->unk_08 += (FX32_ONE / 2);
+    case DIR_WEST:
+        if (boatCutscene->cameraAdjustment < (FX32_ONE * 16 * 3)) {
+            boatCutscene->cameraPos.z += (FX32_ONE / 2);
+            boatCutscene->cameraAdjustment += (FX32_ONE / 2);
         }
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return;
     }
 }

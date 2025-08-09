@@ -3215,13 +3215,13 @@
     .short \arg1
     .endm
 
-    .macro PlayBoatCutscene arg0, arg1, arg2, arg3, arg4
+    .macro PlayBoatCutscene startDir, endDir, mapID, x, z
     .short 573
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .byte \startDir
+    .byte \endDir
+    .short \mapID
+    .short \x
+    .short \z
     .endm
 
     /* See the convenience macro below for the uses of destVar1 & destVar2 */
