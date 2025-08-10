@@ -50,6 +50,7 @@
 
 #include "applications/naming_screen.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "boat_cutscene/boat_cutscene.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
@@ -213,7 +214,6 @@
 #include "unk_02069BE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206C660.h"
-#include "unk_0206C784.h"
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
 #include "unk_02070428.h"

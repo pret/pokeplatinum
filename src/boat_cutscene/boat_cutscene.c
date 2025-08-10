@@ -1,4 +1,4 @@
-#include "unk_0206C784.h"
+#include "boat_cutscene/boat_cutscene.h"
 
 #include <nitro.h>
 #include <string.h>
