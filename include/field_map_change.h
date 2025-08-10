@@ -29,7 +29,7 @@ FieldTaskFunc FieldMapChange_GetMapChangeUndergroundTask(const FieldSystem *fiel
 void sub_020544F0(FieldTask *task, const Location *param1);
 void sub_020545EC(FieldSystem *fieldSystem);
 void sub_02054708(FieldTask *task);
-void sub_02054800(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
+void FieldTask_StartChangeMapColosseum(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
 void sub_02054864(FieldTask *task);
 
 #endif // POKEPLATINUM_FIELD_MAP_CHANGE_H

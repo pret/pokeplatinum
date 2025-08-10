@@ -4437,7 +4437,7 @@ static BOOL ScrCmd_203(ScriptContext *ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
     v4 = -1;
 
-    sub_02054800(ctx->fieldSystem->task, v0, v4, v1, v2, v3);
+    FieldTask_StartChangeMapColosseum(ctx->fieldSystem->task, v0, v4, v1, v2, v3);
 
     return TRUE;
 }

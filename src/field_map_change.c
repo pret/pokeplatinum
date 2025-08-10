@@ -1550,7 +1550,7 @@ static BOOL FieldTask_ChangeMapColosseum(FieldTask *task)
     return FALSE;
 }
 
-void sub_02054800(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
+void FieldTask_StartChangeMapColosseum(FieldTask *task, int mapId, int warpId, int x, int z, int dir)
 {
     Location nextLocation;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
