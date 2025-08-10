@@ -162,9 +162,9 @@ static BOOL FieldTask_PlayBoatTravelCutscene(FieldTask *taskMan)
     switch (*state) {
     case BOAT_TRAVEL_CUTSCENE_TASK_STATE_START:
         if ((taskEnv->startDir == DIR_SOUTH) || (taskEnv->startDir == DIR_WEST)) {
-            FieldTask_PlayBoatTravelCutscene_ShipDemoPl(fieldSystem, taskEnv);
+            FieldTask_PlayBoatCutscene_ShipDemoPl(fieldSystem, taskEnv);
         } else {
-            FieldTask_PlayBoatTravelCutscene_ShipDemo(fieldSystem, taskEnv);
+            FieldTask_PlayBoatCutscene_ShipDemo(fieldSystem, taskEnv);
         }
         break;
     case BOAT_TRAVEL_CUTSCENE_TASK_STATE_WAIT:

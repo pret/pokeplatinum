@@ -22,7 +22,7 @@
 
 #define BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_NUM_ANIMATIONS 4
 
-typedef struct BoatTravelCutscene_ShipDemo {
+typedef struct BoatCutscene_ShipDemo {
     Camera *camera;
     NNSG3dRenderObj renderObj;
     NNSG3dResMdl *model;
@@ -33,16 +33,16 @@ typedef struct BoatTravelCutscene_ShipDemo {
     VecFx32 unused;
     u8 startDir;
     u8 firstAnimationFinished;
-} BoatTravelCutscene_ShipDemo;
+} BoatCutscene_ShipDemo;
 
-typedef struct BoatTravelCutscene_ShipDemo_NarcMemberIndexes {
+typedef struct BoatCutscene_ShipDemo_NarcMemberIndexes {
     u16 modelMemberIndex;
     u16 animationMemberIndexes[BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_NUM_ANIMATIONS];
-} BoatTravelCutscene_ShipDemo_NarcMemberIndexes;
+} BoatCutscene_ShipDemo_NarcMemberIndexes;
 
-static void BoatTravelCutscene_ShipDemo_Init3D(void);
-static void BoatTravelCutscene_ShipDemo_SetGXBanks(void);
-static void BoatTravelCutscene_ShipDemo_LoadAnimations(BoatTravelCutscene_ShipDemo *cutsceneData);
+static void BoatCutscene_ShipDemo_Init3D(void);
+static void BoatCutscene_ShipDemo_SetGXBanks(void);
+static void BoatCutscene_ShipDemo_LoadAnimations(BoatCutscene_ShipDemo *cutsceneData);
 
 static const CameraConfiguration cameraConfig = {
     .distance = BOAT_TRAVEL_CUTSCENE_CAMERA_BASE_DISTANCE,
@@ -65,7 +65,7 @@ static const GXRgb edgeColorTable[8] = {
     GX_RGB(4, 4, 4)
 };
 
-static BoatTravelCutscene_ShipDemo_NarcMemberIndexes narcMemberIndexes[4] = {
+static BoatCutscene_ShipDemo_NarcMemberIndexes narcMemberIndexes[4] = {
     {
         2,
         { 0, 1, 3, 4 },
@@ -84,16 +84,16 @@ static BoatTravelCutscene_ShipDemo_NarcMemberIndexes narcMemberIndexes[4] = {
     },
 };
 
-int BoatTravelCutscene_ShipDemo_Init(ApplicationManager *appMan, int *state)
+int BoatCutscene_ShipDemo_Init(ApplicationManager *appMan, int *state)
 {
     u8 lightID;
-    BoatTravelCutscene_ShipDemo *cutsceneData;
+    BoatCutscene_ShipDemo *cutsceneData;
     BoatTravelCutscene *taskEnv;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_72, BOAT_TRAVEL_CUTSCENE_HEAP_SIZE);
 
-    cutsceneData = ApplicationManager_NewData(appMan, sizeof(BoatTravelCutscene_ShipDemo), HEAP_ID_72);
-    memset(cutsceneData, 0, sizeof(BoatTravelCutscene_ShipDemo));
+    cutsceneData = ApplicationManager_NewData(appMan, sizeof(BoatCutscene_ShipDemo), HEAP_ID_72);
+    memset(cutsceneData, 0, sizeof(BoatCutscene_ShipDemo));
 
     taskEnv = ApplicationManager_Args(appMan);
 
@@ -101,8 +101,8 @@ int BoatTravelCutscene_ShipDemo_Init(ApplicationManager *appMan, int *state)
     cutsceneData->firstAnimationFinished = FALSE;
     cutsceneData->camera = Camera_Alloc(HEAP_ID_72);
 
-    BoatTravelCutscene_ShipDemo_Init3D();
-    BoatTravelCutscene_ShipDemo_LoadAnimations(cutsceneData);
+    BoatCutscene_ShipDemo_Init3D();
+    BoatCutscene_ShipDemo_LoadAnimations(cutsceneData);
 
     VecFx32 cameraTarget = { 0, 0, 0 };
 
@@ -122,7 +122,7 @@ int BoatTravelCutscene_ShipDemo_Init(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-int BoatTravelCutscene_ShipDemo_Main(ApplicationManager *appMan, int *state)
+int BoatCutscene_ShipDemo_Main(ApplicationManager *appMan, int *state)
 {
     u8 animIndex;
     BOOL unused;
@@ -147,7 +147,7 @@ int BoatTravelCutscene_ShipDemo_Main(ApplicationManager *appMan, int *state)
         0,
         0
     };
-    BoatTravelCutscene_ShipDemo *cutsceneData = ApplicationManager_Data(appMan);
+    BoatCutscene_ShipDemo *cutsceneData = ApplicationManager_Data(appMan);
 
     switch (*state) {
     case BOAT_TRAVEL_CUTSCENE_STATE_SFX:
@@ -181,10 +181,10 @@ int BoatTravelCutscene_ShipDemo_Main(ApplicationManager *appMan, int *state)
     return 0;
 }
 
-int BoatTravelCutscene_ShipDemo_Exit(ApplicationManager *appMan, int *state)
+int BoatCutscene_ShipDemo_Exit(ApplicationManager *appMan, int *state)
 {
     u8 animIndex;
-    BoatTravelCutscene_ShipDemo *cutsceneData = ApplicationManager_Data(appMan);
+    BoatCutscene_ShipDemo *cutsceneData = ApplicationManager_Data(appMan);
 
     for (animIndex = 0; animIndex < BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_NUM_ANIMATIONS; animIndex++) {
         NNS_G3dFreeAnmObj(&cutsceneData->allocator, cutsceneData->anmObjs[animIndex]);
@@ -200,7 +200,7 @@ int BoatTravelCutscene_ShipDemo_Exit(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
-static void BoatTravelCutscene_ShipDemo_Init3D(void)
+static void BoatCutscene_ShipDemo_Init3D(void)
 {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -210,7 +210,7 @@ static void BoatTravelCutscene_ShipDemo_Init3D(void)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    BoatTravelCutscene_ShipDemo_SetGXBanks();
+    BoatCutscene_ShipDemo_SetGXBanks();
     Easy3D_Init(HEAP_ID_72);
 
     G3X_EdgeMarking(TRUE);
@@ -219,7 +219,7 @@ static void BoatTravelCutscene_ShipDemo_Init3D(void)
     GXLayers_SwapDisplay();
 }
 
-static void BoatTravelCutscene_ShipDemo_SetGXBanks(void)
+static void BoatCutscene_ShipDemo_SetGXBanks(void)
 {
     UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_C,
@@ -237,7 +237,7 @@ static void BoatTravelCutscene_ShipDemo_SetGXBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void BoatTravelCutscene_ShipDemo_LoadAnimations(BoatTravelCutscene_ShipDemo *cutsceneData)
+static void BoatCutscene_ShipDemo_LoadAnimations(BoatCutscene_ShipDemo *cutsceneData)
 {
     u8 animIndex;
     NNSG3dResTex *texture;

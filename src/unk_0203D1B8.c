@@ -1473,28 +1473,28 @@ void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void FieldTask_PlayBoatTravelCutscene_ShipDemo(FieldSystem *fieldSystem, void *taskEnv)
+void FieldTask_PlayBoatCutscene_ShipDemo(FieldSystem *fieldSystem, void *taskEnv)
 {
     FS_EXTERN_OVERLAY(boat_cutscene);
 
     const ApplicationManagerTemplate appTemplate = {
-        .init = BoatTravelCutscene_ShipDemo_Init,
-        .main = BoatTravelCutscene_ShipDemo_Main,
-        .exit = BoatTravelCutscene_ShipDemo_Exit,
+        .init = BoatCutscene_ShipDemo_Init,
+        .main = BoatCutscene_ShipDemo_Main,
+        .exit = BoatCutscene_ShipDemo_Exit,
         .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
-void FieldTask_PlayBoatTravelCutscene_ShipDemoPl(FieldSystem *fieldSystem, void *taskEnv)
+void FieldTask_PlayBoatCutscene_ShipDemoPl(FieldSystem *fieldSystem, void *taskEnv)
 {
     FS_EXTERN_OVERLAY(boat_cutscene);
 
     const ApplicationManagerTemplate appTemplate = {
-        .init = BoatTravelCutscene_ShipDemoPl_Init,
-        .main = BoatTravelCutscene_ShipDemoPl_Main,
-        .exit = BoatTravelCutscene_ShipDemoPl_Exit,
+        .init = BoatCutscene_ShipDemoPl_Init,
+        .main = BoatCutscene_ShipDemoPl_Main,
+        .exit = BoatCutscene_ShipDemoPl_Exit,
         .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
