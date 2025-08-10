@@ -55,7 +55,7 @@ ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int
     v0 = ParticleSystem_New(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->heapID);
     camera = ParticleSystem_GetCamera(v0);
 
-    Camera_SetClipping( FX32_ONE , FX32_ONE * 900, camera);
+    Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
     ParticleSystem_SetCameraProjection(v0, param3);
 
     v3 = ParticleSystem_LoadResourceFromNARC(157, param2, param0->heapID);

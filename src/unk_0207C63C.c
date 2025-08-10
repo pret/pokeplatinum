@@ -135,7 +135,7 @@ static ParticleSystem *sub_0207C7CC(int heapID)
     camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
-        Camera_SetClipping( FX32_ONE , FX32_ONE * 900, camera);
+        Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
     }
 
     return v0;

@@ -57,7 +57,7 @@ static inline void inline_ov116_02261940_2(UnkStruct_ov116_0226501C *wk, UnkStru
 
 static inline void inline_ov116_02261940_1(void)
 {
-    VecFx32 v0 = { 0, -FX32_ONE , (-FX32_ONE) };
+    VecFx32 v0 = { 0, -FX32_ONE, -FX32_ONE };
 
     VEC_Normalize(&v0, &v0);
 
@@ -75,7 +75,7 @@ void ov116_022618A8(UnkStruct_ov116_0226501C *param0, NARC *param1, int param2)
 void ov116_022618B4(UnkStruct_ov116_0226501C *param0, int param1)
 {
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
-    Easy3DObject_SetPosition(&param0->unk_00, 0 * FX32_ONE , -20 * FX32_ONE , 0 * FX32_ONE );
+    Easy3DObject_SetPosition(&param0->unk_00, 0 * FX32_ONE, -20 * FX32_ONE, 0 * FX32_ONE );
 
     if (param1 == 0) {
         Easy3DObject_SetScale(&param0->unk_00, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
@@ -183,10 +183,10 @@ void ov116_02261C48(UnkStruct_ov116_02262A8C *param0, int param1)
 void ov116_02261C88(UnkStruct_ov116_0226139C *param0)
 {
     VecFx32 v0 = { 0, 0, 0 };
-    VecFx32 v1 = { 0, 0, (FX32_ONE * 160) };
+    VecFx32 v1 = { 0, 0, FX32_ONE * 160 };
 
     Camera_InitWithTargetAndPosition(&v0, &v1, 0xb60, 0, 0, param0->unk_48.camera);
-    Camera_SetClipping( FX32_ONE * -1000, FX32_ONE * 1000, param0->unk_48.camera);
+    Camera_SetClipping(FX32_ONE * -1000, FX32_ONE * 1000, param0->unk_48.camera);
     Camera_SetAsActive(param0->unk_48.camera);
 }
 
