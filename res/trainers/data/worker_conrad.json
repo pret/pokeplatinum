@@ -16,5 +16,10 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Are you maybe getting annoyed by\nwhere the floor panels take you?\r",
+        "TRMSG_DEFEAT": "I’m going down in flames!\n",
+        "TRMSG_POST_BATTLE": "The sweat of a working man is\nbeautiful to behold...\rThere is also beauty in the tears\nwept from defeat...\n"
+    }
 }

@@ -16,5 +16,8 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_DEFEAT": "Does this mean I’m only talented as\nan Artist?\n"
+    }
 }

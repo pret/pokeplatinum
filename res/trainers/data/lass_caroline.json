@@ -32,5 +32,10 @@
             "power": 20,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "A forest inside a Gym...\nShocking, isn’t it?\r",
+        "TRMSG_DEFEAT": "Giggle...\nThe clock will turn now.\n",
+        "TRMSG_POST_BATTLE": "OK, the next Trainer is at the end,\npast two boulders.\n"
+    }
 }

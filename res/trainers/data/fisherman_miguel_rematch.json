@@ -34,5 +34,9 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "Super outdoor fishing!\nShouting still doesn’t help!\r",
+        "TRMSG_DEFEAT": "Gwaaah!\nThis is hurting!\n"
+    }
 }

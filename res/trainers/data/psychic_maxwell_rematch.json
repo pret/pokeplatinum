@@ -26,5 +26,9 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "Why have you come back to this spot?\nI want to know what all this means!\r",
+        "TRMSG_DEFEAT": "I see...\rSo that’s what it was...\n"
+    }
 }

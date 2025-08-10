@@ -16,5 +16,8 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_DEFEAT": "Wow!\nYou’re out of this world!\n"
+    }
 }

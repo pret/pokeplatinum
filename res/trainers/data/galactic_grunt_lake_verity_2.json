@@ -48,5 +48,10 @@
             "power": 30,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "In order for us to bring peace to\nthe world, we must control it!\r",
+        "TRMSG_DEFEAT": "You’re too young to understand.\n",
+        "TRMSG_POST_BATTLE": "Our boss always had plans for\nthe three lakes...\rWhile you were blissfully ignorant,\nour work went ahead...\n"
+    }
 }

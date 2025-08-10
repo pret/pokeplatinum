@@ -36,5 +36,9 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "See?\nYou’ve come back again.\rThere must be something that draws\nyou here...\r",
+        "TRMSG_DEFEAT": "The power that slumbers within you...\nIt is rather marvelous...\n"
+    }
 }

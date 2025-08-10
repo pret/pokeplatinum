@@ -165,8 +165,8 @@ res/pokemon/pms.narc,/poketool/personal/pms.narc
 res/pokemon/wotbl.narc,/poketool/personal/wotbl.narc
 res/trainers/trdata.narc,/poketool/trainer/trdata.narc
 res/trainers/trpoke.narc,/poketool/trainer/trpoke.narc
-res/prebuilt/poketool/trmsg/trtbl.narc,/poketool/trmsg/trtbl.narc
-res/prebuilt/poketool/trmsg/trtblofs.narc,/poketool/trmsg/trtblofs.narc
+res/trainers/trtbl.narc,/poketool/trmsg/trtbl.narc
+res/trainers/trtblofs.narc,/poketool/trmsg/trtblofs.narc
 res/prebuilt/battle/graphic/b_bag_gra.narc,/battle/graphic/b_bag_gra.narc
 res/prebuilt/battle/graphic/b_plist_gra.narc,/battle/graphic/b_plist_gra.narc
 res/prebuilt/battle/graphic/batt_bg.narc,/battle/graphic/batt_bg.narc

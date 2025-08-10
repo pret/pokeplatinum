@@ -25,5 +25,9 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "Whoa! Hold it right there!\nI’ve spotted a sneaky Trainer!\r",
+        "TRMSG_DEFEAT": "Beaten by sneakiness again...\n"
+    }
 }

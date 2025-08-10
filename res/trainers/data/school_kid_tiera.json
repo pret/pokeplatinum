@@ -24,5 +24,10 @@
             "power": 10,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Can you make it to the Gym Leader?\nYou sure now?\r",
+        "TRMSG_DEFEAT": "The gears spin round and round...\nI spin down and out...\n",
+        "TRMSG_POST_BATTLE": "Our Gym’s trick walkways are sure\nto make your head spin!\n"
+    }
 }

@@ -26,5 +26,10 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Look! A Trainer lost in Wayward Cave!\r",
+        "TRMSG_DEFEAT": "I strayed from the battle plan!\n",
+        "TRMSG_POST_BATTLE": "Me? No, I’m not lost.\nI live here!\n"
+    }
 }

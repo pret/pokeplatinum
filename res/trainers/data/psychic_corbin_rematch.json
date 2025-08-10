@@ -26,5 +26,9 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "You’re going to win again!\nThat’s the future I saw!\r",
+        "TRMSG_DEFEAT": "What I saw in the future turned out\nto be true...\n"
+    }
 }

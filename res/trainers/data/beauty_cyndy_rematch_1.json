@@ -16,5 +16,9 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_REMATCH": "Give this grown-up another chance to\ndemonstrate her technique.\r",
+        "TRMSG_DEFEAT": "That’s how you attack?\nSo harshly?\n"
+    }
 }

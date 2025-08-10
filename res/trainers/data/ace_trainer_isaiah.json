@@ -23,5 +23,10 @@
             "power": 60,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "My willpower was shaped and tempered\nby howling blizzards.\rI’ll bring it to bear on you!\r",
+        "TRMSG_DEFEAT": "You weren’t even fazed...\n",
+        "TRMSG_POST_BATTLE": "I’ve battled countless Trainers\nand many more Pokémon still.\rMy spirit has been hardened from all\nthe battles I have fought."
+    }
 }

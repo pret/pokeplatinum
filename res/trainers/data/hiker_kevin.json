@@ -44,5 +44,11 @@
             "power": 0,
             "ball_seal": 0
         }
-    ]
+    ],
+    "messages": {
+        "TRMSG_PRE_BATTLE": "Wahaha!\nLaughter brings good fortune!\r",
+        "TRMSG_DEFEAT": "Wahahaha! There’s nothing that\nI can do but laugh!\n",
+        "TRMSG_POST_BATTLE": "Wahahahaha!\n...Go ahead, laugh at me--the loser!\n",
+        "TRMSG_REMATCH": "Wahaha!\rLaughter brings good fortune!\nForgetting your gloves brings a cold!\r"
+    }
 }
