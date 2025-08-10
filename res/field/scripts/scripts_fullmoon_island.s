@@ -35,7 +35,7 @@ _005D:
     CallIfEq VAR_0x8004, 1, _00BD
     CallIfEq VAR_0x8004, 3, _00D7
     CallIfEq VAR_0x8004, 0, _00F1
-    PlayBoatCutscene DIR_NORTH, DIR_WEST, MAP_HEADER_CANALAVE_CITY, 44, 0x2EE
+    PlayBoatCutscene DIR_NORTH, DIR_WEST, MAP_HEADER_CANALAVE_CITY, 44, 750
     ReleaseAll
     End
 

@@ -532,7 +532,7 @@ _0606:
     CallIfEq VAR_0x8004, 1, _0660
     CallIfEq VAR_0x8004, 3, _067A
     CallIfEq VAR_0x8004, 2, _0694
-    PlayBoatCutscene DIR_SOUTH, DIR_NORTH, MAP_HEADER_SNOWPOINT_CITY, 0x164, 246
+    PlayBoatCutscene DIR_SOUTH, DIR_NORTH, MAP_HEADER_SNOWPOINT_CITY, 356, 246
     ReleaseAll
     End
 

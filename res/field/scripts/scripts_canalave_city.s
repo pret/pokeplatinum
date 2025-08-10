@@ -541,7 +541,7 @@ _0796:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    PlayBoatCutscene DIR_EAST, DIR_EAST, MAP_HEADER_IRON_ISLAND, 100, 0x1F6
+    PlayBoatCutscene DIR_EAST, DIR_EAST, MAP_HEADER_IRON_ISLAND, 100, 502
     ReleaseAll
     End
 
@@ -550,7 +550,7 @@ _07D1:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    PlayBoatCutscene DIR_EAST, DIR_WEST, MAP_HEADER_FULLMOON_ISLAND, 39, 0x115
+    PlayBoatCutscene DIR_EAST, DIR_WEST, MAP_HEADER_FULLMOON_ISLAND, 39, 277
     ReleaseAll
     End
 
@@ -559,7 +559,7 @@ _080C:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    PlayBoatCutscene DIR_EAST, DIR_EAST, MAP_HEADER_NEWMOON_ISLAND, 152, 0x115
+    PlayBoatCutscene DIR_EAST, DIR_EAST, MAP_HEADER_NEWMOON_ISLAND, 152, 277
     ReleaseAll
     End
 

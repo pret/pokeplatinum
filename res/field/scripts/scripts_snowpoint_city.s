@@ -236,7 +236,7 @@ _0276:
     CloseMessage
     Call _035C
     Call _0376
-    PlayBoatCutscene DIR_WEST, DIR_EAST, MAP_HEADER_FIGHT_AREA, 0x26F, 0x1B2
+    PlayBoatCutscene DIR_WEST, DIR_EAST, MAP_HEADER_FIGHT_AREA, 623, 434
     ReleaseAll
     End
 
