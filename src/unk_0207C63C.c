@@ -87,12 +87,12 @@ void sub_0207C770(void)
     int v0;
     const MtxFx43 *v1;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
-        sub_020241B4();
+        G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
@@ -135,7 +135,7 @@ static ParticleSystem *sub_0207C7CC(int heapID)
     camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
-        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+        Camera_SetClipping( FX32_ONE , FX32_ONE * 900, camera);
     }
 
     return v0;
@@ -163,7 +163,7 @@ static void sub_0207C854(SPLEmitter *param0)
 {
     VecFx32 v0 = { 0, 0, 0 };
 
-    VEC_Set(&v0, 0, (8 * 172), 0);
+    VEC_Set(&v0, 0, 8 * 172, 0);
     SPLEmitter_SetPos(param0, &v0);
 }
 

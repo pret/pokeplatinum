@@ -218,8 +218,8 @@ static void DWWarp_InitCamera(DistortionWorldWarp *warp)
 
     warp->camera = Camera_Alloc(HEAP_ID_DISTORTION_WORLD_WARP);
 
-    Camera_InitWithTarget(&target, (160 << FX32_SHIFT), &DWW_CameraAngle, ((22 * 0xffff) / 360), 0, 0, warp->camera);
-    Camera_SetClipping(0, (FX32_ONE * 300), warp->camera);
+    Camera_InitWithTarget(&target, 160 << FX32_SHIFT, &DWW_CameraAngle, (22 * 0xffff) / 360, 0, 0, warp->camera);
+    Camera_SetClipping(0, FX32_ONE * 300, warp->camera);
 
     CameraAngle angle = { 0, 0, 0, 0 };
 
@@ -291,7 +291,7 @@ static void Model3D_Update(DistortionWorldWarp *warp)
 
     MTX_Identity33(&rot33);
 
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_SetAsActive(warp->camera);
     Camera_ComputeProjectionMatrix(0, warp->camera);
     Camera_ComputeViewMatrix();

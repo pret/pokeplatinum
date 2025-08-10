@@ -193,7 +193,7 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
     param0->unk_18 = ParticleSystem_New(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, HEAP_ID_12);
     camera = ParticleSystem_GetCamera(param0->unk_18);
 
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+    Camera_SetClipping( FX32_ONE , FX32_ONE * 900, camera);
 }
 
 static void ov118_021D1028(OverlayMetadata *param0)
@@ -228,12 +228,12 @@ static int ov118_021D10E8(void)
 {
     int v0;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
-        sub_020241B4();
+        G3_ResetG3X();
     }
 
     ParticleSystem_UpdateAll();

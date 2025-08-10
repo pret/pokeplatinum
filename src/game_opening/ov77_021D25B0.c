@@ -1788,7 +1788,7 @@ static void ov77_021D4188(UnkStruct_ov77_021D37C0 *param0)
 
     NNS_G3dGeFlushBuffer();
 
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
     if (param0->unk_25C == 1) {
@@ -1800,7 +1800,7 @@ static void ov77_021D4188(UnkStruct_ov77_021D37C0 *param0)
 
     if (param0->unk_25D == 1) {
         NNS_G3dGeFlushBuffer();
-        sub_020241B4();
+        G3_ResetG3X();
         ParticleSystem_DrawAll();
         ParticleSystem_UpdateAll();
     }

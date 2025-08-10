@@ -30,7 +30,7 @@ void ov105_02245CD0(void)
 
 void ov105_02245D50(PokemonSpriteManager *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
 
     G3_MtxMode(GX_MTXMODE_PROJECTION);
     G3_Identity();
@@ -56,7 +56,7 @@ PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon 
     Pokemon_BuildSpriteTemplate(&v0, param2, 2);
 
     v2 = 0;
-    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);
+    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param3, param4 + v2, param5, param1, NULL, NULL);
 
     return v1;
 }

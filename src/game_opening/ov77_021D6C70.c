@@ -151,7 +151,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
     param0->unk_18 = ParticleSystem_New(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, HEAP_ID_76);
     camera = ParticleSystem_GetCamera(param0->unk_18);
 
-    Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+    Camera_SetClipping( FX32_ONE , FX32_ONE * 900, camera);
 
     v3 = ParticleSystem_LoadResourceFromNARC(61, 4, 76);
     ParticleSystem_SetResource(param0->unk_18, v3, (1 << 1) | (1 << 3), 1);
@@ -175,7 +175,7 @@ void ov77_021D6E50(UnkStruct_ov77_021D6CFC *param0)
 {
     if (param0 != NULL) {
         NNS_G3dGeFlushBuffer();
-        sub_020241B4();
+        G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
         PokemonSpriteManager_DrawSprites(param0->unk_00);
         ov77_021D725C();

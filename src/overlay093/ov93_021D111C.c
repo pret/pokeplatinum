@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0206C8D4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay009/camera_configuration.h"
@@ -18,39 +17,44 @@
 #include "sound_playback.h"
 #include "system.h"
 #include "unk_0202419C.h"
+#include "unk_0206C784.h"
 #include "unk_0208C098.h"
 
-typedef struct {
+#define BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_PL_NUM_ANIMATIONS 3
+
+typedef struct BoatTravelCutscene_ShipDemoPl {
     Camera *camera;
-    NNSG3dRenderObj unk_04;
-    NNSG3dResMdl *unk_58;
-    NNSG3dResFileHeader *unk_5C;
-    void *unk_60[3];
-    NNSFndAllocator unk_6C;
-    NNSG3dAnmObj *unk_7C[3];
-    VecFx32 unk_88;
-    u8 unk_94;
-    u8 unk_95;
-} UnkStruct_ov93_021D13C0;
+    NNSG3dRenderObj renderObj;
+    NNSG3dResMdl *model;
+    NNSG3dResFileHeader *modelFile;
+    void *animationFiles[BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_PL_NUM_ANIMATIONS];
+    NNSFndAllocator allocator;
+    NNSG3dAnmObj *anmObjs[BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_PL_NUM_ANIMATIONS];
+    VecFx32 unused;
+    u8 startDir;
+    u8 firstAnimationFinished;
+} BoatTravelCutscene_ShipDemoPl;
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02[3];
-} UnkStruct_ov93_021D15C8;
+typedef struct BoatTravelCutscene_ShipDemoPl_NarcMemberIndexes {
+    u16 modelMemberIndex;
+    u16 animationMemberIndexes[BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_PL_NUM_ANIMATIONS];
+} BoatTravelCutscene_ShipDemoPl_NarcMemberIndexes;
 
-static void ov93_021D133C(void);
-static void ov93_021D13A0(void);
-static void ov93_021D13C0(UnkStruct_ov93_021D13C0 *param0);
+static void BoatTravelCutscene_ShipDemoPl_Init3D(void);
+static void BoatTravelCutscene_ShipDemoPl_SetGXBanks(void);
+static void BoatTravelCutscene_ShipDemoPl_LoadAnimations(BoatTravelCutscene_ShipDemoPl *cutsceneData);
 
-static const CameraConfiguration Unk_ov93_021D1534 = {
-    0x29AEC1,
-    { -0x29fe, 0x0, 0x0 },
-    0x0,
-    0x5C1,
-    0x0
+static const CameraConfiguration cameraConfig = {
+    .distance = BOAT_TRAVEL_CUTSCENE_CAMERA_BASE_DISTANCE,
+    .cameraAngle = {
+        BOAT_TRAVEL_CUTSCENE_CAMERA_BASE_ANGLE_X,
+        BOAT_TRAVEL_CUTSCENE_CAMERA_BASE_ANGLE_Y,
+        BOAT_TRAVEL_CUTSCENE_CAMERA_BASE_ANGLE_Z },
+    .projectionMtx = BOAT_TRAVEL_CUTSCENE_CAMERA_BASE_PROJECTION_MTX,
+    .fovY = BOAT_TRAVEL_CUTSCENE_CAMERA_BASE_FOVY,
 };
 
-static const GXRgb Unk_ov93_021D1524[8] = {
+static const GXRgb edgeColorTable[8] = {
     GX_RGB(0, 0, 0),
     GX_RGB(4, 4, 4),
     GX_RGB(4, 4, 4),
@@ -61,70 +65,68 @@ static const GXRgb Unk_ov93_021D1524[8] = {
     GX_RGB(4, 4, 4)
 };
 
-static UnkStruct_ov93_021D15C8 Unk_ov93_021D15C8[4] = {
+static BoatTravelCutscene_ShipDemoPl_NarcMemberIndexes narcMemberIndexes[4] = {
     {
-        0x1,
-        { 0x3, 0x2, 0x0 },
+        1,
+        { 3, 2, 0 },
     },
     {
-        0x5,
-        { 0x7, 0x6, 0x4 },
+        5,
+        { 7, 6, 4 },
     },
     {
-        0x1,
-        { 0x3, 0x2, 0x0 },
+        1,
+        { 3, 2, 0 },
     },
     {
-        0x1,
-        { 0x3, 0x2, 0x0 },
+        1,
+        { 3, 2, 0 },
     },
 };
 
-int ov93_021D111C(ApplicationManager *appMan, int *param1)
+int BoatTravelCutscene_ShipDemoPl_Init(ApplicationManager *appMan, int *state)
 {
-    u8 v0;
-    UnkStruct_ov93_021D13C0 *v1;
-    UnkStruct_0206C8D4 *v2;
+    u8 lightID;
+    BoatTravelCutscene_ShipDemoPl *cutsceneData;
+    BoatTravelCutscene *taskEnv;
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_72, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_72, BOAT_TRAVEL_CUTSCENE_HEAP_SIZE);
 
-    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov93_021D13C0), HEAP_ID_72);
-    memset(v1, 0, sizeof(UnkStruct_ov93_021D13C0));
+    cutsceneData = ApplicationManager_NewData(appMan, sizeof(BoatTravelCutscene_ShipDemoPl), HEAP_ID_72);
+    memset(cutsceneData, 0, sizeof(BoatTravelCutscene_ShipDemoPl));
 
-    v2 = ApplicationManager_Args(appMan);
+    taskEnv = ApplicationManager_Args(appMan);
 
-    v1->unk_94 = v2->unk_00;
-    v1->unk_95 = 0;
-    v1->camera = Camera_Alloc(72);
+    cutsceneData->startDir = taskEnv->startDir;
+    cutsceneData->firstAnimationFinished = FALSE;
+    cutsceneData->camera = Camera_Alloc(HEAP_ID_72);
 
-    ov93_021D133C();
-    ov93_021D13C0(v1);
+    BoatTravelCutscene_ShipDemoPl_Init3D();
+    BoatTravelCutscene_ShipDemoPl_LoadAnimations(cutsceneData);
 
-    {
-        VecFx32 v3 = { 0, 0, 0 };
+    VecFx32 cameraTarget = { 0, 0, 0 };
 
-        Camera_InitWithTarget(&v3, Unk_ov93_021D1534.distance, &Unk_ov93_021D1534.cameraAngle, Unk_ov93_021D1534.fovY, Unk_ov93_021D1534.projectionMtx, 0, v1->camera);
-        Camera_SetAsActive(v1->camera);
+    Camera_InitWithTarget(&cameraTarget, cameraConfig.distance, &cameraConfig.cameraAngle, cameraConfig.fovY, cameraConfig.projectionMtx, FALSE, cutsceneData->camera);
+    Camera_SetAsActive(cutsceneData->camera);
+
+    for (lightID = 0; lightID < BOAT_TRAVEL_CUTSCENE_NUM_LIGHTS; lightID++) {
+        NNS_G3dGlbLightVector(lightID, taskEnv->areaModelAttrs->lightVectors[lightID].x, taskEnv->areaModelAttrs->lightVectors[lightID].y, taskEnv->areaModelAttrs->lightVectors[lightID].z);
+        NNS_G3dGlbLightColor(lightID, taskEnv->areaModelAttrs->lightColors[lightID]);
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        NNS_G3dGlbLightVector(v0, v2->unk_04->lightVectors[v0].x, v2->unk_04->lightVectors[v0].y, v2->unk_04->lightVectors[v0].z);
-        NNS_G3dGlbLightColor(v0, v2->unk_04->lightColors[v0]);
-    }
+    NNS_G3dGlbMaterialColorDiffAmb(taskEnv->areaModelAttrs->diffuseReflectColor, taskEnv->areaModelAttrs->ambientReflectColor, taskEnv->areaModelAttrs->setDiffuseColorAsVertexColor);
+    NNS_G3dGlbMaterialColorSpecEmi(taskEnv->areaModelAttrs->specularReflectColor, taskEnv->areaModelAttrs->emissionColor, taskEnv->areaModelAttrs->enableSpecularReflectShininessTable);
+    NNS_G3dGlbPolygonAttr(taskEnv->areaModelAttrs->enabledLightsMask, taskEnv->areaModelAttrs->polygonMode, taskEnv->areaModelAttrs->cullMode, taskEnv->areaModelAttrs->polygonID, taskEnv->areaModelAttrs->alpha, taskEnv->areaModelAttrs->miscFlags);
 
-    NNS_G3dGlbMaterialColorDiffAmb(v2->unk_04->diffuseReflectColor, v2->unk_04->ambientReflectColor, v2->unk_04->setDiffuseColorAsVertexColor);
-    NNS_G3dGlbMaterialColorSpecEmi(v2->unk_04->specularReflectColor, v2->unk_04->emissionColor, v2->unk_04->enableSpecularReflectShininessTable);
-    NNS_G3dGlbPolygonAttr(v2->unk_04->enabledLightsMask, v2->unk_04->polygonMode, v2->unk_04->cullMode, v2->unk_04->polygonID, v2->unk_04->alpha, v2->unk_04->miscFlags);
-
-    sub_0208C120(0, HEAP_ID_72);
-    return 1;
+    App_StartScreenFade(FALSE, HEAP_ID_72);
+    return TRUE;
 }
 
-int ov93_021D120C(ApplicationManager *appMan, int *param1)
+int BoatTravelCutscene_ShipDemoPl_Main(ApplicationManager *appMan, int *state)
 {
-    u8 v0;
-    BOOL v1;
-    MtxFx33 v2 = {
+    u8 animIndex;
+    BOOL unused;
+    MtxFx33 rotation = {
         FX32_ONE,
         0,
         0,
@@ -135,70 +137,70 @@ int ov93_021D120C(ApplicationManager *appMan, int *param1)
         0,
         FX32_ONE,
     };
-    VecFx32 v3 = {
+    VecFx32 scale = {
         FX32_ONE,
         FX32_ONE,
         FX32_ONE,
     };
-    VecFx32 v4 = {
+    VecFx32 position = {
         0,
         0,
         0
     };
-    UnkStruct_ov93_021D13C0 *v5 = ApplicationManager_Data(appMan);
+    BoatTravelCutscene_ShipDemoPl *cutsceneData = ApplicationManager_Data(appMan);
 
-    switch (*param1) {
-    case 0:
+    switch (*state) {
+    case BOAT_TRAVEL_CUTSCENE_STATE_SFX:
         Sound_PlayEffect(SEQ_SE_DP_SHIP01);
-        (*param1)++;
+        (*state)++;
         break;
-    case 1:
-        if (!v5->unk_95) {
-            if (v5->unk_7C[0]->frame + FX32_ONE == NNS_G3dAnmObjGetNumFrame(v5->unk_7C[0])) {
-                v5->unk_95 = 1;
-                sub_0208C120(1, HEAP_ID_72);
+    case BOAT_TRAVEL_CUTSCENE_STATE_FADE_OUT:
+        if (!cutsceneData->firstAnimationFinished) {
+            if (cutsceneData->anmObjs[0]->frame + FX32_ONE == NNS_G3dAnmObjGetNumFrame(cutsceneData->anmObjs[0])) {
+                cutsceneData->firstAnimationFinished = TRUE;
+                App_StartScreenFade(TRUE, HEAP_ID_72);
             }
         } else {
             if (IsScreenFadeDone()) {
-                return 1;
+                return TRUE;
             }
         }
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (v5->unk_7C[v0]->frame + FX32_ONE < NNS_G3dAnmObjGetNumFrame(v5->unk_7C[v0])) {
-            v5->unk_7C[v0]->frame += (FX32_ONE);
+    for (animIndex = 0; animIndex < BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_PL_NUM_ANIMATIONS; animIndex++) {
+        if (cutsceneData->anmObjs[animIndex]->frame + FX32_ONE < NNS_G3dAnmObjGetNumFrame(cutsceneData->anmObjs[animIndex])) {
+            cutsceneData->anmObjs[animIndex]->frame += FX32_ONE;
         }
     }
 
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_ComputeViewMatrix();
-    Easy3D_DrawRenderObj(&v5->unk_04, &v4, &v2, &v3);
+    Easy3D_DrawRenderObj(&cutsceneData->renderObj, &position, &rotation, &scale);
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
 
-    return 0;
+    return FALSE;
 }
 
-int ov93_021D12F0(ApplicationManager *appMan, int *param1)
+int BoatTravelCutscene_ShipDemoPl_Exit(ApplicationManager *appMan, int *state)
 {
-    u8 v0;
-    UnkStruct_ov93_021D13C0 *v1 = ApplicationManager_Data(appMan);
+    u8 animIndex;
+    BoatTravelCutscene_ShipDemoPl *cutsceneData = ApplicationManager_Data(appMan);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        NNS_G3dFreeAnmObj(&v1->unk_6C, v1->unk_7C[v0]);
-        Heap_Free(v1->unk_60[v0]);
+    for (animIndex = 0; animIndex < BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_PL_NUM_ANIMATIONS; animIndex++) {
+        NNS_G3dFreeAnmObj(&cutsceneData->allocator, cutsceneData->anmObjs[animIndex]);
+        Heap_Free(cutsceneData->animationFiles[animIndex]);
     }
 
-    Heap_Free(v1->unk_5C);
-    Camera_Delete(v1->camera);
+    Heap_Free(cutsceneData->modelFile);
+    Camera_Delete(cutsceneData->camera);
     ApplicationManager_FreeData(appMan);
     Easy3D_Shutdown();
     Heap_Destroy(HEAP_ID_72);
 
-    return 1;
+    return TRUE;
 }
 
-static void ov93_021D133C(void)
+static void BoatTravelCutscene_ShipDemoPl_Init3D(void)
 {
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -208,18 +210,18 @@ static void ov93_021D133C(void)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    ov93_021D13A0();
-    Easy3D_Init(72);
+    BoatTravelCutscene_ShipDemoPl_SetGXBanks();
+    Easy3D_Init(HEAP_ID_72);
 
-    G3X_EdgeMarking(1);
-    G3X_SetEdgeColorTable(Unk_ov93_021D1524);
+    G3X_EdgeMarking(TRUE);
+    G3X_SetEdgeColorTable(edgeColorTable);
 
     GXLayers_SwapDisplay();
 }
 
-static void ov93_021D13A0(void)
+static void BoatTravelCutscene_ShipDemoPl_SetGXBanks(void)
 {
-    UnkStruct_02099F80 v0 = {
+    UnkStruct_02099F80 banks = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,
@@ -232,34 +234,34 @@ static void ov93_021D13A0(void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
-static void ov93_021D13C0(UnkStruct_ov93_021D13C0 *param0)
+static void BoatTravelCutscene_ShipDemoPl_LoadAnimations(BoatTravelCutscene_ShipDemoPl *cutsceneData)
 {
-    u8 v0;
-    NNSG3dResTex *v1;
-    void *v2;
-    NARC *v3 = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO_PL, HEAP_ID_72);
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_6C, HEAP_ID_72, 4);
+    u8 animIndex;
+    NNSG3dResTex *texture;
+    void *animation;
+    NARC *narc = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO_PL, HEAP_ID_72);
+    Heap_FndInitAllocatorForExpHeap(&cutsceneData->allocator, HEAP_ID_72, 4);
 
-    param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15C8[param0->unk_94].unk_00, 72);
-    Easy3D_InitRenderObjFromResource(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
-    v1 = NNS_G3dGetTex(param0->unk_5C);
+    cutsceneData->modelFile = NARC_AllocAndReadWholeMember(narc, narcMemberIndexes[cutsceneData->startDir].modelMemberIndex, HEAP_ID_72);
+    Easy3D_InitRenderObjFromResource(&cutsceneData->renderObj, &cutsceneData->model, &cutsceneData->modelFile);
+    texture = NNS_G3dGetTex(cutsceneData->modelFile);
 
-    NNS_G3dMdlUseGlbDiff(param0->unk_58);
-    NNS_G3dMdlUseGlbAmb(param0->unk_58);
-    NNS_G3dMdlUseGlbSpec(param0->unk_58);
-    NNS_G3dMdlUseGlbEmi(param0->unk_58);
+    NNS_G3dMdlUseGlbDiff(cutsceneData->model);
+    NNS_G3dMdlUseGlbAmb(cutsceneData->model);
+    NNS_G3dMdlUseGlbSpec(cutsceneData->model);
+    NNS_G3dMdlUseGlbEmi(cutsceneData->model);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_60[v0] = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15C8[param0->unk_94].unk_02[v0], 72);
-        v2 = NNS_G3dGetAnmByIdx(param0->unk_60[v0], 0);
-        param0->unk_7C[v0] = NNS_G3dAllocAnmObj(&param0->unk_6C, v2, param0->unk_58);
+    for (animIndex = 0; animIndex < BOAT_TRAVEL_CUTSCENE_SHIP_DEMO_PL_NUM_ANIMATIONS; animIndex++) {
+        cutsceneData->animationFiles[animIndex] = NARC_AllocAndReadWholeMember(narc, narcMemberIndexes[cutsceneData->startDir].animationMemberIndexes[animIndex], HEAP_ID_72);
+        animation = NNS_G3dGetAnmByIdx(cutsceneData->animationFiles[animIndex], 0);
+        cutsceneData->anmObjs[animIndex] = NNS_G3dAllocAnmObj(&cutsceneData->allocator, animation, cutsceneData->model);
 
-        NNS_G3dAnmObjInit(param0->unk_7C[v0], v2, param0->unk_58, v1);
-        NNS_G3dRenderObjAddAnmObj(&param0->unk_04, param0->unk_7C[v0]);
+        NNS_G3dAnmObjInit(cutsceneData->anmObjs[animIndex], animation, cutsceneData->model, texture);
+        NNS_G3dRenderObjAddAnmObj(&cutsceneData->renderObj, cutsceneData->anmObjs[animIndex]);
     }
 
-    NARC_dtor(v3);
+    NARC_dtor(narc);
 }

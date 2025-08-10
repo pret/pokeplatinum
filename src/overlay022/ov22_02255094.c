@@ -124,7 +124,7 @@ void ov22_02255134(UnkStruct_ov22_0225A0E4 *param0)
 
 void ov22_02255180(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
 
     NNS_G2dSetupSoftwareSpriteCamera();
 

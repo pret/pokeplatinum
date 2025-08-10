@@ -119,7 +119,7 @@ int PokedexMain_Init(ApplicationManager *appMan, int *state)
 
     *appPtr = PokedexMain_NewPokedexApp(HEAP_ID_POKEDEX, &pokedexOverlayArgs);
 
-    Sound_SetPlayerVolume(1, (127 / 3));
+    Sound_SetPlayerVolume(1, 127 / 3);
 
     return 1;
 }
@@ -131,7 +131,7 @@ int PokedexMain_Main(ApplicationManager *appMan, int *state)
     switch (*state) {
     case POKEDEX_STATE_TRANSITION_IN:
         EntranceTransition(appPtr);
-        BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_SetScreenBrightness(-16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 3);
         (*state)++;
         break;
     case POKEDEX_STATE_USE:
@@ -345,7 +345,7 @@ BOOL ov21_021D10B8(PokedexApp *pokedexApp)
         ov21_021D4284(pokedexApp->unk_1A74, pokedexApp->unk_1A64);
     }
 
-    sub_020241B4();
+    G3_ResetG3X();
     PokemonGraphics_UpdateSprites(&pokedexApp->graphicData);
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 

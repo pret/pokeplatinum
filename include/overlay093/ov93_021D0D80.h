@@ -3,8 +3,8 @@
 
 #include "overlay_manager.h"
 
-int ov93_021D0D80(ApplicationManager *appMan, int *param1);
-int ov93_021D0E70(ApplicationManager *appMan, int *param1);
-int ov93_021D0F58(ApplicationManager *appMan, int *param1);
+int BoatTravelCutscene_ShipDemo_Init(ApplicationManager *appMan, int *unused);
+int BoatTravelCutscene_ShipDemo_Main(ApplicationManager *appMan, int *param1);
+int BoatTravelCutscene_ShipDemo_Exit(ApplicationManager *appMan, int *param1);
 
 #endif // POKEPLATINUM_OV93_021D0D80_H

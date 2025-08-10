@@ -1116,7 +1116,7 @@ static void ov69_0225CF30(UnkStruct_ov69_0225CE64 *param0)
 
 static void ov69_0225CF50(UnkStruct_ov69_0225CE64 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
 
     ov69_0225DAF8(&param0->unk_BC30);
     ov69_0225D728(&param0->unk_1DC);
