@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/foreign_building.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _0039
@@ -104,6 +103,4 @@ _00BE:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

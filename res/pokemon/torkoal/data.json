@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_EMBER" ],
@@ -93,12 +94,22 @@
             "MOVE_EARTH_POWER",
             "MOVE_IRON_DEFENSE",
             "MOVE_HEAT_WAVE"
+        ],
+        "egg_moves": [
+            "MOVE_ERUPTION",
+            "MOVE_ENDURE",
+            "MOVE_SLEEP_TALK",
+            "MOVE_YAWN",
+            "MOVE_EARTHQUAKE",
+            "MOVE_FISSURE"
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_TORKOAL",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 5,

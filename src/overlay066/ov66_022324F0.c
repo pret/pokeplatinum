@@ -6,7 +6,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay066/struct_ov66_02232B20.h"
@@ -56,9 +56,9 @@ typedef struct {
 } UnkStruct_ov66_0223439C;
 
 typedef struct {
-    SaveData *unk_00;
+    SaveData *saveData;
     WiFiList *unk_04;
-    UnkStruct_0202C878 *unk_08;
+    WiFiHistory *wiFiHistory;
     UnkStruct_ov66_022324F0 unk_0C;
     void *unk_20;
     u8 *unk_24;
@@ -152,7 +152,7 @@ static const char *Unk_ov66_02258DF0[1] = {
 
 static UnkStruct_ov66_022336C4 *Unk_ov66_0225B6C0 = NULL;
 
-void ov66_022324F0(u32 heapID, SaveData *param1, u32 param2, const UnkStruct_ov66_022324F0 *param3, void *param4)
+void ov66_022324F0(u32 heapID, SaveData *saveData, u32 param2, const UnkStruct_ov66_022324F0 *param3, void *param4)
 {
     GF_ASSERT(Unk_ov66_0225B6C0 == NULL);
     GF_ASSERT(param2 < PPW_LOBBY_MAX_BINARY_SIZE);
@@ -160,9 +160,9 @@ void ov66_022324F0(u32 heapID, SaveData *param1, u32 param2, const UnkStruct_ov6
     Unk_ov66_0225B6C0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_022336C4));
     memset(Unk_ov66_0225B6C0, 0, sizeof(UnkStruct_ov66_022336C4));
 
-    Unk_ov66_0225B6C0->unk_00 = param1;
-    Unk_ov66_0225B6C0->unk_04 = SaveData_GetWiFiList(param1);
-    Unk_ov66_0225B6C0->unk_08 = sub_0202C878(param1);
+    Unk_ov66_0225B6C0->saveData = saveData;
+    Unk_ov66_0225B6C0->unk_04 = SaveData_GetWiFiList(saveData);
+    Unk_ov66_0225B6C0->wiFiHistory = SaveData_WiFiHistory(saveData);
     Unk_ov66_0225B6C0->unk_0C = *param3;
     Unk_ov66_0225B6C0->unk_20 = param4;
 
@@ -180,7 +180,7 @@ void ov66_02232598(void)
     ov66_02233920(Unk_ov66_0225B6C0);
     ov66_02233788(Unk_ov66_0225B6C0);
 
-    Heap_FreeToHeap(Unk_ov66_0225B6C0);
+    Heap_Free(Unk_ov66_0225B6C0);
     Unk_ov66_0225B6C0 = NULL;
 }
 
@@ -301,7 +301,7 @@ BOOL ov66_02232720(const void *param0, u32 param1)
     {
         DWCUserData *v2;
 
-        v2 = sub_0202AD28(Unk_ov66_0225B6C0->unk_04);
+        v2 = WiFiList_GetUserData(Unk_ov66_0225B6C0->unk_04);
         Unk_ov66_0225B6C0->unk_984 = PPW_LobbyInitializeAsync(("pokemonplatds"), ("IIup73"), param1, &v0, v2, param0, Unk_ov66_0225B6C0->unk_28);
     }
 
@@ -1164,8 +1164,8 @@ static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0)
     int v2;
     PPW_LOBBY_RESULT v3;
 
-    v0 = sub_0202C8C0(param0->unk_08);
-    v1 = sub_0202C8C4(param0->unk_08);
+    v0 = WiFiHistory_GetCountry(param0->wiFiHistory);
+    v1 = sub_0202C8C4(param0->wiFiHistory);
 
     if (v0 == 0) {
         return 0;
@@ -1203,7 +1203,7 @@ static void ov66_02233758(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 heapI
 
 static void ov66_02233788(UnkStruct_ov66_022336C4 *param0)
 {
-    Heap_FreeToHeap(Unk_ov66_0225B6C0->unk_24);
+    Heap_Free(Unk_ov66_0225B6C0->unk_24);
 }
 
 static void ov66_0223379C(UnkStruct_ov66_022336C4 *param0, s32 param1, const void *param2)
@@ -1313,7 +1313,7 @@ static void ov66_02233920(UnkStruct_ov66_022336C4 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         GF_ASSERT(param0->unk_11C[v0].unk_04 != NULL);
-        Heap_FreeToHeap(param0->unk_11C[v0].unk_04);
+        Heap_Free(param0->unk_11C[v0].unk_04);
         param0->unk_11C[v0].unk_04 = NULL;
     }
 }
@@ -1886,7 +1886,7 @@ static void ov66_022342F4(UnkStruct_ov66_022342F4 *param0, u32 param1, u32 heapI
 
 static void ov66_0223430C(UnkStruct_ov66_022342F4 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
 }
 

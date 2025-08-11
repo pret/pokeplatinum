@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier.h"
 
-    .data
 
     ScriptEntry _0460
     ScriptEntry _00DB
@@ -50,7 +49,7 @@ _009A:
     ScrCmd_329 VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_3, VAR_MAP_LOCAL_4
     SetObjectEventPos 29, VAR_MAP_LOCAL_1, VAR_MAP_LOCAL_2
     SetObjectEventDir 29, VAR_MAP_LOCAL_3
-    ScrCmd_188 29, VAR_MAP_LOCAL_4
+    SetObjectEventMovementType 29, VAR_MAP_LOCAL_4
     ClearFlag FLAG_UNK_0x02C3
     End
 
@@ -273,7 +272,7 @@ _026A:
     LockAll
     FacePlayer
     Message 21
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
     ReleaseAll
     End
@@ -296,7 +295,7 @@ _02A6:
     LockAll
     FacePlayer
     Message 23
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
     ReleaseAll
     End
@@ -362,7 +361,7 @@ _0360:
 
     .balign 4, 0
 _0398:
-    MoveAction_018 5
+    WalkFastWest 5
     EndMovement
 
 _03A0:
@@ -379,7 +378,7 @@ _03A0:
 
     .balign 4, 0
 _03D8:
-    MoveAction_018 6
+    WalkFastWest 6
     EndMovement
 
 _03E0:
@@ -396,7 +395,7 @@ _03E0:
 
     .balign 4, 0
 _0418:
-    MoveAction_019 5
+    WalkFastEast 5
     EndMovement
 
 _0420:
@@ -413,11 +412,10 @@ _0420:
 
     .balign 4, 0
 _0458:
-    MoveAction_019 6
+    WalkFastEast 6
     EndMovement
 
 _0460:
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

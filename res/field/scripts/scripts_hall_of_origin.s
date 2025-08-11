@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/hall_of_origin.h"
 
-    .data
 
     ScriptEntry _003B
     ScriptEntry _0056
@@ -79,8 +78,8 @@ _00E9:
 
     .balign 4, 0
 _00F8:
-    MoveAction_075
-    MoveAction_065
+    EmoteExclamationMark
+    Delay16
     EndMovement
 
 _0104:
@@ -117,24 +116,24 @@ _016F:
 
     .balign 4, 0
 _017C:
-    MoveAction_012 4
-    MoveAction_015
-    MoveAction_000
+    WalkNormalNorth 4
+    WalkNormalEast
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _018C:
-    MoveAction_012 4
+    WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _0194:
-    MoveAction_012 4
-    MoveAction_014
-    MoveAction_000
+    WalkNormalNorth 4
+    WalkNormalWest
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _01A4:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_3f_group_ranking_room.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0028
@@ -62,6 +61,4 @@ _006A:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

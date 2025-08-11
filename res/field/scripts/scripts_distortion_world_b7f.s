@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b7f.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _001E
@@ -144,132 +143,132 @@ _01F8:
 
     .balign 4, 0
 _0204:
-    MoveAction_065 2
-    MoveAction_032
+    Delay16 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0210:
-    MoveAction_015
-    MoveAction_034
-    MoveAction_033
+    WalkNormalEast
+    WalkOnSpotNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0220:
-    MoveAction_014
-    MoveAction_012 7
-    MoveAction_015 4
-    MoveAction_033
+    WalkNormalWest
+    WalkNormalNorth 7
+    WalkNormalEast 4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0234:
-    MoveAction_014
-    MoveAction_012 6
-    MoveAction_015 4
-    MoveAction_033
+    WalkNormalWest
+    WalkNormalNorth 6
+    WalkNormalEast 4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0248:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0254:
-    MoveAction_066 2
-    MoveAction_065
-    MoveAction_032
+    Delay32 2
+    Delay16
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0264:
-    MoveAction_066 2
-    MoveAction_065
-    MoveAction_034
+    Delay32 2
+    Delay16
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0274:
-    MoveAction_062
-    MoveAction_032
+    Delay4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0280:
-    MoveAction_062
-    MoveAction_034
+    Delay4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _028C:
-    MoveAction_065 2
-    MoveAction_032
-    MoveAction_065 2
+    Delay16 2
+    WalkOnSpotNormalNorth
+    Delay16 2
     EndMovement
 
     .balign 4, 0
 _029C:
-    MoveAction_015
+    WalkNormalEast
     MoveAction_117
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
 _02AC:
-    MoveAction_063 3
-    MoveAction_014
-    MoveAction_035
+    Delay8 3
+    WalkNormalWest
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02BC:
-    MoveAction_015
-    MoveAction_033
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02C8:
-    MoveAction_012 6
-    MoveAction_015 4
-    MoveAction_013
-    MoveAction_032
+    WalkNormalNorth 6
+    WalkNormalEast 4
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_065
-    MoveAction_033
+    Delay16
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_066 2
-    MoveAction_063
-    MoveAction_035
+    Delay32 2
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02F8:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0300:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0308:
-    MoveAction_013 4
-    MoveAction_034
+    WalkNormalSouth 4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0314:
-    MoveAction_013 7
+    WalkNormalSouth 7
     MoveAction_118
-    MoveAction_065
+    Delay16
     EndMovement

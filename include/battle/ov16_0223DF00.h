@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_OV16_0223DF00_H
 #define POKEPLATINUM_OV16_0223DF00_H
 
-#include "constants/time.h"
+#include "constants/rtc.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 
@@ -19,21 +19,24 @@
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "render_window.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
+#include "unk_0201567C.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
@@ -83,15 +86,15 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
  */
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSys);
-UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
-SpriteSystem *ov16_0223E010(BattleSystem *battleSys);
-SpriteManager *ov16_0223E018(BattleSystem *battleSys);
+BattleAnimSystem *ov16_0223E008(BattleSystem *battleSys);
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
-PartyGauge *ov16_0223E034(BattleSystem *battleSys, enum PartyGaugeSide param1);
-void ov16_0223E040(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
-UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSys);
-UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSys);
+PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1);
+void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
+FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSys);
+FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSys);
 MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSys);
 MessageLoader *ov16_0223E060(BattleSystem *battleSys);
 PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSys);
@@ -128,7 +131,7 @@ Trainer *BattleSystem_GetTrainer(BattleSystem *battleSys, int param1);
 TrainerInfo *BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
 Bag *BattleSystem_Bag(BattleSystem *battleSys);
 BagCursor *BattleSystem_BagCursor(BattleSystem *battleSys);
-u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int param1);
+u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
 
 /**
  * @brief Get a battler of a particular type.
@@ -140,8 +143,8 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int param1);
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int param1);
 u8 Battler_Side(BattleSystem *battleSys, int param1);
-void *ov16_0223E220(BattleSystem *battleSys);
-PCBoxes *ov16_0223E228(BattleSystem *battleSys);
+UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys);
+PCBoxes *BattleSystem_PCBoxes(BattleSystem *battleSys);
 
 /**
  * @brief Get the terrain type for the battle.
@@ -150,7 +153,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSys);
  * @return The battle's terrain.
  */
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *battleSys);
+enum BattleBackground BattleSystem_Background(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSys);
 int BattleSystem_Partner(BattleSystem *battleSys, int param1);
 
@@ -187,7 +190,7 @@ u32 BattleSystem_BattleStatus(BattleSystem *battleSys);
  * @param battleSys
  * @return The time of day (e.g., morning, day, night)
  */
-enum Time BattleSystem_Time(BattleSystem *battleSys);
+enum TimeOfDay BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSys);
 u8 ov16_0223EC58(BattleSystem *battleSys, int param1, u8 param2);
 u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
@@ -195,7 +198,7 @@ u8 ov16_0223ED60(BattleSystem *battleSys);
 u8 ov16_0223ED6C(BattleSystem *battleSys);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSys);
 void BattleSystem_SetSafariBalls(BattleSystem *battleSys, int param1);
-Options *ov16_0223EDA4(BattleSystem *battleSys);
+Options *BattleSystem_GetOptions(BattleSystem *battleSys);
 
 /**
  * @brief Check if battle animations are turned on.
@@ -227,8 +230,8 @@ void ov16_0223F24C(BattleSystem *battleSys, int param1);
 void ov16_0223F268(BattleSystem *battleSys);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSys, int param1);
-void *Battle_WaitDial(BattleSystem *battleSys);
-void Battle_SetWaitDial(BattleSystem *battleSys, void *param1);
+WaitDial *Battle_GetWaitDial(BattleSystem *battleSys);
+void Battle_SetWaitDial(BattleSystem *battleSys, WaitDial *waitDial);
 UnkStruct_ov16_0223E0C8 *ov16_0223F2AC(BattleSystem *battleSys, int param1);
 u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1);
 void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
@@ -295,7 +298,7 @@ void ov16_0223F9A0(BattleSystem *battleSys, int param1);
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *battleSys, int param1, int param2, int param3, int param4);
+u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum TrainerMessageType msgType, int param4);
 
 /**
  * @brief Print a BattleMessage to the main text display window.

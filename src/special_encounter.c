@@ -6,7 +6,7 @@
 #include "struct_defs/radar_chain_records.h"
 #include "struct_defs/special_encounter.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "roaming_pokemon.h"
 #include "savedata.h"
 

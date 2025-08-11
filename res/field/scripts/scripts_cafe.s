@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/cafe.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0018
@@ -126,4 +125,4 @@ _0188:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

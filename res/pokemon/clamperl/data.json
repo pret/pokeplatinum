@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_CLAMP" ],
@@ -69,6 +70,15 @@
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
             "MOVE_IRON_DEFENSE"
+        ],
+        "egg_moves": [
+            "MOVE_REFRESH",
+            "MOVE_MUD_SPORT",
+            "MOVE_BODY_SLAM",
+            "MOVE_SUPERSONIC",
+            "MOVE_BARRIER",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_AQUA_RING"
         ]
     },
     "evolutions": [
@@ -83,9 +93,11 @@
             "SPECIES_GOREBYSS"
         ]
     ],
+    "offspring": "SPECIES_CLAMPERL",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

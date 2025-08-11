@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_3f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0054
@@ -28,12 +27,12 @@ _0012:
 
     .balign 4, 0
 _0044:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _004C:
-    MoveAction_002
+    FaceWest
     EndMovement
 
 _0054:
@@ -117,10 +116,9 @@ _0166:
 _0171:
     Message 9
     WaitABXPadPress
-    ScrCmd_2AC
+    UnlockMysteryGift
     CloseMessage
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

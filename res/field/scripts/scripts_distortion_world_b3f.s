@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b3f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000E
@@ -37,10 +36,10 @@ _003E:
 
     .balign 4, 0
 _0060:
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
 _0068:
-    MoveAction_013 7
+    WalkNormalSouth 7
     EndMovement

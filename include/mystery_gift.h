@@ -14,7 +14,8 @@
 #define WONDERCARD_DESCRIPTION_LENGTH 250
 #define NUM_WONDERCARD_SPRITES        3
 
-#define WONDERCARD_ID_MAX    2048
+#define NUM_WONDERCARD_FLAGS 2048
+#define WONDERCARD_ID_MAX    (NUM_WONDERCARD_FLAGS - 1) // Last flag indicates whether or not mystery gifts are unlocked. Updated on the main menu.
 #define NUM_PGT_SLOTS        8
 #define NUM_WONDERCARD_SLOTS 3
 
@@ -27,7 +28,7 @@ typedef struct MysteryGiftPokemonData {
 
 typedef struct MysteryGiftItemData {
     enum Item item;
-    BOOL unk_04;
+    BOOL shouldPlayAnimation;
 } MysteryGiftItemData;
 
 enum MysteryGiftCosmeticsType {
@@ -57,28 +58,28 @@ typedef struct PGT {
     GiftData data;
 } PGT;
 
-typedef struct WonderCardMetadata {
+typedef struct MysteryGiftEventHeader {
     u16 title[WONDERCARD_TITLE_LENGTH];
-    u32 validGames; //!< A bit field of the games the WonderCard can be received on.
+    u32 validGames; //!< A bit field of the games the Mystery Gift can be received on.
     u16 id;
     u8 unique : 1;
     u8 unk_4E_1 : 1;
-    u8 saveWonderCard : 1; //!< If FALSE, savePgt is ignored and treated as TRUE.
+    u8 hasWonderCard : 1; //!< If FALSE, savePgt is ignored and treated as TRUE.
     u8 savePgt : 1;
     u8 shareable : 1;
-    u8 fromSharing : 1; //!< Whether or not the wonder card was obtained from another player sharing it
+    u8 fromSharing : 1; //!< Whether or not the Mystery Gift was obtained from another player sharing it
     u8 : 2;
     u8 padding_4F;
-} WonderCardMetadata;
+} MysteryGiftEventHeader;
 
 typedef struct WonderCard {
     PGT pgt;
-    WonderCardMetadata metadata;
+    MysteryGiftEventHeader eventHeader;
     u16 description[WONDERCARD_DESCRIPTION_LENGTH];
-    u8 redistributionsLeft;
+    u8 sharesLeft;
     u8 padding_349;
     u16 spritesSpecies[NUM_WONDERCARD_SPRITES];
-    u8 redistributionCount;
+    u8 timesShared;
     u8 padding_351[3];
     s32 receivedDate;
 } WonderCard;
@@ -98,11 +99,11 @@ enum MysteryGiftType {
     MYST_GIFT_POKETCH_APP,
     MYST_GIFT_SECRET_KEY,
     MYST_GIFT_UNKNOWN,
-    MYST_GIFT_TYPE_MAX = 14,
+    MYST_GIFT_TYPE_MAX,
 };
 
 typedef struct MysteryGift {
-    u8 received[WONDERCARD_ID_MAX / 8];
+    u8 received[(NUM_WONDERCARD_FLAGS + 7) / 8]; // Last flag indicates whether or not mystery gifts are unlocked. Updated on the main menu.
     PGT pgts[NUM_PGT_SLOTS];
     WonderCard wonderCards[NUM_WONDERCARD_SLOTS];
 } MysteryGift;
@@ -121,8 +122,8 @@ BOOL MysteryGift_CheckHasWonderCards(const MysteryGift *mysteryGift);
 BOOL MysteryGift_CheckWcHasPgtSaved(const MysteryGift *mysteryGift, int wondercardSlot);
 BOOL MysteryGift_GetWcIDReceived(MysteryGift *mysteryGift, int wondercardID);
 void MysteryGift_SetWcIDReceived(MysteryGift *mysteryGift, int wondercardID);
-BOOL MysteryGift_GetLastWcIDReceived(MysteryGift *mysteryGift);
-void MysteryGift_SetLastWcIDReceived(MysteryGift *mysteryGift);
+BOOL MysteryGift_GetMysteryGiftUnlockedFlag(MysteryGift *mysteryGift);
+void MysteryGift_SetMysteryGiftUnlockedFlag(MysteryGift *mysteryGift);
 void MysteryGift_Load(SaveData *saveData, int unused);
 void MysteryGift_Unload(SaveData *saveData, int unused);
 int MysteryGift_TryGetFirstValidPgtSlot(void);

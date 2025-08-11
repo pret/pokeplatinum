@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_230.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0025
@@ -32,4 +31,4 @@ _0038:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

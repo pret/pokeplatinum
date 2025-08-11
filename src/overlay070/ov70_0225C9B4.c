@@ -21,7 +21,7 @@
 #include "overlay070/struct_ov70_0225C894_decl.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "system.h"
 
@@ -197,13 +197,13 @@ UnkStruct_ov70_0225CA20 *ov70_0225C9B4(u32 param0, u32 param1, const UnkStruct_o
 
 void ov70_0225CA20(UnkStruct_ov70_0225CA20 *param0)
 {
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_Free(param0->unk_08);
 
     ov63_0222D880(param0->unk_10);
     ov66_02234548(param0->unk_04);
     ov63_0222BE58(param0->unk_00);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_0225CA44(UnkStruct_ov70_0225CA20 *param0)

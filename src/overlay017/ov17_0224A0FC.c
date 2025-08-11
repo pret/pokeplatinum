@@ -33,10 +33,11 @@
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
@@ -50,7 +51,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -1066,9 +1066,8 @@ void ov17_0224AFF8(SpriteManager *param0)
 
 BOOL ov17_0224B01C(UnkStruct_ov17_0224DF54 *param0)
 {
-    ManagedSprite *v0;
     UnkStruct_ov17_0224B058 *v1 = &param0->unk_14.unk_910;
-    v0 = SpriteSystem_NewSprite(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
 
     ManagedSprite_SetPositionXYWithSubscreenOffset(v0, -1, (0x16 * 8), (256 * FX32_ONE));
     Sprite_TickFrame(v0->sprite);
@@ -1913,7 +1912,7 @@ static void ov17_0224C244(UnkStruct_ov17_0224DF54 *param0, MessageLoader *param1
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
-        v1 = Options_TextFrameDelay(param0->unk_00->unk_196C);
+        v1 = Options_TextFrameDelay(param0->unk_00->options);
     } else {
         v1 = TEXT_SPEED_FAST;
     }
@@ -1983,7 +1982,7 @@ void ov17_0224C3E4(UnkStruct_ov17_0224DF54 *param0)
 {
     SysTask_Done(param0->unk_14.unk_1FC->unk_00);
     Sprite_DeleteAndFreeResources(param0->unk_14.unk_1FC->unk_04);
-    Heap_FreeToHeap(param0->unk_14.unk_1FC);
+    Heap_Free(param0->unk_14.unk_1FC);
 
     param0->unk_14.unk_1FC = NULL;
 }
@@ -2176,7 +2175,7 @@ static void ov17_0224C718(SysTask *param0, void *param1)
     default:
         *(v0->unk_0C) = 1;
         ov17_0224AC78(v0->unk_08, 1, 1);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -2213,7 +2212,7 @@ static void ov17_0224C7B8(SysTask *param0, void *param1)
         break;
     default:
         *(v0->unk_0C) = 1;
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }
@@ -2359,22 +2358,19 @@ void ov17_0224CA90(UnkStruct_ov17_0224DF54 *param0, u32 param1, s32 param2, s32 
     param0->unk_1064.unk_08 = param4;
     param0->unk_1064.unk_0C = param5;
 
-    sub_020146F4(param0->unk_0C, param1, ov17_0224CAC0, param0);
+    ParticleSystem_CreateEmitterWithCallback(param0->unk_0C, param1, ov17_0224CAC0, param0);
 }
 
 static void ov17_0224CAC0(SPLEmitter *param0)
 {
-    UnkStruct_ov17_0224DF54 *v0;
-    UnkStruct_ov17_0224CAC0 *v1;
-
-    v0 = sub_02014764();
-    v1 = &v0->unk_1064;
+    UnkStruct_ov17_0224DF54 *v0 = ParticleSystem_GetEmitterCallbackParam();
+    UnkStruct_ov17_0224CAC0 *v1 = &v0->unk_1064;
 
     SPLEmitter_SetPosX(param0, v1->unk_00);
     SPLEmitter_SetPosY(param0, v1->unk_04);
     SPLEmitter_SetPosZ(param0, v1->unk_08);
 
-    sub_020147B0(param0, v1->unk_0C);
+    ParticleSystem_SetEmitterEmissionCount(param0, v1->unk_0C);
 }
 
 static void ov17_0224CB00(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
@@ -2562,7 +2558,7 @@ static void ov17_0224CF4C(SysTask *param0, void *param1)
             *(v0->unk_04) = 1;
         }
 
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         return;
     }

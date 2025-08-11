@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/ruin_maniac_cave_long.h"
 
-    .data
 
     ScriptEntry _0010
     ScriptEntry _000A
@@ -30,4 +29,4 @@ _0034:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

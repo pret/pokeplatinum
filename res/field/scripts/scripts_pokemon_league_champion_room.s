@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_champion_room.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000E
@@ -83,26 +82,26 @@ _0121:
 
     .balign 4, 0
 _012C:
-    MoveAction_012 4
+    WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _0134:
-    MoveAction_012 6
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_012 6
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_014
-    MoveAction_033
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0150:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement

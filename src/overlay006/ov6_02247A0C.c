@@ -90,7 +90,7 @@ static const UnkStruct_ov6_022496F4 Unk_ov6_0224971C[][4] = {
 
 void ov6_02247A0C(FieldTask *param0)
 {
-    UnkStruct_ov6_02247A0C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov6_02247A0C));
+    UnkStruct_ov6_02247A0C *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
     FieldTask_InitCall(param0, ov6_02247A34, v0);
@@ -113,7 +113,7 @@ static BOOL ov6_02247A34(FieldTask *param0)
         }
         break;
     case 2:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -126,10 +126,10 @@ void *ov6_02247A90(void *param0)
     BgConfig *v1;
     Strbuf *v2, *v3;
     int v4, v5, v6, v7;
-    SaveData *v8;
+    SaveData *saveData;
 
     v1 = FieldSystem_GetBgConfig(param0);
-    v8 = FieldSystem_GetSaveData(param0);
+    saveData = FieldSystem_GetSaveData(param0);
     v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
@@ -138,14 +138,14 @@ void *ov6_02247A90(void *param0)
     v0->unk_14 = StringTemplate_Default(HEAP_ID_FIELDMAP);
 
     Window_Add(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
-    LoadStandardWindowGraphics(v1, 3, 1, 11, 0, HEAP_ID_FIELDMAP);
+    LoadStandardWindowGraphics(v1, BG_LAYER_MAIN_3, 1, 11, 0, HEAP_ID_FIELDMAP);
     Window_DrawStandardFrame(&v0->unk_00, 1, 1, 11);
     Window_FillTilemap(&v0->unk_00, 15);
 
     v3 = Strbuf_Init(100, HEAP_ID_FIELDMAP);
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
 
-    StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(v8));
+    StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(saveData));
     StringTemplate_Format(v0->unk_14, v3, v2);
 
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));
@@ -175,7 +175,7 @@ void *ov6_02247A90(void *param0)
 
     for (v7 = 0; v7 < 5; v7++) {
         for (v6 = 0; v6 < 4; v6++) {
-            v5 = sub_0202F160(v8, v7, v6);
+            v5 = sub_0202F160(saveData, v7, v6);
             v2 = MessageLoader_GetNewStrbuf(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
             StringTemplate_SetNumber(v0->unk_14, 0, v5, 4, 1, 1);
             StringTemplate_Format(v0->unk_14, v3, v2);
@@ -200,7 +200,7 @@ void ov6_02247CC8(void *param0)
     Window_Remove(&v0->unk_00);
     MessageLoader_Free(v0->unk_10);
     StringTemplate_Free(v0->unk_14);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3)

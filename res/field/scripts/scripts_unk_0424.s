@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0431.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -60,6 +59,4 @@ _00BA:
     GoToIfEq VAR_RESULT, MENU_NO, _00B2
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_206.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _001C
@@ -62,6 +61,4 @@ _00CE:
     ShowArrowSign 2
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

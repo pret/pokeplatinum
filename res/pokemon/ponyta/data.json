@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -77,6 +78,15 @@
             "MOVE_BOUNCE",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_FLAME_WHEEL",
+            "MOVE_THRASH",
+            "MOVE_DOUBLE_KICK",
+            "MOVE_HYPNOSIS",
+            "MOVE_CHARM",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_HORN_DRILL"
         ]
     },
     "evolutions": [
@@ -86,9 +96,11 @@
             "SPECIES_RAPIDASH"
         ]
     ],
+    "offspring": "SPECIES_PONYTA",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 10,

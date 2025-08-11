@@ -12,16 +12,16 @@
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
+#include "camera.h"
 #include "enums.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "screen_fade.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
 enum {
@@ -164,7 +164,7 @@ void ov95_0224ABF4(void *param0)
             ov95_0224B3BC(v0->unk_38);
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -208,7 +208,7 @@ static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1)
 {
     ov95_0224AE1C(param0);
     ov95_0224B084(param0);
-    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -217,7 +217,7 @@ static int ov95_0224ACC8(UnkStruct_ov95_0224AC64 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_08 = 0;
             ov95_0224B274(param0, &(param0->unk_30));
             (*param1)++;
@@ -271,12 +271,12 @@ static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1)
         break;
     case 1:
         if (++(param0->unk_08) > 13) {
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() && (param0->unk_1C)) {
+        if (IsScreenFadeDone() && (param0->unk_1C)) {
             return 1;
         }
         break;
@@ -306,34 +306,32 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
         GX_BG0_AS_3D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0,
-        0,
-        5,
-        GX_BG_COLORMODE_256,
-        GX_BG_SCRBASE_0xb000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_1024x1024,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xb000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const BgTemplate v3 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_256,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        3,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const u16 v4[] = {
         0x20,
@@ -346,34 +344,34 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
     GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0->unk_0C, 2, &v2, 1);
-    Bg_InitFromTemplate(param0->unk_0C, 6, &v2, 1);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v2, 1);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_2, &v2, 1);
 
     {
         OSIntrMode v6 = OS_DisableInterrupts();
 
-        Bg_InitFromTemplate(param0->unk_0C, 3, &v3, 2);
-        Bg_InitFromTemplate(param0->unk_0C, 7, &v3, 2);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v3, 2);
+        Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v3, 2);
 
         OS_RestoreInterrupts(v6);
     }
 
-    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_0C, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 1, param0->unk_0C, 2, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 1, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, param0->unk_0C, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 2, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, param0->unk_0C, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_58);
 
     v5 = ov95_02247644(param0->unk_00);
 
-    Graphics_LoadPalette(93, 3, 0, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPalette(93, 3, 4, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_58);
     Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, HEAP_ID_58);
     Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, HEAP_ID_58);
 
-    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 5, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 4, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
 
     {
         u8 *v7 = Heap_AllocFromHeap(HEAP_ID_58, 96);
@@ -389,15 +387,15 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
             GX_EndLoadBGExtPltt();
             GXS_EndLoadBGExtPltt();
 
-            Heap_FreeToHeap(v7);
+            Heap_Free(v7);
         }
     }
 
-    Bg_SetOffset(param0->unk_0C, 2, 3, UnkEnum_ov95_0224AE1C_00);
-    Bg_SetOffset(param0->unk_0C, 6, 3, UnkEnum_ov95_0224AE1C_01);
-    Bg_SetOffset(param0->unk_0C, 3, 3, 67);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_2, 3, UnkEnum_ov95_0224AE1C_00);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_SUB_2, 3, UnkEnum_ov95_0224AE1C_01);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_3, 3, 67);
 
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -409,10 +407,10 @@ static void ov95_0224B050(UnkStruct_ov95_0224AC64 *param0)
         ov95_02247018(param0->unk_10);
     }
 
-    Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 7);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
 }
 
 static void ov95_0224B084(UnkStruct_ov95_0224AC64 *param0)
@@ -449,7 +447,7 @@ static void ov95_0224B084(UnkStruct_ov95_0224AC64 *param0)
     G2_SetBG0Priority(0);
 
     param0->unk_20 = ov95_022476F0(1, 0, 0, 0);
-    param0->unk_24 = ov95_022478B4(param0->unk_20, 0, 93, 27, 0, UnkEnum_ov95_0224B084_00, 0, 1);
+    param0->unk_24 = ov95_022478B4(param0->unk_20, 0, NARC_INDEX_GRAPHIC__DEMO_TRADE, 27, 0, UnkEnum_ov95_0224B084_00, 0, 1);
 
     {
         static CameraAngle v2;
@@ -489,7 +487,7 @@ static void ov95_0224B1A8(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
         *param1 = SysTask_ExecuteOnVBlank(ov95_0224B1F8, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -501,12 +499,12 @@ static void ov95_0224B1F8(SysTask *param0, void *param1)
     if (v0->unk_08) {
         v0->unk_0C += v0->unk_14;
         v0->unk_10 += v0->unk_14;
-        Bg_SetOffset(v0->unk_04, 2, 3, (v0->unk_0C >> 12));
-        Bg_SetOffset(v0->unk_04, 6, 3, (v0->unk_10 >> 12));
+        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_2, 3, v0->unk_0C >> 12);
+        Bg_SetOffset(v0->unk_04, BG_LAYER_SUB_2, 3, v0->unk_10 >> 12);
         v0->unk_08--;
     } else {
-        Bg_SetOffset(v0->unk_04, 2, 3, UnkEnum_ov95_0224B1A8_00);
-        Bg_SetOffset(v0->unk_04, 6, 3, UnkEnum_ov95_0224B1F8_00);
+        Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_2, 3, UnkEnum_ov95_0224B1A8_00);
+        Bg_SetOffset(v0->unk_04, BG_LAYER_SUB_2, 3, UnkEnum_ov95_0224B1F8_00);
         ov95_0224B258(param0);
     }
 }
@@ -537,7 +535,7 @@ static void ov95_0224B274(UnkStruct_ov95_0224AC64 *param0, SysTask **param1)
         *param1 = SysTask_Start(ov95_0224B2C8, v0, 0);
 
         if (*param1 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -564,7 +562,7 @@ static void ov95_0224B308(SysTask *param0)
 
         *(v0->unk_00) = NULL;
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -584,7 +582,7 @@ static void ov95_0224B324(UnkStruct_ov95_02247958 *param0, int param1, int param
         *param4 = SysTask_Start(ov95_0224B388, v0, 0);
 
         if (*param4 == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     } else {
         *param4 = NULL;
@@ -610,7 +608,7 @@ static void ov95_0224B3BC(SysTask *param0)
         UnkStruct_ov95_0224B324 *v0 = SysTask_GetParam(param0);
 
         *(v0->unk_00) = NULL;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0430.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _00F4
@@ -60,12 +59,12 @@ _00C6:
 
     .balign 4, 0
 _00D8:
-    MoveAction_032
-    MoveAction_063 2
-    MoveAction_012 4
-    MoveAction_014
-    MoveAction_000
-    MoveAction_063 2
+    WalkOnSpotNormalNorth
+    Delay8 2
+    WalkNormalNorth 4
+    WalkNormalWest
+    FaceNorth
+    Delay8 2
     EndMovement
 
 _00F4:
@@ -253,65 +252,65 @@ _035C:
 
     .balign 4, 0
 _03B8:
-    MoveAction_015
-    MoveAction_032
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _03C4:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _03CC:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _03D4:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _03E0:
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _03EC:
-    MoveAction_001
-    MoveAction_070
-    MoveAction_013
+    FaceSouth
+    SetVisible
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _03FC:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0404:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _040C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0414:
-    MoveAction_012
-    MoveAction_015
-    MoveAction_032
+    WalkNormalNorth
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0424:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
 _0430:
@@ -415,128 +414,30 @@ _0526:
     WaitFadeScreen
     End
 
-    .byte 188
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 189
-    .byte 0
-    .byte 248
-    .byte 1
-    .byte 179
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 41
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 12
-    .byte 128
-    .byte 247
-    .byte 2
-    .byte 4
-    .byte 128
-    .byte 161
-    .byte 0
-    .byte 188
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 189
-    .byte 0
-    .byte 104
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 77
-    .byte 26
-    .byte 0
-    .byte 15
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 211
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 95
-    .byte 0
-    .byte 26
-    .byte 0
-    .byte 7
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 211
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 95
-    .byte 0
-    .byte 104
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 77
-    .byte 26
-    .byte 0
-    .byte 228
-    .byte 252
-    .byte 0xFF
-    .byte 0xFF
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 192
-    .byte 253
-    .byte 0xFF
-    .byte 0xFF
-    .byte 95
-    .byte 0
-    .byte 26
-    .byte 0
-    .byte 220
-    .byte 252
-    .byte 0xFF
-    .byte 0xFF
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+Unk423_Unused:
+    FadeScreen 6, 1, 0, 0
+    WaitFadeScreen
+    ScrCmd_1F8
+    ScrCmd_0B3 VAR_RESULT
+    SetVar VAR_0x8004, VAR_RESULT
+    ScrCmd_2F7 VAR_0x8004
+    ReturnToField
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    ScrCmd_168 0, 0, 5, 2, 77
+    Call _0320
+    ApplyMovement LOCALID_PLAYER, _03EC
+    WaitMovement
+    Call _0328
+    ApplyMovement LOCALID_PLAYER, _03FC
+    WaitMovement
+    ScrCmd_168 0, 0, 5, 5, 77
+    Call _0320
+    ApplyMovement LOCALID_PLAYER, _0404
+    WaitMovement
+    Call _0328
+    ReleaseAll
+    End
 
 _0650:
     LockAll

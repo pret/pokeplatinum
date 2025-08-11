@@ -7,6 +7,7 @@
 #include "struct_defs/struct_020831B4.h"
 
 #include "graphics.h"
+#include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
@@ -17,7 +18,6 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "unk_0201E010.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
@@ -76,7 +76,7 @@ void sub_02082CEC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3, N
     SpriteTemplateFromResourceHeader v1;
     u32 v2;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
 
     param0->unk_704[param1].unk_16 = param2;
     param0->unk_704[param1].unk_18 = param3;
@@ -111,7 +111,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     NNSG2dCharacterData *v6;
     BOOL v7;
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
     v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
@@ -124,7 +124,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
         GX_LoadOBJ(v6->pRawData, v4, v6->szByte);
     }
 
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
     Sprite_SetExplicitPalette2(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + 3);
     NARC_dtor(v1);
 }
@@ -169,13 +169,13 @@ void sub_02082E58(GameWindowLayout *param0)
         param0->unk_5B0[10 + v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[4 + v0]);
         param0->unk_704[v0].unk_1A = Unk_020F20C0[4 + v0].x;
         param0->unk_704[v0].unk_1C = Unk_020F20C0[4 + v0].y;
-        Sprite_SetDrawFlag(param0->unk_5B0[10 + v0], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[10 + v0], FALSE);
         param0->unk_5B0[16 + v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[10 + v0]);
         param0->unk_5B0[22 + v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[16 + v0]);
     }
 
-    Sprite_SetDrawFlag(param0->unk_5B0[7], 0);
-    Sprite_SetDrawFlag(param0->unk_5B0[28], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], FALSE);
+    Sprite_SetDrawFlag(param0->unk_5B0[28], FALSE);
 }
 
 void sub_02082FAC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3)
@@ -209,12 +209,12 @@ void sub_02083014(GameWindowLayout *param0, u8 param1, u8 param2)
     Sprite **v0 = &param0->unk_5B0[10 + param1];
 
     if (param2 == 7) {
-        Sprite_SetDrawFlag(*v0, 0);
+        Sprite_SetDrawFlag(*v0, FALSE);
         return;
     }
 
     Sprite_SetAnim(*v0, param2);
-    Sprite_SetDrawFlag(*v0, 1);
+    Sprite_SetDrawFlag(*v0, TRUE);
 }
 
 void sub_02083040(GameWindowLayout *param0, u8 param1, u16 param2)
@@ -222,7 +222,7 @@ void sub_02083040(GameWindowLayout *param0, u8 param1, u16 param2)
     Sprite **v0 = &param0->unk_5B0[16 + param1];
 
     if (param2 == 0) {
-        Sprite_SetDrawFlag(*v0, 0);
+        Sprite_SetDrawFlag(*v0, FALSE);
         return;
     }
 
@@ -232,7 +232,7 @@ void sub_02083040(GameWindowLayout *param0, u8 param1, u16 param2)
         Sprite_SetAnim(*v0, 0);
     }
 
-    Sprite_SetDrawFlag(*v0, 1);
+    Sprite_SetDrawFlag(*v0, TRUE);
 }
 
 void sub_02083080(GameWindowLayout *param0, u8 param1)
@@ -240,7 +240,7 @@ void sub_02083080(GameWindowLayout *param0, u8 param1)
     Sprite **v0 = &param0->unk_5B0[16 + param1];
 
     Sprite_SetAnim(*v0, 1);
-    Sprite_SetDrawFlag(*v0, 1);
+    Sprite_SetDrawFlag(*v0, TRUE);
 }
 
 void sub_020830A0(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
@@ -263,11 +263,11 @@ void sub_02083104(GameWindowLayout *param0, u8 param1)
     Sprite **v0 = &param0->unk_5B0[22 + param1];
 
     if (param0->unk_704[param1].unk_12 == 0) {
-        Sprite_SetDrawFlag(*v0, 0);
+        Sprite_SetDrawFlag(*v0, FALSE);
         return;
     }
 
-    Sprite_SetDrawFlag(*v0, 1);
+    Sprite_SetDrawFlag(*v0, TRUE);
 }
 
 static void sub_02083138(Sprite *param0, u8 param1)
@@ -282,7 +282,7 @@ static void sub_02083138(Sprite *param0, u8 param1)
 
 static u8 sub_02083158(StrBufWrapper *param0)
 {
-    if (param0->unk_06 == 0) {
+    if (param0->curHP == 0) {
         return 0;
     }
 
@@ -290,7 +290,7 @@ static u8 sub_02083158(StrBufWrapper *param0)
         return 5;
     }
 
-    switch (HealthBar_Color(param0->unk_06, param0->unk_08, 48)) {
+    switch (HealthBar_Color(param0->curHP, param0->maxHP, 48)) {
     case 4:
         return 1;
     case 3:
@@ -326,7 +326,7 @@ void sub_020831B4(GameWindowLayout *param0)
         sub_02083138(v0->unk_24, v2);
         Sprite_UpdateAnim(v0->unk_24, FX32_ONE);
 
-        if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
+        if ((param0->partySlot == v1) && (v2 != 0) && (v2 != 5)) {
             if (Sprite_GetAnimFrame(v0->unk_24) == 0) {
                 Sprite_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
             } else {
@@ -344,9 +344,9 @@ void sub_0208327C(GameWindowLayout *param0, u8 param1, u8 param2)
 {
     u8 v0, v1;
 
-    sub_0201E010(&param0->unk_7F4[param1], &v0, &v1);
-    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
-    Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+    GridMenuCursor_GetFirstCoords(&param0->unk_7F4[param1], &v0, &v1);
+    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->partyManagementData->unk_21, param1));
+    Sprite_SetDrawFlag(param0->unk_5B0[6], TRUE);
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], param2);
 }
@@ -361,7 +361,7 @@ void sub_020832E4(GameWindowLayout *param0, s16 param1, s16 param2)
     v0.z = 0;
 
     Sprite_SetPosition(param0->unk_5B0[28], &v0);
-    Sprite_SetDrawFlag(param0->unk_5B0[28], 1);
+    Sprite_SetDrawFlag(param0->unk_5B0[28], TRUE);
     Sprite_SetAnimFrame(param0->unk_5B0[28], 0);
     Sprite_SetAnim(param0->unk_5B0[28], 0);
 }
@@ -372,7 +372,7 @@ void sub_02083334(GameWindowLayout *param0)
         Sprite_UpdateAnim(param0->unk_5B0[28], FX32_ONE);
 
         if (Sprite_GetAnimFrame(param0->unk_5B0[28]) == 2) {
-            Sprite_SetDrawFlag(param0->unk_5B0[28], 0);
+            Sprite_SetDrawFlag(param0->unk_5B0[28], FALSE);
         }
     }
 }

@@ -35,7 +35,7 @@ void sub_0206C660(FieldTask *param0)
     {
         FS_EXTERN_OVERLAY(overlay95);
 
-        static const OverlayManagerTemplate v2 = {
+        static const ApplicationManagerTemplate v2 = {
             ov95_02246C20,
             ov95_02246E7C,
             ov95_02246E1C,
@@ -78,9 +78,9 @@ static BOOL sub_0206C680(FieldTask *param0)
         v1->unk_04++;
         break;
     case 6:
-        Heap_FreeToHeap(v1->unk_24);
-        Heap_FreeToHeap(v1->unk_28);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1->unk_24);
+        Heap_Free(v1->unk_28);
+        Heap_Free(v1);
         return 1;
     }
 

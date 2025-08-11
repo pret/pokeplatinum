@@ -8,8 +8,8 @@
 
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_0204F3D0.h"
 #include "struct_defs/struct_02098C44.h"
@@ -26,13 +26,13 @@
 #include "game_records.h"
 #include "heap.h"
 #include "inlines.h"
+#include "mail.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
 #include "string_template.h"
-#include "unk_02028124.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_02030108.h"
@@ -62,7 +62,7 @@ enum {
 };
 
 BOOL ScrCmd_2CC(ScriptContext *param0);
-static BOOL sub_0204F268(u16 param0, SaveData *param1);
+static BOOL sub_0204F268(u16 param0, SaveData *saveData);
 BOOL ScrCmd_2D1(ScriptContext *param0);
 
 BOOL ScrCmd_2CF(ScriptContext *param0);
@@ -148,7 +148,7 @@ BOOL ScrCmd_2CC(ScriptContext *param0)
     return 0;
 }
 
-static BOOL sub_0204F268(u16 param0, SaveData *param1)
+static BOOL sub_0204F268(u16 param0, SaveData *saveData)
 {
     u8 v0, v1, v2, v3;
     u16 v4, v5;
@@ -156,7 +156,7 @@ static BOOL sub_0204F268(u16 param0, SaveData *param1)
     Pokemon *v7;
     u16 v8[6];
 
-    v6 = SaveData_GetParty(param1);
+    v6 = SaveData_GetParty(saveData);
     v3 = Party_GetCurrentCount(v6);
 
     if (v3 < param0) {
@@ -275,7 +275,7 @@ static BOOL sub_0204F414(FieldTask *param0)
         break;
 
     case 2:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     };
 
@@ -318,7 +318,7 @@ static BOOL sub_0204F4A4(FieldTask *param0)
         break;
 
     case UnkEnum_0204F13C_5:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -329,38 +329,38 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 {
     u8 v0;
 
-    PartyManagementData *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
-    MI_CpuClearFast(v1, sizeof(PartyManagementData));
+    PartyManagementData *partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
+    MI_CpuClearFast(partyMan, sizeof(PartyManagementData));
 
-    v1->unk_00 = SaveData_GetParty(fieldSystem->saveData);
-    v1->unk_04 = SaveData_GetBag(fieldSystem->saveData);
-    v1->unk_08 = SaveData_GetMailBox(fieldSystem->saveData);
-    v1->unk_0C = SaveData_GetOptions(fieldSystem->saveData);
+    partyMan->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMan->bag = SaveData_GetBag(fieldSystem->saveData);
+    partyMan->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
+    partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
 
-    v1->unk_21 = 0;
+    partyMan->unk_21 = 0;
 
-    v1->unk_20 = 22;
-    v1->unk_1C = fieldSystem;
+    partyMan->unk_20 = 22;
+    partyMan->fieldSystem = fieldSystem;
 
-    v1->selectedMonSlot = param0->unk_05;
+    partyMan->selectedMonSlot = param0->unk_05;
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1->unk_2C[v0] = param0->unk_06[v0];
+        partyMan->unk_2C[v0] = param0->unk_06[v0];
     }
 
-    v1->unk_33 = 30;
+    partyMan->unk_33 = 30;
 
-    v1->unk_32_0 = 1;
-    v1->unk_32_4 = 1;
+    partyMan->unk_32_0 = 1;
+    partyMan->unk_32_4 = 1;
 
     if (param0->unk_04 == 1) {
-        v1->unk_32_0 = 2;
-        v1->unk_32_4 = 2;
+        partyMan->unk_32_0 = 2;
+        partyMan->unk_32_4 = 2;
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v1);
+    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
 
-    *(param0->unk_08) = v1;
+    *(param0->unk_08) = partyMan;
 
     return UnkEnum_0204F13C_2;
 }
@@ -368,15 +368,15 @@ static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
 static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 {
     int v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return UnkEnum_0204F13C_2;
     }
 
-    v1 = *(param0->unk_08);
+    partyMan = *(param0->unk_08);
 
-    switch (v1->selectedMonSlot) {
+    switch (partyMan->selectedMonSlot) {
     case 7:
         return UnkEnum_0204F13C_5;
 
@@ -387,11 +387,11 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
         break;
     }
 
-    MI_CpuCopy8(v1->unk_2C, param0->unk_06, 2);
+    MI_CpuCopy8(partyMan->unk_2C, param0->unk_06, 2);
 
-    param0->unk_05 = v1->selectedMonSlot;
+    param0->unk_05 = partyMan->selectedMonSlot;
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(partyMan);
     *(param0->unk_08) = NULL;
     return UnkEnum_0204F13C_3;
 }
@@ -399,7 +399,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID)
 {
     PokemonSummary *v0;
-    SaveData *v1;
+    SaveData *saveData;
 
     static const u8 v2[] = {
         0,
@@ -413,24 +413,24 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
         8
     };
 
-    v1 = fieldSystem->saveData;
+    saveData = fieldSystem->saveData;
 
     v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(PokemonSummary));
     MI_CpuClear8(v0, sizeof(PokemonSummary));
 
-    v0->options = SaveData_GetOptions(v1);
-    v0->monData = SaveData_GetParty(v1);
-    v0->dexMode = SaveData_GetDexMode(v1);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
+    v0->options = SaveData_GetOptions(saveData);
+    v0->monData = SaveData_GetParty(saveData);
+    v0->dexMode = SaveData_GetDexMode(saveData);
+    v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
     v0->dataType = SUMMARY_DATA_PARTY_MON;
     v0->monIndex = param0->unk_05;
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(v1);
+    v0->specialRibbons = sub_0202D79C(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(v1));
+    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
 
@@ -450,7 +450,7 @@ static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
 
     param0->unk_05 = v0->monIndex;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     *(param0->unk_08) = NULL;
 
     return UnkEnum_0204F13C_1;
@@ -518,7 +518,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
     int v0;
     int v1;
     BattleFrontierStage *v2;
-    BattleFrontier *v3;
+    BattleFrontier *frontier;
     u32 v4, v5, v6;
     u16 v7, v8;
     FieldSystem *fieldSystem = param0->fieldSystem;
@@ -552,7 +552,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
     ;
 
     if (v2 != NULL) {
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     StringTemplate_SetNumber(*v10, v11, v4, GetNumberDigitCount(v4), 1, 1);
@@ -640,7 +640,7 @@ BOOL ScrCmd_325(ScriptContext *param0)
     ;
 
     if (v1 != NULL) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     *v6 = v4;
@@ -653,7 +653,7 @@ BOOL ScrCmd_326(ScriptContext *param0)
     int v0;
     int v1;
     BattleFrontierStage *v2;
-    BattleFrontier *v3;
+    BattleFrontier *frontier;
     u32 v4, v5;
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v7 = ScriptContext_GetVarPointer(param0);
@@ -680,7 +680,7 @@ BOOL ScrCmd_326(ScriptContext *param0)
     ;
 
     if (v2 != NULL) {
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
     if (v4 > 10000) {

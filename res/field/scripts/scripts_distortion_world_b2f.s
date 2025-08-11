@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b2f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0012
@@ -64,43 +63,43 @@ _00D0:
 
     .balign 4, 0
 _00DC:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _00E4:
     MoveAction_106
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _00F0:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _00F8:
     MoveAction_106
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _0104:
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _010C:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _0114:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _011C:
     MoveAction_107
-    MoveAction_000
+    FaceNorth
     EndMovement

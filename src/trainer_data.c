@@ -2,7 +2,7 @@
 
 #include "constants/battle.h"
 #include "constants/pokemon.h"
-#include "constants/trainer.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_defs/trainer.h"
 
@@ -11,7 +11,7 @@
 #include "charcode_util.h"
 #include "field_battle_data_transfer.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -22,11 +22,11 @@
 
 static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID);
 
-void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *save, int heapID)
+void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID)
 {
     Trainer trdata;
     MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, heapID);
-    const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(save));
+    const charcode_t *rivalName = MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData));
 
     for (int i = 0; i < MAX_BATTLERS; i++) {
         if (!dto->trainerIDs[i]) {
@@ -137,7 +137,7 @@ void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf 
         NARC_ReadFromMember(narc, 0, offset, 4, data);
 
         if (data[0] == trainerID && data[1] == msgType) {
-            MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, 617, offset / 4, heapID, strbuf);
+            MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_MESSAGES, offset / 4, heapID, strbuf);
             break;
         }
 
@@ -310,7 +310,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
     }
     }
 
-    Heap_FreeToHeap(buf);
-    Heap_FreeToHeap(mon);
+    Heap_Free(buf);
+    Heap_Free(mon);
     LCRNG_SetSeed(oldSeed);
 }

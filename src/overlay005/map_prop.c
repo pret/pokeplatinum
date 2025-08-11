@@ -12,9 +12,9 @@
 
 #include "easy3d.h"
 #include "fx_util.h"
+#include "gfx_box_test.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_0201CED8.h"
 
 static void MapPropManager_InitRenderObj(const int modelID, AreaDataManager *const areaDataManager, NNSG3dRenderObj *renderObj, NNSG3dResMdl **model);
 static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int modelID);
@@ -37,7 +37,7 @@ MapPropManager *MapPropManager_New(const u8 heapID)
 
 void MapPropManager_Free(MapPropManager *mapPropManager)
 {
-    Heap_FreeToHeap(mapPropManager);
+    Heap_Free(mapPropManager);
     mapPropManager = NULL;
 }
 
@@ -116,7 +116,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
     }
 
     if (mapPropFiles != NULL) {
-        Heap_FreeToHeap(mapPropFiles);
+        Heap_Free(mapPropFiles);
     }
 }
 
@@ -132,7 +132,7 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager 
         0,
         0,
         0,
-        FX32_ONE
+        FX32_ONE,
     };
 
     for (int i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
@@ -147,7 +147,7 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager 
             position.x += positionOffset->x;
             position.z += positionOffset->z;
 
-            if (sub_0201CED8(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale)) {
+            if (GFXBoxTest_IsModelInView(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale)) {
                 const MapPropMaterialShape *propMatShp = AreaDataManager_GetMapPropMaterialShape(areaDataManager);
                 u16 propMatShpIDsCount;
 
@@ -312,7 +312,7 @@ void MapPropManager_Render2(MapPropManager *mapPropManager, AreaDataManager *con
         0,
         0,
         0,
-        FX32_ONE
+        FX32_ONE,
     };
 
     for (u8 i = 0; i < MAX_LOADED_MAP_PROPS; i++) {

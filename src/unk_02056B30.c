@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_actions.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
@@ -27,9 +29,9 @@
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_020553DC.h"
 #include "unk_020655F4.h"
 
@@ -122,13 +124,13 @@ static BOOL sub_02056B70(FieldTask *taskMan)
     switch (v1->unk_00) {
     case 0:
         HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->heapID);
+        StartScreenFade(v1->unk_04, v1->unk_08, v1->unk_0C, v1->unk_10, v1->unk_14, v1->unk_18, v1->heapID);
         v1->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             return 1;
         }
     }
@@ -138,7 +140,7 @@ static BOOL sub_02056B70(FieldTask *taskMan)
 
 void sub_02056BDC(FieldSystem *fieldSystem, const int param1, const int param2, const int param3, const int param4, const int param5, const int param6)
 {
-    UnkStruct_02056BDC *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -154,7 +156,7 @@ void sub_02056C18(FieldSystem *fieldSystem, const int param1, const int param2, 
 {
     int v0;
     int v1;
-    UnkStruct_02056BDC *v2 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02056BDC));
 
     v2->unk_00 = 0;
     v2->unk_04 = 0;
@@ -246,7 +248,7 @@ static BOOL sub_02056CFC(FieldTask *taskMan)
         (v1->unk_00)++;
         break;
     case 6:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -345,9 +347,9 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         v2 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (v3 == 2) {
-            LocalMapObj_SetAnimationCode(v2, 0xa);
+            LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_WEST);
         } else if (v3 == 3) {
-            LocalMapObj_SetAnimationCode(v2, 0xb);
+            LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_EAST);
         } else {
             GF_ASSERT(FALSE);
         }
@@ -368,7 +370,7 @@ static BOOL sub_02056F1C(FieldTask *taskMan)
         (v1->unk_04)++;
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -549,9 +551,9 @@ static BOOL sub_02057218(FieldTask *taskMan)
             v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
             if (v3 == 2) {
-                LocalMapObj_SetAnimationCode(v2, 0xa);
+                LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_WEST);
             } else if (v3 == 3) {
-                LocalMapObj_SetAnimationCode(v2, 0xb);
+                LocalMapObj_SetAnimationCode(v2, MOVEMENT_ACTION_WALK_SLOW_EAST);
             } else {
                 GF_ASSERT(FALSE);
             }
@@ -570,7 +572,7 @@ static BOOL sub_02057218(FieldTask *taskMan)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (v1->unk_04)++;
         }
         break;

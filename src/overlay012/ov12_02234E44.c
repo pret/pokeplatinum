@@ -3,9 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_0223595C.h"
 
 #include "bg_window.h"
@@ -59,12 +58,12 @@ static void ov12_02234E54(UnkStruct_ov12_02234E54 *param0, int param1)
     int v0;
     int v1;
 
-    v0 = ov12_0221FDE4(param0->unk_18.unk_04);
-    v1 = ov12_02223428(param0->unk_18.unk_04, 3);
+    v0 = BattleAnimSystem_GetHeapID(param0->unk_18.unk_04);
+    v1 = BattleAnimSystem_GetBgPriority(param0->unk_18.unk_04, 3);
 
     Bg_SetPriority(param1, v1);
     Graphics_LoadTilesToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
-    PaletteData_LoadBufferFromFileStart(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, (8 * 16));
+    PaletteData_LoadBufferFromFileStart(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, 8 * 16);
     Bg_ClearTilemap(param0->unk_18.unk_14, param1);
     Graphics_LoadTilemapToBgLayer(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
 }
@@ -109,12 +108,12 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
         G2_ChangeBlendAlpha(v0->unk_00.unk_14, v0->unk_00.unk_16);
         break;
     default:
-        G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
-        G2_SetWndOBJInsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 0);
+        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
+        G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
         Bg_SetOffset(v0->unk_18.unk_14, 2, 0, 0);
         Bg_SetOffset(v0->unk_18.unk_14, 2, 3, 0);
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
-        ov12_02220220(v0->unk_18.unk_04, param0);
+        BattleAnimSystem_EndAnimTask(v0->unk_18.unk_04, param0);
         ov12_02235E80(v0);
         (v0) = NULL;
         return;
@@ -132,28 +131,28 @@ static void ov12_02234EF0(SysTask *param0, void *param1)
     SpriteSystem_DrawSprites(v0->unk_18.unk_0C);
 }
 
-static void ov12_0223505C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E44 *param1)
+static void ov12_0223505C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
 {
     (*param1).unk_00 = 7;
-    (*param1).unk_04 = ov12_02220280(param0, 0);
-    (*param1).unk_08 = ov12_02220280(param0, 1);
+    (*param1).unk_04 = BattleAnimSystem_GetScriptVar(param0, 0);
+    (*param1).unk_08 = BattleAnimSystem_GetScriptVar(param0, 1);
 }
 
-static void ov12_0223507C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E44 *param1)
+static void ov12_0223507C(BattleAnimSystem *param0, UnkStruct_ov12_02234E44 *param1)
 {
-    UnkStruct_ov12_02234E54 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02234E54));
+    UnkStruct_ov12_02234E54 *v0 = ov12_02235E50(param0, sizeof(UnkStruct_ov12_02234E54));
 
     ov12_0223595C(param0, &v0->unk_18);
 
     v0->unk_00 = (*param1);
-    v0->unk_34 = ov12_022202C0(v0->unk_18.unk_04, 0);
-    v0->unk_38 = ov12_022202C0(v0->unk_18.unk_04, 1);
-    v0->unk_3C = ov12_022202C0(v0->unk_18.unk_04, 2);
+    v0->unk_34 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 0);
+    v0->unk_38 = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 1);
+    v0->unk_3C = BattleAnimSystem_GetPokemonSprite(v0->unk_18.unk_04, 2);
 
     {
         int v1;
 
-        v1 = ov12_02223428(v0->unk_18.unk_04, 2);
+        v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.unk_04, 2);
         v1 = 2;
 
         ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
@@ -164,16 +163,16 @@ static void ov12_0223507C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E
             int v3;
 
             if (v0->unk_00.unk_08 == 0) {
-                v3 = ov12_02220240(param0);
+                v3 = BattleAnimSystem_GetAttacker(param0);
             } else {
-                v3 = ov12_02220248(param0);
+                v3 = BattleAnimSystem_GetDefender(param0);
             }
 
-            v2 = ov12_02235254(param0, v3);
+            v2 = BattleAnimUtil_GetBattlerType(param0, v3);
 
-            if (ov12_0221FDD4(param0) == 1) {
+            if (BattleAnimSystem_IsContest(param0) == 1) {
                 ManagedSprite_SetDrawFlag(v0->unk_3C, 0);
-                v1 = ov12_02223428(v0->unk_18.unk_04, 2);
+                v1 = BattleAnimSystem_GetBgPriority(v0->unk_18.unk_04, 2);
                 ManagedSprite_SetExplicitPriority(v0->unk_34, v1);
                 ManagedSprite_SetExplicitPriority(v0->unk_38, v1);
             } else {
@@ -198,7 +197,7 @@ static void ov12_0223507C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E
 
     {
         G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ | GX_WND_PLANEMASK_BG2, 1);
-        G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), 1);
+        G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
         GX_SetVisibleWnd(GX_WNDMASK_OW);
 
         ManagedSprite_SetExplicitOamMode(v0->unk_38, GX_OAM_MODE_OBJWND);
@@ -207,10 +206,10 @@ static void ov12_0223507C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_02234E
     v0->unk_00.unk_10 = 0;
     v0->unk_00.unk_12 = 0;
 
-    ov12_022201E8(v0->unk_18.unk_04, ov12_02234EF0, v0);
+    BattleAnimSystem_StartAnimTask(v0->unk_18.unk_04, ov12_02234EF0, v0);
 }
 
-void ov12_022351A4(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022351A4(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
 
@@ -220,7 +219,7 @@ void ov12_022351A4(UnkStruct_ov12_0221FCDC *param0)
     ov12_0223507C(param0, &v0);
 }
 
-void ov12_022351D0(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022351D0(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
 
@@ -230,7 +229,7 @@ void ov12_022351D0(UnkStruct_ov12_0221FCDC *param0)
     ov12_0223507C(param0, &v0);
 }
 
-void ov12_022351FC(UnkStruct_ov12_0221FCDC *param0)
+void ov12_022351FC(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
 
@@ -240,7 +239,7 @@ void ov12_022351FC(UnkStruct_ov12_0221FCDC *param0)
     ov12_0223507C(param0, &v0);
 }
 
-void ov12_02235228(UnkStruct_ov12_0221FCDC *param0)
+void ov12_02235228(BattleAnimSystem *param0)
 {
     UnkStruct_ov12_02234E44 v0;
     s16 v1 = 3 + 3;

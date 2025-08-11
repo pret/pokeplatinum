@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_H
 #define POKEPLATINUM_FIELD_SYSTEM_H
 
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system_decl.h"
-#include "overlay025/poketch_system.h"
 
 #include "bg_window.h"
 #include "overlay_manager.h"
@@ -13,7 +13,7 @@ void FieldSystem_FlagNotRunningFieldMap(FieldSystem *fieldSystem);
 BOOL FieldSystem_HasParentProcess(FieldSystem *fieldSystem);
 BOOL FieldSystem_IsRunningFieldMapInner(FieldSystem *fieldSystem);
 BOOL FieldSystem_HasChildProcess(FieldSystem *fieldSystem);
-void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs);
+void FieldSystem_StartChildProcess(FieldSystem *fieldSystem, const ApplicationManagerTemplate *appTemplate, void *appArgs);
 void FieldSystem_PauseProcessing(void);
 void FieldSystem_ResumeProcessing(void);
 PoketchSystem *FieldSystem_GetPoketchSystem(void);

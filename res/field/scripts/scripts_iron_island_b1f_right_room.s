@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000E
@@ -14,5 +13,4 @@ _000E:
     TriggerPlatformLift
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

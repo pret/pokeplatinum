@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/flower_paradise.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0062
@@ -67,6 +66,4 @@ _00D7:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

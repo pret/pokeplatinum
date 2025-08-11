@@ -4,9 +4,11 @@
 #include "generated/versions.h"
 #include "constants/pokemon.h"
 
-    .data
+#define LOCALID_OAK 1
+#define LOCALID_RECEPCIONIST 7
 
-    ScriptEntry _0036
+
+    ScriptEntry PalParkLobby_OnLoad
     ScriptEntry PalParkLobby_Receptionist
     ScriptEntry PalParkLobby_Trigger_TallyScore
     ScriptEntry PalParkLobby_RecordUnused
@@ -21,15 +23,15 @@
     ScriptEntry PalParkLobby_GBASlotGiftLady
     ScriptEntryEnd
 
-_0036:
+PalParkLobby_OnLoad:
     ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE
-    GoToIfNe VAR_PAL_PARK_STATE, 0, _004D
+    GoToIfNe VAR_PAL_PARK_STATE, 0, PalParkLobby_SetRecepcionistPosAndDir
     End
 
-_004D:
-    SetObjectEventPos 7, 8, 9
-    SetObjectEventDir 7, DIR_WEST
+PalParkLobby_SetRecepcionistPosAndDir:
+    SetObjectEventPos LOCALID_RECEPCIONIST, 8, 9
+    SetObjectEventDir LOCALID_RECEPCIONIST, DIR_WEST
     End
 
 PalParkLobby_BufferRecord:
@@ -122,12 +124,12 @@ PalParkLobby_Receptionist_DontParticipate:
 
 PalParkLobby_Receptionist_DidYouComeToParticipate_PlayerMale:
     BufferPlayerName 0
-    Message PalParkLobby_Text_HiTherePlayerDidYouComeToParticipateInACatchingShow_PlayerMale
+    Message PalParkLobby_Text_Greeting_PlayerMale
     GoTo PalParkLobby_Receptionist_OpenCatchingShowMenu
 
 PalParkLobby_Receptionist_DidYouComeToParticipate_PlayerFemale:
     BufferPlayerName 0
-    Message PalParkLobby_Text_HiTherePlayerDidYouComeToParticipateInACatchingShow_PlayerFemale
+    Message PalParkLobby_Text_Greeting_PlayerFemale
     GoTo PalParkLobby_Receptionist_OpenCatchingShowMenu
 
 PalParkLobby_Receptionist_OpenCatchingShowMenu:
@@ -156,7 +158,7 @@ PalParkLobby_Receptionist_GiveParkBalls_PlayerFemale:
     GoTo PalParkLobby_WalkInAndWarp
 
 PalParkLobby_WalkInAndWarp:
-    ApplyMovement 7, _02B8
+    ApplyMovement LOCALID_RECEPCIONIST, _02B8
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _02CC
     WaitMovement
@@ -189,16 +191,16 @@ PalParkLobby_Receptionist_NotEnoughSpaceInPCBoxes:
 
     .balign 4, 0
 _02B8:
-    MoveAction_036
-    MoveAction_012 2
-    MoveAction_015
-    MoveAction_038
+    WalkOnSpotFastNorth
+    WalkNormalNorth 2
+    WalkNormalEast
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02CC:
-    MoveAction_012 5
-    MoveAction_069
+    WalkNormalNorth 5
+    SetInvisible
     EndMovement
 
 _02D8:
@@ -206,7 +208,7 @@ _02D8:
     SetVar VAR_PAL_PARK_STATE, 0
     ApplyMovement LOCALID_PLAYER, _03E4
     WaitMovement
-    ApplyMovement 7, _03D8
+    ApplyMovement LOCALID_RECEPCIONIST, _03D8
     WaitMovement
     ReleaseAll
     End
@@ -238,10 +240,10 @@ PalParkLobby_Receptionist_RecordBroken:
     GoTo PalParkLobby_Receptionist_AskToStoreCaughtMon
 
 PalParkLobby_Receptionist_AskToStoreCaughtMon:
-    Message PalParkLobby_Text_WouldYouLikeToPutAllThePokemonYouveCaughtInPCBoxes
+    Message PalParkLobby_Text_AskToStoreCaughtMon
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, PalParkLobby_Receptionist_StoreCaughtMon
-    Message PalParkLobby_Text_WouldYouLikeToDoAnotherCatchingShowWithTheSamePokemon
+    Message PalParkLobby_Text_AskToRedoCatchingShow
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, PalParkLobby_Receptionist_DontStoreCaughtMon
     GoTo PalParkLobby_Receptionist_AskToStoreCaughtMon
@@ -263,31 +265,31 @@ PalParkLobby_Receptionist_StoreCaughtMon:
 PalParkLobby_Receptionist_End:
     ApplyMovement LOCALID_PLAYER, _03F8
     WaitMovement
-    ApplyMovement 7, _03D8
+    ApplyMovement LOCALID_RECEPCIONIST, _03D8
     WaitMovement
     ReleaseAll
     End
 
     .balign 4, 0
 _03D8:
-    MoveAction_014
-    MoveAction_013 2
+    WalkNormalWest
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _03E4:
-    MoveAction_013 5
+    WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
 _03EC:
-    MoveAction_013 2
-    MoveAction_039
+    WalkNormalSouth 2
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _03F8:
-    MoveAction_013 4
+    WalkNormalSouth 4
     EndMovement
 
 PalParkLobby_RecordUnused:
@@ -377,7 +379,7 @@ PalParkLobby_Oak:
     LockAll
     ClearFlag FLAG_ETERNA_CITY_SOUTH_HOUSE_HIDE_PROF_OAK
     SetVar VAR_CATCHING_SHOW_RECORD, 2000
-    ApplyMovement 1, _0548
+    ApplyMovement LOCALID_OAK, _0548
     WaitMovement
     GetPlayerGender VAR_MAP_LOCAL_0
     BufferPlayerName 0
@@ -395,7 +397,7 @@ PalParkLobby_Oak_ThisIsPalPark_PlayerFemale:
 PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     Message PalParkLobby_Text_Oak_PokemonFromAroundTheCountryCanBeBroughtHere
     CloseMessage
-    ApplyMovement 1, _0558
+    ApplyMovement LOCALID_OAK, _0558
     WaitMovement
     Message PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp
     SetVar VAR_0x8004, 19
@@ -405,7 +407,7 @@ PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _0570
     WaitMovement
-    ApplyMovement 1, _0564
+    ApplyMovement LOCALID_OAK, _0564
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
@@ -416,27 +418,27 @@ PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
 
     .balign 4, 0
 _0548:
-    MoveAction_075
-    MoveAction_063
-    MoveAction_013 3
+    EmoteExclamationMark
+    Delay8
+    WalkNormalSouth 3
     EndMovement
 
     .balign 4, 0
 _0558:
-    MoveAction_075
-    MoveAction_063
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _0564:
-    MoveAction_013
-    MoveAction_033
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0570:
-    MoveAction_015
-    MoveAction_034
+    WalkNormalEast
+    WalkOnSpotNormalWest
     EndMovement
 
 PalParkLobby_PoketchAppLady:
@@ -448,7 +450,7 @@ PalParkLobby_PoketchAppLady:
     CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, PalParkLobby_PoketchAppLady_ReceivedAllPoketchApps
     Message PalParkLobby_Text_PalParkIsSoScintillating
-    Message PalParkLobby_Text_IveNeverSeenSomePokemonWouldYouShowMeIfyouHadOne
+    Message PalParkLobby_Text_IveNeverSeenSomePokemon
     CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, PalParkLobby_PoketchAppLady_CheckKecleon
     Message PalParkLobby_Text_APokemonThatDoesNothingButEatAndSleep
@@ -761,5 +763,4 @@ PalParkLobby_SetPrize_TamatoBerry:
     SetVar VAR_0x8006, ITEM_TAMATO_BERRY
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

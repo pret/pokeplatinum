@@ -19,7 +19,6 @@
 #define VAR_TRAINER    VAR_0x8005
 #define VAR_DEFEATED   VAR_0x8006
 
-    .data
 
     ScriptEntry PokemonCenterDailyTrainers_CheckUnlockedVSSeeker
     ScriptEntry PokemonCenterDailyTrainers_FirstNPC
@@ -1212,4 +1211,4 @@ PokemonCenterDailyTrainers_TrainerAlreadyDefeated:
     SetVar VAR_DEFEATED, TRUE
     Return
 
-    .byte 0
+    .balign 4, 0

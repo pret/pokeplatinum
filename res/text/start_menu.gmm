@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54176" />
+	<row id="StartMenu_Text_Pokedex" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéDEX</language>
+	</row>
+	<row id="StartMenu_Text_Pokemon" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéMON</language>
+	</row>
+	<row id="StartMenu_Text_Bag" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BAG</language>
+	</row>
+	<row id="StartMenu_Text_Player" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="StartMenu_Text_Save" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SAVE</language>
+	</row>
+	<row id="StartMenu_Text_Options" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OPTIONS</language>
+	</row>
+	<row id="StartMenu_Text_Exit" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="StartMenu_Text_Chat" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHAT</language>
+	</row>
+	<row id="StartMenu_Text_Retire" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RETIRE</language>
+	</row>
+	<row id="StartMenu_Text_SafariBalls" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SAFARI BALLS</language>
+	</row>
+	<row id="StartMenu_Text_ParkBalls" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PARK BALLS</language>
+	</row>
+	<row id="StartMenu_Text_BallStock" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stock: {STRVAR_1 51, 0, 0}</language>
+	</row>
+</body>

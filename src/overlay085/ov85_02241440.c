@@ -3,29 +3,26 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/struct_020972FC.h"
 #include "struct_defs/struct_02099F80.h"
-
-#include "overlay115/camera_angle.h"
 
 #include "berry_data.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200C440.h"
-#include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
+#include "touch_pad.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -43,7 +40,7 @@ typedef struct {
     Window unk_04[12];
     MessageLoader *unk_C4;
     StringTemplate *unk_C8;
-    UnkStruct_0200C440 *unk_CC;
+    FontSpecialCharsContext *unk_CC;
     Camera *camera;
     UnkStruct_ov85_022420A8 unk_D4[4];
     UnkStruct_ov85_022420A8 unk_134[4];
@@ -200,7 +197,7 @@ static const UnkStruct_ov85_022423A0 Unk_ov85_02242938[][4] = {
     },
 };
 
-int ov85_02241440(OverlayManager *param0, int *param1)
+int ov85_02241440(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov85_022417E4 *v0;
     NARC *v1;
@@ -217,9 +214,9 @@ int ov85_02241440(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_36, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), HEAP_ID_36);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov85_022417E4), HEAP_ID_36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
-    v0->unk_1F8 = OverlayManager_Args(param0);
+    v0->unk_1F8 = ApplicationManager_Args(appMan);
     v0->unk_00 = BgConfig_New(HEAP_ID_36);
     v0->unk_1FC = BerryData_Load(v0->unk_1F8->unk_08, 36);
 
@@ -234,8 +231,8 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     ov85_022417E4(v0);
 
     SetAutorepeat(4, 8);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
 
     ov85_02241E60(v0, v1);
     ov85_0224183C(v0);
@@ -251,9 +248,9 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov85_0224154C(OverlayManager *param0, int *param1)
+int ov85_0224154C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov85_022417E4 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov85_022417E4 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -277,20 +274,20 @@ int ov85_0224154C(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov85_022415A0(OverlayManager *param0, int *param1)
+int ov85_022415A0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov85_022417E4 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov85_022417E4 *v0 = ApplicationManager_Data(appMan);
 
     ov85_02241860(v0->unk_04);
     ov85_022416E8(v0->unk_00);
 
-    sub_0201E530();
+    DisableTouchPad();
 
     ov85_0224181C(v0);
     ov85_0224202C(v0);
 
-    Heap_FreeToHeap(v0->unk_1FC);
-    OverlayManager_FreeData(param0);
+    Heap_Free(v0->unk_1FC);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_36);
 
@@ -343,76 +340,73 @@ static void ov85_02241634(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 2, &v2, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
         Bg_ScheduleScroll(param0, 2, 3, 8);
     }
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 3, &v3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
     }
 
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_36);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_36);
 }
 
 static void ov85_022416E8(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Heap_FreeToHeapExplicit(HEAP_ID_36, param0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Heap_FreeExplicit(HEAP_ID_36, param0);
 }
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
@@ -433,7 +427,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         }
 
         Bg_LoadToTilemapRect(param0->unk_00, 1, v0, 2, 5, 8, 8);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
     }
 
@@ -447,15 +441,15 @@ static void ov85_022417CC(void)
 
 static void ov85_022417E4(UnkStruct_ov85_022417E4 *param0)
 {
-    param0->unk_C4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0398, HEAP_ID_36);
-    param0->unk_CC = sub_0200C440(15, 2, 0, HEAP_ID_36);
+    param0->unk_C4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_TAGS, HEAP_ID_36);
+    param0->unk_CC = FontSpecialChars_Init(15, 2, 0, HEAP_ID_36);
     param0->unk_C8 = StringTemplate_Default(HEAP_ID_36);
 }
 
 static void ov85_0224181C(UnkStruct_ov85_022417E4 *param0)
 {
     MessageLoader_Free(param0->unk_C4);
-    sub_0200C560(param0->unk_CC);
+    FontSpecialChars_Free(param0->unk_CC);
     StringTemplate_Free(param0->unk_C8);
 }
 
@@ -537,7 +531,7 @@ static void ov85_0224198C(UnkStruct_ov85_022417E4 *param0)
     v0 = &param0->unk_04[1];
 
     Window_FillTilemap(v0, 0);
-    sub_0200C578(param0->unk_CC, 2, v0, 0, 5);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_CC, 2, v0, 0, 5);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 6);
     v2 = Strbuf_Init((2 + 1) * 2, HEAP_ID_36);
@@ -692,7 +686,7 @@ static void ov85_02241CD0(UnkStruct_ov85_022417E4 *param0)
 
 static int ov85_02241CE8(UnkStruct_ov85_022417E4 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2, 16, 0);
         return 1;
     }
@@ -754,7 +748,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
 
 static u8 ov85_02241DEC(UnkStruct_ov85_022417E4 *param0)
 {
-    return IsScreenTransitionDone();
+    return IsScreenFadeDone();
 }
 
 static int ov85_02241DF8(UnkStruct_ov85_022417E4 *param0)
@@ -851,7 +845,7 @@ static void ov85_02241F0C(UnkStruct_ov85_022417E4 *param0)
 {
     NARC *v0;
 
-    Heap_FreeToHeap(param0->unk_1FC);
+    Heap_Free(param0->unk_1FC);
     param0->unk_1FC = BerryData_Load(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 

@@ -4,14 +4,11 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "overlay115/camera_angle.h"
-
+#include "camera.h"
 #include "fx_util.h"
 #include "heap.h"
 
 #define CAMERA_DEFAULT_ASPECT_RATIO (FX32_ONE * 4 / 3)
-#define CAMERA_DEFAULT_NEAR_CLIP    (FX32_ONE * 150)
-#define CAMERA_DEFAULT_FAR_CLIP     (FX32_ONE * 900)
 
 GXBufferMode gBufferMode = GX_BUFFERMODE_W;
 
@@ -152,8 +149,8 @@ void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId h
 void Camera_DeleteHistory(Camera *camera)
 {
     if (camera->history != NULL) {
-        Heap_FreeToHeap(camera->history->positions);
-        Heap_FreeToHeap(camera->history);
+        Heap_Free(camera->history->positions);
+        Heap_Free(camera->history);
         camera->history = NULL;
     }
 }
@@ -165,7 +162,7 @@ Camera *Camera_Alloc(const enum HeapId heapID)
 
 void Camera_Delete(Camera *camera)
 {
-    Heap_FreeToHeap(camera);
+    Heap_Free(camera);
 }
 
 void Camera_Copy(Camera const *src, Camera *dst)

@@ -5,7 +5,6 @@
 
 #include "overlay070/ov70_0225C9B4.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "heap.h"
@@ -42,7 +41,7 @@ void ov70_02260AD4(UnkStruct_ov70_02260AD4 *param0)
 {
     Camera_ClearActive();
     Camera_Delete(param0->camera);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_02260AEC(UnkStruct_ov70_02260AD4 *param0)

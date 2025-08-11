@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SONIC_BOOM" ],
@@ -86,6 +87,16 @@
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_MUD_SLAP",
+            "MOVE_HEADBUTT",
+            "MOVE_FURY_SWIPES",
+            "MOVE_SLASH",
+            "MOVE_ODOR_SLEUTH",
+            "MOVE_DOUBLE_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_BATON_PASS"
         ]
     },
     "evolutions": [
@@ -95,9 +106,11 @@
             "SPECIES_FLOATZEL"
         ]
     ],
+    "offspring": "SPECIES_BUIZEL",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 7,

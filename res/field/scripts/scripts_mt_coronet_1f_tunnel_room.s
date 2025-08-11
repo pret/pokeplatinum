@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_1f_tunnel_room.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -20,5 +19,5 @@ _0006:
 
     .balign 4, 0
 _0024:
-    MoveAction_000
+    FaceNorth
     EndMovement

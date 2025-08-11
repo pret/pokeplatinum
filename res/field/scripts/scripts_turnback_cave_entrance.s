@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_entrance.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _002A
@@ -37,4 +36,4 @@ _0046:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

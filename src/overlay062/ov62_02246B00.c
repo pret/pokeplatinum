@@ -18,11 +18,11 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
-#include "unk_02023FCC.h"
+#include "touch_screen_actions.h"
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int param1, s16 param2, s16 param3);
 
-UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *param3)
+UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *options)
 {
     int v0;
     UnkStruct_ov62_02246B00 *v1 = NULL;
@@ -31,7 +31,7 @@ UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Opt
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov62_02246B00));
     v1->unk_00 = param1;
     v1->unk_18 = Strbuf_Init(param1 + 1, heapID);
-    v1->unk_1C = param3;
+    v1->options = options;
 
     for (v0 = 0; v0 < 3; v0++) {
         v1->unk_04[v0] = param2[v0];
@@ -48,7 +48,7 @@ void ov62_02246B4C(UnkStruct_ov62_02246B00 *param0)
     GF_ASSERT(param0 != NULL);
 
     Strbuf_Free(param0->unk_18);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov62_02246B70(UnkStruct_ov62_02246BF4 *param0, int param1)
@@ -163,7 +163,7 @@ BOOL ov62_02246D78(UnkStruct_ov62_02246BF4 *param0)
 
 BOOL ov62_02246DB8(UnkStruct_ov62_02246BF4 *param0)
 {
-    sub_02024034(param0->unk_220.unk_14);
+    TouchScreenActions_Free(param0->unk_220.unk_14);
     ov62_02247694(param0);
 
     return 1;
@@ -177,7 +177,7 @@ BOOL ov62_02246DD0(UnkStruct_ov62_02246BF4 *param0)
         break;
     default:
         ov62_022474A8(param0);
-        sub_0202404C(param0->unk_220.unk_14);
+        TouchScreenActions_HandleAction(param0->unk_220.unk_14);
         break;
     }
 
@@ -422,10 +422,10 @@ void ov62_02247220(UnkStruct_ov62_02246BF4 *param0)
         param0->unk_220.unk_18[23].rect.right = 224;
     }
 
-    param0->unk_220.unk_14 = sub_02023FCC(param0->unk_220.unk_18, 24, ov62_0224730C, param0, HEAP_ID_102);
+    param0->unk_220.unk_14 = TouchScreenActions_RegisterHandler(param0->unk_220.unk_18, 24, ov62_0224730C, param0, HEAP_ID_102);
 }
 
-void ov62_0224730C(u32 param0, u32 param1, void *param2)
+void ov62_0224730C(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_ov62_02246BF4 *v0 = param2;
 
@@ -437,7 +437,7 @@ void ov62_0224730C(u32 param0, u32 param1, void *param2)
         v0->unk_220.unk_78 = 1;
     }
 
-    if (param1 == 0) {
+    if (param1 == TOUCH_BUTTON_PRESSED) {
         if ((param0 >= 0) && (param0 <= 11)) {
             if (v0->unk_00[param0].unk_08 == 1) {
                 v0->unk_29C.unk_00 = 2;
@@ -578,13 +578,9 @@ void ov62_02247574(UnkStruct_ov62_02246BF4 *param0)
 {
     NARC *v0;
     BgConfig *v1;
-    SpriteSystem *v2;
-    SpriteManager *v3;
-    PaletteData *v4;
-
-    v2 = param0->unk_220.unk_04;
-    v3 = param0->unk_220.unk_08;
-    v4 = param0->unk_220.unk_10;
+    SpriteSystem *v2 = param0->unk_220.unk_04;
+    SpriteManager *v3 = param0->unk_220.unk_08;
+    PaletteData *v4 = param0->unk_220.unk_10;
     v1 = param0->unk_220.unk_0C;
     v0 = param0->unk_220.unk_00;
 
@@ -632,13 +628,9 @@ void ov62_02247754(UnkStruct_ov62_02246BF4 *param0)
     int v1 = 0;
     int v2 = 0;
     SpriteTemplate v3;
-    SpriteSystem *v4;
-    SpriteManager *v5;
-    PaletteData *v6;
-
-    v4 = param0->unk_220.unk_04;
-    v5 = param0->unk_220.unk_08;
-    v6 = param0->unk_220.unk_10;
+    SpriteSystem *v4 = param0->unk_220.unk_04;
+    SpriteManager *v5 = param0->unk_220.unk_08;
+    PaletteData *v6 = param0->unk_220.unk_10;
 
     v3.x = 0;
     v3.y = 0;
@@ -677,13 +669,9 @@ void ov62_02247754(UnkStruct_ov62_02246BF4 *param0)
 void ov62_0224784C(UnkStruct_ov62_02246BF4 *param0)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-    PaletteData *v3;
-
-    v1 = param0->unk_220.unk_04;
-    v2 = param0->unk_220.unk_08;
-    v3 = param0->unk_220.unk_10;
+    SpriteSystem *v1 = param0->unk_220.unk_04;
+    SpriteManager *v2 = param0->unk_220.unk_08;
+    PaletteData *v3 = param0->unk_220.unk_10;
 
     v0.x = 0;
     v0.y = 0;

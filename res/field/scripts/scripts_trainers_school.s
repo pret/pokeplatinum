@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/trainers_school.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0154
@@ -79,30 +78,30 @@ _00F2:
 
     .balign 4, 0
 _0114:
-    MoveAction_019
-    MoveAction_017 8
-    MoveAction_037
+    WalkFastEast
+    WalkFastSouth 8
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0124:
-    MoveAction_017 4
-    MoveAction_019
-    MoveAction_017 4
-    MoveAction_037
+    WalkFastSouth 4
+    WalkFastEast
+    WalkFastSouth 4
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0138:
-    MoveAction_063
-    MoveAction_035
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0148:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
 _0154:
@@ -390,6 +389,4 @@ _049C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

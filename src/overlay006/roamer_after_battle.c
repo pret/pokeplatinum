@@ -28,11 +28,8 @@ void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *b
     int wildSpecies;
     SpecialEncounter *specialEncounter;
     Roamer *roamer;
-    Party *enemyParty;
-    Pokemon *enemyMon;
-
-    enemyParty = battleParams->parties[1];
-    enemyMon = Party_GetPokemonBySlotIndex(enemyParty, 0);
+    Party *enemyParty = battleParams->parties[1];
+    Pokemon *enemyMon = Party_GetPokemonBySlotIndex(enemyParty, 0);
     specialEncounter = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     wildSpecies = Pokemon_GetValue(enemyMon, MON_DATA_SPECIES, NULL);
     roamer = GetBattledRoamer(specialEncounter, wildSpecies);

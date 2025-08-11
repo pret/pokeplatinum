@@ -6,8 +6,8 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
+#include "screen_fade.h"
 #include "system.h"
-#include "unk_0200F174.h"
 
 __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {
     0x20,
@@ -80,9 +80,9 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
 void sub_0208C120(u8 param0, u32 heapID)
 {
     if (param0 == 0) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, heapID);
     } else {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, heapID);
     }
 }
 
@@ -195,7 +195,7 @@ void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int pa
         Bg_LoadPalette(param5, v4->pRawData, param7, param8);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID)

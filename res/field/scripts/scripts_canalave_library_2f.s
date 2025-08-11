@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_library_2f.h"
 
-    .data
 
     ScriptEntry _0033
     ScriptEntry _005C
@@ -132,38 +131,38 @@ _0159:
 
     .balign 4, 0
 _019C:
-    MoveAction_035
-    MoveAction_075
-    MoveAction_015
-    MoveAction_012
-    MoveAction_035
+    WalkOnSpotNormalEast
+    EmoteExclamationMark
+    WalkNormalEast
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01B4:
-    MoveAction_033
-    MoveAction_032
-    MoveAction_035
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01C4:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01CC:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01D4:
-    MoveAction_063 2
-    MoveAction_015 2
+    Delay8 2
+    WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
 _01E0:
-    MoveAction_013
-    MoveAction_032
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement

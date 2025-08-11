@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_east_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021
@@ -53,5 +52,4 @@ _007A:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

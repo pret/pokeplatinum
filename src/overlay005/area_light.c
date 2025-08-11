@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gx.h"
+#include "constants/graphics.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 
@@ -54,7 +54,7 @@ void AreaLightManager_Free(AreaLightManager **areaLightMan)
     GF_ASSERT(areaLightMan);
 
     AreaLightTemplate_Free(&(*areaLightMan)->templates);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *areaLightMan);
+    Heap_FreeExplicit(HEAP_ID_FIELD, *areaLightMan);
 
     *areaLightMan = NULL;
 }
@@ -175,14 +175,14 @@ static u32 AreaLightTemplate_New(u32 archiveID, AreaLightTemplate **templates)
         fileIter = Ascii_CopyToTerminator(fileIter, lineBuffer, '\r');
     }
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, fileBuffer);
+    Heap_FreeExplicit(HEAP_ID_FIELD, fileBuffer);
 
     return templateCount;
 }
 
 static void AreaLightTemplate_Free(AreaLightTemplate **template)
 {
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *template);
+    Heap_FreeExplicit(HEAP_ID_FIELD, *template);
     *template = NULL;
 }
 

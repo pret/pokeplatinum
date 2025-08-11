@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 
-    .data
 
     ScriptEntry _0066
     ScriptEntry _01F9
@@ -54,7 +53,7 @@ _00F8:
 _0100:
     SetObjectEventPos 16, 55, 0x2CC
     SetObjectEventDir 16, DIR_EAST
-    ScrCmd_188 16, 17
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_RIGHT
     Return
 
 _0116:
@@ -64,13 +63,13 @@ _0116:
 _011C:
     SetObjectEventPos 11, 37, 0x2D1
     SetObjectEventDir 11, DIR_SOUTH
-    ScrCmd_188 11, 15
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0132:
     SetObjectEventPos 11, 39, 0x2DD
     SetObjectEventDir 11, DIR_NORTH
-    ScrCmd_188 11, 14
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _0148:
@@ -145,7 +144,7 @@ _027C:
     GoTo _028A
 
 _028A:
-    ScrCmd_188 11, 17
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x01B2
     AddObject 11
     ApplyMovement 11, _0340
@@ -195,20 +194,20 @@ _0334:
 
     .balign 4, 0
 _0340:
-    MoveAction_019 4
-    MoveAction_063
-    MoveAction_075
-    MoveAction_063
+    WalkFastEast 4
+    Delay8
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _0354:
-    MoveAction_019 4
+    WalkFastEast 4
     EndMovement
 
     .balign 4, 0
 _035C:
-    MoveAction_018 9
+    WalkFastWest 9
     EndMovement
 
 _0364:
@@ -238,15 +237,15 @@ _0377:
 
     .balign 4, 0
 _03AC:
-    MoveAction_017
-    MoveAction_018 5
-    MoveAction_016 10
+    WalkFastSouth
+    WalkFastWest 5
+    WalkFastNorth 10
     EndMovement
 
     .balign 4, 0
 _03BC:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
 _03C8:
@@ -257,7 +256,7 @@ _03C8:
     CloseMessage
     ClearFlag FLAG_UNK_0x01B4
     AddObject 14
-    ScrCmd_062 14
+    LockObject 14
     ApplyMovement 14, _04AC
     WaitMovement
     Message 6
@@ -307,40 +306,40 @@ _0473:
 
     .balign 4, 0
 _0490:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0498:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _04A0:
-    MoveAction_063 2
-    MoveAction_032
+    Delay8 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _04AC:
-    MoveAction_018 5
-    MoveAction_016 2
+    WalkFastWest 5
+    WalkFastNorth 2
     EndMovement
 
     .balign 4, 0
 _04B8:
-    MoveAction_017 6
+    WalkFastSouth 6
     EndMovement
 
     .balign 4, 0
 _04C0:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _04C8:
-    MoveAction_017 3
-    MoveAction_019 9
+    WalkFastSouth 3
+    WalkFastEast 9
     EndMovement
 
 _04D4:
@@ -607,33 +606,33 @@ _08A5:
 
     .balign 4, 0
 _08C0:
-    MoveAction_003
-    MoveAction_064
+    FaceEast
+    Delay15
     EndMovement
 
     .balign 4, 0
 _08CC:
-    MoveAction_069
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _08D4:
-    MoveAction_013
-    MoveAction_003
-    MoveAction_064
+    WalkNormalSouth
+    FaceEast
+    Delay15
     EndMovement
 
     .balign 4, 0
 _08E4:
-    MoveAction_015
-    MoveAction_064
+    WalkNormalEast
+    Delay15
     EndMovement
 
     .balign 4, 0
 _08F0:
-    MoveAction_012
-    MoveAction_003
-    MoveAction_064
+    WalkNormalNorth
+    FaceEast
+    Delay15
     EndMovement
 
 _0900:
@@ -675,7 +674,7 @@ _0959:
     RemoveObject 16
     SetObjectEventPos 16, 45, 0x2EE
     SetObjectEventDir 16, DIR_WEST
-    ScrCmd_188 16, 16
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 16
     SetVar VAR_UNK_0x40F8, 4
     ReleaseAll
@@ -683,16 +682,16 @@ _0959:
 
     .balign 4, 0
 _099C:
-    MoveAction_075
-    MoveAction_015 3
-    MoveAction_012
+    EmoteExclamationMark
+    WalkNormalEast 3
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _09AC:
-    MoveAction_013
-    MoveAction_014 3
-    MoveAction_013 8
+    WalkNormalSouth
+    WalkNormalWest 3
+    WalkNormalSouth 8
     EndMovement
 
 _09BC:
@@ -701,7 +700,7 @@ _09BC:
     FacePlayer
     CheckItem ITEM_HM04, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _09FA
-    ScrCmd_09A VAR_RESULT, 70
+    FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
     GoToIfNe VAR_RESULT, 6, _09FA
     BufferRivalName 0
     Message 3
@@ -730,11 +729,11 @@ _09FA:
 
     .balign 4, 0
 _0A38:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0A40:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement

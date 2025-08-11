@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_east_house.h"
 
-    .data
 
     ScriptEntry _000C
     ScriptEntry _0109
@@ -118,5 +117,4 @@ _014F:
     ScrCmd_094 VAR_0x8007, 1
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gx_colors.h"
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "overlay005/map_prop_animation.h"
@@ -144,7 +144,7 @@ void AreaDataManager_Load(AreaDataManager *areaDataManager)
     sprintf(mapPropMaterialShapeFilePath, "fielddata/build_model/build_model_matshp.dat");
     MapPropMaterialShape_Load(mapPropMaterialShapeFilePath, areaDataManager->mapPropMatShp);
 
-    Heap_FreeToHeap(areaDataManager->loadData);
+    Heap_Free(areaDataManager->loadData);
     areaDataManager->loadData = NULL;
 }
 
@@ -169,18 +169,18 @@ void AreaDataManager_Free(AreaDataManager **areaDataManager)
 
     for (int i = 0; i < MAX_MAP_PROP_MODEL_FILES; i++) {
         if ((*areaDataManager)->mapPropModelFiles[i] != NULL) {
-            Heap_FreeToHeap((*areaDataManager)->mapPropModelFiles[i]);
+            Heap_Free((*areaDataManager)->mapPropModelFiles[i]);
         }
     }
 
-    Heap_FreeToHeap((*areaDataManager)->mapPropModelIDs);
-    Heap_FreeToHeap((*areaDataManager)->mapTextureFile);
+    Heap_Free((*areaDataManager)->mapPropModelIDs);
+    Heap_Free((*areaDataManager)->mapTextureFile);
 
     (*areaDataManager)->mapTextureFile = NULL;
-    Heap_FreeToHeap((*areaDataManager)->mapPropTextureFile);
+    Heap_Free((*areaDataManager)->mapPropTextureFile);
 
     (*areaDataManager)->mapPropTextureFile = NULL;
-    Heap_FreeToHeap(*areaDataManager);
+    Heap_Free(*areaDataManager);
 
     (*areaDataManager) = NULL;
 }

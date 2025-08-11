@@ -3,25 +3,22 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+#include "constants/narc.h"
+#include "generated/object_events.h"
 #include "generated/species_data_params.h"
+#include "generated/trainer_classes.h"
 
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0204B184.h"
-#include "struct_defs/struct_0204B1E8.h"
-
-#include "overlay104/struct_ov104_0223A348.h"
-#include "overlay104/struct_ov104_0223A348_sub1.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
-#include "heap.h"
 #include "map_header.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -37,111 +34,98 @@
 #include "unk_0208C098.h"
 #include "unk_02092494.h"
 
-void ov104_0222E1C0(SaveData *param0, Party *param1, Pokemon *param2);
-void ov104_0222E1D8(Sprite *param0, u8 param1);
-void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3);
-u8 ov104_0222E240(u16 param0, u16 param1);
-void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2, int param3);
-void ov104_0222E284(FieldBattleDTO *param0, UnkStruct_ov104_0223A348_sub1 *param1, int param2, int param3, int param4);
-u32 ov104_0222E2F0(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6);
-u8 ov104_0222E3A8(u16 param0);
-BOOL ov104_0222E3E4(UnkStruct_0204B184 *param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6);
-void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, UnkStruct_ov104_0223A348_sub2 *param4, u8 *param5, u32 *param6, u8 param7);
-
-static const u16 Unk_ov104_0223F298[][2] = {
-    { 0x5A, 0x8D },
-    { 0x5B, 0x8E },
-    { 0x5C, 0x8f },
-    { 0x5D, 0x90 },
-    { 0x5E, 0x91 },
-    { 0x2, 0x4 },
-    { 0x3, 0x6 },
-    { 0x3C, 0x3 },
-    { 0x3D, 0x8 },
-    { 0x20, 0x3E },
-    { 0x21, 0x3f },
-    { 0x4, 0x34 },
-    { 0x5, 0x35 },
-    { 0x2C, 0x1 },
-    { 0x2D, 0x2 },
-    { 0x14, 0xf },
-    { 0x15, 0x10 },
-    { 0x51, 0x3B },
-    { 0x1A, 0x3C },
-    { 0x10, 0x9 },
-    { 0x11, 0xC },
-    { 0x53, 0x17 },
-    { 0x54, 0x16 },
-    { 0x47, 0x29 },
-    { 0x12, 0x2A },
-    { 0xC, 0x26 },
-    { 0xD, 0x27 },
-    { 0xE, 0x33 },
-    { 0xA, 0x7 },
-    { 0x1B, 0x11 },
-    { 0x23, 0x25 },
-    { 0x31, 0x46 },
-    { 0x32, 0x46 },
-    { 0x27, 0xB },
-    { 0x28, 0xE },
-    { 0x18, 0xB },
-    { 0x19, 0xE },
-    { 0x35, 0x44 },
-    { 0x36, 0x45 },
-    { 0x1D, 0xB },
-    { 0x6, 0x5 },
-    { 0x1C, 0x1 },
-    { 0x13, 0x2D },
-    { 0xB, 0x36 },
-    { 0x2E, 0x38 },
-    { 0x9, 0x14 },
-    { 0x30, 0x32 },
-    { 0x34, 0xA },
-    { 0x25, 0x13 },
-    { 0x39, 0x1f },
-    { 0x29, 0x1D },
-    { 0x22, 0x24 },
-    { 0x3B, 0x28 },
-    { 0x3A, 0x2B },
-    { 0x26, 0x22 },
-    { 0x33, 0x3E },
-    { 0x1E, 0xE },
-    { 0x50, 0x37 },
-    { 0x24, 0xD },
-    { 0x7, 0xC },
-    { 0x55, 0x23 },
-    { 0xF, 0x2C },
-    { 0x16, 0x47 }
+static const u16 sTrainerClassToObjectID[][2] = {
+    { TRAINER_CLASS_TRAINER_CHERYL, OBJ_EVENT_GFX_CHERYL },
+    { TRAINER_CLASS_TRAINER_RILEY, OBJ_EVENT_GFX_RILEY },
+    { TRAINER_CLASS_TRAINER_MARLEY, OBJ_EVENT_GFX_MARLEY },
+    { TRAINER_CLASS_TRAINER_BUCK, OBJ_EVENT_GFX_BUCK },
+    { TRAINER_CLASS_TRAINER_MIRA, OBJ_EVENT_GFX_MIRA },
+    { TRAINER_CLASS_YOUNGSTER, OBJ_EVENT_GFX_YOUNGSTER },
+    { TRAINER_CLASS_LASS, OBJ_EVENT_GFX_LASS },
+    { TRAINER_CLASS_SCHOOL_KID_MALE, OBJ_EVENT_GFX_SCHOOL_KID_M },
+    { TRAINER_CLASS_SCHOOL_KID_FEMALE, OBJ_EVENT_GFX_SCHOOL_KID_F },
+    { TRAINER_CLASS_RICH_BOY, OBJ_EVENT_GFX_RICH_BOY },
+    { TRAINER_CLASS_LADY, OBJ_EVENT_GFX_LADY },
+    { TRAINER_CLASS_CAMPER, OBJ_EVENT_GFX_CAMPER },
+    { TRAINER_CLASS_PICNICKER, OBJ_EVENT_GFX_PICNICKER },
+    { TRAINER_CLASS_TUBER_MALE, OBJ_EVENT_GFX_NINJA_BOY },
+    { TRAINER_CLASS_TUBER_FEMALE, OBJ_EVENT_GFX_TWIN },
+    { TRAINER_CLASS_POKEFAN_MALE, OBJ_EVENT_GFX_POKEFAN_M },
+    { TRAINER_CLASS_POKEFAN_FEMALE, OBJ_EVENT_GFX_POKEFAN_F },
+    { TRAINER_CLASS_WAITER, OBJ_EVENT_GFX_WAITER },
+    { TRAINER_CLASS_WAITRESS, OBJ_EVENT_GFX_WAITRESS },
+    { TRAINER_CLASS_BREEDER_MALE, OBJ_EVENT_GFX_POKEMON_BREEDER_M },
+    { TRAINER_CLASS_BREEDER_FEMALE, OBJ_EVENT_GFX_POKEMON_BREEDER_F },
+    { TRAINER_CLASS_CAMERAMAN, OBJ_EVENT_GFX_CAMERAMAN },
+    { TRAINER_CLASS_REPORTER, OBJ_EVENT_GFX_REPORTER },
+    { TRAINER_CLASS_RANCHER, OBJ_EVENT_GFX_RANCHER },
+    { TRAINER_CLASS_COWGIRL, OBJ_EVENT_GFX_COWGIRL },
+    { TRAINER_CLASS_CYCLIST_MALE, OBJ_EVENT_GFX_CYCLIST_M },
+    { TRAINER_CLASS_CYCLIST_FEMALE, OBJ_EVENT_GFX_CYCLIST_F },
+    { TRAINER_CLASS_BLACK_BELT, OBJ_EVENT_GFX_BLACK_BELT },
+    { TRAINER_CLASS_BATTLE_GIRL, OBJ_EVENT_GFX_BATTLE_GIRL },
+    { TRAINER_CLASS_VETERAN, OBJ_EVENT_GFX_EXPERT_M },
+    { TRAINER_CLASS_SOCIALITE, OBJ_EVENT_GFX_SOCIALITE },
+    { TRAINER_CLASS_PSYCHIC_MALE, OBJ_EVENT_GFX_PSYCHIC },
+    { TRAINER_CLASS_PSYCHIC_FEMALE, OBJ_EVENT_GFX_PSYCHIC },
+    { TRAINER_CLASS_RANGER_MALE, OBJ_EVENT_GFX_ACE_TRAINER_M },
+    { TRAINER_CLASS_RANGER_FEMALE, OBJ_EVENT_GFX_ACE_TRAINER_F },
+    { TRAINER_CLASS_ACE_TRAINER_MALE, OBJ_EVENT_GFX_ACE_TRAINER_M },
+    { TRAINER_CLASS_ACE_TRAINER_FEMALE, OBJ_EVENT_GFX_ACE_TRAINER_F },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_MALE, OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M },
+    { TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE, OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F },
+    { TRAINER_CLASS_DRAGON_TAMER, OBJ_EVENT_GFX_ACE_TRAINER_M },
+    { TRAINER_CLASS_BUG_CATCHER, OBJ_EVENT_GFX_BUG_CATCHER },
+    { TRAINER_CLASS_NINJA_BOY, OBJ_EVENT_GFX_NINJA_BOY },
+    { TRAINER_CLASS_JOGGER, OBJ_EVENT_GFX_JOGGER },
+    { TRAINER_CLASS_FISHERMAN, OBJ_EVENT_GFX_FISHERMAN },
+    { TRAINER_CLASS_SAILOR, OBJ_EVENT_GFX_SAILOR },
+    { TRAINER_CLASS_HIKER, OBJ_EVENT_GFX_HIKER },
+    { TRAINER_CLASS_RUIN_MANIAC, OBJ_EVENT_GFX_RUIN_MANIAC },
+    { TRAINER_CLASS_GUITARIST, OBJ_EVENT_GFX_GUITARIST },
+    { TRAINER_CLASS_COLLECTOR, OBJ_EVENT_GFX_COLLECTOR },
+    { TRAINER_CLASS_ROUGHNECK, OBJ_EVENT_GFX_ROUGHNECK },
+    { TRAINER_CLASS_SCIENTIST, OBJ_EVENT_GFX_SCIENTIST_M },
+    { TRAINER_CLASS_GENTLEMAN, OBJ_EVENT_GFX_GENTLEMAN },
+    { TRAINER_CLASS_WORKER, OBJ_EVENT_GFX_WORKER },
+    { TRAINER_CLASS_CLOWN, OBJ_EVENT_GFX_CLOWN },
+    { TRAINER_CLASS_POLICEMAN, OBJ_EVENT_GFX_POLICEMAN },
+    { TRAINER_CLASS_PI, OBJ_EVENT_GFX_RICH_BOY },
+    { TRAINER_CLASS_BIRD_KEEPER, OBJ_EVENT_GFX_ACE_TRAINER_F },
+    { TRAINER_CLASS_PARASOL_LADY, OBJ_EVENT_GFX_PARASOL_LADY },
+    { TRAINER_CLASS_BEAUTY, OBJ_EVENT_GFX_BEAUTY },
+    { TRAINER_CLASS_AROMA_LADY, OBJ_EVENT_GFX_POKEMON_BREEDER_F },
+    { TRAINER_CLASS_IDOL, OBJ_EVENT_GFX_IDOL },
+    { TRAINER_CLASS_ARTIST, OBJ_EVENT_GFX_ARTIST },
+    { TRAINER_CLASS_POKE_KID, OBJ_EVENT_GFX_PIKACHU }
 };
 
-UnkStruct_0204B184 *ov104_0222DCE0(u16 param0, int param1, int param2)
+BattleFrontierTrainerData *ov104_0222DCE0(u16 param0, int param1, enum NarcID narcID)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(param2, param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(narcID, param0, param1);
 }
 
-void ov104_0222DCF4(UnkStruct_0204B1E8 *param0, int param1, int param2)
+void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, enum NarcID narcID)
 {
-    NARC_ReadWholeMemberByIndexPair(param0, param2, param1);
+    NARC_ReadWholeMemberByIndexPair(param0, narcID, param1);
 }
 
-UnkStruct_0204B184 *ov104_0222DD04(UnkStruct_ov104_0223A348_sub1 *param0, int param1, int param2, int param3)
+BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int heapID, int param3)
 {
-    UnkStruct_0204B184 *v0;
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, param2);
-    Strbuf *v2;
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
-    MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348_sub1));
+    MI_CpuClear8(param0, sizeof(FrontierTrainerDataDTO));
 
-    v0 = ov104_0222DCE0(param1, param2, param3);
+    BattleFrontierTrainerData *v0 = ov104_0222DCE0(param1, heapID, param3);
 
-    param0->unk_00 = param1;
+    param0->trainerID = param1;
     param0->unk_18[0] = 0xFFFF;
     param0->unk_18[1] = param1 * 3;
-    param0->unk_04 = v0->unk_00;
+    param0->trainerType = v0->trainerType;
 
-    v2 = MessageLoader_GetNewStrbuf(v1, param1);
+    Strbuf *v2 = MessageLoader_GetNewStrbuf(v1, param1);
 
-    Strbuf_ToChars(v2, &param0->unk_08[0], 8);
+    Strbuf_ToChars(v2, &param0->trainerName[0], 8);
     Strbuf_Free(v2);
     MessageLoader_Free(v1);
 
@@ -149,70 +133,69 @@ UnkStruct_0204B184 *ov104_0222DD04(UnkStruct_ov104_0223A348_sub1 *param0, int pa
 }
 
 static const u16 Unk_ov104_0223F290[] = {
-    0xD5,
-    0x9D,
-    0xEA,
-    0xD9
+    ITEM_BRIGHTPOWDER,
+    ITEM_LUM_BERRY,
+    ITEM_LEFTOVERS,
+    ITEM_QUICK_CLAW
 };
 
-u32 ov104_0222DD6C(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, int param8)
+u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, enum NarcID narcID)
 {
     int v0;
     int v1;
     u32 v2;
-    u8 v3;
-    UnkStruct_0204B1E8 v4;
+    BattleFrontierPokemonData v4;
 
-    MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348_sub2));
-    ov104_0222DCF4(&v4, param1, param8);
+    MI_CpuClear8(param0, sizeof(FrontierPokemonDataDTO));
+    ov104_0222DCF4(&v4, param1, narcID);
 
-    param0->unk_00_val1_0 = v4.unk_00;
-    param0->unk_00_val1_11 = v4.unk_0E;
+    param0->species = v4.species;
+    param0->form = v4.form;
 
     if (param6) {
         if (param5 >= NELEMS(Unk_ov104_0223F290)) {
             param5 %= NELEMS(Unk_ov104_0223F290);
         }
 
-        param0->unk_02 = Unk_ov104_0223F290[param5];
+        param0->item = Unk_ov104_0223F290[param5];
     } else {
-        param0->unk_02 = v4.unk_0C;
+        param0->item = v4.item;
     }
 
-    v3 = 255;
+    u8 friendship = MAX_FRIENDSHIP_VALUE;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = v4.unk_02[v0];
+    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+        param0->moves[v0] = v4.moves[v0];
 
-        if (v4.unk_02[v0] == 218) {
-            v3 = 0;
+        if (v4.moves[v0] == MOVE_FRUSTRATION) {
+            friendship = 0;
         }
     }
 
-    param0->unk_0C = param2;
+    param0->otID = param2;
 
     if (param3 == 0) {
         do {
             v2 = (LCRNG_Next() | LCRNG_Next() << 16);
-        } while ((v4.unk_0B != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param2, v2) == 1));
+        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param2, v2) == TRUE));
 
-        param0->unk_10 = v2;
+        param0->personality = v2;
     } else {
-        param0->unk_10 = param3;
+        param0->personality = param3;
         v2 = param3;
     }
 
-    param0->unk_14_val1_0 = param4;
-    param0->unk_14_val1_5 = param4;
-    param0->unk_14_val1_10 = param4;
-    param0->unk_14_val1_15 = param4;
-    param0->unk_14_val1_20 = param4;
-    param0->unk_14_val1_25 = param4;
+    param0->hpIV = param4;
+    param0->atkIV = param4;
+    param0->defIV = param4;
+    param0->speedIV = param4;
+    param0->spAtkIV = param4;
+    param0->spDefIV = param4;
 
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & FlagIndex(v0)) {
+        if (v4.evFlags & FlagIndex(v0)) {
             v1++;
         }
     }
@@ -224,33 +207,33 @@ u32 ov104_0222DD6C(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, u32 param2
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & FlagIndex(v0)) {
-            param0->unk_18_val2[v0] = v1;
+        if (v4.evFlags & FlagIndex(v0)) {
+            param0->evList[v0] = v1;
         }
     }
 
-    param0->unk_1E_val2 = 0;
-    param0->unk_1F = gGameLanguage;
+    param0->combinedPPUps = 0;
+    param0->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param0->unk_00_val1_0, SPECIES_DATA_ABILITY_2);
+    v0 = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
-        if (param0->unk_10 & 1) {
-            param0->unk_20 = v0;
+        if (param0->personality & 1) {
+            param0->ability = v0;
         } else {
-            param0->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_00_val1_0, SPECIES_DATA_ABILITY_1);
+            param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param0->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_00_val1_0, SPECIES_DATA_ABILITY_1);
+        param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
     }
 
-    param0->unk_21 = v3;
-    MessageLoader_GetSpeciesName(param0->unk_00_val1_0, param7, &(param0->unk_22[0]));
+    param0->friendship = friendship;
+    MessageLoader_GetSpeciesName(param0->species, param7, &(param0->nickname[0]));
 
     return v2;
 }
 
-void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1, u8 param2)
+void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 param2)
 {
     int v0;
     u32 v1;
@@ -268,96 +251,89 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
         v4 = param2;
     }
 
-    v1 = (param0->unk_14_val2 & 0x3FFFFFFF);
+    v1 = (param0->combinedIVs & 0x3FFFFFFF);
 
-    Pokemon_InitWith(param1, param0->unk_00_val1_0, v4, v1, TRUE, param0->unk_10, OTID_NOT_SHINY, 0);
+    Pokemon_InitWith(param1, param0->species, v4, v1, TRUE, param0->personality, OTID_NOT_SHINY, 0);
     Pokemon_SetValue(param1, MON_DATA_COMBINED_IVS, &v1);
     Pokemon_CalcLevelAndStats(param1);
 
-    v2 = param0->unk_00_val1_11;
+    v2 = param0->form;
 
     Pokemon_SetValue(param1, MON_DATA_FORM, &v2);
-    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &param0->unk_02);
+    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &param0->item);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        v5 = param0->unk_04[v0];
+        v5 = param0->moves[v0];
         Pokemon_SetValue(param1, MON_DATA_MOVE1 + v0, &v5);
 
-        v2 = (param0->unk_1E_val2 >> (v0 * 2)) & 0x3;
+        v2 = (param0->combinedPPUps >> (v0 * 2)) & 0x3;
         Pokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, &v2);
 
         v3 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
         Pokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + v0, &v3);
     }
 
-    v6 = param0->unk_0C;
+    v6 = param0->otID;
     Pokemon_SetValue(param1, MON_DATA_OT_ID, &v6);
 
-    v2 = param0->unk_18_val1_00;
+    v2 = param0->hpEV;
     Pokemon_SetValue(param1, MON_DATA_HP_EV, &v2);
 
-    v2 = param0->unk_18_val1_01;
+    v2 = param0->atkEV;
     Pokemon_SetValue(param1, MON_DATA_ATK_EV, &v2);
 
-    v2 = param0->unk_18_val1_02;
+    v2 = param0->defEV;
     Pokemon_SetValue(param1, MON_DATA_DEF_EV, &v2);
 
-    v2 = param0->unk_18_val1_03;
+    v2 = param0->speedEV;
     Pokemon_SetValue(param1, MON_DATA_SPEED_EV, &v2);
 
-    v2 = param0->unk_18_val1_04;
+    v2 = param0->spAtkEV;
     Pokemon_SetValue(param1, MON_DATA_SPATK_EV, &v2);
 
-    v2 = param0->unk_18_val1_05;
+    v2 = param0->spDefEV;
     Pokemon_SetValue(param1, MON_DATA_SPDEF_EV, &v2);
 
-    Pokemon_SetValue(param1, MON_DATA_ABILITY, &param0->unk_20);
-    Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &param0->unk_21);
+    Pokemon_SetValue(param1, MON_DATA_ABILITY, &param0->ability);
+    Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &param0->friendship);
 
     if (param0->unk_14_val1_30) {
-        MessageLoader *v7;
-        Strbuf *v8;
-
-        v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
-        v8 = MessageLoader_GetNewStrbuf(v7, param0->unk_00_val1_0);
+        MessageLoader *v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
+        Strbuf *v8 = MessageLoader_GetNewStrbuf(v7, param0->species);
 
         Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v8);
         Strbuf_Free(v8);
         MessageLoader_Free(v7);
     } else {
-        Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->unk_22);
+        Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->nickname);
     }
 
-    Pokemon_SetValue(param1, MON_DATA_LANGUAGE, &param0->unk_1F);
+    Pokemon_SetValue(param1, MON_DATA_LANGUAGE, &param0->language);
     Pokemon_CalcLevelAndStats(param1);
 }
 
-u16 ov104_0222E10C(u8 param0)
+u16 ov104_0222E10C(u8 trainerClass)
 {
-    int v0 = 0;
-
-    for (v0 = 0; v0 < (NELEMS(Unk_ov104_0223F298)); v0++) {
-        if (Unk_ov104_0223F298[v0][0] == param0) {
-            return Unk_ov104_0223F298[v0][1];
+    for (int i = 0; i < (NELEMS(sTrainerClassToObjectID)); i++) {
+        if (sTrainerClassToObjectID[i][0] == trainerClass) {
+            return sTrainerClassToObjectID[i][1];
         }
     }
 
-    return 0x3;
+    return OBJ_EVENT_GFX_SCHOOL_KID_M;
 }
 
-void ov104_0222E134(SaveData *param0, Pokemon *param1);
-
-void ov104_0222E134(SaveData *param0, Pokemon *param1)
+void ov104_0222E134(SaveData *saveData, Pokemon *param1)
 {
     u32 v0;
     Strbuf *v1;
     MessageLoader *v2;
     int v3;
     int v4 = 0;
-    TrainerInfo *v5 = SaveData_GetTrainerInfo(param0);
+    TrainerInfo *v5 = SaveData_GetTrainerInfo(saveData);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0), 4, 0, 0, 11);
+    Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(saveData), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);
     UpdateMonStatusAndTrainerInfo(param1, v5, v4, v3, HEAP_ID_FIELDMAP);
@@ -374,10 +350,10 @@ void ov104_0222E134(SaveData *param0, Pokemon *param1)
     return;
 }
 
-void ov104_0222E1C0(SaveData *param0, Party *param1, Pokemon *param2)
+void ov104_0222E1C0(SaveData *saveData, Party *party, Pokemon *param2)
 {
-    ov104_0222E134(param0, param2);
-    Party_AddPokemon(param1, param2);
+    ov104_0222E134(saveData, param2);
+    Party_AddPokemon(party, param2);
     return;
 }
 
@@ -429,34 +405,32 @@ u8 ov104_0222E240(u16 param0, u16 param1)
     return 1;
 }
 
-void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2, int param3)
+void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID, int param3)
 {
-    UnkStruct_0204B184 *v0 = ov104_0222DD04(&param0->unk_00, param1, param2, param3);
-    Heap_FreeToHeap(v0);
+    Heap_Free(ov104_0222DD04(&param0->unk_00, param1, heapID, param3));
 
     return;
 }
 
-void ov104_0222E284(FieldBattleDTO *param0, UnkStruct_ov104_0223A348_sub1 *param1, int param2, int param3, int param4)
+void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapID)
 {
     Sentence *v0;
-    Pokemon *v1;
 
-    param0->trainerIDs[param3] = param1->unk_00;
-    param0->trainer[param3].header.trainerType = param1->unk_04;
+    param0->trainerIDs[battlerId] = param1->trainerID;
+    param0->trainer[battlerId].header.trainerType = param1->trainerType;
 
-    CharCode_Copy(&param0->trainer[param3].name[0], &param1->unk_08[0]);
+    CharCode_Copy(&param0->trainer[battlerId].name[0], &param1->trainerName[0]);
 
     v0 = (Sentence *)&param1->unk_20[0];
-    param0->trainer[param3].winMsg = *v0;
+    param0->trainer[battlerId].winMsg = *v0;
 
     v0 = (Sentence *)&param1->unk_28[0];
-    param0->trainer[param3].loseMsg = *v0;
+    param0->trainer[battlerId].loseMsg = *v0;
 
     return;
 }
 
-u32 ov104_0222E2F0(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6)
+u32 ov104_0222E2F0(FrontierPokemonDataDTO *param0, u16 param1, int param2, u8 param3, u32 param4, int param5, int param6)
 {
     u32 v0, v1, v2;
 
@@ -466,7 +440,7 @@ u32 ov104_0222E2F0(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1, int param2
     return v2;
 }
 
-void ov104_0222E330(UnkStruct_ov104_0223A348_sub2 *param0, u16 param1[], u8 param2[], u32 param3[], u32 param4[], int param5, int param6, int param7)
+void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u32 param3[], u32 param4[], int param5, int param6, int param7)
 {
     int v0;
     u32 v1;
@@ -514,10 +488,10 @@ u8 ov104_0222E3A8(u16 param0)
     return v0;
 }
 
-BOOL ov104_0222E3E4(UnkStruct_0204B184 *param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6)
+BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6)
 {
     int v0, v1, v2;
-    UnkStruct_0204B1E8 v3[6];
+    BattleFrontierPokemonData v3[6];
     int v4, v5;
 
     GF_ASSERT(param4 <= 6);
@@ -526,13 +500,13 @@ BOOL ov104_0222E3E4(UnkStruct_0204B184 *param0, const u16 param1[], const u16 pa
     v2 = 0;
 
     while (v0 != param4) {
-        v5 = (LCRNG_Next() % param0->unk_02);
-        v1 = param0->unk_04[v5];
+        v5 = (LCRNG_Next() % param0->numSets);
+        v1 = param0->setIDs[v5];
 
-        ov104_0222DCF4(&v3[v0], v1, 179);
+        ov104_0222DCF4(&v3[v0], v1, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
         for (v4 = 0; v4 < v0; v4++) {
-            if ((v3[v4].unk_00 == v3[v0].unk_00) || (v3[v4].unk_0C == v3[v0].unk_0C)) {
+            if ((v3[v4].species == v3[v0].species) || (v3[v4].item == v3[v0].item)) {
                 break;
             }
         }
@@ -543,7 +517,7 @@ BOOL ov104_0222E3E4(UnkStruct_0204B184 *param0, const u16 param1[], const u16 pa
 
         if (v2 < 50) {
             for (v4 = 0; v4 < param3; v4++) {
-                if ((v3[v0].unk_00 == param1[v4]) || (v3[v0].unk_0C == param2[v4])) {
+                if ((v3[v0].species == param1[v4]) || (v3[v0].item == param2[v4])) {
                     break;
                 }
             }
@@ -565,17 +539,15 @@ BOOL ov104_0222E3E4(UnkStruct_0204B184 *param0, const u16 param1[], const u16 pa
     return 0;
 }
 
-void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, UnkStruct_ov104_0223A348_sub2 *param4, u8 *param5, u32 *param6, u8 param7)
+void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPokemonDataDTO *param4, u8 *param5, u32 *param6, u8 param7)
 {
     int v0;
-    UnkStruct_ov104_0223A348_sub2 v1;
     u16 v2[4];
     u16 v3[4];
-    UnkStruct_ov104_0223A348_sub1 v4;
-    UnkStruct_0204B184 *v5;
-    UnkStruct_0204B1E8 v6;
+    FrontierTrainerDataDTO v4;
+    BattleFrontierPokemonData v6;
 
-    v5 = ov104_0222DD04(&v4, param1, 11, 178);
+    BattleFrontierTrainerData *v5 = ov104_0222DD04(&v4, param1, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
     for (v0 = 0; v0 < param0; v0++) {
         param5[v0] = ov104_0222E3A8(param1);
@@ -587,13 +559,13 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, UnkStruct_ov
         ov104_0222E3E4(v5, v2, v3, 0, (param0 / 2), param3, 11);
 
         for (v0 = 0; v0 < (param0 / 2); v0++) {
-            ov104_0222DCF4(&v6, param3[v0], 179);
-            v2[v0] = v6.unk_00;
-            v3[v0] = v6.unk_0C;
+            ov104_0222DCF4(&v6, param3[v0], NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+            v2[v0] = v6.species;
+            v3[v0] = v6.item;
         }
 
-        Heap_FreeToHeap(v5);
-        v5 = ov104_0222DD04(&v4, param2, 11, 178);
+        Heap_Free(v5);
+        v5 = ov104_0222DD04(&v4, param2, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         ov104_0222E3E4(v5, v2, v3, (param0 / 2), (param0 / 2), &param3[param0 / 2], 11);
 
         for (v0 = 0; v0 < (param0 / 2); v0++) {
@@ -601,8 +573,8 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, UnkStruct_ov
         }
     }
 
-    Heap_FreeToHeap(v5);
-    ov104_0222E330(param4, param3, param5, NULL, param6, param0, 11, 179);
+    Heap_Free(v5);
+    ov104_0222E330(param4, param3, param5, NULL, param6, param0, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
     return;
 }
@@ -636,10 +608,10 @@ int ov104_0222E5F0(const TrainerInfo *param0)
     return v1;
 }
 
-void ov104_0222E630(SaveData *param0)
+void ov104_0222E630(SaveData *saveData)
 {
-    UnkStruct_0202C878 *v0 = sub_0202C878(param0);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
 
-    sub_02038F8C(v0);
+    sub_02038F8C(wiFiHistory);
     return;
 }

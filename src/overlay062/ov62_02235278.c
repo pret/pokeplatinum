@@ -16,12 +16,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0208B284.h"
 
@@ -122,12 +122,12 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
         if (param0->unk_0C != 0) {
             param0->unk_0C -= 4;
         } else {
-            StartScreenTransition(0, 0, 0, 0, 6, 1, HEAP_ID_102);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_102);
             param0->unk_08++;
         }
         break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov62_02234540(param0, 0);
             return 1;
         }
@@ -214,7 +214,7 @@ void ov62_022354A4(SysTask *param0, void *param1)
         *(v0->unk_2C) = 1;
     } break;
     default:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         break;
     }
@@ -344,7 +344,7 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
 
         ov62_0222FB90(param0);
         v0 = param0->unk_860;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     } break;
     default:
         break;
@@ -459,7 +459,7 @@ static BOOL ov62_02235854(UnkStruct_0208C06C *param0)
         v5 = ov62_0222FBF8(param0);
         v0 = param0->unk_860;
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         ov62_0222FB60(param0, 5);
     } break;
     }

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_lakefront.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _004E
@@ -65,30 +64,28 @@ _00F0:
 
     .balign 4, 0
 _0124:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _012C:
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0138:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _014C:
     ShowScrollingSign 3
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

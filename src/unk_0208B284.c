@@ -7,17 +7,12 @@
 #include "struct_defs/struct_0208B878.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-
-typedef struct {
-    f32 unk_00;
-    f32 unk_04;
-} UnkStruct_0208B2DC;
 
 static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 *param4, f32 *param5, f32 param6, s16 param7);
 static void sub_0208B3D4(SysTask *param0, void *param1);
@@ -67,20 +62,20 @@ static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 *pa
 {
     f32 v0;
     f32 v1;
-    UnkStruct_0208B2DC v2;
-    UnkStruct_0208B2DC v3;
-    UnkStruct_0208B2DC v4;
+    Vec2F32 v2;
+    Vec2F32 v3;
+    Vec2F32 v4;
 
-    v4.unk_00 = 0;
-    v4.unk_04 = 0;
+    v4.x = 0;
+    v4.y = 0;
 
-    v3.unk_00 = (param0 - param2);
-    v3.unk_04 = (param1 - param3);
+    v3.x = (param0 - param2);
+    v3.y = (param1 - param3);
 
-    v2.unk_00 = 0;
-    v2.unk_04 = 0;
+    v2.x = 0;
+    v2.y = 0;
 
-    v1 = (v3.unk_00 * v3.unk_00) + (v3.unk_04 * v3.unk_04);
+    v1 = (v3.x * v3.x) + (v3.y * v3.y);
     v0 = FX_Sqrt(FX_F32_TO_FX32(v1));
     v0 = FX_FX32_TO_F32(v0);
 
@@ -88,11 +83,11 @@ static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 *pa
         return 0;
     }
 
-    v2.unk_00 = (v3.unk_00 * param6) / v0;
-    v2.unk_04 = (v3.unk_04 * param6) / v0;
+    v2.x = (v3.x * param6) / v0;
+    v2.y = (v3.y * param6) / v0;
 
-    *param4 = (v2.unk_00 + v4.unk_00);
-    *param5 = (v2.unk_04 + v4.unk_04);
+    *param4 = (v2.x + v4.x);
+    *param5 = (v2.y + v4.y);
 
     return 1;
 }
@@ -174,13 +169,9 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
 void sub_0208B63C(UnkStruct_0208B878 *param0, int param1)
 {
     NARC *v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-    PaletteData *v3;
-
-    v1 = param0->unk_00.unk_04;
-    v2 = param0->unk_00.unk_08;
-    v3 = param0->unk_00.unk_0C;
+    SpriteSystem *v1 = param0->unk_00.unk_04;
+    SpriteManager *v2 = param0->unk_00.unk_08;
+    PaletteData *v3 = param0->unk_00.unk_0C;
     v0 = param0->unk_00.unk_00;
 
     SpriteManager_UnloadPlttObjById(v2, 22222 + 1);
@@ -228,13 +219,9 @@ void sub_0208B7B4(UnkStruct_0208B878 *param0)
 {
     int v0;
     SpriteTemplate v1;
-    SpriteSystem *v2;
-    SpriteManager *v3;
-    PaletteData *v4;
-
-    v2 = param0->unk_00.unk_04;
-    v3 = param0->unk_00.unk_08;
-    v4 = param0->unk_00.unk_0C;
+    SpriteSystem *v2 = param0->unk_00.unk_04;
+    SpriteManager *v3 = param0->unk_00.unk_08;
+    PaletteData *v4 = param0->unk_00.unk_0C;
 
     v1.x = 128;
     v1.y = 96;
@@ -371,7 +358,7 @@ BOOL sub_0208B988(UnkStruct_0208B878 *param0)
     default:
         sub_0208B830(param0);
         NARC_dtor(param0->unk_00.unk_00);
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
 
         return 0;
     }

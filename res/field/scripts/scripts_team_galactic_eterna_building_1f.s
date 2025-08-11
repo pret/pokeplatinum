@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/team_galactic_eterna_building_1f.h"
 
-    .data
 
     ScriptEntry _0020
     ScriptEntry _0033
@@ -66,7 +65,7 @@ _006A:
     WaitMovement
     ClearFlag FLAG_UNK_0x01BB
     SetObjectEventPos 5, 12, 15
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 5, DIR_WEST
     AddObject 5
     RemoveObject 4
@@ -78,7 +77,7 @@ _006A:
     WaitMovement
     ClearFlag FLAG_UNK_0x01C2
     SetObjectEventPos 4, 12, 15
-    ScrCmd_188 4, 16
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 4, DIR_WEST
     AddObject 4
     RemoveObject 5
@@ -88,28 +87,28 @@ _006A:
 
     .balign 4, 0
 _00F0:
-    MoveAction_063 9
-    MoveAction_035
+    Delay8 9
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _00FC:
-    MoveAction_038
-    MoveAction_075
-    MoveAction_063 2
-    MoveAction_014 2
+    WalkOnSpotFastWest
+    EmoteExclamationMark
+    Delay8 2
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _0110:
-    MoveAction_001
-    MoveAction_061
-    MoveAction_003
-    MoveAction_062
-    MoveAction_000
-    MoveAction_062
-    MoveAction_002
-    MoveAction_061
+    FaceSouth
+    Delay2
+    FaceEast
+    Delay4
+    FaceNorth
+    Delay4
+    FaceWest
+    Delay2
     EndMovement
 
 _0134:

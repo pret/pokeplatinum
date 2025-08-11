@@ -3,20 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-
-#include "functypes/funcptr_020146F4.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_0222389C.h"
 #include "overlay012/ov12_0222421C.h"
 
 #include "narc.h"
+#include "particle_system.h"
 #include "spl.h"
-#include "unk_02014000.h"
 
 static void ov12_022237EC(SPLEmitter *param0);
 
-static const UnkFuncPtr_020146F4 Unk_ov12_02238DB0[] = {
+static const SPLEmitterCallback sEmitterCallbackTable[] = {
     ov12_022237EC,
     ov12_022238E0,
     ov12_02223998,
@@ -47,22 +44,22 @@ static void ov12_022237EC(SPLEmitter *param0)
     return;
 }
 
-UnkStruct_02014014 *ov12_022237F0(int heapID, int param1, int param2)
+ParticleSystem *BattleParticleUtil_CreateParticleSystem(enum HeapId heapID, int narcMemberIndex, BOOL uploadResImmediately)
 {
-    UnkStruct_02014014 *v0 = ov11_0221F840(heapID);
-    void *v1 = sub_020144C4(29, param1, heapID);
+    ParticleSystem *ps = ov11_0221F840(heapID);
+    void *resource = ParticleSystem_LoadResourceFromNARC(NARC_INDEX_WAZAEFFECT__EFFECTDATA__WAZA_PARTICLE, narcMemberIndex, heapID);
+    ParticleSystem_SetResource(ps, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, uploadResImmediately);
 
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param2);
-    return v0;
+    return ps;
 }
 
-UnkStruct_02014014 *ov12_02223818(int heapID, int param1, int param2, int param3)
+ParticleSystem *BattleParticleUtil_CreateParticleSystemEx(enum HeapId heapID, enum NarcID narcID, int memberIndex, BOOL uploadResImmediately)
 {
-    UnkStruct_02014014 *v0 = ov11_0221F840(heapID);
-    void *v1 = sub_020144C4(param1, param2, heapID);
+    ParticleSystem *ps = ov11_0221F840(heapID);
+    void *resource = ParticleSystem_LoadResourceFromNARC(narcID, memberIndex, heapID);
+    ParticleSystem_SetResource(ps, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, uploadResImmediately);
 
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param3);
-    return v0;
+    return ps;
 }
 
 void *ov12_02223844(NARC *param0, int param1, int param2)
@@ -70,9 +67,9 @@ void *ov12_02223844(NARC *param0, int param1, int param2)
     return NARC_AllocAndReadWholeMember(param0, param1, param2);
 }
 
-UnkStruct_02014014 *ov12_0222384C(NARC *param0, int heapID, int param2, int param3)
+ParticleSystem *ov12_0222384C(NARC *param0, enum HeapId heapID, int param2, int param3)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
 
     v0 = ov11_0221F888(heapID);
@@ -82,17 +79,17 @@ UnkStruct_02014014 *ov12_0222384C(NARC *param0, int heapID, int param2, int para
     }
 
     v1 = ov12_02223844(param0, param2, heapID);
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param3);
+    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), param3);
 
     return v0;
 }
 
-SPLEmitter *ov12_02223880(UnkStruct_02014014 *param0, int param1, int param2, void *param3)
+SPLEmitter *BattleParticleUtil_CreateEmitter(ParticleSystem *ps, int resourceID, int callbackID, void *param)
 {
-    return sub_020146F4(param0, param1, Unk_ov12_02238DB0[param2], param3);
+    return ParticleSystem_CreateEmitterWithCallback(ps, resourceID, sEmitterCallbackTable[callbackID], param);
 }
 
-void ov12_02223894(UnkStruct_02014014 *param0)
+void BattleParticleUtil_FreeParticleSystem(ParticleSystem *ps)
 {
-    ov11_0221F8D8(param0);
+    ov11_0221F8D8(ps);
 }

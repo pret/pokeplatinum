@@ -24,15 +24,21 @@
  *   - ppark.narc
  *   - height.narc
  *   - pl_poke_data.narc
+ *   - pms.narc
  *   - tutorable_moves.h
  *   - species_learnsets_by_tutor.h
- *   - species_footprints.h
+ *   - species_footprint_sizes.h
+ *   - species_footprint_types.h
+ *   - species_egg_moves.h
+ *   - species_icon_palettes.h
  */
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <optional>
+#include <regex>
 #include <string>
 
 #include "datagen.h"
@@ -276,6 +282,21 @@ static std::optional<SpeciesPalPark> TryParsePalPark(rapidjson::Document &root)
     return palPark;
 }
 
+static u16 TryParseOffspring(rapidjson::Document &root, u16 personalValue)
+{
+    if (!root.HasMember("offspring")) {
+        return personalValue;
+    }
+
+    return LookupConst(root["offspring"].GetString(), Species);
+}
+
+static void PackOffspring(std::vector<u16> offspringData, fs::path path)
+{
+    std::ofstream ofs(path);
+    ofs.write(reinterpret_cast<char *>(&offspringData[0]), offspringData.size() * sizeof(u16));
+}
+
 static std::vector<Move> EmitTutorableMoves(fs::path &tutorSchemaFname, fs::path outFname)
 {
     std::string tutorSchema = ReadWholeFile(tutorSchemaFname);
@@ -347,6 +368,90 @@ static void TryEmitTutorableLearnset(rapidjson::Document &root, std::ofstream &o
     ofs << "},\n";
 }
 
+static void TryEmitEggMoves(rapidjson::Document &root, std::ofstream &ofs, std::string species)
+{
+    const rapidjson::Value &learnsets = root["learnset"];
+    if (!learnsets.HasMember("egg_moves")) {
+        return;
+    }
+
+    std::transform(species.begin(), species.end(), species.begin(), ::toupper);
+    ofs << "    SPECIES_"
+        << species
+        << " + EGG_MOVES_SPECIES_OFFSET,\n";
+
+    const rapidjson::Value &eggMoves = learnsets["egg_moves"];
+    for (const auto &entry : eggMoves.GetArray()) {
+        ofs << "    "
+            << entry.GetString()
+            << ",\n";
+    }
+
+    ofs << "\n";
+}
+
+static std::string FormPathToName(std::string path)
+{
+    path = std::regex_replace(path, std::regex("/FORMS/"), "_");
+    return path;
+}
+
+static void EmitIconEnum(std::ofstream &ofs, std::string species, std::string form)
+{
+    std::transform(species.begin(), species.end(), species.begin(), ::toupper);
+    std::transform(form.begin(), form.end(), form.begin(), ::toupper);
+    ofs << "    ICON_"
+        << species
+        << "_"
+        << form
+        << ",\n";
+}
+
+static void EmitIconPaletteData(rapidjson::Document &root, std::ofstream &ofs, std::string species, u16 personalValue, std::map<std::string, std::vector<std::string>> iconRegistry)
+{
+    const rapidjson::Value &iconPallete = root["icon_palette"];
+
+    std::string speciesUpper = species;
+    std::transform(speciesUpper.begin(), speciesUpper.end(), speciesUpper.begin(), ::toupper);
+
+    int iconIdx;
+    if (iconPallete.IsInt()) {
+        iconIdx = iconPallete.GetInt();
+    } else {
+        iconIdx = iconPallete["base"].GetInt();
+
+        for (auto &form : iconRegistry.at(species)) {
+            const rapidjson::Value &formIcon = iconPallete[(char *)form.c_str()];
+            std::transform(form.begin(), form.end(), form.begin(), ::toupper);
+            ofs << "    [ICON_"
+                << speciesUpper
+                << "_"
+                << form
+                << "] = "
+                << formIcon.GetInt()
+                << ",\n";
+        }
+    }
+
+    ofs << "    [";
+
+    if (personalValue == SPECIES_BAD_EGG) {
+        ofs << "ICON_MANAPHY_EGG";
+    } else {
+        if (personalValue < SPECIES_EGG) {
+            ofs << "SPECIES_"
+                << speciesUpper;
+        } else {
+            ofs << "ICON_"
+                << FormPathToName(speciesUpper);
+        }
+    }
+
+    ofs << "] = "
+        << iconIdx
+        << ",\n";
+}
+
 static void PackHeights(vfs_pack_ctx *vfs, rapidjson::Document &root, u8 genderRatio)
 {
     u8 *backFemale, *backMale, *frontFemale, *frontMale;
@@ -409,16 +514,29 @@ static PokeSpriteFaceData ParsePokeSpriteFace(const rapidjson::Value &face)
     return data;
 }
 
-static void TryEmitFootprint(const rapidjson::Document &root, std::ofstream &ofs)
+static void TryEmitFootprint(const rapidjson::Document &root, std::string species, std::ofstream &ofs_size, std::ofstream &ofs_type)
 {
     if (!root.HasMember("footprint")) {
         return;
     }
 
+    std::transform(species.begin(), species.end(), species.begin(), ::toupper);
+
     const rapidjson::Value &footprint = root["footprint"];
-    ofs << "    { "
-        << (footprint["has"].GetBool() ? "TRUE,  " : "FALSE, ")
-        << footprint["size"].GetString() << ", },\n";
+    BOOL hasFootprintType = footprint["has"].GetBool();
+    if (footprint.HasMember("has_type")) { // this is just for Spiritomb
+        hasFootprintType = footprint["has_type"].GetBool();
+    }
+
+    ofs_size << "    { "
+             << (footprint["has"].GetBool() ? "TRUE,  " : "FALSE, ")
+             << footprint["size"].GetString() << ", },\n";
+    ofs_type << "    [SPECIES_"
+             << species
+             << "] = { "
+             << footprint["type"].GetString()
+             << (hasFootprintType ? ", TRUE" : ", FALSE")
+             << " },\n";
 }
 
 static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
@@ -428,8 +546,6 @@ static ArchivedPokeSpriteData ParsePokeSprite(const rapidjson::Document &root)
     const rapidjson::Value &front = root["front"];
     const rapidjson::Value &back = root["back"];
     const rapidjson::Value &shadow = root["shadow"];
-
-    std::cout << "here" << std::endl;
 
     data.faces[0] = ParsePokeSpriteFace(front);
     data.faces[1] = ParsePokeSpriteFace(back);
@@ -466,18 +582,60 @@ int main(int argc, char **argv)
                     << "static const MovesetMask sSpeciesLearnsetsByTutor[MOVESET_MAX] = {\n";
     byTutorMovesets << std::hex << std::setiosflags(std::ios::uppercase); // render all numeric inputs to the stream as hexadecimal
 
-    // Bootstrap the footprints header.
-    std::ofstream footprints(outputRoot / "species_footprints.h");
-    footprints << sHeaderMessage << "\n"
-               << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
-               << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n"
-               << "\n"
-               << "#include \"constants/species.h\"\n"
-               << "#include \"generated/footprint_sizes.h\"\n"
-               << "\n"
-               << "#include \"overlay113/footprint_data.h\"\n"
-               << "\n"
-               << "static const FootprintData sSpeciesFootprints[NATIONAL_DEX_COUNT + 1] = {\n";
+    // Bootstrap the egg moves header.
+    std::ofstream eggMoves(outputRoot / "species_egg_moves.h");
+    eggMoves << sHeaderMessage << "\n"
+             << "#ifndef POKEPLATINUM_GENERATED_SPECIES_EGG_MOVES_H\n"
+             << "#define POKEPLATINUM_GENERATED_SPECIES_EGG_MOVES_H\n"
+             << "\n"
+             << "#include \"constants/species.h\"\n"
+             << "#include \"generated/moves.h\"\n"
+             << "\n"
+             << "#define EGG_MOVES_SPECIES_OFFSET     20000\n"
+             << "#define EGG_MOVES_TERMINATOR         0xFFFF\n"
+             << "\n"
+             << "static const u16 sEggMoves[] = {\n";
+
+    // Bootstrap the footprint sizes header.
+    std::ofstream footprint_sizes(outputRoot / "species_footprint_sizes.h");
+    footprint_sizes << sHeaderMessage << "\n"
+                    << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_SIZES_H\n"
+                    << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_SIZES_H\n"
+                    << "\n"
+                    << "#include \"constants/species.h\"\n"
+                    << "#include \"generated/footprint_sizes.h\"\n"
+                    << "\n"
+                    << "#include \"overlay113/footprint_data.h\"\n"
+                    << "\n"
+                    << "static const FootprintData sSpeciesFootprints[NATIONAL_DEX_COUNT + 1] = {\n";
+
+    // Bootstrap the footprint types header.
+    std::ofstream footprint_types(outputRoot / "species_footprint_types.h");
+    footprint_types << sHeaderMessage << "\n"
+                    << "#ifndef POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_TYPES_H\n"
+                    << "#define POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_TYPES_H\n"
+                    << "\n"
+                    << "#include \"constants/footstep_house.h\"\n"
+                    << "#include \"constants/species.h\"\n"
+                    << "\n"
+                    << "typedef struct FootprintType {\n"
+                    << "    u16 type;\n"
+                    << "    u16 hasPrint;\n"
+                    << "} FootprintType;\n"
+                    << "\n"
+                    << "static const FootprintType sFootprintTypes[NATIONAL_DEX_COUNT + 1] = {\n";
+
+    // Bootstrap the icon palette offset header.
+    std::ofstream iconPalettes(outputRoot / "species_icon_palettes.h");
+    iconPalettes << sHeaderMessage << "\n"
+                 << "#ifndef POKEPLATINUM_GENERATED_SPECIES_ICON_PALETTES_H\n"
+                 << "#define POKEPLATINUM_GENERATED_SPECIES_ICON_PALETTES_H\n"
+                 << "\n"
+                 << "#include \"constants/species.h\"\n"
+                 << "\n"
+                 << "enum FormIconIndex {\n"
+                 << "    ICON_EGG = SPECIES_EGG,\n"
+                 << "    ICON_MANAPHY_EGG,\n";
 
     // Tutorable learnsets are stored as an array of bitmasks; each bit in the mask
     // denotes if a tutorable move can be learned by a given species.
@@ -485,9 +643,57 @@ int main(int argc, char **argv)
 
     // Prepare loop contents.
     std::vector<std::string> speciesRegistry = ReadRegistryEnvVar("SPECIES");
-    std::vector<std::string> formsRegistry = ReadFileLines(formsRegistryFname);
-    speciesRegistry.insert(speciesRegistry.end(), formsRegistry.begin(), formsRegistry.end());
-    std::vector<std::string>::iterator lastNatDex = speciesRegistry.end() - formsRegistry.size() - 3; // -3 accounts for egg and bad_egg
+    std::map<std::string, std::vector<std::string>> iconRegistry;
+    // read form data
+    std::string formsRegistryJson = ReadWholeFile(formsRegistryFname);
+    rapidjson::Document formRegDoc;
+    rapidjson::ParseResult formOk = formRegDoc.Parse(formsRegistryJson.c_str(), formsRegistryJson.length());
+    if (!formOk) {
+        ReportJsonError(formOk, formsRegistryJson, formsRegistryFname);
+        std::exit(EXIT_FAILURE);
+    }
+    for (auto &formRegSpecies : formRegDoc.GetObject()) {
+        std::string speciesName = formRegSpecies.name.GetString();
+        std::vector<std::string> speciesIcons;
+
+        if (formRegSpecies.value.HasMember("__dupe_base_icon")) {
+            EmitIconEnum(iconPalettes, speciesName, "base");
+            speciesIcons.push_back("base");
+        }
+
+        for (auto &form : formRegSpecies.value.GetObject()) {
+            std::string formName = form.name.GetString();
+            if (formName[0] == '_') {
+                continue;
+            }
+            std::string formType = form.value.GetString();
+            if (formType.compare("data") == 0) {
+                EmitIconEnum(iconPalettes, speciesName, formName);
+
+                formName = formRegSpecies.name.GetString();
+                formName.append("/forms/");
+                formName.append(form.name.GetString());
+                speciesRegistry.push_back(formName);
+            }
+            if (formType.compare("icon") == 0) {
+                EmitIconEnum(iconPalettes, speciesName, formName);
+
+                speciesIcons.push_back(formName);
+            }
+        }
+
+        if (speciesIcons.size() > 0) {
+            iconRegistry.insert({ speciesName, speciesIcons });
+        }
+    }
+    iconPalettes << "};\n"
+                 << "\n"
+                 << "/**\n"
+                 << " * @brief This table defines which index of the shared palette file is used\n"
+                 << " * for the icons used by Pokemon in PC boxes, the party list, etc. Alternate\n"
+                 << " * forms are listed after the full National Dex using a custom ordering.\n"
+                 << " */\n"
+                 << "static const u8 sPokemonIconPaletteIndex[] = {\n";
 
     // Prepare VFSes for each NARC to be output.
     vfs_pack_ctx *personalVFS = narc_pack_start();
@@ -495,21 +701,30 @@ int main(int argc, char **argv)
     vfs_pack_ctx *wotblVFS = narc_pack_start();
     vfs_pack_ctx *heightVFS = narc_pack_start();
     std::vector<SpeciesPalPark> palParkData;
+    std::vector<u16> offspringData;
     std::vector<ArchivedPokeSpriteData> pokeSpriteData;
 
+    u16 personalValue = 0;
     rapidjson::Document doc;
     for (auto &species : speciesRegistry) {
-        try {
-            fs::path speciesDataPath = dataRoot / species / "data.json";
-            std::string json = ReadWholeFile(speciesDataPath);
-            doc.Parse(json.c_str());
+        fs::path speciesDataPath = dataRoot / species / "data.json";
+        std::string json = ReadWholeFile(speciesDataPath);
+        rapidjson::ParseResult ok = doc.Parse(json.c_str(), json.length());
+        if (!ok) {
+            ReportJsonError(ok, json, speciesDataPath);
+            std::exit(EXIT_FAILURE);
+        }
 
+        try {
             SpeciesData data = ParseSpeciesData(doc);
             SpeciesEvolutionList evos = ParseEvolutions(doc);
             SpeciesLearnsetWithSize sizedLearnset = ParseLevelUpLearnset(doc);
             std::optional<SpeciesPalPark> palPark = TryParsePalPark(doc);
+            u16 offspring = TryParseOffspring(doc, personalValue);
             TryEmitTutorableLearnset(doc, byTutorMovesets, tutorableMoves, tutorableLearnsetSize);
-            TryEmitFootprint(doc, footprints);
+            TryEmitEggMoves(doc, eggMoves, species);
+            TryEmitFootprint(doc, species, footprint_sizes, footprint_types);
+            EmitIconPaletteData(doc, iconPalettes, species, personalValue, iconRegistry);
 
             narc_pack_file_copy(personalVFS, reinterpret_cast<unsigned char *>(&data), sizeof(data));
             narc_pack_file_copy(evoVFS, reinterpret_cast<unsigned char *>(&evos), sizeof(evos));
@@ -519,11 +734,18 @@ int main(int argc, char **argv)
                 palParkData.emplace_back(palPark.value());
             }
 
+            offspringData.emplace_back(offspring);
+
+            // Mechanically-distinct forms do not have sprite_data.json files
             fs::path speciesSpriteDataPath = dataRoot / species / "sprite_data.json";
-            std::ifstream spriteDataIFS(speciesSpriteDataPath);
+            std::ifstream spriteDataIFS(speciesSpriteDataPath, std::ios::in);
             if (spriteDataIFS.good()) {
                 std::string spriteData = ReadWholeFile(spriteDataIFS);
-                doc.Parse(spriteData.c_str());
+                ok = doc.Parse(spriteData.c_str());
+                if (!ok) {
+                    ReportJsonError(ok, json, speciesSpriteDataPath);
+                    std::exit(EXIT_FAILURE);
+                }
 
                 u8 genderRatio = species != "none" ? data.genderRatio : GENDER_RATIO_FEMALE_50; // treat SPECIES_NONE as if it has two genders.
                 PackHeights(heightVFS, doc, genderRatio);
@@ -531,11 +753,11 @@ int main(int argc, char **argv)
                 ArchivedPokeSpriteData pokeSprite = ParsePokeSprite(doc);
                 pokeSpriteData.emplace_back(pokeSprite);
             }
-        } catch (std::exception &e) {
-            std::cerr << "exception parsing data file for " + species << std::endl;
+        } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
         }
+        personalValue += 1;
     }
 
     byTutorMovesets << "};\n"
@@ -543,10 +765,26 @@ int main(int argc, char **argv)
                     << "#endif // POKEPLATINUM_GENERATED_SPECIES_LEARNSETS_BY_TUTOR_H\n";
     byTutorMovesets.close();
 
-    footprints << "};\n"
-               << "\n"
-               << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINTS_H\n";
-    footprints.close();
+    eggMoves << "    EGG_MOVES_TERMINATOR,\n"
+             << "};\n"
+             << "\n"
+             << "#endif // POKEPLATINUM_GENERATED_SPECIES_EGG_MOVES_H\n";
+    eggMoves.close();
+
+    footprint_sizes << "};\n"
+                    << "\n"
+                    << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_SIZES_H\n";
+    footprint_sizes.close();
+
+    footprint_types << "};\n"
+                    << "\n"
+                    << "#endif // POKEPLATINUM_GENERATED_SPECIES_FOOTPRINT_TYPES_H\n";
+    footprint_types.close();
+
+    iconPalettes << "};\n"
+                 << "\n"
+                 << "#endif // POKEPLATINUM_GENERATED_SPECIES_ICON_PALETTES_H\n";
+    iconPalettes.close();
 
     PackNarc(personalVFS, outputRoot / "pl_personal.narc");
     PackNarc(evoVFS, outputRoot / "evo.narc");
@@ -554,5 +792,6 @@ int main(int argc, char **argv)
     PackNarc(heightVFS, outputRoot / "height.narc");
     PackSingleFileNarc(palParkData, outputRoot / "ppark.narc");
     PackSingleFileNarc(pokeSpriteData, outputRoot / "pl_poke_data.narc");
+    PackOffspring(offspringData, outputRoot / "pms.narc");
     return EXIT_SUCCESS;
 }

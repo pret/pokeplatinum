@@ -124,11 +124,8 @@ static void ov5_021F6134(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static void ov5_021F6140(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F6134 *v0;
-    MapObject *v1;
-
-    v0 = param1;
-    v1 = v0->unk_10.unk_0C;
+    UnkStruct_ov5_021F6134 *v0 = param1;
+    MapObject *v1 = v0->unk_10.unk_0C;
 
     if (sub_02062764(v1, v0->unk_04, v0->unk_08) == 0) {
         ov5_021DF74C(param0);
@@ -139,11 +136,8 @@ static void ov5_021F6140(UnkStruct_ov101_021D5D90 *param0, void *param1)
 static void ov5_021F615C(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     VecFx32 v0, v1;
-    UnkStruct_ov5_021F6134 *v2;
-    MapObject *v3;
-
-    v2 = param1;
-    v3 = v2->unk_10.unk_0C;
+    UnkStruct_ov5_021F6134 *v2 = param1;
+    MapObject *v3 = v2->unk_10.unk_0C;
 
     if (sub_02062764(v3, v2->unk_04, v2->unk_08) == 0) {
         ov5_021DF74C(param0);

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/vista_lighthouse.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025
@@ -87,37 +86,37 @@ _00D2:
 
     .balign 4, 0
 _0104:
-    MoveAction_015 3
-    MoveAction_013 6
-    MoveAction_014 3
-    MoveAction_032
+    WalkNormalEast 3
+    WalkNormalSouth 6
+    WalkNormalWest 3
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0118:
-    MoveAction_013
-    MoveAction_015 3
-    MoveAction_013 5
-    MoveAction_014 3
-    MoveAction_032
+    WalkNormalSouth
+    WalkNormalEast 3
+    WalkNormalSouth 5
+    WalkNormalWest 3
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0130:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0148:
-    MoveAction_063
-    MoveAction_033
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement

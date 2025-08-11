@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="13097" />
+	<row id="TitleScreen_Text_PressStart" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PRESS START</language>
+	</row>
+</body>

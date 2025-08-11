@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_park.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0308
@@ -26,7 +25,7 @@ _0032:
     CallIfEq VAR_0x8004, 26, _01DE
     ClearFlag FLAG_UNK_0x0276
     AddObject 11
-    ScrCmd_062 11
+    LockObject 11
     ApplyMovement 11, _02C8
     ApplyMovement LOCALID_PLAYER, _0290
     WaitMovement
@@ -54,7 +53,7 @@ _0032:
     RemoveObject 11
     ClearFlag FLAG_UNK_0x0277
     AddObject 12
-    ScrCmd_062 12
+    LockObject 12
     ApplyMovement 12, _02C8
     ApplyMovement LOCALID_PLAYER, _0290
     WaitMovement
@@ -155,59 +154,59 @@ _027C:
 
     .balign 4, 0
 _0290:
-    MoveAction_062 7
-    MoveAction_037
-    MoveAction_071
-    MoveAction_016
-    MoveAction_072
+    Delay4 7
+    WalkOnSpotFastSouth
+    LockDir
+    WalkFastNorth
+    UnlockDir
     EndMovement
 
     .balign 4, 0
 _02A8:
-    MoveAction_063
-    MoveAction_035
-    MoveAction_032
+    Delay8
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02B8:
-    MoveAction_063
-    MoveAction_034
-    MoveAction_032
+    Delay8
+    WalkOnSpotNormalWest
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02C8:
-    MoveAction_016 8
+    WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
 _02D0:
-    MoveAction_034
-    MoveAction_035
-    MoveAction_033
+    WalkOnSpotNormalWest
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02E0:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _02F0:
-    MoveAction_019
-    MoveAction_016 8
+    WalkFastEast
+    WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
 _02FC:
-    MoveAction_018
-    MoveAction_016 8
+    WalkFastWest
+    WalkFastNorth 8
     EndMovement
 
 _0308:
@@ -305,4 +304,4 @@ _03C4:
     ShowLandmarkSign 8
     End
 
-    .byte 0
+    .balign 4, 0

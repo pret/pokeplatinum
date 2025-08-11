@@ -4,7 +4,7 @@
 
 #include "constants/heap.h"
 
-#include "overlay025/ov25_02255090.h"
+#include "applications/poketch/poketch_task.h"
 #include "overlay055/struct_ov55_0225632C_1.h"
 #include "overlay055/struct_ov55_0225632C_decl.h"
 
@@ -45,10 +45,10 @@ void ov55_02256360(UnkStruct_ov55_0225632C *param0)
 {
     if (param0 != NULL) {
         if (param0->unk_04 != NULL) {
-            Heap_FreeToHeap(param0->unk_04);
+            Heap_Free(param0->unk_04);
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -83,27 +83,26 @@ static void ov55_022563B4(PoketchTaskManager *param0)
 static void ov55_022563C8(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     UnkStruct_ov55_0225632C *v2 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 8, v2->unk_04, 6, 0, 0, 0, HEAP_ID_POKETCH_APP);
-    Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
-    Graphics_LoadPalette(12, 9, 4, 0 * 0x20, 0x20, HEAP_ID_POKETCH_APP);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 8, v2->unk_04, BG_LAYER_SUB_2, 0, 0, 0, HEAP_ID_POKETCH_APP);
+    Bg_FillTilemapRect(v2->unk_04, BG_LAYER_SUB_2, 0, 0, 0, 32, 24, 0);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 9, 4, 0 * 0x20, 0x20, HEAP_ID_POKETCH_APP);
 
     ov25_02255440(v2->unk_04, v2->unk_00->unk_00, 6);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
@@ -118,6 +117,6 @@ static void ov55_02256468(SysTask *param0, void *param1)
 {
     UnkStruct_ov55_0225632C *v0 = PoketchTask_GetTaskData(param1);
 
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov55_022563B4(param1);
 }

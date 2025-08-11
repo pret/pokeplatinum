@@ -102,7 +102,7 @@ void StringTemplate_Free(StringTemplate *template)
             }
         }
 
-        Heap_FreeToHeap(template->args);
+        Heap_Free(template->args);
     }
 
     if (template->templateBuf) {
@@ -110,7 +110,7 @@ void StringTemplate_Free(StringTemplate *template)
     }
 
     template->maxArgs = 0;
-    Heap_FreeToHeap(template);
+    Heap_Free(template);
 }
 
 static void InitStringTemplateArgHeader(StringTemplateArgHeader *header)
@@ -147,15 +147,15 @@ void StringTemplate_SetPlayerName(StringTemplate *template, u32 idx, const Train
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
-void StringTemplate_SetRivalName(StringTemplate *template, u32 idx, const SaveData *save)
+void StringTemplate_SetRivalName(StringTemplate *template, u32 idx, const SaveData *saveData)
 {
-    Strbuf_CopyChars(template->templateBuf, MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(save)));
+    Strbuf_CopyChars(template->templateBuf, MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData)));
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
-void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const SaveData *save)
+void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const SaveData *saveData)
 {
-    const TrainerInfo *playerInfo = SaveData_GetTrainerInfo((SaveData *)save);
+    const TrainerInfo *playerInfo = SaveData_GetTrainerInfo((SaveData *)saveData);
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_COUNTERPART_NAMES, template->heapID);
 
     if (TrainerInfo_Gender(playerInfo) == GENDER_MALE) {
@@ -420,9 +420,9 @@ void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gend
     MessageLoader_Free(loader);
 }
 
-void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *boxes, u32 boxIdx)
+void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *pcBoxes, u32 boxIdx)
 {
-    PCBoxes_BufferBoxName(boxes, boxIdx, template->templateBuf);
+    PCBoxes_BufferBoxName(pcBoxes, boxIdx, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
@@ -520,11 +520,11 @@ void StringTemplate_SetContestBackdropName(StringTemplate *template, u32 idx, u3
     SetArgFromArchive(template, idx, backdrop, TEXT_BANK_CONTEST_BACKDROP_NAMES);
 }
 
-void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *save, int groupID, int idx, int nameType)
+void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveData, int groupID, int idx, int nameType)
 {
     int gender, countryCode;
     Strbuf *groupName;
-    RecordMixedRNG *group = SaveData_GetRecordMixedRNG(save);
+    RecordMixedRNG *group = SaveData_GetRecordMixedRNG(saveData);
 
     gender = RecordMixedRNG_GetEntryGender(group, groupID);
     countryCode = RecordMixedRNG_GetEntryCountryCode(group, groupID);

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/lake_verity.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _00C7
@@ -31,22 +30,22 @@ _0069:
 
 _0071:
     SetObjectEventPos 5, 46, 50
-    ScrCmd_188 5, 14
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 5, DIR_NORTH
     Return
 
 _0087:
     SetObjectEventPos 5, 46, 51
-    ScrCmd_188 5, 15
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 5, DIR_SOUTH
     Return
 
 _009D:
     SetObjectEventPos 5, 50, 37
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 5, DIR_WEST
     SetObjectEventPos 6, 50, 39
-    ScrCmd_188 6, 16
+    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 6, DIR_WEST
     Return
 
@@ -149,7 +148,7 @@ _01C0:
 
     .balign 4, 0
 _01C8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
 _01D0:
@@ -182,9 +181,9 @@ _0211:
 
     .balign 4, 0
 _0220:
-    MoveAction_033
-    MoveAction_075
-    MoveAction_013
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    WalkNormalSouth
     EndMovement
 
 _0230:
@@ -233,39 +232,28 @@ _02DB:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+LakeVerity_UnusedMovement:
+    WalkOnSpotNormalNorth
+    EndMovement
+
+LakeVerity_UnusedMovement2:
+    WalkNormalNorth 3
+    EndMovement
 
     .balign 4, 0
 _02F4:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02FC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0304:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _030C:
@@ -277,6 +265,4 @@ _030C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -4,11 +4,9 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -21,6 +19,7 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "savedata.h"
 #include "sprite.h"
@@ -33,11 +32,11 @@
 
 struct UnkStruct_02095E80_t {
     FieldSystem *fieldSystem;
-    SaveData *unk_04;
+    SaveData *saveData;
     UnkStruct_ov88_0223C370 *unk_08;
     PokemonSummary unk_0C;
     int unk_3C;
-    OverlayManager *unk_40;
+    ApplicationManager *appMan;
     int unk_44;
     int unk_48;
     int unk_4C;

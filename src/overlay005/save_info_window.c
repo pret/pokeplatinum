@@ -9,9 +9,9 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 
+#include "applications/poketch/poketch_system.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/save_info_window.h"
-#include "overlay025/poketch_system.h"
 
 #include "bg_window.h"
 #include "field_overworld_state.h"
@@ -157,7 +157,7 @@ void SaveInfoWindow_Erase(SaveInfoWindow *saveInfoWin)
 {
     Window_EraseStandardFrame(saveInfoWin->window, FALSE);
     Window_Remove(saveInfoWin->window);
-    Heap_FreeToHeap(saveInfoWin->window);
+    Heap_Free(saveInfoWin->window);
 }
 
 SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapId heapID, u8 bgLayer)
@@ -184,7 +184,7 @@ void SaveInfoWindow_Free(SaveInfoWindow *saveInfoWin)
 {
     MessageLoader_Free(saveInfoWin->msgLoader);
     StringTemplate_Free(saveInfoWin->strTemplate);
-    Heap_FreeToHeap(saveInfoWin);
+    Heap_Free(saveInfoWin);
 }
 
 BOOL FieldSystem_Save(FieldSystem *fieldSystem)

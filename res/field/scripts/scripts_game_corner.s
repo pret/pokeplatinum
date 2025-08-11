@@ -3,7 +3,6 @@
 
 #define LOCALID_SLOT_MACHINE_ID VAR_0x8004
 
-    .data
 
     ScriptEntry GameCorner_SlotMachine_0
     ScriptEntry GameCorner_SlotMachine_1
@@ -383,5 +382,4 @@ GameCorner_Looker_End:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

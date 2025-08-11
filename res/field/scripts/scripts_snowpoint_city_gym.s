@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city_gym.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025
@@ -123,5 +122,4 @@ _0172:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

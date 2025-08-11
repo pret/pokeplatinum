@@ -2,7 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay025/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay032/ov32_02256470.h"
 
 #include "bg_window.h"
@@ -52,7 +52,7 @@ static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, Bg
             return TRUE;
         }
 
-        Heap_FreeToHeap(partyStatusData);
+        Heap_Free(partyStatusData);
     }
 
     return FALSE;
@@ -82,7 +82,7 @@ static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSyst
 static void FreeAppResources(PoketchPartyStatus *appData)
 {
     PartyStatusGraphics_UnloadAndFree(appData->graphicsData);
-    Heap_FreeToHeap(appData);
+    Heap_Free(appData);
 }
 
 static void Task_PartyStatusMain(SysTask *task, void *appData)

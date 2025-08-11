@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0432.h"
 
-    .data
 
     ScriptEntry _0008
     ScriptEntryEnd
@@ -165,9 +164,6 @@ _0263:
     ScrCmd_150
     Call _0097
     GoTo _006D
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
+    End
+    
+    .balign 4, 0

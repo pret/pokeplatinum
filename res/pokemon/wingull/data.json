@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_WHITE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -89,6 +90,15 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_MIST",
+            "MOVE_TWISTER",
+            "MOVE_AGILITY",
+            "MOVE_GUST",
+            "MOVE_WATER_SPORT",
+            "MOVE_AQUA_RING",
+            "MOVE_KNOCK_OFF"
         ]
     },
     "evolutions": [
@@ -98,9 +108,11 @@
             "SPECIES_PELIPPER"
         ]
     ],
+    "offspring": "SPECIES_WINGULL",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

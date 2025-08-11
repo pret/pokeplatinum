@@ -4,10 +4,10 @@
 #include "overlay019/pc_compare_mon.h"
 
 typedef struct {
-    u8 unk_00;
+    u8 compareMonSlot;
     u8 unk_01;
     u8 unk_02[2];
-    BOOL unk_04;
+    BOOL compareButtonAnimationPressed;
     PCCompareMon compareMons[2];
 } UnkStruct_ov19_021D4EE4;
 

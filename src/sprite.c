@@ -76,12 +76,12 @@ BOOL SpriteList_Delete(SpriteList *list)
 
     SpriteList_DeleteAll(list);
 
-    Heap_FreeToHeap(list->rawAnimData);
-    Heap_FreeToHeap(list->freeSprites);
-    Heap_FreeToHeap(list->sprites);
+    Heap_Free(list->rawAnimData);
+    Heap_Free(list->freeSprites);
+    Heap_Free(list->sprites);
 
     SpriteList_Reset(list);
-    Heap_FreeToHeap(list);
+    Heap_Free(list);
 
     list = NULL;
 
@@ -187,7 +187,7 @@ Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template)
     sprite->vramType = template->vramType;
     sprite->priority = template->priority;
     sprite->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
-    sprite->flip = SPRITE_FLIP_NONE;
+    sprite->flip = NNS_G2D_RENDERERFLIP_NONE;
     sprite->explicitMosaic = FALSE;
     sprite->explicitOamMode = GX_OAM_MODE_NORMAL;
     sprite->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
@@ -197,8 +197,8 @@ Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template)
         sprite->affineOverwriteMode);
     NNS_G2dSetRndCoreFlipMode(
         &template->list->renderer->rendererCore,
-        sprite->flip & SPRITE_FLIP_H,
-        sprite->flip & SPRITE_FLIP_V);
+        sprite->flip & NNS_G2D_RENDERERFLIP_H,
+        sprite->flip & NNS_G2D_RENDERERFLIP_V);
 
     sprite->draw = TRUE;
     sprite->animate = FALSE;
@@ -257,11 +257,11 @@ void Sprite_Delete(Sprite *sprite)
         MultiCellAnimationData *multiCellAnim = (MultiCellAnimationData *)&sprite->animData;
 
         if (multiCellAnim->nodes != NULL) {
-            Heap_FreeToHeap(multiCellAnim->nodes);
+            Heap_Free(multiCellAnim->nodes);
         }
 
         if (multiCellAnim->cellAnims != NULL) {
-            Heap_FreeToHeap(multiCellAnim->cellAnims);
+            Heap_Free(multiCellAnim->cellAnims);
         }
     }
 
@@ -591,7 +591,7 @@ void Utility_Clear2DMainOAM(enum HeapId heapID)
     DC_FlushRange(oam, sizeof(GXOamAttr) * MAX_SPRITES);
     GX_LoadOAM(oam, 0, sizeof(GXOamAttr) * MAX_SPRITES);
 
-    Heap_FreeToHeap(oam);
+    Heap_Free(oam);
 }
 
 void Utility_Clear2DSubOAM(enum HeapId heapID)
@@ -602,7 +602,7 @@ void Utility_Clear2DSubOAM(enum HeapId heapID)
     // According to the NitroSDK docs there should be a call to DC_FlushRange here.
     GXS_LoadOAM(oam, 0, sizeof(GXOamAttr) * MAX_SPRITES);
 
-    Heap_FreeToHeap(oam);
+    Heap_Free(oam);
 }
 
 u32 Sprite_GetUserAttrForAnimFrame(const Sprite *sprite, u32 animID, u32 frame)
@@ -794,8 +794,8 @@ static void SpriteList_DrawSprite(const SpriteList *list, Sprite *sprite)
     if (sprite->affineOverwriteMode == NNS_G2D_RND_AFFINE_OVERWRITE_NONE) {
         NNS_G2dSetRndCoreFlipMode(
             &list->renderer->rendererCore,
-            sprite->flip & SPRITE_FLIP_H,
-            sprite->flip & SPRITE_FLIP_V);
+            sprite->flip & NNS_G2D_RENDERERFLIP_H,
+            sprite->flip & NNS_G2D_RENDERERFLIP_V);
     } else {
         NNS_G2dSetRndCoreFlipMode(&list->renderer->rendererCore, FALSE, FALSE);
     }

@@ -9,9 +9,9 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -37,11 +37,11 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0202CC64.h"
 #include "unk_0202DA40.h"
 #include "unk_0202F180.h"
@@ -61,7 +61,7 @@ static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02243E48(JournalEntry *param0, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1);
+static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *param1);
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2);
 static void ov94_02243DE8(GlobalTrade *param0, int param1);
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1);
@@ -161,7 +161,7 @@ int ov94_02242AD0(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02242CAC(param0);
     ov94_02242D38(param0);
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
     ov94_02245934(param0);
 
     param0->unk_2C = 0;
@@ -204,110 +204,105 @@ static void ov94_02242B54(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x10000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 4, &v4, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
         BgTemplate v5 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
 
-        Bg_InitFromTemplate(param0, 5, &v5, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -316,25 +311,25 @@ static void ov94_02242B54(BgConfig *param0)
 
 static void ov94_02242C80(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    Graphics_LoadPalette(104, 0, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 0, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
 
     if (param0->unk_10F0 == 0) {
-        Bg_ToggleLayer(4, 0);
-        Bg_ToggleLayer(5, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
     }
 
@@ -345,7 +340,7 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02242D38(UnkStruct_ov94_0223FD4C *param0)
 {
-    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
+    Window_Add(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&param0->unk_F5C, 0x0);
 }
 
@@ -356,7 +351,7 @@ static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
+    param0->unk_BAC = Strbuf_Init(90 * 2, HEAP_ID_62);
 }
 
 static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0)
@@ -653,17 +648,11 @@ static int ov94_022431F0(UnkStruct_ov94_0223FD4C *param0)
 
             ov94_02243B08(param0, 0);
             ov94_02243CE4(param0, (Pokemon *)param0->unk_A4C.unk_00.unk_00, param0->unk_110);
-            ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_A4C);
+            ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_A4C);
             GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
             ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_A4C);
-            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
-
-            {
-                TVBroadcast *v2;
-
-                v2 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
-                sub_0206D104(v2);
-            }
+            GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_WIFI_TRADES);
+            sub_0206D104(SaveData_GetTVBroadcast(param0->unk_00->saveData));
             break;
         case -5:
             param0->unk_3C = v1;
@@ -803,7 +792,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
                 ov94_02243BC4(param0, v1, sub_0202DAAC(param0->unk_00->unk_00), 0);
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                Heap_FreeToHeap(v1);
+                Heap_Free(v1);
             } else {
                 ov94_0224362C(param0);
             }
@@ -821,7 +810,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
                 param0->unk_2C = 34;
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                Heap_FreeToHeap(v2);
+                Heap_Free(v2);
             }
             break;
         case -12:
@@ -931,18 +920,14 @@ static void ov94_0224362C(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243658(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_02243BC4(param0, (Pokemon *)param0->unk_12C.unk_00.unk_00, sub_0202DAAC(param0->unk_00->unk_00), param0->unk_12C.unk_121);
-    ov94_02243E2C(param0->unk_00->unk_18, &param0->unk_12C);
+    ov94_02243E2C(param0->unk_00->wiFiHistory, &param0->unk_12C);
 
     GameRecords_IncrementTrainerScore(param0->unk_00->records, TRAINER_SCORE_EVENT_UNK_25);
     ov94_02243E48(param0->unk_00->unk_2C, &param0->unk_12C);
-    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_UNK_024);
+    GameRecords_IncrementRecordValue(param0->unk_00->records, RECORD_WIFI_TRADES);
 
-    {
-        TVBroadcast *v0;
-
-        v0 = SaveData_GetTVBroadcast(param0->unk_00->unk_20);
-        sub_0206D104(v0);
-    }
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_00->saveData);
+    sub_0206D104(broadcast);
 
     sub_0202DA68(param0->unk_00->unk_00, 0);
     param0->unk_2C = 30;
@@ -1160,7 +1145,7 @@ static int ov94_02243974(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243990(UnkStruct_ov94_0223FD4C *param0)
 {
     SaveData_SetFullSaveRequired();
-    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
 
     param0->unk_2C = 31;
     param0->unk_10E0 = LCRNG_RandMod(60) + 2;
@@ -1181,7 +1166,7 @@ static int ov94_022439CC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 1) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 1) {
         param0->unk_2C = param0->unk_10E8;
     }
 
@@ -1190,7 +1175,7 @@ static int ov94_022439E4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         param0->unk_2C = param0->unk_10EA;
         ov94_0223C5F4(param0);
     }
@@ -1201,7 +1186,7 @@ static int ov94_02243A04(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
 {
     SaveData_SetFullSaveRequired();
-    SaveData_SaveStateInit(param0->unk_00->unk_20, 2);
+    SaveData_SaveStateInit(param0->unk_00->saveData, 2);
 
     param0->unk_2C = 35;
 
@@ -1210,7 +1195,7 @@ static int ov94_02243A28(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02243A44(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (SaveData_SaveStateMain(param0->unk_00->unk_20) == 2) {
+    if (SaveData_SaveStateMain(param0->unk_00->saveData) == 2) {
         ov94_0223C4C0(param0, 1, 0);
         ov94_0223C5F4(param0);
         ov94_02245824(param0, param0->unk_B90, param0->unk_28, TEXT_SPEED_FAST, 0xf0f);
@@ -1226,9 +1211,9 @@ static int ov94_02243A90(UnkStruct_ov94_0223FD4C *param0)
     sub_02039794();
 
     if (param0->unk_1110 == 1) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
     } else {
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;
@@ -1250,10 +1235,10 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
     if (param0->unk_110 != 18) {
         Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
+        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
-        PCBoxes_InitBoxMonAt(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
-        Heap_FreeToHeap(v0);
+        PCBoxes_InitBoxMonAt(param0->unk_00->pcBoxes, param0->unk_110, param0->unk_112);
+        Heap_Free(v0);
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
@@ -1262,7 +1247,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
         Party_RemovePokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
         if (Party_HasSpecies(param0->unk_00->unk_08, 441) == 0) {
-            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->unk_20);
+            ChatotCry *v2 = SaveData_GetChatotCry(param0->unk_00->saveData);
             ResetChatotCryDataStatus(v2);
         }
     }
@@ -1276,7 +1261,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 {
     int v0 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
-    SaveData_UpdateCatchRecords(param0->unk_00->unk_20, param1);
+    SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
     param2 = 18;
 
     if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -1288,7 +1273,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
         if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
             if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-                VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
+                VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
                 if (SystemVars_GetArceusEventState(v2) == 0) {
                     SystemVars_SetArceusEventState(v2, 1);
@@ -1313,8 +1298,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     } else {
         int v4 = 0;
 
-        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->unk_0C, &param2, &v4);
-        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
+        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->pcBoxes, &param2, &v4);
+        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->pcBoxes, param2, Pokemon_GetBoxPokemon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v4;
@@ -1325,7 +1310,7 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
 static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int param2)
 {
-    SaveData_UpdateCatchRecords(param0->unk_00->unk_20, param1);
+    SaveData_UpdateCatchRecords(param0->unk_00->saveData, param1);
 
     param2 = 18;
 
@@ -1335,7 +1320,7 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
 
     if (Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
-            VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
+            VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->saveData);
 
             if (SystemVars_GetArceusEventState(v0) == 0) {
                 SystemVars_SetArceusEventState(v0, 1);
@@ -1361,8 +1346,8 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     } else {
         int v3 = 0;
 
-        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->unk_0C, &param2, &v3);
-        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
+        PCBoxes_TryGetNextAvailableSpace(param0->unk_00->pcBoxes, &param2, &v3);
+        PCBoxes_TryStoreBoxMonInBox(param0->unk_00->pcBoxes, param2, Pokemon_GetBoxPokemon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v3;
@@ -1388,9 +1373,9 @@ static void ov94_02243DE8(GlobalTrade *param0, int param1)
     }
 }
 
-static void ov94_02243E2C(UnkStruct_0202C878 *param0, UnkStruct_ov94_0223BA88 *param1)
+static void ov94_02243E2C(WiFiHistory *wiFiHistory, UnkStruct_ov94_0223BA88 *param1)
 {
-    sub_02038FDC(param0, param1->unk_11E, param1->unk_11F, param1->unk_123);
+    sub_02038FDC(wiFiHistory, param1->unk_11E, param1->unk_11F, param1->unk_123);
 }
 
 static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *param1)
@@ -1406,7 +1391,7 @@ static void ov94_02243E48(JournalEntry *journalEntry, UnkStruct_ov94_0223BA88 *p
 
 static int ov94_02243E84(UnkStruct_ov94_0223FD4C *param0, UnkStruct_ov94_0223BA88 *param1)
 {
-    if (ov94_02241498((Pokemon *)param1->unk_00.unk_00)
+    if (Pokemon_IsHoldingMail((Pokemon *)param1->unk_00.unk_00)
         && (Party_GetCurrentCount(param0->unk_00->unk_08) == 6)) {
         return 2;
     }

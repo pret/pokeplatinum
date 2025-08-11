@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _026C
@@ -85,10 +84,10 @@ _013C:
     RemoveObject 3
     SetObjectEventPos 3, 0x1D2, 0x213
     SetObjectEventDir 3, DIR_NORTH
-    ScrCmd_188 3, 14
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01AC
     AddObject 3
-    ScrCmd_062 3
+    LockObject 3
     Return
 
 _0166:
@@ -113,86 +112,71 @@ _0191:
 
     .balign 4, 0
 _0198:
-    MoveAction_018 3
-    MoveAction_017 9
+    WalkFastWest 3
+    WalkFastSouth 9
     EndMovement
 
     .balign 4, 0
 _01A4:
-    MoveAction_017 2
-    MoveAction_018 3
-    MoveAction_017 7
+    WalkFastSouth 2
+    WalkFastWest 3
+    WalkFastSouth 7
     EndMovement
 
     .balign 4, 0
 _01B4:
-    MoveAction_012 8
-    MoveAction_014 2
+    WalkNormalNorth 8
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _01C0:
-    MoveAction_012 8
-    MoveAction_014 2
-    MoveAction_032
+    WalkNormalNorth 8
+    WalkNormalWest 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01D0:
-    MoveAction_012 8
-    MoveAction_014 4
-    MoveAction_032
+    WalkNormalNorth 8
+    WalkNormalWest 4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01E0:
-    MoveAction_034
-    MoveAction_063
-    MoveAction_033
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_063 3
-    MoveAction_033
+    Delay8 3
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01FC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0204:
-    MoveAction_063 8
-    MoveAction_062
-    MoveAction_035
+    Delay8 8
+    Delay4
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+CelesticTown_UnusedMovement:
+    Delay8 8
+    WalkOnSpotNormalSouth
+    EndMovement
+
+CelesticTown_UnusedMovement2:
+    Delay8 9
+    WalkOnSpotNormalSouth
+    EndMovement
 
 _022C:
     LockAll
@@ -212,12 +196,12 @@ _024A:
 
     .balign 4, 0
 _025C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0264:
-    MoveAction_002
+    FaceWest
     EndMovement
 
 _026C:
@@ -259,23 +243,23 @@ _0294:
 
     .balign 4, 0
 _02E0:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_075
-    MoveAction_014 2
+    EmoteExclamationMark
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _02F4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02FC:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _0304:
@@ -340,6 +324,4 @@ _0378:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

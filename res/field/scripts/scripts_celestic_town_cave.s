@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_cave.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0538
@@ -32,7 +31,7 @@ _0040:
     ClearFlag FLAG_UNK_0x0229
     SetObjectEventPos 0, 4, 11
     SetObjectEventDir 0, DIR_NORTH
-    ScrCmd_188 0, 14
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 0
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 9, _0110
@@ -49,7 +48,7 @@ _0040:
     ClearFlag FLAG_UNK_0x029B
     SetObjectEventPos 1, 4, 11
     SetObjectEventDir 1, DIR_NORTH
-    ScrCmd_188 1, 14
+    SetObjectEventMovementType 1, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 1
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 9, _0285
@@ -170,26 +169,11 @@ _02D2:
     WaitMovement
     Return
 
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 90
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 226
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
+CelesticTownCave_Unused:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement
+    ApplyMovement 0, _04D8
+    WaitMovement
+    Return
 
 _02FA:
     GoToIfEq VAR_0x8005, 4, _031B
@@ -204,26 +188,11 @@ _031B:
     WaitMovement
     Return
 
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 49
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 153
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
+CelesticTownCave_Unused2:
+    ApplyMovement LOCALID_PLAYER, CelesticTownCave_UnusedMovement2
+    ApplyMovement 0, _04D8
+    WaitMovement
+    Return
 
 _0343:
     ApplyMovement LOCALID_PLAYER, _0474
@@ -256,206 +225,190 @@ _0393:
 
     .balign 4, 0
 _039C:
-    MoveAction_012 6
-    MoveAction_015
-    MoveAction_012
-    MoveAction_015 5
-    MoveAction_032
+    WalkNormalNorth 6
+    WalkNormalEast
+    WalkNormalNorth
+    WalkNormalEast 5
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _03B4:
-    MoveAction_012 6
-    MoveAction_015
-    MoveAction_012
-    MoveAction_015 4
-    MoveAction_032
+    WalkNormalNorth 6
+    WalkNormalEast
+    WalkNormalNorth
+    WalkNormalEast 4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _03CC:
-    MoveAction_014
-    MoveAction_012
+    WalkNormalWest
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _03D8:
-    MoveAction_015
-    MoveAction_012
+    WalkNormalEast
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _03E4:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _03EC:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _03F4:
-    MoveAction_063
-    MoveAction_003
-    MoveAction_071
-    MoveAction_018
-    MoveAction_072
+    Delay8
+    FaceEast
+    LockDir
+    WalkFastWest
+    UnlockDir
     EndMovement
 
     .balign 4, 0
 _040C:
-    MoveAction_063
-    MoveAction_002
-    MoveAction_071
-    MoveAction_019
-    MoveAction_072
+    Delay8
+    FaceWest
+    LockDir
+    WalkFastEast
+    UnlockDir
     EndMovement
 
     .balign 4, 0
 _0424:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _042C:
-    MoveAction_015
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _0434:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _043C:
-    MoveAction_012
-    MoveAction_035
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+CelesticTownCave_UnusedMovement:
+    WalkNormalNorth 2
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0454:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _045C:
-    MoveAction_012
-    MoveAction_034
+    WalkNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+CelesticTownCave_UnusedMovement2:
+    WalkNormalNorth 2
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0474:
-    MoveAction_014
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _047C:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0488:
-    MoveAction_012 6
-    MoveAction_015
-    MoveAction_012
-    MoveAction_015 5
-    MoveAction_012
+    WalkNormalNorth 6
+    WalkNormalEast
+    WalkNormalNorth
+    WalkNormalEast 5
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _04A0:
-    MoveAction_012 6
-    MoveAction_015
-    MoveAction_012
-    MoveAction_015 4
-    MoveAction_012
+    WalkNormalNorth 6
+    WalkNormalEast
+    WalkNormalNorth
+    WalkNormalEast 4
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _04B8:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _04C0:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _04CC:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04D8:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _04E0:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04E8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04F0:
-    MoveAction_013
-    MoveAction_014 5
-    MoveAction_013
-    MoveAction_014
-    MoveAction_013 6
+    WalkNormalSouth
+    WalkNormalWest 5
+    WalkNormalSouth
+    WalkNormalWest
+    WalkNormalSouth 6
     EndMovement
 
     .balign 4, 0
 _0508:
-    MoveAction_013
-    MoveAction_014 4
-    MoveAction_013
-    MoveAction_014
-    MoveAction_013 6
+    WalkNormalSouth
+    WalkNormalWest 4
+    WalkNormalSouth
+    WalkNormalWest
+    WalkNormalSouth 6
     EndMovement
 
     .balign 4, 0
 _0520:
-    MoveAction_013
-    MoveAction_014 5
-    MoveAction_013
-    MoveAction_014
-    MoveAction_013 6
+    WalkNormalSouth
+    WalkNormalWest 5
+    WalkNormalSouth
+    WalkNormalWest
+    WalkNormalSouth 6
     EndMovement
 
 _0538:
@@ -610,108 +563,108 @@ _079C:
 
     .balign 4, 0
 _07B0:
-    MoveAction_012 6
-    MoveAction_015
-    MoveAction_012
-    MoveAction_015 5
-    MoveAction_012
+    WalkNormalNorth 6
+    WalkNormalEast
+    WalkNormalNorth
+    WalkNormalEast 5
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _07C8:
-    MoveAction_012 6
-    MoveAction_015
-    MoveAction_012
-    MoveAction_015 4
-    MoveAction_012
+    WalkNormalNorth 6
+    WalkNormalEast
+    WalkNormalNorth
+    WalkNormalEast 4
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _07E0:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _07E8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _07F0:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _07F8:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0800:
-    MoveAction_012
-    MoveAction_034
+    WalkNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _080C:
-    MoveAction_012
-    MoveAction_035
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0818:
-    MoveAction_013
-    MoveAction_014 5
-    MoveAction_013
-    MoveAction_014
-    MoveAction_013 6
+    WalkNormalSouth
+    WalkNormalWest 5
+    WalkNormalSouth
+    WalkNormalWest
+    WalkNormalSouth 6
     EndMovement
 
     .balign 4, 0
 _0830:
-    MoveAction_013
-    MoveAction_014 4
-    MoveAction_013
-    MoveAction_014
-    MoveAction_013 6
+    WalkNormalSouth
+    WalkNormalWest 4
+    WalkNormalSouth
+    WalkNormalWest
+    WalkNormalSouth 6
     EndMovement
 
     .balign 4, 0
 _0848:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0850:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0858:
-    MoveAction_063
-    MoveAction_032
+    Delay8
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0864:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0870:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _087C:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0888:
-    MoveAction_063 2
-    MoveAction_002
+    Delay8 2
+    FaceWest
     EndMovement

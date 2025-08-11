@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_meadow.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0024
@@ -38,52 +37,43 @@ _006E:
 
     .balign 4, 0
 _0074:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0080:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0088:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FloaromaMeadow_UnusedMovement:
+    WalkNormalNorth 9
+    EndMovement
+
+FloaromaMeadow_UnusedMovement2:
+    WalkNormalNorth 9
+    EndMovement
 
     .balign 4, 0
 _00A0:
-    MoveAction_013
-    MoveAction_035
-    MoveAction_063 3
-    MoveAction_033
+    WalkNormalSouth
+    WalkOnSpotNormalEast
+    Delay8 3
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00B4:
-    MoveAction_013
-    MoveAction_035
-    MoveAction_063 3
-    MoveAction_015
-    MoveAction_033
+    WalkNormalSouth
+    WalkOnSpotNormalEast
+    Delay8 3
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
 _00CC:
@@ -155,12 +145,10 @@ _01C6:
     WaitMovement
     Return
 
-    .byte 235
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+FloaromaMeadow_Unused:
+    BlackOutFromBattle
+    ReleaseAll
+    End
 
 _01D8:
     End

@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CLEFABLE",
+    "moves": [
+        "MOVE_METRONOME",
+        "MOVE_DOUBLE_TEAM",
+        "MOVE_REFLECT",
+        "MOVE_FOLLOW_ME"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_BASHFUL",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

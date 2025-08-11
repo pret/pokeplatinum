@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/species.h"
+
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -14,7 +16,7 @@
 #include "overlay070/struct_ov70_02261E10_decl.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 
 typedef struct {
@@ -58,7 +60,7 @@ typedef struct {
 static void ov70_0226D020(UnkStruct_ov70_0226CF38 *param0, u32 param1);
 static void ov70_0226D46C(UnkStruct_ov70_0226CF38 *param0, u32 param1);
 static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL param2, BOOL param3, u32 param4);
-static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 param3);
+static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 seqID);
 static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 species);
 static BOOL ov70_0226D2A0(UnkStruct_ov70_0226D2A0 *param0, u32 param1, UnkStruct_ov70_02261E10 *param2, u32 param3);
 static BOOL ov70_0226D2D8(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
@@ -67,11 +69,46 @@ static void ov70_0226D33C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E
 static BOOL ov70_0226D35C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
 
 static const UnkStruct_ov70_0226E774 Unk_ov70_0226E774[5] = {
-    { 0xFF, 0x6, 0xFFFE, 0x5B4, 0x5B7, 0x5AE },
-    { 0x189, 0x82, 0x5B4, 0x5B6, 0x5B8, 0x5B4 },
-    { 0x19, 0x1CE, 0xFFFE, 0x5B4, 0xFFFE, 0x5B9 },
-    { 0x1, 0x1C7, 0x5BA, 0x5B5, 0x5AE, 0x5B4 },
-    { 0x97, 0x97, 0xFFFE, 0x5B4, 0x5BB, 0x5B4 }
+    {
+        .unk_00 = SPECIES_TORCHIC,
+        .unk_02 = SPECIES_CHARIZARD,
+        .unk_04 = 0xFFFE,
+        .unk_06 = SEQ_SE_PL_FLOAT10,
+        .unk_08 = SEQ_SE_PL_FIRE,
+        .unk_0A = SEQ_SE_PL_FLOAT03,
+    },
+    {
+        .unk_00 = SPECIES_PIPLUP,
+        .unk_02 = SPECIES_GYARADOS,
+        .unk_04 = SEQ_SE_PL_FLOAT10,
+        .unk_06 = SEQ_SE_PL_FLOAT12,
+        .unk_08 = SEQ_SE_PL_WATER,
+        .unk_0A = SEQ_SE_PL_FLOAT10,
+    },
+    {
+        .unk_00 = SPECIES_PIKACHU,
+        .unk_02 = SPECIES_MAGNEZONE,
+        .unk_04 = 0xFFFE,
+        .unk_06 = SEQ_SE_PL_FLOAT10,
+        .unk_08 = 0xFFFE,
+        .unk_0A = SEQ_SE_PL_ELECTRO,
+    },
+    {
+        .unk_00 = SPECIES_BULBASAUR,
+        .unk_02 = SPECIES_CARNIVINE,
+        .unk_04 = SEQ_SE_PL_WHIP,
+        .unk_06 = SEQ_SE_PL_FLOAT11,
+        .unk_08 = SEQ_SE_PL_FLOAT03,
+        .unk_0A = SEQ_SE_PL_FLOAT10,
+    },
+    {
+        .unk_00 = SPECIES_MEW,
+        .unk_02 = SPECIES_MEW,
+        .unk_04 = 0xFFFE,
+        .unk_06 = SEQ_SE_PL_FLOAT10,
+        .unk_08 = SEQ_SE_PL_KIRAKIRA4,
+        .unk_0A = SEQ_SE_PL_FLOAT10,
+    },
 };
 
 UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
@@ -117,7 +154,7 @@ UnkStruct_ov70_0226CF38 *ov70_0226CE54(UnkStruct_ov70_0225DEE8 *param0, u32 heap
 
 void ov70_0226CF38(UnkStruct_ov70_0226CF38 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov70_0226CF40(UnkStruct_ov70_0226CF38 *param0)
@@ -254,7 +291,7 @@ static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL para
 
                 if (v2 == 1) {
                     ov66_0222EBF4(param0->unk_04, (param1 * 3) + v0);
-                    ov70_0226D24C(param2, param3, v5, 1455);
+                    ov70_0226D24C(param2, param3, v5, SEQ_SE_PL_FLOAT13);
                 }
             } break;
             case 2:
@@ -275,18 +312,18 @@ static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL para
     }
 }
 
-static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 param3)
+static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 seqID)
 {
     if (param0) {
         if (param1) {
             if (param2) {
-                Sound_PlayEffectOnPlayer(param3, 5);
+                Sound_PlayEffectOnPlayer(seqID, 5);
             } else {
-                Sound_PlayEffect(param3);
+                Sound_PlayEffect(seqID);
             }
         }
     } else {
-        Sound_PlayEffect(param3);
+        Sound_PlayEffect(seqID);
     }
 }
 

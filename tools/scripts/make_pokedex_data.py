@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+import sys
 import pathlib
 import subprocess
 
@@ -9,9 +10,12 @@ from generated.pokemon_body_shapes import PokemonBodyShape
 from generated.pokemon_types import PokemonType
 from generated.species import Species
 
+ANSI_BOLD_WHITE = "\033[1;37m"
+ANSI_BOLD_RED = "\033[1;31m"
+ANSI_RED = "\033[31m"
+ANSI_CLEAR = "\033[0m"
 
 SPECIES_DIRS = os.environ['SPECIES'].split(';')
-
 
 argparser = argparse.ArgumentParser(
     prog='make_pokedex_data_py',
@@ -29,6 +33,8 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
+argparser.add_argument('sinnoh_pokedex',
+                       help='List of pokemon in the Sinnoh Pokedex')
 argparser.add_argument('giratina_form',
                        help='String of either giratina_origin or giratina_altered')
 args = argparser.parse_args()
@@ -68,12 +74,26 @@ heightData = [0 for i in range(NUM_POKEMON)]
 weightData = [0 for i in range(NUM_POKEMON)]
 nameData = ['' for i in range(NUM_POKEMON)]
 
+errors = ""
 for i, species_dir in enumerate(SPECIES_DIRS):
     file = source_dir / species_dir / 'data.json'
-    if ((species_dir == 'giratina') and (args.giratina_form == 'giratina_origin')):
-        file = source_dir / 'giratina/forms/origin/data.json'
-    with open(file, 'r', encoding='utf-8') as data_file:
-        pkdata = json.load(data_file)
+    try:
+        if ((species_dir == 'giratina') and (args.giratina_form == 'giratina_origin')):
+            file = source_dir / 'giratina/forms/origin/data.json'
+        with open(file, 'r', encoding='utf-8') as data_file:
+            pkdata = json.load(data_file)
+    except json.decoder.JSONDecodeError as e:
+        doc_lines = e.doc.splitlines()
+        start_line = max(e.lineno - 2, 0)
+        end_line = min(e.lineno + 1, len(doc_lines))
+
+        error_lines = [f"{line_num:>4} | {line}" for line_num, line in zip(list(range(start_line + 1, end_line + 1)), doc_lines[start_line : end_line])][ : end_line - start_line]
+        error_line_index = e.lineno - start_line - 1
+        error_lines[error_line_index] = error_lines[error_line_index][ : 5] + f"{ANSI_RED}{error_lines[error_line_index][5 : ]}{ANSI_CLEAR}"
+        error_out = "\n".join(error_lines)
+
+        print(f"{ANSI_BOLD_WHITE}{file}:{e.lineno}:{e.colno}: {ANSI_BOLD_RED}error: {ANSI_BOLD_WHITE}{e.msg}{ANSI_CLEAR}\n{error_out}", file=sys.stderr)
+        continue
 
     # Do not attempt to process eggs
     if species_dir in ['egg', 'bad_egg']:
@@ -110,8 +130,12 @@ for i, species_dir in enumerate(SPECIES_DIRS):
         weightData[i-1] = pkdexdata['weight']
         nameData[i-1] = pkdexdata['en']['name']
 
+if errors:
+    print(errors, file=sys.stderr)
+    sys.exit(1)
+
 # sinnoh dex order
-with open(source_dir / 'sinnoh_pokedex.json') as data_file:
+with open(args.sinnoh_pokedex) as data_file:
     pokedex = json.load(data_file)
     for mon in pokedex:
         if mon not in ['SPECIES_EGG', 'SPECIES_BAD_EGG', 'SPECIES_NONE', 'SPECIES_ARCEUS']:

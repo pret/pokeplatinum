@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_210_south.h"
 
-    .data
 
     ScriptEntry _0079
     ScriptEntry _030C
@@ -84,18 +83,18 @@ _00CA:
 
 _015B:
     SetObjectEventPos 20, 0x230, 0x254
-    ScrCmd_188 20, 14
+    SetObjectEventMovementType 20, MOVEMENT_TYPE_LOOK_NORTH
     GoTo _0183
 
 _016F:
     SetObjectEventPos 20, 0x231, 0x254
-    ScrCmd_188 20, 14
+    SetObjectEventMovementType 20, MOVEMENT_TYPE_LOOK_NORTH
     GoTo _0183
 
 _0183:
     ClearFlag FLAG_UNK_0x01B1
     AddObject 20
-    ScrCmd_062 20
+    LockObject 20
     ApplyMovement 20, _02C4
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _02DC
@@ -142,109 +141,82 @@ _0240:
 
     .balign 4, 0
 _024C:
-    MoveAction_075
-    MoveAction_063 4
+    EmoteExclamationMark
+    Delay8 4
     EndMovement
 
     .balign 4, 0
 _0258:
-    MoveAction_012
-    MoveAction_033
-    MoveAction_063 8
-    MoveAction_012 8
+    WalkNormalNorth
+    WalkOnSpotNormalSouth
+    Delay8 8
+    WalkNormalNorth 8
     EndMovement
 
     .balign 4, 0
 _026C:
-    MoveAction_012 2
-    MoveAction_033 2
-    MoveAction_063 6
-    MoveAction_012 8
+    WalkNormalNorth 2
+    WalkOnSpotNormalSouth 2
+    Delay8 6
+    WalkNormalNorth 8
     EndMovement
 
     .balign 4, 0
 _0280:
-    MoveAction_035
-    MoveAction_034
-    MoveAction_035
-    MoveAction_063 2
-    MoveAction_032
-    MoveAction_016 2
-    MoveAction_063 2
-    MoveAction_014 3
-    MoveAction_035
-    MoveAction_075
-    MoveAction_019 3
-    MoveAction_016 8
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalWest
+    WalkOnSpotNormalEast
+    Delay8 2
+    WalkOnSpotNormalNorth
+    WalkFastNorth 2
+    Delay8 2
+    WalkNormalWest 3
+    WalkOnSpotNormalEast
+    EmoteExclamationMark
+    WalkFastEast 3
+    WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
 _02B4:
-    MoveAction_012 2
-    MoveAction_063 8
-    MoveAction_012 8
+    WalkNormalNorth 2
+    Delay8 8
+    WalkNormalNorth 8
     EndMovement
 
     .balign 4, 0
 _02C4:
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
 _02CC:
-    MoveAction_013 9
+    WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
 _02D4:
-    MoveAction_013 9
+    WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route210South_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalEast
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
+
+Route210South_UnusedMovement2:
+    Delay8
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
 
 _030C:
     PlayFanfare SEQ_SE_CONFIRM
@@ -300,5 +272,4 @@ _03A7:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

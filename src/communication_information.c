@@ -7,8 +7,8 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_0202610C.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "communication_system.h"
 #include "heap.h"
@@ -100,7 +100,7 @@ void CommInfo_Delete(void)
         }
 
         if (sCommInfo) {
-            Heap_FreeToHeap(sCommInfo);
+            Heap_Free(sCommInfo);
         }
 
         sCommInfo = NULL;
@@ -119,7 +119,7 @@ void CommInfo_SendBattleRegulation(void)
     const u16 *v2;
     RecordMixedRNG *v3 = SaveData_GetRecordMixedRNG(sCommInfo->saveData);
     WiFiList *v4 = SaveData_GetWiFiList(sCommInfo->saveData);
-    UnkStruct_0202C878 *v5 = sub_0202C878(sCommInfo->saveData);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(sCommInfo->saveData);
 
     if (sCommInfo->personalTrainerInfo) {
         trainerInfo = sCommInfo->personalTrainerInfo;
@@ -134,12 +134,12 @@ void CommInfo_SendBattleRegulation(void)
 
     MI_CpuCopy8(v2, sCommInfo->playerInfo[netId].unk_4C, sizeof(sCommInfo->playerInfo[netId].unk_4C));
 
-    sCommInfo->playerInfo[netId].country = sub_0202C8C0(v5);
-    sCommInfo->playerInfo[netId].region = sub_0202C8C4(v5);
+    sCommInfo->playerInfo[netId].country = WiFiHistory_GetCountry(wiFiHistory);
+    sCommInfo->playerInfo[netId].region = sub_0202C8C4(wiFiHistory);
     sCommInfo->playerInfo[netId].unk_65 = sub_02028810(sCommInfo->saveData);
     sCommInfo->playerInfo[netId].unk_65 = 1 - sCommInfo->playerInfo[netId].unk_65;
 
-    DWC_CreateExchangeToken(sub_0202AD28(v4), &sCommInfo->playerInfo[netId].friendData);
+    DWC_CreateExchangeToken(WiFiList_GetUserData(v4), &sCommInfo->playerInfo[netId].friendData);
     MI_CpuClear8(sCommInfo->playerInfo[netId].regulationBuffer, 32);
 
     if (sCommInfo->regulation) {

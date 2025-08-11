@@ -2,7 +2,6 @@
 #include "res/text/bank/villa.h"
 #include "generated/string_padding_mode.h"
 
-    .data
 
     ScriptEntry _00B2
     ScriptEntry _029C
@@ -660,13 +659,13 @@ _0917:
 
     .balign 4, 0
 _0930:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _093C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _0944:
@@ -781,13 +780,13 @@ _0AC8:
 
     .balign 4, 0
 _0AD8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0AE0:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
 _0AEC:
@@ -801,7 +800,7 @@ _0AF4:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B0
     SetObjectEventPos 6, 11, 11
-    ScrCmd_188 6, 14
+    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 6, DIR_NORTH
     AddObject 6
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -815,16 +814,16 @@ _0AF4:
 
     .balign 4, 0
 _0B3C:
-    MoveAction_033
-    MoveAction_063 5
-    MoveAction_034
+    WalkOnSpotNormalSouth
+    Delay8 5
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0B4C:
-    MoveAction_014 2
-    MoveAction_012 5
-    MoveAction_014 3
+    WalkNormalWest 2
+    WalkNormalNorth 5
+    WalkNormalWest 3
     EndMovement
 
 _0B5C:
@@ -832,7 +831,7 @@ _0B5C:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B3
     SetObjectEventPos 9, 11, 11
-    ScrCmd_188 9, 14
+    SetObjectEventMovementType 9, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 9, DIR_NORTH
     AddObject 9
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -846,14 +845,14 @@ _0B5C:
 
     .balign 4, 0
 _0BA4:
-    MoveAction_015 8
+    WalkNormalEast 8
     EndMovement
 
     .balign 4, 0
 _0BAC:
-    MoveAction_033
-    MoveAction_063 3
-    MoveAction_035
+    WalkOnSpotNormalSouth
+    Delay8 3
+    WalkOnSpotNormalEast
     EndMovement
 
 _0BBC:
@@ -861,7 +860,7 @@ _0BBC:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B6
     SetObjectEventPos 10, 11, 11
-    ScrCmd_188 10, 14
+    SetObjectEventMovementType 10, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 10, DIR_NORTH
     AddObject 10
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -875,16 +874,16 @@ _0BBC:
 
     .balign 4, 0
 _0C04:
-    MoveAction_014 2
-    MoveAction_012 3
-    MoveAction_014 2
+    WalkNormalWest 2
+    WalkNormalNorth 3
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _0C14:
-    MoveAction_033
-    MoveAction_063 4
-    MoveAction_034
+    WalkOnSpotNormalSouth
+    Delay8 4
+    WalkOnSpotNormalWest
     EndMovement
 
 _0C24:
@@ -892,7 +891,7 @@ _0C24:
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag FLAG_UNK_0x02B8
     SetObjectEventPos 12, 11, 11
-    ScrCmd_188 12, 14
+    SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 12, DIR_NORTH
     AddObject 12
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
@@ -906,15 +905,15 @@ _0C24:
 
     .balign 4, 0
 _0C6C:
-    MoveAction_014 8
-    MoveAction_012 6
+    WalkNormalWest 8
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _0C78:
-    MoveAction_033
-    MoveAction_063 5
-    MoveAction_034
+    WalkOnSpotNormalSouth
+    Delay8 5
+    WalkOnSpotNormalWest
     EndMovement
 
 _0C88:
@@ -1033,11 +1032,9 @@ _0DC2:
     ReleaseAll
     End
 
-    .byte 44
-    .byte 0
-    .byte 118
-    .byte 27
-    .byte 0
+Villa_Unused:
+    Message 118
+    Return
 
 _0DD1:
     PlayFanfare SEQ_SE_CONFIRM
@@ -1210,13 +1207,13 @@ _10DA:
     Call _2209
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 0, _1103
     SetObjectEventPos 1, 11, 11
-    ScrCmd_188 1, 14
+    SetObjectEventMovementType 1, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 1, DIR_NORTH
     Return
 
 _1103:
     SetObjectEventPos 1, 10, 8
-    ScrCmd_188 1, 14
+    SetObjectEventMovementType 1, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 1, DIR_NORTH
     ClearFlag FLAG_UNK_0x02A7
     AddObject 1
@@ -1226,13 +1223,13 @@ _1121:
     Call _2209
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 1, _114A
     SetObjectEventPos 0, 11, 11
-    ScrCmd_188 0, 14
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 0, DIR_NORTH
     Return
 
 _114A:
     SetObjectEventPos 0, 10, 8
-    ScrCmd_188 0, 14
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 0, DIR_NORTH
     ClearFlag FLAG_UNK_0x02A8
     AddObject 0
@@ -1246,14 +1243,14 @@ _1168:
 
 _1183:
     SetObjectEventPos 2, 11, 11
-    ScrCmd_188 2, 14
+    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 2, DIR_NORTH
     Return
 
 _1199:
     GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _1183
     SetObjectEventPos 2, 10, 8
-    ScrCmd_188 2, 14
+    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 2, DIR_NORTH
     ClearFlag FLAG_UNK_0x02A9
     AddObject 2
@@ -1267,14 +1264,14 @@ _11C2:
 
 _11DD:
     SetObjectEventPos 5, 11, 11
-    ScrCmd_188 5, 14
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 5, DIR_NORTH
     Return
 
 _11F3:
     GoToIfUnset FLAG_VILLA_VISITOR_INSIDE, _11DD
     SetObjectEventPos 5, 10, 8
-    ScrCmd_188 5, 14
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 5, DIR_NORTH
     ClearFlag FLAG_UNK_0x02AE
     AddObject 5
@@ -1284,13 +1281,13 @@ _121C:
     Call _2209
     GoToIfEq VAR_RESORT_VILLA_VISITOR, 12, _1245
     SetObjectEventPos 12, 11, 11
-    ScrCmd_188 12, 14
+    SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 12, DIR_NORTH
     Return
 
 _1245:
     SetObjectEventPos 12, 10, 8
-    ScrCmd_188 12, 14
+    SetObjectEventMovementType 12, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 12, DIR_NORTH
     ClearFlag FLAG_UNK_0x02B8
     AddObject 12
@@ -1433,20 +1430,20 @@ _1436:
 
     .balign 4, 0
 _1454:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _145C:
-    MoveAction_014
-    MoveAction_012 3
+    WalkNormalWest
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _1468:
-    MoveAction_013 3
-    MoveAction_015
-    MoveAction_033
+    WalkNormalSouth 3
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
 _1478:
@@ -1482,31 +1479,20 @@ _1485:
 
     .balign 4, 0
 _14F0:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _14FC:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Villa_UnusedMovement:
+    WalkNormalSouth 3
+    WalkNormalEast
+    WalkOnSpotNormalSouth
+    EndMovement
 
 _1514:
     Call Villa_CheckIfHasAllFurniture
@@ -1561,12 +1547,12 @@ _15F3:
 
     .balign 4, 0
 _1614:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _161C:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
 _1624:
@@ -2381,4 +2367,4 @@ _2395:
     SetFlag FLAG_UNK_0x02B5
     Return
 
-    .byte 0
+    .balign 4, 0

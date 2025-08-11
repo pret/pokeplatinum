@@ -19,7 +19,7 @@
 
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "sprite.h"
 #include "sys_task.h"
@@ -82,8 +82,8 @@ BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_10 = NULL;
     param0->unk_754 = 0;
     param0->unk_78E = 1;
-    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), HEAP_ID_10);
-    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), HEAP_ID_10);
+    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
 
     if ((param0->unk_14 == NULL) || (param0->unk_18 == NULL)) {
         return 0;
@@ -139,7 +139,7 @@ void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1)
     }
 
     if (cursorLocation != CURSOR_IN_BOX) {
-        Sprite_SetDrawFlag(param0->unk_08, 0);
+        Sprite_SetDrawFlag(param0->unk_08, FALSE);
     }
 
     if (pcMode != PC_MODE_MOVE_ITEMS) {
@@ -193,12 +193,12 @@ static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
 void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_14) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
     if (param0->unk_18) {
-        Heap_FreeToHeap(param0->unk_18);
+        Heap_Free(param0->unk_18);
         param0->unk_18 = NULL;
     }
 
@@ -262,7 +262,7 @@ void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0)
     ov19_021D8EE0(param0, &v0, &v1);
 
     if (param0->unk_786 != 0) {
-        Sprite_SetDrawFlag(param0->unk_08, 0);
+        Sprite_SetDrawFlag(param0->unk_08, FALSE);
     }
 
     param0->unk_774 = param0->unk_764 << FX32_SHIFT;
@@ -365,7 +365,7 @@ static void ov19_021D9088(SysTask *param0, void *param1)
     v0->unk_78B = ov19_GetCursorPartyPosition(v0->unk_790);
 
     if (v0->unk_786 == 0) {
-        Sprite_SetDrawFlag(v0->unk_08, 1);
+        Sprite_SetDrawFlag(v0->unk_08, TRUE);
     }
 
     if (v0->unk_786 != 2) {
@@ -535,7 +535,7 @@ BOOL ov19_021D9530(UnkStruct_ov19_021D8E00 *param0)
 
 static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 param2, s32 param3, u32 param4)
 {
-    UnkStruct_ov19_021D9554 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D9554));
+    UnkStruct_ov19_021D9554 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D9554));
 
     if (v0) {
         VecFx32 v1;
@@ -559,7 +559,7 @@ static void ov19_021D9554(UnkStruct_ov19_021D8E00 *param0, Sprite *param1, fx32 
             param0->unk_788 = 1;
             return;
         } else {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -588,7 +588,7 @@ static void ov19_021D9600(SysTask *param0, void *param1)
         v0->unk_04--;
 
         if (v0->unk_04 == v0->unk_06) {
-            ov19_021D78AC(v0->unk_00, v0->unk_08);
+            BoxGraphics_SetSpritePriority(v0->unk_00, v0->unk_08);
         }
 
         v0->unk_0C += v0->unk_1C;
@@ -749,8 +749,8 @@ BOOL ov19_021D995C(UnkStruct_ov19_021D8E00 *param0)
         }
         break;
     case 1:
-        if (ov19_021D3B18(v0)) {
-            if (ov19_021D3B20(v0)) {
+        if (ov19_HasCheckedCanReleaseMon(v0)) {
+            if (ov19_CanReleaseMon(v0)) {
                 Sprite_SetAnim(param0->unk_04, 0);
                 ov19_021DA204(param0);
                 return 1;
@@ -833,7 +833,7 @@ void ov19_021D9AEC(UnkStruct_ov19_021D8E00 *param0)
     }
 }
 
-void ov19_021D9B10(UnkStruct_ov19_021D8E00 *param0)
+void BoxGraphics_OpenMultiSelectCursor(UnkStruct_ov19_021D8E00 *param0)
 {
     Sprite_SetAnim(param0->unk_04, 1);
 }
@@ -1069,7 +1069,7 @@ static void ov19_021DA038(UnkStruct_ov19_021D8E00 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_754; v0++) {
-        ov19_021D78AC(param0->unk_4C[v0].unk_00, 2);
+        BoxGraphics_SetSpritePriority(param0->unk_4C[v0].unk_00, 2);
     }
 
     param0->unk_78C = 1;

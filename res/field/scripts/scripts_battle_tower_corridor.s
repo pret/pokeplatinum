@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0010
@@ -51,26 +50,11 @@ _008E:
     ScrCmd_16A 77
     Return
 
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 138
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 146
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
+BattleTowerCorridor_Unused:
+    ApplyMovement 0, BattleTowerCorridor_UnusedMovement
+    ApplyMovement LOCALID_PLAYER, BattleTowerCorridor_UnusedMovement2
+    WaitMovement
+    Return
 
 _00D6:
     ApplyMovement 0, _0178
@@ -98,116 +82,88 @@ _0124:
     ApplyMovement LOCALID_PLAYER, _01F4
     WaitMovement
     GoTo _0066
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _0140:
-    MoveAction_013 3
-    MoveAction_000
+    WalkNormalSouth 3
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 69
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 20
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 69
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleTowerCorridor_UnusedMovement:
+    FaceNorth
+    WalkNormalNorth 2
+    SetInvisible
+    EndMovement
+
+BattleTowerCorridor_UnusedMovement2:
+    WalkNormalEast
+    FaceNorth
+    WalkFasterNorth
+    SetInvisible
+    EndMovement
 
     .balign 4, 0
 _0178:
-    MoveAction_015 4
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalEast 4
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0188:
-    MoveAction_013
-    MoveAction_015 4
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalSouth
+    WalkNormalEast 4
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_015 8
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalEast 8
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _01AC:
-    MoveAction_013
-    MoveAction_015 8
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalSouth
+    WalkNormalEast 8
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _01C0:
-    MoveAction_015 12
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalEast 12
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _01D0:
-    MoveAction_013
-    MoveAction_015 12
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalSouth
+    WalkNormalEast 12
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_015 16
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalEast 16
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _01F4:
-    MoveAction_013
-    MoveAction_015 16
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalSouth
+    WalkNormalEast 16
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement

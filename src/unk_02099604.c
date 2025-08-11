@@ -37,7 +37,7 @@ static void sub_0209964C(FieldSystem *fieldSystem, UnkStruct_ov82_0223B164 *para
     FS_EXTERN_OVERLAY(overlay82);
 
     {
-        OverlayManagerTemplate v0 = {
+        ApplicationManagerTemplate v0 = {
             ov82_0223B164,
             ov82_0223B1D4,
             ov82_0223B24C,

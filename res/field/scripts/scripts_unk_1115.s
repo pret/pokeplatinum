@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0622.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -76,4 +75,4 @@ _0129:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

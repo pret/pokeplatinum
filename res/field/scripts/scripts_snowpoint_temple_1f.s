@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_temple_1f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010
@@ -20,6 +19,7 @@ _0010:
     ReleaseAll
     End
 
-    .byte 2
-    .byte 0
-    .byte 0
+SnowpointTemple1F_Unused:
+    End
+    
+    .balign 4, 0

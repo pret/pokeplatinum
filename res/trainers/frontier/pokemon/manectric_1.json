@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MANECTRIC",
+    "moves": [
+        "MOVE_THUNDER_FANG",
+        "MOVE_CRUNCH",
+        "MOVE_ROAR",
+        "MOVE_THUNDER_WAVE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SHUCA_BERRY",
+    "form": 0
+}

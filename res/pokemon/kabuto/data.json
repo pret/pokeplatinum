@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -90,6 +91,18 @@
             "MOVE_EARTH_POWER",
             "MOVE_IRON_DEFENSE",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_BUBBLE_BEAM",
+            "MOVE_AURORA_BEAM",
+            "MOVE_RAPID_SPIN",
+            "MOVE_DIG",
+            "MOVE_FLAIL",
+            "MOVE_KNOCK_OFF",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_MUD_SHOT",
+            "MOVE_ICY_WIND",
+            "MOVE_SCREECH"
         ]
     },
     "evolutions": [
@@ -99,9 +112,11 @@
             "SPECIES_KABUTOPS"
         ]
     ],
+    "offspring": "SPECIES_KABUTO",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 5,

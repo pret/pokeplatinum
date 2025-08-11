@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MANTINE",
+    "moves": [
+        "MOVE_BUBBLE_BEAM",
+        "MOVE_WING_ATTACK",
+        "MOVE_AGILITY",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_HARDY",
+    "item": "ITEM_MYSTIC_WATER",
+    "form": 0
+}

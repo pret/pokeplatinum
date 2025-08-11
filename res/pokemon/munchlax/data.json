@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_METRONOME" ],
@@ -106,14 +107,26 @@
             "MOVE_SEED_BOMB",
             "MOVE_LAST_RESORT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_LICK",
+            "MOVE_CHARM",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_CURSE",
+            "MOVE_SUBSTITUTE",
+            "MOVE_WHIRLWIND",
+            "MOVE_PURSUIT",
+            "MOVE_ZEN_HEADBUTT"
         ]
     },
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_SNORLAX" ]
     ],
+    "offspring": "SPECIES_MUNCHLAX",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 6,

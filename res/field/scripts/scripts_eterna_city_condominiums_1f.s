@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_condominiums_1f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0139
@@ -172,5 +171,4 @@ _021B:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

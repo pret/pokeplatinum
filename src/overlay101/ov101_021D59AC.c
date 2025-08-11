@@ -15,7 +15,7 @@
 #include "overlay101/struct_ov101_021D93D4.h"
 
 #include "enums.h"
-#include "math.h"
+#include "math_util.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sys_task.h"
@@ -293,11 +293,11 @@ static void ov101_021D5BA8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     u32 v2 = v1->unk_00->unk_60;
 
     if ((v1->unk_04 > 1) && (v2 < v1->unk_04)) {
-        Sprite_SetDrawFlag(v1->unk_0C.unk_04, 0);
+        Sprite_SetDrawFlag(v1->unk_0C.unk_04, FALSE);
         return;
     }
 
-    Sprite_SetDrawFlag(v1->unk_0C.unk_04, 1);
+    Sprite_SetDrawFlag(v1->unk_0C.unk_04, TRUE);
 
     v2 %= v1->unk_08;
     v2 /= v1->unk_04;
@@ -366,11 +366,11 @@ static void ov101_021D5CE0(UnkStruct_ov101_021D5D90 *param0, void *param1)
     u32 v2 = v1->unk_00->unk_64;
 
     if (v2 < v1->unk_04) {
-        Sprite_SetDrawFlag(v1->unk_0C.unk_04, 0);
+        Sprite_SetDrawFlag(v1->unk_0C.unk_04, FALSE);
         return;
     }
 
-    Sprite_SetDrawFlag(v1->unk_0C.unk_04, 1);
+    Sprite_SetDrawFlag(v1->unk_0C.unk_04, TRUE);
 
     v2 %= v1->unk_08;
     v2 /= v1->unk_04;
@@ -425,9 +425,9 @@ void ov101_021D5DA4(UnkStruct_ov101_021D5D90 *param0, int param1)
     UnkStruct_ov101_021D630C *v0 = sub_02071598(param0);
 
     if (param1 == 1) {
-        Sprite_SetDrawFlag(v0->unk_3C.unk_04, 0);
+        Sprite_SetDrawFlag(v0->unk_3C.unk_04, FALSE);
     } else {
-        Sprite_SetDrawFlag(v0->unk_3C.unk_04, 1);
+        Sprite_SetDrawFlag(v0->unk_3C.unk_04, TRUE);
     }
 }
 
@@ -1918,7 +1918,7 @@ static int ov101_021D7588(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     for (v0 = 0; v0 < 2; v0++) {
         ov101_021D84A4(v2->unk_00->unk_450, &v2->unk_04[v0], &v1, (NNS_G2D_VRAM_TYPE_2DSUB), 0, 8, 6, 8, 8, 2, 3);
-        Sprite_SetDrawFlag(v2->unk_04[v0].unk_04, 0);
+        Sprite_SetDrawFlag(v2->unk_04[v0].unk_04, FALSE);
         Sprite_SetAnimateFlag(v2->unk_04[v0].unk_04, 1);
     }
 
@@ -1938,8 +1938,8 @@ static void ov101_021D7604(UnkStruct_ov101_021D5D90 *param0, void *param1)
     UnkStruct_ov101_021D75F0 *v0 = param1;
     UnkStruct_ov101_021D4764 *v1 = &v0->unk_00->unk_13C;
 
-    Sprite_SetDrawFlag(v0->unk_04[0].unk_04, 0);
-    Sprite_SetDrawFlag(v0->unk_04[1].unk_04, 0);
+    Sprite_SetDrawFlag(v0->unk_04[0].unk_04, FALSE);
+    Sprite_SetDrawFlag(v0->unk_04[1].unk_04, FALSE);
 
     if (v1->unk_0C == 1) {
         return;
@@ -1961,7 +1961,7 @@ static void ov101_021D7604(UnkStruct_ov101_021D5D90 *param0, void *param1)
             Sprite_SetPosition(v0->unk_04[v3].unk_04, &v2);
             Sprite_SetAnim(v0->unk_04[v3].unk_04, v4);
             Sprite_RestartAnim(v0->unk_04[v3].unk_04);
-            Sprite_SetDrawFlag(v0->unk_04[v3].unk_04, 1);
+            Sprite_SetDrawFlag(v0->unk_04[v3].unk_04, TRUE);
             v2.x += (FX32_ONE * 8);
             v3++;
         }
@@ -1971,7 +1971,7 @@ static void ov101_021D7604(UnkStruct_ov101_021D5D90 *param0, void *param1)
         Sprite_SetPosition(v0->unk_04[v3].unk_04, &v2);
         Sprite_SetAnim(v0->unk_04[v3].unk_04, v4);
         Sprite_RestartAnim(v0->unk_04[v3].unk_04);
-        Sprite_SetDrawFlag(v0->unk_04[v3].unk_04, 1);
+        Sprite_SetDrawFlag(v0->unk_04[v3].unk_04, TRUE);
     }
 }
 

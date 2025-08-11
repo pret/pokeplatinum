@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_pokecenter_1f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _001A

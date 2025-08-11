@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0221.h"
 
-    .data
 
     ScriptEntry _0046
     ScriptEntry _0108
@@ -66,17 +65,17 @@ _008F:
 
     .balign 4, 0
 _00F0:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _00F8:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0100:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
 _0108:
@@ -126,14 +125,9 @@ _01DE:
     SetVar VAR_0x8004, 1
     GoTo _026A
 
-    .byte 22
-    .byte 0
-    .byte 160
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+Unk213_Unused:
+    GoTo _0290
+    End
 
 _01F2:
     SetVar VAR_0x8004, 2
@@ -184,79 +178,32 @@ _026A:
 _0290:
     SetVar VAR_0x8005, 0
     GoTo _02E4
+    End
 
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 58
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 2
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 30
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 3
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 4
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+Unk213_Unused2:
+    SetVar VAR_0x8005, 0
+    GoTo _02E4
+    End
+
+Unk213_Unused3:
+    SetVar VAR_0x8005, 1
+    GoTo _02E4
+    End
+
+Unk213_Unused4:
+    SetVar VAR_0x8005, 2
+    GoTo _02E4
+    End
+
+Unk213_Unused5:
+    SetVar VAR_0x8005, 3
+    GoTo _02E4
+    End
+
+Unk213_Unused6:
+    SetVar VAR_0x8005, 4
+    GoTo _02E4
+    End
 
 _02E4:
     HealParty
@@ -406,19 +353,19 @@ _051E:
 
     .balign 4, 0
 _0524:
-    MoveAction_015
-    MoveAction_012 2
+    WalkNormalEast
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0530:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0538:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
 _0544:
@@ -581,5 +528,4 @@ _076D:
     Message 127
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

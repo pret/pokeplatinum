@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay025/ov25_02254560.h"
-#include "overlay025/ov25_02255090.h"
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_task.h"
 #include "overlay038/struct_ov38_0225632C_1.h"
 #include "overlay038/struct_ov38_0225632C_decl.h"
 
@@ -31,7 +31,7 @@ BOOL ov38_0225632C(UnkStruct_ov38_0225632C **param0, const UnkStruct_ov38_022563
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
+        v0->unk_04 = PoketchGraphics_GetBgConfig();
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;
@@ -45,7 +45,7 @@ BOOL ov38_0225632C(UnkStruct_ov38_0225632C **param0, const UnkStruct_ov38_022563
 void ov38_0225635C(UnkStruct_ov38_0225632C *param0)
 {
     if (param0 != NULL) {
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
@@ -79,27 +79,26 @@ static void ov38_022563A4(PoketchTaskManager *param0)
 static void ov38_022563B8(SysTask *param0, void *param1)
 {
     static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
     GXSDispCnt v1;
     UnkStruct_ov38_0225632C *v2 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 8, v2->unk_04, 6, 0, 0, 0, HEAP_ID_POKETCH_APP);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 8, v2->unk_04, BG_LAYER_SUB_2, 0, 0, 0, HEAP_ID_POKETCH_APP);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
-    Graphics_LoadPalette(12, 9, 4, 0 * 0x20, 0x20, HEAP_ID_POKETCH_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 9, 4, 0 * 0x20, 0x20, HEAP_ID_POKETCH_APP);
 
     ov25_02255440(v2->unk_04, 12, 6);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
@@ -114,6 +113,6 @@ static void ov38_02256458(SysTask *param0, void *param1)
 {
     UnkStruct_ov38_0225632C *v0 = PoketchTask_GetTaskData(param1);
 
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov38_022563A4(param1);
 }

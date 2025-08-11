@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -89,6 +90,20 @@
             "MOVE_SNORE",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_BELLY_DRUM",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_ROCK_SLIDE",
+            "MOVE_BITE",
+            "MOVE_OUTRAGE",
+            "MOVE_BEAT_UP",
+            "MOVE_SWORDS_DANCE",
+            "MOVE_DRAGON_DANCE",
+            "MOVE_CRUNCH",
+            "MOVE_DRAGON_RUSH",
+            "MOVE_METAL_CLAW",
+            "MOVE_FLARE_BLITZ"
         ]
     },
     "evolutions": [
@@ -98,9 +113,11 @@
             "SPECIES_CHARMELEON"
         ]
     ],
+    "offspring": "SPECIES_CHARMANDER",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

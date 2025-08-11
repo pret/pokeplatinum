@@ -19,6 +19,7 @@
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -35,6 +36,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "shop_misc.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -48,8 +50,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
@@ -61,7 +61,7 @@
 #include "unk_02097B18.h"
 #include "vars_flags.h"
 
-#include "res/graphics/shop_menu/shop_gra.naix"
+#include "res/graphics/shop_menu/shop_gra.naix.h"
 #include "res/text/bank/location_names.h"
 #include "res/text/bank/underground_goods.h"
 #include "res/text/bank/unk_0543.h"
@@ -94,7 +94,7 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu);
 static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu);
 static u8 Shop_ReinitContextMenu(ShopMenu *shopMenu);
 static void Shop_PrintExit(FieldSystem *fieldSystem, ShopMenu *shopMenu);
-static void Shop_StartScreenTransition(FieldSystem *fieldSystem, ShopMenu *shopMenu);
+static void Shop_StartScreenFade(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_FinishScreenTransition(FieldTask *task);
 static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_DrawSprites(ShopMenu *shopMenu);
@@ -250,16 +250,16 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     shopMenu->journalEntry = fieldSystem->journalEntry;
     shopMenu->martType = martType;
     shopMenu->saveData = fieldSystem->saveData;
-    shopMenu->unk_2B4 = sub_0200C440(1, 2, 0, HEAP_ID_FIELDMAP);
+    shopMenu->unk_2B4 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_FIELDMAP);
 
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        shopMenu->destInventory = SaveData_GetUndergroundData(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetUnderground(fieldSystem->saveData);
     } else {
-        shopMenu->destInventory = SaveData_GetBallSeals(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetSealCase(fieldSystem->saveData);
     }
 
     Shop_SetItemsForSale(shopMenu, shopItems);
@@ -279,11 +279,8 @@ static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
 
 BOOL FieldTask_InitShop(FieldTask *task)
 {
-    FieldSystem *fieldSystem;
-    ShopMenu *shopMenu;
-
-    fieldSystem = FieldTask_GetFieldSystem(task);
-    shopMenu = FieldTask_GetEnv(task);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    ShopMenu *shopMenu = FieldTask_GetEnv(task);
 
     switch (shopMenu->state) {
     case SHOP_STATE_SHOW_CONTEXT_MENU:
@@ -331,7 +328,7 @@ BOOL FieldTask_InitShop(FieldTask *task)
         shopMenu->state = Shop_ReinitContextMenu(shopMenu);
         break;
     case SHOP_STATE_START_SCREEN_TRANSITION:
-        Shop_StartScreenTransition(fieldSystem, shopMenu);
+        Shop_StartScreenFade(fieldSystem, shopMenu);
         break;
     case SHOP_STATE_WAIT_SCREEN_TRANSITION:
         Shop_FinishScreenTransition(task);
@@ -477,9 +474,9 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
             }
         }
 
-        sub_0200C560(shopMenu->unk_2B4);
-        Heap_FreeToHeap(shopMenu->itemsPtr);
-        Heap_FreeToHeap(shopMenu);
+        FontSpecialChars_Free(shopMenu->unk_2B4);
+        Heap_Free(shopMenu->itemsPtr);
+        Heap_Free(shopMenu);
 
         return TRUE;
     }
@@ -771,7 +768,7 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
         if ((itemId <= ITEM_HM01) && (itemId >= ITEM_TM01)) {
             itemId = itemId - ITEM_TM01 + 1;
 
-            sub_0200C648(shopMenu->unk_2B4, 2, itemId, 2, 2, &shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 0, yOffset + 4);
+            FontSpecialChars_DrawPartyScreenText(shopMenu->unk_2B4, 2, itemId, 2, 2, &shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 0, yOffset + 4);
         }
 
         price = Shop_GetItemPrice(shopMenu, index);
@@ -1044,7 +1041,7 @@ static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         canFitItem = Bag_CanFitItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELDMAP);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        if (sub_020289A0(shopMenu->destInventory) == 200) {
+        if (Underground_GetGoodsCountPC(shopMenu->destInventory) == MAX_GOODS_PC_SLOTS) {
             canFitItem = FALSE;
         } else {
             canFitItem = TRUE;
@@ -1221,7 +1218,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELDMAP);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        sub_0202895C(shopMenu->destInventory, shopMenu->itemId);
+        Underground_TryAddGoodPC(shopMenu->destInventory, shopMenu->itemId);
     } else {
         sub_0202CAE0(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount);
     }
@@ -1597,7 +1594,7 @@ static void Shop_SetCursorSpritePalette(ShopMenu *shopMenu, u8 selected)
     Sprite_SetExplicitPalette2(shopMenu->sprites[SHOP_SPRITE_CURSOR], selected);
 }
 
-static void Shop_StartScreenTransition(FieldSystem *fieldSystem, ShopMenu *shopMenu)
+static void Shop_StartScreenFade(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
     ov5_021D1744(0);
     shopMenu->state = SHOP_STATE_WAIT_SCREEN_TRANSITION;
@@ -1608,7 +1605,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     FieldSystem *fieldSystem;
     ShopMenu *shopMenu;
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -1629,7 +1626,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
 
 static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return SHOP_STATE_REINIT_MERCHANT_MESSAGE;
     }
 

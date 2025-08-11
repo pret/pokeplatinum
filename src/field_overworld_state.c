@@ -3,17 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
 
 #include "location.h"
 #include "map_object.h"
+#include "overworld_map_history.h"
 #include "player_avatar.h"
 #include "savedata.h"
 #include "unk_0203A7D8.h"
-#include "unk_020556C4.h"
 
 typedef struct FieldOverworldState {
     Location player;
@@ -25,13 +24,12 @@ typedef struct FieldOverworldState {
     u16 weather;
     u16 warpId;
     u8 cameraType;
-    UnkStruct_020556C4 unk_6C;
+    OverworldMapHistory mapHistory;
     PlayerData playerData;
     u16 poisonSteps;
     u16 safariSteps;
     u16 safariBalls;
-    u16 padding_9A; // unused
-    u16 padding_9C; // unused
+    u8 padding_9A[6];
 } FieldOverworldState;
 
 typedef struct UnkStruct_0203A79C_t {
@@ -57,7 +55,7 @@ void FieldOverworldState_Init(FieldOverworldState *fieldState)
 {
     memset(fieldState, 0, sizeof(FieldOverworldState));
 
-    sub_020556C4(&fieldState->unk_6C);
+    OverworldMapHistory_Clear(&fieldState->mapHistory);
     PlayerData_Init(&fieldState->playerData);
 
     fieldState->warpId = sub_0203A7EC();
@@ -119,9 +117,9 @@ void FieldOverworldState_SetWarpId(FieldOverworldState *fieldState, u16 warpId)
     fieldState->warpId = warpId;
 }
 
-UnkStruct_020556C4 *sub_0203A76C(FieldOverworldState *fieldState)
+OverworldMapHistory *FieldOverworldState_GetMapHistory(FieldOverworldState *fieldState)
 {
-    return &fieldState->unk_6C;
+    return &fieldState->mapHistory;
 }
 
 int FieldOverworldState_GetCameraType(const FieldOverworldState *fieldState)

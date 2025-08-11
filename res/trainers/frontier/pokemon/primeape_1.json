@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_PRIMEAPE",
+    "moves": [
+        "MOVE_KARATE_CHOP",
+        "MOVE_FURY_SWIPES",
+        "MOVE_FORESIGHT",
+        "MOVE_FOCUS_ENERGY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_SCOPE_LENS",
+    "form": 0
+}

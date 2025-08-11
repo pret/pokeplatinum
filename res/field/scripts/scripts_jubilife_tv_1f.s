@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_1f.h"
 
-    .data
 
     ScriptEntry _0028
     ScriptEntry _002A
@@ -90,7 +89,7 @@ _0100:
     GoTo _011C
 
 _010E:
-    ScrCmd_251 0, VAR_0x8001
+    BufferMonNicknameFromPC 0, VAR_0x8001
     Message 7
     GoTo _011C
 
@@ -217,6 +216,4 @@ _02A6:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

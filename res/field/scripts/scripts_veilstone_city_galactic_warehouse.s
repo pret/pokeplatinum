@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_galactic_warehouse.h"
 
-    .data
 
     ScriptEntry _003B
     ScriptEntry _00D8
@@ -16,7 +15,7 @@ _0016:
 
 _0025:
     SetObjectEventPos 4, 8, 10
-    ScrCmd_188 4, 14
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 4, DIR_NORTH
     Return
 
@@ -63,12 +62,12 @@ _00C2:
 
     .balign 4, 0
 _00C8:
-    MoveAction_018
+    WalkFastWest
     EndMovement
 
     .balign 4, 0
 _00D0:
-    MoveAction_019
+    WalkFastEast
     EndMovement
 
 _00D8:
@@ -96,39 +95,39 @@ _00D8:
 
     .balign 4, 0
 _012C:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0134:
-    MoveAction_013 2
-    MoveAction_034
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_063 2
-    MoveAction_015 5
-    MoveAction_032
-    MoveAction_075
-    MoveAction_034
+    WalkNormalSouth 2
+    WalkOnSpotNormalWest
+    Delay8 2
+    WalkOnSpotNormalEast
+    Delay8 2
+    WalkNormalEast 5
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _015C:
-    MoveAction_014 5
-    MoveAction_033
+    WalkNormalWest 5
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0168:
-    MoveAction_063 9
-    MoveAction_035
+    Delay8 9
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0174:
-    MoveAction_063 4
-    MoveAction_061
-    MoveAction_032
+    Delay8 4
+    Delay2
+    WalkOnSpotNormalNorth
     EndMovement
 
 _0184:
@@ -144,7 +143,7 @@ _0184:
 _0197:
     LockAll
     SetObjectEventPos 4, 8, 11
-    ScrCmd_188 4, 14
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 4, DIR_NORTH
     ClearFlag FLAG_UNK_0x020D
     AddObject 4
@@ -213,65 +212,65 @@ _02AE:
 
     .balign 4, 0
 _02C4:
-    MoveAction_063 4
-    MoveAction_035
+    Delay8 4
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _02D0:
-    MoveAction_063 3
-    MoveAction_034
+    Delay8 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_063
-    MoveAction_032
+    Delay8
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_012 2
-    MoveAction_015
-    MoveAction_012
-    MoveAction_034
+    WalkNormalNorth 2
+    WalkNormalEast
+    WalkNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _02FC:
-    MoveAction_012 3
-    MoveAction_035
+    WalkNormalNorth 3
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0308:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0310:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0318:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0320:
-    MoveAction_012 5
-    MoveAction_038
-    MoveAction_039
-    MoveAction_063 2
-    MoveAction_019 6
+    WalkNormalNorth 5
+    WalkOnSpotFastWest
+    WalkOnSpotFastEast
+    Delay8 2
+    WalkFastEast 6
     EndMovement
 
     .balign 4, 0
 _0338:
-    MoveAction_012 5
-    MoveAction_038
-    MoveAction_039
-    MoveAction_063 2
-    MoveAction_019 7
+    WalkNormalNorth 5
+    WalkOnSpotFastWest
+    WalkOnSpotFastEast
+    Delay8 2
+    WalkFastEast 7
     EndMovement

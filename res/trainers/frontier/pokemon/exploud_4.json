@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_EXPLOUD",
+    "moves": [
+        "MOVE_HYPER_VOICE",
+        "MOVE_OVERHEAT",
+        "MOVE_SURF",
+        "MOVE_ICE_BEAM"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_WHITE_HERB",
+    "form": 0
+}

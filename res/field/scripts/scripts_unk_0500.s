@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0016.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0068
@@ -199,6 +198,4 @@ _0341:
     WaitFadeScreen
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

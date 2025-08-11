@@ -12,8 +12,8 @@
 #include "field_task.h"
 #include "heap.h"
 #include "savedata_misc.h"
+#include "screen_fade.h"
 #include "string_template.h"
-#include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0203D1B8.h"
 #include "unk_0209747C.h"
@@ -57,7 +57,7 @@ static void sub_0209B3AC(UnkStruct_0209B3AC *param0)
 {
     sub_020974EC(param0->unk_10);
     StringTemplate_Free(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static BOOL sub_0209B3C4(FieldTask *param0)
@@ -84,7 +84,7 @@ static BOOL sub_0209B3C4(FieldTask *param0)
         }
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (sub_02097528(v0->unk_10)) {
                 *v0->unk_20 = 0;
                 v0->unk_18 = 4;

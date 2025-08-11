@@ -25,7 +25,7 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -59,7 +59,7 @@ static void ov65_022357E8(UnkStruct_ov65_02235130 *param0, u32 param1, u32 heapI
 static void ov65_0223581C(UnkStruct_ov65_02235130 *param0);
 static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, u32 heapID, NARC *param2, u32 param3);
 static void ov65_0223586C(UnkStruct_ov65_02235130 *param0);
-static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
+static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 heapID, NARC *param2);
 static void ov65_022358CC(UnkStruct_ov65_022358CC *param0);
 static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
 static void ov65_02235900(UnkStruct_ov65_022358CC *param0);
@@ -568,19 +568,19 @@ static void ov65_0223586C(UnkStruct_ov65_02235130 *param0)
     ov63_0222D214(param0->unk_758);
 }
 
-static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2)
+static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 heapID, NARC *param2)
 {
-    int v0;
+    int i;
 
-    param0->unk_00 = SpriteList_InitRendering(96, &param0->unk_04, param1);
+    param0->unk_00 = SpriteList_InitRendering(96, &param0->unk_04, heapID);
     SetSubScreenViewRect(&param0->unk_04, 0, (800 * FX32_ONE));
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(16, v0, param1);
+    for (i = 0; i < 4; i++) {
+        param0->unk_190[i] = SpriteResourceCollection_New(16, i, heapID);
     }
 
-    ov65_022358F8(param0, param1, param2);
-    ov65_02235908(param0, param1);
+    ov65_022358F8(param0, heapID, param2);
+    ov65_02235908(param0, heapID);
 }
 
 static void ov65_022358CC(UnkStruct_ov65_022358CC *param0)
@@ -630,7 +630,7 @@ static void ov65_0223591C(BgConfig *param0)
 static void ov65_02235920(BgConfig *param0, u32 param1, NARC *param2)
 {
     Graphics_LoadPaletteFromOpenNARC(param2, 30, 0, 0, 8 * 32, param1);
-    Bg_MaskPalette(0, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 29, param0, 0, 0, 0, 0, param1);
 }
 
@@ -683,8 +683,8 @@ static void ov65_02235A94(UnkStruct_ov65_022358CC *param0, u32 param1)
     param0->unk_1A0.unk_34 = SpriteList_AddAffine(&v0);
     param0->unk_1A0.unk_38 = SpriteList_AddAffine(&v0);
 
-    Sprite_SetDrawFlag(param0->unk_1A0.unk_34, 0);
-    Sprite_SetDrawFlag(param0->unk_1A0.unk_38, 0);
+    Sprite_SetDrawFlag(param0->unk_1A0.unk_34, FALSE);
+    Sprite_SetDrawFlag(param0->unk_1A0.unk_38, FALSE);
     Sprite_SetAnimateFlag(param0->unk_1A0.unk_34, 1);
     Sprite_SetAnim(param0->unk_1A0.unk_38, 1);
 }
@@ -709,12 +709,12 @@ static void ov65_02235B30(UnkStruct_ov65_02235130 *param0)
     v1.y = v0.unk_02 << FX32_SHIFT;
 
     Sprite_SetPosition(param0->unk_14.unk_1A0.unk_34, &v1);
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 1);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, TRUE);
 }
 
 static void ov65_02235B78(UnkStruct_ov65_02235130 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 0);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, FALSE);
 }
 
 static void ov65_02235B88(UnkStruct_ov65_02235130 *param0, UnkStruct_ov63_0222CC3C param1, u32 param2)
@@ -729,12 +729,12 @@ static void ov65_02235B88(UnkStruct_ov65_02235130 *param0, UnkStruct_ov63_0222CC
 
     Sprite_SetPosition(param0->unk_14.unk_1A0.unk_38, &v0);
     Sprite_SetPriority(param0->unk_14.unk_1A0.unk_38, param2);
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 1);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, TRUE);
 }
 
 static void ov65_02235BD8(UnkStruct_ov65_02235130 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 0);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, FALSE);
 }
 
 static BOOL ov65_02235BE8(UnkStruct_ov65_02235130 *param0)
@@ -1159,7 +1159,7 @@ static void ov65_022362B0(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022363
 
 static void ov65_022362EC(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_02236318 *param1)
 {
-    Heap_FreeToHeap(param1->unk_00);
+    Heap_Free(param1->unk_00);
     memset(param1, 0, sizeof(UnkStruct_ov65_02236318));
 }
 

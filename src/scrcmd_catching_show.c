@@ -56,14 +56,14 @@ BOOL ScrCmd_CheckHasEnoughMonForCatchingShow(ScriptContext *ctx)
         *destVar = FALSE;
     }
 
-    Heap_FreeToHeap(dummy);
+    Heap_Free(dummy);
     return FALSE;
 }
 
 BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
 {
     PalParkTransfer *transferData = SaveData_GetPalParkTransfer(ctx->fieldSystem->saveData);
-    PCBoxes *boxes = SaveData_GetPCBoxes(ctx->fieldSystem->saveData);
+    PCBoxes *pcBoxes = SaveData_GetPCBoxes(ctx->fieldSystem->saveData);
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD_TASK);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(ctx->fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
@@ -72,12 +72,12 @@ BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
     for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
         TransferDataToMon(transferData, i, mon);
         UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 2, 0, HEAP_ID_FIELD_TASK);
-        success = PCBoxes_TryStoreBoxMon(boxes, Pokemon_GetBoxPokemon(mon));
+        success = PCBoxes_TryStoreBoxMon(pcBoxes, Pokemon_GetBoxPokemon(mon));
         GF_ASSERT(success);
         SaveData_UpdateCatchRecords(ctx->fieldSystem->saveData, mon);
     }
 
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
     ClearPalParkTransferPokemonData(transferData);
 
     return FALSE;

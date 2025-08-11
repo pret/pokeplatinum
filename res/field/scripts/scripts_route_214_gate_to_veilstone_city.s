@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_214_gate_to_veilstone_city.h"
 
-    .data
 
     ScriptEntry _0068
     ScriptEntry _000A
@@ -43,4 +42,4 @@ _008C:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

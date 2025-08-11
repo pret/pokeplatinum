@@ -31,6 +31,7 @@
     "safari_flee_rate": 120,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -91,6 +92,14 @@
             "MOVE_SNORE",
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB"
+        ],
+        "egg_moves": [
+            "MOVE_DREAM_EATER",
+            "MOVE_ACID_ARMOR",
+            "MOVE_SMOG",
+            "MOVE_PAIN_SPLIT",
+            "MOVE_CURSE",
+            "MOVE_DESTINY_BOND"
         ]
     },
     "evolutions": [
@@ -100,9 +109,11 @@
             "SPECIES_SWALOT"
         ]
     ],
+    "offspring": "SPECIES_GULPIN",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 4,

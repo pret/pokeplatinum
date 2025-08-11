@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/celestic_town_north_house.h"
 
-    .data
 
     ScriptEntry _001C
     ScriptEntry _0056
@@ -93,4 +92,4 @@ _00C5:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

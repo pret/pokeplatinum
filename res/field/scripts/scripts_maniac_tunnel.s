@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/maniac_tunnel.h"
 
-    .data
 
     ScriptEntry _0010
     ScriptEntry _000A
@@ -21,4 +20,4 @@ _0010:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

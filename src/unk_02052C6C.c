@@ -21,6 +21,7 @@
 #include "game_records.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "location.h"
 #include "message.h"
 #include "message_util.h"
@@ -30,17 +31,16 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
-#include "unk_02096420.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -79,7 +79,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     GetCurrentDate(&v2);
     sub_0202DFA8(v0, v1, &v2);
     SaveData_SaveHallOfFame(fieldSystem->saveData, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static BOOL sub_02052CBC(FieldTask *param0)
@@ -100,12 +100,12 @@ static BOOL sub_02052CBC(FieldTask *param0)
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, 0x20000);
             sub_02052F28(fieldSystem, v3);
-            StartScreenTransition(3, 1, 1, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
             (*v4)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (SaveData_OverwriteCheck(fieldSystem->saveData) == 0) {
                 sub_02052FA8(fieldSystem, v3);
                 (*v4)++;
@@ -122,7 +122,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     case 4: {
         int v6;
 
-        HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+        Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         SaveData_SetFullSaveRequired();
         v6 = SaveData_Save(fieldSystem->saveData);
         sub_02052C6C(fieldSystem, v3->unk_00);
@@ -145,11 +145,11 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 7:
-        StartScreenTransition(3, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
         (*v4)++;
         break;
     case 8:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             sub_02053098(fieldSystem, v3);
             sub_0203E274(fieldSystem, &(v3->unk_10));
             (*v4)++;
@@ -157,7 +157,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         break;
     case 9:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_FreeToHeap(v3);
+            Heap_Free(v3);
             Heap_Destroy(HEAP_ID_FIELD);
             OS_ResetSystem(0);
             return 1;
@@ -194,7 +194,7 @@ void sub_02052E58(FieldTask *param0)
     v5->unk_10.unk_08 = SaveData_GetPokedex(fieldSystem->saveData);
 
     if (SystemFlag_CheckGameCompleted(v3) == 0) {
-        sub_02055C2C(fieldSystem);
+        FieldSystem_RecordFirstCompletion(fieldSystem);
     }
 
     v7 = SaveData_GetParty(fieldSystem->saveData);
@@ -233,19 +233,18 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
         GX_BG0_AS_2D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        0,
-        0,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = 0,
+        .charBase = 0,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     param1->unk_2C = NULL;
@@ -257,23 +256,23 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     SetAllGraphicsModes(&v1);
-    Bg_MaskPalette(3, 0x0);
-    Bg_InitFromTemplate(fieldSystem->bgConfig, 3, &v2, 0);
-    Bg_ClearTilesRange(3, 0x20, 0, HEAP_ID_FIELD_TASK);
+    Bg_MaskPalette(BG_LAYER_MAIN_3, 0x0);
+    Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_3, &v2, 0);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_3, 0x20, 0, HEAP_ID_FIELD_TASK);
     Bg_FillTilemapRect(fieldSystem->bgConfig, 3, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
 }
 
 static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 {
-    Options *v0 = SaveData_GetOptions(fieldSystem->saveData);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
     FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_1C, 3);
-    FieldMessage_DrawWindow(&param1->unk_1C, v0);
+    FieldMessage_DrawWindow(&param1->unk_1C, options);
 
-    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, v0, 1);
+    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, options, 1);
     param1->unk_30 = Window_AddWaitDial(&param1->unk_1C, 1024 - (18 + 12));
 }
 
@@ -318,5 +317,5 @@ static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
         Window_Remove(&param1->unk_1C);
     }
 
-    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, 3);
+    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 }

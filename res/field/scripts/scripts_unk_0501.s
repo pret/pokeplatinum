@@ -2,7 +2,6 @@
 #include "res/text/bank/unk_0547.h"
 #include "constants/daycare.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0124
@@ -315,18 +314,18 @@ _045E:
 
     .balign 4, 0
 _046C:
-    MoveAction_062 3
-    MoveAction_002
-    MoveAction_062 3
-    MoveAction_003
-    MoveAction_062 3
-    MoveAction_000
-    MoveAction_012 2
-    MoveAction_069
-    MoveAction_063 3
-    MoveAction_001
-    MoveAction_070
-    MoveAction_013 2
+    Delay4 3
+    FaceWest
+    Delay4 3
+    FaceEast
+    Delay4 3
+    FaceNorth
+    WalkNormalNorth 2
+    SetInvisible
+    Delay8 3
+    FaceSouth
+    SetVisible
+    WalkNormalSouth 2
     EndMovement
 
 _04A0:
@@ -345,29 +344,19 @@ _04A0:
     ReleaseAll
     End
 
-    .byte 73
-    .byte 0
-    .byte 220
-    .byte 5
-    .byte 96
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 37
-    .byte 172
-    .byte 1
-    .byte 52
-    .byte 0
-    .byte 115
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+Unk501_Unused:
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 37
+    ScrCmd_1AC
+    CloseMessage
+    HideMoney
+    ReleaseAll
+    End
 
 _04EF:
     HideMoney
     CallCommonScript 0x809
     End
 
-    .byte 0
+    .balign 4, 0

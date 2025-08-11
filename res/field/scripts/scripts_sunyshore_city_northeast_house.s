@@ -2,7 +2,6 @@
 #include "res/text/bank/sunyshore_city_northeast_house.h"
 #include "generated/ribbons.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -244,6 +243,4 @@ _03EA:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

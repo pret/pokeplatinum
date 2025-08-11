@@ -15,21 +15,18 @@
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 
 FS_EXTERN_OVERLAY(overlay100);
 
-void sub_020985E4(FieldTask *param0, SaveData *param1)
+void sub_020985E4(FieldTask *param0, SaveData *saveData)
 {
-    UnkStruct_0209862C *v0;
-    UnkStruct_020985E4 *v1;
+    UnkStruct_0209862C *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209862C));
+    UnkStruct_020985E4 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020985E4));
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209862C));
-    v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020985E4));
-
-    v1->unk_04 = SaveData_GetOptions(param1);
-    v1->unk_08 = SaveData_GetTrainerInfo(param1);
+    v1->options = SaveData_GetOptions(saveData);
+    v1->unk_08 = SaveData_GetTrainerInfo(saveData);
     v1->unk_00 = TrainerInfo_Gender(v1->unk_08);
 
     v0->unk_00 = 0;
@@ -40,23 +37,20 @@ void sub_020985E4(FieldTask *param0, SaveData *param1)
 
 BOOL sub_0209862C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem;
-    UnkStruct_0209862C *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0209862C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:
         ov5_021D1744(0);
         v1->unk_00++;
     case 1:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
 
         {
-            static const OverlayManagerTemplate v2 = {
+            static const ApplicationManagerTemplate v2 = {
                 ov100_021D0D80,
                 ov100_021D0EA8,
                 ov100_021D0F44,
@@ -82,8 +76,8 @@ BOOL sub_0209862C(FieldTask *param0)
         v1->unk_00++;
         break;
     case 5:
-        Heap_FreeToHeap(v1->unk_04);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1->unk_04);
+        Heap_Free(v1);
         return 1;
         break;
     }

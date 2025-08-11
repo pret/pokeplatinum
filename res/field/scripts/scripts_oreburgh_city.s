@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city.h"
 
-    .data
 
     ScriptEntry _005A
     ScriptEntry _0090
@@ -79,7 +78,7 @@ _00CC:
 _00D7:
     LockAll
     ClearFlag FLAG_UNK_0x017C
-    ScrCmd_188 3, 16
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 3, DIR_WEST
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2EC, _011E
@@ -185,82 +184,82 @@ _0287:
 
     .balign 4, 0
 _02A0:
-    MoveAction_062 7
-    MoveAction_071
-    MoveAction_018
-    MoveAction_072
-    MoveAction_003
+    Delay4 7
+    LockDir
+    WalkFastWest
+    UnlockDir
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _02B8:
-    MoveAction_018 9
+    WalkFastWest 9
     EndMovement
 
     .balign 4, 0
 _02C0:
-    MoveAction_017
-    MoveAction_018 4
-    MoveAction_038
+    WalkFastSouth
+    WalkFastWest 4
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02D0:
-    MoveAction_017
-    MoveAction_018 3
-    MoveAction_016
-    MoveAction_018
-    MoveAction_038
+    WalkFastSouth
+    WalkFastWest 3
+    WalkFastNorth
+    WalkFastWest
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_016
-    MoveAction_018 4
-    MoveAction_038
+    WalkFastNorth
+    WalkFastWest 4
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02F8:
-    MoveAction_016
-    MoveAction_018 3
-    MoveAction_016
-    MoveAction_018
-    MoveAction_038
+    WalkFastNorth
+    WalkFastWest 3
+    WalkFastNorth
+    WalkFastWest
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _0310:
-    MoveAction_033
-    MoveAction_034
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _031C:
-    MoveAction_033
-    MoveAction_034
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0328:
-    MoveAction_032
-    MoveAction_034
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0334:
-    MoveAction_032
-    MoveAction_034
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0340:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _0350:
@@ -417,95 +416,95 @@ _0544:
 
     .balign 4, 0
 _055C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0564:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 10
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 10
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _0578:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 9
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 9
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _058C:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 8
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 8
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _05A0:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 7
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 7
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _05B4:
-    MoveAction_015
-    MoveAction_013 10
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 10
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _05C8:
-    MoveAction_015
-    MoveAction_013 9
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 9
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _05DC:
-    MoveAction_015
-    MoveAction_013 8
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 8
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _05F0:
-    MoveAction_015
-    MoveAction_013 7
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 7
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0604:
-    MoveAction_075
-    MoveAction_012 3
+    EmoteExclamationMark
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _0610:
-    MoveAction_075
-    MoveAction_012 2
+    EmoteExclamationMark
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _061C:
-    MoveAction_075
-    MoveAction_012
+    EmoteExclamationMark
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0628:
-    MoveAction_075
-    MoveAction_032
+    EmoteExclamationMark
+    WalkOnSpotNormalNorth
     EndMovement
 
 _0634:
@@ -631,4 +630,4 @@ _0754:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

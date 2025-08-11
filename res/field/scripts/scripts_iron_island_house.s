@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0035
@@ -68,13 +67,13 @@ _00D0:
 
     .balign 4, 0
 _00F0:
-    MoveAction_014
-    MoveAction_013 3
+    WalkNormalWest
+    WalkNormalSouth 3
     EndMovement
 
     .balign 4, 0
 _00FC:
-    MoveAction_013 2
-    MoveAction_014
-    MoveAction_013
+    WalkNormalSouth 2
+    WalkNormalWest
+    WalkNormalSouth
     EndMovement

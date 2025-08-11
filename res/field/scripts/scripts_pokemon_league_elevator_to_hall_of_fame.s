@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_elevator_to_hall_of_fame.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000A
@@ -14,7 +13,7 @@ _000A:
     SetObjectEventPos 0, 6, 14
     ClearFlag FLAG_UNK_0x023A
     AddObject 0
-    ScrCmd_062 0
+    LockObject 0
     ApplyMovement 0, _0138
     ApplyMovement LOCALID_PLAYER, _017C
     WaitMovement
@@ -23,7 +22,7 @@ _000A:
     SetObjectEventPos 1, 4, 14
     ClearFlag FLAG_UNK_0x023B
     AddObject 1
-    ScrCmd_062 1
+    LockObject 1
     ApplyMovement 1, _0114
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0190
@@ -72,75 +71,70 @@ _00C9:
 
     .balign 4, 0
 _0114:
-    MoveAction_012 8
-    MoveAction_035
+    WalkNormalNorth 8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0120:
-    MoveAction_063 3
-    MoveAction_012 2
-    MoveAction_015
-    MoveAction_012 2
-    MoveAction_069
+    Delay8 3
+    WalkNormalNorth 2
+    WalkNormalEast
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0138:
-    MoveAction_012 8
-    MoveAction_034
+    WalkNormalNorth 8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_034
-    MoveAction_075
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0150:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0158:
-    MoveAction_012 2
-    MoveAction_014
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth 2
+    WalkNormalWest
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_012 17
-    MoveAction_063
-    MoveAction_033
+    WalkNormalNorth 17
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _017C:
-    MoveAction_063 6
-    MoveAction_035
+    Delay8 6
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PokemonLeagueElevatorToHallOfFame_UnusedMovement:
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0190:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0198:
-    MoveAction_063
-    MoveAction_032
-    MoveAction_063 6
-    MoveAction_012 4
+    Delay8
+    WalkOnSpotNormalNorth
+    Delay8 6
+    WalkNormalNorth 4
     EndMovement

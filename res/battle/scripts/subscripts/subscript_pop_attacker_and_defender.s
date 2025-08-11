@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     UpdateVarFromVar OPCODE_GET, BTLVAR_ATTACKER_TEMP, BTLVAR_ATTACKER

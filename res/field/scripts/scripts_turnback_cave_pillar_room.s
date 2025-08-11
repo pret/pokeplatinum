@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_pillar_room.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0026
@@ -30,6 +29,4 @@ _0026:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

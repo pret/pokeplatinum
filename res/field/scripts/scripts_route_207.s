@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_207.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _004E
@@ -44,7 +43,7 @@ _004E:
 _008E:
     ClearFlag FLAG_UNK_0x01CC
     AddObject 18
-    ScrCmd_062 18
+    LockObject 18
     Return
 
 _009C:
@@ -107,48 +106,33 @@ _0156:
 
     .balign 4, 0
 _0174:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route207_UnusedMovement:
+    Delay8 8
+    WalkOnSpotNormalWest
+    EndMovement
+
+Route207_UnusedMovement2:
+    Delay8 1
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _0194:
-    MoveAction_015 3
-    MoveAction_075
+    WalkNormalEast 3
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _01A0:
-    MoveAction_015 5
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _01A8:
-    MoveAction_014 8
+    WalkNormalWest 8
     EndMovement
 
 _01B0:
@@ -191,4 +175,4 @@ _021A:
     ShowScrollingSign 13
     End
 
-    .byte 0
+    .balign 4, 0

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_sailor_eldritch_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _010B
@@ -32,17 +31,14 @@ _0073:
 _007B:
     SetObjectEventPos 0, 8, 6
     SetObjectEventDir 0, DIR_SOUTH
-    ScrCmd_188 0, 0
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_NONE
     SetObjectEventPos 1, 9, 6
     SetObjectEventDir 1, DIR_WEST
     Return
 
-    .byte 30
-    .byte 0
-    .byte 91
-    .byte 2
-    .byte 27
-    .byte 0
+CanalaveCitySailorEldritchHouse_Unused:
+    SetFlag FLAG_UNK_0x025B
+    Return
 
 _00A5:
     SetVar VAR_0x8008, VAR_UNK_0x4106
@@ -186,45 +182,45 @@ _026E:
 
     .balign 4, 0
 _0294:
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _029C:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _02A4:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _02AC:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _02B4:
-    MoveAction_012 2
-    MoveAction_015 2
+    WalkNormalNorth 2
+    WalkNormalEast 2
     EndMovement
 
     .balign 4, 0
 _02C0:
-    MoveAction_000
-    MoveAction_071
-    MoveAction_013
-    MoveAction_072
+    FaceNorth
+    LockDir
+    WalkNormalSouth
+    UnlockDir
     EndMovement
 
     .balign 4, 0
 _02D4:
-    MoveAction_015
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_014 3
-    MoveAction_013 2
+    WalkNormalWest 3
+    WalkNormalSouth 2
     EndMovement

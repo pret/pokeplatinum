@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_PECK" ],
@@ -81,6 +82,17 @@
             "MOVE_TWISTER",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_FAINT_ATTACK",
+            "MOVE_FALSE_SWIPE",
+            "MOVE_SCARY_FACE",
+            "MOVE_QUICK_ATTACK",
+            "MOVE_TRI_ATTACK",
+            "MOVE_ASTONISH",
+            "MOVE_SKY_ATTACK",
+            "MOVE_WHIRLWIND",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [
@@ -90,9 +102,11 @@
             "SPECIES_FEAROW"
         ]
     ],
+    "offspring": "SPECIES_SPEAROW",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 3,

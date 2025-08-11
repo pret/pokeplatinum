@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_salon.h"
 
-    .data
 
     ScriptEntry _01AC
     ScriptEntry _0275
@@ -177,7 +176,7 @@ _02DD:
     Message 8
     CloseMessage
     ReleaseAll
-    ScrCmd_062 1
+    LockObject 1
     GoTo _055C
     End
 
@@ -206,7 +205,7 @@ _0341:
     Message 17
     CloseMessage
     ReleaseAll
-    ScrCmd_062 2
+    LockObject 2
     GoTo _05A1
     End
 
@@ -233,7 +232,7 @@ _03A5:
     Message 5
     CloseMessage
     ReleaseAll
-    ScrCmd_062 3
+    LockObject 3
     GoTo _05E6
     End
 
@@ -260,7 +259,7 @@ _0406:
     Message 14
     CloseMessage
     ReleaseAll
-    ScrCmd_062 4
+    LockObject 4
     GoTo _062B
     End
 
@@ -287,7 +286,7 @@ _0467:
     Message 11
     CloseMessage
     ReleaseAll
-    ScrCmd_062 5
+    LockObject 5
     GoTo _0670
     End
 
@@ -437,141 +436,136 @@ _06A3:
     ApplyMovement 5, _07C8
     WaitMovement
     GoTo _0500
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _06B8:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _06C0:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _06C8:
-    MoveAction_013 2
-    MoveAction_014
-    MoveAction_003
+    WalkNormalSouth 2
+    WalkNormalWest
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _06D8:
-    MoveAction_015
-    MoveAction_001
+    WalkNormalEast
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _06E4:
-    MoveAction_001
-    MoveAction_018
-    MoveAction_003
+    FaceSouth
+    WalkFastWest
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _06F4:
-    MoveAction_019
-    MoveAction_001
+    WalkFastEast
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0700:
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _070C:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0718:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _0720:
-    MoveAction_016 2
-    MoveAction_069
+    WalkFastNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _072C:
-    MoveAction_017
-    MoveAction_018 3
-    MoveAction_016 7
-    MoveAction_018 2
+    WalkFastSouth
+    WalkFastWest 3
+    WalkFastNorth 7
+    WalkFastWest 2
     EndMovement
 
     .balign 4, 0
 _0740:
-    MoveAction_018
-    MoveAction_016
-    MoveAction_018 2
-    MoveAction_016 5
-    MoveAction_018 2
+    WalkFastWest
+    WalkFastNorth
+    WalkFastWest 2
+    WalkFastNorth 5
+    WalkFastWest 2
     EndMovement
 
     .balign 4, 0
 _0758:
-    MoveAction_019
-    MoveAction_016 2
-    MoveAction_019 3
+    WalkFastEast
+    WalkFastNorth 2
+    WalkFastEast 3
     EndMovement
 
     .balign 4, 0
 _0768:
-    MoveAction_016 2
-    MoveAction_019 4
+    WalkFastNorth 2
+    WalkFastEast 4
     EndMovement
 
     .balign 4, 0
 _0774:
-    MoveAction_018
-    MoveAction_016 4
-    MoveAction_018 2
+    WalkFastWest
+    WalkFastNorth 4
+    WalkFastWest 2
     EndMovement
 
     .balign 4, 0
 _0784:
-    MoveAction_016 4
-    MoveAction_018 3
+    WalkFastNorth 4
+    WalkFastWest 3
     EndMovement
 
     .balign 4, 0
 _0790:
-    MoveAction_017
-    MoveAction_019 4
-    MoveAction_016 7
-    MoveAction_019 2
+    WalkFastSouth
+    WalkFastEast 4
+    WalkFastNorth 7
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _07A4:
-    MoveAction_016
-    MoveAction_019 4
-    MoveAction_016 5
-    MoveAction_019 2
+    WalkFastNorth
+    WalkFastEast 4
+    WalkFastNorth 5
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _07B8:
-    MoveAction_018
-    MoveAction_016 5
-    MoveAction_019 2
+    WalkFastWest
+    WalkFastNorth 5
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _07C8:
-    MoveAction_019 3
-    MoveAction_016 5
-    MoveAction_018 2
+    WalkFastEast 3
+    WalkFastNorth 5
+    WalkFastWest 2
     EndMovement

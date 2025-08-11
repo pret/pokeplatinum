@@ -22,11 +22,8 @@ static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_0
 
 void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokemonSpriteTemplate *param1)
 {
-    void *v0;
-    NNSG2dCharacterData *v1;
-
-    v0 = LoadMemberFromNARC(param1->narcID, param1->character, 0, 14, 0);
-    v1 = ov22_02255340(param0, v0, (100 + 18));
+    void *v0 = LoadMemberFromNARC(param1->narcID, param1->character, 0, 14, 0);
+    NNSG2dCharacterData *v1 = ov22_02255340(param0, v0, (100 + 18));
 
     PokemonSprite_Decrypt((u8 *)v1->pRawData, param1->narcID);
 }
@@ -78,7 +75,7 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
             param0->unk_08.unk_02 = v3;
         }
 
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 
     param0->unk_0C = param2;
@@ -121,7 +118,7 @@ BOOL ov22_02259238(UnkStruct_020298D8 *param0)
 
 BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2)
 {
-    return sub_02022830(&param0->unk_04, param1, param2);
+    return TouchScreen_IsTouchInHitTable(&param0->unk_04, param1, param2);
 }
 
 void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2)

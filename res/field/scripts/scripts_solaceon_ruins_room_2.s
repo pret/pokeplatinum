@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_ruins_room_2.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -68,5 +67,5 @@ _00C7:
 
     .balign 4, 0
 _00D4:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement

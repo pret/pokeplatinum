@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/text_banks.h"
+
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -25,13 +27,13 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
 #include "unk_020553DC.h"
 #include "unk_02070428.h"
@@ -80,25 +82,24 @@ static void sub_020528D0(BgConfig *param0)
         GX_BG0_AS_2D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0, 3, &v2, 0);
-    Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELDMAP);
+    Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2, 0);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELDMAP);
 }
 
 static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
@@ -117,13 +118,13 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0373, HEAP_ID_FIELDMAP);
+    v0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BLACK_OUT_SCENE, HEAP_ID_FIELDMAP);
     v0->unk_20 = StringTemplate_Default(HEAP_ID_FIELDMAP);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
     StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem)));
 
-    if (fieldSystem->location->mapId == 414) {
+    if (fieldSystem->location->mapId == MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F) {
         sub_02052AA4(v0, 4, 0, 0);
     } else {
         sub_02052AA4(v0, 3, 0, 0);
@@ -141,22 +142,22 @@ static BOOL sub_020529C4(FieldTask *task)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(3, 1, 42, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_MAX, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
         v0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_00++;
         }
         break;
     case 2:
         if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_B)) {
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
             v0->unk_00++;
         }
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             Window_FillTilemap(&v0->unk_0C, 0);
             v0->unk_00++;
         }
@@ -166,9 +167,9 @@ static BOOL sub_020529C4(FieldTask *task)
         Window_Remove(&v0->unk_0C);
         StringTemplate_Free(v0->unk_20);
         MessageLoader_Free(v0->unk_1C);
-        Bg_FreeTilemapBuffer(v0->unk_08, 3);
-        Heap_FreeToHeap(v0->unk_08);
-        Heap_FreeToHeap(v0);
+        Bg_FreeTilemapBuffer(v0->unk_08, BG_LAYER_MAIN_3);
+        Heap_Free(v0->unk_08);
+        Heap_Free(v0);
 
         return 1;
     }
@@ -232,8 +233,8 @@ BOOL sub_02052B2C(FieldTask *task)
         }
         break;
     case 3:
-        BrightnessController_SetScreenBrightness(-16, ((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) ^ GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
-        BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) ^ GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_SetScreenBrightness(-16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_SUB_SCREEN);
         sub_02052914(fieldSystem, task);
         (*state)++;
         break;
@@ -242,7 +243,7 @@ BOOL sub_02052B2C(FieldTask *task)
         (*state)++;
         break;
     case 5:
-        BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_BOTH_SCREENS);
 
         if (sub_0203A7EC()
             == FieldOverworldState_GetWarpId(SaveData_GetFieldOverworldState(fieldSystem->saveData))) {

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city_gym_room_1.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _001D
@@ -68,6 +67,4 @@ _0098:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

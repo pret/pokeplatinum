@@ -33,7 +33,7 @@ void WiFiList_Init(WiFiList *param0)
     sub_02039034(param0);
 }
 
-DWCUserData *sub_0202AD28(WiFiList *param0)
+DWCUserData *WiFiList_GetUserData(WiFiList *param0)
 {
     return &(param0->unk_00);
 }

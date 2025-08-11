@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_prize_exchange.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _017C
@@ -171,6 +170,4 @@ _027E:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

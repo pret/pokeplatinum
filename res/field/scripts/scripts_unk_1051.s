@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0552.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -41,7 +40,7 @@ _0064:
 _006C:
     ScrCmd_282 VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0133
-    ScrCmd_1E8 VAR_RESULT
+    CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00B2
     GoToIfUnset FLAG_UNK_0x0145, _0332
     Call _04A4
@@ -53,7 +52,7 @@ _00B2:
     GoToIfEq VAR_RESULT, 0, _030D
     GoToIfUnset FLAG_UNK_0x00F0, _02E8
     GoToIfUnset FLAG_UNK_0x0131, _02C3
-    ScrCmd_1E9 VAR_RESULT
+    CheckNationalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0158
     GoTo _00F3
     End
@@ -319,26 +318,26 @@ _046C:
 
     .balign 4, 0
 _0474:
-    MoveAction_015 10
+    WalkNormalEast 10
     EndMovement
 
     .balign 4, 0
 _047C:
-    MoveAction_012
-    MoveAction_015 10
+    WalkNormalNorth
+    WalkNormalEast 10
     EndMovement
 
     .balign 4, 0
 _0488:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0494:
-    MoveAction_063
-    MoveAction_032
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
 _04A4:
@@ -351,5 +350,4 @@ _04C6:
     SetVar VAR_RESULT, 0
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

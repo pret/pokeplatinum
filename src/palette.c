@@ -34,7 +34,7 @@ PaletteData *PaletteData_New(enum HeapId heapID)
 
 void PaletteData_Free(PaletteData *paletteData)
 {
-    Heap_FreeToHeap(paletteData);
+    Heap_Free(paletteData);
 }
 
 void PaletteData_InitBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, void *unfaded, void *faded, u32 size)
@@ -53,8 +53,8 @@ void PaletteData_AllocBuffer(PaletteData *paletteData, enum PaletteBufferID buff
 
 void PaletteData_FreeBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID)
 {
-    Heap_FreeToHeap(paletteData->buffers[bufferID].unfaded);
-    Heap_FreeToHeap(paletteData->buffers[bufferID].faded);
+    Heap_Free(paletteData->buffers[bufferID].unfaded);
+    Heap_Free(paletteData->buffers[bufferID].faded);
 }
 
 void PaletteData_LoadBuffer(PaletteData *paletteData, const void *src, enum PaletteBufferID bufferID, u16 destStart, u16 srcSize)
@@ -77,7 +77,7 @@ void PaletteData_LoadBufferFromFile(PaletteData *paletteData, enum NarcID narcID
     GF_ASSERT(destStart * sizeof(destStart) + srcSize <= paletteData->buffers[bufferID].size);
 
     PaletteData_LoadBuffer(paletteData, (u16 *)palette->pRawData + srcStart, bufferID, destStart, srcSize);
-    Heap_FreeToHeap(ptr);
+    Heap_Free(ptr);
 }
 
 void PaletteData_LoadBufferFromFileStart(PaletteData *paletteData, enum NarcID narcID, u32 narcMemberIdx, u32 heapID, enum PaletteBufferID bufferID, u32 srcSize, u16 destStart)
@@ -127,7 +127,7 @@ void LoadPaletteFromFile(enum NarcID narcID, u32 narcMemberIdx, u32 heapID, u32 
     }
 
     MI_CpuCopy16((u16 *)palette->pRawData + start, dest, size);
-    Heap_FreeToHeap(ptr);
+    Heap_Free(ptr);
 }
 
 void PaletteData_CopyBuffer(PaletteData *palette, enum PaletteBufferID srcBufferID, u16 srcStart, enum PaletteBufferID destBufferID, u16 destStart, u16 size)
@@ -292,13 +292,6 @@ static void WaitAndApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 b
     paletteData->buffers[bufferID].selected.waitStep = 0;
     ApplyBlendStepToPaletteBuffer(paletteData, bufferID, paletteSize);
 }
-
-#define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
-
-#define ColorR(source) ((source) & 0x1F)
-#define ColorG(source) (((source) >> 5) & 0x1F)
-#define ColorB(source) (((source) >> 10) & 0x1F)
-#define RGB(r, g, b)   (((b) << 10) | ((g) << 5) | (r))
 
 static void ApplyBlendStepToPaletteBuffer(PaletteData *paletteData, u16 bufferID, u16 paletteSize)
 {
@@ -598,5 +591,5 @@ void PaletteData_LoadBufferFromFileStartWithTint(PaletteData *paletteData, enum 
 
     TintPalette(palette->pRawData, SLOTS_PER_PALETTE, r, g, b);
     PaletteData_LoadBuffer(paletteData, palette->pRawData, bufferID, start, size);
-    Heap_FreeToHeap(ptr);
+    Heap_Free(ptr);
 }

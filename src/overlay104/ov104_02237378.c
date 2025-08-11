@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
@@ -30,6 +28,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -39,7 +38,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
-#include "unk_02014000.h"
 #include "unk_02030494.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -120,7 +118,7 @@ BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay108);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov108_02241AE0,
         ov108_02241C38,
         ov108_02241D70,
@@ -131,7 +129,7 @@ BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02238240));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02238240));
-    v2->unk_00 = v3->saveData;
+    v2->saveData = v3->saveData;
 
     ov104_02237634(v2, v1);
     sub_0209B988(param0->unk_00->unk_00, &v4, v2, 0, ov104_0223770C);
@@ -226,7 +224,7 @@ BOOL ov104_022375F8(UnkStruct_ov104_0222E930 *param0)
     v0 = ov104_0223BDD8(v1, v2);
 
     v1->unk_0C = v0;
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }
@@ -275,7 +273,7 @@ static void ov104_0223770C(void *param0)
     UnkStruct_ov104_02238240 *v1 = param0;
 
     ov104_02238240(v1->unk_3C, param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -494,8 +492,8 @@ BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
         ov104_02237C0C(param0, v3, v18);
         break;
     case 40:
-        ov104_0222E278(&(v3->unk_F4[0]), v3->unk_78[v3->unk_11], 11, 178);
-        ov104_0222E278(&(v3->unk_F4[1]), v3->unk_78[v3->unk_11 + 7], 11, 178);
+        ov104_0222E278(&(v3->unk_F4[0]), v3->unk_78[v3->unk_11], HEAP_ID_FIELDMAP, 178);
+        ov104_0222E278(&(v3->unk_F4[1]), v3->unk_78[v3->unk_11 + 7], HEAP_ID_FIELDMAP, 178);
         break;
     case 41:
         ov104_0223886C(v3, v15, v18, v19);
@@ -564,8 +562,8 @@ static void ov104_02237C0C(UnkStruct_ov104_0222E930 *param0, UnkStruct_ov104_022
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
-    UnkStruct_02014014 *v2 = ov104_0223D6D0(v1->unk_10, 0);
-    sub_020146F4(v2, param2, ov104_02237C30, param1);
+    ParticleSystem *v2 = ov104_0223D6D0(v1->unk_10, 0);
+    ParticleSystem_CreateEmitterWithCallback(v2, param2, ov104_02237C30, param1);
 
     return;
 }
@@ -574,11 +572,11 @@ static void ov104_02237C30(SPLEmitter *param0)
 {
     VecFx32 v0;
     VecFx16 v1;
-    UnkStruct_ov104_0223BFFC *v2 = sub_02014764();
+    UnkStruct_ov104_0223BFFC *v2 = ParticleSystem_GetEmitterCallbackParam();
     const VecFx32 v3[] = { FX32_ONE * -1, 0, 0 };
 
     if (v2->unk_A7A == 1) {
-        sub_02014798(param0, &v1);
+        ParticleSystem_GetEmitterAxis(param0, &v1);
         v1.x *= -1;
 
         SPLEmitter_SetAxis(param0, &v1);

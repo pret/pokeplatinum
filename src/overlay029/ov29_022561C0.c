@@ -2,8 +2,8 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay025/poketch_button.h"
-#include "overlay025/poketch_system.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay029/ov29_022566C8.h"
 #include "overlay029/struct_ov29_022566C8_1.h"
 #include "overlay029/struct_ov29_022566C8_decl.h"
@@ -64,7 +64,7 @@ static BOOL ov29_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -84,7 +84,7 @@ static BOOL ov29_0225621C(UnkStruct_ov29_0225621C *param0, PoketchSystem *poketc
         param0->unk_01 = 0;
         param0->unk_02 = 0;
         param0->unk_03 = 0;
-        param0->buttonManager = PoketchButtonManager_New(Unk_ov29_02256B3C, NELEMS(Unk_ov29_02256B3C), ov29_022562F4, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(Unk_ov29_02256B3C, NELEMS(Unk_ov29_02256B3C), ov29_022562F4, param0, HEAP_ID_POKETCH_APP);
         param0->poketchSys = poketchSys;
 
         return 1;
@@ -97,7 +97,7 @@ static void ov29_02256288(UnkStruct_ov29_0225621C *param0)
 {
     PoketchButtonManager_Free(param0->buttonManager);
     ov29_02256770(param0->unk_16F4);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov29_022562AC(SysTask *param0, void *param1)

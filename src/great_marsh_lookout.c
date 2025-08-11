@@ -129,7 +129,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
         sub_02070428(fieldSystem, 0);
         GreatMarshBinoculars_FreeData(lookout->binocularsData);
         GreatMarshLookout_FreeSpriteResources(lookout->spriteResources);
-        Heap_FreeToHeap(lookout);
+        Heap_Free(lookout);
 
         return 1;
     }

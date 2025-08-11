@@ -5,9 +5,8 @@
 
 #include "constants/narc.h"
 
+#include "struct_defs/seal_case.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/struct_ov12_02225F6C.h"
@@ -20,6 +19,7 @@
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -27,9 +27,11 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -38,11 +40,8 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 
@@ -226,13 +225,9 @@ void ov76_0223BB04(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
     int v1;
-    SpriteSystem *v2;
-    SpriteManager *v3;
-    PaletteData *v4;
-
-    v2 = param0->unk_D4.unk_08;
-    v3 = param0->unk_D4.unk_0C;
-    v4 = param0->unk_D4.unk_14;
+    SpriteSystem *v2 = param0->unk_D4.unk_08;
+    SpriteManager *v3 = param0->unk_D4.unk_0C;
+    PaletteData *v4 = param0->unk_D4.unk_14;
 
     for (v0 = 0; v0 < 8; v0++) {
         v1 = sub_02098140(param0->unk_418.unk_08[v0]);
@@ -249,13 +244,9 @@ void ov76_0223BBAC(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     UnkStruct_ov76_0223BBAC *v1;
     SpriteTemplate v2;
-    SpriteSystem *v3;
-    SpriteManager *v4;
-    PaletteData *v5;
-
-    v3 = param0->unk_D4.unk_08;
-    v4 = param0->unk_D4.unk_0C;
-    v5 = param0->unk_D4.unk_14;
+    SpriteSystem *v3 = param0->unk_D4.unk_08;
+    SpriteManager *v4 = param0->unk_D4.unk_0C;
+    PaletteData *v5 = param0->unk_D4.unk_14;
     v1 = &param0->unk_3E4;
 
     v2.x = 0;
@@ -327,14 +318,14 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
 
         if (ov12_02225C14(&v0->unk_00[8]) == 1) {
             v1 = 1;
-            Bg_SetOffset(v0->unk_164, 5, 0, v0->unk_00[8].unk_00);
-            Bg_SetOffset(v0->unk_164, 5, 3, v0->unk_00[8].unk_02);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 0, v0->unk_00[8].unk_00);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 3, v0->unk_00[8].unk_02);
         }
     }
 
     if (v1 == 0) {
         *(v0->unk_16C) = 0;
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
     }
 }
@@ -375,9 +366,9 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
     SysTask_Start(ov76_0223BCA0, v0, 0x1000);
 }
 
-GenericPointerData *ov76_0223BE6C(void)
+G3DPipelineBuffers *ov76_0223BE6C(void)
 {
-    return sub_02024220(HEAP_ID_53, 0, 2, 0, 2, ov76_0223BE8C);
+    return G3DPipeline_Init(HEAP_ID_53, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov76_0223BE8C);
 }
 
 void ov76_0223BE8C(void)
@@ -410,7 +401,7 @@ void ov76_0223BF10(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 void ov76_0223BF50(void)
@@ -420,14 +411,14 @@ void ov76_0223BF50(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
@@ -482,7 +473,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     Window_Init(param1);
     Window_Add(param0, param1, param2, v2, v3, v4, v5, 14, v6);
 
-    param3->unk_D4.unk_C8 = StringList_New(v7, 53);
+    param3->unk_D4.unk_C8 = StringList_New(v7, HEAP_ID_53);
 
     {
         int v9;
@@ -522,13 +513,9 @@ void ov76_0223C0EC(int param0, s16 *param1, s16 *param2)
 
 void ov76_0223C110(UnkStruct_ov76_0223DE00 *param0)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    PaletteData *v2;
-
-    v0 = param0->unk_D4.unk_08;
-    v1 = param0->unk_D4.unk_0C;
-    v2 = param0->unk_D4.unk_14;
+    SpriteSystem *v0 = param0->unk_D4.unk_08;
+    SpriteManager *v1 = param0->unk_D4.unk_0C;
+    PaletteData *v2 = param0->unk_D4.unk_14;
 
     SpriteSystem_LoadPaletteBuffer(v2, 2, v0, v1, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 16000);
 
@@ -631,7 +618,7 @@ void ov76_0223C354(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     int v1;
     int v2 = 0;
-    UnkStruct_0202CA28 *v3;
+    BallCapsule *v3;
 
     for (v0 = 0; v0 < 12; v0++) {
         v3 = param0->unk_04[v0].unk_04;
@@ -859,28 +846,28 @@ void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2)
     int v2;
     int v3;
     int v4;
-    UnkStruct_0202CA28 v5;
+    BallCapsule v5;
 
     v1 = param0->unk_04[param1].unk_00;
     v2 = param0->unk_04[param2].unk_00;
 
     if (v1 != 0xff) {
         v3 = param2 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_MAIL_ID, (u8 *)&v3);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v3);
     }
 
     if (v2 != 0xff) {
         v4 = param1 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v2], MON_DATA_MAIL_ID, (u8 *)&v4);
+        Pokemon_SetValue(param0->unk_00->unk_04[v2], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v4);
     }
 
     v0 = param0->unk_04[param1].unk_00;
     param0->unk_04[param1].unk_00 = param0->unk_04[param2].unk_00;
     param0->unk_04[param2].unk_00 = v0;
 
-    sub_0202CA10(param0->unk_04[param1].unk_04, &v5);
-    sub_0202CA10(param0->unk_04[param2].unk_04, param0->unk_04[param1].unk_04);
-    sub_0202CA10(&v5, param0->unk_04[param2].unk_04);
+    BallCapsule_Copy(param0->unk_04[param1].unk_04, &v5);
+    BallCapsule_Copy(param0->unk_04[param2].unk_04, param0->unk_04[param1].unk_04);
+    BallCapsule_Copy(&v5, param0->unk_04[param2].unk_04);
     ov76_0223C7E0(param0);
 }
 
@@ -910,18 +897,18 @@ void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
-    LoadMessageBoxGraphics(param0, 1, 1, 15, param2, HEAP_ID_53);
+    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 1, 15, param2, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 1, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
 
 void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
-    LoadMessageBoxGraphics(param0, 4, 1, 15, param2, HEAP_ID_53);
+    LoadMessageBoxGraphics(param0, BG_LAYER_SUB_0, 1, 15, param2, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 1, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 4, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
+    LoadStandardWindowGraphics(param0, BG_LAYER_SUB_0, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 1, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 3 * 16);
@@ -1001,7 +988,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         Window_FillTilemap(v5, 0x0);
 
         v4 = Strbuf_Init(100, HEAP_ID_53);
-        v3 = sub_0202CA90(param0->unk_64, v2 - 1);
+        v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
         Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -1030,7 +1017,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     Window_FillTilemap(v5, 0x0);
 
     v4 = Strbuf_Init(100, HEAP_ID_53);
-    v3 = sub_0202CA90(param0->unk_64, v2 - 1);
+    v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
     Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -1078,12 +1065,12 @@ void ov76_0223CE2C(void)
 
 void ov76_0223CE44(void)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_53);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_53);
 }
 
 void ov76_0223CE64(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_53);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_53);
 }
 
 void ov76_0223CE84(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
@@ -1134,13 +1121,9 @@ void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
 void ov76_0223CFEC(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    PaletteData *v2;
-
-    v0 = param0->unk_D4.unk_08;
-    v1 = param0->unk_D4.unk_0C;
-    v2 = param0->unk_D4.unk_14;
+    SpriteSystem *v0 = param0->unk_D4.unk_08;
+    SpriteManager *v1 = param0->unk_D4.unk_0C;
+    PaletteData *v2 = param0->unk_D4.unk_14;
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_SUB_OBJ, v0, v1, param1, 290, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, 26000 + 290);
     SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, param1, 273, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 273);
@@ -1162,13 +1145,9 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     UnkStruct_ov76_0223BBAC *v1;
     SpriteTemplate v2;
-    SpriteSystem *v3;
-    SpriteManager *v4;
-    PaletteData *v5;
-
-    v3 = param0->unk_D4.unk_08;
-    v4 = param0->unk_D4.unk_0C;
-    v5 = param0->unk_D4.unk_14;
+    SpriteSystem *v3 = param0->unk_D4.unk_08;
+    SpriteManager *v4 = param0->unk_D4.unk_0C;
+    PaletteData *v5 = param0->unk_D4.unk_14;
     v1 = &param0->unk_3E4;
 
     v2.x = 0;

@@ -5,10 +5,10 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 
+#include "applications/naming_screen.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
@@ -63,16 +63,19 @@
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"
-#include "math.h"
+#include "item_use_pokemon.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -82,8 +85,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
-#include "unk_02014000.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -92,13 +93,10 @@
 #include "unk_020366A0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
-#include "unk_0208694C.h"
-#include "unk_02096420.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EA358.h"
-#include "constdata/const_020F2DAC.h"
 
 typedef struct {
     s16 unk_00;
@@ -199,7 +197,7 @@ static BOOL ov104_02230E20(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230EB8(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230ED8(UnkStruct_ov104_0222E930 *param0);
-static Strbuf *ov104_02230E90(u16 param0, u32 param1);
+static Strbuf *ov104_02230E90(u16 param0, u32 heapID);
 static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F6C(UnkStruct_ov104_0222E930 *param0);
@@ -644,11 +642,8 @@ static BOOL ov104_0222FD6C(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FD84(UnkStruct_ov104_0222E930 *param0)
 {
-    u16 *v0;
-    u16 *v1;
-
-    v0 = ov104_0222FBE4(param0);
-    v1 = ov104_0222FBE4(param0);
+    u16 *v0 = ov104_0222FBE4(param0);
+    u16 *v1 = ov104_0222FBE4(param0);
 
     *v0 = *v1;
 
@@ -825,9 +820,9 @@ static BOOL ov104_0222FF90(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u16 v3 = ov104_0222EA48(param0);
 
-    StartScreenTransition(0, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
-    sub_0200F32C(0);
-    sub_0200F32C(1);
+    StartScreenFade(FADE_BOTH_SCREENS, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
+    ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+    ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
     return 0;
 }
@@ -840,7 +835,7 @@ static BOOL ov104_0222FFD8(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FFE8(UnkStruct_ov104_0222E930 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         return 1;
     }
 
@@ -1432,7 +1427,7 @@ static void ov104_0223088C(UnkStruct_ov104_0222E930 *param0, int param1, int par
     }
 
     ov104_0223D860(v0->unk_00, v2, 1, v1, 3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static BOOL ov104_022308E0(UnkStruct_ov104_0222E930 *param0)
@@ -1451,18 +1446,17 @@ static BOOL ov104_02230900(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
 {
-    void *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
+    void *v0 = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, NAMING_SCREEN_TYPE_PLAYER, 0, 8, (void *)v1->options);
 
-    sub_0209B988(param0->unk_00->unk_00, &Unk_020F2DAC, v0, 0, ov104_02230950);
+    sub_0209B988(param0->unk_00->unk_00, &gNamingScreenAppTemplate, v0, 0, ov104_02230950);
 
     return 1;
 }
 
 static void ov104_02230950(void *param0)
 {
-    sub_0208716C(param0);
+    NamingScreenArgs_Free(param0);
 }
 
 static BOOL ov104_02230958(UnkStruct_ov104_0222E930 *param0)
@@ -1643,7 +1637,7 @@ static BOOL ov104_02230B50(UnkStruct_ov104_0222E930 *param0)
 
     sub_0202F298(v2->saveData, 11, &v0, v1, 0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v1, 1, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v1, 1, NULL);
 
     return 1;
 }
@@ -1821,7 +1815,7 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
     u16 v1 = ov104_0222FC00(param0);
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    Strbuf *v4 = ov104_02230E90(v1, 11);
+    Strbuf *v4 = ov104_02230E90(v1, HEAP_ID_FIELDMAP);
 
     StringTemplate_SetStrbuf(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
     Strbuf_Free(v4);
@@ -1829,13 +1823,10 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-static Strbuf *ov104_02230E90(u16 param0, u32 param1)
+static Strbuf *ov104_02230E90(u16 param0, u32 heapID)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
-
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
-    v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
     return v1;
@@ -1870,13 +1861,13 @@ static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     u16 v2 = ov104_0222FC00(param0);
 
-    v0 = SaveData_GetTVBroadcast(v1->saveData);
+    broadcast = SaveData_GetTVBroadcast(v1->saveData);
 
-    sub_0206D0C8(v0, v2);
+    sub_0206D0C8(broadcast, v2);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v1->saveData), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(v1->saveData), v2, 5);
 
@@ -1957,7 +1948,7 @@ static BOOL ov104_02231050(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    HealAllPokemonInParty(SaveData_GetParty(v0->saveData));
+    Party_HealAllMembers(SaveData_GetParty(v0->saveData));
     return 0;
 }
 
@@ -2052,13 +2043,13 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        sub_0200F32C(0);
-        sub_0200F32C(1);
-        StartScreenTransition(0, 32, 32, 0x0, 12, 1, HEAP_ID_FIELDMAP);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, COLOR_BLACK, 12, 1, HEAP_ID_FIELDMAP);
         param0->unk_04++;
         break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 0;
         }
         break;
@@ -2102,15 +2093,15 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         }
     } break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
-            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;
@@ -2157,17 +2148,17 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
     } break;
 
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
 
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
-            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;
@@ -2257,7 +2248,7 @@ static void ov104_022313FC(SysTask *param0, void *param1)
 
         ov104_0223F258(v4->unk_600);
 
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
         SysTask_Done(param0);
 
         return;
@@ -2368,7 +2359,7 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_10 = 1;
 
-        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
 
@@ -2438,7 +2429,7 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_10 = 1;
 
-        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
 
@@ -2455,7 +2446,7 @@ static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0)
 {
     switch (param0->unk_04) {
     case 0:
-        ov104_0223F094(&param0->unk_18, 94);
+        ov104_0223F094(&param0->unk_18, HEAP_ID_94);
         param0->unk_04++;
         break;
     case 1:
@@ -2500,10 +2491,10 @@ static BOOL ov104_02231AA8(UnkStruct_ov104_0222E930 *param0)
     v0 = Unk_ov104_0223F65C[v1->unk_08](v1);
 
     if (v0 == 0) {
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
         sub_0209B980(param0->unk_00->unk_00, v1->unk_14);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     return !v0;
@@ -2555,13 +2546,13 @@ static BOOL ov104_02231B74(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u16 v2, v3;
-    UnkStruct_02014014 *v4;
+    ParticleSystem *v4;
 
     v2 = ov104_0222FC00(param0);
     v3 = ov104_0222FC00(param0);
     v4 = ov104_0223D6D0(v1->unk_10, v2);
 
-    sub_020146F4(v4, v3, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(v4, v3, NULL, NULL);
 
     return 0;
 }
@@ -2793,9 +2784,8 @@ static BOOL ov104_02231EC4(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 {
-    WiFiList *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = SaveData_GetWiFiList(v1->saveData);
+    WiFiList *v0 = SaveData_GetWiFiList(v1->saveData);
 
     sub_0202B13C(v0, ov4_021D2388());
     return 0;
@@ -2804,14 +2794,14 @@ static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 static BOOL ov104_02231EFC(UnkStruct_ov104_0222E930 *param0)
 {
     u16 v0;
-    TVBroadcast *v1;
+    TVBroadcast *broadcast;
     TrainerInfo *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
-    v1 = SaveData_GetTVBroadcast(v3->saveData);
+    broadcast = SaveData_GetTVBroadcast(v3->saveData);
     v0 = ov104_0222FC00(param0);
     v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 
-    sub_0206D088(v1, v0, v2);
+    sub_0206D088(broadcast, v0, v2);
     return 0;
 }
 

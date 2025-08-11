@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TICKLE" ],
@@ -106,6 +107,19 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_TRICK",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_HYPNOSIS",
+            "MOVE_MIMIC",
+            "MOVE_PSYCH_UP",
+            "MOVE_FAKE_OUT",
+            "MOVE_TRICK",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_WAKE_UP_SLAP",
+            "MOVE_TEETER_DANCE",
+            "MOVE_HEALING_WISH",
+            "MOVE_CHARM"
         ]
     },
     "evolutions": [
@@ -115,9 +129,11 @@
             "SPECIES_MR_MIME"
         ]
     ],
+    "offspring": "SPECIES_MIME_JR",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

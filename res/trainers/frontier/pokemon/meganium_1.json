@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MEGANIUM",
+    "moves": [
+        "MOVE_SOLAR_BEAM",
+        "MOVE_ANCIENT_POWER",
+        "MOVE_SYNTHESIS",
+        "MOVE_SUNNY_DAY"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_HEAT_ROCK",
+    "form": 0
+}

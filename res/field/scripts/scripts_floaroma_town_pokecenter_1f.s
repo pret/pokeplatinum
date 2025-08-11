@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town_pokecenter_1f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _001E
@@ -52,4 +51,4 @@ _0064:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

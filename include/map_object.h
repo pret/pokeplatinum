@@ -4,6 +4,7 @@
 #include <nitro/fx/fx.h>
 
 #include "constants/map_object.h"
+#include "generated/movement_actions.h"
 
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -166,8 +167,8 @@ void sub_02062B88(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_3 param1);
 void sub_02062B90(MapObject *mapObj);
 void sub_02062B9C(MapObject *mapObj, UnkFuncPtr_ov5_021FB0F0_4 param1);
 void sub_02062BA4(MapObject *mapObj);
-void MapObject_SetMovementAction(MapObject *mapObj, int movementAction);
-int MapObject_GetMovementAction(const MapObject *mapObj);
+void MapObject_SetMovementAction(MapObject *mapObj, enum MovementAction movementAction);
+enum MovementAction MapObject_GetMovementAction(const MapObject *mapObj);
 void MapObject_SetMovementStep(MapObject *mapObj, int movementStep);
 void MapObject_AdvanceMovementStep(MapObject *mapObj);
 int MapObject_GetMovementStep(const MapObject *mapObj);
@@ -217,8 +218,8 @@ int sub_02062F30(const MapObject *mapObj);
 void sub_02062F48(MapObject *mapObj, int param1);
 int sub_02062F64(const MapObject *mapObj);
 int sub_02062F7C(const MapObject *mapObj);
-void sub_02062F90(MapObject *mapObj, int param1);
-int sub_02062FAC(const MapObject *mapObj);
+void MapObject_SetDynamicHeightCalculationEnabled(MapObject *mapObj, int enabled);
+int MapObject_IsDynamicHeightCalculationEnabled(const MapObject *mapObj);
 void sub_02062FC4(MapObject *mapObj, int param1);
 int sub_02062FDC(const MapObject *mapObj);
 int MapObject_GetXInitial(const MapObject *mapObj);
@@ -283,7 +284,7 @@ int ObjectEvent_GetZ(const ObjectEvent *objectEvent);
 MapObject *sub_0206326C(const MapObjectManager *mapObjMan, int x, int z, int param3);
 void MapObject_SetPosDirFromVec(MapObject *mapObj, const VecFx32 *pos, int dir);
 void MapObject_SetPosDirFromCoords(MapObject *mapObj, int x, int y, int z, int dir);
-void MapObject_SetMoveCode(MapObject *mapObj, u32 param1);
+void MapObject_SetMoveCode(MapObject *mapObj, u32 movementType);
 void sub_020633C8(MapObject *mapObj, int localID);
 void sub_020633E0(MapObject *mapObj);
 void sub_020633E4(MapObject *mapObj);

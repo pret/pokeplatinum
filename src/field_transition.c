@@ -12,8 +12,8 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
+#include "screen_fade.h"
 #include "sound.h"
-#include "unk_0200F174.h"
 
 typedef struct EncounterEffectTaskData {
     int taskState;
@@ -36,7 +36,7 @@ static BOOL FieldTask_RunEncounterEffect(FieldTask *task)
 
     case 1:
         if (data->done == TRUE) {
-            Heap_FreeToHeap(data);
+            Heap_Free(data);
             return TRUE;
         }
         break;
@@ -103,7 +103,7 @@ void FieldTransition_StartMap(FieldTask *task)
 
 static BOOL FieldTask_WaitUntilScreenTransitionDone(FieldTask *task)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         return TRUE;
     }
 
@@ -118,7 +118,7 @@ void FieldTransition_FadeOut(FieldTask *task)
         return;
     }
 
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
@@ -130,7 +130,7 @@ void FieldTransition_FadeIn(FieldTask *task)
         return;
     }
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 

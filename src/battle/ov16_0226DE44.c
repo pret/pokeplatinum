@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
 #include "sprite_system.h"
@@ -96,7 +96,7 @@ void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0)
 {
     Sprite_DeleteAndFreeResources(param0->unk_00);
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32 param3)
@@ -108,7 +108,7 @@ void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32
     param0->unk_14 = param3;
 
     ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00, param1, param2, param3);
-    ManagedSprite_SetDrawFlag(param0->unk_00, 1);
+    ManagedSprite_SetDrawFlag(param0->unk_00, TRUE);
 }
 
 void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
@@ -118,7 +118,7 @@ void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
 
 void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0)
 {
-    ManagedSprite_SetDrawFlag(param0->unk_00, 0);
+    ManagedSprite_SetDrawFlag(param0->unk_00, FALSE);
     ov16_0226E13C(param0);
 }
 

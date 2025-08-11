@@ -9,7 +9,7 @@
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "pokemon_sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

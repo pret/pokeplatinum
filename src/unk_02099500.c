@@ -4,10 +4,8 @@
 #include <string.h>
 
 #include "struct_defs/struct_02039A58.h"
-#include "struct_defs/struct_02072014.h"
 
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_0224A1D0.h"
@@ -15,9 +13,11 @@
 #include "overlay023/ov23_0224DC40.h"
 #include "overlay023/ov23_0225128C.h"
 #include "overlay023/ov23_02253598.h"
+#include "overlay023/underground_spheres.h"
 
 #include "comm_player_manager.h"
 #include "field_comm_manager.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_02032798.h"
 #include "unk_0204FA34.h"
@@ -87,13 +87,13 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_0224D4CC, ov23_0224D4FC, NULL },
     { ov23_0224B700, CommPacketSizeOf_NetId, NULL },
     { sub_02058018, CommPacketSizeOf_NetId, NULL },
-    { ov23_022419B4, CommPacketSizeOf_NetId, NULL },
+    { UndergroundSpheres_RetrieveBuriedSphere, CommPacketSizeOf_NetId, NULL },
     { ov23_0223E9D4, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EAF8, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EB8C, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EBC0, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EBE4, ov23_0223EBFC, NULL },
-    { ov23_0223EC00, ov23_0223EC30, NULL },
+    { Mining_TakeLinkInput, ov23_0223EC30, NULL },
     { ov23_02243390, ov23_022433B8, NULL },
     { ov23_022413A0, sub_0203294C, NULL },
     { ov23_0224142C, ov23_022414D0, NULL },

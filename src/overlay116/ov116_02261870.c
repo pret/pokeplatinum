@@ -83,7 +83,7 @@ void ov116_022618B4(UnkStruct_ov116_0226501C *param0, int param1)
         Easy3DObject_SetScale(&param0->unk_00, FX32_CONST(1.50f), FX32_CONST(1.50f), FX32_CONST(1.50f));
     }
 
-    Easy3DObject_SetVisibility(&param0->unk_00, 1);
+    Easy3DObject_SetVisible(&param0->unk_00, 1);
 
     param0->unk_1E0.x = (0 * FX32_ONE);
     param0->unk_1E0.y = (-20 * FX32_ONE);
@@ -118,21 +118,21 @@ void ov116_02261940(UnkStruct_ov116_0226139C *param0)
 
     switch (param0->unk_04->unk_F8) {
     case 0:
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[0].unk_00, 1);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[1].unk_00, 0);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[2].unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[0].unk_00, 1);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[1].unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[2].unk_00, 0);
         Easy3DAnim_UpdateLooped(&param0->unk_04->unk_308[0].unk_88[param0->unk_04->unk_308[0].unk_1F4], FX32_CONST(1));
         break;
     case 1:
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[0].unk_00, 0);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[1].unk_00, 1);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[2].unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[0].unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[1].unk_00, 1);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[2].unk_00, 0);
         Easy3DAnim_Update(&param0->unk_04->unk_308[1].unk_88[0], FX32_CONST(1));
         break;
     case 2:
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[0].unk_00, 0);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[1].unk_00, 0);
-        Easy3DObject_SetVisibility(&param0->unk_04->unk_308[2].unk_00, 1);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[0].unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[1].unk_00, 0);
+        Easy3DObject_SetVisible(&param0->unk_04->unk_308[2].unk_00, 1);
         Easy3DAnim_Update(&param0->unk_04->unk_308[2].unk_88[0], FX32_CONST(1));
         break;
     }
@@ -831,5 +831,5 @@ void ov116_022628B8(UnkStruct_ov116_0226139C *param0)
     PaletteData_LoadBufferFromFileStart(v5, 164, 6, 106, 0, 0x20, 0);
     PaletteData_LoadBufferFromFileStart(v5, 14, 7, 106, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(v5, 38, GetStandardWindowPaletteNARCMember(), 106, 1, 0x20, 13 * 16);
-    LoadStandardWindowGraphics(v2, 7, 180, 13, 0, HEAP_ID_106);
+    LoadStandardWindowGraphics(v2, BG_LAYER_SUB_3, 180, 13, 0, HEAP_ID_106);
 }

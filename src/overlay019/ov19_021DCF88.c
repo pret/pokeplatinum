@@ -15,7 +15,7 @@
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pc_boxes.h"
 #include "sprite.h"
@@ -305,7 +305,7 @@ BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *pa
         *param0 = NULL;
         return 1;
     } else {
-        UnkStruct_ov19_021DCF88 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DCF88));
+        UnkStruct_ov19_021DCF88 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DCF88));
 
         if (v0) {
             int v1;
@@ -315,7 +315,7 @@ BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_04 = param2;
             v0->unk_0C = param4;
             v0->unk_14 = NULL;
-            v0->unk_84 = Strbuf_Init(32, HEAP_ID_10);
+            v0->unk_84 = Strbuf_Init(32, HEAP_ID_BOX_GRAPHICS);
             v0->unk_10 = param2->unk_9C.unk_00;
             v0->unk_98 = NULL;
             v0->unk_A0 = NULL;
@@ -372,19 +372,19 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
         Window_Remove(&(param0->unk_88));
 
         if (param0->unk_98) {
-            Heap_FreeToHeap(param0->unk_98);
+            Heap_Free(param0->unk_98);
         }
 
         if (param0->unk_A0) {
-            Heap_FreeToHeap(param0->unk_A0);
+            Heap_Free(param0->unk_A0);
         }
 
         if (param0->unk_A8) {
-            Heap_FreeToHeap(param0->unk_A8);
+            Heap_Free(param0->unk_A8);
         }
 
         if (param0->unk_B0) {
-            Heap_FreeToHeap(param0->unk_B0);
+            Heap_Free(param0->unk_B0);
         }
 
         if (param0->unk_2C) {
@@ -411,26 +411,26 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
             }
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_Free(param0);
     }
 }
 
 void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
     if (param0) {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, HEAP_ID_10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, HEAP_ID_10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, HEAP_ID_10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
         Bg_FillTilesRange(param0->unk_08, 4, 0x0, 1, 0);
         Bg_FillTilemapRect(param0->unk_08, 4, 0x0, 0, 0, 32, 32, 17);
         Bg_CopyTilemapBufferToVRAM(param0->unk_08, 4);
-        Bg_SetOffset(param0->unk_08, 5, 0, Unk_ov19_021E0258[param0->unk_10]);
+        Bg_SetOffset(param0->unk_08, BG_LAYER_SUB_1, 0, Unk_ov19_021E0258[param0->unk_10]);
         Window_Add(param0->unk_08, &(param0->unk_88), 4, 0, 0, 32, 24, 2, 0);
         Window_FillTilemap(&(param0->unk_88), 0x0);
         Window_CopyToVRAM(&param0->unk_88);
         ov19_021DE324(param0);
-        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, HEAP_ID_10);
+        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, HEAP_ID_BOX_GRAPHICS);
         ov19_021DD224(param0, param1);
     }
 }
@@ -459,10 +459,10 @@ static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 
 static void ov19_021DD2BC(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
-    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), HEAP_ID_10);
-    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), HEAP_ID_10);
-    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), HEAP_ID_10);
-    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), HEAP_ID_10);
+    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), HEAP_ID_BOX_GRAPHICS);
 
     NNS_G2dInitImagePaletteProxy(&(param0->unk_18));
     Graphics_LoadPartialPaletteFromOpenNARC(param1, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &(param0->unk_18));
@@ -534,7 +534,7 @@ void ov19_021DD378(UnkStruct_ov19_021DCF88 *param0)
                 ov19_021DE324(param0);
                 break;
             default:
-                Heap_FreeToHeap(v2);
+                Heap_Free(v2);
                 return;
             }
 
@@ -575,16 +575,16 @@ static void ov19_021DD46C(SysTask *param0, void *param1)
     case 1:
         if (v0->unk_0C) {
             v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, 5, 0, (v0->unk_10 >> FX32_SHIFT));
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
             v0->unk_0C--;
         } else {
-            Bg_SetOffset(v1->unk_08, 5, 0, v0->unk_18);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
             v0->unk_04++;
         }
         break;
     case 2:
-        Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[v1->unk_10]);
+        Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
         v0->unk_0E = 0;
         v0->unk_04++;
         break;
@@ -617,23 +617,23 @@ static void ov19_021DD544(SysTask *param0, void *param1)
         G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
 
         if (v0->unk_0E == 0) {
-            Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[v1->unk_10]);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
             v0->unk_04++;
         }
         break;
     case 2:
         if (v0->unk_0C) {
             v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, 5, 0, (v0->unk_10 >> FX32_SHIFT));
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
             v0->unk_0C--;
         } else {
-            Bg_SetOffset(v1->unk_08, 5, 0, v0->unk_18);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 0, 16);
             v0->unk_04++;
         }
         break;
     case 3:
-        Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[v1->unk_10]);
+        Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[v1->unk_10]);
         v0->unk_0E = 0;
         v0->unk_04++;
         break;
@@ -662,17 +662,17 @@ static void ov19_021DD670(SysTask *param0, void *param1)
         G2S_ChangeBlendAlpha(v1->unk_D4[v0->unk_0E], v1->unk_E4[v0->unk_0E]);
 
         if (v0->unk_0E == 0) {
-            Bg_SetOffset(v1->unk_08, 6, 0, Unk_ov19_021E024C[0]);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_2, 0, Unk_ov19_021E024C[0]);
             v0->unk_04++;
         }
         break;
     case 2:
         if (v0->unk_0C) {
             v0->unk_10 += v0->unk_14;
-            Bg_SetOffset(v1->unk_08, 5, 0, (v0->unk_10 >> FX32_SHIFT));
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, (v0->unk_10 >> FX32_SHIFT));
             v0->unk_0C--;
         } else {
-            Bg_SetOffset(v1->unk_08, 5, 0, v0->unk_18);
+            Bg_SetOffset(v1->unk_08, BG_LAYER_SUB_1, 0, v0->unk_18);
             v0->unk_04++;
         }
         break;
@@ -942,7 +942,7 @@ static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0)
         Sprite_SetAnim(param0->unk_34[v3], ov19_021DD9B8(v3, v2));
     }
 
-    param0->unk_80 = ov19_021D5EC0(param0->unk_04);
+    param0->unk_80 = ov19_GetMarkingsButtonsScrollOffset(param0->unk_04);
 }
 
 static void ov19_021DDA7C(UnkStruct_ov19_021DCF88 *param0)
@@ -1142,7 +1142,7 @@ static void ov19_021DDD80(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1157,7 +1157,7 @@ static void ov19_021DDD80(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DDCC0, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -1257,7 +1257,7 @@ static void ov19_021DDFA8(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1273,7 +1273,7 @@ static void ov19_021DDFA8(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DDDD0, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -1316,7 +1316,7 @@ static void ov19_021DE0A0(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1331,7 +1331,7 @@ static void ov19_021DE0A0(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DDFFC, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -1440,7 +1440,7 @@ static void ov19_021DE2A4(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1455,7 +1455,7 @@ static void ov19_021DE2A4(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (ov19_021DD344(param0, ov19_021DE0F0, v0) == NULL) {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         }
     }
 }
@@ -1476,13 +1476,13 @@ void ov19_021DE2F4(UnkStruct_ov19_021DCF88 *param0)
 
 static void ov19_021DE324(UnkStruct_ov19_021DCF88 *param0)
 {
-    Bg_ToggleLayer(4, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
 }
 
 static void ov19_021DE330(UnkStruct_ov19_021DCF88 *param0)
 {
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_ALL, 14, 2);
-    Bg_ToggleLayer(4, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
 }
 
 static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)

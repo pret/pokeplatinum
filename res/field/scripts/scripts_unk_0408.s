@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0380.h"
 
-    .data
 
     ScriptEntry _0472
     ScriptEntry _0472
@@ -413,6 +412,4 @@ _0667:
     CallCommonScript 0x7F6
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

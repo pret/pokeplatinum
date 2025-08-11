@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_218_gate_to_jubilife_city.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D
@@ -67,4 +66,4 @@ _00A7:
     SetFlag FLAG_UNK_0x0084
     GoTo _005E
 
-    .byte 0
+    .balign 4, 0

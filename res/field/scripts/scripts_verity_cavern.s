@@ -4,7 +4,6 @@
 #define LOCALID_MESPRIT 0
 #define LOCALID_ROWAN   1
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry VerityCavern_Mesprit
@@ -112,22 +111,22 @@ VerityCavern_ResetRoamingMespritState:
 
     .balign 4, 0
 _0190:
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
 _0198:
-    MoveAction_033
-    MoveAction_063 2
-    MoveAction_032
+    WalkOnSpotNormalSouth
+    Delay8 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01A8:
-    MoveAction_013 9
+    WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_001
+    FaceSouth
     EndMovement

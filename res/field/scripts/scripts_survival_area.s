@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area.h"
 
-    .data
 
     ScriptEntry _005C
     ScriptEntry _006F
@@ -107,13 +106,13 @@ _00D5:
 
     .balign 4, 0
 _011C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0124:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
 _0130:
@@ -242,5 +241,4 @@ _02DC:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

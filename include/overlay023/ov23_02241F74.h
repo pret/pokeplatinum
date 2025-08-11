@@ -4,21 +4,22 @@
 #include "struct_decls/struct_02029894_decl.h"
 
 #include "field/field_system_decl.h"
-#include "overlay023/funcptr_ov23_022427DC.h"
 #include "overlay023/funcptr_ov23_022431EC.h"
-#include "overlay023/struct_ov23_0224271C_decl.h"
-#include "overlay023/struct_ov23_02253E2C_decl.h"
+#include "overlay023/underground_defs.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "savedata.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
-UnkStruct_ov23_02253E2C *ov23_0224219C(void);
-UnkStruct_ov23_02253E2C *ov23_022421AC(void);
-UnkStruct_ov23_02253E2C *ov23_022421BC(void);
-UnkStruct_ov23_02253E2C *ov23_022421CC(void);
-UnkStruct_ov23_02253E2C *ov23_022421DC(void);
+typedef Coordinates *(*CoordinatesGetter)(Coordinates *, int);
+
+UndergroundTextPrinter *CommManUnderground_GetCommonTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetCaptureFlagTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void);
 void ov23_022421EC(void);
 BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf *param3);
 BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3);
@@ -27,9 +28,9 @@ BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void *param2, void *param3);
 void ov23_02242624(int param0, int param1, void *param2, void *param3);
 void ov23_02242654(int param0, int param1, void *param2, void *param3);
-int ov23_0224271C(UnkStruct_ov23_0224271C *param0);
-int ov23_02242788(UnkStruct_ov23_0224271C *param0);
-void ov23_022427DC(int param0, UnkFuncPtr_ov23_022427DC param1);
+int Underground_CalculateCoordinatesIndexGet(Coordinates *coordinates);
+int Underground_CalculateCoordinatesIndexInsert(Coordinates *coordinates);
+void Underground_InitCoordinatesOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter);
 void ov23_022427F8(void);
 void ov23_02242814(void);
 void ov23_02242830(u8 param0);
@@ -42,10 +43,10 @@ void ov23_02242CB4(void);
 void ov23_02242D08(void);
 void ov23_02242D44(FieldSystem *fieldSystem);
 BOOL ov23_02242D60(Strbuf *param0);
-UnkStruct_02029894 *ov23_02242E10(SaveData *param0);
+UnkStruct_02029894 *ov23_02242E10(SaveData *saveData);
 int ov23_02242E28(void);
 int ov23_02242E40(void);
-BOOL ov23_02242E58(int param0, int param1);
+BOOL Underground_AreCoordinatesInSecretBase(int x, int z);
 int ov23_02242E78(int param0);
 int ov23_02242EE0(int param0);
 int ov23_02242F48(int param0);

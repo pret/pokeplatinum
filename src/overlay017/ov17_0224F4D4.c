@@ -22,7 +22,9 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon_sprite.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
@@ -32,10 +34,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
+#include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
@@ -127,7 +127,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02254AB4[] = {
     0xF
 };
 
-int ov17_0224F4D4(OverlayManager *param0, int *param1)
+int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0;
 
@@ -145,11 +145,11 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_24, 0x70000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224FCA0), HEAP_ID_24);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov17_0224FCA0), HEAP_ID_24);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224FCA0));
 
     v0->unk_0C = ov17_0223F140(HEAP_ID_24);
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 3;
     v0->unk_10.unk_00 = &v0->unk_00->unk_00;
@@ -162,7 +162,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     PaletteData_SetAutoTransparent(v0->unk_10.unk_C0, 1);
     PaletteData_AllocBuffer(v0->unk_10.unk_C0, 0, 0x200, HEAP_ID_24);
     PaletteData_AllocBuffer(v0->unk_10.unk_C0, 1, 0x200, HEAP_ID_24);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_24);
     PaletteData_AllocBuffer(v0->unk_10.unk_C0, 3, 0x200, HEAP_ID_24);
 
     v0->unk_10.unk_20 = BgConfig_New(HEAP_ID_24);
@@ -172,18 +172,18 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     ov17_0224FB34(v0->unk_10.unk_20);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_24);
 
     v0->unk_10.unk_18 = SpriteSystem_Alloc(HEAP_ID_24);
 
-    SpriteSystem_Init(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
+    SpriteSystem_Init(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_10.unk_1C = SpriteManager_New(v0->unk_10.unk_18);
-    SpriteSystem_InitSprites(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
+    SpriteSystem_InitSprites(v0->unk_10.unk_18, v0->unk_10.unk_1C, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
     v0->unk_10.unk_04 = PokemonSpriteManager_New(HEAP_ID_24);
 
@@ -191,7 +191,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     v0->unk_10.unk_B4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0218, HEAP_ID_24);
     v0->unk_10.unk_B8 = StringTemplate_Default(HEAP_ID_24);
-    v0->unk_10.unk_BC = Strbuf_Init((2 * 160), HEAP_ID_24);
+    v0->unk_10.unk_BC = Strbuf_Init(2 * 160, HEAP_ID_24);
     v0->unk_10.unk_C4 = sub_02012744(10, HEAP_ID_24);
 
     ov17_0224FE60(v0);
@@ -202,7 +202,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     ov17_02250744(v0);
 
     sub_02039734();
-    StartScreenTransition(1, 33, 33, 0x0, 6, 1, HEAP_ID_24);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_33, FADE_TYPE_UNK_33, COLOR_BLACK, 6, 1, HEAP_ID_24);
 
     v0->unk_04 = SysTask_Start(ov17_0224FAFC, v0, 80000);
     v0->unk_850 = 1;
@@ -220,18 +220,18 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov17_0224F754(OverlayManager *param0, int *param1)
+int ov17_0224F754(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_0224FCA0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     sub_02094E98(v0->unk_00);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             SetHBlankCallback(ov17_0224FAAC, v0);
-            v0->unk_848 = ov17_0223F70C(HEAP_ID_24, v0->unk_10.unk_C0, Unk_ov17_02254AB4, NELEMS(Unk_ov17_02254AB4), 0xff, (50000 + 5000));
+            v0->unk_848 = ov17_0223F70C(HEAP_ID_24, v0->unk_10.unk_C0, Unk_ov17_02254AB4, NELEMS(Unk_ov17_02254AB4), 0xff, 50000 + 5000);
             *param1 = 1;
         }
         break;
@@ -263,7 +263,7 @@ int ov17_0224F754(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -272,12 +272,12 @@ int ov17_0224F754(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov17_0224F86C(OverlayManager *param0, int *param1)
+int ov17_0224F86C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_0224FCA0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov17_0224FE50(v0);
     ov17_0224FE5C(v0);
@@ -293,7 +293,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 1);
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 2);
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 3);
-    Bg_ToggleLayer(4, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 4);
     SpriteSystem_FreeResourcesAndManager(v0->unk_10.unk_18, v0->unk_10.unk_1C);
     SpriteSystem_Free(v0->unk_10.unk_18);
@@ -315,14 +315,14 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_10.unk_B8);
     MessageLoader_Free(v0->unk_10.unk_B4);
 
-    Heap_FreeToHeap(v0->unk_10.unk_20);
+    Heap_Free(v0->unk_10.unk_20);
     SysTask_Done(v0->unk_04);
     SysTask_Done(v0->unk_08);
 
     ov17_0223F1E0(v0->unk_0C);
 
-    sub_0201E530();
-    OverlayManager_FreeData(param0);
+    DisableTouchPad();
+    ApplicationManager_FreeData(appMan);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -373,9 +373,9 @@ static void ov17_0224FAAC(void *param0)
         v1 = GX_GetVCount();
 
         if ((v1 >= (0x13 - 1) * 8) && (v1 <= (0x13 - 0) * 8)) {
-            Bg_SetPriority(1, 0);
+            Bg_SetPriority(BG_LAYER_MAIN_1, 0);
         } else if (v1 < (0x13 - 1) * 8) {
-            Bg_SetPriority(1, 2);
+            Bg_SetPriority(BG_LAYER_MAIN_1, 2);
         }
     }
 }
@@ -385,7 +385,7 @@ static void ov17_0224FAE4(SysTask *param0, void *param1)
     UnkStruct_ov17_0224FCA0 *v0 = param1;
 
     if (v0->unk_127B == 1) {
-        Bg_SetPriority(1, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 2);
     }
 }
 
@@ -444,64 +444,61 @@ static void ov17_0224FB34(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x14000,
-                GX_BG_EXTPLTT_01,
-                2,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x14000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 2,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_ClearTilemap(param0, 2);
-        Bg_SetOffset(param0, 2, 0, 0);
-        Bg_SetOffset(param0, 2, 3, 0);
-        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
-        Bg_ClearTilemap(param0, 3);
-        Bg_SetOffset(param0, 3, 0, 0);
-        Bg_SetOffset(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -510,40 +507,39 @@ static void ov17_0224FB34(BgConfig *param0)
     {
         BgTemplate v3[] = {
             {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x7800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x7800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_SetOffset(param0, 4, 0, 0);
-        Bg_SetOffset(param0, 4, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0, 3, 0);
     }
 }
 
 static void ov17_0224FCA0(UnkStruct_ov17_0224FCA0 *param0)
 {
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[0], 1, 0x2, 0x13, 27, 4, 13, ((18 + 12) + 1));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[1], 1, 6, 1 + 4 * 0, 8, 3, 13, (((18 + 12) + 1) + (27 * 4)));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[2], 1, 6, 1 + 4 * 1, 8, 3, 13, ((((18 + 12) + 1) + (27 * 4)) + (8 * 3)));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[3], 1, 6, 1 + 4 * 2, 8, 3, 13, (((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[4], 1, 6, 1 + 4 * 3, 8, 3, 13, ((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[5], 1, 0x10, 1 + 4 * 0, 8, 3, 13, (((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[6], 1, 0x10, 1 + 4 * 1, 8, 3, 13, ((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[7], 1, 0x10, 1 + 4 * 2, 8, 3, 13, (((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
-    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[8], 1, 0x10, 1 + 4 * 3, 8, 3, 13, ((((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[0], 1, 0x2, 0x13, 27, 4, 13, (18 + 12) + 1);
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[1], 1, 6, 1 + 4 * 0, 8, 3, 13, ((18 + 12) + 1) + (27 * 4));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[2], 1, 6, 1 + 4 * 1, 8, 3, 13, (((18 + 12) + 1) + (27 * 4)) + (8 * 3));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[3], 1, 6, 1 + 4 * 2, 8, 3, 13, ((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[4], 1, 6, 1 + 4 * 3, 8, 3, 13, (((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[5], 1, 0x10, 1 + 4 * 0, 8, 3, 13, ((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[6], 1, 0x10, 1 + 4 * 1, 8, 3, 13, (((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[7], 1, 0x10, 1 + 4 * 2, 8, 3, 13, ((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3));
+    Window_Add(param0->unk_10.unk_20, &param0->unk_10.unk_24[8], 1, 0x10, 1 + 4 * 3, 8, 3, 13, (((((((((18 + 12) + 1) + (27 * 4)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3)) + (8 * 3));
 }
 
 static void ov17_0224FDDC(void)
@@ -561,7 +557,7 @@ static void ov17_0224FDDC(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0224FE1C(UnkStruct_ov17_0224FCA0 *param0)
@@ -609,8 +605,8 @@ static void ov17_0224FE68(UnkStruct_ov17_0224FCA0 *param0)
 
 static void ov17_0224FE70(UnkStruct_ov17_0224FCA0 *param0)
 {
-    Graphics_LoadTilesToBgLayer(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
-    Graphics_LoadTilemapToBgLayer(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 19, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 20, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 34, 24, 1, 0, 0);
 }
 

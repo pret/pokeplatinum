@@ -34,12 +34,23 @@ c_args = [
     '-stdinc',
     '-sym', 'on',
     '-DPOKEPLATINUM_GENERATED_ENUM',
+    '-D_MSL_RESTRICT=',
 ]
+
+if get_option('revision') == '0'
+    c_args += [
+        '-DPOKEPLATINUM_REVISION=0'
+    ]
+else
+    c_args += [
+        '-DPOKEPLATINUM_REVISION=1'
+    ]
+endif
 
 if get_option('gdb_debugging')
     c_args += [
         '-O1,p',
-        '-inline', 'off'
+#        '-inline', 'off' todo: figure out why this makes the rom crash after the copyright screen
     ]
 else
     c_args += '-O4,p'
@@ -58,6 +69,12 @@ pokeplatinum_args = [
 
 if get_option('gdb_debugging')
     pokeplatinum_args += '-DGDB_DEBUGGING'
+endif
+
+if get_option('logging_enabled')
+    pokeplatinum_args += [
+        '-DLOGGING_ENABLED',
+    ]
 endif
 
 asm_args = [
@@ -85,27 +102,27 @@ link_args = [
 ############################################################
 nitrosdk_dep = dependency('NitroSDK',
     default_options: {
-        'mwrap_ver': '2.0/sp1p2',
+        'mwrap_sdk': '2.0/sp1p2',
         'sp1p3_conditionals': true
     }
 )
 
 nitrosystem_dep = dependency('NitroSystem',
     default_options: {
-        'mwrap_ver': '2.0/sp2'
+        'mwrap_sdk': '2.0/sp2',
     }
 )
 
 nitrowifi_dep = dependency('NitroWiFi',
     default_options: {
-        'mwrap_ver': '2.0/sp1p2',
+        'mwrap_sdk': '2.0/sp1p2',
         'sp1p3_conditionals': true
     }
 )
 
 nitrodwc_dep = dependency('NitroDWC',
     default_options: {
-        'mwrap_ver': '2.0/sp2p2',
+        'mwrap_sdk': '2.0/sp2p2',
         'link_ppwlobby': true
     }
 )
@@ -159,9 +176,7 @@ main = executable('main',
         pokeplatinum_asm,
         c_consts_generators,
         naix_headers,
-        tutorable_moves_h,
-        species_learnsets_by_tutor_h,
-        species_footprints_h,
+        h_headers,
     ],
     c_args: [
         pokeplatinum_args,
@@ -267,9 +282,14 @@ ovly_mapper = custom_target('overlay.map',
 ############################################################
 sha1sum = find_program(['sha1sum', 'shasum'], native: true)
 
-test('SBIN Checksums',
+test('SBIN Checksums - Shared',
     sha1sum,
     args: ['-c', '--quiet', sbins_sha1]
+)
+
+test('SBIN Checksums - For Revision',
+    sha1sum,
+    args: ['-c', '--quiet', sbins_for_rev_sha1]
 )
 
 test('Filesystem Checksums',

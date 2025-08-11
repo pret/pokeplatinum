@@ -3,11 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 
 static u8 ConvertToGxBgScreenSize(u8 bgScreenSize, u8 bgType);
 static void GetBgScreenTileDimensions(u8 bgScreenSize, u8 *outXTiles, u8 *outYTiles);
@@ -550,7 +550,7 @@ void Bg_FreeTilemapBuffer(BgConfig *bgConfig, u8 bgLayer)
         return;
     }
 
-    Heap_FreeToHeap(bgConfig->bgs[bgLayer].tilemapBuffer);
+    Heap_Free(bgConfig->bgs[bgLayer].tilemapBuffer);
     bgConfig->bgs[bgLayer].tilemapBuffer = NULL;
 }
 
@@ -796,7 +796,7 @@ void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, 
 
         CopyOrDecompressData(src, tmp, size);
         LoadBgVRAMScr(bgLayer, tmp, offset * 2, decompressedSize);
-        Heap_FreeToHeap(tmp);
+        Heap_Free(tmp);
 
         return;
     }
@@ -865,7 +865,7 @@ void Bg_LoadTilesToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32
 
         CopyOrDecompressData(src, tmp, size);
         LoadBgVRAMChar(bgLayer, tmp, offset, decompressedSize);
-        Heap_FreeToHeap(tmp);
+        Heap_Free(tmp);
 
         return;
     }
@@ -919,7 +919,7 @@ void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID)
     memset(buf, 0, size);
 
     LoadBgVRAMChar(bgLayer, buf, offset, size);
-    Heap_FreeToHeapExplicit(heapID, buf);
+    Heap_FreeExplicit(heapID, buf);
 }
 
 void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTiles, u32 offset)
@@ -937,7 +937,7 @@ void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTile
 
     MI_CpuFillFast(buf, fillVal, size);
     LoadBgVRAMChar(bgLayer, buf, offset * bgConfig->bgs[bgLayer].tileSize, size);
-    Heap_FreeToHeap(buf);
+    Heap_Free(buf);
 }
 
 void Bg_LoadPalette(u8 bgLayer, void *src, u16 size, u16 offset)
@@ -1676,7 +1676,7 @@ void Window_AddFromTemplate(BgConfig *bgConfig, Window *window, const WindowTemp
 
 void Window_Remove(Window *window)
 {
-    Heap_FreeToHeap(window->pixels);
+    Heap_Free(window->pixels);
 
     window->bgConfig = NULL;
     window->bgLayer = 0xFF;
@@ -1693,11 +1693,11 @@ void Windows_Delete(Window *window, u8 winCount)
 {
     for (u16 i = 0; i < winCount; i++) {
         if (window[i].pixels != NULL) {
-            Heap_FreeToHeap(window[i].pixels);
+            Heap_Free(window[i].pixels);
         }
     }
 
-    Heap_FreeToHeap(window);
+    Heap_Free(window);
 }
 
 typedef void (*WindowFunc)(Window *);
@@ -2187,7 +2187,7 @@ void Window_CopyGlyph(Window *window, const u8 *glyphPixels, u16 srcWidth, u16 s
             CopyGlyph8bpp(convertedSrc, 8, 8, srcRight - 8, srcBottom - 8, windowPixels, destX, destY, ConvertPixelsToTiles(destWidth), table);
             break;
         }
-        Heap_FreeToHeap(convertedSrc);
+        Heap_Free(convertedSrc);
     }
 }
 
@@ -2628,7 +2628,7 @@ u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *s
 
         ApplyFlipFlagsToTile(bgConfig, (tilemapBuffer[tilemapIndex] >> 10) & 3, tile);
         pixelVal = tile[xPixelOffset + yPixelOffset * 8];
-        Heap_FreeToHeap(tile);
+        Heap_Free(tile);
 
         if ((*src & (1 << pixelVal)) != 0) {
             return TRUE;
@@ -2642,7 +2642,7 @@ u8 Bg_DoesPixelAtXYMatchVal(BgConfig *bgConfig, u8 bgLayer, u16 x, u16 y, u16 *s
             ApplyFlipFlagsToTile(bgConfig, (tilemapBuffer[tilemapIndex] >> 10) & 3, tile);
 
             pixelVal = tile[xPixelOffset + yPixelOffset * 8];
-            Heap_FreeToHeap(tile);
+            Heap_Free(tile);
         } else {
             u8 *tilemapBuffer = bgConfig->bgs[bgLayer].tilemapBuffer;
             pixelVal = charPtr[tilemapBuffer[tilemapIndex] * TILE_SIZE_8BPP + xPixelOffset + yPixelOffset * 8];
@@ -2689,5 +2689,5 @@ static void ApplyFlipFlagsToTile(BgConfig *bgConfig, u8 flags, u8 *tile)
         memcpy(tile, buf, 64);
     }
 
-    Heap_FreeToHeap(buf);
+    Heap_Free(buf);
 }

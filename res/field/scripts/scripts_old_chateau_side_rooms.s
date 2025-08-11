@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/old_chateau_side_rooms.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -15,4 +14,4 @@ _0006:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

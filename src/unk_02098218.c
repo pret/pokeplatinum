@@ -9,6 +9,7 @@
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0209843C.h"
 
+#include "applications/naming_screen.h"
 #include "field/field_system.h"
 #include "overlay005/daycare.h"
 #include "overlay119/ov119_021D0D80.h"
@@ -19,6 +20,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "field_transition.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -30,34 +32,31 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_02024220.h"
 #include "unk_0202F180.h"
-#include "unk_0208694C.h"
 #include "unk_02092494.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"
 
 FS_EXTERN_OVERLAY(overlay119);
 
-static int sub_02098218(OverlayManager *param0, int *param1);
-static int sub_02098304(OverlayManager *param0, int *param1);
-static int sub_02098388(OverlayManager *param0, int *param1);
+static int sub_02098218(ApplicationManager *appMan, int *param1);
+static int sub_02098304(ApplicationManager *appMan, int *param1);
+static int sub_02098388(ApplicationManager *appMan, int *param1);
 
-const OverlayManagerTemplate Unk_020F67FC = {
+const ApplicationManagerTemplate Unk_020F67FC = {
     sub_02098218,
     sub_02098304,
     sub_02098388,
     FS_OVERLAY_ID(overlay119)
 };
 
-static int sub_02098218(OverlayManager *param0, int *param1)
+static int sub_02098218(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0209843C *v0;
     UnkStruct_ov119_021D0FD0 *v1;
@@ -66,14 +65,14 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     DisableHBlank();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_71, 0x40000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov119_021D0FD0), HEAP_ID_71);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov119_021D0FD0), HEAP_ID_71);
     memset(v1, 0, sizeof(UnkStruct_ov119_021D0FD0));
 
-    v0 = OverlayManager_Args(param0);
+    v0 = ApplicationManager_Args(appMan);
 
     v1->unk_00 = v0;
-    v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
-    v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
+    v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.options);
+    v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.options);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = PokemonSpriteManager_New(HEAP_ID_71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_71);
@@ -103,13 +102,13 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int sub_02098304(OverlayManager *param0, int *param1)
+static int sub_02098304(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov119_021D0FD0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             (*param1)++;
         }
 
@@ -141,7 +140,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
         ov119_021D1004();
     } break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
 
@@ -151,11 +150,11 @@ static int sub_02098304(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int sub_02098388(OverlayManager *param0, int *param1)
+static int sub_02098388(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov119_021D0FD0 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
 
-    sub_020242C4(v0->unk_04.unk_34);
+    G3DPipelineBuffers_Free(v0->unk_04.unk_34);
 
     GXLayers_EngineAToggleLayers(1, 0);
     GXLayers_EngineAToggleLayers(2, 0);
@@ -173,7 +172,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 3);
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
 
-    Heap_FreeToHeap(v0->unk_04.unk_00);
+    Heap_Free(v0->unk_04.unk_00);
     VramTransfer_Free();
     PokemonSpriteManager_Free(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
@@ -181,7 +180,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
 
     ov119_021D1844(&v0->unk_04);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_71);
 
     SetVBlankCallback(NULL, NULL);
@@ -236,15 +235,15 @@ static BOOL sub_0209843C(FieldTask *param0)
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = sub_0208712C(HEAP_ID_FIELDMAP, 1, v9, 10, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
+        v0->unk_08 = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, NAMING_SCREEN_TYPE_POKEMON, v9, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
         v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
-        FieldTask_RunApplication(param0, &Unk_020F2DAC, v0->unk_08);
+        FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v0->unk_08);
         v0->unk_00++;
     } break;
     case 4:
         if (v0->unk_08->unk_14 == 0) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->unk_18);
+            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v0->unk_08->textInputStr);
 
             {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -254,7 +253,7 @@ static BOOL sub_0209843C(FieldTask *param0)
             }
         }
 
-        sub_0208716C(v0->unk_08);
+        NamingScreenArgs_Free(v0->unk_08);
         v0->unk_00++;
         break;
     case 5:
@@ -262,7 +261,7 @@ static BOOL sub_0209843C(FieldTask *param0)
         v0->unk_00++;
         break;
     case 6:
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return 1;
     }
 
@@ -274,7 +273,7 @@ void sub_020985AC(FieldTask *param0, void *param1)
     UnkStruct_0209843C *v0;
     UnkStruct_0203E2FC *v1;
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0209843C));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209843C));
     memset(v0, 0, sizeof(UnkStruct_0209843C));
 
     v1 = (UnkStruct_0203E2FC *)param1;

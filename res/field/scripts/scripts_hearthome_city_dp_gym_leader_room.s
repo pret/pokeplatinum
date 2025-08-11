@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_dp_gym_leader_room.h"
 
-    .data
 
     ScriptEntry _0014
     ScriptEntry _012B
@@ -101,34 +100,34 @@ _0173:
 
     .balign 4, 0
 _018C:
-    MoveAction_002 4
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
+    FaceWest 4
+    FaceNorth 4
+    FaceEast 4
+    FaceSouth 4
     EndMovement
 
     .balign 4, 0
 _01A0:
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
-    MoveAction_000 4
+    FaceEast 4
+    FaceSouth 4
+    FaceWest 4
+    FaceNorth 4
     EndMovement
 
     .balign 4, 0
 _01B4:
-    MoveAction_000 4
-    MoveAction_002 4
-    MoveAction_001 4
-    MoveAction_003 4
+    FaceNorth 4
+    FaceWest 4
+    FaceSouth 4
+    FaceEast 4
     EndMovement
 
     .balign 4, 0
 _01C8:
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
+    FaceNorth 4
+    FaceEast 4
+    FaceSouth 4
+    FaceWest 4
     EndMovement
 
 _01DC:
@@ -136,5 +135,4 @@ _01DC:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

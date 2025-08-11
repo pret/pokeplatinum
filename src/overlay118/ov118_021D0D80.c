@@ -5,7 +5,6 @@
 
 #include "generated/species.h"
 
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_0207F248.h"
 
 #include "camera.h"
@@ -14,6 +13,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
@@ -22,7 +22,6 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -35,7 +34,7 @@ typedef struct OverlayMetadata_t {
     int unk_0C;
     u32 unk_10;
     int unk_14;
-    UnkStruct_02014014 *unk_18;
+    ParticleSystem *unk_18;
 } OverlayMetadata;
 
 static void ov118_021D0F70(GameWindowLayout *param0);
@@ -64,13 +63,13 @@ void ov118_021D0D80(GameWindowLayout *param0)
 
     param0->unk_B24 = Heap_AllocFromHeap(HEAP_ID_12, sizeof(OverlayMetadata));
     MI_CpuClear8(param0->unk_B24, sizeof(OverlayMetadata));
-    param0->unk_B24->unk_14 = param0->unk_B11;
+    param0->unk_B24->unk_14 = param0->partySlot;
 }
 
 int ov118_021D0DBC(GameWindowLayout *param0)
 {
     OverlayMetadata *v0 = param0->unk_B24;
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
 
     switch (v0->unk_00) {
     case 0: {
@@ -93,7 +92,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
             break;
         }
 
-        Pokedex_Capture(SaveData_GetPokedex(FieldSystem_GetSaveData(param0->unk_5A4->unk_1C)), v1);
+        Pokedex_Capture(SaveData_GetPokedex(FieldSystem_GetSaveData(param0->partyManagementData->fieldSystem)), v1);
     }
         v0->unk_00++;
         break;
@@ -114,12 +113,12 @@ int ov118_021D0DBC(GameWindowLayout *param0)
         v0->unk_04++;
 
         if (v0->unk_04 == v0->unk_08) {
-            sub_02082DA8(param0, param0->unk_B11);
+            sub_02082DA8(param0, param0->partySlot);
         }
 
         ov118_021D10E8();
 
-        if ((v0->unk_04 > v0->unk_08) && (sub_02014710(v0->unk_18) == 0)) {
+        if ((v0->unk_04 > v0->unk_08) && (ParticleSystem_GetActiveEmitterCount(v0->unk_18) == 0)) {
             v0->unk_00++;
         }
         break;
@@ -128,7 +127,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
         v0->unk_00++;
         break;
     case 7:
-        Pokemon_IsEligibleForAction(v1);
+        Pokemon_PlayCry(v1);
         v0->unk_00++;
         break;
     case 8:
@@ -139,19 +138,19 @@ int ov118_021D0DBC(GameWindowLayout *param0)
     case 9: {
         Strbuf *v2;
 
-        v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
+        v2 = MessageLoader_GetNewStrbuf(param0->messageLoader, 202);
 
-        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
-        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v2);
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v1));
+        StringTemplate_Format(param0->template, param0->unk_6A4, v2);
         Strbuf_Free(v2);
         sub_02082708(param0, 0xffffffff, 1);
     }
         v0->unk_00++;
         break;
     case 10:
-        if (Text_IsPrinterActive(param0->unk_B10) == 0) {
+        if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
             ov118_021D0F70(param0);
-            param0->unk_5A4->unk_23 = 0;
+            param0->partyManagementData->menuSelectionResult = 0;
             return 1;
         }
 
@@ -163,7 +162,7 @@ int ov118_021D0DBC(GameWindowLayout *param0)
 
 static void ov118_021D0F70(GameWindowLayout *param0)
 {
-    Heap_FreeToHeap(param0->unk_B24);
+    Heap_Free(param0->unk_B24);
     param0->unk_B24 = NULL;
 }
 
@@ -188,30 +187,30 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
     void *v0;
     Camera *camera;
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 
     v0 = Heap_AllocFromHeap(HEAP_ID_12, 0x4800);
-    param0->unk_18 = sub_02014014(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, HEAP_ID_12);
-    camera = sub_02014784(param0->unk_18);
+    param0->unk_18 = ParticleSystem_New(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, HEAP_ID_12);
+    camera = ParticleSystem_GetCamera(param0->unk_18);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
 }
 
 static void ov118_021D1028(OverlayMetadata *param0)
 {
-    void *v0 = sub_020144C4(185, param0->unk_10, 12);
-    sub_020144CC(param0->unk_18, v0, (1 << 1) | (1 << 3), 1);
+    void *v0 = ParticleSystem_LoadResourceFromNARC(185, param0->unk_10, 12);
+    ParticleSystem_SetResource(param0->unk_18, v0, (1 << 1) | (1 << 3), 1);
 
     switch (param0->unk_0C) {
     case SPECIES_GIRATINA:
-        sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
-        sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
-        sub_020146F4(param0->unk_18, 2, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 0, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 1, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 2, ov118_021D10B0, param0);
         Sound_PlayEffect(SEQ_SE_PL_W467109);
         break;
     case SPECIES_SHAYMIN:
-        sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
-        sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 0, ov118_021D10B0, param0);
+        ParticleSystem_CreateEmitterWithCallback(param0->unk_18, 1, ov118_021D10B0, param0);
         Sound_PlayEffect(SEQ_SE_PL_W363);
         break;
     }
@@ -219,7 +218,7 @@ static void ov118_021D1028(OverlayMetadata *param0)
 
 static void ov118_021D10B0(SPLEmitter *param0)
 {
-    OverlayMetadata *v0 = sub_02014764();
+    OverlayMetadata *v0 = ParticleSystem_GetEmitterCallbackParam();
 
     SPLEmitter_SetPosX(param0, Unk_ov118_021D1170[v0->unk_14][0]);
     SPLEmitter_SetPosY(param0, Unk_ov118_021D1170[v0->unk_14][1]);
@@ -231,13 +230,13 @@ static int ov118_021D10E8(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     return v0;
@@ -245,9 +244,9 @@ static int ov118_021D10E8(void)
 
 static void ov118_021D110C(OverlayMetadata *param0)
 {
-    void *v0 = sub_02014730(param0->unk_18);
-    sub_0201411C(param0->unk_18);
-    Heap_FreeToHeap(v0);
+    void *v0 = ParticleSystem_GetHeapStart(param0->unk_18);
+    ParticleSystem_Free(param0->unk_18);
+    Heap_Free(v0);
 }
 
 static u32 ov118_021D1128(u32 param0, BOOL param1)
@@ -256,7 +255,7 @@ static u32 ov118_021D1128(u32 param0, BOOL param1)
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_TEXKEY);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     return NNS_GfdGetTexKeyAddr(v0);
 }
@@ -268,7 +267,7 @@ static u32 ov118_021D114C(u32 param0, BOOL param1)
     v0 = NNS_GfdAllocPlttVram(param0, param1, NNS_GFD_ALLOC_FROM_LOW);
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     return NNS_GfdGetPlttKeyAddr(v0);
 }

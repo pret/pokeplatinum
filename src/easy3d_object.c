@@ -51,7 +51,7 @@ void Easy3DModel_Release(Easy3DModel *model)
     }
 
     if (model->data) {
-        Heap_FreeToHeap(model->data);
+        Heap_Free(model->data);
     }
 
     memset(model, 0, sizeof(Easy3DModel));
@@ -77,7 +77,7 @@ void Easy3DAnim_Release(Easy3DAnim *anim, NNSFndAllocator *allocator)
         NNS_G3dFreeAnmObj(allocator, anim->animObj);
 
         if (anim->dataBorrowed == FALSE) {
-            Heap_FreeToHeap(anim->data);
+            Heap_Free(anim->data);
         }
     }
 
@@ -188,12 +188,12 @@ void Easy3DObject_DrawRotated(Easy3DObject *obj, const MtxFx33 *rotation)
     }
 }
 
-void Easy3DObject_SetVisibility(Easy3DObject *obj, BOOL visible)
+void Easy3DObject_SetVisible(Easy3DObject *obj, BOOL visible)
 {
     obj->visible = visible;
 }
 
-BOOL Easy3DObject_GetVisibility(const Easy3DObject *obj)
+BOOL Easy3DObject_IsVisible(const Easy3DObject *obj)
 {
     return obj->visible;
 }

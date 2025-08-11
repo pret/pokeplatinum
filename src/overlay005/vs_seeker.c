@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "map_header_data.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "player_avatar.h"
 #include "script_manager.h"
 #include "sound_playback.h"
@@ -467,7 +467,7 @@ static BOOL VsSeeker_ExecuteTask(FieldTask *taskMan)
         VsSeekerSystem_SetState(vsSeeker, 9);
         break;
     case VS_SEEKER_STATE_DONE:
-        Heap_FreeToHeap(vsSeeker);
+        Heap_Free(vsSeeker);
         return TRUE;
     }
 
@@ -643,7 +643,7 @@ static void VsSeeker_TrackAnimation(SysTask *task, void *param)
 
         MapObject_FinishAnimation(vssAnimTask->animationTask);
         SysTask_Done(vssAnimTask->trackingTask);
-        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param);
+        Heap_FreeExplicit(HEAP_ID_FIELD, param);
     }
 }
 

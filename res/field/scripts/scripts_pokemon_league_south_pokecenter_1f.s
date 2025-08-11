@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_south_pokecenter_1f.h"
 
-    .data
 
     ScriptEntry _0020
     ScriptEntry _002C
@@ -25,7 +24,7 @@ _002C:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
@@ -35,7 +34,7 @@ _0042:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll
     End
@@ -60,5 +59,4 @@ _006B:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

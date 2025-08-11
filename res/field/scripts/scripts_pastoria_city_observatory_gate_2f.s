@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_observatory_gate_2f.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _0078

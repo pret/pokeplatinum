@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="38468" />
+	<row id="FieldMoves_Text_WouldYouLikeToUseCut" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This tree looks like it can be\ncut down! Would you like to cut it?</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedCut" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Cut!\r</language>
+	</row>
+	<row id="FieldMoves_Text_TreeLooksLikeCanBeCut" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This tree looks like it can be\ncut down!</language>
+	</row>
+	<row id="FieldMoves_Text_WouldYouLikeToUseRockSmash" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This rock appears to be breakable.\nWould you like to use Rock Smash?</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonMayBeAbleToSmashRock" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a rugged rock, but a Pokémon\nmay be able to smash it.</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedRockSmash" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Rock Smash!\r</language>
+	</row>
+	<row id="FieldMoves_Text_WouldYouLikeToUseStrength" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a big boulder, but a Pokémon\nmay be able to push it aside.\rWould you like to use Strength?</language>
+	</row>
+	<row id="FieldMoves_Text_Dummy7" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="FieldMoves_Text_BoulderMayBeAbleToPush" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a big boulder, but a Pokémon\nmay be able to push it aside.</language>
+	</row>
+	<row id="FieldMoves_Text_StrengthMadePossibleToMove" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Strength made it possible to move\nboulders around.</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedStrength" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Strength!\r</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonStrengthMadePossibleToMove" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0}’s Strength made it\npossible to move boulders around!</language>
+	</row>
+	<row id="FieldMoves_Text_WouldYouLikeToUseSurf" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The water is a deep blue color...\nWould you like to surf on it?</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedSurf" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Surf!\r</language>
+	</row>
+	<row id="FieldMoves_Text_NoSurfingWithPartner" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Surf can’t be used if you have\nsomeone with you.</language>
+	</row>
+	<row id="FieldMoves_Text_WouldYouLikeToUseDefog_Unused" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A deep fog drapes the area...\nWould you like to use Defog?</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedDefog" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Defog!\r</language>
+	</row>
+	<row id="FieldMoves_Text_DeepFogDrapesArea_Unused" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A deep fog drapes the area...\nWill a Pokémon’s move lift it?</language>
+	</row>
+	<row id="FieldMoves_Text_WouldYouLikeToUseRockClimb" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The wall is very rocky...\nWould you like to use Rock Climb?</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedRockClimb" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Rock Climb!\r</language>
+	</row>
+	<row id="FieldMoves_Text_RockyWallWillMoveScale" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The wall is very rocky...\nWill a Pokémon’s move scale it?</language>
+	</row>
+	<row id="FieldMoves_Text_NoRockClimbingWithPartner" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rock Climb can’t be used if you have\nsomeone with you.</language>
+	</row>
+	<row id="FieldMoves_Text_WouldYouLikeToUseWaterfall" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a large waterfall.\nWould you like to use Waterfall?</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedWaterfall" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Waterfall.\r</language>
+	</row>
+	<row id="FieldMoves_Text_WallOfWater" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A wall of water is crashing down with\na mighty roar.</language>
+	</row>
+	<row id="FieldMoves_Text_Dummy25" index="25">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="FieldMoves_Text_PokemonUsedFlash" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} used Flash!\r</language>
+	</row>
+</body>

@@ -11,7 +11,7 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 
 #include "brightness_controller.h"
-#include "math.h"
+#include "math_util.h"
 #include "palette.h"
 #include "sprite_system.h"
 

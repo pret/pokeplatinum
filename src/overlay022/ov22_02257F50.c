@@ -18,7 +18,7 @@
 #include "overlay022/struct_ov22_022599A0.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_0200679C.h"
@@ -335,7 +335,7 @@ BOOL ov22_02258304(UnkStruct_ov22_02257F50 *param0, int param1, int param2)
     v0.rect.left = (8 + 2);
     v0.rect.right = (8 + 2) + (112 - (2 * 2));
 
-    return sub_02022830(&v0, param1, param2);
+    return TouchScreen_IsTouchInHitTable(&v0, param1, param2);
 }
 
 UnkStruct_ov22_02259560 *ov22_02258320(UnkStruct_ov22_02257F50 *param0, int *param1, int *param2, NNSG2dCharacterData **param3)
@@ -367,7 +367,7 @@ void ov22_02258354(UnkStruct_ov22_02257F50 *param0, int param1)
     UnkStruct_ov22_022599A0 v0;
 
     v0.unk_00 = param0->unk_44.unk_10;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = (param1) * 2 + 129;
     v0.unk_0C = 133;
     v0.unk_10 = (param1) * 2 + 129 + 1;
@@ -390,7 +390,7 @@ void ov22_022583A0(UnkStruct_ov22_02257F50 *param0, int param1, int param2, int 
     int v1, v2;
 
     v0.unk_00 = param0->unk_44.unk_10;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = (param1) * 2 + 129;
     v0.unk_0C = 133;
     v0.unk_10 = (param1) * 2 + 129 + 1;
@@ -510,7 +510,7 @@ static void ov22_022584F0(UnkStruct_ov22_02257F50_sub1_sub1 *param0, int param1)
 
 static void ov22_02258534(UnkStruct_ov22_02257F50_sub1_sub1 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     param0->unk_00 = NULL;
     memset(param0, 0, sizeof(UnkStruct_ov22_02257F50_sub1_sub1));
 }
@@ -598,11 +598,8 @@ static void ov22_02258610(int param0, int *param1, int *param2)
 
 static void ov22_0225864C(UnkStruct_ov22_02257F50 *param0, int param1, int param2, int param3, int param4)
 {
-    SysTask *v0;
-    UnkStruct_ov22_022586C4 *v1;
-
-    v0 = SysTask_StartAndAllocateParam(ov22_022586C4, sizeof(UnkStruct_ov22_022586C4), 0, 13);
-    v1 = SysTask_GetParam(v0);
+    SysTask *v0 = SysTask_StartAndAllocateParam(ov22_022586C4, sizeof(UnkStruct_ov22_022586C4), 0, 13);
+    UnkStruct_ov22_022586C4 *v1 = SysTask_GetParam(v0);
 
     v1->unk_00 = param0;
     v1->unk_04 = param1;
@@ -687,7 +684,7 @@ static void ov22_022586C4(SysTask *param0, void *param1)
 
         v0->unk_00->unk_00.unk_3C = 0;
 
-        Heap_FreeToHeap(v0->unk_28);
+        Heap_Free(v0->unk_28);
         SysTask_FinishAndFreeParam(param0);
 
         return;

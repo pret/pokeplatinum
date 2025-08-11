@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_mansion_maids_room.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0068
@@ -78,6 +77,4 @@ _00D3:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

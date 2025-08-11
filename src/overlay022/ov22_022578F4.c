@@ -264,7 +264,7 @@ BOOL ov22_02257C04(UnkStruct_ov22_02257964 *param0, int param1, int param2)
     v0.rect.left = (136 + 2);
     v0.rect.right = (136 + 2) + (112 - (2 * 2));
 
-    return sub_02022830(&v0, param1, param2);
+    return TouchScreen_IsTouchInHitTable(&v0, param1, param2);
 }
 
 UnkStruct_ov22_02259560 *ov22_02257C20(UnkStruct_ov22_02257964 *param0, int *param1, int *param2, NNSG2dCharacterData **param3)
@@ -304,7 +304,7 @@ void ov22_02257C88(UnkStruct_ov22_02257964 *param0, int param1, int heapID)
     UnkStruct_ov22_022599A0 v0;
 
     v0.unk_00 = param0->unk_2C.unk_14;
-    v0.unk_04 = 25;
+    v0.narcID = NARC_INDEX_GRAPHIC__IMAGECLIP;
     v0.unk_08 = (param1) * 4 + 134;
     v0.unk_0C = (param1) * 4 + 134 + 1;
     v0.unk_10 = (param1) * 4 + 134 + 2;

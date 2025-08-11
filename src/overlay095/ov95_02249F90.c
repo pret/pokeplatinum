@@ -13,10 +13,10 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 
 enum {
     UnkEnum_ov95_0224A020_00 = 0x50,
@@ -68,7 +68,7 @@ void ov95_02249FB4(void *param0)
         int v1;
 
         ov95_0224A320(v0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 }
 
@@ -96,7 +96,7 @@ BOOL ov95_02249FC8(void *param0, int *param1)
 static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     ov95_0224A10C(param0);
-    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, HEAP_ID_58);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -105,7 +105,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_10 = UnkEnum_ov95_0224A020_02 << 12;
             param0->unk_14 = UnkEnum_ov95_0224A020_00 << 12;
             param0->unk_18 = ((UnkEnum_ov95_0224A020_03 - UnkEnum_ov95_0224A020_02) << 12) / UnkEnum_ov95_0224A020_04;
@@ -119,12 +119,12 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
     case 1:
         if (param0->unk_20) {
             Sound_PlayEffect(SEQ_SE_DP_KOUKAN03);
-            StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, HEAP_ID_58);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
         break;
@@ -171,68 +171,65 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
         GX_BG0_AS_3D
     };
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x1000,
-        0,
-        2,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xd000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        1,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x512,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const BgTemplate v3 = {
-        0,
-        0,
-        0x1000,
-        0,
-        2,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x10000,
-        GX_BG_EXTPLTT_01,
-        2,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x512,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
     static const BgTemplate v4 = {
-        0,
-        0,
-        0x0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xf000,
-        GX_BG_CHARBASE_0x04000,
-        GX_BG_EXTPLTT_01,
-        3,
-        1,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 1,
+        .mosaic = FALSE,
     };
 
     GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     SetAllGraphicsModes(&v1);
 
-    Bg_InitFromTemplate(param0->unk_0C, 1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 5, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 2, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 3, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_0C, 7, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_2, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_MAIN_3, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_0C, BG_LAYER_SUB_3, &v4, 0);
 
-    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
-    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 19, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 18, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
 
-    Graphics_LoadPalette(93, 20, 0, 0, 0x20, HEAP_ID_58);
-    Graphics_LoadPalette(93, 20, 4, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 0, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 20, 4, 0, 0x20, HEAP_ID_58);
 
     Bg_FillTilesRange(param0->unk_0C, 1, 0x0, 1, 200);
     Bg_FillTilesRange(param0->unk_0C, 5, 0x0, 1, 200);
@@ -262,12 +259,12 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
 
 static void ov95_0224A320(UnkStruct_ov95_02249FF8 *param0)
 {
-    Bg_FreeTilemapBuffer(param0->unk_0C, 3);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 7);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 2);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 6);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 1);
-    Bg_FreeTilemapBuffer(param0->unk_0C, 5);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_0C, BG_LAYER_SUB_1);
 }
 
 static void ov95_0224A358(BgConfig *param0, int param1, int param2)
@@ -275,7 +272,7 @@ static void ov95_0224A358(BgConfig *param0, int param1, int param2)
     param2 &= 0x1ff;
     param1 &= 0x1ff;
 
-    Bg_SetOffset(param0, 2, 3, param2);
-    Bg_SetOffset(param0, 1, 3, param1);
-    Bg_SetOffset(param0, 5, 3, param1 + 192);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, param2);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, param1);
+    Bg_SetOffset(param0, BG_LAYER_SUB_1, 3, param1 + 192);
 }

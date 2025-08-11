@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0381.h"
+#include "res/text/bank/unk_0383.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _00AB
@@ -86,10 +85,10 @@ _00DF:
 
 _00E8:
     GoToIfUnset FLAG_UNK_0x09BA, _0104
-    ScrCmd_1E8 VAR_RESULT
+    CheckLocalDexCompleted VAR_RESULT
     CallIfEq VAR_RESULT, 1, _0120
 _0104:
-    ScrCmd_11E VAR_0x8004
+    GetLocalDexSeenCount VAR_0x8004
     BufferNumber 0, VAR_0x8004
     Message 1
     ScrCmd_123 0, VAR_RESULT
@@ -103,7 +102,7 @@ _0120:
     Return
 
 _0126:
-    ScrCmd_121 VAR_0x8004
+    GetNationalDexCaughtCount VAR_0x8004
     GetPlayerGender VAR_0x8005
     BufferNumber 0, VAR_0x8004
     Message 20
@@ -113,5 +112,4 @@ _0126:
     WaitABPress
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

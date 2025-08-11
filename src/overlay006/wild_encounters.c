@@ -36,7 +36,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_tile_behavior.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -223,7 +223,7 @@ static void WildEncounters_ReplaceTrophyGardenEncounters(FieldSystem *fieldSyste
                 *trophySlot2 = trophyGardenData[index2];
             }
 
-            Heap_FreeToHeap(trophyGardenData);
+            Heap_Free(trophyGardenData);
         }
     }
 }
@@ -504,7 +504,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         CreateWildSingleBattle(fieldSystem, safariGameActive, &battleParams);
     } else {
-        battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
+        battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_AI_PARTNER);
     }
 
     FieldBattleDTO_Init(battleParams, fieldSystem);
@@ -618,7 +618,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
 
         if (TryEncounterRoamer(fieldSystem, &roamer)) {
             if (!RepelPreventsEncounter(Roamer_GetData(roamer, ROAMER_DATA_LEVEL), &encounterFieldParams)) {
-                *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_ROAMER);
+                *battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_ROAMER);
 
                 FieldBattleDTO_Init(*battleParams, fieldSystem);
                 AddRoamerToEnemyParty(encounterFieldParams.trainerID, roamer, *battleParams);
@@ -634,7 +634,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         safariGameActive = SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
         CreateWildSingleBattle(fieldSystem, safariGameActive, battleParams);
     } else {
-        *battleParams = FieldBattleDTO_New(11, BATTLE_TYPE_AI_PARTNER);
+        *battleParams = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_AI_PARTNER);
     }
 
     FieldBattleDTO_Init(*battleParams, fieldSystem);
@@ -1041,7 +1041,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
     Pokemon_InitWith(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partySlot, encounterFieldParams, newEncounter, battleParams));
-    Heap_FreeToHeap(newEncounter);
+    Heap_Free(newEncounter);
 }
 
 static void CreateWildMon(u16 species, u8 level, const int partyDest, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
@@ -1075,7 +1075,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
         Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
         GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
-        Heap_FreeToHeap(newEncounter);
+        Heap_Free(newEncounter);
         return;
     }
 
@@ -1083,7 +1083,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
     Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
-    Heap_FreeToHeap(newEncounter);
+    Heap_Free(newEncounter);
 }
 
 static BOOL TryGenerateWildMon(Pokemon *firstPartyMon, const int fishingRodType, const WildEncounters_FieldParams *encounterFieldParams, const EncounterSlot *encounterTable, const u8 encounterType, const int partyDest, FieldBattleDTO *battleParams)
@@ -1415,7 +1415,7 @@ static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBatt
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &roamerCurrentHP);
 
     GF_ASSERT(Party_AddPokemon(battle->parties[1], mon));
-    Heap_FreeToHeap(mon);
+    Heap_Free(mon);
 }
 
 // 50% chance to encounter a roamer if there is one on the current map.

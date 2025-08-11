@@ -86,7 +86,7 @@ PlayerAvatar *sub_0205E820(const MapObjectManager *mapObjMan, PlayerData *param1
     MapObject_SetGraphicsID(mapObj, Player_MoveStateFromGender(v0, gender));
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10 | MAP_OBJ_STATUS_13);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
-    sub_02062F90(mapObj, 1);
+    MapObject_SetDynamicHeightCalculationEnabled(mapObj, TRUE);
     PlayerAvatar_SetMapObject(playerAvatar, mapObj);
 
     return playerAvatar;
@@ -114,7 +114,7 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
 
 void Player_Delete(PlayerAvatar *playerAvatar)
 {
-    Heap_FreeToHeap(playerAvatar);
+    Heap_Free(playerAvatar);
 }
 
 void Player_DeleteAll(PlayerAvatar *playerAvatar)
@@ -168,7 +168,7 @@ static void PlayerAvatar_AddMapObject(PlayerAvatar *playerAvatar, const MapObjec
     MapObject_SetMovementRangeZ(mapObj, -1);
     MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10 | MAP_OBJ_STATUS_13);
     MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_LOCK_DIR | MAP_OBJ_STATUS_PAUSE_ANIMATION);
-    sub_02062F90(mapObj, 1);
+    MapObject_SetDynamicHeightCalculationEnabled(mapObj, TRUE);
 
     PlayerAvatar_SetMapObject(playerAvatar, mapObj);
 }
@@ -453,7 +453,7 @@ void sub_0205EC20(PlayerAvatar *playerAvatar, u32 param1, int param2)
 
 void PlayerData_Init(PlayerData *playerData)
 {
-    playerData->unk_00 = 0;
+    playerData->cyclingGear = 0;
     playerData->runningShoes = FALSE;
     playerData->form = 0x0;
 }
@@ -484,13 +484,13 @@ int PlayerData_CyclingGear(PlayerData *playerData)
         return 0;
     }
 
-    return playerData->unk_00;
+    return playerData->cyclingGear;
 }
 
 void PlayerData_SetCyclingGear(PlayerData *playerData, int gear)
 {
     if (playerData != NULL) {
-        playerData->unk_00 = gear;
+        playerData->cyclingGear = gear;
     }
 }
 
@@ -574,7 +574,7 @@ void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvata
 
     if (heightCalculationEnabled == TRUE) {
         MapObject_SetHeightCalculationDisabled(mapObj, FALSE);
-        sub_020642F8(mapObj);
+        MapObject_RecalculateObjectHeight(mapObj);
     } else {
         MapObject_SetHeightCalculationDisabled(mapObj, TRUE);
     }

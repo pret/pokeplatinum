@@ -16,7 +16,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "mystery_gift.h"
 #include "party.h"
 #include "pokemon.h"
@@ -308,7 +308,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     }
 
     if (tmpPoke) {
-        Heap_FreeToHeap(tmpPoke);
+        Heap_Free(tmpPoke);
     }
 }
 
@@ -426,7 +426,7 @@ static void PrepCannotReceiveRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *
 
 static BOOL CanReceiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)
 {
-    int ownedCount = sub_020289A0(SaveData_GetUndergroundData(fieldSystem->saveData));
+    int ownedCount = Underground_GetGoodsCountPC(SaveData_GetUnderground(fieldSystem->saveData));
 
     return ownedCount < NUM_MAX_DECORATION_GOODS;
 }
@@ -436,7 +436,7 @@ static void GiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     int id = giftData->decorationGoodID;
 
-    sub_0202895C(SaveData_GetUndergroundData(fieldSystem->saveData), id);
+    Underground_TryAddGoodPC(SaveData_GetUnderground(fieldSystem->saveData), id);
 }
 
 static void PrepReceivedDecoGoodMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
@@ -465,7 +465,7 @@ static BOOL CanReceiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        return sub_0202CB70(SaveData_GetBallSeals(fieldSystem->saveData), id, 1);
+        return sub_0202CB70(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
     case MG_COSMETICS_ACCESSORY:
         return TRUE;
     case MG_COSMETICS_BACKDROP:
@@ -483,7 +483,7 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        sub_0202CAE0(SaveData_GetBallSeals(fieldSystem->saveData), id, 1);
+        sub_0202CAE0(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
         break;
     case MG_COSMETICS_ACCESSORY:
         sub_02029E2C(sub_02029D04(sub_0202A750(fieldSystem->saveData)), id, 1);
@@ -740,7 +740,7 @@ static const GiftHandler giftHandlers[MYST_GIFT_TYPE_MAX - 1] = {
     [MYST_GIFT_ITEM - 1] = { CanReceiveItem, GiveItem, PrepReceivedItemMsg, PrepCannotReceiveItemMsg },
     [MYST_GIFT_BATTLE_REG - 1] = { CanReceiveBattleReg, GiveBattleReg, PrepReceivedRulesMsg, PrepCannotReceiveRulesMsg },
     [MYST_GIFT_DECORATION_GOOD - 1] = { CanReceiveDecorationGood, GiveDecorationGood, PrepReceivedDecoGoodMsg, PrepCannotReceiveDecoGood },
-    [MYST_GIFT_COSMETICS - 1] = { CanReceiveCosmetic, GiveCosmetic, PrepReceivedCosmeticMsg, PrepCannotReceiveCosmeticMsg }, // Seal/Accessory/Backdrop
+    [MYST_GIFT_COSMETICS - 1] = { CanReceiveCosmetic, GiveCosmetic, PrepReceivedCosmeticMsg, PrepCannotReceiveCosmeticMsg }, // BallSeal/Accessory/Backdrop
     [MYST_GIFT_MANAPHY_EGG - 1] = { CanReceivePokemon, GenerateManaphyEgg, PrepReceivedManaphyEggMsg, PrepCannotReceivePokemonMsg },
     [MYST_GIFT_MEMBER_CARD - 1] = { CanReceiveMemberCard, InitDarkraiEvent, PrepReceivedMemberCardMsg, PrepCannotReceiveMemberCardMsg },
     [MYST_GIFT_OAKS_LETTER - 1] = { CanReceiveOaksLetter, InitShayminEvent, PrepReceivedOaksLetterMsg, PrepCannotReceivedOaksLetterMsg },

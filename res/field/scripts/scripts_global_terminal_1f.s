@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/global_terminal_1f.h"
 
-    .data
 
     ScriptEntry _00F0
     ScriptEntry _00F2
@@ -68,21 +67,16 @@ _00CD:
 
     .balign 4, 0
 _00D8:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+GlobalTerminal1F_UnusedMovement:
+    WalkNormalSouth
+    EndMovement
 
     .balign 4, 0
 _00E8:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
 _00F0:
@@ -241,23 +235,23 @@ _0338:
 
     .balign 4, 0
 _0344:
-    MoveAction_015
-    MoveAction_032
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0350:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0358:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0360:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
 _0368:
@@ -478,13 +472,10 @@ _05B8:
     BufferPartyMonSpecies 0, 0
     Message 21
     GoTo _05F9
+    End
 
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 18
-
+GlobalTerminal1F_Unused:
+    Message 18
 _05CB:
     Message 19
     ShowYesNoMenu VAR_RESULT
@@ -605,6 +596,4 @@ _074C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -33,7 +33,7 @@
 #include "error_handling.h"
 #include "font.h"
 #include "graphics.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -296,7 +296,7 @@ static const fx32 Unk_ov117_02266BA4[] = {
     FX32_ONE,
     0x1800,
     0xA00,
-    0x2000
+    0x2000,
 };
 
 static const u16 Unk_ov117_02266C54[][4] = {
@@ -403,7 +403,7 @@ void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02
 
 static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1)
 {
-    Bg_ClearTilemap(param0, 7);
+    Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     param1->unk_00 = 0;
     param1->unk_2D = 1;
 }

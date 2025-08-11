@@ -10,7 +10,6 @@
 #include "constants/sound.h"
 #include "constants/species.h"
 #include "constants/string.h"
-#include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
@@ -27,7 +26,6 @@
 #include "battle/battle_mon.h"
 #include "battle/common.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/scripts/sub_seq.naix"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
 #include "charcode_util.h"
@@ -45,6 +43,12 @@
 #include "trainer_info.h"
 #include "unk_020366A0.h"
 #include "unk_0208C098.h"
+
+#include "res/battle/scripts/sub_seq.naix.h"
+
+#define TRMSG_ACTIVE_BATTLER_HALF_HP_FLAG 2
+#define TRMSG_LAST_BATTLER_FLAG           3
+#define TRMSG_LAST_BATTLER_HALF_HP_FLAG   4
 
 static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defender, int chartEntry);
 static int MapSideEffectToSubscript(BattleContext *battleCtx, enum BattleSideEffectType type, u32 effect);
@@ -6312,7 +6316,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_NORMAL) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_NORMAL;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_NORMAL;
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_NORMAL;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
@@ -6321,7 +6325,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_FIRE) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_FIRE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_FIRE;
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 1;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_SUNNY;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
@@ -6330,7 +6334,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_WATER) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_WATER;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_WATER;
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 2;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_RAINY;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
@@ -6339,7 +6343,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_ICE) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_ICE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_ICE;
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 3;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_SNOWY;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
@@ -6348,7 +6352,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_NORMAL) {
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_NORMAL;
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_NORMAL;
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_NORMAL;
                 *subscript = subscript_form_change;
                 result = TRUE;
                 break;
@@ -6359,29 +6363,29 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP) {
             if (NO_CLOUD_NINE) {
                 if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_CASTFORM) == FALSE
-                    && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
+                    && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == CHERRIM_FORM_SUNSHINE) {
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CHERRIM_FORM_OVERCAST;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
-                } else if (WEATHER_IS_SUN && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 0) {
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 1;
+                } else if (WEATHER_IS_SUN && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == CHERRIM_FORM_OVERCAST) {
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CHERRIM_FORM_SUNSHINE;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
-                } else if (WEATHER_IS_RAIN && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
+                } else if (WEATHER_IS_RAIN && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == CHERRIM_FORM_SUNSHINE) {
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CHERRIM_FORM_OVERCAST;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
-                } else if (WEATHER_IS_HAIL && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
-                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
+                } else if (WEATHER_IS_HAIL && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == CHERRIM_FORM_SUNSHINE) {
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CHERRIM_FORM_OVERCAST;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
                 }
             } else if (battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1) {
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CHERRIM_FORM_OVERCAST;
                 *subscript = subscript_form_change;
                 result = TRUE;
                 break;
@@ -6403,7 +6407,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
 
         if (battleCtx->battleMons[battleCtx->msgBattlerTemp].species == SPECIES_GIRATINA
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP
-            && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == 1
+            && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == GIRATINA_FORM_ORIGIN
             && ((battleCtx->battleMons[battleCtx->msgBattlerTemp].statusVolatile & VOLATILE_CONDITION_TRANSFORM)
                 || ((BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_DISTORTION) == FALSE
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem != ITEM_GRISEOUS_ORB))) {
@@ -6424,7 +6428,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &tmp);
 
                 // Force Giratina-Altered form
-                tmp = 0;
+                tmp = GIRATINA_FORM_ALTERED;
                 Pokemon_SetValue(mon, MON_DATA_FORM, &tmp);
                 Pokemon_SetGiratinaFormByHeldItem(mon);
 
@@ -6434,11 +6438,11 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, 0);
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, 0);
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, 0);
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = 0;
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = GIRATINA_FORM_ALTERED;
                 battleCtx->battleStatusMask2 |= SYSCTL_FORM_CHANGE;
 
                 BattleIO_UpdatePartyMon(battleSys, battleCtx, battleCtx->msgBattlerTemp);
-                Heap_FreeToHeap(mon);
+                Heap_Free(mon);
 
                 *subscript = subscript_form_change;
                 result = TRUE;

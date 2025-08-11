@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MAGNEZONE",
+    "moves": [
+        "MOVE_THUNDERBOLT",
+        "MOVE_MIRROR_SHOT",
+        "MOVE_LIGHT_SCREEN",
+        "MOVE_REFLECT"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_LIGHT_CLAY",
+    "form": 0
+}

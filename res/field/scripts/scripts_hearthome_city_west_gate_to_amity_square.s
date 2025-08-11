@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_west_gate_to_amity_square.h"
 
-    .data
 
     ScriptEntry _0031
     ScriptEntry _0044
@@ -52,5 +51,4 @@ _0057:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

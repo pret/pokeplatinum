@@ -364,8 +364,8 @@ static void ov5_021ED0F0(UnkStruct_ov5_021ED0A4 *param0)
 {
     ov5_021ED1A4(param0);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_E4);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_F4);
+    Heap_FreeExplicit(HEAP_ID_FIELD, param0->unk_E4);
+    Heap_FreeExplicit(HEAP_ID_FIELD, param0->unk_F4);
 }
 
 static UnkStruct_ov5_021DF84C *ov5_021ED110(UnkStruct_ov5_021ED0A4 *param0, u32 param1)
@@ -403,11 +403,8 @@ static UnkStruct_ov5_021DF84C *ov5_021ED110(UnkStruct_ov5_021ED0A4 *param0, u32 
 int ov5_021ED150(const MapObjectManager *param0, u32 param1, UnkStruct_ov5_021DF84C *param2)
 {
     int v0;
-    const UnkStruct_ov5_021ED0A4 *v1;
-    UnkStruct_ov5_021ED110 *v2;
-
-    v1 = sub_0206285C(param0);
-    v2 = v1->unk_F4;
+    const UnkStruct_ov5_021ED0A4 *v1 = sub_0206285C(param0);
+    UnkStruct_ov5_021ED110 *v2 = v1->unk_F4;
     v0 = v1->unk_04;
 
     do {
@@ -771,9 +768,8 @@ static void ov5_021ED610(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED63C(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param1)
 {
     int v0;
-    int *v1;
     ResourceCollection *v2 = ov5_021EDC98(param1);
-    v1 = ov5_021EDCBC(param1);
+    int *v1 = ov5_021EDCBC(param1);
     v1 = &v1[ov5_021EDCC8(param1)];
     v0 = ov5_021EDCD0(param1);
 
@@ -853,9 +849,8 @@ static void ov5_021ED74C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED778(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param1)
 {
     int v0;
-    int *v1;
     ResourceCollection *v2 = ov5_021EDCA0(param1);
-    v1 = ov5_021EDCC0(param1);
+    int *v1 = ov5_021EDCC0(param1);
     v1 = &v1[ov5_021EDCD8(param1)];
     v0 = ov5_021EDCE0(param1);
 
@@ -936,9 +931,8 @@ static void ov5_021ED88C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED8B8(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param1)
 {
     int v0, v1;
-    int *v2;
     TextureResourceManager *v3 = ov5_021EDCB0(param1);
-    v2 = ov5_021EDCB8(param1);
+    int *v2 = ov5_021EDCB8(param1);
     v2 = &v2[ov5_021EDCE8(param1)];
     v0 = ov5_021EDCF0(param1);
 
@@ -1860,7 +1854,7 @@ static void ov5_021EE3C4(UnkStruct_ov5_021ED0A4 *param0)
     SysTask_Done(v0->unk_1C);
     SysTask_Done(v0->unk_20);
     SysTask_Done(v0->unk_24);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     param0->unk_100 = NULL;
 }
@@ -1890,7 +1884,7 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
     UnkStruct_ov5_021ED0A4 *v8 = ov5_021EDEA8(param0);
     UnkStruct_02020C44 *v9 = ov5_021EDC8C(v8);
     UnkStruct_020216E0 *v10 = ov5_021EB1A0(param0);
-    UnkStruct_ov5_021EE698 *v11 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021EE698));
+    UnkStruct_ov5_021EE698 *v11 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EE698));
 
     memset(v11, 0, sizeof(UnkStruct_ov5_021EE698));
 
@@ -2033,10 +2027,10 @@ static void ov5_021EE698(SysTask *param0, void *param1)
             }
 
             sub_020211FC(v0->unk_24);
-            Heap_FreeToHeap(v0->unk_08);
-            Heap_FreeToHeap(v0->unk_0C);
-            Heap_FreeToHeap(v0->unk_10);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0->unk_08);
+            Heap_Free(v0->unk_0C);
+            Heap_Free(v0->unk_10);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -2057,10 +2051,10 @@ static void ov5_021EE698(SysTask *param0, void *param1)
             }
 
             sub_020211FC(v0->unk_24);
-            Heap_FreeToHeap(v0->unk_08);
-            Heap_FreeToHeap(v0->unk_0C);
-            Heap_FreeToHeap(v0->unk_10);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0->unk_08);
+            Heap_Free(v0->unk_0C);
+            Heap_Free(v0->unk_10);
+            Heap_Free(v0);
             SysTask_Done(param0);
         }
     }

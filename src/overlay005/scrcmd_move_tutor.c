@@ -5,7 +5,6 @@
 
 #include "constants/forms.h"
 #include "constants/heap.h"
-#include "constants/palette.h"
 #include "constants/species.h"
 #include "generated/items.h"
 #include "generated/moves.h"
@@ -25,6 +24,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
 #include "strbuf.h"
@@ -33,7 +33,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "tutor_movesets.h"
-#include "unk_0200F174.h"
 #include "unk_02054884.h"
 
 #include "res/pokemon/species_learnsets_by_tutor.h"
@@ -520,7 +519,7 @@ static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)
         return;
     }
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -568,7 +567,7 @@ static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager)
     }
 
     SysTask_Done(moveTutorManager->sysTask);
-    Heap_FreeToHeap(moveTutorManager);
+    Heap_Free(moveTutorManager);
 }
 
 BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)

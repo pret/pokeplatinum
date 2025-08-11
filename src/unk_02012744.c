@@ -120,11 +120,11 @@ void sub_020127BC(UnkStruct_02012744 *param0)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < 12; v0++) {
-        Heap_FreeToHeap(param0->unk_00[v0]);
+        Heap_Free(param0->unk_00[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_60);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_60);
+    Heap_Free(param0);
 }
 
 FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0)
@@ -154,7 +154,7 @@ FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0)
 
     sub_02012E6C(param0->unk_04, &v1, v3, param0->unk_14, param0->unk_28, param0->heapID);
     sub_02013088(param0, &v1, v3, v0);
-    Heap_FreeToHeap(v3);
+    Heap_Free(v3);
     sub_020131B8(&v1);
 
     return v0;
@@ -166,7 +166,7 @@ void sub_02012870(FontOAM *param0)
     GF_ASSERT(param0->unk_00);
 
     sub_020130DC(param0);
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
     sub_02012CD0(param0);
 }
 
@@ -345,7 +345,7 @@ UnkStruct_02012B20 *sub_02012B20(const Window *param0, int heapID)
 void sub_02012B48(UnkStruct_02012B20 *param0)
 {
     sub_020131B8(&param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 int sub_02012B58(const UnkStruct_02012B20 *param0, int param1)
@@ -374,7 +374,7 @@ FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20
 
     sub_02012E6C(param0->unk_04, &param1->unk_00, v1, param0->unk_14, param0->unk_28, param0->heapID);
     sub_02013088(param0, &param1->unk_00, v1, v0);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 
     return v0;
 }
@@ -407,26 +407,34 @@ void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Windo
         GXS_LoadOBJ(v1, NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DSUB), v0);
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
-void sub_02012C60(const Window *param0, int param1, int param2, int param3, int param4, char *param5)
+void sub_02012C60(
+    const Window *window,
+    int width,
+    int height,
+    int x,
+    int y,
+    char *output)
 {
-    int v0;
-    int v1;
-    int v2;
+    // this function copies a rectangle of pixels from the window
+    // to the output starting at (x,y) and spanning (width,height)
+    int i;
+    int dstOffset;
+    int srcOffset;
 
-    GF_ASSERT(param0->width >= (param1 + param3));
-    GF_ASSERT(param0->height >= (param2 + param4));
+    GF_ASSERT(window->width >= (width + x));
+    GF_ASSERT(window->height >= (height + y));
 
-    for (v0 = 0; v0 < param2; v0++) {
-        v1 = v0 * param1;
-        v1 *= 32;
-        v2 = ((v0 + param4) * param0->width);
-        v2 += param3;
-        v2 *= 32;
+    for (i = 0; i < height; i++) {
+        dstOffset = i * width;
+        dstOffset *= 32;
+        srcOffset = ((i + y) * window->width);
+        srcOffset += x;
+        srcOffset *= 32;
 
-        memcpy(param5 + v1, (char *)(param0->pixels) + v2, 32 * param1);
+        memcpy(output + dstOffset, (char *)(window->pixels) + srcOffset, 32 * width);
     }
 }
 
@@ -601,7 +609,7 @@ static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, 
     param2->attr.plttUse = GX_TEXPLTTCOLOR0_TRNS;
     param2->attr.mappingType = param4;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 
     return param5 + v1;
 }
@@ -761,7 +769,7 @@ static UnkStruct_02013034 *sub_02013188(int heapID)
 static void sub_020131A4(UnkStruct_02013034 *param0)
 {
     GF_ASSERT(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_020131B8(UnkStruct_02013034 *param0)

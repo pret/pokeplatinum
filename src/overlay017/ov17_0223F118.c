@@ -9,7 +9,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_02252A70.h"
@@ -21,6 +20,7 @@
 #include "brightness_controller.h"
 #include "char_transfer.h"
 #include "font.h"
+#include "g3d_pipeline.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_02024220.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
@@ -78,9 +77,9 @@ static void NitroStaticInit(void)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-GenericPointerData *ov17_0223F140(int heapID)
+G3DPipelineBuffers *ov17_0223F140(int heapID)
 {
-    return sub_02024220(heapID, 0, 2, 0, 2, ov17_0223F15C);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov17_0223F15C);
 }
 
 static void ov17_0223F15C(void)
@@ -98,9 +97,9 @@ static void ov17_0223F15C(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-void ov17_0223F1E0(GenericPointerData *param0)
+void ov17_0223F1E0(G3DPipelineBuffers *param0)
 {
-    sub_020242C4(param0);
+    G3DPipelineBuffers_Free(param0);
 }
 
 void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
@@ -180,13 +179,10 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
     sub_020128C4(param0->unk_00, param1, param2);
 }
 
-Strbuf *ov17_0223F310(u32 param0, u32 param1)
+Strbuf *ov17_0223F310(u32 param0, u32 heapID)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
-
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, param1);
-    v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
     return v1;
@@ -203,7 +199,7 @@ void ov17_0223F334(UnkStruct_02095C48 *param0, int param1)
         param0->unk_00.unk_118[v1].unk_02 = ov17_02252A70(param0->unk_00.unk_E8[v1], v0);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov17_0223F374(UnkStruct_02095C48 *param0)
@@ -414,7 +410,7 @@ void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
     GF_ASSERT(param0->unk_00 != NULL);
 
     SysTask_Done(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 BOOL ov17_0223F760(void)

@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0146
@@ -105,49 +104,35 @@ _0194:
     WaitMovement
     Return
 
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleTowerElevator_UnusedMovement:
+    WalkNormalNorth 2
+    FaceEast
+    WalkNormalEast
+    FaceSouth
+    EndMovement
 
     .balign 4, 0
 _01BC:
-    MoveAction_012 2
-    MoveAction_001
+    WalkNormalNorth 2
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _01C8:
-    MoveAction_013
-    MoveAction_002
-    MoveAction_014
-    MoveAction_001
-    MoveAction_013
-    MoveAction_069
+    WalkNormalSouth
+    FaceWest
+    WalkNormalWest
+    FaceSouth
+    WalkNormalSouth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_063 2
-    MoveAction_061
-    MoveAction_013 2
-    MoveAction_069
+    Delay8 2
+    Delay2
+    WalkNormalSouth 2
+    SetInvisible
     EndMovement
 
 _01F8:
@@ -157,6 +142,4 @@ _01F8:
     Warp MAP_HEADER_BATTLE_TOWER, 0, 19, 6, 0
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

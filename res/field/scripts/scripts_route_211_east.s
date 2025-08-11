@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_211_east.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0088
@@ -42,7 +41,7 @@ _0073:
 
     .balign 4, 0
 _0080:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
 _0088:
@@ -57,4 +56,4 @@ _00B4:
     ShowArrowSign 5
     End
 
-    .byte 0
+    .balign 4, 0

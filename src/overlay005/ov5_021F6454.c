@@ -8,10 +8,10 @@
 #include "generated/species.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021EB1A0.h"
@@ -28,7 +28,7 @@
 #include "inlines.h"
 #include "list_menu.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "party.h"
@@ -37,6 +37,7 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata_misc.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -46,7 +47,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_vars.h"
-#include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202C858.h"
 #include "unk_02030880.h"
@@ -160,11 +160,11 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
             }
         }
 
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
     }
 
     if (v1 != NULL) {
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     v7 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD_TASK);
@@ -282,7 +282,7 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
-    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, 4);
+    param0->unk_23C = ListMenu_New((const ListMenuTemplate *)&param0->unk_21C, *param0->unk_214, *param0->unk_218, HEAP_ID_FIELD);
     param0->unk_04 = SysTask_Start(ov5_021F6A34, param0, 0);
 
     return;
@@ -376,7 +376,7 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -427,7 +427,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     }
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -1121,9 +1121,9 @@ BOOL ScrCmd_339(ScriptContext *ctx)
 
 BOOL ScrCmd_330(ScriptContext *ctx)
 {
-    UnkStruct_0202C878 *v0 = sub_0202C878(ctx->fieldSystem->saveData);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(ctx->fieldSystem->saveData);
 
-    sub_02038F8C(v0);
+    sub_02038F8C(wiFiHistory);
     return 1;
 }
 

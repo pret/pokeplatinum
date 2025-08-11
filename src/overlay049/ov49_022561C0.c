@@ -2,7 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay025/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay049/ov49_022563D4.h"
 #include "overlay049/struct_ov49_022563D4_1.h"
 #include "overlay049/struct_ov49_022563D4_decl.h"
@@ -55,7 +55,7 @@ static BOOL ov49_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -81,7 +81,7 @@ static BOOL ov49_0225621C(UnkStruct_ov49_0225621C *param0, PoketchSystem *poketc
 static void ov49_02256258(UnkStruct_ov49_0225621C *param0)
 {
     ov49_02256480(param0->unk_08);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov49_0225626C(SysTask *param0, void *param1)

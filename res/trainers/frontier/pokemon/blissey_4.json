@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BLISSEY",
+    "moves": [
+        "MOVE_DREAM_EATER",
+        "MOVE_SING",
+        "MOVE_SOFTBOILED",
+        "MOVE_COUNTER"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_LEFTOVERS",
+    "form": 0
+}

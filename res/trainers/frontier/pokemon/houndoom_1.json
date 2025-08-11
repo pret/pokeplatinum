@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_HOUNDOOM",
+    "moves": [
+        "MOVE_FIRE_FANG",
+        "MOVE_CRUNCH",
+        "MOVE_ROAR",
+        "MOVE_COUNTER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_JOLLY",
+    "item": "ITEM_FOCUS_SASH",
+    "form": 0
+}

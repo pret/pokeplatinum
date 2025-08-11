@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MACHOKE",
+    "moves": [
+        "MOVE_KARATE_CHOP",
+        "MOVE_ROCK_TOMB",
+        "MOVE_FORESIGHT",
+        "MOVE_SCARY_FACE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": true,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_FOCUS_BAND",
+    "form": 0
+}

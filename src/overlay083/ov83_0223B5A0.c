@@ -30,11 +30,11 @@
 #include "journal.h"
 #include "overlay_manager.h"
 #include "poffin.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -50,9 +50,9 @@ typedef struct {
     int unk_04;
 } UnkStruct_ov83_0224024C;
 
-int ov83_0223B5B0(OverlayManager *param0, int *param1);
-int ov83_0223B65C(OverlayManager *param0, int *param1);
-int ov83_0223B710(OverlayManager *param0, int *param1);
+int ov83_0223B5B0(ApplicationManager *appMan, int *param1);
+int ov83_0223B65C(ApplicationManager *appMan, int *param1);
+int ov83_0223B710(ApplicationManager *appMan, int *param1);
 static int ov83_0223C344(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
 static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
 static int ov83_0223B920(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B784 *param1, int *param2);
@@ -102,13 +102,13 @@ static void ov83_0223B5A0(void *param0)
     VramTransfer_Process();
 }
 
-int ov83_0223B5B0(OverlayManager *param0, int *param1)
+int ov83_0223B5B0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov83_0223C344 *v0 = OverlayManager_Args(param0);
+    UnkStruct_ov83_0223C344 *v0 = ApplicationManager_Args(appMan);
     UnkStruct_ov83_0223B784 *v1;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_56, 0x20000);
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov83_0223B784), HEAP_ID_56);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov83_0223B784), HEAP_ID_56);
     memset(v1, 0, sizeof(UnkStruct_ov83_0223B784));
 
     v0->unk_18 = v1;
@@ -139,11 +139,11 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov83_0223B65C(OverlayManager *param0, int *param1)
+int ov83_0223B65C(ApplicationManager *appMan, int *param1)
 {
     int v0, v1;
-    UnkStruct_ov83_0223C344 *v2 = OverlayManager_Args(param0);
-    UnkStruct_ov83_0223B784 *v3 = (UnkStruct_ov83_0223B784 *)OverlayManager_Data(param0);
+    UnkStruct_ov83_0223C344 *v2 = ApplicationManager_Args(appMan);
+    UnkStruct_ov83_0223B784 *v3 = (UnkStruct_ov83_0223B784 *)ApplicationManager_Data(appMan);
     const UnkStruct_ov83_0224024C *v4;
 
     v0 = v3->unk_0C;
@@ -204,11 +204,11 @@ int ov83_0223B65C(OverlayManager *param0, int *param1)
     }
 }
 
-int ov83_0223B710(OverlayManager *param0, int *param1)
+int ov83_0223B710(ApplicationManager *appMan, int *param1)
 {
     int heapID;
-    UnkStruct_ov83_0223C344 *v1 = OverlayManager_Args(param0);
-    UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)OverlayManager_Data(param0);
+    UnkStruct_ov83_0223C344 *v1 = ApplicationManager_Args(appMan);
+    UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)ApplicationManager_Data(appMan);
 
     heapID = v2->heapID;
 
@@ -224,7 +224,7 @@ int ov83_0223B710(OverlayManager *param0, int *param1)
     DisableHBlank();
     VramTransfer_Free();
     MI_CpuClear8(v2, sizeof(UnkStruct_ov83_0223B784));
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
 
     v1->unk_18 = NULL;
 
@@ -287,11 +287,11 @@ static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         (*param2)++;
         break;
     case 1:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, param1->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, 1, 1, 0xffff, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return param1->unk_0C + 1;
         }
         break;
@@ -547,11 +547,11 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, param1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             if (param0->unk_26) {
                 sub_0203632C(0);
             }
@@ -600,7 +600,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             v0 = Poffin_New(param1->heapID);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->heapID);
             v1 = ov83_0223D508(28, v0, Poffin_SizeOf(), param1->unk_148C);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
 
             if (v1 == 1) {
                 (*param2)++;
@@ -647,11 +647,11 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         param1->unk_31C = 0;
 
         ov83_0223F730(&param1->unk_1478, 128, 144, param1->unk_1494.unk_58.unk_0C, param1->heapID);
-        StartScreenTransition(3, 1, 0, 0x0, 6, 1, param1->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param2)++;
             param1->unk_1C = (30 * 1);
         }
@@ -712,7 +712,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
         if ((v0 == 1) || (v0 == 2)) {
             if (v0 == 1) {
-                if (Poffin_GetNumberOfFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
+                if (PoffinCase_CountFilledSlots(param0->unk_10->poffinCase) >= MAX_POFFINS) {
                     ov83_0223EC8C(&param1->unk_6A0, 2);
                     (*param2) = 10;
                     param1->unk_1C = (30 * 5);
@@ -813,11 +813,11 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param1->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 3:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param2)++;
         }
         break;
@@ -1074,7 +1074,7 @@ static void ov83_0223C87C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B7
 {
     GF_ASSERT(param1->unk_1494.unk_100);
 
-    Heap_FreeToHeap(param1->unk_1494.unk_100);
+    Heap_Free(param1->unk_1494.unk_100);
     param1->unk_1494.unk_100 = NULL;
 
     if (param0->unk_26) {
@@ -1088,10 +1088,10 @@ static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int p
     u16 v1;
     int v2;
     BOOL v3 = 1;
-    TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->unk_10->saveData);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->unk_10->saveData);
 
     for (v0 = 0; v0 < param2; v0++) {
-        v1 = Poffin_AddToCase(param0->unk_10->poffinCase, param1);
+        v1 = PoffinCase_AddPoffin(param0->unk_10->poffinCase, param1);
 
         if (v1 == POFFIN_NONE) {
             v3 = 0;
@@ -1101,7 +1101,7 @@ static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 *param0, Poffin *param1, int p
 
     if (param0->unk_26 == 0) {
         v2 = Poffin_GetAttribute(param1, 0);
-        sub_0206CFCC(v4, v2);
+        sub_0206CFCC(broadcast, v2);
     }
 
     return v3;

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay070/funcptr_ov70_02261C60.h"
@@ -13,7 +15,7 @@
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 
 typedef struct {
@@ -87,7 +89,7 @@ typedef struct UnkStruct_ov70_02260BB8_t {
     NNSFndAllocator unk_494;
 } UnkStruct_ov70_02260BB8;
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, u32 param2);
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID);
 static void ov70_02261418(UnkStruct_ov70_02261418 *param0);
 static void ov70_0226146C(Easy3DModel *param0);
 static void ov70_02261474(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
@@ -134,9 +136,9 @@ void ov70_02260BB8(UnkStruct_ov70_02260BB8 *param0)
         ov70_02260D80(param0);
     }
 
-    Heap_FreeToHeap(param0->unk_11C);
-    Heap_FreeToHeap(param0->unk_120);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_11C);
+    Heap_Free(param0->unk_120);
+    Heap_Free(param0);
 }
 
 void ov70_02260BE8(UnkStruct_ov70_02260BB8 *param0)
@@ -249,7 +251,7 @@ UnkStruct_ov70_02260E8C *ov70_02260E20(UnkStruct_ov70_02260BB8 *param0, int para
     v0 = ov70_02261718(param0);
 
     Easy3DObject_Init(&v0->unk_04, &param0->unk_1C4.unk_00[param1]);
-    Easy3DObject_SetVisibility(&v0->unk_04, 1);
+    Easy3DObject_SetVisible(&v0->unk_04, 1);
 
     ov70_02260EA0(v0, param3);
     {
@@ -271,7 +273,7 @@ UnkStruct_ov70_02260E8C *ov70_02260E20(UnkStruct_ov70_02260BB8 *param0, int para
 
 void ov70_02260E8C(UnkStruct_ov70_02260E8C *param0)
 {
-    Easy3DObject_SetVisibility(&param0->unk_04, 0);
+    Easy3DObject_SetVisible(&param0->unk_04, 0);
 
     param0->unk_00 = 0;
 }
@@ -295,7 +297,7 @@ void ov70_02260F28(const UnkStruct_ov70_02260E8C *param0, VecFx32 *param1)
 
 void ov70_02260F38(UnkStruct_ov70_02260E8C *param0, BOOL param1)
 {
-    Easy3DObject_SetVisibility(&param0->unk_04, param1);
+    Easy3DObject_SetVisible(&param0->unk_04, param1);
 }
 
 BOOL ov70_02260F44(UnkStruct_ov70_02260E8C *param0)
@@ -348,7 +350,7 @@ UnkStruct_ov70_022610B8 *ov70_02260F90(UnkStruct_ov70_02260BB8 *param0, int para
         }
     }
 
-    Easy3DObject_SetVisibility(&v0->unk_04, 1);
+    Easy3DObject_SetVisible(&v0->unk_04, 1);
 
     {
         UnkStruct_ov63_0222CC3C v2;
@@ -374,7 +376,7 @@ void ov70_02261058(UnkStruct_ov70_02260BB8 *param0, UnkStruct_ov70_022610B8 *par
 {
     int v0;
 
-    Easy3DObject_SetVisibility(&param1->unk_04, 0);
+    Easy3DObject_SetVisible(&param1->unk_04, 0);
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_29C.unk_120[param1->unk_02][v0] != NULL) {
@@ -523,7 +525,7 @@ fx32 ov70_02261368(const UnkStruct_ov70_022610B8 *param0, int param1)
 
 void ov70_0226138C(UnkStruct_ov70_022610B8 *param0, BOOL param1)
 {
-    Easy3DObject_SetVisibility(&param0->unk_04, param1);
+    Easy3DObject_SetVisible(&param0->unk_04, param1);
 }
 
 void ov70_02261398(UnkStruct_ov70_02260BB8 *param0, UnkStruct_ov70_022610B8 *param1, u32 param2)
@@ -554,19 +556,19 @@ void ov70_022613E8(UnkStruct_ov70_022610B8 *param0, fx32 param1, fx32 param2, fx
     Easy3DObject_SetScale(&param0->unk_04, param1, param2, param3);
 }
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, u32 param2)
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID)
 {
     void *v0;
     u32 v1 = (param1 * 5) + param0;
     GF_ASSERT(v1 < (5 * 5));
-    v0 = LoadMemberFromNARC(174, 1 + v1, 0, param2, 1);
+    v0 = LoadMemberFromNARC(NARC_INDEX_APPLICATION__WIFI_LOBBY__MAP_CONV__WFLBY_MAP, 1 + v1, 0, heapID, 1);
 
     return v0;
 }
 
 static void ov70_02261418(UnkStruct_ov70_02261418 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov70_02261420(Easy3DModel *param0, NARC *param1, u32 param2, u32 heapID)
@@ -696,7 +698,7 @@ static void ov70_022615E8(UnkStruct_ov70_022615E8 *param0, UnkStruct_ov70_022615
 
     for (v0 = 0; v0 < 2; v0++) {
         Easy3DObject_Init(&param0->unk_04[v0], &param1->unk_00[v0]);
-        Easy3DObject_SetVisibility(&param0->unk_04[v0], 1);
+        Easy3DObject_SetVisible(&param0->unk_04[v0], 1);
     }
 
     for (v0 = 0; v0 < 5 - 1; v0++) {
@@ -822,7 +824,7 @@ static void ov70_022618C8(UnkStruct_ov70_022618C8 *param0, NNSFndAllocator *para
 
     {
         for (v0 = 0; v0 < 2; v0++) {
-            Heap_FreeToHeap(param0->unk_00[v0].data);
+            Heap_Free(param0->unk_00[v0].data);
         }
     }
 
@@ -843,7 +845,7 @@ static void ov70_022618C8(UnkStruct_ov70_022618C8 *param0, NNSFndAllocator *para
                 v4 = NNS_G3dPlttReleasePlttKey(v5);
                 NNS_GfdFreePlttVram(v4);
 
-                Heap_FreeToHeap(param0->unk_20[v0][v1]);
+                Heap_Free(param0->unk_20[v0][v1]);
             }
         }
     }
@@ -964,7 +966,7 @@ static void ov70_02261BB4(UnkStruct_ov70_02261BB4 *param0, NNSFndAllocator *para
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < 3; v1++) {
             if (param0->unk_120[v0][v1] != NULL) {
-                Heap_FreeToHeap(param0->unk_120[v0][v1]);
+                Heap_Free(param0->unk_120[v0][v1]);
                 param0->unk_120[v0][v1] = NULL;
             }
         }

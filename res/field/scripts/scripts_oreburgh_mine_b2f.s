@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_mine_b2f.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _00FC
@@ -16,22 +15,10 @@ _0016:
     FacePlayer
     GoTo _0034
 
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 156
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 0
-    .byte 0
+OreburghMineB2F_Unused:
+    ApplyMovement 0, OreburghMineB2F_UnusedMovement2
+    WaitMovement
+    GoTo _0044
 
 _0034:
     ApplyMovement 0, _00D8
@@ -52,30 +39,11 @@ _0059:
     CloseMessage
     GoTo _0091
 
-    .byte 94
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 51
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 0
-    .byte 0
+OreburghMineB2F_Unused2:
+    ApplyMovement 0, OreburghMineB2F_UnusedMovement
+    ApplyMovement LOCALID_PLAYER, OreburghMineB2F_UnusedMovement3
+    WaitMovement
+    GoTo _00A1
 
 _0091:
     ApplyMovement 0, _00C0
@@ -89,71 +57,36 @@ _00A1:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+OreburghMineB2F_UnusedMovement:
+    WalkNormalNorth
+    WalkNormalEast 10
+    EndMovement
 
     .balign 4, 0
 _00C0:
-    MoveAction_015 10
+    WalkNormalEast 10
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+OreburghMineB2F_UnusedMovement2:
+    Delay8 2
+    WalkOnSpotNormalNorth
+    Delay8 4
+    EndMovement
 
     .balign 4, 0
 _00D8:
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_063 4
+    Delay8 2
+    WalkOnSpotNormalEast
+    Delay8 4
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+OreburghMineB2F_UnusedMovement3:
+    Delay8
+    WalkOnSpotNormalNorth
+    Delay8 2
+    WalkOnSpotNormalEast
+    EndMovement
 
 _00FC:
     PlayFanfare SEQ_SE_CONFIRM

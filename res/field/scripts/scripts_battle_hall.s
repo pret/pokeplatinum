@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_hall.h"
 
-    .data
 
     ScriptEntry _026D
     ScriptEntry _08B4
@@ -472,66 +471,66 @@ _07C8:
 
     .balign 4, 0
 _07D4:
-    MoveAction_014 4
-    MoveAction_013 3
-    MoveAction_069
+    WalkNormalWest 4
+    WalkNormalSouth 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _07E4:
-    MoveAction_014 2
-    MoveAction_012
-    MoveAction_014 2
-    MoveAction_013 3
-    MoveAction_069
+    WalkNormalWest 2
+    WalkNormalNorth
+    WalkNormalWest 2
+    WalkNormalSouth 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _07FC:
-    MoveAction_014 3
-    MoveAction_013 3
-    MoveAction_069
+    WalkNormalWest 3
+    WalkNormalSouth 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _080C:
-    MoveAction_014
-    MoveAction_012
-    MoveAction_014 2
-    MoveAction_013 3
-    MoveAction_069
+    WalkNormalWest
+    WalkNormalNorth
+    WalkNormalWest 2
+    WalkNormalSouth 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0824:
-    MoveAction_023 4
-    MoveAction_020 3
-    MoveAction_002
-    MoveAction_070
+    WalkFasterEast 4
+    WalkFasterNorth 3
+    FaceWest
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _0838:
-    MoveAction_023 2
-    MoveAction_021
-    MoveAction_023 2
-    MoveAction_020 3
-    MoveAction_002
-    MoveAction_070
+    WalkFasterEast 2
+    WalkFasterSouth
+    WalkFasterEast 2
+    WalkFasterNorth 3
+    FaceWest
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _0854:
-    MoveAction_020 3
-    MoveAction_023 3
-    MoveAction_070
+    WalkFasterNorth 3
+    WalkFasterEast 3
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _0864:
-    MoveAction_020 2
-    MoveAction_023 3
-    MoveAction_070
+    WalkFasterNorth 2
+    WalkFasterEast 3
+    SetVisible
     EndMovement
 
 _0874:
@@ -622,41 +621,19 @@ _0955:
 
 _0970:
     GoTo _034D
+    End
+    
+BattleHall_UnusedMovement:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
 
-    .byte 2
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleHall_UnusedMovement2:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
 
 _0998:
     PlayFanfare SEQ_SE_CONFIRM
@@ -995,4 +972,4 @@ _0D9F:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

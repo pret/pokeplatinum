@@ -3,7 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02027F8C_decl.h"
+#include "generated/movement_actions.h"
+#include "generated/movement_types.h"
+
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -21,6 +23,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "map_object.h"
+#include "pal_pad.h"
 #include "player_avatar.h"
 #include "savedata.h"
 #include "sound_playback.h"
@@ -29,7 +32,6 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
-#include "unk_02027F84.h"
 #include "unk_020366A0.h"
 #include "unk_0205B33C.h"
 #include "unk_020655F4.h"
@@ -103,7 +105,7 @@ void sub_0205C2E0(UnkStruct_0205C22C *param0)
     SysTask_Done(param0->unk_04);
     sub_0205C970(param0->unk_478);
     Heap_Destroy(HEAP_ID_89);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void sub_0205C304(SysTask *task, void *param1)
@@ -154,7 +156,7 @@ static int sub_0205C340(UnkStruct_0205C22C *param0, int param1, WMBssDesc *param
             if (v4->unk_18[v0] != 0) {
                 param0->unk_0C[v1].unk_00 = 2;
                 param0->unk_0C[v1].unk_08 = (v4->unk_18[v0] & 0x7f);
-                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, v4->unk_00[v0]);
+                param0->unk_0C[v1].unk_02 = PalPad_TrainerIsFriend(param3, v4->unk_00[v0]);
                 v2 = 1;
             }
             break;
@@ -208,7 +210,7 @@ static void sub_0205C44C(UnkStruct_0205C22C *param0, UnkStruct_0205B43C *param1,
         case 0:
             if (v0 != NULL) {
                 param0->unk_0C[v1].unk_08 = TrainerInfo_Appearance(v3);
-                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, TrainerInfo_ID(v3));
+                param0->unk_0C[v1].unk_02 = PalPad_TrainerIsFriend(param3, TrainerInfo_ID(v3));
                 param0->unk_0C[v1].unk_0C = v2->unk_00;
 
                 if (sub_0205C340(param0, v1, v0, param3)) {
@@ -280,7 +282,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
                 sub_02062DB4(v0, 0);
 
                 if ((param0->unk_0C[v1].unk_00 == 1) && (param0->unk_0C[v1].unk_09 == 0)) {
-                    MapObject_SetMoveCode(v0, 0x3);
+                    MapObject_SetMoveCode(v0, MOVEMENT_TYPE_WANDER_AROUND);
                     MapObject_SetMovementRangeX(v0, 1);
                     MapObject_SetMovementRangeZ(v0, 1);
                     param0->unk_0C[v1].unk_09 = 1;
@@ -371,7 +373,7 @@ static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int para
     sub_0205C680(param0, 0);
     MapObject_SetPosDirFromCoords(param1, v0, v1, v2, 1);
     MapObject_Face(param1, 1);
-    LocalMapObj_SetAnimationCode(param1, 0x44);
+    LocalMapObj_SetAnimationCode(param1, MOVEMENT_ACTION_WARP_IN);
     MapObject_SetHidden(param1, 0);
     sub_02062D80(param1, 1);
 
@@ -390,9 +392,9 @@ static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int para
 
 static void sub_0205C788(UnkStruct_0205C680 *param0, MapObject *param1)
 {
-    LocalMapObj_SetAnimationCode(param1, 0x43);
+    LocalMapObj_SetAnimationCode(param1, MOVEMENT_ACTION_WARP_OUT);
     sub_02062DB4(param1, 1);
-    MapObject_SetMoveCode(param1, 0x0);
+    MapObject_SetMoveCode(param1, MOVEMENT_TYPE_NONE);
     sub_0205C680(param0, 1);
 
     param0->unk_04 = 0;
@@ -460,7 +462,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
 
                 sub_02061AD4(mapObj, v1->unk_08);
                 MapObject_Face(mapObj, 1);
-                LocalMapObj_SetAnimationCode(mapObj, 0x44);
+                LocalMapObj_SetAnimationCode(mapObj, MOVEMENT_ACTION_WARP_IN);
                 MapObject_SetHidden(mapObj, 0);
                 sub_02062D80(mapObj, 1);
 
@@ -510,7 +512,7 @@ static void sub_0205C900(UnkStruct_0205C95C *param0)
 
 static void sub_0205C924(UnkStruct_0205C924 *param0)
 {
-    Heap_FreeToHeap(param0->unk_00);
+    Heap_Free(param0->unk_00);
 
     if (param0->unk_04 != NULL) {
         Strbuf_Free(param0->unk_04);
@@ -541,5 +543,5 @@ UnkStruct_0205C95C *sub_0205C95C(int heapID)
 void sub_0205C970(UnkStruct_0205C95C *param0)
 {
     sub_0205C944(param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

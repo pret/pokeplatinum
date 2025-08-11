@@ -3,13 +3,13 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_02014014_decl.h"
+#include "overlay012/battle_anim_system.h"
 
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "particle_system.h"
 
 typedef struct {
-    UnkStruct_ov12_0221FCDC *unk_00;
-    UnkStruct_02014014 *unk_04;
+    BattleAnimSystem *unk_00;
+    ParticleSystem *unk_04;
     s8 unk_08;
     int unk_0C[6];
     int unk_24;

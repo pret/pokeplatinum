@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city.h"
 
-    .data
 
     ScriptEntry _005E
     ScriptEntry _00B2
@@ -40,7 +39,7 @@ _005E:
 _009C:
     SetObjectEventPos 21, 0x27D, 0x32C
     SetObjectEventDir 21, DIR_EAST
-    ScrCmd_188 21, 17
+    SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     End
 
 _00B2:
@@ -241,240 +240,119 @@ _02D2:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+PastoriaCity_UnusedMovement:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _02EC:
-    MoveAction_033
-    MoveAction_035
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement2:
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0304:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _030C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 7
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement3:
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement4:
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement5:
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement6:
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement7:
+    WalkFastEast 9
+    EndMovement
+
+PastoriaCity_UnusedMovement8:
+    WalkFastEast 7
+    EndMovement
+
+PastoriaCity_UnusedMovement9:
+    WalkFastSouth
+    WalkFastEast 8
+    EndMovement
+
+PastoriaCity_UnusedMovement10:
+    WalkFastNorth
+    WalkFastEast 8
+    EndMovement
+
+PastoriaCity_UnusedMovement11:
+    EmoteExclamationMark
+    EndMovement
+
+PastoriaCity_UnusedMovement12:
+    WalkFastSouth
+    WalkFastEast 10
+    EndMovement
+
+PastoriaCity_UnusedMovement13:
+    WalkFastEast 10
+    EndMovement
 
     .balign 4, 0
 _0388:
-    MoveAction_017
-    MoveAction_019 2
-    MoveAction_039
+    WalkFastSouth
+    WalkFastEast 2
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _0398:
-    MoveAction_019 2
-    MoveAction_039
+    WalkFastEast 2
+    WalkOnSpotFastEast
     EndMovement
 
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement14:
+    WalkFastSouth
+    WalkFastEast 2
+    WalkOnSpotFastEast
+    EndMovement
+
+PastoriaCity_UnusedMovement15:
+    WalkFastSouth
+    WalkFastEast 4
+    WalkOnSpotFastEast
+    EndMovement
+
+PastoriaCity_UnusedMovement16:
+    WalkFastNorth
+    WalkFastEast 3
+    WalkOnSpotFastEast
+    EndMovement
+
+PastoriaCity_UnusedMovement17:
+    WalkFastSouth
+    WalkFastEast 3
+    WalkOnSpotFastEast
+    EndMovement
 
 _03E4:
     ShowMapSign 41
@@ -538,14 +416,14 @@ _04AE:
 
     .balign 4, 0
 _04C0:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _04C8:
     LockAll
     ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
-    ScrCmd_188 26, 16
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventDir 26, DIR_WEST
     AddObject 26
     ApplyMovement 26, _05B0
@@ -599,42 +477,42 @@ _0597:
 
     .balign 4, 0
 _05A4:
-    MoveAction_062 13
-    MoveAction_035
+    Delay4 13
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _05B0:
-    MoveAction_017 9
-    MoveAction_038
-    MoveAction_075
+    WalkFastSouth 9
+    WalkOnSpotFastWest
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _05C0:
-    MoveAction_018 4
-    MoveAction_038
+    WalkFastWest 4
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _05CC:
-    MoveAction_014
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _05D4:
-    MoveAction_019 5
-    MoveAction_016 9
+    WalkFastEast 5
+    WalkFastNorth 9
     EndMovement
 
 _05E0:
     LockAll
     ClearFlag FLAG_UNK_0x01A9
     SetObjectEventPos 26, 0x253, 0x333
-    ScrCmd_188 26, 15
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 26, DIR_SOUTH
     AddObject 26
-    ScrCmd_062 26
+    LockObject 26
     ApplyMovement 26, _0798
     ApplyMovement LOCALID_PLAYER, _07CC
     WaitMovement
@@ -650,9 +528,9 @@ _05E0:
     ClearFlag FLAG_UNK_0x01FB
     SetObjectEventPos 27, 0x24D, 0x33B
     SetObjectEventDir 27, DIR_NORTH
-    ScrCmd_188 27, 14
+    SetObjectEventMovementType 27, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 27
-    ScrCmd_062 27
+    LockObject 27
     ApplyMovement 27, _0764
     WaitMovement
     ScrCmd_16C 77
@@ -701,92 +579,92 @@ _05E0:
 _0721:
     SetObjectEventPos 26, 0x260, 0x32E
     SetObjectEventDir 26, DIR_SOUTH
-    ScrCmd_188 26, 15
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0737:
     SetObjectEventPos 27, 0x263, 0x32A
     SetObjectEventDir 27, DIR_NORTH
-    ScrCmd_188 27, 14
+    SetObjectEventMovementType 27, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _074D:
     SetObjectEventPos 26, 0x263, 0x32A
     SetObjectEventDir 26, DIR_NORTH
-    ScrCmd_188 26, 14
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
     .balign 4, 0
 _0764:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _076C:
-    MoveAction_035
-    MoveAction_063 2
-    MoveAction_033
+    WalkOnSpotNormalEast
+    Delay8 2
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _077C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0784:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _078C:
-    MoveAction_019 6
-    MoveAction_016 8
+    WalkFastEast 6
+    WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
 _0798:
-    MoveAction_017 9
-    MoveAction_018 5
+    WalkFastSouth 9
+    WalkFastWest 5
     EndMovement
 
     .balign 4, 0
 _07A4:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _07AC:
-    MoveAction_071
-    MoveAction_017
-    MoveAction_072
-    MoveAction_039
+    LockDir
+    WalkFastSouth
+    UnlockDir
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _07C0:
-    MoveAction_019 5
-    MoveAction_016 8
+    WalkFastEast 5
+    WalkFastNorth 8
     EndMovement
 
     .balign 4, 0
 _07CC:
-    MoveAction_062 11
-    MoveAction_035
+    Delay4 11
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _07D8:
-    MoveAction_032
-    MoveAction_063 2
-    MoveAction_013
-    MoveAction_032
+    WalkOnSpotNormalNorth
+    Delay8 2
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _07EC:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
 _07F8:
@@ -833,9 +711,9 @@ _086F:
     ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x262, 0x328
     SetObjectEventDir 21, DIR_EAST
-    ScrCmd_188 21, 17
+    SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     Return
 
 _08D9:
@@ -853,7 +731,7 @@ _08FA:
     RemoveObject 21
     ClearFlag FLAG_UNK_0x020C
     SetObjectEventPos 21, 0x27D, 0x32C
-    ScrCmd_188 21, 17
+    SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir 21, DIR_EAST
     AddObject 21
     Return
@@ -891,8 +769,8 @@ _098D:
 
     .balign 4, 0
 _099C:
-    MoveAction_063
-    MoveAction_000
+    Delay8
+    FaceNorth
     EndMovement
 
 _09A8:
@@ -948,144 +826,130 @@ _0A8D:
 
     .balign 4, 0
 _0AA4:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _0AAC:
-    MoveAction_017
-    MoveAction_019
-    MoveAction_037
+    WalkFastSouth
+    WalkFastEast
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0ABC:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0AC8:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0AD4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0ADC:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0AE4:
-    MoveAction_016 3
-    MoveAction_019
+    WalkFastNorth 3
+    WalkFastEast
     EndMovement
 
     .balign 4, 0
 _0AF0:
-    MoveAction_036
+    WalkOnSpotFastNorth
     EndMovement
 
-    .byte 17
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 36
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement18:
+    WalkFastSouth 3
+    EndMovement
+
+PastoriaCity_UnusedMovement19:
+    WalkOnSpotFastNorth
+    EndMovement
 
     .balign 4, 0
 _0B08:
-    MoveAction_037
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0B10:
-    MoveAction_063
-    MoveAction_037
+    Delay8
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0B1C:
-    MoveAction_019 2
-    MoveAction_016
+    WalkFastEast 2
+    WalkFastNorth
     EndMovement
 
     .balign 4, 0
 _0B28:
-    MoveAction_019
-    MoveAction_016
-    MoveAction_019
-    MoveAction_036
+    WalkFastEast
+    WalkFastNorth
+    WalkFastEast
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _0B3C:
-    MoveAction_039
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _0B44:
-    MoveAction_017 4
+    WalkFastSouth 4
     EndMovement
 
     .balign 4, 0
 _0B4C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0B54:
-    MoveAction_019 12
+    WalkFastEast 12
     EndMovement
 
     .balign 4, 0
 _0B5C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement20:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0B6C:
-    MoveAction_037
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0B74:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0B80:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0B88:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement
 
 _0B90:
@@ -1105,24 +969,24 @@ _0B90:
 
     .balign 4, 0
 _0BC8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0BD0:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0BD8:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0BE0:
-    MoveAction_014
-    MoveAction_015
-    MoveAction_032
+    WalkNormalWest
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
 _0BF0:
@@ -1157,16 +1021,16 @@ _0C22:
 
     .balign 4, 0
 _0C64:
-    MoveAction_012 7
-    MoveAction_034
+    WalkNormalNorth 7
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0C70:
-    MoveAction_012 5
+    WalkNormalNorth 5
     EndMovement
 
     .balign 4, 0
 _0C78:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement

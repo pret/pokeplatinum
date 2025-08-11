@@ -40,11 +40,11 @@ BOOL ov104_0223939C(UnkStruct_ov104_0222E930 *param0);
 BOOL ov104_02239400(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 *param0);
 static u16 ov104_0223927C(UnkStruct_0204AFC4 *param0, u8 param1);
-static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, UnkStruct_0204AFC4 *param1, SaveData *param2, u16 param3, u16 param4);
+static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, UnkStruct_0204AFC4 *param1, SaveData *saveData, u16 param3, u16 param4);
 
 BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     Pokemon *v1;
     UnkStruct_0204AFC4 *v2;
     int v3, v4;
@@ -63,8 +63,8 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
         break;
     case (30 + 16):
         *v7 = sub_0204AA04(v2);
-        v0 = SaveData_GetTVBroadcast(v8->saveData);
-        sub_0206D0C8(v0, *v7);
+        broadcast = SaveData_GetTVBroadcast(v8->saveData);
+        sub_0206D0C8(broadcast, *v7);
         GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *v7);
         break;
     case (30 + 25):
@@ -197,7 +197,7 @@ BOOL ov104_02239314(UnkStruct_ov104_0222E930 *param0)
     v1->unk_8D0 = v0;
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }
@@ -274,7 +274,7 @@ static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, UnkStruct_0204AFC4 *param1, SaveData *param2, u16 param3, u16 param4)
+static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, UnkStruct_0204AFC4 *param1, SaveData *saveData, u16 param3, u16 param4)
 {
     u16 *v0;
     const void *v1 = sub_0203664C(1 - CommSys_CurNetId());

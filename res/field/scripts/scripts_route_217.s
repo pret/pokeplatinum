@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_217.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0023
@@ -81,49 +80,49 @@ _00F6:
 
     .balign 4, 0
 _010C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0114:
-    MoveAction_063 2
-    MoveAction_062
-    MoveAction_032
+    Delay8 2
+    Delay4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0124:
-    MoveAction_012 4
-    MoveAction_014 3
-    MoveAction_012
-    MoveAction_075
+    WalkNormalNorth 4
+    WalkNormalWest 3
+    WalkNormalNorth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0138:
-    MoveAction_012 4
-    MoveAction_014 2
-    MoveAction_012
-    MoveAction_075
+    WalkNormalNorth 4
+    WalkNormalWest 2
+    WalkNormalNorth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0154:
-    MoveAction_015
-    MoveAction_012 3
-    MoveAction_015 2
-    MoveAction_012 9
+    WalkNormalEast
+    WalkNormalNorth 3
+    WalkNormalEast 2
+    WalkNormalNorth 9
     EndMovement
 
     .balign 4, 0
 _0168:
-    MoveAction_014
-    MoveAction_012 3
-    MoveAction_015 3
-    MoveAction_012 9
+    WalkNormalWest
+    WalkNormalNorth 3
+    WalkNormalEast 3
+    WalkNormalNorth 9
     EndMovement

@@ -60,7 +60,7 @@ void *ov107_02249B8C(UnkStruct_ov107_02249B8C *param0)
     }
 
     Sprite_Delete(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return NULL;
 }

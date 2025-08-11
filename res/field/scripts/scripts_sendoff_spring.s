@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sendoff_spring.h"
 
-    .data
 
     ScriptEntry _0021
     ScriptEntry _00C0
@@ -50,21 +49,21 @@ _0021:
 
     .balign 4, 0
 _0098:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _00A0:
-    MoveAction_038
-    MoveAction_063
-    MoveAction_039
-    MoveAction_063 2
-    MoveAction_036
+    WalkOnSpotFastWest
+    Delay8
+    WalkOnSpotFastEast
+    Delay8 2
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _00B8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
 _00C0:
@@ -87,4 +86,4 @@ _00EB:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

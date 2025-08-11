@@ -3,10 +3,7 @@
 
 #include "constants/pokemon.h"
 
-#include "overlay025/struct_ov25_022555E8_decl.h"
-#include "overlay025/struct_ov25_02255810.h"
-#include "overlay025/struct_ov25_022558C4_decl.h"
-#include "overlay025/struct_ov25_02255958.h"
+#include "applications/poketch/poketch_animation.h"
 
 #include "bg_window.h"
 #include "sys_task.h"
@@ -46,15 +43,15 @@ typedef struct MonIconBounceAnim {
 struct PoketchPartyStatusGraphics {
     const PlayerPartyStatus *playerParty;
     BgConfig *bgConfig;
-    UnkStruct_ov25_022555E8 *unk_08;
+    PoketchAnimation_AnimationManager *unk_08;
     u32 activeTaskIds[10];
     u32 hpBarBaseTile;
     u32 partyCount;
     Window hpBarWindows[MAX_PARTY_SIZE];
-    UnkStruct_ov25_022558C4 *unk_9C[MAX_PARTY_SIZE]; // mon icons?
-    UnkStruct_ov25_022558C4 *unk_B4[MAX_PARTY_SIZE]; // held item icons?
-    UnkStruct_ov25_02255958 unk_CC;
-    UnkStruct_ov25_02255958 unk_E0;
+    PoketchAnimation_AnimatedSpriteData *unk_9C[MAX_PARTY_SIZE]; // mon icons?
+    PoketchAnimation_AnimatedSpriteData *unk_B4[MAX_PARTY_SIZE]; // held item icons?
+    PoketchAnimation_SpriteData unk_CC;
+    PoketchAnimation_SpriteData unk_E0;
     SysTask *bounceAnimTask;
     MonIconBounceAnim bounceAnimData;
     u8 iconSpriteBuffer[640];

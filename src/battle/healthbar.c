@@ -11,8 +11,9 @@
 
 #include "assert.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
@@ -25,7 +26,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200C440.h"
 #include "unk_0208C098.h"
 
 #include "res/text/bank/battle_strings.h"
@@ -697,8 +697,8 @@ void ov16_02267258(Healthbar *param0)
     SpriteSystem *v0;
     SpriteManager *v1;
     const SpriteTemplate *v2 = Healthbar_SpriteTemplate(param0->type);
-    v0 = ov16_0223E010(param0->battleSys);
-    v1 = ov16_0223E018(param0->battleSys);
+    v0 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    v1 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     SpriteManager_UnloadCharObjById(v1, v2->resources[0]);
     SpriteManager_UnloadCellObjById(v1, v2->resources[2]);
@@ -715,8 +715,8 @@ static void ov16_0226728C(Healthbar *param0)
         return;
     }
 
-    v0 = ov16_0223E010(param0->battleSys);
-    v1 = ov16_0223E018(param0->battleSys);
+    v0 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    v1 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     SpriteManager_UnloadCharObjById(v1, v2->resources[0]);
     SpriteManager_UnloadCellObjById(v1, v2->resources[2]);
@@ -730,8 +730,8 @@ void ov16_022672C4(Healthbar *param0)
     SpriteManager *v2;
     PaletteData *v3;
     NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    v1 = ov16_0223E010(param0->battleSys);
-    v2 = ov16_0223E018(param0->battleSys);
+    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
     v3 = BattleSystem_PaletteSys(param0->battleSys);
     v0 = Healthbar_SpriteTemplate(param0->type);
 
@@ -1157,7 +1157,7 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
     v1 = Heap_AllocFromHeap(HEAP_ID_BATTLE, v3 * 2);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), v3);
-    sub_0200C67C(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
 
     {
         void *v7;
@@ -1188,8 +1188,8 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
         MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][1].size);
     }
 
-    Heap_FreeToHeap(v0);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v0);
+    Heap_Free(v1);
 }
 
 static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
@@ -1200,7 +1200,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
     v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    sub_0200C67C(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
 
     {
         void *v2;
@@ -1214,7 +1214,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
         MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->type][0].size], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][1].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][1].size);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void Healthbar_DrawMaxHP(Healthbar *param0)
@@ -1225,7 +1225,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
     v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    sub_0200C67C(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
 
     {
         void *v2;
@@ -1238,7 +1238,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].size);
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void Healthbar_DrawCaughtIcon(Healthbar *param0)
@@ -1756,7 +1756,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
     int v2;
     PaletteData *v3;
 
-    v1 = ov16_0223E018(v0->unk_00->battleSys);
+    v1 = BattleSystem_GetSpriteManager(v0->unk_00->battleSys);
     v3 = BattleSystem_PaletteSys(v0->unk_00->battleSys);
 
     switch (v0->unk_08) {
@@ -1791,7 +1791,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
 
         (*(v0->unk_04)) = 1;
 
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
 
         return;

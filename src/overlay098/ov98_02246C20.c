@@ -6,8 +6,8 @@
 
 #include "struct_defs/struct_02089438.h"
 
+#include "game_opening/const_ov77_021D742C.h"
 #include "overlay065/ov65_0222DCE0.h"
-#include "overlay077/const_ov77_021D742C.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay098/ov98_022471C8.h"
 #include "overlay098/ov98_022499C8.h"
@@ -35,7 +35,7 @@
 #include "constdata/const_020F2DBC.h"
 
 FS_EXTERN_OVERLAY(overlay65);
-FS_EXTERN_OVERLAY(overlay77);
+FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay98);
 
@@ -59,21 +59,21 @@ static void ov98_02247134(UnkStruct_ov98_02246E88 *param0);
 
 static NNSFndHeapHandle Unk_ov98_02249E20;
 
-const OverlayManagerTemplate Unk_ov98_02249BAC = {
+const ApplicationManagerTemplate gWiiMessageAppTemplate = {
     ov98_02246C20,
     ov98_02246C98,
     ov98_02246DC0,
     0xFFFFFFFF
 };
 
-static const OverlayManagerTemplate Unk_ov98_02249B3C = {
+static const ApplicationManagerTemplate Unk_ov98_02249B3C = {
     ov98_022471C8,
     ov98_022473D8,
     ov98_02247440,
     0xFFFFFFFF
 };
 
-static const OverlayManagerTemplate Unk_ov98_02249B2C = {
+static const ApplicationManagerTemplate Unk_ov98_02249B2C = {
     ov65_0222E2A8,
     ov65_0222E3FC,
     ov65_0222E548,
@@ -83,7 +83,7 @@ static const OverlayManagerTemplate Unk_ov98_02249B2C = {
 static const struct {
     UnkFuncPtr_ov98_02249B4C unk_00;
     UnkFuncPtr_ov98_02249B4C_1 unk_04;
-    const OverlayManagerTemplate *unk_08;
+    const ApplicationManagerTemplate *unk_08;
     int unk_0C;
 } Unk_ov98_02249B4C[] = {
     { ov98_02246FBC, ov98_02246FC0, &Unk_ov98_02249B3C, 0x0 },
@@ -94,17 +94,17 @@ static const struct {
     { ov98_02247168, ov98_02247198, &Unk_ov98_02249B2C, 0x1 }
 };
 
-int ov98_02246C20(OverlayManager *param0, int *param1)
+int ov98_02246C20(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov98_02246E88 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_108, 0x28000);
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), HEAP_ID_108);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov98_02246E88), HEAP_ID_108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
-    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_08 = SaveData_GetOptions(v0->saveData);
+    v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
+    v0->options = SaveData_GetOptions(v0->saveData);
     v0->unk_114 = Strbuf_Init(100, HEAP_ID_108);
     v0->unk_118 = Strbuf_Init(100, HEAP_ID_108);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_17, SEQ_WIFILOBBY, 1);
@@ -113,9 +113,9 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov98_02246C98(OverlayManager *param0, int *param1)
+int ov98_02246C98(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov98_02246E88 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov98_02246E88 *v0 = ApplicationManager_Data(appMan);
     BOOL v1;
 
     if (v0->unk_80 == 1) {
@@ -138,15 +138,15 @@ int ov98_02246C98(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        v0->unk_00 = OverlayManager_New(Unk_ov98_02249B4C[v0->unk_8C].unk_08, Unk_ov98_02249B4C[v0->unk_8C].unk_00(v0), 108);
+        v0->appMan = ApplicationManager_New(Unk_ov98_02249B4C[v0->unk_8C].unk_08, Unk_ov98_02249B4C[v0->unk_8C].unk_00(v0), HEAP_ID_108);
         v0->unk_84 = v0->unk_8C;
         v0->unk_8C = 6;
         *param1 = 3;
         break;
     case 3:
-        if (OverlayManager_Exec(v0->unk_00) == 1) {
+        if (ApplicationManager_Exec(v0->appMan) == 1) {
             Unk_ov98_02249B4C[v0->unk_84].unk_04(v0);
-            OverlayManager_Free(v0->unk_00);
+            ApplicationManager_Free(v0->appMan);
 
             if (v0->unk_8C == 6) {
                 *param1 = 4;
@@ -169,18 +169,18 @@ int ov98_02246C98(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov98_02246DC0(OverlayManager *param0, int *param1)
+int ov98_02246DC0(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov98_02246E88 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov98_02246E88 *v0 = ApplicationManager_Data(appMan);
 
     ov98_02246E54(v0);
 
     Strbuf_Free(v0->unk_118);
     Strbuf_Free(v0->unk_114);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_108);
     Heap_Destroy(HEAP_ID_91);
-    EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
+    EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
 
     return 1;
 }
@@ -205,7 +205,7 @@ static void ov98_02246E54(UnkStruct_ov98_02246E88 *param0)
     if (param0->unk_80 == 1) {
         NNS_FndDestroyExpHeap(param0->unk_10);
 
-        Heap_FreeToHeap(param0->unk_0C);
+        Heap_Free(param0->unk_0C);
         sub_020995C4();
         sub_02099560();
         sub_020334CC();
@@ -274,7 +274,7 @@ void ov98_02246EF8(UnkStruct_ov98_02246E88 *param0)
 
     ov98_022499C8(param0->unk_114, v0, HEAP_ID_108);
     sub_02030D38(param0->saveData, v0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 void ov98_02246F24(UnkStruct_ov98_02246E88 *param0)
@@ -440,6 +440,6 @@ static void ov98_02247198(UnkStruct_ov98_02246E88 *param0)
         SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->saveData));
     }
 
-    Heap_FreeToHeap(param0->unk_98);
+    Heap_Free(param0->unk_98);
     ov98_02246E88(param0, 0, 0);
 }

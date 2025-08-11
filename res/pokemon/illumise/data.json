@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -96,12 +97,21 @@
             "MOVE_HELPING_HAND",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_BATON_PASS",
+            "MOVE_SILVER_WIND",
+            "MOVE_GROWTH",
+            "MOVE_ENCORE",
+            "MOVE_BUG_BUZZ"
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_ILLUMISE",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

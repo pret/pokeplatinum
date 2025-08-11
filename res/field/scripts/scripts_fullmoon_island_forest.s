@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fullmoon_island_forest.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000C
@@ -20,9 +19,9 @@ _000C:
     PlayCry SPECIES_CRESSELIA
     GetPlayerDir VAR_RESULT
     CallIfEq VAR_RESULT, 0, _007E
-    ScrCmd_063 0
+    ReleaseObject 0
     ScrCmd_26A 0, 6, 8
-    ScrCmd_062 0
+    LockObject 0
     SetFlag FLAG_UNK_0x024F
     RemoveObject 0
     ActivateRoamingPokemon ROAMING_SLOT_CRESSELIA
@@ -49,7 +48,7 @@ _007E:
 
     .balign 4, 0
 _0094:
-    MoveAction_071
-    MoveAction_012
-    MoveAction_072
+    LockDir
+    WalkNormalNorth
+    UnlockDir
     EndMovement

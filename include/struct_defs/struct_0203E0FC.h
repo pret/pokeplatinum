@@ -4,8 +4,8 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "bag.h"
 #include "game_options.h"
@@ -20,13 +20,13 @@ typedef struct {
     GlobalTrade *unk_00;
     SystemData *unk_04;
     Party *unk_08;
-    PCBoxes *unk_0C;
+    PCBoxes *pcBoxes;
     Pokedex *unk_10;
     WiFiList *unk_14;
-    UnkStruct_0202C878 *unk_18;
+    WiFiHistory *wiFiHistory;
     TrainerInfo *unk_1C;
-    SaveData *unk_20;
-    Options *unk_24;
+    SaveData *saveData;
+    Options *options;
     GameRecords *records;
     JournalEntry *unk_2C;
     Bag *unk_30;

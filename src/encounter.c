@@ -32,6 +32,7 @@
 #include "field_transition.h"
 #include "game_records.h"
 #include "heap.h"
+#include "item_use_pokemon.h"
 #include "journal.h"
 #include "location.h"
 #include "map_object.h"
@@ -50,7 +51,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02096420.h"
 #include "vars_flags.h"
 
 typedef struct Encounter {
@@ -139,7 +139,7 @@ static Encounter *NewEncounter(FieldBattleDTO *dto, int introEffectID, int battl
 static void FreeEncounter(Encounter *encounter)
 {
     FieldBattleDTO_Free(encounter->dto);
-    Heap_FreeToHeap(encounter);
+    Heap_Free(encounter);
 }
 
 static BOOL CheckPlayerWonEncounter(Encounter *encounter)
@@ -198,7 +198,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         }
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-            HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+            Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);
@@ -339,12 +339,12 @@ static WildEncounter *NewWildEncounter(FieldBattleDTO *dto, int introEffectID, i
 static void FreeWildEncounter(WildEncounter *encounter)
 {
     FieldBattleDTO_Free(encounter->dto);
-    Heap_FreeToHeap(encounter);
+    Heap_Free(encounter);
 }
 
 void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 {
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldSystem_CreateTask(fieldSystem, FieldTask_SafariEncounter, encounter);
     } else {
@@ -355,7 +355,7 @@ void Encounter_NewVsWild(FieldSystem *fieldSystem, FieldBattleDTO *dto)
 
 void Encounter_StartVsWild(FieldSystem *fieldSystem, FieldTask *task, FieldBattleDTO *dto)
 {
-    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
+    if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) != FALSE) {
         Encounter *encounter = NewEncounter(dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), NULL);
         FieldTask_InitJump(task, FieldTask_SafariEncounter, encounter);
     } else {
@@ -399,7 +399,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         }
 
         if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-            HealAllPokemonInParty(SaveData_GetParty(fieldSystem->saveData));
+            Party_HealAllMembers(SaveData_GetParty(fieldSystem->saveData));
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);
@@ -429,7 +429,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
     case 5:
         if (GetRadarChainActive(fieldSystem->chain)) {
             SetupGrassPatches(fieldSystem, encounter->dto->resultMask, fieldSystem->chain);
-            sub_02069638(fieldSystem, fieldSystem->chain);
+            FieldSystem_CreateShakingRadarPatches(fieldSystem, fieldSystem->chain);
         }
 
         encounter->state++;
@@ -512,10 +512,10 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
                 ScriptManager_Start(task, 8809, NULL, NULL);
             }
         } else {
-            PCBoxes *boxes = SaveData_GetPCBoxes(fieldSystem->saveData);
+            PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
             Party *party = SaveData_GetParty(fieldSystem->saveData);
 
-            if (PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
+            if (PCBoxes_FirstEmptyBox(pcBoxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
                 ScriptManager_Start(task, 8822, NULL, NULL);
             }
         }

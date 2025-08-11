@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city_east_house_2f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025
@@ -59,5 +58,4 @@ _0083:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

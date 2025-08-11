@@ -31,6 +31,7 @@
     "safari_flee_rate": 60,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LEER" ],
@@ -97,12 +98,25 @@
             "MOVE_OUTRAGE",
             "MOVE_SYNTHESIS",
             "MOVE_TWISTER"
+        ],
+        "egg_moves": [
+            "MOVE_HEADBUTT",
+            "MOVE_SLAM",
+            "MOVE_RAZOR_WIND",
+            "MOVE_LEECH_SEED",
+            "MOVE_NATURE_POWER",
+            "MOVE_LEAF_STORM",
+            "MOVE_SYNTHESIS",
+            "MOVE_CURSE",
+            "MOVE_LEAF_BLADE"
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_TROPIUS",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 20,

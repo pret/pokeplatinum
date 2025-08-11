@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_212_gate_to_hearthome_city.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0025
@@ -49,5 +48,4 @@ _004B:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

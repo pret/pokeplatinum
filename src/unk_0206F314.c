@@ -112,7 +112,7 @@ typedef struct {
     UnkStruct_0206F7F8 *unk_08;
 } UnkStruct_0206F314;
 
-static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *param1);
+static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *saveData);
 static void sub_0206F9D4(UnkStruct_0206F7F8 *param0);
 static void sub_0206FA08(UnkStruct_0206F7F8 *param0);
 static void sub_0206FAC0(UnkStruct_0206F7F8 *param0);
@@ -183,7 +183,7 @@ static const UnkStruct_020F02D0 *const Unk_020F0254[] = {
 static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u16 param2)
 {
     UnkStruct_0206F7F8 *v0;
-    SaveData *v1 = fieldSystem->saveData;
+    SaveData *saveData = fieldSystem->saveData;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_80, 0x6000);
 
@@ -197,9 +197,9 @@ static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u1
     v0->unk_19 = sub_0202E84C(v0->unk_16);
     v0->fieldSystem = fieldSystem;
     v0->unk_D0 = fieldSystem->bgConfig;
-    v0->unk_304 = sub_0202E8C0(v1);
-    v0->unk_1A = Options_TextFrameDelay(SaveData_GetOptions(v1));
-    v0->unk_1C = Options_Frame(SaveData_GetOptions(v1));
+    v0->unk_304 = sub_0202E8C0(saveData);
+    v0->unk_1A = Options_TextFrameDelay(SaveData_GetOptions(saveData));
+    v0->unk_1C = Options_Frame(SaveData_GetOptions(saveData));
 
     param0->unk_08 = v0;
 
@@ -229,16 +229,16 @@ static int sub_0206F3A0(UnkStruct_0206F314 *param0)
 
     heapID = v5->heapID;
 
-    Heap_FreeToHeap(v5);
+    Heap_Free(v5);
     MI_CpuClear8(v5, sizeof(UnkStruct_0206F7F8));
     Heap_Destroy(heapID);
 
     return 12;
 }
 
-static int sub_0206F448(UnkStruct_0206F7F8 *param0, SaveData *param1)
+static int sub_0206F448(UnkStruct_0206F7F8 *param0, SaveData *saveData)
 {
-    sub_0206F7F8(param0, param1);
+    sub_0206F7F8(param0, saveData);
     sub_0206FA08(param0);
     sub_0206FB38(param0);
     sub_0206FCC4(param0);
@@ -452,14 +452,14 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
     return 8;
 }
 
-static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *param1)
+static void sub_0206F7F8(UnkStruct_0206F7F8 *param0, SaveData *saveData)
 {
     int v0, v1, v2, v3;
     UnkStruct_0202EE10 *v4;
 
     param0->unk_324 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02070050) * param0->unk_18);
     MI_CpuClear8(param0->unk_324, sizeof(UnkStruct_02070050) * param0->unk_18);
-    param0->unk_308[0] = sub_0202ED8C(param1, param0->unk_16, param0->heapID);
+    param0->unk_308[0] = sub_0202ED8C(saveData, param0->unk_16, param0->heapID);
 
     for (v0 = 0; v0 < param0->unk_18; v0++) {
         param0->unk_308[v0 + 1] = sub_0202EE10(param0->unk_304, (param0->unk_17 * 13) + param0->unk_19 + v0, param0->heapID);
@@ -512,7 +512,7 @@ static void sub_0206F9D4(UnkStruct_0206F7F8 *param0)
         sub_0202EE8C(param0->unk_308[v0]);
     }
 
-    Heap_FreeToHeap(param0->unk_324);
+    Heap_Free(param0->unk_324);
 }
 
 static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
@@ -569,19 +569,19 @@ static void sub_0206FAC0(UnkStruct_0206F7F8 *param0)
 
 static void sub_0206FB38(UnkStruct_0206F7F8 *param0)
 {
-    Bg_ClearTilesRange(1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
     Bg_FillTilemapRect(param0->unk_D0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 1);
-    Bg_ToggleLayer(1, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
 
-    param0->unk_10 = Bg_GetPriority(param0->unk_D0, 0);
-    param0->unk_12 = Bg_GetPriority(param0->unk_D0, 1);
+    param0->unk_10 = Bg_GetPriority(param0->unk_D0, BG_LAYER_MAIN_0);
+    param0->unk_12 = Bg_GetPriority(param0->unk_D0, BG_LAYER_MAIN_1);
 
-    Bg_SetPriority(0, 2);
-    Bg_SetPriority(1, 1);
-    LoadMessageBoxGraphics(param0->unk_D0, 3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_D0, 3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_D0, 1, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    LoadMessageBoxGraphics(param0->unk_D0, BG_LAYER_MAIN_3, (1024 - (18 + 12)), 10, param0->unk_1C, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_D0, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_D0, BG_LAYER_MAIN_1, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
     Window_Add(param0->unk_D0, &param0->unk_E4, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
@@ -593,12 +593,12 @@ static void sub_0206FC4C(UnkStruct_0206F7F8 *param0)
     Window_EraseMessageBox(&param0->unk_E4, 1);
     Window_ClearAndCopyToVRAM(&param0->unk_E4);
     Window_Remove(&param0->unk_E4);
-    Bg_ClearTilesRange(1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32 * (24 * (12 + 2) + 9 + 1), 0, param0->heapID);
     Bg_FillTilemapRect(param0->unk_D0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 1);
-    Bg_ToggleLayer(1, 0);
-    Bg_SetPriority(0, param0->unk_10);
-    Bg_SetPriority(1, param0->unk_12);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, param0->unk_10);
+    Bg_SetPriority(BG_LAYER_MAIN_1, param0->unk_12);
 }
 
 static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)
@@ -890,7 +890,7 @@ static BOOL sub_020702D0(FieldTask *param0)
         v1->unk_00 = sub_0206F3A0(v1);
         break;
     case 12:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": true,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_QUICK_ATTACK" ],
@@ -89,6 +90,16 @@
             "MOVE_MAGNET_RISE",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_KARATE_CHOP",
+            "MOVE_BARRIER",
+            "MOVE_ROLLING_KICK",
+            "MOVE_MEDITATE",
+            "MOVE_CROSS_CHOP",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_DYNAMIC_PUNCH"
         ]
     },
     "evolutions": [
@@ -98,9 +109,11 @@
             "SPECIES_ELECTABUZZ"
         ]
     ],
+    "offspring": "SPECIES_ELEKID",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -86,6 +87,19 @@
             "MOVE_ANCIENT_POWER",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB"
+        ],
+        "egg_moves": [
+            "MOVE_VINE_WHIP",
+            "MOVE_LEECH_SEED",
+            "MOVE_COUNTER",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_FLAIL",
+            "MOVE_NATURE_POWER",
+            "MOVE_INGRAIN",
+            "MOVE_GRASS_WHISTLE",
+            "MOVE_LEAF_STORM",
+            "MOVE_AROMATHERAPY",
+            "MOVE_WRING_OUT"
         ]
     },
     "evolutions": [
@@ -95,9 +109,11 @@
             "SPECIES_BAYLEEF"
         ]
     ],
+    "offspring": "SPECIES_CHIKORITA",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 9,

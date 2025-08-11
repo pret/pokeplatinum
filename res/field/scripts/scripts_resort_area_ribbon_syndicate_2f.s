@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_2f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _02E8
@@ -148,92 +147,92 @@ _01F3:
 
     .balign 4, 0
 _0210:
-    MoveAction_015 2
-    MoveAction_013 2
-    MoveAction_015 3
-    MoveAction_034
+    WalkNormalEast 2
+    WalkNormalSouth 2
+    WalkNormalEast 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0224:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013
-    MoveAction_015 4
-    MoveAction_034
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth
+    WalkNormalEast 4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _023C:
-    MoveAction_015 2
-    MoveAction_013 2
-    MoveAction_015 3
-    MoveAction_034
+    WalkNormalEast 2
+    WalkNormalSouth 2
+    WalkNormalEast 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0250:
-    MoveAction_015
-    MoveAction_013
-    MoveAction_015 2
-    MoveAction_013
-    MoveAction_015 2
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth
+    WalkNormalEast 2
+    WalkNormalSouth
+    WalkNormalEast 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _026C:
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_015 2
-    MoveAction_033
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkNormalEast 2
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0280:
-    MoveAction_063 2
-    MoveAction_013 2
-    MoveAction_015 3
-    MoveAction_033
+    Delay8 2
+    WalkNormalSouth 2
+    WalkNormalEast 3
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0294:
-    MoveAction_013
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_015
-    MoveAction_033
+    WalkNormalSouth
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02AC:
-    MoveAction_063 2
-    MoveAction_015 3
-    MoveAction_013
-    MoveAction_015
-    MoveAction_033
+    Delay8 2
+    WalkNormalEast 3
+    WalkNormalSouth
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02C4:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _02CC:
-    MoveAction_015 3
+    WalkNormalEast 3
     EndMovement
 
     .balign 4, 0
 _02D4:
-    MoveAction_012 4
+    WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _02DC:
-    MoveAction_012
-    MoveAction_033
+    WalkNormalNorth
+    WalkOnSpotNormalSouth
     EndMovement
 
 _02E8:
@@ -266,6 +265,4 @@ _030E:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

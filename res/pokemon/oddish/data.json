@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ABSORB" ],
@@ -79,6 +80,15 @@
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB"
+        ],
+        "egg_moves": [
+            "MOVE_SWORDS_DANCE",
+            "MOVE_RAZOR_LEAF",
+            "MOVE_FLAIL",
+            "MOVE_SYNTHESIS",
+            "MOVE_CHARM",
+            "MOVE_INGRAIN",
+            "MOVE_TICKLE"
         ]
     },
     "evolutions": [
@@ -88,9 +98,11 @@
             "SPECIES_GLOOM"
         ]
     ],
+    "offspring": "SPECIES_ODDISH",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 5,

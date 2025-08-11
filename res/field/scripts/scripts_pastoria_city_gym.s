@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_gym.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0034
@@ -149,4 +148,4 @@ _01CF:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

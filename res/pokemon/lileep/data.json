@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
@@ -87,6 +88,14 @@
             "MOVE_SYNTHESIS",
             "MOVE_EARTH_POWER",
             "MOVE_SEED_BOMB"
+        ],
+        "egg_moves": [
+            "MOVE_BARRIER",
+            "MOVE_RECOVER",
+            "MOVE_MIRROR_COAT",
+            "MOVE_ROCK_SLIDE",
+            "MOVE_WRING_OUT",
+            "MOVE_TICKLE"
         ]
     },
     "evolutions": [
@@ -96,9 +105,11 @@
             "SPECIES_CRADILY"
         ]
     ],
+    "offspring": "SPECIES_LILEEP",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 10,

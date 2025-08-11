@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_221.h"
 
-    .data
 
     ScriptEntry _002E
     ScriptEntry _0041
@@ -41,4 +40,4 @@ _0054:
     ShowLandmarkSign 2
     End
 
-    .byte 0
+    .balign 4, 0

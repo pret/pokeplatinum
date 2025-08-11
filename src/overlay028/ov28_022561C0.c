@@ -6,8 +6,8 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 
-#include "overlay025/poketch_button.h"
-#include "overlay025/poketch_system.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay028/ov28_0225697C.h"
 #include "overlay028/ov28_02256E9C.h"
 #include "overlay028/struct_ov28_0225697C_1.h"
@@ -118,7 +118,7 @@ static BOOL ov28_02256210(UnkStruct_ov28_02256210 *param0, u32 param1, BgConfig 
             return 0;
         }
 
-        param0->buttonManager = PoketchButtonManager_New(Unk_ov28_02257658, NELEMS(Unk_ov28_02257658), ov28_02256344, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(Unk_ov28_02257658, NELEMS(Unk_ov28_02257658), ov28_02256344, param0, HEAP_ID_POKETCH_APP);
 
         if (param0->buttonManager == NULL) {
             return 0;
@@ -174,7 +174,7 @@ static void ov28_022562CC(SysTask *param0, void *param1)
 
         if (v0[v1->unk_00](v1)) {
             ov28_02256298(v1);
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
             SysTask_Done(param0);
             PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
         }

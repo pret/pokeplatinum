@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/wayward_cave_1f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _002B
@@ -128,77 +127,59 @@ _0182:
 
     .balign 4, 0
 _0194:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _01A4:
-    MoveAction_012
-    MoveAction_033
+    WalkNormalNorth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_015
-    MoveAction_034
+    WalkNormalEast
+    WalkOnSpotNormalWest
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+WaywardCave1F_UnusedMovement:
+    Delay8 5
+    WalkNormalWest
+    EndMovement
+
+WaywardCave1F_UnusedMovement2:
+    Delay8 5
+    WalkNormalNorth
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _01D8:
-    MoveAction_034
-    MoveAction_075
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_063 3
-    MoveAction_014
-    MoveAction_033
+    Delay8 3
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0200:
-    MoveAction_063 3
-    MoveAction_013
-    MoveAction_033
+    Delay8 3
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement

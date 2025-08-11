@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city.h"
 
-    .data
 
     ScriptEntry _0082
     ScriptEntry _0C18
@@ -47,7 +46,7 @@ _0082:
 
 _00BA:
     SetObjectEventPos 6, 0x2B8, 0x254
-    ScrCmd_188 6, 17
+    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_RIGHT
     SetObjectEventDir 6, DIR_EAST
     Return
 
@@ -61,7 +60,7 @@ _00D8:
 
 _00E0:
     SetObjectEventPos 26, 0x2CD, 0x251
-    ScrCmd_188 26, 14
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 26, DIR_NORTH
     Return
 
@@ -257,203 +256,195 @@ _042D:
 
     .balign 4, 0
 _0444:
-    MoveAction_063
-    MoveAction_033
-    MoveAction_075
-    MoveAction_063
+    Delay8
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _0458:
-    MoveAction_014
-    MoveAction_013
+    WalkNormalWest
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0464:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _046C:
-    MoveAction_015
-    MoveAction_013
+    WalkNormalEast
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0478:
-    MoveAction_015 2
-    MoveAction_013
+    WalkNormalEast 2
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0484:
-    MoveAction_036
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _048C:
-    MoveAction_063 4
-    MoveAction_035
+    Delay8 4
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0498:
-    MoveAction_063 3
-    MoveAction_035
+    Delay8 3
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04A4:
-    MoveAction_063 2
-    MoveAction_035
+    Delay8 2
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04B0:
-    MoveAction_063 4
-    MoveAction_034
+    Delay8 4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _04BC:
-    MoveAction_015
-    MoveAction_013 9
+    WalkNormalEast
+    WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
 _04C8:
-    MoveAction_014
-    MoveAction_013 9
+    WalkNormalWest
+    WalkNormalSouth 9
     EndMovement
 
     .balign 4, 0
 _04D4:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _04EC:
-    MoveAction_063 4
-    MoveAction_062
-    MoveAction_035
+    Delay8 4
+    Delay4
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04FC:
-    MoveAction_063 3
-    MoveAction_062
-    MoveAction_035
+    Delay8 3
+    Delay4
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _050C:
-    MoveAction_063 2
-    MoveAction_062
-    MoveAction_035
+    Delay8 2
+    Delay4
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _051C:
-    MoveAction_063 4
-    MoveAction_062
-    MoveAction_034
+    Delay8 4
+    Delay4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _052C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0534:
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_033
+    Delay8 2
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0544:
-    MoveAction_063 2
-    MoveAction_034
-    MoveAction_033
+    Delay8 2
+    WalkOnSpotNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0554:
-    MoveAction_063
-    MoveAction_062
-    MoveAction_033
+    Delay8
+    Delay4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0564:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _056C:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0574:
-    MoveAction_013 4
-    MoveAction_014 2
+    WalkNormalSouth 4
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _0580:
-    MoveAction_013 4
-    MoveAction_014
+    WalkNormalSouth 4
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _058C:
-    MoveAction_013 4
-    MoveAction_034
+    WalkNormalSouth 4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0598:
-    MoveAction_013
-    MoveAction_014
-    MoveAction_013 3
-    MoveAction_035
+    WalkNormalSouth
+    WalkNormalWest
+    WalkNormalSouth 3
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _05AC:
-    MoveAction_013 8
+    WalkNormalSouth 8
     EndMovement
 
     .balign 4, 0
 _05B4:
-    MoveAction_013 8
+    WalkNormalSouth 8
     EndMovement
 
     .balign 4, 0
 _05BC:
-    MoveAction_013 8
+    WalkNormalSouth 8
     EndMovement
 
     .balign 4, 0
 _05C4:
-    MoveAction_013 8
+    WalkNormalSouth 8
     EndMovement
 
 _05CC:
@@ -592,26 +583,13 @@ _086E:
     GoToIfEq VAR_0x8005, 0x255, _08C3
     End
 
-    .byte 134
-    .byte 1
-    .byte 26
-    .byte 0
-    .byte 180
-    .byte 2
-    .byte 91
-    .byte 2
-    .byte 27
-    .byte 0
-    .byte 134
-    .byte 1
-    .byte 26
-    .byte 0
-    .byte 180
-    .byte 2
-    .byte 93
-    .byte 2
-    .byte 27
-    .byte 0
+VeilstoneCity_Unused:
+    SetObjectEventPos 26, 692, 603
+    Return
+
+VeilstoneCity_Unused2:
+    SetObjectEventPos 26, 692, 605
+    Return
 
 _08A9:
     ApplyMovement 26, _0AAC
@@ -766,273 +744,196 @@ _0A73:
 
     .balign 4, 0
 _0A7C:
-    MoveAction_016 10
-    MoveAction_019 3
+    WalkFastNorth 10
+    WalkFastEast 3
     EndMovement
 
     .balign 4, 0
 _0A88:
-    MoveAction_063 2
-    MoveAction_034
+    Delay8 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0A94:
-    MoveAction_015
-    MoveAction_032
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0AA0:
-    MoveAction_015
-    MoveAction_033
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0AAC:
-    MoveAction_015 5
-    MoveAction_012 4
-    MoveAction_069
+    WalkNormalEast 5
+    WalkNormalNorth 4
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0ABC:
-    MoveAction_013
-    MoveAction_035
+    WalkNormalSouth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0AC8:
-    MoveAction_013
-    MoveAction_035
+    WalkNormalSouth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0AD4:
-    MoveAction_012
-    MoveAction_035
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement2:
+    Delay4
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
+    Delay8
+    EndMovement
+
+VeilstoneCity_UnusedMovement3:
+    WalkNormalWest 4
+    EndMovement
+
+VeilstoneCity_UnusedMovement4:
+    WalkNormalSouth 2
+    WalkNormalWest 2
+    WalkNormalSouth 6
+    EndMovement
+
+VeilstoneCity_UnusedMovement5:
+    Delay8
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
+    EndMovement
+
+VeilstoneCity_UnusedMovement6:
+    Delay8
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0B2C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0B34:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0B3C:
-    MoveAction_038
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _0B44:
-    MoveAction_014 3
-    MoveAction_013 10
+    WalkNormalWest 3
+    WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
 _0B50:
-    MoveAction_012
-    MoveAction_015
+    WalkNormalNorth
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _0B5C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0B64:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement7:
+    Delay8
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
+    EndMovement
+
+VeilstoneCity_UnusedMovement8:
+    Delay8
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0B8C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0B94:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0B9C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement9:
+    Delay8
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0BB0:
-    MoveAction_063
-    MoveAction_001
+    Delay8
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0BBC:
-    MoveAction_063
-    MoveAction_000
+    Delay8
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _0BC8:
-    MoveAction_013
-    MoveAction_015 5
-    MoveAction_012 5
-    MoveAction_069
+    WalkNormalSouth
+    WalkNormalEast 5
+    WalkNormalNorth 5
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0BDC:
-    MoveAction_012
-    MoveAction_015 5
-    MoveAction_012 5
-    MoveAction_069
+    WalkNormalNorth
+    WalkNormalEast 5
+    WalkNormalNorth 5
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0BF0:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0BF8:
-    MoveAction_019 4
-    MoveAction_016 4
-    MoveAction_036
+    WalkFastEast 4
+    WalkFastNorth 4
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _0C08:
-    MoveAction_019 4
-    MoveAction_016 6
-    MoveAction_036
+    WalkFastEast 4
+    WalkFastNorth 6
+    WalkOnSpotFastNorth
     EndMovement
 
 _0C18:
@@ -1146,27 +1047,27 @@ _0CF7:
 
     .balign 4, 0
 _0D28:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0D30:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0D3C:
-    MoveAction_017
-    MoveAction_034
-    MoveAction_063 2
-    MoveAction_012
-    MoveAction_034
+    WalkFastSouth
+    WalkOnSpotNormalWest
+    Delay8 2
+    WalkNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0D54:
-    MoveAction_014
+    WalkNormalWest
     EndMovement
 
 _0D5C:
@@ -1219,7 +1120,7 @@ _0DBE:
     CloseMessage
     SetFlag FLAG_UNK_0x0155
     SetObjectEventPos 26, 0x2D3, 0x259
-    ScrCmd_188 26, 14
+    SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 26, DIR_NORTH
     ClearFlag FLAG_UNK_0x028A
     AddObject 26
@@ -1300,69 +1201,69 @@ _0F0B:
 
     .balign 4, 0
 _0F1C:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0F24:
-    MoveAction_019
-    MoveAction_017 2
-    MoveAction_019
-    MoveAction_017 9
+    WalkFastEast
+    WalkFastSouth 2
+    WalkFastEast
+    WalkFastSouth 9
     EndMovement
 
     .balign 4, 0
 _0F38:
-    MoveAction_017 2
-    MoveAction_019 2
-    MoveAction_017 9
+    WalkFastSouth 2
+    WalkFastEast 2
+    WalkFastSouth 9
     EndMovement
 
     .balign 4, 0
 _0F48:
-    MoveAction_063
-    MoveAction_035
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0F58:
-    MoveAction_063 2
-    MoveAction_033
+    Delay8 2
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0F64:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0F70:
-    MoveAction_012 6
-    MoveAction_014 2
-    MoveAction_012 2
+    WalkNormalNorth 6
+    WalkNormalWest 2
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0F80:
-    MoveAction_012 6
-    MoveAction_014 2
-    MoveAction_032
+    WalkNormalNorth 6
+    WalkNormalWest 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0F90:
-    MoveAction_012 6
-    MoveAction_014 3
-    MoveAction_012
+    WalkNormalNorth 6
+    WalkNormalWest 3
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0FA0:
-    MoveAction_012 6
-    MoveAction_014
-    MoveAction_012
+    WalkNormalNorth 6
+    WalkNormalWest
+    WalkNormalNorth
     EndMovement
 
 _0FB0:
@@ -1376,16 +1277,13 @@ _0FB0:
     CallCommonScript 0x807
     GoToIfSet FLAG_UNK_0x009B, _0EF4
     GoTo _0ED8
-
-    .byte 2
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _0FE0:
-    MoveAction_063
-    MoveAction_075
-    MoveAction_063
+    Delay8
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
 _0FF0:
@@ -1523,15 +1421,15 @@ _11DE:
 
     .balign 4, 0
 _11E8:
-    MoveAction_032
-    MoveAction_075
-    MoveAction_015 2
-    MoveAction_012
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
+    WalkNormalEast 2
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _11FC:
-    MoveAction_013 9
+    WalkNormalSouth 9
     EndMovement
 
 _1204:
@@ -1566,6 +1464,4 @@ _123E:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

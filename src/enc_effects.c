@@ -6,8 +6,8 @@
 #include "constants/battle.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
-#include "constants/trainer.h"
 #include "generated/sdat.h"
+#include "generated/trainer_classes.h"
 
 #include "overlay005/encounter_effect.h"
 

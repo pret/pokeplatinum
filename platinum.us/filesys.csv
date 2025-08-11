@@ -161,7 +161,7 @@ res/pokemon/pl_personal.narc,/poketool/personal/pl_personal.narc
 res/pokemon/evo.narc,/poketool/personal/evo.narc
 res/prebuilt/poketool/personal/growtbl.narc,/poketool/personal/growtbl.narc
 res/pokemon/pl_growtbl.narc,/poketool/personal/pl_growtbl.narc
-res/prebuilt/poketool/personal/pms.narc,/poketool/personal/pms.narc
+res/pokemon/pms.narc,/poketool/personal/pms.narc
 res/pokemon/wotbl.narc,/poketool/personal/wotbl.narc
 res/trainers/trdata.narc,/poketool/trainer/trdata.narc
 res/trainers/trpoke.narc,/poketool/trainer/trpoke.narc
@@ -251,7 +251,7 @@ res/items/nuts_data.narc,/itemtool/itemdata/nuts_data.narc
 res/items/pl_item_data.narc,/itemtool/itemdata/pl_item_data.narc
 res/pokemon/pl_poke_icon.narc,/poketool/icongra/pl_poke_icon.narc
 res/prebuilt/poketool/icongra/poke_icon.narc,/poketool/icongra/poke_icon.narc
-res/prebuilt/poketool/pokefoot/pokefoot.narc,/poketool/pokefoot/pokefoot.narc
+res/pokemon/pokefoot.narc,/poketool/pokefoot/pokefoot.narc
 res/prebuilt/data/mmodel/mmodel.narc,/data/mmodel/mmodel.narc
 res/prebuilt/data/mmodel/fldeff.narc,/data/mmodel/fldeff.narc
 res/prebuilt/wazaeffect/effectdata/ball_particle.narc,/wazaeffect/effectdata/ball_particle.narc
@@ -322,14 +322,14 @@ res/prebuilt/fielddata/tornworld/tw_arc.narc,/fielddata/tornworld/tw_arc.narc
 res/prebuilt/fielddata/tornworld/tw_arc_attr.narc,/fielddata/tornworld/tw_arc_attr.narc
 res/prebuilt/particledata/pl_pokelist/pokelist_particle.narc,/particledata/pl_pokelist/pokelist_particle.narc
 res/prebuilt/battle/b_pl_stage/pl_bsdpm.narc,/battle/b_pl_stage/pl_bsdpm.narc
-res/prebuilt/battle/b_pl_tower/pl_btdpm.narc,/battle/b_pl_tower/pl_btdpm.narc
-res/prebuilt/battle/b_pl_tower/pl_btdtr.narc,/battle/b_pl_tower/pl_btdtr.narc
+res/trainers/frontier/pl_btdpm.narc,/battle/b_pl_tower/pl_btdpm.narc
+res/trainers/frontier/pl_btdtr.narc,/battle/b_pl_tower/pl_btdtr.narc
 res/prebuilt/application/bucket/ballslow_data.narc,/application/bucket/ballslow_data.narc
 res/prebuilt/particledata/pl_etc/pl_etc_particle.narc,/particledata/pl_etc/pl_etc_particle.narc
 res/prebuilt/contest/graphic/contest_bg.narc,/contest/graphic/contest_bg.narc
 res/prebuilt/contest/graphic/contest_obj.narc,/contest/graphic/contest_obj.narc
 res/prebuilt/demo/title/op_demo.narc,/demo/title/op_demo.narc
-res/prebuilt/demo/title/titledemo.narc,/demo/title/titledemo.narc
+res/graphics/title_screen/titledemo.narc,/demo/title/titledemo.narc
 res/field/trades/fld_trade.narc,/fielddata/pokemon_trade/fld_trade.narc
 res/prebuilt/resource/eng/zukan/zukan.narc,/resource/eng/zukan/zukan.narc
 res/prebuilt/resource/eng/batt_rec/batt_rec_gra.narc,/resource/eng/batt_rec/batt_rec_gra.narc

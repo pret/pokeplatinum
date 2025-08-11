@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_FEAROW",
+    "moves": [
+        "MOVE_PLUCK",
+        "MOVE_FACADE",
+        "MOVE_GROWL",
+        "MOVE_LEER"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": false,
+        "speed": true,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SHARP_BEAK",
+    "form": 0
+}

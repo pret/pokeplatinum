@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TAIL_WHIP" ],
@@ -74,6 +75,17 @@
             "MOVE_HELPING_HAND",
             "MOVE_LAST_RESORT",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_CHARM",
+            "MOVE_FLAIL",
+            "MOVE_ENDURE",
+            "MOVE_CURSE",
+            "MOVE_TICKLE",
+            "MOVE_WISH",
+            "MOVE_YAWN",
+            "MOVE_FAKE_TEARS",
+            "MOVE_COVET"
         ]
     },
     "evolutions": [
@@ -97,9 +109,11 @@
         [ "EVO_LEVEL_HAPPINESS_DAY", "SPECIES_ESPEON" ],
         [ "EVO_LEVEL_HAPPINESS_NIGHT", "SPECIES_UMBREON" ]
     ],
+    "offspring": "SPECIES_EEVEE",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 3,

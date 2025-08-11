@@ -31,8 +31,8 @@ typedef struct {
     u8 unk_569[1024];
     u8 unk_969[4][1024];
     u8 padding_1969[3];
-    const Options *unk_196C;
-    SaveData *unk_1970;
+    const Options *options;
+    SaveData *saveData;
     Pokemon *unk_1974;
     const TrainerInfo *unk_1978;
     u8 unk_197C;

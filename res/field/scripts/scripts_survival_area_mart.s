@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area_mart.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0028
@@ -14,7 +13,7 @@ _0012:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End

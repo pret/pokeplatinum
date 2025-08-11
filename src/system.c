@@ -3,12 +3,12 @@
 #include "nitro/pad/common/pad.h"
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 #include "boot.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "sys_task_manager.h"
 
 #define MAIN_TASK_MAX        160
@@ -202,7 +202,7 @@ void *ReadFileToHeap(int heapID, const char *filename)
         buf = Heap_AllocFromHeap(heapID, length);
         if (buf != NULL) {
             if (FS_ReadFile(&file, buf, length) != length) {
-                Heap_FreeToHeapExplicit(heapID, buf);
+                Heap_FreeExplicit(heapID, buf);
                 buf = NULL;
             }
         }
@@ -238,7 +238,7 @@ void ClearUnusedSystemCache(void)
 {
     for (int i = CACHE_ENTRY_MAX - 1; i > -1; i--) {
         if (sCache[i].data != NULL) {
-            Heap_FreeToHeap(sCache[i].data);
+            Heap_Free(sCache[i].data);
             sCache[i].data = NULL;
             sCache[i].hash = 0;
         }
@@ -449,7 +449,7 @@ void FreeHeapCanary(void)
     GF_ASSERT(gSystem.heapCanary != NULL);
 
     *(gSystem.heapCanary) = 0;
-    Heap_FreeToHeap(gSystem.heapCanary);
+    Heap_Free(gSystem.heapCanary);
     gSystem.heapCanary = NULL;
 }
 

@@ -3,25 +3,23 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-
 #include "camera.h"
 #include "heap.h"
-#include "unk_02014000.h"
+#include "particle_system.h"
 #include "unk_0202419C.h"
 
 static u32 ov11_0221F914(u32 param0, BOOL param1);
 static u32 ov11_0221F930(u32 param0, BOOL param1);
 
-UnkStruct_02014014 *ov11_0221F840(int heapID)
+ParticleSystem *ov11_0221F840(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
-    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, heapID);
-    camera = sub_02014784(v0);
+    v0 = ParticleSystem_New(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, heapID);
+    camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
         Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
@@ -30,9 +28,9 @@ UnkStruct_02014014 *ov11_0221F840(int heapID)
     return v0;
 }
 
-UnkStruct_02014014 *ov11_0221F888(int heapID)
+ParticleSystem *ov11_0221F888(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
@@ -42,8 +40,8 @@ UnkStruct_02014014 *ov11_0221F888(int heapID)
         return NULL;
     }
 
-    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4200, 1, heapID);
-    camera = sub_02014784(v0);
+    v0 = ParticleSystem_New(ov11_0221F914, ov11_0221F930, v1, 0x4200, 1, heapID);
+    camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
         Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
@@ -52,12 +50,12 @@ UnkStruct_02014014 *ov11_0221F888(int heapID)
     return v0;
 }
 
-void ov11_0221F8D8(UnkStruct_02014014 *param0)
+void ov11_0221F8D8(ParticleSystem *param0)
 {
-    void *v0 = sub_02014730(param0);
+    void *v0 = ParticleSystem_GetHeapStart(param0);
 
-    sub_0201411C(param0);
-    Heap_FreeToHeap(v0);
+    ParticleSystem_Free(param0);
+    Heap_Free(v0);
 }
 
 void ov11_0221F8F0(void)
@@ -67,18 +65,18 @@ void ov11_0221F8F0(void)
 
     sub_020241B4();
 
-    if (sub_02014680() == 0) {
+    if (ParticleSystem_GetActiveAmount() == 0) {
         return;
     }
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
 }
 
 static u32 ov11_0221F914(u32 param0, BOOL param1)
@@ -87,7 +85,7 @@ static u32 ov11_0221F914(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
     v1 = NNS_GfdGetTexKeyAddr(v0);
 
     return v1;
@@ -99,7 +97,7 @@ static u32 ov11_0221F930(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
     v1 = NNS_GfdGetPlttKeyAddr(v0);
 
     return v1;

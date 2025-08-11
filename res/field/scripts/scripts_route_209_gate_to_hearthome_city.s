@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209_gate_to_hearthome_city.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D
@@ -128,90 +127,81 @@ _01BA:
     WaitMovement
     Return
 
-    .byte 0
-    .byte 0
-    .byte 18
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+Route209GateToHearthomeCity_UnusedMovement:
+    WalkFastWest 4
+    EmoteExclamationMark
+    EndMovement
 
     .balign 4, 0
 _01D4:
-    MoveAction_018 2
-    MoveAction_016 2
-    MoveAction_038
+    WalkFastWest 2
+    WalkFastNorth 2
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_018 2
-    MoveAction_016
-    MoveAction_038
+    WalkFastWest 2
+    WalkFastNorth
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _01F4:
-    MoveAction_018 2
+    WalkFastWest 2
     EndMovement
 
     .balign 4, 0
 _01FC:
-    MoveAction_018 2
-    MoveAction_017
-    MoveAction_038
+    WalkFastWest 2
+    WalkFastSouth
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _020C:
-    MoveAction_018 2
-    MoveAction_017 2
-    MoveAction_038
+    WalkFastWest 2
+    WalkFastSouth 2
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _021C:
-    MoveAction_019 2
-    MoveAction_017 2
-    MoveAction_019 2
+    WalkFastEast 2
+    WalkFastSouth 2
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _022C:
-    MoveAction_019 2
-    MoveAction_017
-    MoveAction_019 2
+    WalkFastEast 2
+    WalkFastSouth
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _023C:
-    MoveAction_019 4
+    WalkFastEast 4
     EndMovement
 
     .balign 4, 0
 _0244:
-    MoveAction_019 2
-    MoveAction_016
-    MoveAction_019 2
+    WalkFastEast 2
+    WalkFastNorth
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _0254:
-    MoveAction_019 2
-    MoveAction_016 2
-    MoveAction_019 2
+    WalkFastEast 2
+    WalkFastNorth 2
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _0264:
-    MoveAction_063
-    MoveAction_075
-    MoveAction_063
+    Delay8
+    EmoteExclamationMark
+    Delay8
     EndMovement

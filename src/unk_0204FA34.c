@@ -13,7 +13,7 @@
 #include "unk_0205DFC4.h"
 
 void sub_0204FA34(int param0, int param1, void *param2, void *param3);
-void sub_0204FA50(SaveData *param0, UnkStruct_0203026C *param1, u8 param2);
+void sub_0204FA50(SaveData *saveData, UnkStruct_0203026C *param1, u8 param2);
 
 void sub_0204FA34(int param0, int param1, void *param2, void *param3)
 {
@@ -32,7 +32,7 @@ void sub_0204FA34(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-void sub_0204FA50(SaveData *param0, UnkStruct_0203026C *param1, u8 param2)
+void sub_0204FA50(SaveData *saveData, UnkStruct_0203026C *param1, u8 param2)
 {
     int v0;
     u8 v1[4];
@@ -42,10 +42,10 @@ void sub_0204FA50(SaveData *param0, UnkStruct_0203026C *param1, u8 param2)
     sub_02030280(param1, 5, param2, 0, v1);
 
     if (param2 == 3) {
-        sub_020306E4(SaveData_GetBattleFrontier(param0), 106, sub_0205E6A8(106), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(saveData), 106, sub_0205E6A8(106), 0);
     }
 
-    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E50C(param2), sub_0205E6A8(sub_0205E50C(param2)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E50C(param2), sub_0205E6A8(sub_0205E50C(param2)), 0);
 
     return;
 }

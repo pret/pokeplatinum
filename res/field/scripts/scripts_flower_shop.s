@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/flower_shop.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _006E
@@ -66,4 +65,4 @@ _00A9:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

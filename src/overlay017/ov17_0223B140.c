@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay011/ov11_0221F840.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay017/const_ov17_022536B4.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_0223F7E4.h"
@@ -33,8 +33,10 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -43,10 +45,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
+#include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
@@ -136,7 +136,7 @@ static const SpriteResourceCapacities Unk_ov17_02252DB0 = {
     0x8
 };
 
-int ov17_0223B140(OverlayManager *param0, int *param1)
+int ov17_0223B140(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02246F24 *v0;
 
@@ -154,11 +154,11 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_21, 0x70000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02246F24), HEAP_ID_21);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov17_02246F24), HEAP_ID_21);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02246F24));
 
     v0->unk_08 = ov17_0223F140(HEAP_ID_21);
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 2;
     v0->unk_0C.unk_00 = &v0->unk_00->unk_00;
@@ -170,7 +170,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     PaletteData_SetAutoTransparent(v0->unk_0C.unk_50, 1);
     PaletteData_AllocBuffer(v0->unk_0C.unk_50, 0, 0x200, HEAP_ID_21);
     PaletteData_AllocBuffer(v0->unk_0C.unk_50, 1, 0x200, HEAP_ID_21);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_21);
     PaletteData_AllocBuffer(v0->unk_0C.unk_50, 3, 0x200, HEAP_ID_21);
 
     v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_21);
@@ -182,34 +182,34 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     ov17_0223B728(v0->unk_0C.unk_24);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_21);
 
     v0->unk_0C.unk_18 = SpriteSystem_Alloc(21);
-    SpriteSystem_Init(v0->unk_0C.unk_18, &Unk_ov17_02252DC8, &Unk_ov17_02252D9C, (16 + 16));
+    SpriteSystem_Init(v0->unk_0C.unk_18, &Unk_ov17_02252DC8, &Unk_ov17_02252D9C, 16 + 16);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_0C.unk_1C = SpriteManager_New(v0->unk_0C.unk_18);
 
-    SpriteSystem_InitSprites(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, (64 + 64));
+    SpriteSystem_InitSprites(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, 64 + 64);
     SpriteSystem_InitManagerWithCapacities(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, &Unk_ov17_02252DB0);
-    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_18), 0, (192 + 80) << FX32_SHIFT);
 
     v0->unk_0C.unk_04 = PokemonSpriteManager_New(HEAP_ID_21);
     ov17_0223B884();
 
-    v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
-    ov12_0221FDC0(v0->unk_0C.unk_20, 1);
+    v0->unk_0C.unk_20 = BattleAnimSystem_New(HEAP_ID_21);
+    BattleAnimSystem_SetIsContest(v0->unk_0C.unk_20, 1);
 
     v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
     v0->unk_0C.unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0205, HEAP_ID_21);
     v0->unk_0C.unk_40 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_21);
     v0->unk_0C.unk_44 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0211, HEAP_ID_21);
-    v0->unk_0C.unk_54 = sub_02012744((2 * 4), HEAP_ID_21);
+    v0->unk_0C.unk_54 = sub_02012744(2 * 4, HEAP_ID_21);
     v0->unk_0C.unk_48 = StringTemplate_Default(HEAP_ID_21);
-    v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), HEAP_ID_21);
+    v0->unk_0C.unk_4C = Strbuf_Init(3 * 160, HEAP_ID_21);
 
     {
         NARC *v1;
@@ -244,7 +244,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     ov17_022415E4(&v0->unk_0C);
 
     sub_02039734();
-    StartScreenTransition(1, 31, 31, 0x0, 6, 1, HEAP_ID_21);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_31, FADE_TYPE_UNK_31, COLOR_BLACK, 6, 1, HEAP_ID_21);
 
     v0->unk_04 = SysTask_Start(ov17_0223B6F0, v0, 60000);
     v0->unk_7EC = 1;
@@ -259,16 +259,16 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov17_0223B444(OverlayManager *param0, int *param1)
+int ov17_0223B444(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_02246F24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_02246F24 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     sub_02094E98(v0->unk_00);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -287,7 +287,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_1614 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-                StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, COLOR_BLACK, 6, 1, HEAP_ID_21);
                 break;
             }
         }
@@ -298,12 +298,12 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
         if ((v0->unk_1614 == 1) && (ov17_0224F3D0(&v0->unk_BF8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-            StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, COLOR_BLACK, 6, 1, HEAP_ID_21);
         }
         break;
     case 2:
         if (v0->unk_1614 == 1) {
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 return 1;
             }
         }
@@ -313,14 +313,14 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov17_0223B580(OverlayManager *param0, int *param1)
+int ov17_0223B580(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_02246F24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_02246F24 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
-    ov12_0221FDF4(v0->unk_0C.unk_20);
+    BattleAnimSystem_Delete(v0->unk_0C.unk_20);
     ov17_0223B9A4(v0);
     ov17_0223BAD0(v0);
     ov17_0223BCDC(v0);
@@ -362,13 +362,13 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
     MessageLoader_Free(v0->unk_0C.unk_40);
     MessageLoader_Free(v0->unk_0C.unk_44);
 
-    Heap_FreeToHeap(v0->unk_0C.unk_24);
+    Heap_Free(v0->unk_0C.unk_24);
     SysTask_Done(v0->unk_04);
 
     ov17_0223F1E0(v0->unk_08);
 
-    sub_0201E530();
-    OverlayManager_FreeData(param0);
+    DisableTouchPad();
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_21);
@@ -449,64 +449,61 @@ static void ov17_0223B728(BgConfig *param0)
     {
         BgTemplate v2[] = {
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x0000,
-                GX_BG_CHARBASE_0x04000,
-                GX_BG_EXTPLTT_01,
-                0,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x0000,
+                .charBase = GX_BG_CHARBASE_0x04000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x2000,
-                0,
-                4,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x1000,
-                GX_BG_CHARBASE_0x0c000,
-                GX_BG_EXTPLTT_01,
-                1,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x2000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x512,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x1000,
+                .charBase = GX_BG_CHARBASE_0x0c000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 1,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
             {
-                0,
-                0,
-                0x1000,
-                0,
-                3,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0x3000,
-                GX_BG_CHARBASE_0x10000,
-                GX_BG_EXTPLTT_01,
-                3,
-                0,
-                0,
-                0,
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x1000,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_512x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0x3000,
+                .charBase = GX_BG_CHARBASE_0x10000,
+                .bgExtPltt = GX_BG_EXTPLTT_01,
+                .priority = 3,
+                .areaOver = 0,
+                .mosaic = FALSE,
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_ClearTilemap(param0, 2);
-        Bg_SetOffset(param0, 2, 0, 0);
-        Bg_SetOffset(param0, 2, 3, 0);
-        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
-        Bg_ClearTilemap(param0, 3);
-        Bg_SetOffset(param0, 3, 0, 0);
-        Bg_SetOffset(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
 
         G2_SetBG0Priority(2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -519,7 +516,7 @@ static void ov17_0223B728(BgConfig *param0)
 
 static void ov17_0223B858(UnkStruct_ov17_02246F24 *param0)
 {
-    Window_Add(param0->unk_0C.unk_24, &param0->unk_0C.unk_28[0], 1, 11, 0x13, 20, 4, 0xd, ((0x8000 - 0x2000) / 32));
+    Window_Add(param0->unk_0C.unk_24, &param0->unk_0C.unk_28[0], 1, 11, 0x13, 20, 4, 0xd, (0x8000 - 0x2000) / 32);
 }
 
 static void ov17_0223B884(void)
@@ -537,7 +534,7 @@ static void ov17_0223B884(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0223B8C4(UnkStruct_ov17_02246F24 *param0)
@@ -634,10 +631,10 @@ static void ov17_0223BAD0(UnkStruct_ov17_02246F24 *param0)
 void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
 {
     if (param1 == 0) {
-        Graphics_LoadTilesToBgLayer(45, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, HEAP_ID_21);
-        Graphics_LoadTilemapToBgLayer(45, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_21);
-        Bg_SetPriority(1, 1);
-        Bg_SetPriority(2, 0);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, HEAP_ID_21);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_21);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
 
         ov17_02241428(param0);
 
@@ -645,10 +642,10 @@ void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         }
     } else {
-        Bg_ClearTilesRange(2, 0x4000, 0, HEAP_ID_21);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 0x4000, 0, HEAP_ID_21);
         Bg_ClearTilemap(param0->unk_0C.unk_24, 2);
-        Bg_SetPriority(1, 0);
-        Bg_SetPriority(2, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 1);
     }
 }
 
@@ -678,8 +675,8 @@ static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
         MI_CpuCopy16(v0, &v3[Unk_ov17_022536B4[param0->unk_00->unk_00.unk_113] * 16], 0x20);
         MI_CpuCopy16(v1, &v3[Unk_ov17_022536B4[0] * 16], 0x20);
 
-        Heap_FreeToHeap(v0);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v0);
+        Heap_Free(v1);
     }
 }
 

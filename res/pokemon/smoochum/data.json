@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -97,6 +98,14 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_MEDITATE",
+            "MOVE_PSYCH_UP",
+            "MOVE_FAKE_OUT",
+            "MOVE_WISH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_MIRACLE_EYE"
         ]
     },
     "evolutions": [
@@ -106,9 +115,11 @@
             "SPECIES_JYNX"
         ]
     ],
+    "offspring": "SPECIES_SMOOCHUM",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/restaurant.h"
 
-    .data
 
     ScriptEntry _031E
     ScriptEntry _0058
@@ -2392,10 +2391,10 @@ _2125:
 
     .balign 4, 0
 _212C:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _2134:
-    MoveAction_002
+    FaceWest
     EndMovement

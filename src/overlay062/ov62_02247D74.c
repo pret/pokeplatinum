@@ -166,14 +166,14 @@ static BOOL ov62_02247FFC(UnkStruct_0208C06C *param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
-        Bg_SetPriority(0, 0);
-        Bg_SetPriority(1, 3);
-        Bg_SetPriority(2, 0);
-        Bg_SetPriority(3, 2);
-        Bg_SetPriority(4, 0);
-        Bg_SetPriority(5, 3);
-        Bg_SetPriority(6, 1);
-        Bg_SetPriority(7, 2);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 3);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_3, 2);
+        Bg_SetPriority(BG_LAYER_SUB_0, 0);
+        Bg_SetPriority(BG_LAYER_SUB_1, 3);
+        Bg_SetPriority(BG_LAYER_SUB_2, 1);
+        Bg_SetPriority(BG_LAYER_SUB_3, 2);
         Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
         Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, HEAP_ID_102);
         ov62_02234540(param0, 1);
@@ -317,7 +317,7 @@ static BOOL ov62_02248324(UnkStruct_0208C06C *param0)
             PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);

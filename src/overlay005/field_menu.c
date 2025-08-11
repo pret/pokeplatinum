@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/narc.h"
-#include "constants/palette.h"
 #include "constants/scrcmd.h"
 #include "generated/map_headers.h"
 
@@ -19,6 +18,7 @@
 #include "message.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -28,7 +28,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_0202D05C.h"
 
 #include "res/text/bank/menu_entries.h"
@@ -231,7 +230,7 @@ static void MenuSysTaskCallback(SysTask *sysTask, void *param)
         return;
     }
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -269,7 +268,7 @@ void FieldMenuManager_DeleteWithMenu(FieldMenuManager *menuManager)
     }
 
     SysTask_Done(menuManager->sysTask);
-    Heap_FreeToHeap(menuManager);
+    Heap_Free(menuManager);
 }
 
 FieldMenuManager *FieldMenuManager_New2(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
@@ -447,7 +446,7 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
         return;
     }
 
-    if (IsScreenTransitionDone() == FALSE) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -498,7 +497,7 @@ static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager)
     }
 
     SysTask_Done(menuManager->sysTask);
-    Heap_FreeToHeap(menuManager);
+    Heap_Free(menuManager);
 }
 
 static void FieldMenuManager_PrintListMenyAltText(FieldMenuManager *menuManager, u16 entryID, u32 printerDelay)
@@ -578,7 +577,7 @@ static void CurrentFloorWindowSystaskCallback(SysTask *sysTask, void *param)
         }
 
         SysTask_Done(menuManager->sysTask);
-        Heap_FreeToHeap(menuManager);
+        Heap_Free(menuManager);
     }
 }
 
@@ -853,7 +852,7 @@ void FieldMenuManager_DeleteMoveTutorCost(FieldMenuManager *menuManager)
         MessageLoader_Free(menuManager->messageLoader);
     }
 
-    Heap_FreeToHeap(menuManager);
+    Heap_Free(menuManager);
 }
 
 void FieldMenuManager_SetHorizontalAnchor(FieldMenuManager *menuManager, BOOL anchorRight)

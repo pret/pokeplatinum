@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_castle.h"
 
-    .data
 
     ScriptEntry _0059
     ScriptEntry _06A4
@@ -353,58 +352,58 @@ _05D5:
 
     .balign 4, 0
 _05E4:
-    MoveAction_014 6
-    MoveAction_069
+    WalkNormalWest 6
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _05F0:
-    MoveAction_014 3
-    MoveAction_012
-    MoveAction_014 3
-    MoveAction_069
+    WalkNormalWest 3
+    WalkNormalNorth
+    WalkNormalWest 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0604:
-    MoveAction_014 5
-    MoveAction_069
+    WalkNormalWest 5
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0610:
-    MoveAction_014 2
-    MoveAction_012
-    MoveAction_014 3
-    MoveAction_069
+    WalkNormalWest 2
+    WalkNormalNorth
+    WalkNormalWest 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0624:
-    MoveAction_023 6
-    MoveAction_070
-    MoveAction_002
+    WalkFasterEast 6
+    SetVisible
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _0634:
-    MoveAction_023 6
-    MoveAction_021
-    MoveAction_070
-    MoveAction_002
+    WalkFasterEast 6
+    WalkFasterSouth
+    SetVisible
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _0648:
-    MoveAction_023 5
-    MoveAction_070
+    WalkFasterEast 5
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _0654:
-    MoveAction_021
-    MoveAction_023 5
-    MoveAction_070
+    WalkFasterSouth
+    WalkFasterEast 5
+    SetVisible
     EndMovement
 
 _0664:
@@ -495,41 +494,19 @@ _0745:
 
 _0760:
     GoTo _0139
+    End
 
-    .byte 2
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleCastle_UnusedMovement:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
+
+BattleCastle_UnusedMovement2:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
 
 _0788:
     PlayFanfare SEQ_SE_CONFIRM
@@ -601,6 +578,4 @@ _07FA:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

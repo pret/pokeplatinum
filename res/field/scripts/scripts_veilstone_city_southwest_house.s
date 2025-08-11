@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_southwest_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0101
@@ -98,4 +97,4 @@ _0114:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

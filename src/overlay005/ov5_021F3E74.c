@@ -129,11 +129,8 @@ static void ov5_021F3FB8(UnkStruct_ov101_021D5D90 *param0, void *param1)
 static void ov5_021F3FC4(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     int v0;
-    UnkStruct_ov5_021F3FB8 *v1;
-    MapObject *v2;
-
-    v1 = param1;
-    v2 = v1->unk_10.unk_0C;
+    UnkStruct_ov5_021F3FB8 *v1 = param1;
+    MapObject *v2 = v1->unk_10.unk_0C;
 
     switch (v1->unk_00) {
     case 0:
@@ -151,11 +148,8 @@ static void ov5_021F3FC4(UnkStruct_ov101_021D5D90 *param0, void *param1)
 static void ov5_021F3FF4(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     VecFx32 v0, v1;
-    UnkStruct_ov5_021F3FB8 *v2;
-    MapObject *v3;
-
-    v2 = param1;
-    v3 = v2->unk_10.unk_0C;
+    UnkStruct_ov5_021F3FB8 *v2 = param1;
+    MapObject *v3 = v2->unk_10.unk_0C;
 
     sub_020715E4(param0, &v0);
     v0.z += (FX32_ONE * 8);

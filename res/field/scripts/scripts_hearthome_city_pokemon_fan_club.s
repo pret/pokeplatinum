@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_pokemon_fan_club.h"
 
-    .data
 
     ScriptEntry _0039
     ScriptEntry _0098
@@ -156,5 +155,4 @@ _0193:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

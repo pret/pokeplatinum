@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valley_windworks_building.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _005F
@@ -21,10 +20,10 @@ _0022:
 _0035:
     SetObjectEventPos 5, 21, 5
     SetObjectEventDir 5, DIR_WEST
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventPos 2, 18, 4
     SetObjectEventDir 2, DIR_SOUTH
-    ScrCmd_188 2, 15
+    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_SOUTH
     End
 
 _005F:
@@ -43,18 +42,18 @@ _005F:
 
     .balign 4, 0
 _0090:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0098:
-    MoveAction_018 9
+    WalkFastWest 9
     EndMovement
 
     .balign 4, 0
 _00A0:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
 _00AC:
@@ -140,9 +139,9 @@ _01DB:
     CloseMessage
     SetFlag FLAG_UNK_0x01F8
     ClearFlag FLAG_UNK_0x01F9
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 5
-    ScrCmd_062 5
+    LockObject 5
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 6, _0218
     GoToIfEq VAR_0x8005, 7, _0232
@@ -201,88 +200,88 @@ _02B9:
 
     .balign 4, 0
 _02C0:
-    MoveAction_019 4
-    MoveAction_016
-    MoveAction_019 6
-    MoveAction_036
+    WalkFastEast 4
+    WalkFastNorth
+    WalkFastEast 6
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _02D4:
-    MoveAction_019 4
-    MoveAction_016 2
-    MoveAction_019 6
-    MoveAction_037
+    WalkFastEast 4
+    WalkFastNorth 2
+    WalkFastEast 6
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_013 3
-    MoveAction_014
+    WalkNormalSouth 3
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _02F4:
-    MoveAction_013 4
-    MoveAction_014
+    WalkNormalSouth 4
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _0300:
-    MoveAction_063 6
-    MoveAction_033
+    Delay8 6
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _030C:
-    MoveAction_063 6
-    MoveAction_032
+    Delay8 6
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0318:
-    MoveAction_003
-    MoveAction_063 2
-    MoveAction_002
-    MoveAction_063 2
-    MoveAction_001
+    FaceEast
+    Delay8 2
+    FaceWest
+    Delay8 2
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0330:
-    MoveAction_003
-    MoveAction_063 2
-    MoveAction_002
-    MoveAction_063 2
-    MoveAction_000
+    FaceEast
+    Delay8 2
+    FaceWest
+    Delay8 2
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_075
-    MoveAction_012
-    MoveAction_034
+    EmoteExclamationMark
+    WalkNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0358:
-    MoveAction_075
-    MoveAction_034
+    EmoteExclamationMark
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0364:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _036C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0374:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _037C:
@@ -348,4 +347,4 @@ _040B:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

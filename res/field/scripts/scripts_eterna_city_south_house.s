@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_south_house.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -101,5 +100,5 @@ _0150:
 
     .balign 4, 0
 _0158:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement

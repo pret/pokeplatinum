@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/cycle_shop.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _005D
@@ -81,4 +80,4 @@ _00B6:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

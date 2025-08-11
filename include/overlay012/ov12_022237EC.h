@@ -1,16 +1,15 @@
 #ifndef POKEPLATINUM_OV12_022237EC_H
 #define POKEPLATINUM_OV12_022237EC_H
 
-#include "struct_decls/struct_02014014_decl.h"
-
 #include "narc.h"
+#include "particle_system.h"
 #include "spl.h"
 
-UnkStruct_02014014 *ov12_022237F0(int heapID, int param1, int param2);
-UnkStruct_02014014 *ov12_02223818(int heapID, int param1, int param2, int param3);
+ParticleSystem *BattleParticleUtil_CreateParticleSystem(enum HeapId heapID, int param1, BOOL param2);
+ParticleSystem *BattleParticleUtil_CreateParticleSystemEx(enum HeapId heapID, enum NarcID narcID, int memberIndex, BOOL uploadResImmediately);
 void *ov12_02223844(NARC *param0, int param1, int param2);
-UnkStruct_02014014 *ov12_0222384C(NARC *param0, int heapID, int param2, int param3);
-SPLEmitter *ov12_02223880(UnkStruct_02014014 *param0, int param1, int param2, void *param3);
-void ov12_02223894(UnkStruct_02014014 *param0);
+ParticleSystem *ov12_0222384C(NARC *param0, enum HeapId heapID, int param2, BOOL param3);
+SPLEmitter *BattleParticleUtil_CreateEmitter(ParticleSystem *param0, int param1, int param2, void *param3);
+void BattleParticleUtil_FreeParticleSystem(ParticleSystem *param0);
 
 #endif // POKEPLATINUM_OV12_022237EC_H

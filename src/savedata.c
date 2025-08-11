@@ -9,7 +9,7 @@
 
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "savedata_misc.h"
 #include "system.h"
 #include "unk_0209A74C.h"
@@ -133,7 +133,7 @@ BOOL SaveData_Erase(SaveData *saveData)
         SaveData_CardSave(SAVE_SECTOR_SIZE * (i + BACKUP_SECTOR_START), saveBuffer, SAVE_SECTOR_SIZE);
     }
 
-    Heap_FreeToHeap(saveBuffer);
+    Heap_Free(saveBuffer);
     SaveData_Clear(saveData);
 
     saveData->dataExists = FALSE;
@@ -462,8 +462,8 @@ static int SaveData_LoadCheck(SaveData *saveData)
         SaveData_CheckInfoInit(&boxInfo[SECTOR_ID_BACKUP]);
     }
 
-    Heap_FreeToHeap(primaryBuffer);
-    Heap_FreeToHeap(backupBuffer);
+    Heap_Free(primaryBuffer);
+    Heap_Free(backupBuffer);
 
     int currNormalSector, currBoxSector, staleNormalSector, staleBoxSector;
     int normalResult = SaveCheckInfo_CompareSectors(&normalInfo[SECTOR_ID_PRIMARY], &normalInfo[SECTOR_ID_BACKUP], &currNormalSector, &staleNormalSector);
@@ -543,7 +543,7 @@ static void SaveDataExtra_LoadCheck(SaveData *saveData, int *frontierResult, int
     void *saveBuffer;
     if (currKey != EXTRA_SAVE_TABLE_ENTRY_NONE || oldKey != EXTRA_SAVE_TABLE_ENTRY_NONE) {
         saveBuffer = SaveDataExtra_Mirror(saveData, HEAP_ID_APPLICATION, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, &loadResult, &isOld);
-        Heap_FreeToHeap(saveBuffer);
+        Heap_Free(saveBuffer);
 
         if (loadResult == LOAD_RESULT_CORRUPT) {
             *frontierResult = LOAD_RESULT_ERROR;
@@ -557,7 +557,7 @@ static void SaveDataExtra_LoadCheck(SaveData *saveData, int *frontierResult, int
 
         if (currKey != EXTRA_SAVE_TABLE_ENTRY_NONE || oldKey != EXTRA_SAVE_TABLE_ENTRY_NONE) {
             saveBuffer = SaveDataExtra_Mirror(saveData, HEAP_ID_APPLICATION, i, &loadResult, &isOld);
-            Heap_FreeToHeap(saveBuffer);
+            Heap_Free(saveBuffer);
 
             if (loadResult == LOAD_RESULT_CORRUPT) {
                 *videoResult = LOAD_RESULT_ERROR;
@@ -917,7 +917,7 @@ void SaveDataExtra_Init(SaveData *saveData)
         extraTable[i].initFunc(extraData);
 
         SaveDataExtra_Save(saveData, extraTable[i].dataID, extraData);
-        Heap_FreeToHeap(extraData);
+        Heap_Free(extraData);
     }
 
     SaveData_MiscSaveBlock_SetInitFlag(saveData);
@@ -1253,7 +1253,7 @@ BOOL SaveData_CardLoad(u32 address, void *data, u32 size)
     OS_ReleaseLockID(lockID);
 
     if (!result) {
-        Heap_FreeToHeap(sSaveDataPtr);
+        Heap_Free(sSaveDataPtr);
         sub_0209A74C(HEAP_ID_SAVE);
     }
 
@@ -1321,7 +1321,7 @@ static void SaveData_CardSave_Error(s32 lockID, int errorID)
     CARD_UnlockBackup(lockID);
     OS_ReleaseLockID(lockID);
 
-    Heap_FreeToHeap(sSaveDataPtr);
+    Heap_Free(sSaveDataPtr);
     sub_0209AA74(HEAP_ID_SAVE, errorID);
 }
 

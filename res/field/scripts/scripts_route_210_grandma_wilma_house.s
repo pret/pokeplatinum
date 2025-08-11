@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_210_grandma_wilma_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010
@@ -137,6 +136,4 @@ _0201:
     SetVar VAR_RESULT, 1
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

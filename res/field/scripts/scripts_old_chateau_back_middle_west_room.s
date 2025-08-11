@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/old_chateau_back_middle_west_room.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -55,6 +54,4 @@ _00A7:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

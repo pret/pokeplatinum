@@ -16,11 +16,11 @@ typedef struct {
     u8 unk_03;
     u16 unk_04;
     u16 unk_06;
-    PoffinCase *unk_08;
+    PoffinCase *poffinCase;
     TrainerInfo *unk_0C;
     Party *unk_10;
     Bag *unk_14;
-    Options *unk_18;
+    Options *options;
     UnkStruct_020989DC unk_1C[100];
 } UnkStruct_0203D9B8;
 

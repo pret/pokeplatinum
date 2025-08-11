@@ -8,7 +8,6 @@
 #define PICKUP_TYPE_ITEM             0
 #define PICKUP_TYPE_ACCESORY         1
 
-    .data
 
     ScriptEntry _00B6
     ScriptEntry AmitySquare_Trigger_WestGate
@@ -219,37 +218,15 @@ _0338:
     ScrCmd_187 VAR_0x8002, 51, 2, 47, 3
     Return
 
-    .byte 188
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 189
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 5
-    .byte 52
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+AmitySquare_Unused:
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    Message 5
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, _03C0
+    WaitMovement
+    ReleaseAll
+    End
 
 AmitySquare_Trigger_ExitAmitySquare:
     LockAll
@@ -277,36 +254,28 @@ AmitySquare_Trigger_ExitAmitySquare_End:
 
     .balign 4, 0
 _03B0:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _03B8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _03C0:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _03C8:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
-    .byte 85
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+AmitySquare_UnusedMovement:
+    WalkFastestSouth 2
+    FaceWest
+    EndMovement
 
 AmitySquare_FollowerMon_SetNextPickUpType:
     GetRandom VAR_RESULT, 5
@@ -632,12 +601,12 @@ AmitySquare_EastReceptionist_End:
 
     .balign 4, 0
 _08C8:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _08D0:
-    MoveAction_002
+    FaceWest
     EndMovement
 
 AmitySquare_DrifloonMan:
@@ -1044,12 +1013,10 @@ AmitySquare_GiftMan_DeclinedGift:
     ReleaseAll
     End
 
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+AmitySquare_Unused2:
+    CloseMessage
+    ReleaseAll
+    End
 
 AmitySquare_GiftMan_CannotFitItem:
     CallCommonScript 0x7E1
@@ -1421,177 +1388,177 @@ _174A:
 
     .balign 4, 0
 _1758:
-    MoveAction_001
-    MoveAction_069
+    FaceSouth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _1764:
-    MoveAction_001
-    MoveAction_070
+    FaceSouth
+    SetVisible
     EndMovement
 
     .balign 4, 0
 _1770:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _1778:
-    MoveAction_023 18
+    WalkFasterEast 18
     EndMovement
 
     .balign 4, 0
 _1780:
-    MoveAction_023 19
-    MoveAction_020
+    WalkFasterEast 19
+    WalkFasterNorth
     EndMovement
 
     .balign 4, 0
 _178C:
-    MoveAction_023 17
-    MoveAction_020
+    WalkFasterEast 17
+    WalkFasterNorth
     EndMovement
 
     .balign 4, 0
 _1798:
-    MoveAction_022 18
-    MoveAction_021 2
+    WalkFasterWest 18
+    WalkFasterSouth 2
     EndMovement
 
     .balign 4, 0
 _17A4:
-    MoveAction_022 17
-    MoveAction_021
+    WalkFasterWest 17
+    WalkFasterSouth
     EndMovement
 
     .balign 4, 0
 _17B0:
-    MoveAction_022 19
-    MoveAction_021
+    WalkFasterWest 19
+    WalkFasterSouth
     EndMovement
 
     .balign 4, 0
 _17BC:
-    MoveAction_022 5
-    MoveAction_020 16
+    WalkFasterWest 5
+    WalkFasterNorth 16
     EndMovement
 
     .balign 4, 0
 _17C8:
-    MoveAction_022 18
-    MoveAction_020 18
+    WalkFasterWest 18
+    WalkFasterNorth 18
     EndMovement
 
     .balign 4, 0
 _17D4:
-    MoveAction_022 38
-    MoveAction_020 15
+    WalkFasterWest 38
+    WalkFasterNorth 15
     EndMovement
 
     .balign 4, 0
 _17E0:
-    MoveAction_023 5
-    MoveAction_021 18
+    WalkFasterEast 5
+    WalkFasterSouth 18
     EndMovement
 
     .balign 4, 0
 _17EC:
-    MoveAction_022 31
-    MoveAction_021 2
+    WalkFasterWest 31
+    WalkFasterSouth 2
     EndMovement
 
     .balign 4, 0
 _17F8:
-    MoveAction_022 15
-    MoveAction_020
+    WalkFasterWest 15
+    WalkFasterNorth
     EndMovement
 
     .balign 4, 0
 _1804:
-    MoveAction_023 37
-    MoveAction_021 16
+    WalkFasterEast 37
+    WalkFasterSouth 16
     EndMovement
 
     .balign 4, 0
 _1810:
-    MoveAction_023 12
-    MoveAction_020
+    WalkFasterEast 12
+    WalkFasterNorth
     EndMovement
 
     .balign 4, 0
 _181C:
-    MoveAction_023 25
-    MoveAction_021 6
+    WalkFasterEast 25
+    WalkFasterSouth 6
     EndMovement
 
     .balign 4, 0
 _1828:
-    MoveAction_023 19
-    MoveAction_021 19
+    WalkFasterEast 19
+    WalkFasterSouth 19
     EndMovement
 
     .balign 4, 0
 _1834:
-    MoveAction_023 9
-    MoveAction_021 9
+    WalkFasterEast 9
+    WalkFasterSouth 9
     EndMovement
 
     .balign 4, 0
 _1840:
-    MoveAction_022 8
-    MoveAction_021 2
+    WalkFasterWest 8
+    WalkFasterSouth 2
     EndMovement
 
     .balign 4, 0
 _184C:
-    MoveAction_023 21
+    WalkFasterEast 21
     EndMovement
 
     .balign 4, 0
 _1854:
-    MoveAction_023 22
-    MoveAction_021 25
+    WalkFasterEast 22
+    WalkFasterSouth 25
     EndMovement
 
     .balign 4, 0
 _1860:
-    MoveAction_022 12
-    MoveAction_021
+    WalkFasterWest 12
+    WalkFasterSouth
     EndMovement
 
     .balign 4, 0
 _186C:
-    MoveAction_023 6
-    MoveAction_020 7
+    WalkFasterEast 6
+    WalkFasterNorth 7
     EndMovement
 
     .balign 4, 0
 _1878:
-    MoveAction_022 7
-    MoveAction_020 9
+    WalkFasterWest 7
+    WalkFasterNorth 9
     EndMovement
 
     .balign 4, 0
 _1884:
-    MoveAction_023 5
-    MoveAction_021 18
+    WalkFasterEast 5
+    WalkFasterSouth 18
     EndMovement
 
     .balign 4, 0
 _1890:
-    MoveAction_023 5
-    MoveAction_020 8
+    WalkFasterEast 5
+    WalkFasterNorth 8
     EndMovement
 
     .balign 4, 0
 _189C:
-    MoveAction_022 31
-    MoveAction_020 24
+    WalkFasterWest 31
+    WalkFasterNorth 24
     EndMovement
 
     .balign 4, 0
 _18A8:
-    MoveAction_022 15
-    MoveAction_020 27
+    WalkFasterWest 15
+    WalkFasterNorth 27
     EndMovement

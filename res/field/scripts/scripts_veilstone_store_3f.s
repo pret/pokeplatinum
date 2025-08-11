@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_3f.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _00EE
@@ -110,7 +109,7 @@ _0127:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_3F_UP
     ReleaseAll
     End
@@ -120,7 +119,7 @@ _013D:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN
     ReleaseAll
     End

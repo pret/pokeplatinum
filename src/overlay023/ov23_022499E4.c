@@ -91,7 +91,7 @@ void ov23_02249A2C(void)
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     v0->unk_41 = 1;
-    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_36);
+    GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_ENTERED);
 
     ov23_02242BC0(v0->fieldSystem);
     ov23_02249C24(ov23_02249C34, 0);
@@ -369,7 +369,7 @@ static void ov23_02249DBC(void)
 
     if (sub_020360E8() || (v0->timer == 0)) {
         if (ov23_0224321C()) {
-            sub_02059514();
+            CommPlayerMan_ResumeFieldSystem();
         }
 
         ov23_022499E4("\u0090\u0065\u008B\u0040\u0090\u00DA\u0091\u00B1");

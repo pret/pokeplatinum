@@ -7,7 +7,7 @@
 #include "generated/genders.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "sprite.h"
@@ -36,7 +36,7 @@ GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const 
 
 void GreatMarshLookout_FreeSpriteResources(GreatMarshLookout_SpriteResources *resources)
 {
-    Heap_FreeToHeap(resources);
+    Heap_Free(resources);
 }
 
 void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources *resources, const int species)
@@ -119,8 +119,8 @@ void ov6_02242828(GreatMarshLookout_SpriteResources *param0)
     }
 
     SpriteList_Delete(param0->unk_38);
-    Heap_FreeToHeap(param0->unk_20);
-    Heap_FreeToHeap(param0->unk_24);
+    Heap_Free(param0->unk_20);
+    Heap_Free(param0->unk_24);
 }
 
 static void ov6_02242860(SysTask *param0, void *param1)

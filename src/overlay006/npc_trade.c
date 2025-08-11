@@ -52,10 +52,10 @@ NpcTradeData *NpcTrade_Init(u32 heapID, u32 npcTradeID)
 
 void NpcTrade_Free(NpcTradeData *data)
 {
-    Heap_FreeToHeap(data->npcTradeMon);
-    Heap_FreeToHeap(data->mon);
-    Heap_FreeToHeap(data->trainerInfo);
-    Heap_FreeToHeap(data);
+    Heap_Free(data->npcTradeMon);
+    Heap_Free(data->mon);
+    Heap_Free(data->trainerInfo);
+    Heap_Free(data);
 }
 
 u32 NpcTrade_GetSpecies(const NpcTradeData *data)
@@ -89,7 +89,7 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, UnkStr
     param3->unk_04 = Pokemon_GetBoxPokemon(receivingMon);
     param3->unk_08 = data->trainerInfo;
     param3->unk_10 = 1;
-    param3->unk_14 = SaveData_GetOptions(fieldSystem->saveData);
+    param3->options = SaveData_GetOptions(fieldSystem->saveData);
 
     int timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     if (timeOfDay == TIMEOFDAY_MORNING || timeOfDay == TIMEOFDAY_DAY) {

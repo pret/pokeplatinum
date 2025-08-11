@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02029894_decl.h"
 
 #include "field/field_system_decl.h"
-#include "overlay023/struct_ov23_0224271C_decl.h"
+#include "overlay023/underground_defs.h"
 
 #include "savedata.h"
 #include "strbuf.h"
@@ -44,7 +44,7 @@ int ov23_0224CD7C(void);
 void ov23_0224CD80(int param0, int param1, void *param2, void *param3);
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3);
 BOOL ov23_0224D020(Strbuf *param0);
-UnkStruct_02029894 *ov23_0224D130(SaveData *param0);
+UnkStruct_02029894 *ov23_0224D130(SaveData *saveData);
 int ov23_0224D150(void);
 int ov23_0224D178(void);
 BOOL ov23_0224D1A0(int param0, int param1);
@@ -52,7 +52,7 @@ int ov23_0224D39C(int param0);
 void ov23_0224D3B0(void);
 void ov23_0224D3BC(int param0);
 void ov23_0224D3D0(int param0, int param1);
-BOOL ov23_0224D454(int param0, UnkStruct_ov23_0224271C *param1);
+BOOL ov23_0224D454(int param0, Coordinates *param1);
 void ov23_0224D4CC(int param0, int param1, void *param2, void *param3);
 int ov23_0224D4FC(void);
 void ov23_0224D500(int param0, int param1);

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0025
@@ -25,6 +24,4 @@ _003C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_flint_room.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0138
@@ -91,11 +90,11 @@ _0118:
 
     .balign 4, 0
 _0120:
-    MoveAction_071
-    MoveAction_033 3
-    MoveAction_037 4
-    MoveAction_041 2
-    MoveAction_072
+    LockDir
+    WalkOnSpotNormalSouth 3
+    WalkOnSpotFastSouth 4
+    WalkOnSpotFasterSouth 2
+    UnlockDir
     EndMovement
 
 _0138:
@@ -111,5 +110,5 @@ _0138:
 
     .balign 4, 0
 _015C:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement

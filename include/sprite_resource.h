@@ -18,6 +18,8 @@ enum SpriteResourceType {
     SPRITE_RESOURCE_MAX,
 };
 
+#define MAX_SPRITE_RESOURCE_GEN4 (SPRITE_RESOURCE_ANIM + 1) // MULTI_CELL and MULTI_ANIM are not used in the default rom
+
 typedef struct SpriteResource {
     Resource *rawResource;
     enum SpriteResourceType type;

@@ -27,7 +27,7 @@ void ov19_021DA744(UnkStruct_ov19_021DA384 *param0, void *param1, u32 param2, u3
 void ov19_021DA754(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
 void ov19_021DA7B8(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
 BOOL ov19_021DA7E0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1);
-void ov19_021DA7F4(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL param2);
+void BoxGraphics_ApplyMonInMultiSelectShading(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, BOOL isSelected);
 NNSG2dCellDataBank *ov19_021DA80C(UnkStruct_ov19_021DA384 *param0);
 NNSG2dAnimBankData *ov19_021DA810(UnkStruct_ov19_021DA384 *param0);
 

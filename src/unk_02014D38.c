@@ -5,7 +5,7 @@
 
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "savedata.h"
@@ -163,7 +163,7 @@ void sub_02014D70(UnkStruct_02014D38 *param0)
         MessageLoader_Free(param0->unk_04[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_02014D90(UnkStruct_02014D38 *param0, u16 param1, Strbuf *param2)
@@ -357,9 +357,9 @@ UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
 
 void sub_02014FF0(UnkStruct_02014FB0 *param0)
 {
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_Free(param0->unk_04);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 u32 sub_02015004(const UnkStruct_02014FB0 *param0)

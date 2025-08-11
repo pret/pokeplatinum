@@ -31,6 +31,7 @@
     "safari_flee_rate": 60,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -90,6 +91,19 @@
             "MOVE_HELPING_HAND",
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_LIGHT_SCREEN",
+            "MOVE_PRESENT",
+            "MOVE_AMNESIA",
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_BELLY_DRUM",
+            "MOVE_PERISH_SONG",
+            "MOVE_SUPERSONIC",
+            "MOVE_SUBSTITUTE",
+            "MOVE_AQUA_JET",
+            "MOVE_SUPERPOWER",
+            "MOVE_REFRESH"
         ]
     },
     "evolutions": [
@@ -99,9 +113,11 @@
             "SPECIES_AZUMARILL"
         ]
     ],
+    "offspring": "SPECIES_AZURILL",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

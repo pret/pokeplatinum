@@ -91,11 +91,11 @@ void ov5_021F42A8(void *param0)
     UnkStruct_ov5_021F431C *v0 = param0;
 
     if (v0->unk_1F8 != NULL) {
-        Heap_FreeToHeap(v0->unk_1F8);
+        Heap_Free(v0->unk_1F8);
     }
 
     if (v0->unk_1FC != NULL) {
-        Heap_FreeToHeap(v0->unk_1FC);
+        Heap_Free(v0->unk_1FC);
     }
 
     ov5_021F4370(v0);
@@ -219,9 +219,8 @@ UnkStruct_ov101_021D5D90 *ov5_021F4474(FieldSystem *fieldSystem, int param1, int
 void ov5_021F44A4(UnkStruct_ov101_021D5D90 *param0)
 {
     int v0;
-    UnkStruct_ov5_021F431C *v1;
     UnkStruct_ov5_021F44A4 *v2 = sub_02071598(param0);
-    v1 = v2->unk_60.unk_0C;
+    UnkStruct_ov5_021F431C *v1 = v2->unk_60.unk_0C;
 
     GF_ASSERT(v2->unk_74 == NULL);
 
@@ -281,7 +280,7 @@ static void ov5_021F45D0(UnkStruct_ov101_021D5D90 *param0, void *param1)
             sub_02073AA8(&v0->unk_74->unk_04[v1]);
         }
 
-        Heap_FreeToHeap(v0->unk_74);
+        Heap_Free(v0->unk_74);
     }
 }
 
@@ -345,9 +344,8 @@ UnkStruct_ov101_021D5D90 *ov5_021F4668(FieldSystem *fieldSystem, int param1, int
 void ov5_021F4698(UnkStruct_ov101_021D5D90 *param0, int param1, BOOL param2)
 {
     UnkStruct_02073974 *v0;
-    UnkStruct_ov5_021F431C *v1;
     UnkStruct_ov5_021F4698 *v2 = sub_02071598(param0);
-    v1 = v2->unk_84.unk_0C;
+    UnkStruct_ov5_021F431C *v1 = v2->unk_84.unk_0C;
 
     if (v2->unk_00_6 == 1) {
         sub_02073A90(&v2->unk_0C);

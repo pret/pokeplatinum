@@ -66,7 +66,7 @@ UnkStruct_ov105_02246060 *ov105_02245FB8(UnkStruct_ov105_02245AAC *param0, u8 pa
 void *ov105_02246060(UnkStruct_ov105_02246060 *param0)
 {
     Sprite_Delete(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return NULL;
 }

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fuego_ironworks_building.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0010
@@ -123,6 +122,4 @@ _01F3:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

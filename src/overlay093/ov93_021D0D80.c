@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0206C8D4.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay009/struct_ov9_02249FF4.h"
+#include "overlay009/camera_configuration.h"
 
 #include "camera.h"
 #include "easy3d.h"
@@ -14,9 +14,9 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
 
@@ -42,7 +42,7 @@ static void ov93_021D0FA8(void);
 static void ov93_021D100C(void);
 static void ov93_021D102C(UnkStruct_ov93_021D102C *param0);
 
-static const UnkStruct_ov9_02249FF4 Unk_ov93_021D14B8 = {
+static const CameraConfiguration Unk_ov93_021D14B8 = {
     0x29AEC1,
     { -0x29fe, 0x0, 0x0 },
     0x0,
@@ -80,7 +80,7 @@ static UnkStruct_ov93_021D15A0 Unk_ov93_021D15A0[4] = {
     },
 };
 
-int ov93_021D0D80(OverlayManager *param0, int *param1)
+int ov93_021D0D80(ApplicationManager *appMan, int *param1)
 {
     u8 v0;
     UnkStruct_ov93_021D102C *v1;
@@ -88,9 +88,9 @@ int ov93_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_72, 0x20000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov93_021D102C), HEAP_ID_72);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov93_021D102C), HEAP_ID_72);
     memset(v1, 0, sizeof(UnkStruct_ov93_021D102C));
-    v2 = OverlayManager_Args(param0);
+    v2 = ApplicationManager_Args(appMan);
 
     v1->unk_9C = v2->unk_00;
     v1->unk_9D = 0;
@@ -102,7 +102,7 @@ int ov93_021D0D80(OverlayManager *param0, int *param1)
     {
         VecFx32 v3 = { 0, 0, 0 };
 
-        Camera_InitWithTarget(&v3, Unk_ov93_021D14B8.unk_00, &Unk_ov93_021D14B8.cameraAngle, Unk_ov93_021D14B8.unk_0E, Unk_ov93_021D14B8.unk_0C, 0, v1->camera);
+        Camera_InitWithTarget(&v3, Unk_ov93_021D14B8.distance, &Unk_ov93_021D14B8.cameraAngle, Unk_ov93_021D14B8.fovY, Unk_ov93_021D14B8.projectionMtx, 0, v1->camera);
         Camera_SetAsActive(v1->camera);
     }
 
@@ -119,7 +119,7 @@ int ov93_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov93_021D0E70(OverlayManager *param0, int *param1)
+int ov93_021D0E70(ApplicationManager *appMan, int *param1)
 {
     u8 v0;
     BOOL v1;
@@ -132,19 +132,19 @@ int ov93_021D0E70(OverlayManager *param0, int *param1)
         0,
         0,
         0,
-        FX32_ONE
+        FX32_ONE,
     };
     VecFx32 v3 = {
         FX32_ONE,
         FX32_ONE,
-        FX32_ONE
+        FX32_ONE,
     };
     VecFx32 v4 = {
         0,
         0,
         0
     };
-    UnkStruct_ov93_021D102C *v5 = OverlayManager_Data(param0);
+    UnkStruct_ov93_021D102C *v5 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -159,7 +159,7 @@ int ov93_021D0E70(OverlayManager *param0, int *param1)
                 sub_0208C120(1, HEAP_ID_72);
             }
         } else {
-            if (IsScreenTransitionDone()) {
+            if (IsScreenFadeDone()) {
                 return 1;
             }
         }
@@ -179,19 +179,19 @@ int ov93_021D0E70(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov93_021D0F58(OverlayManager *param0, int *param1)
+int ov93_021D0F58(ApplicationManager *appMan, int *param1)
 {
     u8 v0;
-    UnkStruct_ov93_021D102C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov93_021D102C *v1 = ApplicationManager_Data(appMan);
 
     for (v0 = 0; v0 < 4; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_70, v1->unk_80[v0]);
-        Heap_FreeToHeap(v1->unk_60[v0]);
+        Heap_Free(v1->unk_60[v0]);
     }
 
-    Heap_FreeToHeap(v1->unk_5C);
+    Heap_Free(v1->unk_5C);
     Camera_Delete(v1->camera);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Easy3D_Shutdown();
     Heap_Destroy(HEAP_ID_72);
 

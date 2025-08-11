@@ -22,7 +22,7 @@ static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2);
 static const VecFx32 Unk_020F0544 = {
     FX32_ONE,
     FX32_ONE,
-    FX32_ONE
+    FX32_ONE,
 };
 
 static const MtxFx33 Unk_020F0550 = {
@@ -34,7 +34,7 @@ static const MtxFx33 Unk_020F0550 = {
     0x0,
     0x0,
     0x0,
-    FX32_ONE
+    FX32_ONE,
 };
 
 void sub_02073838(UnkStruct_02073838 *param0)
@@ -85,7 +85,7 @@ void sub_020738EC(UnkStruct_02073838 *param0)
 void sub_0207390C(UnkStruct_02073838 *param0)
 {
     if (param0->unk_04) {
-        Heap_FreeToHeap(param0->unk_04);
+        Heap_Free(param0->unk_04);
     }
 }
 
@@ -154,7 +154,7 @@ static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2)
 void sub_020739F0(UnkStruct_02073974 *param0)
 {
     if (param0->unk_00 & (1 << 0)) {
-        Heap_FreeToHeap(param0->unk_08);
+        Heap_Free(param0->unk_08);
         param0->unk_00 &= (~(1 << 0));
     }
 

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_mine_b1f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _002F
@@ -101,19 +100,15 @@ _0123:
 _012B:
     Message 4
     GoTo _0073
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _0138:
-    MoveAction_014
-    MoveAction_012 3
+    WalkNormalWest
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_012 3
+    WalkNormalNorth 3
     EndMovement

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/grand_lake_route_213_lobby.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0014
@@ -66,5 +65,5 @@ _0081:
 
     .balign 4, 0
 _009C:
-    MoveAction_003
+    FaceEast
     EndMovement

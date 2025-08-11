@@ -8,7 +8,6 @@
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205B4F8.h"
-#include "struct_defs/struct_02072014.h"
 
 #include "field/field_system.h"
 
@@ -18,7 +17,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -26,13 +25,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "trainer_card.h"
 #include "trainer_info.h"
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_0205C980.h"
-#include "unk_02071D40.h"
 #include "unk_02095E98.h"
 #include "unk_02099500.h"
 
@@ -52,7 +51,7 @@ typedef struct {
 
 struct UnkStruct_0205B43C_t {
     FieldSystem *fieldSystem;
-    SaveData *unk_04;
+    SaveData *saveData;
     TrainerInfo *unk_08;
     SysTask *unk_0C;
     UnkFuncPtr_0205B43C unk_10;
@@ -143,15 +142,15 @@ void sub_0205B388(FieldSystem *fieldSystem)
 static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
 {
     void *v0;
-    SaveData *v1;
+    SaveData *saveData;
     UnkStruct_0205B43C *v2 = NULL;
 
     if (fieldSystem->unk_7C != NULL) {
         return NULL;
     }
 
-    v1 = FieldSystem_GetSaveData(fieldSystem);
-    sub_020369EC(v1);
+    saveData = FieldSystem_GetSaveData(fieldSystem);
+    sub_020369EC(saveData);
 
     v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
     MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
@@ -160,8 +159,8 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     v2->unk_14 = 40;
     v2->unk_0C = SysTask_Start(sub_0205B5BC, v2, 10);
     v2->fieldSystem = fieldSystem;
-    v2->unk_04 = v1;
-    v2->unk_08 = SaveData_GetTrainerInfo(v1);
+    v2->saveData = saveData;
+    v2->unk_08 = SaveData_GetTrainerInfo(saveData);
 
     sub_0205C160(v2);
     CommSys_Seed(&v2->unk_150);
@@ -406,7 +405,7 @@ static void sub_0205B754(UnkStruct_0205B43C *param0)
     }
 
     SysTask_Done(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     Heap_Destroy(HEAP_ID_31);
 }
 
@@ -1332,7 +1331,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
     v1 = MessageLoader_GetNewStrbuf(v2, v4);
 
     StringTemplate_SetStrbuf(param0, 2, v1, 0, 1, v3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     MessageLoader_Free(v2);
 }
 
@@ -1369,20 +1368,20 @@ static void sub_0205C160(UnkStruct_0205B43C *param0)
 
 void *sub_0205C17C(UnkStruct_0205B43C *param0)
 {
-    param0->unk_184 = sub_02071F04(HEAP_ID_SYSTEM);
-    param0->unk_188[0] = sub_02071F04(HEAP_ID_SYSTEM);
-    param0->unk_188[1] = sub_02071F04(HEAP_ID_SYSTEM);
+    param0->unk_184 = TrainerCard_New(HEAP_ID_SYSTEM);
+    param0->unk_188[0] = TrainerCard_New(HEAP_ID_SYSTEM);
+    param0->unk_188[1] = TrainerCard_New(HEAP_ID_SYSTEM);
 
-    sub_02071D40(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
+    TrainerCard_Init(FALSE, FALSE, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 
     return (void *)param0->unk_188[CommSys_CurNetId() ^ 1];
 }
 
 void sub_0205C1F0(UnkStruct_0205B43C *param0)
 {
-    Heap_FreeToHeap(param0->unk_188[0]);
-    Heap_FreeToHeap(param0->unk_188[1]);
-    Heap_FreeToHeap(param0->unk_184);
+    Heap_Free(param0->unk_188[0]);
+    Heap_Free(param0->unk_188[1]);
+    Heap_Free(param0->unk_184);
 }
 
 void sub_0205C214(UnkStruct_0205B43C *param0)

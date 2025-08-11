@@ -5,14 +5,14 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground.h"
+#include "struct_defs/underground_record.h"
 
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/funcptr_ov23_02253834.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02253598_decl.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
 #include "comm_player_manager.h"
@@ -34,7 +34,7 @@
 #include "trainer_info.h"
 #include "unk_0202854C.h"
 
-typedef int (*UnkFuncPtr_ov23_022576EC)(const SecretBaseRecord *);
+typedef int (*UnkFuncPtr_ov23_022576EC)(const UndergroundRecord *);
 
 typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
@@ -50,9 +50,9 @@ typedef struct {
 typedef struct UnkStruct_ov23_02253598_t {
     UnkStruct_ov23_022537D4 *unk_00;
     SysTask *unk_04;
-    SaveData *unk_08;
-    SecretBaseRecord *unk_0C;
-    SecretBaseRecord *unk_10;
+    SaveData *saveData;
+    UndergroundRecord *unk_0C;
+    UndergroundRecord *unk_10;
     MATHRandContext32 unk_14;
     u8 unk_2C;
 };
@@ -60,22 +60,22 @@ typedef struct UnkStruct_ov23_02253598_t {
 static UnkStruct_ov23_02253598 *Unk_ov23_022577BC = NULL;
 static void ov23_022537D4(SysTask *param0, void *param1);
 
-void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, SaveData *param2)
+void ov23_02253598(UnkStruct_ov23_02253598 *param0, UndergroundRecord *param1, SaveData *saveData)
 {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_ov23_02253598));
 
     Unk_ov23_022577BC = param0;
-    Unk_ov23_022577BC->unk_08 = param2;
+    Unk_ov23_022577BC->saveData = saveData;
     Unk_ov23_022577BC->unk_0C = param1;
-    Unk_ov23_022577BC->unk_10 = sub_0202855C(HEAP_ID_COMMUNICATION);
+    Unk_ov23_022577BC->unk_10 = UndergroundRecord_Init(HEAP_ID_COMMUNICATION);
 
     CommSys_Seed(&Unk_ov23_022577BC->unk_14);
 }
 
 void ov23_022535CC(void)
 {
-    Heap_FreeToHeap(Unk_ov23_022577BC->unk_10);
-    Heap_FreeToHeap(Unk_ov23_022577BC);
+    Heap_Free(Unk_ov23_022577BC->unk_10);
+    Heap_Free(Unk_ov23_022577BC);
 
     Unk_ov23_022577BC = NULL;
 }
@@ -98,23 +98,23 @@ int ov23_02253608(void)
 }
 
 static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
-    sub_020294B8,
-    sub_020294EC,
-    sub_02029524,
-    sub_020295B8,
-    sub_020295F0,
-    sub_0202963C,
-    sub_020296CC,
+    UndergroundRecord_GetTrainerScore,
+    UndergroundRecord_GetPeopleMet,
+    UndergroundRecord_GetNumGiftsGiven,
+    UndergroundRecord_GetCapturedFlagCount,
+    UndergroundRecord_GetNumSpheresDug,
+    UndergroundRecord_GetNumFossilsDug,
+    UndergroundRecord_GetNumTrapsHit,
     sub_02029704,
     sub_0202973C,
     sub_02029774,
     sub_020297AC,
     sub_020297E4,
     sub_0202981C,
-    sub_020295B8
+    UndergroundRecord_GetCapturedFlagCount
 };
 
-static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *param2, const SecretBaseRecord *param3)
+static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3)
 {
     StringTemplate *v0;
     Strbuf *v1;
@@ -152,7 +152,7 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Format(v0, v2, v1);
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v9, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
-    v3 = sub_0202958C(param3);
+    v3 = UndergroundRecord_GetFlagRank(param3);
     MessageLoader_GetStrbuf(param1, 20 + v3, v1);
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7 + v9, v5, TEXT_SPEED_NO_TRANSFER, NULL);
 
@@ -192,7 +192,7 @@ static void ov23_022537D4(SysTask *param0, void *param1)
         }
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 
     Unk_ov23_022577BC->unk_04 = NULL;
@@ -210,7 +210,7 @@ static void ov23_0225381C(SysTask *param0, void *param1)
 
 void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_02253834 param2, void *param3, BOOL param4)
 {
-    SecretBaseRecord *v0;
+    UndergroundRecord *v0;
     MessageLoader *v1;
     ListMenuTemplate v2;
     int v3 = 10;
@@ -224,7 +224,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0640, HEAP_ID_FIELD);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_RECORDS, HEAP_ID_FIELD);
     Window_FillTilemap(&v4->unk_08, 15);
 
     if (param4) {
@@ -246,34 +246,34 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
 
 void ov23_022538FC(int param0)
 {
-    int v0 = sub_02028558();
-    int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
-    u8 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0 + 1);
+    int undergroundRecordSize = UndergroundRecord_Size();
+    int trainerScore = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->saveData));
+    u8 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, undergroundRecordSize + 1);
 
-    MI_CpuClear8(v2, v0 + 1);
+    MI_CpuClear8(v2, undergroundRecordSize + 1);
     v2[0] = param0;
 
-    if (v1 >= 999999) {
-        v1 = 999999;
+    if (trainerScore >= 999999) {
+        trainerScore = 999999;
     }
 
-    sub_020294D4(Unk_ov23_022577BC->unk_0C, v1);
+    UndergroundRecord_SetTrainerScore(Unk_ov23_022577BC->unk_0C, trainerScore);
 
-    MI_CpuCopy8(Unk_ov23_022577BC->unk_0C, &v2[1], v0);
+    MI_CpuCopy8(Unk_ov23_022577BC->unk_0C, &v2[1], undergroundRecordSize);
 
-    CommSys_SendData(81, v2, v0 + 1);
-    Heap_FreeToHeap(v2);
+    CommSys_SendData(81, v2, undergroundRecordSize + 1);
+    Heap_Free(v2);
 }
 
 void ov23_02253968(void)
 {
-    int v0 = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->unk_08));
+    int trainerScore = GameRecords_GetTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577BC->saveData));
 
-    if (v0 >= 999999) {
-        v0 = 999999;
+    if (trainerScore >= 999999) {
+        trainerScore = 999999;
     }
 
-    sub_020294D4(Unk_ov23_022577BC->unk_0C, v0);
+    UndergroundRecord_SetTrainerScore(Unk_ov23_022577BC->unk_0C, trainerScore);
 }
 
 void ov23_02253998(int param0, int param1, void *param2, void *param3)
@@ -303,32 +303,32 @@ void ov23_022539E8(void)
 
 static void ov23_022539F8(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
-void ov23_02253A00(SecretBaseRecord *param0, int param1)
+void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
 {
     s32 v0;
-    SecretBaseRecord *v1;
+    UndergroundRecord *undergroundRecordBuffer;
     UnkFuncPtr_ov23_022576EC v2 = Unk_ov23_022576EC[param1 - 32];
 
     GF_ASSERT(param1 >= 32);
     GF_ASSERT(param1 <= 45);
 
-    sub_020594FC();
-    ov23_02253DFC(ov23_022421BC(), 640, 1);
+    CommPlayerMan_PauseFieldSystem();
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_RECORDS, MESSAGE_LOADER_NARC_HANDLE);
 
-    v1 = sub_0202855C(HEAP_ID_FIELD);
-    MI_CpuCopy8(param0, v1, sub_02028558());
+    undergroundRecordBuffer = UndergroundRecord_Init(HEAP_ID_FIELD);
+    MI_CpuCopy8(undergroundRecord, undergroundRecordBuffer, UndergroundRecord_Size());
 
-    v0 = v2(v1);
-    Heap_FreeToHeap(v1);
+    v0 = v2(undergroundRecordBuffer);
+    Heap_Free(undergroundRecordBuffer);
 
-    ov23_02254178(ov23_022421BC(), v0);
-    ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
+    UndergroundTextPrinter_SetNumber(CommManUnderground_GetMiscTextPrinter(), v0);
+    UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), param1, TRUE, ov23_022539F8);
 }
 
-static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const SecretBaseRecord *param3, const UndergroundData *param4)
+static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *param2, const UndergroundRecord *param3, const Underground *param4)
 {
     StringTemplate *v0;
     Strbuf *v1;
@@ -355,7 +355,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     MessageLoader_GetStrbuf(param1, 13, v1);
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8, TEXT_SPEED_NO_TRANSFER, NULL);
 
-    StringTemplate_SetNumber(v0, 6, sub_020295B8(param3), 6, 1, 1);
+    StringTemplate_SetNumber(v0, 6, UndergroundRecord_GetCapturedFlagCount(param3), 6, 1, 1);
     MessageLoader_GetStrbuf(param1, 14, v1);
     StringTemplate_Format(v0, v2, v1);
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + 100, 1 + v8, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -364,7 +364,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * 3, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
-        TrainerInfo *v13 = sub_020288C8(param4, 4, v3);
+        TrainerInfo *v13 = sub_020288C8(param4, HEAP_ID_FIELD, v3);
 
         if (v13) {
             StringTemplate_SetPlayerName(v0, 0, v13);
@@ -377,7 +377,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
             StringTemplate_Format(v0, v2, v1);
 
             Text_AddPrinterWithParams(param0, FONT_SYSTEM, v2, v7 + v12, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
-            Heap_FreeToHeap(v13);
+            Heap_Free(v13);
         } else {
             MessageLoader_GetStrbuf(param1, 51, v1);
             Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1 + v8 * (4 + v3), TEXT_SPEED_NO_TRANSFER, NULL);
@@ -391,9 +391,9 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     StringTemplate_Free(v0);
 }
 
-void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *param2, UnkFuncPtr_ov23_02253834 param3, void *param4)
+void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, Underground *underground, UnkFuncPtr_ov23_02253834 param3, void *param4)
 {
-    SecretBaseRecord *v0;
+    UndergroundRecord *v0;
     MessageLoader *v1;
     ListMenuTemplate v2;
     int v3 = 10;
@@ -407,11 +407,11 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     Window_Add(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     Window_DrawStandardFrame(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0639, HEAP_ID_FIELD);
+    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_BASE_PC, HEAP_ID_FIELD);
     Window_FillTilemap(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
-    ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
+    ov23_02253A78(&v4->unk_08, v1, param1, v0, underground);
 
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     Window_ScheduleCopyToVRAM(&v4->unk_08);
@@ -436,5 +436,5 @@ void ov23_02253D10(void *param0)
         }
     }
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }

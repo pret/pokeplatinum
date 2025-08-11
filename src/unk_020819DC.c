@@ -7,6 +7,7 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "menu.h"
 #include "message.h"
@@ -19,7 +20,6 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0200C440.h"
 #include "unk_0207E0B8.h"
 #include "unk_02083370.h"
 #include "unk_02084B70.h"
@@ -117,7 +117,7 @@ void sub_02081A24(GameWindowLayout *param0)
     sub_020819DC(param0->unk_00, &param0->unk_04[10], &v0[10]);
     sub_020819DC(param0->unk_00, &param0->unk_04[20], &v0[20]);
 
-    if (param0->unk_5A4->unk_21 == 2) {
+    if (param0->partyManagementData->unk_21 == 2) {
         sub_020819DC(param0->unk_00, &param0->unk_04[5], &v0[30]);
         sub_020819DC(param0->unk_00, &param0->unk_04[15], &v0[35]);
         sub_020819DC(param0->unk_00, &param0->unk_04[25], &v0[40]);
@@ -127,7 +127,7 @@ void sub_02081A24(GameWindowLayout *param0)
         sub_020819DC(param0->unk_00, &param0->unk_04[25], &v0[25]);
     }
 
-    if ((param0->unk_5A4->unk_20 == 2) || (param0->unk_5A4->unk_20 == 17) || (param0->unk_5A4->unk_20 == 23) || (param0->unk_5A4->unk_20 == 22)) {
+    if ((param0->partyManagementData->unk_20 == 2) || (param0->partyManagementData->unk_20 == 17) || (param0->partyManagementData->unk_20 == 23) || (param0->partyManagementData->unk_20 == 22)) {
         WindowTemplate v2;
 
         v2 = Unk_020F1ED0[0];
@@ -162,30 +162,30 @@ void sub_02081B90(GameWindowLayout *param0)
 
 void sub_02081BC0(GameWindowLayout *param0)
 {
-    MessageLoader_GetStrbuf(param0->unk_69C, 145, param0->unk_6AC[0]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 146, param0->unk_6AC[1]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 147, param0->unk_6AC[2]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 160, param0->unk_6AC[3]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 161, param0->unk_6AC[4]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 148, param0->unk_6AC[5]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 149, param0->unk_6AC[6]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 150, param0->unk_6AC[7]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 151, param0->unk_6AC[8]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 152, param0->unk_6AC[9]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 153, param0->unk_6AC[10]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 154, param0->unk_6AC[11]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 155, param0->unk_6AC[12]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 154, param0->unk_6AC[13]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 166, param0->unk_6AC[14]);
-    MessageLoader_GetStrbuf(param0->unk_69C, 200, param0->unk_6AC[15]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 145, param0->unk_6AC[0]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 146, param0->unk_6AC[1]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 147, param0->unk_6AC[2]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 160, param0->unk_6AC[3]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 161, param0->unk_6AC[4]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 148, param0->unk_6AC[5]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 149, param0->unk_6AC[6]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 150, param0->unk_6AC[7]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 151, param0->unk_6AC[8]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 152, param0->unk_6AC[9]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 153, param0->unk_6AC[10]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 154, param0->unk_6AC[11]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 155, param0->unk_6AC[12]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 154, param0->unk_6AC[13]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 166, param0->unk_6AC[14]);
+    MessageLoader_GetStrbuf(param0->messageLoader, 200, param0->unk_6AC[15]);
 }
 
 void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2)
 {
-    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 156 + param2);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, 156 + param2);
 
-    StringTemplate_SetMoveName(param0->unk_6A0, 0, param1);
-    StringTemplate_Format(param0->unk_6A0, param0->unk_6AC[16 + param2], v0);
+    StringTemplate_SetMoveName(param0->template, 0, param1);
+    StringTemplate_Format(param0->template, param0->unk_6AC[16 + param2], v0);
 
     Strbuf_Free(v0);
 }
@@ -197,7 +197,7 @@ void sub_02081CF4(GameWindowLayout *param0, const u8 *param1, u8 param2)
 
     Window_Add(param0->unk_00, &param0->unk_254[0], 0, 19, 23 - param2 * 2, 12, param2 * 2, 0, (((((((((((((((((((((((((((((((1 + 9) + (18 + 12)) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 9 * 2) + 6 * 2) + 8 * 2) + 6 * 1) + 5 * 2) + 7 * 2) + 20 * 2) + 13 * 4) + 27 * 4));
 
-    param0->unk_6FC = StringList_New(param2, 12);
+    param0->unk_6FC = StringList_New(param2, HEAP_ID_12);
     v2 = 0;
 
     for (v1 = 0; v1 < param2; v1++) {
@@ -232,16 +232,16 @@ void sub_02081E08(GameWindowLayout *param0)
     Pokemon *v0;
     Strbuf *v1;
 
-    if (param0->unk_5A4->unk_20 == 15) {
-        MessageLoader_GetStrbuf(param0->unk_69C, 42, param0->unk_6A4);
-    } else if ((param0->unk_5A4->unk_20 == 21) && (param0->unk_704[param0->unk_B11].unk_10 == 1)) {
-        MessageLoader_GetStrbuf(param0->unk_69C, 198, param0->unk_6A4);
+    if (param0->partyManagementData->unk_20 == 15) {
+        MessageLoader_GetStrbuf(param0->messageLoader, 42, param0->unk_6A4);
+    } else if ((param0->partyManagementData->unk_20 == 21) && (param0->unk_704[param0->partySlot].unk_10 == 1)) {
+        MessageLoader_GetStrbuf(param0->messageLoader, 198, param0->unk_6A4);
     } else {
-        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 37);
+        v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 37);
 
-        StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
-        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_Format(param0->template, param0->unk_6A4, v1);
         Strbuf_Free(v1);
     }
 }
@@ -257,15 +257,15 @@ static const u16 Unk_020F1EA0[6][4] = {
 
 static void sub_02081EAC(GameWindowLayout *param0, u8 param1)
 {
-    sub_0200C578(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
 }
 
 void sub_02081ED8(GameWindowLayout *param0, Pokemon *param1, u32 param2)
 {
-    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, Unk_020F1EA0[param2][0]);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, Unk_020F1EA0[param2][0]);
 
-    StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(param1));
-    StringTemplate_Format(param0->unk_6A0, param0->unk_704[param2].unk_00, v0);
+    StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(param1));
+    StringTemplate_Format(param0->template, param0->unk_704[param2].unk_00, v0);
     Strbuf_Free(v0);
 }
 
@@ -285,11 +285,11 @@ void sub_02081F2C(GameWindowLayout *param0, u8 param1)
 
     if (param0->unk_704[param1].unk_0E_12 == 0) {
         if (param0->unk_704[param1].unk_0E_13 == 0) {
-            MessageLoader_GetStrbuf(param0->unk_69C, 27, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->messageLoader, 27, param0->unk_6A8);
             Text_AddPrinterWithParamsAndColor(
                 v0, FONT_SYSTEM, param0->unk_6A8, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
         } else if (param0->unk_704[param1].unk_0E_13 == 1) {
-            MessageLoader_GetStrbuf(param0->unk_69C, 28, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->messageLoader, 28, param0->unk_6A8);
             Text_AddPrinterWithParamsAndColor(
                 v0, FONT_SYSTEM, param0->unk_6A8, (9 * 8 - 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
         }
@@ -310,7 +310,7 @@ void sub_02081FFC(GameWindowLayout *param0, u8 param1)
         return;
     }
 
-    sub_0200C648(param0->unk_698, 1, param0->unk_704[param1].unk_0A, 3, 0, v0, 5, 2);
+    FontSpecialChars_DrawPartyScreenText(param0->unk_698, 1, param0->unk_704[param1].level, 3, 0, v0, 5, 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -322,7 +322,7 @@ void sub_02082058(GameWindowLayout *param0, u8 param1)
 
     v0 = &param0->unk_04[2 + param1 * 5];
 
-    sub_0200C5BC(param0->unk_698, param0->unk_704[param1].unk_06, 3, 1, v0, (28 - 24), 2);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_698, param0->unk_704[param1].curHP, 3, 1, v0, (28 - 24), 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -345,7 +345,7 @@ static void sub_020820C4(GameWindowLayout *param0, u8 param1)
 
     v0 = &param0->unk_04[2 + param1 * 5];
 
-    sub_0200C5BC(param0->unk_698, param0->unk_704[param1].unk_08, 3, 0, v0, (28 + 8), 2);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_698, param0->unk_704[param1].maxHP, 3, 0, v0, (28 + 8), 2);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -356,7 +356,7 @@ void sub_02082104(GameWindowLayout *param0, u8 param1)
 
     v0 = &param0->unk_04[3 + param1 * 5];
 
-    switch (HealthBar_Color(param0->unk_704[param1].unk_06, param0->unk_704[param1].unk_08, 48)) {
+    switch (HealthBar_Color(param0->unk_704[param1].curHP, param0->unk_704[param1].maxHP, 48)) {
     case 0:
         Window_ScheduleCopyToVRAM(v0);
         return;
@@ -372,7 +372,7 @@ void sub_02082104(GameWindowLayout *param0, u8 param1)
         break;
     }
 
-    v1 = App_PixelCount(param0->unk_704[param1].unk_06, param0->unk_704[param1].unk_08, 48);
+    v1 = App_PixelCount(param0->unk_704[param1].curHP, param0->unk_704[param1].maxHP, 48);
 
     Window_FillRectWithColor(v0, 10, 0, 2, v1, 1);
     Window_FillRectWithColor(v0, 9, 0, 3, v1, 2);
@@ -434,9 +434,9 @@ void sub_0208232C(GameWindowLayout *param0, u8 param1)
 
     sub_02081FFC(param0, param1);
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
 
-    if (Pokemon_GetEvolutionTargetSpecies(NULL, v0, EVO_CLASS_BY_ITEM, param0->unk_5A4->unk_24, NULL) == 0) {
+    if (Pokemon_GetEvolutionTargetSpecies(NULL, v0, EVO_CLASS_BY_ITEM, param0->partyManagementData->usedItemID, NULL) == 0) {
         sub_02082810(param0, param1, 1);
     } else {
         sub_02082810(param0, param1, 0);
@@ -459,7 +459,7 @@ void sub_020823C4(GameWindowLayout *param0, u8 param1)
 
     sub_02081FFC(param0, param1);
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param1);
     v1 = sub_02086104(param0, v0);
 
     if (v1 == 0xff) {
@@ -505,19 +505,19 @@ void sub_02082508(GameWindowLayout *param0, u8 param1)
 {
     u8 v0;
 
-    for (v0 = 0; v0 < param0->unk_5A4->unk_32_4; v0++) {
-        if (param0->unk_5A4->unk_2C[v0] == param1 + 1) {
+    for (v0 = 0; v0 < param0->partyManagementData->unk_32_4; v0++) {
+        if (param0->partyManagementData->unk_2C[v0] == param1 + 1) {
             sub_02082964(param0, param1, v0);
             return;
         }
     }
 
-    if (param0->unk_5A4->unk_20 == 22) {
+    if (param0->partyManagementData->unk_20 == 22) {
         if (sub_02080404(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;
         }
-    } else if (param0->unk_5A4->unk_20 == 23) {
+    } else if (param0->partyManagementData->unk_20 == 23) {
         if (sub_02080488(param0, param1) == 0) {
             sub_02082964(param0, param1, 8);
             return;
@@ -547,14 +547,14 @@ void sub_020825B4(GameWindowLayout *param0, u8 param1)
     Window_FillTilemap(&param0->unk_04[31], 0);
 
     if (param1 & 1) {
-        MessageLoader_GetStrbuf(param0->unk_69C, 0, param0->unk_6A8);
+        MessageLoader_GetStrbuf(param0->messageLoader, 0, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[30].width * 8);
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[30], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         Window_ScheduleCopyToVRAM(&param0->unk_04[30]);
     }
 
     if (param1 & 2) {
-        MessageLoader_GetStrbuf(param0->unk_69C, 1, param0->unk_6A8);
+        MessageLoader_GetStrbuf(param0->messageLoader, 1, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[31].width * 8);
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[31], FONT_SYSTEM, param0->unk_6A8, v0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         Window_ScheduleCopyToVRAM(&param0->unk_04[31]);
@@ -570,7 +570,7 @@ static void sub_02082680(GameWindowLayout *param0, Window *param1, u32 param2, u
     Window_FillTilemap(param1, 15);
 
     if (param2 != 0xffffffff) {
-        MessageLoader_GetStrbuf(param0->unk_69C, param2, param0->unk_6A4);
+        MessageLoader_GetStrbuf(param0->messageLoader, param2, param0->unk_6A4);
     }
 
     Text_AddPrinterWithParams(param1, FONT_MESSAGE, param0->unk_6A4, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -598,7 +598,7 @@ void sub_02082708(GameWindowLayout *param0, u32 param1, u8 param2)
     Window_FillTilemap(v0, 15);
 
     if (param1 != 0xffffffff) {
-        MessageLoader_GetStrbuf(param0->unk_69C, param1, param0->unk_6A4);
+        MessageLoader_GetStrbuf(param0->messageLoader, param1, param0->unk_6A4);
     }
 
     sub_0208274C(param0);
@@ -608,8 +608,8 @@ void sub_0208274C(GameWindowLayout *param0)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
-    param0->unk_B10 = Text_AddPrinterWithParams(
-        &param0->unk_04[34], FONT_MESSAGE, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->unk_5A4->unk_0C), sub_0208279C);
+    param0->textPrinterID = Text_AddPrinterWithParams(
+        &param0->unk_04[34], FONT_MESSAGE, param0->unk_6A4, 0, 0, Options_TextFrameDelay(param0->partyManagementData->options), sub_0208279C);
 }
 
 static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
@@ -649,10 +649,10 @@ static void sub_02082810(GameWindowLayout *param0, u8 param1, u8 param2)
 
     switch (param2) {
     case 0:
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 178);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 178);
         break;
     case 1:
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 179);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 179);
         break;
     }
 
@@ -672,13 +672,13 @@ static void sub_02082880(GameWindowLayout *param0, u8 param1, u8 param2)
 
     switch (param2) {
     case 0:
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 175);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 175);
         break;
     case 1:
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 176);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 176);
         break;
     case 2:
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 177);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 177);
         break;
     }
 
@@ -697,9 +697,9 @@ static void sub_02082900(GameWindowLayout *param0, u8 param1, u8 param2)
     Window_FillTilemap(v0, 0);
 
     if (param2 == 0) {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 181);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 181);
     } else {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 180);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 180);
     }
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
@@ -717,11 +717,11 @@ static void sub_02082964(GameWindowLayout *param0, u8 param1, u8 param2)
     Window_FillTilemap(v0, 0);
 
     if (param2 < 6) {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 169 + param2);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 169 + param2);
     } else if (param2 == 7) {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 167);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 167);
     } else {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 168);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 168);
     }
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
@@ -736,7 +736,7 @@ void sub_020829DC(GameWindowLayout *param0)
     u32 v2;
     u16 v3[6];
 
-    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
 
     v3[0] = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
     v3[1] = (u16)Pokemon_GetValue(v0, MON_DATA_ATK, NULL);
@@ -750,14 +750,14 @@ void sub_020829DC(GameWindowLayout *param0)
     Window_FillTilemap(&param0->unk_254[0], 15);
 
     for (v2 = 0; v2 < 6; v2++) {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 185 + v2);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 185 + v2);
         Text_AddPrinterWithParams(&param0->unk_254[0], FONT_SYSTEM, v1, 0, 16 * v2, TEXT_SPEED_NO_TRANSFER, NULL);
         Strbuf_Free(v1);
 
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 191);
+        v1 = MessageLoader_GetNewStrbuf(param0->messageLoader, 191);
 
-        StringTemplate_SetNumber(param0->unk_6A0, 0, v3[v2] - param0->unk_B14[v2], 2, 0, 1);
-        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v1);
+        StringTemplate_SetNumber(param0->template, 0, v3[v2] - param0->monStats[v2], 2, 0, 1);
+        StringTemplate_Format(param0->template, param0->unk_6A4, v1);
         Strbuf_Free(v1);
 
         {
@@ -765,7 +765,7 @@ void sub_020829DC(GameWindowLayout *param0)
             Text_AddPrinterWithParams(&param0->unk_254[0], FONT_SYSTEM, param0->unk_6A4, v4, 16 * v2, TEXT_SPEED_NO_TRANSFER, NULL);
         }
 
-        param0->unk_B14[v2] = v3[v2];
+        param0->monStats[v2] = v3[v2];
     }
 
     Window_ScheduleCopyToVRAM(&param0->unk_254[0]);
@@ -778,11 +778,11 @@ void sub_02082B58(GameWindowLayout *param0)
     u32 v2;
 
     Window_FillRectWithColor(&param0->unk_254[0], 15, 80, 0, 32, 14 * 8);
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 192);
+    v0 = MessageLoader_GetNewStrbuf(param0->messageLoader, 192);
 
     for (v2 = 0; v2 < 6; v2++) {
-        StringTemplate_SetNumber(param0->unk_6A0, 0, param0->unk_B14[v2], 3, 0, 1);
-        StringTemplate_Format(param0->unk_6A0, param0->unk_6A4, v0);
+        StringTemplate_SetNumber(param0->template, 0, param0->monStats[v2], 3, 0, 1);
+        StringTemplate_Format(param0->template, param0->unk_6A4, v0);
 
         v1 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_6A4, 0);
 

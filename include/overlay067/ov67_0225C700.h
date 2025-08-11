@@ -3,11 +3,11 @@
 
 #include "overlay_manager.h"
 
-int ov67_0225C700(OverlayManager *param0, int *param1);
-int ov67_0225C820(OverlayManager *param0, int *param1);
-int ov67_0225CB1C(OverlayManager *param0, int *param1);
-int ov67_0225CB8C(OverlayManager *param0, int *param1);
-int ov67_0225CC6C(OverlayManager *param0, int *param1);
-int ov67_0225CDC0(OverlayManager *param0, int *param1);
+int ov67_0225C700(ApplicationManager *appMan, int *param1);
+int ov67_0225C820(ApplicationManager *appMan, int *param1);
+int ov67_0225CB1C(ApplicationManager *appMan, int *param1);
+int ov67_0225CB8C(ApplicationManager *appMan, int *param1);
+int ov67_0225CC6C(ApplicationManager *appMan, int *param1);
+int ov67_0225CDC0(ApplicationManager *appMan, int *param1);
 
 #endif // POKEPLATINUM_OV67_0225C700_H

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/distortion_world_b6f.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0026
@@ -101,21 +100,21 @@ _00F6:
 
     .balign 4, 0
 _0108:
-    MoveAction_066
-    MoveAction_033
-    MoveAction_075
-    MoveAction_066
+    Delay32
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    Delay32
     EndMovement
 
     .balign 4, 0
 _011C:
-    MoveAction_013
+    WalkNormalSouth
     MoveAction_118
-    MoveAction_014
-    MoveAction_035
+    WalkNormalWest
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0130:
-    MoveAction_067
+    WarpOut
     EndMovement

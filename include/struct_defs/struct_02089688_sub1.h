@@ -3,7 +3,6 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02023FCC_decl.h"
 
 #include "bg_window.h"
 #include "char_transfer.h"
@@ -11,6 +10,7 @@
 #include "palette.h"
 #include "sprite_system.h"
 #include "touch_screen.h"
+#include "touch_screen_actions.h"
 
 typedef struct {
     NARC *unk_00;
@@ -18,7 +18,7 @@ typedef struct {
     SpriteManager *unk_08;
     BgConfig *unk_0C;
     PaletteData *unk_10;
-    UnkStruct_02023FCC *unk_14;
+    TouchScreenActions *unk_14;
     TouchScreenRect unk_18[28];
     BOOL unk_88;
     UnkStruct_02012744 *unk_8C;

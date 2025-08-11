@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poketch_co_3f.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0031
@@ -422,5 +421,4 @@ _0687:
 _0690:
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

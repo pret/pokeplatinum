@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_UMBREON",
+    "moves": [
+        "MOVE_FAINT_ATTACK",
+        "MOVE_SWAGGER",
+        "MOVE_PSYCH_UP",
+        "MOVE_SCREECH"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LAX_INCENSE",
+    "form": 0
+}

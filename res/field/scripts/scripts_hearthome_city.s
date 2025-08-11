@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city.h"
 
-    .data
 
     ScriptEntry _0082
     ScriptEntry _0084
@@ -201,76 +200,68 @@ _0225:
     ReleaseAll
     End
 
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 65
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+HearthomeCity_UnusedMovement:
+    EmoteExclamationMark
+    Delay16
+    EndMovement
 
     .balign 4, 0
 _0240:
-    MoveAction_014 20
-    MoveAction_012 13
-    MoveAction_015 12
-    MoveAction_012 4
-    MoveAction_033
+    WalkNormalWest 20
+    WalkNormalNorth 13
+    WalkNormalEast 12
+    WalkNormalNorth 4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0258:
-    MoveAction_012
-    MoveAction_014 2
-    MoveAction_013
-    MoveAction_014 18
-    MoveAction_012 13
-    MoveAction_015 12
-    MoveAction_012 4
-    MoveAction_033
+    WalkNormalNorth
+    WalkNormalWest 2
+    WalkNormalSouth
+    WalkNormalWest 18
+    WalkNormalNorth 13
+    WalkNormalEast 12
+    WalkNormalNorth 4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _027C:
-    MoveAction_012
-    MoveAction_014 20
-    MoveAction_012 13
-    MoveAction_015 12
-    MoveAction_012 3
+    WalkNormalNorth
+    WalkNormalWest 20
+    WalkNormalNorth 13
+    WalkNormalEast 12
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _0294:
-    MoveAction_013
-    MoveAction_014 20
-    MoveAction_012 13
-    MoveAction_015 12
-    MoveAction_012 3
+    WalkNormalSouth
+    WalkNormalWest 20
+    WalkNormalNorth 13
+    WalkNormalEast 12
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _02AC:
-    MoveAction_014
-    MoveAction_014 20
-    MoveAction_012 13
-    MoveAction_015 12
-    MoveAction_012 3
+    WalkNormalWest
+    WalkNormalWest 20
+    WalkNormalNorth 13
+    WalkNormalEast 12
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _02C4:
-    MoveAction_063 2
-    MoveAction_062
-    MoveAction_034
-    MoveAction_014 19
-    MoveAction_012 13
-    MoveAction_015 12
-    MoveAction_012 3
+    Delay8 2
+    Delay4
+    WalkOnSpotNormalWest
+    WalkNormalWest 19
+    WalkNormalNorth 13
+    WalkNormalEast 12
+    WalkNormalNorth 3
     EndMovement
 
 _02E4:
@@ -613,31 +604,26 @@ _0820:
 
     .balign 4, 0
 _087C:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0884:
-    MoveAction_018 9
+    WalkFastWest 9
     EndMovement
 
-    .byte 19
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+HearthomeCity_UnusedMovement2:
+    WalkFastEast 8
+    EndMovement
 
     .balign 4, 0
 _0894:
-    MoveAction_018 8
+    WalkFastWest 8
     EndMovement
 
     .balign 4, 0
 _089C:
-    MoveAction_015 8
+    WalkNormalEast 8
     EndMovement
 
 _08A4:
@@ -706,5 +692,4 @@ _0997:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

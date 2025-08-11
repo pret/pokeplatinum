@@ -24,7 +24,7 @@ int sub_02038FFC(int heapID)
     v2 = (u8 *)(((u32)v1 + 31) / 32 * 32);
     v0 = DWC_Init(v2);
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     sub_02099560();
     sub_020995C4();
 
@@ -33,7 +33,7 @@ int sub_02038FFC(int heapID)
 
 void sub_02039034(WiFiList *param0)
 {
-    DWCUserData *v0 = sub_0202AD28(param0);
+    DWCUserData *v0 = WiFiList_GetUserData(param0);
 
     if (!DWC_CheckUserData(v0)) {
         DWC_CreateUserData(v0, 'ADAJ');
@@ -41,9 +41,9 @@ void sub_02039034(WiFiList *param0)
     }
 }
 
-int sub_02039058(WiFiList *param0)
+int WiFiList_GetUserGsProfileId(WiFiList *wifiList)
 {
-    DWCUserData *v0 = sub_0202AD28(param0);
+    DWCUserData *v0 = WiFiList_GetUserData(wifiList);
     DWCFriendData v1;
 
     DWC_CreateExchangeToken(v0, &v1);
@@ -53,7 +53,7 @@ int sub_02039058(WiFiList *param0)
 BOOL sub_02039074(SaveData *saveData)
 {
     WiFiList *v0 = SaveData_GetWiFiList(saveData);
-    DWCUserData *v1 = sub_0202AD28(v0);
+    DWCUserData *v1 = WiFiList_GetUserData(v0);
 
     if (DWC_CheckHasProfile(v1)
         && DWC_CheckValidConsole(v1)) {

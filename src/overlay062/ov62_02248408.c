@@ -89,22 +89,22 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
 
     Strbuf_Free(v6);
     Strbuf_Free(v7);
-    Heap_FreeToHeap(v8);
+    Heap_Free(v8);
 }
 
-static void ov62_0224856C(Strbuf *param0, int param1)
+static void ov62_0224856C(Strbuf *param0, int heapID)
 {
     MessageLoader *v0;
 
     Strbuf_Clear(param0);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, param1);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0010, heapID);
 
     MessageLoader_GetStrbuf(v0, 332, param0);
     MessageLoader_Free(v0);
 }
 
-int ov62_02248598(SaveData *param0, int param1, u8 param2, u16 *param3, u16 *param4)
+int ov62_02248598(SaveData *saveData, int param1, u8 param2, u16 *param3, u16 *param4)
 {
     int v0;
 
@@ -116,27 +116,27 @@ int ov62_02248598(SaveData *param0, int param1, u8 param2, u16 *param3, u16 *par
             Unk_021C07A4->unk_84.unk_27 = param2;
 
             Unk_021C07A4->unk_84.unk_48 = 0xe281;
-            Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+            Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(saveData, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
         }
 
         sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
         (*param3)++;
         break;
     case 1:
-        v0 = sub_0202F3AC(param0, Unk_021C07A4, param1, param4);
+        v0 = sub_0202F3AC(saveData, Unk_021C07A4, param1, param4);
         return v0;
     }
 
     return 0;
 }
 
-void ov62_02248624(SaveData *param0)
+void ov62_02248624(SaveData *saveData)
 {
     GF_ASSERT(Unk_021C07A4);
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
 }
 
-int ov62_02248658(SaveData *param0, u64 param1, u16 *param2, u16 *param3)
+int ov62_02248658(SaveData *saveData, u64 param1, u16 *param2, u16 *param3)
 {
     int v0;
 
@@ -148,14 +148,14 @@ int ov62_02248658(SaveData *param0, u64 param1, u16 *param2, u16 *param3)
         (*param2)++;
         break;
     case 1:
-        v0 = sub_0202F3AC(param0, Unk_021C07A4, 0, param3);
+        v0 = sub_0202F3AC(saveData, Unk_021C07A4, 0, param3);
         return v0;
     }
 
     return 0;
 }
 
-int ov62_022486A4(SaveData *param0, int param1)
+int ov62_022486A4(SaveData *saveData, int param1)
 {
     int v0;
 
@@ -163,15 +163,15 @@ int ov62_022486A4(SaveData *param0, int param1)
 
     Unk_021C07A4->unk_84.unk_27 = 1;
     Unk_021C07A4->unk_84.unk_48 = 0xe281;
-    Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(param0, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
+    Unk_021C07A4->unk_84.unk_60.unk_00 = SaveData_CalculateChecksum(saveData, &Unk_021C07A4->unk_84, sizeof(UnkStruct_0202F41C) - (sizeof(UnkStruct_0202F298_sub1)) - (sizeof(u64)));
 
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
     ResetLock(RESET_LOCK_0x8);
 
-    v0 = SaveData_SaveBattleRecording(param0, Unk_021C07A4, param1);
+    v0 = SaveData_SaveBattleRecording(saveData, Unk_021C07A4, param1);
 
     if (v0 == 2) {
-        v0 = SaveData_Save(param0);
+        v0 = SaveData_Save(saveData);
     }
 
     ResetUnlock(RESET_LOCK_0x8);

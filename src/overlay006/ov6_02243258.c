@@ -16,10 +16,11 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -27,7 +28,6 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020711EC.h"
 
@@ -397,10 +397,10 @@ static void ov6_0224339C(UnkStruct_ov6_02243258 *param0)
     SpriteResourceCollection_Delete(param0->unk_19C);
     SpriteResourceCollection_Delete(param0->unk_1A0);
     SpriteResourceCollection_Delete(param0->unk_1A4);
-    Heap_FreeToHeap(param0->unk_1A8);
-    Heap_FreeToHeap(param0->unk_1AC);
-    Heap_FreeToHeap(param0->unk_1B0);
-    Heap_FreeToHeap(param0->unk_1B4);
+    Heap_Free(param0->unk_1A8);
+    Heap_Free(param0->unk_1AC);
+    Heap_Free(param0->unk_1B0);
+    Heap_Free(param0->unk_1B4);
     SpriteList_DeleteAll(param0->unk_08);
     SpriteList_Delete(param0->unk_08);
 }
@@ -588,7 +588,7 @@ static Sprite *ov6_02243848(UnkStruct_ov6_02243258 *param0, int param1)
 
     v1 = ov6_02243740(param0, &v0, 2, v2, 2, 1, 0, 131);
 
-    Sprite_SetDrawFlag(v1, 0);
+    Sprite_SetDrawFlag(v1, FALSE);
     Sprite_SetAnim(v1, 6);
 
     return v1;
@@ -674,7 +674,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov6_0224925C = {
 static int ov6_02243940(UnkStruct_ov6_02249110 *param0)
 {
     param0->unk_02 = 0;
-    Sprite_SetDrawFlag(param0->unk_68, 0);
+    Sprite_SetDrawFlag(param0->unk_68, FALSE);
     return 0;
 }
 
@@ -712,7 +712,7 @@ static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
     Sprite_SetAffineScale(v2->unk_68, &v1);
     Sprite_SetAffineZRotation(v2->unk_68, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
     Sprite_SetPriority(v2->unk_68, 132);
-    Sprite_SetDrawFlag(v2->unk_68, 1);
+    Sprite_SetDrawFlag(v2->unk_68, TRUE);
 
     v2->unk_6C = ov6_02245B4C(v2->unk_58.unk_00, v2->unk_58.unk_08);
     v2->unk_70 = ov5_021F0EB0(v2->unk_58.fieldSystem, HEAP_ID_FIELD);
@@ -858,7 +858,7 @@ static int ov6_02243BEC(UnkStruct_ov6_02249110 *param0)
 
 static int ov6_02243CD8(UnkStruct_ov6_02249110 *param0)
 {
-    Sprite_SetDrawFlag(param0->unk_68, 0);
+    Sprite_SetDrawFlag(param0->unk_68, FALSE);
     Sprite_SetAnim(param0->unk_58.unk_08, 1);
 
     param0->unk_04 = 0;
@@ -894,7 +894,7 @@ static int ov6_02243CFC(UnkStruct_ov6_02249110 *param0)
         Sprite_SetPosition(param0->unk_68, &v0);
         Sprite_SetAffineScale(param0->unk_68, &v1);
         Sprite_SetAffineZRotation(param0->unk_68, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
-        Sprite_SetDrawFlag(param0->unk_68, 1);
+        Sprite_SetDrawFlag(param0->unk_68, TRUE);
         Sprite_SetAnim(param0->unk_58.unk_08, 6);
         Sprite_SetAnimateFlag(param0->unk_58.unk_08, 1);
     }
@@ -952,7 +952,7 @@ static int ov6_02243DC0(UnkStruct_ov6_02249110 *param0)
     Sprite_SetPosition(v1, &v0);
 
     if (param0->unk_48 <= 0) {
-        Sprite_SetDrawFlag(v1, 0);
+        Sprite_SetDrawFlag(v1, FALSE);
         param0->unk_01++;
     }
 
@@ -969,7 +969,7 @@ static int ov6_02243ECC(UnkStruct_ov6_02249110 *param0)
     }
 
     if (param0->unk_04 == 10) {
-        Sprite_SetDrawFlag(param0->unk_58.unk_08, 0);
+        Sprite_SetDrawFlag(param0->unk_58.unk_08, FALSE);
     }
 
     if ((param0->unk_04 > 15) && (ov5_021F0EF0(param0->unk_70) == 1)) {
@@ -1009,12 +1009,12 @@ static NARC *ov6_02243F20(void)
 
 static void ov6_02243F2C(void)
 {
-    StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 6, 1, HEAP_ID_FIELD);
 }
 
 static void ov6_02243F50(void)
 {
-    StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELD);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 6, 1, HEAP_ID_FIELD);
 }
 
 static void ov6_02243F74(FieldSystem *fieldSystem, int param1)
@@ -1057,7 +1057,7 @@ void ov6_02243FC8(SysTask *param0)
 
 static UnkStruct_ov6_02243FFC *ov6_02243FDC(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov6_02243FFC *v0 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_ov6_02243FFC)));
+    UnkStruct_ov6_02243FFC *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243FFC)));
 
     memset(v0, 0, (sizeof(UnkStruct_ov6_02243FFC)));
     v0->fieldSystem = fieldSystem;
@@ -1067,7 +1067,7 @@ static UnkStruct_ov6_02243FFC *ov6_02243FDC(FieldSystem *fieldSystem)
 
 static void ov6_02243FFC(UnkStruct_ov6_02243FFC *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov6_02244004(SysTask *param0, void *param1)
@@ -1226,7 +1226,7 @@ static int ov6_02244228(UnkStruct_ov6_02243FFC *param0)
         param0->unk_00++;
 
         {
-            Pokemon_IsEligibleForAction(param0->unk_5C);
+            Pokemon_PlayCry(param0->unk_5C);
         }
     }
 
@@ -1530,7 +1530,7 @@ static int ov6_022445EC(UnkStruct_ov6_02243FFC *param0)
 
 static int ov6_02244634(UnkStruct_ov6_02243FFC *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         param0->unk_00++;
     }
 
@@ -1638,12 +1638,12 @@ static void ov6_02244734(SysTask *param0, void *param1)
         }
 
         if (v1->unk_270 != NULL) {
-            Heap_FreeToHeap(v1->unk_270);
+            Heap_Free(v1->unk_270);
             v1->unk_270 = NULL;
         }
 
         if (v1->unk_274 != NULL) {
-            Heap_FreeToHeap(v1->unk_274);
+            Heap_Free(v1->unk_274);
             v1->unk_274 = NULL;
         }
 
@@ -1879,7 +1879,7 @@ static Sprite *ov6_02244CFC(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param
 
     v0 = ov6_02244C20(param0, param1, 2, v1, 2, 1, 0, 131);
 
-    Sprite_SetDrawFlag(v0, 0);
+    Sprite_SetDrawFlag(v0, FALSE);
     Sprite_SetAnim(v0, 6);
 
     return v0;
@@ -1939,7 +1939,7 @@ static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
     NNS_G2dGetUnpackedPaletteData(v0, param2);
 
     Bg_LoadPalette(3, (*param2)->pRawData, (32 * 1), (32 * 12));
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
@@ -1948,15 +1948,15 @@ static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dChara
     NNS_G2dGetUnpackedCharacterData(v0, param3);
 
     Bg_LoadTiles(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScreenData **param3)
 {
     void *v0;
 
-    Bg_SetOffset(param0, 3, 0, 0);
-    Bg_SetOffset(param0, 3, 3, 0);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+    Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
 
     v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
     NNS_G2dGetUnpackedScreenData(v0, param3);
@@ -1964,12 +1964,12 @@ static void ov6_02244EB4(BgConfig *param0, NARC *param1, u32 param2, NNSG2dScree
     Bg_LoadTilemapBuffer(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
     Bg_ChangeTilemapRectPalette(param0, 3, 0, 0, 32, 32, 12);
     Bg_CopyTilemapBufferToVRAM(param0, 3);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
 }
 
 static void ov6_02244F20(BgConfig *param0)
 {
-    Bg_ClearTilemap(param0, 3);
+    Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
 }
 
 static void ov6_02244F2C(UnkStruct_ov6_02243FFC *param0)
@@ -2229,7 +2229,7 @@ static int ov6_02245364(UnkStruct_ov101_021D5D90 *param0, void *param1)
     sub_020715E4(param0, &v0);
 
     v1->unk_08 = ov6_02244CD4(v1->unk_0C.unk_08, &v0, v1->unk_0C.unk_00, v1->unk_04);
-    Sprite_SetDrawFlag(v1->unk_08, 0);
+    Sprite_SetDrawFlag(v1->unk_08, FALSE);
 
     return 1;
 }
@@ -2266,7 +2266,7 @@ static void ov6_022453B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
             Sprite_SetDrawFlag(v1->unk_08, v3);
         } else if (v2->unk_14 == 1) {
-            Sprite_SetDrawFlag(v1->unk_08, 0);
+            Sprite_SetDrawFlag(v1->unk_08, FALSE);
         }
     }
 }
@@ -2367,7 +2367,7 @@ static int (*const *const Unk_ov6_02249198[])(UnkStruct_ov6_02249198 *) = {
 static int ov6_0224550C(UnkStruct_ov6_02249198 *param0)
 {
     param0->unk_02 = 0;
-    Sprite_SetDrawFlag(param0->unk_58, 0);
+    Sprite_SetDrawFlag(param0->unk_58, FALSE);
     return 0;
 }
 
@@ -2398,7 +2398,7 @@ static void ov6_0224551C(UnkStruct_ov6_02243FFC *param0)
     Sprite_SetPosition(v2->unk_58, &v0);
     Sprite_SetAffineScale(v2->unk_58, &v1);
     Sprite_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
-    Sprite_SetDrawFlag(v2->unk_58, 1);
+    Sprite_SetDrawFlag(v2->unk_58, TRUE);
 }
 
 static int ov6_022455C4(UnkStruct_ov6_02249198 *param0)
@@ -2446,7 +2446,7 @@ static int ov6_022455C4(UnkStruct_ov6_02249198 *param0)
     Sprite_SetPosition(v1, &v0);
 
     if (v0.y < (FX32_ONE * -64)) {
-        Sprite_SetDrawFlag(v1, 0);
+        Sprite_SetDrawFlag(v1, FALSE);
         param0->unk_02 = 2;
         param0->unk_01++;
     }
@@ -2493,7 +2493,7 @@ static void ov6_022456D4(UnkStruct_ov6_02243FFC *param0)
     Sprite_SetPosition(v2->unk_58, &v0);
     Sprite_SetAffineScale(v2->unk_58, &v1);
     Sprite_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
-    Sprite_SetDrawFlag(v2->unk_58, 1);
+    Sprite_SetDrawFlag(v2->unk_58, TRUE);
 
     v2->unk_60 = ov6_02245B4C(param0->unk_244, param0->unk_248);
     param0->unk_1C = 1;
@@ -2899,7 +2899,7 @@ void ov6_02245CFC(SysTask *param0)
 {
     UnkStruct_ov6_02249270 *v0 = SysTask_GetParam(param0);
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 
@@ -2976,7 +2976,7 @@ static int ov6_02245D60(UnkStruct_ov6_02249270 *param0)
 static int ov6_02245EA4(UnkStruct_ov6_02249270 *param0)
 {
     param0->unk_1D0 = ov6_02243848(&param0->unk_18, param0->unk_0C);
-    Sprite_SetDrawFlag(param0->unk_1D0, 1);
+    Sprite_SetDrawFlag(param0->unk_1D0, TRUE);
 
     param0->unk_1D8 = ov6_02243888(param0->fieldSystem, param0->unk_1D4, &param0->unk_18, param0->unk_1D0);
     ov6_02243950(param0->unk_1D8);
@@ -3065,12 +3065,12 @@ static void ov6_02245F94(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
     if (v4->unk_04->unk_1C == 0) {
         if (((v0 - (FX32_ONE * 8)) >= v1) && ((v0 + (FX32_ONE * 8)) <= v2)) {
-            Sprite_SetDrawFlag(v4->unk_00, 1);
+            Sprite_SetDrawFlag(v4->unk_00, TRUE);
         } else {
-            Sprite_SetDrawFlag(v4->unk_00, 0);
+            Sprite_SetDrawFlag(v4->unk_00, FALSE);
         }
     } else {
-        Sprite_SetDrawFlag(v4->unk_00, 1);
+        Sprite_SetDrawFlag(v4->unk_00, TRUE);
     }
 }
 

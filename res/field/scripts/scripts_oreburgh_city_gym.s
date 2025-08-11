@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city_gym.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _011F
@@ -121,6 +120,4 @@ _017D:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

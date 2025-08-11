@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city_west_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0033
@@ -81,4 +80,4 @@ _00DC:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

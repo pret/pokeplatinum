@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -83,6 +84,18 @@
             "MOVE_SNORE",
             "MOVE_EARTH_POWER",
             "MOVE_HEAT_WAVE"
+        ],
+        "egg_moves": [
+            "MOVE_HOWL",
+            "MOVE_SCARY_FACE",
+            "MOVE_BODY_SLAM",
+            "MOVE_ROLLOUT",
+            "MOVE_DEFENSE_CURL",
+            "MOVE_STOMP",
+            "MOVE_YAWN",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_MUD_BOMB",
+            "MOVE_HEAT_WAVE"
         ]
     },
     "evolutions": [
@@ -92,9 +105,11 @@
             "SPECIES_CAMERUPT"
         ]
     ],
+    "offspring": "SPECIES_NUMEL",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 7,

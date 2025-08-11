@@ -12,7 +12,7 @@ u8 sub_02097F18(UnkStruct_02097F18 *param0);
 void sub_02097F20(UnkStruct_02097F18 *param0, u8 param1);
 u8 sub_02097F28(UnkStruct_02097F18 *param0);
 void sub_02097F30(UnkStruct_02097F18 *param0, u8 param1);
-void sub_020980DC(FieldTask *param0, SaveData *param1);
+void sub_020980DC(FieldTask *param0, SaveData *saveData);
 int sub_02098140(u8 param0);
 int sub_02098164(u8 param0);
 int sub_02098188(u8 param0);

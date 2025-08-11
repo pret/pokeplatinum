@@ -173,8 +173,8 @@ void ov5_021DF500(UnkStruct_ov5_021DF47C *param0)
     ov5_021DF644(param0);
     ov5_021DF7C4(param0);
     ov5_021DF59C(param0);
-    Heap_FreeToHeap(param0->unk_14);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_14);
+    Heap_Free(param0);
 }
 
 void *ov5_021DF528(const UnkStruct_ov5_021DF47C *param0, u32 param1, int param2)
@@ -200,7 +200,7 @@ void *ov5_021DF53C(const UnkStruct_ov5_021DF47C *param0, u32 param1, int param2,
 
 void ov5_021DF554(void *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void *ov5_021DF55C(UnkStruct_ov5_021DF47C *param0, u32 param1)
@@ -277,11 +277,8 @@ static void ov5_021DF5E8(UnkStruct_ov5_021DF47C *param0)
 static void ov5_021DF600(UnkStruct_ov5_021DF47C *param0, u32 param1)
 {
     const UnkStruct_ov5_021FF85C *v0 = ov5_021DF6D0(param1);
-    void *v1;
-    UnkStruct_ov5_021DF6AC *v2;
-
-    v1 = v0->unk_04(param0);
-    v2 = ov5_021DF66C(param0);
+    void *v1 = v0->unk_04(param0);
+    UnkStruct_ov5_021DF6AC *v2 = ov5_021DF66C(param0);
 
     ov5_021DF6B8(v2, param1, v1);
 }
@@ -403,9 +400,8 @@ static void ov5_021DF71C(UnkStruct_ov5_021DF47C *param0)
 
 UnkStruct_ov101_021D5D90 *ov5_021DF72C(const UnkStruct_ov5_021DF47C *param0, const UnkStruct_ov101_021D86B0 *param1, const VecFx32 *param2, int param3, const void *param4, int param5)
 {
-    UnkStruct_ov101_021D5D90 *v0;
     UnkStruct_020711EC *v1 = param0->unk_1C;
-    v0 = sub_02071330(v1, param1, param2, param3, param4, param5);
+    UnkStruct_ov101_021D5D90 *v0 = sub_02071330(v1, param1, param2, param3, param4, param5);
 
     GF_ASSERT(v0 != NULL);
 

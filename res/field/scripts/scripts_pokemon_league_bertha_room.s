@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_bertha_room.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _00B7
@@ -71,5 +70,5 @@ _00B7:
 
     .balign 4, 0
 _00DC:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement

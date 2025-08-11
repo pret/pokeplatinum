@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/unk_0217.h"
 
-    .data
 
     ScriptEntry _0036
     ScriptEntry _0148
@@ -92,24 +91,24 @@ _0115:
 
     .balign 4, 0
 _0120:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0128:
-    MoveAction_013 2
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _0130:
-    MoveAction_014
-    MoveAction_036
+    WalkNormalWest
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_014 2
-    MoveAction_036
+    WalkNormalWest 2
+    WalkOnSpotFastNorth
     EndMovement
 
 _0148:
@@ -150,7 +149,7 @@ _01B1:
 
 _01BE:
     SetObjectEventPos 9, 24, 6
-    ScrCmd_188 9, 15
+    SetObjectEventMovementType 9, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 9, DIR_SOUTH
     Return
 
@@ -890,131 +889,93 @@ _0D98:
 
     .balign 4, 0
 _0DA0:
-    MoveAction_015 2
-    MoveAction_012 3
-    MoveAction_034
+    WalkNormalEast 2
+    WalkNormalNorth 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0DB0:
-    MoveAction_015 2
-    MoveAction_012 3
-    MoveAction_034
+    WalkNormalEast 2
+    WalkNormalNorth 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0DC0:
-    MoveAction_015
-    MoveAction_012 3
+    WalkNormalEast
+    WalkNormalNorth 3
     EndMovement
 
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 61
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 60
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 60
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 60
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Unk212_UnusedMovement:
+    Delay4
+    FaceEast
+    Delay4
+    FaceSouth
+    Delay2
+    FaceWest
+    Delay1
+    FaceNorth
+    Delay1
+    FaceEast
+    Delay1
+    FaceSouth
+    EndMovement
 
     .balign 4, 0
 _0E00:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0E08:
-    MoveAction_063 2
-    MoveAction_012
-    MoveAction_015
+    Delay8 2
+    WalkNormalNorth
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _0E18:
-    MoveAction_063 2
-    MoveAction_012
-    MoveAction_015
+    Delay8 2
+    WalkNormalNorth
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _0E28:
-    MoveAction_063 2
-    MoveAction_012
-    MoveAction_035
+    Delay8 2
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0E38:
-    MoveAction_063 2
-    MoveAction_034
-    MoveAction_063
-    MoveAction_035
-    MoveAction_063
-    MoveAction_037
+    Delay8 2
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalEast
+    Delay8
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0E54:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0E5C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0E64:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0E6C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _0E74:
@@ -1078,177 +1039,50 @@ _0F72:
     Message 159
     WaitABXPadPress
     GoTo _1393
+    End
 
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 168
-    .byte 65
-    .byte 0
-    .byte 1
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 12
-    .byte 128
-    .byte 66
-    .byte 0
-    .byte 169
-    .byte 0
-    .byte 66
-    .byte 0
-    .byte 170
-    .byte 1
-    .byte 66
-    .byte 0
-    .byte 171
-    .byte 2
-    .byte 66
-    .byte 0
-    .byte 172
-    .byte 3
-    .byte 66
-    .byte 0
-    .byte 173
-    .byte 4
-    .byte 67
-    .byte 0
-    .byte 41
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 12
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 47
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 48
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 2
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 49
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 3
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 50
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 58
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 57
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 43
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 2
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 29
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 3
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 174
-    .byte 49
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 110
-    .byte 3
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+Unk212_Unused:
+    Message 168
+    InitLocalTextMenu 1, 1, 0, VAR_RESULT
+    AddMenuEntryImm 169, 0
+    AddMenuEntryImm 170, 1
+    AddMenuEntryImm 171, 2
+    AddMenuEntryImm 172, 3
+    AddMenuEntryImm 173, 4
+    ShowMenu
+    SetVar VAR_0x8008, VAR_RESULT
+    GoToIfEq VAR_0x8008, 0, Unk212_Unused2
+    GoToIfEq VAR_0x8008, 1, Unk212_Unused3
+    GoToIfEq VAR_0x8008, 2, Unk212_Unused4
+    GoToIfEq VAR_0x8008, 3, Unk212_Unused5
+    GoTo Unk212_Unused6
+    End 
+
+Unk212_Unused2:
+    SetVar VAR_0x8004, 0
+    GoTo _1027
+    End
+
+Unk212_Unused3:
+    SetVar VAR_0x8004, 1
+    GoTo _1027
+    End
+
+Unk212_Unused4:
+    SetVar VAR_0x8004, 2
+    GoTo _1027
+    End
+
+Unk212_Unused5:
+    SetVar VAR_0x8004, 3
+    GoTo _1027
+    End
+
+Unk212_Unused6:
+    Message 174
+    WaitABXPadPress
+    GoTo _1393
+    End
 
 _1027:
     GoToIfEq VAR_MAP_LOCAL_4, 1, _1101
@@ -1468,20 +1302,12 @@ _1375:
     Message 124
     Message 117
     GoTo _116C
+    End
 
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 123
-    .byte 22
-    .byte 0
-    .byte 7
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+Unk212_Unused7:
+    Message 123
+    GoTo _1393
+    End
 
 _138E:
     Message 116
@@ -1498,6 +1324,4 @@ _1399:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

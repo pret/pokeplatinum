@@ -4,7 +4,7 @@
 
 #include "struct_defs/special_encounter.h"
 
-#include "overlay025/poketch_system.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay047/ov47_02256634.h"
 #include "overlay047/struct_ov47_02256634_1.h"
 #include "overlay047/struct_ov47_02256634_decl.h"
@@ -66,7 +66,7 @@ static BOOL ov47_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -134,7 +134,7 @@ static void ov47_0225634C(UnkStruct_ov47_0225621C *param0)
     }
 
     ov47_02256670(param0->unk_70);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov47_02256384(SysTask *param0, void *param1)

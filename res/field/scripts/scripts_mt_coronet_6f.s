@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0022
@@ -66,5 +65,4 @@ _0118:
     SetWarpEventPos 4, 1, 5
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -29,10 +29,10 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
 static void ov17_02251DC0(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3);
@@ -248,7 +248,7 @@ static void ov17_02251EAC(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -351,7 +351,7 @@ static void ov17_02252060(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -435,7 +435,7 @@ static void ov17_0225228C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -480,12 +480,12 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_24);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_24);
         Sound_StopBGM(SEQ_CONTEST_DRESSING_ROOM, 30);
         v0->unk_10++;
         break;
     case 3:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             v0->unk_10++;
         }
         break;
@@ -516,19 +516,19 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 5:
         if (Sound_IsFadeActive() == FALSE) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_24);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_24);
             v0->unk_10++;
         }
         break;
     case 6:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             Sound_PlayBGM(SEQ_CO_KEKKA);
             v0->unk_10++;
         }
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -593,7 +593,7 @@ static void ov17_02252580(SysTask *param0, void *param1)
     case 4:
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -652,7 +652,7 @@ static void ov17_0225266C(SysTask *param0, void *param1)
 
         v1 = Pokemon_GetValue(v0->unk_00->unk_10.unk_00->unk_00[v0->unk_11], MON_DATA_SPECIES, NULL);
         v2 = Pokemon_GetValue(v0->unk_00->unk_10.unk_00->unk_00[v0->unk_11], MON_DATA_FORM, NULL);
-        Pokemon_PlayCry(v0->unk_00->unk_00->unk_14C[v0->unk_11], 0, v1, v2, 0, 127, NULL, 24);
+        PlayCryWithParams(v0->unk_00->unk_00->unk_14C[v0->unk_11], 0, v1, v2, 0, 127, NULL, 24);
     }
         v0->unk_10++;
         break;
@@ -671,7 +671,7 @@ static void ov17_0225266C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -789,7 +789,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
     case 5:
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -843,7 +843,7 @@ static void ov17_022529C8(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }

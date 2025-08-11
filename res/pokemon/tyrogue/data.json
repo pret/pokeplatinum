@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -72,6 +73,16 @@
             "MOVE_VACUUM_WAVE",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_RAPID_SPIN",
+            "MOVE_HI_JUMP_KICK",
+            "MOVE_MACH_PUNCH",
+            "MOVE_MIND_READER",
+            "MOVE_HELPING_HAND",
+            "MOVE_COUNTER",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_BULLET_PUNCH"
         ]
     },
     "evolutions": [
@@ -91,9 +102,11 @@
             "SPECIES_HITMONTOP"
         ]
     ],
+    "offspring": "SPECIES_TYROGUE",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 7,

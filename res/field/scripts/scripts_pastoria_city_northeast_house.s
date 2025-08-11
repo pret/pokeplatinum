@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_northeast_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _030C
@@ -203,5 +202,5 @@ _031F:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0
+

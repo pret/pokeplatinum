@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/spear_pillar_distorted.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0184
@@ -20,11 +19,11 @@ _0022:
     ScrCmd_1B2 1
     SetObjectEventPos 0, 32, 34
     SetObjectEventDir 0, DIR_NORTH
-    ScrCmd_188 0, 14
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01CD
     AddObject 0
-    ScrCmd_066 30, 30
-    ApplyMovement 241, _016C
+    AddFreeCamera 30, 30
+    ApplyFreeCameraMovement _016C
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -39,9 +38,9 @@ _0088:
     ScrCmd_20D 6, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0088
     RemoveObject 1
-    ApplyMovement 241, _0178
+    ApplyFreeCameraMovement _0178
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     ApplyMovement LOCALID_PLAYER, _013C
     ApplyMovement 0, _014C
     WaitMovement
@@ -83,38 +82,38 @@ _0130:
 
     .balign 4, 0
 _013C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_012 4
+    WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0154:
-    MoveAction_035
-    MoveAction_063 2
-    MoveAction_033
-    MoveAction_063
-    MoveAction_032
+    WalkOnSpotNormalEast
+    Delay8 2
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_015
-    MoveAction_012 5
+    WalkNormalEast
+    WalkNormalNorth 5
     EndMovement
 
     .balign 4, 0
 _0178:
-    MoveAction_013 5
-    MoveAction_014
+    WalkNormalSouth 5
+    WalkNormalWest
     EndMovement
 
 _0184:

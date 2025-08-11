@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_day_care.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021
@@ -46,6 +45,4 @@ _005C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

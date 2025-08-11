@@ -125,7 +125,7 @@ typedef struct BoxPokemon {
 } BoxPokemon;
 
 #include "struct_defs/mail.h"
-#include "struct_defs/struct_0202CA28.h"
+#include "struct_defs/seal_case.h"
 
 /**
  * @brief Party Pokemon data structure
@@ -135,7 +135,7 @@ typedef struct BoxPokemon {
 typedef struct PartyPokemon {
     u32 status; //!< The Pokemon's current status condition.
     u8 level; //!< The Pokemon's current level, as computed from its total EXP value and its species' level curve.
-    u8 mail; //!< The ID of the mail the Pokemon is holding.
+    u8 ballCapsuleID; //!< The ID of the ball capsule attached to the Pokemon.
     u16 hp; //!< The Pokemon's current HP.
     u16 maxHP; //!< The Pokemon's maximum HP.
     u16 attack; //!< The Pokemon's Attack stat.
@@ -143,8 +143,8 @@ typedef struct PartyPokemon {
     u16 speed; //!< The Pokemon's Speed stat.
     u16 spAtk; //!< The Pokemon's Special Attack stat.
     u16 spDef; //!< The Pokemon's Special Defense stat.
-    Mail unk_14;
-    UnkStruct_0202CA28 unk_4C;
+    Mail mail;
+    BallCapsule ballCapsule;
 } PartyPokemon;
 
 /**

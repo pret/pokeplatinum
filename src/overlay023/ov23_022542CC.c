@@ -3,16 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_0206A844.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248C08.h"
-#include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_02248D20.h"
 #include "overlay023/struct_ov23_022542D8_decl.h"
 #include "overlay023/struct_ov23_02254594_decl.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -105,12 +105,12 @@ void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u1
     param0->unk_34 = param3;
     param0->unk_40 = 0;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_0225430C(UnkStruct_ov23_022542D8 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 const u32 ov23_02254314(UnkStruct_ov23_022542D8 *param0)
@@ -145,7 +145,7 @@ static void ov23_02254350(ListMenu *param0, u32 param1, u8 param2)
         8,
     };
 
-    ov23_02253F60(ov23_022421CC(), v0[param1], 0, NULL);
+    UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetDecorateBaseTextPrinter(), v0[param1], FALSE, NULL);
 }
 
 static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
@@ -155,7 +155,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     int v3 = 3;
     int v4 = 4;
 
-    param0->unk_24 = StringList_New(v3 + 1, 4);
+    param0->unk_24 = StringList_New(v3 + 1, HEAP_ID_FIELD);
 
     v1 = 12 * v4 * 2;
     v2 = 7 * (1 * 2);
@@ -176,7 +176,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
             4,
         };
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD);
 
         {
             Strbuf *v8;
@@ -201,7 +201,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     v0.window = &param0->unk_04;
     v0.cursorCallback = ov23_02254350;
 
-    param0->unk_28 = ListMenu_New(&v0, *(param0->unk_30), *(param0->unk_34), 4);
+    param0->unk_28 = ListMenu_New(&v0, *(param0->unk_30), *(param0->unk_34), HEAP_ID_FIELD);
     Window_CopyToVRAM(&param0->unk_04);
     Window_CopyToVRAM(&param0->unk_14);
     param0->unk_38 = 1;
@@ -239,7 +239,7 @@ static void ov23_022544C0(UnkStruct_ov23_022542D8 *param0)
 
 static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
 {
-    ov23_02254044(ov23_022421CC());
+    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetDecorateBaseTextPrinter());
 
     Window_EraseStandardFrame(&param0->unk_14, 1);
     ListMenu_Free(param0->unk_28, param0->unk_30, param0->unk_34);
@@ -275,7 +275,7 @@ void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u1
     param0->unk_38 = param2;
     param0->unk_3C = param3;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 param2)
@@ -286,7 +286,7 @@ void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 pa
 
 void ov23_022545D0(UnkStruct_ov23_02254594 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 const u32 ov23_022545D8(UnkStruct_ov23_02254594 *param0)
@@ -355,34 +355,34 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
 static void ov23_022546A0(ListMenu *param0, u32 param1, u8 param2)
 {
     int v0;
-    UndergroundData *v1;
+    Underground *v1;
     u32 v2;
     u32 v3;
 
-    v1 = (UndergroundData *)ListMenu_GetAttribute(param0, 19);
+    v1 = (Underground *)ListMenu_GetAttribute(param0, 19);
     v3 = ListMenu_GetAttribute(param0, 2);
     v2 = (param1 >> 1);
 
     if (v2 == v3 - 1) {
         v0 = 278;
     } else {
-        v0 = sub_020289B8(v1, v2);
+        v0 = Underground_GetGoodAtSlotPC(v1, v2);
         v0 = 145 + v0 - 7;
     }
 
-    ov23_02253F60(ov23_022421DC(), v0, 0, NULL);
+    UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetItemNameTextPrinter(), v0, FALSE, NULL);
 }
 
 static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
 {
-    UndergroundData *v0;
+    Underground *v0;
     ListMenuTemplate v1;
     int v2, v3;
     int v4;
     int v5;
 
-    v0 = SaveData_GetUndergroundData(param0->fieldSystem->saveData);
-    v4 = sub_020289A0(v0);
+    v0 = SaveData_GetUnderground(param0->fieldSystem->saveData);
+    v4 = Underground_GetGoodsCountPC(v0);
     param0->unk_48 = v4;
     v5 = v4 + 1;
 
@@ -390,7 +390,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         v5 = 7;
     }
 
-    param0->unk_28 = StringList_New(v4 + 1, 4);
+    param0->unk_28 = StringList_New(v4 + 1, HEAP_ID_FIELD);
 
     v2 = 12 * 7 * 2;
     v3 = 8 * (2 * 2);
@@ -417,7 +417,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Strbuf *v15;
             StringTemplate *v16;
 
-            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
+            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD);
 
             Window_FillTilemap(&param0->unk_18, 15);
 
@@ -442,8 +442,8 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         }
 
         for (v7 = 0; v7 < v4; v7++) {
-            v8 = sub_020289B8(v0, v7);
-            v9 = sub_02028AFC(v0, v7);
+            v8 = Underground_GetGoodAtSlotPC(v0, v7);
+            v9 = Underground_IsGoodAtSlotPlacedInBase(v0, v7);
 
             if (!v9) {
                 v11 = 1;
@@ -461,7 +461,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         MessageLoader_Free(v6);
     }
 
-    ov23_02253DFC(ov23_022421DC(), 626, 0);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MESSAGE_LOADER_BANK_HANDLE);
 
     v1 = Unk_ov23_02256B3C;
     v1.printCallback = ov23_02254564;
@@ -472,7 +472,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     v1.cursorCallback = ov23_022546A0;
     v1.parent = v0;
 
-    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD, sub_02028A10, v0, 1);
+    param0->unk_2C = ov23_02248C08(&v1, *(param0->unk_38), *(param0->unk_3C), HEAP_ID_FIELD, Underground_MoveGoodPC, v0, 1);
 
     Window_CopyToVRAM(&param0->unk_08);
     Window_CopyToVRAM(&param0->unk_18);
@@ -488,7 +488,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
 
 static void ov23_02254958(UnkStruct_ov23_02254594 *param0)
 {
-    ov23_02254044(ov23_022421DC());
+    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
     Window_EraseStandardFrame(&param0->unk_18, 1);
     ov23_02248EF8(param0->unk_2C, param0->unk_38, param0->unk_3C);
 

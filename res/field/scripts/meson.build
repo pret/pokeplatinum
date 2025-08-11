@@ -414,7 +414,7 @@ scr_seq_files = files(
     'scripts_unk_0406.s',
     'scripts_unk_0407.s',
     'scripts_unk_0408.s',
-    'scripts_unk_0409.s',
+    'scripts_field_moves.s',
     'scripts_wifi_plaza_entrance.s',
     'scripts_unk_0411.s',
     'scripts_init_new_game.s',
@@ -1136,7 +1136,7 @@ scr_seq_narc_order = files('scripts.order')
 scr_seq_narc = custom_target('scr_seq.narc',
     output: [
         'scr_seq.narc',
-        'scr_seq.naix',
+        'scr_seq.naix.h',
     ],
     input: script_bin_gen.process(
         scr_seq_files,

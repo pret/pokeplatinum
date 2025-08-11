@@ -4,16 +4,13 @@
 #include <nnsys.h>
 
 #include "constants/battle.h"
-#include "constants/time.h"
+#include "constants/rtc.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -23,24 +20,29 @@
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "overlay010/struct_ov10_0221F800.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
+#include "overlay012/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "font_special_chars.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "message.h"
+#include "pal_pad.h"
 #include "palette.h"
 #include "party.h"
 #include "poketch.h"
+#include "render_window.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
+#include "unk_0201567C.h"
 
 struct BattleSystem {
-    GenericPointerData *unk_00;
+    G3DPipelineBuffers *unk_00;
     BgConfig *unk_04;
     Window *windows;
     MessageLoader *unk_0C;
@@ -50,22 +52,22 @@ struct BattleSystem {
     SysTask *unk_1C;
     SysTask *unk_20;
     SysTask *unk_24;
-    PaletteData *unk_28;
+    PaletteData *paletteSys;
     u32 battleType;
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];
     int maxBattlers;
     TrainerInfo *trainerInfo[MAX_BATTLERS];
-    Bag *unk_58;
-    BagCursor *unk_5C;
+    Bag *bag;
+    BagCursor *bagCursor;
     Pokedex *pokedex;
     PCBoxes *pcBoxes;
     Party *parties[MAX_BATTLERS];
     ChatotCry *unk_78[MAX_BATTLERS];
     PokemonSpriteManager *unk_88;
-    UnkStruct_ov12_0221FCDC *unk_8C;
-    SpriteSystem *unk_90;
-    SpriteManager *unk_94;
+    BattleAnimSystem *unk_8C;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
     Poketch *poketch;
     UnkStruct_0206D140 *unk_9C;
     u16 trainerIDs[MAX_BATTLERS];
@@ -73,16 +75,16 @@ struct BattleSystem {
     Trainer trainers[MAX_BATTLERS];
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 *unk_198;
-    PartyGauge *unk_19C[2];
-    UnkStruct_0200C440 *unk_1A4;
-    UnkStruct_0200C440 *unk_1A8;
-    void *unk_1AC;
-    Options *unk_1B0;
-    PalPad *unk_1B4;
-    void *unk_1B8;
+    PartyGauge *partyGauges[2];
+    FontSpecialCharsContext *unk_1A4;
+    FontSpecialCharsContext *unk_1A8;
+    UnkStruct_020157E4 *unk_1AC;
+    Options *options;
+    PalPad *palPad;
+    WaitDial *waitDial;
     u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;
-    PokemonAnimationSys *unk_1C4;
+    PokemonAnimationSys *pokemonAnimationSys;
     NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
     BattleRecords unusedBattleRecords;
@@ -110,17 +112,17 @@ struct BattleSystem {
     u8 unk_23FB_3 : 2;
     u8 unk_23FB_5 : 3;
     enum BattleTerrain terrain;
-    int unk_2400;
-    int unk_2404;
+    enum BattleBackground background;
+    int mapHeader;
     u32 battleStatusMask;
-    enum Time time;
+    enum TimeOfDay time;
     int safariBalls;
     u8 unk_2414[4];
     u32 unk_2418;
     u8 resultMask;
     u8 unk_241D;
     u16 unk_241E;
-    int unk_2420;
+    enum EvolutionMethod mapEvolutionMethod;
     int unk_2424;
     int fieldWeather;
     int unk_242C;
@@ -137,7 +139,7 @@ struct BattleSystem {
     u16 unk_2454[4];
     u16 unk_245C[4];
     int unk_2464[4];
-    u32 unk_2474_0 : 1;
+    u32 recordingStopped : 1;
     u32 unk_2474_1 : 31;
     SysTask *playbackStopButton;
     u8 unk_247C[4];

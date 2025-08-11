@@ -2,7 +2,6 @@
 #include "generated/tutor_locations.h"
 #include "res/text/bank/route_212_house.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _001C
@@ -179,6 +178,4 @@ _027A:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

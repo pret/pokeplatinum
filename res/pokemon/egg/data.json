@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_EGG",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SPLASH" ]
@@ -38,6 +39,7 @@
         "by_tm": [  ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_EGG",
     "pokedex_data": {
         "height": 0,
         "weight": 0,

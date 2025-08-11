@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_1f.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0028
@@ -141,12 +140,12 @@ _015E:
 
     .balign 4, 0
 _0164:
-    MoveAction_018
+    WalkFastWest
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_019
+    WalkFastEast
     EndMovement
 
 _0174:
@@ -158,6 +157,4 @@ _0174:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

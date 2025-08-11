@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_COVET" ],
@@ -105,6 +106,17 @@
             "MOVE_SEED_BOMB",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_ROCK_SLIDE",
+            "MOVE_FORESIGHT",
+            "MOVE_MEDITATE",
+            "MOVE_COUNTER",
+            "MOVE_REVERSAL",
+            "MOVE_BEAT_UP",
+            "MOVE_REVENGE",
+            "MOVE_SMELLING_SALT",
+            "MOVE_CLOSE_COMBAT"
         ]
     },
     "evolutions": [
@@ -114,9 +126,11 @@
             "SPECIES_PRIMEAPE"
         ]
     ],
+    "offspring": "SPECIES_MANKEY",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 5,

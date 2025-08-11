@@ -6,7 +6,7 @@
 
 #include "charcode.h"
 #include "charcode_util.h"
-#include "math.h"
+#include "math_util.h"
 #include "savedata.h"
 #include "strbuf.h"
 

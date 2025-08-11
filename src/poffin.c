@@ -3,8 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/flavor.h"
+
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "savedata.h"
 
 #define FLAVOR_NONE 30
@@ -31,7 +33,7 @@ void Poffin_Clear(Poffin *poffin)
     poffin->sweetness = 0;
     poffin->bitterness = 0;
     poffin->sourness = 0;
-    poffin->val1_06 = 0;
+    poffin->smoothness = 0;
     poffin->dummy = 0;
 }
 
@@ -51,7 +53,7 @@ void Poffin_Copy(Poffin *src, Poffin *dest)
     dest->sweetness = src->sweetness;
     dest->bitterness = src->bitterness;
     dest->sourness = src->sourness;
-    dest->val1_06 = src->val1_06;
+    dest->smoothness = src->smoothness;
     dest->dummy = src->dummy;
 }
 
@@ -70,9 +72,9 @@ u8 Poffin_GetAttribute(Poffin *poffin, enum PoffinAttributeID attributeID)
         return poffin->bitterness;
     case POFFIN_ATTRIBUTEID_SOURNESS:
         return poffin->sourness;
-    case POFFIN_ATTRIBUTEID_06:
+    case POFFIN_ATTRIBUTEID_SMOOTHNESS:
     default:
-        return poffin->val1_06;
+        return poffin->smoothness;
     }
 }
 
@@ -94,68 +96,68 @@ static void Poffin_MakeFoul(Poffin *poffin, u8 param1)
         ++v0;
     } while (v0 < 3);
 
-    poffin->flavor = 27;
-    poffin->val1_06 = param1;
+    poffin->flavor = POFFIN_FLAVOR_FOUL;
+    poffin->smoothness = param1;
 }
 
-int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul)
+int Poffin_MakePoffin(Poffin *poffin, u8 *flavors, u8 smoothness, BOOL isFoul)
 {
-    int v0, v1 = 0;
-    u8 v2[5];
-    u8 v3 = 0, v4 = 0;
+    int i, flavorCount = 0;
+    u8 poffinFlavors[FLAVOR_MAX];
+    u8 isMild = FALSE, flavor = 0;
 
-    v4 = 27;
+    flavor = POFFIN_FLAVOR_FOUL;
 
     if (isFoul) {
-        Poffin_MakeFoul(poffin, param2);
-        return v4;
+        Poffin_MakeFoul(poffin, smoothness);
+        return flavor;
     }
 
-    for (v0 = 0; v0 < 5; v0++) {
-        if (param1[v0]) {
-            if (param1[v0] >= 50) {
-                v3 = 1;
+    for (i = 0; i < FLAVOR_MAX; i++) {
+        if (flavors[i]) {
+            if (flavors[i] >= 50) {
+                isMild = TRUE;
             }
 
-            v2[v1++] = v0;
+            poffinFlavors[flavorCount++] = i;
         }
     }
 
-    switch (v1) {
+    switch (flavorCount) {
     case 0:
-        Poffin_MakeFoul(poffin, param2);
-        return v4;
+        Poffin_MakeFoul(poffin, smoothness);
+        return flavor;
     case 1:
-        v4 = v2[0] * 5 + v2[0];
+        flavor = poffinFlavors[0] * FLAVOR_MAX + poffinFlavors[0];
         break;
     case 2:
-        if (param1[v2[0]] >= param1[v2[1]]) {
-            v4 = v2[0] * 5 + v2[1];
+        if (flavors[poffinFlavors[0]] >= flavors[poffinFlavors[1]]) {
+            flavor = poffinFlavors[0] * FLAVOR_MAX + poffinFlavors[1];
         } else {
-            v4 = v2[1] * 5 + v2[0];
+            flavor = poffinFlavors[1] * FLAVOR_MAX + poffinFlavors[0];
         }
         break;
     case 3:
-        v4 = 25;
+        flavor = POFFIN_FLAVOR_RICH;
         break;
     case 4:
     case 5:
-        v4 = 26;
+        flavor = POFFIN_FLAVOR_OVERRIPE;
         break;
     }
 
-    if (v3) {
-        v4 = 28;
+    if (isMild) {
+        flavor = POFFIN_FLAVOR_MILD;
     }
 
-    for (v0 = 0; v0 < 5; v0++) {
-        poffin->attributes[v0 + 1] = param1[v0];
+    for (i = 0; i < FLAVOR_MAX; i++) {
+        poffin->attributes[i + 1] = flavors[i];
     }
 
-    poffin->flavor = v4;
-    poffin->val1_06 = param2;
+    poffin->flavor = flavor;
+    poffin->smoothness = smoothness;
 
-    return v4;
+    return flavor;
 }
 
 void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest)
@@ -166,7 +168,7 @@ void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest)
     dest[3] = poffin->sweetness;
     dest[4] = poffin->bitterness;
     dest[5] = poffin->sourness;
-    dest[6] = poffin->val1_06;
+    dest[6] = poffin->smoothness;
 }
 
 u8 Poffin_CalcLevel(Poffin *poffin)
@@ -221,17 +223,17 @@ u8 Poffin_CalcLevel(Poffin *poffin)
     return level;
 }
 
-PoffinCase *SaveData_GetPoffinCase(SaveData *savedata)
+PoffinCase *SaveData_GetPoffinCase(SaveData *saveData)
 {
-    return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_POFFINS);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_POFFINS);
 }
 
-int Poffin_SaveSize(void)
+int PoffinCase_SaveSize(void)
 {
-    return sizeof(Poffin) * 100;
+    return sizeof(PoffinCase);
 }
 
-void Poffin_Init(PoffinCase *poffinCase)
+void PoffinCase_Init(PoffinCase *poffinCase)
 {
     int i;
 
@@ -240,7 +242,7 @@ void Poffin_Init(PoffinCase *poffinCase)
     }
 }
 
-u16 Poffin_GetEmptyCaseSlot(PoffinCase *poffinCase)
+u16 PoffinCase_GetEmptySlot(PoffinCase *poffinCase)
 {
     u16 i;
 
@@ -253,9 +255,9 @@ u16 Poffin_GetEmptyCaseSlot(PoffinCase *poffinCase)
     return POFFIN_NONE;
 }
 
-u16 Poffin_AddToCase(PoffinCase *poffinCase, Poffin *poffin)
+u16 PoffinCase_AddPoffin(PoffinCase *poffinCase, Poffin *poffin)
 {
-    u16 slotId = Poffin_GetEmptyCaseSlot(poffinCase);
+    u16 slotId = PoffinCase_GetEmptySlot(poffinCase);
 
     if (slotId == POFFIN_NONE) {
         return slotId;
@@ -265,7 +267,7 @@ u16 Poffin_AddToCase(PoffinCase *poffinCase, Poffin *poffin)
     return slotId;
 }
 
-BOOL Poffin_ClearCaseSlot(PoffinCase *poffinCase, u16 slot)
+BOOL PoffinCase_ClearSlot(PoffinCase *poffinCase, u16 slot)
 {
     if (slot >= MAX_POFFINS) {
         return FALSE;
@@ -275,7 +277,7 @@ BOOL Poffin_ClearCaseSlot(PoffinCase *poffinCase, u16 slot)
     return TRUE;
 }
 
-static u16 Poffin_GetFirstValidPoffin(PoffinCase *poffinCase, u16 startingSlot)
+static u16 PoffinCase_GetFirstValidPoffin(PoffinCase *poffinCase, u16 startingSlot)
 {
     u16 i;
 
@@ -288,7 +290,7 @@ static u16 Poffin_GetFirstValidPoffin(PoffinCase *poffinCase, u16 startingSlot)
     return POFFIN_NONE;
 }
 
-void Poffin_CompactCase(PoffinCase *poffinCase)
+void PoffinCase_Compact(PoffinCase *poffinCase)
 {
     u16 i, unused;
     u16 nextValidSlotNum, emptySlotNum, targetSlotNum;
@@ -302,7 +304,7 @@ void Poffin_CompactCase(PoffinCase *poffinCase)
 
         // found an empty slot, proceed
         emptySlotNum = i;
-        nextValidSlotNum = Poffin_GetFirstValidPoffin(poffinCase, emptySlotNum); // find the next valid poffin
+        nextValidSlotNum = PoffinCase_GetFirstValidPoffin(poffinCase, emptySlotNum); // find the next valid poffin
 
         if (nextValidSlotNum == POFFIN_NONE) {
             break;
@@ -320,7 +322,7 @@ void Poffin_CompactCase(PoffinCase *poffinCase)
     }
 }
 
-void Poffin_CopyToCaseSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin)
+void PoffinCase_CopyPoffinToSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin)
 {
     if (destSlot >= MAX_POFFINS) {
         Poffin_Clear(poffin);
@@ -331,7 +333,7 @@ void Poffin_CopyToCaseSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin)
     return;
 }
 
-Poffin *Poffin_AllocateForCaseSlot(PoffinCase *poffinCase, u16 destSlot, int heapID)
+Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, int heapID)
 {
     Poffin *poffin = Poffin_New(heapID);
 
@@ -344,7 +346,7 @@ Poffin *Poffin_AllocateForCaseSlot(PoffinCase *poffinCase, u16 destSlot, int hea
     return poffin;
 }
 
-u16 Poffin_GetNumberOfFilledSlots(PoffinCase *poffinCase)
+u16 PoffinCase_CountFilledSlots(PoffinCase *poffinCase)
 {
     u16 j = 0, i;
 
@@ -357,7 +359,7 @@ u16 Poffin_GetNumberOfFilledSlots(PoffinCase *poffinCase)
     return j;
 }
 
-u16 Poffin_GetNumberOfEmptySlots(PoffinCase *poffinCase)
+u16 PoffinCase_CountEmptySlots(PoffinCase *poffinCase)
 {
     u16 i, j = 0;
 

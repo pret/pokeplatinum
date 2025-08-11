@@ -57,14 +57,14 @@ GreatMarshBinoculars *GreatMarshBinoculars_InitData(const int heapID, FieldSyste
     binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].x = Player_GetXPos(fieldSystem->playerAvatar);
     binocularsData->coordsList[BINOCULARS_CYCLE_COUNT].z = Player_GetZPos(fieldSystem->playerAvatar);
     binocularsData->lookoutMapId = fieldSystem->location->mapId;
-    Heap_FreeToHeap(coordData);
+    Heap_Free(coordData);
 
     return binocularsData;
 }
 
 void GreatMarshBinoculars_FreeData(GreatMarshBinoculars *data)
 {
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
 }
 
 void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMarshBinoculars *binocularsData)

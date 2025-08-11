@@ -160,7 +160,7 @@ e32324642d5ec29155743970ac8bc14dd74f63e1 *res/prebuilt/poketool/trgra/trfgra.nar
 7755e3a884a11b098122ca9dd656223fd4b02dd0 *res/pokemon/evo.narc
 fbbf1287b2ac10c5212be0e4a69461507e860005 *res/prebuilt/poketool/personal/growtbl.narc
 fbbf1287b2ac10c5212be0e4a69461507e860005 *res/pokemon/pl_growtbl.narc
-de5c1035595e3cb52990b183497e513246bd0efe *res/prebuilt/poketool/personal/pms.narc
+de5c1035595e3cb52990b183497e513246bd0efe *res/pokemon/pms.narc
 cd4b737f173cc6ac1a25636efa4edfd83da79599 *res/pokemon/wotbl.narc
 59f49fe682ef8cf4dfb8f6b7da2e0f51401b50cc *res/trainers/trdata.narc
 da4dc734c7051754a3280d9e918942c42d183adb *res/trainers/trpoke.narc
@@ -250,7 +250,7 @@ a2eca9df316b9cad191ace16d08a90603966e892 *res/prebuilt/graphic/worldtrade.narc
 70d103831556bb58ae8e602adbcce99333a22889 *res/items/pl_item_data.narc
 6d861f9f35d1b267cd7b84368a1b7dc76b4e9669 *res/pokemon/pl_poke_icon.narc
 0622e95a5dc830735e711852032b829ead7d21e6 *res/prebuilt/poketool/icongra/poke_icon.narc
-7fb44c0bcde2ac5ae042835146c21b84159f5693 *res/prebuilt/poketool/pokefoot/pokefoot.narc
+7fb44c0bcde2ac5ae042835146c21b84159f5693 *res/pokemon/pokefoot.narc
 21bd9b9e352c828de0a93979589f7ea487c846d6 *res/prebuilt/data/mmodel/mmodel.narc
 70d483c69d9f83dc52de91f2451c6cdfba6a046c *res/prebuilt/data/mmodel/fldeff.narc
 5de52d02105237dc02fb4c87c9b8378a5da93217 *res/prebuilt/wazaeffect/effectdata/ball_particle.narc
@@ -321,14 +321,14 @@ def7833f7d5b18328cbe9cc5d5331ff634b082cc *res/prebuilt/fielddata/tornworld/tw_ar
 bf51c9691b15f9aff257a3e8012dc36bd015619f *res/prebuilt/fielddata/tornworld/tw_arc_attr.narc
 ad8bf1d7e289c679e0d2c844ba1700fb2e61fedd *res/prebuilt/particledata/pl_pokelist/pokelist_particle.narc
 ecdb14e0bc6619f114549e6126c8b6934cfc3aeb *res/prebuilt/battle/b_pl_stage/pl_bsdpm.narc
-2dac84a8a4c8dca13be326dc071ecbd550eb2ee7 *res/prebuilt/battle/b_pl_tower/pl_btdpm.narc
-738eeff4bee6a7cfbc8d448f23f58ad52ce76314 *res/prebuilt/battle/b_pl_tower/pl_btdtr.narc
+2dac84a8a4c8dca13be326dc071ecbd550eb2ee7 *res/trainers/frontier/pl_btdpm.narc
+738eeff4bee6a7cfbc8d448f23f58ad52ce76314 *res/trainers/frontier/pl_btdtr.narc
 6e4f26a6a77242c7db11f6145a77d85ee7dfe12e *res/prebuilt/application/bucket/ballslow_data.narc
 3b475e06d86853ac3986f78ea356e4efe03d2d00 *res/prebuilt/particledata/pl_etc/pl_etc_particle.narc
 8e3c5c332cff4ae218ce746e59b9221e229d382c *res/prebuilt/contest/graphic/contest_bg.narc
 cec363028fa6bc6240f9c8da7ab8f9e8bb1b1465 *res/prebuilt/contest/graphic/contest_obj.narc
 7fa87d90ba039f67221a43782bf6a1a1107d5947 *res/prebuilt/demo/title/op_demo.narc
-d7e86fadf59a54f922fc7cf65ae65fa326b8429e *res/prebuilt/demo/title/titledemo.narc
+d7e86fadf59a54f922fc7cf65ae65fa326b8429e *res/graphics/title_screen/titledemo.narc
 32a0989a18cc7f3eb17c5949adecb3f057a84eea *res/field/trades/fld_trade.narc
 d4b6f9731b808a613338005f59959325ce1e3ac9 *res/prebuilt/resource/eng/zukan/zukan.narc
 7e85af57b27fa4a0829b24550fc6c0dd275cf994 *res/prebuilt/resource/eng/batt_rec/batt_rec_gra.narc

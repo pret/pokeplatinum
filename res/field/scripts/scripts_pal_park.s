@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pal_park.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry PalPark_Trigger_Countdown
@@ -40,24 +39,13 @@ PalPark_Trigger_Countdown:
     ReleaseAll
     End
 
-    .byte 83
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 243
-    .byte 64
-    .byte 1
-    .byte 0
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+PalPark_Unused:
+    SetInCatchingShowFlag
+    SetVar VAR_PAL_PARK_STATE, 1
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    End
 
 PalPark_Trigger_CaughtAllPokemon:
     PlayFanfare SEQ_SE_CONFIRM
@@ -109,7 +97,7 @@ _0114:
 
     .balign 4, 0
 _0124:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
 PalPark_Worker:
@@ -132,7 +120,7 @@ _0159:
 
     .balign 4, 0
 _0168:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 PalPark_AskPlayerRetireFromCatchingShow:
@@ -168,5 +156,4 @@ PalPark_ClearFlagAndWarpOut:
     WaitFadeScreen
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -26,7 +26,7 @@
 #include "text.h"
 #include "unk_020298BC.h"
 
-#include "res/graphics/shop_menu/shop_gra.naix"
+#include "res/graphics/shop_menu/shop_gra.naix.h"
 #include "res/text/bank/flower_shop.h"
 
 static const AccessoryShopItem sAccessoryShop_ItemLists[ACCESSORY_SHOP_ITEM_LIST_COUNT] = {
@@ -114,7 +114,7 @@ void AccessoryShop_Free(AccessoryShop *shop)
     AccessoryShop_DeleteSpriteList(shop);
 
     memset(shop, 0, sizeof(AccessoryShop));
-    Heap_FreeToHeap(shop);
+    Heap_Free(shop);
 }
 
 BOOL AccessoryShop_Main(AccessoryShop *shop)

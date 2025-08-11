@@ -4,8 +4,8 @@
 
 #include "struct_defs/daycare.h"
 
+#include "applications/poketch/poketch_system.h"
 #include "overlay005/daycare.h"
-#include "overlay025/poketch_system.h"
 #include "overlay040/ov40_0225645C.h"
 #include "overlay040/struct_ov40_0225645C_1.h"
 #include "overlay040/struct_ov40_0225645C_decl.h"
@@ -60,7 +60,7 @@ static BOOL ov40_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     return 0;
@@ -87,7 +87,7 @@ static BOOL ov40_0225621C(UnkStruct_ov40_0225621C *param0, PoketchSystem *poketc
 static void ov40_0225625C(UnkStruct_ov40_0225621C *param0)
 {
     ov40_022564B8(param0->unk_28);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov40_02256270(SysTask *param0, void *param1)

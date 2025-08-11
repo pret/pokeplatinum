@@ -16,7 +16,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "palette.h"
 #include "sound_playback.h"
@@ -227,7 +227,7 @@ static void ov62_0223712C(UnkStruct_0208C06C *param0)
     int v6[5];
 
     {
-        VarsFlags *v7 = SaveData_GetVarsFlags(param0->unk_830);
+        VarsFlags *v7 = SaveData_GetVarsFlags(param0->saveData);
 
         v6[0] = SystemVars_GetBattleTowerPrintState(v7);
         v6[1] = SystemVars_GetBattleFactoryPrintState(v7);
@@ -323,7 +323,7 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
     v9.priority = 20;
 
     {
-        VarsFlags *v10 = SaveData_GetVarsFlags(param0->unk_830);
+        VarsFlags *v10 = SaveData_GetVarsFlags(param0->saveData);
 
         v3[0] = SystemVars_GetBattleTowerPrintState(v10);
         v3[1] = SystemVars_GetBattleFactoryPrintState(v10);
@@ -606,7 +606,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 1:
         if (ov62_02231664(&v0->unk_00, 1)) {
-            UnkStruct_0202D750 *v2 = sub_0202D750(param0->unk_830);
+            UnkStruct_0202D750 *v2 = sub_0202D750(param0->saveData);
 
             v0->unk_90 = sub_0202D230(v2, 0, 0);
             param0->unk_08++;
@@ -624,7 +624,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
         ov62_0223376C(param0, 0);
         sub_0208B9E0(param0->unk_6F0, 0);
         ov62_02234314();
-        Bg_SetPriority(6, 2);
+        Bg_SetPriority(BG_LAYER_SUB_2, 2);
         ov62_02236E14(param0);
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
         param0->unk_08++;
@@ -750,7 +750,7 @@ static BOOL ov62_02237B00(UnkStruct_0208C06C *param0)
         if (ov62_02231664(&v0->unk_00, 0)) {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_00);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);

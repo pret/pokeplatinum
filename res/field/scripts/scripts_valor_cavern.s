@@ -4,7 +4,6 @@
 #define LOCALID_AZELF  0
 #define LOCALID_SATURN 1
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0042
@@ -97,7 +96,7 @@ ValorCavern_CommanderSaturn:
 
     .balign 4, 0
 _013C:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
 ValorCavern_LostBattleCommanderSaturn:
@@ -105,5 +104,4 @@ ValorCavern_LostBattleCommanderSaturn:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

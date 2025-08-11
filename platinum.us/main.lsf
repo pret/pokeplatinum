@@ -16,6 +16,7 @@ Static main
 	Library libcps.a (.version)
 	Library libssl.a (.version)
 	Object main.nef.p/src_main.c.o
+	Object main.nef.p/src_debug.c.o
 	Object main.nef.p/src_list_menu.c.o
 	Object main.nef.p/src_game_version.c.o
 	Object main.nef.p/src_menu.c.o
@@ -41,19 +42,19 @@ Static main
 	Object main.nef.p/src_message.c.o
 	Object main.nef.p/src_message_util.c.o
 	Object main.nef.p/src_string_template.c.o
-	Object main.nef.p/src_unk_0200C440.c.o
+	Object main.nef.p/src_font_special_chars.c.o
 	Object main.nef.p/src_sprite_system.c.o
 	Object main.nef.p/src_sys_task.c.o
 	Object main.nef.p/src_render_window.c.o
-	Object main.nef.p/src_unk_0200F174.c.o
-	Object main.nef.p/src_unk_0200F85C.c.o
-	Object main.nef.p/src_unk_02012480.c.o
+	Object main.nef.p/src_screen_fade.c.o
+	Object main.nef.p/src_screen_fade_funcs.c.o
+	Object main.nef.p/src_hardware_window.c.o
 	Object main.nef.p/src_unk_02012744.c.o
 	Object main.nef.p/src_unk_020131EC.c.o
 	Object main.nef.p/src_rtc.c.o
 	Object main.nef.p/src_string_list.c.o
 	Object main.nef.p/src_screen_scroll_manager.c.o
-	Object main.nef.p/src_unk_02014000.c.o
+	Object main.nef.p/src_particle_system.c.o
 	Object main.nef.p/src_colored_arrow.c.o
 	Object main.nef.p/src_unk_02014A84.c.o
 	Object main.nef.p/src_unk_02014D38.c.o
@@ -71,18 +72,18 @@ Static main
 	Object main.nef.p/src_bg_window.c.o
 	Object main.nef.p/src_easy3d.c.o
 	Object main.nef.p/src_sys_task_manager.c.o
-	Object main.nef.p/src_unk_0201CED8.c.o
+	Object main.nef.p/src_gfx_box_test.c.o
 	Object main.nef.p/src_charcode.c.o
-	Object main.nef.p/src_math.c.o
+	Object main.nef.p/src_math_util.c.o
 	Object main.nef.p/src_text.c.o
 	Object main.nef.p/src_vram_transfer.c.o
 	Object main.nef.p/src_cell_transfer.c.o
 	Object main.nef.p/src_unk_0201DD00.c.o
-	Object main.nef.p/src_unk_0201E010.c.o
+	Object main.nef.p/src_grid_menu_cursor_position.c.o
 	Object main.nef.p/src_ascii_util.c.o
 	Object main.nef.p/src_fx_util.c.o
 	Object main.nef.p/src_int_distance.c.o
-	Object main.nef.p/src_unk_0201E3D8.c.o
+	Object main.nef.p/src_touch_pad.c.o
 	Object main.nef.p/src_char_transfer.c.o
 	Object main.nef.p/src_pltt_transfer.c.o
 	Object main.nef.p/src_gx_layers.c.o
@@ -96,11 +97,11 @@ Static main
 	Object main.nef.p/src_render_view.c.o
 	Object main.nef.p/src_font_manager.c.o
 	Object main.nef.p/src_strbuf.c.o
-	Object main.nef.p/src_unk_02023FCC.c.o
+	Object main.nef.p/src_touch_screen_actions.c.o
 	Object main.nef.p/src_unk_0202414C.c.o
 	Object main.nef.p/src_unk_0202419C.c.o
 	Object main.nef.p/src_hardware_palette.c.o
-	Object main.nef.p/src_unk_02024220.c.o
+	Object main.nef.p/src_g3d_pipeline.c.o
 	Object main.nef.p/src_boot.c.o
 	Object main.nef.p/src_savedata_save_table.c.o
 	Object main.nef.p/src_savedata.c.o
@@ -115,8 +116,8 @@ Static main
 	Object main.nef.p/src_game_options.c.o
 	Object main.nef.p/src_berry_patches.c.o
 	Object main.nef.p/src_persisted_map_features.c.o
-	Object main.nef.p/src_unk_02027F84.c.o
-	Object main.nef.p/src_unk_02028124.c.o
+	Object main.nef.p/src_pal_pad.c.o
+	Object main.nef.p/src_mail.c.o
 	Object main.nef.p/src_unk_0202854C.c.o
 	Object main.nef.p/src_unk_020298BC.c.o
 	Object main.nef.p/src_poffin.c.o
@@ -124,7 +125,7 @@ Static main
 	Object main.nef.p/src_record_mixed_rng.c.o
 	Object main.nef.p/src_coins.c.o
 	Object main.nef.p/src_journal.c.o
-	Object main.nef.p/src_unk_0202C7FC.c.o
+	Object main.nef.p/src_trainer_card_save_data.c.o
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
@@ -229,7 +230,7 @@ Static main
 	Object main.nef.p/src_terrain_attributes.c.o
 	Object main.nef.p/src_terrain_collision_manager.c.o
 	Object main.nef.p/src_unk_020553DC.c.o
-	Object main.nef.p/src_unk_020556C4.c.o
+	Object main.nef.p/src_overworld_map_history.c.o
 	Object main.nef.p/src_field_transition.c.o
 	Object main.nef.p/src_unk_020559DC.c.o
 	Object main.nef.p/src_unk_02055C50.c.o
@@ -268,7 +269,7 @@ Static main
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
-	Object main.nef.p/src_unk_0206C2D0.c.o
+	Object main.nef.p/src_trainer_card_badge_dirt.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_unk_0206C784.c.o
@@ -282,7 +283,7 @@ Static main
 	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
-	Object main.nef.p/src_unk_02071D40.c.o
+	Object main.nef.p/src_trainer_card.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
 	Object main.nef.p/src_unk_02073838.c.o
@@ -297,7 +298,7 @@ Static main
 	Object main.nef.p/src_unk_0207A6DC.c.o
 	Object main.nef.p/src_unk_0207AE68.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
-	Object main.nef.p/src_unk_0207C908.c.o
+	Object main.nef.p/src_type_icon.c.o
 	Object main.nef.p/src_unk_0207CB08.c.o
 	Object main.nef.p/src_item.c.o
 	Object main.nef.p/src_bag.c.o
@@ -309,7 +310,7 @@ Static main
 	Object main.nef.p/src_unk_02082C2C.c.o
 	Object main.nef.p/src_unk_02083370.c.o
 	Object main.nef.p/src_unk_02084B70.c.o
-	Object main.nef.p/src_unk_0208694C.c.o
+	Object main.nef.p/src_applications_naming_screen.c.o
 	Object main.nef.p/src_unk_020890F4.c.o
 	Object main.nef.p/src_unk_02089604.c.o
 	Object main.nef.p/src_unk_0208A3F4.c.o
@@ -331,7 +332,7 @@ Static main
 	Object main.nef.p/src_unk_02095CD4.c.o
 	Object main.nef.p/src_unk_02095E98.c.o
 	Object main.nef.p/src_unk_020961E8.c.o
-	Object main.nef.p/src_unk_02096420.c.o
+	Object main.nef.p/src_item_use_pokemon.c.o
 	Object main.nef.p/src_unk_020972FC.c.o
 	Object main.nef.p/src_berry_data.c.o
 	Object main.nef.p/src_unk_0209747C.c.o
@@ -342,7 +343,7 @@ Static main
 	Object main.nef.p/src_pokedex_language.c.o
 	Object main.nef.p/src_pokedex_heightweight.c.o
 	Object main.nef.p/src_pokedex_data_index.c.o
-	Object main.nef.p/src_unk_020F6824.c.o
+	Object main.nef.p/src_rowan_intro_app_template.c.o
 	Object main.nef.p/src_unk_020989DC.c.o
 	Object main.nef.p/src_unk_02098FFC.c.o
 	Object main.nef.p/src_unk_02099500.c.o
@@ -474,13 +475,13 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_map_prop_material_shape.c.o
 	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
 	Object main.nef.p/src_overlay005_model_attributes.c.o
-	Object main.nef.p/src_overlay005_ov5_021D5B40.c.o
+	Object main.nef.p/src_overlay005_field_camera.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5BC0.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5CB0.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5EB8.c.o
 	Object main.nef.p/src_overlay005_vs_seeker.c.o
 	Object main.nef.p/src_overlay005_field_menu.c.o
-	Object main.nef.p/src_overlay005_ov5_021DD42C.c.o
+	Object main.nef.p/src_overlay005_script_message.c.o
 	Object main.nef.p/src_overlay005_map_name_popup.c.o
 	Object main.nef.p/src_overlay005_ov5_021DDAE4.c.o
 	Object main.nef.p/src_overlay005_encounter_effect.c.o
@@ -505,7 +506,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021ECC20.c.o
 	Object main.nef.p/src_overlay005_ov5_021ECE40.c.o
 	Object main.nef.p/src_overlay005_ov5_021EE75C.c.o
-	Object main.nef.p/src_overlay005_ov5_021EE7D4.c.o
+	Object main.nef.p/src_overlay005_size_contest.c.o
 	Object main.nef.p/src_overlay005_loaded_map_buffers.c.o
 	Object main.nef.p/src_overlay005_bdhc.c.o
 	Object main.nef.p/src_overlay005_dynamic_terrain_height.c.o
@@ -625,14 +626,14 @@ Overlay overlay10
 Overlay overlay11
 {
 	After overlay4
-	Object main.nef.p/src_overlay011_ov11_0221F800.c.o
+	Object main.nef.p/src_overlay011_move_palettes.c.o
 	Object main.nef.p/src_overlay011_ov11_0221F840.c.o
 }
 
 Overlay overlay12
 {
 	After overlay11
-	Object main.nef.p/src_overlay012_ov12_0221FC20.c.o
+	Object main.nef.p/src_overlay012_battle_anim_system.c.o
 	Object main.nef.p/src_overlay012_ov12_022237EC.c.o
 	Object main.nef.p/src_overlay012_ov12_0222389C.c.o
 	Object main.nef.p/src_overlay012_ov12_0222421C.c.o
@@ -660,16 +661,16 @@ Overlay overlay12
 Overlay overlay13
 {
 	After overlay11
-	Object main.nef.p/src_overlay013_ov13_0221FC20.c.o
+	Object main.nef.p/src_overlay013_battle_party.c.o
 	Object main.nef.p/src_overlay013_ov13_02221A88.c.o
 	Object main.nef.p/src_overlay013_ov13_02224500.c.o
 	Object main.nef.p/src_overlay013_ov13_02225710.c.o
-	Object main.nef.p/src_overlay013_ov13_022264F4.c.o
-	Object main.nef.p/src_overlay013_ov13_02227288.c.o
-	Object main.nef.p/src_overlay013_ov13_02227A4C.c.o
-	Object main.nef.p/src_overlay013_ov13_02227BDC.c.o
-	Object main.nef.p/src_overlay013_ov13_02228128.c.o
-	Object main.nef.p/src_overlay013_ov13_02228A38.c.o
+	Object main.nef.p/src_overlay013_battle_bag.c.o
+	Object main.nef.p/src_overlay013_battle_bag_text.c.o
+	Object main.nef.p/src_overlay013_battle_bag_utils.c.o
+	Object main.nef.p/src_overlay013_battle_bag_sprites.c.o
+	Object main.nef.p/src_overlay013_battle_bag_buttons.c.o
+	Object main.nef.p/src_overlay013_battle_sub_menu_cursor.c.o
 }
 
 Overlay trainer_ai
@@ -748,7 +749,7 @@ Overlay overlay19
 {
 	After main
 	Object main.nef.p/src_overlay019_ov19_021D0D80.c.o
-	Object main.nef.p/src_overlay019_ov19_021D603C.c.o
+	Object main.nef.p/src_overlay019_touch_dial.c.o
 	Object main.nef.p/src_overlay019_ov19_021D61B0.c.o
 	Object main.nef.p/src_overlay019_ov19_021D79F8.c.o
 	Object main.nef.p/src_overlay019_ov19_021D8B54.c.o
@@ -761,7 +762,7 @@ Overlay overlay19
 	Object main.nef.p/src_overlay019_ov19_021DCF88.c.o
 	Object main.nef.p/src_overlay019_ov19_021DE3E8.c.o
 	Object main.nef.p/src_overlay019_ov19_021DEC04.c.o
-	Object main.nef.p/src_overlay019_ov19_021DF964.c.o
+	Object main.nef.p/src_overlay019_box_menu.c.o
 }
 
 Overlay overlay20
@@ -778,39 +779,39 @@ Overlay overlay20
 	Object main.nef.p/src_overlay020_ov20_021D5044.c.o
 }
 
-Overlay overlay21
+Overlay pokedex
 {
 	After main
-	Object main.nef.p/src_overlay021_pokedex_main.c.o
-	Object main.nef.p/src_overlay021_ov21_021D1F90.c.o
-	Object main.nef.p/src_overlay021_ov21_021D1FA4.c.o
-	Object main.nef.p/src_overlay021_pokedex_sort.c.o
-	Object main.nef.p/src_overlay021_ov21_021D3FE0.c.o
-	Object main.nef.p/src_overlay021_ov21_021D423C.c.o
-	Object main.nef.p/src_overlay021_ov21_021D4340.c.o
-	Object main.nef.p/src_overlay021_ov21_021D4C0C.c.o
-	Object main.nef.p/src_overlay021_ov21_021D4EE4.c.o
-	Object main.nef.p/src_overlay021_pokedex_field_map.c.o
-	Object main.nef.p/src_overlay021_pokedex_text.c.o
-	Object main.nef.p/src_overlay021_pokedex_enc_data.c.o
-	Object main.nef.p/src_overlay021_ov21_021D5AEC.c.o
-	Object main.nef.p/src_overlay021_ov21_021D76B0.c.o
-	Object main.nef.p/src_overlay021_pokedex_search.c.o
-	Object main.nef.p/src_overlay021_ov21_021D94BC.c.o
-	Object main.nef.p/src_overlay021_ov21_021DC9BC.c.o
-	Object main.nef.p/src_overlay021_ov21_021DDD2C.c.o
-	Object main.nef.p/src_overlay021_ov21_021DE668.c.o
-	Object main.nef.p/src_overlay021_ov21_021DF734.c.o
-	Object main.nef.p/src_overlay021_ov21_021E0C68.c.o
-	Object main.nef.p/src_overlay021_ov21_021E1924.c.o
-	Object main.nef.p/src_overlay021_ov21_021E29DC.c.o
-	Object main.nef.p/src_overlay021_ov21_021E3FFC.c.o
-	Object main.nef.p/src_overlay021_ov21_021E4CA4.c.o
-	Object main.nef.p/src_overlay021_pokedex_height_check.c.o
-	Object main.nef.p/src_overlay021_ov21_021E68F4.c.o
-	Object main.nef.p/src_overlay021_ov21_021E737C.c.o
-	Object main.nef.p/src_overlay021_ov21_021E8484.c.o
-	Object main.nef.p/src_overlay021_ov21_021E8D48.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_main.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_footprint.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_graphics.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_sort.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_updater.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021D423C.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021D4340.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_text_manager.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_panel.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_field_map.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_text.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_enc_data.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021D5AEC.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021D76B0.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_search.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021D94BC.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021DC9BC.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021DDD2C.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021DE668.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021DF734.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E0C68.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E1924.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E29DC.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E3FFC.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E4CA4.c.o
+	Object main.nef.p/src_applications_pokedex_pokedex_height_check.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E68F4.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E737C.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E8484.c.o
+	Object main.nef.p/src_applications_pokedex_ov21_021E8D48.c.o
 }
 
 Overlay overlay22
@@ -839,7 +840,7 @@ Overlay overlay23
 {
 	After overlay5
 	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
-	Object main.nef.p/src_overlay023_ov23_022416A8.c.o
+	Object main.nef.p/src_overlay023_underground_spheres.c.o
 	Object main.nef.p/src_overlay023_ov23_02241F74.c.o
 	Object main.nef.p/src_overlay023_ov23_0224340C.c.o
 	Object main.nef.p/src_overlay023_ov23_02248C08.c.o
@@ -853,35 +854,35 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_0225128C.c.o
 	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
 	Object main.nef.p/src_overlay023_ov23_02253598.c.o
-	Object main.nef.p/src_overlay023_ov23_02253D40.c.o
+	Object main.nef.p/src_overlay023_underground_text_printer.c.o
 	Object main.nef.p/src_overlay023_ov23_0225426C.c.o
 	Object main.nef.p/src_overlay023_ov23_0225429C.c.o
 	Object main.nef.p/src_overlay023_ov23_022542CC.c.o
 	Object main.nef.p/src_overlay023_ov23_02254A14.c.o
 }
 
-Overlay pre_poketch_subscreen
+Overlay poketch_unavailable
 {
 	After overlay9
-	Object main.nef.p/src_pre_poketch_subscreen_pre_poketch_subscreen.c.o
+	Object main.nef.p/src_applications_poketch_unavailable_graphics.c.o
 }
 
 Overlay overlay25
 {
 	After overlay9
-	Object main.nef.p/src_overlay025_poketch_system.c.o
-	Object main.nef.p/src_overlay025_ov25_02254560.c.o
-	Object main.nef.p/src_overlay025_ov25_02255090.c.o
-	Object main.nef.p/src_overlay025_ov25_02255540.c.o
-	Object main.nef.p/src_overlay025_poketch_button.c.o
-	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
+	Object main.nef.p/src_applications_poketch_poketch_system.c.o
+	Object main.nef.p/src_applications_poketch_poketch_graphics.c.o
+	Object main.nef.p/src_applications_poketch_poketch_task.c.o
+	Object main.nef.p/src_applications_poketch_poketch_animation.c.o
+	Object main.nef.p/src_applications_poketch_poketch_button.c.o
+	Object main.nef.p/src_applications_poketch_ov25_02255DBC.c.o
 }
 
 Overlay poketch_digital_watch
 {
 	After overlay25
-	Object main.nef.p/src_poketch_digital_watch_main.c.o
-	Object main.nef.p/src_poketch_digital_watch_display.c.o
+	Object main.nef.p/src_applications_poketch_digital_watch_main.c.o
+	Object main.nef.p/src_applications_poketch_digital_watch_graphics.c.o
 }
 
 Overlay overlay27
@@ -997,11 +998,11 @@ Overlay overlay42
 	Object main.nef.p/src_overlay042_ov42_022563D4.c.o
 }
 
-Overlay overlay43
+Overlay poketch_move_tester
 {
 	After overlay25
-	Object main.nef.p/src_overlay043_ov43_022561C0.c.o
-	Object main.nef.p/src_overlay043_ov43_02256544.c.o
+	Object main.nef.p/src_applications_poketch_move_tester_main.c.o
+	Object main.nef.p/src_applications_poketch_move_tester_graphics.c.o
 }
 
 Overlay overlay44
@@ -1243,26 +1244,26 @@ Overlay overlay70
 	Object main.nef.p/src_overlay070_ov70_0226CE54.c.o
 }
 
-Overlay overlay71
+Overlay trainer_card_screen
 {
 	After overlay12
-	Object main.nef.p/src_overlay071_ov71_0223B140.c.o
-	Object main.nef.p/src_overlay071_ov71_0223C69C.c.o
-	Object main.nef.p/src_overlay071_ov71_0223CF0C.c.o
-	Object main.nef.p/src_overlay071_ov71_0223D324.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_screen.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_display_text.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_sprites.c.o
+	Object main.nef.p/src_trainer_card_screen_trainer_card_badge_chimes.c.o
 }
 
 Overlay overlay72
 {
-	After overlay71
+	After trainer_card_screen
 	Object main.nef.p/src_overlay072_ov72_0223D7A0.c.o
 }
 
-Overlay overlay73
+Overlay rowan_intro
 {
 	After main
-	Object main.nef.p/src_overlay073_ov73_021D0D80.c.o
-	Object main.nef.p/src_overlay073_ov73_021D3250.c.o
+	Object main.nef.p/src_applications_rowan_intro_rowan_intro_app.c.o
+	Object main.nef.p/src_applications_rowan_intro_tv_app.c.o
 }
 
 Overlay options_menu
@@ -1285,14 +1286,14 @@ Overlay overlay76
 	Object main.nef.p/src_overlay076_ov76_0223D338.c.o
 }
 
-Overlay overlay77
+Overlay game_opening
 {
 	After main
-	Object main.nef.p/src_overlay077_ov77_021D0D80.c.o
-	Object main.nef.p/src_overlay077_ov77_021D25B0.c.o
-	Object main.nef.p/src_overlay077_ov77_021D54B0.c.o
-	Object main.nef.p/src_overlay077_ov77_021D6670.c.o
-	Object main.nef.p/src_overlay077_ov77_021D6C70.c.o
+	Object main.nef.p/src_applications_title_screen.c.o
+	Object main.nef.p/src_game_opening_ov77_021D25B0.c.o
+	Object main.nef.p/src_game_opening_ov77_021D54B0.c.o
+	Object main.nef.p/src_game_opening_ov77_021D6670.c.o
+	Object main.nef.p/src_game_opening_ov77_021D6C70.c.o
 }
 
 Overlay choose_starter
@@ -1451,30 +1452,30 @@ Overlay overlay96
 	Object main.nef.p/src_overlay096_ov96_0223BCE0.c.o
 }
 
-Overlay overlay97
+Overlay main_menu
 {
 	After overlay60
-	Object main.nef.p/src_overlay097_ov97_0222AE60.c.o
-	Object main.nef.p/src_overlay097_ov97_0222C174.c.o
-	Object main.nef.p/src_overlay097_ov97_0222D04C.c.o
-	Object main.nef.p/src_overlay097_ov97_0222D2F8.c.o
-	Object main.nef.p/src_overlay097_ov97_0222D30C.c.o
-	Object main.nef.p/src_overlay097_ov97_02230410.c.o
-	Object main.nef.p/src_overlay097_ov97_02232054.c.o
-	Object main.nef.p/src_overlay097_ov97_02232200.c.o
-	Object main.nef.p/src_overlay097_ov97_02232DC8.c.o
-	Object main.nef.p/src_overlay097_ov97_02233408.c.o
-	Object main.nef.p/src_overlay097_ov97_022337FC.c.o
-	Object main.nef.p/src_overlay097_ov97_02233814.c.o
-	Object main.nef.p/src_overlay097_gba_migrator.c.o
-	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
-	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
-	Object main.nef.p/src_overlay097_ov97_02236380.c.o
-	Object main.nef.p/src_overlay097_ov97_02237520.c.o
-	Object main.nef.p/src_overlay097_ov97_02237694.c.o
-	Object main.nef.p/src_overlay097_ov97_02238534.c.o
-	Object main.nef.p/src_overlay097_ov97_02238D74.c.o
-	Object main.nef.p/src_overlay097_gba_convert_string.c.o
+	Object main.nef.p/src_main_menu_main_menu.c.o
+	Object main.nef.p/src_main_menu_ov97_0222C174.c.o
+	Object main.nef.p/src_main_menu_ov97_0222D04C.c.o
+	Object main.nef.p/src_main_menu_ov97_0222D2F8.c.o
+	Object main.nef.p/src_main_menu_mystery_gift_app.c.o
+	Object main.nef.p/src_main_menu_wonder_cards_app.c.o
+	Object main.nef.p/src_main_menu_ov97_02232054.c.o
+	Object main.nef.p/src_main_menu_ov97_02232200.c.o
+	Object main.nef.p/src_main_menu_ov97_02232DC8.c.o
+	Object main.nef.p/src_main_menu_ov97_02233408.c.o
+	Object main.nef.p/src_main_menu_ov97_022337FC.c.o
+	Object main.nef.p/src_main_menu_ov97_02233814.c.o
+	Object main.nef.p/src_main_menu_gba_migrator.c.o
+	Object main.nef.p/src_main_menu_ov97_02235D18.c.o
+	Object main.nef.p/src_main_menu_ov97_0223635C.c.o
+	Object main.nef.p/src_main_menu_gba_pokemon.c.o
+	Object main.nef.p/src_main_menu_distribution_cartridge.c.o
+	Object main.nef.p/src_main_menu_main_menu_util.c.o
+	Object main.nef.p/src_main_menu_ov97_02238534.c.o
+	Object main.nef.p/src_main_menu_ov97_02238D74.c.o
+	Object main.nef.p/src_main_menu_gba_convert_string.c.o
 	Library libcrypto_ov97.a
 }
 

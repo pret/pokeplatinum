@@ -8,10 +8,9 @@
 #include "overlay019/box_mon_selection.h"
 #include "overlay019/box_settings.h"
 #include "overlay019/pc_mon_preview.h"
+#include "overlay019/struct_box_menu.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D5D20.h"
-#include "overlay019/struct_ov19_021DF964.h"
 
 #include "party.h"
 
@@ -23,12 +22,12 @@ typedef struct {
     BoxCustomization customization;
     BoxSettings boxSettings;
     PCMonPreview pcMonPreview;
-    UnkStruct_ov19_021DF964 unk_74;
-    UnkStruct_ov19_021D5D20 unk_98;
+    BoxMenu boxMenu;
+    u32 boxSelectionBoxID;
     UnkStruct_ov19_021D4F34 unk_9C;
     u8 padding_A2[2];
     UnkStruct_ov19_021D4EE4 unk_A4;
-    u32 unk_10C;
+    u32 boxMessageID;
     u16 unk_110;
     u16 cursorItem;
 } UnkStruct_ov19_021D4DF0;

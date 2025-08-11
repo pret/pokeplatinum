@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_1f.h"
 
-    .data
 
     ScriptEntry _002E
     ScriptEntry _0064
@@ -24,7 +23,7 @@ _002E:
 _0048:
     SetObjectEventPos 0, 2, 4
     SetObjectEventDir 0, DIR_NORTH
-    ScrCmd_188 0, 14
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _005E:
@@ -50,26 +49,26 @@ _0064:
 
     .balign 4, 0
 _00A4:
-    MoveAction_062
-    MoveAction_033
+    Delay4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00B0:
-    MoveAction_032
-    MoveAction_075
-    MoveAction_063
-    MoveAction_012
-    MoveAction_015 3
-    MoveAction_012 3
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
+    Delay8
+    WalkNormalNorth
+    WalkNormalEast 3
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _00CC:
-    MoveAction_013 2
-    MoveAction_014 3
-    MoveAction_013 2
-    MoveAction_032
+    WalkNormalSouth 2
+    WalkNormalWest 3
+    WalkNormalSouth 2
+    WalkOnSpotNormalNorth
     EndMovement
 
 _00E0:
@@ -106,14 +105,14 @@ _0158:
 
     .balign 4, 0
 _0164:
-    MoveAction_062
-    MoveAction_033
+    Delay4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0170:
-    MoveAction_032
-    MoveAction_075
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
     EndMovement
 
 _017C:
@@ -144,24 +143,24 @@ _017C:
 
     .balign 4, 0
 _01D4:
-    MoveAction_014
-    MoveAction_000
-    MoveAction_063 2
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_034
+    WalkNormalWest
+    FaceNorth
+    Delay8 2
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01F8:
-    MoveAction_063 4
-    MoveAction_035
-    MoveAction_063 4
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_015
+    Delay8 4
+    WalkOnSpotNormalEast
+    Delay8 4
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkNormalEast
     EndMovement
 
 _0214:
@@ -186,23 +185,14 @@ _0214:
     ReleaseAll
     End
 
-    .byte 205
-    .byte 0
-    .byte 0
-    .byte 206
-    .byte 0
-    .byte 1
-    .byte 44
-    .byte 0
-    .byte 35
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+TwinleafTownPlayerHouse1F_Unused:
+    BufferPlayerName 0
+    BufferRivalName 1
+    Message 35
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    End
 
 _02AF:
     GoToIfGe VAR_UNK_0x40B2, 2, _0300
@@ -505,68 +495,26 @@ _0711:
     ReleaseAll
     End
 
-    .byte 206
-    .byte 0
-    .byte 0
-    .byte 205
-    .byte 0
-    .byte 1
-    .byte 44
-    .byte 0
-    .byte 6
-    .byte 52
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 30
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 205
-    .byte 0
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 7
-    .byte 95
-    .byte 1
-    .byte 123
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 205
-    .byte 0
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 8
-    .byte 78
-    .byte 0
-    .byte 134
-    .byte 4
-    .byte 79
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 9
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 164
-    .byte 64
-    .byte 4
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+TwinleafTownPlayerHouse1F_Unused2:
+    BufferRivalName 0
+    BufferPlayerName 1
+    Message 6
+    CloseMessage
+    WaitTime 30, VAR_RESULT
+    BufferPlayerName 0
+    Message 7
+    GiveBag
+    AddItem ITEM_POTION, 1, VAR_RESULT
+    BufferPlayerName 0
+    Message 8
+    PlaySound SEQ_FANFA4
+    WaitSound
+    Message 9
+    WaitABXPadPress
+    CloseMessage
+    SetVar VAR_UNK_0x40A4, 4
+    ReleaseAll
+    End
 
 _075A:
     BufferRivalName 0
@@ -605,196 +553,183 @@ _0792:
 
     .balign 4, 0
 _079C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07A4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _07B4:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _07C0:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07C8:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07D0:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _07D8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _07E0:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _07E8:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07F4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07FC:
-    MoveAction_012
-    MoveAction_035
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0808:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0810:
-    MoveAction_012 2
-    MoveAction_035
+    WalkNormalNorth 2
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _081C:
-    MoveAction_015 2
-    MoveAction_032
+    WalkNormalEast 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0828:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0830:
-    MoveAction_013
-    MoveAction_033
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _083C:
-    MoveAction_013 3
-    MoveAction_033
+    WalkNormalSouth 3
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0848:
-    MoveAction_014 2
-    MoveAction_013
-    MoveAction_033
+    WalkNormalWest 2
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0858:
-    MoveAction_013
-    MoveAction_033
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0864:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _086C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0874:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _087C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0884:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _088C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0894:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _089C:
-    MoveAction_063 2
-    MoveAction_034
+    Delay8 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _08A8:
-    MoveAction_063 2
-    MoveAction_033
+    Delay8 2
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _08B4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _08BC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _08C4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement2:
+    Delay8 2
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _08D8:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _08E0:
@@ -820,44 +755,25 @@ _0904:
 
     .balign 4, 0
 _0918:
-    MoveAction_063 2
-    MoveAction_032
+    Delay8 2
+    WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 62
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement3:
+    Delay4 2
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _0930:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement4:
+    WalkOnSpotNormalSouth
+    WalkNormalWest 2
+    WalkNormalSouth
+    EndMovement
 
 _0948:
     BufferRivalName 1
@@ -933,4 +849,4 @@ _09FA:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

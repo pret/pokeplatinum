@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "generated/movement_actions.h"
+#include "generated/movement_types.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -412,7 +414,7 @@ void sub_02067FE8(SysTask *task)
 static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7)
 {
     SysTask *v0;
-    UnkStruct_020EF6D0 *v1 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
+    UnkStruct_020EF6D0 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_020EF6D0)));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, (sizeof(UnkStruct_020EF6D0)));
@@ -442,7 +444,7 @@ static void sub_02068054(SysTask *task)
 {
     UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
 
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0);
+    Heap_FreeExplicit(HEAP_ID_FIELD, v0);
     SysTask_Done(task);
 }
 
@@ -517,7 +519,7 @@ static int sub_02068118(UnkStruct_020EF6D0 *param0)
 
     GF_ASSERT(param0->unk_08 != -1);
 
-    v0 = sub_02065838(param0->unk_08, 0x0);
+    v0 = MovementAction_TurnActionTowardsDir(param0->unk_08, MOVEMENT_ACTION_FACE_NORTH);
     LocalMapObj_SetAnimationCode(param0->unk_24, v0);
     param0->unk_00 = 4;
 
@@ -554,7 +556,7 @@ static int sub_02068188(UnkStruct_020EF6D0 *param0)
 
 static int sub_020681A4(UnkStruct_020EF6D0 *param0)
 {
-    LocalMapObj_SetAnimationCode(param0->unk_24, 0x65);
+    LocalMapObj_SetAnimationCode(param0->unk_24, MOVEMENT_ACTION_REVEAL_TRAINER);
     param0->unk_00 = 8;
 
     return 0;
@@ -597,7 +599,7 @@ static int sub_02068200(UnkStruct_020EF6D0 *param0)
     int v0;
 
     if (LocalMapObj_IsAnimationSet(param0->unk_24) == 1) {
-        v0 = sub_02065838(param0->unk_08, 0xc);
+        v0 = MovementAction_TurnActionTowardsDir(param0->unk_08, MOVEMENT_ACTION_WALK_NORMAL_NORTH);
         LocalMapObj_SetAnimationCode(param0->unk_24, v0);
         param0->unk_00 = 12;
     }
@@ -640,7 +642,7 @@ static int sub_02068264(UnkStruct_020EF6D0 *param0)
     if ((PlayerAvatar_GetDir(param0->playerAvatar) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
         if (LocalMapObj_IsAnimationSet(v2) == 1) {
             MapObject_SetStatusFlagOff(v2, MAP_OBJ_STATUS_LOCK_DIR);
-            v0 = sub_02065838(v1, 0x0);
+            v0 = MovementAction_TurnActionTowardsDir(v1, MOVEMENT_ACTION_FACE_NORTH);
             LocalMapObj_SetAnimationCode(v2, v0);
             param0->unk_00 = 15;
         }
@@ -670,7 +672,7 @@ static int sub_02068308(UnkStruct_020EF6D0 *param0)
     sub_020656AC(param0->unk_24);
 
     if ((PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->unk_24) == 0)) {
-        MapObject_SetMoveCode(param0->unk_24, 0x0);
+        MapObject_SetMoveCode(param0->unk_24, MOVEMENT_TYPE_NONE);
     }
 
     param0->unk_00 = 17;

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_northwest_house.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -96,6 +95,4 @@ _0122:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

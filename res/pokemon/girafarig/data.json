@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POWER_SWAP" ],
@@ -102,12 +103,26 @@
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_TAKE_DOWN",
+            "MOVE_AMNESIA",
+            "MOVE_FORESIGHT",
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_BEAT_UP",
+            "MOVE_PSYCH_UP",
+            "MOVE_WISH",
+            "MOVE_MAGIC_COAT",
+            "MOVE_DOUBLE_KICK",
+            "MOVE_MIRROR_COAT"
         ]
     },
     "evolutions": [  ],
+    "offspring": "SPECIES_GIRAFARIG",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 15,

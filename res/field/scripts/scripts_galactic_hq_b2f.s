@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_b2f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021
@@ -70,10 +69,10 @@ _00B3:
 
     .balign 4, 0
 _00BC:
-    MoveAction_018
+    WalkFastWest
     EndMovement
 
     .balign 4, 0
 _00C4:
-    MoveAction_019
+    WalkFastEast
     EndMovement

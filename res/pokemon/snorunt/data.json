@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POWDER_SNOW" ],
@@ -79,6 +80,13 @@
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SPITE"
+        ],
+        "egg_moves": [
+            "MOVE_BLOCK",
+            "MOVE_SPIKES",
+            "MOVE_ROLLOUT",
+            "MOVE_DISABLE",
+            "MOVE_BIDE"
         ]
     },
     "evolutions": [
@@ -93,9 +101,11 @@
             "SPECIES_FROSLASS"
         ]
     ],
+    "offspring": "SPECIES_SNORUNT",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 7,

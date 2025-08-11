@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_rival_house_1f.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -70,5 +69,4 @@ _00B0:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

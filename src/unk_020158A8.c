@@ -36,7 +36,7 @@ void sub_020158F4(UnkStruct_020158A8 *param0)
     }
 
     MessageLoader_Free(param0->unk_00);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 const Strbuf *sub_02015918(UnkStruct_020158A8 *param0, int param1)

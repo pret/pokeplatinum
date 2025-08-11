@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city_harbor_inn.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0093
@@ -81,20 +80,20 @@ _0093:
 
     .balign 4, 0
 _0130:
-    MoveAction_012
-    MoveAction_015 3
-    MoveAction_012
-    MoveAction_015
-    MoveAction_033
+    WalkNormalNorth
+    WalkNormalEast 3
+    WalkNormalNorth
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0148:
-    MoveAction_015 3
-    MoveAction_012 2
-    MoveAction_033
-    MoveAction_063 2
-    MoveAction_035
+    WalkNormalEast 3
+    WalkNormalNorth 2
+    WalkOnSpotNormalSouth
+    Delay8 2
+    WalkOnSpotNormalEast
     EndMovement
 
 _0160:
@@ -119,4 +118,4 @@ _0197:
     SetVar VAR_UNK_0x40F8, 3
     Return
 
-    .byte 0
+    .balign 4, 0

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -94,14 +95,23 @@
             "MOVE_EARTH_POWER",
             "MOVE_IRON_DEFENSE",
             "MOVE_MAGNET_RISE"
+        ],
+        "egg_moves": [
+            "MOVE_MAGNITUDE",
+            "MOVE_ROLLOUT",
+            "MOVE_EXPLOSION",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_BLOCK"
         ]
     },
     "evolutions": [
         [ "EVO_LEVEL_MAGNETIC_FIELD", "SPECIES_PROBOPASS" ]
     ],
+    "offspring": "SPECIES_NOSEPASS",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 10,

@@ -5,8 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "fonts/pl_font.naix"
-
 #include "charcode.h"
 #include "font_manager.h"
 #include "graphics.h"
@@ -15,6 +13,8 @@
 #include "render_text.h"
 #include "strbuf.h"
 #include "text.h"
+
+#include "res/fonts/pl_font.naix.h"
 
 typedef struct {
     TextGlyph curGlyph;
@@ -139,7 +139,7 @@ void Font_Free(enum Font font)
         }
 
         if (i == NELEMS(sFontArchiveData)) {
-            Heap_FreeToHeap(sFontWork->data[font]);
+            Heap_Free(sFontWork->data[font]);
             sFontWork->data[font] = NULL;
         }
     }
@@ -231,7 +231,7 @@ u8 Font_GetAttribute(u8 font, u8 attribute)
     return result;
 }
 
-void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID)
+void Font_LoadTextPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID)
 {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT,
         font_NCLR,
@@ -241,7 +241,7 @@ void Font_LoadTextPalette(int palLocation, u32 palSlotOffset, u32 heapID)
         heapID);
 }
 
-void Font_LoadScreenIndicatorsPalette(int palLocation, u32 palSlotOffset, u32 heapID)
+void Font_LoadScreenIndicatorsPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID)
 {
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_FONT,
         screen_indicators_NCLR,

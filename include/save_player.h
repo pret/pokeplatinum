@@ -7,10 +7,12 @@
 #include "trainer_info.h"
 
 typedef struct PlayerSave {
-    Options options;
+    Options options; // u16 bitfield
+    // u8 padding_02[2]; // implicit padding in vanilla
     TrainerInfo info;
     u16 coins;
     PlayTime playTime;
+    u8 padding_2A[2];
 } PlayerSave;
 
 int Player_SaveSize(void);

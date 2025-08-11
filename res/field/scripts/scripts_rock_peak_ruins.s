@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/rock_peak_ruins.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _003D
@@ -150,4 +149,4 @@ _020F:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

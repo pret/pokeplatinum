@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CHANSEY",
+    "moves": [
+        "MOVE_METRONOME",
+        "MOVE_REFRESH",
+        "MOVE_DEFENSE_CURL",
+        "MOVE_MINIMIZE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_SASSY",
+    "item": "ITEM_SITRUS_BERRY",
+    "form": 0
+}

@@ -17,6 +17,7 @@
 #include "berry_patches.h"
 #include "easy3d.h"
 #include "field_task.h"
+#include "gfx_box_test.h"
 #include "heap.h"
 #include "map_object.h"
 #include "player_avatar.h"
@@ -24,7 +25,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "terrain_collision_manager.h"
-#include "unk_0201CED8.h"
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"
@@ -98,8 +98,8 @@ UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
 void sub_02055CBC(UnkStruct_02055CBC *param0)
 {
     sub_02055D48(param0);
-    Heap_FreeToHeap(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_04);
+    Heap_Free(param0);
 }
 
 void sub_02055CD4(FieldSystem *fieldSystem, int param1)
@@ -111,7 +111,7 @@ void sub_02055CD4(FieldSystem *fieldSystem, int param1)
         v1 = BerryGrowthData_Init(11);
         v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
         BerryPatches_ElapseMinutes(v0, v1, param1);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     } else {
         v1 = fieldSystem->unk_04->unk_18->unk_04;
         v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
@@ -142,7 +142,7 @@ static BOOL sub_02055D54(FieldSystem *fieldSystem, const VecFx32 *param1)
 
     MTX_Identity33(&v1);
 
-    if (sub_0201CED8(fieldSystem->unk_04->unk_18->unk_5C, param1, &v1, &v0) != 0) {
+    if (GFXBoxTest_IsModelInView(fieldSystem->unk_04->unk_18->unk_5C, param1, &v1, &v0) != 0) {
         return 1;
     } else {
         return 0;
@@ -444,7 +444,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
     case 4:
         Player_SetDir(v0->playerAvatar, v1->unk_04);
         MapObject_SetPauseMovementOn(Player_MapObject(v0->playerAvatar));
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

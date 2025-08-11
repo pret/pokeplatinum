@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0397.h"
+#include "res/text/bank/berry_trees.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _055F

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/team_galactic_eterna_building_3f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D
@@ -26,5 +25,4 @@ _001D:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

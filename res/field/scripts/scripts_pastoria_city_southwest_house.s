@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pastoria_city_southwest_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _006A
@@ -46,6 +45,5 @@ _006A:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+

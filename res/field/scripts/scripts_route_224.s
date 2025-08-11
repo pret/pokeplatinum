@@ -3,7 +3,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/route_224.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0082
@@ -38,12 +37,9 @@ _009C:
     ScrCmd_18C 3, 0
     Return
 
-    .byte 30
-    .byte 0
-    .byte 202
-    .byte 2
-    .byte 27
-    .byte 0
+Route224_Unused:
+    SetFlag FLAG_UNK_0x02CA
+    Return
 
 _00AA:
     SetVar VAR_SHAYMIN_EVENT_STATE, 2
@@ -212,130 +208,125 @@ _02B8:
 
     .balign 4, 0
 _0328:
-    MoveAction_000
-    MoveAction_065
-    MoveAction_003
+    FaceNorth
+    Delay16
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _0338:
-    MoveAction_014
-    MoveAction_012
-    MoveAction_065
-    MoveAction_003
+    WalkNormalWest
+    WalkNormalNorth
+    Delay16
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _034C:
-    MoveAction_013
-    MoveAction_014 2
-    MoveAction_012
-    MoveAction_065
-    MoveAction_003
+    WalkNormalSouth
+    WalkNormalWest 2
+    WalkNormalNorth
+    Delay16
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _0364:
-    MoveAction_063
-    MoveAction_002
+    Delay8
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _0370:
-    MoveAction_063
-    MoveAction_001
-    MoveAction_063 2
-    MoveAction_002
+    Delay8
+    FaceSouth
+    Delay8 2
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _0384:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _038C:
-    MoveAction_003
-    MoveAction_075
-    MoveAction_065
+    FaceEast
+    EmoteExclamationMark
+    Delay16
     EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_065
-    MoveAction_003
-    MoveAction_075
-    MoveAction_065
+    Delay16
+    FaceEast
+    EmoteExclamationMark
+    Delay16
     EndMovement
 
     .balign 4, 0
 _03B0:
-    MoveAction_002
-    MoveAction_075
-    MoveAction_065
+    FaceWest
+    EmoteExclamationMark
+    Delay16
     EndMovement
 
     .balign 4, 0
 _03C0:
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _03C8:
-    MoveAction_002
-    MoveAction_065
-    MoveAction_001
-    MoveAction_065
-    MoveAction_003
-    MoveAction_065
-    MoveAction_001
-    MoveAction_065
-    MoveAction_002
-    MoveAction_065
-    MoveAction_000
-    MoveAction_065
-    MoveAction_001
-    MoveAction_065
+    FaceWest
+    Delay16
+    FaceSouth
+    Delay16
+    FaceEast
+    Delay16
+    FaceSouth
+    Delay16
+    FaceWest
+    Delay16
+    FaceNorth
+    Delay16
+    FaceSouth
+    Delay16
     EndMovement
 
     .balign 4, 0
 _0404:
-    MoveAction_001
-    MoveAction_065
-    MoveAction_003
-    MoveAction_065
-    MoveAction_001
-    MoveAction_065
-    MoveAction_002
-    MoveAction_065
-    MoveAction_000
-    MoveAction_065
+    FaceSouth
+    Delay16
+    FaceEast
+    Delay16
+    FaceSouth
+    Delay16
+    FaceWest
+    Delay16
+    FaceNorth
+    Delay16
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route224_UnusedMovement:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0438:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0440:
-    MoveAction_013 12
+    WalkNormalSouth 12
     EndMovement
 
     .balign 4, 0
 _0448:
-    MoveAction_000
-    MoveAction_065
-    MoveAction_076 12
+    FaceNorth
+    Delay16
+    WalkSlightlyFastNorth 12
     EndMovement
 
 _0458:
@@ -350,7 +341,7 @@ _0458:
 _048D:
     SetObjectEventPos 21, 0x386, 0x1F8
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _0598
     WaitMovement
     GoTo _04F3
@@ -359,7 +350,7 @@ _048D:
 _04AF:
     SetObjectEventPos 21, 0x386, 0x1F9
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _05A4
     WaitMovement
     GoTo _04F3
@@ -368,7 +359,7 @@ _04AF:
 _04D1:
     SetObjectEventPos 21, 0x386, 0x1FA
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     ApplyMovement 21, _05B0
     WaitMovement
     GoTo _04F3
@@ -417,46 +408,46 @@ _057F:
 
     .balign 4, 0
 _0598:
-    MoveAction_012 8
-    MoveAction_035
+    WalkNormalNorth 8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _05A4:
-    MoveAction_012 8
-    MoveAction_035
+    WalkNormalNorth 8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _05B0:
-    MoveAction_012 8
-    MoveAction_035
+    WalkNormalNorth 8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _05BC:
-    MoveAction_013
-    MoveAction_015 5
-    MoveAction_012 4
+    WalkNormalSouth
+    WalkNormalEast 5
+    WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _05CC:
-    MoveAction_012
-    MoveAction_015 5
-    MoveAction_012 3
+    WalkNormalNorth
+    WalkNormalEast 5
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _05DC:
-    MoveAction_012 2
-    MoveAction_015 5
-    MoveAction_012 3
+    WalkNormalNorth 2
+    WalkNormalEast 5
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _05EC:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
 _05F4:
@@ -481,38 +472,38 @@ _061C:
 
     .balign 4, 0
 _0628:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0630:
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_063 4
-    MoveAction_032
+    Delay8 2
+    WalkOnSpotNormalEast
+    Delay8 4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0644:
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_063 3
-    MoveAction_032
+    Delay8 2
+    WalkOnSpotNormalEast
+    Delay8 3
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0658:
-    MoveAction_063 2
-    MoveAction_032
+    Delay8 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0664:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _066C:
-    MoveAction_003
-    MoveAction_075
+    FaceEast
+    EmoteExclamationMark
     EndMovement

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_227.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _01CC
@@ -64,152 +63,111 @@ _00E7:
 
     .balign 4, 0
 _00F4:
-    MoveAction_014
-    MoveAction_032
+    WalkNormalWest
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0100:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
     .balign 4, 0
 _0108:
-    MoveAction_015
-    MoveAction_012
-    MoveAction_035
+    WalkNormalEast
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0118:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement:
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _012C:
-    MoveAction_014
-    MoveAction_035
-    MoveAction_062
-    MoveAction_033
+    WalkNormalWest
+    WalkOnSpotNormalEast
+    Delay4
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement2:
+    Delay8
+    WalkOnSpotNormalWest
+    Delay4
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0154:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0160:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0168:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0170:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0178:
-    MoveAction_017 9
+    WalkFastSouth 9
     EndMovement
 
-    .byte 17
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement3:
+    WalkFastSouth 9
+    EndMovement
 
     .balign 4, 0
 _0188:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0194:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement4:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
+
+Route227_UnusedMovement5:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _01B8:
-    MoveAction_063 2
-    MoveAction_013 9
+    Delay8 2
+    WalkNormalSouth 9
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement6:
+    WalkNormalSouth 9
+    EndMovement
 
 _01CC:
     ShowArrowSign 12
@@ -260,35 +218,27 @@ _0243:
 
     .balign 4, 0
 _026C:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement7:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0280:
-    MoveAction_033
-    MoveAction_075
-    MoveAction_013
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _0290:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0298:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement

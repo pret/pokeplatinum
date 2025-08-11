@@ -7,7 +7,6 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -33,6 +32,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -41,7 +41,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_02014000.h"
 #include "unk_02054884.h"
 
 enum ScreenFlashState {
@@ -80,7 +79,7 @@ typedef struct UnkStruct_ov5_02202120 {
     u8 unk_02;
     u8 unk_03;
     FieldSystem *fieldSystem;
-    UnkStruct_02014014 *unk_08;
+    ParticleSystem *unk_08;
     void *unk_0C;
     u32 unk_10;
     u32 unk_14;
@@ -180,11 +179,8 @@ static UnkStruct_ov5_02202120 *Unk_ov5_02202120 = NULL;
 
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *done)
 {
-    SysTask *effectTask;
-    EncounterEffect *encEffect;
-
-    effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
-    encEffect = SysTask_GetParam(effectTask);
+    SysTask *effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
+    EncounterEffect *encEffect = SysTask_GetParam(effectTask);
     encEffect->fieldSystem = fieldSystem;
     encEffect->done = done;
     encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_FIELD);
@@ -199,7 +195,7 @@ void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem,
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 {
     NARC_dtor(encEffect->narc);
-    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, encEffect->param);
+    Heap_FreeExplicit(HEAP_ID_FIELD, encEffect->param);
     SysTask_FinishAndFreeParam(effectTask);
 }
 
@@ -270,7 +266,7 @@ static void EncounterEffect_FlashTask(SysTask *task, void *param)
         }
 
         SysTask_Done(task);
-        Heap_FreeToHeap(screenFlash);
+        Heap_Free(screenFlash);
 
         return;
     }
@@ -418,7 +414,7 @@ void ScreenSliceEffect_Delete(ScreenSliceEffect *efx)
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
-    Heap_FreeToHeap(efx);
+    Heap_Free(efx);
 }
 
 void EncounterEffect_ScreenSlice(EncounterEffect *encEffect, ScreenSliceEffect *screenSliceEfx, u8 pixelsPerSlice, u32 numSteps, fx32 startX, fx32 endX, fx32 initialSpeed)
@@ -552,7 +548,7 @@ void ScreenSplitEffect_Delete(ScreenSplitEffect *screenSplitEfx)
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
-    Heap_FreeToHeap(screenSplitEfx);
+    Heap_Free(screenSplitEfx);
 }
 
 void EncounterEffect_ScreenSplit(EncounterEffect *encEffect, ScreenSplitEffect *screenSplitEfx, u32 numSteps, fx32 initialSpeedX, fx32 initialSpeedY)
@@ -565,8 +561,8 @@ void EncounterEffect_ScreenSplit(EncounterEffect *encEffect, ScreenSplitEffect *
     screenSplitEfx->state = SCREENSPLIT_STATE_INTERPOLATE;
     screenSplitEfx->done = &encEffect->hBlankFlag;
 
-    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->xInterpolationTask, 0, (255 * FX32_ONE), initialSpeedX, numSteps);
-    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->yInterpolationTask, 0, (96 * FX32_ONE), initialSpeedY, numSteps);
+    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->xInterpolationTask, 0, 255 * FX32_ONE, initialSpeedX, numSteps);
+    QuadraticInterpolationTaskFX32_Init(&screenSplitEfx->yInterpolationTask, 0, 96 * FX32_ONE, initialSpeedY, numSteps);
 
     G2_SetWnd0Position(0, 0, 255, 192);
     G2_SetWnd1Position(0, 0, 255, 192);
@@ -656,55 +652,52 @@ static void EncounterEffect_UnusedTask(SysTask *dummy1, void *dummy2)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x04000,
-            GX_BG_EXTPLTT_01,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 3,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
     }
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_23,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
         };
     }
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_256,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_23,
-            0,
-            1,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_256,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 0,
+            .areaOver = 1,
+            .mosaic = FALSE,
         };
     }
 }
@@ -721,7 +714,7 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
 
     Bg_LoadToTilemapRect(param6, param7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param6, param7, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, param4);
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     Bg_ScheduleTilemapTransfer(param6, param7);
 }
 
@@ -781,13 +774,13 @@ void ov5_021DE5D0(Sprite *param0, u32 heapID, u32 param2, u8 param3, u16 param4)
 
     sub_02076AAC(param2, 2, &v0);
     v3 = Heap_AllocFromHeap(heapID, 32);
-    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, heapID);
+    v2 = Graphics_GetPlttData(v0.narcID, v0.unk_08, &v1, heapID);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);
 
-    Heap_FreeToHeap(v3);
-    Heap_FreeToHeap(v2);
+    Heap_Free(v3);
+    Heap_Free(v2);
 }
 
 Sprite *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5)
@@ -832,7 +825,7 @@ UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 heapID)
 
 void ov5_021DE6BC(UnkStruct_ov5_021DE6BC *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DE6C4(UnkStruct_ov5_021DE6BC *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9)
@@ -881,7 +874,7 @@ static UnkStruct_ov5_021DE79C *ov5_021DE784(u32 heapID)
 
 void ov5_021DE79C(UnkStruct_ov5_021DE79C *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DE7A4(UnkStruct_ov5_021DE79C *param0, int param1, int param2, int param3, int param4, int param5, Window *param6, u32 param7, u32 param8, u8 param9)
@@ -978,7 +971,7 @@ void ov5_021DE928(UnkStruct_ov5_021DE928 *param0)
         ov5_021DE79C(param0->unk_04[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DE948(UnkStruct_ov5_021DE928 *param0, u8 param1, u8 param2, Window *param3, u8 param4)
@@ -1044,7 +1037,7 @@ UnkStruct_ov5_021DEA98 *ov5_021DEA80(u32 heapID)
 
 void ov5_021DEA98(UnkStruct_ov5_021DEA98 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DEAA0(UnkStruct_ov5_021DEA98 *param0, u8 param1, u16 param2, u16 param3, Window *param4, u8 param5)
@@ -1143,7 +1136,7 @@ void ov5_021DEC18(UnkStruct_ov5_021DEC18 *param0)
         ov5_021DEA98(param0->unk_00[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DEC38(UnkStruct_ov5_021DEC18 *param0, u8 param1, Window *param2, u8 param3)
@@ -1151,7 +1144,7 @@ void ov5_021DEC38(UnkStruct_ov5_021DEC18 *param0, u8 param1, Window *param2, u8 
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        ov5_021DEAA0(param0->unk_00[v0], param1, ((Unk_ov5_021F9A2C[v0][0] * 0xffff) / 360), ((Unk_ov5_021F9A2C[v0][1] * 0xffff) / 360), param2, param3);
+        ov5_021DEAA0(param0->unk_00[v0], param1, (Unk_ov5_021F9A2C[v0][0] * 0xffff) / 360, (Unk_ov5_021F9A2C[v0][1] * 0xffff) / 360, param2, param3);
     }
 
     param0->unk_20 = 1;
@@ -1193,7 +1186,7 @@ void ov5_021DED04(UnkStruct_ov5_021DED04 *param0)
         ov5_021DEE84(param0);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov5_021DED20(EncounterEffect *param0, UnkStruct_ov5_021DED04 *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
@@ -1397,20 +1390,20 @@ void ov5_021DF070(void)
         return;
     }
 
-    sub_0201469C();
+    ParticleSystem_DrawAll();
 }
 
 void ov5_021DF084(void)
 {
     GF_ASSERT(Unk_ov5_02202120);
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov5_021DF3D4(Unk_ov5_02202120->fieldSystem);
     ov5_021D16F4(Unk_ov5_02202120->fieldSystem, 1);
     ov5_021D1718(Unk_ov5_02202120->fieldSystem, 1);
 
-    Heap_FreeToHeap(Unk_ov5_02202120);
+    Heap_Free(Unk_ov5_02202120);
     Unk_ov5_02202120 = NULL;
 }
 
@@ -1423,16 +1416,16 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
 
     Unk_ov5_02202120->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELD, 0x4800);
-    Unk_ov5_02202120->unk_08 = sub_02014014(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
+    Unk_ov5_02202120->unk_08 = ParticleSystem_New(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
-    sub_02014788(Unk_ov5_02202120->unk_08, 1);
+    ParticleSystem_SetCameraProjection(Unk_ov5_02202120->unk_08, 1);
 
-    v1 = sub_02014784(Unk_ov5_02202120->unk_08);
+    v1 = ParticleSystem_GetCamera(Unk_ov5_02202120->unk_08);
     Camera_SetClipping(FX32_ONE, FX32_ONE * 900, v1);
 
     v0 = LoadMemberFromOpenNARC(param0, param1, 0, HEAP_ID_FIELD, 0);
-    sub_020144CC(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
+    ParticleSystem_SetResource(Unk_ov5_02202120->unk_08, v0, 0 | 0, 0);
 }
 
 void ov5_021DF17C(u32 param0)
@@ -1444,7 +1437,7 @@ void ov5_021DF17C(u32 param0)
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
     for (v0 = 0; v0 < param0; v0++) {
-        sub_020146E4(Unk_ov5_02202120->unk_08, v0, &v1);
+        ParticleSystem_CreateEmitter(Unk_ov5_02202120->unk_08, v0, &v1);
     }
 }
 
@@ -1456,9 +1449,9 @@ BOOL ov5_021DF1CC(void)
         return 1;
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
 
-    if (sub_02014710(Unk_ov5_02202120->unk_08) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(Unk_ov5_02202120->unk_08) == 0) {
         return 1;
     }
 
@@ -1467,7 +1460,7 @@ BOOL ov5_021DF1CC(void)
 
 BOOL ov5_021DF208(void)
 {
-    if (sub_02014710(Unk_ov5_02202120->unk_08) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(Unk_ov5_02202120->unk_08) == 0) {
         return 1;
     }
 
@@ -1478,8 +1471,8 @@ void ov5_021DF224(void)
 {
     GF_ASSERT(Unk_ov5_02202120);
 
-    sub_0201411C(Unk_ov5_02202120->unk_08);
-    Heap_FreeToHeap(Unk_ov5_02202120->unk_0C);
+    ParticleSystem_Free(Unk_ov5_02202120->unk_08);
+    Heap_Free(Unk_ov5_02202120->unk_0C);
 
     Unk_ov5_02202120->unk_08 = NULL;
     Unk_ov5_02202120->unk_0C = NULL;
@@ -1510,7 +1503,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 2:
 
-        sub_02014000();
+        ParticleSystem_ZeroAll();
 
         {
             VecFx32 v1 = { 0 };
@@ -1527,7 +1520,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
         ov5_021D16F4(v0->fieldSystem, 0);
         ov5_021D1718(v0->fieldSystem, 0);
 
-        Bg_SetPriority(0, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 0);
 
         v0->unk_02 = 1;
         SysTask_Done(param0);
@@ -1576,7 +1569,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         {
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
 
-            Bg_SetPriority(3, 3);
+            Bg_SetPriority(BG_LAYER_MAIN_3, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
             {
@@ -1589,24 +1582,23 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
         {
             BgTemplate v3 = {
-                0,
-                0,
-                0x800,
-                0,
-                1,
-                GX_BG_COLORMODE_16,
-                GX_BG_SCRBASE_0xe800,
-                GX_BG_CHARBASE_0x00000,
-                GX_BG_EXTPLTT_23,
-                0,
-                0,
-                0,
-                0
+                .x = 0,
+                .y = 0,
+                .bufferSize = 0x800,
+                .baseTile = 0,
+                .screenSize = BG_SCREEN_SIZE_256x256,
+                .colorMode = GX_BG_COLORMODE_16,
+                .screenBase = GX_BG_SCRBASE_0xe800,
+                .charBase = GX_BG_CHARBASE_0x00000,
+                .bgExtPltt = GX_BG_EXTPLTT_23,
+                .priority = 0,
+                .areaOver = 0,
+                .mosaic = FALSE,
             };
 
-            Bg_InitFromTemplate(fieldSystem->bgConfig, 2, &v3, 0);
-            Bg_ClearTilesRange(2, 32, 0, HEAP_ID_FIELD);
-            Bg_ClearTilemap(fieldSystem->bgConfig, 2);
+            Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_2, &v3, 0);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD);
+            Bg_ClearTilemap(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
         }
     }
 
@@ -1615,7 +1607,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
 static void ov5_021DF3D4(FieldSystem *fieldSystem)
 {
-    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, 2);
+    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
     ov5_021D1434(fieldSystem->bgConfig);
 }
 

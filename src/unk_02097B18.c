@@ -4,8 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/struct_0202CA64.h"
+#include "struct_defs/seal_case.h"
 #include "struct_defs/struct_02097F18.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -20,10 +19,12 @@
 #include "bg_window.h"
 #include "field_task.h"
 #include "field_transition.h"
+#include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "mail.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
@@ -32,14 +33,12 @@
 #include "pokemon_sprite.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "system.h"
-#include "unk_0200F174.h"
+#include "touch_pad.h"
+#include "touch_screen_actions.h"
 #include "unk_02015F84.h"
-#include "unk_0201E3D8.h"
-#include "unk_02023FCC.h"
-#include "unk_02024220.h"
-#include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_0206CCB0.h"
 #include "vram_transfer.h"
@@ -60,22 +59,22 @@ typedef struct {
     UnkStruct_02097F38_sub1 *unk_04;
     UnkStruct_02097F18 *unk_08;
     PartyManagementData *unk_0C;
-    SaveData *unk_10;
+    SaveData *saveData;
     int unk_14;
 } UnkStruct_02097F38;
 
-static int sub_02097B18(OverlayManager *param0, int *param1);
-static int sub_02097D30(OverlayManager *param0, int *param1);
-static int sub_02097D88(OverlayManager *param0, int *param1);
+static int sub_02097B18(ApplicationManager *appMan, int *param1);
+static int sub_02097D30(ApplicationManager *appMan, int *param1);
+static int sub_02097D88(ApplicationManager *appMan, int *param1);
 
-const OverlayManagerTemplate Unk_020F64C0 = {
+const ApplicationManagerTemplate Unk_020F64C0 = {
     sub_02097B18,
     sub_02097D30,
     sub_02097D88,
     FS_OVERLAY_ID(overlay76),
 };
 
-static int sub_02097B18(OverlayManager *param0, int *param1)
+static int sub_02097B18(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov76_0223DE00 *v0;
     UnkStruct_02097F18 *v1;
@@ -84,11 +83,11 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov76_0223DE00), HEAP_ID_53);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov76_0223DE00), HEAP_ID_53);
     memset(v0, 0, sizeof(UnkStruct_ov76_0223DE00));
 
     v0->unk_D4.unk_15C = ov76_0223BE6C();
-    v1 = OverlayManager_Args(param0);
+    v1 = ApplicationManager_Args(appMan);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53);
     v0->unk_428 = Pokemon_New(HEAP_ID_53);
@@ -108,35 +107,35 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
         v0->unk_418.unk_04 = (sub_0202CBA8(v0->unk_00->unk_20) / 8) + v2;
     }
 
-    if (v0->unk_418.unk_04 > ((80 + 1) / 8)) {
-        v0->unk_418.unk_04 = ((80 + 1) / 8);
+    if (v0->unk_418.unk_04 > (SEAL_ID_MAX / 8)) {
+        v0->unk_418.unk_04 = (SEAL_ID_MAX / 8);
     }
 
     v0->unk_3C4[0] = sub_02097F18(v0->unk_00);
     v0->unk_3C4[1] = sub_02097F18(v0->unk_00);
 
     {
-        int v4;
-        int v5;
-        UnkStruct_0202CA28 *v6;
+        int i;
+        int capsuleId;
+        BallCapsule *capsule;
 
-        v0->unk_64 = sub_0202CA88(v0->unk_00->unk_20);
+        v0->unk_64 = SealCase_GetSealsObtained(v0->unk_00->unk_20);
 
-        for (v4 = 0; v4 < 12; v4++) {
-            v6 = sub_0202CA28(v0->unk_00->unk_20, v4);
-            v0->unk_04[v4].unk_00 = 0xff;
-            v0->unk_04[v4].unk_04 = v6;
+        for (i = 0; i < TOTAL_CAPSULES; i++) {
+            capsule = SealCase_GetCapsuleById(v0->unk_00->unk_20, i);
+            v0->unk_04[i].unk_00 = 0xff;
+            v0->unk_04[i].unk_04 = capsule;
         }
 
-        for (v4 = 0; v4 < 6; v4++) {
-            if (v0->unk_00->unk_04[v4] == NULL) {
+        for (i = 0; i < 6; i++) {
+            if (v0->unk_00->unk_04[i] == NULL) {
                 continue;
             }
 
-            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_MAIL_ID, 0);
+            capsuleId = Pokemon_GetValue(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
 
-            if (v5 != 0) {
-                v0->unk_04[v5 - 1].unk_00 = v4;
+            if (capsuleId != 0) {
+                v0->unk_04[capsuleId - 1].unk_00 = i;
             }
         }
     }
@@ -156,21 +155,17 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     v0->unk_D4.unk_D0 = PokemonSpriteManager_New(HEAP_ID_53);
     v0->unk_D4.unk_188 = sub_02015F84(HEAP_ID_53, 1, 0);
 
-    {
-        int v7;
-
-        v7 = Options_Frame(v0->unk_00->unk_24);
-        ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
-        ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
-    }
+    int v7 = Options_Frame(v0->unk_00->options);
+    ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
+    ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
 
     ov76_0223C398(&v0->unk_D4);
 
     {
         u32 v8;
 
-        sub_0201E3D8();
-        v8 = sub_0201E450(4);
+        EnableTouchPad();
+        v8 = InitializeTouchPad(4);
 
         if (v8 != 1) {
             (void)0;
@@ -185,13 +180,13 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int sub_02097D30(OverlayManager *param0, int *param1)
+static int sub_02097D30(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -207,7 +202,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
         ov76_0223BF50();
     } break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -216,9 +211,9 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static int sub_02097D88(OverlayManager *param0, int *param1)
+static int sub_02097D88(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov76_0223DE00 *v0 = ApplicationManager_Data(appMan);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -235,30 +230,30 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 5);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 6);
     Bg_FreeTilemapBuffer(v0->unk_D4.unk_10, 7);
-    Heap_FreeToHeap(v0->unk_D4.unk_10);
+    Heap_Free(v0->unk_D4.unk_10);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 0);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 1);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 2);
     PaletteData_FreeBuffer(v0->unk_D4.unk_14, 3);
     PaletteData_Free(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
-    Heap_FreeToHeap(v0->unk_428);
+    Heap_Free(v0->unk_428);
     ov76_0223B678(v0);
-    sub_02024034(v0->unk_D4.unk_F8);
+    TouchScreenActions_Free(v0->unk_D4.unk_F8);
     PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
     VramTransfer_Free();
-    sub_020242C4(v0->unk_D4.unk_15C);
+    G3DPipelineBuffers_Free(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
 
     {
         u32 v1;
 
-        v1 = sub_0201E530();
+        v1 = DisableTouchPad();
 
         if (v1 != 1) {
             (void)0;
@@ -314,14 +309,14 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 0:
 
         FieldTransition_FinishMap(param0);
-        v1->unk_20 = SaveData_GetBallSeals(v0->unk_10);
+        v1->unk_20 = SaveData_GetSealCase(v0->saveData);
         sub_02097F20(v1, 0);
 
         {
             int v3;
             int v4;
 
-            v1->unk_1C = SaveData_GetParty(v0->unk_10);
+            v1->unk_1C = SaveData_GetParty(v0->saveData);
             v4 = Party_GetCurrentCount(v1->unk_1C);
             v1->unk_00 = v4;
 
@@ -357,43 +352,43 @@ static BOOL sub_02097F38(FieldTask *param0)
         }
     } break;
     case 3: {
-        PartyManagementData *v6 = v0->unk_0C;
+        PartyManagementData *partyMan = v0->unk_0C;
 
-        v6->unk_00 = v1->unk_1C;
-        v6->unk_04 = SaveData_GetBag(v0->unk_10);
-        v6->unk_08 = SaveData_GetMailBox(v0->unk_10);
-        v6->selectedMonSlot = 0;
-        v6->unk_21 = 0;
-        v6->unk_20 = 15;
-        v6->unk_0C = v1->unk_24;
+        partyMan->party = v1->unk_1C;
+        partyMan->bag = SaveData_GetBag(v0->saveData);
+        partyMan->mailbox = SaveData_GetMailbox(v0->saveData);
+        partyMan->selectedMonSlot = 0;
+        partyMan->unk_21 = 0;
+        partyMan->unk_20 = 15;
+        partyMan->options = v1->options;
 
-        FieldTask_RunApplication(param0, &Unk_020F1E88, v6);
+        FieldTask_RunApplication(param0, &Unk_020F1E88, partyMan);
         v0->unk_14 = 4;
     } break;
     case 4: {
-        PartyManagementData *v7 = v0->unk_0C;
+        PartyManagementData *partyMan = v0->unk_0C;
         Pokemon *v8;
-        UnkStruct_0202CA28 *v9;
-        UnkStruct_0202CA64 *v10;
-        TVBroadcast *v11;
+        BallCapsule *v9;
+        BallSeal *v10;
+        TVBroadcast *broadcast;
         int v12;
         int v13;
 
         v13 = sub_02097F18(v0->unk_08) + 1;
 
-        if (v7->selectedMonSlot != 7) {
-            v8 = sub_02097F00(v0->unk_08, v7->selectedMonSlot);
+        if (partyMan->selectedMonSlot != 7) {
+            v8 = sub_02097F00(v0->unk_08, partyMan->selectedMonSlot);
 
-            Pokemon_SetValue(v8, MON_DATA_MAIL_ID, (u8 *)&v13);
-            Pokemon_SetValue(v8, MON_DATA_171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE_ID, (u8 *)&v13);
+            Pokemon_SetValue(v8, MON_DATA_BALL_CAPSULE, SealCase_GetCapsuleById(v1->unk_20, v13 - 1));
 
-            v9 = sub_0202CA28(v1->unk_20, v13 - 1);
-            v10 = sub_0202CA64(v9, 0);
-            v12 = sub_0202CA7C(v10);
+            v9 = SealCase_GetCapsuleById(v1->unk_20, v13 - 1);
+            v10 = BallCapsule_GetBallSeals(v9, 0);
+            v12 = BallSeal_GetSealType(v10);
             v12 = sub_02098164(v12);
-            v11 = SaveData_GetTVBroadcast(fieldSystem->saveData);
+            broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
 
-            sub_0206D9B4(v11, v8, v12);
+            sub_0206D9B4(broadcast, v8, v12);
         }
     }
         v0->unk_14 = 1;
@@ -403,25 +398,25 @@ static BOOL sub_02097F38(FieldTask *param0)
         v0->unk_14 = 6;
         break;
     case 6:
-        Heap_FreeToHeap(v0->unk_0C);
-        Heap_FreeToHeap(v0->unk_08);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0->unk_0C);
+        Heap_Free(v0->unk_08);
+        Heap_Free(v0);
         return 1;
     }
 
     return 0;
 }
 
-void sub_020980DC(FieldTask *param0, SaveData *param1)
+void sub_020980DC(FieldTask *param0, SaveData *saveData)
 {
-    UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
+    UnkStruct_02097F38 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F38));
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
-    v0->unk_10 = param1;
+    v0->saveData = saveData;
     v0->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
-    v0->unk_08->unk_24 = SaveData_GetOptions(param1);
-    v0->unk_08->unk_28 = param1;
+    v0->unk_08->options = SaveData_GetOptions(saveData);
+    v0->unk_08->saveData = saveData;
     v0->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 
@@ -438,7 +433,7 @@ typedef struct {
     u8 unk_08;
 } UnkStruct_020F64D0;
 
-static const UnkStruct_020F64D0 Unk_020F64D0[(80 + 1)] = {
+static const UnkStruct_020F64D0 Unk_020F64D0[SEAL_ID_MAX] = {
     { 0xB8, 0x0, 0x125, 0x25, 0x0, 0x3E7, 0x0 },
     { 0xB9, 0x1, 0x125, 0x25, 0x0, 0x32, 0x0 },
     { 0xBA, 0x2, 0x125, 0x26, 0x0, 0x32, 0x1 },

@@ -66,7 +66,7 @@ void ov20_021D3A80(UnkStruct_ov20_021D3E0C *param0)
         Sprite_Delete(param0->unk_5C);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
@@ -84,8 +84,8 @@ void ov20_021D3A98(UnkStruct_ov20_021D3E0C *param0, NARC *param1)
     v1 = ov20_021D3C78(param0, v0, v1);
 
     ov20_021D3D44(param0, v0, v1);
-    Bg_SetOffset(v0, 1, 0, -4);
-    Bg_SetOffset(v0, 1, 3, 2);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_1, 0, -4);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_1, 3, 2);
     ov20_021D3E0C(param0);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG1, -10);
@@ -105,7 +105,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     Strbuf *v5;
     u32 v6, v7;
 
-    v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0436, HEAP_ID_35);
+    v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EASY_CHAT_GROUPS, HEAP_ID_35);
 
     v1 = 1;
     v2 = 9;
@@ -199,7 +199,7 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     Strbuf *v3;
     int v4, v5;
 
-    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0436, HEAP_ID_35);
+    v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EASY_CHAT_GROUPS, HEAP_ID_35);
     v3 = MessageLoader_GetNewStrbuf(v2, 13);
     v5 = ((8 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0)) / 2;
 
@@ -229,7 +229,7 @@ static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C *param0)
     ov20_021D2E0C(param0->unk_00, &v0, 0, 1);
     param0->unk_5C = ov20_021D2E50(param0->unk_00, &v0, 48, 54, 2, NNS_G2D_VRAM_TYPE_2DMAIN);
     Sprite_SetAnim(param0->unk_5C, 4);
-    Sprite_SetDrawFlag(param0->unk_5C, 0);
+    Sprite_SetDrawFlag(param0->unk_5C, FALSE);
 }
 
 void ov20_021D3E48(UnkStruct_ov20_021D3E0C *param0, BOOL param1)
@@ -326,7 +326,7 @@ BOOL ov20_021D3F84(UnkStruct_ov20_021D3E0C *param0)
 
 void ov20_021D3FD0(UnkStruct_ov20_021D3E0C *param0)
 {
-    Bg_SetOffset(param0->unk_0C, 1, 3, 2);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_1, 3, 2);
 }
 
 void ov20_021D3FE0(UnkStruct_ov20_021D3E0C *param0)
@@ -347,7 +347,7 @@ void ov20_021D4004(UnkStruct_ov20_021D3E0C *param0)
 BOOL ov20_021D4020(UnkStruct_ov20_021D3E0C *param0)
 {
     if (ov20_021D4F4C(&param0->unk_1C)) {
-        Bg_ToggleLayer(1, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
         return 1;
     }
 
@@ -357,7 +357,7 @@ BOOL ov20_021D4020(UnkStruct_ov20_021D3E0C *param0)
 void ov20_021D403C(UnkStruct_ov20_021D3E0C *param0)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_ALL, 0, 16);
-    Bg_ToggleLayer(1, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
     ov20_021D4F1C(&param0->unk_1C, GX_BLEND_PLANEMASK_BG1, GX_BLEND_ALL, 0, 124, (6 * 2));
 }
 
@@ -376,7 +376,7 @@ void ov20_021D4084(UnkStruct_ov20_021D3E0C *param0)
         v0 = 252;
     }
 
-    Bg_SetOffset(param0->unk_0C, 1, 0, v0);
+    Bg_SetOffset(param0->unk_0C, BG_LAYER_MAIN_1, 0, v0);
 }
 
 void ov20_021D40A8(UnkStruct_ov20_021D3E0C *param0)

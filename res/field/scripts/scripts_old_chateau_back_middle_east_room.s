@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _002E
@@ -29,11 +28,11 @@ _002E:
 
     .balign 4, 0
 _004C:
-    MoveAction_065
-    MoveAction_001
-    MoveAction_065
-    MoveAction_073
-    MoveAction_013 2
-    MoveAction_074
-    MoveAction_069
+    Delay16
+    FaceSouth
+    Delay16
+    PauseAnimation
+    WalkNormalSouth 2
+    ResumeAnimation
+    SetInvisible
     EndMovement

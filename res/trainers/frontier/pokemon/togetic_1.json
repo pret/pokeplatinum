@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_TOGETIC",
+    "moves": [
+        "MOVE_AIR_CUTTER",
+        "MOVE_SWIFT",
+        "MOVE_MAGICAL_LEAF",
+        "MOVE_WISH"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": true
+    },
+    "nature": "NATURE_CALM",
+    "item": "ITEM_CHESTO_BERRY",
+    "form": 0
+}

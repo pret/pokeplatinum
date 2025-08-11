@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FAKE_OUT" ],
@@ -93,6 +94,14 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_BITE",
+            "MOVE_TAIL_WHIP",
+            "MOVE_QUICK_ATTACK",
+            "MOVE_SAND_ATTACK",
+            "MOVE_FAKE_TEARS",
+            "MOVE_ASSURANCE"
         ]
     },
     "evolutions": [
@@ -102,9 +111,11 @@
             "SPECIES_PURUGLY"
         ]
     ],
+    "offspring": "SPECIES_GLAMEOW",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 5,

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_1f.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0035
@@ -48,7 +47,7 @@ _005B:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT
     ReleaseAll
     End
@@ -58,7 +57,7 @@ _0071:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT
     ReleaseAll
     End
@@ -120,6 +119,4 @@ _0129:
     SetVar VAR_0x8004, ACCESSORY_CHIMCHAR_MASK
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

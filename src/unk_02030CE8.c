@@ -3,19 +3,19 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02030CEC.h"
+#include "struct_defs/wi_fi_history.h"
 
 #include "overlay096/struct_ov96_0223B574.h"
 
 #include "charcode_util.h"
-#include "math.h"
+#include "math_util.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
 #include "unk_0202C858.h"
 
-static void sub_02030DD0(SaveData *param0, UnkStruct_ov96_0223B574 *param1);
+static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1);
 
 int Email_SaveSize(void)
 {
@@ -102,34 +102,34 @@ u32 sub_02030D98(SaveData *saveData, int param1)
     return 0;
 }
 
-static void sub_02030DD0(SaveData *param0, UnkStruct_ov96_0223B574 *param1)
+static void sub_02030DD0(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
 {
-    UnkStruct_0202C878 *v0 = sub_0202C878(param0);
-    TrainerInfo *v1 = SaveData_GetTrainerInfo(param0);
-    char *v2 = sub_02030D50(param0);
+    WiFiHistory *wiFiHistory = SaveData_WiFiHistory(saveData);
+    TrainerInfo *v1 = SaveData_GetTrainerInfo(saveData);
+    char *v2 = sub_02030D50(saveData);
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov96_0223B574));
 
     param1->unk_00 = GAME_VERSION;
     param1->unk_01 = GAME_LANGUAGE;
-    param1->unk_02 = sub_0202C8C0(v0);
-    param1->unk_03 = sub_0202C8C4(v0);
+    param1->unk_02 = WiFiHistory_GetCountry(wiFiHistory);
+    param1->unk_03 = sub_0202C8C4(wiFiHistory);
     param1->unk_04 = TrainerInfo_ID(v1);
 
     CharCode_Copy(param1->unk_08, TrainerInfo_Name(v1));
     param1->unk_10 = 0;
 
     strcpy(param1->unk_1C, v2);
-    param1->unk_54 = sub_02030D98(param0, 0);
+    param1->unk_54 = sub_02030D98(saveData, 0);
 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_EMAIL);
 }
 
-u32 sub_02030E48(SaveData *param0, UnkStruct_ov96_0223B574 *param1)
+u32 sub_02030E48(SaveData *saveData, UnkStruct_ov96_0223B574 *param1)
 {
     u32 v0;
 
-    sub_02030DD0(param0, param1);
+    sub_02030DD0(saveData, param1);
 
     v0 = LCRNG_Next() % 1000;
 

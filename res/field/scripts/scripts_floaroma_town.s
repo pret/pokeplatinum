@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town.h"
 
-    .data
 
     ScriptEntry _002E
     ScriptEntry _0030
@@ -36,12 +35,12 @@ _0030:
 
     .balign 4, 0
 _005C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0064:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _006C:
@@ -67,8 +66,8 @@ _0099:
 
     .balign 4, 0
 _00A4:
-    MoveAction_000
-    MoveAction_063 3
+    FaceNorth
+    Delay8 3
     EndMovement
 
 _00B0:
@@ -157,4 +156,4 @@ _01B3:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/trainer_classes.h"
+
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 
@@ -210,7 +212,7 @@ static u16 FieldSystem_GetAltMusicForCyclingRoad(FieldSystem *fieldSystem, int h
         return SEQ_NONE;
     }
 
-    if ((location->mapId == 80) || (location->mapId == 351)) {
+    if ((location->mapId == MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE) || (location->mapId == MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE)) {
         if (x < 299) {
             return 0;
         }

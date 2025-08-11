@@ -60,12 +60,12 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F007C *v0 = param2;
 
-    v0->unk_00 = Graphics_GetPlttData(65, 55, &v0->unk_04, HEAP_ID_FIELD);
+    v0->unk_00 = Graphics_GetPlttData(NARC_INDEX_DATA__WEATHER_SYS, 55, &v0->unk_04, HEAP_ID_FIELD);
     v0->unk_3C = 0;
 
     ov5_021F02B8(&v0->unk_28, 0, 8, 19);
 
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
@@ -74,7 +74,7 @@ static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 {
     UnkStruct_ov5_021F007C *v0 = param2;
 
-    v0->unk_00 = Graphics_GetPlttData(65, 55, &v0->unk_04, HEAP_ID_FIELD);
+    v0->unk_00 = Graphics_GetPlttData(NARC_INDEX_DATA__WEATHER_SYS, 55, &v0->unk_04, HEAP_ID_FIELD);
     v0->unk_3C = 0;
 
     ov5_021F02B8(&v0->unk_28, 8, 0, 19);
@@ -85,7 +85,7 @@ static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 static void ov5_021F00E4(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
 {
     UnkStruct_ov5_021F007C *v0 = param2;
-    Heap_FreeToHeap(v0->unk_00);
+    Heap_Free(v0->unk_00);
 }
 
 static void ov5_021F00F0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
@@ -118,7 +118,7 @@ static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     G2_SetBlendAlpha((GX_PLANEMASK_BG2), GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 0, 16 - 0);
 
-    Bg_SetPriority(2, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
@@ -247,7 +247,7 @@ static void ov5_021F0260(BgConfig *param0)
     memset(v1, 0x11, sizeof(u8) * 32);
 
     Bg_LoadTiles(param0, 2, v1, sizeof(u8) * 32, 1);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
     Bg_FillTilemap(param0, 2, (6 << 12) | 1);
 }
 
@@ -278,12 +278,12 @@ static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0)
 
 static void ov5_021F02F4(FieldSystem *fieldSystem)
 {
-    Bg_MaskPalette(2, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_2, 0);
 }
 
 static void ov5_021F0300(FieldSystem *fieldSystem)
 {
-    Bg_MaskPalette(2, 0x7fff);
+    Bg_MaskPalette(BG_LAYER_MAIN_2, 0x7fff);
 }
 
 static void ov5_021F0310(FieldSystem *fieldSystem)
@@ -411,7 +411,7 @@ static void ov5_021F0468(UnkStruct_ov5_021F0468 *param0)
         param0->unk_00 = NULL;
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 u32 ov5_021F0484(void)
@@ -449,7 +449,7 @@ BOOL ov5_021F0488(FieldTask *param0)
 
         v1->unk_0C = 2;
 
-        Bg_SetPriority(2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
         GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
         break;
     case 2:
@@ -510,11 +510,11 @@ BOOL ov5_021F0488(FieldTask *param0)
             if (v1->unk_08 == 0) {
                 GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
                 G2_BlendNone();
-                Bg_SetPriority(2, 3);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 3);
 
-                Bg_ClearTilemap(fieldSystem->bgConfig, 2);
+                Bg_ClearTilemap(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
             } else {
-                Bg_SetPriority(2, 1);
+                Bg_SetPriority(BG_LAYER_MAIN_2, 1);
             }
 
             v1->unk_0C = 8;

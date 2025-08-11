@@ -6,16 +6,15 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
-#include "overlay104/struct_ov104_0223A348_sub2.h"
 #include "savedata/save_table.h"
 
 #include "field_overworld_state.h"
@@ -25,7 +24,7 @@
 #include "inlines.h"
 #include "journal.h"
 #include "location.h"
-#include "math.h"
+#include "math_util.h"
 #include "party.h"
 #include "player_avatar.h"
 #include "pokemon.h"
@@ -47,9 +46,9 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_02049D38;
 
-static u16 sub_0204AC54(SaveData *param0, u8 param1, UnkStruct_0204AFC4 *param2);
+static u16 sub_0204AC54(SaveData *saveData, u8 param1, UnkStruct_0204AFC4 *param2);
 static u16 sub_0204ACC8(UnkStruct_0204AFC4 *param0);
-static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *param1, int param2);
+static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *saveData, int param2);
 
 u16 sub_02049D08(u16 param0)
 {
@@ -157,7 +156,7 @@ static BOOL sub_02049DB4(UnkStruct_02049D38 *param0, int param1, int param2, int
     return 0;
 }
 
-BOOL sub_02049EC4(u16 param0, SaveData *param1, u8 param2)
+BOOL sub_02049EC4(u16 param0, SaveData *saveData, u8 param2)
 {
     u8 v0, v1, v2, v3;
     u16 v4, v5;
@@ -165,7 +164,7 @@ BOOL sub_02049EC4(u16 param0, SaveData *param1, u8 param2)
     Pokemon *v7;
     UnkStruct_02049D38 v8[6];
 
-    v6 = SaveData_GetParty(param1);
+    v6 = SaveData_GetParty(saveData);
     v3 = Party_GetCurrentCount(v6);
 
     if (v3 < param0) {
@@ -237,7 +236,7 @@ void sub_02049FE8(FieldSystem *fieldSystem)
     SystemFlag_ClearCommunicationClubAccessible(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
-u16 sub_02049FF8(SaveData *param0, u16 param1)
+u16 sub_02049FF8(SaveData *saveData, u16 param1)
 {
     u16 v0;
 
@@ -246,18 +245,18 @@ u16 sub_02049FF8(SaveData *param0, u16 param1)
     }
 
     if (param1 == 6) {
-        v0 = sub_02030698(SaveData_GetBattleFrontier(param0), 113, sub_0205E6A8(113));
+        v0 = sub_02030698(SaveData_GetBattleFrontier(saveData), 113, sub_0205E6A8(113));
         return v0;
     }
 
-    v0 = sub_02030698(SaveData_GetBattleFrontier(param0), 1 + param1 * 2, 0xff);
+    v0 = sub_02030698(SaveData_GetBattleFrontier(saveData), 1 + param1 * 2, 0xff);
 
     return v0;
 }
 
-void sub_0204A030(SaveData *param0, u8 param1)
+void sub_0204A030(SaveData *saveData, u8 param1)
 {
-    UnkStruct_0202D750 *v0 = sub_0202D750(param0);
+    UnkStruct_0202D750 *v0 = sub_0202D750(saveData);
 
     if (param1 == 0) {
         sub_0202D414(v0, 5, 2);
@@ -266,21 +265,18 @@ void sub_0204A030(SaveData *param0, u8 param1)
     }
 }
 
-u16 sub_0204A050(SaveData *param0)
+u16 sub_0204A050(SaveData *saveData)
 {
-    UnkStruct_0202D750 *v0 = sub_0202D750(param0);
+    UnkStruct_0202D750 *v0 = sub_0202D750(saveData);
     return (u16)sub_0202D414(v0, 5, 0);
 }
 
-u16 sub_0204A064(SaveData *param0)
+u16 sub_0204A064(SaveData *saveData)
 {
     u8 v0;
     int v1;
-    UnkStruct_0202D060 *v2;
-    UnkStruct_0202D750 *v3;
-
-    v2 = sub_0202D740(param0);
-    v3 = sub_0202D750(param0);
+    UnkStruct_0202D060 *v2 = sub_0202D740(saveData);
+    UnkStruct_0202D750 *v3 = sub_0202D750(saveData);
     v0 = (u8)sub_0202D0BC(v2, 0, NULL);
 
     if (v0 == 5) {
@@ -288,24 +284,24 @@ u16 sub_0204A064(SaveData *param0)
     }
 
     if (v0 == 6) {
-        sub_020306E4(SaveData_GetBattleFrontier(param0), 100, sub_0205E6A8(100), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 0);
     } else {
         sub_0202D414(v3, 8 + v0, 2);
     }
 
     sub_0202D3B4(v3, v0, 2);
-    sub_020306E4(SaveData_GetBattleFrontier(param0), sub_0205E750(v0), sub_0205E6A8(sub_0205E750(v0)), 0);
+    sub_020306E4(SaveData_GetBattleFrontier(saveData), sub_0205E750(v0), sub_0205E6A8(sub_0205E750(v0)), 0);
 
     if ((v0 != 4) && (v0 != 6)) {
-        sub_0206C02C(param0);
+        sub_0206C02C(saveData);
     }
 
     return v0;
 }
 
-u16 sub_0204A100(SaveData *param0)
+u16 sub_0204A100(SaveData *saveData)
 {
-    UnkStruct_0202D764 *v0 = sub_0202D764(param0);
+    UnkStruct_0202D764 *v0 = sub_0202D764(saveData);
     return (u16)sub_0202D5E8(v0);
 }
 
@@ -315,20 +311,20 @@ void sub_0204A110(UnkStruct_0204AFC4 **param0)
     *param0 = NULL;
 }
 
-UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
+UnkStruct_0204AFC4 *sub_0204A124(SaveData *saveData, u16 param1, u16 param2)
 {
     u8 v0;
     u16 v1, v2;
     UnkStruct_0204AFC4 *v3;
-    BattleFrontier *v4;
+    BattleFrontier *frontier;
     GameRecords *v5;
 
     v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
 
     v3->heapID = HEAP_ID_FIELDMAP;
-    v3->unk_70 = sub_0202D740(param0);
-    v3->unk_74 = sub_0202D750(param0);
+    v3->unk_70 = sub_0202D740(saveData);
+    v3->unk_74 = sub_0202D750(saveData);
     v3->unk_00 = 0x12345678;
 
     sub_0202D21C(v3->unk_70, 0);
@@ -369,14 +365,14 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
         }
     }
 
-    v3->unk_11 = TrainerInfo_Gender(SaveData_GetTrainerInfo(param0));
+    v3->unk_11 = TrainerInfo_Gender(SaveData_GetTrainerInfo(saveData));
 
     if (v3->unk_0F != 5) {
-        v4 = SaveData_GetBattleFrontier(param0);
-        v5 = SaveData_GetGameRecords(param0);
+        frontier = SaveData_GetBattleFrontier(saveData);
+        v5 = SaveData_GetGameRecords(saveData);
 
         if (v3->unk_0F == 6) {
-            v2 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(param0));
+            v2 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(saveData));
         } else {
             v2 = sub_0202D414(v3->unk_74, 8 + v3->unk_0F, 0);
         }
@@ -384,10 +380,10 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
         if (v2) {
             if (v3->unk_0F == 6) {
                 v3->unk_1A = sub_02030698(
-                    v4, 113, sub_0205E6A8(113));
+                    frontier, 113, sub_0205E6A8(113));
             } else {
                 v3->unk_1A = sub_02030698(
-                    v4, 1 + v3->unk_0F * 2, 0xff);
+                    frontier, 1 + v3->unk_0F * 2, 0xff);
             }
 
             v3->unk_1C = sub_0202D3B4(v3->unk_74, v3->unk_0F, 0);
@@ -415,7 +411,7 @@ void sub_0204A32C(UnkStruct_0204AFC4 *param0)
     v0 = param0->heapID;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_0204AFC4));
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     param0 = NULL;
 }
@@ -425,41 +421,41 @@ void sub_0204A358(UnkStruct_0204AFC4 *param0, FieldTask *param1, void **param2)
     sub_0206BBFC(param1, param2, 17, 0, param0->unk_0E, param0->unk_0E, 100, 0);
 }
 
-BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *param2)
+BOOL sub_0204A378(UnkStruct_0204AFC4 *param0, void **param1, SaveData *saveData)
 {
     u16 v0 = 0;
-    PartyManagementData *v1 = *param1;
+    PartyManagementData *partyMan = *param1;
     Party *v2;
     Pokemon *v3;
 
-    if ((v1->unk_23 != 0) || (v1->selectedMonSlot == 7)) {
-        Heap_FreeToHeap(*param1);
+    if ((partyMan->menuSelectionResult != 0) || (partyMan->selectedMonSlot == 7)) {
+        Heap_Free(*param1);
         *param1 = NULL;
         return 0;
     }
 
-    v2 = SaveData_GetParty(param2);
+    v2 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
-        param0->unk_2A[v0] = v1->unk_2C[v0] - 1;
+        param0->unk_2A[v0] = partyMan->unk_2C[v0] - 1;
         v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
         param0->unk_2E[v0] = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
         param0->unk_36[v0] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
     }
 
-    Heap_FreeToHeap(*param1);
+    Heap_Free(*param1);
     *param1 = NULL;
     return 1;
 }
 
-int sub_0204A410(UnkStruct_0204AFC4 *param0, SaveData *param1)
+int sub_0204A410(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     u16 v0 = 0, v1 = 0;
     u16 v2[4], v3[4];
     Party *v4;
     Pokemon *v5;
 
-    v4 = SaveData_GetParty(param1);
+    v4 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         v5 = Party_GetPokemonBySlotIndex(v4, param0->unk_2A[v0]);
@@ -497,7 +493,7 @@ static BOOL sub_0204A4A0(u16 *param0, u16 param1, u16 param2)
     return 0;
 }
 
-void sub_0204A4C8(UnkStruct_0204AFC4 *param0, SaveData *param1)
+void sub_0204A4C8(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     int v0;
     u16 v1, v2;
@@ -546,7 +542,7 @@ BOOL sub_0204A57C(UnkStruct_0204AFC4 *param0)
     return 0;
 }
 
-static void sub_0204A5A0(UnkStruct_0204AFC4 *param0, SaveData *param1, u16 param2)
+static void sub_0204A5A0(UnkStruct_0204AFC4 *param0, SaveData *saveData, u16 param2)
 {
     Party *v0;
 
@@ -554,29 +550,29 @@ static void sub_0204A5A0(UnkStruct_0204AFC4 *param0, SaveData *param1, u16 param
         return;
     }
 
-    v0 = SaveData_GetParty(param1);
+    v0 = SaveData_GetParty(saveData);
 
     if (param0->unk_0F == 0) {
-        sub_0206DBB0(param1, param2, Party_GetPokemonBySlotIndex(v0, param0->unk_2A[0]), 1);
+        sub_0206DBB0(saveData, param2, Party_GetPokemonBySlotIndex(v0, param0->unk_2A[0]), 1);
     } else {
-        sub_0206DBB0(param1, param2, Party_GetPokemonBySlotIndex(v0, param0->unk_2A[0]), 0);
+        sub_0206DBB0(saveData, param2, Party_GetPokemonBySlotIndex(v0, param0->unk_2A[0]), 0);
     }
 }
 
-static void sub_0204A5EC(UnkStruct_0204AFC4 *param0, SaveData *param1, u8 param2, u16 param3)
+static void sub_0204A5EC(UnkStruct_0204AFC4 *param0, SaveData *saveData, u8 param2, u16 param3)
 {
     u8 v0;
 
     switch (param0->unk_0F) {
     case 0:
-        sub_0204AE20(param0, param1, 0);
+        sub_0204AE20(param0, saveData, 0);
     case 1:
         if (param3 >= 7) {
-            sub_0206CFE4(SaveData_GetTVBroadcast(param1), param2, param3);
+            sub_0206CFE4(SaveData_GetTVBroadcast(saveData), param2, param3);
         }
         break;
     case 4:
-        sub_0204AE20(param0, param1, 1);
+        sub_0204AE20(param0, saveData, 1);
         sub_0202D1E8(param0->unk_70, param0->unk_28, param0->unk_24, param0->unk_26);
 
         v0 = param0->unk_0F;
@@ -591,13 +587,13 @@ static void sub_0204A5EC(UnkStruct_0204AFC4 *param0, SaveData *param1, u8 param2
     }
 }
 
-void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *param1)
+void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     u32 v0 = 0;
     int v1;
     u16 v2, v3, v4;
-    GameRecords *v5 = SaveData_GetGameRecords(param1);
-    BattleFrontier *v6 = SaveData_GetBattleFrontier(param1);
+    GameRecords *v5 = SaveData_GetGameRecords(saveData);
+    BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
 
     if (param0->unk_0F == 5) {
         return;
@@ -609,25 +605,25 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *param1)
         v1 = param0->unk_0F * 2 + 0;
     }
 
-    v2 = sub_02030698(v6, v1, sub_0205E6A8(v1));
-    v3 = sub_02030848(v6, v1, sub_0205E6A8(v1), param0->unk_1A + param0->unk_0D);
+    v2 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
+    v3 = sub_02030848(frontier, v1, sub_0205E6A8(v1), param0->unk_1A + param0->unk_0D);
 
     if (v3 > 1) {
         if ((v2 < v3) || ((v2 == v3) && (v3 % 7 == 0))) {
-            sub_0204A5A0(param0, param1, v3);
+            sub_0204A5A0(param0, saveData, v3);
         }
     }
 
     if (param0->unk_0F == 6) {
-        v4 = sub_02030698(SaveData_GetBattleFrontier(param1), 100, sub_0205E6A8(100));
+        v4 = sub_02030698(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100));
     } else {
         v4 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(v6, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
 
     if (param0->unk_0F == 6) {
-        sub_020306E4(SaveData_GetBattleFrontier(param1), 100, sub_0205E6A8(100), 0);
+        sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 0);
     } else {
         sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 2);
     }
@@ -636,7 +632,7 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *param1)
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 2);
 
     if (param0->unk_0F != 6) {
-        GameRecords_AddToRecordValue(SaveData_GetGameRecords(param1), RECORD_UNK_015, 1);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecords(saveData), RECORD_UNK_015, 1);
     }
 
     sub_0204ACC8(param0);
@@ -647,24 +643,24 @@ void sub_0204A660(UnkStruct_0204AFC4 *param0, SaveData *param1)
         v0 = 9999;
     }
 
-    sub_0204A5EC(param0, param1, 0, v0);
+    sub_0204A5EC(param0, saveData, 0, v0);
 }
 
-void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, JournalEntry *journalEntry)
+void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *saveData, JournalEntry *journalEntry)
 {
     u32 v0 = 0;
     int v1;
     void *journalEntryOnlineEvent;
     u16 v3, v4, v5;
     GameRecords *v6;
-    BattleFrontier *v7;
+    BattleFrontier *frontier;
 
     if (param0->unk_0F == 5) {
         return;
     }
 
-    v6 = SaveData_GetGameRecords(param1);
-    v7 = SaveData_GetBattleFrontier(param1);
+    v6 = SaveData_GetGameRecords(saveData);
+    frontier = SaveData_GetBattleFrontier(saveData);
 
     if (param0->unk_0F == 6) {
         v1 = 112;
@@ -673,21 +669,21 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, JournalEntry *jo
     }
 
     if (param0->unk_0F == 6) {
-        v5 = sub_02030698(SaveData_GetBattleFrontier(param1), 100, sub_0205E6A8(100));
+        v5 = sub_02030698(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100));
     } else {
         v5 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
-    v0 = sub_020306E4(v7, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
+    v0 = sub_020306E4(frontier, v1 + 1, sub_0205E6A8(v1 + 1), (param0->unk_1A + param0->unk_0D));
 
     if (param0->unk_0F == 6) {
-        sub_020306E4(SaveData_GetBattleFrontier(param1), 100, sub_0205E6A8(100), 1);
+        sub_020306E4(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100), 1);
     } else {
         sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 1);
     }
 
-    v3 = sub_02030698(v7, v1, sub_0205E6A8(v1));
-    v4 = sub_02030848(v7, v1, sub_0205E6A8(v1), v0);
+    v3 = sub_02030698(frontier, v1, sub_0205E6A8(v1));
+    v4 = sub_02030848(frontier, v1, sub_0205E6A8(v1), v0);
 
     GameRecords_AddToRecordValue(v6, RECORD_UNK_029, 7);
     sub_0202D3B4(param0->unk_74, param0->unk_0F, 3);
@@ -698,7 +694,7 @@ void sub_0204A7A4(UnkStruct_0204AFC4 *param0, SaveData *param1, JournalEntry *jo
 
     GameRecords_IncrementTrainerScore(v6, TRAINER_SCORE_EVENT_UNK_14);
     sub_0204ACC8(param0);
-    sub_0204A5EC(param0, param1, 1, v0);
+    sub_0204A5EC(param0, saveData, 1, v0);
 
     if (param0->unk_0F == HEAP_ID_FIELD) {
         journalEntryOnlineEvent = JournalEntry_CreateEventBattleRoom(param0->heapID);
@@ -745,7 +741,7 @@ void sub_0204A97C(UnkStruct_0204AFC4 *param0)
 
 u16 sub_0204A9E0(UnkStruct_0204AFC4 *param0, u16 param1)
 {
-    return sub_0204AF9C(param0->unk_78[param1].unk_00.unk_04);
+    return sub_0204AF9C(param0->unk_78[param1].unk_00.trainerType);
 }
 
 u16 sub_0204A9F8(UnkStruct_0204AFC4 *param0)
@@ -798,12 +794,12 @@ u16 sub_0204AA04(UnkStruct_0204AFC4 *param0)
     return v1;
 }
 
-u16 sub_0204AA7C(UnkStruct_0204AFC4 *param0, SaveData *param1)
+u16 sub_0204AA7C(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     u8 v0, v1;
     u16 v2, v3, v4;
 
-    v2 = sub_02049FF8(param1, param0->unk_0F);
+    v2 = sub_02049FF8(saveData, param0->unk_0F);
 
     if (v2 < 50) {
         return 0;
@@ -822,10 +818,10 @@ u16 sub_0204AA7C(UnkStruct_0204AFC4 *param0, SaveData *param1)
     return 1;
 }
 
-u16 sub_0204AABC(UnkStruct_0204AFC4 *param0, SaveData *param1, u8 param2)
+u16 sub_0204AABC(UnkStruct_0204AFC4 *param0, SaveData *saveData, u8 param2)
 {
     u8 v0, v1;
-    UnkStruct_0202D750 *v2 = sub_0202D750(param1);
+    UnkStruct_0202D750 *v2 = sub_0202D750(saveData);
     static const u8 v3[] = {
         0,
         5,
@@ -880,7 +876,7 @@ u16 sub_0204AABC(UnkStruct_0204AFC4 *param0, SaveData *param1, u8 param2)
     return 0;
 }
 
-u16 sub_0204AB68(UnkStruct_0204AFC4 *param0, SaveData *param1)
+u16 sub_0204AB68(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     if (param0->unk_0F != 0) {
         return 0;
@@ -888,19 +884,19 @@ u16 sub_0204AB68(UnkStruct_0204AFC4 *param0, SaveData *param1)
 
     switch (param0->unk_10_1) {
     case 1:
-        return sub_0204AC54(param1, 26, param0);
+        return sub_0204AC54(saveData, 26, param0);
     case 2:
-        return sub_0204AC54(param1, 27, param0);
+        return sub_0204AC54(saveData, 27, param0);
     }
 
     return 0;
 }
 
-u16 sub_0204ABA0(UnkStruct_0204AFC4 *param0, SaveData *param1)
+u16 sub_0204ABA0(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     u8 v0, v1;
     u16 v2, v3, v4;
-    UndergroundData *v5;
+    Underground *v5;
 
     if (param0->unk_0F == 5) {
         return 0;
@@ -929,29 +925,29 @@ u16 sub_0204ABA0(UnkStruct_0204AFC4 *param0, SaveData *param1)
         break;
     }
 
-    return sub_0204AC54(param1, v0, param0);
+    return sub_0204AC54(saveData, v0, param0);
 }
 
-u16 sub_0204ABF4(UnkStruct_0204AFC4 *param0, SaveData *param1)
+u16 sub_0204ABF4(UnkStruct_0204AFC4 *param0, SaveData *saveData)
 {
     u8 v0;
 
     if (param0->unk_0F == 6) {
-        v0 = sub_02030698(SaveData_GetBattleFrontier(param1), 100, sub_0205E6A8(100));
+        v0 = sub_02030698(SaveData_GetBattleFrontier(saveData), 100, sub_0205E6A8(100));
     } else {
         v0 = sub_0202D414(param0->unk_74, 8 + param0->unk_0F, 0);
     }
 
     if (!v0) {
-        param0->unk_08 = sub_0206C02C(param1);
+        param0->unk_08 = sub_0206C02C(saveData);
     } else {
-        param0->unk_08 = sub_0206C068(param1);
+        param0->unk_08 = sub_0206C068(saveData);
     }
 
     return param0->unk_08 / 65535;
 }
 
-static u16 sub_0204AC54(SaveData *param0, u8 param1, UnkStruct_0204AFC4 *param2)
+static u16 sub_0204AC54(SaveData *saveData, u8 param1, UnkStruct_0204AFC4 *param2)
 {
     u8 v0 = 1;
     u8 v1;
@@ -959,7 +955,7 @@ static u16 sub_0204AC54(SaveData *param0, u8 param1, UnkStruct_0204AFC4 *param2)
     Party *v3;
     Pokemon *v4;
 
-    v3 = SaveData_GetParty(param0);
+    v3 = SaveData_GetParty(saveData);
     v1 = 0;
 
     for (v2 = 0; v2 < param2->unk_0E; v2++) {
@@ -970,7 +966,7 @@ static u16 sub_0204AC54(SaveData *param0, u8 param1, UnkStruct_0204AFC4 *param2)
         }
 
         Pokemon_SetValue(v4, param1, &v0);
-        sub_0206DDB8(param0, v4, param1);
+        sub_0206DDB8(saveData, v4, param1);
         ++v1;
     }
 
@@ -999,53 +995,47 @@ static u16 sub_0204ACC8(UnkStruct_0204AFC4 *param0)
     return 1;
 }
 
-static void sub_0204ACFC(UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1)
+static void sub_0204ACFC(FrontierPokemonDataDTO *param0, Pokemon *mon)
 {
     int v0;
 
-    param0->unk_00_val1_0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    param0->unk_00_val1_11 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
-    param0->unk_02 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
+    param0->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    param0->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    param0->item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param0->unk_04[v0] = Pokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
-        param0->unk_1E_val2 |= ((Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
+        param0->moves[v0] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + v0, NULL);
+        param0->combinedPPUps |= ((Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
     }
 
-    param0->unk_1F = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
-    param0->unk_0C = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_10 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_14_val2 = Pokemon_GetValue(param1, MON_DATA_COMBINED_IVS, NULL);
+    param0->language = Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL);
+    param0->otID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
+    param0->personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    param0->combinedIVs = Pokemon_GetValue(mon, MON_DATA_COMBINED_IVS, NULL);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_18_val2[v0] = Pokemon_GetValue(param1, MON_DATA_HP_EV + v0, NULL);
+        param0->evList[v0] = Pokemon_GetValue(mon, MON_DATA_HP_EV + v0, NULL);
     }
 
-    param0->unk_20 = Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
-    param0->unk_21 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
+    param0->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+    param0->friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_22);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, param0->nickname);
 }
 
-static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *param1, int param2)
+static void sub_0204AE20(UnkStruct_0204AFC4 *param0, SaveData *saveData, int param2)
 {
-    int v0 = 0;
-    UnkStruct_ov104_0223A348_sub2 *v1;
-    Party *v2;
-    Pokemon *v3;
+    FrontierPokemonDataDTO *v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(FrontierPokemonDataDTO) * 3);
+    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
+    Party *party = SaveData_GetParty(saveData);
 
-    v1 = Heap_AllocFromHeapAtEnd(param0->heapID, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    v2 = SaveData_GetParty(param1);
-
-    for (v0 = 0; v0 < 3; v0++) {
-        v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
-        sub_0204ACFC(&(v1[v0]), v3);
+    for (int i = 0; i < 3; i++) {
+        sub_0204ACFC(&(v1[i]), Party_GetPokemonBySlotIndex(party, param0->unk_2A[i]));
     }
 
     sub_0202D2F0(param0->unk_74, param2, v1);
-    MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    Heap_FreeToHeap(v1);
+    MI_CpuClear8(v1, sizeof(FrontierPokemonDataDTO) * 3);
+    Heap_Free(v1);
 }
 
 u8 sub_0204AE84(u16 param0)

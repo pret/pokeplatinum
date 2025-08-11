@@ -26,7 +26,7 @@ void TerrainAttributes_New(FieldSystem *fieldSystem, const u8 blockCount)
 void TerrainAttributes_Free(FieldSystem *fieldSystem)
 {
     if (fieldSystem->terrainAttributes != NULL) {
-        Heap_FreeToHeap(fieldSystem->terrainAttributes);
+        Heap_Free(fieldSystem->terrainAttributes);
         fieldSystem->terrainAttributes = NULL;
     }
 }

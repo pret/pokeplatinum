@@ -209,11 +209,8 @@ int ov61_0222BD64(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B960 *para
 
 void ov61_0222BD78(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov62_0223DF10 **param1)
 {
-    UnkStruct_ov61_0222B960 *v0;
-    UnkStruct_ov61_0222BD64 *v1;
-
-    v0 = ov61_0222DE80();
-    v1 = (UnkStruct_ov61_0222BD64 *)(v0->unk_04);
+    UnkStruct_ov61_0222B960 *v0 = ov61_0222DE80();
+    UnkStruct_ov61_0222BD64 *v1 = (UnkStruct_ov61_0222BD64 *)(v0->unk_04);
 
     *param1 = &v1->unk_00;
 }
@@ -246,11 +243,8 @@ int ov61_0222BD88(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B960 *para
 
 void ov61_0222BDAC(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222BDAC **param1, UnkStruct_ov61_0222BDAC_1 **param2)
 {
-    UnkStruct_ov61_0222B960 *v0;
-    UnkStruct_ov61_0222BD88 *v1;
-
-    v0 = ov61_0222DE80();
-    v1 = (UnkStruct_ov61_0222BD88 *)(v0->unk_04);
+    UnkStruct_ov61_0222B960 *v0 = ov61_0222DE80();
+    UnkStruct_ov61_0222BD88 *v1 = (UnkStruct_ov61_0222BD88 *)(v0->unk_04);
 
     *param1 = &v1->unk_00;
     *param2 = &v1->unk_558;
@@ -288,11 +282,8 @@ int ov61_0222BDC8(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B960 *para
 
 u64 ov61_0222BDF0(UnkStruct_ov62_022349A8 *param0)
 {
-    UnkStruct_ov61_0222B960 *v0;
-    UnkStruct_ov61_0222BDC8 *v1;
-
-    v0 = ov61_0222DE80();
-    v1 = (UnkStruct_ov61_0222BDC8 *)(v0->unk_04);
+    UnkStruct_ov61_0222B960 *v0 = ov61_0222DE80();
+    UnkStruct_ov61_0222BDC8 *v1 = (UnkStruct_ov61_0222BDC8 *)(v0->unk_04);
 
     return v1->unk_00;
 }
@@ -343,7 +334,7 @@ int ov61_0222BE20(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222BE20 **par
 
         if (v2[v3].unk_04 != param1[v3]->unk_80.unk_58) {
             param1[v3]->unk_80.unk_58 = v2[v3].unk_04;
-            param1[v3]->unk_80.unk_60.unk_00 = SaveData_CalculateChecksum(param0->unk_00, &param1[v3]->unk_80, sizeof(UnkStruct_ov61_0222BED8_sub1) - (sizeof(UnkStruct_ov62_02239DA4_sub1)) - sizeof(v2[v3].unk_04));
+            param1[v3]->unk_80.unk_60.unk_00 = SaveData_CalculateChecksum(param0->saveData, &param1[v3]->unk_80, sizeof(UnkStruct_ov61_0222BED8_sub1) - (sizeof(UnkStruct_ov62_02239DA4_sub1)) - sizeof(v2[v3].unk_04));
         }
     }
 
@@ -378,17 +369,14 @@ int ov61_0222BEB8(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B960 *para
 
 int ov61_0222BED8(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222BED8 **param1)
 {
-    UnkStruct_ov61_0222B960 *v0;
-    UnkStruct_ov61_0222BEB8 *v1;
-
-    v0 = ov61_0222DE80();
-    v1 = (UnkStruct_ov61_0222BEB8 *)(v0->unk_04);
+    UnkStruct_ov61_0222B960 *v0 = ov61_0222DE80();
+    UnkStruct_ov61_0222BEB8 *v1 = (UnkStruct_ov61_0222BEB8 *)(v0->unk_04);
 
     *param1 = &v1->unk_0C;
 
     if (v1->unk_04 != v1->unk_0C.unk_80.unk_58) {
         v1->unk_0C.unk_80.unk_58 = v1->unk_04;
-        (*param1)->unk_80.unk_60.unk_00 = SaveData_CalculateChecksum(param0->unk_00, &(*param1)->unk_80, sizeof(UnkStruct_ov61_0222BED8_sub1) - (sizeof(UnkStruct_ov62_02239DA4_sub1)) - sizeof(v1->unk_04));
+        (*param1)->unk_80.unk_60.unk_00 = SaveData_CalculateChecksum(param0->saveData, &(*param1)->unk_80, sizeof(UnkStruct_ov61_0222BED8_sub1) - (sizeof(UnkStruct_ov62_02239DA4_sub1)) - sizeof(v1->unk_04));
     }
 
     return v1->unk_04;

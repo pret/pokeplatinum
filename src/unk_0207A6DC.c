@@ -7,7 +7,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_0207A81C.h"
@@ -21,11 +20,11 @@
 #include "charcode_util.h"
 #include "communication_system.h"
 #include "heap.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_02027F84.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F1D4.h"
 #include "unk_02032798.h"
@@ -75,7 +74,7 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3);
 static void sub_0207ACB4(SysTask *param0, void *param1);
 static void sub_0207AD40(SysTask *param0, void *param1);
 static void sub_0207AE34(int param0, int param1, void *param2, void *param3);
-static void sub_0207ADD4(TrainerInfo *param0, PalPad *param1, PalPad *param2);
+static void PalPad_CreateNetworkObject(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const CommCmdTable Unk_020F099C[] = {
     { sub_0207ADB4, sub_02032944, NULL },
@@ -264,7 +263,7 @@ void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3,
         v4[0]++;
     }
 
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static void sub_0207A8A8(int param0, int param1, void *param2, void *param3)
@@ -455,12 +454,12 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
         v1 = param0->unk_00->trainerInfo[CommSys_CurNetId()];
     }
 
-    sub_0207ADD4(v1, param0->unk_00->unk_124, (PalPad *)param0->unk_20);
+    PalPad_CreateNetworkObject(v1, param0->unk_00->palPad, (PalPad *)param0->unk_20);
 
     {
         int v2;
 
-        for (v2 = 0; v2 < 4; v2++) {
+        for (v2 = 0; v2 < 4; v2++) { // 4 pal pads
             param0->unk_10[v2] = Heap_AllocFromHeap(HEAP_ID_BATTLE, 136);
         }
     }
@@ -468,7 +467,7 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
     return 1;
 }
 
-BOOL sub_0207AB58(UnkStruct_0207A778 *param0)
+BOOL sub_0207AB58(UnkStruct_0207A778 *param0) // SEND pal pad data?!
 {
     if (CommSys_SendRingRemainingSize() != 264) {
         return 0;
@@ -598,7 +597,7 @@ void sub_0207ACB4(SysTask *param0, void *param1)
         break;
     default:
     case 255:
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -636,7 +635,7 @@ void sub_0207AD40(SysTask *param0, void *param1)
         break;
     default:
     case 255:
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -651,22 +650,20 @@ static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
     ov16_0223F350(v0, 1);
 }
 
-static void sub_0207ADD4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
+static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination)
 {
-    int v0;
+    CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
 
-    CharCode_Copy(param2->unk_00, TrainerInfo_Name(param0));
+    destination->trainerId = TrainerInfo_ID(trainerInfo);
+    destination->regionCode = TrainerInfo_RegionCode(trainerInfo);
+    destination->gameCode = TrainerInfo_GameCode(trainerInfo);
+    destination->gender = TrainerInfo_Gender(trainerInfo);
 
-    param2->unk_10 = TrainerInfo_ID(param0);
-    param2->unk_14 = TrainerInfo_RegionCode(param0);
-    param2->unk_15 = TrainerInfo_GameCode(param0);
-    param2->unk_16 = TrainerInfo_Gender(param0);
-
-    for (v0 = 0; v0 < 16; v0++) {
-        param2->unk_18[v0] = param1[v0].unk_10;
-        param2->unk_58[v0] = param1[v0].unk_15;
-        param2->unk_68[v0] = param1[v0].unk_14;
-        param2->unk_78[v0] = param1[v0].unk_16;
+    for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
+        destination->associatedTrainerIds[i] = source[i].trainerId;
+        destination->associatedTrainerGameCodes[i] = source[i].gameCode;
+        destination->associatedTrainerRegionCodes[i] = source[i].regionCode;
+        destination->associatedTrainerGenders[i] = source[i].gender;
     }
 }
 
@@ -675,7 +672,7 @@ void sub_0207AE34(int param0, int param1, void *param2, void *param3)
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 
     if (CommSys_CurNetId() != param0) {
-        sub_02027FEC(v0->unk_00->unk_124, (PalPad *)param2, 1, HEAP_ID_BATTLE);
+        PalPad_PushEntries(v0->unk_00->palPad, (PalPad *)param2, 1, HEAP_ID_BATTLE);
     }
 
     v0->unk_1020++;

@@ -14,6 +14,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
@@ -30,7 +31,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 
 static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
@@ -74,7 +74,7 @@ void ov84_0223F1F8(UnkStruct_ov84_0223B5A0 *param0)
     MessageLoader *v0;
     u16 v1;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0395, HEAP_ID_6);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_6);
 
     for (v1 = 0; v1 < 8; v1++) {
         param0->unk_404[v1] = MessageLoader_GetNewStrbuf(v0, v1);
@@ -156,7 +156,7 @@ void ov84_0223F3AC(UnkStruct_ov84_0223B5A0 *param0, u8 param1, u8 param2)
 
     Window_BlitBitmapRect(&param0->unk_04[5], v0->pRawData, v2, 0, 32 * 8, 16, param0->unk_427 + param0->unk_428 * param1, 3, 10, 10);
     Window_ScheduleCopyToVRAM(&param0->unk_04[5]);
-    Heap_FreeToHeapExplicit(HEAP_ID_6, v1);
+    Heap_FreeExplicit(HEAP_ID_6, v1);
 }
 
 void ov84_0223F438(UnkStruct_ov84_0223B5A0 *param0)
@@ -180,7 +180,7 @@ void ov84_0223F438(UnkStruct_ov84_0223B5A0 *param0)
     }
 
     Window_ScheduleCopyToVRAM(&param0->unk_04[5]);
-    Heap_FreeToHeapExplicit(HEAP_ID_6, v1);
+    Heap_FreeExplicit(HEAP_ID_6, v1);
 }
 
 static void ov84_0223F4E8(UnkStruct_ov84_0223B5A0 *param0, u32 param1, u32 param2)
@@ -311,18 +311,18 @@ void ov84_0223F8D0(UnkStruct_ov84_0223B5A0 *param0, BagItem *param1, u32 param2)
 
     if (v0 < 420) {
         v0 = v0 - 328 + 1;
-        sub_0200C648(param0->unk_110, 2, v0, 2, 2, &param0->unk_04[0], 0, param2 + 5);
+        FontSpecialChars_DrawPartyScreenText(param0->unk_110, 2, v0, 2, 2, &param0->unk_04[0], 0, param2 + 5);
         ov84_0223F81C(param0, param1->quantity, param2, TEXT_COLOR(1, 2, 0));
     } else {
         v0 = v0 - 420 + 1;
-        sub_0200C5BC(param0->unk_110, v0, 2, 1, &param0->unk_04[0], 16, param2 + 5);
+        FontSpecialChars_DrawPartyScreenHPText(param0->unk_110, v0, 2, 1, &param0->unk_04[0], 16, param2 + 5);
         ov84_0223F9B0(param0, param2);
     }
 }
 
 void ov84_0223F94C(UnkStruct_ov84_0223B5A0 *param0, BagItem *param1, u32 param2)
 {
-    sub_0200C648(param0->unk_110, 2, Item_BerryNumber(param1->item) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
+    FontSpecialChars_DrawPartyScreenText(param0->unk_110, 2, Item_BerryNumber(param1->item) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
     ov84_0223F81C(param0, param1->quantity, param2, TEXT_COLOR(1, 2, 0));
 }
 
@@ -341,7 +341,7 @@ static void ov84_0223F9B0(UnkStruct_ov84_0223B5A0 *param0, u32 param1)
 
     v1 = ov84_0223F994(param0, &v0);
     Window_BlitBitmapRect(&param0->unk_04[0], v0->pRawData, 40, 0, 64, 16, 0, param1, 24, 16);
-    Heap_FreeToHeapExplicit(HEAP_ID_6, v1);
+    Heap_FreeExplicit(HEAP_ID_6, v1);
 }
 
 void ov84_0223F9F0(UnkStruct_ov84_0223B5A0 *param0, u32 param1)
@@ -361,7 +361,7 @@ void ov84_0223FA44(UnkStruct_ov84_0223B5A0 *param0, u32 param1)
 
     v1 = ov84_0223F994(param0, &v0);
     Window_BlitBitmapRect(&param0->unk_04[0], v0->pRawData, 0, 0, 64, 16, 96, param1, 40, 16);
-    Heap_FreeToHeapExplicit(HEAP_ID_6, v1);
+    Heap_FreeExplicit(HEAP_ID_6, v1);
 }
 
 void ov84_0223FA88(UnkStruct_ov84_0223B5A0 *param0)
@@ -406,7 +406,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         v5 = 3;
     }
 
-    param0->unk_154 = StringList_New(param2, 6);
+    param0->unk_154 = StringList_New(param2, HEAP_ID_6);
 
     for (v4 = 0; v4 < param2; v4++) {
         StringList_AddFromStrbuf(param0->unk_154, param0->unk_124[param1[v4]], ov84_0223D84C(param1[v4]));
@@ -426,7 +426,7 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
         v0.loopAround = FALSE;
     }
 
-    param0->unk_158 = Menu_New(&v0, 8, 0, 0, 6, PAD_BUTTON_B);
+    param0->unk_158 = Menu_New(&v0, 8, 0, 0, HEAP_ID_6, PAD_BUTTON_B);
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
         Window_FillTilemap(&param0->unk_04[1], 0);
@@ -580,7 +580,7 @@ u8 ov84_022400A0(UnkStruct_ov84_0223B5A0 *param0)
 
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
-    v0 = Text_AddPrinterWithParams(&param0->unk_04[6], FONT_MESSAGE, param0->unk_3F8, 0, 0, Options_TextFrameDelay(param0->unk_D0), ov84_022400E0);
+    v0 = Text_AddPrinterWithParams(&param0->unk_04[6], FONT_MESSAGE, param0->unk_3F8, 0, 0, Options_TextFrameDelay(param0->options), ov84_022400E0);
 
     return v0;
 }
@@ -687,7 +687,7 @@ void ov84_02240328(UnkStruct_ov84_0223B5A0 *param0)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 109);
-    StringTemplate_SetNumber(param0->unk_118, 0, Poffin_GetNumberOfFilledSlots(SaveData_GetPoffinCase(param0->unk_C4->unk_00)), 3, 1, 1);
+    StringTemplate_SetNumber(param0->unk_118, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(param0->unk_C4->saveData)), 3, 1, 1);
     StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
     Strbuf_Free(v1);
 

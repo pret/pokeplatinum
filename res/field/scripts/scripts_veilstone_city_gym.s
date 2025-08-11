@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_gym.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0022
@@ -152,4 +151,4 @@ _01B2:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

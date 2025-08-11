@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0075
@@ -41,4 +40,4 @@ _0079:
 _0081:
     End
 
-    .byte 0
+    .balign 4, 0

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_counterpart_house_2f.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -16,5 +15,4 @@ _0006:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

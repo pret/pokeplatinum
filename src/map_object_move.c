@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/movement_types.h"
+
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -117,7 +119,7 @@ static BOOL sub_02063478(const MapObject *mapObj)
 static void sub_020634DC(MapObject *mapObj)
 {
     if (MapObject_CheckStatus(mapObj, MAP_OBJ_STATUS_12)) {
-        sub_020642F8(mapObj);
+        MapObject_RecalculateObjectHeight(mapObj);
     }
 }
 
@@ -902,24 +904,24 @@ void MapObject_MovePosInDir(MapObject *mapObj, int dir, fx32 distance)
     MapObject_SetPos(mapObj, &pos);
 }
 
-int sub_020642F8(MapObject *mapObj)
+int MapObject_RecalculateObjectHeight(MapObject *mapObj)
 {
-    VecFx32 pos, v1;
+    VecFx32 pos, updatedPos;
 
     MapObject_GetPosPtr(mapObj, &pos);
-    v1 = pos;
+    updatedPos = pos;
 
     if (MapObject_IsHeightCalculationDisabled(mapObj) == TRUE) {
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_12);
-        return 0;
+        return FALSE;
     }
 
-    int v2 = sub_02062FAC(mapObj);
+    int dynamicHeightCalculationEnabled = MapObject_IsDynamicHeightCalculationEnabled(mapObj);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-    int v4 = sub_020644D0(fieldSystem, &v1, v2);
+    int heightUpdated = MapObject_RecalculatePositionHeight(fieldSystem, &updatedPos, dynamicHeightCalculationEnabled);
 
-    if (v4 == TRUE) {
-        pos.y = v1.y;
+    if (heightUpdated == TRUE) {
+        pos.y = updatedPos.y;
         MapObject_SetPos(mapObj, &pos);
         MapObject_SetYPrev(mapObj, MapObject_GetY(mapObj));
         MapObject_SetY(mapObj, (((pos.y) >> 3) / FX32_ONE));
@@ -928,7 +930,7 @@ int sub_020642F8(MapObject *mapObj)
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_12);
     }
 
-    return v4;
+    return heightUpdated;
 }
 
 int MapObject_SetTileBehaviors(MapObject *mapObj)
@@ -987,7 +989,10 @@ void sub_02064464(MapObject *mapObj)
 {
     int movementType = MapObject_GetMovementType(mapObj);
 
-    if (movementType == 0x33 || movementType == 0x34 || movementType == 0x35 || movementType == 0x36) {
+    if (movementType == MOVEMENT_TYPE_DISGUISE_SNOW
+        || movementType == MOVEMENT_TYPE_DISGUISE_SAND
+        || movementType == MOVEMENT_TYPE_DISGUISE_ROCK
+        || movementType == MOVEMENT_TYPE_DISGUISE_GRASS) {
         sub_02062B14(mapObj);
     }
 }
@@ -1036,21 +1041,21 @@ int sub_020644A4(FieldSystem *fieldSystem, VecFx32 *pos)
     return TRUE;
 }
 
-int sub_020644D0(FieldSystem *fieldSystem, VecFx32 *pos, int param2)
+int MapObject_RecalculatePositionHeight(FieldSystem *fieldSystem, VecFx32 *pos, int dynamicHeightCalculationEnabled)
 {
-    fx32 v0;
-    u8 v1;
+    fx32 objectHeight;
+    u8 newObjectHeightSource;
 
-    v0 = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &v1);
+    objectHeight = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &newObjectHeightSource);
 
-    if (v1 == 0) {
+    if (newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_NONE) {
         return FALSE;
     }
 
-    if (v1 == 2 && param2 == 0) {
+    if (newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_DYNAMIC && dynamicHeightCalculationEnabled == FALSE) {
         return FALSE;
     }
 
-    pos->y = v0;
+    pos->y = objectHeight;
     return TRUE;
 }

@@ -7,14 +7,15 @@
 
 #include "constants/communication/comm_packets.h"
 #include "constants/heap.h"
+#include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
+#include "struct_defs/underground.h"
+#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F55CC.h"
@@ -153,7 +154,7 @@ void CommPlayerMan_Delete(BOOL deletePlayerData)
     if (sCommPlayerManager != NULL) {
         for (netJd = 0; netJd < 5; netJd++) {
             if (sCommPlayerManager->unk_27C[netJd]) {
-                Heap_FreeToHeap(sCommPlayerManager->unk_27C[netJd]);
+                Heap_Free(sCommPlayerManager->unk_27C[netJd]);
                 sCommPlayerManager->unk_27C[netJd] = NULL;
             }
         }
@@ -170,10 +171,10 @@ void CommPlayerMan_Delete(BOOL deletePlayerData)
 
         if (sCommPlayerManager->unk_04) {
             ov23_02249938(sCommPlayerManager->unk_04);
-            Heap_FreeToHeap(sCommPlayerManager->unk_04);
+            Heap_Free(sCommPlayerManager->unk_04);
         }
 
-        Heap_FreeToHeap(sCommPlayerManager);
+        Heap_Free(sCommPlayerManager);
         sCommPlayerManager = NULL;
     }
 }
@@ -918,15 +919,15 @@ void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused
 
 static void sub_02058644(int netId)
 {
-    UndergroundData *underground = SaveData_GetUndergroundData(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
-    SaveData_SecretBaseRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
+    Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
+    SaveData_UndergroundRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
 
     if (sCommPlayerManager->isUnderground) {
         if (netId == CommSys_CurNetId()) {
-            sub_0202929C(underground);
+            Underground_IncrementStepCount(underground);
 
-            if (sub_020292B4(underground) == 50) {
-                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_37);
+            if (Underground_GetStepCount(underground) == 50) {
+                GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(sCommPlayerManager->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_100_STEPS);
             }
         }
     }
@@ -1078,7 +1079,7 @@ static void CommPlayer_MoveClient(int netId)
                 break;
             }
         } else if (((pad & ~PAD_BUTTON_B) == 0) && (playerLocation->dir != dir)) {
-            animCode = sub_02065838(playerLocation->dir, 0x24);
+            animCode = MovementAction_TurnActionTowardsDir(playerLocation->dir, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
         } else {
             animCode = sub_0206147C(playerAvatar, pad, pad, v10, 1, 0);
         }
@@ -1303,7 +1304,7 @@ int sub_02058D68(int netId)
     return sCommPlayerManager->playerLocation[netId].z;
 }
 
-int sub_02058D88(int netId)
+int CommPlayer_GetXInFrontOfPlayerServer(int netId)
 {
     if (CommPlayer_XPos(netId) == 0xffff) {
         return 0xffff;
@@ -1312,7 +1313,7 @@ int sub_02058D88(int netId)
     return sCommPlayerManager->playerLocation[netId].x + MapObject_GetDxFromDir(sCommPlayerManager->playerLocation[netId].dir);
 }
 
-int sub_02058DC0(int netId)
+int CommPlayer_GetZInFrontOfPlayerServer(int netId)
 {
     if (CommPlayer_ZPos(netId) == 0xffff) {
         return 0xffff;
@@ -1565,10 +1566,10 @@ void CommPlayer_SetBattleDir(void)
 
     if (CommPlayer_XPos(netId) > 8) {
         CommPlayer_SetDir(2);
-        code = sub_02065838(2, 0x24);
+        code = MovementAction_TurnActionTowardsDir(DIR_WEST, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
     } else {
         CommPlayer_SetDir(3);
-        code = sub_02065838(3, 0x24);
+        code = MovementAction_TurnActionTowardsDir(DIR_EAST, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
     }
 
     PlayerAvatar_SetAnimationCode(sCommPlayerManager->playerAvatar[netId], code, 1);
@@ -1708,13 +1709,13 @@ void sub_020594EC(void)
     sCommPlayerManager->unk_00 = 0;
 }
 
-void sub_020594FC(void)
+void CommPlayerMan_PauseFieldSystem(void)
 {
     FieldSystem_PauseProcessing();
     sCommPlayerManager->unk_2BC = 0;
 }
 
-void sub_02059514(void)
+void CommPlayerMan_ResumeFieldSystem(void)
 {
     FieldSystem_ResumeProcessing();
     sub_02057FC4(1);
@@ -1724,10 +1725,10 @@ void sub_02059524(void)
 {
     if (sCommPlayerManager->unk_2BF == 0) {
         if (!sCommPlayerManager->isUnderground) {
-            sub_02059514();
+            CommPlayerMan_ResumeFieldSystem();
             sCommPlayerManager->unk_2BF = 1;
         } else if (ov23_02243298(CommSys_CurNetId())) {
-            sub_02059514();
+            CommPlayerMan_ResumeFieldSystem();
             sCommPlayerManager->unk_2BF = 1;
         } else {
             (void)0;

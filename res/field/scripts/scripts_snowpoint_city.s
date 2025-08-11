@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _00B4
@@ -49,17 +48,17 @@ _0088:
 
     .balign 4, 0
 _009C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _00A4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00AC:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
 _00B4:
@@ -117,17 +116,17 @@ _011B:
 
     .balign 4, 0
 _015C:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0164:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
 _0174:
@@ -244,7 +243,7 @@ _0276:
 _02A0:
     ClearFlag FLAG_UNK_0x0256
     AddObject 10
-    ScrCmd_062 10
+    LockObject 10
     CloseMessage
     ApplyMovement 10, _0320
     WaitMovement
@@ -271,40 +270,40 @@ _02A0:
 
     .balign 4, 0
 _030C:
-    MoveAction_075
-    MoveAction_032
+    EmoteExclamationMark
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0318:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0320:
-    MoveAction_014 4
-    MoveAction_013 2
-    MoveAction_014 6
-    MoveAction_013 2
+    WalkNormalWest 4
+    WalkNormalSouth 2
+    WalkNormalWest 6
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _0334:
-    MoveAction_015
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _033C:
-    MoveAction_014
-    MoveAction_033
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_012 2
-    MoveAction_015 3
-    MoveAction_012 2
-    MoveAction_015 7
+    WalkNormalNorth 2
+    WalkNormalEast 3
+    WalkNormalNorth 2
+    WalkNormalEast 7
     EndMovement
 
 _035C:
@@ -325,17 +324,17 @@ _0376:
 
     .balign 4, 0
 _0390:
-    MoveAction_001
-    MoveAction_064
+    FaceSouth
+    Delay15
     EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_069
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _03A4:
-    MoveAction_013
-    MoveAction_064
+    WalkNormalSouth
+    Delay15
     EndMovement

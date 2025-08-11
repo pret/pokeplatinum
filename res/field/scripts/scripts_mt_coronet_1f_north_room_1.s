@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_1f_north_room_1.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D
@@ -35,15 +34,15 @@ _001D:
 
     .balign 4, 0
 _0058:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0060:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0068:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement

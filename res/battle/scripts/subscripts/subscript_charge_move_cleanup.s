@@ -1,6 +1,5 @@
 #include "macros/btlcmd.inc"
 
-    .data
 
 _000:
     UpdateVar OPCODE_SET, BTLVAR_MOVE_EFFECT_CHANCE, 1

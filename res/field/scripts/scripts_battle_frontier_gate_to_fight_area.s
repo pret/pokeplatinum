@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_frontier_gate_to_fight_area.h"
 
-    .data
 
     ScriptEntry _0038
     ScriptEntry _007C
@@ -260,23 +259,23 @@ _02F5:
 
     .balign 4, 0
 _0334:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _033C:
-    MoveAction_003
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _0344:
-    MoveAction_002
+    FaceWest
     EndMovement
 
     .balign 4, 0
 _034C:
-    MoveAction_012 3
-    MoveAction_034
+    WalkNormalNorth 3
+    WalkOnSpotNormalWest
     EndMovement
 
 _0358:

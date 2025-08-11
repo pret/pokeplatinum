@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valley_windworks_outside.h"
 
-    .data
 
     ScriptEntry _0024
     ScriptEntry _008A
@@ -92,13 +91,13 @@ _0133:
 
     .balign 4, 0
 _013C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
 _0150:
@@ -197,62 +196,62 @@ _0201:
 
     .balign 4, 0
 _02AC:
-    MoveAction_063 5
-    MoveAction_062
-    MoveAction_034
+    Delay8 5
+    Delay4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _02BC:
-    MoveAction_013
-    MoveAction_032
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02C8:
-    MoveAction_063
-    MoveAction_034
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02D8:
-    MoveAction_075
-    MoveAction_063
-    MoveAction_016 4
-    MoveAction_039
+    EmoteExclamationMark
+    Delay8
+    WalkFastNorth 4
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _02EC:
-    MoveAction_063
-    MoveAction_062
-    MoveAction_015
-    MoveAction_032
+    Delay8
+    Delay4
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0300:
-    MoveAction_012
-    MoveAction_069
-    MoveAction_001
+    WalkNormalNorth
+    SetInvisible
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0310:
-    MoveAction_070
-    MoveAction_017
+    SetVisible
+    WalkFastSouth
     EndMovement
 
     .balign 4, 0
 _031C:
-    MoveAction_037
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0324:
-    MoveAction_018
-    MoveAction_017
-    MoveAction_017 6
-    MoveAction_018 9
+    WalkFastWest
+    WalkFastSouth
+    WalkFastSouth 6
+    WalkFastWest 9
     EndMovement

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_room_2.h"
 
-    .data
 
     ScriptEntry _0031
     ScriptEntry _00FC
@@ -39,13 +38,13 @@ _0031:
     ReleaseAll
     End
 
-    .byte 27
-    .byte 0
+StarkMountainRoom2_Unused:
+    Return
 
 _007D:
     SetObjectEventPos 14, 42, 78
     SetObjectEventDir 14, DIR_NORTH
-    ScrCmd_188 14, 14
+    SetObjectEventMovementType 14, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01DA
     AddObject 14
     ApplyMovement 14, _00DC
@@ -60,7 +59,7 @@ _007D:
 _00B7:
     SetObjectEventPos 14, 42, 68
     SetObjectEventDir 14, DIR_NORTH
-    ScrCmd_188 14, 14
+    SetObjectEventMovementType 14, MOVEMENT_TYPE_LOOK_NORTH
     ApplyMovement 14, _0144
     WaitMovement
     Message 3
@@ -68,31 +67,21 @@ _00B7:
 
     .balign 4, 0
 _00DC:
-    MoveAction_012 8
+    WalkNormalNorth 8
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainRoom2_UnusedMovement:
+    WalkNormalNorth
+    EndMovement
 
     .balign 4, 0
 _00EC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainRoom2_UnusedMovement2:
+    WalkNormalNorth
+    EndMovement
 
 _00FC:
     LockAll
@@ -111,22 +100,22 @@ _00FC:
 
     .balign 4, 0
 _0134:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _0154:
@@ -170,31 +159,31 @@ _01AB:
 
     .balign 4, 0
 _01E4:
-    MoveAction_014
-    MoveAction_035
+    WalkNormalWest
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_012
-    MoveAction_034
+    WalkNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01FC:
-    MoveAction_014
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _0204:
-    MoveAction_032
-    MoveAction_063 2
-    MoveAction_034
+    WalkOnSpotNormalNorth
+    Delay8 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0214:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
 _021C:
@@ -217,5 +206,4 @@ _022F:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

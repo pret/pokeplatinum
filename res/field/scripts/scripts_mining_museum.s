@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mining_museum.h"
 
-    .data
 
     ScriptEntry _0042
     ScriptEntry _0055
@@ -415,4 +414,4 @@ _05A8:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

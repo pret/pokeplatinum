@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_gate_1f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0014
@@ -63,13 +62,13 @@ _007B:
 
     .balign 4, 0
 _00B4:
-    MoveAction_063
-    MoveAction_032
+    Delay8
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _00C0:
-    MoveAction_033
-    MoveAction_075
-    MoveAction_013
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    WalkNormalSouth
     EndMovement

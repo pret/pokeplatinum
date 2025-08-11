@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fight_area.h"
 
-    .data
 
     ScriptEntry _00D8
     ScriptEntry _049C
@@ -37,7 +36,7 @@ _0066:
 
 _0082:
     SetObjectEventPos 7, 0x28F, 0x1AA
-    ScrCmd_188 7, 14
+    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_NORTH
     SetObjectEventDir 7, DIR_NORTH
     End
 
@@ -45,64 +44,18 @@ _0098:
     SetFlag FLAG_UNK_0x01D3
     End
 
-    .byte 52
-    .byte 2
-    .byte 0
-    .byte 64
-    .byte 17
-    .byte 0
-    .byte 0
-    .byte 64
-    .byte 0
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 15
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 0
-    .byte 64
-    .byte 6
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 134
-    .byte 1
-    .byte 7
-    .byte 0
-    .byte 146
-    .byte 2
-    .byte 174
-    .byte 1
-    .byte 136
-    .byte 1
-    .byte 7
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 137
-    .byte 1
-    .byte 7
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 31
-    .byte 0
-    .byte 211
-    .byte 1
-    .byte 2
-    .byte 0
+FightArea_CheckForWeekend_Unused:
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0 DAY_OF_WEEK_SUNDAY FightArea_ActivateRivalFight_Unused
+    GoToIfEq VAR_MAP_LOCAL_0 DAY_OF_WEEK_SATURDAY FightArea_ActivateRivalFight_Unused
+    End
+
+FightArea_ActivateRivalFight_Unused:
+    SetObjectEventPos 7, 658, 430
+    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir 7, DIR_SOUTH
+    ClearFlag FLAG_UNK_0x01D3
+    End
 
 _00D8:
     LockAll
@@ -261,208 +214,181 @@ _033E:
 
     .balign 4, 0
 _0340:
-    MoveAction_034
-    MoveAction_075
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
     EndMovement
 
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement:
+    WalkNormalWest
+    EndMovement
 
     .balign 4, 0
 _0354:
-    MoveAction_015 17
-    MoveAction_012 2
-    MoveAction_015 9
-    MoveAction_012 6
-    MoveAction_015
-    MoveAction_032
+    WalkNormalEast 17
+    WalkNormalNorth 2
+    WalkNormalEast 9
+    WalkNormalNorth 6
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0370:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0378:
-    MoveAction_038
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _0380:
-    MoveAction_000
-    MoveAction_071
-    MoveAction_017 2
-    MoveAction_072
+    FaceNorth
+    LockDir
+    WalkFastSouth 2
+    UnlockDir
     EndMovement
 
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement2:
+    EmoteExclamationMark
+    EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_016 2
+    WalkFastNorth 2
     EndMovement
 
     .balign 4, 0
 _03A4:
-    MoveAction_017 8
+    WalkFastSouth 8
     EndMovement
 
     .balign 4, 0
 _03AC:
-    MoveAction_038
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _03B4:
-    MoveAction_017
+    WalkFastSouth
     EndMovement
 
     .balign 4, 0
 _03BC:
-    MoveAction_034
-    MoveAction_063
-    MoveAction_035
-    MoveAction_063
-    MoveAction_033
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalEast
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _03D4:
-    MoveAction_016
+    WalkFastNorth
     EndMovement
 
     .balign 4, 0
 _03DC:
-    MoveAction_015 4
+    WalkNormalEast 4
     EndMovement
 
     .balign 4, 0
 _03E4:
-    MoveAction_015 18
-    MoveAction_012 2
-    MoveAction_015 9
-    MoveAction_012 6
+    WalkNormalEast 18
+    WalkNormalNorth 2
+    WalkNormalEast 9
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _03F8:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0400:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0408:
-    MoveAction_063
-    MoveAction_037
-    MoveAction_062
-    MoveAction_036
+    Delay8
+    WalkOnSpotFastSouth
+    Delay4
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _041C:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0428:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement3:
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _043C:
-    MoveAction_063 2
-    MoveAction_035
+    Delay8 2
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0448:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0450:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0458:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0460:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0468:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0470:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0478:
-    MoveAction_012
-    MoveAction_014 2
+    WalkNormalNorth
+    WalkNormalWest 2
     EndMovement
 
     .balign 4, 0
 _0484:
-    MoveAction_013 8
+    WalkNormalSouth 8
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FightArea_UnusedMovement4:
+    WalkOnSpotNormalWest
+    EndMovement
+
+FightArea_UnusedMovement5:
+    WalkNormalEast 10
+    EndMovement
 
 _049C:
     PlayFanfare SEQ_SE_CONFIRM
@@ -644,33 +570,33 @@ _0694:
 
     .balign 4, 0
 _06B0:
-    MoveAction_001
-    MoveAction_064
+    FaceSouth
+    Delay15
     EndMovement
 
     .balign 4, 0
 _06BC:
-    MoveAction_069
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _06C4:
-    MoveAction_013
-    MoveAction_064
+    WalkNormalSouth
+    Delay15
     EndMovement
 
     .balign 4, 0
 _06D0:
-    MoveAction_015
-    MoveAction_001
-    MoveAction_064
+    WalkNormalEast
+    FaceSouth
+    Delay15
     EndMovement
 
     .balign 4, 0
 _06E0:
-    MoveAction_014
-    MoveAction_001
-    MoveAction_064
+    WalkNormalWest
+    FaceSouth
+    Delay15
     EndMovement
 
 _06F0:
@@ -716,32 +642,32 @@ _0792:
 
     .balign 4, 0
 _07A0:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _07A8:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _07B0:
-    MoveAction_013
-    MoveAction_014 2
-    MoveAction_012
+    WalkNormalSouth
+    WalkNormalWest 2
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _07C0:
-    MoveAction_014
-    MoveAction_013
-    MoveAction_032
+    WalkNormalWest
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _07D0:
-    MoveAction_014
-    MoveAction_012
+    WalkNormalWest
+    WalkNormalNorth
     EndMovement
 
 _07DC:
@@ -802,7 +728,7 @@ _083C:
 
     .balign 4, 0
 _085C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _0864:
@@ -855,4 +781,4 @@ _08B0:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 0

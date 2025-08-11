@@ -40,6 +40,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -50,7 +51,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
 #include "unk_0207E0B8.h"
@@ -396,7 +396,7 @@ static void ov104_022324C8(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -447,7 +447,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
     }
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     return;
 }
 
@@ -616,7 +616,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -681,7 +681,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     }
 
     SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     return;
 }
 
@@ -832,7 +832,7 @@ void ov104_02232B78(SysTask *param0, void *param1)
         if (ov63_0222BF90(v0->unk_14->unk_00, 5) == 0) {
             (*(v0->unk_08))--;
             v0->unk_14->unk_38 = NULL;
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -853,7 +853,7 @@ void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *pa
     }
 }
 
-void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum HeapId heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
     SpriteSystem *v0 = param0->unk_34.unk_00;
     SpriteManager *v1 = param0->unk_34.unk_04;
@@ -928,7 +928,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
         }
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 
     GF_ASSERT(param0->unk_80[param3 - 50000] == NULL);
     param0->unk_80[param3 - 50000] = v5;

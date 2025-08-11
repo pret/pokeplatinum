@@ -102,7 +102,7 @@ BOOL ov104_0222ED00(UnkStruct_ov104_0223B5C0 *param0)
     int v4, v5 = 44;
     v3 = param0->unk_72C;
     v1 = 0;
-    v2 = SaveData_GetTrainerInfo(param0->unk_6FC);
+    v2 = SaveData_GetTrainerInfo(param0->saveData);
 
     v1 += 1;
     v1 += (7 + 1);
@@ -277,7 +277,7 @@ BOOL ov104_0222EE60(UnkStruct_ov104_0223B5C0 *param0)
     v1 = 0;
     v3 = 512;
     v4 = Pokemon_StructSize();
-    v6 = SaveData_GetParty(param0->unk_6FC);
+    v6 = SaveData_GetParty(param0->saveData);
     v5 = Party_GetPokemonBySlotIndex(v6, param0->unk_260[0]);
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);
@@ -326,7 +326,7 @@ BOOL ov104_0222EEF8(UnkStruct_ov104_0223ADA0 *param0)
     int v4, v5 = 60;
     v3 = param0->unk_504;
     v1 = 0;
-    v2 = SaveData_GetTrainerInfo(param0->unk_4F8);
+    v2 = SaveData_GetTrainerInfo(param0->saveData);
 
     v3[1] = param0->unk_08;
     v3[2] = param0->unk_0C;
@@ -725,7 +725,7 @@ void ov104_0222F31C(int param0, int param1, void *param2, void *param3)
 BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0)
 {
     int v0, v1, v2, v3;
-    UnkStruct_0203041C *v4 = sub_0203041C(param0->unk_04);
+    UnkStruct_0203041C *v4 = sub_0203041C(param0->saveData);
     v3 = 40;
     v1 = 0;
 
@@ -735,7 +735,7 @@ BOOL ov104_0222F3B8(UnkStruct_ov104_0223BA10 *param0)
     v1 += 3;
     v1 += (7 + 1);
 
-    param0->unk_3C0[v1] = sub_02030698(SaveData_GetBattleFrontier(param0->unk_04), sub_0205E630(param0->unk_10), sub_0205E6A8(sub_0205E630(param0->unk_10)));
+    param0->unk_3C0[v1] = sub_02030698(SaveData_GetBattleFrontier(param0->saveData), sub_0205E630(param0->unk_10), sub_0205E6A8(sub_0205E630(param0->unk_10)));
     v1 += 1;
 
     if (CommSys_SendData(42, param0->unk_3C0, v3) == 1) {
@@ -1094,7 +1094,7 @@ void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
         Party_AddPokemon(v5->unk_28, v4);
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 
     if (CommSys_CurNetId() != 0) {
         Party_SwapSlots(v5->unk_28, 0, 2);
@@ -1115,7 +1115,7 @@ u8 *ov104_0222F84C(int param0, void *param1, int param2)
 BOOL ov104_0222F86C(UnkStruct_ov104_0223BFFC *param0)
 {
     int v0, v1, v2, v3;
-    UnkStruct_020305B8 *v4 = sub_020305B8(param0->unk_04);
+    UnkStruct_020305B8 *v4 = sub_020305B8(param0->saveData);
     v3 = 40;
     v1 = 0;
 
@@ -1387,7 +1387,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
         Party_AddPokemon(v5->unk_70, v4);
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
 
     if (CommSys_CurNetId() != 0) {
         Party_SwapSlots(v5->unk_70, 0, 2);

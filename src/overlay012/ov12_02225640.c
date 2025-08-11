@@ -3,14 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/struct_ov12_02225640.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
+#include "particle_system.h"
 #include "spl.h"
-#include "unk_02014000.h"
 
 static void ov12_02225640(UnkStruct_ov12_02225640 *param0, int param1[]);
 static BOOL ov12_0222564C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1);
@@ -45,7 +44,7 @@ static BOOL ov12_0222564C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     Camera *camera;
     CameraAngle v1 = { 0, 0, 0 };
 
-    camera = sub_02014784(param1->unk_04);
+    camera = ParticleSystem_GetCamera(param1->unk_04);
     Camera_SetAngleAroundTarget(&v1, camera);
 
     return 1;
@@ -54,11 +53,11 @@ static BOOL ov12_0222564C(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_02225670(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
-    CameraAngle v1 = { (0x1000 * 2), (0x1000 * 2), 0 };
+    CameraAngle v1 = { (0x1000 * 2), 0x1000 * 2, 0 };
 
-    camera = sub_02014784(param1->unk_04);
+    camera = ParticleSystem_GetCamera(param1->unk_04);
 
-    sub_02014788(param1->unk_04, 1);
+    ParticleSystem_SetCameraProjection(param1->unk_04, 1);
     Camera_SetAngleAroundTarget(&v1, camera);
 
     return 1;
@@ -76,7 +75,7 @@ static BOOL ov12_022256AC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     v1.y = v0[2];
     v1.z = v0[3];
 
-    camera = sub_02014784(param1->unk_04);
+    camera = ParticleSystem_GetCamera(param1->unk_04);
 
     Camera_SetAngleAroundTarget(&v1, camera);
     return 1;
@@ -85,11 +84,11 @@ static BOOL ov12_022256AC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_022256E8(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     Camera *camera;
-    CameraAngle v1 = { -(0x1000 * 3), (0x1000 * 2), 0x1000 };
+    CameraAngle v1 = { -(0x1000 * 3), 0x1000 * 2, 0x1000 };
 
-    camera = sub_02014784(param1->unk_04);
+    camera = ParticleSystem_GetCamera(param1->unk_04);
 
-    sub_02014788(param1->unk_04, 1);
+    ParticleSystem_SetCameraProjection(param1->unk_04, 1);
     Camera_SetAngleAroundTarget(&v1, camera);
 
     return 1;
@@ -101,10 +100,10 @@ static BOOL ov12_02225724(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     CameraAngle v1 = { 49664, 5952, 4096 };
     CameraAngle v2 = { 9248, 3744, 0 };
 
-    camera = sub_02014784(param1->unk_04);
-    sub_02014788(param1->unk_04, 1);
+    camera = ParticleSystem_GetCamera(param1->unk_04);
+    ParticleSystem_SetCameraProjection(param1->unk_04, 1);
 
-    if (ov12_0221FDD4(param1->unk_00) == 1) {
+    if (BattleAnimSystem_IsContest(param1->unk_00) == 1) {
         Camera_SetAngleAroundTarget(&v1, camera);
     } else {
         Camera_SetAngleAroundTarget(&v2, camera);
@@ -118,9 +117,9 @@ static BOOL ov12_02225784(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     Camera *camera;
     CameraAngle v1 = { 49664, 5952, 4096 };
 
-    camera = sub_02014784(param1->unk_04);
+    camera = ParticleSystem_GetCamera(param1->unk_04);
 
-    sub_02014788(param1->unk_04, 1);
+    ParticleSystem_SetCameraProjection(param1->unk_04, 1);
     Camera_SetAngleAroundTarget(&v1, camera);
 
     return 1;
@@ -131,9 +130,9 @@ static BOOL ov12_022257C0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
     Camera *camera;
     CameraAngle v1 = { 0, 0, -6000 };
 
-    camera = sub_02014784(param1->unk_04);
+    camera = ParticleSystem_GetCamera(param1->unk_04);
 
-    sub_02014788(param1->unk_04, 1);
+    ParticleSystem_SetCameraProjection(param1->unk_04, 1);
     Camera_SetAngleAroundTarget(&v1, camera);
 
     return 1;
@@ -142,7 +141,7 @@ static BOOL ov12_022257C0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_022257FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     VecFx32 v0;
-    Camera *camera = sub_02014784(param1->unk_04);
+    Camera *camera = ParticleSystem_GetCamera(param1->unk_04);
 
     ov12_022356E8(param1->unk_00, param1->unk_24, &v0);
     Camera_SetTarget(&v0, camera);
@@ -153,7 +152,7 @@ static BOOL ov12_022257FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_02225824(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     VecFx32 v0;
-    Camera *camera = sub_02014784(param1->unk_04);
+    Camera *camera = ParticleSystem_GetCamera(param1->unk_04);
 
     ov12_022356E8(param1->unk_00, param1->unk_28, &v0);
     Camera_SetTarget(&v0, camera);

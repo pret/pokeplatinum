@@ -2,18 +2,16 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "camera.h"
+#include "g3d_pipeline.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "particle_system.h"
 #include "spl.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
-#include "unk_02024220.h"
 
 void sub_0207C63C(void);
 void sub_0207C664(void);
@@ -26,9 +24,9 @@ BOOL sub_0207C8E0(UnkStruct_0207C8C4 *param0);
 void sub_0207C8F4(UnkStruct_0207C8C4 *param0);
 static u32 sub_0207C794(u32 param0, BOOL param1);
 static u32 sub_0207C7B0(u32 param0, BOOL param1);
-static UnkStruct_02014014 *sub_0207C7CC(int heapID);
-static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2);
-static void sub_0207C83C(UnkStruct_02014014 *param0);
+static ParticleSystem *sub_0207C7CC(int heapID);
+static ParticleSystem *sub_0207C814(int heapID, int param1, int param2);
+static void sub_0207C83C(ParticleSystem *param0);
 static void sub_0207C854(SPLEmitter *param0);
 
 void sub_0207C63C(void)
@@ -45,9 +43,9 @@ void sub_0207C664(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-GenericPointerData *sub_0207C690(int heapID)
+G3DPipelineBuffers *sub_0207C690(int heapID)
 {
-    return sub_02024220(heapID, 0, 2, 0, 2, sub_0207C6AC);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, sub_0207C6AC);
 }
 
 void sub_0207C6AC(void)
@@ -81,7 +79,7 @@ void sub_0207C730(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 void sub_0207C770(void)
@@ -91,14 +89,14 @@ void sub_0207C770(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
@@ -108,7 +106,7 @@ static u32 sub_0207C794(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    sub_020145B4(v0);
+    ParticleSystem_RegisterTextureKey(v0);
 
     v1 = NNS_GfdGetTexKeyAddr(v0);
     return v1;
@@ -120,21 +118,21 @@ static u32 sub_0207C7B0(u32 param0, BOOL param1)
     u32 v1;
 
     v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    sub_020145F4(v0);
+    ParticleSystem_RegisterPaletteKey(v0);
 
     v1 = NNS_GfdGetPlttKeyAddr(v0);
     return v1;
 }
 
-static UnkStruct_02014014 *sub_0207C7CC(int heapID)
+static ParticleSystem *sub_0207C7CC(int heapID)
 {
-    UnkStruct_02014014 *v0;
+    ParticleSystem *v0;
     void *v1;
     Camera *camera;
 
     v1 = Heap_AllocFromHeap(heapID, 0x4800);
-    v0 = sub_02014014(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
-    camera = sub_02014784(v0);
+    v0 = ParticleSystem_New(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
+    camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
         Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
@@ -143,25 +141,22 @@ static UnkStruct_02014014 *sub_0207C7CC(int heapID)
     return v0;
 }
 
-static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2)
+static ParticleSystem *sub_0207C814(int heapID, int param1, int param2)
 {
-    UnkStruct_02014014 *v0;
-    void *v1;
+    ParticleSystem *v0 = sub_0207C7CC(heapID);
+    void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
 
-    v0 = sub_0207C7CC(heapID);
-    v1 = sub_020144C4(param1, param2, heapID);
-
-    sub_020144CC(v0, v1, (1 << 1) | (1 << 3), 1);
+    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), 1);
 
     return v0;
 }
 
-void sub_0207C83C(UnkStruct_02014014 *param0)
+void sub_0207C83C(ParticleSystem *param0)
 {
-    void *v0 = sub_02014730(param0);
+    void *v0 = ParticleSystem_GetHeapStart(param0);
 
-    sub_0201411C(param0);
-    Heap_FreeToHeap(v0);
+    ParticleSystem_Free(param0);
+    Heap_Free(v0);
 }
 
 static void sub_0207C854(SPLEmitter *param0)
@@ -185,7 +180,7 @@ UnkStruct_0207C8C4 *sub_0207C894(UnkStruct_0207C894 *param0)
     v4->unk_00 = *param0;
     v4->unk_0C = sub_0207C814(v4->unk_00.heapID, 124, v4->unk_00.unk_04);
 
-    sub_02014788(v4->unk_0C, 1);
+    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
 
     return v4;
 }
@@ -198,15 +193,15 @@ void sub_0207C8C4(UnkStruct_0207C8C4 *param0, int param1)
     int v3;
     UnkStruct_0207C8C4 *v4 = param0;
 
-    sub_020146F4(v4->unk_0C, param1, sub_0207C854, v4);
-    sub_02014788(v4->unk_0C, 1);
+    ParticleSystem_CreateEmitterWithCallback(v4->unk_0C, param1, sub_0207C854, v4);
+    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
 }
 
 BOOL sub_0207C8E0(UnkStruct_0207C8C4 *param0)
 {
     UnkStruct_0207C8C4 *v0 = param0;
 
-    if (sub_02014710(v0->unk_0C) == 0) {
+    if (ParticleSystem_GetActiveEmitterCount(v0->unk_0C) == 0) {
         return 0;
     }
 
@@ -216,5 +211,5 @@ BOOL sub_0207C8E0(UnkStruct_0207C8C4 *param0)
 void sub_0207C8F4(UnkStruct_0207C8C4 *param0)
 {
     sub_0207C83C(param0->unk_0C);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

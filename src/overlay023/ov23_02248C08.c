@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground.h"
 
 #include "overlay023/funcptr_ov23_02248D20.h"
 #include "overlay023/struct_ov23_02248D20.h"
@@ -12,12 +12,13 @@
 #include "colored_arrow.h"
 #include "heap.h"
 #include "list_menu.h"
+#include "menu.h"
 #include "sound_playback.h"
 #include "string_list.h"
 #include "system.h"
 #include "unk_0202854C.h"
 
-UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
+UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, Underground *underground, BOOL param6)
 {
     UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02248D20));
 
@@ -26,7 +27,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
     v0->unk_00 = param4;
 
     if (v0->unk_00) {
-        v0->unk_04 = param5;
+        v0->unk_04 = underground;
         v0->unk_1E = param6;
         v0->unk_10 = ColoredArrow_New(heapID);
 
@@ -99,11 +100,11 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (v1 + v2 == v8 - 1) {
-                    return 0xffffffff;
+                    return LIST_NOTHING_CHOSEN;
                 }
 
                 if (v1 + v2 == param0->unk_14 + param0->unk_16) {
-                    return 0xffffffff;
+                    return LIST_NOTHING_CHOSEN;
                 }
 
                 param0->unk_00(param0->unk_04, param0->unk_14 + param0->unk_16, v1 + v2);
@@ -129,7 +130,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
 
                     for (v4 = 0; v4 < v8 - 1; v4++) {
                         int v10;
-                        int v11 = sub_02028AFC(param0->unk_04, v4);
+                        int v11 = Underground_IsGoodAtSlotPlacedInBase(param0->unk_04, v4);
 
                         if (!v11) {
                             v10 = 1;
@@ -149,21 +150,21 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                     }
                 }
 
-                Heap_FreeToHeap(param0->unk_08);
+                Heap_Free(param0->unk_08);
                 param0->unk_08 = v7;
 
                 ListMenu_SetChoices(v0, v7);
                 param0->unk_1C = 0;
 
                 ListMenu_Draw(v0);
-                return 0xffffffff;
+                return LIST_NOTHING_CHOSEN;
             }
         } else {
             if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (v1 + v2 == v8 - 1) {
-                    return 0xffffffff;
+                    return LIST_NOTHING_CHOSEN;
                 }
 
                 param0->unk_14 = v1;
@@ -172,7 +173,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                 param0->unk_1A = v2;
                 param0->unk_1C = 1;
 
-                return 0xffffffff;
+                return LIST_NOTHING_CHOSEN;
             }
         }
     }
@@ -187,9 +188,9 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
     }
 
     switch (v6) {
-    case 0xffffffff:
+    case LIST_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case LIST_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     default:
@@ -208,8 +209,8 @@ void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2)
 
     if (param0->unk_00) {
         ColoredArrow_Free(param0->unk_10);
-        Heap_FreeToHeap(param0->unk_08);
+        Heap_Free(param0->unk_08);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }

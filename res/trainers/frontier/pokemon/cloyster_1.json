@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_CLOYSTER",
+    "moves": [
+        "MOVE_AURORA_BEAM",
+        "MOVE_WATER_PULSE",
+        "MOVE_SPIKES",
+        "MOVE_SUPERSONIC"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_BOLD",
+    "item": "ITEM_NEVERMELTICE",
+    "form": 0
+}

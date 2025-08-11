@@ -4,10 +4,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "heap.h"
-#include "palette.h"
 #include "vram_transfer.h"
 
 #define NUM_VRAM_PALETTES     16
@@ -91,8 +91,8 @@ void PlttTransfer_Free(void)
 {
     if (sTaskManager != NULL) {
         PlttTransfer_ResetAllTasks();
-        Heap_FreeToHeap(sTaskManager->tasks);
-        Heap_FreeToHeap(sTaskManager);
+        Heap_Free(sTaskManager->tasks);
+        Heap_Free(sTaskManager);
         sTaskManager = NULL;
     }
 }

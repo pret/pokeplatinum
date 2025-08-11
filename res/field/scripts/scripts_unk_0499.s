@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0541.h"
+#include "res/text/bank/scratch_off_cards.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -167,6 +166,4 @@ _0294:
     Message 12
     Return
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

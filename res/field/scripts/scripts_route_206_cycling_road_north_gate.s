@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_206_cycling_road_north_gate.h"
 
-    .data
 
     ScriptEntry _003B
     ScriptEntry _004E
@@ -60,12 +59,12 @@ _0091:
 
     .balign 4, 0
 _00A0:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _00A8:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
 _00B0:
@@ -95,7 +94,7 @@ _00F9:
     GoTo _0102
 
 _0102:
-    ScrCmd_120 VAR_0x8004
+    GetNationalDexSeenCount VAR_0x8004
     BufferNumber 1, VAR_0x8004
     GoToIfLt VAR_0x8004, 35, _015F
     Message 5
@@ -128,5 +127,4 @@ _015F:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

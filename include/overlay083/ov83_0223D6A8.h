@@ -30,7 +30,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 
-void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int param3);
+void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int heapID);
 void ov83_0223D784(UnkStruct_ov83_0223D784 *param0);
 void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9);
 void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, SpriteResource *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
@@ -49,7 +49,7 @@ void ov83_0223DC68(UnkStruct_ov83_0223DB30 *param0);
 u32 ov83_0223DD30(UnkStruct_ov83_0223DB30 *param0);
 void ov83_0223DEA0(UnkStruct_ov83_0223E138 *param0, int param1, UnkStruct_ov83_0223DEA0 *param2, UnkStruct_ov83_0223FE50 *param3, int param4, u32 param5);
 void ov83_0223DEC4(UnkStruct_ov83_0223E138 *param0);
-void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, u32 param2, NARC *param3);
+void ov83_0223DEE0(UnkStruct_ov83_0223E138 *param0, BgConfig *param1, u32 heapID, NARC *param3);
 void ov83_0223DF10(UnkStruct_ov83_0223E138 *param0);
 void ov83_0223DF30(UnkStruct_ov83_0223E138 *param0, int param1);
 void ov83_0223DF70(UnkStruct_ov83_0223E138 *param0);
@@ -80,7 +80,7 @@ void ov83_0223E658(UnkStruct_ov83_0223E5C0 *param0);
 void ov83_0223E69C(UnkStruct_ov83_0223E5C0 *param0, BOOL param1);
 void ov83_0223E6D4(UnkStruct_ov83_0223E824 *param0, int param1, UnkStruct_ov83_0223DEA0 *param2, UnkStruct_ov83_0223FE50 *param3, int param4, u32 param5);
 void ov83_0223E6F8(UnkStruct_ov83_0223E824 *param0);
-void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, u32 param2, NARC *param3);
+void ov83_0223E720(UnkStruct_ov83_0223E824 *param0, BgConfig *param1, u32 heapID, NARC *param3);
 void ov83_0223E760(UnkStruct_ov83_0223E824 *param0);
 void ov83_0223E908(UnkStruct_ov83_0223E824 *param0, u32 param1);
 BOOL ov83_0223E984(const UnkStruct_ov83_0223E824 *param0);

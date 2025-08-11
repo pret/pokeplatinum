@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_NIDOKING",
+    "moves": [
+        "MOVE_FOCUS_PUNCH",
+        "MOVE_DRAGON_PULSE",
+        "MOVE_HORN_DRILL",
+        "MOVE_SUBSTITUTE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": true
+    },
+    "nature": "NATURE_CAREFUL",
+    "item": "ITEM_BRIGHTPOWDER",
+    "form": 0
+}

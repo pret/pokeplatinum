@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209_lost_tower_1f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0014
@@ -32,5 +31,4 @@ _0027:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

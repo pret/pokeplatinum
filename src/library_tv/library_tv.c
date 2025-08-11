@@ -14,9 +14,9 @@
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "screen_fade.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 #define LIBRARY_TV_DURATION 90 + 150
 
@@ -30,7 +30,7 @@ typedef struct LibraryTV {
     int waitTiming;
 } LibraryTV;
 
-extern void EnqueueApplication(FSOverlayID param0, const OverlayManagerTemplate *param1);
+extern void EnqueueApplication(FSOverlayID param0, const ApplicationManagerTemplate *param1);
 static void LibraryTV_VBlank(void *data);
 static void LibraryTV_SetVramBank(LibraryTV *ltv);
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv);
@@ -38,13 +38,13 @@ static void LibraryTV_SetMsgLdr(LibraryTV *ltv);
 static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv);
 static void LibraryTV_UpdateScanLines(LibraryTV *ltv);
 
-BOOL LibraryTV_Init(OverlayManager *ovy, int *state)
+BOOL LibraryTV_Init(ApplicationManager *appMan, int *state)
 {
     int heapID = HEAP_ID_LIBRARY_TV;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, HEAP_SIZE_LIBRARY_TV);
 
-    LibraryTV *ltv = OverlayManager_NewData(ovy, sizeof(LibraryTV), heapID);
+    LibraryTV *ltv = ApplicationManager_NewData(appMan, sizeof(LibraryTV), heapID);
     memset(ltv, 0, sizeof(LibraryTV));
 
     ltv->heapID = heapID;
@@ -62,15 +62,15 @@ enum LibraryTVAppState {
     STATE_EXIT
 };
 
-BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
+BOOL LibraryTV_Main(ApplicationManager *appMan, int *state)
 {
-    LibraryTV *ltv = OverlayManager_Data(ovy);
+    LibraryTV *ltv = ApplicationManager_Data(appMan);
     BOOL result = FALSE;
 
     switch (*state) {
     case STATE_INIT:
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
         SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
@@ -107,14 +107,14 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, ltv->heapID);
             *state = STATE_FADE_WAIT;
         }
         break;
     case STATE_FADE_WAIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ltv->waitTiming = LIBRARY_TV_DURATION;
             *state = STATE_MAIN;
         }
@@ -126,14 +126,14 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
             ltv->waitTiming--;
         } else {
             ltv->waitTiming = 0;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, ltv->heapID);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, ltv->heapID);
             *state = STATE_EXIT;
         }
         break;
     case STATE_EXIT:
         LibraryTV_UpdateScanLines(ltv);
 
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             LibraryTV_ReleaseMsgLdr(ltv);
             LibraryTV_ReleaseVramBank(ltv);
             SetVBlankCallback(NULL, NULL);
@@ -145,12 +145,12 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
     return result;
 }
 
-BOOL LibraryTV_Exit(OverlayManager *ovy, int *state)
+BOOL LibraryTV_Exit(ApplicationManager *appMan, int *state)
 {
-    LibraryTV *ltv = OverlayManager_Data(ovy);
+    LibraryTV *ltv = ApplicationManager_Data(appMan);
     int heapID = ltv->heapID;
 
-    OverlayManager_FreeData(ovy);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
 
     return TRUE;
@@ -192,13 +192,39 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     SetAllGraphicsModes(&bgData);
     int frame, charSetID, screenID;
 
-    BgTemplate bgHeader0 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader0 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0000,
+        .charBase = GX_BG_CHARBASE_0x18000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 2;
     Bg_InitFromTemplate(ltv->bgl, frame, &bgHeader0, 0);
     Bg_ClearTilesRange(frame, 32, 0, ltv->heapID);
     Bg_ClearTilemap(ltv->bgl, frame);
 
-    BgTemplate bgHeader1 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader1 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0800,
+        .charBase = GX_BG_CHARBASE_0x14000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 0;
     charSetID = 1;
     screenID = 4;
@@ -206,7 +232,20 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
-    BgTemplate bgHeader2 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader2 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x1000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 1;
     charSetID = 2;
     screenID = 5;
@@ -214,7 +253,20 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, charSetID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__INTRO__INTRO_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
-    BgTemplate bgHeader3 = { 0, 0, 0x800, 0, 1, GX_BG_COLORMODE_256, GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
+    BgTemplate bgHeader3 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0x1800,
+        .charBase = GX_BG_CHARBASE_0x20000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
     frame = 3;
     charSetID = 2;
     screenID = 4;
@@ -223,37 +275,37 @@ static void LibraryTV_SetVramBank(LibraryTV *ltv)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__LIBRARY_TV, screenID, ltv->bgl, frame, 0, 0, 0, ltv->heapID);
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__LIBRARY_TV, 3, 0, 0, 0, ltv->heapID);
-    Font_LoadTextPalette(0, 1 * (2 * 16), ltv->heapID);
-    Bg_MaskPalette(0, 0x0);
-    Bg_MaskPalette(4, 0x0);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), ltv->heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0x0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0x0);
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, (GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 0x4, 0xc);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 0x4, 0xc);
 }
 
 static void LibraryTV_ReleaseVramBank(LibraryTV *ltv)
 {
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
     G2_BlendNone();
 
-    Bg_FreeTilemapBuffer(ltv->bgl, 3);
-    Bg_FreeTilemapBuffer(ltv->bgl, 1);
-    Bg_FreeTilemapBuffer(ltv->bgl, 0);
-    Bg_FreeTilemapBuffer(ltv->bgl, 2);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(ltv->bgl, BG_LAYER_MAIN_2);
 
-    Heap_FreeToHeap(ltv->bgl);
+    Heap_Free(ltv->bgl);
 }
 
 static void LibraryTV_SetMsgLdr(LibraryTV *ltv)
 {
-    ltv->msgLdr = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0607, ltv->heapID);
+    ltv->msgLdr = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ROWAN_INTRO_TV_APP, ltv->heapID);
     Text_ResetAllPrinters();
     ltv->tvState = 0;
 }
@@ -266,5 +318,5 @@ static void LibraryTV_ReleaseMsgLdr(LibraryTV *ltv)
 static void LibraryTV_UpdateScanLines(LibraryTV *ltv)
 {
     ltv->scanLinePos += 0x4;
-    Bg_SetOffset(ltv->bgl, 1, 3, ltv->scanLinePos >> 4);
+    Bg_SetOffset(ltv->bgl, BG_LAYER_MAIN_1, 3, ltv->scanLinePos >> 4);
 }

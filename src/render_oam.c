@@ -2,8 +2,8 @@
 
 #include <nnsys.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/screen.h"
 
 #include "heap.h"
 #include "render_view.h"
@@ -98,7 +98,7 @@ void RenderOam_Free(void)
     GF_ASSERT(sOamManager);
     RenderOam_ClearMain(sOamManager->heapID);
     RenderOam_ClearSub(sOamManager->heapID);
-    Heap_FreeToHeap(sOamManager);
+    Heap_Free(sOamManager);
     sOamManager = NULL;
 }
 

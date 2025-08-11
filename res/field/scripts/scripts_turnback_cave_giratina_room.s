@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/turnback_cave_giratina_room.h"
 
-    .data
 
     ScriptEntry _001C
     ScriptEntry _0037
@@ -125,6 +124,4 @@ _017F:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

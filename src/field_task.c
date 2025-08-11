@@ -10,8 +10,8 @@
 
 typedef struct FieldTaskEnv {
     int state;
-    const OverlayManagerTemplate *overlayTemplate;
-    void *overlayArgs;
+    const ApplicationManagerTemplate *appTemplate;
+    void *appArgs;
 } FieldTaskEnv;
 
 static FieldTask *CreateTaskManager(FieldSystem *fieldSys, FieldTaskFunc taskFunc, void *taskEnv)
@@ -46,7 +46,7 @@ void FieldTask_InitJump(FieldTask *task, FieldTaskFunc taskFunc, void *taskEnv)
     task->env = taskEnv;
 
     if (task->dummy14 != 0 || task->dummy14 != NULL) { // Double-comparison required to match
-        Heap_FreeToHeap(task->dummy14);
+        Heap_Free(task->dummy14);
         task->dummy10 = 0;
         task->dummy14 = NULL;
     }
@@ -72,11 +72,11 @@ BOOL FieldTask_Run(FieldSystem *fieldSys)
         FieldTask *prev = fieldSys->task->prev;
 
         if (fieldSys->task->dummy14) {
-            Heap_FreeToHeap(fieldSys->task->dummy14);
+            Heap_Free(fieldSys->task->dummy14);
         }
 
-        Heap_FreeToHeap(fieldSys->task->dummy1C);
-        Heap_FreeToHeap(fieldSys->task);
+        Heap_Free(fieldSys->task->dummy1C);
+        Heap_Free(fieldSys->task);
 
         fieldSys->task = prev;
         if (prev == NULL) {
@@ -119,7 +119,7 @@ static BOOL RunChildApplication(FieldTask *task)
 
     switch (env->state) {
     case 0:
-        FieldSystem_StartChildProcess(fieldSys, env->overlayTemplate, env->overlayArgs);
+        FieldSystem_StartChildProcess(fieldSys, env->appTemplate, env->appArgs);
         env->state++;
         break;
 
@@ -128,19 +128,19 @@ static BOOL RunChildApplication(FieldTask *task)
             break;
         }
 
-        Heap_FreeToHeap(env);
+        Heap_Free(env);
         return TRUE;
     }
 
     return FALSE;
 }
 
-void FieldTask_RunApplication(FieldTask *task, const OverlayManagerTemplate *overlayTemplate, void *overlayArgs)
+void FieldTask_RunApplication(FieldTask *task, const ApplicationManagerTemplate *appTemplate, void *appArgs)
 {
     FieldTaskEnv *env = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD_TASK, sizeof(FieldTaskEnv));
     env->state = 0;
-    env->overlayTemplate = overlayTemplate;
-    env->overlayArgs = overlayArgs;
+    env->appTemplate = appTemplate;
+    env->appArgs = appArgs;
 
     FieldTask_InitCall(task, RunChildApplication, env);
 }

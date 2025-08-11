@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_DRIFBLIM",
+    "moves": [
+        "MOVE_OMINOUS_WIND",
+        "MOVE_AIR_CUTTER",
+        "MOVE_BATON_PASS",
+        "MOVE_ENDURE"
+    ],
+    "evFlags": {
+        "hp": true,
+        "attack": false,
+        "defense": false,
+        "speed": false,
+        "special_attack": true,
+        "special_defense": false
+    },
+    "nature": "NATURE_MODEST",
+    "item": "ITEM_SALAC_BERRY",
+    "form": 0
+}

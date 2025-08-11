@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SPLASH" ],
@@ -93,14 +94,30 @@
             "MOVE_BOUNCE",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_FAKE_TEARS",
+            "MOVE_FAKE_OUT",
+            "MOVE_ENCORE",
+            "MOVE_SWEET_KISS",
+            "MOVE_DOUBLE_HIT",
+            "MOVE_ATTRACT",
+            "MOVE_LOW_KICK",
+            "MOVE_SKY_UPPERCUT",
+            "MOVE_SWITCHEROO",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_FIRE_PUNCH"
         ]
     },
     "evolutions": [
         [ "EVO_LEVEL_HAPPINESS", "SPECIES_LOPUNNY" ]
     ],
+    "offspring": "SPECIES_BUNEARY",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

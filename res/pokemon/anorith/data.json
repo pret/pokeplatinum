@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -87,6 +88,15 @@
             "MOVE_EARTH_POWER",
             "MOVE_IRON_DEFENSE",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_RAPID_SPIN",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWORDS_DANCE",
+            "MOVE_ROCK_SLIDE",
+            "MOVE_SCREECH",
+            "MOVE_SAND_ATTACK",
+            "MOVE_CROSS_POISON"
         ]
     },
     "evolutions": [
@@ -96,9 +106,11 @@
             "SPECIES_ARMALDO"
         ]
     ],
+    "offspring": "SPECIES_ANORITH",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 7,

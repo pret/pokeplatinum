@@ -3,8 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay013/ov13_0221FC20.h"
-#include "overlay013/struct_ov13_022213F0.h"
+#include "generated/species.h"
+
+#include "overlay013/battle_party.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -19,7 +20,7 @@ typedef struct {
 } UnkStruct_ov13_02229924;
 
 static void ov13_02225AF0(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 param4, u8 param5);
-static u8 ov13_02226484(UnkStruct_ov13_022213F0 *param0);
+static u8 ov13_02226484(BattleParty *param0);
 
 static const UnkStruct_ov13_02229924 Unk_ov13_02229924[] = {
     { 0x0, 0x0, 0x10, 0x6 },
@@ -254,7 +255,7 @@ static const u8 Unk_ov13_0222987C[] = {
     0x2
 };
 
-void ov13_02225710(UnkStruct_ov13_022213F0 *param0, u16 *param1)
+void ov13_02225710(BattleParty *param0, u16 *param1)
 {
     ov13_02225AF0(param0->unk_1E8[0], param1, 0, 0, 16, 6);
     ov13_02225AF0(param0->unk_1E8[1], param1, 0, (0 + 6), 16, 6);
@@ -299,7 +300,7 @@ void ov13_02225710(UnkStruct_ov13_022213F0 *param0, u16 *param1)
     ov13_02225AF0(param0->unk_1F20[2], param1, 10, 59, 5, 2);
 }
 
-void ov13_02225A3C(UnkStruct_ov13_022213F0 *param0, u16 *param1)
+void ov13_02225A3C(BattleParty *param0, u16 *param1)
 {
     ov13_02225AF0(param0->unk_C48[0], param1, 0, 0, 30, 17);
     ov13_02225AF0(param0->unk_C48[1], param1, 0, (0 + 17), 30, 17);
@@ -322,7 +323,7 @@ static void ov13_02225AF0(u16 *param0, u16 *param1, u8 param2, u8 param3, u8 par
     }
 }
 
-static u16 *ov13_02225B40(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2, u8 param3)
+static u16 *ov13_02225B40(BattleParty *param0, u8 param1, u8 param2, u8 param3)
 {
     switch (param1) {
     case 0:
@@ -378,7 +379,7 @@ static u16 *ov13_02225B40(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2,
     return NULL;
 }
 
-static void ov13_02225C4C(UnkStruct_ov13_022213F0 *param0, u16 *param1, u8 param2, u8 param3, u8 param4)
+static void ov13_02225C4C(BattleParty *param0, u16 *param1, u8 param2, u8 param3, u8 param4)
 {
     u16 *v0;
     u8 v1, v2;
@@ -397,11 +398,11 @@ static void ov13_02225C4C(UnkStruct_ov13_022213F0 *param0, u16 *param1, u8 param
     case 3:
     case 4:
     case 5:
-        if (param0->unk_04[param2 - 0].unk_04 == 0) {
+        if (param0->partyPokemon[param2 - 0].species == SPECIES_NONE) {
             break;
         }
 
-        if (param0->unk_04[param2 - 0].unk_17_7 != 0) {
+        if (param0->partyPokemon[param2 - 0].isEgg != FALSE) {
             u16 v5[2];
 
             v5[0] = param1[2 * v1 + 6 - 1];
@@ -413,11 +414,11 @@ static void ov13_02225C4C(UnkStruct_ov13_022213F0 *param0, u16 *param1, u8 param
                 }
             }
         } else {
-            if (param0->unk_04[param2 - 0].unk_10 == 0) {
+            if (param0->partyPokemon[param2 - 0].curHP == 0) {
                 for (v3 = 0; v3 < v1 * v2; v3++) {
                     param1[v3] = (param1[v3] & 0xfff) | (2 << 12);
                 }
-            } else if (ov13_022219AC(param0, param2 - 0) == 1) {
+            } else if (BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(param0, param2 - 0) == 1) {
                 for (v3 = 0; v3 < v1 * v2; v3++) {
                     param1[v3] = (param1[v3] & 0xfff) | (1 << 12);
                 }
@@ -432,18 +433,18 @@ static void ov13_02225C4C(UnkStruct_ov13_022213F0 *param0, u16 *param1, u8 param
     }
 }
 
-static void ov13_02225D8C(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2, u8 param3)
+static void ov13_02225D8C(BattleParty *param0, u8 param1, u8 param2, u8 param3)
 {
-    u16 *v0 = Heap_AllocFromHeap(param0->unk_00->heapID, Unk_ov13_02229924[param1].unk_02 * Unk_ov13_02229924[param1].unk_03 * 2);
+    u16 *v0 = Heap_AllocFromHeap(param0->context->heapID, Unk_ov13_02229924[param1].unk_02 * Unk_ov13_02229924[param1].unk_03 * 2);
 
     ov13_02225C4C(param0, v0, param1, param2, param3);
 
-    Bg_LoadToTilemapRect(param0->unk_1E0, 6, v0, Unk_ov13_02229924[param1].unk_00, Unk_ov13_02229924[param1].unk_01, Unk_ov13_02229924[param1].unk_02, Unk_ov13_02229924[param1].unk_03);
-    Bg_ScheduleTilemapTransfer(param0->unk_1E0, 6);
-    Heap_FreeToHeap(v0);
+    Bg_LoadToTilemapRect(param0->background, 6, v0, Unk_ov13_02229924[param1].unk_00, Unk_ov13_02229924[param1].unk_01, Unk_ov13_02229924[param1].unk_02, Unk_ov13_02229924[param1].unk_03);
+    Bg_ScheduleTilemapTransfer(param0->background, 6);
+    Heap_Free(v0);
 }
 
-static void ov13_02225E08(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2)
+static void ov13_02225E08(BattleParty *param0, u8 param1, u8 param2)
 {
     const u8 *v0;
     u16 v1;
@@ -488,7 +489,7 @@ static void ov13_02225E08(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2)
     }
 }
 
-static void ov13_02225EB8(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2)
+static void ov13_02225EB8(BattleParty *param0, u8 param1, u8 param2)
 {
     switch (param1) {
     case 0:
@@ -502,8 +503,8 @@ static void ov13_02225EB8(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2)
         ManagedSprite_OffsetPositionXY(param0->unk_1FB4[7 + param1 - 0], 0, Unk_ov13_02229896[param2]);
         break;
     case 7:
-        ManagedSprite_OffsetPositionXY(param0->unk_1FB4[0 + param0->unk_00->unk_11], 0, Unk_ov13_02229890[param2]);
-        ManagedSprite_OffsetPositionXY(param0->unk_1FB4[7 + param0->unk_00->unk_11], 0, Unk_ov13_02229890[param2]);
+        ManagedSprite_OffsetPositionXY(param0->unk_1FB4[0 + param0->context->selectedPartyIndex], 0, Unk_ov13_02229890[param2]);
+        ManagedSprite_OffsetPositionXY(param0->unk_1FB4[7 + param0->context->selectedPartyIndex], 0, Unk_ov13_02229890[param2]);
         break;
     case 14:
     case 15:
@@ -527,12 +528,12 @@ static void ov13_02225EB8(UnkStruct_ov13_022213F0 *param0, u8 param1, u8 param2)
     }
 }
 
-void ov13_02225FCC(UnkStruct_ov13_022213F0 *param0, u8 param1)
+void ov13_02225FCC(BattleParty *param0, u8 param1)
 {
     param0->unk_1F9F_4 = 0;
 
     if ((param1 >= 0) && (param1 <= 5)) {
-        if (ov13_022213F0(param0, param1 - 0) == 2) {
+        if (BattlePartyTask_CheckCanPartySlotBeSelected(param0, param1 - 0) == PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE) {
             param0->unk_1F9F_4 = 1;
         }
     }
@@ -543,7 +544,7 @@ void ov13_02225FCC(UnkStruct_ov13_022213F0 *param0, u8 param1)
     param0->unk_1F9F_7 = 1;
 }
 
-void ov13_0222601C(UnkStruct_ov13_022213F0 *param0)
+void ov13_0222601C(BattleParty *param0)
 {
     if (param0->unk_1F9F_7 == 0) {
         return;
@@ -574,14 +575,14 @@ void ov13_0222601C(UnkStruct_ov13_022213F0 *param0)
     }
 }
 
-void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
+void ov13_022260EC(BattleParty *param0, u8 param1)
 {
     u16 v0, v1;
 
     switch (param1) {
     case 0:
         for (v0 = 0; v0 < 6; v0++) {
-            v1 = ov13_022213F0(param0, v0);
+            v1 = BattlePartyTask_CheckCanPartySlotBeSelected(param0, v0);
 
             if (v1 == 0) {
                 ov13_02225D8C(param0, 0 + v0, 3, 1);
@@ -592,7 +593,7 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
             }
         }
 
-        if (param0->unk_00->unk_35 == 1) {
+        if (param0->context->battlePartyMode == BATTLE_PARTY_MODE_SELECT_POKEMON_NO_CANCEL) {
             ov13_02225D8C(param0, 6, 3, 0);
         } else {
             ov13_02225D8C(param0, 6, 0, 0);
@@ -602,7 +603,7 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
         ov13_02225D8C(param0, 6, 0, 0);
         ov13_02225D8C(param0, 7, 0, 0);
 
-        if (param0->unk_04[param0->unk_00->unk_11].unk_17_7 != 0) {
+        if (param0->partyPokemon[param0->context->selectedPartyIndex].isEgg != FALSE) {
             ov13_02225D8C(param0, 8, 3, 0);
             ov13_02225D8C(param0, 10, 3, 0);
         } else {
@@ -632,7 +633,7 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
         }
 
         for (v0 = 0; v0 < 4; v0++) {
-            if (param0->unk_04[param0->unk_00->unk_11].unk_30[v0].unk_00 != 0) {
+            if (param0->partyPokemon[param0->context->selectedPartyIndex].moves[v0].move != MOVE_NONE) {
                 ov13_02225D8C(param0, 14 + v0, 0, 0);
             } else {
                 ov13_02225D8C(param0, 14 + v0, 3, 0);
@@ -646,7 +647,7 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
         ov13_02225D8C(param0, 6, 0, 0);
 
         for (v0 = 0; v0 < 4; v0++) {
-            if (param0->unk_00->unk_34 == v0) {
+            if (param0->context->selectedMoveSlot == v0) {
                 ov13_02225D8C(param0, 30 + v0, 2, 0);
             } else {
                 ov13_02225D8C(param0, 30 + v0, 0, 0);
@@ -655,7 +656,7 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
         break;
     case 5:
         for (v0 = 0; v0 < 4; v0++) {
-            if (param0->unk_04[param0->unk_00->unk_11].unk_30[v0].unk_00 != 0) {
+            if (param0->partyPokemon[param0->context->selectedPartyIndex].moves[v0].move != MOVE_NONE) {
                 ov13_02225D8C(param0, 19 + v0, 0, 0);
             } else {
                 ov13_02225D8C(param0, 19 + v0, 3, 0);
@@ -673,7 +674,7 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
         ov13_02225D8C(param0, 27, 0, 0);
         ov13_02225D8C(param0, 6, 0, 0);
 
-        if (param0->unk_2073_4 == 1) {
+        if (param0->hasVisitedContestHall == TRUE) {
             ov13_02225D8C(param0, 18, 0, 0);
         }
         break;
@@ -681,7 +682,7 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
         ov13_02225D8C(param0, 28, 0, 0);
         ov13_02225D8C(param0, 6, 0, 0);
 
-        if (param0->unk_2073_4 == 1) {
+        if (param0->hasVisitedContestHall == TRUE) {
             ov13_02225D8C(param0, 18, 0, 0);
         }
         break;
@@ -689,28 +690,28 @@ void ov13_022260EC(UnkStruct_ov13_022213F0 *param0, u8 param1)
         ov13_02225D8C(param0, 29, 0, 0);
         ov13_02225D8C(param0, 6, 0, 0);
 
-        if (param0->unk_2073_4 == 1) {
+        if (param0->hasVisitedContestHall == TRUE) {
             ov13_02225D8C(param0, 18, 0, 0);
         }
         break;
     }
 }
 
-void ov13_02226444(UnkStruct_ov13_022213F0 *param0, u8 param1)
+void ov13_02226444(BattleParty *param0, u8 param1)
 {
     if (param1 == 3) {
-        PaletteData_LoadBuffer(param0->unk_1E4, &param0->unk_1F5C[16], 1, 12 * 16, 0x20);
+        PaletteData_LoadBuffer(param0->palette, &param0->unk_1F5C[16], 1, 12 * 16, 0x20);
     } else {
-        PaletteData_LoadBuffer(param0->unk_1E4, &param0->unk_1F5C[0], 1, 12 * 16, 0x20);
+        PaletteData_LoadBuffer(param0->palette, &param0->unk_1F5C[0], 1, 12 * 16, 0x20);
     }
 }
 
-static u8 ov13_02226484(UnkStruct_ov13_022213F0 *param0)
+static u8 ov13_02226484(BattleParty *param0)
 {
     u16 v0, v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if ((param0->unk_04[v0].unk_04 != 0) && (param0->unk_04[v0].unk_17_7 == 0)) {
+        if ((param0->partyPokemon[v0].species != SPECIES_NONE) && (param0->partyPokemon[v0].isEgg == FALSE)) {
             v1++;
         }
     }
@@ -722,11 +723,11 @@ static u8 ov13_02226484(UnkStruct_ov13_022213F0 *param0)
     return 0;
 }
 
-void ov13_022264C4(UnkStruct_ov13_022213F0 *param0)
+void ov13_022264C4(BattleParty *param0)
 {
-    if (ov13_022213F0(param0, param0->unk_00->unk_11) == 2) {
-        ov13_02225D8C(param0, 0 + param0->unk_00->unk_11, 0, 1);
+    if (BattlePartyTask_CheckCanPartySlotBeSelected(param0, param0->context->selectedPartyIndex) == PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE) {
+        ov13_02225D8C(param0, 0 + param0->context->selectedPartyIndex, 0, 1);
     } else {
-        ov13_02225D8C(param0, 0 + param0->unk_00->unk_11, 0, 0);
+        ov13_02225D8C(param0, 0 + param0->context->selectedPartyIndex, 0, 0);
     }
 }

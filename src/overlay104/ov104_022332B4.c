@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"
@@ -100,7 +102,7 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay105);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov105_02241AE0,
         ov105_02241BD8,
         ov105_02241F54,
@@ -112,7 +114,7 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02234130));
 
-    v2->unk_00 = v3->saveData;
+    v2->saveData = v3->saveData;
     v2->unk_04 = v1->unk_04;
     v2->unk_05 = v1->unk_05;
     v2->unk_06 = 0;
@@ -126,11 +128,8 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_0223338C(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223ADA0 *v0;
-    FieldBattleDTO *v1;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
-    v1 = v0->unk_4FC;
+    UnkStruct_ov104_0223ADA0 *v0 = sub_0209B978(param0->unk_00->unk_00);
+    FieldBattleDTO *v1 = v0->unk_4FC;
 
     v0->unk_14 = CheckPlayerWonBattle(v1->resultMask);
 
@@ -148,7 +147,7 @@ BOOL ov104_022333B4(UnkStruct_ov104_0222E930 *param0)
     v0 = ov104_0223ABA0(v1, v2);
 
     v1->unk_4FC = v0;
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v0, 0, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v0, 0, NULL);
 
     return 1;
 }
@@ -162,7 +161,7 @@ BOOL ov104_022333F8(UnkStruct_ov104_0222E930 *param0)
 
     FS_EXTERN_OVERLAY(overlay105);
 
-    static const OverlayManagerTemplate v4 = {
+    static const ApplicationManagerTemplate v4 = {
         ov105_02241AE0,
         ov105_02241BD8,
         ov105_02241F54,
@@ -178,7 +177,7 @@ BOOL ov104_022333F8(UnkStruct_ov104_0222E930 *param0)
     v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02234130));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02234130));
 
-    v2->unk_00 = v3->saveData;
+    v2->saveData = v3->saveData;
     v2->unk_04 = v1->unk_04;
     v2->unk_05 = v1->unk_05;
     v2->unk_06 = 1;
@@ -196,7 +195,7 @@ static void ov104_02233478(void *param0)
     UnkStruct_ov104_02234130 *v1 = param0;
 
     ov104_0223410C(v1->unk_1C, param0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 
     return;
 }
@@ -285,16 +284,16 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         *v15 = ov104_02234430(v4);
         break;
     case 15:
-        *v15 = v4->unk_3F0[v13].unk_00_val1_0;
+        *v15 = v4->unk_3F0[v13].species;
         break;
     case 16:
-        *v15 = v4->unk_3F0[v13].unk_04[v14];
+        *v15 = v4->unk_3F0[v13].moves[v14];
         break;
     case 17:
         v3 = Pokemon_New(HEAP_ID_FIELDMAP);
         ov104_0222DF40(&v4->unk_3F0[v13], v3, ov104_0223ADA0(v4));
         *v15 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         break;
     case 18:
         v5 = ov104_0223AA74(v4->unk_04, 1);
@@ -322,7 +321,7 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
             }
         }
 
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
 
         v9 = 0;
 
@@ -382,8 +381,8 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         }
         break;
     case 33:
-        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], 11, 178);
-        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], 11, 178);
+        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], HEAP_ID_FIELDMAP, 178);
+        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], HEAP_ID_FIELDMAP, 178);
         break;
     case 34:
         v6 = ov104_0223AA50(v4->unk_04);

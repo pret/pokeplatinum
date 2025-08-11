@@ -63,13 +63,9 @@ static const UnkStruct_ov5_022018DC Unk_ov5_022018DC[20];
 void Villa_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     int v0;
-    PersistedMapFeatures *v1;
-    UnkStruct_02071C34 *v2;
-    UnkStruct_ov5_021F8480 *v3;
-
-    v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v2 = PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_VILLA);
-    v3 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F8480));
+    PersistedMapFeatures *v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071C34 *v2 = PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_VILLA);
+    UnkStruct_ov5_021F8480 *v3 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F8480));
 
     memset(v3, 0, sizeof(UnkStruct_ov5_021F8480));
 
@@ -91,7 +87,7 @@ void Villa_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021F8480 *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     fieldSystem->unk_04->dynamicMapFeaturesData = NULL;
 }
 

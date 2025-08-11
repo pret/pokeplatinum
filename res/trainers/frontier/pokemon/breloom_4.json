@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_BRELOOM",
+    "moves": [
+        "MOVE_FOCUS_PUNCH",
+        "MOVE_SEED_BOMB",
+        "MOVE_GIGA_IMPACT",
+        "MOVE_SPORE"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_ADAMANT",
+    "item": "ITEM_SHELL_BELL",
+    "form": 0
+}

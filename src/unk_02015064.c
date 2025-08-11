@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay021/struct_ov21_021E7F40.h"
+#include "applications/pokedex/struct_ov21_021E7F40.h"
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
@@ -90,10 +90,10 @@ void sub_020150A8(UnkStruct_02015064 *param0)
     GF_ASSERT(param0->unk_08);
     GF_ASSERT(param0->unk_10);
 
-    Heap_FreeToHeap(param0->unk_00);
-    Heap_FreeToHeap(param0->unk_08);
-    Heap_FreeToHeap(param0->unk_10);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_00);
+    Heap_Free(param0->unk_08);
+    Heap_Free(param0->unk_10);
+    Heap_Free(param0);
 
     param0 = NULL;
 }

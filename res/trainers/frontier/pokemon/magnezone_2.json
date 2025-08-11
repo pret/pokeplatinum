@@ -1,0 +1,20 @@
+{
+    "species": "SPECIES_MAGNEZONE",
+    "moves": [
+        "MOVE_IRON_HEAD",
+        "MOVE_EXPLOSION",
+        "MOVE_SWAGGER",
+        "MOVE_PSYCH_UP"
+    ],
+    "evFlags": {
+        "hp": false,
+        "attack": true,
+        "defense": true,
+        "speed": false,
+        "special_attack": false,
+        "special_defense": false
+    },
+    "nature": "NATURE_IMPISH",
+    "item": "ITEM_LUM_BERRY",
+    "form": 0
+}

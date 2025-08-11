@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town_northeast_house.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _002C
@@ -30,4 +29,4 @@ _002C:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

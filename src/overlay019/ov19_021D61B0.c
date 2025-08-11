@@ -42,13 +42,13 @@
 #include "narc.h"
 #include "pokemon_sprite.h"
 #include "render_oam.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
 
 struct UnkStruct_ov19_021D61B0_t {
     SysTask *unk_00;
@@ -74,93 +74,151 @@ struct UnkStruct_ov19_021D61B0_t {
     const UnkStruct_ov19_021D5DF8 *unk_B414;
 };
 
-typedef struct {
-    u32 unk_00;
+typedef struct BoxTaskParams {
+    enum BoxGraphicsFunctions function;
     u16 unk_04;
-    u16 unk_06;
+    u16 state;
     u16 unk_08;
     u16 unk_0A;
     UnkStruct_ov19_021D61B0 *unk_0C;
     void *unk_10;
-} UnkStruct_ov19_021D6640;
+} BoxTaskParams;
 
 static void ov19_021D6474(SysTask *param0, void *param1);
-static void ov19_021D6640(UnkStruct_ov19_021D6640 *param0);
+static void BoxTaskParams_Free(BoxTaskParams *params);
 static void ov19_021D6664(SysTask *param0, void *param1);
 static void ov19_021D6694(SysTask *param0, void *param1);
-static void ov19_021D671C(SysTask *param0, void *param1);
-static void ov19_021D6780(SysTask *param0, void *param1);
-static void ov19_021D67DC(SysTask *param0, void *param1);
-static void ov19_021D6824(SysTask *param0, void *param1);
-static void ov19_021D68E4(SysTask *param0, void *param1);
-static void ov19_021D6940(SysTask *param0, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1);
+static void BoxGraphics_ChangeToNewBox(SysTask *param0, void *param1);
+static void BoxGraphics_MoveCursor(SysTask *param0, void *param1);
+static void BoxGraphics_PreviewMon(SysTask *param0, void *param1);
 static void ov19_021D69BC(SysTask *param0, void *param1);
 static void ov19_021D6A1C(SysTask *param0, void *param1);
-static void ov19_021D6A38(SysTask *param0, void *param1);
-static void ov19_021D6A74(SysTask *param0, void *param1);
+static void BoxGraphics_PickUpMonIntoCursor(SysTask *param0, void *param1);
+static void BoxGraphics_PlaceMonDownFromCursor(SysTask *param0, void *param1);
 static void ov19_021D6AB0(SysTask *param0, void *param1);
 static void ov19_021D6AEC(SysTask *param0, void *param1);
 static void ov19_021D6B1C(SysTask *param0, void *param1);
-static void ov19_021D6B6C(SysTask *param0, void *param1);
-static void ov19_021D6BA8(SysTask *param0, void *param1);
-static void ov19_021D6BF0(SysTask *param0, void *param1);
-static void ov19_021D6C38(SysTask *param0, void *param1);
-static void ov19_021D6C74(SysTask *param0, void *param1);
+static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *task, void *param1);
+static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *task, void *param1);
+static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *task, void *param1);
+static void BoxGraphics_DisplayItemInfo(SysTask *param0, void *param1);
+static void BoxGraphics_CloseItemInfo(SysTask *param0, void *param1);
 static void ov19_021D6CB0(SysTask *param0, void *param1);
 static void ov19_021D6CF8(SysTask *param0, void *param1);
 static void ov19_021D6D40(SysTask *param0, void *param1);
 static void ov19_021D6D88(SysTask *param0, void *param1);
-static void ov19_021D6DF8(SysTask *param0, void *param1);
-static void ov19_021D6E48(SysTask *param0, void *param1);
-static void ov19_021D6E70(SysTask *param0, void *param1);
-static void ov19_021D6EA4(SysTask *param0, void *param1);
+static void BoxGraphics_ItemShrinkToNothing(SysTask *param0, void *param1);
+static void BoxGraphics_DisplayBoxMessage(SysTask *task, void *param1);
+static void BoxGraphics_ShowMenu(SysTask *param0, void *param1);
+static void BoxGraphics_CloseMessageBox(SysTask *task, void *param1);
 static void ov19_021D6EC0(SysTask *param0, void *param1);
-static void ov19_021D6EDC(SysTask *param0, void *param1);
+static void BoxGraphics_UpdateMenuCursor(SysTask *param0, void *param1);
 static void ov19_021D6F0C(SysTask *param0, void *param1);
-static void ov19_021D6F3C(SysTask *param0, void *param1);
-static void ov19_021D6F78(SysTask *param0, void *param1);
+static void BoxGraphics_ShowBoxSelectionPopup(SysTask *param0, void *param1);
+static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1);
 static void ov19_021D6FB0(SysTask *param0, void *param1);
-static void ov19_021D6FEC(SysTask *param0, void *param1);
-static void ov19_021D7028(SysTask *param0, void *param1);
-static void ov19_021D70E8(SysTask *param0, void *param1);
+static void BoxGraphics_TransitionWallpaper(SysTask *param0, void *param1);
+static void BoxGraphics_PressBoxButton(SysTask *param0, void *param1);
+static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1);
 static void ov19_021D7138(SysTask *param0, void *param1);
-static void ov19_021D71BC(SysTask *param0, void *param1);
+static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1);
 static void ov19_021D71F8(SysTask *param0, void *param1);
 static void ov19_021D7248(SysTask *param0, void *param1);
 static void ov19_021D7278(SysTask *param0, void *param1);
 static void ov19_021D72E8(SysTask *param0, void *param1);
 static void ov19_021D7324(SysTask *param0, void *param1);
 static void ov19_021D7340(SysTask *param0, void *param1);
-static void ov19_021D735C(SysTask *param0, void *param1);
+static void BoxGraphics_StartDrawMultiSelect(SysTask *param0, void *param1);
 static void ov19_021D7380(SysTask *param0, void *param1);
-static void ov19_021D7398(SysTask *param0, void *param1);
+static void BoxGraphics_ApplyMultiSelectMonShadingTask(SysTask *param0, void *param1);
 static void ov19_021D73B0(SysTask *param0, void *param1);
 static void ov19_021D73EC(SysTask *param0, void *param1);
 static void ov19_021D7408(SysTask *param0, void *param1);
 static void ov19_021D7424(SysTask *param0, void *param1);
-static void ov19_021D7460(SysTask *param0, void *param1);
+static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1);
 static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1);
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2);
 static void ov19_021D76FC(void);
 static void ov19_021D7774(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2);
-static int ov19_021D77A4(u32 param0, u32 param1);
+static int BoxGraphics_GetBoxMoveDirection(u32 param0, u32 param1);
 static void ov19_021D7970(void);
 static void ov19_021D797C(void);
 
-BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2)
+static const struct {
+    SysTaskFunc sysTaskFunc;
+    u32 unk_04;
+} sBoxGraphicsTaskHandlers[] = {
+    [FUNC_ov19_021D6694] = { ov19_021D6694, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlack0] = { BoxGraphics_ScreenFadeBothToBlackLogIn, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlack1] = { BoxGraphics_ScreenFadeBothToBlack1, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlack2] = { BoxGraphics_ScreenFadeBothToBlack2, 0 },
+    [FUNC_BoxGraphics_ChangeToNewBox] = { BoxGraphics_ChangeToNewBox, 0 },
+    [FUNC_BoxGraphics_MoveCursor] = { BoxGraphics_MoveCursor, 0 },
+    [FUNC_BoxGraphics_PreviewMon] = { BoxGraphics_PreviewMon, 0 },
+    [FUNC_ov19_021D69BC] = { ov19_021D69BC, 0 },
+    [FUNC_ov19_021D6A1C] = { ov19_021D6A1C, 0 },
+    [FUNC_BoxGraphics_PickUpMonIntoCursor] = { BoxGraphics_PickUpMonIntoCursor, 0 },
+    [FUNC_BoxGraphics_PlaceMonDownFromCursor] = { BoxGraphics_PlaceMonDownFromCursor, 0 },
+    [FUNC_ov19_021D6AB0] = { ov19_021D6AB0, 0 },
+    [FUNC_ov19_021D6AEC] = { ov19_021D6AEC, 0 },
+    [FUNC_ov19_021D6B1C] = { ov19_021D6B1C, 0 },
+    [FUNC_BoxGraphics_PlayReleaseCursorMonAnimation] = { BoxGraphics_PlayReleaseCursorMonAnimation, 0 },
+    [FUNC_BoxGraphics_PlayReleaseBoxMonAnimation] = { BoxGraphics_PlayReleaseBoxMonAnimation, 0 },
+    [FUNC_BoxGraphics_PlayReleasePartyMonAnimation] = { BoxGraphics_PlayReleasePartyMonAnimation, 0 },
+    [FUNC_BoxGraphics_DisplayItemInfo] = { BoxGraphics_DisplayItemInfo, 0 },
+    [FUNC_BoxGraphics_CloseItemInfo] = { BoxGraphics_CloseItemInfo, 0 },
+    [FUNC_ov19_021D6CB0] = { ov19_021D6CB0, 0 },
+    [FUNC_ov19_021D6CF8] = { ov19_021D6CF8, 0 },
+    [FUNC_ov19_021D6D40] = { ov19_021D6D40, 0 },
+    [FUNC_ov19_021D6D88] = { ov19_021D6D88, 0 },
+    [FUNC_BoxGraphics_ItemShrinkToNothing] = { BoxGraphics_ItemShrinkToNothing, 0 },
+    [FUNC_BoxGraphics_DisplayBoxMessage] = { BoxGraphics_DisplayBoxMessage, 0 },
+    [FUNC_BoxGraphics_ShowMenu] = { BoxGraphics_ShowMenu, 0 },
+    [FUNC_BoxGraphics_CloseMessageBox] = { BoxGraphics_CloseMessageBox, 0 },
+    [FUNC_ov19_021D6EC0] = { ov19_021D6EC0, 0 },
+    [FUNC_BoxGraphics_UpdateMenuCursor] = { BoxGraphics_UpdateMenuCursor, 0 },
+    [FUNC_ov19_021D6F0C] = { ov19_021D6F0C, 0 },
+    [FUNC_BoxGraphics_ShowBoxSelectionPopup] = { BoxGraphics_ShowBoxSelectionPopup, 0 },
+    [FUNC_BoxGraphics_ScrollBoxSelectionPopup] = { BoxGraphics_ScrollBoxSelectionPopup, 0 },
+    [FUNC_ov19_021D6FB0] = { ov19_021D6FB0, 0 },
+    [FUNC_BoxGraphics_TransitionWallpaper] = { BoxGraphics_TransitionWallpaper, 0 },
+    [FUNC_BoxGraphics_PressBoxButton] = { BoxGraphics_PressBoxButton, 0 },
+    [FUNC_BoxGraphics_OpenPartyPopup] = { BoxGraphics_OpenPartyPopup, 0 },
+    [FUNC_ov19_021D7138] = { ov19_021D7138, 0 },
+    [FUNC_BoxGraphics_PlayAdjustPartyAnimation] = { BoxGraphics_PlayAdjustPartyAnimation, 0 },
+    [FUNC_ov19_021D71F8] = { ov19_021D71F8, 0 },
+    [FUNC_ov19_021D7248] = { ov19_021D7248, 0 },
+    [FUNC_ov19_021D7278] = { ov19_021D7278, 0 },
+    [FUNC_ov19_021D72E8] = { ov19_021D72E8, 0 },
+    [FUNC_ov19_021D7324] = { ov19_021D7324, 0 },
+    [FUNC_ov19_021D7340] = { ov19_021D7340, 0 },
+    [FUNC_BoxGraphics_StartDrawMultiSelect] = { BoxGraphics_StartDrawMultiSelect, 0 },
+    [FUNC_ov19_021D7380] = { ov19_021D7380, 0 },
+    [FUNC_BoxGraphics_ApplyMultiSelectMonShadingTask] = { BoxGraphics_ApplyMultiSelectMonShadingTask, 0 },
+    [FUNC_ov19_021D73B0] = { ov19_021D73B0, 0 },
+    [FUNC_ov19_021D73EC] = { ov19_021D73EC, 0 },
+    [FUNC_ov19_021D7408] = { ov19_021D7408, 0 },
+    [FUNC_ov19_021D7424] = { ov19_021D7424, 0 },
+    [FUNC_BoxGraphics_ScreenFadeBothToBlackLogOff] = { BoxGraphics_ScreenFadeBothToBlackLogOff, 0 },
+};
+
+BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2)
 {
-    UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D61B0));
+    UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021D61B0));
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
-        v0->unk_1C0 = BgConfig_New(HEAP_ID_10);
+        v0->unk_1C0 = BgConfig_New(HEAP_ID_BOX_GRAPHICS);
 
         if (v0->unk_1C0 != NULL) {
             u32 v1;
-            BOOL v2 = 1;
-            NARC *v3;
+            BOOL v2 = TRUE;
+            NARC *boxGraphicsNarc;
 
-            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
+            boxGraphicsNarc = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
 
             SetVBlankCallback(NULL, NULL);
             DisableHBlank();
@@ -174,15 +232,15 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
-            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, HEAP_ID_10);
-            SetSubScreenViewRect(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
+            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, HEAP_ID_BOX_GRAPHICS);
+            SetSubScreenViewRect(&(v0->unk_1C), 0, 384 << FX32_SHIFT);
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
 
-            Graphics_LoadPartialPaletteFromOpenNARC(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
+            Graphics_LoadPartialPaletteFromOpenNARC(boxGraphicsNarc, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
-            v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_10);
+            v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_BOX_GRAPHICS);
 
             for (v1 = 0; v1 < 4; v1++) {
                 v0->unk_08[v1] = NULL;
@@ -191,29 +249,29 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             ov19_021D7970();
             *param0 = v0;
 
-            v2 &= ov19_021DA270(&(v0->unk_1C8), v0, v0->unk_1C4, v0->unk_18, v3);
+            v2 &= ov19_021DA270(&(v0->unk_1C8), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
             v2 &= ov19_021D79F8(&(v0->unk_494), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021D8B54(&(v0->unk_5E24), v0, v0->unk_1C4, v0->unk_18, v3);
-            v2 &= ov19_021DA814(&(v0->unk_65BC), v0, v0->unk_1C4, v0->unk_18, v3);
-            v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), v3);
-            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), ov19_021D5DF0(param2), ov19_GetOptionsFrame(param2), v3);
-            v2 &= ov19_021DB8E4(&(v0->unk_6690), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
-            v2 &= ov19_021DC5F0(&(v0->unk_B290), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
+            v2 &= ov19_021D8B54(&(v0->unk_5E24), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
+            v2 &= ov19_021DA814(&(v0->unk_65BC), v0, v0->unk_1C4, v0->unk_18, boxGraphicsNarc);
+            v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), boxGraphicsNarc);
+            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), ov19_GetMessageVariableBuffer(param2), ov19_GetOptionsFrame(param2), boxGraphicsNarc);
+            v2 &= ov19_021DB8E4(&(v0->unk_6690), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, boxGraphicsNarc);
+            v2 &= ov19_021DC5F0(&(v0->unk_B290), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, boxGraphicsNarc);
             v2 &= ov19_021DCF88(&(v0->unk_B408), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
             v2 &= ov19_021DE3E8(&(v0->unk_B40C), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), v3);
+            v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), boxGraphicsNarc);
 
             v0->unk_B414 = param2;
             v0->unk_00 = SysTask_Start(ov19_021D6474, v0, 2);
             v0->unk_04 = ov19_021D77C8(ov19_021D6664, v0, 1);
 
-            NARC_dtor(v3);
+            NARC_dtor(boxGraphicsNarc);
 
             return v2;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov19_021D6474(SysTask *param0, void *param1)
@@ -231,7 +289,7 @@ static void ov19_021D6474(SysTask *param0, void *param1)
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
 
-void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
+void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0)
 {
     SetVBlankCallback(NULL, NULL);
     SysTask_Done(param0->unk_00);
@@ -250,93 +308,34 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
     ov19_021DA384(&(param0->unk_1C8));
 
     SpriteList_Delete(param0->unk_18);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 3);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 2);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 1);
-    Bg_FreeTilemapBuffer(param0->unk_1C0, 4);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_1C0, BG_LAYER_SUB_0);
     PokemonSpriteManager_Free(param0->unk_1BC);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
-    Heap_FreeToHeap(param0->unk_1C0);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0->unk_1C0);
+    Heap_Free(param0);
     RenderOam_Free();
 }
 
-void ov19_021D6594(UnkStruct_ov19_021D61B0 *param0, u32 param1)
+void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function)
 {
-    static const struct {
-        SysTaskFunc unk_00;
-        u32 unk_04;
-    } v0[] = {
-        { ov19_021D6694, 0 },
-        { ov19_021D671C, 0 },
-        { ov19_021D6780, 0 },
-        { ov19_021D67DC, 0 },
-        { ov19_021D6824, 0 },
-        { ov19_021D68E4, 0 },
-        { ov19_021D6940, 0 },
-        { ov19_021D69BC, 0 },
-        { ov19_021D6A1C, 0 },
-        { ov19_021D6A38, 0 },
-        { ov19_021D6A74, 0 },
-        { ov19_021D6AB0, 0 },
-        { ov19_021D6AEC, 0 },
-        { ov19_021D6B1C, 0 },
-        { ov19_021D6B6C, 0 },
-        { ov19_021D6BA8, 0 },
-        { ov19_021D6BF0, 0 },
-        { ov19_021D6C38, 0 },
-        { ov19_021D6C74, 0 },
-        { ov19_021D6CB0, 0 },
-        { ov19_021D6CF8, 0 },
-        { ov19_021D6D40, 0 },
-        { ov19_021D6D88, 0 },
-        { ov19_021D6DF8, 0 },
-        { ov19_021D6E48, 0 },
-        { ov19_021D6E70, 0 },
-        { ov19_021D6EA4, 0 },
-        { ov19_021D6EC0, 0 },
-        { ov19_021D6EDC, 0 },
-        { ov19_021D6F0C, 0 },
-        { ov19_021D6F3C, 0 },
-        { ov19_021D6F78, 0 },
-        { ov19_021D6FB0, 0 },
-        { ov19_021D6FEC, 0 },
-        { ov19_021D7028, 0 },
-        { ov19_021D70E8, 0 },
-        { ov19_021D7138, 0 },
-        { ov19_021D71BC, 0 },
-        { ov19_021D71F8, 0 },
-        { ov19_021D7248, 0 },
-        { ov19_021D7278, 0 },
-        { ov19_021D72E8, 0 },
-        { ov19_021D7324, 0 },
-        { ov19_021D7340, 0 },
-        { ov19_021D735C, 0 },
-        { ov19_021D7380, 0 },
-        { ov19_021D7398, 0 },
-        { ov19_021D73B0, 0 },
-        { ov19_021D73EC, 0 },
-        { ov19_021D7408, 0 },
-        { ov19_021D7424, 0 },
-        { ov19_021D7460, 0 },
-    };
+    if (function < NELEMS(sBoxGraphicsTaskHandlers)) {
+        BoxTaskParams *taskParams;
 
-    if (param1 < NELEMS(v0)) {
-        UnkStruct_ov19_021D6640 *v1;
-        u32 v2;
+        for (u32 i = 0; i < 4; i++) {
+            if (param0->unk_08[i] == NULL) {
+                taskParams = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(BoxTaskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
 
-        for (v2 = 0; v2 < 4; v2++) {
-            if (param0->unk_08[v2] == NULL) {
-                v1 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D6640) + v0[param1].unk_04);
+                if (taskParams != NULL) {
+                    taskParams->function = function;
+                    taskParams->unk_04 = i;
+                    taskParams->state = 0;
+                    taskParams->unk_0C = param0;
+                    taskParams->unk_10 = ((u8 *)(taskParams) + sBoxGraphicsTaskHandlers[function].unk_04);
 
-                if (v1 != NULL) {
-                    v1->unk_00 = param1;
-                    v1->unk_04 = v2;
-                    v1->unk_06 = 0;
-                    v1->unk_0C = param0;
-                    v1->unk_10 = ((u8 *)(v1) + v0[param1].unk_04);
-
-                    param0->unk_08[v2] = SysTask_Start(v0[param1].unk_00, v1, 1);
+                    param0->unk_08[i] = SysTask_Start(sBoxGraphicsTaskHandlers[function].sysTaskFunc, taskParams, 1);
                 } else {
                     GF_ASSERT(0);
                 }
@@ -349,44 +348,41 @@ void ov19_021D6594(UnkStruct_ov19_021D61B0 *param0, u32 param1)
     }
 }
 
-BOOL ov19_021D6600(UnkStruct_ov19_021D61B0 *param0, u32 param1)
+BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function)
 {
-    UnkStruct_ov19_021D6640 *v0;
-    int v1;
+    BoxTaskParams *params;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (param0->unk_08[v1] != NULL) {
-            v0 = SysTask_GetParam(param0->unk_08[v1]);
+    for (int i = 0; i < 4; i++) {
+        if (param0->unk_08[i] != NULL) {
+            params = SysTask_GetParam(param0->unk_08[i]);
 
-            if (v0->unk_00 == param1) {
-                return 0;
+            if (params->function == function) {
+                return FALSE;
             }
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ov19_021D6628(UnkStruct_ov19_021D61B0 *param0)
+BOOL ov19_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_08[v0] != NULL) {
-            return 0;
+    for (int i = 0; i < 4; i++) {
+        if (param0->unk_08[i] != NULL) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov19_021D6640(UnkStruct_ov19_021D6640 *param0)
+static void BoxTaskParams_Free(BoxTaskParams *params)
 {
-    UnkStruct_ov19_021D61B0 *v0 = param0->unk_0C;
+    UnkStruct_ov19_021D61B0 *v0 = params->unk_0C;
 
-    SysTask_Done(v0->unk_08[param0->unk_04]);
-    v0->unk_08[param0->unk_04] = NULL;
-    Heap_FreeToHeap(param0);
+    SysTask_Done(v0->unk_08[params->unk_04]);
+    v0->unk_08[params->unk_04] = NULL;
+    Heap_Free(params);
 }
 
 static void ov19_021D6664(SysTask *param0, void *param1)
@@ -405,127 +401,127 @@ static void ov19_021D6694(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (params->state) {
     case 0: {
-        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
+        NARC *boxGraphicsNarc = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_BOX_GRAPHICS);
 
         ov19_021D74B4(v0, v1);
-        ov19_021D75CC(v0, v1, v3);
-        ov19_021D7774(v0, v1, v3);
-        NARC_dtor(v3);
+        ov19_021D75CC(v0, v1, boxGraphicsNarc);
+        ov19_021D7774(v0, v1, boxGraphicsNarc);
+        NARC_dtor(boxGraphicsNarc);
     }
 
         if (ov19_GetBoxMode(v1) != PC_MODE_COMPARE) {
             ov19_021DAA90(&v0->unk_6604);
-            v2->unk_06++;
+            params->state++;
         } else {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(params);
         }
         break;
     case 1:
         if (ov19_021DAAC4(&v0->unk_6604)) {
             ov19_021DAF98(&(v0->unk_6604));
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(params);
         }
         break;
     }
 }
 
-static void ov19_021D671C(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlackLogIn(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_10);
-        v2->unk_06++;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_BOX_GRAPHICS);
+        v2->state++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
-            ov19_021D6640(v2);
+        if (IsScreenFadeDone()) {
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6780(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlack1(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_10);
-        v2->unk_06++;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        v2->state++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
-            ov19_021D6640(v2);
+        if (IsScreenFadeDone()) {
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D67DC(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlack2(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_10);
-        v2->unk_06++;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        v2->state++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
-            ov19_021D6640(v2);
+        if (IsScreenFadeDone()) {
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6824(SysTask *param0, void *param1)
+static void BoxGraphics_ChangeToNewBox(SysTask *param0, void *taskParams)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)taskParams;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (params->state) {
     case 0:
         ov19_021DE9B8(v0->unk_B40C);
-        v2->unk_06++;
+        params->state++;
     case 1:
-        if (ov19_021DE9E4(v0->unk_B40C) == 0) {
+        if (ov19_021DE9E4(v0->unk_B40C) == FALSE) {
             break;
         }
 
-        v2->unk_06++;
+        params->state++;
     case 2: {
-        int v3 = ov19_021D77A4(v0->unk_494.boxID, v1->customization.boxID);
+        int boxChangeDirection = BoxGraphics_GetBoxMoveDirection(v0->unk_494.boxID, v1->customization.boxID);
 
-        ov19_021D7B4C(&v0->unk_494, &v1->customization, v3, TRUE);
-        ov19_021D7D70(&v0->unk_494, &v1->customization, v3);
+        ov19_021D7B4C(&v0->unk_494, &v1->customization, boxChangeDirection, TRUE);
+        ov19_021D7D70(&v0->unk_494, &v1->customization, boxChangeDirection);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        v2->unk_06++;
+        params->state++;
     }
     case 3:
         if (ov19_021D7E1C(&v0->unk_494) == 0) {
@@ -533,70 +529,70 @@ static void ov19_021D6824(SysTask *param0, void *param1)
         }
 
         ov19_021DE7A0(v0->unk_B40C);
-        v2->unk_06++;
+        params->state++;
     case 4:
         if (ov19_021DE800(v0->unk_B40C) == 0) {
             break;
         }
 
-        ov19_021D6640(v2);
+        BoxTaskParams_Free(params);
         break;
     }
 }
 
-static void ov19_021D68E4(SysTask *param0, void *param1)
+static void BoxGraphics_MoveCursor(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov19_021D8F60(&(v0->unk_5E24));
         ov19_021DE7A0(v0->unk_B40C);
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9074(&(v0->unk_5E24))
             && ov19_021DE800(v0->unk_B40C)) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6940(SysTask *param0, void *param1)
+static void BoxGraphics_PreviewMon(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
     if (ov19_GetBoxMode(v1) != PC_MODE_COMPARE) {
-        switch (v2->unk_06) {
+        switch (v2->state) {
         case 0:
             ov19_021DAFF8(&(v0->unk_6604));
-            v2->unk_06++;
+            v2->state++;
             break;
         case 1:
             if (ov19_021DB220(&(v0->unk_6604))) {
-                ov19_021D6640(v2);
+                BoxTaskParams_Free(v2);
             }
             break;
         }
     } else {
-        switch (v2->unk_06) {
+        switch (v2->state) {
         case 0:
             ov19_021DEE34(v0->unk_B410);
-            v2->unk_06++;
+            v2->state++;
             break;
         case 1:
             if (ov19_021DEE84(v0->unk_B410)) {
-                ov19_021D6640(v2);
+                BoxTaskParams_Free(v2);
             }
             break;
         }
@@ -607,7 +603,7 @@ static void ov19_021D69BC(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
@@ -625,58 +621,58 @@ static void ov19_021D69BC(SysTask *param0, void *param1)
     }
 
     ov19_021DB224(&v0->unk_6604);
-    ov19_021D6640(v2);
+    BoxTaskParams_Free(v2);
 }
 
 static void ov19_021D6A1C(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
     ov19_021DB078(&(v0->unk_6604));
-    ov19_021D6640(v2);
+    BoxTaskParams_Free(v2);
 }
 
-static void ov19_021D6A38(SysTask *param0, void *param1)
+static void BoxGraphics_PickUpMonIntoCursor(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (params->state) {
     case 0:
         ov19_021D9230(&(v0->unk_5E24));
-        v2->unk_06++;
+        params->state++;
         break;
     case 1:
         if (ov19_021D9278(&(v0->unk_5E24))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(params);
         }
         break;
     }
 }
 
-static void ov19_021D6A74(SysTask *param0, void *param1)
+static void BoxGraphics_PlaceMonDownFromCursor(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9368(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D939C(&(v0->unk_5E24))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
@@ -686,18 +682,18 @@ static void ov19_021D6AB0(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D94B4(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9530(&(v0->unk_5E24))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
@@ -707,17 +703,17 @@ static void ov19_021D6AEC(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9900(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
-        ov19_021D6640(v2);
+        BoxTaskParams_Free(v2);
         break;
     }
 }
@@ -726,127 +722,127 @@ static void ov19_021D6B1C(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DCAC0(&(v0->unk_B290));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         ov19_021DC834(&(v0->unk_B290));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 2:
         if (ov19_021DC95C(&(v0->unk_B290))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6B6C(SysTask *param0, void *param1)
+static void BoxGraphics_PlayReleaseCursorMonAnimation(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9938(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D995C(&(v0->unk_5E24))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6BA8(SysTask *param0, void *param1)
+static void BoxGraphics_PlayReleaseBoxMonAnimation(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D8860(&(v0->unk_494), ov19_GetCursorBoxPosition(v1));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D8898(&(v0->unk_494))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6BF0(SysTask *param0, void *param1)
+static void BoxGraphics_PlayReleasePartyMonAnimation(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DCAFC(&(v0->unk_B290), ov19_GetCursorPartyPosition(v1));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DCB20(&(v0->unk_B290))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6C38(SysTask *param0, void *param1)
+static void BoxGraphics_DisplayItemInfo(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DC29C(&(v0->unk_6690));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DC364(&(v0->unk_6690))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6C74(SysTask *param0, void *param1)
+static void BoxGraphics_CloseItemInfo(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021DC3F4(&(v0->unk_6690));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DC43C(&(v0->unk_6690))) {
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
@@ -856,19 +852,19 @@ static void ov19_021D6CB0(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9B34(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9B64(&(v0->unk_5E24))) {
             ov19_021DB2B0(&(v0->unk_6604));
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
@@ -878,19 +874,19 @@ static void ov19_021D6CF8(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9BD4(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9C04(&(v0->unk_5E24))) {
             ov19_021DB2B0(&(v0->unk_6604));
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
@@ -900,19 +896,19 @@ static void ov19_021D6D40(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
+    BoxTaskParams *v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9C74(&(v0->unk_5E24));
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021D9CA0(&(v0->unk_5E24))) {
             ov19_021DB2B0(&(v0->unk_6604));
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
@@ -922,10 +918,10 @@ static void ov19_021D6D88(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2;
+    BoxTaskParams *v2;
     u32 item;
 
-    v2 = (UnkStruct_ov19_021D6640 *)param1;
+    v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
     item = ov19_GetPreviewedMonHeldItem(v1);
@@ -943,217 +939,215 @@ static void ov19_021D6D88(SysTask *param0, void *param1)
         }
     }
 
-    ov19_021D6640(v2);
+    BoxTaskParams_Free(v2);
 }
 
-static void ov19_021D6DF8(SysTask *param0, void *param1)
+static void BoxGraphics_ItemShrinkToNothing(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2;
+    BoxTaskParams *v2;
     u32 v3;
 
-    v2 = (UnkStruct_ov19_021D6640 *)param1;
+    v2 = (BoxTaskParams *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (v2->state) {
     case 0:
         ov19_021D9D10(&v0->unk_5E24);
         ov19_021DEB18(v0->unk_B40C);
-        v2->unk_06++;
+        v2->state++;
         break;
     case 1:
         if (ov19_021DEB60(v0->unk_B40C)) {
             ov19_021D9D28(&v0->unk_5E24);
-            ov19_021D6640(v2);
+            BoxTaskParams_Free(v2);
         }
         break;
     }
 }
 
-static void ov19_021D6E48(SysTask *param0, void *param1)
+static void BoxGraphics_DisplayBoxMessage(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *params;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
+    v2 = v0->unk_1C4;
+
+    ov19_021DB448(&(v0->unk_6658), ov19_GetBoxMessageID(v2));
+    BoxTaskParams_Free(params);
+}
+
+static void BoxGraphics_ShowMenu(SysTask *param0, void *param1)
+{
+    UnkStruct_ov19_021D61B0 *v0;
+    BoxTaskParams *v1;
+    const UnkStruct_ov19_021D4DF0 *v2;
+
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    ov19_021DB448(&(v0->unk_6658), ov19_021D5E94(v2));
-    ov19_021D6640(v1);
+    ov19_021DB448(&(v0->unk_6658), ov19_GetBoxMessageID(v2));
+    ov19_021DB57C(&(v0->unk_6658), &(v2->boxMenu));
+    BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D6E70(SysTask *param0, void *param1)
+static void BoxGraphics_CloseMessageBox(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
-    const UnkStruct_ov19_021D4DF0 *v2;
-
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v1->unk_0C;
-    v2 = v0->unk_1C4;
-
-    ov19_021DB448(&(v0->unk_6658), ov19_021D5E94(v2));
-    ov19_021DB57C(&(v0->unk_6658), &(v2->unk_74));
-    ov19_021D6640(v1);
-}
-
-static void ov19_021D6EA4(SysTask *param0, void *param1)
-{
-    UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v1->unk_0C;
+    BoxTaskParams *v1 = (BoxTaskParams *)param1;
+    UnkStruct_ov19_021D61B0 *v0 = v1->unk_0C;
 
     ov19_021DB6F0(&(v0->unk_6658));
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D6EC0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v1->unk_0C;
+    BoxTaskParams *v1 = (BoxTaskParams *)param1;
+    UnkStruct_ov19_021D61B0 *v0 = v1->unk_0C;
 
     ov19_021DB724(&(v0->unk_6658));
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D6EDC(SysTask *param0, void *param1)
+static void BoxGraphics_UpdateMenuCursor(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     Sound_PlayEffect(SEQ_SE_CONFIRM);
-    ov19_021DB748(&(v0->unk_6658), &(v2->unk_74));
-    ov19_021D6640(v1);
+    BoxGraphics_DrawMenuCursorBox(&(v0->unk_6658), &(v2->boxMenu));
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D6F0C(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-    ov19_021DB790(&(v0->unk_6658), &(v2->unk_74));
-    ov19_021D6640(v1);
+    ov19_021DB790(&(v0->unk_6658), &(v2->boxMenu));
+    BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D6F3C(SysTask *param0, void *param1)
+static void BoxGraphics_ShowBoxSelectionPopup(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *params;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v1->unk_0C;
+    params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (params->state) {
     case 0:
         ov19_021DBB48(&(v0->unk_6690));
-        v1->unk_06++;
+        params->state++;
         break;
     case 1:
         if (ov19_021DBB68(&(v0->unk_6690))) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(params);
         }
     }
 }
 
-static void ov19_021D6F78(SysTask *param0, void *param1)
+static void BoxGraphics_ScrollBoxSelectionPopup(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov19_021DBB70(&(v0->unk_6690));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
-        ov19_021D6640(v1);
+        BoxTaskParams_Free(v1);
     }
 }
 
 static void ov19_021D6FB0(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DBB94(&(v0->unk_6690));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DBBA0(&(v0->unk_6690))) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
     }
 }
 
-static void ov19_021D6FEC(SysTask *param0, void *param1)
+static void BoxGraphics_TransitionWallpaper(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *params;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v1->unk_0C;
+    params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (params->state) {
     case 0:
         ov19_021D8350(&(v0->unk_494));
-        v1->unk_06++;
+        params->state++;
         break;
     case 1:
         if (ov19_021D8370(&(v0->unk_494))) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(params);
         }
         break;
     }
 }
 
-static void ov19_021D7028(SysTask *param0, void *param1)
+static void BoxGraphics_PressBoxButton(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov19_021D9690(&(v0->unk_5E24));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021D9704(&(v0->unk_5E24))) {
@@ -1167,44 +1161,44 @@ static void ov19_021D7028(SysTask *param0, void *param1)
             }
 
             v1->unk_08 = 0;
-            v1->unk_06++;
+            v1->state++;
         }
         break;
     case 2:
         if (++(v1->unk_08) >= 6) {
             ov19_021D97FC(&(v0->unk_5E24));
             ov19_021DA8FC(&(v0->unk_65BC), 0);
-            v1->unk_06++;
+            v1->state++;
         }
         break;
     case 3:
         if (ov19_021D9858(&(v0->unk_5E24))) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
 }
 
-static void ov19_021D70E8(SysTask *param0, void *param1)
+static void BoxGraphics_OpenPartyPopup(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_OPEN7);
         ov19_021D99F4(&(v0->unk_5E24));
         ov19_021DC6C8(&(v0->unk_B290));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DC6F8(&(v0->unk_B290))) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
@@ -1213,55 +1207,55 @@ static void ov19_021D70E8(SysTask *param0, void *param1)
 static void ov19_021D7138(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DE9B8(v0->unk_B40C);
-        v1->unk_06++;
+        v1->state++;
     case 1:
         if (ov19_021DE9E4(v0->unk_B40C) == 0) {
             break;
         }
 
-        v1->unk_06++;
+        v1->state++;
     case 2:
         Sound_PlayEffect(SEQ_SE_DP_CLOSE7);
         ov19_021DC768(&(v0->unk_B290));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 3:
         if (ov19_021DC788(&(v0->unk_B290))) {
             ov19_021D9A2C(&(v0->unk_5E24));
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
 }
 
-static void ov19_021D71BC(SysTask *param0, void *param1)
+static void BoxGraphics_PlayAdjustPartyAnimation(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *params;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v1->unk_0C;
+    params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (params->state) {
     case 0:
         ov19_021DC834(&(v0->unk_B290));
-        v1->unk_06++;
+        params->state++;
         break;
     case 1:
         if (ov19_021DC95C(&(v0->unk_B290))) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(params);
         }
         break;
     }
@@ -1270,26 +1264,26 @@ static void ov19_021D71BC(SysTask *param0, void *param1)
 static void ov19_021D71F8(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         if (ov19_GetCursorLocation(v2) == CURSOR_IN_PARTY) {
             ov19_021DC96C(&v0->unk_B290);
-            v1->unk_06++;
+            v1->state++;
             break;
         }
 
-        ov19_021D6640(v1);
+        BoxTaskParams_Free(v1);
         break;
     case 1:
         if (ov19_021DCA08(&v0->unk_B290)) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
@@ -1298,47 +1292,47 @@ static void ov19_021D71F8(SysTask *param0, void *param1)
 static void ov19_021D7248(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     ov19_021D8938(&v0->unk_494);
     ov19_021DCBA0(&v0->unk_B290);
     ov19_021D9A8C(&v0->unk_5E24);
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D7278(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DD378(v0->unk_B408);
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DD45C(v0->unk_B408)) {
             if (v2->unk_9C.unk_00 == 0) {
-                ov19_021D6640(v1);
+                BoxTaskParams_Free(v1);
             } else {
                 ov19_021DD714(v0->unk_B408);
-                v1->unk_06++;
+                v1->state++;
             }
         }
         break;
     case 2:
         if (ov19_021DD740(v0->unk_B408)) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
@@ -1347,21 +1341,21 @@ static void ov19_021D7278(SysTask *param0, void *param1)
 static void ov19_021D72E8(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DD768(v0->unk_B408);
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DD820(v0->unk_B408)) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
@@ -1370,92 +1364,92 @@ static void ov19_021D72E8(SysTask *param0, void *param1)
 static void ov19_021D7324(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     ov19_021DE2F4(v0->unk_B408);
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D7340(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     ov19_021D9AEC(&(v0->unk_5E24));
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D735C(SysTask *param0, void *param1)
+static void BoxGraphics_StartDrawMultiSelect(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    ov19_021D9B10(&(v0->unk_5E24));
-    ov19_021D8A6C(&(v0->unk_494));
-    ov19_021D6640(v1);
+    BoxGraphics_OpenMultiSelectCursor(&(v0->unk_5E24));
+    BoxGraphics_ApplyMultiSelectMonShading(&(v0->unk_494));
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D7380(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     ov19_021D8B14(&(v0->unk_494));
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
-static void ov19_021D7398(SysTask *param0, void *param1)
+static void BoxGraphics_ApplyMultiSelectMonShadingTask(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    ov19_021D8A6C(&(v0->unk_494));
-    ov19_021D6640(v1);
+    BoxGraphics_ApplyMultiSelectMonShading(&(v0->unk_494));
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D73B0(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021D9230(&(v0->unk_5E24));
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021D9278(&(v0->unk_5E24))) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
@@ -1464,71 +1458,71 @@ static void ov19_021D73B0(SysTask *param0, void *param1)
 static void ov19_021D73EC(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     ov19_021DEDDC(v0->unk_B410, 0);
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D7408(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
     ov19_021DEDDC(v0->unk_B410, 1);
-    ov19_021D6640(v1);
+    BoxTaskParams_Free(v1);
 }
 
 static void ov19_021D7424(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
-    UnkStruct_ov19_021D6640 *v1;
+    BoxTaskParams *v1;
     const UnkStruct_ov19_021D4DF0 *v2;
 
-    v1 = (UnkStruct_ov19_021D6640 *)param1;
+    v1 = (BoxTaskParams *)param1;
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    switch (v1->unk_06) {
+    switch (v1->state) {
     case 0:
         ov19_021DEE88(v0->unk_B410);
-        v1->unk_06++;
+        v1->state++;
         break;
     case 1:
         if (ov19_021DEEA8(v0->unk_B410)) {
-            ov19_021D6640(v1);
+            BoxTaskParams_Free(v1);
         }
         break;
     }
 }
 
-static void ov19_021D7460(SysTask *param0, void *param1)
+static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1)
 {
     UnkStruct_ov19_021D61B0 *v0;
     const UnkStruct_ov19_021D4DF0 *v1;
-    UnkStruct_ov19_021D6640 *v2 = (UnkStruct_ov19_021D6640 *)param1;
-    v0 = v2->unk_0C;
+    BoxTaskParams *params = (BoxTaskParams *)param1;
+    v0 = params->unk_0C;
     v1 = v0->unk_1C4;
 
-    switch (v2->unk_06) {
+    switch (params->state) {
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_10);
-        v2->unk_06++;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BOX_GRAPHICS);
+        params->state++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
-            ov19_021D6640(v2);
+        if (IsScreenFadeDone()) {
+            BoxTaskParams_Free(params);
         }
         break;
     }
@@ -1557,163 +1551,153 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     };
 
     static const BgTemplate v2 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        0,
-        0,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = 0,
+        .charBase = 0,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v3 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xe000),
-        (GX_BG_CHARBASE_0x18000),
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xe000),
+        .charBase = (GX_BG_CHARBASE_0x18000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v4 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xe800),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xe800),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v5 = {
-        0,
-        0,
-        0x1000,
-        0,
-        3,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xf000),
-        (GX_BG_CHARBASE_0x10000),
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x1000,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xf000),
+        .charBase = (GX_BG_CHARBASE_0x10000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v6 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xf000),
-        (GX_BG_CHARBASE_0x10000),
-        GX_BG_EXTPLTT_01,
-        0,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xf000),
+        .charBase = (GX_BG_CHARBASE_0x10000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v7 = {
-        0,
-        0,
-        0x0,
-        0,
-        3,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xd000),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xd000),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v8 = {
-        0,
-        0,
-        0x0,
-        0,
-        3,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xe000),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_512x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xe000),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v9 = {
-        0,
-        0,
-        0x0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        (GX_BG_SCRBASE_0xf800),
-        (GX_BG_CHARBASE_0x00000),
-        GX_BG_EXTPLTT_01,
-        3,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = (GX_BG_SCRBASE_0xf800),
+        .charBase = (GX_BG_CHARBASE_0x00000),
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v10 = {
-        0,
-        0,
-        0x0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        1,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     static const BgTemplate v11 = {
-        0,
-        0,
-        0x0,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0xe800,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x0,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
 
     GXLayers_SetBanks(&v0);
@@ -1722,20 +1706,20 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
     SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0->unk_1C0, 1, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_1C0, 2, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_1C0, 3, &v5, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_1, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_2, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_MAIN_3, &v5, 0);
 
     if (ov19_GetBoxMode(param1) != PC_MODE_COMPARE) {
-        Bg_InitFromTemplate(param0->unk_1C0, 4, &v6, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 5, &v7, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 6, &v8, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 7, &v9, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_0, &v6, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_1, &v7, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_2, &v8, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_3, &v9, 0);
     } else {
-        Bg_InitFromTemplate(param0->unk_1C0, 4, &v6, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 5, &v10, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 6, &v11, 0);
-        Bg_InitFromTemplate(param0->unk_1C0, 7, &v9, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_0, &v6, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_1, &v10, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_2, &v11, 0);
+        Bg_InitFromTemplate(param0->unk_1C0, BG_LAYER_SUB_3, &v9, 0);
     }
 
     ov19_021D76FC();
@@ -1743,14 +1727,14 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
 
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, HEAP_ID_10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
     Bg_FillTilemapRect(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(param0->unk_1C0, 1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
-    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
+    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_BOX_GRAPHICS);
 
     if (ov19_GetBoxMode(param1) != PC_MODE_COMPARE) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_BOX_GRAPHICS);
     }
 
     ov19_021D7A9C(&param0->unk_494);
@@ -1794,19 +1778,19 @@ static void ov19_021D7774(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     ov19_021DE584(param0->unk_B40C);
 }
 
-static int ov19_021D77A4(u32 param0, u32 param1)
+static int BoxGraphics_GetBoxMoveDirection(u32 sourceBoxID, u32 destBoxID)
 {
-    int v0, v1;
+    int distanceRight, distanceLeft;
 
-    if (param1 > param0) {
-        v0 = param1 - param0;
-        v1 = param0 + (18 - param1);
+    if (destBoxID > sourceBoxID) {
+        distanceRight = destBoxID - sourceBoxID;
+        distanceLeft = sourceBoxID + (MAX_PC_BOXES - destBoxID);
     } else {
-        v0 = param1 + (18 - param0);
-        v1 = param0 - param1;
+        distanceRight = destBoxID + (MAX_PC_BOXES - sourceBoxID);
+        distanceLeft = sourceBoxID - destBoxID;
     }
 
-    return (v0 >= v1) ? -1 : 1;
+    return (distanceRight >= distanceLeft) ? -1 : 1;
 }
 
 SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2)
@@ -1888,7 +1872,7 @@ Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 par
     v0.position.z = 0;
     v0.priority = param4;
     v0.vramType = param5;
-    v0.heapID = HEAP_ID_10;
+    v0.heapID = HEAP_ID_BOX_GRAPHICS;
 
     {
         OSIntrMode v2 = OS_DisableInterrupts();
@@ -1899,18 +1883,18 @@ Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 par
 
     if (v1) {
         Sprite_SetAnimateFlag(v1, 1);
-        Sprite_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
+        Sprite_SetAnimSpeed(v1, FX32_ONE * (2 / 2));
     }
 
     return v1;
 }
 
-void ov19_021D78AC(Sprite *param0, u32 param1)
+void BoxGraphics_SetSpritePriority(Sprite *sprite, u32 priority)
 {
-    OSIntrMode v0 = OS_DisableInterrupts();
+    OSIntrMode mode = OS_DisableInterrupts();
 
-    Sprite_SetPriority(param0, param1);
-    OS_RestoreInterrupts(v0);
+    Sprite_SetPriority(sprite, priority);
+    OS_RestoreInterrupts(mode);
 }
 
 void ov19_021D78C8(const u16 *param0, u16 *param1, u32 param2, u16 param3, u32 param4)
@@ -1967,7 +1951,7 @@ static void ov19_021D797C(void)
         u32 i;
 
         for (i = 0; i < Unk_ov19_021E05EC; i++) {
-            Heap_FreeToHeap(Unk_ov19_021E05F0[i].unk_08);
+            Heap_Free(Unk_ov19_021E05F0[i].unk_08);
 
             if (Unk_ov19_021E05F0[i].unk_00) {
                 Unk_ov19_021E05F0[i].unk_00(Unk_ov19_021E05F0[i].unk_04);

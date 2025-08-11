@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/acuity_lakefront.h"
 
-    .data
 
     ScriptEntry _004E
     ScriptEntry _0012
@@ -43,8 +42,8 @@ _0083:
 _009A:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_066 VAR_0x8004, VAR_0x8005
-    ApplyMovement 241, _00E8
+    AddFreeCamera VAR_0x8004, VAR_0x8005
+    ApplyFreeCameraMovement _00E8
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 0
@@ -54,26 +53,26 @@ _009A:
     ApplyMovement 2, _00F8
     WaitMovement
     RemoveObject 2
-    ApplyMovement 241, _00F0
+    ApplyFreeCameraMovement _00F0
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     SetVar VAR_UNK_0x4084, 1
     ReleaseAll
     End
 
     .balign 4, 0
 _00E8:
-    MoveAction_012 6
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _00F0:
-    MoveAction_013 6
+    WalkNormalSouth 6
     EndMovement
 
     .balign 4, 0
 _00F8:
-    MoveAction_012 3
-    MoveAction_014
-    MoveAction_012 4
+    WalkNormalNorth 3
+    WalkNormalWest
+    WalkNormalNorth 4
     EndMovement

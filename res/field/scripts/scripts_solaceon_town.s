@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/solaceon_town.h"
 
-    .data
 
     ScriptEntry _004F
     ScriptEntry _0062
@@ -94,7 +93,7 @@ _00CC:
     FacePlayer
     CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0118
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     GoToIfLt VAR_RESULT, 50, _010D
     Message 10
     SetVar VAR_0x8004, 9
@@ -139,7 +138,7 @@ _0168:
     SetObjectEventPos 18, VAR_0x8004, 0x295
     ClearFlag FLAG_UNK_0x021E
     AddObject 18
-    ScrCmd_062 18
+    LockObject 18
     ApplyMovement LOCALID_PLAYER, _0228
     ApplyMovement 18, _01E8
     WaitMovement
@@ -164,36 +163,36 @@ _0168:
 
     .balign 4, 0
 _01E8:
-    MoveAction_017 7
+    WalkFastSouth 7
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_038
-    MoveAction_063
-    MoveAction_039
-    MoveAction_063
-    MoveAction_037
+    WalkOnSpotFastWest
+    Delay8
+    WalkOnSpotFastEast
+    Delay8
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0208:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0210:
-    MoveAction_016 7
+    WalkFastNorth 7
     EndMovement
 
     .balign 4, 0
 _0218:
-    MoveAction_063
-    MoveAction_075
-    MoveAction_063 3
+    Delay8
+    EmoteExclamationMark
+    Delay8 3
     EndMovement
 
     .balign 4, 0
 _0228:
-    MoveAction_000
+    FaceNorth
     EndMovement

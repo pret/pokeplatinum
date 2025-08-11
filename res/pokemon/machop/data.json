@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LOW_KICK" ],
@@ -93,6 +94,20 @@
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_VACUUM_WAVE"
+        ],
+        "egg_moves": [
+            "MOVE_LIGHT_SCREEN",
+            "MOVE_MEDITATE",
+            "MOVE_ROLLING_KICK",
+            "MOVE_ENCORE",
+            "MOVE_SMELLING_SALT",
+            "MOVE_COUNTER",
+            "MOVE_ROCK_SLIDE",
+            "MOVE_CLOSE_COMBAT",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_BULLET_PUNCH"
         ]
     },
     "evolutions": [
@@ -102,9 +117,11 @@
             "SPECIES_MACHOKE"
         ]
     ],
+    "offspring": "SPECIES_MACHOP",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 8,

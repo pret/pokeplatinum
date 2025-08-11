@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -83,6 +84,18 @@
             "MOVE_HELPING_HAND",
             "MOVE_BOUNCE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_TWISTER",
+            "MOVE_HYDRO_PUMP",
+            "MOVE_HAZE",
+            "MOVE_SLAM",
+            "MOVE_MUD_SPORT",
+            "MOVE_ROCK_SLIDE",
+            "MOVE_MIRROR_COAT",
+            "MOVE_WATER_SPORT",
+            "MOVE_SPLASH",
+            "MOVE_SIGNAL_BEAM"
         ]
     },
     "evolutions": [
@@ -92,9 +105,11 @@
             "SPECIES_MANTINE"
         ]
     ],
+    "offspring": "SPECIES_MANTYKE",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 10,

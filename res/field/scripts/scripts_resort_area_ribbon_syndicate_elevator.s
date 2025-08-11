@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_elevator.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -101,5 +100,5 @@ _0164:
 
     .balign 4, 0
 _017C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement

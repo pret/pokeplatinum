@@ -5,7 +5,7 @@
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "overlay012/ov12_0221FC20.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay017/ov17_0223F7E4.h"
 #include "overlay017/ov17_022413D8.h"
 #include "overlay017/ov17_0224F18C.h"
@@ -219,7 +219,7 @@ static void ov17_02243D34(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -284,7 +284,7 @@ static void ov17_02243E2C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -300,9 +300,8 @@ static int ov17_02243EF8(UnkStruct_ov17_0224F30C *param0, void *param1, int para
 static void ov17_02243F10(UnkStruct_ov17_0224F30C *param0, void *param1, const UnkStruct_ov17_02243C80 *param2, void *param3)
 {
     UnkStruct_ov17_02246F24 *v0 = param1;
-    UnkStruct_ov17_02243F10 *v1;
     UnkStruct_ov17_02246F24_sub1 *v2 = param3;
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
+    UnkStruct_ov17_02243F10 *v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02243F10));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_ov17_02243F10));
 
@@ -338,7 +337,7 @@ static void ov17_02243F68(SysTask *param0, void *param1)
 
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_HIDE_2, 0);
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_HIDE, 0);
-        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_X_CENTER, ((256 - 40) + 40));
+        PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_X_CENTER, (256 - 40) + 40);
         PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v3], MON_SPRITE_Y_CENTER, ((104 + 8) + 60) + v4);
 
         v0->unk_0C = ((256 - 40) + 40) << 8;
@@ -370,7 +369,7 @@ static void ov17_02243F68(SysTask *param0, void *param1)
     default:
         if (v0->unk_16 == 1) {
             ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -440,7 +439,7 @@ static void ov17_0224413C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -538,7 +537,7 @@ static void ov17_022442AC(SysTask *param0, void *param1)
 
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -667,8 +666,8 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v3.unk_04 = 1;
         v3.unk_08 = 10;
         v3.unk_0A = v0->unk_104.unk_07;
-        v3.unk_0C = v0->unk_104.unk_08;
-        v3.unk_10 = 0;
+        v3.friendship = v0->unk_104.unk_08;
+        v3.fieldConditions = 0;
         v3.unk_14 = 0;
         v3.unk_16 = 1;
         v3.unk_54 = 9;
@@ -718,7 +717,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v4.unk_00 = v0->unk_00->unk_0C.unk_18;
         v4.unk_6C = v0->unk_00->unk_00->unk_14C[v0->unk_0D];
 
-        ov12_0221FE30(v0->unk_00->unk_0C.unk_20, &v3, v0->unk_104.unk_04, &v4);
+        BattleAnimSystem_StartMove(v0->unk_00->unk_0C.unk_20, &v3, v0->unk_104.unk_04, &v4);
     }
 
         {
@@ -731,21 +730,21 @@ static void ov17_022444BC(SysTask *param0, void *param1)
             }
 
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_HIDE_2, 0);
-            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_X_CENTER, (256 - 40));
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_X_CENTER, 256 - 40);
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v0->unk_0D], MON_SPRITE_Y_CENTER, (104 + 8) + v17);
 
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_HIDE_2, 1);
             PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_X_CENTER, 80);
-            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_Y_CENTER, (50 - 8));
+            PokemonSprite_SetAttribute(v0->unk_00->unk_0C.unk_08[v1], MON_SPRITE_Y_CENTER, 50 - 8);
         }
 
         v0->unk_0C++;
         break;
     case 11:
-        ov12_0222016C(v0->unk_00->unk_0C.unk_20);
+        BattleAnimSystem_ExecuteScript(v0->unk_00->unk_0C.unk_20);
 
-        if (ov12_02220188(v0->unk_00->unk_0C.unk_20) == 0) {
-            ov12_02220198(v0->unk_00->unk_0C.unk_20);
+        if (BattleAnimSystem_IsMoveActive(v0->unk_00->unk_0C.unk_20) == 0) {
+            BattleAnimSystem_FreeScriptData(v0->unk_00->unk_0C.unk_20);
 
             if (v0->unk_104.unk_06 > 0) {
                 v0->unk_104.unk_06--;
@@ -782,7 +781,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -919,7 +918,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, &v0->unk_10, sizeof(UnkStruct_ov17_02244BB0));
         ov17_0223F9C4(v0->unk_00->unk_7E4, 0, 0, NULL);
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
 
         return;
@@ -1005,7 +1004,7 @@ static void ov17_02244C68(SysTask *param0, void *param1)
     case 4:
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
 
         return;
@@ -1145,7 +1144,7 @@ static void ov17_02244D98(SysTask *param0, void *param1)
     case 16:
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1225,7 +1224,7 @@ static void ov17_02245034(SysTask *param0, void *param1)
     case 8:
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1426,7 +1425,7 @@ static void ov17_0224519C(SysTask *param0, void *param1)
     default:
         if (v0->unk_11 == 1) {
             ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -1509,7 +1508,7 @@ static void ov17_02245588(SysTask *param0, void *param1)
     case 8:
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1673,7 +1672,7 @@ static void ov17_022456E8(SysTask *param0, void *param1)
     case 17:
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1784,7 +1783,7 @@ static void ov17_022459D4(SysTask *param0, void *param1)
     case 14:
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1839,7 +1838,7 @@ static void ov17_02245BC8(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(&v0->unk_00->unk_BF8, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }
@@ -1908,7 +1907,7 @@ static void ov17_02245CA4(SysTask *param0, void *param1)
     default:
         if (v0->unk_27 == 1) {
             ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             SysTask_Done(param0);
             return;
         }
@@ -1992,7 +1991,7 @@ static void ov17_02245E8C(SysTask *param0, void *param1)
         break;
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         return;
     }

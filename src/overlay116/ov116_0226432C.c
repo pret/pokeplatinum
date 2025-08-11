@@ -22,13 +22,13 @@
 #include "easy3d_object.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 
 typedef struct {
     ManagedSprite *unk_00;
@@ -328,7 +328,7 @@ static void ov116_022647BC(SysTask *param0, void *param1)
         FX32_CONST(+2)
     };
 
-    if ((IsScreenTransitionDone() == 0) || (v0->unk_A4->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v0->unk_A4->unk_2C.unk_00 == 1)) {
         for (v1 = 0; v1 < 3; v1++) {
             Sprite_DeleteAndFreeResources(v0->unk_08[v1]);
         }
@@ -422,10 +422,10 @@ static void ov116_022649E4(SysTask *param0, void *param1)
     UnkStruct_ov116_02264FEC *v0 = param1;
     UnkStruct_ov116_022649E4 *v1 = v0->unk_00->unk_14;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_2C.unk_00 == 1)) {
         *v0->unk_10 = 0;
         SysTask_Done(param0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         return;
     }
 
@@ -586,7 +586,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
 
     default:
         ov116_02261E0C(v0->unk_00, 0, 0);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
         SysTask_Done(param0);
         break;
     }
@@ -631,7 +631,7 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
         break;
 
     case 1:
-        Easy3DObject_SetVisibility(&v0->unk_00, 1);
+        Easy3DObject_SetVisible(&v0->unk_00, 1);
         param0->unk_28[0] = 0;
         param0->unk_00++;
         break;
@@ -662,7 +662,7 @@ static void ov116_0226501C(UnkStruct_ov116_02265470 *param0)
         param0->unk_04 = 0;
         param0->unk_00 = 0;
 
-        Easy3DObject_SetVisibility(&v0->unk_00, 0);
+        Easy3DObject_SetVisible(&v0->unk_00, 0);
 
         break;
     }
@@ -764,7 +764,7 @@ static void ov116_02265260(UnkStruct_ov116_02265470 *param0)
             UnkStruct_ov116_0226501C *v1 = param0->unk_08[v0];
 
             Easy3DAnim_SetFrame(&v1->unk_88[0], (v0 * 20) % 40);
-            Easy3DObject_SetVisibility(&v1->unk_00, 1);
+            Easy3DObject_SetVisible(&v1->unk_00, 1);
         }
 
         param0->unk_28[9] = 0;
@@ -781,7 +781,7 @@ static void ov116_02265260(UnkStruct_ov116_02265470 *param0)
         for (v0 = 0; v0 < 8; v0++) {
             UnkStruct_ov116_0226501C *v2 = param0->unk_08[v0];
 
-            Easy3DObject_SetVisibility(&v2->unk_00, 0);
+            Easy3DObject_SetVisible(&v2->unk_00, 0);
         }
 
         param0->unk_50[0] = 0;
@@ -827,7 +827,7 @@ static void ov116_0226534C(SysTask *param0, void *param1)
     UnkStruct_ov116_0226534C *v0 = param1;
     UnkStruct_ov116_022649E4 *v1 = v0->unk_84;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
 
         return;
@@ -1154,7 +1154,7 @@ static void ov116_0226591C(SysTask *param0, void *param1)
 
     v2 = *v3->unk_0C;
 
-    if ((IsScreenTransitionDone() == 0) || (v3->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v3->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1224,7 +1224,7 @@ static void ov116_02265AA4(SysTask *param0, void *param1)
     fx32 v3, v4;
     fx32 v5, v6;
 
-    if ((IsScreenTransitionDone() == 0) || (v0->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v0->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1489,7 +1489,7 @@ static void ov116_022660A8(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1616,7 +1616,7 @@ static void ov116_0226644C(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1734,7 +1734,7 @@ static void ov116_022667F4(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }
@@ -1880,7 +1880,7 @@ static void ov116_02266BF0(SysTask *param0, void *param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((IsScreenTransitionDone() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((IsScreenFadeDone() == FALSE) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
         return;
     }

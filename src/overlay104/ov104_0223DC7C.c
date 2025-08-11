@@ -14,6 +14,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -21,7 +22,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
 
 typedef struct {
@@ -175,11 +175,8 @@ static const SpriteTemplate Unk_ov104_022418E8 = {
 
 void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteManager *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7)
 {
-    SysTask *v0;
-    UnkStruct_ov104_0223DD30 *v1;
-
-    v0 = SysTask_StartAndAllocateParam(ov104_0223DDB4, sizeof(UnkStruct_ov104_0223DD30), 1000, 94);
-    v1 = SysTask_GetParam(v0);
+    SysTask *v0 = SysTask_StartAndAllocateParam(ov104_0223DDB4, sizeof(UnkStruct_ov104_0223DD30), 1000, 94);
+    UnkStruct_ov104_0223DD30 *v1 = SysTask_GetParam(v0);
 
     v1->unk_10 = param1;
     v1->unk_14 = param2;
@@ -211,7 +208,7 @@ static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1)
     SysTask_Done(param0->unk_140);
     SysTask_Done(param0->unk_34);
     NARC_dtor(param0->unk_24);
-    Heap_FreeToHeapExplicit(HEAP_ID_94, param0->unk_0C);
+    Heap_FreeExplicit(HEAP_ID_94, param0->unk_0C);
     SysTask_FinishAndFreeParam(param1);
 }
 
@@ -294,20 +291,20 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         param0->unk_00++;
         break;
     case 1:
-        StartScreenTransition(0, 0, 0, 0x7fff, 3, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 2:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_00++;
         }
         break;
     case 3:
-        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 4:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_00++;
         }
         break;
@@ -355,11 +352,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x7fff, 3, 1, heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 12:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             PaletteData_BlendMulti(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
             PaletteData_Blend(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
             BrightnessController_SetScreenBrightness(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, BRIGHTNESS_MAIN_SCREEN);
@@ -368,11 +365,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 13:
-        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_WHITE, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 14:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             v0->unk_78 = 26;
             param0->unk_00++;
         }
@@ -385,16 +382,16 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 16:
-        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, HEAP_ID_94);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_WHITE, 15, 1, HEAP_ID_94);
         param0->unk_00++;
         break;
     case 17:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             param0->unk_00++;
         }
         break;
     case 18:
-        sub_0200F344(1, 0x7fff);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_WHITE);
 
         if (param0->unk_20 != NULL) {
             *(param0->unk_20) = 1;
@@ -554,7 +551,7 @@ static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C *param0)
         v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
         Sprite_SetAffineScale(param0->unk_04[v0]->sprite, &v3);
-        Sprite_SetDrawFlag(param0->unk_04[v0]->sprite, 1);
+        Sprite_SetDrawFlag(param0->unk_04[v0]->sprite, TRUE);
 
         if (v1 == 0) {
             v2 = 0;
@@ -621,10 +618,10 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         void *v0;
         NNSG2dPaletteData *v1;
 
-        v0 = Graphics_GetPlttData(112, param1->unk_08, &v1, HEAP_ID_94);
+        v0 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->unk_08, &v1, HEAP_ID_94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     param0->unk_140 = SysTask_Start(ov104_0223E6BC, param0, 1100);

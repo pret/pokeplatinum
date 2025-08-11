@@ -1,6 +1,5 @@
 #include "macros/scrcmd.inc"
 
-    .data
 
     ScriptEntry _007B
     ScriptEntry _0092
@@ -41,6 +40,4 @@ _0092:
     ShowArrowSign 1
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

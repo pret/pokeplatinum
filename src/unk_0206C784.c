@@ -20,10 +20,10 @@
 #include "field_transition.h"
 #include "heap.h"
 #include "player_avatar.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
-#include "unk_0200F174.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 
@@ -65,7 +65,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     int v4;
     int v5;
 
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206CAD0));
+    v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206CAD0));
 
     v0->unk_01 = param1;
     v0->unk_04 = param2;
@@ -119,7 +119,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
             }
         } else {
             GF_ASSERT(FALSE);
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             return;
         }
     } else {
@@ -131,7 +131,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
 
 static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2)
 {
-    UnkStruct_0206C8D4 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C8D4));
+    UnkStruct_0206C8D4 *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206C8D4));
 
     v0->unk_04 = param2;
     v0->unk_00 = param1;
@@ -159,7 +159,7 @@ static BOOL sub_0206C8F8(FieldTask *taskMan)
         }
         break;
     case 2:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -199,12 +199,12 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         }
     } break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELDMAP);
         Sound_FadeOutBGM(0, 6);
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!IsScreenTransitionDone() || (Sound_IsFadeActive())) {
+        if (!IsScreenFadeDone() || (Sound_IsFadeActive())) {
             return 0;
         }
 
@@ -230,7 +230,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         v1->unk_00 = 7;
         break;
     case 7:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

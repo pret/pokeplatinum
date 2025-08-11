@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/global_terminal_2f.h"
 
-    .data
 
     ScriptEntry _0107
     ScriptEntry _003A
@@ -208,9 +207,6 @@ _01F1:
 _0212:
     Message 12
     GoTo _01A7
+    End
 
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
 
-    .data
 
     ScriptEntry _028A
     ScriptEntry _0ACF
@@ -83,14 +82,9 @@ _014A:
     ClearFlag FLAG_UNK_0x02C3
     Return
 
-    .byte 219
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 27
-    .byte 0
+BattleTower_Unused:
+    ScrCmd_1DB 0, 1
+    Return
 
 _0158:
     SetVar VAR_UNK_0x40D8, 0xFF
@@ -1089,39 +1083,35 @@ _1205:
     GoToIfNe VAR_RESULT, 0, _0784
     Message 60
     GoTo _0784
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-
+    End
+    
     .balign 4, 0
 _1248:
-    MoveAction_062
-    MoveAction_012 2
+    Delay4
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _1254:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _1260:
-    MoveAction_062
-    MoveAction_012 2
+    Delay4
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _126C:
-    MoveAction_012 2
-    MoveAction_069
+    WalkNormalNorth 2
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _1278:
-    MoveAction_003
+    FaceEast
     EndMovement
 
 _1280:

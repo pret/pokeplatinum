@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "constants/forms.h"
+#include "constants/species.h"
 #include "generated/gender_ratios.h"
 
-#include "heap.h"
 #include "inlines.h"
 #include "pokedex_language.h"
 #include "pokemon.h"
@@ -32,7 +32,7 @@ static const u16 sExcludedMonsLocal[] = {};
 #define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMonsNational) / sizeof(u16)))
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
-#define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
+#define LOCAL_DEX_GOAL        (SINNOH_DEX_COUNT - NUM_EXCLUDED_LOCAL)
 
 typedef struct Pokedex {
     u32 magic;
@@ -53,6 +53,7 @@ typedef struct Pokedex {
     u32 rotomFormsSeen;
     u8 shayminFormsSeen;
     u8 giratinaFormsSeen;
+    // u8 padding[2]; // implicit padding in vanilla
 } Pokedex;
 
 int Pokedex_SaveSize(void)
@@ -60,7 +61,7 @@ int Pokedex_SaveSize(void)
     return sizeof(Pokedex);
 }
 
-Pokedex *Pokedex_New(u32 heapID)
+Pokedex *Pokedex_New(enum HeapId heapID)
 {
     Pokedex *pokedexData = Heap_AllocFromHeap(heapID, sizeof(Pokedex));
     Pokedex_Init(pokedexData);

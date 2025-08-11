@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_216_house.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0071
@@ -82,6 +81,4 @@ _00E3:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

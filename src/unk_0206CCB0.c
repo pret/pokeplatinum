@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
 #include "generated/first_arrival_to_zones.h"
@@ -22,12 +23,12 @@
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
 
+#include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay006/ov6_02246444.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 #include "overlay006/swarm.h"
-#include "overlay025/poketch_system.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"
@@ -39,7 +40,7 @@
 #include "inlines.h"
 #include "map_header.h"
 #include "map_header_util.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokedex.h"
@@ -63,9 +64,9 @@
 #include "vars_flags.h"
 
 static void sub_0206CD70(FieldSystem *fieldSystem, int param1, int param2, const void *param3);
-static void sub_0206CD7C(SaveData *param0, int param1, int param2, const void *param3);
+static void sub_0206CD7C(SaveData *saveData, int param1, int param2, const void *param3);
 static u8 sub_0206DE4C(Pokemon *param0);
-static Strbuf *sub_0206F0D8(u16 param0, u32 param1);
+static Strbuf *sub_0206F0D8(u16 param0, u32 heapID);
 
 typedef struct {
     u8 unk_00[40];
@@ -426,12 +427,12 @@ BOOL sub_0206CD2C(int param0, FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *
     return v0(fieldSystem, param2);
 }
 
-static void sub_0206CD58(SaveData *param0, int param1, int param2, const void *param3)
+static void sub_0206CD58(SaveData *saveData, int param1, int param2, const void *param3)
 {
-    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
-    sub_0202E43C(v0, param1, param2, (const u8 *)param3);
+    sub_0202E43C(broadcast, param1, param2, (const u8 *)param3);
 }
 
 static void sub_0206CD70(FieldSystem *fieldSystem, int param1, int param2, const void *param3)
@@ -439,12 +440,12 @@ static void sub_0206CD70(FieldSystem *fieldSystem, int param1, int param2, const
     sub_0206CD7C(fieldSystem->saveData, param1, param2, param3);
 }
 
-static void sub_0206CD7C(SaveData *param0, int param1, int param2, const void *param3)
+static void sub_0206CD7C(SaveData *saveData, int param1, int param2, const void *param3)
 {
-    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
-    sub_0202E43C(v0, param1, param2, (const u8 *)param3);
+    sub_0202E43C(broadcast, param1, param2, (const u8 *)param3);
 }
 
 static void sub_0206CD94(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
@@ -507,9 +508,9 @@ static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
     }
 }
 
-void sub_0206CF14(TVBroadcast *param0, Pokemon *param1, int param2, int param3, int param4)
+void sub_0206CF14(TVBroadcast *broadcast, Pokemon *param1, int param2, int param3, int param4)
 {
-    UnkStruct_0202E7D8 *v0 = sub_0202E7D8(param0);
+    UnkStruct_0202E7D8 *v0 = sub_0202E7D8(broadcast);
 
     v0->unk_00 = 1;
     sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
@@ -520,9 +521,9 @@ void sub_0206CF14(TVBroadcast *param0, Pokemon *param1, int param2, int param3, 
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CF48(TVBroadcast *param0, Pokemon *param1, int heapID)
+void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, int heapID)
 {
-    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(param0);
+    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(broadcast);
 
     v0->unk_00 = 1;
     v0->unk_1F = 0;
@@ -535,9 +536,9 @@ void sub_0206CF48(TVBroadcast *param0, Pokemon *param1, int heapID)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CF9C(TVBroadcast *param0, int param1)
+void sub_0206CF9C(TVBroadcast *broadcast, int param1)
 {
-    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(param0);
+    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(broadcast);
 
     v0->unk_1F = 2;
     v0->unk_20 = param1;
@@ -545,9 +546,9 @@ void sub_0206CF9C(TVBroadcast *param0, int param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CFB4(TVBroadcast *param0, int param1)
+void sub_0206CFB4(TVBroadcast *broadcast, int param1)
 {
-    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(param0);
+    UnkStruct_0202E7E4 *v0 = sub_0202E7E4(broadcast);
 
     v0->unk_1F = 1;
     v0->unk_22 = param1;
@@ -555,9 +556,9 @@ void sub_0206CFB4(TVBroadcast *param0, int param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CFCC(TVBroadcast *param0, int param1)
+void sub_0206CFCC(TVBroadcast *broadcast, int param1)
 {
-    UnkStruct_0202E7F0 *v0 = sub_0202E7F0(param0);
+    UnkStruct_0202E7F0 *v0 = sub_0202E7F0(broadcast);
 
     v0->unk_00 = 1;
     v0->unk_01 = param1;
@@ -565,9 +566,9 @@ void sub_0206CFCC(TVBroadcast *param0, int param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CFE4(TVBroadcast *param0, BOOL param1, u16 param2)
+void sub_0206CFE4(TVBroadcast *broadcast, BOOL param1, u16 param2)
 {
-    UnkStruct_0202E7FC *v0 = sub_0202E7FC(param0);
+    UnkStruct_0202E7FC *v0 = sub_0202E7FC(broadcast);
 
     v0->unk_00 = 1;
     v0->unk_01 = param1;
@@ -576,9 +577,9 @@ void sub_0206CFE4(TVBroadcast *param0, BOOL param1, u16 param2)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D000(TVBroadcast *param0)
+void sub_0206D000(TVBroadcast *broadcast)
 {
-    UnkStruct_0202E808 *v0 = sub_0202E808(param0);
+    UnkStruct_0202E808 *v0 = sub_0202E808(broadcast);
 
     v0->unk_00 = 1;
     v0->unk_07 = 0;
@@ -586,9 +587,9 @@ void sub_0206D000(TVBroadcast *param0)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D018(TVBroadcast *param0, Pokemon *param1)
+void sub_0206D018(TVBroadcast *broadcast, Pokemon *param1)
 {
-    UnkStruct_0202E808 *v0 = sub_0202E808(param0);
+    UnkStruct_0202E808 *v0 = sub_0202E808(broadcast);
 
     if (v0->unk_07 == 0) {
         sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
@@ -598,9 +599,9 @@ void sub_0206D018(TVBroadcast *param0, Pokemon *param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D048(TVBroadcast *param0, Pokemon *mon)
+void sub_0206D048(TVBroadcast *broadcast, Pokemon *mon)
 {
-    UnkStruct_0202E810 *v0 = sub_0202E810(param0);
+    UnkStruct_0202E810 *v0 = sub_0202E810(broadcast);
 
     v0->unk_00 = 1;
     sub_0206CE38(mon, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
@@ -610,9 +611,9 @@ void sub_0206D048(TVBroadcast *param0, Pokemon *mon)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D088(TVBroadcast *param0, u8 param1, const TrainerInfo *param2)
+void sub_0206D088(TVBroadcast *broadcast, u8 param1, const TrainerInfo *param2)
 {
-    UnkStruct_0202E81C *v0 = sub_0202E81C(param0);
+    UnkStruct_0202E81C *v0 = sub_0202E81C(broadcast);
 
     v0->unk_00 = 1;
     v0->unk_01 = param1;
@@ -626,9 +627,9 @@ void sub_0206D088(TVBroadcast *param0, u8 param1, const TrainerInfo *param2)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D0C8(TVBroadcast *param0, u16 param1)
+void sub_0206D0C8(TVBroadcast *broadcast, u16 param1)
 {
-    UnkStruct_0202E828 *v0 = sub_0202E828(param0);
+    UnkStruct_0202E828 *v0 = sub_0202E828(broadcast);
 
     v0->unk_00 = 1;
     v0->unk_04 += param1;
@@ -640,17 +641,17 @@ void sub_0206D0C8(TVBroadcast *param0, u16 param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D0F0(TVBroadcast *param0)
+void sub_0206D0F0(TVBroadcast *broadcast)
 {
-    UnkStruct_0202E828 *v0 = sub_0202E828(param0);
+    UnkStruct_0202E828 *v0 = sub_0202E828(broadcast);
 
     v0->unk_04 = 0;
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D104(TVBroadcast *param0)
+void sub_0206D104(TVBroadcast *broadcast)
 {
-    UnkStruct_0202E834 *v0 = sub_0202E834(param0);
+    UnkStruct_0202E834 *v0 = sub_0202E834(broadcast);
 
     v0->unk_00 = 1;
     v0->unk_02++;
@@ -662,9 +663,9 @@ void sub_0206D104(TVBroadcast *param0)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206D12C(TVBroadcast *param0)
+void sub_0206D12C(TVBroadcast *broadcast)
 {
-    UnkStruct_0202E834 *v0 = sub_0202E834(param0);
+    UnkStruct_0202E834 *v0 = sub_0202E834(broadcast);
 
     v0->unk_02 = 0;
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
@@ -680,7 +681,7 @@ UnkStruct_0206D140 *sub_0206D140(int heapID)
 
 void sub_0206D158(UnkStruct_0206D140 *param0)
 {
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, u32 heapID)
@@ -876,7 +877,7 @@ static int sub_0206D4D4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     return 10;
 }
 
-void sub_0206D504(SaveData *param0, u16 param1, u8 param2)
+void sub_0206D504(SaveData *saveData, u16 param1, u8 param2)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D530 *v1 = &v0.val6;
@@ -889,7 +890,7 @@ void sub_0206D504(SaveData *param0, u16 param1, u8 param2)
             v1->unk_02 = 999;
         }
 
-        sub_0206CD7C(param0, 2, 7, v1);
+        sub_0206CD7C(saveData, 2, 7, v1);
     }
 }
 
@@ -987,8 +988,8 @@ void sub_0206D720(FieldSystem *fieldSystem)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D75C *v1 = &v0.val10;
-    TVBroadcast *v2 = SaveData_GetTVBroadcast(fieldSystem->saveData);
-    UnkStruct_0202E808 *v3 = sub_0202E808(v2);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
+    UnkStruct_0202E808 *v3 = sub_0202E808(broadcast);
 
     if (v3->unk_07 == 0) {
         return;
@@ -1089,7 +1090,7 @@ static BOOL sub_0206D8F0(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return Pokedex_HasSeenSpecies(SaveData_GetPokedex(fieldSystem->saveData), v0->unk_00);
 }
 
-void sub_0206D90C(TVBroadcast *fieldSystem, Pokemon *param1, u16 param2)
+void sub_0206D90C(TVBroadcast *broadcast, Pokemon *param1, u16 param2)
 {
     return;
 }
@@ -1138,7 +1139,7 @@ static int sub_0206D98C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     return 31;
 }
 
-void sub_0206D9B4(TVBroadcast *param0, Pokemon *param1, u8 param2)
+void sub_0206D9B4(TVBroadcast *broadcast, Pokemon *param1, u8 param2)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D9F4 *v1 = &v0.val14;
@@ -1147,7 +1148,7 @@ void sub_0206D9B4(TVBroadcast *param0, Pokemon *param1, u8 param2)
     v1->unk_05 = MTRNG_Next() % 3;
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
-    sub_0202E43C(param0, 2, 21, (const u8 *)v1);
+    sub_0202E43C(broadcast, 2, 21, (const u8 *)v1);
 }
 
 static int sub_0206D9F4(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
@@ -1266,7 +1267,7 @@ static BOOL sub_0206DB9C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_RESORT_AREA);
 }
 
-void sub_0206DBB0(SaveData *param0, u32 param1, Pokemon *param2, BOOL param3)
+void sub_0206DBB0(SaveData *saveData, u32 param1, Pokemon *param2, BOOL param3)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206DBE8 *v1 = &v0.val18;
@@ -1276,7 +1277,7 @@ void sub_0206DBB0(SaveData *param0, u32 param1, Pokemon *param2, BOOL param3)
     v1->unk_00 = param1;
     v1->unk_07 = param3;
 
-    sub_0206CD58(param0, 3, 1, v1);
+    sub_0206CD58(saveData, 3, 1, v1);
 }
 
 static int sub_0206DBE8(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
@@ -1542,18 +1543,18 @@ static BOOL sub_0206DFC8(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), ITEM_EXPLORER_KIT, 1, HEAP_ID_FIELD_TASK);
 }
 
-void sub_0206DFE0(SaveData *param0)
+void sub_0206DFE0(SaveData *saveData)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E018 *v1 = &v0.val24;
-    UnkStruct_0202E828 *v2 = sub_0202E828(SaveData_GetTVBroadcast(param0));
+    UnkStruct_0202E828 *v2 = sub_0202E828(SaveData_GetTVBroadcast(saveData));
 
     if (v2->unk_04 >= 30) {
         v1->unk_00 = *v2;
         v2->unk_00 = 0;
 
         SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
-        sub_0206CD7C(param0, 3, 10, v1);
+        sub_0206CD7C(saveData, 3, 10, v1);
     }
 }
 
@@ -1572,18 +1573,18 @@ static BOOL sub_0206E04C(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
-void sub_0206E060(SaveData *param0)
+void sub_0206E060(SaveData *saveData)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E098 *v1 = &v0.val25;
-    UnkStruct_0202E834 *v2 = sub_0202E834(SaveData_GetTVBroadcast(param0));
+    UnkStruct_0202E834 *v2 = sub_0202E834(SaveData_GetTVBroadcast(saveData));
 
     if (v2->unk_02 >= 10) {
         v1->unk_00 = *v2;
         v2->unk_00 = 0;
 
         SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
-        sub_0206CD7C(param0, 3, 11, v1);
+        sub_0206CD7C(saveData, 3, 11, v1);
     }
 }
 
@@ -2751,7 +2752,7 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
         }
     }
 
-    v0 = sub_0206F0D8(v3, 4);
+    v0 = sub_0206F0D8(v3, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(param1, 0, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
@@ -2769,13 +2770,10 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 }
 
-static Strbuf *sub_0206F0D8(u16 param0, u32 param1)
+static Strbuf *sub_0206F0D8(u16 param0, u32 heapID)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
-
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
-    v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
     return v1;
@@ -2837,7 +2835,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (Pokedex_HasSeenSpecies(pokedex, v1) == TRUE) {
-            v0 = sub_0206F0D8(v1, 4);
+            v0 = sub_0206F0D8(v1, HEAP_ID_FIELD);
             StringTemplate_SetStrbuf(param1, 2, v0, 0, 1, GAME_LANGUAGE);
             Strbuf_Free(v0);
             break;
@@ -3006,15 +3004,15 @@ static const UnkStruct_020EFFA4 Unk_020EFD9C[8] = {
     { sub_0206F29C, NULL }
 };
 
-void sub_0206F2F0(SaveData *param0)
+void sub_0206F2F0(SaveData *saveData)
 {
-    TVBroadcast *v0 = SaveData_GetTVBroadcast(param0);
+    TVBroadcast *broadcast = SaveData_GetTVBroadcast(saveData);
 
-    sub_0206DFE0(param0);
-    sub_0206E060(param0);
+    sub_0206DFE0(saveData);
+    sub_0206E060(saveData);
 
-    sub_0206D0F0(v0);
-    sub_0206D12C(v0);
+    sub_0206D0F0(broadcast);
+    sub_0206D12C(broadcast);
 
     return;
 }

@@ -8,8 +8,6 @@
 
 #include "struct_defs/struct_02013610.h"
 
-#include "graphics/signposts/field_board.naix"
-#include "graphics/windows/pl_winframe.naix"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 
@@ -30,6 +28,9 @@
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
 #include "unk_020131EC.h"
+
+#include "res/graphics/signposts/field_board.naix.h"
+#include "res/graphics/windows/pl_winframe.naix.h"
 
 #define SIGNPOST_CONTENT_WIDTH_TILES  6
 #define SIGNPOST_CONTENT_HEIGHT_TILES 4
@@ -64,7 +65,7 @@ enum WaitDialDeleteMode {
     DIAL_DELETE_MODE_DESTROY,
 };
 
-typedef struct WaitDial {
+struct WaitDial {
     Window *window;
     u8 pixels[WAIT_DIAL_WHOLE_SIZE];
     u8 messageBoxPixels[WAIT_DIAL_FRAME_SIZE];
@@ -74,7 +75,7 @@ typedef struct WaitDial {
     u8 : 1;
     u8 deleteMode : 2;
     u8 : 6;
-} WaitDial;
+};
 
 typedef struct PokemonPreview {
     UnkStruct_ov5_021D30A8 unk_00;
@@ -406,8 +407,8 @@ static void DrawMessageBoxScrollCursor(Window *window, u16 baseTile)
 
     Bg_LoadTiles(window->bgConfig, bgLayer, cursorBlit, SCROLL_CURSOR_GRAPHICS_SIZE, baseTile + 18);
     TextPrinter_SetScrollArrowBaseTile(baseTile);
-    Heap_FreeToHeap(cursorCharPtr);
-    Heap_FreeToHeap(cursorBlit);
+    Heap_Free(cursorCharPtr);
+    Heap_Free(cursorBlit);
 }
 
 void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 withTile, u8 messageBoxFrame, u32 heapID)
@@ -442,8 +443,8 @@ void ReplaceTransparentTiles(BgConfig *bgConfig, u8 bgLayer, u16 bgBaseTile, u8 
     }
 
     Bg_LoadTiles(bgConfig, bgLayer, src, TILE_SIZE_4BPP * 18, bgBaseTile);
-    Heap_FreeToHeap(tiles);
-    Heap_FreeToHeap(src);
+    Heap_Free(tiles);
+    Heap_Free(src);
 }
 
 void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u8 palette, u8 signpostType, u16 signpostNARCMemberIdx, u32 heapID)
@@ -467,7 +468,7 @@ void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u
         paletteBuf + (signpostType * PALETTE_SIZE),
         PALETTE_SIZE_BYTES,
         palette * PALETTE_SIZE_BYTES);
-    Heap_FreeToHeapExplicit(heapID, signpostNclr);
+    Heap_FreeExplicit(heapID, signpostNclr);
 
     if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
         LoadSignpostContentTiles(bgConfig,
@@ -627,7 +628,7 @@ void *Window_AddWaitDial(Window *window, u32 baseTile)
         memcpy(dial->pixels + WAIT_DIAL_FRAME_OFFSET(i), tmp, WAIT_DIAL_FRAME_SIZE);
     }
 
-    Heap_FreeToHeap(tmp);
+    Heap_Free(tmp);
 
     dialTilesRaw = Graphics_GetCharData(NARC_INDEX_GRAPHIC__PL_WINFRAME,
         wait_dial_NCGR,
@@ -648,7 +649,7 @@ void *Window_AddWaitDial(Window *window, u32 baseTile)
         0,
         WAIT_DIAL_FRAME_WIDTH_TILES * 8,
         (WAIT_DIAL_FRAME_HEIGHT_TILES * 8) * WAIT_DIAL_FRAME_COUNT);
-    Heap_FreeToHeap(dialTilesRaw);
+    Heap_Free(dialTilesRaw);
 
     dial->window = window;
     dial->messageBoxTile = baseTile;
@@ -717,7 +718,7 @@ static void SysTask_TickWaitDial(SysTask *task, void *data)
 
 static void SysTask_CleanupWaitDial(SysTask *task, void *data)
 {
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
     SysTask_Done(task);
 }
 
@@ -902,7 +903,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
     DC_FlushRange(buf, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
     GX_LoadOBJ(buf, offset, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
 
-    Heap_FreeToHeap(buf);
+    Heap_Free(buf);
 
     buf = sub_02013660(spriteTemplate->narcID, spriteTemplate->palette, param0->heapID);
     plttResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_PLTT], POKEMON_PREVIEW_RESOURCE_ID);
@@ -912,7 +913,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
     DC_FlushRange(buf, 32);
     GX_LoadOBJPltt(buf, offset, 32);
 
-    Heap_FreeToHeap(buf);
+    Heap_Free(buf);
 }
 
 static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile)

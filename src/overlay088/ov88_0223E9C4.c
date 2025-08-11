@@ -46,7 +46,7 @@ static const u16 Unk_ov88_0223F170[][2] = {
     { 0x14, 0xA }
 };
 
-void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *param2)
+void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *options)
 {
     int v0;
 
@@ -59,8 +59,8 @@ void ov88_0223E9C4(BgConfig *param0, Window *param1, Options *param2)
     Window_Add(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
     Window_FillTilemap(&param1[6], 0);
 
-    LoadMessageBoxGraphics(param0, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param2), HEAP_ID_26);
-    LoadStandardWindowGraphics(param0, 0, (512 - 9), 11, 0, HEAP_ID_26);
+    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_0, (512 - (9 + (18 + 12))), 10, Options_Frame(options), HEAP_ID_26);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_0, (512 - 9), 11, 0, HEAP_ID_26);
 
     Window_Add(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
     Window_FillTilemap(&param1[21], 0);
@@ -216,7 +216,7 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
     v1.choices = param0;
     v1.window = param2;
     v1.cursorCallback = ov88_0223EE14;
-    v0 = ListMenu_New(&v1, 0, 0, 26);
+    v0 = ListMenu_New(&v1, 0, 0, HEAP_ID_26);
 
     return v0;
 }

@@ -20,8 +20,8 @@ BOOL ov19_021DA814(UnkStruct_ov19_021DA8D8 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_40 = param2;
     param0->unk_00 = param3;
     param0->unk_04 = NULL;
-    param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 10, 1, &(param0->unk_10), HEAP_ID_10);
-    param0->unk_0C = Graphics_GetAnimBankFromOpenNARC(param4, 11, 1, &(param0->unk_14), HEAP_ID_10);
+    param0->unk_08 = Graphics_GetCellBankFromOpenNARC(param4, 10, 1, &(param0->unk_10), HEAP_ID_BOX_GRAPHICS);
+    param0->unk_0C = Graphics_GetAnimBankFromOpenNARC(param4, 11, 1, &(param0->unk_14), HEAP_ID_BOX_GRAPHICS);
 
     if ((param0->unk_08 == NULL) || (param0->unk_0C == NULL)) {
         return 0;
@@ -45,12 +45,12 @@ void ov19_021DA864(UnkStruct_ov19_021DA8D8 *param0, NARC *param1)
 void ov19_021DA8D8(UnkStruct_ov19_021DA8D8 *param0)
 {
     if (param0->unk_08 != NULL) {
-        Heap_FreeToHeap(param0->unk_08);
+        Heap_Free(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
     if (param0->unk_0C != NULL) {
-        Heap_FreeToHeap(param0->unk_0C);
+        Heap_Free(param0->unk_0C);
         param0->unk_0C = NULL;
     }
 }

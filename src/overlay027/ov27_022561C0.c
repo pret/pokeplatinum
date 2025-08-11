@@ -2,8 +2,8 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "overlay025/poketch_button.h"
-#include "overlay025/poketch_system.h"
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay027/ov27_0225680C.h"
 #include "overlay027/struct_ov27_0225680C_1.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
@@ -83,7 +83,7 @@ static BOOL ov27_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *pa
                 return 1;
             }
         } else {
-            Heap_FreeToHeap(v0);
+            Heap_Free(v0);
             v0 = NULL;
         }
     }
@@ -143,7 +143,7 @@ static void ov27_022562AC(UnkStruct_ov27_0225621C *param0)
     ov27_02256654(param0);
     ov27_02256890(param0->unk_60);
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void ov27_022562FC(SysTask *param0, void *param1)
@@ -371,10 +371,10 @@ static BOOL ov27_022565D0(UnkStruct_ov27_0225621C *param0)
 static BOOL ov27_02256608(UnkStruct_ov27_0225621C *param0)
 {
     static const TouchScreenHitTable v0[] = {
-        { 0xfe, 112, 112, 39 },
+        { TOUCHSCREEN_USE_CIRCLE, 112, 112, 39 },
     };
 
-    param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, 8);
+    param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov27_02256660, param0, HEAP_ID_POKETCH_APP);
 
     if (param0->buttonManager != NULL) {
         PoketchButtonManager_SetButtonTimer(param0->buttonManager, 0, 0, 15);

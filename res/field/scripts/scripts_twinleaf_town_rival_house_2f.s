@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_rival_house_2f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0090
@@ -33,23 +32,23 @@ _000E:
 
     .balign 4, 0
 _0060:
-    MoveAction_034
-    MoveAction_075
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _006C:
-    MoveAction_018 4
-    MoveAction_016
-    MoveAction_018 3
-    MoveAction_069
+    WalkFastWest 4
+    WalkFastNorth
+    WalkFastWest 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0080:
-    MoveAction_063 2
-    MoveAction_013
-    MoveAction_032
+    Delay8 2
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement
 
 _0090:
@@ -71,6 +70,4 @@ _00A1:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

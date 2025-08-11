@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/victory_road_1f.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _0031
@@ -36,5 +35,4 @@ _005A:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

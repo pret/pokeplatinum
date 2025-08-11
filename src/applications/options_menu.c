@@ -21,17 +21,17 @@
 #include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/options_menu/config_gra.naix"
+#include "res/graphics/options_menu/config_gra.naix.h"
 #include "res/text/bank/options_menu.h"
 
 #define MENU_TITLE_BASE_TILE      10
@@ -148,14 +148,14 @@ static void TeardownBgs(OptionsMenuData *menuData);
 static void TeardownTilemaps(OptionsMenuData *menuData);
 static void TeardownWindows(OptionsMenuData *menuData);
 
-BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
 {
     OptionsMenuData *menuData = NULL;
-    Options *options = OverlayManager_Args(ovyManager);
+    Options *options = ApplicationManager_Args(appMan);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_OPTIONS_MENU, HEAP_ALLOCATION_SIZE);
 
-    menuData = OverlayManager_NewData(ovyManager, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
+    menuData = ApplicationManager_NewData(appMan, sizeof(OptionsMenuData), HEAP_ID_OPTIONS_MENU);
     memset(menuData, 0, sizeof(OptionsMenuData));
 
     menuData->options.textSpeed = Options_TextSpeed(options);
@@ -172,9 +172,9 @@ BOOL OptionsMenu_Init(OverlayManager *ovyManager, int *state)
     return TRUE;
 }
 
-BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
+    OptionsMenuData *menuData = ApplicationManager_Data(appMan);
 
     if (menuData->saveSelections == 1) {
         menuData->options.textSpeed = menuData->entries.textSpeed.selected;
@@ -196,7 +196,7 @@ BOOL OptionsMenu_Exit(OverlayManager *ovyManager, int *state)
 
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
 
-    OverlayManager_FreeData(ovyManager);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(menuData->heapID);
 
     return TRUE;
@@ -214,9 +214,9 @@ enum OptonsMenuState {
     STATE_TEARDOWN,
 };
 
-BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
+BOOL OptionsMenu_Main(ApplicationManager *appMan, int *state)
 {
-    OptionsMenuData *menuData = OverlayManager_Data(ovyManager);
+    OptionsMenuData *menuData = ApplicationManager_Data(appMan);
     u32 choiceYesNo;
 
     switch (menuData->state) {
@@ -225,11 +225,11 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
             return FALSE;
         }
 
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_IN:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return FALSE;
         }
         break;
@@ -286,11 +286,11 @@ BOOL OptionsMenu_Main(OverlayManager *ovyManager, int *state)
             Text_RemovePrinter(menuData->textPrinter);
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, menuData->heapID);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, menuData->heapID);
         break;
 
     case STATE_WAIT_FOR_FADE_OUT:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return FALSE;
         }
         break;
@@ -358,8 +358,8 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
         GXS_SetVisiblePlane(0);
 
         SetVRAMBanks();
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         SetupBgs(menuData);
         break;
 
@@ -449,7 +449,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 1,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -464,7 +463,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 2,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -479,7 +477,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 3,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -494,7 +491,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
         {
@@ -509,7 +505,6 @@ static void SetupBgs(OptionsMenuData *menuData)
             .bgExtPltt = GX_BG_EXTPLTT_01,
             .priority = 0,
             .areaOver = 0,
-            .dummy = 0,
             .mosaic = FALSE,
         },
     };
@@ -539,7 +534,7 @@ static void TeardownBgs(OptionsMenuData *menuData)
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_1);
     Bg_FreeTilemapBuffer(menuData->bgConfig, BG_LAYER_MAIN_0);
-    Heap_FreeToHeap(menuData->bgConfig);
+    Heap_Free(menuData->bgConfig);
 }
 
 static void LoadBgTiles(OptionsMenuData *menuData)
@@ -555,7 +550,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     NNS_G2dGetUnpackedCharacterData(memberBuffer, &cursorTiles);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_MAIN_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
     Bg_LoadTiles(menuData->bgConfig, BG_LAYER_SUB_0, cursorTiles->pRawData, cursorTiles->szByte, 0);
-    Heap_FreeToHeap(memberBuffer);
+    Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tiles_NCLR);
     memberBuffer = Heap_AllocFromHeapAtEnd(menuData->heapID, memberSize);
@@ -563,7 +558,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
     NNS_G2dGetUnpackedPaletteData(memberBuffer, &cursorPalette);
     Bg_LoadPalette(BG_LAYER_MAIN_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
     Bg_LoadPalette(BG_LAYER_SUB_0, cursorPalette->pRawData, PALETTE_SIZE_BYTES, 0);
-    Heap_FreeToHeap(memberBuffer);
+    Heap_Free(memberBuffer);
 
     memberSize = NARC_GetMemberSize(narc, tilemap_bin);
     menuData->nscrBuffer = Heap_AllocFromHeap(menuData->heapID, memberSize);
@@ -609,7 +604,7 @@ static void LoadBgTiles(OptionsMenuData *menuData)
 
 static void TeardownTilemaps(OptionsMenuData *menuData)
 {
-    Heap_FreeToHeap(menuData->nscrBuffer);
+    Heap_Free(menuData->nscrBuffer);
 }
 
 static void SetupWindows(OptionsMenuData *menuData)

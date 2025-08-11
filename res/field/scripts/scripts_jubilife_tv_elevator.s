@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_elevator.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -150,5 +149,5 @@ _0283:
 
     .balign 4, 0
 _029C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement

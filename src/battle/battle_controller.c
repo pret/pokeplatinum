@@ -11,9 +11,9 @@
 #include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
-#include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/game_records.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/trainer.h"
@@ -28,7 +28,6 @@
 #include "battle/common.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
-#include "battle/scripts/sub_seq.naix"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
@@ -40,9 +39,11 @@
 #include "move_table.h"
 #include "party.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
+
+#include "res/battle/scripts/sub_seq.naix.h"
 
 enum BattleControllerState {
     STATE_PROCESSING = 0,
@@ -209,8 +210,8 @@ BOOL BattleController_Main(BattleSystem *battleSys, BattleContext *battleCtx)
 
 void BattleContext_Free(BattleContext *battleCtx)
 {
-    Heap_FreeToHeap(battleCtx->aiContext.itemTable);
-    Heap_FreeToHeap(battleCtx);
+    Heap_Free(battleCtx->aiContext.itemTable);
+    Heap_Free(battleCtx);
 }
 
 void BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
@@ -4032,7 +4033,7 @@ static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext
 
 static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (IsScreenTransitionDone() == TRUE) {
+    if (IsScreenFadeDone() == TRUE) {
         battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 }

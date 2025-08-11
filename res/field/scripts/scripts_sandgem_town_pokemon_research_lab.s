@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_pokemon_research_lab.h"
 
-    .data
 
     ScriptEntry _003E
     ScriptEntry _01AE
@@ -29,11 +28,11 @@ _005A:
     ClearFlag FLAG_UNK_0x0198
     SetObjectEventPos 0, 7, 14
     SetObjectEventDir 0, DIR_SOUTH
-    ScrCmd_188 0, 15
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_SOUTH
     ClearFlag FLAG_UNK_0x0199
     SetObjectEventPos 3, 6, 14
     SetObjectEventDir 3, DIR_SOUTH
-    ScrCmd_188 3, 15
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _008C:
@@ -53,7 +52,7 @@ _00B7:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _07AE
     GoToIfUnset FLAG_UNK_0x09BA, _00E5
-    ScrCmd_1E8 VAR_RESULT
+    CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _060E
 _00E5:
     GoToIfGe VAR_UNK_0x4071, 2, _0100
@@ -102,7 +101,7 @@ _015C:
     End
 
 _016A:
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     BufferNumber 1, VAR_RESULT
     Message 54
     WaitABXPadPress
@@ -118,9 +117,9 @@ _016A:
 
     .balign 4, 0
 _019C:
-    MoveAction_035
-    MoveAction_062
-    MoveAction_033
+    WalkOnSpotNormalEast
+    Delay4
+    WalkOnSpotNormalSouth
     EndMovement
 
 _01AC:
@@ -313,79 +312,74 @@ _044D:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+SandgemTownPokemonResearchLab_UnusedMovement:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _047C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0484:
-    MoveAction_065
-    MoveAction_012 8
-    MoveAction_015
-    MoveAction_034
+    Delay16
+    WalkNormalNorth 8
+    WalkNormalEast
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0498:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _04A0:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _04A8:
-    MoveAction_065
-    MoveAction_012 9
+    Delay16
+    WalkNormalNorth 9
     EndMovement
 
     .balign 4, 0
 _04B4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _04BC:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04C4:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _04D0:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _04D8:
-    MoveAction_013 10
+    WalkNormalSouth 10
     EndMovement
 
     .balign 4, 0
 _04E0:
-    MoveAction_102
+    PlayerGive
     EndMovement
 
     .balign 4, 0
 _04E8:
-    MoveAction_104
+    PlayerReceive
     EndMovement
 
 _04F0:
@@ -541,7 +535,7 @@ _0650:
     End
 
 _065B:
-    ScrCmd_11E VAR_RESULT
+    GetLocalDexSeenCount VAR_RESULT
     BufferNumber 0, VAR_RESULT
     Message 28
     BufferPlayerName 0
@@ -653,87 +647,82 @@ _07E3:
 
     .balign 4, 0
 _07F8:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0804:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _080C:
-    MoveAction_034
-    MoveAction_063 2
-    MoveAction_033
+    WalkOnSpotNormalWest
+    Delay8 2
+    WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+SandgemTownPokemonResearchLab_UnusedMovement2:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0824:
-    MoveAction_014
-    MoveAction_013 2
-    MoveAction_015
-    MoveAction_032
+    WalkNormalWest
+    WalkNormalSouth 2
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0838:
-    MoveAction_013
-    MoveAction_014
-    MoveAction_032
+    WalkNormalSouth
+    WalkNormalWest
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0848:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_032
+    WalkNormalSouth
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0858:
-    MoveAction_033
-    MoveAction_063 5
-    MoveAction_014
-    MoveAction_035
+    WalkOnSpotNormalSouth
+    Delay8 5
+    WalkNormalWest
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _086C:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0878:
-    MoveAction_015
-    MoveAction_032
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0884:
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
     .balign 4, 0
 _088C:
-    MoveAction_014
-    MoveAction_032
+    WalkNormalWest
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0898:
-    MoveAction_013 9
+    WalkNormalSouth 9
     EndMovement
 
 _08A0:
@@ -749,5 +738,4 @@ _08C2:
     SetVar VAR_0x8006, 1
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

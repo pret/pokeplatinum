@@ -2,7 +2,6 @@
 #include "res/text/bank/sunyshore_market.h"
 #include "generated/ribbons.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0096
@@ -71,7 +70,7 @@ _00A9:
     GoToIfEq VAR_RESULT, 0, _00D9
     Message 7
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     Call _00E4
     ReleaseAll
     End
@@ -159,4 +158,4 @@ _01D4:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

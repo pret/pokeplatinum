@@ -5,7 +5,7 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_0203068C_decl.h"
+#include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0202E858.h"
 #include "struct_defs/struct_0202E8C0.h"
 #include "struct_defs/struct_0202E91C.h"
@@ -116,12 +116,12 @@ int sub_0202E91C(void)
     return sizeof(UnkStruct_0202E91C);
 }
 
-static u32 *sub_0202E924(SaveData *param0, int param1)
+static u32 *sub_0202E924(SaveData *saveData, int heapID)
 {
     int v0;
     u32 v1;
     GameRecords *v2;
-    BattleFrontier *v3;
+    BattleFrontier *frontier;
     u32 *v4;
     static const int v5[] = {
         0x0,
@@ -139,9 +139,9 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
         0x5E
     };
 
-    v2 = SaveData_GetGameRecords(param0);
-    v3 = SaveData_GetBattleFrontier(param0);
-    v4 = Heap_AllocFromHeapAtEnd(param1, 4 * 13);
+    v2 = SaveData_GetGameRecords(saveData);
+    frontier = SaveData_GetBattleFrontier(saveData);
+    v4 = Heap_AllocFromHeapAtEnd(heapID, 4 * 13);
 
     for (v0 = 0; v0 < 13; v0++) {
         switch (v0) {
@@ -171,7 +171,7 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
             break;
         default:
             if ((v0 >= 0) && (v0 <= 4)) {
-                v4[v0] = sub_02030698(v3, v5[v0], 0xff);
+                v4[v0] = sub_02030698(frontier, v5[v0], 0xff);
             } else {
                 v4[v0] = GameRecords_GetRecordValue(v2, v5[v0]);
             }
@@ -183,21 +183,21 @@ static u32 *sub_0202E924(SaveData *param0, int param1)
     return v4;
 }
 
-void *sub_0202E9FC(SaveData *param0, int param1)
+void *sub_0202E9FC(SaveData *saveData, int heapID)
 {
     int v0;
     u32 v1, v2;
     UnkStruct_0202E91C *v3;
     Strbuf *v4;
-    TrainerInfo *v5 = SaveData_GetTrainerInfo(param0);
+    TrainerInfo *v5 = SaveData_GetTrainerInfo(saveData);
     u32 *v6;
 
-    v3 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_0202E91C));
+    v3 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0202E91C));
     MI_CpuClear8(v3, sizeof(UnkStruct_0202E91C));
 
-    v1 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(param0), 1);
-    v4 = TrainerInfo_NameNewStrbuf(v5, param1);
-    v6 = sub_0202E924(param0, param1);
+    v1 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), 1);
+    v4 = TrainerInfo_NameNewStrbuf(v5, heapID);
+    v6 = sub_0202E924(saveData, heapID);
 
     for (v0 = 0; v0 < 13; v0++) {
         v2 = 0;
@@ -207,7 +207,7 @@ void *sub_0202E9FC(SaveData *param0, int param1)
         v3->unk_00[v0].unk_04 = v6[v0];
     }
 
-    Heap_FreeToHeap(v6);
+    Heap_Free(v6);
     Strbuf_Free(v4);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 
@@ -343,10 +343,10 @@ static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkS
         sub_0202EAEC(param0, v2, param1, param2, 1, param3, param4, heapID);
     }
 
-    Heap_FreeToHeap(v2);
+    Heap_Free(v2);
 }
 
-void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, int heapID)
+void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **param3, int heapID)
 {
     u8 v0, v1;
     u32 v2;
@@ -354,8 +354,8 @@ void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, 
     UnkStruct_0202E8C0 *v4;
     UnkStruct_0202EE10 *v5;
 
-    v4 = sub_0202E8C0(param0);
-    v2 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(param0), 1);
+    v4 = sub_0202E8C0(saveData);
+    v2 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), 1);
     v1 = 0;
 
     for (v0 = 0; v0 < param2; v0++) {
@@ -383,19 +383,19 @@ void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, 
     return;
 }
 
-UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int heapID)
+UnkStruct_0202EE10 *sub_0202ED8C(SaveData *saveData, int param1, int heapID)
 {
     int v0, v1;
     u32 v2;
     UnkStruct_0202EE10 *v3;
     u32 *v4;
-    TrainerInfo *v5 = SaveData_GetTrainerInfo(param0);
+    TrainerInfo *v5 = SaveData_GetTrainerInfo(saveData);
     v3 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202EE10));
 
     MI_CpuClear8(v3, sizeof(UnkStruct_0202EE10));
 
-    v2 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(param0), 1);
-    v4 = sub_0202E924(param0, heapID);
+    v2 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(saveData), 1);
+    v4 = sub_0202E924(saveData, heapID);
     v3->unk_00 = sub_0202E840(param1);
     v1 = sub_0202E84C(param1);
 
@@ -405,7 +405,7 @@ UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int heapID)
         v3->unk_04[v0].unk_08 = TrainerInfo_NameNewStrbuf(v5, heapID);
     }
 
-    Heap_FreeToHeap(v4);
+    Heap_Free(v4);
     return v3;
 }
 
@@ -446,7 +446,7 @@ void sub_0202EE8C(UnkStruct_0202EE10 *param0)
 
     MI_CpuClear8(param0, sizeof(UnkStruct_0202EE10));
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     param0 = NULL;
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_RANKINGS);
 }

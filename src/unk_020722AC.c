@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02028430_decl.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"
@@ -21,6 +20,7 @@
 #include "heap.h"
 #include "item.h"
 #include "list_menu.h"
+#include "mail.h"
 #include "menu.h"
 #include "message.h"
 #include "party.h"
@@ -29,6 +29,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -37,8 +38,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
-#include "unk_02028124.h"
 #include "unk_0203D1B8.h"
 #include "unk_0206A780.h"
 #include "unk_02097624.h"
@@ -50,8 +49,8 @@ typedef struct {
     u8 unk_01;
     u8 unk_02;
     u8 unk_03;
-    u8 unk_04;
-    u8 unk_05;
+    u8 trainerGender;
+    u8 mailType;
     u16 item;
     Strbuf *unk_08;
 } UnkStruct_02072EB8;
@@ -105,7 +104,7 @@ typedef struct {
     Window unk_194;
     UnkStruct_0206A844 *unk_1A4;
     UnkStruct_02097728 *unk_1A8;
-    MailBox *unk_1AC;
+    Mailbox *mailbox;
     Bag *bag;
     PartyManagementData *unk_1B4;
 } UnkStruct_02072334;
@@ -142,7 +141,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID);
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID);
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1);
 static BOOL sub_02073060(UnkStruct_02072334 *param0);
 static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2);
@@ -193,7 +192,7 @@ static const UnkStruct_020F0524 Unk_020F0524[] = {
 void sub_020722AC(void *param0, int *param1)
 {
     UnkStruct_02072334 *v0 = NULL;
-    SaveData *v1;
+    SaveData *saveData;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_43, 0x5000);
 
@@ -201,17 +200,17 @@ void sub_020722AC(void *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 
-    v1 = FieldSystem_GetSaveData(param0);
+    saveData = FieldSystem_GetSaveData(param0);
 
     v0->fieldSystem = (FieldSystem *)param0;
     v0->heapID = HEAP_ID_43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(v1));
-    v0->unk_14 = Options_Frame(SaveData_GetOptions(v1));
+    v0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
+    v0->unk_14 = Options_Frame(SaveData_GetOptions(saveData));
 
     sub_02072ED0(v0->unk_1C, 20, v0->heapID);
-    sub_02072F30(v0, v1, v0->heapID);
+    sub_02072F30(v0, saveData, v0->heapID);
     sub_02073130(v0);
 
     v0->unk_08 = SysTask_Start(sub_02072370, v0, 0);
@@ -223,7 +222,7 @@ void sub_02072334(UnkStruct_02072334 *param0)
     *(param0->unk_04) = 1;
     sub_020731A4(param0);
     sub_02072F04(param0->unk_1C, 20);
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
     Heap_Destroy(param0->heapID);
 }
 
@@ -501,7 +500,7 @@ static void sub_020726B4(SysTask *param0, void *param1)
 static void sub_02072754(SysTask *param0, void *param1)
 {
     u8 v0;
-    PartyManagementData *v1;
+    PartyManagementData *partyMan;
     UnkStruct_02072334 *v2 = (UnkStruct_02072334 *)param1;
 
     switch (v2->unk_10) {
@@ -528,7 +527,7 @@ static void sub_02072754(SysTask *param0, void *param1)
         }
 
         v0 = v2->unk_1B4->selectedMonSlot;
-        Heap_FreeToHeap(v2->unk_1B4);
+        Heap_Free(v2->unk_1B4);
 
         if (v0 == 7) {
             sub_02072EA4(v2, v2->unk_0C, NULL);
@@ -581,7 +580,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 {
     int v0;
     u8 v1, v2;
-    PartyManagementData *v3;
+    PartyManagementData *partyMan;
     UnkStruct_02072334 *v4 = (UnkStruct_02072334 *)param1;
 
     switch (v4->unk_10) {
@@ -605,9 +604,9 @@ static void sub_02072878(SysTask *param0, void *param1)
         }
 
         v1 = v4->unk_1B4->selectedMonSlot;
-        v2 = v4->unk_1B4->unk_23;
+        v2 = v4->unk_1B4->menuSelectionResult;
 
-        Heap_FreeToHeap(v4->unk_1B4);
+        Heap_Free(v4->unk_1B4);
 
         if ((v2 != 6) || (v1 == 7)) {
             v4->unk_0C = sub_020726B4;
@@ -637,7 +636,7 @@ static void sub_02072878(SysTask *param0, void *param1)
             return;
         }
 
-        Heap_FreeToHeap(v4->unk_1B4);
+        Heap_Free(v4->unk_1B4);
         sub_020730B8(v4, v4->unk_17, v4->unk_13B_6);
         v4->unk_13B_6 = 0;
         break;
@@ -735,7 +734,7 @@ static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2)
     if (param1 == 0xFFFF) {
         ListMenu_SetAltTextColors(param0, 1, 15, 2);
     } else {
-        if (v0->unk_1C[param1].unk_04) {
+        if (v0->unk_1C[param1].trainerGender != GENDER_MALE) {
             ListMenu_SetAltTextColors(param0, 3, 15, 4);
         } else {
             ListMenu_SetAltTextColors(param0, 7, 15, 8);
@@ -895,41 +894,41 @@ static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
     }
 }
 
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapID)
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID)
 {
-    u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
+    u8 i = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
-    MailBox *v5;
-    Mail *v6;
+    Mailbox *mailbox;
+    Mail *mail;
     UnkStruct_02072EB8 *v7, *v8;
 
-    v5 = SaveData_GetMailBox(param1);
+    mailbox = SaveData_GetMailbox(saveData);
 
-    param0->unk_1AC = v5;
-    param0->bag = SaveData_GetBag(param1);
+    param0->mailbox = mailbox;
+    param0->bag = SaveData_GetBag(saveData);
 
-    v6 = sub_0202818C(heapID);
+    mail = Mail_New(heapID);
 
-    for (v0 = 0; v0 < 20; v0++) {
-        sub_020284CC(v5, 0, v0, v6);
+    for (i = 0; i < MAILBOX_SIZE; i++) {
+        sub_020284CC(mailbox, 0, i, mail);
 
-        v7 = &(param0->unk_1C[v0]);
+        v7 = &(param0->unk_1C[i]);
         v8 = &(param0->unk_1C[param0->unk_19]);
 
-        sub_02072EB8(v7, v0);
+        sub_02072EB8(v7, i);
 
-        v7->unk_00 = v0;
+        v7->unk_00 = i;
 
-        if (!sub_0202817C(v6)) {
+        if (!Mail_IsEmpty(mail)) {
             continue;
         }
 
         v7->unk_01 = 1;
-        v7->unk_04 = sub_02028310(v6);
-        v7->unk_05 = sub_02028314(v6);
-        v7->item = Item_ForMailNumber(v7->unk_05);
+        v7->trainerGender = Mail_GetTrainerGender(mail);
+        v7->mailType = Mail_GetMailType(mail);
+        v7->item = Item_ForMailNumber(v7->mailType);
 
-        Strbuf_CopyChars(v7->unk_08, sub_0202830C(v6));
+        Strbuf_CopyChars(v7->unk_08, Mail_GetTrainerName(mail));
 
         v7->unk_02 = param0->unk_19;
         v8->unk_03 = v7->unk_00;
@@ -938,14 +937,14 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int heapI
         param0->unk_1B++;
 
         if (param0->unk_1A == 0xFF) {
-            param0->unk_1A = v0;
+            param0->unk_1A = i;
         }
     }
 
     param0->unk_1C[param0->unk_19].unk_03 = param0->unk_1A;
     param0->unk_1C[param0->unk_1A].unk_02 = param0->unk_19;
 
-    Heap_FreeToHeap(v6);
+    Heap_Free(mail);
 }
 
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1)
@@ -970,7 +969,7 @@ static BOOL sub_02073060(UnkStruct_02072334 *param0)
         Bag_TryAddItem(param0->bag, v0->item, 1, param0->heapID);
     }
 
-    sub_02028470(param0->unk_1AC, 0, param0->unk_18);
+    sub_02028470(param0->mailbox, 0, param0->unk_18);
     sub_02073020(param0, param0->unk_18);
     sub_02072EB8(v0, param0->unk_18);
 
@@ -992,7 +991,7 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
     v1 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
-    sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->heapID);
+    sub_020977E4(param0->mailbox, param0->unk_18, v2, param0->heapID);
 
     if (param2) {
         if (Bag_CanFitItem(param0->bag, v0->item, 1, param0->heapID)) {
@@ -1010,7 +1009,7 @@ static void sub_02073130(UnkStruct_02072334 *param0)
     int v1;
     Strbuf *v2;
 
-    param0->unk_10C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0408, param0->heapID);
+    param0->unk_10C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAILBOX, param0->heapID);
     param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->heapID);
     param0->unk_110.unk_04 = Strbuf_Init(128, param0->heapID);
     param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);
@@ -1040,8 +1039,8 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
 {
     param0->unk_170 = FieldSystem_GetBgConfig(param0->fieldSystem);
 
-    LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_170, BG_LAYER_MAIN_3, (1024 - (18 + 12)), 10, param0->unk_14, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_170, BG_LAYER_MAIN_3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
 
     Font_LoadTextPalette(0, 13 * 32, param0->heapID);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
@@ -1136,11 +1135,11 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
 {
     switch (param0->unk_12) {
     case 0:
-        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, param1, param1, 0x0, 6, 1, param0->heapID);
         param0->unk_12++;
         break;
     case 1:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             break;
         }
 
@@ -1195,27 +1194,27 @@ static int sub_020734F4(UnkStruct_02072334 *param0, u8 param1)
 
 static int sub_02073524(UnkStruct_02072334 *param0, int param1)
 {
-    PartyManagementData *v0;
+    PartyManagementData *partyMan;
 
     switch (param0->unk_12) {
     case 0:
-        v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
-        MI_CpuClear8(v0, sizeof(PartyManagementData));
+        partyMan = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
+        MI_CpuClear8(partyMan, sizeof(PartyManagementData));
 
-        v0->unk_00 = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_04 = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_0C = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
-        v0->unk_08 = SaveData_GetMailBox(param0->fieldSystem->saveData);
-        v0->unk_21 = 0;
-        v0->unk_20 = param1;
-        v0->unk_24 = param0->unk_1C[param0->unk_18].item;
+        partyMan->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMan->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);
+        partyMan->unk_21 = 0;
+        partyMan->unk_20 = param1;
+        partyMan->usedItemID = param0->unk_1C[param0->unk_18].item;
 
         if (param1 == 11) {
-            v0->selectedMonSlot = param0->unk_17;
+            partyMan->selectedMonSlot = param0->unk_17;
         }
 
-        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, v0);
-        param0->unk_1B4 = v0;
+        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, partyMan);
+        param0->unk_1B4 = partyMan;
         param0->unk_12++;
         break;
     case 1:
@@ -1239,7 +1238,7 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
         if (param0->unk_1C[param0->unk_18].unk_01) {
             param0->unk_1A8 = sub_0203D94C(param0->fieldSystem, 0, param0->unk_18, param0->heapID);
         } else {
-            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].unk_05, param0->heapID);
+            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].mailType, param0->heapID);
         }
 
         param0->unk_12++;
@@ -1281,7 +1280,7 @@ static BOOL sub_02073694(FieldTask *param0)
             return 0;
         }
 
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 
@@ -1291,7 +1290,7 @@ static BOOL sub_02073694(FieldTask *param0)
 void sub_020736D8(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_020736D8));
+    UnkStruct_020736D8 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020736D8));
 
     v1->unk_00 = 0;
     v1->unk_04 = 0;

@@ -19,7 +19,7 @@
 #include "berry_data.h"
 #include "heap.h"
 #include "int_distance.h"
-#include "math.h"
+#include "math_util.h"
 #include "poffin.h"
 #include "system.h"
 
@@ -702,7 +702,7 @@ void ov83_0223FFD4(UnkStruct_ov83_0223FDB0 *param0, Poffin *param1, const UnkStr
 
         v5 += BerryData_GetAttribute(v0, 10);
 
-        Heap_FreeToHeap(v0);
+        Heap_Free(v0);
     }
 
     if ((v9 >= 2) && (param3 > 1)) {
@@ -772,7 +772,7 @@ void ov83_0223FFD4(UnkStruct_ov83_0223FDB0 *param0, Poffin *param1, const UnkStr
         v16[v1] = v6[v1];
     }
 
-    param0->unk_04 = sub_0202A9E4(param1, v16, v7, v10);
+    param0->unk_04 = Poffin_MakePoffin(param1, v16, v7, v10);
     param0->unk_08 = Poffin_CalcLevel(param1);
 }
 

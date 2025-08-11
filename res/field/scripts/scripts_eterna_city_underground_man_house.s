@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0634
@@ -306,7 +305,7 @@ _0443:
     Return
 
 _0448:
-    ScrCmd_24A VAR_RESULT
+    GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 3, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _04A4
@@ -326,7 +325,7 @@ _04A4:
     Return
 
 _04A9:
-    ScrCmd_24A VAR_RESULT
+    GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 10, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0505
@@ -346,7 +345,7 @@ _0505:
     Return
 
 _050A:
-    ScrCmd_24A VAR_RESULT
+    GetCapturedFlagCount VAR_RESULT
     GoToIfLt VAR_RESULT, 50, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0566
@@ -406,34 +405,34 @@ _05D6:
 
     .balign 4, 0
 _05E4:
-    MoveAction_008
-    MoveAction_009 2
-    MoveAction_008
-    MoveAction_038
+    WalkSlowNorth
+    WalkSlowSouth 2
+    WalkSlowNorth
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _05F8:
-    MoveAction_008
-    MoveAction_009 2
-    MoveAction_008
-    MoveAction_039
+    WalkSlowNorth
+    WalkSlowSouth 2
+    WalkSlowNorth
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _060C:
-    MoveAction_010
-    MoveAction_011 2
-    MoveAction_010
-    MoveAction_036
+    WalkSlowWest
+    WalkSlowEast 2
+    WalkSlowWest
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _0620:
-    MoveAction_010
-    MoveAction_011 2
-    MoveAction_010
-    MoveAction_037
+    WalkSlowWest
+    WalkSlowEast 2
+    WalkSlowWest
+    WalkOnSpotFastSouth
     EndMovement
 
 _0634:
@@ -540,5 +539,4 @@ _0747:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

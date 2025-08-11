@@ -57,14 +57,14 @@ void ov94_02243EF8(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     Sprite_SetAnimateFlag(param0->unk_F34[0], 1);
     Sprite_SetAnim(param0->unk_F34[0], 3 + param1 * 7);
-    Sprite_SetDrawFlag(param0->unk_F34[0], 1);
+    Sprite_SetDrawFlag(param0->unk_F34[0], TRUE);
 
     for (v1 = 0; v1 < 7; v1++) {
         param0->unk_F34[v1 + 1] = SpriteList_AddAffine(&v0);
 
         Sprite_SetAnimateFlag(param0->unk_F34[v1 + 1], 1);
         Sprite_SetAnim(param0->unk_F34[v1 + 1], 14 + v1 * 4);
-        Sprite_SetDrawFlag(param0->unk_F34[v1 + 1], 0);
+        Sprite_SetDrawFlag(param0->unk_F34[v1 + 1], FALSE);
 
         ov94_022441A0(param0->unk_F34[v1 + 1], Unk_ov94_02246322[v1][0], Unk_ov94_02246322[v1][1]);
     }
@@ -254,9 +254,9 @@ void ov94_02244234(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
                 Sprite_SetAnim(param0->unk_F34[v0 + 1], 17 + v0 * 4);
             }
 
-            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], 1);
+            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], TRUE);
         } else {
-            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], 0);
+            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], FALSE);
         }
     }
 }
@@ -281,8 +281,8 @@ void ov94_022442E4(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0224432C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10FC = Graphics_GetPlttData(86, 7, &(param0->unk_1100), HEAP_ID_62);
-    param0->unk_10F4 = Graphics_GetCharData(86, 9, 1, &(param0->unk_10F8), HEAP_ID_62);
+    param0->unk_10FC = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__RECORD, 7, &(param0->unk_1100), HEAP_ID_62);
+    param0->unk_10F4 = Graphics_GetCharData(NARC_INDEX_GRAPHIC__RECORD, 9, 1, &(param0->unk_10F8), HEAP_ID_62);
 
     DC_FlushRange(param0->unk_10F8, (256 * 256 / 2));
 }
@@ -313,7 +313,7 @@ static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1
 void ov94_022443B8(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_10F0) {
-        Heap_FreeToHeap(param0->unk_10FC);
-        Heap_FreeToHeap(param0->unk_10F4);
+        Heap_Free(param0->unk_10FC);
+        Heap_Free(param0->unk_10F4);
     }
 }

@@ -3,7 +3,6 @@
 
 #define LOCALID_UXIE 0
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry AcuityCavern_CheckShouldUxieBeRemoved
@@ -54,4 +53,4 @@ AcuityCavern_LostBattle:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

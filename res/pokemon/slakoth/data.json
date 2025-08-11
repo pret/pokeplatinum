@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -94,6 +95,17 @@
             "MOVE_SNORE",
             "MOVE_GUNK_SHOT",
             "MOVE_SUCKER_PUNCH"
+        ],
+        "egg_moves": [
+            "MOVE_PURSUIT",
+            "MOVE_SLASH",
+            "MOVE_BODY_SLAM",
+            "MOVE_SNORE",
+            "MOVE_CRUSH_CLAW",
+            "MOVE_CURSE",
+            "MOVE_SLEEP_TALK",
+            "MOVE_HAMMER_ARM",
+            "MOVE_NIGHT_SLASH"
         ]
     },
     "evolutions": [
@@ -103,9 +115,11 @@
             "SPECIES_VIGOROTH"
         ]
     ],
+    "offspring": "SPECIES_SLAKOTH",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 8,

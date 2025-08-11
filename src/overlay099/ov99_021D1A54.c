@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay099/ov99_021D2C08.h"
@@ -27,12 +27,12 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 
 typedef void (*UnkFuncPtr_ov99_021D4A04)(UnkStruct_ov99_021D2CB0 *);
 typedef BOOL (*UnkFuncPtr_ov99_021D4A04_1)(UnkStruct_ov99_021D2CB0 *, UnkStruct_ov99_021D3A40 *);
@@ -392,7 +392,7 @@ static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite **param
         v3 = Graphics_GetCharDataFromOpenNARC(param0->unk_10F8, v5, 0, &v4, HEAP_ID_75);
 
         MI_CpuCopy32(v4->pRawData, param0->unk_10F4, (0x20 * 8));
-        Heap_FreeToHeap(v3);
+        Heap_Free(v3);
         DC_FlushRange(param0->unk_10F4, (0x20 * 8));
     }
 }
@@ -403,7 +403,7 @@ static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1
     Sprite_DeleteAndFreeResources(param2);
 
     if (param0->unk_10F4 != NULL) {
-        Heap_FreeToHeap(param0->unk_10F4);
+        Heap_Free(param0->unk_10F4);
         param0->unk_10F4 = NULL;
     }
 }
@@ -455,13 +455,13 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
-    Bg_SetOffset(v0, 2, 0, 0);
-    Bg_SetOffset(v0, 2, 3, 0);
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
 
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(7, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -471,8 +471,8 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D1E6C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -557,14 +557,14 @@ static void ov99_021D1FD8(UnkStruct_ov99_021D2CB0 *param0)
         Easy3DObject_Init(&param0->unk_6C[0][v0], &param0->unk_2C[0]);
         Easy3DObject_SetPosition(&param0->unk_6C[0][v0], 0, 0, 0);
         Easy3DObject_SetScale(&param0->unk_6C[0][v0], FX32_ONE, FX32_ONE, FX32_ONE);
-        Easy3DObject_SetVisibility(&param0->unk_6C[0][v0], 1);
+        Easy3DObject_SetVisible(&param0->unk_6C[0][v0], 1);
     }
 
     for (v0 = 0; v0 < 16; v0++) {
         Easy3DObject_Init(&param0->unk_6C[1][v0], &param0->unk_2C[1]);
         Easy3DObject_SetPosition(&param0->unk_6C[1][v0], 0, 0, 0);
         Easy3DObject_SetScale(&param0->unk_6C[1][v0], FX32_ONE, FX32_ONE, FX32_ONE);
-        Easy3DObject_SetVisibility(&param0->unk_6C[1][v0], 1);
+        Easy3DObject_SetVisible(&param0->unk_6C[1][v0], 1);
     }
 
     param0->unk_1104 = 2;
@@ -593,13 +593,13 @@ static void ov99_021D211C(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D439C(param0, param0->unk_1105, 3, 0);
     param0->unk_1105++;
 
-    Bg_ToggleLayer(3, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D214C(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
 }
 
 static void ov99_021D2158(UnkStruct_ov99_021D2CB0 *param0)
@@ -670,16 +670,16 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 16, &v1, HEAP_ID_75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val2.unk_08, 0x20 * 4);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
     }
 
-    Bg_SetOffset(v0, 2, 0, 0);
-    Bg_SetOffset(v0, 2, 3, 0);
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
 
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(7, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -689,8 +689,8 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D22AC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -766,11 +766,11 @@ static void ov99_021D2410(UnkStruct_ov99_021D2CB0 *param0)
         Easy3DObject_Init(&param0->unk_6C[0][v0], &param0->unk_2C[0]);
         Easy3DObject_SetPosition(&param0->unk_6C[0][v0], 0, 0, 0);
         Easy3DObject_SetScale(&param0->unk_6C[0][v0], FX32_ONE, FX32_ONE, FX32_ONE);
-        Easy3DObject_SetVisibility(&param0->unk_6C[0][v0], 1);
+        Easy3DObject_SetVisible(&param0->unk_6C[0][v0], 1);
     }
 
     for (v0 = 0; v0 < 16; v0++) {
-        Easy3DObject_SetVisibility(&param0->unk_6C[1][v0], 0);
+        Easy3DObject_SetVisible(&param0->unk_6C[1][v0], 0);
     }
 
     param0->unk_1104 = 1;
@@ -810,19 +810,19 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 17, &v1, HEAP_ID_75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, 0x20 * 8);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
         PaletteData_LoadBuffer(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
     }
 
-    Bg_SetOffset(v0, 2, 0, 0);
-    Bg_SetOffset(v0, 2, 3, 0);
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_MAIN_2, 3, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
 
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(7, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
@@ -832,8 +832,8 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
 
 static void ov99_021D2640(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
@@ -951,7 +951,7 @@ static void ov99_021D28AC(UnkStruct_ov99_021D2CB0 *param0)
 
         Easy3DObject_SetPosition(&param0->unk_6C[0][v0], 0, 0, 0);
         Easy3DObject_SetScale(&param0->unk_6C[0][v0], FX32_ONE, FX32_ONE, FX32_ONE);
-        Easy3DObject_SetVisibility(&param0->unk_6C[0][v0], 1);
+        Easy3DObject_SetVisible(&param0->unk_6C[0][v0], 1);
     }
 
     for (v0 = 0; v0 < 16; v0++) {
@@ -959,7 +959,7 @@ static void ov99_021D28AC(UnkStruct_ov99_021D2CB0 *param0)
 
         Easy3DObject_SetPosition(&param0->unk_6C[1][v0], 0, 0, 0);
         Easy3DObject_SetScale(&param0->unk_6C[1][v0], FX32_ONE, FX32_ONE, FX32_ONE);
-        Easy3DObject_SetVisibility(&param0->unk_6C[1][v0], 1);
+        Easy3DObject_SetVisible(&param0->unk_6C[1][v0], 1);
     }
 
     param0->unk_1104 = 2;
@@ -991,14 +991,14 @@ static void ov99_021D2A38(UnkStruct_ov99_021D2CB0 *param0)
     ov99_021D439C(param0, param0->unk_1105, 2, 1);
     param0->unk_1105++;
 
-    Bg_ToggleLayer(2, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
     Bg_ScheduleTilemapTransfer(param0->unk_08, 2);
 }
 
 static void ov99_021D2A70(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
 }
 
 static void ov99_021D2A84(UnkStruct_ov99_021D2CB0 *param0)
@@ -1078,26 +1078,26 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         Strbuf_Free(v1);
     }
 
-    Bg_SetOffset(v0, 7, 0, 0);
-    Bg_SetOffset(v0, 7, 3, 0);
-    Bg_ToggleLayer(7, 1);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 0, 0);
+    Bg_SetOffset(v0, BG_LAYER_SUB_3, 3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_0200F44C(0, -16);
-    sub_0200F44C(1, -16);
+    SetScreenMasterBrightness(DS_SCREEN_MAIN, BRIGHTNESS_BLACK);
+    SetScreenMasterBrightness(DS_SCREEN_SUB, BRIGHTNESS_BLACK);
     BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
     Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 
 static void ov99_021D2BBC(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Bg_ToggleLayer(7, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
 
     if (param0->unk_24 != NULL) {
         Window_Remove(param0->unk_24);
-        Heap_FreeToHeap(param0->unk_24);
+        Heap_Free(param0->unk_24);
         param0->unk_24 = NULL;
     }
 }

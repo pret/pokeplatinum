@@ -54,7 +54,7 @@ void SystemVars_SetFriendshipStepCount(VarsFlags *varsFlags, u16 value);
 void SystemVars_SetEternaGymFlowerClockState(VarsFlags *varsFlags, u16 state);
 u16 SystemVars_GetEternaGymFlowerClockState(VarsFlags *varsFlags);
 void SystemVars_SetTotalTurnsForLastBattle(VarsFlags *varsFlags, u16 turns);
-void SystemVars_UpdateVillaVisitor(SaveData *varsFlags);
+void SystemVars_UpdateVillaVisitor(SaveData *saveData);
 u16 SystemVars_GetBattleFactoryPrintState(VarsFlags *varsFlags);
 u16 SystemVars_GetBattleHallPrintState(VarsFlags *varsFlags);
 u16 SystemVars_GetBattleCastlePrintState(VarsFlags *varsFlags);

@@ -245,11 +245,8 @@ static void ov5_021F1600(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static void ov5_021F1604(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F15B4 *v0;
-    MapObject *v1;
-
-    v0 = param1;
-    v1 = v0->unk_14.unk_08;
+    UnkStruct_ov5_021F15B4 *v0 = param1;
+    MapObject *v1 = v0->unk_14.unk_08;
 
     if (sub_020627B4(v1, v0->unk_00, v0->unk_04, v0->unk_08) == 0) {
         ov5_021DF74C(param0);
@@ -325,11 +322,8 @@ UnkStruct_ov101_021D5D90 *ov5_021F16D4(MapObject *param0, int param1)
 
 static void ov5_021F1718(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F15B4 *v0;
-    MapObject *v1;
-
-    v0 = param1;
-    v1 = v0->unk_14.unk_08;
+    UnkStruct_ov5_021F15B4 *v0 = param1;
+    MapObject *v1 = v0->unk_14.unk_08;
 
     if (sub_020627B4(v1, v0->unk_00, v0->unk_04, v0->unk_08) == 0) {
         ov5_021DF74C(param0);
@@ -393,7 +387,7 @@ static const fx32 Unk_ov5_02200284[] = {
     FX32_ONE * 18,
     FX32_ONE * 18,
     FX32_ONE * 8,
-    FX32_ONE * 4
+    FX32_ONE * 4,
 };
 
 static const int Unk_ov5_02200278[3] = {
