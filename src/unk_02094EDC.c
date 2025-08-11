@@ -8,7 +8,7 @@
 #include "struct_defs/struct_02095C48.h"
 #include "struct_defs/struct_020F568C.h"
 
-#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/pokemon_sprite_data.h"
 #include "overlay006/struct_ov6_02248BE8.h"
 
 #include "graphics.h"
@@ -659,7 +659,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     }
 }
 
-PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, int heapID, int param6, int param7, int param8)
 {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;
@@ -669,11 +669,11 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
 
     v2 = Pokemon_SpriteYOffset(param2, param3);
 
-    if (param4 != NULL) {
-        GF_ASSERT(param4->unk_00 != NULL);
-        sub_02013610(v0.narcID, v0.character, heapID, param4->unk_00);
-        param4->unk_08 = v0.palette;
-        param4->unk_04 = v0.narcID;
+    if (pokemonSpriteData != NULL) {
+        GF_ASSERT(pokemonSpriteData->unk_00 != NULL);
+        sub_02013610(v0.narcID, v0.character, heapID, pokemonSpriteData->unk_00);
+        pokemonSpriteData->palette = v0.palette;
+        pokemonSpriteData->narcID = v0.narcID;
     }
 
     v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);

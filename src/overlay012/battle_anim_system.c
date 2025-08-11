@@ -12,9 +12,9 @@
 #include "struct_defs/chatot_cry.h"
 
 #include "battle/ov16_0223DF00.h"
-#include "battle/struct_ov16_0223E0C8.h"
-#include "battle/struct_ov16_02264408.h"
-#include "battle/struct_ov16_02264408_sub1.h"
+#include "battle/pokemon_sprite_data.h"
+#include "battle/battle_anim_battler_context.h"
+#include "battle/battle_background_reference.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "global/utility.h"
 #include "overlay012/is_form_symmetrical.h"
@@ -408,7 +408,7 @@ BOOL BattleAnimSystem_Delete(BattleAnimSystem *system)
     return TRUE;
 }
 
-BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 move, UnkStruct_ov16_02264408 *param3)
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 move, BattleAnimBattlerContext *battlerContext)
 {
     int i;
 
@@ -446,30 +446,30 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
     system->context->attacker = param1->unk_14;
     system->context->defender = param1->unk_16;
     system->context->transformed = param1->unk_0E_1;
-    system->context->spriteSystem = param3->unk_00;
+    system->context->spriteSystem = battlerContext->spriteSystem;
 
-    GF_ASSERT(param3->unk_00 != NULL);
+    GF_ASSERT(battlerContext->spriteSystem != NULL);
 
-    system->bgConfig = param3->unk_04;
-    system->paletteData = param3->unk_08;
-    system->context->battleType = param3->battleType;
+    system->bgConfig = battlerContext->bgConfig;
+    system->paletteData = battlerContext->paletteData;
+    system->context->battleType = battlerContext->battleType;
 
     for (i = 0; i < MAX_BATTLERS; i++) {
-        system->context->pokemonSpriteData[i] = param3->unk_0C[i];
-        system->context->battlerTypes[i] = param3->unk_1C[i];
-        system->context->battlerSprites[i] = param3->unk_20[i];
-        system->context->battlerSpecies[i] = param3->unk_34[i];
-        system->context->battlerGenders[i] = param3->unk_3C[i];
-        system->context->battlerShinyFlags[i] = param3->unk_40[i];
-        system->context->battlerForms[i] = param3->unk_44[i];
-        system->context->battlerPersonalities[i] = param3->unk_48[i];
-        system->context->battlerMoveEffects[i] = param3->unk_4C[i];
+        system->context->pokemonSpriteData[i] = battlerContext->pokemonSpriteData[i];
+        system->context->battlerTypes[i] = battlerContext->battlerTypes[i];
+        system->context->battlerSprites[i] = battlerContext->pokemonSprites[i];
+        system->context->battlerSpecies[i] = battlerContext->battlerSpecies[i];
+        system->context->battlerGenders[i] = battlerContext->battlerGenders[i];
+        system->context->battlerShinyFlags[i] = battlerContext->battlerShinyFlags[i];
+        system->context->battlerForms[i] = battlerContext->battlerForms[i];
+        system->context->battlerPersonalities[i] = battlerContext->battlerPersonalities[i];
+        system->context->battlerMoveEffects[i] = battlerContext->battlerMoveEffects[i];
     }
 
-    system->unk_180 = param3->unk_54;
-    system->context->chatotCry = param3->unk_6C;
-    system->context->bgPaletteBuffer = param3->unk_74;
-    system->context->bgTiles = param3->unk_70;
+    system->battleBgRefs = battlerContext->battleBgRefs;
+    system->context->chatotCry = battlerContext->chatotCry;
+    system->context->bgPaletteBuffer = battlerContext->bgPaletteBuffer;
+    system->context->bgTiles = battlerContext->bgTiles;
 
     int moveID = move;
     if (moveID == MOVE_SECRET_POWER) {
@@ -496,11 +496,11 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
         }
     }
 
-    if (moveID == MOVE_NONE || moveID > MOVE_SHADOW_FORCE) {
+    if (moveID == MOVE_NONE || moveID >= MAX_MOVES) {
         moveID = MOVE_POUND;
     }
 
-    system->moveArcID = param3->unk_50;
+    system->moveArcID = battlerContext->moveArcID;
     system->scriptData = NARC_AllocAndReadWholeMemberByIndexPair(system->moveArcID, moveID, system->heapID);
 
     if (system->scriptData == NULL) {
@@ -990,7 +990,7 @@ void ov12_02220590(BattleAnimSystem *param0, UnkStruct_ov12_022380DC *param1, in
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param1->unk_08[v0] = param0->context->pokemonSpriteData[v0];
+        param1->pokemonSpriteData[v0] = param0->context->pokemonSpriteData[v0];
         param1->unk_18[v0] = param0->context->battlerSprites[v0];
         param1->unk_28[v0] = param0->context->battlerSpecies[v0];
         param1->unk_30[v0] = param0->context->battlerGenders[v0];
@@ -1797,8 +1797,8 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     BattleAnimScript_Next(system);
 
     int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
-    enum NarcID narcID = system->context->pokemonSpriteData[battler]->unk_04;
-    int paletteIndex = system->context->pokemonSpriteData[battler]->unk_08;
+    enum NarcID narcID = system->context->pokemonSpriteData[battler]->narcID;
+    int paletteIndex = system->context->pokemonSpriteData[battler]->palette;
     charData = system->context->pokemonSpriteData[battler]->unk_00;
     int form = system->context->battlerForms[battler];
 
@@ -1964,8 +1964,8 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
     resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] = 0;
 
     int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
-    enum NarcID narcID = system->context->pokemonSpriteData[battler]->unk_04;
-    int paletteIndex = system->context->pokemonSpriteData[battler]->unk_08;
+    enum NarcID narcID = system->context->pokemonSpriteData[battler]->narcID;
+    int paletteIndex = system->context->pokemonSpriteData[battler]->palette;
     charData = system->context->pokemonSpriteData[battler]->unk_00;
     int battlerForm = system->context->battlerForms[battler];
 
@@ -2556,11 +2556,11 @@ static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
             BattleAnimSystem_LoadBattleBgTiles(bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT);
             BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
-            Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_04, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_08, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->unk_180.unk_14 * 0x20, bgSwitch->battleAnimSystem->unk_180.unk_10);
+            Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilesNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize);
         }
 
-        Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_0C, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+        Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilemapNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
         bgSwitch->state++;
         break;
 
@@ -2679,11 +2679,11 @@ static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
             BattleAnimSystem_LoadBattleBgTiles(bgSwitch->battleAnimSystem, BATTLE_BG_EFFECT);
             BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
-            Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_04, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_08, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->unk_180.unk_14 * 0x20, bgSwitch->battleAnimSystem->unk_180.unk_10);
+            Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilesNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize);
         }
 
-        Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->unk_180.unk_00, bgSwitch->battleAnimSystem->unk_180.unk_0C, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
+        Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilemapNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
         Bg_ToggleLayer(BATTLE_BG_EFFECT, TRUE);
 
         bgSwitch->state++;
@@ -2902,12 +2902,12 @@ void BattleAnimSystem_LoadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer)
     Bg_ClearTilemap(system->bgConfig, bgLayer);
 
     if (BattleAnimSystem_IsContest(system) == TRUE) {
-        Graphics_LoadTilesToBgLayer(system->unk_180.unk_00, system->unk_180.unk_04, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
+        Graphics_LoadTilesToBgLayer(system->battleBgRefs.narcID, system->battleBgRefs.tilesNarcMemberIdx, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
     } else {
         BattleAnimSystem_LoadBattleBgTiles(system, bgLayer);
     }
 
-    Graphics_LoadTilemapToBgLayer(system->unk_180.unk_00, system->unk_180.unk_0C, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
+    Graphics_LoadTilemapToBgLayer(system->battleBgRefs.narcID, system->battleBgRefs.tilemapNarcMemberIdx, system->bgConfig, bgLayer, 0, 0, TRUE, system->heapID);
 }
 
 void BattleAnimSystem_UnloadBaseBg(BattleAnimSystem *system, enum BgLayer bgLayer)
@@ -3773,17 +3773,17 @@ PaletteData *BattleAnimSystem_GetPaletteData(BattleAnimSystem *system)
 
 int BattleAnimSystem_GetBattlerSpritePaletteIndex(BattleAnimSystem *system, int battler)
 {
-    return system->context->pokemonSpriteData[battler]->unk_08;
+    return system->context->pokemonSpriteData[battler]->palette;
 }
 
 int BattleAnimSystem_GetBattlerSpriteNarcID(BattleAnimSystem *system, int battler)
 {
-    return system->context->pokemonSpriteData[battler]->unk_04;
+    return system->context->pokemonSpriteData[battler]->narcID;
 }
 
 int BattleAnimSystem_GetBattlerSpriteHeight(BattleAnimSystem *system, int battler)
 {
-    return system->context->pokemonSpriteData[battler]->unk_0C;
+    return system->context->pokemonSpriteData[battler]->yOffset;
 }
 
 BOOL BattleAnimSystem_IsDoubleBattle(BattleAnimSystem *system)
@@ -3953,7 +3953,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
     {
         for (v0 = 0; v0 < 4; v0++) {
             v2->unk_24[v0] = NULL;
-            v2->unk_34[v0] = ov16_0223F2AC(battleSys, v0);
+            v2->pokemonSpriteRefs[v0] = ov16_0223F2AC(battleSys, v0);
         }
 
         ov16_0223F87C(battleSys, &(v2->unk_44[0]));
@@ -4013,9 +4013,9 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
             v9[4] = 0;
             v9[5] = 0;
 
-            v6 = v2->unk_34[v5]->unk_04;
-            v7 = v2->unk_34[v5]->unk_08;
-            v8 = v2->unk_34[v5]->unk_00;
+            v6 = v2->pokemonSpriteRefs[v5]->narcID;
+            v7 = v2->pokemonSpriteRefs[v5]->palette;
+            v8 = v2->pokemonSpriteRefs[v5]->unk_00;
 
             {
                 int v11;

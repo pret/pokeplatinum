@@ -14,7 +14,7 @@
 #include "battle/battle_context.h"
 #include "battle/battle_message.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
@@ -107,7 +107,7 @@ u16 *ov16_0223E098(BattleSystem *battleSys);
 u16 *ov16_0223E0A4(BattleSystem *battleSys);
 u16 *ov16_0223E0B0(BattleSystem *battleSys);
 u16 *ov16_0223E0BC(BattleSystem *battleSys);
-UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *battleSys);
+PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSys);
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSys);
 Strbuf *ov16_0223E0D4(BattleSystem *battleSys);
 
@@ -232,11 +232,11 @@ void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSys, int param1);
 WaitDial *Battle_GetWaitDial(BattleSystem *battleSys);
 void Battle_SetWaitDial(BattleSystem *battleSys, WaitDial *waitDial);
-UnkStruct_ov16_0223E0C8 *ov16_0223F2AC(BattleSystem *battleSys, int param1);
-u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1);
-void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
-void ov16_0223F2E4(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
-void ov16_0223F2FC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
+PokemonSpriteData *ov16_0223F2AC(BattleSystem *battleSys, int param1);
+u8 *ov16_0223F2B8(PokemonSpriteData *pokemonSpriteData, int param1);
+void PokemonSpriteData_setNarcID(PokemonSpriteData *pokemonSpriteData, int param1, int param2);
+void PokemonSpriteData_setPalette(PokemonSpriteData *pokemonSpriteData, int param1, int param2);
+void PokemonSpriteData_setYOffset(PokemonSpriteData *pokemonSpriteData, int param1, int param2);
 void ov16_0223F314(BattleSystem *battleSys, int param1);
 void ov16_0223F320(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F32C(BattleSystem *battleSys, u8 *param1);

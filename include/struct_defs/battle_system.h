@@ -14,7 +14,7 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
-#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
@@ -86,7 +86,7 @@ struct BattleSystem {
     UnkStruct_ov10_0221F800 *unk_1C0;
     PokemonAnimationSys *pokemonAnimationSys;
     NNSG2dCellTransferState *cellTransferState;
-    UnkStruct_ov16_0223E0C8 unk_1CC[4];
+    PokemonSpriteData pokemonSpriteRefs[4];
     BattleRecords unusedBattleRecords;
     GameRecords *records;
     u8 *unk_21C;

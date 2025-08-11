@@ -341,7 +341,7 @@ void ov17_0224A134(UnkStruct_ov17_0224DF54 *param0)
     int v2;
 
     for (v0 = 0; v0 < 4; v0++) {
-        GF_ASSERT(param0->unk_14.unk_98[v0].unk_00 == NULL);
+        GF_ASSERT(param0->unk_14.pokemonSpriteRefs[v0].unk_00 == NULL);
     }
 
     MI_CpuClear8(&v1, sizeof(UnkStruct_ov22_0225AF8C));
@@ -377,7 +377,7 @@ void ov17_0224A1EC(UnkStruct_ov17_0224A1EC *param0)
     for (v0 = 0; v0 < 4; v0++) {
         ov22_0225B020(param0->unk_04[v0].unk_00);
 
-        param0->unk_98[v0].unk_00 = NULL;
+        param0->pokemonSpriteRefs[v0].unk_00 = NULL;
     }
 }
 

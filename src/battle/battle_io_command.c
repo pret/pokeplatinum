@@ -740,11 +740,11 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
     PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
     sub_02013750(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
 
-    ov16_0223F2CC(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
-    ov16_0223F2E4(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
+    PokemonSpriteData_setNarcID(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
+    PokemonSpriteData_setPalette(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
 
     v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
-    ov16_0223F2FC(ov16_0223E0C8(battleSys), param1->battler, v3);
+    PokemonSpriteData_setYOffset(ov16_0223E0C8(battleSys), param1->battler, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;
     PokemonSprite_SetAttribute(param1->unk_20, MON_SPRITE_Y_CENTER, v3);

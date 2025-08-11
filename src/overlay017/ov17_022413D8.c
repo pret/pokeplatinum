@@ -470,10 +470,10 @@ void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
 {
     PokemonSprite_Delete(param0->unk_08[param1]);
 
-    GF_ASSERT(param0->unk_58[param1].unk_00 != NULL);
-    MI_CpuClear8(param0->unk_58[param1].unk_00, (32 * 10 * 10));
+    GF_ASSERT(param0->pokemonSpriteRefs[param1].unk_00 != NULL);
+    MI_CpuClear8(param0->pokemonSpriteRefs[param1].unk_00, (32 * 10 * 10));
 
-    param0->unk_08[param1] = sub_02095484(param0->unk_04, param1, param0->unk_00->unk_00[param1], 0, &param0->unk_58[param1], HEAP_ID_21, (256 - 40) - 32 * param1, (104 + 8) - 32 * param1, -0x200);
+    param0->unk_08[param1] = sub_02095484(param0->unk_04, param1, param0->unk_00->unk_00[param1], 0, &param0->pokemonSpriteRefs[param1], HEAP_ID_21, (256 - 40) - 32 * param1, (104 + 8) - 32 * param1, -0x200);
 
     PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE, 1);
     PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE_2, 1);
@@ -495,10 +495,10 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        GF_ASSERT(param0->unk_58[v0].unk_00 == NULL);
+        GF_ASSERT(param0->pokemonSpriteRefs[v0].unk_00 == NULL);
 
-        param0->unk_58[v0].unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
-        param0->unk_08[v0] = sub_02095484(param0->unk_04, v0, param0->unk_00->unk_00[v0], 0, &param0->unk_58[v0], HEAP_ID_21, (256 - 40) - 32 * v0, (104 + 8) - 32 * v0, -0x200);
+        param0->pokemonSpriteRefs[v0].unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
+        param0->unk_08[v0] = sub_02095484(param0->unk_04, v0, param0->unk_00->unk_00[v0], 0, &param0->pokemonSpriteRefs[v0], HEAP_ID_21, (256 - 40) - 32 * v0, (104 + 8) - 32 * v0, -0x200);
 
         PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE, 1);
         PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE_2, 1);
@@ -515,13 +515,13 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
         }
     }
 
-    GF_ASSERT(param0->unk_98.unk_00 == NULL);
+    GF_ASSERT(param0->pokemonSpriteData.unk_00 == NULL);
 
-    param0->unk_98.unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
-    param0->unk_98.unk_08 = param0->unk_58[0].unk_08;
-    param0->unk_98.unk_04 = param0->unk_58[0].unk_04;
+    param0->pokemonSpriteData.unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
+    param0->pokemonSpriteData.palette = param0->pokemonSpriteRefs[0].palette;
+    param0->pokemonSpriteData.narcID = param0->pokemonSpriteRefs[0].narcID;
 
-    MI_CpuClear32(param0->unk_98.unk_00, (32 * 10 * 10));
+    MI_CpuClear32(param0->pokemonSpriteData.unk_00, (32 * 10 * 10));
 }
 
 void ov17_022416E4(UnkStruct_ov17_0223F88C *param0)
@@ -530,12 +530,12 @@ void ov17_022416E4(UnkStruct_ov17_0223F88C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         PokemonSprite_Delete(param0->unk_08[v0]);
-        Heap_Free(param0->unk_58[v0].unk_00);
-        param0->unk_58[v0].unk_00 = NULL;
+        Heap_Free(param0->pokemonSpriteRefs[v0].unk_00);
+        param0->pokemonSpriteRefs[v0].unk_00 = NULL;
     }
 
-    Heap_Free(param0->unk_98.unk_00);
-    param0->unk_98.unk_00 = NULL;
+    Heap_Free(param0->pokemonSpriteData.unk_00);
+    param0->pokemonSpriteData.unk_00 = NULL;
 }
 
 static ManagedSprite *ov17_02241720(PaletteData *param0, SpriteSystem *param1, SpriteManager *param2, const UnkStruct_020954F0 *param3, int param4, NARC *param5)
