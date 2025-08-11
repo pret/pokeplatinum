@@ -2,7 +2,7 @@
 #define POKEPLATINUM_POKEMON_SPRITE_DATA_H
 
 typedef struct {
-    u8 *unk_00; // some heap address
+    u8 *unk_00;
     int narcID;
     int palette;
     int yOffset;
