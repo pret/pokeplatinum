@@ -678,7 +678,7 @@ _0910:
 
 _091D:
     PlaySound SEQ_FANFA4
-    ScrCmd_083 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GiveGoodPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     ScrCmd_33E 0, VAR_0x8004
     Message 108
     BufferUndergroundGoodsName 0, VAR_0x8004
@@ -692,7 +692,7 @@ _093A:
 
 _0944:
     PlaySound SEQ_FANFA4
-    ScrCmd_087 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GiveTrap VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundTrapName 0, VAR_0x8004
     Message 80
     WaitSound
@@ -705,7 +705,7 @@ _095C:
 
 _0966:
     PlaySound SEQ_FANFA4
-    ScrCmd_08F VAR_0x8004, VAR_0x8005, VAR_RESULT
+    GiveSphere VAR_0x8004, VAR_0x8005, VAR_RESULT
     BufferUndergroundItemName 0, VAR_0x8004
     BufferNumber 1, VAR_0x8005
     Message 81

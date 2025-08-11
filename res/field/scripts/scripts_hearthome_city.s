@@ -319,7 +319,7 @@ _03AC:
     Message 33
     SetVar VAR_0x8004, 46
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014A
@@ -334,7 +334,7 @@ _03F4:
     Message 34
     SetVar VAR_0x8004, 47
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014B
@@ -348,7 +348,7 @@ _0442:
     Message 35
     SetVar VAR_0x8004, 72
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014C
@@ -362,7 +362,7 @@ _048A:
     Message 36
     SetVar VAR_0x8004, 73
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014D
@@ -376,7 +376,7 @@ _04D2:
     Message 37
     SetVar VAR_0x8004, 74
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014E
@@ -390,7 +390,7 @@ _051A:
     Message 38
     SetVar VAR_0x8004, 75
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x014F
@@ -404,7 +404,7 @@ _0562:
     Message 39
     SetVar VAR_0x8004, 76
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0150
@@ -419,7 +419,7 @@ _05AA:
     Message 40
     SetVar VAR_0x8004, 77
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0151
@@ -434,7 +434,7 @@ _05F8:
     Message 41
     SetVar VAR_0x8004, 78
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0152
@@ -449,7 +449,7 @@ _0646:
     Message 42
     SetVar VAR_0x8004, 79
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0153
@@ -464,7 +464,7 @@ _0694:
     Message 43
     SetVar VAR_0x8004, 80
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckIsRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
     CallCommonScript 0x7DC
     SetFlag FLAG_UNK_0x0154

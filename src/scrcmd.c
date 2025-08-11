@@ -155,6 +155,7 @@
 #include "scrcmd_shop.h"
 #include "scrcmd_sound.h"
 #include "scrcmd_system_flags.h"
+#include "scrcmd_underground_inventory.h"
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
@@ -193,7 +194,6 @@
 #include "unk_0204B64C.h"
 #include "unk_0204CFFC.h"
 #include "unk_0204E240.h"
-#include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
@@ -901,22 +901,22 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetItemPocket,
     ScrCmd_Dummy081,
     ScrCmd_Dummy082,
-    ScrCmd_083,
-    ScrCmd_084,
-    ScrCmd_085,
-    ScrCmd_086,
-    ScrCmd_087,
-    ScrCmd_088,
-    ScrCmd_089,
-    ScrCmd_08A,
-    ScrCmd_08B,
-    ScrCmd_08C,
-    ScrCmd_08D,
-    ScrCmd_08E,
-    ScrCmd_08F,
-    ScrCmd_090,
-    ScrCmd_091,
-    ScrCmd_092,
+    ScrCmd_GiveGoodPC,
+    ScrCmd_Dummy084,
+    ScrCmd_CheckIsRoomForGoodsInPC,
+    ScrCmd_Dummy086,
+    ScrCmd_GiveTrap,
+    ScrCmd_Dummy088,
+    ScrCmd_Dummy089,
+    ScrCmd_Dummy08A,
+    ScrCmd_Dummy08B,
+    ScrCmd_Dummy08C,
+    ScrCmd_Dummy08D,
+    ScrCmd_Dummy08E,
+    ScrCmd_GiveSphere,
+    ScrCmd_Dummy090,
+    ScrCmd_Dummy091,
+    ScrCmd_Dummy092,
     ScrCmd_093,
     ScrCmd_094,
     ScrCmd_GetPartyMonForm,
