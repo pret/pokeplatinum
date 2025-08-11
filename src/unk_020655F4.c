@@ -2007,1068 +2007,1068 @@ static BOOL sub_02067394(MapObject *mapObj)
     return TRUE;
 }
 
-BOOL (*const gMovementActionFuncs_FaceNorth[])
+BOOL(*const gMovementActionFuncs_FaceNorth[])
 (MapObject *) = {
     MovementAction_FaceNorth_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_FaceSouth[])
+BOOL(*const gMovementActionFuncs_FaceSouth[])
 (MapObject *) = {
     MovementAction_FaceSouth_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_FaceWest[])
+BOOL(*const gMovementActionFuncs_FaceWest[])
 (MapObject *) = {
     MovementAction_FaceWest_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_FaceEast[])
+BOOL(*const gMovementActionFuncs_FaceEast[])
 (MapObject *) = {
     MovementAction_FaceEast_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowerNorth[])
+BOOL(*const gMovementActionFuncs_WalkSlowerNorth[])
 (MapObject *) = {
     MovementAction_WalkSlowerNorth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowerSouth[])
+BOOL(*const gMovementActionFuncs_WalkSlowerSouth[])
 (MapObject *) = {
     MovementAction_WalkSlowerSouth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowerWest[])
+BOOL(*const gMovementActionFuncs_WalkSlowerWest[])
 (MapObject *) = {
     MovementAction_WalkSlowerWest_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowerEast[])
+BOOL(*const gMovementActionFuncs_WalkSlowerEast[])
 (MapObject *) = {
     MovementAction_WalkSlowerEast_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowNorth[])
+BOOL(*const gMovementActionFuncs_WalkSlowNorth[])
 (MapObject *) = {
     MovementAction_WalkSlowNorth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowSouth[])
+BOOL(*const gMovementActionFuncs_WalkSlowSouth[])
 (MapObject *) = {
     MovementAction_WalkSlowSouth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowWest[])
+BOOL(*const gMovementActionFuncs_WalkSlowWest[])
 (MapObject *) = {
     MovementAction_WalkSlowWest_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlowEast[])
+BOOL(*const gMovementActionFuncs_WalkSlowEast[])
 (MapObject *) = {
     MovementAction_WalkSlowEast_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkNormalNorth[])
+BOOL(*const gMovementActionFuncs_WalkNormalNorth[])
 (MapObject *) = {
     MovementAction_WalkNormalNorth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkNormalSouth[])
+BOOL(*const gMovementActionFuncs_WalkNormalSouth[])
 (MapObject *) = {
     MovementAction_WalkNormalSouth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkNormalWest[])
+BOOL(*const gMovementActionFuncs_WalkNormalWest[])
 (MapObject *) = {
     MovementAction_WalkNormalWest_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkNormalEast[])
+BOOL(*const gMovementActionFuncs_WalkNormalEast[])
 (MapObject *) = {
     MovementAction_WalkNormalEast_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastNorth[])
+BOOL(*const gMovementActionFuncs_WalkFastNorth[])
 (MapObject *) = {
     MovementAction_WalkFastNorth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastSouth[])
+BOOL(*const gMovementActionFuncs_WalkFastSouth[])
 (MapObject *) = {
     MovementAction_WalkFastSouth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastWest[])
+BOOL(*const gMovementActionFuncs_WalkFastWest[])
 (MapObject *) = {
     MovementAction_WalkFastWest_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastEast[])
+BOOL(*const gMovementActionFuncs_WalkFastEast[])
 (MapObject *) = {
     MovementAction_WalkFastEast_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFasterNorth[])
+BOOL(*const gMovementActionFuncs_WalkFasterNorth[])
 (MapObject *) = {
     MovementAction_WalkFasterNorth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFasterSouth[])
+BOOL(*const gMovementActionFuncs_WalkFasterSouth[])
 (MapObject *) = {
     MovementAction_WalkFasterSouth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFasterWest[])
+BOOL(*const gMovementActionFuncs_WalkFasterWest[])
 (MapObject *) = {
     MovementAction_WalkFasterWest_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFasterEast[])
+BOOL(*const gMovementActionFuncs_WalkFasterEast[])
 (MapObject *) = {
     MovementAction_WalkFasterEast_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastestNorth[])
+BOOL(*const gMovementActionFuncs_WalkFastestNorth[])
 (MapObject *) = {
     MovementAction_WalkFastestNorth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastestSouth[])
+BOOL(*const gMovementActionFuncs_WalkFastestSouth[])
 (MapObject *) = {
     MovementAction_WalkFastestSouth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastestWest[])
+BOOL(*const gMovementActionFuncs_WalkFastestWest[])
 (MapObject *) = {
     MovementAction_WalkFastestWest_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkFastestEast[])
+BOOL(*const gMovementActionFuncs_WalkFastestEast[])
 (MapObject *) = {
     MovementAction_WalkFastestEast_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerNorth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowerNorth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowerNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerSouth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowerSouth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowerSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerWest[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowerWest[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowerWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowerEast[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowerEast[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowerEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowNorth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowNorth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowSouth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowSouth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowWest[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowWest[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotSlowEast[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotSlowEast[])
 (MapObject *) = {
     MovementAction_WalkOnSpotSlowEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotNormalNorth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotNormalNorth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotNormalNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotNormalSouth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotNormalSouth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotNormalSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotNormalWest[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotNormalWest[])
 (MapObject *) = {
     MovementAction_WalkOnSpotNormalWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotNormalEast[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotNormalEast[])
 (MapObject *) = {
     MovementAction_WalkOnSpotNormalEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFastNorth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFastNorth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFastNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFastSouth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFastSouth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFastSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFastWest[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFastWest[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFastWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFastEast[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFastEast[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFastEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFasterNorth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFasterNorth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFasterNorth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFasterSouth[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFasterSouth[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFasterSouth_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFasterWest[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFasterWest[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFasterWest_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkOnSpotFasterEast[])
+BOOL(*const gMovementActionFuncs_WalkOnSpotFasterEast[])
 (MapObject *) = {
     MovementAction_WalkOnSpotFasterEast_Step0,
     MovementAction_WalkOnSpot_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotSlowNorth[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotSlowNorth[])
 (MapObject *) = {
     MovementAction_JumpOnSpotSlowNorth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotSlowSouth[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotSlowSouth[])
 (MapObject *) = {
     MovementAction_JumpOnSpotSlowSouth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotSlowWest[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotSlowWest[])
 (MapObject *) = {
     MovementAction_JumpOnSpotSlowWest_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotSlowEast[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotSlowEast[])
 (MapObject *) = {
     MovementAction_JumpOnSpotSlowEast_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotFastNorth[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotFastNorth[])
 (MapObject *) = {
     MovementAction_JumpOnSpotFastNorth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotFastSouth[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotFastSouth[])
 (MapObject *) = {
     MovementAction_JumpOnSpotFastSouth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotFastWest[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotFastWest[])
 (MapObject *) = {
     MovementAction_JumpOnSpotFastWest_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpOnSpotFastEast[])
+BOOL(*const gMovementActionFuncs_JumpOnSpotFastEast[])
 (MapObject *) = {
     MovementAction_JumpOnSpotFastEast_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpNearFastNorth[])
+BOOL(*const gMovementActionFuncs_JumpNearFastNorth[])
 (MapObject *) = {
     MovementAction_JumpNearFastNorth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpNearFastSouth[])
+BOOL(*const gMovementActionFuncs_JumpNearFastSouth[])
 (MapObject *) = {
     MovementAction_JumpNearFastSouth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpNearFastWest[])
+BOOL(*const gMovementActionFuncs_JumpNearFastWest[])
 (MapObject *) = {
     MovementAction_JumpNearFastWest_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpNearFastEast[])
+BOOL(*const gMovementActionFuncs_JumpNearFastEast[])
 (MapObject *) = {
     MovementAction_JumpNearFastEast_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpFarNorth[])
+BOOL(*const gMovementActionFuncs_JumpFarNorth[])
 (MapObject *) = {
     MovementAction_JumpFarNorth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpFarSouth[])
+BOOL(*const gMovementActionFuncs_JumpFarSouth[])
 (MapObject *) = {
     MovementAction_JumpFarSouth_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpFarWest[])
+BOOL(*const gMovementActionFuncs_JumpFarWest[])
 (MapObject *) = {
     MovementAction_JumpFarWest_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpFarEast[])
+BOOL(*const gMovementActionFuncs_JumpFarEast[])
 (MapObject *) = {
     MovementAction_JumpFarEast_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpNearSlowWest[])
+BOOL(*const gMovementActionFuncs_JumpNearSlowWest[])
 (MapObject *) = {
     MovementAction_JumpNearSlowWest_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpNearSlowEast[])
+BOOL(*const gMovementActionFuncs_JumpNearSlowEast[])
 (MapObject *) = {
     MovementAction_JumpNearSlowEast_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpFartherWest[])
+BOOL(*const gMovementActionFuncs_JumpFartherWest[])
 (MapObject *) = {
     MovementAction_JumpFartherWest_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_JumpFartherEast[])
+BOOL(*const gMovementActionFuncs_JumpFartherEast[])
 (MapObject *) = {
     MovementAction_JumpFartherEast_Step0,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_Delay1[])
+BOOL(*const gMovementActionFuncs_Delay1[])
 (MapObject *) = {
     MovementAction_Delay1_Step0,
     MovementAction_Delay_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_Delay2[])
+BOOL(*const gMovementActionFuncs_Delay2[])
 (MapObject *) = {
     MovementAction_Delay2_Step0,
     MovementAction_Delay_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_Delay4[])
+BOOL(*const gMovementActionFuncs_Delay4[])
 (MapObject *) = {
     MovementAction_Delay4_Step0,
     MovementAction_Delay_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_Delay8[])
+BOOL(*const gMovementActionFuncs_Delay8[])
 (MapObject *) = {
     MovementAction_Delay8_Step0,
     MovementAction_Delay_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_Delay15[])
+BOOL(*const gMovementActionFuncs_Delay15[])
 (MapObject *) = {
     MovementAction_Delay15_Step0,
     MovementAction_Delay_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_Delay16[])
+BOOL(*const gMovementActionFuncs_Delay16[])
 (MapObject *) = {
     MovementAction_Delay16_Step0,
     MovementAction_Delay_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_Delay32[])
+BOOL(*const gMovementActionFuncs_Delay32[])
 (MapObject *) = {
     MovementAction_Delay32_Step0,
     MovementAction_Delay_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WarpOut[])
+BOOL(*const gMovementActionFuncs_WarpOut[])
 (MapObject *) = {
     MovementAction_WarpOut_Step0,
     MovementAction_WarpOut_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WarpIn[])
+BOOL(*const gMovementActionFuncs_WarpIn[])
 (MapObject *) = {
     MovementAction_WarpIn_Step0,
     MovementAction_WarpIn_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_SetInvisible[])
+BOOL(*const gMovementActionFuncs_SetInvisible[])
 (MapObject *) = {
     MovementAction_SetInvisible_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_SetVisible[])
+BOOL(*const gMovementActionFuncs_SetVisible[])
 (MapObject *) = {
     MovementAction_SetVisible_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_LockDir[])
+BOOL(*const gMovementActionFuncs_LockDir[])
 (MapObject *) = {
     MovementAction_LockDir_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_UnlockDir[])
+BOOL(*const gMovementActionFuncs_UnlockDir[])
 (MapObject *) = {
     MovementAction_UnlockDir_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_PauseAnimation[])
+BOOL(*const gMovementActionFuncs_PauseAnimation[])
 (MapObject *) = {
     MovementAction_PauseAnimation_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_ResumeAnimation[])
+BOOL(*const gMovementActionFuncs_ResumeAnimation[])
 (MapObject *) = {
     MovementAction_ResumeAnimation_Step0,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_EmoteExclamationMark[])
+BOOL(*const gMovementActionFuncs_EmoteExclamationMark[])
 (MapObject *) = {
     MovementAction_EmoteExclamationMark_Step0,
     MovementAction_Emote_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_EmoteQuestionMark[])
+BOOL(*const gMovementActionFuncs_EmoteQuestionMark[])
 (MapObject *) = {
     MovementAction_EmoteQuestionMark_Step0,
     MovementAction_Emote_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFastNorth[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFastNorth[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFastNorth_Step0,
     MovementAction_WalkSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFastSouth[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFastSouth[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFastSouth_Step0,
     MovementAction_WalkSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFastWest[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFastWest[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFastWest_Step0,
     MovementAction_WalkSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFastEast[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFastEast[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFastEast_Step0,
     MovementAction_WalkSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFasterNorth[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFasterNorth[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFasterNorth_Step0,
     MovementAction_WalkSlightlyFaster_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFasterSouth[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFasterSouth[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFasterSouth_Step0,
     MovementAction_WalkSlightlyFaster_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFasterWest[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFasterWest[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFasterWest_Step0,
     MovementAction_WalkSlightlyFaster_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkSlightlyFasterEast[])
+BOOL(*const gMovementActionFuncs_WalkSlightlyFasterEast[])
 (MapObject *) = {
     MovementAction_WalkSlightlyFasterEast_Step0,
     MovementAction_WalkSlightlyFaster_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_RunNorth[])
+BOOL(*const gMovementActionFuncs_RunNorth[])
 (MapObject *) = {
     MovementAction_RunNorth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_RunSouth[])
+BOOL(*const gMovementActionFuncs_RunSouth[])
 (MapObject *) = {
     MovementAction_RunSouth_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_RunWest[])
+BOOL(*const gMovementActionFuncs_RunWest[])
 (MapObject *) = {
     MovementAction_RunWest_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_RunEast[])
+BOOL(*const gMovementActionFuncs_RunEast[])
 (MapObject *) = {
     MovementAction_RunEast_Step0,
     MovementAction_Walk_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastNorth[])
+BOOL(*const gMovementActionFuncs_WalkEverSoSlightlyFastNorth[])
 (MapObject *) = {
     MovementAction_WalkEverSoSlightlyFastNorth_Step0,
     MovementAction_WalkEverSoSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastSouth[])
+BOOL(*const gMovementActionFuncs_WalkEverSoSlightlyFastSouth[])
 (MapObject *) = {
     MovementAction_WalkEverSoSlightlyFastSouth_Step0,
     MovementAction_WalkEverSoSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastWest[])
+BOOL(*const gMovementActionFuncs_WalkEverSoSlightlyFastWest[])
 (MapObject *) = {
     MovementAction_WalkEverSoSlightlyFastWest_Step0,
     MovementAction_WalkEverSoSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_WalkEverSoSlightlyFastEast[])
+BOOL(*const gMovementActionFuncs_WalkEverSoSlightlyFastEast[])
 (MapObject *) = {
     MovementAction_WalkEverSoSlightlyFastEast_Step0,
     MovementAction_WalkEverSoSlightlyFast_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_NurseJoyBow[])
+BOOL(*const gMovementActionFuncs_NurseJoyBow[])
 (MapObject *) = {
     MovementAction_NurseJoyBow_Step0,
     MovementAction_NurseJoyBow_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_RevealTrainer[])
+BOOL(*const gMovementActionFuncs_RevealTrainer[])
 (MapObject *) = {
     MovementAction_RevealTrainer_Step0,
     MovementAction_RevealTrainer_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_PlayerGive[])
+BOOL(*const gMovementActionFuncs_PlayerGive[])
 (MapObject *) = {
     MovementAction_PlayerGive_Step0,
     MovementAction_PlayerGiveReceive_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_PlayerReceive[])
+BOOL(*const gMovementActionFuncs_PlayerReceive[])
 (MapObject *) = {
     MovementAction_PlayerReceive_Step0,
     MovementAction_PlayerGiveReceive_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_105[])
+BOOL(*const gMovementActionFuncs_105[])
 (MapObject *) = {
     sub_02066934,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_106[])
+BOOL(*const gMovementActionFuncs_106[])
 (MapObject *) = {
     sub_02066968,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_107[])
+BOOL(*const gMovementActionFuncs_107[])
 (MapObject *) = {
     sub_02066998,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_108[])
+BOOL(*const gMovementActionFuncs_108[])
 (MapObject *) = {
     sub_020669CC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_109[])
+BOOL(*const gMovementActionFuncs_109[])
 (MapObject *) = {
     sub_020669FC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_110[])
+BOOL(*const gMovementActionFuncs_110[])
 (MapObject *) = {
     sub_02066A2C,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_111[])
+BOOL(*const gMovementActionFuncs_111[])
 (MapObject *) = {
     sub_02066A60,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_112[])
+BOOL(*const gMovementActionFuncs_112[])
 (MapObject *) = {
     sub_02066A94,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_113[])
+BOOL(*const gMovementActionFuncs_113[])
 (MapObject *) = {
     sub_02066AC8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_114[])
+BOOL(*const gMovementActionFuncs_114[])
 (MapObject *) = {
     sub_02066AFC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_115[])
+BOOL(*const gMovementActionFuncs_115[])
 (MapObject *) = {
     sub_02066B30,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_116[])
+BOOL(*const gMovementActionFuncs_116[])
 (MapObject *) = {
     sub_02066B60,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_145[])
+BOOL(*const gMovementActionFuncs_145[])
 (MapObject *) = {
     sub_02066B90,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_146[])
+BOOL(*const gMovementActionFuncs_146[])
 (MapObject *) = {
     sub_02066BC0,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_147[])
+BOOL(*const gMovementActionFuncs_147[])
 (MapObject *) = {
     sub_02066BF0,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_148[])
+BOOL(*const gMovementActionFuncs_148[])
 (MapObject *) = {
     sub_02066C20,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_149[])
+BOOL(*const gMovementActionFuncs_149[])
 (MapObject *) = {
     sub_02066C50,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_150[])
+BOOL(*const gMovementActionFuncs_150[])
 (MapObject *) = {
     sub_02066C84,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_151[])
+BOOL(*const gMovementActionFuncs_151[])
 (MapObject *) = {
     sub_02066CB8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_152[])
+BOOL(*const gMovementActionFuncs_152[])
 (MapObject *) = {
     sub_02066CE8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_117[])
+BOOL(*const gMovementActionFuncs_117[])
 (MapObject *) = {
     sub_0206621C,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_118[])
+BOOL(*const gMovementActionFuncs_118[])
 (MapObject *) = {
     sub_02066240,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_119[])
+BOOL(*const gMovementActionFuncs_119[])
 (MapObject *) = {
     sub_02066264,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_120[])
+BOOL(*const gMovementActionFuncs_120[])
 (MapObject *) = {
     sub_02066288,
     MovementAction_Jump_Step1,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_121[])
+BOOL(*const gMovementActionFuncs_121[])
 (MapObject *) = {
     sub_02066D18,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_122[])
+BOOL(*const gMovementActionFuncs_122[])
 (MapObject *) = {
     sub_02066D4C,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_123[])
+BOOL(*const gMovementActionFuncs_123[])
 (MapObject *) = {
     sub_02066D80,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_124[])
+BOOL(*const gMovementActionFuncs_124[])
 (MapObject *) = {
     sub_02066DB4,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_125[])
+BOOL(*const gMovementActionFuncs_125[])
 (MapObject *) = {
     sub_02066DE8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_126[])
+BOOL(*const gMovementActionFuncs_126[])
 (MapObject *) = {
     sub_02066E1C,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_127[])
+BOOL(*const gMovementActionFuncs_127[])
 (MapObject *) = {
     sub_02066E50,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_128[])
+BOOL(*const gMovementActionFuncs_128[])
 (MapObject *) = {
     sub_02066E84,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_129[])
+BOOL(*const gMovementActionFuncs_129[])
 (MapObject *) = {
     sub_02066EB8,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_130[])
+BOOL(*const gMovementActionFuncs_130[])
 (MapObject *) = {
     sub_02066EEC,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_131[])
+BOOL(*const gMovementActionFuncs_131[])
 (MapObject *) = {
     sub_02066F20,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_132[])
+BOOL(*const gMovementActionFuncs_132[])
 (MapObject *) = {
     sub_02066F54,
     sub_020668EC,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_133[])
+BOOL(*const gMovementActionFuncs_133[])
 (MapObject *) = {
     sub_020671F0,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_134[])
+BOOL(*const gMovementActionFuncs_134[])
 (MapObject *) = {
     sub_02067214,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_135[])
+BOOL(*const gMovementActionFuncs_135[])
 (MapObject *) = {
     sub_0206723C,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_136[])
+BOOL(*const gMovementActionFuncs_136[])
 (MapObject *) = {
     sub_02067260,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_137[])
+BOOL(*const gMovementActionFuncs_137[])
 (MapObject *) = {
     sub_02067288,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_138[])
+BOOL(*const gMovementActionFuncs_138[])
 (MapObject *) = {
     sub_020672AC,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_139[])
+BOOL(*const gMovementActionFuncs_139[])
 (MapObject *) = {
     sub_020672D4,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_140[])
+BOOL(*const gMovementActionFuncs_140[])
 (MapObject *) = {
     sub_020672FC,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_141[])
+BOOL(*const gMovementActionFuncs_141[])
 (MapObject *) = {
     sub_02067320,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_142[])
+BOOL(*const gMovementActionFuncs_142[])
 (MapObject *) = {
     sub_02067344,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_143[])
+BOOL(*const gMovementActionFuncs_143[])
 (MapObject *) = {
     sub_0206736C,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_144[])
+BOOL(*const gMovementActionFuncs_144[])
 (MapObject *) = {
     sub_02067394,
     sub_02067068,
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_153[])
+BOOL(*const gMovementActionFuncs_153[])
 (MapObject *) = {
     MovementAction_153_Step0,
     MovementAction_Emote_Step1,
