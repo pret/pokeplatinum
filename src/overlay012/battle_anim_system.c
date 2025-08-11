@@ -11,10 +11,10 @@
 #include "struct_decls/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 
-#include "battle/ov16_0223DF00.h"
-#include "battle/pokemon_sprite_data.h"
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_background_reference.h"
+#include "battle/ov16_0223DF00.h"
+#include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "global/utility.h"
 #include "overlay012/is_form_symmetrical.h"

@@ -12,6 +12,7 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"
 
+#include "battle/battle_anim_battler_context.h"
 #include "battle/battle_context.h"
 #include "battle/battle_io.h"
 #include "battle/battle_lib.h"
@@ -78,7 +79,6 @@
 #include "battle/struct_ov16_02260C00.h"
 #include "battle/struct_ov16_02260F14.h"
 #include "battle/struct_ov16_022623F0.h"
-#include "battle/battle_anim_battler_context.h"
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
 #include "battle/struct_ov16_02264EF8.h"

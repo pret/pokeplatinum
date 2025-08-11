@@ -5,8 +5,8 @@
 
 #include "struct_defs/chatot_cry.h"
 
-#include "battle/pokemon_sprite_data.h"
 #include "battle/battle_background_reference.h"
+#include "battle/pokemon_sprite_data.h"
 
 #include "bg_window.h"
 #include "palette.h"
