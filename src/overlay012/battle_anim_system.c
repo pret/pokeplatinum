@@ -2557,7 +2557,7 @@ static BOOL BattleBgRestore_Blend(SysTask *task, BattleBgSwitch *bgSwitch)
             BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
             Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilesNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart);
         }
 
         Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilemapNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BATTLE_BG_EFFECT, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
@@ -2680,7 +2680,7 @@ static BOOL BattleBgRestore_Fade(SysTask *task, BattleBgSwitch *bgSwitch)
             BattleAnimSystem_LoadBattleBgPaletteBuffer(bgSwitch->battleAnimSystem);
         } else {
             Graphics_LoadTilesToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilesNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
-            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize);
+            PaletteData_LoadBufferFromFileStart(bgSwitch->battleAnimSystem->paletteData, bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.paletteNarcMemberIdx, bgSwitch->battleAnimSystem->heapID, 0, bgSwitch->battleAnimSystem->battleBgRefs.paletteSrcSize * 0x20, bgSwitch->battleAnimSystem->battleBgRefs.paletteDestStart);
         }
 
         Graphics_LoadTilemapToBgLayer(bgSwitch->battleAnimSystem->battleBgRefs.narcID, bgSwitch->battleAnimSystem->battleBgRefs.tilemapNarcMemberIdx, bgSwitch->battleAnimSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, bgSwitch->battleAnimSystem->heapID);
