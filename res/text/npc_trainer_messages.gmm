@@ -8056,15 +8056,15 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">...Is our boss about to ditch us\nand claim everything for himself?</language>
 	</row>
-	<row id="NPCTrainerMessages_Text_GalacticGruntMtCoronet3F1_PreBattle" index="1922">
+	<row id="NPCTrainerMessages_Text_GalacticGruntMtCoronet3F2_PreBattle" index="1922">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We Grunts have two jobs.\rOne, ensure the success of our\noperation at the summit.\rTwo, utterly destroy any intruders\nto stop their meddling!\r</language>
 	</row>
-	<row id="NPCTrainerMessages_Text_GalacticGruntMtCoronet3F1_Defeat" index="1923">
+	<row id="NPCTrainerMessages_Text_GalacticGruntMtCoronet3F2_Defeat" index="1923">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I don’t accept this!\nI will not accept this!\n</language>
 	</row>
-	<row id="NPCTrainerMessages_Text_GalacticGruntMtCoronet3F1_PostBattle" index="1924">
+	<row id="NPCTrainerMessages_Text_GalacticGruntMtCoronet3F2_PostBattle" index="1924">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Join Team Galactic and then abide\nby our rules.\rThat would solve all our problems!\n</language>
 	</row>
