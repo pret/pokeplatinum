@@ -6,7 +6,7 @@
 #include "generated/npc_trades.h"
 
 #include "field/field_system.h"
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 
 #include "graphics.h"
 #include "heap.h"
@@ -74,7 +74,7 @@ void NpcTrade_ReceiveMon(FieldSystem *fieldSystem, NpcTradeData *data, int slot)
     SaveData_UpdateCatchRecords(fieldSystem->saveData, data->mon);
 }
 
-void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, NpcTradeAnimationConfig *animationConfig, Pokemon *givingMon, Pokemon *receivingMon)
+void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, NpcTradeAnimationTemplate *animationConfig, Pokemon *givingMon, Pokemon *receivingMon)
 {
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *partyMon = Party_GetPokemonBySlotIndex(party, slot);

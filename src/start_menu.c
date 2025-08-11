@@ -1864,7 +1864,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
-    if (Evolution_IsComplete(menu->taskData) == 1) {
+    if (Evolution_IsDone(menu->taskData) == 1) {
         sub_0207B0E0(menu->taskData);
         Heap_Destroy(HEAP_ID_73);
         Sound_StopBGM(SEQ_SHINKA, 0);

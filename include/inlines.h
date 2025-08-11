@@ -174,42 +174,42 @@ inline u16 LCRNG_RandMod(const u16 param)
     }
 }
 
-static inline u32 Date_ConvertParamsToInteger(u32 year, u32 month, u32 day, int week)
+static inline u32 Date_EncodeParams(u32 year, u32 month, u32 day, int week)
 {
     return (year << 24) | ((month & 0xff) << 16) | ((day & 0xff) << 8) | week;
 }
 
-static inline u32 Date_ConvertToInteger(RTCDate *rtcDate)
+static inline u32 Date_Encode(RTCDate *rtcDate)
 {
-    return Date_ConvertParamsToInteger(rtcDate->year, rtcDate->month, rtcDate->day, rtcDate->week);
+    return Date_EncodeParams(rtcDate->year, rtcDate->month, rtcDate->day, rtcDate->week);
 }
 
-static inline u8 Date_GetYearFromInteger(u32 date)
+static inline u8 Date_DecodeYear(u32 date)
 {
     return date >> 24;
 }
 
-static inline u8 Date_GetMonthFromInteger(u32 date)
+static inline u8 Date_DecodeMonth(u32 date)
 {
     return (date >> 16) & 0xff;
 }
 
-static inline u8 Date_GetDayFromInteger(u32 date)
+static inline u8 Date_DecodeDay(u32 date)
 {
     return (date >> 8) & 0xff;
 }
 
-static inline u8 Date_GetWeekFromInteger(u32 date)
+static inline u8 Date_DecodeWeek(u32 date)
 {
     return date & 0xff;
 }
 
-static inline void Date_ConvertFromInteger(u32 date, RTCDate *rtcDate)
+static inline void Date_Decode(u32 date, RTCDate *rtcDate)
 {
-    rtcDate->year = Date_GetYearFromInteger(date);
-    rtcDate->month = Date_GetMonthFromInteger(date);
-    rtcDate->day = Date_GetDayFromInteger(date);
-    rtcDate->week = Date_GetWeekFromInteger(date);
+    rtcDate->year = Date_DecodeYear(date);
+    rtcDate->month = Date_DecodeMonth(date);
+    rtcDate->day = Date_DecodeDay(date);
+    rtcDate->week = Date_DecodeWeek(date);
 }
 
 #endif // POKEPLATINUM_INLINES_H

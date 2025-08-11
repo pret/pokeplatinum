@@ -717,7 +717,7 @@ static BOOL ScrCmd_2CA(ScriptContext *ctx);
 static BOOL ScrCmd_2CD(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2CE(ScriptContext *ctx);
 static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx);
-static BOOL ScrCmd_IsMiscSaveInit(ScriptContext *ctx);
+static BOOL ScrCmd_CheckIsMiscSaveInit(ScriptContext *ctx);
 static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx);
 BOOL ScrCmd_2C8(ScriptContext *ctx);
 BOOL ScrCmd_2E2(ScriptContext *ctx);
@@ -1465,7 +1465,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_LockLastTalked,
     ScrCmd_2B5,
     ScrCmd_2B6,
-    ScrCmd_PartyHasBadEgg,
+    ScrCmd_CheckPartyHasBadEgg,
     ScrCmd_2B8,
     ScrCmd_ShowUnionRoomMenu,
     ScrCmd_2BA,
@@ -1497,7 +1497,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2D4,
     ScrCmd_2D5,
     ScrCmd_SaveExtraData,
-    ScrCmd_IsMiscSaveInit,
+    ScrCmd_CheckIsMiscSaveInit,
     ScrCmd_PokeMartFrontier,
     ScrCmd_2D9,
     ScrCmd_2DA,
@@ -4216,15 +4216,15 @@ static BOOL ScrCmd_336(ScriptContext *ctx)
 
 static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 connectToWiFi = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     if (WiFiList_HasValidLogin(ctx->fieldSystem->saveData)) {
-        *v1 = 1;
-        FieldSystem_LaunchGTSApp(ctx->fieldSystem, v0);
+        *destVar = TRUE;
+        FieldSystem_LaunchGTSApp(ctx->fieldSystem, connectToWiFi);
         ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     } else {
-        *v1 = 0;
+        *destVar = FALSE;
     }
 
     return TRUE;
@@ -4963,9 +4963,9 @@ static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx)
 static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *destVarResult = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVarResult = FieldSystem_Save(fieldSystem);
+    *destVar = FieldSystem_Save(fieldSystem);
     return FALSE;
 }
 
@@ -4975,11 +4975,11 @@ static BOOL ScrCmd_SaveExtraData(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_IsMiscSaveInit(ScriptContext *ctx)
+static BOOL ScrCmd_CheckIsMiscSaveInit(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = SaveData_MiscSaveBlock_InitFlag(ctx->fieldSystem->saveData);
+    *destVar = SaveData_MiscSaveBlock_InitFlag(ctx->fieldSystem->saveData);
     return FALSE;
 }
 

@@ -1077,10 +1077,10 @@
     .short 177
     .endm
 
-    .macro TryStartGTSApp arg0, arg1
+    .macro TryStartGTSApp connectToWiFi, destVar
     .short 178
-    .short \arg0
-    .short \arg1
+    .short \connectToWiFi
+    .short \destVar
     .endm
 
     .macro ScrCmd_0B3 arg0
@@ -3982,9 +3982,9 @@
     .byte \arg1
     .endm
 
-    .macro PartyHasBadEgg arg0
+    .macro CheckPartyHasBadEgg destVar
     .short 695
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_2B8 arg0
@@ -4146,9 +4146,9 @@
     .short 726
     .endm
 
-    .macro IsMiscSaveInit arg0
+    .macro CheckIsMiscSaveInit destVar
     .short 727
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro PokeMartFrontier martID

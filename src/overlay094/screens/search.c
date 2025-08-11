@@ -14,11 +14,11 @@
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/wfc_init.h"
 #include "overlay094/struct_ov94_0223BA24.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
+#include "global_trade.h"
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
@@ -35,7 +35,6 @@
 #include "string_list.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
@@ -454,7 +453,7 @@ static int ov94_0223EA84(GTSApplicationState *param0)
             if (v1 >= 0) {
                 Sprite_SetAnim(param0->avatarSprites[v1 + 1], 16 + v1 * 4);
                 param0->currentScreenInstruction = 2;
-                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_LISTING_SUMMARY, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, 0);
                 param0->selectedSearchResult = v1;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
@@ -499,7 +498,7 @@ static int GTS_IsTradeTimestampRecent(GTSApplicationState *appState, int bySearc
         datestamp = GlobalTrade_GetDepositTradeDatestamp(appState->playerData->globalTrade);
     }
 
-    Date_ConvertFromInteger(datestamp, &date);
+    Date_Decode(datestamp, &date);
     DWC_GetDateTime(&currentDate, &v3);
 
     int diff = RTC_ConvertDateToDay(&currentDate) - RTC_ConvertDateToDay(&date);

@@ -17,9 +17,6 @@
 #include "overlay094/gts_application_state.h"
 #include "overlay094/screens/select_pokemon.h"
 #include "overlay094/screens/wfc_init.h"
-#include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223BA88_sub2.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 #include "overlay094/struct_ov94_02242AAC.h"
 
 #include "bg_window.h"
@@ -116,34 +113,34 @@ static const u16 Unk_ov94_02245FE8[6][2] = {
 };
 
 static const GTSLevelRangeMessage gtsLevelPreferenceMessages[] = {
-    { GTS_Text_LevelPreference_Any, 0x0, 0x0 },
-    { GTS_Text_LevelPreference_UnderLevel10, 0x0, 0x9 },
-    { GTS_Text_LevelPreference_Level10AndUp, 0xA, 0x0 },
-    { GTS_Text_LevelPreference_Level20AndUp, 0x14, 0x0 },
-    { GTS_Text_LevelPreference_Level30AndUp, 0x1E, 0x0 },
-    { GTS_Text_LevelPreference_Level40AndUp, 0x28, 0x0 },
-    { GTS_Text_LevelPreference_Level50AndUp, 0x32, 0x0 },
-    { GTS_Text_LevelPreference_Level60AndUp, 0x3C, 0x0 },
-    { GTS_Text_LevelPreference_Level70AndUp, 0x46, 0x0 },
-    { GTS_Text_LevelPreference_Level80AndUp, 0x50, 0x0 },
-    { GTS_Text_LevelPreference_Level90AndUp, 0x5A, 0x0 },
-    { GTS_Text_LevelPreference_Level100, 0x64, 0x64 },
-    { GTS_Text_LevelPreference_Cancel, 0x0, 0x0 }
+    { GTS_Text_LevelPreference_Any, 0, 0 },
+    { GTS_Text_LevelPreference_UnderLevel10, 0, 9 },
+    { GTS_Text_LevelPreference_Level10AndUp, 10, 0 },
+    { GTS_Text_LevelPreference_Level20AndUp, 20, 0 },
+    { GTS_Text_LevelPreference_Level30AndUp, 30, 0 },
+    { GTS_Text_LevelPreference_Level40AndUp, 40, 0 },
+    { GTS_Text_LevelPreference_Level50AndUp, 50, 0 },
+    { GTS_Text_LevelPreference_Level60AndUp, 60, 0 },
+    { GTS_Text_LevelPreference_Level70AndUp, 70, 0 },
+    { GTS_Text_LevelPreference_Level80AndUp, 80, 0 },
+    { GTS_Text_LevelPreference_Level90AndUp, 90, 0 },
+    { GTS_Text_LevelPreference_Level100, 100, 100 },
+    { GTS_Text_LevelPreference_Cancel, 0, 0 }
 };
 
 static const GTSLevelRangeMessage gtsLevelRangeMessages[] = {
-    { GTS_Text_LevelRange_Any, 0x0, 0x0 },
-    { GTS_Text_LevelRange_1to10, 0x1, 0xA },
-    { GTS_Text_LevelRange_11to20, 0xB, 0x14 },
-    { GTS_Text_LevelRange_21to30, 0x15, 0x1E },
-    { GTS_Text_LevelRange_31to40, 0x1F, 0x28 },
-    { GTS_Text_LevelRange_41to50, 0x29, 0x32 },
-    { GTS_Text_LevelRange_51to60, 0x33, 0x3C },
-    { GTS_Text_LevelRange_61to70, 0x3D, 0x46 },
-    { GTS_Text_LevelRange_71to80, 0x47, 0x50 },
-    { GTS_Text_LevelRange_81to90, 0x51, 0x5A },
-    { GTS_Text_LevelRange_91to100, 0x5B, 0x64 },
-    { GTS_Text_LevelRange_Cancel, 0x0, 0x0 }
+    { GTS_Text_LevelRange_Any, 0, 0 },
+    { GTS_Text_LevelRange_1to10, 1, 10 },
+    { GTS_Text_LevelRange_11to20, 11, 20 },
+    { GTS_Text_LevelRange_21to30, 21, 30 },
+    { GTS_Text_LevelRange_31to40, 31, 40 },
+    { GTS_Text_LevelRange_41to50, 41, 50 },
+    { GTS_Text_LevelRange_51to60, 51, 60 },
+    { GTS_Text_LevelRange_61to70, 61, 70 },
+    { GTS_Text_LevelRange_71to80, 71, 80 },
+    { GTS_Text_LevelRange_81to90, 81, 90 },
+    { GTS_Text_LevelRange_91to100, 91, 100 },
+    { GTS_Text_LevelRange_Cancel, 0, 0 }
 };
 
 __attribute__((aligned(4))) static const u16 gtsAvailableCountries[] = {
@@ -1039,25 +1036,25 @@ static void ov94_02242668(GTSPokemonListing *listing, GTSApplicationState *appSt
 }
 
 static const ListMenuTemplate sCharpadListMenuTemplate = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    0x9,
-    0x6,
-    0x4,
-    0x8,
-    0x0,
-    0x2,
-    0x1,
-    0xF,
-    0x2,
-    0x0,
-    0x10,
-    0x1,
-    0x0,
-    0x0,
-    NULL
+    .choices = NULL,
+    .cursorCallback = NULL,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = 9,
+    .maxDisplay = 6,
+    .headerXOffset = 4,
+    .textXOffset = 8,
+    .cursorXOffset = 0,
+    .yOffset = 2,
+    .textColorFg = 1,
+    .textColorBg = 15,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 16,
+    .pagerMode = PAGER_MODE_LEFT_RIGHT_PAD,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 0,
+    .parent = NULL
 };
 
 ListMenu *ov94_022426A8(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader)
@@ -1080,16 +1077,16 @@ ListMenu *ov94_022426A8(GTSApplicationState *appState, StringList **stringList, 
 }
 
 static u16 sAlphabeticalSpeciesCharpadIndices[] = {
-    0x0,
-    0x57, // ABC
-    0x88, // DEF
-    0xBF, // GHI
-    0xEB, // JKL
-    0x12F, // MNO
-    0x168, // PQR
-    0x1C9, // STU
-    0x1E7, // VWX
-    0x1ED // YZ
+    0,
+    87, // ABC
+    136, // DEF
+    191, // GHI
+    235, // JKL
+    303, // MNO
+    360, // PQR
+    457, // STU
+    487, // VWX
+    493 // YZ
 };
 
 static int ov94_02242718(StringList **stringList, MessageLoader *speciesMessageLoader, MessageLoader *gtsMessageLoader, u16 *species, u8 *unused4, int unused5, int charpad, Pokedex *pokedex)
@@ -1136,10 +1133,10 @@ ListMenu *ov94_022427C0(GTSApplicationState *appState, StringList **stringList, 
 }
 
 static sGenderSelectionOptions[][2] = {
-    { GTS_Text_Either, 0x2 },
-    { GTS_Text_MaleIcon, 0x0 },
-    { GTS_Text_FemaleIcon, 0x1 },
-    { GTS_Text_Species_Cancel, 0xFFFFFFFE }
+    { GTS_Text_Either, 2 },
+    { GTS_Text_MaleIcon, 0 },
+    { GTS_Text_FemaleIcon, 1 },
+    { GTS_Text_Species_Cancel, LIST_CANCEL }
 };
 
 ListMenu *ov94_02242840(StringList **stringList, Window *window, MessageLoader *gtsMessageLoader)

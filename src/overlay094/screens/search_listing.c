@@ -1,4 +1,4 @@
-#include "overlay094/screens/listing_summary.h"
+#include "overlay094/screens/search_listing.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -10,10 +10,8 @@
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/screens/deposit.h"
-#include "overlay094/screens/summary.h"
+#include "overlay094/screens/listing.h"
 #include "overlay094/screens/wfc_init.h"
-#include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -67,7 +65,7 @@ static int (*sGTSListingSummaryScreenStates[])(GTSApplicationState *wk) = {
     ov94_0223E2D0
 };
 
-int GTSApplication_ListingSummary_Init(GTSApplicationState *appState, int unused1)
+int GTSApplication_SearchListing_Init(GTSApplicationState *appState, int unused1)
 {
 
     ov94_0223DFDC(appState);
@@ -90,12 +88,12 @@ int GTSApplication_ListingSummary_Init(GTSApplicationState *appState, int unused
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
-int GTSApplication_ListingSummary_Main(GTSApplicationState *appState, int unused1)
+int GTSApplication_SearchListing_Main(GTSApplicationState *appState, int unused1)
 {
     return (*sGTSListingSummaryScreenStates[appState->currentScreenInstruction])(appState);
 }
 
-int GTSApplication_ListingSummary_Exit(GTSApplicationState *appState, int unused1)
+int GTSApplication_SearchListing_Exit(GTSApplicationState *appState, int unused1)
 {
     ov94_0223DEC8(appState);
     ov94_0223E074(appState);
@@ -338,7 +336,7 @@ static int ov94_0223E0A4(GTSApplicationState *appState)
         if ((newSelectedResult != appState->selectedSearchResult) && (newSelectedResult >= 0)) {
             Sprite_SetAnim(appState->avatarSprites[newSelectedResult + 1], 16 + newSelectedResult * 4);
             appState->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_LISTING_SUMMARY, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, 0);
             appState->selectedSearchResult = newSelectedResult;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }

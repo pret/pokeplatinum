@@ -16,13 +16,13 @@
 #include "overlay094/networking.h"
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/screens/deposit.h"
-#include "overlay094/screens/listing_summary.h"
+#include "overlay094/screens/listing.h"
 #include "overlay094/screens/main_menu.h"
 #include "overlay094/screens/network_handler.h"
-#include "overlay094/screens/pokemon_info.h"
+#include "overlay094/screens/pokemon_summary.h"
 #include "overlay094/screens/search.h"
+#include "overlay094/screens/search_listing.h"
 #include "overlay094/screens/select_pokemon.h"
-#include "overlay094/screens/summary.h"
 #include "overlay094/screens/trade.h"
 #include "overlay094/screens/wfc_init.h"
 
@@ -75,13 +75,13 @@ static NNSFndHeapHandle sGTSHeapHandle;
 static int (*gtsApplicationScreens[][3])(GTSApplicationState *, int) = {
     { GTSApplication_InitWFC_Init, GTSApplication_WFCInit_Main, GTSApplication_WFCInit_Exit },
     { GTSApplication_MainMenu_Init, GTSApplication_MainMenu_Main, GTSApplication_MainMenu_Exit },
-    { GTSApplication_Summary_Init, GTSApplication_Summary_Main, GTSApplication_Summary_Exit },
-    { GTSApplication_ListingSummary_Init, GTSApplication_ListingSummary_Main, GTSApplication_ListingSummary_Exit },
+    { GTSApplication_Listing_Init, GTSApplication_Listing_Main, GTSApplication_Listing_Exit },
+    { GTSApplication_SearchListing_Init, GTSApplication_SearchListing_Main, GTSApplication_SearchListing_Exit },
     { GTSApplication_Search_Init, GTSApplication_Search_Main, GTSApplication_Search_Exit },
     { GTSApplication_SelectPokemon_Init, GTSApplication_SelectPokemon_Main, GTSApplication_SelectPokemon_Exit },
     { GTSApplication_Deposit_Init, GTSApplication_Deposit_Main, GTSApplication_Deposit_Exit },
     { GTSApplication_NetworkHandler_Init, GTSApplication_NetworkHandler_Main, GTSApplication_NetworkHandler_Exit },
-    { GTSApplication_PokemonInfo_Init, GTSApplication_PokemonInfo_Main, GTSApplication_PokemonInfo_Exit },
+    { GTSApplication_PokemonSummary_Init, GTSApplication_PokemonSummary_Main, GTSApplication_PokemonSummary_Exit },
     { GTSApplication_Trade_Init, GTSApplication_Trade_Main, GTSApplication_Trade_Exit },
 };
 
@@ -106,16 +106,14 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         appState->bgConfig = BgConfig_New(HEAP_ID_62);
         unused_GTSApplicationState = appState;
 
-        {
-            GraphicsModes graphicsModes = {
-                GX_DISPMODE_GRAPHICS,
-                GX_BGMODE_0,
-                GX_BGMODE_0,
-                GX_BG0_AS_2D,
-            };
+        GraphicsModes graphicsModes = {
+            .displayMode = GX_DISPMODE_GRAPHICS,
+            .mainBgMode = GX_BGMODE_0,
+            .subBgMode = GX_BGMODE_0,
+            .bg0As2DOr3D = GX_BG0_AS_2D,
+        };
 
-            SetAllGraphicsModes(&graphicsModes);
-        }
+        SetAllGraphicsModes(&graphicsModes);
 
         appState->stringTemplate = StringTemplate_New(11, 64, HEAP_ID_62);
         appState->gtsMessageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_62);
@@ -202,7 +200,7 @@ BOOL GTSApplication_Main(ApplicationManager *appMan, int *loopState)
     return FALSE;
 }
 
-BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused1)
+BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused)
 {
     GTSApplicationState *appState = ApplicationManager_Data(appMan);
 
@@ -293,16 +291,14 @@ static void GTSApplication_Noop(GTSApplicationState *appState)
 
 static void GTSApplication_InitCharTransfer(void)
 {
-    {
-        CharTransferTemplate template = {
-            .maxTasks = 20,
-            .sizeMain = 2048,
-            .sizeSub = 2048,
-            .heapID = HEAP_ID_62
-        };
+    CharTransferTemplate template = {
+        .maxTasks = 20,
+        .sizeMain = 2048,
+        .sizeSub = 2048,
+        .heapID = HEAP_ID_62
+    };
 
-        CharTransfer_Init(&template);
-    }
+    CharTransfer_Init(&template);
 
     PlttTransfer_Init(20, HEAP_ID_62);
     CharTransfer_ClearBuffers();
@@ -349,13 +345,13 @@ static void GTSApplication_InitGraphics(GTSApplicationState *appState)
     u16 *rgb = (u16 *)paletteData->pRawData;
 
     for (int pixelIdx = 0; pixelIdx < (3 * 16); pixelIdx++) {
-        int b = GX_RGB_B(rgb[pixelIdx]);
-        int g = GX_RGB_G(rgb[pixelIdx]);
-        int r = GX_RGB_R(rgb[pixelIdx]);
+        int b = ColorB(rgb[pixelIdx]);
+        int g = ColorG(rgb[pixelIdx]);
+        int r = ColorR(rgb[pixelIdx]);
         b /= 2;
         g /= 2;
         r /= 2;
-        rgb[pixelIdx] = (b << 10) | (g << 5) | r;
+        rgb[pixelIdx] = RGB(r, g, b);
     }
 
     DC_FlushRange(paletteData->pRawData, (3 * 16) * 2);
@@ -366,7 +362,7 @@ static void GTSApplication_InitGraphics(GTSApplicationState *appState)
     NARC_dtor(narc);
 }
 
-void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, NNS_G2D_VRAM_TYPE vramType)
+void GTSApplication_InitAffineTemplate(AffineSpriteListTemplate *template, GTSApplicationState *appState, SpriteResourcesHeader *spriteResourceHeader, enum NNS_G2D_VRAM_TYPE vramType)
 {
     template->list = appState->spriteList;
     template->resourceData = spriteResourceHeader;
@@ -389,13 +385,13 @@ static void GTSApplication_InitSpriteHeaders(GTSApplicationState *appState)
 }
 
 static const WindowTemplate sGTSYesNoWindowTemplate = {
-    0x0,
-    0x17,
-    0xD,
-    0x7,
-    0x4,
-    0xD,
-    0x0
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 23,
+    .tilemapTop = 13,
+    .width = 7,
+    .height = 4,
+    .palette = 13,
+    .baseTile = 0
 };
 
 Menu *GTSApplication_CreateYesNoMenu(BgConfig *bgConfig, int tilemapTop, int baseTile)

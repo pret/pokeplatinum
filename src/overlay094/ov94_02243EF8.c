@@ -16,7 +16,7 @@
 #include "unk_0200679C.h"
 #include "unk_0205C980.h"
 
-typedef struct {
+typedef struct AvatarAnimationData {
     int state;
     int y;
     int gender;

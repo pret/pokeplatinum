@@ -45,7 +45,7 @@
 #include "field/field_system.h"
 #include "library_tv/library_tv.h"
 #include "overlay005/daycare.h"
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay007/accessory_shop.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
@@ -90,6 +90,7 @@
 #include "field_transition.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "global_trade.h"
 #include "heap.h"
 #include "item_use_functions.h"
 #include "mail.h"
@@ -118,7 +119,6 @@
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
-#include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_020553DC.h"
@@ -199,7 +199,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov88_0223C370 unk_04;
-    NpcTradeAnimationConfig unk_48;
+    NpcTradeAnimationTemplate unk_48;
     EvolutionData *unk_60;
     int unk_64;
 } UnkStruct_0203DBF0;
@@ -1056,7 +1056,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         }
     } break;
     case 6:
-        if (Evolution_IsComplete(v2->unk_60)) {
+        if (Evolution_IsDone(v2->unk_60)) {
             Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
             sub_0207B0E0(v2->unk_60);
             Heap_Destroy(HEAP_ID_26);
@@ -1330,7 +1330,7 @@ void sub_0203E0D0(FieldSystem *fieldSystem)
     FieldSystem_StartChildProcess(fieldSystem, &v1, fieldSystem->saveData);
 }
 
-void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1)
+void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, BOOL connectToWiFi)
 {
     FS_EXTERN_OVERLAY(overlay94);
 
@@ -1359,7 +1359,7 @@ void FieldSystem_LaunchGTSApp(FieldSystem *fieldSystem, int param1)
     playerData->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     playerData->dwcProfileId = WiFiList_GetUserGsProfileId(playerData->wiFiList);
     playerData->bag = SaveData_GetBag(fieldSystem->saveData);
-    playerData->unk_40 = param1;
+    playerData->connectToWiFi = connectToWiFi;
 
     FieldSystem_StartChildProcess(fieldSystem, &gtsTemplate, playerData);
 }

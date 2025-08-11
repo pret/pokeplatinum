@@ -8,11 +8,8 @@
 #include "struct_defs/gts_player_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
-#include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223BA88_sub2.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 #include "overlay094/struct_ov94_02242AAC.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
@@ -37,13 +34,13 @@
 enum GTSApplicationScreen {
     GTS_SCREEN_WFC_INIT = 0,
     GTS_SCREEN_MAIN_MENU,
-    GTS_SCREEN_SUMMARY,
-    GTS_SCREEN_LISTING_SUMMARY,
+    GTS_SCREEN_LISTING,
+    GTS_SCREEN_SEARCH_LISTING,
     GTS_SCREEN_SEARCH,
     GTS_SCREEN_SELECT_POKEMON,
     GTS_SCREEN_DEPOSIT,
     GTS_SCREEN_NETWORK_HANDLER,
-    GTS_SCREEN_POKEMON_INFO,
+    GTS_SCREEN_POKEMON_SUMMARY,
     GTS_SCREEN_TRADE
 };
 
@@ -55,6 +52,41 @@ enum GTSApplicationLoopState {
     GTS_LOOP_STATE_FINISH,
     GTS_LOOP_STATE_EXIT
 };
+
+typedef struct GTSPokemonListingMon {
+    u8 bytes[236];
+} GTSPokemonListingMon;
+
+typedef struct GTSPokemonCriteria {
+    s16 species;
+    s8 gender;
+    s8 level;
+} GTSPokemonCriteria;
+
+typedef struct GTSPokemonRequirements {
+    s16 species;
+    s8 gender;
+    s8 level;
+    s8 level2;
+    s8 unk_05;
+} GTSPokemonRequirements;
+
+typedef struct GTSPokemonListing {
+    GTSPokemonListingMon pokemon;
+    GTSPokemonCriteria unk_EC;
+    GTSPokemonRequirements unk_F0;
+    u8 unk_F6;
+    u8 unused[17];
+    s32 unk_108;
+    u16 unk_10C[8];
+    u16 unk_11C;
+    u8 trainerCountry;
+    u8 trainerRegion;
+    u8 unk_120;
+    s8 exchangedFromRemote; // whether or not the pokemon was exchanged in the remote server (ie: this is the listing that someone traded for your deposited pokemon)
+    u8 unk_122;
+    u8 trainerLanguage;
+} GTSPokemonListing;
 
 typedef struct GTSTradedPokemonLocation {
     int boxIndex;
@@ -109,7 +141,7 @@ typedef struct GTSApplicationState {
     DWCInetControl dwcInetControlObject;
     ApplicationManager *appMan;
     PokemonSummary pokemonSummary;
-    NpcTradeAnimationConfig tradeAnimationConfig;
+    NpcTradeAnimationTemplate tradeAnimationConfig;
     EvolutionData *evolutionData;
     BOOL hasTradedPokemon;
     u16 unk_108;

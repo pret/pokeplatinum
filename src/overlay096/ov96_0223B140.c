@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay060/ov60_0221F968.h"
+#include "overlay060/http.h"
 #include "overlay096/struct_ov96_0223B450.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 #include "overlay096/struct_ov96_0223B574.h"

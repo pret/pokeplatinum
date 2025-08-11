@@ -1,3 +1,5 @@
+#include "evolution.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -19,7 +21,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "evolution.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -58,7 +59,7 @@
 #include "res/text/bank/battle_strings.h"
 
 static void sub_0207B0A0(SysTask *param0, void *param1);
-BOOL Evolution_IsComplete(EvolutionData *param0);
+BOOL Evolution_IsDone(EvolutionData *param0);
 void sub_0207B0E0(EvolutionData *param0);
 static void sub_0207B180(EvolutionData *param0);
 static void sub_0207C028(EvolutionData *param0);
@@ -177,7 +178,7 @@ static void sub_0207B0A0(SysTask *param0, void *param1)
     }
 }
 
-BOOL Evolution_IsComplete(EvolutionData *param0)
+BOOL Evolution_IsDone(EvolutionData *param0)
 {
     return param0->unk_67 == 1;
 }

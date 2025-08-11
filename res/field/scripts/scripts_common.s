@@ -430,7 +430,7 @@ CommonScript_QuickSave_Save:
     End
 
 CommonScript_QuickSave_CheckMiscFlag:
-    IsMiscSaveInit VAR_RESULT
+    CheckIsMiscSaveInit VAR_RESULT
     GoToIfEq VAR_RESULT, 0, CommonScript_QuickSave_DoFullSave
     GoTo CommonScript_QuickSave_Save
     End

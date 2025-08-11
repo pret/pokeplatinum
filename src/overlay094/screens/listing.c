@@ -1,4 +1,4 @@
-#include "overlay094/screens/summary.h"
+#include "overlay094/screens/listing.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -10,7 +10,6 @@
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/select_pokemon.h"
 #include "overlay094/screens/wfc_init.h"
-#include "overlay094/struct_ov94_0223BA88_sub2.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -71,43 +70,40 @@ static int (*Unk_ov94_02246808[])(GTSApplicationState *) = {
     ov94_0223D754
 };
 
-int GTSApplication_Summary_Init(GTSApplicationState *param0, int param1)
+int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused)
 {
-    Pokemon *v0;
+    ov94_0223D53C(appState);
+    ov94_0223D1D4(appState->bgConfig);
+    ov94_0223D2E8(appState);
+    ov94_0223D438(appState);
+    ov94_0223D3DC(appState);
+    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes), &appState->receivedListing.unk_EC);
 
-    ov94_0223D53C(param0);
-    ov94_0223D1D4(param0->bgConfig);
-    ov94_0223D2E8(param0);
-    ov94_0223D438(param0);
-    ov94_0223D3DC(param0);
-    ov94_0223D910(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->receivedListing.pokemon.bytes), &param0->receivedListing.unk_EC);
+    Pokemon *mon = (Pokemon *)appState->receivedListing.pokemon.bytes;
 
-    v0 = (Pokemon *)param0->receivedListing.pokemon.bytes;
-
-    ov94_0223DA78(param0->gtsMessageLoader, &param0->unk_FCC[5], param0->receivedListing.unk_10C, v0, &param0->unk_FCC[10]);
-    ov94_02242368(param0->gtsMessageLoader, param0->speciesMessageLoader, param0->stringTemplate, &param0->unk_FCC[7], param0->receivedListing.unk_F0.species, param0->receivedListing.unk_F0.gender, ov94_02242970(param0->receivedListing.unk_F0.level, param0->receivedListing.unk_F0.level2, 0));
-    ov94_0223DB2C((Pokemon *)param0->receivedListing.pokemon.bytes);
+    ov94_0223DA78(appState->gtsMessageLoader, &appState->unk_FCC[5], appState->receivedListing.unk_10C, mon, &appState->unk_FCC[10]);
+    ov94_02242368(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[7], appState->receivedListing.unk_F0.species, appState->receivedListing.unk_F0.gender, ov94_02242970(appState->receivedListing.unk_F0.level, appState->receivedListing.unk_F0.level2, 0));
+    ov94_0223DB2C((Pokemon *)appState->receivedListing.pokemon.bytes);
 
     StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_62);
 
-    param0->currentScreenInstruction = 0;
+    appState->currentScreenInstruction = 0;
 
     return 2;
 }
 
-int GTSApplication_Summary_Main(GTSApplicationState *param0, int param1)
+int GTSApplication_Listing_Main(GTSApplicationState *appState, int unused)
 {
-    int v0 = (*Unk_ov94_02246808[param0->currentScreenInstruction])(param0);
-    return v0;
+    return (*Unk_ov94_02246808[appState->currentScreenInstruction])(appState);
 }
 
-int GTSApplication_Summary_Exit(GTSApplicationState *param0, int param1)
+int GTSApplication_Listing_Exit(GTSApplicationState *appState, int unused)
 {
-    ov94_0223D428(param0);
-    ov94_0223D57C(param0);
-    ov94_0223D504(param0);
-    ov94_0223D2BC(param0->bgConfig);
-    GTSApplication_MoveToNextScreen(param0);
+    ov94_0223D428(appState);
+    ov94_0223D57C(appState);
+    ov94_0223D504(appState);
+    ov94_0223D2BC(appState->bgConfig);
+    GTSApplication_MoveToNextScreen(appState);
 
     return 1;
 }
@@ -431,7 +427,7 @@ static int ov94_0223D754(GTSApplicationState *param0)
             Pokemon *v0 = (Pokemon *)param0->receivedListing.pokemon.bytes;
 
             if (Pokemon_IsHoldingMail(v0)) {
-                if (Party_GetCurrentCount(param0->playerData->party) == 6) {
+                if (Party_GetCurrentCount(param0->playerData->party) == MAX_PARTY_SIZE) {
                     ov94_0223D88C(param0, GTS_Text_Error_NoRoomInParty, TEXT_SPEED_FAST, 0, 0xf0f, v0);
                     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 3, 1);
                     return 3;

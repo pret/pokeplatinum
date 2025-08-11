@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_GTS_NETWORKING_H
 #define POKEPLATINUM_GTS_NETWORKING_H
 
+#include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_0223BA24.h"
-#include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
 

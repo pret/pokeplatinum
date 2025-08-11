@@ -8,10 +8,10 @@
 
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
-#include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay095/ov95_02246C20.h"
 
 #include "evolution.h"
+#include "global_trade.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "party.h"
@@ -19,7 +19,6 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "trainer_info.h"
-#include "unk_0202DA40.h"
 
 FS_EXTERN_OVERLAY(overlay95);
 
@@ -138,7 +137,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
         }
         break;
     case 1:
-        if (Evolution_IsComplete(appState->evolutionData)) { // evolve
+        if (Evolution_IsDone(appState->evolutionData)) { // evolve
             sub_0207B0E0(appState->evolutionData);
             GTSApplication_Trade_StoreTradedPokemon(appState);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -182,7 +181,7 @@ static Pokemon *GTSApplication_Trade_GetTradedPokemon(GTSApplicationState *appSt
         return (Pokemon *)appState->receivedListing.pokemon.bytes;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return NULL;
 }
 

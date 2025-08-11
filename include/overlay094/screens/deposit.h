@@ -4,8 +4,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "overlay094/gts_application_state.h"
-#include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 #include "overlay094/struct_ov94_02242AAC.h"
 
 #include "bg_window.h"

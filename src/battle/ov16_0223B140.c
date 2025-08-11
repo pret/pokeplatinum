@@ -272,7 +272,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
     case 14: {
         EvolutionData *v5 = (EvolutionData *)v0->unk_170;
 
-        if (Evolution_IsComplete(v5) == 1) {
+        if (Evolution_IsDone(v5) == 1) {
             sub_0207B0E0(v5);
             Heap_Destroy(HEAP_ID_73);
             *param1 = 13;

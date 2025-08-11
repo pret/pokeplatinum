@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02013610.h"
 
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay095/ov95_02247B6C.h"
 #include "overlay095/ov95_02248590.h"
 #include "overlay095/ov95_02249740.h"
@@ -41,7 +41,7 @@
 #include "unk_020393C8.h"
 
 struct TradeSequenceData_t {
-    const NpcTradeAnimationConfig *animationConfig;
+    const NpcTradeAnimationTemplate *animationConfig;
     int unk_04;
     BgConfig *unk_08;
     StringTemplate *unk_0C;

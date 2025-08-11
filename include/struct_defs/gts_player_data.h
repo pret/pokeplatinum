@@ -4,12 +4,12 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "bag.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "global_trade.h"
 #include "journal.h"
 #include "party.h"
 #include "savedata.h"
@@ -33,7 +33,7 @@ typedef struct GTSPlayerData {
     int dexMode;
     int dwcProfileId;
     int showContestData;
-    int unk_40;
+    BOOL connectToWiFi;
 } GTSPlayerData;
 
 #endif // POKEPLATINUM_STRUCT_GTS_PLAYER_DATA_H

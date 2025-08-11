@@ -15,9 +15,6 @@
 #include "overlay094/gts_application_state.h"
 #include "overlay094/screens/deposit.h"
 #include "overlay094/screens/wfc_init.h"
-#include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223BA88_sub2.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -575,12 +572,12 @@ static int ov94_022402BC(GTSApplicationState *param0)
         }
     } else if (param0->screenArgument == 6) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_LISTING_SUMMARY, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, 0);
             param0->currentScreenInstruction = 2;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
-                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_LISTING_SUMMARY, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, 0);
                 param0->currentScreenInstruction = 2;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -710,7 +707,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         param0->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_INFO, 5);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_SUMMARY, 5);
         break;
     case 2:
         Menu_Free(param0->unk_10D4, NULL);
@@ -802,7 +799,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         param0->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_INFO, 6);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_SUMMARY, 6);
         break;
     case 2:
         Menu_Free(param0->unk_10D4, NULL);
@@ -854,7 +851,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
 static int ov94_02240A6C(GTSApplicationState *param0)
 {
-    if ((param0->nextScreen == GTS_SCREEN_WFC_INIT) || (param0->nextScreen == GTS_SCREEN_POKEMON_INFO)) {
+    if ((param0->nextScreen == GTS_SCREEN_WFC_INIT) || (param0->nextScreen == GTS_SCREEN_POKEMON_SUMMARY)) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_62);
         param0->fadeBothScreens = 1;
     } else {
@@ -1232,12 +1229,10 @@ static const u16 sUnusedRibbons[] = {
 
 static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
 {
-    int i;
     int count = 0;
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    // Should be NELEMS(sUnusedRibbons), but compiler doesn't want to budge.
-    for (i = 0; i < 10; i++) {
+    for (int i = 0; i < (int)NELEMS(sUnusedRibbons); i++) {
         count += BoxPokemon_GetValue(boxMon, sUnusedRibbons[i], NULL);
     }
 

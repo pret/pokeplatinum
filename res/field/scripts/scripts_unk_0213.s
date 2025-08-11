@@ -84,7 +84,7 @@ _0108:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0755
     Message 0
     GoTo _012C
@@ -374,7 +374,7 @@ _0544:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0755
     GoTo _0565
     End

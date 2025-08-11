@@ -1,4 +1,4 @@
-#include "overlay094/screens/pokemon_info.h"
+#include "overlay094/screens/pokemon_summary.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -28,7 +28,7 @@ static const u8 sGTSPokemonSummaryPages[] = {
     SUMMARY_PAGE_MAX
 };
 
-int GTSApplication_PokemonInfo_Init(GTSApplicationState *appState, int unused1)
+int GTSApplication_PokemonSummary_Init(GTSApplicationState *appState, int unused1)
 {
     appState->pokemonSummary.monData = ov94_022411DC(appState->playerData->party, appState->playerData->pcBoxes, appState->selectedBoxId, appState->unk_112);
     appState->pokemonSummary.dataType = SUMMARY_DATA_BOX_MON;
@@ -50,7 +50,7 @@ int GTSApplication_PokemonInfo_Init(GTSApplicationState *appState, int unused1)
     return GTS_LOOP_STATE_WAIT_FADE;
 }
 
-int GTSApplication_PokemonInfo_Main(GTSApplicationState *appState, int unused1)
+int GTSApplication_PokemonSummary_Main(GTSApplicationState *appState, int unused1)
 {
     int loopState = GTS_LOOP_STATE_MAIN;
 
@@ -64,7 +64,7 @@ int GTSApplication_PokemonInfo_Main(GTSApplicationState *appState, int unused1)
     return loopState;
 }
 
-int GTSApplication_PokemonInfo_Exit(GTSApplicationState *appState, int unused1)
+int GTSApplication_PokemonSummary_Exit(GTSApplicationState *appState, int unused1)
 {
     GTSApplication_MoveToNextScreen(appState);
     return GTS_LOOP_STATE_INIT;

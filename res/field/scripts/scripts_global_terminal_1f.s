@@ -91,7 +91,7 @@ GlobalTerminal1f_GTS_Clerk_Talk:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, GlobalTerminal1f_GTS_Exit_BadEgg
     GoToIfSet FLAG_GTS_INTRO_COMPLETED, GlobalTerminal1f_GTS_Clerk_ShortIntro
     SetFlag FLAG_GTS_INTRO_COMPLETED
@@ -447,7 +447,7 @@ _0546:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _05A0
     SetVar VAR_0x8000, 0
     GetPartyMonSpecies VAR_0x8000, VAR_RESULT

@@ -67,9 +67,4 @@ enum DSScreen {
 #define RGBA_WHITE GX_RGBA(31, 31, 31, 1)
 
 #define RGB_TO_GRAYSCALE(r, g, b) (((r) * 76 + (g) * 151 + (b) * 29) >> 8)
-
-#define GX_RGB_R(RGB) (((RGB) >> GX_RGB_R_SHIFT) & 31)
-#define GX_RGB_G(RGB) (((RGB) >> GX_RGB_G_SHIFT) & 31)
-#define GX_RGB_B(RGB) (((RGB) >> GX_RGB_B_SHIFT) & 31)
-
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H
