@@ -496,7 +496,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
         }
     }
 
-    if (moveID == MOVE_NONE || moveID >= MAX_MOVES) {
+    if (moveID == MOVE_NONE || moveID > MOVE_SHADOW_FORCE) {
         moveID = MOVE_POUND;
     }
 
