@@ -133,119 +133,107 @@ int GTSApplication_MainMenu_Exit(GTSApplicationState *appState, int unused1)
 
 static void GTSApplication_MainMenu_InitBackground(BgConfig *bgConfig)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D,
-        };
+    GraphicsModes graphicsModes = {
+        .displayMode = GX_DISPMODE_GRAPHICS,
+        .mainBgMode = GX_BGMODE_0,
+        .subBgMode = GX_BGMODE_0,
+        .bg0As2DOr3D = GX_BG0_AS_2D,
+    };
 
-        SetAllGraphicsModes(&v0);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v1, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &main0Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v2, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &main1Template, BG_TYPE_STATIC);
 
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xe800,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main2Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v3, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &main2Template, BG_TYPE_STATIC);
 
-    {
-        BgTemplate v4 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate sub0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &v4, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &sub0Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-    {
-        BgTemplate v5 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_256,
-            .screenBase = GX_BG_SCRBASE_0xe000,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate sub1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &v5, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &sub1Template, BG_TYPE_STATIC);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
-    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_SUB_0, 32, 0, HEAP_ID_62);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
 static void GTSApplication_MainMenu_CleanupBackground(BgConfig *bgConfig)
@@ -259,9 +247,9 @@ static void GTSApplication_MainMenu_CleanupBackground(BgConfig *bgConfig)
 
 static void ov94_0223C85C(GTSApplicationState *appState)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
     Sprite_SetDrawFlag(appState->cursorSprite, FALSE);
 }
 
@@ -270,13 +258,13 @@ static void GTSApplication_MainMenu_InitGraphics(GTSApplicationState *appState)
     BgConfig *bgConfig = appState->bgConfig;
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
-    Graphics_LoadPaletteFromOpenNARC(narc, 4, 0, 0, 16 * 3 * 2, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(narc, 4, PAL_LOAD_MAIN_BG, 0, PALETTE_SIZE_BYTES * 3, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 14, bgConfig, 1, 0, 16 * 6 * 0x20, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 30, bgConfig, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 29, bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 14, bgConfig, BG_LAYER_MAIN_1, 0, 16 * 6 * 0x20, TRUE, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 30, bgConfig, BG_LAYER_MAIN_1, 0, 32 * 24 * 2, TRUE, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 29, bgConfig, BG_LAYER_MAIN_2, 0, 32 * 24 * 2, TRUE, HEAP_ID_62);
 
     ov94_0223D068(appState);
 
@@ -284,9 +272,9 @@ static void GTSApplication_MainMenu_InitGraphics(GTSApplicationState *appState)
 }
 
 static const u16 sMainMenuCursorPositions[][2] = {
-    { 0x32, 0x38 },
-    { 0x32, 0x60 },
-    { 0x32, 0x88 }
+    { 50, 56 },
+    { 50, 96 },
+    { 50, 136 }
 };
 
 static void GTSApplication_MainMenu_InitCursor(GTSApplicationState *appState)
@@ -295,8 +283,8 @@ static void GTSApplication_MainMenu_InitCursor(GTSApplicationState *appState)
 
     GTSApplication_InitAffineTemplate(&template, appState, &appState->cursorSpriteResourceHeader, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    template.position.x = FX32_ONE *sMainMenuCursorPositions[appState->mainMenuSelectedOption][0];
-    template.position.y = FX32_ONE *sMainMenuCursorPositions[appState->mainMenuSelectedOption][1];
+    template.position.x = FX32_ONE * sMainMenuCursorPositions[appState->mainMenuSelectedOption][0];
+    template.position.y = FX32_ONE * sMainMenuCursorPositions[appState->mainMenuSelectedOption][1];
 
     appState->cursorSprite = SpriteList_AddAffine(&template);
 
@@ -353,11 +341,10 @@ static void GTSApplication_MainMenu_CleanupStrings(GTSApplicationState *appState
 static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *appState)
 {
     if (appState->hasAvatarFinishedMoving) {
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
 
-        // this jumps us to screen #7 (network handler) with argument 11
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 11);
 
         appState->returnAfterNetworkScreen = GTS_SCREEN_MAIN_MENU;
@@ -403,7 +390,7 @@ static int GTSApplication_MainMenu_SetupBottomWindowQuestion(GTSApplicationState
 {
     GTSApplication_MainMenu_SetBottomWindowText(appState, GTS_Text_AreYouSeekingOrOfferingAPokemon, TEXT_SPEED_FAST, 0, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 10, 6);
-    Sprite_SetAnimateFlag(appState->cursorSprite, 1);
+    Sprite_SetAnimateFlag(appState->cursorSprite, TRUE);
     GTSApplicationState_StartCountingBoxPokemon(appState);
 
     return GTS_LOOP_STATE_MAIN;
@@ -425,7 +412,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
             } else {
                 if (appState->networkTimer == 0) {
                     GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 11);
-                    appState->returnAfterNetworkScreen = GTS_SCREEN_SUMMARY;
+                    appState->returnAfterNetworkScreen = GTS_SCREEN_LISTING;
                     appState->currentScreenInstruction = 9;
                     appState->networkTimer = (60 * 30);
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -570,7 +557,7 @@ static void GTSApplication_MainMenu_SetBottomWindowText(GTSApplicationState *app
 {
     MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, FALSE, 1, 10);
 
     appState->textPrinter = Text_AddPrinterWithParams(&appState->bottomInstructionWindow, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, textSpeed, NULL);
 }
@@ -579,7 +566,7 @@ static void ov94_0223CFD8(GTSApplicationState *appState, int messageId, int text
 {
     MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
     Window_FillTilemap(&appState->unk_109C, 0xf0f);
-    Window_DrawMessageBoxWithScrollCursor(&appState->unk_109C, 0, 1, 10);
+    Window_DrawMessageBoxWithScrollCursor(&appState->unk_109C, FALSE, 1, 10);
 
     appState->textPrinter = Text_AddPrinterWithParams(&appState->unk_109C, FONT_MESSAGE, appState->genericMessageBuffer, 0, 0, textSpeed, NULL);
 }

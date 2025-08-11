@@ -84,7 +84,7 @@ _015D:
     End
 
 _0179:
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     Return
 
 _017F:
@@ -307,7 +307,7 @@ _04A6:
     Call _0488
     ApplyMovement 0, _06C8
     WaitMovement
-    ShowMapObj MAP_OBJ_PLAYER_AVATAR
+    ShowMapObj LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _06B8
     WaitMovement
     Call _049B

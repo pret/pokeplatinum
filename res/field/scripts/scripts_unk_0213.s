@@ -28,7 +28,7 @@ _0046:
     End
 
 _0055:
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     Return
 
 _005B:
@@ -49,7 +49,7 @@ _008F:
     LockAll
     ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
     Call _050B
-    ShowMapObj MAP_OBJ_PLAYER_AVATAR
+    ShowMapObj LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _00F0
     WaitMovement
     Call _0513
@@ -84,7 +84,7 @@ _0108:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0755
     Message 0
     GoTo _012C
@@ -374,7 +374,7 @@ _0544:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0755
     GoTo _0565
     End

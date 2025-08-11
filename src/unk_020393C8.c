@@ -14,20 +14,6 @@
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 
-typedef struct NetworkIcon_t {
-    int unk_00;
-    int strength;
-    int unk_08;
-    u16 x;
-    u16 y;
-    u8 isWifi;
-    u8 screenId;
-    u8 unk_12;
-    const UnkStruct_020E5EB4 **unused_14;
-    SysTask *unk_18;
-    GXOamAttr *unk_1C;
-} NetworkIcon;
-
 static int inline inline_02039614(NetworkIcon *param0);
 static int inline inline_02039614_1(int param0, int param1);
 static void sub_02039428(SysTask *param0, void *param1);

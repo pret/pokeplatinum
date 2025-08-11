@@ -1,4 +1,4 @@
-#include "overlay060/ov60_0221F968.h"
+#include "overlay060/http.h"
 
 #include <dwc.h>
 
@@ -20,9 +20,9 @@ struct {
     int unk_30;
 } sHttpData = { 1, 0, 0, 0 };
 
-static void HTTP_SetErrorCode(int param0)
+static void HTTP_SetErrorCode(int requestHandle)
 {
-    switch (param0) {
+    switch (requestHandle) {
     case DWC_GHTTP_IN_ERROR:
         sHttpData.errorCode = 0;
         break;
@@ -49,10 +49,8 @@ static void HTTP_SetErrorCode(int param0)
     }
 }
 
-static void HTTP_RequestCompletedCallback(const char *responseText, int length, DWCGHTTPResult result, void *param3)
+static void HTTP_RequestCompletedCallback(const char *responseText, int length, DWCGHTTPResult result, void *unused)
 {
-#pragma unused(param3)
-
     sHttpData.requestHandle = -1;
 
     if (sHttpData.readyState == 1) {

@@ -32,7 +32,7 @@ _0056:
     End
 
 _0065:
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     Return
 
 _006B:
@@ -44,7 +44,7 @@ _006B:
 GlobalTerminal1f_GTS_WalkOut:
     ScrCmd_168 0, 0, 8, 2, 77
     Call _00C5
-    ShowMapObj MAP_OBJ_PLAYER_AVATAR
+    ShowMapObj LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Call _00CD
@@ -91,7 +91,7 @@ GlobalTerminal1f_GTS_Clerk_Talk:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, GlobalTerminal1f_GTS_Exit_BadEgg
     GoToIfSet FLAG_GTS_INTRO_COMPLETED, GlobalTerminal1f_GTS_Clerk_ShortIntro
     SetFlag FLAG_GTS_INTRO_COMPLETED
@@ -177,7 +177,7 @@ GlobalTerminal1f_BeginTrade:
     Call _00C5
     ApplyMovement LOCALID_PLAYER, _0350
     WaitMovement
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
     Call _00CD
@@ -447,7 +447,7 @@ _0546:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PartyHasBadEgg VAR_RESULT
+    CheckPartyHasBadEgg VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _05A0
     SetVar VAR_0x8000, 0
     GetPartyMonSpecies VAR_0x8000, VAR_RESULT

@@ -4,10 +4,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay060/ov60_0221F968.h"
+#include "overlay060/http.h"
+#include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_0223BA24.h"
-#include "overlay094/struct_ov94_0223BA88.h"
-#include "overlay094/struct_ov94_0223BA88_sub3.h"
 #include "overlay096/struct_ov96_0223B574.h"
 #include "overlay096/struct_ov96_0223B574_1.h"
 
@@ -51,7 +50,7 @@ typedef struct {
     u8 *unk_140;
 } UnkStruct_ov94_02246AC0;
 
-static BOOL GTSNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4);
+static BOOL GTSNetworking_PrepareRequest(const u8 *url, const void *param1, int param2, void *param3, int param4);
 static int GTSNetworking_GetPublicErrorCode(int param0);
 
 static UnkStruct_ov94_02246AC0 Unk_ov94_02246AC0;
@@ -542,8 +541,8 @@ void GTSNetworking_Post(const GTSPokemonListing *param0)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/post.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/post.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(GTSPokemonListing),
             Unk_ov94_02246AC0.unk_13C,
@@ -562,8 +561,8 @@ void ov94_0223B834(void)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/post_finish.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/post_finish.asp"),
             Unk_ov94_02246AC0.unk_14,
             8,
             Unk_ov94_02246AC0.unk_13C,
@@ -582,8 +581,8 @@ void GTSNetworking_GetListedPokemon(GTSPokemonListing *param0)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/get.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/get.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             param0,
@@ -602,8 +601,8 @@ void GTSNetworking_GetListingStatus(GTSPokemonListing *param0)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/result.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/result.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             param0,
@@ -620,8 +619,8 @@ void GTSNetworking_Delete(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/delete.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/delete.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             Unk_ov94_02246AC0.unk_13C,
@@ -638,8 +637,8 @@ void GTSNetworking_Return(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/return.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/return.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             Unk_ov94_02246AC0.unk_13C,
@@ -661,8 +660,8 @@ void GTSNetworking_Search(const GTSPokemonRequirements *param0, s32 param1, GTSP
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(GTSPokemonRequirements));
     Unk_ov94_02246AC0.unk_14[sizeof(GTSPokemonRequirements)] = (u8)param1;
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/search.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/search.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(GTSPokemonRequirements) + 1,
             param2,
@@ -683,8 +682,8 @@ void ov94_0223BA24(const UnkStruct_ov94_0223BA24 *param0, GTSPokemonListing *par
 
     memcpy(&Unk_ov94_02246AC0.unk_14[0], param0, sizeof(UnkStruct_ov94_0223BA24));
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/search.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/search.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(UnkStruct_ov94_0223BA24),
             param1,
@@ -707,8 +706,8 @@ void ov94_0223BA88(s32 param0, const GTSPokemonListing *param1, GTSPokemonListin
 
     *(s32 *)(&Unk_ov94_02246AC0.unk_14[sizeof(GTSPokemonListing)]) = param0;
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/exchange.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/exchange.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(GTSPokemonListing) + 4,
             param2,
@@ -727,8 +726,8 @@ void ov94_0223BAEC(void)
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/exchange_finish.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/exchange_finish.asp"),
             Unk_ov94_02246AC0.unk_14,
             8,
             Unk_ov94_02246AC0.unk_13C,
@@ -745,8 +744,8 @@ void GTSNetworking_InitConnection(void)
 {
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "worldexchange/info.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "worldexchange/info.asp"),
             Unk_ov94_02246AC0.unk_14,
             0,
             Unk_ov94_02246AC0.unk_13C,
@@ -759,17 +758,17 @@ void GTSNetworking_InitConnection(void)
     }
 }
 
-void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchangeTrainerError *param1)
+void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchangeTrainerError *error)
 {
     OS_GetMacAddress((u8 *)trainer->macAddress);
 
     memcpy(Unk_ov94_02246AC0.unk_14, trainer, sizeof(WorldExchangeTrainer));
-    Unk_ov94_02246AC0.unk_140 = (u8 *)param1;
+    Unk_ov94_02246AC0.unk_140 = (u8 *)error;
 
     HTTP_Init();
 
-    if (GTSNetworking_PrepareRequest(((const unsigned char *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
-                                                             "common/setProfile.asp"),
+    if (GTSNetworking_PrepareRequest(((const u8 *)"http://gamestats2.gs.nintendowifi.net/pokemondpds/"
+                                                  "common/setProfile.asp"),
             Unk_ov94_02246AC0.unk_14,
             sizeof(WorldExchangeTrainer),
             Unk_ov94_02246AC0.unk_140,
@@ -782,9 +781,9 @@ void GTSNetworking_SetProfile(const WorldExchangeTrainer *trainer, WorldExchange
     }
 }
 
-static BOOL GTSNetworking_PrepareRequest(const u8 *param0, const void *param1, int param2, void *param3, int param4)
+static BOOL GTSNetworking_PrepareRequest(const u8 *url, const void *param1, int param2, void *param3, int param4)
 {
-    switch (HTTP_PrepareRequest(param0, Unk_ov94_02246AC0.unk_08, param1, param2, (u8 *)param3, param4)) {
+    switch (HTTP_PrepareRequest(url, Unk_ov94_02246AC0.unk_08, param1, param2, (u8 *)param3, param4)) {
     case 0:
         return TRUE;
         break;

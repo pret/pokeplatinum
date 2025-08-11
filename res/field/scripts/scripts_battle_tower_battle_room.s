@@ -19,7 +19,7 @@ _0035:
     End
 
 _0037:
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     GoToIfEq VAR_UNK_0x40D9, 3, _004A
     End
 

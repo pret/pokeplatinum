@@ -5,14 +5,12 @@
 #include <string.h>
 
 #include "constants/gts.h"
-#include "constants/location.h"
 #include "constants/savedata/savedata.h"
 #include "generated/game_records.h"
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/wi_fi_history.h"
 
@@ -23,13 +21,13 @@
 #include "overlay094/screens/main_menu.h"
 #include "overlay094/screens/select_pokemon.h"
 #include "overlay094/screens/wfc_init.h"
-#include "overlay094/struct_ov94_0223BA88.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
+#include "global_trade.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -46,7 +44,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "unk_0202CC64.h"
-#include "unk_0202DA40.h"
 #include "unk_0202F180.h"
 #include "unk_020366A0.h"
 #include "unk_02038F8C.h"
@@ -56,6 +53,7 @@
 #include "vars_flags.h"
 
 #include "res/text/bank/gts.h"
+#include "res/text/bank/location_names.h"
 
 static void GTSApplication_NetworkHandler_InitBackground(BgConfig *bgConfig);
 static void GTSApplication_NetworkHandler_CleanupBackground(BgConfig *bgConfig);
@@ -192,122 +190,110 @@ int GTSApplication_NetworkHandler_Exit(GTSApplicationState *appState, int unused
 
 static void GTSApplication_NetworkHandler_InitBackground(BgConfig *bgConfig)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D,
-        };
+    GraphicsModes graphicsModes = {
+        .displayMode = GX_DISPMODE_GRAPHICS,
+        .mainBgMode = GX_BGMODE_0,
+        .subBgMode = GX_BGMODE_0,
+        .bg0As2DOr3D = GX_BG0_AS_2D,
+    };
 
-        SetAllGraphicsModes(&v0);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v1, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &main0Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v2, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &main1Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xe800,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main2Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xe800,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &v3, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &main2Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
 
-    {
-        BgTemplate v4 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate sub0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &v4, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &sub0Template, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-    {
-        BgTemplate v5 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_256,
-            .screenBase = GX_BG_SCRBASE_0xe000,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate sub1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_256,
+        .screenBase = GX_BG_SCRBASE_0xe000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &v5, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &sub1Template, BG_TYPE_STATIC);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
 static void GTSApplication_NetworkHandler_CleanupBackground(BgConfig *appState)
@@ -323,15 +309,15 @@ static void GTSApplication_NetworkHandler_InitGraphics(GTSApplicationState *appS
 {
     BgConfig *bgConfig = appState->bgConfig;
 
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 0, 0, 0, 16 * 3 * 2, HEAP_ID_62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 0, 0, 0, PALETTE_SIZE_BYTES * 3, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_62);
     LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
     LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
 
     if (appState->hasAvatarFinishedMoving == FALSE) {
-        Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
-        Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_0, FALSE);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, FALSE);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, FALSE);
     }
 
     if (appState->previousScreen == 9) {
@@ -390,7 +376,7 @@ static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState
         appState->currentScreenInstruction = 29;
         break;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     GTSApplicationState_AddWaitDial(appState);
@@ -907,8 +893,8 @@ static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationS
         GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
         appState->currentScreenInstruction = 36;
         break;
-    case GTS_SCREEN_SUMMARY:
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SUMMARY, 3);
+    case GTS_SCREEN_LISTING:
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_LISTING, 3);
         appState->currentScreenInstruction = 36;
         break;
     }
@@ -1270,7 +1256,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
         u8 friendship = BASE_FRIENDSHIP_VALUE;
 
         if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-            if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_HATCH_LOCATION, NULL) == LOCATION_HALL_OF_ORIGIN) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+            if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_HATCH_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
                 VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
                 if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1315,7 +1301,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
     }
 
     if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_HATCH_LOCATION, NULL) == LOCATION_HALL_OF_ORIGIN) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_HATCH_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
             VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
             if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1324,10 +1310,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         }
     }
 
-    {
-        u8 friendship = BASE_FRIENDSHIP_VALUE;
-        Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
-    }
+    u8 friendship = BASE_FRIENDSHIP_VALUE;
+    Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
 
     Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
 
@@ -1358,7 +1342,7 @@ static void GTS_SetTradedTimestamp(GlobalTrade *globalTrade, int type)
 
     DWC_GetDateTime(&currentDate, &unused);
 
-    timestamp = Date_ConvertToInteger(&currentDate);
+    timestamp = Date_Encode(&currentDate);
 
     if (type == GTS_TIMESTAMPS_TRADE_BY_SEARCHING) {
         GlobalTrade_SetSearchTradeDatestamp(globalTrade, timestamp);

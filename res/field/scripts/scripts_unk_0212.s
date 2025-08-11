@@ -159,7 +159,7 @@ _01D4:
     End
 
 _01E3:
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     Return
 
 _01E9:

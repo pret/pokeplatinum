@@ -112,16 +112,16 @@ int GTSApplication_InitWFC_Init(GTSApplicationState *appState, int unused1)
     GTSApplication_WFCInit_InitGraphics(appState);
     GTSApplication_WFCInit_InitText(appState);
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, TRUE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, TRUE);
     sub_02038438(appState->playerData->saveData);
 
     ov94_02245934(appState);
 
     if (!DWC_CheckInet()) {
-        if (appState->playerData->unk_40) {
+        if (appState->playerData->connectToWiFi) {
             GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
             GTSApplication_SetCurrentAndNextScreenInstruction(appState, 12, 2);
             GTSApplicationState_AddWaitDial(appState);
@@ -174,91 +174,83 @@ int GTSApplication_WFCInit_Exit(GTSApplicationState *appState, int param1)
 
 static void GTSApplication_WFCInit_InitBackground(BgConfig *bgConfig)
 {
-    {
-        BgTemplate v0 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf800,
-            .charBase = GX_BG_CHARBASE_0x00000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &v0, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &main0Template, BG_TYPE_STATIC);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate main1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &v1, 0);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &main1Template, BG_TYPE_STATIC);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
 
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xf000,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate sub0Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xf000,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &v2, 0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &sub0Template, BG_TYPE_STATIC);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, FALSE);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0xd800,
-            .charBase = GX_BG_CHARBASE_0x08000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate sub1Template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0xd800,
+        .charBase = GX_BG_CHARBASE_0x08000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &v3, 0);
-        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_1, &sub1Template, BG_TYPE_STATIC);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, FALSE);
 
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, FALSE);
 }
 
 static void GTSApplication_WFCInit_CleanupBackground(BgConfig *bgConfig)
@@ -271,37 +263,37 @@ static void GTSApplication_WFCInit_CleanupBackground(BgConfig *bgConfig)
 
 static void GTSApplication_WFCInit_InitGraphics(GTSApplicationState *appState)
 {
-    BgConfig *v0 = appState->bgConfig;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_62);
+    BgConfig *bgConfig = appState->bgConfig;
+    NARC *narc = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_62);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, HEAP_ID_62);
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(narc, 3, PAL_LOAD_MAIN_BG, 0, 0, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(narc, 3, PAL_LOAD_SUB_BG, 0, 0, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, HEAP_ID_62);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_0, 1, 10, Options_Frame(appState->playerData->options), HEAP_ID_62);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 2, bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 5, bgConfig, BG_LAYER_MAIN_1, 0, 32 * 24 * 2, FALSE, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 10, bgConfig, BG_LAYER_SUB_1, 0, 0, FALSE, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 11, bgConfig, BG_LAYER_SUB_1, 0, 32 * 24 * 2, FALSE, HEAP_ID_62);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
-    inline_ov61_0222C3B0(&appState->unk_11B4, v1, 4, HEAP_ID_62);
+    inline_ov61_0222C3B0(&appState->unk_11B4, narc, 4, HEAP_ID_62);
 
-    NARC_dtor(v1);
+    NARC_dtor(narc);
 }
 
 static void GTSApplication_WFCInit_InitText(GTSApplicationState *appState)
 {
-    Window_Add(appState->bgConfig, &appState->unk_F8C, 0, 4, 4, 23, 16, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
+    Window_Add(appState->bgConfig, &appState->unk_F8C, BG_LAYER_MAIN_0, 4, 4, 23, 16, 13, ((1 + (18 + 12)) + 9) + 27 * 4);
     Window_FillTilemap(&appState->unk_F8C, 0x0);
-    Window_Add(appState->bgConfig, &appState->unk_F7C, 0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
+    Window_Add(appState->bgConfig, &appState->unk_F7C, BG_LAYER_MAIN_0, 4, 1, 24, 2, 13, (((1 + (18 + 12)) + 9) + 27 * 4) + 23 * 16);
     Window_FillTilemap(&appState->unk_F7C, 0x0);
 
     ov94_022458CC(&appState->unk_F7C, appState->title, 0, 1, 1, TEXT_COLOR(15, 14, 0));
 
-    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, 0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
+    Window_Add(appState->bgConfig, &appState->bottomInstructionWindow, BG_LAYER_MAIN_0, 2, 19, 27, 4, 13, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0x0);
 }
 
@@ -341,8 +333,8 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
 {
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (menuInput != 0xffffffff) { // BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX
-        if (menuInput == 0xfffffffe) { // BATTLE_SUB_MENU_CURSOR_BACK_INDEX
+    if (menuInput != MENU_NOTHING_CHOSEN) {
+        if (menuInput == MENU_CANCELED) {
             sub_0203848C(); // free the network lock?
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
             appState->currentScreenInstruction = 11;
@@ -368,8 +360,8 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
 {
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (menuInput != 0xffffffff) { // BATTLE_SUB_MENU_CURSOR_NO_MOVEMENT_INDEX
-        if (menuInput == 0xfffffffe) { // BATTLE_SUB_MENU_CURSOR_BACK_INDEX
+    if (menuInput != MENU_NOTHING_CHOSEN) {
+        if (menuInput == MENU_CANCELED) {
             if (!DWC_CheckInet()) {
                 appState->currentScreenInstruction = 0;
             } else {
@@ -508,46 +500,44 @@ static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appSt
     case DWC_NASLOGIN_STATE_DIRTY:
         GTSApplicationState_DestroyWaitDial(appState);
 
-        {
-            int v0;
-            DWCErrorType v1;
-            DWCError v2;
+        int v0;
+        DWCErrorType v1;
+        DWCError v2;
 
-            v2 = DWC_GetLastErrorEx(&v0, &v1);
+        v2 = DWC_GetLastErrorEx(&v0, &v1);
 
-            appState->unk_40 = v2;
-            appState->unk_44 = v0;
+        appState->unk_40 = v2;
+        appState->unk_44 = v0;
 
-            DWC_ClearError();
-            DWC_CleanupInet();
+        DWC_ClearError();
+        DWC_CleanupInet();
 
+        appState->currentScreenInstruction = 23;
+
+        switch (v1) {
+        case DWC_ETYPE_LIGHT:
+        case DWC_ETYPE_SHOW_ERROR:
             appState->currentScreenInstruction = 23;
+            break;
+        case DWC_ETYPE_SHUTDOWN_GHTTP:
+            DWC_ShutdownGHTTP();
+            appState->currentScreenInstruction = 23;
+            break;
+        case DWC_ETYPE_DISCONNECT:
+            appState->currentScreenInstruction = 23;
+            break;
+        case DWC_ETYPE_SHUTDOWN_FM:
+            DWC_ShutdownFriendsMatch();
+            appState->currentScreenInstruction = 23;
+            break;
+        case DWC_ETYPE_SHUTDOWN_ND:
+        case DWC_ETYPE_FATAL:
+            NetworkError_DisplayGTSCriticalError();
+            break;
+        }
 
-            switch (v1) {
-            case DWC_ETYPE_LIGHT:
-            case DWC_ETYPE_SHOW_ERROR:
-                appState->currentScreenInstruction = 23;
-                break;
-            case DWC_ETYPE_SHUTDOWN_GHTTP:
-                DWC_ShutdownGHTTP();
-                appState->currentScreenInstruction = 23;
-                break;
-            case DWC_ETYPE_DISCONNECT:
-                appState->currentScreenInstruction = 23;
-                break;
-            case DWC_ETYPE_SHUTDOWN_FM:
-                DWC_ShutdownFriendsMatch();
-                appState->currentScreenInstruction = 23;
-                break;
-            case DWC_ETYPE_SHUTDOWN_ND:
-            case DWC_ETYPE_FATAL:
-                NetworkError_DisplayGTSCriticalError();
-                break;
-            }
-
-            if ((v0 < -20000) && (v0 >= -29999)) {
-                appState->currentScreenInstruction = 23;
-            }
+        if ((v0 < -20000) && (v0 >= -29999)) {
+            appState->currentScreenInstruction = 23;
         }
         break;
     }
@@ -946,17 +936,17 @@ void ov94_02245934(GTSApplicationState *appState)
 
 static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId)
 {
-    Strbuf *v0 = Strbuf_Init(16 * 8 * 2, HEAP_ID_62);
+    Strbuf *fmtString = Strbuf_Init(16 * 8 * 2, HEAP_ID_62);
 
-    MessageLoader_GetStrbuf(appState->unk0695MessageLoader, messageId, v0);
-    StringTemplate_Format(appState->stringTemplate, appState->shortErrorBuffer, v0);
+    MessageLoader_GetStrbuf(appState->unk0695MessageLoader, messageId, fmtString);
+    StringTemplate_Format(appState->stringTemplate, appState->shortErrorBuffer, fmtString);
 
     Window_FillTilemap(&appState->unk_F8C, 15);
     Window_DrawStandardFrame(&appState->unk_F8C, 1, 1 + (18 + 12), 11);
 
     appState->textPrinter = Text_AddPrinterWithParams(&appState->unk_F8C, FONT_MESSAGE, appState->shortErrorBuffer, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
-    Strbuf_Free(v0);
+    Strbuf_Free(fmtString);
 }
 
 static void GTSApplication_WFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int visibleErrorCode)

@@ -36,7 +36,7 @@ _008E:
     End
 
 _0090:
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     ScrCmd_06B 8, 0, 0
     Return
 

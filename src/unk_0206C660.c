@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "overlay006/npc_trade.h"
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay095/ov95_02246C20.h"
 
 #include "field_task.h"
@@ -19,7 +19,7 @@ typedef struct {
     NpcTradeData *unk_00;
     u32 unk_04;
     int unk_08;
-    NpcTradeAnimationConfig unk_0C;
+    NpcTradeAnimationTemplate unk_0C;
     Pokemon *unk_24;
     Pokemon *unk_28;
 } UnkStruct_0206C660;

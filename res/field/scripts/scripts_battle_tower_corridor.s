@@ -15,7 +15,7 @@ _0010:
     End
 
 _001F:
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     Return
 
 _0025:
@@ -43,7 +43,7 @@ _008E:
     ScrCmd_169 77
     ApplyMovement 0, _0140
     WaitMovement
-    ShowMapObj MAP_OBJ_PLAYER_AVATAR
+    ShowMapObj LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _014C
     WaitMovement
     ScrCmd_16C 77

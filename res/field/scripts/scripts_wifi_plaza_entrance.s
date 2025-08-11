@@ -72,7 +72,7 @@ _00D9:
     ScrCmd_2F7 VAR_0x8004
     ReturnToField
     SetVar VAR_UNK_0x4080, 1
-    HideMapObj MAP_OBJ_PLAYER_AVATAR
+    HideMapObj LOCALID_PLAYER
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
