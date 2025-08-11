@@ -33,7 +33,7 @@ typedef struct {
     Strbuf *unk_4C;
     PaletteData *unk_50;
     UnkStruct_02012744 *unk_54;
-    PokemonSpriteData pokemonSpriteRefs[4];
+    PokemonSpriteData pokemonSpriteDataArray[4];
     PokemonSpriteData pokemonSpriteData;
     ManagedSprite *unk_A8[3];
     ManagedSprite *unk_B4[3];

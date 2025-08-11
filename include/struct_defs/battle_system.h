@@ -86,7 +86,7 @@ struct BattleSystem {
     UnkStruct_ov10_0221F800 *unk_1C0;
     PokemonAnimationSys *pokemonAnimationSys;
     NNSG2dCellTransferState *cellTransferState;
-    PokemonSpriteData pokemonSpriteRefs[4];
+    PokemonSpriteData pokemonSpriteDataArray[4];
     BattleRecords unusedBattleRecords;
     GameRecords *records;
     u8 *unk_21C;

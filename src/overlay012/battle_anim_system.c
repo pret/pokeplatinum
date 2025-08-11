@@ -3953,7 +3953,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
     {
         for (v0 = 0; v0 < 4; v0++) {
             v2->unk_24[v0] = NULL;
-            v2->pokemonSpriteRefs[v0] = ov16_0223F2AC(battleSys, v0);
+            v2->pokemonSpriteDataArray[v0] = ov16_0223F2AC(battleSys, v0);
         }
 
         ov16_0223F87C(battleSys, &(v2->unk_44[0]));
@@ -4013,9 +4013,9 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
             v9[4] = 0;
             v9[5] = 0;
 
-            v6 = v2->pokemonSpriteRefs[v5]->narcID;
-            v7 = v2->pokemonSpriteRefs[v5]->palette;
-            v8 = v2->pokemonSpriteRefs[v5]->unk_00;
+            v6 = v2->pokemonSpriteDataArray[v5]->narcID;
+            v7 = v2->pokemonSpriteDataArray[v5]->palette;
+            v8 = v2->pokemonSpriteDataArray[v5]->unk_00;
 
             {
                 int v11;

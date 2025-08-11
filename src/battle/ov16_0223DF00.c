@@ -400,7 +400,7 @@ u16 *ov16_0223E0BC(BattleSystem *battleSystem)
 
 PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSystem)
 {
-    return &battleSystem->pokemonSpriteRefs[0];
+    return &battleSystem->pokemonSpriteDataArray[0];
 }
 
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSystem)
@@ -1287,31 +1287,31 @@ void Battle_SetWaitDial(BattleSystem *battleSystem, WaitDial *waitDial)
 
 PokemonSpriteData *ov16_0223F2AC(BattleSystem *battleSystem, int idx)
 {
-    return &battleSystem->pokemonSpriteRefs[idx];
+    return &battleSystem->pokemonSpriteDataArray[idx];
 }
 
-u8 *ov16_0223F2B8(PokemonSpriteData *pokemonSpriteData, int index)
+u8 *ov16_0223F2B8(PokemonSpriteData *pokemonSpriteData, int idx)
 {
-    GF_ASSERT(index < 4);
-    return pokemonSpriteData[index].unk_00;
+    GF_ASSERT(idx < 4);
+    return pokemonSpriteData[idx].unk_00;
 }
 
-void PokemonSpriteData_setNarcID(PokemonSpriteData *pokemonSpriteData, int index, int value)
+void PokemonSpriteData_setNarcID(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
-    GF_ASSERT(index < 4);
-    pokemonSpriteData[index].narcID = value;
+    GF_ASSERT(idx < 4);
+    pokemonSpriteData[idx].narcID = value;
 }
 
-void PokemonSpriteData_setPalette(PokemonSpriteData *pokemonSpriteData, int index, int value)
+void PokemonSpriteData_setPalette(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
-    GF_ASSERT(index < 4);
-    pokemonSpriteData[index].palette = value;
+    GF_ASSERT(idx < 4);
+    pokemonSpriteData[idx].palette = value;
 }
 
-void PokemonSpriteData_setYOffset(PokemonSpriteData *pokemonSpriteData, int index, int value)
+void PokemonSpriteData_setYOffset(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
-    GF_ASSERT(index < 4);
-    pokemonSpriteData[index].yOffset = value;
+    GF_ASSERT(idx < 4);
+    pokemonSpriteData[idx].yOffset = value;
 }
 
 void ov16_0223F314(BattleSystem *battleSystem, int param1)

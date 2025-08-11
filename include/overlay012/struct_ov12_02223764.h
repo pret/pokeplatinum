@@ -13,7 +13,7 @@ typedef struct {
     UnkStruct_ov12_02223764_sub1 unk_08;
     int unk_14[4];
     ManagedSprite *unk_24[4];
-    PokemonSpriteData *pokemonSpriteRefs[4];
+    PokemonSpriteData *pokemonSpriteDataArray[4];
     u8 unk_44[4];
     PokemonSprite *unk_48[4];
 } UnkStruct_ov12_02223764;

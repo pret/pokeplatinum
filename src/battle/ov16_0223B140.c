@@ -547,7 +547,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (idx = 0; idx < 4; idx++) {
-        battleSys->pokemonSpriteRefs[idx].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
+        battleSys->pokemonSpriteDataArray[idx].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -744,7 +744,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->unk_19C = battleSystem->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        Heap_Free(battleSystem->pokemonSpriteRefs[battlerId].unk_00);
+        Heap_Free(battleSystem->pokemonSpriteDataArray[battlerId].unk_00);
     }
 
     Heap_Free(battleSystem->msgBuffer);

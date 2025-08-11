@@ -27,7 +27,7 @@ typedef struct {
     StringTemplate *unk_3C;
     Strbuf *unk_40;
     PaletteData *unk_44;
-    PokemonSpriteData pokemonSpriteRefs[4];
+    PokemonSpriteData pokemonSpriteDataArray[4];
     ManagedSprite *unk_88[8];
     UnkStruct_ov17_0223F6E8 unk_A8;
     u8 unk_C4;

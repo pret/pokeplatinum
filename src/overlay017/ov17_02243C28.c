@@ -680,7 +680,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
 
         battlerContext.bgConfig = v0->unk_00->unk_0C.unk_24;
         battlerContext.paletteData = v0->unk_00->unk_0C.unk_50;
-        battlerContext.pokemonSpriteData[0] = &v0->unk_00->unk_0C.pokemonSpriteRefs[v0->unk_0D];
+        battlerContext.pokemonSpriteData[0] = &v0->unk_00->unk_0C.pokemonSpriteDataArray[v0->unk_0D];
         battlerContext.pokemonSpriteData[1] = &v0->unk_00->unk_0C.pokemonSpriteData;
 
         for (v5 = 0; v5 < 4; v5++) {
