@@ -153,9 +153,9 @@ void ov16_0223F290(BattleSystem *battleSystem, int param1);
 WaitDial *Battle_GetWaitDial(BattleSystem *battleSystem);
 void Battle_SetWaitDial(BattleSystem *battleSystem, WaitDial *waitDial);
 u8 *ov16_0223F2B8(PokemonSpriteData *param0, int param1);
-void PokemonSpriteData_setNarcID(PokemonSpriteData *param0, int param1, int param2);
-void PokemonSpriteData_setPalette(PokemonSpriteData *param0, int param1, int param2);
-void PokemonSpriteData_setYOffset(PokemonSpriteData *param0, int param1, int param2);
+void PokemonSpriteData_SetNarcID(PokemonSpriteData *param0, int param1, int param2);
+void PokemonSpriteData_SetPalette(PokemonSpriteData *param0, int param1, int param2);
+void PokemonSpriteData_SetYOffset(PokemonSpriteData *param0, int param1, int param2);
 void ov16_0223F314(BattleSystem *battleSystem, int param1);
 void ov16_0223F320(BattleSystem *battleSystem, u8 *param1);
 void ov16_0223F32C(BattleSystem *battleSystem, u8 *param1);
@@ -1296,19 +1296,19 @@ u8 *ov16_0223F2B8(PokemonSpriteData *pokemonSpriteData, int idx)
     return pokemonSpriteData[idx].unk_00;
 }
 
-void PokemonSpriteData_setNarcID(PokemonSpriteData *pokemonSpriteData, int idx, int value)
+void PokemonSpriteData_SetNarcID(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
     GF_ASSERT(idx < 4);
     pokemonSpriteData[idx].narcID = value;
 }
 
-void PokemonSpriteData_setPalette(PokemonSpriteData *pokemonSpriteData, int idx, int value)
+void PokemonSpriteData_SetPalette(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
     GF_ASSERT(idx < 4);
     pokemonSpriteData[idx].palette = value;
 }
 
-void PokemonSpriteData_setYOffset(PokemonSpriteData *pokemonSpriteData, int idx, int value)
+void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
     GF_ASSERT(idx < 4);
     pokemonSpriteData[idx].yOffset = value;

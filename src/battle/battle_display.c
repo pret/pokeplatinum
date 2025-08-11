@@ -5644,9 +5644,9 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
     }
 
     sub_02013750(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, 0, v3, param2->spindaSpots);
-    PokemonSpriteData_setNarcID(ov16_0223E0C8(battleSys), param10, param2->narcID);
-    PokemonSpriteData_setPalette(ov16_0223E0C8(battleSys), param10, param2->palette);
-    PokemonSpriteData_setYOffset(ov16_0223E0C8(battleSys), param10, param6);
+    PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param10, param2->narcID);
+    PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param10, param2->palette);
+    PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param10, param6);
 
     v0 = PokemonSpriteManager_CreateSpriteAtIndex(param1, param2, param3, param4 + param6, param5, param10, param10, param11, param12);
 
