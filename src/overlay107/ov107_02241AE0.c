@@ -754,14 +754,14 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
 
         if (gSystem.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_16 == 0) {
-                ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, (NELEMS(Unk_ov107_02249FF0)) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
+                ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, (NELEMS(Unk_ov107_02249FF0))-1, 1, PAD_KEY_DOWN, NULL, NULL);
                 ListMenu_Draw(param0->unk_198);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov107_0224379C(param0, &param0->unk_50[6], 28, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            if (param0->unk_16 == ((NELEMS(Unk_ov107_02249FF0)) - 1)) {
+            if (param0->unk_16 == ((NELEMS(Unk_ov107_02249FF0))-1)) {
                 ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
                 ListMenu_Draw(param0->unk_198);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
