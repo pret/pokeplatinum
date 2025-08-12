@@ -935,6 +935,7 @@ static void sub_02084920(GameWindowLayout *param0, int *param1)
     sub_02084808(param0, param1);
 }
 
+// fly?
 static void sub_02084938(GameWindowLayout *param0, int *param1)
 {
     param0->partyManagementData->menuSelectionResult = 12;

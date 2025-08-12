@@ -47,7 +47,7 @@ void sub_0207CB2C(UnkStruct_0207CB08 *param0, SaveData *saveData, u8 param2, voi
     sub_0207CB24(param0, param2);
     param0->saveData = saveData;
     param0->unk_6C = param3;
-    param0->unk_66 = 0;
+    param0->item = 0;
 }
 
 void sub_0207CB48(UnkStruct_0207CB08 *param0, BagItem *param1, u8 param2, u8 param3)
@@ -66,9 +66,9 @@ void sub_0207CB6C(UnkStruct_0207CB08 *param0, void *param1)
     param0->unk_70 = param1;
 }
 
-void sub_0207CB70(UnkStruct_0207CB08 *param0, u8 param1)
+void UnkStruct_0207CB08_SetSelectedMonSlot(UnkStruct_0207CB08 *param0, u8 param1)
 {
-    param0->unk_74 = param1;
+    param0->selectedMonSlot = param1;
 }
 
 void sub_0207CB78(UnkStruct_0207CB08 *param0, u16 mapLoadType)
@@ -76,9 +76,9 @@ void sub_0207CB78(UnkStruct_0207CB08 *param0, u16 mapLoadType)
     param0->mapLoadType = mapLoadType;
 }
 
-u16 sub_0207CB94(UnkStruct_0207CB08 *param0)
+u16 UnkStruct_0207CB08_GetItem(UnkStruct_0207CB08 *param0)
 {
-    return param0->unk_66;
+    return param0->item;
 }
 
 u16 sub_0207CB9C(UnkStruct_0207CB08 *param0)
@@ -86,9 +86,9 @@ u16 sub_0207CB9C(UnkStruct_0207CB08 *param0)
     return param0->unk_68;
 }
 
-u8 sub_0207CBA4(UnkStruct_0207CB08 *param0)
+u8 UnkStruct_0207CB08_GetSelectedMonSlot(UnkStruct_0207CB08 *param0)
 {
-    return param0->unk_74;
+    return param0->selectedMonSlot;
 }
 
 u8 sub_0207CBAC(UnkStruct_0207CB08 *param0)
@@ -171,13 +171,13 @@ BOOL sub_0207CC10(SaveData *saveData, Strbuf *param1, u16 param2, u32 heapID)
     return 1;
 }
 
-void sub_0207CD34(void *param0, Strbuf *param1, u16 param2, u32 param3, u32 heapID)
+void GetItemUseErrorMessage(void *param0, Strbuf *param1, u16 param2, u32 error, u32 heapID)
 {
     MessageLoader *v0;
     StringTemplate *v1;
     Strbuf *v2;
 
-    switch (param3) {
+    switch (error) {
     case 1:
         v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, heapID);
         MessageLoader_GetStrbuf(v0, 56, param1);

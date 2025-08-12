@@ -17,7 +17,6 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "struct_defs/struct_02068630.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -25,7 +24,6 @@
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
-#include "functypes/funcptr_0203BC5C.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
@@ -43,6 +41,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "item_use_functions.h"
 #include "journal.h"
 #include "mail.h"
 #include "map_header.h"
@@ -82,7 +81,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
-#include "unk_020683F4.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"
 #include "unk_0207AE68.h"
@@ -1019,7 +1017,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     Heap_Free(menu->taskData);
 
     switch (partyMan->menuSelectionResult) {
-    case 1: {
+    case 1: { // normal summary
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = SaveData_GetParty(fieldSystem->saveData);
@@ -1041,7 +1039,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         menu->taskData = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
-    case 4: {
+    case 4: { // may be for learning moves from item
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = SaveData_GetParty(fieldSystem->saveData);
@@ -1068,7 +1066,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         menu->taskData = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
-    case 5: {
+    case 5: { // may be for learning moves naturally
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = SaveData_GetParty(fieldSystem->saveData);
@@ -1176,7 +1174,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         FieldMoveTaskContext v16;
         FieldMovePokemon fieldMoveMon;
 
-        fieldMoveMon.fieldMove = partyMan->menuSelectionResult - 11;
+        fieldMoveMon.fieldMove = partyMan->menuSelectionResult - 11; //
         fieldMoveMon.fieldMonId = partyMan->selectedMonSlot;
         fieldMoveMon.fieldTask = taskMan;
 
@@ -1192,9 +1190,9 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
             menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
 
             if (partyMan->selectedMonSlot >= 6) {
-                sub_0207CB70(menu->taskData, 0);
+                UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, 0);
             } else {
-                sub_0207CB70(menu->taskData, partyMan->selectedMonSlot);
+                UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, partyMan->selectedMonSlot);
             }
 
             sub_0203B674(menu, sub_0203BC5C);
@@ -1230,7 +1228,7 @@ static BOOL StartMenu_Bag(FieldTask *taskMan)
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
-    sub_0207CB70(menu->taskData, 0);
+    UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, 0);
     menu->callback = sub_0203BC5C;
 
     FieldSystem_SaveStateIfCommunicationOff(fieldSystem);
@@ -1249,19 +1247,19 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
     switch (sub_0207CB9C(v2)) {
     case 0: {
-        UnkFuncPtr_0203BC5C v3;
-        UnkStruct_02068630 v4;
+        ItemMenuUseFunc v3;
+        ItemMenuUseContext v4;
         s32 v5;
 
-        v4.unk_04 = sub_0207CB94(v2);
-        v4.unk_06 = sub_0207CBA4(v2);
-        v4.unk_00 = taskMan;
-        v5 = Item_LoadParam(v4.unk_04, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_FIELDMAP);
-        v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
+        v4.item = UnkStruct_0207CB08_GetItem(v2);
+        v4.selectedMonSlot = UnkStruct_0207CB08_GetSelectedMonSlot(v2);
+        v4.fieldTask = taskMan;
+        v5 = Item_LoadParam(v4.item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_FIELDMAP);
+        v3 = (ItemMenuUseFunc)GetItemUseFunction(USE_ITEM_TASK_MENU, v5);
         v3(&v4, &menu->unk_230);
     } break;
     case 1:
-        sub_0203C2D8(taskMan, sub_0207CB94(v2));
+        sub_0203C2D8(taskMan, UnkStruct_0207CB08_GetItem(v2));
         break;
     case 2: {
         PartyManagementData *partyMan;
@@ -1276,7 +1274,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         partyMan->fieldMoveContext = &menu->fieldMoveContext;
         partyMan->unk_21 = 0;
         partyMan->unk_20 = 9;
-        partyMan->usedItemID = sub_0207CB94(v2);
+        partyMan->usedItemID = UnkStruct_0207CB08_GetItem(v2);
         partyMan->fieldSystem = fieldSystem;
 
         FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
@@ -1286,7 +1284,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
     case 4: {
         Party *party = SaveData_GetParty(fieldSystem->saveData);
         u32 v9 = *(u32 *)menu->unk_260;
-        u16 item = sub_0207CB94(v2);
+        u16 item = UnkStruct_0207CB08_GetItem(v2);
         Pokemon *v8 = Party_GetPokemonBySlotIndex(party, v9);
 
         Heap_Free(menu->unk_260);
@@ -1311,7 +1309,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
             partyMan->fieldMoveContext = &menu->fieldMoveContext;
             partyMan->unk_21 = 0;
-            partyMan->usedItemID = sub_0207CB94(v2);
+            partyMan->usedItemID = UnkStruct_0207CB08_GetItem(v2);
             partyMan->selectedMonSlot = (u8)v9;
             partyMan->fieldSystem = fieldSystem;
 
@@ -1880,7 +1878,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
         {
             u32 v2 = *((u32 *)menu->unk_260);
 
-            sub_0207CB70(menu->taskData, (u8)v2);
+            UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, (u8)v2);
             Heap_Free(menu->unk_260);
         }
 

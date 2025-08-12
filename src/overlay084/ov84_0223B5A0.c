@@ -10,7 +10,6 @@
 #include "struct_defs/struct_0207CB08.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "functypes/funcptr_02069238.h"
 #include "overlay084/const_ov84_02241130.h"
 #include "overlay084/funcptr_ov84_0223D730.h"
 #include "overlay084/ov84_0223F040.h"
@@ -28,6 +27,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "item_use_functions.h"
 #include "list_menu.h"
 #include "math_util.h"
 #include "menu.h"
@@ -51,7 +51,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_020393C8.h"
-#include "unk_020683F4.h"
 #include "unk_0207CB08.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
@@ -1261,13 +1260,13 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
         }
 
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        param0->unk_C4->unk_66 = 0;
+        param0->unk_C4->item = 0;
         param0->unk_C4->unk_68 = 5;
         App_StartScreenFade(TRUE, HEAP_ID_6);
         return 3;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        param0->unk_C4->unk_66 = (u16)v0->unk_00[v1].item;
+        param0->unk_C4->item = (u16)v0->unk_00[v1].item;
         param0->unk_48A = (u16)v0->unk_00[v1].quantity;
         return 1;
     }
@@ -1959,7 +1958,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
     u8 v2;
     u8 v3[12];
 
-    v0 = Item_Load(param0->unk_C4->unk_66, 0, 6);
+    v0 = Item_Load(param0->unk_C4->item, 0, 6);
     v1 = 0;
     v2 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08;
 
@@ -1976,11 +1975,11 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
             }
         } else {
             if (Item_Get(v0, 6) != 0) {
-                if ((param0->unk_C4->unk_66 == 450) && (param0->unk_C4->unk_76_0 == 1)) {
+                if ((param0->unk_C4->item == 450) && (param0->unk_C4->unk_76_0 == 1)) {
                     v3[v1] = 1;
                 } else if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 5) {
                     v3[v1] = 2;
-                } else if (param0->unk_C4->unk_66 == 449) {
+                } else if (param0->unk_C4->item == 449) {
                     v3[v1] = 4;
                 } else if ((param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 4) && (sub_02068B50(param0->unk_C4->unk_70) == 1)) {
                     v3[v1] = 3;
@@ -2001,7 +2000,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
             }
         }
         if (Item_Get(v0, 4) != 0) {
-            if (Bag_GetRegisteredItem(param0->unk_C8) == param0->unk_C4->unk_66) {
+            if (Bag_GetRegisteredItem(param0->unk_C8) == param0->unk_C4->item) {
                 v3[v1] = 7;
             } else {
                 v3[v1] = 6;
@@ -2087,19 +2086,19 @@ const u32 ov84_0223D84C(u32 param0)
 
 static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkFuncPtr_02069238 v0;
-    s32 v1;
+    ItemCheckUseFunc v0;
+    s32 itemFunctionIdx;
 
     ov84_0223FD84(param0);
 
-    v1 = Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
-    v0 = (UnkFuncPtr_02069238)sub_020683F4(2, v1);
+    itemFunctionIdx = Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
+    v0 = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemFunctionIdx);
 
     if (v0 != NULL) {
         u32 v2 = v0(param0->unk_C4->unk_70);
 
         if (v2 != 0) {
-            sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, v2, HEAP_ID_6);
+            GetItemUseErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->item, v2, HEAP_ID_6);
             Window_FillTilemap(&param0->unk_04[6], 15);
             Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
             param0->unk_426 = ov84_022400A0(param0);
@@ -2141,14 +2140,14 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
         return 13;
     }
 
-    if (sub_0207CC10(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->unk_66, 6) == 1) {
+    if (sub_0207CC10(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->item, 6) == 1) {
         Window_FillTilemap(&param0->unk_04[6], 15);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
         param0->unk_426 = ov84_022400A0(param0);
         return 12;
     }
 
-    if (ov84_0223DBF4(param0, param0->unk_C4->unk_66) == 1) {
+    if (ov84_0223DBF4(param0, param0->unk_C4->item) == 1) {
         param0->unk_484 = (u32)ov84_0223DDD0;
         return 13;
     }
@@ -2169,7 +2168,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
 {
     switch (param0->unk_483) {
     case 0: {
-        u16 v0 = Item_MoveForTMHM(param0->unk_C4->unk_66);
+        u16 v0 = Item_MoveForTMHM(param0->unk_C4->item);
 
         StringTemplate_SetMoveName(param0->unk_118, 0, v0);
 
@@ -2298,7 +2297,7 @@ static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 
 static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, param0->unk_488, HEAP_ID_6);
+    Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->item, param0->unk_488, HEAP_ID_6);
     ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
     StringList_Free(param0->unk_160);
 
@@ -2364,7 +2363,7 @@ static int ov84_0223DEB8(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
     param0->unk_488 = 1;
-    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, HEAP_ID_6) == 1) {
+    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->item, HEAP_ID_6) == 1) {
         ov84_0223FFF0(param0);
         return 8;
     }
@@ -2451,9 +2450,9 @@ static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
         Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 53);
 
         if (param0->unk_488 == 1) {
-            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
+            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
         } else {
-            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->unk_66);
+            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->item);
         }
 
         StringTemplate_SetNumber(param0->unk_118, 1, param0->unk_488, 3, 0, 1);
@@ -2514,7 +2513,7 @@ static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0)
 
 static int ov84_0223E1E4(UnkStruct_ov84_0223B5A0 *param0)
 {
-    Bag_RegisterItem(param0->unk_C8, param0->unk_C4->unk_66);
+    Bag_RegisterItem(param0->unk_C8, param0->unk_C4->item);
     ListMenu_Draw(param0->unk_15C);
     ov84_0223FD84(param0);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
@@ -2563,12 +2562,12 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            if (Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) {
+            if (Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) {
                 Strbuf *v1;
 
                 Window_FillTilemap(&param0->unk_04[6], 15);
                 Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
-                StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
+                StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
 
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 46);
 
@@ -2631,12 +2630,12 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
             ov84_02240248(param0, 0);
             Window_FillTilemap(&param0->unk_04[6], 15);
             Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
-            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
+            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
             ov84_02240B34(param0, 2);
 
-            param0->unk_48C = Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PRICE, HEAP_ID_6);
+            param0->unk_48C = Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_PRICE, HEAP_ID_6);
 
-            if ((Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) || (param0->unk_48C == 0)) {
+            if ((Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) || (param0->unk_48C == 0)) {
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 74);
                 StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
                 Strbuf_Free(v1);
@@ -2648,7 +2647,7 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
             param0->unk_488 = 1;
             param0->unk_48C >>= 1;
 
-            if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
+            if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->item, 6) == 1) {
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 76);
                 StringTemplate_SetNumber(param0->unk_118, 0, param0->unk_488 * param0->unk_48C, 6, 0, 1);
                 StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
@@ -2788,9 +2787,9 @@ static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
         Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 77);
 
         if (param0->unk_488 > 1) {
-            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->unk_66);
+            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->item);
         } else {
-            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->unk_66);
+            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
         }
 
         StringTemplate_SetNumber(param0->unk_118, 1, param0->unk_488 * param0->unk_48C, 6, 0, 1);
@@ -2887,8 +2886,8 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
 
         if (v0 == 1) {
             if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 0) {
-                if (Item_LoadParam(param0->unk_C4->unk_66, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != 13) {
-                    sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, -1, HEAP_ID_6);
+                if (Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != 13) {
+                    GetItemUseErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->item, -1, HEAP_ID_6);
                     Window_FillTilemap(&param0->unk_04[6], 15);
                     Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
 

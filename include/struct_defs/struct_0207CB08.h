@@ -10,12 +10,12 @@ typedef struct UnkStruct_0207CB08_t {
     UnkStruct_ov84_0223BE5C unk_04[8];
     u8 unk_64;
     u8 unk_65;
-    u16 unk_66;
+    u16 item;
     u16 unk_68;
     u8 padding_6A[2];
     void *unk_6C;
     void *unk_70;
-    u8 unk_74;
+    u8 selectedMonSlot;
     u8 unk_75;
     u16 unk_76_0 : 1;
     u16 mapLoadType : 15;

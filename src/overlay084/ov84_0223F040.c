@@ -430,9 +430,9 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
         Window_FillTilemap(&param0->unk_04[1], 0);
-        ov84_0223F584(param0, param0->unk_C4->unk_66);
+        ov84_0223F584(param0, param0->unk_C4->item);
         Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
-        ov84_02240D5C(param0, param0->unk_C4->unk_66, 1);
+        ov84_02240D5C(param0, param0->unk_C4->item, 1);
     } else {
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[v5], 1, 1024 - 9 - (18 + 12), 12);
         Window_FillTilemap(&param0->unk_04[v5], 15);
@@ -474,7 +474,7 @@ void ov84_0223FD84(UnkStruct_ov84_0223B5A0 *param0)
     StringList_Free(param0->unk_154);
     Window_Remove(&param0->unk_B4[0]);
     Window_FillTilemap(&param0->unk_04[1], 0);
-    ov84_0223F528(param0, param0->unk_C4->unk_66);
+    ov84_0223F528(param0, param0->unk_C4->item);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
     ov84_02240D5C(param0, 0, 0);
 }

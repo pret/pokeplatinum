@@ -26,7 +26,7 @@ typedef struct {
     u32 hideOptionFlags;
     u32 unk_228;
     FieldTaskFunc callback;
-    UnkStruct_020684D0 unk_230;
+    PlayerContextInMap unk_230;
     FieldMoveContext fieldMoveContext;
     void *taskData;
     void *unk_260;

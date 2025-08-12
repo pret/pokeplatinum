@@ -2667,7 +2667,7 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
         break;
     case GIVE_FROM_BAG_SELECT_ITEM:
         if (ApplicationManager_Exec(param0->ApplicationManager)) {
-            item = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
+            item = UnkStruct_0207CB08_GetItem((UnkStruct_0207CB08 *)(param0->unk_214));
 
             ApplicationManager_Free(param0->ApplicationManager);
             Heap_Free(param0->unk_214);

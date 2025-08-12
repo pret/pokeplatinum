@@ -6,15 +6,15 @@
 #include "field/field_system_decl.h"
 
 typedef struct {
-    int unk_00;
-    BOOL unk_04;
-    int unk_08;
-    u16 unk_0C;
-    u16 unk_0E;
+    int mapHeaderID;
+    BOOL hasPartner;
+    int playerState;
+    u16 facingTileBehavior; // behavior of the tile the player is facing
+    u16 currTileBehavior;
     u16 unk_10;
     u8 padding_12[2];
     PlayerAvatar *playerAvatar;
     FieldSystem *fieldSystem;
-} UnkStruct_020684D0;
+} PlayerContextInMap;
 
 #endif // POKEPLATINUM_STRUCT_020684D0_H

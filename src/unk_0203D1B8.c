@@ -279,7 +279,7 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
 }
 
-void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
+void *sub_0203D20C(FieldSystem *fieldSystem, PlayerContextInMap *param1)
 {
     Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
     void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
@@ -326,7 +326,7 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
 u16 sub_0203D2C4(void *param0)
 {
-    u16 v0 = sub_0207CB94(param0);
+    u16 v0 = UnkStruct_0207CB08_GetItem(param0);
 
     if ((v0 != 0) && (sub_0207CB9C(param0) == 5)) {
         GF_ASSERT(0);
