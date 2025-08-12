@@ -3,14 +3,14 @@
 
 #include <nitro/fx/fx.h>
 
-#include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/box_application.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8E00.h"
 
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, SpriteList *param3, NARC *param4);
+BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4);
 void ov19_021D8C1C(UnkStruct_ov19_021D8E00 *param0, NARC *param1);
 void ov19_021D8E84(UnkStruct_ov19_021D8E00 *param0);
 void ov19_021D8F60(UnkStruct_ov19_021D8E00 *param0);
