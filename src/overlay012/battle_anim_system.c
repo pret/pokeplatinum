@@ -466,7 +466,7 @@ BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BB
         system->context->battlerMoveEffects[i] = battlerContext->battlerMoveEffects[i];
     }
 
-    system->battleBgRefs = battlerContext->battleBgRefs;
+    system->battleBgRefs = battlerContext->battleBgRef;
     system->context->chatotCry = battlerContext->chatotCry;
     system->context->bgPaletteBuffer = battlerContext->bgPaletteBuffer;
     system->context->bgTiles = battlerContext->bgTiles;
@@ -1799,7 +1799,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
     enum NarcID narcID = system->context->pokemonSpriteData[battler]->narcID;
     int paletteIndex = system->context->pokemonSpriteData[battler]->palette;
-    charData = system->context->pokemonSpriteData[battler]->unk_00;
+    charData = system->context->pokemonSpriteData[battler]->tiles;
     int form = system->context->battlerForms[battler];
 
     int memberIndex;
@@ -1966,7 +1966,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
     int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
     enum NarcID narcID = system->context->pokemonSpriteData[battler]->narcID;
     int paletteIndex = system->context->pokemonSpriteData[battler]->palette;
-    charData = system->context->pokemonSpriteData[battler]->unk_00;
+    charData = system->context->pokemonSpriteData[battler]->tiles;
     int battlerForm = system->context->battlerForms[battler];
 
     PokemonSprite *battlerSprite = BattleAnimSystem_GetBattlerSprite(system, battler);
@@ -4015,7 +4015,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
 
             v6 = v2->pokemonSpriteDataArray[v5]->narcID;
             v7 = v2->pokemonSpriteDataArray[v5]->palette;
-            v8 = v2->pokemonSpriteDataArray[v5]->unk_00;
+            v8 = v2->pokemonSpriteDataArray[v5]->tiles;
 
             {
                 int v11;

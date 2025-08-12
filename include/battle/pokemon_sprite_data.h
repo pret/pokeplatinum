@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_POKEMON_SPRITE_DATA_H
 #define POKEPLATINUM_POKEMON_SPRITE_DATA_H
 
-typedef struct {
-    u8 *unk_00;
+typedef struct PokemonSpriteData {
+    u8 *tiles;
     int narcID;
     int palette;
     int yOffset;

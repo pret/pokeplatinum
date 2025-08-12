@@ -71,15 +71,15 @@ static void ov17_02247840(SysTask *param0, void *param1);
 void ov17_022476F8(UnkStruct_ov17_022476F8 *param0, int param1)
 {
     if (param0->unk_08[param1] == NULL) {
-        GF_ASSERT(param0->pokemonSpriteDataArray[param1].unk_00 == NULL);
+        GF_ASSERT(param0->pokemonSpriteDataArray[param1].tiles == NULL);
         return;
     }
 
     PokemonSprite_Delete(param0->unk_08[param1]);
-    Heap_Free(param0->pokemonSpriteDataArray[param1].unk_00);
+    Heap_Free(param0->pokemonSpriteDataArray[param1].tiles);
 
     param0->unk_08[param1] = NULL;
-    param0->pokemonSpriteDataArray[param1].unk_00 = NULL;
+    param0->pokemonSpriteDataArray[param1].tiles = NULL;
 }
 
 void ov17_02247734(UnkStruct_ov17_022476F8 *param0)

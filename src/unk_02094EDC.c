@@ -670,8 +670,8 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
     v2 = Pokemon_SpriteYOffset(param2, param3);
 
     if (pokemonSpriteData != NULL) {
-        GF_ASSERT(pokemonSpriteData->unk_00 != NULL);
-        sub_02013610(v0.narcID, v0.character, heapID, pokemonSpriteData->unk_00);
+        GF_ASSERT(pokemonSpriteData->tiles != NULL);
+        sub_02013610(v0.narcID, v0.character, heapID, pokemonSpriteData->tiles);
         pokemonSpriteData->palette = v0.palette;
         pokemonSpriteData->narcID = v0.narcID;
     }

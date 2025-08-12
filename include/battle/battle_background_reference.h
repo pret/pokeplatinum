@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_BACKGROUND_REFERENCE_H
 #define POKEPLATINUM_BATTLE_BACKGROUND_REFERENCE_H
 
-typedef struct {
+typedef struct BattleBackgroundReference {
     int narcID;
     int tilesNarcMemberIdx;
     int paletteNarcMemberIdx;

@@ -6116,12 +6116,12 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAn
     battlerContext.chatotCry = BattleSystem_ChatotVoice(battleSys, param1->battler);
     battlerContext.bgTiles = ov16_0223F1E8(battleSys);
     battlerContext.bgPaletteBuffer = ov16_0223F1F0(battleSys);
-    battlerContext.battleBgRefs.narcID = 7;
-    battlerContext.battleBgRefs.tilesNarcMemberIdx = 3 + BattleSystem_Background(battleSys);
-    battlerContext.battleBgRefs.paletteNarcMemberIdx = 172 + BattleSystem_Background(battleSys) * 3 + ov16_0223EC04(battleSys);
-    battlerContext.battleBgRefs.tilemapNarcMemberIdx = 2;
-    battlerContext.battleBgRefs.paletteDestStart = 0;
-    battlerContext.battleBgRefs.paletteSrcSize = 8;
+    battlerContext.battleBgRef.narcID = 7;
+    battlerContext.battleBgRef.tilesNarcMemberIdx = 3 + BattleSystem_Background(battleSys);
+    battlerContext.battleBgRef.paletteNarcMemberIdx = 172 + BattleSystem_Background(battleSys) * 3 + ov16_0223EC04(battleSys);
+    battlerContext.battleBgRef.tilemapNarcMemberIdx = 2;
+    battlerContext.battleBgRef.paletteDestStart = 0;
+    battlerContext.battleBgRef.paletteSrcSize = 8;
 
     BattleAnimSystem_StartMove(battleAnimSystem, param3, move, &battlerContext);
 }

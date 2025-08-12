@@ -13,7 +13,7 @@
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 
-typedef struct {
+typedef struct BattleAnimBattlerContext {
     SpriteSystem *spriteSystem;
     BgConfig *bgConfig;
     PaletteData *paletteData;
@@ -28,7 +28,7 @@ typedef struct {
     u32 battlerPersonalities[MAX_BATTLERS];
     u32 battlerMoveEffects[MAX_BATTLERS];
     int moveArcID;
-    BattleBackgroundReference battleBgRefs;
+    BattleBackgroundReference battleBgRef;
     ChatotCry *chatotCry;
     u8 *bgTiles;
     u16 *bgPaletteBuffer;

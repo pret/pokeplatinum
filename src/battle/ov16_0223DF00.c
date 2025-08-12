@@ -1293,7 +1293,7 @@ PokemonSpriteData *ov16_0223F2AC(BattleSystem *battleSystem, int idx)
 u8 *ov16_0223F2B8(PokemonSpriteData *pokemonSpriteData, int idx)
 {
     GF_ASSERT(idx < 4);
-    return pokemonSpriteData[idx].unk_00;
+    return pokemonSpriteData[idx].tiles;
 }
 
 void PokemonSpriteData_SetNarcID(PokemonSpriteData *pokemonSpriteData, int idx, int value)

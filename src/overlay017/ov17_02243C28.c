@@ -708,12 +708,12 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         battlerContext.pokemonSprites[1] = v0->unk_00->unk_0C.unk_08[v1];
         battlerContext.battleType = 0;
         battlerContext.moveArcID = 8;
-        battlerContext.battleBgRefs.narcID = 45;
-        battlerContext.battleBgRefs.tilesNarcMemberIdx = 1;
-        battlerContext.battleBgRefs.paletteNarcMemberIdx = 30;
-        battlerContext.battleBgRefs.tilemapNarcMemberIdx = 2;
-        battlerContext.battleBgRefs.paletteDestStart = 0;
-        battlerContext.battleBgRefs.paletteSrcSize = 3;
+        battlerContext.battleBgRef.narcID = 45;
+        battlerContext.battleBgRef.tilesNarcMemberIdx = 1;
+        battlerContext.battleBgRef.paletteNarcMemberIdx = 30;
+        battlerContext.battleBgRef.tilemapNarcMemberIdx = 2;
+        battlerContext.battleBgRef.paletteDestStart = 0;
+        battlerContext.battleBgRef.paletteSrcSize = 3;
         battlerContext.spriteSystem = v0->unk_00->unk_0C.unk_18;
         battlerContext.chatotCry = v0->unk_00->unk_00->unk_14C[v0->unk_0D];
 
