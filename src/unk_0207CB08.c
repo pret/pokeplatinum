@@ -25,73 +25,73 @@ static u32 sub_0207CBE0(SaveData *saveData);
 static u32 sub_0207CBF0(SaveData *saveData);
 static u32 sub_0207CC00(SaveData *saveData);
 
-UnkStruct_0207CB08 *sub_0207CB08(u8 heapID)
+BagInterfaceArguments *sub_0207CB08(u8 heapID)
 {
-    UnkStruct_0207CB08 *v0 = (UnkStruct_0207CB08 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207CB08));
-    memset(v0, 0, sizeof(UnkStruct_0207CB08));
+    BagInterfaceArguments *v0 = (BagInterfaceArguments *)Heap_AllocFromHeap(heapID, sizeof(BagInterfaceArguments));
+    memset(v0, 0, sizeof(BagInterfaceArguments));
     return v0;
 }
 
 u32 sub_0207CB20(void)
 {
-    return sizeof(UnkStruct_0207CB08);
+    return sizeof(BagInterfaceArguments);
 }
 
-void sub_0207CB24(UnkStruct_0207CB08 *param0, u8 param1)
+void sub_0207CB24(BagInterfaceArguments *param0, u8 param1)
 {
-    param0->unk_65 = param1;
+    param0->context = param1;
 }
 
-void sub_0207CB2C(UnkStruct_0207CB08 *param0, SaveData *saveData, u8 param2, void *param3)
+void sub_0207CB2C(BagInterfaceArguments *param0, SaveData *saveData, u8 param2, void *param3)
 {
     sub_0207CB24(param0, param2);
     param0->saveData = saveData;
-    param0->unk_6C = param3;
-    param0->unk_66 = 0;
+    param0->bagCursor = param3;
+    param0->selectedItem = 0;
 }
 
-void sub_0207CB48(UnkStruct_0207CB08 *param0, BagItem *param1, u8 param2, u8 param3)
+void sub_0207CB48(BagInterfaceArguments *param0, BagItem *param1, u8 param2, u8 param3)
 {
-    param0->unk_04[param3].unk_00 = param1;
-    param0->unk_04[param3].unk_08 = param2;
+    param0->accessiblePockets[param3].items = param1;
+    param0->accessiblePockets[param3].pocketType = param2;
 }
 
-void sub_0207CB58(UnkStruct_0207CB08 *param0)
+void sub_0207CB58(BagInterfaceArguments *param0)
 {
     param0->unk_76_0 = 1;
 }
 
-void sub_0207CB6C(UnkStruct_0207CB08 *param0, void *param1)
+void sub_0207CB6C(BagInterfaceArguments *param0, void *param1)
 {
     param0->unk_70 = param1;
 }
 
-void sub_0207CB70(UnkStruct_0207CB08 *param0, u8 param1)
+void sub_0207CB70(BagInterfaceArguments *param0, u8 param1)
 {
     param0->unk_74 = param1;
 }
 
-void sub_0207CB78(UnkStruct_0207CB08 *param0, u16 mapLoadType)
+void sub_0207CB78(BagInterfaceArguments *param0, u16 mapLoadType)
 {
     param0->mapLoadType = mapLoadType;
 }
 
-u16 sub_0207CB94(UnkStruct_0207CB08 *param0)
+u16 sub_0207CB94(BagInterfaceArguments *param0)
 {
-    return param0->unk_66;
+    return param0->selectedItem;
 }
 
-u16 sub_0207CB9C(UnkStruct_0207CB08 *param0)
+u16 sub_0207CB9C(BagInterfaceArguments *param0)
 {
-    return param0->unk_68;
+    return param0->exitCode;
 }
 
-u8 sub_0207CBA4(UnkStruct_0207CB08 *param0)
+u8 sub_0207CBA4(BagInterfaceArguments *param0)
 {
     return param0->unk_74;
 }
 
-u8 sub_0207CBAC(UnkStruct_0207CB08 *param0)
+u8 sub_0207CBAC(BagInterfaceArguments *param0)
 {
     return param0->unk_75;
 }

@@ -29,6 +29,7 @@
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
+#include "overlay084/ov84_0223B5A0.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -1132,7 +1133,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         TrainerInfo *v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         menu->taskData = sub_0207D824(bag, Unk_020EA020, HEAP_ID_FIELDMAP);
 
-        sub_0207CB2C(menu->taskData, fieldSystem->saveData, 1, fieldSystem->bagCursor);
+        sub_0207CB2C(menu->taskData, fieldSystem->saveData, BAG_CONTEXT_GIVE_TO_MON, fieldSystem->bagCursor);
 
         sub_0203D1E4(fieldSystem, menu->taskData);
         sub_0203B674(menu, sub_0203BC5C);
@@ -1242,7 +1243,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
-    UnkStruct_0207CB08 *v2 = sub_0207CB08(HEAP_ID_FIELDMAP);
+    BagInterfaceArguments *v2 = sub_0207CB08(HEAP_ID_FIELDMAP);
 
     memcpy(v2, menu->taskData, sub_0207CB20());
     Heap_Free(menu->taskData);

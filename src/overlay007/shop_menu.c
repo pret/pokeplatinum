@@ -12,6 +12,7 @@
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
+#include "overlay084/ov84_0223B5A0.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -1617,7 +1618,7 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     shopMenu->unk_04 = sub_0207D824(bag, sShop_BagPockets, HEAP_ID_FIELDMAP);
 
-    sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
+    sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, BAG_CONTEXT_SELL_ITEMS, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, shopMenu->unk_04);
     FieldTask_InitJump(task, FieldTask_ShopMisc, shopMenu);
 

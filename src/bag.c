@@ -323,7 +323,7 @@ void Pocket_Sort(BagItem *pocket, const u32 size)
 
 void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID)
 {
-    UnkStruct_0207CB08 *v0;
+    BagInterfaceArguments *v0;
     int i;
 
     v0 = sub_0207CB08(heapID);

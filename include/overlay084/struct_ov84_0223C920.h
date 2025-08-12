@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV84_0223C920_H
 
 typedef struct {
-    u8 unk_00;
-    u8 unk_01;
+    u8 nextPocketIdx;
+    u8 scrollDirection;
     u8 unk_02;
     u8 unk_03;
     u8 unk_04;
