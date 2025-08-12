@@ -627,8 +627,7 @@ const UnkStruct_020EDF0C *const Unk_020EE3A8[] = {
     &Unk_020EE2B8
 };
 
-BOOL(*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])
-(MapObject *) = {
+BOOL (*const *const gMovementActionFuncs[MAX_MOVEMENT_ACTION])(MapObject *) = {
     [MOVEMENT_ACTION_FACE_NORTH] = gMovementActionFuncs_FaceNorth,
     [MOVEMENT_ACTION_FACE_SOUTH] = gMovementActionFuncs_FaceSouth,
     [MOVEMENT_ACTION_FACE_WEST] = gMovementActionFuncs_FaceWest,

@@ -786,8 +786,7 @@ static BOOL ov62_0223ED7C(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-BOOL(*const Unk_ov62_022490DC[])
-(UnkStruct_0208C06C *) = {
+BOOL (*const Unk_ov62_022490DC[])(UnkStruct_0208C06C *) = {
     ov62_0223F19C,
     ov62_0223F218,
     ov62_0223F348,
