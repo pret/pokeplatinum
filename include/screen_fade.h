@@ -3,6 +3,7 @@
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
+#include "generated/fade_types.h"
 
 #include "hardware_window.h"
 #include "system.h"
@@ -23,53 +24,6 @@ enum FadeDirection {
 enum FadeMethod {
     FADE_BY_WINDOW = 0,
     FADE_BY_BRIGHTNESS,
-};
-
-enum FadeType {
-    FADE_TYPE_BRIGHTNESS_OUT = 0,
-    FADE_TYPE_BRIGHTNESS_IN,
-    FADE_TYPE_UNK_2,
-    FADE_TYPE_DOWNWARD_IN,
-    FADE_TYPE_UPWARD_OUT,
-    FADE_TYPE_UNK_5,
-    FADE_TYPE_UNK_6,
-    FADE_TYPE_UNK_7,
-    FADE_TYPE_UNK_8,
-    FADE_TYPE_UNK_9,
-    FADE_TYPE_UNK_10,
-    FADE_TYPE_UNK_11,
-    FADE_TYPE_UNK_12,
-    FADE_TYPE_UNK_13,
-    FADE_TYPE_UNK_14,
-    FADE_TYPE_UNK_15,
-    FADE_TYPE_UNK_16,
-    FADE_TYPE_UNK_17,
-    FADE_TYPE_UNK_18,
-    FADE_TYPE_UNK_19,
-    FADE_TYPE_UNK_20,
-    FADE_TYPE_UNK_21,
-    FADE_TYPE_UNK_22,
-    FADE_TYPE_UNK_23,
-    FADE_TYPE_UNK_24,
-    FADE_TYPE_UNK_25,
-    FADE_TYPE_UNK_26,
-    FADE_TYPE_UNK_27,
-    FADE_TYPE_UNK_28,
-    FADE_TYPE_UNK_29,
-    FADE_TYPE_UNK_30,
-    FADE_TYPE_UNK_31,
-    FADE_TYPE_UNK_32,
-    FADE_TYPE_UNK_33,
-    FADE_TYPE_UNK_34,
-    FADE_TYPE_UNK_35,
-    FADE_TYPE_UNK_36,
-    FADE_TYPE_UNK_37,
-    FADE_TYPE_UNK_38,
-    FADE_TYPE_UNK_39,
-    FADE_TYPE_UNK_40,
-    FADE_TYPE_UNK_41,
-
-    FADE_TYPE_MAX,
 };
 
 enum FadeState {

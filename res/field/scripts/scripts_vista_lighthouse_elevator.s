@@ -17,20 +17,20 @@ _0006:
 _0038:
     SetVar VAR_0x8004, 0
     Call _009C
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_VISTA_LIGHTHOUSE, 0, 6, 10, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
 _006A:
     SetVar VAR_0x8004, 1
     Call _009C
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SUNYSHORE_CITY, 0, 0x376, 0x317, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

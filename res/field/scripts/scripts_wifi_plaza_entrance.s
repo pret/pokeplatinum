@@ -62,7 +62,7 @@ _00D9:
     PlayFanfare SEQ_SE_DP_TELE2
     ApplyMovement LOCALID_PLAYER, _01E8
     WaitMovement
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SetVar VAR_MAP_LOCAL_3, 1
     Warp 0x405C, 0, 5, 2, 1
@@ -73,7 +73,7 @@ _00D9:
     ReturnToField
     SetVar VAR_UNK_0x4080, 1
     HideObject LOCALID_PLAYER
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

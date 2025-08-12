@@ -37,10 +37,10 @@ FootstepHouse_CheckFeelingsAgain:
     GoTo FootstepHouse_FadeScreen
 
 FootstepHouse_FadeScreen:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     WaitTime 40, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     Call _008A
     WaitTime 20, VAR_RESULT

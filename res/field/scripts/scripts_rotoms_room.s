@@ -157,7 +157,7 @@ _02B6:
     BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
     Message RotomsRoom_Text_PokemonEmergedFromTheMotor
     SetRotomForm LOCALID_PARTY_SLOT, 0, 0, ROTOM_FORM_BASE
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     GetPartyMonForm2 LOCALID_PARTY_SLOT, LOCALID_ROTOM_FORM
@@ -173,7 +173,7 @@ _0325:
     GetPlayerMapPos VAR_0x8006, VAR_0x8007
     GetPlayerDir VAR_RESULT
     Warp MAP_HEADER_ROTOMS_ROOM, 0, VAR_0x8006, VAR_0x8007, VAR_RESULT
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -204,13 +204,13 @@ RotomsRoom_AddLawnMower:
 
 RotomsRoom_ChooseARotom:
     Message RotomsRoom_Text_WhichRotomAreYouChoosing
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     SelectMoveTutorPokemon
     GetSelectedPartySlot LOCALID_PARTY_SLOT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq LOCALID_PARTY_SLOT, 0xFF, RotomsRoom_End
     GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_RESULT
@@ -236,13 +236,13 @@ RotomsRoom_GetRotomPartySlot:
 
 _0403:
     Message RotomsRoom_Text_WhichRotomAreYouChoosing
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     SelectMoveTutorPokemon
     GetSelectedPartySlot LOCALID_PARTY_SLOT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq LOCALID_PARTY_SLOT, 0xFF, RotomsRoom_RotomGaveUpEnteringTheMotor
     GetPartyMonSpecies LOCALID_PARTY_SLOT, VAR_RESULT
@@ -299,13 +299,13 @@ RotomsRoom_Text_PokemonTryingToLearnMove:
     End
 
 RotomsRoom_LearnMove:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     OpenSummaryScreenTeachMove LOCALID_PARTY_SLOT, LOCALID_MOVE_TO_LEARN
     GetSummarySelectedMoveSlot VAR_0x8002
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8002, LEARNED_MOVES_MAX, RotomsRoom_GiveUpLearningMove
     GetPartyMonMove VAR_RESULT, LOCALID_PARTY_SLOT, VAR_0x8002
@@ -347,7 +347,7 @@ RotomsRoom_DidNotLearnMoveEmergedFromTheMotor:
 
 RotomsRoom_SetRotomForm:
     SetRotomForm LOCALID_PARTY_SLOT, VAR_0x8002, LOCALID_MOVE_TO_LEARN, LOCALID_ROTOM_FORM
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     CloseMessage
     CallIfEq LOCALID_ROTOM_FORM, ROTOM_FORM_HEAT, RotomsRoom_RemoveMicrowaveOven

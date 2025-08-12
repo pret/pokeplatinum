@@ -458,12 +458,12 @@ _0688:
     CallIfEq VAR_RESULT, 3, _0707
     CallIfEq VAR_RESULT, 4, _070C
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     PlaySound SEQ_ASA
     WaitSound
     HealParty
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetFlag FLAG_UNK_0x0002
     Return

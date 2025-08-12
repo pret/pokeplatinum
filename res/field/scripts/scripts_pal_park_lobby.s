@@ -163,10 +163,10 @@ PalParkLobby_WalkInAndWarp:
     ApplyMovement LOCALID_PLAYER, _02CC
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_PAL_PARK, 0, 24, 47, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

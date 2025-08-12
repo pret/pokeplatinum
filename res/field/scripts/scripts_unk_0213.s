@@ -464,7 +464,7 @@ _06A0:
     ScrCmd_1F8
     ScrCmd_0A3
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -498,11 +498,11 @@ _0719:
 
 _0724:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_12B
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoTo _074A
     End

@@ -34,12 +34,12 @@ _006A:
     Message 1
     Message 3
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8005
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_0x8005, 0xFF, _005F
     GetPartyMonSpecies VAR_0x8005, VAR_RESULT
@@ -48,12 +48,12 @@ _006A:
     GoToIfEq VAR_RESULT, 0, _010F
     Message 4
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_221 VAR_0x8005
     ScrCmd_223 VAR_RESULT
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0xFF, _005F
     RemoveItem ITEM_HEART_SCALE, 1, VAR_RESULT

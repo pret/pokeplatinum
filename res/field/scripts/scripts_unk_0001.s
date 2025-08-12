@@ -88,11 +88,11 @@ _009D:
 _00AE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_0AA
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

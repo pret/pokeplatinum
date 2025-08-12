@@ -243,10 +243,10 @@ _02F4:
 _030E:
     Message 3
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     RemoveObject 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     SetFlag FLAG_UNK_0x0235
     ClearFlag FLAG_UNK_0x0182

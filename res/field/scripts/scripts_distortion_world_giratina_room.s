@@ -44,18 +44,18 @@ _0061:
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     SetVar VAR_UNK_0x40AA, 1
     PlayFanfare SEQ_SE_PL_SYUWA
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SENDOFF_SPRING, 0, 32, 17, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
 _009E:
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_B7F, 0, 89, 57, 1
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 

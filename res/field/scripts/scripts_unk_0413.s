@@ -233,11 +233,11 @@ _0413:
 
 _042D:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_178 0
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ScrCmd_179 VAR_0x8005
     SetVar VAR_0x8008, VAR_0x8005
@@ -269,11 +269,11 @@ _04DA:
     GoToIfEq VAR_RESULT, MENU_NO, _053A
 _04EE:
     CloseMessage
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     ScrCmd_178 1
     ReturnToField
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ScrCmd_179 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _053C
