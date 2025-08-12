@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_ITEM_USE_FUNCTIONS_H
 #define POKEPLATINUM_ITEM_USE_FUNCTIONS_H
 
-#include "struct_defs/struct_020684D0.h"
+#include "struct_decls/struct_0205E884_decl.h"
 
 #include "field/field_system_decl.h"
 
@@ -15,9 +15,21 @@
 
 typedef void *(*FieldApplicationWorkCtor)(void *fieldSystem);
 
+typedef struct ItemUseContext {
+    int mapHeaderID;
+    BOOL hasPartner;
+    int playerState;
+    u16 facingTileBehavior; // behavior of the tile the player is facing
+    u16 currTileBehavior;
+    u16 unk_10;
+    u8 padding_12[2];
+    PlayerAvatar *playerAvatar;
+    FieldSystem *fieldSystem;
+} ItemUseContext;
+
 typedef struct ItemFieldUseContext {
     FieldSystem *fieldSystem;
-    PlayerContextInMap unk_04;
+    ItemUseContext unk_04;
     FieldApplicationWorkCtor unk_20;
     void *unk_24;
     u16 unk_28;
@@ -32,8 +44,8 @@ typedef struct ItemMenuUseContext {
 } ItemMenuUseContext;
 
 typedef BOOL (*ItemFieldUseFunc)(ItemFieldUseContext *);
-typedef void (*ItemMenuUseFunc)(ItemMenuUseContext *, const PlayerContextInMap *);
-typedef u32 (*ItemCheckUseFunc)(const PlayerContextInMap *);
+typedef void (*ItemMenuUseFunc)(ItemMenuUseContext *, const ItemUseContext *);
+typedef u32 (*ItemCheckUseFunc)(const ItemUseContext *);
 
 typedef struct UnkStruct_0206851C {
     u32 unk_00;
@@ -51,8 +63,8 @@ typedef struct UnkStruct_02068EFC {
 } UnkStruct_02068EFC;
 
 u32 GetItemUseFunction(u16 param0, u16 param1);
-void sub_0206842C(FieldSystem *fieldSystem, PlayerContextInMap *param1);
-BOOL sub_02068B50(const PlayerContextInMap *param0);
+void sub_0206842C(FieldSystem *fieldSystem, ItemUseContext *param1);
+BOOL sub_02068B50(const ItemUseContext *param0);
 BOOL sub_02069238(FieldSystem *fieldSystem);
 
 #endif // POKEPLATINUM_ITEM_USE_FUNCTIONS_H

@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D9B8.h"
-#include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -32,6 +31,7 @@
 #include "game_options.h"
 #include "heap.h"
 #include "item.h"
+#include "item_use_functions.h"
 #include "mail.h"
 #include "map_header.h"
 #include "map_header_data.h"
@@ -72,30 +72,30 @@ typedef struct ItemUseFuncDat {
 } ItemUseFuncDat;
 
 void *sub_0203D8AC(FieldSystem *fieldSystem);
-static void sub_020684D0(FieldSystem *fieldSystem, PlayerContextInMap *param1);
-static void UseHealingItemFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseTownMapFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseExplorerKitFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseBicycleFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseJournalFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseTMHMFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseMailFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseBerryFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UsePoffinCaseFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UsePalPadFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UsePokeRadarFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseSprayDuckFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseMulchFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseHoneyFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseVsSeekerFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseOldRodFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseGoodRodFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseSuperRodFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseEvoStoneFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseEscapeRopeFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseAzureFluteFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseVsRecorderFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
-static void UseGracideaFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1);
+static void sub_020684D0(FieldSystem *fieldSystem, ItemUseContext *param1);
+static void UseHealingItemFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseTownMapFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseExplorerKitFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseBicycleFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseJournalFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseTMHMFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseMailFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseBerryFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UsePoffinCaseFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UsePalPadFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UsePokeRadarFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseSprayDuckFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseMulchFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseHoneyFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseVsSeekerFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseOldRodFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseGoodRodFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseSuperRodFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseEvoStoneFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseEscapeRopeFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseAzureFluteFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseVsRecorderFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
+static void UseGracideaFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1);
 static BOOL UseBicycleInField(ItemFieldUseContext *param0);
 static BOOL UseJournalInField(ItemFieldUseContext *param0);
 static BOOL UseOldRodInField(ItemFieldUseContext *param0);
@@ -118,16 +118,16 @@ static void *sub_02068708(void *param0);
 static void *sub_02068A28(void *param0);
 static void *sub_020691CC(void *param0);
 static void *sub_02069228(void *param0);
-static u32 CanUseBicycle(const PlayerContextInMap *param0);
-static u32 CanUseExplorerKit(const PlayerContextInMap *param0);
-static u32 CanUseBerry(const PlayerContextInMap *param0);
-static u32 CanUsePokeRadar(const PlayerContextInMap *param0);
-static u32 CanUseSprayDuck(const PlayerContextInMap *param0);
-static u32 CanUseMulch(const PlayerContextInMap *param0);
-static u32 CanUseVsSeeker(const PlayerContextInMap *param0);
-static u32 CanUseFishingRod(const PlayerContextInMap *param0);
-static u32 CanUseEscapeRope(const PlayerContextInMap *param0);
-static u32 CanUseAzureFlute(const PlayerContextInMap *param0);
+static u32 CanUseBicycle(const ItemUseContext *param0);
+static u32 CanUseExplorerKit(const ItemUseContext *param0);
+static u32 CanUseBerry(const ItemUseContext *param0);
+static u32 CanUsePokeRadar(const ItemUseContext *param0);
+static u32 CanUseSprayDuck(const ItemUseContext *param0);
+static u32 CanUseMulch(const ItemUseContext *param0);
+static u32 CanUseVsSeeker(const ItemUseContext *param0);
+static u32 CanUseFishingRod(const ItemUseContext *param0);
+static u32 CanUseEscapeRope(const ItemUseContext *param0);
+static u32 CanUseAzureFlute(const ItemUseContext *param0);
 static BOOL MountOrUnmountBicycle(FieldTask *task);
 static BOOL PrintRegisteredKeyItemUseMessage(FieldTask *task);
 static void RegisteredItem_CreateGoToAppTask(ItemFieldUseContext *param0, void *param1);
@@ -175,7 +175,7 @@ u32 GetItemUseFunction(u16 discriminator, u16 functionIdx)
     return (u32)itemFieldUseFuncs[functionIdx].canUseItemFunc;
 }
 
-void sub_0206842C(FieldSystem *fieldSystem, PlayerContextInMap *param1)
+void sub_0206842C(FieldSystem *fieldSystem, ItemUseContext *param1)
 {
     int playerXCoordinate, playerZCoordinate, playerDirection;
     MapObject *v3;
@@ -219,7 +219,7 @@ void sub_0206842C(FieldSystem *fieldSystem, PlayerContextInMap *param1)
     param1->playerAvatar = fieldSystem->playerAvatar;
 }
 
-static void sub_020684D0(FieldSystem *fieldSystem, PlayerContextInMap *param1)
+static void sub_020684D0(FieldSystem *fieldSystem, ItemUseContext *param1)
 {
     param1->fieldSystem = fieldSystem;
     param1->mapHeaderID = fieldSystem->location->mapId;
@@ -249,7 +249,7 @@ static UnkStruct_0206851C *sub_0206851C(u32 param0, u16 param1, u16 param2, u16 
     return v0;
 }
 
-static void sub_02068540(ItemMenuUseContext *param0, const PlayerContextInMap *param1, u32 param2)
+static void sub_02068540(ItemMenuUseContext *param0, const ItemUseContext *param1, u32 param2)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -294,7 +294,7 @@ static BOOL sub_020685AC(FieldTask *task)
     return FALSE;
 }
 
-static void UseHealingItemFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseHealingItemFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -319,7 +319,7 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *param0, const PlayerConte
     sub_0203B674(menu, sub_0203B7C0);
 }
 
-static void UseTownMapFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseTownMapFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -339,7 +339,7 @@ static void *sub_02068708(void *param0)
     return sub_0203D8AC(param0);
 }
 
-static void UseExplorerKitFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseExplorerKitFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -364,7 +364,7 @@ static BOOL UseExplorerKitInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static u32 CanUseExplorerKit(const PlayerContextInMap *param0)
+static u32 CanUseExplorerKit(const ItemUseContext *param0)
 {
     if (MapHeader_GetMapLabelTextID(param0->mapHeaderID) == LocationNames_Text_MysteryZone) {
         return -1;
@@ -409,7 +409,7 @@ static u32 CanUseExplorerKit(const PlayerContextInMap *param0)
     return 0;
 }
 
-static void UseBicycleFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseBicycleFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -468,7 +468,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task)
     return FALSE;
 }
 
-static u32 CanUseBicycle(const PlayerContextInMap *param0)
+static u32 CanUseBicycle(const ItemUseContext *param0)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
@@ -507,7 +507,7 @@ static u32 CanUseBicycle(const PlayerContextInMap *param0)
     return 0;
 }
 
-static void UseJournalFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseJournalFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *v1 = FieldTask_GetEnv(param0->fieldTask);
@@ -528,7 +528,7 @@ static void *sub_02068A28(void *param0)
     return NULL;
 }
 
-static void UseTMHMFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseTMHMFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -553,7 +553,7 @@ static void UseTMHMFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap
     sub_0203B674(menu, sub_0203B7C0);
 }
 
-static void UseMailFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseMailFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -565,12 +565,12 @@ static void UseMailFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap
     sub_0203B674(menu, sub_0203C558);
 }
 
-static u32 CanUseBerry(const PlayerContextInMap *param0)
+static u32 CanUseBerry(const ItemUseContext *param0)
 {
     return 0;
 }
 
-static void UseBerryFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseBerryFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem;
     StartMenu *v1;
@@ -586,7 +586,7 @@ static void UseBerryFromMenu(ItemMenuUseContext *param0, const PlayerContextInMa
     }
 }
 
-BOOL sub_02068B50(const PlayerContextInMap *param0)
+BOOL sub_02068B50(const ItemUseContext *param0)
 {
     if (param0->unk_10 & 0x1) {
         return TRUE;
@@ -595,7 +595,7 @@ BOOL sub_02068B50(const PlayerContextInMap *param0)
     return FALSE;
 }
 
-static void UsePoffinCaseFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UsePoffinCaseFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -616,7 +616,7 @@ static void *sub_02068B9C(void *param0)
     return sub_0203D9B8(param0, HEAP_ID_FIELDMAP);
 }
 
-static void UsePalPadFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UsePalPadFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -638,7 +638,7 @@ static void *sub_02068BEC(void *param0)
     return NULL;
 }
 
-static void UsePokeRadarFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UsePokeRadarFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -662,7 +662,7 @@ static BOOL UsePokeRadarInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static u32 CanUsePokeRadar(const PlayerContextInMap *param0)
+static u32 CanUsePokeRadar(const ItemUseContext *param0)
 {
     if (param0->hasPartner == 1) {
         return 2;
@@ -679,7 +679,7 @@ static u32 CanUsePokeRadar(const PlayerContextInMap *param0)
     return 0;
 }
 
-static void UseSprayDuckFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseSprayDuckFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     sub_02068540(param0, param1, 2802);
 }
@@ -690,7 +690,7 @@ static BOOL UseSprayDuckInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static u32 CanUseSprayDuck(const PlayerContextInMap *param0)
+static u32 CanUseSprayDuck(const ItemUseContext *param0)
 {
     if (param0->hasPartner == 1) {
         return 2;
@@ -703,12 +703,12 @@ static u32 CanUseSprayDuck(const PlayerContextInMap *param0)
     }
 }
 
-static void UseMulchFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseMulchFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     sub_02068540(param0, param1, 2803);
 }
 
-static u32 CanUseMulch(const PlayerContextInMap *param0)
+static u32 CanUseMulch(const ItemUseContext *param0)
 {
     if (param0->unk_10 & 0x2) {
         return 0;
@@ -717,7 +717,7 @@ static u32 CanUseMulch(const PlayerContextInMap *param0)
     }
 }
 
-static void UseHoneyFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseHoneyFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;
@@ -741,7 +741,7 @@ static void UseHoneyFromMenu(ItemMenuUseContext *param0, const PlayerContextInMa
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->item, 1, HEAP_ID_FIELDMAP);
 }
 
-static void UseVsSeekerFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseVsSeekerFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     sub_02068540(param0, param1, 8950);
 }
@@ -752,7 +752,7 @@ static BOOL UseVsSeekerInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static u32 CanUseVsSeeker(const PlayerContextInMap *param0)
+static u32 CanUseVsSeeker(const ItemUseContext *param0)
 {
     if (MapHeader_IsOnMainMatrix(param0->mapHeaderID)) {
         return 0;
@@ -761,7 +761,7 @@ static u32 CanUseVsSeeker(const PlayerContextInMap *param0)
     return -1;
 }
 
-static void UseOldRodFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseOldRodFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -781,7 +781,7 @@ static BOOL UseOldRodInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static void UseGoodRodFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseGoodRodFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -801,7 +801,7 @@ static BOOL UseGoodRodInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static void UseSuperRodFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseSuperRodFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -821,7 +821,7 @@ static BOOL UseSuperRodInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static u32 CanUseFishingRod(const PlayerContextInMap *param0)
+static u32 CanUseFishingRod(const ItemUseContext *param0)
 {
     if (param0->hasPartner == 1) {
         return 2;
@@ -895,7 +895,7 @@ static BOOL PrintRegisteredKeyItemUseMessage(FieldTask *task)
     return FALSE;
 }
 
-static void UseEvoStoneFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseEvoStoneFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -919,7 +919,7 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *param0, const PlayerContextI
     sub_0203B674(menu, sub_0203B7C0);
 }
 
-static void UseEscapeRopeFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseEscapeRopeFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -933,7 +933,7 @@ static void UseEscapeRopeFromMenu(ItemMenuUseContext *param0, const PlayerContex
     Bag_TryRemoveItem(SaveData_GetBag(fieldSystem->saveData), param0->item, 1, HEAP_ID_FIELDMAP);
 }
 
-static u32 CanUseEscapeRope(const PlayerContextInMap *param0)
+static u32 CanUseEscapeRope(const ItemUseContext *param0)
 {
     if (param0->hasPartner == 1) {
         return 2;
@@ -955,7 +955,7 @@ static BOOL sub_020690F0(FieldTask *task)
     return FALSE;
 }
 
-static void UseAzureFluteFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseAzureFluteFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     sub_02068540(param0, param1, 2039);
 }
@@ -966,7 +966,7 @@ static BOOL UseAzureFluteInField(ItemFieldUseContext *param0)
     return FALSE;
 }
 
-static u32 CanUseAzureFlute(const PlayerContextInMap *param0)
+static u32 CanUseAzureFlute(const ItemUseContext *param0)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
@@ -989,7 +989,7 @@ static u32 CanUseAzureFlute(const PlayerContextInMap *param0)
     return 0;
 }
 
-static void UseVsRecorderFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseVsRecorderFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(param0->fieldTask);
@@ -1013,7 +1013,7 @@ static void *sub_020691CC(void *param0)
     return NULL;
 }
 
-static void UseGracideaFromMenu(ItemMenuUseContext *param0, const PlayerContextInMap *param1)
+static void UseGracideaFromMenu(ItemMenuUseContext *param0, const ItemUseContext *param1)
 {
     FieldSystem *fieldSystem;
     StartMenu *menu;

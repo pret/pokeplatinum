@@ -1,13 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_020708E0_H
 #define POKEPLATINUM_STRUCT_020708E0_H
 
-#include "struct_defs/struct_020684D0.h"
-
 #include "overlay005/struct_ov5_021D30A8.h"
 
 #include "bg_window.h"
 #include "field_move_tasks.h"
 #include "field_task.h"
+#include "item_use_functions.h"
 #include "menu.h"
 #include "string_list.h"
 
@@ -26,7 +25,7 @@ typedef struct {
     u32 hideOptionFlags;
     u32 unk_228;
     FieldTaskFunc callback;
-    PlayerContextInMap unk_230;
+    ItemUseContext unk_230;
     FieldMoveContext fieldMoveContext;
     void *taskData;
     void *unk_260;

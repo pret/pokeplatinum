@@ -27,7 +27,6 @@
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
-#include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -91,6 +90,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
+#include "item_use_functions.h"
 #include "mail.h"
 #include "math_util.h"
 #include "overlay_manager.h"
@@ -279,7 +279,7 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
 }
 
-void *sub_0203D20C(FieldSystem *fieldSystem, PlayerContextInMap *param1)
+void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
 {
     Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
     void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
