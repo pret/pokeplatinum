@@ -93,17 +93,6 @@ enum BattleAnimBg {
     BATTLE_ANIM_BG_NONE = 0xFF,
 };
 
-enum BattleAnimBattlerType {
-    BATTLER_TYPE_ATTACKER = 0,
-    BATTLER_TYPE_DEFENDER,
-    BATTLER_TYPE_ATTACKER_PARTNER,
-    BATTLER_TYPE_DEFENDER_PARTNER,
-    BATTLER_TYPE_PLAYER_SLOT_1,
-    BATTLER_TYPE_ENEMY_SLOT_1,
-    BATTLER_TYPE_PLAYER_SLOT_2,
-    BATTLER_TYPE_ENEMY_SLOT_2,
-};
-
 // Holds context information for the current move animation
 typedef struct BattleAnimContext {
     u8 unk_00;
@@ -303,7 +292,7 @@ int BattleAnimSystem_GetBgID(BattleAnimSystem *system, enum BattleAnimBg bg);
 int BattleAnimSystem_GetBgPriority(BattleAnimSystem *system, enum BattleAnimBg bg);
 void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer layer);
 void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system);
-BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, enum BattleAnimBattlerType battlerType);
+BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, int battlerRole);
 int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type);
 UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2);
 UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID);

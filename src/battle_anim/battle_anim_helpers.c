@@ -8,8 +8,8 @@
 #include "constants/battle/battle_anim.h"
 #include "constants/graphics.h"
 
-#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_helpers.h"
+#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 
 #include "battle_script_battlers.h"

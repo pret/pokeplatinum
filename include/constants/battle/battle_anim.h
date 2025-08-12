@@ -110,6 +110,20 @@
 #define BATTLE_PARTICLE_SCREEN_TO_WORLD(X) ((X) * BATTLE_PARTICLE_PIXEL_FACTOR)
 #define BATTLE_PARTICLE_VIEWPORT_TOP 16512 //< Top of the viewport in world coordinates
 
+#define BATTLE_SOUND_PAN_LEFT   -117
+#define BATTLE_SOUND_PAN_CENTER 0
+#define BATTLE_SOUND_PAN_RIGHT  117
+
+// Used specifically for AddPokemonSprite/RemovePokemonSprite and a few script funcs
+#define BATTLER_ROLE_ATTACKER         0
+#define BATTLER_ROLE_DEFENDER         1
+#define BATTLER_ROLE_ATTACKER_PARTNER 2
+#define BATTLER_ROLE_DEFENDER_PARTNER 3
+#define BATTLER_ROLE_PLAYER_1         4
+#define BATTLER_ROLE_ENEMY_1          5
+#define BATTLER_ROLE_PLAYER_2         6
+#define BATTLER_ROLE_ENEMY_2          7
+
 // Default positions for battler sprites, lines up with BATTLER_TYPE_*
 #define BATTLER_POS_SOLO_PLAYER_X   64
 #define BATTLER_POS_SOLO_PLAYER_Y   112

@@ -18,15 +18,15 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "global/utility.h"
-#include "battle_anim/is_form_symmetrical.h"
-#include "battle_anim/battle_particle_util.h"
 #include "battle_anim/battle_anim_helpers.h"
-#include "battle_anim/script_func_tables.h"
 #include "battle_anim/battle_anim_util.h"
+#include "battle_anim/battle_particle_util.h"
+#include "battle_anim/is_form_symmetrical.h"
 #include "battle_anim/ov12_022380BC.h"
+#include "battle_anim/script_func_tables.h"
 #include "battle_anim/struct_ov12_02223764.h"
 #include "battle_anim/struct_ov12_022380DC.h"
+#include "global/utility.h"
 #include "overlay017/ov17_022413D8.h"
 
 #include "bg_window.h"
@@ -228,7 +228,7 @@ static void BattleAnimScriptCmd_SetPokemonSpriteVisible(BattleAnimSystem *param0
 static void ov12_02221834(BattleAnimSystem *param0);
 static void ov12_022219E8(BattleAnimSystem *param0);
 static void BattleAnimScriptCmd_WaitForLRX(BattleAnimSystem *param0);
-static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *param0, enum BattleAnimBattlerType param1);
+static int BattleAnimSystem_GetBattlerWithRole(BattleAnimSystem *param0, int param1);
 static BOOL BattleBgSwitch_ShouldBeReversed(BattleBgSwitch *param0, BattleAnimSystem *param1, int param2);
 static void BattleBgSwitch_SetBg(BattleBgSwitch *param0, BattleAnimSystem *param1, enum BgLayer param2, int param3);
 static BOOL BattleBgSwitch_IsFlagSet(int param0, int param1);
@@ -1622,25 +1622,25 @@ static void BattleAnimScriptCmd_Jump(BattleAnimSystem *system)
     BattleAnimScript_JumpBy(system, (u32)BattleAnimScript_ReadWord(system->scriptPtr));
 }
 
-static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum BattleAnimBattlerType type)
+static int BattleAnimSystem_GetBattlerWithRole(BattleAnimSystem *system, int role)
 {
     int result;
 
-    switch (type) {
-    case BATTLER_TYPE_ATTACKER:
+    switch (role) {
+    case BATTLER_ROLE_ATTACKER:
         result = system->context->attacker;
         break;
-    case BATTLER_TYPE_DEFENDER:
+    case BATTLER_ROLE_DEFENDER:
         result = system->context->defender;
         break;
-    case BATTLER_TYPE_ATTACKER_PARTNER:
+    case BATTLER_ROLE_ATTACKER_PARTNER:
         result = BattleAnimUtil_GetAlliedBattler(system, system->context->attacker);
         break;
-    case BATTLER_TYPE_DEFENDER_PARTNER:
+    case BATTLER_ROLE_DEFENDER_PARTNER:
         result = BattleAnimUtil_GetAlliedBattler(system, system->context->defender);
         break;
 
-    case BATTLER_TYPE_PLAYER_SLOT_1: {
+    case BATTLER_ROLE_PLAYER_1: {
         result = BATTLER_NONE;
 
         for (int battler = 0; battler < MAX_BATTLERS; battler++) {
@@ -1655,7 +1655,7 @@ static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum Batt
             result = BATTLER_PLAYER_1;
         }
     } break;
-    case BATTLER_TYPE_ENEMY_SLOT_1: {
+    case BATTLER_ROLE_ENEMY_1: {
         result = BATTLER_NONE;
 
         for (int battler = 0; battler < MAX_BATTLERS; battler++) {
@@ -1670,7 +1670,7 @@ static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum Batt
             result = BATTLER_PLAYER_1;
         }
     } break;
-    case BATTLER_TYPE_PLAYER_SLOT_2: {
+    case BATTLER_ROLE_PLAYER_2: {
         result = BATTLER_NONE;
 
         for (int battler = 0; battler < MAX_BATTLERS; battler++) {
@@ -1685,7 +1685,7 @@ static int BattleAnimSystem_GetBattlerOfType(BattleAnimSystem *system, enum Batt
             result = BATTLER_PLAYER_1;
         }
     } break;
-    case BATTLER_TYPE_ENEMY_SLOT_2: {
+    case BATTLER_ROLE_ENEMY_2: {
         result = BATTLER_NONE;
 
         for (int battler = 0; battler < MAX_BATTLERS; battler++) {
@@ -1781,13 +1781,13 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
 
     BattleAnimScript_Next(system);
 
-    int battlerType = BattleAnimScript_ReadWord(system->scriptPtr);
+    int battlerRole = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
     BOOL trackBattler = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
-    int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
+    int battler = BattleAnimSystem_GetBattlerWithRole(system, battlerRole);
     enum NarcID narcID = system->context->pokemonSpriteData[battler]->narcID;
     int paletteIndex = system->context->pokemonSpriteData[battler]->palette;
     charData = system->context->pokemonSpriteData[battler]->tiles;
@@ -1934,7 +1934,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
 
     BattleAnimScript_Next(system);
 
-    enum BattleAnimBattlerType battlerType = BattleAnimScript_ReadWord(system->scriptPtr);
+    int battlerRole = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
     int trackBattler = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -1954,7 +1954,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
     resourceIDs[SPRITE_RESOURCE_MULTI_CELL] = 0;
     resourceIDs[SPRITE_RESOURCE_MULTI_ANIM] = 0;
 
-    int battler = BattleAnimSystem_GetBattlerOfType(system, battlerType);
+    int battler = BattleAnimSystem_GetBattlerWithRole(system, battlerRole);
     enum NarcID narcID = system->context->pokemonSpriteData[battler]->narcID;
     int paletteIndex = system->context->pokemonSpriteData[battler]->palette;
     charData = system->context->pokemonSpriteData[battler]->tiles;
@@ -2084,13 +2084,13 @@ static void ov12_02221810(SysTask *param0, void *param1)
 
 static void ov12_02221834(BattleAnimSystem *system)
 {
-    int type;
+    int role;
     int v1;
     int spriteID;
 
     BattleAnimScript_Next(system);
 
-    type = BattleAnimScript_ReadWord(system->scriptPtr);
+    role = BattleAnimScript_ReadWord(system->scriptPtr);
     BattleAnimScript_Next(system);
 
     v1 = BattleAnimScript_ReadWord(system->scriptPtr);
@@ -2117,7 +2117,7 @@ static void ov12_02221834(BattleAnimSystem *system)
             int v6;
             PokemonSprite *v7;
 
-            v6 = BattleAnimSystem_GetBattlerOfType(system, type);
+            v6 = BattleAnimSystem_GetBattlerWithRole(system, role);
             v7 = BattleAnimSystem_GetBattlerSprite(system, v6);
 
             if (v7 != NULL) {
@@ -2133,8 +2133,8 @@ static void ov12_02221834(BattleAnimSystem *system)
             }
         }
 
-        switch (type) {
-        case BATTLER_TYPE_ATTACKER:
+        switch (role) {
+        case BATTLER_ROLE_ATTACKER:
             if ((attackerType == 3) || (attackerType == 4)) {
                 ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
             } else {
@@ -2142,7 +2142,7 @@ static void ov12_02221834(BattleAnimSystem *system)
                 ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
             }
             break;
-        case BATTLER_TYPE_ATTACKER_PARTNER:
+        case BATTLER_ROLE_ATTACKER_PARTNER:
             if ((attackerType == 5) || (attackerType == 2)) {
                 ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
             } else {
@@ -2150,7 +2150,7 @@ static void ov12_02221834(BattleAnimSystem *system)
                 ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
             }
             break;
-        case BATTLER_TYPE_DEFENDER:
+        case BATTLER_ROLE_DEFENDER:
             switch (defenderType) {
             case 2:
                 ManagedSprite_SetPriority(system->unk_48[v1].sprite, 255);
@@ -2166,7 +2166,7 @@ static void ov12_02221834(BattleAnimSystem *system)
                 break;
             }
             break;
-        case BATTLER_TYPE_DEFENDER_PARTNER:
+        case BATTLER_ROLE_DEFENDER_PARTNER:
             switch (defenderType) {
             case 2:
                 ManagedSprite_SetPriority(system->unk_48[v1].sprite, 1);
@@ -3851,9 +3851,9 @@ void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system)
     PaletteData_LoadBuffer(system->paletteData, system->context->bgPaletteBuffer, PLTTBUF_MAIN_BG, 0, 0x200);
 }
 
-BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, enum BattleAnimBattlerType type)
+BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, int battlerRole)
 {
-    int battler = BattleAnimSystem_GetBattlerOfType(system, type);
+    int battler = BattleAnimSystem_GetBattlerWithRole(system, battlerRole);
     int form = system->context->battlerForms[battler];
 
     if (BattleAnimSystem_IsContest(system) == TRUE && IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE) {

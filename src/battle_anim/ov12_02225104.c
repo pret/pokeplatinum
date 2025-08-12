@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "battle_anim/battle_anim_system.h"
-#include "battle_anim/ov12_0222421C.h"
 #include "battle_anim/battle_anim_util.h"
+#include "battle_anim/ov12_0222421C.h"
 #include "battle_anim/struct_ov12_02225640.h"
 
 #include "particle_system.h"
