@@ -1017,7 +1017,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     Heap_Free(menu->taskData);
 
     switch (partyMan->menuSelectionResult) {
-    case 1: { // normal summary
+    case 1: {
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = SaveData_GetParty(fieldSystem->saveData);
@@ -1039,7 +1039,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         menu->taskData = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
-    case 4: { // may be for learning moves from item
+    case 4: {
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = SaveData_GetParty(fieldSystem->saveData);
@@ -1066,7 +1066,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         menu->taskData = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
-    case 5: { // may be for learning moves naturally
+    case 5: {
         PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = SaveData_GetParty(fieldSystem->saveData);
@@ -1174,7 +1174,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         FieldMoveTaskContext v16;
         FieldMovePokemon fieldMoveMon;
 
-        fieldMoveMon.fieldMove = partyMan->menuSelectionResult - 11; //
+        fieldMoveMon.fieldMove = partyMan->menuSelectionResult - 11;
         fieldMoveMon.fieldMonId = partyMan->selectedMonSlot;
         fieldMoveMon.fieldTask = taskMan;
 

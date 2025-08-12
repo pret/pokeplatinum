@@ -2086,16 +2086,16 @@ const u32 ov84_0223D84C(u32 param0)
 
 static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
 {
-    ItemCheckUseFunc v0;
-    s32 itemFunctionIdx;
+    ItemCheckUseFunc itemUseFunc;
+    s32 itemUseFuncIdx;
 
     ov84_0223FD84(param0);
 
-    itemFunctionIdx = Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
-    v0 = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemFunctionIdx);
+    itemUseFuncIdx = Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
+    itemUseFunc = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemUseFuncIdx);
 
-    if (v0 != NULL) {
-        u32 v2 = v0(param0->unk_C4->unk_70);
+    if (itemUseFunc != NULL) {
+        u32 v2 = itemUseFunc(param0->unk_C4->unk_70);
 
         if (v2 != 0) {
             GetItemUseErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->item, v2, HEAP_ID_6);
