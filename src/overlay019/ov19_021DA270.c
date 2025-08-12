@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DCD18.h"
@@ -17,7 +17,7 @@
 #include "pokemon_icon.h"
 #include "sprite.h"
 
-BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, SpriteList *param3, NARC *param4)
+BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dPaletteData *v1;
@@ -149,7 +149,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
     GF_ASSERT(param7->unk_00 != NULL);
 
     Sprite_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
-    ov19_021DA63C(param0, param7, ov19_GetMonSpriteTransparencyMask(param0->unk_40));
+    ov19_021DA63C(param0, param7, BoxApp_GetMonSpriteTransparencyMask(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
@@ -183,7 +183,7 @@ void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 para
     GF_ASSERT(param10->unk_00 != NULL);
 
     Sprite_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
-    ov19_021DA63C(param0, param10, ov19_GetMonSpriteTransparencyMask(param0->unk_40));
+    ov19_021DA63C(param0, param10, BoxApp_GetMonSpriteTransparencyMask(param0->unk_40));
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 

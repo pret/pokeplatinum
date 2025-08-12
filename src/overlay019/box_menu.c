@@ -7,10 +7,10 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/pc_mon_preview.h"
 #include "overlay019/struct_box_menu.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 
 #include "enums.h"
 #include "pc_boxes.h"
@@ -20,9 +20,9 @@
 static void BoxMenu_ClearMenuItems(BoxMenu *menu);
 static void BoxMenu_AddMenuItem(BoxMenu *menu, enum BoxMenuItem menuItem);
 
-void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex)
+void BoxMenu_FillYesNo(BoxApplication *boxApp, u32 menuItemIndex)
 {
-    BoxMenu *menu = &param0->boxMenu;
+    BoxMenu *menu = &boxApp->boxMenu;
 
     BoxMenu_ClearMenuItems(menu);
     BoxMenu_AddMenuItem(menu, BOX_MENU_YES);
@@ -32,31 +32,31 @@ void BoxMenu_FillYesNo(UnkStruct_ov19_021D4DF0 *param0, u32 menuItemIndex)
     menu->unused = 0;
 }
 
-void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0)
+void BoxMenu_FillTopLevelMenuItems(BoxApplication *boxApp)
 {
-    BoxMenu *menu = &(param0->boxMenu);
+    BoxMenu *menu = &(boxApp->boxMenu);
 
     BoxMenu_ClearMenuItems(menu);
     menu->unused = 1;
 
-    switch (ov19_GetBoxMode(param0)) {
+    switch (BoxApp_GetBoxMode(boxApp)) {
     case PC_MODE_MOVE_MONS:
     default:
-        if (ov19_GetPreviewMonSource(param0) == PREVIEW_MON_IN_CURSOR) {
-            BoxMenu_AddMenuItem(menu, ov19_IsMonUnderCursor(param0) ? BOX_MENU_SHIFT : BOX_MENU_PLACE);
+        if (BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_IN_CURSOR) {
+            BoxMenu_AddMenuItem(menu, BoxApp_IsMonUnderCursor(boxApp) ? BOX_MENU_SHIFT : BOX_MENU_PLACE);
         } else {
             BoxMenu_AddMenuItem(menu, BOX_MENU_MOVE);
         }
 
         BoxMenu_AddMenuItem(menu, BOX_MENU_SUMMARY);
 
-        const PCMonPreview *preview = ov19_GetPCMonPreview(param0);
+        const PCMonPreview *preview = BoxApp_GetPCMonPreview(boxApp);
 
         if (preview->isEgg == FALSE) {
             BoxMenu_AddMenuItem(menu, BOX_MENU_ITEM);
         }
 
-        BoxMenu_AddMenuItem(menu, (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX) ? BOX_MENU_WITHDRAW : BOX_MENU_STORE);
+        BoxMenu_AddMenuItem(menu, (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX) ? BOX_MENU_WITHDRAW : BOX_MENU_STORE);
         BoxMenu_AddMenuItem(menu, BOX_MENU_MARK);
         BoxMenu_AddMenuItem(menu, BOX_MENU_RELEASE);
         BoxMenu_AddMenuItem(menu, BOX_MENU_CANCEL);
@@ -76,21 +76,21 @@ void BoxMenu_FillTopLevelMenuItems(UnkStruct_ov19_021D4DF0 *param0)
         BoxMenu_AddMenuItem(menu, BOX_MENU_CANCEL);
         break;
     case PC_MODE_COMPARE:
-        BoxMenu_AddMenuItem(menu, (ov19_GetCompareMonSlot(param0) == 0) ? BOX_MENU_SET_ON_LEFT : BOX_MENU_SET_ON_RIGHT);
-        BoxMenu_AddMenuItem(menu, (ov19_GetCursorLocation(param0) == CURSOR_IN_BOX) ? BOX_MENU_WITHDRAW : BOX_MENU_STORE);
+        BoxMenu_AddMenuItem(menu, (BoxApp_GetCompareMonSlot(boxApp) == 0) ? BOX_MENU_SET_ON_LEFT : BOX_MENU_SET_ON_RIGHT);
+        BoxMenu_AddMenuItem(menu, (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX) ? BOX_MENU_WITHDRAW : BOX_MENU_STORE);
         BoxMenu_AddMenuItem(menu, BOX_MENU_MARK);
         BoxMenu_AddMenuItem(menu, BOX_MENU_CANCEL);
     }
 }
 
-void BoxMenu_FillItemsMenu(UnkStruct_ov19_021D4DF0 *param0)
+void BoxMenu_FillItemsMenu(BoxApplication *boxApp)
 {
     BoxMenu *menu;
     u32 cursorItem, monItem;
 
-    menu = &(param0->boxMenu);
-    cursorItem = ov19_GetCursorItem(param0);
-    monItem = ov19_GetPreviewedMonHeldItem(param0);
+    menu = &(boxApp->boxMenu);
+    cursorItem = BoxApp_GetCursorItem(boxApp);
+    monItem = BoxApp_GetPreviewedMonHeldItem(boxApp);
 
     BoxMenu_ClearMenuItems(menu);
     menu->unused = 1;
@@ -117,15 +117,15 @@ void BoxMenu_FillItemsMenu(UnkStruct_ov19_021D4DF0 *param0)
     BoxMenu_AddMenuItem(menu, BOX_MENU_ITEMS_CANCEL);
 }
 
-void BoxMenu_FillHeaderMenu(UnkStruct_ov19_021D4DF0 *param0)
+void BoxMenu_FillHeaderMenu(BoxApplication *boxApp)
 {
-    BoxMenu *menu = &(param0->boxMenu);
-    const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
+    BoxMenu *menu = &(boxApp->boxMenu);
+    const PCBoxes *pcBoxes = BoxApp_GetPCBoxes(boxApp);
 
     BoxMenu_ClearMenuItems(menu);
     BoxMenu_AddMenuItem(menu, BOX_MENU_JUMP);
 
-    if (ov19_GetBoxMode(param0) != PC_MODE_COMPARE) {
+    if (BoxApp_GetBoxMode(boxApp) != PC_MODE_COMPARE) {
         BoxMenu_AddMenuItem(menu, BOX_MENU_WALLPAPER);
         BoxMenu_AddMenuItem(menu, BOX_MENU_NAME);
     }
@@ -135,10 +135,10 @@ void BoxMenu_FillHeaderMenu(UnkStruct_ov19_021D4DF0 *param0)
     menu->unused = 2;
 }
 
-void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem)
+void BoxMenu_FillWallpaperMenu(BoxApplication *boxApp, enum BoxMenuItem menuItem)
 {
-    BoxMenu *menu = &(param0->boxMenu);
-    const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
+    BoxMenu *menu = &(boxApp->boxMenu);
+    const PCBoxes *pcBoxes = BoxApp_GetPCBoxes(boxApp);
     u32 numUnlockedWallpapers;
 
     BoxMenu_ClearMenuItems(menu);
@@ -166,7 +166,7 @@ void BoxMenu_FillWallpaperMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem
     }
 }
 
-void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, enum BoxMenuItem menuItem)
+void BoxMenu_FillWallpaperSelectionMenu(BoxApplication *boxApp, enum BoxMenuItem menuItem)
 {
     static const u16 sWallpaperPages[][MAX_WALLPAPERS_PER_PAGE] = {
         { BOX_MENU_FOREST, BOX_MENU_CITY, BOX_MENU_DESERT, BOX_MENU_SAVANNA },
@@ -174,8 +174,8 @@ void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, enum Bo
         { BOX_MENU_BEACH, BOX_MENU_SEAFLOOR, BOX_MENU_RIVER, BOX_MENU_SKY },
         { BOX_MENU_POKECENTER, BOX_MENU_MACHINE, BOX_MENU_CHECKS, BOX_MENU_SIMPLE },
     };
-    BoxMenu *menu = &(param0->boxMenu);
-    const PCBoxes *pcBoxes = ov19_GetPCBoxes(param0);
+    BoxMenu *menu = &(boxApp->boxMenu);
+    const PCBoxes *pcBoxes = BoxApp_GetPCBoxes(boxApp);
     int i;
 
     BoxMenu_ClearMenuItems(menu);
@@ -212,13 +212,13 @@ void BoxMenu_FillWallpaperSelectionMenu(UnkStruct_ov19_021D4DF0 *param0, enum Bo
     menu->unused = 3;
 }
 
-void BoxMenu_FillMarkingsMenu(UnkStruct_ov19_021D4DF0 *param0)
+void BoxMenu_FillMarkingsMenu(BoxApplication *boxApp)
 {
-    BoxMenu *menu = &(param0->boxMenu);
+    BoxMenu *menu = &(boxApp->boxMenu);
     BoxMenu_ClearMenuItems(menu);
 
     menu->unused = 4;
-    menu->markings = param0->pcMonPreview.markings;
+    menu->markings = boxApp->pcMonPreview.markings;
 
     BoxMenu_AddMenuItem(menu, BOX_MENU_CIRCLE);
     BoxMenu_AddMenuItem(menu, BOX_MENU_TRIANGLE);
@@ -230,9 +230,9 @@ void BoxMenu_FillMarkingsMenu(UnkStruct_ov19_021D4DF0 *param0)
     BoxMenu_AddMenuItem(menu, BOX_MENU_MARK_CANCEL);
 }
 
-void BoxMenu_ToggleMarking(UnkStruct_ov19_021D4DF0 *param0, u32 marking)
+void BoxMenu_ToggleMarking(BoxApplication *boxApp, u32 marking)
 {
-    BoxMenu *menu = &(param0->boxMenu);
+    BoxMenu *menu = &(boxApp->boxMenu);
     menu->markings ^= (1 << marking);
 }
 
@@ -249,9 +249,9 @@ static void BoxMenu_AddMenuItem(BoxMenu *menu, enum BoxMenuItem menuItem)
     }
 }
 
-enum BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0)
+enum BoxMenuItem BoxMenu_GetMenuNavigation(BoxApplication *boxApp)
 {
-    BoxMenu *menu = &(param0->boxMenu);
+    BoxMenu *menu = &(boxApp->boxMenu);
 
     if (JOY_NEW(PAD_KEY_UP)) {
         if (menu->selectedMenuItemIndex) {
@@ -286,14 +286,14 @@ enum BoxMenuItem BoxMenu_GetMenuNavigation(UnkStruct_ov19_021D4DF0 *param0)
     return BOX_MENU_NAVIGATION_NONE;
 }
 
-enum BoxMenuItem BoxMenu_GetSelectedMenuItem(UnkStruct_ov19_021D4DF0 *param0)
+enum BoxMenuItem BoxMenu_GetSelectedMenuItem(BoxApplication *boxApp)
 {
-    BoxMenu *menu = &(param0->boxMenu);
+    BoxMenu *menu = &(boxApp->boxMenu);
     return menu->menuItems[menu->selectedMenuItemIndex];
 }
 
-enum BoxMenuItem BoxMenu_GetDefaultMenuItem(UnkStruct_ov19_021D4DF0 *param0)
+enum BoxMenuItem BoxMenu_GetDefaultMenuItem(BoxApplication *boxApp)
 {
-    BoxMenu *menu = &(param0->boxMenu);
+    BoxMenu *menu = &(boxApp->boxMenu);
     return menu->menuItems[0];
 }

@@ -8,9 +8,9 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DBA9C.h"
@@ -70,7 +70,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1);
 static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C *param0, fx32 param1);
 static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C *param0);
 
-BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, NARC *param5)
+BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, NARC *param5)
 {
     int v0;
 
@@ -197,7 +197,7 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
 
 void ov19_021DBB48(UnkStruct_ov19_021DBA9C *param0)
 {
-    param0->unk_E0 = ov19_GetBoxSelectionBoxID(param0->unk_0C);
+    param0->unk_E0 = BoxApp_GetBoxSelectionBoxID(param0->unk_0C);
     ov19_021DBDF4(param0);
     ov19_021DC034(param0, 0);
 }
@@ -209,7 +209,7 @@ BOOL ov19_021DBB68(UnkStruct_ov19_021DBA9C *param0)
 
 void ov19_021DBB70(UnkStruct_ov19_021DBA9C *param0)
 {
-    param0->unk_E0 = ov19_GetBoxSelectionBoxID(param0->unk_0C);
+    param0->unk_E0 = BoxApp_GetBoxSelectionBoxID(param0->unk_0C);
 
     ov19_021DBF18(param0);
     ov19_021DBF4C(param0);
@@ -234,7 +234,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
     u8 color, v7;
     int v8;
 
-    pcBoxes = ov19_GetPCBoxes(param0->unk_0C);
+    pcBoxes = BoxApp_GetPCBoxes(param0->unk_0C);
     v8 = PCBoxes_GetWallpaper(pcBoxes, param1);
 
     if (v8 >= (16 + 8)) {
@@ -388,7 +388,7 @@ static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
     }
 
     for (v4 = 0; v4 < MAX_PC_BOXES; v4++) {
-        param0->unk_94[v4] = PCBoxes_CountMonsInBox(ov19_GetPCBoxes(param0->unk_0C), v4);
+        param0->unk_94[v4] = PCBoxes_CountMonsInBox(BoxApp_GetPCBoxes(param0->unk_0C), v4);
     }
 }
 
@@ -426,7 +426,7 @@ static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
     Window *v1;
     u32 v2, v3;
 
-    pcBoxes = ov19_GetPCBoxes(param0->unk_0C);
+    pcBoxes = BoxApp_GetPCBoxes(param0->unk_0C);
     v1 = &param0->unk_10[0];
 
     PCBoxes_BufferBoxName(pcBoxes, param0->unk_E0, param0->unk_4BFC);
@@ -595,7 +595,7 @@ void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
     UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
-        u32 v1 = ov19_GetCursorOrPreviewedItem(param0->unk_0C);
+        u32 v1 = BoxApp_GetCursorOrPreviewedItem(param0->unk_0C);
 
         Bg_SetOffset(param0->unk_04, BG_LAYER_MAIN_1, 3, 0);
         Bg_LoadToTilemapRect(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);

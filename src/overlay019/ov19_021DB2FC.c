@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay019/box_application.h"
 #include "overlay019/struct_box_menu.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DB6F0.h"
 
@@ -28,7 +28,7 @@ static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
 static void ov19_021DB84C(BgConfig *param0, Window *param1);
 static void ov19_021DB898(BgConfig *param0, Window *param1);
 
-BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *boxMessagesLoader, const StringTemplate *messageVariableBuffer, int optionsFrame, NARC *param8)
+BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, MessageLoader *boxMessagesLoader, const StringTemplate *messageVariableBuffer, int optionsFrame, NARC *param8)
 {
     param0->unk_0C = param1;
     param0->unk_00 = param3;

@@ -7,12 +7,11 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/box_customization.h"
-#include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D5DF8_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021DA384.h"
@@ -106,7 +105,7 @@ static const u16 Unk_ov19_021E0138[] = {
     10,
 };
 
-BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4)
+BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4)
 {
     param0->boxID = param2->customization.boxID;
     param0->unk_01 = 11;
@@ -297,7 +296,7 @@ static void ov19_021D7E24(SysTask *param0, void *param1)
     }
 
     v0->unk_0C = v0->unk_14;
-    v0->boxID = ov19_GetCurrentBox(v0->unk_58F8);
+    v0->boxID = BoxApp_GetCurrentBox(v0->unk_58F8);
     SysTask_Done(param0);
     v0->unk_9C = 1;
 }
@@ -379,7 +378,7 @@ static void ov19_021D803C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
     int v2, v3;
     u32 v4;
 
-    pcBoxes = ov19_GetPCBoxes(param0->unk_58F8);
+    pcBoxes = BoxApp_GetPCBoxes(param0->unk_58F8);
     v4 = (88 + (param0->unk_34 * 480)) + param3 * (4 * 4);
     param1 += param3;
     v3 = param3;
@@ -421,7 +420,7 @@ static void ov19_021D813C(UnkStruct_ov19_021D8318 *param0, u32 boxID)
     BoxPokemon *boxMon;
     u32 i, species;
 
-    pcBoxes = ov19_GetPCBoxes(param0->unk_58F8);
+    pcBoxes = BoxApp_GetPCBoxes(param0->unk_58F8);
 
     for (i = 0; i < MAX_MONS_PER_BOX; i++) {
         boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, i);
@@ -493,7 +492,7 @@ static void ov19_021D8274(SysTask *param0, void *param1)
     switch (Unk_ov19_021E077C) {
     case 0:
         ov19_021D7AF4(v4, 0, &v0, &v1, &v2);
-        customization = ov19_GetBoxCustomization(v4->unk_58F8);
+        customization = BoxApp_GetBoxCustomization(v4->unk_58F8);
         ov19_021D7BC0(v4, customization, v2, FALSE);
         Unk_ov19_021E077C++;
         break;
@@ -799,10 +798,10 @@ BOOL ov19_021D8898(UnkStruct_ov19_021D8318 *param0)
     switch (param0->unk_A4) {
     case 0:
         if (ov19_021DA7E0(param0->unk_58F0, v0)) {
-            const UnkStruct_ov19_021D5DF8 *v1 = ov19_021D7964(param0->unk_58FC);
+            const BoxApplicationManager *v1 = ov19_021D7964(param0->unk_58FC);
 
-            if (ov19_HasCheckedCanReleaseMon(v1)) {
-                if (ov19_CanReleaseMon(v1)) {
+            if (BoxAppMan_HasCheckedCanReleaseMon(v1)) {
+                if (BoxAppMan_CanReleaseMon(v1)) {
                     ov19_021DA3F0(param0->unk_58F0, v0, 1);
                     return TRUE;
                 } else {
@@ -829,7 +828,7 @@ void ov19_021D8938(UnkStruct_ov19_021D8318 *param0)
     u32 v0;
     int monPosInBox;
 
-    v0 = ov19_GetMonSpriteTransparencyMask(param0->unk_58F8);
+    v0 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_58F8);
 
     for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
         if (param0->unk_A8[param0->unk_02][monPosInBox].unk_00 != NULL) {
@@ -842,7 +841,7 @@ void ov19_021D8988(UnkStruct_ov19_021D8318 *param0, u32 posInBox, u32 item)
 {
     if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
         ov19_021DA690(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), item);
-        ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), ov19_GetMonSpriteTransparencyMask(param0->unk_58F8));
+        ov19_021DA63C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), BoxApp_GetMonSpriteTransparencyMask(param0->unk_58F8));
         ov19_021DA694(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), 1);
     }
 }
@@ -856,8 +855,8 @@ void ov19_021D89F4(UnkStruct_ov19_021D8318 *param0, u32 param1)
 
 void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0)
 {
-    u32 posInBox = ov19_GetCursorBoxPosition(param0->unk_58F8);
-    u32 monMarkings = ov19_GetPreviewedMonMarkings(param0->unk_58F8);
+    u32 posInBox = BoxApp_GetCursorBoxPosition(param0->unk_58F8);
+    u32 monMarkings = BoxApp_GetPreviewedMonMarkings(param0->unk_58F8);
 
     if (param0->unk_A8[param0->unk_02][posInBox].unk_00 != NULL) {
         ov19_021DA68C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][posInBox]), monMarkings);
@@ -868,7 +867,7 @@ void BoxGraphics_ApplyMultiSelectMonShading(UnkStruct_ov19_021D8318 *param0)
 {
     u32 leftCol, rightCol, topRow, bottomRow, col, row, posInBox;
 
-    ov19_GetMultiSelectBoundingBox(param0->unk_58F8, &leftCol, &rightCol, &topRow, &bottomRow);
+    BoxApp_GetMultiSelectBoundingBox(param0->unk_58F8, &leftCol, &rightCol, &topRow, &bottomRow);
 
     posInBox = 0;
 

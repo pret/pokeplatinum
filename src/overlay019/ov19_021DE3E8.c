@@ -5,11 +5,11 @@
 
 #include "constants/items.h"
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D8B54.h"
 #include "overlay019/ov19_021DC5F0.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8E00.h"
 #include "overlay019/struct_ov19_021DA384.h"
@@ -35,7 +35,7 @@ static const struct {
 struct UnkStruct_ov19_021DE3E8_t {
     BOOL unk_00;
     UnkStruct_ov19_021D61B0 *unk_04;
-    const UnkStruct_ov19_021D4DF0 *unk_08;
+    const BoxApplication *unk_08;
     BgConfig *unk_0C;
     SpriteList *unk_10;
     UnkStruct_ov19_021DA384 *unk_14;
@@ -70,7 +70,7 @@ static void ov19_021DE718(UnkStruct_ov19_021DE3E8 *param0, int param1, int param
 static void ov19_021DE858(UnkStruct_ov19_021DE3E8 *param0, int param1, const VecFx32 *param2, int param3, int param4);
 static void ov19_021DE8E0(SysTask *param0, void *param1);
 
-BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4)
+BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4)
 {
     UnkStruct_ov19_021DE3E8 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DE3E8));
 
@@ -82,7 +82,7 @@ BOOL ov19_021DE3E8(UnkStruct_ov19_021DE3E8 **param0, UnkStruct_ov19_021D61B0 *pa
         v0->unk_14 = ov19_021D77D8(param1);
         v0->unk_18 = ov19_021D77F4(param1);
         v0->unk_34 = 0;
-        v0->unk_00 = (ov19_GetBoxMode(param2) == PC_MODE_MOVE_ITEMS);
+        v0->unk_00 = (BoxApp_GetBoxMode(param2) == PC_MODE_MOVE_ITEMS);
 
         ov19_021DE450(v0);
         *param0 = v0;
@@ -196,7 +196,7 @@ void ov19_021DE584(UnkStruct_ov19_021DE3E8 *param0)
 
 static void ov19_021DE59C(UnkStruct_ov19_021DE3E8 *param0)
 {
-    u32 v0 = ov19_GetPreviewedMonHeldItem(param0->unk_08);
+    u32 v0 = BoxApp_GetPreviewedMonHeldItem(param0->unk_08);
 
     if (v0 != 0) {
         int v1 = ov19_021DE538(param0, 1);
@@ -209,7 +209,7 @@ static void ov19_021DE59C(UnkStruct_ov19_021DE3E8 *param0)
 
 static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
 {
-    u32 item = ov19_GetCursorItem(param0->unk_08);
+    u32 item = BoxApp_GetCursorItem(param0->unk_08);
 
     if (item != ITEM_NONE) {
         VecFx32 v1;
@@ -221,7 +221,7 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 *param0)
         v1.x += (0 << FX32_SHIFT);
         v1.y += (8 << FX32_SHIFT);
 
-        if (ov19_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
+        if (BoxApp_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
             v2 = 1;
         } else {
             v2 = 2;
@@ -243,17 +243,17 @@ static void ov19_021DE694(UnkStruct_ov19_021DE3E8 *param0, VecFx32 *param1, u32 
 {
     param1->z = 0;
 
-    if (ov19_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
+    if (BoxApp_GetCursorLocation(param0->unk_08) == CURSOR_IN_PARTY) {
         s32 v0, v1;
 
-        ov19_021DCD30(ov19_021D77E8(param0->unk_04), ov19_GetCursorPartyPosition(param0->unk_08), &v0, &v1);
+        ov19_021DCD30(ov19_021D77E8(param0->unk_04), BoxApp_GetCursorPartyPosition(param0->unk_08), &v0, &v1);
 
         param1->x = (v0 + 10) << FX32_SHIFT;
         param1->y = (v1 + 8) << FX32_SHIFT;
         *param2 = 1;
     } else {
-        param1->x = 112 + ov19_021D7820(param0->unk_04) + ov19_GetCursorBoxCol(param0->unk_08) * 24 + 10;
-        param1->y = 40 + ov19_GetCursorBoxRow(param0->unk_08) * 24 + 8;
+        param1->x = 112 + ov19_021D7820(param0->unk_04) + BoxApp_GetCursorBoxCol(param0->unk_08) * 24 + 10;
+        param1->y = 40 + BoxApp_GetCursorBoxRow(param0->unk_08) * 24 + 8;
         param1->x <<= FX32_SHIFT;
         param1->y <<= FX32_SHIFT;
         *param2 = 2;
@@ -289,7 +289,7 @@ void ov19_021DE7A0(UnkStruct_ov19_021DE3E8 *param0)
             Sprite_SetAnim(param0->unk_1C[v0], 2);
         }
 
-        v1 = ov19_GetPreviewedMonHeldItem(param0->unk_08);
+        v1 = BoxApp_GetPreviewedMonHeldItem(param0->unk_08);
 
         if (v1 != 0) {
             v0 = ov19_021DE538(param0, 1);

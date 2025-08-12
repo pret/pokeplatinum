@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/box_application.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "sprite.h"
@@ -17,7 +17,7 @@ typedef struct {
     NNSG2dAnimBankData *unk_14;
     NNSG2dImageProxy unk_18;
     SpriteList *unk_3C;
-    const UnkStruct_ov19_021D4DF0 *unk_40;
+    const BoxApplication *unk_40;
     UnkStruct_ov19_021D61B0 *unk_44;
 } UnkStruct_ov19_021DA8D8;
 

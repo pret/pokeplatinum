@@ -3,9 +3,9 @@
 
 #include <nnsys.h>
 
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/funcptr_ov19_021D79B8.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D5DF8_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021D8E00.h"
@@ -57,10 +57,10 @@ enum BoxGraphicsFunctions {
     FUNC_ov19_021D7138,
     FUNC_BoxGraphics_PlayAdjustPartyAnimation,
     FUNC_ov19_021D71F8,
-    FUNC_ov19_021D7248,
-    FUNC_ov19_021D7278,
+    FUNC_BoxGraphics_SetMonMarkingsTransparency,
+    FUNC_BoxGraphics_OpenOrCloseSelectedTouchDial,
     FUNC_ov19_021D72E8,
-    FUNC_ov19_021D7324,
+    FUNC_BoxGraphics_UpdateMarkingsTouchButton,
     FUNC_ov19_021D7340,
     FUNC_BoxGraphics_StartDrawMultiSelect,
     FUNC_ov19_021D7380,
@@ -72,11 +72,11 @@ enum BoxGraphicsFunctions {
     FUNC_BoxGraphics_ScreenFadeBothToBlackLogOff,
 };
 
-BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2);
+BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const BoxApplication *param1, const BoxApplicationManager *param2);
 void BoxGraphics_Free(UnkStruct_ov19_021D61B0 *param0);
-void ov19_BoxTaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
-BOOL ov19_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
-BOOL ov19_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0);
+void BoxGraphics_TaskHandler(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
+BOOL BoxGraphics_IsSysTaskDone(UnkStruct_ov19_021D61B0 *param0, enum BoxGraphicsFunctions function);
+BOOL BoxGraphics_CheckAllTasksDone(UnkStruct_ov19_021D61B0 *param0);
 SysTask *ov19_021D77C8(SysTaskFunc param0, void *param1, u32 param2);
 NNSG2dImagePaletteProxy *ov19_021D77D0(UnkStruct_ov19_021D61B0 *param0);
 UnkStruct_ov19_021DA384 *ov19_021D77D8(UnkStruct_ov19_021D61B0 *param0);
@@ -91,7 +91,7 @@ void ov19_021D783C(SpriteResourcesHeader *param0, NNSG2dImageProxy *param1, NNSG
 Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5);
 void BoxGraphics_SetSpritePriority(Sprite *sprite, u32 priority);
 void ov19_021D78C8(const u16 *param0, u16 *param1, u32 param2, u16 param3, u32 param4);
-const UnkStruct_ov19_021D5DF8 *ov19_021D7964(UnkStruct_ov19_021D61B0 *param0);
+const BoxApplicationManager *ov19_021D7964(UnkStruct_ov19_021D61B0 *param0);
 void ov19_021D79B8(void *param0, UnkFuncPtr_ov19_021D79B8 param1, void *param2);
 
 #endif // POKEPLATINUM_OV19_021D61B0_H

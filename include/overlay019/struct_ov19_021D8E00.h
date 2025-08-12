@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/box_application.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021DA384.h"
@@ -54,7 +54,7 @@ typedef struct {
     u8 unk_78D;
     u8 unk_78E;
     u8 padding_78F;
-    const UnkStruct_ov19_021D4DF0 *unk_790;
+    const BoxApplication *unk_790;
     UnkStruct_ov19_021D61B0 *unk_794;
 } UnkStruct_ov19_021D8E00;
 

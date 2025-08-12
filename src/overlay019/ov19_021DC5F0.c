@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
 #include "overlay019/ov19_021DA270.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D5DF8_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DC680.h"
 #include "overlay019/struct_ov19_021DCD18.h"
@@ -45,7 +44,7 @@ static void ov19_021DCE50(UnkStruct_ov19_021DC680 *param0, fx32 param1);
 static void ov19_021DCEB8(UnkStruct_ov19_021DC680 *param0, BOOL param1);
 static void ov19_021DCF50(UnkStruct_ov19_021DC680 *param0);
 
-BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, NARC *param5)
+BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, NARC *param5)
 {
     param0->unk_00 = param1;
     param0->unk_0C = param2;
@@ -54,7 +53,7 @@ BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_38 = ov19_021D77D8(param1);
     param0->unk_10 = ov19_021D77E0(param1);
 
-    if (ov19_GetBoxMode(param2) != PC_MODE_COMPARE) {
+    if (BoxApp_GetBoxMode(param2) != PC_MODE_COMPARE) {
         param0->unk_30 = 14;
         param0->unk_34 = 0;
     } else {
@@ -292,11 +291,11 @@ void ov19_021DCAC0(UnkStruct_ov19_021DC680 *param0)
 {
     u32 v0;
 
-    if (param0->unk_0C->unk_110 == ov19_GetCurrentBox(param0->unk_0C)) {
+    if (param0->unk_0C->selectedBoxID == BoxApp_GetCurrentBox(param0->unk_0C)) {
         ov19_021D84E0(param0->unk_10);
     }
 
-    v0 = ov19_GetCursorPartyPosition(param0->unk_0C);
+    v0 = BoxApp_GetCursorPartyPosition(param0->unk_0C);
     ov19_021DA3F0(param0->unk_38, &param0->unk_3C[v0], 1);
     param0->unk_28 = v0;
 }
@@ -315,10 +314,10 @@ BOOL ov19_021DCB20(UnkStruct_ov19_021DC680 *param0)
     switch (param0->unk_174) {
     case 0:
         if (ov19_021DA7E0(param0->unk_38, v0)) {
-            const UnkStruct_ov19_021D5DF8 *v1 = ov19_021D7964(param0->unk_00);
+            const BoxApplicationManager *v1 = ov19_021D7964(param0->unk_00);
 
-            if (ov19_HasCheckedCanReleaseMon(v1)) {
-                if (ov19_CanReleaseMon(v1)) {
+            if (BoxAppMan_HasCheckedCanReleaseMon(v1)) {
+                if (BoxAppMan_CanReleaseMon(v1)) {
                     ov19_021DA3F0(param0->unk_38, v0, 1);
                     return 1;
                 } else {
@@ -340,11 +339,11 @@ BOOL ov19_021DCB20(UnkStruct_ov19_021DC680 *param0)
 
 void ov19_021DCBA0(UnkStruct_ov19_021DC680 *param0)
 {
-    if (ov19_GetCursorLocation(param0->unk_0C) == CURSOR_IN_PARTY) {
+    if (BoxApp_GetCursorLocation(param0->unk_0C) == CURSOR_IN_PARTY) {
         u32 v0;
         int v1;
 
-        v0 = ov19_GetMonSpriteTransparencyMask(param0->unk_0C);
+        v0 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_0C);
 
         for (v1 = 0; v1 < 6; v1++) {
             if (param0->unk_3C[v1].unk_00 != NULL) {
@@ -358,15 +357,15 @@ void ov19_021DCBDC(UnkStruct_ov19_021DC680 *param0, u32 param1, u32 param2)
 {
     if (param0->unk_3C[param1].unk_00 != NULL) {
         ov19_021DA690(param0->unk_38, &param0->unk_3C[param1], param2);
-        ov19_021DA63C(param0->unk_38, &param0->unk_3C[param1], ov19_GetMonSpriteTransparencyMask(param0->unk_0C));
+        ov19_021DA63C(param0->unk_38, &param0->unk_3C[param1], BoxApp_GetMonSpriteTransparencyMask(param0->unk_0C));
         ov19_021DA694(param0->unk_38, &param0->unk_3C[param1], 0);
     }
 }
 
 void ov19_021DCC14(UnkStruct_ov19_021DC680 *param0)
 {
-    u32 v0 = ov19_GetCursorPartyPosition(param0->unk_0C);
-    u32 v1 = ov19_GetPreviewedMonMarkings(param0->unk_0C);
+    u32 v0 = BoxApp_GetCursorPartyPosition(param0->unk_0C);
+    u32 v1 = BoxApp_GetPreviewedMonMarkings(param0->unk_0C);
 
     if (param0->unk_3C[v0].unk_00 != NULL) {
         ov19_021DA68C(param0->unk_38, &(param0->unk_3C[v0]), v1);

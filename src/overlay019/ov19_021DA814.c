@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA8D8.h"
 
@@ -13,7 +13,7 @@
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021DA814(UnkStruct_ov19_021DA8D8 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, SpriteList *param3, NARC *param4)
+BOOL ov19_021DA814(UnkStruct_ov19_021DA8D8 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4)
 {
     param0->unk_44 = param1;
     param0->unk_3C = param3;

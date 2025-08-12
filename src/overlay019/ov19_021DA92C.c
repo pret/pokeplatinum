@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/pc_mon_preview.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA9E0.h"
 
@@ -47,11 +47,11 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1);
 
-BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, const MessageLoader *param5, NARC *param6)
+BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, const MessageLoader *param5, NARC *param6)
 {
     int v0;
 
-    if (ov19_GetBoxMode(param2) == PC_MODE_COMPARE) {
+    if (BoxApp_GetBoxMode(param2) == PC_MODE_COMPARE) {
         param0->unk_00 = 0;
         return 1;
     }
@@ -238,7 +238,7 @@ static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
         UnkStruct_ov19_021DAE2C *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DAE2C));
 
         if (v0) {
-            const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);
+            const PCMonPreview *preview = BoxApp_GetPCMonPreview(param0->unk_10);
 
             v0->unk_00 = (preview->isEgg) ? 4 : 0;
             v0->unk_08 = param0;
@@ -263,7 +263,7 @@ static void ov19_021DACB0(UnkStruct_ov19_021DA9E0 *param0)
     UnkStruct_ov19_021DAE2C *v0 = SysTask_GetParam(param0->unk_4C);
 
     if (v0) {
-        const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);
+        const PCMonPreview *preview = BoxApp_GetPCMonPreview(param0->unk_10);
 
         v0->unk_00 = (preview->isEgg) ? 4 : 0;
         ov19_021DAE10(param0);
@@ -288,7 +288,7 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (ov19_IsMonAvailableToCursor(v1->unk_10) == FALSE) {
+        if (BoxApp_IsMonAvailableToCursor(v1->unk_10) == FALSE) {
             break;
         }
 
@@ -301,7 +301,7 @@ static void ov19_021DACF8(SysTask *param0, void *param1)
         v0->unk_00 = 2;
         break;
     case 2:
-        preview = ov19_GetPCMonPreview(v1->unk_10);
+        preview = BoxApp_GetPCMonPreview(v1->unk_10);
 
         if (!preview->isEgg && (++(v0->unk_04) > 80)) {
             ov19_021DAE2C(v0);
@@ -445,7 +445,7 @@ void ov19_021DAF98(UnkStruct_ov19_021DA9E0 *param0)
     Window_FillTilemap(&param0->unk_04[2], 15);
     Window_FillTilemap(&param0->unk_04[3], 0);
 
-    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
+    if (BoxApp_IsMonAvailableToCursor(param0->unk_10)) {
         ov19_021DB0E4(param0);
     }
 
@@ -471,7 +471,7 @@ void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
         param0->unk_24 = NULL;
     }
 
-    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
+    if (BoxApp_IsMonAvailableToCursor(param0->unk_10)) {
         ov19_021DB0E4(param0);
     } else {
         ov19_021DB24C(param0, 0);
@@ -514,7 +514,7 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
 {
     PokemonSpriteTemplate v0;
-    const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);
+    const PCMonPreview *preview = BoxApp_GetPCMonPreview(param0->unk_10);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, preview->nickname, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
@@ -559,10 +559,10 @@ void ov19_021DB224(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    if (ov19_IsMonAvailableToCursor(param0->unk_10)) {
+    if (BoxApp_IsMonAvailableToCursor(param0->unk_10)) {
         const PCMonPreview *preview;
 
-        preview = ov19_GetPCMonPreview(param0->unk_10);
+        preview = BoxApp_GetPCMonPreview(param0->unk_10);
         ov19_021DB24C(param0, preview->markings);
     }
 }
@@ -596,7 +596,7 @@ void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    preview = ov19_GetPCMonPreview(param0->unk_10);
+    preview = BoxApp_GetPCMonPreview(param0->unk_10);
     Window_FillTilemap(&param0->unk_04[3], 0);
 
     if (preview->isEgg == FALSE) {

@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/box_application.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DCD18.h"
@@ -12,7 +12,7 @@
 #include "pokemon.h"
 #include "sprite.h"
 
-BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, SpriteList *param3, NARC *param4);
+BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, SpriteList *param3, NARC *param4);
 void ov19_021DA384(UnkStruct_ov19_021DA384 *param0);
 void ov19_021DA3CC(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);
 void ov19_021DA3F0(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2);

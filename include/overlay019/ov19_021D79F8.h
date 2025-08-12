@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV19_021D79F8_H
 #define POKEPLATINUM_OV19_021D79F8_H
 
+#include "overlay019/box_application.h"
 #include "overlay019/box_customization.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021DCD18.h"
@@ -10,7 +10,7 @@
 #include "bg_window.h"
 #include "sprite.h"
 
-BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4);
+BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4);
 void ov19_021D7A74(UnkStruct_ov19_021D8318 *param0);
 void ov19_021D7A9C(UnkStruct_ov19_021D8318 *param0);
 void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *BoxCustomization, int param2, BOOL param3);

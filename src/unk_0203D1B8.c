@@ -46,7 +46,7 @@
 #include "overlay005/daycare.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay007/accessory_shop.h"
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
 #include "overlay019/pokemon_storage_session.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
@@ -627,14 +627,14 @@ void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSess
 {
     FS_EXTERN_OVERLAY(overlay19);
 
-    static const ApplicationManagerTemplate template = {
-        ov19_021D0D80,
-        ov19_021D0DEC,
-        ov19_021D0E58,
+    static const ApplicationManagerTemplate boxAppManTemplate = {
+        BoxAppMan_Init,
+        BoxAppMan_Main,
+        BoxAppMan_Exit,
         FS_OVERLAY_ID(overlay19)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, pokemonStorageSession);
+    FieldSystem_StartChildProcess(fieldSystem, &boxAppManTemplate, pokemonStorageSession);
 }
 
 static BOOL sub_0203D764(FieldTask *taskMan)

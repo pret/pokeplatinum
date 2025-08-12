@@ -5,11 +5,11 @@
 
 #include "generated/pokemon_contest_types.h"
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
 #include "overlay019/pc_compare_mon.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
@@ -34,7 +34,7 @@
 struct UnkStruct_ov19_021DEC04_t {
     BOOL unk_00;
     UnkStruct_ov19_021D61B0 *unk_04;
-    const UnkStruct_ov19_021D4DF0 *unk_08;
+    const BoxApplication *unk_08;
     BgConfig *unk_0C;
     SpriteList *unk_10;
     UnkStruct_ov19_021DA384 *unk_14;
@@ -56,7 +56,7 @@ struct UnkStruct_ov19_021DEC04_t {
     NNSG2dScreenData *unk_36C;
     void *unk_370;
     void *unk_374;
-    int unk_378;
+    enum CompareMode unk_378;
     int unk_37C;
     SysTask *unk_380;
 };
@@ -85,9 +85,9 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1);
 static void ov19_021DF930(SysTask *param0, void *param1);
 
-BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, NARC *param6)
+BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, NARC *param6)
 {
-    if (ov19_GetBoxMode(param2) != PC_MODE_COMPARE) {
+    if (BoxApp_GetBoxMode(param2) != PC_MODE_COMPARE) {
         *param0 = NULL;
         return 1;
     } else {
@@ -143,7 +143,7 @@ void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
         ov19_021DEF64(param0);
         ov19_021DEFC8(param0);
 
-        param0->unk_378 = ov19_021D5FA4(param0->unk_08);
+        param0->unk_378 = BoxApp_GetCompareMode(param0->unk_08);
 
         Bg_CopyTilemapBufferToVRAM(param0->unk_0C, 4);
         ov19_021DF5D0(param0, param1);
@@ -153,7 +153,7 @@ void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
 void ov19_021DEDDC(UnkStruct_ov19_021DEC04 *param0, BOOL param1)
 {
     if (param0) {
-        int v0 = ov19_GetCompareMonSlot(param0->unk_08);
+        int v0 = BoxApp_GetCompareMonSlot(param0->unk_08);
 
         if (param1) {
             Sprite_SetAnim(param0->unk_28[v0 ^ 1], 2);
@@ -172,18 +172,18 @@ void ov19_021DEE34(UnkStruct_ov19_021DEC04 *param0)
     ov19_021DF834(param0);
 
     if (param0) {
-        int compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
+        int compareMonSlot = BoxApp_GetCompareMonSlot(param0->unk_08);
 
         ov19_021DF8C8(param0, compareMonSlot);
 
-        switch (ov19_021D5FA4(param0->unk_08)) {
-        case 0:
+        switch (BoxApp_GetCompareMode(param0->unk_08)) {
+        case COMPARE_BATTLE_STATS:
             ov19_021DF3AC(param0, compareMonSlot);
             break;
-        case 1:
+        case COMPARE_CONTEST_STATS:
             ov19_021DF178(param0, compareMonSlot);
             break;
-        case 2:
+        case COMPARE_MOVES:
             ov19_021DF4D0(param0, compareMonSlot);
             break;
         }
@@ -229,7 +229,7 @@ BOOL ov19_021DEEA8(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0)
 {
-    NNSG2dScreenData *v0 = (ov19_GetCompareMonSlot(param0->unk_08) == 0) ? param0->unk_368 : param0->unk_36C;
+    NNSG2dScreenData *v0 = (BoxApp_GetCompareMonSlot(param0->unk_08) == 0) ? param0->unk_368 : param0->unk_36C;
 
     Bg_CopyToTilemapRect(param0->unk_0C, 2, 0, 0, 6, 32, v0->rawData, 0, 0, 32, 32);
     Bg_CopyToTilemapRect(param0->unk_0C, 2, 26, 0, 6, 32, v0->rawData, 26, 0, 32, 32);
@@ -238,18 +238,18 @@ static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DEF64(UnkStruct_ov19_021DEC04 *param0)
 {
-    switch (ov19_021D5FA4(param0->unk_08)) {
-    case 0:
+    switch (BoxApp_GetCompareMode(param0->unk_08)) {
+    case COMPARE_BATTLE_STATS:
         Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
         break;
-    case 1:
+    case COMPARE_CONTEST_STATS:
         Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
         break;
-    case 2:
+    case COMPARE_MOVES:
         Bg_ToggleLayer(BG_LAYER_SUB_3, 1);
         Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
         Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
@@ -299,19 +299,19 @@ static void ov19_021DF03C(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DF064(UnkStruct_ov19_021DEC04 *param0)
 {
-    int v0 = ov19_021D5FA4(param0->unk_08);
+    int v0 = BoxApp_GetCompareMode(param0->unk_08);
 
-    switch (ov19_021D5FA4(param0->unk_08)) {
-    case 0:
+    switch (BoxApp_GetCompareMode(param0->unk_08)) {
+    case COMPARE_BATTLE_STATS:
         ov19_021DF108(param0);
         ov19_021DF3AC(param0, 0);
         ov19_021DF3AC(param0, 1);
         break;
-    case 1:
+    case COMPARE_CONTEST_STATS:
         ov19_021DF178(param0, 0);
         ov19_021DF178(param0, 1);
         break;
-    case 2:
+    case COMPARE_MOVES:
         ov19_021DF270(param0);
         ov19_021DF4D0(param0, 0);
         ov19_021DF4D0(param0, 1);
@@ -388,10 +388,10 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     const PCCompareMon *compareMon;
     BOOL isMonUnderCursor, v3, v4;
 
-    compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-    isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    v3 = ov19_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
-    v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
+    compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
+    isMonUnderCursor = BoxApp_IsMonUnderCursor(param0->unk_08);
+    v3 = BoxApp_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
+    v4 = BoxApp_CompareSlotHasMon(param0->unk_08, compareMonSlot);
 
     if ((((isMonUnderCursor == TRUE) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == FALSE)) {
         int i;
@@ -476,14 +476,14 @@ static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 *param0)
 
     Window_FillTilemap(v1, 0);
 
-    switch (ov19_021D5FA4(param0->unk_08)) {
-    case 0:
+    switch (BoxApp_GetCompareMode(param0->unk_08)) {
+    case COMPARE_BATTLE_STATS:
         for (v2 = 0; v2 < NELEMS(compareMessages); v2++) {
             MessageLoader_GetStrbuf(param0->unk_6C, compareMessages[v2], param0->boxDisplayText);
             Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0 + 16 * v2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         }
         break;
-    case 2:
+    case COMPARE_MOVES:
         MessageLoader_GetStrbuf(param0->unk_6C, BoxText_Move, param0->boxDisplayText);
         Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v1, 0, param0->boxDisplayText), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         break;
@@ -507,10 +507,10 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     BOOL isMonUnderCursor, compareSlot, v4;
 
     window = &(param0->unk_78[3 + compareMonSlot]);
-    compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-    isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    compareSlot = ov19_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
-    v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
+    compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
+    isMonUnderCursor = BoxApp_IsMonUnderCursor(param0->unk_08);
+    compareSlot = BoxApp_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
+    v4 = BoxApp_CompareSlotHasMon(param0->unk_08, compareMonSlot);
 
     Window_FillTilemap(window, 0);
 
@@ -545,10 +545,10 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
     BOOL isMonUnderCursor, v3, v4;
 
     v0 = &(param0->unk_78[5 + compareMonSlot]);
-    compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
-    isMonUnderCursor = ov19_IsMonUnderCursor(param0->unk_08);
-    v3 = (ov19_GetCompareMonSlot(param0->unk_08) == compareMonSlot);
-    v4 = ov19_021D5FB8(param0->unk_08, compareMonSlot);
+    compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
+    isMonUnderCursor = BoxApp_IsMonUnderCursor(param0->unk_08);
+    v3 = BoxApp_GetCompareMonSlot(param0->unk_08) == compareMonSlot;
+    v4 = BoxApp_CompareSlotHasMon(param0->unk_08, compareMonSlot);
 
     Window_FillTilemap(v0, 0);
 
@@ -666,13 +666,13 @@ static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
 
 static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
 {
-    int compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
-    const PCCompareMon *compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
+    int compareMonSlot = BoxApp_GetCompareMonSlot(param0->unk_08);
+    const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
     Sprite *v2 = param0->unk_20[compareMonSlot];
     BoxPokemon *boxMon = compareMon->mon;
     NNSG2dCharacterData *v4;
 
-    if (ov19_IsMonUnderCursor(param0->unk_08)) {
+    if (BoxApp_IsMonUnderCursor(param0->unk_08)) {
         u32 v5 = 4 + PokeIconPaletteIndex(compareMon->species, compareMon->form, compareMon->isEgg);
 
         ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(boxMon), sizeof(param0->unk_E8));
@@ -692,13 +692,13 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 {
     Window *window;
 
-    compareMonSlot = ov19_GetCompareMonSlot(param0->unk_08);
+    compareMonSlot = BoxApp_GetCompareMonSlot(param0->unk_08);
     window = &(param0->unk_78[0 + compareMonSlot]);
 
     Window_FillTilemap(window, 0);
 
-    if (ov19_IsMonUnderCursor(param0->unk_08)) {
-        const PCCompareMon *compareMon = ov19_GetCompareMonFrom(param0->unk_08, compareMonSlot);
+    if (BoxApp_IsMonUnderCursor(param0->unk_08)) {
+        const PCCompareMon *compareMon = BoxApp_GetCompareMonFrom(param0->unk_08, compareMonSlot);
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(window, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
@@ -708,7 +708,7 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
 static void ov19_021DF930(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021DEC04 *v0 = param1;
-    BOOL pressedAnimation = ov19_IsCompareButtonPressed(v0->unk_08);
+    BOOL pressedAnimation = BoxApp_IsCompareButtonPressed(v0->unk_08);
 
     if (Sprite_GetActiveAnim(v0->unk_30) == 3) {
         if (pressedAnimation) {

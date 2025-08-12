@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV19_021DC5F0_H
 #define POKEPLATINUM_OV19_021DC5F0_H
 
-#include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/box_application.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DC680.h"
 #include "overlay019/struct_ov19_021DCD18.h"
@@ -10,7 +10,7 @@
 #include "narc.h"
 #include "sprite.h"
 
-BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, NARC *param5);
+BOOL ov19_021DC5F0(UnkStruct_ov19_021DC680 *param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4, NARC *param5);
 void ov19_021DC680(UnkStruct_ov19_021DC680 *param0);
 void ov19_021DC6A0(UnkStruct_ov19_021DC680 *param0);
 void ov19_021DC6C8(UnkStruct_ov19_021DC680 *param0);
