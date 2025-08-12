@@ -678,7 +678,7 @@ _0910:
 
 _091D:
     PlaySound SEQ_FANFA4
-    GiveGoodPC VAR_0x8004, VAR_0x8005, VAR_RESULT
+    SendGoodToPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     ScrCmd_33E 0, VAR_0x8004
     Message 108
     BufferUndergroundGoodsName 0, VAR_0x8004

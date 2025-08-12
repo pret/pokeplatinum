@@ -12,7 +12,7 @@
 #include "savedata.h"
 #include "unk_0202854C.h"
 
-BOOL ScrCmd_GiveGoodPC(ScriptContext *ctx)
+BOOL ScrCmd_SendGoodToPC(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
@@ -36,7 +36,7 @@ BOOL ScrCmd_Dummy084(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CheckIsRoomForGoodsInPC(ScriptContext *ctx)
+BOOL ScrCmd_CheckHasRoomForGoodsInPC(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;

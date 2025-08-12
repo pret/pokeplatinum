@@ -3,9 +3,9 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_GiveGoodPC(ScriptContext *ctx);
+BOOL ScrCmd_SendGoodToPC(ScriptContext *ctx);
 BOOL ScrCmd_Dummy084(ScriptContext *ctx);
-BOOL ScrCmd_CheckIsRoomForGoodsInPC(ScriptContext *ctx);
+BOOL ScrCmd_CheckHasRoomForGoodsInPC(ScriptContext *ctx);
 BOOL ScrCmd_Dummy086(ScriptContext *ctx);
 BOOL ScrCmd_GiveTrap(ScriptContext *ctx);
 BOOL ScrCmd_Dummy088(ScriptContext *ctx);

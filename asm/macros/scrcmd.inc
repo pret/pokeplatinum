@@ -807,7 +807,7 @@
     .short 130
     .endm
 
-    .macro GiveGoodPC goodID, unused, destVar
+    .macro SendGoodToPC goodID, unused, destVar
     .short 131
     .short \goodID
     .short \unused
@@ -821,7 +821,7 @@
     .short \dummy3
     .endm
 
-    .macro CheckIsRoomForGoodsInPC unused, unused2, destVar
+    .macro CheckHasRoomForGoodsInPC unused, unused2, destVar
     .short 133
     .short \unused
     .short \unused2
