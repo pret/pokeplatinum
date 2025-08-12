@@ -54,7 +54,7 @@ _0096:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_RELIC
-    Duplicate_IncrementTrainerScore 23
+    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_CAMPER_DREW
     SetTrainerFlag TRAINER_ACE_TRAINER_ALLEN
     SetTrainerFlag TRAINER_ACE_TRAINER_CATHERINE

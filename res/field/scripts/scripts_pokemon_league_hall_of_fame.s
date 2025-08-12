@@ -51,7 +51,7 @@ _008C:
     ScrCmd_25A VAR_RESULT
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
-    Duplicate_IncrementTrainerScore 24
+    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_HALL_OF_FAME_ENTRY
     Call _0174
     ScrCmd_0B0
     ReturnToField

@@ -57,7 +57,7 @@ _0076:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_FEN
-    Duplicate_IncrementTrainerScore 23
+    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_FISHERMAN_ERICK
     SetTrainerFlag TRAINER_SAILOR_DAMIAN
     SetTrainerFlag TRAINER_FISHERMAN_WALTER
