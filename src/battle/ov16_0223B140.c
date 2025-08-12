@@ -28,10 +28,10 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_022674C4.h"
+#include "battle_anim/battle_anim_system.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/particle_helper.h"
-#include "battle_anim/battle_anim_system.h"
 
 #include "bag.h"
 #include "bg_window.h"

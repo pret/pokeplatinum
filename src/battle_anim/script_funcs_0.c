@@ -8,8 +8,8 @@
 #include "constants/battle/battle_anim.h"
 #include "constants/graphics.h"
 
-#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_helpers.h"
+#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 
 #include "battle_script_battlers.h"
@@ -1849,7 +1849,7 @@ void BattleAnimScriptFunc_Minimize(BattleAnimSystem *system)
         ManagedSprite_SetPriority(ctx->sprites[i].sprite, i + 1);
     }
 
-    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(system, BATTLER_TYPE_ATTACKER) == TRUE) {
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(system, BATTLER_ROLE_ATTACKER) == TRUE) {
         ctx->spriteDir = -1;
     } else {
         ctx->spriteDir = +1;
@@ -2100,7 +2100,7 @@ static void BattleAnimTask_FlailAttackerMode(SysTask *task, void *param)
     case FLAIL_MODE_ATTACKER_STATE_ROTATE:
         if (ValueLerpContext_Update(&ctx->angle) == TRUE) {
             PokemonSprite_SetAttribute(
-                ctx->battlerSprites[BATTLER_TYPE_ATTACKER],
+                ctx->battlerSprites[BATTLER_ROLE_ATTACKER],
                 MON_SPRITE_ROTATION_Z,
                 (u16)ctx->angle.value);
         } else {
@@ -2112,7 +2112,7 @@ static void BattleAnimTask_FlailAttackerMode(SysTask *task, void *param)
         }
         break;
     default:
-        PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], MON_SPRITE_ROTATION_Z, 0);
+        PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_ROLE_ATTACKER], MON_SPRITE_ROTATION_Z, 0);
         BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
         Heap_Free(ctx);
         break;
@@ -2135,9 +2135,9 @@ static void BattleAnimTask_FlailDefenderMode(SysTask *task, void *param)
         break;
     case FLAIL_MODE_DEFENDER_STATE_SHAKE: {
         Point2D pos;
-        BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_DEFENDER], &pos);
+        BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_ROLE_DEFENDER], &pos);
 
-        if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, pos.x, pos.y, ctx->battlerSprites[BATTLER_TYPE_DEFENDER]) == FALSE) {
+        if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, pos.x, pos.y, ctx->battlerSprites[BATTLER_ROLE_DEFENDER]) == FALSE) {
             ctx->common.state++;
         }
     } break;
@@ -2153,14 +2153,14 @@ void BattleAnimScriptFunc_Flail(BattleAnimSystem *system)
     FlailContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FlailContext));
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    ctx->battlerSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(
+    ctx->battlerSprites[BATTLER_ROLE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(
         ctx->common.battleAnimSys,
         BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
-    ctx->battlerSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(
+    ctx->battlerSprites[BATTLER_ROLE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(
         ctx->common.battleAnimSys,
         BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
 
-    PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], MON_SPRITE_Y_PIVOT, FLAIL_WIGGLE_PIVOT_Y);
+    PokemonSprite_SetAttribute(ctx->battlerSprites[BATTLER_ROLE_ATTACKER], MON_SPRITE_Y_PIVOT, FLAIL_WIGGLE_PIVOT_Y);
 
     int mode = BattleAnimSystem_GetScriptVar(system, FLAIL_VAR_MODE);
 
@@ -2266,13 +2266,13 @@ static void BattleAnimTask_OdorSleuth(SysTask *task, void *param)
     switch (ctx->common.state) {
     case 0:
         ShakeContext_Init(
-            &ctx->shake[BATTLER_TYPE_ATTACKER],
+            &ctx->shake[BATTLER_ROLE_ATTACKER],
             ODOR_SLEUTH_ATTACKER_SHAKE_EXTENT_X,
             ODOR_SLEUTH_ATTACKER_SHAKE_EXTENT_Y,
             ODOR_SLEUTH_ATTACKER_SHAKE_INTERVAL,
             ODOR_SLEUTH_ATTACKER_SHAKE_AMOUNT);
         ShakeContext_Init(
-            &ctx->shake[BATTLER_TYPE_DEFENDER],
+            &ctx->shake[BATTLER_ROLE_DEFENDER],
             ODOR_SLEUTH_DEFENDER_SHAKE_EXTENT_X,
             ODOR_SLEUTH_DEFENDER_SHAKE_EXTENT_Y,
             ODOR_SLEUTH_DEFENDER_SHAKE_INTERVAL,
@@ -2280,20 +2280,20 @@ static void BattleAnimTask_OdorSleuth(SysTask *task, void *param)
         ctx->common.state++;
         break;
     case 1:
-        if (ShakeContext_Update(&ctx->shake[BATTLER_TYPE_ATTACKER]) == FALSE) {
+        if (ShakeContext_Update(&ctx->shake[BATTLER_ROLE_ATTACKER]) == FALSE) {
             ctx->common.state++;
         } else {
             ManagedSprite_SetPositionXY(
-                ctx->monSprites[BATTLER_TYPE_ATTACKER],
-                +ctx->spritePositions[BATTLER_TYPE_DEFENDER].x + ctx->shake[BATTLER_TYPE_ATTACKER].x,
-                ctx->spritePositions[BATTLER_TYPE_DEFENDER].y + ctx->shake[BATTLER_TYPE_ATTACKER].y);
+                ctx->monSprites[BATTLER_ROLE_ATTACKER],
+                +ctx->spritePositions[BATTLER_ROLE_DEFENDER].x + ctx->shake[BATTLER_ROLE_ATTACKER].x,
+                ctx->spritePositions[BATTLER_ROLE_DEFENDER].y + ctx->shake[BATTLER_ROLE_ATTACKER].y);
             ManagedSprite_SetPositionXY(
-                ctx->monSprites[BATTLER_TYPE_DEFENDER],
-                -ctx->spritePositions[BATTLER_TYPE_DEFENDER].x + ctx->shake[BATTLER_TYPE_ATTACKER].x,
-                ctx->spritePositions[BATTLER_TYPE_DEFENDER].y + ctx->shake[BATTLER_TYPE_ATTACKER].y);
+                ctx->monSprites[BATTLER_ROLE_DEFENDER],
+                -ctx->spritePositions[BATTLER_ROLE_DEFENDER].x + ctx->shake[BATTLER_ROLE_ATTACKER].x,
+                ctx->spritePositions[BATTLER_ROLE_DEFENDER].y + ctx->shake[BATTLER_ROLE_ATTACKER].y);
 
-            ManagedSprite_TickFrame(ctx->monSprites[BATTLER_TYPE_ATTACKER]);
-            ManagedSprite_TickFrame(ctx->monSprites[BATTLER_TYPE_DEFENDER]);
+            ManagedSprite_TickFrame(ctx->monSprites[BATTLER_ROLE_ATTACKER]);
+            ManagedSprite_TickFrame(ctx->monSprites[BATTLER_ROLE_DEFENDER]);
         }
 
         SpriteSystem_DrawSprites(ctx->common.pokemonSpriteManager);
@@ -2311,13 +2311,13 @@ void BattleAnimScriptFunc_OdorSleuth(BattleAnimSystem *system)
 
     BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    ctx->monSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
-    ctx->monSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
-    ctx->battlerSprites[BATTLER_TYPE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
-    ctx->battlerSprites[BATTLER_TYPE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
+    ctx->monSprites[BATTLER_ROLE_ATTACKER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_0);
+    ctx->monSprites[BATTLER_ROLE_DEFENDER] = BattleAnimSystem_GetPokemonSprite(ctx->common.battleAnimSys, BATTLE_ANIM_MON_SPRITE_1);
+    ctx->battlerSprites[BATTLER_ROLE_ATTACKER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
+    ctx->battlerSprites[BATTLER_ROLE_DEFENDER] = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
 
-    BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_ATTACKER], &ctx->spritePositions[BATTLER_TYPE_ATTACKER]);
-    BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_TYPE_DEFENDER], &ctx->spritePositions[BATTLER_TYPE_DEFENDER]);
+    BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_ROLE_ATTACKER], &ctx->spritePositions[BATTLER_ROLE_ATTACKER]);
+    BattleAnimUtil_GetMonSpritePos(ctx->battlerSprites[BATTLER_ROLE_DEFENDER], &ctx->spritePositions[BATTLER_ROLE_DEFENDER]);
 
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_OdorSleuth, ctx);
 }

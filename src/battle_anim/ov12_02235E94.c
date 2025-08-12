@@ -5,10 +5,10 @@
 
 #include "struct_defs/seal_case.h"
 
-#include "battle_anim/battle_anim_system.h"
-#include "battle_anim/battle_particle_util.h"
 #include "battle_anim/battle_anim_helpers.h"
+#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
+#include "battle_anim/battle_particle_util.h"
 #include "battle_anim/ov12_02237E54.h"
 #include "battle_anim/struct_ov12_02223764.h"
 #include "battle_anim/struct_ov12_02236030.h"

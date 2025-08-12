@@ -5,8 +5,8 @@
 
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay011/particle_helper.h"
 #include "battle_anim/battle_anim_system.h"
+#include "overlay011/particle_helper.h"
 #include "overlay017/const_ov17_022536B4.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_0223F7E4.h"

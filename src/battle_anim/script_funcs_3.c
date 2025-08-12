@@ -8,10 +8,10 @@
 #include "constants/battle/battle_anim.h"
 #include "constants/graphics.h"
 
-#include "global/utility.h"
-#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_helpers.h"
+#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
+#include "global/utility.h"
 
 #include "battle_script_battlers.h"
 #include "bg_window.h"
@@ -1754,7 +1754,7 @@ void BattleAnimScriptFunc_ScalePokemonSprite(BattleAnimSystem *system)
     ctx->pokemonSpriteManager = BattleAnimSystem_GetPokemonSpriteManager(ctx->battleAnimSys);
 
     PokemonSprite *battlerSprite;
-    if (BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_TARGET) == BATTLER_TYPE_ATTACKER) {
+    if (BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_TARGET) == BATTLER_ROLE_ATTACKER) {
         battlerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
         ctx->battlerHeight = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
     } else {
@@ -1780,14 +1780,14 @@ void BattleAnimScriptFunc_ScalePokemonSprite(BattleAnimSystem *system)
     BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, ctx->spriteAlpha, SCALE_POKEMON_SPRITE_BG_ALPHA - ctx->spriteAlpha);
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ScalePokemonSprite, ctx);
 
-    int battlerType = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_TARGET);
-    if (battlerType == BATTLER_TYPE_ATTACKER) {
-        battlerType = BATTLER_TYPE_ATTACKER;
+    int battlerRole = BattleAnimSystem_GetScriptVar(system, SCALE_POKEMON_SPRITE_VAR_TARGET);
+    if (battlerRole == BATTLER_ROLE_ATTACKER) {
+        battlerRole = BATTLER_ROLE_ATTACKER;
     } else {
-        battlerType = BATTLER_TYPE_DEFENDER;
+        battlerRole = BATTLER_ROLE_DEFENDER;
     }
 
-    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, battlerType) == TRUE) {
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, battlerRole) == TRUE) {
         ctx->flip = TRUE;
     }
 }
@@ -4021,14 +4021,14 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
     }
 
     if (BattleAnimSystem_IsDoubleBattle(system) != TRUE) {
-        if (BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER) == BATTLER_TYPE_ATTACKER_PARTNER || BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER) == BATTLER_TYPE_DEFENDER_PARTNER) {
+        if (BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER) == BATTLER_ROLE_ATTACKER_PARTNER || BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER) == BATTLER_ROLE_DEFENDER_PARTNER) {
             ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
             Heap_Free(ctx);
             return;
         }
     }
 
-    enum BattleAnimBattlerType battlerType = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER);
+    int battlerType = BattleAnimSystem_GetScriptVar(system, SET_POKEMON_SPRITE_PRIORITY_VAR_BATTLER);
     int attacker = BattleAnimSystem_GetAttacker(system);
     int defender = BattleAnimSystem_GetDefender(system);
 
@@ -4038,7 +4038,7 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
         int defenderType = BattleAnimUtil_GetBattlerType(system, defender);
 
         switch (battlerType) {
-        case BATTLER_TYPE_ATTACKER:
+        case BATTLER_ROLE_ATTACKER:
             switch (attackerType) {
             case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
                 ManagedSprite_SetPriority(ctx->sprite, 20);
@@ -4054,7 +4054,7 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
                 break;
             }
             break;
-        case BATTLER_TYPE_ATTACKER_PARTNER:
+        case BATTLER_ROLE_ATTACKER_PARTNER:
             switch (attackerType) {
             case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
                 ManagedSprite_SetPriority(ctx->sprite, 10);
@@ -4070,7 +4070,7 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
                 break;
             }
             break;
-        case BATTLER_TYPE_DEFENDER:
+        case BATTLER_ROLE_DEFENDER:
             switch (defenderType) {
             case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
                 ManagedSprite_SetPriority(ctx->sprite, 20);
@@ -4086,7 +4086,7 @@ void BattleAnimScriptFunc_SetPokemonSpritePriority(BattleAnimSystem *system)
                 break;
             }
             break;
-        case BATTLER_TYPE_DEFENDER_PARTNER:
+        case BATTLER_ROLE_DEFENDER_PARTNER:
             switch (defenderType) {
             case BATTLER_TYPE_PLAYER_SIDE_SLOT_1:
                 ManagedSprite_SetPriority(ctx->sprite, 10);

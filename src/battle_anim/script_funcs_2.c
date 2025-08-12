@@ -9,8 +9,8 @@
 #include "constants/battle/battle_anim.h"
 #include "constants/graphics.h"
 
-#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_helpers.h"
+#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 #include "pch/global_pch.h"
 
@@ -2854,7 +2854,7 @@ void BattleAnimScriptFunc_PlayfulHops(BattleAnimSystem *system)
 
     int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    if (BattleAnimSystem_GetScriptVar(system, PLAYFUL_HOPS_VAR_TARGET_BATTLER) == BATTLER_TYPE_ATTACKER) {
+    if (BattleAnimSystem_GetScriptVar(system, PLAYFUL_HOPS_VAR_TARGET_BATTLER) == BATTLER_ROLE_ATTACKER) {
         ctx->battlerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
         ctx->battlerX = PokemonSprite_GetAttribute(ctx->battlerSprite, MON_SPRITE_X_CENTER);
         ctx->battlerY = PokemonSprite_GetAttribute(ctx->battlerSprite, MON_SPRITE_Y_CENTER);
@@ -3900,8 +3900,8 @@ void BattleAnimScriptFunc_Memento(BattleAnimSystem *system)
     ManagedSprite_SetAffineOverwriteMode(ctx->defenderSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
     ManagedSprite_SetAffineTranslation(ctx->defenderSprite, 0, MON_SPRITE_FRAME_HEIGHT / 2);
 
-    ctx->attackerFlipped = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, BATTLER_TYPE_ATTACKER);
-    ctx->defenderFlipped = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, BATTLER_TYPE_DEFENDER);
+    ctx->attackerFlipped = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, BATTLER_ROLE_ATTACKER);
+    ctx->defenderFlipped = BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, BATTLER_ROLE_DEFENDER);
     ctx->attackerPartnerSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_2);
     ctx->defenderPartnerSprite = BattleAnimSystem_GetPokemonSprite(ctx->battleAnimSys, BATTLE_ANIM_MON_SPRITE_3);
 

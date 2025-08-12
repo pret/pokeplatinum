@@ -7,11 +7,11 @@
 #include "constants/battle/battle_anim.h"
 #include "constants/graphics.h"
 
-#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_helpers.h"
-#include "battle_anim/script_funcs_4.h"
+#include "battle_anim/battle_anim_system.h"
 #include "battle_anim/battle_anim_util.h"
 #include "battle_anim/ov12_022380BC.h"
+#include "battle_anim/script_funcs_4.h"
 #include "battle_anim/struct_ov12_022380DC.h"
 
 #include "battle_script_battlers.h"
@@ -483,13 +483,13 @@ static void BattleAnimTask_RolePlay(SysTask *task, void *param)
         }
         break;
     case ROLE_PLAY_STATE_WAIT_FOR_FADE:
-        if (PaletteFadeContext_IsActive(ctx->palFades[BATTLER_TYPE_DEFENDER]) == FALSE) {
-            PaletteFadeContext_Free(ctx->palFades[BATTLER_TYPE_ATTACKER]);
-            PaletteFadeContext_Free(ctx->palFades[BATTLER_TYPE_DEFENDER]);
+        if (PaletteFadeContext_IsActive(ctx->palFades[BATTLER_ROLE_DEFENDER]) == FALSE) {
+            PaletteFadeContext_Free(ctx->palFades[BATTLER_ROLE_ATTACKER]);
+            PaletteFadeContext_Free(ctx->palFades[BATTLER_ROLE_DEFENDER]);
 
             int palIndex = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->sprites[ROLE_PLAY_SPRITE_DEFENDER]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 
-            ctx->palFades[BATTLER_TYPE_DEFENDER] = PaletteFadeContext_New(
+            ctx->palFades[BATTLER_ROLE_DEFENDER] = PaletteFadeContext_New(
                 ctx->common.paletteData,
                 BattleAnimSystem_GetHeapID(ctx->common.battleAnimSys),
                 PLTTBUF_MAIN_OBJ,
@@ -506,9 +506,9 @@ static void BattleAnimTask_RolePlay(SysTask *task, void *param)
         break;
     case ROLE_PLAY_STATE_CLEANUP:
     default:
-        if (PaletteFadeContext_IsActive(ctx->palFades[BATTLER_TYPE_DEFENDER]) == FALSE) {
+        if (PaletteFadeContext_IsActive(ctx->palFades[BATTLER_ROLE_DEFENDER]) == FALSE) {
             ManagedSprite_TickFrame(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_1]);
-            PaletteFadeContext_Free(ctx->palFades[BATTLER_TYPE_DEFENDER]);
+            PaletteFadeContext_Free(ctx->palFades[BATTLER_ROLE_DEFENDER]);
             BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
             Heap_Free(ctx);
             return;
@@ -539,7 +539,7 @@ void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system)
     ctx->scaleX = 1.0f;
     ctx->scaleY = 1.0f;
 
-    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(system, BATTLER_TYPE_DEFENDER) == TRUE) {
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(system, BATTLER_ROLE_DEFENDER) == TRUE) {
         ctx->scaleDirX = -1;
     } else {
         ctx->scaleDirX = +1;
@@ -552,7 +552,7 @@ void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system)
     ManagedSprite_SetAffineScale(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0], ctx->scaleX * ctx->scaleDirX, ctx->scaleY);
 
     int palIndex = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->sprites[ROLE_PLAY_SPRITE_ATTACKER_0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-    ctx->palFades[BATTLER_TYPE_ATTACKER] = PaletteFadeContext_New(
+    ctx->palFades[BATTLER_ROLE_ATTACKER] = PaletteFadeContext_New(
         ctx->common.paletteData,
         BattleAnimSystem_GetHeapID(system),
         PLTTBUF_MAIN_OBJ,
@@ -566,7 +566,7 @@ void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system)
         ROLE_PLAY_PAL_FADE_PRIORITY);
 
     palIndex = PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(ctx->sprites[ROLE_PLAY_SPRITE_DEFENDER]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
-    ctx->palFades[BATTLER_TYPE_DEFENDER] = PaletteFadeContext_New(
+    ctx->palFades[BATTLER_ROLE_DEFENDER] = PaletteFadeContext_New(
         ctx->common.paletteData,
         BattleAnimSystem_GetHeapID(system),
         PLTTBUF_MAIN_OBJ,
@@ -682,12 +682,12 @@ void BattleAnimScriptFunc_Snatch(BattleAnimSystem *system)
     BattleAnimUtil_GetBattlerDefaultPos(
         ctx->common.battleAnimSys,
         BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys),
-        &ctx->battlerPositions[BATTLER_TYPE_ATTACKER]);
+        &ctx->battlerPositions[BATTLER_ROLE_ATTACKER]);
 
     BattleAnimUtil_GetBattlerDefaultPos(
         ctx->common.battleAnimSys,
         BattleAnimSystem_GetDefender(ctx->common.battleAnimSys),
-        &ctx->battlerPositions[BATTLER_TYPE_DEFENDER]);
+        &ctx->battlerPositions[BATTLER_ROLE_DEFENDER]);
 
     if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, attacker) == BTLSCR_PLAYER) {
         ctx->dir = +1;
@@ -704,16 +704,16 @@ void BattleAnimScriptFunc_Snatch(BattleAnimSystem *system)
     int count;
     BattleAnimUtil_GetBattlerSprites(system, BattleAnimSystem_GetScriptVar(system, SNATCH_VAR_TARGET), &ctx->spriteInfo, &count);
 
-    int height = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER) - ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y;
+    int height = PokemonSprite_GetAttribute(ctx->spriteInfo.monSprite, MON_SPRITE_Y_CENTER) - ctx->battlerPositions[BATTLER_ROLE_ATTACKER].y;
 
     if (ctx->dir > 0) {
         ctx->xpos[0] = HW_LCD_WIDTH + MON_SPRITE_FRAME_WIDTH - 1;
         ctx->xpos[1] = -MON_SPRITE_FRAME_WIDTH;
-        ctx->xpos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].x;
+        ctx->xpos[2] = ctx->battlerPositions[BATTLER_ROLE_ATTACKER].x;
 
-        ctx->ypos[0] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
-        ctx->ypos[1] = ctx->battlerPositions[BATTLER_TYPE_DEFENDER].y + height;
-        ctx->ypos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
+        ctx->ypos[0] = ctx->battlerPositions[BATTLER_ROLE_ATTACKER].y + height;
+        ctx->ypos[1] = ctx->battlerPositions[BATTLER_ROLE_DEFENDER].y + height;
+        ctx->ypos[2] = ctx->battlerPositions[BATTLER_ROLE_ATTACKER].y + height;
 
         ctx->zpos[0] = SNATCH_IN_FRONT_ZPOS;
         ctx->zpos[1] = SNATCH_BEHIND_ZPOS;
@@ -721,11 +721,11 @@ void BattleAnimScriptFunc_Snatch(BattleAnimSystem *system)
     } else {
         ctx->xpos[0] = -MON_SPRITE_FRAME_WIDTH;
         ctx->xpos[1] = HW_LCD_WIDTH + MON_SPRITE_FRAME_WIDTH - 1;
-        ctx->xpos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].x;
+        ctx->xpos[2] = ctx->battlerPositions[BATTLER_ROLE_ATTACKER].x;
 
-        ctx->ypos[0] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
-        ctx->ypos[1] = ctx->battlerPositions[BATTLER_TYPE_DEFENDER].y + height;
-        ctx->ypos[2] = ctx->battlerPositions[BATTLER_TYPE_ATTACKER].y + height;
+        ctx->ypos[0] = ctx->battlerPositions[BATTLER_ROLE_ATTACKER].y + height;
+        ctx->ypos[1] = ctx->battlerPositions[BATTLER_ROLE_DEFENDER].y + height;
+        ctx->ypos[2] = ctx->battlerPositions[BATTLER_ROLE_ATTACKER].y + height;
 
         ctx->zpos[0] = SNATCH_BEHIND_ZPOS;
         ctx->zpos[1] = SNATCH_IN_FRONT_ZPOS;

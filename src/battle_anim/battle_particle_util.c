@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay011/particle_helper.h"
 #include "battle_anim/ov12_0222389C.h"
 #include "battle_anim/ov12_0222421C.h"
+#include "overlay011/particle_helper.h"
 
 #include "narc.h"
 #include "particle_system.h"
