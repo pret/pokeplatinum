@@ -3462,7 +3462,7 @@
     .short 607
     .endm
 
-    .macro Duplicate_IncrementTrainerScore scoreID
+    .macro IncrementTrainerScore2 scoreID
     .short 608
     .short \scoreID
     .endm

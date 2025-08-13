@@ -33,7 +33,7 @@ _0022:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_COBBLE
-    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_BADGE_EARNED
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_BLACK_BELT_COLBY
     SetTrainerFlag TRAINER_BLACK_BELT_DARREN
     SetTrainerFlag TRAINER_BLACK_BELT_RAFAEL

@@ -76,7 +76,7 @@ _0094:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_FOREST
-    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_BADGE_EARNED
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_AROMA_LADY_JENNA
     SetTrainerFlag TRAINER_AROMA_LADY_ANGELA
     SetTrainerFlag TRAINER_LASS_CAROLINE

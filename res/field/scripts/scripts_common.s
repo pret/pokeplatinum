@@ -498,7 +498,7 @@ _06BB:
 
 _06D5:
     RemoveItem ITEM_HONEY, 1, VAR_RESULT
-    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_HONEY_USED
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_HONEY_USED
     SlatherHoneyTree
     WaitTime 10, VAR_RESULT
     Message 51

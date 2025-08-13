@@ -641,7 +641,7 @@ static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
 static BOOL ScrCmd_25F(ScriptContext *ctx);
-static BOOL ScrCmd_Duplicate_IncrementTrainerScore(ScriptContext *ctx);
+static BOOL ScrCmd_IncrementTrainerScore2(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasSpecies2(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyCombeeGenderCount(ScriptContext *ctx);
@@ -1378,7 +1378,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap,
     ScrCmd_25E,
     ScrCmd_25F,
-    ScrCmd_Duplicate_IncrementTrainerScore,
+    ScrCmd_IncrementTrainerScore2,
     ScrCmd_BufferAccessoryName,
     ScrCmd_CheckPartyHasSpecies2,
     ScrCmd_ChangeDeoxysForm,
@@ -1959,7 +1959,7 @@ static BOOL ScrCmd_CheckFlagFromVar(ScriptContext *ctx)
     u16 *flagID = ScriptContext_GetVarPointer(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = FieldSystem_CheckFlag(fieldSystem, (*flagID));
+    *destVar = FieldSystem_CheckFlag(fieldSystem, *flagID);
     return FALSE;
 }
 
@@ -4569,10 +4569,10 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     if (rideBike == TRUE) {
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_BICYCLE);
         Sound_TryFadeOutToBGM(ctx->fieldSystem, SEQ_BICYCLE, 1);
-        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, 1 << 1);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
-        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, 1 << 0);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_NONE);
         Sound_TryFadeOutToBGM(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
@@ -6584,7 +6584,7 @@ static BOOL ScrCmd_25F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_Duplicate_IncrementTrainerScore(ScriptContext *ctx)
+static BOOL ScrCmd_IncrementTrainerScore2(ScriptContext *ctx)
 {
     u16 scoreID = ScriptContext_ReadHalfWord(ctx);
 

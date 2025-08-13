@@ -66,11 +66,11 @@ _00D3:
     End
 
 _00DE:
-    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_LOCAL_DEX_DIPLOMA_RECEIVED
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_LOCAL_DEX_DIPLOMA_RECEIVED
     Return
 
 _00E4:
-    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_NATIONAL_DEX_DIPLOMA_RECEIVED
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_NATIONAL_DEX_DIPLOMA_RECEIVED
     Return
 
     .balign 4, 0

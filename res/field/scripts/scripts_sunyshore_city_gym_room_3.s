@@ -39,7 +39,7 @@ _0027:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_BEACON
-    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_BADGE_EARNED
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_ACE_TRAINER_ZACHERY
     SetTrainerFlag TRAINER_ACE_TRAINER_DESTINY
     SetTrainerFlag TRAINER_GUITARIST_JERRY

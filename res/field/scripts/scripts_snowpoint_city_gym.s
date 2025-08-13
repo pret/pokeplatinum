@@ -34,7 +34,7 @@ _0025:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_ICICLE
-    Duplicate_IncrementTrainerScore TRAINER_SCORE_EVENT_BADGE_EARNED
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_ACE_TRAINER_SERGIO
     SetTrainerFlag TRAINER_ACE_TRAINER_ISAIAH
     SetTrainerFlag TRAINER_ACE_TRAINER_ANTON
