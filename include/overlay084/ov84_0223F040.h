@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV84_0223F040_H
 #define POKEPLATINUM_OV84_0223F040_H
 
-#include "overlay084/struct_ov84_0223B5A0.h"
+#include "overlay084/ov84_0223B5A0.h"
 
 #include "bag.h"
 #include "bg_window.h"

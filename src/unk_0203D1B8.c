@@ -56,7 +56,6 @@
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay072/ov72_0223D7A0.h"
 #include "overlay080/ov80_021D0D80.h"
-#include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 #include "overlay086/ov86_0223B140.h"
@@ -329,7 +328,7 @@ u16 sub_0203D2C4(void *param0)
 {
     u16 v0 = sub_0207CB94(param0);
 
-    if ((v0 != 0) && (sub_0207CB9C(param0) == 5)) {
+    if ((v0 != 0) && (sub_0207CB9C(param0) == BAG_EXIT_CODE_5)) {
         GF_ASSERT(0);
     }
 

@@ -13,11 +13,8 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "functypes/funcptr_02069238.h"
-#include "overlay084/const_ov84_02241130.h"
-#include "overlay084/funcptr_ov84_0223D730.h"
 #include "overlay084/ov84_0223F040.h"
 #include "overlay084/ov84_022403F4.h"
-#include "overlay084/struct_ov84_0223B5A0.h"
 #include "overlay084/struct_ov84_0223BE5C.h"
 #include "overlay084/struct_ov84_0223C920.h"
 
@@ -1090,7 +1087,7 @@ static void ItemsListMenuCursorCallback(ListMenu *param0, u32 param1, u8 param2)
 
         v0->unk_482 = (v0->unk_482 + 1) % 3;
 
-        if ((v0->unk_492 == 0) || (ManagedSprite_IsAnimated(v0->sprites[BAG_SPRITE_BAG]) == 0)) {
+        if ((v0->scrollingBall == 0) || (ManagedSprite_IsAnimated(v0->sprites[BAG_SPRITE_BAG]) == 0)) {
             ManagedSprite_SetAnimationFrame(v0->sprites[BAG_SPRITE_BAG], 0);
             ManagedSprite_SetAnim(
                 v0->sprites[BAG_SPRITE_BAG], 8 + v0->appArguments->accessiblePockets[v0->appArguments->currPocketIdx].pocketType);
@@ -2138,7 +2135,7 @@ static int ov84_0223D94C(BagInterfaceManager *param0)
     }
 
     sub_0208C120(1, HEAP_ID_6);
-    param0->appArguments->exitCode = 0;
+    param0->appArguments->exitCode = BAG_EXIT_CODE_0;
 
     return BAG_INTERFACE_STATE_EXIT;
 }
@@ -2211,7 +2208,7 @@ static int ov84_0223DA14(BagInterfaceManager *param0)
         case 0:
             sub_0208C120(1, HEAP_ID_6);
             ToggleHideItemSprite(param0, 0);
-            param0->appArguments->exitCode = 0;
+            param0->appArguments->exitCode = BAG_EXIT_CODE_0;
             return BAG_INTERFACE_STATE_EXIT;
         case 0xffffffff: {
             u8 v3 = Menu_GetLastAction(param0->itemActionsMenu);
@@ -2330,7 +2327,7 @@ static int ItemActionFunc_CheckTag(BagInterfaceManager *param0)
 {
     ov84_0223FD84(param0);
     sub_0208C120(1, HEAP_ID_6);
-    param0->appArguments->exitCode = 1;
+    param0->appArguments->exitCode = BAG_EXIT_CODE_1;
 
     return BAG_INTERFACE_STATE_EXIT;
 }
@@ -2339,7 +2336,7 @@ static int ItemActionFunc_Confirm(BagInterfaceManager *param0)
 {
     ov84_0223FD84(param0);
     sub_0208C120(1, HEAP_ID_6);
-    param0->appArguments->exitCode = 3;
+    param0->appArguments->exitCode = BAG_EXIT_CODE_3;
 
     return BAG_INTERFACE_STATE_EXIT;
 }
@@ -2523,7 +2520,7 @@ static int ItemActionFunc_Give(BagInterfaceManager *param0)
     ov84_0223FD84(param0);
     sub_0208C120(1, HEAP_ID_6);
     ToggleHideItemSprite(param0, 0);
-    param0->appArguments->exitCode = 2;
+    param0->appArguments->exitCode = BAG_EXIT_CODE_2;
 
     return BAG_INTERFACE_STATE_EXIT;
 }
@@ -2564,12 +2561,12 @@ static int HandleInput_GiveToMon(BagInterfaceManager *param0)
                 return BAG_INTERFACE_STATE_15;
             }
 
-            param0->appArguments->exitCode = 4;
+            param0->appArguments->exitCode = BAG_EXIT_CODE_4;
             sub_0208C120(1, HEAP_ID_6);
 
             return BAG_INTERFACE_STATE_EXIT;
         } else if (v0 == 3) {
-            param0->appArguments->exitCode = 4;
+            param0->appArguments->exitCode = BAG_EXIT_CODE_4;
             return BAG_INTERFACE_STATE_EXIT;
         }
     }
@@ -2578,7 +2575,7 @@ static int HandleInput_GiveToMon(BagInterfaceManager *param0)
 
 static int ov84_0223E36C(BagInterfaceManager *param0)
 {
-    if (Text_IsPrinterActive(param0->msgBoxPrinter) == 0) {
+    if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
@@ -2881,110 +2878,95 @@ static int HandleInput_BerryCare(BagInterfaceManager *param0)
                 }
             }
 
-            param0->appArguments->exitCode = 0;
+            param0->appArguments->exitCode = BAG_EXIT_CODE_0;
             sub_0208C120(1, HEAP_ID_6);
             return BAG_INTERFACE_STATE_EXIT;
         } else if (v0 == 3) {
-            param0->appArguments->exitCode = 5;
+            param0->appArguments->exitCode = BAG_EXIT_CODE_5;
             return BAG_INTERFACE_STATE_EXIT;
         }
     }
     return BAG_INTERFACE_STATE_SELECT_ITEM_BERRY_CARE;
 }
 
-static void RotatePokeball(BagInterfaceManager *param0, s8 param1)
+static void RotatePokeball(BagInterfaceManager *param0, s8 amount)
 {
-    s16 v0 = Bg_GetRotation(param0->bgConfig, 7);
+    s16 ballRotation = Bg_GetRotation(param0->bgConfig, BG_LAYER_SUB_3);
 
-    v0 += param1;
+    ballRotation += amount;
 
-    if (v0 >= 360) {
-        v0 -= 360;
-    } else if (v0 < 0) {
-        v0 += 360;
+    if (ballRotation >= 360) {
+        ballRotation -= 360;
+    } else if (ballRotation < 0) {
+        ballRotation += 360;
     }
 
-    Bg_ScheduleAffineRotation(param0->bgConfig, 7, 0, v0);
-    param0->unk_49A = v0;
+    Bg_ScheduleAffineRotation(param0->bgConfig, BG_LAYER_SUB_3, BG_AFFINE_UPDATE_SET_ROTATION, ballRotation);
+    param0->pokeballRotation = ballRotation;
 }
 
 static BOOL DetectPlayerStartedTouchingPokeball(void)
 {
-    int v0 = TouchScreen_CheckPressedHitTableID(sPokeballStartTouchingTouchBox);
-
-    if (v0 == 1) {
-        return 1;
-    }
-
-    return 0;
+    return TouchScreen_CheckPressedHitTableID(sPokeballStartTouchingTouchBox) == 1;
 }
 
 static BOOL DetectPlayerHeldPokeball(void)
 {
-    int v0 = TouchScreen_CheckHeldHitTableID(sPokeballHeldTouchBox);
-
-    if (v0 == 1) {
-        return 1;
-    }
-
-    return 0;
+    return TouchScreen_CheckHeldHitTableID(sPokeballHeldTouchBox) == 1;
 }
 
-static BOOL ov84_0223EB84(BagInterfaceManager *param0, u16 param1)
+static BOOL ov84_0223EB84(BagInterfaceManager *param0, u16 stepAngle)
 {
     if (DetectPlayerStartedTouchingPokeball() == TRUE) {
-        param0->unk_492 = 1;
-        param0->unk_498 = 0;
-        param0->unk_494 = 0;
-        param0->unk_49E = gSystem.touchX;
-        param0->unk_4A0 = gSystem.touchY;
+        param0->scrollingBall = TRUE;
+        param0->queuedScroll = 0;
+        param0->scrollRemainder = 0;
+        param0->previousTouchX = gSystem.touchX;
+        param0->previousTouchY = gSystem.touchY;
     }
 
-    if (param0->unk_492 == 1) {
+    if (param0->scrollingBall == TRUE) {
         if (DetectPlayerHeldPokeball() == TRUE) {
             s32 v0, v1;
 
-            v0 = CalcDotProduct2D(128 - param0->unk_49E, 80 - param0->unk_4A0, 128 - gSystem.touchX, 80 - gSystem.touchY, 80);
+            v0 = ApproximateArcLength(BOTTOM_SCREEN_BALL_CENTER_X - param0->previousTouchX, BOTTOM_SCREEN_BALL_CENTER_Y - param0->previousTouchY, BOTTOM_SCREEN_BALL_CENTER_X - gSystem.touchX, BOTTOM_SCREEN_BALL_CENTER_Y - gSystem.touchY, 80);
             v1 = CalcRadialAngle(80, v0 * 2);
             v1 = ((v1 << 8) / 182) >> 8;
-            param0->unk_49A += v1;
+            param0->pokeballRotation += v1;
 
-            if (param0->unk_49A < 0) {
-                param0->unk_49A += 360;
-            } else if (param0->unk_49A >= 360) {
-                param0->unk_49A -= 360;
+            if (param0->pokeballRotation < 0) {
+                param0->pokeballRotation += 360;
+            } else if (param0->pokeballRotation >= 360) {
+                param0->pokeballRotation -= 360;
             }
 
-            Bg_ScheduleAffineRotation(param0->bgConfig, 7, 0, param0->unk_49A);
+            Bg_ScheduleAffineRotation(param0->bgConfig, BG_LAYER_SUB_3, BG_AFFINE_UPDATE_SET_ROTATION, param0->pokeballRotation);
             {
-                s32 v2;
-                s32 v3;
-
-                v2 = 2 * 80 * 3.14;
-                v3 = v2 / param1;
+                s32 circumference = 2 * 80 * 3.14;
+                s32 stepDistance = circumference / stepAngle;
                 if (v0 > 0) {
-                    if (param0->unk_498 < 0) {
-                        param0->unk_498 = v0 / v3;
-                        param0->unk_494 = v0 % v3;
+                    if (param0->queuedScroll < 0) { // Changed direction
+                        param0->queuedScroll = v0 / stepDistance;
+                        param0->scrollRemainder = v0 % stepDistance;
                     } else {
-                        param0->unk_498 += ((param0->unk_494 + v0) / v3);
-                        param0->unk_494 = (param0->unk_494 + v0) % v3;
+                        param0->queuedScroll += ((param0->scrollRemainder + v0) / stepDistance);
+                        param0->scrollRemainder = (param0->scrollRemainder + v0) % stepDistance;
                     }
                 } else if (v0 < 0) {
-                    if (param0->unk_498 > 0) {
-                        param0->unk_498 = v0 / v3;
-                        param0->unk_494 = v0 % v3;
+                    if (param0->queuedScroll > 0) { // Changed direction
+                        param0->queuedScroll = v0 / stepDistance;
+                        param0->scrollRemainder = v0 % stepDistance;
                     } else {
-                        param0->unk_498 += ((param0->unk_494 + v0) / v3);
-                        param0->unk_494 = (param0->unk_494 + v0) % v3;
+                        param0->queuedScroll += ((param0->scrollRemainder + v0) / stepDistance);
+                        param0->scrollRemainder = (param0->scrollRemainder + v0) % stepDistance;
                     }
                 }
             }
-            param0->unk_49E = gSystem.touchX;
-            param0->unk_4A0 = gSystem.touchY;
+            param0->previousTouchX = gSystem.touchX;
+            param0->previousTouchY = gSystem.touchY;
         } else {
-            param0->unk_492 = 0;
-            param0->unk_498 = 0;
+            param0->scrollingBall = 0;
+            param0->queuedScroll = 0;
         }
 
         return 1;
@@ -2997,19 +2979,19 @@ static BOOL CheckItemChange_Touch(BagInterfaceManager *param0)
 {
     BOOL v0 = ov84_0223EB84(param0, 36);
 
-    if (param0->unk_498 > 0) {
+    if (param0->queuedScroll > 0) {
         if (ov84_0223ED64(param0, PAD_KEY_UP) == 1) {
-            param0->unk_498--;
+            param0->queuedScroll--;
         } else {
-            param0->unk_498 = 0;
+            param0->queuedScroll = 0;
         }
 
         return TRUE;
-    } else if (param0->unk_498 < 0) {
+    } else if (param0->queuedScroll < 0) {
         if (ov84_0223ED64(param0, PAD_KEY_DOWN) == 1) {
-            param0->unk_498++;
+            param0->queuedScroll++;
         } else {
-            param0->unk_498 = 0;
+            param0->queuedScroll = 0;
         }
 
         return TRUE;
@@ -3041,19 +3023,19 @@ static BOOL ov84_0223EE30(BagInterfaceManager *param0)
 {
     BOOL v0 = ov84_0223EB84(param0, 36);
 
-    if (param0->unk_498 > 0) {
+    if (param0->queuedScroll > 0) {
         if (ov84_0223EE80(param0, PAD_KEY_UP) == 1) {
-            param0->unk_498--;
+            param0->queuedScroll--;
         } else {
-            param0->unk_498 = 0;
+            param0->queuedScroll = 0;
         }
 
         return 1;
-    } else if (param0->unk_498 < 0) {
+    } else if (param0->queuedScroll < 0) {
         if (ov84_0223EE80(param0, PAD_KEY_DOWN) == 1) {
-            param0->unk_498++;
+            param0->queuedScroll++;
         } else {
-            param0->unk_498 = 0;
+            param0->queuedScroll = 0;
         }
 
         return 1;
@@ -3085,19 +3067,19 @@ static BOOL ov84_0223EF4C(BagInterfaceManager *param0)
 {
     BOOL v0 = ov84_0223EB84(param0, 18);
 
-    if (param0->unk_498 > 0) {
+    if (param0->queuedScroll > 0) {
         if (ov84_0223EF9C(param0, 2) == 1) {
-            param0->unk_498--;
+            param0->queuedScroll--;
         } else {
-            param0->unk_498 = 0;
+            param0->queuedScroll = 0;
         }
 
         return 1;
-    } else if (param0->unk_498 < 0) {
+    } else if (param0->queuedScroll < 0) {
         if (ov84_0223EF9C(param0, 3) == 1) {
-            param0->unk_498++;
+            param0->queuedScroll++;
         } else {
-            param0->unk_498 = 0;
+            param0->queuedScroll = 0;
         }
 
         return 1;
@@ -3127,8 +3109,8 @@ static BOOL ov84_0223EFD0(BagInterfaceManager *param0, s16 *param1, u16 param2)
     v0 = ov84_0223EB84(param0, 18);
     v1 = *param1;
 
-    if (param0->unk_498 > 0) {
-        param0->unk_498--;
+    if (param0->queuedScroll > 0) {
+        param0->queuedScroll--;
         *param1 += 1;
 
         if (*param1 > param2) {
@@ -3141,8 +3123,8 @@ static BOOL ov84_0223EFD0(BagInterfaceManager *param0, s16 *param1, u16 param2)
 
         Sound_PlayEffect(SEQ_SE_DP_BAG_004);
         return 1;
-    } else if (param0->unk_498 < 0) {
-        param0->unk_498++;
+    } else if (param0->queuedScroll < 0) {
+        param0->queuedScroll++;
         *param1 -= 1;
 
         if (*param1 <= 0) {

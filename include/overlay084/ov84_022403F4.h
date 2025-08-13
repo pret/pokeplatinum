@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV84_022403F4_H
 #define POKEPLATINUM_OV84_022403F4_H
 
-#include "overlay084/struct_ov84_0223B5A0.h"
+#include "overlay084/ov84_0223B5A0.h"
 
 void ov84_022403F4(BagInterfaceManager *param0);
 void BagInterface_FreeSprites(BagInterfaceManager *param0);

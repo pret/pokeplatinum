@@ -7,7 +7,6 @@
 
 #include "overlay082/ov82_0223B140.h"
 #include "overlay083/struct_ov83_0223C344.h"
-#include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 
@@ -136,14 +135,14 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
     Heap_Free(v0);
 
     switch (sub_0207CB9C(v0)) {
-    case 1:
+    case BAG_EXIT_CODE_1:
         return 2;
-    case 0:
-    case 2:
-    case 4:
-    case 3:
+    case BAG_EXIT_CODE_0:
+    case BAG_EXIT_CODE_2:
+    case BAG_EXIT_CODE_4:
+    case BAG_EXIT_CODE_3:
         break;
-    case 5:
+    case BAG_EXIT_CODE_5:
         return 5;
     default:
         GF_ASSERT(0);

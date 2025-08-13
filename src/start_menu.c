@@ -1249,7 +1249,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
     Heap_Free(menu->taskData);
 
     switch (sub_0207CB9C(v2)) {
-    case 0: {
+    case BAG_EXIT_CODE_0: {
         UnkFuncPtr_0203BC5C v3;
         UnkStruct_02068630 v4;
         s32 v5;
@@ -1261,10 +1261,10 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
         v3(&v4, &menu->unk_230);
     } break;
-    case 1:
+    case BAG_EXIT_CODE_1:
         sub_0203C2D8(taskMan, sub_0207CB94(v2));
         break;
-    case 2: {
+    case BAG_EXIT_CODE_2: {
         PartyManagementData *partyMan;
 
         partyMan = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
@@ -1284,7 +1284,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         menu->taskData = partyMan;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
-    case 4: {
+    case BAG_EXIT_CODE_4: {
         Party *party = SaveData_GetParty(fieldSystem->saveData);
         u32 v9 = *(u32 *)menu->unk_260;
         u16 item = sub_0207CB94(v2);
@@ -1327,7 +1327,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             sub_0203B674(menu, sub_0203B7C0);
         }
     } break;
-    case 5:
+    case BAG_EXIT_CODE_5:
     default:
         FieldSystem_StartFieldMap(fieldSystem);
         menu->state = START_MENU_STATE_12;

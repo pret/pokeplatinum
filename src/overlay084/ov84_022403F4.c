@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0207CB08.h"
 
 #include "overlay084/ov84_0223B5A0.h"
-#include "overlay084/struct_ov84_0223B5A0.h"
 
 #include "gx_layers.h"
 #include "item.h"

@@ -1,9 +1,24 @@
 #ifndef POKEPLATINUM_OV84_0223B5A0_H
 #define POKEPLATINUM_OV84_0223B5A0_H
 
-#include "overlay084/struct_ov84_0223B5A0.h"
+#include "struct_decls/struct_0207CB08_decl.h"
 
+#include "overlay084/struct_ov84_0223C920.h"
+
+#include "bag.h"
+#include "bg_window.h"
+#include "font_special_chars.h"
+#include "game_options.h"
+#include "list_menu.h"
+#include "menu.h"
+#include "message.h"
+#include "narc.h"
 #include "overlay_manager.h"
+#include "sprite_system.h"
+#include "strbuf.h"
+#include "string_list.h"
+#include "string_template.h"
+#include "trainer_info.h"
 
 enum BagInterfaceState {
     BAG_INTERFACE_STATE_WAIT_INITIAL_SCREEN_FADE = 0,
@@ -102,6 +117,81 @@ enum ItemSlotProperty {
     ITEM_SLOT_ITEM = 0,
     ITEM_SLOT_QUANTITY,
 };
+
+typedef struct BagInterfaceManager BagInterfaceManager;
+
+typedef int (*ItemActionFuncPtr)(BagInterfaceManager *param0);
+
+typedef struct {
+    u8 unk_00;
+    u8 unk_01;
+    u8 padding_02;
+    u8 unk_03;
+    fx32 unk_04[8];
+} UnkStruct_ov84_0223B5A0_sub1;
+
+struct BagInterfaceManager {
+    BgConfig *bgConfig;
+    Window windows[NUM_BAG_INTERFACE_WINDOWS];
+    Window itemActionsWindow;
+    BagInterfaceArguments *appArguments;
+    Bag *bag;
+    TrainerInfo *trainerInfo;
+    Options *options;
+    NARC *bagGraphicsNARC;
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteMan;
+    ManagedSprite *sprites[NUM_BAG_INTERFACE_SPRITES];
+    FontSpecialCharsContext *specialChars;
+    MessageLoader *bagStringsLoader;
+    StringTemplate *strTemplate;
+    MessageLoader *itemNamesLoader;
+    MessageLoader *moveNamesLoader;
+    Strbuf *itemActionStrings[NUM_ITEM_ACTIONS];
+    StringList *itemActionsStringList;
+    Menu *itemActionsMenu;
+    ListMenu *itemsListMenu;
+    StringList *itemsListMenuStringList;
+    Strbuf *itemNamesBuffers[165];
+    Strbuf *msgBoxText;
+    Strbuf *itemCountX;
+    Strbuf *itemCountNumberFmt;
+    Strbuf *pocketNames[POCKET_MAX];
+    u8 numPockets;
+    u8 trainerGender;
+    u8 msgBoxPrinter;
+    u8 pocketIndicatorLeftX;
+    u8 pocketIndicatorSpacing;
+    UnkStruct_ov84_0223C920 unk_429;
+    u8 padding_431[35];
+    UnkStruct_ov84_0223B5A0_sub1 unk_454;
+    u8 nextPocketIdx;
+    u8 unk_479;
+    u8 movingItem;
+    u8 movingItemIndex;
+    u32 movingItemID;
+    u8 pocketIndicatorArrowsAnimCyclePos;
+    u8 pocketIndicatorArrowsAnimTimer;
+    u8 unk_482;
+    u8 unk_483;
+    u32 unk_484;
+    s16 selectedItemCount;
+    u16 unk_48A;
+    u32 soldItemPrice;
+    u8 pokeballButtonAnimStep;
+    u8 pokeballButtonAnimFrameCount;
+    u8 scrollingBall;
+    u8 padding_493;
+    s32 scrollRemainder;
+    s16 queuedScroll;
+    s16 pokeballRotation;
+    u8 padding_49C[2];
+    u16 previousTouchX;
+    u16 previousTouchY;
+    u8 padding_4A2[2];
+};
+
+extern const ApplicationManagerTemplate gBagApplicationTemplate;
 
 int BagInterface_Init(ApplicationManager *appMan, int *state);
 int BagInterface_Main(ApplicationManager *appMan, int *state);

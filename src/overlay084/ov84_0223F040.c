@@ -9,7 +9,6 @@
 
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_022403F4.h"
-#include "overlay084/struct_ov84_0223B5A0.h"
 #include "overlay084/struct_ov84_0223BE5C.h"
 #include "overlay084/struct_ov84_0223C920.h"
 
@@ -39,69 +38,61 @@
 static void ov84_0223F9B0(BagInterfaceManager *param0, u32 param1);
 static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
 
-static const WindowTemplate Unk_ov84_02241150 = {
-    .bgLayer = 0x0,
-    .tilemapLeft = 0x17,
-    .tilemapTop = 0xD,
-    .width = 0x7,
-    .height = 0x4,
-    .palette = 0x3,
-    .baseTile = 0x31B
+static const WindowTemplate sYesNoMenuWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_0,
+    .tilemapLeft = 23,
+    .tilemapTop = 13,
+    .width = 7,
+    .height = 4,
+    .palette = PLTT_3,
+    .baseTile = 795
 };
 
 void BagInterface_CreateWindows(BagInterfaceManager *param0)
 {
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 2, 14, 0, 17, 18, 3, 1);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], 0, 0, 18, 32, 6, 3, 1 + 17 * 18);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_NAMES], 2, 0, 13, 12 * 3, 3, 3, 499);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], 0, 6, 19, 14, 4, 11, 607);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_NARROW], 0, 6, 19, 13, 4, 11, 607);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_INDICATOR], 0, 0, 11, 12, 2, 13, 663);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0, 2, 19, 27, 4, 11, 687);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE], 0, 19, 13, 12, 4, 3, 823);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MONEY], 0, 1, 1, 10, 4, 3, 871);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT], 0, 24, 19, 7, 4, 3, 903);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POFFIN_COUNT], 0, 1, 12, 11, 4, 3, 903);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], BG_LAYER_MAIN_2, 14, 0, 17, 18, PLTT_3, 1);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], BG_LAYER_MAIN_0, 0, 18, 32, 6, PLTT_3, 1 + 17 * 18);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_NAMES], BG_LAYER_MAIN_2, 0, 13, 12 * 3, 3, PLTT_3, 499);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], BG_LAYER_MAIN_0, 6, 19, 14, 4, PLTT_11, 607);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_NARROW], BG_LAYER_MAIN_0, 6, 19, 13, 4, PLTT_11, 607);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_INDICATOR], BG_LAYER_MAIN_0, 0, 11, 12, 2, PLTT_13, 663);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], BG_LAYER_MAIN_0, 2, 19, 27, 4, PLTT_11, 687);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE], BG_LAYER_MAIN_0, 19, 13, 12, 4, PLTT_3, 823);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MONEY], BG_LAYER_MAIN_0, 1, 1, 10, 4, PLTT_3, 871);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT], BG_LAYER_MAIN_0, 24, 19, 7, 4, PLTT_3, 903);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POFFIN_COUNT], BG_LAYER_MAIN_0, 1, 12, 11, 4, PLTT_3, 903);
 }
 
 void BagInterface_DeleteWindows(Window *param0)
 {
-    u16 v0;
-
-    for (v0 = 0; v0 < 11; v0++) {
-        Window_Remove(&param0[v0]);
+    for (u16 i = 0; i < NUM_BAG_INTERFACE_WINDOWS; i++) {
+        Window_Remove(&param0[i]);
     }
 }
 
 void BagInterface_LoadPocketNames(BagInterfaceManager *param0)
 {
-    MessageLoader *v0;
-    u16 v1;
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_6);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_6);
-
-    for (v1 = 0; v1 < 8; v1++) {
-        param0->pocketNames[v1] = MessageLoader_GetNewStrbuf(v0, v1);
+    for (u16 i = 0; i < POCKET_MAX; i++) {
+        param0->pocketNames[i] = MessageLoader_GetNewStrbuf(msgLoader, i);
     }
 
-    MessageLoader_Free(v0);
+    MessageLoader_Free(msgLoader);
 }
 
 void BagInterface_FreePocketNames(BagInterfaceManager *param0)
 {
-    u16 v0;
-
-    for (v0 = 0; v0 < 8; v0++) {
-        Strbuf_Free(param0->pocketNames[v0]);
+    for (u16 i = 0; i < POCKET_MAX; i++) {
+        Strbuf_Free(param0->pocketNames[i]);
     }
 }
 
 void BagInterface_MaybeClearPocketNameBox(BagInterfaceManager *param0)
 {
-    u16 v0;
-    for (v0 = 0; v0 < 12; v0++) {
-        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, ((1 + 17 * 18) + 32 * 6) + 12 + v0, v0, 13, 1, 1, PLTT_3);
-        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, ((1 + 17 * 18) + 32 * 6) + (12 * 3) + 12 + v0, v0, 13 + 1, 1, 1, PLTT_3);
+    for (u16 i = 0; i < 12; i++) {
+        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, ((1 + 17 * 18) + 32 * 6) + 12 + i, i, 13, 1, 1, PLTT_3);
+        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, ((1 + 17 * 18) + 32 * 6) + (12 * 3) + 12 + i, i, 13 + 1, 1, 1, PLTT_3);
     }
 }
 
@@ -606,7 +597,7 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
 
 void ov84_02240120(BagInterfaceManager *param0)
 {
-    param0->itemActionsMenu = Menu_MakeYesNoChoice(param0->bgConfig, &Unk_ov84_02241150, 1024 - 9, 14, 6);
+    param0->itemActionsMenu = Menu_MakeYesNoChoice(param0->bgConfig, &sYesNoMenuWindowTemplate, 1024 - 9, 14, 6);
 }
 
 void ov84_02240148(BagInterfaceManager *param0, u8 param1)

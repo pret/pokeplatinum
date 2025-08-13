@@ -27,7 +27,6 @@
 #include "overlay019/struct_ov19_021D4F34.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/touch_dial.h"
-#include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "savedata/save_table.h"
 
