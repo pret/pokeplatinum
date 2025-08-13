@@ -138,7 +138,7 @@ static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 para
 static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u8 *param3);
 static u8 sub_0207FC94(GameWindowLayout *param0);
 static void sub_0207FFC8(GameWindowLayout *param0);
-static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1);
+static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *param1);
 static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1);
 static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1);
 static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1);
@@ -1674,7 +1674,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
 
     switch (param0->partyManagementData->unk_20) {
     case 0:
-        v1 = sub_020800B4(param0, v0);
+        v1 = GetContextMenuEntriesForPartyMon(param0, v0);
         break;
     case 2:
     case 17:
@@ -1707,54 +1707,54 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 }
 
-static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
+static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *buf)
 {
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
-    u16 v1;
-    u8 v2 = 0, v3, v4 = 0, v5;
+    u16 move;
+    u8 fieldMoveIndex = 0, i, count = 0, fieldEffect;
 
-    param1[v4] = 1;
-    v4++;
+    buf[count] = 1; // summary
+    count++;
 
     if (FieldSystem_IsInBattleTowerSalon(param0->partyManagementData->fieldSystem) == FALSE) {
         if (param0->unk_704[param0->partySlot].unk_10 == 0) {
-            for (v3 = 0; v3 < 4; v3++) {
-                v1 = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + v3, NULL);
+            for (i = 0; i < 4; i++) {
+                move = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + i, NULL);
 
-                if (v1 == 0) {
+                if (move == 0) {
                     break;
                 }
 
-                v5 = GetElementIndex(v1);
+                fieldEffect = GetElementIndex(move);
 
-                if (v5 != 0xff) {
-                    param1[v4] = v5;
-                    v4++;
-                    sub_02081CAC(param0, v1, v2);
-                    v2++;
+                if (fieldEffect != 0xff) {
+                    buf[count] = fieldEffect;
+                    count++;
+                    sub_02081CAC(param0, move, fieldMoveIndex);
+                    fieldMoveIndex++;
                 }
             }
 
-            param1[v4] = 0;
-            v4++;
+            buf[count] = 0;
+            count++;
 
             if (Item_IsMail(param0->unk_704[param0->partySlot].unk_0C) == 1) {
-                param1[v4] = 5;
+                buf[count] = 5;
             } else {
-                param1[v4] = 2;
+                buf[count] = 2;
             }
 
-            v4++;
+            count++;
         } else {
-            param1[v4] = 0;
-            v4++;
+            buf[count] = 0; // quit
+            count++;
         }
     }
 
-    param1[v4] = 9;
-    v4++;
+    buf[count] = 9;
+    count++;
 
-    return v4;
+    return count;
 }
 
 static u8 sub_020801AC(GameWindowLayout *param0, u8 *param1)
