@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02030CEC.h"
 #include "struct_defs/wi_fi_history.h"
 
-#include "overlay096/struct_ov96_0223B574.h"
+#include "overlay096/struct_world_exchange_trainer.h"
 
 #include "charcode_util.h"
 #include "math_util.h"

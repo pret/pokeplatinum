@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV95_02248590_H
 #define POKEPLATINUM_OV95_02248590_H
 
-#include "overlay095/struct_ov95_02247628_decl.h"
+#include "overlay095/ov95_02246C20.h"
 
 void *ov95_02248590(TradeSequenceData *param0);
 void ov95_022485FC(void *param0);

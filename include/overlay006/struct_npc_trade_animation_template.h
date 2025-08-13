@@ -5,13 +5,26 @@
 #include "pokemon.h"
 #include "trainer_info.h"
 
-typedef struct NpcTradeAnimationTemplate {
+enum TradeType {
+    TRADE_TYPE_NORMAL = 1,
+    TRADE_TYPE_SEND_ONLY,
+    TRADE_TYPE_RECEIVE_ONLY = 4,
+};
+
+enum TradeBackground {
+    TRADE_BACKGROUND_DAY = 0,
+    TRADE_BACKGROUND_EVENING,
+    TRADE_BACKGROUND_NIGHT,
+    TRADE_BACKGROUND_WIFI,
+};
+
+typedef struct TradeAnimationTemplate {
     const BoxPokemon *sendingPokemon;
     const BoxPokemon *receivingPokemon;
     const TrainerInfo *otherTrainer;
-    int backgroundColour; // background colour; 0 = morning, 1 = evening, 2 = night, 3 = green
-    int tradeType; // 1 = player/npc trade; anything else = one-sided trade
+    enum TradeBackground background;
+    enum TradeType tradeType;
     const Options *options;
-} NpcTradeAnimationTemplate;
+} TradeAnimationTemplate;
 
 #endif // POKEPLATINUM_STRUCT_NPC_TRADE_ANIMATION_TEMPLATE_H

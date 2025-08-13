@@ -6,7 +6,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay095/ov95_02246C20.h"
-#include "overlay095/struct_ov95_02247628_decl.h"
 
 #include "bg_window.h"
 #include "enums.h"

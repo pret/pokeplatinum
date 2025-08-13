@@ -19,7 +19,7 @@ typedef struct {
     NpcTradeData *unk_00;
     u32 unk_04;
     int unk_08;
-    NpcTradeAnimationTemplate unk_0C;
+    TradeAnimationTemplate unk_0C;
     Pokemon *unk_24;
     Pokemon *unk_28;
 } UnkStruct_0206C660;

@@ -43,16 +43,16 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.receivingPokemon = appState->tradeAnimationConfig.sendingPokemon;
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
-        appState->tradeAnimationConfig.backgroundColour = 3;
-        appState->tradeAnimationConfig.tradeType = 2;
+        appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
+        appState->tradeAnimationConfig.tradeType = TRADE_TYPE_SEND_ONLY;
         break;
     case 8: // from network handler receiving flow. ONLY receiving a pokemon here
         appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
         appState->tradeAnimationConfig.sendingPokemon = appState->tradeAnimationConfig.receivingPokemon;
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
-        appState->tradeAnimationConfig.backgroundColour = 3;
-        appState->tradeAnimationConfig.tradeType = 4;
+        appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
+        appState->tradeAnimationConfig.tradeType = TRADE_TYPE_RECEIVE_ONLY;
         break;
     case 10:
         appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
@@ -60,8 +60,8 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
-        appState->tradeAnimationConfig.backgroundColour = 3;
-        appState->tradeAnimationConfig.tradeType = 1;
+        appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
+        appState->tradeAnimationConfig.tradeType = TRADE_TYPE_NORMAL;
         break;
     case 9: // from the search flow
         GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
@@ -69,8 +69,8 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->searchResults[appState->selectedSearchResult]);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
-        appState->tradeAnimationConfig.backgroundColour = 3;
-        appState->tradeAnimationConfig.tradeType = 1;
+        appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
+        appState->tradeAnimationConfig.tradeType = TRADE_TYPE_NORMAL;
         break;
     }
 

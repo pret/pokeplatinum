@@ -9,7 +9,6 @@
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247568.h"
-#include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
@@ -392,7 +391,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
             StringTemplate *v1 = ov95_0224762C(param0->unk_00);
             int v2, v3;
 
-            if (TradeSequence_GetTradeType(param0->unk_00) == 1) {
+            if (TradeSequence_GetTradeType(param0->unk_00) == TRADE_TYPE_NORMAL) {
                 v2 = pl_msg_00000350_00002;
                 v3 = 2;
             } else {

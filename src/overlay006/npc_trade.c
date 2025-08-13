@@ -74,7 +74,7 @@ void NpcTrade_ReceiveMon(FieldSystem *fieldSystem, NpcTradeData *data, int slot)
     SaveData_UpdateCatchRecords(fieldSystem->saveData, data->mon);
 }
 
-void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, NpcTradeAnimationTemplate *animationConfig, Pokemon *givingMon, Pokemon *receivingMon)
+void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, TradeAnimationTemplate *animationConfig, Pokemon *givingMon, Pokemon *receivingMon)
 {
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *partyMon = Party_GetPokemonBySlotIndex(party, slot);
@@ -88,16 +88,16 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, NpcTra
     animationConfig->sendingPokemon = Pokemon_GetBoxPokemon(givingMon);
     animationConfig->receivingPokemon = Pokemon_GetBoxPokemon(receivingMon);
     animationConfig->otherTrainer = data->trainerInfo;
-    animationConfig->tradeType = 1;
+    animationConfig->tradeType = TRADE_TYPE_NORMAL;
     animationConfig->options = SaveData_GetOptions(fieldSystem->saveData);
 
     int timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     if (timeOfDay == TIMEOFDAY_MORNING || timeOfDay == TIMEOFDAY_DAY) {
-        animationConfig->backgroundColour = 0;
+        animationConfig->background = TRADE_BACKGROUND_DAY;
     } else if (timeOfDay == TIMEOFDAY_TWILIGHT) {
-        animationConfig->backgroundColour = 1;
+        animationConfig->background = TRADE_BACKGROUND_EVENING;
     } else {
-        animationConfig->backgroundColour = 2;
+        animationConfig->background = TRADE_BACKGROUND_NIGHT;
     }
 }
 

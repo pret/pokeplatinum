@@ -199,7 +199,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov88_0223C370 unk_04;
-    NpcTradeAnimationTemplate unk_48;
+    TradeAnimationTemplate unk_48;
     EvolutionData *unk_60;
     int unk_64;
 } UnkStruct_0203DBF0;
@@ -1018,25 +1018,25 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
         v2->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
         v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
-        v2->unk_48.tradeType = 1;
+        v2->unk_48.tradeType = TRADE_TYPE_NORMAL;
 
         switch (FieldSystem_GetTimeOfDay(fieldSystem)) {
         case TIMEOFDAY_MORNING:
         case TIMEOFDAY_DAY:
         default:
-            v2->unk_48.backgroundColour = 0;
+            v2->unk_48.background = TRADE_BACKGROUND_DAY;
             break;
         case TIMEOFDAY_TWILIGHT:
-            v2->unk_48.backgroundColour = 1;
+            v2->unk_48.background = TRADE_BACKGROUND_EVENING;
             break;
         case TIMEOFDAY_NIGHT:
         case TIMEOFDAY_LATE_NIGHT:
-            v2->unk_48.backgroundColour = 2;
+            v2->unk_48.background = TRADE_BACKGROUND_NIGHT;
             break;
         }
 
         if (CommMan_IsConnectedToWifi()) {
-            v2->unk_48.backgroundColour = 3;
+            v2->unk_48.background = TRADE_BACKGROUND_WIFI;
         }
 
         FieldTask_RunApplication(param0, &Unk_020EA268, &v2->unk_48);

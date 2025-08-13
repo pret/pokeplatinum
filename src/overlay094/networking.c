@@ -7,8 +7,8 @@
 #include "overlay060/http.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_0223BA24.h"
-#include "overlay096/struct_ov96_0223B574.h"
-#include "overlay096/struct_ov96_0223B574_1.h"
+#include "overlay096/struct_world_exchange_trainer.h"
+#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "enums.h"
 

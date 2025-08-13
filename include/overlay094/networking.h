@@ -3,8 +3,8 @@
 
 #include "overlay094/gts_application_state.h"
 #include "overlay094/struct_ov94_0223BA24.h"
-#include "overlay096/struct_ov96_0223B574.h"
-#include "overlay096/struct_ov96_0223B574_1.h"
+#include "overlay096/struct_world_exchange_trainer.h"
+#include "overlay096/struct_world_exchange_trainer_error.h"
 
 void ov94_0223B140(s32 param0, u64 param1);
 void GTSNetworking_ProcessCurrentRequest(void);

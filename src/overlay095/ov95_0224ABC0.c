@@ -9,7 +9,6 @@
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
-#include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
@@ -361,7 +360,7 @@ static void ov95_0224AE1C(UnkStruct_ov95_0224AC64 *param0)
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, param0->unk_0C, 2, 0, 0, 1, HEAP_ID_58);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DEMO_TRADE, 1, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_58);
 
-    v5 = TradeSequence_GetBackgroundColour(param0->unk_00);
+    v5 = TradeSequence_GetBackground(param0->unk_00);
 
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 0, 0, 0x20, HEAP_ID_58);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DEMO_TRADE, 3, 4, 0, 0x20, HEAP_ID_58);
