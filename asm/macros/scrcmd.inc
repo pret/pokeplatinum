@@ -1,5 +1,6 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
+#include "generated/boat_travel_dirs.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
 #include "generated/game_records.h"
@@ -3215,13 +3216,29 @@
     .short \arg1
     .endm
 
-    .macro PlayBoatCutscene startDir, endDir, mapID, x, z
+    .macro PlayBoatCutscene travelDir, exitDir, mapID, x, z
     .short 573
-    .byte \startDir
-    .byte \endDir
+    .byte \travelDir
+    .byte \exitDir
     .short \mapID
     .short \x
     .short \z
+    .endm
+
+    .macro TakeShipFromCanalave exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_NORTH_TO_SOUTH, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipFromSnowpoint exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_WEST_TO_EAST, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipToCanalave
+    PlayBoatCutscene BOAT_TRAVEL_DIR_SOUTH_TO_NORTH, DIR_WEST, MAP_HEADER_CANALAVE_CITY, 44, 750
+    .endm
+
+    .macro TakeShipToSnowpoint
+    PlayBoatCutscene BOAT_TRAVEL_DIR_EAST_TO_WEST, DIR_NORTH, MAP_HEADER_SNOWPOINT_CITY, 356, 246
     .endm
 
     /* See the convenience macro below for the uses of destVar1 & destVar2 */

@@ -1,8 +1,12 @@
 #ifndef POKEPLATINUM_BOAT_CUTSCENE_H
 #define POKEPLATINUM_BOAT_CUTSCENE_H
 
+#include "generated/boat_travel_dirs.h"
+
 #include "field/field_system_decl.h"
 #include "overlay005/model_attributes.h"
+
+#include "overlay_manager.h"
 
 #define BOAT_TRAVEL_CUTSCENE_HEAP_SIZE 0x20000
 
@@ -19,11 +23,19 @@
 #define BOAT_TRAVEL_CUTSCENE_STATE_FADE_OUT 1
 
 typedef struct BoatTravelCutscene {
-    u8 startDir;
+    u8 travelDir;
     u8 padding_01[3];
     ModelAttributes *areaModelAttrs;
 } BoatTravelCutscene;
 
-void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 startDir, const u8 endDir, const int mapID, const int x, const int z);
+void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, const u8 exitDir, const int mapID, const int x, const int z);
+
+BOOL BoatCutscene_CanalaveShip_Init(ApplicationManager *appMan, int *state);
+BOOL BoatCutscene_CanalaveShip_Main(ApplicationManager *appMan, int *state);
+BOOL BoatCutscene_CanalaveShip_Exit(ApplicationManager *appMan, int *state);
+
+BOOL BoatCutscene_SnowpointShip_Init(ApplicationManager *appMan, int *state);
+BOOL BoatCutscene_SnowpointShip_Main(ApplicationManager *appMan, int *state);
+BOOL BoatCutscene_SnowpointShip_Exit(ApplicationManager *appMan, int *state);
 
 #endif // POKEPLATINUM_BOAT_CUTSCENE_H

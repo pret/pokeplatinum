@@ -6405,13 +6405,13 @@ static BOOL ScrCmd_23C(ScriptContext *ctx)
 
 static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx)
 {
-    u8 startDir = ScriptContext_ReadByte(ctx);
-    u8 endDir = ScriptContext_ReadByte(ctx);
+    u8 travelDir = ScriptContext_ReadByte(ctx);
+    u8 exitDir = ScriptContext_ReadByte(ctx);
     int mapID = ScriptContext_ReadHalfWord(ctx);
     int x = ScriptContext_ReadHalfWord(ctx);
     int z = ScriptContext_ReadHalfWord(ctx);
 
-    FieldSystem_PlayBoatCutscene(ctx->fieldSystem, startDir, endDir, mapID, x, z);
+    FieldSystem_PlayBoatCutscene(ctx->fieldSystem, travelDir, exitDir, mapID, x, z);
     return TRUE;
 }
 

@@ -1408,8 +1408,8 @@ Overlay overlay92
 Overlay boat_cutscene
 {
 	After main
-	Object main.nef.p/src_boat_cutscene_ship_demo.c.o
-	Object main.nef.p/src_boat_cutscene_ship_demo_pl.c.o
+	Object main.nef.p/src_boat_cutscene_canalave_ship.c.o
+	Object main.nef.p/src_boat_cutscene_snowpoint_ship.c.o
 }
 
 Overlay overlay94

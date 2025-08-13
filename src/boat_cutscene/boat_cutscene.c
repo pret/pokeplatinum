@@ -43,10 +43,10 @@
 
 typedef struct BoatCutscene {
     u8 state;
-    u8 startDir;
+    u8 travelDir;
     u8 bridgeReached;
     u8 speedTick;
-    u8 endDir;
+    u8 exitDir;
     u8 dummy;
     u8 unused[2];
     fx32 cameraAdjustment;
@@ -62,7 +62,7 @@ typedef struct BoatCutscene {
     fx32 speed;
 } BoatCutscene;
 
-static void FieldSystem_PlayBoatTravelCutscene(FieldSystem *fieldSystem, const u8 startDir, ModelAttributes *areaModelAttrs);
+static void FieldSystem_PlayBoatTravelCutscene(FieldSystem *fieldSystem, const u8 travelDir, ModelAttributes *areaModelAttrs);
 static BOOL FieldTask_PlayBoatTravelCutscene(FieldTask *taskMan);
 static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan);
 static BOOL BoatCutscene_MoveBoatToGoal(BoatCutscene *boatCutscene);
@@ -70,7 +70,7 @@ static BOOL BoatCutscene_CheckBridgeReached(const fx32 *distanceTraveled, const 
 static void FieldSystem_LoadCanalaveBridgeAnimation(FieldSystem *fieldSystem);
 static void BoatCutscene_PanStartingCamera(BoatCutscene *boatCutscene);
 
-void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 startDir, const u8 endDir, const int mapID, const int x, const int z)
+void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, const u8 exitDir, const int mapID, const int x, const int z)
 {
     BoatCutscene *boatCutscene;
     BOOL moveBeforeFadeOut;
@@ -81,8 +81,8 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 startDir, c
 
     boatCutscene = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(BoatCutscene));
 
-    boatCutscene->startDir = startDir;
-    boatCutscene->endDir = endDir;
+    boatCutscene->travelDir = travelDir;
+    boatCutscene->exitDir = exitDir;
     boatCutscene->mapID = mapID;
     boatCutscene->x = x;
     boatCutscene->z = z;
@@ -96,13 +96,13 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 startDir, c
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_64, SEQ_NONE, 0);
 
-    if (startDir == DIR_EAST) {
+    if (travelDir == BOAT_TRAVEL_DIR_NORTH_TO_SOUTH) {
         targetMapPropModelID = MAP_PROP_MODEL_REGULAR_SHIP;
         TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &hitbox);
         moveBeforeFadeOut = TRUE;
         goalDistance = (25 * MAP_OBJECT_TILE_SIZE);
         boatCutscene->bridgeDistance = (14 * MAP_OBJECT_TILE_SIZE);
-    } else if (startDir == DIR_WEST) {
+    } else if (travelDir == BOAT_TRAVEL_DIR_WEST_TO_EAST) {
         targetMapPropModelID = MAP_PROP_MODEL_SCREW_STEAMSHIP_SPIRAL;
         TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &hitbox);
         moveBeforeFadeOut = TRUE;
@@ -143,12 +143,12 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 startDir, c
     FieldTask_InitCall(fieldSystem->task, FieldSystem_PlayBoatCutsceneStep, boatCutscene);
 }
 
-static void FieldSystem_PlayBoatTravelCutscene(FieldSystem *fieldSystem, const u8 startDir, ModelAttributes *areaModelAttrs)
+static void FieldSystem_PlayBoatTravelCutscene(FieldSystem *fieldSystem, const u8 travelDir, ModelAttributes *areaModelAttrs)
 {
     BoatTravelCutscene *taskEnv = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(BoatTravelCutscene));
 
     taskEnv->areaModelAttrs = areaModelAttrs;
-    taskEnv->startDir = startDir;
+    taskEnv->travelDir = travelDir;
 
     FieldTask_InitCall(fieldSystem->task, FieldTask_PlayBoatTravelCutscene, taskEnv);
 }
@@ -161,10 +161,10 @@ static BOOL FieldTask_PlayBoatTravelCutscene(FieldTask *taskMan)
 
     switch (*state) {
     case BOAT_TRAVEL_CUTSCENE_TASK_STATE_START:
-        if ((taskEnv->startDir == DIR_SOUTH) || (taskEnv->startDir == DIR_WEST)) {
-            FieldTask_PlayBoatCutscene_ShipDemoPl(fieldSystem, taskEnv);
+        if ((taskEnv->travelDir == BOAT_TRAVEL_DIR_EAST_TO_WEST) || (taskEnv->travelDir == BOAT_TRAVEL_DIR_WEST_TO_EAST)) {
+            FieldTask_PlayBoatCutscene_SnowpointShip(fieldSystem, taskEnv);
         } else {
-            FieldTask_PlayBoatCutscene_ShipDemo(fieldSystem, taskEnv);
+            FieldTask_PlayBoatCutscene_CanalaveShip(fieldSystem, taskEnv);
         }
         break;
     case BOAT_TRAVEL_CUTSCENE_TASK_STATE_WAIT:
@@ -231,11 +231,11 @@ static BOOL FieldSystem_PlayBoatCutsceneStep(FieldTask *taskMan)
         boatCutscene->state = BOAT_CUTSCENE_STATE_PLAY_TRAVEL_CUTSCENE;
         break;
     case BOAT_CUTSCENE_STATE_PLAY_TRAVEL_CUTSCENE:
-        FieldSystem_PlayBoatTravelCutscene(fieldSystem, boatCutscene->startDir, &boatCutscene->areaModelAttrs);
+        FieldSystem_PlayBoatTravelCutscene(fieldSystem, boatCutscene->travelDir, &boatCutscene->areaModelAttrs);
         boatCutscene->state = BOAT_CUTSCENE_STATE_MAP_TRANSITION;
         break;
     case BOAT_CUTSCENE_STATE_MAP_TRANSITION:
-        FieldTask_ChangeMapToLocation(taskMan, boatCutscene->mapID, -1, boatCutscene->x, boatCutscene->z, boatCutscene->endDir);
+        FieldTask_ChangeMapToLocation(taskMan, boatCutscene->mapID, -1, boatCutscene->x, boatCutscene->z, boatCutscene->exitDir);
         boatCutscene->state = BOAT_CUTSCENE_STATE_FADE_IN;
         break;
     case BOAT_CUTSCENE_STATE_FADE_IN:
@@ -257,20 +257,20 @@ static BOOL BoatCutscene_MoveBoatToGoal(BoatCutscene *boatCutscene)
 
     position = MapProp_GetPosition(boatCutscene->boat);
 
-    switch (boatCutscene->startDir) {
-    case DIR_NORTH:
+    switch (boatCutscene->travelDir) {
+    case BOAT_TRAVEL_DIR_SOUTH_TO_NORTH:
         position.z += boatCutscene->speed;
         boatCutscene->cameraPos.z += boatCutscene->speed;
         break;
-    case DIR_EAST:
+    case BOAT_TRAVEL_DIR_NORTH_TO_SOUTH:
         position.z -= boatCutscene->speed;
         boatCutscene->cameraPos.z -= boatCutscene->speed;
         break;
-    case DIR_WEST:
+    case BOAT_TRAVEL_DIR_WEST_TO_EAST:
         position.x += boatCutscene->speed;
         boatCutscene->cameraPos.x += boatCutscene->speed;
         break;
-    case DIR_SOUTH:
+    case BOAT_TRAVEL_DIR_EAST_TO_WEST:
         position.x -= boatCutscene->speed;
         boatCutscene->cameraPos.x -= boatCutscene->speed;
         break;
@@ -346,14 +346,14 @@ static void FieldSystem_LoadCanalaveBridgeAnimation(FieldSystem *fieldSystem)
 
 static void BoatCutscene_PanStartingCamera(BoatCutscene *boatCutscene)
 {
-    switch (boatCutscene->startDir) {
-    case DIR_EAST:
+    switch (boatCutscene->travelDir) {
+    case BOAT_TRAVEL_DIR_NORTH_TO_SOUTH:
         if (boatCutscene->cameraAdjustment < MAP_OBJECT_TILE_SIZE * 2) {
             boatCutscene->cameraPos.x += FX32_ONE;
             boatCutscene->cameraAdjustment += FX32_ONE;
         }
         break;
-    case DIR_WEST:
+    case BOAT_TRAVEL_DIR_WEST_TO_EAST:
         if (boatCutscene->cameraAdjustment < MAP_OBJECT_TILE_SIZE * 3) {
             boatCutscene->cameraPos.z += FX32_ONE / 2;
             boatCutscene->cameraAdjustment += FX32_ONE / 2;

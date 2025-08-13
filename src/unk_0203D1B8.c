@@ -39,8 +39,7 @@
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
-#include "boat_cutscene/ship_demo.h"
-#include "boat_cutscene/ship_demo_pl.h"
+#include "boat_cutscene/boat_cutscene.h"
 #include "choose_starter/choose_starter_app.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
@@ -1473,28 +1472,28 @@ void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void FieldTask_PlayBoatCutscene_ShipDemo(FieldSystem *fieldSystem, void *taskEnv)
+void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv)
 {
     FS_EXTERN_OVERLAY(boat_cutscene);
 
     const ApplicationManagerTemplate appTemplate = {
-        .init = BoatCutscene_ShipDemo_Init,
-        .main = BoatCutscene_ShipDemo_Main,
-        .exit = BoatCutscene_ShipDemo_Exit,
+        .init = BoatCutscene_CanalaveShip_Init,
+        .main = BoatCutscene_CanalaveShip_Main,
+        .exit = BoatCutscene_CanalaveShip_Exit,
         .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
     FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
-void FieldTask_PlayBoatCutscene_ShipDemoPl(FieldSystem *fieldSystem, void *taskEnv)
+void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv)
 {
     FS_EXTERN_OVERLAY(boat_cutscene);
 
     const ApplicationManagerTemplate appTemplate = {
-        .init = BoatCutscene_ShipDemoPl_Init,
-        .main = BoatCutscene_ShipDemoPl_Main,
-        .exit = BoatCutscene_ShipDemoPl_Exit,
+        .init = BoatCutscene_SnowpointShip_Init,
+        .main = BoatCutscene_SnowpointShip_Main,
+        .exit = BoatCutscene_SnowpointShip_Exit,
         .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
