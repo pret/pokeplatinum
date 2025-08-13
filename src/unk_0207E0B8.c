@@ -1707,13 +1707,13 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 }
 
-static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *buf)
+static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *menuEntriesBuffer)
 {
     Pokemon *pokemon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
     u16 move;
     u8 fieldMoveIndex = 0, i, count = 0, fieldEffect;
 
-    buf[count] = 1;
+    menuEntriesBuffer[count] = 1;
     count++;
 
     if (FieldSystem_IsInBattleTowerSalon(param0->partyManagementData->fieldSystem) == FALSE) {
@@ -1728,30 +1728,30 @@ static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *buf)
                 fieldEffect = GetElementIndex(move);
 
                 if (fieldEffect != 0xff) {
-                    buf[count] = fieldEffect;
+                    menuEntriesBuffer[count] = fieldEffect;
                     count++;
                     sub_02081CAC(param0, move, fieldMoveIndex);
                     fieldMoveIndex++;
                 }
             }
 
-            buf[count] = 0;
+            menuEntriesBuffer[count] = 0;
             count++;
 
             if (Item_IsMail(param0->unk_704[param0->partySlot].unk_0C) == TRUE) {
-                buf[count] = 5;
+                menuEntriesBuffer[count] = 5;
             } else {
-                buf[count] = 2;
+                menuEntriesBuffer[count] = 2;
             }
 
             count++;
         } else {
-            buf[count] = 0;
+            menuEntriesBuffer[count] = 0;
             count++;
         }
     }
 
-    buf[count] = 9;
+    menuEntriesBuffer[count] = 9;
     count++;
 
     return count;
