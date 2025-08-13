@@ -21,7 +21,7 @@ static void ov84_02240424(BagInterfaceManager *param0);
 static void ov84_022404C0(BagInterfaceManager *param0);
 static void ov84_02240950(BagInterfaceManager *param0);
 static void ov84_02240C48(BagInterfaceManager *param0);
-static u8 ov84_02240C30(BagInterfaceManager *param0, u8 param1);
+static u8 GetIndicatorPocketSpriteX(BagInterfaceManager *param0, u8 param1);
 static void ov84_02240B98(BagInterfaceManager *param0);
 
 static const SpriteTemplate sBagInterfaceSpriteTemplates[] = {
@@ -286,7 +286,7 @@ static void ov84_02240950(BagInterfaceManager *param0)
     ov84_02240D3C(param0, 0);
 
     ManagedSprite_SetAnim(param0->sprites[BAG_SPRITE_BAG], param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType);
-    ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], ov84_02240C30(param0, param0->appArguments->currPocketIdx), 97);
+    ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], GetIndicatorPocketSpriteX(param0, param0->appArguments->currPocketIdx), 97);
     ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], 177, 24 + (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].cursorPos - 1) * 16);
 
     {
@@ -372,15 +372,15 @@ static void ov84_02240B98(BagInterfaceManager *param0)
     param0->unk_454.unk_03++;
 
     if (param0->unk_454.unk_03 == 8) {
-        v0.x = ov84_02240C30(param0, param0->nextPocketIdx) * FX32_ONE;
+        v0.x = GetIndicatorPocketSpriteX(param0, param0->nextPocketIdx) * FX32_ONE;
         Sprite_SetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &v0);
         param0->unk_454.unk_00 = 0;
     }
 }
 
-static u8 ov84_02240C30(BagInterfaceManager *param0, u8 param1)
+static u8 GetIndicatorPocketSpriteX(BagInterfaceManager *param0, u8 pocketIdx)
 {
-    return 0 * 8 + param0->pocketIndicatorLeftX + param0->pocketIndicatorSpacing * param1 + 6;
+    return 0 * 8 + param0->pocketIndicatorLeftX + param0->pocketIndicatorSpacing * pocketIdx + 6;
 }
 
 static void ov84_02240C48(BagInterfaceManager *param0)
@@ -389,7 +389,7 @@ static void ov84_02240C48(BagInterfaceManager *param0)
     fx32 v1;
 
     v0 = *(Sprite_GetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
-    v1 = ov84_02240C30(param0, param0->nextPocketIdx) * FX32_ONE;
+    v1 = GetIndicatorPocketSpriteX(param0, param0->nextPocketIdx) * FX32_ONE;
 
     if (v1 < v0.x) {
         v1 = (v0.x - v1) / 100;

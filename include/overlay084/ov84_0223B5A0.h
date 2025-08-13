@@ -23,11 +23,11 @@
 enum BagInterfaceState {
     BAG_INTERFACE_STATE_WAIT_INITIAL_SCREEN_FADE = 0,
     BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL,
-    BAG_INTERFACE_STATE_2,
+    BAG_INTERFACE_STATE_SWITCH_POCKET,
     BAG_INTERFACE_STATE_MOVING_ITEM,
     BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_ACTION,
-    BAG_INTERFACE_STATE_5,
-    BAG_INTERFACE_STATE_6,
+    BAG_INTERFACE_STATE_UNUSED_5,
+    BAG_INTERFACE_STATE_UNUSED_6,
     BAG_INTERFACE_STATE_7,
     BAG_INTERFACE_STATE_8,
     BAG_INTERFACE_STATE_9,
@@ -148,12 +148,12 @@ struct BagInterfaceManager {
     MessageLoader *itemNamesLoader;
     MessageLoader *moveNamesLoader;
     Strbuf *itemActionStrings[NUM_ITEM_ACTIONS];
-    StringList *itemActionsStringList;
-    Menu *itemActionsMenu;
+    StringList *itemActionsMenuChoices;
+    Menu *menu;
     ListMenu *itemsListMenu;
     StringList *itemsListMenuStringList;
     Strbuf *itemNamesBuffers[165];
-    Strbuf *msgBoxText;
+    Strbuf *strBuffer;
     Strbuf *itemCountX;
     Strbuf *itemCountNumberFmt;
     Strbuf *pocketNames[POCKET_MAX];
@@ -162,7 +162,7 @@ struct BagInterfaceManager {
     u8 msgBoxPrinter;
     u8 pocketIndicatorLeftX;
     u8 pocketIndicatorSpacing;
-    UnkStruct_ov84_0223C920 unk_429;
+    BagPocketIndicatorManager pocketIndicatorMan;
     u8 padding_431[35];
     UnkStruct_ov84_0223B5A0_sub1 unk_454;
     u8 nextPocketIdx;

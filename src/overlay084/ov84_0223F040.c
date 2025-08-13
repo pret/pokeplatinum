@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
 #include "constants/items.h"
 
 #include "struct_defs/struct_0207CB08.h"
@@ -29,38 +30,77 @@
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
+#include "string_padding_mode.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
 
 #include "res/text/bank/unk_0007.h"
 
+#define ITEM_LIST_WINDOW_WIDTH         17
+#define ITEM_LIST_WINDOW_HEIGHT        TEXT_LINES_TILES(9)
+#define ITEM_DESCRIPTION_WINDOW_WIDTH  (HW_LCD_WIDTH / TILE_WIDTH_PIXELS)
+#define ITEM_DESCRIPTION_WINDOW_HEIGHT TEXT_LINES_TILES(3)
+#define MSG_BOX_WINDOW_WIDTH           14
+#define MSG_BOX_NARROW_WINDOW_WIDTH    13
+#define MSG_BOX_WIDE_WINDOW_WIDTH      27
+#define MSG_BOX_WINDOW_HEIGHT          TEXT_LINES_TILES(2)
+#define POCKET_INDICATOR_WINDOW_WIDTH  12
+#define POCKET_INDICATOR_WINDOW_HEIGHT 2
+#define POCKET_NAMES_WINDOW_WIDTH      (12 * 3)
+#define POCKET_NAMES_WINDOW_HEIGHT     3
+#define YES_NO_WINDOW_WIDTH            7
+#define YES_NO_WINDOW_HEIGHT           TEXT_LINES_TILES(2)
+#define SELL_WINDOW_WIDTH              12
+#define SELL_WINDOW_HEIGHT             4
+
+#define BASE_TILE_ITEM_LIST             1
+#define BASE_TILE_ITEM_DESCRIPTION      (BASE_TILE_ITEM_LIST + (ITEM_LIST_WINDOW_WIDTH * ITEM_LIST_WINDOW_HEIGHT))
+#define BASE_TILE_POCKET_NAMES          (BASE_TILE_ITEM_DESCRIPTION + ITEM_DESCRIPTION_WINDOW_WIDTH * ITEM_DESCRIPTION_WINDOW_HEIGHT)
+#define BASE_TILE_MSG_BOX               (BASE_TILE_POCKET_NAMES + POCKET_NAMES_WINDOW_WIDTH * POCKET_NAMES_WINDOW_HEIGHT) /* (BASE_TILE_POCKET_INDICATOR - MSG_BOX_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT) */
+#define BASE_TILE_MSG_BOX_NARROW        BASE_TILE_MSG_BOX
+#define BASE_TILE_POCKET_INDICATOR      (BASE_TILE_MSG_BOX + MSG_BOX_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT)
+#define BASE_TILE_MSG_BOX_WIDE          (BASE_TILE_POCKET_INDICATOR + POCKET_INDICATOR_WINDOW_WIDTH * POCKET_INDICATOR_WINDOW_HEIGHT) /* (BASE_TILE_YES_NO - MSG_BOX_WIDE_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT) */
+#define BASE_TILE_YES_NO                (BASE_TILE_MSG_BOX_WIDE + MSG_BOX_WIDE_WINDOW_WIDTH * MSG_BOX_WINDOW_HEIGHT)
+#define BASE_TILE_SELL_COUNT_VALUE      (BASE_TILE_YES_NO + YES_NO_WINDOW_WIDTH * YES_NO_WINDOW_HEIGHT)
+#define BASE_TILE_ITEM_ACTIONS_MENU     BASE_TILE_SELL_COUNT_VALUE
+#define BASE_TILE_MONEY                 (BASE_TILE_SELL_COUNT_VALUE + SELL_WINDOW_WIDTH * SELL_WINDOW_HEIGHT)
+#define BASE_TILE_POFFIN_COUNT          903
+#define BASE_TILE_THROW_AWAY_COUNT      903
+#define BASE_TILE_STANDARD_WINDOW_FRAME (1024 - NUM_TILES_STANDARD_WINDOW_FRAME)
+#define BASE_TILE_MSG_BOX_FRAME         (BASE_TILE_STANDARD_WINDOW_FRAME - NUM_TILES_MESSAGE_BOX_FRAME)
+
+#define DIGIT_WIDTH                 6
+#define ITEM_COUNT_X_OFFSET         7
+#define ITEM_COUNT_NUMBER_START_POS (ITEM_LIST_WINDOW_WIDTH * TILE_WIDTH_PIXELS - 2)
+#define ITEM_COUNT_START_POS        (ITEM_COUNT_NUMBER_START_POS - 3 * DIGIT_WIDTH - ITEM_COUNT_X_OFFSET)
+
 static void ov84_0223F9B0(BagInterfaceManager *param0, u32 param1);
-static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1);
+static BOOL BagInterface_TextPrinterCallback(TextPrinterTemplate *param0, u16 param1);
 
 static const WindowTemplate sYesNoMenuWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_0,
     .tilemapLeft = 23,
     .tilemapTop = 13,
-    .width = 7,
-    .height = 4,
+    .width = YES_NO_WINDOW_WIDTH,
+    .height = YES_NO_WINDOW_HEIGHT,
     .palette = PLTT_3,
-    .baseTile = 795
+    .baseTile = BASE_TILE_YES_NO
 };
 
 void BagInterface_CreateWindows(BagInterfaceManager *param0)
 {
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], BG_LAYER_MAIN_2, 14, 0, 17, 18, PLTT_3, 1);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], BG_LAYER_MAIN_0, 0, 18, 32, 6, PLTT_3, 1 + 17 * 18);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_NAMES], BG_LAYER_MAIN_2, 0, 13, 12 * 3, 3, PLTT_3, 499);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], BG_LAYER_MAIN_0, 6, 19, 14, 4, PLTT_11, 607);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_NARROW], BG_LAYER_MAIN_0, 6, 19, 13, 4, PLTT_11, 607);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_INDICATOR], BG_LAYER_MAIN_0, 0, 11, 12, 2, PLTT_13, 663);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], BG_LAYER_MAIN_0, 2, 19, 27, 4, PLTT_11, 687);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE], BG_LAYER_MAIN_0, 19, 13, 12, 4, PLTT_3, 823);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MONEY], BG_LAYER_MAIN_0, 1, 1, 10, 4, PLTT_3, 871);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT], BG_LAYER_MAIN_0, 24, 19, 7, 4, PLTT_3, 903);
-    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POFFIN_COUNT], BG_LAYER_MAIN_0, 1, 12, 11, 4, PLTT_3, 903);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], BG_LAYER_MAIN_2, 14, 0, ITEM_LIST_WINDOW_WIDTH, ITEM_LIST_WINDOW_HEIGHT, PLTT_3, BASE_TILE_ITEM_LIST);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], BG_LAYER_MAIN_0, 0, 18, ITEM_DESCRIPTION_WINDOW_WIDTH, ITEM_DESCRIPTION_WINDOW_HEIGHT, PLTT_3, BASE_TILE_ITEM_DESCRIPTION);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_NAMES], BG_LAYER_MAIN_2, 0, 13, POCKET_NAMES_WINDOW_WIDTH, POCKET_NAMES_WINDOW_HEIGHT, PLTT_3, BASE_TILE_POCKET_NAMES);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], BG_LAYER_MAIN_0, 6, 19, MSG_BOX_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, PLTT_11, BASE_TILE_MSG_BOX);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_NARROW], BG_LAYER_MAIN_0, 6, 19, MSG_BOX_NARROW_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, PLTT_11, BASE_TILE_MSG_BOX_NARROW);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POCKET_INDICATOR], BG_LAYER_MAIN_0, 0, 11, POCKET_INDICATOR_WINDOW_WIDTH, POCKET_INDICATOR_WINDOW_HEIGHT, PLTT_13, BASE_TILE_POCKET_INDICATOR);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], BG_LAYER_MAIN_0, 2, 19, MSG_BOX_WIDE_WINDOW_WIDTH, MSG_BOX_WINDOW_HEIGHT, PLTT_11, BASE_TILE_MSG_BOX_WIDE);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE], BG_LAYER_MAIN_0, 19, 13, SELL_WINDOW_WIDTH, SELL_WINDOW_HEIGHT, PLTT_3, BASE_TILE_SELL_COUNT_VALUE);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_MONEY], BG_LAYER_MAIN_0, 1, 1, 10, TEXT_LINES_TILES(2), PLTT_3, BASE_TILE_MONEY);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT], BG_LAYER_MAIN_0, 24, 19, 7, 4, PLTT_3, BASE_TILE_THROW_AWAY_COUNT);
+    Window_Add(param0->bgConfig, &param0->windows[BAG_INTERFACE_WINDOW_POFFIN_COUNT], BG_LAYER_MAIN_0, 1, 12, 11, TEXT_LINES_TILES(2), PLTT_3, BASE_TILE_POFFIN_COUNT);
 }
 
 void BagInterface_DeleteWindows(Window *param0)
@@ -91,39 +131,39 @@ void BagInterface_FreePocketNames(BagInterfaceManager *param0)
 void BagInterface_MaybeClearPocketNameBox(BagInterfaceManager *param0)
 {
     for (u16 i = 0; i < 12; i++) {
-        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, ((1 + 17 * 18) + 32 * 6) + 12 + i, i, 13, 1, 1, PLTT_3);
-        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, ((1 + 17 * 18) + 32 * 6) + (12 * 3) + 12 + i, i, 13 + 1, 1, 1, PLTT_3);
+        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, BASE_TILE_POCKET_NAMES + 12 + i, i, 13, 1, 1, PLTT_3);
+        Bg_FillTilemapRect(param0->bgConfig, BG_LAYER_MAIN_2, BASE_TILE_POCKET_NAMES + POCKET_NAMES_WINDOW_WIDTH + 12 + i, i, 13 + 1, 1, 1, PLTT_3);
     }
 }
 
-static void PrintPocketNamesCentered(BagInterfaceManager *param0, Strbuf *string, u16 centerY)
+static void PrintPocketNameCentered(BagInterfaceManager *param0, Strbuf *string, u16 centerY)
 {
     u32 stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, string, 0);
     Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_POCKET_NAMES], FONT_SYSTEM, string, centerY - stringWidth / 2, 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 }
 
-void BagInterface_PrintCurrentAndNextPocketNames(BagInterfaceManager *param0)
+void BagInterface_PrintPocketNames(BagInterfaceManager *param0)
 {
-    UnkStruct_ov84_0223C920 *v0;
+    BagPocketIndicatorManager *v0;
     Strbuf *nextPocketName;
     Strbuf *currentPocketName;
     u16 v3;
 
     Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_POCKET_NAMES], 0);
 
-    v0 = &param0->unk_429;
+    v0 = &param0->pocketIndicatorMan;
     currentPocketName = param0->pocketNames[param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType];
     nextPocketName = param0->pocketNames[param0->appArguments->accessiblePockets[v0->nextPocketIdx].pocketType];
 
     if (v0->scrollDirection == 0) {
-        v3 = 96 + 50 + 12 * v0->unk_03;
-        PrintPocketNamesCentered(param0, nextPocketName, v3 - 96);
+        v3 = 96 + 50 + 12 * v0->animFrame;
+        PrintPocketNameCentered(param0, nextPocketName, v3 - 96);
     } else {
-        v3 = 96 + 50 - 12 * v0->unk_03;
-        PrintPocketNamesCentered(param0, nextPocketName, 96 + v3);
+        v3 = 96 + 50 - 12 * v0->animFrame;
+        PrintPocketNameCentered(param0, nextPocketName, v3 + 96);
     }
 
-    PrintPocketNamesCentered(param0, currentPocketName, v3);
+    PrintPocketNameCentered(param0, currentPocketName, v3);
     Window_LoadTiles(&param0->windows[BAG_INTERFACE_WINDOW_POCKET_NAMES]);
 }
 
@@ -176,32 +216,32 @@ void BagInterface_DrawPocketIndicatorIcons(BagInterfaceManager *param0)
     Heap_FreeExplicit(HEAP_ID_6, v1);
 }
 
-static void BagInterface_BufferPocketSlotItemName(BagInterfaceManager *param0, u32 slot, u32 param2)
+static void BagInterface_BufferPocketSlotItemName(BagInterfaceManager *param0, u32 pocketSlot, u32 templateParamIdx)
 {
-    StringTemplate_SetItemName(param0->strTemplate, param2, BagInterface_GetItemSlotProperty(param0, slot, 0));
+    StringTemplate_SetItemName(param0->strTemplate, templateParamIdx, BagInterface_GetItemSlotProperty(param0, pocketSlot, ITEM_SLOT_ITEM));
 }
 
-static void BagInterface_BufferPocketSlotItemNamePlural(BagInterfaceManager *param0, u32 slot, u32 param2)
+static void BagInterface_BufferPocketSlotItemNamePlural(BagInterfaceManager *param0, u32 pocketSlot, u32 templateParamIdx)
 {
-    StringTemplate_SetItemNamePlural(param0->strTemplate, param2, BagInterface_GetItemSlotProperty(param0, slot, 0));
+    StringTemplate_SetItemNamePlural(param0->strTemplate, templateParamIdx, BagInterface_GetItemSlotProperty(param0, pocketSlot, ITEM_SLOT_ITEM));
 }
 
 void BagInterface_PrintItemDescription(BagInterfaceManager *param0, u16 item)
 {
-    Strbuf *v0;
+    Strbuf *strBuf;
 
     if (item != 0xffff) {
-        v0 = Strbuf_Init(130, HEAP_ID_6);
-        Item_LoadDescription(v0, item, HEAP_ID_6);
+        strBuf = Strbuf_Init(130, HEAP_ID_6);
+        Item_LoadDescription(strBuf, item, HEAP_ID_6);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_CloseBagDescription);
+        strBuf = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_CloseBagDescription);
     }
 
-    Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, v0, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(v0);
+    Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, strBuf, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Strbuf_Free(strBuf);
 }
 
-void BagInterface_PrintTMHMMoveData(BagInterfaceManager *param0, u16 param1)
+void BagInterface_PrintTMHMMoveInfo(BagInterfaceManager *param0, u16 param1)
 {
     Window *v0;
     Strbuf *v1;
@@ -234,9 +274,9 @@ void BagInterface_PrintTMHMMoveData(BagInterfaceManager *param0, u16 param1)
     v3 = MoveTable_CalcMaxPP(v2, 0);
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_MaxPPNum);
     StringTemplate_SetNumber(param0->strTemplate, 0, v3, 2, 1, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
     Strbuf_Free(v1);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->msgBoxText, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strBuffer, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
     v3 = MoveTable_LoadParam(v2, MOVEATTRIBUTE_POWER);
 
@@ -247,9 +287,9 @@ void BagInterface_PrintTMHMMoveData(BagInterfaceManager *param0, u16 param1)
     }
 
     StringTemplate_SetNumber(param0->strTemplate, 0, v3, 3, 0, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
     Strbuf_Free(v1);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->msgBoxText, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strBuffer, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     v3 = MoveTable_LoadParam(v2, MOVEATTRIBUTE_ACCURACY);
 
     if (v3 == 0) {
@@ -259,9 +299,9 @@ void BagInterface_PrintTMHMMoveData(BagInterfaceManager *param0, u16 param1)
     }
 
     StringTemplate_SetNumber(param0->strTemplate, 0, v3, 3, 0, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
     Strbuf_Free(v1);
-    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->msgBoxText, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->strBuffer, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 }
 
 void BagInterface_LoadItemCountStrings(BagInterfaceManager *param0)
@@ -282,9 +322,9 @@ void BagInterface_PrintItemCount(BagInterfaceManager *param0, u16 count, u16 yOf
     u32 v1;
 
     if (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType == POCKET_TMHMS) {
-        Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, param0->itemCountX, (((17 * 8 - 2) - 6 - 1 - 6 * 3) + 6), yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, param0->itemCountX, ITEM_COUNT_START_POS + DIGIT_WIDTH, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     } else {
-        Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, param0->itemCountX, ((17 * 8 - 2) - 6 - 1 - 6 * 3), yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, param0->itemCountX, ITEM_COUNT_START_POS, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     }
 
     v0 = Strbuf_Init(10, HEAP_ID_6);
@@ -294,67 +334,63 @@ void BagInterface_PrintItemCount(BagInterfaceManager *param0, u16 count, u16 yOf
 
     v1 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-    Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, v0, (17 * 8 - 2) - v1, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, v0, ITEM_COUNT_NUMBER_START_POS - v1, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     Strbuf_Free(v0);
 }
 
-void ov84_0223F8D0(BagInterfaceManager *param0, BagItem *param1, u32 param2)
+void BagInterface_PrintTMHMNumber(BagInterfaceManager *param0, BagItem *param1, u32 yOffset)
 {
-    u16 v0 = param1->item;
+    u16 item = param1->item;
 
-    if (v0 < 420) {
-        v0 = v0 - 328 + 1;
-        FontSpecialChars_DrawPartyScreenText(param0->specialChars, 2, v0, 2, 2, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 0, param2 + 5);
-        BagInterface_PrintItemCount(param0, param1->quantity, param2, TEXT_COLOR(1, 2, 0));
+    if (item < ITEM_HM01) {
+        item = item - ITEM_TM01 + 1;
+        FontSpecialChars_DrawPartyScreenText(param0->specialChars, SPECIAL_CHAR_NUMBER, item, 2, PADDING_MODE_ZEROES, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 0, yOffset + 5);
+        BagInterface_PrintItemCount(param0, param1->quantity, yOffset, TEXT_COLOR(1, 2, 0));
     } else {
-        v0 = v0 - 420 + 1;
-        FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, v0, 2, 1, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 16, param2 + 5);
-        ov84_0223F9B0(param0, param2);
+        item = item - ITEM_HM01 + 1;
+        FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, item, 2, 1, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 16, yOffset + 5);
+        ov84_0223F9B0(param0, yOffset);
     }
 }
 
-void ov84_0223F94C(BagInterfaceManager *param0, BagItem *param1, u32 param2)
+void BagInterface_PrintBerryNumber(BagInterfaceManager *param0, BagItem *param1, u32 param2)
 {
-    FontSpecialChars_DrawPartyScreenText(param0->specialChars, 2, Item_BerryNumber(param1->item) + 1, 2, 2, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 0, param2 + 5);
+    FontSpecialChars_DrawPartyScreenText(param0->specialChars, SPECIAL_CHAR_NUMBER, Item_BerryNumber(param1->item) + 1, 2, PADDING_MODE_ZEROES, &param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 0, param2 + 5);
     BagInterface_PrintItemCount(param0, param1->quantity, param2, TEXT_COLOR(1, 2, 0));
 }
 
 static void *LoadImageIndex38(BagInterfaceManager *param0, NNSG2dCharacterData **param1)
 {
-    void *v0 = NARC_AllocAndReadWholeMember(param0->bagGraphicsNARC, 38, HEAP_ID_6);
-    NNS_G2dGetUnpackedBGCharacterData(v0, param1);
-    return v0;
+    void *file = NARC_AllocAndReadWholeMember(param0->bagGraphicsNARC, 38, HEAP_ID_6);
+    NNS_G2dGetUnpackedBGCharacterData(file, param1);
+    return file;
 }
 
-static void ov84_0223F9B0(BagInterfaceManager *param0, u32 param1)
+static void ov84_0223F9B0(BagInterfaceManager *param0, u32 yOffset)
 {
-    NNSG2dCharacterData *v0;
-    void *v1;
-    u8 v2;
+    NNSG2dCharacterData *imageData;
 
-    v1 = LoadImageIndex38(param0, &v0);
-    Window_BlitBitmapRect(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], v0->pRawData, 40, 0, 64, 16, 0, param1, 24, 16);
-    Heap_FreeExplicit(HEAP_ID_6, v1);
+    void *file = LoadImageIndex38(param0, &imageData);
+    Window_BlitBitmapRect(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], imageData->pRawData, 40, 0, 64, 16, 0, yOffset, 24, 16);
+    Heap_FreeExplicit(HEAP_ID_6, file);
 }
 
-void ov84_0223F9F0(BagInterfaceManager *param0, u32 param1)
+void BagInterface_PrintCloseBagEntry(BagInterfaceManager *param0, u32 yOffset)
 {
-    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_CloseBag);
+    Strbuf *string = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_CloseBag);
 
-    Window_FillRectWithColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 0, 0, param1, 17 * 8, 16);
-    Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, v0, 0, param1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v0);
+    Window_FillRectWithColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 0, 0, yOffset, ITEM_LIST_WINDOW_WIDTH * TILE_WIDTH_PIXELS, TEXT_LINES(1));
+    Text_AddPrinterWithParamsAndColor(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Strbuf_Free(string);
 }
 
-void ov84_0223FA44(BagInterfaceManager *param0, u32 param1)
+void BagInterface_DrawRegisteredIcon(BagInterfaceManager *param0, u32 yOffset)
 {
-    NNSG2dCharacterData *v0;
-    void *v1;
-    u8 v2;
+    NNSG2dCharacterData *imageData;
 
-    v1 = LoadImageIndex38(param0, &v0);
-    Window_BlitBitmapRect(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], v0->pRawData, 0, 0, 64, 16, 96, param1, 40, 16);
-    Heap_FreeExplicit(HEAP_ID_6, v1);
+    void *file = LoadImageIndex38(param0, &imageData);
+    Window_BlitBitmapRect(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], imageData->pRawData, 0, 0, 64, 16, 96, yOffset, 40, 16);
+    Heap_FreeExplicit(HEAP_ID_6, file);
 }
 
 void BagInterface_LoadItemActionStrings(BagInterfaceManager *param0)
@@ -375,60 +411,58 @@ void BagInterface_LoadItemActionStrings(BagInterfaceManager *param0)
 
 void BagInterface_FreeItemActionStrings(BagInterfaceManager *param0)
 {
-    u16 v0;
-
-    for (v0 = 0; v0 < NUM_ITEM_ACTIONS; v0++) {
-        Strbuf_Free(param0->itemActionStrings[v0]);
+    for (u16 i = 0; i < NUM_ITEM_ACTIONS; i++) {
+        Strbuf_Free(param0->itemActionStrings[i]);
     }
 }
 
-void ov84_0223FB70(BagInterfaceManager *param0, u8 *param1, u8 param2)
+void BagInterface_ShowItemActionsMenu(BagInterfaceManager *param0, u8 *actions, u8 numActions)
 {
-    MenuTemplate v0;
+    MenuTemplate menuTemplate;
     BagInterfacePocketInfo *v1;
     Strbuf *v2;
     Strbuf *v3;
     u16 i;
-    u16 v5;
+    u16 msgBoxWindowIdx;
 
     if (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType == POCKET_BERRIES) {
-        Window_Add(param0->bgConfig, &param0->itemActionsWindow, 0, 23, 23 - param2 * 2, 8, param2 * 2, 3, 823);
-        v5 = BAG_INTERFACE_WINDOW_MSG_BOX_NARROW;
+        Window_Add(param0->bgConfig, &param0->itemActionsWindow, BG_LAYER_MAIN_0, 23, 23 - numActions * 2, 8, numActions * 2, PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
+        msgBoxWindowIdx = BAG_INTERFACE_WINDOW_MSG_BOX_NARROW;
     } else {
-        Window_Add(param0->bgConfig, &param0->itemActionsWindow, 0, 23 + 1, 23 - param2 * 2, 8 - 1, param2 * 2, 3, 823);
-        v5 = BAG_INTERFACE_WINDOW_MSG_BOX;
+        Window_Add(param0->bgConfig, &param0->itemActionsWindow, BG_LAYER_MAIN_0, 23 + 1, 23 - numActions * 2, 8 - 1, numActions * 2, PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
+        msgBoxWindowIdx = BAG_INTERFACE_WINDOW_MSG_BOX;
     }
 
-    param0->itemActionsStringList = StringList_New(param2, HEAP_ID_6);
+    param0->itemActionsMenuChoices = StringList_New(numActions, HEAP_ID_6);
 
-    for (i = 0; i < param2; i++) {
-        StringList_AddFromStrbuf(param0->itemActionsStringList, param0->itemActionStrings[param1[i]], GetItemActionFunc(param1[i]));
+    for (i = 0; i < numActions; i++) {
+        StringList_AddFromStrbuf(param0->itemActionsMenuChoices, param0->itemActionStrings[actions[i]], GetItemActionFunc(actions[i]));
     }
 
-    v0.choices = param0->itemActionsStringList;
-    v0.window = &param0->itemActionsWindow;
-    v0.fontID = FONT_SYSTEM;
-    v0.xSize = 1;
-    v0.ySize = param2;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
+    menuTemplate.choices = param0->itemActionsMenuChoices;
+    menuTemplate.window = &param0->itemActionsWindow;
+    menuTemplate.fontID = FONT_SYSTEM;
+    menuTemplate.xSize = 1;
+    menuTemplate.ySize = numActions;
+    menuTemplate.lineSpacing = 0;
+    menuTemplate.suppressCursor = FALSE;
 
-    if (param2 >= 4) {
-        v0.loopAround = TRUE;
+    if (numActions >= 4) {
+        menuTemplate.loopAround = TRUE;
     } else {
-        v0.loopAround = FALSE;
+        menuTemplate.loopAround = FALSE;
     }
 
-    param0->itemActionsMenu = Menu_New(&v0, 8, 0, 0, HEAP_ID_6, PAD_BUTTON_B);
+    param0->menu = Menu_New(&menuTemplate, 8, 0, 0, HEAP_ID_6, PAD_BUTTON_B);
 
     if (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType == POCKET_TMHMS) {
         Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], 0);
-        BagInterface_PrintTMHMMoveData(param0, param0->appArguments->selectedItem);
+        BagInterface_PrintTMHMMoveInfo(param0, param0->appArguments->selectedItem);
         Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
         UpdateTypeAndCategoryIcons(param0, param0->appArguments->selectedItem, 1);
     } else {
-        Window_DrawMessageBoxWithScrollCursor(&param0->windows[v5], 1, 1024 - 9 - (18 + 12), 12);
-        Window_FillTilemap(&param0->windows[v5], 15);
+        Window_DrawMessageBoxWithScrollCursor(&param0->windows[msgBoxWindowIdx], 1, BASE_TILE_MSG_BOX_FRAME, 12);
+        Window_FillTilemap(&param0->windows[msgBoxWindowIdx], 15);
 
         v2 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_ItemIsSelected);
         v3 = Strbuf_Init((14 * 2 * 2), HEAP_ID_6);
@@ -436,43 +470,43 @@ void ov84_0223FB70(BagInterfaceManager *param0, u8 *param1, u8 param2)
 
         BagInterface_BufferPocketSlotItemName(param0, v1->cursorScroll + v1->cursorPos - 1, 0);
         StringTemplate_Format(param0->strTemplate, v3, v2);
-        Text_AddPrinterWithParams(&param0->windows[v5], FONT_MESSAGE, v3, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&param0->windows[msgBoxWindowIdx], FONT_MESSAGE, v3, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
         Strbuf_Free(v3);
         Strbuf_Free(v2);
-        Window_ScheduleCopyToVRAM(&param0->windows[v5]);
+        Window_ScheduleCopyToVRAM(&param0->windows[msgBoxWindowIdx]);
     }
 
-    Window_DrawStandardFrame(&param0->itemActionsWindow, 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(&param0->itemActionsWindow, 1, BASE_TILE_STANDARD_WINDOW_FRAME, 14);
     Window_ScheduleCopyToVRAM(&param0->itemActionsWindow);
 }
 
-void ov84_0223FD84(BagInterfaceManager *param0)
+void BagInterface_CloseItemActionsMenu(BagInterfaceManager *param0)
 {
-    u32 v0;
+    u32 msgBoxWindowIdx;
 
     if (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType == POCKET_BERRIES) {
-        v0 = BAG_INTERFACE_WINDOW_MSG_BOX_NARROW;
+        msgBoxWindowIdx = BAG_INTERFACE_WINDOW_MSG_BOX_NARROW;
     } else {
-        v0 = BAG_INTERFACE_WINDOW_MSG_BOX;
+        msgBoxWindowIdx = BAG_INTERFACE_WINDOW_MSG_BOX;
     }
 
     if (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType != POCKET_TMHMS) {
-        Window_EraseMessageBox(&param0->windows[v0], 1);
-        Window_ClearAndScheduleCopyToVRAM(&param0->windows[v0]);
+        Window_EraseMessageBox(&param0->windows[msgBoxWindowIdx], TRUE);
+        Window_ClearAndScheduleCopyToVRAM(&param0->windows[msgBoxWindowIdx]);
     }
 
-    Window_EraseStandardFrame(&param0->itemActionsWindow, 1);
+    Window_EraseStandardFrame(&param0->itemActionsWindow, TRUE);
     Window_ClearAndScheduleCopyToVRAM(&param0->itemActionsWindow);
-    Menu_Free(param0->itemActionsMenu, NULL);
-    StringList_Free(param0->itemActionsStringList);
+    Menu_Free(param0->menu, NULL);
+    StringList_Free(param0->itemActionsMenuChoices);
     Window_Remove(&param0->itemActionsWindow);
     Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], 0);
     BagInterface_PrintItemDescription(param0, param0->appArguments->selectedItem);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-    UpdateTypeAndCategoryIcons(param0, 0, 0);
+    UpdateTypeAndCategoryIcons(param0, ITEM_NONE, FALSE);
 }
 
-void PrintMovingItemTooltip(BagInterfaceManager *param0)
+void BagInterface_PrintMovingItemMessage(BagInterfaceManager *param0)
 {
     Strbuf *v0;
     Strbuf *v1;
@@ -491,16 +525,16 @@ void PrintMovingItemTooltip(BagInterfaceManager *param0)
     Strbuf_Free(v0);
 }
 
-void ov84_0223FE94(BagInterfaceManager *param0)
+void BagInterface_ShowItemTrashWindows(BagInterfaceManager *param0)
 {
     BagInterfacePocketInfo *v0;
     Strbuf *v1;
     Strbuf *v2;
     u16 v3;
 
-    Window_DrawStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT], 1, 1024 - 9, 14);
-    ov84_0223FF44(param0);
-    Window_DrawMessageBoxWithScrollCursor(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], 1, 1024 - 9 - (18 + 12), 12);
+    Window_DrawStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT], 1, BASE_TILE_STANDARD_WINDOW_FRAME, 14);
+    BagInterface_PrintItemTrashCount(param0);
+    Window_DrawMessageBoxWithScrollCursor(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], 1, BASE_TILE_MSG_BOX_FRAME, 12);
     Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_ThrowAwayHowMany);
@@ -516,24 +550,23 @@ void ov84_0223FE94(BagInterfaceManager *param0)
     Strbuf_Free(v1);
 }
 
-void ov84_0223FF44(BagInterfaceManager *param0)
+void BagInterface_PrintItemTrashCount(BagInterfaceManager *param0)
 {
     Window *v0;
     Strbuf *v1;
-    u32 v2;
 
     v0 = &param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT];
     Window_FillTilemap(v0, 15);
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_ThrowAwayCount);
 
     StringTemplate_SetNumber(param0->strTemplate, 0, param0->selectedItemCount, 3, 2, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
-    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->msgBoxText, 16, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
+    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->strBuffer, 16, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v0);
     Strbuf_Free(v1);
 }
 
-void ov84_0223FFC0(BagInterfaceManager *param0)
+void BagInterface_CloseItemTrashWindows(BagInterfaceManager *param0)
 {
     Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX], 1);
     Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_THROW_AWAY_COUNT], 1);
@@ -542,13 +575,12 @@ void ov84_0223FFC0(BagInterfaceManager *param0)
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
 }
 
-void ov84_0223FFF0(BagInterfaceManager *param0)
+void BagInterface_PrintConfirmItemTrashMsg(BagInterfaceManager *param0)
 {
     BagInterfacePocketInfo *v0;
     Strbuf *v1;
-    u16 v2;
 
-    Window_DrawMessageBoxWithScrollCursor(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 1, 1024 - 9 - (18 + 12), 12);
+    Window_DrawMessageBoxWithScrollCursor(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 1, BASE_TILE_MSG_BOX_FRAME, 12);
     Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_ThrowAwayOK);
@@ -560,25 +592,25 @@ void ov84_0223FFF0(BagInterfaceManager *param0)
         BagInterface_BufferPocketSlotItemNamePlural(param0, v0->cursorScroll + v0->cursorPos - 1, 0);
     }
 
-    StringTemplate_SetNumber(param0->strTemplate, 1, param0->selectedItemCount, 3, 0, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
+    StringTemplate_SetNumber(param0->strTemplate, 1, param0->selectedItemCount, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
     Strbuf_Free(v1);
 
-    param0->msgBoxPrinter = BagInterface_PrintMessageBoxText(param0);
+    param0->msgBoxPrinter = BagInterface_PrintStrBufferToWideMsgBox(param0);
 }
 
-u8 BagInterface_PrintMessageBoxText(BagInterfaceManager *param0)
+u8 BagInterface_PrintStrBufferToWideMsgBox(BagInterfaceManager *param0)
 {
     u8 v0;
 
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     RenderControlFlags_SetAutoScrollFlags(FALSE);
-    v0 = Text_AddPrinterWithParams(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, param0->msgBoxText, 0, 0, Options_TextFrameDelay(param0->options), ov84_022400E0);
+    v0 = Text_AddPrinterWithParams(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, param0->strBuffer, 0, 0, Options_TextFrameDelay(param0->options), BagInterface_TextPrinterCallback);
 
     return v0;
 }
 
-static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
+static BOOL BagInterface_TextPrinterCallback(TextPrinterTemplate *param0, u16 param1)
 {
     switch (param1) {
     case 1:
@@ -592,15 +624,15 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
         return Sound_IsEffectPlaying(SEQ_SE_DP_PC_LOGIN);
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov84_02240120(BagInterfaceManager *param0)
+void BagInterface_ShowYesNoMenu(BagInterfaceManager *param0)
 {
-    param0->itemActionsMenu = Menu_MakeYesNoChoice(param0->bgConfig, &sYesNoMenuWindowTemplate, 1024 - 9, 14, 6);
+    param0->menu = Menu_MakeYesNoChoice(param0->bgConfig, &sYesNoMenuWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14, HEAP_ID_6);
 }
 
-void ov84_02240148(BagInterfaceManager *param0, u8 param1)
+void BagInterface_PrintSellCountAndValue(BagInterfaceManager *param0, u8 param1)
 {
     Window *v0;
     Strbuf *v1;
@@ -609,31 +641,31 @@ void ov84_02240148(BagInterfaceManager *param0, u8 param1)
     v0 = &param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE];
 
     if (param1 == 0) {
-        Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
+        Window_DrawStandardFrame(v0, 1, BASE_TILE_STANDARD_WINDOW_FRAME, 14);
     }
 
     Window_FillTilemap(v0, 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_SellNum);
 
-    StringTemplate_SetNumber(param0->strTemplate, 0, param0->selectedItemCount, 2, 2, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
-    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->msgBoxText, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_SetNumber(param0->strTemplate, 0, param0->selectedItemCount, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
+    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->strBuffer, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_SellValue);
 
-    StringTemplate_SetNumber(param0->strTemplate, 0, param0->soldItemPrice * param0->selectedItemCount, 6, 1, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
+    StringTemplate_SetNumber(param0->strTemplate, 0, param0->soldItemPrice * param0->selectedItemCount, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
 
-    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->msgBoxText, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strBuffer, 0);
 
-    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->msgBoxText, (12 * 8) - v2, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->strBuffer, (12 * 8) - v2, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v0);
     Strbuf_Free(v1);
 }
 
-void ov84_02240248(BagInterfaceManager *param0, u8 param1)
+void BagInterface_PrintMoney(BagInterfaceManager *param0, u8 hideLabel)
 {
     Window *v0;
     Strbuf *v1;
@@ -641,9 +673,9 @@ void ov84_02240248(BagInterfaceManager *param0, u8 param1)
 
     v0 = &param0->windows[BAG_INTERFACE_WINDOW_MONEY];
 
-    if (param1 == 0) {
+    if (hideLabel == FALSE) {
         Window_FillTilemap(v0, 15);
-        Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
+        Window_DrawStandardFrame(v0, 1, BASE_TILE_STANDARD_WINDOW_FRAME, 14);
 
         v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_MoneyLabel);
 
@@ -655,12 +687,12 @@ void ov84_02240248(BagInterfaceManager *param0, u8 param1)
 
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_MoneyNum);
 
-    StringTemplate_SetNumber(param0->strTemplate, 0, TrainerInfo_Money(param0->trainerInfo), 6, 1, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
+    StringTemplate_SetNumber(param0->strTemplate, 0, TrainerInfo_Money(param0->trainerInfo), 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
 
-    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->msgBoxText, 0);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strBuffer, 0);
 
-    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->msgBoxText, (10 * 8) - v2, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->strBuffer, (10 * 8) - v2, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v0);
     Strbuf_Free(v1);
 }
@@ -673,7 +705,7 @@ void BagInterface_DrawPoffinCountMsgBox(BagInterfaceManager *param0)
 
     v0 = &param0->windows[BAG_INTERFACE_WINDOW_POFFIN_COUNT];
     Window_FillTilemap(v0, 15);
-    Window_DrawStandardFrame(v0, 1, 1024 - 9, 14);
+    Window_DrawStandardFrame(v0, 1, BASE_TILE_STANDARD_WINDOW_FRAME, 14);
 
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_PoffinCountLabel);
     Text_AddPrinterWithParams(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -681,10 +713,10 @@ void BagInterface_DrawPoffinCountMsgBox(BagInterfaceManager *param0)
 
     v1 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_PoffinCountNum);
     StringTemplate_SetNumber(param0->strTemplate, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(param0->appArguments->saveData)), 3, 1, 1);
-    StringTemplate_Format(param0->strTemplate, param0->msgBoxText, v1);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
     Strbuf_Free(v1);
 
-    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->msgBoxText, 0);
-    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->msgBoxText, 11 * 8 - v2, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->strBuffer, 0);
+    Text_AddPrinterWithParams(v0, FONT_SYSTEM, param0->strBuffer, 11 * 8 - v2, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v0);
 }
