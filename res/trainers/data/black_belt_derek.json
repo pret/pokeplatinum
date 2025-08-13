@@ -18,10 +18,28 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Check the sharpness of my fighting\nPokémon’s moves.\r",
-        "TRMSG_DEFEAT": "You’ve dulled its sharpness...\n",
-        "TRMSG_POST_BATTLE": "Back to training for us!\n",
-        "TRMSG_REMATCH": "I sharpened my Pokémon’s moves more\nfor when I saw you again!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Check the sharpness of my fighting\n",
+				"Pokémon’s moves.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’ve dulled its sharpness...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": "Back to training for us!\n"
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I sharpened my Pokémon’s moves more\n",
+				"for when I saw you again!\r"
+			]
+		}
+    ]
 }

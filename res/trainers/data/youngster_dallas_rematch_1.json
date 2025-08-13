@@ -26,8 +26,18 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "I’m always with my Pokémon.\rActually, you’re always with your\nPokémon too, aren’t you?\r",
-        "TRMSG_DEFEAT": "I’m totally bummed out again...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m always with my Pokémon.\r",
+				"Actually, you’re always with your\n",
+				"Pokémon too, aren’t you?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I’m totally bummed out again...\n"
+		}
+    ]
 }

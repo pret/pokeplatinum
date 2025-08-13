@@ -19,9 +19,28 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "May we have a battle, please?\rIt will be something to lighten up this\nboring picnic with.\r",
-        "TRMSG_DEFEAT": "We’re not going to win if we play\naround like that...\n",
-        "TRMSG_POST_BATTLE": "I’m going home to play with my\nPokémon!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"May we have a battle, please?\r",
+				"It will be something to lighten up this\n",
+				"boring picnic with.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"We’re not going to win if we play\n",
+				"around like that...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m going home to play with my\n",
+				"Pokémon!\n"
+			]
+		}
+    ]
 }

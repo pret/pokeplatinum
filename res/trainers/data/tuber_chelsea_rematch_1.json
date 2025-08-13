@@ -17,8 +17,17 @@
             "ball_seal": 9
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "I’ve been lounging here all this\ntime!\r",
-        "TRMSG_DEFEAT": "I lost, and now I feel hungry.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve been lounging here all this\n",
+				"time!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I lost, and now I feel hungry.\n"
+		}
+    ]
 }

@@ -37,8 +37,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_FIRST_DAMAGE": "How insolent.\nTake a bite of this, child!\n",
-        "TRMSG_DEFEAT": "Losing to some child...\nBeing careless cost me too much.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_FIRST_DAMAGE",
+			"en_US": [
+				"How insolent.\n",
+				"Take a bite of this, child!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Losing to some child...\n",
+				"Being careless cost me too much.\n"
+			]
+		}
+    ]
 }

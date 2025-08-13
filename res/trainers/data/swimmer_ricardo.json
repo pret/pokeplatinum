@@ -17,10 +17,33 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "It might not look like it, but I’m\ntraveling now.\r",
-        "TRMSG_DEFEAT": "You’ve got the upper hand on me.\n",
-        "TRMSG_POST_BATTLE": "But you can be sure that there will\nbe bigger challenges in front of you.\rGo! Go as far as you can! You alone can\nbroaden your horizons.\n",
-        "TRMSG_REMATCH": "I’m still on my journey...\nLet’s have a battle!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"It might not look like it, but I’m\n",
+				"traveling now.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’ve got the upper hand on me.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"But you can be sure that there will\n",
+				"be bigger challenges in front of you.\r",
+				"Go! Go as far as you can! You alone can\n",
+				"broaden your horizons.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m still on my journey...\n",
+				"Let’s have a battle!\r"
+			]
+		}
+    ]
 }

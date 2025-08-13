@@ -17,10 +17,31 @@
             "ball_seal": 9
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Ehehe...\nI can battle, too!\r",
-        "TRMSG_DEFEAT": "Losing made me all hungry now.\n",
-        "TRMSG_POST_BATTLE": "That cloud looks like giant ice cream!\nI bet it tastes yummy!\n",
-        "TRMSG_REMATCH": "I’ve been dawdling here all this\ntime!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Ehehe...\n",
+				"I can battle, too!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Losing made me all hungry now.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"That cloud looks like giant ice cream!\n",
+				"I bet it tastes yummy!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve been dawdling here all this\n",
+				"time!\r"
+			]
+		}
+    ]
 }

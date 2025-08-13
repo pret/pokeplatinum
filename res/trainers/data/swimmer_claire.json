@@ -17,10 +17,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I bought a new bikini!\nIt’s this year’s newest model!\r",
-        "TRMSG_DEFEAT": "Psssssh!\n",
-        "TRMSG_POST_BATTLE": "I bought the wrong size of bikini.\nIt’s a little too snug...\n",
-        "TRMSG_REMATCH": "Did I show you already?\nMy bikini, new for this year!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I bought a new bikini!\n",
+				"It’s this year’s newest model!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Psssssh!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I bought the wrong size of bikini.\n",
+				"It’s a little too snug...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Did I show you already?\n",
+				"My bikini, new for this year!\r"
+			]
+		}
+    ]
 }

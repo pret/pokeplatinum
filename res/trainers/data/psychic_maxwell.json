@@ -27,10 +27,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "For some reason I was drawn here,\nand it is here that I met you...\rI want to know what all this means!\r",
-        "TRMSG_DEFEAT": "I see...\rSo that’s what it means...\n",
-        "TRMSG_POST_BATTLE": "I feel... I feel some sort of a mystic\npresence emanating from here...\n",
-        "TRMSG_REMATCH": "Why have you come back to this spot?\nI want to know what all this means!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"For some reason I was drawn here,\n",
+				"and it is here that I met you...\r",
+				"I want to know what all this means!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I see...\r",
+				"So that’s what it means...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I feel... I feel some sort of a mystic\n",
+				"presence emanating from here...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Why have you come back to this spot?\n",
+				"I want to know what all this means!\r"
+			]
+		}
+    ]
 }

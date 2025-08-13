@@ -49,9 +49,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "What’s cool, you might ask? No?\nI’ll tell you anyway: bug Pokémon!\r",
-        "TRMSG_DEFEAT": "Don’t ignore bug Pokémon!\nThat really bugs me!\n",
-        "TRMSG_POST_BATTLE": "It would seem that coolness alone\ndoesn’t add up to any wins...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What’s cool, you might ask? No?\n",
+				"I’ll tell you anyway: bug Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Don’t ignore bug Pokémon!\n",
+				"That really bugs me!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It would seem that coolness alone\n",
+				"doesn’t add up to any wins...\n"
+			]
+		}
+    ]
 }

@@ -38,8 +38,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "What’s missing from my game...\nHave you discovered yours yet?\r",
-        "TRMSG_DEFEAT": "I see it now...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"What’s missing from my game...\n",
+				"Have you discovered yours yet?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I see it now...\n"
+		}
+    ]
 }

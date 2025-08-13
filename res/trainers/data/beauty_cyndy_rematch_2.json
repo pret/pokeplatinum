@@ -35,8 +35,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Give this grown-up another chance to\ndemonstrate her technique.\r",
-        "TRMSG_DEFEAT": "That’s how you attack?\nSo harshly?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Give this grown-up another chance to\n",
+				"demonstrate her technique.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"That’s how you attack?\n",
+				"So harshly?\n"
+			]
+		}
+    ]
 }

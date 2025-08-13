@@ -53,7 +53,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Sheesh... I should have done the\nfighting myself.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Sheesh... I should have done the\n",
+				"fighting myself.\n"
+			]
+		}
+    ]
 }

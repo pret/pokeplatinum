@@ -28,7 +28,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Ohh... How could I lose at dear\nPapa’s restaurant?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Ohh... How could I lose at dear\n",
+				"Papa’s restaurant?\n"
+			]
+		}
+    ]
 }

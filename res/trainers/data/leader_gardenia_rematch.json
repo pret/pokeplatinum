@@ -83,8 +83,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER_HALF_HP": "Are you saying something?\nYou think you have me cornered?\n",
-        "TRMSG_DEFEAT": "Amazing!\nYou’re very good, aren’t you?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"Are you saying something?\n",
+				"You think you have me cornered?\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Amazing!\n",
+				"You’re very good, aren’t you?\n"
+			]
+		}
+    ]
 }

@@ -24,7 +24,10 @@
             "ball_seal": 27
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Oh, dear me!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Oh, dear me!\n"
+		}
+    ]
 }

@@ -50,10 +50,31 @@
             "ball_seal": 15
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I may not look it now, but I’m a\nstar. I’m always with my Pokémon.\r",
-        "TRMSG_DEFEAT": "I lost, but at least I had fun.\n",
-        "TRMSG_POST_BATTLE": "If it were an underwater Pokémon\nshow, I would have shined.\n",
-        "TRMSG_REMATCH": "Oh, hi! Are you back to see our\nPokémon show again?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I may not look it now, but I’m a\n",
+				"star. I’m always with my Pokémon.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I lost, but at least I had fun.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If it were an underwater Pokémon\n",
+				"show, I would have shined.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, hi! Are you back to see our\n",
+				"Pokémon show again?\r"
+			]
+		}
+    ]
 }

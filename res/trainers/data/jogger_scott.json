@@ -17,11 +17,39 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Hufff-huff, huff-huff.\nWant-huff a battle-huff?\r",
-        "TRMSG_DEFEAT": "Huff-huff, we-huff lose-huff.\n",
-        "TRMSG_POST_BATTLE": "Bye-huff now-huff.\nHuff-huff, huff-huff.\n",
-        "TRMSG_NOT_MORNING_UNUSED": "Running-huff is-huff good-huff.\nOver-huff doing-huff it isn’t-huff!\fHuff-huff, huff-huff.\n",
-        "TRMSG_REMATCH": "Huff-huff, huff-huff.\nWe-huff meet-huff again-huff?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hufff-huff, huff-huff.\n",
+				"Want-huff a battle-huff?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Huff-huff, we-huff lose-huff.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Bye-huff now-huff.\n",
+				"Huff-huff, huff-huff.\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_MORNING_UNUSED",
+			"en_US": [
+				"Running-huff is-huff good-huff.\n",
+				"Over-huff doing-huff it isn’t-huff!\f",
+				"Huff-huff, huff-huff.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Huff-huff, huff-huff.\n",
+				"We-huff meet-huff again-huff?\r"
+			]
+		}
+    ]
 }

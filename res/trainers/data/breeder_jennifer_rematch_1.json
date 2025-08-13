@@ -44,8 +44,22 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "I don’t want to ever battle with\npeople who don’t treat Pokémon nice!\rBut I know you treat yours kindly.\nI’ll battle you anytime!\r",
-        "TRMSG_DEFEAT": "Giggle...\nThey’re raised with a lot of care!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I don’t want to ever battle with\n",
+				"people who don’t treat Pokémon nice!\r",
+				"But I know you treat yours kindly.\n",
+				"I’ll battle you anytime!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Giggle...\n",
+				"They’re raised with a lot of care!\n"
+			]
+		}
+    ]
 }

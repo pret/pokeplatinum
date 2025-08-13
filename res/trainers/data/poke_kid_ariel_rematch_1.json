@@ -35,7 +35,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Pi-Pikachu!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Pi-Pikachu!\n"
+		}
+    ]
 }

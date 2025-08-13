@@ -26,14 +26,62 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_DOUBLE_BATTLE_1": "Mike: I can’t embarrass myself again.\nNot in front of my girlfriend!\r",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Mike: Awww, jeez.\nMan, that’s a downer...\n",
-        "TRMSG_POST_DOUBLE_BATTLE_1": "Mike: Coming here again brings back\nall kinds of memories of me and Nat.\n",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "Mike: You can’t battle with us.\nNot with one Pokémon, anyway.\n",
-        "TRMSG_PRE_DOUBLE_BATTLE_2": "Nat: I don’t want to look bad again.\nNot when my boyfriend is watching!\r",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Nat: This makes me feel hollow\ninside... Oh, so hollow...\n",
-        "TRMSG_POST_DOUBLE_BATTLE_2": "Nat: The Pokémon that brought me and\nMike together is buried here...\n",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "Nat: You do have at least two\nPokémon, don’t you?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Mike: I can’t embarrass myself again.\n",
+				"Not in front of my girlfriend!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": [
+				"Mike: Awww, jeez.\n",
+				"Man, that’s a downer...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Mike: Coming here again brings back\n",
+				"all kinds of memories of me and Nat.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"Mike: You can’t battle with us.\n",
+				"Not with one Pokémon, anyway.\n"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Nat: I don’t want to look bad again.\n",
+				"Not when my boyfriend is watching!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": [
+				"Nat: This makes me feel hollow\n",
+				"inside... Oh, so hollow...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Nat: The Pokémon that brought me and\n",
+				"Mike together is buried here...\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"Nat: You do have at least two\n",
+				"Pokémon, don’t you?\n"
+			]
+		}
+    ]
 }

@@ -26,10 +26,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "We ninjas appear where you least\nexpect us!\r",
-        "TRMSG_DEFEAT": "I didn’t expect to lose...\n",
-        "TRMSG_POST_BATTLE": "While hiding, I think about what Pokémon\nmust be thinking inside their Poké Balls.\n",
-        "TRMSG_REMATCH": "Wah! Another chance encounter with\na foe who defeated me before!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We ninjas appear where you least\n",
+				"expect us!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I didn’t expect to lose...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"While hiding, I think about what Pokémon\n",
+				"must be thinking inside their Poké Balls.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Wah! Another chance encounter with\n",
+				"a foe who defeated me before!\r"
+			]
+		}
+    ]
 }

@@ -51,10 +51,40 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Very well. I’ve decided.\rI’ll battle one last time, with you,\nthen I’m retiring as a Trainer.\r",
-        "TRMSG_DEFEAT": "I’ve lost, but...\nWhat is this rush I feel?!\n",
-        "TRMSG_POST_BATTLE": "Yes! This is fun!\nPokémon are fun!\fRetire? Perish that thought!\rI’ll become a lot tougher.\nNext time, victory is mine!\n",
-        "TRMSG_REMATCH": "Your young power against my veteran\ntechnique...\rLet us battle again to see who wins\nthis time!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Very well. I’ve decided.\r",
+				"I’ll battle one last time, with you,\n",
+				"then I’m retiring as a Trainer.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’ve lost, but...\n",
+				"What is this rush I feel?!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Yes! This is fun!\n",
+				"Pokémon are fun!\f",
+				"Retire? Perish that thought!\r",
+				"I’ll become a lot tougher.\n",
+				"Next time, victory is mine!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Your young power against my veteran\n",
+				"technique...\r",
+				"Let us battle again to see who wins\n",
+				"this time!\r"
+			]
+		}
+    ]
 }

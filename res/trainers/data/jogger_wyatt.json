@@ -17,11 +17,42 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I’m warmed up and limber.\nI’m OK to battle!\r",
-        "TRMSG_DEFEAT": "...Oh, serious woe.\nI wasn’t prepared emotionally for this.\n",
-        "TRMSG_POST_BATTLE": "I wish I could just run from all this...\nJust joking.\n",
-        "TRMSG_NOT_MORNING_UNUSED": "I’m going to keep running.\nJust as long as there’s a road...\n",
-        "TRMSG_REMATCH": "I’ve been training so I can have\na rematch with you.\rI’m OK to battle!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’m warmed up and limber.\n",
+				"I’m OK to battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"...Oh, serious woe.\n",
+				"I wasn’t prepared emotionally for this.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I wish I could just run from all this...\n",
+				"Just joking.\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_MORNING_UNUSED",
+			"en_US": [
+				"I’m going to keep running.\n",
+				"Just as long as there’s a road...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve been training so I can have\n",
+				"a rematch with you.\r",
+				"I’m OK to battle!\r"
+			]
+		}
+    ]
 }

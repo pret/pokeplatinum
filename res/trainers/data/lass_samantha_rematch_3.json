@@ -35,8 +35,21 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Oh, thank you for the last time.\rMay I please trouble you for\nanother battle?\r",
-        "TRMSG_DEFEAT": "Oh...\nYou’re so strong...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, thank you for the last time.\r",
+				"May I please trouble you for\n",
+				"another battle?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh...\n",
+				"You’re so strong...\n"
+			]
+		}
+    ]
 }

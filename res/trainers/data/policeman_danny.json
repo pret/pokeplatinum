@@ -26,11 +26,38 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Your whole atmosphere is shady.\nCooperate in this investigation!\r",
-        "TRMSG_DEFEAT": "Defeated by sneakiness...\n",
-        "TRMSG_POST_BATTLE": "I mistook your toughness as shadiness!\nIt’s an honest mistake!\n",
-        "TRMSG_NOT_NIGHT_UNUSED": "We’re constantly on patrol.\nThat way, it’s safe even at night.\n",
-        "TRMSG_REMATCH": "Whoa! Hold it right there!\nI’ve spotted a sneaky Trainer!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Your whole atmosphere is shady.\n",
+				"Cooperate in this investigation!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Defeated by sneakiness...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I mistook your toughness as shadiness!\n",
+				"It’s an honest mistake!\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_NIGHT_UNUSED",
+			"en_US": [
+				"We’re constantly on patrol.\n",
+				"That way, it’s safe even at night.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Whoa! Hold it right there!\n",
+				"I’ve spotted a sneaky Trainer!\r"
+			]
+		}
+    ]
 }

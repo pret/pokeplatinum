@@ -22,9 +22,26 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "We spend all our time battling in the\nblizzards of Snowpoint City.\rWe’ll show you how it’s toughened\nus up!\r",
-        "TRMSG_DEFEAT": "What’s with your toughness?!\n",
-        "TRMSG_POST_BATTLE": "You’ve battled all over, you say?\nThat makes you tough, perhaps.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We spend all our time battling in the\n",
+				"blizzards of Snowpoint City.\r",
+				"We’ll show you how it’s toughened\n",
+				"us up!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "What’s with your toughness?!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You’ve battled all over, you say?\n",
+				"That makes you tough, perhaps.\n"
+			]
+		}
+    ]
 }

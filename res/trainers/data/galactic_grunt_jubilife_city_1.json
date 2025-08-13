@@ -17,7 +17,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "How is this madness possible?\nThe two of us, losing to children?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"How is this madness possible?\n",
+				"The two of us, losing to children?\n"
+			]
+		}
+    ]
 }

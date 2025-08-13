@@ -27,10 +27,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Right after this, you will send out your\nPokémon to do battle!\r",
-        "TRMSG_DEFEAT": "After this, I will reluctantly hand over\nthe prize money to you...\n",
-        "TRMSG_POST_BATTLE": "What will you do after this?\rWhy don’t you decide for yourself?\nIt would be much more fun that way!\n",
-        "TRMSG_REMATCH": "Right after this, you will hurl a Poké\nBall in an astonishingly cool way!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Right after this, you will send out your\n",
+				"Pokémon to do battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"After this, I will reluctantly hand over\n",
+				"the prize money to you...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"What will you do after this?\r",
+				"Why don’t you decide for yourself?\n",
+				"It would be much more fun that way!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Right after this, you will hurl a Poké\n",
+				"Ball in an astonishingly cool way!\r"
+			]
+		}
+    ]
 }

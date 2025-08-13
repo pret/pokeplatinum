@@ -26,7 +26,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "The toughest of all the grunts!\nThat was me...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"The toughest of all the grunts!\n",
+				"That was me...\n"
+			]
+		}
+    ]
 }

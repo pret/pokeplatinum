@@ -18,8 +18,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Sniff... Oh?\nYour Pokémon smells nice!\r",
-        "TRMSG_DEFEAT": "Did you understand what I meant?\nDidn’t my Pokémon smell nice?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Sniff... Oh?\n",
+				"Your Pokémon smells nice!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Did you understand what I meant?\n",
+				"Didn’t my Pokémon smell nice?\n"
+			]
+		}
+    ]
 }

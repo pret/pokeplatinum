@@ -83,8 +83,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER_HALF_HP": "...My time with you is drawing to a\nclose...\n",
-        "TRMSG_DEFEAT": "...Awww.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"...My time with you is drawing to a\n",
+				"close...\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "...Awww.\n"
+		}
+    ]
 }

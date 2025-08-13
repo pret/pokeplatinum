@@ -94,9 +94,27 @@
             "ball_seal": 24
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER": "I fully believe in this last one.\nI have no reason to freak out.\n",
-        "TRMSG_LAST_BATTLER_HALF_HP": "We’re not finished yet! We’ll get out\nof this spot because we’re so tight!\n",
-        "TRMSG_DEFEAT": "What just went down?!\nMy team still needs raising?!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"I fully believe in this last one.\n",
+				"I have no reason to freak out.\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"We’re not finished yet! We’ll get out\n",
+				"of this spot because we’re so tight!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What just went down?!\n",
+				"My team still needs raising?!\n"
+			]
+		}
+    ]
 }

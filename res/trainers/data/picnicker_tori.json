@@ -19,9 +19,29 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Where am I? Am I lost? Who are you?\nAre you a Pokémon Trainer?\r",
-        "TRMSG_DEFEAT": "OK, so we’re both Trainers.\nThat’s a start, right?\n",
-        "TRMSG_POST_BATTLE": "I just wanted to have a picnic under\nthe Cycling Road.\rI didn’t think I would get lost\nin a place like this..."
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Where am I? Am I lost? Who are you?\n",
+				"Are you a Pokémon Trainer?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"OK, so we’re both Trainers.\n",
+				"That’s a start, right?\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I just wanted to have a picnic under\n",
+				"the Cycling Road.\r",
+				"I didn’t think I would get lost\n",
+				"in a place like this..."
+			]
+		}
+    ]
 }

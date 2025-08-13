@@ -27,10 +27,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "OK, OK!\nLet’s be quick about this!\r",
-        "TRMSG_DEFEAT": "Oh, yeah? Let’s do this again!\n...Oops. I’m out of Pokémon!\n",
-        "TRMSG_POST_BATTLE": "Yup! Good going!\nI like the way you battle!\n",
-        "TRMSG_REMATCH": "What took you so long?\rWe’ve waited here a long time for\na rematch with you!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"OK, OK!\n",
+				"Let’s be quick about this!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, yeah? Let’s do this again!\n",
+				"...Oops. I’m out of Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Yup! Good going!\n",
+				"I like the way you battle!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"What took you so long?\r",
+				"We’ve waited here a long time for\n",
+				"a rematch with you!\r"
+			]
+		}
+    ]
 }

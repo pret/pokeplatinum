@@ -52,8 +52,22 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "I am indeed a Veteran, but I don’t\nuse that as an excuse to slack off.\rI take pride in challenging those\nwho have bested me before!\r",
-        "TRMSG_DEFEAT": "I see...\nSimply outstanding."
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I am indeed a Veteran, but I don’t\n",
+				"use that as an excuse to slack off.\r",
+				"I take pride in challenging those\n",
+				"who have bested me before!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I see...\n",
+				"Simply outstanding."
+			]
+		}
+    ]
 }

@@ -26,8 +26,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Is your bicycle geared to 3-speed now?\nOr do you have it set to 4-speed?\r",
-        "TRMSG_DEFEAT": "Crash! Tinkle...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Is your bicycle geared to 3-speed now?\n",
+				"Or do you have it set to 4-speed?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Crash! Tinkle...\n"
+		}
+    ]
 }

@@ -37,9 +37,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Aiyaah! We’re coming out swinging\nwith super-heavy judo chops!\r",
-        "TRMSG_DEFEAT": "That was...\nA complete trashing!\n",
-        "TRMSG_POST_BATTLE": "I must rededicate myself to training.\nThe road extends into infinity...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Aiyaah! We’re coming out swinging\n",
+				"with super-heavy judo chops!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"That was...\n",
+				"A complete trashing!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I must rededicate myself to training.\n",
+				"The road extends into infinity...\n"
+			]
+		}
+    ]
 }

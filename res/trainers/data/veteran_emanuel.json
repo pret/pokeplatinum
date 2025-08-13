@@ -36,7 +36,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Tough, aren’t you...?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Tough, aren’t you...?\n"
+		}
+    ]
 }

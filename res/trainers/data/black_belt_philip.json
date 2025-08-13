@@ -18,10 +18,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I can withstand this cold. That means\nI can take any kind of attack!\r",
-        "TRMSG_DEFEAT": "Huh? It’s over, you say?\n",
-        "TRMSG_POST_BATTLE": "Oh, gosh, this is bad! I think I’m\nlosing feeling all over my body!\n",
-        "TRMSG_REMATCH": "Oh? I’ve seen your face before.\nWhat say we battle?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I can withstand this cold. That means\n",
+				"I can take any kind of attack!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Huh? It’s over, you say?\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Oh, gosh, this is bad! I think I’m\n",
+				"losing feeling all over my body!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh? I’ve seen your face before.\n",
+				"What say we battle?\r"
+			]
+		}
+    ]
 }

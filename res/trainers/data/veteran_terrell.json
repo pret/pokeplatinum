@@ -52,9 +52,25 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "What it means to battle...\nIts joys, its sorrows...\fI’ve experienced it all!\r",
-        "TRMSG_DEFEAT": "My sorrow deepens...\n",
-        "TRMSG_POST_BATTLE": "You may be a child, but you’ve taught\nme a whole lot. I thank you humbly.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What it means to battle...\n",
+				"Its joys, its sorrows...\f",
+				"I’ve experienced it all!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "My sorrow deepens...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You may be a child, but you’ve taught\n",
+				"me a whole lot. I thank you humbly.\n"
+			]
+		}
+    ]
 }

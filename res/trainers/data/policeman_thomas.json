@@ -26,11 +26,41 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Who’s there?!\nWhat do you think you’re doing?!\r",
-        "TRMSG_DEFEAT": "I happen to be rather jumpy, so\neveryone looks suspicious to me.\n",
-        "TRMSG_POST_BATTLE": "I’m easy to scare, and yet here I am\non patrol. Funny how things go.\n",
-        "TRMSG_NOT_NIGHT_UNUSED": "At night, I get tense and nervous.\nI don’t know why.\n",
-        "TRMSG_REMATCH": "I’ll repeat myself! Who’s there?!\nWhat do you think you’re doing?!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Who’s there?!\n",
+				"What do you think you’re doing?!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I happen to be rather jumpy, so\n",
+				"everyone looks suspicious to me.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m easy to scare, and yet here I am\n",
+				"on patrol. Funny how things go.\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_NIGHT_UNUSED",
+			"en_US": [
+				"At night, I get tense and nervous.\n",
+				"I don’t know why.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ll repeat myself! Who’s there?!\n",
+				"What do you think you’re doing?!\r"
+			]
+		}
+    ]
 }

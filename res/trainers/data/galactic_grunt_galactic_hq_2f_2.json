@@ -26,9 +26,26 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Having fun scampering around our HQ,\nyou sneaky intruder?\rYour trail blazing will go out in\na blaze of glory right now!\r",
-        "TRMSG_DEFEAT": "Your trailblazing streak lives on!\n",
-        "TRMSG_POST_BATTLE": "So what, you have momentum...\nIt’s too late. The experiment’s done!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Having fun scampering around our HQ,\n",
+				"you sneaky intruder?\r",
+				"Your trail blazing will go out in\n",
+				"a blaze of glory right now!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Your trailblazing streak lives on!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"So what, you have momentum...\n",
+				"It’s too late. The experiment’s done!\n"
+			]
+		}
+    ]
 }

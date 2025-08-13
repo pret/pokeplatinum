@@ -17,9 +17,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Oi! This is no fun and games!\nThis is proper work, I tell you!\r",
-        "TRMSG_DEFEAT": "What...?!\nSome brat messed up my job...\n",
-        "TRMSG_POST_BATTLE": "Team Galactic needs electricity for\ndoing something big!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Oi! This is no fun and games!\n",
+				"This is proper work, I tell you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What...?!\n",
+				"Some brat messed up my job...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Team Galactic needs electricity for\n",
+				"doing something big!\n"
+			]
+		}
+    ]
 }

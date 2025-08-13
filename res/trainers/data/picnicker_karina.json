@@ -22,10 +22,34 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Oh, I don’t know.\nShould I play a little?\r",
-        "TRMSG_DEFEAT": "Oh, boo!\nHow insulting!\n",
-        "TRMSG_POST_BATTLE": "Listen very closely...\nCan you hear the cries of Pokémon?\n",
-        "TRMSG_REMATCH": "Oh, I don’t know.\nShould I play a little again?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Oh, I don’t know.\n",
+				"Should I play a little?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, boo!\n",
+				"How insulting!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Listen very closely...\n",
+				"Can you hear the cries of Pokémon?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, I don’t know.\n",
+				"Should I play a little again?\r"
+			]
+		}
+    ]
 }

@@ -52,10 +52,34 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "You seem to have a lot of confidence.\nLet’s see if it’s justified!\r",
-        "TRMSG_DEFEAT": "Haha!\nA total loss for me!\n",
-        "TRMSG_POST_BATTLE": "You seem to have an abundance of\ntalent. It’s pretty amazing.\n",
-        "TRMSG_REMATCH": "When I lost to you last time, I was\njust unlucky.\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You seem to have a lot of confidence.\n",
+				"Let’s see if it’s justified!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Haha!\n",
+				"A total loss for me!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You seem to have an abundance of\n",
+				"talent. It’s pretty amazing.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"When I lost to you last time, I was\n",
+				"just unlucky.\r"
+			]
+		}
+    ]
 }

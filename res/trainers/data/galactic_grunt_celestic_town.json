@@ -26,7 +26,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "I just got worked over!\nAnd by a kid no less...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I just got worked over!\n",
+				"And by a kid no less...\n"
+			]
+		}
+    ]
 }

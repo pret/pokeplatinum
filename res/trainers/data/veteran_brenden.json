@@ -52,9 +52,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I’ll wheel out some wicked Pokémon\nand even wickeder moves!\r",
-        "TRMSG_DEFEAT": "All I can manage now is to wheeze\nout a few meek sighs...\n",
-        "TRMSG_POST_BATTLE": "I don’t see what my age has to do\nwith playing with Pokémon, frankly.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ll wheel out some wicked Pokémon\n",
+				"and even wickeder moves!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"All I can manage now is to wheeze\n",
+				"out a few meek sighs...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I don’t see what my age has to do\n",
+				"with playing with Pokémon, frankly.\n"
+			]
+		}
+    ]
 }

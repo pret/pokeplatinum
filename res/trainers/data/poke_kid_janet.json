@@ -26,9 +26,25 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Bika bikabika!\nPigachu!\r",
-        "TRMSG_DEFEAT": "Pikachu...\n",
-        "TRMSG_POST_BATTLE": "Pika...\rI’ll need a lot more practice to\nbecome a real PIKACHU...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Bika bikabika!\n",
+				"Pigachu!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Pikachu...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Pika...\r",
+				"I’ll need a lot more practice to\n",
+				"become a real PIKACHU...\n"
+			]
+		}
+    ]
 }

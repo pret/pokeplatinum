@@ -35,10 +35,34 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "To swim every sea there is...\nThat’s my dream!\r",
-        "TRMSG_DEFEAT": "Boo!\nI’m not done with my dream!\n",
-        "TRMSG_POST_BATTLE": "What is the sea like in places like the\nKanto and Hoenn regions?\n",
-        "TRMSG_REMATCH": "Challenging every Pokémon League...\nThat’s another of my dreams!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"To swim every sea there is...\n",
+				"That’s my dream!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Boo!\n",
+				"I’m not done with my dream!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"What is the sea like in places like the\n",
+				"Kanto and Hoenn regions?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Challenging every Pokémon League...\n",
+				"That’s another of my dreams!\r"
+			]
+		}
+    ]
 }

@@ -17,7 +17,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Hmm...\nI should have expected this."
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Hmm...\n",
+				"I should have expected this."
+			]
+		}
+    ]
 }

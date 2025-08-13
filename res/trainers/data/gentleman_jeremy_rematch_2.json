@@ -19,8 +19,20 @@
             "ball_seal": 22
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "If it pleases, would you care for a\nrematch with me?\r",
-        "TRMSG_DEFEAT": "Your handling of Pokémon is\nimpeccable.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"If it pleases, would you care for a\n",
+				"rematch with me?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your handling of Pokémon is\n",
+				"impeccable.\n"
+			]
+		}
+    ]
 }

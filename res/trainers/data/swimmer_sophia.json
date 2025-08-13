@@ -26,10 +26,29 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Are your Pokémon growing properly?\r",
-        "TRMSG_DEFEAT": "Maybe too grown up!\n",
-        "TRMSG_POST_BATTLE": "I’ve grown with my Pokémon, too.\nMy swimsuit’s getting a little tight...\n",
-        "TRMSG_REMATCH": "Did your Pokémon grow any more?\rMy Pokémon?\nMine are doing awesome!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": "Are your Pokémon growing properly?\r"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Maybe too grown up!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’ve grown with my Pokémon, too.\n",
+				"My swimsuit’s getting a little tight...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Did your Pokémon grow any more?\r",
+				"My Pokémon?\n",
+				"Mine are doing awesome!\r"
+			]
+		}
+    ]
 }

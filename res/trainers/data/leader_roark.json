@@ -51,9 +51,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER": "Think you can take down the \nnext Pokémon like you did earlier?\n",
-        "TRMSG_LAST_BATTLER_HALF_HP": "No way! Not yet!\nNot giving up!\n",
-        "TRMSG_DEFEAT": "W-what? That can’t be!\nMy buffed-up Pokémon!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"Think you can take down the \n",
+				"next Pokémon like you did earlier?\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"No way! Not yet!\n",
+				"Not giving up!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"W-what? That can’t be!\n",
+				"My buffed-up Pokémon!\n"
+			]
+		}
+    ]
 }

@@ -26,7 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "I was with my daddy, too...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I was with my daddy, too...\n"
+		}
+    ]
 }

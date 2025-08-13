@@ -19,10 +19,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Go for it, my Pokémon!\nI’ll do my best, too!\r",
-        "TRMSG_DEFEAT": "Oh...\nWe lost...\n",
-        "TRMSG_POST_BATTLE": "Dig for Fossils in the Underground.\rThe mining museum might be able to\nbring back the ancient Pokémon!\n",
-        "TRMSG_REMATCH": "Go for it, my Pokémon!\nI’ll do more than my best this time!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Go for it, my Pokémon!\n",
+				"I’ll do my best, too!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh...\n",
+				"We lost...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Dig for Fossils in the Underground.\r",
+				"The mining museum might be able to\n",
+				"bring back the ancient Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Go for it, my Pokémon!\n",
+				"I’ll do more than my best this time!\r"
+			]
+		}
+    ]
 }

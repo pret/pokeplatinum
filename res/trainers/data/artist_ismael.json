@@ -17,7 +17,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Does this mean I’m only talented as\nan Artist?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Does this mean I’m only talented as\n",
+				"an Artist?\n"
+			]
+		}
+    ]
 }

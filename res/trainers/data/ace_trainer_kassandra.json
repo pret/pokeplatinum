@@ -52,9 +52,26 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "You’ve come all this way for Pokémon?\nYou must be dedicated.\r",
-        "TRMSG_DEFEAT": "Your dedication won out.\n",
-        "TRMSG_POST_BATTLE": "The Pokémon here must battle each\nother all the time.\rThat must be why they are so strong\nin this area.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You’ve come all this way for Pokémon?\n",
+				"You must be dedicated.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Your dedication won out.\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The Pokémon here must battle each\n",
+				"other all the time.\r",
+				"That must be why they are so strong\n",
+				"in this area.\n"
+			]
+		}
+    ]
 }

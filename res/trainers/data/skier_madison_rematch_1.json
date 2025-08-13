@@ -17,8 +17,18 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "You really must like snow.\rAfter all, if you didn’t, I doubt that\nyou’d come here so often!\r",
-        "TRMSG_DEFEAT": "The conditions weren’t very good.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You really must like snow.\r",
+				"After all, if you didn’t, I doubt that\n",
+				"you’d come here so often!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "The conditions weren’t very good.\n"
+		}
+    ]
 }

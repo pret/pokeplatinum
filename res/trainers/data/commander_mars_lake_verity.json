@@ -52,7 +52,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "...!\nAgain and again...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"...!\n",
+				"Again and again...\n"
+			]
+		}
+    ]
 }

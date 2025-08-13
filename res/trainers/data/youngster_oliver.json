@@ -35,9 +35,29 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Waah! Ghost! Get away! Eek!\nHelp me, team!\r",
-        "TRMSG_DEFEAT": "Hey...\nYou’re no ghost...\n",
-        "TRMSG_POST_BATTLE": "I had to come to the Lost Tower on\na dare...\rI have to go to the top and use Defog\nthere...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Waah! Ghost! Get away! Eek!\n",
+				"Help me, team!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Hey...\n",
+				"You’re no ghost...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I had to come to the Lost Tower on\n",
+				"a dare...\r",
+				"I have to go to the top and use Defog\n",
+				"there...\n"
+			]
+		}
+    ]
 }

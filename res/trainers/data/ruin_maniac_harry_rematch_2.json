@@ -37,8 +37,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Whilst exploring the ruins, I spotted\nyou yet again! I will investigate!\r",
-        "TRMSG_DEFEAT": "My investigation revealed the Trainer\nto be tough!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Whilst exploring the ruins, I spotted\n",
+				"you yet again! I will investigate!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"My investigation revealed the Trainer\n",
+				"to be tough!\n"
+			]
+		}
+    ]
 }

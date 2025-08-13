@@ -29,8 +29,21 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Oh, how do you do? May I investigate\nhow much tougher you’ve become since\four last encounter?\r",
-        "TRMSG_DEFEAT": "Our research arrived at this one\nconclusion: you’re tough!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, how do you do? May I investigate\n",
+				"how much tougher you’ve become since\f",
+				"our last encounter?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Our research arrived at this one\n",
+				"conclusion: you’re tough!\n"
+			]
+		}
+    ]
 }

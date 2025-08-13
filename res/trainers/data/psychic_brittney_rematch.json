@@ -37,8 +37,22 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "See?\nYou’ve come back again.\rThere must be something that draws\nyou here...\r",
-        "TRMSG_DEFEAT": "The power that slumbers within you...\nIt is rather marvelous...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"See?\n",
+				"You’ve come back again.\r",
+				"There must be something that draws\n",
+				"you here...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"The power that slumbers within you...\n",
+				"It is rather marvelous...\n"
+			]
+		}
+    ]
 }

@@ -35,8 +35,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "I’ve decided! If I finally beat you,\nI’m challenging the Pokémon League!\r",
-        "TRMSG_DEFEAT": "Blblblblugh...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve decided! If I finally beat you,\n",
+				"I’m challenging the Pokémon League!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Blblblblugh...\n"
+		}
+    ]
 }

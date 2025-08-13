@@ -52,9 +52,29 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "What, were you just dawdling around\nhoping I’d notice you for a battle?\rYou know you’re going to get whupped\nhere, don’t you?\r",
-        "TRMSG_DEFEAT": "I kinda deserved that, didn’t I?\nI gotta stop mouthing off like that...\n",
-        "TRMSG_POST_BATTLE": "I’ll remember you and your shifty\nPokémon, too. I’m watching you...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What, were you just dawdling around\n",
+				"hoping I’d notice you for a battle?\r",
+				"You know you’re going to get whupped\n",
+				"here, don’t you?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I kinda deserved that, didn’t I?\n",
+				"I gotta stop mouthing off like that...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’ll remember you and your shifty\n",
+				"Pokémon, too. I’m watching you...\n"
+			]
+		}
+    ]
 }

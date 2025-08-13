@@ -27,8 +27,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "I was certain that you’d return.\nI sensed your presence, you see.\r",
-        "TRMSG_DEFEAT": "Defeating you will be no easy matter.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I was certain that you’d return.\n",
+				"I sensed your presence, you see.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Defeating you will be no easy matter.\n"
+		}
+    ]
 }

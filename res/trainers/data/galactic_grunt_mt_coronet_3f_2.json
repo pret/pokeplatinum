@@ -17,9 +17,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "We Grunts have two jobs.\rOne, ensure the success of our\noperation at the summit.\rTwo, utterly destroy any intruders\nto stop their meddling!\r",
-        "TRMSG_DEFEAT": "I don’t accept this!\nI will not accept this!\n",
-        "TRMSG_POST_BATTLE": "Join Team Galactic and then abide\nby our rules.\rThat would solve all our problems!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"We Grunts have two jobs.\r",
+				"One, ensure the success of our\n",
+				"operation at the summit.\r",
+				"Two, utterly destroy any intruders\n",
+				"to stop their meddling!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I don’t accept this!\n",
+				"I will not accept this!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Join Team Galactic and then abide\n",
+				"by our rules.\r",
+				"That would solve all our problems!\n"
+			]
+		}
+    ]
 }

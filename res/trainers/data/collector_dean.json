@@ -26,10 +26,41 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I’m proud of my Pokémon!\nHere, I’ll show you why!\r",
-        "TRMSG_DEFEAT": "Youch! You sure showed me how tough\nyou were.\n",
-        "TRMSG_POST_BATTLE": "Oh, what have we here?\nThat’s a Pokédex!\rIt records Pokémon data upon\nsight? I’ve never seen one before!\rI heard you can move the sun or\nmoon icon to check the Pokémon\fhabitat map by time of day!\n",
-        "TRMSG_REMATCH": "I take down details in my notebook\nabout Pokémon I’ve battled.\rI’ll write more data down about your\nPokémon!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’m proud of my Pokémon!\n",
+				"Here, I’ll show you why!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Youch! You sure showed me how tough\n",
+				"you were.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Oh, what have we here?\n",
+				"That’s a Pokédex!\r",
+				"It records Pokémon data upon\n",
+				"sight? I’ve never seen one before!\r",
+				"I heard you can move the sun or\n",
+				"moon icon to check the Pokémon\f",
+				"habitat map by time of day!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I take down details in my notebook\n",
+				"about Pokémon I’ve battled.\r",
+				"I’ll write more data down about your\n",
+				"Pokémon!\r"
+			]
+		}
+    ]
 }

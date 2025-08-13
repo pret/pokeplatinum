@@ -27,10 +27,34 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "What kind of person are you, to be\ndrawn here by the scent of flowers?\r",
-        "TRMSG_DEFEAT": "It was a strong Trainer who was drawn\nhere by the scent of flowers!\n",
-        "TRMSG_POST_BATTLE": "By the way, have you collected new\napps from the Pokétch Company?\n",
-        "TRMSG_REMATCH": "You came back to me because you\ncouldn’t forget the smell of flowers!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What kind of person are you, to be\n",
+				"drawn here by the scent of flowers?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"It was a strong Trainer who was drawn\n",
+				"here by the scent of flowers!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"By the way, have you collected new\n",
+				"apps from the Pokétch Company?\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You came back to me because you\n",
+				"couldn’t forget the smell of flowers!\r"
+			]
+		}
+    ]
 }

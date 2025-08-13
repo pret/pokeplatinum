@@ -36,10 +36,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "You come along with your heart\npounding!\rYou think you can win like that?!\nHiyah!\r",
-        "TRMSG_DEFEAT": "Gurgle...\n",
-        "TRMSG_POST_BATTLE": "If I lose here, I wouldn’t stand a\nchance at the Battle Frontier.\rNot against those hard-core pros,\nI wouldn’t!\n",
-        "TRMSG_REMATCH": "Am I lost, you ask?\nI merely feigned it! Hiyah!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You come along with your heart\n",
+				"pounding!\r",
+				"You think you can win like that?!\n",
+				"Hiyah!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Gurgle...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If I lose here, I wouldn’t stand a\n",
+				"chance at the Battle Frontier.\r",
+				"Not against those hard-core pros,\n",
+				"I wouldn’t!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Am I lost, you ask?\n",
+				"I merely feigned it! Hiyah!\r"
+			]
+		}
+    ]
 }

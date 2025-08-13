@@ -52,9 +52,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I came here after winning my way\nthrough the Battle Tower!\r",
-        "TRMSG_DEFEAT": "But...\nI had a win streak going...\n",
-        "TRMSG_POST_BATTLE": "Train more at the Battle Tower...\nThat’s what I’ll do.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I came here after winning my way\n",
+				"through the Battle Tower!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"But...\n",
+				"I had a win streak going...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Train more at the Battle Tower...\n",
+				"That’s what I’ll do.\n"
+			]
+		}
+    ]
 }

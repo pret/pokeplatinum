@@ -38,9 +38,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Eek! That’s so bright!\rSurprise attack!\r",
-        "TRMSG_DEFEAT": "Your strength is dazzling!\nI have to shield my eyes!\n",
-        "TRMSG_POST_BATTLE": "I’m going over the reasons why I\nlost. That way, I’ll win next time.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Eek! That’s so bright!\r",
+				"Surprise attack!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your strength is dazzling!\n",
+				"I have to shield my eyes!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m going over the reasons why I\n",
+				"lost. That way, I’ll win next time.\n"
+			]
+		}
+    ]
 }

@@ -17,8 +17,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Why would you wander around here?\nYou must really like it here.\r",
-        "TRMSG_DEFEAT": "The winds of victory shifted...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Why would you wander around here?\n",
+				"You must really like it here.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "The winds of victory shifted...\n"
+		}
+    ]
 }

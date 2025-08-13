@@ -52,10 +52,39 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I’ve seen countless Trainers and\neven more Pokémon!\rSo, what kind of a Trainer are you?\r",
-        "TRMSG_DEFEAT": "I see...\nSimply outstanding.",
-        "TRMSG_POST_BATTLE": "I’ve seen countless Trainers and\neven more Pokémon.\rYou’re a strong Trainer.\nMoreover, your heart is strong.\n",
-        "TRMSG_REMATCH": "I am indeed a Veteran, but I don’t\nuse that as an excuse to slack off.\rI take pride in challenging those\nwho have bested me before!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ve seen countless Trainers and\n",
+				"even more Pokémon!\r",
+				"So, what kind of a Trainer are you?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I see...\n",
+				"Simply outstanding."
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’ve seen countless Trainers and\n",
+				"even more Pokémon.\r",
+				"You’re a strong Trainer.\n",
+				"Moreover, your heart is strong.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I am indeed a Veteran, but I don’t\n",
+				"use that as an excuse to slack off.\r",
+				"I take pride in challenging those\n",
+				"who have bested me before!\r"
+			]
+		}
+    ]
 }

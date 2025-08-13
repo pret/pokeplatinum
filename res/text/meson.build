@@ -38,8 +38,12 @@ species_text_bank_names = [
     'species_category_jp.json'
 ]
 
+trainer_text_bank_names = [
+    'npc_trainer_messages.json'
+]
+
 # This list will be what's used hereafter when referring to any-and-all generated banks.
-generated_text_banks = species_text_bank_names
+generated_text_banks = species_text_bank_names + trainer_text_bank_names
 
 # 2. All other files must be static. Pull these from `generated/text_banks.txt`. This allows us
 # to circumvent needing to build an NAIX, which reduces overall build depenedencies and speeds
@@ -96,6 +100,19 @@ species_text_banks = custom_target('species_text_banks',
 )
 
 text_bank_files += species_text_banks
+
+trainer_text_banks = custom_target('trainer_text_banks',
+    output: trainer_text_bank_names,
+    command: [
+        'mv',
+        '@OUTDIR@/../trainers/npc_trainer_messages.json',
+        '@OUTDIR@/npc_trainer_messages.json',
+    ],
+    env: trainer_env,
+    depends: [ datagen_trainer_out ],
+)
+
+text_bank_files += trainer_text_banks
 
 text_banks = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',

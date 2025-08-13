@@ -22,7 +22,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "You’re so strong!!!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’re so strong!!!\n"
+		}
+    ]
 }

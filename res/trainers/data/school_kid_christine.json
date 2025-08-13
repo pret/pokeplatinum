@@ -20,7 +20,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "I like to study a lot...\nI thought I could win...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I like to study a lot...\n",
+				"I thought I could win...\n"
+			]
+		}
+    ]
 }

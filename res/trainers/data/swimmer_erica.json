@@ -17,10 +17,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "The human body floats more easily in\nthe sea, so it’s easy to swim!\r",
-        "TRMSG_DEFEAT": "The sea is salty, but all I taste is\nbitterness...\n",
-        "TRMSG_POST_BATTLE": "I’ve got that sinking feeling...\n",
-        "TRMSG_REMATCH": "Pokémon can stay afloat even while\ncarrying someone. That’s so cool!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"The human body floats more easily in\n",
+				"the sea, so it’s easy to swim!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"The sea is salty, but all I taste is\n",
+				"bitterness...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": "I’ve got that sinking feeling...\n"
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Pokémon can stay afloat even while\n",
+				"carrying someone. That’s so cool!\r"
+			]
+		}
+    ]
 }

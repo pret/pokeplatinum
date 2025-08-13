@@ -34,9 +34,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_FIRST_DAMAGE": "Don’t get cocky!\nThis isn’t over yet!\n",
-        "TRMSG_LAST_BATTLER_HALF_HP": "My Pokémon’s getting low on HP...\nThings could be tight here.\n",
-        "TRMSG_DEFEAT": "What just happened?\nI lost?!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_FIRST_DAMAGE",
+			"en_US": [
+				"Don’t get cocky!\n",
+				"This isn’t over yet!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"My Pokémon’s getting low on HP...\n",
+				"Things could be tight here.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What just happened?\n",
+				"I lost?!\n"
+			]
+		}
+    ]
 }

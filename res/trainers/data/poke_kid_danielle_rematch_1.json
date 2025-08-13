@@ -17,8 +17,18 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Hi, hi!\nI’m a Pokémon!\r...You knew that, didn’t you?\r",
-        "TRMSG_DEFEAT": "I’m so angry...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hi, hi!\n",
+				"I’m a Pokémon!\r",
+				"...You knew that, didn’t you?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I’m so angry...\n"
+		}
+    ]
 }

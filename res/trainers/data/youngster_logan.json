@@ -19,10 +19,34 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Let’s have a Pokémon battle!\nHumph! But I’m gonna win!\r",
-        "TRMSG_DEFEAT": "You beat me?!\nYou’ve got talent!",
-        "TRMSG_POST_BATTLE": "It was fun battling!\nYup! I’m going to battle everyone!",
-        "TRMSG_REMATCH": "Let’s have another Pokémon battle!\nThis time, I’m gonna win!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Let’s have a Pokémon battle!\n",
+				"Humph! But I’m gonna win!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You beat me?!\n",
+				"You’ve got talent!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It was fun battling!\n",
+				"Yup! I’m going to battle everyone!"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Let’s have another Pokémon battle!\n",
+				"This time, I’m gonna win!\r"
+			]
+		}
+    ]
 }

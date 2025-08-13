@@ -26,10 +26,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "When it rains, I get more tense!\r",
-        "TRMSG_DEFEAT": "It’s not very easy trying to battle\nwhile holding an umbrella.\n",
-        "TRMSG_POST_BATTLE": "If it rained every day, I could have\nmy umbrella open all the time.\n",
-        "TRMSG_REMATCH": "It’s not because it’s raining.\nI just love umbrellas!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": "When it rains, I get more tense!\r"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"It’s not very easy trying to battle\n",
+				"while holding an umbrella.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If it rained every day, I could have\n",
+				"my umbrella open all the time.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"It’s not because it’s raining.\n",
+				"I just love umbrellas!\r"
+			]
+		}
+    ]
 }

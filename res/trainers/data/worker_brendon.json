@@ -35,9 +35,26 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Hey! This is no playground!\nIf you’re gonna play, battle me!\r",
-        "TRMSG_DEFEAT": "You played me like an amateur!\n",
-        "TRMSG_POST_BATTLE": "They were going to close this place\nup so no one could get in.\rBut, they left it open so people and\nPokémon can get together here."
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hey! This is no playground!\n",
+				"If you’re gonna play, battle me!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You played me like an amateur!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"They were going to close this place\n",
+				"up so no one could get in.\r",
+				"But, they left it open so people and\n",
+				"Pokémon can get together here."
+			]
+		}
+    ]
 }

@@ -26,10 +26,32 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "There are Pokémon that grow stronger\nwhen it’s raining.\r",
-        "TRMSG_DEFEAT": "Like rain, my tears flow from losing...\nThey call me the Rain Woman...\n",
-        "TRMSG_POST_BATTLE": "I want to show off my pretty parasol,\nbut it will get dirty in the rain.\rOh, such a big dilemma!\n",
-        "TRMSG_REMATCH": "On rainy days, I get more energetic!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"There are Pokémon that grow stronger\n",
+				"when it’s raining.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Like rain, my tears flow from losing...\n",
+				"They call me the Rain Woman...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I want to show off my pretty parasol,\n",
+				"but it will get dirty in the rain.\r",
+				"Oh, such a big dilemma!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": "On rainy days, I get more energetic!\r"
+		}
+    ]
 }

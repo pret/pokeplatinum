@@ -24,8 +24,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Oh, I don’t know.\nShould I play a little again?\r",
-        "TRMSG_DEFEAT": "Oh, boo!\nHow insulting!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, I don’t know.\n",
+				"Should I play a little again?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, boo!\n",
+				"How insulting!\n"
+			]
+		}
+    ]
 }

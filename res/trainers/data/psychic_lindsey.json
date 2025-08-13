@@ -20,9 +20,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I see it...\nI see it...\rI see you going down in defeat...\r",
-        "TRMSG_DEFEAT": "It is I that has gone down in defeat.",
-        "TRMSG_POST_BATTLE": "The Old Chateau...\nThere should be none alive in it...\rAnd yet there is a pervasive sense of\na presence..."
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I see it...\n",
+				"I see it...\r",
+				"I see you going down in defeat...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "It is I that has gone down in defeat."
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The Old Chateau...\n",
+				"There should be none alive in it...\r",
+				"And yet there is a pervasive sense of\n",
+				"a presence..."
+			]
+		}
+    ]
 }

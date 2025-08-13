@@ -38,9 +38,30 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Are you feeling all run-down?\rBut a good Trainer is one who wins no\nmatter the situation!\r",
-        "TRMSG_DEFEAT": "That’s right. A good Trainer will win,\nno matter what the situation may be.\n",
-        "TRMSG_POST_BATTLE": "The Trainer’s feelings...\nThe Pokémon’s feelings...\rIf they are one and the same, you\nwill never lose.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Are you feeling all run-down?\r",
+				"But a good Trainer is one who wins no\n",
+				"matter the situation!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"That’s right. A good Trainer will win,\n",
+				"no matter what the situation may be.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"The Trainer’s feelings...\n",
+				"The Pokémon’s feelings...\r",
+				"If they are one and the same, you\n",
+				"will never lose.\n"
+			]
+		}
+    ]
 }

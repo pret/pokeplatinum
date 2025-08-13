@@ -26,7 +26,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Done in by two kids?!\nThis isn’t right!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Done in by two kids?!\n",
+				"This isn’t right!\n"
+			]
+		}
+    ]
 }

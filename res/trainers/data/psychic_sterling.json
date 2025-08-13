@@ -27,9 +27,25 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I had a revelation this morning.\rI knew that I would have a wonderful\nencounter here today.\r",
-        "TRMSG_DEFEAT": "There’s nothing wonderful about this!\n",
-        "TRMSG_POST_BATTLE": "Is my sense of premonition nothing\nto write home about?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I had a revelation this morning.\r",
+				"I knew that I would have a wonderful\n",
+				"encounter here today.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "There’s nothing wonderful about this!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Is my sense of premonition nothing\n",
+				"to write home about?\n"
+			]
+		}
+    ]
 }

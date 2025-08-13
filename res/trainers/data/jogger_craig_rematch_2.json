@@ -26,8 +26,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "If I battle now, won’t it mess up my\nusual pace?\r",
-        "TRMSG_DEFEAT": "My pace is completely off...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"If I battle now, won’t it mess up my\n",
+				"usual pace?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "My pace is completely off...\n"
+		}
+    ]
 }

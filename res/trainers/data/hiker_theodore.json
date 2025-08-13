@@ -27,10 +27,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Whoa! You startled me!\nWell, we may as well battle!\r",
-        "TRMSG_DEFEAT": "Your power startles me!\n",
-        "TRMSG_POST_BATTLE": "We Hikers are bighearted guys!\nLosing doesn’t bother us!\n",
-        "TRMSG_REMATCH": "Whoa! You startled me!\nWe may as well have a rematch!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Whoa! You startled me!\n",
+				"Well, we may as well battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Your power startles me!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"We Hikers are bighearted guys!\n",
+				"Losing doesn’t bother us!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Whoa! You startled me!\n",
+				"We may as well have a rematch!\r"
+			]
+		}
+    ]
 }

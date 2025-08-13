@@ -84,8 +84,21 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER": "Hmm...\nNow what should I do...\n",
-        "TRMSG_DEFEAT": "I see...\rYour getting past the three before\nme was no fluke. Your power is real.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"Hmm...\n",
+				"Now what should I do...\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I see...\r",
+				"Your getting past the three before\n",
+				"me was no fluke. Your power is real.\n"
+			]
+		}
+    ]
 }

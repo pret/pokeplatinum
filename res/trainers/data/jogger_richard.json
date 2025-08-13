@@ -17,11 +17,41 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I jog every morning to keep my\nPokémon fit.\r",
-        "TRMSG_DEFEAT": "Oops!\nYou threw off my running rhythm.\n",
-        "TRMSG_POST_BATTLE": "Nothing beats being fit and healthy!\rCome on, won’t you run with me?\nTo a better tomorrow!\n",
-        "TRMSG_NOT_MORNING_UNUSED": "Do you jog every morning, too?\n",
-        "TRMSG_REMATCH": "When I go on my jogs, I pass by lots\nof people.\rI have trouble remembering faces,\nbut we did meet before, right?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I jog every morning to keep my\n",
+				"Pokémon fit.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oops!\n",
+				"You threw off my running rhythm.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Nothing beats being fit and healthy!\r",
+				"Come on, won’t you run with me?\n",
+				"To a better tomorrow!\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_MORNING_UNUSED",
+			"en_US": "Do you jog every morning, too?\n"
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"When I go on my jogs, I pass by lots\n",
+				"of people.\r",
+				"I have trouble remembering faces,\n",
+				"but we did meet before, right?\r"
+			]
+		}
+    ]
 }

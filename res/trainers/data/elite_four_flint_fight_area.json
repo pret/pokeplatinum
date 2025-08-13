@@ -55,7 +55,10 @@
             "ball_seal": 13
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "...\n"
+		}
+    ]
 }

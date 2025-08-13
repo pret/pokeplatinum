@@ -22,9 +22,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "This forest is strange, you know...\nIt seems to fill me with energy...\r",
-        "TRMSG_DEFEAT": "Your victory...\nThere is nothing strange about it.",
-        "TRMSG_POST_BATTLE": "Forests are mystifying... They seem\nto gather such unexplainable energy."
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"This forest is strange, you know...\n",
+				"It seems to fill me with energy...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your victory...\n",
+				"There is nothing strange about it."
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Forests are mystifying... They seem\n",
+				"to gather such unexplainable energy."
+			]
+		}
+    ]
 }

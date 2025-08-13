@@ -26,9 +26,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "You should be tired out by now.\nIt’s Team Galactic’s turn to shine!\r",
-        "TRMSG_DEFEAT": "What? I don’t get it.\nWhat’s your rush?\n",
-        "TRMSG_POST_BATTLE": "Pokémon are that important to you?\nIs that what this is all about?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You should be tired out by now.\n",
+				"It’s Team Galactic’s turn to shine!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What? I don’t get it.\n",
+				"What’s your rush?\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Pokémon are that important to you?\n",
+				"Is that what this is all about?\n"
+			]
+		}
+    ]
 }

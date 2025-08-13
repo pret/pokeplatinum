@@ -17,10 +17,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "A ninja can use all kinds of skills.\nLike this and like that!\r",
-        "TRMSG_DEFEAT": "Hmm...\nMy ninja techniques failed to work...\n",
-        "TRMSG_POST_BATTLE": "There’s a ninja Gym Leader somewhere\nfar away.\rI should become a devotee of theirs.\n",
-        "TRMSG_REMATCH": "What’s with you?\nYou’re not a ninja yet?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"A ninja can use all kinds of skills.\n",
+				"Like this and like that!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Hmm...\n",
+				"My ninja techniques failed to work...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"There’s a ninja Gym Leader somewhere\n",
+				"far away.\r",
+				"I should become a devotee of theirs.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"What’s with you?\n",
+				"You’re not a ninja yet?\r"
+			]
+		}
+    ]
 }

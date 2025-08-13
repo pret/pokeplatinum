@@ -44,10 +44,32 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I’m getting bored of fishing.\nLet’s have a quick battle!\r",
-        "TRMSG_DEFEAT": "I’ve been done in...\n",
-        "TRMSG_POST_BATTLE": "Thanks for that!\nIt was a good change of pace for me.\n",
-        "TRMSG_REMATCH": "Yo! I remember how our battle was a\ngood change of pace before.\rLet’s have another quick battle!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’m getting bored of fishing.\n",
+				"Let’s have a quick battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I’ve been done in...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Thanks for that!\n",
+				"It was a good change of pace for me.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Yo! I remember how our battle was a\n",
+				"good change of pace before.\r",
+				"Let’s have another quick battle!\r"
+			]
+		}
+    ]
 }

@@ -26,7 +26,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "My camera’s too heavy.\nI couldn’t battle effectively...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"My camera’s too heavy.\n",
+				"I couldn’t battle effectively...\n"
+			]
+		}
+    ]
 }

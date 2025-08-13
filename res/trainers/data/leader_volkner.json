@@ -69,10 +69,35 @@
             "ball_seal": 14
         }
     ],
-    "messages": {
-        "TRMSG_FIRST_DAMAGE": "I get it! You guys are tough!\nBut we can match your toughness!\n",
-        "TRMSG_LAST_BATTLER": "This is it!\nMy trump card!\n",
-        "TRMSG_LAST_BATTLER_HALF_HP": "Shocking... I didn’t see this coming!\n",
-        "TRMSG_DEFEAT": "You’ve got me beat...\rYour desire and the noble way\nyour Pokémon battled for you...\rI even felt thrilled during our\nmatch.\rThat was a very good battle.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_FIRST_DAMAGE",
+			"en_US": [
+				"I get it! You guys are tough!\n",
+				"But we can match your toughness!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"This is it!\n",
+				"My trump card!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": "Shocking... I didn’t see this coming!\n"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You’ve got me beat...\r",
+				"Your desire and the noble way\n",
+				"your Pokémon battled for you...\r",
+				"I even felt thrilled during our\n",
+				"match.\r",
+				"That was a very good battle.\n"
+			]
+		}
+    ]
 }

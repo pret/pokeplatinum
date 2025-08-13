@@ -36,16 +36,76 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_DOUBLE_BATTLE_1": "Ty: You’re not supposed to intrude\non my time with Sue!\r",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Ty: I only have eyes for Sue.\nMaybe that’s why we lost?\n",
-        "TRMSG_POST_DOUBLE_BATTLE_1": "Ty: Sue, even in defeat, you’re\nso beautiful...!\n",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "Ty: I don’t want to do anything\nwithout Sue...\rBring two Pokémon at least, OK?\n",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_1": "Ty: Did you come back to intrude\non my time with Sue?\r",
-        "TRMSG_PRE_DOUBLE_BATTLE_2": "Sue: Huh?\nYou want to battle with me?\rI will if I can team with Ty!\r",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Sue: I’m sorry, Ty!\n",
-        "TRMSG_POST_DOUBLE_BATTLE_2": "Sue: We lost... Ty, I need a hug\nto make it all better!\n",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "Sue: I only want to battle next to my\nsweet Ty.\rDon’t you have two Pokémon?\n",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_2": "Sue: Oh, it’s you again!\nI’ll battle if I can team with Ty!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Ty: You’re not supposed to intrude\n",
+				"on my time with Sue!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": [
+				"Ty: I only have eyes for Sue.\n",
+				"Maybe that’s why we lost?\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Ty: Sue, even in defeat, you’re\n",
+				"so beautiful...!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"Ty: I don’t want to do anything\n",
+				"without Sue...\r",
+				"Bring two Pokémon at least, OK?\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
+			"en_US": [
+				"Ty: Did you come back to intrude\n",
+				"on my time with Sue?\r"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Sue: Huh?\n",
+				"You want to battle with me?\r",
+				"I will if I can team with Ty!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": "Sue: I’m sorry, Ty!\n"
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Sue: We lost... Ty, I need a hug\n",
+				"to make it all better!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"Sue: I only want to battle next to my\n",
+				"sweet Ty.\r",
+				"Don’t you have two Pokémon?\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
+			"en_US": [
+				"Sue: Oh, it’s you again!\n",
+				"I’ll battle if I can team with Ty!\r"
+			]
+		}
+    ]
 }

@@ -17,8 +17,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Did you get better since we met?\nI... Well, here, just look!\r",
-        "TRMSG_DEFEAT": "Too strong!\nToo strong!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Did you get better since we met?\n",
+				"I... Well, here, just look!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Too strong!\n",
+				"Too strong!\n"
+			]
+		}
+    ]
 }

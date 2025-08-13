@@ -38,9 +38,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "What does it feel like, taking one step\nafter another into darkness?\r",
-        "TRMSG_DEFEAT": "You’re the kind of person who can keep\ngoing forward even into the unknown.\n",
-        "TRMSG_POST_BATTLE": "I think, sometimes, one has to make\nmistakes to learn what is right.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What does it feel like, taking one step\n",
+				"after another into darkness?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You’re the kind of person who can keep\n",
+				"going forward even into the unknown.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I think, sometimes, one has to make\n",
+				"mistakes to learn what is right.\n"
+			]
+		}
+    ]
 }

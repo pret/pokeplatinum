@@ -17,9 +17,23 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "We’re just out on a power walk!\r",
-        "TRMSG_DEFEAT": "Oh, you!\n",
-        "TRMSG_POST_BATTLE": "You can’t avoid bug Pokémon ever in\nthe forest.\rI didn’t have any Antidotes with me,\neither. It was the worst!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": "We’re just out on a power walk!\r"
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Oh, you!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You can’t avoid bug Pokémon ever in\n",
+				"the forest.\r",
+				"I didn’t have any Antidotes with me,\n",
+				"either. It was the worst!\n"
+			]
+		}
+    ]
 }

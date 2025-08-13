@@ -17,8 +17,14 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "",
-        "TRMSG_DEFEAT": ""
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"garbage": 52
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"garbage": 33
+		}
+    ]
 }

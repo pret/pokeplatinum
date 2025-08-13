@@ -37,10 +37,38 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I work to protect beautiful, natural\nenvironments.\rMy Pokémon are my constant\ncompanions while I work.\r",
-        "TRMSG_DEFEAT": "Oh, my gosh!\nMy poor Pokémon!\n",
-        "TRMSG_POST_BATTLE": "Everyone can do their part to keep\nnature clean. It doesn’t take much.\n",
-        "TRMSG_REMATCH": "I’m on patrol in pristine nature\nwith my Pokémon like usual.\rCome to think of it, you’re always\nwith Pokémon, too.\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I work to protect beautiful, natural\n",
+				"environments.\r",
+				"My Pokémon are my constant\n",
+				"companions while I work.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, my gosh!\n",
+				"My poor Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Everyone can do their part to keep\n",
+				"nature clean. It doesn’t take much.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’m on patrol in pristine nature\n",
+				"with my Pokémon like usual.\r",
+				"Come to think of it, you’re always\n",
+				"with Pokémon, too.\r"
+			]
+		}
+    ]
 }

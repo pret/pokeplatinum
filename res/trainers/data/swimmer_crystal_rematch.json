@@ -35,8 +35,18 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "How much stronger did your Pokémon\nbecome?\rLet me check for you, OK?\r",
-        "TRMSG_DEFEAT": "I’ve had my fill...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"How much stronger did your Pokémon\n",
+				"become?\r",
+				"Let me check for you, OK?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "I’ve had my fill...\n"
+		}
+    ]
 }

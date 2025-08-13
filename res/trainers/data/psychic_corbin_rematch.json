@@ -27,8 +27,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "You’re going to win again!\nThat’s the future I saw!\r",
-        "TRMSG_DEFEAT": "What I saw in the future turned out\nto be true...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You’re going to win again!\n",
+				"That’s the future I saw!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What I saw in the future turned out\n",
+				"to be true...\n"
+			]
+		}
+    ]
 }

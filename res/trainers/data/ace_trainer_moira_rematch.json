@@ -52,8 +52,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Hello again! Please don’t hold\nanything back, just like before.\r",
-        "TRMSG_DEFEAT": "Hmm...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Hello again! Please don’t hold\n",
+				"anything back, just like before.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Hmm...\n"
+		}
+    ]
 }

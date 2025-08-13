@@ -27,8 +27,21 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "What took you so long?\nWe’ve waited here a long time for\fa rematch with you!\r",
-        "TRMSG_DEFEAT": "No way! Give us another battle!\n...Oh, right. I’m out of Pokémon.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"What took you so long?\n",
+				"We’ve waited here a long time for\f",
+				"a rematch with you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"No way! Give us another battle!\n",
+				"...Oh, right. I’m out of Pokémon.\n"
+			]
+		}
+    ]
 }

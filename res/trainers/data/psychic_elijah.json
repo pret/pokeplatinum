@@ -20,9 +20,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "When a Trainer and a Pokémon bond\nas one, a wondrous power is born...\r",
-        "TRMSG_DEFEAT": "Urmmm...\nUrrrrmmmmm...\n",
-        "TRMSG_POST_BATTLE": "There still remain many mysteries yet\nto be solved in this strange world...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"When a Trainer and a Pokémon bond\n",
+				"as one, a wondrous power is born...\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Urmmm...\n",
+				"Urrrrmmmmm...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"There still remain many mysteries yet\n",
+				"to be solved in this strange world...\n"
+			]
+		}
+    ]
 }

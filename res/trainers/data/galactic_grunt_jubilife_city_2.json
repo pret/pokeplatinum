@@ -17,7 +17,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "This won’t do... Time to retreat.\nThis mission is a failure.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"This won’t do... Time to retreat.\n",
+				"This mission is a failure.\n"
+			]
+		}
+    ]
 }

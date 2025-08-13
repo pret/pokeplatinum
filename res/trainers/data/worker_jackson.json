@@ -47,9 +47,24 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Up and down you go on the lifts.\nMe? I like to battle!\r",
-        "TRMSG_DEFEAT": "You’ve got me feeling down!\n",
-        "TRMSG_POST_BATTLE": "I can’t keep this up!\nI’ll go back to working on the lifts.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Up and down you go on the lifts.\n",
+				"Me? I like to battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’ve got me feeling down!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I can’t keep this up!\n",
+				"I’ll go back to working on the lifts.\n"
+			]
+		}
+    ]
 }

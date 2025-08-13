@@ -19,8 +19,21 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Oh, it’s you again, dear?\rIt makes me a little nervous, but\nmay I have a rematch?\r",
-        "TRMSG_DEFEAT": "Oh, dear... This isn’t anything like\nbattling with my friends.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, it’s you again, dear?\r",
+				"It makes me a little nervous, but\n",
+				"may I have a rematch?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, dear... This isn’t anything like\n",
+				"battling with my friends.\n"
+			]
+		}
+    ]
 }

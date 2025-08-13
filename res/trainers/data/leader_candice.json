@@ -69,9 +69,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER": "I’m going to break the ice and bring\nout my last-resort Pokémon!\n",
-        "TRMSG_LAST_BATTLER_HALF_HP": "I can sense your will to win, but I\npromise you I’m not about to lose!\n",
-        "TRMSG_DEFEAT": "I must say, I’ve warmed up to you!\nI might even admire you a little.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER",
+			"en_US": [
+				"I’m going to break the ice and bring\n",
+				"out my last-resort Pokémon!\n"
+			]
+		},
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"I can sense your will to win, but I\n",
+				"promise you I’m not about to lose!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I must say, I’ve warmed up to you!\n",
+				"I might even admire you a little.\n"
+			]
+		}
+    ]
 }

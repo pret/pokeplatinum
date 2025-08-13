@@ -38,9 +38,29 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I will win. I am sure of it.\nTherefore, you will lose!\r",
-        "TRMSG_DEFEAT": "But...\nThis isn’t possible!\n",
-        "TRMSG_POST_BATTLE": "It’s not that you’ve won.\nIt’s just that I lost!\r...It’s all the same.\nGo, me.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I will win. I am sure of it.\n",
+				"Therefore, you will lose!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"But...\n",
+				"This isn’t possible!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It’s not that you’ve won.\n",
+				"It’s just that I lost!\r",
+				"...It’s all the same.\n",
+				"Go, me.\n"
+			]
+		}
+    ]
 }

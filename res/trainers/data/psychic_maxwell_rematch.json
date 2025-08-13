@@ -27,8 +27,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Why have you come back to this spot?\nI want to know what all this means!\r",
-        "TRMSG_DEFEAT": "I see...\rSo that’s what it was...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Why have you come back to this spot?\n",
+				"I want to know what all this means!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I see...\r",
+				"So that’s what it was...\n"
+			]
+		}
+    ]
 }

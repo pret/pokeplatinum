@@ -27,9 +27,28 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Judo chop!\nPokémon battle!\r",
-        "TRMSG_DEFEAT": "Wrroar!\nJudo chop defeated!",
-        "TRMSG_POST_BATTLE": "I’ll forget that we lost!\r...Wait, if I did that, we’d never\nlearn from our mistakes...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Judo chop!\n",
+				"Pokémon battle!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Wrroar!\n",
+				"Judo chop defeated!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’ll forget that we lost!\r",
+				"...Wait, if I did that, we’d never\n",
+				"learn from our mistakes...\n"
+			]
+		}
+    ]
 }

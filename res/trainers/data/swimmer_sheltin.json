@@ -35,10 +35,34 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I swim the whole year round.\nI’m not losing a battle at sea!\r",
-        "TRMSG_DEFEAT": "I lost at sea! But I swim here the\nwhole year round!\n",
-        "TRMSG_POST_BATTLE": "When you’re out at sea, Water-type\nPokémon look more lively.\n",
-        "TRMSG_REMATCH": "I love the sea. It was only by fluke\nthat I lost last time.\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I swim the whole year round.\n",
+				"I’m not losing a battle at sea!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I lost at sea! But I swim here the\n",
+				"whole year round!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"When you’re out at sea, Water-type\n",
+				"Pokémon look more lively.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I love the sea. It was only by fluke\n",
+				"that I lost last time.\r"
+			]
+		}
+    ]
 }

@@ -26,9 +26,29 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "You’re a Pokémon Trainer, and so\nam I.\rWhen Trainers lock eyes, that means\na battle is on!\r",
-        "TRMSG_DEFEAT": "Losing makes me mad, but that\nwas still a bunch of fun!",
-        "TRMSG_POST_BATTLE": "With Pokémon that tough, I bet you\ncould go anywhere in Sinnoh!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"You’re a Pokémon Trainer, and so\n",
+				"am I.\r",
+				"When Trainers lock eyes, that means\n",
+				"a battle is on!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Losing makes me mad, but that\n",
+				"was still a bunch of fun!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"With Pokémon that tough, I bet you\n",
+				"could go anywhere in Sinnoh!\n"
+			]
+		}
+    ]
 }

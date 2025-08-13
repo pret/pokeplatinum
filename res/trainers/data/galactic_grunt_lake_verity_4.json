@@ -26,9 +26,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "If this mission is successful, we\nwill get a nice bonus.\r",
-        "TRMSG_DEFEAT": "There goes our bonus...\nThis is an epic tragedy...\n",
-        "TRMSG_POST_BATTLE": "I want Team Galactic to become\npowerful. That is all I want.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"If this mission is successful, we\n",
+				"will get a nice bonus.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"There goes our bonus...\n",
+				"This is an epic tragedy...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I want Team Galactic to become\n",
+				"powerful. That is all I want.\n"
+			]
+		}
+    ]
 }

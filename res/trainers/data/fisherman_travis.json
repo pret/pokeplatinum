@@ -44,10 +44,34 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Water Pokémon sure get happy when\nit rains. So do I!\r",
-        "TRMSG_DEFEAT": "Oof. Just got trampled right under\nyour feet that time!\n",
-        "TRMSG_POST_BATTLE": "Yup, a kid like you should be running\naround outside, rain or shine.\n",
-        "TRMSG_REMATCH": "I’ve been fishing here ever since\nI lost to you.\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Water Pokémon sure get happy when\n",
+				"it rains. So do I!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oof. Just got trampled right under\n",
+				"your feet that time!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Yup, a kid like you should be running\n",
+				"around outside, rain or shine.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I’ve been fishing here ever since\n",
+				"I lost to you.\r"
+			]
+		}
+    ]
 }

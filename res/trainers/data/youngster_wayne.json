@@ -35,9 +35,24 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Did you come to play, too?\nWanna play battle with me?\r",
-        "TRMSG_DEFEAT": "You were just toying with me!",
-        "TRMSG_POST_BATTLE": "I’m playing hide-and-seek here.\nI like some underground tag, too.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Did you come to play, too?\n",
+				"Wanna play battle with me?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You were just toying with me!"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I’m playing hide-and-seek here.\n",
+				"I like some underground tag, too.\n"
+			]
+		}
+    ]
 }

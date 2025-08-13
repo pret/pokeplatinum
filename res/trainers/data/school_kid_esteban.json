@@ -25,7 +25,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Wow... You’re out there.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Wow... You’re out there.\n"
+		}
+    ]
 }

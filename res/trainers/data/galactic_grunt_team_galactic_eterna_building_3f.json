@@ -35,9 +35,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Why, thank you!\rWe love it when people come to us\nto donate their Pokémon!\r",
-        "TRMSG_DEFEAT": "What do you think you’re doing?!\n",
-        "TRMSG_POST_BATTLE": "You can catch Pokémon anywhere.\nWhat’s so special about them?\rTrainers that lose theirs should\nquit whining and catch some more!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Why, thank you!\r",
+				"We love it when people come to us\n",
+				"to donate their Pokémon!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "What do you think you’re doing?!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"You can catch Pokémon anywhere.\n",
+				"What’s so special about them?\r",
+				"Trainers that lose theirs should\n",
+				"quit whining and catch some more!\n"
+			]
+		}
+    ]
 }

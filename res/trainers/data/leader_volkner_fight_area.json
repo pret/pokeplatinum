@@ -55,7 +55,13 @@
             "ball_seal": 14
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Your toughness is something else.\nWe were completely overwhelmed!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your toughness is something else.\n",
+				"We were completely overwhelmed!\n"
+			]
+		}
+    ]
 }

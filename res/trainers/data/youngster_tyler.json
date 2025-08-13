@@ -17,10 +17,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I’ll beat you with the MAGIKARP my dad\ngave me!\r",
-        "TRMSG_DEFEAT": "But they’re Pokémon I got from my\ndad...\n",
-        "TRMSG_POST_BATTLE": "Who gave you your first Pokémon?\rYour first Pokémon is the one with\nthe most fond memories, I think.\n",
-        "TRMSG_REMATCH": "This time, I’ll beat you with the\nPokémon my dad gave me!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I’ll beat you with the MAGIKARP my dad\n",
+				"gave me!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"But they’re Pokémon I got from my\n",
+				"dad...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Who gave you your first Pokémon?\r",
+				"Your first Pokémon is the one with\n",
+				"the most fond memories, I think.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"This time, I’ll beat you with the\n",
+				"Pokémon my dad gave me!\r"
+			]
+		}
+    ]
 }

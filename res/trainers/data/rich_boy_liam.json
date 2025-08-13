@@ -19,7 +19,10 @@
             "ball_seal": 26
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Too much for me!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Too much for me!\n"
+		}
+    ]
 }

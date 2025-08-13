@@ -18,8 +18,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "Oh? I’ve seen your face before.\nWhat say we battle?\r",
-        "TRMSG_DEFEAT": "Huh? It’s over, you say?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh? I’ve seen your face before.\n",
+				"What say we battle?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Huh? It’s over, you say?\n"
+		}
+    ]
 }

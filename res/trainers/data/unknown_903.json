@@ -17,7 +17,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Wow!\nYou’re out of this world!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Wow!\n",
+				"You’re out of this world!\n"
+			]
+		}
+    ]
 }

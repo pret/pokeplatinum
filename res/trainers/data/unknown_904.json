@@ -17,7 +17,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "You are good, you!\nMy Pokémon, they have enjoyed it, too!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You are good, you!\n",
+				"My Pokémon, they have enjoyed it, too!\n"
+			]
+		}
+    ]
 }

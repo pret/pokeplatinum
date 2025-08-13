@@ -27,16 +27,70 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_DOUBLE_BATTLE_1": "Liv: We can one-shot this Trainer,\ncan’t we, Liz?\r",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_1": "Liv: Oh, oh, oh?\n",
-        "TRMSG_POST_DOUBLE_BATTLE_1": "Liv: This Trainer...will brag about\nbeating us, Liz.\n",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1": "Liv: You only have one Pokémon?\nThat’s so boring!",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_1": "Liv: Oh! You’re that Trainer!\nLet’s get payback, Liz!\r",
-        "TRMSG_PRE_DOUBLE_BATTLE_2": "Liz: We’re the strongest in our\nclass!\r",
-        "TRMSG_DOUBLE_BATTLE_DEFEAT_2": "Liz: Oh, but, wait!\n",
-        "TRMSG_POST_DOUBLE_BATTLE_2": "Liz: This Trainer...is really happy about\nbeating us, Liv.\n",
-        "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2": "Liz: Um, will you battle with us?\nMe and Liv?\n",
-        "TRMSG_DOUBLE_BATTLE_REMATCH_2": "Liz: We’re the best in our class.\nWe can’t be losers all the time!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Liv: We can one-shot this Trainer,\n",
+				"can’t we, Liz?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+			"en_US": "Liv: Oh, oh, oh?\n"
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_1",
+			"en_US": [
+				"Liv: This Trainer...will brag about\n",
+				"beating us, Liz.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_1",
+			"en_US": [
+				"Liv: You only have one Pokémon?\n",
+				"That’s so boring!"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_1",
+			"en_US": [
+				"Liv: Oh! You’re that Trainer!\n",
+				"Let’s get payback, Liz!\r"
+			]
+		},
+        {
+			"type": "TRMSG_PRE_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Liz: We’re the strongest in our\n",
+				"class!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+			"en_US": "Liz: Oh, but, wait!\n"
+		},
+        {
+			"type": "TRMSG_POST_DOUBLE_BATTLE_2",
+			"en_US": [
+				"Liz: This Trainer...is really happy about\n",
+				"beating us, Liv.\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_NOT_ENOUGH_POKEMON_2",
+			"en_US": [
+				"Liz: Um, will you battle with us?\n",
+				"Me and Liv?\n"
+			]
+		},
+        {
+			"type": "TRMSG_DOUBLE_BATTLE_REMATCH_2",
+			"en_US": [
+				"Liz: We’re the best in our class.\n",
+				"We can’t be losers all the time!\r"
+			]
+		}
+    ]
 }

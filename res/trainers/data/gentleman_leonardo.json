@@ -24,7 +24,14 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Ack! I lost...\nCheck, please!\n\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Ack! I lost...\n",
+				"Check, please!\n",
+				"\n"
+			]
+		}
+    ]
 }

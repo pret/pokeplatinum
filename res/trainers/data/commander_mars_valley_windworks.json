@@ -36,8 +36,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_FIRST_DAMAGE": "What do you think you’re doing to my\nPokémon?!",
-        "TRMSG_DEFEAT": "This can’t be?! I lost?!\nYou...you uppity brat!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_FIRST_DAMAGE",
+			"en_US": [
+				"What do you think you’re doing to my\n",
+				"Pokémon?!"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"This can’t be?! I lost?!\n",
+				"You...you uppity brat!\n"
+			]
+		}
+    ]
 }

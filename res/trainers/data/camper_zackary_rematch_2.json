@@ -19,8 +19,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "While I was enjoying camping, my\nPokémon got all big and buffed up!\r",
-        "TRMSG_DEFEAT": "Wawawaah!\nI’m out of Pokémon that can battle!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"While I was enjoying camping, my\n",
+				"Pokémon got all big and buffed up!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Wawawaah!\n",
+				"I’m out of Pokémon that can battle!\n"
+			]
+		}
+    ]
 }

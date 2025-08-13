@@ -35,10 +35,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "The both of us are on Bikes, and we\nboth have Pokémon!\rI can’t let you get the better of me!\r",
-        "TRMSG_DEFEAT": "Oh, geez...\nI seem to have fallen off my Bike.",
-        "TRMSG_POST_BATTLE": "I should have challenged you to a race,\nnot a battle!\n",
-        "TRMSG_REMATCH": "I hate knowing you’ve beaten me.\nThis time, I’m going to win!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"The both of us are on Bikes, and we\n",
+				"both have Pokémon!\r",
+				"I can’t let you get the better of me!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, geez...\n",
+				"I seem to have fallen off my Bike."
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I should have challenged you to a race,\n",
+				"not a battle!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I hate knowing you’ve beaten me.\n",
+				"This time, I’m going to win!\r"
+			]
+		}
+    ]
 }

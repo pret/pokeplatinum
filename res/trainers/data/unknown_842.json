@@ -97,8 +97,20 @@
             "ball_seal": 24
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER_HALF_HP": "I’m not giving up till the end!\nI can’t give up!\n",
-        "TRMSG_DEFEAT": "What just went down?!\nYou wait! I’ll get tougher!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"I’m not giving up till the end!\n",
+				"I can’t give up!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"What just went down?!\n",
+				"You wait! I’ll get tougher!\n"
+			]
+		}
+    ]
 }

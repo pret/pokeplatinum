@@ -36,10 +36,35 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Every drop of sweat I shed makes\nme that much stronger!\r",
-        "TRMSG_DEFEAT": "I should be lighter by the amount of\nsweat I just shed!\r",
-        "TRMSG_POST_BATTLE": "It’s time for another workout.\nThe more I sweat, the tougher I get!\n",
-        "TRMSG_REMATCH": "We’re going to win this time!\rDon’t believe me?\nThen you test it out!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Every drop of sweat I shed makes\n",
+				"me that much stronger!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I should be lighter by the amount of\n",
+				"sweat I just shed!\r"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"It’s time for another workout.\n",
+				"The more I sweat, the tougher I get!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"We’re going to win this time!\r",
+				"Don’t believe me?\n",
+				"Then you test it out!\r"
+			]
+		}
+    ]
 }

@@ -52,7 +52,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "You’re tough, kid!\nBut, I still pity the likes of you.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You’re tough, kid!\n",
+				"But, I still pity the likes of you.\n"
+			]
+		}
+    ]
 }

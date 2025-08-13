@@ -27,9 +27,26 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "When you’re up in the mountains,\na battle’d do for a proper greeting!\r",
-        "TRMSG_DEFEAT": "Yahoo!\n",
-        "TRMSG_POST_BATTLE": "Actually, when you’re up in the\nmountains, a simple hi’d do if\fyou walk past someone.\rOh, and this isn’t the mountains.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"When you’re up in the mountains,\n",
+				"a battle’d do for a proper greeting!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Yahoo!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Actually, when you’re up in the\n",
+				"mountains, a simple hi’d do if\f",
+				"you walk past someone.\r",
+				"Oh, and this isn’t the mountains.\n"
+			]
+		}
+    ]
 }

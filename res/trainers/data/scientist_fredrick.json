@@ -39,9 +39,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Hey, now! Our HQ is a state-of-the-\nart facility!\rA snot-nosed kid like you ought to\nkeep your dirty hands to yourself!\r",
-        "TRMSG_DEFEAT": "You and your Pokémon weren’t part\nof my calculations...\n",
-        "TRMSG_POST_BATTLE": "Our boss is trying to create an\nentirely new world.\rA world only for us!\nFor Team Galactic!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hey, now! Our HQ is a state-of-the-\n",
+				"art facility!\r",
+				"A snot-nosed kid like you ought to\n",
+				"keep your dirty hands to yourself!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You and your Pokémon weren’t part\n",
+				"of my calculations...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Our boss is trying to create an\n",
+				"entirely new world.\r",
+				"A world only for us!\n",
+				"For Team Galactic!\n"
+			]
+		}
+    ]
 }

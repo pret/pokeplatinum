@@ -23,9 +23,28 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Steel represents an unbending spirit!\rIf one refuses to accept defeat,\nthe path to victory reveals itself!\r",
-        "TRMSG_DEFEAT": "I never gave up, but still I failed to\nwin...\n",
-        "TRMSG_POST_BATTLE": "If you give up, well, that’s when\neverything ends for you!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Steel represents an unbending spirit!\r",
+				"If one refuses to accept defeat,\n",
+				"the path to victory reveals itself!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I never gave up, but still I failed to\n",
+				"win...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If you give up, well, that’s when\n",
+				"everything ends for you!\n"
+			]
+		}
+    ]
 }

@@ -21,9 +21,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Boo! Did I scare you?\nThis battle will!\r",
-        "TRMSG_DEFEAT": "Uh, whoopsie!\nThat didn’t end well!\n",
-        "TRMSG_POST_BATTLE": "Since you’re here, you might as well\ntake on every Trainer.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Boo! Did I scare you?\n",
+				"This battle will!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Uh, whoopsie!\n",
+				"That didn’t end well!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Since you’re here, you might as well\n",
+				"take on every Trainer.\n"
+			]
+		}
+    ]
 }

@@ -26,11 +26,42 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Let’s enjoy a fierce battle in the\nchilly night winds! Brrrr! Refreshing!\r",
-        "TRMSG_DEFEAT": "I need to explain, all right?\nIt was too dark and hard to see.\n",
-        "TRMSG_POST_BATTLE": "Oops, I’d better get back to my\nbeat before the boss radios me...\n",
-        "TRMSG_NOT_NIGHT_UNUSED": "Yo! Hanging tough, Trainer? Word!\nI’m trying to make my lingo more hip!\n",
-        "TRMSG_REMATCH": "Still training this late?\rThat makes you either a bad kid or\na good Trainer. Which one is it?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Let’s enjoy a fierce battle in the\n",
+				"chilly night winds! Brrrr! Refreshing!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I need to explain, all right?\n",
+				"It was too dark and hard to see.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Oops, I’d better get back to my\n",
+				"beat before the boss radios me...\n"
+			]
+		},
+        {
+			"type": "TRMSG_NOT_NIGHT_UNUSED",
+			"en_US": [
+				"Yo! Hanging tough, Trainer? Word!\n",
+				"I’m trying to make my lingo more hip!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Still training this late?\r",
+				"That makes you either a bad kid or\n",
+				"a good Trainer. Which one is it?\r"
+			]
+		}
+    ]
 }

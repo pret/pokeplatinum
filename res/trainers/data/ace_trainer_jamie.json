@@ -24,10 +24,38 @@
             "ball_seal": 11
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I constantly analyze Pokémon and\nvarious battles on my laptop.\r",
-        "TRMSG_DEFEAT": "...Things don’t always work out\naccording to my calculations...\n",
-        "TRMSG_POST_BATTLE": "I had a lot of fun battling with\nyou, though.\rI wonder if I can analyze the\nbattle data properly?\rI could use a rematch to get\nsome additional data.\n",
-        "TRMSG_REMATCH": "I analyzed our last battle on my\nlaptop.\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I constantly analyze Pokémon and\n",
+				"various battles on my laptop.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"...Things don’t always work out\n",
+				"according to my calculations...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I had a lot of fun battling with\n",
+				"you, though.\r",
+				"I wonder if I can analyze the\n",
+				"battle data properly?\r",
+				"I could use a rematch to get\n",
+				"some additional data.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"I analyzed our last battle on my\n",
+				"laptop.\r"
+			]
+		}
+    ]
 }

@@ -28,10 +28,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Hi, Trainer!\nCan you keep up with me?\r",
-        "TRMSG_DEFEAT": "You’ve got energy to burn!\n",
-        "TRMSG_POST_BATTLE": "Even if a battle gets heated, don’t\nbreak branches off trees or anything.\n",
-        "TRMSG_REMATCH": "You’re that energetic Trainer!\nI bet you can’t keep up this time!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Hi, Trainer!\n",
+				"Can you keep up with me?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You’ve got energy to burn!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Even if a battle gets heated, don’t\n",
+				"break branches off trees or anything.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"You’re that energetic Trainer!\n",
+				"I bet you can’t keep up this time!\r"
+			]
+		}
+    ]
 }

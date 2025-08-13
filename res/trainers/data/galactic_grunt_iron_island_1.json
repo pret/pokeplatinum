@@ -35,7 +35,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "I want to cry...\nMy heart is shattered...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I want to cry...\n",
+				"My heart is shattered...\n"
+			]
+		}
+    ]
 }

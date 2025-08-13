@@ -52,10 +52,38 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "The world is huge, and there are\nso many different Pokémon!\rWhat kinds of Pokémon are with you?\nPlease, I want to have a look!\r",
-        "TRMSG_DEFEAT": "Wow, there are Pokémon that\nwonderful!\n",
-        "TRMSG_POST_BATTLE": "There is always something to like\nabout any Pokémon.\rIt’s so hard to decide which ones\nI should raise.\n",
-        "TRMSG_REMATCH": "If I’m having trouble deciding,\nI go with my favorites!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"The world is huge, and there are\n",
+				"so many different Pokémon!\r",
+				"What kinds of Pokémon are with you?\n",
+				"Please, I want to have a look!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Wow, there are Pokémon that\n",
+				"wonderful!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"There is always something to like\n",
+				"about any Pokémon.\r",
+				"It’s so hard to decide which ones\n",
+				"I should raise.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"If I’m having trouble deciding,\n",
+				"I go with my favorites!\r"
+			]
+		}
+    ]
 }

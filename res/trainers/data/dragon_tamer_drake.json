@@ -37,9 +37,24 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Dragons and a fiery mountain...\nIt’s a totally classic setup!\r",
-        "TRMSG_DEFEAT": "Losing isn’t a happy occasion...\n",
-        "TRMSG_POST_BATTLE": "My Pokémon seem to like it here\na lot.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Dragons and a fiery mountain...\n",
+				"It’s a totally classic setup!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Losing isn’t a happy occasion...\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"My Pokémon seem to like it here\n",
+				"a lot.\n"
+			]
+		}
+    ]
 }

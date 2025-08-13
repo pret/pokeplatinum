@@ -38,9 +38,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Victory Road... Somehow, it feels as\nif my journey is now coming to an end.\rBut, before the final chapter is\nwritten, I must pen your defeat!\r",
-        "TRMSG_DEFEAT": "That wasn’t how I planned the final\nchapter to go in my writing class...",
-        "TRMSG_POST_BATTLE": "If you don’t give up, you can reach\nyour goal.\rThat perseverance is what’s important\nto Trainers. That’s in my book, too."
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Victory Road... Somehow, it feels as\n",
+				"if my journey is now coming to an end.\r",
+				"But, before the final chapter is\n",
+				"written, I must pen your defeat!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"That wasn’t how I planned the final\n",
+				"chapter to go in my writing class..."
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"If you don’t give up, you can reach\n",
+				"your goal.\r",
+				"That perseverance is what’s important\n",
+				"to Trainers. That’s in my book, too."
+			]
+		}
+    ]
 }

@@ -52,9 +52,29 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Is the Gym’s trick floor making you\na little hot under the collar?\rIf you can’t maintain your cool in\nbattle, you’ll freeze up.\r",
-        "TRMSG_DEFEAT": "You were surprisingly cool...\nAt least I have my warm boots.\n",
-        "TRMSG_POST_BATTLE": "Your Pokémon look so hot in battle.\nSo hot, they’re cool! Hahah!"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Is the Gym’s trick floor making you\n",
+				"a little hot under the collar?\r",
+				"If you can’t maintain your cool in\n",
+				"battle, you’ll freeze up.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"You were surprisingly cool...\n",
+				"At least I have my warm boots.\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Your Pokémon look so hot in battle.\n",
+				"So hot, they’re cool! Hahah!"
+			]
+		}
+    ]
 }

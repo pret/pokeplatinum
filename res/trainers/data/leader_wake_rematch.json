@@ -83,8 +83,20 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_LAST_BATTLER_HALF_HP": "If we turn it around here, the\nspectators will be stoked!\n",
-        "TRMSG_DEFEAT": "That puts a grin on my face!\nGuhahaha! That was a blast!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_LAST_BATTLER_HALF_HP",
+			"en_US": [
+				"If we turn it around here, the\n",
+				"spectators will be stoked!\n"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"That puts a grin on my face!\n",
+				"Guhahaha! That was a blast!\n"
+			]
+		}
+    ]
 }

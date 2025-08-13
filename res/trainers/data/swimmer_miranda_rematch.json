@@ -26,8 +26,17 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_REMATCH": "It doesn’t matter how long it takes,\nI’m going to the Pokémon League!\r",
-        "TRMSG_DEFEAT": "Th-this is so hard...\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"It doesn’t matter how long it takes,\n",
+				"I’m going to the Pokémon League!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Th-this is so hard...\n"
+		}
+    ]
 }

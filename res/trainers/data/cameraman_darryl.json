@@ -26,7 +26,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "That’s quite the demonstration.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "That’s quite the demonstration.\n"
+		}
+    ]
 }

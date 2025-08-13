@@ -52,9 +52,28 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I can sense that your Pokémon have\na lot of trust in you.\rYou and your Pokémon...\nYou seem to be aglow.\r",
-        "TRMSG_DEFEAT": "Ah, I understand it now!\n",
-        "TRMSG_POST_BATTLE": "Neither Pokémon nor people live\nforever.\rBut it is the very frailty of life that\nallows us to shine!"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I can sense that your Pokémon have\n",
+				"a lot of trust in you.\r",
+				"You and your Pokémon...\n",
+				"You seem to be aglow.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Ah, I understand it now!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Neither Pokémon nor people live\n",
+				"forever.\r",
+				"But it is the very frailty of life that\n",
+				"allows us to shine!"
+			]
+		}
+    ]
 }

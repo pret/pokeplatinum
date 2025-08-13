@@ -35,7 +35,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "They’re too tough to handle!\nWhat a combination!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"They’re too tough to handle!\n",
+				"What a combination!\n"
+			]
+		}
+    ]
 }

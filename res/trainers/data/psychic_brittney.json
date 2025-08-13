@@ -27,10 +27,38 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "There is nothing here... And yet\nthere is a power lurking...\rWere you drawn by it, as well?\r",
-        "TRMSG_DEFEAT": "The power that slumbers within you...\nIt is rather marvelous indeed...\n",
-        "TRMSG_POST_BATTLE": "A place where nothing else exists...\rA place such as that is better suited\nto awaken the power within.\n",
-        "TRMSG_REMATCH": "Do you see now?\nYou’ve come back again.\rThere must be something that draws\nyou to this place...\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"There is nothing here... And yet\n",
+				"there is a power lurking...\r",
+				"Were you drawn by it, as well?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"The power that slumbers within you...\n",
+				"It is rather marvelous indeed...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"A place where nothing else exists...\r",
+				"A place such as that is better suited\n",
+				"to awaken the power within.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Do you see now?\n",
+				"You’ve come back again.\r",
+				"There must be something that draws\n",
+				"you to this place...\r"
+			]
+		}
+    ]
 }

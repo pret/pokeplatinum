@@ -44,9 +44,28 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Look at the way I’m dressed.\nCan’t you see that I’m hardcore?\r",
-        "TRMSG_DEFEAT": "I was being serious!\nDon’t laugh at me! I mean it!\n",
-        "TRMSG_POST_BATTLE": "I dress this way so I can get a feel for\nhow electric Pokémon think.\rWould you like to try, too?\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Look at the way I’m dressed.\n",
+				"Can’t you see that I’m hardcore?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I was being serious!\n",
+				"Don’t laugh at me! I mean it!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I dress this way so I can get a feel for\n",
+				"how electric Pokémon think.\r",
+				"Would you like to try, too?\n"
+			]
+		}
+    ]
 }

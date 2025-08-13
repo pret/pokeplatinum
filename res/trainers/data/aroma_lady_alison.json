@@ -18,7 +18,10 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Waaah! You’re too much!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Waaah! You’re too much!\n"
+		}
+    ]
 }

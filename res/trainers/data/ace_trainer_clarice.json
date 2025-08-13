@@ -52,9 +52,24 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Let me see what you got there, kid.\nI could give you some advice.\r",
-        "TRMSG_DEFEAT": "You got way too much!\n",
-        "TRMSG_POST_BATTLE": "Well, I don’t have any advice for\nsomeone as tough as you!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Let me see what you got there, kid.\n",
+				"I could give you some advice.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "You got way too much!\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Well, I don’t have any advice for\n",
+				"someone as tough as you!\n"
+			]
+		}
+    ]
 }

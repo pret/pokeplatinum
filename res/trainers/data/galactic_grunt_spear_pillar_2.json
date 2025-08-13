@@ -26,7 +26,13 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_DEFEAT": "Arrgh!\nI let some little kid beat me!\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Arrgh!\n",
+				"I let some little kid beat me!\n"
+			]
+		}
+    ]
 }

@@ -18,10 +18,36 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "I spy, with my little eye...\nA Trainer!\rA battle, please!\r",
-        "TRMSG_DEFEAT": "Oh, boo!\nI can’t win!",
-        "TRMSG_POST_BATTLE": "My Pokémon are all tuckered out!\nI need to go to a Pokémon Center!",
-        "TRMSG_REMATCH": "Oh, hi!\nI remember you, Trainer!\rA battle, please!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"I spy, with my little eye...\n",
+				"A Trainer!\r",
+				"A battle, please!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Oh, boo!\n",
+				"I can’t win!"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"My Pokémon are all tuckered out!\n",
+				"I need to go to a Pokémon Center!"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Oh, hi!\n",
+				"I remember you, Trainer!\r",
+				"A battle, please!\r"
+			]
+		}
+    ]
 }

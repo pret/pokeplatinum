@@ -62,10 +62,38 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "What’s that?!\rYou say you have a Pokédex?\nAn authentic one!\r",
-        "TRMSG_DEFEAT": "Your Pokédex fills me with such envy,\nenvy, envy...\n",
-        "TRMSG_POST_BATTLE": "There’s all kinds of Trainers with all\nsorts of Pokémon with them.\rThe more you battle, the more your\nPokédex is filled!\n",
-        "TRMSG_REMATCH": "Ooh, thank you!\rYou came back to show me your Pokédex\nbecause I don’t have one!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"What’s that?!\r",
+				"You say you have a Pokédex?\n",
+				"An authentic one!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Your Pokédex fills me with such envy,\n",
+				"envy, envy...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"There’s all kinds of Trainers with all\n",
+				"sorts of Pokémon with them.\r",
+				"The more you battle, the more your\n",
+				"Pokédex is filled!\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Ooh, thank you!\r",
+				"You came back to show me your Pokédex\n",
+				"because I don’t have one!\r"
+			]
+		}
+    ]
 }

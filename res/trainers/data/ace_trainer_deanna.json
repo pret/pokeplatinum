@@ -38,10 +38,38 @@
             "ball_seal": 19
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Worthy opponents... The search for\nthem drives me to travel far.\r",
-        "TRMSG_DEFEAT": "I’ve certainly found a tough\nadversary in you...\n",
-        "TRMSG_POST_BATTLE": "How much you believe in your\nPokémon...\rThat’s a critical factor in how a\nbattle will turn out.\n",
-        "TRMSG_REMATCH": "We’ve faced many challengers since\nwe met, but they were all weak...\rI relish the tough resistance that\nonly you can provide!\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Worthy opponents... The search for\n",
+				"them drives me to travel far.\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"I’ve certainly found a tough\n",
+				"adversary in you...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"How much you believe in your\n",
+				"Pokémon...\r",
+				"That’s a critical factor in how a\n",
+				"battle will turn out.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"We’ve faced many challengers since\n",
+				"we met, but they were all weak...\r",
+				"I relish the tough resistance that\n",
+				"only you can provide!\r"
+			]
+		}
+    ]
 }

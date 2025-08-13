@@ -53,10 +53,36 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Yeah, yeah...\nNothing’s biting!\r",
-        "TRMSG_DEFEAT": "Can’t catch a fish!\nCan’t catch a break!\n",
-        "TRMSG_POST_BATTLE": "I was counting on strength in numbers,\nbut...\rPacking it in and going home sounds good\nat a time like this...\n",
-        "TRMSG_REMATCH": "Yeah, yeah...\nNothing’s biting today either.\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Yeah, yeah...\n",
+				"Nothing’s biting!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Can’t catch a fish!\n",
+				"Can’t catch a break!\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"I was counting on strength in numbers,\n",
+				"but...\r",
+				"Packing it in and going home sounds good\n",
+				"at a time like this...\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Yeah, yeah...\n",
+				"Nothing’s biting today either.\r"
+			]
+		}
+    ]
 }

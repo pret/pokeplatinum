@@ -19,9 +19,27 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "To celebrate my getting through this\ncave, I’m going to battle you!\r",
-        "TRMSG_DEFEAT": "Well, I guess losing is something\nto commemorate, too...\n",
-        "TRMSG_POST_BATTLE": "Getting through that cave feels\nlike an adventure.\n"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"To celebrate my getting through this\n",
+				"cave, I’m going to battle you!\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": [
+				"Well, I guess losing is something\n",
+				"to commemorate, too...\n"
+			]
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"Getting through that cave feels\n",
+				"like an adventure.\n"
+			]
+		}
+    ]
 }

@@ -35,10 +35,31 @@
             "ball_seal": 0
         }
     ],
-    "messages": {
-        "TRMSG_PRE_BATTLE": "Oh? A little kid like you is going to\nteach me about Pokémon?\r",
-        "TRMSG_DEFEAT": "Wow, is that right?\n",
-        "TRMSG_POST_BATTLE": "There are so many kinds of Pokémon.\nI can’t decide which one to pamper.\n",
-        "TRMSG_REMATCH": "Yoohoo, little kid! Can you teach me\nsome more about Pokémon?\r"
-    }
+    "messages": [
+        {
+			"type": "TRMSG_PRE_BATTLE",
+			"en_US": [
+				"Oh? A little kid like you is going to\n",
+				"teach me about Pokémon?\r"
+			]
+		},
+        {
+			"type": "TRMSG_DEFEAT",
+			"en_US": "Wow, is that right?\n"
+		},
+        {
+			"type": "TRMSG_POST_BATTLE",
+			"en_US": [
+				"There are so many kinds of Pokémon.\n",
+				"I can’t decide which one to pamper.\n"
+			]
+		},
+        {
+			"type": "TRMSG_REMATCH",
+			"en_US": [
+				"Yoohoo, little kid! Can you teach me\n",
+				"some more about Pokémon?\r"
+			]
+		}
+    ]
 }

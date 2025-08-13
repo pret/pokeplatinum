@@ -30,6 +30,8 @@ datagen_trainer_out = custom_target('datagen_trainer_out',
     output: [
         'trdata.narc',
         'trpoke.narc',
+        'trtbl.narc',
+        'trtblofs.narc',
     ],
     command: [
         datagen_trainer_exe,
