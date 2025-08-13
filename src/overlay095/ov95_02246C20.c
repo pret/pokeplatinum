@@ -16,7 +16,6 @@
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247568.h"
-#include "overlay095/struct_ov95_02247628_decl.h"
 
 #include "bg_window.h"
 #include "game_options.h"
@@ -39,24 +38,6 @@
 #include "system.h"
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
-
-struct TradeSequenceData_t {
-    const NpcTradeAnimationTemplate *animationConfig;
-    int unk_04;
-    BgConfig *unk_08;
-    StringTemplate *unk_0C;
-    MessageLoader *unk_10;
-    Strbuf *unk_14;
-    SpriteList *unk_18;
-    G2dRenderer unk_1C;
-    SysTask *unk_1A8;
-    BOOL unk_1AC;
-    u16 unk_1B0;
-    u16 unk_1B2;
-    u16 unk_1B4;
-    u16 unk_1B6;
-    void *unk_1B8;
-};
 
 struct UnkStruct_ov95_02247004_t {
     u16 unk_00[96];
@@ -144,16 +125,16 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
             tradeData->unk_0C = StringTemplate_Default(HEAP_ID_57);
 
             switch (tradeData->animationConfig->tradeType) {
-            case 1:
+            case TRADE_TYPE_NORMAL:
                 StringTemplate_SetNickname(tradeData->unk_0C, 0, (BoxPokemon *)(tradeData->animationConfig->sendingPokemon));
                 StringTemplate_SetNickname(tradeData->unk_0C, 1, (BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
                 StringTemplate_SetPlayerName(tradeData->unk_0C, 2, tradeData->animationConfig->otherTrainer);
                 tradeData->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
                 break;
-            case 2:
+            case TRADE_TYPE_SEND_ONLY:
                 StringTemplate_SetNickname(tradeData->unk_0C, 0, (BoxPokemon *)(tradeData->animationConfig->sendingPokemon));
                 break;
-            case 4:
+            case TRADE_TYPE_RECEIVE_ONLY:
                 StringTemplate_SetNickname(tradeData->unk_0C, 1, (BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
                 tradeData->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(tradeData->animationConfig->receivingPokemon));
                 break;
@@ -691,9 +672,9 @@ const BoxPokemon *TradeSequence_GetReceivingPokemon(TradeSequenceData *tradeSequ
     return tradeSequence->animationConfig->receivingPokemon;
 }
 
-u32 TradeSequence_GetBackgroundColour(TradeSequenceData *tradeSequence)
+enum TradeBackground TradeSequence_GetBackground(TradeSequenceData *tradeSequence)
 {
-    return tradeSequence->animationConfig->backgroundColour;
+    return tradeSequence->animationConfig->background;
 }
 
 u16 ov95_0224764C(TradeSequenceData *param0)
@@ -721,9 +702,9 @@ int ov95_02247674(TradeSequenceData *param0)
     return Options_Frame(param0->animationConfig->options);
 }
 
-int TradeSequence_GetTradeType(TradeSequenceData *param0)
+enum TradeType TradeSequence_GetTradeType(TradeSequenceData *tradeSequence)
 {
-    return param0->animationConfig->tradeType;
+    return tradeSequence->animationConfig->tradeType;
 }
 
 static int Unk_ov95_0224C2E0 = 0;

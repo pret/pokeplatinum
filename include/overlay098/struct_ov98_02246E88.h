@@ -4,8 +4,8 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "overlay096/struct_ov96_0223B574.h"
-#include "overlay096/struct_ov96_0223B574_1.h"
+#include "overlay096/struct_world_exchange_trainer.h"
+#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "game_options.h"
 #include "overlay_manager.h"

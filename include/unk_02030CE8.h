@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_02030CEC.h"
 
-#include "overlay096/struct_ov96_0223B574.h"
+#include "overlay096/struct_world_exchange_trainer.h"
 
 #include "savedata.h"
 

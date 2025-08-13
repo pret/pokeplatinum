@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_STRUCT_OV96_0223B574_H
-#define POKEPLATINUM_STRUCT_OV96_0223B574_H
+#ifndef POKEPLATINUM_STRUCT_WORLD_EXCHANGE_TRAINER_H
+#define POKEPLATINUM_STRUCT_WORLD_EXCHANGE_TRAINER_H
 
-typedef struct {
+typedef struct WorldExchangeTrainer {
     u8 gameCode;
     u8 languageCode;
     u8 country;
@@ -17,4 +17,4 @@ typedef struct {
     u16 unk_5A;
 } WorldExchangeTrainer;
 
-#endif // POKEPLATINUM_STRUCT_OV96_0223B574_H
+#endif // POKEPLATINUM_STRUCT_WORLD_EXCHANGE_TRAINER_H

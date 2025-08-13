@@ -11,8 +11,8 @@
 #include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay094/struct_ov94_02242AAC.h"
-#include "overlay096/struct_ov96_0223B574.h"
-#include "overlay096/struct_ov96_0223B574_1.h"
+#include "overlay096/struct_world_exchange_trainer.h"
+#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "bg_window.h"
 #include "evolution.h"
@@ -141,7 +141,7 @@ typedef struct GTSApplicationState {
     DWCInetControl dwcInetControlObject;
     ApplicationManager *appMan;
     PokemonSummary pokemonSummary;
-    NpcTradeAnimationTemplate tradeAnimationConfig;
+    TradeAnimationTemplate tradeAnimationConfig;
     EvolutionData *evolutionData;
     BOOL hasTradedPokemon;
     u16 unk_108;

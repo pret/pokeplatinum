@@ -8,7 +8,6 @@
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247568.h"
-#include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
@@ -259,27 +258,27 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
     Bg_InitFromTemplate(param0->unk_24, BG_LAYER_MAIN_3, &v2, 0);
     Bg_InitFromTemplate(param0->unk_24, BG_LAYER_SUB_3, &v2, 0);
 
-    switch (TradeSequence_GetBackgroundColour(param0->unk_00)) {
-    case 0:
+    switch (TradeSequence_GetBackground(param0->unk_00)) {
+    case TRADE_BACKGROUND_DAY:
     default:
         v3 = 15;
         v4 = 16;
         v5 = 17;
         v6 = 0x0;
         break;
-    case 1:
+    case TRADE_BACKGROUND_EVENING:
         v3 = 15;
         v4 = 16;
         v5 = 17;
         v6 = 0x20;
         break;
-    case 2:
+    case TRADE_BACKGROUND_NIGHT:
         v3 = 15;
         v4 = 16;
         v5 = 17;
         v6 = 0x40;
         break;
-    case 3:
+    case TRADE_BACKGROUND_WIFI:
         v3 = 24;
         v4 = 25;
         v5 = 26;

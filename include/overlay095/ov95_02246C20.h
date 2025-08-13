@@ -3,10 +3,10 @@
 
 #include <nnsys.h>
 
+#include "overlay006/struct_npc_trade_animation_template.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247568.h"
-#include "overlay095/struct_ov95_02247628_decl.h"
 
 #include "bg_window.h"
 #include "message.h"
@@ -14,6 +14,25 @@
 #include "pokemon.h"
 #include "sprite.h"
 #include "string_template.h"
+#include "sys_task_manager.h"
+
+typedef struct TradeSequenceData {
+    const TradeAnimationTemplate *animationConfig;
+    int unk_04;
+    BgConfig *unk_08;
+    StringTemplate *unk_0C;
+    MessageLoader *unk_10;
+    Strbuf *unk_14;
+    SpriteList *unk_18;
+    G2dRenderer unk_1C;
+    SysTask *unk_1A8;
+    BOOL unk_1AC;
+    u16 unk_1B0;
+    u16 unk_1B2;
+    u16 unk_1B4;
+    u16 unk_1B6;
+    void *unk_1B8;
+} TradeSequenceData;
 
 int TradeSequence_Init(ApplicationManager *appMan, int *param1);
 int TradeSequence_Exit(ApplicationManager *appMan, int *param1);
@@ -31,15 +50,15 @@ Sprite *ov95_022475E4(TradeSequenceData *param0, SpriteResourcesHeader *param1, 
 BgConfig *ov95_02247628(TradeSequenceData *param0);
 StringTemplate *ov95_0224762C(TradeSequenceData *param0);
 MessageLoader *ov95_02247630(TradeSequenceData *param0);
-const BoxPokemon *TradeSequence_GetSendingPokemon(TradeSequenceData *param0);
-const BoxPokemon *TradeSequence_GetReceivingPokemon(TradeSequenceData *param0);
-u32 TradeSequence_GetBackgroundColour(TradeSequenceData *param0);
+const BoxPokemon *TradeSequence_GetSendingPokemon(TradeSequenceData *tradeSequence);
+const BoxPokemon *TradeSequence_GetReceivingPokemon(TradeSequenceData *tradeSequence);
+enum TradeBackground TradeSequence_GetBackground(TradeSequenceData *tradeSequence);
 u16 ov95_0224764C(TradeSequenceData *param0);
 u16 ov95_02247654(TradeSequenceData *param0);
 u16 ov95_02247660(TradeSequenceData *param0);
 u16 ov95_02247668(TradeSequenceData *param0);
 int ov95_02247674(TradeSequenceData *param0);
-int TradeSequence_GetTradeType(TradeSequenceData *param0);
+enum TradeType TradeSequence_GetTradeType(TradeSequenceData *tradeSequence);
 void ov95_022476C8(void *param0);
 
 #endif // POKEPLATINUM_OV95_02246C20_H

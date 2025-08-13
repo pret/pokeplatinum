@@ -8,7 +8,6 @@
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247568.h"
-#include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
 
@@ -280,7 +279,7 @@ static void ov95_02249910(UnkStruct_ov95_022497D8 *param0)
     Bg_InitFromTemplate(param0->unk_24, BG_LAYER_MAIN_3, &v2, 0);
     Bg_InitFromTemplate(param0->unk_24, BG_LAYER_SUB_3, &v2, 0);
 
-    switch (TradeSequence_GetBackgroundColour(param0->unk_00)) {
+    switch (TradeSequence_GetBackground(param0->unk_00)) {
     case 0:
     default:
         v3 = 15;
