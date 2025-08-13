@@ -50,6 +50,7 @@
 #include "unk_0201567C.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/naming_screen/namein.naix.h"
 #include "res/text/bank/generic_names.h"
 #include "res/text/bank/naming_screen.h"
 
@@ -1794,12 +1795,12 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
 {
     BgConfig *bgConfig = namingScreen->bgConfig;
 
-    Graphics_LoadPaletteFromOpenNARC(narc, 0, PAL_LOAD_MAIN_BG, 0, 16 * 3 * 2, HEAP_ID_NAMING_SCREEN_APP);
+    Graphics_LoadPaletteFromOpenNARC(narc, naming_screen_NCLR, PAL_LOAD_MAIN_BG, 0, 16 * 3 * 2, HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, PAL_LOAD_SUB_BG, 0, 16 * 2, HEAP_ID_NAMING_SCREEN_APP);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        2,
+        naming_screen_main_tiles_NCGR_lz,
         bgConfig,
         BG_LAYER_MAIN_2,
         0,
@@ -1808,7 +1809,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        4,
+        naming_screen_bg_NSCR_lz,
         bgConfig,
         BG_LAYER_MAIN_2,
         0,
@@ -1817,7 +1818,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilesToBgLayerFromOpenNARC(
         narc,
-        2,
+        naming_screen_main_tiles_NCGR_lz,
         bgConfig,
         BG_LAYER_MAIN_1,
         0,
@@ -1826,7 +1827,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        6,
+        naming_screen_chars_bg_0_NSCR_lz,
         bgConfig,
         BG_LAYER_MAIN_1,
         0,
@@ -1835,7 +1836,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
         HEAP_ID_NAMING_SCREEN_APP);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(
         narc,
-        7,
+        naming_screen_chars_bg_1_NSCR_lz,
         bgConfig,
         BG_LAYER_MAIN_0,
         0,
@@ -1854,7 +1855,7 @@ static void NamingScreen_LoadGraphicsFromNarc(NamingScreen *namingScreen, NARC *
 
     namingScreen->charDataAlloc = Graphics_GetCharDataFromOpenNARC(
         narc,
-        16,
+        naming_screen_unk_tiles_NCGR_lz,
         TRUE,
         &namingScreen->charData,
         HEAP_ID_NAMING_SCREEN_APP);
@@ -1894,7 +1895,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[0][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CHAR],
         narc,
-        10,
+        naming_screen_sprites_NCGR_lz,
         TRUE,
         0,
         NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1902,7 +1903,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[0][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_PLTT],
         narc,
-        1,
+        naming_screen_sprites_NCLR,
         FALSE,
         0,
         NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1911,7 +1912,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[0][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CELL],
         narc,
-        12,
+        naming_screen_sprites_cell_NCER_lz,
         TRUE,
         0,
         SPRITE_RESOURCE_CELL,
@@ -1919,7 +1920,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[0][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_ANIM],
         narc,
-        14,
+        naming_screen_sprites_anim_NANR_lz,
         TRUE,
         0,
         SPRITE_RESOURCE_ANIM,
@@ -1945,7 +1946,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[1][SPRITE_RESOURCE_CHAR] = SpriteResourceCollection_AddTilesFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CHAR],
         narc,
-        11,
+        naming_screen_unk_sprite_NCGR_lz,
         TRUE,
         1,
         NNS_G2D_VRAM_TYPE_2DSUB,
@@ -1953,7 +1954,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[1][SPRITE_RESOURCE_PLTT] = SpriteResourceCollection_AddPaletteFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_PLTT],
         narc,
-        1,
+        naming_screen_sprites_NCLR,
         FALSE,
         1,
         NNS_G2D_VRAM_TYPE_2DSUB,
@@ -1962,7 +1963,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[1][SPRITE_RESOURCE_CELL] = SpriteResourceCollection_AddFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_CELL],
         narc,
-        13,
+        naming_screen_unk_sprite_cell_NCER_lz,
         TRUE,
         1,
         SPRITE_RESOURCE_CELL,
@@ -1970,7 +1971,7 @@ static void NamingScreen_LoadObjectGfx(NamingScreen *namingScreen, NARC *narc)
     namingScreen->spriteResources[1][SPRITE_RESOURCE_ANIM] = SpriteResourceCollection_AddFrom(
         namingScreen->spriteResourceCollections[SPRITE_RESOURCE_ANIM],
         narc,
-        15,
+        naming_screen_unk_sprite_anim_NANR_lz,
         TRUE,
         1,
         SPRITE_RESOURCE_ANIM,
@@ -2195,7 +2196,7 @@ static void NamingScreen_AnimateChangeChars(
 
         Graphics_LoadTilemapToBgLayer(
             NARC_INDEX_DATA__NAMEIN,
-            6 + currentCharsIdx,
+            naming_screen_chars_bg_0_NSCR_lz + currentCharsIdx,
             bgConfig,
             bgLayer,
             0,
@@ -2324,7 +2325,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
     if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(
             narc,
-            6 + 3,
+            naming_screen_chars_bg_0_NSCR_lz + 3,
             namingScreen->bgConfig,
             BG_LAYER_MAIN_1,
             0,
