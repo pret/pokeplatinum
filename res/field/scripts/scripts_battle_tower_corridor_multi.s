@@ -31,7 +31,7 @@ _0068:
     End
 
 _007F:
-    HideObject 0xFF
+    HideObject LOCALID_PLAYER
     ScrCmd_06B 8, 0, 0
     Return
 

@@ -158,7 +158,7 @@ _01D4:
     End
 
 _01E3:
-    HideObject 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _01E9:

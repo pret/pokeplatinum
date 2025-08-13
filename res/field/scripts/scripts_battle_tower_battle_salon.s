@@ -83,7 +83,7 @@ _015D:
     End
 
 _0179:
-    HideObject 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _017F:
@@ -306,7 +306,7 @@ _04A6:
     Call _0488
     ApplyMovement 0, _06C8
     WaitMovement
-    ShowObject 0xFF
+    ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _06B8
     WaitMovement
     Call _049B

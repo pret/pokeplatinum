@@ -18,7 +18,7 @@ _0035:
     End
 
 _0037:
-    HideObject 0xFF
+    HideObject LOCALID_PLAYER
     GoToIfEq VAR_UNK_0x40D9, 3, _004A
     End
 
