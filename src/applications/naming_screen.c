@@ -1483,7 +1483,7 @@ NamingScreenArgs *NamingScreenArgs_Init(
     args->type = type;
     args->playerGenderOrMonSpecies = playerGenderOrMonSpecies;
     args->maxChars = maxChars;
-    args->noInput = 0;
+    args->noInput = FALSE;
     args->nameInputRaw[0] = CHAR_EOS;
     args->textInputStr = Strbuf_Init(32, heapID);
     args->battleMsgID = 0;
@@ -2325,7 +2325,7 @@ static void NamingScreen_InitWindows(NamingScreen *namingScreen, ApplicationMana
     if (namingScreen->type == NAMING_SCREEN_TYPE_UNK4) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(
             narc,
-            naming_screen_chars_bg_0_NSCR_lz + 3,
+            naming_screen_chars_bg_3_NSCR_lz,
             namingScreen->bgConfig,
             BG_LAYER_MAIN_1,
             0,

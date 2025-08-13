@@ -9,11 +9,20 @@ naming_screen_sprites_pngs = files(
     'naming_screen_unk_sprite.png',
 )
 
-naming_screen_pals = files('naming_screen.pal', 'naming_screen_sprites.pal')
+naming_screen_pals = files(
+    'naming_screen.pal',
+    'naming_screen_sprites.pal',
+)
 
-naming_screen_cell_jsons = files('naming_screen_sprites_cell.json', 'naming_screen_unk_sprite_cell.json')
+naming_screen_cell_jsons = files(
+    'naming_screen_sprites_cell.json',
+    'naming_screen_unk_sprite_cell.json',
+)
 
-naming_screen_anim_jsons = files('naming_screen_sprites_anim.json', 'naming_screen_unk_sprite_anim.json')
+naming_screen_anim_jsons = files(
+    'naming_screen_sprites_anim.json',
+    'naming_screen_unk_sprite_anim.json',
+)
 
 naming_screen_nscrs = files(
     'naming_screen_bg.NSCR',
