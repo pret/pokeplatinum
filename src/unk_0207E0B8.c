@@ -138,7 +138,7 @@ static u8 sub_0207FBE0(GameWindowLayout *param0, u8 *param1, u8 *param2, u8 para
 static u8 sub_0207FC30(GameWindowLayout *param0, u8 *param1, u8 *param2, const u8 *param3);
 static u8 sub_0207FC94(GameWindowLayout *param0);
 static void sub_0207FFC8(GameWindowLayout *param0);
-static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *param1);
+static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *buf);
 static u8 sub_020801F0(GameWindowLayout *param0, u8 *param1);
 static u8 sub_0208022C(GameWindowLayout *param0, u8 *param1);
 static u8 sub_0208027C(GameWindowLayout *param0, u8 *param1);
@@ -1709,17 +1709,17 @@ static void sub_0207FFC8(GameWindowLayout *param0)
 
 static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *buf)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
+    Pokemon *pokemon = Party_GetPokemonBySlotIndex(param0->partyManagementData->party, param0->partySlot);
     u16 move;
     u8 fieldMoveIndex = 0, i, count = 0, fieldEffect;
 
-    buf[count] = 1; // summary
+    buf[count] = 1;
     count++;
 
     if (FieldSystem_IsInBattleTowerSalon(param0->partyManagementData->fieldSystem) == FALSE) {
         if (param0->unk_704[param0->partySlot].unk_10 == 0) {
             for (i = 0; i < 4; i++) {
-                move = (u16)Pokemon_GetValue(v0, MON_DATA_MOVE1 + i, NULL);
+                move = (u16)Pokemon_GetValue(pokemon, MON_DATA_MOVE1 + i, NULL);
 
                 if (move == 0) {
                     break;
@@ -1738,7 +1738,7 @@ static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *buf)
             buf[count] = 0;
             count++;
 
-            if (Item_IsMail(param0->unk_704[param0->partySlot].unk_0C) == 1) {
+            if (Item_IsMail(param0->unk_704[param0->partySlot].unk_0C) == TRUE) {
                 buf[count] = 5;
             } else {
                 buf[count] = 2;
@@ -1746,7 +1746,7 @@ static u8 GetContextMenuEntriesForPartyMon(GameWindowLayout *param0, u8 *buf)
 
             count++;
         } else {
-            buf[count] = 0; // quit
+            buf[count] = 0;
             count++;
         }
     }
