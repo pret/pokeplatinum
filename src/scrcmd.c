@@ -7875,9 +7875,9 @@ static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx)
     return FALSE;
 }
 
-u32 fieldMapLastFreeMemory;
-u32 fieldLastFreeMemory;
-u32 fieldTaskLastFreeMemory;
+static u32 sFieldMapLastFreeMemory;
+static u32 sFieldLastFreeMemoryDummy;
+static u32 sFieldTaskLastFreeMemory;
 
 static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx)
 {
@@ -7888,15 +7888,15 @@ static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx)
     u32 fieldTaskFreeMemory = Heap_FndGetTotalFreeSizeForExpHeap(HEAP_ID_FIELD_TASK);
 
     if (assertUnchangedFreeMemory == FALSE) {
-        fieldMapLastFreeMemory = fieldMapFreeMemory;
-        fieldLastFreeMemory = fieldFreeMemory;
-        fieldTaskLastFreeMemory = fieldTaskFreeMemory;
+        sFieldMapLastFreeMemory = fieldMapFreeMemory;
+        sFieldLastFreeMemoryDummy = fieldFreeMemory;
+        sFieldTaskLastFreeMemory = fieldTaskFreeMemory;
     } else {
-        if (fieldMapFreeMemory != fieldMapLastFreeMemory) {
+        if (fieldMapFreeMemory != sFieldMapLastFreeMemory) {
             GF_ASSERT(FALSE);
         }
 
-        if (fieldTaskFreeMemory != fieldTaskLastFreeMemory) {
+        if (fieldTaskFreeMemory != sFieldTaskLastFreeMemory) {
             GF_ASSERT(FALSE);
         }
     }
