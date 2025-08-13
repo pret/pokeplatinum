@@ -131,7 +131,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     SaveData *saveData;
     PCBoxes *pcBoxes;
     Party *party;
-    NamingScreenArgs *unk_128;
+    NamingScreenArgs *namingScreenArgs;
     PokemonSummary monSummary;
     ReleaseMon releaseMon;
     TouchScreenActions *mainBoxAndCompareButtonsAction;
@@ -2540,8 +2540,8 @@ static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
         if (ov19_IsSysTaskDone(param0->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack2)) {
             BoxGraphics_Free(param0->unk_114);
             Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
-            PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->unk_128->textInputStr);
-            param0->ApplicationManager = ApplicationManager_New(&gNamingScreenAppTemplate, param0->unk_128, HEAP_ID_BOX_DATA);
+            PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->namingScreenArgs->textInputStr);
+            param0->ApplicationManager = ApplicationManager_New(&gNamingScreenAppTemplate, param0->namingScreenArgs, HEAP_ID_BOX_DATA);
             (*state)++;
         }
         break;
@@ -2551,7 +2551,7 @@ static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
 
             ApplicationManager_Free(param0->ApplicationManager);
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
-            PCBoxes_RenameBox(param0->pcBoxes, boxID, param0->unk_128->textInputStr);
+            PCBoxes_RenameBox(param0->pcBoxes, boxID, param0->namingScreenArgs->textInputStr);
 
             PCBoxes_LoadCustomization(param0->pcBoxes, &param0->unk_00.customization);
             BoxGraphics_Load(&(param0->unk_114), &param0->unk_00, param0);
@@ -3379,7 +3379,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, PokemonStorageSession
     param0->mon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
     GF_ASSERT(param0->MessageVariableBuffer);
-    param0->unk_128 = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, BOX_NAME_LEN, param0->options);
+    param0->namingScreenArgs = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, BOX_NAME_LEN, param0->options);
 
     if (pokemonStorageSession->boxMode != PC_MODE_COMPARE) {
         param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
@@ -3416,7 +3416,7 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
     MessageLoader_Free(param0->speciesNameLoader);
     MessageLoader_Free(param0->natureNameLoader);
     MessageLoader_Free(param0->abilityNameLoader);
-    NamingScreenArgs_Free(param0->unk_128);
+    NamingScreenArgs_Free(param0->namingScreenArgs);
 
     PCMonPreviewFree(&(param0->unk_00.pcMonPreview));
     ov19_MonSelectionFree(&(param0->unk_00.selection));

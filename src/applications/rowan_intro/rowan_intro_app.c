@@ -245,8 +245,8 @@ typedef struct RowanIntro {
     StringTemplate *strFormatter;
     UnkStruct_02015920 *unk_68;
     SysTask *unused;
-    NamingScreenArgs *unk_70;
-    NamingScreenArgs *unk_74;
+    NamingScreenArgs *playerNamingScreenArgs;
+    NamingScreenArgs *rivalNamingScreenArgs;
     enum FadeBgLayerState fadeBgLayerState;
     int fadeBgLayerCurAlpha;
     int fadeBgLayerCurAlphaInv;
@@ -325,8 +325,8 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->state = RI_STATE_FIRST_FADE_BLACK_START;
     manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->unk_70 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, manager->options);
-    manager->unk_74 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, TRAINER_NAME_LEN, manager->options);
+    manager->playerNamingScreenArgs = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, manager->options);
+    manager->rivalNamingScreenArgs = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, TRAINER_NAME_LEN, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;
@@ -436,19 +436,19 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
 
     TrainerInfo_SetNameFromStrbuf(
         SaveData_GetTrainerInfo(manager->saveData),
-        manager->unk_70->textInputStr);
+        manager->playerNamingScreenArgs->textInputStr);
     TrainerInfo_SetGender(
         SaveData_GetTrainerInfo(manager->saveData),
-        manager->unk_70->playerGenderOrMonSpecies);
+        manager->playerNamingScreenArgs->playerGenderOrMonSpecies);
 
     {
         MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlock(manager->saveData);
 
-        MiscSaveBlock_SetRivalName(miscSaveBlock, manager->unk_74->textInputStr);
+        MiscSaveBlock_SetRivalName(miscSaveBlock, manager->rivalNamingScreenArgs->textInputStr);
     }
 
-    NamingScreenArgs_Free(manager->unk_70);
-    NamingScreenArgs_Free(manager->unk_74);
+    NamingScreenArgs_Free(manager->playerNamingScreenArgs);
+    NamingScreenArgs_Free(manager->rivalNamingScreenArgs);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);
@@ -1001,14 +1001,14 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
             StringTemplate_SetStrbuf(
                 manager->strFormatter,
                 0,
-                manager->unk_70->textInputStr,
+                manager->playerNamingScreenArgs->textInputStr,
                 manager->playerGender,
                 1,
                 GAME_LANGUAGE);
             StringTemplate_SetStrbuf(
                 manager->strFormatter,
                 1,
-                manager->unk_74->textInputStr,
+                manager->rivalNamingScreenArgs->textInputStr,
                 0,
                 1,
                 GAME_LANGUAGE);
@@ -2704,10 +2704,10 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_NAME_APP_KEYBOARD:
-        manager->unk_70->playerGenderOrMonSpecies = manager->playerGender;
+        manager->playerNamingScreenArgs->playerGenderOrMonSpecies = manager->playerGender;
         manager->appMan = ApplicationManager_New(
             &gNamingScreenAppTemplate,
-            manager->unk_70,
+            manager->playerNamingScreenArgs,
             manager->heapID);
         manager->state = RI_STATE_NAME_KEYBOARD;
         break;
@@ -2773,7 +2773,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 break;
             case 2:
             case LIST_CANCEL:
-                Strbuf_Clear(manager->unk_70->textInputStr);
+                Strbuf_Clear(manager->playerNamingScreenArgs->textInputStr);
                 manager->bufferedState = RI_STATE_GENDR_FADE_IN_AVATAR_PREP;
                 manager->state = RI_STATE_NAME_FADE_OUT_AVATAR;
                 break;
@@ -2858,7 +2858,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 {
                     Strbuf *tmpStrbuf = MessageLoader_GetNewStrbuf(manager->msgLoader, rivalNameTextID);
 
-                    Strbuf_Copy(manager->unk_74->textInputStr, tmpStrbuf);
+                    Strbuf_Copy(manager->rivalNamingScreenArgs->textInputStr, tmpStrbuf);
                     Strbuf_Free(tmpStrbuf);
                 }
             }
@@ -2875,7 +2875,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
     case RI_STATE_RIVAL_NAME_APP_KEYBOARD:
         manager->appMan = ApplicationManager_New(
             &gNamingScreenAppTemplate,
-            manager->unk_74,
+            manager->rivalNamingScreenArgs,
             manager->heapID);
         manager->state = RI_STATE_RIVAL_NAME_KEYBOARD;
         break;
@@ -2919,7 +2919,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 break;
             case 2:
             case LIST_CANCEL:
-                Strbuf_Clear(manager->unk_74->textInputStr);
+                Strbuf_Clear(manager->rivalNamingScreenArgs->textInputStr);
                 manager->state = RI_STATE_RIVAL_NAME_DIALOGUE;
                 break;
             }
