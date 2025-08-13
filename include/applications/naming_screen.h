@@ -24,9 +24,9 @@ typedef struct NamingScreenArgs {
     int monForm;
     int maxChars;
     int monGender;
-    int unk_14;
+    int noInput;
     Strbuf *textInputStr;
-    u16 unk_1C[20];
+    charcode_t nameInputRaw[20];
     int battleMsgID;
     PCBoxes *pcBoxes;
     Options *options;
@@ -37,9 +37,9 @@ extern const ApplicationManagerTemplate gNamingScreenAppTemplate;
 NamingScreenArgs *NamingScreenArgs_Init(
     enum HeapId heapID,
     enum NamingScreenType type,
-    int param2,
-    int param3,
+    int playerGenderOrMonSpecies,
+    int maxChars,
     Options *options);
-void NamingScreenArgs_Free(NamingScreenArgs *param0);
+void NamingScreenArgs_Free(NamingScreenArgs *args);
 
 #endif // POKEPLATINUM_KEYBOARD_H
