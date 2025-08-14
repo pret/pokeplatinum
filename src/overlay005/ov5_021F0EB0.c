@@ -36,7 +36,7 @@ static void (*const Unk_ov5_0220020C[4])(UnkStruct_ov5_021F0FB8 *);
 
 SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID)
 {
-    SysTask *v0;
+    SysTask *task;
     UnkStruct_ov5_021F0FB8 *v1 = Heap_AllocFromHeapAtEnd(heapID, (sizeof(UnkStruct_ov5_021F0FB8)));
 
     memset(v1, 0, (sizeof(UnkStruct_ov5_021F0FB8)));
@@ -48,8 +48,8 @@ SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID)
     v1->unk_10 = Camera_GetDistance(v1->camera);
     v1->unk_20 = v1->unk_10;
 
-    v0 = SysTask_Start(ov5_021F0F2C, v1, 0xffff);
-    return v0;
+    task = SysTask_Start(ov5_021F0F2C, v1, 0xffff);
+    return task;
 }
 
 BOOL ov5_021F0EF0(SysTask *param0)

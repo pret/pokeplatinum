@@ -153,7 +153,7 @@ static int ov6_02247288(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
         Location location;
 
         warpId = FieldOverworldState_GetWarpId(fieldState);
-        sub_0203A7F0(warpId, &location);
+        Location_InitFly(warpId, &location);
         FieldTask_ChangeMapChangeByDig(task, &location, param2->unk_08);
     } else {
         Location *location = FieldOverworldState_GetExitLocation(fieldState);
@@ -322,7 +322,7 @@ static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
 {
     int v0 = PlayerAvatar_Gender(fieldSystem->playerAvatar);
 
-    param2->unk_10 = ov6_02243F88(fieldSystem, 0, param2->unk_20, v0);
+    param2->unk_10 = SysTask_CutIn_New(fieldSystem, 0, param2->unk_20, v0);
     param2->unk_00++;
 
     return 0;
@@ -330,11 +330,11 @@ static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
 
 static int ov6_0224750C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
-    if (isTaskFinished(param2->unk_10) == FALSE) {
+    if (CheckCutInFinished(param2->unk_10) == FALSE) {
         return 0;
     }
 
-    ov6_02243FC8(param2->unk_10);
+    SysTask_CutIn_Done(param2->unk_10);
     param2->unk_00++;
     return 1;
 }

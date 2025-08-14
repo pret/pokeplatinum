@@ -293,7 +293,7 @@ static UnkStruct_ov101_021D5D90 *UnkStruct_020711EC_GetIterationData(const UnkSt
     return param0->iterationData;
 }
 
-int UnkStruct_ov101_021D5D90_IsLsbSet(const UnkStruct_ov101_021D5D90 *param0)
+BOOL UnkStruct_ov101_021D5D90_IsLsbSet(const UnkStruct_ov101_021D5D90 *param0)
 {
     if (param0->bitmask & 1) {
         return TRUE;

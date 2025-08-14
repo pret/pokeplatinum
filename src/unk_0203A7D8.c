@@ -13,18 +13,18 @@
 #include "vars_flags.h"
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
+    u16 whiteOutMapId;
+    u16 whiteOutX;
+    u16 whiteOutZ;
+    u16 flyMapId;
+    u16 flyX;
+    u16 flyZ;
     u8 unk_0C;
     u8 unk_0D;
     u16 unk_0E;
 } UnkStruct_020E97B4;
 
-static const UnkStruct_020E97B4 Unk_020E97B4[] = {
+static const UnkStruct_020E97B4 sSpawnLocations[] = {
     { 0x19E, 0x8, 0x8, 0x19B, 0x74, 0x376, 0x1, 0x1, FIRST_ARRIVAL_TWINLEAF_TOWN },
     { 0x1A4, 0x8, 0x6, 0x1A2, 0xB1, 0x34B, 0x1, 0x1, FIRST_ARRIVAL_SANDGEM_TOWN },
     { 0x1AC, 0x8, 0x6, 0x1AA, 0xB0, 0x29B, 0x1, 0x1, FIRST_ARRIVAL_FLOAROMA_TOWN },
@@ -47,15 +47,15 @@ static const UnkStruct_020E97B4 Unk_020E97B4[] = {
     { 0xAF, 0x4, 0x3, 0xAC, 0x34F, 0x230, 0x1, 0x0, FIRST_ARRIVAL_POKEMON_LEAGUE }
 };
 
-static int sub_0203A7D8(int param0)
+static int MapSpawnIdToIndex(int spawnDestination)
 {
-    if ((param0 <= 0) || (param0 > NELEMS(Unk_020E97B4))) {
-        GF_ASSERT(0);
-        param0 = 1;
+    if ((spawnDestination <= 0) || (spawnDestination > NELEMS(sSpawnLocations))) {
+        GF_ASSERT(FALSE);
+        spawnDestination = 1;
     }
 
-    param0--;
-    return param0;
+    spawnDestination--;
+    return spawnDestination;
 }
 
 int sub_0203A7EC(void)
@@ -63,25 +63,25 @@ int sub_0203A7EC(void)
     return 1;
 }
 
-void sub_0203A7F0(int param0, Location *location)
+void Location_InitFly(int flyDestination, Location *location)
 {
-    param0 = sub_0203A7D8(param0);
+    flyDestination = MapSpawnIdToIndex(flyDestination);
 
-    location->mapId = Unk_020E97B4[param0].unk_06;
+    location->mapId = sSpawnLocations[flyDestination].flyMapId;
     location->warpId = WARP_ID_NONE;
-    location->x = Unk_020E97B4[param0].unk_08;
-    location->z = Unk_020E97B4[param0].unk_0A;
+    location->x = sSpawnLocations[flyDestination].flyX;
+    location->z = sSpawnLocations[flyDestination].flyZ;
     location->faceDirection = FACE_DOWN;
 }
 
-void sub_0203A824(int param0, Location *location)
+void Location_InitWhiteOut(int whiteOutDestination, Location *location)
 {
-    param0 = sub_0203A7D8(param0);
+    whiteOutDestination = MapSpawnIdToIndex(whiteOutDestination);
 
-    location->mapId = Unk_020E97B4[param0].unk_00;
+    location->mapId = sSpawnLocations[whiteOutDestination].whiteOutMapId;
     location->warpId = WARP_ID_NONE;
-    location->x = Unk_020E97B4[param0].unk_02;
-    location->z = Unk_020E97B4[param0].unk_04;
+    location->x = sSpawnLocations[whiteOutDestination].whiteOutX;
+    location->z = sSpawnLocations[whiteOutDestination].whiteOutZ;
     location->faceDirection = FACE_UP;
 }
 
@@ -89,8 +89,8 @@ int sub_0203A858(int param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
-        if ((Unk_020E97B4[v0].unk_00 == param0) && Unk_020E97B4[v0].unk_0C) {
+    for (v0 = 0; v0 < NELEMS(sSpawnLocations); v0++) {
+        if ((sSpawnLocations[v0].whiteOutMapId == param0) && sSpawnLocations[v0].unk_0C) {
             return v0 + 1;
         }
     }
@@ -102,8 +102,8 @@ int sub_0203A87C(int param0)
 {
     int v0;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
-        if ((Unk_020E97B4[v0].unk_06 == param0) && Unk_020E97B4[v0].unk_0C) {
+    for (v0 = 0; v0 < NELEMS(sSpawnLocations); v0++) {
+        if ((sSpawnLocations[v0].flyMapId == param0) && sSpawnLocations[v0].unk_0C) {
             return v0 + 1;
         }
     }
@@ -111,33 +111,33 @@ int sub_0203A87C(int param0)
     return 0;
 }
 
-int sub_0203A8A0(int param0, int param1, int param2)
+int sub_0203A8A0(int mapId, int param1, int param2)
 {
-    int v0;
+    int i;
     int v1 = param1 / 32;
     int v2 = param2 / 32;
-    int v3 = 0;
+    int destinationId = 0;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
-        if (Unk_020E97B4[v0].unk_06 == param0) {
-            v3 = v0 + 1;
+    for (i = 0; i < NELEMS(sSpawnLocations); i++) {
+        if (sSpawnLocations[i].flyMapId == mapId) {
+            destinationId = i + 1;
 
-            if ((v1 == Unk_020E97B4[v0].unk_08 / 32) && (v2 == Unk_020E97B4[v0].unk_0A / 32)) {
-                return v3;
+            if ((v1 == sSpawnLocations[i].flyX / 32) && (v2 == sSpawnLocations[i].flyZ / 32)) {
+                return destinationId;
             }
         }
     }
 
-    return v3;
+    return destinationId;
 }
 
 void sub_0203A8E8(FieldSystem *fieldSystem, int param1)
 {
     int v0;
 
-    for (v0 = 0; v0 < NELEMS(Unk_020E97B4); v0++) {
-        if ((Unk_020E97B4[v0].unk_06 == param1) && Unk_020E97B4[v0].unk_0D) {
-            SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_SET, Unk_020E97B4[v0].unk_0E);
+    for (v0 = 0; v0 < NELEMS(sSpawnLocations); v0++) {
+        if ((sSpawnLocations[v0].flyMapId == param1) && sSpawnLocations[v0].unk_0D) {
+            SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_SET, sSpawnLocations[v0].unk_0E);
             return;
         }
     }
@@ -145,6 +145,6 @@ void sub_0203A8E8(FieldSystem *fieldSystem, int param1)
 
 BOOL sub_0203A920(FieldSystem *fieldSystem, int param1)
 {
-    int v0 = sub_0203A7D8(param1);
-    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, Unk_020E97B4[v0].unk_0E);
+    int v0 = MapSpawnIdToIndex(param1);
+    return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, sSpawnLocations[v0].unk_0E);
 }

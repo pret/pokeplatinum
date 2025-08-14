@@ -413,7 +413,7 @@ static BOOL ScrCmd_Warp(ScriptContext *ctx);
 static BOOL ScrCmd_UseRockClimb(ScriptContext *ctx);
 static BOOL ScrCmd_UseSurf(ScriptContext *ctx);
 static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx);
-static BOOL ScrCmd_0C2(ScriptContext *ctx);
+static BOOL ScrCmd_UseFly(ScriptContext *ctx);
 static BOOL ScrCmd_0C3(ScriptContext *ctx);
 static BOOL ScrCmd_0C4(ScriptContext *ctx);
 static BOOL ScrCmd_0C5(ScriptContext *ctx);
@@ -964,7 +964,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_UseRockClimb,
     ScrCmd_UseSurf,
     ScrCmd_UseWaterfall,
-    ScrCmd_0C2,
+    ScrCmd_UseFly,
     ScrCmd_0C3,
     ScrCmd_0C4,
     ScrCmd_0C5,
@@ -1959,7 +1959,7 @@ static BOOL ScrCmd_CheckFlagFromVar(ScriptContext *ctx)
     u16 *flagID = ScriptContext_GetVarPointer(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = FieldSystem_CheckFlag(fieldSystem, (*flagID));
+    *destVar = FieldSystem_CheckFlag(fieldSystem, *flagID);
     return FALSE;
 }
 
@@ -4495,13 +4495,13 @@ static BOOL ScrCmd_UseWaterfall(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0C2(ScriptContext *ctx)
+static BOOL ScrCmd_UseFly(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 mapID = ScriptContext_ReadHalfWord(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
 
-    FieldTask_StartMapChangeFly(ctx->fieldSystem, v0, -1, v1, v2, 1);
+    FieldTask_StartMapChangeFly(ctx->fieldSystem, mapID, -1, x, z, FACE_DOWN);
     return TRUE;
 }
 
@@ -4531,7 +4531,7 @@ static BOOL ScrCmd_0C5(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), v2);
-    *v1 = ov6_02243F88(ctx->fieldSystem, 0, v0, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
+    *v1 = SysTask_CutIn_New(ctx->fieldSystem, 0, v0, PlayerAvatar_Gender(ctx->fieldSystem->playerAvatar));
 
     ScriptContext_Pause(ctx, sub_02042C80);
     return TRUE;
@@ -4541,8 +4541,8 @@ static BOOL sub_02042C80(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    if (isTaskFinished(*v0) == TRUE) {
-        ov6_02243FC8(*v0);
+    if (CheckCutInFinished(*v0) == TRUE) {
+        SysTask_CutIn_Done(*v0);
         return TRUE;
     }
 
@@ -4569,10 +4569,10 @@ static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx)
     if (rideBike == TRUE) {
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_BICYCLE);
         Sound_TryFadeOutToBGM(ctx->fieldSystem, SEQ_BICYCLE, 1);
-        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 1));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, 1 << 1);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
     } else {
-        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, (1 << 0));
+        PlayerAvatar_SetRequestStateBit(ctx->fieldSystem->playerAvatar, 1 << 0);
         PlayerAvatar_RequestChangeState(ctx->fieldSystem->playerAvatar);
         Sound_SetSpecialBGM(ctx->fieldSystem, SEQ_NONE);
         Sound_TryFadeOutToBGM(ctx->fieldSystem, Sound_GetOverrideBGM(ctx->fieldSystem, ctx->fieldSystem->location->mapId), 1);
