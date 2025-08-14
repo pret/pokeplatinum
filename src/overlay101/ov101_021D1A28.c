@@ -4015,7 +4015,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D86B0 = {
     ov101_021D5068,
     ov101_021D508C,
     ov101_021D5098,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D8700;
@@ -4220,7 +4220,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D8700 = {
     ov101_021D5388,
     ov101_021D53A0,
     ov101_021D53A4,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static void ov101_021D53B0(UnkStruct_ov101_021D13C8 *param0)

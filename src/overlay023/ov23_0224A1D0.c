@@ -821,7 +821,7 @@ void ov23_0224AF4C(int param0)
     CommPlayerManager *v0 = CommPlayerMan_Get();
 
     if (v0->unk_28[param0] != NULL) {
-        if (sub_020714F0(v0->unk_28[param0])) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v0->unk_28[param0])) {
             sub_0207136C(v0->unk_28[param0]);
         } else {
             GF_ASSERT(0);

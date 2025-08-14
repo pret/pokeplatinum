@@ -1719,7 +1719,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D918C = {
     ov101_021D7260,
     ov101_021D72AC,
     ov101_021D72B8,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91C8;
@@ -1780,7 +1780,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91C8 = {
     ov101_021D7304,
     ov101_021D7394,
     ov101_021D73A0,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D922C;
@@ -1832,7 +1832,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D922C = {
     ov101_021D73EC,
     ov101_021D7438,
     ov101_021D7444,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9254;
@@ -1893,7 +1893,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9254 = {
     ov101_021D74A0,
     ov101_021D7530,
     ov101_021D753C,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D913C;
@@ -1980,7 +1980,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D913C = {
     ov101_021D7588,
     ov101_021D75F0,
     ov101_021D7604,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91A0;
@@ -2064,7 +2064,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91A0 = {
     ov101_021D76EC,
     ov101_021D7754,
     ov101_021D776C,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9240;
@@ -2177,7 +2177,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9240 = {
     ov101_021D7810,
     ov101_021D7984,
     ov101_021D79A8,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9268;
@@ -2257,7 +2257,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9268 = {
     ov101_021D7A00,
     ov101_021D7AD0,
     ov101_021D7AF4,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91B4;
@@ -2434,7 +2434,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91B4 = {
     ov101_021D7B34,
     ov101_021D7B74,
     ov101_021D7BB4,
-    sub_020715FC
+    UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static void ov101_021D7D4C(SysTask *param0, void *param1)

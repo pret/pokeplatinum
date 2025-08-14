@@ -18,7 +18,7 @@
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov101_021D5D90_t {
-    u32 unk_00;
+    u32 bitmask;
     int unk_04;
     int unk_08;
     const void *unk_0C;
@@ -38,10 +38,10 @@ typedef struct UnkStruct_ov101_021D5D90_t {
 } UnkStruct_ov101_021D5D90;
 
 typedef struct UnkStruct_020711EC_t {
-    int unk_00;
-    int unk_04;
+    int numOfIterations;
+    int _; // only incremented/decremented, never read
     int heapID;
-    UnkStruct_ov101_021D5D90 *unk_0C;
+    UnkStruct_ov101_021D5D90 *iterationData;
 } UnkStruct_020711EC;
 
 static SysTask *sub_02071400(UnkStruct_ov101_021D5D90 *param0, int param1);
@@ -50,12 +50,12 @@ static UnkStruct_020711EC *sub_0207142C(int heapID);
 static void sub_02071450(UnkStruct_020711EC *param0);
 static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1);
 static void sub_02071480(UnkStruct_020711EC *param0);
-static void sub_02071490(UnkStruct_ov101_021D5D90 *param0);
-static int sub_020714E8(const UnkStruct_020711EC *param0);
-static UnkStruct_ov101_021D5D90 *sub_020714EC(const UnkStruct_020711EC *param0);
-static void sub_020714FC(UnkStruct_ov101_021D5D90 *param0);
-static void sub_02071508(UnkStruct_ov101_021D5D90 *param0, u32 param1);
-static u32 sub_02071510(UnkStruct_ov101_021D5D90 *param0, u32 param1);
+static void InitUnkStruct_ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0);
+static int UnkStruct_020711EC_GetNumOfIterations(const UnkStruct_020711EC *param0);
+static UnkStruct_ov101_021D5D90 *UnkStruct_020711EC_GetIterationData(const UnkStruct_020711EC *param0);
+static void UnkStruct_ov101_021D5D90_SetLsb(UnkStruct_ov101_021D5D90 *param0);
+static void UnkStruct_ov101_021D5D90_SetBitmaskFlags(UnkStruct_ov101_021D5D90 *param0, u32 param1);
+static u32 UnkStruct_ov101_021D5D90_GetSpecifiedBitsOfBitmask(UnkStruct_ov101_021D5D90 *param0, u32 param1);
 static void sub_020715B0(UnkStruct_ov101_021D5D90 *param0, int param1);
 static void sub_020715B8(UnkStruct_ov101_021D5D90 *param0, const void *param1);
 static void sub_020715C8(UnkStruct_ov101_021D5D90 *param0, SysTask *param1);
@@ -66,8 +66,8 @@ UnkStruct_020711EC *sub_020711EC(int heapID, int param1)
 {
     UnkStruct_020711EC *v0 = sub_0207142C(heapID);
 
-    v0->unk_0C = sub_0207145C(heapID, param1);
-    v0->unk_00 = param1;
+    v0->iterationData = sub_0207145C(heapID, param1);
+    v0->numOfIterations = param1;
     v0->heapID = heapID;
 
     return v0;
@@ -87,66 +87,66 @@ void sub_0207121C(UnkStruct_020711EC *param0)
 
 UnkStruct_ov101_021D5D90 *sub_0207122C(UnkStruct_020711EC *param0, const UnkStruct_02071330 *param1, const VecFx32 *param2, int param3, const void *param4, int param5)
 {
-    int v0, v1;
-    UnkStruct_ov101_021D5D90 *v2;
+    int count, numIterations;
+    UnkStruct_ov101_021D5D90 *iterationData;
     SysTask *v3;
 
-    v0 = 0;
-    v1 = sub_020714E8(param0);
-    v2 = sub_020714EC(param0);
+    count = 0;
+    numIterations = UnkStruct_020711EC_GetNumOfIterations(param0);
+    iterationData = UnkStruct_020711EC_GetIterationData(param0);
 
     do {
-        if (sub_020714F0(v2) == 0) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(iterationData) == FALSE) {
             break;
         }
 
-        v0++;
-        v2++;
-    } while (v0 < v1);
+        count++;
+        iterationData++;
+    } while (count < numIterations);
 
-    if (v0 >= v1) {
+    if (count >= numIterations) {
         return NULL;
     }
 
-    sub_020714FC(v2);
-    sub_020715B0(v2, param3);
-    sub_020715B8(v2, param4);
-    sub_020715D0(v2, param0);
+    UnkStruct_ov101_021D5D90_SetLsb(iterationData);
+    sub_020715B0(iterationData, param3);
+    sub_020715B8(iterationData, param4);
+    sub_020715D0(iterationData, param0);
 
     if (param2 != NULL) {
-        sub_020715D4(v2, param2);
+        sub_020715D4(iterationData, param2);
     } else {
         VecFx32 v4 = { 0, 0, 0 };
-        sub_020715D4(v2, &v4);
+        sub_020715D4(iterationData, &v4);
     }
 
-    sub_0207159C(v2, param1->unk_00);
-    sub_02071518(v2, param1->unk_04);
-    sub_0207156C(v2, param1->unk_08);
-    sub_02071534(v2, param1->unk_0C);
-    sub_02071550(v2, param1->unk_10);
-    sub_02071588(v2, param1->unk_14);
-    sub_02071590(v2, param1->unk_18);
+    sub_0207159C(iterationData, param1->unk_00);
+    sub_02071518(iterationData, param1->unk_04);
+    sub_0207156C(iterationData, param1->unk_08);
+    sub_02071534(iterationData, param1->unk_0C);
+    sub_02071550(iterationData, param1->unk_10);
+    sub_02071588(iterationData, param1->unk_14);
+    sub_02071590(iterationData, param1->unk_18);
 
-    v3 = sub_02071400(v2, param5);
+    v3 = sub_02071400(iterationData, param5);
 
     if (v3 == NULL) {
-        sub_02071490(v2);
+        InitUnkStruct_ov101_021D5D90(iterationData);
         return NULL;
     }
 
-    sub_020715C8(v2, v3);
+    sub_020715C8(iterationData, v3);
 
-    if (sub_02071520(v2) == 0) {
+    if (sub_02071520(iterationData) == 0) {
         SysTask_Done(v3);
-        sub_02071490(v2);
+        InitUnkStruct_ov101_021D5D90(iterationData);
         return NULL;
     }
 
-    sub_02071508(v2, (1 << 1));
-    param0->unk_04++;
+    UnkStruct_ov101_021D5D90_SetBitmaskFlags(iterationData, (1 << 1));
+    param0->_++;
 
-    return v2;
+    return iterationData;
 }
 
 UnkStruct_ov101_021D5D90 *sub_02071330(UnkStruct_020711EC *param0, const UnkStruct_ov101_021D86B0 *param1, const VecFx32 *param2, int param3, const void *param4, int param5)
@@ -154,8 +154,8 @@ UnkStruct_ov101_021D5D90 *sub_02071330(UnkStruct_020711EC *param0, const UnkStru
     UnkStruct_02071330 v0;
 
     *(UnkStruct_ov101_021D86B0 *)&v0 = *param1;
-    v0.unk_14 = sub_02071604;
-    v0.unk_18 = sub_02071608;
+    v0.unk_14 = UnkStruct_ov101_021D5D90_DoNothing4;
+    v0.unk_18 = UnkStruct_ov101_021D5D90_DoNothing5;
 
     return sub_0207122C(param0, &v0, param2, param3, param4, param5);
 }
@@ -164,7 +164,7 @@ void sub_0207136C(UnkStruct_ov101_021D5D90 *param0)
 {
     GF_ASSERT(param0 != NULL);
 
-    if (sub_020714F0(param0) == 0) {
+    if (UnkStruct_ov101_021D5D90_IsLsbSet(param0) == 0) {
         return;
     }
 
@@ -172,7 +172,7 @@ void sub_0207136C(UnkStruct_ov101_021D5D90 *param0)
 
     {
         UnkStruct_020711EC *v0 = (UnkStruct_020711EC *)param0->unk_14;
-        v0->unk_04--;
+        v0->_--;
     }
 
     {
@@ -183,46 +183,46 @@ void sub_0207136C(UnkStruct_ov101_021D5D90 *param0)
         }
     }
 
-    sub_02071490(param0);
+    InitUnkStruct_ov101_021D5D90(param0);
 }
 
 void sub_020713A4(UnkStruct_020711EC *param0)
 {
-    int v0;
-    UnkStruct_ov101_021D5D90 *v1;
+    int iterationsLeft;
+    UnkStruct_ov101_021D5D90 *iterationData;
 
-    v0 = sub_020714E8(param0);
-    v1 = sub_020714EC(param0);
+    iterationsLeft = UnkStruct_020711EC_GetNumOfIterations(param0);
+    iterationData = UnkStruct_020711EC_GetIterationData(param0);
 
     do {
-        if (sub_020714F0(v1) == 1) {
-            sub_0207136C(v1);
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(iterationData) == TRUE) {
+            sub_0207136C(iterationData);
         }
 
-        v1++;
-        v0--;
-    } while (v0);
+        iterationData++;
+        iterationsLeft--;
+    } while (iterationsLeft);
 }
 
 void sub_020713D0(UnkStruct_020711EC *param0)
 {
-    int v0;
-    u32 v1;
-    UnkStruct_ov101_021D5D90 *v2;
+    int iterationsLeft;
+    u32 activeBits;
+    UnkStruct_ov101_021D5D90 *iterationData;
 
-    v0 = sub_020714E8(param0);
-    v2 = sub_020714EC(param0);
+    iterationsLeft = UnkStruct_020711EC_GetNumOfIterations(param0);
+    iterationData = UnkStruct_020711EC_GetIterationData(param0);
 
     do {
-        v1 = sub_02071510(v2, ((1 << 0) | (1 << 1)));
+        activeBits = UnkStruct_ov101_021D5D90_GetSpecifiedBitsOfBitmask(iterationData, ((1 << 0) | (1 << 1)));
 
-        if (v1 == ((1 << 0) | (1 << 1))) {
-            sub_02071558(v2);
+        if (activeBits == ((1 << 0) | (1 << 1))) {
+            sub_02071558(iterationData);
         }
 
-        v2++;
-        v0--;
-    } while (v0);
+        iterationData++;
+        iterationsLeft--;
+    } while (iterationsLeft);
 }
 
 static SysTask *sub_02071400(UnkStruct_ov101_021D5D90 *param0, int param1)
@@ -268,53 +268,53 @@ static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1)
 
 static void sub_02071480(UnkStruct_020711EC *param0)
 {
-    Heap_FreeExplicit(param0->heapID, param0->unk_0C);
+    Heap_FreeExplicit(param0->heapID, param0->iterationData);
 }
 
-static void sub_02071490(UnkStruct_ov101_021D5D90 *param0)
+static void InitUnkStruct_ov101_021D5D90(UnkStruct_ov101_021D5D90 *param0)
 {
     memset(param0, 0, (sizeof(UnkStruct_ov101_021D5D90)));
 
-    sub_02071518(param0, sub_020715F4);
-    sub_0207156C(param0, sub_02071600);
-    sub_02071534(param0, sub_020715F8);
-    sub_02071550(param0, sub_020715FC);
-    sub_02071588(param0, sub_02071604);
-    sub_02071590(param0, sub_02071608);
+    sub_02071518(param0, UnkStruct_ov101_021D5D90_Return1);
+    sub_0207156C(param0, UnkStruct_ov101_021D5D90_DoNothing3);
+    sub_02071534(param0, UnkStruct_ov101_021D5D90_DoNothing1);
+    sub_02071550(param0, UnkStruct_ov101_021D5D90_DoNothing2);
+    sub_02071588(param0, UnkStruct_ov101_021D5D90_DoNothing4);
+    sub_02071590(param0, UnkStruct_ov101_021D5D90_DoNothing5);
 }
 
-static int sub_020714E8(const UnkStruct_020711EC *param0)
+static int UnkStruct_020711EC_GetNumOfIterations(const UnkStruct_020711EC *param0)
 {
-    return param0->unk_00;
+    return param0->numOfIterations;
 }
 
-static UnkStruct_ov101_021D5D90 *sub_020714EC(const UnkStruct_020711EC *param0)
+static UnkStruct_ov101_021D5D90 *UnkStruct_020711EC_GetIterationData(const UnkStruct_020711EC *param0)
 {
-    return param0->unk_0C;
+    return param0->iterationData;
 }
 
-int sub_020714F0(const UnkStruct_ov101_021D5D90 *param0)
+int UnkStruct_ov101_021D5D90_IsLsbSet(const UnkStruct_ov101_021D5D90 *param0)
 {
-    if (param0->unk_00 & (1 << 0)) {
-        return 1;
+    if (param0->bitmask & 1) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void sub_020714FC(UnkStruct_ov101_021D5D90 *param0)
+static void UnkStruct_ov101_021D5D90_SetLsb(UnkStruct_ov101_021D5D90 *param0)
 {
-    param0->unk_00 |= (1 << 0);
+    param0->bitmask |= 1;
 }
 
-static void sub_02071508(UnkStruct_ov101_021D5D90 *param0, u32 param1)
+static void UnkStruct_ov101_021D5D90_SetBitmaskFlags(UnkStruct_ov101_021D5D90 *param0, u32 bitsToSet)
 {
-    param0->unk_00 |= param1;
+    param0->bitmask |= bitsToSet;
 }
 
-static u32 sub_02071510(UnkStruct_ov101_021D5D90 *param0, u32 param1)
+static u32 UnkStruct_ov101_021D5D90_GetSpecifiedBitsOfBitmask(UnkStruct_ov101_021D5D90 *param0, u32 conjunctionMask)
 {
-    return param0->unk_00 & param1;
+    return param0->bitmask & conjunctionMask;
 }
 
 void sub_02071518(UnkStruct_ov101_021D5D90 *param0, UnkFuncPtr_02071330 param1)
@@ -437,32 +437,32 @@ void sub_020715E4(UnkStruct_ov101_021D5D90 *param0, VecFx32 *param1)
     *param1 = param0->unk_24;
 }
 
-int sub_020715F4(UnkStruct_ov101_021D5D90 *param0, void *param1)
+int UnkStruct_ov101_021D5D90_Return1(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     return 1;
 }
 
-void sub_020715F8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+void UnkStruct_ov101_021D5D90_DoNothing1(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     return;
 }
 
-void sub_020715FC(UnkStruct_ov101_021D5D90 *param0, void *param1)
+void UnkStruct_ov101_021D5D90_DoNothing2(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     return;
 }
 
-void sub_02071600(UnkStruct_ov101_021D5D90 *param0, void *param1)
+void UnkStruct_ov101_021D5D90_DoNothing3(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     return;
 }
 
-void sub_02071604(UnkStruct_ov101_021D5D90 *param0, void *param1)
+void UnkStruct_ov101_021D5D90_DoNothing4(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     return;
 }
 
-void sub_02071608(UnkStruct_ov101_021D5D90 *param0, void *param1)
+void UnkStruct_ov101_021D5D90_DoNothing5(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     return;
 }

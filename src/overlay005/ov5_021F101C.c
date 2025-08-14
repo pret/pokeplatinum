@@ -47,7 +47,7 @@ BOOL ov5_021F101C(FieldTask *param0)
         (*v2)++;
         break;
     case 3:
-        if (ov6_02243FBC(v3->unk_00)) {
+        if (isTaskFinished(v3->unk_00)) {
             ov6_02243FC8(v3->unk_00);
             (*v2)++;
         }

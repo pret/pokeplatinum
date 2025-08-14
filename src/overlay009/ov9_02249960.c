@@ -3151,7 +3151,7 @@ static BOOL ov9_0224B7B0(DistWorldSystem *param0, u32 param1)
     GF_ASSERT(param1 != 25);
 
     for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (sub_020714F0(v3->unk_08[v0]) == 1) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v3->unk_08[v0]) == 1) {
             v1 = ov9_0224B958(v3->unk_08[v0]);
             v2 = &Unk_ov9_022531D0[v1];
 
@@ -3164,7 +3164,7 @@ static BOOL ov9_0224B7B0(DistWorldSystem *param0, u32 param1)
     v3 = &param0->unk_1728;
 
     for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (sub_020714F0(v3->unk_08[v0]) == 1) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v3->unk_08[v0]) == 1) {
             v1 = ov9_0224B958(v3->unk_08[v0]);
             v2 = &Unk_ov9_022531D0[v1];
 
@@ -3187,7 +3187,7 @@ static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1)
     GF_ASSERT(param1 != 5);
 
     for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (sub_020714F0(v3->unk_08[v0]) == 1) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v3->unk_08[v0]) == 1) {
             v1 = ov9_0224B958(v3->unk_08[v0]);
             v2 = &Unk_ov9_022531D0[v1];
 
@@ -3200,7 +3200,7 @@ static BOOL ov9_0224B844(DistWorldSystem *param0, u32 param1)
     v3 = &param0->unk_1728;
 
     for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (sub_020714F0(v3->unk_08[v0]) == 1) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v3->unk_08[v0]) == 1) {
             v1 = ov9_0224B958(v3->unk_08[v0]);
             v2 = &Unk_ov9_022531D0[v1];
 
@@ -3221,7 +3221,7 @@ static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1)
     UnkStruct_ov9_0224B528 *v3 = &param0->unk_171C;
 
     for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (sub_020714F0(v3->unk_08[v0]) == 1) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v3->unk_08[v0]) == 1) {
             v1 = ov9_0224B958(v3->unk_08[v0]);
 
             if (v1 == param1) {
@@ -3233,7 +3233,7 @@ static BOOL ov9_0224B8DC(DistWorldSystem *param0, int param1)
     v3 = &param0->unk_1728;
 
     for (v0 = 0; v0 < v3->unk_04; v0++) {
-        if (sub_020714F0(v3->unk_08[v0]) == 1) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(v3->unk_08[v0]) == 1) {
             v1 = ov9_0224B958(v3->unk_08[v0]);
 
             if (v1 == param1) {

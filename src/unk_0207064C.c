@@ -51,7 +51,7 @@ BOOL sub_02070680(FieldTask *param0)
         v1->unk_04++;
         break;
     case 1:
-        if (ov6_02243FBC(v1->unk_14) == 0) {
+        if (isTaskFinished(v1->unk_14) == FALSE) {
             break;
         }
 

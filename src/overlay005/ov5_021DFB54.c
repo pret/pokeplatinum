@@ -1724,7 +1724,7 @@ static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask)
 
 static BOOL CheckCutInFinished(MonRideTask *monRideTask)
 {
-    if (ov6_02243FBC(monRideTask->HMCutInTask) == TRUE) {
+    if (isTaskFinished(monRideTask->HMCutInTask) == TRUE) {
         ov6_02243FC8(monRideTask->HMCutInTask);
         return TRUE;
     }

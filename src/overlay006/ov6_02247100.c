@@ -330,7 +330,7 @@ static int ov6_022474E8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
 
 static int ov6_0224750C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
-    if (ov6_02243FBC(param2->unk_10) == 0) {
+    if (isTaskFinished(param2->unk_10) == FALSE) {
         return 0;
     }
 

@@ -4541,7 +4541,7 @@ static BOOL sub_02042C80(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    if (ov6_02243FBC(*v0) == 1) {
+    if (isTaskFinished(*v0) == TRUE) {
         ov6_02243FC8(*v0);
         return TRUE;
     }
