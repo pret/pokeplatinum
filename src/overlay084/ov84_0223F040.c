@@ -459,7 +459,7 @@ void BagInterface_ShowItemActionsMenu(BagInterfaceManager *param0, u8 *actions, 
         Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], 0);
         BagInterface_PrintTMHMMoveInfo(param0, param0->appArguments->selectedItem);
         Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-        UpdateTypeAndCategoryIcons(param0, param0->appArguments->selectedItem, 1);
+        BagInterface_UpdateTypeAndCategoryIcons(param0, param0->appArguments->selectedItem, 1);
     } else {
         Window_DrawMessageBoxWithScrollCursor(&param0->windows[msgBoxWindowIdx], 1, BASE_TILE_MSG_BOX_FRAME, 12);
         Window_FillTilemap(&param0->windows[msgBoxWindowIdx], 15);
@@ -503,7 +503,7 @@ void BagInterface_CloseItemActionsMenu(BagInterfaceManager *param0)
     Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], 0);
     BagInterface_PrintItemDescription(param0, param0->appArguments->selectedItem);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-    UpdateTypeAndCategoryIcons(param0, ITEM_NONE, FALSE);
+    BagInterface_UpdateTypeAndCategoryIcons(param0, ITEM_NONE, FALSE);
 }
 
 void BagInterface_PrintMovingItemMessage(BagInterfaceManager *param0)

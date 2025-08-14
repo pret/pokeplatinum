@@ -124,10 +124,10 @@ typedef int (*ItemActionFuncPtr)(BagInterfaceManager *param0);
 
 typedef struct {
     u8 unk_00;
-    u8 unk_01;
+    u8 direction;
     u8 padding_02;
     u8 unk_03;
-    fx32 unk_04[8];
+    fx32 positions[8];
 } UnkStruct_ov84_0223B5A0_sub1;
 
 struct BagInterfaceManager {

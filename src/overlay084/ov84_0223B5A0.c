@@ -434,7 +434,7 @@ int BagInterface_Init(ApplicationManager *appMan, int *param1)
     LoadCurrentPocketItemNames(appData);
     ov84_0223C194(&appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].cursorScroll, &appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].cursorPos, appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].listItemsCount);
     ov84_0223C1D0(&appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].cursorScroll, &appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].cursorPos, appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].listItemsCount, 9);
-    ov84_022403F4(appData);
+    BagInterface_InitSprites(appData);
     CreateItemsListMenu(appData, appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].cursorScroll, appData->appArguments->accessiblePockets[appData->appArguments->currPocketIdx].cursorPos);
 
     if ((appData->appArguments->context == BAG_CONTEXT_POFFIN_SINGLEPLAYER) || (appData->appArguments->context == BAG_CONTEXT_POFFIN_MULTIPLAYER)) {
@@ -554,7 +554,7 @@ int BagInterface_Main(ApplicationManager *appMan, int *state)
     }
 
     StepPokeballButtonPressedAnim(v0);
-    ov84_02240E5C(v0);
+    BagInterface_TickBtnShockwaveAnim(v0);
     BagInterface_TickSpriteAnimations(v0);
     SpriteSystem_DrawSprites(v0->spriteMan);
 
@@ -1105,10 +1105,10 @@ static void ItemsListMenuCursorCallback(ListMenu *param0, u32 param1, u8 param2)
 
         v1 = &v0->appArguments->accessiblePockets[v0->appArguments->currPocketIdx];
         BagInterface_PrintItemDescription(v0, v1->items[param1].item);
-        ov84_02240AD8(v0, v1->items[param1].item);
+        BahInterface_UpdateItemSprite(v0, v1->items[param1].item);
     } else {
         BagInterface_PrintItemDescription(v0, 0xffff);
-        ov84_02240AD8(v0, 0xffff);
+        BahInterface_UpdateItemSprite(v0, 0xffff);
     }
 
     if (v0->unk_479 == 0) {
@@ -1183,7 +1183,7 @@ static int HandleInput_General(BagInterfaceManager *param0)
         u8 v0 = HandleItemListMenuInput(param0);
 
         if (v0 == 1) {
-            ov84_02240B34(param0, 2);
+            BagInterface_SetHighlighterSpritesPalette(param0, 2);
             Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], 0);
             Window_ClearAndCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
             ov84_0223D5AC(param0);
@@ -1291,7 +1291,7 @@ static u8 CheckPocketChange_DPad(BagInterfaceManager *param0)
             param0->nextPocketIdx = param0->numPockets - 1;
         }
 
-        ov84_02240B68(param0);
+        BagInterface_StartMovingPocketHighlighter(param0);
         param0->pocketIndicatorMan.scrollDirection = 0;
         ov84_0223C848(param0);
         Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
@@ -1313,7 +1313,7 @@ static u8 CheckPocketChange_DPad(BagInterfaceManager *param0)
             param0->nextPocketIdx = 0;
         }
 
-        ov84_02240B68(param0);
+        BagInterface_StartMovingPocketHighlighter(param0);
         param0->pocketIndicatorMan.scrollDirection = 1;
         ov84_0223C848(param0);
         Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
@@ -1407,16 +1407,16 @@ static u8 ov84_0223C920(BagInterfaceManager *param0)
             v0->unk_04 = 0;
             param0->nextPocketIdx = (u8)heldPocketBtnIndex;
 
-            ov84_02240B68(param0);
+            BagInterface_StartMovingPocketHighlighter(param0);
         }
     }
 
     v2 = ov84_0223CBD8(param0);
     v3 = ov84_0223CE60(param0);
 
-    ov84_02240B80(param0);
+    BagInterface_DoPocketHighlighterMovementStep(param0);
 
-    if ((v2 == 1) && (v3 == 1) && (v0->unk_07_0 == 1) && (ov84_02240B50(param0) == 1)) {
+    if ((v2 == 1) && (v3 == 1) && (v0->unk_07_0 == 1) && (BagInterface_IsPocketHighlighterMoving(param0) == 1)) {
         if (v0->unk_07_7 == 1) {
             DrawPocketButtons(param0, v0->nextPocketIdx, 1);
             Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
@@ -1463,7 +1463,7 @@ static u8 ov84_0223CA5C(BagInterfaceManager *param0)
             v0->unk_04 = 4;
         }
 
-        ov84_02240B68(param0);
+        BagInterface_StartMovingPocketHighlighter(param0);
         return 1;
     }
     if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
@@ -1496,7 +1496,7 @@ static u8 ov84_0223CA5C(BagInterfaceManager *param0)
             v0->unk_04 = 4;
         }
 
-        ov84_02240B68(param0);
+        BagInterface_StartMovingPocketHighlighter(param0);
         return 1;
     }
 
@@ -1569,7 +1569,7 @@ static u8 CheckPocketChange_Touch(BagInterfaceManager *param0)
     param0->pocketIndicatorMan.nextPocketIdx = (u8)pressedPocketBtnIndex;
     param0->nextPocketIdx = (u8)pressedPocketBtnIndex;
 
-    ov84_02240B68(param0);
+    BagInterface_StartMovingPocketHighlighter(param0);
     ov84_0223C868(param0);
 
     return 1;
@@ -1626,7 +1626,7 @@ static u8 ov84_0223CE60(BagInterfaceManager *param0)
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         DrawPocketButtons(param0, v0->unk_06, 2);
         Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
-        ov84_02240E24(param0, sPocketCountToPocketButtonPositions[param0->numPockets].pocketButtonCoordinates[v0->unk_06 * 2] * 8 + 20, sPocketCountToPocketButtonPositions[param0->numPockets].pocketButtonCoordinates[v0->unk_06 * 2 + 1] * 8 + 20);
+        BagInterface_DrawBtnShockwaveSprite(param0, sPocketCountToPocketButtonPositions[param0->numPockets].pocketButtonCoordinates[v0->unk_06 * 2] * 8 + 20, sPocketCountToPocketButtonPositions[param0->numPockets].pocketButtonCoordinates[v0->unk_06 * 2 + 1] * 8 + 20);
 
         v0->unk_04++;
         break;
@@ -1682,7 +1682,7 @@ static void StepPokeballButtonPressedAnim(BagInterfaceManager *param0)
     case 0:
         break;
     case 1:
-        ov84_02240E24(param0, 128, 80);
+        BagInterface_DrawBtnShockwaveSprite(param0, 128, 80);
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         DrawPokeballButton(param0, 2);
 
@@ -2031,7 +2031,7 @@ static int ov84_0223D730(BagInterfaceManager *param0)
         }
     } break;
     case 0xfffffffe:
-        ov84_02240B34(param0, 1);
+        BagInterface_SetHighlighterSpritesPalette(param0, 1);
         BagInterface_CloseItemActionsMenu(param0);
 
         if (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType == 3) {
@@ -2098,7 +2098,7 @@ static int ov84_0223D8EC(BagInterfaceManager *param0)
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-            ov84_02240B34(param0, 1);
+            BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
             if (param0->appArguments->context == BAG_CONTEXT_GARDENING) {
                 return BAG_INTERFACE_STATE_SELECT_ITEM_BERRY_CARE;
@@ -2222,7 +2222,7 @@ static int ov84_0223DA14(BagInterfaceManager *param0)
         case 0xfffffffe:
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-            ov84_02240B34(param0, 1);
+            BagInterface_SetHighlighterSpritesPalette(param0, 1);
             ToggleHideItemSprite(param0, 0);
             return BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL;
         }
@@ -2315,7 +2315,7 @@ static int ov84_0223DDD0(BagInterfaceManager *param0)
         }
 
         Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-        ov84_02240B34(param0, 1);
+        BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
         return 1;
     }
@@ -2351,7 +2351,7 @@ static int ItemActionFunc_Trash(BagInterfaceManager *param0)
     }
 
     BagInterface_ShowItemTrashWindows(param0);
-    ov84_02240CF0(param0, 0);
+    BagInterface_ShowItemCountArrows(param0, 0);
 
     return BAG_INTERFACE_STATE_7;
 }
@@ -2365,7 +2365,7 @@ static int ov84_0223DF0C(BagInterfaceManager *param0)
 
     if (PlayerPressedPokeballButton(param0) == 1) {
         BagInterface_PrintConfirmItemTrashMsg(param0);
-        ov84_02240D3C(param0, 0);
+        BagInterface_ToggleItemCountArrows(param0, 0);
         param0->pokeballButtonAnimStep = 1;
 
         return BAG_INTERFACE_STATE_8;
@@ -2387,14 +2387,14 @@ static int ov84_0223DF0C(BagInterfaceManager *param0)
     }
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         BagInterface_PrintConfirmItemTrashMsg(param0);
-        ov84_02240D3C(param0, 0);
+        BagInterface_ToggleItemCountArrows(param0, 0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         return BAG_INTERFACE_STATE_8;
     }
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         BagInterface_CloseItemTrashWindows(param0);
-        ov84_02240D3C(param0, 0);
-        ov84_02240B34(param0, 1);
+        BagInterface_ToggleItemCountArrows(param0, 0);
+        BagInterface_SetHighlighterSpritesPalette(param0, 1);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         return BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL;
     }
@@ -2457,7 +2457,7 @@ static int ov84_0223E01C(BagInterfaceManager *param0)
     case 0xfffffffe:
         Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
         Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-        ov84_02240B34(param0, 1);
+        BagInterface_SetHighlighterSpritesPalette(param0, 1);
         return BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL;
     }
 
@@ -2484,7 +2484,7 @@ static int ov84_0223E18C(BagInterfaceManager *param0)
             param0->unk_479 = 0;
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-            ov84_02240B34(param0, 1);
+            BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
             return BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL;
         }
@@ -2499,7 +2499,7 @@ static int ItemActionFunc_Register(BagInterfaceManager *param0)
     ListMenu_Draw(param0->itemsListMenu);
     BagInterface_CloseItemActionsMenu(param0);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-    ov84_02240B34(param0, 1);
+    BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
     return BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL;
 }
@@ -2510,7 +2510,7 @@ static int ItemActionFunc_Deselect(BagInterfaceManager *param0)
     ListMenu_Draw(param0->itemsListMenu);
     BagInterface_CloseItemActionsMenu(param0);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-    ov84_02240B34(param0, 1);
+    BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
     return BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL;
 }
@@ -2556,7 +2556,7 @@ static int HandleInput_GiveToMon(BagInterfaceManager *param0)
                 StringTemplate_Format(param0->strTemplate, param0->strBuffer, v1);
                 Strbuf_Free(v1);
                 param0->msgBoxPrinter = BagInterface_PrintStrBufferToWideMsgBox(param0);
-                ov84_02240B34(param0, 2);
+                BagInterface_SetHighlighterSpritesPalette(param0, 2);
 
                 return BAG_INTERFACE_STATE_15;
             }
@@ -2579,7 +2579,7 @@ static int ov84_0223E36C(BagInterfaceManager *param0)
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-            ov84_02240B34(param0, 1);
+            BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
             return BAG_INTERFACE_STATE_SELECT_ITEM_TO_GIVE;
         }
@@ -2613,7 +2613,7 @@ static int HandleInput_SellItems(BagInterfaceManager *param0)
             Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 15);
             Window_DrawMessageBoxWithScrollCursor(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0, 1024 - 9 - (18 + 12), 12);
             StringTemplate_SetItemName(param0->strTemplate, 0, param0->appArguments->selectedItem);
-            ov84_02240B34(param0, 2);
+            BagInterface_SetHighlighterSpritesPalette(param0, 2);
 
             param0->soldItemPrice = Item_LoadParam(param0->appArguments->selectedItem, ITEM_PARAM_PRICE, HEAP_ID_6);
 
@@ -2661,7 +2661,7 @@ static int ov84_0223E588(BagInterfaceManager *param0)
         }
 
         BagInterface_PrintSellCountAndValue(param0, 0);
-        ov84_02240CF0(param0, 1);
+        BagInterface_ShowItemCountArrows(param0, 1);
         return BAG_INTERFACE_STATE_18;
     }
 
@@ -2677,7 +2677,7 @@ static int ov84_0223E5C4(BagInterfaceManager *param0)
     if (PlayerPressedPokeballButton(param0) == 1) {
         Strbuf *v0;
 
-        ov84_02240D3C(param0, 0);
+        BagInterface_ToggleItemCountArrows(param0, 0);
         Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE], 1);
         Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 15);
         v0 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_ConfirmSellPrice);
@@ -2707,7 +2707,7 @@ static int ov84_0223E5C4(BagInterfaceManager *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Strbuf *v1;
 
-        ov84_02240D3C(param0, 0);
+        BagInterface_ToggleItemCountArrows(param0, 0);
         Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE], 1);
         Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 15);
 
@@ -2724,12 +2724,12 @@ static int ov84_0223E5C4(BagInterfaceManager *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->soldItemPrice = 0;
 
-        ov84_02240D3C(param0, 0);
+        BagInterface_ToggleItemCountArrows(param0, 0);
         Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_MONEY], 1);
         Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE], 1);
         Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
         Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-        ov84_02240B34(param0, 1);
+        BagInterface_SetHighlighterSpritesPalette(param0, 1);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         return BAG_INTERFACE_STATE_SELECT_ITEM_TO_SELL;
@@ -2795,7 +2795,7 @@ static int ov84_0223E7CC(BagInterfaceManager *param0)
         Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_MONEY], 1);
         Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
         Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-        ov84_02240B34(param0, 1);
+        BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
         return BAG_INTERFACE_STATE_SELECT_ITEM_TO_SELL;
     }
@@ -2838,7 +2838,7 @@ static int ov84_0223E9B0(BagInterfaceManager *param0)
             Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_MONEY], 1);
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-            ov84_02240B34(param0, 1);
+            BagInterface_SetHighlighterSpritesPalette(param0, 1);
 
             return BAG_INTERFACE_STATE_SELECT_ITEM_TO_SELL;
         }

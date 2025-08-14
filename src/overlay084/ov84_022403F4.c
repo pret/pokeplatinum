@@ -17,12 +17,12 @@
 #include "type_icon.h"
 #include "vram_transfer.h"
 
-static void ov84_02240424(BagInterfaceManager *param0);
-static void ov84_022404C0(BagInterfaceManager *param0);
-static void ov84_02240950(BagInterfaceManager *param0);
-static void ov84_02240C48(BagInterfaceManager *param0);
-static u8 GetIndicatorPocketSpriteX(BagInterfaceManager *param0, u8 param1);
-static void ov84_02240B98(BagInterfaceManager *param0);
+static void InitSpriteSystem(BagInterfaceManager *param0);
+static void LoadSpriteResources(BagInterfaceManager *param0);
+static void InitSprites(BagInterfaceManager *param0);
+static void CalcPocketHighlighterMovement(BagInterfaceManager *param0);
+static u8 GetPocketHighlighterX(BagInterfaceManager *param0, u8 param1);
+static void StepPocketHighlighterMovingAnim(BagInterfaceManager *param0);
 
 static const SpriteTemplate sBagInterfaceSpriteTemplates[] = {
     [BAG_SPRITE_BAG] = {
@@ -171,17 +171,17 @@ static const SpriteTemplate sBagInterfaceSpriteTemplates[] = {
     },
 };
 
-void ov84_022403F4(BagInterfaceManager *param0)
+void BagInterface_InitSprites(BagInterfaceManager *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     VramTransfer_New(32, HEAP_ID_6);
-    ov84_02240424(param0);
-    ov84_022404C0(param0);
-    ov84_02240950(param0);
+    InitSpriteSystem(param0);
+    LoadSpriteResources(param0);
+    InitSprites(param0);
 }
 
-static void ov84_02240424(BagInterfaceManager *param0)
+static void InitSpriteSystem(BagInterfaceManager *param0)
 {
     SpriteResourceCapacities v0 = { 10, 6, 9, 9, 0, 0 };
 
@@ -210,11 +210,11 @@ static void ov84_02240424(BagInterfaceManager *param0)
         SpriteSystem_Init(param0->spriteSystem, &v1, &v2, 32);
     }
 
-    SpriteSystem_InitSprites(param0->spriteSystem, param0->spriteMan, 12);
+    SpriteSystem_InitSprites(param0->spriteSystem, param0->spriteMan, NUM_BAG_INTERFACE_SPRITES);
     SpriteSystem_InitManagerWithCapacities(param0->spriteSystem, param0->spriteMan, &v0);
 }
 
-static void ov84_022404C0(BagInterfaceManager *param0)
+static void LoadSpriteResources(BagInterfaceManager *param0)
 {
     u32 v0, v1;
 
@@ -261,7 +261,7 @@ static void ov84_022404C0(BagInterfaceManager *param0)
     TypeIcon_LoadAnim(param0->spriteSystem, param0->spriteMan, 49409, 49409);
 }
 
-static void ov84_02240950(BagInterfaceManager *param0)
+static void InitSprites(BagInterfaceManager *param0)
 {
     u32 v0;
 
@@ -283,10 +283,10 @@ static void ov84_02240950(BagInterfaceManager *param0)
         ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_POCKET_INDICATOR_RIGHT_ARROW], FALSE);
     }
 
-    ov84_02240D3C(param0, 0);
+    BagInterface_ToggleItemCountArrows(param0, 0);
 
     ManagedSprite_SetAnim(param0->sprites[BAG_SPRITE_BAG], param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType);
-    ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], GetIndicatorPocketSpriteX(param0, param0->appArguments->currPocketIdx), 97);
+    ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], GetPocketHighlighterX(param0, param0->appArguments->currPocketIdx), 97);
     ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], 177, 24 + (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].cursorPos - 1) * 16);
 
     {
@@ -309,26 +309,24 @@ void BagInterface_FreeSprites(BagInterfaceManager *param0)
 
 void BagInterface_TickSpriteAnimations(BagInterfaceManager *param0)
 {
-    u32 v0;
-
-    for (v0 = 0; v0 < NUM_BAG_INTERFACE_SPRITES; v0++) {
+    for (u32 v0 = 0; v0 < NUM_BAG_INTERFACE_SPRITES; v0++) {
         ManagedSprite_TickFrame(param0->sprites[v0]);
     }
 }
 
-void ov84_02240AD8(BagInterfaceManager *param0, u16 param1)
+void BahInterface_UpdateItemSprite(BagInterfaceManager *param0, u16 item)
 {
-    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(param1, ITEM_FILE_TYPE_ICON), FALSE, 49407);
-    SpriteSystem_ReplacePlttResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(param1, ITEM_FILE_TYPE_PALETTE), FALSE, 49404);
+    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, 49407);
+    SpriteSystem_ReplacePlttResObj(param0->spriteSystem, param0->spriteMan, 16, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), FALSE, 49404);
 }
 
-void ov84_02240B34(BagInterfaceManager *param0, u8 param1)
+void BagInterface_SetHighlighterSpritesPalette(BagInterfaceManager *param0, u8 palette)
 {
-    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], param1);
-    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], param1);
+    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], palette);
+    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], palette);
 }
 
-u8 ov84_02240B50(BagInterfaceManager *param0)
+u8 BagInterface_IsPocketHighlighterMoving(BagInterfaceManager *param0)
 {
     if (param0->unk_454.unk_00 == 0) {
         return 1;
@@ -337,79 +335,76 @@ u8 ov84_02240B50(BagInterfaceManager *param0)
     return 0;
 }
 
-void ov84_02240B68(BagInterfaceManager *param0)
+void BagInterface_StartMovingPocketHighlighter(BagInterfaceManager *param0)
 {
     param0->unk_454.unk_03 = 0;
     param0->unk_454.unk_00 = 1;
 
-    ov84_02240C48(param0);
+    CalcPocketHighlighterMovement(param0);
 }
 
-void ov84_02240B80(BagInterfaceManager *param0)
+void BagInterface_DoPocketHighlighterMovementStep(BagInterfaceManager *param0)
 {
     switch (param0->unk_454.unk_00) {
     case 0:
         break;
     case 1:
-        ov84_02240B98(param0);
+        StepPocketHighlighterMovingAnim(param0);
         break;
     }
 }
 
-static void ov84_02240B98(BagInterfaceManager *param0)
+static void StepPocketHighlighterMovingAnim(BagInterfaceManager *param0)
 {
     VecFx32 v0;
 
     v0 = *(Sprite_GetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
 
-    if (param0->unk_454.unk_01 == 0) {
-        v0.x -= param0->unk_454.unk_04[param0->unk_454.unk_03];
+    if (param0->unk_454.direction == 0) {
+        v0.x -= param0->unk_454.positions[param0->unk_454.unk_03];
     } else {
-        v0.x += param0->unk_454.unk_04[param0->unk_454.unk_03];
+        v0.x += param0->unk_454.positions[param0->unk_454.unk_03];
     }
 
     Sprite_SetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &v0);
     param0->unk_454.unk_03++;
 
     if (param0->unk_454.unk_03 == 8) {
-        v0.x = GetIndicatorPocketSpriteX(param0, param0->nextPocketIdx) * FX32_ONE;
+        v0.x = GetPocketHighlighterX(param0, param0->nextPocketIdx) * FX32_ONE;
         Sprite_SetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &v0);
         param0->unk_454.unk_00 = 0;
     }
 }
 
-static u8 GetIndicatorPocketSpriteX(BagInterfaceManager *param0, u8 pocketIdx)
+static u8 GetPocketHighlighterX(BagInterfaceManager *param0, u8 pocketIdx)
 {
-    return 0 * 8 + param0->pocketIndicatorLeftX + param0->pocketIndicatorSpacing * pocketIdx + 6;
+    return param0->pocketIndicatorLeftX + param0->pocketIndicatorSpacing * pocketIdx + 6;
 }
 
-static void ov84_02240C48(BagInterfaceManager *param0)
+static void CalcPocketHighlighterMovement(BagInterfaceManager *param0)
 {
-    VecFx32 v0;
-    fx32 v1;
+    VecFx32 pocketHighlighterPos = *(Sprite_GetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
+    fx32 targetX = GetPocketHighlighterX(param0, param0->nextPocketIdx) * FX32_ONE;
 
-    v0 = *(Sprite_GetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
-    v1 = GetIndicatorPocketSpriteX(param0, param0->nextPocketIdx) * FX32_ONE;
-
-    if (v1 < v0.x) {
-        v1 = (v0.x - v1) / 100;
-        param0->unk_454.unk_01 = 0;
+    if (targetX < pocketHighlighterPos.x) {
+        targetX = (pocketHighlighterPos.x - targetX) / 100;
+        param0->unk_454.direction = 0;
     } else {
-        v1 = (v1 - v0.x) / 100;
-        param0->unk_454.unk_01 = 1;
+        targetX = (targetX - pocketHighlighterPos.x) / 100;
+        param0->unk_454.direction = 1;
     }
 
-    param0->unk_454.unk_04[0] = 0;
-    param0->unk_454.unk_04[1] = v1 * 40;
-    param0->unk_454.unk_04[2] = v1 * 25;
-    param0->unk_454.unk_04[3] = v1 * 15;
-    param0->unk_454.unk_04[4] = v1 * 10;
-    param0->unk_454.unk_04[5] = v1 * 7;
-    param0->unk_454.unk_04[6] = v1 * 3;
-    param0->unk_454.unk_04[7] = 0;
+    param0->unk_454.positions[0] = 0;
+    param0->unk_454.positions[1] = targetX * 40;
+    param0->unk_454.positions[2] = targetX * 25;
+    param0->unk_454.positions[3] = targetX * 15;
+    param0->unk_454.positions[4] = targetX * 10;
+    param0->unk_454.positions[5] = targetX * 7;
+    param0->unk_454.positions[6] = targetX * 3;
+    param0->unk_454.positions[7] = 0;
 }
 
-void ov84_02240CF0(BagInterfaceManager *param0, u8 param1)
+void BagInterface_ShowItemCountArrows(BagInterfaceManager *param0, u8 param1)
 {
     if (param1 == 0) {
         ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], 220, 156);
@@ -419,16 +414,16 @@ void ov84_02240CF0(BagInterfaceManager *param0, u8 param1)
         ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], 162, 132);
     }
 
-    ov84_02240D3C(param0, TRUE);
+    BagInterface_ToggleItemCountArrows(param0, TRUE);
 }
 
-void ov84_02240D3C(BagInterfaceManager *param0, u8 param1)
+void BagInterface_ToggleItemCountArrows(BagInterfaceManager *param0, u8 show)
 {
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], param1);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], param1);
+    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], show);
+    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], show);
 }
 
-void UpdateTypeAndCategoryIcons(BagInterfaceManager *param0, u16 item, u8 draw)
+void BagInterface_UpdateTypeAndCategoryIcons(BagInterfaceManager *param0, u16 item, u8 draw)
 {
     u16 move;
     u16 moveType;
@@ -451,7 +446,7 @@ void UpdateTypeAndCategoryIcons(BagInterfaceManager *param0, u16 item, u8 draw)
     ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_MOVE_CATEGORY], CategoryIcon_GetPltt(moveCategory) + 6);
 }
 
-void ov84_02240E24(BagInterfaceManager *param0, s16 param1, s16 param2)
+void BagInterface_DrawBtnShockwaveSprite(BagInterfaceManager *param0, s16 param1, s16 param2)
 {
     ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 1);
     ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], param1, param2);
@@ -459,7 +454,7 @@ void ov84_02240E24(BagInterfaceManager *param0, s16 param1, s16 param2)
     ManagedSprite_SetAnim(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 0);
 }
 
-void ov84_02240E5C(BagInterfaceManager *param0)
+void BagInterface_TickBtnShockwaveAnim(BagInterfaceManager *param0)
 {
     if (ManagedSprite_GetDrawFlag(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE]) == 1) {
         ManagedSprite_TickNFrames(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FX32_ONE);
