@@ -1170,23 +1170,23 @@ static BOOL sub_0203DE98(FieldTask *param0)
     case 3:
         if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
             if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
-                v2->unk_0C->unk_14 = 1;
+                v2->unk_0C->noInput = 1;
             }
         } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
             const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
-                v2->unk_0C->unk_14 = 2;
+                v2->unk_0C->noInput = 2;
             }
         }
 
-        if (v2->unk_0C->unk_14 == 0) {
+        if (v2->unk_0C->noInput == 0) {
             sub_0203DF68(param0);
         }
 
         if (v2->unk_08 != NULL) {
-            *v2->unk_08 = v2->unk_0C->unk_14;
+            *v2->unk_08 = v2->unk_0C->noInput;
         }
 
         NamingScreenArgs_Free(v2->unk_0C);
@@ -1207,14 +1207,14 @@ static void sub_0203DF68(FieldTask *param0)
     switch (v1->unk_0C->type) {
     case NAMING_SCREEN_TYPE_PLAYER: {
         TrainerInfo *v2 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        TrainerInfo_SetName(v2, v1->unk_0C->unk_1C);
+        TrainerInfo_SetName(v2, v1->unk_0C->nameInputRaw);
     } break;
     case NAMING_SCREEN_TYPE_POKEMON: {
         Pokemon *v3;
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
-        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
+        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->nameInputRaw);
     } break;
     case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);

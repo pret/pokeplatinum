@@ -2482,7 +2482,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 
         ApplicationManager_Free(param0->appMan);
 
-        if (param0->unk_04->unk_14 == 0) {
+        if (param0->unk_04->noInput == 0) {
             param0->appMan = ApplicationManager_New(&Unk_020F2DBC, param0->unk_08, heapID);
             param2->unk_04 = 2;
         } else {
@@ -2518,7 +2518,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 
         ApplicationManager_Free(param0->appMan);
 
-        if (param0->unk_04->unk_14 == 0) {
+        if (param0->unk_04->noInput == 0) {
             ov64_0222E074(param2, 1, 12);
             ov64_0222E07C(param2, param0->unk_04->textInputStr, NULL);
             param2->unk_04 = 6;

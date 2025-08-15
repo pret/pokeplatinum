@@ -51,7 +51,6 @@ prebuilt_files = [
     'minihamabe.nsbtx',
     'minimum.nsbtx',
     'minirhana.nsbtx',
-    'namein.narc',
     'nfont.NCGR',
     'nfont.NCLR',
     'pc.nsbca',

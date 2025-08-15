@@ -10908,7 +10908,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v19 = v2->tmpPtr[1];
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
-                if (v19->unk_14 == 0) {
+                if (v19->noInput == 0) {
                     Pokemon_SetValue(v3, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v19->textInputStr);
                     ov16_0223F24C(v2->battleSys, (1 + 48));
                 }
