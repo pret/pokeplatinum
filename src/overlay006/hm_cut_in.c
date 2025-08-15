@@ -1,4 +1,4 @@
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 
 #include "nitro/fx/fx.h"
 #include "nitro/fx/fx_const.h"
@@ -38,7 +38,7 @@
 #include "unk_020131EC.h"
 #include "unk_020711EC.h"
 
-typedef struct CutIn {
+typedef struct HMCutIn {
     int state;
     int isFinished;
     int subState;
@@ -90,7 +90,7 @@ typedef struct CutIn {
     void *pokemonPaletteSource;
     SysTask *resourceTransferTask;
     SysTask *windowTask;
-} CutIn;
+} HMCutIn;
 
 typedef struct ResourceLocation {
     u32 resourceId;
@@ -98,7 +98,7 @@ typedef struct ResourceLocation {
 } ResourceLocation;
 
 typedef struct HMCutInContainer {
-    CutIn *cutIn;
+    HMCutIn *cutIn;
 } HMCutInContainer;
 
 typedef struct FlyTaskEnv {
@@ -126,7 +126,7 @@ typedef struct FlyTaskEnv {
 } FlyTaskEnv;
 
 typedef struct HMCutInWithPlayer1 {
-    CutIn *cutIn;
+    HMCutIn *cutIn;
     Sprite *playerSprite;
 } HMCutInWithPlayer1;
 
@@ -136,7 +136,7 @@ typedef struct PlayerAnimEnv {
     BOOL _; // set, but never read
     int positionDeltaIdx;
     VecFx32 position;
-    CutIn *cutIn;
+    HMCutIn *cutIn;
     Sprite *playerSprite;
 } PlayerAnimEnv;
 
@@ -215,7 +215,7 @@ typedef struct FlyLandingEnvExtended {
 typedef struct WindParticleAnimData {
     int spriteListPriority;
     BOOL allowWindParticles;
-    CutIn *cutIn;
+    HMCutIn *cutIn;
     VecFx32 movementDelta;
 } WindParticleAnimData;
 
@@ -243,70 +243,70 @@ typedef struct _Unused {
     fx32 unk_24;
     fx32 unk_28;
     MapObject *_;
-    CutIn *cutIn;
+    HMCutIn *cutIn;
 } _Unused;
 
 typedef struct HMCutInWithPlayer {
     Sprite *playerSprite;
-    CutIn *cutIn;
+    HMCutIn *cutIn;
 } HMCutInWithPlayer;
 
 // General setup
-static CutIn *CreateHMCutIn(FieldSystem *fieldSystem);
-static void FreeHMCutIn(CutIn *cutIn);
+static HMCutIn *CreateHMCutIn(FieldSystem *fieldSystem);
+static void FreeHMCutIn(HMCutIn *cutIn);
 static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr);
 static void SysTask_CutInFly(SysTask *param0, void *param1);
 
 // Initial loading of resources
-static void CutIn_InitSpriteResources(CutIn *cutIn);
-static void CutIn_LoadSpriteResources(CutIn *cutIn, NARC *narc);
-static void CutIn_BuildPokemonSpriteTemplate(CutIn *cutIn, PokemonSpriteTemplate *spriteTemplate);
-static SpriteResource *CutIn_GetParticleCharResource(CutIn *cutIn, NARC *narc);
-static SpriteResource *CutIn_GetPlayerMalePlttResource(CutIn *cutIn, NARC *narc);
+static void CutIn_InitSpriteResources(HMCutIn *cutIn);
+static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc);
+static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate);
+static SpriteResource *CutIn_GetParticleCharResource(HMCutIn *cutIn, NARC *narc);
+static SpriteResource *CutIn_GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc);
 static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID);
 static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID);
-static Sprite *CutIn_InitPlayerSprite(CutIn *cutIn, const VecFx32 *position);
+static Sprite *CutIn_InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position);
 static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData);
 static void CutIn_LoadBgPatternChar(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData);
 static void CutIn_LoadBgPatternPalette(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData);
-static void CutIn_CreateResourceTransferTask(CutIn *cutIn);
-static Sprite *CutIn_InitPokemonSprite(CutIn *cutIn, const VecFx32 *position);
-static void CutIn_CreateBirdResourceTransferTask(CutIn *cutIn);
-static void CutIn_LoadBirdSpriteResources(CutIn *cutIn);
-static void CutIn_DeleteResourceTransferTask(CutIn *cutIn);
+static void CutIn_CreateResourceTransferTask(HMCutIn *cutIn);
+static Sprite *CutIn_InitPokemonSprite(HMCutIn *cutIn, const VecFx32 *position);
+static void CutIn_CreateBirdResourceTransferTask(HMCutIn *cutIn);
+static void CutIn_LoadBirdSpriteResources(HMCutIn *cutIn);
+static void CutIn_DeleteResourceTransferTask(HMCutIn *cutIn);
 static void SysTask_CutIn_TransferResources(SysTask *dummyTask, void *hmCutInPtr);
-static void CutIn_LoadPokemonChar(CutIn *cutIn, void *pokemonSpriteSource);
-static void CutIn_LoadPokemonSpritePalette(CutIn *cutIn, void *paletteSource);
+static void CutIn_LoadPokemonChar(HMCutIn *cutIn, void *pokemonSpriteSource);
+static void CutIn_LoadPokemonSpritePalette(HMCutIn *cutIn, void *paletteSource);
 static void SysTask_CutIn_FreeResources(SysTask *task, void *hmCutInPtr);
 static void SysTask_CutIn_TransferBirdResource(SysTask *task, void *hmCutInPtr);
 static void SysTask_CutIn_FinalizeBirdSpriteTransfer(SysTask *task, void *hmCutInPtr);
 
 // Cleanup
 static NARC *CutIn_GetCutInNarc(void);
-static void CutIn_DeleteSprites(CutIn *cutIn);
-static void CutIn_UnloadPokemonSpriteResources(CutIn *cutIn);
+static void CutIn_DeleteSprites(HMCutIn *cutIn);
+static void CutIn_UnloadPokemonSpriteResources(HMCutIn *cutIn);
 static void CutIn_ClearTileMapBG3(BgConfig *bgConfig);
-static void CutIn_DeleteSpriteResources(CutIn *cutIn);
-static void CutIn_UpdateSpriteList(CutIn *cutIn);
+static void CutIn_DeleteSpriteResources(HMCutIn *cutIn);
+static void CutIn_UpdateSpriteList(HMCutIn *cutIn);
 
 // Cut-In window
-static void CutIn_InitWindow(CutIn *cutIn);
-static void CutIn_SetWindowMask(CutIn *cutIn);
-static void CutIn_ClearWindowMask(CutIn *cutIn);
-static void CutIn_InitPlaneMasks(CutIn *cutIn);
-static void CutIn_InitPlaneMasksForFly(CutIn *cutIn);
-static void CutIn_SetWindowSize(CutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2);
-static void CutIn_CreateWindowTask(CutIn *cutIn);
+static void CutIn_InitWindow(HMCutIn *cutIn);
+static void CutIn_SetWindowMask(HMCutIn *cutIn);
+static void CutIn_ClearWindowMask(HMCutIn *cutIn);
+static void CutIn_InitPlaneMasks(HMCutIn *cutIn);
+static void CutIn_InitPlaneMasksForFly(HMCutIn *cutIn);
+static void CutIn_SetWindowSize(HMCutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2);
+static void CutIn_CreateWindowTask(HMCutIn *cutIn);
 static void SysTask_CutIn_ShowWindow(SysTask *task, void *hmCutInPtr);
-static void CutIn_DeleteWindowTask(CutIn *cutIn);
+static void CutIn_DeleteWindowTask(HMCutIn *cutIn);
 
 // Wind particles
-static void CreateWindParticleAnims(CutIn *cutIn, int allowWindParticles);
-static Sprite *WindParticle_CreateSprite(CutIn *cutIn, const VecFx32 *position, int listPriority, int animID);
-static void WindParticle_RunAnimFuncs(CutIn *cutIn, const VecFx32 *param1, const VecFx32 *param2, int param3, int param4, int param5);
+static void CreateWindParticleAnims(HMCutIn *cutIn, int allowWindParticles);
+static Sprite *WindParticle_CreateSprite(HMCutIn *cutIn, const VecFx32 *position, int listPriority, int animID);
+static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *param1, const VecFx32 *param2, int param3, int param4, int param5);
 
 // Player sprite in cut-in
-static void CutIn_CreateDrawPlayerSpriteTasks(CutIn *cutIn);
+static void CutIn_CreateDrawPlayerSpriteTasks(HMCutIn *cutIn);
 static void CutIn_StartPlayerAnim(Sprite *sprite);
 
 // Fade-in/-out
@@ -314,30 +314,30 @@ static void FadeOut(void);
 static void FadeIn(void);
 
 // Fly
-static void Fly_CreateTasks(CutIn *cutIn);
-static Sprite *Fly_CreateBirdSprite(CutIn *cutIn, const VecFx32 *position, int priority, int dummy);
-static void Fly_InitBirdSpritePos(CutIn *cutIn);
-static void Fly_PrepareBirdForDescent(CutIn *cutIn);
-static int Fly_GetTaskEnvSubState(CutIn *cutIn);
+static void Fly_CreateTasks(HMCutIn *cutIn);
+static Sprite *Fly_CreateBirdSprite(HMCutIn *cutIn, const VecFx32 *position, int priority, int dummy);
+static void Fly_InitBirdSpritePos(HMCutIn *cutIn);
+static void Fly_PrepareBirdForDescent(HMCutIn *cutIn);
+static int Fly_GetTaskEnvSubState(HMCutIn *cutIn);
 static void FlyPickUpPlayer_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0);
 static void FlyPickUpPlayer_TransferPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0);
-static void FlyAway_SetTasksDone(CutIn *cutIn);
+static void FlyAway_SetTasksDone(HMCutIn *cutIn);
 static void SysTask_FlyLanding(SysTask *task, void *taskEnv);
 static void FlyLanding_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0);
 
 // Utils for Fly
 static UnkStruct_ov101_021D5D90 *PushPlayerUp(UnkStruct_020711EC *param0, Sprite *sprite);
 static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden);
-static void HideAndStopPlayerMapObj(CutIn *cutIn, BOOL hidden);
+static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden);
 
 // TODO
-static void CutIn_SetTaskUnk_254Done(CutIn *cutIn);
+static void CutIn_SetTaskUnk_254Done(HMCutIn *cutIn);
 
 // Utilities
-static Sprite *CreateSprite(CutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 plttResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority);
+static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 plttResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority);
 static void *FlyLanding_AllocFromHeapAtEnd(u32 heapID, int size);
 
-typedef int (*CutInTaskFunc)(CutIn *);
+typedef int (*CutInTaskFunc)(HMCutIn *);
 static const CutInTaskFunc sCutInTaskFuncs[];
 static const CutInTaskFunc sCutInTaskFuncsFly[];
 static const UnkStruct_ov101_021D86B0 sWindParticleAnimFuncs;
@@ -1066,10 +1066,10 @@ static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden)
     MapObject_SetHidden(playerMapObject, hidden);
 }
 
-SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *shownPokemon, int playerGender)
+SysTask *SysTask_HMCutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *shownPokemon, int playerGender)
 {
     SysTask *task;
-    CutIn *cutIn = CreateHMCutIn(fieldSystem);
+    HMCutIn *cutIn = CreateHMCutIn(fieldSystem);
 
     cutIn->pokemon = shownPokemon;
     cutIn->playerGender = playerGender;
@@ -1084,31 +1084,31 @@ SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *sho
     return task;
 }
 
-int CheckCutInFinished(SysTask *cutInTask)
+int CheckHMCutInFinished(SysTask *cutInTask)
 {
-    CutIn *cutIn = SysTask_GetParam(cutInTask);
+    HMCutIn *cutIn = SysTask_GetParam(cutInTask);
     return cutIn->isFinished;
 }
 
-void SysTask_CutIn_Done(SysTask *cutInTask)
+void SysTask_HMCutIn_SetTaskDone(SysTask *cutInTask)
 {
-    CutIn *cutIn = SysTask_GetParam(cutInTask);
+    HMCutIn *cutIn = SysTask_GetParam(cutInTask);
 
     FreeHMCutIn(cutIn);
     SysTask_Done(cutInTask);
 }
 
-static CutIn *CreateHMCutIn(FieldSystem *fieldSystem)
+static HMCutIn *CreateHMCutIn(FieldSystem *fieldSystem)
 {
-    CutIn *cutIn = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(CutIn));
+    HMCutIn *cutIn = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(HMCutIn));
 
-    memset(cutIn, 0, sizeof(CutIn));
+    memset(cutIn, 0, sizeof(HMCutIn));
     cutIn->fieldSystem = fieldSystem;
 
     return cutIn;
 }
 
-static void FreeHMCutIn(CutIn *cutIn)
+static void FreeHMCutIn(HMCutIn *cutIn)
 {
     Heap_Free(cutIn);
 }
@@ -1116,7 +1116,7 @@ static void FreeHMCutIn(CutIn *cutIn)
 static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr)
 {
     int ret;
-    CutIn *cutIn = hmCutInPtr;
+    HMCutIn *cutIn = hmCutInPtr;
 
     do {
         ret = sCutInTaskFuncs[cutIn->state](cutIn);
@@ -1131,7 +1131,7 @@ static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr)
     }
 }
 
-static BOOL CutIn_Init(CutIn *cutIn)
+static BOOL CutIn_Init(HMCutIn *cutIn)
 {
     CutIn_InitSpriteResources(cutIn);
     CutIn_CreateResourceTransferTask(cutIn);
@@ -1139,7 +1139,7 @@ static BOOL CutIn_Init(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_InitSprites(CutIn *cutIn)
+static BOOL HMCutIn_InitSprites(HMCutIn *cutIn)
 {
     if (cutIn->resourceSourcesFreed == FALSE) {
         return FALSE;
@@ -1160,7 +1160,7 @@ static BOOL HMCutIn_InitSprites(CutIn *cutIn)
     return TRUE;
 }
 
-static BOOL HMCutIn_InitWindowAndPlayerSprite(CutIn *cutIn)
+static BOOL HMCutIn_InitWindowAndPlayerSprite(HMCutIn *cutIn)
 {
     CutIn_CreateDrawPlayerSpriteTasks(cutIn);
 
@@ -1176,7 +1176,7 @@ static BOOL HMCutIn_InitWindowAndPlayerSprite(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_WindowExpandX(CutIn *cutIn)
+static BOOL HMCutIn_WindowExpandX(HMCutIn *cutIn)
 {
     cutIn->updateWindow = FALSE;
     cutIn->windowX1 += cutIn->windowDelta;
@@ -1193,7 +1193,7 @@ static BOOL HMCutIn_WindowExpandX(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_WindowExpandY(CutIn *cutIn)
+static BOOL HMCutIn_WindowExpandY(HMCutIn *cutIn)
 {
     cutIn->updateWindow = FALSE;
     cutIn->windowY1 -= cutIn->windowDelta;
@@ -1223,7 +1223,7 @@ static BOOL HMCutIn_WindowExpandY(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_SlideInSpeedUp(CutIn *cutIn)
+static BOOL HMCutIn_SlideInSpeedUp(HMCutIn *cutIn)
 {
     cutIn->subState++;
 
@@ -1236,7 +1236,7 @@ static BOOL HMCutIn_SlideInSpeedUp(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_SlideMonIn(CutIn *cutIn)
+static BOOL HMCutIn_SlideMonIn(HMCutIn *cutIn)
 {
     const VecFx32 *pokemonSpritePosition;
     VecFx32 position;
@@ -1254,7 +1254,7 @@ static BOOL HMCutIn_SlideMonIn(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_SlideMonToCenter(CutIn *cutIn)
+static BOOL HMCutIn_SlideMonToCenter(HMCutIn *cutIn)
 {
     const VecFx32 *pokemonSpritePosition;
     VecFx32 position;
@@ -1277,7 +1277,7 @@ static BOOL HMCutIn_SlideMonToCenter(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_SlideOutSpeedUp(CutIn *cutIn)
+static BOOL HMCutIn_SlideOutSpeedUp(HMCutIn *cutIn)
 {
     cutIn->subState++;
 
@@ -1290,7 +1290,7 @@ static BOOL HMCutIn_SlideOutSpeedUp(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_SlideMonOut(CutIn *cutIn)
+static BOOL HMCutIn_SlideMonOut(HMCutIn *cutIn)
 {
     const VecFx32 *v0;
     VecFx32 v1;
@@ -1315,7 +1315,7 @@ static BOOL HMCutIn_SlideMonOut(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_WindowShrinkY(CutIn *cutIn)
+static BOOL HMCutIn_WindowShrinkY(HMCutIn *cutIn)
 {
     cutIn->updateWindow = 0;
     cutIn->windowY1 += cutIn->windowDelta;
@@ -1345,7 +1345,7 @@ static BOOL HMCutIn_WindowShrinkY(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_DeleteSprites(CutIn *cutIn)
+static BOOL HMCutIn_DeleteSprites(HMCutIn *cutIn)
 {
     CutIn_DeleteSprites(cutIn);
     cutIn->updateSprites = FALSE;
@@ -1353,14 +1353,14 @@ static BOOL HMCutIn_DeleteSprites(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_WindowTaskDone(CutIn *cutIn)
+static BOOL HMCutIn_WindowTaskDone(HMCutIn *cutIn)
 {
     CutIn_DeleteWindowTask(cutIn);
     cutIn->state++;
     return FALSE;
 }
 
-static BOOL HMCutIn_Done(CutIn *cutIn)
+static BOOL HMCutIn_Done(HMCutIn *cutIn)
 {
     cutIn->isFinished = TRUE;
     return FALSE;
@@ -1386,7 +1386,7 @@ static const CutInTaskFunc sCutInTaskFuncs[] = {
 static void SysTask_CutInFly(SysTask *sysTask, void *param1)
 {
     int ret;
-    CutIn *cutIn = param1;
+    HMCutIn *cutIn = param1;
 
     do {
         ret = sCutInTaskFuncsFly[cutIn->state](cutIn);
@@ -1402,7 +1402,7 @@ static void SysTask_CutInFly(SysTask *sysTask, void *param1)
 }
 
 // Identical to HMCutIn_InitSprites
-static BOOL CutIn_InitSpritesFly(CutIn *cutIn)
+static BOOL CutIn_InitSpritesFly(HMCutIn *cutIn)
 {
     if (cutIn->resourceSourcesFreed == FALSE) {
         return FALSE;
@@ -1423,14 +1423,14 @@ static BOOL CutIn_InitSpritesFly(CutIn *cutIn)
     return TRUE;
 }
 
-static BOOL HMCutIn_UnloadMonSprite(CutIn *cutIn)
+static BOOL HMCutIn_UnloadMonSprite(HMCutIn *cutIn)
 {
     CutIn_UnloadPokemonSpriteResources(cutIn);
     cutIn->state++;
     return FALSE;
 }
 
-static BOOL HMCutIn_LoadBirdSprite(CutIn *cutIn)
+static BOOL HMCutIn_LoadBirdSprite(HMCutIn *cutIn)
 {
     CutIn_LoadBirdSpriteResources(cutIn);
     CutIn_CreateBirdResourceTransferTask(cutIn);
@@ -1438,7 +1438,7 @@ static BOOL HMCutIn_LoadBirdSprite(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_WaitResourceTransfer(CutIn *cutIn)
+static BOOL HMCutIn_WaitResourceTransfer(HMCutIn *cutIn)
 {
     if (cutIn->resourceSourcesFreed == FALSE) {
         return FALSE;
@@ -1450,7 +1450,7 @@ static BOOL HMCutIn_WaitResourceTransfer(CutIn *cutIn)
     return TRUE;
 }
 
-static BOOL HMCutIn_InitFlyTasks(CutIn *cutIn)
+static BOOL HMCutIn_InitFlyTasks(HMCutIn *cutIn)
 {
     Fly_CreateTasks(cutIn);
     Fly_InitBirdSpritePos(cutIn);
@@ -1460,7 +1460,7 @@ static BOOL HMCutIn_InitFlyTasks(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_PlayerAnimBackToDefault(CutIn *cutIn)
+static BOOL HMCutIn_PlayerAnimBackToDefault(HMCutIn *cutIn)
 {
     if (Fly_GetTaskEnvSubState(cutIn) != 2) {
         return FALSE;
@@ -1472,7 +1472,7 @@ static BOOL HMCutIn_PlayerAnimBackToDefault(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_PrepareDescent(CutIn *cutIn)
+static BOOL HMCutIn_PrepareDescent(HMCutIn *cutIn)
 {
     cutIn->subState++;
 
@@ -1486,7 +1486,7 @@ static BOOL HMCutIn_PrepareDescent(CutIn *cutIn)
     return TRUE;
 }
 
-static BOOL HMCutIn_PlaySwooshSound(CutIn *cutIn)
+static BOOL HMCutIn_PlaySwooshSound(HMCutIn *cutIn)
 {
     if (Fly_GetTaskEnvSubState(cutIn) != 3) {
         return FALSE;
@@ -1501,7 +1501,7 @@ static BOOL HMCutIn_PlaySwooshSound(CutIn *cutIn)
     return TRUE;
 }
 
-static BOOL HMCutIn_SlideOutWindow(CutIn *cutIn)
+static BOOL HMCutIn_SlideOutWindow(HMCutIn *cutIn)
 {
     cutIn->updateWindow = FALSE;
     cutIn->windowY1 += cutIn->windowDelta;
@@ -1540,7 +1540,7 @@ static BOOL HMCutIn_SlideOutWindow(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_FadeOut(CutIn *cutIn)
+static BOOL HMCutIn_FadeOut(HMCutIn *cutIn)
 {
     if (cutIn->screenFaded == FALSE) {
         if (Fly_GetTaskEnvSubState(cutIn) == 4) {
@@ -1563,7 +1563,7 @@ static BOOL HMCutIn_FadeOut(CutIn *cutIn)
     return FALSE;
 }
 
-static BOOL HMCutIn_CheckFadeOutComplete(CutIn *cutIn)
+static BOOL HMCutIn_CheckFadeOutComplete(HMCutIn *cutIn)
 {
     if (IsScreenFadeDone()) {
         cutIn->state++;
@@ -1598,21 +1598,21 @@ static const CutInTaskFunc sCutInTaskFuncsFly[] = {
     HMCutIn_Done
 };
 
-static void CutIn_CreateResourceTransferTask(CutIn *cutIn)
+static void CutIn_CreateResourceTransferTask(HMCutIn *cutIn)
 {
     cutIn->resourcesLoaded = FALSE;
     cutIn->resourceSourcesFreed = FALSE;
     cutIn->resourceTransferTask = SysTask_ExecuteOnVBlank(SysTask_CutIn_TransferResources, cutIn, 0x80);
 }
 
-static void CutIn_CreateBirdResourceTransferTask(CutIn *cutIn)
+static void CutIn_CreateBirdResourceTransferTask(HMCutIn *cutIn)
 {
     cutIn->resourcesLoaded = FALSE;
     cutIn->resourceSourcesFreed = FALSE;
     cutIn->resourceTransferTask = SysTask_ExecuteOnVBlank(SysTask_CutIn_TransferBirdResource, cutIn, 0x80);
 }
 
-static void CutIn_DeleteResourceTransferTask(CutIn *cutIn)
+static void CutIn_DeleteResourceTransferTask(HMCutIn *cutIn)
 {
     if (cutIn->resourceTransferTask != NULL) {
         SysTask_Done(cutIn->resourceTransferTask);
@@ -1623,7 +1623,7 @@ static void CutIn_DeleteResourceTransferTask(CutIn *cutIn)
 static void SysTask_CutIn_TransferResources(SysTask *dummyTask, void *hmCutInPtr)
 {
     int i;
-    CutIn *cutIn = hmCutInPtr;
+    HMCutIn *cutIn = hmCutInPtr;
 
     if (cutIn->resourcesLoaded == FALSE) {
         for (i = 0; i < 4; i++) {
@@ -1654,7 +1654,7 @@ static void SysTask_CutIn_TransferResources(SysTask *dummyTask, void *hmCutInPtr
 static void SysTask_CutIn_FreeResources(SysTask *task, void *hmCutInPtr)
 {
     int i;
-    CutIn *cutIn = hmCutInPtr;
+    HMCutIn *cutIn = hmCutInPtr;
 
     if (cutIn->resourcesLoaded == TRUE) {
         for (i = 0; i < 4; i++) {
@@ -1686,7 +1686,7 @@ static void SysTask_CutIn_FreeResources(SysTask *task, void *hmCutInPtr)
 
 static void SysTask_CutIn_TransferBirdResource(SysTask *task, void *hmCutInPtr)
 {
-    CutIn *cutIn = hmCutInPtr;
+    HMCutIn *cutIn = hmCutInPtr;
     SpriteResource *charResource = SpriteResourceCollection_Find(cutIn->charLocation, 0);
 
     if (cutIn->resourcesLoaded == FALSE) {
@@ -1698,7 +1698,7 @@ static void SysTask_CutIn_TransferBirdResource(SysTask *task, void *hmCutInPtr)
 
 static void SysTask_CutIn_FinalizeBirdSpriteTransfer(SysTask *task, void *hmCutInPtr)
 {
-    CutIn *cutIn = hmCutInPtr;
+    HMCutIn *cutIn = hmCutInPtr;
     SpriteResource *charSource = SpriteResourceCollection_Find(cutIn->charLocation, 0);
 
     if (cutIn->resourcesLoaded == TRUE) {
@@ -1708,7 +1708,7 @@ static void SysTask_CutIn_FinalizeBirdSpriteTransfer(SysTask *task, void *hmCutI
     }
 }
 
-static void CutIn_InitSpriteResources(CutIn *cutIn)
+static void CutIn_InitSpriteResources(HMCutIn *cutIn)
 {
     NARC *narc = CutIn_GetCutInNarc();
 
@@ -1733,7 +1733,7 @@ static void CutIn_InitSpriteResources(CutIn *cutIn)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-static void CutIn_DeleteSprites(CutIn *cutIn)
+static void CutIn_DeleteSprites(HMCutIn *cutIn)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_0207121C(cutIn->unk_244);
@@ -1753,7 +1753,7 @@ static NARC *CutIn_GetCutInNarc(void)
     return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
 }
 
-static void CutIn_LoadSpriteResources(CutIn *cutIn, NARC *narc)
+static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 {
     int i;
 
@@ -1830,7 +1830,7 @@ static void CutIn_LoadSpriteResources(CutIn *cutIn, NARC *narc)
     cutIn->pokemonPaletteSource = CutIn_GetPokemonPaletteSource(&cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD);
 }
 
-static void CutIn_DeleteSpriteResources(CutIn *cutIn)
+static void CutIn_DeleteSpriteResources(HMCutIn *cutIn)
 {
     int i;
 
@@ -1866,14 +1866,14 @@ static void CutIn_DeleteSpriteResources(CutIn *cutIn)
     SpriteList_Delete(cutIn->spriteList);
 }
 
-static void CutIn_UpdateSpriteList(CutIn *cutIn)
+static void CutIn_UpdateSpriteList(HMCutIn *cutIn)
 {
     if (cutIn->spriteList != NULL) {
         SpriteList_Update(cutIn->spriteList);
     }
 }
 
-static Sprite *CreateSprite(CutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 paletteResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority)
+static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 paletteResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority)
 {
     SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteListTemplate;
@@ -1928,7 +1928,7 @@ static Sprite *CreateSprite(CutIn *cutIn, const VecFx32 *position, u32 charResou
     return sprite;
 }
 
-static Sprite *WindParticle_CreateSprite(CutIn *cutIn, const VecFx32 *position, int listPriority, int animID)
+static Sprite *WindParticle_CreateSprite(HMCutIn *cutIn, const VecFx32 *position, int listPriority, int animID)
 {
     Sprite *sprite = CreateSprite(cutIn, position, 1, 0, 1, 0, 0, listPriority);
     Sprite_SetAnim(sprite, animID);
@@ -1936,7 +1936,7 @@ static Sprite *WindParticle_CreateSprite(CutIn *cutIn, const VecFx32 *position, 
     return sprite;
 }
 
-static Sprite *CutIn_InitPlayerSprite(CutIn *cutIn, const VecFx32 *position)
+static Sprite *CutIn_InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position)
 {
     Sprite *playerSprite;
     u32 plttResourceID = 0;
@@ -1959,7 +1959,7 @@ static void CutIn_StartPlayerAnim(Sprite *sprite)
     Sprite_SetAnimSpeed(sprite, FX32_ONE);
 }
 
-static Sprite *Fly_CreateBirdSprite(CutIn *cutIn, const VecFx32 *position, int priority, int dummy)
+static Sprite *Fly_CreateBirdSprite(HMCutIn *cutIn, const VecFx32 *position, int priority, int dummy)
 {
     Sprite *birdSprite;
     VecFx32 translation = { 0, 0, 0 };
@@ -1975,7 +1975,7 @@ static Sprite *Fly_CreateBirdSprite(CutIn *cutIn, const VecFx32 *position, int p
     return birdSprite;
 }
 
-static void CutIn_LoadBirdSpriteResources(CutIn *cutIn)
+static void CutIn_LoadBirdSpriteResources(HMCutIn *cutIn)
 {
     int i;
     NARC *narc = CutIn_GetCutInNarc();
@@ -2040,7 +2040,7 @@ static void CutIn_ClearTileMapBG3(BgConfig *bgConfig)
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
 }
 
-static void CutIn_InitWindow(CutIn *cutIn)
+static void CutIn_InitWindow(HMCutIn *cutIn)
 {
     CutIn_CreateWindowTask(cutIn);
     cutIn->updateWindow = FALSE;
@@ -2052,17 +2052,17 @@ static void CutIn_InitWindow(CutIn *cutIn)
     cutIn->updateWindow = TRUE;
 }
 
-static void CutIn_SetWindowMask(CutIn *cutIn)
+static void CutIn_SetWindowMask(HMCutIn *cutIn)
 {
     cutIn->window = (GX_WNDMASK_W0);
 }
 
-static void CutIn_ClearWindowMask(CutIn *cutIn)
+static void CutIn_ClearWindowMask(HMCutIn *cutIn)
 {
     cutIn->window = GX_WNDMASK_NONE;
 }
 
-static void CutIn_InitPlaneMasks(CutIn *cutIn)
+static void CutIn_InitPlaneMasks(HMCutIn *cutIn)
 {
     cutIn->planeMaskInside = (GX_WND_PLANEMASK_BG3) | GX_WND_PLANEMASK_OBJ;
     cutIn->effectInside = 0;
@@ -2070,13 +2070,13 @@ static void CutIn_InitPlaneMasks(CutIn *cutIn)
     cutIn->effectOutside = 1;
 }
 
-static void CutIn_InitPlaneMasksForFly(CutIn *cutIn)
+static void CutIn_InitPlaneMasksForFly(HMCutIn *cutIn)
 {
     cutIn->planeMaskOutside = (GX_WND_PLANEMASK_OBJ | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3) & (~(GX_WND_PLANEMASK_BG3));
     cutIn->effectOutside = 1;
 }
 
-static void CutIn_SetWindowSize(CutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2)
+static void CutIn_SetWindowSize(HMCutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2)
 {
     cutIn->windowX1 = x1;
     cutIn->windowX2 = x2;
@@ -2084,13 +2084,13 @@ static void CutIn_SetWindowSize(CutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2
     cutIn->windowY2 = y2;
 }
 
-static void CutIn_CreateWindowTask(CutIn *cutIn)
+static void CutIn_CreateWindowTask(HMCutIn *cutIn)
 {
     GF_ASSERT(cutIn->windowTask == NULL);
     cutIn->windowTask = SysTask_ExecuteOnVBlank(SysTask_CutIn_ShowWindow, cutIn, 0x81);
 }
 
-static void CutIn_DeleteWindowTask(CutIn *cutIn)
+static void CutIn_DeleteWindowTask(HMCutIn *cutIn)
 {
     GF_ASSERT(cutIn->windowTask != NULL);
 
@@ -2100,7 +2100,7 @@ static void CutIn_DeleteWindowTask(CutIn *cutIn)
 
 static void SysTask_CutIn_ShowWindow(SysTask *task, void *hmCutInPtr)
 {
-    CutIn *cutIn = hmCutInPtr;
+    HMCutIn *cutIn = hmCutInPtr;
 
     if (cutIn->updateWindow == 0) {
         return;
@@ -2112,7 +2112,7 @@ static void SysTask_CutIn_ShowWindow(SysTask *task, void *hmCutInPtr)
     G2_SetWnd0Position(cutIn->windowX1 / FX32_ONE, cutIn->windowY1 / FX32_ONE, cutIn->windowX2 / FX32_ONE, cutIn->windowY2 / FX32_ONE);
 }
 
-static void CutIn_BuildPokemonSpriteTemplate(CutIn *cutIn, PokemonSpriteTemplate *spriteTemplate)
+static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate)
 {
     Pokemon_BuildSpriteTemplate(spriteTemplate, cutIn->pokemon, 2);
 }
@@ -2135,13 +2135,13 @@ static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate
     return paletteSource;
 }
 
-static SpriteResource *CutIn_GetParticleCharResource(CutIn *cutIn, NARC *narc)
+static SpriteResource *CutIn_GetParticleCharResource(HMCutIn *cutIn, NARC *narc)
 {
     SpriteResource *spriteResource = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 5, FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
     return spriteResource;
 }
 
-static void CutIn_LoadPokemonChar(CutIn *cutIn, void *pokemonSpriteSource)
+static void CutIn_LoadPokemonChar(HMCutIn *cutIn, void *pokemonSpriteSource)
 {
     u32 imageLocationInSource;
     SpriteResource *charResource;
@@ -2155,13 +2155,13 @@ static void CutIn_LoadPokemonChar(CutIn *cutIn, void *pokemonSpriteSource)
     GX_LoadOBJ(pokemonSpriteSource, imageLocationInSource, (32 * 10) * 10);
 }
 
-static SpriteResource *CutIn_GetPlayerMalePlttResource(CutIn *cutIn, NARC *narc)
+static SpriteResource *CutIn_GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc)
 {
     SpriteResource *spriteResource = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 3, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
     return spriteResource;
 }
 
-static void CutIn_LoadPokemonSpritePalette(CutIn *cutIn, void *paletteSource)
+static void CutIn_LoadPokemonSpritePalette(HMCutIn *cutIn, void *paletteSource)
 {
     u32 plttLocationInSource;
     SpriteResource *plttResource;
@@ -2179,7 +2179,7 @@ static void CutIn_LoadPokemonSpritePalette(CutIn *cutIn, void *paletteSource)
     GX_LoadOBJPltt(paletteSource, plttLocationInSource, 32);
 }
 
-static void CutIn_UnloadPokemonSpriteResources(CutIn *cutIn)
+static void CutIn_UnloadPokemonSpriteResources(HMCutIn *cutIn)
 {
     int i;
     SpriteResource *charResource = SpriteResourceCollection_Find(cutIn->charLocation, 3);
@@ -2223,7 +2223,7 @@ static void CutIn_UnloadPokemonSpriteResources(CutIn *cutIn)
     GF_ASSERT(i < 4);
 }
 
-static Sprite *CutIn_InitPokemonSprite(CutIn *cutIn, const VecFx32 *position)
+static Sprite *CutIn_InitPokemonSprite(HMCutIn *cutIn, const VecFx32 *position)
 {
     Sprite *monSprite = CreateSprite(cutIn, position, 3, 2, 3, 0xffffffff, 0, 129);
     return monSprite;
@@ -2245,7 +2245,7 @@ static const WindParticleAnimConfig sWindParticleAnimConfigs[13] = {
     { FX32_ONE * 221, FX32_ONE * 124, FX32_ONE * 24, 0x80, 0x1 }
 };
 
-static void CreateWindParticleAnims(CutIn *cutIn, int allowWindParticles)
+static void CreateWindParticleAnims(HMCutIn *cutIn, int allowWindParticles)
 {
     int i, v1, v2;
     VecFx32 v3, v4;
@@ -2268,7 +2268,7 @@ static void CreateWindParticleAnims(CutIn *cutIn, int allowWindParticles)
     }
 }
 
-static void WindParticle_RunAnimFuncs(CutIn *cutIn, const VecFx32 *param1, const VecFx32 *movementDelta, int spriteListPriority, int param4, BOOL allowWindParticles)
+static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *param1, const VecFx32 *movementDelta, int spriteListPriority, int param4, BOOL allowWindParticles)
 {
     UnkStruct_ov101_021D5D90 *v0;
     WindParticleAnimData v1;
@@ -2318,7 +2318,7 @@ static void WindParticleAnim_AnimateParticle(UnkStruct_ov101_021D5D90 *param0, v
     Sprite_SetPosition(env->sprite, &newPos);
 
     if (env->data.allowWindParticles == TRUE) {
-        CutIn *v2 = env->data.cutIn;
+        HMCutIn *v2 = env->data.cutIn;
 
         if (v2->windParticlesAnimState == 2) {
             BOOL drawFlag = FALSE;
@@ -2351,21 +2351,21 @@ static const UnkStruct_ov101_021D86B0 sWindParticleAnimFuncs = {
     WindParticleAnim_DoNothing
 };
 
-static void Fly_CreateTasks(CutIn *cutIn)
+static void Fly_CreateTasks(HMCutIn *cutIn)
 {
     VecFx32 position = { 0, 0, 0 };
-    CutIn *CutIn = cutIn;
+    HMCutIn *CutIn = cutIn;
 
     cutIn->unk_250 = sub_02071330(cutIn->unk_244, &sFlyAwayFuncs, &position, 0, &CutIn, 130);
 }
 
-static int Fly_GetTaskEnvSubState(CutIn *cutIn)
+static int Fly_GetTaskEnvSubState(HMCutIn *cutIn)
 {
     FlyTaskEnv *taskEnv = sub_02071598(cutIn->unk_250);
     return taskEnv->subState;
 }
 
-static void FlyAway_SetTasksDone(CutIn *cutIn)
+static void FlyAway_SetTasksDone(HMCutIn *cutIn)
 {
     FlyTaskEnv *env = sub_02071598(cutIn->unk_250);
 
@@ -2440,7 +2440,7 @@ static const FlyAwayTaskFunc sFlyTaskFuncsUnused[] = {
     HMFlyUnused_HideBird
 };
 
-static void Fly_InitBirdSpritePos(CutIn *cutIn)
+static void Fly_InitBirdSpritePos(HMCutIn *cutIn)
 {
     VecFx32 birdPosition = { FX32_ONE * (128 + 8), FX32_ONE * (96 - 8), 0 };
     VecFx32 birdScale = { 0x400, 0x400, 0 };
@@ -2529,7 +2529,7 @@ static const FlyAwayTaskFunc sFlyAwayAscendFromPokeballFuncs[] = {
     FlyAwayAscendFromPokeball_DoNothing
 };
 
-static void Fly_PrepareBirdForDescent(CutIn *cutIn)
+static void Fly_PrepareBirdForDescent(HMCutIn *cutIn)
 {
     VecFx32 birdPosition = VEC_FX32(128, 104, 0);
     VecFx32 birdScale = VEC_FX32(1.25, 1.25, 0);
@@ -2928,7 +2928,7 @@ static const UnkStruct_ov101_021D86B0 s_ = {
     UnkStruct_ov101_021D5D90_DoNothing2,
 };
 
-SysTask *FieldTask_InitFlyLandingTask(FieldSystem *fieldSystem, int playerGender)
+SysTask *FieldTask_FlyLanding_InitTask(FieldSystem *fieldSystem, int playerGender)
 {
     FlyLandingEnv *taskEnv = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(FlyLandingEnv));
 
@@ -3083,7 +3083,7 @@ static void *FlyLanding_AllocFromHeapAtEnd(u32 heapID, int size)
     return ptr;
 }
 
-static void HideAndStopPlayerMapObj(CutIn *cutIn, BOOL hidden)
+static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden)
 {
     MapObject *playObj = Player_MapObject(cutIn->fieldSystem->playerAvatar);
 
@@ -3130,7 +3130,7 @@ static const UnkStruct_ov101_021D86B0 sShowHidePlayerSpriteFuncs = {
     UnkStruct_ov101_021D5D90_DoNothing2
 };
 
-static void CutIn_CreateDrawPlayerSpriteTasks(CutIn *cutIn)
+static void CutIn_CreateDrawPlayerSpriteTasks(HMCutIn *cutIn)
 {
     VecFx32 initialPosition = { 0, 0, 0 };
     HMCutInWithPlayer wrapper;
@@ -3141,7 +3141,7 @@ static void CutIn_CreateDrawPlayerSpriteTasks(CutIn *cutIn)
     cutIn->unk_254 = sub_02071330(cutIn->unk_244, &sShowHidePlayerSpriteFuncs, &initialPosition, 0, &wrapper, 134);
 }
 
-static void CutIn_SetTaskUnk_254Done(CutIn *cutIn)
+static void CutIn_SetTaskUnk_254Done(HMCutIn *cutIn)
 {
     if (cutIn->unk_254 != NULL) {
         sub_0207136C(cutIn->unk_254);

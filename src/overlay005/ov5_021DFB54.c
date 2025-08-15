@@ -22,7 +22,7 @@
 #include "overlay005/ov5_021F2850.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 #include "overlay006/ov6_02248050.h"
 #include "overlay006/wild_encounters.h"
 #include "overlay009/ov9_02249960.h"
@@ -1719,13 +1719,13 @@ static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRid
 
 static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask)
 {
-    monRideTask->HMCutInTask = SysTask_CutIn_New(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
+    monRideTask->HMCutInTask = SysTask_HMCutIn_New(fieldSystem, 0, monRideTask->partyMon, monRideTask->playerGender);
 }
 
 static BOOL CheckMonRideCutInFinished(MonRideTask *monRideTask)
 {
-    if (CheckCutInFinished(monRideTask->HMCutInTask) == TRUE) {
-        SysTask_CutIn_Done(monRideTask->HMCutInTask);
+    if (CheckHMCutInFinished(monRideTask->HMCutInTask) == TRUE) {
+        SysTask_HMCutIn_SetTaskDone(monRideTask->HMCutInTask);
         return TRUE;
     }
 

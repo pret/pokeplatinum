@@ -460,7 +460,7 @@ pokeplatinum_c = files(
     'overlay006/ov6_02243004.c',
     'overlay006/radar_chain_records.c',
     'overlay006/swarm.c',
-    'overlay006/ov6_02243258.c',
+    'overlay006/hm_cut_in.c',
     'overlay006/roamer_after_battle.c',
     'overlay006/npc_trade.c',
     'overlay006/ov6_02246444.c',

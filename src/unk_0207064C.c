@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 
 #include "field_map_change.h"
 #include "field_task.h"
@@ -47,15 +47,15 @@ BOOL sub_02070680(FieldTask *task)
 
     switch (taskEnv->state) {
     case 0:
-        taskEnv->cutInTask = SysTask_CutIn_New(taskEnv->fieldSystem, 1, taskEnv->partyPokemon, PlayerAvatar_Gender(taskEnv->fieldSystem->playerAvatar));
+        taskEnv->cutInTask = SysTask_HMCutIn_New(taskEnv->fieldSystem, 1, taskEnv->partyPokemon, PlayerAvatar_Gender(taskEnv->fieldSystem->playerAvatar));
         taskEnv->state++;
         break;
     case 1:
-        if (CheckCutInFinished(taskEnv->cutInTask) == FALSE) {
+        if (CheckHMCutInFinished(taskEnv->cutInTask) == FALSE) {
             break;
         }
 
-        SysTask_CutIn_Done(taskEnv->cutInTask);
+        SysTask_HMCutIn_SetTaskDone(taskEnv->cutInTask);
 
         u16 destination;
         Location location;

@@ -572,7 +572,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_ov6_02243004.c.o
 	Object main.nef.p/src_overlay006_radar_chain_records.c.o
 	Object main.nef.p/src_overlay006_swarm.c.o
-	Object main.nef.p/src_overlay006_ov6_02243258.c.o
+	Object main.nef.p/src_overlay006_hm_cut_in.c.o
 	Object main.nef.p/src_overlay006_roamer_after_battle.c.o
 	Object main.nef.p/src_overlay006_npc_trade.c.o
 	Object main.nef.p/src_overlay006_ov6_02246444.c.o
