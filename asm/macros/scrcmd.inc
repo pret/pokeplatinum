@@ -1095,26 +1095,26 @@
     .short 181
     .endm
 
-    .macro ScrCmd_0B6 arg0
+    .macro ScrCmd_0B6 approachNum
     .short 182
-    .short \arg0
+    .short \approachNum
     .endm
 
-    .macro ScrCmd_0B7 arg0, arg1
+    .macro CheckIsTrainerTaskDone approachNum, destVar
     .short 183
-    .short \arg0
-    .short \arg1
+    .short \approachNum
+    .short \destVar
     .endm
 
-    .macro ScrCmd_0B8 arg0
+    .macro GetTrainerType destVar
     .short 184
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_0B9 arg0, arg1
+    .macro GetTrainer0Or1ID approachNum, destVar
     .short 185
-    .short \arg0
-    .short \arg1
+    .short \approachNum
+    .short \destVar
     .endm
 
     .macro ScrCmd_Unused_0BA arg0
@@ -1415,13 +1415,13 @@
     .short 239
     .endm
 
-    .macro ScrCmd_0F0
+    .macro SetTargetObjectDefeated
     .short 240
     .endm
 
-    .macro ScrCmd_0F1 arg0
+    .macro GoToIfTargetObjectDefeated offset
     .short 241
-    .long \arg0-.-4
+    .long \offset-.-4
     .endm
 
     .macro ScrCmd_0F2 arg0, arg1, arg2, arg3
@@ -4482,9 +4482,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_314 arg0
+    .macro GetBattleResult destVar
     .short 788
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_315 arg0

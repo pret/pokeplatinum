@@ -70,7 +70,7 @@ _00C4:
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
     ClearFlag FLAG_UNK_0x008E
     CheckWonBattle VAR_RESULT
-    ScrCmd_314 VAR_RESULT
+    GetBattleResult VAR_RESULT
     GoToIfEq VAR_RESULT, 2, _0204
     GoToIfEq VAR_RESULT, 3, _0204
     GoToIfEq VAR_RESULT, 5, _014E
