@@ -381,21 +381,13 @@ static void FlyLanding_InitResourceData(FlyResources *flyResources, int maxSprit
     flyResources->cellSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * resource3Count);
     flyResources->animSourceWrapper = FlyLanding_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * resource4Count);
 
-    for (i = 0; i < resource1Count; flyResources->charSourceWrapper[i].resourceId = resource1ID, i++) {
-        (void)0;
-    }
+    for (i = 0; i < resource1Count; flyResources->charSourceWrapper[i].resourceId = resource1ID, i++) {}
 
-    for (i = 0; i < resource2Count; flyResources->paletteSourceWrapper[i].resourceId = resource2ID, i++) {
-        (void)0;
-    }
+    for (i = 0; i < resource2Count; flyResources->paletteSourceWrapper[i].resourceId = resource2ID, i++) {}
 
-    for (i = 0; i < resource3Count; flyResources->cellSourceWrapper[i].resourceId = resource3ID, i++) {
-        (void)0;
-    }
+    for (i = 0; i < resource3Count; flyResources->cellSourceWrapper[i].resourceId = resource3ID, i++) {}
 
-    for (i = 0; i < resource4Count; flyResources->animSourceWrapper[i].resourceId = resource4ID, i++) {
-        (void)0;
-    }
+    for (i = 0; i < resource4Count; flyResources->animSourceWrapper[i].resourceId = resource4ID, i++) {}
 }
 
 static void FlyLanding_ReleaseResources(FlyResources *flyResources)
@@ -440,9 +432,7 @@ static void FlyLanding_ReleaseResources(FlyResources *flyResources)
 
 static void FlyLanding_LoadCharResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource1Count; i++) {
+    for (int i = 0; i < flyResources->resource1Count; i++) {
         if (flyResources->charSourceWrapper[i].resourceId == flyResources->resource1ID) {
             flyResources->charSourceWrapper[i].resourceId = resourceId;
             flyResources->charSourceWrapper[i].memberIdx = 0;
@@ -456,9 +446,7 @@ static void FlyLanding_LoadCharResources(FlyResources *flyResources, NARC *narc,
 
 static void FlyLanding_RequestCharResources(FlyResources *flyResources, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource1Count; i++) {
+    for (int i = 0; i < flyResources->resource1Count; i++) {
         if (flyResources->charSourceWrapper[i].resourceId == resourceId) {
             SpriteTransfer_RequestCharAtEnd(flyResources->charSourceWrapper[i].spriteResource);
             return;
@@ -470,9 +458,7 @@ static void FlyLanding_RequestCharResources(FlyResources *flyResources, int reso
 
 static void FlyLanding_ReleaseCharResources(FlyResources *flyResources, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource1Count; i++) {
+    for (int i = 0; i < flyResources->resource1Count; i++) {
         if (flyResources->charSourceWrapper[i].resourceId == resourceId) {
             SpriteResource_ReleaseData(flyResources->charSourceWrapper[i].spriteResource);
             return;
@@ -484,9 +470,7 @@ static void FlyLanding_ReleaseCharResources(FlyResources *flyResources, int reso
 
 static void FlyLanding_LoadPaletteResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource1Count; i++) {
+    for (int i = 0; i < flyResources->resource1Count; i++) {
         if (flyResources->paletteSourceWrapper[i].resourceId == flyResources->resource2ID) {
             flyResources->paletteSourceWrapper[i].resourceId = resourceId;
             flyResources->paletteSourceWrapper[i].memberIdx = 0;
@@ -500,9 +484,7 @@ static void FlyLanding_LoadPaletteResources(FlyResources *flyResources, NARC *na
 
 static void FlyLanding_FreeSpaceForPaletteResources(FlyResources *flyResources, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource2Count; i++) {
+    for (int i = 0; i < flyResources->resource2Count; i++) {
         if (flyResources->paletteSourceWrapper[i].resourceId == resourceId) {
             SpriteTransfer_RequestPlttFreeSpace(flyResources->paletteSourceWrapper[i].spriteResource);
             return;
@@ -514,9 +496,7 @@ static void FlyLanding_FreeSpaceForPaletteResources(FlyResources *flyResources, 
 
 static void FlyLanding_ReleasePaletteResources(FlyResources *flyResources, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource2Count; i++) {
+    for (int i = 0; i < flyResources->resource2Count; i++) {
         if (flyResources->paletteSourceWrapper[i].resourceId == resourceId) {
             SpriteResource_ReleaseData(flyResources->paletteSourceWrapper[i].spriteResource);
             return;
@@ -528,9 +508,7 @@ static void FlyLanding_ReleasePaletteResources(FlyResources *flyResources, int r
 
 static void FlyLanding_LoadCellResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource1Count; i++) {
+    for (int i = 0; i < flyResources->resource1Count; i++) {
         if (flyResources->cellSourceWrapper[i].resourceId == flyResources->resource3ID) {
             flyResources->cellSourceWrapper[i].resourceId = resourceId;
             flyResources->cellSourceWrapper[i].memberIdx = 0;
@@ -544,9 +522,7 @@ static void FlyLanding_LoadCellResources(FlyResources *flyResources, NARC *narc,
 
 static void FlyLanding_LoadAnimResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
-    int i;
-
-    for (i = 0; i < flyResources->resource1Count; i++) {
+    for (int i = 0; i < flyResources->resource1Count; i++) {
         if (flyResources->animSourceWrapper[i].resourceId == flyResources->resource4ID) {
             flyResources->animSourceWrapper[i].resourceId = resourceId;
             flyResources->animSourceWrapper[i].memberIdx = 0;
@@ -565,7 +541,7 @@ static Sprite *FlyLanding_CreateSprite(FlyResources *flyResources, const VecFx32
     Sprite *sprite;
 
     if (animResourceID == flyResources->resource4ID) {
-        animResourceID = 0xffffffff;
+        animResourceID = RESOURCE_NONE;
     }
 
     SpriteResourcesHeader_Init(
@@ -574,8 +550,8 @@ static Sprite *FlyLanding_CreateSprite(FlyResources *flyResources, const VecFx32
         paletteResourceID,
         cellResourceID,
         animResourceID,
-        0xffffffff,
-        0xffffffff,
+        RESOURCE_NONE,
+        RESOURCE_NONE,
         FALSE,
         headerPriority,
         flyResources->charLocation,
@@ -703,9 +679,7 @@ static void FlyLandingAnimWrapper_RunFlyLandingAnim(UnkStruct_ov101_021D5D90 *pa
 
     funcs = FlyLandingAnimFuncCollections[env->stage];
 
-    while (funcs[env->state](env) == 1) {
-        (void)0;
-    }
+    while (funcs[env->state](env) == 1) {}
 }
 
 static const UnkStruct_ov101_021D86B0 sFlyLandingAnimWrapperFuncs = {
@@ -1787,7 +1761,6 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     // Palette Index 1: Player Female
     if (cutIn->playerGender == 0) {
-        (void)0;
     } else {
         cutIn->paletteSource[i] = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 4, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTT_1, HEAP_ID_FIELD);
         i++;
@@ -1883,9 +1856,9 @@ static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charRes
             charResourceID,
             paletteResourceID,
             cellResourceID,
-            0xffffffff,
-            0xffffffff,
-            0xffffffff,
+            RESOURCE_NONE,
+            RESOURCE_NONE,
+            RESOURCE_NONE,
             FALSE,
             headerPriority,
             cutIn->charLocation,
@@ -1901,8 +1874,8 @@ static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charRes
             paletteResourceID,
             cellResourceID,
             animResourceID,
-            0xffffffff,
-            0xffffffff,
+            RESOURCE_NONE,
+            RESOURCE_NONE,
             FALSE,
             headerPriority,
             cutIn->charLocation,
@@ -1963,7 +1936,7 @@ static Sprite *Fly_CreateBirdSprite(HMCutIn *cutIn, const VecFx32 *position, int
     VecFx32 translation = { 0, 0, 0 };
     VecFx32 scale = { 0x1000, 0x1000, 0 };
 
-    birdSprite = CreateSprite(cutIn, position, 0, 0, 0, 0xffffffff, 0, priority);
+    birdSprite = CreateSprite(cutIn, position, 0, 0, 0, RESOURCE_NONE, 0, priority);
 
     Sprite_SetAffineOverwriteMode(birdSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
     Sprite_SetAffineTranslation(birdSprite, &translation);
@@ -2223,7 +2196,7 @@ static void CutIn_UnloadPokemonSpriteResources(HMCutIn *cutIn)
 
 static Sprite *CutIn_InitPokemonSprite(HMCutIn *cutIn, const VecFx32 *position)
 {
-    Sprite *monSprite = CreateSprite(cutIn, position, 3, 2, 3, 0xffffffff, 0, 129);
+    Sprite *monSprite = CreateSprite(cutIn, position, 3, 2, 3, RESOURCE_NONE, 0, 129);
     return monSprite;
 }
 
@@ -2403,9 +2376,7 @@ static void FlyAway_Main(UnkStruct_ov101_021D5D90 *param0, void *taskEnv)
     const FlyAwayTaskFunc *taskFuncs;
     taskFuncs = sFlyAwayAnimFuncsComplex[flyTaskEnv->stage];
 
-    while (taskFuncs[flyTaskEnv->state](flyTaskEnv) == 1) {
-        (void)0;
-    }
+    while (taskFuncs[flyTaskEnv->state](flyTaskEnv) == 1) {}
 }
 
 static void FlyAway_DoNothing(UnkStruct_ov101_021D5D90 *param0, void *taskEnv)
@@ -2954,9 +2925,7 @@ static void SysTask_FlyLanding(SysTask *task, void *taskEnv)
 {
     FlyLandingEnv *flyLandingTaskEnv = taskEnv;
 
-    while (sFlyLandingFuncs[flyLandingTaskEnv->state](flyLandingTaskEnv) == TRUE) {
-        (void)0;
-    }
+    while (sFlyLandingFuncs[flyLandingTaskEnv->state](flyLandingTaskEnv) == TRUE) {}
 
     if (flyLandingTaskEnv->animationInProgress) {
         if (flyLandingTaskEnv->unk_1D4 != NULL) {
