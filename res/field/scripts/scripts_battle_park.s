@@ -304,4 +304,4 @@ _03C4:
     ShowLandmarkSign 8
     End
 
-    .byte 0
+    .balign 4, 0

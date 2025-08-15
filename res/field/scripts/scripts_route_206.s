@@ -61,6 +61,4 @@ _00CE:
     ShowArrowSign 2
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

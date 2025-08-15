@@ -267,7 +267,7 @@ _03C0:
     ApplyMovement LOCALID_PLAYER, _0504
     ApplyMovement 31, _0574
     WaitMovement
-    ScrCmd_187 31, 186, 0, 0x2F4, 1
+    SetPosition 31, 186, 0, 0x2F4, 1
     SetObjectEventPos 31, 186, 0x2F4
     CallCommonScript 0x808
     Return
@@ -1073,46 +1073,19 @@ _0E08:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+JubilifeCity_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalEast
+    Delay8
+    WalkOnSpotNormalSouth
+    EndMovement
+
+JubilifeCity_UnusedMovement2:
+    Delay8
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0E44:
@@ -1141,38 +1114,17 @@ _0E68:
     WalkNormalSouth 9
     EndMovement
 
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+JubilifeCity_UnusedMovement3:
+    WalkNormalEast
+    WalkNormalSouth 9
+    EndMovement
+
+JubilifeCity_UnusedMovement4:
+    WalkNormalWest
+    WalkOnSpotNormalEast
+    WalkNormalEast
+    WalkNormalSouth 9
+    EndMovement
 
     .balign 4, 0
 _0E94:
@@ -1220,30 +1172,15 @@ _0ED8:
     WalkNormalSouth 9
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+JubilifeCity_UnusedMovement5:
+    WalkNormalSouth 9
+    EndMovement
+
+JubilifeCity_UnusedMovement6:
+    WalkOnSpotNormalWest
+    WalkNormalWest
+    WalkNormalSouth 9
+    EndMovement
 
     .balign 4, 0
 _0EF8:
@@ -1255,46 +1192,25 @@ _0F00:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+JubilifeCity_UnusedMovement7:
+    WalkOnSpotNormalWest
+    EndMovement
+
+JubilifeCity_UnusedMovement8:
+    WalkOnSpotNormalWest
+    EndMovement
+
+JubilifeCity_UnusedMovement9:
+    WalkOnSpotNormalWest
+    EndMovement
+
+JubilifeCity_UnusedMovement10:
+    WalkOnSpotNormalWest
+    EndMovement
+    
+JubilifeCity_UnusedMovement11:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0F30:
@@ -1701,7 +1617,7 @@ _1451:
     Message 58
     Message 60
     Message 61
-    ScrCmd_187 23, 174, 1, 0x303, 1
+    SetPosition 23, 174, 1, 0x303, 1
     SetVar VAR_0x8004, 0x1CE
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00EF

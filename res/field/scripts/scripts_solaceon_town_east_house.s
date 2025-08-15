@@ -117,5 +117,4 @@ _014F:
     ScrCmd_094 VAR_0x8007, 1
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

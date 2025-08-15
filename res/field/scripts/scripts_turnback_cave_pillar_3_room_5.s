@@ -5,11 +5,11 @@
     ScriptEntryEnd
 
 _0006:
-    AddVar VAR_UNK_0x410C, 1
-    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
+    AddVar VAR_TURNBACK_CAVE_ROOMS_VISITED, 1
+    InitTurnbackCave VAR_TURNBACK_CAVE_PILLARS_SEEN, VAR_TURNBACK_CAVE_ROOMS_VISITED
     End
 
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
+TurnbackCavePillar3Room5_Unused:
+    End
+
+    .balign 4, 0

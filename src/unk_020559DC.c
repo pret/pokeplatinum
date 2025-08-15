@@ -86,7 +86,7 @@ static void inline_020559DC(FieldSystem *fieldSystem, GameTime *param1, const RT
 
 static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
 {
-    sub_02028658(FieldSystem_GetSaveData(fieldSystem), daysPassed);
+    Underground_UpdateBuriedSphereSizes(FieldSystem_GetSaveData(fieldSystem), daysPassed);
     sub_0203F1FC(fieldSystem);
     TrainerCard_AccumulateBadgeDirt(fieldSystem->saveData, daysPassed);
     RecordMixedRNG_AdvanceEntries(SaveData_GetRecordMixedRNG(fieldSystem->saveData), daysPassed);

@@ -68,21 +68,19 @@ static void ov5_021F57B4(UnkStruct_021F5788 *param0)
     sub_02073AA8(&param0->unk_1C);
 }
 
-void ov5_021F57C8(FieldSystem *fieldSystem, int param1, int param2)
+void ov5_DisplayBuriedSphereSparkle(FieldSystem *fieldSystem, int x, int z)
 {
-    int v0, v1;
     UnkStruct_ov5_021F57C8 v2;
     VecFx32 v3;
 
     v2.unk_00 = fieldSystem->unk_40;
     v2.unk_04 = ov5_021DF55C(v2.unk_00, 9);
 
-    v3.x = (((param1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
+    v3.x = ((x << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
     v3.y = 0;
-    v3.z = (((param2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
+    v3.z = ((z << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
 
-    v1 = 0;
-    ov5_021DF72C(v2.unk_00, &Unk_ov5_02200B54, &v3, v1, &v2, 0xff);
+    ov5_021DF72C(v2.unk_00, &Unk_ov5_02200B54, &v3, 0, &v2, 0xff);
 }
 
 static int ov5_021F580C(UnkStruct_ov101_021D5D90 *param0, void *param1)

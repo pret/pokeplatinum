@@ -336,7 +336,7 @@ void sub_0203AABC(FieldSystem *fieldSystem)
     FieldSystem_CreateTask(fieldSystem, sub_0203AC44, menu);
 }
 
-void sub_0203AB00(FieldSystem *fieldSystem)
+void StartMenu_Open(FieldSystem *fieldSystem)
 {
     StartMenu *menu;
 
@@ -1279,7 +1279,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         partyMan->usedItemID = sub_0207CB94(v2);
         partyMan->fieldSystem = fieldSystem;
 
-        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
         menu->taskData = partyMan;
         sub_0203B674(menu, sub_0203B7C0);
     } break;
@@ -1321,7 +1321,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
                 partyMan->unk_20 = 10;
             }
 
-            FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+            FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
             menu->taskData = partyMan;
             sub_0203B674(menu, sub_0203B7C0);
         }
@@ -1585,7 +1585,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         partyMan->learnedMove = v2->move;
         partyMan->selectedMoveSlot = v2->selectedMoveSlot;
 
-        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
         Heap_Free(menu->unk_260);
         menu->taskData = partyMan;
         sub_0203B674(menu, sub_0203B7C0);
@@ -1784,7 +1784,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 param2)
 
     sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(partyMan->party, v0->unk_02));
     sub_02097770(menu->taskData);
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
 
     menu->taskData = partyMan;
     sub_0203B674(menu, sub_0203B7C0);

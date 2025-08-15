@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "generated/bg_event_types.h"
 #include "generated/map_headers.h"
 
 #include "data/field/hidden_items.h"
@@ -30,23 +31,23 @@
 static BOOL FieldTask_RunScript(FieldTask *taskManager);
 static ScriptManager *ScriptManager_New();
 static void ScriptContext_Free(ScriptContext *ctx);
-static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType);
-static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID, u8 dummy);
+static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType);
+static void ScriptContext_LoadAndStart(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID, u8 dummy);
 static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID);
 static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int scriptFile, u32 textBank);
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx);
-static void sub_0203F0E4(ScriptContext *ctx, u16 param1);
+static void ScriptContext_JumpToOffsetID(ScriptContext *ctx, u16 param1);
 static void *ScriptContext_LoadScripts(int headerID);
 static u32 MapHeaderToMsgArchive(int headerID);
 static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 scriptID);
-static u16 sub_0203F610(const u8 *param0, u8 param1);
-static u16 sub_0203F638(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
+static u16 FieldSystem_GetFixedInitScriptID(const u8 *param0, u8 param1);
+static u16 FieldSystem_GetFirstMatchInitScriptID(FieldSystem *fieldSystem, const u8 *param1, u8 param2);
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object)
 {
     ScriptManager *scriptManager = ScriptManager_New();
 
-    sub_0203EA68(fieldSystem, scriptManager, scriptID, object, NULL);
+    ScriptManager_Init(fieldSystem, scriptManager, scriptID, object, NULL);
     FieldSystem_CreateTask(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
@@ -68,7 +69,7 @@ void ScriptManager_Start(FieldTask *taskManager, u16 scriptID, MapObject *object
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
 
-    sub_0203EA68(fieldSystem, scriptManager, scriptID, object, saveType);
+    ScriptManager_Init(fieldSystem, scriptManager, scriptID, object, saveType);
     FieldTask_InitCall(taskManager, FieldTask_RunScript, scriptManager);
 }
 
@@ -77,7 +78,7 @@ void ScriptManager_Change(FieldTask *taskManager, u16 scriptID, MapObject *objec
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskManager);
     ScriptManager *scriptManager = ScriptManager_New();
 
-    sub_0203EA68(fieldSystem, scriptManager, scriptID, object, NULL);
+    ScriptManager_Init(fieldSystem, scriptManager, scriptID, object, NULL);
     FieldTask_InitJump(taskManager, FieldTask_RunScript, scriptManager);
 }
 
@@ -150,7 +151,7 @@ static void ScriptContext_Free(ScriptContext *ctx)
     Heap_Free(ctx);
 }
 
-static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType)
+static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptManager, u16 scriptID, MapObject *object, void *saveType)
 {
     u16 *targetID = ScriptManager_GetMemberPtr(scriptManager, SCRIPT_DATA_TARGET_OBJECT_ID);
 
@@ -175,18 +176,18 @@ ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 script
     GF_ASSERT(ctx != NULL);
 
     ScriptContext_Init(ctx, Unk_020EAC58, Unk_020EAB80);
-    sub_0203EAF4(fieldSystem, ctx, scriptID, 0);
+    ScriptContext_LoadAndStart(fieldSystem, ctx, scriptID, 0);
 
     return ctx;
 }
 
-static void sub_0203EAF4(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID, u8 dummy)
+static void ScriptContext_LoadAndStart(FieldSystem *fieldSystem, ScriptContext *ctx, u16 scriptID, u8 dummy)
 {
     ctx->fieldSystem = fieldSystem;
     u16 offsetID = ScriptContext_LoadAndOffsetID(fieldSystem, ctx, scriptID);
 
     ScriptContext_Start(ctx, ctx->scripts);
-    sub_0203F0E4(ctx, offsetID);
+    ScriptContext_JumpToOffsetID(ctx, offsetID);
     ScriptContext_SetTask(ctx, fieldSystem->task);
 }
 
@@ -441,18 +442,18 @@ void *FieldSystem_GetScriptMemberPtr(FieldSystem *fieldSystem, u32 member)
     return ScriptManager_GetMemberPtr(script, member);
 }
 
-void sub_0203F0C0(FieldSystem *fieldSystem)
+void FieldSystem_ShowStartMenu(FieldSystem *fieldSystem)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
 
     if (sub_0203A9C8(fieldSystem) == TRUE) {
-        scriptManager->function = sub_0203AB00;
+        scriptManager->function = StartMenu_Open;
     }
 }
 
-static void sub_0203F0E4(ScriptContext *ctx, u16 param1)
+static void ScriptContext_JumpToOffsetID(ScriptContext *ctx, u16 offsetID)
 {
-    ctx->scriptPtr += (param1 * 4);
+    ctx->scriptPtr += (offsetID * 4);
     ctx->scriptPtr += ScriptContext_ReadWord(ctx);
 }
 
@@ -492,10 +493,10 @@ u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)
     return *var;
 }
 
-u16 sub_0203F164(FieldSystem *fieldSystem, u16 varID)
+u16 FieldSystem_GetGraphicsID(FieldSystem *fieldSystem, u16 graphicsVarID)
 {
-    GF_ASSERT(varID < 16);
-    return FieldSystem_TryGetVar(fieldSystem, (((0 + VARS_START) + 32) + varID));
+    GF_ASSERT(graphicsVarID < 16);
+    return FieldSystem_TryGetVar(fieldSystem, (((0 + VARS_START) + 32) + graphicsVarID));
 }
 
 BOOL FieldSystem_CheckFlag(FieldSystem *fieldSystem, u16 flagID)
@@ -666,67 +667,67 @@ static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 script
     return TRUE;
 }
 
-UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID)
+HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_0203F478 *v0;
-    const BgEvent *v1;
-    int v2, v3, v4, v5, v6, v7;
-    int v8, v9, v10, v11;
+    HiddenItemTilePosition *hiddenItems;
+    const BgEvent *bgEvents;
+    int playerX, playerZ, eventIndex, numBgEvents, itemIndex, distance;
+    int playerMinX, playerMaxX, playerMinZ, playerMaxZ;
 
-    v6 = 0;
-    v5 = MapHeaderData_GetNumBgEvents(fieldSystem);
-    v5++;
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203F478) * v5);
+    itemIndex = 0;
+    numBgEvents = MapHeaderData_GetNumBgEvents(fieldSystem);
+    numBgEvents++;
+    hiddenItems = Heap_Alloc(heapID, sizeof(HiddenItemTilePosition) * numBgEvents);
 
-    if (v5 == 1) {
-        v0[0].unk_04 = 0xff;
-        v0[0].unk_00 = 0xffff;
-        v0[0].unk_02 = 0xffff;
-        return v0;
+    if (numBgEvents == 1) {
+        hiddenItems[0].range = 0xff;
+        hiddenItems[0].screenTileX = 0xffff;
+        hiddenItems[0].screenTileZ = 0xffff;
+        return hiddenItems;
     }
 
-    v1 = MapHeaderData_GetBgEvents(fieldSystem);
+    bgEvents = MapHeaderData_GetBgEvents(fieldSystem);
 
-    if (v1 == NULL) {
-        v0[0].unk_04 = 0xff;
-        v0[0].unk_00 = 0xffff;
-        v0[0].unk_02 = 0xffff;
-        return v0;
+    if (bgEvents == NULL) {
+        hiddenItems[0].range = 0xff;
+        hiddenItems[0].screenTileX = 0xffff;
+        hiddenItems[0].screenTileZ = 0xffff;
+        return hiddenItems;
     }
 
-    v2 = Player_GetXPos(fieldSystem->playerAvatar);
-    v3 = Player_GetZPos(fieldSystem->playerAvatar);
-    v8 = v2 - 7;
-    v9 = v2 + 7;
-    v10 = v3 - 7;
-    v11 = v3 + 6;
+    playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    playerZ = Player_GetZPos(fieldSystem->playerAvatar);
+    playerMinX = playerX - 7;
+    playerMaxX = playerX + 7;
+    playerMinZ = playerZ - 7;
+    playerMaxZ = playerZ + 6;
 
-    if (v8 < 0) {
-        v8 = 0;
+    if (playerMinX < 0) {
+        playerMinX = 0;
     }
 
-    if (v10 < 0) {
-        v10 = 0;
+    if (playerMinZ < 0) {
+        playerMinZ = 0;
     }
 
-    for (v4 = 0; v4 < v5; v4++) {
-        if ((v1[v4].type == 2) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(v1[v4].script)) == 0)) {
-            if ((v1[v4].x >= v8) && (v1[v4].x <= v9) && (v1[v4].z >= v10) && (v1[v4].z <= v11)) {
-                v0[v6].unk_04 = Script_GetHiddenItemRange(v1[v4].script);
-                v7 = (v2 - v1[v4].x);
-                v0[v6].unk_00 = abs(7 - v7);
-                v7 = (v3 - v1[v4].z);
-                v0[v6].unk_02 = abs(7 - v7);
-                v6++;
+    for (eventIndex = 0; eventIndex < numBgEvents; eventIndex++) {
+        if ((bgEvents[eventIndex].type == BG_EVENT_TYPE_HIDDEN_ITEM) && (FieldSystem_CheckFlag(fieldSystem, Script_GetHiddenItemFlag(bgEvents[eventIndex].script)) == FALSE)) {
+            if ((bgEvents[eventIndex].x >= playerMinX) && (bgEvents[eventIndex].x <= playerMaxX) && (bgEvents[eventIndex].z >= playerMinZ) && (bgEvents[eventIndex].z <= playerMaxZ)) {
+                hiddenItems[itemIndex].range = Script_GetHiddenItemRange(bgEvents[eventIndex].script);
+                distance = (playerX - bgEvents[eventIndex].x);
+                hiddenItems[itemIndex].screenTileX = abs(7 - distance);
+                distance = (playerZ - bgEvents[eventIndex].z);
+                hiddenItems[itemIndex].screenTileZ = abs(7 - distance);
+                itemIndex++;
             }
         }
     }
 
-    v0[v6].unk_04 = 0xff;
-    v0[v6].unk_00 = 0xffff;
-    v0[v6].unk_02 = 0xffff;
+    hiddenItems[itemIndex].range = 0xff;
+    hiddenItems[itemIndex].screenTileX = 0xffff;
+    hiddenItems[itemIndex].screenTileZ = 0xffff;
 
-    return v0;
+    return hiddenItems;
 }
 
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem)
@@ -744,26 +745,26 @@ void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID)
     ScriptContext_Free(ctx);
 }
 
-BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1)
+BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 initScriptType)
 {
-    const u8 *initScripts = MapHeaderData_GetInitScripts(fieldSystem);
+    const u8 *initScriptBytes = MapHeaderData_GetInitScriptBytes(fieldSystem);
 
-    if (initScripts == NULL) {
+    if (initScriptBytes == NULL) {
         return FALSE;
     }
 
     u16 scriptID;
-    if (param1 == 1) {
-        scriptID = sub_0203F638(fieldSystem, initScripts, param1);
+    if (initScriptType == INIT_SCRIPT_TYPE_FIRST_MATCH) {
+        scriptID = FieldSystem_GetFirstMatchInitScriptID(fieldSystem, initScriptBytes, initScriptType);
     } else {
-        scriptID = sub_0203F610(initScripts, param1);
+        scriptID = FieldSystem_GetFixedInitScriptID(initScriptBytes, initScriptType);
     }
 
     if (scriptID == 0xffff) {
         return FALSE;
     }
 
-    if (param1 == 1) {
+    if (initScriptType == INIT_SCRIPT_TYPE_FIRST_MATCH) {
         ScriptManager_Set(fieldSystem, scriptID, NULL);
     } else {
         FieldSystem_RunScript(fieldSystem, scriptID);
@@ -772,70 +773,74 @@ BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1)
     return TRUE;
 }
 
-static u16 sub_0203F610(const u8 *param0, u8 param1)
+#define GET8(bytes)  *bytes
+#define GET16(bytes) bytes[0] + (bytes[1] << 8)
+#define GET32(bytes) bytes[0] + (bytes[1] << 8) + (bytes[2] << 16) + (bytes[3] << 24)
+
+static u16 FieldSystem_GetFixedInitScriptID(const u8 *initScriptBytes, u8 initScriptType)
 {
     while (TRUE) {
-        if (*param0 == 0) {
+        if (GET8(initScriptBytes) == 0) {
             return 0xffff;
         }
 
-        if (*param0 == param1) {
-            param0++;
-            return *param0 + (*(param0 + 1) << 8);
+        if (GET8(initScriptBytes) == initScriptType) {
+            initScriptBytes++;
+            return GET16(initScriptBytes);
         }
 
-        param0 += (1 + 2 + 2);
+        initScriptBytes += (1 + 2 + 2);
     }
 
     return 0xffff;
 }
 
-static u16 sub_0203F638(FieldSystem *fieldSystem, const u8 *param1, u8 param2)
+static u16 FieldSystem_GetFirstMatchInitScriptID(FieldSystem *fieldSystem, const u8 *initScriptBytes, u8 initScriptType)
 {
-    u16 v0, v1;
-    u32 v2 = 0;
+    u16 currentVar, compareVar;
+    u32 offset = 0;
 
     while (TRUE) {
-        if (*param1 == 0) {
+        if (GET8(initScriptBytes) == 0) {
             return 0xffff;
         }
 
-        if ((*param1) == param2) {
-            param1++;
-            v2 = (*param1 + (*(param1 + 1) << 8) + (*(param1 + 2) << 16) + (*(param1 + 3) << 24));
-            param1 += 4;
+        if (GET8(initScriptBytes) == initScriptType) {
+            initScriptBytes++;
+            offset = GET32(initScriptBytes);
+            initScriptBytes += 4;
             break;
         }
 
-        param1 += (1 + 4);
+        initScriptBytes += (1 + 4);
     }
 
-    if (v2 == 0) {
+    if (offset == 0) {
         return 0xffff;
     }
 
-    param1 = (param1 + v2);
+    initScriptBytes = (initScriptBytes + offset);
 
     while (TRUE) {
-        if (*param1 == 0) {
+        if (GET8(initScriptBytes) == 0) {
             return 0xffff;
         }
 
-        v0 = (*param1 + (*(param1 + 1) << 8));
+        currentVar = GET16(initScriptBytes);
 
-        if (v0 == 0) {
+        if (currentVar == 0) {
             return 0xffff;
         }
 
-        param1 += 2;
-        v1 = (*param1 + (*(param1 + 1) << 8));
-        param1 += 2;
+        initScriptBytes += 2;
+        compareVar = GET16(initScriptBytes);
+        initScriptBytes += 2;
 
-        if (FieldSystem_TryGetVar(fieldSystem, v0) == FieldSystem_TryGetVar(fieldSystem, v1)) {
-            return *param1 + (*(param1 + 1) << 8);
+        if (FieldSystem_TryGetVar(fieldSystem, currentVar) == FieldSystem_TryGetVar(fieldSystem, compareVar)) {
+            return GET16(initScriptBytes);
         }
 
-        param1 += 2;
+        initScriptBytes += 2;
     }
 
     return 0xffff;

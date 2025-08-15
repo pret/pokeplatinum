@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/flavor.h"
+
 #include "heap.h"
 #include "math_util.h"
 #include "savedata.h"
@@ -31,7 +33,7 @@ void Poffin_Clear(Poffin *poffin)
     poffin->sweetness = 0;
     poffin->bitterness = 0;
     poffin->sourness = 0;
-    poffin->val1_06 = 0;
+    poffin->smoothness = 0;
     poffin->dummy = 0;
 }
 
@@ -51,7 +53,7 @@ void Poffin_Copy(Poffin *src, Poffin *dest)
     dest->sweetness = src->sweetness;
     dest->bitterness = src->bitterness;
     dest->sourness = src->sourness;
-    dest->val1_06 = src->val1_06;
+    dest->smoothness = src->smoothness;
     dest->dummy = src->dummy;
 }
 
@@ -70,9 +72,9 @@ u8 Poffin_GetAttribute(Poffin *poffin, enum PoffinAttributeID attributeID)
         return poffin->bitterness;
     case POFFIN_ATTRIBUTEID_SOURNESS:
         return poffin->sourness;
-    case POFFIN_ATTRIBUTEID_06:
+    case POFFIN_ATTRIBUTEID_SMOOTHNESS:
     default:
-        return poffin->val1_06;
+        return poffin->smoothness;
     }
 }
 
@@ -94,68 +96,68 @@ static void Poffin_MakeFoul(Poffin *poffin, u8 param1)
         ++v0;
     } while (v0 < 3);
 
-    poffin->flavor = 27;
-    poffin->val1_06 = param1;
+    poffin->flavor = POFFIN_FLAVOR_FOUL;
+    poffin->smoothness = param1;
 }
 
-int sub_0202A9E4(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul)
+int Poffin_MakePoffin(Poffin *poffin, u8 *flavors, u8 smoothness, BOOL isFoul)
 {
-    int i, v1 = 0;
-    u8 v2[5];
-    u8 v3 = 0, v4 = 0;
+    int i, flavorCount = 0;
+    u8 poffinFlavors[FLAVOR_MAX];
+    u8 isMild = FALSE, flavor = 0;
 
-    v4 = 27;
+    flavor = POFFIN_FLAVOR_FOUL;
 
     if (isFoul) {
-        Poffin_MakeFoul(poffin, param2);
-        return v4;
+        Poffin_MakeFoul(poffin, smoothness);
+        return flavor;
     }
 
-    for (i = 0; i < 5; i++) {
-        if (param1[i]) {
-            if (param1[i] >= 50) {
-                v3 = 1;
+    for (i = 0; i < FLAVOR_MAX; i++) {
+        if (flavors[i]) {
+            if (flavors[i] >= 50) {
+                isMild = TRUE;
             }
 
-            v2[v1++] = i;
+            poffinFlavors[flavorCount++] = i;
         }
     }
 
-    switch (v1) {
+    switch (flavorCount) {
     case 0:
-        Poffin_MakeFoul(poffin, param2);
-        return v4;
+        Poffin_MakeFoul(poffin, smoothness);
+        return flavor;
     case 1:
-        v4 = v2[0] * 5 + v2[0];
+        flavor = poffinFlavors[0] * FLAVOR_MAX + poffinFlavors[0];
         break;
     case 2:
-        if (param1[v2[0]] >= param1[v2[1]]) {
-            v4 = v2[0] * 5 + v2[1];
+        if (flavors[poffinFlavors[0]] >= flavors[poffinFlavors[1]]) {
+            flavor = poffinFlavors[0] * FLAVOR_MAX + poffinFlavors[1];
         } else {
-            v4 = v2[1] * 5 + v2[0];
+            flavor = poffinFlavors[1] * FLAVOR_MAX + poffinFlavors[0];
         }
         break;
     case 3:
-        v4 = 25;
+        flavor = POFFIN_FLAVOR_RICH;
         break;
     case 4:
     case 5:
-        v4 = 26;
+        flavor = POFFIN_FLAVOR_OVERRIPE;
         break;
     }
 
-    if (v3) {
-        v4 = 28;
+    if (isMild) {
+        flavor = POFFIN_FLAVOR_MILD;
     }
 
-    for (i = 0; i < 5; i++) {
-        poffin->attributes[i + 1] = param1[i];
+    for (i = 0; i < FLAVOR_MAX; i++) {
+        poffin->attributes[i + 1] = flavors[i];
     }
 
-    poffin->flavor = v4;
-    poffin->val1_06 = param2;
+    poffin->flavor = flavor;
+    poffin->smoothness = smoothness;
 
-    return v4;
+    return flavor;
 }
 
 void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest)
@@ -166,7 +168,7 @@ void Poffin_StoreAttributesToArray(Poffin *poffin, u8 *dest)
     dest[3] = poffin->sweetness;
     dest[4] = poffin->bitterness;
     dest[5] = poffin->sourness;
-    dest[6] = poffin->val1_06;
+    dest[6] = poffin->smoothness;
 }
 
 u8 Poffin_CalcLevel(Poffin *poffin)

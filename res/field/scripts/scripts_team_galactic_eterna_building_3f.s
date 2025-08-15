@@ -25,5 +25,4 @@ _001D:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

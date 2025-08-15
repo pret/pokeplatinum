@@ -12,14 +12,13 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
-#include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0224F294.h"
-#include "overlay023/struct_ov23_0224271C.h"
+#include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -89,9 +88,9 @@ typedef struct {
     int itemCount;
     FieldSystem *fieldSystem;
     int unk_14;
-    void *unk_18[MAX_BURIED_ITEMS];
-    NNSG2dPaletteData *buriedItemPalettes[MAX_BURIED_ITEMS];
-    int unk_38[MAX_BURIED_ITEMS];
+    void *unk_18[MINING_MAX_BURIED_ITEMS];
+    NNSG2dPaletteData *buriedItemPalettes[MINING_MAX_BURIED_ITEMS];
+    int unk_38[MINING_MAX_BURIED_ITEMS];
     int sizeOfCurrentSphere;
     int textTimer;
     u8 unk_50;
@@ -147,7 +146,7 @@ typedef struct {
     Menu *unk_848;
     UnkStruct_ov23_0223E6F8 *unk_84C[8];
     u8 unk_86C[8];
-    BuriedObject buriedObjects[MAX_BURIED_OBJECTS];
+    BuriedObject buriedObjects[MINING_MAX_BURIED_OBJECTS];
     u8 unk_8BC[8];
     SysTask *unk_8C4;
     SysTask *unk_8C8;
@@ -593,7 +592,7 @@ static void Mining_InitGameState(void)
     Unk_ov23_02257740->unk_A29 = 0;
     Unk_ov23_02257740->wallIntegrity = INITIAL_WALL_INTEGRITY;
 
-    for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
+    for (i = 0; i < MINING_MAX_BURIED_OBJECTS; i++) {
         Unk_ov23_02257740->buriedObjects[i].miningObject = NULL;
         Unk_ov23_02257740->buriedObjects[i].isDugUp = FALSE;
     }
@@ -685,7 +684,7 @@ void ov23_0223E2F8(void)
                 Menu_DestroyForExit(Unk_ov23_02257740->unk_848, 4);
             }
 
-            sub_02059514();
+            CommPlayerMan_ResumeFieldSystem();
         }
 
         Heap_Free(Unk_ov23_02257740);
@@ -693,9 +692,9 @@ void ov23_0223E2F8(void)
     }
 }
 
-BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1)
+BOOL ov23_0223E354(int param0, Coordinates *param1)
 {
-    UnkStruct_ov23_0223E6F8 *v0 = ov23_0223E88C(param1->unk_00, param1->unk_02);
+    UnkStruct_ov23_0223E6F8 *v0 = ov23_0223E88C(param1->x, param1->z);
     u8 v1 = param0;
 
     if ((v0 != NULL) && (v0->unk_04 == 0xff)) {
@@ -715,7 +714,7 @@ BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1)
 
 static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2)
 {
-    if (ov23_02242E58(param1, param2)) {
+    if (Underground_AreCoordinatesInSecretBase(param1, param2)) {
         return 0;
     }
 
@@ -810,7 +809,7 @@ static void ov23_0223E434(MATHRandContext16 *param0, int param1)
     }
 }
 
-void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
+void ov23_0223E650(int x, int z, MATHRandContext16 *rand)
 {
     int v2, v3;
     u16 v4, v5;
@@ -820,8 +819,8 @@ void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2)
     v3 = 0;
 
     for (v2 = 0; v2 < 100; v2++) {
-        v4 = MATH_Rand16(param2, 20) + param0 - 10;
-        v5 = MATH_Rand16(param2, 20) + param1 - 10;
+        v4 = MATH_Rand16(rand, 20) + x - 10;
+        v5 = MATH_Rand16(rand, 20) + z - 10;
 
         if (ov23_0223E3AC(Unk_ov23_02257740->fieldSystem, v4, v5)) {
             v3 = 1;
@@ -930,7 +929,7 @@ static int ov23_0223E8CC(u16 param0, u16 param1)
     int v0, v1 = param1 - 80, v2 = param1 + 80, v3 = param0 - 80, v4 = param0 + 80;
     int v5 = 0, v6;
 
-    if (ov23_02242E58(param0, param1)) {
+    if (Underground_AreCoordinatesInSecretBase(param0, param1)) {
         return -1;
     }
 
@@ -1005,7 +1004,7 @@ void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
         ov23_022431EC(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
     }
 }
 
@@ -1027,7 +1026,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
             v0 = 1;
         } else {
             v0 = 0;
-            sub_02059514();
+            CommPlayerMan_ResumeFieldSystem();
         }
 
         CommSys_SendDataFixedSize(65, &v0);
@@ -1072,7 +1071,7 @@ void ov23_0223EB8C(int param0, int param1, void *param2, void *param3)
     u8 *v0 = param2;
 
     if (v0[0] == CommSys_CurNetId()) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         ov23_0223F70C(Unk_ov23_02257740->fieldSystem);
     }
 
@@ -1382,7 +1381,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     switch (v0->state) {
     case 0:
         ov23_0224DBF4(0);
-        ov23_022417CC();
+        UndergroundSpheres_DisableBuriedSphereSparkles();
         CommPlayerMan_Reset();
         ov23_0224B430();
         (v0->state)++;
@@ -1548,7 +1547,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
             fieldSystem->unk_6C = ov23_02249404(fieldSystem);
             sub_02039734();
-            sub_020594FC();
+            CommPlayerMan_PauseFieldSystem();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
             (v0->state)++;
@@ -1567,10 +1566,10 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             CommPlayerMan_Restart();
 
             ov23_0224B460();
-            ov23_022417E0();
+            UndergroundSpheres_EnableBuriedSphereSparkles();
 
             CommSys_SendDataFixedSize(67, &v0->unk_50);
-            sub_02059514();
+            CommPlayerMan_ResumeFieldSystem();
 
             Unk_ov23_02257740->unk_8CC = NULL;
 
@@ -1657,7 +1656,7 @@ static BOOL Mining_IsBuriedObjectSlotAvailable(void)
 {
     int i;
 
-    for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
+    for (i = 0; i < MINING_MAX_BURIED_OBJECTS; i++) {
         if (Unk_ov23_02257740->buriedObjects[i].miningObject == NULL) {
             return TRUE;
         }
@@ -1670,7 +1669,7 @@ static int Mining_AddBuriedObject(int index, int x, int y)
 {
     int i;
 
-    for (i = 0; i < MAX_BURIED_OBJECTS; i++) {
+    for (i = 0; i < MINING_MAX_BURIED_OBJECTS; i++) {
         if (Unk_ov23_02257740->buriedObjects[i].miningObject == NULL) {
             Unk_ov23_02257740->buriedObjects[i].miningObject = &sMiningObjects[index];
             Unk_ov23_02257740->buriedObjects[i].itemID = sMiningObjects[index].itemID;
@@ -1778,7 +1777,7 @@ static int Mining_GetTotalItemWeight(void)
     int i, totalWeight = 0;
 
     for (i = 0; i < NELEMS(sMiningObjects); i++) {
-        if (MINING_ROCK_1 == sMiningObjects[i].itemID) {
+        if (MINING_TREASURE_MAX == sMiningObjects[i].itemID) {
             break;
         }
 
@@ -1793,7 +1792,7 @@ static int Mining_PickItem(int randNum)
     int i, counter = randNum;
 
     for (i = 0; i < NELEMS(sMiningObjects); i++) {
-        if (MINING_ROCK_1 == sMiningObjects[i].itemID) {
+        if (MINING_TREASURE_MAX == sMiningObjects[i].itemID) {
             break;
         }
 
@@ -1827,9 +1826,9 @@ static void Mining_GenerateGameLayout(BgConfig *bgConfig, int param1, UnkStruct_
     int objectsPlaced, i, totalWeight = Mining_GetTotalItemWeight();
     int randNum, x, y, j = 0, index, itemID;
     int typesOfRocks = Mining_GetTotalTypesOfRocks();
-    int selectedPlates[MAX_BURIED_ITEMS];
+    int selectedPlates[MINING_MAX_BURIED_ITEMS];
 
-    param2->itemCount = MATH_Rand32(&Unk_ov23_02257740->rand, MAX_BURIED_ITEMS - 1) + 2;
+    param2->itemCount = MATH_Rand32(&Unk_ov23_02257740->rand, MINING_MAX_BURIED_ITEMS - 1) + 2;
 
     if (Underground_HasNeverMined(underground)) {
         param2->itemCount = 3;
@@ -1959,7 +1958,7 @@ static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
     int v0, v1, v2, v3;
     VecFx32 v4;
 
-    for (v0 = 0; v0 < MAX_BURIED_ITEMS; v0++) {
+    for (v0 = 0; v0 < MINING_MAX_BURIED_ITEMS; v0++) {
         if (param0->unk_38[v0] == 1) {
             Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA4);
 
@@ -1979,7 +1978,7 @@ static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
         }
     }
 
-    for (v0 = 0; v0 < MAX_BURIED_ITEMS; v0++) {
+    for (v0 = 0; v0 < MINING_MAX_BURIED_ITEMS; v0++) {
         if (param0->unk_38[v0]) {
             u16 *v5 = param0->buriedItemPalettes[v0]->pRawData;
             u8 v6 = Unk_ov23_02257570[param0->unk_38[v0] - 1];
@@ -2157,7 +2156,7 @@ static BOOL Mining_IsItemAtCoordinates(int x, int y)
 
     itemID = Unk_ov23_02257740->buriedObjects[index - 1].itemID;
 
-    if ((itemID != 0) && (itemID < MINING_ROCK_1)) {
+    if ((itemID != 0) && (itemID < MINING_TREASURE_MAX)) {
         return TRUE;
     }
 
@@ -2444,7 +2443,7 @@ static int Mining_GenerateSizeOfMinedSphere(int itemID)
     int sphereSize = 0;
     int id = itemID;
 
-    if (IsMiningItemSphere(id)) {
+    if (UndergroundSpheres_IsMiningItemSphere(id)) {
         if ((id == MINING_LARGE_PRISM_SPHERE) || (id == MINING_LARGE_PALE_SPHERE) || (id == MINING_SMALL_PRISM_SPHERE) || (id == MINING_SMALL_PALE_SPHERE)) {
             sphereSize = MATH_Rand32(&Unk_ov23_02257740->rand, 1) + 1;
         } else {
@@ -2472,7 +2471,7 @@ static void Mining_AddItem(int itemID, int sphereSize)
     UndergroundRecord *unused = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
-    if (IsMiningItemSphere(id)) {
+    if (UndergroundSpheres_IsMiningItemSphere(id)) {
         Underground_TryAddSphere2(id, sphereSize);
     } else {
         Underground_TryAddTreasure2(id);
@@ -2484,14 +2483,14 @@ static BOOL Mining_IsRoomInBag(int itemID)
 {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
-    if (IsMiningItemSphere(itemID)) {
-        if (40 == Underground_GetSphereCount(underground)) {
+    if (UndergroundSpheres_IsMiningItemSphere(itemID)) {
+        if (Underground_GetSphereCount(underground) == MAX_SPHERE_SLOTS) {
             return FALSE;
         }
 
         return TRUE;
     } else {
-        if (40 == Underground_GetTreasureCount(underground)) {
+        if (Underground_GetTreasureCount(underground) == MAX_TREASURE_SLOTS) {
             return FALSE;
         }
 
@@ -2502,7 +2501,7 @@ static BOOL Mining_IsRoomInBag(int itemID)
 static BOOL Mining_AreAllItemsDugUp(UnkStruct_ov23_0223EE80 *param0)
 {
     int y, x, i;
-    BOOL itemsDugUp[MAX_BURIED_ITEMS];
+    BOOL itemsDugUp[MINING_MAX_BURIED_ITEMS];
     BOOL everythingDugUp = TRUE;
 
     for (i = 0; i < param0->itemCount; i++) {
@@ -2543,7 +2542,7 @@ static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 
             UndergroundTextPrinter_SetUndergroundItemNameWithArticle(CommManUnderground_GetCommonTextPrinter(), Unk_ov23_02257740->buriedObjects[i].itemID);
 
-            if (IsMiningItemSphere(Unk_ov23_02257740->buriedObjects[i].itemID)) {
+            if (UndergroundSpheres_IsMiningItemSphere(Unk_ov23_02257740->buriedObjects[i].itemID)) {
                 entryID = UndergroundCommon_Text_YouObtainedSphere;
                 UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, param0->sizeOfCurrentSphere);
             } else {
@@ -2571,7 +2570,7 @@ static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 
             itemID = Unk_ov23_02257740->buriedObjects[i].itemID;
 
-            if (IsMiningItemSphere(itemID)) {
+            if (UndergroundSpheres_IsMiningItemSphere(itemID)) {
                 UndergroundRecord_AddNumSpheresDug(undergroundRecord, 1);
             } else {
                 sub_0206D6C8(Unk_ov23_02257740->fieldSystem, itemID, 1);

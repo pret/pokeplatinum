@@ -29,12 +29,12 @@
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
 #include "applications/journal_display/journal_controller.h"
+#include "applications/naming_screen.h"
 #include "applications/options_menu.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
@@ -128,7 +128,6 @@
 #include "unk_0206CCB0.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
-#include "unk_0208694C.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
@@ -139,7 +138,6 @@
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
 #include "constdata/const_020F1E88.h"
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F2FCC.h"
 #include "constdata/const_020F410C.h"
 #include "constdata/const_020F6890.h"
@@ -212,7 +210,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     u16 *unk_08;
-    UnkStruct_0208737C *unk_0C;
+    NamingScreenArgs *unk_0C;
     Strbuf *unk_10;
 } UnkStruct_0203DE98;
 
@@ -371,7 +369,7 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, appArgs);
 }
 
-static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, int param2, int param3)
+static PartyManagementData *PartyManagementData_New(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
     PartyManagementData *partyMan = Heap_Alloc(heapID, sizeof(PartyManagementData));
 
@@ -390,29 +388,29 @@ static PartyManagementData *sub_0203D344(int heapID, FieldSystem *fieldSystem, i
 
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2)
 {
-    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELD2, fieldSystem, 0, 0);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 0);
 
     partyMan->fieldMoveContext = param1;
     partyMan->selectedMonSlot = param2;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
 
     return partyMan;
 }
 
-void *sub_0203D3C0(int param0, FieldSystem *fieldSystem)
+void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem)
 {
-    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELD2, fieldSystem, 0, 3);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 3);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     return partyMan;
 }
 
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem)
 {
-    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELD2, fieldSystem, 0, 19);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 19);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     return partyMan;
 }
 
@@ -423,10 +421,10 @@ int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan)
 
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELD2, fieldSystem, 0, 18);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 18);
 
     partyMan->selectedMonSlot = param2;
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
 
     return partyMan;
 }
@@ -451,7 +449,7 @@ static BOOL sub_0203D444(FieldTask *param0)
 
     switch (*v2) {
     case 0:
-        FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v1->unk_04);
+        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, v1->unk_04);
         *v2 = 1;
         break;
     case 1:
@@ -498,7 +496,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
 
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203D444));
     v0->heapID = heapID;
-    partyMan = sub_0203D344(heapID, fieldSystem, 0, 2);
+    partyMan = PartyManagementData_New(heapID, fieldSystem, 0, 2);
     partyMan->unk_32_0 = 2;
     partyMan->unk_32_4 = 2;
     partyMan->unk_33 = 30;
@@ -512,7 +510,7 @@ void *sub_0203D50C(FieldTask *taskMan, int heapID)
 
 void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3, int param4, int param5)
 {
-    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELD2, fieldSystem, 0, 13);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 13);
 
     partyMan->selectedMonSlot = param5;
     partyMan->unk_29 = 2;
@@ -524,7 +522,7 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
         partyMan->unk_2B = 0;
     }
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
 
     return partyMan;
 }
@@ -554,10 +552,10 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 
 void *sub_0203D644(FieldSystem *fieldSystem, int param1)
 {
-    PartyManagementData *partyMan = sub_0203D344(HEAP_ID_FIELD2, fieldSystem, 0, 21);
+    PartyManagementData *partyMan = PartyManagementData_New(HEAP_ID_FIELD2, fieldSystem, 0, 21);
 
     partyMan->selectedMonSlot = param1;
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
 
     return partyMan;
 }
@@ -1162,7 +1160,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
         v2->unk_00++;
         break;
     case 1:
-        FieldTask_RunApplication(param0, &Unk_020F2DAC, v2->unk_0C);
+        FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v2->unk_0C);
         v2->unk_00++;
         break;
     case 2:
@@ -1170,11 +1168,11 @@ static BOOL sub_0203DE98(FieldTask *param0)
         v2->unk_00++;
         break;
     case 3:
-        if (v2->unk_0C->unk_00 == 1) {
+        if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
             if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
                 v2->unk_0C->unk_14 = 1;
             }
-        } else if (v2->unk_0C->unk_00 == 5) {
+        } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
             const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
@@ -1191,7 +1189,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
             *v2->unk_08 = v2->unk_0C->unk_14;
         }
 
-        sub_0208716C(v2->unk_0C);
+        NamingScreenArgs_Free(v2->unk_0C);
         Strbuf_Free(v2->unk_10);
         Heap_Free(v2);
 
@@ -1206,23 +1204,23 @@ static void sub_0203DF68(FieldTask *param0)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_0203DE98 *v1 = FieldTask_GetEnv(param0);
 
-    switch (v1->unk_0C->unk_00) {
-    case 0: {
+    switch (v1->unk_0C->type) {
+    case NAMING_SCREEN_TYPE_PLAYER: {
         TrainerInfo *v2 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         TrainerInfo_SetName(v2, v1->unk_0C->unk_1C);
     } break;
-    case 1: {
+    case NAMING_SCREEN_TYPE_POKEMON: {
         Pokemon *v3;
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
         Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->unk_1C);
     } break;
-    case 5: {
+    case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
         RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->textInputStr);
     } break;
-    case 6: {
+    case NAMING_SCREEN_TYPE_UNK6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
         MiscSaveBlock_SetTabletName(v6, v1->unk_0C->textInputStr);
     } break;
@@ -1231,7 +1229,14 @@ static void sub_0203DF68(FieldTask *param0)
     return;
 }
 
-void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int param4, const u16 *param5, u16 *param6)
+void sub_0203DFE8(
+    FieldTask *param0,
+    enum NamingScreenType type,
+    int param2,
+    int param3,
+    int param4,
+    const u16 *param5,
+    u16 *param6)
 {
     Pokemon *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -1240,20 +1245,20 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
     v2->unk_00 = 0;
     v2->unk_04 = param4;
     v2->unk_08 = param6;
-    v2->unk_0C = sub_0208712C(HEAP_ID_FIELD2, param1, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
+    v2->unk_0C = NamingScreenArgs_Init(HEAP_ID_FIELD2, type, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
     v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELD2);
 
-    switch (param1) {
-    case 1:
+    switch (type) {
+    case NAMING_SCREEN_TYPE_POKEMON:
         v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2->unk_04);
-        v2->unk_0C->unk_10 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
-        v2->unk_0C->unk_08 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        v2->unk_0C->monGender = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
+        v2->unk_0C->monForm = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
             Strbuf_CopyChars(v2->unk_10, param5);
         }
         break;
-    case 5:
+    case NAMING_SCREEN_TYPE_GROUP:
         Strbuf_CopyChars(v2->unk_10, param5);
         break;
     default:
@@ -1719,7 +1724,7 @@ PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int para
     partyMan->selectedMonSlot = 0;
     partyMan->fieldSystem = fieldSystem;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
 
     return partyMan;
 }

@@ -2,13 +2,14 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/string.h"
 #include "generated/genders.h"
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/naming_screen.h"
 #include "applications/rowan_intro/main.h"
 
 #include "bg_window.h"
@@ -44,9 +45,7 @@
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_0208694C.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "res/text/bank/rowan_intro.h"
 
 FS_EXTERN_OVERLAY(game_start);
@@ -246,8 +245,8 @@ typedef struct RowanIntro {
     StringTemplate *strFormatter;
     UnkStruct_02015920 *unk_68;
     SysTask *unused;
-    UnkStruct_0208737C *unk_70;
-    UnkStruct_0208737C *unk_74;
+    NamingScreenArgs *unk_70;
+    NamingScreenArgs *unk_74;
     enum FadeBgLayerState fadeBgLayerState;
     int fadeBgLayerCurAlpha;
     int fadeBgLayerCurAlphaInv;
@@ -326,8 +325,8 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->state = RI_STATE_FIRST_FADE_BLACK_START;
     manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->unk_70 = sub_0208712C(heapID, 0, 0, 7, manager->options);
-    manager->unk_74 = sub_0208712C(heapID, 3, 0, 7, manager->options);
+    manager->unk_70 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, manager->options);
+    manager->unk_74 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, TRAINER_NAME_LEN, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;
@@ -440,7 +439,7 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
         manager->unk_70->textInputStr);
     TrainerInfo_SetGender(
         SaveData_GetTrainerInfo(manager->saveData),
-        manager->unk_70->unk_04);
+        manager->unk_70->playerGenderOrMonSpecies);
 
     {
         MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlock(manager->saveData);
@@ -448,8 +447,8 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
         MiscSaveBlock_SetRivalName(miscSaveBlock, manager->unk_74->textInputStr);
     }
 
-    sub_0208716C(manager->unk_70);
-    sub_0208716C(manager->unk_74);
+    NamingScreenArgs_Free(manager->unk_70);
+    NamingScreenArgs_Free(manager->unk_74);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);
@@ -2705,9 +2704,9 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_NAME_APP_KEYBOARD:
-        manager->unk_70->unk_04 = manager->playerGender;
+        manager->unk_70->playerGenderOrMonSpecies = manager->playerGender;
         manager->appMan = ApplicationManager_New(
-            &Unk_020F2DAC,
+            &gNamingScreenAppTemplate,
             manager->unk_70,
             manager->heapID);
         manager->state = RI_STATE_NAME_KEYBOARD;
@@ -2875,7 +2874,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_RIVAL_NAME_APP_KEYBOARD:
         manager->appMan = ApplicationManager_New(
-            &Unk_020F2DAC,
+            &gNamingScreenAppTemplate,
             manager->unk_74,
             manager->heapID);
         manager->state = RI_STATE_RIVAL_NAME_KEYBOARD;

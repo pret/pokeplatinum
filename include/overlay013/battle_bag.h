@@ -2,13 +2,13 @@
 #define POKEPLATINUM_BATTLE_BAG_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0200C440_decl.h"
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bag.h"
 #include "bg_window.h"
+#include "font_special_chars.h"
 #include "message.h"
 #include "palette.h"
 #include "sprite_system.h"
@@ -107,7 +107,7 @@ typedef struct BattleBag {
     BattleBagContext *context;
     BgConfig *background;
     PaletteData *palette;
-    UnkStruct_0200C440 *unk_0C;
+    FontSpecialCharsContext *unk_0C;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     Strbuf *strbuf;

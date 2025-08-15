@@ -19,6 +19,7 @@ _0010:
     ReleaseAll
     End
 
-    .byte 2
-    .byte 0
-    .byte 0
+SnowpointTemple1F_Unused:
+    End
+    
+    .balign 4, 0

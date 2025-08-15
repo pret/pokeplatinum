@@ -101,7 +101,8 @@
     "offspring": "SPECIES_VENONAT",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 15,

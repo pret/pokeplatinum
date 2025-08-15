@@ -17,7 +17,6 @@
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0224F294.h"
-#include "overlay023/struct_ov23_0224271C.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
@@ -153,7 +152,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     u16 unk_08[32];
-    UnkStruct_ov23_0224271C unk_48[32];
+    Coordinates unk_48[32];
     u8 unk_C8[40];
     u8 unk_F0[32];
     u8 unk_110;
@@ -341,7 +340,7 @@ static void ov23_02245938(int param0, BOOL param1);
 static UnkStruct_ov23_02243DA8 *ov23_02244EA0(UnkStruct_ov23_02243DA8 *param0);
 static void ov23_02244D80(FieldSystem *fieldSystem, int param1, int param2, BOOL param3);
 static void ov23_02244EA4(FieldSystem *fieldSystem, BOOL param1, int param2);
-static BOOL ov23_02245064(UnkStruct_ov23_0224271C *param0, BgConfig *param1, UnkStruct_ov23_022451BC *param2);
+static BOOL ov23_02245064(Coordinates *param0, BgConfig *param1, UnkStruct_ov23_022451BC *param2);
 static BOOL ov23_022450D4(int param0, int param1, u8 *param2);
 static void ov23_022451C8(SysTask *param0, void *param1);
 static void ov23_022451BC(UnkStruct_ov23_022451BC *param0);
@@ -806,7 +805,7 @@ static void ov23_0224382C()
 
 static void ov23_02243850(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
 int ov23_02243858(void)
@@ -819,14 +818,14 @@ int ov23_02243860(void)
     return sizeof(UnkStruct_ov23_02243DA8) * 16;
 }
 
-static UnkStruct_ov23_0224271C *ov23_02243864(UnkStruct_ov23_0224271C *param0, int param1)
+static Coordinates *ov23_02243864(Coordinates *param0, int param1)
 {
     if (Unk_ov23_02257764->unk_828[param1] == NULL) {
         return NULL;
     }
 
-    param0->unk_00 = Unk_ov23_02257764->unk_828[param1]->unk_00;
-    param0->unk_02 = Unk_ov23_02257764->unk_828[param1]->unk_02;
+    param0->x = Unk_ov23_02257764->unk_828[param1]->unk_00;
+    param0->z = Unk_ov23_02257764->unk_828[param1]->unk_02;
 
     return param0;
 }
@@ -835,14 +834,14 @@ static void ov23_02243898(UnkStruct_ov23_02243DA8 *param0)
 {
     int v0, v1, v2;
     UnkStruct_ov23_02243DA8 *v3;
-    UnkStruct_ov23_0224271C v4;
+    Coordinates v4;
 
-    v4.unk_00 = param0->unk_00;
-    v4.unk_02 = param0->unk_02;
+    v4.x = param0->unk_00;
+    v4.z = param0->unk_02;
 
-    ov23_022427DC((16 * (7 + 1) + (16 * 4)), ov23_02243864);
+    Underground_InitCoordinatesOrderingState((16 * (7 + 1) + (16 * 4)), ov23_02243864);
 
-    v0 = ov23_02242788(&v4);
+    v0 = Underground_CalculateCoordinatesIndexInsert(&v4);
 
     if (v0 >= (16 * (7 + 1) + (16 * 4))) {
         return;
@@ -865,7 +864,6 @@ static void ov23_02243898(UnkStruct_ov23_02243DA8 *param0)
 static void ov23_02243910(UnkStruct_ov23_02243DA8 *param0)
 {
     int v0 = -1, v1;
-    UnkStruct_ov23_0224271C v2;
 
     for (v1 = 0; v1 < (16 * (7 + 1) + (16 * 4)); v1++) {
         if (Unk_ov23_02257764->unk_828[v1] == param0) {
@@ -888,7 +886,6 @@ static void ov23_02243910(UnkStruct_ov23_02243DA8 *param0)
 static void ov23_02243970(int param0)
 {
     int v0, v1, v2;
-    UnkStruct_ov23_0224271C v3;
 
     for (v2 = 0; v2 < 16; v2++) {
         ov23_02243910(&Unk_ov23_02257764->unk_3A8[v2 + param0 * 16]);
@@ -1032,7 +1029,7 @@ void ov23_02243B0C(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (ov23_02242E58(v1, v2)) {
+    if (Underground_AreCoordinatesInSecretBase(v1, v2)) {
         v4.unk_07 = 4;
         CommSys_SendDataServer(34, &v4, sizeof(UnkStruct_ov23_02243ED4));
         return;
@@ -1218,11 +1215,11 @@ void ov23_02243ED4(int param0, int param1, void *param2, void *param3)
     UnkStruct_ov23_02243DA8 *v2;
 
     if (CommSys_CurNetId() == v0->unk_06) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
 
         if (v0->unk_07 == 1) {
             ov23_02243DA8(&v0->unk_00);
-            ov23_0224FD68(v0->unk_00.unk_04);
+            Underground_RemoveSelectedTrap(v0->unk_00.unk_04);
             UndergroundTextPrinter_SetUndergroundTrapName(CommManUnderground_GetCommonTextPrinter(), v0->unk_00.unk_04);
             UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 131, TRUE, ov23_02243850);
             Sound_PlayEffect(SEQ_SE_DP_UG_008);
@@ -1315,10 +1312,10 @@ void ov23_02244068(void)
 
 int ov23_0224407C(void)
 {
-    return sizeof(UnkStruct_ov23_0224271C);
+    return sizeof(Coordinates);
 }
 
-BOOL ov23_02244080(int param0, UnkStruct_ov23_0224271C *param1, u8 param2)
+BOOL ov23_02244080(int param0, Coordinates *param1, u8 param2)
 {
     int v0, v1;
     u8 v2 = param0;
@@ -1374,7 +1371,7 @@ void ov23_02244140(int param0, int param1, void *param2, void *param3)
     if (v0->unk_07_6 == 1) {
         if (CommSys_CurNetId() == v0->unk_07_0) {
             UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 78, TRUE, ov23_02243850);
-            sub_020594FC();
+            CommPlayerMan_PauseFieldSystem();
         }
 
         return;
@@ -1388,7 +1385,7 @@ void ov23_02244140(int param0, int param1, void *param2, void *param3)
     }
 
     if (CommSys_CurNetId() == v0->unk_07_0) {
-        if (ov23_0224F730(v0->unk_00.unk_04)) {
+        if (Underground_TryAddTrap2(v0->unk_00.unk_04)) {
             if (CommSys_CurNetId() != v0->unk_06) {
                 if (Unk_ov23_02257764->unk_B98 == 0) {
                     Unk_ov23_02257764->unk_B9A = v0->unk_00.unk_04;
@@ -1411,7 +1408,7 @@ void ov23_02244140(int param0, int param1, void *param2, void *param3)
             UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 78, TRUE, ov23_02243850);
         }
 
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
     }
 }
 
@@ -1431,14 +1428,14 @@ static int ov23_0224426C(UnkStruct_ov23_02243DA8 *param0)
 
 static UnkStruct_ov23_02243DA8 *ov23_0224429C(int param0, int param1)
 {
-    UnkStruct_ov23_0224271C v0;
+    Coordinates v0;
     int v1;
 
-    v0.unk_00 = param0;
-    v0.unk_02 = param1;
+    v0.x = param0;
+    v0.z = param1;
 
-    ov23_022427DC((16 * (7 + 1) + (16 * 4)), ov23_02243864);
-    v1 = ov23_0224271C(&v0);
+    Underground_InitCoordinatesOrderingState((16 * (7 + 1) + (16 * 4)), ov23_02243864);
+    v1 = Underground_CalculateCoordinatesIndexGet(&v0);
 
     if (-1 == v1) {
         return NULL;
@@ -2238,7 +2235,7 @@ static void ov23_02244FD0(int param0, BOOL param1)
     }
 }
 
-static BOOL ov23_02245064(UnkStruct_ov23_0224271C *param0, BgConfig *param1, UnkStruct_ov23_022451BC *param2)
+static BOOL ov23_02245064(Coordinates *param0, BgConfig *param1, UnkStruct_ov23_022451BC *param2)
 {
     int v0, v1 = 0;
     u8 *v2 = Bg_GetTilemapBuffer(param1, 2);
@@ -2248,13 +2245,13 @@ static BOOL ov23_02245064(UnkStruct_ov23_0224271C *param0, BgConfig *param1, Unk
     }
 
     if ((param2->unk_08 != 0xffff) && (param2->unk_0A != 0xffff)) {
-        ov23_02244EF8(param0->unk_00, param0->unk_02, param2->unk_08, param2->unk_0A, v2);
+        ov23_02244EF8(param0->x, param0->z, param2->unk_08, param2->unk_0A, v2);
 
         Bg_CopyTilemapBufferToVRAM(param1, 2);
     }
 
-    param2->unk_08 = param0->unk_00;
-    param2->unk_0A = param0->unk_02;
+    param2->unk_08 = param0->x;
+    param2->unk_0A = param0->z;
 
     for (v0 = 0; v0 < 0x800; v0 += 2) {
         if (v2[v0] != 0) {
@@ -2382,10 +2379,10 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         break;
     case 7:
         if (gSystem.touchHeld) {
-            UnkStruct_ov23_0224271C v4;
+            Coordinates v4;
 
-            v4.unk_00 = gSystem.touchX;
-            v4.unk_02 = gSystem.touchY;
+            v4.x = gSystem.touchX;
+            v4.z = gSystem.touchY;
 
             if (ov23_02245064(&v4, v0->unk_10, v0)) {
                 if (v0->unk_19) {
@@ -2549,7 +2546,7 @@ void ov23_022455B4(int param0, int param1, void *param2, void *param3)
     if (v0->unk_00 == CommSys_CurNetId()) {
         sub_02029744(v1);
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_02257764->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_HELP_TRAPPED_PLAYER);
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
 
         UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCommonTextPrinter(), CommInfo_TrainerInfo(v0->unk_01));
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 71, TRUE, ov23_02243850);
@@ -3068,8 +3065,8 @@ static void ov23_02245ED4(UnkStruct_ov23_02245ED4 *param0)
     v2 = 0;
 
     for (v0 = 0; v0 < param0->unk_114; v0++) {
-        param0->unk_48[v0].unk_00 = MATH_Rand32(&v7, v8);
-        param0->unk_48[v0].unk_02 = MATH_Rand32(&v7, v9);
+        param0->unk_48[v0].x = MATH_Rand32(&v7, v8);
+        param0->unk_48[v0].z = MATH_Rand32(&v7, v9);
         param0->unk_08[v0] = MATH_Rand32(&v7, 0xffff);
     }
 }
@@ -3343,8 +3340,8 @@ static void ov23_02246574(int param0, UnkStruct_ov23_02245ED4 *param1, int param
     void *v2;
     VecFx32 v3;
     fx32 v4, v5;
-    int v6 = param1->unk_48[param0].unk_00;
-    int v7 = param1->unk_48[param0].unk_02;
+    int v6 = param1->unk_48[param0].x;
+    int v7 = param1->unk_48[param0].z;
 
     if (param2 == 0) {
         param1->unk_08[param0] += 0x400;
@@ -3398,7 +3395,7 @@ static BOOL ov23_02246640(BgConfig *param0, UnkStruct_ov23_02245ED4 *param1)
     }
 
     for (v0 = 0; v0 < param1->unk_114; v0++) {
-        if ((param1->unk_48[v0].unk_00 <= 0) || (param1->unk_48[v0].unk_00 >= 256) || (param1->unk_48[v0].unk_02 <= 0) || (param1->unk_48[v0].unk_02 >= 192)) {
+        if ((param1->unk_48[v0].x <= 0) || (param1->unk_48[v0].x >= 256) || (param1->unk_48[v0].z <= 0) || (param1->unk_48[v0].z >= 192)) {
             ov23_02246548(v0);
             continue;
         }
@@ -3410,8 +3407,8 @@ static BOOL ov23_02246640(BgConfig *param0, UnkStruct_ov23_02245ED4 *param1)
         }
 
         v1 = param1->unk_C8[v5];
-        v6 = param1->unk_48[v0].unk_00 - 128;
-        v7 = param1->unk_48[v0].unk_02 - 96;
+        v6 = param1->unk_48[v0].x - 128;
+        v7 = param1->unk_48[v0].z - 96;
         v6 *= FX32_ONE;
         v7 *= FX32_ONE;
         v8 = FX_Mul(v6, v6) + FX_Mul(v7, v7);
@@ -3421,20 +3418,20 @@ static BOOL ov23_02246640(BgConfig *param0, UnkStruct_ov23_02245ED4 *param1)
             v6 = FX_Mul(FX_Div(v8, (160 * FX32_ONE)), (40 - 2) * FX32_ONE);
             param1->unk_F0[v0] = FX_Whole(v6);
         } else {
-            fx32 v9 = param1->unk_48[v0].unk_00 - 128;
-            fx32 v10 = param1->unk_48[v0].unk_02 - 96;
+            fx32 v9 = param1->unk_48[v0].x - 128;
+            fx32 v10 = param1->unk_48[v0].z - 96;
 
             if (v10 == 0) {
                 if (v9 < 0) {
-                    param1->unk_48[v0].unk_00 -= v1;
+                    param1->unk_48[v0].x -= v1;
                 } else {
-                    param1->unk_48[v0].unk_00 += v1;
+                    param1->unk_48[v0].x += v1;
                 }
             } else if (v9 == 0) {
                 if (v10 < 0) {
-                    param1->unk_48[v0].unk_02 -= v1;
+                    param1->unk_48[v0].z -= v1;
                 } else {
-                    param1->unk_48[v0].unk_02 += v1;
+                    param1->unk_48[v0].z += v1;
                 }
             } else {
                 {
@@ -3442,9 +3439,9 @@ static BOOL ov23_02246640(BgConfig *param0, UnkStruct_ov23_02245ED4 *param1)
 
                     v8 += v1 * FX32_ONE;
                     v3 = FX_Whole(FX_Mul(FX_SinIdx(v11), v8));
-                    param1->unk_48[v0].unk_02 = v3 + 96;
+                    param1->unk_48[v0].z = v3 + 96;
                     v3 = FX_Whole(FX_Mul(FX_CosIdx(v11), v8));
-                    param1->unk_48[v0].unk_00 = v3 + 128;
+                    param1->unk_48[v0].x = v3 + 128;
                 }
             }
         }
@@ -4802,7 +4799,7 @@ static void ov23_02248884(SysTask *param0, void *param1)
         G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
         GX_SetVisibleWnd(GX_WNDMASK_W0);
 
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         Sound_PlayEffect(SEQ_SE_PL_UG_006);
 
         Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, HEAP_ID_FIELD1);

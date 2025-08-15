@@ -38,8 +38,8 @@ _0031:
     ReleaseAll
     End
 
-    .byte 27
-    .byte 0
+StarkMountainRoom2_Unused:
+    Return
 
 _007D:
     SetObjectEventPos 14, 42, 78
@@ -70,28 +70,18 @@ _00DC:
     WalkNormalNorth 8
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainRoom2_UnusedMovement:
+    WalkNormalNorth
+    EndMovement
 
     .balign 4, 0
 _00EC:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainRoom2_UnusedMovement2:
+    WalkNormalNorth
+    EndMovement
 
 _00FC:
     LockAll
@@ -216,5 +206,4 @@ _022F:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

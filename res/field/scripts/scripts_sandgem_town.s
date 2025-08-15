@@ -322,30 +322,15 @@ _047C:
     FaceSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+SandgemTown_UnusedMovement:
+    Delay8 3
+    WalkOnSpotNormalSouth
+    EndMovement
+
+SandgemTown_UnusedMovement2:
+    WalkNormalEast 4
+    WalkNormalNorth 2
+    EndMovement
 
     .balign 4, 0
 _04A0:
@@ -737,5 +722,4 @@ _08EB:
     ShowLandmarkSign 29
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

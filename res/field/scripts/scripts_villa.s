@@ -1032,11 +1032,9 @@ _0DC2:
     ReleaseAll
     End
 
-    .byte 44
-    .byte 0
-    .byte 118
-    .byte 27
-    .byte 0
+Villa_Unused:
+    Message 118
+    Return
 
 _0DD1:
     PlayFanfare SEQ_SE_CONFIRM
@@ -1490,22 +1488,11 @@ _14FC:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Villa_UnusedMovement:
+    WalkNormalSouth 3
+    WalkNormalEast
+    WalkOnSpotNormalSouth
+    EndMovement
 
 _1514:
     Call Villa_CheckIfHasAllFurniture
@@ -2380,4 +2367,4 @@ _2395:
     SetFlag FLAG_UNK_0x02B5
     Return
 
-    .byte 0
+    .balign 4, 0

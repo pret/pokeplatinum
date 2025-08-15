@@ -125,30 +125,15 @@ _01C0:
     WalkNormalSouth 9
     EndMovement
 
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+LakeVerityLowWater_UnusedMovement:
+    WalkOnSpotNormalEast
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement2:
+    WalkOnSpotNormalSouth
+    Delay8 2
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _01E0:
@@ -163,162 +148,60 @@ _01F0:
     SetInvisible
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 38
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 69
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+LakeVerityLowWater_UnusedMovement3:
+    Delay8
+    WalkOnSpotNormalWest
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement4:
+    WalkOnSpotNormalWest
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement5:
+    WalkNormalSouth 4
+    WalkNormalWest 2
+    WalkNormalSouth 5
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement6:
+    WalkNormalWest
+    WalkNormalSouth 5
+    WalkNormalWest
+    WalkNormalSouth 3
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement7:
+    WalkNormalSouth
+    WalkOnSpotNormalWest
+    Delay4
+    WalkOnSpotFastEast
+    Delay4
+    WalkOnSpotFastWest
+    Delay8
+    WalkOnSpotNormalSouth
+    Delay8
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement8:
+    WalkNormalSouth 3
+    SetInvisible
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement9:
+    WalkNormalNorth 4
+    WalkNormalEast 2
+    WalkNormalNorth 4
+    WalkOnSpotNormalWest
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement10:
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotFastEast
+    Delay8
+    WalkOnSpotNormalSouth
+    Delay4
+    EndMovement
 
     .balign 4, 0
 _0298:
@@ -370,110 +253,47 @@ _02F8:
     WalkFastSouth 2
     EndMovement
 
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 7
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 37
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 69
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+LakeVerityLowWater_UnusedMovement11:
+    WalkOnSpotNormalEast
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement12:
+    WalkOnSpotFastEast
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement13:
+    WalkOnSpotNormalSouth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement14:
+    Delay8 7
+    WalkNormalEast
+    WalkOnSpotNormalWest
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement15:
+    Delay4
+    WalkOnSpotNormalSouth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement16:
+    WalkNormalWest
+    WalkNormalSouth
+    WalkOnSpotNormalWest
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement17:
+    WalkOnSpotFastSouth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement18:
+    WalkNormalSouth
+    WalkNormalWest
+    WalkNormalSouth 3
+    WalkNormalWest
+    WalkNormalSouth 6
+    SetInvisible
+    EndMovement
 
     .balign 4, 0
 _0368:
@@ -508,122 +328,52 @@ _039C:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 69
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 18
-    .byte 0
-    .byte 7
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+LakeVerityLowWater_UnusedMovement19:
+    WalkOnSpotNormalSouth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement20:
+    Delay8 5
+    WalkOnSpotNormalSouth
+    Delay8 2
+    WalkOnSpotNormalEast
+    WalkOnSpotNormalNorth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement21:
+    WalkOnSpotNormalSouth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement22:
+    Delay8
+    WalkOnSpotNormalSouth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement23:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement24:
+    WalkOnSpotNormalNorth
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement25:
+    Delay8
+    WalkOnSpotNormalSouth
+    WalkNormalSouth 4
+    WalkNormalWest
+    WalkNormalSouth 6
+    SetInvisible
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement26:
+    WalkFastNorth 6
+    EndMovement
+
+LakeVerityLowWater_UnusedMovement27:
+    WalkFastWest 7
+    EndMovement
 
 _0418:
     PlayFanfare SEQ_SE_CONFIRM
@@ -676,5 +426,4 @@ _048A:
 _048C:
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

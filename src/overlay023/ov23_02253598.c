@@ -303,7 +303,7 @@ void ov23_022539E8(void)
 
 static void ov23_022539F8(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
 void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
@@ -315,7 +315,7 @@ void ov23_02253A00(UndergroundRecord *undergroundRecord, int param1)
     GF_ASSERT(param1 >= 32);
     GF_ASSERT(param1 <= 45);
 
-    sub_020594FC();
+    CommPlayerMan_PauseFieldSystem();
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_RECORDS, MESSAGE_LOADER_NARC_HANDLE);
 
     undergroundRecordBuffer = UndergroundRecord_Init(HEAP_ID_FIELD1);

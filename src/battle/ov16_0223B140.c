@@ -40,6 +40,7 @@
 #include "field_battle_data_transfer.h"
 #include "flags.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "g3d_pipeline.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -73,7 +74,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 #include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_0202F1D4.h"
@@ -516,7 +516,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     PokemonSpriteTemplate v2;
-    int v3;
+    int idx;
     RTCDate v4;
     RTCTime v5;
 
@@ -529,9 +529,9 @@ static void ov16_0223B790(ApplicationManager *appMan)
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     if (battleSys->battleType & BATTLE_TYPE_SAFARI) {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
+        battleSys->unk_1A4 = FontSpecialChars_Init(0xe, 2, 0xf, HEAP_ID_BATTLE);
     } else {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
+        battleSys->unk_1A4 = FontSpecialChars_Init(0xe, 2, 0xf, HEAP_ID_BATTLE);
     }
 
     battleSys->unk_1A8 = battleSys->unk_1A4;
@@ -546,8 +546,8 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
-    for (v3 = 0; v3 < 4; v3++) {
-        battleSys->unk_1CC[v3].unk_00 = Heap_Alloc(HEAP_ID_BATTLE, 32 * 10 * 10);
+    for (idx = 0; idx < 4; idx++) {
+        battleSys->pokemonSpriteDataArray[idx].tiles = Heap_Alloc(HEAP_ID_BATTLE, 32 * 10 * 10);
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -645,8 +645,8 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {
-        for (v3 = 0; v3 < 4; v3++) {
-            battleSys->unk_247C[v3] = v1->unk_194[v3];
+        for (idx = 0; idx < 4; idx++) {
+            battleSys->unk_247C[idx] = v1->unk_194[idx];
         }
     }
 }
@@ -744,7 +744,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->unk_19C = battleSystem->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        Heap_Free(battleSystem->unk_1CC[battlerId].unk_00);
+        Heap_Free(battleSystem->pokemonSpriteDataArray[battlerId].tiles);
     }
 
     Heap_Free(battleSystem->msgBuffer);
@@ -779,7 +779,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     Heap_Free(battleSystem->unk_04);
     Heap_Free(battleSystem->unk_21C);
     Heap_Free(battleSystem->unk_220);
-    sub_0200C560(battleSystem->unk_1A4);
+    FontSpecialChars_Free(battleSystem->unk_1A4);
     Font_Free(FONT_SUBSCREEN);
     SysTask_Done(battleSystem->unk_1C);
     SysTask_Done(battleSystem->unk_20);

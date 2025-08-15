@@ -5,7 +5,7 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "battle/struct_ov16_02264408.h"
+#include "battle/battle_anim_battler_context.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_02226504_decl.h"
@@ -108,7 +108,7 @@ typedef struct BattleAnimContext {
     SpriteSystem *spriteSystem;
 
     // Battler info
-    UnkStruct_ov16_0223E0C8 *pokemonSpriteData[MAX_BATTLERS];
+    PokemonSpriteData *pokemonSpriteData[MAX_BATTLERS];
     u8 battlerTypes[MAX_BATTLERS];
     PokemonSprite *battlerSprites[MAX_BATTLERS];
     u32 battleType;
@@ -217,7 +217,7 @@ typedef struct BattleAnimSystem {
     u8 unk_17A;
     u8 unk_17B;
     BattleBgAnim *bgAnim;
-    UnkStruct_ov16_02264408_sub1 unk_180;
+    BattleBackgroundReference battleBgRefs;
     int baseBgPalettes;
     u8 bgLayerPriorities[4];
     NARC *arcs[BATTLE_ANIM_SYSTEM_ARC_COUNT];
@@ -230,7 +230,7 @@ void BattleAnimSystem_SetIsContest(BattleAnimSystem *param0, BOOL param1);
 BOOL BattleAnimSystem_IsContest(BattleAnimSystem *param0);
 enum HeapID BattleAnimSystem_GetHeapID(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_Delete(BattleAnimSystem *param0);
-BOOL BattleAnimSystem_StartMove(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3);
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, BattleAnimBattlerContext *param3);
 BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_IsMoveActive(BattleAnimSystem *param0);
 BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *param0);

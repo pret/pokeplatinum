@@ -51,7 +51,7 @@ _008C:
     ScrCmd_25A VAR_RESULT
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
-    ScrCmd_260 24
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_HALL_OF_FAME_ENTRY
     Call _0174
     ScrCmd_0B0
     ReturnToField
@@ -206,4 +206,4 @@ _02BD:
     ClearFlag FLAG_UNK_0x0185
     Return
 
-    .byte 0
+    .balign 4, 0

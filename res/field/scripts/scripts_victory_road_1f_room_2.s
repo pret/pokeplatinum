@@ -186,14 +186,9 @@ _0274:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VictoryRoad1FRoom2_UnusedMovement:
+    WalkNormalNorth
+    EndMovement
 
     .balign 4, 0
 _0284:

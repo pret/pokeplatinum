@@ -15,7 +15,6 @@
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay005/ov5_021F5894.h"
-#include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
 #include "overlay023/ov23_02248F1C.h"
@@ -24,7 +23,7 @@
 #include "overlay023/ov23_0224DC40.h"
 #include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_02253598.h"
-#include "overlay023/struct_ov23_0224271C.h"
+#include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -549,7 +548,7 @@ void ov23_0224B61C(int param0)
 
 static void ov23_0224B654(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
 static int ov23_0224B65C(int param0, int param1)
@@ -600,7 +599,7 @@ void ov23_0224B700(int param0, int param1, void *param2, void *param3)
     u8 *v0 = param2;
 
     if (CommSys_CurNetId() == v0[0]) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
 
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 88, TRUE, ov23_0224B654);
         ov23_0224DC24();
@@ -927,7 +926,7 @@ static void ov23_0224BAAC(SysTask *param0, void *param1)
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
         ov23_0224BA6C(param0, v0);
 
-        sub_02059514();
+        CommPlayerMan_ResumeFieldSystem();
     }
 }
 
@@ -950,7 +949,7 @@ static void ov23_0224BC5C(FieldSystem *fieldSystem, int param1, int param2, int 
     v0->unk_08 = SysTask_Start(ov23_0224BAAC, v0, 100);
 
     ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
-    sub_020594FC();
+    CommPlayerMan_PauseFieldSystem();
 }
 
 static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, int param5)
@@ -995,7 +994,7 @@ static int ov23_0224BD1C(int param0, BOOL param1)
 
         if ((v3 == 0xffff) && (v4 == 0xffff)) {
             (void)0;
-        } else if (ov23_02242E58(v3, v4)) {
+        } else if (Underground_AreCoordinatesInSecretBase(v3, v4)) {
             v2 = ov23_0224B05C(v3, v4);
 
             if (v2 == param0) {
@@ -1158,7 +1157,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
         ov23_0224BA6C(param0, v0);
 
-        sub_02059514();
+        CommPlayerMan_ResumeFieldSystem();
     }
 }
 
@@ -1183,7 +1182,7 @@ static void ov23_0224C090(FieldSystem *fieldSystem, int param1, int param2, int 
     v0->unk_08 = SysTask_Start(ov23_0224BE28, v0, 100);
     ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
 
-    sub_020594FC();
+    CommPlayerMan_PauseFieldSystem();
 }
 
 int ov23_0224C100(void)
@@ -1280,7 +1279,7 @@ void ov23_0224C25C(int param0, int param1, void *param2, void *param3)
         if (Unk_ov23_022577AC->unk_12D4 == 2) {
             Unk_ov23_022577AC->unk_12D4 = 0;
 
-            sub_02059514();
+            CommPlayerMan_ResumeFieldSystem();
             Link_Message(56);
             CommPlayer_SendPos(0);
 
@@ -1458,7 +1457,7 @@ static void ov23_0224C5B4(SysTask *param0, void *param1)
     v4 = Player_GetXPos(Unk_ov23_022577AC->fieldSystem->playerAvatar);
     v5 = Player_GetZPos(Unk_ov23_022577AC->fieldSystem->playerAvatar);
 
-    if (ov23_02242E58(v4, v5)) {
+    if (Underground_AreCoordinatesInSecretBase(v4, v5)) {
         return;
     }
 
@@ -1572,7 +1571,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         v1->unk_28 = CommSys_ConnectedCount();
 
         CommSys_DisableSendMovementData();
-        ov23_022417CC();
+        UndergroundSpheres_DisableBuriedSphereSparkles();
 
         if (ov23_02249AB8()) {
             v1->unk_0C = 1;
@@ -1622,14 +1621,14 @@ static BOOL ov23_0224C790(FieldTask *param0)
             break;
         }
 
-        if (sub_02033DFC() && !ov23_02242E58(v1->unk_1C, v1->unk_20)) {
+        if (sub_02033DFC() && !Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
             v1->unk_2E = 0;
         } else {
             v1->unk_2E = 1;
         }
 
         CommSys_EnableSendMovementData();
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
 
         Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
         LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
@@ -1679,17 +1678,17 @@ static BOOL ov23_0224C790(FieldTask *param0)
         }
         break;
     case 13:
-        if (sub_02033DFC() && !ov23_02242E58(v1->unk_1C, v1->unk_20)) {
+        if (sub_02033DFC() && !Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
             ov23_02249AA4();
         } else {
             ov23_02249B60();
         }
 
         sub_02059638(0);
-        sub_02059514();
+        CommPlayerMan_ResumeFieldSystem();
         Heap_Free(v1);
 
-        if (sub_02033DFC() && ov23_02242E58(v1->unk_1C, v1->unk_20)) {
+        if (sub_02033DFC() && Underground_AreCoordinatesInSecretBase(v1->unk_1C, v1->unk_20)) {
             ov23_02242FA8();
         } else {
             ov23_02242FBC();
@@ -1749,7 +1748,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
 
         v0->unk_12 = sub_0202988C(v9);
     }
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_SetUndergroundTrapName(CommManUnderground_GetCommonTextPrinter(), 33);
         Sound_PlayEffect(SEQ_SE_DP_DORIRU);
 
@@ -1769,8 +1768,8 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         }
         break;
     case 2: {
-        v6 = sub_02058D88(CommSys_CurNetId());
-        v7 = sub_02058DC0(CommSys_CurNetId());
+        v6 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
+        v7 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
         v8 = CommPlayer_GetOppositeDir(PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 34, FALSE, NULL);
@@ -1820,7 +1819,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         }
         break;
     case 9:
-        ov23_0224FD68(33);
+        Underground_RemoveSelectedTrap(33);
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
         ov23_02249A74();
         v0->unk_0C = 10;
@@ -1850,8 +1849,8 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         ov23_0224C6AC(16);
 
         {
-            v6 = sub_02058D88(CommSys_CurNetId());
-            v7 = sub_02058DC0(CommSys_CurNetId());
+            v6 = CommPlayer_GetXInFrontOfPlayerServer(CommSys_CurNetId());
+            v7 = CommPlayer_GetZInFrontOfPlayerServer(CommSys_CurNetId());
 
             ov5_021F5634(fieldSystem, v6, 0, v7);
         }
@@ -1910,7 +1909,7 @@ void ov23_0224CD80(int param0, int param1, void *param2, void *param3)
 
     if ((v0[0] == 0) && (v9 != 0xff)) {
         (void)0;
-    } else if (ov23_02242E58(v1, v2)) {
+    } else if (Underground_AreCoordinatesInSecretBase(v1, v2)) {
         v8.unk_01 = 6;
     } else if (TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v1, v2) && TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v3, v4) && TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v5, v6)) {
         if (v0[0] == 0) {
@@ -1951,7 +1950,7 @@ static void ov23_0224CE94(SysTask *param0, void *param1)
     Heap_Free(v0);
 
     ov23_02243204();
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
     ov23_0224DC24();
 }
 
@@ -1982,24 +1981,24 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
     }
 
     if (v0->unk_01 == 0) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 54, TRUE, ov23_0224B654);
         ov23_0224DC24();
     } else if (v0->unk_01 == 1) {
         ov23_0224CEC8();
     } else if (v0->unk_01 == 6) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 74, TRUE, ov23_0224B654);
         ov23_0224DC24();
     } else if (v0->unk_01 == 5) {
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 88, TRUE, ov23_0224B654);
         ov23_02249AA4();
         ov23_0224DC24();
     } else if ((v0->unk_01 == 2) || (v0->unk_01 == 3) || (v0->unk_01 == 4)) {
         UnkStruct_ov23_0224B098 v2;
-        int v3 = sub_02058D88(v0->unk_00);
-        int v4 = sub_02058DC0(v0->unk_00);
+        int v3 = CommPlayer_GetXInFrontOfPlayerServer(v0->unk_00);
+        int v4 = CommPlayer_GetZInFrontOfPlayerServer(v0->unk_00);
         int v5 = CommPlayer_Dir(v0->unk_00);
 
         ov23_0224C1EC(v3, v4, v5, v0->unk_00);
@@ -2262,10 +2261,10 @@ static int ov23_0224D3E4(UnkStruct_02029894 *param0, int param1, int param2)
     return 0;
 }
 
-BOOL ov23_0224D454(int param0, UnkStruct_ov23_0224271C *param1)
+BOOL ov23_0224D454(int param0, Coordinates *param1)
 {
-    int v0 = param1->unk_00;
-    int v1 = param1->unk_02;
+    int v0 = param1->x;
+    int v1 = param1->z;
     int v2, v3, v4;
     UnkStruct_02029894 *v5;
 
@@ -2351,7 +2350,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        sub_020594FC();
+        CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 7, FALSE, NULL);
         Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
         v0->unk_00 = 1;
@@ -2372,7 +2371,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
                 ov23_0224D54C(v0);
                 v0->unk_00 = 4;
                 UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCaptureFlagTextPrinter());
-                sub_02059514();
+                CommPlayerMan_ResumeFieldSystem();
             }
         }
         break;
@@ -2506,7 +2505,7 @@ BOOL ov23_0224D7C8(int param0)
     int v4 = CommPlayer_GetZServer(param0);
     int v5 = CommPlayer_DirServer(param0);
 
-    if (!ov23_02242E58(v3, v4)) {
+    if (!Underground_AreCoordinatesInSecretBase(v3, v4)) {
         return 0;
     }
 
@@ -2573,7 +2572,7 @@ void Underground_SecretBaseRemovePlayer(int param0)
             }
 
             if ((Unk_ov23_022577AC->unk_135B[v0] == 0xff) && (Unk_ov23_022577AC->unk_1363[v0] == 0xff)) {
-                if (ov23_02242E58(v2, v3)) {
+                if (Underground_AreCoordinatesInSecretBase(v2, v3)) {
                     if (!v4[v0]) {
                         ov23_0224B844(v1, v0, 1);
                         v4[v0] = 1;
@@ -2591,7 +2590,7 @@ void Underground_SecretBaseRemovePlayer(int param0)
 
         if ((v2 == 0xffff) && (v3 == 0xffff)) {
             (void)0;
-        } else if (ov23_02242E58(v2, v3)) {
+        } else if (Underground_AreCoordinatesInSecretBase(v2, v3)) {
             v1 = ov23_0224B05C(v2, v3);
 
             if (!v4[v0]) {
@@ -2621,7 +2620,7 @@ BOOL ov23_0224D9AC(int param0, BOOL param1)
     v2 = CommPlayer_XPos(CommSys_CurNetId());
     v3 = CommPlayer_ZPos(CommSys_CurNetId());
 
-    if (!ov23_02242E58(v2, v3)) {
+    if (!Underground_AreCoordinatesInSecretBase(v2, v3)) {
         Unk_ov23_022577AC->unk_1353[param0] = 0xff;
 
         return 0;
@@ -2688,7 +2687,7 @@ void ov23_0224DAD0(int param0)
 
     if ((v0 == 0xffff) && (v1 == 0xffff)) {
         ov23_0224B844(v3, v3, 1);
-    } else if (ov23_02242E58(v0, v1) || TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
+    } else if (Underground_AreCoordinatesInSecretBase(v0, v1) || TerrainCollisionManager_CheckCollision(Unk_ov23_022577AC->fieldSystem, v0, v1)) {
         ov23_0224B844(v3, v3, 1);
     }
 }

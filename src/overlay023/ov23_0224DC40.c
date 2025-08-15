@@ -260,7 +260,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
     param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD1);
 
     Window_CopyToVRAM(&param0->unk_0C);
-    sub_020594FC();
+    CommPlayerMan_PauseFieldSystem();
 }
 
 static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
@@ -282,7 +282,7 @@ static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
     }
 
     Heap_Free(param1);
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
     SysTask_Done(param0);
 
     Unk_ov23_022577B4 = NULL;
@@ -460,7 +460,7 @@ static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
     UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 14, FALSE, NULL);
 
     UndergroundRecord_IncrementGiftsGiven(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param0->fieldSystem)));
-    ov23_0224F634(param0->unk_28.unk_02);
+    Underground_RemoveSelectedGoodBag(param0->unk_28.unk_02);
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
 
@@ -893,7 +893,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     }
 
     if (v0 == 0) {
-        if (ov23_0224F744(param1->unk_24.unk_02)) {
+        if (Underground_TryAddGoodBag2(param1->unk_24.unk_02)) {
             sub_0202977C(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param1->fieldSystem)));
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             ov23_0224DC40(param1, 22);
@@ -929,7 +929,7 @@ static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     ov23_0224EA08(param0, param1);
 
     Heap_Free(param1);
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
     SysTask_Done(param0);
 
     Unk_ov23_022577B0 = NULL;

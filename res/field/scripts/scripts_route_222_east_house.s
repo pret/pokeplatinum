@@ -21,7 +21,7 @@ Route222EastHouse_Fisherman:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_191
+    SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8002
     ReturnToField
     FadeScreen 6, 1, 1, 0
@@ -90,6 +90,4 @@ Route222EastHouse_ShowNoPokemon:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

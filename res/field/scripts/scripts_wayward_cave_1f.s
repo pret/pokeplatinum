@@ -147,34 +147,16 @@ _01B0:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+WaywardCave1F_UnusedMovement:
+    Delay8 5
+    WalkNormalWest
+    EndMovement
+
+WaywardCave1F_UnusedMovement2:
+    Delay8 5
+    WalkNormalNorth
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _01D8:

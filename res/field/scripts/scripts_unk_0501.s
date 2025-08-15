@@ -141,7 +141,7 @@ _01DE:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_0x8000, 0xFF, _0292
-    ScrCmd_31E VAR_0x8000, VAR_RESULT
+    TryRevertPokemonForm VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _04EF
     GetPartyMonSpecies VAR_0x8000, VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_NONE, _0285
@@ -344,29 +344,19 @@ _04A0:
     ReleaseAll
     End
 
-    .byte 73
-    .byte 0
-    .byte 220
-    .byte 5
-    .byte 96
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 37
-    .byte 172
-    .byte 1
-    .byte 52
-    .byte 0
-    .byte 115
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+Unk501_Unused:
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    Message 37
+    ScrCmd_1AC
+    CloseMessage
+    HideMoney
+    ReleaseAll
+    End
 
 _04EF:
     HideMoney
     CallCommonScript 0x809
     End
 
-    .byte 0
+    .balign 4, 0

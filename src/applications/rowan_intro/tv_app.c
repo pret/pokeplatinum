@@ -62,7 +62,7 @@ static void RowanIntroTv_ShiftCrtOverlay(RowanIntroTv *tv);
 BOOL RowanIntroTv_Init(ApplicationManager *appMan, enum RowanIntroTvAppState *unusedState)
 {
     RowanIntroTv *tv;
-    // changing this to enum HeapId breaks the checksum.
+    // changing this to enum HeapID breaks the checksum.
     int heapID = HEAP_ID_ROWAN_INTRO_TV;
 
     Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);

@@ -12,4 +12,4 @@ _000C:
     ShowLandmarkSign 3
     End
 
-    .byte 0
+    .balign 4, 0

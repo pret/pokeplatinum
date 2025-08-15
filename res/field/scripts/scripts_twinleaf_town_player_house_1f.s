@@ -185,23 +185,14 @@ _0214:
     ReleaseAll
     End
 
-    .byte 205
-    .byte 0
-    .byte 0
-    .byte 206
-    .byte 0
-    .byte 1
-    .byte 44
-    .byte 0
-    .byte 35
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+TwinleafTownPlayerHouse1F_Unused:
+    BufferPlayerName 0
+    BufferRivalName 1
+    Message 35
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    End
 
 _02AF:
     GoToIfGe VAR_UNK_0x40B2, 2, _0300
@@ -504,68 +495,26 @@ _0711:
     ReleaseAll
     End
 
-    .byte 206
-    .byte 0
-    .byte 0
-    .byte 205
-    .byte 0
-    .byte 1
-    .byte 44
-    .byte 0
-    .byte 6
-    .byte 52
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 30
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 205
-    .byte 0
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 7
-    .byte 95
-    .byte 1
-    .byte 123
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 205
-    .byte 0
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 8
-    .byte 78
-    .byte 0
-    .byte 134
-    .byte 4
-    .byte 79
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 9
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 164
-    .byte 64
-    .byte 4
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+TwinleafTownPlayerHouse1F_Unused2:
+    BufferRivalName 0
+    BufferPlayerName 1
+    Message 6
+    CloseMessage
+    WaitTime 30, VAR_RESULT
+    BufferPlayerName 0
+    Message 7
+    GiveBag
+    AddItem ITEM_POTION, 1, VAR_RESULT
+    BufferPlayerName 0
+    Message 8
+    PlaySound SEQ_FANFA4
+    WaitSound
+    Message 9
+    WaitABXPadPress
+    CloseMessage
+    SetVar VAR_UNK_0x40A4, 4
+    ReleaseAll
+    End
 
 _075A:
     BufferRivalName 0
@@ -612,14 +561,9 @@ _07A4:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _07B4:
@@ -778,18 +722,10 @@ _08C4:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement2:
+    Delay8 2
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _08D8:
@@ -823,40 +759,21 @@ _0918:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 62
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement3:
+    Delay4 2
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _0930:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+TwinleafTownPlayerHouse1F_UnusedMovement4:
+    WalkOnSpotNormalSouth
+    WalkNormalWest 2
+    WalkNormalSouth
+    EndMovement
 
 _0948:
     BufferRivalName 1
@@ -932,4 +849,4 @@ _09FA:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

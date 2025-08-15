@@ -18,5 +18,4 @@ _000A:
 _0020:
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

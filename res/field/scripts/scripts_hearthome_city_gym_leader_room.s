@@ -69,7 +69,7 @@ _00BB:
     PlaySound SEQ_BADGE
     WaitSound
     GiveBadge BADGE_ID_RELIC
-    ScrCmd_260 23
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_BADGE_EARNED
     SetTrainerFlag TRAINER_CAMPER_DREW
     SetTrainerFlag TRAINER_ACE_TRAINER_ALLEN
     SetTrainerFlag TRAINER_ACE_TRAINER_CATHERINE
@@ -167,5 +167,4 @@ _0248:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

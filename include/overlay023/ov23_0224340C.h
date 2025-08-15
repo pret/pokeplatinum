@@ -4,7 +4,7 @@
 #include <nitro/math.h>
 
 #include "field/field_system_decl.h"
-#include "overlay023/struct_ov23_0224271C_decl.h"
+#include "overlay023/underground_defs.h"
 
 #include "bg_window.h"
 #include "strbuf.h"
@@ -33,7 +33,7 @@ int ov23_02244048(void);
 BOOL ov23_0224404C(void);
 void ov23_02244068(void);
 int ov23_0224407C(void);
-BOOL ov23_02244080(int param0, UnkStruct_ov23_0224271C *param1, u8 param2);
+BOOL ov23_02244080(int param0, Coordinates *param1, u8 param2);
 int ov23_0224413C(void);
 void ov23_02244140(int param0, int param1, void *param2, void *param3);
 BOOL ov23_022442D8(int param0, int param1);

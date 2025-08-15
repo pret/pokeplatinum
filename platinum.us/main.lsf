@@ -42,7 +42,7 @@ Static main
 	Object main.nef.p/src_message.c.o
 	Object main.nef.p/src_message_util.c.o
 	Object main.nef.p/src_string_template.c.o
-	Object main.nef.p/src_unk_0200C440.c.o
+	Object main.nef.p/src_font_special_chars.c.o
 	Object main.nef.p/src_sprite_system.c.o
 	Object main.nef.p/src_sys_task.c.o
 	Object main.nef.p/src_render_window.c.o
@@ -207,7 +207,7 @@ Static main
 	Object main.nef.p/src_scrcmd_game_corner_prize.c.o
 	Object main.nef.p/src_scrcmd_system_flags.c.o
 	Object main.nef.p/src_scrcmd_item.c.o
-	Object main.nef.p/src_unk_0204E974.c.o
+	Object main.nef.p/src_scrcmd_underground_inventory.c.o
 	Object main.nef.p/src_unk_0204EDA4.c.o
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
 	Object main.nef.p/src_unk_0204F04C.c.o
@@ -310,7 +310,7 @@ Static main
 	Object main.nef.p/src_unk_02082C2C.c.o
 	Object main.nef.p/src_unk_02083370.c.o
 	Object main.nef.p/src_unk_02084B70.c.o
-	Object main.nef.p/src_unk_0208694C.c.o
+	Object main.nef.p/src_applications_naming_screen.c.o
 	Object main.nef.p/src_unk_020890F4.c.o
 	Object main.nef.p/src_unk_02089604.c.o
 	Object main.nef.p/src_unk_0208A3F4.c.o
@@ -840,7 +840,7 @@ Overlay overlay23
 {
 	After overlay5
 	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
-	Object main.nef.p/src_overlay023_ov23_022416A8.c.o
+	Object main.nef.p/src_overlay023_underground_spheres.c.o
 	Object main.nef.p/src_overlay023_ov23_02241F74.c.o
 	Object main.nef.p/src_overlay023_ov23_0224340C.c.o
 	Object main.nef.p/src_overlay023_ov23_02248C08.c.o
@@ -1452,30 +1452,30 @@ Overlay overlay96
 	Object main.nef.p/src_overlay096_ov96_0223BCE0.c.o
 }
 
-Overlay overlay97
+Overlay main_menu
 {
 	After overlay60
-	Object main.nef.p/src_overlay097_main_menu.c.o
-	Object main.nef.p/src_overlay097_ov97_0222C174.c.o
-	Object main.nef.p/src_overlay097_ov97_0222D04C.c.o
-	Object main.nef.p/src_overlay097_ov97_0222D2F8.c.o
-	Object main.nef.p/src_overlay097_mystery_gift_app.c.o
-	Object main.nef.p/src_overlay097_wonder_cards_app.c.o
-	Object main.nef.p/src_overlay097_ov97_02232054.c.o
-	Object main.nef.p/src_overlay097_ov97_02232200.c.o
-	Object main.nef.p/src_overlay097_ov97_02232DC8.c.o
-	Object main.nef.p/src_overlay097_ov97_02233408.c.o
-	Object main.nef.p/src_overlay097_ov97_022337FC.c.o
-	Object main.nef.p/src_overlay097_ov97_02233814.c.o
-	Object main.nef.p/src_overlay097_gba_migrator.c.o
-	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
-	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
-	Object main.nef.p/src_overlay097_gba_pokemon.c.o
-	Object main.nef.p/src_overlay097_distribution_cartridge.c.o
-	Object main.nef.p/src_overlay097_main_menu_util.c.o
-	Object main.nef.p/src_overlay097_ov97_02238534.c.o
-	Object main.nef.p/src_overlay097_ov97_02238D74.c.o
-	Object main.nef.p/src_overlay097_gba_convert_string.c.o
+	Object main.nef.p/src_main_menu_main_menu.c.o
+	Object main.nef.p/src_main_menu_ov97_0222C174.c.o
+	Object main.nef.p/src_main_menu_ov97_0222D04C.c.o
+	Object main.nef.p/src_main_menu_ov97_0222D2F8.c.o
+	Object main.nef.p/src_main_menu_mystery_gift_app.c.o
+	Object main.nef.p/src_main_menu_wonder_cards_app.c.o
+	Object main.nef.p/src_main_menu_ov97_02232054.c.o
+	Object main.nef.p/src_main_menu_ov97_02232200.c.o
+	Object main.nef.p/src_main_menu_ov97_02232DC8.c.o
+	Object main.nef.p/src_main_menu_ov97_02233408.c.o
+	Object main.nef.p/src_main_menu_ov97_022337FC.c.o
+	Object main.nef.p/src_main_menu_ov97_02233814.c.o
+	Object main.nef.p/src_main_menu_gba_migrator.c.o
+	Object main.nef.p/src_main_menu_ov97_02235D18.c.o
+	Object main.nef.p/src_main_menu_ov97_0223635C.c.o
+	Object main.nef.p/src_main_menu_gba_pokemon.c.o
+	Object main.nef.p/src_main_menu_distribution_cartridge.c.o
+	Object main.nef.p/src_main_menu_main_menu_util.c.o
+	Object main.nef.p/src_main_menu_ov97_02238534.c.o
+	Object main.nef.p/src_main_menu_ov97_02238D74.c.o
+	Object main.nef.p/src_main_menu_gba_convert_string.c.o
 	Library libcrypto_ov97.a
 }
 

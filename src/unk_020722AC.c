@@ -1213,7 +1213,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
             partyMan->selectedMonSlot = param0->unk_17;
         }
 
-        FieldSystem_StartChildProcess(param0->fieldSystem, &Unk_020F1E88, partyMan);
+        FieldSystem_StartChildProcess(param0->fieldSystem, &gPokemonPartyAppTemplate, partyMan);
         param0->unk_1B4 = partyMan;
         param0->unk_12++;
         break;

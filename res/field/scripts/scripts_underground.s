@@ -40,7 +40,7 @@ _00BE:
 _00CD:
     GetPlayerMapPos VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
     AddVar VAR_MAP_LOCAL_0, 1
-    ScrCmd_187 16, VAR_MAP_LOCAL_0, 1, VAR_MAP_LOCAL_1, 1
+    SetPosition 16, VAR_MAP_LOCAL_0, 1, VAR_MAP_LOCAL_1, 1
     End
 
 _00E7:
@@ -184,19 +184,11 @@ _0289:
     SetFlag FLAG_UNDERGROUND_FIRST_ENTERED
     End
 
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+Underground_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _02D4:

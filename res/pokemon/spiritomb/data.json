@@ -109,7 +109,9 @@
     "offspring": "SPECIES_SPIRITOMB",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SCARY",
+        "has_type": true
     },
     "pokedex_data": {
         "height": 10,

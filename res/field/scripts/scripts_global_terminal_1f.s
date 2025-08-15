@@ -30,7 +30,7 @@ _0056:
     End
 
 _0065:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _006B:
@@ -42,7 +42,7 @@ _006B:
 _0077:
     ScrCmd_168 0, 0, 8, 2, 77
     Call _00C5
-    ScrCmd_1B1 0xFF
+    ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Call _00CD
@@ -70,14 +70,9 @@ _00D8:
     WalkNormalSouth
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+GlobalTerminal1F_UnusedMovement:
+    WalkNormalSouth
+    EndMovement
 
     .balign 4, 0
 _00E8:
@@ -180,7 +175,7 @@ _020D:
     Call _00C5
     ApplyMovement LOCALID_PLAYER, _0350
     WaitMovement
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
     Call _00CD
@@ -477,13 +472,10 @@ _05B8:
     BufferPartyMonSpecies 0, 0
     Message 21
     GoTo _05F9
+    End
 
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 18
-
+GlobalTerminal1F_Unused:
+    Message 18
 _05CB:
     Message 19
     ShowYesNoMenu VAR_RESULT
@@ -604,6 +596,4 @@ _074C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

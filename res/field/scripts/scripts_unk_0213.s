@@ -26,7 +26,7 @@ _0046:
     End
 
 _0055:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _005B:
@@ -47,7 +47,7 @@ _008F:
     LockAll
     ScrCmd_168 0, 0, VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_2, 77
     Call _050B
-    ScrCmd_1B1 0xFF
+    ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _00F0
     WaitMovement
     Call _0513
@@ -125,14 +125,9 @@ _01DE:
     SetVar VAR_0x8004, 1
     GoTo _026A
 
-    .byte 22
-    .byte 0
-    .byte 160
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+Unk213_Unused:
+    GoTo _0290
+    End
 
 _01F2:
     SetVar VAR_0x8004, 2
@@ -183,79 +178,32 @@ _026A:
 _0290:
     SetVar VAR_0x8005, 0
     GoTo _02E4
+    End
 
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 58
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 2
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 30
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 3
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 5
-    .byte 128
-    .byte 4
-    .byte 0
-    .byte 22
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+Unk213_Unused2:
+    SetVar VAR_0x8005, 0
+    GoTo _02E4
+    End
+
+Unk213_Unused3:
+    SetVar VAR_0x8005, 1
+    GoTo _02E4
+    End
+
+Unk213_Unused4:
+    SetVar VAR_0x8005, 2
+    GoTo _02E4
+    End
+
+Unk213_Unused5:
+    SetVar VAR_0x8005, 3
+    GoTo _02E4
+    End
+
+Unk213_Unused6:
+    SetVar VAR_0x8005, 4
+    GoTo _02E4
+    End
 
 _02E4:
     HealParty
@@ -580,5 +528,4 @@ _076D:
     Message 127
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

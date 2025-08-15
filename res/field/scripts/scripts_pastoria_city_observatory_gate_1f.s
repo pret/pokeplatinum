@@ -255,27 +255,12 @@ _0334:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCityObservatoryGate1F_UnusedMovement:
+    WalkNormalWest
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCityObservatoryGate1F_UnusedMovement2:
+    WalkNormalEast
+    WalkOnSpotNormalWest
+    EndMovement

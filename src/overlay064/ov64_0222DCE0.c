@@ -6,13 +6,14 @@
 
 #include "constants/graphics.h"
 #include "constants/savedata/vars_flags.h"
+#include "constants/string.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/naming_screen.h"
 #include "overlay063/ov63_0222AE60.h"
 #include "overlay063/struct_ov63_0222AE60_decl.h"
 #include "overlay063/struct_ov63_0222BB38_decl.h"
@@ -62,12 +63,10 @@
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
 #include "unk_0205C980.h"
-#include "unk_0208694C.h"
 #include "unk_020890F4.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F2DBC.h"
 
 FS_EXTERN_OVERLAY(overlay63);
@@ -182,7 +181,7 @@ typedef struct {
 
 typedef struct {
     ApplicationManager *appMan;
-    UnkStruct_0208737C *unk_04;
+    NamingScreenArgs *unk_04;
     UnkStruct_02089438 *unk_08;
 } UnkStruct_ov64_02230444;
 
@@ -327,7 +326,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 static void ov64_022305CC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
 static void ov64_022305D4(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
 static void ov64_022305D8(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
-static UnkStruct_0208737C *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID);
+static NamingScreenArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID);
 static void ov64_02230620(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2, u32 heapID);
 static int ov64_02230628(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
 static void ov64_02230678(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E060 *param1, UnkStruct_ov64_0222E21C *param2);
@@ -2473,7 +2472,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
 
         param0->unk_08 = sub_02089400(heapID, 12, v0, SaveData_GetOptions(param2->saveData), 0, 0);
         ov64_0222DFD0(param1);
-        param0->appMan = ApplicationManager_New(&Unk_020F2DAC, param0->unk_04, heapID);
+        param0->appMan = ApplicationManager_New(&gNamingScreenAppTemplate, param0->unk_04, heapID);
         param2->unk_04 = 1;
         break;
     case 1:
@@ -2502,14 +2501,14 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
         param2->unk_04 = 3;
         break;
     case 3:
-        sub_0208716C(param0->unk_04);
+        NamingScreenArgs_Free(param0->unk_04);
         sub_02089438(param0->unk_08);
         ov64_0222DF48(param1, heapID);
         return 1;
     case 4:
         param0->unk_04 = ov64_022305DC(param0, param2, heapID);
         ov64_0222DFD0(param1);
-        param0->appMan = ApplicationManager_New(&Unk_020F2DAC, param0->unk_04, heapID);
+        param0->appMan = ApplicationManager_New(&gNamingScreenAppTemplate, param0->unk_04, heapID);
         param2->unk_04 = 5;
         break;
     case 5:
@@ -2529,7 +2528,7 @@ static int ov64_0223044C(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222DFD
         }
         break;
     case 6:
-        sub_0208716C(param0->unk_04);
+        NamingScreenArgs_Free(param0->unk_04);
         ov64_0222DF48(param1, heapID);
         return 1;
     }
@@ -2552,11 +2551,11 @@ static void ov64_022305D8(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E0
     return;
 }
 
-static UnkStruct_0208737C *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID)
+static NamingScreenArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruct_ov64_0222E060 *param1, u32 heapID)
 {
-    UnkStruct_0208737C *v0;
+    NamingScreenArgs *v0;
 
-    v0 = sub_0208712C(heapID, 7, 0, 7, SaveData_GetOptions(param1->saveData));
+    v0 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PAL_PAD, 0, TRAINER_NAME_LEN, SaveData_GetOptions(param1->saveData));
 
     if (param1->unk_34.unk_04 == 1) {
         {

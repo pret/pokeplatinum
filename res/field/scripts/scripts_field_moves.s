@@ -331,9 +331,9 @@ FieldMoves_UseSurfFromMenu:
     BufferPartyMonNickname 0, VAR_0x8000
     Message FieldMoves_Text_PokemonUsedSurf
     CloseMessage
-    ReleaseObject 0xFF
+    ReleaseObject LOCALID_PLAYER
     UseSurf VAR_0x8000
-    LockObject 0xFF
+    LockObject LOCALID_PLAYER
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_SURF, VAR_0x8004, 0, 0, 0
     ReleaseAll
@@ -452,9 +452,9 @@ FieldMoves_UseWaterfallFromMenu:
     BufferPartyMonNickname 0, VAR_0x8000
     Message FieldMoves_Text_PokemonUsedWaterfall
     CloseMessage
-    ReleaseObject 0xFF
+    ReleaseObject LOCALID_PLAYER
     UseWaterfall VAR_0x8000
-    LockObject 0xFF
+    LockObject LOCALID_PLAYER
     GetCurrentMapID VAR_0x8004
     CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, VAR_0x8004, 0, 0, 0
     ReleaseAll
@@ -463,5 +463,4 @@ FieldMoves_UseWaterfallFromMenu:
 FieldMoves_Dummy:
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0
