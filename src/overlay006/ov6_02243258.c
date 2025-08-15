@@ -46,7 +46,7 @@ typedef struct HMCutIn {
     BOOL updateSprites;
     int someInt; // involved in setting a sprite draw flag
     BOOL screenFaded;
-    BOOL someFlag4;
+    BOOL forceDrawPlayerSprite;
     u32 _1; // assigned, but never used
     u16 bg0Priority;
     u16 bg3Priority;
@@ -105,16 +105,16 @@ typedef struct FlyTaskEnv {
     u8 mode;
     u8 state;
     u8 subState;
-    u8 unk_03;
+    u8 _1;
     int unk_04;
     VecFx32 birdStartPos;
     VecFx32 pathOffset;
-    VecFx32 unk_20;
+    VecFx32 _2;
     VecFx32 birdScale;
     fx32 birdRotation;
-    fx32 unk_3C;
+    fx32 _3;
     fx32 angleParam;
-    fx32 unk_44;
+    fx32 _4;
     fx32 pathParam;
     fx32 pathDelta;
     fx32 scaleDelta;
@@ -125,28 +125,28 @@ typedef struct FlyTaskEnv {
     SysTask *task;
 } FlyTaskEnv;
 
-typedef struct {
-    HMCutIn *unk_00;
-    Sprite *unk_04;
-} UnkStruct_ov6_02245B4C;
+typedef struct HMCutInWithPlayer1 {
+    HMCutIn *cutIn;
+    Sprite *playerSprite;
+} HMCutInWithPlayer1;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0C;
-    VecFx32 unk_10;
-    HMCutIn *unk_1C;
-    Sprite *unk_20;
-} UnkStruct_ov6_02245B74;
+typedef struct SomePlayerAnimationEnv {
+    int state;
+    BOOL animationPartFinished;
+    BOOL _; // set, but never read
+    int positionDeltaIdx;
+    VecFx32 position;
+    HMCutIn *cutIn;
+    Sprite *playerSprite;
+} SomePlayerAnimationEnv;
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    SpriteResource *unk_04;
-} UnkStruct_ov6_02243258_sub1;
+typedef struct SpriteResourceWithLocation {
+    s16 resourceId;
+    s16 memberIdx;
+    SpriteResource *spriteResource;
+} SpriteResourceWithLocation;
 
-typedef struct {
+typedef struct UnkStruct_ov6_02243258 {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
@@ -155,27 +155,27 @@ typedef struct {
     s8 unk_05;
     s8 unk_06;
     s8 unk_07;
-    SpriteList *unk_08;
-    G2dRenderer unk_0C;
-    SpriteResourceCollection *unk_198;
-    SpriteResourceCollection *unk_19C;
-    SpriteResourceCollection *unk_1A0;
-    SpriteResourceCollection *unk_1A4;
-    UnkStruct_ov6_02243258_sub1 *unk_1A8;
-    UnkStruct_ov6_02243258_sub1 *unk_1AC;
-    UnkStruct_ov6_02243258_sub1 *unk_1B0;
-    UnkStruct_ov6_02243258_sub1 *unk_1B4;
+    SpriteList *spriteList;
+    G2dRenderer g2dRenderer;
+    SpriteResourceCollection *charLocation;
+    SpriteResourceCollection *paletteLocation;
+    SpriteResourceCollection *cellLocation;
+    SpriteResourceCollection *animLocation;
+    SpriteResourceWithLocation *charSourceWrapper;
+    SpriteResourceWithLocation *paletteSourceWrapper;
+    SpriteResourceWithLocation *cellSourceWrapper;
+    SpriteResourceWithLocation *animSourceWrapper;
 } UnkStruct_ov6_02243258;
 
 typedef struct FlyLandingEnv {
     int state;
-    int unk_04;
-    int unk_08;
+    int animationFinished;
+    int _;
     int playerGender;
-    int unk_10;
+    BOOL animationInProgress;
     FieldSystem *fieldSystem;
     UnkStruct_ov6_02243258 unk_18;
-    Sprite *unk_1D0;
+    Sprite *playerSprite;
     UnkStruct_020711EC *unk_1D4;
     UnkStruct_ov101_021D5D90 *unk_1D8;
     SysTask *unk_1DC;
@@ -184,49 +184,49 @@ typedef struct FlyLandingEnv {
 typedef struct {
     UnkStruct_020711EC *unk_00;
     FieldSystem *fieldSystem;
-    Sprite *unk_08;
+    Sprite *playerSprite;
     UnkStruct_ov6_02243258 *unk_0C;
 } UnkStruct_ov6_02243888;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    int unk_04;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
-    VecFx32 unk_20;
-    VecFx32 unk_2C;
-    fx32 unk_38;
-    fx32 unk_3C;
-    fx32 unk_40;
-    fx32 unk_44;
-    fx32 unk_48;
-    fx32 unk_4C;
-    fx32 unk_50;
-    fx32 unk_54;
+typedef struct FlyLandingEnvExtended {
+    u8 stage;
+    u8 state;
+    u8 hasEndedIfTwo; // by default 0; then set to 2, which shortcuts another function
+    u8 _1; // unused
+    int subState;
+    VecFx32 position;
+    VecFx32 pathOffset;
+    VecFx32 _2; // unused
+    VecFx32 scale;
+    fx32 birdRotation;
+    fx32 _3;
+    fx32 angleParam;
+    fx32 _4;
+    fx32 pathParam;
+    fx32 pathDelta;
+    fx32 scaleDelta;
+    fx32 playerOffsetY;
     UnkStruct_ov6_02243888 unk_58;
-    Sprite *unk_68;
+    Sprite *birdSprite;
     UnkStruct_ov101_021D5D90 *unk_6C;
-    SysTask *unk_70;
-} UnkStruct_ov6_02249110;
+    SysTask *task;
+} FlyLandingEnvExtended;
 
-typedef struct {
+typedef struct UnkStruct_ov6_02245328 {
     int unk_00;
     int unk_04;
     HMCutIn *cutIn;
     VecFx32 unk_0C;
 } UnkStruct_ov6_02245328;
 
-typedef struct {
+typedef struct UnkStruct_ov6_02245364 {
     int unk_00;
     int animID;
     Sprite *unk_08;
     UnkStruct_ov6_02245328 unk_0C;
 } UnkStruct_ov6_02245364;
 
-typedef struct {
+typedef struct UnkStruct_ov6_0224936C {
     fx32 unk_00;
     fx32 unk_04;
     fx32 unk_08;
@@ -234,7 +234,7 @@ typedef struct {
     int unk_10;
 } UnkStruct_ov6_0224936C;
 
-typedef struct {
+typedef struct _Unused {
     int camera;
     int unk_04;
     int unk_08;
@@ -242,9 +242,9 @@ typedef struct {
     VecFx32 unk_18;
     fx32 unk_24;
     fx32 unk_28;
-    MapObject *unk_2C;
+    MapObject *_;
     HMCutIn *cutIn;
-} UnkStruct_ov100_021D4890;
+} _Unused;
 
 typedef struct HMCutInWithPlayer {
     Sprite *playerSprite;
@@ -258,20 +258,20 @@ static void SysTask_CutInFly(SysTask *param0, void *param1);
 static void CreateResourceTransferTask(HMCutIn *cutIn);
 static void CreateBirdResourceTransferTask(HMCutIn *cutIn);
 static void DeleteResourceTransferTask(HMCutIn *cutIn);
-static void SysTask_TransferResources(SysTask *param0, void *param1);
-static void SysTask_FreeResources(SysTask *param0, void *param1);
-static void SysTask_TransferBirdResource(SysTask *param0, void *param1);
-static void SysTask_FinalizeBirdSpriteTransfer(SysTask *param0, void *param1);
+static void SysTask_TransferResources(SysTask *dummyTask, void *hmCutInPtr);
+static void SysTask_FreeResources(SysTask *task, void *hmCutInPtr);
+static void SysTask_TransferBirdResource(SysTask *task, void *hmCutInPtr);
+static void SysTask_FinalizeBirdSpriteTransfer(SysTask *task, void *hmCutInPtr);
 static void InitSpriteResources(HMCutIn *cutIn);
 static void DeleteSprites(HMCutIn *cutIn);
 static NARC *GetFieldCutInNarc2(void);
 static void LoadSpriteResources(HMCutIn *cutIn, NARC *narc);
 static void DeleteSpriteResources(HMCutIn *cutIn);
 static void UpdateSpriteList(HMCutIn *cutIn);
-static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 plttResourceID, u32 cellResourceID, u32 animResourceID, int priority, int listPriority);
+static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 plttResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority);
 static Sprite *ov6_02244CD4(HMCutIn *cutIn, const VecFx32 *position, int listPriority, int animID);
 static Sprite *InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position);
-static void StartPlayerAnim(Sprite *param0);
+static void StartPlayerAnim(Sprite *sprite);
 static Sprite *CreateBirdSprite(HMCutIn *cutIn, const VecFx32 *position, int priority, int dummy);
 static void LoadBirdSpriteResources(HMCutIn *cutIn);
 static void LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData);
@@ -286,14 +286,14 @@ static void InitPlaneMasksForFly(HMCutIn *cutIn);
 static void SetCutInWindowSize(HMCutIn *cutIn, fx32 x1, fx32 y1, fx32 x2, fx32 y2);
 static void CreateCutInWindowTask(HMCutIn *cutIn);
 static void DeleteWindowTask(HMCutIn *cutIn);
-static void SysTask_ShowCutInWindow(SysTask *param0, void *param1);
+static void SysTask_ShowCutInWindow(SysTask *task, void *hmCutInPtr);
 static void BuildMonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate);
-static void *CharacterSprite_LoadPokemonSprite(Pokemon *mon, PokemonSpriteTemplate *spriteTemplate, u32 heapID); // TODO revisit name
-static void *CharacterSprite_GetPaletteData(PokemonSpriteTemplate *spriteTemplate, u32 heapID); // TODO revisit name
-static SpriteResource *GetMonCharResource(HMCutIn *cutIn, NARC *narc); // TODO revisit name (was LoadParticleTilesResource)
-static void LoadPokemonChar(HMCutIn *cutIn, void *imgSource);
-static SpriteResource *GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc); // TODO revisit name (was LoadParticlePalette)
-static void LoadPokemonSpritePalette(HMCutIn *cutIn, void *imgSource);
+static void *GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID);
+static void *GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID);
+static SpriteResource *GetParticleCharResource(HMCutIn *cutIn, NARC *narc);
+static void LoadPokemonChar(HMCutIn *cutIn, void *pokemonSpriteSource);
+static SpriteResource *GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc);
+static void LoadPokemonSpritePalette(HMCutIn *cutIn, void *paletteSource);
 static void UnloadPokemonSpriteResources(HMCutIn *cutIn);
 static Sprite *InitMonSprite(HMCutIn *cutIn, const VecFx32 *position);
 static void ov6_022452BC(HMCutIn *cutIn, int param1);
@@ -303,19 +303,19 @@ static void CreateFlyTasks(HMCutIn *cutIn);
 static int GetSubState(HMCutIn *cutIn);
 static void ov6_02245480(HMCutIn *cutIn);
 static void InitBirdSpritePos(HMCutIn *cutIn);
-static void ov6_022456D4(HMCutIn *cutIn);
-static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, Sprite *param1);
-static void ov6_02245B74(UnkStruct_ov101_021D5D90 *param0);
+static void PrepareBirdForDescent(HMCutIn *cutIn);
+static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, Sprite *sprite);
+static void InitSomePlayerAnimationEnv(UnkStruct_ov101_021D5D90 *param0);
 static void ov6_02245B80(UnkStruct_ov101_021D5D90 *param0);
 static void ov6_02245BC8(UnkStruct_ov101_021D5D90 *param0);
-static void HidePlayer(HMCutIn *cutIn, BOOL hidden);
-static void ov6_02245FDC(HMCutIn *cutIn);
+static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden);
+static void CreateDrawCutInPlayerSpriteTasks(HMCutIn *cutIn);
 static void ov6_02246018(HMCutIn *cutIn);
 static void FadeIn(void);
 static void FadeOut(void);
 static void *AllocFromHeapAtEnd(u32 heapID, int size);
 static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden);
-static void FlyLandingTask(SysTask *task, void *param1);
+static void FlyLandingTask(SysTask *task, void *taskEnv);
 
 typedef int (*CutInTaskFunc)(HMCutIn *);
 typedef int (*FlyTaskFunc)(FlyTaskEnv *);
@@ -326,105 +326,105 @@ static const FlyTaskFunc *const sFlyTaskFuncCollection[];
 static const FlyTaskFunc sFlyTaskFuncsUnused[];
 static const FlyTaskFunc sFlyTaskFuncsAscent[];
 static const FlyTaskFunc sFlyTaskFuncsDescentFlyAway[];
-static const FlyLandingTaskFunc FlyLandingTaskFuncs[];
+static const FlyLandingTaskFunc FlyLandingFuncs[];
 static const UnkStruct_ov101_021D86B0 sFlyTaskFuncContainer;
-static const UnkStruct_ov101_021D86B0 Unk_ov6_0224920C;
+static const UnkStruct_ov101_021D86B0 PushPlayerSpriteUpFuncs;
 static const ResourceLocation sCutInCloudChar[1];
 static const ResourceLocation sCutInCloudPltt[1];
 static const ResourceLocation sCutInCloudCell[1];
 static const ResourceLocation sCutInCloudAnim[1];
 
-static void ov6_02243258(UnkStruct_ov6_02243258 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
+static void ov6_02243258(UnkStruct_ov6_02243258 *param0, int maxSpriteListElements, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
-    int v0;
+    int i;
 
-    param0->unk_00 = param2;
-    param0->unk_01 = param3;
-    param0->unk_02 = param4;
-    param0->unk_03 = param5;
-    param0->unk_04 = param6;
-    param0->unk_05 = param7;
-    param0->unk_06 = param8;
-    param0->unk_07 = param9;
-    param0->unk_08 = SpriteList_InitRendering(param1, &param0->unk_0C, HEAP_ID_FIELD);
+    param0->unk_00 = param2; // resource count
+    param0->unk_01 = param3; // resource count
+    param0->unk_02 = param4; // resource count
+    param0->unk_03 = param5; // resource count
+    param0->unk_04 = param6; // resourceId for checks
+    param0->unk_05 = param7; // resourceId for checks
+    param0->unk_06 = param8; // resourceId for checks
+    param0->unk_07 = param9; // resourceId for checks
+    param0->spriteList = SpriteList_InitRendering(maxSpriteListElements, &param0->g2dRenderer, HEAP_ID_FIELD);
 
-    SetSubScreenViewRect(&param0->unk_0C, 0, FX32_CONST(512));
+    SetSubScreenViewRect(&param0->g2dRenderer, 0, FX32_CONST(512));
 
-    param0->unk_198 = SpriteResourceCollection_New(param2, 0, HEAP_ID_FIELD);
-    param0->unk_19C = SpriteResourceCollection_New(param3, 1, HEAP_ID_FIELD);
-    param0->unk_1A0 = SpriteResourceCollection_New(param4, 2, HEAP_ID_FIELD);
-    param0->unk_1A4 = SpriteResourceCollection_New(param5, 3, HEAP_ID_FIELD);
-    param0->unk_1A8 = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param2);
-    param0->unk_1AC = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param3);
-    param0->unk_1B0 = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param4);
-    param0->unk_1B4 = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov6_02243258_sub1)) * param5);
+    param0->charLocation = SpriteResourceCollection_New(param2, SPRITE_RESOURCE_CHAR, HEAP_ID_FIELD);
+    param0->paletteLocation = SpriteResourceCollection_New(param3, SPRITE_RESOURCE_PLTT, HEAP_ID_FIELD);
+    param0->cellLocation = SpriteResourceCollection_New(param4, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD);
+    param0->animLocation = SpriteResourceCollection_New(param5, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD);
+    param0->charSourceWrapper = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * param2);
+    param0->paletteSourceWrapper = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * param3);
+    param0->cellSourceWrapper = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * param4);
+    param0->animSourceWrapper = AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(SpriteResourceWithLocation)) * param5);
 
-    for (v0 = 0; v0 < param2; param0->unk_1A8[v0].unk_00 = param6, v0++) {
+    for (i = 0; i < param2; param0->charSourceWrapper[i].resourceId = param6, i++) {
         (void)0;
     }
 
-    for (v0 = 0; v0 < param3; param0->unk_1AC[v0].unk_00 = param7, v0++) {
+    for (i = 0; i < param3; param0->paletteSourceWrapper[i].resourceId = param7, i++) {
         (void)0;
     }
 
-    for (v0 = 0; v0 < param4; param0->unk_1B0[v0].unk_00 = param8, v0++) {
+    for (i = 0; i < param4; param0->cellSourceWrapper[i].resourceId = param8, i++) {
         (void)0;
     }
 
-    for (v0 = 0; v0 < param5; param0->unk_1B4[v0].unk_00 = param9, v0++) {
+    for (i = 0; i < param5; param0->animSourceWrapper[i].resourceId = param9, i++) {
         (void)0;
     }
 }
 
 static void ov6_0224339C(UnkStruct_ov6_02243258 *param0)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_1A8[v0].unk_00 != param0->unk_04) {
-            SpriteTransfer_ResetCharTransfer(param0->unk_1A8[v0].unk_04);
+    for (i = 0; i < param0->unk_00; i++) {
+        if (param0->charSourceWrapper[i].resourceId != param0->unk_04) {
+            SpriteTransfer_ResetCharTransfer(param0->charSourceWrapper[i].spriteResource);
         }
     }
 
-    for (v0 = 0; v0 < param0->unk_01; v0++) {
-        if (param0->unk_1AC[v0].unk_00 != param0->unk_05) {
-            SpriteTransfer_ResetPlttTransfer(param0->unk_1AC[v0].unk_04);
+    for (i = 0; i < param0->unk_01; i++) {
+        if (param0->paletteSourceWrapper[i].resourceId != param0->unk_05) {
+            SpriteTransfer_ResetPlttTransfer(param0->paletteSourceWrapper[i].spriteResource);
         }
     }
 
-    for (v0 = 0; v0 < param0->unk_02; v0++) {
-        if (param0->unk_1B0[v0].unk_00 != param0->unk_06) {
-            SpriteResource_ReleaseData(param0->unk_1B0[v0].unk_04);
+    for (i = 0; i < param0->unk_02; i++) {
+        if (param0->cellSourceWrapper[i].resourceId != param0->unk_06) {
+            SpriteResource_ReleaseData(param0->cellSourceWrapper[i].spriteResource);
         }
     }
 
-    for (v0 = 0; v0 < param0->unk_03; v0++) {
-        if (param0->unk_1B4[v0].unk_00 != param0->unk_07) {
-            SpriteResource_ReleaseData(param0->unk_1B4[v0].unk_04);
+    for (i = 0; i < param0->unk_03; i++) {
+        if (param0->animSourceWrapper[i].resourceId != param0->unk_07) {
+            SpriteResource_ReleaseData(param0->animSourceWrapper[i].spriteResource);
         }
     }
 
-    SpriteResourceCollection_Delete(param0->unk_198);
-    SpriteResourceCollection_Delete(param0->unk_19C);
-    SpriteResourceCollection_Delete(param0->unk_1A0);
-    SpriteResourceCollection_Delete(param0->unk_1A4);
-    Heap_Free(param0->unk_1A8);
-    Heap_Free(param0->unk_1AC);
-    Heap_Free(param0->unk_1B0);
-    Heap_Free(param0->unk_1B4);
-    SpriteList_DeleteAll(param0->unk_08);
-    SpriteList_Delete(param0->unk_08);
+    SpriteResourceCollection_Delete(param0->charLocation);
+    SpriteResourceCollection_Delete(param0->paletteLocation);
+    SpriteResourceCollection_Delete(param0->cellLocation);
+    SpriteResourceCollection_Delete(param0->animLocation);
+    Heap_Free(param0->charSourceWrapper);
+    Heap_Free(param0->paletteSourceWrapper);
+    Heap_Free(param0->cellSourceWrapper);
+    Heap_Free(param0->animSourceWrapper);
+    SpriteList_DeleteAll(param0->spriteList);
+    SpriteList_Delete(param0->spriteList);
 }
 
-static void ov6_022434B0(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2, int param3)
+static void ov6_022434B0(UnkStruct_ov6_02243258 *param0, NARC *narc, int memberIdx, int resourceId)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_1A8[v0].unk_00 == param0->unk_04) {
-            param0->unk_1A8[v0].unk_00 = param3;
-            param0->unk_1A8[v0].unk_02 = 0;
-            param0->unk_1A8[v0].unk_04 = SpriteResourceCollection_AddTilesFrom(param0->unk_198, narc, param2, 0, param3, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+    for (i = 0; i < param0->unk_00; i++) {
+        if (param0->charSourceWrapper[i].resourceId == param0->unk_04) {
+            param0->charSourceWrapper[i].resourceId = resourceId;
+            param0->charSourceWrapper[i].memberIdx = 0;
+            param0->charSourceWrapper[i].spriteResource = SpriteResourceCollection_AddTilesFrom(param0->charLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
             return;
         }
     }
@@ -432,13 +432,13 @@ static void ov6_022434B0(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2,
     GF_ASSERT(FALSE);
 }
 
-static void ov6_02243520(UnkStruct_ov6_02243258 *param0, int param1)
+static void ov6_02243520(UnkStruct_ov6_02243258 *param0, int resourceId)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_1A8[v0].unk_00 == param1) {
-            SpriteTransfer_RequestCharAtEnd(param0->unk_1A8[v0].unk_04);
+    for (i = 0; i < param0->unk_00; i++) {
+        if (param0->charSourceWrapper[i].resourceId == resourceId) {
+            SpriteTransfer_RequestCharAtEnd(param0->charSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -448,11 +448,11 @@ static void ov6_02243520(UnkStruct_ov6_02243258 *param0, int param1)
 
 static void ov6_02243554(UnkStruct_ov6_02243258 *param0, int param1)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_1A8[v0].unk_00 == param1) {
-            SpriteResource_ReleaseData(param0->unk_1A8[v0].unk_04);
+    for (i = 0; i < param0->unk_00; i++) {
+        if (param0->charSourceWrapper[i].resourceId == param1) {
+            SpriteResource_ReleaseData(param0->charSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -460,16 +460,15 @@ static void ov6_02243554(UnkStruct_ov6_02243258 *param0, int param1)
     GF_ASSERT(FALSE);
 }
 
-static void ov6_02243588(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2, int param3)
+static void ov6_02243588(UnkStruct_ov6_02243258 *param0, NARC *narc, int memberIdx, int resourceId)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_1AC[v0].unk_00 == param0->unk_05) {
-            param0->unk_1AC[v0].unk_00 = param3;
-            param0->unk_1AC[v0].unk_02 = 0;
-            param0->unk_1AC[v0].unk_04 = SpriteResourceCollection_AddPaletteFrom(
-                param0->unk_19C, narc, param2, 0, param3, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
+    for (i = 0; i < param0->unk_00; i++) {
+        if (param0->paletteSourceWrapper[i].resourceId == param0->unk_05) {
+            param0->paletteSourceWrapper[i].resourceId = resourceId;
+            param0->paletteSourceWrapper[i].memberIdx = 0;
+            param0->paletteSourceWrapper[i].spriteResource = SpriteResourceCollection_AddPaletteFrom(param0->paletteLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
             return;
         }
     }
@@ -477,13 +476,13 @@ static void ov6_02243588(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2,
     GF_ASSERT(FALSE);
 }
 
-static void ov6_022435F8(UnkStruct_ov6_02243258 *param0, int param1)
+static void ov6_022435F8(UnkStruct_ov6_02243258 *param0, int resourceId)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_01; v0++) {
-        if (param0->unk_1AC[v0].unk_00 == param1) {
-            SpriteTransfer_RequestPlttFreeSpace(param0->unk_1AC[v0].unk_04);
+    for (i = 0; i < param0->unk_01; i++) {
+        if (param0->paletteSourceWrapper[i].resourceId == resourceId) {
+            SpriteTransfer_RequestPlttFreeSpace(param0->paletteSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -491,13 +490,13 @@ static void ov6_022435F8(UnkStruct_ov6_02243258 *param0, int param1)
     GF_ASSERT(FALSE);
 }
 
-static void ov6_0224362C(UnkStruct_ov6_02243258 *param0, int param1)
+static void ov6_0224362C(UnkStruct_ov6_02243258 *param0, int resourceId)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_01; v0++) {
-        if (param0->unk_1AC[v0].unk_00 == param1) {
-            SpriteResource_ReleaseData(param0->unk_1AC[v0].unk_04);
+    for (i = 0; i < param0->unk_01; i++) {
+        if (param0->paletteSourceWrapper[i].resourceId == resourceId) {
+            SpriteResource_ReleaseData(param0->paletteSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -505,16 +504,15 @@ static void ov6_0224362C(UnkStruct_ov6_02243258 *param0, int param1)
     GF_ASSERT(FALSE);
 }
 
-static void ov6_02243660(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2, int param3)
+static void ov6_02243660(UnkStruct_ov6_02243258 *param0, NARC *narc, int memberIdx, int resourceId)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_1B0[v0].unk_00 == param0->unk_06) {
-            param0->unk_1B0[v0].unk_00 = param3;
-            param0->unk_1B0[v0].unk_02 = 0;
-            param0->unk_1B0[v0].unk_04 = SpriteResourceCollection_AddFrom(
-                param0->unk_1A0, narc, param2, 0, param3, 2, 4);
+    for (i = 0; i < param0->unk_00; i++) {
+        if (param0->cellSourceWrapper[i].resourceId == param0->unk_06) {
+            param0->cellSourceWrapper[i].resourceId = resourceId;
+            param0->cellSourceWrapper[i].memberIdx = 0;
+            param0->cellSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(param0->cellLocation, narc, memberIdx, FALSE, resourceId, 2, 4);
             return;
         }
     }
@@ -522,16 +520,15 @@ static void ov6_02243660(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2,
     GF_ASSERT(FALSE);
 }
 
-static void ov6_022436D0(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2, int param3)
+static void ov6_022436D0(UnkStruct_ov6_02243258 *param0, NARC *narc, int memberIdx, int resourceId)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        if (param0->unk_1B4[v0].unk_00 == param0->unk_07) {
-            param0->unk_1B4[v0].unk_00 = param3;
-            param0->unk_1B4[v0].unk_02 = 0;
-            param0->unk_1B4[v0].unk_04 = SpriteResourceCollection_AddFrom(
-                param0->unk_1A4, narc, param2, 0, param3, 3, 4);
+    for (i = 0; i < param0->unk_00; i++) {
+        if (param0->animSourceWrapper[i].resourceId == param0->unk_07) {
+            param0->animSourceWrapper[i].resourceId = resourceId;
+            param0->animSourceWrapper[i].memberIdx = 0;
+            param0->animSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(param0->animLocation, narc, memberIdx, FALSE, resourceId, 3, 4);
             return;
         }
     }
@@ -539,9 +536,9 @@ static void ov6_022436D0(UnkStruct_ov6_02243258 *param0, NARC *narc, int param2,
     GF_ASSERT(FALSE);
 }
 
-static Sprite *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *coordinates, u32 charResourceID, u32 paletteResourceID, u32 cellResourceID, u32 animResourceID, int spriteResourceHeaderPriority, int spriteListTemplatePriority)
+static Sprite *CreateSprite2(UnkStruct_ov6_02243258 *param0, const VecFx32 *position, u32 charResourceID, u32 paletteResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority)
 {
-    SpriteResourcesHeader spriteResourceHeader;
+    SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteListTemplate;
     Sprite *sprite;
 
@@ -550,17 +547,32 @@ static Sprite *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *coord
     }
 
     SpriteResourcesHeader_Init(
-        &spriteResourceHeader, charResourceID, paletteResourceID, cellResourceID, animResourceID, 0xffffffff, 0xffffffff, FALSE, spriteResourceHeaderPriority, param0->unk_198, param0->unk_19C, param0->unk_1A0, param0->unk_1A4, NULL, NULL);
+        &resourceHeader,
+        charResourceID,
+        paletteResourceID,
+        cellResourceID,
+        animResourceID,
+        0xffffffff,
+        0xffffffff,
+        FALSE,
+        headerPriority,
+        param0->charLocation,
+        param0->paletteLocation,
+        param0->cellLocation,
+        param0->animLocation,
+        NULL,
+        NULL);
 
-    spriteListTemplate.list = param0->unk_08;
-    spriteListTemplate.resourceData = &spriteResourceHeader;
-    spriteListTemplate.position = *coordinates;
-    spriteListTemplate.priority = spriteListTemplatePriority;
+    spriteListTemplate.list = param0->spriteList;
+    spriteListTemplate.resourceData = &resourceHeader;
+    spriteListTemplate.position = *position;
+    spriteListTemplate.priority = listPriority;
     spriteListTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     spriteListTemplate.heapID = HEAP_ID_FIELD;
-    sprite = SpriteList_Add(&spriteListTemplate);
 
+    sprite = SpriteList_Add(&spriteListTemplate);
     GF_ASSERT(sprite != NULL);
+
     return sprite;
 }
 
@@ -570,14 +582,14 @@ static void SetVectorToSpritePosition(Sprite *sprite, VecFx32 *vectorToSet)
     *vectorToSet = *spritePosition;
 }
 
-static Sprite *ov6_022437DC(UnkStruct_ov6_02243258 *param0)
+static Sprite *InitBirdSprite(UnkStruct_ov6_02243258 *param0)
 {
     Sprite *sprite;
     VecFx32 coordinateVector = { 0, 0, 0 };
     VecFx32 translationVector = { 0, 0, 0 };
     VecFx32 scalingVector = { 0x1000, 0x1000, 0 };
 
-    sprite = ov6_02243740(param0, &coordinateVector, 0, 0, 0, 2, 0, 132);
+    sprite = CreateSprite2(param0, &coordinateVector, 0, 0, 0, 2, 0, 132);
 
     Sprite_SetAffineOverwriteMode(sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
     Sprite_SetAffineTranslation(sprite, &translationVector);
@@ -587,28 +599,28 @@ static Sprite *ov6_022437DC(UnkStruct_ov6_02243258 *param0)
     return sprite;
 }
 
-static Sprite *ov6_02243848(UnkStruct_ov6_02243258 *param0, int param1)
+static Sprite *FlyLanding_InitPlayerSprite(UnkStruct_ov6_02243258 *param0, int playerGender)
 {
-    VecFx32 v0 = { 0, 0, 0 };
-    Sprite *v1;
-    u32 v2 = 0;
+    VecFx32 initPosition = { 0, 0, 0 };
+    Sprite *playerSprite;
+    u32 paletteResourceId = 0;
 
-    if (param1 == 1) {
-        v2 = 1;
+    if (playerGender == 1) {
+        paletteResourceId = 1;
     }
 
-    v1 = ov6_02243740(param0, &v0, 2, v2, 2, 1, 0, 131);
+    playerSprite = CreateSprite2(param0, &initPosition, 2, paletteResourceId, 2, 1, 0, 131);
 
-    Sprite_SetDrawFlag(v1, FALSE);
-    Sprite_SetAnim(v1, 6);
+    Sprite_SetDrawFlag(playerSprite, FALSE);
+    Sprite_SetAnim(playerSprite, 6);
 
-    return v1;
+    return playerSprite;
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov6_0224925C;
-int (*const *const Unk_ov6_02249110[])(UnkStruct_ov6_02249110 *);
+static const UnkStruct_ov101_021D86B0 FlyLandingAnimWrapperFuncs;
+int (*const *const FlyLandingAnimFuncCollections[])(FlyLandingEnvExtended *);
 
-static UnkStruct_ov101_021D5D90 *ov6_02243888(FieldSystem *fieldSystem, UnkStruct_020711EC *param1, UnkStruct_ov6_02243258 *param2, Sprite *param3)
+static UnkStruct_ov101_021D5D90 *CreateFlyLandingAnimTasks(FieldSystem *fieldSystem, UnkStruct_020711EC *param1, UnkStruct_ov6_02243258 *param2, Sprite *playerSprite)
 {
     UnkStruct_ov101_021D5D90 *v0;
     VecFx32 v1 = { 0, 0, 0 };
@@ -617,400 +629,399 @@ static UnkStruct_ov101_021D5D90 *ov6_02243888(FieldSystem *fieldSystem, UnkStruc
     v2.fieldSystem = fieldSystem;
     v2.unk_00 = param1;
     v2.unk_0C = param2;
-    v2.unk_08 = param3;
+    v2.playerSprite = playerSprite;
 
-    v0 = sub_02071330(param1, &Unk_ov6_0224925C, &v1, 0, &v2, 130);
+    v0 = sub_02071330(param1, &FlyLandingAnimWrapperFuncs, &v1, 0, &v2, 130);
 
     return v0;
 }
 
-static int ov6_022438BC(UnkStruct_ov101_021D5D90 *param0)
+/**
+ * Returns 2 if the fly landing animation has ended, 0 otherwise
+ */
+static int FlyLanding_HasAnimationEnded(UnkStruct_ov101_021D5D90 *param0)
 {
-    UnkStruct_ov6_02249110 *v0 = sub_02071598(param0);
-    return v0->unk_02;
+    FlyLandingEnvExtended *v0 = sub_02071598(param0);
+    return v0->hasEndedIfTwo;
 }
 
-static int ov6_022438C8(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int FlyLandingAnimWrapper_InitBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov6_02249110 *v0 = param1;
+    FlyLandingEnvExtended *env = param1;
     const UnkStruct_ov6_02243888 *v1 = sub_020715BC(param0);
 
-    v0->unk_58 = *v1;
-    v0->unk_68 = ov6_022437DC(v0->unk_58.unk_0C);
+    env->unk_58 = *v1;
+    env->birdSprite = InitBirdSprite(env->unk_58.unk_0C);
 
     return 1;
 }
 
 static void ov6_022438EC(UnkStruct_ov101_021D5D90 *param0)
 {
-    UnkStruct_ov6_02249110 *v0 = sub_02071598(param0);
+    FlyLandingEnvExtended *v0 = sub_02071598(param0);
 
     if (v0->unk_6C) {
         sub_0207136C(v0->unk_6C);
     }
 
-    if (v0->unk_70) {
-        ov5_021F0EFC(v0->unk_70);
+    if (v0->task) {
+        ov5_021F0EFC(v0->task);
     }
 
     sub_0207136C(param0);
 }
 
-static void ov6_02243914(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void FlyLandingAnimWrapper_DeleteBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov6_02249110 *v0 = param1;
-    Sprite_Delete(v0->unk_68);
+    FlyLandingEnvExtended *v0 = param1;
+    Sprite_Delete(v0->birdSprite);
 }
 
-static void ov6_02243920(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void FlyLandingAnimWrapper_RunFlyLandingAnim(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov6_02249110 *v0 = param1;
-    int (*const *v1)(UnkStruct_ov6_02249110 *);
+    FlyLandingEnvExtended *env = param1;
+    int (*const *funcs)(FlyLandingEnvExtended *);
 
-    v1 = Unk_ov6_02249110[v0->unk_00];
+    funcs = FlyLandingAnimFuncCollections[env->stage];
 
-    while (v1[v0->unk_01](v0) == 1) {
+    while (funcs[env->state](env) == 1) {
         (void)0;
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov6_0224925C = {
-    (sizeof(UnkStruct_ov6_02249110)),
-    ov6_022438C8,
-    ov6_02243914,
-    ov6_02243920,
+static const UnkStruct_ov101_021D86B0 FlyLandingAnimWrapperFuncs = {
+    (sizeof(FlyLandingEnvExtended)),
+    FlyLandingAnimWrapper_InitBirdSprite,
+    FlyLandingAnimWrapper_DeleteBirdSprite,
+    FlyLandingAnimWrapper_RunFlyLandingAnim,
     UnkStruct_ov101_021D5D90_DoNothing2
 };
 
-static int ov6_02243940(UnkStruct_ov6_02249110 *param0)
+static int HideBirdSprite(FlyLandingEnvExtended *param0)
 {
-    param0->unk_02 = 0;
-    Sprite_SetDrawFlag(param0->unk_68, FALSE);
+    param0->hasEndedIfTwo = 0;
+    Sprite_SetDrawFlag(param0->birdSprite, FALSE);
     return 0;
 }
 
-static int (*const Unk_ov6_022490EC[])(UnkStruct_ov6_02249110 *) = {
-    ov6_02243940,
+static int (*const HideBirdSpriteFuncCollection[])(FlyLandingEnvExtended *) = {
+    HideBirdSprite,
 };
 
-static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
+static void FlyLanding_InitEnv(UnkStruct_ov101_021D5D90 *param0)
 {
-    VecFx32 v0 = { FX32_ONE * 128, FX32_ONE * 111, 0 };
-    VecFx32 v1 = { 0x2000, 0x2000, 0 };
-    UnkStruct_ov6_02249110 *v2 = sub_02071598(param0);
+    VecFx32 initialPosition = { FX32_ONE * 128, FX32_ONE * 111, 0 };
+    VecFx32 scale = { 0x2000, 0x2000, 0 };
+    FlyLandingEnvExtended *env = sub_02071598(param0);
 
-    v2->unk_00 = 1;
-    v2->unk_02 = 0;
-    v2->unk_01 = 0;
-    v2->unk_04 = 0;
-    v2->unk_08 = v0;
-    v2->unk_14.x = 0;
-    v2->unk_14.y = 0;
-    v2->unk_14.z = 0;
-    v2->unk_38 = (FX32_ONE * 350);
-    v2->unk_2C = v1;
-    v2->unk_50 = 0x400;
-    v2->unk_40 = (FX32_ONE * 45);
-    v2->unk_48 = (FX32_ONE * (128 + 64));
-    v2->unk_4C = (FX32_ONE * 32);
-    v2->unk_14.x = CalcCosineDegrees_Wraparound(45) * ((v2->unk_48) / FX32_ONE);
-    v2->unk_14.y = CalcSineDegrees_Wraparound((v2->unk_40) / FX32_ONE) * ((v2->unk_48) / FX32_ONE);
+    env->stage = 1;
+    env->hasEndedIfTwo = 0;
+    env->state = 0;
+    env->subState = 0;
+    env->position = initialPosition;
+    env->pathOffset.x = 0;
+    env->pathOffset.y = 0;
+    env->pathOffset.z = 0;
+    env->birdRotation = (FX32_ONE * 350);
+    env->scale = scale;
+    env->scaleDelta = 0x400;
+    env->angleParam = (FX32_ONE * 45);
+    env->pathParam = (FX32_ONE * (128 + 64));
+    env->pathDelta = (FX32_ONE * 32);
+    env->pathOffset.x = CalcCosineDegrees_Wraparound(45) * ((env->pathParam) / FX32_ONE);
+    env->pathOffset.y = CalcSineDegrees_Wraparound((env->angleParam) / FX32_ONE) * ((env->pathParam) / FX32_ONE);
 
-    v0.x = v2->unk_08.x + v2->unk_14.x;
-    v0.y = v2->unk_08.y + v2->unk_14.y;
+    initialPosition.x = env->position.x + env->pathOffset.x;
+    initialPosition.y = env->position.y + env->pathOffset.y;
 
-    Sprite_SetPosition(v2->unk_68, &v0);
-    Sprite_SetAffineScale(v2->unk_68, &v1);
-    Sprite_SetAffineZRotation(v2->unk_68, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
-    Sprite_SetPriority(v2->unk_68, 132);
-    Sprite_SetDrawFlag(v2->unk_68, TRUE);
+    Sprite_SetPosition(env->birdSprite, &initialPosition);
+    Sprite_SetAffineScale(env->birdSprite, &scale);
+    Sprite_SetAffineZRotation(env->birdSprite, CalcAngleRotationIdx_Wraparound((env->birdRotation) / FX32_ONE));
+    Sprite_SetPriority(env->birdSprite, 132);
+    Sprite_SetDrawFlag(env->birdSprite, TRUE);
 
-    v2->unk_6C = ov6_02245B4C(v2->unk_58.unk_00, v2->unk_58.unk_08);
-    v2->unk_70 = ov5_021F0EB0(v2->unk_58.fieldSystem, HEAP_ID_FIELD);
+    env->unk_6C = ov6_02245B4C(env->unk_58.unk_00, env->unk_58.playerSprite);
+    env->task = ov5_021F0EB0(env->unk_58.fieldSystem, HEAP_ID_FIELD);
 
-    ov5_021F0F10(v2->unk_70, 1, -(FX32_ONE * 120), 12);
+    ov5_021F0F10(env->task, 1, -(FX32_ONE * 120), 12);
 
-    {
-        Sprite *v3;
-        VecFx32 v4 = { 0, 0, 0 };
-        VecFx32 v5 = { 0x2000, 0x2000, 0 };
+    Sprite *playerSprite;
+    VecFx32 playerTranslation = { 0, 0, 0 };
+    VecFx32 playerScale = { 0x2000, 0x2000, 0 };
 
-        v3 = v2->unk_58.unk_08;
+    playerSprite = env->unk_58.playerSprite;
 
-        Sprite_SetAffineOverwriteMode(v3, 2);
-        Sprite_SetAffineTranslation(v3, &v4);
-        Sprite_SetAffineScale(v3, &v5);
-        Sprite_SetAffineZRotation(v3, CalcAngleRotationIdx_Wraparound(0));
-        Sprite_SetAnim(v3, 2);
-    }
+    Sprite_SetAffineOverwriteMode(playerSprite, 2);
+    Sprite_SetAffineTranslation(playerSprite, &playerTranslation);
+    Sprite_SetAffineScale(playerSprite, &playerScale);
+    Sprite_SetAffineZRotation(playerSprite, CalcAngleRotationIdx_Wraparound(0));
+    Sprite_SetAnim(playerSprite, 2);
 
     FadeIn();
 }
 
-static int ov6_02243AB8(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_SetUpSprites(FlyLandingEnvExtended *env)
 {
-    VecFx32 v0;
-    Sprite *v1 = param0->unk_68;
-    Sprite *v2 = param0->unk_58.unk_08;
+    VecFx32 newPos;
+    Sprite *birdSprite = env->birdSprite;
+    Sprite *playerSprite = env->unk_58.playerSprite;
 
-    param0->unk_48 -= param0->unk_4C;
+    env->pathParam -= env->pathDelta;
 
-    if (param0->unk_48 < 0) {
-        param0->unk_48 = 0;
+    if (env->pathParam < 0) {
+        env->pathParam = 0;
     }
 
-    if (param0->unk_4C > 0x800) {
-        param0->unk_4C -= 0x1c00;
+    if (env->pathDelta > 0x800) {
+        env->pathDelta -= 0x1c00;
     }
 
-    if (param0->unk_4C < 0x1000) {
-        param0->unk_4C = 0x1000;
+    if (env->pathDelta < 0x1000) {
+        env->pathDelta = 0x1000;
     }
 
-    param0->unk_14.x = CalcCosineDegrees_Wraparound(45) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = CalcSineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    env->pathOffset.x = CalcCosineDegrees_Wraparound(45) * ((env->pathParam) / FX32_ONE);
+    env->pathOffset.y = CalcSineDegrees_Wraparound((env->angleParam) / FX32_ONE) * ((env->pathParam) / FX32_ONE);
 
-    if (((param0->unk_40) / FX32_ONE) < 90) {
-        param0->unk_40 += 0x4000;
+    if (((env->angleParam) / FX32_ONE) < 90) {
+        env->angleParam += 0x4000;
     }
 
-    param0->unk_2C.x -= param0->unk_50;
+    env->scale.x -= env->scaleDelta;
 
-    if (param0->unk_2C.x < 0x1000) {
-        param0->unk_2C.x = 0x1000;
+    if (env->scale.x < 0x1000) {
+        env->scale.x = 0x1000;
     }
 
-    param0->unk_2C.y -= param0->unk_50;
+    env->scale.y -= env->scaleDelta;
 
-    if (param0->unk_2C.y < 0x1000) {
-        param0->unk_2C.y = 0x1000;
+    if (env->scale.y < 0x1000) {
+        env->scale.y = 0x1000;
     }
 
-    Sprite_SetAffineScale(v1, &param0->unk_2C);
-    Sprite_SetAffineScale(v2, &param0->unk_2C);
+    Sprite_SetAffineScale(birdSprite, &env->scale);
+    Sprite_SetAffineScale(playerSprite, &env->scale);
 
-    v0.x = param0->unk_08.x + param0->unk_14.x;
-    v0.y = param0->unk_08.y + param0->unk_14.y;
+    newPos.x = env->position.x + env->pathOffset.x;
+    newPos.y = env->position.y + env->pathOffset.y;
 
-    Sprite_SetPosition(v1, &v0);
-    v0.y -= (FX32_ONE * 18);
-    Sprite_SetPosition(v2, &v0);
+    Sprite_SetPosition(birdSprite, &newPos);
+    newPos.y -= (FX32_ONE * 18);
+    Sprite_SetPosition(playerSprite, &newPos);
 
-    if (param0->unk_48 == 0) {
-        param0->unk_04 = 0;
-        param0->unk_01++;
+    if (env->pathParam == 0) {
+        env->subState = 0;
+        env->state++;
     } else {
-        param0->unk_04++;
+        env->subState++;
     }
 
     return 0;
 }
 
-static int ov6_02243BB8(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_SetUpEnv(FlyLandingEnvExtended *env)
 {
-    ov6_02245BC8(param0->unk_6C);
-    ov5_021F0F10(param0->unk_70, 2, 0, 12);
+    ov6_02245BC8(env->unk_6C);
+    ov5_021F0F10(env->task, 2, 0, 12);
 
-    param0->unk_50 = 0x400;
-    param0->unk_40 = FX32_ONE * 128;
-    param0->unk_48 = 0;
-    param0->unk_4C = 0x1800;
-    param0->unk_01++;
+    env->scaleDelta = 0x400;
+    env->angleParam = FX32_ONE * 128;
+    env->pathParam = 0;
+    env->pathDelta = 0x1800;
+    env->state++;
 
     return 1;
 }
 
-static int ov6_02243BEC(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_FlyUpLeft(FlyLandingEnvExtended *env)
 {
-    VecFx32 v0;
-    Sprite *v1 = param0->unk_68;
+    VecFx32 newPos;
+    Sprite *sprite = env->birdSprite;
 
-    param0->unk_48 += param0->unk_4C;
-    param0->unk_4C += 0x1000;
+    env->pathParam += env->pathDelta;
+    env->pathDelta += 0x1000;
 
-    if (param0->unk_4C > (FX32_ONE * 16)) {
-        param0->unk_4C = (FX32_ONE * 16);
+    if (env->pathDelta > (FX32_ONE * 16)) {
+        env->pathDelta = (FX32_ONE * 16);
     }
 
-    param0->unk_14.x = CalcCosineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = CalcSineDegrees_Wraparound(128) * ((param0->unk_48) / FX32_ONE);
+    env->pathOffset.x = CalcCosineDegrees_Wraparound((env->angleParam) / FX32_ONE) * ((env->pathParam) / FX32_ONE);
+    env->pathOffset.y = CalcSineDegrees_Wraparound(128) * ((env->pathParam) / FX32_ONE);
 
-    if (param0->unk_40 < (FX32_ONE * 160)) {
-        param0->unk_40 += 0x1000;
+    if (env->angleParam < (FX32_ONE * 160)) {
+        env->angleParam += 0x1000;
     }
 
-    param0->unk_38 += 0x2000;
-    Sprite_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
-    param0->unk_2C.x += param0->unk_50;
+    env->birdRotation += 0x2000;
+    Sprite_SetAffineZRotation(sprite, CalcAngleRotationIdx_Wraparound((env->birdRotation) / FX32_ONE));
+    env->scale.x += env->scaleDelta;
 
-    if (param0->unk_2C.x > 0x1000) {
-        param0->unk_2C.x = 0x1000;
+    if (env->scale.x > 0x1000) {
+        env->scale.x = 0x1000;
     }
 
-    param0->unk_2C.y += param0->unk_50;
+    env->scale.y += env->scaleDelta;
 
-    if (param0->unk_2C.y > 0x1000) {
-        param0->unk_2C.y = 0x1000;
+    if (env->scale.y > 0x1000) {
+        env->scale.y = 0x1000;
     }
 
-    Sprite_SetAffineScale(v1, &param0->unk_2C);
+    Sprite_SetAffineScale(sprite, &env->scale);
 
-    v0.x = param0->unk_08.x + param0->unk_14.x;
-    v0.y = param0->unk_08.y - param0->unk_14.y;
+    newPos.x = env->position.x + env->pathOffset.x;
+    newPos.y = env->position.y - env->pathOffset.y;
 
-    Sprite_SetPosition(v1, &v0);
+    Sprite_SetPosition(sprite, &newPos);
 
-    if (((v0.y) / FX32_ONE) <= -16) {
-        param0->unk_01++;
+    if (((newPos.y) / FX32_ONE) <= -16) {
+        env->state++;
     }
 
     return 0;
 }
 
-static int ov6_02243CD8(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_HideBird(FlyLandingEnvExtended *env)
 {
-    Sprite_SetDrawFlag(param0->unk_68, FALSE);
-    Sprite_SetAnim(param0->unk_58.unk_08, 1);
+    Sprite_SetDrawFlag(env->birdSprite, FALSE);
+    Sprite_SetAnim(env->unk_58.playerSprite, 1);
 
-    param0->unk_04 = 0;
-    param0->unk_01++;
+    env->subState = 0;
+    env->state++;
 
     return 1;
 }
 
-static int ov6_02243CFC(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_PlayerHoldUpPokeballAndSetUpBirdSprite(FlyLandingEnvExtended *env)
 {
-    param0->unk_04++;
+    env->subState++;
 
-    if (param0->unk_04 < 20) {
+    if (env->subState < 20) {
         return 0;
     }
 
-    {
-        VecFx32 v0 = { FX32_ONE * (128 + 8), FX32_ONE * (111 - 32), 0 };
-        VecFx32 v1 = { 0x1000, 0x1000, 0 };
+    VecFx32 birdPos = { FX32_ONE * (128 + 8), FX32_ONE * (111 - 32), 0 };
+    VecFx32 birdScale = { 0x1000, 0x1000, 0 };
 
-        param0->unk_04 = 0;
-        param0->unk_08 = v0;
-        param0->unk_14.x = 0;
-        param0->unk_14.y = 0;
-        param0->unk_14.z = 0;
-        param0->unk_38 = (FX32_ONE * 0);
-        param0->unk_2C = v1;
-        param0->unk_50 = 0x200;
-        param0->unk_40 = (FX32_ONE * 315);
-        param0->unk_48 = (FX32_ONE * 128);
-        param0->unk_4C = 0x2000;
+    env->subState = 0;
+    env->position = birdPos;
+    env->pathOffset.x = 0;
+    env->pathOffset.y = 0;
+    env->pathOffset.z = 0;
+    env->birdRotation = (FX32_ONE * 0);
+    env->scale = birdScale;
+    env->scaleDelta = 0x200;
+    env->angleParam = (FX32_ONE * 315);
+    env->pathParam = (FX32_ONE * 128);
+    env->pathDelta = 0x2000;
 
-        Sprite_SetPosition(param0->unk_68, &v0);
-        Sprite_SetAffineScale(param0->unk_68, &v1);
-        Sprite_SetAffineZRotation(param0->unk_68, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
-        Sprite_SetDrawFlag(param0->unk_68, TRUE);
-        Sprite_SetAnim(param0->unk_58.unk_08, 6);
-        Sprite_SetAnimateFlag(param0->unk_58.unk_08, 1);
-    }
+    Sprite_SetPosition(env->birdSprite, &birdPos);
+    Sprite_SetAffineScale(env->birdSprite, &birdScale);
+    Sprite_SetAffineZRotation(env->birdSprite, CalcAngleRotationIdx_Wraparound(env->birdRotation / FX32_ONE));
+    Sprite_SetDrawFlag(env->birdSprite, TRUE);
+    Sprite_SetAnim(env->unk_58.playerSprite, 6);
+    Sprite_SetAnimateFlag(env->unk_58.playerSprite, TRUE);
 
-    param0->unk_01++;
+    env->state++;
     return 1;
 }
 
-static int ov6_02243DC0(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_FlyIntoPokeball(FlyLandingEnvExtended *env)
 {
-    VecFx32 v0;
-    Sprite *v1 = param0->unk_68;
+    VecFx32 newPos;
+    Sprite *sprite = env->birdSprite;
 
-    param0->unk_48 -= param0->unk_4C;
+    env->pathParam -= env->pathDelta;
 
-    if (param0->unk_4C < (FX32_ONE * 16)) {
-        param0->unk_4C += 0x2000;
+    if (env->pathDelta < FX32_ONE * 16) {
+        env->pathDelta += 0x2000;
     }
 
-    if (param0->unk_48 < 0) {
-        param0->unk_48 = 0;
+    if (env->pathParam < 0) {
+        env->pathParam = 0;
     }
 
-    param0->unk_14.x = CalcCosineDegrees_Wraparound(315) * ((param0->unk_48) / FX32_ONE);
-    param0->unk_14.y = CalcSineDegrees_Wraparound((param0->unk_40) / FX32_ONE) * ((param0->unk_48) / FX32_ONE);
+    env->pathOffset.x = CalcCosineDegrees_Wraparound(315) * (env->pathParam / FX32_ONE);
+    env->pathOffset.y = CalcSineDegrees_Wraparound(env->angleParam / FX32_ONE) * (env->pathParam / FX32_ONE);
 
-    if (((param0->unk_40) / FX32_ONE) < 180) {
-        param0->unk_40 -= 0x4000;
+    if (((env->angleParam) / FX32_ONE) < 180) {
+        env->angleParam -= 0x4000;
     }
 
-    param0->unk_2C.x -= param0->unk_50;
+    env->scale.x -= env->scaleDelta;
 
-    if (param0->unk_2C.x < 0x400) {
-        param0->unk_2C.x = 0x400;
+    if (env->scale.x < 0x400) {
+        env->scale.x = 0x400;
     }
 
-    param0->unk_2C.y -= param0->unk_50;
+    env->scale.y -= env->scaleDelta;
 
-    if (param0->unk_2C.y < 0x400) {
-        param0->unk_2C.y = 0x400;
+    if (env->scale.y < 0x400) {
+        env->scale.y = 0x400;
     }
 
-    Sprite_SetAffineScale(v1, &param0->unk_2C);
-    param0->unk_38 += 0x6000;
+    Sprite_SetAffineScale(sprite, &env->scale);
+    env->birdRotation += 0x6000;
 
-    if (((param0->unk_38) / FX32_ONE) > 60) {
-        param0->unk_38 = (FX32_ONE * 60);
+    if (env->birdRotation / FX32_ONE > 60) {
+        env->birdRotation = FX32_ONE * 60;
     }
 
-    Sprite_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
+    Sprite_SetAffineZRotation(sprite, CalcAngleRotationIdx_Wraparound(env->birdRotation / FX32_ONE));
 
-    v0.x = param0->unk_08.x + param0->unk_14.x;
-    v0.y = param0->unk_08.y + param0->unk_14.y;
+    newPos.x = env->position.x + env->pathOffset.x;
+    newPos.y = env->position.y + env->pathOffset.y;
 
-    Sprite_SetPosition(v1, &v0);
+    Sprite_SetPosition(sprite, &newPos);
 
-    if (param0->unk_48 <= 0) {
-        Sprite_SetDrawFlag(v1, FALSE);
-        param0->unk_01++;
+    if (env->pathParam <= 0) {
+        Sprite_SetDrawFlag(sprite, FALSE);
+        env->state++;
     }
 
     return 0;
 }
 
-static int ov6_02243ECC(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_HidePlayerMapObjAndSprite(FlyLandingEnvExtended *env)
 {
-    param0->unk_04++;
+    env->subState++;
 
-    if (param0->unk_04 == 8) {
-        Sprite_SetAnim(param0->unk_58.unk_08, 1);
-        HidePlayerMapObj(param0->unk_58.fieldSystem, 0);
+    if (env->subState == 8) {
+        Sprite_SetAnim(env->unk_58.playerSprite, 1);
+        HidePlayerMapObj(env->unk_58.fieldSystem, FALSE); // show player on map again
     }
 
-    if (param0->unk_04 == 10) {
-        Sprite_SetDrawFlag(param0->unk_58.unk_08, FALSE);
+    if (env->subState == 10) {
+        Sprite_SetDrawFlag(env->unk_58.playerSprite, FALSE);
     }
 
-    if ((param0->unk_04 > 15) && (ov5_021F0EF0(param0->unk_70) == 1)) {
-        param0->unk_04 = 0;
-        param0->unk_01++;
-        param0->unk_02 = 2;
+    if (env->subState > 15 && ov5_021F0EF0(env->task) == TRUE) {
+        env->subState = 0;
+        env->state++;
+        env->hasEndedIfTwo = 2;
     }
 
     return 0;
 }
 
-static int ov6_02243F1C(UnkStruct_ov6_02249110 *param0)
+static int FlyLandingAnim_DoNothing(FlyLandingEnvExtended *env)
 {
     return 0;
 }
 
-static int (*const Unk_ov6_02249288[])(UnkStruct_ov6_02249110 *) = {
-    ov6_02243AB8,
-    ov6_02243BB8,
-    ov6_02243BEC,
-    ov6_02243CD8,
-    ov6_02243CFC,
-    ov6_02243DC0,
-    ov6_02243ECC,
-    ov6_02243F1C
+static int (*const FlyLandingAnimFuncCollection[])(FlyLandingEnvExtended *) = {
+    FlyLandingAnim_SetUpSprites,
+    FlyLandingAnim_SetUpEnv,
+    FlyLandingAnim_FlyUpLeft,
+    FlyLandingAnim_HideBird,
+    FlyLandingAnim_PlayerHoldUpPokeballAndSetUpBirdSprite,
+    FlyLandingAnim_FlyIntoPokeball,
+    FlyLandingAnim_HidePlayerMapObjAndSprite,
+    FlyLandingAnim_DoNothing
 };
 
-static int (*const *const Unk_ov6_02249110[])(UnkStruct_ov6_02249110 *) = {
-    Unk_ov6_022490EC,
-    Unk_ov6_02249288
+static int (*const *const FlyLandingAnimFuncCollections[])(FlyLandingEnvExtended *) = {
+    HideBirdSpriteFuncCollection,
+    FlyLandingAnimFuncCollection
 };
 
 static NARC *GetFieldCutInNarc1(void)
@@ -1034,16 +1045,16 @@ static void HidePlayerMapObj(FieldSystem *fieldSystem, BOOL hidden)
     MapObject_SetHidden(playerMapObject, hidden);
 }
 
-SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, u32 param1, Pokemon *shownPokemon, int playerGender)
+SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *shownPokemon, int playerGender)
 {
     SysTask *task;
     HMCutIn *cutIn = HMCutIn_New(fieldSystem);
 
     cutIn->pokemon = shownPokemon;
     cutIn->playerGender = playerGender;
-    cutIn->_1 = param1;
+    cutIn->_1 = isNotFly;
 
-    if (param1 == 0) {
+    if (isNotFly == FALSE) {
         task = SysTask_Start(SysTask_CutIn, cutIn, 133);
     } else {
         task = SysTask_Start(SysTask_CutInFly, cutIn, 133);
@@ -1128,9 +1139,9 @@ static BOOL SubTask_HMCutIn_InitSprites(HMCutIn *cutIn)
     return TRUE;
 }
 
-static BOOL SubTask_HMCutIn_InitWindow(HMCutIn *cutIn)
+static BOOL SubTask_HMCutIn_InitWindowAndPlayerSprite(HMCutIn *cutIn)
 {
-    ov6_02245FDC(cutIn);
+    CreateDrawCutInPlayerSpriteTasks(cutIn);
 
     cutIn->updateWindow = FALSE;
     cutIn->windowDelta = FX32_ONE * -64;
@@ -1337,7 +1348,7 @@ static BOOL SubTask_HMCutIn_Done(HMCutIn *cutIn)
 static const CutInTaskFunc sCutInTaskFuncs[] = {
     SubTask_HMCutIn_Init,
     SubTask_HMCutIn_InitSprites,
-    SubTask_HMCutIn_InitWindow,
+    SubTask_HMCutIn_InitWindowAndPlayerSprite,
     SubTask_HMCutIn_WindowExpandX,
     SubTask_HMCutIn_WindowExpandY,
     SubTask_HMCutIn_SlideInSpeedUp,
@@ -1423,12 +1434,12 @@ static BOOL SubTask_HMCutIn_InitFlyBird(HMCutIn *cutIn)
     CreateFlyTasks(cutIn);
     InitBirdSpritePos(cutIn);
     InitPlaneMasksForFly(cutIn);
-    HidePlayer(cutIn, TRUE);
+    HideAndStopPlayerMapObj(cutIn, TRUE);
     cutIn->state++;
     return FALSE;
 }
 
-static BOOL SubTask_HMCutIn_WaitAscent(HMCutIn *cutIn)
+static BOOL SubTask_HMCutIn_CallBirdAnim(HMCutIn *cutIn)
 {
     if (GetSubState(cutIn) != 2) {
         return FALSE;
@@ -1440,7 +1451,7 @@ static BOOL SubTask_HMCutIn_WaitAscent(HMCutIn *cutIn)
     return FALSE;
 }
 
-static BOOL ov6_022444F8(HMCutIn *cutIn)
+static BOOL SubTask_HMCutIn_PrepareDescent(HMCutIn *cutIn)
 {
     cutIn->subState++;
 
@@ -1448,13 +1459,13 @@ static BOOL ov6_022444F8(HMCutIn *cutIn)
         cutIn->subState = 0;
         cutIn->state++;
 
-        ov6_022456D4(cutIn);
+        PrepareBirdForDescent(cutIn);
     }
 
     return TRUE;
 }
 
-static BOOL ov6_02244518(HMCutIn *cutIn)
+static BOOL SubTask_HMCutIn_PlaySwooshSound(HMCutIn *cutIn)
 {
     if (GetSubState(cutIn) != 3) {
         return FALSE;
@@ -1469,7 +1480,7 @@ static BOOL ov6_02244518(HMCutIn *cutIn)
     return TRUE;
 }
 
-static BOOL ov6_02244548(HMCutIn *cutIn)
+static BOOL SubTask_HMCutIn_SlideOutWindow(HMCutIn *cutIn)
 {
     cutIn->updateWindow = FALSE;
     cutIn->windowY1 += cutIn->windowDelta;
@@ -1508,7 +1519,7 @@ static BOOL ov6_02244548(HMCutIn *cutIn)
     return FALSE;
 }
 
-static BOOL ov6_022445EC(HMCutIn *cutIn)
+static BOOL SubTask_HMCutIn_FadeOut(HMCutIn *cutIn)
 {
     if (cutIn->screenFaded == FALSE) {
         if (GetSubState(cutIn) == 4) {
@@ -1531,7 +1542,7 @@ static BOOL ov6_022445EC(HMCutIn *cutIn)
     return FALSE;
 }
 
-static BOOL ov6_02244634(HMCutIn *cutIn)
+static BOOL SubTask_HMCutIn_CheckFadeOutComplete(HMCutIn *cutIn)
 {
     if (IsScreenFadeDone()) {
         cutIn->state++;
@@ -1543,7 +1554,7 @@ static BOOL ov6_02244634(HMCutIn *cutIn)
 static const CutInTaskFunc sCutInTaskFuncsFly[] = {
     SubTask_HMCutIn_Init,
     SubTask_HMCutIn_InitSpritesFly,
-    SubTask_HMCutIn_InitWindow,
+    SubTask_HMCutIn_InitWindowAndPlayerSprite,
     SubTask_HMCutIn_WindowExpandX,
     SubTask_HMCutIn_WindowExpandY,
     SubTask_HMCutIn_SlideInSpeedUp,
@@ -1555,12 +1566,12 @@ static const CutInTaskFunc sCutInTaskFuncsFly[] = {
     SubTask_HMCutIn_LoadBirdSprite,
     SubTask_HMCutIn_WaitResourceTransfer,
     SubTask_HMCutIn_InitFlyBird,
-    SubTask_HMCutIn_WaitAscent,
-    ov6_022444F8,
-    ov6_02244518,
-    ov6_02244548,
-    ov6_022445EC,
-    ov6_02244634,
+    SubTask_HMCutIn_CallBirdAnim,
+    SubTask_HMCutIn_PrepareDescent,
+    SubTask_HMCutIn_PlaySwooshSound,
+    SubTask_HMCutIn_SlideOutWindow,
+    SubTask_HMCutIn_FadeOut,
+    SubTask_HMCutIn_CheckFadeOutComplete,
     SubTask_HMCutIn_DeleteSprites,
     SubTask_HMCutIn_WindowTaskDone,
     SubTask_HMCutIn_Done
@@ -1748,7 +1759,7 @@ static void LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     i++;
     // Char Index 2: Player's Pokemon
-    cutIn->charSource[i] = GetMonCharResource(cutIn, narc);
+    cutIn->charSource[i] = GetParticleCharResource(cutIn, narc);
 
     // Palette Index 0: White Clouds
     for (i = 0; i < 1; i++) {
@@ -1763,7 +1774,7 @@ static void LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
         i++;
     }
 
-    // Palette Index 1 / 2: Player Male
+    // Palette Index 1 / 2: Player Male / Part of Clouds
     cutIn->paletteSource[i] = GetPlayerMalePlttResource(cutIn, narc);
 
     // Cell Index 0: White Clouds
@@ -1794,8 +1805,8 @@ static void LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
         cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, 18, FALSE, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD);
     }
 
-    cutIn->pokemonCharSource = CharacterSprite_LoadPokemonSprite(cutIn->pokemon, &cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD);
-    cutIn->pokemonPaletteSource = CharacterSprite_GetPaletteData(&cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD);
+    cutIn->pokemonCharSource = GetPokemonSpriteSource(cutIn->pokemon, &cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD);
+    cutIn->pokemonPaletteSource = GetPokemonPaletteSource(&cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD);
 }
 
 static void DeleteSpriteResources(HMCutIn *cutIn)
@@ -1921,10 +1932,10 @@ static Sprite *InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position)
     return playerSprite;
 }
 
-static void StartPlayerAnim(Sprite *param0)
+static void StartPlayerAnim(Sprite *sprite)
 {
-    Sprite_SetAnimateFlag(param0, 1);
-    Sprite_SetAnimSpeed(param0, FX32_ONE);
+    Sprite_SetAnimateFlag(sprite, TRUE);
+    Sprite_SetAnimSpeed(sprite, FX32_ONE);
 }
 
 static Sprite *CreateBirdSprite(HMCutIn *cutIn, const VecFx32 *position, int priority, int dummy)
@@ -2085,25 +2096,25 @@ static void BuildMonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *sprite
     Pokemon_BuildSpriteTemplate(spriteTemplate, cutIn->pokemon, 2);
 }
 
-static void *CharacterSprite_LoadPokemonSprite(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID)
+static void *GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, (32 * 10) * 10);
+    void *spriteSource = Heap_AllocFromHeap(HEAP_ID_FIELD, (32 * 10) * 10);
 
-    GF_ASSERT(v0 != NULL);
+    GF_ASSERT(spriteSource != NULL);
 
     int personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
-    sub_02013750(spriteTemplate->narcID, spriteTemplate->character, heapID, v0, personality, FALSE, 2, spriteTemplate->spindaSpots);
+    sub_02013750(spriteTemplate->narcID, spriteTemplate->character, heapID, spriteSource, personality, FALSE, 2, spriteTemplate->spindaSpots);
 
-    return v0;
+    return spriteSource;
 }
 
-static void *CharacterSprite_GetPaletteData(PokemonSpriteTemplate *spriteTemplate, u32 heapID)
+static void *GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID)
 {
-    void *v0 = sub_02013660(spriteTemplate->narcID, spriteTemplate->palette, heapID);
-    return v0;
+    void *paletteSource = sub_02013660(spriteTemplate->narcID, spriteTemplate->palette, heapID);
+    return paletteSource;
 }
 
-static SpriteResource *GetMonCharResource(HMCutIn *cutIn, NARC *narc)
+static SpriteResource *GetParticleCharResource(HMCutIn *cutIn, NARC *narc)
 {
     SpriteResource *spriteResource = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 5, FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
     return spriteResource;
@@ -2125,7 +2136,7 @@ static void LoadPokemonChar(HMCutIn *cutIn, void *pokemonSpriteSource)
 
 static SpriteResource *GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc)
 {
-    SpriteResource *spriteResource = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 3, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddPaletteFrom(cutIn->paletteLocation, narc, 3, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAP_ID_FIELD);
     return spriteResource;
 }
 
@@ -2337,14 +2348,14 @@ static int GetSubState(HMCutIn *cutIn)
 
 static void ov6_02245480(HMCutIn *cutIn)
 {
-    FlyTaskEnv *v0 = sub_02071598(cutIn->unk_250);
+    FlyTaskEnv *env = sub_02071598(cutIn->unk_250);
 
-    if (v0->unk_60) {
-        sub_0207136C(v0->unk_60);
+    if (env->unk_60) {
+        sub_0207136C(env->unk_60);
     }
 
-    if (v0->task) {
-        ov5_021F0EFC(v0->task);
+    if (env->task) {
+        ov5_021F0EFC(env->task);
     }
 
     sub_0207136C(cutIn->unk_250);
@@ -2436,54 +2447,54 @@ static void InitBirdSpritePos(HMCutIn *cutIn)
     Sprite_SetDrawFlag(flyTaskEnv->birdSprite, TRUE);
 }
 
-static int SubTask_HMFlyAscent_Ascend(FlyTaskEnv *flyTaskEnv)
+static int SubTask_HMFlyAscent_Ascend(FlyTaskEnv *env)
 {
     VecFx32 position;
-    Sprite *birdSprite = flyTaskEnv->birdSprite;
+    Sprite *birdSprite = env->birdSprite;
 
-    flyTaskEnv->pathParam += flyTaskEnv->pathDelta;
+    env->pathParam += env->pathDelta;
 
-    if (flyTaskEnv->pathDelta < FX32_CONST(16)) {
-        flyTaskEnv->pathDelta += FX32_CONST(4);
+    if (env->pathDelta < FX32_CONST(16)) {
+        env->pathDelta += FX32_CONST(4);
     }
 
-    flyTaskEnv->pathOffset.x = CalcCosineDegrees_Wraparound(315) * ((flyTaskEnv->pathParam) / FX32_ONE);
-    flyTaskEnv->pathOffset.y = CalcSineDegrees_Wraparound((flyTaskEnv->angleParam) / FX32_ONE) * ((flyTaskEnv->pathParam) / FX32_ONE);
+    env->pathOffset.x = CalcCosineDegrees_Wraparound(315) * ((env->pathParam) / FX32_ONE);
+    env->pathOffset.y = CalcSineDegrees_Wraparound((env->angleParam) / FX32_ONE) * ((env->pathParam) / FX32_ONE);
 
-    if ((flyTaskEnv->angleParam / FX32_ONE) < 270) {
-        flyTaskEnv->angleParam += FX32_CONST(4);
+    if ((env->angleParam / FX32_ONE) < 270) {
+        env->angleParam += FX32_CONST(4);
     }
 
-    flyTaskEnv->birdScale.x += flyTaskEnv->scaleDelta;
+    env->birdScale.x += env->scaleDelta;
 
-    if (flyTaskEnv->birdScale.x > FX32_ONE) {
-        flyTaskEnv->birdScale.x = FX32_ONE;
+    if (env->birdScale.x > FX32_ONE) {
+        env->birdScale.x = FX32_ONE;
     }
 
-    flyTaskEnv->birdScale.y += flyTaskEnv->scaleDelta;
+    env->birdScale.y += env->scaleDelta;
 
-    if (flyTaskEnv->birdScale.y > FX32_ONE) {
-        flyTaskEnv->birdScale.y = FX32_ONE;
+    if (env->birdScale.y > FX32_ONE) {
+        env->birdScale.y = FX32_ONE;
     }
 
-    Sprite_SetAffineScale(birdSprite, &flyTaskEnv->birdScale);
-    flyTaskEnv->birdRotation -= FX32_CONST(6);
+    Sprite_SetAffineScale(birdSprite, &env->birdScale);
+    env->birdRotation -= FX32_CONST(6);
 
-    if (((flyTaskEnv->birdRotation) / FX32_ONE) < 0) {
-        flyTaskEnv->birdRotation = 0;
+    if (((env->birdRotation) / FX32_ONE) < 0) {
+        env->birdRotation = 0;
     }
 
-    Sprite_SetAffineZRotation(birdSprite, CalcAngleRotationIdx_Wraparound((flyTaskEnv->birdRotation) / FX32_ONE));
+    Sprite_SetAffineZRotation(birdSprite, CalcAngleRotationIdx_Wraparound((env->birdRotation) / FX32_ONE));
 
-    position.x = flyTaskEnv->birdStartPos.x + flyTaskEnv->pathOffset.x;
-    position.y = flyTaskEnv->birdStartPos.y + flyTaskEnv->pathOffset.y;
+    position.x = env->birdStartPos.x + env->pathOffset.x;
+    position.y = env->birdStartPos.y + env->pathOffset.y;
 
     Sprite_SetPosition(birdSprite, &position);
 
     if (position.y < FX32_CONST(-64)) {
         Sprite_SetDrawFlag(birdSprite, FALSE);
-        flyTaskEnv->subState = 2;
-        flyTaskEnv->state++;
+        env->subState = 2;
+        env->state++;
     }
 
     return 0;
@@ -2499,48 +2510,48 @@ static const FlyTaskFunc sFlyTaskFuncsAscent[] = {
     SubTask_HMFlyAscent_Idle
 };
 
-static void ov6_022456D4(HMCutIn *cutIn)
+static void PrepareBirdForDescent(HMCutIn *cutIn)
 {
     VecFx32 birdPosition = VEC_FX32(128, 104, 0);
     VecFx32 birdScale = VEC_FX32(1.25, 1.25, 0);
-    FlyTaskEnv *flyTaskEnv = sub_02071598(cutIn->unk_250);
+    FlyTaskEnv *env = sub_02071598(cutIn->unk_250);
 
-    flyTaskEnv->mode = 2;
-    flyTaskEnv->state = 0;
-    flyTaskEnv->subState = 1;
-    flyTaskEnv->unk_04 = 0;
-    flyTaskEnv->birdStartPos = birdPosition;
-    flyTaskEnv->pathOffset.x = 0;
-    flyTaskEnv->pathOffset.y = 0;
-    flyTaskEnv->pathOffset.z = 0;
-    flyTaskEnv->birdRotation = FX32_CONST(315);
-    flyTaskEnv->birdScale = birdScale;
-    flyTaskEnv->scaleDelta = FX32_CONST(0.0625);
-    flyTaskEnv->angleParam = FX32_CONST(225);
-    flyTaskEnv->pathParam = FX32_CONST(192);
-    flyTaskEnv->pathDelta = FX32_CONST(32);
-    flyTaskEnv->pathOffset.x = CalcCosineDegrees_Wraparound(315) * ((flyTaskEnv->pathParam) / FX32_ONE);
-    flyTaskEnv->pathOffset.y = CalcSineDegrees_Wraparound((flyTaskEnv->angleParam) / FX32_ONE) * ((flyTaskEnv->pathParam) / FX32_ONE);
+    env->mode = 2;
+    env->state = 0;
+    env->subState = 1;
+    env->unk_04 = 0;
+    env->birdStartPos = birdPosition;
+    env->pathOffset.x = 0;
+    env->pathOffset.y = 0;
+    env->pathOffset.z = 0;
+    env->birdRotation = FX32_CONST(315);
+    env->birdScale = birdScale;
+    env->scaleDelta = FX32_CONST(0.0625);
+    env->angleParam = FX32_CONST(225);
+    env->pathParam = FX32_CONST(192);
+    env->pathDelta = FX32_CONST(32);
+    env->pathOffset.x = CalcCosineDegrees_Wraparound(315) * ((env->pathParam) / FX32_ONE);
+    env->pathOffset.y = CalcSineDegrees_Wraparound((env->angleParam) / FX32_ONE) * ((env->pathParam) / FX32_ONE);
 
-    birdPosition.x = flyTaskEnv->birdStartPos.x + flyTaskEnv->pathOffset.x;
-    birdPosition.y = flyTaskEnv->birdStartPos.y + flyTaskEnv->pathOffset.y;
+    birdPosition.x = env->birdStartPos.x + env->pathOffset.x;
+    birdPosition.y = env->birdStartPos.y + env->pathOffset.y;
 
-    Sprite_SetPosition(flyTaskEnv->birdSprite, &birdPosition);
-    Sprite_SetAffineScale(flyTaskEnv->birdSprite, &birdScale);
-    Sprite_SetAffineZRotation(flyTaskEnv->birdSprite, CalcAngleRotationIdx_Wraparound((flyTaskEnv->birdRotation) / FX32_ONE));
-    Sprite_SetDrawFlag(flyTaskEnv->birdSprite, TRUE);
+    Sprite_SetPosition(env->birdSprite, &birdPosition);
+    Sprite_SetAffineScale(env->birdSprite, &birdScale);
+    Sprite_SetAffineZRotation(env->birdSprite, CalcAngleRotationIdx_Wraparound((env->birdRotation) / FX32_ONE));
+    Sprite_SetDrawFlag(env->birdSprite, TRUE);
 
-    flyTaskEnv->unk_60 = ov6_02245B4C(cutIn->unk_244, cutIn->playerSprite);
-    cutIn->someFlag4 = TRUE;
-    flyTaskEnv->task = ov5_021F0EB0(cutIn->fieldSystem, HEAP_ID_FIELD);
+    env->unk_60 = ov6_02245B4C(cutIn->unk_244, cutIn->playerSprite);
+    cutIn->forceDrawPlayerSprite = TRUE;
+    env->task = ov5_021F0EB0(cutIn->fieldSystem, HEAP_ID_FIELD);
 
-    ov5_021F0F10(flyTaskEnv->task, 1, FX32_CONST(-120), 12);
+    ov5_021F0F10(env->task, 1, FX32_CONST(-120), 12);
 
     Sprite *playerSprite;
     VecFx32 playerTranslation = VEC_FX32(0, 0, 0);
     VecFx32 playerScale = VEC_FX32(1, 1, 0);
 
-    playerSprite = flyTaskEnv->cutInContainer.cutIn->playerSprite;
+    playerSprite = env->cutInContainer.cutIn->playerSprite;
 
     Sprite_SetAffineOverwriteMode(playerSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
     Sprite_SetAffineTranslation(playerSprite, &playerTranslation);
@@ -2548,9 +2559,9 @@ static void ov6_022456D4(HMCutIn *cutIn)
     Sprite_SetAffineZRotation(playerSprite, CalcAngleRotationIdx_Wraparound(0));
 }
 
-static int ov6_02245840(FlyTaskEnv *env)
+static int FlyPickUpPlayer_DescendToCenter(FlyTaskEnv *env)
 {
-    VecFx32 birdPosition;
+    VecFx32 newPos;
     Sprite *birdSprite = env->birdSprite;
 
     env->pathParam -= env->pathDelta;
@@ -2589,16 +2600,16 @@ static int ov6_02245840(FlyTaskEnv *env)
     Sprite_SetAffineScale(birdSprite, &env->birdScale);
     env->birdRotation += FX32_CONST(8);
 
-    if (((env->birdRotation) / FX32_ONE) > 360) {
+    if (env->birdRotation / FX32_ONE > 360) {
         env->birdRotation = FX32_CONST(360);
     }
 
     Sprite_SetAffineZRotation(birdSprite, CalcAngleRotationIdx_Wraparound(env->birdRotation / FX32_ONE));
 
-    birdPosition.x = env->birdStartPos.x + env->pathOffset.x;
-    birdPosition.y = env->birdStartPos.y + env->pathOffset.y;
+    newPos.x = env->birdStartPos.x + env->pathOffset.x;
+    newPos.y = env->birdStartPos.y + env->pathOffset.y;
 
-    Sprite_SetPosition(birdSprite, &birdPosition);
+    Sprite_SetPosition(birdSprite, &newPos);
 
     if (env->pathParam == 0) {
         env->unk_04 = 0;
@@ -2632,7 +2643,7 @@ static int ov6_02245840(FlyTaskEnv *env)
     return 0;
 }
 
-static int PrepareFlyDescent(FlyTaskEnv *flyTaskEnv)
+static int FlyPickUpPlayer_PrepareForTakeoff(FlyTaskEnv *flyTaskEnv)
 {
     Sprite *playerSprite = flyTaskEnv->cutInContainer.cutIn->playerSprite;
 
@@ -2644,7 +2655,7 @@ static int PrepareFlyDescent(FlyTaskEnv *flyTaskEnv)
     fx32 birdY = spritePos->y;
     flyTaskEnv->playerOffsetY = playerY - birdY;
 
-    ov6_02245B74(flyTaskEnv->unk_60);
+    InitSomePlayerAnimationEnv(flyTaskEnv->unk_60);
     ov5_021F0F10(flyTaskEnv->task, 2, 0, 12);
 
     flyTaskEnv->scaleDelta = FX32_CONST(1. / 16);
@@ -2657,7 +2668,7 @@ static int PrepareFlyDescent(FlyTaskEnv *flyTaskEnv)
     return 1;
 }
 
-static int UpdateSpritesForFlyDescent(FlyTaskEnv *env)
+static int FlyPickUpPlayer_AscendToBottomLeft(FlyTaskEnv *env)
 {
     // update bird sprite
     VecFx32 nextBirdPosition;
@@ -2729,87 +2740,87 @@ static int UpdateSpritesForFlyDescent(FlyTaskEnv *env)
     return 0;
 }
 
-static int FlyDescentDoNothing(FlyTaskEnv *param0)
+static int FlyPickUpPlayer_DoNothing(FlyTaskEnv *param0)
 {
     return 0;
 }
 
 static const FlyTaskFunc sFlyTaskFuncsDescentFlyAway[] = {
-    ov6_02245840,
-    PrepareFlyDescent,
-    UpdateSpritesForFlyDescent,
-    FlyDescentDoNothing
+    FlyPickUpPlayer_DescendToCenter,
+    FlyPickUpPlayer_PrepareForTakeoff,
+    FlyPickUpPlayer_AscendToBottomLeft,
+    FlyPickUpPlayer_DoNothing
 };
 
-static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, Sprite *param1)
+static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, Sprite *sprite)
 {
     UnkStruct_ov101_021D5D90 *v0;
-    UnkStruct_ov6_02245B4C v1;
-    VecFx32 v2 = { 0, 0, 0 };
+    HMCutInWithPlayer1 cutInWithPlayer;
+    VecFx32 initialPos = { 0, 0, 0 };
 
-    v1.unk_04 = param1;
-    v0 = sub_02071330(param0, &Unk_ov6_0224920C, &v2, 0, &v1, 129);
+    cutInWithPlayer.playerSprite = sprite;
+    v0 = sub_02071330(param0, &PushPlayerSpriteUpFuncs, &initialPos, 0, &cutInWithPlayer, 129);
 
     return v0;
 }
 
-static void ov6_02245B74(UnkStruct_ov101_021D5D90 *param0)
+static void InitSomePlayerAnimationEnv(UnkStruct_ov101_021D5D90 *param0)
 {
-    UnkStruct_ov6_02245B74 *v0 = sub_02071598(param0);
-    v0->unk_00 = 0;
+    SomePlayerAnimationEnv *v0 = sub_02071598(param0);
+    v0->state = 0;
 }
 
 static void ov6_02245B80(UnkStruct_ov101_021D5D90 *param0)
 {
-    VecFx32 v0;
-    const VecFx32 *v1;
-    UnkStruct_ov6_02245B74 *v2 = sub_02071598(param0);
+    VecFx32 playerSpritePosPtr;
+    const VecFx32 *playerSpritePos;
+    SomePlayerAnimationEnv *env = sub_02071598(param0);
 
-    v2->unk_00 = 1;
-    v2->unk_04 = 0;
-    v2->unk_0C = 0;
-    v2->unk_08 = 0;
-    v2->unk_10.x = 0;
-    v2->unk_10.y = 0;
-    v2->unk_10.z = 0;
-    v1 = Sprite_GetPosition(v2->unk_20);
-    v0 = *v1;
+    env->state = 1;
+    env->animationPartFinished = FALSE;
+    env->positionDeltaIdx = 0;
+    env->_ = FALSE;
+    env->position.x = 0;
+    env->position.y = 0;
+    env->position.z = 0;
+    playerSpritePos = Sprite_GetPosition(env->playerSprite);
+    playerSpritePosPtr = *playerSpritePos;
 
-    sub_020715D4(param0, &v0);
-    Sprite_SetAnim(v2->unk_20, 5);
+    sub_020715D4(param0, &playerSpritePosPtr);
+    Sprite_SetAnim(env->playerSprite, 5);
 }
 
 static void ov6_02245BC8(UnkStruct_ov101_021D5D90 *param0)
 {
     VecFx32 spritePosition;
-    UnkStruct_ov6_02245B74 *v1 = sub_02071598(param0);
+    SomePlayerAnimationEnv *env = sub_02071598(param0);
 
-    v1->unk_00 = 2;
-    v1->unk_04 = 0;
-    v1->unk_0C = 0;
-    v1->unk_08 = 0;
-    v1->unk_10.x = 0;
-    v1->unk_10.y = 0;
-    v1->unk_10.z = 0;
+    env->state = 2;
+    env->animationPartFinished = FALSE;
+    env->positionDeltaIdx = 0;
+    env->_ = FALSE;
+    env->position.x = 0;
+    env->position.y = 0;
+    env->position.z = 0;
 
-    SetVectorToSpritePosition(v1->unk_20, &spritePosition);
+    SetVectorToSpritePosition(env->playerSprite, &spritePosition);
 
     sub_020715D4(param0, &spritePosition);
-    Sprite_SetAnim(v1->unk_20, 4);
+    Sprite_SetAnim(env->playerSprite, 4);
 }
 
-static int ov6_02245C04(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int LoadPlayerAnimationEnv(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov6_02245B74 *v0 = param1;
-    const UnkStruct_ov6_02245B4C *v1 = sub_020715BC(param0);
+    SomePlayerAnimationEnv *v0 = param1;
+    const HMCutInWithPlayer1 *v1 = sub_020715BC(param0);
 
-    v0->unk_1C = v1->unk_00;
-    v0->unk_20 = v1->unk_04;
+    v0->cutIn = v1->cutIn;
+    v0->playerSprite = v1->playerSprite;
 
     return 1;
 }
 
-static const fx32 Unk_ov6_022492A8[12] = {
+static const fx32 sPlayerPushUpDeltas1[12] = {
     FX32_ONE * -12,
     FX32_ONE * -16,
     FX32_ONE * -20,
@@ -2823,75 +2834,74 @@ static const fx32 Unk_ov6_022492A8[12] = {
     FX32_ONE * -22,
     FX32_ONE * -20 };
 
-static const fx32 Unk_ov6_022491FC[4] = {
+static const fx32 sPlayerPushUpDeltas2[4] = {
     FX32_ONE * -4,
     FX32_ONE * -6,
     FX32_ONE * -7,
     FX32_ONE * -8 };
 
-static void ov6_02245C18(UnkStruct_ov101_021D5D90 *param0, UnkStruct_ov6_02245B74 *param1)
+static void PushPlayerUpAfterLanding1(UnkStruct_ov101_021D5D90 *param0, SomePlayerAnimationEnv *param1)
 {
-    VecFx32 v0;
+    VecFx32 newPos;
 
-    switch (param1->unk_04) {
-    case 0:
-        param1->unk_10.y = Unk_ov6_022492A8[param1->unk_0C];
-        sub_020715E4(param0, &v0);
-        v0.y += param1->unk_10.y;
-        Sprite_SetPosition(param1->unk_20, &v0);
-        param1->unk_0C++;
+    if (param1->animationPartFinished == FALSE) {
+        param1->position.y = sPlayerPushUpDeltas1[param1->positionDeltaIdx];
+        sub_020715E4(param0, &newPos);
+        newPos.y += param1->position.y;
+        Sprite_SetPosition(param1->playerSprite, &newPos);
+        param1->positionDeltaIdx++;
 
-        if (param1->unk_0C >= 12) {
-            param1->unk_0C = 0;
-            param1->unk_08 = 1;
-            param1->unk_04++;
+        if (param1->positionDeltaIdx >= 12) {
+            param1->positionDeltaIdx = 0;
+            param1->_ = TRUE;
+            param1->animationPartFinished++; // setting the flag to 1 = TRUE
         }
     }
 }
 
-static void ov6_02245C64(UnkStruct_ov101_021D5D90 *param0, UnkStruct_ov6_02245B74 *param1)
+static void PushPlayerUpAfterLanding2(UnkStruct_ov101_021D5D90 *param0, SomePlayerAnimationEnv *param1)
 {
-    VecFx32 newSpritePosition;
+    VecFx32 newPos;
 
-    if (param1->unk_04 == FALSE) {
-        param1->unk_10.y = Unk_ov6_022491FC[param1->unk_0C];
-        sub_020715E4(param0, &newSpritePosition);
-        newSpritePosition.y += param1->unk_10.y;
-        Sprite_SetPosition(param1->unk_20, &newSpritePosition);
-        param1->unk_0C++;
+    if (param1->animationPartFinished == FALSE) {
+        param1->position.y = sPlayerPushUpDeltas2[param1->positionDeltaIdx];
+        sub_020715E4(param0, &newPos);
+        newPos.y += param1->position.y;
+        Sprite_SetPosition(param1->playerSprite, &newPos);
+        param1->positionDeltaIdx++;
 
-        if (param1->unk_0C >= 4) {
-            param1->unk_0C = 0;
-            param1->unk_08 = 1;
-            param1->unk_04++;
+        if (param1->positionDeltaIdx >= 4) {
+            param1->positionDeltaIdx = 0;
+            param1->_ = TRUE;
+            param1->animationPartFinished++; // setting the flag to 1 = TRUE
         }
     }
 }
 
-static void ov6_02245CB0(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void PushPlayerSpriteUpAfterLanding(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov6_02245B74 *v0 = param1;
+    SomePlayerAnimationEnv *env = param1;
 
-    switch (v0->unk_00) {
+    switch (env->state) {
     case 1:
-        ov6_02245C18(param0, v0);
+        PushPlayerUpAfterLanding1(param0, env);
         break;
     case 2:
-        ov6_02245C64(param0, v0);
+        PushPlayerUpAfterLanding2(param0, env);
         break;
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov6_0224920C = {
-    sizeof(UnkStruct_ov6_02245B74),
-    ov6_02245C04,
+static const UnkStruct_ov101_021D86B0 PushPlayerSpriteUpFuncs = {
+    sizeof(SomePlayerAnimationEnv),
+    LoadPlayerAnimationEnv,
     UnkStruct_ov101_021D5D90_DoNothing3,
-    ov6_02245CB0,
+    PushPlayerSpriteUpAfterLanding,
     UnkStruct_ov101_021D5D90_DoNothing2
 };
 
 static const UnkStruct_ov101_021D86B0 dummy_field_cutin = {
-    sizeof(UnkStruct_ov100_021D4890),
+    sizeof(_Unused),
     NULL,
     UnkStruct_ov101_021D5D90_DoNothing3,
     NULL,
@@ -2909,17 +2919,16 @@ SysTask *FieldTask_InitFlyLandingTask(FieldSystem *fieldSystem, int playerGender
     return task;
 }
 
-int ov6_02245CF0(SysTask *param0)
+BOOL IsFlyLandingAnimFinished(SysTask *param0)
 {
-    FlyLandingEnv *v0 = SysTask_GetParam(param0);
-    return v0->unk_04;
+    FlyLandingEnv *env = SysTask_GetParam(param0);
+    return env->animationFinished;
 }
 
-void ov6_02245CFC(SysTask *param0)
+void SetFlyLandingTaskDone(SysTask *param0)
 {
-    FlyLandingEnv *v0 = SysTask_GetParam(param0);
-
-    Heap_Free(v0);
+    FlyLandingEnv *env = SysTask_GetParam(param0);
+    Heap_Free(env);
     SysTask_Done(param0);
 }
 
@@ -2927,29 +2936,29 @@ static void FlyLandingTask(SysTask *task, void *taskEnv)
 {
     FlyLandingEnv *flyLandingTaskEnv = taskEnv;
 
-    while (FlyLandingTaskFuncs[flyLandingTaskEnv->state](flyLandingTaskEnv) == TRUE) {
+    while (FlyLandingFuncs[flyLandingTaskEnv->state](flyLandingTaskEnv) == TRUE) {
         (void)0;
     }
 
-    if (flyLandingTaskEnv->unk_10) {
+    if (flyLandingTaskEnv->animationInProgress) {
         if (flyLandingTaskEnv->unk_1D4 != NULL) {
             sub_020713D0(flyLandingTaskEnv->unk_1D4);
         }
 
-        if (flyLandingTaskEnv->unk_18.unk_08 != NULL) {
-            SpriteList_Update(flyLandingTaskEnv->unk_18.unk_08);
+        if (flyLandingTaskEnv->unk_18.spriteList != NULL) {
+            SpriteList_Update(flyLandingTaskEnv->unk_18.spriteList);
         }
     }
 }
 
-static BOOL SubTask_FlyLanding_HidePlayer(FlyLandingEnv *taskEnv)
+static BOOL FlyLanding_HidePlayerMapObj(FlyLandingEnv *taskEnv)
 {
     HidePlayerMapObj(taskEnv->fieldSystem, TRUE);
     taskEnv->state++;
     return FALSE;
 }
 
-static BOOL ov6_02245D60(FlyLandingEnv *taskEnv)
+static BOOL FlyLanding_LoadResources(FlyLandingEnv *taskEnv)
 {
     taskEnv->unk_1D4 = sub_020711EC(HEAP_ID_FIELD, 32);
     ov6_02243258(&taskEnv->unk_18, 32, 2, 2, 2, 1, 4, 3, 4, 2);
@@ -2992,23 +3001,23 @@ static BOOL ov6_02245D60(FlyLandingEnv *taskEnv)
     return FALSE;
 }
 
-static BOOL ov6_02245EA4(FlyLandingEnv *param0)
+static BOOL FlyLanding_InitAnimTasks(FlyLandingEnv *param0)
 {
-    param0->unk_1D0 = ov6_02243848(&param0->unk_18, param0->playerGender);
-    Sprite_SetDrawFlag(param0->unk_1D0, TRUE);
+    param0->playerSprite = FlyLanding_InitPlayerSprite(&param0->unk_18, param0->playerGender);
+    Sprite_SetDrawFlag(param0->playerSprite, TRUE);
 
-    param0->unk_1D8 = ov6_02243888(param0->fieldSystem, param0->unk_1D4, &param0->unk_18, param0->unk_1D0);
-    ov6_02243950(param0->unk_1D8);
+    param0->unk_1D8 = CreateFlyLandingAnimTasks(param0->fieldSystem, param0->unk_1D4, &param0->unk_18, param0->playerSprite);
+    FlyLanding_InitEnv(param0->unk_1D8);
 
     param0->state++;
-    param0->unk_10 = 1;
+    param0->animationInProgress = TRUE;
 
     return FALSE;
 }
 
-static BOOL ov6_02245EEC(FlyLandingEnv *param0)
+static BOOL FlyLanding_EndTaskIfAnimationEnded(FlyLandingEnv *param0)
 {
-    if (ov6_022438BC(param0->unk_1D8) != 2) {
+    if (FlyLanding_HasAnimationEnded(param0->unk_1D8) != 2) {
         return FALSE;
     }
 
@@ -3018,13 +3027,13 @@ static BOOL ov6_02245EEC(FlyLandingEnv *param0)
     return FALSE;
 }
 
-static BOOL ov6_02245F18(FlyLandingEnv *param0)
+static BOOL FlyLanding_CleanupResources(FlyLandingEnv *param0)
 {
     sub_0207121C(param0->unk_1D4);
     ov6_0224339C(&param0->unk_18);
 
-    param0->unk_10 = 0;
-    param0->unk_04 = 1;
+    param0->animationInProgress = FALSE;
+    param0->animationFinished = TRUE;
     param0->state++;
 
     return FALSE;
@@ -3035,12 +3044,12 @@ static BOOL SubTask_FlyLanding_NOP(FlyLandingEnv *param0)
     return FALSE;
 }
 
-static BOOL (*const FlyLandingTaskFuncs[])(FlyLandingEnv *) = {
-    SubTask_FlyLanding_HidePlayer,
-    ov6_02245D60,
-    ov6_02245EA4,
-    ov6_02245EEC,
-    ov6_02245F18,
+static BOOL (*const FlyLandingFuncs[])(FlyLandingEnv *) = {
+    FlyLanding_HidePlayerMapObj,
+    FlyLanding_LoadResources,
+    FlyLanding_InitAnimTasks,
+    FlyLanding_EndTaskIfAnimationEnded,
+    FlyLanding_CleanupResources,
     SubTask_FlyLanding_NOP
 };
 
@@ -3054,7 +3063,7 @@ static void *AllocFromHeapAtEnd(u32 heapID, int size)
     return ptr;
 }
 
-static void HidePlayer(HMCutIn *cutIn, BOOL hidden)
+static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden)
 {
     MapObject *playObj = Player_MapObject(cutIn->fieldSystem->playerAvatar);
 
@@ -3062,46 +3071,46 @@ static void HidePlayer(HMCutIn *cutIn, BOOL hidden)
     MapObject_SetHidden(playObj, hidden);
 }
 
-static int ov6_02245F80(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ShowHidePlayerSprite_GetCutInFromContext(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    const HMCutInWithPlayer *v0 = sub_020715BC(param0);
-    HMCutInWithPlayer *v1 = param1;
+    const HMCutInWithPlayer *wrapper = sub_020715BC(param0);
+    HMCutInWithPlayer *destWrapper = param1;
 
-    *v1 = *v0;
+    *destWrapper = *wrapper;
     return 1;
 }
 
-static void ov6_02245F94(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ShowHidePlayerSprite_ShowHidePlayerSprite(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    fx32 v0, v1, v2;
-    const VecFx32 *v3;
-    HMCutInWithPlayer *v4 = param1;
+    fx32 playerSpriteY, windowMinY, windowMaxY;
+    const VecFx32 *playerSpritePosition;
+    HMCutInWithPlayer *wrapper = param1;
 
-    v3 = Sprite_GetPosition(v4->playerSprite);
-    v0 = v3->y;
-    v1 = v4->cutIn->windowY1;
-    v2 = v4->cutIn->windowY2;
+    playerSpritePosition = Sprite_GetPosition(wrapper->playerSprite);
+    playerSpriteY = playerSpritePosition->y;
+    windowMinY = wrapper->cutIn->windowY1;
+    windowMaxY = wrapper->cutIn->windowY2;
 
-    if (v4->cutIn->someFlag4 == FALSE) {
-        if (v0 - (FX32_ONE * 8) >= v1 && v0 + (FX32_ONE * 8) <= v2) {
-            Sprite_SetDrawFlag(v4->playerSprite, TRUE);
+    if (wrapper->cutIn->forceDrawPlayerSprite == FALSE) {
+        if (playerSpriteY - (FX32_ONE * 8) >= windowMinY && playerSpriteY + (FX32_ONE * 8) <= windowMaxY) {
+            Sprite_SetDrawFlag(wrapper->playerSprite, TRUE);
         } else {
-            Sprite_SetDrawFlag(v4->playerSprite, FALSE);
+            Sprite_SetDrawFlag(wrapper->playerSprite, FALSE);
         }
     } else {
-        Sprite_SetDrawFlag(v4->playerSprite, TRUE);
+        Sprite_SetDrawFlag(wrapper->playerSprite, TRUE);
     }
 }
 
-static const UnkStruct_ov101_021D86B0 Unk_ov6_02249234 = {
+static const UnkStruct_ov101_021D86B0 ShowHidePlayerSpriteFuncs = {
     sizeof(HMCutInWithPlayer),
-    ov6_02245F80,
+    ShowHidePlayerSprite_GetCutInFromContext,
     UnkStruct_ov101_021D5D90_DoNothing3,
-    ov6_02245F94,
+    ShowHidePlayerSprite_ShowHidePlayerSprite,
     UnkStruct_ov101_021D5D90_DoNothing2
 };
 
-static void ov6_02245FDC(HMCutIn *cutIn)
+static void CreateDrawCutInPlayerSpriteTasks(HMCutIn *cutIn)
 {
     VecFx32 initialPosition = { 0, 0, 0 };
     HMCutInWithPlayer wrapper;
@@ -3109,7 +3118,7 @@ static void ov6_02245FDC(HMCutIn *cutIn)
     wrapper.playerSprite = cutIn->playerSprite;
     wrapper.cutIn = cutIn;
 
-    cutIn->unk_254 = sub_02071330(cutIn->unk_244, &Unk_ov6_02249234, &initialPosition, 0, &wrapper, 134);
+    cutIn->unk_254 = sub_02071330(cutIn->unk_244, &ShowHidePlayerSpriteFuncs, &initialPosition, 0, &wrapper, 134);
 }
 
 static void ov6_02246018(HMCutIn *cutIn)

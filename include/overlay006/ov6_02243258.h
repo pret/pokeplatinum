@@ -6,11 +6,11 @@
 #include "pokemon.h"
 #include "sys_task_manager.h"
 
-SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, u32 param1, Pokemon *shownPokemon, int playerGender);
+SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *shownPokemon, int playerGender);
 int CheckCutInFinished(SysTask *cutInTask);
 void SysTask_CutIn_Done(SysTask *cutInTask);
 SysTask *FieldTask_InitFlyLandingTask(FieldSystem *fieldSystem, int playerGender);
-int ov6_02245CF0(SysTask *param0);
-void ov6_02245CFC(SysTask *param0);
+int IsFlyLandingAnimFinished(SysTask *param0);
+void SetFlyLandingTaskDone(SysTask *param0);
 
 #endif // POKEPLATINUM_OV6_02243258_H
