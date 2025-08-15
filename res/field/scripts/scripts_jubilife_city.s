@@ -267,7 +267,7 @@ _03C0:
     ApplyMovement LOCALID_PLAYER, _0504
     ApplyMovement 31, _0574
     WaitMovement
-    ScrCmd_187 31, 186, 0, 0x2F4, 1
+    SetPosition 31, 186, 0, 0x2F4, 1
     SetObjectEventPos 31, 186, 0x2F4
     CallCommonScript 0x808
     Return
@@ -1617,7 +1617,7 @@ _1451:
     Message 58
     Message 60
     Message 61
-    ScrCmd_187 23, 174, 1, 0x303, 1
+    SetPosition 23, 174, 1, 0x303, 1
     SetVar VAR_0x8004, 0x1CE
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00EF

@@ -20,14 +20,14 @@ enum NamingScreenType {
 
 typedef struct NamingScreenArgs {
     enum NamingScreenType type;
-    int unk_04;
-    int unk_08;
+    int playerGenderOrMonSpecies;
+    int monForm;
     int maxChars;
-    int unk_10;
+    int monGender;
     int unk_14;
     Strbuf *textInputStr;
     u16 unk_1C[20];
-    int unk_44;
+    int battleMsgID;
     PCBoxes *pcBoxes;
     Options *options;
 } NamingScreenArgs;

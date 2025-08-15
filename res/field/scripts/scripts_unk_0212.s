@@ -158,7 +158,7 @@ _01D4:
     End
 
 _01E3:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _01E9:

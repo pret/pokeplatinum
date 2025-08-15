@@ -362,7 +362,7 @@ static BOOL sub_02097F38(FieldTask *param0)
         partyMan->unk_20 = 15;
         partyMan->options = v1->options;
 
-        FieldTask_RunApplication(param0, &Unk_020F1E88, partyMan);
+        FieldTask_RunApplication(param0, &gPokemonPartyAppTemplate, partyMan);
         v0->unk_14 = 4;
     } break;
     case 4: {

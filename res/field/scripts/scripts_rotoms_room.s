@@ -207,7 +207,7 @@ RotomsRoom_ChooseARotom:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_191
+    SelectMoveTutorPokemon
     GetSelectedPartySlot LOCALID_PARTY_SLOT
     ReturnToField
     FadeScreen 6, 1, 1, 0
@@ -239,7 +239,7 @@ _0403:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_191
+    SelectMoveTutorPokemon
     GetSelectedPartySlot LOCALID_PARTY_SLOT
     ReturnToField
     FadeScreen 6, 1, 1, 0
