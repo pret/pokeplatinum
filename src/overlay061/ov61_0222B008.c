@@ -147,7 +147,7 @@ static int ov61_0222B168(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
 {
     int v0, v1;
 
-    v0 = ov4_021D1F3C(-param0->unk_3E0, param0->unk_3E4);
+    v0 = NintendoWFC_GetErrorCode(-param0->unk_3E0, param0->unk_3E4);
     ov61_0222BB60(param0, v0, -param0->unk_3E0);
 
     return 1;

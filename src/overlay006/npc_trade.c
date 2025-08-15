@@ -6,7 +6,7 @@
 #include "generated/npc_trades.h"
 
 #include "field/field_system.h"
-#include "overlay006/struct_ov6_02246254.h"
+#include "overlay006/struct_npc_trade_animation_template.h"
 
 #include "graphics.h"
 #include "heap.h"
@@ -74,7 +74,7 @@ void NpcTrade_ReceiveMon(FieldSystem *fieldSystem, NpcTradeData *data, int slot)
     SaveData_UpdateCatchRecords(fieldSystem->saveData, data->mon);
 }
 
-void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, UnkStruct_ov6_02246254 *param3, Pokemon *givingMon, Pokemon *receivingMon)
+void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, TradeAnimationTemplate *animationConfig, Pokemon *givingMon, Pokemon *receivingMon)
 {
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *partyMon = Party_GetPokemonBySlotIndex(party, slot);
@@ -85,19 +85,19 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, UnkStr
     Pokemon_Copy(partyMon, givingMon);
     Pokemon_Copy(data->mon, receivingMon);
 
-    param3->unk_00 = Pokemon_GetBoxPokemon(givingMon);
-    param3->unk_04 = Pokemon_GetBoxPokemon(receivingMon);
-    param3->unk_08 = data->trainerInfo;
-    param3->unk_10 = 1;
-    param3->options = SaveData_GetOptions(fieldSystem->saveData);
+    animationConfig->sendingPokemon = Pokemon_GetBoxPokemon(givingMon);
+    animationConfig->receivingPokemon = Pokemon_GetBoxPokemon(receivingMon);
+    animationConfig->otherTrainer = data->trainerInfo;
+    animationConfig->tradeType = TRADE_TYPE_NORMAL;
+    animationConfig->options = SaveData_GetOptions(fieldSystem->saveData);
 
     int timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
     if (timeOfDay == TIMEOFDAY_MORNING || timeOfDay == TIMEOFDAY_DAY) {
-        param3->unk_0C = 0;
+        animationConfig->background = TRADE_BACKGROUND_DAY;
     } else if (timeOfDay == TIMEOFDAY_TWILIGHT) {
-        param3->unk_0C = 1;
+        animationConfig->background = TRADE_BACKGROUND_EVENING;
     } else {
-        param3->unk_0C = 2;
+        animationConfig->background = TRADE_BACKGROUND_NIGHT;
     }
 }
 

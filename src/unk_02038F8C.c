@@ -28,14 +28,14 @@ void sub_02038F8C(WiFiHistory *wiFiHistory)
             v4 = CommInfo_TrainerInfo(v0);
             v3 = TrainerInfo_RegionCode(v4);
 
-            sub_02038FDC(wiFiHistory, v1, v2, v3);
+            WiFiHistory_FlagGeonetCommunicatedWith(wiFiHistory, v1, v2, v3);
         }
     }
 }
 
-void sub_02038FDC(WiFiHistory *wiFiHistory, int param1, int param2, int param3)
+void WiFiHistory_FlagGeonetCommunicatedWith(WiFiHistory *wiFiHistory, int country, int region, int language)
 {
-    if (sub_0202C8C8(wiFiHistory, param1, param2) == 0) {
-        sub_0202C918(wiFiHistory, param1, param2, 1);
+    if (WiFiHistory_GetGeonetCommunicatedWith(wiFiHistory, country, region) == 0) {
+        WiFiHistory_SetGeonetCommunicatedWith(wiFiHistory, country, region, 1);
     }
 }

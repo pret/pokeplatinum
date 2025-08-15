@@ -97,7 +97,7 @@ BOOL sub_020391DC(SaveData *saveData, int *param1, int heapID)
             sub_02039298(saveData, v0, v2, heapID, 2);
             CommInfo_SavePlayerRecord(saveData);
         } else if (param1[v0] == 1) {
-            if (!sub_020389B8()) {
+            if (!CommMan_IsConnectedToWifi()) {
                 sub_02039298(saveData, v0, v2, heapID, 1);
                 MI_CpuCopy8(v4, &v3[v2], sizeof(DWCFriendData));
 

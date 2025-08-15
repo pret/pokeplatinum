@@ -220,7 +220,7 @@ static int sub_0206BC48(UnkStruct_0206BC48 *param0, FieldSystem *fieldSystem)
 {
     SaveData *saveData;
 
-    if (sub_02039074(fieldSystem->saveData)) {
+    if (WiFiList_HasValidLogin(fieldSystem->saveData)) {
         param0->unk_08 = sub_0203E1AC(fieldSystem, param0->unk_12, param0->unk_14);
         return 1;
     } else {

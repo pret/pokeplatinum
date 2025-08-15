@@ -7,9 +7,9 @@
 #define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
 
 #define ColorR(source) ((source) & 0x1F)
-#define ColorG(source) (((source) >> 5) & 0x1F)
-#define ColorB(source) (((source) >> 10) & 0x1F)
-#define RGB(r, g, b)   (((b) << 10) | ((g) << 5) | (r))
+#define ColorG(source) (((source) >> GX_RGB_G_SHIFT) & 0x1F)
+#define ColorB(source) (((source) >> GX_RGB_B_SHIFT) & 0x1F)
+#define RGB(r, g, b)   (((b) << GX_RGB_B_SHIFT) | ((g) << GX_RGB_G_SHIFT) | (r))
 
 enum PaletteBufferID {
     PLTTBUF_MAIN_BG = 0,

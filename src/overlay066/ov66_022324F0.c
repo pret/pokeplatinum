@@ -1165,7 +1165,7 @@ static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0)
     PPW_LOBBY_RESULT v3;
 
     v0 = WiFiHistory_GetCountry(param0->wiFiHistory);
-    v1 = sub_0202C8C4(param0->wiFiHistory);
+    v1 = WiFiHistory_GetRegion(param0->wiFiHistory);
 
     if (v0 == 0) {
         return 0;

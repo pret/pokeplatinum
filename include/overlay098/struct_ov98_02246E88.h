@@ -4,8 +4,8 @@
 #include <dwc.h>
 #include <nnsys.h>
 
-#include "overlay096/struct_ov96_0223B574.h"
-#include "overlay096/struct_ov96_0223B574_1.h"
+#include "overlay096/struct_world_exchange_trainer.h"
+#include "overlay096/struct_world_exchange_trainer_error.h"
 
 #include "game_options.h"
 #include "overlay_manager.h"
@@ -29,8 +29,8 @@ typedef struct {
     int unk_90;
     u8 padding_94[4];
     void *unk_98;
-    UnkStruct_ov96_0223B574 unk_9C;
-    UnkStruct_ov96_0223B574_1 unk_100;
+    WorldExchangeTrainer unk_9C;
+    WorldExchangeTrainerError unk_100;
     u32 unk_108;
     u32 unk_10C;
     u8 unk_110;

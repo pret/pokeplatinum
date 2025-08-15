@@ -8,13 +8,13 @@
 int WiFiHistory_SaveSize(void);
 void WiFiHistory_Init(WiFiHistory *wiFiHistory);
 WiFiHistory *SaveData_WiFiHistory(SaveData *saveData);
-void sub_0202C88C(WiFiHistory *wiFiHistory, int param1, int param2);
+void WiFiHistory_SetCountryAndRegion(WiFiHistory *wiFiHistory, int param1, int param2);
 int WiFiHistory_GetCountry(const WiFiHistory *wiFiHistory);
-int sub_0202C8C4(const WiFiHistory *wiFiHistory);
-int sub_0202C8C8(const WiFiHistory *wiFiHistory, int param1, int param2);
-void sub_0202C918(WiFiHistory *wiFiHistory, int param1, int param2, int param3);
-BOOL sub_0202C990(const WiFiHistory *wiFiHistory);
-void sub_0202C994(WiFiHistory *wiFiHistory, BOOL param1);
-void sub_0202C9A0(WiFiHistory *wiFiHistory);
+int WiFiHistory_GetRegion(const WiFiHistory *wiFiHistory);
+int WiFiHistory_GetGeonetCommunicatedWith(const WiFiHistory *wiFiHistory, int param1, int param2);
+void WiFiHistory_SetGeonetCommunicatedWith(WiFiHistory *wiFiHistory, int param1, int param2, int param3);
+BOOL WiFiHistory_HasInteractedOutsideJapan(const WiFiHistory *wiFiHistory);
+void WiFiHistory_SetInteractedOutsideJapan(WiFiHistory *wiFiHistory, BOOL param1);
+void WiFiHistory_UpdateGeonetCommunicationMap(WiFiHistory *wiFiHistory);
 
 #endif // POKEPLATINUM_UNK_0202C858_H

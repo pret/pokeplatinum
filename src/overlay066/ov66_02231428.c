@@ -218,7 +218,7 @@ int ov66_022316F4(int param0, int param1)
     int v0;
     int v1;
 
-    v0 = ov4_021D1F3C(param0, param1);
+    v0 = NintendoWFC_GetErrorCode(param0, param1);
 
     if ((v0 == 11) || (param0 == ((DWC_ERROR_NUM) + 5))) {
         v1 = 14;
@@ -240,7 +240,7 @@ int ov66_02231718(int param0, int param1)
     int v0;
     int v1;
 
-    v0 = ov4_021D1F3C(param0, param1);
+    v0 = NintendoWFC_GetErrorCode(param0, param1);
 
     if (param0 == ((DWC_ERROR_NUM) + 5)) {
         v0 = 11;

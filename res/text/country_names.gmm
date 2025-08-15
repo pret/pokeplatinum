@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="40631" />
-	<row id="pl_msg_00000694_00000" index="0">
+	<row id="Text_Country_None" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">None</language>
 	</row>
@@ -413,7 +413,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Jamaica</language>
 	</row>
-	<row id="pl_msg_00000694_00103" index="103">
+	<row id="Text_Country_Japan" index="103">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Japan</language>
 	</row>

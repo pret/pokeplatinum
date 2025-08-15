@@ -58,7 +58,7 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
     param0->unk_1B_1 = v5;
     param0->unk_1B_0 = v6;
     param0->unk_17 = WiFiHistory_GetCountry(wiFiHistory);
-    param0->unk_18 = sub_0202C8C4(wiFiHistory);
+    param0->unk_18 = WiFiHistory_GetRegion(wiFiHistory);
 
     for (v7 = 0; v7 < 40; v7++) {
         param0->unk_20_val2[v7] = 0xffff;

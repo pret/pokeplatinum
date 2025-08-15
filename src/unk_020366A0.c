@@ -52,7 +52,7 @@ typedef struct {
     u8 unk_50;
     u8 unk_51;
     u8 unk_52;
-    u8 unk_53;
+    u8 unk_53; // network service
     u8 unk_54;
     u8 unk_55;
     u8 unk_56;
@@ -153,7 +153,7 @@ static void sub_020366A0(SaveData *saveData, int param1)
     }
 
     GF_ASSERT(saveData);
-    sub_02033478();
+    WirelessDriver_Init();
 
     Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
     MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
@@ -187,12 +187,12 @@ static void sub_02036734(void)
         Heap_Free(Unk_021C07D4->unk_00);
     }
 
-    if (sub_020389B8()) {
+    if (CommMan_IsConnectedToWifi()) {
         Heap_Destroy(HEAP_ID_49);
     }
 
-    sub_02039794();
-    sub_020334CC();
+    NetworkIcon_Destroy();
+    WirelessDriver_Shutdown();
     Heap_Free(Unk_021C07D4);
     Heap_Destroy(HEAP_ID_COMMUNICATION);
 
@@ -282,7 +282,7 @@ void sub_02036894(void)
 
 void sub_020368A4(void)
 {
-    sub_02033478();
+    WirelessDriver_Init();
     sub_02036C94(sub_02037108, 0);
 }
 
@@ -372,7 +372,7 @@ void sub_020369EC(SaveData *saveData)
     }
 
     if (Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080) == 0) {
-        sub_02038A0C();
+        NetworkError_DisplayGTSCriticalError();
     }
 
     sub_020366A0(saveData, 9);
@@ -439,7 +439,7 @@ void sub_02036AC4(void)
         CommMan_SetErrorHandling(0, 0);
     }
 
-    sub_02039794();
+    NetworkIcon_Destroy();
 
     Unk_021C07D4->unk_4A = 9;
     Unk_021C07D4->unk_53 = 0;
@@ -543,10 +543,10 @@ void sub_02036C50(void)
         }
     }
 
-    if (sub_020389B8()) {
-        sub_020397B0(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
+    if (CommMan_IsConnectedToWifi()) {
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - DWC_GetLinkLevel());
     } else if (CommServerClient_IsInitialized()) {
-        sub_020397B0(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
+        NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
 }
 
@@ -565,7 +565,7 @@ static void sub_02036CA4(void)
         return;
     }
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -792,7 +792,7 @@ static void sub_020370B8(void)
 
 static void sub_020370BC(void)
 {
-    if (!sub_020389B8()) {
+    if (!CommMan_IsConnectedToWifi()) {
         if (!sub_02033E30()) {
             return;
         }
@@ -819,7 +819,7 @@ static void sub_020370EC(void)
 
 static void sub_02037108(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -841,7 +841,7 @@ static void sub_02037144(void)
 {
     TrainerInfo *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -872,7 +872,7 @@ static void sub_020371A8(void)
 
 static void sub_020371C0(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1036,7 +1036,7 @@ static void sub_020373F0(void)
 {
     void *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1509,7 +1509,7 @@ static void sub_02037B70(void)
 
 static void sub_02037B78(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1596,7 +1596,7 @@ static void sub_02037CE4(void)
 
 static void sub_02037D08(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1643,7 +1643,7 @@ BOOL sub_02037DB0(void)
     if ((Unk_021C07D4->unk_4A == 24) || (Unk_021C07D4->unk_4A == 25) || (Unk_021C07D4->unk_4A == 36)) {
         ov4_021D2184();
         return 1;
-    } else if (sub_020389B8()) {
+    } else if (CommMan_IsConnectedToWifi()) {
         if (Unk_021C07D4->unk_4A == 33) {
             sub_02036C94(sub_02038D80, 0);
         } else {
@@ -1660,7 +1660,7 @@ static void sub_02037E20(void)
 {
     TrainerInfo *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -1675,7 +1675,7 @@ static void sub_02037E20(void)
 
 static void sub_02037E68(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -2204,7 +2204,7 @@ static void sub_020386B4(void)
 {
     TrainerInfo *v0;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 
@@ -2400,7 +2400,7 @@ void sub_020389A0(u8 *param0)
     MI_CpuCopy8(Unk_021C07D4->unk_04, param0, NELEMS(Unk_021C07D4->unk_04));
 }
 
-BOOL sub_020389B8(void)
+BOOL CommMan_IsConnectedToWifi(void)
 {
     return CommLocal_IsWifiGroup(sub_0203895C());
 }
@@ -2429,18 +2429,18 @@ void sub_020389FC(int param0)
 {
     int v0 = 0;
 
-    sub_02039834(HEAP_ID_SYSTEM, 1, param0);
+    NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 1, param0);
 
     while (TRUE) {
         v0++;
     }
 }
 
-void sub_02038A0C(void)
+void NetworkError_DisplayGTSCriticalError(void)
 {
     int v0 = 0;
 
-    sub_02039834(HEAP_ID_SYSTEM, 4, 0);
+    NetworkError_DisplayNetworkError(HEAP_ID_SYSTEM, 4, 0);
 
     while (TRUE) {
         v0++;
@@ -2532,7 +2532,7 @@ void sub_02038B84(void)
 
 static void sub_02038BA8(void)
 {
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         return;
     }
 

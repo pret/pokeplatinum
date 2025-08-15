@@ -12,7 +12,7 @@ void ov18_0221F800(int heapID)
     OSIntrMode v0;
     void *v1;
 
-    sub_02033478();
+    WirelessDriver_Init();
 
     OS_InitTick();
     OS_InitAlarm();

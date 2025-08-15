@@ -6,6 +6,8 @@
 #include <string.h>
 #include <vct.h>
 
+#include "constants/dwc.h"
+
 #include "overlay004/funcptr_ov4_021D1104.h"
 #include "overlay004/funcptr_ov4_021D1120.h"
 #include "overlay004/funcptr_ov4_021D113C.h"
@@ -196,7 +198,7 @@ int ov4_021D0FEC()
     switch (Unk_ov4_0221A400->unk_1064) {
     case 0: {
         DWC_SetMemFunc(ov4_021D1AA0, ov4_021D1B04);
-        DWC_InitInetEx(&Unk_ov4_0221A400->unk_F0C, 2, 1, 20);
+        DWC_InitInetEx(&Unk_ov4_0221A400->unk_F0C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
 
@@ -1030,7 +1032,7 @@ void ov4_021D1F18(void)
     }
 }
 
-int ov4_021D1F3C(int param0, int param1)
+int NintendoWFC_GetErrorCode(int param0, int param1)
 {
     int v0 = param0 / 100;
     int v1 = param0 / 1000;
