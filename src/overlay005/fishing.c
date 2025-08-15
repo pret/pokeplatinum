@@ -1,4 +1,4 @@
-#include "overlay005/ov5_021F08CC.h"
+#include "overlay005/fishing.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -69,7 +69,7 @@ typedef struct {
     enum ENCOUNTER_FISHING_ROD_TYPE rodType;
     FieldBattleDTO *fishEncounterDTO;
     SysTask *sysTask;
-} FishingEncounterInfo;
+} FishingContext;
 
 typedef struct {
     BOOL isFishEncountered;
@@ -106,55 +106,55 @@ static int HasCaughtFish(SysTask *task);
 BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *);
 const int Unk_ov5_021FFA00[];
 
-void *FishingEncounterInfo_Init(FieldSystem *fieldSystem, u32 heapID, enum ENCOUNTER_FISHING_ROD_TYPE rodType)
+void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum ENCOUNTER_FISHING_ROD_TYPE rodType)
 {
-    FishingEncounterInfo *fishEncounterInfo = Heap_AllocFromHeapAtEnd(heapID, sizeof(FishingEncounterInfo));
+    FishingContext *fishingContext = Heap_AllocFromHeapAtEnd(heapID, sizeof(FishingContext));
 
-    memset(fishEncounterInfo, 0, sizeof(FishingEncounterInfo));
+    memset(fishingContext, 0, sizeof(FishingContext));
 
-    fishEncounterInfo->rodType = rodType;
-    fishEncounterInfo->fishingRodItemID = ConvertRodTypeToRodItem(rodType);
+    fishingContext->rodType = rodType;
+    fishingContext->fishingRodItemID = ConvertRodTypeToRodItem(rodType);
 
-    return fishEncounterInfo;
+    return fishingContext;
 }
 
 BOOL ov5_021F08F8(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    FishingEncounterInfo *fishEncounterInfo = FieldTask_GetEnv(taskMan);
+    FishingContext *fishingContext = FieldTask_GetEnv(taskMan);
 
-    switch (fishEncounterInfo->state) {
+    switch (fishingContext->state) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        fishEncounterInfo->fishEncounterDTO = NULL;
-        fishEncounterInfo->isFishEncountered = WildEncounters_TryFishingEncounter(fieldSystem, fishEncounterInfo->rodType, &fishEncounterInfo->fishEncounterDTO);
-        fishEncounterInfo->sysTask = StartFishingTask(fieldSystem, fishEncounterInfo->rodType, fishEncounterInfo->isFishEncountered);
-        fishEncounterInfo->state++;
+        fishingContext->fishEncounterDTO = NULL;
+        fishingContext->isFishEncountered = WildEncounters_TryFishingEncounter(fieldSystem, fishingContext->rodType, &fishingContext->fishEncounterDTO);
+        fishingContext->sysTask = StartFishingTask(fieldSystem, fishingContext->rodType, fishingContext->isFishEncountered);
+        fishingContext->state++;
         break;
     case 1:
-        if (ov5_021F09D8(fishEncounterInfo->sysTask) == 1) {
-            int caughtFish = HasCaughtFish(fishEncounterInfo->sysTask);
+        if (ov5_021F09D8(fishingContext->sysTask) == 1) {
+            int caughtFish = HasCaughtFish(fishingContext->sysTask);
 
-            FishingSysTask_Free(fishEncounterInfo->sysTask);
+            FishingSysTask_Free(fishingContext->sysTask);
 
             if (caughtFish == TRUE) {
-                Pokemon *wildFish = Party_GetPokemonBySlotIndex(fishEncounterInfo->fishEncounterDTO->parties[1], 0);
-                sub_0206D340(fieldSystem, TRUE, fishEncounterInfo->fishingRodItemID, wildFish);
+                Pokemon *wildFish = Party_GetPokemonBySlotIndex(fishingContext->fishEncounterDTO->parties[1], 0);
+                sub_0206D340(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
 
                 GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_CAUGHT_FISH);
 
-                Encounter_StartVsWild(fieldSystem, taskMan, fishEncounterInfo->fishEncounterDTO);
-                Heap_Free(fishEncounterInfo);
+                Encounter_StartVsWild(fieldSystem, taskMan, fishingContext->fishEncounterDTO);
+                Heap_Free(fishingContext);
 
                 return FALSE;
             }
 
-            if (fishEncounterInfo->fishEncounterDTO != NULL) {
-                FieldBattleDTO_Free(fishEncounterInfo->fishEncounterDTO);
+            if (fishingContext->fishEncounterDTO != NULL) {
+                FieldBattleDTO_Free(fishingContext->fishEncounterDTO);
             }
 
             MapObjectMan_UnpauseAllMovement(fieldSystem->mapObjMan);
-            Heap_Free(fishEncounterInfo);
+            Heap_Free(fishingContext);
 
             return TRUE;
         }

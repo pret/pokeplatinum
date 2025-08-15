@@ -14,9 +14,9 @@
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
+#include "overlay005/fishing.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F007C.h"
-#include "overlay005/ov5_021F08CC.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021F0468_decl.h"
 #include "overlay006/ov6_02247100.h"
@@ -771,15 +771,15 @@ static void UseOldRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseCon
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = ov5_021F08F8;
-    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 0);
+    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_OLD_ROD);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL UseOldRodInField(ItemFieldUseContext *usageContext)
 {
-    void *v0 = ov5_021F08CC(usageContext->fieldSystem, HEAP_ID_FIELD, 0);
+    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_OLD_ROD);
 
-    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, v0);
+    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, fishingContext);
     return FALSE;
 }
 
@@ -791,15 +791,15 @@ static void UseGoodRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = ov5_021F08F8;
-    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 1);
+    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_GOOD_ROD);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL UseGoodRodInField(ItemFieldUseContext *usageContext)
 {
-    void *v0 = ov5_021F08CC(usageContext->fieldSystem, HEAP_ID_FIELD, 1);
+    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_GOOD_ROD);
 
-    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, v0);
+    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, fishingContext);
     return FALSE;
 }
 
@@ -811,15 +811,15 @@ static void UseSuperRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
     FieldSystem_StartFieldMap(fieldSystem);
 
     menu->callback = ov5_021F08F8;
-    menu->taskData = ov5_021F08CC(fieldSystem, HEAP_ID_FIELDMAP, 2);
+    menu->taskData = FishingContext_Init(fieldSystem, HEAP_ID_FIELDMAP, FISHING_TYPE_SUPER_ROD);
     menu->state = START_MENU_STATE_10;
 }
 
 static BOOL UseSuperRodInField(ItemFieldUseContext *usageContext)
 {
-    void *v0 = ov5_021F08CC(usageContext->fieldSystem, HEAP_ID_FIELD, 2);
+    void *fishingContext = FishingContext_Init(usageContext->fieldSystem, HEAP_ID_FIELD, FISHING_TYPE_SUPER_ROD);
 
-    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, v0);
+    FieldSystem_CreateTask(usageContext->fieldSystem, ov5_021F08F8, fishingContext);
     return FALSE;
 }
 
