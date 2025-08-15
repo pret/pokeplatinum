@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/box_app_manager.h"
+#include "overlay019/box_application.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DB8E4.h"
-#include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DBA9C.h"
 #include "overlay019/struct_ov19_021DCF88_decl.h"
@@ -64,7 +64,7 @@ typedef struct {
 
 struct UnkStruct_ov19_021DCF88_t {
     UnkStruct_ov19_021D61B0 *unk_00;
-    const UnkStruct_ov19_021D4DF0 *unk_04;
+    const BoxApplication *unk_04;
     BgConfig *unk_08;
     SpriteList *unk_0C;
     u32 unk_10;
@@ -299,9 +299,9 @@ static const u16 Unk_ov19_021E0264[] = {
     0x0
 };
 
-BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4)
+BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *param1, const BoxApplication *param2, BgConfig *param3, SpriteList *param4)
 {
-    if (ov19_GetBoxMode(param2) == PC_MODE_COMPARE) {
+    if (BoxApp_GetBoxMode(param2) == PC_MODE_COMPARE) {
         *param0 = NULL;
         return 1;
     } else {
@@ -316,7 +316,7 @@ BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_0C = param4;
             v0->unk_14 = NULL;
             v0->unk_84 = Strbuf_Init(32, HEAP_ID_BOX_GRAPHICS);
-            v0->unk_10 = param2->unk_9C.unk_00;
+            v0->unk_10 = param2->touchDialHelper.selectedTouchDial;
             v0->unk_98 = NULL;
             v0->unk_A0 = NULL;
             v0->unk_A8 = NULL;
@@ -452,7 +452,7 @@ static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 
     Sprite_SetFlipMode(param0->unk_30, 1);
 
-    if (ov19_GetBoxMode(param0->unk_04) == PC_MODE_MOVE_ITEMS) {
+    if (BoxApp_GetBoxMode(param0->unk_04) == PC_MODE_MOVE_ITEMS) {
         Sprite_SetAnim(param0->unk_30, 1);
     }
 }
@@ -488,9 +488,9 @@ static BOOL ov19_021DD368(UnkStruct_ov19_021DCF88 *param0)
 void ov19_021DD378(UnkStruct_ov19_021DCF88 *param0)
 {
     if (param0) {
-        u32 v0 = param0->unk_04->unk_9C.unk_00;
+        u32 selectedTouchDialID = param0->unk_04->touchDialHelper.selectedTouchDial;
 
-        if (param0->unk_10 != v0) {
+        if (param0->unk_10 != selectedTouchDialID) {
             SysTaskFunc v1;
             UnkStruct_ov19_021DD378 *v2 = &(param0->unk_B8);
 
@@ -498,15 +498,15 @@ void ov19_021DD378(UnkStruct_ov19_021DCF88 *param0)
             v2->unk_08 = NULL;
             v2->unk_04 = 0;
 
-            switch (v0) {
-            case 0:
+            switch (selectedTouchDialID) {
+            case TOUCH_DIALS_NONE:
                 v2->unk_0C = 8;
                 v1 = ov19_021DD670;
                 ov19_021DD998(param0);
                 ov19_021DDA7C(param0);
                 ov19_021DE324(param0);
                 break;
-            case 1:
+            case TOUCH_DIALS_BOX_JUMP:
                 v2->unk_0C = 8;
 
                 if (param0->unk_10 == 0) {
@@ -519,7 +519,7 @@ void ov19_021DD378(UnkStruct_ov19_021DCF88 *param0)
                 ov19_021DDA7C(param0);
                 v2->unk_08 = param0->unk_2C;
                 break;
-            case 2:
+            case TOUCH_DIALS_MARKINGS:
                 v2->unk_0C = 8;
 
                 if (param0->unk_10 == 0) {
@@ -538,10 +538,10 @@ void ov19_021DD378(UnkStruct_ov19_021DCF88 *param0)
                 return;
             }
 
-            param0->unk_10 = v0;
+            param0->unk_10 = selectedTouchDialID;
             v2->unk_10 = (Bg_GetXOffset(param0->unk_08, 5) * FX32_ONE);
-            v2->unk_14 = (Unk_ov19_021E0258[v0] - v2->unk_10) / v2->unk_0C;
-            v2->unk_18 = Unk_ov19_021E0258[v0] >> FX32_SHIFT;
+            v2->unk_14 = (Unk_ov19_021E0258[selectedTouchDialID] - v2->unk_10) / v2->unk_0C;
+            v2->unk_18 = Unk_ov19_021E0258[selectedTouchDialID] >> FX32_SHIFT;
 
             if (v2->unk_08 != NULL) {
                 Sprite_SetAnim(v2->unk_08, 1);
@@ -735,7 +735,7 @@ static void ov19_021DD794(UnkStruct_ov19_021DCF88 *param0)
 {
     int v0, v1, v2, v3;
 
-    v3 = ov19_021D5EB0(param0->unk_04);
+    v3 = BoxApp_GetTouchDialScrollDelta(param0->unk_04);
 
     if (v3 > 0) {
         v0 = param0->unk_80 + (6 - 1);
@@ -765,7 +765,7 @@ static void ov19_021DD794(UnkStruct_ov19_021DCF88 *param0)
 
 static void ov19_021DD7E8(UnkStruct_ov19_021DCF88 *param0)
 {
-    int v0 = ov19_021D5EB0(param0->unk_04);
+    int v0 = BoxApp_GetTouchDialScrollDelta(param0->unk_04);
     param0->unk_80 += v0;
 
     if (param0->unk_80 < 0) {
@@ -803,7 +803,7 @@ static void ov19_021DD854(UnkStruct_ov19_021DCF88 *param0)
     int v3, v4;
 
     v1 = ov19_021D780C(param0->unk_00);
-    v4 = ov19_021D5EB8(param0->unk_04) + 3;
+    v4 = BoxApp_GetTouchDialOffset(param0->unk_04) + 3;
 
     if (v4 >= 18) {
         v4 -= 18;
@@ -835,10 +835,10 @@ static void ov19_021DD8F8(UnkStruct_ov19_021DCF88 *param0)
     int v2, v3, v4, v5, v6, v7, v8;
 
     v1 = ov19_021D780C(param0->unk_00);
-    v4 = ov19_021D5EB8(param0->unk_04);
+    v4 = BoxApp_GetTouchDialOffset(param0->unk_04);
 
-    if (param0->unk_04->unk_9C.unk_04 > 0) {
-        v4 = (v4 - param0->unk_04->unk_9C.unk_04) + (3 + 1);
+    if (param0->unk_04->touchDialHelper.scrollDelta > 0) {
+        v4 = (v4 - param0->unk_04->touchDialHelper.scrollDelta) + (3 + 1);
 
         if (v4 >= 18) {
             v4 -= 18;
@@ -851,11 +851,11 @@ static void ov19_021DD8F8(UnkStruct_ov19_021DCF88 *param0)
             v8 += 10;
         }
 
-        v3 = param0->unk_04->unk_9C.unk_04;
+        v3 = param0->unk_04->touchDialHelper.scrollDelta;
         v6 = 16;
         v7 = 368;
     } else {
-        v4 = (v4 - param0->unk_04->unk_9C.unk_04) - (2 + 1);
+        v4 = (v4 - param0->unk_04->touchDialHelper.scrollDelta) - (2 + 1);
 
         if (v4 < 0) {
             v4 += 18;
@@ -868,7 +868,7 @@ static void ov19_021DD8F8(UnkStruct_ov19_021DCF88 *param0)
             v8 -= 10;
         }
 
-        v3 = param0->unk_04->unk_9C.unk_04 * -1;
+        v3 = param0->unk_04->touchDialHelper.scrollDelta * -1;
         v6 = 106;
         v7 = 592;
     }
@@ -928,7 +928,7 @@ static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0)
     u32 v2;
     int v3;
 
-    v2 = ov19_GetMonSpriteTransparencyMask(param0->unk_04);
+    v2 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_04);
 
     NNS_G2dInitImageProxy(&v1);
     Graphics_LoadImageMapping(18, 141, 1, 0, 0, NNS_G2D_VRAM_TYPE_2DSUB, 192 * 0x20, 10, &v1);
@@ -942,7 +942,7 @@ static void ov19_021DD9DC(UnkStruct_ov19_021DCF88 *param0)
         Sprite_SetAnim(param0->unk_34[v3], ov19_021DD9B8(v3, v2));
     }
 
-    param0->unk_80 = ov19_GetMarkingsButtonsScrollOffset(param0->unk_04);
+    param0->unk_80 = BoxApp_GetMarkingsButtonsScrollOffset(param0->unk_04);
 }
 
 static void ov19_021DDA7C(UnkStruct_ov19_021DCF88 *param0)
@@ -1171,7 +1171,7 @@ static void ov19_021DDDD0(SysTask *param0, void *param1)
     case 0: {
         int v2, v3, v4, v5, v6, v7, v8;
 
-        if (v1->unk_04->unk_9C.unk_04 > 0) {
+        if (v1->unk_04->touchDialHelper.scrollDelta > 0) {
             v4 = v1->unk_80 + 6 - 1;
 
             if (v4 >= 10) {
@@ -1218,7 +1218,7 @@ static void ov19_021DDDD0(SysTask *param0, void *param1)
             }
         }
 
-        if (v1->unk_04->unk_9C.unk_04 > 0) {
+        if (v1->unk_04->touchDialHelper.scrollDelta > 0) {
             v7 = 0;
             v8 = v1->unk_7C;
         } else {
@@ -1345,7 +1345,7 @@ static void ov19_021DE0F0(SysTask *param0, void *param1)
     case 0: {
         int v2, v3, v4, v5, v6, v7, v8, v9, v10;
 
-        v3 = ov19_021D5EB0(v1->unk_04);
+        v3 = BoxApp_GetTouchDialScrollDelta(v1->unk_04);
         v2 = v1->unk_80;
 
         if (v3 < 0) {
@@ -1465,7 +1465,7 @@ void ov19_021DE2F4(UnkStruct_ov19_021DCF88 *param0)
     if (param0) {
         if (param0->unk_34[0] != NULL) {
             int v0;
-            u32 v1 = ov19_GetMonSpriteTransparencyMask(param0->unk_04);
+            u32 v1 = BoxApp_GetMonSpriteTransparencyMask(param0->unk_04);
 
             for (v0 = 0; v0 < 8; v0++) {
                 Sprite_SetAnim(param0->unk_34[v0], ov19_021DD9B8(v0, v1));
@@ -1500,7 +1500,7 @@ static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)
     };
     int v1, v2;
 
-    v2 = ov19_021D5EB8(param0->unk_04) + 3;
+    v2 = BoxApp_GetTouchDialOffset(param0->unk_04) + 3;
 
     if (v2 >= MAX_PC_BOXES) {
         v2 -= MAX_PC_BOXES;
