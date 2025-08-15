@@ -516,7 +516,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     PokemonSpriteTemplate v2;
-    int v3;
+    int idx;
     RTCDate v4;
     RTCTime v5;
 
@@ -546,8 +546,8 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
-    for (v3 = 0; v3 < 4; v3++) {
-        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
+    for (idx = 0; idx < 4; idx++) {
+        battleSys->pokemonSpriteDataArray[idx].tiles = Heap_AllocFromHeap(HEAP_ID_BATTLE, 32 * 10 * 10);
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -645,8 +645,8 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {
-        for (v3 = 0; v3 < 4; v3++) {
-            battleSys->unk_247C[v3] = v1->unk_194[v3];
+        for (idx = 0; idx < 4; idx++) {
+            battleSys->unk_247C[idx] = v1->unk_194[idx];
         }
     }
 }
@@ -744,7 +744,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->unk_19C = battleSystem->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        Heap_Free(battleSystem->unk_1CC[battlerId].unk_00);
+        Heap_Free(battleSystem->pokemonSpriteDataArray[battlerId].tiles);
     }
 
     Heap_Free(battleSystem->msgBuffer);
