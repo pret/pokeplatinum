@@ -5,16 +5,16 @@
 
 #include "pokemon.h"
 
-int PalParkTransfer_SaveSize(void);
-void PalParkTransfer_Init(PalParkTransfer *transferData);
-void ClearPalParkTransferPokemonData(PalParkTransfer *transferData);
-void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int param2);
-void PalParkTransfer_SaveTransferHistory(PalParkTransfer *transferData, u32 gbaTrainerId);
-void TransferDataToMon(const PalParkTransfer *transferData, int slot, Pokemon *param2);
-int GetPalParkTransferMonCount(const PalParkTransfer *transferData);
-int PalParkTransfer_GetSecondsSinceLastTransfer(const PalParkTransfer *transferData, u32 gbaTrainerId);
-BOOL MacAddressMatchesLastPalParkTransfer(const PalParkTransfer *transferData);
-BOOL RtcOffsetMatchesLastPalParkTransfer(const PalParkTransfer *transferData);
-BOOL IsPalParkTransferMacAddressUnset(const PalParkTransfer *transferData);
+int MigratedPokemon_SaveSize(void);
+void PalParkTransfer_Init(MigratedPokemon *transferData);
+void ClearPalParkTransferPokemonData(MigratedPokemon *transferData);
+void BoxMonToTransferData(MigratedPokemon *transfer, BoxPokemon *boxMon, int param2);
+void PalParkTransfer_SaveTransferHistory(MigratedPokemon *transferData, u32 gbaTrainerId);
+void MigratedPokemon_ToPokemon(const MigratedPokemon *transferData, int slot, Pokemon *mon);
+int GetPalParkTransferMonCount(const MigratedPokemon *transferData);
+int PalParkTransfer_GetSecondsSinceLastTransfer(const MigratedPokemon *transferData, u32 gbaTrainerId);
+BOOL MacAddressMatchesLastPalParkTransfer(const MigratedPokemon *transferData);
+BOOL RtcOffsetMatchesLastPalParkTransfer(const MigratedPokemon *transferData);
+BOOL IsPalParkTransferMacAddressUnset(const MigratedPokemon *transferData);
 
 #endif // POKEPLATINUM_UNK_0202EEC0_H
