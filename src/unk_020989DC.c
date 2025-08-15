@@ -99,7 +99,7 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *saveData, int heapID)
     u8 v5 = 0, v6 = 0, v7 = 0;
     u8 v8 = 0;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203D9B8));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203D9B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203D9B8));
 
     v0->poffinCase = SaveData_GetPoffinCase(saveData);
@@ -283,7 +283,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 
     param0->unk_0C->unk_02 = 0;
 
-    partyMan = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
+    partyMan = Heap_Alloc(param0->heapID, sizeof(PartyManagementData));
     MI_CpuClear8(partyMan, sizeof(PartyManagementData));
     partyMan->party = param0->unk_0C->unk_10;
     partyMan->bag = param0->unk_0C->unk_14;
@@ -319,7 +319,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
         return 0;
     }
 
-    v2 = Heap_AllocFromHeap(param0->heapID, sizeof(PokemonSummary));
+    v2 = Heap_Alloc(param0->heapID, sizeof(PokemonSummary));
 
     v2->monData = param0->unk_0C->unk_10;
     v2->options = param0->unk_0C->options;
@@ -375,7 +375,7 @@ static int sub_02098D7C(UnkStruct_02098BE4 *param0)
         ov79_021D2460,
         FS_OVERLAY_ID(overlay79),
     };
-    UnkStruct_02098DE8 *v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02098DE8));
+    UnkStruct_02098DE8 *v1 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_02098DE8));
     MI_CpuClear8(v1, sizeof(UnkStruct_02098DE8));
 
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
@@ -415,7 +415,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
         4, 8
     };
 
-    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(PokemonSummary));
+    v1 = Heap_Alloc(param0->heapID, sizeof(PokemonSummary));
     v2 = PoffinCase_AllocateForSlot(param0->unk_0C->poffinCase, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->heapID);
 
     v1->monData = param0->unk_0C->unk_10;

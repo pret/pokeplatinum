@@ -111,11 +111,11 @@ StringTemplate *sub_0204AEE8(SaveData *saveData, u16 param1, u16 param2, u8 para
     StringTemplate *v5;
     MessageLoader *v6;
 
-    v2 = Strbuf_Init(12 + 2, HEAP_ID_FIELD);
-    v3 = Strbuf_Init(2, HEAP_ID_FIELD);
+    v2 = Strbuf_Init(12 + 2, HEAP_ID_FIELD1);
+    v3 = Strbuf_Init(2, HEAP_ID_FIELD1);
     pokedex = SaveData_GetPokedex(saveData);
-    v6 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD);
-    v5 = StringTemplate_New(18 + 1, 12 + 2, HEAP_ID_FIELD);
+    v6 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
+    v5 = StringTemplate_New(18 + 1, 12 + 2, HEAP_ID_FIELD1);
 
     StringTemplate_SetNumber(v5, 0, param1, 1, 0, 1);
 

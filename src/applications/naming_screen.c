@@ -1392,9 +1392,9 @@ static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
     return TRUE;
 }
 
-NamingScreenArgs *NamingScreenArgs_Init(enum HeapId heapID, enum NamingScreenType type, int param2, int maxChars, Options *options)
+NamingScreenArgs *NamingScreenArgs_Init(enum HeapID heapID, enum NamingScreenType type, int param2, int maxChars, Options *options)
 {
-    NamingScreenArgs *v0 = (NamingScreenArgs *)Heap_AllocFromHeap(heapID, sizeof(NamingScreenArgs));
+    NamingScreenArgs *v0 = (NamingScreenArgs *)Heap_Alloc(heapID, sizeof(NamingScreenArgs));
 
     v0->type = type;
     v0->playerGenderOrMonSpecies = param2;

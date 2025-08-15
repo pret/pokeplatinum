@@ -24,10 +24,10 @@ static void ov63_0222D110(UnkStruct_ov63_0222CE44 *param0, int param1, int param
 
 UnkStruct_ov63_0222CD2C *ov63_0222CCE4(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, u32 heapID)
 {
-    UnkStruct_ov63_0222CD2C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CD2C));
+    UnkStruct_ov63_0222CD2C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222CD2C));
     v0->unk_00 = ov63_0222AE60(param0, param1, param2, heapID);
     v0->unk_08 = param2;
-    v0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
+    v0->unk_04 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 
     memset(v0->unk_04, 0, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 
@@ -39,10 +39,10 @@ UnkStruct_ov63_0222CD2C *ov63_0222CCE4(SpriteList *param0, PaletteData *param1, 
 
 UnkStruct_ov63_0222CD2C *ov63_0222CD2C(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, int param4, u32 param5, u32 heapID)
 {
-    UnkStruct_ov63_0222CD2C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CD2C));
+    UnkStruct_ov63_0222CD2C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222CD2C));
     v0->unk_00 = ov63_0222AE60(param0, param1, param2, heapID);
     v0->unk_08 = param2;
-    v0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
+    v0->unk_04 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 
     memset(v0->unk_04, 0, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 

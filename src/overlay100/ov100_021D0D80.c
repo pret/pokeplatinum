@@ -229,7 +229,7 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
     ov100_021D0FA0(param0);
 
     G3X_AlphaBlend(1);
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_1C, HEAP_ID_111, 32);
+    HeapExp_FndInitAllocator(&param0->unk_1C, HEAP_ID_111, 32);
 }
 
 static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)

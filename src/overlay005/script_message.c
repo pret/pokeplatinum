@@ -154,7 +154,7 @@ static void GetStrBufFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 
     sub_02014CF8(&sentence, 0, word1);
     sub_02014CF8(&sentence, 1, word2);
 
-    strBuf = sub_02014B34(&sentence, HEAP_ID_FIELD_TASK);
+    strBuf = sub_02014B34(&sentence, HEAP_ID_FIELD3);
 
     Strbuf_Copy(msgData->msgBuf, strBuf);
     Strbuf_Free(strBuf);

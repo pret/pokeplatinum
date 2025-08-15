@@ -20,7 +20,7 @@ PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTab
 {
     GF_ASSERT(numButtons > 0);
 
-    PoketchButtonManager *buttonManager = Heap_AllocFromHeap(heapID, sizeof(PoketchButtonManager));
+    PoketchButtonManager *buttonManager = Heap_Alloc(heapID, sizeof(PoketchButtonManager));
 
     if (buttonManager) {
         buttonManager->heapID = heapID;
@@ -28,7 +28,7 @@ PoketchButtonManager *PoketchButtonManager_New(const TouchScreenHitTable *hitTab
         buttonManager->hitTable = hitTable;
         buttonManager->numButtons = numButtons;
         buttonManager->buttonCallbackData = callbackData;
-        buttonManager->buttons = Heap_AllocFromHeap(heapID, sizeof(PoketchButton) * numButtons);
+        buttonManager->buttons = Heap_Alloc(heapID, sizeof(PoketchButton) * numButtons);
 
         if (buttonManager->buttons) {
             for (u32 i = 0; i < numButtons; i++) {

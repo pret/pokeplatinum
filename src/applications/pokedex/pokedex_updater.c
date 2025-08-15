@@ -17,9 +17,9 @@ static void ResetGraphicsMan(PokedexGraphicsManager *graphicsMan);
 static BOOL RunDataFunction(PokedexDataFunction dataFunc, PokedexDataManager *dataMan, void *data);
 static BOOL RunGraphicsFunction(PokedexGraphicsFunction graphicsFunc, void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
 
-PokedexUpdater *PokedexUpdater_New(enum HeapId heapID)
+PokedexUpdater *PokedexUpdater_New(enum HeapID heapID)
 {
-    PokedexUpdater *pokedexUpdater = Heap_AllocFromHeap(heapID, sizeof(PokedexUpdater));
+    PokedexUpdater *pokedexUpdater = Heap_Alloc(heapID, sizeof(PokedexUpdater));
 
     GF_ASSERT(pokedexUpdater);
     memset(pokedexUpdater, 0, sizeof(PokedexUpdater));

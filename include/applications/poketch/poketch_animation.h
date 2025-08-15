@@ -42,7 +42,7 @@ void PoketchAnimation_SetCParam(PoketchAnimation_AnimatedSpriteData *animatedSpr
 void PoketchAnimation_SetSpriteCharNo(PoketchAnimation_AnimatedSpriteData *animatedSprite, u32 value);
 void PoketchAnimation_SetMosaic(PoketchAnimation_AnimatedSpriteData *animatedSprite, BOOL isMosaic);
 void PoketchAnimation_SetSpriteRotation(PoketchAnimation_AnimatedSpriteData *animatedSprite, u16 rotation);
-BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapId heapID);
+BOOL PoketchAnimation_LoadSpriteFromNARC(PoketchAnimation_SpriteData *spriteData, enum NarcID narcID, u32 spriteID, u32 animID, enum HeapID heapID);
 void PoketchAnimation_FreeSpriteData(PoketchAnimation_SpriteData *spriteData);
 
 #endif // POKEPLATINUM_POKETCH_ANIMATION_H

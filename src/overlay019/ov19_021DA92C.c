@@ -235,7 +235,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DAC4C(UnkStruct_ov19_021DA9E0 *param0)
 {
     if (param0->unk_4C == NULL) {
-        UnkStruct_ov19_021DAE2C *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DAE2C));
+        UnkStruct_ov19_021DAE2C *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DAE2C));
 
         if (v0) {
             const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);

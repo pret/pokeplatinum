@@ -16,7 +16,7 @@
 #define SPRITE_RESOURCE_NONE -1
 
 typedef struct SpriteSystem {
-    enum HeapId heapID;
+    enum HeapID heapID;
     int spriteManagerCount;
     BOOL inUse;
     NNSG2dCellTransferState *cellTransferStates;
@@ -86,7 +86,7 @@ typedef union SpriteResourceCapacities {
     } asStruct;
 } SpriteResourceCapacities;
 
-SpriteSystem *SpriteSystem_Alloc(enum HeapId heapID);
+SpriteSystem *SpriteSystem_Alloc(enum HeapID heapID);
 SpriteManager *SpriteManager_New(SpriteSystem *spriteSys);
 G2dRenderer *SpriteSystem_GetRenderer(SpriteSystem *spriteSys);
 BOOL SpriteSystem_Init(SpriteSystem *spriteSys, const RenderOamTemplate *oamTemplate, const CharTransferTemplateWithModes *transferTemplate, int plttCapacity);

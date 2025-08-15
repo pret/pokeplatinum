@@ -164,7 +164,7 @@ BOOL Sound_PlayChatotCry(ChatotCry *cry, u32 unused, int volume, int pan)
 
     if (success == FALSE) {
         Sound_SetUsingDefaultChatotCry(TRUE);
-        success = Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, 0);
+        success = Sound_PlayPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELD2, 0);
     }
 
     return success;
@@ -183,7 +183,7 @@ BOOL Sound_PlayDelayedChatotCry(ChatotCry *cry, u32 unused, int volume, int pan,
 
     if (success == FALSE) {
         Sound_SetUsingDefaultChatotCry(TRUE);
-        Sound_PlayDelayedPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, delay, 0);
+        Sound_PlayDelayedPokemonCryEx(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELD2, delay, 0);
         success = TRUE;
     }
 

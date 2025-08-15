@@ -14,7 +14,7 @@ UnkStruct_020158A8 *sub_020158A8(int heapID)
     UnkStruct_020158A8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020158A8));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_020158A8));
     MI_CpuClear8(v0, sizeof(UnkStruct_020158A8));
 
     v0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_NAMES, heapID);

@@ -72,7 +72,7 @@ static void ov20_021D375C(UnkStruct_ov20_021D30F8 *param0, BOOL param1);
 
 UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
 {
-    UnkStruct_ov20_021D30F8 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D30F8));
+    UnkStruct_ov20_021D30F8 *v0 = Heap_Alloc(HEAP_ID_35, sizeof(UnkStruct_ov20_021D30F8));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;

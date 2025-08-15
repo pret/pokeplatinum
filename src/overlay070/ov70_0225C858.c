@@ -15,12 +15,12 @@ typedef struct UnkStruct_ov70_0225C894_t {
     UnkStruct_ov63_0222BCE8 *unk_00;
 } UnkStruct_ov70_0225C894;
 
-UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapId heapID)
+UnkStruct_ov70_0225C894 *ov70_0225C858(enum HeapID heapID)
 {
     UnkStruct_ov70_0225C894 *v0;
     void *v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0225C894));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_0225C894));
     v0->unk_00 = ov63_0222BCE8(35, 42, heapID);
 
     v1 = LoadMemberFromNARC(NARC_INDEX_APPLICATION__WIFI_LOBBY__MAP_CONV__WFLBY_MAP, 0, 0, heapID, 1);

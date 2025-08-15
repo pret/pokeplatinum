@@ -38,7 +38,7 @@ void ov98_022499C8(Strbuf *param0, char *param1, int heapID)
         param1[v2] = Unk_ov98_02249D1C[v0++];
     }
 
-    v1 = Heap_AllocFromHeap(heapID, sizeof(charcode_t) * 100);
+    v1 = Heap_Alloc(heapID, sizeof(charcode_t) * 100);
     Strbuf_ToChars(param0, v1, 100);
 
     v0 = 0;
@@ -71,7 +71,7 @@ int ov98_02249A80(Strbuf *param0, int heapID)
     BOOL v1 = TRUE;
     int v2;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(charcode_t) * 100);
+    v0 = Heap_Alloc(heapID, sizeof(charcode_t) * 100);
     Strbuf_ToChars(param0, v0, 100);
 
     for (v2 = 0; v0[v2] != CHAR_EOS; v2++) {

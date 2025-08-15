@@ -39,7 +39,7 @@ static void ov29_02256B18(UnkStruct_ov29_022566C8 *param0);
 
 BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566C8_1 *param1, BgConfig *param2)
 {
-    UnkStruct_ov29_022566C8 *v0 = (UnkStruct_ov29_022566C8 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov29_022566C8));
+    UnkStruct_ov29_022566C8 *v0 = (UnkStruct_ov29_022566C8 *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov29_022566C8));
 
     if (v0 != NULL) {
         GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_MAIN));

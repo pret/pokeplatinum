@@ -146,7 +146,7 @@ UnkStruct_ov70_02261E10 *ov70_02261E10(int param0, int param1, const UnkStruct_o
     UnkStruct_ov70_02261E10 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_02261E10));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_02261E10));
     memset(v0, 0, sizeof(UnkStruct_ov70_02261E10));
 
     v0->unk_00 = param2;

@@ -17,7 +17,7 @@ FS_EXTERN_OVERLAY(overlay82);
 
 static UnkStruct_ov82_0223B164 *sub_02099604(int param0, SaveData *saveData, int heapID, JournalEntry *journalEntry)
 {
-    UnkStruct_ov82_0223B164 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov82_0223B164));
+    UnkStruct_ov82_0223B164 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov82_0223B164));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov82_0223B164));
 
     v0->saveData = saveData;

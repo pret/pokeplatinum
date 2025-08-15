@@ -17,7 +17,7 @@ ColoredArrow *ColoredArrow_New(u32 heapID)
         CHAR_ARROW_MENU,
         CHAR_EOS,
     };
-    ColoredArrow *arrow = Heap_AllocFromHeap(heapID, sizeof(ColoredArrow));
+    ColoredArrow *arrow = Heap_Alloc(heapID, sizeof(ColoredArrow));
 
     if (arrow) {
         arrow->color = TEXT_COLOR(1, 2, 15);

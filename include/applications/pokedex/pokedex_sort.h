@@ -88,7 +88,7 @@ typedef struct PokedexDefaultSortParams {
     u32 bootMode;
 } PokedexDefaultSortParams;
 
-void PokedexSort_DefaultPokedexSort(PokedexSortData *param0, PokedexDefaultSortParams *param1, enum HeapId heapID);
+void PokedexSort_DefaultPokedexSort(PokedexSortData *param0, PokedexDefaultSortParams *param1, enum HeapID heapID);
 void PokedexSort_PokedexStatusFreeHWData(PokedexSortData *param0);
 u32 PokedexSort_Gender(const PokedexSortData *param0, int species, int formIndex);
 u32 PokedexSort_UnownForm(const PokedexSortData *param0, int formIndex);
@@ -107,8 +107,8 @@ void PokedexSort_SetCurrentSpecies(PokedexSortData *param0, u32 param1);
 u32 PokedexSort_GetCurrentSpecies(const PokedexSortData *param0);
 void PokedexSort_SetBootMode(PokedexSortData *param0, u32 param1);
 u32 PokedexSort_GetBootMode(const PokedexSortData *param0);
-BOOL PokedexSort_Sort(PokedexSortData *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType typeFilter1, enum FilterType typeFilter2, enum FilterForm filterForm, int isNationalDex, enum HeapId heapID, BOOL isFiltered);
-BOOL PokedexSort_SortUnfiltered(PokedexSortData *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType filterType1, enum FilterType filterType2, enum FilterForm filterForm, int isNationalDex, enum HeapId heapID);
+BOOL PokedexSort_Sort(PokedexSortData *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType typeFilter1, enum FilterType typeFilter2, enum FilterForm filterForm, int isNationalDex, enum HeapID heapID, BOOL isFiltered);
+BOOL PokedexSort_SortUnfiltered(PokedexSortData *param0, enum SortOrder sortOrder, enum FilterName filterName, enum FilterType filterType1, enum FilterType filterType2, enum FilterForm filterForm, int isNationalDex, enum HeapID heapID);
 BOOL ov21_021D36A4(const PokedexSortData *param0, int param1);
 BOOL ov21_021D36C0(PokedexSortData *param0, int param1);
 int PokedexSort_IsNationalDex(const PokedexSortData *param0);

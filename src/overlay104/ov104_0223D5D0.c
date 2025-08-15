@@ -19,7 +19,7 @@ static void ov104_0223D708(ParticleSystem *param0);
 
 UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID)
 {
-    UnkStruct_ov104_0223D5F0 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223D5F0));
+    UnkStruct_ov104_0223D5F0 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223D5F0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223D5F0));
 
     v0->heapID = heapID;
@@ -51,7 +51,7 @@ ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int
 
     GF_ASSERT(param0->unk_00[param1] == NULL);
 
-    v1 = Heap_AllocFromHeap(param0->heapID, 0x4800);
+    v1 = Heap_Alloc(param0->heapID, 0x4800);
     v0 = ParticleSystem_New(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->heapID);
     camera = ParticleSystem_GetCamera(v0);
 

@@ -15,13 +15,13 @@ static PokedexTextData *NextEmptyText(PokedexTextManager *textMan);
 
 PokedexTextManager *PokedexTextManager_New(const PokedexTextManagerTemplate *textManTemplate)
 {
-    PokedexTextManager *textMan = Heap_AllocFromHeap(textManTemplate->heapID, sizeof(PokedexTextManager));
+    PokedexTextManager *textMan = Heap_Alloc(textManTemplate->heapID, sizeof(PokedexTextManager));
 
     GF_ASSERT(textMan);
     memset(textMan, 0, sizeof(PokedexTextManager));
 
     textMan->unk_00 = sub_02012744(textManTemplate->numTextData, textManTemplate->heapID);
-    textMan->textData = Heap_AllocFromHeap(textManTemplate->heapID, sizeof(PokedexTextData) * textManTemplate->numTextData);
+    textMan->textData = Heap_Alloc(textManTemplate->heapID, sizeof(PokedexTextData) * textManTemplate->numTextData);
 
     GF_ASSERT(textMan->textData);
     memset(textMan->textData, 0, sizeof(PokedexTextData) * textManTemplate->numTextData);

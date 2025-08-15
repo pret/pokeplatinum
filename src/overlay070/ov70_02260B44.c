@@ -89,7 +89,7 @@ typedef struct UnkStruct_ov70_02260BB8_t {
     NNSFndAllocator unk_494;
 } UnkStruct_ov70_02260BB8;
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID);
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapID heapID);
 static void ov70_02261418(UnkStruct_ov70_02261418 *param0);
 static void ov70_0226146C(Easy3DModel *param0);
 static void ov70_02261474(fx32 *param0, const Easy3DAnim *param1, fx32 param2);
@@ -115,11 +115,11 @@ static void ov70_02261C60(UnkStruct_ov70_02260BB8 *param0, UnkStruct_ov70_022610
 
 UnkStruct_ov70_02260BB8 *ov70_02260B44(u32 param0, u32 param1, u32 heapID, u32 heapID2)
 {
-    UnkStruct_ov70_02260BB8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_02260BB8));
+    UnkStruct_ov70_02260BB8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_02260BB8));
     memset(v0, 0, sizeof(UnkStruct_ov70_02260BB8));
 
-    v0->unk_11C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_02260E8C) * param0);
-    v0->unk_120 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_022610B8) * param1);
+    v0->unk_11C = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_02260E8C) * param0);
+    v0->unk_120 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_022610B8) * param1);
 
     memset(v0->unk_11C, 0, sizeof(UnkStruct_ov70_02260E8C) * param0);
     memset(v0->unk_120, 0, sizeof(UnkStruct_ov70_022610B8) * param1);
@@ -197,7 +197,7 @@ void ov70_02260CE4(UnkStruct_ov70_02260BB8 *param0, int param1, int param2, u32 
     v1 = ov70_022613F4(param1, param2, heapID);
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY, heapID);
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_494, heapID2, 4);
+    HeapExp_FndInitAllocator(&param0->unk_494, heapID2, 4);
 
     ov70_022614F4(&param0->unk_12C, v0, v1, heapID2, &param0->unk_494);
     ov70_02261B24(&param0->unk_29C, v0, &param0->unk_494, v1, heapID2);
@@ -556,7 +556,7 @@ void ov70_022613E8(UnkStruct_ov70_022610B8 *param0, fx32 param1, fx32 param2, fx
     Easy3DObject_SetScale(&param0->unk_04, param1, param2, param3);
 }
 
-static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapId heapID)
+static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, enum HeapID heapID)
 {
     void *v0;
     u32 v1 = (param1 * 5) + param0;

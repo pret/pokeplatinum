@@ -35,7 +35,7 @@ typedef struct NamingScreenArgs {
 extern const ApplicationManagerTemplate gNamingScreenAppTemplate;
 
 NamingScreenArgs *NamingScreenArgs_Init(
-    enum HeapId heapID,
+    enum HeapID heapID,
     enum NamingScreenType type,
     int param2,
     int param3,

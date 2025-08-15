@@ -42,7 +42,7 @@ void *Window_AddWaitDial(Window *window, u32 baseTile);
 void DestroyWaitDial(void *taskData);
 void DestroyWaitDialTaskOnly(void *taskData);
 
-u8 *DrawPokemonPreview(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, u16 species, u8 gender, enum HeapId heapID);
-u8 *DrawPokemonPreviewFromStruct(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, Pokemon *mon, enum HeapId heapID);
+u8 *DrawPokemonPreview(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, u16 species, u8 gender, enum HeapID heapID);
+u8 *DrawPokemonPreviewFromStruct(BgConfig *bgConfig, u8 bgLayer, u8 x, u8 y, u8 palette, u16 baseTile, Pokemon *mon, enum HeapID heapID);
 
 #endif // POKEPLATINUM_RENDER_WINDOW_H

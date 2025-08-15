@@ -299,7 +299,7 @@ UnkStruct_ov63_0222AE60 *ov63_0222AE60(SpriteList *param0, PaletteData *param1, 
     UnkStruct_ov63_0222AE60 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222AE60));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222AE60));
     memset(v0, 0, sizeof(UnkStruct_ov63_0222AE60));
 
     v0->unk_00 = param0;
@@ -320,7 +320,7 @@ UnkStruct_ov63_0222AE60 *ov63_0222AE60(SpriteList *param0, PaletteData *param1, 
     }
 
     v0->unk_0C = param2;
-    v0->unk_08 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
+    v0->unk_08 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
     memset(v0->unk_08, 0, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
 
     return v0;

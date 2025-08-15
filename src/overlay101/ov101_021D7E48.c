@@ -45,7 +45,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
 
 UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 heapID, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9, u32 param10)
 {
-    UnkStruct_ov101_021D7E48 *v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48)));
+    UnkStruct_ov101_021D7E48 *v0 = Heap_Alloc(heapID, (sizeof(UnkStruct_ov101_021D7E48)));
 
     GF_ASSERT(v0 != NULL);
 
@@ -67,10 +67,10 @@ UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 heapID, u32 param1, u32 param2, u32
     v0->unk_1A4 = SpriteResourceCollection_New(param4, 1, heapID);
     v0->unk_1A8 = SpriteResourceCollection_New(param5, 2, heapID);
     v0->unk_1AC = SpriteResourceCollection_New(param6, 3, heapID);
-    v0->unk_1B0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param3);
-    v0->unk_1B4 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param4);
-    v0->unk_1B8 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param5);
-    v0->unk_1BC = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param6);
+    v0->unk_1B0 = Heap_Alloc(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param3);
+    v0->unk_1B4 = Heap_Alloc(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param4);
+    v0->unk_1B8 = Heap_Alloc(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param5);
+    v0->unk_1BC = Heap_Alloc(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param6);
 
     {
         u32 v1;

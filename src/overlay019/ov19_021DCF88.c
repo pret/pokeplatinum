@@ -305,7 +305,7 @@ BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *pa
         *param0 = NULL;
         return 1;
     } else {
-        UnkStruct_ov19_021DCF88 *v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DCF88));
+        UnkStruct_ov19_021DCF88 *v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DCF88));
 
         if (v0) {
             int v1;
@@ -1142,7 +1142,7 @@ static void ov19_021DDD80(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1257,7 +1257,7 @@ static void ov19_021DDFA8(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1316,7 +1316,7 @@ static void ov19_021DE0A0(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;
@@ -1440,7 +1440,7 @@ static void ov19_021DE2A4(UnkStruct_ov19_021DCF88 *param0)
     UnkStruct_ov19_021DDBF8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
+    v0 = Heap_Alloc(HEAP_ID_BOX_GRAPHICS, sizeof(UnkStruct_ov19_021DDBF8));
 
     if (v0) {
         SysTask *v2;

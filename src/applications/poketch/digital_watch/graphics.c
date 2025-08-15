@@ -21,7 +21,7 @@ static void DrawClockDigits(PoketchDigitalWatchGraphics *graphics);
 
 BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **graphics, const WatchData *watchData, BgConfig *bgConfig)
 {
-    PoketchDigitalWatchGraphics *digitalWatchGraphics = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchDigitalWatchGraphics));
+    PoketchDigitalWatchGraphics *digitalWatchGraphics = Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(PoketchDigitalWatchGraphics));
 
     if (digitalWatchGraphics != NULL) {
         NNSG2dScreenData *screenData;

@@ -3376,7 +3376,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, PokemonStorageSession
     param0->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
     param0->abilityNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
     param0->MessageVariableBuffer = StringTemplate_Default(HEAP_ID_BOX_DATA);
-    param0->mon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, Pokemon_StructSize());
+    param0->mon = Heap_Alloc(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
     GF_ASSERT(param0->MessageVariableBuffer);
     param0->unk_128 = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, BOX_NAME_LEN, param0->options);
@@ -3460,7 +3460,7 @@ static void ov19_InitCursor(UnkStruct_ov19_021D5DF8 *param0)
 
 static void ov19_InitMonSelection(BoxMonSelection *selection)
 {
-    selection->boxMon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
+    selection->boxMon = Heap_Alloc(HEAP_ID_BOX_DATA, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
     selection->selectedMonCount = 0;
     selection->cursorMonIsPartyMon = FALSE;
 }

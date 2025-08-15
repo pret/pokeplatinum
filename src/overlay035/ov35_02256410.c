@@ -37,7 +37,7 @@ static void ov35_022566A8(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_
 
 BOOL ov35_02256410(UnkStruct_ov35_02256410 **param0, const UnkStruct_ov35_02256410_1 *param1, BgConfig *param2)
 {
-    UnkStruct_ov35_02256410 *v0 = (UnkStruct_ov35_02256410 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov35_02256410));
+    UnkStruct_ov35_02256410 *v0 = (UnkStruct_ov35_02256410 *)Heap_Alloc(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov35_02256410));
 
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);

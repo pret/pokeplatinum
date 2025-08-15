@@ -30,7 +30,7 @@ static const struct {
 
 FontSpecialCharsContext *FontSpecialChars_Init(u32 fgColor, u32 shadowColor, u32 bgColor, u32 heapID)
 {
-    FontSpecialCharsContext *context = Heap_AllocFromHeap(heapID, sizeof(FontSpecialCharsContext));
+    FontSpecialCharsContext *context = Heap_Alloc(heapID, sizeof(FontSpecialCharsContext));
 
     if (context) {
         u32 idx;

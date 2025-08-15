@@ -83,7 +83,7 @@ static const TouchScreenRect Unk_ov62_02248C1C[] = {
 
 static BOOL ov62_02235E64(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02235E64 *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02235E64));
+    UnkStruct_ov62_02235E64 *v0 = Heap_Alloc(HEAP_ID_102, sizeof(UnkStruct_ov62_02235E64));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02235E64));
     param0->unk_860 = v0;

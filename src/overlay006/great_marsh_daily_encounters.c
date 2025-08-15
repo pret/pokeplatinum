@@ -21,7 +21,7 @@ void ReplaceGreatMarshDailyEncounters(const int dailyMon, const BOOL nationalDex
         encDataGroup = 10;
     }
 
-    narc = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, encDataGroup, HEAP_ID_FIELD);
+    narc = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, encDataGroup, HEAP_ID_FIELD1);
     encounterIndex = ((dailyMon >> (5 * areaNum)) & 0x1f);
     encounterIndex %= 32;
 

@@ -8,7 +8,7 @@
 #include "savedata.h"
 
 int Pokedex_SaveSize(void);
-Pokedex *Pokedex_New(enum HeapId heapID);
+Pokedex *Pokedex_New(enum HeapID heapID);
 void Pokedex_Copy(const Pokedex *src, Pokedex *dest);
 void Pokedex_Init(Pokedex *pokedex);
 u16 Pokedex_CountCaught_National(const Pokedex *pokedex);

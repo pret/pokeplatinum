@@ -301,9 +301,9 @@ static void *AllocAndReadFromNarcMemberByPathAndIndex(const char *path, int memb
     GF_ASSERT(btafStart != 0);
 
     if (allocAtEnd == 0) {
-        dest = Heap_AllocFromHeap(heapID, btafStart);
+        dest = Heap_Alloc(heapID, btafStart);
     } else {
-        dest = Heap_AllocFromHeapAtEnd(heapID, btafStart);
+        dest = Heap_AllocAtEnd(heapID, btafStart);
     }
 
     FS_ReadFile(&file, dest, btafStart);
@@ -388,7 +388,7 @@ u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex)
 
 NARC *NARC_ctor(enum NarcID narcID, u32 heapID)
 {
-    NARC *narc = Heap_AllocFromHeap(heapID, sizeof(NARC));
+    NARC *narc = Heap_Alloc(heapID, sizeof(NARC));
 
     if (narc) {
         u32 btnfStart;
@@ -434,7 +434,7 @@ void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID)
     FS_ReadFile(&narc->file, &fileEnd, 4);
     FS_SeekFile(&narc->file, narc->fimgStart + 8 + fileStart, FS_SEEK_SET);
 
-    dest = Heap_AllocFromHeap(heapID, fileEnd - fileStart);
+    dest = Heap_Alloc(heapID, fileEnd - fileStart);
 
     if (dest) {
         FS_ReadFile(&narc->file, dest, fileEnd - fileStart);

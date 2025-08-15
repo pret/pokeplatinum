@@ -35,7 +35,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths 
         param0->unk_1C4 = 6;
     }
 
-    v1 = Heap_AllocFromHeap(heapID, SpriteResourceTable_Size() * param0->unk_1C4);
+    v1 = Heap_Alloc(heapID, SpriteResourceTable_Size() * param0->unk_1C4);
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
         v0 = SpriteResourceTable_GetArrayElement(v1, v4);
@@ -331,10 +331,10 @@ ManagedSprite *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
     AffineSpriteListTemplate v3;
     int v4[6];
 
-    v2 = Heap_AllocFromHeap(param0->heapID, sizeof(ManagedSprite));
+    v2 = Heap_Alloc(param0->heapID, sizeof(ManagedSprite));
 
-    v2->resourceHeaderList = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteResourcesHeaderList));
-    v2->resourceHeaderList->headers = Heap_AllocFromHeap(param0->heapID, sizeof(SpriteResourcesHeader));
+    v2->resourceHeaderList = Heap_Alloc(param0->heapID, sizeof(SpriteResourcesHeaderList));
+    v2->resourceHeaderList->headers = Heap_Alloc(param0->heapID, sizeof(SpriteResourcesHeader));
     v2->resourceHeader = v2->resourceHeaderList->headers;
 
     for (v0 = 0; v0 < 6; v0++) {

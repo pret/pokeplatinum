@@ -26,7 +26,7 @@ static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trai
 
 HeightWeightData *Pokedex_HeightWeightData(int heapID)
 {
-    HeightWeightData *HWData = Heap_AllocFromHeap(heapID, sizeof(HeightWeightData));
+    HeightWeightData *HWData = Heap_Alloc(heapID, sizeof(HeightWeightData));
     memset(HWData, 0, sizeof(HeightWeightData));
 
     return HWData;

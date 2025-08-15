@@ -115,7 +115,7 @@ static void ov77_021D66A0(UnkStruct_ov77_021D6800 *param0, AffineSpriteListTempl
 UnkStruct_ov77_021D670C *ov77_021D670C(void)
 {
     int v0 = sizeof(UnkStruct_ov77_021D670C);
-    UnkStruct_ov77_021D670C *v1 = Heap_AllocFromHeap(HEAP_ID_76, v0);
+    UnkStruct_ov77_021D670C *v1 = Heap_Alloc(HEAP_ID_76, v0);
 
     memset(v1, 0, v0);
 
@@ -128,9 +128,9 @@ UnkStruct_ov77_021D670C *ov77_021D670C(void)
 UnkStruct_ov77_021D6734 *ov77_021D6734(const int param0)
 {
     int v0;
-    UnkStruct_ov77_021D6734 *v1 = Heap_AllocFromHeap(HEAP_ID_76, sizeof(UnkStruct_ov77_021D6734));
+    UnkStruct_ov77_021D6734 *v1 = Heap_Alloc(HEAP_ID_76, sizeof(UnkStruct_ov77_021D6734));
     v0 = sizeof(UnkStruct_ov77_021D6ADC) * param0;
-    v1->unk_04 = Heap_AllocFromHeap(HEAP_ID_76, v0);
+    v1->unk_04 = Heap_Alloc(HEAP_ID_76, v0);
 
     memset(v1->unk_04, 0, v0);
     v1->unk_00 = param0;

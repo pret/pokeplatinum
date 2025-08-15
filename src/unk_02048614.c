@@ -138,7 +138,7 @@ BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx)
         enemyTrainer1,
         enemyTrainer2,
         partnerTrainer,
-        HEAP_ID_FIELDMAP,
+        HEAP_ID_FIELD2,
         battleResultMaskPtr);
     return TRUE;
 }
@@ -155,7 +155,7 @@ BOOL ScrCmd_StartTagBattle(ScriptContext *ctx)
         enemyTrainer1,
         enemyTrainer2,
         partnerTrainer,
-        HEAP_ID_FIELDMAP,
+        HEAP_ID_FIELD2,
         battleResultMaskPtr);
     return TRUE;
 }
@@ -292,7 +292,7 @@ BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
     int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
-    Encounter_NewVsTrainer(param0->task, 1, 0, 0, HEAP_ID_FIELDMAP, battleResultMaskPtr);
+    Encounter_NewVsTrainer(param0->task, 1, 0, 0, HEAP_ID_FIELD2, battleResultMaskPtr);
     return TRUE;
 }
 

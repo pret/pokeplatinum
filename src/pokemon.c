@@ -269,7 +269,7 @@ static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, enum Flavor flavor);
 static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
-static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID);
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
@@ -303,7 +303,7 @@ int Pokemon_StructSize(void)
 
 Pokemon *Pokemon_New(u32 heapID)
 {
-    Pokemon *mon = Heap_AllocFromHeap(heapID, sizeof(Pokemon));
+    Pokemon *mon = Heap_Alloc(heapID, sizeof(Pokemon));
     Pokemon_Init(mon);
     return mon;
 }
@@ -585,7 +585,7 @@ void Pokemon_CalcStats(Pokemon *mon)
 
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    SpeciesData *speciesData = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesData));
+    SpeciesData *speciesData = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesData));
 
     SpeciesData_LoadForm(monSpecies, monForm, speciesData);
 
@@ -2132,7 +2132,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
 
 SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID)
 {
-    SpeciesData *speciesData = Heap_AllocFromHeap(heapID, sizeof(SpeciesData));
+    SpeciesData *speciesData = Heap_Alloc(heapID, sizeof(SpeciesData));
     SpeciesData_LoadForm(monSpecies, monForm, speciesData);
 
     return speciesData;
@@ -2140,7 +2140,7 @@ SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID)
 
 SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID)
 {
-    SpeciesData *speciesData = Heap_AllocFromHeap(heapID, sizeof(SpeciesData));
+    SpeciesData *speciesData = Heap_Alloc(heapID, sizeof(SpeciesData));
     SpeciesData_LoadSpecies(monSpecies, speciesData);
 
     return speciesData;
@@ -2335,7 +2335,7 @@ static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel)
     GF_ASSERT(monExpRate < EXP_RATE_COUNT);
     GF_ASSERT(monLevel <= MAX_POKEMON_LEVEL + 1);
 
-    u32 *expTable = Heap_AllocFromHeap(HEAP_ID_SYSTEM, (MAX_POKEMON_LEVEL + 1) * 4);
+    u32 *expTable = Heap_Alloc(HEAP_ID_SYSTEM, (MAX_POKEMON_LEVEL + 1) * 4);
     Pokemon_LoadExperienceTableOf(monExpRate, expTable);
 
     u32 result = expTable[monLevel];
@@ -3549,7 +3549,7 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
         evoTypeResult = &stackVar;
     }
 
-    SpeciesEvolution *speciesEvolutions = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesEvolution) * MAX_EVOLUTIONS);
+    SpeciesEvolution *speciesEvolutions = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesEvolution) * MAX_EVOLUTIONS);
     LoadSpeciesEvolutions(monSpecies, speciesEvolutions);
 
     switch (evoClass) {
@@ -3817,7 +3817,7 @@ u16 sub_02076FD4(const u16 monSpecies)
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
 {
     BOOL reencrypt; // must pre-declare to match
-    u16 *monLevelUpMoves = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
+    u16 *monLevelUpMoves = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
     reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
     u16 monSpecies = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
@@ -3933,7 +3933,7 @@ static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 moveID, u8 moveSlot)
 u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
 {
     u16 result = MOVE_NONE;
-    u16 *monLevelUpMoves = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
+    u16 *monLevelUpMoves = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     u8 monLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
@@ -4129,7 +4129,7 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor)
 
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs)
 {
-    u16 *monLevelUpMoves = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
+    u16 *monLevelUpMoves = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
 
     Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
 
@@ -4645,7 +4645,7 @@ BOOL Pokemon_PlayCry(Pokemon *mon)
     return Sound_PlayPokemonCry(species, form);
 }
 
-void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID)
+void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID)
 {
     InitializeBoxPokemonAfterCapture(&mon->box, trainerInfo, monPokeball, metLocation, metTerrain, heapID);
 
@@ -4658,7 +4658,7 @@ void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokebal
     }
 }
 
-static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID)
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID)
 {
     UpdateBoxMonStatusAndTrainerInfo(boxMon, trainer, 0, metLocation, heapID);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &gGameVersion);

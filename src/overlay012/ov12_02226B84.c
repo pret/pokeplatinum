@@ -845,7 +845,7 @@ static void BattleAnimTask_RotateMon(SysTask *task, void *param)
 
 void BattleAnimScriptFunc_RotateMon(BattleAnimSystem *system)
 {
-    RotateMonContext *ctx = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(system), sizeof(RotateMonContext));
+    RotateMonContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(RotateMonContext));
 
     ctx->state = 0;
     ctx->system = system;
@@ -902,7 +902,7 @@ static void ov12_022274E4(SysTask *param0, void *param1)
 
 void ov12_02227534(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_022274E4 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_022274E4));
+    UnkStruct_ov12_022274E4 *v0 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_022274E4));
     v0->unk_00 = param0;
 
     ov12_022263A4(&v0->unk_04, BattleAnimSystem_GetScriptVar(param0, 0), BattleAnimSystem_GetScriptVar(param0, 1));
@@ -1883,7 +1883,7 @@ static void ov12_0222862C(SysTask *param0, void *param1)
 
 void ov12_022287CC(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_0222862C *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222862C));
+    UnkStruct_ov12_0222862C *v0 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222862C));
 
     v0->unk_08 = 0;
     v0->unk_00 = 0;
@@ -1976,7 +1976,7 @@ static void ov12_02228868(SysTask *param0, void *param1)
 
 void ov12_02228A0C(BattleAnimSystem *param0)
 {
-    UnkStruct_ov12_02228868 *v0 = Heap_AllocFromHeap(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_02228868));
+    UnkStruct_ov12_02228868 *v0 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_02228868));
 
     v0->unk_08 = 0;
     v0->unk_00 = 0;

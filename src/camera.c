@@ -105,7 +105,7 @@ static void Camera_UpdateHistory(Camera const *camera, const VecFx32 *inPos, Vec
     }
 }
 
-void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId heapID, Camera *camera)
+void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapID heapID, Camera *camera)
 {
     if (camera->targetPos == NULL) {
         return;
@@ -113,8 +113,8 @@ void Camera_InitHistory(int historySize, int delay, int delayMask, enum HeapId h
 
     GF_ASSERT(delay + 1 <= historySize);
 
-    CameraPositionHistory *history = Heap_AllocFromHeap(heapID, sizeof(CameraPositionHistory));
-    history->positions = Heap_AllocFromHeap(heapID, sizeof(VecFx32) * historySize);
+    CameraPositionHistory *history = Heap_Alloc(heapID, sizeof(CameraPositionHistory));
+    history->positions = Heap_Alloc(heapID, sizeof(VecFx32) * historySize);
 
     for (int i = 0; i < historySize; i++) {
         history->positions[i].x = 0;
@@ -155,9 +155,9 @@ void Camera_DeleteHistory(Camera *camera)
     }
 }
 
-Camera *Camera_Alloc(const enum HeapId heapID)
+Camera *Camera_Alloc(const enum HeapID heapID)
 {
-    return Heap_AllocFromHeap(heapID, sizeof(Camera));
+    return Heap_Alloc(heapID, sizeof(Camera));
 }
 
 void Camera_Delete(Camera *camera)

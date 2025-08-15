@@ -164,7 +164,7 @@ void sub_020739F0(UnkStruct_02073974 *param0)
 
 void sub_02073A14(UnkStruct_02073974 *param0, const NNSG3dResMdl *param1, u32 heapID)
 {
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_14, heapID, 4);
+    HeapExp_FndInitAllocator(&param0->unk_14, heapID, 4);
     param0->unk_10 = NNS_G3dAllocAnmObj(&param0->unk_14, param0->unk_0C, param1);
 
     GF_ASSERT(param0->unk_10 != NULL);

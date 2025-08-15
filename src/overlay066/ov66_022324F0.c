@@ -157,7 +157,7 @@ void ov66_022324F0(u32 heapID, SaveData *saveData, u32 param2, const UnkStruct_o
     GF_ASSERT(Unk_ov66_0225B6C0 == NULL);
     GF_ASSERT(param2 < PPW_LOBBY_MAX_BINARY_SIZE);
 
-    Unk_ov66_0225B6C0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_022336C4));
+    Unk_ov66_0225B6C0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_022336C4));
     memset(Unk_ov66_0225B6C0, 0, sizeof(UnkStruct_ov66_022336C4));
 
     Unk_ov66_0225B6C0->saveData = saveData;
@@ -1196,7 +1196,7 @@ static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0)
 
 static void ov66_02233758(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 heapID)
 {
-    Unk_ov66_0225B6C0->unk_24 = Heap_AllocFromHeap(heapID, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
+    Unk_ov66_0225B6C0->unk_24 = Heap_Alloc(heapID, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
     memset(Unk_ov66_0225B6C0->unk_24, 0, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
     Unk_ov66_0225B6C0->unk_28 = param1;
 }
@@ -1300,7 +1300,7 @@ static void ov66_022338C8(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param
         }
 
         param0->unk_11C[v0].unk_00 = 0;
-        param0->unk_11C[v0].unk_04 = Heap_AllocFromHeap(heapID, sizeof(s32) * v1);
+        param0->unk_11C[v0].unk_04 = Heap_Alloc(heapID, sizeof(s32) * v1);
         param0->unk_11C[v0].unk_02 = v1;
 
         ov66_02233950(param0, v0);
@@ -1879,7 +1879,7 @@ static u32 ov66_022342CC(const PPW_LobbySchedule *param0, PPW_LOBBY_TIME_EVENT p
 
 static void ov66_022342F4(UnkStruct_ov66_022342F4 *param0, u32 param1, u32 heapID)
 {
-    param0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(PPW_LobbyVipRecord) * param1);
+    param0->unk_00 = Heap_Alloc(heapID, sizeof(PPW_LobbyVipRecord) * param1);
     param0->unk_04 = param1;
     param0->unk_06 = 0;
 }

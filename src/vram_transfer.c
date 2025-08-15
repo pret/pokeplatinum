@@ -16,13 +16,13 @@ typedef struct VramTransferTaskManager {
 
 static VramTransferTaskManager *sTransferTaskManager;
 
-void VramTransfer_New(u32 capacity, enum HeapId heapID)
+void VramTransfer_New(u32 capacity, enum HeapID heapID)
 {
     GF_ASSERT(sTransferTaskManager == NULL);
-    sTransferTaskManager = Heap_AllocFromHeap(heapID, sizeof(VramTransferTaskManager));
+    sTransferTaskManager = Heap_Alloc(heapID, sizeof(VramTransferTaskManager));
     GF_ASSERT(sTransferTaskManager);
 
-    sTransferTaskManager->tasks = Heap_AllocFromHeap(heapID, sizeof(NNSGfdVramTransferTask) * capacity);
+    sTransferTaskManager->tasks = Heap_Alloc(heapID, sizeof(NNSGfdVramTransferTask) * capacity);
     sTransferTaskManager->max = capacity;
     sTransferTaskManager->cur = 0;
 

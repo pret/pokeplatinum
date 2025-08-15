@@ -79,10 +79,10 @@ typedef struct FieldBattleDTO {
     u32 unk_19C;
 } FieldBattleDTO;
 
-FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType);
-FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapId heapID, int countSafariBalls);
-FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapId heapID, int countParkBalls);
-FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const FieldSystem *fieldSystem);
+FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType);
+FieldBattleDTO *FieldBattleDTO_NewSafari(enum HeapID heapID, int countSafariBalls);
+FieldBattleDTO *FieldBattleDTO_NewPalPark(enum HeapID heapID, int countParkBalls);
+FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const FieldSystem *fieldSystem);
 void FieldBattleDTO_Free(FieldBattleDTO *dto);
 void FieldBattleDTO_AddPokemonToBattler(FieldBattleDTO *dto, Pokemon *src, int battler);
 void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, int battler);

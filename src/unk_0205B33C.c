@@ -152,7 +152,7 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     saveData = FieldSystem_GetSaveData(fieldSystem);
     sub_020369EC(saveData);
 
-    v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
+    v2 = (UnkStruct_0205B43C *)Heap_Alloc(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
     MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
 
     v2->unk_10 = NULL;
@@ -1267,7 +1267,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
 {
     TrainerInfo *v0;
     Strbuf *v1;
-    MessageLoader *v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD);
+    MessageLoader *v2 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
     int v3, v4;
 
     param2--;

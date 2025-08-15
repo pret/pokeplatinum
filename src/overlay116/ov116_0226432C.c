@@ -596,7 +596,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
 
 void ov116_02264FEC(UnkStruct_ov116_02262A8C *param0, BOOL *param1)
 {
-    UnkStruct_ov116_02264FEC *v0 = Heap_AllocFromHeap(HEAP_ID_106, sizeof(UnkStruct_ov116_02264FEC));
+    UnkStruct_ov116_02264FEC *v0 = Heap_Alloc(HEAP_ID_106, sizeof(UnkStruct_ov116_02264FEC));
 
     v0->unk_00 = param0;
     v0->unk_04 = 0;

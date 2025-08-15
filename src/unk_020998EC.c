@@ -3165,7 +3165,7 @@ UnkStruct_020998EC *sub_020998EC(u32 heapID, const UnkStruct_0209747C *param1)
     UnkStruct_020998EC *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020998EC));
+    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_020998EC));
     v0->unk_00 = param1;
     v0->unk_04 = sub_02014D38(heapID);
 
