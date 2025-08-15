@@ -74,7 +74,7 @@ _010E:
     GoTo _0126
 
 _0126:
-    ScrCmd_187 5, 0x2D3, 1, 0x301, 0
+    SetPosition 5, 0x2D3, 1, 0x301, 0
     SetFlag FLAG_UNK_0x0106
     ReleaseAll
     End

@@ -568,10 +568,10 @@ _05E0:
     WaitMovement
     Call _0737
     ClearFlag FLAG_UNK_0x01FB
-    ScrCmd_187 27, 0x263, 0, 0x32A, 0
+    SetPosition 27, 0x263, 0, 0x32A, 0
     Call _0721
     ClearFlag FLAG_UNK_0x01A9
-    ScrCmd_187 26, 0x260, 0, 0x32E, 1
+    SetPosition 26, 0x260, 0, 0x32E, 1
     SetVar VAR_UNK_0x407C, 4
     ReleaseAll
     End

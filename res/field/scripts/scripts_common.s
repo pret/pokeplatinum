@@ -387,10 +387,10 @@ _0552:
     GoTo _057D
 
 _0568:
-    ScrCmd_18D
+    ShowSavingIcon
     CallIfSet FLAG_UNK_0x001F, _05BE
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     Return
 
 _057D:
@@ -498,7 +498,7 @@ _06BB:
 
 _06D5:
     RemoveItem ITEM_HONEY, 1, VAR_RESULT
-    ScrCmd_260 1
+    IncrementTrainerScore2 TRAINER_SCORE_EVENT_HONEY_USED
     SlatherHoneyTree
     WaitTime 10, VAR_RESULT
     Message 51

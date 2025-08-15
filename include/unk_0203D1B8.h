@@ -35,7 +35,7 @@ void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs);
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2);
-void *sub_0203D3C0(int param0, FieldSystem *fieldSystem);
+void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem);
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem);
 int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan);
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2);

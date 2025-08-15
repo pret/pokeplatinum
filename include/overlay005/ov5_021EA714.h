@@ -4,7 +4,7 @@
 #include "applications/poketch/poketch_system.h"
 #include "field/field_system_decl.h"
 
-void ov5_021EA714(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy);
+void FieldSystem_SendPoketchEvent(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy);
 void ov5_021EA728(FieldSystem *fieldSystem);
 void ov5_021EA790(FieldSystem *fieldSystem);
 u8 ov5_021EA7CC(FieldSystem *fieldSystem);

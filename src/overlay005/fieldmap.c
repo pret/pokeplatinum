@@ -247,7 +247,7 @@ static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1)
     if (ov5_021D119C(fieldSystem)) {
         sub_02055D94(fieldSystem);
         ov5_021D13B4(fieldSystem);
-        ov5_021EA714(fieldSystem, 1, 1);
+        FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_PLAYER_MOVED, 1);
 
         FieldMap_ChangeZone(fieldSystem);
     }

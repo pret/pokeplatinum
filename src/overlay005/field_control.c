@@ -731,7 +731,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    ov5_021EA714(fieldSystem, 5, 1);
+    FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_PEDOMETER, 1);
 
     if (Field_UpdatePoison(fieldSystem) == TRUE) {
         return TRUE;

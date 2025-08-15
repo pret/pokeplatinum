@@ -1735,9 +1735,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_12D arg0
+    .macro TrySaveGame destVar
     .short 301
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_12E arg0, arg1
@@ -2173,13 +2173,13 @@
     .short \z
     .endm
 
-    .macro ScrCmd_187 arg0, arg1, arg2, arg3, arg4
+    .macro SetPosition localID, x, y, z, dir
     .short 391
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \localID
+    .short \x
+    .short \y
+    .short \z
+    .short \dir
     .endm
 
     .macro SetObjectEventMovementType localID, movementType
@@ -2214,11 +2214,11 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_18D
+    .macro ShowSavingIcon
     .short 397
     .endm
 
-    .macro ScrCmd_18E
+    .macro HideSavingIcon
     .short 398
     .endm
 
@@ -2232,7 +2232,7 @@
     .short \frames
     .endm
 
-    .macro ScrCmd_191
+    .macro SelectMoveTutorPokemon
     .short 401
     .endm
 
@@ -2402,14 +2402,14 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_1B1 arg0
+    .macro ShowObject localID
     .short 433
-    .short \arg0
+    .short \localID
     .endm
 
-    .macro ScrCmd_1B2 arg0
+    .macro HideObject localID
     .short 434
-    .short \arg0
+    .short \localID
     .endm
 
     .macro ScrCmd_1B3
@@ -3462,9 +3462,9 @@
     .short 607
     .endm
 
-    .macro ScrCmd_260 arg0
+    .macro IncrementTrainerScore2 scoreID
     .short 608
-    .short \arg0
+    .short \scoreID
     .endm
 
     .macro BufferAccessoryName templateArg, accessory
@@ -3674,10 +3674,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_285 arg0, arg1
+    .macro InitTurnbackCave varPillarsSeen, varRoomsVisited
     .short 645
-    .short \arg0
-    .short \arg1
+    .short \varPillarsSeen
+    .short \varRoomsVisited
     .endm
 
     .macro GetUndergroundItemsGivenAway destVarID
@@ -4476,9 +4476,17 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_313 arg0
+    .macro CheckHeapMemory assertUnchangedFreeMemory
     .short 787
-    .short \arg0
+    .short \assertUnchangedFreeMemory
+    .endm
+
+    .macro RecordHeapMemory
+    CheckHeapMemory FALSE
+    .endm
+
+    .macro AssertHeapMemory
+    CheckHeapMemory TRUE
     .endm
 
     .macro ScrCmd_314 arg0
@@ -4535,10 +4543,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_31E arg0, arg1
+    .macro TryRevertPokemonForm partySlot, destVar
     .short 798
-    .short \arg0
-    .short \arg1
+    .short \partySlot
+    .short \destVar
     .endm
 
     .macro ResetDistortionWorldPersistedCameraAngles
