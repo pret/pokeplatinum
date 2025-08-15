@@ -102,7 +102,7 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     }
 }
 
-void sub_0207056C(FieldSystem *fieldSystem)
+void FieldSystem_SetFlyFlags(FieldSystem *fieldSystem)
 {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
     RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));

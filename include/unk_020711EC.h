@@ -23,7 +23,7 @@ UnkStruct_ov101_021D5D90 *sub_02071330(UnkStruct_020711EC *param0, const UnkStru
 void sub_0207136C(UnkStruct_ov101_021D5D90 *param0);
 void sub_020713A4(UnkStruct_020711EC *param0);
 void sub_020713D0(UnkStruct_020711EC *param0);
-int sub_020714F0(const UnkStruct_ov101_021D5D90 *param0);
+int UnkStruct_ov101_021D5D90_IsLsbSet(const UnkStruct_ov101_021D5D90 *param0);
 void sub_02071518(UnkStruct_ov101_021D5D90 *param0, UnkFuncPtr_02071330 param1);
 int sub_02071520(UnkStruct_ov101_021D5D90 *param0);
 void sub_02071534(UnkStruct_ov101_021D5D90 *param0, UnkFuncPtr_02071330_2 param1);
@@ -42,11 +42,11 @@ void sub_020715C0(UnkStruct_ov101_021D5D90 *param0, int param1);
 int sub_020715C4(const UnkStruct_ov101_021D5D90 *param0);
 void sub_020715D4(UnkStruct_ov101_021D5D90 *param0, const VecFx32 *param1);
 void sub_020715E4(UnkStruct_ov101_021D5D90 *param0, VecFx32 *param1);
-int sub_020715F4(UnkStruct_ov101_021D5D90 *param0, void *param1);
-void sub_020715F8(UnkStruct_ov101_021D5D90 *param0, void *param1);
-void sub_020715FC(UnkStruct_ov101_021D5D90 *param0, void *param1);
-void sub_02071600(UnkStruct_ov101_021D5D90 *param0, void *param1);
-void sub_02071604(UnkStruct_ov101_021D5D90 *param0, void *param1);
-void sub_02071608(UnkStruct_ov101_021D5D90 *param0, void *param1);
+int UnkStruct_ov101_021D5D90_Return1(UnkStruct_ov101_021D5D90 *param0, void *param1);
+void UnkStruct_ov101_021D5D90_DoNothing1(UnkStruct_ov101_021D5D90 *param0, void *param1);
+void UnkStruct_ov101_021D5D90_DoNothing2(UnkStruct_ov101_021D5D90 *param0, void *param1);
+void UnkStruct_ov101_021D5D90_DoNothing3(UnkStruct_ov101_021D5D90 *param0, void *param1);
+void UnkStruct_ov101_021D5D90_DoNothing4(UnkStruct_ov101_021D5D90 *param0, void *param1);
+void UnkStruct_ov101_021D5D90_DoNothing5(UnkStruct_ov101_021D5D90 *param0, void *param1);
 
 #endif // POKEPLATINUM_UNK_020711EC_H

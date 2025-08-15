@@ -16,7 +16,7 @@
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 #include "overlay006/ov6_02247100.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
@@ -753,11 +753,11 @@ void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int param2, int x,
     FieldTask_InitCall(task, FieldTask_ChangeMapFull, mapChangeSub);
 }
 
-void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int mapID, int warpID, int x, int z, int facingDirection)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapID, warpID, x, z, facingDirection);
 
     MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
@@ -768,11 +768,11 @@ void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int param1, int param
     FieldSystem_CreateTask(fieldSystem, FieldTask_MapChangeFly, mapChangeData);
 }
 
-void FieldTask_ChangeMapChangeFly(FieldTask *task, int param1, int param2, int param3, int param4, int param5)
+void FieldTask_ChangeMapChangeFly(FieldTask *task, int mapID, int warpID, int x, int z, int facingDirection)
 {
     Location location;
 
-    Location_Set(&location, param1, param2, param3, param4, param5);
+    Location_Set(&location, mapID, warpID, x, z, facingDirection);
 
     MapChangeFlyData *mapChangeData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(MapChangeFlyData));
 
@@ -806,7 +806,7 @@ static BOOL FieldTask_MapChangeFly(FieldTask *task)
         }
 
         Sound_PlayMapBGM(fieldSystem, location->mapId);
-        sub_0207056C(fieldSystem);
+        FieldSystem_SetFlyFlags(fieldSystem);
         FieldTransition_StartMapAndFadeInFly(task);
         mapChangeData->state++;
         break;
@@ -877,7 +877,7 @@ static void FieldTask_FadeInFly(FieldTask *task)
         return;
     }
 
-    mapChangeData->task = FieldTask_InitFlyLandingTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
+    mapChangeData->task = FieldTask_FlyLanding_InitTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
     FieldTask_InitCall(task, FieldTask_WaitFadeInFly, mapChangeData);
 }
 
@@ -885,8 +885,8 @@ static BOOL FieldTask_WaitFadeInFly(FieldTask *task)
 {
     MapChangeFlyData *mapChangeData = FieldTask_GetEnv(task);
 
-    if (ov6_02245CF0(mapChangeData->task) == 1) {
-        ov6_02245CFC(mapChangeData->task);
+    if (FlyLanding_IsAnimFinished(mapChangeData->task) == TRUE) {
+        FlyLanding_SetTaskDone(mapChangeData->task);
         return TRUE;
     }
 

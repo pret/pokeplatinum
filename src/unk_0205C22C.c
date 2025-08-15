@@ -328,7 +328,7 @@ static void sub_0205C51C(UnkStruct_0205C22C *param0, MapObjectManager *param1)
 static void sub_0205C680(UnkStruct_0205C680 *param0, int param1)
 {
     if (param0->unk_10 != NULL) {
-        if (sub_020714F0(param0->unk_10)) {
+        if (UnkStruct_ov101_021D5D90_IsLsbSet(param0->unk_10)) {
             sub_0207136C(param0->unk_10);
         }
 
@@ -337,7 +337,7 @@ static void sub_0205C680(UnkStruct_0205C680 *param0, int param1)
 
     if (param1) {
         if (param0->unk_14 != NULL) {
-            if (sub_020714F0(param0->unk_14)) {
+            if (UnkStruct_ov101_021D5D90_IsLsbSet(param0->unk_14)) {
                 sub_0207136C(param0->unk_14);
             }
 

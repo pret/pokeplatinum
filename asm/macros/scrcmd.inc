@@ -1163,11 +1163,11 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_0C2 arg0, arg1, arg2
+    .macro UseFly mapID, x, z
     .short 194
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \mapID
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_0C3
