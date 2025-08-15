@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
+#include "generated/versions.h"
 
 
     ScriptEntry _0022
@@ -63,45 +64,21 @@ _0107:
     End
 
 _0109:
-    ScrCmd_246 VAR_RESULT
+    GetGameVersion VAR_RESULT
     SetVar VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_RESULT, 10, _0133
-    GoToIfEq VAR_RESULT, 12, _0133
+    GoToIfEq VAR_RESULT, VERSION_DIAMOND, _0133
+    GoToIfEq VAR_RESULT, VERSION_PLATINUM, _0133
     SetVar VAR_0x8004, VAR_0x8006
 _0133:
     Return
 
-    .byte 77
-    .byte 1
-    .byte 12
-    .byte 128
-    .byte 41
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 5
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 6
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 41
-    .byte 0
-    .byte 4
-    .byte 128
-    .byte 6
-    .byte 128
-    .byte 27
-    .byte 0
+SpearPillar_Unused:
+    GetPlayerGender VAR_RESULT
+    SetVar VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, SpearPillar_Unused2
+    SetVar VAR_0x8004, VAR_0x8006
+SpearPillar_Unused2:
+    Return
 
 _0154:
     LockAll
@@ -368,69 +345,26 @@ _04A7:
     ScrCmd_18C 5, 3
     Return
 
-    .byte 94
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 15
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 27
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 27
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 71
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 72
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 71
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 11
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 72
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+SpearPillar_Unused3:
+    ApplyMovement 4, SpearPillar_UnusedMovement
+    ApplyMovement 2, SpearPillar_UnusedMovement2
+    WaitMovement
+    Return
+
+    .balign 4, 0
+SpearPillar_UnusedMovement:
+    FaceEast
+    LockDir
+    WalkSlowWest
+    UnlockDir
+    EndMovement
+
+SpearPillar_UnusedMovement2:
+    FaceWest
+    LockDir
+    WalkSlowEast
+    UnlockDir
+    EndMovement
 
     .balign 4, 0
 _04F4:
@@ -447,7 +381,7 @@ _0508:
     ApplyMovement LOCALID_PLAYER, _05B8
     WaitMovement
     GetPlayerMapPos VAR_0x8000, VAR_0x8001
-    ScrCmd_066 VAR_0x8000, VAR_0x8001
+    AddFreeCamera VAR_0x8000, VAR_0x8001
     Call _05C0
     WaitMovement
     SetVar VAR_0x8005, 13
@@ -479,7 +413,7 @@ _0567:
     SetVar VAR_UNK_0x40C3, 1
     SetSpeciesSeen SPECIES_DIALGA
     SetSpeciesSeen SPECIES_PALKIA
-    ScrCmd_067
+    RestoreCamera
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End
 
@@ -499,23 +433,23 @@ _05C0:
     Return
 
 _060F:
-    ApplyMovement 241, _0644
+    ApplyFreeCameraMovement _0644
     Return
 
 _0619:
-    ApplyMovement 241, _0654
+    ApplyFreeCameraMovement _0654
     Return
 
 _0623:
-    ApplyMovement 241, _0664
+    ApplyFreeCameraMovement _0664
     Return
 
 _062D:
-    ApplyMovement 241, _0670
+    ApplyFreeCameraMovement _0670
     Return
 
 _0637:
-    ApplyMovement 241, _0680
+    ApplyFreeCameraMovement _0680
     Return
 
     .balign 4, 0

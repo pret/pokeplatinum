@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/struct_020972FC.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -11,6 +10,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -23,7 +23,6 @@
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
-#include "unk_0200C440.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -41,7 +40,7 @@ typedef struct {
     Window unk_04[12];
     MessageLoader *unk_C4;
     StringTemplate *unk_C8;
-    UnkStruct_0200C440 *unk_CC;
+    FontSpecialCharsContext *unk_CC;
     Camera *camera;
     UnkStruct_ov85_022420A8 unk_D4[4];
     UnkStruct_ov85_022420A8 unk_134[4];
@@ -442,15 +441,15 @@ static void ov85_022417CC(void)
 
 static void ov85_022417E4(UnkStruct_ov85_022417E4 *param0)
 {
-    param0->unk_C4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0398, HEAP_ID_36);
-    param0->unk_CC = sub_0200C440(15, 2, 0, HEAP_ID_36);
+    param0->unk_C4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_TAGS, HEAP_ID_36);
+    param0->unk_CC = FontSpecialChars_Init(15, 2, 0, HEAP_ID_36);
     param0->unk_C8 = StringTemplate_Default(HEAP_ID_36);
 }
 
 static void ov85_0224181C(UnkStruct_ov85_022417E4 *param0)
 {
     MessageLoader_Free(param0->unk_C4);
-    sub_0200C560(param0->unk_CC);
+    FontSpecialChars_Free(param0->unk_CC);
     StringTemplate_Free(param0->unk_C8);
 }
 
@@ -532,7 +531,7 @@ static void ov85_0224198C(UnkStruct_ov85_022417E4 *param0)
     v0 = &param0->unk_04[1];
 
     Window_FillTilemap(v0, 0);
-    sub_0200C578(param0->unk_CC, 2, v0, 0, 5);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_CC, 2, v0, 0, 5);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 6);
     v2 = Strbuf_Init((2 + 1) * 2, HEAP_ID_36);

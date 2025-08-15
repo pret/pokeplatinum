@@ -12,7 +12,7 @@ _000E:
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_ETERNA_HOUSE
     ReleaseAll
     End
@@ -37,6 +37,4 @@ _0036:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

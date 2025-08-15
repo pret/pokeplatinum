@@ -211,44 +211,22 @@ _02C9:
     End
 
 _032A:
-    ScrCmd_187 VAR_0x8002, 12, 2, 47, 2
+    SetPosition VAR_0x8002, 12, 2, 47, 2
     Return
 
 _0338:
-    ScrCmd_187 VAR_0x8002, 51, 2, 47, 3
+    SetPosition VAR_0x8002, 51, 2, 47, 3
     Return
 
-    .byte 188
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 189
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 5
-    .byte 52
-    .byte 0
-    .byte 94
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 95
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+AmitySquare_Unused:
+    FadeScreen 6, 1, 1, 0
+    WaitFadeScreen
+    Message 5
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, _03C0
+    WaitMovement
+    ReleaseAll
+    End
 
 AmitySquare_Trigger_ExitAmitySquare:
     LockAll
@@ -294,18 +272,10 @@ _03C8:
     WalkNormalNorth
     EndMovement
 
-    .byte 85
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+AmitySquare_UnusedMovement:
+    WalkFastestSouth 2
+    FaceWest
+    EndMovement
 
 AmitySquare_FollowerMon_SetNextPickUpType:
     GetRandom VAR_RESULT, 5
@@ -1043,12 +1013,10 @@ AmitySquare_GiftMan_DeclinedGift:
     ReleaseAll
     End
 
-    .byte 52
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+AmitySquare_Unused2:
+    CloseMessage
+    ReleaseAll
+    End
 
 AmitySquare_GiftMan_CannotFitItem:
     CallCommonScript 0x7E1
@@ -1253,163 +1221,163 @@ _1305:
 _14C2:
     ApplyMovement LOCALID_PLAYER, _1778
     WaitMovement
-    ScrCmd_187 5, 35, 2, 15, 1
+    SetPosition 5, 35, 2, 15, 1
     Return
 
 _14DA:
     ApplyMovement LOCALID_PLAYER, _1780
     WaitMovement
-    ScrCmd_187 5, 35, 2, 15, 1
+    SetPosition 5, 35, 2, 15, 1
     Return
 
 _14F2:
     ApplyMovement LOCALID_PLAYER, _178C
     WaitMovement
-    ScrCmd_187 5, 35, 2, 15, 1
+    SetPosition 5, 35, 2, 15, 1
     Return
 
 _150A:
     ApplyMovement LOCALID_PLAYER, _1798
     WaitMovement
-    ScrCmd_187 5, 17, 2, 16, 1
+    SetPosition 5, 17, 2, 16, 1
     Return
 
 _1522:
     ApplyMovement LOCALID_PLAYER, _17A4
     WaitMovement
-    ScrCmd_187 5, 17, 2, 16, 1
+    SetPosition 5, 17, 2, 16, 1
     Return
 
 _153A:
     ApplyMovement LOCALID_PLAYER, _17B0
     WaitMovement
-    ScrCmd_187 5, 17, 2, 16, 1
+    SetPosition 5, 17, 2, 16, 1
     Return
 
 _1552:
     ApplyMovement LOCALID_PLAYER, _17BC
     WaitMovement
-    ScrCmd_187 5, 47, 4, 8, 1
+    SetPosition 5, 47, 4, 8, 1
     Return
 
 _156A:
     ApplyMovement LOCALID_PLAYER, _17C8
     WaitMovement
-    ScrCmd_187 5, 33, 5, 7, 1
+    SetPosition 5, 33, 5, 7, 1
     Return
 
 _1582:
     ApplyMovement LOCALID_PLAYER, _17D4
     WaitMovement
-    ScrCmd_187 5, 15, 4, 10, 1
+    SetPosition 5, 15, 4, 10, 1
     Return
 
 _159A:
     ApplyMovement LOCALID_PLAYER, _17E0
     WaitMovement
-    ScrCmd_187 5, 52, 4, 25, 1
+    SetPosition 5, 52, 4, 25, 1
     Return
 
 _15B2:
     ApplyMovement LOCALID_PLAYER, _17EC
     WaitMovement
-    ScrCmd_187 5, 15, 4, 10, 1
+    SetPosition 5, 15, 4, 10, 1
     Return
 
 _15CA:
     ApplyMovement LOCALID_PLAYER, _17F8
     WaitMovement
-    ScrCmd_187 5, 33, 5, 7, 1
+    SetPosition 5, 33, 5, 7, 1
     Return
 
 _15E2:
     ApplyMovement LOCALID_PLAYER, _1804
     WaitMovement
-    ScrCmd_187 5, 52, 4, 25, 1
+    SetPosition 5, 52, 4, 25, 1
     Return
 
 _15FA:
     ApplyMovement LOCALID_PLAYER, _1810
     WaitMovement
-    ScrCmd_187 5, 26, 6, 9, 1
+    SetPosition 5, 26, 6, 9, 1
     Return
 
 _1612:
     ApplyMovement LOCALID_PLAYER, _181C
     WaitMovement
-    ScrCmd_187 5, 41, 3, 16, 1
+    SetPosition 5, 41, 3, 16, 1
     Return
 
 _162A:
     ApplyMovement LOCALID_PLAYER, _1828
     WaitMovement
-    ScrCmd_187 5, 52, 4, 25, 1
+    SetPosition 5, 52, 4, 25, 1
     Return
 
 _1642:
     ApplyMovement LOCALID_PLAYER, _1834
     WaitMovement
-    ScrCmd_187 5, 41, 3, 16, 1
+    SetPosition 5, 41, 3, 16, 1
     Return
 
 _165A:
     ApplyMovement LOCALID_PLAYER, _1840
     WaitMovement
-    ScrCmd_187 5, 26, 6, 9, 1
+    SetPosition 5, 26, 6, 9, 1
     Return
 
 _1672:
     ApplyMovement LOCALID_PLAYER, _184C
     WaitMovement
-    ScrCmd_187 5, 47, 4, 8, 1
+    SetPosition 5, 47, 4, 8, 1
     Return
 
 _168A:
     ApplyMovement LOCALID_PLAYER, _1854
     WaitMovement
-    ScrCmd_187 5, 47, 2, 34, 1
+    SetPosition 5, 47, 2, 34, 1
     Return
 
 _16A2:
     ApplyMovement LOCALID_PLAYER, _1860
     WaitMovement
-    ScrCmd_187 5, 15, 4, 10, 1
+    SetPosition 5, 15, 4, 10, 1
     Return
 
 _16BA:
     ApplyMovement LOCALID_PLAYER, _186C
     WaitMovement
-    ScrCmd_187 5, 47, 4, 8, 1
+    SetPosition 5, 47, 4, 8, 1
     Return
 
 _16D2:
     ApplyMovement LOCALID_PLAYER, _1878
     WaitMovement
-    ScrCmd_187 5, 33, 5, 7, 1
+    SetPosition 5, 33, 5, 7, 1
     Return
 
 _16EA:
     ApplyMovement LOCALID_PLAYER, _1884
     WaitMovement
-    ScrCmd_187 5, 47, 2, 34, 1
+    SetPosition 5, 47, 2, 34, 1
     Return
 
 _1702:
     ApplyMovement LOCALID_PLAYER, _1890
     WaitMovement
-    ScrCmd_187 5, 52, 4, 25, 1
+    SetPosition 5, 52, 4, 25, 1
     Return
 
 _171A:
     ApplyMovement LOCALID_PLAYER, _189C
     WaitMovement
-    ScrCmd_187 5, 15, 4, 10, 1
+    SetPosition 5, 15, 4, 10, 1
     Return
 
 _1732:
     ApplyMovement LOCALID_PLAYER, _18A8
     WaitMovement
-    ScrCmd_187 5, 33, 5, 7, 1
+    SetPosition 5, 33, 5, 7, 1
     Return
 
 _174A:

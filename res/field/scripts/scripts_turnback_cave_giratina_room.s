@@ -62,8 +62,8 @@ _009B:
 _00A5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfEq VAR_UNK_0x410C, 3, _00F4
-    GoToIfLt VAR_UNK_0x410C, 15, _0100
+    GoToIfEq VAR_TURNBACK_CAVE_ROOMS_VISITED, 3, _00F4
+    GoToIfLt VAR_TURNBACK_CAVE_ROOMS_VISITED, 15, _0100
     SetVar VAR_0x8004, ITEM_STARDUST
 _00CB:
     SetVar VAR_0x8005, 1
@@ -124,6 +124,4 @@ _017F:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -31,6 +31,7 @@
     "safari_flee_rate": 90,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -82,6 +83,15 @@
             "MOVE_TWISTER",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_FEATHER_DANCE",
+            "MOVE_FURY_ATTACK",
+            "MOVE_PURSUIT",
+            "MOVE_ASTONISH",
+            "MOVE_SAND_ATTACK",
+            "MOVE_FORESIGHT",
+            "MOVE_DOUBLE_EDGE"
         ]
     },
     "evolutions": [
@@ -94,7 +104,8 @@
     "offspring": "SPECIES_STARLY",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 3,

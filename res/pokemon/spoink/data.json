@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SPLASH" ],
@@ -97,6 +98,15 @@
             "MOVE_BOUNCE",
             "MOVE_TRICK",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_EXTRASENSORY",
+            "MOVE_SUBSTITUTE",
+            "MOVE_TRICK",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_AMNESIA",
+            "MOVE_MIRROR_COAT"
         ]
     },
     "evolutions": [
@@ -109,7 +119,8 @@
     "offspring": "SPECIES_SPOINK",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 7,

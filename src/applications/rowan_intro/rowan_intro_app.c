@@ -2,13 +2,14 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/string.h"
 #include "generated/genders.h"
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/naming_screen.h"
 #include "applications/rowan_intro/main.h"
 
 #include "bg_window.h"
@@ -44,9 +45,7 @@
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_0208694C.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "res/text/bank/rowan_intro.h"
 
 FS_EXTERN_OVERLAY(game_start);
@@ -203,19 +202,19 @@ enum BunearyAnimState {
 };
 
 enum ChoicesCase {
-    CC_YESNO,
+    CC_YESNO = 0,
     CC_INFO,
     CC_RIVAL_NAMES,
 };
 
 enum DisplayTextBlockCase {
-    DTBC_CONTROL_INFO_0,
+    DTBC_CONTROL_INFO_0 = 0,
     DTBC_ADVENTURE_INFO,
     DTBC_CONTROL_INFO_1,
 };
 
 enum DisplayTextBlockState {
-    DTB_STATE_INIT,
+    DTB_STATE_INIT = 0,
     DTB_STATE_COPY_WINDOW_TO_VRAM,
     DTB_STATE_FADE_IN_TEXT,
     DTB_STATE_WAIT_FOR_INPUT,
@@ -246,8 +245,8 @@ typedef struct RowanIntro {
     StringTemplate *strFormatter;
     UnkStruct_02015920 *unk_68;
     SysTask *unused;
-    UnkStruct_0208737C *unk_70;
-    UnkStruct_0208737C *unk_74;
+    NamingScreenArgs *unk_70;
+    NamingScreenArgs *unk_74;
     enum FadeBgLayerState fadeBgLayerState;
     int fadeBgLayerCurAlpha;
     int fadeBgLayerCurAlphaInv;
@@ -297,17 +296,17 @@ int RowanIntroTv_Main(ApplicationManager *appMan, int *state);
 int RowanIntroTv_Exit(ApplicationManager *appMan, int *state);
 
 const ApplicationManagerTemplate sDummyApplicationManagerTemplate = {
-    RowanIntro_Init,
-    RowanIntro_Main,
-    RowanIntro_Exit,
-    FS_OVERLAY_ID_NONE,
+    .init = RowanIntro_Init,
+    .main = RowanIntro_Main,
+    .exit = RowanIntro_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
 static const ApplicationManagerTemplate sTvApplicationTemplate = {
-    RowanIntroTv_Init,
-    RowanIntroTv_Main,
-    RowanIntroTv_Exit,
-    FS_OVERLAY_ID_NONE,
+    .init = RowanIntroTv_Init,
+    .main = RowanIntroTv_Main,
+    .exit = RowanIntroTv_Exit,
+    .overlayID = FS_OVERLAY_ID_NONE,
 };
 
 BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
@@ -326,8 +325,8 @@ BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
     manager->state = RI_STATE_FIRST_FADE_BLACK_START;
     manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->unk_70 = sub_0208712C(heapID, 0, 0, 7, manager->options);
-    manager->unk_74 = sub_0208712C(heapID, 3, 0, 7, manager->options);
+    manager->unk_70 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, manager->options);
+    manager->unk_74 = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, TRAINER_NAME_LEN, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;
@@ -440,7 +439,7 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
         manager->unk_70->textInputStr);
     TrainerInfo_SetGender(
         SaveData_GetTrainerInfo(manager->saveData),
-        manager->unk_70->unk_04);
+        manager->unk_70->playerGenderOrMonSpecies);
 
     {
         MiscSaveBlock *miscSaveBlock = SaveData_MiscSaveBlock(manager->saveData);
@@ -448,8 +447,8 @@ BOOL RowanIntro_Exit(ApplicationManager *appMan, int *unusedState)
         MiscSaveBlock_SetRivalName(miscSaveBlock, manager->unk_74->textInputStr);
     }
 
-    sub_0208716C(manager->unk_70);
-    sub_0208716C(manager->unk_74);
+    NamingScreenArgs_Free(manager->unk_70);
+    NamingScreenArgs_Free(manager->unk_74);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveAppTemplate);
@@ -497,16 +496,16 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
 {
     {
         UnkStruct_02099F80 banks = {
-            GX_VRAM_BG_128_B,
-            GX_VRAM_BGEXTPLTT_NONE,
-            GX_VRAM_SUB_BG_128_C,
-            GX_VRAM_SUB_BGEXTPLTT_NONE,
-            GX_VRAM_OBJ_NONE,
-            GX_VRAM_OBJEXTPLTT_NONE,
-            GX_VRAM_SUB_OBJ_NONE,
-            GX_VRAM_SUB_OBJEXTPLTT_NONE,
-            GX_VRAM_TEX_NONE,
-            GX_VRAM_TEXPLTT_NONE
+            .unk_00 = GX_VRAM_BG_128_B,
+            .unk_04 = GX_VRAM_BGEXTPLTT_NONE,
+            .unk_08 = GX_VRAM_SUB_BG_128_C,
+            .unk_0C = GX_VRAM_SUB_BGEXTPLTT_NONE,
+            .unk_10 = GX_VRAM_OBJ_NONE,
+            .unk_14 = GX_VRAM_OBJEXTPLTT_NONE,
+            .unk_18 = GX_VRAM_SUB_OBJ_NONE,
+            .unk_1C = GX_VRAM_SUB_OBJEXTPLTT_NONE,
+            .unk_20 = GX_VRAM_TEX_NONE,
+            .unk_24 = GX_VRAM_TEXPLTT_NONE
         };
 
         GXLayers_SetBanks(&banks);
@@ -518,10 +517,10 @@ static void RowanIntro_InitGraphics(RowanIntro *manager)
 
     {
         GraphicsModes graphicsModes = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_2D
+            .displayMode = GX_DISPMODE_GRAPHICS,
+            .mainBgMode = GX_BGMODE_0,
+            .subBgMode = GX_BGMODE_0,
+            .bg0As2DOr3D = GX_BG0_AS_2D
         };
 
         SetAllGraphicsModes(&graphicsModes);
@@ -872,105 +871,106 @@ typedef struct ChoiceInfo {
 
 static const WindowTemplate sDisplayMessageTemplate = {
     .bgLayer = BG_LAYER_MAIN_0,
-    .tilemapLeft = 0x2,
+    .tilemapLeft = 2,
     .tilemapTop = 0x13,
     .width = 0x1B,
-    .height = 0x4,
-    .palette = 0x6,
+    .height = 4,
+    .palette = 6,
     .baseTile = 0x36D,
 };
 static const WindowTemplate sYesNoWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_0,
-    .tilemapLeft = 0x2,
-    .tilemapTop = 0x3,
-    .width = 0x6,
-    .height = 0x4,
-    .palette = 0x5,
+    .tilemapLeft = 2,
+    .tilemapTop = 3,
+    .width = 6,
+    .height = 4,
+    .palette = 5,
     .baseTile = 0x355,
 };
 static const WindowTemplate sInfoChoiceBoxWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_0,
-    .tilemapLeft = 0x1,
-    .tilemapTop = 0x3,
+    .tilemapLeft = 1,
+    .tilemapTop = 3,
     .width = 0x10,
-    .height = 0x6,
-    .palette = 0x5,
+    .height = 6,
+    .palette = 5,
     .baseTile = 0x30D,
 };
 static const WindowTemplate sRivalNamesChoiceBoxTemplate = {
     .bgLayer = BG_LAYER_MAIN_0,
-    .tilemapLeft = 0x2,
-    .tilemapTop = 0x3,
-    .width = 0xE,
-    .height = 0xA,
-    .palette = 0x5,
+    .tilemapLeft = 2,
+    .tilemapTop = 3,
+    .width = 14,
+    .height = 10,
+    .palette = 5,
     .baseTile = 0x2E1,
 };
 const WindowTemplate sControlInfoTextWindow = {
     .bgLayer = BG_LAYER_MAIN_0,
-    .tilemapLeft = 0x8,
-    .tilemapTop = 0x0,
+    .tilemapLeft = 8,
+    .tilemapTop = 0,
     .width = 0x18,
     .height = 0x18,
-    .palette = 0x5,
+    .palette = 5,
     .baseTile = 0x12D,
 };
 const WindowTemplate sAdventureInfoTextWindow = {
     .bgLayer = BG_LAYER_MAIN_0,
-    .tilemapLeft = 0x4,
-    .tilemapTop = 0x0,
+    .tilemapLeft = 4,
+    .tilemapTop = 0,
     .width = 0x18,
     .height = 0x18,
-    .palette = 0x5,
+    .palette = 5,
     .baseTile = 0x12D,
 };
 
 static const ListMenuTemplate sChoiceBoxTemplate = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    0x0,
-    0x0,
-    0x0,
-    0xC,
-    0x0,
-    0x0,
-    0x1,
-    0xF,
-    0x2,
-    0x0,
-    0x0,
-    PAGER_MODE_NONE,
-    FONT_SYSTEM,
-    0x0
+    .choices = NULL,
+    .cursorCallback = NULL,
+    .printCallback = NULL,
+    .window = NULL,
+    .count = 0,
+    .maxDisplay = 0,
+    .headerXOffset = 0,
+    .textXOffset = 12,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 1,
+    .textColorBg = 15,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 0,
+    .pagerMode = PAGER_MODE_NONE,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 0,
+    .parent = NULL,
 };
 
 static const ChoiceInfo sYesNoChoiceInfos[] = {
-    { pl_msg_00000389_00034, 0x1 },
-    { pl_msg_00000389_00035, 0x2 }
+    { .textID = RowanIntro_Text_ChoiceYes, .choiceIndex = 1 },
+    { .textID = RowanIntro_Text_ChoiceNo, .choiceIndex = 2 }
 };
 
 static const ChoiceInfo sInfoChoiceInfos[] = {
-    { pl_msg_00000389_00031, 0x1 },
-    { pl_msg_00000389_00032, 0x2 },
-    { pl_msg_00000389_00033, 0x3 }
+    { .textID = RowanIntro_Text_ChoiceControlInfo, .choiceIndex = 1 },
+    { .textID = RowanIntro_Text_ChoiceAdventureInfo, .choiceIndex = 2 },
+    { .textID = RowanIntro_Text_ChoiceNoInfo, .choiceIndex = 3 }
 };
 
 static const ChoiceInfo sRivalNameChoiceInfos[] = {
-    { pl_msg_00000389_00036, 0x1 },
-    { pl_msg_00000389_00037, 0x2 },
-    { pl_msg_00000389_00038, 0x3 },
-    { pl_msg_00000389_00039, 0x4 },
-    { pl_msg_00000389_00040, 0x5 }
+    { .textID = RowanIntro_Text_RivalChoiceNew, .choiceIndex = 1 },
+    { .textID = RowanIntro_Text_RivalChoiceBarry, .choiceIndex = 2 },
+    { .textID = RowanIntro_Text_RivalChoiceNolan, .choiceIndex = 3 },
+    { .textID = RowanIntro_Text_RivalChoiceRoy, .choiceIndex = 4 },
+    { .textID = RowanIntro_Text_RivalChoiceGavin, .choiceIndex = 5 }
 };
 
 static const ChoiceInfo sUnusedRivalNameChoiceInfos[] = {
-    { pl_msg_00000389_00036, 0x1 },
-    { pl_msg_00000389_00041, 0x2 },
-    { pl_msg_00000389_00042, 0x3 },
-    { pl_msg_00000389_00043, 0x4 },
-    { pl_msg_00000389_00044, 0x5 }
+    { .textID = RowanIntro_Text_RivalChoiceNew, .choiceIndex = 0x1 },
+    { .textID = RowanIntro_Text_RivalChoiceClint, .choiceIndex = 0x2 },
+    { .textID = RowanIntro_Text_RivalChoiceRalph, .choiceIndex = 0x3 },
+    { .textID = RowanIntro_Text_RivalChoiceLewis, .choiceIndex = 0x4 },
+    { .textID = RowanIntro_Text_RivalChoiceTommy, .choiceIndex = 0x5 }
 };
 
 static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endEarly)
@@ -1147,7 +1147,12 @@ static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCa
     return isFinished;
 }
 
-static BOOL RowanIntro_DisplayTextBlock(RowanIntro *manager, u32 textID, enum DisplayTextBlockCase whichCase, int param3, int param4)
+static BOOL RowanIntro_DisplayTextBlock(
+    RowanIntro *manager,
+    u32 textID,
+    enum DisplayTextBlockCase whichCase,
+    int param3,
+    int param4)
 {
     // param3 and param4 have different uses depending on what value is passed to whichCase
 
@@ -1807,7 +1812,7 @@ static BOOL RowanIntro_AnimateAvatarShrink(RowanIntro *manager)
             BG_LAYER_MAIN_1,
             0,
             0,
-            0,
+            FALSE,
             manager->heapID);
     }
 
@@ -2047,7 +2052,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_WELCOME:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00000, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_HelloThere, TRUE) == TRUE) {
             manager->state = RI_STATE_FADE_IN_ROWAN_START;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
@@ -2077,7 +2082,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_ROWAN_INTRO:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00001, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_MyNameRowan, TRUE) == TRUE) {
             manager->state = RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
         }
         break;
@@ -2149,7 +2154,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_CONTROL_INFO_TEXT_0:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00002, DTBC_CONTROL_INFO_0, 3, 18) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_ControlInfo0, DTBC_CONTROL_INFO_0, 3, 18) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_SHOW_XY_ICONS;
         }
         break;
@@ -2159,7 +2164,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->state = RI_STATE_CONTROL_INFO_TEXT_1;
         break;
     case RI_STATE_CONTROL_INFO_TEXT_1:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00003, DTBC_CONTROL_INFO_0, 7, 12) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_ControlInfo1, DTBC_CONTROL_INFO_0, 7, 12) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_HIDE_XY_ICONS;
         }
         break;
@@ -2169,17 +2174,17 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->state = RI_STATE_CONTROL_INFO_TEXT_2;
         break;
     case RI_STATE_CONTROL_INFO_TEXT_2:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00004, DTBC_CONTROL_INFO_1, 4, 12) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_ControlInfo2, DTBC_CONTROL_INFO_1, 4, 12) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_DIALOGUE_DS_ICON;
         }
         break;
     case RI_STATE_CONTROL_INFO_DIALOGUE_DS_ICON:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00006, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_ControlInfoDsIcon, TRUE) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_TEXT_3;
         }
         break;
     case RI_STATE_CONTROL_INFO_TEXT_3:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00005, DTBC_CONTROL_INFO_1, 4, 10) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_ControlInfo3, DTBC_CONTROL_INFO_1, 4, 10) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_HIDE_FG;
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
@@ -2191,12 +2196,19 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         manager->state = RI_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD;
         break;
     case RI_STATE_CONTROL_INFO_DIALOGUE_UNDERSTOOD:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00007, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_ControlInfoUnderstood, TRUE) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_SHOW_YESNO;
         }
         break;
     case RI_STATE_CONTROL_INFO_SHOW_YESNO: {
-        UnkStruct_02015958 v1 = { NULL, 6, 1, 12, 12, 8 };
+        UnkStruct_02015958 v1 = {
+            .unk_00 = NULL,
+            .unk_04 = BG_LAYER_SUB_2,
+            .unk_08 = 1,
+            .unk_0C = 12,
+            .unk_10 = 12,
+            .unk_11 = 8,
+        };
 
         v1.unk_00 = manager->bgConfig;
         sub_02015958(manager->unk_68, &v1);
@@ -2213,9 +2225,9 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
 
         {
-            int v2 = sub_020159C0(manager->unk_68);
+            int yesNoResult = sub_020159C0(manager->unk_68);
 
-            if ((v2 == 3) || (v2 == 4)) {
+            if ((yesNoResult == 3) || (yesNoResult == 4)) {
                 manager->state = RI_STATE_CONTROL_INFO_PROCESS_YESNO;
             }
         }
@@ -2266,7 +2278,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_CONTROL_INFO_DIALOGUE_USE_TOUCHSCREEN:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00008, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_ControlInfoUseTouchscreen, TRUE) == TRUE) {
             manager->state = RI_STATE_CONTROL_INFO_WAIT_INPUT;
         }
         break;
@@ -2297,7 +2309,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_ANOTHER_INFO:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00009, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_InfoAnythingElse, TRUE) == TRUE) {
             manager->state = RI_STATE_MOVE_ROWAN_RIGHT_FOR_INFO;
         }
         break;
@@ -2322,32 +2334,32 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_0:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00010, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_AdventureInfo0, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_1;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_1:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00011, DTBC_ADVENTURE_INFO, 8, 8) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_AdventureInfo1, DTBC_ADVENTURE_INFO, 8, 8) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_2;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_2:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00012, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_AdventureInfo2, DTBC_ADVENTURE_INFO, 9, 6) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_3;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_3:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00013, DTBC_ADVENTURE_INFO, 5, 14) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_AdventureInfo3, DTBC_ADVENTURE_INFO, 5, 14) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_4;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_4:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00014, DTBC_ADVENTURE_INFO, 10, 4) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_AdventureInfo4, DTBC_ADVENTURE_INFO, 10, 4) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_TEXT_5;
         }
         break;
     case RI_STATE_ADVENTURE_INFO_TEXT_5:
-        if (RowanIntro_DisplayTextBlock(manager, pl_msg_00000389_00015, DTBC_ADVENTURE_INFO, 6, 12) == TRUE) {
+        if (RowanIntro_DisplayTextBlock(manager, RowanIntro_Text_AdventureInfo5, DTBC_ADVENTURE_INFO, 6, 12) == TRUE) {
             manager->state = RI_STATE_ADVENTURE_INFO_FADE_OUT_START;
         }
         break;
@@ -2377,7 +2389,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_WIDELY_INHABITED:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00016, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_WidelyInhabited, TRUE) == TRUE) {
             manager->state = RI_STATE_PKBL_FADE_START;
         }
         break;
@@ -2415,7 +2427,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00017, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_HavePokeBall, TRUE) == TRUE) {
             manager->state = RI_STATE_PKBL_WAIT_INPUT;
         }
         break;
@@ -2459,7 +2471,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_DIALOGUE_USE_TOUCHSCREEN:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00018, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_PokeBallUseTouchscreen, TRUE) == TRUE) {
             manager->state = RI_STATE_PKBL_WAIT_INPUT;
         }
         break;
@@ -2536,7 +2548,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_PKBL_DIALOGUE_LIVE_ALONGSIDE:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00019, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_LiveAlongsidePokemon, TRUE) == TRUE) {
             {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
@@ -2555,7 +2567,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_ABOUT_YOURSELF:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00020, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_AboutYourself, TRUE) == TRUE) {
             manager->state = RI_STATE_GENDR_FADE_OUT_ROWAN;
         }
         break;
@@ -2592,7 +2604,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_GENDR_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00021, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_GenderDialogue, TRUE) == TRUE) {
             manager->playerGender = GENDER_MALE;
             manager->state = RI_STATE_GENDR_CHOICE;
         }
@@ -2649,9 +2661,9 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         u32 genderConfirmTextID;
 
         if (manager->playerGender == GENDER_MALE) {
-            genderConfirmTextID = pl_msg_00000389_00022;
+            genderConfirmTextID = RowanIntro_Text_ConfirmBoy;
         } else {
-            genderConfirmTextID = pl_msg_00000389_00023;
+            genderConfirmTextID = RowanIntro_Text_ConfirmGirl;
         }
 
         if (RowanIntro_DisplayMessage(manager, genderConfirmTextID, TRUE) == TRUE) {
@@ -2687,14 +2699,14 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
     } break;
     case RI_STATE_NAME_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00024, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_NameDialogue, TRUE) == TRUE) {
             manager->state = RI_STATE_NAME_APP_KEYBOARD;
         }
         break;
     case RI_STATE_NAME_APP_KEYBOARD:
-        manager->unk_70->unk_04 = manager->playerGender;
+        manager->unk_70->playerGenderOrMonSpecies = manager->playerGender;
         manager->appMan = ApplicationManager_New(
-            &Unk_020F2DAC,
+            &gNamingScreenAppTemplate,
             manager->unk_70,
             manager->heapID);
         manager->state = RI_STATE_NAME_KEYBOARD;
@@ -2739,9 +2751,9 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         u32 nameConfirmTextID;
 
         if (manager->playerGender == GENDER_MALE) {
-            nameConfirmTextID = pl_msg_00000389_00025;
+            nameConfirmTextID = RowanIntro_Text_ConfirmNameMale;
         } else {
-            nameConfirmTextID = pl_msg_00000389_00026;
+            nameConfirmTextID = RowanIntro_Text_ConfirmNameFemale;
         }
 
         if (RowanIntro_DisplayMessage(manager, nameConfirmTextID, TRUE) == TRUE) {
@@ -2795,7 +2807,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_SO_YOURE:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00027, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_SoYoure, TRUE) == TRUE) {
             manager->state = RI_STATE_FADE_OUT_ROWAN_FOR_RIVAL;
         }
         break;
@@ -2816,7 +2828,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_RIVAL_NAME_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00028, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_RivalNameDialogue, TRUE) == TRUE) {
             manager->state = RI_STATE_MOVE_RIVAL_RIGHT_FOR_NAMES;
         }
         break;
@@ -2862,7 +2874,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         break;
     case RI_STATE_RIVAL_NAME_APP_KEYBOARD:
         manager->appMan = ApplicationManager_New(
-            &Unk_020F2DAC,
+            &gNamingScreenAppTemplate,
             manager->unk_74,
             manager->heapID);
         manager->state = RI_STATE_RIVAL_NAME_KEYBOARD;
@@ -2893,7 +2905,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_RIVAL_NAME_CONFIRM_DIALOGUE:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00029, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_ConfirmRivalName, TRUE) == TRUE) {
             manager->state = RI_STATE_RIVAL_NAME_CONFIRM_CHOICE_BOX;
         }
         break;
@@ -2935,7 +2947,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
         }
         break;
     case RI_STATE_DIALOGUE_END:
-        if (RowanIntro_DisplayMessage(manager, pl_msg_00000389_00030, TRUE) == TRUE) {
+        if (RowanIntro_DisplayMessage(manager, RowanIntro_Text_EndDialogue, TRUE) == TRUE) {
             Sound_FadeOutBGM(0, 50);
             manager->state = RI_STATE_FADE_OUT_ROWAN_END;
         }

@@ -107,7 +107,7 @@ _00E8:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_B1F
     ReleaseAll
     End
@@ -295,14 +295,14 @@ _048C:
     End
 
 _04B5:
-    ScrCmd_307 VAR_RESULT
+    GetEmptyPoffinCaseSlotCount VAR_RESULT
     GoToIfLt VAR_RESULT, VAR_0x8005, _0521
     GoTo _04CE
     End
 
 _04CE:
     GoToIfEq VAR_0x8005, 0, _0503
-    ScrCmd_289 VAR_RESULT, VAR_0x8007, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003, 20
+    GivePoffin VAR_RESULT, VAR_0x8007, VAR_0x8000, VAR_0x8001, VAR_0x8002, VAR_0x8003, 20
     AddToGameRecord RECORD_MONEY_SPENT, 6400
     RemoveMoney2 6400
     SubVar VAR_0x8005, 1
@@ -330,20 +330,12 @@ _052C:
 _0537:
     Message 24
     GoTo _054D
+    End
 
-    .byte 2
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 23
-    .byte 22
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 2
-    .byte 0
+VeilstoneStoreB1F_Unused:
+    Message 23
+    GoTo _054D
+    End
 
 _054D:
     WaitABXPadPress
@@ -465,6 +457,4 @@ _0708:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

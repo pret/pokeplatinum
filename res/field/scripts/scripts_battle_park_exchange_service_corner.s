@@ -23,7 +23,7 @@ _0030:
     LockAll
     FacePlayer
     Message 15
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
     ReleaseAll
     End
@@ -33,325 +33,80 @@ _0044:
     LockAll
     FacePlayer
     Message 15
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
     ReleaseAll
     End
 
-    .byte 73
-    .byte 0
-    .byte 220
-    .byte 5
-    .byte 96
-    .byte 0
-    .byte 104
-    .byte 0
-    .byte 148
-    .byte 2
-    .byte 21
-    .byte 1
-    .byte 44
-    .byte 0
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 1
-    .byte 26
-    .byte 0
-    .byte 209
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 254
-    .byte 0xFF
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 135
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 18
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 1
-    .byte 64
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 122
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 41
-    .byte 0
-    .byte 3
-    .byte 64
-    .byte 12
-    .byte 128
-    .byte 155
-    .byte 2
-    .byte 0
-    .byte 64
-    .byte 3
-    .byte 64
-    .byte 0
-    .byte 128
-    .byte 1
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 0
-    .byte 64
-    .byte 0
-    .byte 0
-    .byte 29
-    .byte 0
-    .byte 1
-    .byte 106
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 0
-    .byte 64
-    .byte 1
-    .byte 0
-    .byte 29
-    .byte 0
-    .byte 1
-    .byte 103
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 162
-    .byte 0xFF
-    .byte 0xFF
-    .byte 0xFF
-    .byte 154
-    .byte 2
-    .byte 1
-    .byte 128
-    .byte 12
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 82
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 125
-    .byte 0
-    .byte 0
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 17
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 28
-    .byte 0
-    .byte 1
-    .byte 70
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 3
-    .byte 123
-    .byte 0
-    .byte 0
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 128
-    .byte 153
-    .byte 2
-    .byte 1
-    .byte 128
-    .byte 150
-    .byte 2
-    .byte 22
-    .byte 0
-    .byte 99
-    .byte 0xFF
-    .byte 0xFF
-    .byte 0xFF
-    .byte 44
-    .byte 0
-    .byte 6
-    .byte 49
-    .byte 0
-    .byte 52
-    .byte 0
-    .byte 149
-    .byte 2
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 209
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 128
-    .byte 44
-    .byte 0
-    .byte 2
-    .byte 27
-    .byte 0
-    .byte 209
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 128
-    .byte 211
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 128
-    .byte 44
-    .byte 0
-    .byte 7
-    .byte 27
-    .byte 0
-    .byte 44
-    .byte 0
-    .byte 4
-    .byte 22
-    .byte 0
-    .byte 52
-    .byte 0xFF
-    .byte 0xFF
-    .byte 0xFF
-    .byte 209
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 128
-    .byte 44
-    .byte 0
-    .byte 5
-    .byte 22
-    .byte 0
-    .byte 38
-    .byte 0xFF
-    .byte 0xFF
-    .byte 0xFF
-    .byte 40
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 40
-    .byte 0
-    .byte 9
-    .byte 128
-    .byte 0
-    .byte 0
-    .byte 68
-    .byte 0
-    .byte 1
-    .byte 1
-    .byte 0
-    .byte 1
-    .byte 12
-    .byte 128
-    .byte 155
-    .byte 2
-    .byte 0
-    .byte 64
-    .byte 8
-    .byte 128
-    .byte 0
-    .byte 128
-    .byte 1
-    .byte 128
-    .byte 209
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 128
-    .byte 128
-    .byte 2
-    .byte 1
-    .byte 1
-    .byte 128
-    .byte 1
-    .byte 3
-    .byte 70
-    .byte 0
-    .byte 231
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 38
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 1
-    .byte 0
-    .byte 18
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 1
-    .byte 64
-    .byte 28
-    .byte 0
-    .byte 0
-    .byte 207
-    .byte 0xFF
-    .byte 0xFF
-    .byte 0xFF
-    .byte 70
-    .byte 0
-    .byte 232
-    .byte 0
-    .byte 0xFF
-    .byte 0
-    .byte 8
-    .byte 128
-    .byte 71
-    .byte 0
-    .byte 27
-    .byte 0
+BattleParkExchangeServiceCorner_Unused:
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    ShowBattlePoints 21, 1
+    Message 0
+BattleParkExchangeServiceCorner_Unused2:
+    Message 1
+    Call BattleParkExchangeServiceCorner_Unused8
+    GoToIfEq VAR_RESULT, -2, BattleParkExchangeServiceCorner_Unused3
+    GoToIfEq VAR_RESULT, VAR_MAP_LOCAL_1, BattleParkExchangeServiceCorner_Unused3
+    SetVar VAR_MAP_LOCAL_3, VAR_RESULT
+    ScrCmd_29B VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_3, VAR_0x8000, VAR_0x8001
+    CallIfEq VAR_MAP_LOCAL_0, 0, BattleParkExchangeServiceCorner_Unused4
+    CallIfEq VAR_MAP_LOCAL_0, 1, BattleParkExchangeServiceCorner_Unused5
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, BattleParkExchangeServiceCorner_Unused2
+    ScrCmd_29A VAR_0x8001, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, BattleParkExchangeServiceCorner_Unused6
+    CanFitItem VAR_0x8000, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, BattleParkExchangeServiceCorner_Unused7
+    Message 3
+    AddItem VAR_0x8000, 1, VAR_RESULT
+    ScrCmd_299 VAR_0x8001
+    UpdateBPDisplay
+    GoTo BattleParkExchangeServiceCorner_Unused2
+
+BattleParkExchangeServiceCorner_Unused3:
+    Message 6
+    WaitABXPadPress
+    CloseMessage
+    HideBattlePoints
+    ReleaseAll
+    End
+
+BattleParkExchangeServiceCorner_Unused4:
+    BufferItemName 0, VAR_0x8000
+    Message 2
+    Return
+
+BattleParkExchangeServiceCorner_Unused5:
+    BufferItemName 0, VAR_0x8000
+    BufferTMHMMoveName 1, VAR_0x8000
+    Message 7
+    Return
+
+BattleParkExchangeServiceCorner_Unused6:
+    Message 4
+    GoTo BattleParkExchangeServiceCorner_Unused2
+
+BattleParkExchangeServiceCorner_Unused7:
+    BufferItemName 0, VAR_0x8000
+    Message 5
+    GoTo BattleParkExchangeServiceCorner_Unused2
+
+BattleParkExchangeServiceCorner_Unused8:
+    SetVar VAR_0x8008, 0
+    SetVar VAR_0x8009, 0
+    InitGlobalTextListMenu 1, 1, 0, VAR_RESULT
+BattleParkExchangeServiceCorner_Unused9:
+    ScrCmd_29B VAR_MAP_LOCAL_0, VAR_0x8008, VAR_0x8000, VAR_0x8001
+    BufferItemName 0, VAR_0x8000
+    ScrCmd_280 1, VAR_0x8001, 1, 3
+    AddListMenuEntry 231, VAR_0x8008
+    AddVar VAR_0x8008, 1
+    GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_1, BattleParkExchangeServiceCorner_Unused9
+    AddListMenuEntry 232, VAR_0x8008
+    ShowListMenu
+    Return
 
 _0192:
     PlayFanfare SEQ_SE_CONFIRM
@@ -413,6 +168,4 @@ _01F1:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

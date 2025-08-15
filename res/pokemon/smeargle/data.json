@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_WHITE",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SKETCH" ],
@@ -51,7 +52,8 @@
     "offspring": "SPECIES_SMEARGLE",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 12,

@@ -40,6 +40,4 @@ _0092:
     ShowArrowSign 1
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

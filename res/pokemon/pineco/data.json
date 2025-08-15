@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -86,6 +87,17 @@
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_IRON_DEFENSE"
+        ],
+        "egg_moves": [
+            "MOVE_REFLECT",
+            "MOVE_PIN_MISSILE",
+            "MOVE_FLAIL",
+            "MOVE_SWIFT",
+            "MOVE_COUNTER",
+            "MOVE_SAND_TOMB",
+            "MOVE_REVENGE",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_TOXIC_SPIKES"
         ]
     },
     "evolutions": [
@@ -98,7 +110,8 @@
     "offspring": "SPECIES_PINECO",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 6,

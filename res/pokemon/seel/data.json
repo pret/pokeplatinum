@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_WHITE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_HEADBUTT" ],
@@ -85,6 +86,17 @@
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM"
+        ],
+        "egg_moves": [
+            "MOVE_LICK",
+            "MOVE_PERISH_SONG",
+            "MOVE_DISABLE",
+            "MOVE_HORN_DRILL",
+            "MOVE_SLAM",
+            "MOVE_ENCORE",
+            "MOVE_FAKE_OUT",
+            "MOVE_ICICLE_SPEAR",
+            "MOVE_SIGNAL_BEAM"
         ]
     },
     "evolutions": [
@@ -97,7 +109,8 @@
     "offspring": "SPECIES_SEEL",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 11,

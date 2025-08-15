@@ -31,6 +31,7 @@
     "safari_flee_rate": 120,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WATER_GUN" ],
@@ -89,6 +90,19 @@
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER"
+        ],
+        "egg_moves": [
+            "MOVE_BODY_SLAM",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_SAFEGUARD",
+            "MOVE_CURSE",
+            "MOVE_MUD_SPORT",
+            "MOVE_STOCKPILE",
+            "MOVE_SWALLOW",
+            "MOVE_SPIT_UP",
+            "MOVE_COUNTER",
+            "MOVE_ENCORE",
+            "MOVE_DOUBLE_KICK"
         ]
     },
     "evolutions": [
@@ -101,7 +115,8 @@
     "offspring": "SPECIES_WOOPER",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

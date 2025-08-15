@@ -240,16 +240,10 @@ _02D2:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+PastoriaCity_UnusedMovement:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _02EC:
@@ -257,18 +251,10 @@ _02EC:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement2:
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0304:
@@ -280,122 +266,56 @@ _030C:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 7
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 8
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 10
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement3:
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement4:
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement5:
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement6:
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalEast
+    EndMovement
+
+PastoriaCity_UnusedMovement7:
+    WalkFastEast 9
+    EndMovement
+
+PastoriaCity_UnusedMovement8:
+    WalkFastEast 7
+    EndMovement
+
+PastoriaCity_UnusedMovement9:
+    WalkFastSouth
+    WalkFastEast 8
+    EndMovement
+
+PastoriaCity_UnusedMovement10:
+    WalkFastNorth
+    WalkFastEast 8
+    EndMovement
+
+PastoriaCity_UnusedMovement11:
+    EmoteExclamationMark
+    EndMovement
+
+PastoriaCity_UnusedMovement12:
+    WalkFastSouth
+    WalkFastEast 10
+    EndMovement
+
+PastoriaCity_UnusedMovement13:
+    WalkFastEast 10
+    EndMovement
 
     .balign 4, 0
 _0388:
@@ -410,70 +330,29 @@ _0398:
     WalkOnSpotFastEast
     EndMovement
 
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 16
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 17
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 19
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement14:
+    WalkFastSouth
+    WalkFastEast 2
+    WalkOnSpotFastEast
+    EndMovement
+
+PastoriaCity_UnusedMovement15:
+    WalkFastSouth
+    WalkFastEast 4
+    WalkOnSpotFastEast
+    EndMovement
+
+PastoriaCity_UnusedMovement16:
+    WalkFastNorth
+    WalkFastEast 3
+    WalkOnSpotFastEast
+    EndMovement
+
+PastoriaCity_UnusedMovement17:
+    WalkFastSouth
+    WalkFastEast 3
+    WalkOnSpotFastEast
+    EndMovement
 
 _03E4:
     ShowMapSign 41
@@ -633,7 +512,7 @@ _05E0:
     SetObjectEventMovementType 26, MOVEMENT_TYPE_LOOK_SOUTH
     SetObjectEventDir 26, DIR_SOUTH
     AddObject 26
-    ScrCmd_062 26
+    LockObject 26
     ApplyMovement 26, _0798
     ApplyMovement LOCALID_PLAYER, _07CC
     WaitMovement
@@ -651,7 +530,7 @@ _05E0:
     SetObjectEventDir 27, DIR_NORTH
     SetObjectEventMovementType 27, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 27
-    ScrCmd_062 27
+    LockObject 27
     ApplyMovement 27, _0764
     WaitMovement
     ScrCmd_16C 77
@@ -689,10 +568,10 @@ _05E0:
     WaitMovement
     Call _0737
     ClearFlag FLAG_UNK_0x01FB
-    ScrCmd_187 27, 0x263, 0, 0x32A, 0
+    SetPosition 27, 0x263, 0, 0x32A, 0
     Call _0721
     ClearFlag FLAG_UNK_0x01A9
-    ScrCmd_187 26, 0x260, 0, 0x32E, 1
+    SetPosition 26, 0x260, 0, 0x32E, 1
     SetVar VAR_UNK_0x407C, 4
     ReleaseAll
     End
@@ -834,7 +713,7 @@ _086F:
     SetObjectEventDir 21, DIR_EAST
     SetObjectEventMovementType 21, MOVEMENT_TYPE_LOOK_RIGHT
     AddObject 21
-    ScrCmd_062 21
+    LockObject 21
     Return
 
 _08D9:
@@ -990,22 +869,13 @@ _0AF0:
     WalkOnSpotFastNorth
     EndMovement
 
-    .byte 17
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 36
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement18:
+    WalkFastSouth 3
+    EndMovement
+
+PastoriaCity_UnusedMovement19:
+    WalkOnSpotFastNorth
+    EndMovement
 
     .balign 4, 0
 _0B08:
@@ -1057,14 +927,9 @@ _0B5C:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PastoriaCity_UnusedMovement20:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0B6C:

@@ -272,7 +272,7 @@ _026A:
     LockAll
     FacePlayer
     Message 21
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
     ReleaseAll
     End
@@ -295,7 +295,7 @@ _02A6:
     LockAll
     FacePlayer
     Message 23
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
     ReleaseAll
     End
@@ -418,5 +418,4 @@ _0458:
 _0460:
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

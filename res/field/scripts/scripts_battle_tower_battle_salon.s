@@ -83,11 +83,11 @@ _015D:
     End
 
 _0179:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _017F:
-    ScrCmd_187 0, 8, 0, 3, 1
+    SetPosition 0, 8, 0, 3, 1
     End
 
 _018D:
@@ -176,7 +176,7 @@ _02DD:
     Message 8
     CloseMessage
     ReleaseAll
-    ScrCmd_062 1
+    LockObject 1
     GoTo _055C
     End
 
@@ -205,7 +205,7 @@ _0341:
     Message 17
     CloseMessage
     ReleaseAll
-    ScrCmd_062 2
+    LockObject 2
     GoTo _05A1
     End
 
@@ -232,7 +232,7 @@ _03A5:
     Message 5
     CloseMessage
     ReleaseAll
-    ScrCmd_062 3
+    LockObject 3
     GoTo _05E6
     End
 
@@ -259,7 +259,7 @@ _0406:
     Message 14
     CloseMessage
     ReleaseAll
-    ScrCmd_062 4
+    LockObject 4
     GoTo _062B
     End
 
@@ -286,7 +286,7 @@ _0467:
     Message 11
     CloseMessage
     ReleaseAll
-    ScrCmd_062 5
+    LockObject 5
     GoTo _0670
     End
 
@@ -306,7 +306,7 @@ _04A6:
     Call _0488
     ApplyMovement 0, _06C8
     WaitMovement
-    ScrCmd_1B1 0xFF
+    ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _06B8
     WaitMovement
     Call _049B
@@ -436,12 +436,7 @@ _06A3:
     ApplyMovement 5, _07C8
     WaitMovement
     GoTo _0500
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _06B8:

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BITE" ],
@@ -91,6 +92,18 @@
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_PURSUIT",
+            "MOVE_STOMP",
+            "MOVE_OUTRAGE",
+            "MOVE_FOCUS_ENERGY",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_DRAGON_DANCE",
+            "MOVE_CURSE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_ASSURANCE",
+            "MOVE_IRON_HEAD"
         ]
     },
     "evolutions": [
@@ -103,7 +116,8 @@
     "offspring": "SPECIES_LARVITAR",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

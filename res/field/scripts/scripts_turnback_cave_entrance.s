@@ -9,12 +9,12 @@
 _000A:
     SetFlag FLAG_UNK_0x09D4
     Call _001C
-    ScrCmd_285 VAR_UNK_0x410B, VAR_UNK_0x410C
+    InitTurnbackCave VAR_TURNBACK_CAVE_PILLARS_SEEN, VAR_TURNBACK_CAVE_ROOMS_VISITED
     End
 
 _001C:
-    SetVar VAR_UNK_0x410B, 0
-    SetVar VAR_UNK_0x410C, 0
+    SetVar VAR_TURNBACK_CAVE_PILLARS_SEEN, 0
+    SetVar VAR_TURNBACK_CAVE_ROOMS_VISITED, 0
     Return
 
 _002A:
@@ -36,4 +36,4 @@ _0046:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

@@ -121,7 +121,7 @@ _016F:
     PlayMusic SEQ_OPENING2
     ClearFlag FLAG_UNK_0x0178
     AddObject 5
-    ScrCmd_062 5
+    LockObject 5
     ApplyMovement 5, _07C0
     WaitMovement
     Message 6
@@ -207,7 +207,7 @@ _030B:
     WaitTime 25, VAR_RESULT
     ClearFlag FLAG_UNK_0x0179
     AddObject 6
-    ScrCmd_062 6
+    LockObject 6
     CallCommonScript 0x7F8
     ApplyMovement 6, _08C8
     WaitMovement
@@ -378,7 +378,7 @@ Route201_StartFirstBattleChimchar:
 _05CF:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _05F5
-    ScrCmd_062 2
+    LockObject 2
     BufferRivalName 0
     BufferPlayerName 1
     Message 48
@@ -387,7 +387,7 @@ _05CF:
 
 _05F5:
     ReturnToField
-    ScrCmd_062 2
+    LockObject 2
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
     BufferRivalName 0
@@ -490,14 +490,9 @@ _0708:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 15
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement:
+    WalkNormalEast
+    EndMovement
 
     .balign 4, 0
 _071C:
@@ -570,18 +565,10 @@ _0788:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 39
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement2:
+    Delay8
+    WalkOnSpotFastEast
+    EndMovement
 
     .balign 4, 0
 _07A8:
@@ -928,46 +915,25 @@ _0AF4:
     WalkNormalNorth
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement3:
+    WalkNormalNorth
+    EndMovement
+
+Route201_UnusedMovement4:
+    WalkNormalNorth
+    EndMovement
+
+Route201_UnusedMovement5:
+    WalkNormalWest
+    EndMovement
+
+Route201_UnusedMovement6:
+    WalkNormalWest
+    EndMovement
+
+Route201_UnusedMovement7:
+    WalkNormalWest
+    EndMovement
 
 _0B24:
     LockAll
@@ -1123,14 +1089,9 @@ _0D80:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route201_UnusedMovement8:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0D94:
@@ -1315,6 +1276,4 @@ _0FA4:
     ShowScrollingSign 62
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

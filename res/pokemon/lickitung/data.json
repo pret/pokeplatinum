@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LICK" ],
@@ -109,6 +110,18 @@
             "MOVE_SNORE",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_BELLY_DRUM",
+            "MOVE_MAGNITUDE",
+            "MOVE_BODY_SLAM",
+            "MOVE_CURSE",
+            "MOVE_SMELLING_SALT",
+            "MOVE_SLEEP_TALK",
+            "MOVE_SNORE",
+            "MOVE_SUBSTITUTE",
+            "MOVE_AMNESIA",
+            "MOVE_HAMMER_ARM"
         ]
     },
     "evolutions": [
@@ -121,7 +134,8 @@
     "offspring": "SPECIES_LICKITUNG",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 12,

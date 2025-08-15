@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -119,6 +120,16 @@
             "MOVE_ENDEAVOR",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_LAST_RESORT"
+        ],
+        "egg_moves": [
+            "MOVE_PRESENT",
+            "MOVE_METRONOME",
+            "MOVE_HEAL_BELL",
+            "MOVE_AROMATHERAPY",
+            "MOVE_SUBSTITUTE",
+            "MOVE_COUNTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_GRAVITY"
         ]
     },
     "evolutions": [
@@ -127,7 +138,8 @@
     "offspring": "SPECIES_HAPPINY",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 11,

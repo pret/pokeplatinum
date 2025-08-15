@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": true,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -100,6 +101,18 @@
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_FIRE_PUNCH",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_DOUBLE_KICK",
+            "MOVE_ENCORE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_FOCUS_ENERGY",
+            "MOVE_HELPING_HAND",
+            "MOVE_FAKE_OUT",
+            "MOVE_BLAZE_KICK",
+            "MOVE_COUNTER"
         ]
     },
     "evolutions": [
@@ -112,7 +125,8 @@
     "offspring": "SPECIES_CHIMCHAR",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 5,

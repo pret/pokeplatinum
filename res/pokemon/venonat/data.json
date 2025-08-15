@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -79,6 +80,16 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_BATON_PASS",
+            "MOVE_SCREECH",
+            "MOVE_GIGA_DRAIN",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_AGILITY",
+            "MOVE_MORNING_SUN",
+            "MOVE_TOXIC_SPIKES",
+            "MOVE_BUG_BITE"
         ]
     },
     "evolutions": [
@@ -91,7 +102,8 @@
     "offspring": "SPECIES_VENONAT",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 10,

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
@@ -24,6 +23,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "game_overlay.h"
 #include "graphics.h"
@@ -52,7 +52,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
@@ -247,7 +246,7 @@ struct UnkStruct_ov107_02241D6C_t {
     StringList *unk_19C;
     ListMenuTemplate unk_1A0;
     PaletteData *unk_1C0;
-    UnkStruct_0200C440 *unk_1C4;
+    FontSpecialCharsContext *unk_1C4;
     Options *options;
     SaveData *saveData;
     UnkStruct_020302DC *unk_1D0;
@@ -1396,7 +1395,7 @@ static void ov107_02242E14(UnkStruct_ov107_02241D6C *param0)
     StringTemplate_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
-    sub_0200C560(param0->unk_1C4);
+    FontSpecialChars_Free(param0->unk_1C4);
 
     for (v1 = 0; v1 < 3; v1++) {
         Strbuf_Free(param0->unk_30[v1]);
@@ -1450,7 +1449,7 @@ static void ov107_02242F5C(UnkStruct_ov107_02241D6C *param0)
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_100);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_100);
 
-    param0->unk_1C4 = sub_0200C440(1, 2, 0, HEAP_ID_100);
+    param0->unk_1C4 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_100);
 
     ov107_02249D14(param0->unk_4C, param0->unk_50, 0);
     ov107_02244E14(param0, &v9, &v10, &v11, &v12);
@@ -1977,9 +1976,9 @@ static void ov107_02243CFC(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
         v4 = 0;
     }
 
-    sub_0200C5BC(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v1, v2);
-    sub_0200C578(param0->unk_1C4, 0, param1, v5, v6);
-    sub_0200C5BC(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v1, v2);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_1C4, 0, param1, v5, v6);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
 
     return;
 }
@@ -2025,7 +2024,7 @@ static void ov107_02243DE4(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
         v4 = 0;
     }
 
-    sub_0200C648(param0->unk_1C4, 1, Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL), 3, 0, param1, v1, v2);
+    FontSpecialChars_DrawPartyScreenText(param0->unk_1C4, 1, Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL), 3, 0, param1, v1, v2);
     v0 = Pokemon_GetValue(v7, MON_DATA_GENDER, NULL);
     ov107_02244B8C(param0, param1, v3, v4, FONT_SYSTEM, v0);
 
@@ -2073,7 +2072,7 @@ static void ov107_02243F4C(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
     }
 
     Window_FillRectWithColor(param1, 0, v0 + (64 * param2), 0, 8 * 3, 9);
-    sub_0200C5BC(param0->unk_1C4, param3, 3, 1, param1, v0 + (64 * param2), 1);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, param3, 3, 1, param1, v0 + (64 * param2), 1);
     Window_ScheduleCopyToVRAM(param1);
 
     return;

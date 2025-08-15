@@ -387,7 +387,7 @@ static const fx32 Unk_ov5_02200284[] = {
     FX32_ONE * 18,
     FX32_ONE * 18,
     FX32_ONE * 8,
-    FX32_ONE * 4
+    FX32_ONE * 4,
 };
 
 static const int Unk_ov5_02200278[3] = {

@@ -25,7 +25,7 @@ _0032:
     CallIfEq VAR_0x8004, 26, _01DE
     ClearFlag FLAG_UNK_0x0276
     AddObject 11
-    ScrCmd_062 11
+    LockObject 11
     ApplyMovement 11, _02C8
     ApplyMovement LOCALID_PLAYER, _0290
     WaitMovement
@@ -53,7 +53,7 @@ _0032:
     RemoveObject 11
     ClearFlag FLAG_UNK_0x0277
     AddObject 12
-    ScrCmd_062 12
+    LockObject 12
     ApplyMovement 12, _02C8
     ApplyMovement LOCALID_PLAYER, _0290
     WaitMovement
@@ -304,4 +304,4 @@ _03C4:
     ShowLandmarkSign 8
     End
 
-    .byte 0
+    .balign 4, 0

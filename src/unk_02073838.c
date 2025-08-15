@@ -22,7 +22,7 @@ static void sub_020739D8(UnkStruct_02073974 *param0, void *param1, u32 param2);
 static const VecFx32 Unk_020F0544 = {
     FX32_ONE,
     FX32_ONE,
-    FX32_ONE
+    FX32_ONE,
 };
 
 static const MtxFx33 Unk_020F0550 = {
@@ -34,7 +34,7 @@ static const MtxFx33 Unk_020F0550 = {
     0x0,
     0x0,
     0x0,
-    FX32_ONE
+    FX32_ONE,
 };
 
 void sub_02073838(UnkStruct_02073838 *param0)

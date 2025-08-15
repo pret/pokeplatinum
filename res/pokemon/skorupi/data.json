@@ -31,6 +31,7 @@
     "safari_flee_rate": 120,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BITE" ],
@@ -93,6 +94,17 @@
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_FAINT_ATTACK",
+            "MOVE_SCREECH",
+            "MOVE_SAND_ATTACK",
+            "MOVE_SLASH",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_WHIRLWIND",
+            "MOVE_AGILITY",
+            "MOVE_PURSUIT",
+            "MOVE_NIGHT_SLASH"
         ]
     },
     "evolutions": [
@@ -105,7 +117,8 @@
     "offspring": "SPECIES_SKORUPI",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_SCARY"
     },
     "pokedex_data": {
         "height": 8,

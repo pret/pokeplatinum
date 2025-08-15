@@ -25,4 +25,4 @@ _0038:
     ShowLandmarkSign 2
     End
 
-    .byte 0
+    .balign 4, 0

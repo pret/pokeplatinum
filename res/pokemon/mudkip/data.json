@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -88,6 +89,20 @@
             "MOVE_ENDEAVOR",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER"
+        ],
+        "egg_moves": [
+            "MOVE_REFRESH",
+            "MOVE_UPROAR",
+            "MOVE_CURSE",
+            "MOVE_STOMP",
+            "MOVE_ICE_BALL",
+            "MOVE_MIRROR_COAT",
+            "MOVE_COUNTER",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_WHIRLPOOL",
+            "MOVE_BITE",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_MUD_BOMB"
         ]
     },
     "evolutions": [
@@ -100,7 +115,8 @@
     "offspring": "SPECIES_MUDKIP",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

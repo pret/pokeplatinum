@@ -8,14 +8,15 @@
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
 
+#include "applications/naming_screen.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "field_battle_data_transfer.h"
@@ -34,7 +35,7 @@ void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
 void sub_0203D30C(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs);
 void *sub_0203D390(FieldSystem *fieldSystem, FieldMoveContext *param1, u8 param2);
-void *sub_0203D3C0(int param0, FieldSystem *fieldSystem);
+void *FieldSystem_SelectMoveTutorPokemon(int unused, FieldSystem *fieldSystem);
 void *sub_0203D3E4(int param0, FieldSystem *fieldSystem);
 int PartyManagementData_GetSelectedSlot(PartyManagementData *partyMan);
 void *sub_0203D410(int param0, FieldSystem *fieldSystem, int param2);
@@ -47,7 +48,7 @@ void *sub_0203D644(FieldSystem *fieldSystem, int param1);
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode);
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
-void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1);
+void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession);
 void sub_0203D80C(FieldTask *param0, u16 *param1, u16 *param2, u16 *param3);
 void sub_0203D874(FieldSystem *fieldSystem, UnkStruct_0209747C *param1);
 void sub_0203D884(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1);
@@ -67,8 +68,16 @@ void sub_0203DDFC(FieldSystem *fieldSystem);
 void *sub_0203DE34(FieldSystem *fieldSystem);
 void sub_0203DE78(FieldSystem *fieldSystem, SaveData *saveData);
 void sub_0203DE88(FieldSystem *fieldSystem, SaveData *saveData);
-void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int param4, const u16 *param5, u16 *param6);
+void sub_0203DFE8(
+    FieldTask *param0,
+    enum NamingScreenType type,
+    int param2,
+    int param3,
+    int param4,
+    const u16 *param5,
+    u16 *param6);
 void sub_0203E09C(FieldSystem *fieldSystem, TrainerCard *param1);
+void FieldSystem_OpenTrainerCardScreen(FieldSystem *fieldSystem, TrainerCard *trainerCard);
 BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1);
 void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *param1);
 void sub_0203E0D0(FieldSystem *fieldSystem);

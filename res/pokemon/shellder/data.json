@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -80,6 +81,15 @@
             "MOVE_SNORE",
             "MOVE_IRON_DEFENSE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_BUBBLE_BEAM",
+            "MOVE_TAKE_DOWN",
+            "MOVE_BARRIER",
+            "MOVE_RAPID_SPIN",
+            "MOVE_SCREECH",
+            "MOVE_ICICLE_SPEAR",
+            "MOVE_MUD_SHOT"
         ]
     },
     "evolutions": [
@@ -92,7 +102,8 @@
     "offspring": "SPECIES_SHELLDER",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 3,

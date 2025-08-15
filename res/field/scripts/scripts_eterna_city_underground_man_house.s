@@ -288,7 +288,7 @@ _03D9:
     CallIfUnset FLAG_UNK_0x00FC, _0443
     SetVar VAR_0x8004, 81
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7FE
     SetVar VAR_UNK_0x40B6, 6
@@ -311,7 +311,7 @@ _0448:
     CallIfUnset FLAG_UNK_0x00FC, _04A4
     SetVar VAR_0x8004, 82
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
     SetVar VAR_UNK_0x40B6, 7
@@ -331,7 +331,7 @@ _04A9:
     CallIfUnset FLAG_UNK_0x00FC, _0505
     SetVar VAR_0x8004, 83
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
     SetVar VAR_UNK_0x40B6, 8
@@ -351,7 +351,7 @@ _050A:
     CallIfUnset FLAG_UNK_0x00FC, _0566
     SetVar VAR_0x8004, 84
     SetVar VAR_0x8005, 1
-    ScrCmd_085 VAR_0x8004, VAR_0x8005, VAR_RESULT
+    CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
     CallCommonScript 0x7DC
     SetVar VAR_UNK_0x40B6, 9
@@ -539,5 +539,4 @@ _0747:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -85,6 +86,15 @@
             "MOVE_SNORE",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_TAKE_DOWN",
+            "MOVE_SNORE",
+            "MOVE_SWAGGER",
+            "MOVE_EXTRASENSORY",
+            "MOVE_SMELLING_SALT",
+            "MOVE_SMOKE_SCREEN",
+            "MOVE_ENDEAVOR"
         ]
     },
     "evolutions": [
@@ -97,7 +107,8 @@
     "offspring": "SPECIES_WHISMUR",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 6,

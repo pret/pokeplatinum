@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POISON_STING" ],
@@ -103,6 +104,19 @@
             "MOVE_EARTH_POWER",
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_METAL_CLAW",
+            "MOVE_WING_ATTACK",
+            "MOVE_RAZOR_WIND",
+            "MOVE_COUNTER",
+            "MOVE_SAND_TOMB",
+            "MOVE_AGILITY",
+            "MOVE_BATON_PASS",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_FEINT",
+            "MOVE_NIGHT_SLASH",
+            "MOVE_CROSS_POISON"
         ]
     },
     "evolutions": [
@@ -115,7 +129,8 @@
     "offspring": "SPECIES_GLIGAR",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 11,

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_WHITE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
@@ -89,13 +90,23 @@
             "MOVE_LAST_RESORT",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_COVET",
+            "MOVE_BITE",
+            "MOVE_FAKE_TEARS",
+            "MOVE_DEFENSE_CURL",
+            "MOVE_ROLLOUT",
+            "MOVE_FLATTER",
+            "MOVE_FLAIL"
         ]
     },
     "evolutions": [  ],
     "offspring": "SPECIES_PACHIRISU",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

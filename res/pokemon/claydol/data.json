@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TELEPORT" ],
@@ -114,7 +115,8 @@
     "offspring": "SPECIES_BALTOY",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_SILENT"
     },
     "pokedex_data": {
         "height": 15,

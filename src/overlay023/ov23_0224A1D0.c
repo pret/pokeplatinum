@@ -19,9 +19,9 @@
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_0224DC40.h"
 #include "overlay023/ov23_0224F294.h"
-#include "overlay023/ov23_02253D40.h"
 #include "overlay023/struct_ov23_0224A5CC.h"
 #include "overlay023/struct_ov23_0224ABC4.h"
+#include "overlay023/underground_text_printer.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -123,12 +123,12 @@ static BOOL ov23_0224A294(int param0, int param1)
 
 static void ov23_0224A300(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
 static void ov23_0224A308(int param0)
 {
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
 }
 
 static void ov23_0224A310(int param0)
@@ -210,8 +210,8 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
     GF_ASSERT(v1->unk_01 < (7 + 1));
 
     if ((v1->unk_00 == 4) && (v1->unk_01 == CommSys_CurNetId())) {
-        sub_020594FC();
-        ov23_02253F40(ov23_0224219C(), 72, 1, ov23_0224A300);
+        CommPlayerMan_PauseFieldSystem();
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 72, TRUE, ov23_0224A300);
     }
 
     if (v1->unk_00 == 1) {
@@ -240,8 +240,8 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
     }
 
     if ((v1->unk_00 == 2) && (v1->unk_01 == CommSys_CurNetId())) {
-        sub_020594FC();
-        ov23_02253F40(ov23_0224219C(), 2, 1, ov23_0224A300);
+        CommPlayerMan_PauseFieldSystem();
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 2, TRUE, ov23_0224A300);
     }
 
     if (v1->unk_00 == 1) {
@@ -277,7 +277,7 @@ void ov23_0224A570(int param0, int param1, void *param2, void *param3)
 static void ov23_0224A5B0(int param0)
 {
     ov23_0224B040(CommSys_CurNetId());
-    ov23_02254044(ov23_022421AC());
+    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCaptureFlagTextPrinter());
 
     sub_0205948C(0x4);
 }
@@ -374,15 +374,15 @@ static void ov23_0224A6E4(UnkStruct_ov23_0224A570 *param0, BOOL param1, Undergro
     sub_02057FC4(0);
     sub_02059464(0x4);
 
-    ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(param0->unk_01));
+    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(param0->unk_01));
 
     if (param1) {
         commPlayerMan->unk_FA[CommSys_CurNetId()] = 0;
         ov23_0224B040(CommSys_CurNetId());
         ov23_0224B00C(CommSys_CurNetId());
-        ov23_02253F40(ov23_022421AC(), 10, 1, ov23_0224A5B0);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 10, TRUE, ov23_0224A5B0);
     } else {
-        ov23_02253F40(ov23_022421AC(), 11, 1, ov23_0224A5B0);
+        UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 11, TRUE, ov23_0224A5B0);
     }
 
     Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
@@ -404,8 +404,8 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             ov23_0224B040(v1->unk_01);
 
             if (v1->unk_01 == CommSys_CurNetId()) {
-                sub_020594FC();
-                ov23_02253F40(ov23_022421AC(), 2, 1, ov23_0224A308);
+                CommPlayerMan_PauseFieldSystem();
+                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 2, TRUE, ov23_0224A308);
                 Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xff, NULL);
             }
         }
@@ -418,7 +418,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
 
         if (commPlayerMan->unk_290[v1->unk_02] == NULL) {
             if (v1->unk_01 == CommSys_CurNetId()) {
-                sub_02059514();
+                CommPlayerMan_ResumeFieldSystem();
             }
 
             return;
@@ -429,8 +429,8 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
 
             if (v1->unk_01 == CommSys_CurNetId()) {
                 sub_020297EC(v4);
-                sub_020594FC();
-                ov23_02253F40(ov23_022421AC(), 13, 1, ov23_0224A300);
+                CommPlayerMan_PauseFieldSystem();
+                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 13, TRUE, ov23_0224A300);
                 Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (v1->unk_02 == CommSys_CurNetId()) {
                 ov23_0224A6E4(v1, 0, v4);
@@ -441,8 +441,8 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             if (v1->unk_01 == CommSys_CurNetId()) {
                 sub_0202955C(v4);
                 sub_02059464(0x1);
-                ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(v1->unk_02));
-                ov23_02253F40(ov23_022421AC(), 12, 1, ov23_0224A328);
+                UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(v1->unk_02));
+                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 12, TRUE, ov23_0224A328);
                 Sound_PlayBGM(SEQ_HATANIGE);
                 Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (v1->unk_02 == CommSys_CurNetId()) {
@@ -455,13 +455,13 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
     case 11:
         if (v1->unk_01 == CommSys_CurNetId()) {
             sub_02059464(0x2);
-            ov23_02253F40(ov23_022421AC(), 6, 1, ov23_0224A310);
+            UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 6, TRUE, ov23_0224A310);
         }
         break;
     case 12:
         if (v1->unk_01 == CommSys_CurNetId()) {
             sub_02059464(0x20);
-            ov23_02253F40(ov23_022421AC(), 5, 1, ov23_0224A31C);
+            UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 5, TRUE, ov23_0224A31C);
         }
         break;
     case 3:
@@ -483,11 +483,11 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
                 }
             }
 
-            sub_020594FC();
+            CommPlayerMan_PauseFieldSystem();
             Sound_PlayEffect(SEQ_SE_DP_UG_027);
 
             if (flagRank == UndergroundRecord_GetFlagRank(undergroundRecord)) {
-                ov23_02253F40(ov23_022421AC(), 7, 1, ov23_0224A300);
+                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), 7, TRUE, ov23_0224A300);
             } else {
                 CommSys_SendDataFixedSize(96, &flagRank);
             }

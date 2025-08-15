@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -100,6 +101,18 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_SPITE",
+            "MOVE_CHARM",
+            "MOVE_HYPNOSIS",
+            "MOVE_AMNESIA",
+            "MOVE_PSYCH_UP",
+            "MOVE_ASSIST",
+            "MOVE_ODOR_SLEUTH",
+            "MOVE_FLAIL",
+            "MOVE_LAST_RESORT",
+            "MOVE_PUNISHMENT"
         ]
     },
     "evolutions": [
@@ -112,7 +125,8 @@
     "offspring": "SPECIES_MEOWTH",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

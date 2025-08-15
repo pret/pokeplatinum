@@ -22,6 +22,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -49,7 +50,6 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
-#include "unk_0200C440.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
@@ -408,7 +408,7 @@ int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
     v0->unk_00 = BgConfig_New(HEAP_ID_6);
     v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_3, FADE_TYPE_UNK_3, COLOR_BLACK, 6, 1, HEAP_ID_6);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_DOWNWARD_IN, FADE_TYPE_DOWNWARD_IN, COLOR_BLACK, 6, 1, HEAP_ID_6);
     SetAutorepeat(3, 8);
 
     ov84_0223BEAC(v0);
@@ -584,7 +584,7 @@ int ov84_0223B900(ApplicationManager *appMan, int *param1)
     MessageLoader_Free(v0->unk_120);
     MessageLoader_Free(v0->unk_11C);
     MessageLoader_Free(v0->unk_114);
-    sub_0200C560(v0->unk_110);
+    FontSpecialChars_Free(v0->unk_110);
     StringTemplate_Free(v0->unk_118);
     NARC_dtor(v0->unk_D4);
     ApplicationManager_FreeData(appMan);
@@ -825,7 +825,7 @@ static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
 static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)
 {
     param0->unk_114 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, HEAP_ID_6);
-    param0->unk_110 = sub_0200C440(1, 2, 0, HEAP_ID_6);
+    param0->unk_110 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_6);
     param0->unk_118 = StringTemplate_Default(HEAP_ID_6);
     param0->unk_11C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_6);
     param0->unk_120 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_6);

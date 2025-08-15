@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TELEPORT" ]
@@ -90,6 +91,16 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_ENCORE",
+            "MOVE_BARRIER",
+            "MOVE_KNOCK_OFF",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_POWER_TRICK",
+            "MOVE_GUARD_SWAP"
         ]
     },
     "evolutions": [
@@ -102,7 +113,8 @@
     "offspring": "SPECIES_ABRA",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 9,

@@ -1,4 +1,5 @@
 #include "macros/btlcmd.inc"
+#include "generated/trainer_message_types.h"
 
 
 _000:
@@ -56,7 +57,7 @@ _089:
     Wait 
     TrainerSlideIn BTLSCR_ENEMY_SLOT_1, BATTLER_TYPE_SOLO_ENEMY
     Wait 
-    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRAINER_MESSAGE_WIN
+    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRMSG_WIN
     Wait 
     WaitButtonABTime 30
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_2vs2, _123
@@ -64,7 +65,7 @@ _089:
     Wait 
     TrainerSlideIn BTLSCR_ENEMY_SLOT_2, BATTLER_TYPE_SOLO_ENEMY
     Wait 
-    PrintTrainerMessage BTLSCR_ENEMY_SLOT_2, TRAINER_MESSAGE_WIN
+    PrintTrainerMessage BTLSCR_ENEMY_SLOT_2, TRMSG_WIN
     Wait 
     WaitButtonABTime 60
     GoTo _125

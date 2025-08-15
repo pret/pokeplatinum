@@ -2,19 +2,19 @@
 #define POKEPLATINUM_OV16_0223DF00_H
 
 #include "constants/rtc.h"
+#include "generated/trainer_message_types.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_message.h"
 #include "battle/party_gauge.h"
-#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
@@ -24,6 +24,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "field_battle_data_transfer.h"
+#include "font_special_chars.h"
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
@@ -92,8 +93,8 @@ UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
 PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1);
 void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
-UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSys);
-UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSys);
+FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSys);
+FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSys);
 MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSys);
 MessageLoader *ov16_0223E060(BattleSystem *battleSys);
 PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSys);
@@ -106,7 +107,7 @@ u16 *ov16_0223E098(BattleSystem *battleSys);
 u16 *ov16_0223E0A4(BattleSystem *battleSys);
 u16 *ov16_0223E0B0(BattleSystem *battleSys);
 u16 *ov16_0223E0BC(BattleSystem *battleSys);
-UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *battleSys);
+PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSys);
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSys);
 Strbuf *ov16_0223E0D4(BattleSystem *battleSys);
 
@@ -231,11 +232,11 @@ void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSys, int param1);
 WaitDial *Battle_GetWaitDial(BattleSystem *battleSys);
 void Battle_SetWaitDial(BattleSystem *battleSys, WaitDial *waitDial);
-UnkStruct_ov16_0223E0C8 *ov16_0223F2AC(BattleSystem *battleSys, int param1);
-u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1);
-void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
-void ov16_0223F2E4(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
-void ov16_0223F2FC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
+PokemonSpriteData *ov16_0223F2AC(BattleSystem *battleSys, int param1);
+u8 *ov16_0223F2B8(PokemonSpriteData *pokemonSpriteData, int param1);
+void PokemonSpriteData_SetNarcID(PokemonSpriteData *pokemonSpriteData, int param1, int param2);
+void PokemonSpriteData_SetPalette(PokemonSpriteData *pokemonSpriteData, int param1, int param2);
+void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int param1, int param2);
 void ov16_0223F314(BattleSystem *battleSys, int param1);
 void ov16_0223F320(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F32C(BattleSystem *battleSys, u8 *param1);
@@ -297,7 +298,7 @@ void ov16_0223F9A0(BattleSystem *battleSys, int param1);
  */
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *battleSys, int param1, int param2, int param3, int param4);
+u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum TrainerMessageType msgType, int param4);
 
 /**
  * @brief Print a BattleMessage to the main text display window.

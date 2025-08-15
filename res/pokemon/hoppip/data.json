@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SPLASH" ],
@@ -85,6 +86,17 @@
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_BOUNCE"
+        ],
+        "egg_moves": [
+            "MOVE_CONFUSION",
+            "MOVE_ENCORE",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_REFLECT",
+            "MOVE_AMNESIA",
+            "MOVE_HELPING_HAND",
+            "MOVE_PSYCH_UP",
+            "MOVE_AROMATHERAPY",
+            "MOVE_WORRY_SEED"
         ]
     },
     "evolutions": [
@@ -97,7 +109,8 @@
     "offspring": "SPECIES_HOPPIP",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,

@@ -343,14 +343,9 @@ _04B0:
     FaceSouth
     EndMovement
 
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PokemonMansion_UnusedMovement:
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _04C0:
@@ -367,4 +362,4 @@ _04C8:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

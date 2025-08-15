@@ -164,9 +164,6 @@ _0263:
     ScrCmd_150
     Call _0097
     GoTo _006D
-
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
+    End
+    
+    .balign 4, 0

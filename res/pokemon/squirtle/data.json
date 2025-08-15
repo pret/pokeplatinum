@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -93,6 +94,20 @@
             "MOVE_SNORE",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE"
+        ],
+        "egg_moves": [
+            "MOVE_MIRROR_COAT",
+            "MOVE_HAZE",
+            "MOVE_MIST",
+            "MOVE_FORESIGHT",
+            "MOVE_FLAIL",
+            "MOVE_REFRESH",
+            "MOVE_MUD_SPORT",
+            "MOVE_YAWN",
+            "MOVE_MUDDY_WATER",
+            "MOVE_FAKE_OUT",
+            "MOVE_AQUA_RING",
+            "MOVE_AQUA_JET"
         ]
     },
     "evolutions": [
@@ -105,7 +120,8 @@
     "offspring": "SPECIES_SQUIRTLE",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 5,

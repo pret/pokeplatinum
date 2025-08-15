@@ -345,7 +345,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     partyMan->usedItemID = param0->unk_04;
     partyMan->selectedMonSlot = param0->unk_06;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     menu->taskData = partyMan;
     sub_0203B674(menu, sub_0203B7C0);
 }
@@ -579,7 +579,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     partyMan->selectedMonSlot = param0->unk_06;
     partyMan->learnedMove = Item_MoveForTMHM(param0->unk_04);
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     menu->taskData = partyMan;
     sub_0203B674(menu, sub_0203B7C0);
 }
@@ -945,7 +945,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     partyMan->usedItemID = param0->unk_04;
     partyMan->selectedMonSlot = param0->unk_06;
 
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, partyMan);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
     menu->taskData = partyMan;
     sub_0203B674(menu, sub_0203B7C0);
 }

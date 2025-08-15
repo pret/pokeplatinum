@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -78,6 +79,15 @@
             "MOVE_SUPERPOWER",
             "MOVE_SNORE",
             "MOVE_EARTH_POWER"
+        ],
+        "egg_moves": [
+            "MOVE_STOCKPILE",
+            "MOVE_SWALLOW",
+            "MOVE_SPIT_UP",
+            "MOVE_CURSE",
+            "MOVE_SLACK_OFF",
+            "MOVE_BODY_SLAM",
+            "MOVE_SAND_TOMB"
         ]
     },
     "evolutions": [
@@ -90,7 +100,8 @@
     "offspring": "SPECIES_HIPPOPOTAS",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SLOW"
     },
     "pokedex_data": {
         "height": 8,

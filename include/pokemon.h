@@ -3,6 +3,7 @@
 
 #include <nitro/rtc.h>
 
+#include "constants/flavor.h"
 #include "constants/forms.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
@@ -629,7 +630,7 @@ void BoxPokemon_FromPokemon(Pokemon *src, BoxPokemon *dest);
  * @param flavor
  * @return 1 if liked flavor, -1 if disliked flavor, else 0
  */
-s8 Pokemon_GetFlavorAffinity(Pokemon *mon, int flavor);
+s8 Pokemon_GetFlavorAffinity(Pokemon *mon, enum Flavor flavor);
 
 /**
  * @brief Gets the affinitiy of a given Pokemon personality to a given flavor
@@ -638,7 +639,7 @@ s8 Pokemon_GetFlavorAffinity(Pokemon *mon, int flavor);
  * @param flavor
  * @return 1 if liked flavor, -1 if disliked flavor, else 0
  */
-s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, int flavor);
+s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor);
 
 /**
  * @brief Gets all moves that the given pokemon species and form can learn by leveling up
@@ -787,7 +788,7 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
  * @param forceDefaultChatot    If TRUE, force usage of Chatot's default cry.
  * @param heapID
  */
-void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID);
+void PlayCryWithParams(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID);
 
 /**
  * @brief Play a Pokemon's cry, according to the given species and form number.
@@ -803,8 +804,8 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 specie
  * @param heapID
  * @param delay                 Number of frames until playback will begin.
  */
-void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
-BOOL Pokemon_IsEligibleForAction(Pokemon *mon);
+void Species_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
+BOOL Pokemon_PlayCry(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID);
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates);

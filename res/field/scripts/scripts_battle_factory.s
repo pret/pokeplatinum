@@ -47,7 +47,7 @@ _0075:
     End
 
 _0091:
-    ScrCmd_313 0
+    RecordHeapMemory
     CallIfEq VAR_MAP_LOCAL_4, 0, _0570
     CallIfEq VAR_MAP_LOCAL_4, 1, _0575
     GoTo _00B7
@@ -243,7 +243,7 @@ _03C1:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_313 1
+    AssertHeapMemory
     End
 
 _042A:
@@ -395,7 +395,7 @@ _05AB:
     Return
 
 _05B0:
-    ScrCmd_313 0
+    RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_UNK_0x40B7, 0
     Message 11
@@ -405,9 +405,9 @@ _05B0:
     End
 
 _05D7:
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return
@@ -451,43 +451,20 @@ _0653:
 
 _066E:
     GoTo _0139
+    End
+    
+    .balign 4, 0
+BattleFactory_UnusedMovement:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
 
-    .byte 2
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleFactory_UnusedMovement2:
+    WalkNormalNorth 2
+    Delay8
+    WalkNormalNorth
+    EndMovement
 
 _0698:
     PlayFanfare SEQ_SE_CONFIRM
@@ -559,6 +536,4 @@ _070A:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

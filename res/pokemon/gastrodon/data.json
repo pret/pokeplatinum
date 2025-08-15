@@ -31,6 +31,10 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": {
+        "base": 0,
+        "east_sea": 0
+    },
     "learnset": {
         "by_level": [
             [ 1, "MOVE_MUD_SLAP" ],
@@ -98,7 +102,8 @@
     "offspring": "SPECIES_SHELLOS",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SCARY"
     },
     "pokedex_data": {
         "height": 9,

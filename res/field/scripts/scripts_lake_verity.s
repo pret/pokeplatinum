@@ -213,7 +213,7 @@ _0230:
     ApplyMovement 6, _02FC
     ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
-    ScrCmd_187 5, 53, 1, 39, 3
+    SetPosition 5, 53, 1, 39, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag FLAG_UNK_0x029A
@@ -232,25 +232,14 @@ _02DB:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+LakeVerity_UnusedMovement:
+    WalkOnSpotNormalNorth
+    EndMovement
+
+LakeVerity_UnusedMovement2:
+    WalkNormalNorth 3
+    EndMovement
 
     .balign 4, 0
 _02F4:
@@ -276,6 +265,4 @@ _030C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

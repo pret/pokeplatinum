@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
@@ -90,6 +91,16 @@
             "MOVE_SNORE",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_PURSUIT",
+            "MOVE_LEER",
+            "MOVE_SMOG",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_CRUNCH",
+            "MOVE_SCARY_FACE",
+            "MOVE_ASTONISH",
+            "MOVE_PUNISHMENT"
         ]
     },
     "evolutions": [
@@ -102,7 +113,8 @@
     "offspring": "SPECIES_STUNKY",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_SCARY"
     },
     "pokedex_data": {
         "height": 4,

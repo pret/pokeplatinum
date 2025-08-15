@@ -1,4 +1,5 @@
 #include "macros/btlcmd.inc"
+#include "generated/trainer_message_types.h"
 
 
 _000:
@@ -22,17 +23,17 @@ _015:
     TrainerSlideIn BTLSCR_ENEMY_SLOT_1, BATTLER_TYPE_SOLO_ENEMY
     Wait 
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES, _065
-    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRAINER_MESSAGE_LOSE
+    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRMSG_DEFEAT
     Wait 
     WaitButtonABTime 60
     GoTo _121
 
 _065:
-    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRAINER_MESSAGE_LOSE_1
+    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRMSG_DOUBLE_BATTLE_DEFEAT_1
     Wait 
     WaitButtonABTime 60
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_FRONTIER, _121
-    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRAINER_MESSAGE_LOSE_2
+    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRMSG_DOUBLE_BATTLE_DEFEAT_2
     Wait 
     WaitButtonABTime 60
     GoTo _121
@@ -47,14 +48,14 @@ _087:
     WaitButtonABTime 15
     TrainerSlideIn BTLSCR_ENEMY_SLOT_1, BATTLER_TYPE_SOLO_ENEMY
     Wait 
-    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRAINER_MESSAGE_LOSE
+    PrintTrainerMessage BTLSCR_ENEMY_SLOT_1, TRMSG_DEFEAT
     Wait 
     WaitButtonABTime 30
     TrainerSlideOut BTLSCR_ENEMY_SLOT_1
     Wait 
     TrainerSlideIn BTLSCR_ENEMY_SLOT_2, BATTLER_TYPE_SOLO_ENEMY
     Wait 
-    PrintTrainerMessage BTLSCR_ENEMY_SLOT_2, TRAINER_MESSAGE_LOSE
+    PrintTrainerMessage BTLSCR_ENEMY_SLOT_2, TRMSG_DEFEAT
     Wait 
     WaitButtonABTime 60
     SetLinkBattleResult 

@@ -350,5 +350,4 @@ _04C6:
     SetVar VAR_RESULT, 0
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

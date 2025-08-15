@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_RAGE" ],
@@ -86,6 +87,16 @@
             "MOVE_OUTRAGE",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TWISTER"
+        ],
+        "egg_moves": [
+            "MOVE_HYDRO_PUMP",
+            "MOVE_THRASH",
+            "MOVE_DRAGON_RAGE",
+            "MOVE_TWISTER",
+            "MOVE_DRAGON_DANCE",
+            "MOVE_FIRE_FANG",
+            "MOVE_SHADOW_CLAW",
+            "MOVE_DRAGON_RUSH"
         ]
     },
     "evolutions": [
@@ -98,7 +109,8 @@
     "offspring": "SPECIES_BAGON",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

@@ -31,6 +31,7 @@
     "safari_flee_rate": 150,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,
+    "icon_palette": 1,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_COMET_PUNCH" ],
@@ -117,13 +118,27 @@
             "MOVE_OUTRAGE",
             "MOVE_SUCKER_PUNCH",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_STOMP",
+            "MOVE_FORESIGHT",
+            "MOVE_FOCUS_ENERGY",
+            "MOVE_SAFEGUARD",
+            "MOVE_DISABLE",
+            "MOVE_COUNTER",
+            "MOVE_CRUSH_CLAW",
+            "MOVE_SUBSTITUTE",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_ENDEAVOR",
+            "MOVE_HAMMER_ARM"
         ]
     },
     "evolutions": [  ],
     "offspring": "SPECIES_KANGASKHAN",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 22,

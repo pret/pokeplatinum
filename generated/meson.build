@@ -39,6 +39,7 @@ metang_generators = {
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
+    'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
@@ -93,6 +94,7 @@ metang_generators = {
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'trainers': { 'type': 'enum', 'tag': 'TrainerID' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
+    'trainer_message_types': { 'type': 'enum', 'tag': 'TrainerMessageType' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},

@@ -101,7 +101,7 @@ _0128:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
     End
@@ -111,7 +111,7 @@ _013E:
     LockAll
     FacePlayer
     CallCommonScript 0x7E3
-    ScrCmd_035
+    CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll
     End
@@ -275,5 +275,4 @@ _0336:
     CallCommonScript 0x7D2
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

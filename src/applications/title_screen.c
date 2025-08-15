@@ -39,7 +39,7 @@
 
 FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(overlay89);
-FS_EXTERN_OVERLAY(overlay97);
+FS_EXTERN_OVERLAY(main_menu);
 FS_EXTERN_OVERLAY(d_startmenu);
 
 #define LIGHT_COLOR(r, g, b) ((((r) << 0) & GX_RGB_R_MASK) | (((g) << 5) & GX_RGB_G_MASK) | (((b) << 10) & GX_RGB_B_MASK))

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_NIGHT_SLASH" ],
@@ -94,13 +95,23 @@
             "MOVE_VACUUM_WAVE",
             "MOVE_IRON_DEFENSE",
             "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_HARDEN",
+            "MOVE_BIDE",
+            "MOVE_FLAIL",
+            "MOVE_FALSE_SWIPE",
+            "MOVE_REVENGE",
+            "MOVE_PURSUIT",
+            "MOVE_DOUBLE_EDGE"
         ]
     },
     "evolutions": [  ],
     "offspring": "SPECIES_HERACROSS",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_TOUGH"
     },
     "pokedex_data": {
         "height": 15,

@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
     "flip_sprite": false,
+    "icon_palette": 2,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -98,6 +99,17 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK"
+        ],
+        "egg_moves": [
+            "MOVE_BARRIER",
+            "MOVE_ASSIST",
+            "MOVE_ROLE_PLAY",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_NASTY_PLOT",
+            "MOVE_FLATTER",
+            "MOVE_PSYCHO_CUT"
         ]
     },
     "evolutions": [
@@ -110,7 +122,8 @@
     "offspring": "SPECIES_DROWZEE",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_SCARY"
     },
     "pokedex_data": {
         "height": 10,

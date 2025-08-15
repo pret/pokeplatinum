@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
@@ -100,13 +101,26 @@
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER",
             "MOVE_SUCKER_PUNCH"
+        ],
+        "egg_moves": [
+            "MOVE_ROCK_SLIDE",
+            "MOVE_SCREECH",
+            "MOVE_MIST",
+            "MOVE_AMNESIA",
+            "MOVE_BARRIER",
+            "MOVE_INGRAIN",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_ICICLE_SPEAR",
+            "MOVE_NATURE_POWER",
+            "MOVE_AQUA_RING"
         ]
     },
     "evolutions": [  ],
     "offspring": "SPECIES_CORSOLA",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_SMALL"
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 6,

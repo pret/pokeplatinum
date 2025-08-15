@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": true,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WATER_SPORT" ],
@@ -107,7 +108,8 @@
     "offspring": "SPECIES_POLIWAG",
     "footprint": {
         "has": true,
-        "size": "FOOTPRINT_MEDIUM"
+        "size": "FOOTPRINT_MEDIUM",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 10,

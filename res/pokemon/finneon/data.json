@@ -31,6 +31,7 @@
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",
     "flip_sprite": false,
+    "icon_palette": 0,
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
@@ -90,6 +91,16 @@
             "MOVE_TWISTER",
             "MOVE_BOUNCE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_SWEET_KISS",
+            "MOVE_CHARM",
+            "MOVE_FLAIL",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SPLASH",
+            "MOVE_PSYBEAM",
+            "MOVE_TICKLE",
+            "MOVE_AGILITY"
         ]
     },
     "evolutions": [
@@ -102,7 +113,8 @@
     "offspring": "SPECIES_FINNEON",
     "footprint": {
         "has": false,
-        "size": "FOOTPRINT_LARGE"
+        "size": "FOOTPRINT_LARGE",
+        "type": "FOOTPRINT_TYPE_CUTE"
     },
     "pokedex_data": {
         "height": 4,
