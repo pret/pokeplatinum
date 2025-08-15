@@ -10,7 +10,7 @@ SysTask *SysTask_CutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *sho
 int CheckCutInFinished(SysTask *cutInTask);
 void SysTask_CutIn_Done(SysTask *cutInTask);
 SysTask *FieldTask_InitFlyLandingTask(FieldSystem *fieldSystem, int playerGender);
-int IsFlyLandingAnimFinished(SysTask *param0);
-void SetFlyLandingTaskDone(SysTask *param0);
+int FlyLanding_IsAnimFinished(SysTask *param0);
+void FlyLanding_SetTaskDone(SysTask *param0);
 
 #endif // POKEPLATINUM_OV6_02243258_H

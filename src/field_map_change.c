@@ -885,8 +885,8 @@ static BOOL FieldTask_WaitFadeInFly(FieldTask *task)
 {
     MapChangeFlyData *mapChangeData = FieldTask_GetEnv(task);
 
-    if (IsFlyLandingAnimFinished(mapChangeData->task) == TRUE) {
-        SetFlyLandingTaskDone(mapChangeData->task);
+    if (FlyLanding_IsAnimFinished(mapChangeData->task) == TRUE) {
+        FlyLanding_SetTaskDone(mapChangeData->task);
         return TRUE;
     }
 
