@@ -328,7 +328,7 @@ u16 sub_0203D2C4(void *param0)
 {
     u16 v0 = sub_0207CB94(param0);
 
-    if ((v0 != 0) && (sub_0207CB9C(param0) == BAG_EXIT_CODE_5)) {
+    if ((v0 != 0) && (sub_0207CB9C(param0) == BAG_EXIT_CODE_DONE)) {
         GF_ASSERT(0);
     }
 

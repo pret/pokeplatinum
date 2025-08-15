@@ -135,14 +135,14 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
     Heap_Free(v0);
 
     switch (sub_0207CB9C(v0)) {
-    case BAG_EXIT_CODE_1:
+    case BAG_EXIT_CODE_SHOW_BERRY_DATA:
         return 2;
-    case BAG_EXIT_CODE_0:
-    case BAG_EXIT_CODE_2:
-    case BAG_EXIT_CODE_4:
+    case BAG_EXIT_CODE_USE_ITEM:
+    case BAG_EXIT_CODE_GIVE_ITEM:
+    case BAG_EXIT_CODE_GIVE_FROM_MON_MENU:
     case BAG_EXIT_CODE_3:
         break;
-    case BAG_EXIT_CODE_5:
+    case BAG_EXIT_CODE_DONE:
         return 5;
     default:
         GF_ASSERT(0);

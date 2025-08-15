@@ -20,6 +20,8 @@
 #include "string_template.h"
 #include "trainer_info.h"
 
+#define BAG_UI_NUM_VISIBLE_ITEMS 9
+
 enum BagInterfaceState {
     BAG_INTERFACE_STATE_WAIT_INITIAL_SCREEN_FADE = 0,
     BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL,
@@ -58,12 +60,12 @@ enum BagInterfaceContext {
 };
 
 enum BagInterfaceExitCode {
-    BAG_EXIT_CODE_0 = 0,
-    BAG_EXIT_CODE_1,
-    BAG_EXIT_CODE_2,
+    BAG_EXIT_CODE_USE_ITEM = 0,
+    BAG_EXIT_CODE_SHOW_BERRY_DATA,
+    BAG_EXIT_CODE_GIVE_ITEM,
     BAG_EXIT_CODE_3,
-    BAG_EXIT_CODE_4,
-    BAG_EXIT_CODE_5,
+    BAG_EXIT_CODE_GIVE_FROM_MON_MENU,
+    BAG_EXIT_CODE_DONE,
 };
 
 enum ItemAction {
@@ -88,7 +90,7 @@ enum BagInterfaceSprite {
     BAG_SPRITE_POCKET_INDICATOR_LEFT_ARROW,
     BAG_SPRITE_POCKET_INDICATOR_RIGHT_ARROW,
     BAG_SPRITE_ITEM_HIGHLIGHT,
-    BAG_SPRITE_ITEM_SORTING_POS,
+    BAG_SPRITE_ITEM_SORTING_POS_BAR,
     BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE,
     BAG_SPRITE_ITEM,
     BAG_SPRITE_ITEM_COUNT_ARROW_UP,
@@ -118,15 +120,15 @@ enum ItemSlotProperty {
     ITEM_SLOT_QUANTITY,
 };
 
-typedef struct BagInterfaceManager BagInterfaceManager;
+typedef struct BagInterfaceManager BagInterface;
 
-typedef int (*ItemActionFuncPtr)(BagInterfaceManager *param0);
+typedef int (*ItemActionFuncPtr)(BagInterface *param0);
 
 typedef struct {
-    u8 unk_00;
+    u8 moving;
     u8 direction;
     u8 padding_02;
-    u8 unk_03;
+    u8 currentStep;
     fx32 positions[8];
 } UnkStruct_ov84_0223B5A0_sub1;
 
@@ -151,7 +153,7 @@ struct BagInterfaceManager {
     StringList *itemActionsMenuChoices;
     Menu *menu;
     ListMenu *itemsListMenu;
-    StringList *itemsListMenuStringList;
+    StringList *itemListEntries;
     Strbuf *itemNamesBuffers[165];
     Strbuf *strBuffer;
     Strbuf *itemCountX;
@@ -164,7 +166,7 @@ struct BagInterfaceManager {
     u8 pocketIndicatorSpacing;
     BagPocketIndicatorManager pocketIndicatorMan;
     u8 padding_431[35];
-    UnkStruct_ov84_0223B5A0_sub1 unk_454;
+    UnkStruct_ov84_0223B5A0_sub1 pocketHighlighterMovtMan;
     u8 nextPocketIdx;
     u8 unk_479;
     u8 movingItem;
@@ -176,7 +178,7 @@ struct BagInterfaceManager {
     u8 unk_483;
     u32 unk_484;
     s16 selectedItemCount;
-    u16 unk_48A;
+    u16 numSelectedItemOwned;
     u32 soldItemPrice;
     u8 pokeballButtonAnimStep;
     u8 pokeballButtonAnimFrameCount;
@@ -196,7 +198,7 @@ extern const ApplicationManagerTemplate gBagApplicationTemplate;
 int BagInterface_Init(ApplicationManager *appMan, int *state);
 int BagInterface_Main(ApplicationManager *appMan, int *state);
 int BagInterface_Exit(ApplicationManager *appMan, int *state);
-u16 BagInterface_GetItemSlotProperty(BagInterfaceManager *param0, u16 param1, u16 param2);
+u16 BagInterface_GetItemSlotProperty(BagInterface *param0, u16 param1, u16 param2);
 const u32 GetItemActionFunc(u32 param0);
 
 #endif // POKEPLATINUM_OV84_0223B5A0_H

@@ -4,11 +4,11 @@
 typedef struct {
     u8 nextPocketIdx;
     u8 scrollDirection;
-    u8 unk_02;
+    u8 animationStep;
     u8 animFrame;
     u8 unk_04;
     u8 unk_05;
-    u8 unk_06;
+    u8 pressedButtonIdx;
     u8 unk_07_0 : 4;
     u8 unk_07_4 : 3;
     u8 unk_07_7 : 1;
