@@ -1,10 +1,8 @@
 #include "overlay006/hm_cut_in.h"
 
-#include "nitro/fx/fx.h"
-#include "nitro/fx/fx_const.h"
-#include "nitro/types.h"
-#include <nitro.h>
-#include <string.h>
+#include <nitro/fx/fx.h>
+#include <nitro/fx/fx_const.h>
+#include <nitro/types.h>
 
 #include "constants/heap.h"
 
@@ -246,16 +244,16 @@ typedef struct _Unused {
     HMCutIn *cutIn;
 } _Unused;
 
-typedef struct HMCutInWithPlayer {
+typedef struct HMCutInWithPlayer2 {
     Sprite *playerSprite;
     HMCutIn *cutIn;
-} HMCutInWithPlayer;
+} HMCutInWithPlayer2;
 
 // General setup
 static HMCutIn *CreateHMCutIn(FieldSystem *fieldSystem);
 static void FreeHMCutIn(HMCutIn *cutIn);
 static void SysTask_CutIn(SysTask *cutInTask, void *hmCutInPtr);
-static void SysTask_CutInFly(SysTask *param0, void *param1);
+static void SysTask_CutInFly(SysTask *sysTask, void *cutInRef);
 
 // Initial loading of resources
 static void CutIn_InitSpriteResources(HMCutIn *cutIn);
@@ -266,7 +264,7 @@ static SpriteResource *CutIn_GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *nar
 static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID);
 static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID);
 static Sprite *CutIn_InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position);
-static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData);
+static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **paletteData);
 static void CutIn_LoadBgPatternChar(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData);
 static void CutIn_LoadBgPatternPalette(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dScreenData **screenData);
 static void CutIn_CreateResourceTransferTask(HMCutIn *cutIn);
@@ -303,7 +301,7 @@ static void CutIn_DeleteWindowTask(HMCutIn *cutIn);
 // Wind particles
 static void CreateWindParticleAnims(HMCutIn *cutIn, int allowWindParticles);
 static Sprite *WindParticle_CreateSprite(HMCutIn *cutIn, const VecFx32 *position, int listPriority, int animID);
-static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *param1, const VecFx32 *param2, int param3, int param4, int param5);
+static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *initialPos, const VecFx32 *movementDelta, int spriteListPriority, int param4, BOOL allowWindParticles);
 
 // Player sprite in cut-in
 static void CutIn_CreateDrawPlayerSpriteTasks(HMCutIn *cutIn);
@@ -400,55 +398,55 @@ static void FlyLanding_InitResourceData(FlyResources *flyResources, int maxSprit
     }
 }
 
-static void FlyLanding_ReleaseResources(FlyResources *param0)
+static void FlyLanding_ReleaseResources(FlyResources *flyResources)
 {
     int i;
 
-    for (i = 0; i < param0->resource1Count; i++) {
-        if (param0->charSourceWrapper[i].resourceId != param0->resource1ID) {
-            SpriteTransfer_ResetCharTransfer(param0->charSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource1Count; i++) {
+        if (flyResources->charSourceWrapper[i].resourceId != flyResources->resource1ID) {
+            SpriteTransfer_ResetCharTransfer(flyResources->charSourceWrapper[i].spriteResource);
         }
     }
 
-    for (i = 0; i < param0->resource2Count; i++) {
-        if (param0->paletteSourceWrapper[i].resourceId != param0->resource2ID) {
-            SpriteTransfer_ResetPlttTransfer(param0->paletteSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource2Count; i++) {
+        if (flyResources->paletteSourceWrapper[i].resourceId != flyResources->resource2ID) {
+            SpriteTransfer_ResetPlttTransfer(flyResources->paletteSourceWrapper[i].spriteResource);
         }
     }
 
-    for (i = 0; i < param0->resource3Count; i++) {
-        if (param0->cellSourceWrapper[i].resourceId != param0->resource3ID) {
-            SpriteResource_ReleaseData(param0->cellSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource3Count; i++) {
+        if (flyResources->cellSourceWrapper[i].resourceId != flyResources->resource3ID) {
+            SpriteResource_ReleaseData(flyResources->cellSourceWrapper[i].spriteResource);
         }
     }
 
-    for (i = 0; i < param0->resource4Count; i++) {
-        if (param0->animSourceWrapper[i].resourceId != param0->resource4ID) {
-            SpriteResource_ReleaseData(param0->animSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource4Count; i++) {
+        if (flyResources->animSourceWrapper[i].resourceId != flyResources->resource4ID) {
+            SpriteResource_ReleaseData(flyResources->animSourceWrapper[i].spriteResource);
         }
     }
 
-    SpriteResourceCollection_Delete(param0->charLocation);
-    SpriteResourceCollection_Delete(param0->paletteLocation);
-    SpriteResourceCollection_Delete(param0->cellLocation);
-    SpriteResourceCollection_Delete(param0->animLocation);
-    Heap_Free(param0->charSourceWrapper);
-    Heap_Free(param0->paletteSourceWrapper);
-    Heap_Free(param0->cellSourceWrapper);
-    Heap_Free(param0->animSourceWrapper);
-    SpriteList_DeleteAll(param0->spriteList);
-    SpriteList_Delete(param0->spriteList);
+    SpriteResourceCollection_Delete(flyResources->charLocation);
+    SpriteResourceCollection_Delete(flyResources->paletteLocation);
+    SpriteResourceCollection_Delete(flyResources->cellLocation);
+    SpriteResourceCollection_Delete(flyResources->animLocation);
+    Heap_Free(flyResources->charSourceWrapper);
+    Heap_Free(flyResources->paletteSourceWrapper);
+    Heap_Free(flyResources->cellSourceWrapper);
+    Heap_Free(flyResources->animSourceWrapper);
+    SpriteList_DeleteAll(flyResources->spriteList);
+    SpriteList_Delete(flyResources->spriteList);
 }
 
-static void FlyLanding_LoadCharResources(FlyResources *param0, NARC *narc, int memberIdx, int resourceId)
+static void FlyLanding_LoadCharResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource1Count; i++) {
-        if (param0->charSourceWrapper[i].resourceId == param0->resource1ID) {
-            param0->charSourceWrapper[i].resourceId = resourceId;
-            param0->charSourceWrapper[i].memberIdx = 0;
-            param0->charSourceWrapper[i].spriteResource = SpriteResourceCollection_AddTilesFrom(param0->charLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
+    for (i = 0; i < flyResources->resource1Count; i++) {
+        if (flyResources->charSourceWrapper[i].resourceId == flyResources->resource1ID) {
+            flyResources->charSourceWrapper[i].resourceId = resourceId;
+            flyResources->charSourceWrapper[i].memberIdx = 0;
+            flyResources->charSourceWrapper[i].spriteResource = SpriteResourceCollection_AddTilesFrom(flyResources->charLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD);
             return;
         }
     }
@@ -456,13 +454,13 @@ static void FlyLanding_LoadCharResources(FlyResources *param0, NARC *narc, int m
     GF_ASSERT(FALSE);
 }
 
-static void FlyLanding_RequestCharResources(FlyResources *param0, int resourceId)
+static void FlyLanding_RequestCharResources(FlyResources *flyResources, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource1Count; i++) {
-        if (param0->charSourceWrapper[i].resourceId == resourceId) {
-            SpriteTransfer_RequestCharAtEnd(param0->charSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource1Count; i++) {
+        if (flyResources->charSourceWrapper[i].resourceId == resourceId) {
+            SpriteTransfer_RequestCharAtEnd(flyResources->charSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -470,13 +468,13 @@ static void FlyLanding_RequestCharResources(FlyResources *param0, int resourceId
     GF_ASSERT(FALSE);
 }
 
-static void FlyLanding_ReleaseCharResources(FlyResources *param0, int resourceId)
+static void FlyLanding_ReleaseCharResources(FlyResources *flyResources, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource1Count; i++) {
-        if (param0->charSourceWrapper[i].resourceId == resourceId) {
-            SpriteResource_ReleaseData(param0->charSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource1Count; i++) {
+        if (flyResources->charSourceWrapper[i].resourceId == resourceId) {
+            SpriteResource_ReleaseData(flyResources->charSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -484,15 +482,15 @@ static void FlyLanding_ReleaseCharResources(FlyResources *param0, int resourceId
     GF_ASSERT(FALSE);
 }
 
-static void FlyLanding_LoadPaletteResources(FlyResources *param0, NARC *narc, int memberIdx, int resourceId)
+static void FlyLanding_LoadPaletteResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource1Count; i++) {
-        if (param0->paletteSourceWrapper[i].resourceId == param0->resource2ID) {
-            param0->paletteSourceWrapper[i].resourceId = resourceId;
-            param0->paletteSourceWrapper[i].memberIdx = 0;
-            param0->paletteSourceWrapper[i].spriteResource = SpriteResourceCollection_AddPaletteFrom(param0->paletteLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
+    for (i = 0; i < flyResources->resource1Count; i++) {
+        if (flyResources->paletteSourceWrapper[i].resourceId == flyResources->resource2ID) {
+            flyResources->paletteSourceWrapper[i].resourceId = resourceId;
+            flyResources->paletteSourceWrapper[i].memberIdx = 0;
+            flyResources->paletteSourceWrapper[i].spriteResource = SpriteResourceCollection_AddPaletteFrom(flyResources->paletteLocation, narc, memberIdx, FALSE, resourceId, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
             return;
         }
     }
@@ -500,13 +498,13 @@ static void FlyLanding_LoadPaletteResources(FlyResources *param0, NARC *narc, in
     GF_ASSERT(FALSE);
 }
 
-static void FlyLanding_FreeSpaceForPaletteResources(FlyResources *param0, int resourceId)
+static void FlyLanding_FreeSpaceForPaletteResources(FlyResources *flyResources, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource2Count; i++) {
-        if (param0->paletteSourceWrapper[i].resourceId == resourceId) {
-            SpriteTransfer_RequestPlttFreeSpace(param0->paletteSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource2Count; i++) {
+        if (flyResources->paletteSourceWrapper[i].resourceId == resourceId) {
+            SpriteTransfer_RequestPlttFreeSpace(flyResources->paletteSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -514,13 +512,13 @@ static void FlyLanding_FreeSpaceForPaletteResources(FlyResources *param0, int re
     GF_ASSERT(FALSE);
 }
 
-static void FlyLanding_ReleasePaletteResources(FlyResources *param0, int resourceId)
+static void FlyLanding_ReleasePaletteResources(FlyResources *flyResources, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource2Count; i++) {
-        if (param0->paletteSourceWrapper[i].resourceId == resourceId) {
-            SpriteResource_ReleaseData(param0->paletteSourceWrapper[i].spriteResource);
+    for (i = 0; i < flyResources->resource2Count; i++) {
+        if (flyResources->paletteSourceWrapper[i].resourceId == resourceId) {
+            SpriteResource_ReleaseData(flyResources->paletteSourceWrapper[i].spriteResource);
             return;
         }
     }
@@ -528,15 +526,15 @@ static void FlyLanding_ReleasePaletteResources(FlyResources *param0, int resourc
     GF_ASSERT(FALSE);
 }
 
-static void FlyLanding_LoadCellResources(FlyResources *param0, NARC *narc, int memberIdx, int resourceId)
+static void FlyLanding_LoadCellResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource1Count; i++) {
-        if (param0->cellSourceWrapper[i].resourceId == param0->resource3ID) {
-            param0->cellSourceWrapper[i].resourceId = resourceId;
-            param0->cellSourceWrapper[i].memberIdx = 0;
-            param0->cellSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(param0->cellLocation, narc, memberIdx, FALSE, resourceId, 2, 4);
+    for (i = 0; i < flyResources->resource1Count; i++) {
+        if (flyResources->cellSourceWrapper[i].resourceId == flyResources->resource3ID) {
+            flyResources->cellSourceWrapper[i].resourceId = resourceId;
+            flyResources->cellSourceWrapper[i].memberIdx = 0;
+            flyResources->cellSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(flyResources->cellLocation, narc, memberIdx, FALSE, resourceId, 2, 4);
             return;
         }
     }
@@ -544,15 +542,15 @@ static void FlyLanding_LoadCellResources(FlyResources *param0, NARC *narc, int m
     GF_ASSERT(FALSE);
 }
 
-static void FlyLanding_LoadAnimResources(FlyResources *param0, NARC *narc, int memberIdx, int resourceId)
+static void FlyLanding_LoadAnimResources(FlyResources *flyResources, NARC *narc, int memberIdx, int resourceId)
 {
     int i;
 
-    for (i = 0; i < param0->resource1Count; i++) {
-        if (param0->animSourceWrapper[i].resourceId == param0->resource4ID) {
-            param0->animSourceWrapper[i].resourceId = resourceId;
-            param0->animSourceWrapper[i].memberIdx = 0;
-            param0->animSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(param0->animLocation, narc, memberIdx, FALSE, resourceId, 3, 4);
+    for (i = 0; i < flyResources->resource1Count; i++) {
+        if (flyResources->animSourceWrapper[i].resourceId == flyResources->resource4ID) {
+            flyResources->animSourceWrapper[i].resourceId = resourceId;
+            flyResources->animSourceWrapper[i].memberIdx = 0;
+            flyResources->animSourceWrapper[i].spriteResource = SpriteResourceCollection_AddFrom(flyResources->animLocation, narc, memberIdx, FALSE, resourceId, 3, 4);
             return;
         }
     }
@@ -560,13 +558,13 @@ static void FlyLanding_LoadAnimResources(FlyResources *param0, NARC *narc, int m
     GF_ASSERT(FALSE);
 }
 
-static Sprite *FlyLanding_CreateSprite(FlyResources *param0, const VecFx32 *position, u32 charResourceID, u32 paletteResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority)
+static Sprite *FlyLanding_CreateSprite(FlyResources *flyResources, const VecFx32 *position, u32 charResourceID, u32 paletteResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority)
 {
     SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteListTemplate;
     Sprite *sprite;
 
-    if (animResourceID == param0->resource4ID) {
+    if (animResourceID == flyResources->resource4ID) {
         animResourceID = 0xffffffff;
     }
 
@@ -580,14 +578,14 @@ static Sprite *FlyLanding_CreateSprite(FlyResources *param0, const VecFx32 *posi
         0xffffffff,
         FALSE,
         headerPriority,
-        param0->charLocation,
-        param0->paletteLocation,
-        param0->cellLocation,
-        param0->animLocation,
+        flyResources->charLocation,
+        flyResources->paletteLocation,
+        flyResources->cellLocation,
+        flyResources->animLocation,
         NULL,
         NULL);
 
-    spriteListTemplate.list = param0->spriteList;
+    spriteListTemplate.list = flyResources->spriteList;
     spriteListTemplate.resourceData = &resourceHeader;
     spriteListTemplate.position = *position;
     spriteListTemplate.priority = listPriority;
@@ -623,7 +621,7 @@ static Sprite *FlyLanding_InitBirdSprite(FlyResources *param0)
     return sprite;
 }
 
-static Sprite *FlyLanding_InitPlayerSprite(FlyResources *param0, int playerGender)
+static Sprite *FlyLanding_InitPlayerSprite(FlyResources *flyResources, int playerGender)
 {
     VecFx32 initPosition = { 0, 0, 0 };
     Sprite *playerSprite;
@@ -633,7 +631,7 @@ static Sprite *FlyLanding_InitPlayerSprite(FlyResources *param0, int playerGende
         paletteResourceId = 1;
     }
 
-    playerSprite = FlyLanding_CreateSprite(param0, &initPosition, 2, paletteResourceId, 2, 1, 0, 131);
+    playerSprite = FlyLanding_CreateSprite(flyResources, &initPosition, 2, paletteResourceId, 2, 1, 0, 131);
 
     Sprite_SetDrawFlag(playerSprite, FALSE);
     Sprite_SetAnim(playerSprite, 6);
@@ -666,9 +664,9 @@ static int FlyLanding_HasAnimationEnded(UnkStruct_ov101_021D5D90 *param0)
     return v0->hasEndedIfTwo;
 }
 
-static int FlyLandingAnimWrapper_InitBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int FlyLandingAnimWrapper_InitBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *flyLandingEnvExtended)
 {
-    FlyLandingEnvExtended *env = param1;
+    FlyLandingEnvExtended *env = flyLandingEnvExtended;
     const FlyResourcesWithPlayer *resourcesWithPlayer = sub_020715BC(param0);
 
     env->resourcesWithPlayer = *resourcesWithPlayer;
@@ -692,15 +690,15 @@ static void FlyLanding_SetTasksDone(UnkStruct_ov101_021D5D90 *param0)
     sub_0207136C(param0);
 }
 
-static void FlyLandingAnimWrapper_DeleteBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void FlyLandingAnimWrapper_DeleteBirdSprite(UnkStruct_ov101_021D5D90 *param0, void *flyLandingEnvExtended)
 {
-    FlyLandingEnvExtended *v0 = param1;
-    Sprite_Delete(v0->birdSprite);
+    FlyLandingEnvExtended *env = flyLandingEnvExtended;
+    Sprite_Delete(env->birdSprite);
 }
 
-static void FlyLandingAnimWrapper_RunFlyLandingAnim(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void FlyLandingAnimWrapper_RunFlyLandingAnim(UnkStruct_ov101_021D5D90 *param0, void *flyLandingEnvExtended)
 {
-    FlyLandingEnvExtended *env = param1;
+    FlyLandingEnvExtended *env = flyLandingEnvExtended;
     int (*const *funcs)(FlyLandingEnvExtended *);
 
     funcs = FlyLandingAnimFuncCollections[env->stage];
@@ -718,10 +716,10 @@ static const UnkStruct_ov101_021D86B0 sFlyLandingAnimWrapperFuncs = {
     UnkStruct_ov101_021D5D90_DoNothing2
 };
 
-static int HideBirdSprite(FlyLandingEnvExtended *param0)
+static int HideBirdSprite(FlyLandingEnvExtended *env)
 {
-    param0->hasEndedIfTwo = 0;
-    Sprite_SetDrawFlag(param0->birdSprite, FALSE);
+    env->hasEndedIfTwo = 0;
+    Sprite_SetDrawFlag(env->birdSprite, FALSE);
     return 0;
 }
 
@@ -1383,10 +1381,10 @@ static const CutInTaskFunc sCutInTaskFuncs[] = {
     HMCutIn_Done
 };
 
-static void SysTask_CutInFly(SysTask *sysTask, void *param1)
+static void SysTask_CutInFly(SysTask *sysTask, void *cutInRef)
 {
     int ret;
-    HMCutIn *cutIn = param1;
+    HMCutIn *cutIn = cutInRef;
 
     do {
         ret = sCutInTaskFuncsFly[cutIn->state](cutIn);
@@ -2000,13 +1998,13 @@ static void CutIn_LoadBirdSpriteResources(HMCutIn *cutIn)
     NARC_dtor(narc);
 }
 
-static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **plttData)
+static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **paletteData)
 {
     void *nclrFile = NARC_AllocAndReadWholeMember(narc, memberIndex, HEAP_ID_FIELD);
 
-    NNS_G2dGetUnpackedPaletteData(nclrFile, plttData);
+    NNS_G2dGetUnpackedPaletteData(nclrFile, paletteData);
 
-    Bg_LoadPalette(BG_LAYER_MAIN_3, (*plttData)->pRawData, 32 * 1, 32 * 12);
+    Bg_LoadPalette(BG_LAYER_MAIN_3, (*paletteData)->pRawData, 32 * 1, 32 * 12);
     Heap_Free(nclrFile);
 }
 
@@ -2268,40 +2266,40 @@ static void CreateWindParticleAnims(HMCutIn *cutIn, int allowWindParticles)
     }
 }
 
-static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *param1, const VecFx32 *movementDelta, int spriteListPriority, int param4, BOOL allowWindParticles)
+static void WindParticle_RunAnimFuncs(HMCutIn *cutIn, const VecFx32 *initialPos, const VecFx32 *movementDelta, int spriteListPriority, int param4, BOOL allowWindParticles)
 {
     UnkStruct_ov101_021D5D90 *v0;
-    WindParticleAnimData v1;
+    WindParticleAnimData animData;
 
-    v1.spriteListPriority = spriteListPriority;
-    v1.allowWindParticles = allowWindParticles;
-    v1.cutIn = cutIn;
-    v1.movementDelta = *movementDelta;
+    animData.spriteListPriority = spriteListPriority;
+    animData.allowWindParticles = allowWindParticles;
+    animData.cutIn = cutIn;
+    animData.movementDelta = *movementDelta;
 
-    v0 = sub_02071330(cutIn->unk_244, &sWindParticleAnimFuncs, param1, param4, &v1, 132);
+    v0 = sub_02071330(cutIn->unk_244, &sWindParticleAnimFuncs, initialPos, param4, &animData, 132);
 }
 
-static int WindParticleAnim_SetUpSprite(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int WindParticleAnim_SetUpSprite(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
 {
     VecFx32 position;
-    WindParticleAnimEnv *v1 = param1;
-    const WindParticleAnimData *v2 = sub_020715BC(param0);
+    WindParticleAnimEnv *env = windParticleAnimEnv;
+    const WindParticleAnimData *animData = sub_020715BC(param0);
 
-    v1->data = *v2;
-    v1->animID = sub_020715B4(param0);
+    env->data = *animData;
+    env->animID = sub_020715B4(param0);
 
     sub_020715E4(param0, &position);
 
-    v1->sprite = WindParticle_CreateSprite(v1->data.cutIn, &position, v1->data.spriteListPriority, v1->animID);
-    Sprite_SetDrawFlag(v1->sprite, FALSE);
+    env->sprite = WindParticle_CreateSprite(env->data.cutIn, &position, env->data.spriteListPriority, env->animID);
+    Sprite_SetDrawFlag(env->sprite, FALSE);
 
     return 1;
 }
 
-static void WindParticleAnim_DeleteSprite(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void WindParticleAnim_DeleteSprite(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
 {
-    WindParticleAnimEnv *v0 = param1;
-    Sprite_Delete(v0->sprite);
+    WindParticleAnimEnv *env = windParticleAnimEnv;
+    Sprite_Delete(env->sprite);
 }
 
 static void WindParticleAnim_AnimateParticle(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
@@ -2338,9 +2336,9 @@ static void WindParticleAnim_AnimateParticle(UnkStruct_ov101_021D5D90 *param0, v
     }
 }
 
-static void WindParticleAnim_DoNothing(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void WindParticleAnim_DoNothing(UnkStruct_ov101_021D5D90 *param0, void *windParticleAnimEnv)
 {
-    WindParticleAnimEnv *env = param1;
+    WindParticleAnimEnv *env = windParticleAnimEnv;
 }
 
 static const UnkStruct_ov101_021D86B0 sWindParticleAnimFuncs = {
@@ -2519,7 +2517,7 @@ static int FlyAwayAscendFromPokeball_AscendAnim(FlyTaskEnv *env)
     return 0;
 }
 
-static int FlyAwayAscendFromPokeball_DoNothing(FlyTaskEnv *param0)
+static int FlyAwayAscendFromPokeball_DoNothing(FlyTaskEnv *env)
 {
     return 0;
 }
@@ -2759,7 +2757,7 @@ static int FlyPickUpPlayer_AscendToBottomLeft(FlyTaskEnv *env)
     return 0;
 }
 
-static int FlyPickUpPlayer_DoNothing(FlyTaskEnv *param0)
+static int FlyPickUpPlayer_DoNothing(FlyTaskEnv *env)
 {
     return 0;
 }
@@ -2828,13 +2826,13 @@ static void FlyLanding_SetUpPlayerAnimEnv(UnkStruct_ov101_021D5D90 *param0)
     Sprite_SetAnim(env->playerSprite, 4);
 }
 
-static int PushPlayer_LoadPlayerAnimationEnv(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int PushPlayer_LoadPlayerAnimationEnv(UnkStruct_ov101_021D5D90 *param0, void *playerAnimEnv)
 {
-    PlayerAnimEnv *v0 = param1;
-    const HMCutInWithPlayer1 *v1 = sub_020715BC(param0);
+    PlayerAnimEnv *env = playerAnimEnv;
+    const HMCutInWithPlayer1 *data = sub_020715BC(param0);
 
-    v0->cutIn = v1->cutIn;
-    v0->playerSprite = v1->playerSprite;
+    env->cutIn = data->cutIn;
+    env->playerSprite = data->playerSprite;
 
     return 1;
 }
@@ -2859,21 +2857,21 @@ static const fx32 PushPlayer_MoveUpSlightlyYDeltas[4] = {
     FX32_ONE * -7,
     FX32_ONE * -8 };
 
-static void PushPlayer_MoveUpSignificantly(UnkStruct_ov101_021D5D90 *param0, PlayerAnimEnv *param1)
+static void PushPlayer_MoveUpSignificantly(UnkStruct_ov101_021D5D90 *param0, PlayerAnimEnv *env)
 {
     VecFx32 newPos;
 
-    if (param1->animationPartFinished == FALSE) {
-        param1->position.y = PushPlayer_MoveUpSignificantlyYDeltas[param1->positionDeltaIdx];
+    if (env->animationPartFinished == FALSE) {
+        env->position.y = PushPlayer_MoveUpSignificantlyYDeltas[env->positionDeltaIdx];
         sub_020715E4(param0, &newPos);
-        newPos.y += param1->position.y;
-        Sprite_SetPosition(param1->playerSprite, &newPos);
-        param1->positionDeltaIdx++;
+        newPos.y += env->position.y;
+        Sprite_SetPosition(env->playerSprite, &newPos);
+        env->positionDeltaIdx++;
 
-        if (param1->positionDeltaIdx >= 12) {
-            param1->positionDeltaIdx = 0;
-            param1->_ = TRUE;
-            param1->animationPartFinished++; // setting the flag to 1 = TRUE
+        if (env->positionDeltaIdx >= 12) {
+            env->positionDeltaIdx = 0;
+            env->_ = TRUE;
+            env->animationPartFinished++; // setting the flag to 1 = TRUE
         }
     }
 }
@@ -3021,45 +3019,45 @@ static BOOL FlyLanding_LoadResources(FlyLandingEnv *taskEnv)
     return FALSE;
 }
 
-static BOOL FlyLanding_InitAnimTasks(FlyLandingEnv *param0)
+static BOOL FlyLanding_InitAnimTasks(FlyLandingEnv *env)
 {
-    param0->playerSprite = FlyLanding_InitPlayerSprite(&param0->unk_18, param0->playerGender);
-    Sprite_SetDrawFlag(param0->playerSprite, TRUE);
+    env->playerSprite = FlyLanding_InitPlayerSprite(&env->unk_18, env->playerGender);
+    Sprite_SetDrawFlag(env->playerSprite, TRUE);
 
-    param0->unk_1D8 = CreateFlyLandingAnimTasks(param0->fieldSystem, param0->unk_1D4, &param0->unk_18, param0->playerSprite);
-    FlyLanding_InitEnv(param0->unk_1D8);
+    env->unk_1D8 = CreateFlyLandingAnimTasks(env->fieldSystem, env->unk_1D4, &env->unk_18, env->playerSprite);
+    FlyLanding_InitEnv(env->unk_1D8);
 
-    param0->state++;
-    param0->animationInProgress = TRUE;
+    env->state++;
+    env->animationInProgress = TRUE;
 
     return FALSE;
 }
 
-static BOOL FlyLanding_EndTaskIfAnimationEnded(FlyLandingEnv *param0)
+static BOOL FlyLanding_EndTaskIfAnimationEnded(FlyLandingEnv *env)
 {
-    if (FlyLanding_HasAnimationEnded(param0->unk_1D8) != 2) {
+    if (FlyLanding_HasAnimationEnded(env->unk_1D8) != 2) {
         return FALSE;
     }
 
-    FlyLanding_SetTasksDone(param0->unk_1D8);
-    param0->state++;
+    FlyLanding_SetTasksDone(env->unk_1D8);
+    env->state++;
 
     return FALSE;
 }
 
-static BOOL FlyLanding_CleanupResources(FlyLandingEnv *param0)
+static BOOL FlyLanding_CleanupResources(FlyLandingEnv *env)
 {
-    sub_0207121C(param0->unk_1D4);
-    FlyLanding_ReleaseResources(&param0->unk_18);
+    sub_0207121C(env->unk_1D4);
+    FlyLanding_ReleaseResources(&env->unk_18);
 
-    param0->animationInProgress = FALSE;
-    param0->animationFinished = TRUE;
-    param0->state++;
+    env->animationInProgress = FALSE;
+    env->animationFinished = TRUE;
+    env->state++;
 
     return FALSE;
 }
 
-static BOOL FlyLanding_DoNothing(FlyLandingEnv *param0)
+static BOOL FlyLanding_DoNothing(FlyLandingEnv *env)
 {
     return FALSE;
 }
@@ -3091,20 +3089,20 @@ static void HideAndStopPlayerMapObj(HMCutIn *cutIn, BOOL hidden)
     MapObject_SetHidden(playObj, hidden);
 }
 
-static int ShowHidePlayerSprite_GetCutInFromContext(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static int ShowHidePlayerSprite_GetCutInFromContext(UnkStruct_ov101_021D5D90 *param0, void *hmCutInWithPlayer2)
 {
-    const HMCutInWithPlayer *wrapper = sub_020715BC(param0);
-    HMCutInWithPlayer *destWrapper = param1;
+    const HMCutInWithPlayer2 *wrapper = sub_020715BC(param0);
+    HMCutInWithPlayer2 *destWrapper = hmCutInWithPlayer2;
 
     *destWrapper = *wrapper;
     return 1;
 }
 
-static void ShowHidePlayerSprite_ShowOrHide(UnkStruct_ov101_021D5D90 *param0, void *param1)
+static void ShowHidePlayerSprite_ShowOrHide(UnkStruct_ov101_021D5D90 *param0, void *hmCutInWithPlayer2)
 {
     fx32 playerSpriteY, windowMinY, windowMaxY;
     const VecFx32 *playerSpritePosition;
-    HMCutInWithPlayer *wrapper = param1;
+    HMCutInWithPlayer2 *wrapper = hmCutInWithPlayer2;
 
     playerSpritePosition = Sprite_GetPosition(wrapper->playerSprite);
     playerSpriteY = playerSpritePosition->y;
@@ -3123,7 +3121,7 @@ static void ShowHidePlayerSprite_ShowOrHide(UnkStruct_ov101_021D5D90 *param0, vo
 }
 
 static const UnkStruct_ov101_021D86B0 sShowHidePlayerSpriteFuncs = {
-    sizeof(HMCutInWithPlayer),
+    sizeof(HMCutInWithPlayer2),
     ShowHidePlayerSprite_GetCutInFromContext,
     UnkStruct_ov101_021D5D90_DoNothing3,
     ShowHidePlayerSprite_ShowOrHide,
@@ -3133,7 +3131,7 @@ static const UnkStruct_ov101_021D86B0 sShowHidePlayerSpriteFuncs = {
 static void CutIn_CreateDrawPlayerSpriteTasks(HMCutIn *cutIn)
 {
     VecFx32 initialPosition = { 0, 0, 0 };
-    HMCutInWithPlayer wrapper;
+    HMCutInWithPlayer2 wrapper;
 
     wrapper.playerSprite = cutIn->playerSprite;
     wrapper.cutIn = cutIn;

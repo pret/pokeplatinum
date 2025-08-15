@@ -39,7 +39,7 @@ typedef struct UnkStruct_ov101_021D5D90_t {
 
 typedef struct UnkStruct_020711EC_t {
     int numOfIterations;
-    int _; // only incremented/decremented, never read
+    int dummy; // only incremented/decremented, never read
     int heapID;
     UnkStruct_ov101_021D5D90 *iterationData;
 } UnkStruct_020711EC;
@@ -144,7 +144,7 @@ UnkStruct_ov101_021D5D90 *sub_0207122C(UnkStruct_020711EC *param0, const UnkStru
     }
 
     UnkStruct_ov101_021D5D90_SetBitmaskFlags(iterationData, (1 << 1));
-    param0->_++;
+    param0->dummy++;
 
     return iterationData;
 }
@@ -172,7 +172,7 @@ void sub_0207136C(UnkStruct_ov101_021D5D90 *param0)
 
     {
         UnkStruct_020711EC *v0 = (UnkStruct_020711EC *)param0->unk_14;
-        v0->_--;
+        v0->dummy--;
     }
 
     {
