@@ -34,6 +34,7 @@
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/scripts_common.h"
 #include "constants/battle.h"
 
 #include "macros/movement.inc"
@@ -331,7 +332,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro ShowArrowSign messageID
@@ -339,7 +340,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro ShowLandmarkSign messageID
@@ -347,7 +348,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro ShowScrollingSign messageID
@@ -355,7 +356,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     DrawSignpostScrollingMessage \messageID, VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_RESULT
@@ -575,7 +576,7 @@
     .byte \paused
     .endm
 
-    .macro ScrCmd_057 seqID
+    .macro SetBGM seqID
     .short 87
     .short \seqID
     .endm
@@ -2617,10 +2618,10 @@
     .endif
     .endm
 
-    .macro ScrCmd_1D2 arg0, arg1
+    .macro AddAccessoryToFashionCase accessoryID, amount
     .short 466
-    .short \arg0
-    .short \arg1
+    .short \accessoryID
+    .short \amount
     .endm
 
     // destVarID will be set to TRUE if the player has space for at least 'count' accessories of the specified type in their bag
@@ -2638,7 +2639,7 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_1D5 arg0
+    .macro AddContestBackdrop arg0
     .short 469
     .short \arg0
     .endm
@@ -3602,7 +3603,7 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_273 arg0, arg1
+    .macro BufferContestBackdropName arg0, arg1
     .short 627
     .byte \arg0
     .short \arg1
@@ -3894,10 +3895,10 @@
     .short \price
     .endm
 
-    .macro ScrCmd_2A7 arg0, arg1
+    .macro CheckItemIsPlate item, isPlate
     .short 679
-    .short \arg0
-    .short \arg1
+    .short \item
+    .short \isPlate
     .endm
 
     .macro SubtractCoins valueOrVarID
@@ -4027,9 +4028,9 @@
     .short \level
     .endm
 
-    .macro ScrCmd_2BE arg0
+    .macro GetTrainerCardStars stars
     .short 702
-    .short \arg0
+    .short \stars
     .endm
 
     .macro ScrCmd_2BF
@@ -4757,10 +4758,10 @@
     .short \item
     .endm
 
-    .macro ScrCmd_33E arg0, arg1
+    .macro BufferUndergroundGoodName strFormatIdx, undergroundGood
     .short 830
-    .byte \arg0
-    .short \arg1
+    .byte \strFormatIdx
+    .short \undergroundGood
     .endm
 
     .macro ScrCmd_33F arg0, arg1

@@ -161,8 +161,8 @@ _021E:
     ApplyMovement 2, _0334
     WaitMovement
     Message 18
-    SetVar VAR_0x8004, 22
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_MATCHUPCHECKER
+    CallCommonScript ObtainPoketchApp
     SetFlag FLAG_UNK_0x00A3
     CloseMessage
     ReleaseAll
