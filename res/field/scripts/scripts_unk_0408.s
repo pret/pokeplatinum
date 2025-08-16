@@ -303,7 +303,7 @@ _04AC:
     End
 
 _04B0:
-    CallCommonScript 0x7D1
+    CallCommonScript CommonScript_Unk01
     ScrCmd_236 VAR_0x8004
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     IsItemTMHM VAR_0x8004, VAR_RESULT
@@ -409,7 +409,7 @@ _064F:
     End
 
 _0667:
-    CallCommonScript 0x7F6
+    CallCommonScript CommonScript_Unk26
     Return
 
     .balign 4, 0

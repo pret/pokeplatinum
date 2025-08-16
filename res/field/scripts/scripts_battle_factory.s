@@ -131,7 +131,7 @@ _01DE:
     CallIfEq VAR_UNK_0x40B8, 1, _0386
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
-    CallCommonScript 0x7D6
+    CallCommonScript CommonScript_Unk06
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0139
     GoToIfEq VAR_UNK_0x40B8, 2, _022C
@@ -446,7 +446,7 @@ _0653:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_FACTORY_PRINT_STATE, 4
-    CallCommonScript 0x806
+    CallCommonScript CommonScript_Unk36
     Return
 
 _066E:

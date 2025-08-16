@@ -58,7 +58,7 @@ _00C5:
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 4
     SetVar VAR_0x8004, 16
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -69,7 +69,7 @@ _00E5:
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 5
     SetVar VAR_0x8004, 17
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -80,7 +80,7 @@ _0105:
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 6
     SetVar VAR_0x8004, 18
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     WaitABXPadPress
     CloseMessage
     ReleaseAll

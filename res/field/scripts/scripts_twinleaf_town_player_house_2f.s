@@ -92,7 +92,7 @@ _00E0:
     AddObject 0
     ApplyMovement 0, _0394
     WaitMovement
-    CallCommonScript 0x7FA
+    CallCommonScript CommonScript_Unk2A
     BufferRivalName 0
     Message 6
     CloseMessage
@@ -131,7 +131,7 @@ _00E0:
     CallIfEq VAR_MAP_LOCAL_0, 3, _037D
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0
-    CallCommonScript 0x7FB
+    CallCommonScript CommonScript_Unk29_2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x0173
     SetVar VAR_UNK_0x40A5, 1

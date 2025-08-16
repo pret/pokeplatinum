@@ -10,7 +10,7 @@
 
 _0012:
     SetVar VAR_0x8007, 3
-    CallCommonScript 0x7D2
+    CallCommonScript CommonScript_Unk02
     End
 
 _001E:

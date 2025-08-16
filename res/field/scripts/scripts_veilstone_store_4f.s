@@ -108,7 +108,7 @@ _0127:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_UP
     ReleaseAll
@@ -118,7 +118,7 @@ _013D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_DOWN
     ReleaseAll

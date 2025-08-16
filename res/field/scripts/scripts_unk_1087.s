@@ -9,7 +9,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -19,7 +19,7 @@ _0020:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_CELESTIC
     ReleaseAll

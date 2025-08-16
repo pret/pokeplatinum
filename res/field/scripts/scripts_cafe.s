@@ -69,7 +69,7 @@ _00E4:
     WaitFanfare SEQ_SE_DP_REGI
     CallIfEq VAR_0x8006, 500, _0139
     CallIfEq VAR_0x8006, 6000, _013E
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     HideMoney
     ReleaseAll

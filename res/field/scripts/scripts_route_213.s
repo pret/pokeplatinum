@@ -117,7 +117,7 @@ _019A:
     SetFlag FLAG_UNK_0x0104
     ClearFlag FLAG_UNK_0x01E8
     AddObject 33
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     ScrCmd_315 VAR_RESULT
     CallIfEq VAR_RESULT, 2, _0261
     CallIfEq VAR_0x8004, 2, _0267
@@ -135,7 +135,7 @@ _019A:
     CallIfEq VAR_0x8004, 0, _02DF
     CallIfEq VAR_0x8004, 1, _02F3
     RemoveObject 33
-    CallCommonScript 0x808
+    CallCommonScript CommonScript_Unk29_4
     ScrCmd_315 VAR_RESULT
     CallIfEq VAR_RESULT, 2, _0261
     ClearFlag FLAG_UNK_0x0211

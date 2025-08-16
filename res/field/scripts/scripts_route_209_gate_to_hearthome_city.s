@@ -20,7 +20,7 @@ _001D:
     LockAll
     ApplyMovement 1, _0264
     WaitMovement
-    CallCommonScript 0x7FA
+    CallCommonScript CommonScript_Unk2A
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 5, _014E
     CallIfEq VAR_0x8005, 6, _015A

@@ -28,7 +28,7 @@ _003A:
     Message 0
     SetVar VAR_0x8004, 0x1A9
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     Call _006F
     GoTo _0064
 
@@ -52,7 +52,7 @@ _007B:
     Message 0
     SetVar VAR_0x8004, 0x1A9
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     Call _006F
     Message 1
     WaitABXPadPress

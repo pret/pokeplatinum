@@ -14,7 +14,7 @@ _000A:
     GoToIfEq VAR_RESULT, 1, _003A
     Message 0
     SetVar VAR_0x8004, 11
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     WaitABXPadPress
     CloseMessage
     ReleaseAll

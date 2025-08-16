@@ -127,7 +127,7 @@ _01B6:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 2
     CloseMessage
-    CallCommonScript 0x7FA
+    CallCommonScript CommonScript_Unk2A
     BufferRivalName 0
     BufferPlayerName 1
     Message 3
@@ -177,7 +177,7 @@ _026D:
 _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
-    CallCommonScript 0x7FB
+    CallCommonScript CommonScript_Unk29_2
     SetVar VAR_UNK_0x4079, 3
     ReleaseAll
     End
@@ -291,7 +291,7 @@ _0376:
     SetVar VAR_0x8004, ITEM_SUPER_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _03C8
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0109
     GoTo _03BD
     End
@@ -304,7 +304,7 @@ _03BD:
     End
 
 _03C8:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End
@@ -369,7 +369,7 @@ _047D:
 _0497:
     Message 6
     CloseMessage
-    CallCommonScript 0x800
+    CallCommonScript CommonScript_Unk30
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2EC, _04DC
     GoToIfEq VAR_0x8005, 0x2ED, _04F6
@@ -409,7 +409,7 @@ _0544:
     Message 7
     WaitABXPadPress
     CloseMessage
-    CallCommonScript 0x801
+    CallCommonScript CommonScript_Unk29_3
     SetVar VAR_UNK_0x4079, 1
     ReleaseAll
     End

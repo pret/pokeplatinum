@@ -113,7 +113,7 @@ _012F:
     BufferAccessoryName 0, VAR_0x8004
     Message 37
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DF
+    CallCommonScript CommonScript_Unk0F
     SetFlag FLAG_UNK_0x0128
     CloseMessage
     ReleaseAll
@@ -428,7 +428,7 @@ _04C8:
     AddObject 26
     ApplyMovement 26, _05B0
     WaitMovement
-    CallCommonScript 0x7FA
+    CallCommonScript CommonScript_Unk2A
     ApplyMovement 26, _05C0
     ApplyMovement LOCALID_PLAYER, _05A4
     WaitMovement

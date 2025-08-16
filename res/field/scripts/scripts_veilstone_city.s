@@ -68,7 +68,7 @@ _00F6:
     LockAll
     ApplyMovement 6, _0444
     WaitMovement
-    CallCommonScript 0x7F8
+    CallCommonScript CommonScript_Unk28
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 0x2A9, _02E1
     CallIfEq VAR_0x8004, 0x2AA, _02ED
@@ -78,7 +78,7 @@ _00F6:
     CallIfEq VAR_0x8004, GENDER_MALE, _0297
     CallIfEq VAR_0x8004, GENDER_FEMALE, _029F
     CloseMessage
-    CallCommonScript 0x7F9
+    CallCommonScript CommonScript_Unk29
     ScrCmd_168 21, 19, 12, 3, 77
     ScrCmd_16B 77
     ScrCmd_169 77
@@ -536,7 +536,7 @@ _0656:
     ClearFlag FLAG_UNK_0x028A
     SetObjectEventPos 26, 0x2B4, 0x25E
     AddObject 26
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     ApplyMovement 26, _0A7C
     WaitMovement
     Message 29
@@ -995,7 +995,7 @@ _0C77:
     SetVar VAR_0x8004, ITEM_TM63
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0CC7
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x00CC
     GoTo _0CBC
 
@@ -1007,7 +1007,7 @@ _0CBC:
     End
 
 _0CC7:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End
@@ -1135,7 +1135,7 @@ _0E34:
     ApplyMovement LOCALID_PLAYER, _0F48
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     ApplyMovement 26, _0F80
     WaitMovement
     GoTo _0ECC
@@ -1144,7 +1144,7 @@ _0E34:
 _0E5C:
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     ApplyMovement 26, _0F70
     WaitMovement
     GoTo _0ECC
@@ -1154,7 +1154,7 @@ _0E7C:
     ApplyMovement LOCALID_PLAYER, _0F58
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     ApplyMovement 26, _0F90
     WaitMovement
     GoTo _0ECC
@@ -1164,7 +1164,7 @@ _0EA4:
     ApplyMovement LOCALID_PLAYER, _0F64
     ApplyMovement 23, _0F38
     WaitMovement
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     ApplyMovement 26, _0FA0
     WaitMovement
     GoTo _0ECC
@@ -1187,7 +1187,7 @@ _0EF4:
     SetFlag FLAG_UNK_0x009B
     Message 39
     CloseMessage
-    CallCommonScript 0x808
+    CallCommonScript CommonScript_Unk29_4
     ReleaseAll
     End
 
@@ -1195,7 +1195,7 @@ _0F0B:
     Message 40
     WaitABXPadPress
     CloseMessage
-    CallCommonScript 0x808
+    CallCommonScript CommonScript_Unk29_4
     ReleaseAll
     End
 
@@ -1274,7 +1274,7 @@ _0FB0:
     WaitMovement
     BufferPlayerName 0
     Message 41
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     GoToIfSet FLAG_UNK_0x009B, _0EF4
     GoTo _0ED8
     End

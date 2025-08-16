@@ -2312,7 +2312,7 @@ _1EEA:
     End
 
 _1EF0:
-    CallCommonScript 0x7D1
+    CallCommonScript CommonScript_Unk01
     RemoveObject VAR_LAST_TALKED
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     TrySetUnusedUndergroundField VAR_0x8004
@@ -2424,5 +2424,5 @@ _20C0:
     Return
 
 _20C6:
-    CallCommonScript 0x7F6
+    CallCommonScript CommonScript_Unk26
     Return

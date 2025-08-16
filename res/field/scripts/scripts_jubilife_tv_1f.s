@@ -157,7 +157,7 @@ _021B:
     SetVar VAR_0x8004, VAR_0x8003
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0246
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     GoTo _0269
 
 _0246:

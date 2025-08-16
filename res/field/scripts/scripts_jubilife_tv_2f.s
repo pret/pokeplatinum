@@ -41,7 +41,7 @@ _0044:
     ScrCmd_343 0, VAR_0x8004
     Message 1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DF
+    CallCommonScript CommonScript_Unk0F
     SetFlag FLAG_UNK_0x013D
     CloseMessage
     ReleaseAll

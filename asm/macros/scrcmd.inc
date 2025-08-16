@@ -1,6 +1,7 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
+#include "generated/common_scripts.h"
 #include "generated/days_of_week.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
@@ -150,6 +151,14 @@
     .macro CallCommonScript scriptID
     .short 20
     .short \scriptID
+    .endm
+
+    .macro CommonScriptEntry scriptName
+    ScriptEntry Common_\scriptName
+    .endm
+
+    .macro DefCommon scriptName
+    Common_\scriptName
     .endm
 
     .macro ReturnCommonScript
@@ -326,7 +335,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro ShowArrowSign messageID
@@ -334,7 +343,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro ShowLandmarkSign messageID
@@ -342,7 +351,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro ShowScrollingSign messageID
@@ -350,7 +359,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     DrawSignpostScrollingMessage \messageID, VAR_RESULT
-    CallCommonScript 0x7D0
+    CallCommonScript HandleSignpostInput
     .endm
 
     .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_RESULT

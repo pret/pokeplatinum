@@ -135,7 +135,7 @@ _01DF:
 
 _01FB:
     SetVar VAR_MAP_LOCAL_0, 0
-    CallCommonScript 0x7D6
+    CallCommonScript CommonScript_Unk06
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0175
     GoTo _0220

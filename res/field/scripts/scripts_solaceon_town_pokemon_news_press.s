@@ -117,10 +117,10 @@ _01E1:
     Return
 
 _01E9:
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetVar VAR_0x8004, 93
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     ClearFlag FLAG_UNK_0x00DC
     SetVar VAR_UNK_0x40E5, 0
     SetFlag FLAG_UNK_0x0AB1
@@ -154,10 +154,10 @@ _025C:
     Message 7
     ClearFlag FLAG_UNK_0x00DC
     SetVar VAR_UNK_0x40E5, 0
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetVar VAR_0x8004, 93
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     ReleaseAll
     End

@@ -94,7 +94,7 @@ _0121:
     ScrCmd_1D8 VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _00BA
     GoToIfEq VAR_RESULT, 2, _00C5
-    CallCommonScript 0x7D6
+    CallCommonScript CommonScript_Unk06
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _0173
     GoTo _006D

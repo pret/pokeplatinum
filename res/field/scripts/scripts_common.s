@@ -4,73 +4,73 @@
 #include "res/text/bank/common_strings.h"
 #include "res/text/bank/menu_entries.h"
 
-    ScriptEntry Common_HandleSignpostInput
-    ScriptEntry _034C
-    ScriptEntry _00EE
-    ScriptEntry _03E8
-    ScriptEntry _043B
-    ScriptEntry _0479
-    ScriptEntry _0494
-    ScriptEntry _00EC
-    ScriptEntry _05EA
-    ScriptEntry _0719
-    ScriptEntry _00EA
-    ScriptEntry _08FF
-    ScriptEntry _0901
-    ScriptEntry _093A
-    ScriptEntry _095C
-    ScriptEntry _0983
-    ScriptEntry _09F5
-    ScriptEntry _0BDD
-    ScriptEntry _0BEE
-    ScriptEntry _0FC3
-    ScriptEntry _0FCA
-    ScriptEntry _103A
-    ScriptEntry _0FA5
-    ScriptEntry _0FA7
-    ScriptEntry _1280
-    ScriptEntry _1282
-    ScriptEntry _12A8
-    ScriptEntry _12BA
-    ScriptEntry _12CD
-    ScriptEntry _12E0
-    ScriptEntry _12F3
-    ScriptEntry _1361
-    ScriptEntry _138C
-    ScriptEntry _139D
-    ScriptEntry _048B
-    ScriptEntry _13AB
-    ScriptEntry _09BD
-    ScriptEntry _1475
-    ScriptEntry _13BE
-    ScriptEntry _1477
-    ScriptEntry _1581
-    ScriptEntry _15D7
-    ScriptEntry _15B3
-    ScriptEntry _15D7
-    ScriptEntry _0A34
-    ScriptEntry _09CC
-    ScriptEntry _0910
-    ScriptEntry _0992
-    ScriptEntry _15BF
-    ScriptEntry _15D7
-    ScriptEntry _15E7
-    ScriptEntry _1636
-    ScriptEntry _164A
-    ScriptEntry _165E
-    ScriptEntry _16AA
-    ScriptEntry _15CB
-    ScriptEntry _15D7
-    ScriptEntry _170A
+    CommonScriptEntry HandleSignpostInput
+    CommonScriptEntry CommonScript_Unk01
+    CommonScriptEntry CommonScript_Unk02
+    CommonScriptEntry CommonScript_Unk03
+    CommonScriptEntry CommonScript_Unk04
+    CommonScriptEntry CommonScript_Unk05
+    CommonScriptEntry CommonScript_Unk06
+    CommonScriptEntry CommonScript_Unk07
+    CommonScriptEntry CommonScript_Unk08
+    CommonScriptEntry CommonScript_Unk09
+    CommonScriptEntry CommonScript_Unk0A
+    CommonScriptEntry CommonScript_Unk0B
+    CommonScriptEntry CommonScript_Unk0C
+    CommonScriptEntry CommonScript_Unk0D
+    CommonScriptEntry CommonScript_Unk0E
+    CommonScriptEntry CommonScript_Unk0F
+    CommonScriptEntry CommonScript_Unk10
+    CommonScriptEntry CommonScript_Unk11
+    CommonScriptEntry CommonScript_Unk12
+    CommonScriptEntry CommonScript_Unk13
+    CommonScriptEntry CommonScript_Unk14
+    CommonScriptEntry CommonScript_Unk15
+    CommonScriptEntry CommonScript_Unk16
+    CommonScriptEntry CommonScript_Unk17
+    CommonScriptEntry CommonScript_Unk18
+    CommonScriptEntry CommonScript_Unk19
+    CommonScriptEntry CommonScript_Unk1A
+    CommonScriptEntry CommonScript_Unk1B
+    CommonScriptEntry CommonScript_Unk1C
+    CommonScriptEntry CommonScript_Unk1D
+    CommonScriptEntry CommonScript_Unk1E
+    CommonScriptEntry CommonScript_Unk1F
+    CommonScriptEntry CommonScript_Unk20
+    CommonScriptEntry CommonScript_Unk21
+    CommonScriptEntry CommonScript_Unk22
+    CommonScriptEntry CommonScript_Unk23
+    CommonScriptEntry CommonScript_Unk24
+    CommonScriptEntry CommonScript_Unk25
+    CommonScriptEntry CommonScript_Unk26
+    CommonScriptEntry CommonScript_Unk27
+    CommonScriptEntry CommonScript_Unk28
+    CommonScriptEntry CommonScript_Unk29
+    CommonScriptEntry CommonScript_Unk2A
+    CommonScriptEntry CommonScript_Unk29
+    CommonScriptEntry CommonScript_Unk2C
+    CommonScriptEntry CommonScript_Unk2D
+    CommonScriptEntry CommonScript_Unk2E
+    CommonScriptEntry CommonScript_Unk2F
+    CommonScriptEntry CommonScript_Unk30
+    CommonScriptEntry CommonScript_Unk29
+    CommonScriptEntry CommonScript_Unk32
+    CommonScriptEntry CommonScript_Unk33
+    CommonScriptEntry CommonScript_Unk34
+    CommonScriptEntry CommonScript_Unk35
+    CommonScriptEntry CommonScript_Unk36
+    CommonScriptEntry CommonScript_Unk37
+    CommonScriptEntry CommonScript_Unk29
+    CommonScriptEntry CommonScript_Unk39
     ScriptEntryEnd
 
-_00EA:
+DefCommon CommonScript_Unk0A:
     End
 
-_00EC:
+DefCommon CommonScript_Unk07:
     End
 
-_00EE:
+DefCommon CommonScript_Unk02:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -225,7 +225,7 @@ _02F4:
     PlayerReceive
     EndMovement
 
-Common_HandleSignpostInput:
+DefCommon HandleSignpostInput:
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, Common_ScrollOutSignpost
     GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
@@ -248,7 +248,7 @@ Common_RemoveSignpostOpenStartMenu:
     ReturnCommonScript
     End
 
-_034C:
+DefCommon CommonScript_Unk01:
     Call _0356
     ReturnCommonScript
     End
@@ -286,7 +286,7 @@ Common_Unused:
     ReturnCommonScript
     End
 
-_03E8:
+DefCommon CommonScript_Unk03:
     LockAll
     GetPartyCount VAR_0x8004
     SetVar VAR_0x8005, 0
@@ -304,7 +304,7 @@ _040F:
     ReleaseAll
     End
 
-_043B:
+DefCommon CommonScript_Unk04:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     WaitABPress
@@ -324,20 +324,20 @@ _0457:
     ScrCmd_14B
     End
 
-_0479:
+DefCommon CommonScript_Unk05:
     ClearFlag FLAG_UNK_0x001F
     Call _04A8
     ScrCmd_18F VAR_RESULT
     CloseMessage
     End
 
-_048B:
+DefCommon CommonScript_Unk22:
     Message 20
     WaitABPress
     CloseMessage
     End
 
-_0494:
+DefCommon CommonScript_Unk06:
     SetFlag FLAG_UNK_0x001F
     Call _04A8
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
@@ -435,7 +435,7 @@ _05D1:
     GoTo _05C6
     End
 
-_05EA:
+DefCommon CommonScript_Unk08:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckItem ITEM_HONEY, 1, VAR_RESULT
@@ -520,7 +520,7 @@ _0713:
     ReleaseAll
     End
 
-_0719:
+DefCommon CommonScript_Unk09:
     Call _0723
     ReturnCommonScript
     End
@@ -660,17 +660,17 @@ _08FA:
     Message 107
     Return
 
-_08FF:
+DefCommon CommonScript_Unk0B:
     End
 
-_0901:
+DefCommon CommonScript_Unk0C:
     Call _091D
     Message 109
     WaitABXPadPress
     ReturnCommonScript
     End
 
-_0910:
+DefCommon CommonScript_Unk2E:
     Call _091D
     Message 128
     ReturnCommonScript
@@ -685,7 +685,7 @@ _091D:
     WaitSound
     Return
 
-_093A:
+DefCommon CommonScript_Unk0D:
     Call _0944
     ReturnCommonScript
     End
@@ -698,7 +698,7 @@ _0944:
     WaitSound
     Return
 
-_095C:
+DefCommon CommonScript_Unk0E:
     Call _0966
     ReturnCommonScript
     End
@@ -712,14 +712,14 @@ _0966:
     WaitSound
     Return
 
-_0983:
+DefCommon CommonScript_Unk0F:
     Call _099F
     Message 31
     WaitABXPadPress
     ReturnCommonScript
     End
 
-_0992:
+DefCommon CommonScript_Unk2F:
     Call _099F
     Message 127
     ReturnCommonScript
@@ -735,14 +735,14 @@ _099F:
     BufferAccessoryName 1, VAR_0x8004
     Return
 
-_09BD:
+DefCommon CommonScript_Unk24:
     Call _09D9
     Message 31
     WaitABXPadPress
     ReturnCommonScript
     End
 
-_09CC:
+DefCommon CommonScript_Unk2D:
     Call _09D9
     Message 127
     ReturnCommonScript
@@ -758,7 +758,7 @@ _09D9:
     ScrCmd_273 1, VAR_0x8004
     Return
 
-_09F5:
+DefCommon CommonScript_Unk10:
     Call _09FF
     ReturnCommonScript
     End
@@ -773,7 +773,7 @@ _09FF:
     WaitABXPadPress
     Return
 
-_0A34:
+DefCommon CommonScript_Unk2C:
     Call _0A3E
     ReturnCommonScript
     End
@@ -871,7 +871,7 @@ _0BCA:
 _0BDB:
     Return
 
-_0BDD:
+DefCommon CommonScript_Unk11:
     Call _0BE7
     ReturnCommonScript
     End
@@ -881,7 +881,7 @@ _0BE7:
     WaitABXPadPress
     Return
 
-_0BEE:
+DefCommon CommonScript_Unk12:
     LockAll
     PlayFanfare SEQ_SE_DP_PC_ON
     Call _0C06
@@ -1126,10 +1126,10 @@ _0F94:
     ScrCmd_16A 90
     Return
 
-_0FA5:
+DefCommon CommonScript_Unk16:
     End
 
-_0FA7:
+DefCommon CommonScript_Unk17:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     OpenSealCapsuleEditor
@@ -1137,12 +1137,12 @@ _0FA7:
     WaitFadeScreen
     End
 
-_0FC3:
+DefCommon CommonScript_Unk13:
     Message 37
     ReturnCommonScript
     End
 
-_0FCA:
+DefCommon CommonScript_Unk14:
     LockAll
     ApplyMovement LOCALID_PLAYER, _1250
     ApplyMovement 0, _1258
@@ -1174,7 +1174,7 @@ _1035:
     Message 42
     Return
 
-_103A:
+DefCommon CommonScript_Unk15:
     LockAll
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -1336,10 +1336,10 @@ _1278:
     FaceSouth
     EndMovement
 
-_1280:
+DefCommon CommonScript_Unk18:
     End
 
-_1282:
+DefCommon CommonScript_Unk19:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FadeScreen 6, 1, 0, 0
@@ -1351,7 +1351,7 @@ _1282:
     ReleaseAll
     End
 
-_12A8:
+DefCommon CommonScript_Unk1A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1361,7 +1361,7 @@ _12A8:
     ReleaseAll
     End
 
-_12BA:
+DefCommon CommonScript_Unk1B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1371,7 +1371,7 @@ _12BA:
     ReleaseAll
     End
 
-_12CD:
+DefCommon CommonScript_Unk1C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1381,7 +1381,7 @@ _12CD:
     ReleaseAll
     End
 
-_12E0:
+DefCommon CommonScript_Unk1D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1391,7 +1391,7 @@ _12E0:
     ReleaseAll
     End
 
-_12F3:
+DefCommon CommonScript_Unk1E:
     CheckItem ITEM_BICYCLE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _135F
     LockAll
@@ -1423,7 +1423,7 @@ _1359:
 _135F:
     End
 
-_1361:
+DefCommon CommonScript_Unk1F:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 76
@@ -1437,7 +1437,7 @@ _1361:
     ReleaseAll
     End
 
-_138C:
+DefCommon CommonScript_Unk20:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 79
@@ -1446,7 +1446,7 @@ _138C:
     ReleaseAll
     End
 
-_139D:
+DefCommon CommonScript_Unk21:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1454,7 +1454,7 @@ _139D:
     ReleaseAll
     End
 
-_13AB:
+DefCommon CommonScript_Unk23:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1464,7 +1464,7 @@ _13AB:
     ReleaseAll
     End
 
-_13BE:
+DefCommon CommonScript_Unk26:
     Call _13C8
     ReturnCommonScript
     End
@@ -1518,10 +1518,10 @@ _1470:
     Message 117
     Return
 
-_1475:
+DefCommon CommonScript_Unk25:
     End
 
-_1477:
+DefCommon CommonScript_Unk27:
     LockAll
     GetCurrentMapID VAR_0x8004
     GoToIfEq VAR_0x8004, 220, _14AC
@@ -1575,7 +1575,7 @@ _157B:
     ReleaseAll
     End
 
-_1581:
+DefCommon CommonScript_Unk28:
     StopMusic 0
     GetPlayerGender VAR_RESULT
     CallIfEq VAR_RESULT, GENDER_MALE, _15A7
@@ -1591,32 +1591,32 @@ _15AD:
     ScrCmd_057 SEQ_THE_BOY
     Return
 
-_15B3:
+DefCommon CommonScript_Unk2A:
     StopMusic 0
     ScrCmd_057 SEQ_THE_RIV
     ReturnCommonScript
     End
 
-_15BF:
+DefCommon CommonScript_Unk30:
     StopMusic 0
     ScrCmd_057 SEQ_TSURETEKE
     ReturnCommonScript
     End
 
-_15CB:
+DefCommon CommonScript_Unk37:
     StopMusic 0
     ScrCmd_057 SEQ_PL_HANDSOME
     ReturnCommonScript
     End
 
-_15D7:
+DefCommon CommonScript_Unk29:
     FadeOutBGM 0, 30
     StopMusic 0
     PlayDefaultMusic
     ReturnCommonScript
     End
 
-_15E7:
+DefCommon CommonScript_Unk32:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0B3 VAR_RESULT
@@ -1636,21 +1636,21 @@ _1624:
     ReturnCommonScript
     End
 
-_1636:
+DefCommon CommonScript_Unk33:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_ROUTE_212
     GoTo _1672
     End
 
-_164A:
+DefCommon CommonScript_Unk34:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SURVIVAL_AREA
     GoTo _1672
     End
 
-_165E:
+DefCommon CommonScript_Unk35:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SNOWPOINT_CITY
@@ -1673,7 +1673,7 @@ _16A4:
     ReleaseAll
     End
 
-_16AA:
+DefCommon CommonScript_Unk36:
     GoToIfSet FLAG_UNK_0x0089, _1706
     GoToIfNe VAR_BATTLE_FACTORY_PRINT_STATE, 4, _1706
     GoToIfNe VAR_BATTLE_HALL_PRINT_STATE, 4, _1706
@@ -1689,7 +1689,7 @@ _1706:
     ReturnCommonScript
     End
 
-_170A:
+DefCommon CommonScript_Unk39:
     Message 130
     WaitABXPadPress
     CloseMessage

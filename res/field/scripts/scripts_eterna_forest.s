@@ -147,7 +147,7 @@ _0198:
 
 _01DB:
     Message 6
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     GoTo _01EA
     End
 
