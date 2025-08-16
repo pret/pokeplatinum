@@ -400,8 +400,8 @@ PalParkLobby_Oak_PokemonFromAroundTheCountryCanBeBroughtHere:
     ApplyMovement LOCALID_OAK, _0558
     WaitMovement
     Message PalParkLobby_Text_Oak_LetMeMakeAGiftOfThisTrainerCounterApp
-    SetVar VAR_0x8004, 19
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_RADARCHAINCOUNTER
+    CallCommonScript ObtainPoketchApp
     Message PalParkLobby_Text_Oak_IPlanToBeInEternaCityForSomeTime
     CloseMessage
     WaitTime 15, VAR_RESULT
@@ -457,8 +457,8 @@ PalParkLobby_PoketchAppLady:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_SNORLAX
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_OhASnorlaxItSureLooksLikeItCanEat
-    SetVar VAR_0x8004, 20
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_KITCHENTIMER
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     SetVar VAR_MAP_LOCAL_A, 1
     CloseMessage
@@ -470,8 +470,8 @@ PalParkLobby_PoketchAppLady_CheckKecleon:
     CheckPartyHasSpecies VAR_RESULT, SPECIES_KECLEON
     GoToIfEq VAR_RESULT, 0, PalParkLobby_PoketchAppLady_DoesntHaveSpecies
     Message PalParkLobby_Text_OhAKecleonHowColorful
-    SetVar VAR_0x8004, 21
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_COLORCHANGER
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     SetVar VAR_MAP_LOCAL_A, 2
     CloseMessage
@@ -579,14 +579,14 @@ PalParkLobby_GBASlotGiftLady_Emerald:
     End
 
 PalParkLobby_GBASlotGiftLady_GiveAccessory:
-    CallCommonScript 0x7DF
+    CallCommonScript ObtainAccessoryWaitForConfirm
     SetVar VAR_MAP_LOCAL_9, 1
     CloseMessage
     ReleaseAll
     End
 
 PalParkLobby_GBASlotGiftLady_GiveBackdrop:
-    CallCommonScript 0x7F4
+    CallCommonScript ObtainContestBackdropWaitForConfirm
     SetVar VAR_MAP_LOCAL_9, 1
     CloseMessage
     ReleaseAll
@@ -656,7 +656,7 @@ PalParkLobby_Receptionist_GivePrize:
     Message PalParkLobby_Text_ItsTimeForYourPrize
     SetVar VAR_0x8004, VAR_0x8006
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript AddItemQuantity
     Return
 
 PalParkLobby_SetPrize_CheriBerry:

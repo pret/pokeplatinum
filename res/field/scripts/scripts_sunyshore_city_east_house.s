@@ -58,8 +58,8 @@ _00C5:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 4
-    SetVar VAR_0x8004, 16
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_CALENDAR
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -69,8 +69,8 @@ _00E5:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 5
-    SetVar VAR_0x8004, 17
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_DOTART
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -80,8 +80,8 @@ _0105:
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     BufferPartyMonSpecies 0, VAR_0x8000
     Message 6
-    SetVar VAR_0x8004, 18
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_ROULETTE
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

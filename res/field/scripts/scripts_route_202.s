@@ -100,14 +100,14 @@ _0174:
     End
 
 _019F:
-    CallCommonScript 0x7F8
+    CallCommonScript SetGenderBasedBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 2
     GoTo _01C5
 
 _01B2:
-    CallCommonScript 0x7F8
+    CallCommonScript SetGenderBasedBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 7
@@ -137,9 +137,9 @@ _0211:
     GoTo _021D
 
 _021D:
-    SetVar VAR_0x8004, 4
+    SetVar VAR_0x8004, ITEM_POKE_BALL
     SetVar VAR_0x8005, 5
-    CallCommonScript 0x7FC
+    CallCommonScript AddItemQuantity
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _024D
     GoToIfEq VAR_RESULT, GENDER_FEMALE, _0259

@@ -11,7 +11,7 @@
 
 _0016:
     SetVar VAR_0x8007, 3
-    CallCommonScript 0x7D2
+    CallCommonScript Pokecenter_SpeakWithNurse
     End
 
 _0022:
@@ -74,8 +74,8 @@ _007D:
 _00D9:
     Message 4
     SetVar VAR_MAP_LOCAL_2, 1
-    SetVar VAR_0x8004, 5
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

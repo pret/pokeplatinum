@@ -154,7 +154,7 @@ _0297:
     CallIfEq VAR_UNK_0x40BD, 1, _043C
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
-    CallCommonScript 0x7D6
+    CallCommonScript UNK_0494
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0139
     GoToIfEq VAR_UNK_0x40BD, 2, _02E5
@@ -347,7 +347,7 @@ _05C1:
 
 _05D5:
     SetVar VAR_UNK_0x40BC, 0
-    CallCommonScript 0x809
+    CallCommonScript UNK_170A
     End
 
     .balign 4, 0
@@ -489,7 +489,7 @@ _0745:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_CASTLE_PRINT_STATE, 4
-    CallCommonScript 0x806
+    CallCommonScript CheckAllFrontierGoldPrintsObtained
     Return
 
 _0760:

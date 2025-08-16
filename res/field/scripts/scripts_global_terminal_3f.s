@@ -155,11 +155,11 @@ _015D:
     End
 
 _0163:
-    CallCommonScript 0x7D6
+    CallCommonScript UNK_0494
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _015D
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript UNK_15E7
     ReleaseAll
     End
 

@@ -156,11 +156,11 @@ _0161:
     End
 
 _0167:
-    CallCommonScript 0x7D6
+    CallCommonScript UNK_0494
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0161
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript UNK_15E7
     ReleaseAll
     End
 
@@ -196,11 +196,11 @@ _01EB:
     End
 
 _01F1:
-    CallCommonScript 0x7D6
+    CallCommonScript UNK_0494
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _01EB
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript UNK_15E7
     ReleaseAll
     End
 

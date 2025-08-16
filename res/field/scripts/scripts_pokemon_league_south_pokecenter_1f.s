@@ -16,14 +16,14 @@ _001A:
 
 _0020:
     SetVar VAR_0x8007, 0
-    CallCommonScript 0x7D2
+    CallCommonScript Pokecenter_SpeakWithNurse
     End
 
 _002C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -33,7 +33,7 @@ _0042:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll

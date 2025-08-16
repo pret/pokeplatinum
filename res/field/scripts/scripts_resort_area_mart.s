@@ -9,7 +9,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll

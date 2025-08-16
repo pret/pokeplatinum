@@ -115,8 +115,8 @@ _012B:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _017A
     Message 11
-    SetVar VAR_0x8004, 10
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_COUNTER
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -150,7 +150,7 @@ _0198:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_UP
     ReleaseAll
@@ -160,7 +160,7 @@ _01AE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript VendorGreetingGeneric
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_MID
     ReleaseAll

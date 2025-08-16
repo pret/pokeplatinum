@@ -567,10 +567,10 @@ static BOOL ScrCmd_InitSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx);
-static BOOL ScrCmd_1D2(ScriptContext *ctx);
+static BOOL ScrCmd_AddAccessoryToFashionCase(ScriptContext *ctx);
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx);
-static BOOL ScrCmd_1D5(ScriptContext *ctx);
+static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_192(ScriptContext *ctx);
 static BOOL ScrCmd_194(ScriptContext *ctx);
@@ -656,7 +656,7 @@ static BOOL ScrCmd_CheckHasAllLegendaryTitansInParty(ScriptContext *ctx);
 static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
 static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
-static BOOL ScrCmd_273(ScriptContext *ctx);
+static BOOL ScrCmd_BufferContestBackdropName(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx);
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_279(ScriptContext *ctx);
@@ -690,7 +690,7 @@ static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx);
 static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx);
 static BOOL ScrCmd_2A3(ScriptContext *ctx);
 static BOOL ScrCmd_2A4(ScriptContext *ctx);
-static BOOL ScrCmd_2A7(ScriptContext *ctx);
+static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx);
 static BOOL ScrCmd_2AA(ScriptContext *ctx);
 static BOOL ScrCmd_2AB(ScriptContext *ctx);
 static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx);
@@ -704,7 +704,7 @@ static BOOL ScrCmd_2B6(ScriptContext *ctx);
 static BOOL ResumeOnSelectionOrDisconnect(ScriptContext *ctx);
 static BOOL ScrCmd_ShowUnionRoomMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
-static BOOL ScrCmd_2BE(ScriptContext *ctx);
+static BOOL ScrCmd_GetTrainerCardStars(ScriptContext *ctx);
 static BOOL ScrCmd_2BF(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSaveInfo(ScriptContext *ctx);
 static BOOL ScrCmd_CloseSaveInfo(ScriptContext *ctx);
@@ -858,7 +858,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FadeOutBGM,
     ScrCmd_FadeInBGM,
     ScrCmd_SetBGMPlayerPaused,
-    ScrCmd_057,
+    ScrCmd_SetBGM,
     ScrCmd_SetBGMFixed,
     ScrCmd_CheckRecordedChatotCryIsPlayable,
     ScrCmd_TryRecordChatotCry,
@@ -1237,10 +1237,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Strength,
     ScrCmd_Flash,
     ScrCmd_Defog,
-    ScrCmd_1D2,
+    ScrCmd_AddAccessoryToFashionCase,
     ScrCmd_CanFitAccessory,
     ScrCmd_Unused_1D4,
-    ScrCmd_1D5,
+    ScrCmd_ObtainContestBackdrop,
     ScrCmd_CheckBackdrop,
     ScrCmd_1D7,
     ScrCmd_1D8,
@@ -1398,7 +1398,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetHiddenLocation,
     ScrCmd_271,
     ScrCmd_BufferTabletName,
-    ScrCmd_273,
+    ScrCmd_BufferContestBackdropName,
     ScrCmd_HasCoinsFromValue,
     ScrCmd_CheckBonusRoundStreak,
     ScrCmd_CanAddCoins,
@@ -1450,7 +1450,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2A4,
     ScrCmd_2A5,
     ScrCmd_GetGameCornerPrizeData,
-    ScrCmd_2A7,
+    ScrCmd_CheckItemIsPlate,
     ScrCmd_SubstractCoinsFromVar,
     ScrCmd_HasCoinsFromVar,
     ScrCmd_2AA,
@@ -1473,7 +1473,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2BB,
     ScrCmd_CheckDidNotCapture,
     ScrCmd_StartLegendaryBattle,
-    ScrCmd_2BE,
+    ScrCmd_GetTrainerCardStars,
     ScrCmd_2BF,
     ScrCmd_2C0,
     ScrCmd_OpenSaveInfo,
@@ -5926,15 +5926,15 @@ static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1D2(ScriptContext *ctx)
+static BOOL ScrCmd_AddAccessoryToFashionCase(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 accessoryID = ScriptContext_GetVar(ctx);
+    u16 amount = ScriptContext_GetVar(ctx);
 
     UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
     UnkStruct_02029D04 *v1 = sub_02029D04(v0);
 
-    sub_02029E2C(v1, v2, v3);
+    sub_02029E2C(v1, accessoryID, amount);
     return FALSE;
 }
 
@@ -5969,7 +5969,7 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1D5(ScriptContext *ctx)
+static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx)
 {
     u16 v2 = ScriptContext_GetVar(ctx);
 
@@ -6804,7 +6804,7 @@ static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_273(ScriptContext *ctx)
+static BOOL ScrCmd_BufferContestBackdropName(ScriptContext *ctx)
 {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(ctx);
@@ -7269,15 +7269,15 @@ static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2A7(ScriptContext *ctx)
+static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 item = ScriptContext_GetVar(ctx);
+    u16 *destItemIsPlate = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = 0;
+    *destItemIsPlate = FALSE;
 
-    if ((v0 >= ITEM_FLAME_PLATE) && (v0 <= ITEM_IRON_PLATE)) {
-        *v1 = 1;
+    if ((item >= ITEM_FLAME_PLATE) && (item <= ITEM_IRON_PLATE)) {
+        *destItemIsPlate = TRUE;
     }
 
     return FALSE;
@@ -7380,12 +7380,12 @@ static BOOL ScrCmd_2B6(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2BE(ScriptContext *ctx)
+static BOOL ScrCmd_GetTrainerCardStars(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destTrainerCardStars = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = TrainerCard_CalculateStars(fieldSystem);
+    *destTrainerCardStars = TrainerCard_CalculateStars(fieldSystem);
     return FALSE;
 }
 

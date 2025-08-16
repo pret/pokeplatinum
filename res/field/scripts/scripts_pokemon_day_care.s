@@ -22,8 +22,8 @@ _0021:
     CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0051
     Message 0
-    SetVar VAR_0x8004, 8
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_DAYCARECHECKER
+    CallCommonScript ObtainPoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

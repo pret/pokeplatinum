@@ -10,7 +10,7 @@
 
 _0012:
     SetVar VAR_0x8007, 2
-    CallCommonScript 0x7D2
+    CallCommonScript Pokecenter_SpeakWithNurse
     End
 
 _001E:
