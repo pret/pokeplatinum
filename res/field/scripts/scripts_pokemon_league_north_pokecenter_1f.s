@@ -271,8 +271,7 @@ _0323:
     End
 
 _0336:
-    SetVar VAR_0x8007, 3
-    CallCommonScript 0x7D2
+    CallPokecenterNurse 3
     End
 
     .balign 4, 0

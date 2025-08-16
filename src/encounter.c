@@ -394,7 +394,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         if (CheckPlayerWonBattle(encounter->dto->resultMask) == 0) {
             FreeWildEncounter(encounter);
             RadarChain_Clear(fieldSystem->chain);
-            FieldTask_InitJump(task, sub_02052B2C, NULL);
+            FieldTask_InitJump(task, FieldTask_BlackOutFromBattle, NULL);
             return FALSE;
         }
 

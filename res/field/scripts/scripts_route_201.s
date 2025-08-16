@@ -1159,7 +1159,7 @@ _0E1A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0090, _0E3E
+    GoToIfSet FLAG_HAS_POKEDEX, _0E3E
     Message 58
     GoTo _0E36
 

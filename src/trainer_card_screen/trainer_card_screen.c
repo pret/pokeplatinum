@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/trainer_card_levels.h"
 #include "generated/genders.h"
 
 #include "struct_defs/struct_02099F80.h"
@@ -107,7 +108,7 @@ static BOOL TrainerCard_FlipTrainerCard(TrainerCardScreen *trainerCardScreen);
 static BOOL TrainerCard_OpenCloseBadgeCase(TrainerCardScreen *trainerCardScreen);
 static int TrainerCard_GetPlayerInput(TrainerCardScreen *trainerCardScreen);
 static void TrainerCard_HandleBadgePolishing(TrainerCardScreen *trainerCardScreen);
-static void TrainerCard_LoadCardPalette(u8 stars, u8 pokedexObtained, NARC *narc);
+static void TrainerCard_LoadCardPalette(u8 level, u8 pokedexObtained, NARC *narc);
 static void TrainerCard_LoadCasePalette(u8 gameVersion, NARC *narc);
 static void TrainerCard_LoadTrainerAppearancePalette(u8 trainerAppearance, NARC *narc);
 static void TrainerCard_RedrawBadgeCaseButton(TrainerCardScreen *trainerCardScreen, u8 buttonSpriteIndex);
@@ -476,29 +477,29 @@ static void TrainerCard_SetVRAMBanks(void)
     GXLayers_SetBanks(&banks);
 }
 
-static void TrainerCard_LoadCardPalette(u8 stars, u8 pokedexObtained, NARC *narc)
+static void TrainerCard_LoadCardPalette(u8 level, u8 pokedexObtained, NARC *narc)
 {
     void *nclrBuffer;
     NNSG2dPaletteData *paletteData;
 
     if (pokedexObtained) {
-        switch (stars) {
-        case 0:
+        switch (level) {
+        case TRAINER_CARD_LEVEL_NORMAL:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 0, &paletteData, HEAP_ID_TRAINER_CARD_SCREEN);
             break;
-        case 1:
+        case TRAINER_CARD_LEVEL_COBALT:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 1, &paletteData, HEAP_ID_TRAINER_CARD_SCREEN);
             break;
-        case 2:
+        case TRAINER_CARD_LEVEL_BRONZE:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 2, &paletteData, HEAP_ID_TRAINER_CARD_SCREEN);
             break;
-        case 3:
+        case TRAINER_CARD_LEVEL_SILVER:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 3, &paletteData, HEAP_ID_TRAINER_CARD_SCREEN);
             break;
-        case 4:
+        case TRAINER_CARD_LEVEL_GOLD:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 4, &paletteData, HEAP_ID_TRAINER_CARD_SCREEN);
             break;
-        case 5:
+        case TRAINER_CARD_LEVEL_BLACK:
             nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 5, &paletteData, HEAP_ID_TRAINER_CARD_SCREEN);
             break;
         }
@@ -677,7 +678,7 @@ static void TrainerCard_DrawTrainerCard(TrainerCardScreen *trainerCardScreen, NA
     GXS_LoadBGPltt(paletteData->pRawData, 0, PALETTE_SIZE_EXT_BYTES);
     Heap_Free(nclrBuffer);
 
-    TrainerCard_LoadCardPalette(trainerCardScreen->trainerCard->stars, trainerCardScreen->trainerCard->pokedexObtained, narc);
+    TrainerCard_LoadCardPalette(trainerCardScreen->trainerCard->level, trainerCardScreen->trainerCard->pokedexObtained, narc);
 
     NNSG2dPaletteData *paletteData2;
 

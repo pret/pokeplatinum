@@ -1900,7 +1900,7 @@
     .short \martID
     .endm
 
-    .macro ScrCmd_14B
+    .macro BlackOutFromBattle2
     .short 331
     .endm
 
@@ -3233,9 +3233,14 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_23B arg0
+    .macro PlayPokecenterHealingAnimation pokeballCount
     .short 571
-    .short \arg0
+    .short \pokeballCount
+    .endm
+
+    .macro CallPokecenterNurse nurseLocalID
+    SetVar VAR_0x8007, \nurseLocalID
+    CallCommonScript 0x7D2
     .endm
 
     .macro PlayElevatorAnimation elevatorDir, loopCount
@@ -3481,9 +3486,9 @@
     .short 601
     .endm
 
-    .macro ScrCmd_25A arg0
+    .macro PlayHallOfFameHealingAnimation pokeballCount
     .short 602
-    .short \arg0
+    .short \pokeballCount
     .endm
 
     .macro InitPersistedMapFeaturesForPlatformLift

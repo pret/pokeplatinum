@@ -249,7 +249,7 @@ BOOL ScrCmd_PlayTrainerEncounterBGM(ScriptContext *ctx)
 
 BOOL ScrCmd_BlackOutFromBattle(ScriptContext *ctx)
 {
-    sub_02052C5C(ctx->task);
+    FieldTask_StartBlackOutFromBattle(ctx->task);
     return TRUE;
 }
 

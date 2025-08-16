@@ -2,7 +2,7 @@
   "key": 55507,
   "messages": [
     {
-      "id": "pl_msg_00000213_00000",
+      "id": "CommonStrings_Text_PokecenterGreeting_Day",
       "en_US": [
         "Hello, and welcome to\n",
         "the Pokémon Center.\r",
@@ -12,14 +12,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00001",
+      "id": "CommonStrings_Text_PokecenterTakeYourPokemon",
       "en_US": [
         "OK, I’ll take your Pokémon for a few\n",
         "seconds."
       ]
     },
     {
-      "id": "pl_msg_00000213_00002",
+      "id": "CommonStrings_Text_PokecenterRestoredYourPokemon",
       "en_US": [
         "Thank you for waiting.\r",
         "We’ve restored your Pokémon to full\n",
@@ -27,11 +27,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00003",
+      "id": "CommonStrings_Text_PokecenterHopeToSeeYouAgain1",
       "en_US": "We hope to see you again!"
     },
     {
-      "id": "pl_msg_00000213_00004",
+      "id": "CommonStrings_Text_PokecenterGreeting_Interrupted",
       "en_US": [
         "Hello, and welcome to\n",
         "the Pokémon Center.\r",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00005",
+      "id": "CommonStrings_Text_PokecenterThatTrainerCard",
       "en_US": [
         "Th-that Trainer Card!\r",
         "That sparkling color!\n",
@@ -55,29 +55,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00006",
+      "id": "CommonStrings_Text_PokecenterGreatToSeeYou",
       "en_US": [
         "It’s great to see you, {STRVAR_1 3, 0, 0}!\n",
         "You want the usual, am I right?"
       ]
     },
     {
-      "id": "pl_msg_00000213_00007",
+      "id": "CommonStrings_Text_PokecenterTakeYourPokemon_GoldCard",
       "en_US": [
         "I will be pleased to take your\n",
         "Pokémon for a few seconds."
       ]
     },
     {
-      "id": "pl_msg_00000213_00008",
+      "id": "CommonStrings_Text_PokecenterThankYouForWaiting",
       "en_US": "Thank you for waiting."
     },
     {
-      "id": "pl_msg_00000213_00009",
+      "id": "CommonStrings_Text_PokecenterHopeToSeeYouAgain2",
       "en_US": "We hope to see you again!"
     },
     {
-      "id": "pl_msg_00000213_00010",
+      "id": "CommonStrings_Text_PokecenterYourPokemonMayBeInfected",
       "en_US": [
         "Your Pokémon may be infected with\n",
         "the Pokérus.\r",
@@ -267,14 +267,14 @@
       "garbage": 21
     },
     {
-      "id": "pl_msg_00000213_00039",
+      "id": "CommonStrings_Text_PokecenterAllHappyAndHealthy",
       "en_US": [
         "There! All happy and healthy!\n",
         "Good luck and take care!"
       ]
     },
     {
-      "id": "pl_msg_00000213_00040",
+      "id": "CommonStrings_Text_YouHadQuiteTheExperienceOutThere",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}!\n",
         "Welcome home.\r",
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00041",
+      "id": "CommonStrings_Text_YourPokemonAreLookingGreat_BeforePokedex",
       "en_US": [
         "Mom: Oh, good! You and your\n",
         "Pokémon are looking great.\r",
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00042",
+      "id": "CommonStrings_Text_YourPokemonAreLookingGreat_AfterPokedex",
       "en_US": [
         "Mom: Oh, good! You and your\n",
         "Pokémon are looking great.\r",
@@ -321,21 +321,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00043",
+      "id": "CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon",
       "en_US": [
         "First, let’s restore your Pokémon\n",
         "to full health."
       ]
     },
     {
-      "id": "pl_msg_00000213_00044",
+      "id": "CommonStrings_Text_PokecenterHealedToPerfectHealth",
       "en_US": [
         "Your Pokémon have been healed\n",
         "to perfect health."
       ]
     },
     {
-      "id": "pl_msg_00000213_00045",
+      "id": "CommonStrings_Text_PokecenterGoodLuckTrainer",
       "en_US": [
         "Please visit a Pokémon Center when\n",
         "your Pokémon’s HP goes down.\r",
@@ -786,7 +786,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00120",
+      "id": "CommonStrings_Text_PokecenterGreeting_Morning",
       "en_US": [
         "Good morning!\n",
         "Welcome to the Pokémon Center.\r",
@@ -796,7 +796,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00121",
+      "id": "CommonStrings_Text_PokecenterGreeting_Night",
       "en_US": [
         "Hello, and welcome to\n",
         "the Pokémon Center.\r",
