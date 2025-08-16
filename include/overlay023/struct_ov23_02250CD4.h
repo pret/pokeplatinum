@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV23_02250CD4_H
 #define POKEPLATINUM_STRUCT_OV23_02250CD4_H
 
-#include "struct_defs/struct_0206A844.h"
-
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
@@ -14,6 +12,7 @@
 #include "bg_window.h"
 #include "list_menu.h"
 #include "menu.h"
+#include "scroll_prompts.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -23,7 +22,7 @@
 typedef struct {
     void *unk_00;
     SysTask *unk_04;
-    UnkStruct_0206A844 *unk_08;
+    ScrollPrompts *unk_08;
     FieldSystem *fieldSystem;
     Window unk_10;
     Window unk_20;

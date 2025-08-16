@@ -1,0 +1,35 @@
+scroll_prompts_png = files('scroll_prompts.png')
+scroll_prompts_ncgr = ncgr_gen.process(scroll_prompts_png,
+    extra_args: [ '-version101', '-clobbersize', '-cell', files('scroll_prompts_cell.json')[0].full_path(), ],
+)
+scroll_prompts_nclr = nclr_gen.process(scroll_prompts_png,
+    extra_args: [ '-bitdepth', '4', '-pcmp', '-nopad', '-invertsize', ],
+)
+
+scroll_prompts_ncer = ncer_gen.process(files('scroll_prompts_cell.json'))
+scroll_prompts_nanr = nanr_gen.process(files('scroll_prompts_anim.json'))
+
+fld_comact_order = files('fld_comact.order')
+fld_comact_narc = custom_target('fld_comact.narc',
+    output: [
+        'fld_comact.narc',
+        'fld_comact.naix.h',
+    ],
+    input: [
+        scroll_prompts_ncgr,
+        scroll_prompts_nclr,
+        scroll_prompts_ncer,
+        scroll_prompts_nanr,
+        fld_comact_order,
+    ],
+    command: [
+        narc_exe, 'create',
+        '--naix',
+        '--order', fld_comact_order,
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
+    ]
+)
+
+nitrofs_files += fld_comact_narc
+naix_headers += fld_comact_narc[1]

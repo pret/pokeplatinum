@@ -263,7 +263,7 @@ Static main
 	Object main.nef.p/src_unk_020683F4.c.o
 	Object main.nef.p/src_pokeradar.c.o
 	Object main.nef.p/src_unk_02069BE0.c.o
-	Object main.nef.p/src_unk_0206A780.c.o
+	Object main.nef.p/src_scroll_prompts.c.o
 	Object main.nef.p/src_system_flags.c.o
 	Object main.nef.p/src_system_vars.c.o
 	Object main.nef.p/src_unk_0206B70C.c.o

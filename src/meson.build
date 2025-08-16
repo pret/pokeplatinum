@@ -249,7 +249,7 @@ pokeplatinum_c = files(
     'unk_020683F4.c',
     'pokeradar.c',
     'unk_02069BE0.c',
-    'unk_0206A780.c',
+    'scroll_prompts.c',
     'system_flags.c',
     'system_vars.c',
     'unk_0206B70C.c',

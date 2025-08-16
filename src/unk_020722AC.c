@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_defs/mail.h"
-#include "struct_defs/struct_0206A844.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 
@@ -30,6 +29,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "screen_fade.h"
+#include "scroll_prompts.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -39,7 +39,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0203D1B8.h"
-#include "unk_0206A780.h"
 #include "unk_02097624.h"
 
 #include "constdata/const_020F1E88.h"
@@ -102,7 +101,7 @@ typedef struct {
     Window unk_174;
     Window unk_184;
     Window unk_194;
-    UnkStruct_0206A844 *unk_1A4;
+    ScrollPrompts *unk_1A4;
     UnkStruct_02097728 *unk_1A8;
     Mailbox *mailbox;
     Bag *bag;
@@ -247,7 +246,7 @@ static void sub_02072390(SysTask *param0, void *param1)
     s32 v1 = ListMenu_ProcessInput(v0->unk_160);
 
     if (v0->unk_1A4 != NULL) {
-        sub_0206A870(v0->unk_1A4);
+        ScrollPrompts_UpdateAnim(v0->unk_1A4);
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -667,11 +666,11 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
         { 0x3, 0x1, 0x1, 0x9, 0x2, 0xD, 0x283 }
     };
 
-    param0->unk_1A4 = sub_0206A780(param0->heapID);
+    param0->unk_1A4 = ScrollPrompts_New(param0->heapID);
 
-    sub_0206A8A0(param0->unk_1A4, 200, 10, 138);
-    sub_0206A8C4(param0->unk_1A4, 0, 1);
-    sub_0206A8C4(param0->unk_1A4, 1, 1);
+    ScrollPrompts_SetPosition(param0->unk_1A4, 200, 10, 138);
+    ScrollPrompts_SetDrawFlag(param0->unk_1A4, SCROLL_PROMPT_TOP_ARROW, TRUE);
+    ScrollPrompts_SetDrawFlag(param0->unk_1A4, SCROLL_PROMPT_BOTTOM_ARROW, TRUE);
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v3[0]);
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_194), &v3[1]);
     Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
@@ -755,15 +754,15 @@ static void sub_02072C0C(ListMenu *param0, u32 param1, u8 param2)
     }
 
     if (v0 == 0) {
-        sub_0206A8C4(v3->unk_1A4, 0, 0);
+        ScrollPrompts_SetDrawFlag(v3->unk_1A4, SCROLL_PROMPT_TOP_ARROW, FALSE);
     } else {
-        sub_0206A8C4(v3->unk_1A4, 0, 1);
+        ScrollPrompts_SetDrawFlag(v3->unk_1A4, SCROLL_PROMPT_TOP_ARROW, TRUE);
     }
 
     if (v0 < (v2 - 7)) {
-        sub_0206A8C4(v3->unk_1A4, 1, 1);
+        ScrollPrompts_SetDrawFlag(v3->unk_1A4, SCROLL_PROMPT_BOTTOM_ARROW, TRUE);
     } else {
-        sub_0206A8C4(v3->unk_1A4, 1, 0);
+        ScrollPrompts_SetDrawFlag(v3->unk_1A4, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
     }
 }
 
@@ -833,7 +832,7 @@ static void sub_02072DB8(UnkStruct_02072334 *param0)
     param0->unk_13E = v1;
 
     if (param0->unk_1A4 != NULL) {
-        sub_0206A844(param0->unk_1A4);
+        ScrollPrompts_Free(param0->unk_1A4);
         param0->unk_1A4 = NULL;
     }
 
