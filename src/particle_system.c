@@ -1,7 +1,7 @@
 #include "particle_system.h"
 
-#include "nitro/fx/fx_trig.h"
 #include <nitro.h>
+#include <nitro/fx/fx_trig.h>
 #include <string.h>
 
 #include "camera.h"
