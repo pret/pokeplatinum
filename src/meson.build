@@ -616,7 +616,7 @@ pokeplatinum_c = files(
     'applications/pokedex/ov21_021E1924.c',
     'applications/pokedex/ov21_021E29DC.c',
     'applications/pokedex/ov21_021E3FFC.c',
-    'applications/pokedex/ov21_021E4CA4.c',
+    'applications/pokedex/crysub.c',
     'applications/pokedex/pokedex_height_check.c',
     'applications/pokedex/ov21_021E68F4.c',
     'applications/pokedex/ov21_021E737C.c',

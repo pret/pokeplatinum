@@ -18,6 +18,8 @@
 #include "sprite_util.h"
 #include "sys_task_manager.h"
 
+#define SCREENHEIGHT 192
+
 typedef struct PokedexSpeciesLabel {
     Sprite *nameTag; // displays caughtIcon, dex number, and name
     Sprite *caughtIcon;

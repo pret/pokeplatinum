@@ -95,7 +95,7 @@ static void ov21_021DEF3C(PokedexGraphicData **param0);
 static void ov21_021DEF54(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1);
 static void ov21_021DEF8C(PokedexGraphicData **param0);
 
-void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021DE668(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021DE6D4 *v0;
     PokedexGraphicData **v1;
@@ -105,8 +105,8 @@ void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum Hea
 
     param0->pageData = v0;
     param0->pageGraphics = v1;
-    param0->unk_20 = NULL;
-    param0->unk_24 = ov21_021DE774();
+    param0->screenStates = NULL;
+    param0->numStates = ov21_021DE774();
     param0->dataFunc[0] = ov21_021DE778;
     param0->dataFunc[1] = ov21_021DE79C;
     param0->dataFunc[2] = ov21_021DE7F8;
@@ -115,7 +115,7 @@ void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum Hea
     param0->graphicsFunc[2] = ov21_021DE8E8;
 }
 
-void ov21_021DE6C0(UnkStruct_ov21_021E68F4 *param0)
+void ov21_021DE6C0(PokedexScreenManager *param0)
 {
     ov21_021DE74C(param0->pageData);
     ov21_021DE760(param0->pageGraphics);
@@ -142,7 +142,7 @@ BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 *param0, int param1)
 static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021DE6D4 *v0;
-    UnkStruct_ov21_021E68F4 *v1;
+    PokedexScreenManager *v1;
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DE6D4));
 
@@ -150,7 +150,7 @@ static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *pa
     memset(v0, 0, sizeof(UnkStruct_ov21_021DE6D4));
 
     v0->unk_00 = ov21_021D138C(param1);
-    v0->unk_04 = ov21_021D13EC(param1);
+    v0->unk_04 = PokedexMain_GetSortData(param1);
     v1 = ov21_021D1410(param1, 5);
     v0->unk_10 = v1;
 
@@ -160,14 +160,14 @@ static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapId heapID, PokedexApp *pa
 static PokedexGraphicData **ov21_021DE724(enum HeapId heapID, PokedexApp *param1)
 {
     PokedexGraphicData **v0;
-    UnkStruct_ov21_021E68F4 *v1;
+    PokedexScreenManager *v1;
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(PokedexGraphicData **));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(PokedexGraphicData **));
 
-    *v0 = ov21_021D13FC(param1);
+    *v0 = PokedexMain_GetGraphicData(param1);
 
     return v0;
 }

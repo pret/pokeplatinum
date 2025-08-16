@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokedex/crysub.h"
 #include "applications/pokedex/ov21_021E29DC.h"
-#include "applications/pokedex/ov21_021E4CA4.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
 #include "applications/pokedex/pokedex_graphics.h"
@@ -28,8 +28,8 @@
 typedef struct {
     int *unk_00;
     PokedexSortData *unk_04;
-    UnkStruct_ov21_021E68F4 *unk_08;
-    UnkStruct_ov21_021E68F4 *unk_0C;
+    PokedexScreenManager *unk_08;
+    PokedexScreenManager *unk_0C;
 } UnkStruct_ov21_021E40F4;
 
 typedef struct {
@@ -113,15 +113,15 @@ static void ov21_021E4B30(UnkStruct_ov21_021E4B30 *param0, int param1);
 static void ov21_021E4B94(UnkStruct_ov21_021E4B30 *param0, int param1);
 static void ov21_021E4C38(Sprite *param0, int param1);
 
-void ov21_021E3FFC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021E3FFC(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021E40F4 *v0 = ov21_021E4080(heapID, param1);
     UnkStruct_ov21_021E4108 *v1 = ov21_021E40C8(heapID, param1);
 
     param0->pageData = v0;
     param0->pageGraphics = v1;
-    param0->unk_20 = NULL;
-    param0->unk_24 = ov21_021E411C();
+    param0->screenStates = NULL;
+    param0->numStates = ov21_021E411C();
     param0->dataFunc[0] = ov21_021E4120;
     param0->dataFunc[1] = ov21_021E4168;
     param0->dataFunc[2] = ov21_021E4194;
@@ -130,13 +130,13 @@ void ov21_021E3FFC(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum Hea
     param0->graphicsFunc[2] = ov21_021E4288;
 }
 
-void ov21_021E4054(UnkStruct_ov21_021E68F4 *param0)
+void ov21_021E4054(PokedexScreenManager *param0)
 {
     ov21_021E40F4(param0->pageData);
     ov21_021E4108(param0->pageGraphics);
 }
 
-void ov21_021E4068(UnkStruct_ov21_021E68F4 *param0, int param1, int param2)
+void ov21_021E4068(PokedexScreenManager *param0, int param1, int param2)
 {
     UnkStruct_ov21_021E4108 *v0 = param0->pageGraphics;
 
@@ -144,13 +144,13 @@ void ov21_021E4068(UnkStruct_ov21_021E68F4 *param0, int param1, int param2)
     v0->unk_08 = param2;
 }
 
-void ov21_021E4070(UnkStruct_ov21_021E68F4 *param0, int param1)
+void ov21_021E4070(PokedexScreenManager *param0, int param1)
 {
     UnkStruct_ov21_021E4108 *v0 = param0->pageGraphics;
     v0->unk_0C = param1;
 }
 
-void ov21_021E4078(UnkStruct_ov21_021E68F4 *param0, int param1)
+void ov21_021E4078(PokedexScreenManager *param0, int param1)
 {
     UnkStruct_ov21_021E4108 *v0 = param0->pageGraphics;
     v0->unk_10 = param1;
@@ -159,7 +159,7 @@ void ov21_021E4078(UnkStruct_ov21_021E68F4 *param0, int param1)
 static UnkStruct_ov21_021E40F4 *ov21_021E4080(enum HeapId heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021E40F4 *v0;
-    UnkStruct_ov21_021E68F4 *v1;
+    PokedexScreenManager *v1;
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E40F4));
 
@@ -167,7 +167,7 @@ static UnkStruct_ov21_021E40F4 *ov21_021E4080(enum HeapId heapID, PokedexApp *pa
     memset(v0, 0, sizeof(UnkStruct_ov21_021E40F4));
 
     v0->unk_00 = ov21_021D138C(param1);
-    v0->unk_04 = ov21_021D13EC(param1);
+    v0->unk_04 = PokedexMain_GetSortData(param1);
     v0->unk_08 = ov21_021D1410(param1, 5);
     v0->unk_0C = ov21_021D1430(param1, 5);
 
@@ -177,14 +177,14 @@ static UnkStruct_ov21_021E40F4 *ov21_021E4080(enum HeapId heapID, PokedexApp *pa
 static UnkStruct_ov21_021E4108 *ov21_021E40C8(enum HeapId heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021E4108 *v0;
-    UnkStruct_ov21_021E68F4 *v1;
+    PokedexScreenManager *v1;
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E4108));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4108));
 
-    v0->unk_00 = ov21_021D13FC(param1);
+    v0->unk_00 = PokedexMain_GetGraphicData(param1);
 
     return v0;
 }
@@ -610,8 +610,8 @@ static void ov21_021E4894(UnkStruct_ov21_021E4360 *param0)
 
 static void ov21_021E4898(UnkStruct_ov21_021E4898 *param0, UnkStruct_ov21_021E40F4 *param1)
 {
-    int v0 = ov21_021E4D1C(param1->unk_0C);
-    param0->unk_04 = Sound_GetNumberOfPlayedCrySamples(1, param0->unk_00, v0);
+    int pitch = CrySub_GetPitch(param1->unk_0C);
+    param0->unk_04 = Sound_GetNumberOfPlayedCrySamples(1, param0->unk_00, pitch);
 }
 
 static void ov21_021E48B0(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E4108 *param1, const SNDWaveData *param2, int param3, int param4, int param5, int param6, int param7, int *param8)
@@ -813,11 +813,11 @@ static void ov21_021E4C38(Sprite *param0, int param1)
 
 static void ov21_021E4C68(UnkStruct_ov21_021E4898 *param0, UnkStruct_ov21_021E40F4 *param1)
 {
-    int v0 = ov21_021E4D1C(param1->unk_0C);
+    int pitch = CrySub_GetPitch(param1->unk_0C);
 
     memset(param0->unk_0C, 0, sizeof(u8) * 9);
 
     if (Sound_IsPokemonCryPlaying() != 0) {
-        Sound_WaveData_AccumulateAmplitudes(param0->unk_00, param0->unk_0C, 9, v0);
+        Sound_WaveData_AccumulateAmplitudes(param0->unk_00, param0->unk_0C, 9, pitch);
     }
 }

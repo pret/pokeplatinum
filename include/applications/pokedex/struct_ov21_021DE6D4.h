@@ -9,7 +9,7 @@ typedef struct {
     PokedexSortData *unk_04;
     int unk_08;
     int unk_0C;
-    const UnkStruct_ov21_021E68F4 *unk_10;
+    const PokedexScreenManager *unk_10;
     int unk_14;
     int unk_18;
     BOOL unk_1C;
