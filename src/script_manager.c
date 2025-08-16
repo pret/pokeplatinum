@@ -51,7 +51,7 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
     FieldSystem_CreateTask(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int param6, int approachNum)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
@@ -60,7 +60,7 @@ void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *ob
     trainer->direction = direction;
     trainer->scriptID = scriptID;
     trainer->trainerID = trainerID;
-    trainer->trainerType = trainerType;
+    trainer->unk_10 = param6;
     trainer->object = object;
 }
 
@@ -377,7 +377,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_0_TYPE:
         trainer = &scriptManager->trainers[0];
-        return &trainer->trainerType;
+        return &trainer->unk_10;
     case SCRIPT_MANAGER_TRAINER_0_MAP_OBJECT:
         trainer = &scriptManager->trainers[0];
         return &trainer->object;
@@ -398,7 +398,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_1_TYPE:
         trainer = &scriptManager->trainers[1];
-        return &trainer->trainerType;
+        return &trainer->unk_10;
     case SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT:
         trainer = &scriptManager->trainers[1];
         return &trainer->object;
