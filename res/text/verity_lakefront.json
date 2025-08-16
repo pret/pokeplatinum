@@ -1,0 +1,35 @@
+{
+  "key": 18411,
+  "messages": [
+    {
+      "id": "pl_msg_00000399_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: All right!\n",
+        "We’re at the lake!\r",
+        "Get ready, because we’re capturing\n",
+        "that legendary Pokémon.\r",
+        "Trust me on this one. It’s here.\n",
+        "It even says so on the sign!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000399_00001",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000399_00002",
+      "garbage": 42
+    },
+    {
+      "id": "pl_msg_00000399_00003",
+      "en_US": [
+        "Lake Verity Ahead\r",
+        "According to legend, this lake is home\n",
+        "to the Pokémon said to be “The Being of\f",
+        "Emotion.”\r",
+        "It is because of this Pokémon that\n",
+        "people can experience sorrow and joy."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "key": 24610,
+  "messages": [
+    {
+      "id": "pl_msg_00000238_00000",
+      "en_US": [
+        "On the other side of the rift...\n",
+        "In a fantastically bizarre place...\f",
+        "It’s PALKIA!\r",
+        "Will you challenge PALKIA?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000238_00001",
+      "en_US": "PALKIA: Gagyagyaah!\r"
+    },
+    {
+      "id": "pl_msg_00000238_00002",
+      "en_US": [
+        "An overwhelming feeling of space\n",
+        "powerfully emanates from this rift...\r",
+        "Where does it lead to?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000238_00003",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000238_00004",
+      "garbage": 25
+    }
+  ]
+}

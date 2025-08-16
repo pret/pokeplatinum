@@ -1,0 +1,132 @@
+{
+  "key": 22265,
+  "messages": [
+    {
+      "id": "pl_msg_00000375_00000",
+      "en_US": [
+        "Welcome! This is the Global Trade\n",
+        "Station, or GTS for short.\r",
+        "We enable the trading of Pokémon with\n",
+        "people worldwide over Nintendo WFC.\r",
+        "Would you like to do a global\n",
+        "Pokémon trade?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00001",
+      "en_US": [
+        "Hello!\n",
+        "Welcome to the GTS!\r",
+        "Would you like to do a global\n",
+        "Pokémon trade over Nintendo WFC?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00002",
+      "en_US": [
+        "You may trade Pokémon one of two\n",
+        "ways at the GTS.\r",
+        "You may offer a Pokémon for trade,\n",
+        "or search among offered Pokémon.\r",
+        "Should I describe things in greater\n",
+        "detail?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00003",
+      "en_US": [
+        "You will be asked to put up the\n",
+        "Pokémon you are offering to trade.\r",
+        "At that time, you will be asked what\n",
+        "Pokémon you would like in return.\r",
+        "If another player offers your desired\n",
+        "Pokémon in return for your offered\f",
+        "Pokémon, the trade will go through.\r",
+        "Should I explain anything else?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00004",
+      "en_US": [
+        "You may search among the Pokémon\n",
+        "that are offered by other Trainers.\r",
+        "They will all identify what Pokémon\n",
+        "their Trainers want back in return.\r",
+        "If you find one that you want, you\n",
+        "must provide us with the kind of\f",
+        "Pokémon wanted in return.\r",
+        "Should I explain anything else?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00005",
+      "en_US": [
+        "Would you like to make a global\n",
+        "Pokémon trade?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00006",
+      "en_US": "Please do visit again."
+    },
+    {
+      "id": "pl_msg_00000375_00007",
+      "en_US": [
+        "I hope you enjoy your visit\n",
+        "to the GTS!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00008",
+      "en_US": [
+        "That’s a big globe, eh?\r",
+        "Where do I live on it now?\n",
+        "Let’s see if I can point it out..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00009",
+      "en_US": [
+        "They say if you communicate with\n",
+        "someone, their location is\f",
+        "recorded on this giant globe."
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00010",
+      "en_US": [
+        "All I need to do is leave a Pokémon\n",
+        "here to trade.\r",
+        "Who knows, it might be traded while\n",
+        "I’m asleep tonight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00011",
+      "en_US": [
+        "You can easily trade Pokémon with\n",
+        "Pokémon fans from around the world.\r",
+        "Isn’t that something?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00012",
+      "en_US": [
+        "You can register where you live on\n",
+        "this giant globe.\r",
+        "Once you do, your location will\n",
+        "be displayed to anyone you\f",
+        "communicate with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000375_00013",
+      "en_US": [
+        "Is Nintendo WFC something\n",
+        "even I can use easily?\r",
+        "If it is really that easy, I’d love\n",
+        "to trade Pokémon, too!"
+      ]
+    }
+  ]
+}

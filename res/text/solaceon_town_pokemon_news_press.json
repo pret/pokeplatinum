@@ -1,0 +1,198 @@
+{
+  "key": 62487,
+  "messages": [
+    {
+      "id": "pl_msg_00000580_00000",
+      "en_US": [
+        "Oh?\n",
+        "Welcome!\r",
+        "You saw the notice outside about\n",
+        "us hiring, right?\r",
+        "Is that a Pokédex there?\n",
+        "Then you must know Professor Rowan!\r",
+        "You’re just the Pokémon-searching\n",
+        "expert we’ve been looking for!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00001",
+      "en_US": [
+        "Here you are!\n",
+        "Good!\r",
+        "We’ve got a deadline to meet.\n",
+        "Here’s your assignment.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00002",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0}.\n",
+        "I want you to bring me one.\r",
+        "You must bring it today, or we’re not\n",
+        "gonna be able to run our main article.\r",
+        "I’ll pay you with a Heart Scale and some\n",
+        "Poké Balls for it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00003",
+      "en_US": [
+        "What’s up? Did you bring us\n",
+        "the Pokémon we needed?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00004",
+      "en_US": [
+        "Oh! Ohh! Ohhh!\n",
+        "That’s it! {STRVAR_1 0, 0, 0}!\r",
+        "Thanks!\n",
+        "Let me get a closer look!\r",
+        "...I see, hmhm...\n",
+        "Right, right... That’s it!\r",
+        "Thank you!\n",
+        "I can write a great article now!\r",
+        "This is for your trouble.\n",
+        "It’s not much, but thanks!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00005",
+      "en_US": [
+        "You really came through for us!\n",
+        "I hope you’ll help us again tomorrow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00006",
+      "en_US": [
+        "Whoops! What’s all this?\n",
+        "Your Bag is stuffed full.\r",
+        "I’ll hold on to these until\n",
+        "the next time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00007",
+      "en_US": [
+        "Oh, there you are! Here’s your\n",
+        "reward for the last assignment!\r",
+        "It’s not much, but thanks!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00008",
+      "en_US": [
+        "What’s wrong? You still haven’t\n",
+        "caught the {STRVAR_1 0, 0, 0} we need?\r",
+        "We’re counting on you to come through\n",
+        "for us!\r",
+        "I’ll pay you a Heart Scale and some\n",
+        "Poké Balls for it, OK?\r",
+        "Bring us the {STRVAR_1 0, 0, 0} before\n",
+        "the date rolls over!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00009",
+      "en_US": [
+        "Now, now! You failed to bring me the\n",
+        "Pokémon I asked for...\r",
+        "Things like that can happen, but\n",
+        "we need you to come up big for us!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00010",
+      "en_US": [
+        "OK! I’ll crank out a riveting story\n",
+        "based on this!\r",
+        "Oh, right! I’ll have another\n",
+        "assignment for you tomorrow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00011",
+      "en_US": [
+        "The Sinnoh region’s newspaper is\n",
+        "tiny, but it has many fans.\r",
+        "That newspaper is printed right\n",
+        "here!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00012",
+      "en_US": [
+        "“Weekly Poké Ball Roundup”\n",
+        "is the featured top story.\r",
+        "It’s a feature article on new types\n",
+        "of Poké Balls.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00013",
+      "en_US": "Which article would you like to read?"
+    },
+    {
+      "id": "pl_msg_00000580_00014",
+      "en_US": [
+        "Dark caves and streets unlit at\n",
+        "night are forbidding places to go.\r",
+        "If you’re threatened by the dark,\n",
+        "a supply of Dusk Balls is your\f",
+        "biggest ally!\r",
+        "Use them in the dark for the best\n",
+        "Pokémon-catching performance!\r",
+        "Keep the dark at bay on your travels\n",
+        "with Dusk Balls!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00015",
+      "en_US": [
+        "Catching Pokémon is best accomplished\n",
+        "by whittling the target’s HP down as\f",
+        "low as possible, then tossing a Ball.\r",
+        "But a Pokémon caught that way can’t\n",
+        "be used in battle right away.\r",
+        "That’s where the Heal Ball comes in\n",
+        "handy.\r",
+        "You can lower the target’s HP bar to\n",
+        "red, put it to sleep, or paralyze it.\r",
+        "The Heal Ball instantly heals whatever\n",
+        "ails the Pokémon it catches!\r",
+        "That’s the Pokémon-friendly Heal Ball!\n",
+        "Please, do give it a try!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00016",
+      "en_US": [
+        "When attempting to catch a Pokémon,\n",
+        "you want to cut the target’s HP.\r",
+        "But a fleet-footed Pokémon could\n",
+        "bolt if you take too much time.\r",
+        "The Quick Ball is the solution to\n",
+        "that dilemma.\r",
+        "It’s designed to work best when\n",
+        "thrown right at the start of battle!\r",
+        "The Quick Ball: the perfect gift for\n",
+        "the impatient Trainer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000580_00017",
+      "en_US": [
+        "The Pokémon of the mothering sea\n",
+        "aren’t like the others.\r",
+        "If you are brave enough to face such\n",
+        "intimidating Pokémon, the Dive Ball is\f",
+        "perfect for you.\r",
+        "For Pokémon you meet in the sea, and\n",
+        "for Pokémon caught fishing...\r",
+        "The Dive Ball is the Poké Ball you can\n",
+        "count on!"
+      ]
+    }
+  ]
+}

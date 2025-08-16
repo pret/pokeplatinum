@@ -1,0 +1,90 @@
+{
+  "key": 54306,
+  "messages": [
+    {
+      "id": "pl_msg_00000184_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hold it!\n",
+        "Don’t go off without me!\r",
+        "You’re challenging the Pokémon League,\n",
+        "aren’t you?\r",
+        "That’s why I’m here, too.\r",
+        "Let’s see who’s more worthy of making\n",
+        "the challenge with a battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000184_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: I guess I’m not ready\n",
+        "for the Pokémon League if I’m losing\f",
+        "to you!\r",
+        "Darn it!\n",
+        "You watch, though!\r",
+        "I’ll get tougher and win my way\n",
+        "through the Pokémon League!\r",
+        "Because I’m going to become the\n",
+        "Champion, the toughest Trainer!\r",
+        "{STRVAR_1 3, 1, 0}! You’d better not lose to\n",
+        "anyone before me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000184_00002",
+      "en_US": [
+        "Let me confirm that you are qualified\n",
+        "to challenge the Pokémon League.\r",
+        "So! Let us examine the Gym Badges\n",
+        "you gathered from Sinnoh.\r",
+        "Oreburgh City’s Coal Badge!\r",
+        "Eterna City’s Forest Badge!\r",
+        "Hearthome City’s Relic Badge!\r",
+        "Veilstone City’s Cobble Badge!\r",
+        "Pastoria City’s Fen Badge!\r",
+        "Canalave City’s Mine Badge!\r",
+        "Snowpoint City’s Icicle Badge!\r",
+        "And...\n",
+        "Sunyshore City’s Beacon Badge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000184_00003",
+      "en_US": [
+        "Very well!\r",
+        "Trainer, you’ve indeed collected\n",
+        "all the Gym Badges of Sinnoh!\r",
+        "Demonstrate the power that brought\n",
+        "you here and go for glory!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000184_00004",
+      "en_US": [
+        "You will be facing the Elite Four\n",
+        "of the Pokémon League.\r",
+        "If you can’t beat all four of them\n",
+        "in a row, you have to start from\f",
+        "the first one again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000184_00005",
+      "en_US": [
+        "It doesn’t matter if the going is slow.\r",
+        "Nor does it matter how many challenges\n",
+        "it takes.\r",
+        "I’m never giving up!\n",
+        "Not until I beat the Elite Four!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000184_00006",
+      "en_US": [
+        "What is the Pokémon League?\n",
+        "Don’t take my word for it.\r",
+        "Take the challenge and experience it\n",
+        "for yourself!"
+      ]
+    }
+  ]
+}

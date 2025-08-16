@@ -9,7 +9,7 @@ patch_hash = c1480d0ecef09dbaa4b4d85d86090205386fb2c7e87f4f158b20dbbda14c9afc
 source_fallback_url = https://github.com/mesonbuild/wrapdb/releases/download/rapidjson_1.1.0-2/rapidjson-1.1.0.tar.gz
 wrapdb_version = 1.1.0-2
 
-diff_files = rapidjson_patch/gcc14fix.patch
+diff_files = rapidjson_patch/000-pr719.patch, rapidjson_patch/001-pr1137.patch, rapidjson_patch/002-pr1323.patch
 
 [provide]
 rapidjson = rapidjson_dep

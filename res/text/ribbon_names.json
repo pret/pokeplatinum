@@ -1,0 +1,2559 @@
+{
+  "key": 53609,
+  "messages": [
+    {
+      "id": "RibbonName_Text_HoennChampion",
+      "en_US": "Champion Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennCool",
+      "en_US": "Cool Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennCoolSuper",
+      "en_US": "Cool Ribbon Super"
+    },
+    {
+      "id": "RibbonName_Text_HoennCoolHyper",
+      "en_US": "Cool Ribbon Hyper"
+    },
+    {
+      "id": "RibbonName_Text_HoennCoolMaster",
+      "en_US": "Cool Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_HoennBeauty",
+      "en_US": "Beauty Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennBeautySuper",
+      "en_US": "Beauty Ribbon Super"
+    },
+    {
+      "id": "RibbonName_Text_HoennBeautyHyper",
+      "en_US": "Beauty Ribbon Hyper"
+    },
+    {
+      "id": "RibbonName_Text_HoennBeautyMaster",
+      "en_US": "Beauty Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_HoennCute",
+      "en_US": "Cute Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennCuteSuper",
+      "en_US": "Cute Ribbon Super"
+    },
+    {
+      "id": "RibbonName_Text_HoennCuteHyper",
+      "en_US": "Cute Ribbon Hyper"
+    },
+    {
+      "id": "RibbonName_Text_HoennCuteMaster",
+      "en_US": "Cute Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_HoennSmart",
+      "en_US": "Smart Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennSmartSuper",
+      "en_US": "Smart Ribbon Super"
+    },
+    {
+      "id": "RibbonName_Text_HoennSmartHyper",
+      "en_US": "Smart Ribbon Hyper"
+    },
+    {
+      "id": "RibbonName_Text_HoennSmartMaster",
+      "en_US": "Smart Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_HoennTough",
+      "en_US": "Tough Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennToughSuper",
+      "en_US": "Tough Ribbon Super"
+    },
+    {
+      "id": "RibbonName_Text_HoennToughHyper",
+      "en_US": "Tough Ribbon Hyper"
+    },
+    {
+      "id": "RibbonName_Text_HoennToughMaster",
+      "en_US": "Tough Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_HoennWinning",
+      "en_US": "Winning Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennVictory",
+      "en_US": "Victory Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennArtist",
+      "en_US": "Artist Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennEffort",
+      "en_US": "Effort Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennMarine",
+      "en_US": "Marine Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennLand",
+      "en_US": "Land Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennSky",
+      "en_US": "Sky Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennCountry",
+      "en_US": "Country Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennNational",
+      "en_US": "National Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennEarth",
+      "en_US": "Earth Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_HoennWorld",
+      "en_US": "World Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_SinnohChamp",
+      "en_US": "Sinnoh Champ Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Cool",
+      "en_US": "Cool Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_CoolGreat",
+      "en_US": "Cool Ribbon Great"
+    },
+    {
+      "id": "RibbonName_Text_CoolUltra",
+      "en_US": "Cool Ribbon Ultra"
+    },
+    {
+      "id": "RibbonName_Text_CoolMaster",
+      "en_US": "Cool Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_Beauty",
+      "en_US": "Beauty Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_BeautyGreat",
+      "en_US": "Beauty Ribbon Great"
+    },
+    {
+      "id": "RibbonName_Text_BeautyUltra",
+      "en_US": "Beauty Ribbon Ultra"
+    },
+    {
+      "id": "RibbonName_Text_BeautyMaster",
+      "en_US": "Beauty Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_Cute",
+      "en_US": "Cute Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_CuteGreat",
+      "en_US": "Cute Ribbon Great"
+    },
+    {
+      "id": "RibbonName_Text_CuteUltra",
+      "en_US": "Cute Ribbon Ultra"
+    },
+    {
+      "id": "RibbonName_Text_CuteMaster",
+      "en_US": "Cute Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_Smart",
+      "en_US": "Smart Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_SmartGreat",
+      "en_US": "Smart Ribbon Great"
+    },
+    {
+      "id": "RibbonName_Text_SmartUltra",
+      "en_US": "Smart Ribbon Ultra"
+    },
+    {
+      "id": "RibbonName_Text_SmartMaster",
+      "en_US": "Smart Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_Tough",
+      "en_US": "Tough Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_ToughGreat",
+      "en_US": "Tough Ribbon Great"
+    },
+    {
+      "id": "RibbonName_Text_ToughUltra",
+      "en_US": "Tough Ribbon Ultra"
+    },
+    {
+      "id": "RibbonName_Text_ToughMaster",
+      "en_US": "Tough Ribbon Master"
+    },
+    {
+      "id": "RibbonName_Text_Ability",
+      "en_US": "Ability Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_GreatAbility",
+      "en_US": "Great Ability Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_DoubleAbility",
+      "en_US": "Double Ability Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_MultiAbility",
+      "en_US": "Multi Ability Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_PairAbility",
+      "en_US": "Pair Ability Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_WorldAbility",
+      "en_US": "World Ability Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Alert",
+      "en_US": "Alert Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Shock",
+      "en_US": "Shock Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Downcast",
+      "en_US": "Downcast Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Careless",
+      "en_US": "Careless Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Relax",
+      "en_US": "Relax Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Snooze",
+      "en_US": "Snooze Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Smile",
+      "en_US": "Smile Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Gorgeous",
+      "en_US": "Gorgeous Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Royal",
+      "en_US": "Royal Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_GorgeousRoyal",
+      "en_US": "Gorgeous Royal Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Footprint",
+      "en_US": "Footprint Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Record",
+      "en_US": "Record Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_History",
+      "en_US": "History Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Legend",
+      "en_US": "Legend Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Red",
+      "en_US": "Red Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Green",
+      "en_US": "Green Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Blue",
+      "en_US": "Blue Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Festival",
+      "en_US": "Festival Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Carnival",
+      "en_US": "Carnival Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Classic",
+      "en_US": "Classic Ribbon"
+    },
+    {
+      "id": "RibbonName_Text_Premier",
+      "en_US": "Premier Ribbon"
+    },
+    {
+      "id": "RibbonDesc_Text_HoennChampion",
+      "en_US": [
+        "Ribbon for clearing the Pokémon League and\n",
+        "entering the Hall of Fame in another region."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCool",
+      "en_US": [
+        "Hoenn Cool Contest\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCoolSuper",
+      "en_US": [
+        "Hoenn Cool Contest\n",
+        "Super Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCoolHyper",
+      "en_US": [
+        "Hoenn Cool Contest\n",
+        "Hyper Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCoolMaster",
+      "en_US": [
+        "Hoenn Cool Contest\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennBeauty",
+      "en_US": [
+        "Hoenn Beauty Contest\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennBeautySuper",
+      "en_US": [
+        "Hoenn Beauty Contest\n",
+        "Super Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennBeautyHyper",
+      "en_US": [
+        "Hoenn Beauty Contest\n",
+        "Hyper Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennBeautyMaster",
+      "en_US": [
+        "Hoenn Beauty Contest\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCute",
+      "en_US": [
+        "Hoenn Cute Contest\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCuteSuper",
+      "en_US": [
+        "Hoenn Cute Contest\n",
+        "Super Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCuteHyper",
+      "en_US": [
+        "Hoenn Cute Contest\n",
+        "Hyper Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCuteMaster",
+      "en_US": [
+        "Hoenn Cute Contest\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennSmart",
+      "en_US": [
+        "Hoenn Smart Contest\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennSmartSuper",
+      "en_US": [
+        "Hoenn Smart Contest\n",
+        "Super Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennSmartHyper",
+      "en_US": [
+        "Hoenn Smart Contest\n",
+        "Hyper Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennSmartMaster",
+      "en_US": [
+        "Hoenn Smart Contest\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennTough",
+      "en_US": [
+        "Hoenn Tough Contest\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennToughSuper",
+      "en_US": [
+        "Hoenn Tough Contest\n",
+        "Super Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennToughHyper",
+      "en_US": [
+        "Hoenn Tough Contest\n",
+        "Hyper Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennToughMaster",
+      "en_US": [
+        "Hoenn Tough Contest\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennWinning",
+      "en_US": [
+        "Ribbon awarded for clearing the Hoenn\n",
+        "Battle Tower’s Lv. 50 challenge."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennVictory",
+      "en_US": [
+        "Ribbon awarded for clearing the Hoenn\n",
+        "Battle Tower’s Lv. 100 challenge."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennArtist",
+      "en_US": [
+        "Ribbon awarded for being chosen as\n",
+        "a super sketch model in Hoenn."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennEffort",
+      "en_US": [
+        "Ribbon awarded for being an exceptionally\n",
+        "hard worker."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_SinnohChamp",
+      "en_US": [
+        "Ribbon awarded for beating the Sinnoh\n",
+        "Champion and entering the Hall of Fame."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Cool",
+      "en_US": [
+        "Super Contest Cool Category\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_CoolGreat",
+      "en_US": [
+        "Super Contest Cool Category\n",
+        "Great Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_CoolUltra",
+      "en_US": [
+        "Super Contest Cool Category\n",
+        "Ultra Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_CoolMaster",
+      "en_US": [
+        "Super Contest Cool Category\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Beauty",
+      "en_US": [
+        "Super Contest Beauty Category\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_BeautyGreat",
+      "en_US": [
+        "Super Contest Beauty Category\n",
+        "Great Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_BeautyUltra",
+      "en_US": [
+        "Super Contest Beauty Category\n",
+        "Ultra Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_BeautyMaster",
+      "en_US": [
+        "Super Contest Beauty Category\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Cute",
+      "en_US": [
+        "Super Contest Cute Category\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_CuteGreat",
+      "en_US": [
+        "Super Contest Cute Category\n",
+        "Great Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_CuteUltra",
+      "en_US": [
+        "Super Contest Cute Category\n",
+        "Ultra Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_CuteMaster",
+      "en_US": [
+        "Super Contest Cute Category\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Smart",
+      "en_US": [
+        "Super Contest Smart Category\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_SmartGreat",
+      "en_US": [
+        "Super Contest Smart Category\n",
+        "Great Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_SmartUltra",
+      "en_US": [
+        "Super Contest Smart Category\n",
+        "Ultra Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_SmartMaster",
+      "en_US": [
+        "Super Contest Smart Category\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Tough",
+      "en_US": [
+        "Super Contest Tough Category\n",
+        "Normal Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_ToughGreat",
+      "en_US": [
+        "Super Contest Tough Category\n",
+        "Great Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_ToughUltra",
+      "en_US": [
+        "Super Contest Tough Category\n",
+        "Ultra Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_ToughMaster",
+      "en_US": [
+        "Super Contest Tough Category\n",
+        "Master Rank winner!"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Ability",
+      "en_US": [
+        "A Ribbon awarded for defeating the\n",
+        "Tower Tycoon at the Battle Tower."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_GreatAbility",
+      "en_US": [
+        "A Ribbon awarded for defeating the\n",
+        "Tower Tycoon at the Battle Tower."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_DoubleAbility",
+      "en_US": [
+        "A Ribbon awarded for completing the\n",
+        "Sinnoh Battle Tower Double challenge."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_MultiAbility",
+      "en_US": [
+        "A Ribbon awarded for completing the\n",
+        "Sinnoh Battle Tower Multi challenge."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_PairAbility",
+      "en_US": [
+        "A Ribbon awarded for completing the\n",
+        "Sinnoh Battle Tower Link Multi challenge."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_WorldAbility",
+      "en_US": [
+        "A Ribbon awarded for completing the\n",
+        "Sinnoh Wi-Fi Battle Tower challenge."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Alert",
+      "en_US": [
+        "A Ribbon for recalling an invigorating\n",
+        "event that created life energy."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Shock",
+      "en_US": [
+        "A Ribbon for recalling a thrilling event\n",
+        "that made life more exciting."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Downcast",
+      "en_US": [
+        "A Ribbon for recalling feelings of sadness\n",
+        "that added spice to life."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Careless",
+      "en_US": [
+        "A Ribbon for recalling a careless error\n",
+        "that helped steer life decisions."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Relax",
+      "en_US": [
+        "A Ribbon for recalling a refreshing\n",
+        "event that added sparkle to life."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Snooze",
+      "en_US": [
+        "A Ribbon for recalling a deep slumber\n",
+        "that made life soothing."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Smile",
+      "en_US": [
+        "A Ribbon for recalling that smiles\n",
+        "enrich the quality of life."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Gorgeous",
+      "en_US": [
+        "An extraordinarily gorgeous and\n",
+        "extravagant Ribbon."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Royal",
+      "en_US": [
+        "An incredibly regal Ribbon with an air\n",
+        "of nobility."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_GorgeousRoyal",
+      "en_US": [
+        "A gorgeous and regal Ribbon that\n",
+        "is the peak of fabulous."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Footprint",
+      "en_US": [
+        "A Ribbon awarded to a Pokémon deemed\n",
+        "to have a top-quality footprint."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Record",
+      "en_US": [
+        "A Ribbon awarded for setting an\n",
+        "incredible record."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_History",
+      "en_US": [
+        "A Ribbon awarded for setting a historical\n",
+        "record."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_Legend",
+      "en_US": [
+        "A Ribbon awarded for setting a legendary\n",
+        "record."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00146",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00147",
+      "en_US": [
+        "2003 Regional Tournament\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00148",
+      "en_US": [
+        "2003 National Tournament\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00149",
+      "en_US": [
+        "2003 Global Cup\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00150",
+      "en_US": [
+        "2003 Regional Tournament\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00151",
+      "en_US": [
+        "2003 National Tournament\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00152",
+      "en_US": [
+        "2003 Global Cup\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00153",
+      "en_US": [
+        "2003 Regional Tournament\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00154",
+      "en_US": [
+        "2003 National Tournament\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00155",
+      "en_US": [
+        "2003 Global Cup\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00156",
+      "en_US": [
+        "2004 Regional Tournament\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00157",
+      "en_US": [
+        "2004 National Tournament\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00158",
+      "en_US": [
+        "2004 Global Cup\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00159",
+      "en_US": [
+        "2004 Regional Tournament\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00160",
+      "en_US": [
+        "2004 National Tournament\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00161",
+      "en_US": [
+        "2004 Global Cup\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00162",
+      "en_US": [
+        "2004 Regional Tournament\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00163",
+      "en_US": [
+        "2004 National Tournament\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00164",
+      "en_US": [
+        "2004 Global Cup\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00165",
+      "en_US": [
+        "2005 Regional Tournament\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00166",
+      "en_US": [
+        "2005 National Tournament\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00167",
+      "en_US": [
+        "2005 Global Cup\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00168",
+      "en_US": [
+        "2005 Regional Tournament\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00169",
+      "en_US": [
+        "2005 National Tournament\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00170",
+      "en_US": [
+        "2005 Global Cup\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00171",
+      "en_US": [
+        "2005 Regional Tournament\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00172",
+      "en_US": [
+        "2005 National Tournament\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00173",
+      "en_US": [
+        "2005 Global Cup\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00174",
+      "en_US": [
+        "Pokémon Battle Cup\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00175",
+      "en_US": [
+        "Pokémon Battle Cup\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00176",
+      "en_US": [
+        "Pokémon Battle Cup\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00177",
+      "en_US": [
+        "Pokémon Battle Cup\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennCountryWorld",
+      "en_US": [
+        "Pokémon League\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00179",
+      "en_US": [
+        "Pokémon League\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00180",
+      "en_US": [
+        "Pokémon League\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00181",
+      "en_US": [
+        "Pokémon League\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00182",
+      "en_US": [
+        "Advance Cup\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00183",
+      "en_US": [
+        "Advance Cup\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00184",
+      "en_US": [
+        "Advance Cup\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00185",
+      "en_US": [
+        "Advance Cup\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00186",
+      "en_US": [
+        "Pokémon Tournament\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00187",
+      "en_US": [
+        "Pokémon Event\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00188",
+      "en_US": [
+        "Pokémon Festival\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00189",
+      "en_US": [
+        "A Ribbon awarded for overcoming\n",
+        "difficult challenges."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennNational",
+      "en_US": [
+        "A Ribbon awarded for overcoming all\n",
+        "difficult challenges."
+      ]
+    },
+    {
+      "id": "RibbonDesc_Text_HoennEarth",
+      "en_US": [
+        "A Ribbon awarded for winning 100\n",
+        "matches in a row."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00192",
+      "en_US": [
+        "A Ribbon awarded for clearing\n",
+        "the Darkness Tower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00193",
+      "en_US": [
+        "A Ribbon awarded for clearing\n",
+        "the Red Tower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00194",
+      "en_US": [
+        "A Ribbon awarded for clearing\n",
+        "the Blackiron Tower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00195",
+      "en_US": [
+        "A Ribbon awarded for clearing\n",
+        "the Final Tower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00196",
+      "en_US": [
+        "A Ribbon awarded for creating\n",
+        "a new legend."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00197",
+      "en_US": [
+        "Pokémon Center Tokyo\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00198",
+      "en_US": [
+        "Pokémon Center Osaka\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00199",
+      "en_US": [
+        "Pokémon Center Nagoya\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00200",
+      "en_US": [
+        "Nintendo World NY\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00201",
+      "en_US": "Summer Holidays Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00202",
+      "en_US": "Winter Holidays Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00203",
+      "en_US": "Spring Holidays Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00204",
+      "en_US": "Evergreen Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00205",
+      "en_US": "Special Holiday Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00206",
+      "en_US": "Hard Worker Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00207",
+      "en_US": "Lots of Friends Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00208",
+      "en_US": "Full of Energy Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00209",
+      "en_US": [
+        "A commemorative Ribbon for a beloved\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00210",
+      "en_US": [
+        "A Ribbon that proclaims love for\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00211",
+      "en_US": [
+        "Pokémon Center Sapporo\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00212",
+      "en_US": [
+        "Pokémon Center Yokohama\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00213",
+      "en_US": [
+        "Pokémon Center Fukuoka\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00214",
+      "en_US": [
+        "Pokémon Fan Club\n",
+        "Special Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00215",
+      "en_US": [
+        "Pokémon Fan Club\n",
+        "Wi-Fi Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00216",
+      "en_US": [
+        "Wi-Fi Global Event\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00217",
+      "en_US": [
+        "Wi-Fi Global Gift\n",
+        "Special Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00218",
+      "en_US": [
+        "Simultaneous Worldwide Gift\n",
+        "Special Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00219",
+      "en_US": [
+        "Pokémon Center Opening\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00220",
+      "en_US": [
+        "Poké Park Opening\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00221",
+      "en_US": "Poké Park Special Ribbon"
+    },
+    {
+      "id": "pl_msg_00000535_00222",
+      "en_US": [
+        "Pokémon Concert\n",
+        "Commemorative Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00223",
+      "en_US": [
+        "Pokémon League 2006\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00224",
+      "en_US": [
+        "Pokémon League 2006\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00225",
+      "en_US": [
+        "Pokémon League 2006\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00226",
+      "en_US": [
+        "Pokémon League 2006\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00227",
+      "en_US": [
+        "Pokémon League 2007\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00228",
+      "en_US": [
+        "Pokémon League 2007\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00229",
+      "en_US": [
+        "Pokémon League 2007\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00230",
+      "en_US": [
+        "Pokémon League 2007\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00231",
+      "en_US": [
+        "Pokémon League 2008\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00232",
+      "en_US": [
+        "Pokémon League 2008\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00233",
+      "en_US": [
+        "Pokémon League 2008\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00234",
+      "en_US": [
+        "Pokémon League 2008\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00235",
+      "en_US": [
+        "Pokémon League 2009\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00236",
+      "en_US": [
+        "Pokémon League 2009\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00237",
+      "en_US": [
+        "Pokémon League 2009\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00238",
+      "en_US": [
+        "Pokémon League 2009\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00239",
+      "en_US": [
+        "Pokémon League 2010\n",
+        "Champion Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00240",
+      "en_US": [
+        "Pokémon League 2010\n",
+        "Runner-up Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00241",
+      "en_US": [
+        "Pokémon League 2010\n",
+        "Semifinalist Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00242",
+      "en_US": [
+        "Pokémon League 2010\n",
+        "Participation Ribbon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00243",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00244",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00245",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00246",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00247",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00248",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00249",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00250",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00251",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00252",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00253",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00254",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00255",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00256",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00257",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00258",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00259",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00260",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00261",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00262",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00263",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00264",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00265",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00266",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00267",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00268",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00269",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00270",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00271",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00272",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00273",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00274",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00275",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00276",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00277",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00278",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00279",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00280",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00281",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00282",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00283",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00284",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00285",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00286",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00287",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00288",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00289",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00290",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00291",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00292",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00293",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00294",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00295",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00296",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00297",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00298",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00299",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00300",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00301",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00302",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00303",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00304",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00305",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00306",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00307",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00308",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00309",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00310",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00311",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00312",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00313",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00314",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00315",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00316",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00317",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00318",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00319",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00320",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00321",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00322",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00323",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00324",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00325",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00326",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00327",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00328",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00329",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00330",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00331",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00332",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00333",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00334",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00335",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00336",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00337",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00338",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00339",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00340",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00341",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00342",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00343",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00344",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00345",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00346",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00347",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00348",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00349",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00350",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00351",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00352",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00353",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00354",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00355",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00356",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00357",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00358",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00359",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00360",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00361",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00362",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00363",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00364",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00365",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00366",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00367",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00368",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00369",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00370",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00371",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00372",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00373",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00374",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00375",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00376",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00377",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00378",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00379",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00380",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00381",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00382",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00383",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00384",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00385",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00386",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00387",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00388",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00389",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00390",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00391",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00392",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00393",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00394",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00395",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00396",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00397",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00398",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00399",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00400",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00401",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000535_00402",
+      "en_US": [
+        "A commemorative Ribbon obtained in\n",
+        "a Mystery Zone."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "key": 32403,
+  "messages": [
+    {
+      "id": "pl_msg_00000516_00000",
+      "en_US": [
+        "...I saw it!\n",
+        "Today’s number is {STRVAR_1 51, 0, 0}!\r",
+        "Show me a Pokémon that’s Lv. {STRVAR_1 51, 0, 0}.\n",
+        "If you can, I’ll reward you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000516_00001",
+      "en_US": [
+        "...I saw it!\n",
+        "Today’s number is {STRVAR_1 51, 0, 0}!\r",
+        "Show me a Pokémon that’s Lv. {STRVAR_1 51, 0, 0}.\n",
+        "If you can, I’ll reward you.\r",
+        "...Oh, now, hunh?!\r",
+        "Your {STRVAR_1 0, 1, 0} is Lv. {STRVAR_1 51, 0, 0}.\n",
+        "Well, I’ll be! How remarkable!\r",
+        "I’ll thank you for that visual treat\n",
+        "with this {STRVAR_1 8, 2, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000516_00002",
+      "en_US": [
+        "Oh? You’ve no room in your Bag.\n",
+        "I’ll hold it, so come back later."
+      ]
+    },
+    {
+      "id": "pl_msg_00000516_00003",
+      "en_US": [
+        "I’ll thank you for that visual treat\n",
+        "with this {STRVAR_1 8, 2, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000516_00004",
+      "en_US": [
+        "High-level Pokémon were once of low\n",
+        "level.\r",
+        "Low-level Pokémon will not remain so,\n",
+        "for they can only grow.\r",
+        "That’s how it goes, youngster.\n",
+        "Come again tomorrow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000516_00005",
+      "en_US": [
+        "Win Items from Me!\r",
+        "Black Belt: Powers up Fighting-type\n",
+        "moves.\r",
+        "Expert Belt: Powers up moves if they\n",
+        "are super effective.\r",
+        "Focus Sash: The bearer avoids\n",
+        "a one-hit KO if its HP is full."
+      ]
+    }
+  ]
+}

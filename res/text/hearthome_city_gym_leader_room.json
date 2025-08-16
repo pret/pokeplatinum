@@ -1,0 +1,84 @@
+{
+  "key": 39291,
+  "messages": [
+    {
+      "id": "pl_msg_00000109_00000",
+      "en_US": [
+        "{SIZE 200}Ohohoho!!{SIZE 100}\r",
+        "Finally, you have arrived!\r",
+        "Since I came to this country, always\n",
+        "I try to learn new things.\r",
+        "They hold Contests in this city?\n",
+        "I say to myself, enfin, I will excel.\r",
+        "That is why I dress this way.\n",
+        "C’est une performance!\r",
+        "Also, I study Pokémon very much.\n",
+        "I have come to be Gym Leader.\r",
+        "And, uh, so it shall be that you\n",
+        "challenge me.\r",
+        "But I shall win.\n",
+        "That is what a Gym Leader does, non?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000109_00001",
+      "en_US": [
+        "I am dumbfounded!\r",
+        "So very, very strong!\n",
+        "You, your Pokémon, so strong!\r",
+        "Your power is admirable!\n",
+        "I shall honor it with this Gym Badge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000109_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Relic Badge from Fantina!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000109_00003",
+      "en_US": [
+        "That Badge will let you use the\n",
+        "hidden move Defog outside of battle.\r",
+        "Also, you can make use of this\n",
+        "Technical Machine.\r",
+        "That is what I think.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000109_00004",
+      "en_US": [
+        "That {STRVAR_1 8, 0, 0}...\n",
+        "It contains {STRVAR_1 6, 1, 0}.\r",
+        "A very startling move it is.\n",
+        "Its hits turn critical often!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000109_00005",
+      "en_US": [
+        "Three Gym Badges...\r",
+        "But you must not forget this.\n",
+        "There are many other Trainers.\r",
+        "Strong Trainers, too.\n",
+        "There are many more in Sinnoh.\r",
+        "Have patience! You must become\n",
+        "stronger, one at a time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000109_00006",
+      "garbage": 35
+    },
+    {
+      "id": "pl_msg_00000109_00007",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000109_00008",
+      "garbage": 15
+    }
+  ]
+}

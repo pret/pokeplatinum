@@ -1,0 +1,31 @@
+{
+  "key": 27313,
+  "messages": [
+    {
+      "id": "pl_msg_00000193_00000",
+      "en_US": [
+        "What items should Pokémon hold?\n",
+        "It’s an important question.\r",
+        "Here’s something else to think about.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000193_00001",
+      "en_US": [
+        "Should one enhance a Pokémon’s strong\n",
+        "point?\r",
+        "Or cover for a weakness instead?\r",
+        "It’s a dilemma that comes up every time\n",
+        "I let a Pokémon hold an item."
+      ]
+    },
+    {
+      "id": "pl_msg_00000193_00002",
+      "en_US": [
+        "An item that guarantees you won’t\n",
+        "ever lose a battle...\r",
+        "They don’t sell anything like that."
+      ]
+    }
+  ]
+}

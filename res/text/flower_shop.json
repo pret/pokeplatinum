@@ -1,0 +1,124 @@
+{
+  "key": 1030,
+  "messages": [
+    {
+      "id": "pl_msg_00000572_00000",
+      "en_US": [
+        "A single Berry will grow into a plant\n",
+        "that makes several Berries.\r",
+        "By planting one, there will be more\n",
+        "and more Berries in the world.\r",
+        "I hope you will help us spread more\n",
+        "Berries everywhere!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000572_00001",
+      "en_US": [
+        "Please plant that Berry in soft,\n",
+        "earthy soil.\r",
+        "If you come by again tomorrow,\n",
+        "I’ll have a different Berry for you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000572_00002",
+      "en_US": [
+        "Trainer, please water Berries using\n",
+        "this Sprayduck watering can.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000572_00003",
+      "en_US": [
+        "Use that Sprayduck to water the soil\n",
+        "where you’ve planted Berries.\r",
+        "You should also water Berry plants\n",
+        "while they are growing."
+      ]
+    },
+    {
+      "id": "FlowerShop_Text_Greet",
+      "en_US": [
+        "Hello!\r",
+        "Would you like to exchange your\n",
+        "Berries for some Accessories?"
+      ]
+    },
+    {
+      "id": "FlowerShop_Text_Thanks",
+      "en_US": [
+        "Thank you so much for trading us so\n",
+        "many Berries!"
+      ]
+    },
+    {
+      "id": "FlowerShop_Text_Purchase",
+      "en_US": "Which Accessory would you like?"
+    },
+    {
+      "id": "FlowerShop_Text_ConfirmPurchase",
+      "en_US": [
+        "Exchange {STRVAR_1 52, 1, 0} {STRVAR_1 8, 0, 0}\n",
+        "for the {STRVAR_1 31, 2, 0}?"
+      ]
+    },
+    {
+      "id": "FlowerShop_Text_PurchaseSuccess",
+      "en_US": "Thank you!"
+    },
+    {
+      "id": "FlowerShop_Text_NotEnoughBerries",
+      "en_US": "You don’t have enough Berries."
+    },
+    {
+      "id": "FlowerShop_Text_CantCarryMoreAccessories",
+      "en_US": [
+        "Oh, you can’t carry any more\n",
+        "than that."
+      ]
+    },
+    {
+      "id": "FlowerShop_Text_PleaseComeAgain",
+      "en_US": "Please come again!"
+    },
+    {
+      "id": "FlowerShop_Text_PurchasePostSuccess",
+      "en_US": [
+        "You got the {STRVAR_1 31, 2, 0} in return\n",
+        "for {STRVAR_1 52, 1, 0} {STRVAR_1 8, 0, 0}."
+      ]
+    },
+    {
+      "id": "FlowerShop_Text_TradedAllAccessories",
+      "en_US": [
+        "Wow! I traded away every single\n",
+        "Accessory I had!"
+      ]
+    },
+    {
+      "id": "FlowerShop_Text_Yes",
+      "en_US": "YES"
+    },
+    {
+      "id": "FlowerShop_Text_No",
+      "en_US": "NO"
+    },
+    {
+      "id": "FlowerShop_Text_BerryNameFormat",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "FlowerShop_Text_NeededBerries",
+      "en_US": "Needed: {STRVAR_1 52, 1, 0} "
+    },
+    {
+      "id": "FlowerShop_Text_BerriesInBag",
+      "en_US": "In Bag: {STRVAR_1 52, 2, 0}"
+    },
+    {
+      "id": "FlowerShop_Text_Exit",
+      "en_US": "EXIT"
+    }
+  ]
+}

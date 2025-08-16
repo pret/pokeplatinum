@@ -1,0 +1,43 @@
+{
+  "key": 54347,
+  "messages": [
+    {
+      "id": "pl_msg_00000284_00000",
+      "en_US": [
+        "The locked doors only open with\n",
+        "a special key.\r",
+        "Now, if I was a comedy relief sort\n",
+        "of bad guy, I’d tell you...\r",
+        "But I really don’t know!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000284_00001",
+      "en_US": [
+        "The door is locked.\n",
+        "A special key is needed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000284_00002",
+      "en_US": [
+        "The door is locked.\n",
+        "A special key is needed.\r",
+        "Use the Galactic Key?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000284_00003",
+      "en_US": "The door opened."
+    },
+    {
+      "id": "pl_msg_00000284_00004",
+      "en_US": [
+        "The Team Galactic credo!\n",
+        "Everything belongs to Team Galactic!\r",
+        "Look beyond the world--space will\n",
+        "become Team Galactic’s!"
+      ]
+    }
+  ]
+}

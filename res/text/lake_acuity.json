@@ -1,0 +1,74 @@
+{
+  "key": 9295,
+  "messages": [
+    {
+      "id": "pl_msg_00000298_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: !\r",
+        "You’re not getting away with this,\n",
+        "Team Galactic!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000298_00001",
+      "en_US": [
+        "Jupiter: Oh?\n",
+        "Are you finished already?\r",
+        "Your Pokémon aren’t bad, but you’re\n",
+        "laughably weak.\r",
+        "You honestly thought you could save\n",
+        "the Pokémon of the lake?\r",
+        "And become the Pokémon Champion?\n",
+        "Dream on, little kid.\r",
+        "But, eww, it’s so cold here.\n",
+        "Let’s go back to the Veilstone HQ.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000298_00002",
+      "en_US": [
+        "Oh? Don’t I know you?\n",
+        "We met in Eterna City.\r",
+        "Listen. Team Galactic is going to do\n",
+        "something huge for everyone’s sake.\r",
+        "That’s why you should keep out of\n",
+        "Team Galactic’s way.\r",
+        "Don’t come whining about poor Pokémon\n",
+        "and other trivial junk like that.\r",
+        "Don’t waste your time coming to our\n",
+        "HQ in Veilstone.\r",
+        "Now, if you’ll excuse me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000298_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...\n",
+        "...\r",
+        "Yeah, that’s right!\r",
+        "I couldn’t do anything against Team\n",
+        "Galactic!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000298_00004",
+      "en_US": [
+        "That Pokémon called UXIE...\n",
+        "It was suffering...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000298_00005",
+      "en_US": [
+        "I’m going to get tougher...\r",
+        "It’s not about winning or losing...\n",
+        "That’s not good enough...\f",
+        "I have to be stronger...\r",
+        "It’s not enough to just want to be the\n",
+        "most powerful Trainer ever...\r",
+        "It takes honest effort...\n",
+        "And a determined heart.\r"
+      ]
+    }
+  ]
+}

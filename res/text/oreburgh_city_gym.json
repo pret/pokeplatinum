@@ -1,0 +1,127 @@
+{
+  "key": 22895,
+  "messages": [
+    {
+      "id": "pl_msg_00000067_00000",
+      "en_US": [
+        "Welcome!\n",
+        "This is the Oreburgh Pokémon Gym!\r",
+        "I’m Roark, the Gym Leader!\r",
+        "I’m but one Trainer who decided to\n",
+        "walk proudly with Rock-type Pokémon!\r",
+        "As the Gym Leader, I need to see\n",
+        "your potential as a Trainer.\r",
+        "And, I’ll need to see the toughness\n",
+        "of the Pokémon that battle with you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00001",
+      "en_US": [
+        "This is embarrassing...\r",
+        "I went and lost to a Trainer who\n",
+        "didn’t have a single Gym Badge...\r",
+        "But that’s tough. You were strong,\n",
+        "and I was weak. That’s all there is.\r",
+        "According to Pokémon League rules,\n",
+        "I have to give you our Gym Badge\f",
+        "since you’ve beaten me, the Leader.\r",
+        "Here’s your official Pokémon League\n",
+        "Coal Badge.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Coal Badge from Roark!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00003",
+      "en_US": [
+        "Having that Coal Badge means your\n",
+        "Pokémon can now use the hidden move\f",
+        "Rock Smash outside of battle.\r",
+        "You should also take this, too.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00004",
+      "en_US": [
+        "That {STRVAR_1 8, 0, 0} contains\n",
+        "the move Stealth Rock.\r",
+        "It’s a move that inflicts damage on\n",
+        "foes that switch into battle.\r",
+        "Incidentally, a TM will teach its move\n",
+        "to a Pokémon instantly.\r",
+        "But a TM will break when you use it,\n",
+        "so make certain you want a Pokémon\f",
+        "to learn that move."
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00005",
+      "en_US": [
+        "In this region of Sinnoh, there are\n",
+        "seven other Gym Leaders.\r",
+        "I should warn you--they’re a lot\n",
+        "tougher than I am!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00006",
+      "en_US": [
+        "Howdy!\n",
+        "How’s it going, Champ-to-be?\r",
+        "That’s what I said to a really\n",
+        "impatient boy earlier, too.\r",
+        "The Gym Leader is a user of\n",
+        "Rock-type Pokémon.\r",
+        "Well, listen. Rock-type Pokémon\n",
+        "really hate water, all right?\r",
+        "They’re also weak to Grass-type\n",
+        "moves.\r",
+        "Gee, they sure have weaknesses!\r",
+        "But don’t think it will be easy.\r",
+        "You don’t get to be a Gym Leader\n",
+        "without covering for weaknesses.\r",
+        "Going after a Rock-type Pokémon\n",
+        "with a Fire-type Pokémon won’t be\f",
+        "easy, either.\r",
+        "That’s all the advice I can give.\n",
+        "Thanks for listening!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00007",
+      "en_US": [
+        "Oh! {STRVAR_1 3, 0, 0}!\n",
+        "You’ve taken care of the Gym Leader!\r",
+        "So, did my advice come in handy\n",
+        "or what?\r",
+        "If my advice was useful, it’d be\n",
+        "great if you’d become my fan!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00008",
+      "en_US": [
+        "Oreburgh City Pokémon Gym\n",
+        "Leader: Roark\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000067_00009",
+      "en_US": [
+        "Oreburgh City Pokémon Gym\n",
+        "Leader: Roark\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 0, 0}\f",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    }
+  ]
+}

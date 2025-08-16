@@ -1,0 +1,152 @@
+{
+  "key": 18231,
+  "messages": [
+    {
+      "id": "pl_msg_00000590_00000",
+      "en_US": [
+        "Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\r",
+        "This! It’s my place!\n",
+        "Drop in, hey?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00001",
+      "en_US": [
+        "The door is shut tight.\n",
+        "“Members Only” is painted on it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}! You\n",
+        "aren’t the only one getting tougher!\r",
+        "I’ll prove it to you!\n",
+        "Let’s go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...!\r",
+        "It’s all right, though.\n",
+        "Keep getting tougher, {STRVAR_1 3, 1, 0}.\r",
+        "The more you do, the tougher my\n",
+        "Pokémon and I get, too.\r",
+        "There’s no end to Pokémon.\n",
+        "That’s what I’m saying, {STRVAR_1 3, 1, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00004",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
+        "How are you doing?\r",
+        "Me? You even need to ask?\n",
+        "Piling up the wins at the Battle Tower!\r",
+        "Huh? My longest winning streak?\n",
+        "What, you’re going to grill me now?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Oh, it’s you,\n",
+        "{STRVAR_1 3, 1, 0}.\r",
+        "Did you battle with everyone?\r",
+        "Don’t you think it’s kind of cool,\n",
+        "though?\r",
+        "When people talk about Pokémon, they\n",
+        "all start smiling!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00006",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...!\n",
+        "Oh, it’s you, {STRVAR_1 3, 1, 0}.\r",
+        "You know, the best Trainers must really\n",
+        "love Pokémon from their heart.\r",
+        "I’m talking about people like the Gym\n",
+        "Leaders, of course.\r",
+        "People like the Tower Tycoon and the\n",
+        "other Frontier Brains, too.\r",
+        "You can tell they love Pokémon when\n",
+        "you’re battling them.\r",
+        "But I’m not conceding anything to\n",
+        "them, or to you!\r",
+        "Because I’m still going to be the\n",
+        "greatest Trainer ever!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00007",
+      "en_US": [
+        "Hey, traveling Trainer.\n",
+        "Is your big Bag full of items?\f",
+        "Or is it full of dreams?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00008",
+      "en_US": [
+        "Trainers who lose at the Battle\n",
+        "Frontier come here to train."
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00009",
+      "en_US": [
+        "I’m taking the Frontier challenges to\n",
+        "score some commemorative prints."
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00010",
+      "en_US": [
+        "I’m a Cameraman, obviously.\r",
+        "Have you seen that TV program,\n",
+        "“Search for the Red GYARADOS!”?\r",
+        "Yeah, that outstanding documentary!\n",
+        "I filmed that!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00011",
+      "en_US": [
+        "I’m a Cameraman, obviously.\r",
+        "“The Eruption of Stark Mountain?\n",
+        "The mystery of the fiery Pokémon\f",
+        "asleep deep in the volcano!”\r",
+        "I was all set to produce that\n",
+        "documentary, but it’s a no go.\r",
+        "There’s not much of a show without\n",
+        "capturing HEATRAN on film.\r",
+        "Oh, well. The world’s a huge place.\n",
+        "There’re plenty of other mysteries!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00012",
+      "en_US": [
+        "I’m a Cameraman, obviously.\r",
+        "“The Eruption of Stark Mountain?\n",
+        "The mystery of the fiery Pokémon\f",
+        "asleep deep in the volcano!”\r",
+        "I’ve had that documentary all mapped\n",
+        "out in my head for a long time...\r",
+        "But I have nothing on film as of yet.\n",
+        "So much for that show.\r",
+        "Oh, well. The world’s a huge place.\n",
+        "There’re plenty of other mysteries!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000590_00013",
+      "en_US": [
+        "Survival Area\n",
+        "Staging Point"
+      ]
+    }
+  ]
+}

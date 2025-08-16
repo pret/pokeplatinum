@@ -1,0 +1,111 @@
+{
+  "key": 13355,
+  "messages": [
+    {
+      "id": "pl_msg_00000140_00000",
+      "en_US": [
+        "Everyone calls me the Pokémon\n",
+        "Move Maniac. I prefer Move Tutor.\r",
+        "I know every move that Pokémon learn\n",
+        "while they’re leveling up, and I can\f",
+        "teach Pokémon those moves.\r",
+        "I can teach a move to a Pokémon\n",
+        "of yours if you’d like.\r",
+        "I’ll do it if you’ll trade me\n",
+        "a Heart Scale.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000140_00001",
+      "en_US": [
+        "Oh! That’s it! That’s an honest-to-\n",
+        "goodness Heart Scale!\r",
+        "Let me guess, you want me to teach\n",
+        "one of your Pokémon a move?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000140_00002",
+      "en_US": [
+        "If any of your Pokémon needs to learn a\n",
+        "move, come back with a Heart Scale."
+      ]
+    },
+    {
+      "id": "pl_msg_00000140_00003",
+      "en_US": "Which Pokémon needs tutoring?\r"
+    },
+    {
+      "id": "pl_msg_00000140_00004",
+      "en_US": "Which move should I teach?\r"
+    },
+    {
+      "id": "pl_msg_00000140_00005",
+      "en_US": [
+        "Sorry...\r",
+        "There isn’t any move I can teach\n",
+        "that Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000140_00006",
+      "en_US": [
+        "Hunh?\r",
+        "Don’t you think it’d be tough for\n",
+        "an Egg to learn a move?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000140_00007",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000140_00008",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000140_00009",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000140_00010",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000140_00011",
+      "garbage": 88
+    },
+    {
+      "id": "pl_msg_00000140_00012",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000140_00013",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000140_00014",
+      "garbage": 22
+    },
+    {
+      "id": "pl_msg_00000140_00015",
+      "garbage": 76
+    },
+    {
+      "id": "pl_msg_00000140_00016",
+      "en_US": [
+        "{STRVAR_1 3, 3, 0} handed over\n",
+        "{STRVAR_1 8, 4, 0} in exchange."
+      ]
+    },
+    {
+      "id": "pl_msg_00000140_00017",
+      "en_US": [
+        "I often go to Solaceon Town for my big\n",
+        "brother.\r",
+        "The newspaper there gives me Heart\n",
+        "Scales for running errands."
+      ]
+    }
+  ]
+}

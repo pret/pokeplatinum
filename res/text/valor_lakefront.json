@@ -1,0 +1,230 @@
+{
+  "key": 18407,
+  "messages": [
+    {
+      "id": "pl_msg_00000401_00000",
+      "en_US": [
+        "...Pant...pant...\r",
+        "...Why am I running like this anyway?!\r",
+        "That new world...\n",
+        "The new universe that our boss was\f",
+        "talking about...\r",
+        "It’s making me giddy thinking about it...\n",
+        "When we use this thing...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00001",
+      "en_US": [
+        "Gweh! You were eavesdropping!\n",
+        "I was only talking to myself!\r",
+        "You’re persistent, too...\n",
+        "I’m pooped out from all the running...\r",
+        "But, I’m not...\n",
+        "Going to battle you...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00002",
+      "en_US": [
+        "Aww, no...\n",
+        "You’re still on my tail...?\f",
+        "The lake’s within sight...\r",
+        "You leave me no choice...\n",
+        "My Pokémon will KO you...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00003",
+      "en_US": [
+        "I can’t battle anymore...\n",
+        "I’m running on fumes...\r",
+        "I’ll have to give this to the\n",
+        "Commander...\r",
+        "I wish...\n",
+        "I got to use it at the lake...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00004",
+      "en_US": [
+        "Cynthia: Oh, hello, long time no see!\n",
+        "How is your Pokédex filling up?\r",
+        "I came to research the folklore\n",
+        "about the lake, but...\r",
+        "Well, it doesn’t appear as if the\n",
+        "lake is open to the public now.\r",
+        "Have you heard the folklore about it?\r",
+        "They say there is an island inside\n",
+        "the lake.\r",
+        "And inside that island is a mirage\n",
+        "of a Pokémon.\r",
+        "No one must enter the chamber\n",
+        "of that Pokémon...\r",
+        "Oh, that’s right! I had to talk to you\n",
+        "about something else...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00005",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}: Hey, {STRVAR_1 3, 0, 0}!\n",
+        "Where’d that Galactic goon run off to?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00006",
+      "en_US": [
+        "Huh?\n",
+        "Is this your older sister?\r",
+        "No? She isn’t?\n",
+        "Oh, OK.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00007",
+      "en_US": [
+        "That explosion in the Great Marsh?\n",
+        "It wasn’t anything serious.\r",
+        "Mr. Wake told me to tell you that.\r",
+        "But that Team Galactic... Wow! Are they\n",
+        "out of control or what?\r",
+        "Next time I see them, I’ll teach them\n",
+        "a lesson they won’t forget!\r",
+        "See you around!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00008",
+      "en_US": [
+        "Cynthia: He’s your friend?\r",
+        "He’s more impatient than he is\n",
+        "energetic, isn’t he?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00009",
+      "en_US": [
+        "Cynthia: So, getting back to what I\n",
+        "started saying earlier...\r",
+        "Have you seen the group of PSYDUCK\n",
+        "on Route 210?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00010",
+      "en_US": [
+        "Cynthia: Yes, that’s right.\n",
+        "By the café on Route 210.\r",
+        "You’ve seen that group of PSYDUCK\n",
+        "huddled with their heads in their,\f",
+        "uh, hands...?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00011",
+      "en_US": [
+        "Cynthia: You haven’t seen them?\n",
+        "By the café on Route 210.\r",
+        "There’s a group of PSYDUCK huddled\n",
+        "with their heads in their, uh,\f",
+        "hands...?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00012",
+      "en_US": [
+        "Anyway, what you should do is use\n",
+        "this medicine on the PSYDUCK.\r",
+        "You’re working on a Pokédex, so it\n",
+        "would be worthwhile for you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00013",
+      "en_US": [
+        "Cynthia: I went on a big adventure\n",
+        "with a Pokédex when I was younger.\r",
+        "I hope you get to meet every kind\n",
+        "of Pokémon there is to see.\r",
+        "It may help you with the secret of\n",
+        "the mirage Pokémon.\r",
+        "See you later!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00014",
+      "en_US": [
+        "They say there’s a legendary Pokémon\n",
+        "in this lake.\r",
+        "I aim to capture it on film like I’ve\n",
+        "done before.\r",
+        "It was me who filmed that red GYARADOS\n",
+        "at Lake of Rage."
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00015",
+      "en_US": [
+        "The Pokémon of the lake won’t come out\n",
+        "if it senses people.\r",
+        "We’re lying in ambush for it here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00016",
+      "en_US": [
+        "Stop, stop!\n",
+        "Yes, you!\r",
+        "Sunyshore City, which is down this\n",
+        "road, had a major blackout!\r",
+        "Crews are working on restoring\n",
+        "power, but the road’s closed now.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00017",
+      "en_US": [
+        "Stop, stop!\n",
+        "Yes, you!\r",
+        "Sunyshore City, which is down this\n",
+        "road, had a major blackout!\r",
+        "Crews are working on restoring\n",
+        "power, but the road’s closed now."
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00018",
+      "en_US": [
+        "What am I to do...?\r",
+        "I’ve gone and dropped my Suite\n",
+        "Key somewhere again...\r",
+        "The hotel people won’t be happy with\n",
+        "me...\r",
+        "I’m sure I had it when I left the\n",
+        "reception counter earlier...\r",
+        "If I only had the Pokétch app Dowsing\n",
+        "Machine, it would be so easy to find..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00019",
+      "en_US": [
+        "What am I to do...?\r",
+        "I’ve gone and dropped my Suite\n",
+        "Key somewhere again...\r",
+        "Oh!\n",
+        "That’s my Suite Key!\r",
+        "You found it for me?\n",
+        "Oh, that’s sweet of you! Thank you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000401_00020",
+      "en_US": [
+        "Seven Stars Restaurant\n",
+        "More Flavor Than You Can Wish For"
+      ]
+    }
+  ]
+}

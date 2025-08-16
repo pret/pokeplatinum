@@ -1,0 +1,151 @@
+{
+  "key": 52138,
+  "messages": [
+    {
+      "id": "pl_msg_00000302_00000",
+      "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
+    },
+    {
+      "id": "pl_msg_00000302_00001",
+      "en_US": "What the...\r"
+    },
+    {
+      "id": "pl_msg_00000302_00002",
+      "en_US": [
+        "Whoops, sorry about that!\n",
+        "I was in a rush.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00003",
+      "en_US": [
+        "Oh, wait a second...\n",
+        "Aren’t you...\r",
+        "You’re {STRVAR_1 3, 1, 0} from Twinleaf!\n",
+        "Wow, that brings back memories!\r",
+        "So, if you’re here, he can’t be far\n",
+        "behind...\r",
+        "This should be fun.\n",
+        "See you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00004",
+      "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
+    },
+    {
+      "id": "pl_msg_00000302_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What the...\r",
+        "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
+        "You came to the Battle Tower too,\n",
+        "huh?\r",
+        "I decided I’ll see how I measure up\n",
+        "before going to Stark Mountain.\r",
+        "But that guy you were just talking\n",
+        "to...\r",
+        "...Nah, it’s all right!\n",
+        "I got here on my own power.\f",
+        "It won’t take long before I see him.\r",
+        "See ya, {STRVAR_1 3, 1, 0}!\n",
+        "I’m going to toughen up here!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00006",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What the...\r",
+        "Oh, hey, {STRVAR_1 3, 1, 0}!\r",
+        "You came to the Battle Tower too,\n",
+        "huh?\r",
+        "I decided I’ll see how I measure up\n",
+        "for my quest to be the greatest!\r",
+        "But that guy you were just talking\n",
+        "to...\r",
+        "...Nah, it’s all right!\n",
+        "I got here on my own power.\f",
+        "It won’t take long before I see him.\r",
+        "See ya, {STRVAR_1 3, 1, 0}!\n",
+        "I’m going to toughen up here!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00007",
+      "en_US": [
+        "Exchange Service Corner\n",
+        "A Cornucopia of Fabulous Prizes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00008",
+      "en_US": [
+        "Battle Tower\n",
+        "Gather, All Ye Greatest!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00009",
+      "en_US": [
+        "In the Battle Rooms, the seventh\n",
+        "Trainer you face is the room’s boss.\r",
+        "You’ll need to stay focused if you\n",
+        "want to win!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00010",
+      "en_US": [
+        "If you get a big win streak at the\n",
+        "Battle Tower, you get to battle\f",
+        "some real superstars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00011",
+      "en_US": [
+        "Mwahahaha! We earned a lot of BP\n",
+        "at the Battle Tower.\r",
+        "Now I can exchange them for\n",
+        "loads of prizes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00012",
+      "en_US": "Aah."
+    },
+    {
+      "id": "pl_msg_00000302_00013",
+      "en_US": [
+        "I’m a babysitting Trainer!\r",
+        "I’m off to the Multi Battle Rooms\n",
+        "with my beloved son!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00014",
+      "en_US": [
+        "I heard that the world’s best\n",
+        "gather here for battles.\r",
+        "This is my chance to get global\n",
+        "fame and recognition!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00015",
+      "en_US": [
+        "The types of Pokémon!\r",
+        "The moves to be taught and used!\r",
+        "The items to be held!\r",
+        "To become number one here, there is \n",
+        "no detail that can be overlooked!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000302_00016",
+      "en_US": [
+        "I’d love to hook up with a Beauty\n",
+        "for the Multi Battle Rooms."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "key": 54323,
+  "messages": [
+    {
+      "id": "pl_msg_00000173_00000",
+      "en_US": [
+        "That glaringly bright and cool thing\n",
+        "you have!\r",
+        "It’s undoubtedly a Pokétch!\n",
+        "The latest model, no less!\r",
+        "They’re awesome, yeah?\r",
+        "I got OK’d by the Pokétch Company\n",
+        "to develop original Pokétch apps.\r",
+        "Hey, you’re a Trainer, right?\n",
+        "Can you do me a favor?\r",
+        "You’ve got Pokémon with different\n",
+        "natures, right? May I see them?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000173_00001",
+      "en_US": [
+        "What am I in the mood to see now...\r",
+        "I’d like to see a Pokémon with\n",
+        "a Serious nature."
+      ]
+    },
+    {
+      "id": "pl_msg_00000173_00002",
+      "en_US": [
+        "What am I in the mood to see now...\r",
+        "I’d like to see a Pokémon with\n",
+        "a Naive nature."
+      ]
+    },
+    {
+      "id": "pl_msg_00000173_00003",
+      "en_US": [
+        "What am I in the mood to see now...\r",
+        "I’d like to see a Pokémon with\n",
+        "a Quirky nature."
+      ]
+    },
+    {
+      "id": "pl_msg_00000173_00004",
+      "en_US": [
+        "Yep! Your {STRVAR_1 0, 0, 0} has\n",
+        "a Serious nature all right!\r",
+        "Thanks! I’ll give you this\n",
+        "Calendar app for your Pokétch.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000173_00005",
+      "en_US": [
+        "Yep! Your {STRVAR_1 0, 0, 0} has\n",
+        "a Naive nature all right!\r",
+        "Thanks! I’ll give you this\n",
+        "Dot Artist app for your Pokétch.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000173_00006",
+      "en_US": [
+        "Yep! Your {STRVAR_1 0, 0, 0} has\n",
+        "a Quirky nature all right!\r",
+        "Thanks! I’ll give you this\n",
+        "Roulette app for your Pokétch.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000173_00007",
+      "en_US": [
+        "Someday, Pokétch apps may outnumber\n",
+        "all the species of Pokémon."
+      ]
+    }
+  ]
+}

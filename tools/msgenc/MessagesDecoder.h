@@ -19,6 +19,7 @@ class MessagesDecoder : public MessagesConverter
     void ReadMessagesFromBin(string& filename);
     void WriteMessagesToText(string& filename);
     void WriteMessagesToGMM(string& filename);
+    void WriteMessagesToJson(string& filename);
     template <typename T> void WriteBinaryFile(string& filename, T& data);
     static u16string DecodeTrainerNameMessage(u16string const &message);
     string DecodeMessage(u16string& message, int& i);

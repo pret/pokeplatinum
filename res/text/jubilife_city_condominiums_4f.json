@@ -1,0 +1,24 @@
+{
+  "key": 50230,
+  "messages": [
+    {
+      "id": "pl_msg_00000045_00000",
+      "en_US": [
+        "You managed to come out here?\n",
+        "That takes focus!\r",
+        "For someone like you, this\n",
+        "{STRVAR_1 8, 0, 0} might be perfect.\r",
+        "Let a Pokémon hold it, yah?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000045_00001",
+      "en_US": [
+        "There are items that are useful only\n",
+        "when they’re held by Pokémon.\r",
+        "Try finding other items like that\n",
+        "and spice up your adventure!"
+      ]
+    }
+  ]
+}

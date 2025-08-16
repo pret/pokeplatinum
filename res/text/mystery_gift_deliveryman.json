@@ -1,0 +1,167 @@
+{
+  "key": 45872,
+  "messages": [
+    {
+      "id": "MysteryGiftDeliveryman_Text_MorningGreeting",
+      "en_US": [
+        "Good morning. You must be\n",
+        "{STRVAR_1 3, 0, 0}.\r",
+        "I’ve received a gift for you.\n",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_MiddayGreeting",
+      "en_US": [
+        "Good day. You must be\n",
+        "{STRVAR_1 3, 0, 0}.\r",
+        "I’ve received a gift for you.\n",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_EveningGreeting",
+      "en_US": [
+        "Good evening. You must be\n",
+        "{STRVAR_1 3, 0, 0}.\r",
+        "I’ve received a gift for you.\n",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_NoMoreGifts",
+      "en_US": [
+        "I haven’t received any other gifts\n",
+        "for you.\r",
+        "We look forward to your next visit."
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_CannotGivePokemon_PartyFull",
+      "en_US": [
+        "Your party is full, I’m afraid.\n",
+        "I can’t give this to you yet."
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_CannotGiveItem_HaveTooMany",
+      "en_US": [
+        "Another {STRVAR_1 8, 0, 0}? You already\n",
+        "have too many to accept any more."
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_MakeRoomForDecorationGoods",
+      "en_US": [
+        "To accept this, you need to make\n",
+        "room for decoration goods."
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedPokemon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "{COLOR 101}{STRVAR_1 0, 1, 0}{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedPokemonEgg",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "a {COLOR 1}Pokémon Egg{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedItem",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the gift {COLOR 1}{STRVAR_1 8, 1, 0}{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedRules",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received the\n",
+        "{COLOR 1}{STRVAR_1 26, 1, 0} Rules{COLOR 0}.\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedDecorationGood",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the gift {COLOR 1}{STRVAR_1 10, 1, 0}{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedCosmetics",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the gift {COLOR 1}{STRVAR_1 31, 1, 0}{COLOR 0}.\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedManaphyEgg",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the {COLOR 1}MANAPHY Egg{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedMemberCard",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "a {COLOR 1}Member’s Card{COLOR 0}.\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedOaksLetter",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "{COLOR 1}Oak’s Letter{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedAzureFlute",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "an {COLOR 1}Azure Flute{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedSecretKey",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "a {COLOR 1}Secret Key{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_LookForwardNextVisit",
+      "en_US": "We look forward to your next visit."
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_ReceivedPoketchApp",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received the Pokétch\n",
+        "app {COLOR 1}{STRVAR_1 24, 1, 0}{COLOR 0}!\r"
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_HaventObtainedPoketch",
+      "en_US": [
+        "...Uh-oh. {STRVAR_1 3, 0, 0}, you haven’t\n",
+        "obtained a Pokétch yet.\r",
+        "I can’t give you this app if you don’t\n",
+        "have a Pokétch."
+      ]
+    },
+    {
+      "id": "MysteryGiftDeliveryman_Text_WasAwardedRibbon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} was awarded\n",
+        "the {COLOR 1}{STRVAR_1 39, 1, 0}{COLOR 0}!\r",
+        "The {STRVAR_1 39, 1, 0}\n",
+        "was given to {STRVAR_1 1, 2, 0}.\r"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "key": 37906,
+  "messages": [
+    {
+      "id": "pl_msg_00000097_00000",
+      "en_US": [
+        "Hello, hello!\n",
+        "I am the official Name Rater!\r",
+        "Want me to rate the nicknames of\n",
+        "your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00001",
+      "en_US": [
+        "Which Pokémon’s nickname should\n",
+        "I critique?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00002",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}, is it?\n",
+        "That’s a decent nickname!\r",
+        "But would you like to give it\n",
+        "an even better name?\r",
+        "How about it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00003",
+      "en_US": [
+        "Ah, good. Then, what shall the new\n",
+        "nickname be?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00004",
+      "en_US": [
+        "Done! From now on, this Pokémon\n",
+        "shall be known as {STRVAR_1 1, 0, 0}!\r",
+        "It is a better name than before!\n",
+        "How fortunate for you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00005",
+      "en_US": [
+        "I see.\n",
+        "Please come visit again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00006",
+      "en_US": [
+        "Done! From now on, this Pokémon\n",
+        "shall be known as {STRVAR_1 1, 0, 0}!\r",
+        "It looks no different from before,\n",
+        "and yet, this is vastly superior!\r",
+        "How fortunate for you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00007",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}, is it?\n",
+        "That is a truly impeccable name!\r",
+        "Take good care of {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00008",
+      "en_US": [
+        "Now, now. That is merely an Egg!\n",
+        "An Egg can go by no other name!\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00009",
+      "en_US": [
+        "Excuse me, but do you got that\n",
+        "Pokémon named BUIZEL?\r",
+        "Wanna trade it for my CHATOT?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00010",
+      "en_US": [
+        "Yes! So awesome! A BUIZEL!\n",
+        "I so promise I’ll be good to it!\r",
+        "Oh yeah, CHATOT can learn some human\n",
+        "speech pretty quickly.\r",
+        "Try out its move Chatter.\n",
+        "You’ll totally see what I mean."
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00011",
+      "en_US": "What I totally want is a BUIZEL..."
+    },
+    {
+      "id": "pl_msg_00000097_00012",
+      "en_US": [
+        "Oh, OK. Totally got it.\n",
+        "It’s all right if you don’t want to.\r",
+        "But if you change your mind,\n",
+        "let’s totally trade some Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00013",
+      "en_US": [
+        "Did that CHATOT I traded you totally\n",
+        "learn that Chatter move?\r",
+        "It will mimic your speech if you use\n",
+        "that move outside of battle.\r",
+        "It’ll forget any speech you taught it\n",
+        "if you stick it in a PC Box, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00014",
+      "en_US": [
+        "Hi! I’m the building superintendent.\n",
+        "I maintain a vigilant 24-hour watch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000097_00015",
+      "en_US": [
+        "I’m...building...superintendent...\n",
+        "...maintain...24-hour watch... Zzz..."
+      ]
+    }
+  ]
+}

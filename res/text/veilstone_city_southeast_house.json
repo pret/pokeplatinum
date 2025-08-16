@@ -1,0 +1,55 @@
+{
+  "key": 42018,
+  "messages": [
+    {
+      "id": "pl_msg_00000157_00000",
+      "en_US": [
+        "You there.\n",
+        "Watch this Coin.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000157_00001",
+      "en_US": "Spin, spin, spin, spin, spin...\r"
+    },
+    {
+      "id": "pl_msg_00000157_00002",
+      "en_US": [
+        "Now, which hand is that Coin in?\n",
+        "My left or right?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000157_00003",
+      "en_US": [
+        "Boo! Poor show!\n",
+        "I challenge you to challenge it again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000157_00004",
+      "en_US": [
+        "Bravo!\n",
+        "A winner is you!\r",
+        "For our winner, I have here...\n",
+        "A Coin Case!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000157_00005",
+      "en_US": [
+        "Me, I am but a tearful clown.\n",
+        "Though I smile, I cry inside."
+      ]
+    },
+    {
+      "id": "pl_msg_00000157_00006",
+      "en_US": [
+        "There are many magicians in the world.\n",
+        "You know, the performance artists?\r",
+        "Don’t you think that maybe, say,\n",
+        "five percent are actually psychics?"
+      ]
+    }
+  ]
+}

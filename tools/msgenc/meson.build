@@ -8,11 +8,20 @@ msgenc_exe = executable('msgenc',
         'MessagesDecoder.cpp',
         'MessagesEncoder.cpp',
         'Gmm.cpp',
+        'Json.cpp',
         'pugixml.cpp'
     ],
     cpp_args: [
         '-DNDEBUG',
-        '-std=c++17'
+        '-g',
+        '-std=c++17',
+        '-Wall',
+        '-Wextra',
+        '-Wpedantic',
+        '-Wno-unused-parameter',
     ],
-    native: true
+    native: true,
+    dependencies: [
+        rapidjson_dep,
+    ]
 )

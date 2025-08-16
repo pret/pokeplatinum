@@ -1,0 +1,22 @@
+{
+  "key": 7923,
+  "messages": [
+    {
+      "id": "pl_msg_00000509_00000",
+      "en_US": [
+        "...A person...?\n",
+        "...A rare sight...\r",
+        "...Thank you for visiting...\n",
+        "...A gift...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000509_00001",
+      "en_US": [
+        "...The Spell Tag...\n",
+        "It intensifies Ghost-type moves...\f",
+        "May it serve you well..."
+      ]
+    }
+  ]
+}

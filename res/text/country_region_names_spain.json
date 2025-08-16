@@ -1,0 +1,77 @@
+{
+  "key": 1513,
+  "messages": [
+    {
+      "id": "pl_msg_00000682_00000",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000682_00001",
+      "en_US": "Andalucia"
+    },
+    {
+      "id": "pl_msg_00000682_00002",
+      "en_US": "Aragon"
+    },
+    {
+      "id": "pl_msg_00000682_00003",
+      "en_US": "Asturias "
+    },
+    {
+      "id": "pl_msg_00000682_00004",
+      "en_US": "Islas Baleares"
+    },
+    {
+      "id": "pl_msg_00000682_00005",
+      "en_US": "Pais Vasco"
+    },
+    {
+      "id": "pl_msg_00000682_00006",
+      "en_US": "Islas Canarias"
+    },
+    {
+      "id": "pl_msg_00000682_00007",
+      "en_US": "Cantabria"
+    },
+    {
+      "id": "pl_msg_00000682_00008",
+      "en_US": "Castilla-La Mancha"
+    },
+    {
+      "id": "pl_msg_00000682_00009",
+      "en_US": "Castilla Leon"
+    },
+    {
+      "id": "pl_msg_00000682_00010",
+      "en_US": "Cataluna"
+    },
+    {
+      "id": "pl_msg_00000682_00011",
+      "en_US": "Extremadura"
+    },
+    {
+      "id": "pl_msg_00000682_00012",
+      "en_US": "Galicia"
+    },
+    {
+      "id": "pl_msg_00000682_00013",
+      "en_US": "Madrid"
+    },
+    {
+      "id": "pl_msg_00000682_00014",
+      "en_US": "Murcia"
+    },
+    {
+      "id": "pl_msg_00000682_00015",
+      "en_US": "Navarra"
+    },
+    {
+      "id": "pl_msg_00000682_00016",
+      "en_US": "La Rioja"
+    },
+    {
+      "id": "pl_msg_00000682_00017",
+      "en_US": "Comunidad Valenciana "
+    }
+  ]
+}

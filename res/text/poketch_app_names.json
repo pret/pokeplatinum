@@ -1,0 +1,105 @@
+{
+  "key": 25271,
+  "messages": [
+    {
+      "id": "pl_msg_00000457_00000",
+      "en_US": "DIGITAL WATCH"
+    },
+    {
+      "id": "pl_msg_00000457_00001",
+      "en_US": "CALCULATOR"
+    },
+    {
+      "id": "pl_msg_00000457_00002",
+      "en_US": "MEMO PAD"
+    },
+    {
+      "id": "pl_msg_00000457_00003",
+      "en_US": "PEDOMETER"
+    },
+    {
+      "id": "pl_msg_00000457_00004",
+      "en_US": "POKéMON LIST"
+    },
+    {
+      "id": "pl_msg_00000457_00005",
+      "en_US": "FRIENDSHIP CHECKER"
+    },
+    {
+      "id": "pl_msg_00000457_00006",
+      "en_US": "DOWSING MACHINE"
+    },
+    {
+      "id": "pl_msg_00000457_00007",
+      "en_US": "BERRY SEARCHER"
+    },
+    {
+      "id": "pl_msg_00000457_00008",
+      "en_US": "DAY-CARE CHECKER"
+    },
+    {
+      "id": "pl_msg_00000457_00009",
+      "en_US": "POKéMON HISTORY"
+    },
+    {
+      "id": "pl_msg_00000457_00010",
+      "en_US": "COUNTER"
+    },
+    {
+      "id": "pl_msg_00000457_00011",
+      "en_US": "ANALOG WATCH"
+    },
+    {
+      "id": "pl_msg_00000457_00012",
+      "en_US": "MARKING MAP"
+    },
+    {
+      "id": "pl_msg_00000457_00013",
+      "en_US": "LINK SEARCHER"
+    },
+    {
+      "id": "pl_msg_00000457_00014",
+      "en_US": "COIN TOSS"
+    },
+    {
+      "id": "pl_msg_00000457_00015",
+      "en_US": "MOVE TESTER"
+    },
+    {
+      "id": "pl_msg_00000457_00016",
+      "en_US": "CALENDAR"
+    },
+    {
+      "id": "pl_msg_00000457_00017",
+      "en_US": "DOT ARTIST"
+    },
+    {
+      "id": "pl_msg_00000457_00018",
+      "en_US": "ROULETTE"
+    },
+    {
+      "id": "pl_msg_00000457_00019",
+      "en_US": "TRAINER COUNTER"
+    },
+    {
+      "id": "pl_msg_00000457_00020",
+      "en_US": "KITCHEN TIMER"
+    },
+    {
+      "id": "pl_msg_00000457_00021",
+      "en_US": "COLOR CHANGER"
+    },
+    {
+      "id": "pl_msg_00000457_00022",
+      "en_US": "MATCHUP CHECKER"
+    },
+    {
+      "id": "pl_msg_00000457_00023",
+      "en_US": "STOPWATCH"
+    },
+    {
+      "id": "pl_msg_00000457_00024",
+      "en_US": "ALARM CLOCK"
+    }
+  ]
+}

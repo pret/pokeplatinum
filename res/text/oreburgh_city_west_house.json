@@ -1,0 +1,29 @@
+{
+  "key": 58402,
+  "messages": [
+    {
+      "id": "pl_msg_00000080_00000",
+      "en_US": [
+        "Have you ever seen or heard about\n",
+        "differently colored Pokémon?\r",
+        "For instance, a regular PIKACHU has\n",
+        "a yellow body, correct?\r",
+        "Well, the different-colored PIKACHU\n",
+        "has a sort of orange body."
+      ]
+    },
+    {
+      "id": "pl_msg_00000080_00001",
+      "en_US": [
+        "You know how Pokémon have different\n",
+        "natures like we have personalities?\r",
+        "I don’t think it’s surprising to see\n",
+        "Pokémon in different colors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000080_00002",
+      "en_US": "PIKACHU: Pikaaah!"
+    }
+  ]
+}

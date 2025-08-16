@@ -1,0 +1,214 @@
+{
+  "key": 21180,
+  "messages": [
+    {
+      "id": "pl_msg_00000492_00000",
+      "en_US": [
+        "Backlot: Hello, hello!\n",
+        "Welcome to my opulent mansion!\r",
+        "There’s a lot for me to be proud of\n",
+        "inside, and outside, of this home...\r",
+        "But what makes me the most proud is\n",
+        "my trophy garden in the back!\r",
+        "Why bother traveling afar when\n",
+        "Pokémon are attracted by my garden?\r",
+        "They come to me in hopes of seeing\n",
+        "the garden!\r",
+        "You’re welcome to join them and\n",
+        "marvel at my garden!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00001",
+      "garbage": 124
+    },
+    {
+      "id": "pl_msg_00000492_00002",
+      "garbage": 118
+    },
+    {
+      "id": "pl_msg_00000492_00003",
+      "en_US": [
+        "Backlot: Er-hem!\r",
+        "There’s a lot for me to be proud of\n",
+        "inside, and outside, of this home...\r",
+        "But what makes me the most proud is\n",
+        "my trophy garden in the back!\r",
+        "Why bother traveling afar when\n",
+        "Pokémon are attracted by my garden?\r",
+        "They come to me in hopes of seeing\n",
+        "the garden!\r",
+        "Well, doesn’t that make you envious?\n",
+        "You are envious, yes?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00004",
+      "en_US": [
+        "I know you’re really envious...\n",
+        "You’re not fooling anyone..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00005",
+      "en_US": [
+        "Backlot: Muhohoho... I bet you are!\n",
+        "I knew you would be!\r",
+        "But I don’t mind! I enjoy sharing\n",
+        "my stories with you!\r",
+        "So! When I go out into my prized trophy\n",
+        "garden, Pokémon come running to me.\r",
+        "They sidle up, as happy as they can\n",
+        "be to see me!\r",
+        "Well? Doesn’t that make you envious?\n",
+        "You are envious, yes?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00006",
+      "en_US": [
+        "Backlot: Muhohoho... I bet you are!\n",
+        "I knew you would be!\r",
+        "But I don’t mind! I enjoy sharing\n",
+        "my stories with you!\r",
+        "So! This is what happened this morning\n",
+        "when I went into my trophy garden.\r",
+        "I noticed a cute-eyed {STRVAR_1 0, 0, 0},\n",
+        "which joyously ran over to me.\r",
+        "The {STRVAR_1 0, 0, 0} ran up and gave me\n",
+        "a smooch on my cheek...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00007",
+      "en_US": [
+        "Butler: M-Master!\n",
+        "Th-that Pokémon you mentioned...\f",
+        "It doesn’t exist in the garden...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00008",
+      "en_US": [
+        "Backlot: Wha...\r",
+        "Erm...\r",
+        "Wh-what are you saying?\n",
+        "I’m no blowhard!\r",
+        "Listen... Mutter, mutter...\n",
+        "Whisper, whisper...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00009",
+      "en_US": [
+        "Butler: Yes, Master!\n",
+        "Right away, sir!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00010",
+      "en_US": [
+        "Backlot: ...It’s true, I tell you!\n",
+        "No lies ever leave these lips!\r",
+        "There really are cute {STRVAR_1 0, 0, 0}\n",
+        "in my trophy garden! Honest truth!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00011",
+      "en_US": [
+        "Butler: Master is a truly wonderful\n",
+        "and generous person!\r",
+        "It’s on his orders that the garden,\n",
+        "his pride and joy, is open to all,\f",
+        "even Trainers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00012",
+      "en_US": [
+        "Butler: Master actually quite enjoys\n",
+        "showing his prized garden to strong\f",
+        "Trainers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00013",
+      "en_US": [
+        "Butler: Master took a stroll in his\n",
+        "trophy garden today, like usual."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00014",
+      "en_US": [
+        "Butler: Did you see them? There were\n",
+        "some {STRVAR_1 0, 0, 0}, weren’t there?\r",
+        "But that’s only to be expected.\n",
+        "It’s Master’s trophy garden."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00015",
+      "en_US": [
+        "Butler: How do you find it? Master’s\n",
+        "upgraded trophy garden, I mean.\r",
+        "You did notice the influx of quite\n",
+        "rare Pokémon, yes?\r",
+        "But that’s only to be expected.\n",
+        "It’s Master’s trophy garden."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00016",
+      "en_US": [
+        "You may look, but please refrain from\n",
+        "touching this Pokémon statue."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00017",
+      "en_US": [
+        "I’m very sorry. But please refrain\n",
+        "from touching this statue.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00018",
+      "en_US": [
+        "It’s a very expensive-looking Pokémon\n",
+        "statue...\r",
+        "...!\n",
+        "You got fingerprints on it..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00019",
+      "en_US": [
+        "It’s a very expensive-looking book\n",
+        "on Pokémon.\r",
+        "Would you like to read it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00020",
+      "en_US": [
+        "MANAPHY\r",
+        "An extremely rare Pokémon that has\n",
+        "never been seen, let alone captured,\f",
+        "in Sinnoh.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00021",
+      "en_US": [
+        "Information on MANAPHY was added to\n",
+        "the Pokédex."
+      ]
+    },
+    {
+      "id": "pl_msg_00000492_00022",
+      "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    }
+  ]
+}

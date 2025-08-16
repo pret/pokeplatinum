@@ -1,0 +1,50 @@
+{
+  "key": 39556,
+  "messages": [
+    {
+      "id": "pl_msg_00000507_00000",
+      "en_US": "Maylene: Oh, {STRVAR_1 3, 0, 0}!\r"
+    },
+    {
+      "id": "pl_msg_00000507_00001",
+      "en_US": [
+        "Um, are you maybe on your way to\n",
+        "Snowpoint City?\r",
+        "That’s where I’m going, too.\r",
+        "If I use Fly, I can get there instantly,\n",
+        "but I’m walking for my training.\r",
+        "I have no problem with this.\r",
+        "I’m used to the cold because I go\n",
+        "barefoot and lightly dressed.\r",
+        "...Achoo!\r",
+        "Oh, that was nothing.\n",
+        "Really, I’m not cold at all.\r",
+        "I’ll be going now.\n",
+        "Please take care!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000507_00002",
+      "en_US": [
+        "I’m using the Dowsing Machine on\n",
+        "my Pokétch.\r",
+        "I’m looking for things buried under\n",
+        "the snow."
+      ]
+    },
+    {
+      "id": "pl_msg_00000507_00003",
+      "en_US": [
+        "The boulder is encrusted with ice.\n",
+        "It is bone chilling to touch."
+      ]
+    },
+    {
+      "id": "pl_msg_00000507_00004",
+      "en_US": [
+        "Rt. 217\n",
+        "Lake Acuity"
+      ]
+    }
+  ]
+}

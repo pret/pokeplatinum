@@ -1,0 +1,25 @@
+{
+  "key": 52112,
+  "messages": [
+    {
+      "id": "pl_msg_00000163_00000",
+      "en_US": [
+        "I’ve heard about Victory Road, which\n",
+        "leads to the Pokémon League.\r",
+        "The word is the road is harsh and\n",
+        "harrowing.\r",
+        "I’d better load up on as many items\n",
+        "and as much medicine as I can carry..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000163_00001",
+      "en_US": [
+        "I shall buy Seals for decorating Poké\n",
+        "Balls at the Sunyshore Market.\r",
+        "Using those Seals in a cool way will be\n",
+        "sure to impress my Pokémon!"
+      ]
+    }
+  ]
+}

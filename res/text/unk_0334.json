@@ -1,0 +1,97 @@
+{
+  "key": 28283,
+  "messages": [
+    {
+      "id": "pl_msg_00000334_00000",
+      "en_US": "Can’t be seen"
+    },
+    {
+      "id": "pl_msg_00000334_00001",
+      "en_US": "Close"
+    },
+    {
+      "id": "pl_msg_00000334_00002",
+      "en_US": "Town Map"
+    },
+    {
+      "id": "pl_msg_00000334_00003",
+      "en_US": "TMapNrm"
+    },
+    {
+      "id": "pl_msg_00000334_00004",
+      "en_US": "TMapJump"
+    },
+    {
+      "id": "pl_msg_00000334_00005",
+      "en_US": "TMapBG"
+    },
+    {
+      "id": "pl_msg_00000334_00006",
+      "en_US": "Mail"
+    },
+    {
+      "id": "pl_msg_00000334_00007",
+      "en_US": "Create"
+    },
+    {
+      "id": "pl_msg_00000334_00008",
+      "en_US": "Look"
+    },
+    {
+      "id": "pl_msg_00000334_00009",
+      "en_US": "Poffin Case"
+    },
+    {
+      "id": "pl_msg_00000334_00010",
+      "en_US": "Poffin"
+    },
+    {
+      "id": "pl_msg_00000334_00011",
+      "en_US": "Poffin Max"
+    },
+    {
+      "id": "pl_msg_00000334_00012",
+      "en_US": "No Poffin"
+    },
+    {
+      "id": "pl_msg_00000334_00013",
+      "en_US": "Poffin Cooking"
+    },
+    {
+      "id": "pl_msg_00000334_00014",
+      "en_US": "Cook alone"
+    },
+    {
+      "id": "pl_msg_00000334_00015",
+      "en_US": "Script"
+    },
+    {
+      "id": "pl_msg_00000334_00016",
+      "en_US": "Battle Tower"
+    },
+    {
+      "id": "pl_msg_00000334_00017",
+      "en_US": "synchronize random seeds"
+    },
+    {
+      "id": "pl_msg_00000334_00018",
+      "en_US": "Clear Room F"
+    },
+    {
+      "id": "pl_msg_00000334_00019",
+      "en_US": "Max Records"
+    },
+    {
+      "id": "pl_msg_00000334_00020",
+      "en_US": "wifi dummy data"
+    },
+    {
+      "id": "pl_msg_00000334_00021",
+      "en_US": "BP500"
+    },
+    {
+      "id": "pl_msg_00000334_00022",
+      "en_US": "BP9998"
+    }
+  ]
+}

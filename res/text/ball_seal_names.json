@@ -1,0 +1,329 @@
+{
+  "key": 55507,
+  "messages": [
+    {
+      "id": "pl_msg_00000012_00000",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000012_00001",
+      "en_US": "Heart Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00002",
+      "en_US": "Heart Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00003",
+      "en_US": "Heart Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00004",
+      "en_US": "Heart Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00005",
+      "en_US": "Heart Seal E"
+    },
+    {
+      "id": "pl_msg_00000012_00006",
+      "en_US": "Heart Seal F"
+    },
+    {
+      "id": "pl_msg_00000012_00007",
+      "en_US": "Star Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00008",
+      "en_US": "Star Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00009",
+      "en_US": "Star Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00010",
+      "en_US": "Star Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00011",
+      "en_US": "Star Seal E"
+    },
+    {
+      "id": "pl_msg_00000012_00012",
+      "en_US": "Star Seal F"
+    },
+    {
+      "id": "pl_msg_00000012_00013",
+      "en_US": "Line Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00014",
+      "en_US": "Line Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00015",
+      "en_US": "Line Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00016",
+      "en_US": "Smoke Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00017",
+      "en_US": "Smoke Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00018",
+      "en_US": "Smoke Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00019",
+      "en_US": "Smoke Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00020",
+      "en_US": "Ele-Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00021",
+      "en_US": "Ele-Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00022",
+      "en_US": "Ele-Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00023",
+      "en_US": "Ele-Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00024",
+      "en_US": "Foamy Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00025",
+      "en_US": "Foamy Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00026",
+      "en_US": "Foamy Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00027",
+      "en_US": "Foamy Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00028",
+      "en_US": "Fire Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00029",
+      "en_US": "Fire Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00030",
+      "en_US": "Fire Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00031",
+      "en_US": "Fire Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00032",
+      "en_US": "Party Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00033",
+      "en_US": "Party Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00034",
+      "en_US": "Party Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00035",
+      "en_US": "Party Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00036",
+      "en_US": "Flora Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00037",
+      "en_US": "Flora Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00038",
+      "en_US": "Flora Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00039",
+      "en_US": "Flora Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00040",
+      "en_US": "Flora Seal E"
+    },
+    {
+      "id": "pl_msg_00000012_00041",
+      "en_US": "Flora Seal F"
+    },
+    {
+      "id": "pl_msg_00000012_00042",
+      "en_US": "Song Seal A"
+    },
+    {
+      "id": "pl_msg_00000012_00043",
+      "en_US": "Song Seal B"
+    },
+    {
+      "id": "pl_msg_00000012_00044",
+      "en_US": "Song Seal C"
+    },
+    {
+      "id": "pl_msg_00000012_00045",
+      "en_US": "Song Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00046",
+      "en_US": "Song Seal E"
+    },
+    {
+      "id": "pl_msg_00000012_00047",
+      "en_US": "Song Seal F"
+    },
+    {
+      "id": "pl_msg_00000012_00048",
+      "en_US": "Song Seal G"
+    },
+    {
+      "id": "pl_msg_00000012_00049",
+      "en_US": "A Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00050",
+      "en_US": "B Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00051",
+      "en_US": "C Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00052",
+      "en_US": "D Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00053",
+      "en_US": "E Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00054",
+      "en_US": "F Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00055",
+      "en_US": "G Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00056",
+      "en_US": "H Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00057",
+      "en_US": "I Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00058",
+      "en_US": "J Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00059",
+      "en_US": "K Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00060",
+      "en_US": "L Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00061",
+      "en_US": "M Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00062",
+      "en_US": "N Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00063",
+      "en_US": "O Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00064",
+      "en_US": "P Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00065",
+      "en_US": "Q Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00066",
+      "en_US": "R Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00067",
+      "en_US": "S Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00068",
+      "en_US": "T Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00069",
+      "en_US": "U Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00070",
+      "en_US": "V Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00071",
+      "en_US": "W Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00072",
+      "en_US": "X Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00073",
+      "en_US": "Y Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00074",
+      "en_US": "Z Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00075",
+      "en_US": "Shock Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00076",
+      "en_US": "Mystery Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00077",
+      "en_US": "Line Seal D"
+    },
+    {
+      "id": "pl_msg_00000012_00078",
+      "en_US": "Liquid Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00079",
+      "en_US": "Burst Seal"
+    },
+    {
+      "id": "pl_msg_00000012_00080",
+      "en_US": "Twinkle Seal"
+    }
+  ]
+}

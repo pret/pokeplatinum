@@ -1,0 +1,414 @@
+{
+  "key": 9246,
+  "messages": [
+    {
+      "id": "pl_msg_00000557_00000",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 1, 0} already left.\r",
+        "I don’t know what it was about, but\n",
+        "he sure was in a hurry!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00001",
+      "en_US": [
+        "Mom: You know how impatient\n",
+        "{STRVAR_1 3, 0, 0} is.\r",
+        "He took off before I could even\n",
+        "ask what it was about."
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00002",
+      "en_US": [
+        "Mom: Bye-bye, {STRVAR_1 3, 0, 0}!\n",
+        "You take care now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00003",
+      "en_US": [
+        "Mom: But that {STRVAR_1 3, 0, 0}...\n",
+        "He always invites you along."
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00004",
+      "en_US": [
+        "Mom: Oh, yes!\n",
+        "{STRVAR_1 3, 0, 0}!\r",
+        "Don’t go into the tall grass.\n",
+        "Wild Pokémon might attack you.\r",
+        "It would be OK if you had your own\n",
+        "Pokémon, but you don’t, so...\r",
+        "Well, take care, sweetie!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00005",
+      "en_US": [
+        "Mom: What is it, dear?\n",
+        "Isn’t {STRVAR_1 3, 0, 0} waiting for you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00006",
+      "en_US": [
+        "Mom: What’s the matter, dear?\r",
+        "...\r",
+        "Wow.\n",
+        "That’s what happened to you?\r",
+        "You and {STRVAR_1 3, 0, 0} are lucky to have\n",
+        "met Prof. Rowan.\r",
+        "Imagine if you didn’t...\r",
+        "I wouldn’t like to think what the wild\n",
+        "Pokémon might have done to you two.\r",
+        "{STRVAR_1 3, 1, 0}, go see Prof. Rowan, and\n",
+        "thank him properly for your Pokémon.\r",
+        "His lab is in Sandgem Town, isn’t it?\r",
+        "Now that you have your own Pokémon,\n",
+        "the tall grass won’t be so threatening.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00007",
+      "en_US": [
+        "Oh, I know!\n",
+        "{STRVAR_1 3, 0, 0}, put these on.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00008",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a pair of\n",
+        "{COLOR 1}Running Shoes{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00009",
+      "en_US": [
+        "Going to Sandgem Town is like an\n",
+        "adventure in itself, right?\r",
+        "With those Running Shoes, you can\n",
+        "get to faraway places much faster.\r",
+        "OK...\n",
+        "Let me read the instructions...\r",
+        "“Press the B Button and dash\n",
+        "about faster than ever before!\r",
+        "“Put on the Running Shoes and\n",
+        "blaze new trails of adventure!”\r",
+        "Well, isn’t that just nifty!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00010",
+      "en_US": [
+        "Mom: I’ll read you the instructions\n",
+        "for the Running Shoes...\r",
+        "“Press the B Button and dash\n",
+        "about faster than ever before!\r",
+        "“Put on the Running Shoes and\n",
+        "blaze new trails of adventure!”\r",
+        "Well, isn’t that just nifty!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00011",
+      "en_US": [
+        "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
+        "Are you and your Pokémon healthy?\r",
+        "It’s still early in the morning.\n",
+        "Take a quick rest, dear.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00012",
+      "en_US": [
+        "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
+        "Are you and your Pokémon healthy?\f",
+        "Take a quick rest, dear.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00013",
+      "en_US": [
+        "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
+        "Are you and your Pokémon healthy?\r",
+        "I just made dinner.\n",
+        "Take a quick rest, dear.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00014",
+      "en_US": [
+        "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
+        "Are you and your Pokémon healthy?\r",
+        "It’s so late right now...\n",
+        "Take a quick rest, dear.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00015",
+      "en_US": [
+        "Mom: What is it, {STRVAR_1 3, 0, 0}?\r",
+        "...\r",
+        "Wow. Professor Rowan asked you\n",
+        "to do something that big.\r",
+        "OK, dear, go for it!\n",
+        "Your mom’s got your back!\r",
+        "Oh, I know! {STRVAR_1 3, 0, 0}, I’ve got\n",
+        "something that you’ll find useful.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00016",
+      "en_US": [
+        "That’s a Journal. It keeps a record\n",
+        "of your daily events.\r",
+        "Check it, and you’ll be able to\n",
+        "remember what you did last.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00017",
+      "en_US": [
+        "Gee, a journey full of adventure...\n",
+        "I envy you, kiddo.\r",
+        "Plus, you’re not alone.\n",
+        "You have your Pokémon with you.\f",
+        "I wish I could go instead!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00018",
+      "en_US": [
+        "I’m just joking, dear!\n",
+        "Yup, {STRVAR_1 3, 0, 0}!\r",
+        "I’ll be all right by myself, so you\n",
+        "go and enjoy your adventure!\r",
+        "When you’re exposed to new things,\n",
+        "and experience new sensations...\f",
+        "It makes your mother happy, too.\r",
+        "...But come back sometimes.\r",
+        "I would like to see the kinds of\n",
+        "Pokémon you’ve caught, dear.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00019",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Excuse me.\n",
+        "Is my little {STRVAR_1 3, 1, 0} here?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00020",
+      "en_US": [
+        "Mom: Oh?\n",
+        "No, he’s not...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00021",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Oh...\n",
+        "Then, he must have left already...\f",
+        "What to do...\r",
+        "That boy shouted about going on an\n",
+        "adventure, then he bolted.\r",
+        "He’s so headstrong and reckless...\n",
+        "I at least wanted him to take this...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00022",
+      "en_US": [
+        "Mom: Not to worry, {STRVAR_1 3, 0, 0} will\n",
+        "deliver that to him.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00023",
+      "en_US": "Won’t you, {STRVAR_1 3, 0, 0}?\r"
+    },
+    {
+      "id": "pl_msg_00000557_00024",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Oh, really?\n",
+        "You’d do that for me?\r",
+        "{STRVAR_1 3, 0, 0}, please take this to\n",
+        "{STRVAR_1 3, 1, 0} for me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00025",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Oh, really?\n",
+        "You’d do that for me?\r",
+        "{STRVAR_1 3, 0, 0}, please take this to\n",
+        "{STRVAR_1 3, 1, 0} for me.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00026",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Let me think...\r",
+        "Knowing my boy, he would probably\n",
+        "head straight to Jubilife City...\r",
+        "OK, please take that to my\n",
+        "{STRVAR_1 3, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00027",
+      "en_US": [
+        "Mom: Bye-bye, {STRVAR_1 3, 0, 0}!\n",
+        "Enjoy your adventure!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00028",
+      "en_US": [
+        "Mom: Bye-bye, {STRVAR_1 3, 0, 0}!\n",
+        "Enjoy your adventure!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00029",
+      "en_US": [
+        "MC: Here we are!\n",
+        "It’s the Contest Digest!\r",
+        "The winner of today’s Normal Rank\n",
+        "Cute Contest is...\r",
+        "Brooke, who entered a breathtakingly\n",
+        "cute Pokémon!\r",
+        "That’s all the time we have today!\n",
+        "Until next time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00030",
+      "en_US": [
+        "MC: Here we are!\n",
+        "It’s the Contest Digest!\r",
+        "The winner of today’s Normal Rank\n",
+        "Smart Contest is...\r",
+        "Westley, who won with his bright spark\n",
+        "of a Pokémon!\r",
+        "That’s all the time we have today!\n",
+        "Let’s meet again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00031",
+      "en_US": [
+        "MC: Here we are!\n",
+        "It’s the Contest Digest!\r",
+        "The winner of today’s Normal Rank\n",
+        "Tough Contest is...\r",
+        "Dominic, who overwhelmed with his\n",
+        "awesomely buffed Pokémon!\r",
+        "That’s all the time we have today!\n",
+        "Let’s meet again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00032",
+      "en_US": [
+        "Mom’s favorite dessert is in\n",
+        "the refrigerator."
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00033",
+      "en_US": [
+        "Mom’s kitchen is spotless!\n",
+        "You can see your face on the floor!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00034",
+      "en_US": [
+        "This is where Mom does all her\n",
+        "delicious cooking."
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00035",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 1, 0} came looking for you\n",
+        "a little while ago.\r",
+        "I don’t know what it was about, but\n",
+        "he was shouting about you needing\f",
+        "to get on a ship at Snowpoint City.\r",
+        "You know how impatient he is.\n",
+        "He was gone before I could ask."
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00036",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}!\r",
+        "{STRVAR_1 3, 1, 0} came looking for you\n",
+        "a little while ago.\r",
+        "I don’t know what it was about, but\n",
+        "he was shouting about you needing\f",
+        "to get on a ship at Snowpoint City.\r",
+        "You know how impatient he is.\n",
+        "He was gone before I could ask.\r",
+        "Anyway, how’s it going, kid?\r",
+        "Is your project with Professor Rowan\n",
+        "coming along?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00037",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}!\r",
+        "You and your Pokémon are looking good!\n",
+        "Nothing can stop you now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00038",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}.\r",
+        "Listen. Always treat your Pokémon\n",
+        "with kindness.\r",
+        "Your Pokémon work hard, not for\n",
+        "themselves, but for you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00039",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}.\r",
+        "Seeing you reminds me so much of your\n",
+        "father.\r",
+        "You two are so alike!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00040",
+      "en_US": [
+        "Mom: While you’re gone, I go and\n",
+        "visit {STRVAR_1 3, 1, 0}’s mom.\r",
+        "We talk about this and that.\r",
+        "Well, actually, all we do is talk about\n",
+        "you two."
+      ]
+    },
+    {
+      "id": "pl_msg_00000557_00041",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}, is everything all\n",
+        "right?\r",
+        "I get worried seeing the news...\r",
+        "But you’re all right, aren’t you?\n",
+        "After all, you’re never alone."
+      ]
+    }
+  ]
+}

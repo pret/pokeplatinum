@@ -1,0 +1,98 @@
+{
+  "key": 42002,
+  "messages": [
+    {
+      "id": "pl_msg_00000155_00000",
+      "en_US": [
+        "Looker: Hmm...\n",
+        "A key is necessary for us to go on.\r",
+        "For the time being, we cannot give\n",
+        "chase to those who run away.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00001",
+      "en_US": [
+        "Looker: Ah, this Hidden Machine...\n",
+        "It is of the hidden move Fly.\r",
+        "{STRVAR_1 3, 0, 0}, this, you should be\n",
+        "keeping.\r",
+        "It will not do to leave this item here\n",
+        "to be used by the Team Galactic.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00002",
+      "en_US": [
+        "Looker: So, we did not learn very much\n",
+        "from this exercise... No matter.\r",
+        "What concerns me is what I have\n",
+        "overheard in the Game Corner.\r",
+        "The Team Galactic has transported \n",
+        "something to Pastoria City.\r",
+        "What they are up to, I do not know, but\n",
+        "I have bad feelings about it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00003",
+      "en_US": [
+        "Looker: I am concerned over what I\n",
+        "have overheard in the Game Corner.\r",
+        "The Team Galactic has transported\n",
+        "something to Pastoria City.\r",
+        "What they are up to, I do not know, but\n",
+        "I have bad feelings about it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00004",
+      "en_US": [
+        "Looker: Ah, hello!\n",
+        "I have kept you waiting.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00005",
+      "en_US": [
+        "Looker: I will use this Storage Key I\n",
+        "have obtained from the Team Galactic...\r",
+        "...Ker-chunk!\r",
+        "Yes!\n",
+        "It is opened!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00006",
+      "en_US": [
+        "I will go on ahead, my friend.\n",
+        "Do not expose yourself to danger!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00007",
+      "en_US": [
+        "The rust-encrusted door is locked.\n",
+        "It appears to take a special key.\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00008",
+      "en_US": [
+        "The rust-encrusted door is locked.\n",
+        "It appears to take a special key.\r",
+        "Use the Storage Key?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000155_00009",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} inserted and turned the\n",
+        "Storage Key.\r",
+        "The rusty door creaked open!\r",
+        "The Storage Key snapped off inside\n",
+        "the keyhole..."
+      ]
+    }
+  ]
+}

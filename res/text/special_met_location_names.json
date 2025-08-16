@@ -1,0 +1,57 @@
+{
+  "key": 4216,
+  "messages": [
+    {
+      "id": "SPECIAL_METLOC_NAME_DAYCARE",
+      "en_US": "Day-Care Couple"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_TRADE",
+      "en_US": "Link trade"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_TRADE2",
+      "en_US": "Link trade"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_KANTO",
+      "en_US": "Kanto"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_JOHTO",
+      "en_US": "Johto"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_HOENN",
+      "en_US": "Hoenn"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_SINNOH",
+      "en_US": "Sinnoh"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_EMPTY",
+      "en_US": "----"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_DISTANT_LAND",
+      "en_US": "Distant land"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_TRAVELING_MAN",
+      "en_US": "Traveling Man"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_RILEY",
+      "en_US": "Riley"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_CYNTHIA",
+      "en_US": "Cynthia"
+    },
+    {
+      "id": "SPECIAL_METLOC_NAME_MYSTERY_ZONE",
+      "en_US": "Mystery Zone"
+    }
+  ]
+}

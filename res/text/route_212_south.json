@@ -1,0 +1,66 @@
+{
+  "key": 37243,
+  "messages": [
+    {
+      "id": "pl_msg_00000493_00000",
+      "en_US": [
+        "You can zip across fallen logs like\n",
+        "bridges on your Bike."
+      ]
+    },
+    {
+      "id": "pl_msg_00000493_00001",
+      "en_US": [
+        "...Am I stuck in the bog?\r",
+        "Of course not. How silly!\n",
+        "This is a full-body mud pack.\r",
+        "If it weren’t, I would be squirming\n",
+        "and struggling to get out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000493_00002",
+      "en_US": [
+        "You’ve been to the Great Marsh?\n",
+        "How about the Pokémon Mansion?\r",
+        "Wherever I go, I get to meet new and\n",
+        "different Pokémon.\r",
+        "I feel so privileged and happy about\n",
+        "that."
+      ]
+    },
+    {
+      "id": "pl_msg_00000493_00003",
+      "en_US": [
+        "We’re on constant patrol.\n",
+        "It’s safe here, even at night."
+      ]
+    },
+    {
+      "id": "pl_msg_00000493_00004",
+      "en_US": [
+        "Rt. 212\n",
+        "Pastoria City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000493_00005",
+      "en_US": [
+        "Shards Wanted\n",
+        "Pokémon Moves Taught"
+      ]
+    },
+    {
+      "id": "pl_msg_00000493_00006",
+      "en_US": [
+        "Trainer Tips\r",
+        "If you get stuck in the bog, you can\n",
+        "count on being there a while.\r",
+        "There’s no need to panic.\n",
+        "Just struggle and squirm for a bit.\r",
+        "Bicycles cannot be ridden on marshy\n",
+        "ground, incidentally."
+      ]
+    }
+  ]
+}

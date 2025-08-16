@@ -1,0 +1,49 @@
+{
+  "key": 26381,
+  "messages": [
+    {
+      "id": "pl_msg_00000431_00000",
+      "en_US": [
+        "It will forget the saying it now\n",
+        "knows. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000431_00001",
+      "en_US": [
+        "Press the A or B Button, then speak\n",
+        "into the microphone.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000431_00002",
+      "en_US": "{STRVAR_1 1, 0, 0} learned a new saying!\r"
+    },
+    {
+      "id": "pl_msg_00000431_00003",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} failed to learn a new\n",
+        "saying.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000431_00004",
+      "en_US": "Would you like to try again?"
+    },
+    {
+      "id": "pl_msg_00000431_00005",
+      "en_US": [
+        "It seems to be distracted and\n",
+        "unable to concentrate..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000431_00006",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000431_00007",
+      "en_US": "No"
+    }
+  ]
+}

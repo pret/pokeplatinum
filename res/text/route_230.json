@@ -1,0 +1,35 @@
+{
+  "key": 47768,
+  "messages": [
+    {
+      "id": "pl_msg_00000644_00000",
+      "en_US": [
+        "Rt. 230\n",
+        "Fight Area"
+      ]
+    },
+    {
+      "id": "pl_msg_00000644_00001",
+      "en_US": [
+        "Hold it right there, Trainer!\r",
+        "If you’re in the Fight Area, you’ve got\n",
+        "to visit the Battle Frontier.\r",
+        "You don’t earn Exp. Points, and your\n",
+        "Pokédex isn’t updated there.\r",
+        "It’s a place solely for Trainers to\n",
+        "hone their own skills."
+      ]
+    },
+    {
+      "id": "pl_msg_00000644_00002",
+      "en_US": [
+        "Howdy, Trainer!\n",
+        "You have a Pokédex, do you?\r",
+        "Here’s my advice: go out and\n",
+        "challenge other Trainers!\r",
+        "They’ll often have different Pokémon,\n",
+        "so your Pokédex should fill up fast!"
+      ]
+    }
+  ]
+}

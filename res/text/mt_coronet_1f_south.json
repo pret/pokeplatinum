@@ -1,0 +1,32 @@
+{
+  "key": 25602,
+  "messages": [
+    {
+      "id": "pl_msg_00000230_00000",
+      "en_US": [
+        "According to one theory, Mt. Coronet\n",
+        "is where the Sinnoh region began.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000230_00001",
+      "en_US": [
+        "...In a newly created world...\r",
+        "A world where only time flowed and\n",
+        "space expanded...\f",
+        "There should have been no strife.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000230_00002",
+      "en_US": [
+        "But what became of that world?\r",
+        "Because the human spirit is weak and\n",
+        "incomplete, strife has spread...\r",
+        "This world is being ruined by it...\r",
+        "I find this state of affairs to be\n",
+        "deplorable...\r"
+      ]
+    }
+  ]
+}

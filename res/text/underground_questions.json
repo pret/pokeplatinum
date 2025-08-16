@@ -1,0 +1,53 @@
+{
+  "key": 63468,
+  "messages": [
+    {
+      "id": "pl_msg_00000633_00000",
+      "en_US": "Favorite color"
+    },
+    {
+      "id": "pl_msg_00000633_00001",
+      "en_US": "Favorite sport"
+    },
+    {
+      "id": "pl_msg_00000633_00002",
+      "en_US": "Favorite place"
+    },
+    {
+      "id": "pl_msg_00000633_00003",
+      "en_US": "Favorite class"
+    },
+    {
+      "id": "pl_msg_00000633_00004",
+      "en_US": "Least favorite class"
+    },
+    {
+      "id": "pl_msg_00000633_00005",
+      "en_US": "Favorite thing"
+    },
+    {
+      "id": "pl_msg_00000633_00006",
+      "en_US": "Favorite personality"
+    },
+    {
+      "id": "pl_msg_00000633_00007",
+      "en_US": "Most wanted thing"
+    },
+    {
+      "id": "pl_msg_00000633_00008",
+      "en_US": "Own dream"
+    },
+    {
+      "id": "pl_msg_00000633_00009",
+      "en_US": "Food I want now"
+    },
+    {
+      "id": "pl_msg_00000633_00010",
+      "en_US": "Favorite Pokémon"
+    },
+    {
+      "id": "pl_msg_00000633_00011",
+      "en_US": "Holiday activity"
+    }
+  ]
+}

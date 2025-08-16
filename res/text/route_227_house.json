@@ -1,0 +1,39 @@
+{
+  "key": 7819,
+  "messages": [
+    {
+      "id": "pl_msg_00000526_00000",
+      "en_US": [
+        "Oh, dear, are your Pokémon feeling\n",
+        "tired?\r",
+        "You should rest up.\n",
+        "Yes, good idea! Rest up here!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000526_00001",
+      "en_US": [
+        "Yes, yes, that’s right.\n",
+        "Get some well-earned rest.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000526_00002",
+      "en_US": [
+        "Oh, you’re still looking tired.\n",
+        "You’re still needing rest, are you?\r",
+        "You should rest up again.\n",
+        "Yes, good idea! Rest up here!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000526_00003",
+      "en_US": [
+        "Is that right?\n",
+        "You’re sure now?\r",
+        "I’m only concerned for your sake. No\n",
+        "need to worry about putting me out!"
+      ]
+    }
+  ]
+}

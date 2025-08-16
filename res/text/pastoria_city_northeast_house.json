@@ -1,0 +1,112 @@
+{
+  "key": 46138,
+  "messages": [
+    {
+      "id": "pl_msg_00000142_00000",
+      "en_US": [
+        "Howdy, there!\r",
+        "Let me examine your Pokémon to see\n",
+        "if it’s worthy of a scarf!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00001",
+      "en_US": [
+        "Hmhm...\n",
+        "I see...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00002",
+      "en_US": [
+        "This isn’t what I had hoped to see...\r",
+        "I can’t lie to you, so I’ll just have\n",
+        "to tell it to you straight.\r",
+        "This Pokémon’s not bad, but it’s not\n",
+        "good, either. It’s just so-so.\r",
+        "If you want to improve this one’s\n",
+        "condition, feed it some more Poffins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00003",
+      "en_US": [
+        "Your Pokémon is growing up really well.\n",
+        "My hat’s off to you.\r",
+        "I was going to give you a scarf, but\n",
+        "your Bag’s full."
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00004",
+      "en_US": [
+        "Your {STRVAR_1 0, 0, 0}’s looking good!\n",
+        "I’d say it’s pretty impressive!\r",
+        "I’ll tell you what, I’ll give you this\n",
+        "{STRVAR_1 8, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00005",
+      "en_US": [
+        "The Red Scarf stands for passion!\r",
+        "Let a Pokémon hold it to give it an edge\n",
+        "in Cool Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00006",
+      "en_US": [
+        "The Blue Scarf represents the vastness\n",
+        "of the sea!\r",
+        "Let a Pokémon hold it to give it an edge\n",
+        "in Beauty Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00007",
+      "en_US": [
+        "The Pink Scarf represents charm!\r",
+        "Let a Pokémon hold it to give it an edge\n",
+        "in Cute Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00008",
+      "en_US": [
+        "The Green Scarf represents the spring\n",
+        "breeze!\r",
+        "Let a Pokémon hold it to give it an edge\n",
+        "in Smart Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00009",
+      "en_US": [
+        "The Yellow Scarf stands for toughness!\r",
+        "Let a Pokémon hold it to give it an edge\n",
+        "in Tough Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00010",
+      "en_US": [
+        "I’m out of scarves to give you!\n",
+        "I’m out of things to say, too!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00011",
+      "en_US": [
+        "My brother’s girlfriend is the\n",
+        "Massage Girl in Veilstone City.\r",
+        "They stay in touch by having Pokémon\n",
+        "hold Mail for each other."
+      ]
+    },
+    {
+      "id": "pl_msg_00000142_00012",
+      "en_US": "PACHIRISU: Suuu pasuu!"
+    }
+  ]
+}

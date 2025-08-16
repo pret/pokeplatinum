@@ -1,0 +1,198 @@
+{
+  "key": 40969,
+  "messages": [
+    {
+      "id": "pl_msg_00000532_00000",
+      "en_US": "SINGLE BATTLES"
+    },
+    {
+      "id": "pl_msg_00000532_00001",
+      "en_US": "DOUBLE BATTLES"
+    },
+    {
+      "id": "pl_msg_00000532_00002",
+      "en_US": "MULTI BATTLES"
+    },
+    {
+      "id": "pl_msg_00000532_00003",
+      "en_US": "LINK MULTI BATTLES"
+    },
+    {
+      "id": "pl_msg_00000532_00004",
+      "en_US": "WI-FI BATTLE ROOM"
+    },
+    {
+      "id": "pl_msg_00000532_00005",
+      "en_US": "AVG WIN STREAK"
+    },
+    {
+      "id": "pl_msg_00000532_00006",
+      "en_US": "POKéMON DEFEATED"
+    },
+    {
+      "id": "pl_msg_00000532_00007",
+      "en_US": "POKéMON CAUGHT"
+    },
+    {
+      "id": "pl_msg_00000532_00008",
+      "en_US": "POKéMON EGGS"
+    },
+    {
+      "id": "pl_msg_00000532_00009",
+      "en_US": "ENCOUNTERED WHILE FISHING"
+    },
+    {
+      "id": "pl_msg_00000532_00010",
+      "en_US": "CONTEST WINS"
+    },
+    {
+      "id": "pl_msg_00000532_00011",
+      "en_US": "CONTEST WIN %"
+    },
+    {
+      "id": "pl_msg_00000532_00012",
+      "en_US": "RIBBONS"
+    },
+    {
+      "id": "pl_msg_00000532_00013",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000532_00014",
+      "en_US": "{STRVAR_1 50, 0, 0}. {STRVAR_1 3, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000532_00015",
+      "en_US": "{STRVAR_1 53, 0, 0} wins"
+    },
+    {
+      "id": "pl_msg_00000532_00016",
+      "en_US": "{STRVAR_1 50, 0, 0} wins"
+    },
+    {
+      "id": "pl_msg_00000532_00017",
+      "en_US": "{STRVAR_1 54, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000532_00018",
+      "en_US": "{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000532_00019",
+      "en_US": "{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000532_00020",
+      "en_US": "{STRVAR_1 52, 0, 0}%"
+    },
+    {
+      "id": "pl_msg_00000532_00021",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000532_00022",
+      "en_US": "Which record would you like to see?"
+    },
+    {
+      "id": "pl_msg_00000532_00023",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Single Battles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00024",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Double Battles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00025",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Multi Battles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00026",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Link Multi Battles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00027",
+      "en_US": [
+        "The Battle Tower’s win-streak record\n",
+        "in Wi-Fi Battles."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00028",
+      "en_US": [
+        "The average win-streak record\n",
+        "at the Battle Tower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00029",
+      "en_US": "The number of Pokémon defeated."
+    },
+    {
+      "id": "pl_msg_00000532_00030",
+      "en_US": [
+        "The number of Pokémon caught using\n",
+        "Poké Balls."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00031",
+      "en_US": [
+        "The number of Pokémon that were\n",
+        "hatched from Eggs."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00032",
+      "en_US": [
+        "The number of Pokémon that were\n",
+        "caught fishing."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00033",
+      "en_US": "The number of Contest wins."
+    },
+    {
+      "id": "pl_msg_00000532_00034",
+      "en_US": "The winning percentage of Contests."
+    },
+    {
+      "id": "pl_msg_00000532_00035",
+      "en_US": [
+        "The number of Ribbons won in\n",
+        "Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00036",
+      "en_US": "DEL RECORD"
+    },
+    {
+      "id": "pl_msg_00000532_00037",
+      "en_US": [
+        "Select the record you want to\n",
+        "delete, then press the A Button."
+      ]
+    },
+    {
+      "id": "pl_msg_00000532_00038",
+      "en_US": "Delete this record?"
+    },
+    {
+      "id": "pl_msg_00000532_00039",
+      "en_US": "Your own record can’t be deleted."
+    }
+  ]
+}

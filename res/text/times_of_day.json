@@ -1,0 +1,25 @@
+{
+  "key": 55574,
+  "messages": [
+    {
+      "id": "pl_msg_00000608_00000",
+      "en_US": "MORNING"
+    },
+    {
+      "id": "pl_msg_00000608_00001",
+      "en_US": "DAY"
+    },
+    {
+      "id": "pl_msg_00000608_00002",
+      "en_US": "EVENING"
+    },
+    {
+      "id": "pl_msg_00000608_00003",
+      "en_US": "NIGHT"
+    },
+    {
+      "id": "pl_msg_00000608_00004",
+      "en_US": "LATE NIGHT"
+    }
+  ]
+}

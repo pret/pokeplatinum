@@ -1,0 +1,23 @@
+{
+  "key": 18993,
+  "messages": [
+    {
+      "id": "pl_msg_00000107_00000",
+      "en_US": [
+        "The item Revive is something I could\n",
+        "use now.\r",
+        "But I’ve only got two Gym Badges, so\n",
+        "I can’t buy any yet..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000107_00001",
+      "en_US": [
+        "Do you know Amity Square?\n",
+        "It’s a happy and cheerful place.\r",
+        "You can find Accessories there you\n",
+        "can’t buy in Poké Marts."
+      ]
+    }
+  ]
+}

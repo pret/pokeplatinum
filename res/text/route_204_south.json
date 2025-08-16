@@ -1,0 +1,25 @@
+{
+  "key": 2430,
+  "messages": [
+    {
+      "id": "pl_msg_00000469_00000",
+      "en_US": [
+        "There are boulders blocking the way\n",
+        "inside the cavern...\r",
+        "I think a Pokémon’s hidden move will be\n",
+        "able to smash those boulders, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000469_00001",
+      "en_US": [
+        "Rt. 204\n",
+        "Jubilife City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000469_00002",
+      "en_US": "Ravaged Path"
+    }
+  ]
+}

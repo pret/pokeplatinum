@@ -1,0 +1,63 @@
+{
+  "key": 25627,
+  "messages": [
+    {
+      "id": "pl_msg_00000074_00000",
+      "en_US": [
+        "Listen, listen. Do you have a Pokémon\n",
+        "called MACHOP?\r",
+        "Would you be willing to trade your\n",
+        "MACHOP for my ABRA?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000074_00001",
+      "en_US": [
+        "Be nice to my ABRA!\r",
+        "I’ll be sure to look after your MACHOP\n",
+        "in return!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000074_00002",
+      "en_US": "What I asked for was a MACHOP..."
+    },
+    {
+      "id": "pl_msg_00000074_00003",
+      "en_US": [
+        "Oh, OK...\n",
+        "Well, I can’t make you trade me.\r",
+        "But if you change your mind,\n",
+        "I’ll be right here waiting!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000074_00004",
+      "en_US": [
+        "Thanks to Pokémon, I got to be\n",
+        "friends with you!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000074_00005",
+      "en_US": [
+        "A Pokémon obtained in a trade grows\n",
+        "quickly.\r",
+        "But if a Pokémon grows too much, it may\n",
+        "ignore the Trainer.\r",
+        "Of course, it won’t matter if you have\n",
+        "lots of Gym Badges."
+      ]
+    },
+    {
+      "id": "pl_msg_00000074_00006",
+      "en_US": [
+        "When you trade a Pokémon, the item it’s\n",
+        "holding is traded as well.\r",
+        "That’s pretty cool, huh?\r",
+        "It means you can send an item as a gift\n",
+        "along with your Pokémon in a trade!"
+      ]
+    }
+  ]
+}

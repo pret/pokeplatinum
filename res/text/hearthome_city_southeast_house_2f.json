@@ -1,0 +1,27 @@
+{
+  "key": 1039,
+  "messages": [
+    {
+      "id": "pl_msg_00000115_00000",
+      "en_US": [
+        "I have something for your Pokémon\n",
+        "to hold. Take this {STRVAR_1 8, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000115_00001",
+      "en_US": [
+        "The {STRVAR_1 8, 0, 0} should be held by\n",
+        "a Pokémon in battles.\r",
+        "The holder regains HP a little every\n",
+        "time it inflicts damage.\r",
+        "That was given to me when I was on\n",
+        "vacation, but I already had one."
+      ]
+    },
+    {
+      "id": "pl_msg_00000115_00002",
+      "en_US": "CLEFAIRY: Pippi!"
+    }
+  ]
+}

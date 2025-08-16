@@ -1,0 +1,53 @@
+{
+  "key": 50211,
+  "messages": [
+    {
+      "id": "pl_msg_00000265_00000",
+      "en_US": "Cynthia: ...This place?!\r"
+    },
+    {
+      "id": "pl_msg_00000265_00001",
+      "en_US": [
+        "It’s the Sendoff Spring...\r",
+        "It’s said to somehow lead to the great\n",
+        "beyond...\r",
+        "And GIRATINA was said to live in a world\n",
+        "on the opposite side of ours...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000265_00002",
+      "en_US": [
+        "Oh! I’m sincerely sorry!\n",
+        "It’s very rude of me!\r",
+        "{STRVAR_1 3, 0, 0}, you’re incredible!\n",
+        "You really are a fantastic Trainer!\r",
+        "Let me say this on behalf of all Sinnoh:\n",
+        "{STRVAR_1 3, 0, 0}, thank you!\r",
+        "Oh! That’s right!\n",
+        "You have to go tell Prof. Rowan!\r",
+        "He was very worried about you.\n",
+        "You should visit him at his lab."
+      ]
+    },
+    {
+      "id": "pl_msg_00000265_00003",
+      "en_US": [
+        "Cynthia: You have to go tell Prof.\n",
+        "Rowan about this at his lab.\r",
+        "He was very worried about you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000265_00004",
+      "en_US": [
+        "Cynthia: Sigh...\n",
+        "I wish I could have battled GIRATINA.\r",
+        "Oh, don’t mind me.\n",
+        "I’m only musing out loud.\r",
+        "You deserve the glory and all the\n",
+        "thanks for what you did."
+      ]
+    }
+  ]
+}

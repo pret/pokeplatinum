@@ -1,0 +1,92 @@
+{
+  "key": 5150,
+  "messages": [
+    {
+      "id": "pl_msg_00000566_00000",
+      "en_US": [
+        "Ah, so that Rowan fellow is back?\n",
+        "He’s quite the remarkable man.\r",
+        "He’s been studying Pokémon since way,\n",
+        "way back.\r",
+        "My son and grandchild help Rowan\n",
+        "with his studies now."
+      ]
+    },
+    {
+      "id": "pl_msg_00000566_00001",
+      "en_US": [
+        "Oh, my!\n",
+        "You’ve got a National Pokédex?\f",
+        "How fantastic is that?!\r",
+        "Rowan should be delighted.\n",
+        "It will greatly help his research.\r",
+        "But, young Trainer...\n",
+        "You should know this.\r",
+        "In this world, there are 300...\n",
+        "No, 400...\r",
+        "No, no, no! There’re a lot more\n",
+        "kinds of Pokémon than that!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000566_00002",
+      "en_US": [
+        "Who are you?\r",
+        "...\r",
+        "Oh...\n",
+        "You’re {STRVAR_1 3, 0, 0}?\r",
+        "Hey, you’re doing that Pokédex thingy\n",
+        "for the professor!\r",
+        "Wow! That’s the same as my big\n",
+        "sister! Go for it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000566_00003",
+      "en_US": [
+        "Who are you?\r",
+        "...\r",
+        "Oh...\n",
+        "You’re {STRVAR_1 3, 0, 0}?\r",
+        "You’re doing that Pokédex thingy\n",
+        "for the professor!\r",
+        "Wow! That’s the same as my big\n",
+        "brother! Go for it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000566_00004",
+      "en_US": [
+        "Oh, hi, {STRVAR_1 3, 0, 0}!\r",
+        "There was news on TV saying there\n",
+        "is a massive outbreak of Pokémon!\r",
+        "That’d be great for filling up your\n",
+        "Pokédex!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000566_00005",
+      "en_US": [
+        "Let me see...\n",
+        "What did that news say now...?\r",
+        "{STRVAR_1 4, 1, 0}! They said there’s\n",
+        "a whole bunch of {STRVAR_1 0, 2, 0} there!\r",
+        "{STRVAR_1 3, 0, 0}, you have to hurry!\r",
+        "I want you to do better than my\n",
+        "sister Dawn!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000566_00006",
+      "en_US": [
+        "Let me see...\n",
+        "What did that news say now...?\r",
+        "{STRVAR_1 4, 1, 0}! They said there’s\n",
+        "a whole bunch of {STRVAR_1 0, 2, 0} there!\r",
+        "{STRVAR_1 3, 0, 0}, you have to hurry!\r",
+        "I want you to do better than my\n",
+        "brother Lucas!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "key": 9222,
+  "messages": [
+    {
+      "id": "pl_msg_00000555_00000",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Oh, hi,\n",
+        "{STRVAR_1 3, 0, 0}.\r",
+        "Are you looking for {STRVAR_1 3, 1, 0}?\r",
+        "He was gone for a second, but then\n",
+        "he came running right back home.\r",
+        "He just can’t sit still, that boy.\n",
+        "I wonder who he takes after?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000555_00001",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Oh, hi,\n",
+        "{STRVAR_1 3, 0, 0}.\r",
+        "Did you come calling on {STRVAR_1 3, 1, 0}?\r",
+        "He was gone for a second, but then\n",
+        "he came running right back home.\r",
+        "He just can’t sit still, that boy.\n",
+        "I wonder who he takes after?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000555_00002",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: That kid rocketed\n",
+        "off again like usual.\r",
+        "I’d guess he would be out on\n",
+        "Route 201 by now?\r",
+        "He just can’t sit still, that boy.\n",
+        "I wonder who he takes after?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000555_00003",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: My {STRVAR_1 3, 1, 0}\n",
+        "should be out on Route 201 by now.\r",
+        "He just can’t sit still, that boy.\n",
+        "I wonder who he takes after?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000555_00004",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: Oh, you’ve\n",
+        "become friends with a Pokémon, too."
+      ]
+    },
+    {
+      "id": "pl_msg_00000555_00005",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}’s mom: My {STRVAR_1 3, 1, 0}\n",
+        "took off like a rocket as usual.\r",
+        "He was shouting something about\n",
+        "becoming the greatest Trainer ever...\r",
+        "He just can’t sit still, that boy.\n",
+        "I wonder who he takes after?"
+      ]
+    }
+  ]
+}

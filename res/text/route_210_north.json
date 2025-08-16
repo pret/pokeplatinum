@@ -1,0 +1,26 @@
+{
+  "key": 39291,
+  "messages": [
+    {
+      "id": "pl_msg_00000485_00000",
+      "en_US": [
+        "If I could use the hidden move Defog,\n",
+        "I’d clear up the fog so I can see.\r",
+        "How does Defog work?\r",
+        "Don’t bird and bug Pokémon flap their\n",
+        "wings to blow the fog away?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000485_00001",
+      "en_US": [
+        "Rt. 210\n",
+        "Celestic Town"
+      ]
+    },
+    {
+      "id": "pl_msg_00000485_00002",
+      "en_US": "Grandma Wilma’s House"
+    }
+  ]
+}

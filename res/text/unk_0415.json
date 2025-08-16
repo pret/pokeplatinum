@@ -1,0 +1,985 @@
+{
+  "key": 32995,
+  "messages": [
+    {
+      "id": "pl_msg_00000415_00000",
+      "garbage": 321
+    },
+    {
+      "id": "pl_msg_00000415_00001",
+      "garbage": 319
+    },
+    {
+      "id": "pl_msg_00000415_00002",
+      "garbage": 408
+    },
+    {
+      "id": "pl_msg_00000415_00003",
+      "garbage": 343
+    },
+    {
+      "id": "pl_msg_00000415_00004",
+      "garbage": 347
+    },
+    {
+      "id": "pl_msg_00000415_00005",
+      "garbage": 344
+    },
+    {
+      "id": "pl_msg_00000415_00006",
+      "garbage": 346
+    },
+    {
+      "id": "pl_msg_00000415_00007",
+      "garbage": 350
+    },
+    {
+      "id": "pl_msg_00000415_00008",
+      "en_US": [
+        "DJ: Wa-hey!\r",
+        "This is the Battle Tower Corner going\n",
+        "out to battle maniacs nationwide!\r",
+        "Today, we look at {STRVAR_1 3, 1, 0}, who\n",
+        "racked up {STRVAR_1 52, 0, 0} straight wins at\f",
+        "the Battle Tower!\r",
+        "Let’s hear what that brave\n",
+        "Trainer had to say about it.\r",
+        "Take it away, {STRVAR_1 3, 1, 0}!\r",
+        "“{STRVAR_1 28, 2, 0}!”\r",
+        "Wa-hey! Bravo!\r",
+        "You can tell the Trainer’s loving\n",
+        "that {STRVAR_1 52, 0, 0}-win streak!\r",
+        "All right, gang, come on down to\n",
+        "the Battle Tower and get down!\r",
+        "Keep it real! Wa-hey!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00009",
+      "en_US": [
+        "DJ: Wa-hey!\r",
+        "This is the Battle Tower Corner going\n",
+        "out to battle maniacs nationwide!\r",
+        "Today, we look at {STRVAR_1 3, 1, 0}, who\n",
+        "missed getting {STRVAR_1 52, 0, 0} straight wins at\f",
+        "the Battle Tower!\r",
+        "Let’s hear what that brokenhearted\n",
+        "Trainer had to say about it.\r",
+        "Take it away, {STRVAR_1 3, 1, 0}!\r",
+        "“{STRVAR_1 28, 2, 0}!”\r",
+        "Wa-hey! That’s real hurting!\r",
+        "The harsh realities of battling are\n",
+        "laid bare, and they’re not pretty!\r",
+        "All right, gang, come on down to\n",
+        "the Battle Tower and get down!\r",
+        "Keep it real! Wa-hey!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00010",
+      "en_US": [
+        "MC: Hello, this is Your Pokémon\n",
+        "Corner.\r",
+        "Today, we look at {STRVAR_1 3, 0, 0}’s\n",
+        "beloved {STRVAR_1 0, 1, 0} {STRVAR_1 1, 2, 0}.\r",
+        "To {STRVAR_1 3, 0, 0}, {STRVAR_1 1, 2, 0} is said\n",
+        "to be “{STRVAR_1 28, 3, 0}”!\r",
+        "OK, viewers, keep showing us the\n",
+        "Pokémon that are your pride and joy!\r",
+        "Let’s meet again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00011",
+      "en_US": [
+        "MC: Hello, this is Your Pokémon\n",
+        "Corner.\r",
+        "Today, we look at {STRVAR_1 3, 0, 0}’s\n",
+        "beloved {STRVAR_1 0, 1, 0}.\r",
+        "To {STRVAR_1 3, 0, 0}, this {STRVAR_1 0, 1, 0} is\n",
+        "said to be “{STRVAR_1 28, 3, 0}”!\r",
+        "OK, viewers, keep showing us the\n",
+        "Pokémon that are your pride and joy!\r",
+        "Let’s meet again!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00012",
+      "garbage": 189
+    },
+    {
+      "id": "pl_msg_00000415_00013",
+      "garbage": 187
+    },
+    {
+      "id": "pl_msg_00000415_00014",
+      "garbage": 193
+    },
+    {
+      "id": "pl_msg_00000415_00015",
+      "garbage": 201
+    },
+    {
+      "id": "pl_msg_00000415_00016",
+      "en_US": [
+        "MC: Sorry to keep you waiting.\n",
+        "It’s time for The Pokétch Watch!\r",
+        "Today, we examine {STRVAR_1 3, 0, 0}’s\n",
+        "favorite Pokétch app.\r",
+        "The app {STRVAR_1 3, 0, 0} likes best is\n",
+        "the {STRVAR_1 24, 1, 0}.\r",
+        "Asked why, the Trainer replied,\n",
+        "“{STRVAR_1 28, 2, 0}.”\r",
+        "Credit to you, {STRVAR_1 3, 0, 0}.\n",
+        "What a cool and calculated choice.\r",
+        "Why not be like {STRVAR_1 3, 0, 0} and\n",
+        "show off your coolness with the\f",
+        "{STRVAR_1 24, 1, 0} app too?\r",
+        "See you again next time..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00017",
+      "en_US": [
+        "Reporter: We’re bringing you this live\n",
+        "from the Contest Hall!\r",
+        "The atmosphere is charged with the\n",
+        "fervent passion of Trainers with high\f",
+        "hopes for their prized Pokémon!\r",
+        "Oh! Here come some contestants!\n",
+        "They’ve just finished a Contest!\r",
+        "Let’s hit them up for an impromptu\n",
+        "interview!\r",
+        "Reporter: Hello! Jubilife TV!\n",
+        "Was this {STRVAR_1 0, 0, 0} in a Contest?\r",
+        "Oh, you entered a {STRVAR_1 35, 2, 0}\n",
+        "{STRVAR_1 34, 1, 0}?\r",
+        "And you placed...?\n",
+        "...No. {STRVAR_1 50, 3, 0}.\r",
+        "How do you feel about this result?\r",
+        "{STRVAR_1 3, 4, 0}: “{STRVAR_1 28, 5, 0}.”\r",
+        "Reporter: I see!\n",
+        "Thanks for your time!\r",
+        "That’s it for my report from the\n",
+        "Contest Hall!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00018",
+      "en_US": [
+        "Reporter: We’re bringing you this live\n",
+        "from the Contest Hall!\r",
+        "The atmosphere is charged with the\n",
+        "fervent passion of Trainers with high\f",
+        "hopes for their prized Pokémon!\r",
+        "Oh! Here come some contestants!\n",
+        "They’ve just finished a Contest!\r",
+        "Oh, wow, there’s this Contest’s\n",
+        "winner!\r",
+        "Let’s hit the winner up for an\n",
+        "impromptu interview!\r",
+        "Reporter: Hello! Jubilife TV!\n",
+        "Congratulations on your win!\r",
+        "This {STRVAR_1 0, 0, 0} won the\n",
+        "{STRVAR_1 35, 2, 0}\f",
+        "{STRVAR_1 34, 1, 0}?\r",
+        "How do you feel about this result?\r",
+        "{STRVAR_1 3, 4, 0}: “{STRVAR_1 28, 5, 0}.”\r",
+        "Reporter: I see!\n",
+        "Thanks for your time!\r",
+        "That’s it for my report from the\n",
+        "Contest Hall!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00019",
+      "garbage": 243
+    },
+    {
+      "id": "pl_msg_00000415_00020",
+      "en_US": [
+        "MC: Thanks for tuning in to the\n",
+        "Right-On Photo Corner!\r",
+        "Audience: Right on!\r",
+        "MC: Today’s photo features\n",
+        "{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}.\r",
+        "Is everyone good with that?\r",
+        "Audience: Right on!\r",
+        "MC: Here it is, then!\n",
+        "{STRVAR_1 3, 0, 0}’s photo!\r",
+        "Audience: Right on!\r",
+        "MC: I’m up with that call!\n",
+        "This is a beauty of a photo!\r",
+        "It captures the easily overlooked\n",
+        "charm of their {STRVAR_1 0, 1, 0}.\r",
+        "Audience: Right on!\r",
+        "MC: We also got {STRVAR_1 3, 0, 0}’s\n",
+        "word about the thoughts behind\f",
+        "the photo.\r",
+        "The Trainer replied,\n",
+        "“{STRVAR_1 28, 2, 0}.”\r",
+        "Audience: Owooooh!\r",
+        "MC: If someone puts up another photo,\n",
+        "I’d like to cover it on this show.\r",
+        "What do you say to that, folks?\r",
+        "Audience: Right on!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00021",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Normal type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Normal type?\r",
+        "Our experts say they are cheerful\n",
+        "but actually quite shy.\r",
+        "They tend to be boisterous and\n",
+        "fun loving in a group.\r",
+        "But they clam up if you get them\n",
+        "alone with another person.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00022",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Fire type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Fire type?\r",
+        "Our experts say they tend to be\n",
+        "very self-reliant.\r",
+        "If their friends are depressed,\n",
+        "they’re the first to cheer them up.\r",
+        "But if they are hurting, they will\n",
+        "try to deal with it themselves.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00023",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Water type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Water type?\r",
+        "Our experts say they tend to be very\n",
+        "sure of their own values.\r",
+        "They are not easily swayed by fashion\n",
+        "movements or trends.\r",
+        "They tend to stick loyally with\n",
+        "whatever they like.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00024",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Electric type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Electric type?\r",
+        "Our experts say they tend to be\n",
+        "very fashion conscious.\r",
+        "They may appear to be nonchalant\n",
+        "about things, but don’t be fooled.\r",
+        "They tend to be particular about\n",
+        "aesthetics down to even their clothes\f",
+        "hangers and what erasers they use.\r",
+        "Did this analysis sound good\n",
+        "to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00025",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Grass type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Grass type?\r",
+        "Our experts say they march to the\n",
+        "beat of their own drummer.\r",
+        "They are self-motivated and capable\n",
+        "of finishing projects on their own.\r",
+        "However, they have trouble deciding\n",
+        "when a job is done well enough.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00026",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Ice type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Ice type?\r",
+        "Our experts say they tend to be\n",
+        "pure of heart and well intentioned.\r",
+        "They work selflessly to help friends\n",
+        "that are dear to them.\r",
+        "However, they may also become upset\n",
+        "if their efforts go unnoticed.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00027",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Fighting type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Fighting type?\r",
+        "Our experts say they tend to be\n",
+        "dreamy-eyed romantics.\r",
+        "They are very loyal to ideas and\n",
+        "things that they hold dear.\r",
+        "They constantly try to reinvent\n",
+        "themselves to chase their dreams.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00028",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Poison type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Poison type?\r",
+        "Our experts say they tend to be\n",
+        "sensitive and compassionate.\r",
+        "They know how to cheer up people\n",
+        "who are feeling down.\r",
+        "But they also know when to give\n",
+        "people some space.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00029",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Ground type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Ground type?\r",
+        "Our experts say they are people\n",
+        "that love fun things.\r",
+        "They are always alert to things that\n",
+        "sound entertaining, even those that\f",
+        "aren’t appealing to themselves.\r",
+        "Their rooms are easily identifiable\n",
+        "by stacks of books, games, etc.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00030",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Flying type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Flying type?\r",
+        "Our experts say they tend to be smart\n",
+        "but quite modest.\r",
+        "When solving problems in groups, they\n",
+        "come up with solutions first.\r",
+        "However, they will only give out hints\n",
+        "to make it appear as if the group came\f",
+        "up with the solution.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00031",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Psychic type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Psychic type?\r",
+        "Our experts say they tend to be very\n",
+        "upbeat and happy.\r",
+        "If they battle friends, battling itself\n",
+        "makes them happy.\r",
+        "They can thank their opponents with\n",
+        "a smile regardless of the outcome.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00032",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Bug type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Bug type?\r",
+        "Our experts say they tend to be\n",
+        "enthusiastic and happy.\r",
+        "If they find something they like, they\n",
+        "will try to popularize it.\r",
+        "They won’t think twice before taking\n",
+        "hours to explain their hobbies.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00033",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Rock type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Rock type?\r",
+        "Our experts say they are calm,\n",
+        "collected, and supportive.\r",
+        "They remain calm and optimistic even\n",
+        "when others are panicking.\r",
+        "They can be counted on to provide\n",
+        "sure support in tight situations.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00034",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Ghost type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Ghost type?\r",
+        "Our experts say they tend to be\n",
+        "fun-loving types.\r",
+        "If something makes them happy, they’d\n",
+        "rather not tell others about it.\r",
+        "Instead, they’ll try to replicate the\n",
+        "experience for their friends.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00035",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Dragon type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Dragon type?\r",
+        "Our experts say they tend to be\n",
+        "timid and shy.\r",
+        "They’re thoughtful enough to buy\n",
+        "birthday gifts for friends.\r",
+        "...But they would rather leave the\n",
+        "gifts at the friend’s door.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00036",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Dark type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Dark type?\r",
+        "Our experts say they tend to be very\n",
+        "particular about their likes.\r",
+        "They have well-defined tastes in\n",
+        "music, books, movies, and so on.\r",
+        "They can be entertained by their\n",
+        "favorite things over and over.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00037",
+      "en_US": [
+        "Announcer: It’s the Street Corner\n",
+        "Personality Checkup!\r",
+        "{STRVAR_1 3, 0, 0} is our featured Trainer\n",
+        "today.\r",
+        "In our interview, our Trainer picked\n",
+        "the Steel type as their favorite.\r",
+        "So, what sort of personality likes\n",
+        "the Steel type?\r",
+        "Our experts say they tend to be\n",
+        "miracle makers.\r",
+        "They are dreamers that go to sleep\n",
+        "with their heads filled with everything\f",
+        "they hope to achieve.\r",
+        "The miraculous part is how they make\n",
+        "one of their dreams come true.\r",
+        "Did this analysis sound good to you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00038",
+      "en_US": [
+        "MC: It’s the Three Cheers for Poffin\n",
+        "Corner! How do you do?\r",
+        "We bring you the Poffin Maniac as our\n",
+        "returning guest.\r",
+        "Poffin Maniac: How do you do?\r",
+        "MC: Today, we have a Poffin stirred,\n",
+        "not shaken, by {STRVAR_1 3, 0, 0}.\r",
+        "Poffin Maniac: Oh!\n",
+        "{STRVAR_1 9, 1, 0}, yeah!\r",
+        "Eating this would be like stuffing my\n",
+        "mouth with a Poffin jewelry box!\r",
+        "MC: Upon seeing the finished Poffin,\n",
+        "{STRVAR_1 3, 0, 0} had this to say:\f",
+        "“{STRVAR_1 28, 2, 0}!”\r",
+        "Poffin Maniac: Oh, I’d dearly love to\n",
+        "eat one of those!\r",
+        "MC: Viewers, take a cue from\n",
+        "{STRVAR_1 3, 0, 0} and get cooking!\r",
+        "Back next time with more mouthwatering\n",
+        "Poffins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00039",
+      "en_US": [
+        "MC: It’s the Three Cheers for Poffin\n",
+        "Corner! How do you do?\r",
+        "We bring you the Poffin Maniac as our\n",
+        "returning guest.\r",
+        "Poffin Maniac: How do you do?\r",
+        "MC: Today, we have a Poffin stirred,\n",
+        "not shaken, by {STRVAR_1 3, 0, 0}.\r",
+        "Poffin Maniac: Oh!\n",
+        "{STRVAR_1 9, 1, 0}, yeah!\r",
+        "Eating this would be like having\n",
+        "a Poffin orchestra in my mouth!\r",
+        "MC: Upon seeing the finished Poffin,\n",
+        "{STRVAR_1 3, 0, 0} had this to say:\f",
+        "“{STRVAR_1 28, 2, 0}!”\r",
+        "Poffin Maniac: Oh, I’d dearly love to\n",
+        "eat one of those!\r",
+        "MC: Viewers, take a cue from\n",
+        "{STRVAR_1 3, 0, 0} and get cooking!\r",
+        "Back next time with more mouthwatering\n",
+        "Poffins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00040",
+      "en_US": [
+        "MC: It’s the Three Cheers for Poffin\n",
+        "Corner! How do you do?\r",
+        "We bring you the Poffin Maniac as our\n",
+        "returning guest.\r",
+        "Poffin Maniac: How do you do?\r",
+        "MC: Today, we have a Poffin stirred,\n",
+        "not shaken, by {STRVAR_1 3, 0, 0}.\r",
+        "Poffin Maniac: Oh!\n",
+        "{STRVAR_1 9, 1, 0}, yeah!\r",
+        "Eating this would be like having\n",
+        "a Poffin trampoline in my mouth!\r",
+        "MC: Upon seeing the finished Poffin,\n",
+        "{STRVAR_1 3, 0, 0} had this to say:\f",
+        "“{STRVAR_1 28, 2, 0}!”\r",
+        "Poffin Maniac: Oh, I’d dearly love to\n",
+        "eat one of those!\r",
+        "MC: Viewers, take a cue from\n",
+        "{STRVAR_1 3, 0, 0} and get cooking!\r",
+        "Back next time with more mouthwatering\n",
+        "Poffins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00041",
+      "en_US": [
+        "MC: It’s the Three Cheers for Poffin\n",
+        "Corner! How do you do?\r",
+        "We bring you the Poffin Maniac as our\n",
+        "returning guest.\r",
+        "Poffin Maniac: How do you do?\r",
+        "MC: Today, we have a Poffin stirred,\n",
+        "not shaken, by {STRVAR_1 3, 0, 0}.\r",
+        "Poffin Maniac: Oh!\n",
+        "{STRVAR_1 9, 1, 0}, yeah!\r",
+        "I didn’t prepare a comment for\n",
+        "this unexpected outcome!\r",
+        "MC: Upon seeing the finished Poffin,\n",
+        "{STRVAR_1 3, 0, 0} had this to say:\f",
+        "“{STRVAR_1 28, 2, 0}!”\r",
+        "Poffin Maniac: Oh, I’d dearly love to\n",
+        "eat one of those!\r",
+        "MC: Viewers, take a cue from\n",
+        "{STRVAR_1 3, 0, 0} and get cooking!\r",
+        "Back next time with more mouthwatering\n",
+        "Poffins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00042",
+      "en_US": [
+        "MC: It’s the Three Cheers for Poffin\n",
+        "Corner! How do you do?\r",
+        "We bring you the Poffin Maniac as our\n",
+        "returning guest.\r",
+        "Poffin Maniac: How do you do?\r",
+        "MC: Today, we have a Poffin stirred,\n",
+        "not shaken, by {STRVAR_1 3, 0, 0}.\r",
+        "Poffin Maniac: Oh!\n",
+        "{STRVAR_1 9, 1, 0}, yeah!\r",
+        "Eating this would be like having\n",
+        "Nintendo WFC in my mouth!\r",
+        "MC: Upon seeing the finished Poffin,\n",
+        "{STRVAR_1 3, 0, 0} had this to say:\f",
+        "“{STRVAR_1 28, 2, 0}!”\r",
+        "Poffin Maniac: Oh, I’d dearly love to\n",
+        "eat one of those!\r",
+        "MC: Viewers, take a cue from\n",
+        "{STRVAR_1 3, 0, 0} and get cooking!\r",
+        "Back next time with more mouthwatering\n",
+        "Poffins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00043",
+      "garbage": 242
+    },
+    {
+      "id": "pl_msg_00000415_00044",
+      "en_US": [
+        "MC: Hello, ladies and gentlemen.\n",
+        "I trust you’ve been well.\r",
+        "Thank you for joining me in the\n",
+        "Amity Square Watch.\r",
+        "Today, I wish to cast your eyes upon\n",
+        "{STRVAR_1 3, 0, 0}’s stroll.\r",
+        "I’m sure you’ll agree it’s most\n",
+        "enchantingly endearing.\r",
+        "{STRVAR_1 3, 0, 0} strolled with\n",
+        "trusted partner {STRVAR_1 0, 1, 0}.\r",
+        "They walked, and they walked, and\n",
+        "still they walked...\r",
+        "{STRVAR_1 0, 1, 0} so enjoyed the time,\n",
+        "it sought out items like a pretty\f",
+        "{STRVAR_1 31, 3, 0}.\r",
+        "{STRVAR_1 3, 0, 0} and {STRVAR_1 0, 1, 0} had\n",
+        "a simply scintillating time together.\r",
+        "{STRVAR_1 3, 0, 0} described their feelings\n",
+        "together as, “{STRVAR_1 28, 5, 0}.”\r",
+        "Bonding with Pokémon...\n",
+        "It makes me feel warm all over.\r",
+        "Until next time, adieu."
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00045",
+      "en_US": [
+        "MC: Hello, ladies and gentlemen.\n",
+        "I trust you’ve been well.\r",
+        "Thank you for joining me in the\n",
+        "Amity Square Watch.\r",
+        "Today, I wish to cast your eyes upon\n",
+        "{STRVAR_1 3, 0, 0}’s stroll.\r",
+        "I’m sure you’ll agree it’s most\n",
+        "enchantingly endearing.\r",
+        "{STRVAR_1 3, 0, 0} strolled with\n",
+        "trusted partner {STRVAR_1 0, 1, 0}.\r",
+        "They walked, and they walked, and\n",
+        "still they walked...\r",
+        "{STRVAR_1 3, 0, 0} and {STRVAR_1 0, 1, 0} had\n",
+        "a simply scintillating time together.\r",
+        "{STRVAR_1 3, 0, 0} described their feeling\n",
+        "together as, “{STRVAR_1 28, 5, 0}.”\r",
+        "Bonding with Pokémon...\n",
+        "It makes me feel warm all over.\r",
+        "Until next time, adieu."
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00046",
+      "en_US": [
+        "MC: Hello, ladies and gentlemen.\n",
+        "I trust you’ve been well.\r",
+        "Thank you for joining me in the\n",
+        "Amity Square Watch.\r",
+        "Today, I wish to cast your eyes upon\n",
+        "{STRVAR_1 3, 0, 0}’s stroll.\r",
+        "I’m sure you’ll agree it’s most\n",
+        "enchantingly endearing.\r",
+        "{STRVAR_1 3, 0, 0} strolled with\n",
+        "trusted partner {STRVAR_1 0, 1, 0}.\r",
+        "They walked, and they walked, and\n",
+        "still they walked...\r",
+        "{STRVAR_1 0, 1, 0} so enjoyed the time,\n",
+        "it sought out items like a tasty\f",
+        "{STRVAR_1 8, 3, 0} to please the Trainer.\r",
+        "{STRVAR_1 3, 0, 0} and {STRVAR_1 0, 1, 0} had\n",
+        "a simply scintillating time together.\r",
+        "{STRVAR_1 3, 0, 0} described their feeling\n",
+        "together as, “{STRVAR_1 28, 5, 0}.”\r",
+        "Bonding with Pokémon...\n",
+        "It makes me feel warm all over.\r",
+        "Until next time, adieu."
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00047",
+      "en_US": [
+        "Reporter: The Battle Frontier\n",
+        "Frontline News!\r",
+        "We bring you this report from the\n",
+        "Battle Hall.\r",
+        "Today, I have before me an astounding\n",
+        "Trainer who managed a 50-win streak!\r",
+        "It’s {STRVAR_1 3, 0, 0} and the {STRVAR_1 0, 1, 0}\n",
+        "{STRVAR_1 1, 2, 0}!\r",
+        "Congratulations, {STRVAR_1 3, 0, 0}.\n",
+        "You seem suitably happy!\r",
+        "How do you suppose your {STRVAR_1 1, 2, 0}\n",
+        "feels now?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 3, 0}.\r",
+        "Reporter: ...I ...I see!\n",
+        "That’s how a tough Trainer’s Pokémon\f",
+        "thinks.\r",
+        "I hope {STRVAR_1 1, 2, 0} will keep winning\n",
+        "with {STRVAR_1 28, 3, 0} power!\r",
+        "That’s all for now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00048",
+      "en_US": [
+        "Reporter: It’s begun!\n",
+        "In-Your-Face Interview!\r",
+        "Today, we get in the face of\n",
+        "{STRVAR_1 3, 0, 0} for our interview.\r",
+        "{STRVAR_1 3, 0, 0}, let’s just imagine you\n",
+        "being a Gym Leader.\r",
+        "What would you name that Gym?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0} Gym.\r",
+        "Reporter: Well, how about that!\n",
+        "See you again on our next broadcast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00049",
+      "en_US": [
+        "Reporter: It’s begun!\n",
+        "In-Your-Face Interview!\r",
+        "Today, we get in the face of\n",
+        "{STRVAR_1 3, 0, 0} for our interview.\r",
+        "{STRVAR_1 3, 0, 0}, if you had to compare\n",
+        "your mother to a Pokémon, what would\f",
+        "she be?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0}.\r",
+        "Reporter: Well, how about that!\n",
+        "See you again on our next broadcast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00050",
+      "en_US": [
+        "Reporter: It’s begun!\n",
+        "In-Your-Face Interview!\r",
+        "Today, we get in the face of\n",
+        "{STRVAR_1 3, 0, 0} for our interview.\r",
+        "{STRVAR_1 3, 0, 0}, what would you say is the\n",
+        "third most important thing in your life?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0}.\r",
+        "Reporter: Well, how about that!\n",
+        "See you again on our next broadcast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00051",
+      "en_US": [
+        "Reporter: It’s begun!\n",
+        "In-Your-Face Interview!\r",
+        "Today, we get in the face of\n",
+        "{STRVAR_1 3, 0, 0} for our interview.\r",
+        "{STRVAR_1 3, 0, 0}, imagine you slept in\n",
+        "and are running to make an appointment.\r",
+        "You turn a corner and run into someone.\n",
+        "What kind of person is it?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0}.\r",
+        "Reporter: Well, how about that!\n",
+        "See you again on our next broadcast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00052",
+      "en_US": [
+        "Reporter: The Battle Frontier\n",
+        "Frontline News!\r",
+        "We bring you this report from the\n",
+        "Battle Tower.\r",
+        "Today, we came to see two friends\n",
+        "making their challenge together.\r",
+        "Oh! It appears that they’ve just\n",
+        "finished.\r",
+        "{STRVAR_1 3, 0, 0} has just waved bye to\n",
+        "{STRVAR_1 3, 1, 0}, their friend and partner.\r",
+        "{STRVAR_1 3, 0, 0}! You seem to make a good\n",
+        "combination with {STRVAR_1 3, 1, 0}.\r",
+        "Can you describe {STRVAR_1 3, 1, 0} for us?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\r",
+        "Reporter: I see!\r",
+        "That’s the kind of image one gets from\n",
+        "a deeply trusted friend.\r",
+        "Thank you so much!\n",
+        "That’s all for now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00053",
+      "en_US": [
+        "Reporter: The Battle Frontier\n",
+        "Frontline News!\r",
+        "We bring you this report from the\n",
+        "Battle Castle.\r",
+        "Today, we came to see two friends\n",
+        "making their challenge together.\r",
+        "Oh! It appears that they’ve just\n",
+        "finished.\r",
+        "{STRVAR_1 3, 0, 0} has just waved bye to\n",
+        "{STRVAR_1 3, 1, 0}, their friend and partner.\r",
+        "{STRVAR_1 3, 0, 0}! You seem to make a good\n",
+        "combination with {STRVAR_1 3, 1, 0}.\r",
+        "Can you describe {STRVAR_1 3, 1, 0} for us?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\r",
+        "Reporter: I see!\r",
+        "That’s the kind of image one gets from\n",
+        "a deeply trusted friend.\r",
+        "Thank you so much!\n",
+        "That’s all for now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00054",
+      "en_US": [
+        "Reporter: The Battle Frontier\n",
+        "Frontline News!\r",
+        "We bring you this report from the\n",
+        "Battle Hall.\r",
+        "Today, we came to see two friends\n",
+        "making their challenge together.\r",
+        "Oh! It appears that they’ve just\n",
+        "finished.\r",
+        "{STRVAR_1 3, 0, 0} has just waved bye to\n",
+        "{STRVAR_1 3, 1, 0}, their friend and partner.\r",
+        "{STRVAR_1 3, 0, 0}! You seem to make a good\n",
+        "combination with {STRVAR_1 3, 1, 0}.\r",
+        "Can you describe {STRVAR_1 3, 1, 0} for us?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\r",
+        "Reporter: I see!\r",
+        "That’s the kind of image one gets from\n",
+        "a deeply trusted friend.\r",
+        "Thank you so much!\n",
+        "That’s all for now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00055",
+      "en_US": [
+        "Reporter: The Battle Frontier\n",
+        "Frontline News!\r",
+        "We bring you this report from the\n",
+        "Battle Factory.\r",
+        "Today, we came to see two friends\n",
+        "making their challenge together.\r",
+        "Oh! It appears that they’ve just\n",
+        "finished.\r",
+        "{STRVAR_1 3, 0, 0} has just waved bye to\n",
+        "{STRVAR_1 3, 1, 0}, their friend and partner.\r",
+        "{STRVAR_1 3, 0, 0}! You seem to make a good\n",
+        "combination with {STRVAR_1 3, 1, 0}.\r",
+        "Can you describe {STRVAR_1 3, 1, 0} for us?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\r",
+        "Reporter: I see!\r",
+        "That’s the kind of image one gets from\n",
+        "a deeply trusted friend.\r",
+        "Thank you so much!\n",
+        "That’s all for now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000415_00056",
+      "en_US": [
+        "Reporter: The Battle Frontier\n",
+        "Frontline News!\r",
+        "We bring you this report from the\n",
+        "Battle Arcade.\r",
+        "Today, we came to see two friends\n",
+        "making their challenge together.\r",
+        "Oh! It appears that they’ve just\n",
+        "finished.\r",
+        "{STRVAR_1 3, 0, 0} has just waved bye to\n",
+        "{STRVAR_1 3, 1, 0}, their friend and partner.\r",
+        "{STRVAR_1 3, 0, 0}! You seem to make a good\n",
+        "combination with {STRVAR_1 3, 1, 0}.\r",
+        "Can you describe {STRVAR_1 3, 1, 0} for us?\r",
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\r",
+        "Reporter: I see!\r",
+        "That’s the kind of image one gets from\n",
+        "a deeply trusted friend.\r",
+        "Thank you so much!\n",
+        "That’s all for now!"
+      ]
+    }
+  ]
+}

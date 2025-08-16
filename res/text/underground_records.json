@@ -1,0 +1,245 @@
+{
+  "key": 45992,
+  "messages": [
+    {
+      "id": "pl_msg_00000640_00000",
+      "en_US": "NAME"
+    },
+    {
+      "id": "pl_msg_00000640_00001",
+      "en_US": "BASE FLAG"
+    },
+    {
+      "id": "pl_msg_00000640_00002",
+      "en_US": "ID"
+    },
+    {
+      "id": "pl_msg_00000640_00003",
+      "en_US": ":"
+    },
+    {
+      "id": "pl_msg_00000640_00004",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000640_00005",
+      "en_US": "{STRVAR_1 54, 6, 0}"
+    },
+    {
+      "id": "pl_msg_00000640_00006",
+      "en_US": "SCORE"
+    },
+    {
+      "id": "pl_msg_00000640_00007",
+      "en_US": "No. of people met:"
+    },
+    {
+      "id": "pl_msg_00000640_00008",
+      "en_US": "No. of gifts given:"
+    },
+    {
+      "id": "pl_msg_00000640_00009",
+      "en_US": "No. of Flags obtained:"
+    },
+    {
+      "id": "pl_msg_00000640_00010",
+      "en_US": "No. of Spheres dug:"
+    },
+    {
+      "id": "pl_msg_00000640_00011",
+      "en_US": "No. of Fossils dug:"
+    },
+    {
+      "id": "pl_msg_00000640_00012",
+      "en_US": "No. of Trap hits:"
+    },
+    {
+      "id": "pl_msg_00000640_00013",
+      "en_US": "{STRVAR_1 57, 6, 0}"
+    },
+    {
+      "id": "pl_msg_00000640_00014",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000640_00015",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000640_00016",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000640_00017",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000640_00018",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000640_00019",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000640_00020",
+      "en_US": "Normal Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00021",
+      "en_US": "Bronze Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00022",
+      "en_US": "Silver Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00023",
+      "en_US": "Gold Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00024",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00025",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00026",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00027",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00028",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00029",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00030",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00031",
+      "en_US": "Platinum Flag"
+    },
+    {
+      "id": "pl_msg_00000640_00032",
+      "en_US": [
+        "There’s something written here...\r",
+        "The total score so far:\n",
+        "{STRVAR_1 57, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00033",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of people met\n",
+        "underground so far: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00034",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of goods given away as\n",
+        "gifts so far: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00035",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of Secret Base Flags\n",
+        "obtained so far: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00036",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of Spheres dug so far:\n",
+        "{STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00037",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of Fossils dug so far:\n",
+        "{STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00038",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of times other people\n",
+        "triggered my Traps: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00039",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of times I triggered\n",
+        "Traps: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00040",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of times others were helped\n",
+        "while underground: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00041",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of gifts received while\n",
+        "underground: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00042",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of times my own Flag was\n",
+        "taken from the Secret Base: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00043",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of recovered Flags:\n",
+        "{STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00044",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of times the Secret Base\n",
+        "was moved: {STRVAR_1 55, 6, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000640_00045",
+      "en_US": [
+        "There’s something written here...\r",
+        "Number of captured Flags registered\n",
+        "on the PC: {STRVAR_1 55, 6, 0}"
+      ]
+    }
+  ]
+}

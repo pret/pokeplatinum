@@ -1,0 +1,145 @@
+{
+  "key": 38536,
+  "messages": [
+    {
+      "id": "pl_msg_00000521_00000",
+      "en_US": [
+        "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
+        "It’s good to see you!\r",
+        "Without any further ado, I’d like you\n",
+        "to examine this stone tablet.\r",
+        "Something just like it was also\n",
+        "discovered in the Kanto region.\r",
+        "I want to ask for your help in\n",
+        "solving the mystery behind this.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00001",
+      "en_US": [
+        "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
+        "It’s good to see you!\r",
+        "Without any further ado, I’d like you\n",
+        "to examine this stone tablet.\r",
+        "Something just like it was also\n",
+        "discovered in the Kanto region.\r",
+        "I want to ask for your help in\n",
+        "solving the mystery behind this.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00002",
+      "en_US": [
+        "I tried deciphering the engravings on\n",
+        "the stone tablet.\r",
+        "Apparently, it is for a Trainer to\n",
+        "engrave his or her thoughts after\f",
+        "growing as a person on an adventure.\r",
+        "A Trainer fitting that description\n",
+        "would be you.\r",
+        "That’s why I’m asking you for your\n",
+        "help.\r",
+        "You’ve met many people and Pokémon;\n",
+        "you’ve experienced many things that\f",
+        "shaped you into the person you are.\r",
+        "I want you to sincerely tell me who\n",
+        "affected you the most.\r",
+        "Tell me, to whom do you most want\n",
+        "to say your thanks?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00003",
+      "en_US": [
+        "Hm...\r",
+        "You most want to express your\n",
+        "thanks to {STRVAR_1 28, 1, 0}?\r",
+        "You’re absolutely certain of it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00004",
+      "en_US": [
+        "Oak: ?!\n",
+        "What was that Pokémon?\r",
+        "Is it somehow connected to\n",
+        "the stone tablet?\r",
+        "Hmm... Where did that Pokémon go?\n",
+        "Its destination is intriguing...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00005",
+      "en_US": [
+        "Oak: ?!\n",
+        "What was that Pokémon?\r",
+        "Is it somehow connected to\n",
+        "the stone tablet?\r",
+        "Hmm... Where did that Pokémon go?\n",
+        "Its destination is intriguing..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00006",
+      "en_US": [
+        "Oak: What’s wrong? You’re not\n",
+        "suggesting there’s no one?\r",
+        "Tell me, to whom do you most want\n",
+        "to say your thanks?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00007",
+      "en_US": [
+        "The surface is unmarked.\n",
+        "It is polished like a mirror."
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00008",
+      "en_US": [
+        "{STRVAR_1 28, 1, 0}, to whom I give\n",
+        "my thanks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00009",
+      "en_US": [
+        "Marley: I...\n",
+        "I don’t like to talk...\r",
+        "I choose my words carefully, but they\n",
+        "may still hurt someone accidentally...\r",
+        "When I think of that, I clam up...\r",
+        "That’s why I think this certain Pokémon\n",
+        "is so wonderful.\r",
+        "It’s a Pokémon that conveys the\n",
+        "feelings of gratitude in a nice way...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00010",
+      "en_US": [
+        "Marley: That stone tablet...\n",
+        "It has a strange feel to it..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00011",
+      "en_US": [
+        "Marley: Thank you...\r",
+        "That must have been the Pokémon that\n",
+        "conveys the feelings of gratitude...\r",
+        "You made it so I could see it...\r",
+        "So, I’ll have to convey thanks in my own\n",
+        "words, too..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000521_00012",
+      "en_US": [
+        "Marley: To you, too...\r",
+        "Thank you..."
+      ]
+    }
+  ]
+}

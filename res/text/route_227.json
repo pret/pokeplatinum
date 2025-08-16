@@ -1,0 +1,139 @@
+{
+  "key": 38532,
+  "messages": [
+    {
+      "id": "pl_msg_00000525_00000",
+      "en_US": [
+        "Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\n",
+        "Out training right away, are you?\r",
+        "So, uh, since you’re training anyway,\n",
+        "can you do me a favor?\r",
+        "I’d like you to patrol Stark Mountain\n",
+        "for me."
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00001",
+      "en_US": [
+        "Buck: Up past here, there’s this\n",
+        "volcano. It’s Stark Mountain.\r",
+        "Deep inside it is this special rock called\n",
+        "the Magma Stone.\r",
+        "I can’t explain it well, but it’s really\n",
+        "important. It keeps a Pokémon asleep.\r",
+        "But lately, I’ve been hearing rumors\n",
+        "about vandals in Stark Mountain.\r",
+        "They say goons in space suits are\n",
+        "causing trouble there.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00002",
+      "en_US": [
+        "Huh?\n",
+        "What, me?\r",
+        "I was on my way to the Pokémon Center\n",
+        "because my Pokémon’s low on HP.\r",
+        "So, if you could get up to Stark\n",
+        "Mountain now, that’d be great. Thanks!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00003",
+      "en_US": [
+        "I’ll keep asking the same thing over and\n",
+        "over until you say “Yes!”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00004",
+      "en_US": [
+        "Buck: OK! You’re in charge!\n",
+        "Patrol Stark Mountain for me!\r",
+        "Don’t worry about me.\n",
+        "Not even a little bit, OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00005",
+      "en_US": [
+        "Wake: Oh, if it isn’t {STRVAR_1 3, 0, 0}!\n",
+        "It’s been a while!\r",
+        "You’ve grown so tough that you’re\n",
+        "training out here now...\r",
+        "Everyone keeps getting tougher and\n",
+        "tougher...\r",
+        "And, in doing that, they develop\n",
+        "closer bonds with their Pokémon...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00006",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}: That’s my master!\n",
+        "Those are words of wisdom!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00007",
+      "en_US": [
+        "Wake: What? Are you still having trouble\n",
+        "understanding?\r",
+        "I don’t for a second ever recall\n",
+        "accepting you as an apprentice!\r",
+        "I mean, if it’s wrestling moves, I can\n",
+        "show you all you like, but...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00008",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}: Awww, master, don’t be\n",
+        "that way!\r",
+        "You’ve got to get me into that club\n",
+        "in the Survival Area!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00009",
+      "en_US": [
+        "Wake: ...How’d I get involved in this...?\r",
+        "So, anyway, {STRVAR_1 3, 0, 0}.\n",
+        "You’re going to Stark Mountain?\r",
+        "Even the wild Pokémon there are very,\n",
+        "very tough...\r",
+        "If your Pokémon aren’t well trained,\n",
+        "they’ll have a miserable time...\r",
+        "Then again, that kind of challenge\n",
+        "is an exciting prospect...\r",
+        "But no matter what, you’d better\n",
+        "be fully prepared!\r",
+        "I’ve got to get ready for another\n",
+        "tournament. Farewell!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00010",
+      "en_US": [
+        "{STRVAR_1 3, 1, 0}: You know, I think I got\n",
+        "a little tougher again.\r",
+        "That’s why I’m off to the Battle\n",
+        "Frontier so I can make some challenges!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00011",
+      "en_US": [
+        "Master!\n",
+        "Wait for me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000525_00012",
+      "en_US": [
+        "Rt. 227\n",
+        "Stark Mountain"
+      ]
+    }
+  ]
+}

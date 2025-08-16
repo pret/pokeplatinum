@@ -1,0 +1,32 @@
+{
+  "key": 9283,
+  "messages": [
+    {
+      "id": "pl_msg_00000297_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What are you doing?\n",
+        "You’re not supposed to be here.\r",
+        "There’s nothing here anyway.\r",
+        "If anything were to happen, it’s in\n",
+        "my good hands.\r",
+        "I’ve got my trusty Pokémon with me,\n",
+        "for one.\r",
+        "And more than anything, I’m tough,\n",
+        "and you know it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000297_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What’d I say?\n",
+        "I told you I’ll be OK by myself.\r",
+        "If you haven’t gone yet, go\n",
+        "challenge the Sunyshore Gym.\r",
+        "I have a feeling things are going\n",
+        "to keep getting tougher.\r",
+        "It could be rough if you don’t\n",
+        "collect up some Gym Badges."
+      ]
+    }
+  ]
+}

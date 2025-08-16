@@ -1,0 +1,501 @@
+{
+  "key": 7280,
+  "messages": [
+    {
+      "id": "pl_msg_00000610_00000",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000610_00001",
+      "en_US": "Stench"
+    },
+    {
+      "id": "pl_msg_00000610_00002",
+      "en_US": "Drizzle"
+    },
+    {
+      "id": "pl_msg_00000610_00003",
+      "en_US": "Speed Boost"
+    },
+    {
+      "id": "pl_msg_00000610_00004",
+      "en_US": "Battle Armor"
+    },
+    {
+      "id": "pl_msg_00000610_00005",
+      "en_US": "Sturdy"
+    },
+    {
+      "id": "pl_msg_00000610_00006",
+      "en_US": "Damp"
+    },
+    {
+      "id": "pl_msg_00000610_00007",
+      "en_US": "Limber"
+    },
+    {
+      "id": "pl_msg_00000610_00008",
+      "en_US": "Sand Veil"
+    },
+    {
+      "id": "pl_msg_00000610_00009",
+      "en_US": "Static"
+    },
+    {
+      "id": "pl_msg_00000610_00010",
+      "en_US": "Volt Absorb"
+    },
+    {
+      "id": "pl_msg_00000610_00011",
+      "en_US": "Water Absorb"
+    },
+    {
+      "id": "pl_msg_00000610_00012",
+      "en_US": "Oblivious"
+    },
+    {
+      "id": "pl_msg_00000610_00013",
+      "en_US": "Cloud Nine"
+    },
+    {
+      "id": "pl_msg_00000610_00014",
+      "en_US": "Compoundeyes"
+    },
+    {
+      "id": "pl_msg_00000610_00015",
+      "en_US": "Insomnia"
+    },
+    {
+      "id": "pl_msg_00000610_00016",
+      "en_US": "Color Change"
+    },
+    {
+      "id": "pl_msg_00000610_00017",
+      "en_US": "Immunity"
+    },
+    {
+      "id": "pl_msg_00000610_00018",
+      "en_US": "Flash Fire"
+    },
+    {
+      "id": "pl_msg_00000610_00019",
+      "en_US": "Shield Dust"
+    },
+    {
+      "id": "pl_msg_00000610_00020",
+      "en_US": "Own Tempo"
+    },
+    {
+      "id": "pl_msg_00000610_00021",
+      "en_US": "Suction Cups"
+    },
+    {
+      "id": "pl_msg_00000610_00022",
+      "en_US": "Intimidate"
+    },
+    {
+      "id": "pl_msg_00000610_00023",
+      "en_US": "Shadow Tag"
+    },
+    {
+      "id": "pl_msg_00000610_00024",
+      "en_US": "Rough Skin"
+    },
+    {
+      "id": "pl_msg_00000610_00025",
+      "en_US": "Wonder Guard"
+    },
+    {
+      "id": "pl_msg_00000610_00026",
+      "en_US": "Levitate"
+    },
+    {
+      "id": "pl_msg_00000610_00027",
+      "en_US": "Effect Spore"
+    },
+    {
+      "id": "pl_msg_00000610_00028",
+      "en_US": "Synchronize"
+    },
+    {
+      "id": "pl_msg_00000610_00029",
+      "en_US": "Clear Body"
+    },
+    {
+      "id": "pl_msg_00000610_00030",
+      "en_US": "Natural Cure"
+    },
+    {
+      "id": "pl_msg_00000610_00031",
+      "en_US": "Lightningrod"
+    },
+    {
+      "id": "pl_msg_00000610_00032",
+      "en_US": "Serene Grace"
+    },
+    {
+      "id": "pl_msg_00000610_00033",
+      "en_US": "Swift Swim"
+    },
+    {
+      "id": "pl_msg_00000610_00034",
+      "en_US": "Chlorophyll"
+    },
+    {
+      "id": "pl_msg_00000610_00035",
+      "en_US": "Illuminate"
+    },
+    {
+      "id": "pl_msg_00000610_00036",
+      "en_US": "Trace"
+    },
+    {
+      "id": "pl_msg_00000610_00037",
+      "en_US": "Huge Power"
+    },
+    {
+      "id": "pl_msg_00000610_00038",
+      "en_US": "Poison Point"
+    },
+    {
+      "id": "pl_msg_00000610_00039",
+      "en_US": "Inner Focus"
+    },
+    {
+      "id": "pl_msg_00000610_00040",
+      "en_US": "Magma Armor"
+    },
+    {
+      "id": "pl_msg_00000610_00041",
+      "en_US": "Water Veil"
+    },
+    {
+      "id": "pl_msg_00000610_00042",
+      "en_US": "Magnet Pull"
+    },
+    {
+      "id": "pl_msg_00000610_00043",
+      "en_US": "Soundproof"
+    },
+    {
+      "id": "pl_msg_00000610_00044",
+      "en_US": "Rain Dish"
+    },
+    {
+      "id": "pl_msg_00000610_00045",
+      "en_US": "Sand Stream"
+    },
+    {
+      "id": "pl_msg_00000610_00046",
+      "en_US": "Pressure"
+    },
+    {
+      "id": "pl_msg_00000610_00047",
+      "en_US": "Thick Fat"
+    },
+    {
+      "id": "pl_msg_00000610_00048",
+      "en_US": "Early Bird"
+    },
+    {
+      "id": "pl_msg_00000610_00049",
+      "en_US": "Flame Body"
+    },
+    {
+      "id": "pl_msg_00000610_00050",
+      "en_US": "Run Away"
+    },
+    {
+      "id": "pl_msg_00000610_00051",
+      "en_US": "Keen Eye"
+    },
+    {
+      "id": "pl_msg_00000610_00052",
+      "en_US": "Hyper Cutter"
+    },
+    {
+      "id": "pl_msg_00000610_00053",
+      "en_US": "Pickup"
+    },
+    {
+      "id": "pl_msg_00000610_00054",
+      "en_US": "Truant"
+    },
+    {
+      "id": "pl_msg_00000610_00055",
+      "en_US": "Hustle"
+    },
+    {
+      "id": "pl_msg_00000610_00056",
+      "en_US": "Cute Charm"
+    },
+    {
+      "id": "pl_msg_00000610_00057",
+      "en_US": "Plus"
+    },
+    {
+      "id": "pl_msg_00000610_00058",
+      "en_US": "Minus"
+    },
+    {
+      "id": "pl_msg_00000610_00059",
+      "en_US": "Forecast"
+    },
+    {
+      "id": "pl_msg_00000610_00060",
+      "en_US": "Sticky Hold"
+    },
+    {
+      "id": "pl_msg_00000610_00061",
+      "en_US": "Shed Skin"
+    },
+    {
+      "id": "pl_msg_00000610_00062",
+      "en_US": "Guts"
+    },
+    {
+      "id": "pl_msg_00000610_00063",
+      "en_US": "Marvel Scale"
+    },
+    {
+      "id": "pl_msg_00000610_00064",
+      "en_US": "Liquid Ooze"
+    },
+    {
+      "id": "pl_msg_00000610_00065",
+      "en_US": "Overgrow"
+    },
+    {
+      "id": "pl_msg_00000610_00066",
+      "en_US": "Blaze"
+    },
+    {
+      "id": "pl_msg_00000610_00067",
+      "en_US": "Torrent"
+    },
+    {
+      "id": "pl_msg_00000610_00068",
+      "en_US": "Swarm"
+    },
+    {
+      "id": "pl_msg_00000610_00069",
+      "en_US": "Rock Head"
+    },
+    {
+      "id": "pl_msg_00000610_00070",
+      "en_US": "Drought"
+    },
+    {
+      "id": "pl_msg_00000610_00071",
+      "en_US": "Arena Trap"
+    },
+    {
+      "id": "pl_msg_00000610_00072",
+      "en_US": "Vital Spirit"
+    },
+    {
+      "id": "pl_msg_00000610_00073",
+      "en_US": "White Smoke"
+    },
+    {
+      "id": "pl_msg_00000610_00074",
+      "en_US": "Pure Power"
+    },
+    {
+      "id": "pl_msg_00000610_00075",
+      "en_US": "Shell Armor"
+    },
+    {
+      "id": "pl_msg_00000610_00076",
+      "en_US": "Air Lock"
+    },
+    {
+      "id": "pl_msg_00000610_00077",
+      "en_US": "Tangled Feet"
+    },
+    {
+      "id": "pl_msg_00000610_00078",
+      "en_US": "Motor Drive"
+    },
+    {
+      "id": "pl_msg_00000610_00079",
+      "en_US": "Rivalry"
+    },
+    {
+      "id": "pl_msg_00000610_00080",
+      "en_US": "Steadfast"
+    },
+    {
+      "id": "pl_msg_00000610_00081",
+      "en_US": "Snow Cloak"
+    },
+    {
+      "id": "pl_msg_00000610_00082",
+      "en_US": "Gluttony"
+    },
+    {
+      "id": "pl_msg_00000610_00083",
+      "en_US": "Anger Point"
+    },
+    {
+      "id": "pl_msg_00000610_00084",
+      "en_US": "Unburden"
+    },
+    {
+      "id": "pl_msg_00000610_00085",
+      "en_US": "Heatproof"
+    },
+    {
+      "id": "pl_msg_00000610_00086",
+      "en_US": "Simple"
+    },
+    {
+      "id": "pl_msg_00000610_00087",
+      "en_US": "Dry Skin"
+    },
+    {
+      "id": "pl_msg_00000610_00088",
+      "en_US": "Download"
+    },
+    {
+      "id": "pl_msg_00000610_00089",
+      "en_US": "Iron Fist"
+    },
+    {
+      "id": "pl_msg_00000610_00090",
+      "en_US": "Poison Heal"
+    },
+    {
+      "id": "pl_msg_00000610_00091",
+      "en_US": "Adaptability"
+    },
+    {
+      "id": "pl_msg_00000610_00092",
+      "en_US": "Skill Link"
+    },
+    {
+      "id": "pl_msg_00000610_00093",
+      "en_US": "Hydration"
+    },
+    {
+      "id": "pl_msg_00000610_00094",
+      "en_US": "Solar Power"
+    },
+    {
+      "id": "pl_msg_00000610_00095",
+      "en_US": "Quick Feet"
+    },
+    {
+      "id": "pl_msg_00000610_00096",
+      "en_US": "Normalize"
+    },
+    {
+      "id": "pl_msg_00000610_00097",
+      "en_US": "Sniper"
+    },
+    {
+      "id": "pl_msg_00000610_00098",
+      "en_US": "Magic Guard"
+    },
+    {
+      "id": "pl_msg_00000610_00099",
+      "en_US": "No Guard"
+    },
+    {
+      "id": "pl_msg_00000610_00100",
+      "en_US": "Stall"
+    },
+    {
+      "id": "pl_msg_00000610_00101",
+      "en_US": "Technician"
+    },
+    {
+      "id": "pl_msg_00000610_00102",
+      "en_US": "Leaf Guard"
+    },
+    {
+      "id": "pl_msg_00000610_00103",
+      "en_US": "Klutz"
+    },
+    {
+      "id": "pl_msg_00000610_00104",
+      "en_US": "Mold Breaker"
+    },
+    {
+      "id": "pl_msg_00000610_00105",
+      "en_US": "Super Luck"
+    },
+    {
+      "id": "pl_msg_00000610_00106",
+      "en_US": "Aftermath"
+    },
+    {
+      "id": "pl_msg_00000610_00107",
+      "en_US": "Anticipation"
+    },
+    {
+      "id": "pl_msg_00000610_00108",
+      "en_US": "Forewarn"
+    },
+    {
+      "id": "pl_msg_00000610_00109",
+      "en_US": "Unaware"
+    },
+    {
+      "id": "pl_msg_00000610_00110",
+      "en_US": "Tinted Lens"
+    },
+    {
+      "id": "pl_msg_00000610_00111",
+      "en_US": "Filter"
+    },
+    {
+      "id": "pl_msg_00000610_00112",
+      "en_US": "Slow Start"
+    },
+    {
+      "id": "pl_msg_00000610_00113",
+      "en_US": "Scrappy"
+    },
+    {
+      "id": "pl_msg_00000610_00114",
+      "en_US": "Storm Drain"
+    },
+    {
+      "id": "pl_msg_00000610_00115",
+      "en_US": "Ice Body"
+    },
+    {
+      "id": "pl_msg_00000610_00116",
+      "en_US": "Solid Rock"
+    },
+    {
+      "id": "pl_msg_00000610_00117",
+      "en_US": "Snow Warning"
+    },
+    {
+      "id": "pl_msg_00000610_00118",
+      "en_US": "Honey Gather"
+    },
+    {
+      "id": "pl_msg_00000610_00119",
+      "en_US": "Frisk"
+    },
+    {
+      "id": "pl_msg_00000610_00120",
+      "en_US": "Reckless"
+    },
+    {
+      "id": "pl_msg_00000610_00121",
+      "en_US": "Multitype"
+    },
+    {
+      "id": "pl_msg_00000610_00122",
+      "en_US": "Flower Gift"
+    },
+    {
+      "id": "pl_msg_00000610_00123",
+      "en_US": "Bad Dreams"
+    }
+  ]
+}

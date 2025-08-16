@@ -1,0 +1,1271 @@
+{
+  "key": 61106,
+  "messages": [
+    {
+      "id": "pl_msg_00000217_00000",
+      "garbage": 129
+    },
+    {
+      "id": "pl_msg_00000217_00001",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00002",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00003",
+      "en_US": [
+        "Welcome to the Contest Hall.\r",
+        "I can help you with registering\n",
+        "for a Super Contest.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00004",
+      "en_US": [
+        "Would you like to enter a Pokémon\n",
+        "in a Contest?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00005",
+      "en_US": "What would you like to know about?"
+    },
+    {
+      "id": "pl_msg_00000217_00006",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00007",
+      "en_US": [
+        "Welcome to the Contest Hall!\r",
+        "This is the reception counter for\n",
+        "linked Super Contests.\r",
+        "You may join a group of friends to\n",
+        "enter your Pokémon in the same\f",
+        "Super Contest over a link.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00008",
+      "en_US": "ENTER"
+    },
+    {
+      "id": "pl_msg_00000217_00009",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000217_00010",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000217_00011",
+      "en_US": [
+        "We look forward to your participation\n",
+        "another time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00012",
+      "en_US": [
+        "Would you like to\n",
+        "enter a link Contest?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00013",
+      "en_US": [
+        "Two to four players may compete\n",
+        "using wireless communications.\r",
+        "First, choose the Contest you wish\n",
+        "to enter.\r",
+        "Next, make sure the other people in\n",
+        "your group choose the same Contest.\r",
+        "Then, the players each choose a\n",
+        "Pokémon to enter the Contest, and\f",
+        "that’s it for registration!\r",
+        "After that, the Contest starts in\n",
+        "the usual way.\r",
+        "We hope you’ll try it out.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00014",
+      "en_US": [
+        "A Pokémon Super Contest involves\n",
+        "four Trainers.\r",
+        "Each one enters a Pokémon to\n",
+        "compete against the others.\r",
+        "Judging is conducted in three\n",
+        "categories: Visual, Dance, and\f",
+        "Acting.\r",
+        "The Pokémon scoring the highest in\n",
+        "the three categories is the winner.\r",
+        "If this is your first time, it is\n",
+        "recommended you try some practice\f",
+        "sessions before entering a Contest.\r",
+        "The registration counter for practice\n",
+        "sessions is at the far right.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00015",
+      "en_US": [
+        "In the Visual Competition, Pokémon\n",
+        "are rated on their appearance.\r",
+        "Scoring is based on votes cast by\n",
+        "the audience.\r",
+        "For details, please inquire at the\n",
+        "practice counter on the right.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00016",
+      "en_US": [
+        "In the Dance Competition, the Pokémon\n",
+        "will get to show off their footwork.\r",
+        "Try to put on coordinated dance\n",
+        "performances with everyone!\r",
+        "For details, please inquire at the\n",
+        "practice counter on the right.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00017",
+      "en_US": [
+        "In the Acting Competition, the\n",
+        "Pokémon will perform their moves in\f",
+        "front of Judges.\r",
+        "Try to get your Pokémon to put on\n",
+        "performances that stand out from the\f",
+        "rest of the pack!\r",
+        "For details, please inquire at the\n",
+        "practice counter on the right.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00018",
+      "en_US": [
+        "There are five Contests in all:\n",
+        "Cool, Beauty, Cute, Smart, and Tough.\r",
+        "Be sure to choose the Contest that\n",
+        "best suits the Pokémon you want to\f",
+        "enter with.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00019",
+      "en_US": [
+        "There are four different ranks to\n",
+        "the Pokémon Super Contests.\r",
+        "The four ranks are Normal, Great,\n",
+        "Ultra, and Master.\r",
+        "The Normal Rank is open for entry\n",
+        "by any Pokémon.\r",
+        "A Pokémon winning a Normal Rank\n",
+        "Contest may move up to the Great\f",
+        "Rank in the same category.\r",
+        "Likewise, win a Great Contest and\n",
+        "become eligible for the Ultra Rank.\r",
+        "An Ultra Rank winner may move up to\n",
+        "the Master Rank in the same way.\r",
+        "A Master Rank winner may enter\n",
+        "Master Rank Contests as often as\f",
+        "the Trainer wishes.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00020",
+      "en_US": [
+        "Which Pokémon would you like to\n",
+        "enter?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00021",
+      "en_US": [
+        "Please choose\n",
+        "a Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00022",
+      "en_US": [
+        "OK! Your Pokémon has been accepted\n",
+        "for entry!\r",
+        "Your entry number is {STRVAR_1 50, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00023",
+      "en_US": [
+        "We look forward to your participation\n",
+        "another time!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00024",
+      "en_US": "ENTER"
+    },
+    {
+      "id": "pl_msg_00000217_00025",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000217_00026",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000217_00027",
+      "en_US": [
+        "Which rank would you like to\n",
+        "challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00028",
+      "en_US": [
+        "Which Contest would you like to\n",
+        "challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00029",
+      "en_US": "Would you like to cancel your entry?"
+    },
+    {
+      "id": "pl_msg_00000217_00030",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000217_00031",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000217_00032",
+      "en_US": "CONTEST BASICS"
+    },
+    {
+      "id": "pl_msg_00000217_00033",
+      "en_US": "TYPES OF CONTESTS"
+    },
+    {
+      "id": "pl_msg_00000217_00034",
+      "en_US": "CONTEST RANKS"
+    },
+    {
+      "id": "pl_msg_00000217_00035",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000217_00036",
+      "en_US": "WHAT’S A CONTEST?"
+    },
+    {
+      "id": "pl_msg_00000217_00037",
+      "en_US": "VISUAL COMPETITION"
+    },
+    {
+      "id": "pl_msg_00000217_00038",
+      "en_US": "DANCE COMPETITION"
+    },
+    {
+      "id": "pl_msg_00000217_00039",
+      "en_US": "ACTING COMPETITION"
+    },
+    {
+      "id": "pl_msg_00000217_00040",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000217_00041",
+      "en_US": "NORMAL RANK"
+    },
+    {
+      "id": "pl_msg_00000217_00042",
+      "en_US": "GREAT RANK"
+    },
+    {
+      "id": "pl_msg_00000217_00043",
+      "en_US": "ULTRA RANK"
+    },
+    {
+      "id": "pl_msg_00000217_00044",
+      "en_US": "MASTER RANK"
+    },
+    {
+      "id": "pl_msg_00000217_00045",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000217_00046",
+      "en_US": "COOL CONTEST"
+    },
+    {
+      "id": "pl_msg_00000217_00047",
+      "en_US": "BEAUTY CONTEST"
+    },
+    {
+      "id": "pl_msg_00000217_00048",
+      "en_US": "CUTE CONTEST"
+    },
+    {
+      "id": "pl_msg_00000217_00049",
+      "en_US": "SMART CONTEST"
+    },
+    {
+      "id": "pl_msg_00000217_00050",
+      "en_US": "TOUGH CONTEST"
+    },
+    {
+      "id": "pl_msg_00000217_00051",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000217_00052",
+      "garbage": 58
+    },
+    {
+      "id": "pl_msg_00000217_00053",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000217_00054",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00055",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00056",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000217_00057",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00058",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000217_00059",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00060",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000217_00061",
+      "garbage": 75
+    },
+    {
+      "id": "pl_msg_00000217_00062",
+      "garbage": 94
+    },
+    {
+      "id": "pl_msg_00000217_00063",
+      "garbage": 58
+    },
+    {
+      "id": "pl_msg_00000217_00064",
+      "en_US": [
+        "The Contest will start right away.\n",
+        "This way, please!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00065",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00066",
+      "en_US": "{STRVAR_1 3, 0, 0} changed into the tuxedo.\r"
+    },
+    {
+      "id": "pl_msg_00000217_00067",
+      "en_US": "{STRVAR_1 3, 0, 0} changed into the dress.\r"
+    },
+    {
+      "id": "pl_msg_00000217_00068",
+      "en_US": [
+        "Right this way, please!\n",
+        "Good luck!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00069",
+      "en_US": [
+        "MC: We are about to get under way with\n",
+        "this {STRVAR_1 35, 0, 0} Pokémon\f",
+        "{STRVAR_1 34, 1, 0}!\r",
+        "I’m Dexter, and I’ll be serving as\n",
+        "the MC and as one of the Judges!\r",
+        "The results will be announced at the\n",
+        "end, so please bear with me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00070",
+      "en_US": [
+        "Let me introduce our contestants!\r",
+        "Entry number 1!\n",
+        "Here’s {STRVAR_1 3, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00071",
+      "en_US": [
+        "Next, it’s entry number 2!\n",
+        "{STRVAR_1 3, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00072",
+      "en_US": [
+        "Entry number 3!\n",
+        "{STRVAR_1 3, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00073",
+      "en_US": [
+        "And last but not least, entry\n",
+        "number 4! {STRVAR_1 3, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00074",
+      "en_US": [
+        "Let’s begin by having everyone get in\n",
+        "proper attire for evaluations.\r",
+        "Contestants, dress up your Pokémon\n",
+        "for the Visual Competition!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00075",
+      "garbage": 85
+    },
+    {
+      "id": "pl_msg_00000217_00076",
+      "en_US": "Dexter: Congratulations!\r"
+    },
+    {
+      "id": "pl_msg_00000217_00077",
+      "en_US": [
+        "Let’s recognize our winner!\n",
+        "{STRVAR_1 3, 0, 0}’s {STRVAR_1 1, 1, 0}!\r",
+        "Our winner is awarded the\n",
+        "{STRVAR_1 39, 2, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00078",
+      "en_US": [
+        "We look forward to your next\n",
+        "Contest challenge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00079",
+      "en_US": [
+        "We expect great things from the\n",
+        "winning team of {STRVAR_1 3, 0, 0} and\f",
+        "{STRVAR_1 1, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00080",
+      "en_US": [
+        "Congratulations!\n",
+        "Here is your prize!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00081",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000217_00082",
+      "en_US": [
+        "Thank you for participating.\n",
+        "We look forward to your next visit!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00083",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000217_00084",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000217_00085",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00086",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000217_00087",
+      "garbage": 143
+    },
+    {
+      "id": "pl_msg_00000217_00088",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000217_00089",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000217_00090",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000217_00091",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00092",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000217_00093",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000217_00094",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00095",
+      "garbage": 31
+    },
+    {
+      "id": "pl_msg_00000217_00096",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000217_00097",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00098",
+      "garbage": 36
+    },
+    {
+      "id": "pl_msg_00000217_00099",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000217_00100",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000217_00101",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000217_00102",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000217_00103",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000217_00104",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000217_00105",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000217_00106",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00107",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000217_00108",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000217_00109",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000217_00110",
+      "garbage": 66
+    },
+    {
+      "id": "pl_msg_00000217_00111",
+      "en_US": [
+        "Hi! This is the registration counter\n",
+        "for practice sessions.\r",
+        "You may practice in the categories\n",
+        "of Visual, Dance, and Acting.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00112",
+      "en_US": [
+        "Would you like to join a practice\n",
+        "session?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00113",
+      "en_US": "PRACTICE"
+    },
+    {
+      "id": "pl_msg_00000217_00114",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000217_00115",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000217_00116",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00117",
+      "en_US": "What would you like to know about?"
+    },
+    {
+      "id": "pl_msg_00000217_00118",
+      "en_US": "VISUAL"
+    },
+    {
+      "id": "pl_msg_00000217_00119",
+      "en_US": "DANCE"
+    },
+    {
+      "id": "pl_msg_00000217_00120",
+      "en_US": "ACTING"
+    },
+    {
+      "id": "pl_msg_00000217_00121",
+      "en_US": "PRACTICE"
+    },
+    {
+      "id": "pl_msg_00000217_00122",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000217_00123",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00124",
+      "en_US": [
+        "A Contest involves judging in three\n",
+        "categories: Visual, Dance, and Acting.\r",
+        "Here you may practice each of these\n",
+        "categories before you actually enter\f",
+        "a real Contest.\r",
+        "There’s just one thing. Your Pokémon\n",
+        "must know at least two moves.\r",
+        "Otherwise, it will not qualify for our\n",
+        "Super Contests.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00125",
+      "en_US": "OVERALL FLOW"
+    },
+    {
+      "id": "pl_msg_00000217_00126",
+      "en_US": "CONDITION POINTS"
+    },
+    {
+      "id": "pl_msg_00000217_00127",
+      "en_US": "DRESS-UP POINTS"
+    },
+    {
+      "id": "pl_msg_00000217_00128",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00129",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000217_00130",
+      "en_US": [
+        "Judging here is based on the visual\n",
+        "appeal of Pokémon.\r",
+        "Scoring is based on voting by the\n",
+        "audience.\r",
+        "The more popular the Pokémon, the\n",
+        "higher its score!\r",
+        "The Pokémon are scored in two\n",
+        "categories: Condition Points and\f",
+        "Dress-Up Points.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00131",
+      "en_US": [
+        "Condition Points are scored on\n",
+        "the Pokémon’s condition in one of\f",
+        "five categories.\r",
+        "The five conditions are: Cool, Beauty,\n",
+        "Cute, Smart, and Tough.\r",
+        "These conditions can be enhanced by\n",
+        "feeding Poffins to your Pokémon.\r",
+        "If the audience likes what they see,\n",
+        "{COLOR 1}♡{COLOR 0} marks will appear.\r",
+        "Obviously, the more {COLOR 1}♡{COLOR 0} marks there\n",
+        "are, the more popular the Pokémon.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00132",
+      "en_US": [
+        "Dress-Up Points are awarded for\n",
+        "fashionably dressing up your Pokémon\f",
+        "with Accessories.\r",
+        "Before you begin, you will be given\n",
+        "a fashion theme.\r",
+        "Your dressed-up Pokémon will be\n",
+        "scored on how well it matches the\f",
+        "assigned theme.\r",
+        "The audience’s approval will appear\n",
+        "as pink {COLOR 1}♡{COLOR 0} marks.\r",
+        "Be sure to position the Accessories\n",
+        "properly and attach them firmly.\f",
+        "They won’t stay on otherwise.\r",
+        "There is a time limit of 60 seconds.\r",
+        "Get your Pokémon dressed up within\n",
+        "that time.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00133",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00134",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00135",
+      "en_US": "OVERALL FLOW"
+    },
+    {
+      "id": "pl_msg_00000217_00136",
+      "en_US": "BACKUP DANCER"
+    },
+    {
+      "id": "pl_msg_00000217_00137",
+      "en_US": "MAIN DANCER"
+    },
+    {
+      "id": "pl_msg_00000217_00138",
+      "en_US": "PANEL"
+    },
+    {
+      "id": "pl_msg_00000217_00139",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000217_00140",
+      "en_US": [
+        "In a Dance Competition, the four\n",
+        "contestants take on different parts.\r",
+        "One becomes the main dancer, and the\n",
+        "remaining three are backup dancers.\r",
+        "The main dancer scores points by\n",
+        "performing inspired dance steps\f",
+        "that the others can’t copy.\r",
+        "The backup dancers earn high scores\n",
+        "by duplicating the dance steps\f",
+        "laid down by the main dancer.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00141",
+      "en_US": [
+        "Your Pokémon will first appear as\n",
+        "a backup dancer.\r",
+        "Make it dance using the same timing\n",
+        "as the main dancer.\r",
+        "Use the castanets to show your\n",
+        "Pokémon which direction the main\f",
+        "dancer turned.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00142",
+      "en_US": [
+        "The main dancer rotates with a\n",
+        "backup dancer so everyone gets\f",
+        "a turn.\r",
+        "When your Pokémon is the main dancer,\n",
+        "show it how to dance!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00143",
+      "en_US": [
+        "The melody will be shown playing on\n",
+        "the red and blue panels.\r",
+        "The panel colors show who should be\n",
+        "dancing.\r",
+        "The main dancer can dance while the\n",
+        "melody is in the blue panels.\r",
+        "Backup dancers must dance only\n",
+        "during the red panels.\r",
+        "The dancers must perform the\n",
+        "required number of dance steps\f",
+        "during their time slots.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00144",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00145",
+      "en_US": "OVERALL FLOW"
+    },
+    {
+      "id": "pl_msg_00000217_00146",
+      "en_US": "CONTEST MOVES"
+    },
+    {
+      "id": "pl_msg_00000217_00147",
+      "en_US": "JUDGES"
+    },
+    {
+      "id": "pl_msg_00000217_00148",
+      "en_US": "VOLTAGE"
+    },
+    {
+      "id": "pl_msg_00000217_00149",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000217_00150",
+      "en_US": [
+        "In the Acting Competition, four\n",
+        "Pokémon will perform their moves for\f",
+        "our panel of Judges.\r",
+        "The more a Pokémon stands out, the\n",
+        "higher it scores.\r",
+        "Each Pokémon will get the chance to\n",
+        "perform four times.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00151",
+      "en_US": [
+        "Every move has one or more {COLOR 1}♡{COLOR 0} marks\n",
+        "that indicate the acting score.\r",
+        "The more {COLOR 1}♡{COLOR 0} marks obtained, the\n",
+        "higher the Pokémon scores.\r",
+        "However, Pokémon are not permitted\n",
+        "to perform the same move two turns\f",
+        "in a row.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00152",
+      "en_US": [
+        "There are three Judges in all.\r",
+        "You get to choose which one you want\n",
+        "to judge your Pokémon.\r",
+        "Try not to have your Pokémon scored\n",
+        "by the same Judge as other Pokémon\f",
+        "so it can stand out more.\r",
+        "If your Pokémon leaves a strong\n",
+        "impression, it will be rated highly,\f",
+        "earning it more {COLOR 1}♡{COLOR 0} marks.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00153",
+      "en_US": [
+        "Voltage shows the excitement level\n",
+        "of the Judges.\r",
+        "In a Cool Contest, if a Pokémon uses\n",
+        "a Cool move, Voltage goes up.\r",
+        "However, if a Cute or Smart move is\n",
+        "performed, the Voltage goes down.\r",
+        "If the Voltage reaches 5 points, the\n",
+        "Pokémon earns bonus points.\r",
+        "If the Special Judge in the center\n",
+        "was chosen, 8 bonus points are\f",
+        "awarded when the Voltage peaks.\r",
+        "For the other Judges, 5 bonus points\n",
+        "are awarded.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00154",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00155",
+      "en_US": "VISUAL PRACTICE"
+    },
+    {
+      "id": "pl_msg_00000217_00156",
+      "en_US": "DANCE PRACTICE"
+    },
+    {
+      "id": "pl_msg_00000217_00157",
+      "en_US": "ACTING PRACTICE"
+    },
+    {
+      "id": "pl_msg_00000217_00158",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000217_00159",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00160",
+      "en_US": [
+        "Which Contest would you like to\n",
+        "challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00161",
+      "en_US": "COOL"
+    },
+    {
+      "id": "pl_msg_00000217_00162",
+      "en_US": "BEAUTY"
+    },
+    {
+      "id": "pl_msg_00000217_00163",
+      "en_US": "CUTE"
+    },
+    {
+      "id": "pl_msg_00000217_00164",
+      "en_US": "SMART"
+    },
+    {
+      "id": "pl_msg_00000217_00165",
+      "en_US": "TOUGH"
+    },
+    {
+      "id": "pl_msg_00000217_00166",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000217_00167",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00168",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000217_00169",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00170",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00171",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00172",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000217_00173",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00174",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000217_00175",
+      "en_US": [
+        "Which Pokémon would you like to\n",
+        "enter?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00176",
+      "en_US": "Please choose a Pokémon.\r"
+    },
+    {
+      "id": "pl_msg_00000217_00177",
+      "en_US": [
+        "OK, your Pokémon has been registered\n",
+        "for a practice session.\r",
+        "Its entry number is {STRVAR_1 50, 0, 0}.\n",
+        "The practice will start right away.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00178",
+      "en_US": [
+        "Right this way, please.\n",
+        "Good luck!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00179",
+      "en_US": [
+        "Your Pokémon will be evaluated by the\n",
+        "audience.\r",
+        "You can enhance its condition by\n",
+        "feeding it Poffins.\r",
+        "You will also need to dress up your\n",
+        "Pokémon using Accessories.\r",
+        "Would you like to enter a practice\n",
+        "session?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00180",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000217_00181",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000217_00182",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00183",
+      "en_US": [
+        "OK, let me show you in.\n",
+        "Right this way, please.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00184",
+      "en_US": [
+        "Thanks for participating!\n",
+        "Your Pokémon was quite popular!\f",
+        "It’s ready for a real Contest!\r",
+        "Or, would you like to practice again?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00185",
+      "en_US": [
+        "Thank you for participating!\n",
+        "It’s too bad how things turned out...\r",
+        "May I suggest feeding Poffins to your\n",
+        "Pokémon to improve its condition?\r",
+        "You should also use Accessories\n",
+        "matched to the dress-up themes to\f",
+        "boost your Pokémon’s appeal.\r",
+        "Would you like to practice again?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00186",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000217_00187",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000217_00188",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00189",
+      "garbage": 136
+    },
+    {
+      "id": "pl_msg_00000217_00190",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000217_00191",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00192",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000217_00193",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000217_00194",
+      "en_US": [
+        "Thanks for participating!\n",
+        "Your Pokémon danced quite well!\f",
+        "It’s ready for a real Contest!\r",
+        "Or, would you like to practice dancing\n",
+        "again?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00195",
+      "en_US": [
+        "Thank you for participating!\n",
+        "It’s too bad how things turned out...\r",
+        "The key is to remember which ways\n",
+        "the main dancer turned, then make\f",
+        "the same moves at the same time.\r",
+        "Would you like to practice dancing\n",
+        "again?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00196",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000217_00197",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000217_00198",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00199",
+      "garbage": 147
+    },
+    {
+      "id": "pl_msg_00000217_00200",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000217_00201",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00202",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000217_00203",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000217_00204",
+      "en_US": [
+        "Thanks for participating!\r",
+        "Your Pokémon attracted a good deal\n",
+        "of attention!\r",
+        "Remember, there are five kinds of\n",
+        "Contests: Cool, Beauty, Cute, Smart,\f",
+        "and Tough.\r",
+        "You can enter your Pokémon in\n",
+        "Contests that best suit them.\r",
+        "Try getting your Pokémon to stand\n",
+        "out in these Contests!\r",
+        "Would you like to practice again?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00205",
+      "en_US": [
+        "Thank you for participating!\n",
+        "It’s too bad how things turned out...\r",
+        "A key point is choosing which Judge\n",
+        "you want to check your Pokémon’s\f",
+        "performance.\r",
+        "If your Pokémon performs for a Judge\n",
+        "who hasn’t been chosen by another\f",
+        "Pokémon, it will score higher.\r",
+        "Pick a Judge who will look only\n",
+        "at your Pokémon... Aim for that!\r",
+        "Would you like to practice again?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00206",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000217_00207",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000217_00208",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000217_00209",
+      "en_US": "What would you like to know about?"
+    },
+    {
+      "id": "pl_msg_00000217_00210",
+      "en_US": "Communicating. Please stand by..."
+    },
+    {
+      "id": "pl_msg_00000217_00211",
+      "en_US": [
+        "Right this way, please!\n",
+        "Good luck!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00212",
+      "en_US": [
+        "DS Wireless Communications will\n",
+        "be launched."
+      ]
+    },
+    {
+      "id": "pl_msg_00000217_00213",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000217_00214",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000217_00215",
+      "en_US": "Would you like to cancel your entry?"
+    },
+    {
+      "id": "pl_msg_00000217_00216",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000217_00217",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000217_00218",
+      "en_US": "We look forward to your next visit!"
+    },
+    {
+      "id": "pl_msg_00000217_00219",
+      "en_US": [
+        "One person in the group needs to\n",
+        "choose “BECOME LEADER.”\r",
+        "Everyone else must choose\n",
+        "“JOIN GROUP.”"
+      ]
+    }
+  ]
+}

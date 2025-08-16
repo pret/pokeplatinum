@@ -1,0 +1,46 @@
+{
+  "key": 50210,
+  "messages": [
+    {
+      "id": "pl_msg_00000042_00000",
+      "en_US": [
+        "Oh, hello, darlings.\n",
+        "Isn’t my Pokétch quite fetching?\r",
+        "It’s the latest design that just came\n",
+        "out. I obtained it instantly, of course.\r",
+        "A Trainer would be simply lost without\n",
+        "a Pokétch, after all."
+      ]
+    },
+    {
+      "id": "pl_msg_00000042_00001",
+      "en_US": "PIKACHU: Piika pi!"
+    },
+    {
+      "id": "pl_msg_00000042_00002",
+      "en_US": "PACHIRISU: Pachipachii?"
+    },
+    {
+      "id": "pl_msg_00000042_00003",
+      "en_US": [
+        "Oh, your Pokémon is quite adorable!\r",
+        "Here, try making it hold this\n",
+        "{STRVAR_1 8, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000042_00004",
+      "en_US": [
+        "A Pokémon holding that Quick Claw can\n",
+        "sometimes attack first, even if it is\f",
+        "normally a little bit slow.\r",
+        "There are other items that are only\n",
+        "useful when given to a Pokémon.\r",
+        "Try finding other items that you can\n",
+        "make your Pokémon hold.\r",
+        "...I sound like I’m a teacher or\n",
+        "something."
+      ]
+    }
+  ]
+}

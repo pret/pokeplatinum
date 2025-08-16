@@ -1,0 +1,341 @@
+{
+  "key": 45723,
+  "messages": [
+    {
+      "id": "pl_msg_00000337_00000",
+      "en_US": "Play in reverse"
+    },
+    {
+      "id": "pl_msg_00000337_00001",
+      "en_US": "reverb"
+    },
+    {
+      "id": "pl_msg_00000337_00002",
+      "en_US": "Fading Track"
+    },
+    {
+      "id": "pl_msg_00000337_00003",
+      "en_US": "Volume of Field BGM"
+    },
+    {
+      "id": "pl_msg_00000337_00004",
+      "en_US": "Cry Patterns"
+    },
+    {
+      "id": "pl_msg_00000337_00005",
+      "en_US": "As is"
+    },
+    {
+      "id": "pl_msg_00000337_00006",
+      "en_US": "Short"
+    },
+    {
+      "id": "pl_msg_00000337_00007",
+      "en_US": "Angry"
+    },
+    {
+      "id": "pl_msg_00000337_00008",
+      "en_US": "W howling"
+    },
+    {
+      "id": "pl_msg_00000337_00009",
+      "en_US": "W hyper V1"
+    },
+    {
+      "id": "pl_msg_00000337_00010",
+      "en_US": "Fainted"
+    },
+    {
+      "id": "pl_msg_00000337_00011",
+      "en_US": "W hyper V2"
+    },
+    {
+      "id": "pl_msg_00000337_00012",
+      "en_US": "W howling 1"
+    },
+    {
+      "id": "pl_msg_00000337_00013",
+      "en_US": "W howling 2"
+    },
+    {
+      "id": "pl_msg_00000337_00014",
+      "en_US": "W cry 1"
+    },
+    {
+      "id": "pl_msg_00000337_00015",
+      "en_US": "W cry 2"
+    },
+    {
+      "id": "pl_msg_00000337_00016",
+      "en_US": "downcast"
+    },
+    {
+      "id": "pl_msg_00000337_00017",
+      "en_US": "downcast and short"
+    },
+    {
+      "id": "pl_msg_00000337_00018",
+      "en_US": "Output EFF"
+    },
+    {
+      "id": "pl_msg_00000337_00019",
+      "en_US": "Stereo"
+    },
+    {
+      "id": "pl_msg_00000337_00020",
+      "en_US": "Monaural"
+    },
+    {
+      "id": "pl_msg_00000337_00021",
+      "en_US": "Surround"
+    },
+    {
+      "id": "pl_msg_00000337_00022",
+      "en_US": "headphones"
+    },
+    {
+      "id": "pl_msg_00000337_00023",
+      "en_US": "Chatot"
+    },
+    {
+      "id": "pl_msg_00000337_00024",
+      "en_US": "Start recording"
+    },
+    {
+      "id": "pl_msg_00000337_00025",
+      "en_US": "Stop recording"
+    },
+    {
+      "id": "pl_msg_00000337_00026",
+      "en_US": "Play"
+    },
+    {
+      "id": "pl_msg_00000337_00027",
+      "en_US": "Stop"
+    },
+    {
+      "id": "pl_msg_00000337_00028",
+      "en_US": "Save"
+    },
+    {
+      "id": "pl_msg_00000337_00029",
+      "en_US": "Boot on scripts"
+    },
+    {
+      "id": "pl_msg_00000337_00030",
+      "en_US": "Field BGM Tempo"
+    },
+    {
+      "id": "pl_msg_00000337_00031",
+      "en_US": "Test Script"
+    },
+    {
+      "id": "pl_msg_00000337_00032",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000337_00033",
+      "en_US": "Debug Scrpt"
+    },
+    {
+      "id": "pl_msg_00000337_00034",
+      "en_US": "Shaymin & Marley"
+    },
+    {
+      "id": "pl_msg_00000337_00035",
+      "en_US": "3 Lakes"
+    },
+    {
+      "id": "pl_msg_00000337_00036",
+      "en_US": "Pokemon Center B1F"
+    },
+    {
+      "id": "pl_msg_00000337_00037",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000337_00038",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000337_00039",
+      "en_US": "Sound Effect"
+    },
+    {
+      "id": "pl_msg_00000337_00040",
+      "en_US": "Wave pattern test"
+    },
+    {
+      "id": "pl_msg_00000337_00041",
+      "en_US": "Set scenario flags"
+    },
+    {
+      "id": "pl_msg_00000337_00042",
+      "en_US": "Set all Badges"
+    },
+    {
+      "id": "pl_msg_00000337_00043",
+      "en_US": "Hidden items"
+    },
+    {
+      "id": "pl_msg_00000337_00044",
+      "en_US": "Check captures"
+    },
+    {
+      "id": "pl_msg_00000337_00045",
+      "en_US": "Play the recorded data"
+    },
+    {
+      "id": "pl_msg_00000337_00046",
+      "en_US": "Jump"
+    },
+    {
+      "id": "pl_msg_00000337_00047",
+      "en_US": "Poketch wave pattens"
+    },
+    {
+      "id": "pl_msg_00000337_00048",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000337_00049",
+      "en_US": "Battle Searcher"
+    },
+    {
+      "id": "pl_msg_00000337_00050",
+      "en_US": "Battery Max"
+    },
+    {
+      "id": "pl_msg_00000337_00051",
+      "en_US": "Battery Clear"
+    },
+    {
+      "id": "pl_msg_00000337_00052",
+      "en_US": "Clear Max"
+    },
+    {
+      "id": "pl_msg_00000337_00053",
+      "en_US": "Clear CLR"
+    },
+    {
+      "id": "pl_msg_00000337_00054",
+      "en_US": "Script ON"
+    },
+    {
+      "id": "pl_msg_00000337_00055",
+      "en_US": "Set Lv.1"
+    },
+    {
+      "id": "pl_msg_00000337_00056",
+      "en_US": "Set Lv.2"
+    },
+    {
+      "id": "pl_msg_00000337_00057",
+      "en_US": "Set Lv.3"
+    },
+    {
+      "id": "pl_msg_00000337_00058",
+      "en_US": "Set Lv.4"
+    },
+    {
+      "id": "pl_msg_00000337_00059",
+      "en_US": "Set Lv.5"
+    },
+    {
+      "id": "pl_msg_00000337_00060",
+      "en_US": "{STRVAR_1 53, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000337_00061",
+      "en_US": "BGM OFF"
+    },
+    {
+      "id": "pl_msg_00000337_00062",
+      "en_US": "BGM ON"
+    },
+    {
+      "id": "pl_msg_00000337_00063",
+      "en_US": "2 cries ON"
+    },
+    {
+      "id": "pl_msg_00000337_00064",
+      "en_US": "2 cries OFF"
+    },
+    {
+      "id": "pl_msg_00000337_00065",
+      "en_US": "Cry with wait"
+    },
+    {
+      "id": "pl_msg_00000337_00066",
+      "en_US": "Monitor"
+    },
+    {
+      "id": "pl_msg_00000337_00067",
+      "en_US": "9999 CPs"
+    },
+    {
+      "id": "pl_msg_00000337_00068",
+      "en_US": "5 HP"
+    },
+    {
+      "id": "pl_msg_00000337_00069",
+      "en_US": "Frontier"
+    },
+    {
+      "id": "pl_msg_00000337_00070",
+      "en_US": "Factory"
+    },
+    {
+      "id": "pl_msg_00000337_00071",
+      "en_US": "Hall"
+    },
+    {
+      "id": "pl_msg_00000337_00072",
+      "en_US": "Castle"
+    },
+    {
+      "id": "pl_msg_00000337_00073",
+      "en_US": "Arcade"
+    },
+    {
+      "id": "pl_msg_00000337_00074",
+      "en_US": "Single"
+    },
+    {
+      "id": "pl_msg_00000337_00075",
+      "en_US": "Double"
+    },
+    {
+      "id": "pl_msg_00000337_00076",
+      "en_US": "Multi"
+    },
+    {
+      "id": "pl_msg_00000337_00077",
+      "en_US": "Wi-Fi Multi"
+    },
+    {
+      "id": "pl_msg_00000337_00078",
+      "en_US": "Tower"
+    },
+    {
+      "id": "pl_msg_00000337_00079",
+      "en_US": "Switch villa event"
+    },
+    {
+      "id": "pl_msg_00000337_00080",
+      "en_US": "Open the Factory"
+    },
+    {
+      "id": "pl_msg_00000337_00081",
+      "en_US": "Arrival at the Frontier"
+    },
+    {
+      "id": "pl_msg_00000337_00082",
+      "en_US": "Check the Hall bonus"
+    },
+    {
+      "id": "pl_msg_00000337_00083",
+      "en_US": "Test effort values"
+    }
+  ]
+}

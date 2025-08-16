@@ -1,0 +1,1452 @@
+{
+  "key": 17438,
+  "messages": [
+    {
+      "id": "Villa_Text_TheOriginalOwnersFurnitureIsGone",
+      "en_US": [
+        "The original owner’s furniture is gone,\n",
+        "and I didn’t buy any.\r",
+        "So, yeah, I know, it’s barren.\n",
+        "Still, not bad, eh?\r",
+        "But anyway, I feel kind of bad just\n",
+        "imposing the place on you for nothing.\r",
+        "I’ll tell you what, order a Table from\n",
+        "this order form.\r",
+        "That’ll do as my thanks to you!"
+      ]
+    },
+    {
+      "id": "Villa_Text_GoAheadOrderATableFromThisOrderForm",
+      "en_US": [
+        "Go ahead, order a Table from this\n",
+        "order form!"
+      ]
+    },
+    {
+      "id": "Villa_Text_WhoaWhoaDontGoYet",
+      "en_US": [
+        "Whoa, whoa!\n",
+        "Don’t go yet!\r",
+        "Not until you order a Table from this\n",
+        "order form!\r"
+      ]
+    },
+    {
+      "id": "Villa_Text_ThankYouForWaitingImDeliveringYourOrder_WeHopeYoullKeepOrdering",
+      "en_US": [
+        "Thank you for waiting!\n",
+        "I’m delivering your order!\r",
+        "We hope you’ll keep ordering quality\n",
+        "furnishings from us!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00004",
+      "en_US": [
+        "The furniture place’s service is great.\n",
+        "They’re real eager for business.\r",
+        "Look, they left another order form on\n",
+        "the Table they delivered.\r",
+        "Anyway, I’m finally rid of this Villa\n",
+        "thanks to you.\r",
+        "Now I can go back to traveling\n",
+        "like I always wanted.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00005",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000602_00006",
+      "garbage": 104
+    },
+    {
+      "id": "Villa_Text_ThankYouForWaitingImDeliveringYourOrder",
+      "en_US": [
+        "Thank you for waiting!\n",
+        "I’m delivering your order!\r"
+      ]
+    },
+    {
+      "id": "Villa_Text_ThankYouForWaitingImDeliveringYourOrder_AlsoAndIHateToSayThisBut",
+      "en_US": [
+        "Thank you for waiting!\n",
+        "I’m delivering your order!\r",
+        "Also, and I hate to say this, but...\n",
+        "Well, the truth of the matter is...\r",
+        "We’re completely out of furniture that\n",
+        "we could sell you...\r",
+        "Thank you so very, very much for your\n",
+        "long-standing patronage and support!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00009",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
+        "You got yourself a Villa now?\r",
+        "Woohoo, that’s wicked awesome!\n",
+        "You must be rich! Gimme something!\r",
+        "OK, this is what I’m gonna do.\n",
+        "I’ll tell everybody you got a Villa!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00010",
+      "en_US": [
+        "Dawn: Wow, {STRVAR_1 3, 1, 0}, this sofa is\n",
+        "so sumptuous!\r",
+        "You know, I think we have similar\n",
+        "tastes, {STRVAR_1 3, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00011",
+      "en_US": [
+        "Lucas: Is this sofa to your taste,\n",
+        "{STRVAR_1 3, 1, 0}?\r",
+        "I can’t get comfortable sitting on\n",
+        "something this expensive looking.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00012",
+      "en_US": [
+        "Rowan: Hm, that’s rather a good\n",
+        "Bookshelf.\r",
+        "The curved surfaces describe sublime\n",
+        "lines of an indefinable charm.\r",
+        "Here, allow me to give you this book\n",
+        "I’ve been reading as a gift.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00013",
+      "en_US": [
+        "Gardenia: Oh, hey! A Houseplant!\r",
+        "It’s really nice!\n",
+        "Maybe I’ll get some for my Gym...\r",
+        "The green coloring and the aroma...\n",
+        "It’s very nice.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00014",
+      "en_US": [
+        "Cynthia: Oh...?\n",
+        "This is a good piano.\r",
+        "I love the sound a piano makes.\n",
+        "I savor every note with my entire being.\r",
+        "It’s not only my ears; my spirit hears\n",
+        "the music it makes...\r",
+        "Ehehe, I made myself cringe saying\n",
+        "that.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00015",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Too slooooow!\r",
+        "You keep me waiting all the time!\n",
+        "I’m fining you...$1 billion!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00016",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: So, anyway, how are\n",
+        "things at the Battle Frontier?\r",
+        "Me? You know I’m on top of it.\n",
+        "I lose at the Tower sometimes, but..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00017",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Oh, yeah, the other day\n",
+        "at the Battle Tower...\r",
+        "Aww, never mind!\n",
+        "I’m not telling you I battled my daddy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00018",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: This is a cool place you\n",
+        "have here.\r",
+        "I’ve kind of got to like it, so I’ll drop\n",
+        "in for no reason at all from now on!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00019",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: You know, I’ve been\n",
+        "thinking lately...\r",
+        "If we didn’t meet Prof. Rowan then,\n",
+        "what would we be doing now?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00020",
+      "en_US": [
+        "Dawn: {STRVAR_1 3, 1, 0}, are you going to\n",
+        "collect furniture now?\r",
+        "Are you maybe the type who can’t bear\n",
+        "to use Technical Machines?\r",
+        "The sort of person who ends up making\n",
+        "a collection of them?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00021",
+      "en_US": [
+        "Dawn: I had no idea that you can get\n",
+        "a Villa as a gift.\r",
+        "Who knows what can happen in life?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00022",
+      "en_US": [
+        "Dawn: I’m envious of you having your\n",
+        "own place.\r",
+        "I have to share a bedroom with my\n",
+        "little sister!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00023",
+      "en_US": [
+        "Dawn: Sigh...\r",
+        "To be with that special someone in a\n",
+        "wonderful Villa like this...\r",
+        "I think it’s a nice dream to have."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00024",
+      "en_US": [
+        "Dawn: You run into so many Pokémon in\n",
+        "the Battle Zone. It’s a bit much.\r",
+        "So, {STRVAR_1 3, 1, 0}, please let me catch\n",
+        "a little rest."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00025",
+      "en_US": [
+        "Lucas: {STRVAR_1 3, 1, 0}, are you collecting\n",
+        "furniture, too, now?\r",
+        "Are you one of those people who can’t\n",
+        "stand to use Technical Machines?\r",
+        "One of those types that end up with\n",
+        "a TM collection out of hoarding?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00026",
+      "en_US": [
+        "Lucas: You could get a Villa as a\n",
+        "gift? I did not know that.\r",
+        "I wish someone’d give me a Villa.\r",
+        "That way, I’d be able to assist the\n",
+        "professor even more!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00027",
+      "en_US": [
+        "Lucas: The Battle Zone’s intense and\n",
+        "fun, huh?\r",
+        "So many different kinds of Pokémon,\n",
+        "and Trainers of every variety...\r",
+        "I’d like to go to even more places."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00028",
+      "en_US": [
+        "Lucas: Having this Villa must be\n",
+        "convenient.\r",
+        "It must be useful for checking up on\n",
+        "the Pokémon in the Battle Zone."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00029",
+      "en_US": [
+        "Lucas: You can find so many different\n",
+        "kinds of Pokémon in the Battle Zone.\r",
+        "{STRVAR_1 3, 1, 0}, you don’t mind if I rest\n",
+        "for a bit, do you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00030",
+      "en_US": [
+        "Rowan: Hm!\n",
+        "How are things going for you lately?\r",
+        "Even if you manage to see every kind\n",
+        "of Pokémon, that’s not the end.\r",
+        "It would be impossible to know all about\n",
+        "them based on sightings alone.\r",
+        "There’s much to be learned from\n",
+        "traveling with Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00031",
+      "en_US": [
+        "Rowan: Hm!\n",
+        "You seem well.\r",
+        "Incidentally, did you know there are\n",
+        "some Pokémon that evolve only at\f",
+        "specific locations?\r",
+        "For example, several Pokémon evolve by\n",
+        "leveling up in Mt. Coronet.\r",
+        "The variations of evolution...\n",
+        "How many could there be?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00032",
+      "en_US": [
+        "Rowan: Hm!\n",
+        "You seem well.\r",
+        "Incidentally, did you know there are\n",
+        "some Pokémon that require the use of\f",
+        "specific items to evolve?\r",
+        "MAGMAR and ELECTABUZZ are examples\n",
+        "of such Pokémon.\r",
+        "I never imagined that there would be\n",
+        "new patterns of evolution.\r",
+        "The variations of evolution...\n",
+        "How many could there be?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00033",
+      "en_US": [
+        "Rowan: Hm!\n",
+        "You look well.\r",
+        "It’s commonly accepted that Pokémon\n",
+        "evolve to grow more powerful.\r",
+        "There must be other reasons than that.\n",
+        "I would like to know during my lifetime."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00034",
+      "en_US": [
+        "Rowan: Hmm...\r",
+        "This place feels like the home I shared\n",
+        "with a friend long ago.\r",
+        "It has the same sort of atmosphere."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00035",
+      "en_US": [
+        "Mom: Oh, {STRVAR_1 3, 1, 0}!\n",
+        "I’d heard from {STRVAR_1 3, 0, 0}, but...\r",
+        "This is quite grand for a Villa.\n",
+        "This makes me happy, dear!\f",
+        "I’ll have a fun place to visit!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00036",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 1, 0}, this Villa, if I\n",
+        "were to give it a grade...\r",
+        "It would earn a perfect score!\n",
+        "It makes me happy just being here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00037",
+      "en_US": [
+        "Mom: If it were me, I would put that\n",
+        "piece of furniture over there...\r",
+        "Oops, sorry.\n",
+        "This is your place, {STRVAR_1 3, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00038",
+      "en_US": [
+        "Mom: It must make you happy collecting\n",
+        "the furniture.\r",
+        "But I’m wondering: do you collect\n",
+        "Accessories?\r",
+        "Even if you don’t enter Contests, it’s\n",
+        "fun to dress up Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00039",
+      "en_US": [
+        "Mom: I think Contests and home designs\n",
+        "say a lot about the person.\r",
+        "If the person’s character shines\n",
+        "through, I think people respond to it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00040",
+      "en_US": [
+        "Roark: The Underground extends\n",
+        "even underneath the Resort Area.\r",
+        "I wonder... If I really tried, would\n",
+        "I be able to extend it to even places\f",
+        "like Kanto and Johto?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00041",
+      "en_US": [
+        "Roark: If it were me, I would display\n",
+        "the things I dig up.\r",
+        "You know, from places like the mine and\n",
+        "the Underground.\r",
+        "I would turn the place into my personal\n",
+        "museum."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00042",
+      "en_US": [
+        "Roark: If it were me, I’d like to put\n",
+        "a Fossil over there.\r",
+        "You don’t think so? No?\n",
+        "I think a Fossil would match this decor."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00043",
+      "en_US": [
+        "Roark: This place feels different from\n",
+        "an underground Secret Base.\r",
+        "That reminds me: what color is your\n",
+        "underground Flag now?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00044",
+      "en_US": [
+        "Roark: What I think about while digging\n",
+        "underground...\r",
+        "What did the Pokémon see before they\n",
+        "became Fossils?\r",
+        "I’d love to go back and see them as\n",
+        "they were back then."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00045",
+      "en_US": [
+        "Gardenia: Sigh... This is so dreamy...\n",
+        "The Resort Area’s a nice place.\r",
+        "Of course, Eterna is a good place, too.\n",
+        "We have the huge forest, first of all."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00046",
+      "en_US": [
+        "Gardenia: I know it’s a little abrupt,\n",
+        "but don’t you think Grass-type Pokémon\f",
+        "smell nice?\r",
+        "It makes me happy just being around\n",
+        "them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00047",
+      "en_US": [
+        "Gardenia: I could tell you ten good\n",
+        "things about Grass-type Pokémon.\r",
+        "Which kind of Pokémon can you say\n",
+        "good things about?\r",
+        "Ooh, maybe ten won’t be enough."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00048",
+      "en_US": [
+        "Gardenia: Do you remember those rumors\n",
+        "about the Old Chateau?\r",
+        "They say there really were ghost\n",
+        "Pokémon there in the old days.\r",
+        "...That’s so scary.\n",
+        "What if they suddenly came back?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00049",
+      "en_US": [
+        "Gardenia: ...I’m in a dilemma now.\r",
+        "You see, I don’t like ghost Pokémon\n",
+        "very much.\r",
+        "But, what if...\r",
+        "What if there was a Grass-type ghost\n",
+        "Pokémon? What then?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00050",
+      "en_US": [
+        "Fantina: Oh, c’est fantastique!\n",
+        "This is where you practice dancing, non?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00051",
+      "en_US": [
+        "Fantina: Whenever and wherever, dance,\n",
+        "dance, dance!\r",
+        "If you dance all the time, the dancing\n",
+        "at the Contests, they become\f",
+        "challenges no longer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00052",
+      "en_US": [
+        "Fantina: Ooh la la!\n",
+        "This is very nice!\r",
+        "It is often that I come to the Resort\n",
+        "Area also.\r",
+        "It is because the Ribbon Syndicate, it\n",
+        "is here.\r",
+        "Therefore, I will visit your Villa\n",
+        "often also!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00053",
+      "en_US": [
+        "Fantina: Ooh la la!\n",
+        "I have an inspiration!\r",
+        "The combination of moves for a Contest,\n",
+        "it has come to me in a flash!\r",
+        "Very well! We shall meet at the Contest\n",
+        "Hall, yes?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00054",
+      "en_US": [
+        "Fantina: You!\r",
+        "Have you met Dahlia?\n",
+        "She of the Battle Arcade?\r",
+        "That woman! The way she dances!\n",
+        "Especially the way she wiggles!\f",
+        "Ooh la la! I love her style!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00055",
+      "en_US": [
+        "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
+        "my training is going.\r",
+        "Thanks to my training, it doesn’t feel\n",
+        "so cold to be in deep snow!\r",
+        "Well, just a little..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00056",
+      "en_US": [
+        "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
+        "my training is going.\r",
+        "Thanks to my training, my handwriting\n",
+        "has improved tenfold!\r",
+        "...Yes. It has absolutely nothing to do\n",
+        "with how strong I am as a Gym Leader."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00057",
+      "en_US": [
+        "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
+        "my training is going.\r",
+        "Thanks to my training, I can tell how\n",
+        "strong my opponent is beforehand.\r",
+        "Oh, yes, {STRVAR_1 3, 1, 0}, you’re\n",
+        "ridiculously tough."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00058",
+      "en_US": [
+        "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
+        "my training is going.\r",
+        "Thanks to my training, I’m beginning to\n",
+        "understand the feelings of Pokémon.\r",
+        "It lets me choose moves with much more\n",
+        "confidence!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00059",
+      "en_US": [
+        "Maylene: {STRVAR_1 3, 1, 0}, please hear how\n",
+        "my training is going.\r",
+        "Lately, my father has been overseeing\n",
+        "my training!\r",
+        "Well, only when he wins at the Game\n",
+        "Corner, but...\r",
+        "I’m still delighted he does this with me!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00060",
+      "en_US": [
+        "Wake: Hey!\n",
+        "{STRVAR_1 3, 0, 0} told me to come.\r",
+        "This is some spread you’ve got here!\n",
+        "It’s spectacular, yeah!\r",
+        "How would I put it now...?\r",
+        "It’s, uh, spectacular!\n",
+        "It is what it is!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00061",
+      "en_US": [
+        "Wake: Mmmmm...!\n",
+        "Listen, you!\r",
+        "How would you like to decorate these\n",
+        "premises with my trophies?\r",
+        "No, scrap that thought!\n",
+        "How about a wrestling ring?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00062",
+      "en_US": [
+        "Wake: I’ve been thinking, though.\r",
+        "That pal of yours, {STRVAR_1 3, 0, 0}, and\n",
+        "Palmer are father and son all right.\r",
+        "I mean, just seeing them, they’re\n",
+        "hilariously alike.\r",
+        "Their overall atmosphere and their\n",
+        "mannerisms and such...\r",
+        "Seeing them cracks me up."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00063",
+      "en_US": [
+        "Wake: ...This place here...\n",
+        "You don’t have a microphone handy?\r",
+        "How am I supposed to perform my\n",
+        "signature song, I’d like to know?\r",
+        "Ah, ah, ah.\n",
+        "The ring is my roiling sea. ♫"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00064",
+      "en_US": [
+        "Wake: I was meaning to ask you, by the\n",
+        "way...\r",
+        "You’re tuning in to my wrestling\n",
+        "matches on TV, aren’t you?\r",
+        "In wrestling, you always have to be\n",
+        "aware of what the other guy’s doing.\r",
+        "That’s the same as Pokémon battling,\n",
+        "wouldn’t you say?\r",
+        "So, what I’m saying is, watch me wrestle\n",
+        "if you want to get better at battling!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00065",
+      "en_US": [
+        "Byron: Gwahahahaha!\r",
+        "I spent a long time living on Iron\n",
+        "Island.\r",
+        "A place this fancy, I feel a little out\n",
+        "of place.\r",
+        "Don’t get me wrong, it’s a great place.\n",
+        "It’s nothing like my son’s!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00066",
+      "en_US": [
+        "Byron: Well...\r",
+        "I have to admit I’m not very interested\n",
+        "in furniture and the like.\r",
+        "My interests run more to things like\n",
+        "digging tools, obviously.\r",
+        "The shapes of Pokémon fangs and claws\n",
+        "are interesting, too."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00067",
+      "en_US": [
+        "Byron: Digging underneath Iron Island\n",
+        "was a good time in my life.\r",
+        "Working alongside Pokémon constantly\n",
+        "for iron ore...\r",
+        "But that’s all in the past.\r",
+        "The young people today should find\n",
+        "their own paths to happiness."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00068",
+      "en_US": [
+        "Byron: Roark is still a boy, but at the\n",
+        "same time, he’s a man in his own right.\r",
+        "That’s why our opinions clash at times,\n",
+        "and why we break out in battle.\r",
+        "Gwahahaha!\n",
+        "You weren’t supposed to hear that!\f",
+        "Forget I said it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00069",
+      "en_US": [
+        "Byron: You’re acquainted with a fellow\n",
+        "named Riley, aren’t you?\r",
+        "He’s a mystifying sort, that one.\r",
+        "I have no idea how old he is, to tell you\n",
+        "the truth."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00070",
+      "en_US": [
+        "Candice: Giving you an Icicle Badge made\n",
+        "me think.\r",
+        "It made me realize this one thing.\r",
+        "I don’t have to act cool out of\n",
+        "character. I just have to be me!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00071",
+      "en_US": [
+        "Candice: In a battle, when both sides\n",
+        "are down to their last Pokémon...\r",
+        "What do you think about then?\r",
+        "I put all my trust in that Pokémon\n",
+        "and cheer it on.\r",
+        "That’s all you can do!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00072",
+      "en_US": [
+        "Candice: Whew...\n",
+        "The Resort Area is pretty warm.\f",
+        "Maybe Candice is overdressed?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00073",
+      "en_US": [
+        "Candice: This furniture...\n",
+        "Oh, I get it... It’s like this...\r",
+        "Oh, please don’t mind me."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00074",
+      "en_US": [
+        "Candice: Why does the Snowpoint Gym\n",
+        "Leader have to guard that icy temple\f",
+        "anyway?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00075",
+      "en_US": [
+        "Volkner: I was told by Flint that we’re\n",
+        "meeting here.\r",
+        "...That’s funny.\n",
+        "You haven’t heard anything about it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00076",
+      "en_US": [
+        "Volkner: Every one of my Pokémon are\n",
+        "top class in potential.\r",
+        "They’re all potential game breakers!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00077",
+      "en_US": [
+        "Volkner: Oh, yeah.\n",
+        "I decided not to join the Elite Four.\r",
+        "I got an earful about not renovating\n",
+        "the Pokémon League building.\r",
+        "Well, no. I’d rather be a Gym Leader\n",
+        "where I could meet ordinary folks."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00078",
+      "en_US": [
+        "Volkner: My ELECTIVIRE is a force of\n",
+        "nature to be reckoned with.\r",
+        "No, don’t get me started.\n",
+        "I’ll tell you another time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00079",
+      "en_US": [
+        "Volkner: Hmm...\r",
+        "This place gives me ideas about how\n",
+        "I can renovate my Gym."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00080",
+      "en_US": [
+        "Cynthia: I think I could get to like\n",
+        "this atmosphere.\r",
+        "It gives me an idea about the kind of\n",
+        "person that lives here.\r",
+        "Yes... An honest person who loves\n",
+        "Pokémon..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00081",
+      "en_US": [
+        "Cynthia: It’s so relaxing here...\r",
+        "Sigh...\n",
+        "I don’t want to go home.\r",
+        "It’s a complete mess with all my\n",
+        "research papers strewn about.\r",
+        "My house?\r",
+        "Even the region is a secret!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00082",
+      "en_US": [
+        "Cynthia: What’s necessary to become\n",
+        "stronger?\r",
+        "I think it’s important to never lose\n",
+        "your love of Pokémon.\r",
+        "That’s all I can say because that’s\n",
+        "how it was for me..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00083",
+      "en_US": [
+        "Cynthia: The Spear Pillar...\n",
+        "The Distortion World...\r",
+        "Did the people in the distant past see\n",
+        "the same things as us?\r",
+        "Could that be what led them to leave\n",
+        "the cave painting of Celestic Town?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00084",
+      "en_US": [
+        "Cynthia: When you are facing a Trainer\n",
+        "in a battle, you can learn everything\f",
+        "about them.\r",
+        "What Pokémon they have.\n",
+        "What moves they’ve taught.\f",
+        "What items they make Pokémon hold.\r",
+        "There’s no need for words then.\r",
+        "That’s why I’d like you to come see me\n",
+        "again at the Pokémon League."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00085",
+      "en_US": [
+        "Flint: Hey, you!\r",
+        "You used my prize money to buy this\n",
+        "furniture, didn’t you?\r",
+        "So, I’ve got a right to lounge here,\n",
+        "am I right?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00086",
+      "en_US": [
+        "Volkner: My relationship to Flint?\n",
+        "There’s no love lost, that’s for sure."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00087",
+      "en_US": [
+        "Flint: Hey, listen, you!\r",
+        "If that Volkner tries to sell you on\n",
+        "Electric-type Pokémon, ignore him!\r",
+        "You have to go with Fire-type Pokémon.\n",
+        "It’s the way of the future!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00088",
+      "en_US": [
+        "Volkner: When I got my first Gym Badge,\n",
+        "I used the move Thunderbolt.\r",
+        "Ever since, I’ve stuck with the Electric\n",
+        "type even as I got better.\r",
+        "I do it because I don’t want to ever\n",
+        "forget how happy I was when I won.\r",
+        "Incidentally, Flint’s fascination with\n",
+        "the Fire type is only from his name.\r",
+        "Someone told him that a flint is what’s\n",
+        "used to spark a fire, and that was it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00089",
+      "en_US": [
+        "Flint: ...Volkner.\r",
+        "Volkner: What?\r",
+        "Flint: Let’s say I’m in a battle, OK?\n",
+        "What if I didn’t use my Poké Balls?\r",
+        "Instead, I can have my guys come in\n",
+        "and out of my Afro to battle.\r",
+        "That’d bewilder the other guy, huh?\n",
+        "Wouldn’t that be hilarious?\r",
+        "Volkner: ...Maybe.\n",
+        "Don’t ruin things for others, though."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00090",
+      "en_US": [
+        "Flint: Hmm...\r",
+        "Volkner: What’s wrong?\n",
+        "You’re looking serious for a change.\r",
+        "Flint: It’s this place.\n",
+        "You know how drab the League is?\r",
+        "Don’t you think the place should be\n",
+        "more, you know, festive?\r",
+        "With more decorations, awards, and\n",
+        "things like that?\r",
+        "Volkner: Don’t start! That will make\n",
+        "my Gym stand out less."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00091",
+      "en_US": [
+        "Flint: Say, hey, Volkner.\n",
+        "What do you say we battle here?\r",
+        "Volkner: ...Are you kidding?\r",
+        "That’s why you Elite Four are called\n",
+        "irresponsible.\r",
+        "Flint: What, we are?\r",
+        "Volkner: Well, at least you are.\n",
+        "I tell everyone you’re irresponsible."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00092",
+      "en_US": [
+        "Maylene: What makes a Gym Leader a\n",
+        "good one?\r",
+        "Candice: Gee, I wouldn’t know.\n",
+        "That’s a tough question.\r",
+        "...Maybe we should ask Gardenia\n",
+        "sometime."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00093",
+      "en_US": [
+        "Maylene: ...You know those Accessories\n",
+        "for Pokémon?\r",
+        "Would it be funny if someone were to\n",
+        "wear those?\r",
+        "Candice: What is it, Maylene?\n",
+        "Did you want some Accessories?\f",
+        "I’ll give you some of my favorites.\r",
+        "Maylene: ...!\n",
+        "Th-thank you so much!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00094",
+      "en_US": [
+        "Maylene: ...Candice?\r",
+        "Candice: Yes?\r",
+        "Maylene: Oh, sorry, it’s nothing!\n",
+        "I didn’t say anything!\r",
+        "Candice: Giggle...\n",
+        "I like lounging here.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00095",
+      "en_US": [
+        "Maylene: Candice, what does it mean to\n",
+        "be strong?\r",
+        "Candice: I can’t answer that!\r",
+        "Let’s go look for that answer\n",
+        "together.\r",
+        "We’ve got Pokémon and {STRVAR_1 3, 1, 0} on\n",
+        "our side, after all.\r",
+        "Maylene: Yes, please!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00096",
+      "en_US": [
+        "Maylene: ...This is delicious!\r",
+        "Candice: Then have some more.\r",
+        "Maylene: Yes, please.\r",
+        "Candice: There’s plenty to drink.\n",
+        "You’re a growing girl!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00097",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000602_00098",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000602_00099",
+      "en_US": [
+        "The table’s subtle curves accentuate\n",
+        "its distinctive presence."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00100",
+      "en_US": [
+        "A big sofa with a wonderful sense\n",
+        "of presence."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00101",
+      "en_US": [
+        "A smaller sofa with a wonderful sense\n",
+        "of presence."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00102",
+      "en_US": [
+        "A canopied bed for deep, relaxing\n",
+        "sleep."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00103",
+      "en_US": "A small night table for the bedside."
+    },
+    {
+      "id": "pl_msg_00000602_00104",
+      "en_US": "A TV featuring the latest technology."
+    },
+    {
+      "id": "pl_msg_00000602_00105",
+      "en_US": [
+        "An audio system that maximally draws\n",
+        "out the charms of music."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00106",
+      "en_US": [
+        "The shelves are lined with books left\n",
+        "by Prof. Rowan."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00107",
+      "en_US": [
+        "An attractive rack that looks good with\n",
+        "or without things on it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00108",
+      "en_US": [
+        "All houseplants give off the fragrance\n",
+        "of life."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00109",
+      "en_US": [
+        "A thin-bodied PC made for the design\n",
+        "conscious."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00110",
+      "en_US": [
+        "A handmade music box with a soothing\n",
+        "melody."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00111",
+      "en_US": [
+        "An almost lifelike Pokémon statue.\n",
+        "It would be nice to have a pair."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00112",
+      "en_US": [
+        "An almost lifelike Pokémon statue.\n",
+        "It would be nice to have a pair."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00113",
+      "en_US": [
+        "Even playing a simple scale will tell you\n",
+        "this is a special piano."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00114",
+      "en_US": [
+        "A guest set that exemplifies the\n",
+        "meaning of comfort."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00115",
+      "en_US": [
+        "A clock that teaches the beauty of\n",
+        "precisely marking time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00116",
+      "en_US": [
+        "A breathtaking masterpiece that no\n",
+        "words can ever do justice."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00117",
+      "en_US": [
+        "An exquisitely designed tea set for\n",
+        "luxuriantly elegant times."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00118",
+      "en_US": [
+        "Light makes the glass gleam, and the\n",
+        "glass dazzlingly reflects the light."
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00119",
+      "en_US": "{STRVAR_1 3, 1, 0} opened the order form.\r"
+    },
+    {
+      "id": "pl_msg_00000602_00120",
+      "en_US": [
+        "Which furniture would\n",
+        "you like to order?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00121",
+      "en_US": [
+        "Order the chosen\n",
+        "furniture?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000602_00122",
+      "en_US": "You’ve already bought one."
+    },
+    {
+      "id": "pl_msg_00000602_00123",
+      "en_US": "You don’t have enough money."
+    },
+    {
+      "id": "Villa_Text_ThisIsTheListOfPurchasedFurniture",
+      "en_US": "This is the list of purchased furniture."
+    },
+    {
+      "id": "pl_msg_00000602_00125",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000602_00126",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000602_00127",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000602_00128",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000602_00129",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000602_00130",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000602_00131",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000602_00132",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000602_00133",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000602_00134",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000602_00135",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000602_00136",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000602_00137",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000602_00138",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000602_00139",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000602_00140",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000602_00141",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000602_00142",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000602_00143",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000602_00144",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000602_00145",
+      "garbage": 53
+    },
+    {
+      "id": "pl_msg_00000602_00146",
+      "garbage": 90
+    },
+    {
+      "id": "pl_msg_00000602_00147",
+      "garbage": 70
+    },
+    {
+      "id": "pl_msg_00000602_00148",
+      "garbage": 70
+    },
+    {
+      "id": "pl_msg_00000602_00149",
+      "en_US": "Table{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00150",
+      "en_US": "Big Sofa{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00151",
+      "en_US": "Small Sofa{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00152",
+      "en_US": "Bed{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00153",
+      "en_US": "Night Table{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00154",
+      "en_US": "TV{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00155",
+      "en_US": "Audio System{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00156",
+      "en_US": "Bookshelf{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00157",
+      "en_US": "Rack{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00158",
+      "en_US": "Houseplant{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00159",
+      "en_US": "PC Desk{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00160",
+      "en_US": "Music Box{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00161",
+      "en_US": "Pokémon Bust{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00162",
+      "en_US": "Pokémon Bust{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00163",
+      "en_US": "Piano{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00164",
+      "en_US": "Guest Set{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00165",
+      "en_US": "Wall Clock{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00166",
+      "en_US": "Masterpiece{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00167",
+      "en_US": "Tea Set{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00168",
+      "en_US": "Chandelier{CURSOR_X 96}{STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000602_00169",
+      "en_US": "Table{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00170",
+      "en_US": "Big Sofa{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00171",
+      "en_US": "Small Sofa{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00172",
+      "en_US": "Bed{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00173",
+      "en_US": "Night Table{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00174",
+      "en_US": "TV{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00175",
+      "en_US": "Audio System{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00176",
+      "en_US": "Bookshelf{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00177",
+      "en_US": "Rack{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00178",
+      "en_US": "Houseplant{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00179",
+      "en_US": "PC Desk{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00180",
+      "en_US": "Music Box{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00181",
+      "en_US": "Pokémon Bust{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00182",
+      "en_US": "Pokémon Bust{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00183",
+      "en_US": "Piano{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00184",
+      "en_US": "Guest Set{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00185",
+      "en_US": "Wall Clock{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00186",
+      "en_US": "Masterpiece{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00187",
+      "en_US": "Tea Set{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00188",
+      "en_US": "Chandelier{CURSOR_X 100}------"
+    },
+    {
+      "id": "pl_msg_00000602_00189",
+      "en_US": "Table"
+    }
+  ]
+}

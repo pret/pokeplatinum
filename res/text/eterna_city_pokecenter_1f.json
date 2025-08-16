@@ -1,0 +1,158 @@
+{
+  "key": 11027,
+  "messages": [
+    {
+      "id": "pl_msg_00000089_00000",
+      "en_US": [
+        "When a Pokémon faints, it just means\n",
+        "it doesn’t have the power to battle.\r",
+        "But it can still use hidden moves\n",
+        "outside of battle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00001",
+      "en_US": [
+        "Team Galactic took my Pokémon away.\n",
+        "They took other people’s, too.\r",
+        "Something should be done, but Team\n",
+        "Galactic creeps everyone out...\r",
+        "What are they doing to my Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00002",
+      "en_US": [
+        "I got my Pokémon back!\r",
+        "I’m so happy, I feel like riding my Bike\n",
+        "down Cycling Road together with it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00003",
+      "en_US": "BUNEARY: Bunbun!"
+    },
+    {
+      "id": "pl_msg_00000089_00004",
+      "en_US": [
+        "Hi, you cute little Trainer!\n",
+        "What kinds of Pokémon are with you?\r",
+        "This Pokétch app will show how\n",
+        "close your Pokémon feel to you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00005",
+      "en_US": [
+        "If you spend enough time with them,\n",
+        "all Pokémon will open up to you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00006",
+      "en_US": [
+        "Hi, you cute little Trainer!\n",
+        "What kinds of Pokémon are with you?\r",
+        "Oh, your {STRVAR_1 0, 0, 0}...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00007",
+      "en_US": [
+        "It seems to like you.\n",
+        "It must be happy being with you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00008",
+      "en_US": [
+        "It’s becoming comfortable around\n",
+        "you, I think."
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00009",
+      "en_US": [
+        "Hmm...\n",
+        "It needs to get used to you more."
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00010",
+      "en_US": [
+        "Two Pokémon!\n",
+        "That’s what we need.\r",
+        "We’re looking for a Trainer who’s\n",
+        "traveling with at least two Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00011",
+      "en_US": [
+        "Oh! Would you like to battle against the\n",
+        "both of us?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00012",
+      "en_US": [
+        "You’re live on camera, but try to act\n",
+        "natural, OK?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00013",
+      "en_US": [
+        "OK, that’s how it is, huh.\n",
+        "Can’t do anything about that."
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00014",
+      "en_US": [
+        "Whee!\n",
+        "Wasn’t that battle smoking hot?\r",
+        "You should make a Battle Video of it and\n",
+        "share it with the world!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00015",
+      "en_US": [
+        "Oh, dear!\n",
+        "You only have one Pokémon with you?\r",
+        "That’s very commendable, but we can’t\n",
+        "battle with you that way."
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00016",
+      "en_US": [
+        "Giggle!\n",
+        "Could you win against both of us?\n"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00017",
+      "en_US": [
+        "We’ll thoroughly check out your\n",
+        "abilities as a Trainer!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00018",
+      "en_US": [
+        "Oh? You haven’t healed your Pokémon,\n",
+        "maybe?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000089_00019",
+      "en_US": [
+        "That was a good match.\r",
+        "It adds flair and drama when many\n",
+        "eager Pokémon get involved."
+      ]
+    }
+  ]
+}

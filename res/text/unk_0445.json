@@ -1,0 +1,97 @@
+{
+  "key": 65462,
+  "messages": [
+    {
+      "id": "pl_msg_00000445_00000",
+      "en_US": "SINGLE"
+    },
+    {
+      "id": "pl_msg_00000445_00001",
+      "en_US": "DOUBLE"
+    },
+    {
+      "id": "pl_msg_00000445_00002",
+      "en_US": "MIX BATTLE"
+    },
+    {
+      "id": "pl_msg_00000445_00003",
+      "en_US": "MULTI BATTLE"
+    },
+    {
+      "id": "pl_msg_00000445_00004",
+      "en_US": "LEVEL 50"
+    },
+    {
+      "id": "pl_msg_00000445_00005",
+      "en_US": "LEVEL 100"
+    },
+    {
+      "id": "pl_msg_00000445_00006",
+      "en_US": "COLOSSEUM"
+    },
+    {
+      "id": "pl_msg_00000445_00007",
+      "en_US": "POKéMON"
+    },
+    {
+      "id": "pl_msg_00000445_00008",
+      "en_US": "DRAWING"
+    },
+    {
+      "id": "pl_msg_00000445_00009",
+      "en_US": "RECORD"
+    },
+    {
+      "id": "pl_msg_00000445_00010",
+      "en_US": "GOTCHA"
+    },
+    {
+      "id": "pl_msg_00000445_00011",
+      "en_US": "CHAT"
+    },
+    {
+      "id": "pl_msg_00000445_00012",
+      "en_US": "FRIEND CODE"
+    },
+    {
+      "id": "pl_msg_00000445_00013",
+      "en_US": "CONNECTION"
+    },
+    {
+      "id": "pl_msg_00000445_00014",
+      "en_US": "VOICE CHAT"
+    },
+    {
+      "id": "pl_msg_00000445_00015",
+      "en_US": "WI-FI"
+    },
+    {
+      "id": "pl_msg_00000445_00016",
+      "en_US": "UNDERGROUND"
+    },
+    {
+      "id": "pl_msg_00000445_00017",
+      "en_US": "UNION"
+    },
+    {
+      "id": "pl_msg_00000445_00018",
+      "en_US": "POFFIN"
+    },
+    {
+      "id": "pl_msg_00000445_00019",
+      "en_US": "CONTEST"
+    },
+    {
+      "id": "pl_msg_00000445_00020",
+      "en_US": "BATTLE TOWER"
+    },
+    {
+      "id": "pl_msg_00000445_00021",
+      "en_US": "GTS"
+    },
+    {
+      "id": "pl_msg_00000445_00022",
+      "en_US": "SECRET BASE"
+    }
+  ]
+}

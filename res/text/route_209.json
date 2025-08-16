@@ -1,0 +1,172 @@
+{
+  "key": 40636,
+  "messages": [
+    {
+      "id": "pl_msg_00000480_00000",
+      "en_US": [
+        "Where departed Pokémon sleep...\n",
+        "This is the Lost Tower."
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00001",
+      "en_US": [
+        "There is a broken, crumbling tower\n",
+        "made of stone..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00002",
+      "en_US": [
+        "There is a broken, crumbling tower\n",
+        "made of stone...\r",
+        "There seems to be a spot that would\n",
+        "be a perfect fit for the Odd Keystone.\r",
+        "Would you like to use the Odd\n",
+        "Keystone?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} pushed the Odd Keystone\n",
+        "into the stone tower.\r",
+        "The stone tower has been restored!\n",
+        "“Hallowed Tower” is written on it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00004",
+      "en_US": [
+        "It’s the Hallowed Tower.\r",
+        "It appears to have been built\n",
+        "many years ago."
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00005",
+      "en_US": [
+        "It’s the Hallowed Tower.\r",
+        "Its stones appear to have shifted..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00006",
+      "en_US": [
+        "It’s the Hallowed Tower.\r",
+        "...Is that crying coming from inside\n",
+        "the tower?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00007",
+      "en_US": [
+        "It’s the Hallowed Tower.\r",
+        "...Is the tower shaking ever so\n",
+        "slightly?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00008",
+      "en_US": [
+        "It’s the Hallowed Tower.\r",
+        "There is some sort of presence...\n",
+        "It appears ready to emerge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00009",
+      "en_US": "Yulaaah!\r"
+    },
+    {
+      "id": "pl_msg_00000480_00010",
+      "en_US": [
+        "Hmm!\n",
+        "{STRVAR_1 8, 0, 0} is really good!\r",
+        "Wouldn’t you agree?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00011",
+      "en_US": [
+        "Hmm!\n",
+        "We’re of identical minds!\r",
+        "Hmm!\n",
+        "Take this {STRVAR_1 8, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00012",
+      "en_US": [
+        "Try fishing wherever there is\n",
+        "a body of water.\r",
+        "Oh, incidentally, do you need me to\n",
+        "explain how to use that fishing rod?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00013",
+      "en_US": "You don’t like to fish?"
+    },
+    {
+      "id": "pl_msg_00000480_00014",
+      "en_US": [
+        "First, you face any body of water,\n",
+        "then you use your fishing rod.\r",
+        "Next, you must focus!\n",
+        "If a Pokémon bites, “!” appears.\f",
+        "That’s your cue to reel it in!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00015",
+      "en_US": [
+        "When you’re fishing for Pokémon,\n",
+        "the first hurdle is getting a bite.\r",
+        "When you start to reel that Pokémon\n",
+        "in, you’ve got to battle it.\r",
+        "So, fishing gives you twice the fun!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00016",
+      "en_US": [
+        "Do you jog every morning?\n",
+        "Well, I do!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00017",
+      "en_US": [
+        "When I was jogging the other day,\n",
+        "a wild Pokémon chased after me.\r",
+        "I swear, I ran on top of the water!\n",
+        "I was so freaked out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00018",
+      "en_US": [
+        "Rt. 209\n",
+        "Hearthome City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00019",
+      "en_US": [
+        "Rt. 209\n",
+        "Solaceon Town"
+      ]
+    },
+    {
+      "id": "pl_msg_00000480_00020",
+      "en_US": [
+        "Trainer Tips\r",
+        "You may register one of the Key\n",
+        "Items in your Bag for instant use.\r",
+        "Simply press the Y Button to use the\n",
+        "registered item instantly."
+      ]
+    }
+  ]
+}

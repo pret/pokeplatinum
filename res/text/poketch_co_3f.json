@@ -1,0 +1,314 @@
+{
+  "key": 17419,
+  "messages": [
+    {
+      "id": "pl_msg_00000029_00000",
+      "en_US": [
+        "Do you have a Pokétch?\r",
+        "There’s a girl’s model and a boy’s\n",
+        "model, each in different colors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00001",
+      "en_US": [
+        "My husband’s the president.\r",
+        "We started out in a small workshop\n",
+        "where he made what he liked.\r",
+        "Now we’re making something that makes\n",
+        "the world happy. Imagine that!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00002",
+      "en_US": [
+        "People everywhere make Pokétch apps.\r",
+        "You’ll be able to get new apps from\n",
+        "surprising sources.\r",
+        "The PCs here have guides on the\n",
+        "various Pokétch apps."
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00003",
+      "en_US": [
+        "There are descriptions of Pokétch\n",
+        "apps.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00004",
+      "en_US": [
+        "Which Pokétch app would\n",
+        "you like to read about?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00005",
+      "en_US": [
+        "There are descriptions of Pokétch\n",
+        "apps.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00006",
+      "en_US": [
+        "Which Pokétch app would\n",
+        "you like to read about?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00007",
+      "en_US": [
+        "There are descriptions of Pokétch\n",
+        "apps.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00008",
+      "en_US": [
+        "Which Pokétch app would you like\n",
+        "to read about?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00009",
+      "en_US": [
+        "There are descriptions of Pokétch\n",
+        "apps.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00010",
+      "en_US": [
+        "Which Pokétch app would you like\n",
+        "to read about?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00011",
+      "en_US": [
+        "The Digital Watch displays the\n",
+        "current time.\r",
+        "Don’t be late for meetings with\n",
+        "your friends!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00012",
+      "en_US": [
+        "The Analog Watch displays the\n",
+        "current time.\r",
+        "The short hand indicates the hour,\n",
+        "and the long hand shows the minute!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00013",
+      "en_US": [
+        "The Alarm Clock can be set to sound\n",
+        "every 24 hours.\r",
+        "Set the alarm time with the lower\n",
+        "button. The top button turns it on.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00014",
+      "en_US": [
+        "The Stopwatch is used for measuring\n",
+        "time precisely.\r",
+        "How quickly can you zip through\n",
+        "the Cycling Road?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00015",
+      "en_US": [
+        "The Kitchen Timer can count down from\n",
+        "up to 99 minutes, but not precisely.\r",
+        "Set the time with the center button,\n",
+        "then start the countdown.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00016",
+      "en_US": [
+        "Use the monthly Calendar to make\n",
+        "a note of important dates.\r",
+        "Touch any date to change its color.\n",
+        "Touch it again to turn it back.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00017",
+      "en_US": [
+        "The Calculator can handle up to\n",
+        "ten digits.\r",
+        "It’s perfect for figuring out math\n",
+        "questions that might pop up.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00018",
+      "en_US": [
+        "The Pokémon List indicates the\n",
+        "statuses of your team’s Pokémon.\r",
+        "Touch them to hear their cries.\n",
+        "Their HP bar is also displayed.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00019",
+      "en_US": [
+        "The Friendship Checker indicates how\n",
+        "friendly your Pokémon are to you.\r",
+        "Touch the screen. The Pokémon that\n",
+        "like you will come closer.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00020",
+      "en_US": [
+        "The Day-Care Checker shows the\n",
+        "Pokémon you have in the Day Care.\r",
+        "Check and see how your Pokémon are\n",
+        "doing with the Day-Care Couple.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00021",
+      "en_US": [
+        "The Matchup Checker tests the\n",
+        "attraction between Pokémon.\r",
+        "The greater the number of hearts,\n",
+        "the better likelihood of Eggs.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00022",
+      "en_US": [
+        "The Pokémon History keeps track of\n",
+        "the Pokémon you have obtained.\r",
+        "It shows the last twelve kinds of\n",
+        "Pokémon you obtained.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00023",
+      "en_US": [
+        "The Berry Searcher is a map that\n",
+        "shows the locations of Berries.\r",
+        "It indicates the presence of Berries\n",
+        "in areas you have already visited.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00024",
+      "en_US": [
+        "The Memo Pad is useful for jotting\n",
+        "down a note, or just doodling.\r",
+        "There’s an eraser, too, just in case\n",
+        "you make a mistake.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00025",
+      "en_US": [
+        "The Dot Artist lets you draw pictures\n",
+        "in a mosaic style.\r",
+        "Touching the same dot makes its\n",
+        "color turn darker.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00026",
+      "en_US": [
+        "The Color Changer changes the\n",
+        "Pokétch’s display color.\r",
+        "Slide the switch to select one\n",
+        "of eight colors.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00027",
+      "en_US": [
+        "The Marking Map lets you mark\n",
+        "intriguing locations.\r",
+        "Drag marks to places on the map\n",
+        "that you want to remember.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00028",
+      "en_US": [
+        "The Roulette features a wheel\n",
+        "that can be written on.\r",
+        "Draw numbers, items, or whatever on\n",
+        "the wheel and give it a spin!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00029",
+      "en_US": [
+        "The Coin Toss flips a coin that\n",
+        "comes up heads or tails.\r",
+        "If you can’t choose between two\n",
+        "choices, a coin toss might be handy.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00030",
+      "en_US": [
+        "The Pedometer keeps a count of\n",
+        "the number of steps traveled.\r",
+        "It automatically counts steps.\n",
+        "Touch the button to reset it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00031",
+      "en_US": [
+        "The Dowsing Machine searches for\n",
+        "hidden or obscured items.\r",
+        "Touch the radar screen. If there is\n",
+        "an item nearby, it will respond.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00032",
+      "en_US": [
+        "The Counter is used for counting\n",
+        "things one at a time.\r",
+        "Touch the button and count whatever\n",
+        "needs counting.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00033",
+      "en_US": [
+        "The Trainer Counter tracks the\n",
+        "performance of the Poké Radar.\r",
+        "It shows how often you have met\n",
+        "the same kind of Pokémon in a row.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00034",
+      "en_US": [
+        "The Link Searcher searches for\n",
+        "players on wireless communications.\r",
+        "Touch the screen to get a list of\n",
+        "people using wireless communications.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000029_00035",
+      "en_US": [
+        "The Move Tester checks how effective\n",
+        "moves are by type.\r",
+        "Switch the attacker and defender\n",
+        "types to see what is effective.\r"
+      ]
+    }
+  ]
+}

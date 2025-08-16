@@ -1,0 +1,674 @@
+{
+  "key": 33809,
+  "messages": [
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyJubilife_Intro",
+      "en_US": [
+        "Hi, can we feature you in a news piece\n",
+        "we’re doing?\r",
+        "All you have to do is battle with me.\n",
+        "Will you do that?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyJubilife_BattleAccepted",
+      "en_US": "Reporter Kinsey’s live interview!\r"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyJubilife_BattleDeclined",
+      "en_US": [
+        "Unbelievable! Press coverage denied!\n",
+        "I find you intriguing, too..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyJubilife_PostBattle",
+      "en_US": [
+        "To get people to open up, we approach\n",
+        "them honestly with no hidden tricks.\r",
+        "It’s like the relationship between\n",
+        "Pokémon and Trainers, isn’t it?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinJubilife_Intro",
+      "en_US": [
+        "I’ve spotted a charismatic Trainer!\n",
+        "Is it OK to go for the scoop?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinJubilife_BattleAccepted",
+      "en_US": [
+        "As a professional cameraman, I always\n",
+        "go for the best shot!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinJubilife_BattleDeclined",
+      "en_US": [
+        "That’s a downer...\r",
+        "I thought I’d found a Trainer and\n",
+        "Pokémon who’d shine on camera."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinJubilife_PostBattle",
+      "en_US": [
+        "The lively expressions on you and your\n",
+        "Pokémon’s faces...\r",
+        "It sure makes for some great TV!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeHearthome_Intro",
+      "en_US": [
+        "Are we all ready to have some fun?\n",
+        "I sure am! Aren’t you having fun?!\f",
+        "Let’s make it fun! OK?!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeHearthome_BattleAccepted",
+      "en_US": [
+        "OK, how shall we do this?\n",
+        "Shall we do something fantastical?\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeHearthome_BattleDeclined",
+      "en_US": [
+        "Oh, how shall I say this...?\n",
+        "It makes me all lonely, I say..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeHearthome_PostBattle",
+      "en_US": [
+        "A clown’s makeup is a face that’s\n",
+        "crying while laughing. Mwahahah!\r",
+        "It defines what we do!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoCanalave_Intro",
+      "en_US": [
+        "Come on, let’s show off our Pokémon!\n",
+        "Let’s do battle, kiddo!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoCanalave_BattleAccepted",
+      "en_US": [
+        "Your spirit’s vibes...\n",
+        "You’ve got rock in your veins!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoCalanave_BattleDeclined",
+      "en_US": [
+        "My guitar...\n",
+        "It lies broken and weeping..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoCanalave_PostBattle",
+      "en_US": [
+        "Pokémon and rock and roll are all\n",
+        "anyone needs to survive this world!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceOreburgh_Intro",
+      "en_US": [
+        "Hi, I’m Grace, the Idol! I’m just back\n",
+        "from a show in Oreburgh Mine!\r",
+        "So, shall we battle?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceOreburgh_BattleAccepted",
+      "en_US": [
+        "I’ll let you join my fan club if you can\n",
+        "beat me!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceOreburgh_BattleDeclined",
+      "en_US": [
+        "You won’t accept my challenge?!\n",
+        "But I’m an Idol..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceOreburgh_PostBattle",
+      "en_US": [
+        "Well, that’s me and my Pokémon!\n",
+        "I hope you’ll support us!\r",
+        "Just so you know, our latest single is\n",
+        "titled “Jigglin’ Pokémon Wub”!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliEterna_NotEnoughPokemon",
+      "en_US": [
+        "Two Pokémon!\n",
+        "That’s what we need.\r",
+        "We’re looking for a Trainer who’s\n",
+        "traveling with at least two Pokémon."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliEterna_Intro",
+      "en_US": [
+        "Oh! Would you like to battle against the\n",
+        "both of us?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliEterna_BattleAccepted",
+      "en_US": [
+        "You’re live on camera, but try to act\n",
+        "natural, OK?\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliEterna_BattleDeclined",
+      "en_US": [
+        "OK, that’s how it is, huh.\n",
+        "Can’t do anything about that."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliEterna_PostBattle",
+      "en_US": [
+        "Whee!\n",
+        "Wasn’t that battle smoking hot?\r",
+        "You should make a Battle Video of it and\n",
+        "share it with the world!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyEterna_NotEnoughPokemon",
+      "en_US": [
+        "Oh, dear!\n",
+        "You only have one Pokémon with you?\r",
+        "That’s very commendable, but we can’t\n",
+        "battle with you that way."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyEterna_Intro",
+      "en_US": [
+        "Giggle!\n",
+        "Could you win against both of us?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyEterna_BattleAccepted",
+      "en_US": [
+        "We’ll thoroughly check out your\n",
+        "abilities as a Trainer!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyEterna_BattleDeclined",
+      "en_US": [
+        "Oh? You haven’t healed your Pokémon,\n",
+        "maybe?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyEterna_PostBattle",
+      "en_US": [
+        "That was a good match.\r",
+        "It adds flair and drama when many\n",
+        "eager Pokémon get involved."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyHearthome_Intro",
+      "en_US": [
+        "We’re doing a news piece on Trainers.\n",
+        "Can we get you to participate?\r",
+        "If we can, we’d like to see how strong\n",
+        "you are in a battle!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyHearthome_BattleAccepted",
+      "en_US": [
+        "Jubilife TV!\n",
+        "On-the-spot live report!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyHearthome_BattleDeclined",
+      "en_US": [
+        "...Are you one of those contrary\n",
+        "people who reply “No” first thing?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyHearthome_PostBattle",
+      "en_US": [
+        "Why Trainers choose certain kinds of\n",
+        "Pokémon and their feelings about it...\r",
+        "That’s what we’re investigating."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinHearthome_Intro",
+      "en_US": [
+        "I felt a flash of inspiration when I laid\n",
+        "eyes on you.\r",
+        "I’d really love to capture you on\n",
+        "camera while you’re battling."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinHearthome_BattleAccepted",
+      "en_US": [
+        "For close-ups, I need to get in tight.\n",
+        "You don’t mind, do you?\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinHearthome_BattleDeclined",
+      "en_US": [
+        "That’s a downer...\r",
+        "I thought I’d found a Trainer and\n",
+        "Pokémon who’d shine on camera."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinHearthome_PostBattle",
+      "en_US": [
+        "So, did you come to Hearthome to\n",
+        "compete in Contests?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_Intro",
+      "en_US": [
+        "Would you like to battle with me?\n",
+        "As a memento of your visit to Pastoria?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_BattleAccepted",
+      "en_US": [
+        "I’ll let you join my fan club if you can\n",
+        "beat me!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_BattleDeclined",
+      "en_US": [
+        "You’re not interested in Idols?\n",
+        "...I think I’m going to cry."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GracePastiora_PostBattle",
+      "en_US": [
+        "Well, that’s me and my Pokémon!\n",
+        "I hope you’ll support us!\r",
+        "Just so you know, our latest single is\n",
+        "titled “Jigglin’ Pokémon Wub”!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeePastoria_Intro",
+      "en_US": [
+        "Are we all ready to have some fun?\n",
+        "Our battle will be fun! OK?!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeePastiora_BattleAccepted",
+      "en_US": [
+        "OK, how shall we do this?\n",
+        "Shall we do something fantastical?\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeePastiora_BattleDeclined",
+      "en_US": [
+        "Oh, how shall I say this...?\n",
+        "It makes me all lonely, I say..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeePastiora_PostBattle",
+      "en_US": [
+        "Well, let’s see!\n",
+        "Which town will we go to next?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoPastoria_Intro",
+      "en_US": [
+        "Come on, let’s show off our Pokémon!\n",
+        "Let’s do battle, kiddo!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleAccepted",
+      "en_US": [
+        "Your spirit’s vibes...\n",
+        "You’ve got rock in your veins!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoPastiora_BattleDeclined",
+      "en_US": [
+        "My guitar...\n",
+        "It lies broken and weeping..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoPastiora_PostBattle",
+      "en_US": [
+        "Rock is about your spirit!\n",
+        "Battling is about spirit, too!\f",
+        "That’s why a battle is rock!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliVeilstone_NotEnoughPokemon",
+      "en_US": [
+        "Two Pokémon! If you had two Pokémon,\n",
+        "we’d get a great shot here."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliVeilstone_Intro",
+      "en_US": [
+        "Oh! You’re ready for a battle\n",
+        "with us?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliVeilstone_BattleAccepted",
+      "en_US": [
+        "You’re live on camera, but try to act\n",
+        "natural, OK?\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliVeilstone_BattleDeclined",
+      "en_US": [
+        "OK, that’s how it is, huh.\n",
+        "Can’t do anything about that."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_OliVeilstone_PostBattle",
+      "en_US": [
+        "I’d like to take that footage and\n",
+        "broadcast it worldwide."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyVeilstone_NotEnoughPokemon",
+      "en_US": [
+        "Oh, no. What we really want to see\n",
+        "is you battling using two Pokémon!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyVeilstone_Intro",
+      "en_US": [
+        "Giggle!\n",
+        "Will you have a battle with us?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyVeilstone_BattleAccepted",
+      "en_US": [
+        "We’ll thoroughly check out your\n",
+        "abilities as a Trainer!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyVeilstone_BattleDeclined",
+      "en_US": [
+        "Oh, too bad!\n",
+        "I wanted to check out your Pokémon!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_RoxyVeilstone_PostBattle",
+      "en_US": [
+        "I lost but I’m totally thrilled!\n",
+        "We made a wonderful spectacle!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoSunyshore_Intro",
+      "en_US": [
+        "Do you want to hear me play my guitar?\n",
+        "Or do we battle?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoSunyshore_BattleAccepted",
+      "en_US": [
+        "Your spirit’s vibes...\n",
+        "You’ve got rock in your veins!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoSunyshore_BattleDeclined",
+      "en_US": [
+        "My guitar...\n",
+        "It lies broken and weeping..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArturoSunyshore_PostBattle",
+      "en_US": [
+        "For Trainers, Pokémon!\r",
+        "For my girl, sweet kisses!\r",
+        "That’s the perfect world for this\n",
+        "guitarist!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceSnowpoint_Intro",
+      "en_US": [
+        "Thank you for coming to Grace’s live\n",
+        "show in Snowpoint!\r",
+        "I’m so happy you came to see me!\n",
+        "I’ll battle you as my thank-you!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceSnowpoint_BattleAccepted",
+      "en_US": [
+        "I’ll let you join my fan club if you can\n",
+        "beat me!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceSnowpoint_BattleDeclined",
+      "en_US": [
+        "But my song!\n",
+        "It’s nicer than that Crasher Wake’s!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_GraceSnowpoint_PostBattle",
+      "en_US": [
+        "My dream is to be the top Idol!\r",
+        "To win everyone’s heart, I’ll sing my\n",
+        "heart out in snowy Snowpoint!\r",
+        "...To a crowd of none.\n",
+        "...This is Grace. Thanks for listening..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyFightArea_Intro",
+      "en_US": [
+        "We’re doing a feature on tough Trainers\n",
+        "in the Battle Zone.\r",
+        "That’s where you come in.\n",
+        "We need you to battle us!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyFightArea_BattleAccepted",
+      "en_US": "Reporter Kinsey’s live interview!\r"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyFightArea_BattleDeclined",
+      "en_US": [
+        "You don’t have to be shy.\n",
+        "We can obscure your face if we have to."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_KinseyFightArea_PostBattle",
+      "en_US": [
+        "I go after interviews like my favorite\n",
+        "Pokémon move--I tackle them!\r",
+        "Of course, I don’t use Tackle in\n",
+        "battles, though."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinFightArea_Intro",
+      "en_US": [
+        "Expert Trainer spotted!\n",
+        "Will you let us battle with you?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinFightArea_BattleAccepted",
+      "en_US": [
+        "Great! Great!\n",
+        "You guys are great!\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinFightArea_BattleDeclined",
+      "en_US": [
+        "Want to see how good you are before\n",
+        "you go off to the Battle Frontier?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_TevinFightArea_PostBattle",
+      "en_US": [
+        "The combination of you and your Pokémon\n",
+        "will tear up the Battle Tower!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielFloaroma_Intro",
+      "en_US": [
+        "Po-Po-Pokémon!\r",
+        "I want to become more like a PIKACHU!\n",
+        "Will you battle me?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielFloaroma_BattleAccepted",
+      "en_US": "Pi-Pikachu!\r"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielFloaroma_BattleDeclined",
+      "en_US": "Pi-Pikachu!"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielFloaroma_PostBattle",
+      "en_US": [
+        "I can make static electricity, but I’m\n",
+        "not very much like a Pokémon yet.\r",
+        "Don’t give up, me!\n",
+        "Become a Pokémon, me!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielSolaceon_Intro",
+      "en_US": [
+        "Pikachu!\r",
+        "I want to become more like a PIKACHU!\n",
+        "Will you battle me?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielSolaceon_BattleAccepted",
+      "en_US": "Pi-Pikachu!\r"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielSolaceon_BattleDeclined",
+      "en_US": "Pi-Pikachu!"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielSolaceon_PostBattle",
+      "en_US": [
+        "I need to find a way to get more into\n",
+        "the character of a Pokémon...\r",
+        "Maybe I should get the Day Care to\n",
+        "raise me?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeCelestic_Intro",
+      "en_US": [
+        "As a clown, I like to show off Pokémon\n",
+        "that are a little out of the ordinary.\r",
+        "Want to battle and see for yourself?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeCelestic_BattleAccepted",
+      "en_US": [
+        "OK, how shall we do this?\n",
+        "Shall we do something fantastical?\r"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeCelestic_BattleDeclined",
+      "en_US": [
+        "Oh, how shall I say this...?\n",
+        "It makes me all lonely, I say..."
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_LeeCelestic_PostBattle",
+      "en_US": [
+        "Here’s a piece of useless trivia.\n",
+        "Fear of clowns is also known as\f",
+        "coulrophobia!"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielResortArea_Intro",
+      "en_US": [
+        "Po-Po-Pokémon!\r",
+        "I want to become more like a PIKACHU!\n",
+        "Will you battle me?"
+      ]
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielResortArea_BattleAccepted",
+      "en_US": "Pi-Pikachu!\r"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielResortArea_BattleDeclined",
+      "en_US": "Pi-Pikachu!"
+    },
+    {
+      "id": "PokemonCenterDailyTrainers_Text_ArielResortArea_PostBattle",
+      "en_US": [
+        "But I just had my team pampered at the\n",
+        "Ribbon Syndicate!\r",
+        "I have to get more into the character\n",
+        "of a Pokémon..."
+      ]
+    }
+  ]
+}

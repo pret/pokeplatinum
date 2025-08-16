@@ -1,0 +1,41 @@
+{
+  "key": 58422,
+  "messages": [
+    {
+      "id": "pl_msg_00000082_00000",
+      "en_US": [
+        "The Oreburgh Mine is operated\n",
+        "with the utmost care.\r",
+        "We avoid causing any damage to\n",
+        "the natural habitats of Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000082_00001",
+      "en_US": [
+        "Wow... Your Pokémon’s eyes are\n",
+        "twinkling brightly!\r",
+        "Seeing that makes me happy!\n",
+        "Here, I want you to have this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000082_00002",
+      "en_US": [
+        "You know how Pokémon stay inside\n",
+        "their Poké Balls?\r",
+        "I try to think about what would be\n",
+        "the best Poké Balls for them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000082_00003",
+      "en_US": [
+        "Coal is carried out of Oreburgh Mine on\n",
+        "a fully automated system.\r",
+        "Machines do all the work automatically.\n",
+        "So, it’s all very easy."
+      ]
+    }
+  ]
+}

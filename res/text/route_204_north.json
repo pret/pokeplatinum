@@ -1,0 +1,50 @@
+{
+  "key": 2418,
+  "messages": [
+    {
+      "id": "pl_msg_00000470_00000",
+      "en_US": [
+        "Are you raising different kinds of\n",
+        "Pokémon?\r",
+        "If you only have the same type of\n",
+        "Pokémon, you’ll have a hard time\f",
+        "against types it’s weak to."
+      ]
+    },
+    {
+      "id": "pl_msg_00000470_00001",
+      "en_US": [
+        "Hi, are you the flirty type?\n",
+        "I’m asking you this to make a point.\r",
+        "I teach at the Trainers’ School,\n",
+        "and I’d like to give you a lesson.\r",
+        "But before I do, I’d like you to\n",
+        "have this TM.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000470_00002",
+      "en_US": [
+        "You know how Pokémon have genders?\n",
+        "Like, there are males and females?\r",
+        "Well, the move Captivate only works\n",
+        "against the opposite gender.\r",
+        "For example, it only works when used\n",
+        "by a male Pokémon on a female.\r",
+        "The move sharply lowers the target’s\n",
+        "Special Attack, or Sp. Atk for short.\r",
+        "You also probably know this, but a\n",
+        "TM is good for only one use.\r",
+        "Choose the Pokémon wisely if you\n",
+        "do decide to use it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000470_00003",
+      "en_US": [
+        "Rt. 204\n",
+        "Floaroma Town"
+      ]
+    }
+  ]
+}

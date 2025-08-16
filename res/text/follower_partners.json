@@ -1,0 +1,383 @@
+{
+  "key": 39221,
+  "messages": [
+    {
+      "id": "FollowerPartners_Text_00000",
+      "garbage": 35
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_HeyPlayerYouCanChooseFirst",
+      "en_US": [
+        "Hey, {STRVAR_1 3, 1, 0}.\n",
+        "You can choose first. Go ahead.\r",
+        "You know, like, I’m gonna be a man\n",
+        "about it. Yeah, I’m slick."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_ThatPokemonBattle",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: That Pokémon battle...\r",
+        "Wasn’t that wickedly fun or what?\r",
+        "I mean, I’d pick the moves, and my\n",
+        "Pokémon would use them!\r",
+        "Yeah, I’m going to battle tons and get\n",
+        "real close with Pokémon."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_PokemonAllHaveDifferentMovesHuh",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Pokémon all have\n",
+        "different moves, huh?\r",
+        "A Trainer makes his Pokémon battle\n",
+        "by ordering them to use moves.\r",
+        "That’s so awesomely cool."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_DoYouBelieveIt",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Do you believe it?\n",
+        "I can hardly believe it.\r",
+        "You and me, we’re Pokémon Trainers all\n",
+        "of a sudden.\r",
+        "Man, we’ve got tons to learn about\n",
+        "being a Trainer.\r",
+        "But seeing this Poké Ball with this\n",
+        "{STRVAR_1 0, 1, 0} inside...\r",
+        "It makes me feel like I can do anything!\n",
+        "Nothing’s impossible!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_ThatLakeHasAMiragePokemonLivingInIt",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: That lake has a mirage\n",
+        "Pokémon living in it.\r",
+        "Everyone says it’s just a legend, but\n",
+        "I know I’m right."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_HeyDoYouKnowAboutTheChampion",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, do you know about\n",
+        "the Champion?\r",
+        "There’s this out-of-this-world tough\n",
+        "Trainer who gets called that.\r",
+        "Well, I’m gonna get so tough, the Champ\n",
+        "has to battle me. You watch!\r",
+        "With this little guy here, I’m sure I can\n",
+        "get that tough."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_HeyThatsEnoughTalkingAlready",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, that’s enough\n",
+        "talking already.\r",
+        "I’m itching to get going to the lake.\n",
+        "Come on, come on!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Rival_AllRightLetsMoveOut",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: All right!\n",
+        "Let’s move out! Hustle up!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_00009",
+      "garbage": 58
+    },
+    {
+      "id": "FollowerPartners_Text_00010",
+      "garbage": 56
+    },
+    {
+      "id": "FollowerPartners_Text_00011",
+      "garbage": 48
+    },
+    {
+      "id": "FollowerPartners_Text_Cheryl_ItsStartlingToSeeTwoWildPokemon",
+      "en_US": [
+        "Cheryl: It’s startling to see two wild\n",
+        "Pokémon appearing at the same time."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Cheryl_MyPokemonIsAnExcellentHealer",
+      "en_US": [
+        "Cheryl: My Pokémon is an excellent\n",
+        "healer.\r",
+        "But attacking isn’t its strong point."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Cheryl_PlayerBattlingWithYouMakesMeFeelElated",
+      "en_US": [
+        "Cheryl: {STRVAR_1 3, 0, 0}, battling with\n",
+        "you makes me feel elated.\r",
+        "If I could predict what you’re about\n",
+        "to do, we would make a fierce combo!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Cheryl_ThatsSomeNiceMoss",
+      "en_US": "Cheryl: That’s some nice moss..."
+    },
+    {
+      "id": "FollowerPartners_Text_Mira_AreYouGoingToUseThat",
+      "en_US": [
+        "Mira: Are you going to use that?\n",
+        "I will be left all alone..."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Mira_AreYouGoingToUseThat2",
+      "en_US": [
+        "Mira: Are you going to use that?\n",
+        "I will be left all alone..."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Mira_ThatIsntTheRightWay",
+      "en_US": [
+        "Mira: That isn’t the right way.\n",
+        "I’ll be lost if we go down..."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Mira_ILikeHelpfulPokemonMovesLikeGrowlAndMinimize",
+      "en_US": [
+        "Mira: I like helpful Pokémon moves\n",
+        "like Growl and Minimize.\r",
+        "Those kinds of moves are my\n",
+        "favorites."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Mira_ThisCaveItsSoEasyToGetConfusedHere",
+      "en_US": [
+        "Mira: This cave...\n",
+        "It’s so easy to get confused here.\f",
+        "Do you know where we are?"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Mira_PlayerDidYouGetToBeSoGood",
+      "en_US": [
+        "Mira: {STRVAR_1 3, 0, 0}, did you get to be\n",
+        "so good because you’re always with\f",
+        "your Pokémon?\r",
+        "Yes! That has to be it!\n",
+        "I will try like you!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_IfYouUseThat",
+      "en_US": [
+        "Riley: If you use that, I’ll have to\n",
+        "wave good-bye to you now."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_IfYouUseThatMove",
+      "en_US": [
+        "Riley: If you use that move, I’ll have\n",
+        "to wave good-bye to you now."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_HahaIdHaveToAgree",
+      "en_US": [
+        "Riley: Haha, I’d have to agree.\r",
+        "People training here would be those\n",
+        "with too much time on their hands."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_ThisUsedToBeAFairlyThrivingOreMine",
+      "en_US": [
+        "Riley: This used to be a fairly\n",
+        "thriving ore mine once upon a time.\r",
+        "I guess the steel ore’s played out.\n",
+        "There’s only Pokémon here now."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_HaveYouMetByron",
+      "en_US": [
+        "Riley: Have you met Byron?\n",
+        "The Leader of Canalave Gym?\r",
+        "He’s asked me to become a Gym\n",
+        "Leader, but there’s his son Roark\f",
+        "to consider as well."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_ImagineWhatItWouldBeLike",
+      "en_US": [
+        "Riley: Imagine what it would be like\n",
+        "for a Steel-type Pokémon user to\f",
+        "battle a Steel type.\r",
+        "Would that be like battling yourself,\n",
+        "I wonder?\r",
+        "I mean, it’s a lot harder to defeat\n",
+        "one’s self than anyone else."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_WhatsGoingOnHereThough",
+      "en_US": [
+        "Riley: What’s going on here, though?\n",
+        "The native Pokémon are restless...\r",
+        "I don’t like this...\n",
+        "Let’s hurry."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_ThanksYouReallyHelpedMeOut",
+      "en_US": [
+        "Riley: Thanks.\n",
+        "You really helped me out.\r",
+        "Listen, I have a Pokémon here\n",
+        "named Luca.\r",
+        "Would you take it with you?\r"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_ThanksIWantYouToShowLucaAllSortsOfWorlds",
+      "en_US": [
+        "Riley: Thanks!\r",
+        "I want you to show Luca all sorts\n",
+        "of worlds.\r"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_ThankYouButYouDontHaveRoom",
+      "en_US": [
+        "Riley: Thank you...\r",
+        "But you don’t have room to take\n",
+        "another Pokémon.\r",
+        "All right, then.\n",
+        "I’ll wait here for you."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_IHopeYoullAcceptItAsATokenOfOurFriendship",
+      "en_US": [
+        "Riley: I hope you’ll accept it as\n",
+        "a token of our friendship."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Riley_SpendingTimeWithYouWasVeryEnjoyable",
+      "en_US": [
+        "Riley: Spending time with you was\n",
+        "very enjoyable.\r",
+        "I intend to test my skills in other\n",
+        "places from now on.\r",
+        "It would be great if we could meet\n",
+        "again.\r"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Marley_AreYouGoingToLeaveMeHere",
+      "en_US": [
+        "Marley: ...Are you going to leave\n",
+        "me here?"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Marley_AreYouGoingToLeaveMeHere2",
+      "en_US": [
+        "Marley: ...Are you going to leave\n",
+        "me here?"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Marley_SorryButImNotGoingUp",
+      "en_US": [
+        "Marley: ...Sorry, but I’m not\n",
+        "going up."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Marley_ItIsntThatWay",
+      "en_US": "Marley: ...It isn’t that way."
+    },
+    {
+      "id": "FollowerPartners_Text_Marley_YoureVeryChatty",
+      "en_US": "Marley: ...You’re very chatty..."
+    },
+    {
+      "id": "FollowerPartners_Text_Marley_ThePokemonAmongFlowers",
+      "en_US": [
+        "Marley: ...The Pokémon among\n",
+        "flowers..."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Buck_WhoaPlayerIfYouUseThat",
+      "en_US": [
+        "Buck: Whoa, {STRVAR_1 3, 0, 0}!\r",
+        "If you use that, me and my Pokémon\n",
+        "will be left behind. Don’t do it!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Buck_WhoaPlayerIfYouUseThat2",
+      "en_US": [
+        "Buck: Whoa, {STRVAR_1 3, 0, 0}!\r",
+        "If you use that, me and my Pokémon\n",
+        "will be left behind. Don’t do it!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Buck_ThisIsWhereIRaisedMyPokemon",
+      "en_US": [
+        "Buck: This is where I raised my Pokémon.\r",
+        "I can’t stand the thought of anyone\n",
+        "making a mess of this place.\r",
+        "Especially not those weird Team\n",
+        "Galactic goons!"
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Buck_TheresNoLawThatSaysIHaveToBeTough",
+      "en_US": [
+        "Buck: There’s no law that says\n",
+        "I have to be tough or anything,\f",
+        "but losing isn’t fair to my Pokémon.\r",
+        "After all, they try so hard for me.\r",
+        "I think it’s my responsibility as a\n",
+        "Trainer to recognize their hard work."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Buck_MyBigBrothersOneOfTheEliteFour",
+      "en_US": [
+        "Buck: My big brother’s one of the\n",
+        "Elite Four.\r",
+        "So, of course it’s only normal that\n",
+        "I’d be better than ordinary folks.\r",
+        "But that’s not what I want.\n",
+        "I want to be tough on my own terms.\r",
+        "It wouldn’t be fair to the Pokémon\n",
+        "that chose to be with me."
+      ]
+    },
+    {
+      "id": "FollowerPartners_Text_Buck_ItMightBeCoolBeingAGymLeaderOrEliteFour",
+      "en_US": [
+        "Buck: It might be cool being a Gym\n",
+        "Leader or one of the Elite Four...\r",
+        "But, then again, it sounds like it’d\n",
+        "be a lot of hard work!"
+      ]
+    }
+  ]
+}

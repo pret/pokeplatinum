@@ -1,0 +1,38 @@
+{
+  "key": 9226,
+  "messages": [
+    {
+      "id": "pl_msg_00000556_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...I’d better take\n",
+        "my Bag and Journal, too...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000556_00001",
+      "en_US": [
+        "Oh, hey, {STRVAR_1 3, 0, 0}!\r",
+        "I’ll be waiting on the road!\n",
+        "It’s a $10 million fine if you’re late!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000556_00002",
+      "en_US": [
+        "It’s a Wii!\n",
+        "It’s controlled by a Wii Remote!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000556_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} checked the PC screen.\r",
+        "Adventure Rule No. 1\n",
+        "The X Button opens the menu!\r",
+        "Adventure Rule No. 2\n",
+        "Record your progress with SAVE.\r",
+        "There is nothing else on here..."
+      ]
+    }
+  ]
+}

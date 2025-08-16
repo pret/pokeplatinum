@@ -1,0 +1,52 @@
+{
+  "key": 59108,
+  "messages": [
+    {
+      "id": "pl_msg_00000360_00000",
+      "en_US": [
+        "Look! These are Poké Balls!\n",
+        "There is a Pokémon in each one!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000360_00001",
+      "en_US": [
+        "{COLOR 3}Tiny Leaf Pokémon TURTWIG{COLOR 0}!\n",
+        "Will you take this Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000360_00002",
+      "en_US": [
+        "{COLOR 1}Chimp Pokémon CHIMCHAR{COLOR 0}!\n",
+        "Do you choose this Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000360_00003",
+      "en_US": [
+        "{COLOR 2}Penguin Pokémon{COLOR 0} {COLOR 2}PIPLUP{COLOR 0}!\n",
+        "Is this Pokémon the one for you?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000360_00004",
+      "garbage": 24
+    },
+    {
+      "id": "pl_msg_00000360_00005",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000360_00006",
+      "garbage": 25
+    },
+    {
+      "id": "pl_msg_00000360_00007",
+      "en_US": [
+        "Now choose!\n",
+        "Which Pokémon will it be?"
+      ]
+    }
+  ]
+}

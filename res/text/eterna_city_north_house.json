@@ -1,0 +1,28 @@
+{
+  "key": 37922,
+  "messages": [
+    {
+      "id": "pl_msg_00000102_00000",
+      "en_US": [
+        "Welcome to the Herb Shop, home of\n",
+        "effective yet inexpensive medicine."
+      ]
+    },
+    {
+      "id": "pl_msg_00000102_00001",
+      "en_US": [
+        "Herbal meds work most impressively.\n",
+        "But your Pokémon won’t like them.\f",
+        "They’re horribly bitter and smelly!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000102_00002",
+      "en_US": [
+        "Someone ought to invent herbal\n",
+        "medicine that isn’t bitter.\r",
+        "That would be a medical breakthrough!"
+      ]
+    }
+  ]
+}

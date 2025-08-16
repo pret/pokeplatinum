@@ -1,0 +1,184 @@
+{
+  "key": 14833,
+  "messages": [
+    {
+      "id": "pl_msg_00000016_00000",
+      "en_US": "Which record would you like to see?"
+    },
+    {
+      "id": "pl_msg_00000016_00001",
+      "en_US": "SINGLE"
+    },
+    {
+      "id": "pl_msg_00000016_00002",
+      "en_US": "DOUBLE"
+    },
+    {
+      "id": "pl_msg_00000016_00003",
+      "en_US": "MULTI"
+    },
+    {
+      "id": "pl_msg_00000016_00004",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000016_00005",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000016_00006",
+      "en_US": [
+        "Which Pokémon’s record would you like\n",
+        "to see?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000016_00007",
+      "en_US": "{STRVAR_1 0, 0, 0} is on a challenge now!"
+    },
+    {
+      "id": "pl_msg_00000016_00008",
+      "en_US": "ABC"
+    },
+    {
+      "id": "pl_msg_00000016_00009",
+      "en_US": "DEF"
+    },
+    {
+      "id": "pl_msg_00000016_00010",
+      "en_US": "GHI"
+    },
+    {
+      "id": "pl_msg_00000016_00011",
+      "en_US": "JKL"
+    },
+    {
+      "id": "pl_msg_00000016_00012",
+      "en_US": "MNO"
+    },
+    {
+      "id": "pl_msg_00000016_00013",
+      "en_US": "PQR"
+    },
+    {
+      "id": "pl_msg_00000016_00014",
+      "en_US": "STU"
+    },
+    {
+      "id": "pl_msg_00000016_00015",
+      "en_US": "VWX"
+    },
+    {
+      "id": "pl_msg_00000016_00016",
+      "en_US": "YZ"
+    },
+    {
+      "id": "pl_msg_00000016_00017",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000016_00018",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000016_00019",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000016_00020",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000016_00021",
+      "en_US": "Battle Tower"
+    },
+    {
+      "id": "pl_msg_00000016_00022",
+      "en_US": "Battle Factory"
+    },
+    {
+      "id": "pl_msg_00000016_00023",
+      "en_US": "Battle Castle"
+    },
+    {
+      "id": "pl_msg_00000016_00024",
+      "en_US": "Battle Hall"
+    },
+    {
+      "id": "pl_msg_00000016_00025",
+      "en_US": "Battle Arcade"
+    },
+    {
+      "id": "pl_msg_00000016_00026",
+      "en_US": "Single Record"
+    },
+    {
+      "id": "pl_msg_00000016_00027",
+      "en_US": "Double Record"
+    },
+    {
+      "id": "pl_msg_00000016_00028",
+      "en_US": "Multi Record"
+    },
+    {
+      "id": "pl_msg_00000016_00029",
+      "en_US": "PREV"
+    },
+    {
+      "id": "pl_msg_00000016_00030",
+      "en_US": "CURRENT"
+    },
+    {
+      "id": "pl_msg_00000016_00031",
+      "en_US": "RECORD"
+    },
+    {
+      "id": "pl_msg_00000016_00032",
+      "en_US": "Multi w/Trainer"
+    },
+    {
+      "id": "pl_msg_00000016_00033",
+      "en_US": "Multi w/friend"
+    },
+    {
+      "id": "pl_msg_00000016_00034",
+      "en_US": "Level 50"
+    },
+    {
+      "id": "pl_msg_00000016_00035",
+      "en_US": "Open Level"
+    },
+    {
+      "id": "pl_msg_00000016_00036",
+      "en_US": "Rental/Trade"
+    },
+    {
+      "id": "pl_msg_00000016_00037",
+      "en_US": "Castle Points"
+    },
+    {
+      "id": "pl_msg_00000016_00038",
+      "en_US": "Win streak: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000016_00039",
+      "en_US": "{STRVAR_1 0, 0, 0}’s record"
+    },
+    {
+      "id": "pl_msg_00000016_00040",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000016_00041",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "pl_msg_00000016_00042",
+      "en_US": "Win streak: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000016_00043",
+      "en_US": "Games cleared: {STRVAR_1 53, 0, 0}"
+    }
+  ]
+}

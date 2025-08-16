@@ -1,0 +1,79 @@
+{
+  "key": 54319,
+  "messages": [
+    {
+      "id": "pl_msg_00000263_00000",
+      "en_US": [
+        "Buck: Hey, {STRVAR_1 3, 0, 0}, wait up!\n",
+        "So, what’s going on?\r",
+        "...What?!\n",
+        "Team Galactic’s here?\r",
+        "Gotcha!\n",
+        "Let’s team up and go together.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000263_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} decided to go with\n",
+        "Buck!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000263_00002",
+      "en_US": [
+        "Buck: You won’t regret teaming up!\n",
+        "I’ll keep your Pokémon healthy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000263_00003",
+      "en_US": [
+        "Buck: Team Galactic’s here, right?\n",
+        "Let’s go together!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000263_00004",
+      "en_US": [
+        "Buck: Whoa! Hold up!\r",
+        "If you go back, you’ll leave me all by\n",
+        "my lonesome here!\r",
+        "Well, if you gotta go, you gotta go.\n",
+        "I’ll stick around here for you.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000263_00005",
+      "en_US": [
+        "Buck: Here we are!\n",
+        "Team Galactic’s inside, right?\f",
+        "This is it. No fooling around!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000263_00006",
+      "garbage": 49
+    },
+    {
+      "id": "pl_msg_00000263_00007",
+      "garbage": 49
+    },
+    {
+      "id": "pl_msg_00000263_00008",
+      "garbage": 56
+    },
+    {
+      "id": "pl_msg_00000263_00009",
+      "garbage": 98
+    },
+    {
+      "id": "pl_msg_00000263_00010",
+      "garbage": 118
+    },
+    {
+      "id": "pl_msg_00000263_00011",
+      "garbage": 50
+    }
+  ]
+}

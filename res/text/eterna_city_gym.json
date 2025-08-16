@@ -1,0 +1,178 @@
+{
+  "key": 14702,
+  "messages": [
+    {
+      "id": "pl_msg_00000087_00000",
+      "en_US": [
+        "You kept me waiting!\r",
+        "I’m Eterna’s Gym Leader, Gardenia,\n",
+        "the Grass-type master!\r",
+        "When I first saw you, I was convinced\n",
+        "you’d find your way to me.\r",
+        "My hunch was right on the money.\n",
+        "You have a winning aura about you.\r",
+        "So, anyway, this will be fun.\n",
+        "Let’s have our battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00001",
+      "en_US": [
+        "I might’ve said it before, but you’re\n",
+        "really tough!\r",
+        "Wasn’t it hard for you to raise your\n",
+        "Pokémon to be so good?\r",
+        "I guess that’s a measure of how much\n",
+        "you love your Pokémon.\r",
+        "In recognition of that, I proudly\n",
+        "grant you this!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received the\n",
+        "Forest Badge from Gardenia!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00003",
+      "en_US": [
+        "With the Forest Badge, your Pokémon\n",
+        "can use the hidden move Cut outside\f",
+        "of battle.\r",
+        "Now that you have two Gym Badges,\n",
+        "all Pokémon you received in trades\f",
+        "will obey you up to Lv. 30.\r",
+        "I’ve also got something else.\n",
+        "It’s a gift from me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00004",
+      "en_US": [
+        "That {STRVAR_1 8, 0, 0} contains\n",
+        "the move {STRVAR_1 6, 1, 0}.\r",
+        "It’s one of my favorite moves.\r",
+        "The heavier the foe, the more\n",
+        "damage this move will cause."
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00005",
+      "en_US": [
+        "Yup! If there’s one thing I can tell\n",
+        "about you, it’s this!\r",
+        "You and your Pokémon are gonna get\n",
+        "even tougher, and I mean seriously!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00006",
+      "en_US": [
+        "Welcome!\n",
+        "Without further ado, let’s go!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00007",
+      "en_US": [
+        "This gym’s floral clock...\n",
+        "You can walk on its hands.\f",
+        "That’s how you get to the next Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00008",
+      "en_US": [
+        "My Grass-type Pokémon can dole out\n",
+        "some serious special attacks...\r",
+        "I won’t let you win...easily!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00009",
+      "en_US": [
+        "Every time you beat a Trainer, the\n",
+        "floral clock moves.\r",
+        "The fountain also stops if I lose.\r",
+        "It’s so you can go to the Pokémon\n",
+        "Center during your challenge."
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00010",
+      "en_US": [
+        "You can’t win when you’re distracted by\n",
+        "the lovely aromas of Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00011",
+      "en_US": [
+        "The floral clock moves, and time\n",
+        "flows...\r",
+        "There’s only our Gym Leader left.\n",
+        "Go on, don’t be afraid!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00012",
+      "en_US": [
+        "The fountain’s water level dropped!\r",
+        "It’s possible to walk across the\n",
+        "fountain now!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00013",
+      "en_US": [
+        "Hey, there!\n",
+        "How’s it going, Champ-to-be?\r",
+        "Actually, that’s what I said to some\n",
+        "boy who zipped in here earlier, too!\r",
+        "The Gym Leader, Gardenia, is a user\n",
+        "of Grass-type Pokémon.\r",
+        "It should be obvious, but Grass-type\n",
+        "Pokémon really hate fire.\r",
+        "They’re also at a huge disadvantage\n",
+        "against the Flying type, too.\r",
+        "Oh, wait a second. I should tell you\n",
+        "about the Gym itself first.\r",
+        "You can’t challenge the Gym Leader\n",
+        "until you beat all the Gym’s Trainers.\r",
+        "It’s a bit challenging, but just think\n",
+        "of it as good training and go for it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00014",
+      "en_US": [
+        "Oh! {STRVAR_1 3, 0, 0}!\n",
+        "You’ve beaten the Gym Leader!\r",
+        "Your Pokémon look much tougher than\n",
+        "when they went in, too!\r",
+        "At least that’s how I see it!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00015",
+      "en_US": [
+        "Eterna City Pokémon Gym\n",
+        "Leader: Gardenia\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000087_00016",
+      "en_US": [
+        "Eterna City Pokémon Gym\n",
+        "Leader: Gardenia\r",
+        "Certified Trainers:\n",
+        "{STRVAR_1 3, 0, 0}\f",
+        "{STRVAR_1 3, 1, 0}"
+      ]
+    }
+  ]
+}

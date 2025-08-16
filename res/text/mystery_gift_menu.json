@@ -1,0 +1,423 @@
+{
+  "key": 10786,
+  "messages": [
+    {
+      "id": "MysteryGiftMenu_Text_Welcome",
+      "en_US": "Welcome to Mystery Gift!"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ChooseHowToReceiveGift",
+      "en_US": [
+        "Please choose how you want to\n",
+        "receive your gift."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched",
+      "en_US": [
+        "DS Wireless Communications will\n",
+        "be launched."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_SearchingForGift",
+      "en_US": [
+        "Searching for a gift.\n",
+        "Please wait..."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ReceiveThisGift",
+      "en_US": "Receive this gift?"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_SearchForDifferentGift",
+      "en_US": "Search for a different gift?"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_RequestSentPleaseWait",
+      "en_US": [
+        "Your request has been sent.\n",
+        "Please wait a moment..."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ReceivingGiftDontTurnOff",
+      "en_US": [
+        "Receiving your gift.\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GiftReceivedPickUpInPokeMart",
+      "en_US": [
+        "The gift has been received!\r",
+        "Please pick up your gift from the\n",
+        "deliveryman in any Poké Mart."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GiftBeingSharedByAnotherPerson",
+      "en_US": [
+        "This gift is being shared by\n",
+        "another person.\r",
+        "You may accept this gift, but you\n",
+        "will not be able to distribute it\f",
+        "to your friends.\r",
+        "Will you accept this gift?"
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused10",
+      "garbage": 19
+    },
+    {
+      "id": "MysteryGiftMenu_Text_PokemonRangerManaphyEggTransfer",
+      "en_US": [
+        "Pokémon Ranger\n",
+        "MANAPHY Egg Transfer"
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ReceiveGift",
+      "en_US": "RECEIVE GIFT"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_CheckCard",
+      "en_US": "CHECK CARD"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Exit_MysteryGift",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GetFromFriend",
+      "en_US": "GET FROM A FRIEND"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GetViaWFC",
+      "en_US": "GET VIA NINTENDO WFC"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Cancel_MysteryGift",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Yes_MysteryGift",
+      "en_US": "YES"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_No_MysteryGift",
+      "en_US": "NO"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GetViaWireless",
+      "en_US": "GET VIA WIRELESS"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_DeliveryManOverloaded",
+      "en_US": [
+        "Our deliveryman is overloaded with\n",
+        "gifts for you!\r",
+        "Please see him at any Poké Mart and\n",
+        "pick up some of your gifts."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_AlreadyReceivedCantGetAnotherOne",
+      "en_US": [
+        "You’ve already received this gift.\n",
+        "You may not get another one."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_NoGiftsToBeFound",
+      "en_US": "There were no gifts to be found."
+    },
+    {
+      "id": "MysteryGiftMenu_Text_RequestTurnedDown",
+      "en_US": "Your request was turned down."
+    },
+    {
+      "id": "MysteryGiftMenu_Text_OutOfRoomForWonderCards",
+      "en_US": [
+        "You are out of room for\n",
+        "Wonder Cards.\r",
+        "You may not accept another gift."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ProblemWithReceivingTheGift",
+      "en_US": [
+        "There was a problem with\n",
+        "receiving the gift.\r",
+        "Press the A Button to return to\n",
+        "the title screen."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GiftCannotBeReceivedInThisVersion",
+      "en_US": [
+        "A gift has been found, but it cannot\n",
+        "be received using this version.\r",
+        "Press the A Button to return to\n",
+        "the menu."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_PersonSharingDisconnected",
+      "en_US": [
+        "The person sharing has\n",
+        "been disconnected..."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused29",
+      "garbage": 21
+    },
+    {
+      "id": "MysteryGiftMenu_Text_PressAButton",
+      "en_US": "Press the A Button."
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused31",
+      "garbage": 26
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused32",
+      "garbage": 15
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused33",
+      "garbage": 20
+    },
+    {
+      "id": "MysteryGiftMenu_Text_PleaseTouchRangerGameScreen",
+      "en_US": [
+        "Please touch Pokémon Ranger’s\n",
+        "game screen."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused35",
+      "garbage": 21
+    },
+    {
+      "id": "MysteryGiftMenu_Text_WonderCard",
+      "en_US": "Wonder Card"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_PleasePickUpInPokeMart",
+      "en_US": [
+        "Please pick up your gift from the\n",
+        "deliveryman in any Poké Mart."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_AlreadyReceivedBefore",
+      "en_US": [
+        "You have already received\n",
+        "this gift before."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_NoGiftAttached",
+      "en_US": [
+        "This card does not have\n",
+        "a gift attached."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_DateReceived",
+      "en_US": "Date received"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_CanBeDistributedNTimes",
+      "en_US": "This gift can be distributed {STRVAR_1 52, 0, 0} time(s)."
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Info",
+      "en_US": "INFO"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Share",
+      "en_US": "SHARE"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Trash",
+      "en_US": "TRASH"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Exit_WonderCards",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_WouldYouLikeToShareThisGift",
+      "en_US": "Would you like to share this gift?"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Yes_MysteryGift2",
+      "en_US": "YES"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_No_MysteryGift2",
+      "en_US": "NO"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_DateTemplate",
+      "en_US": "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused50",
+      "garbage": 15
+    },
+    {
+      "id": "MysteryGiftMenu_Text_CanBeSharedAsManyFriendsAsYouLike",
+      "en_US": [
+        "This gift can be shared with as\n",
+        "many friends as you like."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_PalDistributionRegitration",
+      "en_US": "Pal Distribution Registration"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_TrainerNameTemplate",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_TrainerIdTemplate",
+      "en_US": "IDNo.{STRVAR_1 54, 0, 0}"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_CurrentEntries",
+      "en_US": [
+        "Current\n",
+        "entries"
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_EntriesCountTemplate",
+      "en_US": "{COLOR 1}{STRVAR_1 50, 0, 0}{COLOR 0}/4"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Send",
+      "en_US": "SEND"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Cancel_WonderCards",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GiftDistributionUnderWay",
+      "en_US": [
+        "Gift distribution under way...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_GiftDistributionSuccessful",
+      "en_US": [
+        "Your gift distribution\n",
+        "was successful."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ThrowCardAway",
+      "en_US": "Throw this card away?"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_HaventReceivedGiftYet",
+      "en_US": [
+        "You haven’t received your gift yet.\n",
+        "Do you want to discard this card?"
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_DiscardingDontTurnOff",
+      "en_US": [
+        "Discarding...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Yes_WonderCards",
+      "en_US": "YES"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_No_WonderCards",
+      "en_US": "NO"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_TrainerNameAndIdTemplate",
+      "en_US": "{COLOR 3}{STRVAR_1 3, 0, 0}{COLOR 2} {COLOR 0}IDNo.{STRVAR_1 54, 1, 0}"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_Unused67",
+      "garbage": 10
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ApplicationNumber",
+      "en_US": "Application No.:"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ApplicationNumberTemplate",
+      "en_US": "{STRVAR_1 53, 0, 0}-{STRVAR_1 53, 1, 0}"
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ReceivingRecruitmentMsgFromRanger",
+      "en_US": [
+        "Receiving a Recruitment Message\n",
+        "from a Pokémon Ranger."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_AwaitingTransferFromRanger",
+      "en_US": [
+        "Awaiting transfer from Pokémon\n",
+        "Ranger."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ReceivingManaphyEgg",
+      "en_US": [
+        "Receiving the MANAPHY Egg...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_TransferCompleted",
+      "en_US": [
+        "The transfer has been completed.\n",
+        "A Button: title screen."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ConnectionWithRangerLost",
+      "en_US": [
+        "The connection with Pokémon Ranger\n",
+        "has been lost... Press the A Button."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ManaphyEggWonderCardDescription",
+      "garbage": 30
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ManaphyEggWonderCardTitle",
+      "garbage": 8
+    },
+    {
+      "id": "MysteryGiftMenu_Text_WirelessCommunicationsWillBeLaunched2",
+      "en_US": [
+        "DS Wireless Communications\n",
+        "will be launched."
+      ]
+    },
+    {
+      "id": "MysteryGiftMenu_Text_ConnectToWFC",
+      "en_US": "Connect to Nintendo Wi-Fi Connection?"
+    }
+  ]
+}

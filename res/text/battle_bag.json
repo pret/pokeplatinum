@@ -1,0 +1,234 @@
+{
+  "key": 46835,
+  "messages": [
+    {
+      "id": "BattleBag_Text_MenuTitleHPPP",
+      "en_US": "HP/PP"
+    },
+    {
+      "id": "BattleBag_Text_MenuTitleRestore",
+      "en_US": "RESTORE"
+    },
+    {
+      "id": "BattleBag_Text_MenuTitleStatus",
+      "en_US": "STATUS"
+    },
+    {
+      "id": "BattleBag_Text_MenuTitleHealers",
+      "en_US": "HEALERS"
+    },
+    {
+      "id": "pl_msg_00000002_00004",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000002_00005",
+      "garbage": 4
+    },
+    {
+      "id": "BattleBag_Text_MenuTitleBattleItems",
+      "en_US": "BATTLE ITEMS"
+    },
+    {
+      "id": "BattleBag_Text_MenuTitlePokeBalls",
+      "en_US": "POKé BALLS"
+    },
+    {
+      "id": "BattleBag_Text_ItemUsedLast",
+      "en_US": "Item used last"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot1ItemName",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot1ItemAmount",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot2ItemName",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot2ItemAmount",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot3ItemName",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot3ItemAmount",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot4ItemName",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot4ItemAmount",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot5ItemName",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot5ItemAmount",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot6ItemName",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketSlot6ItemAmount",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000002_00021",
+      "garbage": 3
+    },
+    {
+      "id": "BattleBag_Text_PocketNameHPPP",
+      "en_US": "HP/PP"
+    },
+    {
+      "id": "BattleBag_Text_PocketNameRestore",
+      "en_US": "RESTORE"
+    },
+    {
+      "id": "BattleBag_Text_PocketNameStatus",
+      "en_US": "STATUS"
+    },
+    {
+      "id": "BattleBag_Text_PocketNameHealers",
+      "en_US": "HEALERS"
+    },
+    {
+      "id": "BattleBag_Text_PocketNamePokeBalls",
+      "en_US": "POKé BALLS"
+    },
+    {
+      "id": "BattleBag_Text_PocketNameBattleItems",
+      "en_US": "BATTLE ITEMS"
+    },
+    {
+      "id": "BattleBag_Text_PocketPageDivider",
+      "en_US": "/"
+    },
+    {
+      "id": "BattleBag_Text_PocketCurrentPage",
+      "en_US": "{STRVAR_1 50, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_PocketPageNum",
+      "en_US": "{STRVAR_1 50, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_Use",
+      "en_US": "USE"
+    },
+    {
+      "id": "pl_msg_00000002_00032",
+      "en_US": "{STRVAR_1 8, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000002_00033",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "BattleBag_Text_ItemHasNoUse",
+      "en_US": "It won’t do any good to use that!"
+    },
+    {
+      "id": "pl_msg_00000002_00035",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000002_00036",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is getting\n",
+        "pumped!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000002_00037",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Attack\n",
+        "rose!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000002_00038",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Special Attack\n",
+        "rose!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000002_00039",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Speed\n",
+        "rose!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000002_00040",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Special Defense\n",
+        "rose!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000002_00041",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Defense\n",
+        "rose!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000002_00042",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s accuracy\n",
+        "rose!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000002_00043",
+      "en_US": "The {STRVAR_1 8, 0, 0} was used!"
+    },
+    {
+      "id": "BattleBag_Text_CantUseBallTwoPokemon",
+      "en_US": [
+        "It’s no good! It’s impossible to aim\n",
+        "when there are two Pokémon!"
+      ]
+    },
+    {
+      "id": "BattleBag_Text_CantUseBallNoRoomLeft",
+      "en_US": "There is no room left in the PC!"
+    },
+    {
+      "id": "BattleBag_Text_EmbargoBlockingItemUse",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0}’s effect prevents\n",
+        "the item’s use on {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleBag_Text_CantUseBallPokemonHidden",
+      "en_US": [
+        "It’s no good! It’s impossible to aim\n",
+        "at a Pokémon that’s not in sight!"
+      ]
+    },
+    {
+      "id": "BattleBag_Text_CantUseBallPokemonSubstituted",
+      "en_US": [
+        "It’s no good! It’s impossible to aim\n",
+        "at a Pokémon that’s not in sight!"
+      ]
+    }
+  ]
+}
