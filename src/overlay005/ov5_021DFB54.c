@@ -391,7 +391,7 @@ static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFDA8(PlayerAvatar *playerAvatar)
+static void PlayerAvatar_RequestStateHeal(PlayerAvatar *playerAvatar)
 {
     int v0 = Player_MoveStateFromGender(0x16, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
@@ -412,7 +412,7 @@ static void (*const sPlayerAvatarRequestStateTbl[10])(PlayerAvatar *) = {
     ov5_021DFD0C,
     PlayerAvatar_RequestStatePoketch,
     PlayerAvatar_RequestStateSave,
-    ov5_021DFDA8,
+    PlayerAvatar_RequestStateHeal,
     ov5_021DFDC4
 };
 
