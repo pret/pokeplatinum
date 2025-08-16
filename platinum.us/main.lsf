@@ -299,7 +299,7 @@ Static main
 	Object main.nef.p/src_unk_0207AE68.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
 	Object main.nef.p/src_type_icon.c.o
-	Object main.nef.p/src_unk_0207CB08.c.o
+	Object main.nef.p/src_bag_system.c.o
 	Object main.nef.p/src_item.c.o
 	Object main.nef.p/src_bag.c.o
 	Object main.nef.p/src_unk_0207DA28.c.o

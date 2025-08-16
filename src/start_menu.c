@@ -13,7 +13,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -29,6 +28,7 @@
 #include "overlay005/save_info_window.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "bg_window.h"
 #include "catching_show.h"
 #include "dexmode_checker.h"
@@ -84,7 +84,6 @@
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"
 #include "unk_0207AE68.h"
-#include "unk_0207CB08.h"
 #include "unk_020972FC.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
@@ -1130,7 +1129,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         TrainerInfo *v12 = SaveData_GetTrainerInfo(fieldSystem->saveData);
         menu->taskData = sub_0207D824(bag, Unk_020EA020, HEAP_ID_FIELDMAP);
 
-        sub_0207CB2C(menu->taskData, fieldSystem->saveData, 1, fieldSystem->bagCursor);
+        BagSystem_Init(menu->taskData, fieldSystem->saveData, 1, fieldSystem->bagCursor);
 
         sub_0203D1E4(fieldSystem, menu->taskData);
         sub_0203B674(menu, sub_0203BC5C);
@@ -1190,9 +1189,9 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
             menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
 
             if (partyMan->selectedMonSlot >= 6) {
-                UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, 0);
+                BagSystem_SetSelectedMonSlot(menu->taskData, 0);
             } else {
-                UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, partyMan->selectedMonSlot);
+                BagSystem_SetSelectedMonSlot(menu->taskData, partyMan->selectedMonSlot);
             }
 
             sub_0203B674(menu, sub_0203BC5C);
@@ -1228,7 +1227,7 @@ static BOOL StartMenu_Bag(FieldTask *taskMan)
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
-    UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, 0);
+    BagSystem_SetSelectedMonSlot(menu->taskData, 0);
     menu->callback = sub_0203BC5C;
 
     FieldSystem_SaveStateIfCommunicationOff(fieldSystem);
@@ -1240,26 +1239,26 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     StartMenu *menu = FieldTask_GetEnv(taskMan);
-    UnkStruct_0207CB08 *v2 = sub_0207CB08(HEAP_ID_FIELDMAP);
+    BagSystem *v2 = BagSystem_New(HEAP_ID_FIELDMAP);
 
-    memcpy(v2, menu->taskData, sub_0207CB20());
+    memcpy(v2, menu->taskData, BagSystem_GetSize());
     Heap_Free(menu->taskData);
 
-    switch (sub_0207CB9C(v2)) {
+    switch (BagSystem_GetExitCode(v2)) {
     case 0: {
         ItemMenuUseFunc v3;
         ItemMenuUseContext v4;
         s32 v5;
 
-        v4.item = UnkStruct_0207CB08_GetItem(v2);
-        v4.selectedMonSlot = UnkStruct_0207CB08_GetSelectedMonSlot(v2);
+        v4.item = BagSystem_GetItem(v2);
+        v4.selectedMonSlot = BagSystem_GetSelectedMonSlot(v2);
         v4.fieldTask = taskMan;
         v5 = Item_LoadParam(v4.item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_FIELDMAP);
         v3 = (ItemMenuUseFunc)GetItemUseFunction(USE_ITEM_TASK_MENU, v5);
         v3(&v4, &menu->unk_230);
     } break;
     case 1:
-        sub_0203C2D8(taskMan, UnkStruct_0207CB08_GetItem(v2));
+        sub_0203C2D8(taskMan, BagSystem_GetItem(v2));
         break;
     case 2: {
         PartyManagementData *partyMan;
@@ -1274,7 +1273,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
         partyMan->fieldMoveContext = &menu->fieldMoveContext;
         partyMan->unk_21 = 0;
         partyMan->unk_20 = 9;
-        partyMan->usedItemID = UnkStruct_0207CB08_GetItem(v2);
+        partyMan->usedItemID = BagSystem_GetItem(v2);
         partyMan->fieldSystem = fieldSystem;
 
         FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMan);
@@ -1284,7 +1283,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
     case 4: {
         Party *party = SaveData_GetParty(fieldSystem->saveData);
         u32 v9 = *(u32 *)menu->unk_260;
-        u16 item = UnkStruct_0207CB08_GetItem(v2);
+        u16 item = BagSystem_GetItem(v2);
         Pokemon *v8 = Party_GetPokemonBySlotIndex(party, v9);
 
         Heap_Free(menu->unk_260);
@@ -1309,7 +1308,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
             partyMan->options = SaveData_GetOptions(fieldSystem->saveData);
             partyMan->fieldMoveContext = &menu->fieldMoveContext;
             partyMan->unk_21 = 0;
-            partyMan->usedItemID = UnkStruct_0207CB08_GetItem(v2);
+            partyMan->usedItemID = BagSystem_GetItem(v2);
             partyMan->selectedMonSlot = (u8)v9;
             partyMan->fieldSystem = fieldSystem;
 
@@ -1878,7 +1877,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
         {
             u32 v2 = *((u32 *)menu->unk_260);
 
-            UnkStruct_0207CB08_SetSelectedMonSlot(menu->taskData, (u8)v2);
+            BagSystem_SetSelectedMonSlot(menu->taskData, (u8)v2);
             Heap_Free(menu->unk_260);
         }
 

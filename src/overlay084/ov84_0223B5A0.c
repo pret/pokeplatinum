@@ -7,7 +7,6 @@
 #include "constants/heap.h"
 
 #include "struct_defs/special_encounter.h"
-#include "struct_defs/struct_0207CB08.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay084/const_ov84_02241130.h"
@@ -19,6 +18,7 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
@@ -51,7 +51,6 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_020393C8.h"
-#include "unk_0207CB08.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -432,12 +431,12 @@ int ov84_0223B5A0(ApplicationManager *appMan, int *param1)
     ov84_0223FA88(v0);
     ov84_0223F7D4(v0);
     ov84_0223BFBC(v0);
-    ov84_0223C194(&v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_06, &v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_04, v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_09);
-    ov84_0223C1D0(&v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_06, &v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_04, v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_09, 9);
+    ov84_0223C194(&v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_06, &v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_04, v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_09);
+    ov84_0223C1D0(&v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_06, &v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_04, v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_09, 9);
     ov84_022403F4(v0);
-    ov84_0223C224(v0, v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_06, v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_04);
+    ov84_0223C224(v0, v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_06, v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].unk_04);
 
-    if ((v0->unk_C4->unk_65 == 4) || (v0->unk_C4->unk_65 == 5)) {
+    if ((v0->unk_C4->mode == 4) || (v0->unk_C4->mode == 5)) {
         ov84_02240328(v0);
     }
 
@@ -455,11 +454,11 @@ int ov84_0223B76C(ApplicationManager *appMan, int *param1)
     switch (*param1) {
     case 0:
         if (IsScreenFadeDone() == TRUE) {
-            if (v0->unk_C4->unk_65 == 2) {
+            if (v0->unk_C4->mode == 2) {
                 *param1 = 16;
-            } else if (v0->unk_C4->unk_65 == 1) {
+            } else if (v0->unk_C4->mode == 1) {
                 *param1 = 14;
-            } else if (v0->unk_C4->unk_65 == 3) {
+            } else if (v0->unk_C4->mode == 3) {
                 *param1 = 23;
             } else {
                 *param1 = 1;
@@ -472,11 +471,11 @@ int ov84_0223B76C(ApplicationManager *appMan, int *param1)
     case 2:
         ov84_0223D0FC(v0);
         if (ov84_0223C920(v0) == 1) {
-            if (v0->unk_C4->unk_65 == 2) {
+            if (v0->unk_C4->mode == 2) {
                 *param1 = 16;
-            } else if (v0->unk_C4->unk_65 == 1) {
+            } else if (v0->unk_C4->mode == 1) {
                 *param1 = 14;
-            } else if (v0->unk_C4->unk_65 == 3) {
+            } else if (v0->unk_C4->mode == 3) {
                 *param1 = 23;
             } else {
                 *param1 = 1;
@@ -823,7 +822,7 @@ static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)
 {
-    param0->unk_114 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0007, HEAP_ID_6);
+    param0->unk_114 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG, HEAP_ID_6);
     param0->unk_110 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_6);
     param0->unk_118 = StringTemplate_Default(HEAP_ID_6);
     param0->unk_11C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_6);
@@ -838,7 +837,7 @@ static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 *param0)
     param0->unk_424 = 0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        if (param0->unk_C4->unk_04[v0].unk_00 != 0) {
+        if (param0->unk_C4->accessiblePockets[v0].items != 0) {
             param0->unk_424++;
         }
     }
@@ -846,13 +845,13 @@ static void ov84_0223BE24(UnkStruct_ov84_0223B5A0 *param0)
 
 u16 ov84_0223BE5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2)
 {
-    UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     if (param2 == 0) {
-        return v0->unk_00[param1].item;
+        return v0->items[param1].item;
     }
 
-    return v0->unk_00[param1].quantity;
+    return v0->items[param1].quantity;
 }
 
 static void ov84_0223BE84(MessageLoader *param0, Strbuf *param1, u16 param2, u32 param3)
@@ -867,15 +866,15 @@ static void ov84_0223BE94(MessageLoader *param0, Strbuf *param1, u16 param2, u32
 
 static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0;
+    BagInterfacePocketInfo *v0;
     u16 v1, v2;
 
-    param0->unk_C4->unk_64 = 0;
-    v0 = param0->unk_C4->unk_04;
+    param0->unk_C4->currPocketIdx = 0;
+    v0 = param0->unk_C4->accessiblePockets;
 
-    if (param0->unk_C4->unk_6C == NULL) {
+    if (param0->unk_C4->bagCursor == NULL) {
         for (v1 = 0; v1 < 8; v1++) {
-            if (v0[v1].unk_00 == NULL) {
+            if (v0[v1].items == NULL) {
                 break;
             }
 
@@ -889,11 +888,11 @@ static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
     for (v1 = 0; v1 < 8; v1++) {
         u8 v3, v4;
 
-        if (v0[v1].unk_00 == NULL) {
+        if (v0[v1].items == NULL) {
             break;
         }
 
-        BagCursor_GetFieldPocketPosition(param0->unk_C4->unk_6C, v0[v1].unk_08, &v3, &v4);
+        BagCursor_GetFieldPocketPosition(param0->unk_C4->bagCursor, v0[v1].pocketType, &v3, &v4);
 
         if (v3 == 0) {
             v3 = 1;
@@ -903,58 +902,58 @@ static void ov84_0223BEAC(UnkStruct_ov84_0223B5A0 *param0)
         v0[v1].unk_06 = v4;
     }
 
-    v2 = BagCursor_GetFieldPocket(param0->unk_C4->unk_6C);
+    v2 = BagCursor_GetFieldPocket(param0->unk_C4->bagCursor);
 
     for (v1 = 0; v1 < 8; v1++) {
-        if (v0[v1].unk_00 == NULL) {
+        if (v0[v1].items == NULL) {
             break;
         }
 
-        if (v0[v1].unk_08 == v2) {
-            param0->unk_C4->unk_64 = (u8)v1;
+        if (v0[v1].pocketType == v2) {
+            param0->unk_C4->currPocketIdx = (u8)v1;
         }
     }
 }
 
 static void ov84_0223BF68(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0;
+    BagInterfacePocketInfo *v0;
     u32 v1;
 
-    if (param0->unk_C4->unk_6C == NULL) {
+    if (param0->unk_C4->bagCursor == NULL) {
         return;
     }
 
-    v0 = param0->unk_C4->unk_04;
+    v0 = param0->unk_C4->accessiblePockets;
 
     for (v1 = 0; v1 < 8; v1++) {
-        if (v0[v1].unk_00 == NULL) {
+        if (v0[v1].items == NULL) {
             break;
         }
 
-        BagCursor_SetFieldPocketPosition(param0->unk_C4->unk_6C, v0[v1].unk_08, (u8)v0[v1].unk_04, (u8)v0[v1].unk_06);
+        BagCursor_SetFieldPocketPosition(param0->unk_C4->bagCursor, v0[v1].pocketType, (u8)v0[v1].unk_04, (u8)v0[v1].unk_06);
     }
 
-    BagCursor_SetFieldPocket(param0->unk_C4->unk_6C, v0[param0->unk_C4->unk_64].unk_08);
+    BagCursor_SetFieldPocket(param0->unk_C4->bagCursor, v0[param0->unk_C4->currPocketIdx].pocketType);
 }
 
 static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0;
+    BagInterfacePocketInfo *v0;
     u32 v1;
 
-    v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
-    param0->unk_160 = StringList_New(Unk_ov84_02241118[v0->unk_08] + 3, HEAP_ID_6);
+    v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
+    param0->unk_160 = StringList_New(Unk_ov84_02241118[v0->pocketType] + 3, HEAP_ID_6);
 
     StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffd);
 
-    if (v0->unk_08 == 3) {
-        for (v1 = 0; v1 < Unk_ov84_02241118[v0->unk_08]; v1++) {
-            if ((v0->unk_00[v1].item == 0) || (v0->unk_00[v1].quantity == 0)) {
+    if (v0->pocketType == 3) {
+        for (v1 = 0; v1 < Unk_ov84_02241118[v0->pocketType]; v1++) {
+            if ((v0->items[v1].item == 0) || (v0->items[v1].quantity == 0)) {
                 break;
             }
 
-            ov84_0223BE94(param0->unk_120, param0->unk_164[v1], v0->unk_00[v1].item, 6);
+            ov84_0223BE94(param0->unk_120, param0->unk_164[v1], v0->items[v1].item, 6);
             StringList_AddFromStrbuf(param0->unk_160, param0->unk_164[v1], v1);
         }
 
@@ -963,17 +962,17 @@ static void ov84_0223BFBC(UnkStruct_ov84_0223B5A0 *param0)
 
         v0->unk_09 = v1 + 3;
     } else {
-        for (v1 = 0; v1 < Unk_ov84_02241118[v0->unk_08]; v1++) {
-            if ((v0->unk_00[v1].item == 0) || (v0->unk_00[v1].quantity == 0)) {
+        for (v1 = 0; v1 < Unk_ov84_02241118[v0->pocketType]; v1++) {
+            if ((v0->items[v1].item == 0) || (v0->items[v1].quantity == 0)) {
                 break;
             }
 
-            ov84_0223BE84(param0->unk_11C, param0->unk_164[v1], v0->unk_00[v1].item, 6);
+            ov84_0223BE84(param0->unk_11C, param0->unk_164[v1], v0->items[v1].item, 6);
             StringList_AddFromStrbuf(param0->unk_160, param0->unk_164[v1], v1);
         }
 
-        if (param0->unk_C4->unk_65 != 5) {
-            if (v0->unk_08 == 4) {
+        if (param0->unk_C4->mode != 5) {
+            if (v0->pocketType == 4) {
                 StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 32, 0xfffffffe);
             } else {
                 StringList_AddFromMessageBank(param0->unk_160, param0->unk_114, 41, 0xfffffffe);
@@ -1062,10 +1061,10 @@ static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param
     v0 = Unk_ov84_02240FA8;
     v0.choices = param0->unk_160;
     v0.window = &param0->unk_04[0];
-    v0.count = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09;
+    v0.count = param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09;
     v0.parent = (void *)param0;
 
-    if ((param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) || (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 4)) {
+    if ((param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 3) || (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 4)) {
         v0.textXOffset = (32 + 3);
     } else {
         v0.textXOffset = 0;
@@ -1096,7 +1095,7 @@ static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
         if ((v0->unk_492 == 0) || (ManagedSprite_IsAnimated(v0->unk_E0[0]) == 0)) {
             ManagedSprite_SetAnimationFrame(v0->unk_E0[0], 0);
             ManagedSprite_SetAnim(
-                v0->unk_E0[0], 8 + v0->unk_C4->unk_04[v0->unk_C4->unk_64].unk_08);
+                v0->unk_E0[0], 8 + v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx].pocketType);
         }
     }
 
@@ -1107,11 +1106,11 @@ static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
     Window_FillTilemap(&v0->unk_04[1], 0);
 
     if (param1 != 0xfffffffe) {
-        UnkStruct_ov84_0223BE5C *v1;
+        BagInterfacePocketInfo *v1;
 
-        v1 = &v0->unk_C4->unk_04[v0->unk_C4->unk_64];
-        ov84_0223F528(v0, v1->unk_00[param1].item);
-        ov84_02240AD8(v0, v1->unk_00[param1].item);
+        v1 = &v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx];
+        ov84_0223F528(v0, v1->items[param1].item);
+        ov84_02240AD8(v0, v1->items[param1].item);
     } else {
         ov84_0223F528(v0, 0xffff);
         ov84_02240AD8(v0, 0xffff);
@@ -1125,7 +1124,7 @@ static void ov84_0223C2AC(ListMenu *param0, u32 param1, u8 param2)
 static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
 {
     UnkStruct_ov84_0223B5A0 *v0 = (UnkStruct_ov84_0223B5A0 *)ListMenu_GetAttribute(param0, 19);
-    UnkStruct_ov84_0223BE5C *v1 = &v0->unk_C4->unk_04[v0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v1 = &v0->unk_C4->accessiblePockets[v0->unk_C4->currPocketIdx];
 
     if ((v0->unk_47A == 1) && (v0->unk_47C == param1)) {
         ListMenu_SetAltTextColors(param0, 8, 0, 9);
@@ -1133,30 +1132,30 @@ static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
         ListMenu_SetAltTextColors(param0, 1, 0, 2);
     }
 
-    if (v1->unk_08 == 7) {
+    if (v1->pocketType == 7) {
         if ((param1 != 0xfffffffd) && (param1 != 0xfffffffe)) {
-            if (Bag_GetRegisteredItem(v0->unk_C8) == v1->unk_00[param1].item) {
+            if (Bag_GetRegisteredItem(v0->unk_C8) == v1->items[param1].item) {
                 ov84_0223FA44(v0, param2);
             }
         }
-    } else if (v1->unk_08 == 3) {
+    } else if (v1->pocketType == 3) {
         if (param1 == 0xfffffffe) {
             ov84_0223F9F0(v0, param2);
         } else if (param1 != 0xfffffffd) {
-            ov84_0223F8D0(v0, &v1->unk_00[param1], param2);
+            ov84_0223F8D0(v0, &v1->items[param1], param2);
         }
-    } else if (v1->unk_08 == 4) {
+    } else if (v1->pocketType == 4) {
         if (param1 == 0xfffffffe) {
             ov84_0223F9F0(v0, param2);
         } else if (param1 != 0xfffffffd) {
-            ov84_0223F94C(v0, &v1->unk_00[param1], param2);
+            ov84_0223F94C(v0, &v1->items[param1], param2);
         }
     } else {
         if ((param1 != 0xfffffffd) && (param1 != 0xfffffffe)) {
             if ((v0->unk_47A == 1) && (v0->unk_47C == param1)) {
-                ov84_0223F81C(v0, v1->unk_00[param1].quantity, param2, TEXT_COLOR(8, 9, 0));
+                ov84_0223F81C(v0, v1->items[param1].quantity, param2, TEXT_COLOR(8, 9, 0));
             } else {
-                ov84_0223F81C(v0, v1->unk_00[param1].quantity, param2, TEXT_COLOR(1, 2, 0));
+                ov84_0223F81C(v0, v1->items[param1].quantity, param2, TEXT_COLOR(1, 2, 0));
             }
         }
     }
@@ -1164,7 +1163,7 @@ static void ov84_0223C3B8(ListMenu *param0, u32 param1, u8 param2)
 
 static void ov84_0223C4E0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
+    ListMenu_Free(param0->unk_15C, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04);
     StringList_Free(param0->unk_160);
     param0->unk_15C = NULL;
 }
@@ -1194,7 +1193,7 @@ static int ov84_0223C51C(UnkStruct_ov84_0223B5A0 *param0)
             Window_ClearAndCopyToVRAM(&param0->unk_04[1]);
             ov84_0223D5AC(param0);
 
-            if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
+            if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 3) {
                 ov84_0223D7E8(param0, 1);
             }
 
@@ -1212,11 +1211,11 @@ static int ov84_0223C51C(UnkStruct_ov84_0223B5A0 *param0)
 
 static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0;
+    BagInterfacePocketInfo *v0;
     u32 v1;
     u16 v2, v3;
 
-    v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
     ListMenu_GetListAndCursorPos(param0->unk_15C, &v0->unk_06, &v0->unk_04);
 
     if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
@@ -1255,19 +1254,19 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
         }
     } break;
     case 0xfffffffe:
-        if (param0->unk_C4->unk_65 == 5) {
+        if (param0->unk_C4->mode == 5) {
             return 0;
         }
 
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        param0->unk_C4->item = 0;
-        param0->unk_C4->unk_68 = 5;
+        param0->unk_C4->selectedItem = 0;
+        param0->unk_C4->exitCode = 5;
         App_StartScreenFade(TRUE, HEAP_ID_6);
         return 3;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        param0->unk_C4->item = (u16)v0->unk_00[v1].item;
-        param0->unk_48A = (u16)v0->unk_00[v1].quantity;
+        param0->unk_C4->selectedItem = (u16)v0->items[v1].item;
+        param0->unk_48A = (u16)v0->items[v1].quantity;
         return 1;
     }
 
@@ -1289,9 +1288,9 @@ static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0)
 
         Sound_PlayEffect(SEQ_SE_DP_BAG_030);
 
-        if (param0->unk_C4->unk_64 != 0) {
-            param0->unk_429.unk_00 = param0->unk_C4->unk_64 - 1;
-            param0->unk_478 = param0->unk_C4->unk_64 - 1;
+        if (param0->unk_C4->currPocketIdx != 0) {
+            param0->unk_429.unk_00 = param0->unk_C4->currPocketIdx - 1;
+            param0->unk_478 = param0->unk_C4->currPocketIdx - 1;
         } else {
             param0->unk_429.unk_00 = param0->unk_424 - 1;
             param0->unk_478 = param0->unk_424 - 1;
@@ -1311,9 +1310,9 @@ static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0)
 
         Sound_PlayEffect(SEQ_SE_DP_BAG_030);
 
-        if (param0->unk_C4->unk_64 + 1 < param0->unk_424) {
-            param0->unk_429.unk_00 = param0->unk_C4->unk_64 + 1;
-            param0->unk_478 = param0->unk_C4->unk_64 + 1;
+        if (param0->unk_C4->currPocketIdx + 1 < param0->unk_424) {
+            param0->unk_429.unk_00 = param0->unk_C4->currPocketIdx + 1;
+            param0->unk_478 = param0->unk_C4->currPocketIdx + 1;
         } else {
             param0->unk_429.unk_00 = 0;
             param0->unk_478 = 0;
@@ -1366,8 +1365,8 @@ static void ov84_0223C89C(UnkStruct_ov84_0223B5A0 *param0)
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
     ManagedSprite_SetDrawFlag(param0->unk_E0[4], 0);
     ManagedSprite_SetDrawFlag(param0->unk_E0[7], 0);
-    ov84_0223F3AC(param0, param0->unk_C4->unk_64, 0);
-    ov84_0223CF20(param0, param0->unk_C4->unk_64, 0);
+    ov84_0223F3AC(param0, param0->unk_C4->currPocketIdx, 0);
+    ov84_0223CF20(param0, param0->unk_C4->currPocketIdx, 0);
 }
 
 static u8 ov84_0223C920(UnkStruct_ov84_0223B5A0 *param0)
@@ -1391,7 +1390,7 @@ static u8 ov84_0223C920(UnkStruct_ov84_0223B5A0 *param0)
 
     if (ov84_0223CA5C(param0) == 0) {
         if ((v0->unk_07_4 == 1) && (v1 != 0xffffffff)) {
-            param0->unk_C4->unk_64 = v0->unk_00;
+            param0->unk_C4->currPocketIdx = v0->unk_00;
 
             if (v0->unk_00 > (u8)v1) {
                 v0->unk_01 = 0;
@@ -1445,11 +1444,11 @@ static u8 ov84_0223CA5C(UnkStruct_ov84_0223B5A0 *param0)
         }
 
         Sound_PlayEffect(SEQ_SE_DP_BAG_030);
-        ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->unk_04[v0->unk_00].unk_08);
+        ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->accessiblePockets[v0->unk_00].pocketType);
         ov84_0223CF20(param0, v0->unk_00, 0);
         Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
 
-        param0->unk_C4->unk_64 = v0->unk_00;
+        param0->unk_C4->currPocketIdx = v0->unk_00;
 
         if (v0->unk_00 != 0) {
             v0->unk_00 = v0->unk_00 - 1;
@@ -1478,11 +1477,11 @@ static u8 ov84_0223CA5C(UnkStruct_ov84_0223B5A0 *param0)
         }
 
         Sound_PlayEffect(SEQ_SE_DP_BAG_030);
-        ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->unk_04[v0->unk_00].unk_08);
+        ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->accessiblePockets[v0->unk_00].pocketType);
         ov84_0223CF20(param0, v0->unk_00, 0);
         Bg_ScheduleTilemapTransfer(param0->unk_00, 4);
 
-        param0->unk_C4->unk_64 = v0->unk_00;
+        param0->unk_C4->currPocketIdx = v0->unk_00;
 
         if (v0->unk_00 + 1 < param0->unk_424) {
             v0->unk_00 = v0->unk_00 + 1;
@@ -1524,20 +1523,20 @@ static u8 ov84_0223CBD8(UnkStruct_ov84_0223B5A0 *param0)
             ov84_0223F2FC(param0);
         } else {
             if (param0->unk_15C != NULL) {
-                ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
+                ListMenu_Free(param0->unk_15C, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04);
                 StringList_Free(param0->unk_160);
             }
 
-            param0->unk_C4->unk_64 = v0->unk_00;
+            param0->unk_C4->currPocketIdx = v0->unk_00;
 
-            ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08);
+            ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType);
             ov84_0223F438(param0);
-            ov84_0223F3AC(param0, param0->unk_C4->unk_64, 1);
+            ov84_0223F3AC(param0, param0->unk_C4->currPocketIdx, 1);
             ov84_0223BFBC(param0);
-            ov84_0223C194(&param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09);
-            ov84_0223C1D0(&param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09, 9);
-            ov84_0223C224(param0, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
-            ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
+            ov84_0223C194(&param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09);
+            ov84_0223C1D0(&param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09, 9);
+            ov84_0223C224(param0, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04);
+            ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04 - 1) * 16);
             ManagedSprite_SetDrawFlag(param0->unk_E0[4], 1);
 
             v0->unk_02++;
@@ -1564,9 +1563,9 @@ static u8 ov84_0223CD40(UnkStruct_ov84_0223B5A0 *param0)
         return 0;
     }
 
-    if (param0->unk_C4->unk_64 == (u8)v0) {
+    if (param0->unk_C4->currPocketIdx == (u8)v0) {
         param0->unk_429.unk_01 = 2;
-    } else if (param0->unk_C4->unk_64 > (u8)v0) {
+    } else if (param0->unk_C4->currPocketIdx > (u8)v0) {
         param0->unk_429.unk_01 = 0;
     } else {
         param0->unk_429.unk_01 = 1;
@@ -1662,7 +1661,7 @@ static void ov84_0223CF20(UnkStruct_ov84_0223B5A0 *param0, u8 param1, u8 param2)
 
     v0 = (u16 *)Bg_GetTilemapBuffer(param0->unk_00, 4);
     v1 = &Unk_ov84_022410C8[param0->unk_424].unk_00[param1 * 2];
-    v3 = param0->unk_C4->unk_04[param1].unk_08;
+    v3 = param0->unk_C4->accessiblePockets[param1].pocketType;
     v2 = (v3 / 2) * (30 * 5) + (v3 & 1) * 15 + 30 + param2 * 5;
 
     for (v4 = 0; v4 < 5; v4++) {
@@ -1797,17 +1796,17 @@ static BOOL ov84_0223D1F4(UnkStruct_ov84_0223B5A0 *param0)
 
 static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     if (ListMenu_GetIndexOfChoice(param0->unk_15C, v0->unk_06 + v0->unk_04) == 0xfffffffe) {
         return 0;
     }
 
-    if (param0->unk_C4->unk_65 != 0) {
+    if (param0->unk_C4->mode != 0) {
         return 0;
     }
 
-    if ((v0->unk_08 == 4) || (v0->unk_08 == 3)) {
+    if ((v0->pocketType == 4) || (v0->pocketType == 3)) {
         return 0;
     }
 
@@ -1816,7 +1815,7 @@ static u8 ov84_0223D244(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     param0->unk_47A = 1;
     param0->unk_47B = v0->unk_06 + v0->unk_04;
@@ -1829,7 +1828,7 @@ static void ov84_0223D2A0(UnkStruct_ov84_0223B5A0 *param0)
 
 static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0;
+    BagInterfacePocketInfo *v0;
     u32 v1;
     u16 v2, v3;
 
@@ -1837,7 +1836,7 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
         return 0;
     }
 
-    v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
     ListMenu_GetListAndCursorPos(param0->unk_15C, &v0->unk_06, &v0->unk_04);
 
     if (ov84_0223D1F4(param0) == 1) {
@@ -1895,11 +1894,11 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
     u16 v1 = v0->unk_06 + v0->unk_04;
 
     if (!((param0->unk_47B == v1) || (param0->unk_47B == (v1 - 1)))) {
-        Item_MoveInPocket(v0->unk_00, param0->unk_47B - 1, v1 - 1);
+        Item_MoveInPocket(v0->items, param0->unk_47B - 1, v1 - 1);
         StringList_Free(param0->unk_160);
         ov84_0223BFBC(param0);
     }
@@ -1909,7 +1908,7 @@ static void ov84_0223D42C(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     ListMenu_Free(param0->unk_15C, &v0->unk_06, &v0->unk_04);
     param0->unk_15C = NULL;
@@ -1928,7 +1927,7 @@ static void ov84_0223D484(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223D4E8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     if (param0->unk_47A == 0) {
         ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (v0->unk_04 - 1) * 16);
@@ -1958,30 +1957,30 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
     u8 v2;
     u8 v3[12];
 
-    v0 = Item_Load(param0->unk_C4->item, 0, 6);
+    v0 = Item_Load(param0->unk_C4->selectedItem, 0, 6);
     v1 = 0;
-    v2 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08;
+    v2 = param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType;
 
-    if (param0->unk_C4->unk_65 == 0) {
+    if (param0->unk_C4->mode == 0) {
         if (v2 == 4) {
             v3[v1] = 9;
             v1++;
         }
 
         if ((param0->unk_C4->mapLoadType == MAP_LOAD_TYPE_COLOSSEUM) || (param0->unk_C4->mapLoadType == MAP_LOAD_TYPE_UNION)) {
-            if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 5) {
+            if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 5) {
                 v3[v1] = 2;
                 v1++;
             }
         } else {
             if (Item_Get(v0, 6) != 0) {
-                if ((param0->unk_C4->item == 450) && (param0->unk_C4->unk_76_0 == 1)) {
+                if ((param0->unk_C4->selectedItem == 450) && (param0->unk_C4->isCycling == 1)) {
                     v3[v1] = 1;
-                } else if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 5) {
+                } else if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 5) {
                     v3[v1] = 2;
-                } else if (param0->unk_C4->item == 449) {
+                } else if (param0->unk_C4->selectedItem == 449) {
                     v3[v1] = 4;
-                } else if ((param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 4) && (sub_02068B50(param0->unk_C4->unk_70) == 1)) {
+                } else if ((param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 4) && (sub_02068B50(param0->unk_C4->unk_70) == 1)) {
                     v3[v1] = 3;
                 } else {
                     v3[v1] = 0;
@@ -2000,7 +1999,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
             }
         }
         if (Item_Get(v0, 4) != 0) {
-            if (Bag_GetRegisteredItem(param0->unk_C8) == param0->unk_C4->item) {
+            if (Bag_GetRegisteredItem(param0->unk_C8) == param0->unk_C4->selectedItem) {
                 v3[v1] = 7;
             } else {
                 v3[v1] = 6;
@@ -2008,7 +2007,7 @@ static void ov84_0223D5AC(UnkStruct_ov84_0223B5A0 *param0)
 
             v1++;
         }
-    } else if ((param0->unk_C4->unk_65 == 4) || (param0->unk_C4->unk_65 == 5)) {
+    } else if ((param0->unk_C4->mode == 4) || (param0->unk_C4->mode == 5)) {
         v3[v1] = 10;
         v1++;
         v3[v1] = 9;
@@ -2052,7 +2051,7 @@ static int ov84_0223D730(UnkStruct_ov84_0223B5A0 *param0)
         ov84_02240B34(param0, 1);
         ov84_0223FD84(param0);
 
-        if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
+        if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 3) {
             ov84_0223D7E8(param0, 0);
         }
 
@@ -2091,14 +2090,14 @@ static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
 
     ov84_0223FD84(param0);
 
-    itemUseFuncIdx = Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
+    itemUseFuncIdx = Item_LoadParam(param0->unk_C4->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6);
     itemUseFunc = (ItemCheckUseFunc)GetItemUseFunction(USE_ITEM_TASK_CHECK, itemUseFuncIdx);
 
     if (itemUseFunc != NULL) {
         u32 v2 = itemUseFunc(param0->unk_C4->unk_70);
 
         if (v2 != 0) {
-            GetItemUseErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->item, v2, HEAP_ID_6);
+            BagSystem_FormatErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->selectedItem, v2, HEAP_ID_6);
             Window_FillTilemap(&param0->unk_04[6], 15);
             Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
             param0->unk_426 = ov84_022400A0(param0);
@@ -2118,7 +2117,7 @@ static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0)
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
 
-            if (param0->unk_C4->unk_65 == 3) {
+            if (param0->unk_C4->mode == 3) {
                 return 23;
             } else {
                 return 1;
@@ -2131,29 +2130,29 @@ static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0)
 
 static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    BagInterfacePocketInfo *v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     param0->unk_483 = 0;
 
-    if (v0->unk_08 == 3) {
+    if (v0->pocketType == 3) {
         param0->unk_484 = (u32)ov84_0223DA14;
         return 13;
     }
 
-    if (sub_0207CC10(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->item, 6) == 1) {
+    if (BagSystem_FormatUsageMessage(param0->unk_C4->saveData, param0->unk_3F8, param0->unk_C4->selectedItem, 6) == 1) {
         Window_FillTilemap(&param0->unk_04[6], 15);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
         param0->unk_426 = ov84_022400A0(param0);
         return 12;
     }
 
-    if (ov84_0223DBF4(param0, param0->unk_C4->item) == 1) {
+    if (ov84_0223DBF4(param0, param0->unk_C4->selectedItem) == 1) {
         param0->unk_484 = (u32)ov84_0223DDD0;
         return 13;
     }
 
     App_StartScreenFade(TRUE, HEAP_ID_6);
-    param0->unk_C4->unk_68 = 0;
+    param0->unk_C4->exitCode = 0;
 
     return 24;
 }
@@ -2168,7 +2167,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
 {
     switch (param0->unk_483) {
     case 0: {
-        u16 v0 = Item_MoveForTMHM(param0->unk_C4->item);
+        u16 v0 = Item_MoveForTMHM(param0->unk_C4->selectedItem);
 
         StringTemplate_SetMoveName(param0->unk_118, 0, v0);
 
@@ -2226,7 +2225,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
         case 0:
             App_StartScreenFade(TRUE, HEAP_ID_6);
             ov84_0223D7E8(param0, 0);
-            param0->unk_C4->unk_68 = 0;
+            param0->unk_C4->exitCode = 0;
             return 24;
         case 0xffffffff: {
             u8 v3 = Menu_GetLastAction(param0->unk_158);
@@ -2297,14 +2296,14 @@ static Strbuf *ov84_0223DC9C(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 
 static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 *param0)
 {
-    Pocket_TryRemoveItem(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->item, param0->unk_488, HEAP_ID_6);
-    ListMenu_Free(param0->unk_15C, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
+    Pocket_TryRemoveItem(param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].items, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09 - 3, param0->unk_C4->selectedItem, param0->unk_488, HEAP_ID_6);
+    ListMenu_Free(param0->unk_15C, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04);
     StringList_Free(param0->unk_160);
 
     ov84_0223BFBC(param0);
-    ov84_0223C194(&param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09);
-    ov84_0223C1D0(&param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, &param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09, 9);
-    ov84_0223C224(param0, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04);
+    ov84_0223C194(&param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09);
+    ov84_0223C1D0(&param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09, 9);
+    ov84_0223C224(param0, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04);
 }
 
 static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
@@ -2345,7 +2344,7 @@ static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
     App_StartScreenFade(TRUE, HEAP_ID_6);
-    param0->unk_C4->unk_68 = 1;
+    param0->unk_C4->exitCode = 1;
 
     return 24;
 }
@@ -2354,7 +2353,7 @@ static int ov84_0223DE98(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
     App_StartScreenFade(TRUE, HEAP_ID_6);
-    param0->unk_C4->unk_68 = 3;
+    param0->unk_C4->exitCode = 3;
 
     return 24;
 }
@@ -2363,7 +2362,7 @@ static int ov84_0223DEB8(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
     param0->unk_488 = 1;
-    if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->item, HEAP_ID_6) == 1) {
+    if (Pocket_GetItemQuantity(param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].items, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09 - 3, param0->unk_C4->selectedItem, HEAP_ID_6) == 1) {
         ov84_0223FFF0(param0);
         return 8;
     }
@@ -2450,9 +2449,9 @@ static int ov84_0223E01C(UnkStruct_ov84_0223B5A0 *param0)
         Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 53);
 
         if (param0->unk_488 == 1) {
-            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
+            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->selectedItem);
         } else {
-            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->item);
+            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->selectedItem);
         }
 
         StringTemplate_SetNumber(param0->unk_118, 1, param0->unk_488, 3, 0, 1);
@@ -2513,7 +2512,7 @@ static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0)
 
 static int ov84_0223E1E4(UnkStruct_ov84_0223B5A0 *param0)
 {
-    Bag_RegisterItem(param0->unk_C8, param0->unk_C4->item);
+    Bag_RegisterItem(param0->unk_C8, param0->unk_C4->selectedItem);
     ListMenu_Draw(param0->unk_15C);
     ov84_0223FD84(param0);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
@@ -2538,7 +2537,7 @@ static int ov84_0223E254(UnkStruct_ov84_0223B5A0 *param0)
     ov84_0223FD84(param0);
     App_StartScreenFade(TRUE, HEAP_ID_6);
     ov84_0223D7E8(param0, 0);
-    param0->unk_C4->unk_68 = 2;
+    param0->unk_C4->exitCode = 2;
 
     return 24;
 }
@@ -2562,12 +2561,12 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            if (Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) {
+            if (Item_LoadParam(param0->unk_C4->selectedItem, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) {
                 Strbuf *v1;
 
                 Window_FillTilemap(&param0->unk_04[6], 15);
                 Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
-                StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
+                StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->selectedItem);
 
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 46);
 
@@ -2579,12 +2578,12 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
                 return 15;
             }
 
-            param0->unk_C4->unk_68 = 4;
+            param0->unk_C4->exitCode = 4;
             App_StartScreenFade(TRUE, HEAP_ID_6);
 
             return 24;
         } else if (v0 == 3) {
-            param0->unk_C4->unk_68 = 4;
+            param0->unk_C4->exitCode = 4;
             return 24;
         }
     }
@@ -2630,12 +2629,12 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
             ov84_02240248(param0, 0);
             Window_FillTilemap(&param0->unk_04[6], 15);
             Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
-            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
+            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->selectedItem);
             ov84_02240B34(param0, 2);
 
-            param0->unk_48C = Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_PRICE, HEAP_ID_6);
+            param0->unk_48C = Item_LoadParam(param0->unk_C4->selectedItem, ITEM_PARAM_PRICE, HEAP_ID_6);
 
-            if ((Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) || (param0->unk_48C == 0)) {
+            if ((Item_LoadParam(param0->unk_C4->selectedItem, ITEM_PARAM_PREVENT_TOSS, HEAP_ID_6) != 0) || (param0->unk_48C == 0)) {
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 74);
                 StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
                 Strbuf_Free(v1);
@@ -2647,7 +2646,7 @@ static int ov84_0223E3BC(UnkStruct_ov84_0223B5A0 *param0)
             param0->unk_488 = 1;
             param0->unk_48C >>= 1;
 
-            if (Pocket_GetItemQuantity(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->item, 6) == 1) {
+            if (Pocket_GetItemQuantity(param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].items, param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_09 - 3, param0->unk_C4->selectedItem, 6) == 1) {
                 v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 76);
                 StringTemplate_SetNumber(param0->unk_118, 0, param0->unk_488 * param0->unk_48C, 6, 0, 1);
                 StringTemplate_Format(param0->unk_118, param0->unk_3F8, v1);
@@ -2787,9 +2786,9 @@ static int ov84_0223E7CC(UnkStruct_ov84_0223B5A0 *param0)
         Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 77);
 
         if (param0->unk_488 > 1) {
-            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->item);
+            StringTemplate_SetItemNamePlural(param0->unk_118, 0, param0->unk_C4->selectedItem);
         } else {
-            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->item);
+            StringTemplate_SetItemName(param0->unk_118, 0, param0->unk_C4->selectedItem);
         }
 
         StringTemplate_SetNumber(param0->unk_118, 1, param0->unk_488 * param0->unk_48C, 6, 0, 1);
@@ -2885,9 +2884,9 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 0) {
-                if (Item_LoadParam(param0->unk_C4->item, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != 13) {
-                    GetItemUseErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->item, -1, HEAP_ID_6);
+            if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 0) {
+                if (Item_LoadParam(param0->unk_C4->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_6) != 13) {
+                    BagSystem_FormatErrorMessage(param0->unk_CC, param0->unk_3F8, param0->unk_C4->selectedItem, -1, HEAP_ID_6);
                     Window_FillTilemap(&param0->unk_04[6], 15);
                     Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
 
@@ -2896,11 +2895,11 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
                 }
             }
 
-            param0->unk_C4->unk_68 = 0;
+            param0->unk_C4->exitCode = 0;
             App_StartScreenFade(TRUE, HEAP_ID_6);
             return 24;
         } else if (v0 == 3) {
-            param0->unk_C4->unk_68 = 5;
+            param0->unk_C4->exitCode = 5;
             return 24;
         }
     }
@@ -3035,19 +3034,19 @@ static BOOL ov84_0223ED14(UnkStruct_ov84_0223B5A0 *param0)
 
 static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 {
-    u16 v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
-    u16 v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
+    u16 v0 = param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06;
+    u16 v1 = param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04;
 
     ListMenu_TestInput(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
 
-    if ((v0 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06) && (v1 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04)) {
+    if ((v0 == param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06) && (v1 == param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04)) {
         return 0;
     }
 
     ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (v1 - 1) * 16);
 
-    param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06 = v0;
-    param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 = v1;
+    param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06 = v0;
+    param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04 = v1;
 
     return 1;
 }
@@ -3079,19 +3078,19 @@ static BOOL ov84_0223EE30(UnkStruct_ov84_0223B5A0 *param0)
 
 static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 {
-    u16 v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
-    u16 v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
+    u16 v0 = param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06;
+    u16 v1 = param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04;
 
     ListMenu_TestInput(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
 
-    if ((v0 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06) && (v1 == param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04)) {
+    if ((v0 == param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06) && (v1 == param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04)) {
         return 0;
     }
 
     ManagedSprite_SetPositionXY(param0->unk_E0[5], 177, 24 + (v1 - 1) * 16 - 8);
 
-    param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06 = v0;
-    param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 = v1;
+    param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_06 = v0;
+    param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04 = v1;
 
     return 1;
 }

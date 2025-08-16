@@ -261,11 +261,11 @@
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000007_00056" index="56">
+	<row id="Bag_Text_CannotDismount" index="56">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You can’t dismount your Bike here.</language>
 	</row>
-	<row id="pl_msg_00000007_00057" index="57">
+	<row id="Bag_Text_CoinCaseMessage" index="57">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your Coins: {STRVAR_1 54, 0, 0}</language>
 	</row>
@@ -411,11 +411,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000007_00092" index="92">
+	<row id="Bag_Text_SealCaseMessage" index="92">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Seals: {STRVAR_1 53, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000007_00093" index="93">
+	<row id="Bag_Text_FashionCaseMessage" index="93">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Accessories: {STRVAR_1 52, 0, 0}\nBackdrops: {STRVAR_1 51, 1, 0}</language>
 	</row>
@@ -431,7 +431,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OPEN</language>
 	</row>
-	<row id="pl_msg_00000007_00097" index="97">
+	<row id="Bag_Text_PointCardMessage" index="97">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saved Battle Points\n{STRVAR_1 53, 0, 0} BP</language>
 	</row>
@@ -439,7 +439,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">TYPE</language>
 	</row>
-	<row id="pl_msg_00000007_00099" index="99">
+	<row id="Bag_Text_KeyItemInfo" index="99">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Key Item in the Bag can be assigned\nto this button for instant use.</language>
 	</row>
@@ -493,11 +493,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please choose the Berry you want to\ncook from your Bag.</language>
 	</row>
-	<row id="pl_msg_00000007_00111" index="111">
+	<row id="Bag_Text_CannotUseWithPartner" index="111">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You can’t use that when you have\nsomeone with you.</language>
 	</row>
-	<row id="pl_msg_00000007_00112" index="112">
+	<row id="Bag_Text_CannotUseNoFishing" index="112">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">There’s nothing to be caught here...</language>
 	</row>
