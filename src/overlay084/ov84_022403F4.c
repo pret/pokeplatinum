@@ -5,10 +5,9 @@
 
 #include "generated/pokemon_types.h"
 
-#include "struct_defs/struct_0207CB08.h"
-
 #include "overlay084/struct_ov84_0223B5A0.h"
 
+#include "bag_system.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "move_table.h"
@@ -274,7 +273,7 @@ static void ov84_02240950(UnkStruct_ov84_0223B5A0 *param0)
     ManagedSprite_SetDrawFlag(param0->unk_E0[10], 0);
     ManagedSprite_SetDrawFlag(param0->unk_E0[11], 0);
 
-    if ((param0->unk_C4->unk_65 == 4) || (param0->unk_C4->unk_65 == 5)) {
+    if ((param0->unk_C4->mode == 4) || (param0->unk_C4->mode == 5)) {
         ManagedSprite_SetDrawFlag(param0->unk_E0[1], 0);
     }
 
@@ -285,9 +284,9 @@ static void ov84_02240950(UnkStruct_ov84_0223B5A0 *param0)
 
     ov84_02240D3C(param0, 0);
 
-    ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08);
-    ManagedSprite_SetPositionXY(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->unk_64), 97);
-    ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
+    ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType);
+    ManagedSprite_SetPositionXY(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->currPocketIdx), 97);
+    ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].unk_04 - 1) * 16);
 
     {
         VecFx32 v1 = { FX32_ONE, FX32_ONE, FX32_ONE };

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0207CB08.h"
-
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_022403F4.h"
 #include "overlay084/struct_ov84_0223B5A0.h"
@@ -12,6 +10,7 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
@@ -119,8 +118,8 @@ void ov84_0223F2FC(UnkStruct_ov84_0223B5A0 *param0)
     Window_FillTilemap(&param0->unk_04[2], 0);
 
     v0 = &param0->unk_429;
-    v2 = param0->unk_404[param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08];
-    v1 = param0->unk_404[param0->unk_C4->unk_04[v0->unk_00].unk_08];
+    v2 = param0->unk_404[param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType];
+    v1 = param0->unk_404[param0->unk_C4->accessiblePockets[v0->unk_00].pocketType];
 
     if (v0->unk_01 == 0) {
         v3 = 96 + 50 + 12 * v0->unk_03;
@@ -149,9 +148,9 @@ void ov84_0223F3AC(UnkStruct_ov84_0223B5A0 *param0, u8 param1, u8 param2)
 
     v1 = ov84_0223F390(param0, &v0);
     if (param2 == 1) {
-        v2 = param0->unk_C4->unk_04[param1].unk_08 * 32 + 16;
+        v2 = param0->unk_C4->accessiblePockets[param1].pocketType * 32 + 16;
     } else {
-        v2 = param0->unk_C4->unk_04[param1].unk_08 * 32;
+        v2 = param0->unk_C4->accessiblePockets[param1].pocketType * 32;
     }
 
     Window_BlitBitmapRect(&param0->unk_04[5], v0->pRawData, v2, 0, 32 * 8, 16, param0->unk_427 + param0->unk_428 * param1, 3, 10, 10);
@@ -170,10 +169,10 @@ void ov84_0223F438(UnkStruct_ov84_0223B5A0 *param0)
     Window_FillTilemap(&param0->unk_04[5], 0);
 
     for (v2 = 0; v2 < param0->unk_424; v2++) {
-        if (v2 == param0->unk_C4->unk_64) {
-            v3 = param0->unk_C4->unk_04[v2].unk_08 * 32 + 16;
+        if (v2 == param0->unk_C4->currPocketIdx) {
+            v3 = param0->unk_C4->accessiblePockets[v2].pocketType * 32 + 16;
         } else {
-            v3 = param0->unk_C4->unk_04[v2].unk_08 * 32;
+            v3 = param0->unk_C4->accessiblePockets[v2].pocketType * 32;
         }
 
         Window_BlitBitmapRect(&param0->unk_04[5], v0->pRawData, v3, 0, 32 * 8, 16, param0->unk_427 + param0->unk_428 * v2, 3, 10, 10);
@@ -288,7 +287,7 @@ void ov84_0223F81C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param2, u32 
     Strbuf *v0;
     u32 v1;
 
-    if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
+    if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 3) {
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, param0->unk_3FC, (((17 * 8 - 2) - 6 - 1 - 6 * 3) + 6), param2, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     } else {
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, param0->unk_3FC, ((17 * 8 - 2) - 6 - 1 - 6 * 3), param2, TEXT_SPEED_NO_TRANSFER, param3, NULL);
@@ -392,13 +391,13 @@ void ov84_0223FB50(UnkStruct_ov84_0223B5A0 *param0)
 void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
 {
     MenuTemplate v0;
-    UnkStruct_ov84_0223BE5C *v1;
+    BagInterfacePocketInfo *v1;
     Strbuf *v2;
     Strbuf *v3;
     u16 v4;
     u16 v5;
 
-    if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 4) {
+    if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 4) {
         Window_Add(param0->unk_00, &param0->unk_B4[0], 0, 23, 23 - param2 * 2, 8, param2 * 2, 3, 823);
         v5 = 4;
     } else {
@@ -428,18 +427,18 @@ void ov84_0223FB70(UnkStruct_ov84_0223B5A0 *param0, u8 *param1, u8 param2)
 
     param0->unk_158 = Menu_New(&v0, 8, 0, 0, HEAP_ID_6, PAD_BUTTON_B);
 
-    if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
+    if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 3) {
         Window_FillTilemap(&param0->unk_04[1], 0);
-        ov84_0223F584(param0, param0->unk_C4->unk_66);
+        ov84_0223F584(param0, param0->unk_C4->selectedItem);
         Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
-        ov84_02240D5C(param0, param0->unk_C4->unk_66, 1);
+        ov84_02240D5C(param0, param0->unk_C4->selectedItem, 1);
     } else {
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_04[v5], 1, 1024 - 9 - (18 + 12), 12);
         Window_FillTilemap(&param0->unk_04[v5], 15);
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_114, 42);
         v3 = Strbuf_Init((14 * 2 * 2), HEAP_ID_6);
-        v1 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+        v1 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
         ov84_0223F4E8(param0, v1->unk_06 + v1->unk_04 - 1, 0);
         StringTemplate_Format(param0->unk_118, v3, v2);
@@ -457,13 +456,13 @@ void ov84_0223FD84(UnkStruct_ov84_0223B5A0 *param0)
 {
     u32 v0;
 
-    if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 4) {
+    if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType == 4) {
         v0 = 4;
     } else {
         v0 = 3;
     }
 
-    if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 != 3) {
+    if (param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx].pocketType != 3) {
         Window_EraseMessageBox(&param0->unk_04[v0], 1);
         Window_ClearAndScheduleCopyToVRAM(&param0->unk_04[v0]);
     }
@@ -474,7 +473,7 @@ void ov84_0223FD84(UnkStruct_ov84_0223B5A0 *param0)
     StringList_Free(param0->unk_154);
     Window_Remove(&param0->unk_B4[0]);
     Window_FillTilemap(&param0->unk_04[1], 0);
-    ov84_0223F528(param0, param0->unk_C4->unk_66);
+    ov84_0223F528(param0, param0->unk_C4->selectedItem);
     Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
     ov84_02240D5C(param0, 0, 0);
 }
@@ -500,7 +499,7 @@ void ov84_0223FE18(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FE94(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0;
+    BagInterfacePocketInfo *v0;
     Strbuf *v1;
     Strbuf *v2;
     u16 v3;
@@ -512,7 +511,7 @@ void ov84_0223FE94(UnkStruct_ov84_0223B5A0 *param0)
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 52);
     v2 = Strbuf_Init(14 * 2 * 2, HEAP_ID_6);
-    v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     ov84_0223F4E8(param0, v0->unk_06 + v0->unk_04 - 1, 0);
 
@@ -551,7 +550,7 @@ void ov84_0223FFC0(UnkStruct_ov84_0223B5A0 *param0)
 
 void ov84_0223FFF0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    UnkStruct_ov84_0223BE5C *v0;
+    BagInterfacePocketInfo *v0;
     Strbuf *v1;
     u16 v2;
 
@@ -559,7 +558,7 @@ void ov84_0223FFF0(UnkStruct_ov84_0223B5A0 *param0)
     Window_FillTilemap(&param0->unk_04[6], 15);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 54);
-    v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
+    v0 = &param0->unk_C4->accessiblePockets[param0->unk_C4->currPocketIdx];
 
     if (param0->unk_488 == 1) {
         ov84_0223F4E8(param0, v0->unk_06 + v0->unk_04 - 1, 0);

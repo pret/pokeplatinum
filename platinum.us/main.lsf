@@ -260,7 +260,7 @@ Static main
 	Object main.nef.p/src_unk_020677F4.c.o
 	Object main.nef.p/src_unk_02067A84.c.o
 	Object main.nef.p/src_dynamic_map_features.c.o
-	Object main.nef.p/src_unk_020683F4.c.o
+	Object main.nef.p/src_item_use_functions.c.o
 	Object main.nef.p/src_pokeradar.c.o
 	Object main.nef.p/src_unk_02069BE0.c.o
 	Object main.nef.p/src_unk_0206A780.c.o
@@ -299,7 +299,7 @@ Static main
 	Object main.nef.p/src_unk_0207AE68.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
 	Object main.nef.p/src_type_icon.c.o
-	Object main.nef.p/src_unk_0207CB08.c.o
+	Object main.nef.p/src_bag_system.c.o
 	Object main.nef.p/src_item.c.o
 	Object main.nef.p/src_bag.c.o
 	Object main.nef.p/src_unk_0207DA28.c.o

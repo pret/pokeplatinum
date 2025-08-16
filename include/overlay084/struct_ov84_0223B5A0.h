@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 #define POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 
-#include "struct_decls/struct_0207CB08_decl.h"
-
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
 #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "bg_window.h"
 #include "font_special_chars.h"
 #include "game_options.h"
@@ -24,7 +23,7 @@ typedef struct {
     BgConfig *unk_00;
     Window unk_04[11];
     Window unk_B4[1];
-    UnkStruct_0207CB08 *unk_C4;
+    BagSystem *unk_C4;
     Bag *unk_C8;
     TrainerInfo *unk_CC;
     Options *options;
