@@ -101,7 +101,7 @@ static BOOL UseJournalInField(ItemFieldUseContext *usageContext);
 static BOOL UseOldRodInField(ItemFieldUseContext *usageContext);
 static BOOL UseGoodRodInField(ItemFieldUseContext *usageContext);
 static BOOL UseSuperRodInField(ItemFieldUseContext *usageContext);
-static BOOL UseGenericItemInField(ItemFieldUseContext *usageContext);
+static BOOL UseBagMessageItem(ItemFieldUseContext *usageContext);
 static BOOL UseTownMapInField(ItemFieldUseContext *usageContext);
 static BOOL UsePoffinCaseInField(ItemFieldUseContext *usageContext);
 static BOOL UsePalPadInField(ItemFieldUseContext *usageContext);
@@ -136,33 +136,35 @@ static BOOL sub_020690F0(FieldTask *task);
 static BOOL sub_020685AC(FieldTask *task);
 static void PrintRegisteredKeyItemError(ItemFieldUseContext *usageContext, u32 param1);
 
+// clang-format off
 static const ItemUseFuncDat sItemUseFuncs[] = {
-    { NULL, UseGenericItemInField, NULL },
-    { UseHealingItemFromMenu, NULL, NULL },
-    { UseTownMapFromMenu, UseTownMapInField, NULL },
-    { UseExplorerKitFromMenu, UseExplorerKitInField, CanUseExplorerKit },
-    { UseBicycleFromMenu, UseBicycleInField, CanUseBicycle },
-    { UseJournalFromMenu, UseJournalInField, NULL },
-    { UseTMHMFromMenu, NULL, NULL },
-    { UseMailFromMenu, NULL, NULL },
-    { UseBerryFromMenu, NULL, CanUseBerry },
-    { UsePoffinCaseFromMenu, UsePoffinCaseInField, NULL },
-    { UsePalPadFromMenu, UsePalPadInField, NULL },
-    { UsePokeRadarFromMenu, UsePokeRadarInField, CanUsePokeRadar },
-    { UseSprayDuckFromMenu, UseSprayDuckInField, CanUseSprayDuck },
-    { UseMulchFromMenu, NULL, CanUseMulch },
-    { UseHoneyFromMenu, NULL, NULL },
-    { UseVsSeekerFromMenu, UseVsSeekerInField, CanUseVsSeeker },
-    { UseOldRodFromMenu, UseOldRodInField, CanUseFishingRod },
-    { UseGoodRodFromMenu, UseGoodRodInField, CanUseFishingRod },
-    { UseSuperRodFromMenu, UseSuperRodInField, CanUseFishingRod },
-    { NULL, UseGenericItemInField, NULL },
-    { UseEvoStoneFromMenu, NULL, NULL },
-    { UseEscapeRopeFromMenu, NULL, CanUseEscapeRope },
-    { UseAzureFluteFromMenu, UseAzureFluteInField, CanUseAzureFlute },
-    { UseVsRecorderFromMenu, UseVsRecorderInField, NULL },
-    { UseGracideaFromMenu, UseGracideaInField, NULL }
+    [ITEM_USE_FUNC_NONE]         = { NULL,                   UseBagMessageItem,     NULL              },
+    [ITEM_USE_FUNC_HEALING]      = { UseHealingItemFromMenu, NULL,                  NULL              },
+    [ITEM_USE_FUNC_TOWN_MAP]     = { UseTownMapFromMenu,     UseTownMapInField,     NULL              },
+    [ITEM_USE_FUNC_EXPLORER_KIT] = { UseExplorerKitFromMenu, UseExplorerKitInField, CanUseExplorerKit },
+    [ITEM_USE_FUNC_BICYCLE]      = { UseBicycleFromMenu,     UseBicycleInField,     CanUseBicycle     },
+    [ITEM_USE_FUNC_JOURNAL]      = { UseJournalFromMenu,     UseJournalInField,     NULL              },
+    [ITEM_USE_FUNC_TM_HM]        = { UseTMHMFromMenu,        NULL,                  NULL              },
+    [ITEM_USE_FUNC_MAIL]         = { UseMailFromMenu,        NULL,                  NULL              },
+    [ITEM_USE_FUNC_BERRY]        = { UseBerryFromMenu,       NULL,                  CanUseBerry       },
+    [ITEM_USE_FUNC_POFFIN_CASE]  = { UsePoffinCaseFromMenu,  UsePoffinCaseInField,  NULL              },
+    [ITEM_USE_FUNC_PAL_PAD]      = { UsePalPadFromMenu,      UsePalPadInField,      NULL              },
+    [ITEM_USE_FUNC_POKE_RADAR]   = { UsePokeRadarFromMenu,   UsePokeRadarInField,   CanUsePokeRadar   },
+    [ITEM_USE_FUNC_SPRAYDUCK]    = { UseSprayDuckFromMenu,   UseSprayDuckInField,   CanUseSprayDuck   },
+    [ITEM_USE_FUNC_MULCH]        = { UseMulchFromMenu,       NULL,                  CanUseMulch       },
+    [ITEM_USE_FUNC_HONEY]        = { UseHoneyFromMenu,       NULL,                  NULL              },
+    [ITEM_USE_FUNC_VS_SEEKER]    = { UseVsSeekerFromMenu,    UseVsSeekerInField,    CanUseVsSeeker    },
+    [ITEM_USE_FUNC_OLD_ROD]      = { UseOldRodFromMenu,      UseOldRodInField,      CanUseFishingRod  },
+    [ITEM_USE_FUNC_GOOD_ROD]     = { UseGoodRodFromMenu,     UseGoodRodInField,     CanUseFishingRod  },
+    [ITEM_USE_FUNC_SUPER_ROD]    = { UseSuperRodFromMenu,    UseSuperRodInField,    CanUseFishingRod  },
+    [ITEM_USE_FUNC_BAG_MESSAGE]  = { NULL,                   UseBagMessageItem,     NULL              },
+    [ITEM_USE_FUNC_EVO_STONE]    = { UseEvoStoneFromMenu,    NULL,                  NULL              },
+    [ITEM_USE_FUNC_ESCAPE_ROPE]  = { UseEscapeRopeFromMenu,  NULL,                  CanUseEscapeRope  },
+    [ITEM_USE_FUNC_AZURE_FLUTE]  = { UseAzureFluteFromMenu,  UseAzureFluteInField,  CanUseAzureFlute  },
+    [ITEM_USE_FUNC_VS_RECORDER]  = { UseVsRecorderFromMenu,  UseVsRecorderInField,  NULL              },
+    [ITEM_USE_FUNC_GRACIDEA]     = { UseGracideaFromMenu,    UseGracideaInField,    NULL              },
 };
+// clang-format on
 
 u32 GetItemUseFunction(u16 discriminator, u16 functionIdx)
 {
@@ -856,7 +858,7 @@ static u32 CanUseFishingRod(const ItemUseContext *usageContext)
     return -1;
 }
 
-static BOOL UseGenericItemInField(ItemFieldUseContext *usageContext)
+static BOOL UseBagMessageItem(ItemFieldUseContext *usageContext)
 {
     UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
