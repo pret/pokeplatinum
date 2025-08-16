@@ -4,7 +4,7 @@
 typedef struct {
     u8 nextPocketIdx;
     u8 scrollDirection;
-    u8 animationStep;
+    u8 animationStage;
     u8 animFrame;
     u8 unk_04;
     u8 unk_05;
