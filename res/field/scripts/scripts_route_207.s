@@ -32,7 +32,7 @@ _004E:
     Call _008E
     ApplyMovement 18, _0194
     WaitMovement
-    CallCommonScript 0x7F8
+    CallCommonScript SetGenderBasedBGM
     ApplyMovement 18, _01A0
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0174
@@ -83,14 +83,14 @@ _00F1:
 
 _012F:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
-    SetVar VAR_0x8004, 0x1BB
+    SetVar VAR_0x8004, ITEM_VS_SEEKER
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript AddItemQuantity
     Return
 
 _0145:
-    SetVar VAR_0x8004, 6
-    CallCommonScript 0x7D9
+    SetVar VAR_0x8004, POKETCH_APPID_DOWSINGMACHINE
+    CallCommonScript ObtainPoketchApp
     BufferPoketchAppName 1, POKETCH_APPID_DOWSINGMACHINE
     Return
 
@@ -99,7 +99,7 @@ _0156:
     ApplyMovement 18, _01A8
     WaitMovement
     RemoveObject 18
-    CallCommonScript 0x7F9
+    CallCommonScript FadeToDefaultMusic
     SetVar VAR_UNK_0x408C, 1
     ReleaseAll
     End

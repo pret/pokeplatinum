@@ -438,9 +438,9 @@ _056C:
 
 _0577:
     Message 6
-    SetVar VAR_0x8004, 0x1AA
+    SetVar VAR_0x8004, ITEM_HM07
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript AddItemQuantity
     SetFlag FLAG_UNK_0x009A
     Message 7
     Return
@@ -610,7 +610,7 @@ _0791:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript VendorGreetingGeneric
     CloseMessageWithoutErasing
     GetDayOfWeek VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT

@@ -68,11 +68,11 @@ _00D8:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    CallCommonScript 0x800
+    CallCommonScript SetTSURETEKEBGM
     ApplyMovement LOCALID_PLAYER, _03E4
     ApplyMovement 7, _0354
     WaitMovement
-    CallCommonScript 0x801
+    CallCommonScript FadeToDefaultMusic_duplicate2
     SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1
@@ -464,16 +464,16 @@ _0521:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    BufferItemName 0, 0x1BF
-    GoToIfSet FLAG_UNK_0x006B, _057A
+    BufferItemName 0, ITEM_SUPER_ROD
+    GoToIfSet FLAG_SUPER_ROD_OBTAINED, _057A
     Message 42
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _056F
     Message 43
-    SetVar VAR_0x8004, 0x1BF
+    SetVar VAR_0x8004, ITEM_SUPER_ROD
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
-    SetFlag FLAG_UNK_0x006B
+    CallCommonScript AddItemQuantity
+    SetFlag FLAG_SUPER_ROD_OBTAINED
     Message 44
     WaitABXPadPress
     CloseMessage
