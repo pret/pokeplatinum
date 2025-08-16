@@ -1,20 +1,20 @@
 #ifndef POKEPLATINUM_OV84_022403F4_H
 #define POKEPLATINUM_OV84_022403F4_H
 
-#include "overlay084/struct_ov84_0223B5A0.h"
+#include "overlay084/ov84_0223B5A0.h"
 
-void ov84_022403F4(UnkStruct_ov84_0223B5A0 *param0);
-void ov84_02240A88(UnkStruct_ov84_0223B5A0 *param0);
-void ov84_02240ABC(UnkStruct_ov84_0223B5A0 *param0);
-void ov84_02240AD8(UnkStruct_ov84_0223B5A0 *param0, u16 param1);
-void ov84_02240B34(UnkStruct_ov84_0223B5A0 *param0, u8 param1);
-u8 ov84_02240B50(UnkStruct_ov84_0223B5A0 *param0);
-void ov84_02240B68(UnkStruct_ov84_0223B5A0 *param0);
-void ov84_02240B80(UnkStruct_ov84_0223B5A0 *param0);
-void ov84_02240CF0(UnkStruct_ov84_0223B5A0 *param0, u8 param1);
-void ov84_02240D3C(UnkStruct_ov84_0223B5A0 *param0, u8 param1);
-void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2);
-void ov84_02240E24(UnkStruct_ov84_0223B5A0 *param0, s16 param1, s16 param2);
-void ov84_02240E5C(UnkStruct_ov84_0223B5A0 *param0);
+u8 BagInterface_IsPocketHighlighterDoneMoving(BagInterface *param0);
+void BagInterface_InitSprites(BagInterface *param0);
+void BagInterface_FreeSprites(BagInterface *param0);
+void BagInterface_TickSpriteAnimations(BagInterface *param0);
+void BahInterface_UpdateItemSprite(BagInterface *param0, u16 param1);
+void BagInterface_SetHighlighterSpritesPalette(BagInterface *param0, u8 param1);
+void BagInterface_StartMovingPocketHighlighter(BagInterface *param0);
+void BagInterface_DoPocketHighlighterMovementStep(BagInterface *param0);
+void BagInterface_ShowItemCountArrows(BagInterface *param0, u8 param1);
+void BagInterface_ToggleItemCountArrows(BagInterface *param0, u8 param1);
+void BagInterface_UpdateTypeAndCategoryIcons(BagInterface *param0, u16 param1, u8 param2);
+void BagInterface_DrawBtnShockwaveSprite(BagInterface *param0, s16 param1, s16 param2);
+void BagInterface_TickBtnShockwaveAnim(BagInterface *param0);
 
 #endif // POKEPLATINUM_OV84_022403F4_H

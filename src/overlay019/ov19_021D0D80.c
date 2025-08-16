@@ -27,7 +27,7 @@
 #include "overlay019/struct_ov19_021D4F34.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/touch_dial.h"
-#include "overlay084/const_ov84_02241130.h"
+#include "overlay084/ov84_0223B5A0.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"
@@ -2659,15 +2659,15 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
 
             Bag *bag = SaveData_GetBag(param0->saveData);
             param0->unk_214 = sub_0207D824(bag, bagPockets, HEAP_ID_BOX_DATA);
-            sub_0207CB2C(param0->unk_214, param0->saveData, 1, NULL);
+            sub_0207CB2C(param0->unk_214, param0->saveData, BAG_CONTEXT_GIVE_TO_MON, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
-            param0->ApplicationManager = ApplicationManager_New(&Unk_ov84_02241130, param0->unk_214, HEAP_ID_BOX_DATA);
+            param0->ApplicationManager = ApplicationManager_New(&gBagApplicationTemplate, param0->unk_214, HEAP_ID_BOX_DATA);
             (*state)++;
         }
         break;
     case GIVE_FROM_BAG_SELECT_ITEM:
         if (ApplicationManager_Exec(param0->ApplicationManager)) {
-            item = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
+            item = sub_0207CB94((BagInterfaceArguments *)(param0->unk_214));
 
             ApplicationManager_Free(param0->ApplicationManager);
             Heap_Free(param0->unk_214);

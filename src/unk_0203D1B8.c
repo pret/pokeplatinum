@@ -56,7 +56,6 @@
 #include "overlay064/ov64_0222DCE0.h"
 #include "overlay072/ov72_0223D7A0.h"
 #include "overlay080/ov80_021D0D80.h"
-#include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 #include "overlay086/ov86_0223B140.h"
@@ -271,9 +270,9 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FS_EXTERN_OVERLAY(overlay84);
 
     const ApplicationManagerTemplate Unk_ov84_02241130 = {
-        ov84_0223B5A0,
-        ov84_0223B76C,
-        ov84_0223B900,
+        BagInterface_Init,
+        BagInterface_Main,
+        BagInterface_Exit,
         FS_OVERLAY_ID(overlay84)
     };
 
@@ -285,7 +284,7 @@ void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
     void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
 
-    sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
+    sub_0207CB2C(v1, fieldSystem->saveData, BAG_CONTEXT_FROM_START_MENU, fieldSystem->bagCursor);
     sub_0207CB78(v1, fieldSystem->mapLoadType);
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
@@ -302,8 +301,8 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 {
     void *v0;
     static const u8 *v1;
-    static const u8 v2[] = { 4, 0xff };
-    static const u8 v3[] = { 0, 0xff };
+    static const u8 v2[] = { POCKET_BERRIES, 0xff };
+    static const u8 v3[] = { POCKET_ITEMS, 0xff };
     Bag *v4 = SaveData_GetBag(fieldSystem->saveData);
 
     switch (param1) {
@@ -319,7 +318,7 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
     v0 = sub_0207D824(v4, v1, HEAP_ID_FIELD_TASK);
 
-    sub_0207CB2C(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
+    sub_0207CB2C(v0, fieldSystem->saveData, BAG_CONTEXT_GARDENING, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, v0);
 
     return v0;
@@ -329,7 +328,7 @@ u16 sub_0203D2C4(void *param0)
 {
     u16 v0 = sub_0207CB94(param0);
 
-    if ((v0 != 0) && (sub_0207CB9C(param0) == 5)) {
+    if ((v0 != 0) && (sub_0207CB9C(param0) == BAG_EXIT_CODE_DONE)) {
         GF_ASSERT(0);
     }
 

@@ -1008,7 +1008,7 @@ static void ov21_021E5A44(UnkStruct_ov21_021E51DC *param0)
     v0 = param0->unk_58 - 157;
     v3 = gSystem.touchX - 51;
     v2 = gSystem.touchY - 157;
-    v4 = CalcDotProduct2D(v1, v0, v3, v2, 0);
+    v4 = ApproximateArcLength(v1, v0, v3, v2, 0);
 
     if (MATH_IAbs(v4) < 1) {
         return;

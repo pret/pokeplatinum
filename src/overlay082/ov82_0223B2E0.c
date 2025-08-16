@@ -7,7 +7,6 @@
 
 #include "overlay082/ov82_0223B140.h"
 #include "overlay083/struct_ov83_0223C344.h"
-#include "overlay084/const_ov84_02241130.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay085/ov85_02241440.h"
 
@@ -95,18 +94,18 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
     FS_EXTERN_OVERLAY(overlay84);
 
     const ApplicationManagerTemplate Unk_ov84_02241130 = {
-        ov84_0223B5A0, ov84_0223B76C, ov84_0223B900, FS_OVERLAY_ID(overlay84)
+        BagInterface_Init, BagInterface_Main, BagInterface_Exit, FS_OVERLAY_ID(overlay84)
     };
     static const u8 v3[] = {
-        4, 0xff
+        POCKET_BERRIES, 0xff
     };
 
     v0 = sub_0207D824(param0->unk_10->bag, v3, param0->heapID);
 
     if (param0->unk_06_0 == 1) {
-        v1 = 5;
+        v1 = BAG_CONTEXT_POFFIN_MULTIPLAYER;
     } else {
-        v1 = 4;
+        v1 = BAG_CONTEXT_POFFIN_SINGLEPLAYER;
     }
 
     sub_0207CB2C(v0, param0->unk_10->saveData, v1, param0->unk_0C);
@@ -119,7 +118,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
 
 static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
 {
-    UnkStruct_0207CB08 *v0 = NULL;
+    BagInterfaceArguments *v0 = NULL;
     BOOL v1;
 
     if (!ov82_0223B140(&param0->appMan)) {
@@ -136,14 +135,14 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
     Heap_Free(v0);
 
     switch (sub_0207CB9C(v0)) {
-    case 1:
+    case BAG_EXIT_CODE_SHOW_BERRY_DATA:
         return 2;
-    case 0:
-    case 2:
-    case 4:
-    case 3:
+    case BAG_EXIT_CODE_USE_ITEM:
+    case BAG_EXIT_CODE_GIVE_ITEM:
+    case BAG_EXIT_CODE_GIVE_FROM_MON_MENU:
+    case BAG_EXIT_CODE_3:
         break;
-    case 5:
+    case BAG_EXIT_CODE_DONE:
         return 5;
     default:
         GF_ASSERT(0);
