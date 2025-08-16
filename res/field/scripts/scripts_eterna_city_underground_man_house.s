@@ -18,9 +18,9 @@ _001A:
     GoToIfSet FLAG_UNK_0x0113, _0164
     GoToIfSet FLAG_UNK_0x0079, _007E
     Message 0
-    SetVar VAR_0x8004, 0x1AC
+    SetVar VAR_0x8004, ITEM_EXPLORER_KIT
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript AddItemQuantity
     SetFlag FLAG_UNK_0x0079
     ClearFlag FLAG_UNK_0x0111
     Message 1
@@ -170,13 +170,13 @@ _01DF:
     Message 6
     SetVar VAR_0x8004, 1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    CallCommonScript ObtainUndergroundTrap
     SetVar VAR_0x8004, 23
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    CallCommonScript ObtainUndergroundTrap
     SetVar VAR_0x8004, 28
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    CallCommonScript ObtainUndergroundTrap
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -191,13 +191,13 @@ _023D:
     Message 10
     SetVar VAR_0x8004, 1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    CallCommonScript ObtainUndergroundSphere
     SetVar VAR_0x8004, 3
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    CallCommonScript ObtainUndergroundSphere
     SetVar VAR_0x8004, 4
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    CallCommonScript ObtainUndergroundSphere
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -212,7 +212,7 @@ _029B:
     Message 14
     SetVar VAR_0x8004, 33
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    CallCommonScript ObtainUndergroundTrap
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -227,16 +227,16 @@ _02D9:
     Message 18
     SetVar VAR_0x8004, 11
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     SetVar VAR_0x8004, 9
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     SetVar VAR_0x8004, 17
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     SetVar VAR_0x8004, 113
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     Message 19
     WaitABXPadPress
     CloseMessage
@@ -266,19 +266,19 @@ _037F:
 _03A3:
     SetVar VAR_0x8004, 101
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     Return
 
 _03B5:
     SetVar VAR_0x8004, 102
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     Return
 
 _03C7:
     SetVar VAR_0x8004, 103
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     Return
 
 _03D9:
@@ -290,7 +290,7 @@ _03D9:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7FE
+    CallCommonScript SendToUndergroundPCWithLinefeed
     SetVar VAR_UNK_0x40B6, 6
     ClearFlag FLAG_UNK_0x0111
     ClearFlag FLAG_UNK_0x00FC
@@ -313,7 +313,7 @@ _0448:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7DC
+    CallCommonScript SendToUndergroundPC
     SetVar VAR_UNK_0x40B6, 7
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
@@ -333,7 +333,7 @@ _04A9:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7DC
+    CallCommonScript SendToUndergroundPC
     SetVar VAR_UNK_0x40B6, 8
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
@@ -353,7 +353,7 @@ _050A:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7DC
+    CallCommonScript SendToUndergroundPC
     SetVar VAR_UNK_0x40B6, 9
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
