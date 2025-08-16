@@ -91,7 +91,7 @@ _0149:
     WaitMovement
     ApplyMovement 7, _044C
     WaitMovement
-    CallCommonScript 0x7F8
+    CallCommonScript CommonScript_Unk28
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _018D
     GoToIfEq VAR_RESULT, GENDER_FEMALE, _0224
@@ -228,7 +228,7 @@ _0348:
 _036E:
     ApplyMovement 31, _0550
     WaitMovement
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     Message 12
     Message 13
     CloseMessage
@@ -256,7 +256,7 @@ _03C0:
     Message 20
     SetVar VAR_0x8004, 0x1D1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     Message 21
     CloseMessage
     ApplyMovement 31, _055C
@@ -269,7 +269,7 @@ _03C0:
     WaitMovement
     ScrCmd_187 31, 186, 0, 0x2F4, 1
     SetObjectEventPos 31, 186, 0x2F4
-    CallCommonScript 0x808
+    CallCommonScript CommonScript_Unk29_4
     Return
 
 _041B:
@@ -986,7 +986,7 @@ _0C7C:
 _0CF0:
     SetVar VAR_0x8004, 0x1B3
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x00F2
     Call _0D58
     Call _0D58
@@ -1541,7 +1541,7 @@ _1356:
     SetVar VAR_0x8004, 0x1CC
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00ED
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     ReleaseAll
     End
@@ -1580,7 +1580,7 @@ _13CD:
     SetVar VAR_0x8004, 0x1CD
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00EE
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     ReleaseAll
     End
@@ -1621,7 +1621,7 @@ _1451:
     SetVar VAR_0x8004, 0x1CE
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00EF
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     ReleaseAll
     End
@@ -1678,7 +1678,7 @@ _14CF:
     AddObject 31
     ApplyMovement 31, _1538
     WaitMovement
-    CallCommonScript 0x807
+    CallCommonScript CommonScript_Unk37
     ApplyMovement 31, _1544
     ApplyMovement LOCALID_PLAYER, _08A0
     WaitMovement
@@ -1687,7 +1687,7 @@ _14CF:
     ApplyMovement 31, _154C
     WaitMovement
     RemoveObject 31
-    CallCommonScript 0x808
+    CallCommonScript CommonScript_Unk29_4
     SetVar VAR_UNK_0x4076, 2
     ReleaseAll
     End

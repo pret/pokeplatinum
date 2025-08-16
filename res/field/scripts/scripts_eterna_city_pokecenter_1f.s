@@ -11,7 +11,7 @@
 
 _0016:
     SetVar VAR_0x8007, 3
-    CallCommonScript 0x7D2
+    CallCommonScript CommonScript_Unk02
     End
 
 _0022:
@@ -75,7 +75,7 @@ _00D9:
     Message 4
     SetVar VAR_MAP_LOCAL_2, 1
     SetVar VAR_0x8004, 5
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     WaitABXPadPress
     CloseMessage
     ReleaseAll

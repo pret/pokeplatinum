@@ -115,7 +115,7 @@ _01C6:
 _01E9:
     SetVar VAR_0x8004, 0x1B7
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     Message 4
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
@@ -237,7 +237,7 @@ _031F:
     SetVar VAR_0x8004, ITEM_TM51
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _036F
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x00C7
     GoTo _0364
 
@@ -249,7 +249,7 @@ _0364:
     End
 
 _036F:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

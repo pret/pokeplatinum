@@ -15,13 +15,13 @@ _000A:
     SetVar VAR_0x8004, ITEM_NUGGET
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0084
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x00DA
     SetVar VAR_0x8004, ITEM_NUGGET
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0079
     Message 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     GoTo _0079
     End
 
@@ -33,7 +33,7 @@ _0079:
     End
 
 _0084:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

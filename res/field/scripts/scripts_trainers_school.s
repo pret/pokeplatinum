@@ -33,7 +33,7 @@ _0032:
     Message 2
     SetVar VAR_0x8004, 0x1BA
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     BufferRivalName 1
     Message 3
     CloseMessage
@@ -209,7 +209,7 @@ _0274:
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _02B3
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0112
     GoTo _02A8
     End
@@ -222,7 +222,7 @@ _02A8:
     End
 
 _02B3:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

@@ -15,7 +15,7 @@ _000A:
     SetVar VAR_0x8004, ITEM_TM48
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _005C
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x00C9
     GoTo _0051
     End
@@ -28,7 +28,7 @@ _0051:
     End
 
 _005C:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

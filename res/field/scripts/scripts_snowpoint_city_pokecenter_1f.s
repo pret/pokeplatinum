@@ -11,7 +11,7 @@
 
 _0016:
     SetVar VAR_0x8007, 0
-    CallCommonScript 0x7D2
+    CallCommonScript CommonScript_Unk02
     End
 
 _0022:

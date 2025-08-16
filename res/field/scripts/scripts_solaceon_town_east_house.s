@@ -82,7 +82,7 @@ _0109:
     Message 5
     SetVar VAR_0x8004, 0x1B2
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0117
     Call _014F
     Message 7

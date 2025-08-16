@@ -28,7 +28,7 @@ _0035:
     SetVar VAR_0x8004, ITEM_METAL_COAT
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00A8
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x011D
     Message 1
     CloseMessage
@@ -40,7 +40,7 @@ _0035:
     End
 
 _00A8:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

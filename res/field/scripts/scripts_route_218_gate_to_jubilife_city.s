@@ -62,7 +62,7 @@ _00A7:
     BufferItemName 0, VAR_0x8004
     Message 2
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0084
     GoTo _005E
 

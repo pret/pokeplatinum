@@ -157,7 +157,7 @@ _0202:
     End
 
 _020D:
-    CallCommonScript 0x7D6
+    CallCommonScript CommonScript_Unk06
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _02EA
     HealParty
@@ -368,11 +368,11 @@ _0464:
     End
 
 _046A:
-    CallCommonScript 0x7D6
+    CallCommonScript CommonScript_Unk06
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0464
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript CommonScript_Unk32
     ReleaseAll
     End
 
@@ -408,11 +408,11 @@ _04EE:
     End
 
 _04F4:
-    CallCommonScript 0x7D6
+    CallCommonScript CommonScript_Unk06
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _04EE
     CloseMessage
-    CallCommonScript 0x802
+    CallCommonScript CommonScript_Unk32
     ReleaseAll
     End
 
@@ -548,7 +548,7 @@ _06A1:
 
 _06D3:
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FD
+    CallCommonScript CommonScript_Unk2D
     Message 28
     Call _0710
     SetFlag FLAG_UNK_0x0AC3

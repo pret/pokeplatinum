@@ -68,7 +68,7 @@ _00A5:
 _00CB:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _010C
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     RemoveObject 1
     ReleaseAll
@@ -83,7 +83,7 @@ _0100:
     GoTo _00CB
 
 _010C:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

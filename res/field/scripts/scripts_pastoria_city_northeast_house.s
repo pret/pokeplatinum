@@ -56,7 +56,7 @@ _00D7:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_RED_SCARF
     Message 4
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0140
     Message 5
     WaitABXPadPress
@@ -71,7 +71,7 @@ _0118:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_BLUE_SCARF
     Message 4
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0141
     Message 6
     WaitABXPadPress
@@ -86,7 +86,7 @@ _0159:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_PINK_SCARF
     Message 4
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0142
     Message 7
     WaitABXPadPress
@@ -101,7 +101,7 @@ _019A:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_GREEN_SCARF
     Message 4
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0143
     Message 8
     WaitABXPadPress
@@ -116,7 +116,7 @@ _01DB:
     BufferPartyMonSpecies 0, VAR_0x8000
     BufferItemName 1, ITEM_YELLOW_SCARF
     Message 4
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0144
     Message 9
     WaitABXPadPress

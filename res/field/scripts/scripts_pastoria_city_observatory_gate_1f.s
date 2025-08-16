@@ -162,7 +162,7 @@ _021E:
     WaitMovement
     Message 18
     SetVar VAR_0x8004, 22
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     SetFlag FLAG_UNK_0x00A3
     CloseMessage
     ReleaseAll

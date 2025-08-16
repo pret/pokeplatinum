@@ -595,7 +595,7 @@ _0677:
     Message 43
     SetVar VAR_0x8004, 0x1AF
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     Message 44
     WaitABXPadPress
     CloseMessage

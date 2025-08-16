@@ -53,7 +53,7 @@ _009F:
     SetVar VAR_0x8004, 0x1BC
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00BC
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     ReleaseAll
     End

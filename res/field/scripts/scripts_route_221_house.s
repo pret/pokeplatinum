@@ -36,7 +36,7 @@ _006D:
     GoTo _00C2
 
 _00C2:
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     ClearFlag FLAG_UNK_0x0137
     SetFlag FLAG_UNK_0x0AAE
     AddVar VAR_UNK_0x4108, 1

@@ -62,7 +62,7 @@ _010A:
 _0121:
     Message 2
     SetVar VAR_0x8004, 2
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -72,7 +72,7 @@ _0121:
 _0139:
     Message 5
     SetVar VAR_0x8004, 12
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -82,7 +82,7 @@ _0139:
 _0151:
     Message 8
     SetVar VAR_0x8004, 13
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -92,7 +92,7 @@ _0151:
 _0169:
     Message 11
     SetVar VAR_0x8004, 15
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     Message 12
     WaitABXPadPress
     CloseMessage

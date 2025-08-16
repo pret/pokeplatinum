@@ -46,7 +46,7 @@ _005B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT
     ReleaseAll
@@ -56,7 +56,7 @@ _0071:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT
     ReleaseAll
@@ -93,7 +93,7 @@ _00A9:
     ScrCmd_343 0, VAR_0x8004
     Message 3
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DF
+    CallCommonScript CommonScript_Unk0F
     SetFlag FLAG_UNK_0x0129
     CloseMessage
     ReleaseAll

@@ -16,13 +16,13 @@ _0006:
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _004F
     SetFlag FLAG_UNK_0x013B
     SetFlag FLAG_UNK_0x025F
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     ReleaseAll
     End
 
 _004F:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

@@ -100,7 +100,7 @@ _0128:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -110,7 +110,7 @@ _013E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll
@@ -120,7 +120,7 @@ _0154:
     LockAll
     ClearFlag FLAG_UNK_0x021D
     AddObject 5
-    CallCommonScript 0x7FA
+    CallCommonScript CommonScript_Unk2A
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 10, _0191
     GoToIfEq VAR_0x8004, 11, _01A1
@@ -272,7 +272,7 @@ _0323:
 
 _0336:
     SetVar VAR_0x8007, 3
-    CallCommonScript 0x7D2
+    CallCommonScript CommonScript_Unk02
     End
 
     .balign 4, 0

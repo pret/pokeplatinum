@@ -97,7 +97,7 @@ _00CC:
     GoToIfLt VAR_RESULT, 50, _010D
     Message 10
     SetVar VAR_0x8004, 9
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -133,7 +133,7 @@ _0168:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0218
     WaitMovement
-    CallCommonScript 0x7FA
+    CallCommonScript CommonScript_Unk2A
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos 18, VAR_0x8004, 0x295
     ClearFlag FLAG_UNK_0x021E
@@ -156,7 +156,7 @@ _0168:
     ApplyMovement 18, _0210
     WaitMovement
     RemoveObject 18
-    CallCommonScript 0x7FB
+    CallCommonScript CommonScript_Unk29_2
     SetVar VAR_UNK_0x4073, 1
     ReleaseAll
     End

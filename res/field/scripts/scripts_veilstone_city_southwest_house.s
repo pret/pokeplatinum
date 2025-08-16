@@ -43,7 +43,7 @@ _000E:
     GoToIfEq VAR_0x8004, -1, _00F6
     Message 7
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FF
+    CallCommonScript CommonScript_Unk2F
     GoTo _00F6
 
 _00D5:

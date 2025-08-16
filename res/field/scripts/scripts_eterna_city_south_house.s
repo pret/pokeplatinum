@@ -23,7 +23,7 @@ _0006:
     SetVar VAR_0x8004, ITEM_UPGRADE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0091
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x0119
     Message 2
     GoTo _009B
@@ -34,7 +34,7 @@ _008B:
     End
 
 _0091:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End

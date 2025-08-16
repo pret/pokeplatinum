@@ -69,7 +69,7 @@ _00A9:
     CheckItem ITEM_SEAL_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _00D9
     Message 7
-    CallCommonScript 0x7E3
+    CallCommonScript CommonScript_Unk13
     CloseMessageWithoutErasing
     Call _00E4
     ReleaseAll

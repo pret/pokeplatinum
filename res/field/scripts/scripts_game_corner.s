@@ -212,7 +212,7 @@ GameCorner_CoinsClerk_TenStraightBonusRounds_SavedTM:
     End
 
 GameCorner_CoinsClerk_GiveTM64:
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_GAME_CORNER_RECEIVED_TM64
     Message GameCorner_Text_PleaseKeepPlayingTheSlots
     WaitABXPadPress

@@ -259,7 +259,7 @@ _036C:
     Message 15
     SetVar VAR_0x8004, 0x1B1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     GiveJournal
     Message 16
     GetPlayerDir VAR_0x8007
@@ -401,7 +401,7 @@ _05A6:
 _05B1:
     SetVar VAR_0x8004, 0x1CB
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x008F
     Message 27
     BufferRivalName 1

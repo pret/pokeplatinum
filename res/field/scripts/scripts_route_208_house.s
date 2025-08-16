@@ -24,7 +24,7 @@ _001C:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0072
     SetFlag FLAG_UNK_0x0AA0
-    CallCommonScript 0x7E0
+    CallCommonScript CommonScript_Unk10
     CloseMessage
     ReleaseAll
     End
@@ -37,7 +37,7 @@ _0067:
     End
 
 _0072:
-    CallCommonScript 0x7E1
+    CallCommonScript CommonScript_Unk11
     CloseMessage
     ReleaseAll
     End
@@ -59,7 +59,7 @@ _00C7:
     Message 3
     SetVar VAR_MAP_LOCAL_0, 1
     SetVar VAR_0x8004, 7
-    CallCommonScript 0x7D9
+    CallCommonScript CommonScript_Unk09
     WaitABXPadPress
     CloseMessage
     ReleaseAll

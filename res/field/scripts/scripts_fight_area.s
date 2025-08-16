@@ -68,11 +68,11 @@ _00D8:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    CallCommonScript 0x800
+    CallCommonScript CommonScript_Unk30
     ApplyMovement LOCALID_PLAYER, _03E4
     ApplyMovement 7, _0354
     WaitMovement
-    CallCommonScript 0x801
+    CallCommonScript CommonScript_Unk29_3
     SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1
@@ -472,7 +472,7 @@ _0521:
     Message 43
     SetVar VAR_0x8004, 0x1BF
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FC
+    CallCommonScript CommonScript_Unk2C
     SetFlag FLAG_UNK_0x006B
     Message 44
     WaitABXPadPress
