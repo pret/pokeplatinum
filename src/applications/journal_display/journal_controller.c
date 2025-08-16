@@ -89,7 +89,7 @@ int JournalController_Init(ApplicationManager *appMan, int *state)
     journalManager->journalEntry = SaveData_GetJournal(saveData);
     journalManager->trainerInfo = SaveData_GetTrainerInfo(saveData);
 
-    sub_0208C120(0, HEAP_ID_JOURNAL);
+    App_StartScreenFade(FALSE, HEAP_ID_JOURNAL);
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_JOURNAL);
 
     JournalController_SetVRAMBanks();
@@ -345,13 +345,13 @@ static int JournalController_HandleInput(JournalManager *journalManager)
                 return JOURNAL_STATE_TURN_LEFT;
             }
         } else {
-            sub_0208C120(1, HEAP_ID_JOURNAL);
+            App_StartScreenFade(TRUE, HEAP_ID_JOURNAL);
             return JOURNAL_STATE_CLOSE;
         }
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
-        sub_0208C120(1, HEAP_ID_JOURNAL);
+        App_StartScreenFade(TRUE, HEAP_ID_JOURNAL);
         return JOURNAL_STATE_CLOSE;
     }
 

@@ -114,7 +114,7 @@ int ov22_0225B738(ApplicationManager *appMan, int *param1)
     UnkStruct_ov22_0225B85C *v0 = ApplicationManager_Data(appMan);
 
     {
-        sub_020241B4();
+        G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
         ov22_0225AFF8(v0->unk_10);
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);

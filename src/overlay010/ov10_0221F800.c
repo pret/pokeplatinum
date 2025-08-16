@@ -592,7 +592,7 @@ static u8 ov10_0221FBFC(UnkStruct_ov10_0221FB28 *param0)
         ov10_02222720(param0);
         ov10_02221C14(param0);
         sub_02039734();
-        sub_0208C120(0, param0->unk_00->heapID);
+        App_StartScreenFade(FALSE, param0->unk_00->heapID);
         SetVBlankCallback(ov10_02220C64, param0);
         return 1;
     }
@@ -616,7 +616,7 @@ static u8 ov10_0221FC78(UnkStruct_ov10_0221FB28 *param0)
         ov10_022217CC(param0);
         break;
     case 2:
-        sub_0208C120(0, param0->unk_00->heapID);
+        App_StartScreenFade(FALSE, param0->unk_00->heapID);
         SetVBlankCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 8;
@@ -668,7 +668,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
         sub_02039734();
         break;
     case 2:
-        sub_0208C120(0, param0->unk_00->heapID);
+        App_StartScreenFade(FALSE, param0->unk_00->heapID);
         SetVBlankCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 4;
@@ -1122,7 +1122,7 @@ static u8 ov10_022209E0(UnkStruct_ov10_0221FB28 *param0)
 
 static u8 ov10_02220A34(UnkStruct_ov10_0221FB28 *param0)
 {
-    sub_0208C120(1, param0->unk_00->heapID);
+    App_StartScreenFade(TRUE, param0->unk_00->heapID);
     param0->unk_B73 = 2;
     return 1;
 }
@@ -1751,7 +1751,7 @@ static int ov10_022218BC(UnkStruct_ov10_0221FB28 *param0)
         return 0;
     }
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     if (ParticleSystem_GetActiveEmitterCount(param0->unk_B50) == 0) {
         return 0;

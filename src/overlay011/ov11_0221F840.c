@@ -22,7 +22,7 @@ ParticleSystem *ov11_0221F840(int heapID)
     camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
-        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+        Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
     }
 
     return v0;
@@ -44,7 +44,7 @@ ParticleSystem *ov11_0221F888(int heapID)
     camera = ParticleSystem_GetCamera(v0);
 
     if (camera != NULL) {
-        Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);
+        Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
     }
 
     return v0;
@@ -63,7 +63,7 @@ void ov11_0221F8F0(void)
     int v0;
     const MtxFx43 *v1;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     if (ParticleSystem_GetActiveAmount() == 0) {
         return;
@@ -72,7 +72,7 @@ void ov11_0221F8F0(void)
     v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
-        sub_020241B4();
+        G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 

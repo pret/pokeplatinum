@@ -272,7 +272,7 @@ Static main
 	Object main.nef.p/src_trainer_card_badge_dirt.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
-	Object main.nef.p/src_unk_0206C784.c.o
+	Object main.nef.p/src_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_unk_0206CCB0.c.o
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
@@ -1405,11 +1405,11 @@ Overlay overlay92
 	Object main.nef.p/src_overlay092_ov92_021D0D80.c.o
 }
 
-Overlay overlay93
+Overlay boat_cutscene
 {
 	After main
-	Object main.nef.p/src_overlay093_ov93_021D0D80.c.o
-	Object main.nef.p/src_overlay093_ov93_021D111C.c.o
+	Object main.nef.p/src_boat_cutscene_canalave_ship.c.o
+	Object main.nef.p/src_boat_cutscene_snowpoint_ship.c.o
 }
 
 Overlay overlay94

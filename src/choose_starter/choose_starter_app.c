@@ -1006,7 +1006,7 @@ static void UpdateGraphics(ChooseStarterApp *param0, int heapID)
 
 static void DrawScene(ChooseStarterApp *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
 
     NNS_G3dGePushMtx();
 

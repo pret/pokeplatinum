@@ -220,7 +220,7 @@ int ov85_02241440(ApplicationManager *appMan, int *param1)
     v0->unk_00 = BgConfig_New(HEAP_ID_36);
     v0->unk_1FC = BerryData_Load(v0->unk_1F8->unk_08, 36);
 
-    sub_0208C120(0, HEAP_ID_36);
+    App_StartScreenFade(FALSE, HEAP_ID_36);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, HEAP_ID_36);
 
@@ -739,7 +739,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
     }
 
     if ((gSystem.pressedKeys & PAD_BUTTON_B) || (gSystem.touchPressed)) {
-        sub_0208C120(1, HEAP_ID_36);
+        App_StartScreenFade(TRUE, HEAP_ID_36);
         return 3;
     }
 
@@ -877,7 +877,7 @@ static void ov85_02241F5C(void)
 
 static void ov85_02241FF0(UnkStruct_ov85_022417E4 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
     G3_MtxMode(GX_MTXMODE_PROJECTION);

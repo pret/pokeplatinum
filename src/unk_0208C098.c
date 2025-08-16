@@ -77,9 +77,9 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
     return App_BarColor(App_PixelCount(curHP, maxHP, barSize), barSize);
 }
 
-void sub_0208C120(u8 param0, u32 heapID)
+void App_StartScreenFade(u8 fadeOut, u32 heapID)
 {
-    if (param0 == 0) {
+    if (fadeOut == FALSE) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, heapID);
     } else {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, heapID);

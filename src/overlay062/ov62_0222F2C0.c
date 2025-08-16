@@ -554,7 +554,7 @@ BOOL ov62_0222F910(UnkStruct_0208C06C *param0, int *param1)
         return 1;
     }
 
-    sub_020241B4();
+    G3_ResetG3X();
     PokemonSpriteManager_DrawSprites(param0->unk_14.unk_50);
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
