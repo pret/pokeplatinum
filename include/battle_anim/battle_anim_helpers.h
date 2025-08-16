@@ -104,14 +104,14 @@ typedef struct AfterimageContext {
     u8 unk_AF;
 } AfterimageContext;
 
-typedef struct {
+typedef struct AlphaFadeContext {
     XYTransformContext lerp;
     int done;
 } AlphaFadeContext;
 
 typedef void (*VBlankDMAFunc)(void *);
 
-typedef struct {
+typedef struct VBlankDMAController {
     SysTask *onVBlankTask;
     SysTask *postVBlankTask;
     BOOL doDMA;
@@ -121,13 +121,13 @@ typedef struct {
     void *param;
 } VBlankDMAController;
 
-typedef struct CustomBgScrollContext {
+struct CustomBgScrollContext {
     VBlankDMAController dmaController;
     BufferManager *bufferManager;
     u32 buffer1[HW_LCD_HEIGHT];
     u32 buffer2[HW_LCD_HEIGHT];
     u32 offsetReg;
-} CustomBgScrollContext;
+};
 
 typedef struct BgScrollContext {
     VBlankDMAController dmaController;
@@ -142,7 +142,7 @@ typedef struct SpriteShakeInfo {
     int targets;
 } SpriteShakeInfo;
 
-typedef struct UnkStruct_ov12_022267D4_t {
+typedef struct PaletteFadeContext {
     BOOL active;
     SysTask *task;
     enum PaletteBufferID bufferID;

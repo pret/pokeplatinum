@@ -131,6 +131,8 @@ typedef struct BattleAnimContext {
     BOOL transformed; // Flag for if transform is currently active
 } BattleAnimContext;
 
+typedef struct CustomBgScrollContext CustomBgScrollContext;
+
 typedef struct BattleAnimScriptLoop {
     u32 *startPos;
     u8 curIteration;
@@ -153,7 +155,6 @@ typedef struct {
     int unk_08;
 } UnkStruct_ov12_022224F8_sub1;
 
-struct CustomBgScrollContext;
 typedef struct {
     UnkStruct_ov12_022224F8_sub1 unk_00[16];
     struct CustomBgScrollContext *unk_C0;
