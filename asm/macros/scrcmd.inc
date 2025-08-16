@@ -165,6 +165,14 @@
     .short 21
     .endm
 
+    .macro CommonScriptEntry scriptName
+    ScriptEntry Common_\scriptName
+    .endm
+
+    .macro LabelCommonEntryScript scriptName
+    Common_\scriptName
+    .endm
+
     .macro GoTo offset
     .short 22
     .long \offset-.-4

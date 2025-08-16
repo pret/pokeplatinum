@@ -4,73 +4,73 @@
 #include "res/text/bank/common_strings.h"
 #include "res/text/bank/menu_entries.h"
 
-    ScriptEntry Common_HandleSignpostInput
-    ScriptEntry Common_CheckBagPocketForItem
-    ScriptEntry Common_Pokecenter_SpeakWithNurse
-    ScriptEntry _03E8
-    ScriptEntry _043B
-    ScriptEntry _0479
-    ScriptEntry CommonScript_SaveGame @ 0x7D6
-    ScriptEntry Common_EmptyScript2
-    ScriptEntry _05EA
-    ScriptEntry Common_ObtainPoketchApp
-    ScriptEntry Common_EmptyScript1
-    ScriptEntry Common_EmptyScript3
-    ScriptEntry Common_SendToUndergroundPC
-    ScriptEntry Common_ObtainUndergroundTrap
-    ScriptEntry Common_ObtainUndergroundSphere
-    ScriptEntry Common_ObtainAccessoryWaitForConfirm
-    ScriptEntry Common_AddItemQuantityNoLineFeed
-    ScriptEntry Common_BagIsFull
-    ScriptEntry _0BEE
-    ScriptEntry Common_VendorGreetingGeneric
-    ScriptEntry _0FCA
-    ScriptEntry _103A
-    ScriptEntry Common_EmptyScript4
-    ScriptEntry _0FA7
-    ScriptEntry Common_EmptyScript5
-    ScriptEntry _1282
-    ScriptEntry _12A8
-    ScriptEntry _12BA
-    ScriptEntry _12CD
-    ScriptEntry _12E0
-    ScriptEntry _12F3
-    ScriptEntry _1361
-    ScriptEntry _138C
-    ScriptEntry _139D
-    ScriptEntry _048B
-    ScriptEntry _13AB
-    ScriptEntry Common_ObtainContestBackdropWaitForConfirm
-    ScriptEntry Common_EmptyScript6
-    ScriptEntry Common_PrintPlateObtainedMessage
-    ScriptEntry _1477
-    ScriptEntry Common_SetGenderBasedBGM
-    ScriptEntry Common_FadeToDefaultMusic
-    ScriptEntry Common_SetRivalBGM
-    ScriptEntry Common_FadeToDefaultMusic
-    ScriptEntry Common_AddItemQuantity
-    ScriptEntry Common_ObtainContestBackdrop
-    ScriptEntry Common_SendToUndergroundPCWithLinefeed
-    ScriptEntry Common_ObtainAccessory
-    ScriptEntry Common_SetTSURETEKEBGM
-    ScriptEntry Common_FadeToDefaultMusic
-    ScriptEntry _15E7
-    ScriptEntry _1636
-    ScriptEntry _164A
-    ScriptEntry _165E
-    ScriptEntry Common_Frontier_CheckAllFrontierGoldPrintsObtained
-    ScriptEntry Common_SetHandsomeBGM
-    ScriptEntry Common_FadeToDefaultMusic
-    ScriptEntry _170A
+    CommonScriptEntry HandleSignpostInput
+    CommonScriptEntry CheckBagPocketForItem
+    CommonScriptEntry Pokecenter_SpeakWithNurse
+    CommonScriptEntry _03E8
+    CommonScriptEntry _043B
+    CommonScriptEntry _0479
+    CommonScriptEntry CommonScript_SaveGame
+    CommonScriptEntry EmptyScript2
+    CommonScriptEntry _05EA
+    CommonScriptEntry ObtainPoketchApp
+    CommonScriptEntry EmptyScript1
+    CommonScriptEntry EmptyScript3
+    CommonScriptEntry SendToUndergroundPC
+    CommonScriptEntry ObtainUndergroundTrap
+    CommonScriptEntry ObtainUndergroundSphere
+    CommonScriptEntry ObtainAccessoryWaitForConfirm
+    CommonScriptEntry AddItemQuantityNoLineFeed
+    CommonScriptEntry BagIsFull
+    CommonScriptEntry _0BEE
+    CommonScriptEntry VendorGreetingGeneric
+    CommonScriptEntry _0FCA
+    CommonScriptEntry _103A
+    CommonScriptEntry EmptyScript4
+    CommonScriptEntry _0FA7
+    CommonScriptEntry EmptyScript5
+    CommonScriptEntry _1282
+    CommonScriptEntry _12A8
+    CommonScriptEntry _12BA
+    CommonScriptEntry _12CD
+    CommonScriptEntry _12E0
+    CommonScriptEntry _12F3
+    CommonScriptEntry _1361
+    CommonScriptEntry _138C
+    CommonScriptEntry _139D
+    CommonScriptEntry _048B
+    CommonScriptEntry _13AB
+    CommonScriptEntry ObtainContestBackdropWaitForConfirm
+    CommonScriptEntry EmptyScript6
+    CommonScriptEntry PrintPlateObtainedMessage
+    CommonScriptEntry _1477
+    CommonScriptEntry SetGenderBasedBGM
+    CommonScriptEntry FadeToDefaultMusic
+    CommonScriptEntry SetRivalBGM
+    CommonScriptEntry FadeToDefaultMusic
+    CommonScriptEntry AddItemQuantity
+    CommonScriptEntry ObtainContestBackdrop
+    CommonScriptEntry SendToUndergroundPCWithLinefeed
+    CommonScriptEntry ObtainAccessory
+    CommonScriptEntry SetTSURETEKEBGM
+    CommonScriptEntry FadeToDefaultMusic
+    CommonScriptEntry _15E7
+    CommonScriptEntry _1636
+    CommonScriptEntry _164A
+    CommonScriptEntry _165E
+    CommonScriptEntry Frontier_CheckAllFrontierGoldPrintsObtained
+    CommonScriptEntry SetHandsomeBGM
+    CommonScriptEntry FadeToDefaultMusic
+    CommonScriptEntry _170A
     ScriptEntryEnd
 
-Common_EmptyScript1:
+LabelCommonEntryScript EmptyScript1:
     End
 
-Common_EmptyScript2:
+LabelCommonEntryScript EmptyScript2:
     End
 
-Common_Pokecenter_SpeakWithNurse:
+LabelCommonEntryScript Pokecenter_SpeakWithNurse:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -225,7 +225,7 @@ _02F4:
     PlayerReceive
     EndMovement
 
-Common_HandleSignpostInput:
+LabelCommonEntryScript HandleSignpostInput:
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, 0, Common_ScrollOutSignpost
     GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
@@ -248,7 +248,7 @@ Common_RemoveSignpostOpenStartMenu:
     ReturnCommonScript
     End
 
-Common_CheckBagPocketForItem:
+LabelCommonEntryScript CheckBagPocketForItem:
     Call Common_GetBagPocketForItem
     ReturnCommonScript
     End
@@ -286,7 +286,7 @@ Common_Unused:
     ReturnCommonScript
     End
 
-_03E8:
+LabelCommonEntryScript _03E8:
     LockAll
     GetPartyCount VAR_0x8004
     SetVar VAR_0x8005, 0
@@ -304,7 +304,7 @@ _040F:
     ReleaseAll
     End
 
-_043B:
+LabelCommonEntryScript _043B:
     FadeScreenIn
     WaitFadeScreen
     WaitABPress
@@ -324,20 +324,20 @@ _0457:
     ScrCmd_14B
     End
 
-_0479:
+LabelCommonEntryScript _0479:
     ClearFlag FLAG_SAVE_EXTRA_BLOCK
     Call CommonScript_SaveGame_Dialog
     ScrCmd_18F VAR_RESULT
     CloseMessage
     End
 
-_048B:
+LabelCommonEntryScript _048B:
     Message pl_msg_00000213_00020
     WaitABPress
     CloseMessage
     End
 
-CommonScript_SaveGame:
+LabelCommonEntryScript CommonScript_SaveGame:
     SetFlag FLAG_SAVE_EXTRA_BLOCK
     Call CommonScript_SaveGame_Dialog
     SetVar VAR_MAP_LOCAL_0, VAR_RESULT
@@ -435,7 +435,7 @@ CommonScript_QuickSave_CheckMiscFlag:
     GoTo CommonScript_QuickSave_Save
     End
 
-_05EA:
+LabelCommonEntryScript _05EA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     CheckItem ITEM_HONEY, 1, VAR_RESULT
@@ -520,7 +520,7 @@ _0713:
     ReleaseAll
     End
 
-Common_ObtainPoketchApp:
+LabelCommonEntryScript ObtainPoketchApp:
     Call Common_InternalObtainPoketchApp
     ReturnCommonScript
     End
@@ -660,17 +660,17 @@ Common_ObtainedPoketchAlarmClock:
     Message pl_msg_00000213_00107
     Return
 
-Common_EmptyScript3:
+LabelCommonEntryScript EmptyScript3:
     End
 
-Common_SendToUndergroundPC:
+LabelCommonEntryScript SendToUndergroundPC:
     Call Common_ObtainUndergroundItem
     Message pl_msg_00000213_00109
     WaitABXPadPress
     ReturnCommonScript
     End
 
-Common_SendToUndergroundPCWithLinefeed:
+LabelCommonEntryScript SendToUndergroundPCWithLinefeed:
     Call Common_ObtainUndergroundItem
     Message pl_msg_00000213_00128
     ReturnCommonScript
@@ -685,7 +685,7 @@ Common_ObtainUndergroundItem:
     WaitSound
     Return
 
-Common_ObtainUndergroundTrap:
+LabelCommonEntryScript ObtainUndergroundTrap:
     Call Common_InternalObtainUndergroundTrap
     ReturnCommonScript
     End
@@ -698,7 +698,7 @@ Common_InternalObtainUndergroundTrap:
     WaitSound
     Return
 
-Common_ObtainUndergroundSphere:
+LabelCommonEntryScript ObtainUndergroundSphere:
     Call Common_InternalObtainUndergroundSphere
     ReturnCommonScript
     End
@@ -712,14 +712,14 @@ Common_InternalObtainUndergroundSphere:
     WaitSound
     Return
 
-Common_ObtainAccessoryWaitForConfirm:
+LabelCommonEntryScript ObtainAccessoryWaitForConfirm:
     Call Common_InternalObtainAccessory
     Message pl_msg_00000213_00031
     WaitABXPadPress
     ReturnCommonScript
     End
 
-Common_ObtainAccessory:
+LabelCommonEntryScript ObtainAccessory:
     Call Common_InternalObtainAccessory
     Message pl_msg_00000213_00127
     ReturnCommonScript
@@ -735,14 +735,14 @@ Common_InternalObtainAccessory:
     BufferAccessoryName 1, VAR_0x8004
     Return
 
-Common_ObtainContestBackdropWaitForConfirm:
+LabelCommonEntryScript ObtainContestBackdropWaitForConfirm:
     Call Common_InternalObtainContestBackdrop
     Message pl_msg_00000213_00031
     WaitABXPadPress
     ReturnCommonScript
     End
 
-Common_ObtainContestBackdrop:
+LabelCommonEntryScript ObtainContestBackdrop:
     Call Common_InternalObtainContestBackdrop
     Message pl_msg_00000213_00127
     ReturnCommonScript
@@ -758,7 +758,7 @@ Common_InternalObtainContestBackdrop:
     BufferContestBackdropName 1, VAR_0x8004
     Return
 
-Common_AddItemQuantityNoLineFeed:
+LabelCommonEntryScript AddItemQuantityNoLineFeed:
     Call Common_InternalAddItemQuantityNoLineFeed
     ReturnCommonScript
     End
@@ -773,7 +773,7 @@ Common_InternalAddItemQuantityNoLineFeed:
     WaitABXPadPress
     Return
 
-Common_AddItemQuantity:
+LabelCommonEntryScript AddItemQuantity:
     Call Common_InternalAddItemQuantity
     ReturnCommonScript
     End
@@ -871,7 +871,7 @@ Common_BufferPocketNameTMHMs:
 Common_BufferPocketNameReturn:
     Return
 
-Common_BagIsFull:
+LabelCommonEntryScript BagIsFull:
     Call Common_InternalBagIsFull
     ReturnCommonScript
     End
@@ -881,7 +881,7 @@ Common_InternalBagIsFull:
     WaitABXPadPress
     Return
 
-_0BEE:
+LabelCommonEntryScript _0BEE:
     LockAll
     PlayFanfare SEQ_SE_DP_PC_ON
     Call _0C06
@@ -1126,10 +1126,10 @@ _0F94:
     UnloadAnimation ANIMATION_TAG_PC
     Return
 
-Common_EmptyScript4:
+LabelCommonEntryScript EmptyScript4:
     End
 
-_0FA7:
+LabelCommonEntryScript _0FA7:
     FadeScreenOut
     WaitFadeScreen
     OpenSealCapsuleEditor
@@ -1137,12 +1137,12 @@ _0FA7:
     WaitFadeScreen
     End
 
-Common_VendorGreetingGeneric:
+LabelCommonEntryScript VendorGreetingGeneric:
     Message pl_msg_00000213_00037
     ReturnCommonScript
     End
 
-_0FCA:
+LabelCommonEntryScript _0FCA:
     LockAll
     ApplyMovement LOCALID_PLAYER, _1250
     ApplyMovement 0, _1258
@@ -1174,7 +1174,7 @@ _1035:
     Message pl_msg_00000213_00042
     Return
 
-_103A:
+LabelCommonEntryScript _103A:
     LockAll
     FadeScreenIn
     WaitFadeScreen
@@ -1336,10 +1336,10 @@ _1278:
     FaceSouth
     EndMovement
 
-Common_EmptyScript5:
+LabelCommonEntryScript EmptyScript5:
     End
 
-_1282:
+LabelCommonEntryScript _1282:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FadeScreenOut
@@ -1351,7 +1351,7 @@ _1282:
     ReleaseAll
     End
 
-_12A8:
+LabelCommonEntryScript _12A8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1361,7 +1361,7 @@ _12A8:
     ReleaseAll
     End
 
-_12BA:
+LabelCommonEntryScript _12BA:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1371,7 +1371,7 @@ _12BA:
     ReleaseAll
     End
 
-_12CD:
+LabelCommonEntryScript _12CD:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1381,7 +1381,7 @@ _12CD:
     ReleaseAll
     End
 
-_12E0:
+LabelCommonEntryScript _12E0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1391,7 +1391,7 @@ _12E0:
     ReleaseAll
     End
 
-_12F3:
+LabelCommonEntryScript _12F3:
     CheckItem ITEM_BICYCLE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, Common_End
     LockAll
@@ -1423,7 +1423,7 @@ _1359:
 Common_End:
     End
 
-_1361:
+LabelCommonEntryScript _1361:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message pl_msg_00000213_00076
@@ -1437,7 +1437,7 @@ _1361:
     ReleaseAll
     End
 
-_138C:
+LabelCommonEntryScript _138C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message pl_msg_00000213_00079
@@ -1446,7 +1446,7 @@ _138C:
     ReleaseAll
     End
 
-_139D:
+LabelCommonEntryScript _139D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1454,7 +1454,7 @@ _139D:
     ReleaseAll
     End
 
-_13AB:
+LabelCommonEntryScript _13AB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1464,7 +1464,7 @@ _13AB:
     ReleaseAll
     End
 
-Common_PrintPlateObtainedMessage:
+LabelCommonEntryScript PrintPlateObtainedMessage:
     Call Common_DeterminePlateMessage
     ReturnCommonScript
     End
@@ -1518,10 +1518,10 @@ Common_Print8PlatesObtainedMessage:
     Message pl_msg_00000213_00117
     Return
 
-Common_EmptyScript6:
+LabelCommonEntryScript EmptyScript6:
     End
 
-_1477:
+LabelCommonEntryScript _1477:
     LockAll
     GetCurrentMapID VAR_0x8004
     GoToIfEq VAR_0x8004, 220, _14AC
@@ -1575,7 +1575,7 @@ _157B:
     ReleaseAll
     End
 
-Common_SetGenderBasedBGM:
+LabelCommonEntryScript SetGenderBasedBGM:
     StopMusic 0
     GetPlayerGender VAR_RESULT
     CallIfEq VAR_RESULT, GENDER_MALE, Common_SetTheGirlBGM
@@ -1591,32 +1591,32 @@ Common_SetTheBoyBGM:
     SetBGM SEQ_THE_BOY
     Return
 
-Common_SetRivalBGM:
+LabelCommonEntryScript SetRivalBGM:
     StopMusic 0
     SetBGM SEQ_THE_RIV
     ReturnCommonScript
     End
 
-Common_SetTSURETEKEBGM:
+LabelCommonEntryScript SetTSURETEKEBGM:
     StopMusic 0
     SetBGM SEQ_TSURETEKE
     ReturnCommonScript
     End
 
-Common_SetHandsomeBGM:
+LabelCommonEntryScript SetHandsomeBGM:
     StopMusic 0
     SetBGM SEQ_PL_HANDSOME
     ReturnCommonScript
     End
 
-Common_FadeToDefaultMusic:
+LabelCommonEntryScript FadeToDefaultMusic:
     FadeOutBGM 0, 30
     StopMusic 0
     PlayDefaultMusic
     ReturnCommonScript
     End
 
-_15E7:
+LabelCommonEntryScript _15E7:
     FadeScreenOut
     WaitFadeScreen
     ScrCmd_0B3 VAR_RESULT
@@ -1636,21 +1636,21 @@ _1624:
     ReturnCommonScript
     End
 
-_1636:
+LabelCommonEntryScript _1636:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_ROUTE_212
     GoTo _1672
     End
 
-_164A:
+LabelCommonEntryScript _164A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SURVIVAL_AREA
     GoTo _1672
     End
 
-_165E:
+LabelCommonEntryScript _165E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     SetVar VAR_0x8004, TUTOR_LOCATION_SNOWPOINT_CITY
@@ -1673,7 +1673,7 @@ _16A4:
     ReleaseAll
     End
 
-Common_Frontier_CheckAllFrontierGoldPrintsObtained:
+LabelCommonEntryScript Frontier_CheckAllFrontierGoldPrintsObtained:
     GoToIfSet FLAG_OBTAINED_ALL_BATTLE_FRONTIER_GOLD_PRINTS, Common_Frontier_End
     GoToIfNe VAR_BATTLE_FACTORY_PRINT_STATE, 4, Common_Frontier_End
     GoToIfNe VAR_BATTLE_HALL_PRINT_STATE, 4, Common_Frontier_End
@@ -1689,7 +1689,7 @@ Common_Frontier_End:
     ReturnCommonScript
     End
 
-_170A:
+LabelCommonEntryScript _170A:
     Message pl_msg_00000213_00130
     WaitABXPadPress
     CloseMessage

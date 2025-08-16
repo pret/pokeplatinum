@@ -154,7 +154,7 @@ _0297:
     CallIfEq VAR_UNK_0x40BD, 1, _043C
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
-    CallCommonScript UNK_0494
+    CallCommonScript CommonScript_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0139
     GoToIfEq VAR_UNK_0x40BD, 2, _02E5
