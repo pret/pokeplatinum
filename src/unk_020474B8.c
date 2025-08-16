@@ -491,14 +491,14 @@ BOOL ScrCmd_BufferItemNamePlural(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_33E(ScriptContext *param0)
+BOOL ScrCmd_BufferUndergroundGoodName(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 strFormatIdx = ScriptContext_ReadByte(param0);
+    u16 undergroundGood = ScriptContext_GetVar(param0);
 
-    StringTemplate_SetUndergroundGoodsNameWithArticle(*v1, v2, v3);
+    StringTemplate_SetUndergroundGoodsNameWithArticle(*strTemplate, strFormatIdx, undergroundGood);
     return 0;
 }
 

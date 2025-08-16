@@ -303,7 +303,7 @@ _04AC:
     End
 
 _04B0:
-    CallCommonScript 0x7D1
+    CallCommonScript CheckBagPocketForItem
     ScrCmd_236 VAR_0x8004
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     IsItemTMHM VAR_0x8004, VAR_RESULT
@@ -313,7 +313,7 @@ _04B0:
 
 _04E2:
     WaitSound
-    ScrCmd_2A7 VAR_0x8004, VAR_RESULT
+    CheckItemIsPlate VAR_0x8004, VAR_RESULT
     CallIfEq VAR_RESULT, 1, _0667
     BufferPlayerName 0
     BufferItemName 1, VAR_0x8004
@@ -409,7 +409,7 @@ _064F:
     End
 
 _0667:
-    CallCommonScript 0x7F6
+    CallCommonScript PrintPlateObtainedMessage
     Return
 
     .balign 4, 0
