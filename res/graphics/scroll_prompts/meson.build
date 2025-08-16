@@ -1,6 +1,6 @@
 scroll_prompts_png = files('scroll_prompts.png')
 scroll_prompts_ncgr = ncgr_gen.process(scroll_prompts_png,
-    extra_args: [ '-version101', '-clobbersize', '-cell', files('scroll_prompts_cell.json')[0].full_path(), ],
+    extra_args: [ '-version101', '-clobbersize', ],
 )
 scroll_prompts_nclr = nclr_gen.process(scroll_prompts_png,
     extra_args: [ '-bitdepth', '4', '-pcmp', '-nopad', '-invertsize', ],
