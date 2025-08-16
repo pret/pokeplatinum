@@ -41,6 +41,7 @@ metang_generators = {
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'common_scripts': { 'type': 'enum', 'tag': 'CommonScript' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
