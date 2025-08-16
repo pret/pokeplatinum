@@ -31,7 +31,7 @@ BOOL ScrCmd_0B6(ScriptContext *ctx)
     int *sightRange;
     int *scriptID;
     int *trainerID;
-    int *trainerType;
+    int *v3;
     int *direction;
     SysTask **task;
     MapObject **mapObj;
@@ -44,7 +44,7 @@ BOOL ScrCmd_0B6(ScriptContext *ctx)
         direction = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_DIRECTION);
         scriptID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_SCRIPT_ID);
         trainerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_ID);
-        trainerType = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
+        v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
         mapObj = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_MAP_OBJECT);
         task = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_0_TASK);
     } else {
@@ -52,18 +52,18 @@ BOOL ScrCmd_0B6(ScriptContext *ctx)
         direction = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_DIRECTION);
         scriptID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_SCRIPT_ID);
         trainerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_ID);
-        trainerType = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_TYPE);
+        v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_TYPE);
         mapObj = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT);
         task = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TRAINER_1_TASK);
     }
 
     playerAvatar = fieldSystem->playerAvatar;
-    *task = sub_02067FB8(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *trainerType, approachNum);
+    *task = sub_02067FB8(fieldSystem, *mapObj, playerAvatar, *direction, *sightRange, 0, *v3, approachNum);
 
     return FALSE;
 }
 
-BOOL ScrCmd_CheckIsTrainerTaskDone(ScriptContext *ctx)
+BOOL ScrCmd_CheckIsApproachingTrainerTaskDone(ScriptContext *ctx)
 {
     SysTask **task;
     u16 approachNum = ScriptContext_GetVar(ctx);
@@ -91,16 +91,16 @@ BOOL ScrCmd_CheckIsTrainerTaskDone(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_GetTrainerType(ScriptContext *ctx)
+BOOL ScrCmd_0B8(ScriptContext *ctx)
 {
-    u16 *trainer0Type = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
+    u16 *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TRAINER_0_TYPE);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = *trainer0Type;
+    *destVar = *v0;
     return FALSE;
 }
 
-BOOL ScrCmd_GetTrainer0Or1ID(ScriptContext *ctx)
+BOOL ScrCmd_GetApproachingTrainerID(ScriptContext *ctx)
 {
     u16 *trainer0ID = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TRAINER_0_ID);
     u16 *trainer1ID = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TRAINER_1_ID);
@@ -296,7 +296,7 @@ BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_SetTargetObjectDefeated(ScriptContext *ctx)
+BOOL ScrCmd_SetTargetTrainerDefeated(ScriptContext *ctx)
 {
     MapObject **mapObj;
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -307,7 +307,7 @@ BOOL ScrCmd_SetTargetObjectDefeated(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_GoToIfTargetObjectDefeated(ScriptContext *ctx)
+BOOL ScrCmd_GoToIfTargetTrainerDefeated(ScriptContext *ctx)
 {
     int isTrainerDefeated;
     s32 offset;

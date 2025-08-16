@@ -2,7 +2,6 @@
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
-#include "generated/facing_directions.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
 #include "generated/items.h"
@@ -31,6 +30,7 @@
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/battle.h"
 
 #include "macros/movement.inc"
 
@@ -1100,18 +1100,18 @@
     .short \approachNum
     .endm
 
-    .macro CheckIsTrainerTaskDone approachNum, destVar
+    .macro CheckIsApproachingTrainerTaskDone approachNum, destVar
     .short 183
     .short \approachNum
     .short \destVar
     .endm
 
-    .macro GetTrainerType destVar
+    .macro ScrCmd_0B8 destVar
     .short 184
     .short \destVar
     .endm
 
-    .macro GetTrainer0Or1ID approachNum, destVar
+    .macro GetApproachingTrainerID approachNum, destVar
     .short 185
     .short \approachNum
     .short \destVar
@@ -1415,11 +1415,11 @@
     .short 239
     .endm
 
-    .macro SetTargetObjectDefeated
+    .macro SetTargetTrainerDefeated
     .short 240
     .endm
 
-    .macro GoToIfTargetObjectDefeated offset
+    .macro GoToIfTargetTrainerDefeated offset
     .short 241
     .long \offset-.-4
     .endm

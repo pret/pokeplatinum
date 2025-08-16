@@ -43,7 +43,7 @@ typedef struct {
     int direction;
     int sightRange;
     int unk_10;
-    int trainerType;
+    int unk_14;
     int approachNum;
     int unk_1C;
     UnkStruct_ov101_021D5D90 *unk_20;
@@ -395,9 +395,9 @@ int sub_02067F88(FieldSystem *fieldSystem, MapObject *param1)
     return 0;
 }
 
-SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int param5, int trainerType, int approachNum)
+SysTask *sub_02067FB8(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int param5, int param6, int approachNum)
 {
-    return sub_02067FF0(fieldSystem, mapObj, playerAvatar, direction, sightRange, param5, trainerType, approachNum);
+    return sub_02067FF0(fieldSystem, mapObj, playerAvatar, direction, sightRange, param5, param6, approachNum);
 }
 
 int sub_02067FD4(SysTask *task)
@@ -411,7 +411,7 @@ void sub_02067FE8(SysTask *task)
     sub_02068054(task);
 }
 
-static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int param5, int trainerType, int approachNum)
+static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *mapObj, PlayerAvatar *playerAvatar, int direction, int sightRange, int param5, int param6, int approachNum)
 {
     SysTask *task;
     UnkStruct_020EF6D0 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_020EF6D0)));
@@ -422,7 +422,7 @@ static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *mapObj, Player
     v1->direction = direction;
     v1->sightRange = sightRange;
     v1->unk_10 = param5;
-    v1->trainerType = trainerType;
+    v1->unk_14 = param6;
     v1->approachNum = approachNum;
     v1->fieldSystem = fieldSystem;
     v1->mapObj = mapObj;
@@ -639,7 +639,7 @@ static int sub_02068264(UnkStruct_020EF6D0 *param0)
     MapObject *v2 = Player_MapObject(param0->playerAvatar);
     v1 = sub_02064488(MapObject_GetX(v2), MapObject_GetZ(v2), MapObject_GetX(param0->mapObj), MapObject_GetZ(param0->mapObj));
 
-    if ((PlayerAvatar_GetDir(param0->playerAvatar) != v1) && ((param0->approachNum == 0) || (param0->trainerType == 2))) {
+    if ((PlayerAvatar_GetDir(param0->playerAvatar) != v1) && ((param0->approachNum == 0) || (param0->unk_14 == 2))) {
         if (LocalMapObj_IsAnimationSet(v2) == 1) {
             MapObject_SetStatusFlagOff(v2, MAP_OBJ_STATUS_LOCK_DIR);
             v0 = MovementAction_TurnActionTowardsDir(v1, MOVEMENT_ACTION_FACE_NORTH);

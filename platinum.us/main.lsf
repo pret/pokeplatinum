@@ -189,7 +189,7 @@ Static main
 	Object main.nef.p/src_unk_020474B8.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_scrcmd_sound.c.o
-	Object main.nef.p/src_scrcmd_script_manager.c.o
+	Object main.nef.p/src_scrcmd_trainer.c.o
 	Object main.nef.p/src_unk_02048BD0.c.o
 	Object main.nef.p/src_unk_02048DD8.c.o
 	Object main.nef.p/src_unk_020494DC.c.o
