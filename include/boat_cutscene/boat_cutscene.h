@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BOAT_CUTSCENE_H
 #define POKEPLATINUM_BOAT_CUTSCENE_H
 
-#include "generated/boat_travel_dirs.h"
+#include "constants/boat_cutscene.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/model_attributes.h"
