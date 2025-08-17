@@ -171,6 +171,17 @@ endforeach
 # 4. Compile assets. Compilers take registries as inputs and declare dependencies
 #    on the actual source files. The former prevents command line bloat; the
 #    latter maintains that compilation must reoccur when source files change.
+species_orders = custom_target('species_orders',
+    output: [
+        'pokefoot.order',
+    ],
+    command: [ ordergen_species_py, '@OUTPUT0@' ],
+    env: species_env,
+    depends: [ py_consts_generators ],
+)
+pokefoot_order = species_orders[0]
+
+
 datagen_species_out = custom_target('datagen_species_out',
     output: [
         'pl_personal.narc',
@@ -383,7 +394,7 @@ pokefoot_narc = custom_target('pokefoot.narc',
     command: [
         narc_exe, 'create',
         '--naix',
-        '--order', files('.shared/footprint.order'),
+        '--order', pokefoot_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
