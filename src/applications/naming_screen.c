@@ -1367,7 +1367,7 @@ static void NamingScreen_UseDefaultName(NamingScreen *namingScreen, NamingScreen
         Strbuf_Free(strbuf);
         Strbuf_ToChars(args->textInputStr, args->nameInputRaw, 10);
     } else {
-        args->noInput = TRUE;
+        args->returnCode = NAMING_SCREEN_CODE_NO_INPUT;
     }
 }
 
@@ -1483,7 +1483,7 @@ NamingScreenArgs *NamingScreenArgs_Init(
     args->type = type;
     args->playerGenderOrMonSpecies = playerGenderOrMonSpecies;
     args->maxChars = maxChars;
-    args->noInput = FALSE;
+    args->returnCode = NAMING_SCREEN_CODE_OK;
     args->nameInputRaw[0] = CHAR_EOS;
     args->textInputStr = Strbuf_Init(32, heapID);
     args->battleMsgID = 0;

@@ -18,13 +18,18 @@ enum NamingScreenType {
     NAMING_SCREEN_TYPE_PAL_PAD,
 };
 
+enum NamingScreenReturnCode {
+    NAMING_SCREEN_CODE_OK,
+    NAMING_SCREEN_CODE_NO_INPUT,
+};
+
 typedef struct NamingScreenArgs {
     enum NamingScreenType type;
     int playerGenderOrMonSpecies;
     int monForm;
     int maxChars;
     int monGender;
-    int noInput;
+    enum NamingScreenReturnCode returnCode;
     Strbuf *textInputStr;
     charcode_t nameInputRaw[20];
     int battleMsgID;

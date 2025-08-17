@@ -1170,23 +1170,25 @@ static BOOL sub_0203DE98(FieldTask *param0)
     case 3:
         if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
             if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
-                v2->unk_0C->noInput = 1;
+                v2->unk_0C->returnCode = 1;
             }
         } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
             const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
-                v2->unk_0C->noInput = 2;
+                // this re-uses the returnCode field with values not associated with the naming
+                // screen. these should probably have their own enum.
+                v2->unk_0C->returnCode = 2;
             }
         }
 
-        if (v2->unk_0C->noInput == 0) {
+        if (v2->unk_0C->returnCode == 0) {
             sub_0203DF68(param0);
         }
 
         if (v2->unk_08 != NULL) {
-            *v2->unk_08 = v2->unk_0C->noInput;
+            *v2->unk_08 = v2->unk_0C->returnCode;
         }
 
         NamingScreenArgs_Free(v2->unk_0C);
