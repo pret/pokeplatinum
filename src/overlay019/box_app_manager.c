@@ -31,6 +31,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "dexmode_checker.h"
 #include "enums.h"
 #include "game_options.h"
@@ -55,7 +56,6 @@
 #include "touch_screen_actions.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
-#include "unk_0207CB08.h"
 
 #include "constdata/const_020F410C.h"
 #include "res/text/bank/box_messages.h"
@@ -2587,7 +2587,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
 
             Bag *bag = SaveData_GetBag(boxAppMan->saveData);
             boxAppMan->bagAppArgs = sub_0207D824(bag, bagPockets, HEAP_ID_BOX_DATA);
-            sub_0207CB2C(boxAppMan->bagAppArgs, boxAppMan->saveData, 1, NULL);
+            BagSystem_Init(boxAppMan->bagAppArgs, boxAppMan->saveData, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), OVERLAY_LOAD_ASYNC);
             boxAppMan->ApplicationManager = ApplicationManager_New(&Unk_ov84_02241130, boxAppMan->bagAppArgs, HEAP_ID_BOX_DATA);
             (*state)++;
@@ -2595,7 +2595,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
         break;
     case GIVE_FROM_BAG_SELECT_ITEM:
         if (ApplicationManager_Exec(boxAppMan->ApplicationManager)) {
-            item = sub_0207CB94(boxAppMan->bagAppArgs);
+            item = BagSystem_GetItem(boxAppMan->bagAppArgs);
 
             ApplicationManager_Free(boxAppMan->ApplicationManager);
             Heap_Free(boxAppMan->bagAppArgs);
