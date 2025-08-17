@@ -30,7 +30,7 @@
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226871C.h"
 #include "battle/ov16_0226E148.h"
-#include "battle/struct_ov16_0223E0C8.h"
+#include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268520.h"
@@ -100,7 +100,7 @@ u16 *ov16_0223E098(BattleSystem *battleSystem);
 u16 *ov16_0223E0A4(BattleSystem *battleSystem);
 u16 *ov16_0223E0B0(BattleSystem *battleSystem);
 u16 *ov16_0223E0BC(BattleSystem *battleSystem);
-UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *battleSystem);
+PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSystem);
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSystem);
 Strbuf *ov16_0223E0D4(BattleSystem *battleSystem);
 u16 Battler_TrainerID(BattleSystem *battleSystem, int param1);
@@ -152,10 +152,10 @@ void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSystem, int param1);
 WaitDial *Battle_GetWaitDial(BattleSystem *battleSystem);
 void Battle_SetWaitDial(BattleSystem *battleSystem, WaitDial *waitDial);
-u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1);
-void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
-void ov16_0223F2E4(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
-void ov16_0223F2FC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2);
+u8 *ov16_0223F2B8(PokemonSpriteData *param0, int param1);
+void PokemonSpriteData_SetNarcID(PokemonSpriteData *param0, int param1, int param2);
+void PokemonSpriteData_SetPalette(PokemonSpriteData *param0, int param1, int param2);
+void PokemonSpriteData_SetYOffset(PokemonSpriteData *param0, int param1, int param2);
 void ov16_0223F314(BattleSystem *battleSystem, int param1);
 void ov16_0223F320(BattleSystem *battleSystem, u8 *param1);
 void ov16_0223F32C(BattleSystem *battleSystem, u8 *param1);
@@ -398,9 +398,9 @@ u16 *ov16_0223E0BC(BattleSystem *battleSystem)
     return &battleSystem->unk_23EE;
 }
 
-UnkStruct_ov16_0223E0C8 *ov16_0223E0C8(BattleSystem *battleSystem)
+PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSystem)
 {
-    return &battleSystem->unk_1CC[0];
+    return &battleSystem->pokemonSpriteDataArray[0];
 }
 
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSystem)
@@ -1285,33 +1285,33 @@ void Battle_SetWaitDial(BattleSystem *battleSystem, WaitDial *waitDial)
     battleSystem->waitDial = waitDial;
 }
 
-UnkStruct_ov16_0223E0C8 *ov16_0223F2AC(BattleSystem *battleSystem, int param1)
+PokemonSpriteData *ov16_0223F2AC(BattleSystem *battleSystem, int idx)
 {
-    return &battleSystem->unk_1CC[param1];
+    return &battleSystem->pokemonSpriteDataArray[idx];
 }
 
-u8 *ov16_0223F2B8(UnkStruct_ov16_0223E0C8 *param0, int param1)
+u8 *ov16_0223F2B8(PokemonSpriteData *pokemonSpriteData, int idx)
 {
-    GF_ASSERT(param1 < 4);
-    return param0[param1].unk_00;
+    GF_ASSERT(idx < 4);
+    return pokemonSpriteData[idx].tiles;
 }
 
-void ov16_0223F2CC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2)
+void PokemonSpriteData_SetNarcID(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
-    GF_ASSERT(param1 < 4);
-    param0[param1].unk_04 = param2;
+    GF_ASSERT(idx < 4);
+    pokemonSpriteData[idx].narcID = value;
 }
 
-void ov16_0223F2E4(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2)
+void PokemonSpriteData_SetPalette(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
-    GF_ASSERT(param1 < 4);
-    param0[param1].unk_08 = param2;
+    GF_ASSERT(idx < 4);
+    pokemonSpriteData[idx].palette = value;
 }
 
-void ov16_0223F2FC(UnkStruct_ov16_0223E0C8 *param0, int param1, int param2)
+void PokemonSpriteData_SetYOffset(PokemonSpriteData *pokemonSpriteData, int idx, int value)
 {
-    GF_ASSERT(param1 < 4);
-    param0[param1].unk_0C = param2;
+    GF_ASSERT(idx < 4);
+    pokemonSpriteData[idx].yOffset = value;
 }
 
 void ov16_0223F314(BattleSystem *battleSystem, int param1)

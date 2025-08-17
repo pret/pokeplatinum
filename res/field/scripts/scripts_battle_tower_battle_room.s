@@ -18,12 +18,12 @@ _0035:
     End
 
 _0037:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     GoToIfEq VAR_UNK_0x40D9, 3, _004A
     End
 
 _004A:
-    ScrCmd_187 2, 5, 0, 6, 3
+    SetPosition 2, 5, 0, 6, 3
     End
 
 _0058:
@@ -112,9 +112,9 @@ _01AC:
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
     Message 4
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     FadeScreen 6, 1, 0, 0

@@ -54,7 +54,7 @@ typedef struct {
 
 typedef struct {
     PokedexSortData *unk_00;
-    UnkStruct_ov21_021E68F4 *unk_04;
+    PokedexScreenManager *unk_04;
 } UnkStruct_ov21_021E7468;
 
 typedef struct {
@@ -191,15 +191,15 @@ const static UnkStruct_ov21_021E9DB0 Unk_ov21_021E9DB0[17] = {
     { 0xFFFF, 0x0, 0x480, 0xAAA, 0x1, 0xFFFFFFFFFFFFFFF0 }
 };
 
-void ov21_021E737C(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
+void ov21_021E737C(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021E7468 *v0 = ov21_021E73E8(heapID, param1);
     UnkStruct_ov21_021E747C *v1 = ov21_021E7424(heapID, param1);
 
     param0->pageData = v0;
     param0->pageGraphics = v1;
-    param0->unk_20 = NULL;
-    param0->unk_24 = ov21_021E749C();
+    param0->screenStates = NULL;
+    param0->numStates = ov21_021E749C();
     param0->dataFunc[0] = ov21_021E74A0;
     param0->dataFunc[1] = ov21_021E750C;
     param0->dataFunc[2] = ov21_021E751C;
@@ -208,7 +208,7 @@ void ov21_021E737C(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum Hea
     param0->graphicsFunc[2] = ov21_021E7694;
 }
 
-void ov21_021E73D4(UnkStruct_ov21_021E68F4 *param0)
+void ov21_021E73D4(PokedexScreenManager *param0)
 {
     ov21_021E7468(param0->pageData);
     ov21_021E747C(param0->pageGraphics);
@@ -220,7 +220,7 @@ static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, PokedexApp *pa
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E7468));
 
-    v0->unk_00 = ov21_021D13EC(param1);
+    v0->unk_00 = PokedexMain_GetSortData(param1);
     v0->unk_04 = ov21_021D1410(param1, 5);
 
     return v0;
@@ -229,14 +229,14 @@ static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, PokedexApp *pa
 UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021E747C *v0;
-    UnkStruct_ov21_021E68F4 *v1;
+    PokedexScreenManager *v1;
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E747C));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E747C));
 
-    v0->unk_00 = ov21_021D13FC(param1);
+    v0->unk_00 = PokedexMain_GetGraphicData(param1);
 
     ov21_021E7EC0(v0, heapID);
     ov21_021E7F40(v0, heapID);

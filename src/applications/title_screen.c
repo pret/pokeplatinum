@@ -660,12 +660,12 @@ static void TitleScreen_Render(TitleScreen *titleScreen, TitleScreenGraphics *gf
     case RENDER_STATE_OFF:
         break;
     case RENDER_STATE_DISABLE:
-        sub_020241B4();
+        G3_ResetG3X();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_W);
         gfx->renderState = RENDER_STATE_OFF;
         break;
     case RENDER_STATE_ENABLE:
-        sub_020241B4();
+        G3_ResetG3X();
         Camera_ComputeViewMatrix();
         MTX_Rot33Vec(&rotationMatrix, &gfx->giratinaRot);
 

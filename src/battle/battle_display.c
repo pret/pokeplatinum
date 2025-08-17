@@ -12,6 +12,7 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"
 
+#include "battle/battle_anim_battler_context.h"
 #include "battle/battle_context.h"
 #include "battle/battle_io.h"
 #include "battle/battle_lib.h"
@@ -78,7 +79,6 @@
 #include "battle/struct_ov16_02260C00.h"
 #include "battle/struct_ov16_02260F14.h"
 #include "battle/struct_ov16_022623F0.h"
-#include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
 #include "battle/struct_ov16_02264EF8.h"
@@ -5644,9 +5644,9 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
     }
 
     sub_02013750(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, 0, v3, param2->spindaSpots);
-    ov16_0223F2CC(ov16_0223E0C8(battleSys), param10, param2->narcID);
-    ov16_0223F2E4(ov16_0223E0C8(battleSys), param10, param2->palette);
-    ov16_0223F2FC(ov16_0223E0C8(battleSys), param10, param6);
+    PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param10, param2->narcID);
+    PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param10, param2->palette);
+    PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param10, param6);
 
     v0 = PokemonSpriteManager_CreateSpriteAtIndex(param1, param2, param3, param4 + param6, param5, param10, param10, param11, param12);
 
@@ -6081,49 +6081,49 @@ static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int par
     return v3;
 }
 
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3)
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *battleAnimSystem, UnkStruct_ov16_02265BBC *param3)
 {
-    UnkStruct_ov16_02264408 v0;
+    BattleAnimBattlerContext battlerContext;
     int i;
-    int v2;
+    int move;
 
     if (param3->unk_4C == 0) {
-        v0.unk_50 = 8;
-        v2 = param3->unk_02;
+        battlerContext.moveArcID = 8;
+        move = param3->unk_02;
     } else {
-        v0.unk_50 = 63;
-        v2 = param3->unk_50;
+        battlerContext.moveArcID = 63;
+        move = param3->unk_50;
     }
 
-    v0.unk_04 = BattleSystem_BGL(battleSys);
-    v0.unk_08 = BattleSystem_PaletteSys(battleSys);
-    v0.unk_00 = BattleSystem_GetSpriteSystem(battleSys);
+    battlerContext.bgConfig = BattleSystem_BGL(battleSys);
+    battlerContext.paletteData = BattleSystem_PaletteSys(battleSys);
+    battlerContext.spriteSystem = BattleSystem_GetSpriteSystem(battleSys);
 
     for (i = 0; i < 4; i++) {
-        v0.unk_0C[i] = ov16_0223F2AC(battleSys, i);
-        v0.unk_34[i] = param3->unk_18[i];
-        v0.unk_3C[i] = param3->unk_20[i];
-        v0.unk_40[i] = param3->unk_24[i];
-        v0.unk_44[i] = param3->unk_28[i];
-        v0.unk_48[i] = param3->unk_2C[i];
-        v0.unk_4C[i] = param3->unk_3C[i];
+        battlerContext.pokemonSpriteData[i] = ov16_0223F2AC(battleSys, i);
+        battlerContext.battlerSpecies[i] = param3->unk_18[i];
+        battlerContext.battlerGenders[i] = param3->unk_20[i];
+        battlerContext.battlerShinyFlags[i] = param3->unk_24[i];
+        battlerContext.battlerForms[i] = param3->unk_28[i];
+        battlerContext.battlerPersonalities[i] = param3->unk_2C[i];
+        battlerContext.battlerMoveEffects[i] = param3->unk_3C[i];
     }
 
-    ov16_0223F87C(battleSys, &(v0.unk_1C[0]));
-    ov16_0223F8AC(battleSys, &(v0.unk_20[0]));
+    ov16_0223F87C(battleSys, &(battlerContext.battlerTypes[0]));
+    ov16_0223F8AC(battleSys, &(battlerContext.pokemonSprites[0]));
 
-    v0.battleType = BattleSystem_BattleType(battleSys);
-    v0.unk_6C = BattleSystem_ChatotVoice(battleSys, param1->battler);
-    v0.unk_70 = ov16_0223F1E8(battleSys);
-    v0.unk_74 = ov16_0223F1F0(battleSys);
-    v0.unk_54.unk_00 = 7;
-    v0.unk_54.unk_04 = 3 + BattleSystem_Background(battleSys);
-    v0.unk_54.unk_08 = 172 + BattleSystem_Background(battleSys) * 3 + ov16_0223EC04(battleSys);
-    v0.unk_54.unk_0C = 2;
-    v0.unk_54.unk_10 = 0;
-    v0.unk_54.unk_14 = 8;
+    battlerContext.battleType = BattleSystem_BattleType(battleSys);
+    battlerContext.chatotCry = BattleSystem_ChatotVoice(battleSys, param1->battler);
+    battlerContext.bgTiles = ov16_0223F1E8(battleSys);
+    battlerContext.bgPaletteBuffer = ov16_0223F1F0(battleSys);
+    battlerContext.battleBgRef.narcID = 7;
+    battlerContext.battleBgRef.tilesNarcMemberIdx = 3 + BattleSystem_Background(battleSys);
+    battlerContext.battleBgRef.paletteNarcMemberIdx = 172 + BattleSystem_Background(battleSys) * 3 + ov16_0223EC04(battleSys);
+    battlerContext.battleBgRef.tilemapNarcMemberIdx = 2;
+    battlerContext.battleBgRef.paletteDestStart = 0;
+    battlerContext.battleBgRef.paletteSrcSize = 8;
 
-    BattleAnimSystem_StartMove(param2, param3, v2, &v0);
+    BattleAnimSystem_StartMove(battleAnimSystem, param3, move, &battlerContext);
 }
 
 static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3)
@@ -6134,7 +6134,7 @@ static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *para
     param2->unk_04 = param3;
 
     for (i = 0; i < 4; i++) {
-        param2->unk_08[i] = ov16_0223F2AC(battleSys, i);
+        param2->pokemonSpriteData[i] = ov16_0223F2AC(battleSys, i);
         param2->unk_28[i] = param1->unk_18[i];
         param2->unk_30[i] = param1->unk_20[i];
         param2->unk_34[i] = param1->unk_24[i];

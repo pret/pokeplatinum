@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/field/map.h"
 #include "constants/species.h"
 #include "constants/types.h"
 #include "generated/map_headers.h"
@@ -91,9 +92,15 @@
 #define B7F_TELEPORT_TILE_X           89
 #define B7F_TELEPORT_TILE_Z           57
 
+#define FLOATING_PLATFORM_KIND_FLOOR     0
+#define FLOATING_PLATFORM_KIND_WEST_WALL 1
+#define FLOATING_PLATFORM_KIND_EAST_WALL 2
+#define FLOATING_PLATFORM_KIND_CEILING   3
+#define FLOATING_PLATFORM_KIND_INVALID   4
+
 typedef struct DistWorldSystem DistWorldSystem;
 
-typedef struct {
+typedef struct DistWorldBounds {
     s16 startTileX;
     s16 startTileY;
     s16 startTileZ;
@@ -179,13 +186,13 @@ typedef struct {
     void *unk_08;
 } UnkStruct_ov9_0224BFE0;
 
-typedef struct {
-    s16 unk_00;
-    u16 unk_02;
-    DistWorldBounds unk_04;
-    u16 unk_10;
-    u16 unk_12;
-} UnkStruct_ov9_0224C324;
+typedef struct DistWorldFloatingPlatformTemplate {
+    s16 kind;
+    u16 distortionWorldAttrID;
+    DistWorldBounds bounds;
+    u16 tileCountVertical;
+    u16 tileCountHorizontal;
+} DistWorldFloatingPlatformTemplate;
 
 typedef struct {
     u16 unk_00;
@@ -204,7 +211,7 @@ typedef struct {
     u16 unk_26;
 } UnkStruct_ov9_0224AA00;
 
-typedef struct {
+typedef struct DistWorldCameraAngleTemplate {
     DistWorldBounds bounds;
     u16 angleX;
     u16 angleY;
@@ -234,20 +241,20 @@ typedef struct {
     DistWorldBounds unk_08;
 } UnkStruct_ov9_0224B748;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    UnkStruct_ov9_0224C324 *unk_08;
-    u32 unk_0C;
-    u16 *unk_10;
-} UnkStruct_ov9_0224C2C4;
+typedef struct DistWorldFloatingPlatformManager {
+    int currentPlatformIndex;
+    int platformCount;
+    DistWorldFloatingPlatformTemplate *templates;
+    u32 terrainAttributesSize;
+    u16 *terrainAttributes;
+} DistWorldFloatingPlatformManager;
 
 typedef struct {
     int unk_00;
     UnkStruct_ov9_0224AA00 *unk_04;
 } UnkStruct_ov9_0224C640;
 
-typedef struct {
+typedef struct DistWorldCameraAngleTemplates {
     int count;
     DistWorldCameraAngleTemplate *templates;
 } DistWorldCameraAngleTemplates;
@@ -258,33 +265,38 @@ typedef struct {
     const UnkStruct_ov9_0224B748 *unk_08;
 } UnkStruct_ov9_0224C788;
 
-typedef struct {
+typedef struct DistWorldFileHeader {
     int unk_00;
-    int unk_04;
+    int floatingPlatformSectionSize;
     int unk_08;
     int cameraAngleSectionSize;
     int unk_10;
 } DistWorldFileHeader;
 
-typedef struct {
+typedef struct DistWorldFileFloatingPlatformSection {
+    int count;
+    DistWorldFloatingPlatformTemplate *templates;
+} DistWorldFileFloatingPlatformSection;
+
+typedef struct DistWorldFileCameraAngleSection {
     int count;
     DistWorldCameraAngleTemplate *templates;
 } DistWorldFileCameraAngleSection;
 
-typedef struct {
+typedef struct DistWorldFile {
     u32 mapHeaderID;
-    void *unk_04;
+    DistWorldFileFloatingPlatformSection *floatingPlatformSection;
     void *unk_08;
     DistWorldFileCameraAngleSection *cameraAngleSection;
     void *unk_10;
-    void *header;
+    DistWorldFileHeader *header;
     void *buffer;
 } DistWorldFile;
 
 typedef struct {
     UnkStruct_ov9_0224BFE0 unk_00;
     DistWorldFile distortionWorldFile;
-    UnkStruct_ov9_0224C2C4 unk_28;
+    DistWorldFloatingPlatformManager floatingPlatformMan;
     UnkStruct_ov9_0224C640 unk_3C;
     DistWorldCameraAngleTemplates cameraAngleTemplates;
     UnkStruct_ov9_0224C788 unk_4C;
@@ -292,14 +304,14 @@ typedef struct {
     UnkStruct_ov9_0224C788 unk_74;
 } UnkStruct_ov9_02249B04_sub1;
 
-typedef struct {
+typedef struct DistWorldCameraTransition {
     BOOL isActive;
     int stepsRemaining;
     VecFx32 currentAngle;
     VecFx32 angleStep;
 } DistWorldCameraTransition;
 
-typedef struct {
+typedef struct DistWorldCameraManager {
     Camera *camera;
     CameraAngle baseAngle;
     CameraAngle currentAngle;
@@ -609,7 +621,7 @@ struct DistWorldSystem {
     FieldSystem *fieldSystem;
     DistWorldPersistedData *persistedData;
     NARC *distortionWorldNARC;
-    NARC *unk_0C;
+    NARC *distortionWorldAttrNARC;
     NARC *unk_10;
     DistWorldCameraManager cameraMan;
     UnkStruct_ov9_0224A570 unk_54;
@@ -902,8 +914,8 @@ static BOOL ov9_02249DA8(DistWorldSystem *param0, u32 param1);
 static void ov9_02249DC8(DistWorldSystem *param0, u32 param1);
 static void ov9_02249DE4(DistWorldSystem *param0, u32 param1);
 static BOOL ov9_02249E00(DistWorldSystem *param0, u32 param1);
-static void ov9_02249E20(DistWorldSystem *param0, u32 param1);
-static u32 ov9_02249E44(DistWorldSystem *param0);
+static void SetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system, u32 floatingPlatformIndex);
+static u32 GetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system);
 static void ov9_02249E94(DistWorldSystem *param0);
 static void ov9_02249EC8(DistWorldSystem *param0);
 static void ov9_02249EDC(SysTask *param0, void *param1);
@@ -996,9 +1008,9 @@ static void ov9_0224C174(DistWorldSystem *param0);
 static void ov9_0224C184(DistWorldSystem *param0);
 static void ov9_0224C194(DistWorldSystem *param0);
 static void ov9_0224C1E4(DistWorldSystem *param0);
-static int ov9_0224C234(DistWorldFile *param0);
-static int ov9_0224C23C(DistWorldFile *param0);
-static UnkStruct_ov9_0224C324 *ov9_0224C244(DistWorldFile *param0);
+static int DistWorldFile_GetFloatingPlatformSize(DistWorldFile *file);
+static int DistWorldFile_GetFloatingPlatformSectionCount(DistWorldFile *file);
+static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSectionTemplates(DistWorldFile *file);
 static int ov9_0224C24C(DistWorldFile *param0);
 static int ov9_0224C254(DistWorldFile *param0);
 static UnkStruct_ov9_0224AA00 *ov9_0224C25C(DistWorldFile *param0);
@@ -1010,17 +1022,17 @@ static int ov9_0224C288(DistWorldSystem *param0);
 static const UnkStruct_ov9_0224B3F8 *ov9_0224C2A8(DistWorldFile *param0);
 static const UnkStruct_ov9_0224B6CC *ov9_0224C2AC(DistWorldFile *param0);
 static const UnkStruct_ov9_0224B748 *ov9_0224C2B4(DistWorldFile *param0);
-static void ov9_0224C2C4(DistWorldSystem *param0);
-static void ov9_0224C300(DistWorldSystem *param0);
-static void ov9_0224C378(DistWorldSystem *param0, int param1, int param2, int param3, s16 param4);
-static void ov9_0224C3F8(DistWorldSystem *param0, u32 param1);
-static void ov9_0224C44C(DistWorldSystem *param0);
-static u32 ov9_0224C470(DistWorldSystem *param0);
-static u32 ov9_0224C494(DistWorldSystem *param0);
-static u32 ov9_0224C4B8(DistWorldSystem *param0, int param1, int param2, int param3);
-static void ov9_0224C4F4(DistWorldSystem *param0, u32 param1);
-static u16 ov9_0224C52C(DistWorldSystem *param0, int param1, int param2);
-static u16 ov9_0224C55C(DistWorldSystem *param0, int param1, int param2, int param3);
+static void InitFloatingPlatformManager(DistWorldSystem *system);
+static void ResetFloatingPlatformManager(DistWorldSystem *system);
+static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind);
+static void PrepareNewCurrentFloatingPlatform(DistWorldSystem *system, u32 floatingPlatformIndex);
+static void FreeFloatingPlatformManagerTerrainAttrs(DistWorldSystem *system);
+static u32 GetCurrentFloatingPlatformKind2(DistWorldSystem *system);
+static u32 GetCurrentFloatingPlatformKind(DistWorldSystem *system);
+static u32 GetCurrentFloatingPlatformKindSafely(DistWorldSystem *system, int tileX, int tileY, int tileZ);
+static void LoadFloatingPlatformTerrainAttributes(DistWorldSystem *system, u32 distortionWorldAttrID);
+static u16 GetCurrentFloatingPlatformTileAttributesRelative(DistWorldSystem *system, int tileRelativeVerticalPos, int tileRelativeHorizontalPos);
+static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int tileX, int tileY, int tileZ);
 static void ov9_0224C640(DistWorldSystem *param0);
 static void ov9_0224C680(DistWorldSystem *param0);
 static const UnkStruct_ov9_0224AA00 *ov9_0224C69C(DistWorldSystem *param0, int param1, int param2, int param3, int param4);
@@ -1345,14 +1357,14 @@ static void ov9_02249C60(DistWorldSystem *param0, u32 param1)
 static void OpenArchives(DistWorldSystem *system)
 {
     system->distortionWorldNARC = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, HEAP_ID_FIELD);
-    system->unk_0C = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC_ATTR, HEAP_ID_FIELD);
+    system->distortionWorldAttrNARC = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC_ATTR, HEAP_ID_FIELD);
     system->unk_10 = NARC_ctor(NARC_INDEX_DATA__TW_ARC_ETC, HEAP_ID_FIELD);
 }
 
 static void CloseArchives(DistWorldSystem *system)
 {
     NARC_dtor(system->distortionWorldNARC);
-    NARC_dtor(system->unk_0C);
+    NARC_dtor(system->distortionWorldAttrNARC);
     NARC_dtor(system->unk_10);
 }
 
@@ -1480,18 +1492,17 @@ static BOOL ov9_02249E00(DistWorldSystem *param0, u32 param1)
     return 0;
 }
 
-static void ov9_02249E20(DistWorldSystem *param0, u32 param1)
+static void SetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system, u32 floatingPlatformIndex)
 {
-    DistWorldPersistedData *v0 = param0->persistedData;
+    DistWorldPersistedData *persistedData = system->persistedData;
 
-    GF_ASSERT(param1 < (1 << 4));
-    v0->unk_00_25 = param1;
+    GF_ASSERT(floatingPlatformIndex < DIST_WORLD_PERSISTED_DATA_CURRENT_FLOATING_PLATFORM_MAX);
+    persistedData->currentFloatingPlatformIndex = floatingPlatformIndex;
 }
 
-static u32 ov9_02249E44(DistWorldSystem *param0)
+static u32 GetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system)
 {
-    DistWorldPersistedData *v0 = param0->persistedData;
-    return v0->unk_00_25;
+    return system->persistedData->currentFloatingPlatformIndex;
 }
 
 BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding)
@@ -2245,7 +2256,7 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
 
     GetPlayerPos(param0, &v2, &v3, &v4);
 
-    v0 = ov9_0224C494(param0);
+    v0 = GetCurrentFloatingPlatformKind(param0);
     v0 = ov9_022510D8(v0);
 
     if (v0 == 1) {
@@ -2372,7 +2383,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
             int v5, v6, v7;
 
             v5 = v2->unk_34.unk_02;
-            v7 = ov9_0224C470(v1);
+            v7 = GetCurrentFloatingPlatformKind2(v1);
 
             switch (v7) {
             case 4:
@@ -2413,7 +2424,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
             int v12 = 0;
             MapObject *v13 = Player_MapObject(playerAvatar);
 
-            ov9_0224C3F8(v1, v2->unk_34.unk_26);
+            PrepareNewCurrentFloatingPlatform(v1, v2->unk_34.unk_26);
             v11 = ov9_022510D8(v2->unk_34.unk_24);
 
             PlayerAvatar_SetDistortionState(playerAvatar, v11);
@@ -3585,7 +3596,7 @@ static void ov9_0224BE14(DistWorldSystem *param0)
     ov9_0224BFBC(param0);
     ov9_0224C0F8(param0, mapHeaderID, v1->unk_08);
 
-    ov9_0224C2C4(param0);
+    InitFloatingPlatformManager(param0);
     ov9_0224C640(param0);
     InitCameraAngleTemplates(param0);
     ov9_0224C808(param0);
@@ -3594,10 +3605,10 @@ static void ov9_0224BE14(DistWorldSystem *param0)
         int v2, v3, v4;
 
         GetPlayerPos(param0, &v2, &v3, &v4);
-        ov9_0224C378(param0, v2, v3, v4, 4);
+        FindAndPrepareNewCurrentFloatingPlatform(param0, v2, v3, v4, 4);
     } else {
-        u32 v5 = ov9_02249E44(param0);
-        ov9_0224C3F8(param0, v5);
+        u32 v5 = GetPersistedCurrentFloatingPlatformIndex(param0);
+        PrepareNewCurrentFloatingPlatform(param0, v5);
     }
 }
 
@@ -3605,7 +3616,7 @@ static void ov9_0224BE8C(DistWorldSystem *param0)
 {
     ResetCameraAngleTemplates(param0);
     ov9_0224C680(param0);
-    ov9_0224C300(param0);
+    ResetFloatingPlatformManager(param0);
     ov9_0224C854(param0);
     ov9_0224C164(param0);
     ov9_0224BFFC(param0);
@@ -3617,14 +3628,14 @@ static void ov9_0224BEB4(DistWorldSystem *param0, u32 param1)
     ov9_0224C184(param0);
     ResetCameraAngleTemplates(param0);
     ov9_0224C680(param0);
-    ov9_0224C300(param0);
+    ResetFloatingPlatformManager(param0);
     ov9_0224C194(param0);
     ov9_0224C864(param0);
     ov9_0224B5B0(param0);
     ov9_0224B590(param0);
     ov9_0224C10C(param0, param1);
-    ov9_0224C2C4(param0);
-    ov9_0224C44C(param0);
+    InitFloatingPlatformManager(param0);
+    FreeFloatingPlatformManagerTerrainAttrs(param0);
     ov9_0224C640(param0);
     InitCameraAngleTemplates(param0);
     ov9_0224C7C8(param0);
@@ -3634,7 +3645,7 @@ static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
 {
     ResetCameraAngleTemplates(param0);
     ov9_0224C680(param0);
-    ov9_0224C300(param0);
+    ResetFloatingPlatformManager(param0);
     ov9_0224C834(param0);
     ov9_0224C174(param0);
     ov9_0224C1E4(param0);
@@ -3642,8 +3653,8 @@ static void ov9_0224BF18(DistWorldSystem *param0, u32 param1)
     ov9_0224B5EC(param0);
     ov9_0224B6BC(param0);
     ov9_0224B5A0(param0);
-    ov9_0224C2C4(param0);
-    ov9_0224C44C(param0);
+    InitFloatingPlatformManager(param0);
+    FreeFloatingPlatformManagerTerrainAttrs(param0);
     ov9_0224C640(param0);
     InitCameraAngleTemplates(param0);
 
@@ -3753,8 +3764,8 @@ static void DistWorldFile_Load(DistWorldSystem *system, DistWorldFile *file, enu
         data = file->buffer;
         data += sizeof(DistWorldFileHeader);
 
-        file->unk_04 = data;
-        file->unk_08 = (u8 *)file->unk_04 + header->unk_04;
+        file->floatingPlatformSection = (DistWorldFileFloatingPlatformSection *)data;
+        file->unk_08 = (u8 *)file->floatingPlatformSection + header->floatingPlatformSectionSize;
         file->cameraAngleSection = (DistWorldFileCameraAngleSection *)((u8 *)file->unk_08 + header->unk_08);
         file->unk_10 = (u8 *)file->cameraAngleSection + header->cameraAngleSectionSize;
     }
@@ -3826,24 +3837,22 @@ static void ov9_0224C1E4(DistWorldSystem *param0)
     DistWorldFile_Invalidate(&param0->unk_169C.unk_58);
 }
 
-static int ov9_0224C234(DistWorldFile *param0)
+static int DistWorldFile_GetFloatingPlatformSize(DistWorldFile *file)
 {
-    DistWorldFileHeader *v0 = param0->header;
-    return v0->unk_04;
+    return file->header->floatingPlatformSectionSize;
 }
 
-static int ov9_0224C23C(DistWorldFile *param0)
+static int DistWorldFile_GetFloatingPlatformSectionCount(DistWorldFile *file)
 {
-    int *v0 = param0->unk_04;
-    return *v0;
+    return file->floatingPlatformSection->count;
 }
 
-static UnkStruct_ov9_0224C324 *ov9_0224C244(DistWorldFile *param0)
+static DistWorldFloatingPlatformTemplate *DistWorldFile_GetFloatingPlatformSectionTemplates(DistWorldFile *file)
 {
-    u8 *v0 = param0->unk_04;
+    u8 *templates = (u8 *)file->floatingPlatformSection;
+    templates += sizeof(file->floatingPlatformSection->count);
 
-    v0 += 4;
-    return (UnkStruct_ov9_0224C324 *)v0;
+    return (DistWorldFloatingPlatformTemplate *)templates;
 }
 
 static int ov9_0224C24C(DistWorldFile *param0)
@@ -3868,8 +3877,7 @@ static UnkStruct_ov9_0224AA00 *ov9_0224C25C(DistWorldFile *param0)
 
 static int DistWorldFile_GetCameraAngleSectionSize(DistWorldFile *file)
 {
-    DistWorldFileHeader *header = file->header;
-    return header->cameraAngleSectionSize;
+    return file->header->cameraAngleSectionSize;
 }
 
 static int DistWorldFile_GetCameraAngleCount(DistWorldFile *file)
@@ -3929,246 +3937,236 @@ static const UnkStruct_ov9_0224B748 *ov9_0224C2B4(DistWorldFile *param0)
     return (UnkStruct_ov9_0224B748 *)v1;
 }
 
-static void ov9_0224C2C4(DistWorldSystem *param0)
+static void InitFloatingPlatformManager(DistWorldSystem *system)
 {
-    DistWorldFile *v0 = &param0->unk_169C.distortionWorldFile;
+    DistWorldFile *file = &system->unk_169C.distortionWorldFile;
 
-    GF_ASSERT(param0->unk_169C.unk_28.unk_08 == NULL);
+    GF_ASSERT(system->unk_169C.floatingPlatformMan.templates == NULL);
 
-    if (ov9_0224C234(v0)) {
-        UnkStruct_ov9_0224C2C4 *v1 = &param0->unk_169C.unk_28;
+    if (DistWorldFile_GetFloatingPlatformSize(file)) {
+        DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
 
-        v1->unk_04 = ov9_0224C23C(v0);
-        v1->unk_08 = ov9_0224C244(v0);
+        floatingPlatformMan->platformCount = DistWorldFile_GetFloatingPlatformSectionCount(file);
+        floatingPlatformMan->templates = DistWorldFile_GetFloatingPlatformSectionTemplates(file);
     }
 }
 
-static void ov9_0224C300(DistWorldSystem *param0)
+static void ResetFloatingPlatformManager(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
 
-    if (v0->unk_10 != NULL) {
-        Heap_Free(v0->unk_10);
+    if (floatingPlatformMan->terrainAttributes != NULL) {
+        Heap_Free(floatingPlatformMan->terrainAttributes);
     }
 
-    memset(v0, 0, sizeof(UnkStruct_ov9_0224C2C4));
+    memset(floatingPlatformMan, 0, sizeof(DistWorldFloatingPlatformManager));
 }
 
-static BOOL ov9_0224C324(DistWorldSystem *param0, int param1, int param2, int param3, s16 param4)
+static BOOL HasFloatingPlatformAtCoords(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
-    const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
-    int v2 = 0, v3 = v0->unk_04;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    const DistWorldFloatingPlatformTemplate *floatingPlatformTemplateIter = floatingPlatformMan->templates;
+    int i = 0;
+    int floatingPlatformCount = floatingPlatformMan->platformCount;
 
-    if (v3 == 0) {
-        return 0;
+    if (floatingPlatformCount == 0) {
+        return FALSE;
     }
 
     do {
-        if (DistWorldBounds_AreCoordinatesInBounds(param1, param2, param3, &v1->unk_04) == 1) {
-            if ((param4 != 4) || (param4 == v1->unk_00)) {
-                return 1;
+        if (DistWorldBounds_AreCoordinatesInBounds(tileX, tileY, tileZ, &floatingPlatformTemplateIter->bounds) == TRUE) {
+            if (floatingPlatformKind != FLOATING_PLATFORM_KIND_INVALID || floatingPlatformKind == floatingPlatformTemplateIter->kind) {
+                return TRUE;
             }
         }
 
-        v1++;
-        v2++;
-    } while (v2 < v3);
+        floatingPlatformTemplateIter++;
+        i++;
+    } while (i < floatingPlatformCount);
 
-    return 0;
+    return FALSE;
 }
 
-static void ov9_0224C378(DistWorldSystem *param0, int param1, int param2, int param3, s16 param4)
+static void FindAndPrepareNewCurrentFloatingPlatform(DistWorldSystem *system, int tileX, int tileY, int tileZ, s16 floatingPlatformKind)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
-    const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
-    int v2 = 0, v3 = v0->unk_04;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    const DistWorldFloatingPlatformTemplate *floatingPlatformTemplateIter = floatingPlatformMan->templates;
+    int i = 0;
+    int floatingPlatformCount = floatingPlatformMan->platformCount;
 
-    v0->unk_00 = v3;
-    ov9_02249E20(param0, v3);
+    floatingPlatformMan->currentPlatformIndex = floatingPlatformCount;
+    SetPersistedCurrentFloatingPlatformIndex(system, floatingPlatformCount);
 
-    if (v0->unk_10 != NULL) {
-        Heap_Free(v0->unk_10);
-        v0->unk_10 = NULL;
+    if (floatingPlatformMan->terrainAttributes != NULL) {
+        Heap_Free(floatingPlatformMan->terrainAttributes);
+        floatingPlatformMan->terrainAttributes = NULL;
     }
 
-    if (v3 == 0) {
+    if (floatingPlatformCount == 0) {
         return;
     }
 
     do {
-        if (DistWorldBounds_AreCoordinatesInBounds(param1, param2, param3, &v1->unk_04) == 1) {
-            if ((param4 == 4) || (param4 == v1->unk_00)) {
-                v0->unk_00 = v2;
-                ov9_02249E20(param0, v2);
-                ov9_0224C4F4(param0, v1->unk_02);
+        if (DistWorldBounds_AreCoordinatesInBounds(tileX, tileY, tileZ, &floatingPlatformTemplateIter->bounds) == TRUE) {
+            if (floatingPlatformKind == FLOATING_PLATFORM_KIND_INVALID || floatingPlatformKind == floatingPlatformTemplateIter->kind) {
+                floatingPlatformMan->currentPlatformIndex = i;
+                SetPersistedCurrentFloatingPlatformIndex(system, i);
+                LoadFloatingPlatformTerrainAttributes(system, floatingPlatformTemplateIter->distortionWorldAttrID);
+
                 return;
             }
         }
 
-        v1++;
-        v2++;
-    } while (v2 < v3);
+        floatingPlatformTemplateIter++;
+        i++;
+    } while (i < floatingPlatformCount);
 }
 
-static void ov9_0224C3F8(DistWorldSystem *param0, u32 param1)
+static void PrepareNewCurrentFloatingPlatform(DistWorldSystem *system, u32 floatingPlatformIndex)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
-    const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
-    int v2 = 0, v3 = v0->unk_04;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    const DistWorldFloatingPlatformTemplate *floatingPlatformTemplates = floatingPlatformMan->templates;
+    int floatingPlatformCount = floatingPlatformMan->platformCount;
 
-    v0->unk_00 = v3;
+    floatingPlatformMan->currentPlatformIndex = floatingPlatformCount;
 
-    if (v0->unk_10 != NULL) {
-        Heap_Free(v0->unk_10);
-        v0->unk_10 = NULL;
+    if (floatingPlatformMan->terrainAttributes != NULL) {
+        Heap_Free(floatingPlatformMan->terrainAttributes);
+        floatingPlatformMan->terrainAttributes = NULL;
     }
 
-    if ((v3 == 0) || (param1 >= v3) || (param1 < 0)) {
-        ov9_02249E20(param0, v3);
+    if (floatingPlatformCount == 0 || floatingPlatformIndex < 0 || floatingPlatformIndex >= floatingPlatformCount) {
+        SetPersistedCurrentFloatingPlatformIndex(system, floatingPlatformCount);
         return;
     }
 
-    v0->unk_00 = param1;
+    floatingPlatformMan->currentPlatformIndex = floatingPlatformIndex;
 
-    ov9_02249E20(param0, param1);
-    ov9_0224C4F4(param0, v1[param1].unk_02);
+    SetPersistedCurrentFloatingPlatformIndex(system, floatingPlatformIndex);
+    LoadFloatingPlatformTerrainAttributes(system, floatingPlatformTemplates[floatingPlatformIndex].distortionWorldAttrID);
 }
 
-static void ov9_0224C44C(DistWorldSystem *param0)
+static void FreeFloatingPlatformManagerTerrainAttrs(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
 
-    v0->unk_00 = v0->unk_04;
-    ov9_02249E20(param0, v0->unk_04);
+    floatingPlatformMan->currentPlatformIndex = floatingPlatformMan->platformCount;
+    SetPersistedCurrentFloatingPlatformIndex(system, floatingPlatformMan->platformCount);
 
-    if (v0->unk_10 != NULL) {
-        Heap_Free(v0->unk_10);
-        v0->unk_10 = NULL;
-    }
-}
-
-static u32 ov9_0224C470(DistWorldSystem *param0)
-{
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
-    const UnkStruct_ov9_0224C324 *v1 = v0->unk_08;
-    int v2 = 0, v3 = v0->unk_04;
-
-    if ((v0->unk_04 == 0) || (v0->unk_00 >= v0->unk_04)) {
-        return 4;
-    }
-
-    {
-        UnkStruct_ov9_0224C324 *v4 = &v0->unk_08[v0->unk_00];
-        return v4->unk_00;
+    if (floatingPlatformMan->terrainAttributes != NULL) {
+        Heap_Free(floatingPlatformMan->terrainAttributes);
+        floatingPlatformMan->terrainAttributes = NULL;
     }
 }
 
-static u32 ov9_0224C494(DistWorldSystem *param0)
+static u32 GetCurrentFloatingPlatformKind2(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
-    int v1 = v0->unk_04;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    int floatingPlatformCount = floatingPlatformMan->platformCount;
 
-    if ((v0->unk_04 == 0) || (v0->unk_00 >= v0->unk_04)) {
-        return 4;
+    if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
+        return FLOATING_PLATFORM_KIND_INVALID;
     }
 
-    {
-        const UnkStruct_ov9_0224C324 *v2 = &v0->unk_08[v0->unk_00];
-        return v2->unk_00;
-    }
+    const DistWorldFloatingPlatformTemplate *currentFloatingPlatform = &floatingPlatformMan->templates[floatingPlatformMan->currentPlatformIndex];
+    return currentFloatingPlatform->kind;
 }
 
-static u32 ov9_0224C4B8(DistWorldSystem *param0, int param1, int param2, int param3)
+static u32 GetCurrentFloatingPlatformKind(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
-    int v1 = v0->unk_04;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    int floatingPlatformCount = floatingPlatformMan->platformCount;
 
-    if ((v0->unk_04 == 0) || (v0->unk_00 >= v0->unk_04)) {
-        return 4;
+    if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
+        return FLOATING_PLATFORM_KIND_INVALID;
     }
 
-    {
-        const UnkStruct_ov9_0224C324 *v2 = &v0->unk_08[v0->unk_00];
-
-        if (DistWorldBounds_AreCoordinatesInBounds(param1, param2, param3, &v2->unk_04) == 0) {
-            return 0;
-        }
-
-        return v2->unk_00;
-    }
+    const DistWorldFloatingPlatformTemplate *currentFloatingPlatform = &floatingPlatformMan->templates[floatingPlatformMan->currentPlatformIndex];
+    return currentFloatingPlatform->kind;
 }
 
-static void ov9_0224C4F4(DistWorldSystem *param0, u32 param1)
+static u32 GetCurrentFloatingPlatformKindSafely(DistWorldSystem *system, int tileX, int tileY, int tileZ)
 {
-    UnkStruct_ov9_0224C2C4 *v0 = &param0->unk_169C.unk_28;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    int floatingPlatformCount = floatingPlatformMan->platformCount;
 
-    if (v0->unk_10 != NULL) {
-        Heap_Free(v0->unk_10);
+    if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
+        return FLOATING_PLATFORM_KIND_INVALID;
     }
 
-    v0->unk_0C = NARC_GetMemberSize(param0->unk_0C, param1);
-    v0->unk_10 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, v0->unk_0C);
+    const DistWorldFloatingPlatformTemplate *currentFloatingPlatform = &floatingPlatformMan->templates[floatingPlatformMan->currentPlatformIndex];
 
-    NARC_ReadWholeMember(param0->unk_0C, param1, v0->unk_10);
+    if (DistWorldBounds_AreCoordinatesInBounds(tileX, tileY, tileZ, &currentFloatingPlatform->bounds) == FALSE) {
+        return FLOATING_PLATFORM_KIND_FLOOR;
+    }
+
+    return currentFloatingPlatform->kind;
 }
 
-static u16 ov9_0224C52C(DistWorldSystem *param0, int param1, int param2)
+static void LoadFloatingPlatformTerrainAttributes(DistWorldSystem *system, u32 distortionWorldAttrID)
 {
-    u16 v0;
-    UnkStruct_ov9_0224C2C4 *v1 = &param0->unk_169C.unk_28;
-    const UnkStruct_ov9_0224C324 *v2 = &v1->unk_08[v1->unk_00];
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
 
-    GF_ASSERT(v1->unk_10 != NULL);
-    v0 = v1->unk_10[param1 + (param2 * v2->unk_10)];
+    if (floatingPlatformMan->terrainAttributes != NULL) {
+        Heap_Free(floatingPlatformMan->terrainAttributes);
+    }
 
-    return v0;
+    floatingPlatformMan->terrainAttributesSize = NARC_GetMemberSize(system->distortionWorldAttrNARC, distortionWorldAttrID);
+    floatingPlatformMan->terrainAttributes = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, floatingPlatformMan->terrainAttributesSize);
+
+    NARC_ReadWholeMember(system->distortionWorldAttrNARC, distortionWorldAttrID, floatingPlatformMan->terrainAttributes);
 }
 
-static u16 ov9_0224C55C(DistWorldSystem *param0, int param1, int param2, int param3)
+static u16 GetCurrentFloatingPlatformTileAttributesRelative(DistWorldSystem *system, int tileRelativeVerticalPos, int tileRelativeHorizontalPos)
 {
-    u16 v0;
-    int v1 = 0, v2 = 0;
-    UnkStruct_ov9_0224C2C4 *v3 = &param0->unk_169C.unk_28;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+    const DistWorldFloatingPlatformTemplate *currentFloatingPlatform = &floatingPlatformMan->templates[floatingPlatformMan->currentPlatformIndex];
 
-    if ((v3->unk_04 == 0) || (v3->unk_00 >= v3->unk_04)) {
-        return 65535;
+    GF_ASSERT(floatingPlatformMan->terrainAttributes != NULL);
+    return floatingPlatformMan->terrainAttributes[tileRelativeVerticalPos + (tileRelativeHorizontalPos * currentFloatingPlatform->tileCountVertical)];
+}
+
+static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int tileX, int tileY, int tileZ)
+{
+    int tileRelativeVerticalPos = 0;
+    int tileRelativeHorizontalPos = 0;
+    DistWorldFloatingPlatformManager *floatingPlatformMan = &system->unk_169C.floatingPlatformMan;
+
+    if (floatingPlatformMan->platformCount == 0 || floatingPlatformMan->currentPlatformIndex >= floatingPlatformMan->platformCount) {
+        return INVALID_TERRAIN_ATTRIBUTES;
     }
 
-    {
-        UnkStruct_ov9_0224C324 *v4 = &v3->unk_08[v3->unk_00];
+    DistWorldFloatingPlatformTemplate *currentFloatingPlatform = &floatingPlatformMan->templates[floatingPlatformMan->currentPlatformIndex];
 
-        if (DistWorldBounds_AreCoordinatesInBounds(param1, param2, param3, &v4->unk_04) == 0) {
-            return 65534;
-        }
-
-        GF_ASSERT(v3->unk_10 != NULL);
-
-        switch (v4->unk_00) {
-        case 0:
-            v1 = param1 - v4->unk_04.startTileX;
-            v2 = param3 - v4->unk_04.startTileZ;
-            break;
-        case 1:
-            v1 = v4->unk_04.sizeY - (param2 - v4->unk_04.startTileY);
-            v2 = param3 - v4->unk_04.startTileZ;
-            break;
-        case 2:
-            v1 = param2 - v4->unk_04.startTileY;
-            v2 = param3 - v4->unk_04.startTileZ;
-            break;
-        case 3:
-            v1 = v4->unk_04.sizeX - (param1 - v4->unk_04.startTileX);
-            v2 = param3 - v4->unk_04.startTileZ;
-            break;
-        default:
-            GF_ASSERT(0);
-            break;
-        }
-
-        v0 = ov9_0224C52C(param0, v1, v2);
-        return v0;
+    if (DistWorldBounds_AreCoordinatesInBounds(tileX, tileY, tileZ, &currentFloatingPlatform->bounds) == 0) {
+        return OUT_OF_BOUNDS_TERRAIN_ATTRIBUTES;
     }
+
+    GF_ASSERT(floatingPlatformMan->terrainAttributes != NULL);
+
+    switch (currentFloatingPlatform->kind) {
+    case FLOATING_PLATFORM_KIND_FLOOR:
+        tileRelativeVerticalPos = tileX - currentFloatingPlatform->bounds.startTileX;
+        tileRelativeHorizontalPos = tileZ - currentFloatingPlatform->bounds.startTileZ;
+        break;
+    case FLOATING_PLATFORM_KIND_WEST_WALL:
+        tileRelativeVerticalPos = currentFloatingPlatform->bounds.sizeY - (tileY - currentFloatingPlatform->bounds.startTileY);
+        tileRelativeHorizontalPos = tileZ - currentFloatingPlatform->bounds.startTileZ;
+        break;
+    case FLOATING_PLATFORM_KIND_EAST_WALL:
+        tileRelativeVerticalPos = tileY - currentFloatingPlatform->bounds.startTileY;
+        tileRelativeHorizontalPos = tileZ - currentFloatingPlatform->bounds.startTileZ;
+        break;
+    case FLOATING_PLATFORM_KIND_CEILING:
+        tileRelativeVerticalPos = currentFloatingPlatform->bounds.sizeX - (tileX - currentFloatingPlatform->bounds.startTileX);
+        tileRelativeHorizontalPos = tileZ - currentFloatingPlatform->bounds.startTileZ;
+        break;
+    default:
+        GF_ASSERT(0);
+        break;
+    }
+
+    return GetCurrentFloatingPlatformTileAttributesRelative(system, tileRelativeVerticalPos, tileRelativeHorizontalPos);
 }
 
 static void ov9_0224C640(DistWorldSystem *param0)
@@ -6497,8 +6495,8 @@ static int ov9_0224E798(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
             PlayerAvatar *playerAvatar = param0->fieldSystem->playerAvatar;
 
             v3 = ((v3) / 2);
-            ov9_0224C378(param0, v2, v3, v4, 4);
-            v5 = ov9_0224C4B8(param0, v2, v3, v4);
+            FindAndPrepareNewCurrentFloatingPlatform(param0, v2, v3, v4, 4);
+            v5 = GetCurrentFloatingPlatformKindSafely(param0, v2, v3, v4);
             v5 = ov9_022510D8(v5);
             PlayerAvatar_SetDistortionState(playerAvatar, v5);
 
@@ -8266,7 +8264,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_Turn(v2, 2);
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);
-        ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
+        FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
         MapObject_SetHeightCalculationDisabled(v2, FALSE);
 
@@ -8582,7 +8580,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_Turn(v2, 3);
         sub_02063088(v2, &v13);
         sub_020630AC(v2, &v13);
-        ov9_0224C378(param0, v8, ((v9) / 2), v10, 4);
+        FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
         MapObject_SetHeightCalculationDisabled(v2, TRUE);
 
@@ -9435,84 +9433,71 @@ BOOL ov9_02250F74(FieldSystem *fieldSystem)
     return 1;
 }
 
-BOOL ov9_02250F90(FieldSystem *fieldSystem, int param1, int param2, int param3)
+BOOL DistWorld_CheckCollisionOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ)
 {
-    u16 v0;
-    DistWorldSystem *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    DistWorldSystem *distWorldSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    u16 tileAttributes = GetCurrentFloatingPlatformTileAttributes(distWorldSystem, tileX, tileY, tileZ);
 
-    v0 = ov9_0224C55C(v1, param1, param2, param3);
-
-    if ((v0 == 65535) || (v0 == 65534)) {
-        return 1;
+    if (tileAttributes == (u16)INVALID_TERRAIN_ATTRIBUTES || tileAttributes == (u16)OUT_OF_BOUNDS_TERRAIN_ATTRIBUTES) {
+        return TRUE;
     }
 
-    v0 = (((v0) & 0x8000) >> 15);
-
-    if (v0) {
-        return 1;
-    }
-
-    return 0;
+    u16 hasCollision = (tileAttributes & TERRAIN_ATTRIBUTES_COLLISION_MASK) >> TERRAIN_ATTRIBUTES_COLLISION_SHIFT;
+    return hasCollision ? TRUE : FALSE;
 }
 
-BOOL ov9_02250FBC(FieldSystem *fieldSystem, int param1, int param2, int param3)
+BOOL DistWorld_IsValidTileOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ)
 {
-    u16 v0;
-    DistWorldSystem *v1 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    DistWorldSystem *distWorldSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    u16 tileAttributes = GetCurrentFloatingPlatformTileAttributes(distWorldSystem, tileX, tileY, tileZ);
 
-    v0 = ov9_0224C55C(v1, param1, param2, param3);
-
-    if ((v0 == 65535) || (v0 == 65534)) {
-        return 0;
+    if (tileAttributes == (u16)INVALID_TERRAIN_ATTRIBUTES || tileAttributes == (u16)OUT_OF_BOUNDS_TERRAIN_ATTRIBUTES) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 BOOL ov9_02250FD8(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    s16 v1 = ov9_0224C494(v0);
+    s16 v1 = GetCurrentFloatingPlatformKind(v0);
 
-    return ov9_0224C324(v0, param1, param2, param3, v1);
+    return HasFloatingPlatformAtCoords(v0, param1, param2, param3, v1);
 }
 
 void ov9_02251000(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    s16 v1 = ov9_0224C494(v0);
+    s16 v1 = GetCurrentFloatingPlatformKind(v0);
 
-    if (ov9_0224C324(v0, param1, param2, param3, v1) == 1) {
-        ov9_0224C378(v0, param1, param2, param3, v1);
+    if (HasFloatingPlatformAtCoords(v0, param1, param2, param3, v1) == TRUE) {
+        FindAndPrepareNewCurrentFloatingPlatform(v0, param1, param2, param3, v1);
         return;
     }
 
     GF_ASSERT(0);
 }
 
-BOOL ov9_02251044(FieldSystem *fieldSystem, int param1, int param2, int param3, u32 *param4)
+BOOL DistWorld_GetTileBehaviorOnCurrentFloatingPlatform(FieldSystem *fieldSystem, int tileX, int tileY, int tileZ, u32 *tileBehavior)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (PersistedMapFeatures_GetID(v0) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
+    if (PersistedMapFeatures_GetID(persistedMapFeatures) != DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
         GF_ASSERT(0);
-        return 0;
+        return FALSE;
     }
 
-    {
-        u16 v1;
-        DistWorldSystem *v2 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    DistWorldSystem *distWorldSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    u16 tileAttributes = GetCurrentFloatingPlatformTileAttributes(distWorldSystem, tileX, tileY, tileZ);
 
-        v1 = ov9_0224C55C(v2, param1, param2, param3);
-
-        if ((v1 == 65535) || (v1 == 65534)) {
-            *param4 = GetNullTileBehaviorID();
-            return 0;
-        }
-
-        *param4 = ((v1) & 0xff);
-        return 1;
+    if (tileAttributes == (u16)INVALID_TERRAIN_ATTRIBUTES || tileAttributes == (u16)OUT_OF_BOUNDS_TERRAIN_ATTRIBUTES) {
+        *tileBehavior = GetNullTileBehaviorID();
+        return FALSE;
     }
+
+    *tileBehavior = tileAttributes & TERRAIN_ATTRIBUTES_TILE_BEHAVIOR_MASK;
+    return TRUE;
 }
 
 void ov9_02251094(int param0, int *param1, int *param2, int *param3)

@@ -6,6 +6,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/pokedex/crysub.h"
 #include "applications/pokedex/funcptr_ov21_021E9B74.h"
 #include "applications/pokedex/funcptr_ov21_021E9B9C.h"
 #include "applications/pokedex/ov21_021D423C.h"
@@ -21,7 +22,6 @@
 #include "applications/pokedex/ov21_021E1924.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/ov21_021E3FFC.h"
-#include "applications/pokedex/ov21_021E4CA4.h"
 #include "applications/pokedex/ov21_021E68F4.h"
 #include "applications/pokedex/ov21_021E737C.h"
 #include "applications/pokedex/ov21_021E8484.h"
@@ -119,7 +119,7 @@ int PokedexMain_Init(ApplicationManager *appMan, int *state)
 
     *appPtr = PokedexMain_NewPokedexApp(HEAP_ID_POKEDEX, &pokedexOverlayArgs);
 
-    Sound_SetPlayerVolume(1, (127 / 3));
+    Sound_SetPlayerVolume(1, 127 / 3);
 
     return 1;
 }
@@ -131,7 +131,7 @@ int PokedexMain_Main(ApplicationManager *appMan, int *state)
     switch (*state) {
     case POKEDEX_STATE_TRANSITION_IN:
         EntranceTransition(appPtr);
-        BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_SetScreenBrightness(-16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 3);
         (*state)++;
         break;
     case POKEDEX_STATE_USE:
@@ -220,7 +220,7 @@ const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B34[8] = {
     ov21_021E1924,
     ov21_021E332C,
     ov21_021DDD2C,
-    ov21_021E4CA4,
+    CrySub_Init,
     ov21_021E68F4,
     ov21_021E8484
 };
@@ -244,7 +244,7 @@ const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B54[8] = {
     ov21_021E1984,
     ov21_021E338C,
     ov21_021DDD8C,
-    ov21_021E4D04,
+    CrySub_Free,
     ov21_021E6954,
     ov21_021E84E4
 };
@@ -345,7 +345,7 @@ BOOL ov21_021D10B8(PokedexApp *pokedexApp)
         ov21_021D4284(pokedexApp->unk_1A74, pokedexApp->unk_1A64);
     }
 
-    sub_020241B4();
+    G3_ResetG3X();
     PokemonGraphics_UpdateSprites(&pokedexApp->graphicData);
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 
@@ -462,25 +462,25 @@ BOOL *ov21_021D13DC(PokedexApp *pokedexApp)
     return &pokedexApp->unk_00;
 }
 
-PokedexSortData *ov21_021D13EC(PokedexApp *pokedexApp)
+PokedexSortData *PokedexMain_GetSortData(PokedexApp *pokedexApp)
 {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->sortData;
 }
 
-PokedexGraphicData *ov21_021D13FC(PokedexApp *pokedexApp)
+PokedexGraphicData *PokedexMain_GetGraphicData(PokedexApp *pokedexApp)
 {
     GF_ASSERT(pokedexApp);
     return &pokedexApp->graphicData;
 }
 
-UnkStruct_ov21_021E68F4 *ov21_021D1410(PokedexApp *pokedexApp, int param1)
+PokedexScreenManager *ov21_021D1410(PokedexApp *pokedexApp, int param1)
 {
     GF_ASSERT(param1 < 10);
     return &pokedexApp->unk_1A94[param1];
 }
 
-UnkStruct_ov21_021E68F4 *ov21_021D1430(PokedexApp *pokedexApp, int param1)
+PokedexScreenManager *ov21_021D1430(PokedexApp *pokedexApp, int param1)
 {
     GF_ASSERT(param1 < 8);
     return &pokedexApp->unk_1C24[param1];
@@ -552,12 +552,12 @@ void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int pa
     }
 }
 
-void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4)
+void PokedexMain_SetHitTableRect(TouchScreenHitTable *hitTable, int top, int bottom, int left, int right)
 {
-    hitTable->rect.top = param1;
-    hitTable->rect.bottom = param2;
-    hitTable->rect.left = param3;
-    hitTable->rect.right = param4;
+    hitTable->rect.top = top;
+    hitTable->rect.bottom = bottom;
+    hitTable->rect.left = left;
+    hitTable->rect.right = right;
 }
 
 void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration)

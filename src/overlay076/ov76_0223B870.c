@@ -231,7 +231,7 @@ void ov76_0223BB04(UnkStruct_ov76_0223DE00 *param0)
 
     for (v0 = 0; v0 < 8; v0++) {
         v1 = sub_02098140(param0->unk_418.unk_08[v0]);
-        SpriteSystem_LoadCharResObj(v2, v3, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, v1, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, (v0 + 25000));
+        SpriteSystem_LoadCharResObj(v2, v3, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, v1, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, v0 + 25000);
     }
 
     SpriteSystem_LoadPaletteBuffer(v4, PLTTBUF_SUB_OBJ, v2, v3, 91, 293, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 26000 + 292);
@@ -294,7 +294,7 @@ void ov76_0223BC70(UnkStruct_ov76_0223DE00 *param0)
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        SpriteManager_UnloadCharObjById(param0->unk_D4.unk_0C, (v0 + 25000));
+        SpriteManager_UnloadCharObjById(param0->unk_D4.unk_0C, v0 + 25000);
         Sprite_DeleteAndFreeResources(param0->unk_3E4.unk_00[v0]);
     }
 }
@@ -409,12 +409,12 @@ void ov76_0223BF50(void)
     int v0;
     const MtxFx43 *v1;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
-        sub_020241B4();
+        G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
@@ -499,7 +499,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     v0.suppressCursor = FALSE;
     v0.loopAround = TRUE;
 
-    Window_DrawStandardFrame(param1, 1, (1 + (18 + 12)), 13);
+    Window_DrawStandardFrame(param1, 1, 1 + (18 + 12), 13);
     param3->unk_D4.unk_CC = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 53, PAD_BUTTON_B);
 }
 
@@ -543,7 +543,7 @@ void ov76_0223C188(UnkStruct_ov76_0223DE00 *param0)
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
         v5 = param0->unk_00->unk_04[v0];
 
-        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(v5), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, (v0 + 15000));
+        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(v5), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0 + 15000);
 
         v6.x = 0;
         v6.y = 0;
@@ -664,7 +664,7 @@ void ov76_0223C398(UnkStruct_ov76_0223C398 *param0)
         };
 
         param0->unk_0C = SpriteManager_New(param0->unk_08);
-        v2 = SpriteSystem_InitSprites(param0->unk_08, param0->unk_0C, (64 + 64));
+        v2 = SpriteSystem_InitSprites(param0->unk_08, param0->unk_0C, 64 + 64);
         GF_ASSERT(v2);
 
         v2 = SpriteSystem_InitManagerWithCapacities(param0->unk_08, param0->unk_0C, &v3);
@@ -751,10 +751,10 @@ void ov76_0223C588(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223C5A4(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC *param10)
 {
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param10, param3, TRUE, param7, (param3 + 11000));
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, param8, param0, param1, param10, param4, FALSE, param9, param7, (param4 + 11000));
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param10, param5, TRUE, (param5 + 11000));
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param10, param6, TRUE, (param6 + 11000));
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param10, param3, TRUE, param7, param3 + 11000);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, param8, param0, param1, param10, param4, FALSE, param9, param7, param4 + 11000);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param10, param5, TRUE, param5 + 11000);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param10, param6, TRUE, param6 + 11000);
 }
 
 void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
@@ -899,7 +899,7 @@ void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
     LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 1, 15, param2, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, 1 + (18 + 12), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
@@ -908,7 +908,7 @@ void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
     LoadMessageBoxGraphics(param0, BG_LAYER_SUB_0, 1, 15, param2, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 1, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, BG_LAYER_SUB_0, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
+    LoadStandardWindowGraphics(param0, BG_LAYER_SUB_0, 1 + (18 + 12), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 1, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 3 * 16);
@@ -955,14 +955,14 @@ static void ov76_0223CAFC(BgConfig *param0, Window *param1, int param2, int para
 
 void ov76_0223CB58(UnkStruct_ov76_0223DE00 *param0)
 {
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[3], 6, (4 - 1), 2, (3 + 1), 2, ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))), 11);
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[4], 6, (11 - 1), 2, (3 + 1), 2, (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))), 11);
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[5], 6, (4 - 1), 5, (3 + 1), 2, (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))))), 11);
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[6], 6, (11 - 1), 5, (3 + 1), 2, (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))))), 11);
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[7], 6, (4 - 1), 8, (3 + 1), 2, (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))))))), 11);
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[8], 6, (11 - 1), 8, (3 + 1), 2, (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))))))), 11);
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[9], 6, (4 - 1), 11, (3 + 1), 2, (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))))))))), 11);
-    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[10], 6, (11 - 1), 11, (3 + 1), 2, (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))))))))), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[3], 6, 4 - 1, 2, 3 + 1, 2, (27 * 4) + (0 + ((1 + (18 + 12)) + 9)), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[4], 6, 11 - 1, 2, 3 + 1, 2, ((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[5], 6, 4 - 1, 5, 3 + 1, 2, ((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[6], 6, 11 - 1, 5, 3 + 1, 2, ((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))))), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[7], 6, 4 - 1, 8, 3 + 1, 2, ((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))))), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[8], 6, 11 - 1, 8, 3 + 1, 2, ((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))))))), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[9], 6, 4 - 1, 11, 3 + 1, 2, ((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9)))))))), 11);
+    ov76_0223CAFC(param0->unk_D4.unk_10, &param0->unk_D4.unk_18[10], 6, 11 - 1, 11, 3 + 1, 2, ((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + (((3 + 1) * 2) + ((27 * 4) + (0 + ((1 + (18 + 12)) + 9))))))))), 11);
 }
 
 void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
@@ -991,7 +991,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
         v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
-        Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Window_CopyToVRAM(v5);
         Strbuf_Free(v4);
     }
@@ -1020,7 +1020,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
-    Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, (-1 + 8), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(v5);
     Strbuf_Free(v4);
 }

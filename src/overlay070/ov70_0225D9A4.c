@@ -1452,7 +1452,7 @@ static void ov70_0225E92C(UnkStruct_ov70_0225DEE8 *param0)
 {
     MtxFx44 v0;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     ov70_02260AEC(param0->unk_450);
     ov70_02262298(param0->unk_448);

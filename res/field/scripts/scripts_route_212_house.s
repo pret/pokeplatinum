@@ -58,7 +58,7 @@ _007E:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_191
+    SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_0x8000
     ReturnToField
     FadeScreen 6, 1, 1, 0

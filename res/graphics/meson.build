@@ -1,6 +1,7 @@
 subdir('naming_screen')
 subdir('options_menu')
 subdir('pokemon_summary_screen')
+subdir('scroll_prompts')
 subdir('shop_menu')
 subdir('signposts')
 subdir('title_screen')
