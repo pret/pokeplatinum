@@ -44,7 +44,7 @@
     CommonScriptEntry EmptyScript6
     CommonScriptEntry PrintPlateObtainedMessage
     CommonScriptEntry _1477
-    CommonScriptEntry SetGenderBasedBGM
+    CommonScriptEntry SetCounterpartBGM
     CommonScriptEntry FadeToDefaultMusic
     CommonScriptEntry SetRivalBGM
     CommonScriptEntry FadeToDefaultMusic
@@ -52,14 +52,14 @@
     CommonScriptEntry ObtainContestBackdrop
     CommonScriptEntry SendToUndergroundPCWithLinefeed
     CommonScriptEntry ObtainAccessory
-    CommonScriptEntry SetTSURETEKEBGM
+    CommonScriptEntry UNK_15BF
     CommonScriptEntry FadeToDefaultMusic
     CommonScriptEntry _15E7
     CommonScriptEntry _1636
     CommonScriptEntry _164A
     CommonScriptEntry _165E
     CommonScriptEntry Frontier_CheckAllFrontierGoldPrintsObtained
-    CommonScriptEntry SetHandsomeBGM
+    CommonScriptEntry SetLookerBGM
     CommonScriptEntry FadeToDefaultMusic
     CommonScriptEntry _170A
     ScriptEntryEnd
@@ -75,7 +75,7 @@ LabelCommonEntryScript Pokecenter_SpeakWithNurse:
     LockAll
     FacePlayer
     GetTrainerCardStars VAR_RESULT
-    GoToIfGe VAR_RESULT, 4, Common_Pokecenter_5StarCard
+    GoToIfGe VAR_RESULT, 4, Common_Pokecenter_4StarCard
     SetVar VAR_0x8004, 0
     GetTimeOfDay VAR_RESULT
     Dummy1F9 VAR_RESULT
@@ -105,7 +105,7 @@ Common_Pokecenter_HealMonsSelected:
     ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
     GetTrainerCardStars VAR_RESULT
-    CallIfGe VAR_RESULT, 4, Common_Pokecenter_TakeMonMessage5StarCard
+    CallIfGe VAR_RESULT, 4, Common_Pokecenter_TakeMonMessage4StarCard
     CallIfLt VAR_RESULT, 4, Common_Pokecenter_TakeMonMessageStandard
     Call Common_Pokecenter_Heal
     GoToIfUnset FLAG_POKECENTER_IDENTIFIED_POKERUS, Common_Pokecenter_CheckPokerus
@@ -115,7 +115,7 @@ Common_Pokecenter_TakeMonMessageStandard:
     Message pl_msg_00000213_00001
     Return
 
-Common_Pokecenter_TakeMonMessage5StarCard:
+Common_Pokecenter_TakeMonMessage4StarCard:
     Message pl_msg_00000213_00007
     Return
 
@@ -130,7 +130,7 @@ Common_Pokecenter_Heal:
     Return
 
 Common_Pokecenter_FarewellAfterHeal:
-    GoToIfEq VAR_0x8004, 1, Common_Pokecenter_5StarCardFarewellAfterHeal
+    GoToIfEq VAR_0x8004, 1, Common_Pokecenter_4StarCardFarewellAfterHeal
     Message pl_msg_00000213_00002
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
@@ -145,7 +145,7 @@ Common_Pokecenter_FarewellAfterHeal:
     ReturnCommonScript
     End
 
-Common_Pokecenter_5StarCardFarewellAfterHeal:
+Common_Pokecenter_4StarCardFarewellAfterHeal:
     Message pl_msg_00000213_00008
     ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
@@ -178,14 +178,14 @@ Common_Pokecenter_IdentifiedPokerus:
     ReturnCommonScript
     End
 
-Common_Pokecenter_5StarCard:
-    GoToIfSet FLAG_POKECENTER_5STAR_CARD, Common_Pokecenter_5StarCardService
-    SetFlag FLAG_POKECENTER_5STAR_CARD
+Common_Pokecenter_4StarCard:
+    GoToIfSet FLAG_POKECENTER_4_STAR_TRAINER_CARD, Common_Pokecenter_4StarCardService
+    SetFlag FLAG_POKECENTER_4_STAR_TRAINER_CARD
     Message pl_msg_00000213_00004
     BufferPlayerName 0
     Message pl_msg_00000213_00005
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, Common_Pokecenter_5StarCardHealMons
+    GoToIfEq VAR_RESULT, MENU_YES, Common_Pokecenter_4StarCardHealMons
     Message pl_msg_00000213_00009
     WaitABXPadPress
     CloseMessage
@@ -193,11 +193,11 @@ Common_Pokecenter_5StarCard:
     ReturnCommonScript
     End
 
-Common_Pokecenter_5StarCardService:
+Common_Pokecenter_4StarCardService:
     BufferPlayerName 0
     Message pl_msg_00000213_00006
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, Common_Pokecenter_5StarCardHealMons
+    GoToIfEq VAR_RESULT, MENU_YES, Common_Pokecenter_4StarCardHealMons
     Message pl_msg_00000213_00009
     WaitABXPadPress
     CloseMessage
@@ -205,7 +205,7 @@ Common_Pokecenter_5StarCardService:
     ReturnCommonScript
     End
 
-Common_Pokecenter_5StarCardHealMons:
+Common_Pokecenter_4StarCardHealMons:
     SetVar VAR_0x8004, 1
     GoTo Common_Pokecenter_HealMonsSelected
 
@@ -727,7 +727,7 @@ LabelCommonEntryScript ObtainAccessory:
 
 Common_InternalObtainAccessory:
     PlaySound SEQ_ACCE
-    AddAccessoryToFashionCase VAR_0x8004, VAR_0x8005
+    AddAccessory VAR_0x8004, VAR_0x8005
     BufferAccessoryName 0, VAR_0x8004
     Message pl_msg_00000213_00025
     WaitSound
@@ -1575,7 +1575,7 @@ _157B:
     ReleaseAll
     End
 
-LabelCommonEntryScript SetGenderBasedBGM:
+LabelCommonEntryScript SetCounterpartBGM:
     StopMusic 0
     GetPlayerGender VAR_RESULT
     CallIfEq VAR_RESULT, GENDER_MALE, Common_SetTheGirlBGM
@@ -1597,13 +1597,13 @@ LabelCommonEntryScript SetRivalBGM:
     ReturnCommonScript
     End
 
-LabelCommonEntryScript SetTSURETEKEBGM:
+LabelCommonEntryScript UNK_15BF:
     StopMusic 0
     SetBGM SEQ_TSURETEKE
     ReturnCommonScript
     End
 
-LabelCommonEntryScript SetHandsomeBGM:
+LabelCommonEntryScript SetLookerBGM:
     StopMusic 0
     SetBGM SEQ_PL_HANDSOME
     ReturnCommonScript

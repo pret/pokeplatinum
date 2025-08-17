@@ -100,14 +100,14 @@ _0174:
     End
 
 _019F:
-    CallCommonScript SetGenderBasedBGM
+    CallCommonScript SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 2
     GoTo _01C5
 
 _01B2:
-    CallCommonScript SetGenderBasedBGM
+    CallCommonScript SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 7

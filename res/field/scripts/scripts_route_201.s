@@ -208,7 +208,7 @@ _030B:
     ClearFlag FLAG_UNK_0x0179
     AddObject 6
     LockObject 6
-    CallCommonScript SetGenderBasedBGM
+    CallCommonScript SetCounterpartBGM
     ApplyMovement 6, _08C8
     WaitMovement
     GetPlayerGender VAR_RESULT

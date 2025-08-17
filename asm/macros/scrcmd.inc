@@ -160,11 +160,11 @@
     .endm
 
     .macro CommonScriptEntry scriptName
-    ScriptEntry Common_\scriptName
+    ScriptEntry CommonScript_\scriptName
     .endm
 
     .macro LabelCommonEntryScript scriptName
-    Common_\scriptName
+    CommonScript_\scriptName
     .endm
 
     .macro GoTo offset
@@ -2615,7 +2615,7 @@
     .endif
     .endm
 
-    .macro AddAccessoryToFashionCase accessoryID, amount
+    .macro AddAccessory accessoryID, amount
     .short 466
     .short \accessoryID
     .short \amount
@@ -2636,9 +2636,9 @@
     .short \arg2
     .endm
 
-    .macro AddContestBackdrop arg0
+    .macro AddContestBackdrop backdropID
     .short 469
-    .short \arg0
+    .short \backdropID
     .endm
 
     // destVarID will be set to TRUE if the player has the specified backdrop
@@ -3892,10 +3892,10 @@
     .short \price
     .endm
 
-    .macro CheckItemIsPlate item, isPlate
+    .macro CheckItemIsPlate item, destVar
     .short 679
     .short \item
-    .short \isPlate
+    .short \destVar
     .endm
 
     .macro SubtractCoins valueOrVarID
@@ -4025,9 +4025,9 @@
     .short \level
     .endm
 
-    .macro GetTrainerCardStars stars
+    .macro GetTrainerCardStars destVar
     .short 702
-    .short \stars
+    .short \destVar
     .endm
 
     .macro ScrCmd_2BF

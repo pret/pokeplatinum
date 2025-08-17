@@ -566,7 +566,7 @@ static BOOL ScrCmd_InitSizeContestRecord(ScriptContext *ctx);
 static BOOL ScrCmd_GiveJournal(ScriptContext *ctx);
 static BOOL ScrCmd_CreateJournalEvent(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx);
-static BOOL ScrCmd_AddAccessoryToFashionCase(ScriptContext *ctx);
+static BOOL ScrCmd_AddAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx);
 static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx);
@@ -1236,7 +1236,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Strength,
     ScrCmd_Flash,
     ScrCmd_Defog,
-    ScrCmd_AddAccessoryToFashionCase,
+    ScrCmd_AddAccessory,
     ScrCmd_CanFitAccessory,
     ScrCmd_Unused_1D4,
     ScrCmd_ObtainContestBackdrop,
@@ -5925,7 +5925,7 @@ static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_AddAccessoryToFashionCase(ScriptContext *ctx)
+static BOOL ScrCmd_AddAccessory(ScriptContext *ctx)
 {
     u16 accessoryID = ScriptContext_GetVar(ctx);
     u16 amount = ScriptContext_GetVar(ctx);
