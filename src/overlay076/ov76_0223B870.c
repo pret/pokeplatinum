@@ -8,8 +8,7 @@
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_020127E8.h"
 
-#include "overlay012/ov12_02225864.h"
-#include "overlay012/struct_ov12_02225F6C.h"
+#include "battle_anim/battle_anim_helpers.h"
 #include "overlay076/const_ov76_0223EF3C.h"
 #include "overlay076/ov76_0223D338.h"
 #include "overlay076/struct_ov76_0223BBAC.h"
@@ -46,7 +45,7 @@
 #include "unk_02097B18.h"
 
 typedef struct {
-    UnkStruct_ov12_02225F6C unk_00[9];
+    XYTransformContext unk_00[9];
     ManagedSprite *unk_144[8];
     BgConfig *unk_164;
     int unk_168;
@@ -311,15 +310,15 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
                 continue;
             }
 
-            if (ov12_02225C50(&v0->unk_00[v2], v0->unk_144[v2]) == 1) {
+            if (PosLerpContext_UpdateAndApplyToSprite(&v0->unk_00[v2], v0->unk_144[v2]) == 1) {
                 v1 = 1;
             }
         }
 
-        if (ov12_02225C14(&v0->unk_00[8]) == 1) {
+        if (PosLerpContext_Update(&v0->unk_00[8]) == 1) {
             v1 = 1;
-            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 0, v0->unk_00[8].unk_00);
-            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 3, v0->unk_00[8].unk_02);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 0, v0->unk_00[8].x);
+            Bg_SetOffset(v0->unk_164, BG_LAYER_SUB_1, 3, v0->unk_00[8].y);
         }
     }
 
@@ -348,16 +347,16 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
             v0->unk_144[v1] = param0->unk_324[v1].unk_08;
 
             ManagedSprite_GetPositionXY(v0->unk_144[v1], &v2, &v3);
-            ov12_02225BC8(&v0->unk_00[v1], v2, v2 + ((+7 * 8) * param1), v3, v3 + ((-2 * 8) * param1), param2);
-            ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
-            ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
+            PosLerpContext_Init(&v0->unk_00[v1], v2, v2 + ((+7 * 8) * param1), v3, v3 + ((-2 * 8) * param1), param2);
+            PosLerpContext_UpdateAndApplyToSprite(&v0->unk_00[v1], v0->unk_144[v1]);
+            PosLerpContext_UpdateAndApplyToSprite(&v0->unk_00[v1], v0->unk_144[v1]);
         }
     }
 
     {
         int v4 = Bg_GetXOffset(v0->unk_164, 5);
         int v5 = Bg_GetYOffset(v0->unk_164, 5);
-        ov12_02225BC8(&v0->unk_00[8], v4, v4 + (((+7 * 8) * param1) * -1), v5, v5 + (((-2 * 8) * param1) * -1), param2);
+        PosLerpContext_Init(&v0->unk_00[8], v4, v4 + (((+7 * 8) * param1) * -1), v5, v5 + (((-2 * 8) * param1) * -1), param2);
     }
 
     v0->unk_16C = &param0->unk_D4.unk_184;

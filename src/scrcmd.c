@@ -49,6 +49,7 @@
 #include "struct_defs/underground_record.h"
 
 #include "applications/naming_screen.h"
+#include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "boat_cutscene/boat_cutscene.h"
 #include "field/field_system.h"
@@ -90,7 +91,6 @@
 #include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay019/pokemon_storage_session.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"

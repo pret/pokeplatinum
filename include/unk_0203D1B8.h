@@ -13,9 +13,9 @@
 #include "struct_defs/struct_020997B8.h"
 
 #include "applications/naming_screen.h"
+#include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system_decl.h"
-#include "overlay019/pokemon_storage_session.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
 #include "field_battle_data_transfer.h"
