@@ -1,0 +1,89 @@
+{
+  "key": 38756,
+  "messages": [
+    {
+      "id": "MainMenuOptions_Text_Continue",
+      "en_US": "CONTINUE"
+    },
+    {
+      "id": "MainMenuOptions_Text_NewGame",
+      "en_US": "NEW GAME"
+    },
+    {
+      "id": "MainMenuOptions_Text_MysteryGift",
+      "en_US": "MYSTERY GIFT"
+    },
+    {
+      "id": "MainMenuOptions_Text_LinkWithPokemonRanger",
+      "en_US": "LINK WITH POKéMON RANGER"
+    },
+    {
+      "id": "MainMenuOptions_Text_MigrateFromRuby",
+      "en_US": "MIGRATE FROM RUBY"
+    },
+    {
+      "id": "MainMenuOptions_Text_MigrateFromSapphire",
+      "en_US": "MIGRATE FROM SAPPHIRE"
+    },
+    {
+      "id": "MainMenuOptions_Text_MigrateFromLeafgreen",
+      "en_US": "MIGRATE FROM LEAFGREEN"
+    },
+    {
+      "id": "MainMenuOptions_Text_MigrateFromFirered",
+      "en_US": "MIGRATE FROM FIRERED"
+    },
+    {
+      "id": "MainMenuOptions_Text_MigrateFromEmerald",
+      "en_US": "MIGRATE FROM EMERALD"
+    },
+    {
+      "id": "MainMenuOptions_Text_Pedometer",
+      "en_US": "PEDOMETER"
+    },
+    {
+      "id": "MainMenuOptions_Text_ConnectToWii",
+      "en_US": "CONNECT TO Wii"
+    },
+    {
+      "id": "MainMenuOptions_Text_NintendoWfcSettings",
+      "en_US": "NINTENDO WFC SETTINGS"
+    },
+    {
+      "id": "MainMenuOptions_Text_Player",
+      "en_US": "PLAYER"
+    },
+    {
+      "id": "MainMenuOptions_Text_Time",
+      "en_US": "TIME"
+    },
+    {
+      "id": "MainMenuOptions_Text_Pokedex",
+      "en_US": "POKéDEX"
+    },
+    {
+      "id": "MainMenuOptions_Text_Badges",
+      "en_US": "BADGES"
+    },
+    {
+      "id": "MainMenuOptions_Text_PlayerName",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "MainMenuOptions_Text_PlayTime",
+      "en_US": "{STRVAR_1 52, 0, 0}:{STRVAR_1 51, 1, 0}"
+    },
+    {
+      "id": "MainMenuOptions_Text_SeenSpeciesCount",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "MainMenuOptions_Text_BadgeCount",
+      "en_US": "{STRVAR_1 50, 0, 0}"
+    },
+    {
+      "id": "MainMenuOptions_Text_WiiMessageSettings",
+      "en_US": "Wii MESSAGE SETTINGS"
+    }
+  ]
+}

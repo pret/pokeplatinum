@@ -1,0 +1,183 @@
+{
+  "key": 50186,
+  "messages": [
+    {
+      "id": "pl_msg_00000198_00000",
+      "en_US": [
+        "The Battle Zone used to attract only\n",
+        "the hardiest of the Trainers.\r",
+        "They were considered eccentric for\n",
+        "gathering at a place like this.\r",
+        "It’s hard to believe how much it’s\n",
+        "changed since then.\r",
+        "Places like the Fight Area and the\n",
+        "Survival Area just seemed to spring\f",
+        "up overnight."
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00001",
+      "en_US": [
+        "He was one of those early eccentrics\n",
+        "who were around during the early days\r",
+        "of the Battle Zone. Well, I was too."
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00002",
+      "en_US": "TORCHIC: Chiic chic!"
+    },
+    {
+      "id": "pl_msg_00000198_00003",
+      "en_US": [
+        "I am the Item Expert!\n",
+        "I have mastery in the way of items!\r",
+        "Your Pokémon...\n",
+        "Do they hold items?\r",
+        "The better the item they hold, the \n",
+        "stronger they become.\r",
+        "There are items that are worthy of my\n",
+        "recommendation. Care to know?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00004",
+      "en_US": [
+        "Which item would you like me to\n",
+        "describe?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00005",
+      "en_US": [
+        "There’s a great variety of other items,\n",
+        "of course.\r",
+        "The kinds of items to be held will also\n",
+        "depend on your battle strategy.\r",
+        "All I can say in conclusion is that\n",
+        "you’ll never know until you try!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00006",
+      "en_US": [
+        "Lum Berry!\r",
+        "When held by a Pokémon, it instantly\n",
+        "heals status problems.\r",
+        "Like sleep, paralysis, confusion, that\n",
+        "sort of thing.\r",
+        "It’s a berry, though, so it’s gone if\n",
+        "it’s used.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00007",
+      "en_US": [
+        "Focus Sash!\r",
+        "This hold item will prevent a Pokémon\n",
+        "with full HP from a one-hit KO.\r",
+        "The holding Pokémon will survive an\n",
+        "attack like that leaving just one HP.\r",
+        "Being able to get one turn in has huge\n",
+        "implications for battle strategists!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00008",
+      "en_US": [
+        "Expert Belt!\r",
+        "This hold item boosts the power of a\n",
+        "super-effective move to 120%.\r",
+        "It’d be useful for a Pokémon that knows\n",
+        "different types of moves.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00009",
+      "en_US": [
+        "Life Orb!\r",
+        "This hold item boosts the power of\n",
+        "all the Pokémon’s moves to 130%!\r",
+        "However! It also takes 10% of the\n",
+        "holder’s HP every time a move is used.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00010",
+      "en_US": [
+        "Choice Scarf!\r",
+        "This hold item boosts the Speed of the\n",
+        "Pokémon to 150%!\r",
+        "However, and beware of this, it will\n",
+        "only allow one move to be used.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00011",
+      "en_US": [
+        "Choice Band!\r",
+        "This hold item boosts the Attack stat\n",
+        "of the Pokémon to 150%.\r",
+        "Beware, it has no effect on the Special\n",
+        "Attack stat. Make no mistake of it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00012",
+      "en_US": [
+        "Choice Specs!\r",
+        "This hold item boosts the Special Attack\n",
+        "stat of the Pokémon to 150%.\r",
+        "Beware, it has no effect on the Attack\n",
+        "stat. Make no mistake of it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00013",
+      "en_US": [
+        "Leftovers!\r",
+        "At the end of a turn, after both sides\n",
+        "have made their moves, this hold item\f",
+        "restores HP by about 6%.\r",
+        "The recovered HP could well be the\n",
+        "difference in a tight battle.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000198_00014",
+      "en_US": "LUM BERRY"
+    },
+    {
+      "id": "pl_msg_00000198_00015",
+      "en_US": "FOCUS SASH"
+    },
+    {
+      "id": "pl_msg_00000198_00016",
+      "en_US": "EXPERT BELT"
+    },
+    {
+      "id": "pl_msg_00000198_00017",
+      "en_US": "LIFE ORB"
+    },
+    {
+      "id": "pl_msg_00000198_00018",
+      "en_US": "CHOICE SCARF"
+    },
+    {
+      "id": "pl_msg_00000198_00019",
+      "en_US": "CHOICE BAND"
+    },
+    {
+      "id": "pl_msg_00000198_00020",
+      "en_US": "CHOICE SPECS"
+    },
+    {
+      "id": "pl_msg_00000198_00021",
+      "en_US": "LEFTOVERS"
+    },
+    {
+      "id": "pl_msg_00000198_00022",
+      "en_US": "EXIT"
+    }
+  ]
+}

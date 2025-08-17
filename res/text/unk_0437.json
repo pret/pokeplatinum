@@ -1,0 +1,63 @@
+{
+  "key": 37019,
+  "messages": [
+    {
+      "id": "pl_msg_00000437_00000",
+      "en_US": "Choose a word or phrase."
+    },
+    {
+      "id": "pl_msg_00000437_00001",
+      "en_US": "Your feeling at the battle’s start?"
+    },
+    {
+      "id": "pl_msg_00000437_00002",
+      "en_US": "What do you say if you win a battle?"
+    },
+    {
+      "id": "pl_msg_00000437_00003",
+      "en_US": "What do you say if you lose a battle?"
+    },
+    {
+      "id": "pl_msg_00000437_00004",
+      "en_US": "What’s popular?"
+    },
+    {
+      "id": "pl_msg_00000437_00005",
+      "en_US": "A greeting for the Union Room?"
+    },
+    {
+      "id": "pl_msg_00000437_00006",
+      "en_US": "Is this your answer?"
+    },
+    {
+      "id": "pl_msg_00000437_00007",
+      "en_US": "Please enter a phrase or word."
+    },
+    {
+      "id": "pl_msg_00000437_00008",
+      "en_US": "Quit without doing anything?"
+    },
+    {
+      "id": "pl_msg_00000437_00009",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000437_00010",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000437_00011",
+      "en_US": [
+        "GROUP\n",
+        "MODE"
+      ]
+    },
+    {
+      "id": "pl_msg_00000437_00012",
+      "en_US": [
+        "ABC\n",
+        "MODE"
+      ]
+    }
+  ]
+}

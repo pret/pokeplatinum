@@ -1,0 +1,121 @@
+{
+  "key": 50210,
+  "messages": [
+    {
+      "id": "pl_msg_00000195_00000",
+      "garbage": 42
+    },
+    {
+      "id": "pl_msg_00000195_00001",
+      "garbage": 69
+    },
+    {
+      "id": "pl_msg_00000195_00002",
+      "garbage": 168
+    },
+    {
+      "id": "pl_msg_00000195_00003",
+      "garbage": 52
+    },
+    {
+      "id": "pl_msg_00000195_00004",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000195_00005",
+      "garbage": 76
+    },
+    {
+      "id": "pl_msg_00000195_00006",
+      "garbage": 128
+    },
+    {
+      "id": "pl_msg_00000195_00007",
+      "garbage": 174
+    },
+    {
+      "id": "pl_msg_00000195_00008",
+      "garbage": 48
+    },
+    {
+      "id": "pl_msg_00000195_00009",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000195_00010",
+      "garbage": 101
+    },
+    {
+      "id": "pl_msg_00000195_00011",
+      "garbage": 108
+    },
+    {
+      "id": "pl_msg_00000195_00012",
+      "garbage": 57
+    },
+    {
+      "id": "pl_msg_00000195_00013",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000195_00014",
+      "garbage": 205
+    },
+    {
+      "id": "pl_msg_00000195_00015",
+      "garbage": 160
+    },
+    {
+      "id": "pl_msg_00000195_00016",
+      "garbage": 109
+    },
+    {
+      "id": "pl_msg_00000195_00017",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000195_00018",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000195_00019",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000195_00020",
+      "en_US": "BATTLE PARK"
+    },
+    {
+      "id": "pl_msg_00000195_00021",
+      "en_US": "EXCHANGE SERVICE CORNER"
+    },
+    {
+      "id": "pl_msg_00000195_00022",
+      "en_US": "BATTLE TOWER"
+    },
+    {
+      "id": "pl_msg_00000195_00023",
+      "en_US": "POINT CARD"
+    },
+    {
+      "id": "pl_msg_00000195_00024",
+      "en_US": "BP"
+    },
+    {
+      "id": "pl_msg_00000195_00025",
+      "en_US": "LEVEL LIMIT"
+    },
+    {
+      "id": "pl_msg_00000195_00026",
+      "en_US": "SPECIES & NUMBERS"
+    },
+    {
+      "id": "pl_msg_00000195_00027",
+      "en_US": "HOLD ITEMS"
+    },
+    {
+      "id": "pl_msg_00000195_00028",
+      "garbage": 51
+    }
+  ]
+}

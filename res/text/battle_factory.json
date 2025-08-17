@@ -1,0 +1,279 @@
+{
+  "key": 38003,
+  "messages": [
+    {
+      "id": "pl_msg_00000310_00000",
+      "en_US": [
+        "Welcome to the Battle Factory!\r",
+        "I am your guide to the Single and\n",
+        "Double Battle challenges.\r",
+        "Please be aware that these challenges\n",
+        "are designed for a single Trainer.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00001",
+      "en_US": "Which challenge would you like to take?"
+    },
+    {
+      "id": "pl_msg_00000310_00002",
+      "en_US": [
+        "At the Battle Factory, you may take\n",
+        "Single or Double Battle challenges\f",
+        "using rental Pokémon.\r",
+        "Once entered, your challenge lasts\n",
+        "until you lose.\r",
+        "After each win, you may trade a rented\n",
+        "Pokémon for one of the opponent’s.\r",
+        "The Level 50 option starts you off with\n",
+        "Pokémon that only know weak moves.\r",
+        "The Open Level option gives you access\n",
+        "to Lv. 100 Pokémon with powerful moves\f",
+        "from the start.\r",
+        "If you manage to win seven matches in\n",
+        "a row, you will earn Battle Points (BP).\r",
+        "If you want to interrupt your\n",
+        "challenge, please save the game.\r",
+        "If you don’t save, you will be\n",
+        "disqualified from your challenge.\r",
+        "Please be aware of that!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00003",
+      "en_US": [
+        "Welcome to the Battle Factory!\r",
+        "I am your guide to the Multi Battle\n",
+        "challenge.\r",
+        "Please be aware that this challenge\n",
+        "requires two Trainers.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00004",
+      "en_US": [
+        "Would you like to take the Battle\n",
+        "Factory Multi Battle challenge?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00005",
+      "en_US": [
+        "You may team up with a friend for a\n",
+        "Multi Battle challenge using rental\f",
+        "Pokémon.\r",
+        "Both partners will be provided with two\n",
+        "rental Pokémon each.\r",
+        "Once entered, you and your partner\n",
+        "conduct Multi Battles until you lose.\r",
+        "After each win, you or your partner\n",
+        "may trade a single rented Pokémon.\r",
+        "If you manage to win seven matches in\n",
+        "a row, you will earn Battle Points (BP).\r",
+        "The Level 50 option starts with rental\n",
+        "Pokémon that only know weak moves.\r",
+        "The Open Level option lets you rent\n",
+        "Lv. 100 Pokémon with powerful moves\f",
+        "from the start.\r",
+        "Please note: a Battle Factory Multi\n",
+        "Battle challenge can’t be interrupted.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00006",
+      "en_US": "We hope to see you again!"
+    },
+    {
+      "id": "pl_msg_00000310_00007",
+      "en_US": [
+        "Which challenge level would you like to\n",
+        "play? Level 50 or Open Level?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00008",
+      "en_US": [
+        "You must save the game before I\n",
+        "show you in. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00009",
+      "en_US": "Right this way, please!"
+    },
+    {
+      "id": "pl_msg_00000310_00010",
+      "en_US": "We look forward to your next visit.\r"
+    },
+    {
+      "id": "pl_msg_00000310_00011",
+      "en_US": [
+        "We’ve missed you!\r",
+        "You must save the game before you\n",
+        "resume your challenge. Please wait."
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00012",
+      "en_US": [
+        "Excuse me!\r",
+        "You didn’t save before you quit your\n",
+        "challenge last time.\r",
+        "Because of that, you have been\n",
+        "disqualified from your challenge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00013",
+      "en_US": [
+        "Congratulations!\r",
+        "In honor of your victory, we present\n",
+        "you this commemorative print!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00014",
+      "en_US": [
+        "The Gold Print was added to\n",
+        "{STRVAR_1 3, 0, 0}’s Vs. Recorder!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00015",
+      "en_US": [
+        "The Silver Print was added to\n",
+        "{STRVAR_1 3, 0, 0}’s Vs. Recorder!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00016",
+      "en_US": "SINGLE BATTLE"
+    },
+    {
+      "id": "pl_msg_00000310_00017",
+      "en_US": "DOUBLE BATTLE"
+    },
+    {
+      "id": "pl_msg_00000310_00018",
+      "en_US": "TAKE CHALLENGE"
+    },
+    {
+      "id": "pl_msg_00000310_00019",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000310_00020",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000310_00021",
+      "en_US": "LEVEL 50"
+    },
+    {
+      "id": "pl_msg_00000310_00022",
+      "en_US": "OPEN LEVEL"
+    },
+    {
+      "id": "pl_msg_00000310_00023",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000310_00024",
+      "en_US": [
+        "One Trainer should select\n",
+        "“BECOME LEADER.”\r",
+        "The other Trainer must select\n",
+        "“JOIN GROUP.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00025",
+      "en_US": [
+        "We need to launch DS Wireless \n",
+        "Communications."
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00026",
+      "en_US": [
+        "You must save the game before I\n",
+        "show you in. Please wait."
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00027",
+      "en_US": [
+        "They’re very helpful here.\r",
+        "The staff tell you about the next\n",
+        "Trainer you’ll face."
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00028",
+      "en_US": [
+        "Want to hear my trick to choosing\n",
+        "Pokémon?\r",
+        "Get your opponent’s lineup and choose\n",
+        "accordingly. That’s rock-solid basic!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00029",
+      "en_US": [
+        "Memorize what moves the opponent’s\n",
+        "Pokémon used.\r",
+        "That way, you’ll know what to expect\n",
+        "when you’re choosing one for trade."
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00030",
+      "en_US": [
+        "I’ll teach you my style.\n",
+        "My way of doing things.\r",
+        "Basically, I choose Pokémon that I’ve\n",
+        "never raised before.\r",
+        "Doing that, I get more knowledgeable.\n",
+        "Better Pokémon intelligence.\r",
+        "That knowledge is power.\n",
+        "It makes me a better Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00031",
+      "en_US": [
+        "Howdy-do!\n",
+        "Do you raise Pokémon?\r",
+        "You sure do.\n",
+        "Of course you do.\r",
+        "But do you raise every kind of Pokémon?\n",
+        "No, no, no. Not likely you do.\r",
+        "This is a wonderful place.\n",
+        "You can challenge with nothing.\r",
+        "Of course, all you can challenge with\n",
+        "are rental Pokémon.\r",
+        "Remember this, my favorite place to be.\n",
+        "Its name: the Battle Factory!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00032",
+      "en_US": [
+        "Oh, my goodness, what am I to do?\n",
+        "I didn’t expect this to happen!\r",
+        "The Pokémon I battled with became my\n",
+        "favorites.\r",
+        "But I already have six favorites!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000310_00033",
+      "en_US": [
+        "There were some Pokémon I hated\n",
+        "because they were so tough to battle.\r",
+        "But when I had them on my side, they\n",
+        "won me over with their power."
+      ]
+    }
+  ]
+}

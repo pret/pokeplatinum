@@ -1,0 +1,1382 @@
+{
+  "key": 12355,
+  "messages": [
+    {
+      "id": "pl_msg_00000626_00000",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "pl_msg_00000626_00001",
+      "en_US": "PC"
+    },
+    {
+      "id": "pl_msg_00000626_00002",
+      "en_US": "PC"
+    },
+    {
+      "id": "pl_msg_00000626_00003",
+      "en_US": "PC"
+    },
+    {
+      "id": "pl_msg_00000626_00004",
+      "en_US": "PC"
+    },
+    {
+      "id": "pl_msg_00000626_00005",
+      "en_US": "PC"
+    },
+    {
+      "id": "pl_msg_00000626_00006",
+      "en_US": "Big Boulder"
+    },
+    {
+      "id": "pl_msg_00000626_00007",
+      "en_US": "Yellow Cushion"
+    },
+    {
+      "id": "pl_msg_00000626_00008",
+      "en_US": "Blue Cushion"
+    },
+    {
+      "id": "pl_msg_00000626_00009",
+      "en_US": "Wooden Chair"
+    },
+    {
+      "id": "pl_msg_00000626_00010",
+      "en_US": "Big Table"
+    },
+    {
+      "id": "pl_msg_00000626_00011",
+      "en_US": "Plain Table"
+    },
+    {
+      "id": "pl_msg_00000626_00012",
+      "en_US": "Small Table"
+    },
+    {
+      "id": "pl_msg_00000626_00013",
+      "en_US": "Long Table"
+    },
+    {
+      "id": "pl_msg_00000626_00014",
+      "en_US": "Wide Table"
+    },
+    {
+      "id": "pl_msg_00000626_00015",
+      "en_US": "Poké Table"
+    },
+    {
+      "id": "pl_msg_00000626_00016",
+      "en_US": "Big Bookshelf"
+    },
+    {
+      "id": "pl_msg_00000626_00017",
+      "en_US": "Small Bookshelf"
+    },
+    {
+      "id": "pl_msg_00000626_00018",
+      "en_US": "Research Shelf"
+    },
+    {
+      "id": "pl_msg_00000626_00019",
+      "en_US": "Bike Rack"
+    },
+    {
+      "id": "pl_msg_00000626_00020",
+      "en_US": "Shop Shelf"
+    },
+    {
+      "id": "pl_msg_00000626_00021",
+      "en_US": "Display Shelf"
+    },
+    {
+      "id": "pl_msg_00000626_00022",
+      "en_US": "Cupboard"
+    },
+    {
+      "id": "pl_msg_00000626_00023",
+      "en_US": "Wood Dresser"
+    },
+    {
+      "id": "pl_msg_00000626_00024",
+      "en_US": "Pink Dresser"
+    },
+    {
+      "id": "pl_msg_00000626_00025",
+      "en_US": "TV"
+    },
+    {
+      "id": "pl_msg_00000626_00026",
+      "en_US": "Refrigerator"
+    },
+    {
+      "id": "pl_msg_00000626_00027",
+      "en_US": "Pretty Sink"
+    },
+    {
+      "id": "pl_msg_00000626_00028",
+      "en_US": "Feathery Bed"
+    },
+    {
+      "id": "pl_msg_00000626_00029",
+      "en_US": "Trash Can"
+    },
+    {
+      "id": "pl_msg_00000626_00030",
+      "en_US": "Cardboard Box"
+    },
+    {
+      "id": "pl_msg_00000626_00031",
+      "en_US": "Crate"
+    },
+    {
+      "id": "pl_msg_00000626_00032",
+      "en_US": "Container"
+    },
+    {
+      "id": "pl_msg_00000626_00033",
+      "en_US": "Oil Drum"
+    },
+    {
+      "id": "pl_msg_00000626_00034",
+      "en_US": "Big Oil Drum"
+    },
+    {
+      "id": "pl_msg_00000626_00035",
+      "en_US": "Iron Beam"
+    },
+    {
+      "id": "pl_msg_00000626_00036",
+      "en_US": "Potted Plant"
+    },
+    {
+      "id": "pl_msg_00000626_00037",
+      "en_US": "Poké Flower"
+    },
+    {
+      "id": "pl_msg_00000626_00038",
+      "en_US": "Healing Machine"
+    },
+    {
+      "id": "pl_msg_00000626_00039",
+      "en_US": "Lab Machine"
+    },
+    {
+      "id": "pl_msg_00000626_00040",
+      "en_US": "Test Machine"
+    },
+    {
+      "id": "pl_msg_00000626_00041",
+      "en_US": "Game System"
+    },
+    {
+      "id": "pl_msg_00000626_00042",
+      "en_US": "Vending Machine"
+    },
+    {
+      "id": "pl_msg_00000626_00043",
+      "en_US": "Red Bike"
+    },
+    {
+      "id": "pl_msg_00000626_00044",
+      "en_US": "Green Bike"
+    },
+    {
+      "id": "pl_msg_00000626_00045",
+      "en_US": "Binoculars"
+    },
+    {
+      "id": "pl_msg_00000626_00046",
+      "en_US": "Globe"
+    },
+    {
+      "id": "pl_msg_00000626_00047",
+      "en_US": "Gym Statue"
+    },
+    {
+      "id": "pl_msg_00000626_00048",
+      "en_US": "Red Tent"
+    },
+    {
+      "id": "pl_msg_00000626_00049",
+      "en_US": "Blue Tent"
+    },
+    {
+      "id": "pl_msg_00000626_00050",
+      "en_US": "Clear Tent"
+    },
+    {
+      "id": "pl_msg_00000626_00051",
+      "en_US": "Maze Block 1"
+    },
+    {
+      "id": "pl_msg_00000626_00052",
+      "en_US": "Maze Block 2"
+    },
+    {
+      "id": "pl_msg_00000626_00053",
+      "en_US": "Maze Block 3"
+    },
+    {
+      "id": "pl_msg_00000626_00054",
+      "en_US": "Maze Block 4"
+    },
+    {
+      "id": "pl_msg_00000626_00055",
+      "en_US": "Maze Block 5"
+    },
+    {
+      "id": "pl_msg_00000626_00056",
+      "en_US": "Hole Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00057",
+      "en_US": "Pit Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00058",
+      "en_US": "Smoke Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00059",
+      "en_US": "Big Smoke Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00060",
+      "en_US": "Rock Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00061",
+      "en_US": "Rockfall Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00062",
+      "en_US": "Foam Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00063",
+      "en_US": "Bubble Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00064",
+      "en_US": "Alert Tool 1"
+    },
+    {
+      "id": "pl_msg_00000626_00065",
+      "en_US": "Alert Tool 2"
+    },
+    {
+      "id": "pl_msg_00000626_00066",
+      "en_US": "Alert Tool 3"
+    },
+    {
+      "id": "pl_msg_00000626_00067",
+      "en_US": "Alert Tool 4"
+    },
+    {
+      "id": "pl_msg_00000626_00068",
+      "en_US": "Leaf Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00069",
+      "en_US": "Flower Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00070",
+      "en_US": "Ember Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00071",
+      "en_US": "Fire Tool"
+    },
+    {
+      "id": "pl_msg_00000626_00072",
+      "en_US": "Cute Cup"
+    },
+    {
+      "id": "pl_msg_00000626_00073",
+      "en_US": "Cool Cup"
+    },
+    {
+      "id": "pl_msg_00000626_00074",
+      "en_US": "Beauty Cup"
+    },
+    {
+      "id": "pl_msg_00000626_00075",
+      "en_US": "Tough Cup"
+    },
+    {
+      "id": "pl_msg_00000626_00076",
+      "en_US": "Clever Cup"
+    },
+    {
+      "id": "pl_msg_00000626_00077",
+      "en_US": "Blue Crystal"
+    },
+    {
+      "id": "pl_msg_00000626_00078",
+      "en_US": "Pink Crystal"
+    },
+    {
+      "id": "pl_msg_00000626_00079",
+      "en_US": "Red Crystal"
+    },
+    {
+      "id": "pl_msg_00000626_00080",
+      "en_US": "Yellow Crystal"
+    },
+    {
+      "id": "pl_msg_00000626_00081",
+      "en_US": "Pretty Gem"
+    },
+    {
+      "id": "pl_msg_00000626_00082",
+      "en_US": "Shiny Gem"
+    },
+    {
+      "id": "pl_msg_00000626_00083",
+      "en_US": "Mystic Gem"
+    },
+    {
+      "id": "pl_msg_00000626_00084",
+      "en_US": "Glitter Gem"
+    },
+    {
+      "id": "pl_msg_00000626_00085",
+      "en_US": "Bronze Trophy"
+    },
+    {
+      "id": "pl_msg_00000626_00086",
+      "en_US": "Silver Trophy"
+    },
+    {
+      "id": "pl_msg_00000626_00087",
+      "en_US": "Gold Trophy"
+    },
+    {
+      "id": "pl_msg_00000626_00088",
+      "en_US": "Great Trophy"
+    },
+    {
+      "id": "pl_msg_00000626_00089",
+      "en_US": "Ball Ornament"
+    },
+    {
+      "id": "pl_msg_00000626_00090",
+      "en_US": "Round Ornament"
+    },
+    {
+      "id": "pl_msg_00000626_00091",
+      "en_US": "Clear Ornament"
+    },
+    {
+      "id": "pl_msg_00000626_00092",
+      "en_US": "CHARMANDER Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00093",
+      "en_US": "BULBASAUR Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00094",
+      "en_US": "SQUIRTLE Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00095",
+      "en_US": "CYNDAQUIL Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00096",
+      "en_US": "CHIKORITA Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00097",
+      "en_US": "TOTODILE Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00098",
+      "en_US": "TORCHIC Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00099",
+      "en_US": "TREECKO Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00100",
+      "en_US": "MUDKIP Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00101",
+      "en_US": "CHIMCHAR Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00102",
+      "en_US": "TURTWIG Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00103",
+      "en_US": "PIPLUP Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00104",
+      "en_US": "PIKACHU Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00105",
+      "en_US": "PLUSLE Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00106",
+      "en_US": "MINUN Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00107",
+      "en_US": "CLEFAIRY Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00108",
+      "en_US": "JIGGLYPUFF Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00109",
+      "en_US": "WOBBUFFET Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00110",
+      "en_US": "MEOWTH Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00111",
+      "en_US": "SKITTY Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00112",
+      "en_US": "GLAMEOW Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00113",
+      "en_US": "BUNEARY Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00114",
+      "en_US": "WEAVILE Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00115",
+      "en_US": "MUNCHLAX Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00116",
+      "en_US": "BONSLY Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00117",
+      "en_US": "MIME JR. Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00118",
+      "en_US": "LUCARIO Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00119",
+      "en_US": "MANTYKE Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00120",
+      "en_US": "BUIZEL Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00121",
+      "en_US": "CHATOT Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00122",
+      "en_US": "MANAPHY Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00123",
+      "en_US": "SNORLAX Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00124",
+      "en_US": "WAILORD Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00125",
+      "en_US": "MAGNEZONE Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00126",
+      "en_US": "DRIFLOON Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00127",
+      "en_US": "HAPPINY Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00128",
+      "en_US": "PACHIRISU Doll"
+    },
+    {
+      "id": "pl_msg_00000626_00129",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00130",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00131",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00132",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00133",
+      "en_US": "Wide Sofa"
+    },
+    {
+      "id": "pl_msg_00000626_00134",
+      "en_US": "Bonsai"
+    },
+    {
+      "id": "pl_msg_00000626_00135",
+      "en_US": "Dainty Flowers"
+    },
+    {
+      "id": "pl_msg_00000626_00136",
+      "en_US": "Lovely Flowers"
+    },
+    {
+      "id": "pl_msg_00000626_00137",
+      "en_US": "Pretty Flowers"
+    },
+    {
+      "id": "pl_msg_00000626_00138",
+      "en_US": "Lavish Flowers"
+    },
+    {
+      "id": "pl_msg_00000626_00139",
+      "en_US": "Close the Bag."
+    },
+    {
+      "id": "pl_msg_00000626_00140",
+      "en_US": "dummy"
+    },
+    {
+      "id": "pl_msg_00000626_00141",
+      "en_US": "dummy"
+    },
+    {
+      "id": "pl_msg_00000626_00142",
+      "en_US": "dummy"
+    },
+    {
+      "id": "pl_msg_00000626_00143",
+      "en_US": "dummy"
+    },
+    {
+      "id": "pl_msg_00000626_00144",
+      "en_US": "dummy"
+    },
+    {
+      "id": "pl_msg_00000626_00145",
+      "en_US": [
+        "A yellow cushion that can be placed\n",
+        "inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00146",
+      "en_US": [
+        "A blue cushion that can be placed\n",
+        "inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00147",
+      "en_US": [
+        "A small wooden chair that can be\n",
+        "placed inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00148",
+      "en_US": [
+        "A very big table that can be placed\n",
+        "inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00149",
+      "en_US": [
+        "An ordinary table that can be placed\n",
+        "inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00150",
+      "en_US": [
+        "A very small table that can be placed\n",
+        "inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00151",
+      "en_US": [
+        "A vertically long table that can be\n",
+        "placed inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00152",
+      "en_US": [
+        "A horizontally wide table that can be\n",
+        "placed inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00153",
+      "en_US": [
+        "A glass-topped table that can be\n",
+        "seen in Pokémon Centers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00154",
+      "en_US": [
+        "A big bookshelf that can be placed\n",
+        "inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00155",
+      "en_US": [
+        "A small bookshelf that can be placed\n",
+        "inside your Secret Base."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00156",
+      "en_US": [
+        "A rack that is perfect for storing\n",
+        "all kinds of research documents."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00157",
+      "en_US": [
+        "A rack of tools like those seen\n",
+        "in the Cycle Shop."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00158",
+      "en_US": [
+        "A shelf stocked full of merchandise\n",
+        "like at any Poké Mart."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00159",
+      "en_US": [
+        "A shelf stocked with a variety of\n",
+        "merchandise like at any Poké Mart."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00160",
+      "en_US": [
+        "A fancy cupboard for storing all\n",
+        "sorts of kitchenware."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00161",
+      "en_US": [
+        "A wooden dresser with a\n",
+        "distinguished air."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00162",
+      "en_US": [
+        "A fashionable dresser in a pretty\n",
+        "pink color."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00163",
+      "en_US": [
+        "A big toy TV.\n",
+        "It is very well made."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00164",
+      "en_US": [
+        "A big, white toy refrigerator.\n",
+        "It is very well made."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00165",
+      "en_US": [
+        "A toy sink.\n",
+        "It is very well made."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00166",
+      "en_US": [
+        "A very fluffy bed where one can\n",
+        "enjoy pleasant dreams."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00167",
+      "en_US": "A round, green-colored trash can."
+    },
+    {
+      "id": "pl_msg_00000626_00168",
+      "en_US": [
+        "A small cardboard box. It is\n",
+        "convenient for storing things."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00169",
+      "en_US": [
+        "A large wooden crate that is filled\n",
+        "with all sorts of things."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00170",
+      "en_US": [
+        "A large container that is filled with\n",
+        "a variety of things."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00171",
+      "en_US": [
+        "A red oil drum like those seen in\n",
+        "factories."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00172",
+      "en_US": [
+        "A cluster of oil drums like those\n",
+        "seen in factories."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00173",
+      "en_US": [
+        "A red iron beam like those seen at\n",
+        "building construction sites."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00174",
+      "en_US": [
+        "A potted plant that adds a touch\n",
+        "of wild nature."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00175",
+      "en_US": [
+        "A small flower like those seen at\n",
+        "any Pokémon Center."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00176",
+      "en_US": [
+        "A machine used to heal Pokémon like\n",
+        "those at any Pokémon Center."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00177",
+      "en_US": [
+        "A brightly illuminated machine used\n",
+        "for Pokémon research."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00178",
+      "en_US": [
+        "A flickering, illuminated machine\n",
+        "used for conducting experiments."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00179",
+      "en_US": [
+        "A brand-new game system like the\n",
+        "one at home."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00180",
+      "en_US": [
+        "A toy replica of a vending machine.\n",
+        "It doesn’t actually work."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00181",
+      "en_US": [
+        "A red Bicycle replica. It is like\n",
+        "those displayed at the Cycle Shop."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00182",
+      "en_US": [
+        "A green Bicycle replica. It is like\n",
+        "those displayed at the Cycle Shop."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00183",
+      "en_US": [
+        "A pair of high-powered\n",
+        "replica binoculars."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00184",
+      "en_US": [
+        "It attests to the fact that you have\n",
+        "friends from all over."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00185",
+      "en_US": [
+        "A stone statue of a Pokémon like\n",
+        "those at Pokémon Gyms."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00186",
+      "en_US": [
+        "A large red tent.\n",
+        "You can hide inside it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00187",
+      "en_US": [
+        "A large blue tent.\n",
+        "You can hide inside it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00188",
+      "en_US": [
+        "A large transparent tent.\n",
+        "You can go inside it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00189",
+      "en_US": [
+        "A block for constructing a maze.\n",
+        "It is blocked at the top."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00190",
+      "en_US": [
+        "A block for constructing a maze.\n",
+        "It is blocked at the right."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00191",
+      "en_US": [
+        "A block for constructing a maze.\n",
+        "It is blocked at the bottom."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00192",
+      "en_US": [
+        "A block for constructing a maze.\n",
+        "It is blocked at the left."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00193",
+      "en_US": [
+        "A block for constructing a maze.\n",
+        "It is not blocked anywhere."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00194",
+      "en_US": [
+        "A Tool that makes a big pitfall\n",
+        "to immobilize the victim."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00195",
+      "en_US": [
+        "A Tool that makes a huge pitfall\n",
+        "to immobilize the victim."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00196",
+      "en_US": [
+        "A Tool that releases obscuring smoke.\n",
+        "The smoke can be rubbed away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00197",
+      "en_US": [
+        "A Tool that releases billowing smoke.\n",
+        "The smoke can be rubbed away."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00198",
+      "en_US": [
+        "A Tool that makes blocking boulders.\n",
+        "Break the boulders to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00199",
+      "en_US": [
+        "A Tool that makes Big Boulders.\n",
+        "Break the boulders to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00200",
+      "en_US": [
+        "A Tool that releases bubbles.\n",
+        "Pop the bubbles to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00201",
+      "en_US": [
+        "A Tool that releases a mass of\n",
+        "bubbles. Pop them to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00202",
+      "en_US": [
+        "Stepping on this Tool sends \n",
+        "greetings to everyone near you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00203",
+      "en_US": [
+        "Stepping on this Tool sends\n",
+        "farewells to everyone near you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00204",
+      "en_US": [
+        "Stepping on this Tool tells all nearby\n",
+        "that you are going to the Union Room."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00205",
+      "en_US": [
+        "Stepping on this Tool alerts everyone\n",
+        "to gather around you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00206",
+      "en_US": [
+        "This Tool releases immobilizing leaves.\n",
+        "Blow the leaves away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00207",
+      "en_US": [
+        "This Tool releases many flowers.\n",
+        "Blow the flowers away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00208",
+      "en_US": [
+        "This Tool releases immobilizing embers.\n",
+        "Blow the embers away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00209",
+      "en_US": [
+        "This Tool releases billowing flames.\n",
+        "Blow the flames away to get free."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00210",
+      "en_US": [
+        "A winner’s cup that is awarded only\n",
+        "to a truly cute Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00211",
+      "en_US": [
+        "A winner’s cup that is awarded only\n",
+        "to a truly cool Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00212",
+      "en_US": [
+        "A winner’s cup that is awarded only\n",
+        "to a truly beautiful Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00213",
+      "en_US": [
+        "A winner’s cup that is awarded only\n",
+        "to a truly tough Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00214",
+      "en_US": [
+        "A winner’s cup that is awarded only\n",
+        "to a truly smart Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00215",
+      "en_US": [
+        "A rare blue crystal awarded to\n",
+        "helpful people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00216",
+      "en_US": [
+        "A rare pink crystal awarded to\n",
+        "kindhearted people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00217",
+      "en_US": [
+        "A rare red crystal that is awarded\n",
+        "to hardworking people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00218",
+      "en_US": [
+        "A rare yellow crystal awarded to\n",
+        "steady, determined people."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00219",
+      "en_US": [
+        "A pretty gem that has been cut\n",
+        "beautifully."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00220",
+      "en_US": [
+        "A gleaming gem that has been polished\n",
+        "like a mirror."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00221",
+      "en_US": [
+        "A gem that casts a mystic light.\n",
+        "It is difficult to obtain."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00222",
+      "en_US": [
+        "An extremely valuable gem that\n",
+        "glitters dazzlingly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00223",
+      "en_US": [
+        "A trophy made of bronze that is\n",
+        "awarded only to tough Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00224",
+      "en_US": [
+        "A silver-colored trophy that is\n",
+        "awarded only to very tough Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00225",
+      "en_US": [
+        "A gold-colored trophy that is awarded\n",
+        "only to fantastically tough Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00226",
+      "en_US": [
+        "An impressive trophy awarded only to\n",
+        "seemingly indefatigable Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00227",
+      "en_US": [
+        "A commemorative object modeled\n",
+        "after a Poké Ball."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00228",
+      "en_US": [
+        "A very valuable round object that\n",
+        "glows in seven colors."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00229",
+      "en_US": [
+        "A very valuable object that is\n",
+        "crystal clear."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00230",
+      "en_US": "A cute CHARMANDER Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00231",
+      "en_US": "A cute BULBASAUR Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00232",
+      "en_US": "A cute SQUIRTLE Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00233",
+      "en_US": "A cute CYNDAQUIL Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00234",
+      "en_US": "A cute CHIKORITA Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00235",
+      "en_US": "A cute TOTODILE Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00236",
+      "en_US": "A cute TORCHIC Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00237",
+      "en_US": "A cute TREECKO Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00238",
+      "en_US": "A cute MUDKIP Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00239",
+      "en_US": "A cute CHIMCHAR Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00240",
+      "en_US": "A cute TURTWIG Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00241",
+      "en_US": "A cute PIPLUP Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00242",
+      "en_US": "A cute PIKACHU Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00243",
+      "en_US": "A cute PLUSLE Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00244",
+      "en_US": "A cute MINUN Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00245",
+      "en_US": "A cute CLEFAIRY Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00246",
+      "en_US": "A cute JIGGLYPUFF Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00247",
+      "en_US": "A cute WOBBUFFET Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00248",
+      "en_US": "A cute MEOWTH Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00249",
+      "en_US": "A cute SKITTY Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00250",
+      "en_US": "A cute GLAMEOW Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00251",
+      "en_US": "A cute BUNEARY Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00252",
+      "en_US": "A cute WEAVILE Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00253",
+      "en_US": "A cute MUNCHLAX Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00254",
+      "en_US": "A cute BONSLY Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00255",
+      "en_US": "A cute MIME JR. Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00256",
+      "en_US": "A rare LUCARIO Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00257",
+      "en_US": "A cute MANTYKE Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00258",
+      "en_US": "A cute BUIZEL Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00259",
+      "en_US": "A cute CHATOT Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00260",
+      "en_US": "A rare MANAPHY Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00261",
+      "en_US": "A big SNORLAX Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00262",
+      "en_US": "A big WAILORD Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00263",
+      "en_US": "A big MAGNEZONE Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00264",
+      "en_US": "A cute DRIFLOON Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00265",
+      "en_US": "A cute HAPPINY Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00266",
+      "en_US": "A cute PACHIRISU Doll."
+    },
+    {
+      "id": "pl_msg_00000626_00267",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00268",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00269",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00270",
+      "en_US": " -"
+    },
+    {
+      "id": "pl_msg_00000626_00271",
+      "en_US": [
+        "A wide, blue sofa.\n",
+        "It has room for two."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00272",
+      "en_US": [
+        "A restrained and evocative miniature\n",
+        "tree shaped by a master."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00273",
+      "en_US": "A pot of very pretty flowers."
+    },
+    {
+      "id": "pl_msg_00000626_00274",
+      "en_US": "A pot of very beautiful flowers."
+    },
+    {
+      "id": "pl_msg_00000626_00275",
+      "en_US": "A pot of very cute flowers."
+    },
+    {
+      "id": "pl_msg_00000626_00276",
+      "en_US": [
+        "A planter that is bursting with a\n",
+        "gorgeous selection of flowers."
+      ]
+    },
+    {
+      "id": "pl_msg_00000626_00277",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000626_00278",
+      "en_US": "Exit from decorating."
+    }
+  ]
+}

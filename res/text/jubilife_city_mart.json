@@ -1,0 +1,34 @@
+{
+  "key": 51888,
+  "messages": [
+    {
+      "id": "pl_msg_00000024_00000",
+      "en_US": [
+        "Aww, man.\n",
+        "I wasted money on some Poké Balls.\r",
+        "I should’ve lowered the HP of wild\n",
+        "Pokémon more before throwing them."
+      ]
+    },
+    {
+      "id": "pl_msg_00000024_00001",
+      "en_US": [
+        "The one thing you must remember is to\n",
+        "pack some Potions.\r",
+        "If all your Pokémon faint, it’ll be\n",
+        "lights out for you, too!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000024_00002",
+      "en_US": [
+        "Potions are important, but sometimes,\n",
+        "it’s better to simply avoid battles.\r",
+        "If you want to avoid wild Pokémon for a\n",
+        "while, just use a Repel.\r",
+        "After all, if you don’t battle, your\n",
+        "Pokémon can’t lose HP."
+      ]
+    }
+  ]
+}

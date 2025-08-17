@@ -1,0 +1,295 @@
+{
+  "key": 20888,
+  "messages": [
+    {
+      "id": "MigrateFromGBA_Text_FromRuby",
+      "en_US": [
+        "Make Pokémon migrate from\n",
+        "{STRVAR_1 3, 1, 0}’s Ruby Game Pak?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_FromSapphire",
+      "en_US": [
+        "Make Pokémon migrate from\n",
+        "{STRVAR_1 3, 1, 0}’s Sapphire Game Pak?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_FromEmerald",
+      "en_US": [
+        "Make Pokémon migrate from\n",
+        "{STRVAR_1 3, 1, 0}’s Emerald Game Pak?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_FromFirered",
+      "en_US": [
+        "Make Pokémon migrate from\n",
+        "{STRVAR_1 3, 1, 0}’s FireRed Game Pak?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_FromLeafgreen",
+      "en_US": [
+        "Make Pokémon migrate from\n",
+        "{STRVAR_1 3, 1, 0}’s LeafGreen Game Pak?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_LessThanSix",
+      "en_US": [
+        "There aren’t six Pokémon in\n",
+        "the PC Boxes."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_PleaseChooseSix",
+      "en_US": [
+        "Please choose the six Pokémon\n",
+        "that will migrate."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_GameCardAlreadyStocked",
+      "en_US": [
+        "This Game Card has already been\n",
+        "stocked with six migrated Pokémon.\r",
+        "Please participate in a Catching\n",
+        "Show at Pal Park."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_EggCannotMigrate",
+      "en_US": "An Egg cannot migrate!"
+    },
+    {
+      "id": "MigrateFromGBA_Text_KnowsHiddenMove",
+      "en_US": [
+        "This Pokémon knows a hidden move.\n",
+        "It cannot migrate."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SixChosenWillMigrate",
+      "en_US": "The six chosen Pokémon will migrate."
+    },
+    {
+      "id": "MigrateFromGBA_Text_CannotReturnToGBA",
+      "en_US": [
+        "Pokémon CANNOT be returned to the\n",
+        "Game Boy Advance Game Pak. OK?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00012",
+      "garbage": 29
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00013",
+      "garbage": 29
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00014",
+      "garbage": 29
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00015",
+      "garbage": 29
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00016",
+      "garbage": 46
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00017",
+      "garbage": 23
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnRubyAndPlatinum",
+      "en_US": [
+        "Saving data on Pokémon Ruby and\n",
+        "Pokémon Platinum..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnRubyAndPearl",
+      "en_US": [
+        "Saving data on Pokémon Ruby and\n",
+        "Pokémon Pearl..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnSapphireAndPlatinum",
+      "en_US": [
+        "Saving data on Pokémon Sapphire and\n",
+        "Pokémon Platinum..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnSapphireAndPearl",
+      "en_US": [
+        "Saving data on Pokémon Sapphire and\n",
+        "Pokémon Pearl..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnEmeraldAndPlatinum",
+      "en_US": [
+        "Saving data on Pokémon Emerald and\n",
+        "Pokémon Platinum..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnEmeraldAndPearl",
+      "en_US": [
+        "Saving data on Pokémon Emerald and\n",
+        "Pokémon Pearl..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnFireredAndPlatinum",
+      "en_US": [
+        "Saving data on Pokémon FireRed and\n",
+        "Pokémon Platinum..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnFireredAndPearl",
+      "en_US": [
+        "Saving data on Pokémon FireRed and\n",
+        "Pokémon Pearl..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnLeafgreenAndPlatinum",
+      "en_US": [
+        "Saving data on Pokémon LeafGreen and\n",
+        "Pokémon Platinum..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SavingOnLeafgreenAndPearl",
+      "en_US": [
+        "Saving data on Pokémon LeafGreen\n",
+        "and Pokémon Pearl..."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00028",
+      "garbage": 21
+    },
+    {
+      "id": "MigrateFromGBA_Text_SafelyMigratedToPlatinum",
+      "en_US": [
+        "Six Pokémon safely migrated to\n",
+        "the Pokémon Platinum Game Card."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SafelyMigratedToPearl",
+      "en_US": [
+        "Six Pokémon safely migrated to\n",
+        "the Pokémon Pearl Game Card."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_FullDayHasntPassed",
+      "en_US": [
+        "Pokémon may migrate from a Game Boy\n",
+        "Advance Game Pak only once a day.\r",
+        "A full day hasn’t passed since\n",
+        "Pokémon migrated from this Game Pak."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_DifferentDsOrInternalClockAltered",
+      "en_US": [
+        "You are using a different Nintendo DS,\n",
+        "or its internal clock has been altered.\r",
+        "If the game’s time setting is changed,\n",
+        "you will not be able to migrate\f",
+        "Pokémon for another 24 hours.\r",
+        "Would you like to change your game’s\n",
+        "time setting to match the Nintendo DS?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_GameClockAdjusted",
+      "en_US": [
+        "The game clock has been adjusted.\r",
+        "Pokémon cannot be made to migrate\n",
+        "for 24 hours."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_CannotReturnToGBAMigrateToPlatinum",
+      "en_US": [
+        "Pokémon CANNOT be returned to the\n",
+        "Game Boy Advance Game Pak.\r",
+        "Make Pokémon migrate to the\n",
+        "Pokémon Platinum Game Card?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_CannotReturnToGBAMigrateToPearl",
+      "en_US": [
+        "Pokémon CANNOT be returned to the\n",
+        "Game Boy Advance Game Pak.\r",
+        "Make Pokémon migrate to the\n",
+        "Pokémon Pearl Game Card?"
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_SaveFailed",
+      "en_US": "Save failed..."
+    },
+    {
+      "id": "MigrateFromGBA_Text_ErrorReadingGBAPak",
+      "en_US": [
+        "Error reading the Game Boy Advance\n",
+        "Game Pak’s save file.\r",
+        "There may not be a file saved,\n",
+        "or the save file may be corrupted."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_MonNotPermittedToMigrate",
+      "en_US": [
+        "This Pokémon is not permitted to\n",
+        "migrate."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00039",
+      "garbage": 25
+    },
+    {
+      "id": "MigrateFromGBA_Text_MakingAdjustments",
+      "en_US": [
+        "Making adjustments...\n",
+        "Do not turn off the power."
+      ]
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00041",
+      "garbage": 2
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00042",
+      "garbage": 3
+    },
+    {
+      "id": "MigrateFromGBA_Text_Level",
+      "en_US": "Lv."
+    },
+    {
+      "id": "MigrateFromGBA_Text_Item",
+      "en_US": "Item"
+    },
+    {
+      "id": "MigrateFromGBA_Text_Unused_00045",
+      "garbage": 5
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "key": 9314,
+  "messages": [
+    {
+      "id": "pl_msg_00000303_00000",
+      "en_US": [
+        "Welcome to the Exchange Service\n",
+        "Corner!\r",
+        "We can exchange your BP\n",
+        "for fabulous items.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00001",
+      "en_US": [
+        "Which prize would you like in\n",
+        "exchange for your BP?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00002",
+      "en_US": [
+        "You’ve chosen the {STRVAR_1 8, 0, 0}.\n",
+        "Is that correct?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00003",
+      "en_US": "Here is your prize!\r"
+    },
+    {
+      "id": "pl_msg_00000303_00004",
+      "en_US": [
+        "I’m so sorry...\n",
+        "You don’t have enough BP...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00005",
+      "en_US": [
+        "Sorry, your Bag has no room for\n",
+        "this {STRVAR_1 8, 0, 0}...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00006",
+      "en_US": [
+        "Thank you for visiting.\r",
+        "Please visit us again when you have\n",
+        "saved up BP."
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00007",
+      "en_US": [
+        "You’ve chosen {STRVAR_1 8, 0, 0},\n",
+        "{STRVAR_1 6, 1, 0}. Is that correct?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00008",
+      "en_US": [
+        "What to get today...\n",
+        "Perhaps a Technical Machine will do."
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00009",
+      "en_US": [
+        "What I most care about is the\n",
+        "crushing power of my darling Pokémon.\r",
+        "Are there any prizes that would\n",
+        "help them get more power?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00010",
+      "en_US": [
+        "How’s it going?\r",
+        "If things aren’t going well, why not\n",
+        "grab some prizes here?\r",
+        "It might toughen up your Pokémon\n",
+        "just enough to do better."
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00011",
+      "en_US": [
+        "Gramma, Gramma!\n",
+        "I went and traded!\r",
+        "You can have this, Gramma!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00012",
+      "en_US": [
+        "Oh, what is it, dear?\n",
+        "Oh, a Sludge Bomb...\r",
+        "Why, thank you so much, dear.\r",
+        "You’re such a cute, tough, and kind\n",
+        "girl...\r",
+        "I feel blessed to have a grandchild\n",
+        "like you..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00013",
+      "en_US": [
+        "Did you see that little girl with her\n",
+        "grandmother upstairs?\r",
+        "That girl is a little terror in battle.\n",
+        "You never can judge people!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00014",
+      "en_US": [
+        "This building is so grand...\n",
+        "Why does it need to be so?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000303_00015",
+      "en_US": [
+        "Welcome to the Exchange Service\n",
+        "Corner!\r",
+        "Would you like to trade in your BP for\n",
+        "some prizes?"
+      ]
+    }
+  ]
+}

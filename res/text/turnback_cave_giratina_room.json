@@ -1,0 +1,35 @@
+{
+  "key": 50231,
+  "messages": [
+    {
+      "id": "pl_msg_00000268_00000",
+      "en_US": "...Bishaan!\r"
+    },
+    {
+      "id": "pl_msg_00000268_00001",
+      "en_US": "GIRATINA disappeared..."
+    },
+    {
+      "id": "pl_msg_00000268_00002",
+      "en_US": [
+        "It’s a portal leading to the\n",
+        "Distortion World...\r",
+        "Would you like to leap into the portal\n",
+        "and go to the Distortion World?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000268_00003",
+      "en_US": "{STRVAR_1 3, 0, 0} leapt into the portal.\r"
+    },
+    {
+      "id": "pl_msg_00000268_00004",
+      "en_US": [
+        "This is...\r",
+        "That where life sparkles...\n",
+        "That where life has faded...\r",
+        "A place where two worlds overlap..."
+      ]
+    }
+  ]
+}

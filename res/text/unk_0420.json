@@ -1,0 +1,93 @@
+{
+  "key": 34966,
+  "messages": [
+    {
+      "id": "pl_msg_00000420_00000",
+      "en_US": [
+        "Hey!\r",
+        "Can you tell me how you feel right\n",
+        "before a match?\r",
+        "How you feel when you win or lose?\n",
+        "What it would be like to be number one?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000420_00001",
+      "en_US": [
+        "OK, how do you feel when\n",
+        "you’re about to begin a match?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000420_00002",
+      "en_US": [
+        "How do you feel when you win\n",
+        "a match?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000420_00003",
+      "en_US": "How do you feel when you lose a match?\r"
+    },
+    {
+      "id": "pl_msg_00000420_00004",
+      "en_US": [
+        "Last question: describe how you’d feel\n",
+        "if you became number one.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000420_00005",
+      "en_US": [
+        "Hunh? You changed your mind?\n",
+        "I guess you’re fickle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000420_00006",
+      "en_US": [
+        "Thank you!\n",
+        "Can you answer another question?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000420_00007",
+      "en_US": "Gotcha! Thanks!"
+    },
+    {
+      "id": "pl_msg_00000420_00008",
+      "en_US": [
+        "Gotcha! Thanks!\n",
+        "OK, {STRVAR_1 28, 0, 0}..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000420_00009",
+      "en_US": "Before battle"
+    },
+    {
+      "id": "pl_msg_00000420_00010",
+      "en_US": "Upon winning"
+    },
+    {
+      "id": "pl_msg_00000420_00011",
+      "en_US": "Upon losing"
+    },
+    {
+      "id": "pl_msg_00000420_00012",
+      "en_US": "Becoming No. 1"
+    },
+    {
+      "id": "pl_msg_00000420_00013",
+      "en_US": "Not saying"
+    },
+    {
+      "id": "pl_msg_00000420_00014",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000420_00015",
+      "en_US": "No"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "key": 44690,
+  "messages": [
+    {
+      "id": "pl_msg_00000592_00000",
+      "en_US": [
+        "The building next door?\r",
+        "I see Gym Leaders go in and out every\n",
+        "so often."
+      ]
+    },
+    {
+      "id": "pl_msg_00000592_00001",
+      "en_US": [
+        "The Battle Factory lets you make\n",
+        "challenges without your own Pokémon.\r",
+        "Maybe I should try..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000592_00002",
+      "en_US": [
+        "In a Multi Battle, coordination with\n",
+        "your partner is vital.\r",
+        "By working together, one plus one\n",
+        "could become not just two, but even\f",
+        "three or four.\r",
+        "But one times one is always one.\n",
+        "Do you understand that?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000592_00003",
+      "en_US": [
+        "Some say the universe was shaped by\n",
+        "something born from an Egg...\r",
+        "A man I met long ago told me that."
+      ]
+    }
+  ]
+}

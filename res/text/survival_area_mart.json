@@ -1,0 +1,25 @@
+{
+  "key": 20369,
+  "messages": [
+    {
+      "id": "pl_msg_00000591_00000",
+      "en_US": [
+        "A word of advice from a grizzled\n",
+        "mountain man!\r",
+        "Stark Mountain is a harsh, harsh place\n",
+        "that’s rife with Fire-type Pokémon.\r",
+        "Water-type Pokémon and moves should\n",
+        "take the edge off.\r",
+        "That’s my advice.\n",
+        "You’d best heed it, no joke!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000591_00001",
+      "en_US": [
+        "I was on a 54-win streak...\n",
+        "If only I used that move when..."
+      ]
+    }
+  ]
+}

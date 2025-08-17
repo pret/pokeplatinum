@@ -1,0 +1,198 @@
+{
+  "key": 18235,
+  "messages": [
+    {
+      "id": "pl_msg_00000583_00000",
+      "en_US": [
+        "There’s an odd spaceman\n",
+        "in front of the ruins.\r",
+        "There isn’t anything there, but that\n",
+        "only seemed to make him get angry.\r",
+        "He’s saying he will blow the town\n",
+        "up with a bomb...\r",
+        "The nerve of it all...\r",
+        "If only I were younger, I’d punish\n",
+        "that spaceman with my Pokémon..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00001",
+      "en_US": [
+        "This town is insignificant!\n",
+        "There’s nothing of value here.\r",
+        "It doesn’t need to exist, so I’ll\n",
+        "blow it up with a Galactic Bomb!\r",
+        "If you try to mess with me, I’ll shut\n",
+        "you down with a Pokémon battle.\r",
+        "So, what’s it going to be?\n",
+        "Are you going to mess with me?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00002",
+      "en_US": [
+        "You dare to oppose Team Galactic?\r",
+        "That means you’re taking on the\n",
+        "world... No, the universe, even!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00003",
+      "en_US": [
+        "That’s right! Very smart!\n",
+        "You know what’s good for you!\r",
+        "Team Galactic has come out to the\n",
+        "boonies like this for everyone’s sake.\r",
+        "Your cooperation is appreciated.\n",
+        "Now, where is my partner...?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00004",
+      "en_US": [
+        "Too much to handle...\n",
+        "I can’t do anything here...\r",
+        "This place is nothing!\n",
+        "I’ll be happily rid of this place!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00005",
+      "en_US": [
+        "Oh, you were magnificent!\n",
+        "Aren’t you quite the Trainer?\r",
+        "As the elder of Celestic Town, I give\n",
+        "you my thanks.\r",
+        "Oh? That Old Charm...\n",
+        "May I see that, dear?\r",
+        "...\n",
+        "What’s that?\r",
+        "You say Cynthia entrusted you with\n",
+        "it to deliver to me?\r",
+        "That Cynthia...\n",
+        "She’s my granddaughter.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00006",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} handed over\n",
+        "the {STRVAR_1 8, 1, 0} to the elder."
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00007",
+      "en_US": [
+        "This Old Charm is something made in\n",
+        "Celestic Town long, long ago.\r",
+        "It was made in honor of a mythical\n",
+        "deity said to have created Sinnoh.\r",
+        "These Old Charms are still discovered\n",
+        "now and again.\r",
+        "Since you’re in Celestic Town, why not\n",
+        "look around inside the ruins?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00008",
+      "en_US": [
+        "You’ve gone to the trouble of visiting\n",
+        "Celestic Town.\r",
+        "Why not take a little more time to\n",
+        "examine the ruins?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00009",
+      "en_US": [
+        "Cynthia: Was everything all right here?\r",
+        "You saw those strange people with\n",
+        "a Galactic Bomb, didn’t you?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00010",
+      "en_US": [
+        "But those Team Galactic people...!\n",
+        "I thought they were harmless.\r",
+        "The bizarre ways they dress, and all\n",
+        "their wild claims about making a new\f",
+        "universe...\r",
+        "I thought it was just silly talk.\n",
+        "Nothing to take seriously.\r",
+        "But they’re surprisingly more trouble\n",
+        "than expected.\r",
+        "Trying to monopolize Pokémon just isn’t\n",
+        "acceptable!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00011",
+      "en_US": [
+        "By the way, were the ruins fun to\n",
+        "explore?\r",
+        "If you’re interested, there is a library\n",
+        "in Canalave City.\r",
+        "It’s stocked with ancient books.\n",
+        "You can look up Sinnoh history there.\r",
+        "It might help you complete your\n",
+        "Pokédex, too.\r",
+        "The quickest way to Canalave City\n",
+        "is to go west from Jubilife City."
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00012",
+      "en_US": [
+        "Howdy!\n",
+        "Studying up on local history?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00013",
+      "en_US": [
+        "Hey, do you know what they say?\r",
+        "They say a Pokémon created the\n",
+        "Sinnoh region."
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00014",
+      "en_US": [
+        "There’s no Pokémon Mart in this\n",
+        "town...\r",
+        "Instead, you can buy and sell items\n",
+        "in this house here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00015",
+      "en_US": [
+        "Celestic Town\n",
+        "The Past Lives"
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00016",
+      "en_US": [
+        "A giant etching of a Pokémon-like\n",
+        "creature covers the wall...\r",
+        "There is some fading text etched\n",
+        "in as well...\r",
+        "The flow of time never stops...\n",
+        "The past, future, and present..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000583_00017",
+      "en_US": [
+        "A giant etching of a Pokémon-like\n",
+        "creature covers the wall...\r",
+        "There is some fading text etched\n",
+        "in as well...\r",
+        "Space is ever-expanding dimensions...\n",
+        "Our spirits, too, are as space..."
+      ]
+    }
+  ]
+}

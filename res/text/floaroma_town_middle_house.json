@@ -1,0 +1,53 @@
+{
+  "key": 33815,
+  "messages": [
+    {
+      "id": "pl_msg_00000574_00000",
+      "en_US": [
+        "Floaroma Town was a barren, desolate\n",
+        "hill long ago, avoided even by Pokémon.\r",
+        "People started planting flowers on it\n",
+        "because it was such a sad place.\r",
+        "But nothing would grow...\n",
+        "People didn’t know what to do...\r",
+        "And then one day, someone expressed\n",
+        "thanks for the blessings of nature.\r",
+        "Then, the whole hill burst into bloom."
+      ]
+    },
+    {
+      "id": "pl_msg_00000574_00001",
+      "en_US": [
+        "Do you think it’s cute how\n",
+        "Pokémon pluck Berries?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000574_00002",
+      "en_US": [
+        "Yes! You agreed!\n",
+        "Here’s the TM for the move Pluck!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000574_00003",
+      "en_US": [
+        "Oh...\n",
+        "I guess I just like weird things..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000574_00004",
+      "en_US": [
+        "When a Pokémon uses Pluck, it eats\n",
+        "a Berry held by its foe in battle.\r",
+        "I like how it steals a Berry.\n",
+        "It’s so cute!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000574_00005",
+      "en_US": "CLEFAIRY: Rii?"
+    }
+  ]
+}

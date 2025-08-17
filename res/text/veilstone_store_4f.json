@@ -1,0 +1,85 @@
+{
+  "key": 9231,
+  "messages": [
+    {
+      "id": "pl_msg_00000151_00000",
+      "en_US": [
+        "Hello.\n",
+        "May I help you with anything?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00001",
+      "en_US": [
+        "Hello, {STRVAR_1 3, 0, 0}.\n",
+        "May I help you with anything?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00002",
+      "en_US": "Please enjoy yourself."
+    },
+    {
+      "id": "pl_msg_00000151_00003",
+      "en_US": [
+        "The Yellow Cushion is popular for its\n",
+        "perfect balance of soft and firm."
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00004",
+      "en_US": [
+        "You would be surprised at how many\n",
+        "customers buy Cupboards."
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00005",
+      "en_US": [
+        "The BUIZEL Doll is very popular due\n",
+        "to its nautical image."
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00006",
+      "en_US": [
+        "Let me think... The MANTYKE Doll has\n",
+        "been a hot seller recently."
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00007",
+      "en_US": [
+        "If you encounter a wild Pokémon,\n",
+        "chuck a Quick Ball right off the bat!\r",
+        "If it’s taking a long time to catch,\n",
+        "the situation calls for a Timer Ball!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00008",
+      "en_US": [
+        "That boy doesn’t have any Pokémon,\n",
+        "but he says he’s training his image!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00009",
+      "en_US": [
+        "We need another copy of the game so I\n",
+        "can challenge my papa!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000151_00010",
+      "en_US": [
+        "B1F: Food & Produce\r",
+        "1F: Trainers’ Zone\r",
+        "2F: Battle Collection\r",
+        "3F: TM Corner\r",
+        "4F: Poké Dolls & Goods\r",
+        "5F: Rooftop Plaza"
+      ]
+    }
+  ]
+}

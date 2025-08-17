@@ -1,0 +1,24 @@
+{
+  "key": 21534,
+  "messages": [
+    {
+      "id": "pl_msg_00000594_00000",
+      "en_US": [
+        "There’s a move that doubles in power\n",
+        "if the Pokémon using it is poisoned,\f",
+        "paralyzed, or burned.\r",
+        "I’ve got the Technical Machine for\n",
+        "it right here. You want it?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000594_00001",
+      "en_US": [
+        "Facade’s a good move for your Pokémon\n",
+        "to have.\r",
+        "Your opponent will think twice about\n",
+        "poisoning or paralyzing your Pokémon."
+      ]
+    }
+  ]
+}
