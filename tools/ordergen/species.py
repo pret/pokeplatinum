@@ -2,7 +2,6 @@
 
 import argparse
 import os
-import pathlib
 
 SPECIES_DIRS = os.environ['SPECIES'].split(';')
 

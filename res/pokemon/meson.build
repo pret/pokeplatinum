@@ -377,7 +377,7 @@ pokefoot_ncgr_lz = ncgr_lz_gen.process(
         '-mappingtype', '128',
         '-nopad',
     ],
-    preserve_path_from: meson.current_source_dir(),
+    preserve_path_from: pokemon_data_root,
 )
 
 pokefoot_narc = custom_target('pokefoot.narc',
