@@ -8,7 +8,6 @@
 #include "constants/string.h"
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "applications/naming_screen.h"
@@ -31,6 +30,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "dexmode_checker.h"
 #include "enums.h"
 #include "game_options.h"
@@ -55,7 +55,6 @@
 #include "touch_screen_actions.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
-#include "unk_0207CB08.h"
 
 #include "constdata/const_020F410C.h"
 #include "res/text/bank/box_messages.h"
@@ -2659,7 +2658,7 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
 
             Bag *bag = SaveData_GetBag(param0->saveData);
             param0->unk_214 = sub_0207D824(bag, bagPockets, HEAP_ID_BOX_DATA);
-            sub_0207CB2C(param0->unk_214, param0->saveData, 1, NULL);
+            BagSystem_Init(param0->unk_214, param0->saveData, 1, NULL);
             Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
             param0->ApplicationManager = ApplicationManager_New(&Unk_ov84_02241130, param0->unk_214, HEAP_ID_BOX_DATA);
             (*state)++;
@@ -2667,7 +2666,7 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
         break;
     case GIVE_FROM_BAG_SELECT_ITEM:
         if (ApplicationManager_Exec(param0->ApplicationManager)) {
-            item = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
+            item = BagSystem_GetItem((BagSystem *)(param0->unk_214));
 
             ApplicationManager_Free(param0->ApplicationManager);
             Heap_Free(param0->unk_214);

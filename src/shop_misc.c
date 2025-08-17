@@ -7,9 +7,9 @@
 #include "overlay005/fieldmap.h"
 #include "overlay007/shop_menu.h"
 
+#include "bag_system.h"
 #include "field_task.h"
 #include "heap.h"
-#include "unk_0207CB08.h"
 
 static u8 ShopMisc_FreeUnk04AndReinitFieldMap(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void ShopMisc_ReinitShop(FieldTask *task);

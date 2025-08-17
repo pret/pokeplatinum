@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_020997B8.h"
@@ -22,13 +21,14 @@
 #include "field_battle_data_transfer.h"
 #include "field_move_tasks.h"
 #include "field_task.h"
+#include "item_use_functions.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_card.h"
 
 void FieldSystem_StartBattleProcess(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void sub_0203D1E4(FieldSystem *fieldSystem, void *param1);
-void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1);
+void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1);
 void *sub_0203D264(FieldSystem *fieldSystem, int param1);
 u16 sub_0203D2C4(void *param0);
 void sub_0203D2E4(FieldSystem *fieldSystem, void *param1);
