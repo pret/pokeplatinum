@@ -111,7 +111,7 @@ int ov83_0223CB8C(UnkStruct_ov83_0223B784 *param0, int *param1)
 
 void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
 
     NNS_G3dGePushMtx();
 

@@ -189,7 +189,7 @@ Static main
 	Object main.nef.p/src_unk_020474B8.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_scrcmd_sound.c.o
-	Object main.nef.p/src_unk_02048614.c.o
+	Object main.nef.p/src_scrcmd_trainer.c.o
 	Object main.nef.p/src_unk_02048BD0.c.o
 	Object main.nef.p/src_unk_02048DD8.c.o
 	Object main.nef.p/src_unk_020494DC.c.o
@@ -260,7 +260,7 @@ Static main
 	Object main.nef.p/src_unk_020677F4.c.o
 	Object main.nef.p/src_unk_02067A84.c.o
 	Object main.nef.p/src_dynamic_map_features.c.o
-	Object main.nef.p/src_unk_020683F4.c.o
+	Object main.nef.p/src_item_use_functions.c.o
 	Object main.nef.p/src_pokeradar.c.o
 	Object main.nef.p/src_unk_02069BE0.c.o
 	Object main.nef.p/src_unk_0206A780.c.o
@@ -272,7 +272,7 @@ Static main
 	Object main.nef.p/src_trainer_card_badge_dirt.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
-	Object main.nef.p/src_unk_0206C784.c.o
+	Object main.nef.p/src_boat_cutscene_boat_cutscene.c.o
 	Object main.nef.p/src_unk_0206CCB0.c.o
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
@@ -299,7 +299,7 @@ Static main
 	Object main.nef.p/src_unk_0207AE68.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
 	Object main.nef.p/src_type_icon.c.o
-	Object main.nef.p/src_unk_0207CB08.c.o
+	Object main.nef.p/src_bag_system.c.o
 	Object main.nef.p/src_item.c.o
 	Object main.nef.p/src_bag.c.o
 	Object main.nef.p/src_unk_0207DA28.c.o
@@ -1405,11 +1405,11 @@ Overlay overlay92
 	Object main.nef.p/src_overlay092_ov92_021D0D80.c.o
 }
 
-Overlay overlay93
+Overlay boat_cutscene
 {
 	After main
-	Object main.nef.p/src_overlay093_ov93_021D0D80.c.o
-	Object main.nef.p/src_overlay093_ov93_021D111C.c.o
+	Object main.nef.p/src_boat_cutscene_canalave_ship.c.o
+	Object main.nef.p/src_boat_cutscene_snowpoint_ship.c.o
 }
 
 Overlay overlay94

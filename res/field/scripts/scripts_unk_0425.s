@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0007.h"
+#include "res/text/bank/bag.h"
 
 
     ScriptEntry _000A

@@ -17,7 +17,7 @@ void sub_0202419C(void)
     Unk_021C0788.unk_00 = 0;
 }
 
-void sub_020241B4(void)
+void G3_ResetG3X(void)
 {
     G3X_Reset();
 }

@@ -24,12 +24,14 @@
 #include "generated/signpost_types.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
+#include "constants/boat_cutscene.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/battle.h"
 
 #include "macros/movement.inc"
 
@@ -1094,26 +1096,26 @@
     .short 181
     .endm
 
-    .macro ScrCmd_0B6 arg0
+    .macro ScrCmd_0B6 approachNum
     .short 182
-    .short \arg0
+    .short \approachNum
     .endm
 
-    .macro ScrCmd_0B7 arg0, arg1
+    .macro CheckIsApproachingTrainerTaskDone approachNum, destVar
     .short 183
-    .short \arg0
-    .short \arg1
+    .short \approachNum
+    .short \destVar
     .endm
 
-    .macro ScrCmd_0B8 arg0
+    .macro ScrCmd_0B8 destVar
     .short 184
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_0B9 arg0, arg1
+    .macro GetApproachingTrainerID approachNum, destVar
     .short 185
-    .short \arg0
-    .short \arg1
+    .short \approachNum
+    .short \destVar
     .endm
 
     .macro ScrCmd_Unused_0BA arg0
@@ -1414,13 +1416,13 @@
     .short 239
     .endm
 
-    .macro ScrCmd_0F0
+    .macro SetTargetTrainerDefeated
     .short 240
     .endm
 
-    .macro ScrCmd_0F1 arg0
+    .macro GoToIfTargetTrainerDefeated offset
     .short 241
-    .long \arg0-.-4
+    .long \offset-.-4
     .endm
 
     .macro ScrCmd_0F2 arg0, arg1, arg2, arg3
@@ -3215,13 +3217,29 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_23D arg0, arg1, arg2, arg3, arg4
+    .macro PlayBoatCutscene travelDir, exitDir, mapID, x, z
     .short 573
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .byte \travelDir
+    .byte \exitDir
+    .short \mapID
+    .short \x
+    .short \z
+    .endm
+
+    .macro TakeShipFromCanalave exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_NORTH_TO_SOUTH, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipFromSnowpoint exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_WEST_TO_EAST, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipToCanalave
+    PlayBoatCutscene BOAT_TRAVEL_DIR_SOUTH_TO_NORTH, DIR_WEST, MAP_HEADER_CANALAVE_CITY, 44, 750
+    .endm
+
+    .macro TakeShipToSnowpoint
+    PlayBoatCutscene BOAT_TRAVEL_DIR_EAST_TO_WEST, DIR_NORTH, MAP_HEADER_SNOWPOINT_CITY, 356, 246
     .endm
 
     /* See the convenience macro below for the uses of destVar1 & destVar2 */
@@ -4489,9 +4507,9 @@
     CheckHeapMemory TRUE
     .endm
 
-    .macro ScrCmd_314 arg0
+    .macro GetBattleResult destVar
     .short 788
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_315 arg0

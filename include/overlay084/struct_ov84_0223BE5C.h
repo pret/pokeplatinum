@@ -4,12 +4,12 @@
 #include "bag.h"
 
 typedef struct {
-    BagItem *unk_00;
+    BagItem *items;
     u16 unk_04;
     u16 unk_06;
-    u8 unk_08;
+    u8 pocketType;
     u8 unk_09;
     u8 padding_0A[2];
-} UnkStruct_ov84_0223BE5C;
+} BagInterfacePocketInfo;
 
 #endif // POKEPLATINUM_STRUCT_OV84_0223BE5C_H

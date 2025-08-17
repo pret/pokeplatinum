@@ -50,6 +50,7 @@
 
 #include "applications/naming_screen.h"
 #include "applications/pokemon_summary_screen/main.h"
+#include "boat_cutscene/boat_cutscene.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
@@ -213,7 +214,6 @@
 #include "unk_02069BE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206C660.h"
-#include "unk_0206C784.h"
 #include "unk_0206CCB0.h"
 #include "unk_0206F314.h"
 #include "unk_02070428.h"
@@ -622,7 +622,7 @@ static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
 static BOOL ScrCmd_23C(ScriptContext *ctx);
-static BOOL ScrCmd_23D(ScriptContext *ctx);
+static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx);
 static BOOL ScrCmd_243(ScriptContext *ctx);
 static BOOL ScrCmd_244(ScriptContext *ctx);
 static BOOL ScrCmd_245(ScriptContext *ctx);
@@ -953,9 +953,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartChooseStarterScene,
     ScrCmd_SaveChosenStarter,
     ScrCmd_0B6,
-    ScrCmd_0B7,
+    ScrCmd_CheckIsApproachingTrainerTaskDone,
     ScrCmd_0B8,
-    ScrCmd_0B9,
+    ScrCmd_GetApproachingTrainerID,
     ScrCmd_Unused_0BA,
     ScrCmd_0BB,
     ScrCmd_FadeScreen,
@@ -1010,8 +1010,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckLostBattle,
     ScrCmd_CheckHasTwoAliveMons,
     ScrCmd_StartDummyTrainerBattle,
-    ScrCmd_0F0,
-    ScrCmd_0F1,
+    ScrCmd_SetTargetTrainerDefeated,
+    ScrCmd_GoToIfTargetTrainerDefeated,
     ScrCmd_0F2,
     ScrCmd_0F3,
     ScrCmd_Unused_0F4,
@@ -1343,7 +1343,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetSpeciesFootprintType,
     ScrCmd_23B,
     ScrCmd_23C,
-    ScrCmd_23D,
+    ScrCmd_PlayBoatCutscene,
     ScrCmd_MysteryGiftGive,
     ScrCmd_Dummy23F,
     ScrCmd_Dummy240,
@@ -1558,7 +1558,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_311,
     ScrCmd_312,
     ScrCmd_CheckHeapMemory,
-    ScrCmd_314,
+    ScrCmd_GetBattleResult,
     ScrCmd_315,
     ScrCmd_316,
     ScrCmd_GetPlayer3DPos,
@@ -4437,7 +4437,7 @@ static BOOL ScrCmd_203(ScriptContext *ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
     v4 = -1;
 
-    sub_02054800(ctx->fieldSystem->task, v0, v4, v1, v2, v3);
+    FieldTask_StartChangeMapColosseum(ctx->fieldSystem->task, v0, v4, v1, v2, v3);
 
     return TRUE;
 }
@@ -6403,15 +6403,15 @@ static BOOL ScrCmd_23C(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_23D(ScriptContext *ctx)
+static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
-    u8 v1 = ScriptContext_ReadByte(ctx);
-    int v2 = ScriptContext_ReadHalfWord(ctx);
-    int v3 = ScriptContext_ReadHalfWord(ctx);
-    int v4 = ScriptContext_ReadHalfWord(ctx);
+    u8 travelDir = ScriptContext_ReadByte(ctx);
+    u8 exitDir = ScriptContext_ReadByte(ctx);
+    int mapID = ScriptContext_ReadHalfWord(ctx);
+    int x = ScriptContext_ReadHalfWord(ctx);
+    int z = ScriptContext_ReadHalfWord(ctx);
 
-    sub_0206C784(ctx->fieldSystem, v0, v1, v2, v3, v4);
+    FieldSystem_PlayBoatCutscene(ctx->fieldSystem, travelDir, exitDir, mapID, x, z);
     return TRUE;
 }
 

@@ -27,7 +27,6 @@
 #include "struct_defs/struct_0203E564.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0203E6C0.h"
-#include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_defs/struct_02098C44.h"
@@ -39,6 +38,7 @@
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
+#include "boat_cutscene/boat_cutscene.h"
 #include "choose_starter/choose_starter_app.h"
 #include "dw_warp/dw_warp.h"
 #include "field/field_system.h"
@@ -67,8 +67,6 @@
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay091/ov91_021D0D80.h"
 #include "overlay092/ov92_021D0D80.h"
-#include "overlay093/ov93_021D0D80.h"
-#include "overlay093/ov93_021D111C.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay096/ov96_0223B6A0.h"
@@ -81,6 +79,7 @@
 #include "trainer_card_screen/trainer_card_screen.h"
 
 #include "bag.h"
+#include "bag_system.h"
 #include "coins.h"
 #include "dexmode_checker.h"
 #include "field_battle_data_transfer.h"
@@ -92,6 +91,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
+#include "item_use_functions.h"
 #include "mail.h"
 #include "math_util.h"
 #include "overlay_manager.h"
@@ -127,7 +127,6 @@
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
 #include "unk_0207AE68.h"
-#include "unk_0207CB08.h"
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
@@ -165,7 +164,7 @@ FS_EXTERN_OVERLAY(overlay88);
 FS_EXTERN_OVERLAY(overlay90);
 FS_EXTERN_OVERLAY(overlay91);
 FS_EXTERN_OVERLAY(overlay92);
-FS_EXTERN_OVERLAY(overlay93);
+FS_EXTERN_OVERLAY(boat_cutscene);
 FS_EXTERN_OVERLAY(overlay94);
 FS_EXTERN_OVERLAY(overlay95);
 FS_EXTERN_OVERLAY(overlay96);
@@ -280,16 +279,16 @@ void sub_0203D1E4(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_ov84_02241130, param1);
 }
 
-void *sub_0203D20C(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
+void *sub_0203D20C(FieldSystem *fieldSystem, ItemUseContext *param1)
 {
     Bag *v0 = SaveData_GetBag(fieldSystem->saveData);
     void *v1 = sub_0207D824(v0, Unk_020EA164, HEAP_ID_FIELDMAP);
 
-    sub_0207CB2C(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
-    sub_0207CB78(v1, fieldSystem->mapLoadType);
+    BagSystem_Init(v1, fieldSystem->saveData, 0, fieldSystem->bagCursor);
+    BagSystem_SetMapLoadType(v1, fieldSystem->mapLoadType);
 
     if (PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar) == 0x1) {
-        sub_0207CB58(v1);
+        BagSystem_SetIsCycling(v1);
     }
 
     sub_0207CB6C(v1, param1);
@@ -319,7 +318,7 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
     v0 = sub_0207D824(v4, v1, HEAP_ID_FIELD_TASK);
 
-    sub_0207CB2C(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
+    BagSystem_Init(v0, fieldSystem->saveData, 3, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, v0);
 
     return v0;
@@ -327,9 +326,9 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
 u16 sub_0203D2C4(void *param0)
 {
-    u16 v0 = sub_0207CB94(param0);
+    u16 v0 = BagSystem_GetItem(param0);
 
-    if ((v0 != 0) && (sub_0207CB9C(param0) == 5)) {
+    if ((v0 != 0) && (BagSystem_GetExitCode(param0) == 5)) {
         GF_ASSERT(0);
     }
 
@@ -1473,29 +1472,32 @@ void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void sub_0203E2AC(FieldSystem *fieldSystem, void *param1)
+void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv)
 {
-    FS_EXTERN_OVERLAY(overlay93);
+    FS_EXTERN_OVERLAY(boat_cutscene);
 
-    const ApplicationManagerTemplate v0 = {
-        ov93_021D0D80,
-        ov93_021D0E70,
-        ov93_021D0F58,
-        FS_OVERLAY_ID(overlay93)
+    const ApplicationManagerTemplate appTemplate = {
+        .init = BoatCutscene_CanalaveShip_Init,
+        .main = BoatCutscene_CanalaveShip_Main,
+        .exit = BoatCutscene_CanalaveShip_Exit,
+        .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
-void sub_0203E2D4(FieldSystem *fieldSystem, void *param1)
+void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv)
 {
-    FS_EXTERN_OVERLAY(overlay93);
+    FS_EXTERN_OVERLAY(boat_cutscene);
 
-    const ApplicationManagerTemplate v0 = {
-        ov93_021D111C, ov93_021D120C, ov93_021D12F0, FS_OVERLAY_ID(overlay93)
+    const ApplicationManagerTemplate appTemplate = {
+        .init = BoatCutscene_SnowpointShip_Init,
+        .main = BoatCutscene_SnowpointShip_Main,
+        .exit = BoatCutscene_SnowpointShip_Exit,
+        .overlayID = FS_OVERLAY_ID(boat_cutscene)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
 void sub_0203E2FC(FieldSystem *fieldSystem)

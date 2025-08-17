@@ -112,7 +112,7 @@ typedef struct ApproachingTrainer {
     int direction;
     int scriptID;
     int trainerID;
-    int trainerType;
+    int unk_10;
     MapObject *object;
     SysTask *task;
 } ApproachingTrainer;

@@ -329,7 +329,7 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
         break;
     }
     if (v0->unk_228) {
-        sub_020241B4();
+        G3_ResetG3X();
         ov22_0225AFF8(v0->unk_228);
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
@@ -352,7 +352,7 @@ static BOOL ov62_02238048(UnkStruct_0208C06C *param0)
     }
 
     if (v0->unk_228) {
-        sub_020241B4();
+        G3_ResetG3X();
         ov22_0225AFF8(v0->unk_228);
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
@@ -946,7 +946,7 @@ static BOOL ov62_02238D04(UnkStruct_0208C06C *param0)
     }
 
     if (v0->unk_228) {
-        sub_020241B4();
+        G3_ResetG3X();
         ov22_0225AFF8(v0->unk_228);
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
@@ -987,7 +987,7 @@ static BOOL ov62_02238E54(UnkStruct_0208C06C *param0)
     }
 
     if (v0->unk_228) {
-        sub_020241B4();
+        G3_ResetG3X();
         ov22_0225AFF8(v0->unk_228);
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
