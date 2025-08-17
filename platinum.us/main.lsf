@@ -745,24 +745,24 @@ Overlay overlay18
 	Library libdwcutil.a
 }
 
-Overlay overlay19
+Overlay pc_boxes
 {
 	After main
-	Object main.nef.p/src_overlay019_ov19_021D0D80.c.o
-	Object main.nef.p/src_overlay019_touch_dial.c.o
-	Object main.nef.p/src_overlay019_ov19_021D61B0.c.o
-	Object main.nef.p/src_overlay019_ov19_021D79F8.c.o
-	Object main.nef.p/src_overlay019_ov19_021D8B54.c.o
-	Object main.nef.p/src_overlay019_ov19_021DA270.c.o
-	Object main.nef.p/src_overlay019_ov19_021DA814.c.o
-	Object main.nef.p/src_overlay019_ov19_021DA92C.c.o
-	Object main.nef.p/src_overlay019_ov19_021DB2FC.c.o
-	Object main.nef.p/src_overlay019_ov19_021DB8E4.c.o
-	Object main.nef.p/src_overlay019_ov19_021DC5F0.c.o
-	Object main.nef.p/src_overlay019_ov19_021DCF88.c.o
-	Object main.nef.p/src_overlay019_ov19_021DE3E8.c.o
-	Object main.nef.p/src_overlay019_ov19_021DEC04.c.o
-	Object main.nef.p/src_overlay019_box_menu.c.o
+	Object main.nef.p/src_applications_pc_boxes_box_app_manager.c.o
+	Object main.nef.p/src_applications_pc_boxes_touch_dial.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021D61B0.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021D79F8.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021D8B54.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DA270.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DA814.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DA92C.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DB2FC.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DB8E4.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DC5F0.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DCF88.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DE3E8.c.o
+	Object main.nef.p/src_applications_pc_boxes_ov19_021DEC04.c.o
+	Object main.nef.p/src_applications_pc_boxes_box_menu.c.o
 }
 
 Overlay overlay20

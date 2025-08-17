@@ -35,6 +35,8 @@
 #include "applications/journal_display/journal_controller.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
+#include "applications/pc_boxes/box_app_manager.h"
+#include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223B140.h"
@@ -46,8 +48,6 @@
 #include "overlay005/daycare.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay007/accessory_shop.h"
-#include "overlay019/ov19_021D0D80.h"
-#include "overlay019/pokemon_storage_session.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
@@ -142,7 +142,7 @@
 #include "constdata/const_020F6890.h"
 
 FS_EXTERN_OVERLAY(battle);
-FS_EXTERN_OVERLAY(overlay19);
+FS_EXTERN_OVERLAY(pc_boxes);
 FS_EXTERN_OVERLAY(overlay20);
 FS_EXTERN_OVERLAY(pokedex);
 FS_EXTERN_OVERLAY(overlay22);
@@ -625,16 +625,16 @@ int PokemonSummary_GetSelectedMoveSlot(void *summary)
 
 void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession)
 {
-    FS_EXTERN_OVERLAY(overlay19);
+    FS_EXTERN_OVERLAY(pc_boxes);
 
-    static const ApplicationManagerTemplate template = {
-        ov19_021D0D80,
-        ov19_021D0DEC,
-        ov19_021D0E58,
-        FS_OVERLAY_ID(overlay19)
+    static const ApplicationManagerTemplate boxAppManTemplate = {
+        BoxAppMan_Init,
+        BoxAppMan_Main,
+        BoxAppMan_Exit,
+        FS_OVERLAY_ID(pc_boxes)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, pokemonStorageSession);
+    FieldSystem_StartChildProcess(fieldSystem, &boxAppManTemplate, pokemonStorageSession);
 }
 
 static BOOL sub_0203D764(FieldTask *taskMan)
