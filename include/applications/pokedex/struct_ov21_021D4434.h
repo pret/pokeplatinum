@@ -14,10 +14,10 @@ typedef struct {
     UnkStruct_ov21_021D423C *unk_14;
     UnkStruct_ov21_021D423C *unk_18;
     UnkStruct_ov21_021D423C *unk_1C;
-    UnkStruct_ov21_021E68F4 *unk_20;
-    UnkStruct_ov21_021E68F4 *unk_24;
-    UnkStruct_ov21_021E68F4 *unk_28;
-    UnkStruct_ov21_021E68F4 *unk_2C;
+    PokedexScreenManager *unk_20;
+    PokedexScreenManager *unk_24;
+    PokedexScreenManager *unk_28;
+    PokedexScreenManager *unk_2C;
 } UnkStruct_ov21_021D4434;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D4434_H

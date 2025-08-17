@@ -9,8 +9,8 @@
 #include "bg_window.h"
 #include "heap.h"
 
-void ov21_021DE668(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID);
-void ov21_021DE6C0(UnkStruct_ov21_021E68F4 *param0);
+void ov21_021DE668(PokedexScreenManager *param0, PokedexApp *param1, enum HeapId heapID);
+void ov21_021DE6C0(PokedexScreenManager *param0);
 BOOL ov21_021DE6D4(UnkStruct_ov21_021DE6D4 *param0, int param1);
 BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 *param0, int param1);
 void ov21_021DEB8C(Window *param0, int param1, enum HeapId heapID, int param3, u32 param4);
