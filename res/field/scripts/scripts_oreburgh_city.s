@@ -369,7 +369,7 @@ _047D:
 _0497:
     Message 6
     CloseMessage
-    CallCommonScript SetTSURETEKEBGM
+    CallCommonScript UNK_15BF
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2EC, _04DC
     GoToIfEq VAR_0x8005, 0x2ED, _04F6

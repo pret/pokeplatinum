@@ -91,7 +91,7 @@ _0149:
     WaitMovement
     ApplyMovement 7, _044C
     WaitMovement
-    CallCommonScript SetGenderBasedBGM
+    CallCommonScript SetCounterpartBGM
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _018D
     GoToIfEq VAR_RESULT, GENDER_FEMALE, _0224
@@ -228,7 +228,7 @@ _0348:
 _036E:
     ApplyMovement 31, _0550
     WaitMovement
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     Message 12
     Message 13
     CloseMessage
@@ -1008,14 +1008,14 @@ _0D58:
     GetRandom VAR_RESULT, 6
     SetVar VAR_0x8004, 0
     AddVar VAR_0x8004, VAR_RESULT
-    AddAccessoryToFashionCase VAR_0x8004, 1
+    AddAccessory VAR_0x8004, 1
     Return
 
 _0D72:
     GetRandom VAR_RESULT, 6
     SetVar VAR_0x8004, 18
     AddVar VAR_0x8004, VAR_RESULT
-    AddAccessoryToFashionCase VAR_0x8004, 1
+    AddAccessory VAR_0x8004, 1
     Return
 
 _0D8C:
@@ -1678,7 +1678,7 @@ _14CF:
     AddObject 31
     ApplyMovement 31, _1538
     WaitMovement
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     ApplyMovement 31, _1544
     ApplyMovement LOCALID_PLAYER, _08A0
     WaitMovement
