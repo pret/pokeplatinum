@@ -783,7 +783,7 @@ Overlay pokedex
 {
 	After main
 	Object main.nef.p/src_applications_pokedex_pokedex_main.c.o
-	Object main.nef.p/src_applications_pokedex_pokedex_footprint.c.o
+	Object main.nef.p/src_applications_pokedex_footprint.c.o
 	Object main.nef.p/src_applications_pokedex_pokedex_graphics.c.o
 	Object main.nef.p/src_applications_pokedex_pokedex_sort.c.o
 	Object main.nef.p/src_applications_pokedex_pokedex_updater.c.o

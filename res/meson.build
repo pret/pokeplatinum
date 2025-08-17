@@ -5,6 +5,46 @@ h_headers = []
 ### PREBUILT FILES ###
 subdir('prebuilt')
 
+ncgr_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCGR',
+)
+
+ncgr_lz_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCGR.lz',
+)
+
+nclr_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCLR',
+)
+
+ncer_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCER'
+)
+
+ncer_lz_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCER.lz',
+)
+
+nanr_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NANR'
+)
+
+nanr_lz_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NANR.lz',
+)
+
+lz_gen = generator(nitrogfx_exe,
+    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@PLAINNAME@.lz',
+)
+
 ### DECOMPILED DATA DIRECTORIES ###
 # These subpaths are listed because the result of some build-rule inside them
 # is a dependency of some later build-rule.
@@ -46,26 +86,6 @@ script_bin_gen = generator(make_script_bin_sh,
     ],
     output: '@BASENAME@',
     depfile: '@BASENAME@.d',
-)
-
-ncgr_gen = generator(nitrogfx_exe,
-    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
-    output: '@BASENAME@.NCGR',
-)
-
-nclr_gen = generator(nitrogfx_exe,
-    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
-    output: '@BASENAME@.NCLR',
-)
-
-ncer_gen = generator(nitrogfx_exe,
-    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
-    output: '@BASENAME@.NCER'
-)
-
-nanr_gen = generator(nitrogfx_exe,
-    arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
-    output: '@BASENAME@.NANR'
 )
 
 subdir('battle')
