@@ -593,7 +593,7 @@ pokeplatinum_c = files(
     'overlay020/ov20_021D4E38.c',
     'overlay020/ov20_021D5044.c',
     'applications/pokedex/pokedex_main.c',
-    'applications/pokedex/pokedex_footprint.c',
+    'applications/pokedex/footprint.c',
     'applications/pokedex/pokedex_graphics.c',
     'applications/pokedex/pokedex_sort.c',
     'applications/pokedex/pokedex_updater.c',

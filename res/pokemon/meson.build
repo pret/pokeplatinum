@@ -57,11 +57,7 @@ form_sprites_shared = files(
     '.shared/shadows.pal',
 )
 
-pokefoot_files = files(
-    '.shared/pokefoot.pal',
-    '.shared/pokefoot_anim.json',
-    '.shared/pokefoot_cell.json',
-)
+pokefoot_files = []
 
 sinnoh_pokedex = files('sinnoh_pokedex.json')
 pl_growtbl_files = files('.shared/exp_tables.csv')
@@ -344,22 +340,53 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
     depend_files: [ species_data_files ],
 )
 
+
+pokefoot_nclr = nclr_gen.process(
+    files('.shared/footprint.pal')
+)
+pokefoot_nanr_lz = nanr_lz_gen.process(
+    files('.shared/footprint_anim.json'),
+    extra_args: [
+        '-nopad',
+    ],
+)
+pokefoot_ncer_lz = ncer_lz_gen.process(
+    files('.shared/footprint_cell.json'),
+    extra_args: [
+        '-nopad',
+    ],
+)
+pokefoot_cell_key = files('.shared/footprint_cell_key.json')
+pokefoot_ncgr_lz = ncgr_lz_gen.process(
+    pokefoot_files,
+    extra_args: [
+        '-cell', pokefoot_cell_key[0].full_path(),
+        '-version101',
+        '-clobbersize',
+        '-mappingtype', '128',
+        '-nopad',
+    ],
+    preserve_path_from: meson.current_source_dir(),
+)
+
 pokefoot_narc = custom_target('pokefoot.narc',
     output: [
         'pokefoot.narc',
         'pokefoot.naix.h',
     ],
-    input: pokefoot_files,
-    command: [
-        make_pokefoot_py,
-        '--nitrogfx', nitrogfx_exe,
-        '--narc', narc_exe,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--private-dir', '@PRIVATE_DIR@',
-        '--output-dir', '@OUTDIR@',
+    input: [
+        pokefoot_nclr,
+        pokefoot_nanr_lz,
+        pokefoot_ncer_lz,
+        pokefoot_ncgr_lz,
     ],
-    env: species_env,
-    depends: [ py_consts_generators ],
+    command: [
+        narc_exe, 'create',
+        '--naix',
+        '--order', files('.shared/footprint.order'),
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
+    ],
 )
 naix_headers += pokefoot_narc[1]
 
