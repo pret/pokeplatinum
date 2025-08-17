@@ -45,6 +45,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "scroll_prompts.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -56,7 +57,6 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0206A780.h"
 
 typedef void (*UnkFuncPtr_ov23_0224FA58)(UnkStruct_ov23_02250CD4 *);
 
@@ -632,10 +632,10 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
         break;
     default:
         if ((v0->unk_2A0 == (u32)ov23_0224FDE0) || (v0->unk_2A0 == (u32)ov23_022501BC) || (v0->unk_2A0 == (u32)ov23_02250CD4) || (v0->unk_2A0 == (u32)ov23_02250598)) {
-            v0->unk_08 = sub_0206A780(HEAP_ID_FIELD);
-            sub_0206A8A0(v0->unk_08, 200, 20, 122);
-            sub_0206A8C4(v0->unk_08, 0, 0);
-            sub_0206A8C4(v0->unk_08, 1, 0);
+            v0->unk_08 = ScrollPrompts_New(HEAP_ID_FIELD);
+            ScrollPrompts_SetPosition(v0->unk_08, 200, 20, 122);
+            ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
+            ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
         }
 
         if (v0->unk_25C) {
@@ -771,7 +771,7 @@ static void ov23_0224FD3C(UnkStruct_ov23_02250CD4 *param0)
     ov23_0224FB7C(param0);
 
     if (param0->unk_08) {
-        sub_0206A844(param0->unk_08);
+        ScrollPrompts_Free(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
@@ -914,8 +914,8 @@ static BOOL Underground_HandleTrapsMenu(SysTask *param0, void *param1)
             UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), 129, FALSE, NULL);
         }
     }
-        sub_0206A8C4(v0->unk_08, 0, 0);
-        sub_0206A8C4(v0->unk_08, 1, 0);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
         break;
     }
 
@@ -1098,8 +1098,8 @@ static BOOL Underground_HandleSpheresMenu(SysTask *param0, void *param1)
         v0->unk_2AA = 16;
         UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetCommonTextPrinter(), 2, Unk_ov23_022577B8->selectedID);
         UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), 129, FALSE, NULL);
-        sub_0206A8C4(v0->unk_08, 0, FALSE);
-        sub_0206A8C4(v0->unk_08, 1, FALSE);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
         break;
     }
 
@@ -1275,8 +1275,8 @@ static BOOL Underground_HandleTreasuresMenu(SysTask *param0, void *param1)
 
         v0->unk_2AA = 17;
 
-        sub_0206A8C4(v0->unk_08, 0, 0);
-        sub_0206A8C4(v0->unk_08, 1, 0);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
         break;
     }
 
@@ -1472,7 +1472,7 @@ static void ov23_02250B34(SysTask *param0, UnkStruct_ov23_02250CD4 *param1, BOOL
     param1->unk_04 = NULL;
 
     if (param1->unk_08) {
-        sub_0206A844(param1->unk_08);
+        ScrollPrompts_Free(param1->unk_08);
     }
 
     Heap_Free(param1);
@@ -1679,8 +1679,8 @@ static BOOL Underground_HandleGoodsMenu(SysTask *param0, void *param1)
 
         v0->unk_2AA = 19;
 
-        sub_0206A8C4(v0->unk_08, 0, 0);
-        sub_0206A8C4(v0->unk_08, 1, 0);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
+        ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
         break;
     }
 
@@ -1753,7 +1753,7 @@ void ov23_02251044(void *param0, u32 param1)
     ov23_0224FCF4(v0);
 
     if (v0->unk_08) {
-        sub_0206A844(v0->unk_08);
+        ScrollPrompts_Free(v0->unk_08);
     }
 
     if (v0->unk_260 != NULL) {

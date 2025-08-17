@@ -612,8 +612,8 @@ static void AccessoryShop_UpdateItemListMenu(AccessoryShopItemList *itemList)
 
 static void AccessoryShop_HideScrollArrows(AccessoryShopItemList *itemList)
 {
-    Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_ARROW_TOP], FALSE);
-    Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_ARROW_BOTTOM], FALSE);
+    Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_TOP_ARROW], FALSE);
+    Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_BOTTOM_ARROW], FALSE);
 }
 
 static void AccessoryShop_LoadScrollArrowGfx(SpriteResourcesHeader *scrollArrowResource, AccessoryShopItemList *itemList, enum HeapId heapID)
@@ -648,15 +648,15 @@ static void AccessoryShop_UpdateScrollArrowsVisibility(AccessoryShopItemList *it
     ListMenu_GetListAndCursorPos(itemList->listMenu, &listPos, NULL);
 
     if (listPos <= 0) {
-        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_ARROW_TOP], FALSE);
+        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_TOP_ARROW], FALSE);
     } else {
-        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_ARROW_TOP], TRUE);
+        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_TOP_ARROW], TRUE);
     }
 
     if (listPos >= (itemList->maxListItems - MAX_ITEM_SHOWN)) {
-        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_ARROW_BOTTOM], FALSE);
+        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_BOTTOM_ARROW], FALSE);
     } else {
-        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_ARROW_BOTTOM], TRUE);
+        Sprite_SetDrawFlag(itemList->sprites[ACCESSORY_SHOP_SPRITE_SCROLL_BOTTOM_ARROW], TRUE);
     }
 }
 
