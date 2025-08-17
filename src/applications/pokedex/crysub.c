@@ -909,7 +909,7 @@ static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, Pokedex
 
     spriteListTemplate.position.x = SWITCH_X << FX32_SHIFT;
     spriteListTemplate.position.y = SWITCH_Y << FX32_SHIFT;
-    spriteListTemplate.position.y += (SCREENHEIGHT << FX32_SHIFT);
+    spriteListTemplate.position.y += (HW_LCD_HEIGHT << FX32_SHIFT);
 
     pokedexCrySubGraphics->switchSprite = SpriteList_Add(&spriteListTemplate);
 
@@ -920,7 +920,7 @@ static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, Pokedex
 
     spriteListTemplate.position.x = DIAL_X << FX32_SHIFT;
     spriteListTemplate.position.y = DIAL_Y << FX32_SHIFT;
-    spriteListTemplate.position.y += (SCREENHEIGHT << FX32_SHIFT);
+    spriteListTemplate.position.y += (HW_LCD_HEIGHT << FX32_SHIFT);
 
     pokedexCrySubGraphics->dialSprite = SpriteList_Add(&spriteListTemplate);
 
@@ -929,7 +929,7 @@ static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, Pokedex
 
     spriteListTemplate.position.x = PLAY_X << FX32_SHIFT;
     spriteListTemplate.position.y = PLAY_Y << FX32_SHIFT;
-    spriteListTemplate.position.y += (SCREENHEIGHT << FX32_SHIFT);
+    spriteListTemplate.position.y += (HW_LCD_HEIGHT << FX32_SHIFT);
 
     pokedexCrySubGraphics->playButtonSprite = SpriteList_Add(&spriteListTemplate);
 
@@ -946,7 +946,7 @@ static void AnimateSprites(PokedexCrySubGraphics *pokedexCrySubGraphics, Pokedex
 
     spriteListTemplate.position.x = LOOP_X << FX32_SHIFT;
     spriteListTemplate.position.y = LOOP_Y << FX32_SHIFT;
-    spriteListTemplate.position.y += (SCREENHEIGHT << FX32_SHIFT);
+    spriteListTemplate.position.y += (HW_LCD_HEIGHT << FX32_SHIFT);
 
     pokedexCrySubGraphics->loopButtonSprite = SpriteList_Add(&spriteListTemplate);
 
@@ -980,7 +980,7 @@ static void LoadSwitchText(PokedexCrySubGraphics *pokedexCrySubGraphics, Pokedex
     displayBox.textMan = graphicData->textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(palette, NULL);
     displayBox.sprite = NULL;
-    displayBox.y = SWITCH_LABEL_Y + SCREENHEIGHT;
+    displayBox.y = SWITCH_LABEL_Y + HW_LCD_HEIGHT;
     displayBox.spriteResourcePriority = 2;
     displayBox.spriteListPriority = 0;
     displayBox.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
