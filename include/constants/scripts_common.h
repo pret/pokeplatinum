@@ -41,7 +41,7 @@
 #define EmptyScript6                        0x7F5
 #define PrintPlateObtainedMessage           0x7F6
 #define UNK_1477                            0x7F7
-#define SetGenderBasedBGM                   0x7F8
+#define SetCounterpartBGM                   0x7F8
 #define FadeToDefaultMusic                  0x7F9
 #define SetRivalBGM                         0x7FA
 #define FadeToDefaultMusic_duplicate1       0x7FB
@@ -49,14 +49,14 @@
 #define ObtainContestBackdrop               0x7FD
 #define SendToUndergroundPCWithLinefeed     0x7FE
 #define ObtainAccessory                     0x7FF
-#define SetTSURETEKEBGM                     0x800
+#define UNK_15BF                            0x800
 #define FadeToDefaultMusic_duplicate2       0x801
 #define UNK_15E7                            0x802
 #define UNK_1636                            0x803
 #define UNK_164A                            0x804
 #define UNK_165E                            0x805
 #define CheckAllFrontierGoldPrintsObtained  0x806
-#define SetHandsomeBGM                      0x807
+#define SetLookerBGM                        0x807
 #define FadeToDefaultMusic_duplicate3       0x808
 #define UNK_170A                            0x809
 

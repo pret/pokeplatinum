@@ -68,7 +68,7 @@ _00F6:
     LockAll
     ApplyMovement 6, _0444
     WaitMovement
-    CallCommonScript SetGenderBasedBGM
+    CallCommonScript SetCounterpartBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 0x2A9, _02E1
     CallIfEq VAR_0x8004, 0x2AA, _02ED
@@ -536,7 +536,7 @@ _0656:
     ClearFlag FLAG_UNK_0x028A
     SetObjectEventPos 26, 0x2B4, 0x25E
     AddObject 26
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     ApplyMovement 26, _0A7C
     WaitMovement
     Message 29
@@ -1135,7 +1135,7 @@ _0E34:
     ApplyMovement LOCALID_PLAYER, _0F48
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     ApplyMovement 26, _0F80
     WaitMovement
     GoTo _0ECC
@@ -1144,7 +1144,7 @@ _0E34:
 _0E5C:
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     ApplyMovement 26, _0F70
     WaitMovement
     GoTo _0ECC
@@ -1154,7 +1154,7 @@ _0E7C:
     ApplyMovement LOCALID_PLAYER, _0F58
     ApplyMovement 23, _0F24
     WaitMovement
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     ApplyMovement 26, _0F90
     WaitMovement
     GoTo _0ECC
@@ -1164,7 +1164,7 @@ _0EA4:
     ApplyMovement LOCALID_PLAYER, _0F64
     ApplyMovement 23, _0F38
     WaitMovement
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     ApplyMovement 26, _0FA0
     WaitMovement
     GoTo _0ECC
@@ -1274,7 +1274,7 @@ _0FB0:
     WaitMovement
     BufferPlayerName 0
     Message 41
-    CallCommonScript SetHandsomeBGM
+    CallCommonScript SetLookerBGM
     GoToIfSet FLAG_UNK_0x009B, _0EF4
     GoTo _0ED8
     End

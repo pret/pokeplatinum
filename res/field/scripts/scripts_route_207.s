@@ -32,7 +32,7 @@ _004E:
     Call _008E
     ApplyMovement 18, _0194
     WaitMovement
-    CallCommonScript SetGenderBasedBGM
+    CallCommonScript SetCounterpartBGM
     ApplyMovement 18, _01A0
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0174
