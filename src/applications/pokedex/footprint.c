@@ -1,4 +1,4 @@
-#include "applications/pokedex/pokedex_footprint.h"
+#include "applications/pokedex/footprint.h"
 
 #include "res/pokemon/pokefoot.naix.h"
 
@@ -9,7 +9,7 @@ enum NarcID GetPokedexFootprintsNarcID(void)
 
 int GetSpeciesFootprintTiles(enum Species species)
 {
-    return footprint_none_NCGR_lz + species;
+    return none_footprint_NCGR_lz + species;
 }
 
 int GetSharedFootprintPalette(void)
@@ -19,10 +19,10 @@ int GetSharedFootprintPalette(void)
 
 int GetSharedFootprintCells(void)
 {
-    return footprint_NCER_lz;
+    return footprint_cell_NCER_lz;
 }
 
 int GetSharedFootprintAnims(void)
 {
-    return footprint_NANR_lz;
+    return footprint_anim_NANR_lz;
 }

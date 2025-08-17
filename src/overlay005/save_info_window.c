@@ -196,7 +196,7 @@ BOOL FieldSystem_Save(FieldSystem *fieldSystem)
 static void FieldSystem_SaveObjectsAndLocation(FieldSystem *fieldSystem)
 {
     FieldSystem_SaveObjects(fieldSystem);
-    ov5_021EA714(fieldSystem, POKETCH_EVENT_SAVE, 0);
+    FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SAVE, 0);
 
     fieldSystem->location->x = Player_GetXPos(fieldSystem->playerAvatar);
     fieldSystem->location->z = Player_GetZPos(fieldSystem->playerAvatar);

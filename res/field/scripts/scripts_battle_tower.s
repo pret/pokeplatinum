@@ -246,13 +246,13 @@ _03B0:
     GoToIfEq VAR_0x8008, 1, _04A8
     GoToIfEq VAR_0x8008, 2, _04B3
     ScrCmd_1DD 53, 0, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 53, 1, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 53, 2, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 43, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 4, _09B3
@@ -431,9 +431,9 @@ _0724:
     Return
 
 _0734:
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return
@@ -710,10 +710,10 @@ _0B94:
     GoToIfEq VAR_0x8008, 1, _04A8
     GoToIfEq VAR_0x8008, 2, _04B3
     ScrCmd_1DD 53, 0, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     ScrCmd_1DD 53, 1, VAR_RESULT
-    ScrCmd_31E VAR_RESULT, VAR_RESULT
+    TryRevertPokemonForm VAR_RESULT, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _13CE
     GoToIfEq VAR_MAP_LOCAL_1, 1, _0C53
     Call _0172
@@ -1271,7 +1271,7 @@ _140A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
-    ScrCmd_191
+    SelectMoveTutorPokemon
     GetSelectedPartySlot VAR_RESULT
     ReturnToField
     SetVar VAR_0x8000, VAR_RESULT

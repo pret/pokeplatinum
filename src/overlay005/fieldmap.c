@@ -247,7 +247,7 @@ static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1)
     if (ov5_021D119C(fieldSystem)) {
         sub_02055D94(fieldSystem);
         ov5_021D13B4(fieldSystem);
-        ov5_021EA714(fieldSystem, 1, 1);
+        FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_PLAYER_MOVED, 1);
 
         FieldMap_ChangeZone(fieldSystem);
     }
@@ -687,7 +687,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
 {
     MtxFx44 v0, v1;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     if (fieldSystem->unk_20 == 1) {
         if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {

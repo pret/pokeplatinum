@@ -2938,7 +2938,7 @@ static void ov115_0226369C(const UnkStruct_ov115_02260D78 *param0, UnkStruct_ov1
     ov115_02264C90(&param1->unk_6A3C);
     ov115_02261598(&param1->unk_3E8);
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     ov115_02263CD0(param1);
 

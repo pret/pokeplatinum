@@ -40,7 +40,7 @@ _00BE:
 _00CD:
     GetPlayerMapPos VAR_MAP_LOCAL_0, VAR_MAP_LOCAL_1
     AddVar VAR_MAP_LOCAL_0, 1
-    ScrCmd_187 16, VAR_MAP_LOCAL_0, 1, VAR_MAP_LOCAL_1, 1
+    SetPosition 16, VAR_MAP_LOCAL_0, 1, VAR_MAP_LOCAL_1, 1
     End
 
 _00E7:

@@ -242,12 +242,12 @@ void ov119_021D1004(void)
     int v0;
     const MtxFx43 *v1;
 
-    sub_020241B4();
+    G3_ResetG3X();
 
     v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
-        sub_020241B4();
+        G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 

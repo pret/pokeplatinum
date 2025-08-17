@@ -532,7 +532,7 @@ _0606:
     CallIfEq VAR_0x8004, 1, _0660
     CallIfEq VAR_0x8004, 3, _067A
     CallIfEq VAR_0x8004, 2, _0694
-    ScrCmd_23D 1, 0, 165, 0x164, 246
+    TakeShipToSnowpoint
     ReleaseAll
     End
 
