@@ -48,7 +48,8 @@ ScrollPrompts *ScrollPrompts_New(enum HeapId heapID)
             .cellCapacity = 1,
             .animCapacity = 1,
             .mcellCapacity = 0,
-            .manimCapacity = 0 }
+            .manimCapacity = 0,
+        }
     };
     ScrollPrompts *prompts = Heap_AllocFromHeap(heapID, sizeof(ScrollPrompts));
     MI_CpuClear8(prompts, sizeof(ScrollPrompts));
