@@ -57,7 +57,7 @@ static inline void inline_ov116_02261940_2(UnkStruct_ov116_0226501C *wk, UnkStru
 
 static inline void inline_ov116_02261940_1(void)
 {
-    VecFx32 v0 = { 0, (-FX32_ONE), (-FX32_ONE) };
+    VecFx32 v0 = { 0, -FX32_ONE, -FX32_ONE };
 
     VEC_Normalize(&v0, &v0);
 
@@ -75,7 +75,7 @@ void ov116_022618A8(UnkStruct_ov116_0226501C *param0, NARC *param1, int param2)
 void ov116_022618B4(UnkStruct_ov116_0226501C *param0, int param1)
 {
     Easy3DObject_Init(&param0->unk_00, &param0->unk_78);
-    Easy3DObject_SetPosition(&param0->unk_00, (0 * FX32_ONE), (-20 * FX32_ONE), (0 * FX32_ONE));
+    Easy3DObject_SetPosition(&param0->unk_00, 0 * FX32_ONE, -20 * FX32_ONE, 0 * FX32_ONE );
 
     if (param1 == 0) {
         Easy3DObject_SetScale(&param0->unk_00, FX32_CONST(1.00f), FX32_CONST(1.00f), FX32_CONST(1.00f));
@@ -102,7 +102,7 @@ void ov116_0226192C(UnkStruct_ov116_0226501C *param0)
 
 void ov116_02261940(UnkStruct_ov116_0226139C *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
     inline_ov116_02261940_1();
@@ -183,10 +183,10 @@ void ov116_02261C48(UnkStruct_ov116_02262A8C *param0, int param1)
 void ov116_02261C88(UnkStruct_ov116_0226139C *param0)
 {
     VecFx32 v0 = { 0, 0, 0 };
-    VecFx32 v1 = { 0, 0, (FX32_ONE * 160) };
+    VecFx32 v1 = { 0, 0, FX32_ONE * 160 };
 
     Camera_InitWithTargetAndPosition(&v0, &v1, 0xb60, 0, 0, param0->unk_48.camera);
-    Camera_SetClipping((FX32_ONE * -1000), (FX32_ONE * 1000), param0->unk_48.camera);
+    Camera_SetClipping(FX32_ONE * -1000, FX32_ONE * 1000, param0->unk_48.camera);
     Camera_SetAsActive(param0->unk_48.camera);
 }
 
@@ -244,7 +244,7 @@ void ov116_02261D70(UnkStruct_ov116_02262A8C *param0)
     s16 v5[] = { 72, 180, 24, 232 };
 
     for (v4 = 0; v4 < 4; v4++) {
-        ov116_02261CD8(&v0, v5[v4], (192 + 32), 1, 1, 9004);
+        ov116_02261CD8(&v0, v5[v4], 192 + 32, 1, 1, 9004);
 
         v0.bgPriority = 0;
         v0.priority = 1;
@@ -691,16 +691,16 @@ void ov116_022625A8(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
         }
 
         param1->unk_DC[v4] = v5;
-        ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, (176 + 64), 2, 0, 9000);
+        ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, 176 + 64, 2, 0, 9000);
         v0.priority = 1;
 
         param1->unk_1C[v5] = SpriteSystem_NewSprite(v1, v2, &v0);
-        ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
+        ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, (176 + 64) + 0, 2, 0, 9000);
         v0.priority = 2;
 
         param1->unk_20[v5] = SpriteSystem_NewSprite(v1, v2, &v0);
         ManagedSprite_SetExplicitPaletteOffset(param1->unk_20[v5], 0 + ov116_02264680(param0, v4));
-        ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
+        ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, (176 + 64) + 0, 2, 0, 9000);
         v0.priority = 3;
 
         param1->unk_24[v5] = SpriteSystem_NewSprite(v1, v2, &v0);

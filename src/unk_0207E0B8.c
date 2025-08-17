@@ -432,7 +432,7 @@ static int PokemonParty_Main(ApplicationManager *appMan, int *param1)
         }
         break;
     case 32:
-        sub_0208C120(1, HEAP_ID_12);
+        App_StartScreenFade(TRUE, HEAP_ID_12);
         *param1 = 33;
         break;
     case 33:

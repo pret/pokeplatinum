@@ -24,6 +24,7 @@
 #include "generated/signpost_types.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
+#include "constants/boat_cutscene.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
@@ -3215,13 +3216,29 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_23D arg0, arg1, arg2, arg3, arg4
+    .macro PlayBoatCutscene travelDir, exitDir, mapID, x, z
     .short 573
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .byte \travelDir
+    .byte \exitDir
+    .short \mapID
+    .short \x
+    .short \z
+    .endm
+
+    .macro TakeShipFromCanalave exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_NORTH_TO_SOUTH, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipFromSnowpoint exitDir, mapID, x, z
+    PlayBoatCutscene BOAT_TRAVEL_DIR_WEST_TO_EAST, \exitDir, \mapID, \x, \z
+    .endm
+
+    .macro TakeShipToCanalave
+    PlayBoatCutscene BOAT_TRAVEL_DIR_SOUTH_TO_NORTH, DIR_WEST, MAP_HEADER_CANALAVE_CITY, 44, 750
+    .endm
+
+    .macro TakeShipToSnowpoint
+    PlayBoatCutscene BOAT_TRAVEL_DIR_EAST_TO_WEST, DIR_NORTH, MAP_HEADER_SNOWPOINT_CITY, 356, 246
     .endm
 
     /* See the convenience macro below for the uses of destVar1 & destVar2 */

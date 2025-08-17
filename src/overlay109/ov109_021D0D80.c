@@ -1570,7 +1570,7 @@ static void ov109_021D1C68(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D1C90(UnkStruct_ov109_021D0F70 *param0)
 {
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_ComputeViewMatrix();
 
     NNS_G3dGlbLightVector(0, 0, -FX32_ONE, 0);
