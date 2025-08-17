@@ -16,6 +16,7 @@
 enum CameraProjection {
     CAMERA_PROJECTION_PERSPECTIVE = 0,
     CAMERA_PROJECTION_ORTHOGRAPHIC,
+    CAMERA_PROJECTION_COUNT
 };
 
 typedef struct CameraAngle {
