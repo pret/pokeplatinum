@@ -220,8 +220,8 @@ BOOL BoxAppMan_Init(ApplicationManager *appMan, int *state)
 {
     BoxApplicationManager *boxAppMan;
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_DATA, 16384);
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, 245760);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_DATA, HEAP_SIZE_BOX_DATA);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BOX_GRAPHICS, HEAP_SIZE_BOX_GRAPHICS);
 
     boxAppMan = ApplicationManager_NewData(appMan, sizeof(BoxApplicationManager), HEAP_ID_BOX_DATA);
 
@@ -245,18 +245,16 @@ BOOL BoxAppMan_Main(ApplicationManager *appMan, int *state)
     if (boxAppMan->boxApplicationAction != NULL) {
         boxAppMan->boxApplicationAction(boxAppMan, &boxAppMan->boxApplicationActionState);
         return FALSE;
-    } else {
-        if (boxAppMan->cursorLocationInputHandler != NULL) {
-            if (JOY_NEW(PAD_BUTTON_Y)) {
-                if (BoxGraphics_CheckAllTasksDone(boxAppMan->unk_114) == TRUE) {
-                    BoxApp_ToggleCursorFastMode(&boxAppMan->boxApp);
-                    BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D7340);
-                    return FALSE;
-                }
+    } else if (boxAppMan->cursorLocationInputHandler != NULL) {
+        if (JOY_NEW(PAD_BUTTON_Y)) {
+            if (BoxGraphics_CheckAllTasksDone(boxAppMan->unk_114) == TRUE) {
+                BoxApp_ToggleCursorFastMode(&boxAppMan->boxApp);
+                BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_ov19_021D7340);
+                return FALSE;
             }
-
-            return boxAppMan->cursorLocationInputHandler(boxAppMan);
         }
+
+        return boxAppMan->cursorLocationInputHandler(boxAppMan);
     }
 
     GF_ASSERT(0);
@@ -846,7 +844,7 @@ static void BoxAppMan_InitSummary(BoxApplicationManager *boxAppMan)
         boxAppMan->monSummary.monMax = 1;
         boxAppMan->monSummary.monIndex = 0;
         boxAppMan->monSummary.mode = SUMMARY_MODE_NORMAL;
-        boxAppMan->monSummary.move = 0;
+        boxAppMan->monSummary.move = MOVE_NONE;
         boxAppMan->monSummary.options = boxAppMan->options;
     } else if (BoxApp_GetCursorLocation(&boxAppMan->boxApp) == CURSOR_IN_BOX) {
         boxAppMan->monSummary.monData = PCBoxes_GetBoxMonAt(boxAppMan->pcBoxes, PCBoxes_GetCurrentBoxID(boxAppMan->pcBoxes), 0);
@@ -854,14 +852,14 @@ static void BoxAppMan_InitSummary(BoxApplicationManager *boxAppMan)
         boxAppMan->monSummary.monMax = MAX_MONS_PER_BOX;
         boxAppMan->monSummary.monIndex = BoxApp_GetCursorBoxPosition(&boxAppMan->boxApp);
         boxAppMan->monSummary.mode = SUMMARY_MODE_NORMAL;
-        boxAppMan->monSummary.move = 0;
+        boxAppMan->monSummary.move = MOVE_NONE;
     } else {
         boxAppMan->monSummary.monData = boxAppMan->party;
         boxAppMan->monSummary.dataType = SUMMARY_DATA_PARTY_MON;
         boxAppMan->monSummary.monMax = Party_GetCurrentCount(boxAppMan->party);
         boxAppMan->monSummary.monIndex = BoxApp_GetCursorPartyPosition(&boxAppMan->boxApp);
         boxAppMan->monSummary.mode = SUMMARY_MODE_NORMAL;
-        boxAppMan->monSummary.move = 0;
+        boxAppMan->monSummary.move = MOVE_NONE;
     }
 
     boxAppMan->monSummary.chatotCry = NULL;
@@ -1263,7 +1261,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_CantTakeMail);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 *state = MON_ITEM_MENU_CONFIRM_MESSAGE;
-            } else if (boxAppMan->boxApp.cursorItem == ITEM_GRISEOUS_ORB && (BoxPokemon_GetValue(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA)) {
+            } else if (boxAppMan->boxApp.cursorItem == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 StringTemplate_SetItemName(boxAppMan->MessageVariableBuffer, ITEM_NONE, ITEM_GRISEOUS_ORB);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_MonCantHoldItem);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
