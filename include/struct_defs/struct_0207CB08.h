@@ -1,11 +1,19 @@
 #ifndef POKEPLATINUM_STRUCT_0207CB08_H
 #define POKEPLATINUM_STRUCT_0207CB08_H
 
-#include "overlay084/struct_ov84_0223BE5C.h"
-
+#include "bag.h"
 #include "savedata.h"
 
-typedef struct UnkStruct_0207CB08_t {
+typedef struct BagInterfacePocketInfo {
+    BagItem *items;
+    u16 cursorPos;
+    u16 cursorScroll;
+    u8 pocketType;
+    u8 listItemsCount;
+    u8 padding_0A[2];
+} BagInterfacePocketInfo;
+
+typedef struct BagInterfaceArguments {
     SaveData *saveData;
     BagInterfacePocketInfo accessiblePockets[POCKET_MAX];
     u8 currPocketIdx;
@@ -19,6 +27,6 @@ typedef struct UnkStruct_0207CB08_t {
     u8 unk_75;
     u16 unk_76_0 : 1;
     u16 mapLoadType : 15;
-} UnkStruct_0207CB08;
+} BagInterfaceArguments;
 
 #endif // POKEPLATINUM_STRUCT_0207CB08_H

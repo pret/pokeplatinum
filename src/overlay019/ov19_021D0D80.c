@@ -8,7 +8,6 @@
 #include "constants/string.h"
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
 
 #include "applications/naming_screen.h"

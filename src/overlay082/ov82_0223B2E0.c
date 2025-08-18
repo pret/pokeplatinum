@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0207CB08_decl.h"
+#include "struct_defs/struct_0207CB08.h"
 
 #include "overlay082/ov82_0223B140.h"
 #include "overlay083/struct_ov83_0223C344.h"
@@ -140,7 +140,7 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
     case BAG_EXIT_CODE_USE_ITEM:
     case BAG_EXIT_CODE_GIVE_ITEM:
     case BAG_EXIT_CODE_GIVE_FROM_MON_MENU:
-    case BAG_EXIT_CODE_3:
+    case BAG_EXIT_CODE_POFFIN_BERRY_CHOSEN:
         break;
     case BAG_EXIT_CODE_DONE:
         return 5;

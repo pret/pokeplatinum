@@ -6,12 +6,10 @@
 #include "constants/graphics.h"
 #include "constants/items.h"
 
-#include "struct_defs/struct_0207CB08.h"
-
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_022403F4.h"
-#include "overlay084/struct_ov84_0223BE5C.h"
-#include "overlay084/struct_ov84_0223C920.h"
+// #include "overlay084/struct_ov84_0223BE5C.h"
+// #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
 #include "bg_window.h"

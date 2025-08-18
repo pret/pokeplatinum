@@ -15,8 +15,6 @@
 #include "functypes/funcptr_02069238.h"
 #include "overlay084/ov84_0223F040.h"
 #include "overlay084/ov84_022403F4.h"
-#include "overlay084/struct_ov84_0223BE5C.h"
-#include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -123,20 +121,20 @@ static int ItemActionFunc_Register(BagInterface *param0);
 static int ItemActionFunc_Deselect(BagInterface *param0);
 static int HandleInput_General(BagInterface *param0);
 static int HandleInput_SellItems(BagInterface *param0);
-static int ov84_0223E9B0(BagInterface *param0);
+static int WaitPlayerDismissMsg_ItemsSold(BagInterface *param0);
 static int ov84_0223E588(BagInterface *param0);
 static int ov84_0223E5C4(BagInterface *param0);
 static int ov84_0223E7A8(BagInterface *param0);
 static int ov84_0223E7CC(BagInterface *param0);
 static int ov84_0223E920(BagInterface *param0);
-static int ov84_0223D8EC(BagInterface *param0);
-static int ov84_0223DF0C(BagInterface *param0);
-static int ov84_0223DFF8(BagInterface *param0);
+static int WaitPlayerDismissMsg(BagInterface *param0);
+static int UpdateTrashCountBasedOnPlayerInput(BagInterface *param0);
+static int WaitConfirmTrashMsgPrinted(BagInterface *param0);
 static int HandleTrashYesNoInput(BagInterface *param0);
-static int ov84_0223E158(BagInterface *param0);
-static int ov84_0223E18C(BagInterface *param0);
+static int TrashItemOnceMsgPrinted(BagInterface *param0);
+static int WaitPlayerDismissMsg_ItemsTrashed(BagInterface *param0);
 static int HandleInput_GiveToMon(BagInterface *param0);
-static int ov84_0223E36C(BagInterface *param0);
+static int WaitPlayerDismissMsg_CantBeHeld(BagInterface *param0);
 static int HandleInput_Gardening(BagInterface *param0);
 static void RestoreCursorPosition(BagInterface *param0);
 static void SaveCursorPosition(BagInterface *param0);
@@ -144,7 +142,7 @@ static int HandleItemUsed(BagInterface *param0);
 static int RunItemUseTask(BagInterface *param0);
 static int TMHMUseTask(BagInterface *param0);
 static BOOL ShowItemUseMessage(BagInterface *param0, u16 param1);
-static Strbuf *UseRepel(BagInterface *param0, u16 param1);
+static Strbuf *TryUseRepel(BagInterface *param0, u16 param1);
 static void TrashItem(BagInterface *param0);
 static int MessageItemUseTask(BagInterface *param0);
 static void TrashItem(BagInterface *param0);
@@ -497,22 +495,22 @@ int BagInterface_Main(ApplicationManager *appMan, int *state)
     case BAG_INTERFACE_STATE_UNUSED_6:
         break;
     case BAG_INTERFACE_STATE_SELECT_ITEM_TRASH_COUNT:
-        *state = ov84_0223DF0C(interface);
+        *state = UpdateTrashCountBasedOnPlayerInput(interface);
         break;
     case BAG_INTERFACE_STATE_WAIT_CONFIRM_TRASH_MSG:
-        *state = ov84_0223DFF8(interface);
+        *state = WaitConfirmTrashMsgPrinted(interface);
         break;
     case BAG_INTERFACE_STATE_CONFIRM_TRASH:
         *state = HandleTrashYesNoInput(interface);
         break;
     case BAG_INTERFACE_STATE_TRASH_ITEM:
-        *state = ov84_0223E158(interface);
+        *state = TrashItemOnceMsgPrinted(interface);
         break;
-    case BAG_INTERFACE_STATE_SHOW_TRASHED_MESSAGE:
-        *state = ov84_0223E18C(interface);
+    case BAG_INTERFACE_STATE_WAIT_DISMISS_TRASHED_MSG:
+        *state = WaitPlayerDismissMsg_ItemsTrashed(interface);
         break;
     case BAG_INTERFACE_STATE_DISMISS_MSG:
-        *state = ov84_0223D8EC(interface);
+        *state = WaitPlayerDismissMsg(interface);
         break;
     case BAG_INTERFACE_STATE_RUN_ITEM_USE_TASK:
         *state = RunItemUseTask(interface);
@@ -521,7 +519,7 @@ int BagInterface_Main(ApplicationManager *appMan, int *state)
         *state = HandleInput_GiveToMon(interface);
         break;
     case BAG_INTERFACE_STATE_WAIT_ITEM_CANT_BE_HELD_MSG:
-        *state = ov84_0223E36C(interface);
+        *state = WaitPlayerDismissMsg_CantBeHeld(interface);
         break;
     case BAG_INTERFACE_STATE_SELECT_ITEM_TO_SELL:
         *state = HandleInput_SellItems(interface);
@@ -542,7 +540,7 @@ int BagInterface_Main(ApplicationManager *appMan, int *state)
         *state = ov84_0223E920(interface);
         break;
     case BAG_INTERFACE_STATE_DISMISS_ITEMS_SOLD_MSG:
-        *state = ov84_0223E9B0(interface);
+        *state = WaitPlayerDismissMsg_ItemsSold(interface);
         break;
     case BAG_INTERFACE_STATE_SELECT_ITEM_GARDENING:
         *state = HandleInput_Gardening(interface);
@@ -1074,7 +1072,7 @@ static void ItemsListMenuCursorCallback(ListMenu *param0, u32 param1, u8 param2)
     BagInterface *v0 = (BagInterface *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
-        switch (v0->unk_482) {
+        switch (v0->cursorSoundIdx) {
         case 0:
             Sound_PlayEffect(SEQ_SE_DP_GASA01);
             break;
@@ -1085,7 +1083,7 @@ static void ItemsListMenuCursorCallback(ListMenu *param0, u32 param1, u8 param2)
             Sound_PlayEffect(SEQ_SE_DP_GASA03);
         }
 
-        v0->unk_482 = (v0->unk_482 + 1) % 3;
+        v0->cursorSoundIdx = (v0->cursorSoundIdx + 1) % 3;
 
         if ((v0->scrollingBall == 0) || (ManagedSprite_IsAnimated(v0->sprites[BAG_SPRITE_BAG]) == 0)) {
             ManagedSprite_SetAnimationFrame(v0->sprites[BAG_SPRITE_BAG], 0);
@@ -1111,7 +1109,7 @@ static void ItemsListMenuCursorCallback(ListMenu *param0, u32 param1, u8 param2)
         BahInterface_UpdateItemSprite(v0, 0xffff);
     }
 
-    if (v0->unk_479 == 0) {
+    if (v0->hideDescription == FALSE) {
         Window_ScheduleCopyToVRAM(&v0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
     }
 }
@@ -2092,13 +2090,13 @@ static int ItemActionFunc_Use(BagInterface *param0)
     return HandleItemUsed(param0);
 }
 
-static int ov84_0223D8EC(BagInterface *param0)
+static int WaitPlayerDismissMsg(BagInterface *param0)
 {
-    if (Text_IsPrinterActive(param0->msgBoxPrinter) == 0) {
-        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
-            Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
+    if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || gSystem.touchPressed) {
+            Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-            BagInterface_SetHighlighterSpritesPalette(param0, 1);
+            BagInterface_SetHighlighterSpritesPalette(param0, PLTT_1);
 
             if (param0->appArguments->context == BAG_CONTEXT_GARDENING) {
                 return BAG_INTERFACE_STATE_SELECT_ITEM_GARDENING;
@@ -2210,7 +2208,7 @@ static int TMHMUseTask(BagInterface *param0)
             ToggleHideItemSprite(param0, 0);
             param0->appArguments->exitCode = BAG_EXIT_CODE_USE_ITEM;
             return BAG_INTERFACE_STATE_EXIT;
-        case 0xffffffff: {
+        case MENU_NOTHING_CHOSEN: {
             u8 v3 = Menu_GetLastAction(param0->menu);
 
             if (v3 == MENU_ACTION_MOVE_UP) {
@@ -2219,7 +2217,7 @@ static int TMHMUseTask(BagInterface *param0)
                 RotatePokeball(param0, -18);
             }
         } break;
-        case 0xfffffffe:
+        case MENU_CANCELED:
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
             BagInterface_SetHighlighterSpritesPalette(param0, 1);
@@ -2234,31 +2232,31 @@ static int TMHMUseTask(BagInterface *param0)
 
 static BOOL ShowItemUseMessage(BagInterface *param0, u16 param1)
 {
-    Strbuf *v0;
+    Strbuf *strToPrint;
 
     StringTemplate_SetPlayerName(param0->strTemplate, 0, param0->trainerInfo);
     StringTemplate_SetItemName(param0->strTemplate, 1, param1);
 
     if (param1 == ITEM_BLACK_FLUTE) {
-        v0 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_UsedBlackFlute);
+        strToPrint = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_UsedBlackFlute);
         SetBlackWhiteFluteActive(param0, FLUTE_FACTOR_USED_BLACK);
         param0->selectedItemCount = 0;
     } else if (param1 == ITEM_WHITE_FLUTE) {
-        v0 = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_UsedWhiteFlute);
+        strToPrint = MessageLoader_GetNewStrbuf(param0->bagStringsLoader, Bag_Text_UsedWhiteFlute);
         SetBlackWhiteFluteActive(param0, FLUTE_FACTOR_USED_WHITE);
         param0->selectedItemCount = 0;
-    } else if ((param1 == ITEM_MAX_REPEL) || (param1 == ITEM_SUPER_REPEL) || (param1 == ITEM_REPEL)) {
-        v0 = UseRepel(param0, param1);
+    } else if (param1 == ITEM_MAX_REPEL || param1 == ITEM_SUPER_REPEL || param1 == ITEM_REPEL) {
+        strToPrint = TryUseRepel(param0, param1);
     } else {
         return FALSE;
     }
 
-    StringTemplate_Format(param0->strTemplate, param0->strBuffer, v0);
-    Strbuf_Free(v0);
+    StringTemplate_Format(param0->strTemplate, param0->strBuffer, strToPrint);
+    Strbuf_Free(strToPrint);
     return TRUE;
 }
 
-static Strbuf *UseRepel(BagInterface *param0, u16 item)
+static Strbuf *TryUseRepel(BagInterface *param0, u16 item)
 {
     s32 stepCount;
 
@@ -2334,7 +2332,7 @@ static int ItemActionFunc_Confirm(BagInterface *param0)
 {
     BagInterface_CloseItemActionsMenu(param0);
     sub_0208C120(1, HEAP_ID_6);
-    param0->appArguments->exitCode = BAG_EXIT_CODE_3;
+    param0->appArguments->exitCode = BAG_EXIT_CODE_POFFIN_BERRY_CHOSEN;
 
     return BAG_INTERFACE_STATE_EXIT;
 }
@@ -2354,9 +2352,9 @@ static int ItemActionFunc_Trash(BagInterface *param0)
     return BAG_INTERFACE_STATE_SELECT_ITEM_TRASH_COUNT;
 }
 
-static int ov84_0223DF0C(BagInterface *param0)
+static int UpdateTrashCountBasedOnPlayerInput(BagInterface *param0)
 {
-    if (CheckPokeballItemAmountChange(param0, &param0->selectedItemCount, param0->numSelectedItemOwned) == 1) {
+    if (CheckPokeballItemAmountChange(param0, &param0->selectedItemCount, param0->numSelectedItemOwned) == TRUE) {
         BagInterface_PrintItemTrashCount(param0);
         return BAG_INTERFACE_STATE_SELECT_ITEM_TRASH_COUNT;
     }
@@ -2400,9 +2398,9 @@ static int ov84_0223DF0C(BagInterface *param0)
     return BAG_INTERFACE_STATE_SELECT_ITEM_TRASH_COUNT;
 }
 
-static int ov84_0223DFF8(BagInterface *param0)
+static int WaitConfirmTrashMsgPrinted(BagInterface *param0)
 {
-    if (Text_IsPrinterActive(param0->msgBoxPrinter) == 0) {
+    if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
         BagInterface_ShowYesNoMenu(param0);
         return BAG_INTERFACE_STATE_CONFIRM_TRASH;
     }
@@ -2462,24 +2460,24 @@ static int HandleTrashYesNoInput(BagInterface *param0)
     return BAG_INTERFACE_STATE_CONFIRM_TRASH;
 }
 
-static int ov84_0223E158(BagInterface *param0)
+static int TrashItemOnceMsgPrinted(BagInterface *param0)
 {
-    if (Text_IsPrinterActive(param0->msgBoxPrinter) != 0) {
+    if (Text_IsPrinterActive(param0->msgBoxPrinter) != FALSE) {
         return BAG_INTERFACE_STATE_TRASH_ITEM;
     }
 
-    param0->unk_479 = 1;
+    param0->hideDescription = TRUE;
     TrashItem(param0);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE]);
 
-    return BAG_INTERFACE_STATE_SHOW_TRASHED_MESSAGE;
+    return BAG_INTERFACE_STATE_WAIT_DISMISS_TRASHED_MSG;
 }
 
-static int ov84_0223E18C(BagInterface *param0)
+static int WaitPlayerDismissMsg_ItemsTrashed(BagInterface *param0)
 {
-    if (Text_IsPrinterActive(param0->msgBoxPrinter) == 0) {
+    if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
         if ((JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
-            param0->unk_479 = 0;
+            param0->hideDescription = FALSE;
             Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
             BagInterface_SetHighlighterSpritesPalette(param0, 1);
@@ -2488,7 +2486,7 @@ static int ov84_0223E18C(BagInterface *param0)
         }
     }
 
-    return BAG_INTERFACE_STATE_SHOW_TRASHED_MESSAGE;
+    return BAG_INTERFACE_STATE_WAIT_DISMISS_TRASHED_MSG;
 }
 
 static int ItemActionFunc_Register(BagInterface *param0)
@@ -2571,7 +2569,7 @@ static int HandleInput_GiveToMon(BagInterface *param0)
     return BAG_INTERFACE_STATE_SELECT_ITEM_TO_GIVE;
 }
 
-static int ov84_0223E36C(BagInterface *param0)
+static int WaitPlayerDismissMsg_CantBeHeld(BagInterface *param0)
 {
     if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || gSystem.touchPressed) {
@@ -2819,24 +2817,24 @@ static int ov84_0223E920(BagInterface *param0)
     }
 
     BagInterface_PrintMoney(param0, 1);
-    param0->unk_479 = 1;
+    param0->hideDescription = TRUE;
     TrashItem(param0);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE]);
 
     return BAG_INTERFACE_STATE_DISMISS_ITEMS_SOLD_MSG;
 }
 
-static int ov84_0223E9B0(BagInterface *param0)
+static int WaitPlayerDismissMsg_ItemsSold(BagInterface *param0)
 {
     if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B) || gSystem.touchPressed) {
-            param0->unk_479 = 0;
+            param0->hideDescription = FALSE;
             param0->soldItemPrice = 0;
 
-            Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_MONEY], 1);
-            Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
+            Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_MONEY], TRUE);
+            Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-            BagInterface_SetHighlighterSpritesPalette(param0, 1);
+            BagInterface_SetHighlighterSpritesPalette(param0, PLTT_1);
 
             return BAG_INTERFACE_STATE_SELECT_ITEM_TO_SELL;
         }

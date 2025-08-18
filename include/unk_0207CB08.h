@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0207CB08_H
 #define POKEPLATINUM_UNK_0207CB08_H
 
-#include "struct_decls/struct_0207CB08_decl.h"
+#include "struct_defs/struct_0207CB08.h"
 
 #include "bag.h"
 #include "savedata.h"

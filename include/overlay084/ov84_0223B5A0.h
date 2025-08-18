@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_OV84_0223B5A0_H
 #define POKEPLATINUM_OV84_0223B5A0_H
 
-#include "struct_decls/struct_0207CB08_decl.h"
-
-#include "overlay084/struct_ov84_0223C920.h"
+#include "struct_defs/struct_0207CB08.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -34,7 +32,7 @@ enum BagInterfaceState {
     BAG_INTERFACE_STATE_WAIT_CONFIRM_TRASH_MSG,
     BAG_INTERFACE_STATE_CONFIRM_TRASH,
     BAG_INTERFACE_STATE_TRASH_ITEM,
-    BAG_INTERFACE_STATE_SHOW_TRASHED_MESSAGE,
+    BAG_INTERFACE_STATE_WAIT_DISMISS_TRASHED_MSG,
     BAG_INTERFACE_STATE_DISMISS_MSG,
     BAG_INTERFACE_STATE_RUN_ITEM_USE_TASK,
     BAG_INTERFACE_STATE_SELECT_ITEM_TO_GIVE,
@@ -63,7 +61,7 @@ enum BagInterfaceExitCode {
     BAG_EXIT_CODE_USE_ITEM = 0,
     BAG_EXIT_CODE_SHOW_BERRY_DATA,
     BAG_EXIT_CODE_GIVE_ITEM,
-    BAG_EXIT_CODE_3,
+    BAG_EXIT_CODE_POFFIN_BERRY_CHOSEN,
     BAG_EXIT_CODE_GIVE_FROM_MON_MENU,
     BAG_EXIT_CODE_DONE,
 };
@@ -120,19 +118,32 @@ enum ItemSlotProperty {
     ITEM_SLOT_QUANTITY,
 };
 
-typedef struct BagInterfaceManager BagInterface;
+typedef struct BagInterface BagInterface;
 
 typedef int (*ItemActionFuncPtr)(BagInterface *param0);
 
-typedef struct {
+typedef struct BagPocketHighlightAnim {
     u8 moving;
     u8 direction;
     u8 padding_02;
     u8 currentStep;
     fx32 positions[8];
-} UnkStruct_ov84_0223B5A0_sub1;
+} BagPocketHighlightAnim;
 
-struct BagInterfaceManager {
+typedef struct BagPocketIndicatorManager {
+    u8 nextPocketIdx;
+    u8 scrollDirection;
+    u8 animationStage;
+    u8 animFrame;
+    u8 unk_04;
+    u8 unk_05;
+    u8 pressedButtonIdx;
+    u8 unk_07_0 : 4;
+    u8 unk_07_4 : 3;
+    u8 unk_07_7 : 1;
+} BagPocketIndicatorManager;
+
+struct BagInterface {
     BgConfig *bgConfig;
     Window windows[NUM_BAG_INTERFACE_WINDOWS];
     Window itemActionsWindow;
@@ -166,15 +177,15 @@ struct BagInterfaceManager {
     u8 pocketIndicatorSpacing;
     BagPocketIndicatorManager pocketIndicatorMan;
     u8 padding_431[35];
-    UnkStruct_ov84_0223B5A0_sub1 pocketHighlighterMovtMan;
+    BagPocketHighlightAnim pocketHighlighterMovtMan;
     u8 nextPocketIdx;
-    u8 unk_479;
+    u8 hideDescription;
     u8 movingItem;
     u8 movingItemIndex;
     u32 movingItemID;
     u8 pocketIndicatorArrowsAnimCyclePos;
     u8 pocketIndicatorArrowsAnimTimer;
-    u8 unk_482;
+    u8 cursorSoundIdx;
     u8 itemUseTaskState;
     u32 itemUseCallback;
     s16 selectedItemCount;

@@ -8,7 +8,7 @@
 #include "constants/savedata/save_table.h"
 #include "generated/items.h"
 
-#include "struct_decls/struct_0207CB08_decl.h"
+#include "struct_defs/struct_0207CB08.h"
 
 #include "heap.h"
 #include "item.h"
