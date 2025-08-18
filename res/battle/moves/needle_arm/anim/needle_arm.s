@@ -1,0 +1,19 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 319
+    CreateEmitter 0, 2, 4
+    CreateEmitter 0, 3, 4
+    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, 4
+    Delay 2
+    PlayLoopedSoundEffect SEQ_SE_DP_W030, BATTLE_SOUND_PAN_RIGHT, 2, 8
+    Delay 13
+    CallFunc 36, 5, 2, 0, 1, 4, 264
+    PlayDelayedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT, 5
+    WaitForAnimTasks
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    End

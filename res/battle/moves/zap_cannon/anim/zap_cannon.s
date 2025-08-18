@@ -1,0 +1,29 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 211
+    ResetVar
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    SwitchBg 26, BATTLE_BG_SWITCH_MODE_FADE
+    Delay 5
+    PlayLoopedSoundEffect SEQ_SE_DP_W086, 0, 2, 3
+    CallFunc 68, 5, 8, 8, 0, 20, 0
+    CreateEmitter 0, 0, 17
+    BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
+    CreateEmitter 0, 1, 4
+    Delay 5
+    CreateEmitter 0, 2, 4
+    Delay 10
+    PlayPannedSoundEffect SEQ_SE_DP_W085C, BATTLE_SOUND_PAN_RIGHT
+    PlayDelayedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_RIGHT, 25
+    CallFunc 36, 5, 4, 0, 1, 4, 264
+    CallFunc 34, 6, 8, 0, 1, 13311, 14, 0
+    WaitForAnimTasks
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    RestoreBg 26, BATTLE_BG_SWITCH_MODE_FADE
+    WaitForBgSwitch
+    End

@@ -1,0 +1,88 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 93
+    JumpIfFriendlyFire L_1
+    JumpIfContest L_2
+    ResetVar
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
+    SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_MOVE
+    WaitForBgSwitch
+    CallFunc 68, 5, 0, 3, 0, 20, 0
+    CreateEmitter 0, 9, 3
+    CreateEmitterForMove 0, 0, 1, 2, 3, 4, 5, 18
+    CreateEmitterForMove 0, 10, 10, 10, 11, 11, 11, 18
+    Delay 5
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    CallFunc 36, 5, 4, 0, 1, 20, 264
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    ResetVar
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
+    SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    RestoreBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_STOP
+    WaitForBgSwitch
+    End
+
+L_1:
+    ResetVar
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
+    SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_MOVE
+    WaitForBgSwitch
+    CallFunc 68, 5, 0, 3, 0, 20, 0
+    CreateEmitter 0, 9, 3
+    CreateEmitterForFriendlyFire 0, 7, 8, 7, 8, 3
+    CreateEmitterForFriendlyFire 0, 13, 13, 13, 13, 3
+    Delay 5
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    CallFunc 36, 5, 4, 0, 1, 20, 264
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    ResetVar
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
+    SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    RestoreBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_STOP
+    WaitForBgSwitch
+    End
+
+L_2:
+    ResetVar
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
+    SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_MOVE
+    WaitForBgSwitch
+    CallFunc 68, 5, 0, 3, 0, 20, 0
+    CreateEmitter 0, 9, 3
+    CreateEmitter 0, 6, 17
+    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 4, 0, 11008, -8256, 0
+    CreateEmitter 0, 12, 17
+    BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
+    BtlAnimCmd_055 4, 0, 11008, -8256, 0
+    Delay 5
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    CallFunc 36, 5, 4, 0, 1, 20, 264
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    ResetVar
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
+    SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
+    SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
+    RestoreBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_STOP
+    WaitForBgSwitch
+    End

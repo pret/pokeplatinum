@@ -150,6 +150,10 @@
 #define BASE_SCALE_XY 100
 
 // Script function specific constants
+#define ROTATE_MON_MODE_DEFENDER              0
+#define ROTATE_MON_MODE_ATTACKER_CUSTOM_PIVOT 1
+#define ROTATE_MON_MODE_DEFENDER_REVERSED     2
+
 #define FLAIL_MODE_ATTACKER 0
 #define FLAIL_MODE_DEFENDER 1
 

@@ -1,0 +1,38 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 167
+    LoadParticleResource 1, 167
+    JumpIfContest L_1
+    CreateEmitter 0, 0, 17
+    BtlAnimCmd_055 6, 0, 2, 31, 24, 0, 4
+    PlayLoopedSoundEffect SEQ_SE_DP_W145, 0, 2, 5
+    Delay 10
+    CreateEmitter 1, 1, 20
+    Delay 10
+    CallFunc 36, 5, 2, 0, 1, 2, 264
+    CallFunc 36, 5, 2, 0, 1, 2, 272
+    PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_RIGHT, 2, 2
+    Delay 10
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    UnloadParticleSystem 1
+    End
+
+L_1:
+    CreateEmitter 0, 0, 17
+    BtlAnimCmd_055 6, 0, 0, 28, 22, 0, 4
+    PlayLoopedSoundEffect SEQ_SE_DP_W145, 0, 2, 5
+    Delay 10
+    CreateEmitter 1, 1, 20
+    Delay 10
+    CallFunc 36, 5, 2, 0, 1, 2, 264
+    CallFunc 36, 5, 2, 0, 1, 2, 272
+    PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_RIGHT, 2, 2
+    Delay 10
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    UnloadParticleSystem 1
+    End

@@ -1,0 +1,13 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 462
+    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 1, 3
+    PlayPannedSoundEffect SEQ_SE_DP_164, BATTLE_SOUND_PAN_LEFT
+    CallFunc 25, 0
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    End

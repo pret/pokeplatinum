@@ -1,0 +1,23 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 105
+    PlayPannedSoundEffect SEQ_SE_DP_KAZE, BATTLE_SOUND_PAN_LEFT
+    CreateEmitter 0, 2, 3
+    CreateEmitter 0, 1, 17
+    BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
+    Delay 15
+    StopSoundEffect SEQ_SE_DP_KAZE
+    Delay 50
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_209, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    Delay 10
+    CreateEmitter 0, 0, 20
+    CallFunc 36, 5, 1, 0, 1, 2, 264
+    CallFunc 36, 5, 1, 0, 1, 2, 272
+    Delay 7
+    PlayLoopedSoundEffect SEQ_SE_DP_HURU, BATTLE_SOUND_PAN_RIGHT, 3, 5
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    End

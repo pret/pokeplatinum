@@ -1,0 +1,21 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    PlayPannedSoundEffect SEQ_SE_DP_W185, BATTLE_SOUND_PAN_LEFT
+    InitPokemonSpriteManager
+    LoadPokemonSpriteDummyResources 0
+    AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
+    AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
+    LoadPokemonSpriteDummyResources 4
+    AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
+    BtlAnimCmd_082 2, 0, 4
+    CallFunc 55, 0
+    WaitForAnimTasks
+    FreePokemonSpriteManager
+    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
+    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
+    BtlAnimCmd_083 0
+    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
+    End

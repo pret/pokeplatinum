@@ -1,0 +1,43 @@
+#include "macros/btlanimcmd.inc"
+
+.data
+
+L_0:
+    LoadParticleResource 0, 234
+    CreateEmitter 0, 2, 3
+    CallFunc 66, 6, 0, 0, 0, 0, 19, 64
+    PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
+    Delay 20
+    BtlAnimCmd_013 L_1, L_2
+    End
+
+L_1:
+    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 0, 4
+    CallFunc 36, 5, 1, 0, 1, 2, 264
+    PlayLoopedSoundEffect SEQ_SE_DP_140, BATTLE_SOUND_PAN_RIGHT, 3, 3
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    End
+
+L_2:
+    LoadParticleResource 1, 27
+    CreateEmitter 0, 1, 4
+    InitPokemonSpriteManager
+    LoadPokemonSpriteDummyResources 0
+    LoadPokemonSpriteDummyResources 1
+    AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
+    AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
+    AddPokemonSprite BATTLER_ROLE_DEFENDER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 1
+    CallFunc 82, 2, 2, 1
+    PlayPannedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_RIGHT
+    Delay 5
+    CreateEmitter 1, 4, 4
+    WaitForAnimTasks
+    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
+    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
+    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_2
+    FreePokemonSpriteManager
+    WaitForAllEmitters
+    UnloadParticleSystem 1
+    End
