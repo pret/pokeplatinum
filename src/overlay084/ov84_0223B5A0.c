@@ -101,9 +101,9 @@ static u8 HandleInput_MovingItem(BagInterface *param0);
 static void FinishMovingItem(BagInterface *param0);
 static void RebuildItemsListMenuAfterSort(BagInterface *param0);
 static void SwitchPositionIndicatorSprite(BagInterface *param0);
-static void ov84_0223C848(BagInterface *param0);
-static void ov84_0223C868(BagInterface *param0);
-static void ov84_0223C89C(BagInterface *param0);
+static void SetupPocketChangeFromDPad(BagInterface *param0);
+static void SetupPocketChangeFromTouch(BagInterface *param0);
+static void SetupPocketChange(BagInterface *param0);
 static u8 DoPocketSwitch(BagInterface *param0);
 static u8 DoDPadPocketSwitch(BagInterface *param0);
 static u8 DoPressedPocketButtonAnim(BagInterface *param0);
@@ -122,11 +122,11 @@ static int ItemActionFunc_Deselect(BagInterface *param0);
 static int HandleInput_General(BagInterface *param0);
 static int HandleInput_SellItems(BagInterface *param0);
 static int WaitPlayerDismissMsg_ItemsSold(BagInterface *param0);
-static int ov84_0223E588(BagInterface *param0);
-static int ov84_0223E5C4(BagInterface *param0);
-static int ov84_0223E7A8(BagInterface *param0);
-static int ov84_0223E7CC(BagInterface *param0);
-static int ov84_0223E920(BagInterface *param0);
+static int SetSellLimitAndSetupWindows(BagInterface *param0);
+static int UpdateSellCountBasedOnPlayerInput(BagInterface *param0);
+static int WaitConfirmSaleMsgPrinted(BagInterface *param0);
+static int HandleSellYesNoInput(BagInterface *param0);
+static int ResolveSale(BagInterface *param0);
 static int WaitPlayerDismissMsg(BagInterface *param0);
 static int UpdateTrashCountBasedOnPlayerInput(BagInterface *param0);
 static int WaitConfirmTrashMsgPrinted(BagInterface *param0);
@@ -525,19 +525,19 @@ int BagInterface_Main(ApplicationManager *appMan, int *state)
         *state = HandleInput_SellItems(interface);
         break;
     case BAG_INTERFACE_STATE_WAIT_SELL_HOW_MANY_MSG:
-        *state = ov84_0223E588(interface);
+        *state = SetSellLimitAndSetupWindows(interface);
         break;
     case BAG_INTERFACE_STATE_SELECT_ITEM_SELL_COUNT:
-        *state = ov84_0223E5C4(interface);
+        *state = UpdateSellCountBasedOnPlayerInput(interface);
         break;
     case BAG_INTERFACE_STATE_WAIT_CONFIRM_SALE_MSG:
-        *state = ov84_0223E7A8(interface);
+        *state = WaitConfirmSaleMsgPrinted(interface);
         break;
     case BAG_INTERFACE_STATE_CONFIRM_SALE:
-        *state = ov84_0223E7CC(interface);
+        *state = HandleSellYesNoInput(interface);
         break;
     case BAG_INTERFACE_STATE_RESOLVE_SALE:
-        *state = ov84_0223E920(interface);
+        *state = ResolveSale(interface);
         break;
     case BAG_INTERFACE_STATE_DISMISS_ITEMS_SOLD_MSG:
         *state = WaitPlayerDismissMsg_ItemsSold(interface);
@@ -1291,7 +1291,7 @@ static u8 CheckPocketChange_DPad(BagInterface *param0)
 
         BagInterface_StartMovingPocketHighlighter(param0);
         param0->pocketIndicatorMan.scrollDirection = 0;
-        ov84_0223C848(param0);
+        SetupPocketChangeFromDPad(param0);
         Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
 
         return TRUE;
@@ -1313,7 +1313,7 @@ static u8 CheckPocketChange_DPad(BagInterface *param0)
 
         BagInterface_StartMovingPocketHighlighter(param0);
         param0->pocketIndicatorMan.scrollDirection = 1;
-        ov84_0223C848(param0);
+        SetupPocketChangeFromDPad(param0);
         Bg_ScheduleTilemapTransfer(param0->bgConfig, 4);
 
         return TRUE;
@@ -1322,26 +1322,26 @@ static u8 CheckPocketChange_DPad(BagInterface *param0)
     return FALSE;
 }
 
-static void ov84_0223C848(BagInterface *param0)
+static void SetupPocketChangeFromDPad(BagInterface *param0)
 {
-    ov84_0223C89C(param0);
+    SetupPocketChange(param0);
     param0->pocketIndicatorMan.unk_04 = 3;
-    param0->pocketIndicatorMan.unk_07_7 = 0;
+    param0->pocketIndicatorMan.unk_07_7 = FALSE;
 }
 
-static void ov84_0223C868(BagInterface *param0)
+static void SetupPocketChangeFromTouch(BagInterface *param0)
 {
     if (param0->pocketIndicatorMan.scrollDirection != 2) {
-        ov84_0223C89C(param0);
+        SetupPocketChange(param0);
     } else {
         param0->pocketIndicatorMan.animationStage = 2;
     }
 
     param0->pocketIndicatorMan.unk_04 = 0;
-    param0->pocketIndicatorMan.unk_07_7 = 1;
+    param0->pocketIndicatorMan.unk_07_7 = TRUE;
 }
 
-static void ov84_0223C89C(BagInterface *param0)
+static void SetupPocketChange(BagInterface *param0)
 {
     BagPocketIndicatorManager *v0 = &param0->pocketIndicatorMan;
 
@@ -1356,9 +1356,9 @@ static void ov84_0223C89C(BagInterface *param0)
     Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION], 0);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_LIST]);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_ITEM_DESCRIPTION]);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], 0);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM], 0);
-    BagInterface_DrawPocketIndicatorIcon(param0, param0->appArguments->currPocketIdx, 0);
+    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], FALSE);
+    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM], FALSE);
+    BagInterface_DrawPocketIndicatorIcon(param0, param0->appArguments->currPocketIdx, FALSE);
     DrawPocketButton(param0, param0->appArguments->currPocketIdx, 0);
 }
 
@@ -1568,7 +1568,7 @@ static u8 CheckPocketChange_Touch(BagInterface *param0)
     param0->nextPocketIdx = (u8)pressedPocketBtnIndex;
 
     BagInterface_StartMovingPocketHighlighter(param0);
-    ov84_0223C868(param0);
+    SetupPocketChangeFromTouch(param0);
 
     return 1;
 }
@@ -2649,7 +2649,7 @@ static int HandleInput_SellItems(BagInterface *param0)
     return BAG_INTERFACE_STATE_SELECT_ITEM_TO_SELL;
 }
 
-static int ov84_0223E588(BagInterface *param0)
+static int SetSellLimitAndSetupWindows(BagInterface *param0)
 {
     if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
         if (param0->numSelectedItemOwned > 99) {
@@ -2664,7 +2664,7 @@ static int ov84_0223E588(BagInterface *param0)
     return BAG_INTERFACE_STATE_WAIT_SELL_HOW_MANY_MSG;
 }
 
-static int ov84_0223E5C4(BagInterface *param0)
+static int UpdateSellCountBasedOnPlayerInput(BagInterface *param0)
 {
     if (CheckPokeballItemAmountChange(param0, &param0->selectedItemCount, param0->numSelectedItemOwned) == 1) {
         BagInterface_PrintSellCountAndValue(param0, 1);
@@ -2734,9 +2734,9 @@ static int ov84_0223E5C4(BagInterface *param0)
     return BAG_INTERFACE_STATE_SELECT_ITEM_SELL_COUNT;
 }
 
-static int ov84_0223E7A8(BagInterface *param0)
+static int WaitConfirmSaleMsgPrinted(BagInterface *param0)
 {
-    if (Text_IsPrinterActive(param0->msgBoxPrinter) == 0) {
+    if (Text_IsPrinterActive(param0->msgBoxPrinter) == FALSE) {
         BagInterface_ShowYesNoMenu(param0);
 
         return BAG_INTERFACE_STATE_CONFIRM_SALE;
@@ -2745,7 +2745,7 @@ static int ov84_0223E7A8(BagInterface *param0)
     return BAG_INTERFACE_STATE_WAIT_CONFIRM_SALE_MSG;
 }
 
-static int ov84_0223E7CC(BagInterface *param0)
+static int HandleSellYesNoInput(BagInterface *param0)
 {
     u32 v0;
 
@@ -2777,7 +2777,7 @@ static int ov84_0223E7CC(BagInterface *param0)
         Window_FillTilemap(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 15);
         param0->msgBoxPrinter = BagInterface_PrintStrBufferToWideMsgBox(param0);
         return BAG_INTERFACE_STATE_RESOLVE_SALE;
-    case LIST_NOTHING_CHOSEN: {
+    case MENU_NOTHING_CHOSEN: {
         u8 v2 = Menu_GetLastAction(param0->menu);
 
         if (v2 == MENU_ACTION_MOVE_UP) {
@@ -2786,7 +2786,7 @@ static int ov84_0223E7CC(BagInterface *param0)
             RotatePokeball(param0, -18);
         }
     } break;
-    case LIST_CANCEL:
+    case MENU_CANCELED:
         param0->soldItemPrice = 0;
         Window_EraseStandardFrame(&param0->windows[BAG_INTERFACE_WINDOW_MONEY], 1);
         Window_EraseMessageBox(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE], 0);
@@ -2799,9 +2799,9 @@ static int ov84_0223E7CC(BagInterface *param0)
     return BAG_INTERFACE_STATE_CONFIRM_SALE;
 }
 
-static int ov84_0223E920(BagInterface *param0)
+static int ResolveSale(BagInterface *param0)
 {
-    if (Text_IsPrinterActive(param0->msgBoxPrinter) != 0) {
+    if (Text_IsPrinterActive(param0->msgBoxPrinter) != FALSE) {
         return BAG_INTERFACE_STATE_RESOLVE_SALE;
     }
 
@@ -2816,7 +2816,7 @@ static int ov84_0223E920(BagInterface *param0)
         param0->appArguments->unk_75 = 2;
     }
 
-    BagInterface_PrintMoney(param0, 1);
+    BagInterface_PrintMoney(param0, TRUE);
     param0->hideDescription = TRUE;
     TrashItem(param0);
     Window_ScheduleCopyToVRAM(&param0->windows[BAG_INTERFACE_WINDOW_MSG_BOX_WIDE]);
