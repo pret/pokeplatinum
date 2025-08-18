@@ -1,0 +1,108 @@
+diff --git a/include/rapidjson/document.h b/include/rapidjson/document.h
+index d25c5c0a..bf9e6fdb 100644
+--- a/include/rapidjson/document.h
++++ b/include/rapidjson/document.h
+@@ -1513,7 +1513,7 @@ public:
+         MemberIterator pos = MemberBegin() + (first - MemberBegin());
+         for (MemberIterator itr = pos; itr != last; ++itr)
+             itr->~Member();
+-        std::memmove(&*pos, &*last, static_cast<size_t>(MemberEnd() - last) * sizeof(Member));
++        std::memmove(static_cast<void*>(&*pos), &*last, static_cast<size_t>(MemberEnd() - last) * sizeof(Member));
+         data_.o.size -= static_cast<SizeType>(last - first);
+         return pos;
+     }
+@@ -1716,8 +1716,8 @@ public:
+         RAPIDJSON_ASSERT(last <= End());
+         ValueIterator pos = Begin() + (first - Begin());
+         for (ValueIterator itr = pos; itr != last; ++itr)
+-            itr->~GenericValue();       
+-        std::memmove(pos, last, static_cast<size_t>(End() - last) * sizeof(GenericValue));
++            itr->~GenericValue();
++        std::memmove(static_cast<void*>(pos), last, static_cast<size_t>(End() - last) * sizeof(GenericValue));
+         data_.a.size -= static_cast<SizeType>(last - first);
+         return pos;
+     }
+@@ -2032,7 +2032,7 @@ private:
+         if (count) {
+             GenericValue* e = static_cast<GenericValue*>(allocator.Malloc(count * sizeof(GenericValue)));
+             SetElementsPointer(e);
+-            std::memcpy(e, values, count * sizeof(GenericValue));
++            std::memcpy(static_cast<void*>(e), values, count * sizeof(GenericValue));
+         }
+         else
+             SetElementsPointer(0);
+@@ -2050,7 +2045,7 @@ RAPIDJSON_DIAG_POP
+         if (count) {
+             Member* m = static_cast<Member*>(allocator.Malloc(count * sizeof(Member)));
+             SetMembersPointer(m);
+-            std::memcpy(m, members, count * sizeof(Member));
++            std::memcpy(static_cast<void*>(m), members, count * sizeof(Member));
+         }
+         else
+             SetMembersPointer(0);
+diff --git a/include/rapidjson/schema.h b/include/rapidjson/schema.h
+index dc0af780..fa0d696e 100644
+--- a/include/rapidjson/schema.h
++++ b/include/rapidjson/schema.h
+@@ -464,7 +464,7 @@ public:
+                 enum_ = static_cast<uint64_t*>(allocator_->Malloc(sizeof(uint64_t) * v->Size()));
+                 for (ConstValueIterator itr = v->Begin(); itr != v->End(); ++itr) {
+                     typedef Hasher<EncodingType, MemoryPoolAllocator<> > EnumHasherType;
+-                    char buffer[256 + 24];
++                    char buffer[256u + 24];
+                     MemoryPoolAllocator<> hasherAllocator(buffer, sizeof(buffer));
+                     EnumHasherType h(&hasherAllocator, 256);
+                     itr->Accept(h);
+diff --git a/test/perftest/schematest.cpp b/test/perftest/schematest.cpp
+index 468f5fe6..7d27344b 100644
+--- a/test/perftest/schematest.cpp
++++ b/test/perftest/schematest.cpp
+@@ -11,6 +11,11 @@
+ 
+ using namespace rapidjson;
+ 
++RAPIDJSON_DIAG_PUSH
++#if defined(__GNUC__) && __GNUC__ >= 7
++RAPIDJSON_DIAG_OFF(format-overflow)
++#endif
++
+ template <typename Allocator>
+ static char* ReadFile(const char* filename, Allocator& allocator) {
+     const char *paths[] = {
+@@ -42,6 +47,8 @@ static char* ReadFile(const char* filename, Allocator& allocator) {
+     return json;
+ }
+ 
++RAPIDJSON_DIAG_POP
++
+ class Schema : public PerfTest {
+ public:
+     Schema() {}
+diff --git a/test/unittest/schematest.cpp b/test/unittest/schematest.cpp
+index 0c61a8a9..32610697 100644
+--- a/test/unittest/schematest.cpp
++++ b/test/unittest/schematest.cpp
+@@ -1762,7 +1762,7 @@ private:
+     typename DocumentType::AllocatorType documentAllocator_;
+     typename SchemaDocumentType::AllocatorType schemaAllocator_;
+     char documentBuffer_[16384];
+-    char schemaBuffer_[128 * 1024];
++    char schemaBuffer_[128u * 1024];
+ };
+ 
+ TEST(SchemaValidator, TestSuite) {
+diff --git a/test/unittest/simdtest.cpp b/test/unittest/simdtest.cpp
+index 7b58cd05..c60c85b2 100644
+--- a/test/unittest/simdtest.cpp
++++ b/test/unittest/simdtest.cpp
+@@ -109,8 +109,8 @@ struct ScanCopyUnescapedStringHandler : BaseReaderHandler<UTF8<>, ScanCopyUnesca
+ 
+ template <unsigned parseFlags, typename StreamType>
+ void TestScanCopyUnescapedString() {
+-    char buffer[1024 + 5 + 32];
+-    char backup[1024 + 5 + 32];
++    char buffer[1024u + 5 + 32];
++    char backup[1024u + 5 + 32];
+ 
+     // Test "ABCDABCD...\\"
+     for (size_t offset = 0; offset < 32; offset++) {

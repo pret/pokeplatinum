@@ -1,0 +1,516 @@
+{
+  "key": 705,
+  "messages": [
+    {
+      "id": "pl_msg_00000007_00000",
+      "en_US": "USE"
+    },
+    {
+      "id": "pl_msg_00000007_00001",
+      "en_US": "TRASH"
+    },
+    {
+      "id": "pl_msg_00000007_00002",
+      "en_US": "REGISTER"
+    },
+    {
+      "id": "pl_msg_00000007_00003",
+      "en_US": "GIVE"
+    },
+    {
+      "id": "pl_msg_00000007_00004",
+      "en_US": "CHECK TAG"
+    },
+    {
+      "id": "pl_msg_00000007_00005",
+      "en_US": "CONFIRM"
+    },
+    {
+      "id": "pl_msg_00000007_00006",
+      "en_US": "WALK"
+    },
+    {
+      "id": "pl_msg_00000007_00007",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000007_00008",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000007_00009",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000007_00010",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000007_00011",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000007_00012",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000007_00013",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000007_00014",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000007_00015",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000007_00016",
+      "en_US": "CHECK"
+    },
+    {
+      "id": "pl_msg_00000007_00017",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000007_00018",
+      "en_US": "DESELECT"
+    },
+    {
+      "id": "pl_msg_00000007_00019",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000007_00020",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000007_00021",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000007_00022",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000007_00023",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000007_00024",
+      "en_US": "---"
+    },
+    {
+      "id": "pl_msg_00000007_00025",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000007_00026",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000007_00027",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000007_00028",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000007_00029",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000007_00030",
+      "garbage": 1
+    },
+    {
+      "id": "pl_msg_00000007_00031",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000007_00032",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000007_00033",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000007_00034",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000007_00035",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000007_00036",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000007_00037",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00038",
+      "en_US": "x"
+    },
+    {
+      "id": "pl_msg_00000007_00039",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000007_00040",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000007_00041",
+      "en_US": "CLOSE BAG"
+    },
+    {
+      "id": "pl_msg_00000007_00042",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0} is\n",
+        "selected."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00043",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000007_00044",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000007_00045",
+      "en_US": "Move the {STRVAR_1 8, 0, 0} where?"
+    },
+    {
+      "id": "pl_msg_00000007_00046",
+      "en_US": "The {STRVAR_1 8, 0, 0} can’t be held."
+    },
+    {
+      "id": "pl_msg_00000007_00047",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000007_00048",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000007_00049",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000007_00050",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000007_00051",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000007_00052",
+      "en_US": [
+        "Throw away how many\n",
+        "{STRVAR_1 8, 0, 0}(s)?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00053",
+      "en_US": "Threw away {STRVAR_1 51, 1, 0} {STRVAR_1 8, 0, 0}."
+    },
+    {
+      "id": "pl_msg_00000007_00054",
+      "en_US": [
+        "Is it OK to throw away\n",
+        "{STRVAR_1 52, 1, 0} {STRVAR_1 8, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00055",
+      "garbage": 41
+    },
+    {
+      "id": "Bag_Text_CannotDismount",
+      "en_US": "You can’t dismount your Bike here."
+    },
+    {
+      "id": "Bag_Text_CoinCaseMessage",
+      "en_US": "Your Coins: {STRVAR_1 54, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00058",
+      "en_US": "Booted up a TM.{WAIT 3}{WAIT 4}\n"
+    },
+    {
+      "id": "pl_msg_00000007_00059",
+      "en_US": "Booted up an HM.{WAIT 3}{WAIT 4}\n"
+    },
+    {
+      "id": "pl_msg_00000007_00060",
+      "en_US": [
+        "It contained\n",
+        "{STRVAR_1 6, 0, 0}.\r",
+        "Teach {STRVAR_1 6, 0, 0}\n",
+        "to a Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00061",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} used the\n",
+        "{STRVAR_1 8, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00062",
+      "en_US": [
+        "Since a Repel’s effects still linger,\n",
+        "you can’t use this now."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00063",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} used the\n",
+        "{STRVAR_1 8, 1, 0}.\r",
+        "Wild Pokémon will be lured."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00064",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} used the\n",
+        "{STRVAR_1 8, 1, 0}.\r",
+        "Wild Pokémon will be repelled."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00065",
+      "en_US": "The Box is full."
+    },
+    {
+      "id": "pl_msg_00000007_00066",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000007_00067",
+      "en_US": "No.{STRVAR_1 51, 0, 0}{STRVAR_1 6, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00068",
+      "en_US": "No.{STRVAR_1 51, 0, 0}{STRVAR_1 6, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00069",
+      "en_US": "{STRVAR_1 51, 0, 0}{STRVAR_1 6, 1, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00070",
+      "garbage": 6
+    },
+    {
+      "id": "pl_msg_00000007_00071",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000007_00072",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000007_00073",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000007_00074",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}? Oh, no.\n",
+        "I can’t buy that."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00075",
+      "en_US": [
+        "{STRVAR_1 8, 0, 0}?\n",
+        "How many would you like to sell?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00076",
+      "en_US": [
+        "I can pay ${STRVAR_1 55, 0, 0}.\n",
+        "Would that be OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00077",
+      "en_US": [
+        "Turned over the {STRVAR_1 8, 0, 0}\n",
+        "and received ${STRVAR_1 55, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00078",
+      "en_US": "MONEY"
+    },
+    {
+      "id": "pl_msg_00000007_00079",
+      "en_US": "${STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00080",
+      "en_US": "x{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00081",
+      "en_US": "${STRVAR_1 55, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00082",
+      "en_US": "Yes"
+    },
+    {
+      "id": "pl_msg_00000007_00083",
+      "en_US": "No"
+    },
+    {
+      "id": "pl_msg_00000007_00084",
+      "en_US": "x{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00085",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000007_00086",
+      "en_US": "PP"
+    },
+    {
+      "id": "pl_msg_00000007_00087",
+      "en_US": "POWER"
+    },
+    {
+      "id": "pl_msg_00000007_00088",
+      "en_US": "ACCURACY"
+    },
+    {
+      "id": "pl_msg_00000007_00089",
+      "en_US": "CATEGORY"
+    },
+    {
+      "id": "pl_msg_00000007_00090",
+      "en_US": "{STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000007_00091",
+      "en_US": "{STRVAR_1 52, 0, 0}"
+    },
+    {
+      "id": "Bag_Text_SealCaseMessage",
+      "en_US": "Seals: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "Bag_Text_FashionCaseMessage",
+      "en_US": [
+        "Accessories: {STRVAR_1 52, 0, 0}\n",
+        "Backdrops: {STRVAR_1 51, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00094",
+      "en_US": "Close Bag"
+    },
+    {
+      "id": "pl_msg_00000007_00095",
+      "en_US": "PLANT"
+    },
+    {
+      "id": "pl_msg_00000007_00096",
+      "en_US": "OPEN"
+    },
+    {
+      "id": "Bag_Text_PointCardMessage",
+      "en_US": [
+        "Saved Battle Points\n",
+        "{STRVAR_1 53, 0, 0} BP"
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00098",
+      "en_US": "TYPE"
+    },
+    {
+      "id": "Bag_Text_KeyItemInfo",
+      "en_US": [
+        "A Key Item in the Bag can be assigned\n",
+        "to this button for instant use."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00100",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000007_00101",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000007_00102",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000007_00103",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000007_00104",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000007_00105",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000007_00106",
+      "en_US": [
+        "The battery has run dry!\n",
+        "For it to recharge, you need to walk\f",
+        "another {STRVAR_1 51, 0, 0} steps."
+      ]
+    },
+    {
+      "id": "pl_msg_00000007_00107",
+      "en_US": "The grassy patch remained quiet..."
+    },
+    {
+      "id": "pl_msg_00000007_00108",
+      "en_US": "No. of Poffins:"
+    },
+    {
+      "id": "pl_msg_00000007_00109",
+      "en_US": "{STRVAR_1 52, 0, 0}/100"
+    },
+    {
+      "id": "pl_msg_00000007_00110",
+      "en_US": [
+        "Please choose the Berry you want to\n",
+        "cook from your Bag."
+      ]
+    },
+    {
+      "id": "Bag_Text_CannotUseWithPartner",
+      "en_US": [
+        "You can’t use that when you have\n",
+        "someone with you."
+      ]
+    },
+    {
+      "id": "Bag_Text_CannotUseNoFishing",
+      "en_US": "There’s nothing to be caught here..."
+    }
+  ]
+}

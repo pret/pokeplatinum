@@ -37,6 +37,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "screen_fade.h"
+#include "scroll_prompts.h"
 #include "sound_playback.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -47,7 +48,6 @@
 #include "system_flags.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
-#include "unk_0206A780.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -91,18 +91,18 @@ void ov23_0225128C(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, int 
     }
 
     if (param1 != 0) {
-        sub_0206A8C4(param0->unk_08, 0, 1);
+        ScrollPrompts_SetDrawFlag(param0->unk_08, SCROLL_PROMPT_TOP_ARROW, TRUE);
     } else {
-        sub_0206A8C4(param0->unk_08, 0, 0);
+        ScrollPrompts_SetDrawFlag(param0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
     }
 
     if (param2 != (param1 + param3)) {
-        sub_0206A8C4(param0->unk_08, 1, 1);
+        ScrollPrompts_SetDrawFlag(param0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, TRUE);
     } else {
-        sub_0206A8C4(param0->unk_08, 1, 0);
+        ScrollPrompts_SetDrawFlag(param0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
     }
 
-    sub_0206A870(param0->unk_08);
+    ScrollPrompts_UpdateAnim(param0->unk_08);
 }
 
 int ov23_022512D4(Coordinates *param0, int param1)
@@ -565,8 +565,8 @@ static BOOL ov23_02251960(SysTask *param0, void *param1)
         break;
     }
 
-    sub_0206A8C4(v0->unk_08, 0, 0);
-    sub_0206A8C4(v0->unk_08, 1, 0);
+    ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
+    ScrollPrompts_SetDrawFlag(v0->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
 
     return 1;
 }
@@ -660,7 +660,7 @@ static void ov23_02251BB4(SysTask *param0, UnkStruct_ov23_02250CD4 *param1)
     }
 
     if (param1->unk_08) {
-        sub_0206A844(param1->unk_08);
+        ScrollPrompts_Free(param1->unk_08);
         param1->unk_08 = NULL;
     }
 
@@ -844,11 +844,11 @@ static void ov23_02251F94(FieldSystem *fieldSystem)
     v1->strbuf = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v1->fmtString = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v1->template = StringTemplate_Default(HEAP_ID_FIELD);
-    v1->unk_08 = sub_0206A780(HEAP_ID_FIELD);
+    v1->unk_08 = ScrollPrompts_New(HEAP_ID_FIELD);
 
-    sub_0206A8A0(v1->unk_08, 200, 20, 122);
-    sub_0206A8C4(v1->unk_08, 0, 0);
-    sub_0206A8C4(v1->unk_08, 1, 0);
+    ScrollPrompts_SetPosition(v1->unk_08, 200, 20, 122);
+    ScrollPrompts_SetDrawFlag(v1->unk_08, SCROLL_PROMPT_TOP_ARROW, FALSE);
+    ScrollPrompts_SetDrawFlag(v1->unk_08, SCROLL_PROMPT_BOTTOM_ARROW, FALSE);
 
     v1->unk_04 = SysTask_Start(ov23_02251C04, v1, 10000);
 

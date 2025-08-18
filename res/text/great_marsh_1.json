@@ -1,0 +1,19 @@
+{
+  "key": 21530,
+  "messages": [
+    {
+      "id": "pl_msg_00000240_00000",
+      "en_US": [
+        "Go upstairs in the Observatory before\n",
+        "you start your Safari Game.\r",
+        "Check the marsh with the binoculars\n",
+        "to see where the Pokémon you want\f",
+        "happen to be. That’s how you win!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000240_00001",
+      "en_US": "Great Marsh Area 1"
+    }
+  ]
+}

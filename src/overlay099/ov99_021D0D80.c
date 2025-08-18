@@ -678,7 +678,7 @@ static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0)
 
     MTX_Identity33(&v2);
 
-    sub_020241B4();
+    G3_ResetG3X();
     Camera_SetAsActive(param0->camera);
     Camera_ComputeProjectionMatrix(0, param0->camera);
     Camera_ComputeViewMatrix();

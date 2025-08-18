@@ -16,7 +16,7 @@ _0022:
     LockAll
     ClearFlag FLAG_UNK_0x02BA
     AddObject 1
-    ScrCmd_1B2 1
+    HideObject 1
     SetObjectEventPos 0, 32, 34
     SetObjectEventDir 0, DIR_NORTH
     SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH

@@ -1,0 +1,21 @@
+{
+  "key": 58386,
+  "messages": [
+    {
+      "id": "pl_msg_00000078_00000",
+      "en_US": [
+        "Roark is a user of Rock-type Pokémon.\r",
+        "Don’t you think Rock-type Pokémon are\n",
+        "nice? I like how lumpy they are!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000078_00001",
+      "en_US": [
+        "Roark is our town’s Gym Leader.\r",
+        "He may be young, but he keeps the\n",
+        "mine running safely and efficiently."
+      ]
+    }
+  ]
+}

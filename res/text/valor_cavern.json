@@ -1,0 +1,55 @@
+{
+  "key": 13387,
+  "messages": [
+    {
+      "id": "ValorCavern_Text_SaturnMissionIsProceeding",
+      "en_US": [
+        "The mission is proceeding without\n",
+        "a hitch. The boss should be pleased.\r",
+        "Everything is for everyone, and\n",
+        "for the good of Team Galactic!\r"
+      ]
+    },
+    {
+      "id": "ValorCavern_Text_SaturnBattleIntro",
+      "en_US": [
+        "I recognize your face!\r",
+        "You’re the child who raided the Team\n",
+        "Galactic building in Eterna!\r",
+        "Humph! Jupiter should be ashamed of\n",
+        "herself, being beaten by a child.\r",
+        "But anything and anyone that opposes\n",
+        "Team Galactic must be crushed!\r",
+        "Even the very thought of opposition\n",
+        "will not be tolerated!\r"
+      ]
+    },
+    {
+      "id": "ValorCavern_Text_SaturnPostBattle",
+      "en_US": [
+        "Gah! Even I, a Commander, only\n",
+        "managed to buy us time?\r",
+        "But that’s fine.\r",
+        "A child like you will never be able to\n",
+        "stem the flow of time!\r",
+        "Team Galactic will get the three\n",
+        "legendary Pokémon of the lakes!\r",
+        "With their power, we will create an\n",
+        "entirely new universe!\r",
+        "By now, Mars should have captured\n",
+        "the Pokémon of Lake Verity...\r"
+      ]
+    },
+    {
+      "id": "ValorCavern_Text_AzelfCry",
+      "en_US": "Kyuuun...\r"
+    },
+    {
+      "id": "ValorCavern_Text_AzelfDisappeared",
+      "en_US": [
+        "AZELF disappeared deep into\n",
+        "the cavern..."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "key": 4839,
+  "messages": [
+    {
+      "id": "NPCTradeNames_Text_Kazza",
+      "en_US": "Kazza"
+    },
+    {
+      "id": "NPCTradeNames_Text_Charap",
+      "en_US": "Charap"
+    },
+    {
+      "id": "NPCTradeNames_Text_Gaspar",
+      "en_US": "Gaspar"
+    },
+    {
+      "id": "NPCTradeNames_Text_Foppa",
+      "en_US": "Foppa"
+    },
+    {
+      "id": "NPCTradeNames_Text_Hilary",
+      "en_US": "Hilary"
+    },
+    {
+      "id": "NPCTradeNames_Text_Norton",
+      "en_US": "Norton"
+    },
+    {
+      "id": "NPCTradeNames_Text_Mindy",
+      "en_US": "Mindy"
+    },
+    {
+      "id": "NPCTradeNames_Text_Meister",
+      "en_US": "Meister"
+    }
+  ]
+}

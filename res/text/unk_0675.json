@@ -1,0 +1,291 @@
+{
+  "key": 62496,
+  "messages": [
+    {
+      "id": "pl_msg_00000675_00000",
+      "en_US": "PAL PAD"
+    },
+    {
+      "id": "pl_msg_00000675_00001",
+      "en_US": "CHECK FRIEND ROSTER"
+    },
+    {
+      "id": "pl_msg_00000675_00002",
+      "en_US": "REGISTER FRIEND CODE"
+    },
+    {
+      "id": "pl_msg_00000675_00003",
+      "en_US": "{STRVAR_1 3, 0, 0}’s FRIEND CODE"
+    },
+    {
+      "id": "pl_msg_00000675_00004",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000675_00005",
+      "en_US": "FRIEND ROSTER"
+    },
+    {
+      "id": "pl_msg_00000675_00006",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00007",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000675_00008",
+      "en_US": "DETAILS"
+    },
+    {
+      "id": "pl_msg_00000675_00009",
+      "en_US": "REWRITE NAME"
+    },
+    {
+      "id": "pl_msg_00000675_00010",
+      "en_US": "DELETE"
+    },
+    {
+      "id": "pl_msg_00000675_00011",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000675_00012",
+      "en_US": [
+        "What would you like to do\n",
+        "with {STRVAR_1 3, 0, 0}’s data?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00013",
+      "en_US": "RECORD WITH {STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00014",
+      "en_US": "GROUP"
+    },
+    {
+      "id": "pl_msg_00000675_00015",
+      "en_US": "BATTLE RECORD"
+    },
+    {
+      "id": "pl_msg_00000675_00016",
+      "en_US": "WIN: "
+    },
+    {
+      "id": "pl_msg_00000675_00017",
+      "en_US": "LOSE: "
+    },
+    {
+      "id": "pl_msg_00000675_00018",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00019",
+      "en_US": "POKéMON TRADES"
+    },
+    {
+      "id": "pl_msg_00000675_00020",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00021",
+      "en_US": "POFFIN SESSIONS"
+    },
+    {
+      "id": "pl_msg_00000675_00022",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00023",
+      "en_US": "DATE LAST PLAYED"
+    },
+    {
+      "id": "pl_msg_00000675_00024",
+      "en_US": "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00025",
+      "en_US": "BATTLE TOWER"
+    },
+    {
+      "id": "pl_msg_00000675_00026",
+      "en_US": "BATTLE FACTORY"
+    },
+    {
+      "id": "pl_msg_00000675_00027",
+      "en_US": "BATTLE CASTLE"
+    },
+    {
+      "id": "pl_msg_00000675_00028",
+      "en_US": "BATTLE HALL"
+    },
+    {
+      "id": "pl_msg_00000675_00029",
+      "en_US": "BATTLE ARCADE"
+    },
+    {
+      "id": "pl_msg_00000675_00030",
+      "en_US": "PREV"
+    },
+    {
+      "id": "pl_msg_00000675_00031",
+      "en_US": "CURRENT"
+    },
+    {
+      "id": "pl_msg_00000675_00032",
+      "en_US": "RECORD"
+    },
+    {
+      "id": "pl_msg_00000675_00033",
+      "en_US": "LEVEL 50"
+    },
+    {
+      "id": "pl_msg_00000675_00034",
+      "en_US": "OPEN LEVEL"
+    },
+    {
+      "id": "pl_msg_00000675_00035",
+      "en_US": "RENTAL/TRADE"
+    },
+    {
+      "id": "pl_msg_00000675_00036",
+      "en_US": "CASTLE POINTS"
+    },
+    {
+      "id": "pl_msg_00000675_00037",
+      "en_US": "{STRVAR_1 0, 0, 0}’S RECORD"
+    },
+    {
+      "id": "pl_msg_00000675_00038",
+      "en_US": "WIN STREAK: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00039",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00040",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "pl_msg_00000675_00041",
+      "en_US": "WIN STREAK: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00042",
+      "en_US": "GAMES CLEARED: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00043",
+      "en_US": "PLAZA GAMES PLAYED"
+    },
+    {
+      "id": "pl_msg_00000675_00044",
+      "en_US": "{STRVAR_6 0, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00045",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00046",
+      "en_US": "{STRVAR_1 3, 0, 0}’s CODE"
+    },
+    {
+      "id": "pl_msg_00000675_00047",
+      "en_US": [
+        "By exchanging Friend Codes\n",
+        "with other players, you may\n",
+        "trade and battle with them\n",
+        "over Nintendo WFC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00048",
+      "en_US": [
+        "To obtain your Friend Code,\n",
+        "please log on to Nintendo WFC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00049",
+      "en_US": [
+        "{STRVAR_1 53, 1, 0} {STRVAR_1 53, 2, 0} {STRVAR_1 53, 3, 0}\n",
+        "{STRVAR_1 3, 0, 0} will be registered."
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00050",
+      "en_US": [
+        "The Friend Code is wrong.\n",
+        "{STRVAR_1 53, 1, 0} {STRVAR_1 53, 2, 0} {STRVAR_1 53, 3, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00051",
+      "en_US": "{STRVAR_1 53, 1, 0} {STRVAR_1 53, 2, 0} {STRVAR_1 53, 3, 0}"
+    },
+    {
+      "id": "pl_msg_00000675_00052",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} will be deleted.\n",
+        "Are you sure about this?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00053",
+      "en_US": "Your Friend Roster is full!"
+    },
+    {
+      "id": "pl_msg_00000675_00054",
+      "en_US": [
+        "That Friend Code has already been\n",
+        "registered before."
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00055",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}’s Friend Code:\n",
+        "{STRVAR_1 53, 1, 0} {STRVAR_1 53, 2, 0} {STRVAR_1 53, 3, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00056",
+      "en_US": "CHECK FRIEND CODE"
+    },
+    {
+      "id": "pl_msg_00000675_00057",
+      "en_US": [
+        "Register {STRVAR_1 3, 0, 0} in your\n",
+        "Pal Pad?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00058",
+      "en_US": [
+        "Your Friend Roster is full.\n",
+        "Will you delete someone?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00059",
+      "en_US": [
+        "Give up on registering\n",
+        "{STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00060",
+      "en_US": [
+        "Delete {STRVAR_1 3, 0, 0}’s data from\n",
+        "your Friend Roster?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000675_00061",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "key": 40580,
+  "messages": [
+    {
+      "id": "pl_msg_00000477_00000",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "How’s your Pokédex coming along?\r",
+        "Me? I’m somewhere between fantastic\n",
+        "and, uh, hopeless...\r",
+        "But this isn’t about me!\n",
+        "I’ve got something nice for you.\r",
+        "{STRVAR_1 3, 0, 0}, choose which hand\n",
+        "you want."
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00001",
+      "en_US": [
+        "Dawn: I see...\n",
+        "You want the Vs. Seeker.\r",
+        "I’m impressed, {STRVAR_1 3, 0, 0}.\n",
+        "You know what’s important.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00002",
+      "en_US": [
+        "Dawn: Using that Vs. Seeker, you can\n",
+        "find Trainers who want a rematch\f",
+        "with you.\r",
+        "Oh, {STRVAR_1 3, 0, 0}, do you also have\n",
+        "a Pokétch?\r",
+        "Yup, you do.\n",
+        "You can have this too, then.\r",
+        "You deserve it for all your hard\n",
+        "work, {STRVAR_1 3, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00003",
+      "en_US": [
+        "Dawn: The {STRVAR_1 24, 1, 0} is\n",
+        "something you should touch often.\r",
+        "It will tell you if there is an item\n",
+        "on the ground that you can’t see.\r",
+        "I think there’s something here, even.\n",
+        "You should try it out.\r",
+        "OK, let’s keep working on our\n",
+        "Pokédexes.\r",
+        "Professor Rowan is counting on us!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00004",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}!\n",
+        "How’s your Pokédex coming along?\r",
+        "Me? I’m always doing great!\n",
+        "...I wish...\r",
+        "But that’s not important.\r",
+        "Lately, I’ve been experimenting with\n",
+        "a couple of neat tools.\r",
+        "{STRVAR_1 3, 0, 0}, I’ll share with you.\n",
+        "Choose a hand!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00005",
+      "en_US": [
+        "Lucas: Oh yeah.\n",
+        "You want the Vs. Seeker.\r",
+        "Yup, {STRVAR_1 3, 0, 0}, you know what’s\n",
+        "important.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00006",
+      "en_US": [
+        "Lucas: Using that Vs. Seeker, you can\n",
+        "find Trainers who want to battle with\f",
+        "you again.\r",
+        "{STRVAR_1 3, 0, 0}, what about a Pokétch?\n",
+        "Do you have one?\r",
+        "Yup, you do.\n",
+        "You can have this too, then.\r",
+        "You deserve it for all of your\n",
+        "effort, {STRVAR_1 3, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00007",
+      "en_US": [
+        "Lucas: The {STRVAR_1 24, 1, 0} is...\n",
+        "Just try touching it.\r",
+        "It’ll alert you if there is an\n",
+        "unseeable item on the ground.\r",
+        "Try it out now.\n",
+        "I think there’s something here.\r",
+        "OK, keep working on your Pokédex.\n",
+        "Professor Rowan is counting on us!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00008",
+      "garbage": 59
+    },
+    {
+      "id": "pl_msg_00000477_00009",
+      "en_US": [
+        "That slope’s too slippery.\n",
+        "You’ll need a Bike to get up.\r",
+        "You don’t have a Bicycle?\n",
+        "There’s a Cycle Shop in Eterna City."
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00010",
+      "en_US": [
+        "Change to the 4th gear and take a run.\n",
+        "That’ll shoot you right up that slope."
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00011",
+      "en_US": [
+        "Rt. 207\n",
+        "Mt. Coronet"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00012",
+      "en_US": [
+        "Rt. 207\n",
+        "Oreburgh City"
+      ]
+    },
+    {
+      "id": "pl_msg_00000477_00013",
+      "en_US": [
+        "Trainer Tips\r",
+        "Pokémon may become immobilized if\n",
+        "they are asleep or paralyzed.\r",
+        "If it happens to your Pokémon,\n",
+        "it could be disastrous.\r",
+        "If your opponent’s Pokémon can’t\n",
+        "move, it’s a big opportunity!"
+      ]
+    }
+  ]
+}

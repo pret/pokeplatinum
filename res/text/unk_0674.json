@@ -1,0 +1,697 @@
+{
+  "key": 15707,
+  "messages": [
+    {
+      "id": "pl_msg_00000674_00000",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000674_00001",
+      "en_US": [
+        "Logging on to Nintendo WFC.\n",
+        "Please wait..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is seeking someone\n",
+        "to battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is seeking someone\n",
+        "to trade with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00004",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is seeking someone to\n",
+        "cook with."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00005",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is seeking participants\n",
+        "for the Battle Frontier."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00006",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is seeking participants\n",
+        "for {STRVAR_6 0, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00007",
+      "en_US": "{STRVAR_1 3, 0, 0} is on standby."
+    },
+    {
+      "id": "pl_msg_00000674_00008",
+      "en_US": "What would you like to seek?"
+    },
+    {
+      "id": "pl_msg_00000674_00009",
+      "en_US": "Seeking participants..."
+    },
+    {
+      "id": "pl_msg_00000674_00010",
+      "en_US": "Suspend your invitation?"
+    },
+    {
+      "id": "pl_msg_00000674_00011",
+      "en_US": "{STRVAR_1 3, 0, 0} contacted you!"
+    },
+    {
+      "id": "pl_msg_00000674_00012",
+      "en_US": [
+        "Would you like to log out of\n",
+        "Nintendo WFC?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00013",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000674_00014",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} invites you for\n",
+        "a voice chat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00015",
+      "en_US": "{STRVAR_1 3, 0, 0} appears to be busy..."
+    },
+    {
+      "id": "pl_msg_00000674_00016",
+      "en_US": [
+        "You can’t connect with\n",
+        "{STRVAR_1 3, 0, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00017",
+      "en_US": "Communicating with {STRVAR_1 3, 0, 0}..."
+    },
+    {
+      "id": "pl_msg_00000674_00018",
+      "en_US": "{STRVAR_1 3, 0, 0} failed to respond..."
+    },
+    {
+      "id": "pl_msg_00000674_00019",
+      "en_US": "{STRVAR_1 3, 0, 0} ended the voice chat."
+    },
+    {
+      "id": "pl_msg_00000674_00020",
+      "en_US": [
+        "Would you like to end\n",
+        "this voice chat?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00021",
+      "en_US": "Nintendo Wi-Fi Connection"
+    },
+    {
+      "id": "pl_msg_00000674_00022",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000674_00023",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000674_00024",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000674_00025",
+      "garbage": 9
+    },
+    {
+      "id": "pl_msg_00000674_00026",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000674_00027",
+      "en_US": "IN BATTLE"
+    },
+    {
+      "id": "pl_msg_00000674_00028",
+      "en_US": "TRADE"
+    },
+    {
+      "id": "pl_msg_00000674_00029",
+      "en_US": "TRADING..."
+    },
+    {
+      "id": "pl_msg_00000674_00030",
+      "en_US": "COOK"
+    },
+    {
+      "id": "pl_msg_00000674_00031",
+      "en_US": "COOKING..."
+    },
+    {
+      "id": "pl_msg_00000674_00032",
+      "en_US": "BATTLE FRONTIER"
+    },
+    {
+      "id": "pl_msg_00000674_00033",
+      "en_US": "IN CHALLENGE..."
+    },
+    {
+      "id": "pl_msg_00000674_00034",
+      "en_US": "PLAZA GAMES"
+    },
+    {
+      "id": "pl_msg_00000674_00035",
+      "en_US": "IN PLAY..."
+    },
+    {
+      "id": "pl_msg_00000674_00036",
+      "en_US": "VOICE CHAT"
+    },
+    {
+      "id": "pl_msg_00000674_00037",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000674_00038",
+      "garbage": 14
+    },
+    {
+      "id": "pl_msg_00000674_00039",
+      "en_US": "APPLY"
+    },
+    {
+      "id": "pl_msg_00000674_00040",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000674_00041",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "pl_msg_00000674_00042",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00043",
+      "en_US": "GROUP"
+    },
+    {
+      "id": "pl_msg_00000674_00044",
+      "en_US": "BATTLE RECORD"
+    },
+    {
+      "id": "pl_msg_00000674_00045",
+      "en_US": "W: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00046",
+      "en_US": "L: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00047",
+      "en_US": "POKéMON TRADES"
+    },
+    {
+      "id": "pl_msg_00000674_00048",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00049",
+      "en_US": "POFFIN SESSIONS"
+    },
+    {
+      "id": "pl_msg_00000674_00050",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00051",
+      "en_US": "DATE LAST PLAYED"
+    },
+    {
+      "id": "pl_msg_00000674_00052",
+      "en_US": "BATTLE TOWER"
+    },
+    {
+      "id": "pl_msg_00000674_00053",
+      "en_US": "BATTLE FACTORY"
+    },
+    {
+      "id": "pl_msg_00000674_00054",
+      "en_US": "BATTLE CASTLE"
+    },
+    {
+      "id": "pl_msg_00000674_00055",
+      "en_US": "BATTLE HALL"
+    },
+    {
+      "id": "pl_msg_00000674_00056",
+      "en_US": "BATTLE ARCADE"
+    },
+    {
+      "id": "pl_msg_00000674_00057",
+      "en_US": "PREV"
+    },
+    {
+      "id": "pl_msg_00000674_00058",
+      "en_US": "CURRENT"
+    },
+    {
+      "id": "pl_msg_00000674_00059",
+      "en_US": "RECORD"
+    },
+    {
+      "id": "pl_msg_00000674_00060",
+      "en_US": "LEVEL 50"
+    },
+    {
+      "id": "pl_msg_00000674_00061",
+      "en_US": "OPEN LEVEL"
+    },
+    {
+      "id": "pl_msg_00000674_00062",
+      "en_US": "RENTAL/TRADE"
+    },
+    {
+      "id": "pl_msg_00000674_00063",
+      "en_US": "CASTLE POINTS"
+    },
+    {
+      "id": "pl_msg_00000674_00064",
+      "en_US": "{STRVAR_1 0, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00065",
+      "en_US": "WIN STREAK: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00066",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00067",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "pl_msg_00000674_00068",
+      "en_US": "WIN STREAK: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00069",
+      "en_US": "GAMES CLEARED: {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00070",
+      "en_US": "PLAZA GAMES PLAYED"
+    },
+    {
+      "id": "pl_msg_00000674_00071",
+      "en_US": "{STRVAR_6 0, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00072",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00073",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "pl_msg_00000674_00074",
+      "en_US": "{STRVAR_1 74, 1, 0} {STRVAR_1 51, 2, 0}, {STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00075",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000674_00076",
+      "en_US": "{STRVAR_1 3, 0, 0} wants to play with you!"
+    },
+    {
+      "id": "pl_msg_00000674_00077",
+      "en_US": [
+        "Would you like to have another\n",
+        "battle against {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00078",
+      "en_US": [
+        "Would you like to do another\n",
+        "trade with {STRVAR_1 3, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00079",
+      "en_US": "Standing by..."
+    },
+    {
+      "id": "pl_msg_00000674_00080",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000674_00081",
+      "en_US": "{STRVAR_1 3, 0, 0} is in a battle."
+    },
+    {
+      "id": "pl_msg_00000674_00082",
+      "en_US": "{STRVAR_1 3, 0, 0} is trading."
+    },
+    {
+      "id": "pl_msg_00000674_00083",
+      "en_US": "{STRVAR_1 3, 0, 0} is cooking."
+    },
+    {
+      "id": "pl_msg_00000674_00084",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is in a Battle Frontier\n",
+        "challenge."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00085",
+      "en_US": "{STRVAR_1 3, 0, 0} is playing a Plaza Game."
+    },
+    {
+      "id": "pl_msg_00000674_00086",
+      "en_US": "{STRVAR_1 3, 0, 0} is having a voice chat."
+    },
+    {
+      "id": "pl_msg_00000674_00087",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000674_00088",
+      "en_US": "Reconnect to Nintendo WFC?"
+    },
+    {
+      "id": "pl_msg_00000674_00089",
+      "en_US": [
+        "You need at least two Pokémon\n",
+        "if you want to trade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00090",
+      "en_US": "Voice chat was turned ON.\r"
+    },
+    {
+      "id": "pl_msg_00000674_00091",
+      "en_US": "Voice chat was turned OFF.\r"
+    },
+    {
+      "id": "pl_msg_00000674_00092",
+      "en_US": "???"
+    },
+    {
+      "id": "pl_msg_00000674_00093",
+      "en_US": "SINGLE BATTLE"
+    },
+    {
+      "id": "pl_msg_00000674_00094",
+      "en_US": "DOUBLE BATTLE"
+    },
+    {
+      "id": "pl_msg_00000674_00095",
+      "en_US": "FREE SINGLE"
+    },
+    {
+      "id": "pl_msg_00000674_00096",
+      "en_US": "LV. 50 SINGLE"
+    },
+    {
+      "id": "pl_msg_00000674_00097",
+      "en_US": "LV. 100 SINGLE"
+    },
+    {
+      "id": "pl_msg_00000674_00098",
+      "en_US": "FREE DOUBLE"
+    },
+    {
+      "id": "pl_msg_00000674_00099",
+      "en_US": "LV. 50 DOUBLE"
+    },
+    {
+      "id": "pl_msg_00000674_00100",
+      "en_US": "LV. 100 DOUBLE"
+    },
+    {
+      "id": "pl_msg_00000674_00101",
+      "en_US": [
+        "Your friend ended the communication\n",
+        "battle."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00102",
+      "en_US": "Communicating. Please stand by..."
+    },
+    {
+      "id": "pl_msg_00000674_00103",
+      "en_US": [
+        "You can’t have a Double Battle\n",
+        "if you only have one Pokémon..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00104",
+      "en_US": "You don’t have any Berries..."
+    },
+    {
+      "id": "pl_msg_00000674_00105",
+      "en_US": "Your Poffin Case is full."
+    },
+    {
+      "id": "pl_msg_00000674_00106",
+      "en_US": [
+        "You can’t cook Berries if you don’t\n",
+        "have a Poffin Case."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00107",
+      "en_US": [
+        "When the group is ready:\n",
+        "A Button: Proceed   B Button: Cancel"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00108",
+      "en_US": [
+        "Someone wishes to join.\n",
+        "Accept this Trainer as a member?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00109",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000674_00110",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000674_00111",
+      "en_US": "Are these members OK?"
+    },
+    {
+      "id": "pl_msg_00000674_00112",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000674_00113",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000674_00114",
+      "en_US": "Awaiting {STRVAR_1 3, 0, 0}’s response..."
+    },
+    {
+      "id": "pl_msg_00000674_00115",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} approved your\n",
+        "member-registration request."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00116",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} turned down your\n",
+        "member-registration request...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00117",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000674_00118",
+      "en_US": [
+        "A member had to drop out.\n",
+        "Please register from the start again.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00119",
+      "en_US": "There aren’t enough members.\r"
+    },
+    {
+      "id": "pl_msg_00000674_00120",
+      "en_US": "Stop looking for members?"
+    },
+    {
+      "id": "pl_msg_00000674_00121",
+      "en_US": [
+        "If the leader drops out, the group will\n",
+        "be disbanded. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00122",
+      "en_US": "The member invitations will be canceled."
+    },
+    {
+      "id": "pl_msg_00000674_00123",
+      "en_US": "Awaiting other members."
+    },
+    {
+      "id": "pl_msg_00000674_00124",
+      "en_US": "Is it OK to turn on the Voice Chat?"
+    },
+    {
+      "id": "pl_msg_00000674_00125",
+      "en_US": "Is it OK to turn off the Voice Chat?"
+    },
+    {
+      "id": "pl_msg_00000674_00126",
+      "en_US": "Seeking Poffin cooks!"
+    },
+    {
+      "id": "pl_msg_00000674_00127",
+      "en_US": "Seeking {STRVAR_6 0, 0, 0} players!"
+    },
+    {
+      "id": "pl_msg_00000674_00128",
+      "en_US": "Voice Chat ON/OFF: X Button"
+    },
+    {
+      "id": "pl_msg_00000674_00129",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00130",
+      "en_US": "ID {STRVAR_1 54, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000674_00131",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}\n",
+        "ID {STRVAR_1 54, 1, 0}"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00132",
+      "en_US": [
+        "The leader appears busy.\n",
+        "Please apply again.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00133",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000674_00134",
+      "en_US": [
+        "Voice chat will be turned ON while\n",
+        "you play with this friend.\r",
+        "Would you like to respond to this\n",
+        "friend’s invitation?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00135",
+      "en_US": [
+        "Voice chat will be turned OFF while\n",
+        "you play with this friend.\r",
+        "Would you like to respond to this\n",
+        "friend’s invitation?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00136",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000674_00137",
+      "garbage": 32
+    },
+    {
+      "id": "pl_msg_00000674_00138",
+      "en_US": [
+        "Waiting for the other player to\n",
+        "decide. Please wait..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000674_00139",
+      "garbage": 30
+    },
+    {
+      "id": "pl_msg_00000674_00140",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000674_00141",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000674_00142",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000674_00143",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000674_00144",
+      "en_US": "WALKABOUT"
+    },
+    {
+      "id": "pl_msg_00000674_00145",
+      "en_US": "MULTI BATTLE"
+    },
+    {
+      "id": "pl_msg_00000674_00146",
+      "en_US": "2BITADPCM"
+    },
+    {
+      "id": "pl_msg_00000674_00147",
+      "en_US": "3BITADPCM"
+    },
+    {
+      "id": "pl_msg_00000674_00148",
+      "en_US": "4BITADPCM"
+    },
+    {
+      "id": "pl_msg_00000674_00149",
+      "garbage": 4
+    },
+    {
+      "id": "pl_msg_00000674_00150",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    }
+  ]
+}

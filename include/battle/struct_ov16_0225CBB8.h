@@ -3,8 +3,8 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "overlay012/struct_ov12_02237F98_decl.h"
-#include "overlay012/struct_ov12_02238004_decl.h"
+#include "battle_anim/struct_ov12_02237F98_decl.h"
+#include "battle_anim/struct_ov12_02238004_decl.h"
 
 typedef struct {
     BattleSystem *unk_00;

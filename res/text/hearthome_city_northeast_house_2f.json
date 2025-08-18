@@ -1,0 +1,40 @@
+{
+  "key": 1095,
+  "messages": [
+    {
+      "id": "pl_msg_00000124_00000",
+      "en_US": [
+        "All my grandchildren are clamoring\n",
+        "for Pokémon of their own.\r",
+        "It may be tricky to manage it, but\n",
+        "it will brighten up the mood more."
+      ]
+    },
+    {
+      "id": "pl_msg_00000124_00001",
+      "en_US": [
+        "Oh, no, there are no stairs in\n",
+        "this house. It’s easier that way.\r",
+        "The lack of stairs makes it easy for\n",
+        "the little Pokémon to get about."
+      ]
+    },
+    {
+      "id": "pl_msg_00000124_00002",
+      "en_US": [
+        "Some act kindly in hopes of being\n",
+        "treated kindly in turn.\r",
+        "But, how could that be a bad thing?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000124_00003",
+      "en_US": [
+        "Hearthome is a kid-friendly city,\n",
+        "they say, but I disagree.\r",
+        "Hearthome is friendly to kids,\n",
+        "grown-ups, and Pokémon too."
+      ]
+    }
+  ]
+}

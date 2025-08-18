@@ -1,0 +1,29 @@
+{
+  "key": 50222,
+  "messages": [
+    {
+      "id": "pl_msg_00000043_00000",
+      "en_US": [
+        "I like how Pokémon can use attacks.\n",
+        "That makes things fun and different.\r",
+        "Sometimes, when they get stronger,\n",
+        "Pokémon learn new moves.\r",
+        "That keeps things fresh and fun when\n",
+        "using moves."
+      ]
+    },
+    {
+      "id": "pl_msg_00000043_00001",
+      "en_US": [
+        "Did you buy some Heal Balls at the\n",
+        "Poké Mart?\r",
+        "A Heal Ball completely heals the\n",
+        "Pokémon it captures on the spot.\r",
+        "That means you can catch a Pokémon\n",
+        "and have it battle-ready right away.\r",
+        "Of course, if your team has six\n",
+        "Pokémon in it, it won’t do any good."
+      ]
+    }
+  ]
+}

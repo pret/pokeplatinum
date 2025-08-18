@@ -1,0 +1,73 @@
+{
+  "key": 62768,
+  "messages": [
+    {
+      "id": "pl_msg_00000690_00000",
+      "en_US": "None"
+    },
+    {
+      "id": "pl_msg_00000690_00001",
+      "en_US": "Dolnoslaskie"
+    },
+    {
+      "id": "pl_msg_00000690_00002",
+      "en_US": "Kujawsko-Pomorskie"
+    },
+    {
+      "id": "pl_msg_00000690_00003",
+      "en_US": "Lubelskie"
+    },
+    {
+      "id": "pl_msg_00000690_00004",
+      "en_US": "Lubuskie"
+    },
+    {
+      "id": "pl_msg_00000690_00005",
+      "en_US": "Lodzkie"
+    },
+    {
+      "id": "pl_msg_00000690_00006",
+      "en_US": "Malopolskie"
+    },
+    {
+      "id": "pl_msg_00000690_00007",
+      "en_US": "Mazowieckie"
+    },
+    {
+      "id": "pl_msg_00000690_00008",
+      "en_US": "Opolskie"
+    },
+    {
+      "id": "pl_msg_00000690_00009",
+      "en_US": "Podkarpackie"
+    },
+    {
+      "id": "pl_msg_00000690_00010",
+      "en_US": "Podlaskie"
+    },
+    {
+      "id": "pl_msg_00000690_00011",
+      "en_US": "Pomorskie"
+    },
+    {
+      "id": "pl_msg_00000690_00012",
+      "en_US": "Slaskie"
+    },
+    {
+      "id": "pl_msg_00000690_00013",
+      "en_US": "Swietokrzyskie"
+    },
+    {
+      "id": "pl_msg_00000690_00014",
+      "en_US": "Warminsko-Mazurskie"
+    },
+    {
+      "id": "pl_msg_00000690_00015",
+      "en_US": "Wielkopolskie"
+    },
+    {
+      "id": "pl_msg_00000690_00016",
+      "en_US": "Zachodniopomorskie"
+    }
+  ]
+}

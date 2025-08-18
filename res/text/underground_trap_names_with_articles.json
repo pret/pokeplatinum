@@ -1,0 +1,281 @@
+{
+  "key": 39862,
+  "messages": [
+    {
+      "id": "pl_msg_00000631_00000",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00001",
+      "en_US": "a {COLOR 255}Move Trap ↑{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00002",
+      "en_US": "a {COLOR 255}Move Trap →{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00003",
+      "en_US": "a {COLOR 255}Move Trap ↓{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00004",
+      "en_US": "a {COLOR 255}Move Trap ←{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00005",
+      "en_US": "a {COLOR 255}Hurl Trap ↑{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00006",
+      "en_US": "a {COLOR 255}Hurl Trap →{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00007",
+      "en_US": "a {COLOR 255}Hurl Trap ↓{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00008",
+      "en_US": "a {COLOR 255}Hurl Trap ←{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00009",
+      "en_US": "a {COLOR 255}Warp Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00010",
+      "en_US": "a {COLOR 255}Hi-Warp Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00011",
+      "en_US": "a {COLOR 255}Hole Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00012",
+      "en_US": "a {COLOR 255}Pit Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00013",
+      "en_US": "a {COLOR 255}Reverse Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00014",
+      "en_US": "a {COLOR 255}Confuse Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00015",
+      "en_US": "a {COLOR 255}Run Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00016",
+      "en_US": "a {COLOR 255}Fade Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00017",
+      "en_US": "a {COLOR 255}Slow Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00018",
+      "en_US": "a {COLOR 255}Smoke Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00019",
+      "en_US": "a {COLOR 255}Big Smoke Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00020",
+      "en_US": "a {COLOR 255}Rock Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00021",
+      "en_US": "a {COLOR 255}Rockfall Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00022",
+      "en_US": "a {COLOR 255}Foam Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00023",
+      "en_US": "a {COLOR 255}Bubble Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00024",
+      "en_US": "an {COLOR 255}Alert Trap 1{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00025",
+      "en_US": "an {COLOR 255}Alert Trap 2{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00026",
+      "en_US": "an {COLOR 255}Alert Trap 3{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00027",
+      "en_US": "an {COLOR 255}Alert Trap 4{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00028",
+      "en_US": "a {COLOR 255}Leaf Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00029",
+      "en_US": "a {COLOR 255}Flower Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00030",
+      "en_US": "an {COLOR 255}Ember Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00031",
+      "en_US": "a {COLOR 255}Fire Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00032",
+      "en_US": "a {COLOR 255}Radar Trap{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00033",
+      "en_US": "a {COLOR 255}Digger Drill{COLOR 0}"
+    },
+    {
+      "id": "pl_msg_00000631_00034",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00035",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00036",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00037",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00038",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00039",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00040",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00041",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00042",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00043",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00044",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00045",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00046",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00047",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00048",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00049",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00050",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00051",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00052",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00053",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00054",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00055",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00056",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00057",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00058",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00059",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00060",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00061",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00062",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00063",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00064",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00065",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00066",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00067",
+      "garbage": 0
+    },
+    {
+      "id": "pl_msg_00000631_00068",
+      "garbage": 0
+    }
+  ]
+}

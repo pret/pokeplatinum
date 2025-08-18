@@ -1,0 +1,45 @@
+{
+  "key": 1075,
+  "messages": [
+    {
+      "id": "pl_msg_00000122_00000",
+      "en_US": [
+        "The Contests are interesting, but the\n",
+        "ruins of Solaceon Town are as well..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000122_00001",
+      "en_US": [
+        "Sorry, the gate’s closed for a while.\n",
+        "We’re on location for a TV shoot."
+      ]
+    },
+    {
+      "id": "pl_msg_00000122_00002",
+      "en_US": [
+        "I traveled a long way to take part\n",
+        "in these Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000122_00003",
+      "garbage": 96
+    },
+    {
+      "id": "pl_msg_00000122_00004",
+      "en_US": [
+        "I’ve given my Pokémon lots of Poffins.\r",
+        "I’m confident that we’ll win our share\n",
+        "of Contests."
+      ]
+    },
+    {
+      "id": "pl_msg_00000122_00005",
+      "en_US": [
+        "There’s a Day Care in Solaceon Town\n",
+        "that raises Pokémon for you."
+      ]
+    }
+  ]
+}

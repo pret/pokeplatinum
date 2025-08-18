@@ -1,0 +1,142 @@
+{
+  "key": 44018,
+  "messages": [
+    {
+      "id": "pl_msg_00000068_00000",
+      "en_US": [
+        "Yay! I got a Pal Pad at the\n",
+        "Pokémon Wi-Fi Club downstairs!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00001",
+      "en_US": [
+        "Switch on the PC at any Pokémon\n",
+        "Center.\r",
+        "Connect to “Someone’s PC” and access\n",
+        "the Pokémon Storage System.\r",
+        "That’s all you need to do to store\n",
+        "or bring out your Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00002",
+      "en_US": [
+        "Hmmm...!\r",
+        "What is your favorite kind of Trainer?\n",
+        "Can you tell me?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00003",
+      "en_US": [
+        "Which kind of Trainer would you like\n",
+        "to be?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00004",
+      "en_US": [
+        "{STRVAR_1 14, 0, 0} is the kind of Trainer\n",
+        "you want to be?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00005",
+      "en_US": [
+        "I see! So {STRVAR_1 14, 0, 0} is the kind\n",
+        "of Trainer you like.\r",
+        "If that’s the case, others may come\n",
+        "to see you in the same way.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00006",
+      "en_US": "OK, then I’ll just talk to you later!"
+    },
+    {
+      "id": "pl_msg_00000068_00007",
+      "en_US": [
+        "Hello! You’ve been mistaken for\n",
+        "{STRVAR_1 14, 0, 0}, haven’t you?\r",
+        "But I think you can also pass for\n",
+        "a different kind of Trainer.\r",
+        "So, how about telling me what kind of\n",
+        "Trainer that you like?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00008",
+      "en_US": [
+        "Hmmm!\n",
+        "What, or who, is this Team Galactic?!\r",
+        "They make wonderful claims of a dream\n",
+        "energy source on one hand...\r",
+        "But rumor has it, they steal Pokémon\n",
+        "from others by force.\r",
+        "It’s a mystery! They’re mysterious!\n",
+        "Isn’t anyone investigating them?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00009",
+      "en_US": [
+        "Hmmm!\n",
+        "What, or who, is this Team Galactic?!\r",
+        "Lately, they’ve renounced such acts\n",
+        "as stealing Pokémon.\r",
+        "They’re still involved in developing \n",
+        "dream energies, but ethically now."
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00010",
+      "en_US": [
+        "You know how you can battle a friend\n",
+        "using wireless communications?\r",
+        "Well now, you can capture it as a Battle\n",
+        "Video using a Vs. Recorder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00011",
+      "en_US": [
+        "Cool!\n",
+        "You have a Vs. Recorder!\r",
+        "So, did you go to the Global Terminal in\n",
+        "Jubilife City? Did ya? Did ya?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00012",
+      "en_US": [
+        "Hi, I’m Grace, the Idol! I’m just back\n",
+        "from a show in Oreburgh Mine!\r",
+        "So, shall we battle?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00013",
+      "en_US": [
+        "I’ll let you join my fan club if you can\n",
+        "beat me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00014",
+      "en_US": [
+        "You won’t accept my challenge?!\n",
+        "But I’m an Idol..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000068_00015",
+      "en_US": [
+        "Well, that’s me and my Pokémon!\n",
+        "I hope you’ll support us!\r",
+        "Just so you know, our latest single is\n",
+        "titled “Jigglin’ Pokémon Wub”!"
+      ]
+    }
+  ]
+}

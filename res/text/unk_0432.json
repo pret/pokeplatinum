@@ -1,0 +1,185 @@
+{
+  "key": 42882,
+  "messages": [
+    {
+      "id": "pl_msg_00000432_00000",
+      "en_US": [
+        "Hello!\r",
+        "Here you may cook Berries and\n",
+        "turn them into Poffins.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000432_00001",
+      "en_US": [
+        "Would you like to cook alone or with\n",
+        "other people?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000432_00002",
+      "en_US": [
+        "DS Wireless Communications will\n",
+        "be launched."
+      ]
+    },
+    {
+      "id": "pl_msg_00000432_00003",
+      "en_US": "YES"
+    },
+    {
+      "id": "pl_msg_00000432_00004",
+      "en_US": "NO"
+    },
+    {
+      "id": "pl_msg_00000432_00005",
+      "garbage": 15
+    },
+    {
+      "id": "pl_msg_00000432_00006",
+      "en_US": "There isn’t a Berry to cook!\r"
+    },
+    {
+      "id": "pl_msg_00000432_00007",
+      "en_US": "The Poffin Case is full.\r"
+    },
+    {
+      "id": "pl_msg_00000432_00008",
+      "en_US": [
+        "Sorry, you must have a Poffin Case\n",
+        "if you want to cook some Berries."
+      ]
+    },
+    {
+      "id": "pl_msg_00000432_00009",
+      "en_US": "ALONE"
+    },
+    {
+      "id": "pl_msg_00000432_00010",
+      "en_US": "IN A GROUP"
+    },
+    {
+      "id": "pl_msg_00000432_00011",
+      "en_US": "INFO"
+    },
+    {
+      "id": "pl_msg_00000432_00012",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "pl_msg_00000432_00013",
+      "en_US": [
+        "One person in the group needs to\n",
+        "choose “BECOME LEADER.”\r",
+        "Everyone else must choose\n",
+        "“JOIN GROUP.”"
+      ]
+    },
+    {
+      "id": "pl_msg_00000432_00014",
+      "garbage": 8
+    },
+    {
+      "id": "pl_msg_00000432_00015",
+      "garbage": 7
+    },
+    {
+      "id": "pl_msg_00000432_00016",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000432_00017",
+      "garbage": 29
+    },
+    {
+      "id": "pl_msg_00000432_00018",
+      "garbage": 26
+    },
+    {
+      "id": "pl_msg_00000432_00019",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000432_00020",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000432_00021",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000432_00022",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000432_00023",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000432_00024",
+      "garbage": 12
+    },
+    {
+      "id": "pl_msg_00000432_00025",
+      "garbage": 2
+    },
+    {
+      "id": "pl_msg_00000432_00026",
+      "garbage": 3
+    },
+    {
+      "id": "pl_msg_00000432_00027",
+      "garbage": 23
+    },
+    {
+      "id": "pl_msg_00000432_00028",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000432_00029",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000432_00030",
+      "garbage": 55
+    },
+    {
+      "id": "pl_msg_00000432_00031",
+      "garbage": 38
+    },
+    {
+      "id": "pl_msg_00000432_00032",
+      "en_US": [
+        "Throw the Berry into the pot and\n",
+        "get stirring!\r",
+        "Watch for an arrow to show you which\n",
+        "direction to stir.\r",
+        "Be quick! If you stir too slowly,\n",
+        "you’ll burn the batter.\r",
+        "But not too quick! If you stir too fast,\n",
+        "the batter will overflow.\r",
+        "If you do well, you’ll cook up a\n",
+        "delicious Poffin!\r",
+        "You may cook alone or in a group\n",
+        "of up to four people.\r",
+        "With more cooks stirring, everyone will\n",
+        "get more Poffins!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000432_00033",
+      "en_US": [
+        "Please visit again whenever you get\n",
+        "the urge to cook!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000432_00034",
+      "garbage": 5
+    },
+    {
+      "id": "pl_msg_00000432_00035",
+      "garbage": 7
+    }
+  ]
+}

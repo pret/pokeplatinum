@@ -1,0 +1,488 @@
+{
+  "key": 17299,
+  "messages": [
+    {
+      "id": "pl_msg_00000192_00000",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Oh, hey, {STRVAR_1 3, 1, 0}!\n",
+        "What took you so long?\f",
+        "I’m fining you $100 million!\r",
+        "Actually, never mind the fine.\n",
+        "Come with me, will ya?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00001",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 1, 0}, I tried to\n",
+        "get into the Battle Frontier,\f",
+        "which happens to be right here.\r",
+        "Then these guys came along and got in\n",
+        "my face about it.\r",
+        "Like, they’re saying they want to test\n",
+        "me if I’m good enough and all that.\r",
+        "Like, as if I need to prove anything.\n",
+        "So, let’s team up.\r",
+        "Like we did at the Spear Pillar.\n",
+        "Let’s show those guys how good we are!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00002",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Yeah, that’s what I’m\n",
+        "talking about!\r",
+        "So there’s an Elite Four and a Gym\n",
+        "Leader. We can whoop ’em!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00003",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, seriously, can I say\n",
+        "something?\r",
+        "What’s all that about?\n",
+        "Toss me a bone here!\r",
+        "Come on, I’m stuck here.\n",
+        "I need your help!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00004",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Come on, let’s show them\n",
+        "how tough we really are!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00005",
+      "en_US": [
+        "Flint: Yo, Trainer!\n",
+        "It’s been too long, amigo!\r",
+        "Now I don’t know what your pal speedy\n",
+        "there’s been spouting...\r",
+        "But we’re not doing this out of spite\n",
+        "or anything bad natured like that.\r",
+        "The Battle Frontier behind us is where\n",
+        "the best Trainers gather.\r",
+        "We’re being kind enough to let you\n",
+        "see if you’re up to the challenge!\r",
+        "You really ought to be grateful!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00006",
+      "en_US": [
+        "Volkner: You only want to go into the\n",
+        "Frontier, don’t you?\r",
+        "I’m sorry about my friend.\n",
+        "He’s off on his own thing..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00007",
+      "en_US": [
+        "Flint: This situation just cooks!\n",
+        "The drama and tension sizzles!\r",
+        "Flint, the fiery master of fire Pokémon,\n",
+        "is going to put you to the test!\f",
+        "Let Flint see how hot your spirit burns!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00008",
+      "en_US": [
+        "Volkner: I don’t know how I managed to\n",
+        "get myself into this, but...\r",
+        "Show me the skills that got you through\n",
+        "the Pokémon League!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00009",
+      "en_US": [
+        "Flint: ...\n",
+        "...\r",
+        "...\n",
+        "...\r",
+        "...\n",
+        "...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00010",
+      "en_US": [
+        "Volkner: Hey! Don’t burn out on us!\n",
+        "Now you’re just getting in the way.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00011",
+      "en_US": [
+        "Volkner: Hahaha!\n",
+        "That was a blast!\r",
+        "Our combination came up short, but\n",
+        "you’re also a lot tougher as well.\r",
+        "Promise me we’ll do this again.\n",
+        "I’ll see to taking this husk home.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00012",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: See?\n",
+        "I got a lot tougher, yeah?\r",
+        "OK, I’m off to the Fronti...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00013",
+      "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
+    },
+    {
+      "id": "pl_msg_00000192_00014",
+      "en_US": "What’s this all about?!\r"
+    },
+    {
+      "id": "pl_msg_00000192_00015",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: What the...\r",
+        "{SIZE 200}...Daddy?!{SIZE 100}\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00016",
+      "en_US": [
+        "Palmer: Huh? Ah!\r",
+        "If it isn’t {STRVAR_1 3, 0, 0}!\n",
+        "You’ve grown all sturdy!\r",
+        "And {STRVAR_1 3, 1, 0}, too! I haven’t\n",
+        "seen you in a long time, either!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00017",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, your mother told me\n",
+        "you’d gone off to the Battle Zone.\r",
+        "So I had to come running looking for\n",
+        "you.\r",
+        "So, are you two going to take the\n",
+        "Battle Frontier challenge?\r",
+        "The Frontier has five facilities that\n",
+        "are all dedicated to battling.\r",
+        "Each one has a unique set of rules,\n",
+        "so they’re all different.\r",
+        "Of course, you have to be good to win\n",
+        "at any of them.\r",
+        "Anyway, I’m satisfied to see that\n",
+        "you’re both doing well.\r",
+        "I’ll go back to my usual place in the\n",
+        "Battle Tower.\r",
+        "I’ll be looking forward to your\n",
+        "challenge.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00018",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: My dad is cool, huh?\n",
+        "I mean, when it gets right down to it.\f",
+        "You think so too, right?\r",
+        "He’s a Frontier Brain, after all.\n",
+        "He’s the Tower Tycoon!\r",
+        "I want to be cool like my dad!\r",
+        "{STRVAR_1 3, 1, 0}, that’s the one reason\n",
+        "I decided to become a Trainer!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00019",
+      "en_US": [
+        "Ooh, what am I going to do?\r",
+        "Should I make the challenge now?\n",
+        "Or do I train some more?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00020",
+      "en_US": [
+        "OK! I’ve decided!\n",
+        "I’m going to get tougher! By a lot!\r",
+        "I finally made it here!\n",
+        "There’s no need for haste now.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00021",
+      "en_US": [
+        "Who are you guys?\r",
+        "What makes an Elite Four and a Gym\n",
+        "Leader want to take you on?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00022",
+      "en_US": [
+        "Hey, hey.\n",
+        "I just watched you two battle.\r",
+        "You’re something special, aren’t you?\n",
+        "Beating an Elite Four like that.\r",
+        "Oh, right, howdy.\n",
+        "The name’s Buck.\r",
+        "I’m usually training at the Survival\n",
+        "Area or Stark Mountain.\r",
+        "You should come up there.\n",
+        "You’ll get toughened up for sure!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00023",
+      "en_US": [
+        "Anyways, howdy, I’m Buck.\n",
+        "Sheesh, that punk can’t beat me.\r",
+        "So, do you know that zippity-doodah\n",
+        "of a Trainer?\r",
+        "You should chase after that guy\n",
+        "and tell him not to underestimate\f",
+        "the volcano.\r",
+        "Oh, but you know what?\r",
+        "You’d better shape up at the\n",
+        "Battle Tower first, too.\r",
+        "I don’t like your chances of getting\n",
+        "to the volcano, otherwise.\r",
+        "Be seeing you!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00024",
+      "en_US": [
+        "You can learn a lot by watching other\n",
+        "Trainers battle.\r",
+        "I can’t wait to cast my eyes on a battle\n",
+        "with an Elite Four and a Gym Leader!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00025",
+      "en_US": [
+        "I can’t believe I’m going to see a\n",
+        "battle involving the best Trainers!\r",
+        "That’s what I get for living right in\n",
+        "front of the Frontier.\r",
+        "I must be lucky!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00026",
+      "en_US": [
+        "There’s a lot to think about in any\n",
+        "two-on-two battle.\r",
+        "It puts the focus on the Trainer’s\n",
+        "knowledge and skills."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00027",
+      "en_US": [
+        "Are Volkner and Flint really good\n",
+        "friends?\r",
+        "I’ve heard all they ever do is argue\n",
+        "and bicker."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00028",
+      "en_US": [
+        "An Elite Four and a Gym Leader...\n",
+        "That combination’s intriguing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00029",
+      "en_US": [
+        "Howdy, Trainer!\n",
+        "You have a Pokédex, do you?\r",
+        "The person who gave you that must be\n",
+        "waiting for you to fill it completely."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00030",
+      "en_US": [
+        "Howdy, Trainer!\n",
+        "Have you been to the Battle Frontier?\r",
+        "It’s a good place to learn about the\n",
+        "intricacies of battling.\r",
+        "Like how certain Pokémon can battle\n",
+        "with certain moves and so on."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00031",
+      "en_US": [
+        "The way the Battle Tower looms...\r",
+        "It really is a wall that stands\n",
+        "before every Trainer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00032",
+      "garbage": 45
+    },
+    {
+      "id": "pl_msg_00000192_00033",
+      "en_US": [
+        "I’ve battled many Trainers over\n",
+        "the years.\r",
+        "I’ve gained some confidence in my\n",
+        "skill levels, too.\r",
+        "But the world is still a huge place.\n",
+        "It’s not easy to win in life!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00034",
+      "en_US": [
+        "Because of the volcano, the land\n",
+        "around here is craggy.\r",
+        "The rough terrain and all the ups\n",
+        "and downs make it hard to hike."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00035",
+      "en_US": [
+        "The Pokémon League’s Elite Four\n",
+        "come here sometimes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00036",
+      "en_US": [
+        "Your Pokémon are from Sinnoh,\n",
+        "aren’t they?\r",
+        "They’re not what we’re used to\n",
+        "seeing around here."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00037",
+      "en_US": [
+        "There’s no end to becoming tough!\r",
+        "I just made that up, but it sounds\n",
+        "kind of cool, huh?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00038",
+      "en_US": [
+        "What’s up? Do you want to sail to\n",
+        "Snowpoint City?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00039",
+      "en_US": [
+        "Aye, right!\n",
+        "It’s anchors aweigh, then!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00040",
+      "en_US": [
+        "Oh, right. You’d rather just fly\n",
+        "everywhere in some big hurry."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00041",
+      "en_US": [
+        "Whenever I go to a new place, I get\n",
+        "excited over what I might discover.\r",
+        "But places I’ve visited before...\r",
+        "Even those places thrill me with\n",
+        "new discoveries!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00042",
+      "en_US": [
+        "Hmm!\n",
+        "A Super Rod is really good!\r",
+        "Wouldn’t you agree?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00043",
+      "en_US": [
+        "Hmm!\n",
+        "We’re of identical minds!\r",
+        "Hmm!\n",
+        "Take this {STRVAR_1 8, 0, 0}!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00044",
+      "en_US": [
+        "Wherever there’s water, try your\n",
+        "luck at fishing."
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00045",
+      "en_US": "Don’t you like to fish?"
+    },
+    {
+      "id": "pl_msg_00000192_00046",
+      "en_US": [
+        "What’s that?\n",
+        "Any advice for fishing?\r",
+        "Well, I’ll tell you.\n",
+        "It’s all about the rod and technique!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00047",
+      "en_US": [
+        "Fight Area\n",
+        "Battles Galore"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00048",
+      "en_US": [
+        "Battle Frontier Ahead\n",
+        "Aim to Win Glory with Pokémon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00049",
+      "en_US": [
+        "Rt. 225 Ahead\n",
+        "A Road of Challenges"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00050",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\r",
+        "You’re not the only one who’s getting\n",
+        "tougher, you know!\r",
+        "I’ll prove it to you!\n",
+        "Get ready to battle!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000192_00051",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...!\n",
+        "It’s OK, though.\r",
+        "{STRVAR_1 3, 1, 0}, the tougher you get,\n",
+        "the tougher we can get, too.\r",
+        "There’s no end to Pokémon.\n",
+        "That’s what I’m saying, {STRVAR_1 3, 1, 0}."
+      ]
+    }
+  ]
+}

@@ -34,12 +34,12 @@ _005A:
 
 _007A:
     SetObjectEventPos 12, 8, 11
-    ScrCmd_187 12, 8, 0, 11, 2
+    SetPosition 12, 8, 0, 11, 2
     Return
 
 _0090:
     SetObjectEventPos 12, 13, 11
-    ScrCmd_187 12, 13, 0, 11, 2
+    SetPosition 12, 13, 0, 11, 2
     Return
 
 _00A6:
@@ -179,7 +179,7 @@ _0289:
     End
 
 _02A5:
-    ScrCmd_313 0
+    RecordHeapMemory
     CallIfEq VAR_MAP_LOCAL_4, 0, _0874
     CallIfEq VAR_MAP_LOCAL_4, 1, _0879
     GoTo _02CB
@@ -260,9 +260,9 @@ _03F5:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _034D
-    ScrCmd_31E VAR_MAP_LOCAL_2, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _07C8
-    ScrCmd_31E VAR_MAP_LOCAL_5, VAR_RESULT
+    TryRevertPokemonForm VAR_MAP_LOCAL_5, VAR_RESULT
     GoToIfEq VAR_RESULT, 0xFF, _07C8
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_MAP_LOCAL_1
     GoToIfEq VAR_MAP_LOCAL_1, 0, _034D
@@ -410,7 +410,7 @@ _06C3:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_313 1
+    AssertHeapMemory
     End
 
 _072C:
@@ -565,7 +565,7 @@ _08AF:
     Return
 
 _08B4:
-    ScrCmd_313 0
+    RecordHeapMemory
     SetVar VAR_MAP_LOCAL_3, 1
     SetVar VAR_UNK_0x40BA, 0
     Message 11
@@ -575,9 +575,9 @@ _08B4:
     End
 
 _08DB:
-    ScrCmd_18D
-    ScrCmd_12D VAR_RESULT
-    ScrCmd_18E
+    ShowSavingIcon
+    TrySaveGame VAR_RESULT
+    HideSavingIcon
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     Return

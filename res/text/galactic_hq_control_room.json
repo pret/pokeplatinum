@@ -1,0 +1,175 @@
+{
+  "key": 54363,
+  "messages": [
+    {
+      "id": "pl_msg_00000288_00000",
+      "en_US": [
+        "You... You came all the way here\n",
+        "just to save some Pokémon?\r",
+        "...Though it’s nothing new, I can’t\n",
+        "say I understand our boss...\r",
+        "Why would he let a kid like you\n",
+        "come and go freely...?\r",
+        "We, Team Galactic, take all that we\n",
+        "need, and eliminate what we do not.\r",
+        "But anyway. You’ve taken the trouble\n",
+        "to come. Let me welcome you!\r",
+        "Consider it payback for your insulting\n",
+        "me at the lake.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00001",
+      "en_US": [
+        "...Gah!\n",
+        "What makes you so tough?\r",
+        "Fine... Do whatever you want with\n",
+        "those three Pokémon.\r",
+        "Press the button on that machine\n",
+        "to set them free.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00002",
+      "en_US": [
+        "Press the button and set them free.\n",
+        "Isn’t that why you came?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00003",
+      "en_US": [
+        "Our boss crafted a Red Chain from\n",
+        "crystals he took from the three\f",
+        "Pokémon.\r",
+        "That Red Chain is what he needed to\n",
+        "shackle something on Mt. Coronet.\r",
+        "It’s also apparently needed for\n",
+        "creating something.\r",
+        "But that’s all I know. Who knows\n",
+        "what he’s planning to do up there.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00004",
+      "en_US": [
+        "Press the button and set them free.\n",
+        "Isn’t that why you came?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00005",
+      "en_US": [
+        "Charon: Fuhyahya!\r",
+        "Those Pokémon of the lakes, where do\n",
+        "you suppose they would go?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00006",
+      "en_US": "Saturn: What are you trying to say?\r"
+    },
+    {
+      "id": "pl_msg_00000288_00007",
+      "en_US": [
+        "Charon: Nothing.\n",
+        "Pay it no heed.\r",
+        "A new world isn’t overly interesting.\n",
+        "What of it?\r",
+        "If Cyrus is right, then Team Galactic\n",
+        "will rule that new world.\r",
+        "That’s when it will be interesting.\n",
+        "A chance to enjoy its sweets.\r",
+        "I surely hope that our visionary Cyrus\n",
+        "realizes his dream.\r",
+        "I look forward to whatever our beloved\n",
+        "leader has planned atop Mt. Coronet.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00008",
+      "en_US": [
+        "Saturn: Gramps.\r",
+        "Our boss can do without your kind of\n",
+        "moral support."
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00009",
+      "en_US": [
+        "Charon: Humph. Saturn and even Cyrus\n",
+        "fall to a mere child...\r",
+        "Team Galactic’s state of affairs is\n",
+        "worrying...\r",
+        "That plan of Cyrus’s atop Mt. Coronet,\n",
+        "too... Who knows if it will work.\r",
+        "...Hmm. Perhaps another option needs\n",
+        "to be considered.\r",
+        "One befitting the genius of Charon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00010",
+      "en_US": [
+        "Press the button and set\n",
+        "the Pokémon free?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00011",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} pressed the button and\n",
+        "set the Pokémon free.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00012",
+      "en_US": [
+        "The button has been pressed already.\n",
+        "You have to leave."
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00013",
+      "en_US": [
+        "UXIE is sealed inside! It appears to\n",
+        "be suffering, with eyes squeezed shut."
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00014",
+      "en_US": [
+        "MESPRIT is sealed inside! It seems to\n",
+        "be suffering, with its tail twitching."
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00015",
+      "en_US": [
+        "AZELF is sealed inside! It appears to\n",
+        "be suffering, with wracking shudders."
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00016",
+      "en_US": [
+        "It’s Team Galactic’s sinister machine.\n",
+        "UXIE had been sealed inside it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00017",
+      "en_US": [
+        "It’s Team Galactic’s sinister machine.\n",
+        "MESPRIT had been sealed inside it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000288_00018",
+      "en_US": [
+        "It’s Team Galactic’s sinister machine.\n",
+        "AZELF had been sealed inside it."
+      ]
+    }
+  ]
+}

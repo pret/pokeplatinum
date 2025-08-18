@@ -1,0 +1,34 @@
+{
+  "key": 24614,
+  "messages": [
+    {
+      "id": "pl_msg_00000237_00000",
+      "en_US": [
+        "On the other side of the rift...\n",
+        "In a fantastically bizarre place...\f",
+        "It’s DIALGA!\r",
+        "Will you challenge DIALGA?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000237_00001",
+      "en_US": "DIALGA: Gugyugubah!\r"
+    },
+    {
+      "id": "pl_msg_00000237_00002",
+      "en_US": [
+        "An overwhelming feeling of time\n",
+        "powerfully emanates from this rift...\r",
+        "Where does it lead to?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000237_00003",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000237_00004",
+      "garbage": 25
+    }
+  ]
+}

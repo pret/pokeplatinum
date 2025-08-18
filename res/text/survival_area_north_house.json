@@ -1,0 +1,128 @@
+{
+  "key": 54295,
+  "messages": [
+    {
+      "id": "pl_msg_00000595_00000",
+      "en_US": [
+        "If you’d share your Shards with me,\n",
+        "I can teach some moves.\r",
+        "Would you like me to teach a move?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00001",
+      "en_US": "See you, then!"
+    },
+    {
+      "id": "pl_msg_00000595_00002",
+      "en_US": "Which Pokémon should I teach?\r"
+    },
+    {
+      "id": "pl_msg_00000595_00003",
+      "en_US": [
+        "There are no moves that can be taught\n",
+        "to this Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00004",
+      "en_US": "You don’t have enough Shards."
+    },
+    {
+      "id": "pl_msg_00000595_00005",
+      "en_US": [
+        "Which move should be taught to\n",
+        "{STRVAR_1 1, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00006",
+      "garbage": 16
+    },
+    {
+      "id": "pl_msg_00000595_00007",
+      "garbage": 28
+    },
+    {
+      "id": "pl_msg_00000595_00008",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} learned\n",
+        "{STRVAR_1 6, 1, 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00009",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is trying to learn\n",
+        "{STRVAR_1 6, 1, 0}.\r",
+        "But {STRVAR_1 1, 0, 0} can’t learn more\n",
+        "than four moves.\r",
+        "Delete an older move to make\n",
+        "room for {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00010",
+      "en_US": "Stop trying to teach {STRVAR_1 6, 1, 0}?"
+    },
+    {
+      "id": "pl_msg_00000595_00011",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} did not learn\n",
+        "the move {STRVAR_1 6, 1, 0}.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00012",
+      "en_US": [
+        "Is it OK to forget the\n",
+        "move {STRVAR_1 6, 1, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00013",
+      "en_US": "1,{PAUSE 20} 2,{PAUSE 20} and...{PAUSE 20} ...{PAUSE 20} Poof!"
+    },
+    {
+      "id": "pl_msg_00000595_00014",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} forgot how to\n",
+        "use {STRVAR_1 6, 1, 0}.\r",
+        "And..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00015",
+      "en_US": "{STRVAR_1 1, 0, 0} learned {STRVAR_1 6, 1, 0}."
+    },
+    {
+      "id": "pl_msg_00000595_00016",
+      "en_US": [
+        "Teach an Egg a move?\n",
+        "That’s out of my league!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00017",
+      "en_US": [
+        "I started living here where no one\n",
+        "could reach me without using Rock Climb.\r",
+        "I came because I got sick and tired of\n",
+        "seeing people.\r",
+        "But when I stopped seeing people,\n",
+        "I began looking forward to visitors.\r",
+        "Where one lives can change people and\n",
+        "Pokémon, that’s what I’m saying."
+      ]
+    },
+    {
+      "id": "pl_msg_00000595_00018",
+      "en_US": [
+        "Red Shards emphasize power.\n",
+        "Blue Shards are for special effects.\f",
+        "Yellow Shards are for status problems.\r",
+        "Red Shards are what I like!"
+      ]
+    }
+  ]
+}

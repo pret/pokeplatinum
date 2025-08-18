@@ -1,0 +1,73 @@
+{
+  "key": 55726,
+  "messages": [
+    {
+      "id": "pl_msg_00000425_00000",
+      "en_US": "{STRVAR_1 1, 0, 0} has entered."
+    },
+    {
+      "id": "pl_msg_00000425_00001",
+      "en_US": "Would you like to stop drawing?"
+    },
+    {
+      "id": "pl_msg_00000425_00002",
+      "en_US": "{STRVAR_1 1, 0, 0} has left."
+    },
+    {
+      "id": "pl_msg_00000425_00003",
+      "en_US": [
+        "The leader, {STRVAR_1 1, 0, 0}, has left.\n",
+        "This group will be disbanded."
+      ]
+    },
+    {
+      "id": "pl_msg_00000425_00004",
+      "en_US": [
+        "If the leader leaves, the group will\n",
+        "disband. Is that OK?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000425_00005",
+      "en_US": [
+        "There are no members.\n",
+        "The group will be disbanded."
+      ]
+    },
+    {
+      "id": "pl_msg_00000425_00006",
+      "en_US": "The drawing session was ended."
+    },
+    {
+      "id": "pl_msg_00000425_00007",
+      "en_US": "QUIT"
+    },
+    {
+      "id": "pl_msg_00000425_00008",
+      "en_US": "{STRVAR_1 1, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000425_00009",
+      "en_US": "Write your autograph!"
+    },
+    {
+      "id": "pl_msg_00000425_00010",
+      "en_US": "Is this OK?"
+    },
+    {
+      "id": "pl_msg_00000425_00011",
+      "en_US": [
+        "Would you like to\n",
+        "redo your autograph?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000425_00012",
+      "en_US": "DONE"
+    },
+    {
+      "id": "pl_msg_00000425_00013",
+      "en_US": "Joined a drawing session!"
+    }
+  ]
+}

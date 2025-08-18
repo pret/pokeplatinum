@@ -1,0 +1,288 @@
+{
+  "key": 18359,
+  "messages": [
+    {
+      "id": "pl_msg_00000162_00000",
+      "en_US": [
+        "Yo!\n",
+        "Fellow Trainer!\r",
+        "Your Pokémon are secure inside their\n",
+        "Poké Balls, but there’s no masking\f",
+        "that aura of serious toughness!\r",
+        "Oops, sorry, I should introduce\n",
+        "myself.\r",
+        "The name’s Flint! I’m one of\n",
+        "the Pokémon League’s Elite Four!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00001",
+      "en_US": [
+        "I just had this idea.\n",
+        "Maybe you can pull it off.\r",
+        "It’s about this town’s Gym Leader.\r",
+        "He’s really lost his enthusiasm lately\n",
+        "because there’ve been so few good\f",
+        "challengers worth his time.\r",
+        "He’s been so bored, he spends all his\n",
+        "time renovating the Gym.\r",
+        "And then the blackout happened...\n",
+        "That sure didn’t help lift his mood.\r",
+        "You know where I’m going with this,\n",
+        "don’t you?\r",
+        "I need you to give him a battle\n",
+        "that’s so hot, it will reignite his\f",
+        "passion for battling.\r",
+        "I’m counting on you, hotshot!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00002",
+      "en_US": [
+        "Flint: Yo! Hiya!\n",
+        "He hasn’t come back yet.\r",
+        "When he does, you know what you’ve\n",
+        "gotta do.\r",
+        "Give him a battle that’s so hot, it\n",
+        "will reignite his passion for battling!\r",
+        "I’m counting on you, hotshot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00003",
+      "en_US": [
+        "Flint: Yo! Hiya!\n",
+        "He’s finally come back!\r",
+        "He seemed to be feeling upbeat, too.\r",
+        "I have a hunch that he recognized\n",
+        "your toughness right away.\r",
+        "I bet he’s getting excited over\n",
+        "the thought of battling you.\r",
+        "Remember what you have to do,\n",
+        "hotshot.\r",
+        "Give him a battle that’s so hot, it\n",
+        "will reignite his passion for battling!\r",
+        "All right, hotshot! I’ll be waiting at\n",
+        "the Pokémon League!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00004",
+      "en_US": [
+        "...Er...um... M-my name is Jasmine,\n",
+        "and I’m a Gym Leader.\r",
+        "Oh, I’m sorry, not the Gym Leader\n",
+        "of this town...\r",
+        "I’m a Gym Leader in the Johto\n",
+        "region...\r",
+        "...Er...um...\n",
+        "It would be nice if you knew about\f",
+        "the Johto region...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00005",
+      "en_US": [
+        "Oh, if you don’t have the Gym Badge,\n",
+        "you’ll be forced to turn back."
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00006",
+      "en_US": "This isn’t much, but...\r"
+    },
+    {
+      "id": "pl_msg_00000162_00007",
+      "en_US": [
+        "...That Hidden Machine...\n",
+        "It contains Waterfall.\r",
+        "If you use it, you can get to the\n",
+        "Pokémon League.\r",
+        "...Um... I... I don’t know how I should\n",
+        "say this, but good luck.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00008",
+      "en_US": [
+        "Jasmine: ...This city makes me feel\n",
+        "at home somehow.\r",
+        "It’s next to the sea, and there’s\n",
+        "a lighthouse...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00009",
+      "en_US": [
+        "Jasmine: ...I came from very far away\n",
+        "because I wanted to get stronger.\r",
+        "On the way, I met all sorts of \n",
+        "people with their Pokémon...\r",
+        "They all looked like they were having\n",
+        "fun. I felt happy seeing it."
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00010",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey!\n",
+        "{STRVAR_1 3, 1, 0}!\r",
+        "What the...\r",
+        "You went and got all eight Gym Badges\n",
+        "of Sinnoh!\r",
+        "Aww, you...\n",
+        "That’s wicked! I envy you!\r",
+        "But don’t think you’ve won!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00011",
+      "en_US": [
+        "Because I’m going to be the toughest\n",
+        "Trainer ever! You watch me!\r",
+        "Before I was dreaming.\n",
+        "I just wanted to be like my dad.\r",
+        "Now, things are different.\r",
+        "I thought about what being a Trainer\n",
+        "involves.\r",
+        "I thought about what Pokémon are.\r",
+        "We’re going to get tougher one step at\n",
+        "a time!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00012",
+      "en_US": [
+        "I’m not going to challenge you to a\n",
+        "battle now.\r",
+        "I hate to say it, but I know you’re\n",
+        "tougher than me.\r",
+        "But not a whole lot tougher.\n",
+        "Just a little.\r",
+        "Our difference is about a yard?\r",
+        "Nah, not even an inch.\r",
+        "...What I’m trying to say is that I will\n",
+        "catch up to you in no time.\r",
+        "If you don’t hurry to the Pokémon\n",
+        "League, I’ll leave you in my wake!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00013",
+      "en_US": [
+        "Jasmine: ...Was that your friend?\r",
+        "Seeing how you two got along made me\n",
+        "happy somehow.\r",
+        "It must be wonderful having a friend\n",
+        "like that.\r",
+        "A person that you can share anything\n",
+        "and everything with.\r",
+        "A person you can compete with\n",
+        "without fighting.\r",
+        "...Um, it made me feel sort of warm\n",
+        "seeing you two.\r",
+        "It may seem odd, but I’d like you to\n",
+        "have this as my thanks.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00014",
+      "garbage": 38
+    },
+    {
+      "id": "pl_msg_00000162_00015",
+      "en_US": [
+        "That giant rock...\n",
+        "Isn’t it really a Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00016",
+      "garbage": 47
+    },
+    {
+      "id": "pl_msg_00000162_00017",
+      "en_US": [
+        "The Gym Leader uses too much\n",
+        "electricity!\r",
+        "He needs to think about the city’s\n",
+        "power needs, too!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00018",
+      "en_US": [
+        "The city uses a lot of electricity,\n",
+        "especially the lighthouse and the Gym.\r",
+        "They finally decided to turn all the\n",
+        "city’s roads into giant solar panels.\r",
+        "Sunyshore is the Sunshine City, so\n",
+        "the system works perfectly."
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00019",
+      "en_US": [
+        "This is a major port town.\n",
+        "And...\r",
+        "It’s the gateway to the Pokémon\n",
+        "League."
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00020",
+      "en_US": [
+        "Whatever the environment, people\n",
+        "and Pokémon adapt to live there.\r",
+        "That’s what we all do to survive."
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00021",
+      "en_US": [
+        "Sunyshore City\n",
+        "Solar Powered!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00022",
+      "en_US": [
+        "Sunyshore City Pokémon Gym\n",
+        "Leader: Volkner\f",
+        "The Shining, Shocking Star"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00023",
+      "en_US": [
+        "Vista Lighthouse\n",
+        "The Beacon That Lights Sinnoh"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00024",
+      "en_US": [
+        "Sunyshore Market\n",
+        "A Selection of the World’s Seals"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00025",
+      "en_US": [
+        "Julia’s House\n",
+        "Delightful Ribbons for Pokémon"
+      ]
+    },
+    {
+      "id": "pl_msg_00000162_00026",
+      "en_US": "It’s a blank sign painted white."
+    },
+    {
+      "id": "pl_msg_00000162_00027",
+      "en_US": [
+        "Pokémon Rock\n",
+        "Sunyshore’s Heritage Site"
+      ]
+    }
+  ]
+}

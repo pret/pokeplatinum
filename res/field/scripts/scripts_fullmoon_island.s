@@ -35,7 +35,7 @@ _005D:
     CallIfEq VAR_0x8004, 1, _00BD
     CallIfEq VAR_0x8004, 3, _00D7
     CallIfEq VAR_0x8004, 0, _00F1
-    ScrCmd_23D 0, 2, 33, 44, 0x2EE
+    TakeShipToCanalave
     ReleaseAll
     End
 

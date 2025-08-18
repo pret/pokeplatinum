@@ -1,0 +1,878 @@
+{
+  "key": 55507,
+  "messages": [
+    {
+      "id": "pl_msg_00000213_00000",
+      "en_US": [
+        "Hello, and welcome to\n",
+        "the Pokémon Center.\r",
+        "We restore your tired Pokémon\n",
+        "to full health.\r",
+        "Would you like to rest your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00001",
+      "en_US": [
+        "OK, I’ll take your Pokémon for a few\n",
+        "seconds."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00002",
+      "en_US": [
+        "Thank you for waiting.\r",
+        "We’ve restored your Pokémon to full\n",
+        "health.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00003",
+      "en_US": "We hope to see you again!"
+    },
+    {
+      "id": "pl_msg_00000213_00004",
+      "en_US": [
+        "Hello, and welcome to\n",
+        "the Pokémon Center.\r",
+        "We restore your tired Pokémon\n",
+        "to full health.\r",
+        "Would you like to...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00005",
+      "en_US": [
+        "Th-that Trainer Card!\r",
+        "That sparkling color!\n",
+        "And all those stars!\r",
+        "I’ve seen several Trainers with Silver\n",
+        "Trainer Cards up to now...\r",
+        "But you’re the first to top them\n",
+        "with that Trainer Card.\r",
+        "Please, {STRVAR_1 3, 0, 0}, may I have\n",
+        "the honor of healing your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00006",
+      "en_US": [
+        "It’s great to see you, {STRVAR_1 3, 0, 0}!\n",
+        "You want the usual, am I right?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00007",
+      "en_US": [
+        "I will be pleased to take your\n",
+        "Pokémon for a few seconds."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00008",
+      "en_US": "Thank you for waiting."
+    },
+    {
+      "id": "pl_msg_00000213_00009",
+      "en_US": "We hope to see you again!"
+    },
+    {
+      "id": "pl_msg_00000213_00010",
+      "en_US": [
+        "Your Pokémon may be infected with\n",
+        "the Pokérus.\r",
+        "Little is known about the Pokérus\n",
+        "except that they are microscopic\f",
+        "life-forms that attach to Pokémon.\r",
+        "While infected, Pokémon are said to\n",
+        "grow exceptionally well."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00011",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} is out of battle-ready\n",
+        "Pokémon!\r",
+        "{STRVAR_1 3, 0, 0}’s vision dimmed!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00012",
+      "garbage": 13
+    },
+    {
+      "id": "pl_msg_00000213_00013",
+      "en_US": "Would you like to save the game?"
+    },
+    {
+      "id": "pl_msg_00000213_00014",
+      "en_US": [
+        "There is already a saved file.\n",
+        "Is it OK to overwrite it?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00015",
+      "en_US": [
+        "Saving...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00016",
+      "en_US": "{STRVAR_1 3, 0, 0} saved the game."
+    },
+    {
+      "id": "pl_msg_00000213_00017",
+      "en_US": [
+        "Warning!\n",
+        "There is already a saved game file.\r",
+        "If you save now, the other file’s\n",
+        "adventure, including items and\f",
+        "Pokémon, will be entirely lost.\r",
+        "Are you sure you want to save now\n",
+        "and overwrite the other save file?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00018",
+      "en_US": "Save error."
+    },
+    {
+      "id": "pl_msg_00000213_00019",
+      "en_US": [
+        "Saving...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00020",
+      "en_US": [
+        "There is already a saved game file.\n",
+        "It is impossible to save.\r",
+        "Please refer to the Instruction\n",
+        "Booklet for details.\r",
+        "Press Up + SELECT + B Button on\n",
+        "the title screen if you want to erase\f",
+        "the current saved game file."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00021",
+      "en_US": [
+        "Saving a lot of data...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00022",
+      "en_US": [
+        "Want to give a nickname to the\n",
+        "{STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00023",
+      "garbage": 19
+    },
+    {
+      "id": "pl_msg_00000213_00024",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained the Pokétch\n",
+        "app {STRVAR_1 24, 1, 0}."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00025",
+      "en_US": "Obtained the {STRVAR_1 8, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000213_00026",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} installed the app on\n",
+        "the Pokétch.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00027",
+      "en_US": [
+        "Too bad!\n",
+        "The Bag is full..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00028",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained\n",
+        "the {COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00029",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained\n",
+        "the {COLOR 1}{STRVAR_1 8, 1, 0}{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00030",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
+        "in the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00031",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put away the\n",
+        "{STRVAR_1 31, 1, 0} in the Fashion Case."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00032",
+      "en_US": "{STRVAR_1 3, 0, 0} booted up the PC.\r"
+    },
+    {
+      "id": "pl_msg_00000213_00033",
+      "en_US": "Which PC should be accessed?"
+    },
+    {
+      "id": "pl_msg_00000213_00034",
+      "en_US": [
+        "The Pokémon Storage System\n",
+        "was accessed.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00035",
+      "en_US": "Accessed {STRVAR_1 3, 0, 0}’s PC.\r"
+    },
+    {
+      "id": "CommonStrings_Text_CantDoThatRightNow",
+      "en_US": [
+        "Rowan’s words echoed...\n",
+        "{STRVAR_1 3, 0, 0}! There’s a time and\f",
+        "place for everything! But not now."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00037",
+      "en_US": [
+        "Welcome!\n",
+        "What do you need?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00038",
+      "garbage": 21
+    },
+    {
+      "id": "pl_msg_00000213_00039",
+      "en_US": [
+        "There! All happy and healthy!\n",
+        "Good luck and take care!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00040",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}!\n",
+        "Welcome home.\r",
+        "It sounds like you had quite the\n",
+        "experience out there.\r",
+        "Maybe you should take a quick\n",
+        "rest so you can relax.\r",
+        "...\n",
+        "..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00041",
+      "en_US": [
+        "Mom: Oh, good! You and your\n",
+        "Pokémon are looking great.\r",
+        "Oh, yes, I heard from Professor\n",
+        "Rowan.\r",
+        "He said that a Pokémon’s energy is\n",
+        "measured in HP (Hit Points).\r",
+        "If your Pokémon lose their HP,\n",
+        "you can restore it at any\f",
+        "Pokémon Center.\r",
+        "If you’re going to travel far away,\n",
+        "the smart Trainer stocks up on\f",
+        "Potions at the Pokémon Mart.\r",
+        "Make me proud, honey!\n",
+        "Take care!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00042",
+      "en_US": [
+        "Mom: Oh, good! You and your\n",
+        "Pokémon are looking great.\r",
+        "Oh yes, {STRVAR_1 3, 0, 0}, your Pokémon\n",
+        "will faint if it runs out of HP.\r",
+        "If your Pokémon loses its HP, come\n",
+        "home before it faints.\r",
+        "It will be healed to full health by\n",
+        "taking a rest.\r",
+        "Well, honey, make me proud!\n",
+        "Take care!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00043",
+      "en_US": [
+        "First, let’s restore your Pokémon\n",
+        "to full health."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00044",
+      "en_US": [
+        "Your Pokémon have been healed\n",
+        "to perfect health."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00045",
+      "en_US": [
+        "Please visit a Pokémon Center when\n",
+        "your Pokémon’s HP goes down.\r",
+        "If you’re planning to travel any\n",
+        "distance, you should stock up on\f",
+        "Potions at a Pokémon Mart.\r",
+        "Good luck, Trainer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00046",
+      "en_US": "There is a sweet scent in the air..."
+    },
+    {
+      "id": "pl_msg_00000213_00047",
+      "en_US": "There is a sweet scent in the air...\r"
+    },
+    {
+      "id": "pl_msg_00000213_00048",
+      "en_US": "The bark is slathered with Honey..."
+    },
+    {
+      "id": "pl_msg_00000213_00049",
+      "en_US": "The bark is slathered with Honey...\r"
+    },
+    {
+      "id": "pl_msg_00000213_00050",
+      "en_US": "Slather the bark with Honey?"
+    },
+    {
+      "id": "pl_msg_00000213_00051",
+      "en_US": "The bark was slathered with Honey."
+    },
+    {
+      "id": "pl_msg_00000213_00052",
+      "en_US": "There’s no Mail in the Mailbox.\r"
+    },
+    {
+      "id": "pl_msg_00000213_00053",
+      "en_US": [
+        "The Mail’s content will be lost.\n",
+        "Take it back anyway?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00054",
+      "en_US": "Not even a nibble..."
+    },
+    {
+      "id": "pl_msg_00000213_00055",
+      "en_US": "The Pokémon got away..."
+    },
+    {
+      "id": "pl_msg_00000213_00056",
+      "en_US": "Reeled it in too quickly..."
+    },
+    {
+      "id": "pl_msg_00000213_00057",
+      "en_US": "Landed a Pokémon!"
+    },
+    {
+      "id": "pl_msg_00000213_00058",
+      "garbage": 39
+    },
+    {
+      "id": "pl_msg_00000213_00059",
+      "garbage": 18
+    },
+    {
+      "id": "pl_msg_00000213_00060",
+      "garbage": 17
+    },
+    {
+      "id": "pl_msg_00000213_00061",
+      "garbage": 11
+    },
+    {
+      "id": "pl_msg_00000213_00062",
+      "garbage": 76
+    },
+    {
+      "id": "pl_msg_00000213_00063",
+      "garbage": 76
+    },
+    {
+      "id": "pl_msg_00000213_00064",
+      "garbage": 92
+    },
+    {
+      "id": "pl_msg_00000213_00065",
+      "garbage": 85
+    },
+    {
+      "id": "pl_msg_00000213_00066",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} survived the poisoning.\n",
+        "The poison faded away!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00067",
+      "en_US": [
+        "It’s an air vent that exchanges\n",
+        "the underground tunnels’ air."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00068",
+      "en_US": "♂"
+    },
+    {
+      "id": "pl_msg_00000213_00069",
+      "en_US": "♀"
+    },
+    {
+      "id": "pl_msg_00000213_00070",
+      "en_US": "There appears to be nothing here..."
+    },
+    {
+      "id": "pl_msg_00000213_00071",
+      "en_US": [
+        "The sweet scent faded for some\n",
+        "reason..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00072",
+      "garbage": 34
+    },
+    {
+      "id": "pl_msg_00000213_00073",
+      "en_US": "Ride your Bike?"
+    },
+    {
+      "id": "pl_msg_00000213_00074",
+      "en_US": "Get off your Bike?"
+    },
+    {
+      "id": "pl_msg_00000213_00075",
+      "garbage": 20
+    },
+    {
+      "id": "pl_msg_00000213_00076",
+      "en_US": "Oh?"
+    },
+    {
+      "id": "pl_msg_00000213_00077",
+      "en_US": "{STRVAR_1 0, 0, 0} hatched from the Egg!"
+    },
+    {
+      "id": "pl_msg_00000213_00078",
+      "en_US": [
+        "Would you like to nickname the newly\n",
+        "hatched {STRVAR_1 0, 0, 0}?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00079",
+      "en_US": "Repel’s effect wore off..."
+    },
+    {
+      "id": "pl_msg_00000213_00080",
+      "en_US": "Obtained the {STRVAR_1 8, 0, 0}!"
+    },
+    {
+      "id": "pl_msg_00000213_00081",
+      "en_US": "Obtained the {STRVAR_1 8, 0, 0} {STRVAR_1 51, 1, 0}!"
+    },
+    {
+      "id": "pl_msg_00000213_00082",
+      "en_US": [
+        "I’m very sorry.\r",
+        "We are working underground right now.\n",
+        "It’s off-limits to the public.\r",
+        "Please try later on."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00083",
+      "en_US": [
+        "The {COLOR 2}Digital Watch{COLOR 0} app displays\n",
+        "the current time.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00084",
+      "en_US": [
+        "The {COLOR 2}Calculator{COLOR 0} app can handle\n",
+        "calculations up to ten digits.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00085",
+      "en_US": [
+        "The {COLOR 2}Memo Pad{COLOR 0} app can be used for\n",
+        "jotting down quick notes.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00086",
+      "en_US": [
+        "The {COLOR 2}Pedometer{COLOR 0} app counts the number\n",
+        "of steps you’ve walked.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00087",
+      "en_US": [
+        "The {COLOR 2}Pokémon List{COLOR 0} app lets you\n",
+        "check on the status of your team.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00088",
+      "en_US": [
+        "The {COLOR 2}Friendship Checker{COLOR 0} app identifies\n",
+        "the Pokémon that like you."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00089",
+      "en_US": [
+        "The {COLOR 2}Dowsing Machine{COLOR 0} app locates\n",
+        "unseeable items.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00090",
+      "en_US": [
+        "The {COLOR 2}Berry Searcher{COLOR 0} app indicates\n",
+        "the locations of ripe Berries."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00091",
+      "en_US": [
+        "The {COLOR 2}Day-Care Checker{COLOR 0} app shows\n",
+        "the Pokémon left with the Day Care."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00092",
+      "en_US": [
+        "The {COLOR 2}Pokémon History{COLOR 0} app shows\n",
+        "the most recently obtained Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00093",
+      "en_US": [
+        "The {COLOR 2}Counter{COLOR 0} app can be used\n",
+        "to count up to 9,999."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00094",
+      "en_US": [
+        "The {COLOR 2}Analog Watch{COLOR 0} app displays\n",
+        "the current time."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00095",
+      "en_US": [
+        "The {COLOR 2}Marking Map{COLOR 0} app allows the\n",
+        "placement of markers.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00096",
+      "en_US": [
+        "The {COLOR 2}Link Searcher{COLOR 0} app determines\n",
+        "the availability of wireless hot spots.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00097",
+      "en_US": [
+        "The {COLOR 2}Coin Toss{COLOR 0} app can be used\n",
+        "to make fair decisions."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00098",
+      "en_US": [
+        "The {COLOR 2}Move Tester{COLOR 0} app is used to check\n",
+        "how moves match up.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00099",
+      "en_US": [
+        "The {COLOR 2}Calendar{COLOR 0} app is a monthly\n",
+        "calendar with date reminders."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00100",
+      "en_US": [
+        "The {COLOR 2}Dot Artist{COLOR 0} app gives players\n",
+        "free reign to their creativity."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00101",
+      "en_US": [
+        "The {COLOR 2}Roulette{COLOR 0} app can be customized\n",
+        "to make an original roulette."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00102",
+      "en_US": [
+        "The {COLOR 2}Trainer Counter{COLOR 0} app tracks\n",
+        "the Pokémon Radar’s rankings.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00103",
+      "en_US": [
+        "The {COLOR 2}Kitchen Timer{COLOR 0} app is a 99-minute\n",
+        "timer."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00104",
+      "en_US": [
+        "The {COLOR 2}Color Changer{COLOR 0} app can change\n",
+        "the Pokétch display color."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00105",
+      "en_US": [
+        "The {COLOR 2}Matchup Checker{COLOR 0} app shows the\n",
+        "affinity of Pokémon to each other.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00106",
+      "en_US": [
+        "The {COLOR 2}Stopwatch{COLOR 0} app keeps precise\n",
+        "time.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00107",
+      "en_US": [
+        "The {COLOR 2}Alarm Clock{COLOR 0} app operates\n",
+        "on a 24-hour system.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00108",
+      "en_US": "Obtained {STRVAR_1 25, 0, 0}."
+    },
+    {
+      "id": "pl_msg_00000213_00109",
+      "en_US": [
+        "The {STRVAR_1 25, 0, 0} was sent to\n",
+        "the underground PC."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00110",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“When the universe was created,\n",
+        "its shards became this Plate.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00111",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“The power of defeated giants\n",
+        "infuses this Plate.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00112",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“Two beings of time and space set\n",
+        "free from the Original One.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00113",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“Three beings were born to bind\n",
+        "time and space.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00114",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“Two make matter, and three make\n",
+        "spirit, shaping the world.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00115",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“The Original One breathed alone\n",
+        "before the universe came.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00116",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“The powers of Plates are shared\n",
+        "among Pokémon.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00117",
+      "en_US": [
+        "There is text engraved in the back\n",
+        "of the obtained Plate...\r",
+        "“The rightful bearer of a Plate\n",
+        "draws from the Plate it holds.”\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00118",
+      "en_US": [
+        "Ball Capsules can’t be used because\n",
+        "you don’t have any Seals.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00119",
+      "en_US": [
+        "Saving the game again...\n",
+        "Don’t turn off the power."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00120",
+      "en_US": [
+        "Good morning!\n",
+        "Welcome to the Pokémon Center.\r",
+        "We restore your tired Pokémon\n",
+        "to full health.\r",
+        "Would you like to rest your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00121",
+      "en_US": [
+        "Hello, and welcome to\n",
+        "the Pokémon Center.\r",
+        "We restore your tired Pokémon\n",
+        "to full health.\r",
+        "Would you like to rest your Pokémon?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00122",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}’s Azure Flute is making\n",
+        "a sound!\r",
+        "Would you like to blow into the\n",
+        "Azure Flute?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00123",
+      "en_US": "{STRVAR_1 3, 0, 0} blew the Azure Flute.\r"
+    },
+    {
+      "id": "pl_msg_00000213_00124",
+      "en_US": "A glowing stairway appeared!"
+    },
+    {
+      "id": "pl_msg_00000213_00125",
+      "en_US": [
+        "The Azure Flute echoed hollowly...\r",
+        "It appears to be meaningless using\n",
+        "the Azure Flute here..."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00126",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\n",
+        "in the {COLOR 2}{STRVAR_1 27, 2, 0}{COLOR 0} Pocket.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00127",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put away the\n",
+        "{STRVAR_1 31, 1, 0} in the Fashion Case.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00128",
+      "en_US": [
+        "The {STRVAR_1 25, 0, 0} was sent to\n",
+        "the underground PC.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00129",
+      "en_US": [
+        "Check the move you want taught to\n",
+        "see what Shards are needed."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00130",
+      "en_US": [
+        "Your Bag is full.\r",
+        "The Griseous Orb could not be removed,\n",
+        "so you cannot enter."
+      ]
+    },
+    {
+      "id": "pl_msg_00000213_00131",
+      "en_US": [
+        "Your Hall of Fame data is corrupted.\r",
+        "It will be fixed if you enter the\n",
+        "Hall of Fame again.\r"
+      ]
+    }
+  ]
+}

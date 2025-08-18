@@ -1,0 +1,81 @@
+{
+  "key": 5637,
+  "messages": [
+    {
+      "id": "pl_msg_00000428_00000",
+      "en_US": [
+        "You haven’t caught all your\n",
+        "Pokémon yet, but...\r",
+        "Would you like to retire from your\n",
+        "Catching Show?"
+      ]
+    },
+    {
+      "id": "pl_msg_00000428_00001",
+      "en_US": [
+        "I see...\r",
+        "I’m disappointed that you dropped\n",
+        "out. Make up for it next time!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000428_00002",
+      "en_US": [
+        "That’s the spirit, {STRVAR_1 3, 0, 0}!\n",
+        "I like how you don’t give up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000428_00003",
+      "en_US": [
+        "That’s the spirit, {STRVAR_1 3, 0, 0}!\n",
+        "I like how you don’t give up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000428_00004",
+      "garbage": 36
+    },
+    {
+      "id": "pl_msg_00000428_00005",
+      "en_US": [
+        "Ding-dong!\n",
+        "Congratulations!\r",
+        "{STRVAR_1 3, 0, 0} has successfully\n",
+        "caught the stocked Pokémon!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000428_00006",
+      "garbage": 37
+    },
+    {
+      "id": "pl_msg_00000428_00007",
+      "garbage": 39
+    },
+    {
+      "id": "pl_msg_00000428_00008",
+      "en_US": "Would you like to retire?"
+    },
+    {
+      "id": "pl_msg_00000428_00009",
+      "en_US": "Let the countdown begin!"
+    },
+    {
+      "id": "pl_msg_00000428_00010",
+      "en_US": "Three..."
+    },
+    {
+      "id": "pl_msg_00000428_00011",
+      "en_US": "Two..."
+    },
+    {
+      "id": "pl_msg_00000428_00012",
+      "en_US": "One..."
+    },
+    {
+      "id": "pl_msg_00000428_00013",
+      "en_US": "Start!"
+    }
+  ]
+}

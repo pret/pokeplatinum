@@ -8,12 +8,10 @@
 #include "constants/savedata/save_table.h"
 #include "generated/items.h"
 
-#include "struct_decls/struct_0207CB08_decl.h"
-
+#include "bag_system.h"
 #include "heap.h"
 #include "item.h"
 #include "savedata.h"
-#include "unk_0207CB08.h"
 
 #define BAG_SLOT_INVALID ((u32)(-1))
 
@@ -323,36 +321,36 @@ void Pocket_Sort(BagItem *pocket, const u32 size)
 
 void *sub_0207D824(Bag *bag, const u8 *pockets, enum HeapId heapID)
 {
-    UnkStruct_0207CB08 *v0;
+    BagSystem *v0;
     int i;
 
-    v0 = sub_0207CB08(heapID);
+    v0 = BagSystem_New(heapID);
 
     for (i = 0; pockets[i] != 0xff; i++) {
         switch (pockets[i]) {
         case POCKET_KEY_ITEMS:
-            sub_0207CB48(v0, bag->keyItems, POCKET_KEY_ITEMS, i);
+            BagSystem_InitPocket(v0, bag->keyItems, POCKET_KEY_ITEMS, i);
             break;
         case POCKET_ITEMS:
-            sub_0207CB48(v0, bag->items, POCKET_ITEMS, i);
+            BagSystem_InitPocket(v0, bag->items, POCKET_ITEMS, i);
             break;
         case POCKET_BERRIES:
-            sub_0207CB48(v0, bag->berries, POCKET_BERRIES, i);
+            BagSystem_InitPocket(v0, bag->berries, POCKET_BERRIES, i);
             break;
         case POCKET_MEDICINE:
-            sub_0207CB48(v0, bag->medicine, POCKET_MEDICINE, i);
+            BagSystem_InitPocket(v0, bag->medicine, POCKET_MEDICINE, i);
             break;
         case POCKET_BALLS:
-            sub_0207CB48(v0, bag->pokeballs, POCKET_BALLS, i);
+            BagSystem_InitPocket(v0, bag->pokeballs, POCKET_BALLS, i);
             break;
         case POCKET_BATTLE_ITEMS:
-            sub_0207CB48(v0, bag->battleItems, POCKET_BATTLE_ITEMS, i);
+            BagSystem_InitPocket(v0, bag->battleItems, POCKET_BATTLE_ITEMS, i);
             break;
         case POCKET_MAIL:
-            sub_0207CB48(v0, bag->mail, POCKET_MAIL, i);
+            BagSystem_InitPocket(v0, bag->mail, POCKET_MAIL, i);
             break;
         case POCKET_TMHMS:
-            sub_0207CB48(v0, bag->tmHms, POCKET_TMHMS, i);
+            BagSystem_InitPocket(v0, bag->tmHms, POCKET_TMHMS, i);
             break;
         }
     }

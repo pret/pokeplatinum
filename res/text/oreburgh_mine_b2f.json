@@ -1,0 +1,45 @@
+{
+  "key": 9230,
+  "messages": [
+    {
+      "id": "pl_msg_00000223_00000",
+      "en_US": [
+        "OK, stand back and watch this.\r",
+        "Using the hidden move Rock Smash,\n",
+        "a boulder blocking your way...\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000223_00001",
+      "en_US": [
+        "Fallen boulders need to be smashed\n",
+        "so they’re out of the way.\r",
+        "If you could get the Badge from\n",
+        "the Gym in town, you’d be able\f",
+        "to do this too.\r",
+        "Of course, you’d have to beat the\n",
+        "Gym Leader first. That’d be me!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000223_00002",
+      "en_US": "MACHOP: Maaacho!"
+    },
+    {
+      "id": "pl_msg_00000223_00003",
+      "en_US": "MACHOP: Chopchop!"
+    },
+    {
+      "id": "pl_msg_00000223_00004",
+      "en_US": "MACHOP: Chopmacho!"
+    },
+    {
+      "id": "pl_msg_00000223_00005",
+      "en_US": [
+        "I met these MACHOP on Route 207.\r",
+        "They’ve now become my most trusted\n",
+        "partners!"
+      ]
+    }
+  ]
+}

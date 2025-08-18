@@ -1,0 +1,29 @@
+{
+  "key": 12011,
+  "messages": [
+    {
+      "id": "pl_msg_00000503_00000",
+      "garbage": 34
+    },
+    {
+      "id": "pl_msg_00000503_00001",
+      "en_US": [
+        "Are you going to take Route 214?\n",
+        "You’re serious, aren’t you?\r",
+        "It’s too badly chewed up, and\n",
+        "there’s nothing to see there.\r",
+        "Well, I guess there is that Ruin\n",
+        "Maniac guy you could check out.\r",
+        "That guy’s been digging his way\n",
+        "through the bedrock all by himself."
+      ]
+    },
+    {
+      "id": "pl_msg_00000503_00002",
+      "en_US": [
+        "That Ruin Maniac! It takes effort and\n",
+        "dedication to do what he did!"
+      ]
+    }
+  ]
+}

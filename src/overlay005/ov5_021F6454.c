@@ -552,55 +552,55 @@ BOOL ScrCmd_31D(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_31E(ScriptContext *param0)
+BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
 {
-    Pokemon *v0;
-    Party *v1;
-    int v2, v3;
-    u32 v4;
-    int v5;
-    int v6;
+    Pokemon *pokemon;
+    Party *party;
+    int pokemonSpecies, pokemonForm;
+    u32 emptyHeldItem;
+    int currentHeldItem;
+    int bagNotFull;
     FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v8 = ScriptContext_GetVar(param0);
-    u16 *v9 = ScriptContext_GetVarPointer(param0);
+    u16 partySlot = ScriptContext_GetVar(param0);
+    u16 *result = ScriptContext_GetVarPointer(param0);
 
-    v1 = SaveData_GetParty(fieldSystem->saveData);
-    v0 = Party_GetPokemonBySlotIndex(v1, v8);
+    party = SaveData_GetParty(fieldSystem->saveData);
+    pokemon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    *v9 = 0;
+    *result = 0;
 
-    if (v8 == 0xff) {
+    if (partySlot == 0xff) {
         return 0;
     }
 
-    v5 = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+    currentHeldItem = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
 
-    if (v5 == ITEM_GRISEOUS_ORB) {
-        v6 = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD);
+    if (currentHeldItem == ITEM_GRISEOUS_ORB) {
+        bagNotFull = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD);
 
-        if (v6 == 0) {
-            *v9 = 0xff;
+        if (bagNotFull == 0) {
+            *result = 0xff;
             return 0;
         }
 
-        v4 = 0;
-        Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v4);
+        emptyHeldItem = 0;
+        Pokemon_SetValue(pokemon, MON_DATA_HELD_ITEM, &emptyHeldItem);
     }
 
-    v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+    pokemonForm = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
 
-    if (v3 > 0) {
-        v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+    if (pokemonForm > 0) {
+        pokemonSpecies = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
 
-        switch (v2) {
+        switch (pokemonSpecies) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaFormByHeldItem(v0);
+            Pokemon_SetGiratinaFormByHeldItem(pokemon);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
+            Pokemon_SetRotomForm(pokemon, ROTOM_FORM_BASE, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
+            Pokemon_SetShayminForm(pokemon, SHAYMIN_FORM_LAND);
             break;
         }
     }

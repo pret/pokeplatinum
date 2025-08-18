@@ -1,0 +1,148 @@
+{
+  "key": 33827,
+  "messages": [
+    {
+      "id": "pl_msg_00000255_00000",
+      "en_US": [
+        "Grunt 1: Enough arguing!\n",
+        "Hand over that sweet Honey!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00001",
+      "en_US": [
+        "Grunt 2: Do as we say!\n",
+        "Team Galactic will have that Honey!\r",
+        "We must have it to attract Pokémon\n",
+        "in great numbers!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00002",
+      "en_US": [
+        "Grunt 1: Hey! This kid is a witness!\n",
+        "What’ll we do?\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00003",
+      "en_US": [
+        "Grunt 2: We don’t need the brat\n",
+        "running off to get help...\r",
+        "The solution’s simple!\n",
+        "We ensure the brat stays quiet!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00004",
+      "en_US": [
+        "Grunt 1: This is so lame...\n",
+        "They’re going to dock my pay!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00005",
+      "en_US": [
+        "Grunt 2: I’m up next!\n",
+        "Heheheh...\r",
+        "Battling you right after my cohort\n",
+        "weakened you gives me the edge!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00006",
+      "en_US": [
+        "Grunt 1: This brat’s tough!\n",
+        "Like, really, really tough!\r",
+        "Tougher than I can put into words,\n",
+        "and I know a lot of words!\r",
+        "We’re done for here... Let’s get back\n",
+        "to the Valley Windworks.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00007",
+      "en_US": [
+        "Oh, what’s this thing?\n",
+        "They seem to have forgotten it...\r",
+        "It’s a Works Key...\n",
+        "It must be for the Valley Windworks!\r",
+        "It’s of no use to me.\n",
+        "You may as well have it.\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00008",
+      "en_US": [
+        "Thank you!\n",
+        "You surely saved me.\r",
+        "Those goons were trying to rob me\n",
+        "of my sweet, sweet Honey.\r",
+        "They sure were weird, though.\n",
+        "You saw how they were dressed.\r",
+        "What they were saying didn’t make\n",
+        "a whole lot of sense, either.\r",
+        "Oh! I need to thank you!\n",
+        "This sweet, sweet Honey!\f",
+        "Go on, take a whole lot!\r"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00009",
+      "en_US": [
+        "Slather that Honey on a sweet-smelling\n",
+        "tree. It might attract Pokémon."
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00010",
+      "en_US": [
+        "Would you like to buy some Honey for\n",
+        "attracting Pokémon? Just $100 each!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00011",
+      "garbage": 10
+    },
+    {
+      "id": "pl_msg_00000255_00012",
+      "en_US": [
+        "Oh, too bad!\n",
+        "Seems to me your Bag’s full.\r",
+        "You can’t hold any more Honey, a shame\n",
+        "though it is."
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00013",
+      "en_US": [
+        "Oopsy!\n",
+        "You don’t have enough money."
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00014",
+      "en_US": [
+        "Oopsy!\n",
+        "Well, come again."
+      ]
+    },
+    {
+      "id": "pl_msg_00000255_00015",
+      "en_US": "X 1"
+    },
+    {
+      "id": "pl_msg_00000255_00016",
+      "en_US": "X 10"
+    },
+    {
+      "id": "pl_msg_00000255_00017",
+      "en_US": "NO THANKS"
+    },
+    {
+      "id": "pl_msg_00000255_00018",
+      "garbage": 27
+    }
+  ]
+}
