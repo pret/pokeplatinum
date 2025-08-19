@@ -46,12 +46,12 @@ def transform_SwitchBg(args: list[int]) -> list[int | str]:
     ]
 
     FLAGS = {
-        MOVE: 'BATTLE_BG_SWITCH_FLAGS_MOVE',
-        STOP: 'BATTLE_BG_SWITCH_FLAGS_STOP',
-        CANCEL: 'BATTLE_BG_SWITCH_FLAGS_CANCEL',
-        UNK_10: 'BATTLE_BG_SWITCH_FLAGS_UNK_10',
-        UNK_20: 'BATTLE_BG_SWITCH_FLAGS_UNK_20',
-        UNK_40: 'BATTLE_BG_SWITCH_FLAGS_UNK_40',
+        MOVE: 'BATTLE_BG_SWITCH_FLAG_MOVE',
+        STOP: 'BATTLE_BG_SWITCH_FLAG_STOP',
+        CANCEL: 'BATTLE_BG_SWITCH_FLAG_CANCEL',
+        UNK_10: 'BATTLE_BG_SWITCH_FLAG_UNK_10',
+        UNK_20: 'BATTLE_BG_SWITCH_FLAG_UNK_20',
+        UNK_40: 'BATTLE_BG_SWITCH_FLAG_UNK_40',
     }
 
     mode = args[1] & 0xFFFF

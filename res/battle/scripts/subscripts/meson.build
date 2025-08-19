@@ -1,3 +1,5 @@
+subdir('anims')
+
 sub_seq_narc_order = files('sub_seq.order')
 
 subscript_files = files(
