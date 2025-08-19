@@ -224,7 +224,9 @@ void Json::ToFile(MessagesConverter &converter) {
         entry.AddMember("id", entry_name, doc.GetAllocator());
 
         if (message.find_first_not_of(' ') == string::npos) {
-            entry.AddMember("garbage", message.size(), doc.GetAllocator());
+            rapidjson::Value garbage(rapidjson::kNumberType);
+            garbage.SetInt(message.size());
+            entry.AddMember("garbage", garbage, doc.GetAllocator());
         } else {
             vector<string> message_lines = SplitMessage(message, true);
             if (message_lines.size() == 1) {
