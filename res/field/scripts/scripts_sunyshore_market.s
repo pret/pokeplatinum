@@ -5,11 +5,11 @@
 
 
     ScriptEntry SunyshoreMarket_EffortRibbonWoman
-    ScriptEntry SunyshoreMarket_NPC1
+    ScriptEntry SunyshoreMarket_Sailor
     ScriptEntry SunyshoreMarket_SealShop
-    ScriptEntry SunyshoreMarket_NPC2
+    ScriptEntry SunyshoreMarket_PokefanM
     ScriptEntry SunyshoreMarket_Dummy
-    ScriptEntry SunyshoreMarket_NPC3
+    ScriptEntry SunyshoreMarket_BattleGirl
 
 SunyshoreMarket_Dummy:
     End
@@ -53,7 +53,7 @@ SunyshoreMarket_PokemonAlreadyHasEffortRibbon:
     ReleaseAll
     End
 
-SunyshoreMarket_NPC1:
+SunyshoreMarket_Sailor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -123,33 +123,33 @@ SunyshoreMarket_SealShopSunday:
     PokeMartSeal MART_SEAL_ID_SUNYSHORE_SUNDAY
     Return
 
-SunyshoreMarket_NPC2:
+SunyshoreMarket_PokefanM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message SunyshoreMarket_Text_SeeTheSealMerchant
     GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, SunyshoreMarket_NPC2_FirstWeekHalfMessage
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, SunyshoreMarket_NPC2_FirstWeekHalfMessage
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, SunyshoreMarket_NPC2_FirstWeekHalfMessage
-    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, SunyshoreMarket_NPC2_FirstWeekHalfMessage
-    GoTo SunyshoreMarket_NPC2_SecondWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_MONDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_TUESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_WEDNESDAY, SunyshoreMarket_PokefanM_FirstWeekHalfMessage
+    GoTo SunyshoreMarket_PokefanM_SecondWeekHalfMessage
 
-SunyshoreMarket_NPC2_FirstWeekHalfMessage:
+SunyshoreMarket_PokefanM_FirstWeekHalfMessage:
     Message SunyshoreMarket_Text_DidntHaveSeals
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-SunyshoreMarket_NPC2_SecondWeekHalfMessage:
+SunyshoreMarket_PokefanM_SecondWeekHalfMessage:
     Message SunyshoreMarket_Text_CameThroughWithDifferentSeals
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-SunyshoreMarket_NPC3:
+SunyshoreMarket_BattleGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
