@@ -17,8 +17,7 @@
 
 static void CharacterSprite_CopyTileFromUntiledArray(const u8 *src, u8 *dest, int *srcOffset, int *destOffset, int tileWidth, int rowWidth)
 {
-    int i;
-    for (i = 0; i < TILE_HEIGHT_PIXELS; i++) {
+    for (int i = 0; i < TILE_HEIGHT_PIXELS; i++) {
         memcpy(&dest[*destOffset], &src[*srcOffset], tileWidth);
         *srcOffset += rowWidth;
         *destOffset += tileWidth;
@@ -28,9 +27,8 @@ static void CharacterSprite_CopyTileFromUntiledArray(const u8 *src, u8 *dest, in
 static void CharacterSprite_LoadSpriteData(enum NarcID narcID, int narcIdx, enum HeapID heapID, NNSG2dCharacterData **charData)
 {
     BOOL success;
-    void *ngcrFile = NULL;
 
-    ngcrFile = NARC_AllocAndReadWholeMemberByIndexPair(narcID, narcIdx, heapID);
+    void *ngcrFile = NARC_AllocAndReadWholeMemberByIndexPair(narcID, narcIdx, heapID);
     GF_ASSERT(ngcrFile != NULL);
 
     success = NNS_G2dGetUnpackedCharacterData(ngcrFile, &(*charData));
@@ -40,7 +38,7 @@ static void CharacterSprite_LoadSpriteData(enum NarcID narcID, int narcIdx, enum
     Heap_Free(ngcrFile);
 }
 
-static void CharacterSprite_TileUntiledPokemonSprite(int startCol, int startRow, int width, int height, NNSG2dCharacterData *monSpriteData, void *dest)
+static void CharacterSprite_TileUntiledPokemonSprite(int x, int y, int width, int height, NNSG2dCharacterData *monSpriteData, void *dest)
 {
     u8 *untiledSpriteData = NULL;
     u8 *tiledData = NULL;
@@ -48,36 +46,32 @@ static void CharacterSprite_TileUntiledPokemonSprite(int startCol, int startRow,
     int tiledDataOffset;
     int spriteWidth;
 
-    GF_ASSERT(monSpriteData->W >= (startCol + width));
-    GF_ASSERT(monSpriteData->H >= (startRow + height));
+    GF_ASSERT(monSpriteData->W >= (x + width));
+    GF_ASSERT(monSpriteData->H >= (y + height));
 
     untiledSpriteData = monSpriteData->pRawData;
-    tiledData = (u8 *)dest;
+    tiledData = dest;
     spriteWidth = (monSpriteData->W * TILE_WIDTH_4BPP);
-    startIndex = (startCol * TILE_WIDTH_4BPP) + (startRow * spriteWidth);
+    startIndex = (x * TILE_WIDTH_4BPP) + (y * spriteWidth);
     tiledDataOffset = 0;
 
-    {
-        int row, col;
-        for (row = startRow; row < (startRow + height); row++) {
-            for (col = startCol; col < (startCol + width); col++) {
-                startIndex = (col * TILE_WIDTH_4BPP) + (row * spriteWidth * 8);
-                CharacterSprite_CopyTileFromUntiledArray(untiledSpriteData, tiledData, &startIndex, &tiledDataOffset, TILE_WIDTH_4BPP, spriteWidth);
-            }
+    for (int row = y; row < (y + height); row++) {
+        for (int col = x; col < (x + width); col++) {
+            startIndex = (col * TILE_WIDTH_4BPP) + (row * spriteWidth * 8);
+            CharacterSprite_CopyTileFromUntiledArray(untiledSpriteData, tiledData, &startIndex, &tiledDataOffset, TILE_WIDTH_4BPP, spriteWidth);
         }
     }
 }
 
 static BOOL CharacterSprite_SpeciesIsSpinda(enum Species species)
 {
-    int i;
     enum Species listItem;
     const int speciesList[] = {
         SPECIES_SPINDA,
         SPECIES_BAD_EGG,
     };
 
-    for (i = 0; i < MAX_SPECIES; i++) {
+    for (int i = 0; i < MAX_SPECIES; i++) {
         listItem = speciesList[i];
 
         if (listItem == SPECIES_BAD_EGG) {
@@ -92,7 +86,7 @@ static BOOL CharacterSprite_SpeciesIsSpinda(enum Species species)
     return FALSE;
 }
 
-static void CharacterSprite_LoadTiledPokemonSprite(enum NarcID narcID, int narcIdx, enum HeapID headID, int startCol, int startRow, int width, int height, void *buffer, u32 personality, BOOL isAnimated, int face, enum Species species)
+static void CharacterSprite_LoadTiledPokemonSprite(enum NarcID narcID, int narcIdx, enum HeapID headID, int x, int y, int width, int height, void *buffer, u32 personality, BOOL isAnimated, int face, enum Species species)
 {
     BOOL speciesIsSpinda;
     NNSG2dCharacterData *monSpriteData = NULL;
@@ -106,21 +100,20 @@ static void CharacterSprite_LoadTiledPokemonSprite(enum NarcID narcID, int narcI
         PokemonSprite_DrawSpindaSpots(monSpriteData->pRawData, personality, isAnimated);
     }
 
-    CharacterSprite_TileUntiledPokemonSprite(startCol, startRow, width, height, monSpriteData, buffer);
+    CharacterSprite_TileUntiledPokemonSprite(x, y, width, height, monSpriteData, buffer);
 }
 
-static void *CharacterSprite_GetTiledPokemonSprite(enum NarcID narcID, int narcIdx, enum HeapID heapID, int startCol, int startRow, int width, int height, u32 personality, BOOL isAnimated, int face, enum Species species)
+static void *CharacterSprite_GetTiledPokemonSprite(enum NarcID narcID, int narcIdx, enum HeapID heapID, int x, int y, int width, int height, u32 personality, BOOL isAnimated, int face, enum Species species)
 {
-    void *buffer;
     int dataSize = ((width * height) * TILE_SIZE_4BPP);
-    buffer = Heap_Alloc(heapID, dataSize);
+    void *buffer = Heap_Alloc(heapID, dataSize);
 
-    CharacterSprite_LoadTiledPokemonSprite(narcID, narcIdx, heapID, startCol, startRow, width, height, buffer, personality, isAnimated, face, species);
+    CharacterSprite_LoadTiledPokemonSprite(narcID, narcIdx, heapID, x, y, width, height, buffer, personality, isAnimated, face, species);
 
     return buffer;
 }
 
-void CharacterSprite_LoadDataInTiles(enum NarcID narcID, int narcIdx, enum HeapID heapID, int startTileCol, int startTileRow, int width, int height, u8 *dest)
+void CharacterSprite_LoadTiledData(enum NarcID narcID, int narcIdx, enum HeapID heapID, int x, int y, int width, int height, void *dest)
 {
     void *ncgrFile = NULL;
     u8 *untiledSpriteData = NULL;
@@ -137,60 +130,56 @@ void CharacterSprite_LoadDataInTiles(enum NarcID narcID, int narcIdx, enum HeapI
 
     success = NNS_G2dGetUnpackedCharacterData(ncgrFile, &characterData);
     GF_ASSERT(success != FALSE);
-    GF_ASSERT(characterData->W >= (startTileCol + width));
-    GF_ASSERT(characterData->H >= (startTileRow + height));
+    GF_ASSERT(characterData->W >= (x + width));
+    GF_ASSERT(characterData->H >= (y + height));
 
     tileWidth = TILE_WIDTH_4BPP;
     untiledSpriteData = characterData->pRawData;
 
     PokemonSprite_Decrypt(untiledSpriteData, narcID);
 
-    tiledData = (u8 *)dest;
+    tiledData = dest;
     spriteWidth = (characterData->W * tileWidth);
-    spriteIndex = (startTileCol * tileWidth) + (startTileRow * spriteWidth);
+    spriteIndex = (x * tileWidth) + (y * spriteWidth);
 
     tiledDataOffset = 0;
-    {
-        int row, col;
 
-        for (row = startTileRow; row < (startTileRow + height); row++) {
-            for (col = startTileCol; col < (startTileCol + width); col++) {
-                spriteIndex = (col * tileWidth) + (row * spriteWidth * 8);
-                CharacterSprite_CopyTileFromUntiledArray(untiledSpriteData, tiledData, &spriteIndex, &tiledDataOffset, tileWidth, spriteWidth);
-            }
+    for (int row = y; row < (y + height); row++) {
+        for (int col = x; col < (x + width); col++) {
+            spriteIndex = (col * tileWidth) + (row * spriteWidth * 8);
+            CharacterSprite_CopyTileFromUntiledArray(untiledSpriteData, tiledData, &spriteIndex, &tiledDataOffset, tileWidth, spriteWidth);
         }
     }
 
     Heap_Free(ncgrFile);
 }
 
-static void *CharacterSprite_GetTiledSprite(enum NarcID narcID, int characterIdx, enum HeapID heapID, int startTileCol, int startTileRow, int width, int height)
+static void *CharacterSprite_GetTiledSprite(enum NarcID narcID, int characterIdx, enum HeapID heapID, int x, int y, int width, int height)
 {
     void *buffer;
     int numBytes = ((width * height) * TILE_SIZE_4BPP);
     buffer = Heap_Alloc(heapID, numBytes);
 
-    CharacterSprite_LoadDataInTiles(narcID, characterIdx, heapID, startTileCol, startTileRow, width, height, buffer);
+    CharacterSprite_LoadTiledData(narcID, characterIdx, heapID, x, y, width, height, buffer);
 
     return buffer;
 }
 
-static void CharacterSprite_CopyTilesRect(int sourceWidth, int sourceHeight, int startCol, int startRow, int width, int height, int *destOffset, const void *src, void *dest)
+static void CharacterSprite_CopyTilesRect(int sourceWidth, int sourceHeight, int x, int y, int width, int height, int *destOffset, const void *src, void *dest)
 {
-    int col, row;
     u8 *srcPtr;
     u8 *destPtr;
     int srcTile;
     int finishCol;
     int finishRow;
 
-    srcPtr = (u8 *)src;
-    destPtr = (u8 *)dest;
-    finishCol = startCol + width;
-    finishRow = startRow + height;
+    srcPtr = src;
+    destPtr = dest;
+    finishCol = x + width;
+    finishRow = y + height;
 
-    for (row = startRow; row < finishRow; row++) {
-        for (col = startCol; col < finishCol; col++) {
+    for (int row = y; row < finishRow; row++) {
+        for (int col = x; col < finishCol; col++) {
             srcTile = (col * TILE_SIZE_4BPP) + (row * TILE_SIZE_4BPP * sourceWidth);
             memcpy(&destPtr[*destOffset], &srcPtr[srcTile], TILE_SIZE_4BPP);
             *destOffset += TILE_SIZE_4BPP;
@@ -200,12 +189,11 @@ static void CharacterSprite_CopyTilesRect(int sourceWidth, int sourceHeight, int
 
 static void CharacterSprite_CopyTilesRegion(int sourceWidth, int sourceHeight, const TileRegion *subRegion, int *destOffset, const void *sourceSprite, void *dest)
 {
-    CharacterSprite_CopyTilesRect(sourceWidth, sourceHeight, subRegion->leftMostCol, subRegion->topMostRow, subRegion->width, subRegion->height, destOffset, sourceSprite, dest);
+    CharacterSprite_CopyTilesRect(sourceWidth, sourceHeight, subRegion->x, subRegion->y, subRegion->width, subRegion->height, destOffset, sourceSprite, dest);
 }
 
-static void CharacterSprite_LoadSpriteRect(enum NarcID narcID, int characterIdx, int heapID, int startTileCol, int startTileRow, int width, int height, void *dest)
+static void CharacterSprite_LoadSpriteRect(enum NarcID narcID, int characterIdx, int heapID, int x, int y, int width, int height, void *dest)
 {
-    int i;
     int numRegions;
     int destOffset;
     void *sprite = NULL;
@@ -213,9 +201,9 @@ static void CharacterSprite_LoadSpriteRect(enum NarcID narcID, int characterIdx,
 
     numRegions = NELEMS(subRegions);
     destOffset = 0;
-    sprite = CharacterSprite_GetTiledSprite(narcID, characterIdx, heapID, startTileCol, startTileRow, width, height);
+    sprite = CharacterSprite_GetTiledSprite(narcID, characterIdx, heapID, x, y, width, height);
 
-    for (i = 0; i < numRegions; i++) {
+    for (int i = 0; i < numRegions; i++) {
         CharacterSprite_CopyTilesRegion(width, height, &subRegions[i], &destOffset, sprite, dest);
     }
 
@@ -224,7 +212,7 @@ static void CharacterSprite_LoadSpriteRect(enum NarcID narcID, int characterIdx,
 
 void CharacterSprite_LoadSpriteRegion(enum NarcID narcID, int narcIdx, enum HeapID heapID, const TileRegion *region, void *dest)
 {
-    CharacterSprite_LoadSpriteRect(narcID, narcIdx, heapID, region->leftMostCol, region->topMostRow, region->width, region->height, dest);
+    CharacterSprite_LoadSpriteRect(narcID, narcIdx, heapID, region->x, region->y, region->width, region->height, dest);
 }
 
 void CharacterSprite_LoadSpriteFrame0(enum NarcID narcID, int narcIdx, enum HeapID heapID, void *dest)
@@ -233,18 +221,17 @@ void CharacterSprite_LoadSpriteFrame0(enum NarcID narcID, int narcIdx, enum Heap
     CharacterSprite_LoadSpriteRegion(narcID, narcIdx, heapID, &region, dest);
 }
 
-void *CharacterSprite_GetSprite(enum NarcID narcID, int narcIdx, enum HeapID heapID)
+void *CharacterSprite_LoadTiles(enum NarcID narcID, int narcIdx, enum HeapID heapID)
 {
-    void *spriteData = NULL;
-    int size = (10 * 10 * TILE_SIZE_4BPP);
-    spriteData = Heap_Alloc(heapID, size);
+    int size = (MON_SPRITE_FRAME_WIDTH_TILES * MON_SPRITE_FRAME_HEIGHT_TILES * TILE_SIZE_4BPP);
+    void *spriteData = Heap_Alloc(heapID, size);
 
     CharacterSprite_LoadSpriteFrame0(narcID, narcIdx, heapID, spriteData);
 
     return spriteData;
 }
 
-void *CharacterSprite_GetPaletteData(enum NarcID narcID, int paletteIndex, enum HeapID heapID)
+void *CharacterSprite_LoadPalette(enum NarcID narcID, int paletteIndex, enum HeapID heapID)
 {
     NNSG2dPaletteData *paletteData;
     void *nclrFile;
@@ -263,9 +250,8 @@ void *CharacterSprite_GetPaletteData(enum NarcID narcID, int paletteIndex, enum 
     return returnPtr;
 }
 
-void CharacterSprite_LoadPokemonSpriteRect(enum NarcID narcID, int narcIdx, enum HeapID heapID, int startCol, int startRow, int width, int height, u8 *dest, u32 personality, BOOL isAnimated, int face, enum Species species)
+void CharacterSprite_LoadPokemonSpriteRect(enum NarcID narcID, int narcIdx, enum HeapID heapID, int x, int y, int width, int height, u8 *dest, u32 personality, BOOL isAnimated, int face, enum Species species)
 {
-    int i;
     int numRegions;
     int destOffset;
     void *tiledData = NULL;
@@ -274,9 +260,9 @@ void CharacterSprite_LoadPokemonSpriteRect(enum NarcID narcID, int narcIdx, enum
     numRegions = NELEMS(subRegions);
     destOffset = 0;
 
-    tiledData = CharacterSprite_GetTiledPokemonSprite(narcID, narcIdx, heapID, startCol, startRow, width, height, personality, isAnimated, face, species);
+    tiledData = CharacterSprite_GetTiledPokemonSprite(narcID, narcIdx, heapID, x, y, width, height, personality, isAnimated, face, species);
 
-    for (i = 0; i < numRegions; i++) {
+    for (int i = 0; i < numRegions; i++) {
         CharacterSprite_CopyTilesRegion(width, height, &subRegions[i], &destOffset, tiledData, dest);
     }
 
@@ -285,7 +271,7 @@ void CharacterSprite_LoadPokemonSpriteRect(enum NarcID narcID, int narcIdx, enum
 
 void CharacterSprite_LoadPokemonSpriteRegion(enum NarcID narcID, int narcIdx, enum HeapID heapID, const TileRegion *frameTiles, void *dest, u32 personality, BOOL isAnimated, int face, enum Species species)
 {
-    CharacterSprite_LoadPokemonSpriteRect(narcID, narcIdx, heapID, frameTiles->leftMostCol, frameTiles->topMostRow, frameTiles->width, frameTiles->height, dest, personality, isAnimated, face, species);
+    CharacterSprite_LoadPokemonSpriteRect(narcID, narcIdx, heapID, frameTiles->x, frameTiles->y, frameTiles->width, frameTiles->height, dest, personality, isAnimated, face, species);
 }
 
 void CharacterSprite_LoadPokemonSprite(enum NarcID narcID, int narcIdx, enum HeapID heapID, void *destPtr, u32 personality, BOOL isAnimated, int face, enum Species species)

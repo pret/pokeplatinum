@@ -2102,7 +2102,7 @@ static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplat
 
 static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID)
 {
-    void *paletteSource = CharacterSprite_GetPaletteData(spriteTemplate->narcID, spriteTemplate->palette, heapID);
+    void *paletteSource = CharacterSprite_LoadPalette(spriteTemplate->narcID, spriteTemplate->palette, heapID);
     return paletteSource;
 }
 

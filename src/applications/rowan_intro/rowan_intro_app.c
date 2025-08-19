@@ -1577,11 +1577,11 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
         }
     }
 
-    tileSrc = CharacterSprite_GetSprite(
+    tileSrc = CharacterSprite_LoadTiles(
         spriteTemplate.narcID,
         spriteTemplate.character,
         manager->heapID);
-    paletteBuffer = CharacterSprite_GetPaletteData(
+    paletteBuffer = CharacterSprite_LoadPalette(
         spriteTemplate.narcID,
         spriteTemplate.palette,
         manager->heapID);

@@ -903,7 +903,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpri
 
     Heap_Free(buf);
 
-    buf = CharacterSprite_GetPaletteData(spriteTemplate->narcID, spriteTemplate->palette, param0->heapID);
+    buf = CharacterSprite_LoadPalette(spriteTemplate->narcID, spriteTemplate->palette, param0->heapID);
     plttResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_PLTT], POKEMON_PREVIEW_RESOURCE_ID);
     paletteProxy = SpriteTransfer_GetPaletteProxy(plttResource, imageProxy);
     offset = NNS_G2dGetImagePaletteLocation(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
