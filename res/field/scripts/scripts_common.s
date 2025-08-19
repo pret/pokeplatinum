@@ -1,12 +1,15 @@
 #include "macros/scrcmd.inc"
 #include "generated/distribution_events.h"
+#include "generated/player_request_states.h"
+#include "generated/time_of_day.h"
+#include "constants/trainer_card_levels.h"
 #include "generated/tutor_locations.h"
 #include "res/text/bank/common_strings.h"
 #include "res/text/bank/menu_entries.h"
 
-    ScriptEntry Common_HandleSignpostInput
+    ScriptEntry CommonScript_HandleSignpostInput
     ScriptEntry _034C
-    ScriptEntry _00EE
+    ScriptEntry CommonScript_PokecenterVisit
     ScriptEntry _03E8
     ScriptEntry _043B
     ScriptEntry _0479
@@ -24,8 +27,8 @@
     ScriptEntry _0BDD
     ScriptEntry _0BEE
     ScriptEntry _0FC3
-    ScriptEntry _0FCA
-    ScriptEntry _103A
+    ScriptEntry CommonScript_HomeBlackOutRecover
+    ScriptEntry CommonScript_PokecenterBlackOutRecover
     ScriptEntry _0FA5
     ScriptEntry _0FA7
     ScriptEntry _1280
@@ -70,178 +73,178 @@ _00EA:
 _00EC:
     End
 
-_00EE:
+CommonScript_PokecenterVisit:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_2BE VAR_RESULT
-    GoToIfGe VAR_RESULT, 4, _027A
-    SetVar VAR_0x8004, 0
+    TrainerCardLevel VAR_RESULT
+    GoToIfGe VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterVisitGoldCard
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterHelloAndWelcome1
     GetTimeOfDay VAR_RESULT
     Dummy1F9 VAR_RESULT
-    SetVar VAR_0x8004, 120
-    GoToIfEq VAR_RESULT, 0, _0141
-    SetVar VAR_0x8004, 121
-    GoToIfEq VAR_RESULT, 1, _0141
-    SetVar VAR_0x8004, 0
-_0141:
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterGoodMorning
+    GoToIfEq VAR_RESULT, TIMEOFDAY_MORNING, CommonScript_PokecenterGreetAndPrompt
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterHelloAndWelcome2
+    GoToIfEq VAR_RESULT, TIMEOFDAY_DAY, CommonScript_PokecenterGreetAndPrompt
+    SetVar VAR_0x8004, CommonStrings_Text_PokecenterHelloAndWelcome1
+CommonScript_PokecenterGreetAndPrompt:
     MessageVar VAR_0x8004
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0172
-    GoToIfEq VAR_RESULT, MENU_NO, _0165
+    GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterPromptAccept
+    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_PokecenterPromptDecline
     End
 
-_0165:
-    Message 3
+CommonScript_PokecenterPromptDecline:
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_0172:
-    SetPlayerState 0x100
+CommonScript_PokecenterPromptAccept:
+    SetPlayerState PLAYER_REQUEST_STATE_HEALING
     ChangePlayerState
-    ApplyMovement LOCALID_PLAYER, _02EC
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerGiveMovement
     WaitMovement
-    ScrCmd_2BE VAR_RESULT
-    CallIfGe VAR_RESULT, 4, _01BC
-    CallIfLt VAR_RESULT, 4, _01B7
-    Call _01C1
-    GoToIfUnset FLAG_UNK_0x006A, _0242
-    GoTo _01E1
+    TrainerCardLevel VAR_RESULT
+    CallIfGe VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterTakeYourPokemonGoldCard
+    CallIfLt VAR_RESULT, TRAINER_CARD_LEVEL_GOLD, CommonScript_PokecenterTakeYourPokemon
+    Call CommonScript_PokecenterHealPokemon
+    GoToIfUnset FLAG_POKECENTER_FOUND_POKERUS, CommonScript_PokecenterCheckPokerus
+    GoTo CommonScript_PokecenterThankYouForWaiting
 
-_01B7:
-    Message 1
+CommonScript_PokecenterTakeYourPokemon:
+    Message CommonStrings_Text_PokecenterTakeYourPokemon
     Return
 
-_01BC:
-    Message 7
+CommonScript_PokecenterTakeYourPokemonGoldCard:
+    Message CommonStrings_Text_PokecenterPleaseToTakeYourPokemon
     Return
 
-_01C1:
-    ApplyMovement VAR_0x8007, _1260
+CommonScript_PokecenterHealPokemon:
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterTurnToMachineMovement
     WaitMovement
     GetPartyCountHatched VAR_0x8006
-    ScrCmd_23B VAR_0x8006
-    ApplyMovement VAR_0x8007, _1278
+    PlayPokecenterAnimation VAR_0x8006
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterTurnToPlayerMovement
     WaitMovement
     HealParty
     Return
 
-_01E1:
-    GoToIfEq VAR_0x8004, 1, _0218
-    Message 2
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterThankYouForWaiting:
+    GoToIfEq VAR_0x8004, TIMEOFDAY_DAY, CommonScript_PokecenterThankYouForWaitingDay
+    Message CommonStrings_Text_PokecenterRestoredYourPokemon
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_REQUEST_STATE_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement
-    Message 3
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_0218:
-    Message 8
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterThankYouForWaitingDay:
+    Message CommonStrings_Text_PokecenterThankYouForWaiting
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_REQUEST_STATE_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement
-    Message 9
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_0242:
+CommonScript_PokecenterCheckPokerus:
     CheckPartyPokerus VAR_0x8006
-    GoToIfEq VAR_0x8006, 1, _0259
-    GoTo _01E1
+    GoToIfEq VAR_0x8006, TRUE, CommonScript_PokecenterFoundPokerus
+    GoTo CommonScript_PokecenterThankYouForWaiting
 
-_0259:
-    SetFlag FLAG_UNK_0x006A
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterFoundPokerus:
+    SetFlag FLAG_POKECENTER_FOUND_POKERUS
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_REQUEST_STATE_WALKING
     ChangePlayerState
-    Message 10
+    Message CommonStrings_Text_PokecenterYourPokemonMayBeInfected
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_027A:
-    GoToIfSet FLAG_UNK_0x0069, _02B0
-    SetFlag FLAG_UNK_0x0069
-    Message 4
+CommonScript_PokecenterVisitGoldCard:
+    GoToIfSet FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN, CommonScript_PokecenterGreetAndPromptGoldCard
+    SetFlag FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN
+    Message CommonStrings_Text_PokecenterWelcomeInterrupted
     BufferPlayerName 0
-    Message 5
+    Message CommonStrings_Text_PokecenterThatTrainerCard
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _02D4
-    Message 9
+    GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterPromptAcceptGoldCard
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_02B0:
+CommonScript_PokecenterGreetAndPromptGoldCard:
     BufferPlayerName 0
-    Message 6
+    Message CommonStrings_Text_PokecenterGreatToSeeYou
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _02D4
-    Message 9
+    GoToIfEq VAR_RESULT, MENU_YES, CommonScript_PokecenterPromptAcceptGoldCard
+    Message CommonStrings_Text_PokecenterHopeToSeeYouAgain2
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     ReturnCommonScript
     End
 
-_02D4:
-    SetVar VAR_0x8004, 1
-    GoTo _0172
+CommonScript_PokecenterPromptAcceptGoldCard:
+    SetVar VAR_0x8004, TIMEOFDAY_DAY
+    GoTo CommonScript_PokecenterPromptAccept
 
     .balign 4, 0
-_02E0:
+CommonScript_PokecenterNurseBowMovement:
     NurseJoyBow
     Delay4
     EndMovement
 
     .balign 4, 0
-_02EC:
+CommonScript_PokecenterPlayerGiveMovement:
     PlayerGive
     EndMovement
 
     .balign 4, 0
-_02F4:
+CommonScript_PokecenterPlayerReceiveMovement:
     PlayerReceive
     EndMovement
 
-Common_HandleSignpostInput:
+CommonScript_HandleSignpostInput:
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, Common_ScrollOutSignpost
-    GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
+    GoToIfEq VAR_0x8008, 0, CommonScript_ScrollOutSignpost
+    GoToIfEq VAR_0x8008, 1, CommonScript_RemoveSignpostOpenStartMenu
     GetSignpostInput
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 1, Common_RemoveSignpostOpenStartMenu
+    GoToIfEq VAR_0x8008, 1, CommonScript_RemoveSignpostOpenStartMenu
     SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
     End
 
-Common_ScrollOutSignpost:
+CommonScript_ScrollOutSignpost:
     SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
     End
 
-Common_RemoveSignpostOpenStartMenu:
+CommonScript_RemoveSignpostOpenStartMenu:
     SetSignpostCommand SIGNPOST_CMD_REMOVE
     WaitForSignpostDone
     ShowStartMenu
@@ -282,7 +285,7 @@ _03DE:
     PlaySound SEQ_FANFA2
     Return
 
-Common_Unused:
+CommonScript_Unused:
     ReturnCommonScript
     End
 
@@ -321,7 +324,7 @@ _0457:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1F8
-    ScrCmd_14B
+    BlackOutFromBattle2
     End
 
 _0479:
@@ -475,7 +478,7 @@ _067E:
     Message 49
     GoTo _06BB
 
-Common_Unused2:
+CommonScript_Unused2:
     CheckItem ITEM_HONEY, 1, VAR_RESULT
     GoToIfNe VAR_RESULT, 0, _06BB
     CloseMessage
@@ -1142,15 +1145,15 @@ _0FC3:
     ReturnCommonScript
     End
 
-_0FCA:
+CommonScript_HomeBlackOutRecover:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _1250
-    ApplyMovement 0, _1258
+    ApplyMovement LOCALID_PLAYER, CommonScript_PlayerTurnToMomMovement
+    ApplyMovement 0, CommonScript_MomTurnToPlayerMovement
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     BufferPlayerName 0
-    Message 40
+    Message CommonStrings_Text_YouHadQuiteTheExperienceOutThere
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -1159,180 +1162,180 @@ _0FCA:
     HealParty
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    CallIfSet FLAG_UNK_0x0090, _1030
-    CallIfUnset FLAG_UNK_0x0090, _1035
+    CallIfSet FLAG_HAS_POKEDEX, CommonScript_HomeBlackOutRecoverMessage_BeforePokedex
+    CallIfUnset FLAG_HAS_POKEDEX, CommonScript_HomeBlackOutRecoverMessage_AfterPokedex
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_1030:
-    Message 41
+CommonScript_HomeBlackOutRecoverMessage_BeforePokedex:
+    Message CommonStrings_Text_YourPokemonAreLookingGreat_BeforePokedex
     Return
 
-_1035:
-    Message 42
+CommonScript_HomeBlackOutRecoverMessage_AfterPokedex:
+    Message CommonStrings_Text_YourPokemonAreLookingGreat_AfterPokedex
     Return
 
-_103A:
+CommonScript_PokecenterBlackOutRecover:
     LockAll
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetPlayerState 0x100
+    SetPlayerState PLAYER_REQUEST_STATE_HEALING
     ChangePlayerState
-    ApplyMovement LOCALID_PLAYER, _02EC
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerGiveMovement
     WaitMovement
-    Message 43
-    Call _10C7
-    Call _01C1
+    Message CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon
+    Call CommonScript_PokecenterFindNurseObject
+    Call CommonScript_PokecenterHealPokemon
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _10A2
-    Message 44
-    ApplyMovement LOCALID_PLAYER, _02F4
+    GoToIfEq VAR_RESULT, TRUE, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
+    Message CommonStrings_Text_PokecenterHealedToPerfectHealth
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_REQUEST_STATE_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement
-    Message 45
+    Message CommonStrings_Text_PokecenterGoodLuckTrainer
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_10A2:
-    ApplyMovement LOCALID_PLAYER, _02F4
+CommonScript_PokecenterBlackOutRecover_HasCoalBadge:
+    ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterPlayerReceiveMovement
     WaitMovement
-    SetPlayerState 1
+    SetPlayerState PLAYER_REQUEST_STATE_WALKING
     ChangePlayerState
-    ApplyMovement VAR_0x8007, _02E0
+    ApplyMovement VAR_0x8007, CommonScript_PokecenterNurseBowMovement
     WaitMovement
-    Message 39
+    Message CommonStrings_Text_PokecenterAllHappyAndHealthy
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_10C7:
+CommonScript_PokecenterFindNurseObject:
     GetCurrentMapID VAR_0x8004
-    GoToIfEq VAR_0x8004, 6, _11BD
-    GoToIfEq VAR_0x8004, 36, _11C5
-    GoToIfEq VAR_0x8004, 48, _11CD
-    GoToIfEq VAR_0x8004, 69, _11D5
-    GoToIfEq VAR_0x8004, 101, _11DD
-    GoToIfEq VAR_0x8004, 123, _11E5
-    GoToIfEq VAR_0x8004, 134, _11ED
-    GoToIfEq VAR_0x8004, 151, _11F5
-    GoToIfEq VAR_0x8004, 168, _11FD
-    GoToIfEq VAR_0x8004, 173, _1205
-    GoToIfEq VAR_0x8004, 189, _120D
-    GoToIfEq VAR_0x8004, 0x1A4, _1215
-    GoToIfEq VAR_0x8004, 0x1AC, _121D
-    GoToIfEq VAR_0x8004, 0x1B3, _1225
-    GoToIfEq VAR_0x8004, 0x1BB, _122D
-    GoToIfEq VAR_0x8004, 0x1C4, _1235
-    GoToIfEq VAR_0x8004, 0x1CB, _123D
-    GoToIfEq VAR_0x8004, 175, _1245
+    GoToIfEq VAR_0x8004, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Jubilife
+    GoToIfEq VAR_0x8004, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Canalave
+    GoToIfEq VAR_0x8004, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Oreburgh
+    GoToIfEq VAR_0x8004, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Eterna
+    GoToIfEq VAR_0x8004, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Hearthome
+    GoToIfEq VAR_0x8004, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Pastoria
+    GoToIfEq VAR_0x8004, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Veilstone
+    GoToIfEq VAR_0x8004, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Sunnyshore
+    GoToIfEq VAR_0x8004, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Snowpoint
+    GoToIfEq VAR_0x8004, MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_PokemonLeagueSouth
+    GoToIfEq VAR_0x8004, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_FightArea
+    GoToIfEq VAR_0x8004, MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Sandgem
+    GoToIfEq VAR_0x8004, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Floaroma
+    GoToIfEq VAR_0x8004, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Solaceon
+    GoToIfEq VAR_0x8004, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_Celestic
+    GoToIfEq VAR_0x8004, MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_SurvivalArea
+    GoToIfEq VAR_0x8004, MAP_HEADER_RESORT_AREA_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_ResortArea
+    GoToIfEq VAR_0x8004, MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F, CommonScript_PokecenterFindNurseObject_PokemonLeagueNorth
     SetVar VAR_0x8007, 0
     Return
 
-_11BD:
+CommonScript_PokecenterFindNurseObject_Jubilife:
     SetVar VAR_0x8007, 3
     Return
 
-_11C5:
+CommonScript_PokecenterFindNurseObject_Canalave:
     SetVar VAR_0x8007, 1
     Return
 
-_11CD:
+CommonScript_PokecenterFindNurseObject_Oreburgh:
     SetVar VAR_0x8007, 3
     Return
 
-_11D5:
+CommonScript_PokecenterFindNurseObject_Eterna:
     SetVar VAR_0x8007, 3
     Return
 
-_11DD:
+CommonScript_PokecenterFindNurseObject_Hearthome:
     SetVar VAR_0x8007, 0
     Return
 
-_11E5:
+CommonScript_PokecenterFindNurseObject_Pastoria:
     SetVar VAR_0x8007, 0
     Return
 
-_11ED:
+CommonScript_PokecenterFindNurseObject_Veilstone:
     SetVar VAR_0x8007, 0
     Return
 
-_11F5:
+CommonScript_PokecenterFindNurseObject_Sunnyshore:
     SetVar VAR_0x8007, 0
     Return
 
-_11FD:
+CommonScript_PokecenterFindNurseObject_Snowpoint:
     SetVar VAR_0x8007, 0
     Return
 
-_1205:
+CommonScript_PokecenterFindNurseObject_PokemonLeagueSouth:
     SetVar VAR_0x8007, 0
     Return
 
-_120D:
+CommonScript_PokecenterFindNurseObject_FightArea:
     SetVar VAR_0x8007, 0
     Return
 
-_1215:
+CommonScript_PokecenterFindNurseObject_Sandgem:
     SetVar VAR_0x8007, 3
     Return
 
-_121D:
+CommonScript_PokecenterFindNurseObject_Floaroma:
     SetVar VAR_0x8007, 2
     Return
 
-_1225:
+CommonScript_PokecenterFindNurseObject_Solaceon:
     SetVar VAR_0x8007, 0
     Return
 
-_122D:
+CommonScript_PokecenterFindNurseObject_Celestic:
     SetVar VAR_0x8007, 0
     Return
 
-_1235:
+CommonScript_PokecenterFindNurseObject_SurvivalArea:
     SetVar VAR_0x8007, 0
     Return
 
-_123D:
+CommonScript_PokecenterFindNurseObject_ResortArea:
     SetVar VAR_0x8007, 0
     Return
 
-_1245:
+CommonScript_PokecenterFindNurseObject_PokemonLeagueNorth:
     SetVar VAR_0x8007, 3
     Return
 
     .balign 4, 0
-_1250:
+CommonScript_PlayerTurnToMomMovement:
     FaceWest
     EndMovement
 
     .balign 4, 0
-_1258:
+CommonScript_MomTurnToPlayerMovement:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_1260:
+CommonScript_PokecenterTurnToMachineMovement:
     FaceWest
     EndMovement
 
-Common_UnusedMovement:
+CommonScript_UnusedMovement:
     FaceNorth
     EndMovement
 
-Common_UnusedMovement2:
+CommonScript_UnusedMovement2:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_1278:
+CommonScript_PokecenterTurnToPlayerMovement:
     FaceSouth
     EndMovement
 

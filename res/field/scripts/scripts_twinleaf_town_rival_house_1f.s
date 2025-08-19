@@ -9,7 +9,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0090, _00B0
+    GoToIfSet FLAG_HAS_POKEDEX, _00B0
     GoToIfGe VAR_UNK_0x4095, 1, _0082
     GoToIfSet FLAG_UNK_0x006E, _0090
     GoToIfSet FLAG_UNK_0x00EA, _009E

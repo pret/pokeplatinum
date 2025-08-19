@@ -7,10 +7,12 @@
 
 #include "savedata.h"
 
+#define PARTY_MAX_POKEMON 6
+
 typedef struct Party {
     int capacity;
     int currentCount;
-    Pokemon pokemon[6];
+    Pokemon pokemon[PARTY_MAX_POKEMON];
 } Party;
 
 int Party_SaveSize(void);

@@ -25,6 +25,7 @@
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/boat_cutscene.h"
+#include "constants/common_scripts.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
@@ -1886,7 +1887,7 @@
     .short \martID
     .endm
 
-    .macro ScrCmd_14B
+    .macro BlackOutFromBattle2
     .short 331
     .endm
 
@@ -3206,9 +3207,14 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_23B arg0
+    .macro PlayPokecenterAnimation pokeballCount
     .short 571
-    .short \arg0
+    .short \pokeballCount
+    .endm
+
+    .macro VisitPokecenter nurseLocalID
+    SetVar VAR_0x8007, \nurseLocalID
+    CallCommonScript COMMON_SCRIPT_POKECENTER_VISIT
     .endm
 
     .macro ScrCmd_23C arg0, arg1
@@ -3454,9 +3460,9 @@
     .short 601
     .endm
 
-    .macro ScrCmd_25A arg0
+    .macro PlayHallOfFameHealingAnimation pokeballCount
     .short 602
-    .short \arg0
+    .short \pokeballCount
     .endm
 
     .macro InitPersistedMapFeaturesForPlatformLift
@@ -4016,9 +4022,9 @@
     .short \level
     .endm
 
-    .macro ScrCmd_2BE arg0
+    .macro TrainerCardLevel destVar
     .short 702
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_2BF

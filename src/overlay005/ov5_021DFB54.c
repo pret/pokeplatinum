@@ -391,7 +391,7 @@ static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
-static void ov5_021DFDA8(PlayerAvatar *playerAvatar)
+static void PlayerAvatar_RequestStateHeal(PlayerAvatar *playerAvatar)
 {
     int v0 = Player_MoveStateFromGender(0x16, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
@@ -412,7 +412,7 @@ static void (*const sPlayerAvatarRequestStateTbl[10])(PlayerAvatar *) = {
     ov5_021DFD0C,
     PlayerAvatar_RequestStatePoketch,
     PlayerAvatar_RequestStateSave,
-    ov5_021DFDA8,
+    PlayerAvatar_RequestStateHeal,
     ov5_021DFDC4
 };
 
@@ -1596,7 +1596,7 @@ void ov5_021E0E94(PlayerAvatar *playerAvatar)
     {
         u32 v3 = PlayerAvatar_RequestStateFlag(playerAvatar);
 
-        PlayerAvatar_SetRequestStateBit(playerAvatar, (1 << 6));
+        PlayerAvatar_SetRequestStateBit(playerAvatar, 1 << 6);
         PlayerAvatar_RequestChangeState(playerAvatar);
         PlayerAvatar_SetRequestStateBit(playerAvatar, v3);
     }
@@ -1629,7 +1629,7 @@ void ov5_021E0EEC(PlayerAvatar *playerAvatar)
     {
         u32 v3 = PlayerAvatar_RequestStateFlag(playerAvatar);
 
-        PlayerAvatar_SetRequestStateBit(playerAvatar, (1 << 0));
+        PlayerAvatar_SetRequestStateBit(playerAvatar, 1 << 0);
         PlayerAvatar_RequestChangeState(playerAvatar);
         PlayerAvatar_SetRequestStateBit(playerAvatar, v3);
     }
@@ -1647,7 +1647,7 @@ static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1)
     {
         SysTask *v2;
         MapObject *v3 = Player_MapObject(playerAvatar);
-        UnkStruct_ov5_021E0FF0 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, (sizeof(UnkStruct_ov5_021E0FF0)));
+        UnkStruct_ov5_021E0FF0 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E0FF0));
 
         v4->unk_00 = 0;
         v4->fieldSystem = fieldSystem;
@@ -1692,7 +1692,7 @@ static void ov5_021E0FF0(SysTask *param0, void *param1)
 
 SysTask *ov5_021E1000(FieldSystem *fieldSystem)
 {
-    return ov5_021E0F54(fieldSystem, (1 << 7));
+    return ov5_021E0F54(fieldSystem, 1 << 7);
 }
 
 void ov5_021E100C(SysTask *param0)
@@ -1702,7 +1702,7 @@ void ov5_021E100C(SysTask *param0)
 
 SysTask *FieldSystem_StartVsSeekerTask(FieldSystem *fieldSystem)
 {
-    return ov5_021E0F54(fieldSystem, (1 << 9));
+    return ov5_021E0F54(fieldSystem, 1 << 9);
 }
 
 void FieldSystem_EndVsSeekerTask(SysTask *param0)

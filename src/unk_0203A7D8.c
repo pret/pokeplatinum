@@ -58,7 +58,7 @@ static int sub_0203A7D8(int param0)
     return param0;
 }
 
-int sub_0203A7EC(void)
+int FieldOverworldState_GetDefaultWarpID(void)
 {
     return 1;
 }

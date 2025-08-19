@@ -15,8 +15,7 @@ _001A:
     End
 
 _0020:
-    SetVar VAR_0x8007, 0
-    CallCommonScript 0x7D2
+    VisitPokecenter 0
     End
 
 _002C:

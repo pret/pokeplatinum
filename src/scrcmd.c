@@ -72,16 +72,15 @@
 #include "overlay005/signpost.h"
 #include "overlay005/size_contest.h"
 #include "overlay005/vs_seeker.h"
+#include "overlay006/healing_machine_animation.h"
 #include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay006/ov6_02243004.h"
 #include "overlay006/ov6_02243258.h"
-#include "overlay006/ov6_02246C24.h"
 #include "overlay006/ov6_02246F00.h"
 #include "overlay006/ov6_02247078.h"
 #include "overlay006/ov6_02247830.h"
-#include "overlay006/ov6_02247D30.h"
 #include "overlay006/ov6_02247F5C.h"
 #include "overlay006/ov6_02248948.h"
 #include "overlay006/swarm.h"
@@ -490,7 +489,7 @@ static BOOL ScrCmd_155(ScriptContext *ctx);
 static BOOL ScrCmd_29C(ScriptContext *ctx);
 static BOOL ScrCmd_156(ScriptContext *ctx);
 static BOOL ScrCmd_2BA(ScriptContext *ctx);
-static BOOL ScrCmd_14B(ScriptContext *ctx);
+static BOOL ScrCmd_BlackOutFromBattle2(ScriptContext *ctx);
 static BOOL ScrCmd_14C(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx);
 static BOOL ScrCmd_HealParty(ScriptContext *ctx);
@@ -620,7 +619,7 @@ static BOOL ScrCmd_233(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
-static BOOL ScrCmd_23B(ScriptContext *ctx);
+static BOOL ScrCmd_PlayPokecenterAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_23C(ScriptContext *ctx);
 static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx);
 static BOOL ScrCmd_243(ScriptContext *ctx);
@@ -635,7 +634,7 @@ static BOOL ScrCmd_24D(ScriptContext *ctx);
 static BOOL ScrCmd_GetPCBoxesFreeSlotCount(ScriptContext *ctx);
 static BOOL ScrCmd_258(ScriptContext *ctx);
 static BOOL ScrCmd_259(ScriptContext *ctx);
-static BOOL ScrCmd_25A(ScriptContext *ctx);
+static BOOL ScrCmd_PlayHallOfFameHealingAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_InitPersistedMapFeaturesForPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_TriggerPlatformLift(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap(ScriptContext *ctx);
@@ -703,7 +702,7 @@ static BOOL ScrCmd_2B6(ScriptContext *ctx);
 static BOOL ResumeOnSelectionOrDisconnect(ScriptContext *ctx);
 static BOOL ScrCmd_ShowUnionRoomMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
-static BOOL ScrCmd_2BE(ScriptContext *ctx);
+static BOOL ScrCmd_TrainerCardLevel(ScriptContext *ctx);
 static BOOL ScrCmd_2BF(ScriptContext *ctx);
 static BOOL ScrCmd_2C1(ScriptContext *ctx);
 static BOOL ScrCmd_2C2(ScriptContext *ctx);
@@ -1101,7 +1100,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_PokeMartSpecialties,
     ScrCmd_PokeMartDecor,
     ScrCmd_PokeMartSeal,
-    ScrCmd_14B,
+    ScrCmd_BlackOutFromBattle2,
     ScrCmd_14C,
     ScrCmd_GetPlayerGender,
     ScrCmd_HealParty,
@@ -1341,7 +1340,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_238,
     ScrCmd_239,
     ScrCmd_GetSpeciesFootprintType,
-    ScrCmd_23B,
+    ScrCmd_PlayPokecenterAnimation,
     ScrCmd_23C,
     ScrCmd_PlayBoatCutscene,
     ScrCmd_MysteryGiftGive,
@@ -1372,7 +1371,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ShowAccessoryShop,
     ScrCmd_258,
     ScrCmd_259,
-    ScrCmd_25A,
+    ScrCmd_PlayHallOfFameHealingAnimation,
     ScrCmd_InitPersistedMapFeaturesForPlatformLift,
     ScrCmd_TriggerPlatformLift,
     ScrCmd_CheckPlatformLiftNotUsedWhenEnteredMap,
@@ -1472,7 +1471,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2BB,
     ScrCmd_CheckDidNotCapture,
     ScrCmd_StartLegendaryBattle,
-    ScrCmd_2BE,
+    ScrCmd_TrainerCardLevel,
     ScrCmd_2BF,
     ScrCmd_2C0,
     ScrCmd_2C1,
@@ -5331,9 +5330,9 @@ static BOOL ScrCmd_156(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_14B(ScriptContext *ctx)
+static BOOL ScrCmd_BlackOutFromBattle2(ScriptContext *ctx)
 {
-    sub_02052C5C(ctx->task);
+    FieldTask_StartBlackOutFromBattle(ctx->task);
     return TRUE;
 }
 
@@ -6386,11 +6385,11 @@ static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_23B(ScriptContext *ctx)
+static BOOL ScrCmd_PlayPokecenterAnimation(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 pokeballCount = ScriptContext_GetVar(ctx);
 
-    ov6_02246C24(ctx->fieldSystem, v0);
+    FieldSystem_PlayHealingAnimation_Pokecenter(ctx->fieldSystem, pokeballCount);
     return TRUE;
 }
 
@@ -6539,11 +6538,11 @@ static BOOL ScrCmd_259(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_25A(ScriptContext *ctx)
+static BOOL ScrCmd_PlayHallOfFameHealingAnimation(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 pokeballCount = ScriptContext_GetVar(ctx);
 
-    ov6_02247D30(ctx->fieldSystem, v0);
+    FieldSystem_PlayHealingAnimation_HallOfFame(ctx->fieldSystem, pokeballCount);
     return TRUE;
 }
 
@@ -7379,12 +7378,12 @@ static BOOL ScrCmd_2B6(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2BE(ScriptContext *ctx)
+static BOOL ScrCmd_TrainerCardLevel(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = TrainerCard_CalculateStars(fieldSystem);
+    *destVar = TrainerCard_CalculateStars(fieldSystem);
     return FALSE;
 }
 

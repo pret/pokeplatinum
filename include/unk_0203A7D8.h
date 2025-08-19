@@ -5,7 +5,7 @@
 
 #include "location.h"
 
-int sub_0203A7EC(void);
+int FieldOverworldState_GetDefaultWarpID(void);
 void sub_0203A7F0(int param0, Location *param1);
 void sub_0203A824(int param0, Location *param1);
 int sub_0203A858(int param0);
