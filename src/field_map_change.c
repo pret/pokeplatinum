@@ -16,7 +16,7 @@
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 #include "overlay006/ov6_02247100.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
@@ -806,7 +806,7 @@ static BOOL FieldTask_MapChangeFly(FieldTask *task)
         }
 
         Sound_PlayMapBGM(fieldSystem, location->mapId);
-        sub_0207056C(fieldSystem);
+        FieldSystem_SetFlyFlags(fieldSystem);
         FieldTransition_StartMapAndFadeInFly(task);
         mapChangeData->state++;
         break;
@@ -877,7 +877,7 @@ static void FieldTask_FadeInFly(FieldTask *task)
         return;
     }
 
-    mapChangeData->task = FieldTask_InitFlyLandingTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
+    mapChangeData->task = FieldTask_FlyLanding_InitTask(fieldSystem, PlayerAvatar_Gender(fieldSystem->playerAvatar));
     FieldTask_InitCall(task, FieldTask_WaitFadeInFly, mapChangeData);
 }
 
@@ -885,8 +885,8 @@ static BOOL FieldTask_WaitFadeInFly(FieldTask *task)
 {
     MapChangeFlyData *mapChangeData = FieldTask_GetEnv(task);
 
-    if (ov6_02245CF0(mapChangeData->task) == 1) {
-        ov6_02245CFC(mapChangeData->task);
+    if (FlyLanding_IsAnimFinished(mapChangeData->task) == TRUE) {
+        FlyLanding_SetTaskDone(mapChangeData->task);
         return TRUE;
     }
 
