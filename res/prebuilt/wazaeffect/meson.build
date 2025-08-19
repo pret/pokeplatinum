@@ -3,7 +3,6 @@ subdir('effectdata')
 
 prebuilt_files = [
     'we_sub.narc',
-    # 'we.arc'
 ]
 
 foreach f : prebuilt_files
