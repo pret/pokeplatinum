@@ -174,7 +174,7 @@ c9baf056c8646bc0bc826bbc98f5cbd439643f3d *res/prebuilt/battle/graphic/batt_obj.n
 2fafdda86f7f740e2843c95382f08dfac35fa64f *res/prebuilt/battle/graphic/pl_batt_bg.narc
 db5906303178da70f6b6c852990df560fb4dfeba *res/prebuilt/battle/graphic/pl_batt_obj.narc
 955ce80b532be2184c62c36a6cb9d6b68c4669dd *res/prebuilt/battle/graphic/vs_demo_gra.narc
-c7e601f3c145dd3c36c6f1deee1f63d526be3c37 *res/prebuilt/wazaeffect/we.arc
+c7e601f3c145dd3c36c6f1deee1f63d526be3c37 *res/battle/moves/we.arc
 30bb77e76c27874bc8ff923b33492595f1a377e2 *res/prebuilt/wazaeffect/we_sub.narc
 20e86a2ef9050edef59a91bfcefcc2869ab29349 *res/battle/scripts/be_seq.narc
 b646973b4c92a1d25479c5b08d28ff283274db33 *res/battle/scripts/sub_seq.narc

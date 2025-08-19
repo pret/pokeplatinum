@@ -473,6 +473,8 @@ pl_waza_tbl_subdirs = [
 ]
 
 we_subdirs = [
+    '0000',
+    '0468',
     '0469',
     '0470',
     '0471',
@@ -1003,6 +1005,7 @@ relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_bui
 we_basename = 'we'
 we_narc_name = we_basename + '.arc'
 we_naix_name = we_basename + '.naix.h'
+we_narc_order = files(we_basename + '.order')
 
 we_private_dir = relative_build_dir / we_narc_name + '.p'
 
@@ -1017,8 +1020,7 @@ we_narc = custom_target(we_narc_name,
     ),
     command: [
         narc_exe, 'create',
-        '--naix',
-        # '--order', we_narc_order,
+        '--order', we_narc_order,
         '--output', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]

@@ -5,7 +5,7 @@
 L_0:
     LoadParticleResource 0, 99
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 26
-    SwitchBg 51, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_MOVE
+    SwitchBg 51, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     PlayPannedSoundEffect SEQ_SE_DP_W327, 0
     Delay 5
@@ -34,7 +34,7 @@ L_0:
     CallFunc 68, 5, 0, 5, 1, 3, 0
     Delay 10
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -34
-    RestoreBg 51, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_STOP
+    RestoreBg 51, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
     PlayPannedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_RIGHT
     WaitForBgSwitch
     WaitForAllEmitters

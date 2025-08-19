@@ -18,7 +18,7 @@ L_1:
     BtlAnimCmd_082 2, 0, 4
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -64
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
-    SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_MOVE
+    SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     PlayPannedSoundEffect SEQ_SE_PL_W097, 0
     CreateEmitter 0, 0, 0
     WaitForBgSwitch
@@ -33,7 +33,7 @@ L_1:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -64
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
-    RestoreBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_STOP
+    RestoreBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
     WaitForBgSwitch
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -50,7 +50,7 @@ L_2:
     BtlAnimCmd_082 2, 0, 4
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -64
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
-    SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_MOVE
+    SwitchBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     PlayPannedSoundEffect SEQ_SE_PL_W097, 0
     CreateEmitter 0, 1, 0
     WaitForBgSwitch
@@ -65,7 +65,7 @@ L_2:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -64
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
-    RestoreBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAGS_STOP
+    RestoreBg 47, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
     WaitForBgSwitch
     WaitForAllEmitters
     UnloadParticleSystem 0

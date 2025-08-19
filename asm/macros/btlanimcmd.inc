@@ -558,3 +558,7 @@
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_2
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_3
     .endm
+
+    .text
+    .global _start
+_start:
