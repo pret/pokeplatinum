@@ -7,7 +7,7 @@
 #include "unk_02022844.h"
 
 static BOOL sStarted = FALSE;
-static u64 Unk_021BF668 = 0;
+static u64 sDummy = 0;
 static u64 sLastTimestamp = 0;
 static u64 sCurrentTimestamp = 0;
 static PlayTime *sPlayTime = NULL;
@@ -20,7 +20,7 @@ void PlayTime_FlagNotStarted()
 void PlayTime_Start(PlayTime *playTime)
 {
     sStarted = TRUE;
-    Unk_021BF668 = 0;
+    sDummy = 0;
     sLastTimestamp = 0;
     sPlayTime = playTime;
     sCurrentTimestamp = sub_0202293C();
