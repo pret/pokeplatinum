@@ -149,6 +149,10 @@
 
 #define BASE_SCALE_XY 100
 
+// For use in scripts in place of DEG_TO_IDX because said macro can't be included
+// in script files because the assembler doesn't understand the other code inside that file.
+#define BATTLE_ANIM_DEGREES(degrees) (((degrees) * 0xFFFF) / 360)
+
 // Script function specific constants
 #define ROTATE_MON_MODE_DEFENDER              0
 #define ROTATE_MON_MODE_ATTACKER_CUSTOM_PIVOT 1

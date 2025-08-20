@@ -96,6 +96,7 @@ ID_TO_MACRO = {
 }
 
 CALLFUNC_RE = re.compile(r"^(\s*)CallFunc\s+(\d+)\s*,\s*(\d+)\s*,(.*)$")
+FUNC_RE = re.compile(r"^(\s*)Func_(\w+)\s*(.*)$")
 
 # For IDs that need reordering of args from CallFunc to macro
 # value is a callable that takes list[str] args and returns reordered list[str]
@@ -136,6 +137,16 @@ def normalize_args_list(arg_str: str) -> list[str]:
     # filter out empty strings just in case
     return [p for p in parts if p != '']
 
+def process_func(line: str) -> str:
+    m = FUNC_RE.match(line)
+    if not m:
+        print(f"Warning: line does not match Func_ pattern: {line}")
+        return line
+    indent, func_name, args = m.groups()
+    args = normalize_args_list(args)
+    
+    new_line = f"{indent}{func_name} " + ", ".join(args)
+    return new_line
 
 def process_file(path: Path) -> int:
     changed = 0
@@ -144,6 +155,8 @@ def process_file(path: Path) -> int:
     for line in lines:
         m = CALLFUNC_RE.match(line)
         if not m:
+            if line.startswith("    Func_"):
+                line = process_func(line)
             out_lines.append(line)
             continue
         indent, fid_s, cnt_s, rest = m.groups()

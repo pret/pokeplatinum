@@ -1,5 +1,6 @@
 #include "generated/sdat.h"
 #include "constants/battle/battle_anim.h"
+#include "res/battle/particles/waza_particle.naix.h"
 
 #include "macros/btlanimfunc.inc"
 
