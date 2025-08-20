@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gts.h"
 #include "constants/species.h"
 #include "generated/gender_ratios.h"
 #include "generated/species_data_params.h"
@@ -47,7 +46,7 @@
 #include "res/text/bank/country_names.h"
 #include "res/text/bank/gts.h"
 
-typedef struct {
+typedef struct GTSLevelRangeMessage {
     int unk_00;
     s16 level;
     s16 level2;
@@ -144,136 +143,136 @@ static const GTSLevelRangeMessage gtsLevelRangeMessages[] = {
 };
 
 __attribute__((aligned(4))) static const u16 gtsAvailableCountries[] = {
-    pl_msg_00000694_00001,
-    pl_msg_00000694_00002,
-    pl_msg_00000694_00003,
-    pl_msg_00000694_00006,
-    pl_msg_00000694_00008,
-    pl_msg_00000694_00009,
-    pl_msg_00000694_00012,
-    pl_msg_00000694_00013,
-    pl_msg_00000694_00015,
-    pl_msg_00000694_00016,
-    pl_msg_00000694_00017,
-    pl_msg_00000694_00018,
-    pl_msg_00000694_00020,
-    pl_msg_00000694_00021,
-    pl_msg_00000694_00022,
-    pl_msg_00000694_00023,
-    pl_msg_00000694_00025,
-    pl_msg_00000694_00027,
-    pl_msg_00000694_00028,
-    pl_msg_00000694_00029,
-    pl_msg_00000694_00031,
-    pl_msg_00000694_00033,
-    pl_msg_00000694_00034,
-    pl_msg_00000694_00035,
-    pl_msg_00000694_00036,
-    pl_msg_00000694_00040,
-    pl_msg_00000694_00042,
-    pl_msg_00000694_00043,
-    pl_msg_00000694_00045,
-    pl_msg_00000694_00048,
-    pl_msg_00000694_00049,
-    pl_msg_00000694_00050,
-    pl_msg_00000694_00052,
-    pl_msg_00000694_00054,
-    pl_msg_00000694_00055,
-    pl_msg_00000694_00056,
-    pl_msg_00000694_00058,
-    pl_msg_00000694_00059,
-    pl_msg_00000694_00060,
-    pl_msg_00000694_00061,
-    pl_msg_00000694_00062,
-    pl_msg_00000694_00069,
-    pl_msg_00000694_00070,
-    pl_msg_00000694_00071,
-    pl_msg_00000694_00072,
-    pl_msg_00000694_00074,
-    pl_msg_00000694_00077,
-    pl_msg_00000694_00078,
-    pl_msg_00000694_00079,
-    pl_msg_00000694_00080,
-    pl_msg_00000694_00081,
-    pl_msg_00000694_00082,
-    pl_msg_00000694_00083,
-    pl_msg_00000694_00085,
-    pl_msg_00000694_00086,
-    pl_msg_00000694_00088,
-    pl_msg_00000694_00089,
-    pl_msg_00000694_00090,
-    pl_msg_00000694_00091,
-    pl_msg_00000694_00092,
-    pl_msg_00000694_00093,
-    pl_msg_00000694_00094,
-    pl_msg_00000694_00095,
-    pl_msg_00000694_00097,
-    pl_msg_00000694_00098,
-    pl_msg_00000694_00100,
-    pl_msg_00000694_00101,
-    pl_msg_00000694_00102,
-    Text_Country_Japan,
-    pl_msg_00000694_00104,
-    pl_msg_00000694_00107,
-    pl_msg_00000694_00111,
-    pl_msg_00000694_00115,
-    pl_msg_00000694_00117,
-    pl_msg_00000694_00118,
-    pl_msg_00000694_00121,
-    pl_msg_00000694_00122,
-    pl_msg_00000694_00126,
-    pl_msg_00000694_00129,
-    pl_msg_00000694_00131,
-    pl_msg_00000694_00133,
-    pl_msg_00000694_00135,
-    pl_msg_00000694_00140,
-    pl_msg_00000694_00142,
-    pl_msg_00000694_00146,
-    pl_msg_00000694_00148,
-    pl_msg_00000694_00149,
-    pl_msg_00000694_00150,
-    pl_msg_00000694_00151,
-    pl_msg_00000694_00152,
-    pl_msg_00000694_00156,
-    pl_msg_00000694_00157,
-    pl_msg_00000694_00158,
-    pl_msg_00000694_00160,
-    pl_msg_00000694_00161,
-    pl_msg_00000694_00163,
-    pl_msg_00000694_00164,
-    pl_msg_00000694_00166,
-    pl_msg_00000694_00167,
-    pl_msg_00000694_00110,
-    pl_msg_00000694_00171,
-    pl_msg_00000694_00172,
-    pl_msg_00000694_00179,
-    pl_msg_00000694_00183,
-    pl_msg_00000694_00186,
-    pl_msg_00000694_00187,
-    pl_msg_00000694_00188,
-    pl_msg_00000694_00189,
-    pl_msg_00000694_00192,
-    pl_msg_00000694_00193,
-    pl_msg_00000694_00194,
-    pl_msg_00000694_00196,
-    pl_msg_00000694_00198,
-    pl_msg_00000694_00199,
-    pl_msg_00000694_00200,
-    pl_msg_00000694_00202,
-    pl_msg_00000694_00205,
-    pl_msg_00000694_00207,
-    pl_msg_00000694_00211,
-    pl_msg_00000694_00212,
-    pl_msg_00000694_00216,
-    pl_msg_00000694_00218,
-    pl_msg_00000694_00219,
-    pl_msg_00000694_00204,
-    pl_msg_00000694_00221,
-    pl_msg_00000694_00220,
-    pl_msg_00000694_00222,
-    pl_msg_00000694_00224,
-    pl_msg_00000694_00226,
-    pl_msg_00000694_00227
+    Country_Text_Afghanistan,
+    Country_Text_Albania,
+    Country_Text_Algeria,
+    Country_Text_Angola,
+    Country_Text_AntiguaAndBarbuda,
+    Country_Text_Argentina,
+    Country_Text_Australia,
+    Country_Text_Austria,
+    Country_Text_Bahamas,
+    Country_Text_Bahrain,
+    Country_Text_Bangladesh,
+    Country_Text_Barbados,
+    Country_Text_Belgium,
+    Country_Text_Belize,
+    Country_Text_Benin,
+    Country_Text_Bermuda,
+    Country_Text_Bolivia,
+    Country_Text_Botswana,
+    Country_Text_Brazil,
+    Country_Text_BritishVirginIslands,
+    Country_Text_Bulgaria,
+    Country_Text_Burundi,
+    Country_Text_Cambodia,
+    Country_Text_Cameroon,
+    Country_Text_Canada,
+    Country_Text_Chad,
+    Country_Text_Chile,
+    Country_Text_China,
+    Country_Text_Colombia,
+    Country_Text_Congo,
+    Country_Text_CookIslands,
+    Country_Text_CostaRica,
+    Country_Text_Croatia,
+    Country_Text_Cyprus,
+    Country_Text_CzechRepublic,
+    Country_Text_Denmark,
+    Country_Text_Dominica,
+    Country_Text_DominicanRepublic,
+    Country_Text_Ecuador,
+    Country_Text_Egypt,
+    Country_Text_ElSalvador,
+    Country_Text_Fiji,
+    Country_Text_Finland,
+    Country_Text_France,
+    Country_Text_FrenchGuiana,
+    Country_Text_Gabon,
+    Country_Text_Germany,
+    Country_Text_Ghana,
+    Country_Text_Gibraltar,
+    Country_Text_Greece,
+    Country_Text_Greenland,
+    Country_Text_Grenada,
+    Country_Text_Guadeloupe,
+    Country_Text_Guatemala,
+    Country_Text_Guinea,
+    Country_Text_Guyana,
+    Country_Text_Haiti,
+    Country_Text_Honduras,
+    Country_Text_HongKong,
+    Country_Text_Hungary,
+    Country_Text_Iceland,
+    Country_Text_India,
+    Country_Text_Indonesia,
+    Country_Text_Iraq,
+    Country_Text_Ireland,
+    Country_Text_Israel,
+    Country_Text_Italy,
+    Country_Text_Jamaica,
+    Country_Text_Japan,
+    Country_Text_Jordan,
+    Country_Text_Kenya,
+    Country_Text_Kuwait,
+    Country_Text_Lebanon,
+    Country_Text_Liberia,
+    Country_Text_Libya,
+    Country_Text_Luxembourg,
+    Country_Text_Macau,
+    Country_Text_Malaysia,
+    Country_Text_Malta,
+    Country_Text_Martinique,
+    Country_Text_Mauritius,
+    Country_Text_Mexico,
+    Country_Text_Morocco,
+    Country_Text_Myanmar,
+    Country_Text_Netherlands,
+    Country_Text_NewCaledonia,
+    Country_Text_NewZealand,
+    Country_Text_Nicaragua,
+    Country_Text_Niger,
+    Country_Text_Nigeria,
+    Country_Text_Norway,
+    Country_Text_Oman,
+    Country_Text_Pakistan,
+    Country_Text_Panama,
+    Country_Text_PapuaNewGuinea,
+    Country_Text_Peru,
+    Country_Text_Philippines,
+    Country_Text_Poland,
+    Country_Text_Portugal,
+    Country_Text_SouthKorea,
+    Country_Text_Romania,
+    Country_Text_Russia,
+    Country_Text_Samoa,
+    Country_Text_Senegal,
+    Country_Text_SierraLeone,
+    Country_Text_Singapore,
+    Country_Text_Slovakia,
+    Country_Text_Slovenia,
+    Country_Text_SouthAfrica,
+    Country_Text_Spain,
+    Country_Text_SriLanka,
+    Country_Text_Suriname,
+    Country_Text_Swaziland,
+    Country_Text_Sweden,
+    Country_Text_Switzerland,
+    Country_Text_Taiwan,
+    Country_Text_Thailand,
+    Country_Text_Togo,
+    Country_Text_Tunisia,
+    Country_Text_Turkey,
+    Country_Text_Uganda,
+    Country_Text_UAE,
+    Country_Text_UK,
+    Country_Text_Tanzania,
+    Country_Text_USVirginIslands,
+    Country_Text_USA,
+    Country_Text_Uruguay,
+    Country_Text_Vanuatu,
+    Country_Text_Venezuela,
+    Country_Text_Vietnam
 };
 
 const u32 Unk_ov94_02245FD4 = NELEMS(gtsAvailableCountries);
@@ -515,7 +514,7 @@ static int ov94_0224195C(GTSApplicationState *appState)
 static int ov94_02241990(GTSApplicationState *appState)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 5);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
         appState->currentScreenInstruction = 2;
     }
 
@@ -556,14 +555,14 @@ static int ov94_02241A58(GTSApplicationState *appState)
         appState->currentScreenInstruction = 5;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
-    case 0xfffffffe:
+    case LIST_CANCEL:
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_06, &appState->unk_10E4->unk_04);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
         Window_EraseMessageBox(&appState->bottomInstructionWindow, 0);
         Window_Remove(&appState->unk_F9C[0]);
         Window_Remove(&appState->unk_F9C[1]);
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 5);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
         appState->currentScreenInstruction = 2;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
@@ -602,9 +601,9 @@ static int ov94_02241BAC(GTSApplicationState *appState)
 {
     u32 input;
     switch (input = ov94_02242A6C(appState->unk_10D8, &appState->unk_108)) {
-    case 0xffffffff:
+    case LIST_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case LIST_CANCEL:
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_0A, &appState->unk_10E4->unk_08);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[1], 0);
@@ -668,7 +667,7 @@ static int ov94_02241DA0(GTSApplicationState *appState)
     u32 input;
 
     switch (input = ov94_02242A6C(appState->unk_10D8, &appState->unk_108)) {
-    case 0xfffffffe:
+    case LIST_CANCEL:
         ListMenu_Free(appState->unk_10D8, NULL, NULL);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
@@ -720,9 +719,9 @@ static int ov94_02241F28(GTSApplicationState *appState)
     u32 input;
 
     switch (input = ov94_02242A6C(appState->unk_10D8, &appState->unk_108)) {
-    case 0xffffffff:
+    case LIST_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case LIST_CANCEL:
     case 12:
         ListMenu_Free(appState->unk_10D8, NULL, NULL);
         StringList_Free(appState->unk_10CC);
@@ -772,12 +771,12 @@ static int ov94_0224208C(GTSApplicationState *appState)
 {
     int input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
-    if (input != 0xffffffff) {
-        if (input == 0xfffffffe) {
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 5);
+    if (input != MENU_NOTHING_CHOSEN) {
+        if (input == MENU_CANCELED) {
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
             appState->currentScreenInstruction = 2;
         } else {
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 7);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_DEPOSIT_POKEMON);
             appState->currentScreenInstruction = 2;
             appState->fadeBothScreens = TRUE;
             ov94_02242668(&appState->receivedListing, appState);
@@ -1110,7 +1109,7 @@ static int ov94_02242718(StringList **stringList, MessageLoader *speciesMessageL
         }
     }
 
-    StringList_AddFromMessageBank(*stringList, gtsMessageLoader, GTS_Text_Species_Cancel, 0xfffffffe);
+    StringList_AddFromMessageBank(*stringList, gtsMessageLoader, GTS_Text_Species_Cancel, LIST_CANCEL);
 
     return seen + 1;
 }

@@ -4,8 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/dwc.h"
-#include "constants/gts.h"
+#include "constants/net.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay094/application.h"
@@ -336,7 +335,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
     if (menuInput != MENU_NOTHING_CHOSEN) {
         if (menuInput == MENU_CANCELED) {
             sub_0203848C(); // free the network lock?
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
         } else {
             GTSApplication_DisplayStatusMessage(appState, appState->unk0674MessageLoader, pl_msg_00000674_00001, TEXT_SPEED_FAST, 0xf0f);
@@ -365,7 +364,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
             if (!DWC_CheckInet()) {
                 appState->currentScreenInstruction = 0;
             } else {
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 11);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_CHECK_SERVER);
                 appState->returnAfterNetworkScreen = GTS_SCREEN_MAIN_MENU;
                 appState->currentScreenInstruction = 11;
             }
@@ -375,7 +374,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
             }
 
             sub_0203848C();
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
         }
     }
@@ -396,7 +395,7 @@ static int GTSApplication_WFCInit_CleanupNetworking(GTSApplicationState *appStat
     sub_0203848C();
 
     DWC_CleanupInet();
-    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
     appState->currentScreenInstruction = 19;
 
     return GTS_LOOP_STATE_MAIN;
@@ -651,7 +650,7 @@ static int GTSApplication_WFCInit_SetProfileResponse(GTSApplicationState *appSta
             case 0:
                 switch (appState->worldExchangeTrainerError.systemError) {
                 case 0:
-                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                     appState->currentScreenInstruction = 11;
                     break;
                 case 3: // pl_msg_00000671_00177
@@ -764,7 +763,7 @@ static int ov94_022455D0(GTSApplicationState *param0)
         if (v0 == 0xfffffffe) {
             param0->currentScreenInstruction = 0;
         } else {
-            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             param0->currentScreenInstruction = 11;
         }
     }
@@ -845,7 +844,7 @@ static int GTSApplication_WFCInit_FatalErrorDisconnectMessage(GTSApplicationStat
         appState->wfcDisconnectMessageFrameDelay++;
 
         if (appState->wfcDisconnectMessageFrameDelay > 30) {
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
         }
         break;

@@ -6,7 +6,7 @@
 #include <string.h>
 #include <vct.h>
 
-#include "constants/dwc.h"
+#include "constants/net.h"
 
 #include "overlay004/funcptr_ov4_021D1104.h"
 #include "overlay004/funcptr_ov4_021D1120.h"

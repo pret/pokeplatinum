@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gts.h"
-
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay095/ov95_02246C20.h"
@@ -23,13 +21,13 @@
 FS_EXTERN_OVERLAY(overlay95);
 
 static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing);
-static Pokemon *GTSApplication_Trade_GetTradedPokemon(GTSApplicationState *appState, int arg);
+static Pokemon *GTSApplication_Trade_GetTradedPokemon(GTSApplicationState *appState, enum ScreenArgument screenArgument);
 static void GTSApplication_Trade_StoreTradedPokemon(GTSApplicationState *appState);
 
 static const ApplicationManagerTemplate sTradeSequenceConfig = {
-    TradeSequence_Init, // init
-    TradeSequence_Main, // main
-    TradeSequence_Exit, // exit
+    TradeSequence_Init,
+    TradeSequence_Main,
+    TradeSequence_Exit,
     FS_OVERLAY_ID(overlay95)
 };
 
@@ -38,7 +36,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
     appState->tradeTempPokemon = Pokemon_New(HEAP_ID_62);
 
     switch (appState->screenArgument) {
-    case 7: // ONLY sending a pokemon here
+    case SCREEN_ARGUMENT_DEPOSIT_POKEMON:
         appState->tradeAnimationConfig.sendingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
         appState->tradeAnimationConfig.receivingPokemon = appState->tradeAnimationConfig.sendingPokemon;
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
@@ -46,7 +44,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
         appState->tradeAnimationConfig.tradeType = TRADE_TYPE_SEND_ONLY;
         break;
-    case 8: // from network handler receiving flow. ONLY receiving a pokemon here
+    case SCREEN_ARGUMENT_TAKE_BACK_POKEMON:
         appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
         appState->tradeAnimationConfig.sendingPokemon = appState->tradeAnimationConfig.receivingPokemon;
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
@@ -54,7 +52,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
         appState->tradeAnimationConfig.tradeType = TRADE_TYPE_RECEIVE_ONLY;
         break;
-    case 10:
+    case SCREEN_ARGUMENT_10:
         appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
         GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
         appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
@@ -63,10 +61,10 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
         appState->tradeAnimationConfig.tradeType = TRADE_TYPE_NORMAL;
         break;
-    case 9: // from the search flow
+    case SCREEN_ARGUMENT_9: // from the search flow
         GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
         appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
-        appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
+        appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->searchResults[appState->selectedSearchResult]);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
         appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
@@ -90,7 +88,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
         if (ApplicationManager_Exec(appState->appMan)) {
             ApplicationManager_Free(appState->appMan);
 
-            if (appState->screenArgument == 9) { // search flow
+            if (appState->screenArgument == SCREEN_ARGUMENT_9) { // search flow
                 Pokemon *receivingPokemon = GTSApplication_Trade_GetTradedPokemon(appState, appState->screenArgument);
                 int heldItem = Pokemon_GetValue(receivingPokemon, MON_DATA_HELD_ITEM, NULL);
                 int evolutionType;
@@ -101,10 +99,10 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                     appState->evolutionData = Evolution_Begin(NULL, receivingPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);
                     appState->currentScreenInstruction = 1;
                 } else {
-                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                     loopState = GTS_LOOP_STATE_FINISH;
                 }
-            } else if ((appState->screenArgument == 8) || (appState->screenArgument == 10)) { // receiving flow
+            } else if ((appState->screenArgument == SCREEN_ARGUMENT_TAKE_BACK_POKEMON) || (appState->screenArgument == SCREEN_ARGUMENT_10)) { // receiving flow
                 Pokemon *tradedPokemon = GTSApplication_Trade_GetTradedPokemon(appState, appState->screenArgument);
                 Pokemon *storedPokemon = Pokemon_New(HEAP_ID_62);
 
@@ -120,28 +118,28 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                         appState->evolutionData = Evolution_Begin(NULL, tradedPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);
                         appState->currentScreenInstruction = 1;
                     } else {
-                        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                         loopState = GTS_LOOP_STATE_FINISH;
                     }
                 } else {
                     // receiving our stored pokemon back
-                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                     loopState = GTS_LOOP_STATE_FINISH;
                 }
 
                 Heap_Free(storedPokemon);
             } else {
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                 loopState = GTS_LOOP_STATE_FINISH;
             }
         }
         break;
     case 1:
-        if (Evolution_IsDone(appState->evolutionData)) { // evolve
+        if (Evolution_IsDone(appState->evolutionData)) {
             sub_0207B0E0(appState->evolutionData);
             GTSApplication_Trade_StoreTradedPokemon(appState);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 12);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_SAVE_AFTER_EVOLVE);
             loopState = GTS_LOOP_STATE_FINISH;
         }
         break;
@@ -171,13 +169,13 @@ static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing)
     return trainerInfo;
 }
 
-static Pokemon *GTSApplication_Trade_GetTradedPokemon(GTSApplicationState *appState, int screenArgument)
+static Pokemon *GTSApplication_Trade_GetTradedPokemon(GTSApplicationState *appState, enum ScreenArgument screenArgument)
 {
-    if (screenArgument == 9) {
+    if (screenArgument == SCREEN_ARGUMENT_9) {
         return (Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes;
-    } else if (screenArgument == 10) {
+    } else if (screenArgument == SCREEN_ARGUMENT_10) {
         return (Pokemon *)appState->receivedListing.pokemon.bytes;
-    } else if (screenArgument == 8) {
+    } else if (screenArgument == SCREEN_ARGUMENT_TAKE_BACK_POKEMON) {
         return (Pokemon *)appState->receivedListing.pokemon.bytes;
     }
 

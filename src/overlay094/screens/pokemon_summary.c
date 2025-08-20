@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gts.h"
-
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"

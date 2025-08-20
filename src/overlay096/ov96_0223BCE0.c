@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/dwc.h"
+#include "constants/net.h"
 
 #include "struct_defs/struct_02049A68.h"
 

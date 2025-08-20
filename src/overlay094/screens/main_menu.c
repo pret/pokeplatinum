@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gts.h"
-
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_02243EF8.h"
@@ -345,7 +343,7 @@ static int GTSApplication_MainMenu_WaitUntilFinishedMoving(GTSApplicationState *
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
 
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 11);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_CHECK_SERVER);
 
         appState->returnAfterNetworkScreen = GTS_SCREEN_MAIN_MENU;
         appState->currentScreenInstruction = 9;
@@ -406,12 +404,12 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
         switch (appState->mainMenuSelectedOption) {
         case 0: // deposit pokemon
             if (appState->isPokemonListed == FALSE) {
-                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 5);
+                GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
                 appState->currentScreenInstruction = 9;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
                 if (appState->networkTimer == 0) {
-                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, 11);
+                    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_CHECK_SERVER);
                     appState->returnAfterNetworkScreen = GTS_SCREEN_LISTING;
                     appState->currentScreenInstruction = 9;
                     appState->networkTimer = (60 * 30);
@@ -426,7 +424,7 @@ static int GTSApplication_MainMenu_HandleInput(GTSApplicationState *appState)
             }
             break;
         case 1: // seek pokemon
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 9;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
@@ -507,7 +505,7 @@ static int ov94_0223CE7C(GTSApplicationState *appState)
         } else {
             Window_EraseMessageBox(&appState->unk_109C, 1);
             Window_ClearAndCopyToVRAM(&appState->unk_109C);
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 7;
         }
     }

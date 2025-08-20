@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gts.h"
 #include "constants/savedata/savedata.h"
 #include "generated/game_records.h"
 #include "generated/species.h"
@@ -54,6 +53,9 @@
 
 #include "res/text/bank/gts.h"
 #include "res/text/bank/location_names.h"
+
+#define GTS_TIMESTAMPS_TRADE_BY_DEPOSITING 0
+#define GTS_TIMESTAMPS_TRADE_BY_SEARCHING  1
 
 static void GTSApplication_NetworkHandler_InitBackground(BgConfig *bgConfig);
 static void GTSApplication_NetworkHandler_CleanupBackground(BgConfig *bgConfig);
@@ -349,28 +351,28 @@ static void GTSApplication_NetworkHandler_CleanupStrings(GTSApplicationState *ap
 static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState *appState)
 {
     switch (appState->screenArgument) {
-    case 7:
+    case SCREEN_ARGUMENT_DEPOSIT_POKEMON:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_CheckingStatus, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 2);
         break;
-    case 8:
+    case SCREEN_ARGUMENT_TAKE_BACK_POKEMON:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_CheckingStatus, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 7);
         break;
-    case 9: // this is called after you've selected a pokemon in the trade screen to trade with someone
+    case SCREEN_ARGUMENT_9: // this is called after you've selected a pokemon in the trade screen to trade with someone
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_CheckingStatus, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 12);
         break;
-    case 10:
+    case SCREEN_ARGUMENT_10:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_CheckingStatus, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 18);
         appState->fadeBothScreens = TRUE;
         break;
-    case 11: // this is called when logging in, to potentially process someone trading you
+    case SCREEN_ARGUMENT_CHECK_SERVER:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_CheckingStatus, TEXT_SPEED_INSTANT, 0xf0f);
         appState->currentScreenInstruction = 24;
         break;
-    case 12:
+    case SCREEN_ARGUMENT_SAVE_AFTER_EVOLVE:
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_Saving, TEXT_SPEED_FAST, 0xf0f);
         appState->nextScreen = GTS_SCREEN_MAIN_MENU;
         appState->currentScreenInstruction = 29;
@@ -824,7 +826,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
 
 static int ov94_02243554(GTSApplicationState *param0)
 {
-    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
     param0->currentScreenInstruction = 36;
 
     return GTS_LOOP_STATE_MAIN;
@@ -890,11 +892,11 @@ static void GTSApplication_NetworkHandler_ReturnToPreviousScreen(GTSApplicationS
 {
     switch (appState->returnAfterNetworkScreen) {
     case GTS_SCREEN_MAIN_MENU:
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
         appState->currentScreenInstruction = 36;
         break;
     case GTS_SCREEN_LISTING:
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_LISTING, 3);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_LISTING, SCREEN_ARGUMENT_3);
         appState->currentScreenInstruction = 36;
         break;
     }
@@ -974,7 +976,7 @@ static int ov94_02243778(GTSApplicationState *param0)
 static int ov94_0224377C(GTSApplicationState *param0)
 {
     param0->isPokemonListed = TRUE;
-    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_TRADE, 7);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_TRADE, SCREEN_ARGUMENT_DEPOSIT_POKEMON);
     param0->currentScreenInstruction = 36;
 
     return 3;
@@ -983,7 +985,7 @@ static int ov94_0224377C(GTSApplicationState *param0)
 static int ov94_02243794(GTSApplicationState *appState)
 {
     appState->isPokemonListed = FALSE;
-    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_TRADE, 8);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_TRADE, SCREEN_ARGUMENT_TAKE_BACK_POKEMON);
     appState->currentScreenInstruction = 36;
 
     return GTS_LOOP_STATE_MAIN;
@@ -991,7 +993,7 @@ static int ov94_02243794(GTSApplicationState *appState)
 
 static int ov94_022437AC(GTSApplicationState *param0)
 {
-    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_TRADE, 9);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_TRADE, SCREEN_ARGUMENT_9);
     param0->currentScreenInstruction = 36;
 
     return 3;
@@ -1000,7 +1002,7 @@ static int ov94_022437AC(GTSApplicationState *param0)
 static int ov94_022437C0(GTSApplicationState *param0)
 {
     param0->isPokemonListed = 0;
-    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_TRADE, 10);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_TRADE, SCREEN_ARGUMENT_10);
     param0->currentScreenInstruction = 30;
 
     return 3;
@@ -1058,7 +1060,7 @@ static int ov94_02243884(GTSApplicationState *appState)
 {
     GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, GTS_Text_Error_TradedToSomeoneElse, TEXT_SPEED_FAST, 0xf0f);
     GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 36);
-    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+    GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
     GTSApplicationState_DestroyWaitDial(appState);
     ov94_022442E4(appState);
 
@@ -1100,7 +1102,7 @@ static int ov94_02243920(GTSApplicationState *param0)
 {
     ov94_022438C8(param0);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 37, 36);
-    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, 0);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
     GTSApplicationState_DestroyWaitDial(param0);
 
     return GTS_LOOP_STATE_MAIN;
@@ -1110,7 +1112,7 @@ static int ov94_02243948(GTSApplicationState *param0)
 {
     ov94_022438C8(param0);
     GTSApplication_SetCurrentAndNextScreenInstruction(param0, 37, 36);
-    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
     GTSApplicationState_DestroyWaitDial(param0);
     ov94_022442E4(param0);
 
@@ -1179,7 +1181,7 @@ static int GTSApplication_NetworkHandler_FullSave(GTSApplicationState *appState)
 static int GTSApplication_NetworkHandler_WaitForSuccessfulSave(GTSApplicationState *appState)
 {
     if (SaveData_SaveStateMain(appState->playerData->saveData) == SAVE_RESULT_OK) {
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, 0);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
         GTSApplicationState_DestroyWaitDial(appState);
         GTSApplication_DisplayStatusMessage(appState, appState->gtsMessageLoader, appState->depositReturnError, TEXT_SPEED_FAST, 0xf0f);
         GTSApplication_SetCurrentAndNextScreenInstruction(appState, 37, 28);

@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gts.h"
-
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/ov94_02243EF8.h"
@@ -314,7 +312,7 @@ static int ov94_0223E0A4(GTSApplicationState *appState)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         appState->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, 0);
+        GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (appState->unk_10E == 0) {
@@ -336,7 +334,7 @@ static int ov94_0223E0A4(GTSApplicationState *appState)
         if ((newSelectedResult != appState->selectedSearchResult) && (newSelectedResult >= 0)) {
             Sprite_SetAnim(appState->avatarSprites[newSelectedResult + 1], 16 + newSelectedResult * 4);
             appState->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
             appState->selectedSearchResult = newSelectedResult;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
@@ -368,12 +366,12 @@ static int ov94_0223E1D0(GTSApplicationState *appState)
     if (v0 != 0xffffffff) {
         if (v0 == 0xfffffffe) {
             appState->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, 0);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SEARCH, SCREEN_ARGUMENT_0);
             ov94_0223E358(appState->gtsMessageLoader, &appState->unk_FCC[7]);
             ov94_0223E240(appState);
         } else {
             appState->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, 6);
+            GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_6);
             ov94_0223E358(appState->gtsMessageLoader, &appState->unk_FCC[7]);
             ov94_0223E240(appState);
         }

@@ -4,7 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/gts.h"
 #include "generated/items.h"
 #include "generated/species.h"
 
@@ -465,9 +464,9 @@ static void ov94_022401E0(GTSApplicationState *param0)
     param0->selectPokemonBoxName = Strbuf_Init(9 * 2, HEAP_ID_62);
     param0->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
 
-    if (param0->screenArgument == 5) {
+    if (param0->screenArgument == SCREEN_ARGUMENT_5) {
         param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_ChooseYourOfferPokemon);
-    } else if (param0->screenArgument == 6) {
+    } else if (param0->screenArgument == SCREEN_ARGUMENT_6) {
         param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_ChooseYourListedPokemon);
     }
 
@@ -537,14 +536,14 @@ static int ov94_022402BC(GTSApplicationState *param0)
 {
     ov94_022404F0(param0);
 
-    if (param0->screenArgument == 5) { // from main menu
+    if (param0->screenArgument == SCREEN_ARGUMENT_5) { // from main menu
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
             param0->currentScreenInstruction = 2;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
-                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_MAIN_MENU, SCREEN_ARGUMENT_0);
                 param0->currentScreenInstruction = 2;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -570,14 +569,14 @@ static int ov94_022402BC(GTSApplicationState *param0)
                 }
             }
         }
-    } else if (param0->screenArgument == 6) {
+    } else if (param0->screenArgument == SCREEN_ARGUMENT_6) {
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
             param0->currentScreenInstruction = 2;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
-                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_SEARCH_LISTING, SCREEN_ARGUMENT_0);
                 param0->currentScreenInstruction = 2;
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             } else {
@@ -707,7 +706,7 @@ static int ov94_02240688(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         param0->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_SUMMARY, 5);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_5);
         break;
     case 2:
         Menu_Free(param0->unk_10D4, NULL);
@@ -743,7 +742,7 @@ static int ov94_02240688(GTSApplicationState *param0)
                 param0->unk_114 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
                 param0->currentScreenInstruction = 2;
 
-                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_DEPOSIT, 0);
+                GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
             }
         }
         break;
@@ -799,7 +798,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         param0->currentScreenInstruction = 2;
-        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_SUMMARY, 6);
+        GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_POKEMON_SUMMARY, SCREEN_ARGUMENT_6);
         break;
     case 2:
         Menu_Free(param0->unk_10D4, NULL);
@@ -880,7 +879,7 @@ static int ov94_02240AE8(GTSApplicationState *param0)
             param0->currentScreenInstruction = 0;
         } else {
             param0->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
         }
     }
 
@@ -935,7 +934,7 @@ static int ov94_02240BB0(GTSApplicationState *param0)
     param0->currentScreenInstruction = 2;
     param0->fadeBothScreens = 1;
 
-    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_NETWORK_HANDLER, 9);
+    GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_9);
     ov94_022413BC(&param0->receivedListing, param0);
 
     param0->unk_118 = 0;
@@ -970,7 +969,7 @@ static int ov94_02240CA8(GTSApplicationState *param0)
         } else {
             param0->unk_114 = ov94_022411DC(param0->playerData->party, param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
             param0->currentScreenInstruction = 2;
-            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_DEPOSIT, 0);
+            GTSApplication_SetNextScreenWithArgument(param0, GTS_SCREEN_DEPOSIT, SCREEN_ARGUMENT_0);
         }
     }
 
@@ -1178,7 +1177,7 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
 
     ov94_02245900(&appState->unk_F8C, appState->selectPokemonBoxName, 0, 5, 1, TEXT_COLOR(1, 2, 0));
 
-    if (appState->screenArgument == 6) {
+    if (appState->screenArgument == SCREEN_ARGUMENT_6) {
         GTSApplication_SelectPokemon_DarkenNonMatchingMons(appState->boxCriteria->criteria, appState->unk_E28, &appState->searchResults[appState->selectedSearchResult].unk_F0, icons);
     }
 

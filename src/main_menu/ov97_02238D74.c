@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/dwc.h"
+#include "constants/net.h"
 
 #include "main_menu/mystery_gift_app.h"
 #include "overlay004/ov4_021D0D80.h"

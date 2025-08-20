@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/wireless_driver.h"
+#include "constants/net.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202610C.h"

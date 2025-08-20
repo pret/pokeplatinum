@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "constants/gts.h"
 #include "constants/species.h"
 
 #include "struct_defs/gts_player_data.h"
@@ -452,7 +451,7 @@ int GTSApplication_GetNetworkStrength(void)
     return WM_LINK_LEVEL_3 - DWC_GetLinkLevel();
 }
 
-void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *appState, int nextScreen, int screenArgument)
+void GTSApplication_SetNextScreenWithArgument(GTSApplicationState *appState, int nextScreen, enum ScreenArgument screenArgument)
 {
     appState->nextScreen = nextScreen;
     appState->screenArgument = screenArgument;
