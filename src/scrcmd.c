@@ -616,7 +616,7 @@ static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx);
 static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
 static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx);
-static BOOL ScrCmd_233(ScriptContext *ctx);
+static BOOL ScrCmd_GetPartyMonEVTotal(ScriptContext *ctx);
 static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
@@ -1333,7 +1333,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPartyMonRibbon,
     ScrCmd_SetPartyMonRibbon,
     ScrCmd_232,
-    ScrCmd_233,
+    ScrCmd_GetPartyMonEVTotal,
     ScrCmd_GetDayOfWeek,
     ScrCmd_235,
     ScrCmd_236,
@@ -6333,21 +6333,21 @@ static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_233(ScriptContext *ctx)
+static BOOL ScrCmd_GetPartyMonEVTotal(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u32 v3[7];
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
+    u32 evs[STAT_MAX];
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), v2);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), slot);
 
-    v3[0] = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
-    v3[1] = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
-    v3[2] = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
-    v3[3] = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
-    v3[4] = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
-    v3[5] = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
-    *v1 = (v3[0] + v3[1] + v3[2] + v3[3] + v3[4] + v3[5]);
+    evs[STAT_HP] = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
+    evs[STAT_ATTACK] = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
+    evs[STAT_DEFENSE] = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
+    evs[STAT_SPEED] = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
+    evs[STAT_SPECIAL_ATTACK] = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
+    evs[STAT_SPECIAL_DEFENSE] = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
+    *destVar = evs[STAT_HP] + evs[STAT_ATTACK] + evs[STAT_DEFENSE] + evs[STAT_SPEED] + evs[STAT_SPECIAL_ATTACK] + evs[STAT_SPECIAL_DEFENSE];
 
     return FALSE;
 }

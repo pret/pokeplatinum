@@ -3145,10 +3145,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_233 arg0, arg1
+    .macro GetPartyMonEVTotal destVar, partySlot
     .short 563
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
     .macro GetDayOfWeek destVarID
