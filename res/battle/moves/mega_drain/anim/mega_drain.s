@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, 102
-    CallFunc 33, 5, 0, 1, 0, 8, 11252
+    Func_FadeBg 0, 1, 0, 8, 11252
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W145C, 0, 2, 24
     CreateEmitter 0, 0, 17
@@ -15,10 +15,10 @@ L_0:
     BtlAnimCmd_055 5, 2, 0, 0, 0, 0
     WaitForAllEmitters
     CreateEmitter 0, 2, 3
-    CallFunc 34, 6, 2, 0, 1, 32767, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 0
     PlayPannedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_LEFT
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 8, 0, 11252
+    Func_FadeBg 0, 1, 8, 0, 11252
     WaitForAnimTasks
     End

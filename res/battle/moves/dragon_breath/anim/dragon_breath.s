@@ -15,8 +15,8 @@ L_1:
     BtlAnimCmd_055 6, 0, 2, 32, 1, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_W172, BATTLE_SOUND_PAN_RIGHT
     Delay 15
-    CallFunc 34, 5, 8, 0, 2, 31, 12
-    CallFunc 36, 5, 2, 0, 1, 8, 264
+    Func_FadeBattlerSprite 8, 0, 2, 31, 12
+    Func_Shake 2, 0, 1, 8, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
@@ -28,8 +28,8 @@ L_1:
     WaitForLRX
     PlayPannedSoundEffect SEQ_SE_DP_W172, BATTLE_SOUND_PAN_RIGHT
     Delay 15
-    CallFunc 34, 5, 8, 0, 2, 31, 12
-    CallFunc 36, 5, 2, 0, 1, 8, 264
+    Func_FadeBattlerSprite 8, 0, 2, 31, 12
+    Func_Shake 2, 0, 1, 8, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

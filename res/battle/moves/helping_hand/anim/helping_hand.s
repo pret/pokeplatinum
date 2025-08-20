@@ -12,20 +12,20 @@ L_0:
     PlayDelayedSoundEffect SEQ_SE_DP_W227, 0, 20
     Delay 14
     BeginLoop 2
-    CallFunc 52, 3, 2, 12, 258
-    CallFunc 36, 5, 1, 0, 1, 2, 260
+    Func_MoveBattlerX2 2, 12, 258
+    Func_Shake 1, 0, 1, 2, 260
     Delay 3
-    CallFunc 52, 3, 2, -12, 258
+    Func_MoveBattlerX2 2, -12, 258
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_W227, 0
     EndLoop
     Delay 1
-    CallFunc 52, 3, 2, 12, 258
-    CallFunc 36, 5, 1, 0, 1, 2, 260
+    Func_MoveBattlerX2 2, 12, 258
+    Func_Shake 1, 0, 1, 2, 260
     Delay 3
-    CallFunc 52, 3, 2, -12, 258
+    Func_MoveBattlerX2 2, -12, 258
     Delay 1
-    CallFunc 34, 5, 4, 0, 2, 1003, 8
+    Func_FadeBattlerSprite 4, 0, 2, 1003, 8
     WaitForAnimTasks
     FreeSpriteManager 0
     End

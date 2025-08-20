@@ -19,27 +19,27 @@ L_0:
 L_1:
     JumpIfContest L_3
     CreateEmitter 0, 2, 3
-    CallFunc 65, 6, 0, 0, 0, 0, 20, 64
+    Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
     Delay 19
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
 
 L_3:
     CreateEmitter 0, 4, 3
-    CallFunc 65, 6, 0, 0, 0, 0, 20, 64
+    Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
     Delay 19
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
 
 L_2:
     CreateEmitter 0, 3, 3
-    CallFunc 65, 6, 0, 0, 0, 0, 20, 64
+    Func_MoveEmitterA2BLinear 0, 0, 0, 0, 20, 64
     Delay 19
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

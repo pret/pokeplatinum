@@ -10,8 +10,8 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     PlayLoopedSoundEffect SEQ_SE_DP_W028, BATTLE_SOUND_PAN_RIGHT, 2, 18
     Delay 10
-    CallFunc 34, 5, 8, 0, 2, 797, 12
-    CallFunc 36, 5, 3, 0, 1, 8, 264
+    Func_FadeBattlerSprite 8, 0, 2, 797, 12
+    Func_Shake 3, 0, 1, 8, 264
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

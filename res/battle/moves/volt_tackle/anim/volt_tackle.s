@@ -6,7 +6,7 @@ L_0:
     LoadParticleResource 0, 361
     SwitchBg 27, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch
-    CallFunc 68, 5, 1, 1, 0, 25, 0
+    Func_ShakeBg 1, 1, 0, 25, 0
     PlayLoopedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_LEFT, 2, 4
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
@@ -25,7 +25,7 @@ L_0:
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 4, 4
     Delay 40
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 264
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     PlayLoopedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_RIGHT, 3, 2

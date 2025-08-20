@@ -13,7 +13,7 @@ L_0:
     CreateEmitter 0, 1, 4
     WaitForBgSwitch
     Delay 1
-    CallFunc 50, 2, 5, 0
+    Func_BlinkAttacker 5, 0
     PlayPannedSoundEffect SEQ_SE_DP_W013B, BATTLE_SOUND_PAN_LEFT
     CallFunc 15, 0
     CreateEmitter 0, 0, 3
@@ -22,15 +22,15 @@ L_0:
     BeginLoop 3
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 1, 1, 4
-    CallFunc 51, 3, 1, 8, 264
+    Func_MoveBattlerX 1, 8, 264
     WaitForAnimTasks
-    CallFunc 36, 5, 1, 0, 1, 4, 264
+    Func_Shake 1, 0, 1, 4, 264
     WaitForAnimTasks
     EndLoop
     PlayLoopedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT, 2, 2
-    CallFunc 52, 3, 4, -24, 264
+    Func_MoveBattlerX2 4, -24, 264
     WaitForAnimTasks
-    CallFunc 50, 2, 5, 0
+    Func_BlinkAttacker 5, 0
     WaitForAnimTasks
     FreeSpriteManager 0
     WaitForAllEmitters

@@ -7,46 +7,46 @@ L_0:
     End
 
 L_1:
-    CallFunc 42, 8, 258, 100, 10, 100, 80, 100, 1, 327685
+    Func_ScaleBattlerSprite 258, 100, 10, 100, 80, 100, 1, 327685
     PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
     Delay 4
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     WaitForAnimTasks
     BtlAnimCmd_068 2
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     Delay 1
     PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_LEFT
-    CallFunc 57, 4, 4, 0, -160, 258
+    Func_MoveBattler 258, 0, -160, 4
     WaitForAnimTasks
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     WaitForAnimTasks
-    CallFunc 57, 4, 8, 0, 160, 258
+    Func_MoveBattler 258, 0, 160, 8
     WaitForAnimTasks
-    CallFunc 57, 4, 4, 0, -32, 258
+    Func_MoveBattler 258, 0, -32, 4
     WaitForAnimTasks
-    CallFunc 57, 4, 4, 0, 32, 258
+    Func_MoveBattler 258, 0, 32, 4
     WaitForAnimTasks
     End
 
 L_2:
-    CallFunc 42, 8, 258, 100, 10, 100, 80, 100, 1, 327685
+    Func_ScaleBattlerSprite 258, 100, 10, 100, 80, 100, 1, 327685
     PlayPannedSoundEffect SEQ_SE_DP_061, BATTLE_SOUND_PAN_LEFT
     Delay 4
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     WaitForAnimTasks
     BtlAnimCmd_068 2
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     Delay 1
     PlayPannedSoundEffect SEQ_SE_DP_080, BATTLE_SOUND_PAN_LEFT
-    CallFunc 57, 4, 4, 0, 80, 258
+    Func_MoveBattler 258, 0, 80, 4
     WaitForAnimTasks
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     WaitForAnimTasks
-    CallFunc 57, 4, 8, 0, -80, 258
+    Func_MoveBattler 258, 0, -80, 8
     WaitForAnimTasks
-    CallFunc 57, 4, 4, 0, 24, 258
+    Func_MoveBattler 258, 0, 24, 4
     WaitForAnimTasks
-    CallFunc 57, 4, 4, 0, -24, 258
+    Func_MoveBattler 258, 0, -24, 4
     WaitForAnimTasks
     End
     End

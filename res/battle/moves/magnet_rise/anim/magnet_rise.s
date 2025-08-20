@@ -14,12 +14,12 @@ L_0:
 L_1:
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_LEFT
-    CallFunc 57, 4, 8, 0, -8, 258
+    Func_MoveBattler 258, 0, -8, 8
     Delay 8
-    CallFunc 57, 4, 16, 0, 16, 258
+    Func_MoveBattler 258, 0, 16, 16
     PlayPannedSoundEffect SEQ_SE_DP_203, BATTLE_SOUND_PAN_LEFT
     Delay 16
-    CallFunc 57, 4, 8, 0, -8, 258
+    Func_MoveBattler 258, 0, -8, 8
     Delay 8
     EndLoop
     WaitForAllEmitters
@@ -29,12 +29,12 @@ L_1:
 L_2:
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_LEFT
-    CallFunc 57, 4, 8, 0, 8, 258
+    Func_MoveBattler 258, 0, 8, 8
     Delay 8
-    CallFunc 57, 4, 16, 0, -16, 258
+    Func_MoveBattler 258, 0, -16, 16
     PlayPannedSoundEffect SEQ_SE_DP_203, BATTLE_SOUND_PAN_LEFT
     Delay 16
-    CallFunc 57, 4, 8, 0, 8, 258
+    Func_MoveBattler 258, 0, 8, 8
     Delay 8
     EndLoop
     WaitForAllEmitters

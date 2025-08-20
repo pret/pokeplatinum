@@ -9,7 +9,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    CallFunc 34, 6, 8, 0, 1, 0, 10, 20
+    Func_FadeBattlerSprite 8, 0, 1, 0, 10, 20
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

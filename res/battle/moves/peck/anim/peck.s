@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, 94
-    CallFunc 4, 3, 65535, 63714, 2
+    Func_RotateMon 65535, 63714, 2
     Delay 2
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4

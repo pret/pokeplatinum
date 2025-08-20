@@ -6,9 +6,9 @@ L_0:
     LoadParticleResource 0, 216
     JumpIfContest L_1
     JumpIfBattlerSide 0, L_2, L_3
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
-    CallFunc 34, 6, 2, 0, 1, 32767, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 12, 0
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
     Delay 8
@@ -17,14 +17,14 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End
 
 L_2:
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
-    CallFunc 34, 6, 2, 0, 1, 32767, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 12, 0
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
     Delay 8
@@ -33,14 +33,14 @@ L_2:
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End
 
 L_3:
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
-    CallFunc 34, 6, 2, 0, 1, 32767, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 12, 0
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
     Delay 8
@@ -53,14 +53,14 @@ L_3:
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End
 
 L_1:
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
-    CallFunc 34, 6, 2, 0, 1, 32767, 12, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 12, 0
     Delay 2
     PlayPannedSoundEffect SEQ_SE_DP_081, BATTLE_SOUND_PAN_LEFT
     Delay 8
@@ -73,6 +73,6 @@ L_1:
     PlayPannedSoundEffect SEQ_SE_DP_W197, BATTLE_SOUND_PAN_LEFT
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End

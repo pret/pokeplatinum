@@ -11,11 +11,11 @@ L_0:
 
 L_1:
     CreateEmitter 0, 1, 3
-    CallFunc 65, 6, 0, 0, 0, 0, 10, 64
+    Func_MoveEmitterA2BLinear 0, 0, 0, 0, 10, 64
     Delay 5
     Delay 6
     PlayPannedSoundEffect SEQ_SE_DP_W173C, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 42, 8, 264, 100, 100, 100, 70, 100, 1310721, 262148
+    Func_ScaleBattlerSprite 264, 100, 100, 100, 70, 100, 1310721, 262148
     Delay 5
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 3, 4
@@ -30,11 +30,11 @@ L_1:
 
 L_2:
     CreateEmitter 0, 0, 3
-    CallFunc 65, 6, 0, 0, 0, 0, 10, 64
+    Func_MoveEmitterA2BLinear 0, 0, 0, 0, 10, 64
     Delay 5
     Delay 6
     PlayPannedSoundEffect SEQ_SE_DP_W173C, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 42, 8, 264, 100, 100, 100, 70, 100, 1310721, 262148
+    Func_ScaleBattlerSprite 264, 100, 100, 100, 70, 100, 1310721, 262148
     Delay 5
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 3, 4
@@ -49,11 +49,11 @@ L_2:
 
 L_3:
     CreateEmitter 0, 1, 3
-    CallFunc 65, 6, 0, 0, 0, 0, 10, 64
+    Func_MoveEmitterA2BLinear 0, 0, 0, 0, 10, 64
     Delay 5
     Delay 6
     PlayPannedSoundEffect SEQ_SE_DP_W173C, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 42, 8, 264, 100, 100, 100, 70, 100, 1310721, 262148
+    Func_ScaleBattlerSprite 264, 100, 100, 100, 70, 100, 1310721, 262148
     Delay 5
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 3, 4

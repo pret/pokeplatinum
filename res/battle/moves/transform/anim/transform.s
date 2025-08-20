@@ -5,22 +5,22 @@
 L_0:
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W100, BATTLE_SOUND_PAN_LEFT
-    CallFunc 69, 4, 0, 1, 0, 0
+    Func_PixelatePokemonSprite 0, 1, 0, 0
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     BtlAnimCmd_068 0
     LoadPokemonSpriteDummyResources 1
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
-    CallFunc 69, 4, 1, -1, 15, 15
+    Func_PixelatePokemonSprite 1, -1, 15, 15
     Delay 12
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     Delay 1
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0

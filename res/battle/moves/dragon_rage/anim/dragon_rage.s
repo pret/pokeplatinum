@@ -14,7 +14,7 @@ L_0:
     Delay 15
     CreateEmitter 0, 0, 4
     BeginLoop 2
-    CallFunc 36, 5, 4, 0, 1, 8, 264
+    Func_Shake 4, 0, 1, 8, 264
     WaitForAnimTasks
     EndLoop
     WaitForAllEmitters

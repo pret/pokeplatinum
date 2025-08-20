@@ -10,11 +10,11 @@ L_0:
 L_1:
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
-    CallFunc 57, 4, 4, -24, 0, 258
+    Func_MoveBattler 258, -24, 0, 4
     WaitForAnimTasks
-    CallFunc 4, 6, 65535, 68265, 10, 1, 0, 64
+    Func_RotateMon 65535, 68265, 10, 1, 0, 64
     WaitForAnimTasks
-    CallFunc 57, 4, 4, 24, 0, 258
+    Func_MoveBattler 258, 24, 0, 4
     WaitForAnimTasks
     EndLoop
     WaitForAllEmitters
@@ -22,23 +22,23 @@ L_1:
     End
 
 L_2:
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_LEFT
-    CallFunc 57, 4, 4, -24, 0, 258
+    Func_MoveBattler 258, -24, 0, 4
     WaitForAnimTasks
-    CallFunc 4, 4, 65535, 68265, 10, 1
+    Func_RotateMon 65535, 68265, 10, 1
     WaitForAnimTasks
-    CallFunc 57, 4, 4, 38, -8, 258
+    Func_MoveBattler 258, 38, -8, 4
     WaitForAnimTasks
     PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    CallFunc 36, 5, 6, 0, 1, 6, 264
-    CallFunc 57, 4, 2, -14, 8, 258
+    Func_Shake 6, 0, 1, 6, 264
+    Func_MoveBattler 258, -14, 8, 2
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End

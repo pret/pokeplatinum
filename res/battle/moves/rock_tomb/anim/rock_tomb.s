@@ -20,23 +20,23 @@ L_1:
     BtlAnimCmd_055 4, 1, -6000, 0, 3000
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     Delay 5
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     CreateEmitter 1, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 4000, 0, 3000
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     Delay 5
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     CreateEmitter 1, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1000, 1000, -4000
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     Delay 5
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     CreateEmitter 1, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -1000, -1000, 4000
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -49,23 +49,23 @@ L_2:
     BtlAnimCmd_055 4, 1, -6000, -3000, 3000
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     Delay 5
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     CreateEmitter 1, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 4000, -3000, 3000
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     Delay 5
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     CreateEmitter 1, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1000, 1000, -4000
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     Delay 5
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     CreateEmitter 1, 0, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, -1000, -3000, 4000
-    CallFunc 68, 5, 0, 5, 0, 5, 0
+    Func_ShakeBg 0, 5, 0, 5, 0
     PlayPannedSoundEffect SEQ_SE_DP_W063, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0

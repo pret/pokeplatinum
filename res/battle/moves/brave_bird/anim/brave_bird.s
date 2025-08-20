@@ -17,9 +17,9 @@ L_0:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
-    CallFunc 38, 6, 1, 16, 0, 0, 16, 8
+    Func_AlphaFadePokemonSprite 1, 16, 0, 0, 16, 8
     Delay 1
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     WaitForAnimTasks
     SetPokemonSpriteVisible 0, 0
     SetPokemonSpriteVisible 4, 0
@@ -34,8 +34,8 @@ L_2:
     CreateEmitter 0, 0, 3
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 36, 5, 4, 0, 1, 6, 264
-    CallFunc 34, 6, 8, 0, 1, 31, 14, 0
+    Func_Shake 4, 0, 1, 6, 264
+    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
     CreateEmitter 0, 8, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 9, 17
@@ -50,9 +50,9 @@ L_2:
     UnloadParticleSystem 0
     SetPokemonSpriteVisible 0, 1
     SetPokemonSpriteVisible 4, 1
-    CallFunc 38, 6, 1, 0, 16, 16, 0, 8
+    Func_AlphaFadePokemonSprite 1, 0, 16, 16, 0, 8
     Delay 7
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
@@ -72,8 +72,8 @@ L_1:
     CreateEmitter 0, 0, 3
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 36, 5, 4, 0, 1, 6, 264
-    CallFunc 34, 6, 8, 0, 1, 31, 14, 0
+    Func_Shake 4, 0, 1, 6, 264
+    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
     CreateEmitter 0, 8, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 9, 17
@@ -88,9 +88,9 @@ L_1:
     UnloadParticleSystem 0
     SetPokemonSpriteVisible 0, 1
     SetPokemonSpriteVisible 4, 1
-    CallFunc 38, 6, 1, 0, 16, 16, 0, 8
+    Func_AlphaFadePokemonSprite 1, 0, 16, 16, 0, 8
     Delay 7
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1
@@ -110,8 +110,8 @@ L_3:
     CreateEmitter 0, 0, 3
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 36, 5, 4, 0, 1, 6, 264
-    CallFunc 34, 6, 8, 0, 1, 31, 14, 0
+    Func_Shake 4, 0, 1, 6, 264
+    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
     CreateEmitter 0, 8, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     CreateEmitter 0, 9, 17
@@ -126,9 +126,9 @@ L_3:
     UnloadParticleSystem 0
     SetPokemonSpriteVisible 0, 1
     SetPokemonSpriteVisible 4, 1
-    CallFunc 38, 6, 1, 0, 16, 16, 0, 8
+    Func_AlphaFadePokemonSprite 1, 0, 16, 16, 0, 8
     Delay 7
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0
     SetVar BATTLE_ANIM_VAR_BG_ANIM_MODE, 1

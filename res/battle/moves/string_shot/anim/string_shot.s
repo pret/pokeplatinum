@@ -5,7 +5,7 @@
 L_0:
     LoadParticleResource 0, 111
     JumpIfContest L_1
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
@@ -21,12 +21,12 @@ L_0:
     FreeSpriteManager 0
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End
 
 L_1:
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 5, 0, 0
@@ -42,6 +42,6 @@ L_1:
     FreeSpriteManager 0
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End

@@ -13,9 +13,9 @@ L_0:
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 3, 4
     PlayDelayedSoundEffect SEQ_SE_DP_140, BATTLE_SOUND_PAN_RIGHT, 1
-    CallFunc 36, 5, 4, 0, 1, 2, 264
+    Func_Shake 4, 0, 1, 2, 264
     Delay 1
-    CallFunc 68, 5, 5, 0, 1, 3, 0
+    Func_ShakeBg 5, 0, 1, 3, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

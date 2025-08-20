@@ -10,7 +10,7 @@ L_0:
     CreateEmitter 0, 0, 4
     PlayLoopedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_RIGHT, 2, 4
     Delay 25
-    CallFunc 36, 5, 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, 264
     PlayPannedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_RIGHT
     PlayLoopedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_RIGHT, 6, 3
     WaitForAllEmitters

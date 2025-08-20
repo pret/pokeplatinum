@@ -15,8 +15,8 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_W375, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 34, 6, 2, 0, 1, 32767, 10, 30
-    CallFunc 34, 6, 8, 0, 1, 31764, 10, 30
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 30
+    Func_FadeBattlerSprite 8, 0, 1, 31764, 10, 30
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -17,7 +17,7 @@ L_0:
     CreateEmitter 0, 3, 3
     PlayLoopedSoundEffect SEQ_SE_DP_W215, BATTLE_SOUND_PAN_RIGHT, 16, 3
     Delay 20
-    CallFunc 34, 6, 2, 0, 1, 32767, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVar

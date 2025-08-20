@@ -7,11 +7,11 @@ L_0:
     LoadParticleResource 1, 145
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W039, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitterEx 0, 1, 0, 3
-    CallFunc 66, 6, 1, 0, 0, 0, 10, 64
+    Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 10, 64
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT
     Delay 2
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 264
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4

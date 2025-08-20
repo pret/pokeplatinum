@@ -8,7 +8,7 @@ L_0:
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
     Delay 5
-    CallFunc 42, 8, 264, 100, 130, 100, 70, 100, 1310721, 262148
+    Func_ScaleBattlerSprite 264, 100, 130, 100, 70, 100, 1310721, 262148
     PlayPannedSoundEffect SEQ_SE_DP_W036, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 5
     WaitForAllEmitters

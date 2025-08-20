@@ -17,8 +17,8 @@ L_0:
     SwitchBg 53, BATTLE_BG_SWITCH_MODE_FADE
     WaitForBgSwitch
     PlayPannedSoundEffect SEQ_SE_DP_W090, 0
-    CallFunc 36, 5, 4, 0, 1, 30, 264
-    CallFunc 68, 5, 8, 0, 0, 31, 0
+    Func_Shake 4, 0, 1, 30, 264
+    Func_ShakeBg 8, 0, 0, 31, 0
     AddSpriteWithFunc 0, 27, 2, 2, 2, 2, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0

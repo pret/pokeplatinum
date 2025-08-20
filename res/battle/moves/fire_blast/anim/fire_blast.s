@@ -9,7 +9,7 @@ L_0:
     PlayLoopedSoundEffect SEQ_SE_DP_W172, BATTLE_SOUND_PAN_LEFT, 4, 10
     Delay 20
     CreateEmitterEx 0, 1, 6, 3
-    CallFunc 65, 6, 1, 0, 0, 0, 19, 64
+    Func_MoveEmitterA2BLinear 1, 0, 0, 0, 19, 64
     Delay 25
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
@@ -24,8 +24,8 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W172B, BATTLE_SOUND_PAN_RIGHT
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W120, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 34, 6, 8, 0, 2, 31, 10, 0
-    CallFunc 36, 5, 2, 0, 1, 8, 264
+    Func_FadeBattlerSprite 8, 0, 2, 31, 10, 0
+    Func_Shake 2, 0, 1, 8, 264
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

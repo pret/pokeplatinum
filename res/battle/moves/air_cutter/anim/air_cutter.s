@@ -9,8 +9,8 @@ L_0:
     Delay 10
     PlayLoopedSoundEffect SEQ_SE_DP_W104, 0, 2, 6
     Delay 5
-    CallFunc 36, 5, 0, 2, 1, 2, 264
-    CallFunc 36, 5, 0, 2, 1, 2, 272
+    Func_Shake 0, 2, 1, 2, 264
+    Func_Shake 0, 2, 1, 2, 272
     PlayPannedSoundEffect SEQ_SE_DP_W015, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0

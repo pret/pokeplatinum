@@ -14,12 +14,12 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 41, BATTLE_BG_SWITCH_MODE_FADE
     Delay 10
-    CallFunc 68, 5, 0, 3, 0, 10, 0
+    Func_ShakeBg 0, 3, 0, 10, 0
     PlayPannedSoundEffect SEQ_SE_PL_W460B, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
-    CallFunc 36, 5, 2, 0, 1, 4, 264
-    CallFunc 34, 6, 8, 0, 1, 32767, 10, 0
+    Func_Shake 2, 0, 1, 4, 264
+    Func_FadeBattlerSprite 8, 0, 1, 32767, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

@@ -8,7 +8,7 @@ L_0:
     CreateEmitter 1, 1, 4
     Delay 1
     CreateEmitterEx 0, 1, 0, 3
-    CallFunc 66, 6, 1, 0, 0, 0, 13, 64
+    Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 13, 64
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 13
     PlayLoopedSoundEffect SEQ_SE_DP_W028B, BATTLE_SOUND_PAN_RIGHT, 3, 6

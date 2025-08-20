@@ -5,19 +5,19 @@
 L_0:
     LoadParticleResource 0, 317
     PlayPannedSoundEffect SEQ_SE_DP_W091, BATTLE_SOUND_PAN_LEFT
-    CallFunc 42, 8, 258, 100, 120, 100, 80, 100, 1, 327685
+    Func_ScaleBattlerSprite 258, 100, 120, 100, 80, 100, 1, 327685
     WaitForAnimTasks
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     PlayPannedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 1, 3
-    CallFunc 42, 8, 258, 100, 80, 100, 160, 100, 1, 327685
+    Func_ScaleBattlerSprite 258, 100, 80, 100, 160, 100, 1, 327685
     WaitForAnimTasks
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT
-    CallFunc 42, 8, 258, 100, 120, 100, 80, 100, 1, 262148
+    Func_ScaleBattlerSprite 258, 100, 120, 100, 80, 100, 1, 262148
     WaitForAnimTasks
-    CallFunc 42, 8, 258, 100, 80, 100, 160, 100, 1, 262148
+    Func_ScaleBattlerSprite 258, 100, 80, 100, 160, 100, 1, 262148
     PlayPannedSoundEffect SEQ_SE_DP_W253, BATTLE_SOUND_PAN_LEFT
     WaitForAnimTasks
     EndLoop

@@ -13,9 +13,9 @@ L_0:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
-    CallFunc 7, 1, 0
+    Func_DoubleTeam 0
     PlayLoopedSoundEffect SEQ_SE_DP_053, BATTLE_SOUND_PAN_LEFT, 4, 14
-    CallFunc 50, 2, 50, 0
+    Func_BlinkAttacker 50, 0
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1

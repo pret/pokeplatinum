@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     LoadPokemonSpriteIntoBg 1, 0
-    CallFunc 79, 1, 0
+    Func_Sketch 0
     Delay 5
     PlayLoopedSoundEffect SEQ_SE_DP_W092, BATTLE_SOUND_PAN_RIGHT, 4, 20
     WaitForAnimTasks

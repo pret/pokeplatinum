@@ -16,7 +16,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     PlayLoopedSoundEffect SEQ_SE_DP_003, BATTLE_SOUND_PAN_RIGHT, 4, 5
     PlayLoopedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 5, 5
-    CallFunc 36, 5, 2, 0, 1, 10, 264
+    Func_Shake 2, 0, 1, 10, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -64

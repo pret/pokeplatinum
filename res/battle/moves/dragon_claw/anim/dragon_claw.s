@@ -7,7 +7,7 @@ L_0:
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
     PlayPannedSoundEffect SEQ_SE_DP_W221B, BATTLE_SOUND_PAN_LEFT
-    CallFunc 34, 6, 2, 0, 2, 31, 10, 0
+    Func_FadeBattlerSprite 2, 0, 2, 31, 10, 0
     Delay 30
     InitSpriteManager 0, 4, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, 17
@@ -18,11 +18,11 @@ L_0:
     Delay 1
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 52, 3, 2, 24, 258
+    Func_MoveBattlerX2 2, 24, 258
     Delay 2
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     Delay 2
-    CallFunc 52, 3, 2, -24, 258
+    Func_MoveBattlerX2 2, -24, 258
     Delay 4
     EndLoop
     WaitForAllEmitters

@@ -10,14 +10,14 @@ L_0:
     CreateEmitter 0, 1, 0
     PlayPannedSoundEffect SEQ_SE_DP_W195, 0
     Delay 10
-    CallFunc 33, 5, 0, 1, 0, 16, 0
+    Func_FadeBg 0, 1, 0, 16, 0
     Delay 15
-    CallFunc 34, 5, 2, 1, 1, 13741, 16
-    CallFunc 34, 5, 4, 1, 1, 13741, 16
-    CallFunc 34, 5, 8, 1, 1, 13741, 16
-    CallFunc 34, 5, 16, 1, 1, 13741, 16
+    Func_FadeBattlerSprite 2, 1, 1, 13741, 16
+    Func_FadeBattlerSprite 4, 1, 1, 13741, 16
+    Func_FadeBattlerSprite 8, 1, 1, 13741, 16
+    Func_FadeBattlerSprite 16, 1, 1, 13741, 16
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 1, 16, 0, 0
+    Func_FadeBg 0, 1, 16, 0, 0
     WaitForAnimTasks
     End

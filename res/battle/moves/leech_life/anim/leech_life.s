@@ -18,7 +18,7 @@ L_0:
     CreateEmitter 0, 2, 3
     Delay 75
     PlayPannedSoundEffect SEQ_SE_DP_W071B, BATTLE_SOUND_PAN_LEFT
-    CallFunc 34, 6, 2, 0, 1, 32767, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

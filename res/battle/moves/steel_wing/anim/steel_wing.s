@@ -20,7 +20,7 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_W017, BATTLE_SOUND_PAN_RIGHT
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W017, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -20,13 +20,13 @@ L_0:
     BtlAnimCmd_055 6, 0, 0, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -2064, 0
     Delay 5
-    CallFunc 68, 6, 3, 0, 1, 1, 0, 1
-    CallFunc 34, 6, 8, 0, 1, 0, 15, 0
-    CallFunc 33, 5, 2, -4, 0, 12, 32767
+    Func_ShakeBg 3, 0, 1, 1, 0, 1
+    Func_FadeBattlerSprite 8, 0, 1, 0, 15, 0
+    Func_FadeBg 2, -4, 0, 12, 32767
     PlayPannedSoundEffect SEQ_SE_DP_W161B, BATTLE_SOUND_PAN_RIGHT
     Delay 10
-    CallFunc 33, 5, 2, -4, 12, 0, 32767
-    CallFunc 36, 5, 0, 1, 1, 8, 264
+    Func_FadeBg 2, -4, 12, 0, 32767
+    Func_Shake 0, 1, 1, 8, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVar

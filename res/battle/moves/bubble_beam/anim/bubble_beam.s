@@ -10,11 +10,11 @@ L_0:
     PlayLoopedSoundEffect SEQ_SE_DP_AWA, 0, 4, 8
     BeginLoop 2
     PlayLoopedSoundEffect SEQ_SE_DP_W145, BATTLE_SOUND_PAN_RIGHT, 2, 2
-    CallFunc 52, 3, 8, 8, 264
+    Func_MoveBattlerX2 8, 8, 264
     Delay 8
-    CallFunc 52, 3, 16, -16, 264
+    Func_MoveBattlerX2 16, -16, 264
     Delay 16
-    CallFunc 52, 3, 8, 8, 264
+    Func_MoveBattlerX2 8, 8, 264
     Delay 8
     EndLoop
     PlayLoopedSoundEffect SEQ_SE_DP_W202B, BATTLE_SOUND_PAN_RIGHT, 4, 6

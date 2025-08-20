@@ -13,7 +13,7 @@ L_0:
     PlayDelayedSoundEffect SEQ_SE_DP_W092, BATTLE_SOUND_PAN_RIGHT, 8
     PlayDelayedSoundEffect SEQ_SE_DP_W092, BATTLE_SOUND_PAN_RIGHT, 16
     PlayDelayedSoundEffect SEQ_SE_DP_W092, BATTLE_SOUND_PAN_RIGHT, 25
-    CallFunc 36, 5, 2, 0, 1, 8, 264
+    Func_Shake 2, 0, 1, 8, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

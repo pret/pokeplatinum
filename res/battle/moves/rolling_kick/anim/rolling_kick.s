@@ -15,7 +15,7 @@ L_0:
     CallFunc 8, 0
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     PlayPannedSoundEffect SEQ_SE_DP_050, BATTLE_SOUND_PAN_RIGHT
     Delay 20
     FreePokemonSpriteManager
@@ -23,7 +23,7 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     BtlAnimCmd_083 0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
-    CallFunc 36, 5, 2, 0, 1, 1, 264
+    Func_Shake 2, 0, 1, 1, 264
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT

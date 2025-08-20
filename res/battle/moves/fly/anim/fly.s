@@ -20,7 +20,7 @@ L_1:
     CreateEmitter 1, 3, 3
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W019, BATTLE_SOUND_PAN_LEFT
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -42,17 +42,17 @@ L_2:
     PlayPannedSoundEffect SEQ_SE_DP_W327, BATTLE_SOUND_PAN_RIGHT
     WaitForBgSwitch
     CreateEmitter 0, 3, 3
-    CallFunc 73, 5, 0, 1, 0, 10, 4
+    Func_MoveEmitterViewportTop 0, 1, 0, 10, 4
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W019, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT, 10
     CreateEmitter 0, 7, 4
     CreateEmitter 0, 8, 4
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     ResetVar
     SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0

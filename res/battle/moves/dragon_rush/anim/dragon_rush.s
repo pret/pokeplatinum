@@ -15,8 +15,8 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W088, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 68, 5, 0, 5, 0, 5, 0
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_ShakeBg 0, 5, 0, 5, 0
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAnimTasks
     StopSoundEffect SEQ_SE_DP_W088
     WaitForAllEmitters

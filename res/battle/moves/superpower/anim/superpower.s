@@ -8,7 +8,7 @@ L_0:
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
-    CallFunc 56, 2, 0, 0
+    Func_Superpower 0, 0
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 3, 3
     WaitForAnimTasks
@@ -19,12 +19,12 @@ L_0:
     SwitchBg 3, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
     PlayPannedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 57, 4, 2, 16, -8, 258
+    Func_MoveBattler 258, 16, -8, 2
     Delay 2
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
-    CallFunc 36, 5, 8, 0, 1, 4, 264
-    CallFunc 57, 4, 2, -16, 8, 258
+    Func_Shake 8, 0, 1, 4, 264
+    Func_MoveBattler 258, -16, 8, 2
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

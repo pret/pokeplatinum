@@ -5,8 +5,8 @@
 L_0:
     LoadParticleResource 0, 96
     LoadParticleResource 1, 34
-    CallFunc 10, 3, 7, 10, 2
-    CallFunc 10, 3, 7, 10, 8
+    Func_Submission 7, 10, 2
+    Func_Submission 7, 10, 8
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
     PlayDelayedSoundEffect SEQ_SE_DP_W104, BATTLE_SOUND_PAN_LEFT, 1

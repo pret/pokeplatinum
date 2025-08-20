@@ -4,18 +4,18 @@
 
 L_0:
     LoadParticleResource 0, 56
-    CallFunc 52, 3, 3, 24, 258
+    Func_MoveBattlerX2 3, 24, 258
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 4096, 0
     BtlAnimCmd_055 5, 3, 0, 0, 0, 0
     WaitForAnimTasks
-    CallFunc 52, 3, 3, -24, 258
+    Func_MoveBattlerX2 3, -24, 258
     PlayPannedSoundEffect SEQ_SE_DP_131, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     Delay 20
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     PlayPannedSoundEffect SEQ_SE_DP_030, BATTLE_SOUND_PAN_RIGHT
     WaitForAllEmitters
     UnloadParticleSystem 0

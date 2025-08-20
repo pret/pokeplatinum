@@ -4,6 +4,6 @@
 
 L_0:
     PlayLoopedSoundEffect SEQ_SE_DP_W070, 0, 2, 8
-    CallFunc 28, 1, 1
+    Func_Magnitude 1
     WaitForAnimTasks
     End

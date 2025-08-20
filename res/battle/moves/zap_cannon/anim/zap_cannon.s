@@ -9,7 +9,7 @@ L_0:
     SwitchBg 26, BATTLE_BG_SWITCH_MODE_FADE
     Delay 5
     PlayLoopedSoundEffect SEQ_SE_DP_W086, 0, 2, 3
-    CallFunc 68, 5, 8, 8, 0, 20, 0
+    Func_ShakeBg 8, 8, 0, 20, 0
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     CreateEmitter 0, 1, 4
@@ -18,8 +18,8 @@ L_0:
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_W085C, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_W085B, BATTLE_SOUND_PAN_RIGHT, 25
-    CallFunc 36, 5, 4, 0, 1, 4, 264
-    CallFunc 34, 6, 8, 0, 1, 13311, 14, 0
+    Func_Shake 4, 0, 1, 4, 264
+    Func_FadeBattlerSprite 8, 0, 1, 13311, 14, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

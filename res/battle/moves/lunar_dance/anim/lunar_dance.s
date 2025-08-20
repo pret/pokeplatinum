@@ -20,8 +20,8 @@ L_1:
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     Delay 1
-    CallFunc 75, 5, 0, 81, 3, 0, 0
-    CallFunc 75, 5, 1, 80, 3, 0, 2
+    Func_SetPokemonSpritePriority 0, 81, 3, 0, 0
+    Func_SetPokemonSpritePriority 1, 80, 3, 0, 2
     Delay 1
     PlayPannedSoundEffect SEQ_SE_DP_W461, BATTLE_SOUND_PAN_LEFT
     CreateEmitter 0, 3, 3
@@ -32,9 +32,9 @@ L_1:
     CreateEmitter 1, 2, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -1720, 0
-    CallFunc 63, 6, 2, 0, 1, 0, 10, 13311
+    Func_FadePokemonSprite 2, 0, 1, 0, 10, 13311
     Delay 20
-    CallFunc 63, 6, 2, 0, 1, 10, 0, 13311
+    Func_FadePokemonSprite 2, 0, 1, 10, 0, 13311
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
@@ -62,7 +62,7 @@ L_2:
     CreateEmitter 0, 3, 3
     CreateEmitter 0, 0, 3
     Delay 20
-    CallFunc 34, 6, 2, 0, 1, 32767, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 0
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

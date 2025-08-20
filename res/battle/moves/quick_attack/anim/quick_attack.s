@@ -23,7 +23,7 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 0, 4
-    CallFunc 36, 5, 2, 0, 1, 1, 264
+    Func_Shake 2, 0, 1, 1, 264
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

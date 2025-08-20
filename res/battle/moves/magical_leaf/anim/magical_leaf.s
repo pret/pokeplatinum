@@ -15,7 +15,7 @@ L_0:
     Delay 15
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    CallFunc 36, 5, 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, 264
     PlayLoopedSoundEffect SEQ_SE_DP_HURU, BATTLE_SOUND_PAN_RIGHT, 3, 6
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -32,7 +32,7 @@ L_1:
     Delay 15
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
-    CallFunc 36, 5, 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, 264
     PlayLoopedSoundEffect SEQ_SE_DP_HURU, BATTLE_SOUND_PAN_RIGHT, 3, 6
     WaitForAllEmitters
     UnloadParticleSystem 0

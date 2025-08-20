@@ -11,7 +11,7 @@ L_0:
     Delay 3
     CreateEmitter 1, 1, 4
     CreateEmitter 1, 0, 4
-    CallFunc 36, 5, 1, 0, 1, 4, 264
+    Func_Shake 1, 0, 1, 4, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

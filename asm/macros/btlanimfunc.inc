@@ -55,24 +55,36 @@
     CallFunc 3, 0
     .endm
 
-    .macro Func_RotateMon mode, startAngle, endAngle, frames, pivotX, pivotY
-    .if \mode == ROTATE_MON_MODE_ATTACKER_CUSTOM_PIVOT
+    .macro Func_RotateMon startAngle, endAngle, frames, mode, pivotX, pivotY
+    .ifnb \pivotX
         CallFunc 4, 6, \startAngle, \endAngle, \frames, \mode, \pivotX, \pivotY
-    .else \mode == ROTATE_MON_MODE_DEFENDER_REVERSED
-        CallFunc 4, 4, \startAngle, \endAngle, \frames, \mode
+    .else
+        .ifnb \mode
+            CallFunc 4, 4, \startAngle, \endAngle, \frames, \mode
+        .else
+            CallFunc 4, 3, \startAngle, \endAngle, \frames
+        .endif
     .endif
     .endm
 
-    .macro Func_Strength
-    CallFunc 5, 0
+    .macro Func_Strength shrinkScale, growScale, shrinkFrames, growFrames
+    CallFunc 5, 4, \shrinkScale, \growScale, \shrinkFrames, \growFrames
     .endm
 
-    .macro Func_BulkUp
-    CallFunc 6, 0
+    .macro Func_BulkUp unused
+    .ifnb \unused
+        CallFunc 6, 1, \unused
+    .else
+        CallFunc 6, 0
+    .endif
     .endm
 
-    .macro Func_DoubleTeam
-    CallFunc 7, 0
+    .macro Func_DoubleTeam unused
+    .ifnb \unused
+        CallFunc 7, 1, \unused
+    .else
+        CallFunc 7, 0
+    .endif
     .endm
 
     .macro Func_QuickAttack
@@ -131,20 +143,33 @@
     CallFunc 21, 0
     .endm
 
-    .macro Func_Minimize
-    CallFunc 22, 0
+    .macro Func_Minimize unused
+    // Accept 0 or 1 arg; some scripts pass a dummy value
+    .ifnb \unused
+        CallFunc 22, 1, \unused
+    .else
+        CallFunc 22, 0
+    .endif
     .endm
 
     .macro Func_FaintAttack
     CallFunc 23, 0
     .endm
 
-    .macro Func_Earthquake
-    CallFunc 24, 0
+    .macro Func_Earthquake mode
+    .ifnb \mode
+        CallFunc 24, 1, \mode
+    .else
+        CallFunc 24, 0
+    .endif
     .endm
 
     .macro Func_PlayfulHops battlerRole
-    CallFunc 25, 1, \battlerRole
+    .ifnb \battlerRole
+        CallFunc 25, 1, \battlerRole
+    .else
+        CallFunc 25, 0
+    .endif
     .endm
 
     .macro Func_Nightmare moveAttacker
@@ -152,11 +177,32 @@
     .endm
 
     .macro Func_Flail mode, shakeExtentX, shakeExtentY, shakeInterval, shakeAmount
-    CallFunc 27, 5, \mode, \shakeExtentX, \shakeExtentY, \shakeInterval, \shakeAmount
+    .ifnb \shakeAmount
+        CallFunc 27, 5, \mode, \shakeExtentX, \shakeExtentY, \shakeInterval, \shakeAmount
+    .else
+        .ifnb \shakeInterval
+            CallFunc 27, 4, \mode, \shakeExtentX, \shakeExtentY, \shakeInterval
+        .else
+            .ifnb \shakeExtentY
+                CallFunc 27, 3, \mode, \shakeExtentX, \shakeExtentY
+            .else
+                .ifnb \shakeExtentX
+                    CallFunc 27, 2, \mode, \shakeExtentX
+                .else
+                    CallFunc 27, 1, \mode
+                .endif
+            .endif
+        .endif
+    .endif
     .endm
 
-    .macro Func_Magnitude
-    CallFunc 28, 0
+    .macro Func_Magnitude value
+    // Accept 0 or 1 arg; some scripts use CallFunc 28,1,<val>
+    .ifnb \value
+        CallFunc 28, 1, \value
+    .else
+        CallFunc 28, 0
+    .endif
     .endm
 
     .macro Func_Return
@@ -180,7 +226,11 @@
     .endm
 
     .macro Func_FadeBattlerSprite battler, fadeStepFrames, endDelay, color, alpha, holdFrames
-    CallFunc 34, 6, \battler, \fadeStepFrames, \endDelay, \color, \alpha, \holdFrames
+    .ifnb \holdFrames
+        CallFunc 34, 6, \battler, \fadeStepFrames, \endDelay, \color, \alpha, \holdFrames
+    .else
+        CallFunc 34, 5, \battler, \fadeStepFrames, \endDelay, \color, \alpha
+    .endif
     .endm
 
     .macro Func_ScalePokemonSprite battlerRole, spriteAlpha, startScale, endScale, refScale, cycles, frames, sprite
@@ -223,8 +273,14 @@
     CallFunc 44, 8, \bgID, \startX, \startY, \stepX, \stepY, \reverse, \targetBgAlpha, \slowDownTime
     .endm
 
-    .macro Func_MuddyWater bgID, startX, startY, stepX, stepY, reverse, slowDownTime
-    CallFunc 45, 8, \bgID, \startX, \startY, \stepX, \stepY, \reverse, 16, \slowDownTime
+    .macro Func_MuddyWater bgID, startX, startY, stepX, stepY, reverse, p7, p8
+    // Supports 7 or 8 args. With 7 args, p7=slowDownTime and alpha defaults to 16.
+    // With 8 args, p7=targetBgAlpha and p8=slowDownTime.
+    .ifnb \p8
+        CallFunc 45, 8, \bgID, \startX, \startY, \stepX, \stepY, \reverse, \p7, \p8
+    .else
+        CallFunc 45, 8, \bgID, \startX, \startY, \stepX, \stepY, \reverse, 16, \p7
+    .endif
     .endm
 
     .macro Func_Megahorn
@@ -239,8 +295,12 @@
     CallFunc 48, 0
     .endm
 
-    .macro Func_Surf
-    CallFunc 49, 0
+    .macro Func_Surf mode
+    .ifnb \mode
+        CallFunc 49, 1, \mode
+    .else
+        CallFunc 49, 0
+    .endif
     .endm
 
     .macro Func_BlinkAttacker count, interval
@@ -267,8 +327,17 @@
     CallFunc 55, 0
     .endm
 
-    .macro Func_Superpower
-    CallFunc 56, 0
+    .macro Func_Superpower a0, a1
+    // Accept 0-2 args; pass through when provided
+    .ifnb \a1
+        CallFunc 56, 2, \a0, \a1
+    .else
+        .ifnb \a0
+            CallFunc 56, 1, \a0
+        .else
+            CallFunc 56, 0
+        .endif
+    .endif
     .endm
 
     .macro Func_MoveBattler target, dx, dy, frames
@@ -279,8 +348,12 @@
     CallFunc 58, 0
     .endm
 
-    .macro Func_ShadowPunch
-    CallFunc 59, 0
+    .macro Func_ShadowPunch unused
+    .ifnb \unused
+        CallFunc 59, 1, \unused
+    .else
+        CallFunc 59, 0
+    .endif
     .endm
 
     .macro Func_RevolveBattler target, revs, framesPerRev
@@ -299,40 +372,80 @@
     CallFunc 63, 6, \target, \stepFrames, \stepSize, \startFrac, \endFrac, \color
     .endm
 
-    .macro Func_MoveEmitterA2BLinear emitterID, offsetX, offsetY, startDelay, frames, radius
-    CallFunc 65, 6, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius
+    .macro Func_MoveEmitterA2BLinear emitterID, offsetX, offsetY, startDelay, frames, radius, mode, curve, params
+    .ifnb \params
+        CallFunc 65, 9, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve, \params
+    .else
+        .ifnb \curve
+            CallFunc 65, 8, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve
+        .else
+            .ifnb \mode
+                CallFunc 65, 7, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode
+            .else
+                CallFunc 65, 6, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius
+            .endif
+        .endif
+    .endif
+    .endm
+
+    .macro Func_MoveEmitterA2BParabolic emitterID, offsetX, offsetY, startDelay, frames, radius, mode, curve, params
+    .ifnb \params
+        CallFunc 66, 9, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve, \params
+    .else
+        .ifnb \curve
+            CallFunc 66, 8, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve
+        .else
+            .ifnb \mode
+                CallFunc 66, 7, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode
+            .else
+                CallFunc 66, 6, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius
+            .endif
+        .endif
+    .endif
     .endm
 
     .macro Func_MoveEmitterA2BParabolic6 emitterID, offsetX, offsetY, startDelay, frames, radius
-    CallFunc 66, 6, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius
+    Func_MoveEmitterA2BParabolic \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius
     .endm
 
     .macro Func_MoveEmitterA2BParabolic7 emitterID, offsetX, offsetY, startDelay, frames, radius, mode
-    CallFunc 66, 7, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode
+    Func_MoveEmitterA2BParabolic \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode
     .endm
 
     .macro Func_MoveEmitterA2BParabolic8 emitterID, offsetX, offsetY, startDelay, frames, radius, mode, curve
-    CallFunc 66, 8, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve
+    Func_MoveEmitterA2BParabolic \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve
     .endm
 
     .macro Func_MoveEmitterA2BParabolic9 emitterID, offsetX, offsetY, startDelay, frames, radius, mode, curve, params
-    CallFunc 66, 9, \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve, \params
+    Func_MoveEmitterA2BParabolic \emitterID, \offsetX, \offsetY, \startDelay, \frames, \radius, \mode, \curve, \params
     .endm
 
-    .macro Func_BattlerPartialDraw target, stepSize, stepInterval, isSketch
-    CallFunc 67, 4, \target, \stepSize, \stepInterval, \isSketch
+    .macro Func_BattlerPartialDraw a0, a1, a2, a3, a4
+    .ifnb \a4
+        CallFunc 67, 5, \a0, \a1, \a2, \a3, \a4
+    .else
+        CallFunc 67, 4, \a0, \a1, \a2, \a3
+    .endif
     .endm
 
     .macro Func_ShakeBg extentX, extentY, interval, amount, cycles, target
-    CallFunc 68, 6, \extentX, \extentY, \interval, \amount, \cycles, \target
+    .ifnb \target
+        CallFunc 68, 6, \extentX, \extentY, \interval, \amount, \cycles, \target
+    .else
+        CallFunc 68, 5, \extentX, \extentY, \interval, \amount, \cycles
+    .endif
     .endm
 
     .macro Func_PixelatePokemonSprite sprite, step, startX, startY
     CallFunc 69, 4, \sprite, \step, \startX, \startY
     .endm
 
-    .macro Func_RolePlay
-    CallFunc 70, 0
+    .macro Func_RolePlay unused
+    .ifnb \unused
+        CallFunc 70, 1, \unused
+    .else
+        CallFunc 70, 0
+    .endif
     .endm
 
     .macro Func_Snatch target
@@ -344,7 +457,11 @@
     .endm
 
     .macro Func_MoveEmitterViewportTop emitterID, mode, type, frames, startDelay, params
-    CallFunc 73, 6, \emitterID, \mode, \type, \frames, \startDelay, \params
+    .ifnb \params
+        CallFunc 73, 6, \emitterID, \mode, \type, \frames, \startDelay, \params
+    .else
+        CallFunc 73, 5, \emitterID, \mode, \type, \frames, \startDelay
+    .endif
     .endm
 
     .macro Func_SetBgGrayscale grayscale
@@ -363,16 +480,20 @@
     CallFunc 76, 1, \frames
     .endm
 
-    .macro Func_MoveBattlerOnOrOffScreen target, mode, frames
-    CallFunc 77, 3, \mode, \target, \frames
+    .macro Func_MoveBattlerOnOrOffScreen target, mode, frames, a3, a4
+        CallFunc 77, 5, \target, \mode, \frames, \a3, \a4
     .endm
 
     .macro Func_RenderPokemonSprites frames
     CallFunc 78, 1, \frames
     .endm
 
-    .macro Func_Sketch
-    CallFunc 79, 0
+    .macro Func_Sketch unused
+    .ifnb \unused
+        CallFunc 79, 1, \unused
+    .else
+        CallFunc 79, 0
+    .endif
     .endm
 
     .macro Func_StatChangeUp mode

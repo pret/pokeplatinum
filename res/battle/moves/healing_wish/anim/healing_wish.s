@@ -8,7 +8,7 @@ L_0:
     End
 
 L_1:
-    CallFunc 33, 5, 0, 0, 0, 12, 0
+    Func_FadeBg 0, 0, 0, 12, 0
     WaitForAnimTasks
     Delay 30
     CreateEmitter 0, 0, 17
@@ -18,12 +18,12 @@ L_1:
     PlayPannedSoundEffect SEQ_SE_DP_W361, BATTLE_SOUND_PAN_LEFT
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 0, 12, 0, 0
+    Func_FadeBg 0, 0, 12, 0, 0
     WaitForAnimTasks
     End
 
 L_2:
-    CallFunc 33, 5, 0, 0, 0, 12, 0
+    Func_FadeBg 0, 0, 0, 12, 0
     WaitForAnimTasks
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
@@ -31,9 +31,9 @@ L_2:
     BtlAnimCmd_055 6, 0, 1, 2, 0, 0, 0
     PlayPannedSoundEffect SEQ_SE_DP_W361, BATTLE_SOUND_PAN_LEFT
     Delay 30
-    CallFunc 34, 6, 2, 0, 1, 32767, 10, 0
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 10, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 33, 5, 0, 0, 12, 0, 0
+    Func_FadeBg 0, 0, 12, 0, 0
     WaitForAnimTasks
     End

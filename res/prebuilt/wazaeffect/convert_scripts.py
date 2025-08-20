@@ -52,7 +52,7 @@ cmd_names: list[tuple[str | None, int, list[int], Callable[[list[int]], list[int
     ('Nop9', 0, [], None),
     ('Nop10', 0, [], None),
     ('StopSoundEffect', 1, [], transform_PlaySEAny),
-    ('CallFunc', -2, [], None),
+    ('CallFunc', -2, [], transform_CallFunc),
     ('CreateEmitter', 3, [], None),
     ('CreateEmitterEx', 4, [], None),
     ('CreateEmitterForMove', 8, [], None),
@@ -281,14 +281,15 @@ def convert_script(path: Path, dest: Path, keep_partial: bool) -> bool:
 
 
 def convert_scripts(srcdir: Path, dstdir: Path, keep_partial: bool):
-    for entry in sorted(srcdir.glob('*.bin')):
+    for entry in sorted(srcdir.glob('*')):
         if not entry.is_file():
             continue
 
-        dest = (dstdir / (entry.relative_to(srcdir))).with_suffix('.s')
-        if convert_script(entry, dest, keep_partial):
-            # print(f'Converted {entry.name} to {dest.name}')
-            pass
+        id = int(entry.stem)
+        name = get_move_name(id)
+
+        dest = dstdir / name / 'anim' / f'{name}.s'
+        convert_script(entry, dest, keep_partial)
 
 
 if __name__ == '__main__':

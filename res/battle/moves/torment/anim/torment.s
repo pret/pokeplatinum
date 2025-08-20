@@ -28,7 +28,7 @@ L_0:
     LoadCellResObj 0, 11
     LoadAnimResObj 0, 11
     AddSpriteWithFunc 0, 10, 11, 11, 11, 11, 0, 0, 0
-    CallFunc 34, 6, 8, 0, 1, 31, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
     Delay 4
     PlayLoopedSoundEffect SEQ_SE_DP_W207B, BATTLE_SOUND_PAN_RIGHT, 10, 2
     Delay 10

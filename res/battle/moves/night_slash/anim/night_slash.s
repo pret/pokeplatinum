@@ -13,7 +13,7 @@ L_0:
     Delay 11
     CreateEmitter 0, 4, 4
     CreateEmitter 0, 0, 4
-    CallFunc 36, 5, 1, 0, 1, 6, 264
+    Func_Shake 1, 0, 1, 6, 264
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_BRADE, 0
     PlayDelayedSoundEffect SEQ_SE_DP_W233, 0, 10

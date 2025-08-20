@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     PlayPannedSoundEffect SEQ_SE_DP_166, BATTLE_SOUND_PAN_LEFT
     InitSpriteManager 0, 2, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, 24
@@ -18,6 +18,6 @@ L_0:
     PlayDelayedSoundEffect SEQ_SE_DP_W104, 0, 105
     WaitForAnimTasks
     FreeSpriteManager 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End

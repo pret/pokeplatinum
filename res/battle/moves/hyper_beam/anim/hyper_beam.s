@@ -13,13 +13,13 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CallFunc 68, 5, 0, 3, 0, 20, 0
+    Func_ShakeBg 0, 3, 0, 20, 0
     CreateEmitter 0, 9, 3
     CreateEmitterForMove 0, 0, 1, 2, 3, 4, 5, 18
     CreateEmitterForMove 0, 10, 10, 10, 11, 11, 11, 18
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    CallFunc 36, 5, 4, 0, 1, 20, 264
+    Func_Shake 4, 0, 1, 20, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVar
@@ -39,13 +39,13 @@ L_1:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CallFunc 68, 5, 0, 3, 0, 20, 0
+    Func_ShakeBg 0, 3, 0, 20, 0
     CreateEmitter 0, 9, 3
     CreateEmitterForFriendlyFire 0, 7, 8, 7, 8, 3
     CreateEmitterForFriendlyFire 0, 13, 13, 13, 13, 3
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    CallFunc 36, 5, 4, 0, 1, 20, 264
+    Func_Shake 4, 0, 1, 20, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVar
@@ -65,7 +65,7 @@ L_2:
     SetVar BATTLE_ANIM_VAR_BG_SCREEN_MODE, 1
     SwitchBg 14, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CallFunc 68, 5, 0, 3, 0, 20, 0
+    Func_ShakeBg 0, 3, 0, 20, 0
     CreateEmitter 0, 9, 3
     CreateEmitter 0, 6, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
@@ -75,7 +75,7 @@ L_2:
     BtlAnimCmd_055 4, 0, 11008, -8256, 0
     Delay 5
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W062D, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    CallFunc 36, 5, 4, 0, 1, 20, 264
+    Func_Shake 4, 0, 1, 20, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVar

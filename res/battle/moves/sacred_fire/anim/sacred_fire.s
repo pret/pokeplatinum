@@ -20,8 +20,8 @@ L_0:
     Delay 40
     PlayPannedSoundEffect SEQ_SE_DP_W053, BATTLE_SOUND_PAN_RIGHT
     Delay 10
-    CallFunc 34, 6, 8, 0, 1, 31, 10, 0
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_FadeBattlerSprite 8, 0, 1, 31, 10, 0
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     StopSoundEffect SEQ_SE_DP_W053

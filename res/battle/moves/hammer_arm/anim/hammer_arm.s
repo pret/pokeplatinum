@@ -12,8 +12,8 @@ L_0:
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 5
-    CallFunc 68, 5, 0, 5, 0, 5, 0
-    CallFunc 42, 8, 264, 100, 100, 100, 70, 100, 1310721, 262148
+    Func_ShakeBg 0, 5, 0, 5, 0
+    Func_ScaleBattlerSprite 264, 100, 100, 100, 70, 100, 1310721, 262148
     PlayPannedSoundEffect SEQ_SE_DP_W070, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     WaitForAllEmitters

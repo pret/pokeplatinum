@@ -8,8 +8,8 @@ L_0:
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     AddPokemonSprite BATTLER_ROLE_DEFENDER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
-    CallFunc 36, 5, 2, 0, 1, 2, 258
-    CallFunc 34, 5, 2, 0, 1, 32767, 4
+    Func_Shake 2, 0, 1, 2, 258
+    Func_FadeBattlerSprite 2, 0, 1, 32767, 4
     Delay 10
     PlayPannedSoundEffect SEQ_SE_DP_480, BATTLE_SOUND_PAN_RIGHT
     LoadPokemonSpriteDummyResources 4

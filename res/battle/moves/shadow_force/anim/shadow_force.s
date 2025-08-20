@@ -9,20 +9,20 @@ L_0:
 
 L_1:
     PlayPannedSoundEffect SEQ_SE_DP_W467, BATTLE_SOUND_PAN_LEFT
-    CallFunc 50, 2, 5, 0
+    Func_BlinkAttacker 5, 0
     Delay 2
-    CallFunc 74, 1, 1
+    Func_SetBgGrayscale 1
     WaitForAnimTasks
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     Delay 15
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 74, 1, 0
+    Func_SetBgGrayscale 0
     WaitForAnimTasks
     End
 
 L_2:
-    CallFunc 74, 1, 1
+    Func_SetBgGrayscale 1
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     WaitForAnimTasks
     Delay 20
@@ -30,15 +30,15 @@ L_2:
     CreateEmitter 0, 1, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    CallFunc 36, 5, 4, 0, 1, 2, 264
+    Func_Shake 4, 0, 1, 2, 264
     Delay 5
     PlayDelayedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT, 8
     PlayDelayedSoundEffect SEQ_SE_DP_W109, BATTLE_SOUND_PAN_RIGHT, 13
-    CallFunc 50, 2, 5, 0
+    Func_BlinkAttacker 5, 0
     WaitForAnimTasks
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
-    CallFunc 74, 1, 0
+    Func_SetBgGrayscale 0
     WaitForAnimTasks
     End

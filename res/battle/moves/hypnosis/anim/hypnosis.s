@@ -13,7 +13,7 @@ L_0:
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 3, 4
     CreateEmitter 0, 4, 4
-    CallFunc 34, 6, 8, 0, 1, 31764, 8, 0
+    Func_FadeBattlerSprite 8, 0, 1, 31764, 8, 0
     PlayPannedSoundEffect SEQ_SE_DP_154, BATTLE_SOUND_PAN_RIGHT
     PlayDelayedSoundEffect SEQ_SE_DP_W173B, BATTLE_SOUND_PAN_RIGHT, 15
     WaitForAllEmitters

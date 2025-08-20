@@ -20,17 +20,17 @@ L_0:
     PlayLoopedSoundEffect SEQ_SE_DP_W082, BATTLE_SOUND_PAN_LEFT, 4, 2
     CreateEmitter 0, 0, 3
     CreateEmitter 0, 1, 3
-    CallFunc 34, 6, 8, 0, 3, 31, 10, 10
-    CallFunc 36, 5, 3, 0, 0, 13, 264
+    Func_FadeBattlerSprite 8, 0, 3, 31, 10, 10
+    Func_Shake 3, 0, 0, 13, 264
     BeginLoop 2
-    CallFunc 33, 5, 0, 0, 0, 10, 31
+    Func_FadeBg 0, 0, 0, 10, 31
     Delay 10
-    CallFunc 33, 5, 0, 0, 10, 0, 31
+    Func_FadeBg 0, 0, 10, 0, 31
     Delay 10
     EndLoop
-    CallFunc 33, 5, 0, 0, 0, 10, 31
+    Func_FadeBg 0, 0, 0, 10, 31
     Delay 10
-    CallFunc 33, 5, 0, 0, 10, 0, 31
+    Func_FadeBg 0, 0, 10, 0, 31
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W053B, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 10
     WaitForAllEmitters

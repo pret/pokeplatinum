@@ -12,9 +12,9 @@ L_0:
     BtlAnimCmd_055 6, 0, 1, 2, 1, 0, 0
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W379, BATTLE_SOUND_PAN_LEFT
-    CallFunc 42, 8, 258, 100, 80, 100, 140, 100, 1, 327685
+    Func_ScaleBattlerSprite 258, 100, 80, 100, 140, 100, 1, 327685
     Delay 10
-    CallFunc 42, 8, 258, 100, 120, 100, 80, 100, 1, 327685
+    Func_ScaleBattlerSprite 258, 100, 120, 100, 80, 100, 1, 327685
     Delay 10
     EndLoop
     WaitForAllEmitters

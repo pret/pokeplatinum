@@ -15,7 +15,7 @@ L_0:
     Delay 35
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W179, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2
     Delay 10
-    CallFunc 34, 6, 2, 0, 1, 49930, 10, 10
+    Func_FadeBattlerSprite 2, 0, 1, 49930, 10, 10
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -30,7 +30,7 @@ L_1:
     Delay 35
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W179, BATTLE_SOUND_PAN_RIGHT, BATTLE_SOUND_PAN_LEFT, 4, 2
     Delay 10
-    CallFunc 34, 6, 2, 0, 1, 49930, 10, 10
+    Func_FadeBattlerSprite 2, 0, 1, 49930, 10, 10
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -12,8 +12,8 @@ L_0:
     Delay 10
     CreateEmitter 1, 1, 20
     Delay 10
-    CallFunc 36, 5, 2, 0, 1, 2, 264
-    CallFunc 36, 5, 2, 0, 1, 2, 272
+    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 272
     PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_RIGHT, 2, 2
     Delay 10
     WaitForAllEmitters
@@ -28,8 +28,8 @@ L_1:
     Delay 10
     CreateEmitter 1, 1, 20
     Delay 10
-    CallFunc 36, 5, 2, 0, 1, 2, 264
-    CallFunc 36, 5, 2, 0, 1, 2, 272
+    Func_Shake 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 272
     PlayLoopedSoundEffect SEQ_SE_DP_W145C, BATTLE_SOUND_PAN_RIGHT, 2, 2
     Delay 10
     WaitForAllEmitters

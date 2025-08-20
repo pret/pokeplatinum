@@ -11,9 +11,9 @@ L_0:
 
 L_1:
     PlayPannedSoundEffect SEQ_SE_DP_W291, BATTLE_SOUND_PAN_LEFT
-    CallFunc 57, 4, 8, 0, 8, 258
+    Func_MoveBattler 258, 0, 8, 8
     WaitForAnimTasks
-    CallFunc 57, 4, 4, 0, -16, 258
+    Func_MoveBattler 258, 0, -16, 4
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -3440, 0
@@ -21,9 +21,9 @@ L_1:
     BtlAnimCmd_055 6, 0, 1, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -3440, 0
     WaitForAnimTasks
-    CallFunc 40, 2, 2, 1
+    Func_HideBattler 2, 1
     WaitForAnimTasks
-    CallFunc 57, 4, 1, 0, 8, 258
+    Func_MoveBattler 258, 0, 8, 1
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
@@ -40,9 +40,9 @@ L_2:
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 0, -3440, 0
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 264
     Delay 15
-    CallFunc 40, 2, 2, 0
+    Func_HideBattler 2, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

@@ -15,10 +15,10 @@ L_0:
     Delay 10
     StopSoundEffect SEQ_SE_DP_W356
     PlayPannedSoundEffect SEQ_SE_DP_205, 0
-    CallFunc 42, 8, 2050, 100, 100, 100, 60, 100, 1966081, 655370
-    CallFunc 42, 8, 2056, 100, 100, 100, 60, 100, 1966081, 655370
-    CallFunc 42, 8, 2052, 100, 100, 100, 60, 100, 1966081, 655370
-    CallFunc 42, 8, 2064, 100, 100, 100, 60, 100, 1966081, 655370
+    Func_ScaleBattlerSprite 2050, 100, 100, 100, 60, 100, 1966081, 655370
+    Func_ScaleBattlerSprite 2056, 100, 100, 100, 60, 100, 1966081, 655370
+    Func_ScaleBattlerSprite 2052, 100, 100, 100, 60, 100, 1966081, 655370
+    Func_ScaleBattlerSprite 2064, 100, 100, 100, 60, 100, 1966081, 655370
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0

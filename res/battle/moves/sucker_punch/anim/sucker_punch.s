@@ -14,7 +14,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End
@@ -29,7 +29,7 @@ L_1:
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 15
     PlayPannedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

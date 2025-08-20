@@ -10,7 +10,7 @@ L_0:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 2, 0, 0, 0
     Delay 5
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

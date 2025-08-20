@@ -11,7 +11,7 @@ L_0:
     Delay 10
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
@@ -23,7 +23,7 @@ L_1:
     Delay 10
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
@@ -37,7 +37,7 @@ L_2:
     Delay 10
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 1, 4
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks

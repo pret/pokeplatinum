@@ -9,7 +9,7 @@ L_0:
 L_1:
     LoadParticleResource 0, 324
     LoadParticleResource 1, 83
-    CallFunc 33, 5, 0, 1, 0, 12, 2124
+    Func_FadeBg 0, 1, 0, 12, 2124
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     InitPokemonSpriteManager
@@ -17,107 +17,107 @@ L_1:
     LoadPokemonSpriteDummyResources 1
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
-    CallFunc 75, 5, 0, 31, 3, 0, 0
-    CallFunc 75, 5, 1, 30, 3, 0, 2
+    Func_SetPokemonSpritePriority 0, 31, 3, 0, 0
+    Func_SetPokemonSpritePriority 1, 30, 3, 0, 2
     CreateEmitterEx 0, 3, 0, 3
-    CallFunc 72, 10, 3, -90, -90, -90, -90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 3, -90, -90, -90, -90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 4, 1, 3
-    CallFunc 72, 10, 4, -90, -90, -90, -90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 4, -90, -90, -90, -90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 5, 2, 3
-    CallFunc 72, 10, 5, -90, -90, -90, -90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 5, -90, -90, -90, -90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 6, 0, 3
-    CallFunc 72, 10, 6, -45, -45, -45, -45, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 6, -45, -45, -45, -45, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 7, 1, 3
-    CallFunc 72, 10, 7, -45, -45, -45, -45, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 7, -45, -45, -45, -45, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 8, 2, 3
-    CallFunc 72, 10, 8, -45, -45, -45, -45, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 8, -45, -45, -45, -45, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 0, 0, 0, 0, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 0, 0, 0, 0, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 0, 0, 0, 0, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 0, 0, 0, 0, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 0, 0, 0, 0, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 0, 0, 0, 0, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 45, 45, 45, 45, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 45, 45, 45, 45, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 45, 45, 45, 45, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 45, 45, 45, 45, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 45, 45, 45, 45, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 45, 45, 45, 45, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 12, 0, 3
-    CallFunc 72, 10, 12, 90, 90, 90, 90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 12, 90, 90, 90, 90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 13, 1, 3
-    CallFunc 72, 10, 13, 90, 90, 90, 90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 13, 90, 90, 90, 90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 14, 2, 3
-    CallFunc 72, 10, 14, 90, 90, 90, 90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 14, 90, 90, 90, 90, 48, 24, 7, 0, 0
     Delay 8
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     CreateEmitterEx 0, 3, 0, 3
-    CallFunc 72, 10, 3, -90, -90, -90, -90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 3, -90, -90, -90, -90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 4, 1, 3
-    CallFunc 72, 10, 4, -90, -90, -90, -90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 4, -90, -90, -90, -90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 5, 2, 3
-    CallFunc 72, 10, 5, -90, -90, -90, -90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 5, -90, -90, -90, -90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 6, 0, 3
-    CallFunc 72, 10, 6, -45, -45, -45, -45, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 6, -45, -45, -45, -45, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 7, 1, 3
-    CallFunc 72, 10, 7, -45, -45, -45, -45, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 7, -45, -45, -45, -45, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 8, 2, 3
-    CallFunc 72, 10, 8, -45, -45, -45, -45, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 8, -45, -45, -45, -45, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 0, 0, 0, 0, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 0, 0, 0, 0, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 0, 0, 0, 0, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 0, 0, 0, 0, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 0, 0, 0, 0, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 0, 0, 0, 0, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 45, 45, 45, 45, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 45, 45, 45, 45, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 45, 45, 45, 45, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 45, 45, 45, 45, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 45, 45, 45, 45, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 45, 45, 45, 45, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 12, 0, 3
-    CallFunc 72, 10, 12, 90, 90, 90, 90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 12, 90, 90, 90, 90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 13, 1, 3
-    CallFunc 72, 10, 13, 90, 90, 90, 90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 13, 90, 90, 90, 90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 14, 2, 3
-    CallFunc 72, 10, 14, 90, 90, 90, 90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 14, 90, 90, 90, 90, 64, 24, 7, 0, 0
     Delay 8
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     CreateEmitterEx 0, 3, 0, 3
-    CallFunc 72, 10, 3, -90, -90, -90, -90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 3, -90, -90, -90, -90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 4, 1, 3
-    CallFunc 72, 10, 4, -90, -90, -90, -90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 4, -90, -90, -90, -90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 5, 2, 3
-    CallFunc 72, 10, 5, -90, -90, -90, -90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 5, -90, -90, -90, -90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 6, 0, 3
-    CallFunc 72, 10, 6, -45, -45, -45, -45, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 6, -45, -45, -45, -45, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 7, 1, 3
-    CallFunc 72, 10, 7, -45, -45, -45, -45, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 7, -45, -45, -45, -45, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 8, 2, 3
-    CallFunc 72, 10, 8, -45, -45, -45, -45, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 8, -45, -45, -45, -45, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 0, 0, 0, 0, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 0, 0, 0, 0, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 0, 0, 0, 0, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 0, 0, 0, 0, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 0, 0, 0, 0, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 0, 0, 0, 0, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 45, 45, 45, 45, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 45, 45, 45, 45, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 45, 45, 45, 45, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 45, 45, 45, 45, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 45, 45, 45, 45, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 45, 45, 45, 45, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 12, 0, 3
-    CallFunc 72, 10, 12, 90, 90, 90, 90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 12, 90, 90, 90, 90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 13, 1, 3
-    CallFunc 72, 10, 13, 90, 90, 90, 90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 13, 90, 90, 90, 90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 14, 2, 3
-    CallFunc 72, 10, 14, 90, 90, 90, 90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 14, 90, 90, 90, 90, 92, 24, 7, 0, 0
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W379, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 1, 0, 4
-    CallFunc 34, 6, 8, 0, 1, 31, 10, 0
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_FadeBattlerSprite 8, 0, 1, 31, 10, 0
+    Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
@@ -125,118 +125,118 @@ L_1:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
     FreePokemonSpriteManager
-    CallFunc 33, 5, 0, 1, 12, 0, 2124
+    Func_FadeBg 0, 1, 12, 0, 2124
     WaitForAnimTasks
     End
 
 L_2:
     LoadParticleResource 0, 324
     LoadParticleResource 1, 83
-    CallFunc 33, 5, 0, 1, 0, 12, 2124
+    Func_FadeBg 0, 1, 0, 12, 2124
     WaitForAnimTasks
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     CreateEmitterEx 0, 3, 0, 3
-    CallFunc 72, 10, 3, 90, 90, 90, 90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 3, 90, 90, 90, 90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 4, 1, 3
-    CallFunc 72, 10, 4, 90, 90, 90, 90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 4, 90, 90, 90, 90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 5, 2, 3
-    CallFunc 72, 10, 5, 90, 90, 90, 90, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 5, 90, 90, 90, 90, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 6, 0, 3
-    CallFunc 72, 10, 6, 135, 135, 135, 135, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 6, 135, 135, 135, 135, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 7, 1, 3
-    CallFunc 72, 10, 7, 135, 135, 135, 135, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 7, 135, 135, 135, 135, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 8, 2, 3
-    CallFunc 72, 10, 8, 135, 135, 135, 135, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 8, 135, 135, 135, 135, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 180, 180, 180, 180, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 180, 180, 180, 180, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 180, 180, 180, 180, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 180, 180, 180, 180, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 180, 180, 180, 180, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 180, 180, 180, 180, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 225, 225, 225, 225, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 225, 225, 225, 225, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 225, 225, 225, 225, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 225, 225, 225, 225, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 225, 225, 225, 225, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 225, 225, 225, 225, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 12, 0, 3
-    CallFunc 72, 10, 12, 270, 270, 270, 270, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 12, 270, 270, 270, 270, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 13, 1, 3
-    CallFunc 72, 10, 13, 270, 270, 270, 270, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 13, 270, 270, 270, 270, 48, 24, 7, 0, 0
     CreateEmitterEx 0, 14, 2, 3
-    CallFunc 72, 10, 14, 270, 270, 270, 270, 48, 24, 7, 0, 0
+    Func_RevolveEmitter 14, 270, 270, 270, 270, 48, 24, 7, 0, 0
     Delay 8
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     CreateEmitterEx 0, 3, 0, 3
-    CallFunc 72, 10, 3, 90, 90, 90, 90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 3, 90, 90, 90, 90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 4, 1, 3
-    CallFunc 72, 10, 4, 90, 90, 90, 90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 4, 90, 90, 90, 90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 5, 2, 3
-    CallFunc 72, 10, 5, 90, 90, 90, 90, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 5, 90, 90, 90, 90, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 6, 0, 3
-    CallFunc 72, 10, 6, 135, 135, 135, 135, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 6, 135, 135, 135, 135, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 7, 1, 3
-    CallFunc 72, 10, 7, 135, 135, 135, 135, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 7, 135, 135, 135, 135, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 8, 2, 3
-    CallFunc 72, 10, 8, 135, 135, 135, 135, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 8, 135, 135, 135, 135, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 180, 180, 180, 180, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 180, 180, 180, 180, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 180, 180, 180, 180, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 180, 180, 180, 180, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 180, 180, 180, 180, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 180, 180, 180, 180, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 225, 225, 225, 225, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 225, 225, 225, 225, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 225, 225, 225, 225, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 225, 225, 225, 225, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 225, 225, 225, 225, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 225, 225, 225, 225, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 12, 0, 3
-    CallFunc 72, 10, 12, 270, 270, 270, 270, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 12, 270, 270, 270, 270, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 13, 1, 3
-    CallFunc 72, 10, 13, 270, 270, 270, 270, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 13, 270, 270, 270, 270, 64, 24, 7, 0, 0
     CreateEmitterEx 0, 14, 2, 3
-    CallFunc 72, 10, 14, 270, 270, 270, 270, 64, 24, 7, 0, 0
+    Func_RevolveEmitter 14, 270, 270, 270, 270, 64, 24, 7, 0, 0
     Delay 8
     PlayLoopedSoundEffect SEQ_SE_DP_W085, BATTLE_SOUND_PAN_LEFT, 1, 2
     CreateEmitterEx 0, 3, 0, 3
-    CallFunc 72, 10, 3, 90, 90, 90, 90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 3, 90, 90, 90, 90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 4, 1, 3
-    CallFunc 72, 10, 4, 90, 90, 90, 90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 4, 90, 90, 90, 90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 5, 2, 3
-    CallFunc 72, 10, 5, 90, 90, 90, 90, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 5, 90, 90, 90, 90, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 6, 0, 3
-    CallFunc 72, 10, 6, 135, 135, 135, 135, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 6, 135, 135, 135, 135, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 7, 1, 3
-    CallFunc 72, 10, 7, 135, 135, 135, 135, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 7, 135, 135, 135, 135, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 8, 2, 3
-    CallFunc 72, 10, 8, 135, 135, 135, 135, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 8, 135, 135, 135, 135, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 180, 180, 180, 180, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 180, 180, 180, 180, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 180, 180, 180, 180, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 180, 180, 180, 180, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 180, 180, 180, 180, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 180, 180, 180, 180, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 9, 0, 3
-    CallFunc 72, 10, 9, 225, 225, 225, 225, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 9, 225, 225, 225, 225, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 10, 1, 3
-    CallFunc 72, 10, 10, 225, 225, 225, 225, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 10, 225, 225, 225, 225, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 11, 2, 3
-    CallFunc 72, 10, 11, 225, 225, 225, 225, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 11, 225, 225, 225, 225, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 12, 0, 3
-    CallFunc 72, 10, 12, 270, 270, 270, 270, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 12, 270, 270, 270, 270, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 13, 1, 3
-    CallFunc 72, 10, 13, 270, 270, 270, 270, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 13, 270, 270, 270, 270, 92, 24, 7, 0, 0
     CreateEmitterEx 0, 14, 2, 3
-    CallFunc 72, 10, 14, 270, 270, 270, 270, 92, 24, 7, 0, 0
+    Func_RevolveEmitter 14, 270, 270, 270, 270, 92, 24, 7, 0, 0
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W379, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 1, 0, 4
-    CallFunc 34, 6, 8, 0, 1, 31, 10, 0
-    CallFunc 36, 5, 2, 0, 1, 2, 264
+    Func_FadeBattlerSprite 8, 0, 1, 31, 10, 0
+    Func_Shake 2, 0, 1, 2, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     UnloadParticleSystem 1
-    CallFunc 33, 5, 0, 1, 12, 0, 2124
+    Func_FadeBg 0, 1, 12, 0, 2124
     WaitForAnimTasks
     End

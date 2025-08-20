@@ -19,7 +19,7 @@ L_0:
     Delay 96
     PlayLoopedSoundEffect SEQ_SE_DP_W025B, BATTLE_SOUND_PAN_RIGHT, 3, 6
     CreateEmitter 0, 0, 4
-    CallFunc 36, 5, 2, 0, 1, 10, 264
+    Func_Shake 2, 0, 1, 10, 264
     WaitForAnimTasks
     FreeSpriteManager 0
     WaitForAllEmitters

@@ -13,7 +13,7 @@ L_0:
     Delay 30
     WaitForAnimTasks
     AddSpriteWithFunc 0, 10, 11, 11, 11, 11, 0, 0, 0
-    CallFunc 34, 6, 8, 0, 1, 31, 14, 0
+    Func_FadeBattlerSprite 8, 0, 1, 31, 14, 0
     PlayPannedSoundEffect SEQ_SE_DP_W207B, BATTLE_SOUND_PAN_RIGHT
     Delay 8
     PlayPannedSoundEffect SEQ_SE_DP_W207B, BATTLE_SOUND_PAN_RIGHT

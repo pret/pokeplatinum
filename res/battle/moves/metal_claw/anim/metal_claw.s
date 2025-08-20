@@ -10,7 +10,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 0
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_2, 1
-    CallFunc 83, 2, 3, 0
+    Func_StatChangeMetal 0
     WaitForAnimTasks
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
@@ -26,11 +26,11 @@ L_0:
     Delay 1
     BeginLoop 2
     PlayPannedSoundEffect SEQ_SE_DP_W013, BATTLE_SOUND_PAN_RIGHT
-    CallFunc 52, 3, 3, 24, 258
+    Func_MoveBattlerX2 3, 24, 258
     Delay 2
-    CallFunc 36, 5, 1, 0, 1, 2, 264
+    Func_Shake 1, 0, 1, 2, 264
     Delay 2
-    CallFunc 52, 3, 3, -24, 258
+    Func_MoveBattlerX2 3, -24, 258
     Delay 4
     EndLoop
     WaitForAnimTasks

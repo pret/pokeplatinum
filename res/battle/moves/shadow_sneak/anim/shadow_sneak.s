@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, 442
-    CallFunc 74, 1, 1
+    Func_SetBgGrayscale 1
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
     LoadPokemonSpriteDummyResources 1
@@ -14,7 +14,7 @@ L_0:
     AddPokemonSprite BATTLER_ROLE_ENEMY_1, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
     AddPokemonSprite BATTLER_ROLE_PLAYER_2, FALSE, BATTLE_ANIM_MON_SPRITE_2, 2
     AddPokemonSprite BATTLER_ROLE_ENEMY_2, FALSE, BATTLE_ANIM_MON_SPRITE_3, 3
-    CallFunc 78, 1, 45
+    Func_RenderPokemonSprites 45
     CreateEmitter 0, 0, 17
     BtlAnimCmd_055 6, 0, 2, 6, 1, 0, 0
     Delay 2
@@ -27,10 +27,10 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_3
     PlayPannedSoundEffect SEQ_SE_DP_186, BATTLE_SOUND_PAN_RIGHT
     CreateEmitter 0, 1, 4
-    CallFunc 36, 5, 2, 0, 1, 2, 264
-    CallFunc 34, 6, 8, 0, 1, 0, 14, 0
+    Func_Shake 2, 0, 1, 2, 264
+    Func_FadeBattlerSprite 8, 0, 1, 0, 14, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     WaitForAnimTasks
-    CallFunc 74, 1, 0
+    Func_SetBgGrayscale 0
     End

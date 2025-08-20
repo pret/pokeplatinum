@@ -4,8 +4,8 @@
 
 L_0:
     LoadParticleResource 0, 67
-    CallFunc 60, 3, 2, 1, 12
-    CallFunc 36, 5, 4, 0, 1, 4, 264
+    Func_RevolveBattler 2, 1, 12
+    Func_Shake 4, 0, 1, 4, 264
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1720, -3440, 0
@@ -22,8 +22,8 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 1720, 1720, 0
     WaitForAnimTasks
-    CallFunc 60, 3, 2, 1, 12
-    CallFunc 36, 5, 4, 0, 1, 4, 264
+    Func_RevolveBattler 2, 1, 12
+    Func_Shake 4, 0, 1, 4, 264
     CreateEmitter 0, 2, 17
     BtlAnimCmd_055 6, 0, 2, 5, 0, 0, 0
     BtlAnimCmd_055 4, 1, 344, 3440, 0

@@ -12,7 +12,7 @@ L_0:
     SetVar BATTLE_ANIM_VAR_BG_BLEND_TYPE, 0
     SwitchBg 38, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
-    CallFunc 68, 5, 0, 3, 0, 20, 0
+    Func_ShakeBg 0, 3, 0, 20, 0
     PlayPannedSoundEffect SEQ_SE_DP_KAZE2, 0
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 0, 3
@@ -20,7 +20,7 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 1, 1, 0, 0
     Delay 35
     PlayLoopedSoundEffect SEQ_SE_DP_HURU, 0, 3, 8
-    CallFunc 36, 5, 2, 0, 1, 6, 264
+    Func_Shake 2, 0, 1, 6, 264
     CreateEmitter 0, 1, 4
     WaitForAllEmitters
     UnloadParticleSystem 0

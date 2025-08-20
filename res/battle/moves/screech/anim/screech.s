@@ -9,11 +9,11 @@ L_0:
     PlayPannedSoundEffect SEQ_SE_DP_020, BATTLE_SOUND_PAN_LEFT
     Delay 15
     BeginLoop 1
-    CallFunc 52, 3, 8, 8, 264
+    Func_MoveBattlerX2 8, 8, 264
     Delay 8
-    CallFunc 52, 3, 16, -16, 264
+    Func_MoveBattlerX2 16, -16, 264
     Delay 16
-    CallFunc 52, 3, 8, 8, 264
+    Func_MoveBattlerX2 8, 8, 264
     Delay 8
     EndLoop
     WaitForAllEmitters

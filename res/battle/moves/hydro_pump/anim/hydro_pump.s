@@ -12,7 +12,7 @@ L_0:
     WaitForBgSwitch
     CreateEmitter 0, 3, 17
     BtlAnimCmd_055 6, 0, 2, 8, 1, 0, 0
-    CallFunc 68, 5, 0, 3, 0, 20, 0
+    Func_ShakeBg 0, 3, 0, 20, 0
     Delay 2
     CreateEmitter 0, 4, 17
     BtlAnimCmd_055 6, 0, 2, 10, 6, 0, 0
@@ -20,11 +20,11 @@ L_0:
     BtlAnimCmd_055 6, 0, 2, 10, 6, 0, 0
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_SUIRYU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     Delay 8
-    CallFunc 36, 5, 2, 0, 1, 14, 258
+    Func_Shake 2, 0, 1, 14, 258
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 0, 4
-    CallFunc 34, 6, 8, 0, 1, 49930, 10, 25
-    CallFunc 36, 5, 2, 0, 1, 14, 264
+    Func_FadeBattlerSprite 8, 0, 1, 49930, 10, 25
+    Func_Shake 2, 0, 1, 14, 264
     WaitForAllEmitters
     UnloadParticleSystem 0
     ResetVar

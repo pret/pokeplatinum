@@ -10,8 +10,8 @@ L_0:
     CreateEmitter 0, 0, 4
     CreateEmitter 0, 2, 4
     CreateEmitter 0, 1, 4
-    CallFunc 36, 5, 2, 0, 1, 6, 264
-    CallFunc 68, 5, 0, 5, 1, 5, 0
+    Func_Shake 2, 0, 1, 6, 264
+    Func_ShakeBg 0, 5, 1, 5, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     End

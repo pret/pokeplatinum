@@ -3,7 +3,7 @@
 .data
 
 L_0:
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
@@ -21,6 +21,6 @@ L_0:
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     BtlAnimCmd_083 1
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End

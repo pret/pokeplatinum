@@ -4,7 +4,7 @@
 
 L_0:
     LoadParticleResource 0, 343
-    CallFunc 33, 5, 0, 1, 0, 12, 0
+    Func_FadeBg 0, 1, 0, 12, 0
     WaitForAnimTasks
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W020, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
     CreateEmitter 0, 0, 17
@@ -12,7 +12,7 @@ L_0:
     LoadPokemonSpriteIntoBg 1, 0
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0
-    CallFunc 34, 5, 2, 0, 2, 49930, 10
+    Func_FadeBattlerSprite 2, 0, 2, 49930, 10
     CallFunc 37, 0
     BeginLoop 3
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_SHUSHU, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
@@ -24,13 +24,13 @@ L_0:
     LoadPokemonSpriteDummyResources 4
     AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
     BtlAnimCmd_082 2, 0, 4
-    CallFunc 35, 8, 0, 8, 10, 15, 10, 1, 589833, 0
+    Func_ScalePokemonSprite 0, 8, 10, 15, 10, 1, 589833, 0
     WaitForAnimTasks
     FreePokemonSpriteManager
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
     BtlAnimCmd_083 0
     RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
     RemovePokemonSpriteFromBg 0
-    CallFunc 33, 5, 0, 1, 12, 0, 0
+    Func_FadeBg 0, 1, 12, 0, 0
     WaitForAnimTasks
     End

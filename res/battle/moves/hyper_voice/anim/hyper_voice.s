@@ -12,11 +12,11 @@ L_0:
     CreateEmitter 0, 1, 17
     BtlAnimCmd_055 6, 0, 2, 22, 16, 0, 0
     CreateEmitter 0, 0, 4
-    CallFunc 33, 5, 0, 1, 0, 8, 13311
-    CallFunc 36, 5, 0, 2, 1, 2, 264
-    CallFunc 36, 5, 0, 2, 1, 2, 272
+    Func_FadeBg 0, 1, 0, 8, 13311
+    Func_Shake 0, 2, 1, 2, 264
+    Func_Shake 0, 2, 1, 2, 272
     WaitForAnimTasks
-    CallFunc 33, 5, 0, 1, 8, 0, 13311
+    Func_FadeBg 0, 1, 8, 0, 13311
     WaitForAnimTasks
     WaitForPokemonCries 0
     EndLoop

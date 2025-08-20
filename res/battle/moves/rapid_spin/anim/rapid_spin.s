@@ -8,7 +8,7 @@ L_0:
     CreateEmitter 0, 1, 3
     CreateEmitter 0, 2, 3
     CreateEmitter 0, 0, 4
-    CallFunc 36, 5, 2, 0, 1, 8, 264
+    Func_Shake 2, 0, 1, 8, 264
     PlayLoopedSoundEffect SEQ_SE_DP_143, BATTLE_SOUND_PAN_RIGHT, 6, 3
     WaitForAllEmitters
     UnloadParticleSystem 0
