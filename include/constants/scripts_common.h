@@ -1,13 +1,14 @@
 #ifndef POKEPLATINUM_SCRIPTS_COMMON_H
 #define POKEPLATINUM_SCRIPTS_COMMON_H
 
+// TODO: This ideally should be generated as part of the build process from the ScriptEntry is the scripts_common.s file
 #define HandleSignpostInput                 0x7D0
 #define CheckBagPocketForItem               0x7D1
 #define Pokecenter_SpeakWithNurse           0x7D2
 #define UNK_03E8                            0x7D3
 #define UNK_043B                            0x7D4
 #define UNK_0479                            0x7D5
-#define CommonScript_SaveGame                            0x7D6
+#define CommonScript_SaveGame               0x7D6
 #define EmptyScript2                        0x7D7
 #define UNK_05EA                            0x7D8
 #define ObtainPoketchApp                    0x7D9
