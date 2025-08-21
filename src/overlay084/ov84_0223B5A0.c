@@ -1947,13 +1947,13 @@ static void ShowItemActionsMenu(BagInterface *interface)
             }
         } else {
             if (Item_Get(itemData, ITEM_PARAM_FIELD_USE_FUNC) != 0) {
-                if (interface->appArguments->selectedItem == ITEM_BICYCLE && interface->appArguments->unk_76_0 == 1) {
+                if (interface->appArguments->selectedItem == ITEM_BICYCLE && interface->appArguments->cycling == 1) {
                     itemActions[itemActionsIdx] = ITEM_ACTION_WALK;
                 } else if (interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx].pocketType == POCKET_MAIL) {
                     itemActions[itemActionsIdx] = ITEM_ACTION_CHECK;
                 } else if (interface->appArguments->selectedItem == ITEM_POFFIN_CASE) {
                     itemActions[itemActionsIdx] = ITEM_ACTION_OPEN;
-                } else if (interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx].pocketType == POCKET_BERRIES && sub_02068B50(interface->appArguments->unk_70) == TRUE) {
+                } else if (interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx].pocketType == POCKET_BERRIES && sub_02068B50(interface->appArguments->itemUseCtx) == TRUE) {
                     itemActions[itemActionsIdx] = ITEM_ACTION_PLANT;
                 } else {
                     itemActions[itemActionsIdx] = ITEM_ACTION_USE;
@@ -2068,7 +2068,7 @@ static int ItemActionFunc_Use(BagInterface *interface)
     canUseItem = (UnkFuncPtr_02069238)sub_020683F4(2, itemUseFuncIdx);
 
     if (canUseItem != NULL) {
-        u32 itemUseError = canUseItem(interface->appArguments->unk_70);
+        u32 itemUseError = canUseItem(interface->appArguments->itemUseCtx);
 
         if (itemUseError != 0) {
             sub_0207CD34(interface->trainerInfo, interface->strBuffer, interface->appArguments->selectedItem, itemUseError, HEAP_ID_BAG);
@@ -2803,11 +2803,11 @@ static int ResolveSale(BagInterface *interface)
     TrainerInfo_GiveMoney(interface->trainerInfo, interface->selectedItemCount * interface->soldItemPrice);
 
     if (interface->selectedItemCount == 1) {
-        if (interface->appArguments->unk_75 != 0xff) {
-            interface->appArguments->unk_75++;
+        if (interface->appArguments->itemSoldAmount != 0xff) {
+            interface->appArguments->itemSoldAmount++;
         }
     } else {
-        interface->appArguments->unk_75 = 2;
+        interface->appArguments->itemSoldAmount = 2;
     }
 
     BagInterface_PrintMoney(interface, TRUE);

@@ -58,17 +58,17 @@ void sub_0207CB48(BagInterfaceArguments *param0, BagItem *param1, u8 param2, u8 
 
 void sub_0207CB58(BagInterfaceArguments *param0)
 {
-    param0->unk_76_0 = 1;
+    param0->cycling = 1;
 }
 
 void sub_0207CB6C(BagInterfaceArguments *param0, void *param1)
 {
-    param0->unk_70 = param1;
+    param0->itemUseCtx = param1;
 }
 
 void sub_0207CB70(BagInterfaceArguments *param0, u8 param1)
 {
-    param0->unk_74 = param1;
+    param0->itemUsePartySlot = param1;
 }
 
 void sub_0207CB78(BagInterfaceArguments *param0, u16 mapLoadType)
@@ -88,12 +88,12 @@ u16 sub_0207CB9C(BagInterfaceArguments *param0)
 
 u8 sub_0207CBA4(BagInterfaceArguments *param0)
 {
-    return param0->unk_74;
+    return param0->itemUsePartySlot;
 }
 
 u8 sub_0207CBAC(BagInterfaceArguments *param0)
 {
-    return param0->unk_75;
+    return param0->itemSoldAmount;
 }
 
 static u32 sub_0207CBB4(SaveData *saveData)

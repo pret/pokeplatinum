@@ -22,10 +22,10 @@ typedef struct BagInterfaceArguments {
     u16 exitCode;
     u8 padding_6A[2];
     BagCursor *bagCursor;
-    void *unk_70;
-    u8 unk_74;
-    u8 unk_75;
-    u16 unk_76_0 : 1;
+    void *itemUseCtx;
+    u8 itemUsePartySlot;
+    u8 itemSoldAmount; // 0: no item sold, 1: one item sold, >1: 2 or more items sold
+    u16 cycling : 1;
     u16 mapLoadType : 15;
 } BagInterfaceArguments;
 
