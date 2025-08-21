@@ -1,7 +1,7 @@
 enc_bin_gen = generator(
     encounter_py,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
-    output: '@BASENAME@.bin'
+    output: '@BASENAME@'
 )
 
 pl_enc_data_srcs = files(
