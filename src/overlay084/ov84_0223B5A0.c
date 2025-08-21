@@ -2340,7 +2340,7 @@ static int ItemActionFunc_Trash(BagInterface *interface)
     }
 
     BagInterface_ShowItemTrashWindows(interface);
-    BagInterface_ShowItemCountArrows(interface, 0);
+    BagInterface_ShowItemCountArrows(interface, BAG_UI_ARROWS_POS_TRASH);
 
     return BAG_INTERFACE_STATE_SELECT_ITEM_TRASH_COUNT;
 }
@@ -2354,7 +2354,7 @@ static int UpdateTrashCountBasedOnPlayerInput(BagInterface *interface)
 
     if (PlayerPressedPokeballButton(interface) == TRUE) {
         BagInterface_PrintConfirmItemTrashMsg(interface);
-        BagInterface_ToggleItemCountArrows(interface, 0);
+        BagInterface_ToggleItemCountArrows(interface, FALSE);
         interface->pokeballButtonAnimStep = 1;
 
         return BAG_INTERFACE_STATE_WAIT_CONFIRM_TRASH_MSG;
@@ -2376,13 +2376,13 @@ static int UpdateTrashCountBasedOnPlayerInput(BagInterface *interface)
     }
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         BagInterface_PrintConfirmItemTrashMsg(interface);
-        BagInterface_ToggleItemCountArrows(interface, 0);
+        BagInterface_ToggleItemCountArrows(interface, FALSE);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         return BAG_INTERFACE_STATE_WAIT_CONFIRM_TRASH_MSG;
     }
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         BagInterface_CloseItemTrashWindows(interface);
-        BagInterface_ToggleItemCountArrows(interface, 0);
+        BagInterface_ToggleItemCountArrows(interface, FALSE);
         BagInterface_SetHighlighterSpritesPalette(interface, PLTT_1);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         return BAG_INTERFACE_STATE_WAIT_SELECT_ITEM_GENERAL;
@@ -2651,7 +2651,7 @@ static int SetSellLimitAndSetupWindows(BagInterface *interface)
         }
 
         BagInterface_PrintSellCountAndValue(interface, FALSE);
-        BagInterface_ShowItemCountArrows(interface, 1);
+        BagInterface_ShowItemCountArrows(interface, BAG_UI_ARROWS_POS_SELL);
         return BAG_INTERFACE_STATE_SELECT_ITEM_SELL_COUNT;
     }
 

@@ -23,7 +23,7 @@ static void InitSpriteSystem(BagInterface *interface);
 static void LoadSpriteResources(BagInterface *interface);
 static void InitSprites(BagInterface *interface);
 static void CalcPocketHighlighterMovement(BagInterface *interface);
-static u8 CalcPocketHighlighterXForPocket(BagInterface *interface, u8 param1);
+static u8 CalcPocketHighlighterXForPocket(BagInterface *interface, u8 pocketIdx);
 static void StepPocketHighlighterMovingAnim(BagInterface *interface);
 
 static const SpriteTemplate sBagInterfaceSpriteTemplates[] = {
@@ -173,22 +173,22 @@ static const SpriteTemplate sBagInterfaceSpriteTemplates[] = {
     },
 };
 
-void BagInterface_InitSprites(BagInterface *param0)
+void BagInterface_InitSprites(BagInterface *interface)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     VramTransfer_New(32, HEAP_ID_BAG);
-    InitSpriteSystem(param0);
-    LoadSpriteResources(param0);
-    InitSprites(param0);
+    InitSpriteSystem(interface);
+    LoadSpriteResources(interface);
+    InitSprites(interface);
 }
 
-static void InitSpriteSystem(BagInterface *param0)
+static void InitSpriteSystem(BagInterface *interface)
 {
     SpriteResourceCapacities capacities = { 10, 6, 9, 9, 0, 0 };
 
-    param0->spriteSystem = SpriteSystem_Alloc(HEAP_ID_BAG);
-    param0->spriteMan = SpriteManager_New(param0->spriteSystem);
+    interface->spriteSystem = SpriteSystem_Alloc(HEAP_ID_BAG);
+    interface->spriteMan = SpriteManager_New(interface->spriteSystem);
     {
         RenderOamTemplate oamTemplate = {
             .mainOamStart = 0,
@@ -209,18 +209,18 @@ static void InitSpriteSystem(BagInterface *param0)
             .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        SpriteSystem_Init(param0->spriteSystem, &oamTemplate, &transferTemplate, 32);
+        SpriteSystem_Init(interface->spriteSystem, &oamTemplate, &transferTemplate, 32);
     }
 
-    SpriteSystem_InitSprites(param0->spriteSystem, param0->spriteMan, NUM_BAG_INTERFACE_SPRITES);
-    SpriteSystem_InitManagerWithCapacities(param0->spriteSystem, param0->spriteMan, &capacities);
+    SpriteSystem_InitSprites(interface->spriteSystem, interface->spriteMan, NUM_BAG_INTERFACE_SPRITES);
+    SpriteSystem_InitManagerWithCapacities(interface->spriteSystem, interface->spriteMan, &capacities);
 }
 
-static void LoadSpriteResources(BagInterface *param0)
+static void LoadSpriteResources(BagInterface *interface)
 {
     u32 bagSpriteIdx, bagPlttIdx;
 
-    if (param0->trainerGender == GENDER_MALE) {
+    if (interface->trainerGender == GENDER_MALE) {
         bagSpriteIdx = 2;
         bagPlttIdx = 3;
     } else {
@@ -228,198 +228,196 @@ static void LoadSpriteResources(BagInterface *param0)
         bagPlttIdx = 7;
     }
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, bagSpriteIdx, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 25, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 28, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49403);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 31, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 10, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 36, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
-    SpriteSystem_LoadCharResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 4, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
-    SpriteSystem_LoadCharResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
-    TypeIcon_LoadChar(param0->spriteSystem, param0->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, 49409);
-    CategoryIcon_LoadChar(param0->spriteSystem, param0->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, CLASS_PHYSICAL, 49410);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, bagPlttIdx, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 20, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
-    SpriteSystem_LoadPlttResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_PALETTE), FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
-    SpriteSystem_LoadPlttResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 10, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
-    TypeIcon_LoadPlttSrc(param0->spriteSystem, param0->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
-    SpriteSystem_LoadPlttResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 37, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 1, FALSE, 49401);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 24, FALSE, 49402);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 27, FALSE, 49403);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 30, FALSE, 49404);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 9, FALSE, 49405);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 35, FALSE, 49406);
-    SpriteSystem_LoadCellResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNCERFile(), FALSE, 49407);
-    SpriteSystem_LoadCellResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 5, FALSE, 49408);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 0, FALSE, 49401);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 23, FALSE, 49402);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 26, FALSE, 49403);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 29, FALSE, 49404);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 8, FALSE, 49405);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->spriteSystem, param0->spriteMan, param0->bagGraphicsNARC, 34, FALSE, 49406);
-    SpriteSystem_LoadAnimResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNANRFile(), FALSE, 49407);
-    SpriteSystem_LoadAnimResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 6, FALSE, 49408);
-    TypeIcon_LoadAnim(param0->spriteSystem, param0->spriteMan, 49409, 49409);
+    SpriteSystem_LoadCharResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, bagSpriteIdx, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
+    SpriteSystem_LoadCharResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 25, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteSystem_LoadCharResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 28, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49403);
+    SpriteSystem_LoadCharResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 31, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
+    SpriteSystem_LoadCharResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 10, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    SpriteSystem_LoadCharResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 36, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 49406);
+    SpriteSystem_LoadCharResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 4, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49408);
+    SpriteSystem_LoadCharResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 49407);
+    TypeIcon_LoadChar(interface->spriteSystem, interface->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, TYPE_NORMAL, 49409);
+    CategoryIcon_LoadChar(interface->spriteSystem, interface->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, CLASS_PHYSICAL, 49410);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, bagPlttIdx, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49401);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 20, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49402);
+    SpriteSystem_LoadPlttResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(ITEM_NONE, ITEM_FILE_TYPE_PALETTE), FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DMAIN, 49404);
+    SpriteSystem_LoadPlttResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 10, FALSE, PLTT_2, NNS_G2D_VRAM_TYPE_2DMAIN, 49405);
+    TypeIcon_LoadPlttSrc(interface->spriteSystem, interface->spriteMan, NNS_G2D_VRAM_TYPE_2DMAIN, 49406);
+    SpriteSystem_LoadPlttResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 37, FALSE, PLTT_1, NNS_G2D_VRAM_TYPE_2DSUB, 49403);
+    SpriteSystem_LoadCellResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 1, FALSE, 49401);
+    SpriteSystem_LoadCellResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 24, FALSE, 49402);
+    SpriteSystem_LoadCellResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 27, FALSE, 49403);
+    SpriteSystem_LoadCellResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 30, FALSE, 49404);
+    SpriteSystem_LoadCellResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 9, FALSE, 49405);
+    SpriteSystem_LoadCellResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 35, FALSE, 49406);
+    SpriteSystem_LoadCellResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNCERFile(), FALSE, 49407);
+    SpriteSystem_LoadCellResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 5, FALSE, 49408);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 0, FALSE, 49401);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 23, FALSE, 49402);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 26, FALSE, 49403);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 29, FALSE, 49404);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 8, FALSE, 49405);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(interface->spriteSystem, interface->spriteMan, interface->bagGraphicsNARC, 34, FALSE, 49406);
+    SpriteSystem_LoadAnimResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNANRFile(), FALSE, 49407);
+    SpriteSystem_LoadAnimResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_GRAPHIC__SHOP_GRA, 6, FALSE, 49408);
+    TypeIcon_LoadAnim(interface->spriteSystem, interface->spriteMan, 49409, 49409);
 }
 
-static void InitSprites(BagInterface *param0)
+static void InitSprites(BagInterface *interface)
 {
     for (u32 i = 0; i < NUM_BAG_INTERFACE_SPRITES; i++) {
-        param0->sprites[i] = SpriteSystem_NewSprite(param0->spriteSystem, param0->spriteMan, &sBagInterfaceSpriteTemplates[i]);
+        interface->sprites[i] = SpriteSystem_NewSprite(interface->spriteSystem, interface->spriteMan, &sBagInterfaceSpriteTemplates[i]);
     }
 
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_SORTING_POS_BAR], FALSE);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FALSE);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_MOVE_TYPE], FALSE);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_MOVE_CATEGORY], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_ITEM_SORTING_POS_BAR], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_TYPE], FALSE);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_CATEGORY], FALSE);
 
-    if ((param0->appArguments->context == BAG_CONTEXT_POFFIN_SINGLEPLAYER) || (param0->appArguments->context == BAG_CONTEXT_POFFIN_MULTIPLAYER)) {
-        ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], FALSE);
+    if ((interface->appArguments->context == BAG_CONTEXT_POFFIN_SINGLEPLAYER) || (interface->appArguments->context == BAG_CONTEXT_POFFIN_MULTIPLAYER)) {
+        ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], FALSE);
     }
 
-    if (param0->numPockets == 1) {
-        ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_POCKET_INDICATOR_LEFT_ARROW], FALSE);
-        ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_POCKET_INDICATOR_RIGHT_ARROW], FALSE);
+    if (interface->numPockets == 1) {
+        ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_POCKET_INDICATOR_LEFT_ARROW], FALSE);
+        ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_POCKET_INDICATOR_RIGHT_ARROW], FALSE);
     }
 
-    BagInterface_ToggleItemCountArrows(param0, FALSE);
+    BagInterface_ToggleItemCountArrows(interface, FALSE);
 
-    ManagedSprite_SetAnim(param0->sprites[BAG_SPRITE_BAG], param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].pocketType);
-    ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], CalcPocketHighlighterXForPocket(param0, param0->appArguments->currPocketIdx), 97);
-    ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], 177, 24 + (param0->appArguments->accessiblePockets[param0->appArguments->currPocketIdx].cursorPos - 1) * 16);
+    ManagedSprite_SetAnim(interface->sprites[BAG_SPRITE_BAG], interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx].pocketType);
+    ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], CalcPocketHighlighterXForPocket(interface, interface->appArguments->currPocketIdx), 97);
+    ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], 177, 24 + (interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx].cursorPos - 1) * 16);
 
-    {
-        VecFx32 v1 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        Sprite_SetAffineScaleEx(param0->sprites[BAG_SPRITE_BAG]->sprite, &v1, AFFINE_OVERWRITE_MODE_DOUBLE);
-    }
+    VecFx32 spriteScale = { FX32_ONE, FX32_ONE, FX32_ONE };
+    Sprite_SetAffineScaleEx(interface->sprites[BAG_SPRITE_BAG]->sprite, &spriteScale, AFFINE_OVERWRITE_MODE_DOUBLE);
 }
 
-void BagInterface_FreeSprites(BagInterface *param0)
+void BagInterface_FreeSprites(BagInterface *interface)
 {
     for (u32 i = 0; i < NUM_BAG_INTERFACE_SPRITES; i++) {
-        Sprite_DeleteAndFreeResources(param0->sprites[i]);
+        Sprite_DeleteAndFreeResources(interface->sprites[i]);
     }
 
-    SpriteSystem_FreeResourcesAndManager(param0->spriteSystem, param0->spriteMan);
-    SpriteSystem_Free(param0->spriteSystem);
+    SpriteSystem_FreeResourcesAndManager(interface->spriteSystem, interface->spriteMan);
+    SpriteSystem_Free(interface->spriteSystem);
 }
 
-void BagInterface_TickSpriteAnimations(BagInterface *param0)
+void BagInterface_TickSpriteAnimations(BagInterface *interface)
 {
     for (u32 i = 0; i < NUM_BAG_INTERFACE_SPRITES; i++) {
-        ManagedSprite_TickFrame(param0->sprites[i]);
+        ManagedSprite_TickFrame(interface->sprites[i]);
     }
 }
 
-void BahInterface_UpdateItemSprite(BagInterface *param0, u16 item)
+void BahInterface_UpdateItemSprite(BagInterface *interface, u16 item)
 {
-    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, 49407);
-    SpriteSystem_ReplacePlttResObj(param0->spriteSystem, param0->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), FALSE, 49404);
+    SpriteSystem_ReplaceCharResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, 49407);
+    SpriteSystem_ReplacePlttResObj(interface->spriteSystem, interface->spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), FALSE, 49404);
 }
 
-void BagInterface_SetHighlighterSpritesPalette(BagInterface *param0, u8 palette)
+void BagInterface_SetHighlighterSpritesPalette(BagInterface *interface, u8 palette)
 {
-    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], palette);
-    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], palette);
+    ManagedSprite_SetExplicitPalette(interface->sprites[BAG_SPRITE_ITEM_HIGHLIGHT], palette);
+    ManagedSprite_SetExplicitPalette(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT], palette);
 }
 
-u8 BagInterface_IsPocketHighlighterDoneMoving(BagInterface *param0)
+u8 BagInterface_IsPocketHighlighterDoneMoving(BagInterface *interface)
 {
-    return param0->pocketHighlighterMovtMan.moving == FALSE;
+    return interface->pocketHighlighterMovtMan.moving == FALSE;
 }
 
-void BagInterface_StartMovingPocketHighlighter(BagInterface *param0)
+void BagInterface_StartMovingPocketHighlighter(BagInterface *interface)
 {
-    param0->pocketHighlighterMovtMan.currentStep = 0;
-    param0->pocketHighlighterMovtMan.moving = TRUE;
+    interface->pocketHighlighterMovtMan.currentStep = 0;
+    interface->pocketHighlighterMovtMan.moving = TRUE;
 
-    CalcPocketHighlighterMovement(param0);
+    CalcPocketHighlighterMovement(interface);
 }
 
-void BagInterface_DoPocketHighlighterMovementStep(BagInterface *param0)
+void BagInterface_DoPocketHighlighterMovementStep(BagInterface *interface)
 {
-    switch (param0->pocketHighlighterMovtMan.moving) {
+    switch (interface->pocketHighlighterMovtMan.moving) {
     case FALSE:
         break;
     case TRUE:
-        StepPocketHighlighterMovingAnim(param0);
+        StepPocketHighlighterMovingAnim(interface);
         break;
     }
 }
 
-static void StepPocketHighlighterMovingAnim(BagInterface *param0)
+static void StepPocketHighlighterMovingAnim(BagInterface *interface)
 {
-    VecFx32 pocketHighlightPos = *(Sprite_GetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
+    VecFx32 pocketHighlightPos = *(Sprite_GetPosition(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
 
-    if (param0->pocketHighlighterMovtMan.direction == 0) {
-        pocketHighlightPos.x -= param0->pocketHighlighterMovtMan.positions[param0->pocketHighlighterMovtMan.currentStep];
+    if (interface->pocketHighlighterMovtMan.direction == 0) {
+        pocketHighlightPos.x -= interface->pocketHighlighterMovtMan.positions[interface->pocketHighlighterMovtMan.currentStep];
     } else {
-        pocketHighlightPos.x += param0->pocketHighlighterMovtMan.positions[param0->pocketHighlighterMovtMan.currentStep];
+        pocketHighlightPos.x += interface->pocketHighlighterMovtMan.positions[interface->pocketHighlighterMovtMan.currentStep];
     }
 
-    Sprite_SetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &pocketHighlightPos);
-    param0->pocketHighlighterMovtMan.currentStep++;
+    Sprite_SetPosition(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &pocketHighlightPos);
+    interface->pocketHighlighterMovtMan.currentStep++;
 
-    if (param0->pocketHighlighterMovtMan.currentStep == 8) {
-        pocketHighlightPos.x = CalcPocketHighlighterXForPocket(param0, param0->nextPocketIdx) * FX32_ONE;
-        Sprite_SetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &pocketHighlightPos);
-        param0->pocketHighlighterMovtMan.moving = FALSE;
+    if (interface->pocketHighlighterMovtMan.currentStep == 8) {
+        pocketHighlightPos.x = CalcPocketHighlighterXForPocket(interface, interface->nextPocketIdx) * FX32_ONE;
+        Sprite_SetPosition(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite, &pocketHighlightPos);
+        interface->pocketHighlighterMovtMan.moving = FALSE;
     }
 }
 
-static u8 CalcPocketHighlighterXForPocket(BagInterface *param0, u8 pocketIdx)
+static u8 CalcPocketHighlighterXForPocket(BagInterface *interface, u8 pocketIdx)
 {
-    return param0->pocketIndicatorLeftX + param0->pocketIndicatorSpacing * pocketIdx + 6;
+    return interface->pocketIndicatorLeftX + interface->pocketIndicatorSpacing * pocketIdx + 6;
 }
 
-static void CalcPocketHighlighterMovement(BagInterface *param0)
+static void CalcPocketHighlighterMovement(BagInterface *interface)
 {
-    VecFx32 pocketHighlighterPos = *(Sprite_GetPosition(param0->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
-    fx32 targetX = CalcPocketHighlighterXForPocket(param0, param0->nextPocketIdx) * FX32_ONE;
+    VecFx32 pocketHighlighterPos = *(Sprite_GetPosition(interface->sprites[BAG_SPRITE_POCKET_HIGHLIGHT]->sprite));
+    fx32 targetX = CalcPocketHighlighterXForPocket(interface, interface->nextPocketIdx) * FX32_ONE;
 
     fx32 displacement;
     if (targetX < pocketHighlighterPos.x) {
         displacement = (pocketHighlighterPos.x - targetX) / 100;
-        param0->pocketHighlighterMovtMan.direction = 0;
+        interface->pocketHighlighterMovtMan.direction = 0;
     } else {
         displacement = (targetX - pocketHighlighterPos.x) / 100;
-        param0->pocketHighlighterMovtMan.direction = 1;
+        interface->pocketHighlighterMovtMan.direction = 1;
     }
 
-    param0->pocketHighlighterMovtMan.positions[0] = 0;
-    param0->pocketHighlighterMovtMan.positions[1] = displacement * 40;
-    param0->pocketHighlighterMovtMan.positions[2] = displacement * 25;
-    param0->pocketHighlighterMovtMan.positions[3] = displacement * 15;
-    param0->pocketHighlighterMovtMan.positions[4] = displacement * 10;
-    param0->pocketHighlighterMovtMan.positions[5] = displacement * 7;
-    param0->pocketHighlighterMovtMan.positions[6] = displacement * 3;
-    param0->pocketHighlighterMovtMan.positions[7] = 0;
+    interface->pocketHighlighterMovtMan.positions[0] = 0;
+    interface->pocketHighlighterMovtMan.positions[1] = displacement * 40;
+    interface->pocketHighlighterMovtMan.positions[2] = displacement * 25;
+    interface->pocketHighlighterMovtMan.positions[3] = displacement * 15;
+    interface->pocketHighlighterMovtMan.positions[4] = displacement * 10;
+    interface->pocketHighlighterMovtMan.positions[5] = displacement * 7;
+    interface->pocketHighlighterMovtMan.positions[6] = displacement * 3;
+    interface->pocketHighlighterMovtMan.positions[7] = 0;
 }
 
-void BagInterface_ShowItemCountArrows(BagInterface *param0, u8 position)
+void BagInterface_ShowItemCountArrows(BagInterface *interface, u8 position)
 {
-    if (position == 0) {
-        ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], 220, 156);
-        ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], 220, 180);
+    if (position == BAG_UI_ARROWS_POS_TRASH) {
+        ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], 220, 156);
+        ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], 220, 180);
     } else {
-        ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], 162, 108);
-        ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], 162, 132);
+        ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], 162, 108);
+        ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], 162, 132);
     }
 
-    BagInterface_ToggleItemCountArrows(param0, TRUE);
+    BagInterface_ToggleItemCountArrows(interface, TRUE);
 }
 
-void BagInterface_ToggleItemCountArrows(BagInterface *param0, u8 show)
+void BagInterface_ToggleItemCountArrows(BagInterface *interface, u8 show)
 {
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], show);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], show);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_UP], show);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_ITEM_COUNT_ARROW_DOWN], show);
 }
 
-void BagInterface_UpdateTypeAndCategoryIcons(BagInterface *param0, u16 item, u8 draw)
+void BagInterface_UpdateTypeAndCategoryIcons(BagInterface *interface, u16 item, u8 draw)
 {
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_MOVE_TYPE], draw);
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_MOVE_CATEGORY], draw);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_TYPE], draw);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_MOVE_CATEGORY], draw);
 
     if (draw == FALSE) {
         return;
@@ -429,27 +427,27 @@ void BagInterface_UpdateTypeAndCategoryIcons(BagInterface *param0, u16 item, u8 
     u16 moveType = MoveTable_LoadParam(move, MOVEATTRIBUTE_TYPE);
     u16 moveCategory = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, TypeIcon_GetNARC(), TypeIcon_GetChar(moveType), TRUE, 49409);
-    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_MOVE_TYPE], TypeIcon_GetPltt(moveType) + 6);
-    SpriteSystem_ReplaceCharResObj(param0->spriteSystem, param0->spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(moveCategory), TRUE, 49410);
-    ManagedSprite_SetExplicitPalette(param0->sprites[BAG_SPRITE_MOVE_CATEGORY], CategoryIcon_GetPltt(moveCategory) + 6);
+    SpriteSystem_ReplaceCharResObj(interface->spriteSystem, interface->spriteMan, TypeIcon_GetNARC(), TypeIcon_GetChar(moveType), TRUE, 49409);
+    ManagedSprite_SetExplicitPalette(interface->sprites[BAG_SPRITE_MOVE_TYPE], TypeIcon_GetPltt(moveType) + 6);
+    SpriteSystem_ReplaceCharResObj(interface->spriteSystem, interface->spriteMan, CategoryIcon_GetNARC(), CategoryIcon_GetChar(moveCategory), TRUE, 49410);
+    ManagedSprite_SetExplicitPalette(interface->sprites[BAG_SPRITE_MOVE_CATEGORY], CategoryIcon_GetPltt(moveCategory) + 6);
 }
 
-void BagInterface_DrawBtnShockwaveSprite(BagInterface *param0, s16 x, s16 y)
+void BagInterface_DrawBtnShockwaveSprite(BagInterface *interface, s16 x, s16 y)
 {
-    ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], TRUE);
-    ManagedSprite_SetPositionXY(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], x, y);
-    ManagedSprite_SetAnimationFrame(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 0);
-    ManagedSprite_SetAnim(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 0);
+    ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], TRUE);
+    ManagedSprite_SetPositionXY(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], x, y);
+    ManagedSprite_SetAnimationFrame(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 0);
+    ManagedSprite_SetAnim(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], 0);
 }
 
-void BagInterface_TickBtnShockwaveAnim(BagInterface *param0)
+void BagInterface_TickBtnShockwaveAnim(BagInterface *interface)
 {
-    if (ManagedSprite_GetDrawFlag(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE]) == TRUE) {
-        ManagedSprite_TickNFrames(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FX32_ONE);
+    if (ManagedSprite_GetDrawFlag(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE]) == TRUE) {
+        ManagedSprite_TickNFrames(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FX32_ONE);
 
-        if (ManagedSprite_GetAnimationFrame(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE]) == 2) {
-            ManagedSprite_SetDrawFlag(param0->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FALSE);
+        if (ManagedSprite_GetAnimationFrame(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE]) == 2) {
+            ManagedSprite_SetDrawFlag(interface->sprites[BAG_SPRITE_PRESSED_BUTTON_SHOCKWAVE], FALSE);
         }
     }
 }
