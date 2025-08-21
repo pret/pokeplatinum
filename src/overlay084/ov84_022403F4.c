@@ -19,12 +19,12 @@
 #include "type_icon.h"
 #include "vram_transfer.h"
 
-static void InitSpriteSystem(BagInterface *param0);
-static void LoadSpriteResources(BagInterface *param0);
-static void InitSprites(BagInterface *param0);
-static void CalcPocketHighlighterMovement(BagInterface *param0);
-static u8 CalcPocketHighlighterXForPocket(BagInterface *param0, u8 param1);
-static void StepPocketHighlighterMovingAnim(BagInterface *param0);
+static void InitSpriteSystem(BagInterface *interface);
+static void LoadSpriteResources(BagInterface *interface);
+static void InitSprites(BagInterface *interface);
+static void CalcPocketHighlighterMovement(BagInterface *interface);
+static u8 CalcPocketHighlighterXForPocket(BagInterface *interface, u8 param1);
+static void StepPocketHighlighterMovingAnim(BagInterface *interface);
 
 static const SpriteTemplate sBagInterfaceSpriteTemplates[] = {
     [BAG_SPRITE_BAG] = {
@@ -177,7 +177,7 @@ void BagInterface_InitSprites(BagInterface *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    VramTransfer_New(32, HEAP_ID_6);
+    VramTransfer_New(32, HEAP_ID_BAG);
     InitSpriteSystem(param0);
     LoadSpriteResources(param0);
     InitSprites(param0);
@@ -187,7 +187,7 @@ static void InitSpriteSystem(BagInterface *param0)
 {
     SpriteResourceCapacities capacities = { 10, 6, 9, 9, 0, 0 };
 
-    param0->spriteSystem = SpriteSystem_Alloc(HEAP_ID_6);
+    param0->spriteSystem = SpriteSystem_Alloc(HEAP_ID_BAG);
     param0->spriteMan = SpriteManager_New(param0->spriteSystem);
     {
         RenderOamTemplate oamTemplate = {

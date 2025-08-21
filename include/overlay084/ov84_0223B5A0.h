@@ -120,7 +120,7 @@ enum ItemSlotProperty {
 
 typedef struct BagInterface BagInterface;
 
-typedef int (*ItemActionFuncPtr)(BagInterface *param0);
+typedef int (*ItemActionFuncPtr)(BagInterface *interface);
 
 typedef struct BagPocketHighlightAnim {
     u8 moving;
@@ -209,7 +209,7 @@ extern const ApplicationManagerTemplate gBagApplicationTemplate;
 int BagInterface_Init(ApplicationManager *appMan, int *state);
 int BagInterface_Main(ApplicationManager *appMan, int *state);
 int BagInterface_Exit(ApplicationManager *appMan, int *state);
-u16 BagInterface_GetItemSlotProperty(BagInterface *param0, u16 param1, u16 param2);
+u16 BagInterface_GetItemSlotProperty(BagInterface *interface, u16 param1, u16 param2);
 const u32 GetItemActionFunc(u32 param0);
 
 #endif // POKEPLATINUM_OV84_0223B5A0_H

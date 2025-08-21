@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0207CB08_DECL_H
 #define POKEPLATINUM_STRUCT_0207CB08_DECL_H
 
-typedef struct UnkStruct_0207CB08_t BagInterfaceArguments;
+typedef struct BagInterfaceArguments BagInterfaceArguments;
 
 #endif // POKEPLATINUM_STRUCT_0207CB08_DECL_H

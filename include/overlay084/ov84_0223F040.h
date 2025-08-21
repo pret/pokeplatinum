@@ -6,36 +6,36 @@
 #include "bag.h"
 #include "bg_window.h"
 
-u8 BagInterface_PrintStrBufferToWideMsgBox(BagInterface *param0);
-void BagInterface_CreateWindows(BagInterface *param0);
-void BagInterface_DeleteWindows(Window *param0);
-void BagInterface_LoadPocketNames(BagInterface *param0);
-void BagInterface_FreePocketNames(BagInterface *param0);
-void BagInterface_MaybeClearPocketNameBox(BagInterface *param0);
-void BagInterface_PrintPocketNames(BagInterface *param0);
-void BagInterface_DrawPocketIndicatorIcon(BagInterface *param0, u8 param1, u8 param2);
-void BagInterface_DrawPocketIndicatorIcons(BagInterface *param0);
-void BagInterface_PrintItemDescription(BagInterface *param0, u16 param1);
-void BagInterface_PrintTMHMMoveInfo(BagInterface *param0, u16 param1);
-void BagInterface_LoadItemCountStrings(BagInterface *param0);
-void BagInterface_FreeItemCountStrings(BagInterface *param0);
-void BagInterface_PrintItemCount(BagInterface *param0, u16 param1, u16 param2, u32 param3);
-void BagInterface_PrintTMHMNumber(BagInterface *param0, BagItem *param1, u32 param2);
-void BagInterface_PrintBerryNumber(BagInterface *param0, BagItem *param1, u32 param2);
-void BagInterface_PrintCloseBagEntry(BagInterface *param0, u32 param1);
-void BagInterface_DrawRegisteredIcon(BagInterface *param0, u32 param1);
-void BagInterface_LoadItemActionStrings(BagInterface *param0);
-void BagInterface_FreeItemActionStrings(BagInterface *param0);
-void BagInterface_ShowItemActionsMenu(BagInterface *param0, u8 *param1, u8 param2);
-void BagInterface_CloseItemActionsMenu(BagInterface *param0);
-void BagInterface_PrintMovingItemMessage(BagInterface *param0);
-void BagInterface_ShowItemTrashWindows(BagInterface *param0);
-void BagInterface_PrintItemTrashCount(BagInterface *param0);
-void BagInterface_CloseItemTrashWindows(BagInterface *param0);
-void BagInterface_PrintConfirmItemTrashMsg(BagInterface *param0);
-void BagInterface_ShowYesNoMenu(BagInterface *param0);
-void BagInterface_PrintSellCountAndValue(BagInterface *param0, u8 param1);
-void BagInterface_PrintMoney(BagInterface *param0, u8 param1);
-void BagInterface_DrawPoffinCountMsgBox(BagInterface *param0);
+u8 BagInterface_PrintStrBufferToWideMsgBox(BagInterface *interface);
+void BagInterface_CreateWindows(BagInterface *interface);
+void BagInterface_DeleteWindows(Window *window);
+void BagInterface_LoadPocketNames(BagInterface *interface);
+void BagInterface_FreePocketNames(BagInterface *interface);
+void BagInterface_MaybeClearPocketNameBox(BagInterface *interface);
+void BagInterface_PrintPocketNames(BagInterface *interface);
+void BagInterface_DrawPocketIndicatorIcon(BagInterface *interface, u8 param1, u8 param2);
+void BagInterface_DrawPocketIndicatorIcons(BagInterface *interface);
+void BagInterface_PrintItemDescription(BagInterface *interface, u16 param1);
+void BagInterface_PrintTMHMMoveInfo(BagInterface *interface, u16 param1);
+void BagInterface_LoadItemCountStrings(BagInterface *interface);
+void BagInterface_FreeItemCountStrings(BagInterface *interface);
+void BagInterface_PrintItemCount(BagInterface *interface, u16 param1, u16 param2, u32 param3);
+void BagInterface_PrintTMHMNumber(BagInterface *interface, BagItem *param1, u32 param2);
+void BagInterface_PrintBerryNumber(BagInterface *interface, BagItem *param1, u32 param2);
+void BagInterface_PrintCloseBagEntry(BagInterface *interface, u32 param1);
+void BagInterface_DrawRegisteredIcon(BagInterface *interface, u32 param1);
+void BagInterface_LoadItemActionStrings(BagInterface *interface);
+void BagInterface_FreeItemActionStrings(BagInterface *interface);
+void BagInterface_ShowItemActionsMenu(BagInterface *interface, u8 *param1, u8 param2);
+void BagInterface_CloseItemActionsMenu(BagInterface *interface);
+void BagInterface_PrintMovingItemMessage(BagInterface *interface);
+void BagInterface_ShowItemTrashWindows(BagInterface *interface);
+void BagInterface_PrintItemTrashCount(BagInterface *interface);
+void BagInterface_CloseItemTrashWindows(BagInterface *interface);
+void BagInterface_PrintConfirmItemTrashMsg(BagInterface *interface);
+void BagInterface_ShowYesNoMenu(BagInterface *interface);
+void BagInterface_PrintSellCountAndValue(BagInterface *interface, u8 param1);
+void BagInterface_PrintMoney(BagInterface *interface, u8 param1);
+void BagInterface_DrawPoffinCountMsgBox(BagInterface *interface);
 
 #endif // POKEPLATINUM_OV84_0223F040_H
