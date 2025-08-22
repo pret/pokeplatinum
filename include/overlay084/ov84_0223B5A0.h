@@ -209,7 +209,7 @@ extern const ApplicationManagerTemplate gBagApplicationTemplate;
 int BagInterface_Init(ApplicationManager *appMan, int *state);
 int BagInterface_Main(ApplicationManager *appMan, int *state);
 int BagInterface_Exit(ApplicationManager *appMan, int *state);
-u16 BagInterface_GetItemSlotProperty(BagInterface *interface, u16 param1, u16 param2);
-const u32 GetItemActionFunc(u32 param0);
+u16 BagInterface_GetItemSlotParam(BagInterface *interface, u16 slotIdx, u16 param);
+const u32 GetItemActionFunc(enum ItemAction itemAction);
 
 #endif // POKEPLATINUM_OV84_0223B5A0_H

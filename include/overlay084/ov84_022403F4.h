@@ -4,7 +4,7 @@
 #include "overlay084/ov84_0223B5A0.h"
 
 enum BagUIItemCountArrowsPosition {
-    BAG_UI_ARROWS_POS_TRASH,
+    BAG_UI_ARROWS_POS_TRASH = 0,
     BAG_UI_ARROWS_POS_SELL,
 };
 

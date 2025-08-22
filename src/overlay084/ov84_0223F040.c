@@ -8,8 +8,6 @@
 
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_022403F4.h"
-// #include "overlay084/struct_ov84_0223BE5C.h"
-// #include "overlay084/struct_ov84_0223C920.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -210,12 +208,12 @@ void BagInterface_DrawPocketIndicatorIcons(BagInterface *interface)
 
 static void BagInterface_BufferPocketSlotItemName(BagInterface *interface, u32 pocketSlot, u32 templateParamIdx)
 {
-    StringTemplate_SetItemName(interface->strTemplate, templateParamIdx, BagInterface_GetItemSlotProperty(interface, pocketSlot, ITEM_SLOT_ITEM));
+    StringTemplate_SetItemName(interface->strTemplate, templateParamIdx, BagInterface_GetItemSlotParam(interface, pocketSlot, ITEM_SLOT_ITEM));
 }
 
 static void BagInterface_BufferPocketSlotItemNamePlural(BagInterface *interface, u32 pocketSlot, u32 templateParamIdx)
 {
-    StringTemplate_SetItemNamePlural(interface->strTemplate, templateParamIdx, BagInterface_GetItemSlotProperty(interface, pocketSlot, ITEM_SLOT_ITEM));
+    StringTemplate_SetItemNamePlural(interface->strTemplate, templateParamIdx, BagInterface_GetItemSlotParam(interface, pocketSlot, ITEM_SLOT_ITEM));
 }
 
 void BagInterface_PrintItemDescription(BagInterface *interface, u16 item)
@@ -332,7 +330,7 @@ void BagInterface_PrintTMHMNumber(BagInterface *interface, BagItem *itemSlot, u3
         BagInterface_PrintItemCount(interface, itemSlot->quantity, yOffset, TEXT_COLOR(1, 2, 0));
     } else {
         item = item - ITEM_HM01 + 1;
-        FontSpecialChars_DrawPartyScreenHPText(interface->specialChars, item, 2, 1, &interface->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 16, yOffset + 5);
+        FontSpecialChars_DrawPartyScreenHPText(interface->specialChars, item, 2, PADDING_MODE_SPACES, &interface->windows[BAG_INTERFACE_WINDOW_ITEM_LIST], 16, yOffset + 5);
         DrawHMIcon(interface, yOffset);
     }
 }
@@ -404,10 +402,10 @@ void BagInterface_ShowItemActionsMenu(BagInterface *interface, u8 *actions, u8 n
 {
     u16 msgBoxWindowIdx;
     if (interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx].pocketType == POCKET_BERRIES) {
-        Window_Add(interface->bgConfig, &interface->itemActionsWindow, BG_LAYER_MAIN_0, 23, 23 - numActions * 2, 8, numActions * 2, PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
+        Window_Add(interface->bgConfig, &interface->itemActionsWindow, BG_LAYER_MAIN_0, 23, 23 - TEXT_LINES_TILES(numActions), 8, TEXT_LINES_TILES(numActions), PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
         msgBoxWindowIdx = BAG_INTERFACE_WINDOW_MSG_BOX_NARROW;
     } else {
-        Window_Add(interface->bgConfig, &interface->itemActionsWindow, BG_LAYER_MAIN_0, 23 + 1, 23 - numActions * 2, 8 - 1, numActions * 2, PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
+        Window_Add(interface->bgConfig, &interface->itemActionsWindow, BG_LAYER_MAIN_0, 23 + 1, 23 - TEXT_LINES_TILES(numActions), 8 - 1, TEXT_LINES_TILES(numActions), PLTT_3, BASE_TILE_ITEM_ACTIONS_MENU);
         msgBoxWindowIdx = BAG_INTERFACE_WINDOW_MSG_BOX;
     }
 
@@ -599,7 +597,7 @@ void BagInterface_PrintSellCountAndValue(BagInterface *interface, u8 skipFrame)
 {
     Window *window = &interface->windows[BAG_INTERFACE_WINDOW_SELL_COUNT_VALUE];
 
-    if (skipFrame == 0) {
+    if (skipFrame == FALSE) {
         Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_14);
     }
 
@@ -637,7 +635,7 @@ void BagInterface_PrintMoney(BagInterface *interface, u8 skipLabel)
         Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
         Strbuf_Free(label);
     } else {
-        Window_FillRectWithColor(window, 15, 0, 16, (10 * 8), 16);
+        Window_FillRectWithColor(window, 15, 0, 16, (10 * 8), TEXT_LINES(1));
     }
 
     Strbuf *amount = MessageLoader_GetNewStrbuf(interface->bagStringsLoader, Bag_Text_MoneyNum);
@@ -656,14 +654,14 @@ void BagInterface_DrawPoffinCountMsgBox(BagInterface *interface)
 {
     Window *window = &interface->windows[BAG_INTERFACE_WINDOW_POFFIN_COUNT];
     Window_FillTilemap(window, 15);
-    Window_DrawStandardFrame(window, 1, BASE_TILE_STANDARD_WINDOW_FRAME, 14);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 14);
 
     Strbuf *label = MessageLoader_GetNewStrbuf(interface->bagStringsLoader, Bag_Text_PoffinCountLabel);
     Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(label);
 
     Strbuf *count = MessageLoader_GetNewStrbuf(interface->bagStringsLoader, Bag_Text_PoffinCountNum);
-    StringTemplate_SetNumber(interface->strTemplate, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(interface->appArguments->saveData)), 3, 1, 1);
+    StringTemplate_SetNumber(interface->strTemplate, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(interface->appArguments->saveData)), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(interface->strTemplate, interface->strBuffer, count);
     Strbuf_Free(count);
 

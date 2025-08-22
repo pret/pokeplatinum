@@ -189,28 +189,27 @@ static void InitSpriteSystem(BagInterface *interface)
 
     interface->spriteSystem = SpriteSystem_Alloc(HEAP_ID_BAG);
     interface->spriteMan = SpriteManager_New(interface->spriteSystem);
-    {
-        RenderOamTemplate oamTemplate = {
-            .mainOamStart = 0,
-            .mainOamCount = 128,
-            .mainAffineOamStart = 0,
-            .mainAffineOamCount = 32,
-            .subOamStart = 0,
-            .subOamCount = 128,
-            .subAffineOamStart = 0,
-            .subAffineOamCount = 32,
-        };
 
-        CharTransferTemplateWithModes transferTemplate = {
-            .maxTasks = 12,
-            .sizeMain = 1024 * 128,
-            .sizeSub = 1024 * 16,
-            .modeMain = GX_OBJVRAMMODE_CHAR_1D_32K,
-            .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
-        };
+    RenderOamTemplate oamTemplate = {
+        .mainOamStart = 0,
+        .mainOamCount = 128,
+        .mainAffineOamStart = 0,
+        .mainAffineOamCount = 32,
+        .subOamStart = 0,
+        .subOamCount = 128,
+        .subAffineOamStart = 0,
+        .subAffineOamCount = 32,
+    };
 
-        SpriteSystem_Init(interface->spriteSystem, &oamTemplate, &transferTemplate, 32);
-    }
+    CharTransferTemplateWithModes transferTemplate = {
+        .maxTasks = 12,
+        .sizeMain = 1024 * 128,
+        .sizeSub = 1024 * 16,
+        .modeMain = GX_OBJVRAMMODE_CHAR_1D_32K,
+        .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
+    };
+
+    SpriteSystem_Init(interface->spriteSystem, &oamTemplate, &transferTemplate, 32);
 
     SpriteSystem_InitSprites(interface->spriteSystem, interface->spriteMan, NUM_BAG_INTERFACE_SPRITES);
     SpriteSystem_InitManagerWithCapacities(interface->spriteSystem, interface->spriteMan, &capacities);

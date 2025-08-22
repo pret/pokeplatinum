@@ -428,7 +428,7 @@ int BagInterface_Init(ApplicationManager *appMan, int *state)
     BagInterface_LoadItemCountStrings(interface);
     LoadCurrentPocketItemNames(interface);
 
-    // Can't use a variable since it wouldn't match
+    // Can't use a temporary variable since it wouldn't match
 #define pocket interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx]
     LimitMenuScroll(&pocket.cursorScroll, &pocket.cursorPos, pocket.listItemsCount);
     RestrictMenuCursor(&pocket.cursorScroll, &pocket.cursorPos, pocket.listItemsCount, BAG_UI_NUM_VISIBLE_ITEMS);
@@ -833,11 +833,11 @@ static void CountAccessiblePockets(BagInterface *interface)
     }
 }
 
-u16 BagInterface_GetItemSlotProperty(BagInterface *interface, u16 slotIdx, u16 property)
+u16 BagInterface_GetItemSlotParam(BagInterface *interface, u16 slotIdx, u16 param)
 {
     BagInterfacePocketInfo *pocket = &interface->appArguments->accessiblePockets[interface->appArguments->currPocketIdx];
 
-    if (property == ITEM_SLOT_ITEM) {
+    if (param == ITEM_SLOT_ITEM) {
         return pocket->items[slotIdx].item;
     }
 
@@ -2052,7 +2052,7 @@ static void ToggleHideItemSprite(BagInterface *interface, u8 hide)
     Bg_ScheduleTilemapTransfer(interface->bgConfig, BG_LAYER_MAIN_1);
 }
 
-const u32 GetItemActionFunc(u32 itemAction)
+const u32 GetItemActionFunc(enum ItemAction itemAction)
 {
     return sItemActionFuncs[itemAction];
 }
