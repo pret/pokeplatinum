@@ -222,7 +222,7 @@ static const WaterfallTaskFunc sWaterfallTasksDescend[] = {
     SubTask_Waterfall_FinishDescent
 };
 
-void PlayerAvatar_SetRequestStateBit(PlayerAvatar *playerAvatar, u32 bit)
+void PlayerAvatar_SetTransitionState(PlayerAvatar *playerAvatar, u32 bit)
 {
     PlayerAvatar_TurnOnRequestStateBit(playerAvatar, bit);
 }
@@ -1596,9 +1596,9 @@ void ov5_021E0E94(PlayerAvatar *playerAvatar)
     {
         u32 v3 = PlayerAvatar_RequestStateFlag(playerAvatar);
 
-        PlayerAvatar_SetRequestStateBit(playerAvatar, 1 << 6);
+        PlayerAvatar_SetTransitionState(playerAvatar, PLAYER_TRANSITION_POKETCH);
         PlayerAvatar_RequestChangeState(playerAvatar);
-        PlayerAvatar_SetRequestStateBit(playerAvatar, v3);
+        PlayerAvatar_SetTransitionState(playerAvatar, v3);
     }
 }
 
@@ -1629,9 +1629,9 @@ void ov5_021E0EEC(PlayerAvatar *playerAvatar)
     {
         u32 v3 = PlayerAvatar_RequestStateFlag(playerAvatar);
 
-        PlayerAvatar_SetRequestStateBit(playerAvatar, 1 << 0);
+        PlayerAvatar_SetTransitionState(playerAvatar, PLAYER_TRANSITION_WALKING);
         PlayerAvatar_RequestChangeState(playerAvatar);
-        PlayerAvatar_SetRequestStateBit(playerAvatar, v3);
+        PlayerAvatar_SetTransitionState(playerAvatar, v3);
     }
 }
 
@@ -1655,7 +1655,7 @@ static SysTask *ov5_021E0F54(FieldSystem *fieldSystem, u32 param1)
         v4->unk_04 = v1;
 
         MapObject_SetPauseMovementOff(v3);
-        PlayerAvatar_SetRequestStateBit(playerAvatar, param1);
+        PlayerAvatar_SetTransitionState(playerAvatar, param1);
         PlayerAvatar_RequestChangeState(playerAvatar);
 
         v2 = SysTask_Start(ov5_021E0FF0, v4, 0xffff);
@@ -1692,7 +1692,7 @@ static void ov5_021E0FF0(SysTask *param0, void *param1)
 
 SysTask *ov5_021E1000(FieldSystem *fieldSystem)
 {
-    return ov5_021E0F54(fieldSystem, 1 << 7);
+    return ov5_021E0F54(fieldSystem, PLAYER_TRANSITION_SAVE);
 }
 
 void ov5_021E100C(SysTask *param0)
@@ -1702,7 +1702,7 @@ void ov5_021E100C(SysTask *param0)
 
 SysTask *FieldSystem_StartVsSeekerTask(FieldSystem *fieldSystem)
 {
-    return ov5_021E0F54(fieldSystem, 1 << 9);
+    return ov5_021E0F54(fieldSystem, PLAYER_TRANSITION_x0200);
 }
 
 void FieldSystem_EndVsSeekerTask(SysTask *param0)

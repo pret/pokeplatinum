@@ -32,7 +32,7 @@ UnkStruct_0206D140 *sub_0206D140(int heapID);
 void sub_0206D158(UnkStruct_0206D140 *param0);
 void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, u32 heapID);
 void sub_0206D1B8(FieldSystem *fieldSystem, const UnkStruct_0206D140 *param1, int param2);
-void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 param2, Pokemon *param3);
+void sub_0206D340(FieldSystem *fieldSystem, BOOL param1, u16 fishingRodItemID, Pokemon *mon);
 void sub_0206D424(FieldSystem *fieldSystem);
 void sub_0206D430(FieldSystem *fieldSystem);
 void sub_0206D4AC(FieldSystem *fieldSystem, u16 param1);

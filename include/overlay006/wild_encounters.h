@@ -53,7 +53,7 @@ typedef struct WildEncounters {
 
 void WildEncounters_ReplaceTimedEncounters(const WildEncounters *encounterData, int *param1, int *param2);
 BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem);
-BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, const int param1, FieldBattleDTO **param2);
+BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, enum EncounterFishingRodType fishingRodType, FieldBattleDTO **param2);
 BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *param1);
 BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **param1);
 void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *param1);

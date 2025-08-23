@@ -381,19 +381,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00054",
+      "id": "CommonStrings_Text_NotEvenANibble",
       "en_US": "Not even a nibble..."
     },
     {
-      "id": "pl_msg_00000213_00055",
+      "id": "CommonStrings_Text_ThePokemonGotAway",
       "en_US": "The Pokémon got away..."
     },
     {
-      "id": "pl_msg_00000213_00056",
+      "id": "CommonStrings_Text_ReeledItInTooQuickly",
       "en_US": "Reeled it in too quickly..."
     },
     {
-      "id": "pl_msg_00000213_00057",
+      "id": "CommonStrings_Text_LandedAPokemon",
       "en_US": "Landed a Pokémon!"
     },
     {

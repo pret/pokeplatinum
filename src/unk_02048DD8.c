@@ -281,7 +281,7 @@ static void sub_020492A0(FieldSystem *fieldSystem, StringTemplate *param1)
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E7E4 *v2 = sub_0202E7E4(broadcast);
 
-    MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
+    MessageLoader_GetSpeciesName(v2->unk_02, HEAP_ID_FIELD, v0);
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 
@@ -291,7 +291,7 @@ static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E810 *v2 = sub_0202E810(broadcast);
 
-    MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
+    MessageLoader_GetSpeciesName(v2->unk_02, HEAP_ID_FIELD, v0);
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 

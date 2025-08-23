@@ -667,29 +667,29 @@ int Player_MoveStateFromGender(int param0, int gender)
     return 0x0;
 }
 
-u32 sub_0205EED8(int param0)
+u32 Player_ConvertStateToTransition(int param0)
 {
     switch (param0) {
-    case 0x0:
-        return 1 << 0;
-    case 0x1:
-        return 1 << 1;
-    case 0x2:
-        return 1 << 2;
+    case PLAYER_STATE_WALKING:
+        return PLAYER_TRANSITION_WALKING;
+    case PLAYER_STATE_CYCLING:
+        return PLAYER_TRANSITION_CYCLING;
+    case PLAYER_STATE_SURFING:
+        return PLAYER_TRANSITION_SURFING;
     case 0x11:
-        return 1 << 4;
+        return PLAYER_TRANSITION_WATER_BERRIES;
     case 0x13:
-        return 1 << 5;
+        return PLAYER_TRANSITION_FISHING;
     case 0x14:
-        return 1 << 6;
+        return PLAYER_TRANSITION_POKETCH;
     case 0x15:
-        return 1 << 7;
+        return PLAYER_TRANSITION_SAVE;
     case 0x16:
-        return 1 << 8;
+        return PLAYER_TRANSITION_HEAL;
     }
 
     GF_ASSERT(0);
-    return 1 << 0;
+    return PLAYER_TRANSITION_WALKING;
 }
 
 PlayerAvatar *sub_0205EF3C(FieldSystem *fieldSystem)
